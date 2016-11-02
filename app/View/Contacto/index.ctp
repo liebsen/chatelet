@@ -2,6 +2,61 @@
 	echo $this->Html->css('contacto', array('inline' => false));
 	echo $this->Session->flash();
 ?>
+  <div id="headcontacto">
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>Contactate<br>con nosotros</h1>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box">
+                            <h3>¿Tiene alguna consulta o sugerencia?</h3>
+                            <p>Complete el siguiente formulario y háganos llegar sus inquietudes o recomendaciones que crea pertinentes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <section id="formulario">
+           <div class="wrapper">
+               <form>
+                   <div class="row">
+                       <div class="col-sm-6">
+                            <input type="text" placeholder="Nombre y apellido">
+
+                            <h3>Tipo de consulta:</h3>
+                            <label class="mr"><span class="active"><i></i></span><input type="radio" name="radio" checked="checked"> Particular</label>
+                            <label><span><i></i></span><input type="radio" name="radio"> Comerciante</label>
+
+                            <input type="email" placeholder="Email">
+                       </div>
+
+                       <div class="col-sm-6">
+                           <input type="text" placeholder="Teléfono">
+
+                           <textarea placeholder="Mensaje"></textarea>
+
+                           <input type="submit" value="Enviar consulta">
+                       </div>
+                   </div>
+               </form>
+           </div>
+       </section>
+
+        <section id="suscribe">
+            <div class="wrapper">
+                <div class="col-md-6">Suscribite y conocé las <strong>novedades</strong></div>
+                <div class="col-md-6">
+                    <form>
+                        <input type="text" placeholder="Ingresá tu email">
+                        <input type="submit" value="ok">
+                    </form>
+                </div>
+            </div>
+        </section>
+
+<!--
 <div id="main" class="container content">
 	<div class="row">
 		<div class="col-md-4">
@@ -29,4 +84,4 @@
 		<div class="col-md-4">
 		</div>
 	</div>
-</div>
+</div>-->
