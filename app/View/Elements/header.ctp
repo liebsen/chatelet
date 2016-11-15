@@ -1,5 +1,5 @@
 
-    <nav class="navbar">
+   <nav class="navbar">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -11,13 +11,13 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
+    
+     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li>
             <?php 
-              echo $this->Html->link('Lookbook', array('controller' => 'lookbook', 'action' => 'index')); 
+              echo $this->Html->link('Lookbook', array('controller' => 'catalogo', 'action' => 'index')); 
             ?>
         </li>
         <?php if( !empty($show_shop) ): ?>
@@ -48,90 +48,14 @@
           ?>
         </li>
       </ul>
+    
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="https://twitter.com/chateletmoda" class="facebook pull-left" target="_blank">
-            <img src="<?php echo $this->webroot . 'img/tw_icon.png' ?>" width="24" />
-          </a>
-        
-          <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" class="facebook pull-left" target="_blank">
-            <img src="<?php echo $this->webroot . 'img/fb_icon.png' ?>" width="24" />
-          </a>
-
-          <a href="https://www.instagram.com/chateletmoda/" class="facebook pull-left" target="_blank">
-            <img src="<?php echo $this->webroot . 'img/insta_icon.png' ?>" width="24" />
-          </a>
-        </li>
-        <?php 
-          if( $this->Session->check('Carro') && !empty($this->Session->read('Carro')) ){
-            $display_dropdown = 'open';
-          }else{
-            $display_dropdown = '';
-          }
-        ?>
-        <li class="dropdown <?php echo $display_dropdown ?>">
-          <a href="#" class="dropdown-toggle nav-icon" data-toggle="dropdown">
-            <?php
-              echo '<span id="product-count">'. count($carro) .'</span>';
-            ?>
-            <span class="glyphicon glyphicon-shopping-cart"></span>
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <div>
-                <p class="title">Mi Carrito</p>
-                <ol id="items">
-                  <?php
-                    $total = 0;
-                    if (!isset($carro)) $carro = array();
-                    foreach($carro as $producto) {
-                      $total += $producto['price'];
-                      echo '<li>';
-                        echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. $this->Number->currency($producto['price'], 'USD', array('places' => 0)) . '</strong>';
-                      echo '</li>';
-                    }
-                  ?>
-                </ol>
-                <p>
-                  Total <span class="right"><?php echo $this->Number->currency($total, 'USD', array('places' => 0)); ?></span>
-                </p>
-                <p class="bottom">
-                  <?php
-                    if ($this->Session->check('Carro')) {
-                      echo $this->Html->link('Modificar', array(
-                        'controller' => 'carrito',
-                        'action' => 'index'
-                        )
-                      );
-                    } else {
-                      echo 'Modificar';
-                    }
-                  ?>
-                  <span class="right">
-                    <?php 
-                      if ($this->Session->check('Carro')) {
-                        echo $this->Html->link('Pagar', array(
-                            'controller' => 'carrito',
-                            'action' => 'index'
-                          ), array(
-                            'class' => 'pink pay',
-                          )
-                        ); 
-                      } else {
-                        echo 'Pagar';
-                      }
-                    ?>
-                  </span>
-                </p>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <!-- .Login -->
+         
+        <!-- .Login -->  
+    
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle nav-icon" data-toggle="dropdown" id="iniciar-sesion">
-            <span class="glyphicon glyphicon-user"></span> <b class="caret"></b>
+          <a href="#" class="dropdown-toggle user" data-toggle="dropdown" id="iniciar-sesion">
+            <span class="user"></span>
           </a>
           <ul class="dropdown-menu">
             <li>
@@ -195,6 +119,72 @@
             </li>
           </ul>
         </li><!-- /.Login -->
+        <?php 
+          if( $this->Session->check('Carro') && !empty($this->Session->read('Carro')) ){
+            $display_dropdown = 'open';
+          }else{
+            $display_dropdown = '';
+          }
+        ?>
+        <li class="dropdown <?php echo $display_dropdown ?>">
+          <a href="#" class="dropdown-toggle shop" data-toggle="dropdown">
+            <?php
+              echo '<span id="product-count" class="badge">'. count($carro) .'</span>';
+            ?>
+
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <div>
+                <p class="title">Mi Carrito</p>
+                <ol id="items">
+                  <?php
+                    $total = 0;
+                    if (!isset($carro)) $carro = array();
+                    foreach($carro as $producto) {
+                      $total += $producto['price'];
+                      echo '<li>';
+                        echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. $this->Number->currency($producto['price'], 'USD', array('places' => 0)) . '</strong>';
+                      echo '</li>';
+                    }
+                  ?>
+                </ol>
+                <p>
+                  Total <span class="right"><?php echo $this->Number->currency($total, 'USD', array('places' => 0)); ?></span>
+                </p>
+                <p class="bottom">
+                  <?php
+                    if ($this->Session->check('Carro')) {
+                      echo $this->Html->link('Modificar', array(
+                        'controller' => 'carrito',
+                        'action' => 'index'
+                        )
+                      );
+                    } else {
+                      echo 'Modificar';
+                    }
+                  ?>
+                  <span class="right">
+                    <?php 
+                      if ($this->Session->check('Carro')) {
+                        echo $this->Html->link('Pagar', array(
+                            'controller' => 'carrito',
+                            'action' => 'index'
+                          ), array(
+                            'class' => 'pink pay',
+                          )
+                        ); 
+                      } else {
+                        echo 'Pagar';
+                      }
+                    ?>
+                  </span>
+                </p>
+              </div>
+            </li>
+          </ul>
+        </li>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

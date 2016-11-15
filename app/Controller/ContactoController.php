@@ -1,9 +1,12 @@
 <?php
 class ContactoController extends AppController {
-	public $uses = array('Contact','Catalogo');
+	public $uses = array('Contact','Catalogo','Category');
 	
 	public function beforeFilter() {
     	parent::beforeFilter();
+    	$this->loadModel('Setting');
+    	$categories = $this->Category->find('all');
+		$this->set('categories', $categories);
 	}
 	
 	public function index() {

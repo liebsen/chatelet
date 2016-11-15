@@ -1,10 +1,14 @@
 <?php
 class UsersController extends AppController {
-    public $uses = array('User');
+    public $uses = array('User','Category');
     public $components = array("RequestHandler");
 
 	public function beforeFilter() {
     	parent::beforeFilter();
+        $this->loadModel('Setting');
+        $categories = $this->Category->find('all');
+        $this->set('categories', $categories);
+
 	}
 
     public function login() {

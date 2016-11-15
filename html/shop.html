@@ -281,3 +281,22 @@
         </script>
     </body>
 </html>
+ $a = array('pd1','pd1','pd4'); 
+                             $i = 0;
+                                foreach ($a as $key => &$class) { 
+                                foreach ($categories as $category) {
+                                if ($i == 3) { break; }     
+                                  $category = $category['Category']; 
+                                    
+                                    echo '<a href="'.router::url(array('controller' => 'shop','action' => 'index',intval($category['id']))).'" 
+                                       class="'.pr($class).'"> 
+                                       <img src="'. Configure::read('imageUrlBase'). $category['img_url'] .'" class="img-responsive">
+                                         <span class="hover">'
+                                            .$category['name'].
+                                         '<br>
+                                        <small>Visitar categoría</small>
+                                        </span>
+                                     </a>'; 
+                                    }
+                                $i++;    
+                                }

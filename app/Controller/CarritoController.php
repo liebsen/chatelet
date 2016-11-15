@@ -6,7 +6,10 @@ class CarritoController extends AppController {
 	
 	public function beforeFilter() {
     	parent::beforeFilter();
-    	  	$this->loadModel('Setting');
+
+    	$this->loadModel('Setting');
+    	$categories = $this->Category->find('all');
+		$this->set('categories', $categories);  	
 		$setting 			 = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
@@ -266,6 +269,7 @@ class CarritoController extends AppController {
 		$this->RequestHandler->respondAs('application/json');
 		if ($this->request->is('post')) {
 			$product = $this->Product->findById($this->request->data['id']);
+			pr($product);die;
 			if ($product) {
 				$product = $product['Product'];
 				$product['color'] = $this->request->data['color'];

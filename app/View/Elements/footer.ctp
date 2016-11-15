@@ -3,22 +3,32 @@
                 <div class="col-md-3 col-sm-6">
                     <h3>Shop online</h3>
                     <ul>
-                        <li><a href="#">Chaquetas</a></li>
-                        <li><a href="#">Remeras</a></li>
-                        <li><a href="#">Pantalones</a></li>
-                        <li><a href="#">Vestidos</a></li>
-                        <li><a href="#">Blusas</a></li>
-                        <li><a href="#">Sweaters</a></li>
-                        <li><a href="#">Polleras</a></li>
-                        <li><a href="#">Look Sport</a></li>
+                    <?php  
+                    foreach ($categories as $category) {
+                        $category = $category['Category'];
+                        echo '<li>';
+                        echo $this->Html->link(
+                            $category['name'], 
+                            array(
+                                'controller' => 'shop',
+                                'action' => 'product',
+                                intval($category['id'])
+                            )
+                        );
+                        echo '</li>';
+                    }
+                   ?>
                     </ul>
                 </div>
 
                 <div class="col-md-3 col-sm-6">
                     <h3>Catálogo</h3>
                     <ul>
-                        <li><a href="#">Primavera/Verano 2017</a></li>
-                        <li><a href="#">Otoño/Invierno 2016</a></li>
+                       <li>
+                         <?php echo $this->Html->link('Primavera/Verano 2017', 
+                         array('controller' => 'catalogo', 'action' => 'index')); ?>
+                       </li>
+                       
                     </ul>
                 </div>
 
@@ -35,19 +45,22 @@
                 </div>
 
                 <div class="col-md-3 col-sm-6">
-                    <h4>Trabaja con nosotros</h4>
-                    <a href="#">
+                    <a href="mailto:seleccion@chatelet.com.ar"><h4>Trabaja con nosotros</h4></a>
+                    
+                        <!--<a href="#">
                         <span></span>
                         Chateá con un<br>asesor online
-                    </a>
+                    </a>-->
                 </div>
 
                 <p class="text-center">Chatelet <?php echo date('Y'); ?>. Buenos Aires, Argentina. Todos los derechos reservados</p>
             </div>
 
             <div class="bottom">
-                <a href="#" class="fb" target="_blank"></a>
-                <a href="#" class="tt" target="_blank"></a>
-                <a href="#" class="ig" target="_blank"></a>
+                <a href="https://twitter.com/chateletmoda" class="tt" target="_blank"></a>
+                <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" class="fb" target="_blank"></a>
+                <a href="https://www.instagram.com/chateletmoda/" class="ig" target="_blank"></a>
             </div>
         </footer>
+
+        

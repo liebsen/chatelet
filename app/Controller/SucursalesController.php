@@ -1,9 +1,13 @@
 <?php
 class SucursalesController extends AppController {
-	public $uses = array('Store','Catalogo');
+	public $uses = array('Store','Catalogo','Category');
 	
 	public function beforeFilter() {
     	parent::beforeFilter();
+    	$this->loadModel('Setting');
+		$categories = $this->Category->find('all');
+		$this->set('categories', $categories);
+
 	}
 	
 	public function index() {

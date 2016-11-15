@@ -1,9 +1,11 @@
 <?php
 class CatalogoController extends AppController {
-	public $uses = 'Catalog';
-	
+	public $uses = array('Catalog','Category');
 	public function beforeFilter() {
     	parent::beforeFilter();
+    	$this->loadModel('Setting');
+    	$categories = $this->Category->find('all');
+		$this->set('categories', $categories);
 	}
 	
 	public function index() {
