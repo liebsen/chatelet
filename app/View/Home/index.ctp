@@ -18,30 +18,18 @@
   
 ?>
 
-<div >    
-    <?php if (count($images) == 1){ ?>
-        <img class="img-responsive" src="<?php echo $images[0]; ?>" />
-     
-    <?php }else{ ?>
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <?php foreach ($images as $key => $value): ?> 
-                <div data-target="#carousel-example-generic" data-slide-to="<?php echo $key ?>" class="<?php echo (!$key)?'active':''; ?>"></div>
-
-            <?php endforeach ?>
-          </ol>
-
+      
           <!-- Wrapper for slides -->
-          <div class="carousel-inner">
+          <div class="carousel-inner " role="listbox">
              
               
             <?php foreach ($images as $key => $value): ?> 
-                <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>">
-                  <img src="<?php echo $value ?>" alt="...">
+                <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>" style="background-image: url(<?php echo $value ?>);" >
+                  
                   <div class="carousel-caption">
                     
-                    <h1><?php echo $home['line_one']; ?></h1>
+                    <h1> <?php echo $home['line_one']; ?></h1>
                         <span><?php echo $home['line_two']; ?></span>
                         <p><?php echo $home['line_three']; ?></p>
                        
@@ -64,12 +52,6 @@
             </a>
         </div>
 
-       
-
-<?php } ?>
-
-   
-</div>
                
    <!--      [module_one] => Modulo 1
     [module_two] => Modulo 2
@@ -82,25 +64,25 @@
     [img_url_three] => ;JFjzgZun6wt0zDFvQltGXK6CW.jpg -->
 
         <section id="today">
-            <div class="rectangle">
-            <img class="img-responsive" src=<?php echo Configure::read('imageUrlBase').$home['img_url_one']?> />
+            <div class="rectangle" style="background-image: url(<?php echo Configure::read('imageUrlBase').$home['img_url_one'] ?>);">
+
                 <h1><?php echo $home['module_one']?></h1>
             </div>
         </section>
 
         <section id="opts">
-            <div class="col-md-6">
+            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$home['img_url_two'] ?>);">
                 <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'index'/*,
                                          intval($home['category_mod_two'])*/)) ?> >
-                     <img class="img-responsive" src=<?php echo Configure::read('imageUrlBase').$home['img_url_two']?> />
+             
                      <?php echo $home['module_two'] ?><br>
                 </a>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$home['img_url_three'] ?>);">
                 <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'index'/*,
                                          intval($home['category_mod_three'])*/)) ?> >
-                   <img class="img-responsive" src=<?php echo Configure::read('imageUrlBase').$home['img_url_three']?> />
+
                    <?php echo $home['module_three'] ?><br>
                 </a>
             </div>
@@ -182,4 +164,4 @@
 			</div>
 		</div>
 	<?php endif ?>
-</div>
+</div>-->

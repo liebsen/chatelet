@@ -2,6 +2,7 @@
 class ShopController extends AppController {
 	public $uses = array('Product', 'ProductProperty','Promo','Catalogo','Category',);
 	public $helpers = array('Number');
+	public $components = array('SQL', 'RequestHandler');
 	
 
 	public function beforeFilter() {
@@ -15,7 +16,7 @@ class ShopController extends AppController {
 
 	public function index() {
 
-			$this->loadModel('Setting');
+	    $this->loadModel('Setting');
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('page_video',$page_video);
@@ -67,7 +68,7 @@ class ShopController extends AppController {
 				$product['Product']['stock'] = 0;
 				if(!empty($product['Product']['article'])){
 					$list_code = Configure::read('list_code');
-				    //$product['Product']['stock'] = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
+				    $product['Product']['stock'] = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
 				}
 			}
 			

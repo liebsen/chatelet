@@ -20,6 +20,7 @@
       echo $this->Html->script('main');
       echo $this->fetch('script');
       echo $this->Html->script('chatelet');
+       echo $this->Html->script('product');
   		
 
   		

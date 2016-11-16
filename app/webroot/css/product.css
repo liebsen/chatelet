@@ -1,0 +1,65 @@
+#main {
+	padding-bottom: 90px;
+}
+
+a.heading {
+	display: inline-block;
+	font-size: 26px;
+	color: grey;
+	margin-bottom: 15px;
+	margin-left: 20px;
+	font-style: italic;
+	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';
+}
+
+#price {
+	display: inline-block;
+	margin-right: 25px;
+}
+
+#agregar-carro {
+	display: inline-block;
+	background-color: #e10c76;
+	padding: 7px 30px;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.color-block {
+	display: inline-block;
+	height: 24px;
+	width: 22px;
+}
+
+#talle {
+	background-color: white;
+	margin-left: 5px;
+	border-radius: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.info-icon {
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
+	margin-top: -5px;
+	cursor: pointer;
+}
+
+.thumbs {
+	margin-top: -10px;
+}
+
+.thumb {
+	width: 50px;
+	margin-top: 5px;
+}
+
+.div_color_products{
+	padding: 5px;
+}

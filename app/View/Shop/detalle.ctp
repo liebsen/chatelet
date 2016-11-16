@@ -1,23 +1,20 @@
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <?php
-    echo $this->Session->flash();
-    //echo $this->Html->css('product', array('inline' => false));
-    echo $this->Html->script('product', array('inline' => false));
+    echo $this->Html->css('w3', array('inline' => false));
+    echo $this->Html->css('product', array('inline' => false));
+
     $images  = array();
     $images_aux = explode(';', $product['gallery']);
     foreach ($images_aux as $key => $value) {
         if(!empty($value))
             $images[]   = Configure::read('imageUrlBase').$value;
     }
-?>
+    echo $this->Session->flash();
+?>  
 
-
-    
         <section id="detalle"> 
             <div class="wrapper">
                 <div class="row">
-
-                      <div class="col-md-2 col-sm-5">
+                    <div class="col-md-2 col-sm-5">
                         <ul>
                            <?php foreach ($images as $key => $value) : ?>
                             <?php if (!empty($value)): ?>
@@ -25,8 +22,6 @@
                              onclick="currentDiv(<?php $key = $key + 1; echo $key ?>)" style="width:40%;" src="<?php echo $value ?>" ></a></li>
                             <?php endif ?> 
                           <?php endforeach ?>
-                          
-                         
                         </ul>
                     </div>
                     <div class="col-md-5 col-sm-7">
@@ -36,77 +31,110 @@
                             <?php endif ?> 
                           <?php endforeach ?>
                     </div>
+
                     <div class="col-md-4">
-                       
+                             <?php
+                                echo $this->Form->create(null, array(
+                                    'url' => array(
+                                        'controller' => 'carrito',
+                                        'action' => 'add'
+                                    ),
+                                    'id' => 'productForm',
+                                    'data-url' => Router::url(array( 'action' => 'stock' )),
+                                    'data-article' => $product['article']
+                                ));
+                            ?>
+                                <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
+                                <h1>High Collar Coat</h1>
+                                 <p><?php echo $name_categories; ?></p>
 
-                        <h1><?php echo $product['name']; ?></h1>
-                        <p><?php echo $name_categories; ?></p>
-                        <?php
-						echo $this->Form->create(null, array(
-							'url' => array(
-								'controller' => 'carrito',
-								'action' => 'add'
-							),
-							'id' => 'productForm',
-							'data-url' => Router::url(array( 'action' => 'stock' )),
-							'data-article' => $product['article']
-						));
-					    ?> 
-					   <?php echo "<span id='price' class='price' data-price='". $product['price'] ."'>".
-							         $this->Number->currency($product['price'], 'USD', 
-							         array(
-										'places' => 0
-									 )). 
-						"</span>"; ?>
-                              
-                        <div class="caract">
-                            <?php
-								$colors = array();
-								$sizes = array();
-								foreach ($properties as $property) {
-									switch ($property['ProductProperty']['type']) {
-										case 'color':
-											array_push($colors, $property['ProductProperty']);
-											break;
-										case 'size':
-											array_push($sizes, $property['ProductProperty']);
-											break;
-									}
-								}
-							?>
-                            <h3>Seleccionar talle</h3>
-                            <div class="size">
-                            <?php
-								foreach ($sizes as $size) {
-									echo '<a href="#" name="size" class="active">'. ucfirst($size['variable']) .'</a>';
-								}
-							?>
-							</div>
+                                <?php echo "
+                                
+                                <span style='color:gray;'>". $product['desc']."</span>
+                                <span id='price' class='price' data-price='". $product['price'] ."'>".
+                                $this->Number->currency($product['price'], 'USD', array(
+                                            'places' => 0
+                                        )). "</span>"; ?>
+                                
+                            <div class="caract">
+                            <h3>Características</h3>
+                            <p><?php echo $product['name']; ?></p>
+                             <?php
+                                            $colors = array();
+                                            $sizes = array();
+                                            foreach ($properties as $property) {
+                                                switch ($property['ProductProperty']['type']) {
+                                                    case 'color':
+                                                        array_push($colors, $property['ProductProperty']);
+                                                        break;
+                                                    case 'size':
+                                                        array_push($sizes, $property['ProductProperty']);
+                                                        break;
+                                                }
+                                            }
 
-							
-                            <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles
-                            </a>
+                                        ?>
+
+                                  <h3>Seleccionar talle</h3>
+                                    <select id="size" name="size">
+                                        <option value="">Seleccionar</option>
+                                        <?php
+                                            foreach ($sizes as $size) {
+                                                echo '<option value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</option>';
+                                            }
+                                        ?>
+                                    </select>
+                                    <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
+
+                                  
+                                    <h4>cambiar color</h4>
+                           
+                                    <div class="btn-group inline-block div_color_products" data-toggle="buttons">
+                                        <?php  foreach ($colors as $color) {
+                                                    echo '<label class="btn" style ="    border-radius: 100px;">';
+                                                    echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
+                                                    echo '<div class="color-block" style="    border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
+                                                echo '</label>';
+                                            }
+                                        ?>
+                                    </div>
+                                  
+                            
+                             <!--        <h3>Seleccionar talle</h3>
+                            <div id="size" class="size">
+                            <?php
+                                foreach ($sizes as $size) {
+                                    echo '<a href="#" name="size"  class="active" value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</a>';
+                                }
+                            ?>
+                            </div>
+                            <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles </a>
 
                             <h4>cambiar color</h4>
-                            <div class="colors"> 
+                            <div id="color" class="colors"> 
                                 <?php foreach ($colors as $color) {  
-									echo '<a href="#" name="color" style="background: '. $color['variable'] .';"></a>';
-								} ?> 
-                            </div>
-
-                            <a href="#" class="add agregar-carro">Agregar al carrito</a>
+                                    echo '<a href="#" name="color"  code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'" style="background: '. $color['variable'] .';"></a>';
+                                } ?> 
+                            </div>-->
+                       
+                          
+                            <a href="#" id="agregar-carro" class="add" disabled>Agregar a mi carro</a>
+                                
 
                             <div class="social">
                                 <a href="https://twitter.com/chateletmoda" class="fb"></a>
                                 <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" class="tt"></a>
                                 <a href="https://www.instagram.com/chateletmoda/" class="pr"></a>
                             </div>
+                           </div> 
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        
 
+             
         <section id="productOptions">
             <div class="wrapper">
                 <div class="row">  
@@ -190,4 +218,62 @@ function showDivs(n) {
 </script>
 
 
+
+
+                     <!--   <?php  
+                            $image_detail = $this->webroot . 'img/talles.jpg';
+                            if(!empty($category['Category']['size'])){
+                                
+                                $image_detail = $this->webroot . 'files/uploads/' . $category['Category']
+                                ['size'];
+
+                                echo '<img class="info-icon" src='.$this->webroot.'img/info-icon.png        alt="Info" data-image='.$image_detail.'"';
+                                        
+                            }
+                        ?>-->
+                       
+                      
+                   
+                     
+                       
+
+                     
+                         <!--     
+                        <div class="caract">
+                         <div class="btn-group inline-block div_color_products" data-toggle="buttons">
+                            <?php
+                                $colors = array();
+                                $sizes = array();
+                                foreach ($properties as $property) {
+                                    switch ($property['ProductProperty']['type']) {
+                                        case 'color':
+                                            array_push($colors, $property['ProductProperty']);
+                                            break;
+                                        case 'size':
+                                            array_push($sizes, $property['ProductProperty']);
+                                            break;
+                                    }
+                                }
+                            ?>
+                         </div>   
+                            <h3>Seleccionar talle</h3>
+                            <div id="size" class="size">
+                            <?php
+                                foreach ($sizes as $size) {
+                                    echo '<a href="#" name="size"  class="active" value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</a>';
+                                }
+                            ?>
+                            </div>
+                            <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles </a>
+
+                            <h4>cambiar color</h4>
+                            <div id="color" class="colors"> 
+                                <?php foreach ($colors as $color) {  
+                                    echo '<a href="#" name="color"  code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'" style="background: '. $color['variable'] .';"></a>';
+                                } ?> 
+                            </div>
+                       
+                            <div class="footer-producto">
+                            <a href="#" class="add agregar-carro">Agregar al carrito</a> 
+                            </div>--> 
 

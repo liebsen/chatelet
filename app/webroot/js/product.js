@@ -55,7 +55,7 @@ $(document).ready(function() {
 				message: 'Sin stock'
 			});
 		}
-
+        alert(url);
 		$.post(url, $.param(data))
 			.success(function(res) {
 				if (res.success) {
@@ -91,18 +91,6 @@ $(document).ready(function() {
 		window.open(me.attr('data-image'), 'Talles', 'height=323px, width=642px, resizable=no, status=no, toolbar=no, menubar=no, location=no, top='+ position.top +'px, left=' + position.left +'px');
 	});
 
-	$('.bxslider').bxSlider({
-		mode: 'fade',
-  		autoControls: true,
-	});
+	
 });
 
-//Zoom
-$(function(){
-	$('[elevate-zoom]').parent(":visible").find('img').elevateZoom({
-		 	responsive:false,
-			constrainType: 'width',  
-			zoomWindowWidth: 400,
-			zoomWindowHeight: 400,
-	});
-});
