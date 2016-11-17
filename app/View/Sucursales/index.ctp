@@ -1,7 +1,9 @@
 <?php
-	echo $this->Html->css('sucursales', array('inline' => false));
-	echo $this->Html->script('sucursales', array('inline' => false));
-	echo $this->Session->flash();
+    echo $this->Html->css('sucursales', array('inline' => false));
+
+    echo $this->Html->script('sucursales', array('inline' => false));
+    
+    echo $this->Session->flash();
 ?>
 
   <section class="map">
@@ -15,30 +17,41 @@
             </div>
         </section>
 
+        
+
         <section id="location">
-            <div class="col-md-4 search buscar" >
+            <div class="col-md-4 search buscar" id="search"  >
                 <form  id="busqueda" action="#">
-                   <input type="text" name="termino" class="termino" placeholder="Buscar" />
+                   <input type="text" name="termino" class="termino" id="address" placeholder="Buscar" />
                   
                     <p>Ej. Av. Rivadavia 5700, Ciudad Autonoma de Buenos Aires.</p>
                 </form>
             </div>
+
+         
             <div class="col-md-8">
-                    <ul id="sucursales" class="list-unstyled" data-url="<?php echo $this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>">
-                    <?php   foreach($stores as $store) {
-                        $store = $store['Store'];
-                            echo '<h4>'. $store['name'] .'</h4>';
-                                echo '<ul>';      
-                                    echo '<li> '. $store['address'] .'</li>';
-                                    echo '<li> Tel. '. $store['phone'].'</li>';
-                                echo '</ul>';
-                            echo '</div>';
-                    } ?>
-                    </ul>
+                <h3>Zona Oeste</h3>
+                <h4>Ramos Mejía</h4>
+                <ul>
+                    <li>Av. de Mayo 6</li>
+                    <li>Tel. 4654-0143</li>
+                </ul>
             </div>
+               <!--   <ul id="sucursales" class="list-unstyled" data-url="<?php echo $this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>">
+              <?php   foreach($stores as $store) {
+                    $store = $store['Store'];
+                        echo '<h4>'. $store['name'] .'</h4>';
+                            echo '<ul>';      
+                                echo '<li> '. $store['address'] .'</li>';
+                                echo '<li> Tel. '. $store['phone'].'</li>';
+                            echo '</ul>';
+                        echo '</div>';
+                } ?> 
+                </ul>-->
+           
         </section>
        
-
+       
 
         <section id="suscribe">
             <div class="wrapper">
