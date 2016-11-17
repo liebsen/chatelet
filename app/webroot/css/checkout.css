@@ -1,0 +1,34 @@
+.center {
+	text-align: center;
+}
+
+a.volver {
+	color: #6a6869;
+	text-align: center;
+	font-size: 26px;
+	font-style: italic;
+	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';
+}
+
+.form-container {
+	margin-top: 37px;
+}
+
+.siguiente {
+	display: inline-block;
+	margin: 10px 0;
+	width: 100%;
+	padding: 10px;
+	background-color: #07bc31;
+	color: white;
+	border-radius: 5px;
+	font-size: 20px;
+	font-style: italic;
+	text-align: center;
+	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';
+	border: 0;
+}
+
+.siguiente:hover {
+	color: white;
+}

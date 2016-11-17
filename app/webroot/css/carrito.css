@@ -1,0 +1,128 @@
+#carrito {
+	border: 1px solid grey;
+	border-radius: 5px;
+	margin-top: 65px;
+}
+
+#heading {
+	color: #e10d74;
+	/*font-style: italic;
+	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
+}
+
+.grey {
+	color: grey;
+}
+
+.table thead {
+	background-color: #e10c76;
+	color: white;
+	/*text-transform: uppercase;*/
+}
+
+.table>thead>tr>th {
+	border-bottom: 0;
+}
+
+.table>tbody>tr>td {
+	color: #696969;
+	vertical-align: middle;
+	padding: 10px 20px;
+}
+
+.color-block {
+	display: inline-block;
+	height: 24px;
+	width: 22px;
+}
+
+.talle,
+.price {
+	color: black;
+	font-weight: bold;
+}
+
+.price {
+	font-size: 24px;
+}
+
+#siguiente-block {
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#siguiente {
+	display: inline-block;
+	font-size: 24px;
+	color: white;
+	background-color: #07bc31;
+	padding: 5px 80px;
+	border-radius: 5px;
+	/*font-style: italic;
+	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
+}
+
+#instrucciones {
+	margin-top: 20px;
+	list-style-position:inside;
+	color: #686868;
+}
+
+#como-comprar {
+	display: inline-block;
+	padding: 5px 90px;
+	border-bottom: 1px solid #686868;
+	text-align: center;
+	width: 100%;
+	font-weight: bold;
+}
+
+#como-comprar-list {
+	padding: 0;
+}
+
+a.trash {
+	display: inline-block;
+	color: black;
+	font-size: 18px;
+	margin-top: 13px;
+}
+
+.thumb {
+	width: 100px;
+	margin-right: 10px;
+	float: left;
+}
+
+.color {
+	margin-bottom: 30px;
+}
+
+.name {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+a.pink {
+	color: #e10c76;
+}
+
+.checkout-title {
+	text-align: center;
+	margin-bottom: 20px;
+	color: #e10c76;
+}
+
+#paypal{
+	width: 100%;
+}
+#paypal img{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+	margin-left: 30px;
+}
+a.pay{
+	color:#FFFFFF !important;
+}

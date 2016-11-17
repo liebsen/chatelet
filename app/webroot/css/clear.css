@@ -1,0 +1,19 @@
+.heading {
+	margin-bottom: 30px;
+	color: #e10c76;
+	/*font-style: italic;
+	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
+}
+p {
+	color: #989898;
+	font-size: 18px;
+}
+.pink {
+	color: #e10c76;
+}
+a.link {
+	font-size: 25px;
+	/*font-style: italic;
+	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
+	color: black;
+}
