@@ -1,38 +1,38 @@
 <?php
 class ShopController extends AppController {
-	public $uses = array('Category', 'Product', 'ProductProperty','Promo','Catalogo');
+	public $uses = array('Product', 'ProductProperty','Promo','Catalogo','Category',);
 	public $helpers = array('Number');
+	public $components = array('SQL', 'RequestHandler');
 	
 
 	public function beforeFilter() {
     	parent::beforeFilter();
+    	$this->loadModel('Setting');
+		$categories = $this->Category->find('all');
+		$this->set('categories', $categories);
+
 	}
 
 
-	public function index($category_id = null) {
+	public function index() {
+
+	    $this->loadModel('Setting');
+		$setting 	= $this->Setting->findById('page_video');
+		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$this->set('page_video',$page_video);
+
+		
 		$this->loadModel('Setting');
 		$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
 
-		if ($category_id) {
-			$products = $this->Product->findAllByCategoryId($category_id);
-			if (empty($products)) return $this->redirect(array('controller' => 'shop', 'action' => 'index'));
-
-			foreach ($products as &$product) {				
-				$product['Product']['stock'] = 0;
-				if(!empty($product['Product']['article'])){
-					$list_code = Configure::read('list_code');
-					$product['Product']['stock'] = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
-				}
-			}
-			
-			$this->set('products', $products);
-		}
 
 		$setting 			 = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
+
+
 	}
 
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
@@ -44,9 +44,50 @@ class ShopController extends AppController {
 		return $stock;
 	}
 
-	public function product($product_id, $category_id) {
+	public function product($category_id = null) {
+		
+		$this->loadModel('Setting');
+		$setting 	= $this->Setting->findById('page_video');
+		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$this->set('page_video',$page_video);
+
+		
+	
+		$categories = $this->Category->find('all');
+		$this->set('categories', $categories);
+        
+
+		if ($category_id) {
+			 $name_categories = $this->Category->findById($category_id);
+             $name_categories = $name_categories['Category']['name'];
+
+			$products = $this->Product->findAllByCategoryId($category_id);
+			if (empty($products)) return $this->redirect(array('controller' => 'shop', 'action' => 'index'));
+
+			foreach ($products as &$product) {				
+				$product['Product']['stock'] = 0;
+				if(!empty($product['Product']['article'])){
+					$list_code = Configure::read('list_code');
+				    $product['Product']['stock'] = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
+				}
+			}
+			
+			$this->set('name_categories',$name_categories);
+			$this->set('products', $products);
+		}
+
+		$setting 			 = $this->Setting->findById('catalog_flap');
+		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$this->set('catalog_flap',$catalog_flap);
+		unset($setting);
+	}
+   
+
+    public function detalle($product_id, $category_id) {
 		$product = $this->Product->findById($product_id);
 		$category = $this->Category->findById($category_id);
+		$name_categories = $category['Category']['name'];
+
 		$properties = $this->ProductProperty->findAllByProductId($product_id);
 		$all_but_me = $this->Product->find('all', array(
 				'recursive' => -1,
@@ -56,13 +97,13 @@ class ShopController extends AppController {
 				)
 			)
 		);
-
+		$this->set('category_id',$category_id);
+        $this->set('name_categories',$name_categories);
 		$this->set('category', $category);
 		$this->set('product', $product['Product']);
 		$this->set('properties', $properties);
 		$this->set('all_but_me', $all_but_me);
 	}
-
 	public function add($product) {
 		$product = json_decode($product);
 		$this->Session->write('Carrito.' . $product['name'], $product);
@@ -71,7 +112,7 @@ class ShopController extends AppController {
 	public function promos(){
 		$promos = $this->Promo->find('all');
 		$this->set('promos',$promos);
-
+         
         $this->loadModel('Setting');
 		$setting 			 = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
