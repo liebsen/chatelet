@@ -25,6 +25,40 @@ class HomeController extends AppController {
 		$this->loadModel('Category');
 		$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
+
+
+		$this->loadModel('Subscription');
+        $data = $this->request->data;
+
+		if ($this->request->is('post')) {
+			
+            if(!empty($data['Subscription']['email'])){
+              
+             $toSave = array(
+            
+                'email' => $data['Subscription']['email'],
+           
+             );
+           
+            $saved = $this->Subscription->save($toSave);
+             
+	            if(!empty($saved)){
+	               $this->Session->setFlash(
+	                    'Bien!,email registrado', 
+	                    'default', 
+	                    array('class' => 'hidden notice')
+	                );	
+	            }
+
+
+            } else {
+                $this->Session->setFlash(
+	                'Por favor intente nuevamente',
+	                'default',
+	                array('class' => 'hidden error')
+	            );
+			}
+		}
 	}
 }
 ?>

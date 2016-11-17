@@ -100,17 +100,35 @@
             </div>
         </section>
 
-        <section id="suscribe">
+       <section id="suscribe">
             <div class="wrapper">
                 <div class="col-md-6">Suscribite y conocé las <strong>novedades</strong></div>
                 <div class="col-md-6">
-                    <form>
-                        <input type="text" placeholder="Ingresá tu email">
-                        <input type="submit" value="ok">
-                    </form>
+                    <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
+                      <input type="text" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                      <input type="submit" id="enviar" value="ok">
+                    <?php echo $this->Form->end(); ?>
                 </div>
             </div>
         </section>
+    
+         <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
+            <div class="content">
+                <a class="close" data-dismiss="modal">
+                    <span></span>
+                    <span></span>
+                </a>
+
+                    <?php echo $this->Form->create('Contact'); ?>
+                    <h1>Suscribite a nuestro<br><span>Newsletter</span></h1>
+                    <p>Y recibí las últimas novedades</p>
+                   
+                      <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                      <input type="submit" id="enviar" value="ok">
+                    <?php echo $this->Form->end(); ?>
+         
+            </div>
+        </div><!-- /.modal -->
 
 
 

@@ -1,3 +1,4 @@
+
     <footer>
             <div class="wrapper">
                 <div class="col-md-3 col-sm-6">
@@ -38,9 +39,9 @@
                         <li> 
 	                      <?php echo $this->Html->link('Sucursales', array('controller' => 'sucursales', 'action' => 'index')). ' | ';?>
 	                    </li>
-	                    <li> 
+	                   <!-- <li> 
 						  <?php echo $this->Html->link('Consultas/Sugerencias', array('controller' => 'contacto', 'action' => 'index')). ' | '; ?>
-						</li>
+						</li>-->
                     </ul>
                 </div>
 

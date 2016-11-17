@@ -1,6 +1,6 @@
 <?php
 class ContactoController extends AppController {
-	public $uses = array('Contact','Catalogo','Category');
+	public $uses = array('Contact','Catalogo','Category','Subscription');
 	
 	public function beforeFilter() {
     	parent::beforeFilter();
@@ -17,8 +17,29 @@ class ContactoController extends AppController {
 		unset($setting);
 
 		$data = $this->request->data;
+
 		if ($this->request->is('post')) {
-			if ($this->Contact->save($data)) {
+			
+            if(!empty($data['Subscription']['email'])){
+              
+             $toSave = array(
+            
+                'email' => $data['Subscription']['email'],
+           
+             );
+           
+            $saved = $this->Subscription->save($toSave);
+             
+            if(!empty($saved)){
+               $this->Session->setFlash(
+                    'Bien!,email registrado', 
+                    'default', 
+                    array('class' => 'hidden notice')
+                );	
+            }
+
+
+            }elseif ($this->Contact->save($data)) {
 				$message = $data['Contact']['message'];
 				$message.= '<br /><br />Telefono: '.$data['Contact']['telephone'];
 				$message.= '<br />Email: '.$data['Contact']['email'];

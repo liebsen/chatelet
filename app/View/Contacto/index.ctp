@@ -43,18 +43,20 @@
            </div>
        </section>
 
-        <section id="suscribe">
+
+      <section id="suscribe">
             <div class="wrapper">
                 <div class="col-md-6">Suscribite y conocé las <strong>novedades</strong></div>
                 <div class="col-md-6">
-                    <form>
-                        <input type="text" placeholder="Ingresá tu email">
-                        <input type="submit" value="ok">
-                    </form>
+                    <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
+                      <input type="text" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                      <input type="submit" id="enviar" value="ok">
+                    <?php echo $this->Form->end(); ?>
                 </div>
             </div>
         </section>
 
+      
 <!--
 <div id="main" class="container content">
 	<div class="row">

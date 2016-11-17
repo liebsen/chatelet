@@ -98,26 +98,7 @@
                                             }
                                         ?>
                                     </div>
-                                  
-                            
-                             <!--        <h3>Seleccionar talle</h3>
-                            <div id="size" class="size">
-                            <?php
-                                foreach ($sizes as $size) {
-                                    echo '<a href="#" name="size"  class="active" value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</a>';
-                                }
-                            ?>
-                            </div>
-                            <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles </a>
-
-                            <h4>cambiar color</h4>
-                            <div id="color" class="colors"> 
-                                <?php foreach ($colors as $color) {  
-                                    echo '<a href="#" name="color"  code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'" style="background: '. $color['variable'] .';"></a>';
-                                } ?> 
-                            </div>-->
                        
-                          
                             <a href="#" id="agregar-carro" class="add" disabled>Agregar a mi carro</a>
                                 
 
@@ -218,62 +199,4 @@ function showDivs(n) {
 </script>
 
 
-
-
-                     <!--   <?php  
-                            $image_detail = $this->webroot . 'img/talles.jpg';
-                            if(!empty($category['Category']['size'])){
-                                
-                                $image_detail = $this->webroot . 'files/uploads/' . $category['Category']
-                                ['size'];
-
-                                echo '<img class="info-icon" src='.$this->webroot.'img/info-icon.png        alt="Info" data-image='.$image_detail.'"';
-                                        
-                            }
-                        ?>-->
-                       
-                      
-                   
-                     
-                       
-
-                     
-                         <!--     
-                        <div class="caract">
-                         <div class="btn-group inline-block div_color_products" data-toggle="buttons">
-                            <?php
-                                $colors = array();
-                                $sizes = array();
-                                foreach ($properties as $property) {
-                                    switch ($property['ProductProperty']['type']) {
-                                        case 'color':
-                                            array_push($colors, $property['ProductProperty']);
-                                            break;
-                                        case 'size':
-                                            array_push($sizes, $property['ProductProperty']);
-                                            break;
-                                    }
-                                }
-                            ?>
-                         </div>   
-                            <h3>Seleccionar talle</h3>
-                            <div id="size" class="size">
-                            <?php
-                                foreach ($sizes as $size) {
-                                    echo '<a href="#" name="size"  class="active" value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</a>';
-                                }
-                            ?>
-                            </div>
-                            <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles </a>
-
-                            <h4>cambiar color</h4>
-                            <div id="color" class="colors"> 
-                                <?php foreach ($colors as $color) {  
-                                    echo '<a href="#" name="color"  code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'" style="background: '. $color['variable'] .';"></a>';
-                                } ?> 
-                            </div>
-                       
-                            <div class="footer-producto">
-                            <a href="#" class="add agregar-carro">Agregar al carrito</a> 
-                            </div>--> 
 
