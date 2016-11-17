@@ -35,7 +35,7 @@
 								echo '<td>';
 									echo '<span class="name">'. $product['name'] .'</span>';
 									echo "<div class='clearfix'></div>";								
-									echo '<img style="margin-top:10px;" src="'.$this->webroot.'files/uploads/'.$product['img_url'].'" class="thumb" style="display:block;" />';
+									echo '<img style="margin-top:10px;" src="'.'/chatelet/'.'files/uploads/'.$product['img_url'].'" class="thumb" style="display:block;" />';
 								echo '</td>';
 								echo '<td>';
 									echo '<p class="color">Color: <span class="color-block" style="background-color: '. $product['color'] .';"></span></p>';
