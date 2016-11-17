@@ -3,10 +3,7 @@ class HomeController extends AppController {
 	public function beforeFilter() {
     	parent::beforeFilter();
             
-        
-
-
-	     $setting  = $this->Setting->findById('catalog_flap');
+         $setting  = $this->Setting->findById('catalog_flap');
 	     $catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 	     $this->set('catalog_flap',$catalog_flap);
 	     unset($setting);
@@ -29,19 +26,13 @@ class HomeController extends AppController {
 
 		$this->loadModel('Subscription');
         $data = $this->request->data;
-
 		if ($this->request->is('post')) {
-			
             if(!empty($data['Subscription']['email'])){
-              
              $toSave = array(
-            
                 'email' => $data['Subscription']['email'],
-           
              );
            
             $saved = $this->Subscription->save($toSave);
-             
 	            if(!empty($saved)){
 	               $this->Session->setFlash(
 	                    'Bien!,email registrado', 
@@ -49,8 +40,6 @@ class HomeController extends AppController {
 	                    array('class' => 'hidden notice')
 	                );	
 	            }
-
-
             } else {
                 $this->Session->setFlash(
 	                'Por favor intente nuevamente',

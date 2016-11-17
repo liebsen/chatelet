@@ -1,7 +1,7 @@
 <?php
 require_once(APP . 'Vendor' . DS . 'oca.php');
 class CarritoController extends AppController {
-	public $uses = array('Product', 'Sale','Package','User','SaleProduct','Catalogo');
+	public $uses = array('Product', 'Sale','Package','User','SaleProduct','Catalogo','Category');
 	public $components = array("RequestHandler");
 	
 	public function beforeFilter() {
@@ -269,7 +269,7 @@ class CarritoController extends AppController {
 		$this->RequestHandler->respondAs('application/json');
 		if ($this->request->is('post')) {
 			$product = $this->Product->findById($this->request->data['id']);
-			pr($product);die;
+			
 			if ($product) {
 				$product = $product['Product'];
 				$product['color'] = $this->request->data['color'];

@@ -22,19 +22,13 @@ class SucursalesController extends AppController {
 
 
         $data = $this->request->data;
-
-		if ($this->request->is('post')) {
-			
+    	if ($this->request->is('post')) {
             if(!empty($data['Subscription']['email'])){
-              
              $toSave = array(
-            
                 'email' => $data['Subscription']['email'],
-           
              );
            
             $saved = $this->Subscription->save($toSave);
-             
 	            if(!empty($saved)){
 	               $this->Session->setFlash(
 	                    'Bien!,email registrado', 
@@ -42,8 +36,6 @@ class SucursalesController extends AppController {
 	                    array('class' => 'hidden notice')
 	                );	
 	            }
-
-
             } else {
                 $this->Session->setFlash(
 	                'Por favor intente nuevamente',
