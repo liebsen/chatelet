@@ -1,6 +1,5 @@
 <?php
 	echo $this->Html->script('elevatezoom-master/jquery.elevatezoom', array('inline' => false));
-
 	echo $this->Html->css('jquery.bxslider', array('inline' => false));
 	echo $this->Html->script('jquery.bxslider', array('inline' => false));
 	echo $this->Html->css('product', array('inline' => false));

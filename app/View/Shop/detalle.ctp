@@ -1,13 +1,7 @@
-
 <?php
-
-    echo $this->Html->script('elevatezoom-master/jquery.elevatezoom', array('inline' => false));
-    echo $this->Html->css('jquery.bxslider', array('inline' => false));
-    echo $this->Html->script('jquery.bxslider', array('inline' => false));
     echo $this->Html->css('w3', array('inline' => false));
     echo $this->Html->css('product', array('inline' => false));
-   
-  
+
     $images  = array();
     $images_aux = explode(';', $product['gallery']);
     foreach ($images_aux as $key => $value) {
@@ -33,7 +27,7 @@
                     <div class="col-md-5 col-sm-7">
                         <?php foreach ($images as $k => $v) : ?> 
                             <?php if (!empty($v)): ?>
-                             <a href="#"><img elevate-zoom class="mySlides" style="width:80%;"  src="<?php echo $v ?>" ></a>
+                             <a href="#"><img  class="mySlides" style="width:80%;" src="<?php echo $v ?>" ></a>
                             <?php endif ?> 
                           <?php endforeach ?>
                     </div>
@@ -51,7 +45,7 @@
                                 ));
                             ?>
                                 <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
-                                <h1>High Collar Coat</h1>
+                                <h1><?php echo $product['name']; ?></h1>
                                  <p><?php echo $name_categories; ?></p>
 
                                 <?php echo "
@@ -105,6 +99,9 @@
                                             }
                                         ?>
                                     </div>
+
+
+                                    
                        
                             <a href="#" id="agregar-carro" class="add" disabled>Agregar a mi carro</a>
                                 
