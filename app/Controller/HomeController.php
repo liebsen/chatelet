@@ -23,6 +23,9 @@ class HomeController extends AppController {
 		$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
 
+        $this->loadModel('Store');
+		$stores = $this->Store->find('all');
+		$this->set('stores', $stores);
 
 		$this->loadModel('Subscription');
         $data = $this->request->data;

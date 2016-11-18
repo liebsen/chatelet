@@ -48,7 +48,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 #carousel-example-generic .carousel-caption { left: 25%; line-height: .8; padding-bottom: 150px; padding-top: 125px; position: relative; text-align: left; text-shadow: none; width: 50%; }
 #carousel-example-generic .carousel-caption h1 { color: #464444; font-size: 40px; font-weight: 600; margin-bottom: 15px; text-shadow: none; }
 #carousel-example-generic .carousel-caption span { background: #f50081; color: #FFF; display: inline-block; font-size: 30px; margin-bottom: 23px; padding: 12px 7px 5px 7px; }
-#carousel-example-generic .carousel-caption p { color: #919090; font-size: 20px; line-height: 1.6; margin-bottom: 70px; }
+#carousel-example-generic .carousel-caption p { color: #464444; font-size: 20px; line-height: 1.6; margin-bottom: 70px; }
 #carousel-example-generic .carousel-caption a { border: 2px solid #6e6e6e; color: #464444; display: inline-block; font-size: 20px; padding: 15px 70px; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #carousel-example-generic .carousel-caption a:hover { background: #f50081; border-color: #f50081; color: #FFF; }
 #carousel-example-generic .carousel-inner .item { background-position: center top; background-size: cover; }
@@ -79,15 +79,21 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 
 #location { background: #464545; overflow: hidden; }
 #location .col-md-4 { background: url(../images/ico3.png) no-repeat center center #efb0d2; min-height: 260px; }
+#location .col-md-12 { padding-left: 150px; padding-right: 150px; padding-top: 60px; padding-bottom: 60px; }
+#location .col-md-12 h3 { border-bottom: 2px solid #efb0d2; color: #FFF; font-size: 18px; font-weight: 500; margin-bottom: 20px; padding-bottom: 20px; }
+#location .col-md-12 h4 { color: #efb0d2; font-size: 20px; font-weight: 600; margin-bottom: 30px; }
+#location .col-md-12 ul li { color: #FFF; float: left; font-size: 18px; font-weight: 500; width: 50%; }
+#location .col-md-12 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
+#location .col-md-12 ul li:last-child:before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
+#location .col-md-4.search { background: #FFF; padding-top: 75px; }
+#location .col-md-4.search input { background: url(../images/lupa.png) 35px center no-repeat transparent; border: 2px solid #f50081; color: #f50081; font-size: 16px; font-weight: 500; margin-bottom: 30px; padding: 10px 20px 10px 70px; width: 100%; }
+#location .col-md-4.search p { font-size: 16px; font-weight: 500; line-height: 1.4; }
 #location .col-md-8 { padding-left: 150px; padding-right: 150px; padding-top: 60px; }
 #location .col-md-8 h3 { border-bottom: 2px solid #efb0d2; color: #FFF; font-size: 18px; font-weight: 500; margin-bottom: 20px; padding-bottom: 20px; }
 #location .col-md-8 h4 { color: #efb0d2; font-size: 20px; font-weight: 600; margin-bottom: 30px; }
 #location .col-md-8 ul li { color: #FFF; float: left; font-size: 18px; font-weight: 500; width: 50%; }
 #location .col-md-8 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
 #location .col-md-8 ul li:last-child:before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
-#location .col-md-4.search { background: #FFF; padding-top: 75px; }
-#location .col-md-4.search input { background: url(../images/lupa.png) 35px center no-repeat transparent; border: 2px solid #f50081; color: #f50081; font-size: 16px; font-weight: 500; margin-bottom: 30px; padding: 10px 20px 10px 70px; width: 100%; }
-#location .col-md-4.search p { font-size: 16px; font-weight: 500; line-height: 1.4; }
 
 #suscribe { background: #f50081; color: #FFF; font-size: 22px; font-weight: 400; overflow: hidden; padding: 25px 0; }
 #suscribe .col-md-6:first-child { padding-top: 12px; }

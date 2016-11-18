@@ -16,9 +16,9 @@
             <h1> <?php echo $name_categories; ?> </h1>
         </div>
 
-        <section id="filters">
+        <!--  <section id="filters">
             <div class="wrapper">
-              <!--  <div class="row">
+              <div class="row">
                     <div class="col-md-4 colors">
                         <h3>Color</h3>
                         <a href="#" class="color celeste"></a>
@@ -46,9 +46,8 @@
                         <label><span><i></i></span><input type="radio" name="price"> $400 - $700</label>
                         <label><span><i></i></span><input type="radio" name="price"> + $700</label>
                     </div>
-                </div>-->
             </div>
-        </section>
+        </section>-->
 
         <section id="productOptions">
             <div class="wrapper">

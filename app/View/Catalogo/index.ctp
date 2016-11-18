@@ -108,6 +108,7 @@
                                     <div class="btn-group inline-block div_color_products" data-toggle="buttons">
                                         <?php  foreach ($colors as $color) {
                                                     echo '<label class="btn" style ="color:gray;    border-radius: 100px;">';
+                                                    echo "<small>".$color['alias']."</small>";
                                                     echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
                                                     echo '<div class="color-block" style="    border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
                                                 echo '</label>';
@@ -117,8 +118,8 @@
                                   <p></p>
                               <a href="#" id="agregar-carro"  class="add">Agregar al carrito</a>
                               <div class="social">
-                                <a href="https://twitter.com/chateletmoda" class="fb"></a>
-                                <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" class="tt"></a>
+                                <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" class="fb"></a>
+                                <a href="https://twitter.com/chateletmoda" class="tt"></a>
                                 <a href="https://www.instagram.com/chateletmoda/" class="pr"></a>
                               </div>
                           </div>
@@ -130,30 +131,3 @@
            </div>
        </section>
 
-
-
-<!--
-      <?php foreach ($product as $k => $v) : ?> 
-        <?php if (!empty($v)): ?>
-         <li class="lc">  
-            <div class="row">
-              <div class="col-sm-3">
-                <a href="#"><img  style="width:40%;" src="<?php echo Configure::read('imageUrlBase').$v['Product']['img_url'] ?>" ></a>
-              </div>
-              <div class="col-sm-9">
-                <span class="price"><?php echo $v['Product']['desc'].' '.$v['Product']['price']; ?></span>
-                <h2><?php echo $v['Product']['name']; ?></h2>
-                <p>Seleccionar talle</p>
-                  <p class="prices"><a href="#">42</a> <a href="#">44</a> <a href="#" class="active">46</a> <a href="#">48</a> <a href="#">50</a> <a href="#">52</a> <a href="#">54</a> <a href="#">56</a></p>
-                  <a href="#" class="add">Agregar al carrito</a>
-                  <div class="social">
-                      <a href="#" class="fb"></a>
-                      <a href="#" class="tt"></a>
-                      <a href="#" class="pr"></a>
-                  </div>
-              </div>
-            </div>
-         </li>
-        <?php endif ?> 
-      <?php endforeach ?>
--->

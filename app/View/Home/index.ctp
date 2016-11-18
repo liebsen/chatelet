@@ -52,29 +52,40 @@
             </a>
         </div>
 
-
+        
         <section id="today">
             <div class="rectangle" style="background-image: url(<?php echo Configure::read('imageUrlBase').$home['img_url_one'] ?>);">
-
-                <h1><?php echo $home['module_one']?></h1>
+                <?php if(!empty($home['category_mod_one'])){
+                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_one'])).'>';
+                }else{
+                echo '<a href='.outer::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                } 
+                echo '<h1>'.$home['module_one'].'</h1>'.'</a>';
+            ?>  
+               
             </div>
         </section>
 
         <section id="opts">
             <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$home['img_url_two'] ?>);">
-                <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'index'/*,
-                                         intval($home['category_mod_two'])*/)) ?> >
-             
-                     <?php echo $home['module_two'] ?><br>
-                </a>
+            <?php if(!empty($home['category_mod_two'])){
+                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
+                }else{
+                echo '<a href='.outer::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                } 
+                echo $home['module_two'].'</a>';
+            ?> 
+              
             </div>
 
             <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$home['img_url_three'] ?>);">
-                <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'index'/*,
-                                         intval($home['category_mod_three'])*/)) ?> >
-
-                   <?php echo $home['module_three'] ?><br>
-                </a>
+            <?php if(!empty($home['category_mod_two'])){
+                  echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_three'])).'>';
+                 }else{
+                  echo '<a href='.outer::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                 } 
+                 echo $home['module_three'].'</br>'.'</a>';
+            ?> 
             </div>
         </section>
 
@@ -82,11 +93,23 @@
             <div class="col-md-4"></div>
             <div class="col-md-8">  
                 <h3>Venta por mayor y menor</h3>
-                <h4>CAPITAL FEDERAL</h4>
-                <ul>
-                    <li>Av. Corrientes 2367</li>
-                    <li>Tel. 4951-5899</li>
-                </ul>
+                
+                <div class="w3-content w3-section" style="max-width:500px">
+ 
+                 <?php if(!empty($stores)){
+                    foreach($stores as $store) {
+             
+                    $store = $store['Store'];
+                           echo '<div class="mySlides w3-animate-fading" >';
+                        echo '<h4>'. $store['name'] .'</h4>';
+                            echo '<ul>';      
+                                echo '<li> '. $store['address'] .'</li>';
+                                echo '<li> Tel. '. $store['phone'].'</li>';
+                            echo '</ul>';
+                    echo '</div>';
+                }}?> 
+                 </div>
+
             </div>
         </section>
 
@@ -120,3 +143,20 @@
             </div>
         </div><!-- /.modal -->
 
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 9000);
+}
+</script>

@@ -1,7 +1,13 @@
+
 <?php
+
+    echo $this->Html->script('elevatezoom-master/jquery.elevatezoom', array('inline' => false));
+    echo $this->Html->css('jquery.bxslider', array('inline' => false));
+    echo $this->Html->script('jquery.bxslider', array('inline' => false));
     echo $this->Html->css('w3', array('inline' => false));
     echo $this->Html->css('product', array('inline' => false));
-
+   
+  
     $images  = array();
     $images_aux = explode(';', $product['gallery']);
     foreach ($images_aux as $key => $value) {
@@ -27,7 +33,7 @@
                     <div class="col-md-5 col-sm-7">
                         <?php foreach ($images as $k => $v) : ?> 
                             <?php if (!empty($v)): ?>
-                             <a href="#"><img  class="mySlides" style="width:80%;" src="<?php echo $v ?>" ></a>
+                             <a href="#"><img elevate-zoom class="mySlides" style="width:80%;"  src="<?php echo $v ?>" ></a>
                             <?php endif ?> 
                           <?php endforeach ?>
                     </div>
@@ -92,6 +98,7 @@
                                     <div class="btn-group inline-block div_color_products" data-toggle="buttons">
                                         <?php  foreach ($colors as $color) {
                                                     echo '<label class="btn" style ="    border-radius: 100px;">';
+                                                    echo "<small>".$color['alias']."</small>";
                                                     echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
                                                     echo '<div class="color-block" style="    border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
                                                 echo '</label>';
@@ -103,8 +110,8 @@
                                 
 
                             <div class="social">
-                                <a href="https://twitter.com/chateletmoda" class="fb"></a>
-                                <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" class="tt"></a>
+                                <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" class="fb"></a>
+                                <a href="https://twitter.com/chateletmoda" class="tt"></a>
                                 <a href="https://www.instagram.com/chateletmoda/" class="pr"></a>
                             </div>
                            </div> 

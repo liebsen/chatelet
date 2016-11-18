@@ -20,23 +20,16 @@
         
 
         <section id="location">
-            <div class="col-md-4 search buscar" id="search"  >
-                <form  id="busqueda" action="#">
-                   <input type="text" name="termino" class="termino" id="address" placeholder="Buscar" />
-                  
-                    <p>Ej. Av. Rivadavia 5700, Ciudad Autonoma de Buenos Aires.</p>
-                </form>
-            </div>
-
          
-            <div class="col-md-8">
-                <h3>Zona Oeste</h3>
-                <h4>Ramos Mejía</h4>
-                <ul>
-                    <li>Av. de Mayo 6</li>
-                    <li>Tel. 4654-0143</li>
-                </ul>
-            </div>
+         
+                <div class="col-md-12">
+                    <h3>Zona Oeste</h3>
+                    <h4>Ramos Mejía</h4>
+                    <ul>
+                        <li>Av. de Mayo 6</li>
+                        <li>Tel. 4654-0143</li>
+                    </ul>
+                </div>
                <!--   <ul id="sucursales" class="list-unstyled" data-url="<?php echo $this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>">
               <?php   foreach($stores as $store) {
                     $store = $store['Store'];

@@ -55,7 +55,7 @@ $(document).ready(function() {
 				message: 'Sin stock'
 			});
 		}
-        alert(url);
+      
 		$.post(url, $.param(data))
 			.success(function(res) {
 				if (res.success) {
