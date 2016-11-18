@@ -132,16 +132,16 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #myModal .content form input[type="submit"] { background: transparent; border: 2px solid #f50081; color: #f50081; font-size: 16px; font-weight: 600; padding: 18px 0; width: 100%; }
 
 #video { background: url(../images/videobg.png) center center no-repeat; background-size: cover; overflow: hidden; padding: 35px 150px; }
-#video h1 { color: #f50081; font-size: 60px; font-weight: 600; margin-bottom: 30px; margin-top: 10%; }
-#video p { font-size: 40px; font-weight: 500; line-height: 1.4; }
+#video h1 { color: #f50081; font-size: 40px; font-weight: 600; margin-bottom: 30px; margin-top: 10%; }
+#video p { font-size: 25px; font-weight: 500; line-height: 1.4; }
 
 #lookbook { overflow: hidden; }
 #lookbook .col-md-5 { padding: 0; }
 #carousel2 .carousel-control.left, #carousel2 .carousel-control.right { background: none; height: 100%; top: 0; }
-#lookbook .price { background: #fbe3ee; display: inline-block; float: right; font-size: 22px; padding: 7px 15px; }
-#lookbook h3 { font-size: 27px; font-weight: 600; margin: 80px 0 40px; }
-#lookbook h2 { color: #f50081; font-size: 27px; font-weight: 500; margin-bottom: 20px; }
-#lookbook p { font-size: 22px; margin-bottom: 20px; }
+#lookbook .price { background: #fbe3ee; display: inline-block; float: right; font-size: 18px; padding: 7px 15px 3px 15px; }
+#lookbook h3 { font-size: 18px; font-weight: 600; margin: 40px 0 40px; }
+#lookbook h2 { color: #f50081; font-size: 18px; font-weight: 500; margin-bottom: 13px; }
+#lookbook p { font-size: 16px; margin-bottom: 20px; }
 #lookbook p a { color: #464444; display: inline-block; margin: 0 12px; }
 #lookbook p a.active { color: #f50081; }
 #lookbook li { border-bottom: 2px solid #c2c2c2; margin-bottom: 45px; padding-bottom: 45px; }
@@ -151,7 +151,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #lookbook .social a.fb { background-position: -92px -40px; }
 #lookbook .social a.tt { background-position: -118px -40px; }
 #lookbook .social a.pr { background-position: -144px -40px; }
-#lookbook .add { background: #f50081; color: #FFF; font-size: 22px; display: inline-block; padding: 5px 15px; }
+#lookbook .add { background: #f50081; color: #FFF; font-size: 16px; display: inline-block; padding: 8px 15px; }
 #carousel2 .carousel-control { color: #e44522; bottom: 33px; opacity: 1; top: inherit; width: 120px; z-index: 99; }
 #carousel2 .carousel-control.left, #carousel2 .carousel-control.right { background: none; height: 100%; top: 0; }
 #carousel2 .carousel-control .arrow { background-image: url(../images/sprite.png); background-repeat: no-repeat; display: block; height: 74px; left: 50%; margin-left: -22px; margin-top: -37px; position: absolute; top: 50%; width: 44px; }
