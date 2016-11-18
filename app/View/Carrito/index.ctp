@@ -66,16 +66,7 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div id="siguiente-block" class="col-md-8">
-			<?php
-				echo $this->Html->link('Siguiente', array(
-					'controller' => 'carrito', 
-					'action' => 'checkout'),
-					array(
-						'id' => 'siguiente',
-						'class' => array('disabled'),
-					)
-				);
-			?>
+		<a href="javascript:void(0)" class="disabled" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
 		</div>
 		<div class="col-md-2"></div>
 	</div>
