@@ -34,7 +34,7 @@
                         <p><?php echo $home['line_three']; ?></p>
                        
 
-                    <a href="#">Visitar</a>
+                    <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">Visitar</a>
                   </div>
                 </div>
             <?php endforeach ?>
