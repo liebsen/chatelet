@@ -1,0 +1,98 @@
+<?php
+  echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
+  echo $this->Html->script('sucursales-detail', array('inline' => false));
+  echo $this->Html->css('sucursales-detail', array('inline' => false));
+?>
+<?php echo $this->element('admin-menu');?>
+<div class="block block-themed">
+  <div class="block-title">
+    <h4>
+    <?php
+      echo (isset($store)) ? __('Editar Sucursal') : __('Agregar Sucursal');
+    ?>
+    </h4>
+  </div>
+
+  <div class="block-content">
+    <form action="" method="post" class="form-inline" enctype="multipart/form-data">
+      <?php
+        if (isset($this->request->pass[1])) {
+          echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
+        }
+      ?>
+      <div class="row">
+        <div class="col-md-4">
+          <h4 class="sub-header">Información Principal</h4>
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
+            <div class="controls">
+              <input type="text" id="" name="data[name]" value="<?php echo (isset($store)) ? $store['Store']['name'] : ''; ?>" required>
+            </div>
+          </div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Dirección'); ?></label>
+            <div class="controls">
+              <input type="text" id="" name="data[address]" value="<?php echo (isset($store)) ? $store['Store']['address'] : ''; ?>" required>
+            </div>
+          </div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Teléfono'); ?></label>
+            <div class="controls">
+              <input type="text" id="" name="data[phone]" value="<?php echo (isset($store)) ? $store['Store']['phone'] : ''; ?>" required>
+            </div>
+          </div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('¿Por mayor?'); ?></label>
+            <div class="controls">
+              <?php
+                $por_mayor = (isset($store) && $store['Store']['por_mayor'] == 1) ? 'checked' : '';
+                $por_menor = (isset($store) && $store['Store']['por_mayor'] == 0) ? 'checked' : '';
+              ?>
+              Si <input type="radio" name="data[por_mayor]" value="1" <?php echo $por_mayor; ?> /> - 
+              No <input type="radio" name="data[por_mayor]" value="0" <?php echo $por_menor; ?> />
+            </div>
+          </div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Numero de local'); ?></label>
+            <div class="controls">
+              <input type="number" id="" name="data[local]" value="<?php echo (isset($store)) ? $store['Store']['local'] : ''; ?>" required>
+            </div>
+          </div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Latitud'); ?></label>
+            <div class="controls">
+              <input type="text" id="lat" name="data[lat]" value="<?php echo (isset($store)) ? $store['Store']['lat'] : ''; ?>">
+            </div>
+          </div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Latitud'); ?></label>
+            <div class="controls">
+              <input type="text" id="lng" name="data[lng]" value="<?php echo (isset($store)) ? $store['Store']['lng'] : ''; ?>">
+            </div>
+          </div>
+          <br />
+        </div> 
+        <div class="col-md-8">
+          <h4 class="sub-header">Ubicación</h4>
+          <div id="panel" style="display: none;">
+            <input id="address" type="text" placeholder="Dirección, Ciudad, País">
+            <input id="geocode" type="button" value="Localizar">
+          </div>
+          <div id="map-canvas"></div>
+        </div>             
+      </div>      
+      <br />               
+      <div class="form-actions">
+        <button type="reset" class="btn btn-danger"><i class="icon-repeat"></i> Reset</button>
+        <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>

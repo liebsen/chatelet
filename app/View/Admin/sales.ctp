@@ -1,0 +1,93 @@
+<div class="row">
+	<div class="col-xs-12">
+		<table id="example-datatables2" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">Fecha</th>
+                    <th class="text-center">Cliente - (MercadoPago)</th>
+                    <th class="text-center">Detalles</th>
+                    <th class="text-center">Envio</th>
+                    <th class="text-center">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            	<?php foreach ($sales as $sale): ?>
+        		<tr>
+        			<td class="col-xs-1 text-center">
+        				<?php echo date('d/m/Y',strtotime($sale['collection']['date_approved'])) ?><br />
+        				<?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?><br />
+        			</td>	
+        			<td class="col-xs-3">
+        				<div class="row">
+	                		<div class="col-xs-2"></div>
+	                		<div class="col-xs-10">
+		        				<dl class="list">
+			                        <dt>Nombre</dt>
+			                        <dd><?php echo $sale['collection']['payer']['first_name'] ?>&nbsp;</dd>
+			                        <dt>Apellido</dt>
+			                        <dd><?php echo $sale['collection']['payer']['last_name'] ?>&nbsp;</dd>
+			                        <dt>Email</dt>
+			                        <dd><?php echo $sale['collection']['payer']['email'] ?>&nbsp;</dd>
+			                        <dt>Telefono</dt>
+			                        <dd><?php echo $sale['collection']['payer']['phone']['number'] ?>&nbsp;</dd>
+			                    </dl>
+	                		</div>
+	                	</div>
+        			</td>	
+        			<td class="col-xs-6">
+        				<?php foreach ($sale['collection']['sale_products'] as $reason): ?>
+        					<div class="row">
+        					<?php $column = 4; ?>
+	        					<div class="col-xs-1"></div>
+	        					<div class="col-xs-5">
+	        						<dl class="list">
+				        				<?php $details = explode('-|-', $reason); ?>
+				        				<?php foreach ($details as $key => $detail): ?>
+				        					<?php if ($key > $column) continue; ?>
+				        					<?php $extra = explode(' : ', $detail) ?>
+				        					<?php if (!empty($extra[0]) && !empty($extra[1])): ?>
+				        						<dt><?php echo $extra[0] ?></dt>
+				                        		<dd><?php echo $extra[1] ?></dd>
+				        					<?php endif ?>
+				        				<?php endforeach ?>
+			        				</dl>	
+	        					</div>
+	        					<div class="col-xs-6">
+	        						<dl class="list">
+				        				<?php $details = explode('-|-', $reason); ?>
+				        				<?php foreach ($details as $key => $detail): ?>
+				        					<?php if ($key <= $column) continue; ?>
+				        					<?php $extra = explode(' : ', $detail) ?>
+				        					<?php if (!empty($extra[0]) && !empty($extra[1])): ?>
+				        						<dt><?php echo $extra[0] ?></dt>
+				                        		<dd><?php echo $extra[1] ?></dd>
+				        					<?php endif ?>
+				        				<?php endforeach ?>
+			        				</dl>
+	        					</div>
+        					</div>
+        					<div class="row">
+        						<hr /> 
+        					</div>
+        				<?php endforeach ?>
+        			</td>	
+        			<td class="col-xs-1 text-center">
+        				<?php if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
+        					<a target="_new" href="<?php echo Router::url(array('action'=>'getTicket',$sale['local_sale']['id']),true) ?>">TICKET</a> <br />
+        				<?php endif ?>
+        				$<?php 
+        				$defaultCost = 54;
+        				if (date('Ymd',strtotime($sale['collection']['date_approved'])) > '20161108')
+        					$defaultCost=0;
+        				echo (!empty($sale['collection']['deliver_cost']))?$sale['collection']['deliver_cost']:$defaultCost ?> <br />
+        				(<?php echo count($sale['collection']['sale_products']) ?> item)
+        			</td>
+        			<td class="col-xs-1 text-center">
+        				$<?php echo $sale['collection']['transaction_amount'] ?>
+        			</td>	
+        		</tr>
+            	<?php endforeach ?>
+            </tbody>
+        </table>
+	</div>
+</div>
