@@ -112,5 +112,5 @@ CakeLog::config('error', array(
 
 
 Configure::write('imageUrlBase',Router::url('/',true).'chatelet/files/uploads/');
-Configure::write('imageUrlBase','http://development.infinixsoft.com/chatelet/files/uploads/');
+Configure::write('imageUrlBase','http://development.infinixsoft.com/chatelet-web/files/uploads/');
 //Configure::write('imageUrlBase','http://localhost/chatelet/files/uploads/');
