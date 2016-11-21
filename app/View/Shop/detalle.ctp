@@ -1,6 +1,17 @@
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
+
+
 <?php
+    echo $this->Html->script('elevatezoom-master/jquery.elevatezoom', array('inline' => false));
+    echo $this->Html->css('jquery.bxslider', array('inline' => false));
+    echo $this->Html->script('jquery.bxslider', array('inline' => false));
     echo $this->Html->css('w3', array('inline' => false));
     echo $this->Html->css('product', array('inline' => false));
+
+        /* Lightbox */
+    echo $this->Html->css('lightbox', array('inline' => false));
+    echo $this->Html->script('lightbox.min', array('inline' => false));
 
     $images  = array();
     $images_aux = explode(';', $product['gallery']);
@@ -27,7 +38,8 @@
                     <div class="col-md-5 col-sm-7">
                         <?php foreach ($images as $k => $v) : ?> 
                             <?php if (!empty($v)): ?>
-                             <a href="#"><img  class="mySlides" style="width:80%;" src="<?php echo $v ?>" ></a>
+                             <a href="#" ><img  class="mySlides" elevate-zoom style="width:80%;" src="<?php echo $v ?>" ></a>
+                             </a>
                             <?php endif ?> 
                           <?php endforeach ?>
                     </div>
@@ -258,5 +270,18 @@ function showDivs(n) {
 }
 </script>
 
+<script type="text/javascript">
+//initiate the plugin and pass the id of the div containing gallery images
+$('#zoom_03').ezPlus({
+    gallery: 'gallery_01', cursor: 'pointer', galleryActiveClass: 'active',
+    imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'
+});
 
+//pass the images to Fancybox
+$('#zoom_03').bind('click', function (e) {
+    var ez = $('#zoom_03').data('ezPlus');
+    $.fancyboxPlus(ez.getGalleryList());
+    return false;
+});
 
+</script>

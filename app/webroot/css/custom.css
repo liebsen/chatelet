@@ -259,7 +259,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 .map .col-md-4 h1:after { background: #f50081; content: ""; display: block; margin-top: 50px; height: 3px; width: 75px; }
 
 #headcontacto { background: url(../images/videobg.png) no-repeat center center; background-size: cover; padding: 65px 0; }
-#headcontacto .wrapper { background: url(../images/contactohead.jpg) no-repeat center center; background-size: contain; }
+#headcontacto .wrapper { background: url(../images/contactohead.png) no-repeat center center; background-size: contain; }
 #headcontacto h1 { color: #f50081; font-size: 40px; font-weight: 600; margin-top: 70px; }
 #headcontacto h1:after { background: #f50081; content: ""; display: block; margin-top: 50px; height: 3px; width: 75px; }
 #headcontacto .box { border: 2px solid #f50081; padding: 100px 90px; }
