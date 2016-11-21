@@ -351,12 +351,12 @@ class AdminController extends AppController {
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',
-				'url'		=> Configure::read('mUrl').'/admin/categorias',
+				'url'		=> Configure::read('mUrl').'/chatelet-new/web/admin/categorias',
 				'active'	=> 'categorias'
 				),
 			'Nueva Categoria' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/categorias/add',
+				'url'		=> Configure::read('mUrl').'/chatelet-new/web/admin/categorias/add',
 				'active'	=> 'add'
 				)
 
@@ -509,12 +509,12 @@ class AdminController extends AppController {
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-justify',
-				'url'		=> Configure::read('mUrl').'/admin/productos',
+				'url'		=> Configure::read('mUrl').'/chatelet-new/web/admin/productos',
 				'active'	=> 'productos'
 				),
 			'Nuevo Producto' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/productos/add',
+				'url'		=> Configure::read('mUrl').'/chatelet-new/web/admin/productos/add',
 				'active'	=> 'add'
 				)
 
@@ -633,12 +633,12 @@ class AdminController extends AppController {
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',
-				'url'		=> Configure::read('mUrl').'/admin/sucursales',
+				'url'		=> Configure::read('mUrl').'/chatelet-new/web/admin/sucursales',
 				'active'	=> 'sucursales'
 				),
 			'Nueva Sucursal' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/sucursales/add',
+				'url'		=> Configure::read('mUrl').'/chatelet-new/web/admin/sucursales/add',
 				'active'	=> 'add'
 				)
 
@@ -696,7 +696,7 @@ class AdminController extends AppController {
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',
-				'url'		=> Configure::read('mUrl').'/admin/contacto',
+				'url'		=> Configure::read('mUrl').'/chatelet-new/web/admin/contacto',
 				'active'	=> 'contacto'
 			)
 		);
@@ -723,12 +723,12 @@ class AdminController extends AppController {
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',
-				'url'		=> Configure::read('mUrl').'/admin/usuarios',
+				'url'		=> Configure::read('mUrl').'/chatelet-new/web/admin/usuarios',
 				'active'	=> 'usuarios'
 				),
 			'Nuevo Usuario' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/usuarios/add',
+				'url'		=> Configure::read('mUrl').'/chatelet-new/web/admin/usuarios/add',
 				'active'	=> 'add'
 				)
 
@@ -843,12 +843,12 @@ class AdminController extends AppController {
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-justify',
-				'url'		=> Configure::read('mUrl').'/admin/lookbook',
+				'url'		=> Configure::read('mUrl').'/chatelet-new/web/admin/lookbook',
 				'active'	=> 'lookbook'
 				),
 			'Nuevo Look Book' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/lookbook/add',
+				'url'		=> Configure::read('mUrl').'/chatelet-new/web/admin/lookbook/add',
 				'active'	=> 'add'
 				)
 
