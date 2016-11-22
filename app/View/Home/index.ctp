@@ -1,10 +1,5 @@
 <?php
-	echo $this->Html->css('home', array('inline' => false));
 	echo $this->Html->css('animate', array('inline' => false));
-	echo $this->Html->script('home', array('inline' => false));
-	echo $this->Html->script('jquery.lettering', array('inline' => false));
-	echo $this->Html->script('jquery.textillate', array('inline' => false));
-
 	echo $this->Session->flash();
 
 	$images 	= array();
@@ -66,7 +61,6 @@
                 } 
                 echo '<h1>'.$home['module_one'].'</h1>'.'</a>';
             ?>  
-               
             </div>
         </section>
 
