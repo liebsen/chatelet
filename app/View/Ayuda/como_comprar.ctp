@@ -1,7 +1,3 @@
-<?php
-	$this->Html->css('ayuda', array('inline' => false));
-?>
-
      <div id="headhelp">
             <div class="wrapper">
                 <div class="row">
@@ -34,7 +30,7 @@
 
                     <div class="col-md-6 col-sm-4">
                         <?php
-		            	echo $this->Html->link('Continuar', array(
+			echo $this->Html->link('Continuar', array(
                         'controller' => 'ayuda',
                         'action' => 'como_comprar',
                         1

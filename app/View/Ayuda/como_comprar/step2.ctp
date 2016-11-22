@@ -1,7 +1,3 @@
-<?php
-    $this->Html->css('ayuda', array('inline' => false));
-?>
-
      <div id="headhelp">
             <div class="wrapper">
                 <div class="row">

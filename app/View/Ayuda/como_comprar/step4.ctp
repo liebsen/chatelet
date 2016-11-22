@@ -1,7 +1,3 @@
-<?php
-    $this->Html->css('ayuda', array('inline' => false));
-?>
-
      <div id="headhelp">
             <div class="wrapper">
                 <div class="row">
@@ -33,7 +29,7 @@
                     </div>
 
                     <div class="col-md-6 col-sm-4">
-                    <?php
+                     <?php
                         echo $this->Html->link('Seguir con Envios', array( 'controller' => 'ayuda', 'action' => 'envios' ), 
                             array(
                         'class' => 'bt'
