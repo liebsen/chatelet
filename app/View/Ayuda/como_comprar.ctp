@@ -7,7 +7,7 @@
                     <div class="col-md-6">
                         <div class="box">
                             <h3>¿Tiene alguna consulta o sugerencia?</h3>
-                            <p>Para comprar un producto de nuestro catalogo, primero debes tener una cuenta registrada en nuestro sitio. Si todavía no estás registrado/a <a href="#">hace click aquí</a>.</p>
+                            <p>Para comprar un producto de nuestro catalogo, primero debes tener una cuenta registrada en nuestro sitio. Si todavía no estás registrado/a <a href="#" id="register" data-toggle="modal" data-target="#particular-modal">hace click aquí</a>.</p>
                         </div>
                     </div>
                 </div>
@@ -30,14 +30,14 @@
 
                     <div class="col-md-6 col-sm-4">
                         <?php
-			echo $this->Html->link('Continuar', array(
+		            	echo $this->Html->link('Continuar', array(
                         'controller' => 'ayuda',
                         'action' => 'como_comprar',
                         1
-                    ), array(
-                        'class' => 'bt'
-                    ));
-			 ?>
+                        ), array(
+                            'class' => 'bt'
+                        ));
+			             ?>
                     </div>
                 </div>
             </div>

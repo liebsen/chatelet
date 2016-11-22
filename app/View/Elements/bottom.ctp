@@ -20,14 +20,13 @@
       echo $this->Html->script('main');
       echo $this->fetch('script');
       echo $this->Html->script('chatelet');
-       echo $this->Html->script('product');
+      echo $this->Html->script('product');
   		
       
   		
   		
   	?>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://use.fontawesome.com/e6cfef1a2c.js"></script>
+
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

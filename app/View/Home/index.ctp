@@ -1,5 +1,4 @@
 <?php
-	echo $this->Html->css('animate', array('inline' => false));
 	echo $this->Session->flash();
 
 	$images 	= array();
