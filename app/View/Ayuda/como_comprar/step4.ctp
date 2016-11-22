@@ -29,16 +29,13 @@
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-6 col-sm-8">
-                         <?php echo $this->Html->image('ayudin2.jpg', array( 'class' => 'img-responsive step' )); ?>
+                        <?php echo $this->Html->image('ayudin4.jpg', array( 'class' => 'img-responsive step' )); ?>
                     </div>
 
                     <div class="col-md-6 col-sm-4">
                     <?php
-                        echo $this->Html->link('Continuar', array(
-                        'controller' => 'ayuda',
-                        'action' => 'como_comprar',
-                         3
-                        ), array(
+                        echo $this->Html->link('Seguir con Envios', array( 'controller' => 'ayuda', 'action' => 'envios' ), 
+                            array(
                         'class' => 'bt'
                         ));
                     ?>
@@ -46,3 +43,6 @@
                 </div>
             </div>
         </section>
+
+            <?php echo $this->Html->link('Seguir con Envios', array( 'controller' => 'ayuda', 'action' => 'envios' ), array( 'class' => 'continuar' )); ?>
+  

@@ -290,7 +290,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #optionsHelp a { color: #404040; display: inline-block; font-size: 16px; margin: 0 25px; }
 #optionsHelp a.active { color: #f50081; }
 #desarrollo { background: #fadcea; font-size: 22px; line-height: 1.4; padding: 60px 0; }
-#desarrollo a.bt { border: 3px solid #f50081; color: #f50081; display: inline-block; font-size: 16px padding: 20px 120px; }
+#desarrollo a.bt { /*border: 3px solid #f50081;*/ color: #f50081; display: inline-block; font-size: 16px padding: 20px 120px; }
 #desarrollo .col-md-6:last-child { text-align: right; }
 #desarrollo img { margin-bottom: 15px; max-width: 100%; }
 #desarrollo small { color: #908c8e; font-size: 15px; }

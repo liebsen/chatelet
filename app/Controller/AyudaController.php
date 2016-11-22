@@ -26,6 +26,9 @@ class AyudaController extends AppController {
 			case 3:
 				$this->render('como_comprar/step3');
 				break;
+		    case 4:
+				$this->render('como_comprar/step4');
+				break;		
 		}
 	}
 

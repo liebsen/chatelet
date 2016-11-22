@@ -1,36 +1,48 @@
-<?php $this->Html->css('ayuda', array('inline' => false)); ?>
-<div id="main" class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <ul class="list-inline menu">
-                <li class="active">
-                    <div class="arrow_box">
-                        <?php echo $this->Html->link('¿Como Comprar?', array( 'controller' => 'ayuda', 'action' => 'como_comprar' )); ?>
+<?php
+    $this->Html->css('ayuda', array('inline' => false));
+?>
+
+     <div id="headhelp">
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>¿Cómo<br>comprar?</h1>
                     </div>
-                </li>
-                <li>
-                    <?php echo $this->Html->link('Envios', array( 'controller' => 'ayuda', 'action' => 'envios')); ?>
-                </li>
-                <li>
-                    <?php echo $this->Html->link('Metodos de Pago', array( 'controller' => 'ayuda', 'action' => 'metodos_de_pago' )); ?>
-                </li>
-            </ul>
+                    <div class="col-md-6">
+                        <div class="box">
+                            <h3>¿Tiene alguna consulta o sugerencia?</h3>
+                            <p>Para comprar un producto de nuestro catalogo, primero debes tener una cuenta registrada en nuestro sitio. Si todavía no estás registrado/a <a href="#">hace click aquí</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <?php echo $this->Html->image('ayudin3-01-01.jpg', array( 'class' => 'img-responsive step' )); ?>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4 content">
-            <?php echo $this->Html->link('Continuar', array( 'controller' => 'ayuda', 'action' => 'como_comprar', 2 ), array( 'class' => 'continuar' )); ?>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-    <?php echo $this->element('aclarations') ?>
-    <br />
-    <br />
-    <br />
-</div>
+
+        <section id="optionsHelp">
+            <a href="como_comprar" class="active">¿Como comprar?</a>
+            <a href="envios">Envíos</a>
+            <a href="metodos_de_pago">Métodos de pago</a>
+            <a href="faq">Preguntas frecuentes</a>
+        </section>
+
+        <section id="desarrollo">
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-6 col-sm-8">
+                         <?php echo $this->Html->image('ayudin1.jpg', array( 'class' => 'img-responsive step' )); ?>
+                    </div>
+
+                    <div class="col-md-6 col-sm-4">
+                    <?php
+                        echo $this->Html->link('Continuar', array(
+                        'controller' => 'ayuda',
+                        'action' => 'como_comprar',
+                         2
+                        ), array(
+                        'class' => 'bt'
+                        ));
+                    ?>
+                    </div>
+                </div>
+            </div>
+        </section>

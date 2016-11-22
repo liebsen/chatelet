@@ -27,14 +27,14 @@
             <div class="wrapper">
                 <div class="col-sm-6">
                     <h3>Cuál es el costo de envío y entrega de mi pedido?</h3>
-                    <p>El costo de envío y tiempo de entrega dependerá de la ubicación de cada usuario y del peso del pedido. Se recomienda consultar la tabla de envío.</p>
+                    <p>El costo de envío y tiempo de entrega dependerá de la ubicación de cada usuario y del peso del pedido. Se  recomienda consultar la tabla de envío.</p>
 
                     <h3>¿Dónde puedo realizar el seguimiento de mi pedido?</h3>
                     <p>Todos los envíos son efectuados por OCA y podes seguir el estado del mismo ingresando en www.oca.com.ar</p>
                 </div>
 
                 <div class="col-sm-6">
-                    <h3>Cuál es el costo de envío y entrega de mi pedido?</h3>
+                    <h3>No recibí mi pedido</h3>
                     <p>Si el pedido no fue entregado indícanos el número de seguimiento para que podamos identificarlo, e informale a la brevedad sobre el estado del mismo.</p>
                 </div>
             </div>

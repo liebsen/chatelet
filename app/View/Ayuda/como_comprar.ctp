@@ -34,13 +34,13 @@
 
                     <div class="col-md-6 col-sm-4">
                         <?php
-				echo $this->Html->link('Continuar', array(
-						'controller' => 'ayuda',
-						'action' => 'envios',
-						1
-					), array(
-						'class' => 'bt'
-					));
+		            	echo $this->Html->link('Continuar', array(
+                        'controller' => 'ayuda',
+                        'action' => 'como_comprar',
+                        1
+                    ), array(
+                        'class' => 'bt'
+                    ));
 			 ?>
                     </div>
                 </div>
