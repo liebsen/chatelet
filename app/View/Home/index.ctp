@@ -14,7 +14,12 @@
 			$images[] 	= Configure::read('imageUrlBase').$value;
 	}
     
-  
+    $img_url_one = str_replace(';', '', $home['img_url_one']);  
+ 
+    $img_url_two = str_replace(';', '', $home['img_url_two']); 
+    
+    $img_url_three = str_replace(';', '', $home['img_url_three']); 
+   
 ?>
 
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -52,8 +57,8 @@
         </div>
 
         
-        <section id="today">
-            <div class="rectangle" style="background-image: url(<?php echo Configure::read('imageUrlBase').$home['img_url_one'] ?>);">
+        <section id="today">   
+            <div class="rectangle" style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_one ?>);">
                 <?php if(!empty($home['category_mod_one'])){
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_one'])).'>';
                 }else{
@@ -66,7 +71,7 @@
         </section>
 
         <section id="opts">
-            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$home['img_url_two'] ?>);">
+            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_two ?>);">
             <?php if(!empty($home['category_mod_two'])){
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
                 }else{
@@ -77,7 +82,7 @@
               
             </div>
 
-            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$home['img_url_three'] ?>);">
+            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_three ?>);">
             <?php if(!empty($home['category_mod_two'])){
                   echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_three'])).'>';
                  }else{
