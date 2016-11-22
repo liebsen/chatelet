@@ -25,9 +25,9 @@
         <?php if( !empty($show_shop) ): ?>
           <li>
             <?php 
-                echo $this->Html->link('Shop', array('controller' => 'shop', 'action' => 'index'));
+                echo $this->Html->link('Shop', array('controller' => 'shop', 'action' => 'index'),array('class'=>'viewSubMenu'));
             ?>
-          </li>
+          </li> 
         <?php endif ?>
         <li>
             <?php 
@@ -50,6 +50,60 @@
           ?>
         </li>
       </ul>
+
+       <div id="menuShop">
+          <a class="close">
+              <span></span>
+              <span></span>
+          </a>
+          <div class="wrapper">
+              <div class="row">
+                  <div class="col-sm-6">
+                      <img src="images/shop_desplegable_1.jpg" class="pull-left">
+                      <h3>Shop</h3>
+                      <ul>
+                        <?php  
+                          foreach ($categories as $category) {
+                            $category = $category['Category'];
+                            echo '<li>';
+                            echo $this->Html->link(
+                                $category['name'], 
+                                array(
+                                    'controller' => 'shop',
+                                    'action' => 'product',
+                                    intval($category['id'])
+                                )
+                            );
+                            echo '</li>';
+                          }
+                        ?>
+                      </ul>
+                  </div>
+
+                  <div class="col-sm-6">
+                      <img src="images/shop_desplegable_2.jpg" class="pull-left">
+                      <h3>Temporada anterior</h3>
+                      <ul>
+                        <?php  
+                          foreach ($categories as $category) {
+                            $category = $category['Category'];
+                            echo '<li>';
+                            echo $this->Html->link(
+                                $category['name'], 
+                                array(
+                                    'controller' => 'shop',
+                                    'action' => 'product',
+                                    intval($category['id'])
+                                )
+                            );
+                            echo '</li>';
+                          }
+                        ?>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
     
       <ul class="nav navbar-nav navbar-right">
          
