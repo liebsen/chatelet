@@ -117,7 +117,7 @@
                                     </span>
                                 </a>
                             </div>
-                            <div class="col-sm-7">
+                            <div class="col-sm-5">
                                 <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
                                          intval($categories[7]['Category']['id']))) ?> class="pd4">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[7]['Category']['img_url']?> class="img-responsive">
@@ -138,7 +138,7 @@
                                     </span>
                                 </a>
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-7">
                                 <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
                                          intval($categories[9]['Category']['id']))) ?> class="pd2">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[9]['Category']['img_url']?> class="img-responsive">
