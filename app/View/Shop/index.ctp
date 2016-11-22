@@ -128,7 +128,7 @@
                                 </a>
                             </div><br clear="all">
 
-                            <!--<div class="col-sm-7">
+                            <div class="col-sm-7">
                                 <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
                                          intval($categories[8]['Category']['id']))) ?> class="pd4">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[8]['Category']['img_url']?> class="img-responsive">
@@ -147,7 +147,7 @@
                                         <small>Visitar categoría</small>
                                     </span>
                                 </a>
-                            </div>-->
+                            </div>
                         </div>
                     </div>
                   <?php //endforeach; ?>  
