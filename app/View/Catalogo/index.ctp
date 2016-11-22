@@ -24,27 +24,27 @@
      
        <section id="lookbook">
            <div class="col-md-5">
-              <div id="carousel2" class="carousel slide" data-ride="carousel">
+              <div id="carousel2">
                   <!-- Wrapper for slides -->
                   <div class="carousel-inner" role="listbox">
                     <?php 
-                            foreach ($lookbook as $key => $value) { 
-                                if (empty($value))
-                               continue; 
-                                $alt_product = $value['LookBook'];
-                                $url = $this->Html->url(array(
-                                        'controller' => 'catalogo',
-                                        'action' => 'index',
-                                        $alt_product['img_url']
-                                    )
-                                ); ?>
-                                <div class="item <?php echo (!$key) ? 'active' : null ; ?>" >
-                                  <a href="<?php echo $url  ?>">
-                                    <img  src="<?php echo Configure::read('imageUrlBase').$value['LookBook']['img_url'] ?>" >
-                                  </a>    
-                                  <div class="carousel-caption"></div>
-                                </div>
-                           <?php } ?> 
+                      foreach ($lookbook as $key => $value) { 
+                          if (empty($value))
+                         continue; 
+                          $alt_product = $value['LookBook'];
+                          $url = $this->Html->url(array(
+                                  'controller' => 'catalogo',
+                                  'action' => 'index',
+                                  $alt_product['img_url']
+                              )
+                          ); ?>
+                          <div class="item <?php echo (!$key) ? 'active' : null ; ?>" >
+                            <a href="<?php echo $url  ?>">
+                              <img  src="<?php echo Configure::read('imageUrlBase').$value['LookBook']['img_url'] ?>" >
+                            </a>    
+                           
+                          </div>
+                  <?php } ?> 
               
                   </div>
 

@@ -202,31 +202,10 @@
           </a>
           <div class="wrapper">
               <div class="row">
+                  <img src="images/shop_desplegable_1.jpg" class="pull-left">
                   <div class="col-sm-6">
-                      <img src="images/shop_desplegable_1.jpg" class="pull-left">
+                      
                       <h3>Shop</h3>
-                      <ul>
-                        <?php  
-                          foreach ($categories as $category) {
-                            $category = $category['Category'];
-                            echo '<li>';
-                            echo $this->Html->link(
-                                $category['name'], 
-                                array(
-                                    'controller' => 'shop',
-                                    'action' => 'product',
-                                    intval($category['id'])
-                                )
-                            );
-                            echo '</li>';
-                          }
-                        ?>
-                      </ul>
-                  </div>
-
-                  <div class="col-sm-6">
-                      <img src="images/shop_desplegable_2.jpg" class="pull-left">
-                      <h3>Temporada anterior</h3>
                       <ul>
                         <?php  
                           foreach ($categories as $category) {

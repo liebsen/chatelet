@@ -1,4 +1,5 @@
 <?php
+
 	echo $this->Session->flash();
 
 	$images 	= array();
