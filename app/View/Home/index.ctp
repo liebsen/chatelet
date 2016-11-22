@@ -58,7 +58,7 @@
                 <?php if(!empty($home['category_mod_one'])){
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_one'])).'>';
                 }else{
-                echo '<a href='.outer::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                 } 
                 echo '<h1>'.$home['module_one'].'</h1>'.'</a>';
             ?>  
@@ -71,7 +71,7 @@
             <?php if(!empty($home['category_mod_two'])){
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
                 }else{
-                echo '<a href='.outer::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                 } 
                 echo $home['module_two'].'</a>';
             ?> 
@@ -82,7 +82,7 @@
             <?php if(!empty($home['category_mod_two'])){
                   echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_three'])).'>';
                  }else{
-                  echo '<a href='.outer::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                  echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                  } 
                  echo $home['module_three'].'</br>'.'</a>';
             ?> 
