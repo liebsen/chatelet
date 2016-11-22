@@ -14,7 +14,7 @@
 			$images[] 	= Configure::read('imageUrlBase').$value;
 	}
      
-     pr($images);die;
+    
   
 ?>
 
