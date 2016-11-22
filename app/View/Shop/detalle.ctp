@@ -107,7 +107,7 @@
 
                                             <div class="table">
                                                 <h1>Tabla de conversión de talles</h1>
-                                                <p>Utilíza la tabla como guía.</p>
+                                                <p>Utiliza la tabla como guía.</p>
 
                                                 <table class="table">
                                                     <tr>

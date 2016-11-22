@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="col-md-3 col-sm-6">
-                    <h3>Catálogo</h3>
+                    <h3>LookBook</h3>
                     <ul>
                        <li>
                          <?php echo $this->Html->link('Primavera/Verano 2017', 
@@ -34,14 +34,17 @@
                 </div>
 
                 <div class="col-md-3 col-sm-6 clb">
-                    <h3>Contacto</h3>
+                    <h3>Información</h3>
                     <ul>
                         <li> 
 	                      <?php echo $this->Html->link('Sucursales', array('controller' => 'sucursales', 'action' => 'index')). ' | ';?>
 	                    </li>
-	                   <!-- <li> 
-						  <?php echo $this->Html->link('Consultas/Sugerencias', array('controller' => 'contacto', 'action' => 'index')). ' | '; ?>
-						</li>-->
+                        <li> 
+                          <?php echo $this->Html->link('Ayuda', array('controller' => 'ayuda', 'action' => 'como_comprar')). ' | '; ?>
+                        </li>
+	                    <li> 
+						  <?php echo $this->Html->link('Contacto', array('controller' => 'contacto', 'action' => 'index')). ' | '; ?>
+						</li>
                     </ul>
                 </div>
 
