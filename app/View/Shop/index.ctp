@@ -46,7 +46,7 @@
                 <?php //pr($categories);die;// foreach ($categories as $category) : ?>
                     <div class="col-md-6">
                         <div class="row"> 
-                            <div class="col-sm-7">
+                            <div class="col-sm-5">
                                 <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
                                          intval($categories[0]['Category']['id']))) ?> class="pd1">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[0]['Category']['img_url']?> class="img-responsive">
@@ -74,7 +74,7 @@
                                     </span>
                                 </a>
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-7">
                                 <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
                                          intval($categories[3]['Category']['id']))) ?> class="pd2">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[3]['Category']['img_url']?> class="img-responsive">
@@ -117,7 +117,7 @@
                                     </span>
                                 </a>
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-7">
                                 <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
                                          intval($categories[7]['Category']['id']))) ?> class="pd4">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[7]['Category']['img_url']?> class="img-responsive">
@@ -138,7 +138,7 @@
                                     </span>
                                 </a>
                             </div>
-                            <div class="col-sm-7">
+                            <div class="col-sm-5">
                                 <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
                                          intval($categories[9]['Category']['id']))) ?> class="pd2">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[9]['Category']['img_url']?> class="img-responsive">
