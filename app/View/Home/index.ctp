@@ -13,7 +13,6 @@
 		if(!empty($value))
 			$images[] 	= Configure::read('imageUrlBase').$value;
 	}
-     
     
   
 ?>

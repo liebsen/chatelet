@@ -24,7 +24,7 @@
 
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
-Configure::write('mUrl','');
+Configure::write('mUrl','/chatelet-new/web');
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.
@@ -113,4 +113,4 @@ CakeLog::config('error', array(
 
 Configure::write('imageUrlBase',Router::url('/',true).'chatelet/files/uploads/');
 Configure::write('imageUrlBase','http://development.infinixsoft.com/chatelet-new/web/files/uploads/');
-//Configure::write('imageUrlBase','http://localhost/chatelet/files/uploads/');
+//Configure::write('imageUrlBase','http://localhost/chatelet-new/files/uploads/');
