@@ -68,7 +68,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 
 #opts { color: #464444; font-size: 27px; font-weight: 500; line-height: 1.2; overflow: hidden; text-align: center; }
 #opts img { margin-bottom: 50px; }
-#opts .margin{}
+#opts .margin{padding: 160px;}
 #opts .two { padding: 0; }
 #opts .two:first-child { border-right: 3px solid #efb0d2; }
 #opts .two:first-child a { background: url(../images/box11.png) no-repeat center 60px; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
@@ -161,7 +161,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #carousel2 .carousel-control.left { left: 0%; }
 #carousel2 .carousel-control.right { right: 0%; }
 
-#headshop, #headabrigos { background: url(../images/headshop.jpg) no-repeat center center; color: #FFF; font-size: 40px; font-weight: 600; height: 220px; padding-top: 90px; text-align: center; }
+#headshop, #headabrigos { /*background: url(../images/headshop.jpg) no-repeat center center;*/ color: #FFF; font-size: 40px; font-weight: 600; height: 220px; padding-top: 90px; text-align: center; }
 #headabrigos { background: url(../images/headabrigo.jpg) no-repeat center center; }
 #filters { background: #eaeaea; margin-bottom: 100px; padding: 20px 0; }
 #filters h3 { font-size: 16px; font-weight: 600; margin-bottom: 20px; }
@@ -531,7 +531,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
 
 
-	.mySlides {display:none}
+   	.mySlides {display:none}
     .demo {cursor:pointer}
 
 
