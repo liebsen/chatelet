@@ -20,14 +20,13 @@
       echo $this->Html->script('main');
       echo $this->fetch('script');
       echo $this->Html->script('chatelet');
-      echo $this->Html->script('product');
+       echo $this->Html->script('product');
   		
       
   		
   		
   	?>
-
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    
     <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
