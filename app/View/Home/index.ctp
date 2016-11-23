@@ -76,11 +76,11 @@
               
             </div>
 
-            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_three ?>);">
+            <div class="col-md-6 " style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_three ?>);">
             <?php if(!empty($home['category_mod_two'])){
-                  echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_three'])).'>';
+                  echo '<a  id="margin" href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_three'])).'>';
                  }else{
-                  echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                  echo '<a  id="margin" href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                  } 
                  echo $home['module_three'].'</br>'.'</a>';
             ?> 

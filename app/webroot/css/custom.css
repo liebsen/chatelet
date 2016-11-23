@@ -68,10 +68,11 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 
 #opts { color: #464444; font-size: 27px; font-weight: 500; line-height: 1.2; overflow: hidden; text-align: center; }
 #opts img { margin-bottom: 50px; }
+#opts #margin{margin-top: -95px; }
 #opts .col-md-6 { padding: 0; }
 #opts .col-md-6:first-child { border-right: 3px solid #efb0d2; }
 #opts .col-md-6:first-child a { background: url(../images/box11.png) no-repeat center 60px; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
-#opts .col-md-6:last-child a {margin-top: -124px; /*background: url(../images/box11.png) no-repeat center 60px;*/ transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
+#opts .col-md-6:last-child a {/*background: url(../images/box11.png) no-repeat center 60px;*/ transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #opts a { color: #464444; display: block; font-size: 18px; line-height: 23px; padding: 250px 0 70px; width: 100%; }
 #opts a:hover { color: #FFF; }
 #opts .col-md-6:first-child a:hover { background: url(../images/box1.png) no-repeat center 60px ; }
