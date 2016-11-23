@@ -33,7 +33,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 .navbar-nav>li>a.shop { background: url(../images/sprite.png) no-repeat -46px -38px; display: inline-block; height: 41px; padding: 0; width: 41px; }
 .navbar-nav>li>a .badge { background: #f50081; border-radius: 50%; line-height: 1; margin-left: -10px; margin-top: -10px; padding: 5px 8px; }
 
-#menuShop { background: #FFF; border-bottom: 2px solid #efb0d2; left: 0; display: none; padding: 40px 0; position: absolute; top: 85px; width: 100%; }
+#menuShop {z-index: 10; background: #FFF; border-bottom: 2px solid #efb0d2; left: 0; display: none; padding: 40px 0; position: absolute; top: 85px; width: 100%; }
 #menuShop a.close { display: block; height: 25px; opacity: 1; position: absolute; right: 10px; top: 10px; width: 25px; }
 #menuShop a.close span { background: #f50081; display: block; height: 2px; margin-top: 12px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
 #menuShop a.close span:last-child { margin-top: -3px; -ms-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
@@ -260,14 +260,14 @@ footer .bottom a.ig { background-position: -101px -286px; }
 .map .col-md-4 h1:after { background: #f50081; content: ""; display: block; margin-top: 50px; height: 3px; width: 75px; }
 
 #headcontacto { background: url(../images/videobg.png) no-repeat center center; background-size: cover; padding: 65px 0; }
-#headcontacto .wrapper { background: url(../images/contactohead.png) no-repeat center center; background-size: contain; }
+#headcontacto .wrapper { /*background: url(../images/contactohead.png) no-repeat center center;*/ background-size: contain; }
 #headcontacto h1 { color: #f50081; font-size: 40px; font-weight: 600; margin-top: 70px; }
 #headcontacto h1:after { background: #f50081; content: ""; display: block; margin-top: 50px; height: 3px; width: 75px; }
 #headcontacto .box { border: 2px solid #f50081; padding: 100px 90px; }
 #headcontacto .box h3 { font-size: 22px; font-weight: 500; margin-bottom: 30px; }
 #headcontacto .box p { font-size: 16px; line-height: 1.5; }
 #formulario { background: url(../images/arrow-down.gif) no-repeat center top; padding: 80px 0; }
-#formulario .wrapper { background: url(../images/formbg.jpg) no-repeat left center; background-size: contain; }
+#formulario .wrapper { /*background: url(../images/formbg.jpg) no-repeat left center;*/ background-size: contain; }
 #formulario input[type="text"], #formulario input[type="email"], #formulario textarea { background: transparent; border: none; border-bottom: 1px solid #464444; font-size: 16px; padding: 22px 0; width: 100%; }
 #formulario h3 { font-size: 22px; margin: 90px 0 70px; }
 #formulario label { color: #aeaeae; font-size: 22px; display: inline-block; }

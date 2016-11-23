@@ -13,7 +13,7 @@
 			&nbsp;
 			&nbsp;
 			&nbsp;
-			&nbsp;
+		
 			<div style="display:inline;">
 				<label class="" for="columns-text">Código de Lista:</label>
 				<input type="number" name="list_code" value="<?php echo @$list_code ?>" required style="width:60px;text-align:center"/>
@@ -21,13 +21,36 @@
 			&nbsp;
 			&nbsp;
 			&nbsp;
-			&nbsp;
+		
 			<div style="display:inline;">
 				<label class="" for="columns-text">Mostrar Shop </label>
 				<input type="checkbox" class="input-themed" name="show_shop" value="<?php echo @$show_shop ?>" <?php echo (!empty($show_shop))?'checked':''; ?>/>
 			</div>
+			
 			&nbsp;
 			&nbsp;
+			&nbsp;
+	
+			
+			<div style="display:inline;">
+				<label class="" for="columns-text">Banner Shop <input type="file"  class="input-themed" name="image_bannershop"></label>
+            </div>
+            &nbsp;
+			&nbsp;
+			&nbsp;
+			
+            <div style="display:inline;">
+				<label class="" for="columns-text">Menu Shop<input type="file" class="input-themed" name="image_menushop"></label>
+            </div>
+            &nbsp;
+			&nbsp;
+			&nbsp;
+	
+            <div style="display:inline;">
+				<label class="" for="columns-text">Banner Producto Shop<input type="file" class="input-themed" name="image_prodshop"></label>
+            </div>
+			
+            &nbsp;
 			&nbsp;
 			&nbsp;
 			<button class="btn btn-sm" type="submit" style="margin-top: -2px;">Guardar</button>
