@@ -33,7 +33,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 .navbar-nav>li>a.shop { background: url(../images/sprite.png) no-repeat -46px -38px; display: inline-block; height: 41px; padding: 0; width: 41px; }
 .navbar-nav>li>a .badge { background: #f50081; border-radius: 50%; line-height: 1; margin-left: -10px; margin-top: -10px; padding: 5px 8px; }
 
-#menuShop {z-index: 1; background: #FFF; border-bottom: 2px solid #efb0d2; left: 0; display: none; padding: 40px 0; position: absolute; top: 85px; width: 100%; }
+#menuShop { background: #FFF; border-bottom: 2px solid #efb0d2; left: 0; display: none; padding: 40px 0; position: absolute; top: 85px; width: 100%; }
 #menuShop a.close { display: block; height: 25px; opacity: 1; position: absolute; right: 10px; top: 10px; width: 25px; }
 #menuShop a.close span { background: #f50081; display: block; height: 2px; margin-top: 12px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
 #menuShop a.close span:last-child { margin-top: -3px; -ms-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
@@ -69,14 +69,14 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 #opts { color: #464444; font-size: 27px; font-weight: 500; line-height: 1.2; overflow: hidden; text-align: center; }
 #opts img { margin-bottom: 50px; }
 #opts .margin{padding: 160px;}
-#opts .two { padding: 0; }
-#opts .two:first-child { border-right: 3px solid #efb0d2; }
-#opts .two:first-child a { background: url(../images/box11.png) no-repeat center 60px; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
-#opts .two:last-child a {/*background: url(../images/box11.png) no-repeat center 60px;*/ transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
+#opts .col-md-6 { padding: 0; }
+#opts .col-md-6:first-child { border-right: 3px solid #efb0d2; }
+#opts .col-md-6:first-child a { background: url(../images/box11.png) no-repeat center 60px; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
+#opts .col-md-6:last-child a {/*background: url(../images/box11.png) no-repeat center 60px;*/ transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #opts a { color: #464444; display: block; font-size: 18px; line-height: 23px; padding: 250px 0 70px; width: 100%; }
 #opts a:hover { color: #FFF; }
-#opts .two:first-child a:hover { background: url(../images/box1.png) no-repeat center 60px ; }
-#opts .two:last-child a:hover { background: url(../images/box1.png) no-repeat center 60px ; }
+#opts .col-md-6:first-child a:hover { background: url(../images/box1.png) no-repeat center 60px ; }
+#opts .col-md-6:last-child a:hover { background: url(../images/box1.png) no-repeat center 60px ; }
 
 #location { background: #464545; overflow: hidden; }
 #location .col-md-4 { background: url(../images/ico3.png) no-repeat center center #efb0d2; min-height: 260px; }
@@ -161,7 +161,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #carousel2 .carousel-control.left { left: 0%; }
 #carousel2 .carousel-control.right { right: 0%; }
 
-#headshop, #headabrigos { /*background: url(../images/headshop.jpg) no-repeat center center;*/ color: #FFF; font-size: 40px; font-weight: 600; height: 220px; padding-top: 90px; text-align: center; }
+#headshop, #headabrigos { background: url(../images/headshop.jpg) no-repeat center center; color: #FFF; font-size: 40px; font-weight: 600; height: 220px; padding-top: 90px; text-align: center; }
 #headabrigos { background: url(../images/headabrigo.jpg) no-repeat center center; }
 #filters { background: #eaeaea; margin-bottom: 100px; padding: 20px 0; }
 #filters h3 { font-size: 16px; font-weight: 600; margin-bottom: 20px; }
@@ -531,7 +531,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
 
 
-   	.mySlides {display:none}
+	.mySlides {display:none}
     .demo {cursor:pointer}
 
 
