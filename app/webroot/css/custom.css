@@ -76,7 +76,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 #opts a { color: #464444; display: block; font-size: 18px; line-height: 23px; padding: 250px 0 70px; width: 100%; }
 #opts a:hover { color: #FFF; }
 #opts .col-md-6:first-child a:hover { background: url(../images/box1.png) no-repeat center 60px ; }
-#opts .col-md-6:last-child a:hover { background: url(../images/box1.png) no-repeat center 60px ; }
+/*#opts .col-md-6:last-child a:hover { background: url(../images/box1.png) no-repeat center 60px ; }*/
 
 #location { background: #464545; overflow: hidden; }
 #location .col-md-4 { background: url(../images/ico3.png) no-repeat center center #efb0d2; min-height: 260px; }
