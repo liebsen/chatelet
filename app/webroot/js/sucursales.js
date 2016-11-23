@@ -18,12 +18,13 @@ $(document).ready(function() {
 		$.get( $('.sucursales').data('url') )
 		
 		.done(function(response) {
-
 			if ($.isArray(response)) {
 				$.each(response, function(i, sucursal) {
 					var sucursal = sucursal.Store,
 						marker = new google.maps.Marker({
 					        map: map,
+					        draggable: true,
+                            animation: google.maps.Animation.DROP,
 					        position: new google.maps.LatLng(sucursal.lat, sucursal.lng)
 					    }),
 						infowindow = new google.maps.InfoWindow({
@@ -34,20 +35,20 @@ $(document).ready(function() {
 						toggle = function() {
 							if (open) {
 								infowindow.close();
-								open = false;
+								open = true;
 							} else {
 								infowindow.open(map, marker);
 								open = true;
 							}
 						};
 
+						
+
 					google.maps.event.addListener(marker, 'click', function() {
-						$('#location').html(' <div class="col-md-12" style="">'+'<h3>'+ sucursal.name +'</h3>'+
-							'<ul><li>' + sucursal.address + '</li><li> ' + sucursal.phone + '</li></ul></div>');
 						toggle();
 					});
 
-              		markers[sucursal.id] = { 
+					markers[sucursal.id] = { 
 						toggle: toggle
 					};
 				});
@@ -73,6 +74,7 @@ $(document).ready(function() {
 
 		return false;
 	});
+    
 
 	google.maps.event.addDomListener(window, 'load', initialize);
 });

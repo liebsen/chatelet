@@ -81,8 +81,8 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 #location .col-md-4 { background: url(../images/ico3.png) no-repeat center center #efb0d2; min-height: 260px; }
 #location .col-md-12 { padding-left: 150px; padding-right: 150px; padding-top: 60px; padding-bottom: 60px; }
 #location .col-md-12 h3 { border-bottom: 2px solid #efb0d2; color: #FFF; font-size: 18px; font-weight: 500; margin-bottom: 20px; padding-bottom: 20px; }
-#location .col-md-12 h4 { color: #efb0d2; font-size: 20px; font-weight: 600; margin-bottom: 30px; }
-#location .col-md-12 ul li { color: #FFF; float: left; font-size: 18px; font-weight: 500; width: 50%; }
+#location .col-md-12 h4 { color: #efb0d2; font-size: 18px; font-weight: 600; /*margin-bottom: 30px; */}
+#location .col-md-12 ul li { color: #FFF; float: left; /*font-size: 18px;*/ font-weight: 500; width: 50%;    padding-bottom: 45px; }
 #location .col-md-12 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
 #location .col-md-12 ul li:last-child:before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
 #location .col-md-4.search { background: #FFF; padding-top: 75px; }

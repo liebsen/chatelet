@@ -20,17 +20,23 @@
         
 
         <section id="location">
-         
-                
                 <div class="col-md-12">
-                    <h3>Ramos Mejía</h3>
-                    <ul>
-                        <li>Av. de Mayo 6</li>
-                        <li>Tel. 4654-0143</li>
-                    </ul>
+                    
+                
+                <?php   foreach($stores as $store) {
+                    $store = $store['Store'];
+
+                        echo '<h4>'. $store['name'] .'</h4>';
+                        echo '<h3></h3>';  
+                            echo '<ul>';      
+                                echo '<li> '. $store['address'] .'</li>';
+                                echo '<li> Tel. '. $store['phone'].'</li>';
+                            echo '</ul>';
+                } ?> 
+                
+
                 </div>
-         
-        </section>
+         </section>
        
        
 
@@ -81,23 +87,36 @@
 </div>-->
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&sensor=true&language=es"></script>
-<script type="text/javascript"> 
-  var geocoder;
-  var map;
+<script type="text/javascript">
+function initialize(address) {
+      // I create a new google maps object to handle the request and we pass the address to it
+  var geoCoder = new google.maps.Geocoder(address)
+      // a new object for the request I called "request" , you can put there other parameters to specify a better search (check google api doc for details) , 
+      // on this example im going to add just the address  
+  var request = {address:address};
+       
+      // I make the request 
+  geoCoder.geocode(request, function(result, status){
+              // as a result i get two parameters , result and status.
+              // results is an  array tha contenis objects with the results founds for the search made it.
+              // to simplify the example i take only the first result "result[0]" but you can use more that one if you want
  
-  
-  function codeAddress() {
-    var termino = document.getElementById("termino").value + ', Buenos Aires';
-    geocoder.geocode( { 'termino': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map, 
-            position: results[0].geometry.location
-        });
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
-</script> 
+              // So , using the first result I need to create a  latlng object to be pass later to the map
+              var latlng = new google.maps.LatLng(result[0].geometry.location.lat(), result[0].geometry.location.lng());  
+ 
+      // some initial values to the map   
+      var myOptions = {
+        zoom: 15,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+ 
+           // the map is created with all the information 
+             var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+ 
+           // an extra step is need it to add the mark pointing to the place selected.
+          var marker = new google.maps.Marker({position:latlng,map:map,title:'title'});
+ 
+  })
+}
+</script>
