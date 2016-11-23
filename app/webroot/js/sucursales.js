@@ -18,6 +18,7 @@ $(document).ready(function() {
 		$.get( $('.sucursales').data('url') )
 		
 		.done(function(response) {
+
 			if ($.isArray(response)) {
 				$.each(response, function(i, sucursal) {
 					var sucursal = sucursal.Store,
@@ -41,10 +42,12 @@ $(document).ready(function() {
 						};
 
 					google.maps.event.addListener(marker, 'click', function() {
+						$('#location').html(' <div class="col-md-12" style="">'+'<h3>'+ sucursal.name +'</h3>'+
+							'<ul><li>' + sucursal.address + '</li><li> ' + sucursal.phone + '</li></ul></div>');
 						toggle();
 					});
 
-					markers[sucursal.id] = { 
+              		markers[sucursal.id] = { 
 						toggle: toggle
 					};
 				});

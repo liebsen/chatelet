@@ -21,27 +21,15 @@
 
         <section id="location">
          
-         
+                
                 <div class="col-md-12">
-                    <h3>Zona Oeste</h3>
-                    <h4>Ramos Mejía</h4>
+                    <h3>Ramos Mejía</h3>
                     <ul>
                         <li>Av. de Mayo 6</li>
                         <li>Tel. 4654-0143</li>
                     </ul>
                 </div>
-               <!--   <ul id="sucursales" class="list-unstyled" data-url="<?php echo $this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>">
-              <?php   foreach($stores as $store) {
-                    $store = $store['Store'];
-                        echo '<h4>'. $store['name'] .'</h4>';
-                            echo '<ul>';      
-                                echo '<li> '. $store['address'] .'</li>';
-                                echo '<li> Tel. '. $store['phone'].'</li>';
-                            echo '</ul>';
-                        echo '</div>';
-                } ?> 
-                </ul>-->
-           
+         
         </section>
        
        
