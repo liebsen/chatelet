@@ -120,10 +120,10 @@
             <div class="wrapper">
                 <div class="row">  
                     <div class="col-md-3 col-sm-3">
-                        <a href="<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
+                        <a href="<?php echo router::url(array('controller' => 'shop', 'action' => 'index',
                                          intval($category_id))) ?>" class="btBig">
-                            <?php echo $name_categories; ?><br>
-                            <span>Ver todos</span>
+                           <span>volver <br>
+                           al SHOP</span>
                         </a>
                     </div>
 

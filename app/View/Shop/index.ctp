@@ -52,7 +52,7 @@
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[0]['Category']['img_url']?> class="img-responsive">
                                     <span class="hover">
                                        <?php echo $categories[0]['Category']['name']?><br>
-                                        <small>Visitar categoría</small>
+                                        
                                     </span>
                                 </a>
 
@@ -61,7 +61,7 @@
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[1]['Category']['img_url']?> class="img-responsive">
                                     <span class="hover">
                                          <?php echo $categories[1]['Category']['name']?><br><br>
-                                        <small>Visitar categoría</small>
+                                        
                                     </span>
                                 </a>
 
@@ -70,7 +70,7 @@
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[2]['Category']['img_url']?> class="img-responsive">
                                     <span class="hover">
                                          <?php echo $categories[2]['Category']['name']?><br><br>
-                                        <small>Visitar categoría</small>
+                                       
                                     </span>
                                 </a>
                             </div>
@@ -80,7 +80,7 @@
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[3]['Category']['img_url']?> class="img-responsive">
                                     <span class="hover">
                                          <?php echo $categories[3]['Category']['name']?><br><br>
-                                        <small>Visitar categoría</small>
+                                        
                                     </span>
                                 </a>
 
@@ -89,7 +89,7 @@
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[4]['Category']['img_url']?> class="img-responsive">
                                     <span class="hover">
                                          <?php echo $categories[4]['Category']['name']?><br><br>
-                                        <small>Visitar categoría</small>
+                                        
                                     </span>
                                 </a>
                             </div>
@@ -104,7 +104,7 @@
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[5]['Category']['img_url']?> class="img-responsive">
                                     <span class="hover">
                                          <?php echo $categories[5]['Category']['name']?><br><br>
-                                        <small>Visitar categoría</small>
+                                        
                                     </span>
                                 </a>
 
@@ -113,7 +113,7 @@
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[6]['Category']['img_url']?> class="img-responsive">
                                     <span class="hover">
                                          <?php echo $categories[6]['Category']['name']?><br><br>
-                                        <small>Visitar categoría</small>
+                                        
                                     </span>
                                 </a>
                             </div>
@@ -123,7 +123,7 @@
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[7]['Category']['img_url']?> class="img-responsive">
                                     <span class="hover">
                                          <?php echo $categories[7]['Category']['name']?><br><br>
-                                        <small>Visitar categoría</small>
+                                        
                                     </span>
                                 </a>
                             </div><br clear="all">
@@ -134,7 +134,7 @@
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[8]['Category']['img_url']?> class="img-responsive">
                                     <span class="hover">
                                          <?php echo $categories[8]['Category']['name']?><br><br>
-                                        <small>Visitar categoría</small>
+                                        
                                     </span>
                                 </a>
                             </div>
@@ -144,7 +144,7 @@
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[9]['Category']['img_url']?> class="img-responsive">
                                     <span class="hover">
                                          <?php echo $categories[9]['Category']['name']?><br><br>
-                                        <small>Visitar categoría</small>
+                                        
                                     </span>
                                 </a>
                             </div>
