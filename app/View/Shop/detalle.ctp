@@ -21,18 +21,20 @@
                            <?php foreach ($images as $key => $value) : ?>
                             <?php if (!empty($value)): ?>
                              <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off" 
-                             onclick="currentDiv(<?php $key = $key + 1; echo $key ?>)" style="width:40%;" src="<?php echo $value ?>" ></a></li>
+                             onclick="currentDiv(<?php $key = $key + 1; echo $key ?>)"   style="width:40%;" src="<?php echo $value ?>" ></a></li>
                             <?php endif ?> 
                           <?php endforeach ?>
                         </ul>
                     </div>
-                    <div class="col-md-5 col-sm-7">
+                    <div class="col-md-5 col-sm-7"  >
+                     
                         <?php foreach ($images as $k => $v) : ?> 
                             <?php if (!empty($v)): ?>
                              
-                             <a href="#" ><img  class="mySlides"  style="width:80%;" src="<?php echo $v ?>" data-zoom-image="<?php echo $v ?>"></a>
+                             <a href="#" ><img  class="mySlides"  id="mySlides"  style="width:80%;" src="<?php echo $v ?>" data-zoom-image="<?php echo $v ?>"/></a>
                             <?php endif ?> 
                           <?php endforeach ?>
+
                     </div>
 
                     <div class="col-md-4">
@@ -179,6 +181,7 @@ showDivs(slideIndex);
 
 function plusDivs(n) {
   showDivs(slideIndex += n);
+
 }
 
 function currentDiv(n) {
@@ -206,6 +209,5 @@ function showDivs(n) {
 
 
 <script type="text/javascript">
-$(".zoom_10").elevateZoom();
-
+$("#mySlides").elevateZoom();
 </script>

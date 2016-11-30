@@ -11,7 +11,7 @@
 	echo $this->Session->flash();
 ?>
 
-        <div id="headabrigos">
+        <div id="headabrigos"  style="background-image: url(<?php echo Configure::read('imageUrlBase').$image_prodshop ?>); no-repeat center center;">
             <h1> <?php echo $name_categories; ?> </h1>
         </div>
 

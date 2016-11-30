@@ -161,8 +161,8 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #carousel2 .carousel-control.left { left: 0%; }
 #carousel2 .carousel-control.right { right: 0%; }
 
-#headshop, #headabrigos { background: url(../images/headshop.jpg) no-repeat center center; color: #FFF; font-size: 40px; font-weight: 600; height: 220px; padding-top: 90px; text-align: center; }
-#headabrigos { background: url(../images/headabrigo.jpg) no-repeat center center; }
+#headshop, #headabrigos {/* background: url(../images/headshop.jpg) no-repeat center center;*/ color: #FFF; font-size: 40px; font-weight: 600; height: 220px; padding-top: 90px; text-align: center; }
+/*#headabrigos { background: url(../images/headabrigo.jpg) no-repeat center center; }*/
 #filters { background: #eaeaea; margin-bottom: 100px; padding: 20px 0; }
 #filters h3 { font-size: 16px; font-weight: 600; margin-bottom: 20px; }
 #filters .colors a { border-radius: 50%; display: inline-block; height: 20px; margin-right: 20px; width: 20px; }
