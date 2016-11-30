@@ -34,12 +34,12 @@ $(function(){
 	$(document).on('click','.delete_image',function(event){
 		event.preventDefault();
 		var me 		= $(this);
-		var input 	= $(me.data('input'));
-		var images 	= input.val().split(';');
-		var file 	= me.data('file');
+		var input 	= $(me).data('input');
+		var images 	= $(input).val().split(';');
+		var file 	= $(me).data('file');
 		images 		= $.grep(images,function(n){ return(n) }); // Clean Empty Values
 		images.remove(file);
-		input.val( images.join(';') );
+		$(input).val( images.join(';') );
 		$(this).closest('span').remove();
 	});
 
@@ -48,8 +48,8 @@ $(function(){
 		var fd 		= new FormData();
 		var me 		= $(this);
 		var url 	= me.data('url');
-		var counter = $(me.data('count'));
-		var input 	= $(me.data('input'));
+		var counter = $(me).data('count');
+		var input 	= $(me).data('input');
 		
 		var valid_types = {
 			'image/jpeg': true,
@@ -69,7 +69,7 @@ $(function(){
 				    //Upload progress
 				    xhr.upload.addEventListener("progress", function(evt){
 				    	if (evt.lengthComputable) {
-				    		counter.html( parseInt(evt.loaded / evt.total * 100) );
+				    		$(counter).html( parseInt(evt.loaded / evt.total * 100) );
 					    }
 					}, false);
 				    return xhr;
@@ -81,10 +81,10 @@ $(function(){
 					return false;
 				}
 
-				var images 	= input.val();
+				var images 	= $(input).val();
 				images 		= images.split(';');
 				images.push(data);
-				input.val(data);
+				$(input).val(data);
 				drawImages(images);
 		  	});
 			me.val('');
@@ -93,8 +93,10 @@ $(function(){
 			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
-
-	drawImages( $("[name='data[image_bannershop]']").val()  );
+	if($("[name='data[image_bannershop]']").val() !== undefined){
+		drawImages( $("[name='data[image_bannershop]']").val()  );
+	}
+	
 
 
 
@@ -136,8 +138,8 @@ $(function(){
 		var fd 		= new FormData();
 		var me 		= $(this);
 		var url 	= me.data('url');
-		var counter_two = $(me.data('count'));
-		var input 	= $(me.data('input'));
+		var counter_two = $(me).data('count');
+		var input 	= $(me).data('input');
 		
 		var valid_types = {
 			'image/jpeg': true,
@@ -157,7 +159,7 @@ $(function(){
 				    //Upload progress
 				    xhr.upload.addEventListener("progress", function(evt){
 				    	if (evt.lengthComputable) {
-				    		counter_two.html( parseInt(evt.loaded / evt.total * 100) );
+				    		$(counter_two).html( parseInt(evt.loaded / evt.total * 100) );
 					    }
 					}, false);
 				    return xhr;
@@ -169,10 +171,10 @@ $(function(){
 					return false;
 				}
 
-				var images_two 	= input.val();
+				var images_two 	= $(input).val();
 				images_two 		= images_two.split(';');
 				images_two.push(data);
-				input.val(data);
+				$(input).val(data);
 				drawImagesTwo(images_two);
 		  	});
 			me.val('');
@@ -181,8 +183,10 @@ $(function(){
 			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
+  if($("[name='data[image_menushop]']").val() !== undefined){
+  	drawImagesTwo(  $("[name='data[image_menushop]']").val()  );
+  }
   
-  drawImagesTwo(  $("[name='data[image_menushop]']").val()  );
 
 
 
@@ -258,7 +262,7 @@ $(function(){
 					return false;
 				}
 
-				var images_one 	= input.val();
+				var images_one 	= $(input).val();
 				images_one 		= images_one.split(';');
 				images_one.push(data);
 				input.val(data);
@@ -271,7 +275,10 @@ $(function(){
 		}
 	});
   
+  if($("[name='data[image_prodshop]']").val()!== undefined){
+  	drawImagesOne( $("[name='data[image_prodshop]']").val() );
+  }
 
-drawImagesOne( $("[name='data[image_prodshop]']").val() );
+
 
 });
