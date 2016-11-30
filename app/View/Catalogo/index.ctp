@@ -107,7 +107,8 @@
                            
                                     <div class="btn-group inline-block div_color_products" data-toggle="buttons">
                                         <?php  foreach ($colors as $color) {
-                                                    echo '<label class="btn" style ="color:gray;    border-radius: 100px;">';
+                                                    echo '<label class="btn active" style ="color:gray;     border-radius: 100px;">';
+                                                    
                                                     echo "<small>".$color['alias']."</small>";
                                                     echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
                                                     echo '<div class="color-block" style="    border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
@@ -117,11 +118,7 @@
                                     </div>
                                   <p></p>
                               <a href="#" id="agregar-carro"  class="add">Agregar al carrito</a>
-                              <div class="social">
-                                <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" class="fb"></a>
-                                <a href="https://twitter.com/chateletmoda" class="tt"></a>
-                                <a href="https://www.instagram.com/chateletmoda/" class="pr"></a>
-                              </div>
+                          
                           </div>
                         </div>
                        </li>

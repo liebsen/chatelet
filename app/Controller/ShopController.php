@@ -20,9 +20,12 @@ class ShopController extends AppController {
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('page_video',$page_video);
+          
+        $setting 	= $this->Setting->findById('image_prodshop');
+		$image_prodshop = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$this->set('image_prodshop',$image_prodshop);
+	
 
-		
-		$this->loadModel('Setting');
 		$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
 

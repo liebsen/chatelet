@@ -157,7 +157,7 @@ class AdminController extends AppController {
 			$details 		= explode('-|-', $sale['collection']['reason']);
 			$sale_number 	= (!empty($details[0]))?$details[0]:'PEDIDO : "00"';
 
-			//Info Merge
+			//Info Mergeapp/webroot/css/custom.css
 			$sale['collection']['deliver_cost'] = 0;
 			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
 			if(!empty($local_desc)){
@@ -180,26 +180,6 @@ class AdminController extends AppController {
 		$this->set('sales',$sales);
 	}
 
-	public function promos(){
-		if($this->request->is('post')){
-			$data = $this->request->data;
-			if(!empty($data['Promo']['image']['name'])){
-				$file = $this->save_file( $data['Promo']['image'] );
-				$this->Promo->save(array(
-					'id' => null,
-					'image' => $file,
-				));
-			}
-		}
-		$h1 = array(
-			'name' => 'Promociones',
-			'icon' => 'gi gi-display'
-			);
-		$this->set('h1', $h1);
-
-		$promos = $this->Promo->find('all');
-		$this->set('promos',$promos);
-	}
 
 	public function remove_promo($id = null){
 		$this->Promo->delete($id);
@@ -449,6 +429,28 @@ class AdminController extends AppController {
 	    $this->render('categorias');
 	}
 
+public function promos(){
+		if($this->request->is('post')){
+			$data = $this->request->data;
+			if(!empty($data['Promo']['image']['name'])){
+				$file = $this->save_file( $data['Promo']['image'] );
+				$this->Promo->save(array(
+					'id' => null,
+					'image' => $file,
+				));
+			}
+		}
+		$h1 = array(
+			'name' => 'Promociones',
+			'icon' => 'gi gi-display'
+			);
+		$this->set('h1', $h1);
+
+		$promos = $this->Promo->find('all');
+		$this->set('promos',$promos);
+	}
+
+
 	public function products_settings(){
 		$this->loadModel('Setting');
 		if($this->request->is('post')){
@@ -462,6 +464,27 @@ class AdminController extends AppController {
 				'id' => 'list_code',
 				'value' => $data['list_code']
 			));
+            
+                
+            $image_bannershop = $this->Setting->save(array(
+				'id' => 'image_bannershop',
+				'value' =>$data['image_bannershop']
+			));
+	
+	   
+			$this->Setting->save(array(
+				'id' => 'image_menushop',
+				'value' => $data['image_menushop']
+			));
+		
+  
+       
+            $this->Setting->save(array(
+				'id' => 'image_prodshop',
+				'value' => $data['image_prodshop']
+			));  
+       
+
 			$this->Setting->save(array(
 				'id' => 'show_shop',
 				'value' => (isset($data['show_shop']))?1:0
@@ -501,10 +524,16 @@ class AdminController extends AppController {
 		$a = $this->Setting->findById('stock_min');
 		$b = $this->Setting->findById('list_code');
 		$c = $this->Setting->findById('show_shop');
+		$d = $this->Setting->findById('image_bannershop');
+		$e = $this->Setting->findById('image_menushop');
+		$f = $this->Setting->findById('image_prodshop');
 		
 		$this->set('stock_min',@$a['Setting']['value']);
 		$this->set('list_code',@$b['Setting']['value']);
 		$this->set('show_shop',@$c['Setting']['value']);
+        $this->set('image_bannershop',@$d['Setting']['value']);
+        $this->set('image_menushop',@$e['Setting']['value']);
+        $this->set('image_prodshop',@$f['Setting']['value']);
 
 		$navs = array(
 			'Lista' => array(

@@ -2,10 +2,10 @@
 	echo $this->Html->css('shop', array('inline' => false));
 	echo $this->Session->flash();
 ?>
-        <div id="headshop">
+        <div id="headshop" style="background-image: url(<?php echo Configure::read('imageUrlBase').$image_prodshop ?>) no-repeat center center;">
             <h1>Shop</h1>
         </div>
-
+          
         <section id="filters">
             <div class="wrapper">
                <!-- <div class="row">

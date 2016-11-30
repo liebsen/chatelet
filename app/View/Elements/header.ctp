@@ -202,8 +202,8 @@
           </a>
           <div class="wrapper">
               <div class="row">
-            
-                 <?php echo $this->Html->image('shop_desplegable_1.jpg', array( 'class' => 'pull-left' )); ?>
+               
+                 <?php echo $this->Html->image(@$image_menushop, array( 'class' => 'pull-left' )); ?>
                   <div class="col-sm-6">
                       
                       <h3>Shop</h3>
