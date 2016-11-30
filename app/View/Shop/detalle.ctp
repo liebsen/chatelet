@@ -1,6 +1,8 @@
 <?php
     echo $this->Html->css('w3', array('inline' => false));
     echo $this->Html->css('product', array('inline' => false));
+    echo $this->Html->script('jquery-1.8.3.min', array('inline' => false)); 
+    echo $this->Html->script('jquery.elevatezoom', array('inline' => false)); 
 
     $images  = array();
     $images_aux = explode(';', $product['gallery']);
@@ -24,10 +26,12 @@
                           <?php endforeach ?>
                         </ul>
                     </div>
-                    <div class="col-md-5 col-sm-7">
+                    <div class="col-md-5 col-sm-7" >
                         <?php foreach ($images as $k => $v) : ?> 
                             <?php if (!empty($v)): ?>
-                             <a href="#"><img  class="mySlides" style="width:80%;" src="<?php echo $v ?>" ></a>
+                             <a href="#">
+                             <img class="mySlides" id="zoom_02" style="width:80%;" data-zoom-image="<?php echo $v ?>" src="<?php echo $v ?>" >
+                             </a>
                             <?php endif ?> 
                           <?php endforeach ?>
                     </div>
@@ -195,6 +199,10 @@ function showDivs(n) {
      dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
   }
   x[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " w3-opacity-off";
+  dots[slideIndex-1].className += "w3-opacity-off";
 }
+</script>
+
+<script>
+    $("#zoom_02").elevateZoom({tint:true, tintColour:'#FFF', tintOpacity:0.5});
 </script>
