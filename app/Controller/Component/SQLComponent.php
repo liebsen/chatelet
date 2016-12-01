@@ -269,4 +269,20 @@ class SQLComponent extends Component {
 		unset($stmt);
 		return $results;
 	}
+
+	/**
+	 * @param string $article ex. V7113
+	 * @return array $name
+	 */
+	public function product_name_by_article($article)
+	{
+		$stmt = $this->conn->prepare("EXEC sp_nombreArticulo '$article';");
+		$response = $stmt->execute();
+		if (!$response) {
+		    CakeLog::write('error', 'product_name_by_article ' . var_export($stmt->errorInfo(), true));
+		}
+		$name = $stmt->fetch();
+		//CakeLog::write('error', 'product_name_by_article ' . var_export($row, true));
+		return $name;
+	}
 }

@@ -52,7 +52,8 @@ class AdminController extends AppController {
 	public function test(){
 		$this->autoRender = false;
 
-		$details = $this->SQL->product_details('i5005',173);
+		//$details = $this->SQL->product_details('i5005',173);
+		$details = $this->SQL->product_name_by_article('V7113');
 		pr($details);
 	}
 
