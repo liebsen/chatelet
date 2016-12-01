@@ -32,10 +32,11 @@
                           if (empty($value))
                          continue; 
                           $alt_product = $value['LookBook'];
+                          $img = str_replace(".jpg", "", $alt_product['img_url']);
                           $url = $this->Html->url(array(
                                   'controller' => 'catalogo',
                                   'action' => 'index',
-                                  $alt_product['img_url']
+                                  $img
                               )
                           ); ?>
                           <div class="item <?php echo (!$key) ? 'active' : null ; ?>" >
@@ -44,10 +45,12 @@
                             </a>    
                            
                           </div>
+
+
                   <?php } ?> 
                   
                   </div>
-
+                    
                   <!-- Controls -->
                   <a class="left carousel-control" href="#carousel2" role="button" data-slide="prev">
                     <span class="arrow arrow-left" aria-hidden="true"></span>
@@ -73,23 +76,21 @@
                             <span class="price"><?php echo $v['Product']['desc'].' '.'$'.$v['Product']['price']; ?></span>
                             <h2><?php echo $v['Product']['name']; ?></h2>
                              <?php          
-
-                                            $colors = array();
-                                            $sizes = array(); 
-                                            foreach ($properties as $property) { 
-                                              
-                                                switch ($property['ProductProperty']['type']) { 
-                                                    case 'color':
-                                                        array_push($colors, $property['ProductProperty']);
-                                                        break;
-                                                    case 'size':
-                                                        array_push($sizes, $property['ProductProperty']);
-                                                        break;
-                                                }
-                                            
-                                            }
-                                     
-                               ?>
+                               $colors = array();
+                                $sizes = array(); 
+                                foreach ($properties as $property) { 
+                                  
+                                    switch ($property['ProductProperty']['type']) { 
+                                        case 'color':
+                                            array_push($colors, $property['ProductProperty']);
+                                            break;
+                                        case 'size':
+                                            array_push($sizes, $property['ProductProperty']);
+                                            break;
+                                    }
+                                
+                                }
+                                ?>
                      
                                   <p>Seleccionar talle</p>
                                     <select id="size" name="size">
