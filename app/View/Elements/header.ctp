@@ -202,8 +202,7 @@
           </a>
           <div class="wrapper">
               <div class="row">
-               
-                 <?php echo $this->Html->image(@$image_menushop, array( 'class' => 'pull-left' )); ?>
+                  <img  class="pull-left" src="<?php echo Configure::read('imageUrlBase').$image_menushop?>" >
                   <div class="col-sm-6">
                       
                       <h3>Shop</h3>

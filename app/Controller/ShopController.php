@@ -11,6 +11,14 @@ class ShopController extends AppController {
 		$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
 
+        $setting 	= $this->Setting->findById('image_prodshop');
+		$image_prodshop = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$this->set('image_prodshop',$image_prodshop);
+         
+        $setting 	= $this->Setting->findById('image_bannershop');
+		$image_bannershop = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$this->set('image_bannershop',$image_bannershop); 
+
 	}
 
 
@@ -21,10 +29,8 @@ class ShopController extends AppController {
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('page_video',$page_video);
           
-        $setting 	= $this->Setting->findById('image_prodshop');
-		$image_prodshop = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
-		$this->set('image_prodshop',$image_prodshop);
-	
+        	   
+
 
 		$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
@@ -34,7 +40,7 @@ class ShopController extends AppController {
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
-
+          
 
 	}
 
