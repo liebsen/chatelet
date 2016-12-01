@@ -70,7 +70,7 @@
                             <img  class="img-responsive"   src="<?php echo Configure::read('imageUrlBase').$v['Product']['img_url'] ?>" >
                           </div>
                           <div class="col-sm-9">
-                            <span class="price"><?php echo $v['Product']['desc'].' '.$v['Product']['price']; ?></span>
+                            <span class="price"><?php echo $v['Product']['desc'].' '.'$'.$v['Product']['price']; ?></span>
                             <h2><?php echo $v['Product']['name']; ?></h2>
                              <?php          
 
