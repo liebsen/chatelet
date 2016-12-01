@@ -50,7 +50,7 @@
                                 ));
                             ?>
                                 <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
-                                <h1><?php echo $product['name']; ?></h1>
+                                <h1><?php echo $details; ?></h1>
                                  <p><?php echo $name_categories; ?></p>
 
                                 <?php echo "
