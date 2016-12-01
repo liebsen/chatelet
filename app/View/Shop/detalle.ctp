@@ -106,13 +106,7 @@
                                     </div>
                        
                             <a href="#" id="agregar-carro" class="add" disabled>Agregar a mi carro</a>
-                                
-
-                            <div class="social">
-                                <a href="https://twitter.com/chateletmoda" class="fb"></a>
-                                <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" class="tt"></a>
-                                <a href="https://www.instagram.com/chateletmoda/" class="pr"></a>
-                            </div>
+                           
                            </div> 
                         </div>
                     </div>
