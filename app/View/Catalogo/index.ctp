@@ -25,6 +25,15 @@
        <section id="lookbook">
            <div class="col-md-5">
               <div id="carousel2">
+                   <!-- Controls -->
+                  <a class="left carousel-control" href="#carousel2" role="button" data-slide="prev">
+                    <span class="arrow arrow-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="right carousel-control" href="#carousel2" role="button" data-slide="next">
+                    <span class="arrow arrow-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
                   <!-- Wrapper for slides -->
                   <div class="carousel-inner" role="listbox">
                     <?php 
@@ -45,22 +54,9 @@
                             </a>    
                            
                           </div>
-
-
                   <?php } ?> 
-                  
                   </div>
-                    
-                  <!-- Controls -->
-                  <a class="left carousel-control" href="#carousel2" role="button" data-slide="prev">
-                    <span class="arrow arrow-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="right carousel-control" href="#carousel2" role="button" data-slide="next">
-                    <span class="arrow arrow-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-              </div>
+             </div>
            </div>
            <div class="col-md-7">
             <h3>Elegí tu look para vivir tu momento.</h3>
