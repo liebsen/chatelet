@@ -3,6 +3,7 @@
   // echo $this->Html->css('w3', array('inline' => false));
 	echo $this->Html->css('catalogo', array('inline' => false));
 	echo $this->Html->script('catalogo', array('inline' => false));
+  echo $this->Html->script('catalogo2', array('inline' => false));
 	/* Slider */
 	echo $this->Html->script('box-slider/box-slider-all.jquery.min', array('inline' => false));
 	/* Lightbox */
@@ -37,9 +38,10 @@
                   <!-- Wrapper for slides -->
                   <div class="carousel-inner" role="listbox">
                     <?php 
-                      foreach ($lookbook as $key => $value) { 
+                    
+                      foreach ($lookbook as $key => $value):
                           if (empty($value))
-                         continue; 
+                            continue; 
                           $alt_product = $value['LookBook'];
                           $img = str_replace(".jpg", "", $alt_product['img_url']);
                           $url = $this->Html->url(array(
@@ -48,13 +50,15 @@
                                   $img
                               )
                           ); ?>
-                          <div class="item <?php echo (!$key) ? 'active' : null ; ?>" >
+                        
+                              <div class="item <?php if(empty($this->params['pass'][0]) && !$key){echo 'active';} elseif(!empty($this->params['pass'][0]) && $img==$this->params['pass'][0]){ echo 'active';}?>" data-img="<?=$img?>">
                             <a href="<?php echo $url  ?>">
                               <img  src="<?php echo Configure::read('imageUrlBase').$value['LookBook']['img_url'] ?>" >
                             </a>    
                            
                           </div>
-                  <?php } ?> 
+                          
+                  <?php endforeach; ?> 
                   </div>
              </div>
            </div>
