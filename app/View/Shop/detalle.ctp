@@ -1,8 +1,16 @@
 <?php
-    echo $this->Html->css('w3', array('inline' => false));
+    //echo $this->Html->css('w3', array('inline' => false));
+    echo $this->Html->css('jquery.bxslider', array('inline' => false));
+    echo $this->Html->script('jquery.bxslider', array('inline' => false));
     echo $this->Html->css('product', array('inline' => false));
-    echo $this->Html->script('jquery-1.8.3.min', array('inline' => false)); 
+    echo $this->Html->script('product', array('inline' => false));
+
+    /*echo $this->Html->script('jquery-1.8.3.min', array('inline' => false)); 
     echo $this->Html->script('jquery.elevatezoom', array('inline' => false)); 
+    
+    /* Lightbox */
+    echo $this->Html->css('lightbox', array('inline' => false));
+    echo $this->Html->script('lightbox.min', array('inline' => false));
 
     $images  = array();
     $images_aux = explode(';', $product['gallery']);
@@ -114,7 +122,7 @@
                                         ?>
                                     </div>
                        
-                            <a href="#" id="agregar-carro" class="add" disabled>Agregar a mi carro</a>
+                               <a href="#" id="agregar-carro" class="add" disabled>Agregar a mi carro</a>
                            
                            </div> 
                         </div>

@@ -1,6 +1,6 @@
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <?php
-  // echo $this->Html->css('w3', array('inline' => false));
+  echo $this->Html->css('w3', array('inline' => false));
 	echo $this->Html->css('catalogo', array('inline' => false));
 	echo $this->Html->script('catalogo', array('inline' => false));
   echo $this->Html->script('catalogo2', array('inline' => false));
