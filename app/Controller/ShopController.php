@@ -98,7 +98,8 @@ class ShopController extends AppController {
 		$name_categories = $category['Category']['name'];
         
 		$properties = $this->ProductProperty->findAllByProductId($product_id);
-	
+	   
+
 		$details = $this->SQL->product_name_by_article($product['Product']['article']);
 		if(!empty($details)){
         foreach ($details as $key => $value) {
@@ -114,7 +115,7 @@ class ShopController extends AppController {
 				)
 			)
 		);
-      
+		
         $this->set('details',$details);
 		$this->set('category_id',$category_id);
         $this->set('name_categories',$name_categories);

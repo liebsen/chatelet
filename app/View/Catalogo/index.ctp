@@ -73,10 +73,11 @@
                             <img  class="img-responsive"   src="<?php echo Configure::read('imageUrlBase').$v['Product']['img_url'] ?>" >
                           </div>
                           <div class="col-sm-9">
-                            <span class="price"><?php echo $v['Product']['desc'].' '.'$'.$v['Product']['price']; ?></span>
+                           
                             <h2><?php echo $v['Product']['name']; ?></h2>
-                              Art. <span><?php echo $v['Product']['article']; ?></span>
-
+ 
+                              <p>Art. <span><?php echo $v['Product']['article']; ?></span></p>
+                               <p><span ><?php echo $v['Product']['desc'].' '.'$'.$v['Product']['price']; ?></span>
                              <?php          
                                $colors = array();
                                 $sizes = array();    
@@ -93,8 +94,8 @@
                                   }
                                 }
                                 ?>
-                     
-                                  <p>Seleccionar talle</p>
+                      
+                                  <p>Talle
                                     <select id="size" name="size">
                                         <option value="">Seleccionar</option>
                                         <?php 
@@ -106,7 +107,7 @@
                                
 
                                   
-                                    <p>cambiar color</p>
+                                    <p>Color
                            
                                     <div class="btn-group inline-block div_color_products" data-toggle="buttons">
                                         <?php  foreach ($colors as $color) {

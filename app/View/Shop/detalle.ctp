@@ -21,7 +21,7 @@
                            <?php foreach ($images as $key => $value) : ?>
                             <?php if (!empty($value)): ?>
                              <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off" 
-                             onclick="currentDiv(<?php $key = $key + 1; echo $key ?>)"   style="width:40%;" src="<?php echo $value ?>" ></a></li>
+                             onclick="currentDiv(<?php $key = $key + 1; echo $key ?>)"  id="img_01" style="width:40%;" src="<?php echo $value ?>" ></a></li>
                             <?php endif ?> 
                           <?php endforeach ?>
                         </ul>
@@ -59,8 +59,9 @@
                                     }
                                 ?>
                                 </h1>
-                                 <p><?php echo $name_categories; ?></p>
 
+                                 <p><?php echo $name_categories; ?></p>
+                                 <p> Art. <span><?php echo $product['article']; ?></span></p>
                                 <?php echo "
                                 
                                 <span style='color:gray;'>". $product['desc']."</span>
@@ -70,25 +71,25 @@
                                         )). "</span>"; ?>
                                 
                             <div class="caract">
-                            <h3>Características</h3>
+                            
                             <p><?php echo $product['name']; ?></p>
                              <?php
-                                            $colors = array();
-                                            $sizes = array();
-                                            foreach ($properties as $property) {
-                                                switch ($property['ProductProperty']['type']) {
-                                                    case 'color':
-                                                        array_push($colors, $property['ProductProperty']);
-                                                        break;
-                                                    case 'size':
-                                                        array_push($sizes, $property['ProductProperty']);
-                                                        break;
-                                                }
-                                            }
+                                $colors = array();
+                                $sizes = array();
+                                foreach ($properties as $property) {
+                                    switch ($property['ProductProperty']['type']) {
+                                        case 'color':
+                                            array_push($colors, $property['ProductProperty']);
+                                            break;
+                                        case 'size':
+                                            array_push($sizes, $property['ProductProperty']);
+                                            break;
+                                    }
+                                }
 
-                                        ?>
+                            ?>
 
-                                  <h3>Seleccionar talle</h3>
+                                  <h2>Talle
                                     <select id="size" name="size">
                                         <option value="">Seleccionar</option>
                                         <?php
@@ -99,8 +100,8 @@
                                     </select>
                                     <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
                                     
-                                  
-                                    <h4>cambiar color</h4>
+                                    <h4>
+                                    <h2>Color</h2>
                            
                                     <div class="btn-group inline-block div_color_products" data-toggle="buttons">
                                         <?php  foreach ($colors as $color) {
