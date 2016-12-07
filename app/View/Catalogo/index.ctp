@@ -63,7 +63,7 @@
              </div>
            </div>
            <div class="col-md-7">
-            <h3>Elegí tu look para vivir tu momento.</h3>
+            <h3>Elegí tu look para vivir tu momento.</h3> 
               <ul>
                  <?php foreach ($product as $k => $v) : ?> 
                     <?php if (!empty($v)): ?>
@@ -75,11 +75,13 @@
                           <div class="col-sm-9">
                             <span class="price"><?php echo $v['Product']['desc'].' '.'$'.$v['Product']['price']; ?></span>
                             <h2><?php echo $v['Product']['name']; ?></h2>
+                              Art. <span><?php echo $v['Product']['article']; ?></span>
+
                              <?php          
                                $colors = array();
-                                $sizes = array(); 
-                                foreach ($properties as $property) { 
-                                  
+                                $sizes = array();    
+                                foreach ($properties_all as $property) { 
+                                    if($property['ProductProperty']['product_id'] == $v['Product']['id']){
                                     switch ($property['ProductProperty']['type']) { 
                                         case 'color':
                                             array_push($colors, $property['ProductProperty']);
@@ -88,14 +90,14 @@
                                             array_push($sizes, $property['ProductProperty']);
                                             break;
                                     }
-                                
+                                  }
                                 }
                                 ?>
                      
                                   <p>Seleccionar talle</p>
                                     <select id="size" name="size">
                                         <option value="">Seleccionar</option>
-                                        <?php
+                                        <?php 
                                             foreach ($sizes as $size) {
                                                 echo '<option value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</option>';
                                             }
