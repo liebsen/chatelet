@@ -1,52 +1,10 @@
 <?php
-	echo $this->Html->script('elevatezoom-master/jquery.elevatezoom', array('inline' => false));
-	echo $this->Html->css('jquery.bxslider', array('inline' => false));
-	echo $this->Html->script('jquery.bxslider', array('inline' => false));
-	echo $this->Html->css('product', array('inline' => false));
-	echo $this->Html->script('product', array('inline' => false));
-	/* Lightbox */
-	echo $this->Html->css('lightbox', array('inline' => false));
-	echo $this->Html->script('lightbox.min', array('inline' => false));
-	
 	echo $this->Session->flash();
 ?>
 
         <div id="headabrigos"  style="background-image: url(<?php echo Configure::read('imageUrlBase').$image_prodshop ?>); no-repeat center center;">
             <h1> <?php echo $name_categories; ?> </h1>
         </div>
-
-        <!--  <section id="filters">
-            <div class="wrapper">
-              <div class="row">
-                    <div class="col-md-4 colors">
-                        <h3>Color</h3>
-                        <a href="#" class="color celeste"></a>
-                        <a href="#" class="color rosa"></a>
-                        <a href="#" class="color grisclaro"></a>	
-                        <a href="#" class="color marron"></a>
-                        <a href="#" class="color grisoscuro"></a>
-                        <a href="#" class="color verde"></a>
-                        <a href="#" class="color azul"></a>
-                    </div>
-                    <div class="col-md-4 size">
-                        <h3>Talle</h3>
-                        <a href="#">45</a>
-                        <a href="#">44</a>
-                        <a href="#">46</a>
-                        <a href="#">48</a>
-                        <a href="#">50</a>
-                        <a href="#">52</a>
-                        <a href="#">54</a>
-                        <a href="#">56</a>
-                    </div>
-                    <div class="col-md-4 prices">
-                        <h3>Precio</h3>
-                        <label><span class="active"><i></i></span><input type="radio" name="price" checked="checked"> $150 - $400</label>
-                        <label><span><i></i></span><input type="radio" name="price"> $400 - $700</label>
-                        <label><span><i></i></span><input type="radio" name="price"> + $700</label>
-                    </div>
-            </div>
-        </section>-->
 
         <section id="productOptions">
             <div class="wrapper">
