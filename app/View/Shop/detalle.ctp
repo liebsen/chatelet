@@ -31,7 +31,7 @@
                         <?php foreach ($images as $k => $v) : ?> 
                             <?php if (!empty($v)): ?>
                              
-                             <a href="#" ><img  class="mySlides"  id="mySlides"  style="width:80%;" src="<?php echo $v ?>" data-zoom-image="<?php echo $v ?>"/></a>
+                             <a href="#" ><img  class="mySlides"  id="mySlides"  src="<?php echo $v ?>" data-zoom-image="<?php echo $v ?>"/></a>
                             <?php endif ?> 
                           <?php endforeach ?>
 
@@ -267,5 +267,5 @@ function showDivs(n) {
 
 
 <script type="text/javascript">
-$("#mySlides").elevateZoom();
+$(".mySlides").elevateZoom();
 </script>
