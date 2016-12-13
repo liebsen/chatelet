@@ -273,3 +273,14 @@ function showDivs(n) {
     CloudZoom.quickStart();
 
 </script>
+<style>
+div.cloudzoom-black {
+    display: none !important;
+}
+div.cloudzoom-black:nth-child(3) {
+    display: none !important;
+}
+div.cloudzoom-black:nth-child(2) {
+    display: none !important;
+}
+</style>

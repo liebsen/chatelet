@@ -545,3 +545,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
 
 }
+
+div.cloudzoom-black:nth-child(3) {
+    display: none !important;
+}

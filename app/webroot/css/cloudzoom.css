@@ -39,6 +39,13 @@
 /* A blank image */
 .cloudzoom-blank {
  /*   background-image:url(blank.png);*/
+ display: none !important;
+}
+div.cloudzoom-black:nth-child(3) {
+    display: none !important;
+}
+div.cloudzoom-black {
+    display: none !important;
 }
 
 /* The animated ajax loading image */
