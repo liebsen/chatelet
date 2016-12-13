@@ -168,17 +168,7 @@
         </section>
 
 
-       <section id="suscribe">
-            <div class="wrapper">
-                <div class="col-md-6">Suscribite y conocé las <strong>novedades</strong></div>
-                <div class="col-md-6">
-                    <form>
-                        <input type="text" placeholder="Ingresá tu email">
-                        <input type="submit" value="ok">
-                    </form>
-                </div>
-            </div>
-        </section>
+      
 
          <div class="modal fade" tabindex="-1" id="myModal2" role="dialog">
             <div class="content">
