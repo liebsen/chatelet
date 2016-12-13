@@ -54,23 +54,27 @@ class CatalogoController extends AppController {
 
 
         if(!empty($img_url)){
+
+		   
+
         	$img_url = $img_url.'.jpg';
             $lookbook_id = $this->LookBook->find('all',array('conditions' => array('LookBook.img_url' => $img_url)));
         }else{
             $lookbook_id = $this->LookBook->find('all',array('limit'=> '3'));
         }
             $product = array();
-            $properties = array();
+           // $properties = array();
             foreach ($lookbook_id as $key => $value) {
             	$product_id = $value['LookBook']['product_id'];
             	$product[] = $this->Product->findById($product_id);
             	
             }
-     
-            $properties = $this->ProductProperty->findAllByProductId($product_id);
-		
+            $this->set('img_url', $img_url);
+             $properties_all = $this->ProductProperty->find('all');
+            $this->set('properties_all',$properties_all);
+          //  $properties = $this->ProductProperty->findAllByProductId($product_id);
 			$this->set('product', $product);
-		    $this->set('properties', $properties);
+		  //   $this->set('properties', $properties);
 			
              
 	    

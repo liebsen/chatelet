@@ -1,8 +1,9 @@
 <?php
-    echo $this->Html->css('w3', array('inline' => false));
-    echo $this->Html->css('product', array('inline' => false));
-    echo $this->Html->script('jquery-1.8.3.min', array('inline' => false)); 
-    echo $this->Html->script('jquery.elevatezoom', array('inline' => false)); 
+    echo $this->Html->script('jquery', array('inline' => false));
+    echo $this->Html->script('ga', array('inline' => false));
+    echo $this->Html->script('cloudzoom', array('inline' => false));
+    echo $this->Html->css('cloudzoom', array('inline' => false));
+    echo $this->Html->script('jquery.growl', array('inline' => false));
 
     $images  = array();
     $images_aux = explode(';', $product['gallery']);
@@ -13,6 +14,9 @@
     echo $this->Session->flash();
 ?>  
 
+
+       
+    
         <section id="detalle"> 
             <div class="wrapper">
                 <div class="row">
@@ -21,20 +25,20 @@
                            <?php foreach ($images as $key => $value) : ?>
                             <?php if (!empty($value)): ?>
                              <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off" 
-                             onclick="currentDiv(<?php $key = $key + 1; echo $key ?>)"   style="width:40%;" src="<?php echo $value ?>" ></a></li>
+                             onclick="currentDiv(<?php $key = $key + 1; echo $key ?>)"  id="img_01" style="width:40%;" src="<?php echo $value ?>" ></a></li>
                             <?php endif ?> 
                           <?php endforeach ?>
                         </ul>
                     </div>
                     <div class="col-md-5 col-sm-7"  >
-                     
+                     <div id="surround">
                         <?php foreach ($images as $k => $v) : ?> 
                             <?php if (!empty($v)): ?>
-                             
-                             <a href="#" ><img  class="mySlides"  id="mySlides"  src="<?php echo $v ?>" data-zoom-image="<?php echo $v ?>"/></a>
+                             <!--a href="#" ><img  class="mySlides"  id="mySlides"  src="<?php echo $v ?>" data-zoom-image="<?php echo $v ?>"/></a-->
+                             <img  class="mySlides cloudzoom"  id="mySlides zoom1"   style="width:70%;" src="<?php echo $v ?>" cloudzoom='zoomSizeMode:"image",autoInside: 600'/>
                             <?php endif ?> 
                           <?php endforeach ?>
-
+                     </div>
                     </div>
 
                     <div class="col-md-4">
@@ -59,8 +63,9 @@
                                     }
                                 ?>
                                 </h1>
-                                 <p><?php echo $name_categories; ?></p>
 
+                                 <p><?php echo $name_categories; ?></p>
+                                 <p> Art. <span><?php echo $product['article']; ?></span></p>
                                 <?php echo "
                                 
                                 <span style='color:gray;'>". $product['desc']."</span>
@@ -70,25 +75,25 @@
                                         )). "</span>"; ?>
                                 
                             <div class="caract">
-                            <h3>Características</h3>
+                            
                             <p><?php echo $product['name']; ?></p>
                              <?php
-                                            $colors = array();
-                                            $sizes = array();
-                                            foreach ($properties as $property) {
-                                                switch ($property['ProductProperty']['type']) {
-                                                    case 'color':
-                                                        array_push($colors, $property['ProductProperty']);
-                                                        break;
-                                                    case 'size':
-                                                        array_push($sizes, $property['ProductProperty']);
-                                                        break;
-                                                }
-                                            }
+                                $colors = array();
+                                $sizes = array();
+                                foreach ($properties as $property) {
+                                    switch ($property['ProductProperty']['type']) {
+                                        case 'color':
+                                            array_push($colors, $property['ProductProperty']);
+                                            break;
+                                        case 'size':
+                                            array_push($sizes, $property['ProductProperty']);
+                                            break;
+                                    }
+                                }
 
-                                        ?>
+                            ?>
 
-                                  <h3>Seleccionar talle</h3>
+                                  <h2>Talle
                                     <select id="size" name="size">
                                         <option value="">Seleccionar</option>
                                         <?php
@@ -99,8 +104,8 @@
                                     </select>
                                     <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
                                     
-                                  
-                                    <h4>cambiar color</h4>
+                                    <h4>
+                                    <h2>Color</h2>
                            
                                     <div class="btn-group inline-block div_color_products" data-toggle="buttons">
                                         <?php  foreach ($colors as $color) {
@@ -113,7 +118,7 @@
                                         ?>
                                     </div>
                        
-                            <a href="#" id="agregar-carro" class="add" disabled>Agregar a mi carro</a>
+                               <a href="#" id="agregar-carro" class="add" disabled>Agregar a mi carro</a>
                            
                            </div> 
                         </div>
@@ -263,9 +268,8 @@ function showDivs(n) {
   
 }
 </script>
-
-
-
 <script type="text/javascript">
-$(".mySlides").elevateZoom();
+//$(".mySlides").elevateZoom();
+    CloudZoom.quickStart();
+
 </script>

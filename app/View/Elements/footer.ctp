@@ -1,4 +1,4 @@
-
+<?php echo $this->Html->css('font-awesome', array('inline' => false)); ?>
     <footer>
             <div class="wrapper">
                 <div class="col-md-3 col-sm-6">

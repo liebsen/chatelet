@@ -1,0 +1,14 @@
+.both{
+	border: 1px solid #39B3D7;
+	padding-left: 5px;
+}
+.wrong{
+	border-color: #E10D74;
+}
+.ok{
+	border-color: #07BC31;
+}
+#cp{
+	border-radius: 5px;
+	height: 25px;
+}

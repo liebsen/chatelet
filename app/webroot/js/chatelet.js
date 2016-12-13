@@ -39,7 +39,7 @@ $(document).ready(function() {
 		format: 'dd/mm/yyyy'
 	});
 
-	$('.selectpicker').selectpicker();
+	//$('.selectpicker').selectpicker();
 
 	$('#registro-modal a[data-toggle="modal"]').click(function() {
 		$(this).parents('#registro-modal').modal('hide');

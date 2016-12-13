@@ -11,16 +11,18 @@
 
   	<?php
       echo $this->Html->script('jquery-1.11.1.min');
-      echo $this->Html->script('bootstrap.min'); 
+      echo $this->Html->script('bootstrap'); 
+      
       echo $this->Html->script('jquery.growl');
       echo $this->Html->script('bootstrap-select.min');
       echo $this->Html->script('bootstrapValidator.min');
       echo $this->Html->script('wow.min');
       echo $this->Html->script('plugins');
       echo $this->Html->script('main');
+      
+      echo $this->Html->script('chatelet', array('inline' => false));
+      echo $this->Html->script('product', array('inline' => false));
       echo $this->fetch('script');
-      echo $this->Html->script('chatelet');
-       echo $this->Html->script('product');
   		
       
   		

@@ -1,13 +1,13 @@
 $(document).ready(function() {
-    var modal = $('#particular-modal'),
-        form = $('#particularForm');
+    var modal = $('#particular-modal');
+    var form = $('#particularForm');
 
-    modal.bootstrapValidator({
+    $(modal).bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
-            /*valid: 'glyphicon glyphicon-ok',
+            valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'*/
+            validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
             'data[User][email]': {

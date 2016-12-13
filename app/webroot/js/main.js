@@ -21,6 +21,6 @@ $(function () {
     })
 
     setTimeout(function () {
-        $('#myModal').modal({ show: true })
+        //$('#myModal').modal({ show: true })
     }, 3000)
 })

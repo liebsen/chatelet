@@ -1,6 +1,9 @@
 <?php
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
+	echo $this->Html->script('formValidation.min', array('inline' => false));
+	echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
 	echo $this->Html->script('particular-validation', array('inline' => false));
+	echo $this->Html->script('bootstrapValidator.min', array('inline' => false)); 
 	if (!$loggedIn) {
 		$user = array(
 			'email' => '',
