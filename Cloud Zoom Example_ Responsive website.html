@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://www.starplugins.com/cloudzoom/examples/thumbelina -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cloud Zoom Example: Responsive website</title>
+       
+        
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
+        <!-- Include jQuery -->
+        <script type="text/javascript" async="" src="./Cloud Zoom Example_ Responsive website_files/ga.js"></script><script type="text/javascript" src="./Cloud Zoom Example_ Responsive website_files/jquery.js"></script>
+      
+        <!-- Various page styles. -->
+        <style type="text/css">
+           
+            body {
+                font-family: arial, sans-serif;
+                color: #444;
+                font-size: 16px;
+                padding:0px;
+                margin:0px;
+            }
+            
+            p {
+                line-height: 20px;
+            }
+            
+            code {
+                font-weight: bold;
+                color: #f44;;
+            }
+            a {
+                color:#3d8dde;
+            }
+            
+            #wrapper {
+                padding:10px;
+            }
+        </style>
+        
+        <!-- Include Cloud Zoom JavaScript -->
+        <script type="text/javascript" src="./Cloud Zoom Example_ Responsive website_files/cloudzoom.js"></script>
+        
+        <!-- Include Thumbelina JavaScript -->
+        <script type="text/javascript" src="./Cloud Zoom Example_ Responsive website_files/thumbelina.js"></script>
+
+        
+        <!-- Include Cloud Zoom CSS -->
+        <link href="./Cloud Zoom Example_ Responsive website_files/cloudzoom.css" type="text/css" rel="stylesheet">
+        
+        <!-- Include Thumbelina CSS -->
+        <link href="./Cloud Zoom Example_ Responsive website_files/thumbelina.css" type="text/css" rel="stylesheet">
+
+        
+        <script type="text/javascript">
+            CloudZoom.quickStart();
+            
+            // Initialize the slider.
+            $(function(){
+                $('#slider1').Thumbelina({
+                    $bwdBut:$('#slider1 .left'), 
+                    $fwdBut:$('#slider1 .right')
+                });
+            });
+
+            
+        </script>
+        
+        <style>
+            
+            /* div that surrounds Cloud Zoom image and content slider. */
+            #surround {
+                width:50%;
+                min-width: 256px;
+                max-width: 480px;
+            }
+            
+            /* Image expands to width of surround */
+            img.cloudzoom {
+                width:100%;
+            }
+            
+            /* CSS for slider - will expand to width of surround */
+            #slider1 {
+                margin-left:20px;
+                margin-right:20px;
+                height:119px;
+                border-top:1px solid #aaa;
+                border-bottom:1px solid #aaa;
+                position:relative;
+            }
+            
+        </style>
+        <script type="text/javascript">
+            
+             // The following piece of code can be ignored.
+             $(function(){
+                 $(window).resize(function() {
+                     $('#info').text("Page width: "+$(this).width());
+                 });
+                 $(window).trigger('resize');
+             });
+             
+            // The following piece of code can be ignored.
+            if (window.location.hostname.indexOf("starplugins.") != -1) {
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-254857-7']);
+                _gaq.push(['_trackPageview']);
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+            }
+             
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+        
+                 
+
+<h1>Cloud Zoom (V3.1) Example: Use with Thumbelina content slider</h1>
+<p>This page demonstrates how to use the free Thumbelina content slider with Cloud Zoom.</p>
+
+
+
+<div id="surround">
+    
+    <img class="cloudzoom" alt="Cloud Zoom small image" id="zoom1" src="./Cloud Zoom Example_ Responsive website_files/image5.jpg" data-cloudzoom="
+           zoomSizeMode:&quot;image&quot;,
+           autoInside: 550
+       " style="-webkit-user-select: none;">
+ 
+ 
+    <div id="slider1">
+        <div class="thumbelina-but horiz left disabled">˂</div>
+        <div style="position:absolute;overflow:hidden;width:100%;height:100%;"><ul class="thumbelina" style="left: 0px;">
+            <li style="display: inline-block;"><img class="cloudzoom-gallery" src="./Cloud Zoom Example_ Responsive website_files/image1.jpg" data-cloudzoom="useZoom:&#39;.cloudzoom&#39;, image:&#39;/sites/starplugins/images/jetzoom/large/image1.jpg&#39; "></li>
+
+            <li style="display: inline-block;"><img class="cloudzoom-gallery" src="./Cloud Zoom Example_ Responsive website_files/image2.jpg" data-cloudzoom="useZoom:&#39;.cloudzoom&#39;, image:&#39;/sites/starplugins/images/jetzoom/large/image2.jpg&#39; "></li>
+
+            <li style="display: inline-block;"><img class="cloudzoom-gallery" src="./Cloud Zoom Example_ Responsive website_files/image3.jpg" data-cloudzoom="useZoom:&#39;.cloudzoom&#39;, image:&#39;/sites/starplugins/images/jetzoom/large/image3.jpg&#39; "></li>
+
+            <li style="display: inline-block;"><img class="cloudzoom-gallery" src="./Cloud Zoom Example_ Responsive website_files/image4.jpg" data-cloudzoom="useZoom:&#39;.cloudzoom&#39;, image:&#39;/sites/starplugins/images/jetzoom/large/image4.jpg&#39; "></li>
+
+            <li style="display: inline-block;"><img class="cloudzoom-gallery cloudzoom-gallery-active" src="./Cloud Zoom Example_ Responsive website_files/image5(1).jpg" data-cloudzoom="useZoom:&#39;.cloudzoom&#39;, image:&#39;/sites/starplugins/images/jetzoom/large/image5.jpg&#39; "></li>
+
+            <li style="display: inline-block;"><img class="cloudzoom-gallery" src="./Cloud Zoom Example_ Responsive website_files/image6.jpg" data-cloudzoom="useZoom:&#39;.cloudzoom&#39;, image:&#39;/sites/starplugins/images/jetzoom/large/image6.jpg&#39; "></li>
+           
+
+        </ul></div>
+        <div class="thumbelina-but horiz right">˃</div>
+    </div>
+    
+</div>
+ 
+        <p id="info">Page width: 1840</p>
+        <p>©2015 <a href="http://www.starplugins.com/">Star Plugins</a></p>
+        </div>
+        
+    
+
+
+<div class="cloudzoom-blank" style="position: absolute; left: 10px; top: 125.875px; width: 480px; height: 640px;"><div class="cloudzoom-tint" style="width: 100%; height: 100%; opacity: 0.00886065; display: block; background-color: rgb(255, 255, 255);"></div><div class="cloudzoom-lens" style="overflow: hidden; position: absolute; top: -5px; left: 175px; transform: translateZ(0px); width: 300px; height: 400px; opacity: 0.0177213;"><img style="position: absolute; left: -180px; top: 0px; max-width: none !important; transform: translateZ(0px); width: 480px; height: 640px;" src="./Cloud Zoom Example_ Responsive website_files/image5.jpg"></div></div><div class="cloudzoom-zoom" style="position: absolute; overflow: hidden; transform: translateZ(0px); opacity: 0.110229; width: 5.45565px; height: 7.2742px; top: 442.238px; left: 252.898px;"><img id="cloudzoom-zoom-image-1" src="./Cloud Zoom Example_ Responsive website_files/image5.jpg" style="height: auto; position: absolute; max-width: none !important; width: 768px; transform: translateZ(0px); left: -288px; top: 0px;" data-pin-no-hover="true"></div></body></html>

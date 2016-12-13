@@ -1,16 +1,8 @@
 <?php
-    //echo $this->Html->css('w3', array('inline' => false));
-    echo $this->Html->css('jquery.bxslider', array('inline' => false));
-    echo $this->Html->script('jquery.bxslider', array('inline' => false));
-    echo $this->Html->css('product', array('inline' => false));
-    echo $this->Html->script('product', array('inline' => false));
-
-    /*echo $this->Html->script('jquery-1.8.3.min', array('inline' => false)); 
-    echo $this->Html->script('jquery.elevatezoom', array('inline' => false)); 
-    
-    /* Lightbox */
-    echo $this->Html->css('lightbox', array('inline' => false));
-    echo $this->Html->script('lightbox.min', array('inline' => false));
+    echo $this->Html->script('jquery', array('inline' => false));
+    echo $this->Html->script('ga', array('inline' => false));
+    echo $this->Html->script('cloudzoom', array('inline' => false));
+    echo $this->Html->css('cloudzoom', array('inline' => false));
 
     $images  = array();
     $images_aux = explode(';', $product['gallery']);
@@ -21,6 +13,9 @@
     echo $this->Session->flash();
 ?>  
 
+
+       
+    
         <section id="detalle"> 
             <div class="wrapper">
                 <div class="row">
@@ -35,14 +30,14 @@
                         </ul>
                     </div>
                     <div class="col-md-5 col-sm-7"  >
-                     
+                     <div id="surround">
                         <?php foreach ($images as $k => $v) : ?> 
                             <?php if (!empty($v)): ?>
                              
-                             <a href="#" ><img  class="mySlides"  id="mySlides"  style="width:80%;" src="<?php echo $v ?>" data-zoom-image="<?php echo $v ?>"/></a>
+                             <img  class="mySlides cloudzoom"  id="mySlides zoom1"   style="width:70%;" src="<?php echo $v ?>" cloudzoom='zoomSizeMode:"image",autoInside: 600'/>
                             <?php endif ?> 
                           <?php endforeach ?>
-
+                     </div>
                     </div>
 
                     <div class="col-md-4">
@@ -272,9 +267,6 @@ function showDivs(n) {
   
 }
 </script>
-
-
-
 <script type="text/javascript">
-$("#mySlides").elevateZoom();
+    CloudZoom.quickStart();
 </script>
