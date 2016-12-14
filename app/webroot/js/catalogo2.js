@@ -7,7 +7,7 @@ $(document).ready(function() {
         $('#carousel2 .carousel-inner').carousel('next');
         if($('#carousel2 .carousel-inner').children('.item').hasClass('active')) {
              var img = $(".item.active").data('img');
-             location.href = root+'/chatelet-new/catalogo/index/'+img;
+             location.href = root+'/catalogo/index/'+img;
         }
         
     });
@@ -16,7 +16,7 @@ $(document).ready(function() {
         $('#carousel2 .carousel-inner').carousel('prev');
         if($('#carousel2 .carousel-inner').children('.item').hasClass('active')) {
              var img = $(".item.active").data('img');
-             location.href = root+'/chatelet-new/catalogo/index/'+img;
+             location.href = root+'/catalogo/index/'+img;
         }
         
     });
