@@ -152,8 +152,13 @@ class AdminController extends AppController {
 		$this->set('h1', $h1);
 		$this->loadModel('Home');
 
+
 		//Get and merge local-remote data.
 		$sales = $this->getMPSales();
+if (!empty($this->request->query['test'])){
+        pr($sales);die;
+}
+
 		foreach ($sales as &$sale) {
 			$details 		= explode('-|-', $sale['collection']['reason']);
 			$sale_number 	= (!empty($details[0]))?$details[0]:'PEDIDO : "00"';
