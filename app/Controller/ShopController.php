@@ -77,17 +77,20 @@ class ShopController extends AppController {
 
 			$products = $this->Product->findAllByCategoryId($category_id);
 			if (empty($products)) return $this->redirect(array('controller' => 'shop', 'action' => 'index'));
-
-			foreach ($products as &$product) {				
+            
+			foreach ($products as &$product) {	
 				$product['Product']['stock'] = 0;
 				if(!empty($product['Product']['article'])){
 					$list_code = Configure::read('list_code');
 				    $product['Product']['stock'] = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
 				    $details = $this->SQL->product_name_by_article($product['Product']['article']);
+				    if(!empty($details)){ 
+                    $product['Product']['name'] = $details['nombre'] ;
+				    }
 				}
 
 			}
-			$this->set('details',$details);
+			
 			$this->set('name_categories',$name_categories);
 			$this->set('products', $products);
 		}
