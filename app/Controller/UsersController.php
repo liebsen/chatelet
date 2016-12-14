@@ -1,6 +1,6 @@
 <?php
 class UsersController extends AppController {
-    public $uses = array('User','Category');
+    public $uses = array('User','Category','LookBook');
     public $components = array("RequestHandler");
 
 	public function beforeFilter() {
@@ -8,6 +8,9 @@ class UsersController extends AppController {
         $this->loadModel('Setting');
         $categories = $this->Category->find('all');
         $this->set('categories', $categories);
+
+        $lookbook = $this->LookBook->find('all');
+        $this->set('lookBook', $lookbook); 
 
 	}
 

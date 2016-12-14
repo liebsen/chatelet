@@ -38,7 +38,7 @@
                   <!-- Wrapper for slides -->
                   <div class="carousel-inner" role="listbox">
                     <?php 
-                    
+                     
                       foreach ($lookbook as $key => $value):
                           if (empty($value))
                             continue; 

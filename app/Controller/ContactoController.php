@@ -1,15 +1,30 @@
 <?php
 class ContactoController extends AppController {
-	public $uses = array('Contact','Catalogo','Category','Subscription');
+	public $uses = array('Contact','Catalogo','Category','Subscription','LookBook');
 	
 	public function beforeFilter() {
     	parent::beforeFilter();
     	$this->loadModel('Setting');
     	$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
+        
+        $lookbook = $this->LookBook->find('all');
+		$this->set('lookBook', $lookbook);
+		
+        foreach ($lookbook as $key => $value){ 
+          if (empty($value))
+            continue; 
+          $alt_product = $value['LookBook'];  
+          $img = str_replace(".jpg", "", $alt_product['img_url']);
+        }
+ 		$this->set('img', $img);
 	}
 	
 	public function index() {
+
+
+
+
 		$this->loadModel('Setting');
 		$setting 			 = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';

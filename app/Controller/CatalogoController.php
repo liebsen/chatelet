@@ -21,7 +21,14 @@ class CatalogoController extends AppController {
         
 		$this->set('lookbook', $lookbook);
         unset($setting);
-   //     pr($lookbook);die;
+
+        foreach ($lookbook as $key => $value){ 
+          if (empty($value))
+            continue; 
+          $alt_product = $value['LookBook'];  
+          $img = str_replace(".jpg", "", $alt_product['img_url']);
+        }
+ 		$this->set('img', $img);
 
        
 	

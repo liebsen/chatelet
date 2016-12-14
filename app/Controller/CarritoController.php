@@ -1,7 +1,7 @@
 <?php
 require_once(APP . 'Vendor' . DS . 'oca.php');
 class CarritoController extends AppController {
-	public $uses = array('Product', 'Sale','Package','User','SaleProduct','Catalogo','Category');
+	public $uses = array('Product', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook');
 	public $components = array("RequestHandler");
 	
 	public function beforeFilter() {
@@ -14,6 +14,17 @@ class CarritoController extends AppController {
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
+
+		$lookbook = $this->LookBook->find('all');
+		$this->set('lookBook', $lookbook);
+
+        foreach ($lookbook as $key => $value){ 
+          if (empty($value))
+            continue; 
+          $alt_product = $value['LookBook'];  
+          $img = str_replace(".jpg", "", $alt_product['img_url']);
+        }
+ 		$this->set('img', $img);
 	}
 
 	public function index() {

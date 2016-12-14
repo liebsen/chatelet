@@ -1,6 +1,6 @@
 <?php
 class AyudaController extends AppController {
-	public $uses = array('Category');
+	public $uses = array('Category','LookBook');
 	public $components = array("OCA");
 
 	public function beforeFilter() {
@@ -12,6 +12,17 @@ class AyudaController extends AppController {
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
+ 
+		$lookbook = $this->LookBook->find('all');
+		$this->set('lookBook', $lookbook);
+
+		foreach ($lookbook as $key => $value){ 
+          if (empty($value))
+            continue; 
+          $alt_product = $value['LookBook'];  
+          $img = str_replace(".jpg", "", $alt_product['img_url']);
+        }
+ 		$this->set('img', $img);
 	}
 	
 
