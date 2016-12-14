@@ -18,14 +18,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li>
-          <?php foreach ($lookbook as $key => $value):
-                  if (empty($value))
-                    continue; 
-                  $alt_product = $value['LookBook'];
-                  $img = str_replace(".jpg", "", $alt_product['img_url']);
-                endforeach; 
-                echo $this->Html->link('Lookbook', array('controller' => 'catalogo', 'action' => 'index',$img));
-          ?> 
+            <?php 
+              echo $this->Html->link('Lookbook', array('controller' => 'catalogo', 'action' => 'index')); 
+            ?>
         </li>
         <?php if( !empty($show_shop) ): ?>
           <li>
