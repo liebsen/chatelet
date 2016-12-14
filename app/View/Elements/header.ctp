@@ -18,9 +18,14 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li>
-            <?php 
-              echo $this->Html->link('Lookbook', array('controller' => 'catalogo', 'action' => 'index')); 
-            ?>
+          <?php foreach ($lookbook as $key => $value):
+                  if (empty($value))
+                    continue; 
+                  $alt_product = $value['LookBook'];
+                  $img = str_replace(".jpg", "", $alt_product['img_url']);
+                endforeach; 
+                echo $this->Html->link('Lookbook', array('controller' => 'catalogo', 'action' => 'index',$img));
+          ?> 
         </li>
         <?php if( !empty($show_shop) ): ?>
           <li>
@@ -131,11 +136,7 @@
           }
         ?>
         <li class="dropdown <?php echo $display_dropdown ?>">
-          <a href="#" class="dropdown-toggle shop" data-toggle="dropdown">
-            <?php
-              echo '<span id="product-count" class="badge">'. count($carro) .'</span>';
-            ?>
-
+          <a href="#" class="dropdown-toggle shop" data-toggle="dropdown">        
           </a>
           <ul class="dropdown-menu">
             <li>
