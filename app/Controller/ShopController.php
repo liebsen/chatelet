@@ -1,6 +1,6 @@
 <?php
 class ShopController extends AppController {
-	public $uses = array('Product', 'ProductProperty','Promo','Catalogo','Category',);
+	public $uses = array('Product', 'ProductProperty','Promo','Catalogo','Category','LookBook');
 	public $helpers = array('Number');
 	public $components = array('SQL', 'RequestHandler');
 	
@@ -8,6 +8,7 @@ class ShopController extends AppController {
 	public function beforeFilter() {
     	parent::beforeFilter();
     	$this->loadModel('Setting');
+
 		$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
 
@@ -18,7 +19,11 @@ class ShopController extends AppController {
         $setting 	= $this->Setting->findById('image_bannershop');
 		$image_bannershop = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('image_bannershop',$image_bannershop); 
-
+        
+        $this->loadModel('LookBook');
+		$lookbook = $this->LookBook->find('all');
+		$this->set('lookBook', $lookbook);
+        unset($setting);
 	}
 
 
@@ -29,7 +34,7 @@ class ShopController extends AppController {
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('page_video',$page_video);
           
-        	   
+    
 
 
 		$categories = $this->Category->find('all');
@@ -78,9 +83,11 @@ class ShopController extends AppController {
 				if(!empty($product['Product']['article'])){
 					$list_code = Configure::read('list_code');
 				    $product['Product']['stock'] = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
+				    $details = $this->SQL->product_name_by_article($product['Product']['article']);
 				}
+
 			}
-			
+			$this->set('details',$details);
 			$this->set('name_categories',$name_categories);
 			$this->set('products', $products);
 		}

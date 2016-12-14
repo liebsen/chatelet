@@ -36,6 +36,9 @@
 					<?php
 						function createSection($item, $ctrl, $isProduct = false) {
 							$stock = (!empty($item['stock']))?1:0;
+							if(!empty($details)){
+                               $item['name'] = $details;
+                            } 
 							$content = '<img class="img-responsive"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />'.
 								'<span class="hover">'.
 									'<small>'. $item['name'] .'</small>'.
