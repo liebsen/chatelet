@@ -3,7 +3,7 @@ class HomeController extends AppController {
 	public function beforeFilter() {
     	parent::beforeFilter();
             
-         $setting  = $this->Setting->findById('catalog_flap');
+	     $setting  = $this->Setting->findById('catalog_flap');
 	     $catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 	     $this->set('catalog_flap',$catalog_flap);
 	     unset($setting);
@@ -11,29 +11,13 @@ class HomeController extends AppController {
 	    $this->loadModel('LookBook'); 
         $lookbook = $this->LookBook->find('all');
 		$this->set('lookBook', $lookbook);
-		
-
-
 	}
 	
 	public function index() {
+		
 		$home = $this->Home->find('first');
 		$this->set('home', $home['Home']);
-        
-        $this->loadModel('LookBook'); 
-        $lookbook = $this->LookBook->find('all');
-		$this->set('lookBook', $lookbook);
-
-        foreach ($lookbook as $key => $value){ 
-          if (empty($value))
-            continue; 
-          $alt_product = $value['LookBook'];  
-          $img = str_replace(".jpg", "", $alt_product['img_url']);
-        }
- 		$this->set('img', $img);
-
-
-
+ 
 		$this->loadModel('Setting');
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';

@@ -12,26 +12,15 @@ class CatalogoController extends AppController {
 	}
 	
 	public function index($img_url = null) {
+
 		$this->loadModel('Setting');
 		$cat = $this->Catalog->find('first');
 		$this->set('cat', $cat);
-      
-             
+    
         $lookbook = $this->LookBook->find('all',array('group'=>'LookBook.img_url','fields' => 'LookBook.img_url' ));
-        
 		$this->set('lookbook', $lookbook);
         unset($setting);
 
-        foreach ($lookbook as $key => $value){ 
-          if (empty($value))
-            continue; 
-          $alt_product = $value['LookBook'];  
-          $img = str_replace(".jpg", "", $alt_product['img_url']);
-        }
- 		$this->set('img', $img);
-
-       
-	
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('page_video',$page_video);
@@ -57,34 +46,23 @@ class CatalogoController extends AppController {
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
 
-
-
-
         if(!empty($img_url)){
-
-		   
-
         	$img_url = $img_url.'.jpg';
             $lookbook_id = $this->LookBook->find('all',array('conditions' => array('LookBook.img_url' => $img_url)));
         }else{
-            $lookbook_id = $this->LookBook->find('all',array('limit'=> '3'));
+            $img_url = $lookbook[0]['LookBook']['img_url'];
+            $lookbook_id = $this->LookBook->find('all',array('conditions' => array('LookBook.img_url' => $img_url)));
         }
             $product = array();
            // $properties = array();
             foreach ($lookbook_id as $key => $value) {
             	$product_id = $value['LookBook']['product_id'];
             	$product[] = $this->Product->findById($product_id);
-            	
             }
             $this->set('img_url', $img_url);
-             $properties_all = $this->ProductProperty->find('all');
+            $properties_all = $this->ProductProperty->find('all');
             $this->set('properties_all',$properties_all);
-          //  $properties = $this->ProductProperty->findAllByProductId($product_id);
-			$this->set('product', $product);
-		  //   $this->set('properties', $properties);
-			
-             
-	    
+        	$this->set('product', $product);
 	}
 
 }

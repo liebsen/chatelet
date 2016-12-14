@@ -10,14 +10,7 @@ class ContactoController extends AppController {
         
         $lookbook = $this->LookBook->find('all');
 		$this->set('lookBook', $lookbook);
-		
-        foreach ($lookbook as $key => $value){ 
-          if (empty($value))
-            continue; 
-          $alt_product = $value['LookBook'];  
-          $img = str_replace(".jpg", "", $alt_product['img_url']);
-        }
- 		$this->set('img', $img);
+
 	}
 	
 	public function index() {

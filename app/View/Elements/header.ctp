@@ -20,7 +20,7 @@
 
         <li>   
           <?php 
-              echo $this->Html->link('Lookbook', array('controller' => 'catalogo', 'action' => 'index',$img));
+              echo $this->Html->link('Lookbook', array('controller' => 'catalogo', 'action' => 'index'));
           ?> 
         </li>
         <?php if( !empty($show_shop) ): ?>
