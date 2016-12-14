@@ -59,7 +59,7 @@ class CatalogoController extends AppController {
             	$product_id = $value['LookBook']['product_id'];
             	$product[] = $this->Product->findById($product_id);
             }
-            $this->set('img_url', $img_url);
+            $this->set('img_url', $img_url); 
             $properties_all = $this->ProductProperty->find('all');
             $this->set('properties_all',$properties_all);
         	$this->set('product', $product);
