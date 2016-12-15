@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-xs-12 text-center">
 				<br />
-				<img class="img-responsive" src="<?php echo Configure::read('imageUrlBase').$promo['Promo']['image'] ?>" onError="this.onerror=null;this.src='<?php echo Configure::read('imageUrlBase').'img/promo_placeholder.png' ?>';" style="max-width: 800px;">
+				<img class="img-responsive" src="<?php echo Configure::read('imageUrlBase').$promo['Promo']['image'] ?>" onError="this.onerror=null;this.src='<?php echo Configure::read('imageUrlBase').'img/promo_placeholder.png' ?>';" >
 				<br />
 			</div>
 		</div>
