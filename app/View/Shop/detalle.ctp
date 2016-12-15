@@ -1,8 +1,8 @@
 <?php
-    echo $this->Html->script('jquery', array('inline' => false));
-    echo $this->Html->script('ga', array('inline' => false));
-    echo $this->Html->script('cloudzoom', array('inline' => false));
-    echo $this->Html->css('cloudzoom', array('inline' => false));
+    //echo $this->Html->script('jquery', array('inline' => false));
+   // echo $this->Html->script('ga', array('inline' => false));
+   // echo $this->Html->script('cloudzoom', array('inline' => false));
+  //  echo $this->Html->css('cloudzoom', array('inline' => false));
     echo $this->Html->script('jquery.growl', array('inline' => false));
 
     $images  = array();
