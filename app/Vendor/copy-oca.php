@@ -156,8 +156,7 @@ class Oca
 										CURLOPT_FOLLOWLOCATION	=> TRUE));
 
 		$dom = new DOMDocument();
-		$result = curl_exec($ch);
-		@$dom->loadXML($result);
+		@$dom->loadXML(curl_exec($ch));
 		$xpath = new DOMXpath($dom);
 
 		$e_corp = array();
@@ -290,11 +289,12 @@ class Oca
 		$XML_Retiro.= ' <destinatario apellido="'.$apellido.'" nombre="'.$nombre.'" calle="'.$calle.'"';
 		$XML_Retiro.= ' nro="'.$nro.'" piso="'.$piso.'" depto="'.$depto.'" cp="'.$cp.'"';
 		$XML_Retiro.= ' localidad="'.$localidad.'" provincia="'.$provincia.'" telefono="'.$telefono.'"';
-		$XML_Retiro.= ' email="'.$email.'" idci="113" celular="'.$telefono.'"/><paquetes>';
+		$XML_Retiro.= ' email="'.$email.'" idcentroimposicionorigen="113" celular="'.$telefono.'"/><paquetes>';
+		$XML_Retiro.= '<paquete alto="10" ancho="10" largo="10" peso="1" valor="10" cant="3" />';
 		$XML_Retiro.= '<paquete alto="'.$alto.'" ancho="'.$ancho.'" largo="'.$largo.'" peso="'.$peso.'"';
 		$XML_Retiro.= ' valor="'.$valor.'" cant="1"/></paquetes></envio></envios></origen></origenes></ROWS>';
 
-		$query_data = "usr=logistik_chatelet@hotmail.com&psw=LogistiK0002&xml_Datos=$XML_Retiro&ConfirmarRetiro=True&ArchivoCliente=&ArchivoProceso=";//DiasRetiro=14&FranjaHoraria=1";
+		$query_data = "usr=ventasonline@chatelet.com.ar&psw=provee004&xml_Datos=$XML_Retiro&ConfirmarRetiro=True&ArchivoCliente=&ArchivoProceso=";//DiasRetiro=14&FranjaHoraria=1";
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL,"http://webservice.oca.com.ar/epak_tracking/Oep_TrackEPak.asmx/IngresoORMultiplesRetiros");
 		curl_setopt($ch, CURLOPT_POST, 1);	                            
@@ -305,9 +305,7 @@ class Oca
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		
 		$xml = curl_exec($ch);
-//print_r($xml);die;
 		$OrdenRetiro = @$this->getTextBetweenTags( 'OrdenRetiro' , $xml , 1 );
-		
 		return $OrdenRetiro;
 	}
 
