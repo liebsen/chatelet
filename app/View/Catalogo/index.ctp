@@ -121,8 +121,13 @@
                                         ?>
                                     </div>
                                   <p></p>
-                              <a href="#" id="agregar-carro"  class="add" disabled>Agregar al carrito</a>
-                          
+                            
+                               <?php if($loggedIn){ ?>
+                                    <a href="#" id="agregar-carro" class="add" disabled>Agregar a mi carro</a>
+                                <?php }else{  ?>
+                                    
+                                    <a href="#" id="register-agregar-carro" class="add" disabled>Agregar a mi carro</a>
+                                <?php   }  ?>
                           </div>
                         </div>
                        </li>

@@ -32,6 +32,17 @@ $(document).ready(function() {
 			stock_cont.html(missing);
 		}
 	});
+    
+
+    
+	$('#register-agregar-carro').click(function(e) {
+		 $.growl.error({
+                    title: '',
+                    message: 'Debe estar logueado para agregar productos al carrito'
+                });
+	});
+
+
 
 	$('#agregar-carro').click(function(e) {
 		var data = {
@@ -84,6 +95,12 @@ $(document).ready(function() {
 
 		return false;
 	});
+ 
+
+    
+
+
+
 
 	$('.info-icon').click(function(e) {
 		var me = $(this);
