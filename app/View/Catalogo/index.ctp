@@ -121,7 +121,7 @@
                                         ?>
                                     </div>
                                   <p></p>
-                              <a href="#" id="agregar-carro"  class="add">Agregar al carrito</a>
+                              <a href="#" id="agregar-carro"  class="add" disabled>Agregar al carrito</a>
                           
                           </div>
                         </div>
