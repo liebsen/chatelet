@@ -1,12 +1,9 @@
 <?php
-    echo $this->Html->script('jquery-1.11.1.min', array('inline' => false));
-
     echo $this->Html->script('jquery', array('inline' => false));
     echo $this->Html->script('ga', array('inline' => false));
     echo $this->Html->script('cloudzoom', array('inline' => false));
     echo $this->Html->css('cloudzoom', array('inline' => false));
     echo $this->Html->script('jquery.growl', array('inline' => false));
-    
 
     $images  = array();
     $images_aux = explode(';', $product['gallery']);
