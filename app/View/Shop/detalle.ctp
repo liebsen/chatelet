@@ -20,11 +20,12 @@
         <section id="detalle"> 
             <div class="wrapper">
                 <div class="row">
+
                     <div class="col-md-2 col-sm-5">
                         <ul>
                            <?php foreach ($images as $key => $value) : ?>
                             <?php if (!empty($value)): ?>
-                             <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off" 
+                             <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" 
                              onclick="currentDiv(<?php $key = $key + 1; echo $key ?>)"  id="img_01" style="width:40%;" src="<?php echo $value ?>" ></a></li>
                             <?php endif ?> 
                           <?php endforeach ?>
@@ -35,7 +36,7 @@
                         <?php foreach ($images as $k => $v) : ?> 
                             <?php if (!empty($v)): ?>
                              <!--a href="#" ><img  class="mySlides"  id="mySlides"  src="<?php echo $v ?>" data-zoom-image="<?php echo $v ?>"/></a-->
-                             <img  class="mySlides cloudzoom"  id="mySlides zoom1"   style="width:70%;" src="<?php echo $v ?>" cloudzoom='zoomSizeMode:"image",autoInside: 600'/>
+                             <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="width:70%;" src="<?php echo $v ?>" cloudzoom='zoomSizeMode:"image",autoInside: 600'/>
                             <?php endif ?> 
                           <?php endforeach ?>
                      </div>
@@ -94,7 +95,7 @@
                             ?>
 
                                   <h2>Talle
-                                    <select id="size" name="size">
+                                    <select id="size" name="size" style="background-color: white;" >
                                         <option value="">Seleccionar</option>
                                         <?php
                                             foreach ($sizes as $size) {

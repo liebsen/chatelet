@@ -224,12 +224,12 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #detalle .col-md-4 .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
 #detalle .col-md-4 .caract { color: #404040; margin-top: 25px; }
 #detalle .col-md-4 .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
-#detalle .col-md-4 .caract p { border-bottom: 2px solid #c2c2c2; font-size: 14px; margin-bottom: 25px; padding-bottom: 30px; }
+#detalle .col-md-4 .caract p { /*border-bottom: 2px solid #c2c2c2;*/ font-size: 14px; margin-bottom: 25px; padding-bottom: 30px; }
 #detalle .col-md-4 .caract .size { margin-bottom: 25px; }
 #detalle .col-md-4 .caract .size a { color: #404040; display: inline-block; font-size: 16px; margin-right: 20px; }
 #detalle .col-md-4 .caract .size a.active { color: #f50081; }
 #detalle .col-md-4 .caract a.table { background: url(../images/sizes.png) no-repeat right center; color: #f50081; font-size: 16px; font-weight: 600; padding-right: 45px; }
-#detalle .col-md-4 .caract h4 { border-top: 2px solid #c2c2c2; font-size: 22px; font-weight: 500; margin-top: 30px; padding-top: 20px; }
+#detalle .col-md-4 .caract h4 { /*border-top: 2px solid #c2c2c2;*/ font-size: 22px; font-weight: 500; margin-top: 30px; padding-top: 20px; }
 #detalle .col-md-4 .caract .colors { float: right; margin-top: -19px; }
 #detalle .col-md-4 .caract .colors a { border-radius: 50%; display: inline-block; height: 20px; margin-right: 20px; width: 20px; }
 #detalle .col-md-4 .caract .colors a.celeste { background: #71afd7; }

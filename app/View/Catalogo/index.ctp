@@ -96,7 +96,7 @@
                                 ?>
                       
                                   <p>Talle
-                                    <select id="size" name="size">
+                                    <select id="size" name="size" style="background-color: white;" >
                                         <option value="">Seleccionar</option>
                                         <?php 
                                             foreach ($sizes as $size) {
