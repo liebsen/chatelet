@@ -51,16 +51,7 @@
                                 </a>
                                 <?php } ?>
 
-                                <?php if(!empty($categories[10])){ ?>
-                                    <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
-                                             intval($categories[10]['Category']['id']))) ?> class="pd2">
-                                        <img src=<?php echo Configure::read('imageUrlBase').$categories[10]['Category']['img_url']?> class="img-responsive">
-                                        <span class="hover">
-                                             <?php echo $categories[10]['Category']['name']?><br><br>
-                                            
-                                        </span>
-                                    </a>
-                                <?php } ?>
+                              
 
                             </div>
                             <div class="col-sm-7">
@@ -104,6 +95,17 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-sm-5">
+                                 <?php if(!empty($categories[10])){ ?>
+                                    <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
+                                             intval($categories[10]['Category']['id']))) ?> class="pd2">
+                                        <img src=<?php echo Configure::read('imageUrlBase').$categories[10]['Category']['img_url']?> class="img-responsive">
+                                        <span class="hover">
+                                             <?php echo $categories[10]['Category']['name']?><br><br>
+                                            
+                                        </span>
+                                    </a>
+                                <?php } ?>
+
                                 <?php if(!empty($categories[5])){ ?>
                                 <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
                                          intval($categories[5]['Category']['id']))) ?> class="pd3">
@@ -138,6 +140,16 @@
                                 <?php } ?>
                             </div>
                             <div class="col-sm-7">
+                                  <?php if(!empty($categories[8])){ ?>
+                                <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
+                                         intval($categories[8]['Category']['id']))) ?> class="pd4">
+                                    <img src=<?php echo Configure::read('imageUrlBase').$categories[8]['Category']['img_url']?> class="img-responsive">
+                                    <span class="hover">
+                                         <?php echo $categories[8]['Category']['name']?><br><br>
+                                        
+                                    </span>
+                                </a>
+                                <?php } ?>
                                 <?php if(!empty($categories[7])){ ?>
                                 <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
                                          intval($categories[7]['Category']['id']))) ?> class="pd4">
@@ -159,19 +171,6 @@
                                         </span>
                                     </a>
                                 <?php } ?>
-                            </div><br clear="all">
-
-                            <div class="col-sm-7">
-                                <?php if(!empty($categories[8])){ ?>
-                                <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
-                                         intval($categories[8]['Category']['id']))) ?> class="pd4">
-                                    <img src=<?php echo Configure::read('imageUrlBase').$categories[8]['Category']['img_url']?> class="img-responsive">
-                                    <span class="hover">
-                                         <?php echo $categories[8]['Category']['name']?><br><br>
-                                        
-                                    </span>
-                                </a>
-                                <?php } ?>
 
                                 <?php if(!empty($categories[9])){ ?>
                                     <a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
@@ -183,6 +182,12 @@
                                         </span>
                                     </a>
                                 <?php } ?>
+                            </div><br clear="all">
+
+                            <div class="col-sm-7">
+                             
+
+                                
                             </div>
                             <?php if(!empty($categories[14])){ ?>
                             <div class="col-sm-5">
