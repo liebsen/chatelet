@@ -34,7 +34,7 @@
       echo $this->fetch('meta');
       echo $this->fetch('css');
       echo $this->Html->script('vendor/modernizr-2.8.3.min.js');
-      echo $this->fetch('script');
+//      echo $this->fetch('script');
     ?>
 
 
