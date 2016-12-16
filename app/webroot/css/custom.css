@@ -542,15 +542,14 @@ footer .bottom a.ig { background-position: -101px -286px; }
     img.cloudzoom {
         width:100%;
     }
-   
-    #img_padding{
-     padding-left: 20%;
-     padding-right: 20%;
-    }
-  
- 
-
 }
+
+
+#img_padding{
+ padding-left: 20%;
+ padding-right: 20%;
+}
+  
 
 
 div.cloudzoom-black:nth-child(3) {
