@@ -34,11 +34,11 @@ $(document).ready(function() {
 
 		return false;
 	});
-
+	if (typeof $.fn.datepicker != 'undefined'){ 
 	$('.datepicker').datepicker({
 		format: 'dd/mm/yyyy'
 	});
-
+	}
 	//$('.selectpicker').selectpicker();
 
 	$('#registro-modal a[data-toggle="modal"]').click(function() {

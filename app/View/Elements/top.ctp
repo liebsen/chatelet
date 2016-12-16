@@ -33,7 +33,18 @@
       
       echo $this->fetch('meta');
       echo $this->fetch('css');
+      echo $this->Html->script('jquery-1.11.1.min');
+
       echo $this->Html->script('vendor/modernizr-2.8.3.min.js');
+      echo $this->Html->script('bootstrap');
+
+      echo $this->Html->script('jquery.growl');
+      echo $this->Html->script('bootstrap-select.min');
+      echo $this->Html->script('bootstrapValidator.min');
+      echo $this->Html->script('wow.min');
+      echo $this->Html->script('plugins');
+      echo $this->Html->script('main');
+
 //      echo $this->fetch('script');
     ?>
 
