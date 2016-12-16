@@ -37,6 +37,9 @@ $(function(){
 			clearTimeout(timeout);
 			console.log(json);
 			if( json.valid ){
+				if (!json.price || parseInt(json.price) == 0){
+					json.price = 114;
+				}
 				$('#cost').text( parseInt(json.price) );
 				console.log(parseFloat($('#cost').text()));	
 				$('#cp').removeClass('wrong');
