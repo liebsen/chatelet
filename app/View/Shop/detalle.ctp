@@ -41,7 +41,7 @@
                           <?php endforeach ?>
                      </div>
                     </div>
-
+                    <div>
                     <div class="col-md-4">
                              <?php
                                 echo $this->Form->create(null, array(
@@ -95,7 +95,7 @@
                             ?>
 
                                   <h2>Talle
-                                    <select id="size" name="size" style="background-color: white;" >
+                                    <select id="size" name="size" style="background-color: white; " >
                                         <option value="">Seleccionar</option>
                                         <?php
                                             foreach ($sizes as $size) {
@@ -127,6 +127,7 @@
                                 <?php   }  ?>
                            </div> 
                         </div>
+                      </div>  
                     </div>
                 </div>
             </div>
