@@ -90,7 +90,7 @@ class CarritoController extends AppController {
 				1708 , 
 				$cp , 
 				1 ,
-				$data['price'] , 
+				intval($data['price']) , 
 				'30-71119953-1', 
 				271263
 				//96637
