@@ -532,17 +532,23 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
 
    /* div that surrounds Cloud Zoom image and content slider. */
-            #surround {
-                width:70%;
-                min-width: 256px;
-                max-width: 480px;
-            }
-            
-            /* Image expands to width of surround */
-            img.cloudzoom {
-                width:100%;
-            }
-
+    #surround {
+        width:70%;
+        min-width: 256px;
+        max-width: 480px;
+    }
+    
+    /* Image expands to width of surround */
+    img.cloudzoom {
+        width:100%;
+    }
+   
+    #img_padding{
+     padding-left: 20%;
+     padding-right: 20%;
+    }
+  
+ 
 
 }
 

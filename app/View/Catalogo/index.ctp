@@ -53,7 +53,8 @@
                         
                               <div class="item <?php if(empty($this->params['pass'][0]) && !$key){echo 'active';} elseif(!empty($this->params['pass'][0]) && $img==$this->params['pass'][0]){ echo 'active';}?>" data-img="<?=$img?>">
                             <a href="<?php echo $url  ?>">
-                              <img  src="<?php echo Configure::read('imageUrlBase').$value['LookBook']['img_url'] ?>" >
+                              <img id="img_padding"
+                               src="<?php echo Configure::read('imageUrlBase').$value['LookBook']['img_url'] ?>" >
                             </a>    
                            
                           </div>
