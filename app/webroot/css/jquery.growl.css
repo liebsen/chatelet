@@ -1,15 +1,13 @@
 /* jQuery Growl
- * Copyright 2013 Kevin Sylvestre
- * 1.1.8
+ * Copyright 2015 Kevin Sylvestre
+ * 1.3.2
  */
 #growls {
   z-index: 50000;
   position: fixed; }
   #growls.default {
     top: 10px;
-    right: 10px; 
-    z-index: 99999999!important;
-  }
+    right: 10px; }
   #growls.tl {
     top: 10px;
     left: 10px; }
@@ -22,10 +20,21 @@
   #growls.br {
     bottom: 10px;
     right: 10px; }
+  #growls.tc {
+    top: 10px;
+    right: 10px;
+    left: 10px; }
+  #growls.bc {
+    bottom: 10px;
+    right: 10px;
+    left: 10px; }
+  #growls.tc .growl, #growls.bc .growl {
+    margin-left: auto;
+    margin-right: auto; }
 
 .growl {
-  /*opacity: 0.8;
-  filter: alpha(opacity=80);*/
+  opacity: 0.8;
+  filter: alpha(opacity=80);
   position: relative;
   border-radius: 4px;
   -webkit-transition: all 0.4s ease-in-out;
@@ -50,17 +59,17 @@
     padding: 15px;
     margin: 15px; }
   .growl.growl-default {
-    color: white;
+    color: #FFF;
     background: #7f8c8d; }
   .growl.growl-error {
-    color: white;
-    background: #c0392b; }
+    color: #FFF;
+    background: #C0392B; }
   .growl.growl-notice {
-    color: white;
-    background: #2ecc71; }
+    color: #FFF;
+    background: #2ECC71; }
   .growl.growl-warning {
-    color: white;
-    background: #f39c12; }
+    color: #FFF;
+    background: #F39C12; }
   .growl .growl-close {
     cursor: pointer;
     float: right;
