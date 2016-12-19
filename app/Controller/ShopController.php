@@ -153,5 +153,39 @@ class ShopController extends AppController {
 		unset($setting);
 
 	}
+
+	  public function detalletest($product_id, $category_id) {
+		$product = $this->Product->findById($product_id);
+		$category = $this->Category->findById($category_id);
+		$name_categories = $category['Category']['name'];
+        
+		$properties = $this->ProductProperty->findAllByProductId($product_id);
+	   
+
+		$details = $this->SQL->product_name_by_article($product['Product']['article']);
+		if(!empty($details)){
+        foreach ($details as $key => $value) {
+        	$details = $value;
+        }
+        }
+		
+		$all_but_me = $this->Product->find('all', array(
+				'recursive' => -1,
+				'conditions' => array(
+					'category_id' => $category_id,
+					'id <>' => $product_id
+				)
+			)
+		);
+		
+        $this->set('details',$details);
+		$this->set('category_id',$category_id);
+        $this->set('name_categories',$name_categories);
+		$this->set('category', $category);
+		$this->set('product', $product['Product']);
+		$this->set('properties', $properties);
+		$this->set('all_but_me', $all_but_me);
+	}
+
 }
 ?>
