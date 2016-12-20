@@ -1,6 +1,6 @@
 
        <!--Start of Zopim Live Chat Script-->
-  <!--<script type="text/javascript">
+<script type="text/javascript">
   window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
   d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
   _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
@@ -10,10 +10,14 @@
   <!--End of Zopim Live Chat Script-->
 
   	<?php
-      echo $this->Html->script('chatelet', array('inline' => false));
+      echo $this->Html->script('jquery-1.11.1.min');
+      echo $this->Html->script('bootstrap.min');
+      echo $this->Html->script('jquery.growl');
+      echo $this->Html->script('bootstrap-select.min');
+      echo $this->Html->script('bootstrapValidator.min');
       echo $this->Html->script('product', array('inline' => false));
       echo $this->fetch('script');
-  		
+  		echo $this->Html->script('chatelet', array('inline' => false));
       
   		
   		
