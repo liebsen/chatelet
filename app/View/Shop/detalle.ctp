@@ -4,7 +4,7 @@
     echo $this->Html->script('cloudzoom', array('inline' => false));
     echo $this->Html->css('cloudzoom', array('inline' => false));
     echo $this->Html->script('jquery.growl', array('inline' => false));
-    echo $this->Html->script('detalle.js', array('inline' => false));
+    echo $this->Html->script('detalle', array('inline' => false));
 
     $images  = array();
     $images_aux = explode(';', $product['gallery']);
@@ -106,7 +106,7 @@
                                     </select>
                                     <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
                                     
-                                    <h4>
+                                    <h4></h4>
                                     <h2>Color</h2>
                            
                                    <div class="btn-group inline-block div_color_products" data-toggle="buttons">
