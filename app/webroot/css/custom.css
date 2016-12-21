@@ -559,3 +559,33 @@ div.cloudzoom-black:nth-child(3) {
 .carousel-inner > .item {
     -webkit-transition: none;
 }
+
+span.out{
+	height: 220px;
+	overflow-y: hidden;
+	position: relative;
+	width: 220px;
+	display: inline-block !important;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	height: 220px;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	position: relative;
+	width: 220px;
+	display: inline-block !important;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.out_stock{
+	position: absolute;
+	width: 155px;
+	z-index: 10;
+	-ms-transform: rotate(16deg);
+	-webkit-transform: rotate(16deg);
+	transform: rotate(17deg);
+/*	left: 10px;
+	top: -34px;*/
+}
+	
