@@ -29,7 +29,9 @@
                   <div class="carousel-caption">
                     
                     <h1> <?php echo $home['line_one']; ?></h1>
-                        <span><?php echo $home['line_two']; ?></span>
+                       <?php if(!empty($home['line_two'])){
+                        echo '<span>'.$home['line_two'].'</span>'; 
+                        } ?>
                         <p><?php echo $home['line_three']; ?></p>
                        
 
