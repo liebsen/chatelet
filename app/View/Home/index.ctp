@@ -24,15 +24,12 @@
              
               
             <?php foreach ($images as $key => $value): ?> 
-                <div  class="item <?php echo (!$key) ? 'active' : is_null('active') ; ?>" style="background-image: url(<?php echo $value ?>);" >
+                <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>" style="background-image: url(<?php echo $value ?>);" >
                   
                   <div class="carousel-caption">
                     
                     <h1> <?php echo $home['line_one']; ?></h1>
-                    
-                    <?php if($home['line_two']){ ?>
-                         <span><?php echo $home['line_two']; ?></span>
-                    } ?>  
+                        <span><?php echo $home['line_two']; ?></span>
                         <p><?php echo $home['line_three']; ?></p>
                        
 
