@@ -580,12 +580,12 @@ span.out{
 
 .out_stock{
 	position: absolute;
-	width: 155px;
+	width: 120px;
 	z-index: 10;
-	-ms-transform: rotate(16deg);
+/*	-ms-transform: rotate(16deg);
 	-webkit-transform: rotate(16deg);
 	transform: rotate(17deg);
-/*	left: 10px;
+	left: 10px;
 	top: -34px;*/
 }
 	

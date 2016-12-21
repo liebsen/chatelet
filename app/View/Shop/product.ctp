@@ -56,20 +56,22 @@
 							}
 
  							if(!$stock && $isProduct){
-									echo $ctrl->Html->link(
-										'<img src="'.Router::url('/').'images/agotado3.png" class="out_stock" />',
-										$url,
-										array('escape' => false)
-									);
-                            }
-								
-	                       echo '<div class="col-md-4 col-sm-6"> '.
-								 $ctrl->Html->link(
+								echo '<div class="col-md-4 col-sm-6"> '.
+								     '<img src="'.Router::url('/').'images/agotado3.png" class="out_stock" />'.
+								     $ctrl->Html->link(
 									$content,
-									$url,
+								    $url,
 									array('escape' => false)
 								). '</div>';
-							
+                            }else{
+								
+		                        echo '<div class="col-md-4 col-sm-6"> '.
+									 $ctrl->Html->link(
+										$content,
+										$url,
+										array('escape' => false)
+									). '</div>';
+							}
 						}
 
 						if (isset($products)) {
