@@ -78,6 +78,8 @@ class ShopController extends AppController {
              $name_categories = $name_categories['Category']['name'];
 
 			$products = $this->Product->findAllByCategoryId($category_id);
+	     	
+
 			if (empty($products)) return $this->redirect(array('controller' => 'shop', 'action' => 'index'));
             
 			foreach ($products as &$product) {	
@@ -89,11 +91,12 @@ class ShopController extends AppController {
 				    if(!empty($details)){ 
                     $product['Product']['name'] = $details['nombre'] ;
 				    }
-				}
 
+				}
 			}
 			
-			$this->set('name_categories',$name_categories);
+			rsort($products);
+           	$this->set('name_categories',$name_categories);
 			$this->set('products', $products);
 		}
 
