@@ -40,7 +40,7 @@
 
                     <div class="col-md-6 boxs">
                         El costo y tiempo de envío dependerá de la ubicación de cada cliente.<br>
-                        Se recomienda consultar al momento de realizar el proceso de compra el costo de envío. El pedido será despachado 24 hs después de haberse acreditado el pago. 
+                        Se recomienda consultar al momento de realizar el proceso de compra el costo de envío. El pedido será despachado 24 hs después de haberse acreditado el pago y dependiendo de la distancia al domicilio tendrá una demora de entre 48 y 72 hs en llegar.
                     </div>
                 </div>
             </div>
