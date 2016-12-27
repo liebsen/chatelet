@@ -61,7 +61,9 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 #carousel-example-generic .carousel-control.right { right: 0%; }
 
 #today { background: url(../images/box1.jpg) no-repeat center top; background-size: cover; padding: 45px 150px; text-align: center; }
-#today .rectangle { border: 2px solid #f50081; font-size: 40px; font-weight: 500; padding: 55px 0 65px; }
+#today .rectangle { /*border: 2px solid #f50081;*/ font-size: 40px; font-weight: 500;padding: 159px 0 65px;
+    background-position: center center;
+    background-repeat: no-repeat;}
 #today .rectangle h1 { color: #464444; font-size: 40px; line-height: 1.2; margin-bottom: 30px; }
 #today .rectangle h1 span { color: #f50081; }
 #today .rectangle p { color: #464444; font-size: 25px; }
