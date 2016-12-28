@@ -20,7 +20,7 @@ $(document).ready(function () {
         scroll: 1,  //auto scroll
         auto: 2,    //the speed of scrolling
         wrap: 'last',   //go back to top when reach last item
-        interval: 7000,
+        interval: 3000,
         initCallback: mycarousel_initCallback   //extra called back function
     });
 
