@@ -79,7 +79,7 @@
             </div>
 
             <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_three ?>);">
-            <?php if(!empty($home['category_mod_two'])){
+            <?php if(!empty($home['category_mod_three'])){
                   echo '<a  class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_three'])).'>';
                  }else{
                   echo '<a  class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
