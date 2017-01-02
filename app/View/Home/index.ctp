@@ -67,7 +67,7 @@
         </section>
 
         <section id="opts">
-            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_two ?>);background-size: cover;">
+            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_two ?>);background-size: cover;img-responsive">
             <?php if(!empty($home['category_mod_two'])){
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
                 }else{
@@ -78,7 +78,7 @@
               
             </div>
 
-            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_three ?>);background-size: cover;">
+            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_three ?>);background-size: cover;img-responsive">
             <?php if(!empty($home['category_mod_three'])){
                   echo '<a  class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_three'])).'>';
                  }else{
