@@ -56,9 +56,8 @@ class ShopController extends AppController {
 		$list_code = Configure::read('list_code');
 		$this->autoRender = false;
 		if(!empty($article) && !empty($color_code) && !empty($size_number) && !empty($list_code))
+         $stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code);
 
-	     $stock = $this->SQL->product_stock('V7649','7','64','05');
-		pr($stock);die;
 		return $stock;
 	}
 
