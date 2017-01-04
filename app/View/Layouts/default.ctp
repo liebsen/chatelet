@@ -7,7 +7,7 @@
 	/* END Page Content */
 
 	//echo $this->element('registro-modal');
-//	echo $this->element('particular-modal');
+   echo $this->element('particular-modal');
 	//echo $this->element('mayorista-modal');
 	echo $this->element('footer');
 	echo $this->element('bottom');
