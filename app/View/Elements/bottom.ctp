@@ -29,11 +29,7 @@
     ga('send', 'pageview');
 
   </script>
-<?php
 
-        echo $this->element('particular-modal');
-
-?>
   </body>
 </html>
 
