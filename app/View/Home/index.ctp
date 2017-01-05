@@ -55,15 +55,15 @@
 
         
         <section id="today">   
-            <div class="rectangle" style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_one ?>);">
+            
                 <?php if(!empty($home['category_mod_one'])){
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_one'])).'>';
                 }else{
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                 } 
-                echo '<h1>'.$home['module_one'].'</h1>'.'</a>';
+                echo '<div class="rectangle" style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>'.'</a>';
             ?>  
-            </div>
+            
         </section>
 
         <section id="opts">
