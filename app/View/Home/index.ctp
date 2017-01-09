@@ -84,7 +84,7 @@
                  }else{
                   echo '<a  class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                  } 
-                 echo $home['module_three'].'</br>'.'</a>';
+                 echo $home['module_three'].'</a>';
             ?> 
             </div>
         </section>
@@ -133,7 +133,7 @@
                 </a>
 
                     <?php echo $this->Form->create('Contact'); ?>
-                    <h1>Suscribite a nuestro<br><span>Newsletter</span></h1>
+                    <h1>Suscribite a nuestro<br /><span>Newsletter</span></h1>
                     <p>Y recibí las últimas novedades</p>
                    
                       <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
