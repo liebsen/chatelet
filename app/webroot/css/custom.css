@@ -560,7 +560,7 @@ div.cloudzoom-black:nth-child(3) {
 
 .carousel-inner > .item {
     -webkit-transition: none;
-    padding-top: 315px;
+ /*   padding-top: 315px; */
 }
 
 span.out{
