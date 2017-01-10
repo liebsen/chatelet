@@ -96,40 +96,42 @@
                                   }
                                 }
                                 ?>
-                      
-                                  <p>Talle
-                                    <select id="size" name="size" style="background-color: white;" >
+                       <h2>Color</h2>
+                           
+                                   <div class="btn-group inline-block div_color_products" data-toggle="buttons">
+                                        <?php  foreach ($colors as $color) {
+                                                    echo '<label class="btn" style ="    border-radius: 100px;">';
+                                                    echo "<small>".$color['alias']."</small>";
+                                                    echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
+                                                    echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
+                                                echo '</label>';
+                                            }
+                                        ?>
+                                    </div>
+                                   <h4></h4> 
+                                  <h2>Talle
+                                    <select id="size" name="size" style="background-color: white; " >
                                         <option value="">Seleccionar</option>
-                                        <?php 
+                                        <?php
                                             foreach ($sizes as $size) {
                                                 echo '<option value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</option>';
                                             }
                                         ?>
                                     </select>
-                               
-
-                                  
-                                    <p>Color
-                           
-                                    <div class="btn-group inline-block div_color_products" data-toggle="buttons">
-                                        <?php  foreach ($colors as $color) {
-                                                    echo '<label class="btn active" style ="color:gray;     border-radius: 100px;">';
-                                                    
-                                                    echo "<small>".$color['alias']."</small>";
-                                                    echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
-                                                    echo '<div class="color-block" style="    border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
-                                                echo '</label>';
-                                            }
-                                        ?>
-                                    </div>
-                                  <p></p>
-                            
-                               <?php if($loggedIn){ ?>
-                                    <a href="#" id="agregar-carro" class="add" >Agregar a mi carro</a>
-                                <?php }else{  ?>
+                                    <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
                                     
+                                    
+                                  <h4></h4> 
+                               <p>
+                        Stock: <span id="stock_container"><i> (Seleccione un color y talle) </i></span>
+                    </p>
+                    <div class="footer-producto">
+                                <?php if($loggedIn){ ?>
+                                    <a href="#" id="agregar-carro" class="add" >Agregar a mi carro</a>
+                                <?php }else{ echo $this->Form->end(); ?>
                                     <a href="#" id="register-agregar-carro" class="add" >Agregar a mi carro</a>
-                                <?php   }  ?>
+                                <?php }  ?>
+                                </div>
                           </div>
                         </div>
                        </li>
