@@ -27,7 +27,7 @@
 					<?php
 						$total = 0;
 						if (!isset($carro)) $carro = array();
-						foreach ($carro as $product) {
+						foreach ($carro as $product) { 
 							$total += $product['price'];
 							if (!isset($product['color'])) $product['color'] = '';
 							if (!isset($product['size'])) $product['size'] = '';
@@ -38,7 +38,7 @@
 									echo '<img style="margin-top:10px;" src="files/uploads/'.$product['img_url'].'" class="thumb" style="display:block;" />';
 								echo '</td>';
 								echo '<td>';
-									echo '<p class="color">Color: <span class="color-block" style="background-color: '. $product['color'] .';"></span></p>';
+									echo '<p class="color">Color: <span class="color-block">'. $product['alias'] .'</span></p>';
 									echo '<p>Talle: <span class="talle">'. $product['size'] .'</span></p>';
 								echo '</td>';
 								echo '<td>';
