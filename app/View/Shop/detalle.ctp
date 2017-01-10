@@ -86,13 +86,12 @@
                                     switch ($property['ProductProperty']['type']) {
                                         case 'color':
                                             array_push($colors, $property['ProductProperty']);
-                                            break;
+                                            break;  
                                         case 'size':
                                             array_push($sizes, $property['ProductProperty']);
                                             break;
                                     }
                                 }
-
                             ?>
 
                                   <h2>Talle
@@ -119,13 +118,16 @@
                                             }
                                         ?>
                                     </div>
-                           
+                               <p>
+                        Stock: <span id="stock_container"><i> (Seleccione un color y talle) </i></span>
+                    </p>
+                    <div class="footer-producto">
                                 <?php if($loggedIn){ ?>
                                     <a href="#" id="agregar-carro" class="add" >Agregar a mi carro</a>
                                 <?php }else{ echo $this->Form->end(); ?>
-                                    
                                     <a href="#" id="register-agregar-carro" class="add" >Agregar a mi carro</a>
-                                <?php   }  ?>
+                                <?php }  ?>
+                                </div>
                            </div> 
                         </div>
                       </div>  
@@ -151,6 +153,13 @@
                         <div class="row">
                             <?php foreach($all_but_me as $alt_product):
                                 $alt_product = $alt_product['Product'];
+                  
+                                if(!empty($details)){
+                                    $name = $details;
+                                }else{
+                                    $name = $alt_product['name'];
+                                }
+
                                 $url = $this->Html->url(array(
                                         'controller' => 'shop',
                                         'action' => 'detalle',
@@ -163,7 +172,7 @@
                                 <a href="<?php echo $url ?>" >
                                     <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                                     <span class="hover"> 
-                                      <small><?php echo $alt_product['name'] ?></small>
+                                      <small><?php echo $name ?></small>
                                     </span>
                                 </a>
                             </div>
