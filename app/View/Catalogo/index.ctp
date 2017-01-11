@@ -67,99 +67,83 @@
            </div>
            <div class="col-md-7">
             <h3>Elegí tu look para vivir tu momento.</h3> 
-              <ul>
+              <ul> 
                  <?php foreach ($product as $k => $v) : ?> 
                     <?php if (!empty($v)): ?>
-
-                  
+                       <?php
+                          echo $this->Form->create(null, array(
+                              'url' => array(
+                                  'controller' => 'carrito',
+                                  'action' => 'add'
+                              ),  
+                              'id' => 'productForm',
+                              'data-url' => Router::url(array( 'controller' => 'shop','action' => 'stock' )),
+                              'data-article' => $v['Product']['article']
+                          ));
+                      ?>
                       <li class="lc" style="border-bottom: 2px solid #c2c2c2;margin-bottom: 45px;padding-bottom: 45px;">
                         <div class="row">
                           <div class="col-sm-3">
                             <img  class="img-responsive"   src="<?php echo Configure::read('imageUrlBase').$v['Product']['img_url'] ?>" >
                           </div>
                           <div class="col-sm-9">
-                             <?php
-                                echo $this->Form->create(null, array(
-                                    'url' => array(
-                                        'controller' => 'carrito',
-                                        'action' => 'add'
-                                    ),
-                                    'id' => 'productForm',
-                                    'data-url' => Router::url(array( 'controller' => 'shop','action' => 'stock' )),
-                                    'data-article' => $v['Product']['article']
-                                ));
-                             ?>
-                               <span class="hidden" id="product_id"><?php echo $v['Product']['id']; ?></span>
-                           
-                            <h2><?php echo $v['Product']['name']; ?></h2>
- 
-                              <p>Art. <span><?php echo $v['Product']['article']; ?></span></p>
-                               <p><span ><?php echo $v['Product']['desc'].' '.'$'.$v['Product']['price']; ?></span>
-                             <?php          
-                               $colors = array();
-                                $sizes = array();     
-                                foreach ($properties_all as $property) { 
-                                 
-                                    if($property['ProductProperty']['product_id'] == $v['Product']['id']){ 
-                                    
-                                    switch ($property['ProductProperty']['type']) {
-                                        case 'color':
-                                        array_push($colors, $property['ProductProperty']);
-                                        break;
-                              
-                                        case 'size':
-                                        array_push($sizes, $property['ProductProperty']);
-                                        break; 
-                                   
-                                    }
-                                  }
-                                }
+                              <span class="hidden" id="product_id"><?php echo $v['Product']['id']; ?></span>
+                              <h2><?php echo $v['Product']['name']; ?></h2>
+                                <p>Art. <span><?php echo $v['Product']['article']; ?></span></p>
+                                <p><span ><?php echo $v['Product']['desc'].' '.'$'.$v['Product']['price']; ?></span>
+                                <?php  $colors = array();
+                                      $sizes = array();     
+                                      foreach ($properties_all as $property) { 
+                                          if($property['ProductProperty']['product_id'] == $v['Product']['id']){ 
+                                          switch ($property['ProductProperty']['type']) {
+                                              case 'color':
+                                              array_push($colors, $property['ProductProperty']);
+                                              break;
+                                              case 'size':
+                                              array_push($sizes, $property['ProductProperty']);
+                                              break; 
+                                          }
+                                        }
+                                      }
                                 ?>
-                                  <h2>Color</h2>
-                           
-                                   <div class="btn-group inline-block div_color_products" data-toggle="buttons">
-                                        <?php  foreach ($colors as $color) {
-                                                    echo '<label class="btn" style ="    border-radius: 100px;">';
-                                                    echo "<small>".$color['alias']."</small>";
-                                                    echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
-                                                    echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
-                                                echo '</label>';
-                                            }
-                                        ?>
-                                    </div>
-                                   <h4></h4>                    
-
-                                   <h2>Talle
-                                    <select id="size" name="size" style="background-color: white; " >
-                                        <option value="">Seleccionar</option>
-                                        <?php
-                                            foreach ($sizes as $size) {
-                                                echo '<option value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</option>';
-                                            }
-                                        ?>
-                                    </select>
-                                    <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
-                            <h4></h4> 
-                               <p>
-                                Stock: <span id="stock_container"><i> (Seleccione un color y talle) </i></span>
-                            </p>
-                            <div class="footer-producto">
-                                <?php if($loggedIn){ ?>
-                                    <a href="#" id="agregar-carro" class="add" >Agregar a mi carro</a>
-                                <?php }else{  echo $this->Form->end(); ?>
-                                    <a href="#" id="register-agregar-carro" class="add" >Agregar a mi carro</a>
-                                <?php }  ?>
-                                </div>
+                                <h2>Color</h2>
+                                  <div class="btn-group inline-block div_color_products" data-toggle="buttons">
+                                      <?php  foreach ($colors as $color) {
+                                                  echo '<label class="btn" style ="    border-radius: 100px;">';
+                                                  echo "<small>".$color['alias']."</small>";
+                                                  echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
+                                                  echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
+                                              echo '</label>';
+                                          }
+                                      ?>
+                                  </div>
+                                 <h4></h4>                    
+                                 <h2>Talle
+                                  <select id="size" name="size" style="background-color: white; " >
+                                      <option value="">Seleccionar</option>
+                                      <?php
+                                          foreach ($sizes as $size) {
+                                              echo '<option value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</option>';
+                                          }
+                                      ?>
+                                  </select>
+                                 <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a><h4></h4> 
+                            <?php if($loggedIn){ ?>
+                              <p>Stock: <span id="stock_container" ><i> (Seleccione un color y talle) </i></span></p>
+                              <div class="footer-producto">
+                                 <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar a mi carro</a>
+                              </div>
+                            <?php }else{  echo $this->Form->end(); ?>
+                                  <a href="#" id="register-agregar-carro" class="add agregar-carro" >Agregar a mi carro</a>
+                            <?php }  ?>
+                             
                           </div>
                         </div>
-                       </li>
+                      </li>
                     <?php endif ?> 
                   <?php endforeach ?>
               </ul>
            </div>
-
-
-
        </section>
 
 
