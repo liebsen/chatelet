@@ -1,7 +1,7 @@
 
 <?php
   echo $this->Html->css('w3', array('inline' => false));
-
+  
 	echo $this->Html->script('catalogo', array('inline' => false));
   echo $this->Html->script('catalogo2', array('inline' => false));
 	/* Slider */
@@ -78,7 +78,7 @@
                             <img  class="img-responsive"   src="<?php echo Configure::read('imageUrlBase').$v['Product']['img_url'] ?>" >
                           </div>
                           <div class="col-sm-9">
-                              <?php
+                             <?php
                                 echo $this->Form->create(null, array(
                                     'url' => array(
                                         'controller' => 'carrito',
@@ -115,7 +115,7 @@
                                   }
                                 }
                                 ?>
-                                     <h2>Color</h2>
+                                  <h2>Color</h2>
                            
                                    <div class="btn-group inline-block div_color_products" data-toggle="buttons">
                                         <?php  foreach ($colors as $color) {
@@ -139,9 +139,6 @@
                                         ?>
                                     </select>
                                     <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
-
-
-                                  <h4></h4>
                             <h4></h4> 
                                <p>
                                 Stock: <span id="stock_container"><i> (Seleccione un color y talle) </i></span>
@@ -149,7 +146,7 @@
                             <div class="footer-producto">
                                 <?php if($loggedIn){ ?>
                                     <a href="#" id="agregar-carro" class="add" >Agregar a mi carro</a>
-                                <?php }else{ echo $this->Form->end(); ?>
+                                <?php }else{  ?>
                                     <a href="#" id="register-agregar-carro" class="add" >Agregar a mi carro</a>
                                 <?php }  ?>
                                 </div>
