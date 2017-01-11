@@ -89,7 +89,7 @@
                                     'data-article' => $v['Product']['article']
                                 ));
                              ?>
-                               <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
+                               <span class="hidden" id="product_id"><?php echo $v['Product']['id']; ?></span>
                            
                             <h2><?php echo $v['Product']['name']; ?></h2>
  
@@ -146,7 +146,7 @@
                             <div class="footer-producto">
                                 <?php if($loggedIn){ ?>
                                     <a href="#" id="agregar-carro" class="add" >Agregar a mi carro</a>
-                                <?php }else{  ?>
+                                <?php }else{  echo $this->Form->end(); ?>
                                     <a href="#" id="register-agregar-carro" class="add" >Agregar a mi carro</a>
                                 <?php }  ?>
                                 </div>
