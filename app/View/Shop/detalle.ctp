@@ -152,15 +152,16 @@
 
                     <div class="col-md-9 col-sm-9">
                         <div class="row">
-                            <?php foreach($all_but_me as $alt_product):
+                            <?php 
+                            foreach($all_but_me as $alt_product):
                                 $alt_product = $alt_product['Product'];
-                  
+                                $stock = (!empty($alt_product['stock']))?1:0; 
                                 if(!empty($details)){
                                     $name = $details;
                                 }else{
                                     $name = $alt_product['name'];
                                 }
-
+                                
                                 $url = $this->Html->url(array(
                                         'controller' => 'shop',
                                         'action' => 'detalle',
@@ -168,8 +169,19 @@
                                         $alt_product['category_id']
                                     )
                                 );
-                            ?>
-                            <div class="col-md-4 col-sm-6">
+                            if(!$stock){ ?>
+                             <div class="col-md-4 col-sm-6">
+                                <a href="<?php echo $url ?>" >
+                                    <img src="'Router::url('/').'images/agotado3.png" class="out_stock" />
+                                    <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
+                                    <span class="hover"> 
+                                      <small><?php echo $alt_product['name'] ?></small>
+                                    </span>
+                                </a>
+                            </div>
+                            <?php }else{ ?>
+
+                              <div class="col-md-4 col-sm-6">
                                 <a href="<?php echo $url ?>" >
                                     <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                                     <span class="hover"> 
@@ -177,7 +189,9 @@
                                     </span>
                                 </a>
                             </div>
-                           <?php endforeach; ?>
+
+
+                           <?php }endforeach; ?>
                         </div>
                     </div>
                 </div>
