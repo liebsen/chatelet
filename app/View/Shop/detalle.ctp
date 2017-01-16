@@ -173,7 +173,7 @@
                                 <a href="<?php echo $url ?>" >
                                     <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                                     <span class="hover"> 
-                                      <small><?php echo $name ?></small>
+                                      <small><?php echo $alt_product['name'] ?></small>
                                     </span>
                                 </a>
                             </div>
