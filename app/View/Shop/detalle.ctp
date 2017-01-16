@@ -171,8 +171,8 @@
                                 );
                             if(!$stock){ ?>
                              <div class="col-md-4 col-sm-6">
-                                <a href="<?php echo $url ?>" >
-                                    <img src="'Router::url('/').'images/agotado3.png" class="out_stock" />
+                                <a href="<?php echo $url ?>" >   
+                                    <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
                                     <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                                     <span class="hover"> 
                                       <small><?php echo $alt_product['name'] ?></small>
