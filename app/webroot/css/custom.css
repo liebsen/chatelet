@@ -68,7 +68,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 #today .rectangle h1 span { color: #f50081; }
 #today .rectangle p { color: #464444; font-size: 25px; }
 
-#opts { color: #464444;    margin: -39px; font-size: 27px; font-weight: 500; line-height: 1.2; overflow: hidden; text-align: center; }
+#opts { color: #464444; font-size: 27px; font-weight: 500; line-height: 1.2; overflow: hidden; text-align: center; }
 #opts img { margin-bottom: 50px; }
 #opts .margin{padding: 160px;}
 #opts .col-md-6 { padding: 0; }
