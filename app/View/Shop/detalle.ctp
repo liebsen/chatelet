@@ -59,8 +59,8 @@
                                 <h1>
                                  <?php
                                     if(!empty($details)){
-                                        echo $details;
-                                    }else{
+                                        echo $details['nombre'];
+                                    }else{ 
                                         echo $product['name'];
                                     }
                                 ?>
@@ -120,7 +120,7 @@
                                     
                                   <h4></h4> 
                                <p>
-                        Stock: <span id="stock_container"><i> (Seleccione un color y talle) </i></span>
+                       <span> Stock:</span> <span id="stock_container"><i> (Seleccione un color y talle) </i></span>
                     </p>
                     <div class="footer-producto">
                                 <?php if($loggedIn){ ?>

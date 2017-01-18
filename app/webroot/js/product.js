@@ -7,8 +7,8 @@ $(document).ready(function() {
 		var size_number	= $('#size option:selected').val();
 
 		var stock_cont	= $('#stock_container');
-		var stock    	= '<i style="color:green;">En Stock <i>';
-		var stock_0 	= '<i style="color:red;">Sin Stock</i>';
+		var stock    	= '<i style="color:green;">Disponible <i>';
+		var stock_0 	= '<i style="color:red;">No Disponible</i>';
 		var missing 	= '<i> (Seleccione un color y talle) </i>';
 		var no_color	= '<i> (Seleccione color) <i>'; 
 
@@ -63,7 +63,7 @@ $(document).ready(function() {
 		if ( !window.stock || window.stock == 0 ) {
 			return $.growl.error({
 				title: '',
-				message: 'Sin stock'
+				message: 'No Disponible'
 			});
 		}
       
