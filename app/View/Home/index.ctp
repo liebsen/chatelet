@@ -70,7 +70,7 @@
         <section id="opts">
             <div class="col-md-6 box-imgs no-padding" >
                                                
-             <span class="bag"><img src="<?php echo Configure::read('imageUrlBase').'images/box11.png'; ?>"></span>
+             <span class="bag"><img src="http://www.chatelet.com.ar/images/box11.png"></span>
             <?php if(!empty($home['category_mod_two'])){
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
                 }else{
@@ -82,14 +82,13 @@
             </div>
 
             <div class="col-md-6 box-imgs no-padding">
-             <img   class="mod" src="<?php echo Configure::read('imageUrlBase').$img_url_three ?>"   style="padding-left: 0px;padding-right: 0px;" img-responsive>
-
+            
             <?php if(!empty($home['category_mod_three'])){
                   echo '<a  class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_three'])).'>';
                  }else{
                   echo '<a  class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                  } 
-                 echo $home['module_three'].'</a>';
+                echo $home['module_three'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_three.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
             ?> 
             </div>
         </section>
