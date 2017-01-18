@@ -69,14 +69,6 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 #today .rectangle p { color: #464444; font-size: 25px; }
 
 
-
-
-
-
-
-
-
-
 #opts { color: #464444; font-size: 27px; font-weight: 500; line-height: 1.2; overflow: hidden; text-align: center; }
 #opts img { /*margin-bottom: 50px;*/ }
 #opts .margin{/*padding: 160px;*/}
@@ -110,7 +102,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 }
 #opts span.bag {
        position: absolute;
-    top: 34%;
+    top: 13%;
     right: 44%;
     width: 138px;
     bottom: 50%;
