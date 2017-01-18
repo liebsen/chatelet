@@ -61,24 +61,29 @@
                 }else{
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                 } 
-                echo '<div class="rectangle" style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>'.'</a>';
+                echo '<div class="rectangle" img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>'.'</a>';
             ?>  
             
         </section>
+         
 
         <section id="opts">
-            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_two ?>);background-size: 100%;img-responsive">
+            <div class="col-md-6 box-imgs no-padding" >
+                                               
+             <span class="bag"><img src="<?php echo Configure::read('imageUrlBase').'images/box11.png'; ?>"></span>
             <?php if(!empty($home['category_mod_two'])){
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
                 }else{
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                 } 
-                echo $home['module_two'].'</a>';
+                echo $home['module_two'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_two.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
             ?> 
               
             </div>
 
-            <div class="col-md-6" style="background-image: url(<?php echo Configure::read('imageUrlBase').$img_url_three ?>);background-size: 100%;img-responsive">
+            <div class="col-md-6 box-imgs no-padding">
+             <img   class="mod" src="<?php echo Configure::read('imageUrlBase').$img_url_three ?>"   style="padding-left: 0px;padding-right: 0px;" img-responsive>
+
             <?php if(!empty($home['category_mod_three'])){
                   echo '<a  class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_three'])).'>';
                  }else{
@@ -88,6 +93,9 @@
             ?> 
             </div>
         </section>
+
+
+       
 
         <section id="location">
             <div class="col-md-4"></div>
