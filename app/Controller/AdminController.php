@@ -196,7 +196,9 @@ if (!empty($this->request->query['test'])){
 		$this->autoRender = false;
 		$response = null;
 		if(!empty($this->request->data['file']['name'])){
+			CakeLog::write('SAVE_FILE_BEFORE '.date('Y-m-d H:i:s'));
 			$response = $this->save_file( $this->request->data['file'] );
+			CakeLog::write('SAVE_FILE_AFTER '.date('Y-m-d H:i:s'));
 		}else{
 			die('fail');
 		}
