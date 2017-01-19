@@ -35,7 +35,7 @@
 								echo '<td>';
 									echo '<span class="name">'. $product['name'] .'</span>';
 									echo "<div class='clearfix'></div>";								
-									echo '<img style="margin-top:10px;" src="files/uploads/'.$product['img_url'].'" class="thumb" style="display:block;" />';
+									echo '<img style="margin-top:10px;" src="'.Configure::read('imageUrlBase').$product['img_url'].'" class="thumb" style="display:block;" />';
 								echo '</td>';
 								echo '<td>';
 									echo '<p class="color">Color: <span class="color-block">'. $product['alias'] .'</span></p>';

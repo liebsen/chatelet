@@ -120,7 +120,6 @@ class AppController extends Controller {
         $type = $file['type'];
         $tmp_name = $file['tmp_name'];
 
-        $path = 'files/uploads/';
         $terms = explode('/', $type);
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
