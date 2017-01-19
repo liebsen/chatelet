@@ -24,8 +24,8 @@
              
               
             <?php foreach ($images as $key => $value): ?> 
-                <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>" style="background-image: url(<?php echo $value ?>);padding-top: 315px;" >
-                  
+                <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
+                 <img  src=<?php echo $value; ?>   img-responsive>
                   <div class="carousel-caption">
                     
                     <h1> <?php echo $home['line_one']; ?></h1>
@@ -61,7 +61,7 @@
                 }else{
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                 } 
-                echo '<div class="rectangle" img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>'.'</a>';
+                echo '<img class="rectangle" img-responsive src='.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</a>';
             ?>  
             
         </section>
