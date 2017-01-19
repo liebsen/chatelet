@@ -65,7 +65,7 @@
 								). '</div>';
                             }else{
 								
-		                        echo '<div data-id="'.$item["id"].'" class="col-md-4 col-sm-6 add-no-stock"> Checking Stock'.
+		                        echo '<div data-id="'.$item["id"].'" class="col-md-4 col-sm-6 add-no-stock">'.
 									 $ctrl->Html->link(
 										$content,
 										$url,
