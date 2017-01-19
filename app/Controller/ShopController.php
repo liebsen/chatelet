@@ -66,6 +66,7 @@ class ShopController extends AppController {
 		$this->loadModel('Product');
 		$product = $this->Product->findById($product_id);
 		$stock = 0;
+		$list_code = Configure::read('list_code');
 
 		if(!empty($product['Product']['article'])){
 			$stock = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
