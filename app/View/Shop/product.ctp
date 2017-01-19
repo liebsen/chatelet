@@ -1,7 +1,15 @@
 <?php
 	echo $this->Session->flash();
 ?>
-
+<style>
+.verifying-stock {
+	position: absolute;
+	text-align:right;
+	font-size: 13px;padding:8px;
+	background: rgba(255,255,255,0.3);
+	color: #333;
+}
+</style>
         <div id="headabrigos"  style="background-image: url(<?php echo Configure::read('imageUrlBase').$image_prodshop ?>); no-repeat center center;">
             <h1> <?php echo $name_categories; ?> </h1>
         </div>
@@ -65,7 +73,7 @@
 								). '</div>';
                             }else{
 								
-		                        echo '<div data-id="'.$item["id"].'" class="col-md-4 col-sm-6 add-no-stock">'.
+		                        echo '<div data-id="'.$item["id"].'" class="col-md-4 col-sm-6 add-no-stock"><div class="verifying-stock">Comprobando stock...</div>'.
 									 $ctrl->Html->link(
 										$content,
 										$url,
