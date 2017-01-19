@@ -9,7 +9,7 @@
 	z-index:1000;
 	font-size: 13px;padding:8px;
 	background: rgba(255,255,255,0.3);
-	color: #333;
+	color: #999;
 }
 </style>
         <div id="headabrigos"  style="background-image: url(<?php echo Configure::read('imageUrlBase').$image_prodshop ?>); no-repeat center center;">
