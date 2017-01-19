@@ -45,7 +45,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 
 .carousel { z-index: 2; }
 #carousel-example-generic { height: auto; }
-#carousel-example-generic .carousel-caption { left: 25%; line-height: .8; padding-bottom: 150px; padding-top: 125px; /*position: relative;*/ text-align: left; text-shadow: none; width: 50%; }
+#carousel-example-generic .carousel-caption { left: 25%; line-height: .8; padding-bottom: 150px; padding-top: 125px; position: relative; text-align: left; text-shadow: none; width: 50%; }
 #carousel-example-generic .carousel-caption h1 { color: #464444; font-size: 40px; font-weight: 600; margin-bottom: 15px; text-shadow: none; }
 #carousel-example-generic .carousel-caption span { background: #f50081; color: #FFF; display: inline-block; font-size: 30px; margin-bottom: 23px; padding: 12px 7px 5px 7px; }
 #carousel-example-generic .carousel-caption p { color: #464444; font-size: 20px; line-height: 1.6; margin-bottom: 70px; }
