@@ -5,6 +5,8 @@
 .verifying-stock {
 	position: absolute;
 	text-align:right;
+	width: 100%;
+	z-index:1000;
 	font-size: 13px;padding:8px;
 	background: rgba(255,255,255,0.3);
 	color: #333;
