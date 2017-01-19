@@ -134,6 +134,7 @@ function checkStock(i){
         	}else{
         		console.log(product_id + ' in stock')
         	}
+        	$(item).find('.verifying-stock').remove();
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
