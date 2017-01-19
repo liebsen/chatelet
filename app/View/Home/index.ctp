@@ -70,7 +70,7 @@
         <section id="opts">
             <div class="col-md-6 box-imgs no-padding" >
                                                
-             <span class="bag"><img src="http://www.chatelet.com.ar/images/box11.png"></span>
+             <span class="bag"></span>
             <?php if(!empty($home['category_mod_two'])){
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
                 }else{
