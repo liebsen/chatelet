@@ -34,6 +34,7 @@ App::uses('CakeEmail', 'Network/Email');
 class AppController extends Controller {
 	public $components = array(
         'Session',
+        'S3',
         'Auth' => array(
             'authenticate' => array(
                 'Basic', 
@@ -128,10 +129,7 @@ class AppController extends Controller {
         }
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $new_name = $randomString.'.'.$ext;
-        if (move_uploaded_file($tmp_name, WWW_ROOT.$path.$new_name)) {
-            return $new_name;
-        } else {
-            return false;
-        }    
+        return $this->S3->save($tmp_name, $new_name);
+ 
     }
 }
