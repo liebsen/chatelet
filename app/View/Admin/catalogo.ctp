@@ -61,9 +61,9 @@
               foreach($images as $image):
             ?>
               <div class="col-md-5 gallery-image">
-                <img src="<?php echo $this->webroot . 'files/uploads/' . $image; ?>" alt="image">
+                <img src="<?php echo Configure::read('imageUrlBase') . $image; ?>" alt="image">
                 <div class="gallery-image-options">
-                  <a href="<?php echo $this->webroot . 'files/uploads/' . $image; ?>" class="gallery-link badge badge-info">
+                  <a href="<?php echo Configure::read('imageUrlBase') . $image; ?>" class="gallery-link badge badge-info">
                     <i class="gemicon-small-search"></i>
                   </a>
                   <a  href="javascript:void(0)" 
@@ -94,7 +94,7 @@
         <div class="control-group">
             <!--<label class="control-label" for="columns-text">Imagenes</label>-->
             <div class="controls">
-              <script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $this->webroot . 'files/uploads/' ?>">
+              <script id="image_thumb" type="text/x-handlebars-template" data-url="<?php Configure::read('imageUrlBase') ?>">
                 <li style="margin-top:10px;margin-bottom:10px;">  
                   <img src="{{image}}" width="100"/> 
                   <a href="#" class="delete_image" data-input="[name='data[img_url]']" data-file="{{file}}">X</a>

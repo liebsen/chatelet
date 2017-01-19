@@ -29,7 +29,7 @@
 					<?php foreach ($promos as $key => $promo): ?>
 					<li>
 						<br />
-						<img src="<?php echo $this->webroot . 'files/uploads/' . $promo['Promo']['image'] ?>" width="200">
+						<img src="<?php echo Configure::read('imageUrlBase') . $promo['Promo']['image'] ?>" width="200">
 						<button class="btn btn-danger" onclick="window.location.href='<?php echo $this->Html->url(array('action'=>'remove_promo',$promo['Promo']['id'])) ?>'">x</button>
 						<br />
 					</li>

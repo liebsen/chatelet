@@ -63,7 +63,7 @@
 
 					    <div class="control-group">
 							<div class="controls">
-								<script id="image_thumb_one" type="text/x-handlebars-template" data-url="<?php echo $this->webroot . 'files/uploads/' ?>">
+								<script id="image_thumb_one" type="text/x-handlebars-template" data-url="<?php echo Configure::read('imageUrlBase') ?>">
 									<span style="margin-top:10px;margin-bottom:10px;">	
 										<img src="{{image_one}}" width="100"/> 
 										<a href="#" class="delete_image_one" data-input="[name='data[img_url_one]']" data-file="{{file_one}}">X</a>
@@ -120,7 +120,7 @@
 
 					    <div class="control-group">
 							<div class="controls">
-								<script id="image_thumb_two" type="text/x-handlebars-template" data-url="<?php echo $this->webroot . 'files/uploads/' ?>">
+								<script id="image_thumb_two" type="text/x-handlebars-template" data-url="<?php echo Configure::read('imageUrlBase') ?>">
 									<span style="margin-top:10px;margin-bottom:10px;">	
 										<img src="{{image_two}}" width="100"/> 
 										<a href="#" class="delete_image_two" data-input="[name='data[img_url_two]']" data-file="{{file_two}}">X</a>
@@ -177,7 +177,7 @@
 
 					    <div class="control-group">
 							<div class="controls">
-								<script id="image_thumb_three" type="text/x-handlebars-template" data-url="<?php echo $this->webroot . 'files/uploads/' ?>">
+								<script id="image_thumb_three" type="text/x-handlebars-template" data-url="<?php echo Configure::read('imageUrlBase') ?>">
 									<span style="margin-top:10px;margin-bottom:10px;">	
 										<img src="{{image_three}}" width="100"/> 
 										<a href="#" class="delete_image_three" data-input="[name='data[img_url_three]']" data-file="{{file_three}}">X</a>
@@ -223,7 +223,7 @@
 					<div class="control-group">
 						<label class="control-label" for="columns-text">Imagenes</label>
 						<div class="controls">
-							<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $this->webroot . 'files/uploads/' ?>">
+							<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo Configure::read('imageUrlBase') ?>">
 								<li style="margin-top:10px;margin-bottom:10px;">	
 									<img src="{{image}}" width="100"/> 
 									<a href="#" class="delete_image" data-input="[name='data[img_url]']" data-file="{{file}}">X</a>

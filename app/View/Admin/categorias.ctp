@@ -21,14 +21,14 @@
 					<td>          
 						<?php
 							if(!empty($category['Category']['img_url'])){
-								echo "<a target='_new' class='badge badge-inverse' href='". $this->webroot . 'files/uploads/' . $category['Category']['img_url'] ."''>LINK</a>";
+								echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('imageUrlBase') . $category['Category']['img_url'] ."''>LINK</a>";
 							}
 						?>     
 					</td> 
 					<td>          
 						<?php
 							if(!empty($category['Category']['size'])){
-								echo "<a target='_new' class='badge badge-inverse' href='". $this->webroot . 'files/uploads/' . $category['Category']['size'] ."''>LINK</a>";
+								echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('imageUrlBase') . $category['Category']['size'] ."''>LINK</a>";
 							}
 						?>     
 					</td> 
