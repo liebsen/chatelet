@@ -56,7 +56,7 @@
 							}
 
  							if(!$stock && $isProduct){
-								echo '<div class="col-md-4 col-sm-6"> '.
+								echo '<div class="col-md-4 col-sm-6" > '.
 								     '<img src="'.Router::url('/').'images/agotado3.png" class="out_stock" />'.
 								     $ctrl->Html->link(
 									$content,
@@ -65,7 +65,7 @@
 								). '</div>';
                             }else{
 								
-		                        echo '<div class="col-md-4 col-sm-6"> '.
+		                        echo '<div class="col-md-4 col-sm-6 add-no-stock"> Checking Stock'.
 									 $ctrl->Html->link(
 										$content,
 										$url,

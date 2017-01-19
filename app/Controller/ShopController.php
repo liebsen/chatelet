@@ -6,9 +6,7 @@ class ShopController extends AppController {
 	
 
 	public function beforeFilter() {
-        CakeLog::debug('TIMEFLAG a1: '.date('Y-m-d H:i:s'));
     	parent::beforeFilter();
-        CakeLog::debug('TIMEFLAG a2: '.date('Y-m-d H:i:s'));
     	$this->loadModel('Setting');
 
 		$categories = $this->Category->find('all');
@@ -27,7 +25,6 @@ class ShopController extends AppController {
 		$this->set('lookBook', $lookbook);
         unset($setting);
 
-        CakeLog::debug('TIMEFLAG a3: '.date('Y-m-d H:i:s'));
 
 	}
 
@@ -64,8 +61,13 @@ class ShopController extends AppController {
 		return $stock;
 	}
 
+	public function check_stock($product_id){
+		$this->autoRender = false;
+		$this->loadModel('Product');
+		$prod = $this->Product->findById($product_id);
+		
+	}
 	public function product($category_id = null) {
-        CakeLog::debug('TIMEFLAG product1: '.date('Y-m-d H:i:s'));
 
 		$this->loadModel('Setting');
 		$setting 	= $this->Setting->findById('page_video');
@@ -84,25 +86,26 @@ class ShopController extends AppController {
 
 			$products = $this->Product->findAllByCategoryId($category_id);
 	     	
-	        CakeLog::debug('TIMEFLAG product2: '.date('Y-m-d H:i:s'));
 
 			if (empty($products)) return $this->redirect(array('controller' => 'shop', 'action' => 'index'));
             
 			foreach ($products as &$product) {	
 				$product['Product']['stock'] = 0;
 				if(!empty($product['Product']['article'])){
+					
+					$product['Product']['stock'] = 1;
+					/*
 					$list_code = Configure::read('list_code');
 				    $product['Product']['stock'] = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
 				    $details = $this->SQL->product_name_by_article($product['Product']['article']);
 				    if(!empty($details)){ 
                     $product['Product']['name'] = $details['nombre'] ;
-				    }
+				    }*/
 
 				}
 			}
 			
 			rsort($products);
-	        CakeLog::debug('TIMEFLAG product3: '.date('Y-m-d H:i:s'));
 
            	$this->set('name_categories',$name_categories);
 			$this->set('products', $products);
