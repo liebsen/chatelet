@@ -24,7 +24,9 @@
              
               
             <?php foreach ($images as $key => $value): ?> 
-                <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>" style="background-image: url(<?php echo $value ?>);padding-top: 315px;" >
+                  <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
+
+                 <img  src=<?php echo $value; ?>   img-responsive>
                   
                   <div class="carousel-caption">
                     
