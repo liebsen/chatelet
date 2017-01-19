@@ -111,5 +111,7 @@ CakeLog::config('error', array(
 ));
 
 
+Configure::write('S3.accessKey','AKIAJGNWSIAUPGFVLJTQ'); 
+Configure::write('S3.secret','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'); 
 Configure::write('imageUrlBase','https://d3baxuoyqsgua.cloudfront.net/'); 
 //cache for https://s3.amazonaws.com/chatelet/'); 
