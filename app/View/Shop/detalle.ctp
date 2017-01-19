@@ -182,7 +182,8 @@
                             </div>
                             <?php }else{ ?>
 
-                              <div class="col-md-4 col-sm-6">
+                              <div data-id="<?=$alt_product['id']?>" class="col-md-4 col-sm-6 add-no-stock">
+                                <div class="verifying-stock">Consultando stock...</div>
                                 <a href="<?php echo $url ?>" >
                                     <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                                     <span class="hover"> 
@@ -259,6 +260,17 @@
 
 
 <style>
+.verifying-stock {
+    position: absolute;
+    text-align:center;
+    width: 100%;
+    z-index:1000;
+    font-size: 13px;padding:8px;
+    background: rgba(255,255,255,0.5);
+    color: #999;
+}
+</style>
+<style>
 div.cloudzoom-black {
     display: none !important;
 }
@@ -269,3 +281,37 @@ div.cloudzoom-black:nth-child(2) {
     display: none !important;
 }
 </style>
+
+<script>
+window.baseUrl = "<?=Router::url('/',true)?>";
+// check stock
+function checkStock(i){
+    var item = $(product_list[i]);
+    var product_id = $(item).data('id') || $(item).attr('data-id');
+    var $html = '<img src="' + baseUrl + 'images/agotado3.png" class="out_stock" />';
+     $.ajax({
+        type: "GET",
+        url: baseUrl + 'shop/check_stock/' + product_id, 
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function(stock){
+            if (stock=='empty'){
+                $(item).prepend($html);
+            }else{
+                console.log(product_id + ' in stock')
+            }
+            $(item).find('.verifying-stock').remove();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+        }
+   });
+}
+window.product_list = new Array();
+$(function(){
+    $('.add-no-stock').each(function(i,item){
+        product_list[i] = item;
+        checkStock(i);
+    })
+})
+</script>

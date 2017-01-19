@@ -155,13 +155,15 @@ class ShopController extends AppController {
 		foreach ($all_but_me as &$products) {	
 				$products['Product']['stock'] = 0;
 				if(!empty($products['Product']['article'])){
+					$product['Product']['stock'] = 1;
+/*
 					$list_code = Configure::read('list_code');
 				    $products['Product']['stock'] = $this->SQL->product_exists_general($products['Product']['article'],$list_code);
 				    $details = $this->SQL->product_name_by_article($products['Product']['article']);
 				    if(!empty($details)){ 
                     $products['Product']['name'] = $details['nombre'] ;
 				    }
-
+*/
 				}
 			}
 
