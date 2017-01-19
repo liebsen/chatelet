@@ -1,5 +1,6 @@
 # User specific & automatically generated files #
 #################################################
+.phpintel
 app/webroot/files/uploads/*
 /app/Config/database.php
 /app/tmp
