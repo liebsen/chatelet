@@ -4,11 +4,11 @@
 <style>
 .verifying-stock {
 	position: absolute;
-	text-align:right;
+	text-align:center;
 	width: 100%;
 	z-index:1000;
 	font-size: 13px;padding:8px;
-	background: rgba(255,255,255,0.3);
+	background: rgba(255,255,255,0.5);
 	color: #999;
 }
 </style>
@@ -75,7 +75,7 @@
 								). '</div>';
                             }else{
 								
-		                        echo '<div data-id="'.$item["id"].'" class="col-md-4 col-sm-6 add-no-stock"><div class="verifying-stock">Comprobando stock...</div>'.
+		                        echo '<div data-id="'.$item["id"].'" class="col-md-4 col-sm-6 add-no-stock"><div class="verifying-stock">Consultando stock...</div>'.
 									 $ctrl->Html->link(
 										$content,
 										$url,
