@@ -24,8 +24,8 @@
              
               
             <?php foreach ($images as $key => $value): ?> 
-                <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
-                 <img  src=<?php echo $value; ?>   img-responsive>
+                <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>" style="background-image: url(<?php echo $value ?>);padding-top: 315px;" >
+                  
                   <div class="carousel-caption">
                     
                     <h1> <?php echo $home['line_one']; ?></h1>
@@ -70,7 +70,7 @@
         <section id="opts">
             <div class="col-md-6 box-imgs no-padding" >
                                                
-             <span class="bag"></span>
+             <span class="bag"><img src="http://www.chatelet.com.ar/images/box11.png"></span>
             <?php if(!empty($home['category_mod_two'])){
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
                 }else{
