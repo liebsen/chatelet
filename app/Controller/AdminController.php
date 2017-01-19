@@ -197,13 +197,15 @@ if (!empty($this->request->query['test'])){
 		$response = null;
 		if(!empty($this->request->data['file']['name'])){
 			$response = $this->save_file( $this->request->data['file'] );
+		}else{
+			die('fail');
 		}
 
 		if(empty($response)){
 			$response = 'fail';
 		}
 
-		return $response;
+		die($response);
 	}
 	
 	public function isAuthorized($user) {
