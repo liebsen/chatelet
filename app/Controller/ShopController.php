@@ -6,7 +6,9 @@ class ShopController extends AppController {
 	
 
 	public function beforeFilter() {
+        CakeLog::debug('TIMEFLAG a1: '.date('Y-m-d H:i:s'));
     	parent::beforeFilter();
+        CakeLog::debug('TIMEFLAG a2: '.date('Y-m-d H:i:s'));
     	$this->loadModel('Setting');
 
 		$categories = $this->Category->find('all');
@@ -25,7 +27,8 @@ class ShopController extends AppController {
 		$this->set('lookBook', $lookbook);
         unset($setting);
 
-  
+        CakeLog::debug('TIMEFLAG a3: '.date('Y-m-d H:i:s'));
+
 	}
 
 
@@ -62,7 +65,8 @@ class ShopController extends AppController {
 	}
 
 	public function product($category_id = null) {
-		
+        CakeLog::debug('TIMEFLAG product1: '.date('Y-m-d H:i:s'));
+
 		$this->loadModel('Setting');
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
@@ -80,6 +84,7 @@ class ShopController extends AppController {
 
 			$products = $this->Product->findAllByCategoryId($category_id);
 	     	
+	        CakeLog::debug('TIMEFLAG product2: '.date('Y-m-d H:i:s'));
 
 			if (empty($products)) return $this->redirect(array('controller' => 'shop', 'action' => 'index'));
             
@@ -97,6 +102,8 @@ class ShopController extends AppController {
 			}
 			
 			rsort($products);
+	        CakeLog::debug('TIMEFLAG product3: '.date('Y-m-d H:i:s'));
+
            	$this->set('name_categories',$name_categories);
 			$this->set('products', $products);
 		}
@@ -105,6 +112,7 @@ class ShopController extends AppController {
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
+        CakeLog::debug('TIMEFLAG product4: '.date('Y-m-d H:i:s'));
 	}
    
 
