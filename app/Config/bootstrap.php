@@ -111,4 +111,5 @@ CakeLog::config('error', array(
 ));
 
 
-Configure::write('imageUrlBase','https://s3.amazonaws.com/chatelet/'); 
+Configure::write('imageUrlBase','https://d3baxuoyqsgua.cloudfront.net/'); 
+//cache for https://s3.amazonaws.com/chatelet/'); 
