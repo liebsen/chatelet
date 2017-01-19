@@ -58,7 +58,7 @@
                                 <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
                                 <h1>
                                  <?php
-                                    if(!empty($details)){
+                                    if(!empty($details['nombre'])){
                                         echo $details['nombre'];
                                     }else{ 
                                         echo $product['name'];
