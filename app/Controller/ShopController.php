@@ -64,8 +64,16 @@ class ShopController extends AppController {
 	public function check_stock($product_id){
 		$this->autoRender = false;
 		$this->loadModel('Product');
-		$prod = $this->Product->findById($product_id);
-		
+		$product = $this->Product->findById($product_id);
+		$stock = 0;
+
+		if(!empty($product['Product']['article'])){
+			$stock = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
+		}
+		if (empty($stock)) return 'empty';
+
+		echo "$stock";
+		die;
 	}
 	public function product($category_id = null) {
 

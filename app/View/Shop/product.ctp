@@ -65,7 +65,7 @@
 								). '</div>';
                             }else{
 								
-		                        echo '<div class="col-md-4 col-sm-6 add-no-stock"> Checking Stock'.
+		                        echo '<div data-id="'.$item["id"].'" class="col-md-4 col-sm-6 add-no-stock"> Checking Stock'.
 									 $ctrl->Html->link(
 										$content,
 										$url,
@@ -107,4 +107,35 @@
                 </div>
             </div>
         </section>
-
+<script>
+window.baseUrl = "<?=Router::url('/',true)?>";
+// check stock
+function checkStock(i){
+	var item = $(product_list[i]);
+	var product_id = $(item).data('id') || $(item).attr('data-id');
+	var $html = '<img src="' + baseUrl + 'images/agotado3.png" class="out_stock" />';
+	 $.ajax({
+        type: "GET",
+        url: baseUrl + 'shop/check_stock/' + product_id, 
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function(stock){
+        	if (stock=='empty'){
+        		$(item).prepend($html);
+        	}else{
+        		console.log(product_id + ' in stock')
+        	}
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+        }
+   });
+}
+window.product_list = new Array();
+$(function(){
+	$('.add-no-stock').each(function(i,item){
+		product_list[i] = item;
+		checkStock(i);
+	})
+})
+</script>
