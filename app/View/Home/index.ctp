@@ -61,7 +61,7 @@
                 }else{
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                 } 
-                echo '<img class="rectangle" img-responsive src='.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</a>';
+                echo '<div class="rectangle" img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>'.'</a>';
             ?>  
             
         </section>
