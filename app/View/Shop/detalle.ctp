@@ -311,7 +311,9 @@ window.product_list = new Array();
 $(function(){
     $('.add-no-stock').each(function(i,item){
         product_list[i] = item;
-        checkStock(i);
+        setTimeout(function(){
+            checkStock(i);
+        }, 500*i);
     })
 })
 </script>
