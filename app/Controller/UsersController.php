@@ -48,10 +48,12 @@ class UsersController extends AppController {
 
         if ($this->User->save($this->request->data)) {
             return json_encode(array('success' => true));
+
         } else {
             $errors = $this->User->validationErrors;
             return json_encode(array('success' => false, 'errors' => $errors));
         }
+        
     }
 }
 ?>

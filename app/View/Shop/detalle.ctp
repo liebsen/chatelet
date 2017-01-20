@@ -126,7 +126,7 @@
                                 <?php if($loggedIn){ ?>
                                     <a href="#" id="agregar-carro" class="add" >Agregar a mi carro</a>
                                 <?php }else{ echo $this->Form->end(); ?>
-                                 <a href="#" id="register" data-toggle="modal" class="add" data-target="#particular-modal">Agregar a mi carro</a>
+                                 <a href="#" id="register" data-toggle="modal" class="add" data-target="#particular-login">Agregar a mi carro</a>
                                     
                                 <?php }  ?>
                                 </div>

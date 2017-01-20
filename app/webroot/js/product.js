@@ -34,14 +34,7 @@ $(document).ready(function() {
 	});
     
 
-    
-	$('#register-agregar-carro').click(function(e) {
-		 $.growl.error({
-                    title: '',
-                    message: 'Debe estar logueado para agregar productos al carrito'
-                });
-	});
-
+  
 
 
 	$('#agregar-carro').click(function(e) {

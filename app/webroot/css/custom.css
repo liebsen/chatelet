@@ -244,7 +244,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #productOptions .col-sm-9 a:hover img { filter: grayscale(100%); opacity: .5; }
 #productOptions .col-sm-9 a:hover .hover { opacity: 1; }
 
-#detalle { background: url(../images/detallebg.jpg) no-repeat center center; background-size: cover; padding-top: 50px; }
+#detalle { background: url(../images/detallebg.jpg) no-repeat center center; background-size: cover; padding-top: 50px;    padding-bottom: 50px; }
 #detalle .col-md-3 ul { margin-top: 100px; }
 #detalle .col-md-3 li { margin-bottom: 30px; overflow: hidden; }
 #detalle .col-md-3 li a { display: inline-block; overflow: hidden; }
