@@ -37,7 +37,7 @@ class User extends AppModel {
     public $validate = array(
     	'email' => array(
     		'required' => array(
-    			'rule' => 'notEmpty',
+    			'rule' => 'notBlank',
     			'required' => true,
     			'allowEmpty' => false,
     			'message' => 'El campo email es requerido'
@@ -45,7 +45,7 @@ class User extends AppModel {
 		),
 		'password' => array(
 			'required' => array(
-				'rule' => 'notEmpty',
+				'rule' => 'notBlank',
 				'required' => false,
 				'allowEmpty' => true,
 				'message'  => 'La campo password es requerido'
@@ -53,7 +53,7 @@ class User extends AppModel {
 		),
 		'name' => array(
 			'required' => array(
-				'rule' => 'notEmpty',
+				'rule' => 'notBlank',
 				'required' => true,
 				'allowEmpty' => false,
 				'message'  => 'El campo nombre es requerido'
@@ -61,7 +61,7 @@ class User extends AppModel {
 		),
 		'surname' => array(
 			'required' => array(
-				'rule' => 'notEmpty',
+				'rule' => 'notBlank',
 				'required' => true,
 				'allowEmpty' => false,
 				'message'  => 'La campo apellido es requerido'
