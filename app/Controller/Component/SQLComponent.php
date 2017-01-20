@@ -16,7 +16,9 @@ class SQLComponent extends Component {
 			exit;
 		}
 	}
-
+	public function __destruct() {
+    	if($this->conn) $this->conn = null;
+	}
 	public function product_price_by_list($article,$list_code)
 	{
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo @cod_articulo='$article', @cod_lista='$list_code', @minimo='0';");
