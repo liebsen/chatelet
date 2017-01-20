@@ -12,9 +12,12 @@
 	color: #999;
 }
 </style>
-        <div id="headabrigos"  style="background-image: url(<?php echo Configure::read('imageUrlBase').$image_prodshop ?>); no-repeat center center;">
-            <h1> <?php echo $name_categories; ?> </h1>
+        <div id="headabrigos" >
+              <h1 class="name_shop"><?php echo $name_categories; ?></h1>
+         <img class="img_resp"src="<?php echo Configure::read('imageUrlBase').$image_prodshop ?>"  img-responsive>
         </div>
+
+
 
         <section id="productOptions">
             <div class="wrapper">

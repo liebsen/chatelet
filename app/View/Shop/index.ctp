@@ -3,8 +3,10 @@
 ?>    
        
         
-        <div id="headshop"  style="background-image: url(<?php echo Configure::read('imageUrlBase').$image_bannershop ?>); no-repeat center center;">
-            <h1>Shop</h1>
+        <div id="headshop"  >
+         <h1 class="name_shop">Shop</h1>
+         <img class="img_resp"src="<?php echo Configure::read('imageUrlBase').$image_bannershop ?>"  img-responsive>
+            
         </div>
           
         <section id="filters">
