@@ -124,6 +124,7 @@ function checkStock(i){
 	var item = $(product_list[i]);
 	var product_id = $(item).data('id') || $(item).attr('data-id');
 	var $html = '<img src="' + baseUrl + 'images/agotado3.png" class="out_stock" />';
+
 	 $.ajax({
         type: "GET",
         url: baseUrl + 'shop/check_stock/' + product_id, 
@@ -146,7 +147,9 @@ window.product_list = new Array();
 $(function(){
 	$('.add-no-stock').each(function(i,item){
 		product_list[i] = item;
-		checkStock(i);
+		setTimeout(function(){
+			checkStock(i);
+		},500*i)
 	})
 })
 </script>
