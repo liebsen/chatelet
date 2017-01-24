@@ -545,28 +545,32 @@ public function promos(){
 				'id' => 'show_shop',
 				'value' => (isset($data['show_shop']))?1:0
 			));
-
-			$this->update_products( $data['list_code'] );
+           
+			$this->update_products( $data['list_code'] , $data['list_code_desc']);
 		}
 		$this->redirect(array( 'action' => 'productos' ));
 	}
 
-	public function update_products( $list_code )
-	{
+	public function update_products( $list_code , $list_code_desc )
+	{    
 		$this->loadModel('Product');
 		$products = $this->Product->find('all',array( 'recursive' => -1 ));
 		
 		foreach ($products as &$product) {
 			if( !empty( $product['Product']['article'] ) && !empty( $list_code ) ) {
-				$price = $this->SQL->product_price_by_list( $product['Product']['article'] , $list_code );
+				$price = $this->SQL->product_price_by_list( $product['Product']['article'] , $list_code , $list_code_desc);
 				
 				if( !empty($price) ) {
 					$this->Product->id = $product['Product']['id'];
-					$price = $price*100;
-					$price = ((int)$price) / 100;
+					$precio = $price['precio']*100;
+					$precio = ((int)$precio) / 100;
 					
-					$this->Product->saveField('price', $price);
-					Debugger::log( $price );
+					$discount = $price['discount']*100;
+					$discount = ((int)$discount) / 100;
+
+					$this->Product->saveField('discount', $discount);
+					$this->Product->saveField('price', $precio);
+					//Debugger::log( $price );
 				}
 			}
 		}

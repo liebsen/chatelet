@@ -22,7 +22,7 @@ class SQLComponent extends Component {
 	public function product_price_by_list($article,$list_code,$list_code_desc)
 	{
 		
-		$stmt = $this->conn->prepare("EXEC pa_datos_articulo '$article','$list_code','$list_code_desc','2';");
+		$stmt = $this->conn->prepare("EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
 		$stmt->execute();
         
         while ($row = $stmt->fetch()) {  
