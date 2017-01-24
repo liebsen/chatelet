@@ -167,7 +167,7 @@ class CarritoController extends AppController {
 				'description' => $desc,
 				'quantity' => 1,
 				'currency_id' => 'ARS',
-				'unit_price' => (int) $producto['price']
+				'unit_price' => (int) $producto['discount']
 			);
 
 			$product_ids[] = array(
