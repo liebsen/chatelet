@@ -52,10 +52,53 @@ class AdminController extends AppController {
 	public function test(){
 		$this->autoRender = false;
 
-		//$details = $this->SQL->product_details('i5005',173);
-		$details = $this->SQL->product_name_by_article('V7113');
+		$details = $this->SQL->product_price_by_list('V7000','180','05');
+		//$details = $this->SQL->product_details( 'V7000' ,'05' );
+		//$details = $this->SQL->productsByLisCod('V7000','05');
+		//$details =   $this->SQL->product_name_by_article('V7000');
+		
 		pr($details);
 	}
+
+
+	public function get_product($prod_cod = null, $lis_cod = null , $lis_cod2 = null) {
+		$this->RequestHandler->respondAs('application/json');
+		$this->autoRender = false;
+		$prod_parts = explode('.', $prod_cod);
+		$products = $this->SQL->productsByLisCod($prod_parts[0], $lis_cod);
+		 // CakeLog::write('error', $full_now.' '.$full_end);
+		if (!empty($prod_parts[1])) {
+			$color_id = substr($prod_parts[1], -2);
+			$this->loadModel('Color');
+			$color = $this->Color->find('first', array(
+					'conditions' => array(
+						'cod_chatelet' => $color_id
+					)
+				)
+			);
+		} else {
+			$color = array();
+		}
+
+		foreach ($products as &$product) {
+			$details = $this->SQL->product_price_by_list($prod_cod,$lis_cod,$lis_cod2);
+			$details_name = $this->SQL->product_name_by_article($prod_cod);
+		    if(!empty($details_name)){ 
+              $product['nombre'] = $details_name['nombre'] ;
+            }else{
+		      $product['nombre'] = $product['descripcion'] ;	
+	        }
+
+			$product['discount'] = $details['discount'];
+			$product['details'] = $this->SQL->product_details( $prod_cod , $lis_cod );
+		}
+
+		return json_encode(array('results' => $products, 'colors' => $color ));
+	}
+
+
+
+
 
 	public function check_article($article = null){
 		$this->autoRender = false;
@@ -472,6 +515,11 @@ public function promos(){
 				'id' => 'list_code',
 				'value' => $data['list_code']
 			));
+
+			$this->Setting->save(array(
+				'id' => 'list_code_desc',
+				'value' => $data['list_code_desc']
+			));
             
                 
             $image_bannershop = $this->Setting->save(array(
@@ -535,13 +583,15 @@ public function promos(){
 		$d = $this->Setting->findById('image_bannershop');
 		$e = $this->Setting->findById('image_menushop');
 		$f = $this->Setting->findById('image_prodshop');
-		
+		$g = $this->Setting->findById('list_code_desc');
+
 		$this->set('stock_min',@$a['Setting']['value']);
 		$this->set('list_code',@$b['Setting']['value']);
 		$this->set('show_shop',@$c['Setting']['value']);
         $this->set('image_bannershop',@$d['Setting']['value']);
         $this->set('image_menushop',@$e['Setting']['value']);
         $this->set('image_prodshop',@$f['Setting']['value']);
+        $this->set('list_code_desc',@$g['Setting']['value']);
 
 		$navs = array(
 			'Lista' => array(
@@ -584,7 +634,7 @@ public function promos(){
 			        if($file_real_name){
 			            $data['img_url'] = $file_real_name;
 			        }
-
+                  
 			        $this->Product->save($data);
 
 
@@ -813,31 +863,7 @@ public function promos(){
 		return $this->render('usuarios');	
 	}
 
-	public function get_product($prod_cod = null, $lis_cod = null) {
-		$this->RequestHandler->respondAs('application/json');
-		$this->autoRender = false;
-		$prod_parts = explode('.', $prod_cod);
-		$products = $this->SQL->productsByLisCod($prod_parts[0], $lis_cod);
-		 // CakeLog::write('error', $full_now.' '.$full_end);
-		if (!empty($prod_parts[1])) {
-			$color_id = substr($prod_parts[1], -2);
-			$this->loadModel('Color');
-			$color = $this->Color->find('first', array(
-					'conditions' => array(
-						'cod_chatelet' => $color_id
-					)
-				)
-			);
-		} else {
-			$color = array();
-		}
-
-		foreach ($products as &$product) {
-			$product['details'] = $this->SQL->product_details( $prod_cod , $lis_cod );
-		}
-
-		return json_encode(array('results' => $products, 'colors' => $color));
-	}
+	
 
 	public function refresh_colors() {
 		$this->RequestHandler->respondAs('application/json');

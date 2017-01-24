@@ -19,16 +19,19 @@ class SQLComponent extends Component {
 	public function __destruct() {
     	if($this->conn) $this->conn = null;
 	}
-	public function product_price_by_list($article,$list_code)
+	public function product_price_by_list($article,$list_code,$list_code_desc)
 	{
-		$stmt = $this->conn->prepare("EXEC pa_datos_articulo @cod_articulo='$article', @cod_lista='$list_code', @minimo='0';");
+		
+		$stmt = $this->conn->prepare("EXEC pa_datos_articulo '$article','$list_code','$list_code_desc','2';");
 		$stmt->execute();
-
-		while ($row = $stmt->fetch()) {
-			if( !empty( $row['codigo'] ) && strpos($row['codigo'], '.0000') && !empty($row['precio']) )
-				return $row['precio'];
+        
+        while ($row = $stmt->fetch()) {  
+			if( !empty( $row['codigo'] ) && strpos($row['codigo'], '.0000') && !empty($row['precio1']) ){
+            	$precio['precio'] = $row['precio1'];
+                $precio['discount'] = $row['precio2'];
+			}
+				return $precio;
 		}
-
 		return false;
 	}
 
