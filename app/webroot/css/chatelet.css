@@ -275,6 +275,7 @@ html, body {
 
 .modal-body label {
 	color: #c3c3c3;
+	margin-top: 10px;
 }
 
 .modal-body input {
