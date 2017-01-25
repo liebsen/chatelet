@@ -314,7 +314,7 @@ html, body {
 #mayorista-modal .dropdown-toggle.selectpicker {
 	display: inline-block;
 	height: 25px;
-	width: 190px !important;
+//*	width: 190px !important; */
 	padding: 4px;
 }
 

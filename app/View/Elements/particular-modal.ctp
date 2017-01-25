@@ -49,81 +49,36 @@
 				?>
 				<div class="row">
 					<div class="col-md-2"></div>
-					<div class="col-md-4 labels">
-						<p>
+					<div class="col-md-8 ">
+					         
+					         
 							<label for="email">Email</label>
-						</p>
-						<p>
-							<label for="password">Password</label>
-						</p>
-						<p>
-							<label for="nombre">Nombre</label>
-						</p>
-						<p>
-							<label for="apellido">Apellido</label>
-						</p>
-						<p>
-							<label for="nacimiento">Fecha de Nacimiento</label>
-						</p>
-						<p>
-							<label for="sexo">Sexo</label>
-						</p>
-						<p>
-							<label for="dni">DNI</label>
-						</p>
-						<p>
-							<label>Newsletter</label>
-						</p>
-						<p>
-							<label for="tel">Telefono</label>
-						</p>
-						<p>
-							<label for="another-tel">Otro telefono</label>
-						</p>
-						<p>
-							<label for="direccion">Direccion</label>
-						</p>
-						<p>
-							<label for="provincia">Provincia</label>
-						</p>
-						<p>
-							<label for="ciudad">Ciudad</label>
-						</p>
-						<p>
-							<label for="barrio">Barrio</label>
-						</p>
-						<p>
-							<label for="codigo-postal">Codigo Postal</label>
-						</p>
-					</div>
-					<div class="col-md-5">
-						<p>
 							<div class="form-group">
 								<?php
-									echo '<input type="email" id="email" class="form-control" name="data[User][email]" value="'. $user['email'] .'" />';
+									echo '<input type="email" id="email" class="form-control " name="data[User][email]" value="'. $user['email'] .'" />';
 								?>
 							</div>
-						</p>
-						<p>
+						
+							<label for="password">Password</label>
 							<div class="form-group">
 								<input type="password" id="password" class="form-control" name="data[User][password]" />
 							</div>
-						</p>
-						<p>
+						
+							<label for="nombre">Nombre</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" id="nombre" class="form-control" name="data[User][name]" value="'. $user['name'] .'" />';
 								?>
 							</div>
-						</p>
-						<p>
+						
+							<label for="apellido">Apellido</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" id="apellido" class="form-control" name="data[User][surname]" value="'. $user['surname'] .'" />';
 								?>
 							</div>
-						</p>
-						<p>
+						
+							<label for="nacimiento">Fecha de Nacimiento</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" class="datepicker form-control" name="data[User][birthday]" value="'. 
@@ -131,8 +86,8 @@
 										.'" />';
 								?>
 							</div>
-						</p>
-						<p>
+				
+							<label for="sexo">Sexo</label>
 							<?php
 								$male = $female = '';
 								if ($user['gender'] == 'M') $male = 'selected';
@@ -145,15 +100,15 @@
 									echo '</select>';
 								echo '</div>';
 							?>
-						</p>
-						<p>
+						
+							<label for="dni">DNI</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" id="dni" class="form-control" name="data[User][dni]" value="'. $user['dni'] .'" />';
 								?>
 							</div>
-						</p>
-						<p>
+				
+							<label>Newsletter</label>
 							<div class="form-group">
 								<?php
 									$subscribed = $unsubscribed = '';
@@ -163,29 +118,29 @@
 									echo 'No <input type="radio" name="data[User][newsletter]" value="0" '.$unsubscribed.' />';
 								?>
 							</div>
-						</p>
-						<p>
+						
+							<label for="tel">Telefono</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="tel" id="tel" class="form-control" name="data[User][telephone]" value="'. $user['telephone'] .'" />';
 								?>
 							</div>
-						</p>
-						<p>
+					
+							<label for="another-tel">Otro telefono</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="tel" id="another-tel" class="form-control" name="data[User][another_telephone]" value="'. $user['another_telephone'] .'" />';
 								?>
 							</div>
-						</p>
-						<p>
+				
+							<label for="direccion">Direccion</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" id="direccion" class="form-control" name="data[User][address]" value="'. $user['address'] .'" />';
 								?>
 							</div>
-						</p>
-						<p>
+						
+							<label for="provincia">Provincia</label>
 							<div class="form-group">
 								<select id="provincia" class="selectpicker" name="data[User][province]">
 									<?php
@@ -222,35 +177,36 @@
 									<option value="Tucuman">Tucuman</option>
 								</select>
 							</div>
-						</p>
-						<p>
+					
+							<label for="ciudad">Ciudad</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" id="ciudad" class="form-control" name="data[User][city]" value="'. $user['city'] .'" />';
 								?>
 							</div>
-						</p>
-						<p>
+						
+							<label for="barrio">Barrio</label>
 							<div class="form-group">
 								<?php
 									 echo '<input type="text" id="barrio" class="form-control" name="data[User][neighborhood]" value="'. $user['neighborhood'] .'" />';
 								?>
 							</div>
-						</p>
-						<p>
+						
+							<label for="codigo-postal">Codigo Postal</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" id="codigo-postal" class="form-control" name="data[User][postal_address]" value="'. $user['postal_address'] .'" />';
 								?>
 							</div>
-						</p>
+						
 					</div>
-					<div class="col-md-1"></div>
+				
+					<div class="col-md-2"></div>
 				</div>
 				<div class="row">
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
-						<input type="submit" id="enviar-registro" value="Enviar" />
+			     		<input type="submit" id="enviar-registro" value="Enviar" />
 					</div>
 					<div class="col-md-2"></div>
 				</div>
