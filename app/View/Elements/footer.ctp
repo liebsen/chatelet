@@ -49,7 +49,9 @@
                 </div>
 
                 <div class="col-md-3 col-sm-6">
-                    <a href="mailto:sueldos@chatelet.com.ar"><h4>Trabaja con nosotros</h4></a>
+                  <!--  <a href="mailto:sueldos@chatelet.com.ar"><h4>Trabaja con nosotros</h4></a>-->
+                    
+                    <a href="#"  data-toggle="modal" data-target="#particular-email"><h4>Trabaja con nosotros</h4></a>
                     
                         <!--<a href="#">
                         <span></span>
