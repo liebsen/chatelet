@@ -51,7 +51,6 @@ $(document).ready(function() {
 					google.maps.event.addListener(marker, 'click', function() {
 						toggle();
 					});
-					console.error('ok');
 					markers[sucursal.id] = { 
 						toggle: toggle
 					};
