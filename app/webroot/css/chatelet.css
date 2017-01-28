@@ -275,6 +275,7 @@ html, body {
 
 .modal-body label {
 	color: #c3c3c3;
+	margin-top: 10px;
 }
 
 .modal-body input {
@@ -314,7 +315,7 @@ html, body {
 #mayorista-modal .dropdown-toggle.selectpicker {
 	display: inline-block;
 	height: 25px;
-	width: 190px !important;
+//*	width: 190px !important; */
 	padding: 4px;
 }
 

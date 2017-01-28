@@ -37,7 +37,8 @@
         <div class="col-md-6">
           <h4 class="sub-header">Información Principal</h4>
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Código de lista de precios'); ?></label>
+            <label class="control-label" for="columns-text">
+            <?php echo __('Código de lista de precios'); ?></label>
             <div class="controls">  
              <?php if(!empty($list_code)){ ?>  
               <input type="number" name="list_code" id="lis_cod" value="<?php echo @$list_code ?>"/>
@@ -45,7 +46,18 @@
               <input type="text" id="lis_cod" />
              <?php } ?>
             </div>
-          
+          </div>
+          <br />
+          <div class="control-group">  
+            <label class="control-label" for="columns-text">
+            <?php echo __('Código de lista de precios con Descuento'); ?></label>
+            <div class="controls">  
+             <?php if(!empty($list_code)){ ?>  
+              <input type="number" name="list_code_desc" id="lis_cod2" value="<?php echo @$list_code_desc ?>"/>
+             <?php }else{ ?>
+              <input type="text" id="lis_cod2" />
+             <?php } ?>
+            </div>
           </div>
           <br />
           <div class="control-group">
@@ -71,9 +83,16 @@
           </div>
           <br />
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Precio'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Precio actual'); ?></label>
             <div class="controls">
               <input type="text" id="" name="price" value="<?php echo (isset($prod)) ? $prod['Product']['price'] : ''; ?>" required>
+            </div>
+          </div>
+           <br/>
+            <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Precio descuento'); ?></label>
+            <div class="controls">
+              <input type="text" id="" name="discount" value="<?php echo (isset($prod)) ? $prod['Product']['discount'] : ''; ?>" required>
             </div>
           </div>
           <br />

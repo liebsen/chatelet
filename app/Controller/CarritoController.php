@@ -161,6 +161,10 @@ class CarritoController extends AppController {
 			foreach ($values as $key => $value) {
 				$desc.= $key.' : "'.$value.'"'.$separator;
 			}
+
+			if($producto['discount']!= ""){ 
+                $producto['price'] = $producto['discount'];
+            }
 			
 			$items[] = array(
 				'title' => $desc,

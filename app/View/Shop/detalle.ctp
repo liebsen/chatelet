@@ -56,29 +56,23 @@
                                 ));
                             ?>
                                 <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
-                                <h1>
-                                 <?php
-                                    if(!empty($details['nombre'])){
-                                        echo $details['nombre'];
-                                    }else{ 
-                                        echo $product['name'];
-                                    }
-                                ?>
-                                </h1>
+                                <h1> <?php echo $product['name'];?> </h1>
 
                                  <p><?php echo $name_categories; ?></p>
-                                 <p> Art. <span><?php echo $product['article']; ?></span></p>
-                                <?php echo "
-                                
-                                <span style='color:gray;'>". $product['desc']."</span>
-                                <span id='price' class='price' data-price='". $product['price'] ."'>".
-                                $this->Number->currency($product['price'], 'USD', array(
-                                            'places' => 0
-                                        )). "</span>"; ?>
+                                 <p> Art. <span><?php echo $product['article']; ?></span></p> 
+                                <?php  if(!empty($product['discount'])) {
+                                      echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['price'] ."'>".
+                                           $this->Number->currency($product['price'], 'USD', array('places' => 0)). "</span>
+                                           ahora <span   class='price'>".'$'. $product['discount']."</span>"; 
+                                    }else{
+                                      echo  "<span id='price' class='price' data-price='".'$'. $product['price'] ."'>".
+                                            $this->Number->currency($product['price'], 'USD', array(
+                                            'places' => 0)). "</span>";
+                                 }?>
                                 
                             <div class="caract">
                             
-                            <p><?php echo $product['name']; ?></p>
+                            <p><?php echo $product['desc']; ?></p>
                              <?php
                                 $colors = array();
                                 $sizes = array();

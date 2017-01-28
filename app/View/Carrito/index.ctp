@@ -28,6 +28,11 @@
 						$total = 0;
 						if (!isset($carro)) $carro = array();
 						foreach ($carro as $product) { 
+
+							 if($product['discount']!= ""){ 
+                                $product['price'] = $product['discount'];
+                             }
+
 							$total += $product['price'];
 							if (!isset($product['color'])) $product['color'] = '';
 							if (!isset($product['size'])) $product['size'] = '';

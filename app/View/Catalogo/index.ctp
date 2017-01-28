@@ -89,8 +89,17 @@
                           <div class="col-sm-9">
                               <span class="hidden" id="product_id"><?php echo $v['Product']['id']; ?></span>
                               <h2><?php echo $v['Product']['name']; ?></h2>
-                                <p>Art. <span><?php echo $v['Product']['article']; ?></span></p>
-                                <p><span ><?php echo $v['Product']['desc'].' '.'$'.$v['Product']['price']; ?></span>
+                                <p>Art. <span><?php echo $v['Product']['article']; ?></span></p>  
+                                <p><span><?php echo $v['Product']['desc']; ?></span></p>  
+                                <p> <?php  if(!empty($v['Product']['discount'])) {
+                                      echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $v['Product']['price'] ."'>".
+                                           $this->Number->currency($v['Product']['price'], 'USD', array('places' => 0)). "</span>
+                                           ahora <span      style='padding: 3px;float: none;'' class='price'>".'$'. $v['Product']['discount']."</span>"; 
+                                    }else{
+                                      echo  "<span id='price' class='price' data-price='". $v['Product']['price'] ."'>".
+                                            $this->Number->currency($v['Product']['price'], 'USD', array(
+                                            'places' => 0)). "</span>";
+                                 }?>
                                 <?php  $colors = array();
                                       $sizes = array();     
                                       foreach ($properties_all as $property) { 

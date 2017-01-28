@@ -121,29 +121,35 @@ $(document).ready(function() {
 	$('#buscar').click(function() {
 		var product_code = $('#prod_cod').val(),
 			lis_code = $('#lis_cod').val(),
+			lis_code2 = $('#lis_cod2').val(),
 			url = $(this).data('url'),
 			me = $(this);
 		
 		if (searching) return;
 		if (!lis_code) return alert('Por favor, ingrese un codigo de lista');
+		if (!lis_code2) return alert('Por favor, ingrese un codigo de lista de descuento');
 		if (!product_code) return alert('Por favor, ingrese un codigo de producto');
 
 
-		url = [url, product_code, lis_code].join('/');
+		url = [url, product_code, lis_code, lis_code2].join('/');
 		searching = true;
 		me.text('Buscando...').addClass('btn-info');
 
-		$.ajax(url)
-			.success(function(res) {
+		$.ajax(url) 
+			.success(function(res) {  
 				if ($.isArray(res.results) && !res.results.length) {
 					searching = false;
 					me.text('Buscar').removeClass('btn-info');
 					return alert('No se encontro el producto buscado');
 				}
 				var product = res.results[0];
+
 				var color = res.colors.Color;
-				$('input[name="name"]').val(product.descripcion);
+
+				$('input[name="name"]').val(product.nombre);
                 
+                $('input[name="desc"]').val(product.descripcion);
+
                 var entero = product.codArticulo;
                 questionText = entero.replace(/[0-9]/g,'');
 			    var res = (entero).slice(1);
@@ -153,8 +159,14 @@ $(document).ready(function() {
 
 				var precio = parseFloat( product.Precio*1.21 );
 				precio = parseInt( precio*100 );
-				$('input[name="price"]').val( precio/100 );
+         		$('input[name="price"]').val( precio/100 );
+                
+                
+				var Descuento = parseFloat( product.discount );
+				Descuento = parseInt( Descuento*100 );
+       			$('input[name="discount"]').val(Descuento/100);
 				
+
 				me.text('Buscar').removeClass('btn-info');
 				searching = false;
 
