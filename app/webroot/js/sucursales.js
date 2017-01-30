@@ -15,16 +15,20 @@ $(document).ready(function() {
 		geocoder = new google.maps.Geocoder();
 		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-		$.get( $('.sucursales').data('url') )
-		
-		.done(function(response) {
+		$.ajax( {
+			url: $('.sucursales').data('url'),
+			method: 'GET',
+			error: function(xhr, status, error) {
+				console.error(xhr,status,error);
+			},		
+			success: function(response){
 			if ($.isArray(response)) {
 				$.each(response, function(i, sucursal) {
 					var sucursal = sucursal.Store,
 						marker = new google.maps.Marker({
 					        map: map,
 					        draggable: true,
-                            animation: google.maps.Animation.DROP,
+                        			animation: google.maps.Animation.DROP,
 					        position: new google.maps.LatLng(sucursal.lat, sucursal.lng)
 					    }),
 						infowindow = new google.maps.InfoWindow({
@@ -47,15 +51,12 @@ $(document).ready(function() {
 					google.maps.event.addListener(marker, 'click', function() {
 						toggle();
 					});
-
 					markers[sucursal.id] = { 
 						toggle: toggle
 					};
 				});
-			}
-		})
-		.fail(function() {
-			console.error('An error ocurred while trying to get stores info');
+			
+			}else{ console.error('no array');} }
 		});
 	}
 
