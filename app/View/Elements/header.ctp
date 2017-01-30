@@ -1,73 +1,69 @@
 
-   <nav class="navbar">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <a class="navbar-brand"
-                     href="<?php echo router::url(array('controller' => 'Home', 'action' => 'index')) ?>" >
-                        Chatelet</a>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
+<nav class="navbar">
+  <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+          <a class="navbar-brand"
+           href="<?php echo router::url(array('controller' => 'Home', 'action' => 'index')) ?>" >
+              Chatelet</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+      </div>
     
-     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+       <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
 
-        <li>   
-          <?php 
-              echo $this->Html->link('Lookbook', array('controller' => 'catalogo', 'action' => 'index'));
-          ?> 
-        </li>
-        <?php if( !empty($show_shop) ): ?>
+          <li>   
+            <?php 
+                echo $this->Html->link('Lookbook', array('controller' => 'catalogo', 'action' => 'index'));
+            ?> 
+          </li>
+          <?php if( !empty($show_shop) ): ?>
+            <li>
+              <?php 
+                  echo $this->Html->link('Shop', array('controller' => 'shop', 'action' => 'index'),array('class'=>'viewSubMenu'));
+              ?>
+            </li> 
+          <?php endif ?>
+          <li>
+              <?php 
+                echo $this->Html->link('Promociones', array('controller' => 'shop', 'action' => 'promos')); 
+              ?>
+          </li>
+          <li>
+              <?php 
+                echo $this->Html->link('Sucursales', array('controller' => 'sucursales', 'action' => 'index')); 
+              ?>
+          </li>
+          <li>
+              <?php 
+                echo $this->Html->link('Ayuda', array('controller' => 'ayuda', 'action' => 'como_comprar')); 
+              ?>
+          </li>
           <li>
             <?php 
-                echo $this->Html->link('Shop', array('controller' => 'shop', 'action' => 'index'),array('class'=>'viewSubMenu'));
+              echo $this->Html->link('Contacto', array('controller' => 'contacto', 'action' => 'index')); 
             ?>
-          </li> 
-        <?php endif ?>
-        <li>
-            <?php 
-              echo $this->Html->link('Promociones', array('controller' => 'shop', 'action' => 'promos')); 
-            ?>
-        </li>
-        <li>
-            <?php 
-              echo $this->Html->link('Sucursales', array('controller' => 'sucursales', 'action' => 'index')); 
-            ?>
-        </li>
-        <li>
-            <?php 
-              echo $this->Html->link('Ayuda', array('controller' => 'ayuda', 'action' => 'como_comprar')); 
-            ?>
-        </li>
-        <li>
-          <?php 
-            echo $this->Html->link('Contacto', array('controller' => 'contacto', 'action' => 'index')); 
-          ?>
-        </li>
-      </ul>
+          </li>
+        </ul>
 
- 
-    
-      <ul class="nav navbar-nav navbar-right">
-         
-        <!-- .Login -->  
-    
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle user" data-toggle="dropdown" id="iniciar-sesion">
-            <span class="user"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <div id="login-panel">
-                <?php
-                  if ($loggedIn) {
-                ?>
+   
+      
+        <ul class="nav navbar-nav navbar-right">
+         <!-- .Login -->  
+          <li class="dropdown">
+             <?php if ($loggedIn) { ?>
+             <a href="#" class="dropdown-toggle user" data-toggle="dropdown" id="iniciar-sesion">
+              <span class="user"></span>
+             </a>
+            <ul class="dropdown-menu">
+               <li>
+                 <div id="login-panel">
                   <div id="control-panel">
                     <p class="title">Panel de Usuario</p>
                     <div id="user-data">
@@ -102,129 +98,115 @@
                       );
                     ?>
                   </div>
-                <?php
-                  } else {
-                ?>
-                  <?php 
-                    echo $this->Form->create(null, array('url' => array('controller' => 'users', 'action' => 'login'))); 
-                  ?>
-                    <p class="title">Iniciar Sesion</p>
-                    <input type="email" id="login-email" name="data[User][email]" placeholder="Email" />
-                    <input type="password" id="login-password" name="data[User][password]" placeholder="Password" />
-                    <input type="submit" id="login" value="Ingresar" />
-                    <a href="#" id="forgot-password">Olvide mi contraseña</a>
-                  <?php echo $this->Form->end(); ?>
-                  <p class="register-container">
-                    <a href="#" id="register" data-toggle="modal" data-target="#particular-modal">Registrarse</a>
-                  </p>
-                <?php
-                  }
-                ?>
-              </div>
-            </li>
-          </ul>
-        </li><!-- /.Login -->
-        <?php 
-          if( $this->Session->check('Carro') && !empty($this->Session->read('Carro')) ){
-            $display_dropdown = 'open';
-          }else{
-            $display_dropdown = '';
-          }
-        ?>
-        <li class="dropdown <?php echo $display_dropdown ?>">
-          <a href="#" class="dropdown-toggle shop" data-toggle="dropdown">        
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <div>
-                <p class="title">Mi Carrito</p>
-                <ol id="items">
-                  <?php
-                    $total = 0;
-                    if (!isset($carro)) $carro = array();
-                    foreach($carro as $producto) {
-                      if($producto['discount']!= ""){ 
-                        $producto['price'] = $producto['discount'];
-                      }
-                      
-                      $total += $producto['price'];
-                      echo '<li>';
-                        echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. $this->Number->currency($producto['price'], 'USD', array('places' => 0)) . '</strong>';
-                      echo '</li>';
-                    }
-                  ?>
-                </ol>
-                <p>
-                  Total <span class="right"><?php echo $this->Number->currency($total, 'USD', array('places' => 0)); ?></span>
-                </p>
-                <p class="bottom">
-                  <?php
-                    if ($this->Session->check('Carro')) {
-                      echo $this->Html->link('Modificar', array(
-                        'controller' => 'carrito',
-                        'action' => 'index'
-                        )
-                      );
-                    } else {
-                      echo 'Modificar';
-                    }
-                  ?>
-                  <span class="right">
-                    <?php 
-                      if ($this->Session->check('Carro')) {
-                        echo $this->Html->link('Pagar', array(
-                            'controller' => 'carrito',
-                            'action' => 'index'
-                          ), array(
-                            'class' => 'pink pay',
-                          )
-                        ); 
-                      } else {
-                        echo 'Pagar';
+                    </div>
+                </li>
+              </ul>
+            <?php } else { ?>  
+                <a href="#" class="dropdown-toggle user" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion">
+                   <span class="user"></span>
+                </a>
+            <?php } ?>
+          </li><!-- /.Login -->
+          <?php 
+            if( $this->Session->check('Carro') && !empty($this->Session->read('Carro')) ){
+              $display_dropdown = 'open';
+            }else{
+              $display_dropdown = '';
+            }
+          ?>
+          <li class="dropdown <?php echo $display_dropdown ?>">
+            <a href="#" class="dropdown-toggle shop" data-toggle="dropdown">        
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <div>
+                  <p class="title">Mi Carrito</p>
+                  <ol id="items">
+                    <?php
+                      $total = 0;
+                      if (!isset($carro)) $carro = array();
+                      foreach($carro as $producto) {
+                        if($producto['discount']!= ""){ 
+                          $producto['price'] = $producto['discount'];
+                        }
+                        
+                        $total += $producto['price'];
+                        echo '<li>';
+                          echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. $this->Number->currency($producto['price'], 'USD', array('places' => 0)) . '</strong>';
+                        echo '</li>';
                       }
                     ?>
-                  </span>
-                </p>
-              </div>
-            </li>
-          </ul>
-        </li>
-
-      </ul>
-    </div><!-- /.navbar-collapse -->
+                  </ol>
+                  <p>
+                    Total <span class="right"><?php echo $this->Number->currency($total, 'USD', array('places' => 0)); ?></span>
+                  </p>
+                  <p class="bottom">
+                    <?php
+                      if ($this->Session->check('Carro')) {
+                        echo $this->Html->link('Modificar', array(
+                          'controller' => 'carrito',
+                          'action' => 'index'
+                          )
+                        );
+                      } else {
+                        echo 'Modificar';
+                      }
+                    ?>
+                    <span class="right">
+                      <?php 
+                        if ($this->Session->check('Carro')) {
+                          echo $this->Html->link('Pagar', array(
+                              'controller' => 'carrito',
+                              'action' => 'index'
+                            ), array(
+                              'class' => 'pink pay',
+                            )
+                          ); 
+                        } else {
+                          echo 'Pagar';
+                        }
+                      ?>
+                    </span>
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
 
-      <div id="menuShop">
-          <a class="close">
-              <span></span>
-              <span></span>
-          </a>
-          <div class="wrapper">
-              <div class="row">
-                  <img  class="pull-left" src="<?php echo Configure::read('imageUrlBase').$image_menushop?>" >
-                  <div class="col-sm-6">
-                      
-                      <h3>Shop</h3>
-                      <ul>
-                        <?php  
-                          foreach ($categories as $category) {
-                            $category = $category['Category'];
-                            echo '<li>';
-                            echo $this->Html->link(
-                                $category['name'], 
-                                array(
-                                    'controller' => 'shop',
-                                    'action' => 'product',
-                                    intval($category['id'])
-                                )
-                            );
-                            echo '</li>';
-                          }
-                        ?>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-      </div>
+<div id="menuShop">
+    <a class="close">
+        <span></span>
+        <span></span>
+    </a>
+    <div class="wrapper">
+        <div class="row">
+            <img  class="pull-left" src="<?php echo Configure::read('imageUrlBase').$image_menushop?>" >
+            <div class="col-sm-6">
+                
+                <h3>Shop</h3>
+                <ul>
+                  <?php  
+                    foreach ($categories as $category) {
+                      $category = $category['Category'];
+                      echo '<li>';
+                      echo $this->Html->link(
+                          $category['name'], 
+                          array(
+                              'controller' => 'shop',
+                              'action' => 'product',
+                              intval($category['id'])
+                          )
+                      );
+                      echo '</li>';
+                    }
+                  ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
