@@ -12,8 +12,7 @@ $(document).ready(function() {
 		var missing 	= '<i> (Seleccione un color y talle) </i>';
 		var no_color	= '<i> (Seleccione color) <i>'; 
 
-		/*var stock_esp	= $('.footer-producto');
-        var stock_v	= '<i style="color:gray;">Consultando Stock ... </i>'; */
+	    var stock_v  	= '<i style="color:gray;">Consultando ... </i>';
 
 
 
@@ -24,17 +23,22 @@ $(document).ready(function() {
 
 		window.stock = 0;
 		if(url && article && color_code && size_number){
-			//stock_esp.html(stock_v);
+			
+			var test = document.querySelector('.footer-producto');
+            $(test).find('a').hide();
+            stock_cont.html(stock_v);
+
 		  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
     			
 				if(data != 0){
-                    
-					//stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
+				    //stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
 					stock_cont.html(stock);
 				}else{
 					stock_cont.html( stock_0 );
 				}
-                
+
+        
+                $(test).find('a').show();
              	window.stock = data;
              	
 			});
