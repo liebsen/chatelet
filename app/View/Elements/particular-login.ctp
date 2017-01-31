@@ -13,19 +13,35 @@
                     echo $this->Form->create(null, array('url' => array('controller' => 'users', 'action' => 'login'))); 
                   ?>
                     <p class="title">Iniciar Sesion</p>
-                    <input type="email" id="login-email" name="data[User][email]" placeholder="Email" />
+                    <input type="email" id="login-email"  name="data[User][email]" placeholder="Email" />
                     <input type="password" id="login-password" name="data[User][password]" placeholder="Password" />
                     <input type="submit" id="login" value="Ingresar" />
                     <a href="#" id="forgot-password">Olvide mi contraseña</a>
+
                   <?php echo $this->Form->end(); ?>
+          
                   <p class="register-container">
-                    <a href="#" id="register" data-toggle="modal" data-dismiss="modal"  data-target="#particular-modal">Registrarse</a>
+                    <a href="#" id="register" class="open-Modal" 
+                      data-toggle="modal" data-dismiss="modal"  data-target="#particular-modal">Registrarse</a>
                   </p>
 			</div>
 		</div>
 	</div>
 </div>
-				
-			
+	
+	
+<script type="text/javascript">
+
+$("#login-email").keyup(function () {
+        var myemail = $(this).val();
+        $(".modal-body #email").val( myemail );
+    });
+
+$("#login-password").keyup(function () {
+        var mypass = $(this).val();
+        $(".modal-body #password").val( mypass );
+ });
+
+</script>			
 		
 	

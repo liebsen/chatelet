@@ -12,6 +12,11 @@ $(document).ready(function() {
 		var missing 	= '<i> (Seleccione un color y talle) </i>';
 		var no_color	= '<i> (Seleccione color) <i>'; 
 
+		/*var stock_esp	= $('.footer-producto');
+        var stock_v	= '<i style="color:gray;">Consultando Stock ... </i>'; */
+
+
+
 		if(!color_code){
 			stock_cont.html(no_color);
 			return false;
@@ -19,14 +24,19 @@ $(document).ready(function() {
 
 		window.stock = 0;
 		if(url && article && color_code && size_number){
-			$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
+			//stock_esp.html(stock_v);
+		  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
+    			
 				if(data != 0){
+                    
 					//stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
 					stock_cont.html(stock);
 				}else{
 					stock_cont.html( stock_0 );
 				}
-				window.stock = data;
+                
+             	window.stock = data;
+             	
 			});
 		}else{
 			stock_cont.html(missing);
@@ -51,6 +61,8 @@ $(document).ready(function() {
 				title: '',
 				message: 'Por favor seleccione un color y un talle'
 			});
+		}else{
+
 		}
 
 		if ( !window.stock || window.stock == 0 ) {
