@@ -307,6 +307,7 @@ html, body {
 #particular-modal,
 #mayorista-modal {
 	font-size: 13px;
+	position: absolute;
 }
 
 #particular-modal .form-control,
