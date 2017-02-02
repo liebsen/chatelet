@@ -308,6 +308,7 @@ html, body {
 #mayorista-modal {
 	font-size: 13px;
 	position: absolute;
+	overflow: visible;
 }
 
 #particular-modal .form-control,
