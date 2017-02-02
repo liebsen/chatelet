@@ -21,7 +21,7 @@ class SQLComponent extends Component {
 	}
 	public function product_price_by_list($article,$list_code,$list_code_desc)
 	{
-		
+		$precio = array();
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
 		$stmt->execute();
         
@@ -29,8 +29,11 @@ class SQLComponent extends Component {
 			if( !empty( $row['codigo'] ) && strpos($row['codigo'], '.0000') && !empty($row['precio1']) ){
             	$precio['precio'] = $row['precio1'];
                 $precio['discount'] = $row['precio2'];
-			}
+			} 
+			    
+
 				return $precio;
+
 		}
 		return false;
 	}
