@@ -110,14 +110,14 @@
                       <span style="color:#F50081;"> Stock:</span> <span id="stock_container"><i> (Seleccione un color y talle) </i></span>
                     </p>
 
-                    <div class="footer-producto">
+                    <div class="footer-producto" d>
                         <?php if($loggedIn){ ?>
 
-                            <a href="#" id="agregar-carro"  name="carro" class="add" >Agregar a mi carro</a>
+                            <a href="#" id="agregar-carro" class="add" >Agregar a mi carro</a>
 
                         <?php }else{ echo $this->Form->end(); ?>
 
-                            <a href="#" id="register" data-toggle="modal" name="carro" class="add" data-target="#particular-login">
+                            <a href="#" id="register" data-toggle="modal" class="add" data-target="#particular-login">
                             Agregar a mi carro</a>
                             
                         <?php }  ?>

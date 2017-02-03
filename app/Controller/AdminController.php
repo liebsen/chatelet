@@ -52,10 +52,12 @@ class AdminController extends AppController {
 	public function test(){
 		$this->autoRender = false;
 
-		$details = $this->SQL->product_price_by_list('V7000','180','05');
+		//$details = $this->SQL->product_price_by_list('V7000','180','05');
 		//$details = $this->SQL->product_details( 'V7000' ,'05' );
 		//$details = $this->SQL->productsByLisCod('V7000','05');
 		//$details =   $this->SQL->product_name_by_article('V7000');
+	//EXAMPLE: I5005/03/02/173
+		$details =   $this->SQL->product_stock('v7269','44','02','179');
 		
 		pr($details);
 	}
