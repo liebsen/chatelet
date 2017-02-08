@@ -86,7 +86,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 	position: relative;
 }
 #opts .box-imgs:first-child a {
-    background: url(../images/box11.png) no-repeat center 60px;
+ /*   background: url(../images/box11.png) no-repeat center 60px;*/
     transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -ms-transition: all .3s ease-in-out;
