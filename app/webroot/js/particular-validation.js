@@ -44,63 +44,63 @@ $(document).ready(function() {
             'data[User][birthday]': {
                 validators: {
                     notEmpty: {
-                        message: 'El campo apellido es requerido y no puede estar vacio'
+                        message: 'El campo cumpleaños es requerido y no puede estar vacio'
                     }
                 }
             },
-            'data[User][gender]': {
+            /*'data[User][gender]': {
                 validators: {
                     notEmpty: {
-                        message: 'El campo apellido es requerido y no puede estar vacio'
+                        message: 'El campo genero es requerido y no puede estar vacio'
                     }
                 }
-            },
+            },*/
             'data[User][dni]': {
                 validators: {
                     notEmpty: {
-                        message: 'El campo apellido es requerido y no puede estar vacio'
+                        message: 'El campo dni es requerido y no puede estar vacio'
                     }
                 }
             },
             'data[User][telephone]': {
                 validators: {
                     notEmpty: {
-                        message: 'El campo apellido es requerido y no puede estar vacio'
+                        message: 'El campo telefono es requerido y no puede estar vacio'
                     }
                 }
             },
             'data[User][address]': {
                 validators: {
                     notEmpty: {
-                        message: 'El campo apellido es requerido y no puede estar vacio'
+                        message: 'El campo direccion es requerido y no puede estar vacio'
                     }
                 }
             },
             'data[User][province]': {
                 validators: {
                     notEmpty: {
-                        message: 'El campo apellido es requerido y no puede estar vacio'
+                        message: 'El campo provincia es requerido y no puede estar vacio'
                     }
                 }
             },
             'data[User][city]': {
                 validators: {
                     notEmpty: {
-                        message: 'El campo apellido es requerido y no puede estar vacio'
+                        message: 'El campo ciudad es requerido y no puede estar vacio'
                     }
                 }
             },
             'data[User][neighborhood]': {
                 validators: {
                     notEmpty: {
-                        message: 'El campo apellido es requerido y no puede estar vacio'
+                        message: 'El campo barrio es requerido y no puede estar vacio'
                     }
                 }
             },
             'data[User][postal_address]': {
                 validators: {
                     notEmpty: {
-                        message: 'El campo apellido es requerido y no puede estar vacio'
+                        message: 'El campo codigo postal es requerido y no puede estar vacio'
                     }
                 }
             }

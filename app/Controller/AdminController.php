@@ -978,4 +978,34 @@ public function promos(){
 	    		break;
 	    }
 	}
+   
+
+    public function subscriptions($action = null) {
+		$navs = array(
+			'Lista' => array(
+				'icon' 		=> 'gi gi-list',
+				'url'		=> Configure::read('mUrl').'/admin/subscription',
+				'active'	=> 'Newsletter'
+			)
+		);
+		$this->set('navs', $navs);
+        
+		$h1 = array(
+			'name' => 'Newsletter',
+			'icon' => 'gi gi-list'
+			);
+		$this->set('h1', $h1);
+
+		$this->loadModel('Subscription');
+    	if ($action == 'delete' && $this->request->is('post')) {
+    		$this->autoRender = false;
+    		$this->Subscription->delete($this->request->data['id']);        
+    	}
+
+	    $subscriptions = $this->Subscription->find('all',array('order'=>array( 'Subscription.id DESC' )));
+	    $this->set('subscriptions', $subscriptions);
+		return $this->render('subscriptions');
+	}
+
+
 }

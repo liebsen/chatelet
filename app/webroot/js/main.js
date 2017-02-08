@@ -1,4 +1,4 @@
-//new WOW().init();
+new WOW().init();
 
 $(function () {
 
@@ -21,6 +21,6 @@ $(function () {
     })
 
     setTimeout(function () {
-        //$('#myModal').modal({ show: true })
+        $('#myModal').modal({ show: true })
     }, 3000)
 })
