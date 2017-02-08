@@ -33,12 +33,13 @@ $(document).ready(function() {
 				if(data != 0){
 				    //stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
 					stock_cont.html(stock);
+					$(test).find('a').show();
 				}else{
 					stock_cont.html( stock_0 );
 				}
 
         
-                $(test).find('a').show();
+                
              	window.stock = data;
              	
 			});
