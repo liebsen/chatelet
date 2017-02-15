@@ -78,7 +78,7 @@
 								?>
 							</div>
 						
-							<label for="nacimiento">Fecha de Nacimiento</label>
+							<label for="nacimiento">Fecha de Nacimiento (dd/mm/aaaa) </label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" class="datepicker form-control" name="data[User][birthday]" value="'. 
