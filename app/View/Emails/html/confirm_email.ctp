@@ -13,18 +13,17 @@
 		                    <?php echo strtoupper($data['name']); ?>, 
 		                    <br /><br />
 		                    Su nueva contraseña es :
+                            <br />
+                            <?php echo $data['password'] ; ?> 
                             <br /><br />
                             <br /><br />
-                            PASSWORD : <?php echo $data['password'] ; ?> 
-                            <br /><br /><br/>
                             Le recordamos que editando su usuario, puede cambiar la contraseña.
-		                    <br/><br/><br/>
-		                    CHATELET
-		                    <br/><br/><br/>
+		                    <br/><br/>
+		                </td>
+		                  <br/><br/><br/>
 		                    &copy; <?php echo date('Y',time()); ?> Copyright Chatelet;
 		                    <p>All rights reserved.</p>
-                            <br/><br/><br/>
-		                </td>
+                          <br/><br/><br/>
 		            </tr>
 		        </table>
 		    </td>
