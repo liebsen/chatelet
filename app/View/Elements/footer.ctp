@@ -1,5 +1,5 @@
 <?php echo $this->Html->css('font-awesome', array('inline' => false)); ?>
-    <footer>
+    <footer>  
             <div class="wrapper">
                 <div class="col-md-3 col-sm-6">
                     <h3>Shop online</h3>
@@ -24,9 +24,9 @@
 
                 <div class="col-md-3 col-sm-6">
                     <h3>LookBook</h3>
-                    <ul>
+                    <ul>  
                        <li>
-                         <?php echo $this->Html->link('Primavera/Verano 2017', 
+                         <?php echo $this->Html->link($catalog_first_line, 
                          array('controller' => 'catalogo', 'action' => 'index')); ?>
                        </li>
                        

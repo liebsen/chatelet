@@ -14,7 +14,7 @@
   <div id="video">
             <div class="col-md-6">
                 <h1>Lookbook</h1>
-                <p>Primavera / Verano<br>2017</p>
+                <p><?php echo $catalog_first_line; ?><br><?php echo $catalog_second_line; ?></p>
             </div>
             <div class="col-md-6">
                 <div class="embed-responsive embed-responsive-16by9">
