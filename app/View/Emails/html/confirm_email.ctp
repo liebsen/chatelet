@@ -6,7 +6,7 @@
 		        <table id="welcome" cellpadding="0" cellspacing="0" align="center">
 		            <tr width="600" height="100" style="font-weight:bold;text-align:center;color:black;font-size: 15px;" bgcolor="f9fbfa"> 
 		                <td style="padding:15px"> 
-		                 <?php echo $this->html->image(Router::url('/',true)."images/sprite.png"); ?>
+		                 <?php echo $this->html->image(Router::url('/',true)."images/logo.jpg"); ?>
 		                </td>	
 		                <td style="padding:15px">
 		                    <br /><br /><br /> 	
