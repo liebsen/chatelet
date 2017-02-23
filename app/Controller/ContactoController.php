@@ -11,6 +11,13 @@ class ContactoController extends AppController {
         $lookbook = $this->LookBook->find('all');
 		$this->set('lookBook', $lookbook);
 
+
+    	
+    	$setting 			= $this->Setting->findById('catalog_first_line');
+		$catalog_first_line = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$this->set('catalog_first_line',$catalog_first_line);
+		unset($setting);
+
 	}
 	
 	public function index() {

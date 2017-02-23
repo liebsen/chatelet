@@ -13,6 +13,12 @@ class AyudaController extends AppController {
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
 
+	  	
+    	$setting 			= $this->Setting->findById('catalog_first_line');
+		$catalog_first_line = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$this->set('catalog_first_line',$catalog_first_line);
+		unset($setting);
+
 		$lookbook = $this->LookBook->find('all');
 		$this->set('lookBook', $lookbook);
 	}
