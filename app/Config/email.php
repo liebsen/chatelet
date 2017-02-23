@@ -2,16 +2,18 @@
 
 class EmailConfig {
 
-	public $custom = array(
-      'transport' => 'Smtp',
-      'host' => 'pro.turbo-smtp.com',
-      'port' => 25,
-      'username' => 'yair@infinixsoft.com',
-      'password' => 'RxxaH6yN',
-      'from' => 'noreply@chatelet.com.ar',
-      'emailFormat' => 'html',
-      'charset' => 'utf-8',
-      'headerCharset' => 'utf-8',
-      'template' => 'default'
-  );
+            public $default = array(
+                  'transport' => 'Smtp',
+                  'from' => array('developers@infinixsoft.com' => 'chatelet.com'),
+                  'host' => 'mail.infinixsoft.com',
+                  'port' => 25,
+                  'timeout' => 30,
+                  'username' => 'developers@infinixsoft.com',
+                  'password' => 'Infinix2015',
+                  'charset' => 'utf-8',
+                  'tls' => false,
+                  //'headerCharset' => 'utf-8',
+            );
 }
+
+

@@ -98,20 +98,32 @@ class AppController extends Controller {
         $this->set('image_menushop',$image_menushop);
     }
 
-    protected function sendMail($message = null,$subject = null,$email = null,$template = 'default'){
-        if(!$message || !$email || !$subject) return false;
+  
+      public function sendEmail($data, $subject, $template) {
+
+        //pr($data);die;
         
-        try {
-            $Email = new CakeEmail('custom');
-            $Email->template($template);
-            $Email->to($email);    
-            $Email->emailFormat('html');
-            $Email->subject($subject);    
-            $Email->send($message); 
-        } catch (Exception $e) {     
-            return false;
+        if (empty($data['receiver_email'])){
+            return true;
         }
+
+        $Email = new CakeEmail();
+        $Email->from(array(
+            'info@chatelet.com' => 'Chatelet'
+        ));
+        //pr($data);die;
+        $Email->to($data['receiver_email']);
+        $Email->subject($subject);
+        $Email->template($template, 'default');
+        $Email->emailFormat('html');
+        $Email->config('default');
+        $Email->viewVars(array(
+            'data' => $data
+        ));
+        $Email->send();
+        
     }
+
 
     protected function save_file($file) {
         if (empty($file['name'])) {

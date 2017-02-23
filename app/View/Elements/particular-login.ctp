@@ -16,7 +16,8 @@
                     <input type="email" id="login-email"  name="data[User][email]" placeholder="Email" />
                     <input type="password" id="login-password" name="data[User][password]" placeholder="Password" />
                     <input type="submit" id="login" value="Ingresar" />
-                    <a href="#" id="forgot-password">Olvide mi contraseña</a>
+                    <a href="#" id="forgot-password"     class="open-Modal" 
+                      data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvide mi contraseña</a>
 
                   <?php echo $this->Form->end(); ?>
           
