@@ -6,6 +6,7 @@
 		        <table id="welcome" cellpadding="0" cellspacing="0" align="center">
 		            <tr width="600" height="100" style="font-weight:bold;text-align:center;color:black;font-size: 15px;" bgcolor="f9fbfa"> 
 		                <td style="padding:15px"> 
+		                  <br /><br /><br /> 	
 		                 <?php echo $this->html->image(Router::url('/',true)."images/logo.jpg"); ?>
 		                   <br/><br/><br/>
 		                    &copy; <?php echo date('Y',time()); ?> Copyright Chatelet;
@@ -30,5 +31,3 @@
 	</table>
  </body>
 </html>
-
-
