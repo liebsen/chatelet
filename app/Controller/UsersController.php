@@ -1,4 +1,5 @@
 <?php
+App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 class UsersController extends AppController {
     public $uses = array('User','Category','LookBook');
     public $components = array("RequestHandler");
@@ -72,13 +73,16 @@ class UsersController extends AppController {
                             'conditions' => array('User.email' => $email_user)));
                
                 if(!empty($user_data)){   
-                $pass = substr($user_data['User']['password'], -6);
+                $pass1 = substr($user_data['User']['password'], -6);
+                $passwordHasher = new SimplePasswordHasher();
+                $pass = $passwordHasher->hash($pass1);
+
                 $this->User->save(array('id' => $user_data['User']['id'],'password' => $pass));
   
                         $email_data = array('id_user' => $user_data['User']['id'] ,
                                             'receiver_email' => $user_data['User']['email'],
                                             'name' =>  $user_data['User']['name'],
-                                            'password' => $pass);
+                                            'password' => $pass1);
                          
                         $this->sendEmail($email_data,'Recuperar contraseña Chatelet', 'confirm_email');
 
