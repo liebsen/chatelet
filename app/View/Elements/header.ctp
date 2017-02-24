@@ -107,14 +107,7 @@
                 </a>
             <?php } ?>
           </li><!-- /.Login -->
-          <?php 
-            if( $this->Session->check('Carro') && !empty($this->Session->read('Carro')) ){
-              $display_dropdown = 'open';
-            }else{
-              $display_dropdown = '';
-            }
-          ?>
-          <li class="dropdown <?php echo $display_dropdown ?>">
+          <li class="dropdown">
             <a href="#" class="dropdown-toggle shop" data-toggle="dropdown">        
             </a>
             <ul class="dropdown-menu">
