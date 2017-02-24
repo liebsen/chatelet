@@ -120,14 +120,12 @@ $(document).ready(function() {
                         message: 'Por favor verifica los datos introducidos e intenta de nuevo'
                     });
                     return false;
-                }
+                }else{
 
-                $.growl.notice({
-                    title: 'Usuario registrado',
-                    message: 'Ya puedes iniciar sesion con tu usuario y contraseña'
-                });
                 me[0].reset();
                 me.parents('#particular-modal').modal('hide');
+                location.reload();
+               }
             })
             .fail(function() {
                 $.growl.error({

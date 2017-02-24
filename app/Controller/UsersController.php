@@ -54,6 +54,12 @@ class UsersController extends AppController {
         }
 
         if ($this->User->save($this->request->data)) {
+            $this->Auth->login();     
+            $this->Session->setFlash(
+                    'Bienvenido a Chatelet', 
+                    'default', 
+                    array('class' => 'hidden notice')
+                );
             return json_encode(array('success' => true));
 
         } else {
