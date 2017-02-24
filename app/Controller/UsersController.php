@@ -76,7 +76,7 @@ class UsersController extends AppController {
                 $pass1 = substr($user_data['User']['password'], -6);
                 $passwordHasher = new SimplePasswordHasher();
                 $pass = $passwordHasher->hash($pass1);
-
+                                                                                                        
                 $this->User->save(array('id' => $user_data['User']['id'],'password' => $pass));
   
                         $email_data = array('id_user' => $user_data['User']['id'] ,

@@ -717,7 +717,7 @@ public function promos(){
 	    		break;
 	    }
 
-	    $prods = $this->Product->find('all');
+	    $prods = $this->Product->find('all',array('order'=>array( 'Product.id DESC' )));
 		$this->set('prods', $prods);
 	    $this->render('productos');
 	}

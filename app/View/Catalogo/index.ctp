@@ -65,6 +65,8 @@
                   </div>
              </div>
            </div>
+           
+           <?php if(!empty($product)){ ?>   
            <div class="col-md-7">
             <h3>Elegí tu look para vivir tu momento.</h3> 
               <ul> 
@@ -153,7 +155,8 @@
                   <?php endforeach ?>
               </ul>
            </div>
-       </section>
+           <?php } ?>
+      </section>
 
 
 
