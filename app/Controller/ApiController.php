@@ -23,7 +23,7 @@ class ApiController extends AppController {
 	}
 
 
-	//get , http://development.infinixsoft.com/chatelet-web/api/subscriptions
+	//get , http://www.chatelet.com.ar/api/subscriptions
     public function subscriptions(){
           
     $this->loadModel('Subscriptions'); 
