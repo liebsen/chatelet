@@ -110,7 +110,7 @@
                       <span style="color:#F50081;"> Stock:</span> <span id="stock_container"><i> (Seleccione un color y talle) </i></span>
                     </p>
 
-                    <div class="footer-producto" d>
+                    <div class="footer-producto" >
                         <?php if($loggedIn){ ?>
 
                             <a href="#" id="agregar-carro" class="add" >Agregar a mi carro</a>
