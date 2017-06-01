@@ -57,15 +57,13 @@
 
         
         <section id="today">   
-            
-                <?php if(!empty($home['category_mod_one'])){
+            <?php if(!empty($home['category_mod_one'])){
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_one'])).'>';
                 }else{
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                 } 
                 echo '<div class="rectangle" img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>'.'</a>';
             ?>  
-            
         </section>
          
 
@@ -73,13 +71,13 @@
             <div class="col-md-6 box-imgs no-padding" >
                                                
              <span class="bag">
-            <?php if(!empty($home['category_mod_two'])){
-                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
-                }else{
-                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
-                } 
-                echo '<img src="http://www.chatelet.com.ar/images/box11.png"></span>'.$home['module_two'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_two.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
-            ?> 
+                <?php if(!empty($home['category_mod_two'])){
+                    echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
+                    }else{
+                    echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                    } 
+                    echo '<img src="http://www.chatelet.com.ar/images/box11.png"></span>'.$home['module_two'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_two.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
+                ?> 
               
             </div>
 
@@ -98,31 +96,20 @@
 
        
 
-        <section id="location">
-            <div class="col-md-4"></div>
-            <div class="col-md-8">  
-                <h3>Venta por mayor y menor</h3>
-                
-                <div class="w3-content w3-section" style="max-width:500px">
- 
-                 <?php if(!empty($stores)){
-                    foreach($stores as $store) {
-             
-                    $store = $store['Store'];
-                           echo '<div class="mySlides w3-animate-fading" >';
-                        echo '<h4>'. $store['name'] .'</h4>';
-                            echo '<ul>';      
-                                echo '<li> '. $store['address'] .'</li>';
-                                echo '<li> Tel. '. $store['phone'].'</li>';
-                            echo '</ul>';
-                    echo '</div>';
-                }}?> 
-                 </div>
-
-            </div>
+        <section id="today">   
+            <?php if(!empty($home['category_mod_one'])){
+                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_one'])).'>';
+                }else{
+                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                } 
+                echo '<div class="rectangle" img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>'.'</a>';
+            ?>  
         </section>
 
-       <section id="suscribe">
+
+
+
+        <section id="suscribe">
             <div class="wrapper">
                 <div class="col-md-6">Suscribite y conocé las <strong>novedades</strong></div>
                 <div class="col-md-6">
@@ -134,7 +121,8 @@
             </div>
         </section>
     
-         <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
+        
+        <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
             <div class="content">
                 <a class="close" data-dismiss="modal">
                     <span></span>
