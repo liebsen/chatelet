@@ -25,14 +25,17 @@
 				</thead>
 				<tbody>
 					<?php
+					    $row = 0 ; 
 						$total = 0;
+
 						if (!isset($carro)) $carro = array();
 						foreach ($carro as $product) { 
 
 							 if($product['discount']!= ""){ 
                                 $product['price'] = $product['discount'];
                              }
-
+                            $row += 1;
+                            //pr($row);
 							$total += $product['price'];
 							if (!isset($product['color'])) $product['color'] = '';
 							if (!isset($product['size'])) $product['size'] = '';
@@ -51,7 +54,7 @@
 										array(
 											'controller' => 'carrito', 
 											'action' => 'remove',
-											$product['id']
+											$row 
 										),
 										array ('class' => 'trash', 'escape' => false)
 									);

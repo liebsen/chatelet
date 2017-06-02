@@ -289,17 +289,29 @@ class CarritoController extends AppController {
 				$product['color'] = $this->request->data['color'];
 				$product['size'] = $this->request->data['size'];
 				$product['alias'] = $this->request->data['alias'];
-				$this->Session->write('Carro.'. $product['id'], $product);
+
+
+				$carro = $this->Session->read('Carro');
+				$carro[] = $product;
+				$this->Session->write('Carro', $carro);
+
+			//	$this->Session->write('Carro.'. $product['id'], $product);
 				return json_encode(array('success' => true));
 			}
 		}
 		return json_encode(array('success' => false));
 	}
+    
+  
 
-	public function remove($product_id = null) {
+	public function remove($row = null) {
 		$this->autoRender = false;
-		if (isset($product_id) && $this->Session->check('Carro.'. $product_id)) {
+		
+		/*if (isset($product_id) && $this->Session->check('Carro.'. $product_id)) {
 			$this->Session->delete('Carro.'. $product_id);
+		}*/ //pr($row);die;
+		if (isset($row) && $this->Session->check('Carro.'. $row)) {
+			$this->Session->delete('Carro.'. $row);
 		}
 		return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 	}

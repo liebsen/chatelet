@@ -118,16 +118,18 @@
                     <?php
                       $total = 0;
                       if (!isset($carro)) $carro = array();
-                      foreach($carro as $producto) {
-                        if($producto['discount']!= ""){ 
-                          $producto['price'] = $producto['discount'];
-                        }
+                      foreach($carro as $producto) { 
                         
-                        $total += $producto['price'];
-                        echo '<li>';
-                          echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. $this->Number->currency($producto['price'], 'USD', array('places' => 0)) . '</strong>';
-                        echo '</li>';
-                      }
+                          if($producto['discount']!= ""){ 
+                            $producto['price'] = $producto['discount'];
+                          }
+                          
+                          $total += $producto['price'];
+                          echo '<li>';
+                            echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. $this->Number->currency($producto['price'], 'USD', array('places' => 0)) . '</strong>';
+                          echo '</li>';
+                        }
+                      
                     ?>
                   </ol>
                   <p>
