@@ -14,6 +14,7 @@
     $img_url_two = str_replace(';', '', $home['img_url_two']); 
     
     $img_url_three = str_replace(';', '', $home['img_url_three']); 
+    $img_url_four = str_replace(';', '', $home['img_url_four']); 
    
 ?>
 
@@ -65,8 +66,21 @@
                 echo '<div class="rectangle" img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>'.'</a>';
             ?>  
         </section>
-         
-
+    <?php if(!empty($home['url_mod_four']) && !empty($home['img_url_four'])):?>
+        <section id="today">   
+            <?php if(!empty($home['category_mod_four'])){
+                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_four'])).'>';
+            }else{
+                if(!empty($home['url_mod_four'])){
+                    echo '<a href='.$home['url_mod_four'].'>' ;
+                } else {
+                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                }
+            } 
+                echo '<div class="rectangle" img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_four.');">'.'<h1>'.$home['module_four'].'</h1>'.'</div>'.'</a>';
+            ?>  
+        </section>
+    <?php endif;?>
         <section id="opts">
             <div class="col-md-6 box-imgs no-padding" >
                                                
