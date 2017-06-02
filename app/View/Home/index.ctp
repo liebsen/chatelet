@@ -66,19 +66,19 @@
                 echo '<div class="rectangle" img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>'.'</a>';
             ?>  
         </section>
-    <?php if(!empty($home['url_mod_four']) && !empty($home['img_url_four'])):?>
-        <section id="today">   
-            <?php if(!empty($home['category_mod_four'])){
-                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_four'])).'>';
-            }else{
-                if(!empty($home['url_mod_four'])){
-                    echo '<a href='.$home['url_mod_four'].'>' ;
-                } else {
-                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
-                }
-            } 
-                echo '<div class="rectangle" img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_four.');">'.'<h1>'.$home['module_four'].'</h1>'.'</div>'.'</a>';
-            ?>  
+    <?php if(!empty($home['img_url_four']) && (!empty($home['url_mod_four']) || !empty($home['category_mod_four']))):?>
+        <section id="today">
+        <?php if(!empty($home['category_mod_four'])){
+            echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_four'])).'>';
+        }else{
+            if(!empty($home['url_mod_four'])){
+                echo '<a href='.$home['url_mod_four'].'>' ;
+            } else {
+            echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+            }
+        } 
+            echo '<div class="rectangle" img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_four.');">'.'<h1>'.$home['module_four'].'</h1>'.'</div>'.'</a>';
+        ?>  
         </section>
     <?php endif;?>
         <section id="opts">
