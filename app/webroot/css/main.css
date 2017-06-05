@@ -189,7 +189,7 @@ body.login .form-group {
 */
 
 body {
-    /*background: #393939 url('../img/template/bg.png') top left repeat;*/
+    background: #393939; /*url('../img/template/bg.png') top left repeat;*/
     color: #333;
     line-height: 1.6;
     font-size: 13px;
