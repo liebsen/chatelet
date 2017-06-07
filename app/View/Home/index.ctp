@@ -68,16 +68,13 @@
         </section>
         <section id="opts">
             <div class="col-md-6 box-imgs no-padding" >
-                                               
-             <span class="bag">
                 <?php if(!empty($home['category_mod_two'])){
                     echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
                     }else{
                     echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                     } 
                     echo $home['module_two'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_two.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
-                ?> 
-              
+                ?>
             </div>
 
             <div class="col-md-6 box-imgs no-padding">
