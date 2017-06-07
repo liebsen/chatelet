@@ -148,7 +148,7 @@
 
 <script>
 var myIndex = 0;
-carousel();
+//carousel();
 
 function carousel() {
     var i;
