@@ -75,7 +75,6 @@
                     }else{
                     echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                     } 
-                    echo '<img src="http://www.chatelet.com.ar/images/box11.png"></span>'.$home['module_two'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_two.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
                 ?> 
               
             </div>
