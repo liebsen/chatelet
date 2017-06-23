@@ -1,0 +1,10 @@
+--2/6/2017
+
+ALTER TABLE `chatelet_new`.`homes` 
+ADD COLUMN `module_four` VARCHAR(255) NULL DEFAULT NULL AFTER `module_three`,
+ADD COLUMN `category_mod_four` INT(11) NULL DEFAULT NULL AFTER `category_mod_three`,
+ADD COLUMN `img_url_four` VARCHAR(255) NULL DEFAULT NULL AFTER `img_url_three`;
+
+
+ALTER TABLE `chatelet_new`.`homes` 
+ADD COLUMN `url_mod_four` VARCHAR(255) NULL DEFAULT NULL AFTER `img_url_four`;

@@ -274,7 +274,15 @@ if (!empty($this->request->query['test'])){
 
 		if ($this->request->is('post')) {
 	        $data = $this->request->data;
-			$this->Home->save($data);
+	    	if(empty($data['url_mod_four'])) {
+	    		$data['url_mod_four']=null;
+	    	}
+	    	if ($data['category_mod_four'] == 'url') {
+	    		$data['category_mod_four'] = null;
+	    	} else {
+	    		$data['url_mod_four'] = null;
+	    	}
+	    	$this->Home->save($data);
 		}
         
 		$p = $this->Home->find('first');

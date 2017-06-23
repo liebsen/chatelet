@@ -42,7 +42,7 @@
                                 $link_class = '';
                             //   pr($link);die;
                                 // Get link's vital info
-                                $url = (isset($link['url']) && $link['url']) ? $link['url'] : '#';
+                                $url = (isset($link['url']) && $link['url']) ? Router::url("/", true).$link['url'] : '#';
                                 $active = (isset($link['url']) && ($template['active_page'] == $link['url'])) ? ' active' : '';
                                 $icon = (isset($link['icon']) && $link['icon']) ? '<i class="' . $link['icon'] . '"></i>' : '';
 

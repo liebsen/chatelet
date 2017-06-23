@@ -369,4 +369,104 @@ $(function(){
   
 	drawImagesThree( $("[name='data[img_url_three]']").val().split(';') );
 
+/*Images Module Cuatro*/
+	$("#category_mod_four").on('change', function(event){
+		var option = $( "#category_mod_four option:selected" );
+		$("#category_mod_four option:selected").each(function(){
+			if($(this).val()=='url'){
+				$("#txturlfour").removeClass('hidden');
+			} else {
+				$("#txturlfour").addClass('hidden');
+			}
+		});
+		
+	});
+
+	var drawImagesFour = function(images_four){
+		var base_url 	= $("#image_thumb_four").data('url');
+		var ul 			= $('#images_four');
+
+		ul.empty();
+		$.each(images_four,function(index,image_four){
+			if(image_four){ 
+				var source   	= $("#image_thumb_four").html();
+				var template 	= Handlebars.compile(source);
+				var context 	= {image_four: base_url+image_four , file_four: image_four }
+				var html    	= template(context);
+
+				ul.append(html);
+			}
+		});
+	}
+
+	$(document).on('click','.delete_image_four',function(event){
+		event.preventDefault();
+		var me 		= $(this);
+		var input 	= $(me.data('input'));
+		var images_four 	= input.val().split(';');
+		var file_four	= me.data('file');
+		images_four	= $.grep(images_four,function(n){ return(n) }); // Clean Empty Values
+		images_four.remove(file_four);
+		input.val( images_four.join(';') );
+		$(this).closest('span').remove();
+	});
+
+	//File Uploads
+	$('#upload_four').change(function() {
+		var fd 		= new FormData();
+		var me 		= $(this);
+		var url 	= me.data('url');
+		var counter_four = $(me.data('count'));
+		var input 	= $(me.data('input'));
+		
+		var valid_types = {
+			'image/jpeg': true,
+			'image/jpg': true,
+		};
+		fd.append('data[file]', this.files[0]);
+
+		if (valid_types[this.files[0].type]) {
+			$.ajax({
+				url: url,
+				data: fd,
+				processData: false,
+				contentType: false,
+				type: 'POST',
+				xhr: function() {
+					var xhr = new window.XMLHttpRequest();
+				    //Upload progress
+				    xhr.upload.addEventListener("progress", function(evt){
+				    	if (evt.lengthComputable) {
+				    		counter_four.html( parseInt(evt.loaded / evt.total * 100) );
+					    }
+					}, false);
+				    return xhr;
+				}
+			})
+			.success(function(data) {
+				if(data == 'fail'){
+					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+					return false;
+				}
+                
+                var images_four 	= input.val();
+				images_four 		= images_four.split(';');
+
+				if(images_four.length > 3){
+					alert('Solo se permiten 3 imagenes por modulo');
+					return false;
+				}else{
+					images_four.push(data);
+				    input.val( images_four.join(';') );
+					drawImagesFour(images_four);
+				}
+
+		  	});
+			me.val('');
+		} else {
+			me.val('');
+			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+		}
+	});
+	drawImagesFour( $("[name='data[img_url_four]']").val().split(';') );
 });
