@@ -68,8 +68,6 @@ class AppController extends Controller {
     public function beforeFilter() {
         $this->Auth->allow();
         $this->set('loggedIn', $this->Auth->loggedIn());
-        $aux = $this->Auth->user();
-CakeLog::write('error', 'auth user ' . var_export($aux, true));
         $this->set('user', $this->Auth->user());
         $carro = $this->Session->read('Carro');
         $this->set('carro', $carro);
