@@ -49,7 +49,7 @@ class CarritoController extends AppController {
 		$this->set('provincias',$provincias);
 
 		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
-		$this->set('user',$user);
+		$this->set('userData',$user);
 	}
 
 	private function getItemsData(){
