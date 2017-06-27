@@ -26,7 +26,6 @@
               
             <?php foreach ($images as $key => $value): ?> 
                 <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
-                
                     <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
                         <img  src=<?php echo $value; ?>   img-responsive>
                     </a>
