@@ -25,21 +25,21 @@
              
               
             <?php foreach ($images as $key => $value): ?> 
-                  <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
+                <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
+                
+                    <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
+                        <img  src=<?php echo $value; ?>   img-responsive>
+                    </a>
 
-                 <img  src=<?php echo $value; ?>   img-responsive>
-                  
-                  <div class="carousel-caption">
-                    
-                    <h1> <?php echo $home['line_one']; ?></h1>
+                    <div class="carousel-caption">
+                        <h1> <?php echo $home['line_one']; ?></h1>
                        <?php if(!empty($home['line_two'])){
                         echo '<span>'.$home['line_two'].'</span>'; 
                         } ?>
                         <p><?php echo $home['line_three']; ?></p>
                        
-
-                    <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">Visitar</a>
-                  </div>
+                        <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">Visitar</a>
+                    </div>
                 </div>
             <?php endforeach ?>
             
