@@ -29,7 +29,7 @@
 
 			<div style="display:inline;">
 				<label class="" for="columns-text">Código de Lista Descuento:</label>
-				<input type="number" name="list_code_desc" value="<?php echo @$list_code_desc ?>" required style="width:60px;text-align:center"/>
+				<input type="number" name="list_code_desc" value="<?php echo @$list_code_desc ?>" style="width:60px;text-align:center"/>
 			</div>
 			&nbsp;
 			&nbsp;
