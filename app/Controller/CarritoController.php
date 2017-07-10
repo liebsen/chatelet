@@ -317,7 +317,7 @@ class CarritoController extends AppController {
 	}
 
 	private function notify_user($data){
-		$message = '<strong>'.ucfirst($data['user']['name']).' '.ucfirst($data['user']['surname']).'</strong>, gracias por tu compra!.<br/><br/>Tu numero de Pedido es: <strong>'.$data['sale_id'].'</strong>.<br /><br/> Proximamente se te enviaran los datos de envio de tu producto.<br/><br/><a href="www.chatelet.com.ar">www.chatelet.com.ar</a>';
+		$message = '<strong>'.ucfirst($data['user']['name']).' '.ucfirst($data['user']['surname']).'</strong>, gracias por tu compra!.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.<br /><br/> Proximamente se te enviaran los datos de envio de tu producto.<br/><br/><a href="www.chatelet.com.ar">www.chatelet.com.ar</a>';
 
 		$this->sendMail($message,'Compra Realizada en Chatelet',$data['user']['email']);
 	}
