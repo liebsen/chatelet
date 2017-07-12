@@ -25,17 +25,13 @@
 				</thead>
 				<tbody>
 					<?php
-					    $row = 0 ; 
+					    $row = 0;
 						$total = 0;
-
 						if (!isset($carro)) $carro = array();
-						foreach ($carro as $product) { 
-
-							 if($product['discount']!= ""){ 
+						foreach ($carro as $product) {
+							if ($product['discount']!= "") {
                                 $product['price'] = $product['discount'];
-                             }
-                            $row += 1;
-                            //pr($row);
+                            }
 							$total += $product['price'];
 							if (!isset($product['color'])) $product['color'] = '';
 							if (!isset($product['size'])) $product['size'] = '';
@@ -63,6 +59,7 @@
 									echo '<span class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 0)) .'</span>';
 								echo '</td>';
 							echo '</tr>';
+							$row += 1;
 						}
 					?>
 				</tbody>

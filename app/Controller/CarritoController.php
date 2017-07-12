@@ -1,36 +1,35 @@
 <?php
 require_once(APP . 'Vendor' . DS . 'oca.php');
-class CarritoController extends AppController {
+class CarritoController extends AppController
+{
 	public $uses = array('Product', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook');
 	public $components = array("RequestHandler");
 	
-	public function beforeFilter() {
+	public function beforeFilter()
+	{
     	parent::beforeFilter();
-
     	$this->loadModel('Setting');
     	$categories = $this->Category->find('all');
-		$this->set('categories', $categories);  	
-		$setting 			 = $this->Setting->findById('catalog_flap');
+		$this->set('categories', $categories);
+		$setting = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
-        
         $this->loadModel('Setting');
-    	
-    	$setting 			= $this->Setting->findById('catalog_first_line');
+    	$setting = $this->Setting->findById('catalog_first_line');
 		$catalog_first_line = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_first_line',$catalog_first_line);
 		unset($setting);
-		
 		$lookbook = $this->LookBook->find('all');
 		$this->set('lookBook', $lookbook);
 	}
 
-	public function index() {
-;
+	public function index()
+	{
 	}
 
-	public function getLocalidadProvincia($id){
+	public function getLocalidadProvincia($id)
+	{
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 
@@ -43,7 +42,8 @@ class CarritoController extends AppController {
 		return json_encode($response);
 	}
 
-	public function checkout() {
+	public function checkout()
+	{
 		$oca = new Oca();
 		$provincias = $oca->getProvincias();
 		$this->set('provincias',$provincias);
@@ -52,7 +52,8 @@ class CarritoController extends AppController {
 		$this->set('userData',$user);
 	}
 
-	private function getItemsData(){
+	private function getItemsData()
+	{
 		$data = array('count' => 0, 'price' => 0);
 		$items = $this->Session->read('Carro');
 		foreach ($items as $key => $item) {
@@ -67,7 +68,7 @@ class CarritoController extends AppController {
 			return $data;
 		}
 		return false;
-	}	
+	}
 
 	private function checkCP($cp){
 		$oca = new Oca();
