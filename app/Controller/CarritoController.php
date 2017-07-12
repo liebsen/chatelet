@@ -34,7 +34,7 @@ class CarritoController extends AppController
 		$this->autoRender = false;
 
 		$response = array();
-		if($id){
+		if ($id) {
 			$oca = new Oca();
 			$response = $oca->getLocalidadesByProvincia($id);
 		}
@@ -310,10 +310,18 @@ class CarritoController extends AppController
 		
 		/*if (isset($product_id) && $this->Session->check('Carro.'. $product_id)) {
 			$this->Session->delete('Carro.'. $product_id);
-		}*/ //pr($row);die;
+		}*/
 		if (isset($row) && $this->Session->check('Carro.'. $row)) {
 			$this->Session->delete('Carro.'. $row);
 		}
+		$carro = $this->Session->read('Carro');
+		$aux = array();
+		$i = 0;
+		foreach ($carro as $key => $value) {
+			$aux[$i] = $value;
+			$i++;
+		}
+		$this->Session->write('Carro', $aux);
 		return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 	}
 
