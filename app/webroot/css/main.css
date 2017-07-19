@@ -3479,7 +3479,6 @@ a.thumbnail-borderless,
         height: 0 !important;
         overflow-y: hidden !important;
     }
-
     #page-sidebar.navbar-collapse.collapse.in {
         display: block !important;
         height: auto !important;
