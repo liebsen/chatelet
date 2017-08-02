@@ -157,7 +157,62 @@
            </div>
            <?php } ?>
       </section>
+<div class="modal fade" tabindex="-1" id="myModal2" role="dialog">
+    <div class="content">
+        <a class="close" data-dismiss="modal">
+            <span></span>
+            <span></span>
+        </a>
 
+        <div class="table">
+            <h1>Tabla de conversión de talles</h1>
+            <p>Utilíza la tabla como guía.</p>
+
+            <table class="table">
+                <tr>
+                    <td>Talle</td>
+                    <td>42/07/S</td>
+                    <td>44/08/M</td>
+                    <td>46/09/L</td>
+                    <td>48/10/XL</td>
+                    <td>50/11/XXL</td>
+                    <td>52/12/XXL</td>
+                    <td>54/13/XXXL</td>
+                </tr>
+                <tr>
+                    <td>Busto</td>
+                    <td>92</td>
+                    <td>96</td>
+                    <td>100</td>
+                    <td>104</td>
+                    <td>108</td>
+                    <td>112</td>
+                    <td>116</td>
+                </tr>
+                <tr>
+                    <td>Cintura</td>
+                    <td>68</td>
+                    <td>72</td>
+                    <td>76</td>
+                    <td>80</td>
+                    <td>84</td>
+                    <td>88</td>
+                    <td>92</td>
+                </tr>
+                <tr>
+                    <td>Cadera</td>
+                    <td>96</td>
+                    <td>100</td>
+                    <td>104</td>
+                    <td>108</td>
+                    <td>112</td>
+                    <td>116</td>
+                    <td>120</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
 
 
 
