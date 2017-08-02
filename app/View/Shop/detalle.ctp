@@ -309,3 +309,6 @@ $(function(){
     })
 })
 </script>
+<form action="/chatelet-new/users/login" id="ProductLoginForm" method="post">
+
+              </form>

@@ -19,10 +19,12 @@ $(function () {
     $('#menuShop a.close').click(function () {
         $('#menuShop').fadeOut();
     })
-
-    setTimeout(function () {
-        $('#myModal').modal({ show: true })
-    }, 3000)
+    if(document.querySelector("#myModal")!=null){
+        setTimeout(function () {
+            $('#myModal').modal({ show: true })
+        }, 3000)
+    }
+    
 
     // Toggle Side content
     /*body.toggleClass('hide-side-content');*/

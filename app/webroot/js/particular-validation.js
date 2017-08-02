@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    var modal = $('#particular-modal');
-    var form = $('#particularForm');
+    //var modal = $('#particular-modal');
+    //var form = $('#particularForm');
 
-    $(modal).bootstrapValidator({
+    $('#particular-modal').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -107,7 +107,7 @@ $(document).ready(function() {
         }
     });
 
-    form.submit(function(e) {
+    $('#particularForm').submit(function(e) {
         var me = $(this),
             data = me.serialize(),
             url = me.attr('action');
@@ -136,5 +136,50 @@ $(document).ready(function() {
 
         e.preventDefault();
         return false;
+    });
+    
+    $("#login").on('click', function(event){
+        event.preventDefault();
+        if(document.querySelector("#ProductLoginForm")!=null){
+            $("#ProductLoginForm").submit();
+        }
+        if(document.querySelector("#HomeLoginForm")!=null){
+            $("#HomeLoginForm").submit();
+        }
+        if(document.querySelector("#CatalogLoginForm")!=null){
+            $("#CatalogLoginForm").submit();
+        }
+        if(document.querySelector("#StoreLoginForm")!=null){
+            $("#StoreLoginForm").submit();
+        }
+        if(document.querySelector("#ContactLoginForm")!=null){
+            $("#ContactLoginForm").submit();
+        }
+        if(document.querySelector("#CategoryLoginForm")!=null){
+            $("#CategoryLoginForm").submit();
+        }
+        if(document.querySelector("#ProductForgotPasswordForm")!=null){
+            $('#particular-password').bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    'data[User][email]': {
+                        validators: {
+                            notEmpty: {
+                                message: 'El campo email es requerido y no puede estar vacio'
+                            },
+                            emailAddress: {
+                                message: 'No se ingreso una direccion de email valida'
+                            }
+                        }
+                    }
+                }
+            });
+            $("#ProductForgotPasswordForm").submit();
+        }
     });
 });

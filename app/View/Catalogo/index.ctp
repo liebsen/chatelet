@@ -139,14 +139,14 @@
                                       ?>
                                   </select>
                                  <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a><h4></h4> 
-                            <?php if($loggedIn){ ?>
+                            <?php //if($loggedIn){ ?>
                              <p> <span style="color:#F50081;">Stock:</span> <span id="stock_container" ><i> (Seleccione un color y talle) </i></span></p>
                               <div class="footer-producto">
                                  <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar a mi carro</a>
                               </div>
-                            <?php }else{  echo $this->Form->end(); ?>
-                                   <a href="#" id="register" data-toggle="modal" class="add" data-target="#particular-login">Agregar a mi carro</a>
-                            <?php }  ?>
+                            <?php //}else{  echo $this->Form->end(); ?>
+                                   <!--a href="#" id="register" data-toggle="modal" class="add" data-target="#particular-login">Agregar a mi carro</a-->
+                            <?php //}  ?>
                              
                           </div>
                         </div>

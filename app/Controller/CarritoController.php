@@ -282,7 +282,7 @@ class CarritoController extends AppController
 	public function add() {
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');
-		if ($this->request->is('post')) {
+		if ($this->request->is('post') && isset($this->request->data['id'])) {
 			$product = $this->Product->findById($this->request->data['id']);
 			
 			if ($product) {

@@ -1,4 +1,11 @@
 
+<?php
+  echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
+  echo $this->Html->script('formValidation.min', array('inline' => false));
+  echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
+  echo $this->Html->script('bootstrapValidator', array('inline' => false)); 
+  echo $this->Html->script('particular-validation', array('inline' => false));
+?>
 <div class="modal fade" id="particular-login" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -9,18 +16,20 @@
 				</h3>
 			</div>
 			<div class="modal-body">
-				 <?php 
-                    echo $this->Form->create(null, array('url' => array('controller' => 'users', 'action' => 'login'))); 
+
+				 <?php echo $this->Form->create(null, array('url' => array('controller' => 'users', 'action' => 'login'))); 
                   ?>
+                  
                     <p class="title">Iniciar Sesion</p>
                     <input type="email" id="login-email"  name="data[User][email]" placeholder="Email" />
                     <input type="password" id="login-password" name="data[User][password]" placeholder="Password" />
-                    <input type="submit" id="login" value="Ingresar" />
+                    <input type="submit" id="login" form="" value="Ingresar" />
+                   
                     <a href="#" id="forgot-password"     class="open-Modal" 
                       data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvide mi contraseña</a>
 
                   <?php echo $this->Form->end(); ?>
-          
+ 
                   <p class="register-container">
                     <a href="#" id="register" class="open-Modal" 
                       data-toggle="modal" data-dismiss="modal"  data-target="#particular-modal">Registrarse</a>
@@ -29,7 +38,6 @@
 		</div>
 	</div>
 </div>
-	
 	
 <script type="text/javascript">
 
