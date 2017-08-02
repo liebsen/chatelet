@@ -362,3 +362,9 @@ html, body {
 a.pay{
 	color:#FFFFFF !important;
 }
+
+/*Rodolfo*/
+
+a.table:hover {
+	color: #f50081;
+}
