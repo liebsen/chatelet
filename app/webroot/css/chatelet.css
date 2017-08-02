@@ -368,3 +368,11 @@ a.pay{
 a.table:hover {
 	color: #f50081;
 }
+
+span.user {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 12px;
+    color: #e398c1;
+}

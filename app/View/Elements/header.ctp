@@ -59,8 +59,8 @@
           <li class="dropdown">
              <?php if ($loggedIn) { ?>
              <a href="#" class="dropdown-toggle user" data-toggle="dropdown" id="iniciar-sesion">
-              <span class="user"></span>
              </a>
+             <span class="user">Perfíl</span>
             <ul class="dropdown-menu">
                <li>
                  <div id="login-panel">
@@ -102,14 +102,14 @@
                 </li>
               </ul>
             <?php } else { ?>  
-                <a href="#" class="dropdown-toggle user" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion">
-                   <span class="user"></span>
-                </a>
+                <a href="#" class="dropdown-toggle user" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion"></a>
+                <span class="user">Perfíl</span>
             <?php } ?>
           </li><!-- /.Login -->
           <li class="dropdown">
             <a href="#" class="dropdown-toggle shop" data-toggle="dropdown">        
             </a>
+            <span class="user">Mi pedido</span>
             <ul class="dropdown-menu">
               <li>
                 <div>
