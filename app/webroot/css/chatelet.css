@@ -376,3 +376,12 @@ span.user {
     font-size: 12px;
     color: #e398c1;
 }
+.navbar-nav>li>a.user { 
+	display: inherit !important;
+	margin: 0;
+}
+
+.navbar-nav>li>a.shop { 
+	display: inherit !important;
+	margin: 0;
+}

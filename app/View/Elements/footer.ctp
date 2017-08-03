@@ -69,4 +69,4 @@
             </div>
         </footer>
 
-        
+        <?php echo $this->Html->script('plugins', array('inline'=>false))?>
