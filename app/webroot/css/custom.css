@@ -29,10 +29,28 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 .navbar-nav { margin-left: 80px; }
 .navbar-nav>li>a { color: #404040; font-size: 14px; margin: 0 15px; padding: 12px 0; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 .nav>li>a:focus, .nav>li>a:hover { background: none; color: #f50081; }
-.navbar-nav>li>a.user { background: url(../images/sprite.png) no-repeat 0 -38px; display: inline-block; height: 41px; padding: 0; width: 41px; }
-.navbar-nav>li>a.shop { background: url(../images/sprite.png) no-repeat -46px -38px; display: inline-block; height: 41px; padding: 0; width: 41px; }
-.navbar-nav>li>a .badge { background: #f50081; border-radius: 50%; line-height: 1; margin-left: -10px; margin-top: -10px; padding: 5px 8px; }
-
+.navbar-nav>li>a.user {
+    background: url(../images/sprite.png) no-repeat 8px -38px!important;
+    display: inline-block;
+    height: 50px;
+    padding: 0;
+    width: 54px;
+    font-size: 11px;
+    padding-top: 41px;
+    text-align: center;
+    color: #e398c1;
+}
+.navbar-nav>li>a.shop {
+    background: url(../images/sprite.png) no-repeat -41px -37px;
+    display: inline-block;
+    height: 50px;
+    padding: 0;
+    width: 54px;
+    font-size: 11px;
+    padding-top: 41px;
+    text-align: center;
+    color: #e398c1;
+}
 #menuShop {z-index: 12; background: #FFF; border-bottom: 2px solid #efb0d2; left: 0; display: none; padding: 40px 0; position: absolute; top: 85px; width: 100%; }
 #menuShop a.close { display: block; height: 25px; opacity: 1; position: absolute; right: 10px; top: 10px; width: 25px; }
 #menuShop a.close span { background: #f50081; display: block; height: 2px; margin-top: 12px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
@@ -63,7 +81,9 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 #today { /*background: url(../images/box1.jpg) no-repeat center top*/; background-size: cover; padding: 45px 0px; text-align: center; }
 #today .rectangle { /*border: 2px solid #f50081;*/ font-size: 40px; font-weight: 500;padding: 232px 0 65px;
     background-position: center center;
-    background-repeat: no-repeat;}
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 #today .rectangle h1 { color: #464444; font-size: 40px; line-height: 1.2; margin-bottom: 30px; }
 #today .rectangle h1 span { color: #f50081; }
 #today .rectangle p { color: #464444; font-size: 25px; }
@@ -655,3 +675,27 @@ span.out{
     padding: 15px 0;
 }    
 
+/**** PARA ICONO CARRO DE COMPRA ****/
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+span.count {
+position: absolute;
+    top: 17px;
+    left: 0;
+    right: 4px;
+    text-align: center;
+    font-size: 13px;
+    top: 17px;
+    color: #ffffff;
+    background-color: #e60088;
+    width: 18px;
+    height: 18px;
+    margin: 0 auto;
+    border-radius: 100%;
+    line-height: 17px;
+    font-weight: 500;
+}
