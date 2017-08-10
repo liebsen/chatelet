@@ -106,7 +106,7 @@
             <?php } ?>
           </li><!-- /.Login -->
           <li class="dropdown">
-            <span class="count">4</span>
+            <span class="count"><?=count($carro)?></span>
             <a href="#" class="dropdown-toggle shop js-activated" data-toggle="dropdown" data-hover="dropdown">Mi pedido</a>
             <ul class="dropdown-menu">
               <li>
