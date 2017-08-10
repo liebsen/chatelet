@@ -82,3 +82,10 @@
 	</div>
 	<div class="col-md-4"></div>
 </div>
+<?php if(!$loggedIn):?>
+<script>
+$(function(){
+$('#particular-login').modal('show');
+});
+</script>
+<?php endif;?>
