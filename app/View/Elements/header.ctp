@@ -101,8 +101,7 @@
                 </li>
               </ul>
             <?php } else { ?>  
-                <a href="#" class="dropdown-toggle user" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion"></a>
-                <span class="user">Perfíl</span>
+                <a href="#" class="dropdown-toggle user" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion">Perfíl</a>
             <?php } ?>
           </li><!-- /.Login -->
           <li class="dropdown">
