@@ -139,6 +139,8 @@
                               '<div class="right">'.
                                 '<a class="btn btn-xs btn-danger remove-item">Borrar</a>'.
                               '</div>'.
+                              '<input type="file" class="upload_color_image" id="ColorImage'.$alias.'" name="color_image" data-alias="'.$alias.'" data-url="'.Router::url('/api/uploadImageColor').'">'.
+                              '<ul id="ListUploaded'.$alias.'"></ul>'.
                             '</li>';
                       }
                     }

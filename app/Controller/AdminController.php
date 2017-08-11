@@ -1007,7 +1007,7 @@ public function promos(){
 		$this->loadModel('Subscription');
     	if ($action == 'delete' && $this->request->is('post')) {
     		$this->autoRender = false;
-    		$this->Subscription->delete($this->request->data['id']);        
+    		$this->Subscription->delete($this->request->data['id']);
     	}
 
 	    $subscriptions = $this->Subscription->find('all',array('order'=>array( 'Subscription.id DESC' )));
@@ -1015,5 +1015,31 @@ public function promos(){
 		return $this->render('subscriptions');
 	}
 
+	public function uploadImageColor()
+	{
+		$this->loadModel('ProductProperty');
+		$this->autoRender = false;
+		$response = null;
+		if(!empty($this->request->data['file']['name']) && !empty($this->request->data['alias']) && !empty($this->request->data['id'])){
+			$response = $this->save_file($this->request->data['file']);
+	//CakeLog::write('error', var_export($response, true));
+			$colorProduct = $this->ProductProperty->find('first', array('conditions'=>array('product_id'=>$this->request->data['id'], 'alias'=>$this->request->data['alias'])));
+			if (!empty($colorProduct)) {
+				$updateFieldImages = array();
+				$updateFieldImages['id'] = $colorProduct['ProductProperty']['id'];
+				$updateFieldImages['images'] = $response;
+				$this->ProductProperty->save($updateFieldImages, true);
+			}
+
+		} else {
+			die('fail');
+		}
+
+		if(empty($response)){
+			$response = 'fail';
+		}
+
+		die($response);
+	}
 
 }

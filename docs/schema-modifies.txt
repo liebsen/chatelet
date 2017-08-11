@@ -8,3 +8,10 @@ ADD COLUMN `img_url_four` VARCHAR(255) NULL DEFAULT NULL AFTER `img_url_three`;
 
 ALTER TABLE `chatelet_new`.`homes` 
 ADD COLUMN `url_mod_four` VARCHAR(255) NULL DEFAULT NULL AFTER `img_url_four`;
+
+
+
+--11/8/2017
+
+ALTER TABLE `chatelet_new`.`product_properties` 
+ADD COLUMN `images` TEXT NULL DEFAULT NULL AFTER `code`;
