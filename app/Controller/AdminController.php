@@ -1027,10 +1027,12 @@ public function promos(){
 			if (!empty($colorProduct)) {
 				$updateFieldImages = array();
 				$updateFieldImages['id'] = $colorProduct['ProductProperty']['id'];
+				if (!empty($colorProduct['ProductProperty']['images'])) {
+					$response = $colorProduct['ProductProperty']['images'].';'.$response;
+				}
 				$updateFieldImages['images'] = $response;
 				$this->ProductProperty->save($updateFieldImages, true);
 			}
-
 		} else {
 			die('fail');
 		}
@@ -1042,4 +1044,36 @@ public function promos(){
 		die($response);
 	}
 
+	public function deleteImageColor()
+	{
+		$this->loadModel('ProductProperty');
+		$this->autoRender = false;
+		$response = null;
+		if(!empty($this->request->data['image']) && !empty($this->request->data['id'])){
+			$productProperty = $this->ProductProperty->find('first', array('conditions'=>array('id'=>$this->request->data['id'])));
+			if (!empty($productProperty)) {
+				$imagesArr = explode(';', $productProperty['ProductProperty']['images']);
+				$newImgs = '';
+				foreach ($imagesArr as $key => $img) {
+					if ($img!=$this->request->data['image']) {
+						if (empty($newImgs)) {
+							$newImgs = $img;
+						} else {
+							$newImgs = $newImgs . ';'.$img;
+						}
+					}
+				}
+				$updateFieldImages = array();
+				$updateFieldImages['id'] = $productProperty['ProductProperty']['id'];
+				$updateFieldImages['images'] = $newImgs;
+				$this->ProductProperty->save($updateFieldImages, true);
+			}
+		} else {
+			die('fail');
+		}
+		if (empty($response)) {
+			$response = 'fail';
+		}
+		die($response);
+	}
 }

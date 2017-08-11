@@ -116,7 +116,11 @@
                       $variable = $prop['ProductProperty']['variable'];
                       $id = $prop['ProductProperty']['id'];
                       $product_id = $prop['ProductProperty']['product_id'];
-                      
+                      $imagesArr = (!empty($prop['ProductProperty']['images']))?explode(';',$prop['ProductProperty']['images']):array();
+                      $images = '';
+                      foreach($imagesArr as $img){
+                        $images = $images . '<img src="'.Configure::read('imageUrlBase').$img.'" width="100px"><a href="#" class="delete_image" data-alias="'.$alias.'" data-file="'.$img.'" data-url="'.Router::url('/admin/deleteImageColor').'" data-id="'.$prop['ProductProperty']['id'].'">X</a>';
+                      }
                       $options = '';
                       foreach($colors as &$color){
                         if($color['code'] == $prop['ProductProperty']['code'])
@@ -139,8 +143,10 @@
                               '<div class="right">'.
                                 '<a class="btn btn-xs btn-danger remove-item">Borrar</a>'.
                               '</div>'.
-                              '<input type="file" class="upload_color_image" id="ColorImage'.$alias.'" name="color_image" data-alias="'.$alias.'" data-url="'.Router::url('/api/uploadImageColor').'">'.
-                              '<ul id="ListUploaded'.$alias.'"></ul>'.
+                              ''.
+                              '<progress id="progress'.$alias.'"></progress>'.
+                              '<input type="file" class="upload_color_image" id="ColorImage'.$alias.'" name="color_image" data-alias="'.$alias.'" data-url="'.Router::url('/admin/uploadImageColor').'">'.
+                              '<ul id="ListUploaded'.$alias.'">'.$images.'</ul>'.
                             '</li>';
                       }
                     }
