@@ -138,7 +138,6 @@
                              '<input type="hidden" name="props['. $index .'][id]" value="'. $id .'" />'.
                              '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'" />'.
                              '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
-                             '<input type="hidden" id="ProductPropertyImages'.$alias.'" name="props['. $index .'][images]" value="'. $prop['ProductProperty']['images'] .'" />'.
                              '<select class="code_sel" name="props['. $index .'][code]">'.$options.'</select>'.
                              '<span class="alias_cont"><input type="text" class="variable" name="props['. $index .'][alias]" value="'.$alias.'" class="variable" required placeholder="AA, 02, etc..."/></span>'.
                               '<div class="right">'.

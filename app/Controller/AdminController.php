@@ -1024,7 +1024,6 @@ public function promos(){
 		$response = null;
 		if(!empty($this->request->data['file']['name']) && !empty($this->request->data['alias']) && !empty($this->request->data['id'])){
 			$response = $this->save_file($this->request->data['file']);
-	//CakeLog::write('error', var_export($response, true));
 			$colorProduct = $this->ProductProperty->find('first', array('conditions'=>array('product_id'=>$this->request->data['id'], 'alias'=>$this->request->data['alias'])));
 			$saved = array();
 			$updateFieldImages = array();
@@ -1033,6 +1032,9 @@ public function promos(){
 				$updateFieldImages['images'] = (!empty($colorProduct['ProductProperty']['images']))?$colorProduct['ProductProperty']['images'].';'.$response:$response;
 			} else {
 				$updateFieldImages['images'] = $response;
+				$updateFieldImages['alias'] = $this->request->data['alias'];
+				$updateFieldImages['product_id'] = $this->request->data['id'];
+				$updateFieldImages['type'] = 'color';
 			}
 			$saved = $this->ProductProperty->save($updateFieldImages, true);
 			$response = array('image'=>$response, 'ppId'=>$saved['ProductProperty']['id'], 'allImages'=>$updateFieldImages['images']);

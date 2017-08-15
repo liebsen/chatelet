@@ -1,6 +1,7 @@
 $(document).ready(function() {
+	var count = $('.list-group').find('li').length;
 	var addItem = function( me , list , type ){
-		var count = $('.list-group').find('li').length
+		
 			extrafields = '<input type="text" class="variable" name="props['+ count +'][variable]" required var />';
 
 		// Comment this if you are uncommenting the (search for) "block #21"
@@ -18,6 +19,7 @@ $(document).ready(function() {
 		var product_id = $('#product_id');
 		if (product_id.length !== 0) {
 			extrafields += '<input type="hidden" name="props['+ count +'][product_id]" value="'+ product_id.val() +'" />';
+			extrafields += '<input type="hidden" name="props['+ count +'][id]" value=""/>';
 		}
 
 		list.append(
@@ -27,9 +29,9 @@ $(document).ready(function() {
 	          '<div class="right">' +
 	            '<a class="btn btn-xs btn-danger remove-item">Borrar</a>' +
 	          '</div>' +
-	          '<input type="file" class="upload_color_image" name="color_image" data-alias="" data-ref="props['+ count +'][alias]" data-url="/admin/uploadImageColor">' +
+	          '<input type="file" class="upload_color_image" name="color_image" data-alias="" data-ref="props['+ count +'][alias]" data-count="'+count+'">' +
 	          '<progress id="progress" hidden></progress>' +
-              '<ul id="ListUploaded" class="list-inline"></ul>' +
+              '<ul id="ListUploaded" class="list-inline" data-ref="props['+ count +'][alias]" data-count="'+count+'"></ul>' +
 	        '</li>')
         );
 		$('.upload_color_image').on('change', changeHandler);
@@ -214,7 +216,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		var fd = new FormData();
 		var me = $(this);
-		var url	= me.data('url');
+		var url	= baseUrl+'admin/uploadImageColor';
 		var productId = $("#product_id").val();
 		//var counter = $(me).data('count');
 		//var input 	= $(me).data('input');		
@@ -259,8 +261,14 @@ $(document).ready(function() {
 					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
 				}
-				$("#ProductPropertyImages"+alias).val(data.allImages);
-				$("#ListUploaded"+alias).append("<li><img src="+base_url+data.image+" width='100px' data-alias='"+alias+"' data-file='"+data.image+"'><a href=\"#\" class=\"delete_image_color\" data-alias='"+alias+"' data-file='"+data.image+"' data-url='/admin/deleteImageColor' data-id='"+data.ppId+"'>X</a></li>");
+				//$("#ProductPropertyImages"+alias).val(data.allImages);
+				if(document.querySelector("#ListUploaded"+alias)!=null){
+					$("#ListUploaded"+alias).append("<li><img src="+base_url+data.image+" width='100px' data-alias='"+alias+"' data-file='"+data.image+"'><a href=\"#\" class=\"delete_image_color\" data-alias='"+alias+"' data-file='"+data.image+"' data-url='/admin/deleteImageColor' data-id='"+data.ppId+"'>X</a></li>");
+				} else {
+					var auxCount = me.data('count');
+					$("input[name='props["+ count +"][id]']").val(data.ppId);
+					$("ul[data-ref='"+ref+"']").append("<li><img src="+base_url+data.image+" width='100px' data-alias='"+alias+"' data-file='"+data.image+"'><a href=\"#\" class=\"delete_image_color\" data-alias='"+alias+"' data-file='"+data.image+"' data-url='/admin/deleteImageColor' data-id='"+data.ppId+"'>X</a></li>");
+				}
 		  	});
 			me.val('');
 		} else {
