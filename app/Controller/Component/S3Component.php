@@ -14,5 +14,5 @@ class S3Component extends Component {
     public function save($filepath, $name){
         $s3Client = $this->S3->upload('chatelet', $name, file_get_contents($filepath), 'public-read');
         return $name;
-    } 
+    }
 }

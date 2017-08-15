@@ -140,7 +140,9 @@ class AppController extends Controller {
         }
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $new_name = $randomString.'.'.$ext;
-        return $this->S3->save($tmp_name, $new_name);
- 
+        $uploadToS3 = $this->S3->save($tmp_name, $new_name);
+        //$aux = explode(';', $uploadToS3);
+        //$response = array_pop($aux);
+        return $uploadToS3;
     }
 }

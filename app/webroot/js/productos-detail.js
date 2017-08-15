@@ -27,9 +27,12 @@ $(document).ready(function() {
 	          '<div class="right">' +
 	            '<a class="btn btn-xs btn-danger remove-item">Borrar</a>' +
 	          '</div>' +
+	          '<input type="file" class="upload_color_image" name="color_image" data-alias="" data-ref="props['+ count +'][alias]" data-url="/admin/uploadImageColor">' +
+	          '<progress id="progress" hidden></progress>' +
+              '<ul id="ListUploaded" class="list-inline"></ul>' +
 	        '</li>')
         );
-
+		$('.upload_color_image').on('change', changeHandler);
         initPicker();
 	}
 
@@ -206,7 +209,8 @@ $(document).ready(function() {
 
 	initPicker();
 
-	$('.upload_color_image').on('change', function(event){
+	$('.upload_color_image').on('change', changeHandler);
+	var changeHandler = function(event){
 		event.preventDefault();
 		var fd = new FormData();
 		var me = $(this);
@@ -216,6 +220,14 @@ $(document).ready(function() {
 		//var input 	= $(me).data('input');		
 		var base_url = $("#image_thumb").data('url');
 		var alias = me.data('alias');
+		var ref = me.data('ref');
+		if(alias==""){
+			alias = $("input[name='"+ref+"']").val();
+		}
+		if(alias==""){
+			alert('Debe ingresar un alias');
+		}
+		$("#progress"+alias).show();
 		var valid_types = {
 			'image/jpeg': true,
 			'image/jpg': true,
@@ -242,20 +254,21 @@ $(document).ready(function() {
 				}
 			})
 			.success(function(data) {
+				$("#progress"+alias).hide();
 				if(data == 'fail'){
 					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
 				}
-				$("#ListUploaded"+alias).append("<img src="+base_url+data+" width='100px'>");
+				$("#ProductPropertyImages"+alias).val(data.allImages);
+				$("#ListUploaded"+alias).append("<li><img src="+base_url+data.image+" width='100px' data-alias='"+alias+"' data-file='"+data.image+"'><a href=\"#\" class=\"delete_image_color\" data-alias='"+alias+"' data-file='"+data.image+"' data-url='/admin/deleteImageColor' data-id='"+data.ppId+"'>X</a></li>");
 		  	});
 			me.val('');
 		} else {
 			me.val('');
 			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
-	});
-
-	$(document).on('click','.delete_image',function(event){
+	};
+	$(document).on('click','.delete_image_color',function(event){
 		event.preventDefault();
 		var alias 	= $(this).data('alias');
 		var image 	= $(this).data('file');
@@ -266,8 +279,8 @@ $(document).ready(function() {
 			data: {"alias": alias, "image":image, "id": id},
 			type: 'POST'
 		}).success(function(data) {
-			
+			$("#ProductPropertyImages"+alias).val(data);
 	  	});
-		$(this).closest('li').remove();
+		$(this).parent().remove();
 	});
 });

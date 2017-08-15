@@ -119,7 +119,7 @@
                       $imagesArr = (!empty($prop['ProductProperty']['images']))?explode(';',$prop['ProductProperty']['images']):array();
                       $images = '';
                       foreach($imagesArr as $img){
-                        $images = $images . '<img src="'.Configure::read('imageUrlBase').$img.'" width="100px"><a href="#" class="delete_image" data-alias="'.$alias.'" data-file="'.$img.'" data-url="'.Router::url('/admin/deleteImageColor').'" data-id="'.$prop['ProductProperty']['id'].'">X</a>';
+                        $images = $images . '<li><img src="'.Configure::read('imageUrlBase').$img.'" width="100px"><a href="#" class="delete_image_color" data-alias="'.$alias.'" data-file="'.$img.'" data-url="'.Router::url('/admin/deleteImageColor').'" data-id="'.$prop['ProductProperty']['id'].'">X</a></li>';
                       }
                       $options = '';
                       foreach($colors as &$color){
@@ -138,15 +138,15 @@
                              '<input type="hidden" name="props['. $index .'][id]" value="'. $id .'" />'.
                              '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'" />'.
                              '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
+                             '<input type="hidden" id="ProductPropertyImages'.$alias.'" name="props['. $index .'][images]" value="'. $prop['ProductProperty']['images'] .'" />'.
                              '<select class="code_sel" name="props['. $index .'][code]">'.$options.'</select>'.
                              '<span class="alias_cont"><input type="text" class="variable" name="props['. $index .'][alias]" value="'.$alias.'" class="variable" required placeholder="AA, 02, etc..."/></span>'.
                               '<div class="right">'.
                                 '<a class="btn btn-xs btn-danger remove-item">Borrar</a>'.
                               '</div>'.
-                              ''.
-                              '<progress id="progress'.$alias.'"></progress>'.
                               '<input type="file" class="upload_color_image" id="ColorImage'.$alias.'" name="color_image" data-alias="'.$alias.'" data-url="'.Router::url('/admin/uploadImageColor').'">'.
-                              '<ul id="ListUploaded'.$alias.'">'.$images.'</ul>'.
+                              '<progress id="progress'.$alias.'" hidden></progress>'.
+                              '<ul id="ListUploaded'.$alias.'" class="list-inline">'.$images.'</ul>'.
                             '</li>';
                       }
                     }

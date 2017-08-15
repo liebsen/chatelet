@@ -696,11 +696,12 @@ public function promos(){
 			        }
 			        
 			        $this->Product->save($data);
-			        if(!empty($this->request->data['id'])){
+			        /*if(!empty($this->request->data['id'])){
 			        	$this->ProductProperty->deleteAll(array( 'ProductProperty.product_id' => $this->request->data['id'] ));
-			        }
-			        if(!empty($data['props']))
+			        }*/
+			        if(!empty($data['props'])){
 			        	$this->ProductProperty->saveMany($data['props']);
+			        }
 	    		} else {
 		    		$hasId = array_key_exists(1, $this->request->pass);
 		    		if (!$hasId) break;
@@ -1017,6 +1018,7 @@ public function promos(){
 
 	public function uploadImageColor()
 	{
+		header("Content-Type: application/json");
 		$this->loadModel('ProductProperty');
 		$this->autoRender = false;
 		$response = null;
@@ -1024,15 +1026,16 @@ public function promos(){
 			$response = $this->save_file($this->request->data['file']);
 	//CakeLog::write('error', var_export($response, true));
 			$colorProduct = $this->ProductProperty->find('first', array('conditions'=>array('product_id'=>$this->request->data['id'], 'alias'=>$this->request->data['alias'])));
-			if (!empty($colorProduct)) {
-				$updateFieldImages = array();
+			$saved = array();
+			$updateFieldImages = array();
+			if (isset($colorProduct['ProductProperty']['images'])) {
 				$updateFieldImages['id'] = $colorProduct['ProductProperty']['id'];
-				if (!empty($colorProduct['ProductProperty']['images'])) {
-					$response = $colorProduct['ProductProperty']['images'].';'.$response;
-				}
+				$updateFieldImages['images'] = (!empty($colorProduct['ProductProperty']['images']))?$colorProduct['ProductProperty']['images'].';'.$response:$response;
+			} else {
 				$updateFieldImages['images'] = $response;
-				$this->ProductProperty->save($updateFieldImages, true);
 			}
+			$saved = $this->ProductProperty->save($updateFieldImages, true);
+			$response = array('image'=>$response, 'ppId'=>$saved['ProductProperty']['id'], 'allImages'=>$updateFieldImages['images']);
 		} else {
 			die('fail');
 		}
@@ -1040,8 +1043,7 @@ public function promos(){
 		if(empty($response)){
 			$response = 'fail';
 		}
-
-		die($response);
+		die(json_encode($response, true));
 	}
 
 	public function deleteImageColor()
@@ -1066,6 +1068,7 @@ public function promos(){
 				$updateFieldImages = array();
 				$updateFieldImages['id'] = $productProperty['ProductProperty']['id'];
 				$updateFieldImages['images'] = $newImgs;
+				$response = $newImgs;
 				$this->ProductProperty->save($updateFieldImages, true);
 			}
 		} else {
