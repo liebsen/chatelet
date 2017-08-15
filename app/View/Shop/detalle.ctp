@@ -89,6 +89,10 @@
                                     echo '<label class="btn" style ="    border-radius: 100px;">';
                                     echo "<small>".$color['alias']."</small>";
                                     echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
+                                    if (!empty($color['images'])) {
+                                        $image = explode(';', $color['images']);
+                                        echo '<img src="'.Configure::read('imageUrlBase').'thumb_'.$image[0].'">';
+                                    }
                                     echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
                                 echo '</label>';
                             }
