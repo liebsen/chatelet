@@ -31,10 +31,12 @@ App::uses('CakeEmail', 'Network/Email');
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {
+class AppController extends Controller
+{
 	public $components = array(
         'Session',
         'S3',
+        'ResizeImage',
         'Auth' => array(
             'authenticate' => array(
                 'Basic', 
@@ -141,6 +143,10 @@ class AppController extends Controller {
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $new_name = $randomString.'.'.$ext;
         $uploadToS3 = $this->S3->save($tmp_name, $new_name);
+        $thumb_new_name = 'thumb_' . $new_name;
+        //Creamos thumbnail
+        $this->ResizeImage->thumbnail($tmp_name, $thumb_new_name, 100);
+        $thumbUploadToS3 = $this->S3->save($tmp_name, $thumb_new_name);
         //$aux = explode(';', $uploadToS3);
         //$response = array_pop($aux);
         return $uploadToS3;

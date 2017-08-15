@@ -36,7 +36,7 @@ class UsersController extends AppController {
                 'default',
                 array('class' => 'hidden error')
             );
-    CakeLog::write('error', 'login redirect ' . $this->referer());
+    //CakeLog::write('error', 'login redirect ' . $this->referer());
             return $this->redirect($this->referer());
         }
         return $this->redirect(array('controller' => 'home', 'action' => 'index'));

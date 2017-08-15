@@ -119,7 +119,7 @@
                       $imagesArr = (!empty($prop['ProductProperty']['images']))?explode(';',$prop['ProductProperty']['images']):array();
                       $images = '';
                       foreach($imagesArr as $img){
-                        $images = $images . '<li><img src="'.Configure::read('imageUrlBase').$img.'" width="100px"><a href="#" class="delete_image_color" data-alias="'.$alias.'" data-file="'.$img.'" data-url="'.Router::url('/admin/deleteImageColor').'" data-id="'.$prop['ProductProperty']['id'].'">X</a></li>';
+                        $images = $images . '<li><img src="'.Configure::read('imageUrlBase').'thumb_'.$img.'" width="100px"><a href="#" class="delete_image_color" data-alias="'.$alias.'" data-file="'.$img.'" data-url="'.Router::url('/admin/deleteImageColor').'" data-id="'.$prop['ProductProperty']['id'].'">X</a></li>';
                       }
                       $options = '';
                       foreach($colors as &$color){
@@ -136,14 +136,14 @@
                               '</div>'.
                              '<input type="hidden" name="props['. $index .'][variable]" value="'. $variable .'" class="variable" required var/>'.
                              '<input type="hidden" name="props['. $index .'][id]" value="'. $id .'" />'.
-                             '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'" />'.
+                             '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'"/>'.
                              '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
                              '<select class="code_sel" name="props['. $index .'][code]">'.$options.'</select>'.
-                             '<span class="alias_cont"><input type="text" class="variable" name="props['. $index .'][alias]" value="'.$alias.'" class="variable" required placeholder="AA, 02, etc..."/></span>'.
+                             '<span class="alias_cont"><input type="text" name="props['. $index .'][alias]" value="'.$alias.'" class="changed variable" required placeholder="AA, 02, etc..."/></span>'.
                               '<div class="right">'.
-                                '<a class="btn btn-xs btn-danger remove-item">Borrar</a>'.
+                                '<a class="btn btn-xs btn-danger remove-item" data-count="'.$index.'">Borrar</a>'.
                               '</div>'.
-                              '<input type="file" class="upload_color_image" id="ColorImage'.$alias.'" name="color_image" data-alias="'.$alias.'" data-url="'.Router::url('/admin/uploadImageColor').'">'.
+                              '<input type="file" class="upload_color_image" id="ColorImage'.$alias.'" name="color_image" data-alias="'.$alias.'" data-url="'.Router::url('/admin/uploadImageColor').'" data-count="'.$index.'">'.
                               '<progress id="progress'.$alias.'" hidden></progress>'.
                               '<ul id="ListUploaded'.$alias.'" class="list-inline">'.$images.'</ul>'.
                             '</li>';

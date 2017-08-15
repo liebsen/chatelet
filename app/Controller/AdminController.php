@@ -1015,7 +1015,7 @@ public function promos(){
 	    $this->set('subscriptions', $subscriptions);
 		return $this->render('subscriptions');
 	}
-
+	//TODO validar que no exista un registro con ese alias
 	public function uploadImageColor()
 	{
 		header("Content-Type: application/json");
@@ -1024,17 +1024,26 @@ public function promos(){
 		$response = null;
 		if(!empty($this->request->data['file']['name']) && !empty($this->request->data['alias']) && !empty($this->request->data['id'])){
 			$response = $this->save_file($this->request->data['file']);
-			$colorProduct = $this->ProductProperty->find('first', array('conditions'=>array('product_id'=>$this->request->data['id'], 'alias'=>$this->request->data['alias'])));
+			if (isset($this->request->data['ppId'])) {
+				$colorProduct = $this->ProductProperty->findById($this->request->data['ppId']);
+			} else {
+				$colorProduct = $this->ProductProperty->find('first', array('conditions'=>array('product_id'=>$this->request->data['id'], 'alias'=>$this->request->data['alias'])));
+				if (!empty($colorProduct)) {
+					header('http/1.0 400');
+					die(json_encode(array('status'=>'fail', 'message'=>'elija otro alias para este color')));
+				}
+			}
 			$saved = array();
 			$updateFieldImages = array();
-			if (isset($colorProduct['ProductProperty']['images'])) {
-				$updateFieldImages['id'] = $colorProduct['ProductProperty']['id'];
-				$updateFieldImages['images'] = (!empty($colorProduct['ProductProperty']['images']))?$colorProduct['ProductProperty']['images'].';'.$response:$response;
-			} else {
+			if (empty($colorProduct)) {
 				$updateFieldImages['images'] = $response;
 				$updateFieldImages['alias'] = $this->request->data['alias'];
 				$updateFieldImages['product_id'] = $this->request->data['id'];
 				$updateFieldImages['type'] = 'color';
+			} else {
+				$updateFieldImages['id'] = $colorProduct['ProductProperty']['id'];
+				$updateFieldImages['alias'] = $this->request->data['alias'];
+				$updateFieldImages['images'] = (!empty($colorProduct['ProductProperty']['images']))?$colorProduct['ProductProperty']['images'].';'.$response:$response;
 			}
 			$saved = $this->ProductProperty->save($updateFieldImages, true);
 			$response = array('image'=>$response, 'ppId'=>$saved['ProductProperty']['id'], 'allImages'=>$updateFieldImages['images']);
@@ -1081,4 +1090,16 @@ public function promos(){
 		}
 		die($response);
 	}
+
+	public function deleteProductProperty()
+	{
+		header("Content-Type: application/json");
+		$this->loadModel('ProductProperty');
+		$this->autoRender = false;
+		if ($this->request->is('post')) {
+			$this->ProductProperty->delete($this->data['id']);
+		}
+		die();
+	}
+
 }

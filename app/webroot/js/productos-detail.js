@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	var count = $('.list-group').find('li').length;
 	var addItem = function( me , list , type ){
-		
+			count = $('.list-group').find('li').length;
 			extrafields = '<input type="text" class="variable" name="props['+ count +'][variable]" required var />';
 
 		// Comment this if you are uncommenting the (search for) "block #21"
@@ -27,7 +27,7 @@ $(document).ready(function() {
 			  extrafields +
              '<input type="hidden" name="props['+ count +'][type]" value="'+ type +'" />'+
 	          '<div class="right">' +
-	            '<a class="btn btn-xs btn-danger remove-item">Borrar</a>' +
+	            '<a class="btn btn-xs btn-danger remove-item" data-count="'+count+'">Borrar</a>' +
 	          '</div>' +
 	          '<input type="file" class="upload_color_image" name="color_image" data-alias="" data-ref="props['+ count +'][alias]" data-count="'+count+'">' +
 	          '<progress id="progress" hidden></progress>' +
@@ -77,9 +77,25 @@ $(document).ready(function() {
 
 	$(document).on('click', '.remove-item', function() {
 		var me = $(this);
-
-		// Remove item that I'm in
-		me.closest('li').remove();
+		var cindex = me.data('count');
+		var ppId = $("input[name='props["+ cindex +"][id]'").val(); 
+		if(ppId!=""){
+			var r = confirm("Si elimina este registro no podra recuperarse. ¿Desea eliminarlo?");
+        	if (r == true){
+				$.ajax({
+					url: baseUrl+'admin/deleteProductProperty',
+					data: {"id": ppId},
+					type: 'POST'
+				}).success(function(data) {
+					
+			  	});
+			  	// Remove item that I'm in
+				me.closest('li').remove();
+			}
+		} else {
+			me.closest('li').remove();
+		}
+		
 	});
 
 	$('#productos-detail').submit(function() {
@@ -211,14 +227,14 @@ $(document).ready(function() {
 
 	initPicker();
 
-	$('.upload_color_image').on('change', changeHandler);
+	
 	var changeHandler = function(event){
 		event.preventDefault();
 		var fd = new FormData();
 		var me = $(this);
 		var url	= baseUrl+'admin/uploadImageColor';
 		var productId = $("#product_id").val();
-		//var counter = $(me).data('count');
+		var counter = $(me).data('count');
 		//var input 	= $(me).data('input');		
 		var base_url = $("#image_thumb").data('url');
 		var alias = me.data('alias');
@@ -237,6 +253,10 @@ $(document).ready(function() {
 		fd.append('data[file]', this.files[0]);
 		fd.append('data[alias]', alias);
 		fd.append('data[id]', productId);
+		var productProperty = me.parent().find("input[name='props["+ counter +"][id]']");
+		if($(productProperty).val()!=""){
+			fd.append('data[ppId]', $(productProperty).val());
+		}
 		if (valid_types[this.files[0].type]) {
 			$.ajax({
 				url: url,
@@ -263,11 +283,11 @@ $(document).ready(function() {
 				}
 				//$("#ProductPropertyImages"+alias).val(data.allImages);
 				if(document.querySelector("#ListUploaded"+alias)!=null){
-					$("#ListUploaded"+alias).append("<li><img src="+base_url+data.image+" width='100px' data-alias='"+alias+"' data-file='"+data.image+"'><a href=\"#\" class=\"delete_image_color\" data-alias='"+alias+"' data-file='"+data.image+"' data-url='/admin/deleteImageColor' data-id='"+data.ppId+"'>X</a></li>");
+					$("#ListUploaded"+alias).append("<li><img src="+base_url+'thumb_'+data.image+" width='100px' data-alias='"+alias+"' data-file='"+data.image+"'><a href=\"#\" class=\"delete_image_color\" data-alias='"+alias+"' data-file='"+data.image+"' data-url='/admin/deleteImageColor' data-id='"+data.ppId+"'>X</a></li>");
 				} else {
 					var auxCount = me.data('count');
 					$("input[name='props["+ count +"][id]']").val(data.ppId);
-					$("ul[data-ref='"+ref+"']").append("<li><img src="+base_url+data.image+" width='100px' data-alias='"+alias+"' data-file='"+data.image+"'><a href=\"#\" class=\"delete_image_color\" data-alias='"+alias+"' data-file='"+data.image+"' data-url='/admin/deleteImageColor' data-id='"+data.ppId+"'>X</a></li>");
+					$("ul[data-ref='"+ref+"']").append("<li><img src="+base_url+'thumb_'+data.image+" width='100px' data-alias='"+alias+"' data-file='"+data.image+"'><a href=\"#\" class=\"delete_image_color\" data-alias='"+alias+"' data-file='"+data.image+"' data-url='/admin/deleteImageColor' data-id='"+data.ppId+"'>X</a></li>");
 				}
 		  	});
 			me.val('');
@@ -276,6 +296,8 @@ $(document).ready(function() {
 			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	};
+	$('.upload_color_image').on('change', changeHandler);
+
 	$(document).on('click','.delete_image_color',function(event){
 		event.preventDefault();
 		var alias 	= $(this).data('alias');
