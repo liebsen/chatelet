@@ -464,7 +464,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 	#myModal .content { width: 100%; }
 	#myModal .content form { margin-bottom: 75px; width: auto; }
 
-	.navbar-nav { margin: 0; text-align: center; width: 100%; }
+	.navbar-nav { margin: 0; text-align: center; }
 	.navbar-nav > li { float: none; display: inline-block; }
 	.navbar-nav>li>a .badge { left: 5px; position: absolute; top: 5px; }
 
