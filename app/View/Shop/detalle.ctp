@@ -112,7 +112,8 @@
                    <div class="btn-group inline-block div_color_products" data-toggle="buttons">
                         <?php  foreach ($colors as $color) {
                                     $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
-                                    echo '<label class="btn '.$loadColorImages.'" style ="    border-radius: 100px;" data-images="'.$color['images'].'">';
+                                    $style = (empty($color['images']))?'oldSelectColor':'';
+                                    echo '<label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.$color['images'].'">';
                                     echo "<small>".$color['alias']."</small>";
                                     echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
                                     if (!empty($color['images'])) {

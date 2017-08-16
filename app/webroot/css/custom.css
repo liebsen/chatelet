@@ -732,3 +732,9 @@ span.count {
         display: none
     }
 }
+
+
+#detalle .caract label.btn.active.oldSelectColor {
+    border-radius: 100px!important;
+    box-shadow:rgba(0, 0, 0, 0.125) 0px 3px 5px 0px inset!important;
+}
