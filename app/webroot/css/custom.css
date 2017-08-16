@@ -266,8 +266,8 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #productOptions .col-sm-9 a:hover .hover { opacity: 1; }
 
 #detalle { background: url(../images/detallebg.jpg) no-repeat center center; background-size: cover; padding-top: 50px;    padding-bottom: 50px; }
-#detalle ul { margin-top: 100px; }
-#detalle li { margin-bottom: 30px; overflow: hidden; }
+/*#detalle ul { margin-top: 100px; }*/
+#detalle li { /*margin-bottom: 30px;*/ overflow: hidden; }
 #detalle li a { display: inline-block; overflow: hidden; }
 #detalle li a img { float: left; }
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/
@@ -277,7 +277,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #detalle .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
 #detalle .caract { color: #404040; margin-top: 25px; }
 #detalle .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
-#detalle .caract p { /*border-bottom: 2px solid #c2c2c2;*/ font-size: 14px; padding: 10px 0; }
+#detalle .caract p { /*border-bottom: 2px solid #c2c2c2;*/ font-size: 14px; padding: 35px 0; }
 #detalle .caract .size { margin-bottom: 25px; }
 #detalle .caract .size a { color: #404040; display: inline-block; font-size: 16px; margin-right: 20px; }
 #detalle .caract .size a.active { color: #f50081; }
@@ -410,7 +410,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
 	#infoShop .col-md-4 { background-size: 20%; font-size: 16px; padding: 20px; }
 
-	#detalle .col-md-4 h1 { font-size: 30px; }
+	#detalle .col-md-4 h1 { font-size: 30px; display:inline-block;}
 	#detalle .col-md-4 > p, #detalle .col-md-4 .plus { font-size: 21px; }
 	#detalle .col-md-4 .price { font-size: 21px; padding: 10px 20px; }
 	#detalle .col-md-4 .caract p, #detalle .col-md-4 .caract h3, #detalle .col-md-4 .caract .size a, #detalle .col-md-4 .caract a.table, #detalle .col-md-4 .caract h4 { font-size: 16px; }
