@@ -19,7 +19,7 @@
     <div class="wrapper">
       <div class="row">
         <div class="col-md-2 col-sm-5">
-            <ul>
+            <ul id="ul-moreviews">
                 <?php foreach ($images as $key => $value) : ?>
                  <?php if (!empty($value)): ?>
                    <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" 
@@ -86,14 +86,16 @@
                        
                    <div class="btn-group inline-block div_color_products" data-toggle="buttons">
                         <?php  foreach ($colors as $color) {
-                                    echo '<label class="btn" style ="    border-radius: 100px;">';
+                                    $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
+                                    echo '<label class="btn '.$loadColorImages.'" style ="    border-radius: 100px;" data-images="'.$color['images'].'">';
                                     echo "<small>".$color['alias']."</small>";
                                     echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
                                     if (!empty($color['images'])) {
                                         $image = explode(';', $color['images']);
                                         echo '<img src="'.Configure::read('imageUrlBase').'thumb_'.$image[0].'">';
+                                    } else {
+                                        echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
                                     }
-                                    echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
                                 echo '</label>';
                             }
                         ?>

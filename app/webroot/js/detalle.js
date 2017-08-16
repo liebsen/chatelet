@@ -28,3 +28,15 @@ function showDivs(n) {
 }
 //$(".mySlides").elevateZoom();
     CloudZoom.quickStart();
+
+$(function(){
+  $("label.loadColorImages").on('click', function(e){
+    var images = $(this).data('images').split(';');
+    var moreviews = '';
+    for(var i=0;i<images.length;i++){
+      moreviews += '<li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" onclick="currentDiv('+(i+ 1)+')"  id="img_01" style="width:40%;" src="https://d3baxuoyqsgua.cloudfront.net/thumb_'+images[i]+'" ></a></li>';
+    }
+    
+    $("#ul-moreviews").html(moreviews);
+  });
+});
