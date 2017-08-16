@@ -13,11 +13,47 @@
             $images[]   = Configure::read('imageUrlBase').$value;
     }
     echo $this->Session->flash();
-?>  
-
+    $colorImages = array();
+    $colors = array();
+    $sizes = array();
+    foreach ($properties as $property) {
+        switch ($property['ProductProperty']['type']) {
+            case 'color':
+                if (!empty($property['ProductProperty']['images'])) {
+                    $arrImages = explode(';', $property['ProductProperty']['images']);
+                    $colorImages[] = array('alias'=>$property['ProductProperty']['alias'], 'images'=>$arrImages);
+                }
+                array_push($colors, $property['ProductProperty']);
+                break;
+            case 'size':
+                array_push($sizes, $property['ProductProperty']);
+                break;
+        }
+    }
+?>
+<script>
+    var colorImages = <?=json_encode($colorImages, true)?>;
+</script>
 <section id="detalle"> 
     <div class="wrapper">
       <div class="row">
+      <?php if(!empty($colorImages)):?>
+        <div class="col-md-2 col-sm-5">
+            <ul id="ul-moreviews">
+                <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
+                   <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" 
+                    onclick="currentDiv(<?=$key + 1?>)"  id="img_01" src="<?=Configure::read('imageUrlBase').'thumb_'.$value?>"></a></li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+        <div class="col-md-5 col-sm-7"  >
+             <div id="surround">
+                <?php foreach ($colorImages[0]['images'] as $k => $v) : ?> 
+                    <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="width:70%;" src="<?=Configure::read('imageUrlBase').$v?>" cloudzoom='zoomSizeMode:"image",autoInside: 600'/> 
+                  <?php endforeach ?>
+             </div>
+        </div>
+      <?php else:?>  
         <div class="col-md-2 col-sm-5">
             <ul id="ul-moreviews">
                 <?php foreach ($images as $key => $value) : ?>
@@ -38,6 +74,7 @@
                   <?php endforeach ?>
              </div>
         </div>
+    <?php endif;?>
             <div>
             <div class="col-md-4">
              <?php
@@ -67,21 +104,9 @@
                  }?>
                         
                 <div class="caract">
+                <?php if(!empty($product['desc'])):?>
                     <p><?php echo $product['desc']; ?></p>
-                         <?php
-                            $colors = array();
-                            $sizes = array();
-                            foreach ($properties as $property) {
-                                switch ($property['ProductProperty']['type']) {
-                                    case 'color':
-                                        array_push($colors, $property['ProductProperty']);
-                                        break;  
-                                    case 'size':
-                                        array_push($sizes, $property['ProductProperty']);
-                                        break;
-                                }
-                            }
-                        ?>
+                <?php endif;?>
                     <h2>Color</h2>
                        
                    <div class="btn-group inline-block div_color_products" data-toggle="buttons">
@@ -100,7 +125,7 @@
                             }
                         ?>
                     </div>
-                   <h4></h4> 
+                   
                    <h2>Talle
                     <select id="size" name="size" style="background-color: white; " >
                         <option value="">Seleccionar</option>
@@ -111,7 +136,7 @@
                         ?>
                     </select>
                     <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
-                    <h4></h4> 
+                    
                     <p>
                       <span style="color:#F50081;"> Stock:</span> <span id="stock_container"><i> (Seleccione un color y talle) </i></span>
                     </p>

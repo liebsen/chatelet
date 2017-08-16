@@ -33,10 +33,14 @@ $(function(){
   $("label.loadColorImages").on('click', function(e){
     var images = $(this).data('images').split(';');
     var moreviews = '';
+    var surround = '';
     for(var i=0;i<images.length;i++){
-      moreviews += '<li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" onclick="currentDiv('+(i+ 1)+')"  id="img_01" style="width:40%;" src="https://d3baxuoyqsgua.cloudfront.net/thumb_'+images[i]+'" ></a></li>';
+      moreviews += '<li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" onclick="currentDiv('+(i+ 1)+')"  id="img_01" src="https://d3baxuoyqsgua.cloudfront.net/thumb_'+images[i]+'" ></a></li>';
+      surround += '<img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="width:70%;" src="https://d3baxuoyqsgua.cloudfront.net/'+images[i]+'" cloudzoom=\'zoomSizeMode:"image",autoInside: 600\'/>';     
     }
-    
     $("#ul-moreviews").html(moreviews);
+    $("#surround").html(surround);
+    CloudZoom.quickStart();
+    showDivs(1);
   });
 });

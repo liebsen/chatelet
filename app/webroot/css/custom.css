@@ -266,38 +266,47 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #productOptions .col-sm-9 a:hover .hover { opacity: 1; }
 
 #detalle { background: url(../images/detallebg.jpg) no-repeat center center; background-size: cover; padding-top: 50px;    padding-bottom: 50px; }
-#detalle .col-md-3 ul { margin-top: 100px; }
-#detalle .col-md-3 li { margin-bottom: 30px; overflow: hidden; }
-#detalle .col-md-3 li a { display: inline-block; overflow: hidden; }
-#detalle .col-md-3 li a img { float: left; }
+#detalle ul { margin-top: 100px; }
+#detalle li { margin-bottom: 30px; overflow: hidden; }
+#detalle li a { display: inline-block; overflow: hidden; }
+#detalle li a img { float: left; }
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/
-#detalle .col-md-4 h1 { color: #f50081; font-size: 30px; font-weight: 500; margin-bottom: 10px; }
-#detalle .col-md-4 > p { font-size: 18px; font-weight: 500; margin-bottom: 20px; }
-#detalle .col-md-4 .price { background: #FFF; color: #404040; display: inline-block; font-size: 18px; font-weight: 500; line-height: .9; padding: 10px 15px; }
-#detalle .col-md-4 .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
-#detalle .col-md-4 .caract { color: #404040; margin-top: 25px; }
-#detalle .col-md-4 .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
-#detalle .col-md-4 .caract p { /*border-bottom: 2px solid #c2c2c2;*/ font-size: 14px; margin-bottom: 25px; padding-bottom: 30px; }
-#detalle .col-md-4 .caract .size { margin-bottom: 25px; }
-#detalle .col-md-4 .caract .size a { color: #404040; display: inline-block; font-size: 16px; margin-right: 20px; }
-#detalle .col-md-4 .caract .size a.active { color: #f50081; }
-#detalle .col-md-4 .caract a.table { background: url(../images/sizes.png) no-repeat right center; color: #f50081; font-size: 16px; font-weight: 600; padding-right: 45px;padding-top: 5px }
-#detalle .col-md-4 .caract h4 { /*border-top: 2px solid #c2c2c2;*/ font-size: 22px; font-weight: 500; margin-top: 30px; padding-top: 20px; }
-#detalle .col-md-4 .caract .colors { float: right; margin-top: -19px; }
-#detalle .col-md-4 .caract .colors a { border-radius: 50%; display: inline-block; height: 20px; margin-right: 20px; width: 20px; }
-#detalle .col-md-4 .caract .colors a.celeste { background: #71afd7; }
-#detalle .col-md-4 .caract .colors a.rosa { background: #fe86c7; }
-#detalle .col-md-4 .caract .colors a.grisclaro { background: #787b80; }
-#detalle .col-md-4 .caract .colors a.marron { background: #b16e25; }
-#detalle .col-md-4 .caract .colors a.grisoscuro { background: #5a5a5a; }
-#detalle .col-md-4 .caract .colors a.verde { background: #42604e; }
-#detalle .col-md-4 .caract .colors a.azul { background: #294c70; }
-#detalle .col-md-4 .caract .add { background: #f50081; color: #FFF; display: block; font-size: 16px; font-weight: 500; margin-top: 40px; padding: 15px 0; text-align: center; width: 100%; }
-#detalle .col-md-4 .caract .social { margin-top: 40px; text-align: center; }
-#detalle .col-md-4 .caract .social a { background-image: url(../images/sprite.png); display: inline-block; height: 19px; margin: 0 25px; width: 19px; }
-#detalle .col-md-4 .caract .social a.fb { background-position: -92px -40px; }
-#detalle .col-md-4 .caract .social a.tt { background-position: -118px -40px; }
-#detalle .col-md-4 .caract .social a.pr { background-position: -144px -40px; }
+#detalle h1 { color: #f50081; font-size: 30px; font-weight: 500; margin-bottom: 10px; }
+#detalle > p { font-size: 18px; font-weight: 500; margin-bottom: 20px; }
+#detalle .price { background: #FFF; color: #404040; display: inline-block; font-size: 18px; font-weight: 500; line-height: .9; padding: 10px 15px; }
+#detalle .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
+#detalle .caract { color: #404040; margin-top: 25px; }
+#detalle .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
+#detalle .caract p { /*border-bottom: 2px solid #c2c2c2;*/ font-size: 14px; margin-bottom: 25px; padding-bottom: 30px; }
+#detalle .caract .size { margin-bottom: 25px; }
+#detalle .caract .size a { color: #404040; display: inline-block; font-size: 16px; margin-right: 20px; }
+#detalle .caract .size a.active { color: #f50081; }
+#detalle .caract a.table { background: url(../images/sizes.png) no-repeat right center; color: #f50081; font-size: 16px; font-weight: 600; padding-right: 45px;padding-top: 5px }
+#detalle .caract h4 { /*border-top: 2px solid #c2c2c2;*/ font-size: 22px; font-weight: 500; margin-top: 30px; padding-top: 20px; }
+#detalle .caract .colors { float: right; margin-top: -19px; }
+#detalle .caract .colors a { border-radius: 50%; display: inline-block; height: 20px; margin-right: 20px; width: 20px; }
+#detalle .caract .colors a.celeste { background: #71afd7; }
+#detalle .caract .colors a.rosa { background: #fe86c7; }
+#detalle .caract .colors a.grisclaro { background: #787b80; }
+#detalle .caract .colors a.marron { background: #b16e25; }
+#detalle .caract .colors a.grisoscuro { background: #5a5a5a; }
+#detalle .caract .colors a.verde { background: #42604e; }
+#detalle .caract .colors a.azul { background: #294c70; }
+#detalle .caract .add { background: #f50081; color: #FFF; display: block; font-size: 16px; font-weight: 500;padding: 15px 0; text-align: center; width: 100%; }
+#detalle .caract .social { margin-top: 40px; text-align: center; }
+#detalle .caract .social a { background-image: url(../images/sprite.png); display: inline-block; height: 19px; margin: 0 25px; width: 19px; }
+#detalle .caract .social a.fb { background-position: -92px -40px; }
+#detalle .caract .social a.tt { background-position: -118px -40px; }
+#detalle .caract .social a.pr { background-position: -144px -40px; }
+
+#detalle .caract {margin-top: 25px}
+#detalle .caract h2 {margin-bottom: 10px}
+#detalle .caract label.btn {    box-shadow: none;border-radius: 0!important;margin: 0 15px 0 0;padding: 0;}
+#detalle .caract label.btn small {display: block}
+#detalle .caract label.btn img {border: solid 2px transparent}
+#detalle .caract label.btn.active img {border: solid 2px #000;}
+#detalle .caract .color-block {display: none}
+.btn-group.inline-block.div_color_products {margin-bottom: 15px}
 
 #myModal2 .content { background: url(../images/tablebg.png) no-repeat center center; background-size: cover; margin: 50px auto; overflow: hidden; padding: 50px; position: relative; width: 900px; }
 #myModal2 .content .table { background: #ece9ea; padding: 50px 20px; }
