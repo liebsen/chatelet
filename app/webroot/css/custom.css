@@ -308,6 +308,10 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #detalle .caract .color-block {display: none}
 .btn-group.inline-block.div_color_products {margin-bottom: 15px}
 
+ul#ul-moreviews li img {width: 40%}
+ul#ul-moreviews li.dontResize img {width: 100%;}
+
+
 #myModal2 .content { background: url(../images/tablebg.png) no-repeat center center; background-size: cover; margin: 50px auto; overflow: hidden; padding: 50px; position: relative; width: 900px; }
 #myModal2 .content .table { background: #ece9ea; padding: 50px 20px; }
 #myModal2 .content .table h1 { font-size: 26px; font-weight: 600; margin-bottom: 5px; }
@@ -410,7 +414,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
 	#infoShop .col-md-4 { background-size: 20%; font-size: 16px; padding: 20px; }
 
-	#detalle .col-md-4 h1 { font-size: 30px; display:inline-block;}
+	#detalle .col-md-4 h1 { font-size: 30px; display:inline-block;margin: 20px 0;}
 	#detalle .col-md-4 > p, #detalle .col-md-4 .plus { font-size: 21px; }
 	#detalle .col-md-4 .price { font-size: 21px; padding: 10px 20px; }
 	#detalle .col-md-4 .caract p, #detalle .col-md-4 .caract h3, #detalle .col-md-4 .caract .size a, #detalle .col-md-4 .caract a.table, #detalle .col-md-4 .caract h4 { font-size: 16px; }
@@ -574,10 +578,10 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
 	#productOptions nav { margin-bottom: 20px; }
 
-	#detalle { padding-top: 0; }
+	#detalle { padding-top: 25px; }
 	#detalle .col-md-3 li { display: inline-block; }
 	#detalle .col-md-3 li a img { width: 90px; }
-	#detalle .col-sm-7 img { width: 100%; }
+	#detalle .col-sm-7 img { width: 100%!important; }
 	#detalle .col-md-4 .caract .social { margin: 20px 0; }
 	#productOptions a.btBig { margin-bottom: 20px; padding: 30px; }
 
@@ -605,15 +609,36 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
    /* div that surrounds Cloud Zoom image and content slider. */
     #surround {
-        width:70%;
-        min-width: 256px;
-        max-width: 480px;
+        width:100%;
+        /*min-width: 256px;
+        max-width: 480px;*/
     }
-    
+    #surround img {
+        width: 100%;
+    }
     /* Image expands to width of surround */
     img.cloudzoom {
         width:100%;
     }
+
+
+    ul#ul-moreviews {
+        overflow: hidden;
+    }
+    ul#ul-moreviews li {
+        float: left;
+        width: 19.3333333333%;
+        margin-right: .8%;
+    }
+    ul#ul-moreviews li:last-child {
+        margin-right: 0;
+    }
+    ul#ul-moreviews li img {
+        width: 100%;
+    }
+
+
+
 }
 
 

@@ -41,7 +41,7 @@
         <div class="col-md-2 col-sm-5">
             <ul id="ul-moreviews">
                 <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
-                   <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" 
+                   <li class="dontResize"><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" 
                     onclick="currentDiv(<?=$key + 1?>)"  id="img_01" src="<?=Configure::read('imageUrlBase').'thumb_'.$value?>"></a></li>
                 <?php endforeach ?>
             </ul>
@@ -49,7 +49,7 @@
         <div class="col-md-5 col-sm-7"  >
              <div id="surround">
                 <?php foreach ($colorImages[0]['images'] as $k => $v) : ?> 
-                    <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="width:70%;" src="<?=Configure::read('imageUrlBase').$v?>" cloudzoom='zoomSizeMode:"image",autoInside: 600'/> 
+                    <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?=Configure::read('imageUrlBase').$v?>" cloudzoom='zoomSizeMode:"image",autoInside: 600'/> 
                   <?php endforeach ?>
              </div>
         </div>
@@ -59,7 +59,7 @@
                 <?php foreach ($images as $key => $value) : ?>
                  <?php if (!empty($value)): ?>
                    <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" 
-                    onclick="currentDiv(<?php $key = $key + 1; echo $key ?>)"  id="img_01" style="width:40%;" src="<?php echo $value ?> " ></a></li>
+                    onclick="currentDiv(<?php $key = $key + 1; echo $key ?>)"  id="img_01" style="" src="<?php echo $value ?> " ></a></li>
                  <?php endif ?> 
                 <?php endforeach ?>
             </ul>
@@ -69,7 +69,7 @@
                 <?php foreach ($images as $k => $v) : ?> 
                     <?php if (!empty($v)): ?>
                      <!--a href="#" ><img  class="mySlides"  id="mySlides"  src="<?php echo $v ?>" data-zoom-image="<?php echo $v ?>"/></a-->
-                     <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="width:70%;" src="<?php echo $v ?>" cloudzoom='zoomSizeMode:"image",autoInside: 600'/>
+                     <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?php echo $v ?>" cloudzoom='zoomSizeMode:"image",autoInside: 600'/>
                     <?php endif ?> 
                   <?php endforeach ?>
              </div>
