@@ -47,7 +47,7 @@
 	
 			
 			<div style="display:inline;">
-				<label class="" for="columns-text">Banner Shop 
+				<label class="" for="columns-text">Imagen general del shop 
 
 				<div class="row">
 					<div class="col-xs-12">
@@ -80,7 +80,7 @@
 			&nbsp;
 			
             <div style="display:inline;">
-				<label class="" for="columns-text">Menu Shop 
+				<label class="" for="columns-text">Imagen del menu shop
 				<div class="row">
 				<div class="col-xs-12">                                       
 					<div class="control-group"> 
@@ -112,7 +112,7 @@
 			&nbsp;
 	
             <div style="display:inline;">
-				<label class="" for="columns-text">Banner Producto Shop 
+				<label class="" for="columns-text">Imagen general en categor&iacute;a
 					<div class="row">
 				<div class="col-xs-12">
 					<div class="control-group"> 
