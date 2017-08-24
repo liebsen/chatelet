@@ -1,7 +1,9 @@
 <?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
 <?php echo $this->element('admin-menu'); ?>
-<div class="block-section">
-	<table id="example-datatables" class="table table-bordered table-hover">
+<?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
+<?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
+<div class="block-section table-responsive">
+	<table id="usuarios-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>
 				<th class="text-center hidden-phone"><?php echo __('Email'); ?></th>

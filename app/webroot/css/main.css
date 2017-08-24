@@ -640,7 +640,6 @@ body {
 
 .block-section {
     margin-bottom: 20px;
-    overflow: scroll;
 }
 
 .block-section-pad {
@@ -2957,6 +2956,26 @@ table.table thead .sorting_desc_disabled {
 	border-top: none;
 }
 
+table.dataTable thead .sorting_asc:after {
+    content: none !important;
+}
+
+table.dataTable thead .sorting_desc:after {
+    content: none !important;
+}
+table.dataTable thead .sorting:after {
+    content: none !important;
+}
+table.dataTable thead .sorting_asc:before {
+    content: none !important;
+}
+
+table.dataTable thead .sorting_desc:before {
+    content: none !important;
+}
+table.dataTable thead .sorting:before {
+    content: none !important;
+}
 /* Buttons */
 .btn {
     text-shadow: none;

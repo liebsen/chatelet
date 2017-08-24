@@ -1,9 +1,11 @@
 <?php 
 	echo $this->element('admin-menu');
+	echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));
+	echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));
 	echo $this->Html->script('admin-delete', array('inline' => false));
 ?>
-<div class="block-section">
-	<table id="example-datatables" class="table table-bordered table-hover">
+<div class="block-section table-responsive">
+	<table id="contacto-datatables" class="table table-bordered table-hover"  width="100%">
 		<thead>
 			<tr>
 				<th class="text-center hidden-phone"><?php echo __('Fecha'); ?></th>  

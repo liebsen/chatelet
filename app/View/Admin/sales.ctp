@@ -1,5 +1,8 @@
+<?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
+<?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
+<?php echo $this->Html->script('admin-sales', array('inline' => false)); ?>
 <div class="row">
-	<div class="col-xs-12">
+	<div class="col-xs-12 table-responsive">
 		<table id="example-datatables2" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>

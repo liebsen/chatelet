@@ -2,7 +2,8 @@
  echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false));
  echo $this->Html->script('image_prodshop', array('inline' => false)); 
  echo $this->Html->script('admin-delete', array('inline' => false)); 
-
+	echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));
+	echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));
 ?>
 <div class="block block-themed">
 	<div class="block-title">
@@ -149,7 +150,7 @@
 	</div>
 </div>
 <?php echo $this->element('admin-menu'); ?>
-<div class="block-section">
+<div class="block-section table-responsive">
 	<table id="example-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>

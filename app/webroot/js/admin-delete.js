@@ -23,4 +23,20 @@ $(document).ready(function() {
             });         
         }       
     });
+    $('#example-datatables2').DataTable();
+    $('#usuarios-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 10 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
+$('#sucursales-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
+
+     $('#categorias-datatables').DataTable({searching: false, info: false, paging: false
+, "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 3 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
+    $('#example-datatables').dataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
+    $('#contacto-datatables').dataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
+    
+    /*new $.fn.dataTable.Responsive($('#example-datatables'), {
+      responsive: true,
+      details: true
+    });
+    $('#myTable').DataTable( {
+    responsive: true
+} );*/
 });
