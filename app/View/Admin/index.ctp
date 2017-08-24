@@ -1,6 +1,6 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('admin_index',array('inline'=>false)) ?>
-
+<?php $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));?>
 
 <div class="block block-themed">
 	<div class="block-title">
@@ -293,8 +293,42 @@
 					</div>
 				</div>             
 			</div>      
-			
-
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-12">
+						<label class="control-label" for="columns-text"><?php echo __('Newsletter'); ?></label>
+					</div>
+					<div class="col-md-9">
+						<div class="control-group">
+							<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
+							<div class="controls">
+								<textarea id="HomeTextPopupNewsletter" name="text_popup_newsletter" class="form-control"><?php echo $p['Home']['text_popup_newsletter'] ?></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="control-group">
+							<label class="control-label" for="columns-text">Subir Archivo: <span class="counter_newsletter">0</span>%</label>
+							<div class="controls">
+								<input type="file" id="HomeImgPopupNewsletter" data-input="[name='data[img_popup_newsletter]']" data-count=".counter_newsletter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+								Tamaño recomendado 990x546
+								<input type="hidden" name="data[img_popup_newsletter]" value="<?php echo $p['Home']['img_popup_newsletter'] ?>" />
+							</div>
+						</div>	
+						 <div class="control-group">
+							<div class="controls">
+								<script id="image_thumb_newsletter" type="text/x-handlebars-template" data-url="<?php echo Configure::read('imageUrlBase') ?>">
+									<span style="margin-top:10px;margin-bottom:10px;">	
+										<img src="{{image_newsletter}}" width="100"/> 
+										<a href="#" class="delete_image_newsletter" data-input="[name='data[img_popup_newsletter]']" data-file="{{file_newsletter}}">X</a>
+									</span>
+								</script>
+								<span id="images_newsletter"></span>
+							</div>
+					    </div>
+					</div>
+				</div>
+			</div>
 			</br>
 			</br>
 			<div class="form-actions">

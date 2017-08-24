@@ -127,16 +127,19 @@
     
         
         <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
-            <div class="content">
+            <div class="content" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').substr($home['img_popup_newsletter'],1).');':''?>">
                 <a class="close" data-dismiss="modal">
                     <span></span>
                     <span></span>
                 </a>
 
                     <?php echo $this->Form->create('Contact'); ?>
+                <?php if(empty($home['text_popup_newsletter'])):?>
                     <h1>Suscribite a nuestro<br /><span>Newsletter</span></h1>
                     <p>Y recibí las últimas novedades</p>
-                   
+                <?php else:?>
+                   <?php echo $home['text_popup_newsletter'];?>
+                <?php endif;?>   
                       <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
                       <input type="submit" id="enviar" value="ok">
                     <?php echo $this->Form->end(); ?>

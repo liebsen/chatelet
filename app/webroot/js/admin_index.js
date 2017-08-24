@@ -469,4 +469,95 @@ $(function(){
 		}
 	});
 	drawImagesFour( $("[name='data[img_url_four]']").val().split(';') );
+
+	CKEDITOR.replace('HomeTextPopupNewsletter');
+
+	var drawImagesNewsletter = function(images_newsletter){
+		var base_url 	= $("#image_thumb_newsletter").data('url');
+		var ul 			= $('#images_newsletter');
+
+		ul.empty();
+		$.each(images_newsletter,function(index,image_newsletter){
+			if(image_newsletter){ 
+				var source   	= $("#image_thumb_newsletter").html();
+				var template 	= Handlebars.compile(source);
+				var context 	= {image_newsletter: base_url+image_newsletter , file_newsletter: image_newsletter }
+				var html    	= template(context);
+
+				ul.append(html);
+			}
+		});
+	}
+
+	$(document).on('click','.delete_image_newsletter',function(event){
+		event.preventDefault();
+		var me 		= $(this);
+		var input 	= $(me.data('input'));
+		var images_newsletter 	= input.val().split(';');
+		var file_newsletter	= me.data('file');
+		images_newsletter	= $.grep(images_newsletter,function(n){ return(n) }); // Clean Empty Values
+		images_newsletter.remove(file_newsletter);
+		input.val( images_newsletter.join(';') );
+		$(this).closest('span').remove();
+	});
+
+	//File Uploads
+	$('#HomeImgPopupNewsletter').change(function() {
+		var fd 		= new FormData();
+		var me 		= $(this);
+		var url 	= me.data('url');
+		var counter_newsletter = $(me.data('count'));
+		var input 	= $(me.data('input'));
+		
+		var valid_types = {
+			'image/jpeg': true,
+			'image/jpg': true,
+		};
+		fd.append('data[file]', this.files[0]);
+
+		if (valid_types[this.files[0].type]) {
+			$.ajax({
+				url: url,
+				data: fd,
+				processData: false,
+				contentType: false,
+				type: 'POST',
+				xhr: function() {
+					var xhr = new window.XMLHttpRequest();
+				    //Upload progress
+				    xhr.upload.addEventListener("progress", function(evt){
+				    	if (evt.lengthComputable) {
+				    		counter_newsletter.html( parseInt(evt.loaded / evt.total * 100) );
+					    }
+					}, false);
+				    return xhr;
+				}
+			})
+			.success(function(data) {
+				if(data == 'fail'){
+					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+					return false;
+				}
+                
+                var images_newsletter 	= input.val();
+				images_newsletter 		= images_newsletter.split(';');
+
+				if(images_newsletter.length > 3){
+					alert('Solo se permiten 3 imagenes por modulo');
+					return false;
+				}else{
+					images_newsletter.push(data);
+				    input.val( data );
+					drawImagesNewsletter(images_newsletter);
+				}
+
+		  	});
+			me.val('');
+		} else {
+			me.val('');
+			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+		}
+	});
+	drawImagesNewsletter( $("[name='data[img_popup_newsletter]']").val().split(';') );
+
 });

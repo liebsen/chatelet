@@ -237,19 +237,18 @@ if (!empty($this->request->query['test'])){
 		$this->redirect(array( 'action' => 'promos' ));
 	}
 
-	public function save_file_admin(){
+	public function save_file_admin()
+	{
 		$this->autoRender = false;
 		$response = null;
-		if(!empty($this->request->data['file']['name'])){
-			$response = $this->save_file( $this->request->data['file'] );
-		}else{
+		if (!empty($this->request->data['file']['name'])) {
+			$response = $this->save_file( $this->request->data['file']);
+		} else {
 			die('fail');
 		}
-
 		if(empty($response)){
 			$response = 'fail';
 		}
-
 		die($response);
 	}
 	
@@ -1023,7 +1022,7 @@ public function promos(){
 		$this->autoRender = false;
 		$response = null;
 		if(!empty($this->request->data['file']['name']) && !empty($this->request->data['alias']) && !empty($this->request->data['id'])){
-			$response = $this->save_file($this->request->data['file']);
+			$response = $this->save_file($this->request->data['file'], true);//true param para generar thumbnail
 			if (isset($this->request->data['ppId'])) {
 				$colorProduct = $this->ProductProperty->findById($this->request->data['ppId']);
 			} else {

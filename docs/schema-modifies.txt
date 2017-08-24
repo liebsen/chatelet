@@ -15,3 +15,9 @@ ADD COLUMN `url_mod_four` VARCHAR(255) NULL DEFAULT NULL AFTER `img_url_four`;
 
 ALTER TABLE `chatelet_new`.`product_properties` 
 ADD COLUMN `images` TEXT NULL DEFAULT NULL AFTER `code`;
+
+
+--24/08/2017
+ALTER TABLE `chatelet_new`.`homes` 
+ADD COLUMN `text_popup_newsletter` TEXT NULL AFTER `url_mod_four`,
+ADD COLUMN `img_popup_newsletter` VARCHAR(255) NULL AFTER `text_popup_newsletter`;
