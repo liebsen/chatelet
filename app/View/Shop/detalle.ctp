@@ -136,8 +136,9 @@
                             }
                         ?>
                     </select>
-                    <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
-                    
+                    <div class="marginTop">
+                        <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
+                    </div>
                     <p>
                       <span style="color:#F50081;"> Stock:</span> <span id="stock_container"><i> (Seleccione un color y talle) </i></span>
                     </p>

@@ -385,3 +385,22 @@ span.user {
 	display: inherit !important;
 	margin: 0;
 }
+
+.marginTop {
+	margin-top: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  	.marginTop {
+    	margin-top: 10px;
+  	}
+	#detalle .caract .marginTop a.table {
+	    background: url(../images/sizes.png) no-repeat right center;
+	    color: #f50081;
+	    font-size: 16px;
+	    font-weight: 600;
+	    padding-right: 35px;
+	    padding-top: 5px;
+	    background-size: 7vw;
+	}
+}
