@@ -124,10 +124,12 @@
                 </div>
             </div>
         </section>
-    
+    <?php
+    $popupBG=(strpos($home['img_popup_newsletter'], ';')===false)?$home['img_popup_newsletter']:substr($home['img_popup_newsletter'],1);
+    ?>
         
         <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
-            <div class="content" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').substr($home['img_popup_newsletter'],1).');':''?>">
+            <div class="content" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').$popupBG.');':''?>">
                 <a class="close" data-dismiss="modal">
                     <span></span>
                     <span></span>
