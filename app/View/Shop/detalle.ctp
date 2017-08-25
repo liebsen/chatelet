@@ -69,7 +69,7 @@
                 <?php foreach ($images as $k => $v) : ?> 
                     <?php if (!empty($v)): ?>
                      <!--a href="#" ><img  class="mySlides"  id="mySlides"  src="<?php echo $v ?>" data-zoom-image="<?php echo $v ?>"/></a-->
-                     <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?php echo $v ?>" cloudzoom='zoomSizeMode:"image",autoInside: 600'/>
+                     <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?php echo $v ?>" data-cloudzoom='zoomSizeMode:"image",autoInside: 600'/>
                     <?php endif ?> 
                   <?php endforeach ?>
              </div>
