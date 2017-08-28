@@ -4,6 +4,9 @@ $(document).ready(function() {
 
     $('#particular-modal').bootstrapValidator({
         message: 'This value is not valid',
+        framework: 'bootstrap',
+        excluded: ':disabled',
+        submitButtons: 'input[type="submit"]',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -23,7 +26,12 @@ $(document).ready(function() {
             'data[User][password]': {
                 validators: {
                     notEmpty: {
-                        message: 'El campo password es requerido y no puede estar vacio'
+                        message: 'Contraseña es requerido'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 20,
+                        message: 'El campo contraseña debe tener como mínimo 6 caracteres y 20 como máximo'
                     }
                 }
             },
@@ -47,7 +55,7 @@ $(document).ready(function() {
                         message: 'El campo cumpleaños es requerido y no puede estar vacio'
                     }
                 }
-            },
+            }
             /*'data[User][gender]': {
                 validators: {
                     notEmpty: {
@@ -55,7 +63,7 @@ $(document).ready(function() {
                     }
                 }
             },*/
-            'data[User][dni]': {
+            /*'data[User][dni]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo dni es requerido y no puede estar vacio'
@@ -103,18 +111,41 @@ $(document).ready(function() {
                         message: 'El campo codigo postal es requerido y no puede estar vacio'
                     }
                 }
-            }
+            }*/
         }
-    });
+    }).on('change', '[name="data[User][birthday]"]', function(e) {
+        //$("#birthday").val($(this).datepicker('getFormattedDate'));
+            //$('#particular-modal').bootstrapValidator('options.fields.data[User][birthday]');
+        if($("#birthday").val()!=''){
+            $("#particular-modal").data('bootstrapValidator').updateStatus('data[User][birthday]', 'VALID').validateField("data[User][birthday]");
+            $("#particular-modal").bootstrapValidator('disableSubmitButtons', false);
+        }
+        //$(this).closest('#particular-modal').bootstrapValidator('revalidateField', $(this).prop('name'), true);
+    }).on('success.form.bv', function(e) {
+            // Prevent form submission
+            e.preventDefault();
+            $("#particular-modal").bootstrapValidator('disableSubmitButtons', false);
+            // Get the form instance
+            var $form = $(e.target);
 
-    $('#particularForm').submit(function(e) {
-        var me = $(this),
-            data = me.serialize(),
-            url = me.attr('action');
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
 
-        $.post(url, data)
-            .success(function(response) {
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function(response) {
                 if (!response.success) {
+                    if(response.errors!=undefined){
+                        if(response.errors.email!=undefined){
+                            $(".validation-email").html(response.errors.email[0]);
+                            $("#email").parent().removeClass('has-success');
+                            $("#email").parent().addClass('has-error');
+                        }
+                        if(response.errors.password!=undefined){
+                            $(".validation-password").html(response.errors.password[0]);
+                            $("#password").parent().removeClass('has-success');
+                            $("#password").parent().addClass('has-error');
+                        }
+                    }
                     $.growl.error({
                         title: 'Error al registrar usuario',
                         message: 'Por favor verifica los datos introducidos e intenta de nuevo'
@@ -126,16 +157,54 @@ $(document).ready(function() {
                 me.parents('#particular-modal').modal('hide');
                 location.reload();
                }
-            })
-            .fail(function() {
-                $.growl.error({
-                    title: 'Error al registrar usuario',
-                    message: 'Por favor verifica los datos introducidos e intenta de nuevo'
-                });
-            });
+            }, 'json');
+        });
 
-        e.preventDefault();
-        return false;
+    $('#particularForm').submit(function(e) {
+        if($("#particular-modal").data('bootstrapValidator').isValid()){
+            var me = $(this),
+            data = me.serialize(),
+            url = me.attr('action');
+
+            $.post(url, data)
+                .success(function(response) {
+                    response = JSON.parse(response);
+                    if (!response.success) {
+                        if(response.errors!=undefined){
+                            if(response.errors.email!=undefined){
+                                $(".validation-email").html(response.errors.email[0]);
+                                $("#email").parent().removeClass('has-success');
+                                $("#email").parent().addClass('has-error');
+                            }
+                            if(response.errors.password!=undefined){
+                                $(".validation-password").html(response.errors.password[0]);
+                                $("#password").parent().removeClass('has-success');
+                                $("#password").parent().addClass('has-error');
+                            }
+                        }
+                        $.growl.error({
+                            title: 'Error al registrar usuario',
+                            message: 'Por favor verifica los datos introducidos e intenta de nuevo'
+                        });
+                        return false;
+                    }else{
+
+                    me[0].reset();
+                    me.parents('#particular-modal').modal('hide');
+                    location.reload();
+                   }
+                })
+                .fail(function() {
+                    $.growl.error({
+                        title: 'Error al registrar usuario',
+                        message: 'Por favor verifica los datos introducidos e intenta de nuevo'
+                    });
+                });
+
+            e.preventDefault();
+            return false;
+        }
+        
     });
     
     $("#login").on('click', function(event){

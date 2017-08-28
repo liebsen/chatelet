@@ -57,6 +57,9 @@ class Oca
 		$c_imp = array();
 		foreach (@$xpath->query("//NewDataSet/Table") as $ci)
 		{
+			if(!$ci->getElementsByTagName('Piso')->item(0)){
+				CakeLog::write('error', 'http://webservice.oca.com.ar/oep_tracking/Oep_Track.asmx/GetCentrosImposicionPorCP ' . var_export($ci->getAttribute('diffgr:id'), true));
+			}
 			$c_imp[] = array(	'idCentroImposicion'	=> $ci->getElementsByTagName('idCentroImposicion')->item(0)->nodeValue,
 								'IdSucursalOCA'			=> $ci->getElementsByTagName('IdSucursalOCA')->item(0)->nodeValue,
 								'Sigla'					=> $ci->getElementsByTagName('Sigla')->item(0)->nodeValue,
@@ -64,8 +67,8 @@ class Oca
 								'Calle'					=> $ci->getElementsByTagName('Calle')->item(0)->nodeValue,
 								'Numero'				=> $ci->getElementsByTagName('Numero')->item(0)->nodeValue,
 								'Torre'					=> $ci->getElementsByTagName('Torre')->item(0)->nodeValue,
-								'Piso'					=> $ci->getElementsByTagName('Piso')->item(0)->nodeValue,
-								'Depto'					=> $ci->getElementsByTagName('Depto')->item(0)->nodeValue,
+								'Piso'					=> @$ci->getElementsByTagName('Piso')->item(0)->nodeValue,
+								'Depto'					=> @$ci->getElementsByTagName('Depto')->item(0)->nodeValue,
 								'Localidad'				=> $ci->getElementsByTagName('Localidad')->item(0)->nodeValue,
 								'IdProvincia'			=> $ci->getElementsByTagName('IdProvincia')->item(0)->nodeValue,
 								'idCodigoPostal'		=> $ci->getElementsByTagName('idCodigoPostal')->item(0)->nodeValue,

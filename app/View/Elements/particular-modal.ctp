@@ -1,8 +1,9 @@
 <?php
-	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
+	echo $this->Html->script('/bootstrap/js/datepicker', array('inline' => false));
+	echo $this->Html->script('locales/bootstrap-datepicker.es.js', array('inline' => false));
 	echo $this->Html->script('formValidation.min', array('inline' => false));
 	echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
-	echo $this->Html->script('bootstrapValidator', array('inline' => false)); 
+	echo $this->Html->script('bootstrapValidator', array('inline' => false));
 	echo $this->Html->script('particular-validation', array('inline' => false));
 	
 	if (!$loggedIn) {
@@ -58,12 +59,12 @@
 									echo '<input type="email" id="email" class="form-control " name="data[User][email]" value="'. $user['email'] .'" />';
 								?>
 							</div>
-						
-							<label for="password">Password</label>
+							<span class="validation-email"></span>
+							<label for="password">Contraseña</label>
 							<div class="form-group">
 								<input type="password" id="password" class="form-control" name="data[User][password]" />
 							</div>
-						
+							<span class="validation-password"></span>
 							<label for="nombre">Nombre</label>
 							<div class="form-group">
 								<?php
@@ -81,7 +82,7 @@
 							<label for="nacimiento">Fecha de Nacimiento (dd/mm/aaaa) </label>
 							<div class="form-group">
 								<?php
-									echo '<input type="text" class="datepicker form-control" name="data[User][birthday]" value="'. 
+									echo '<input type="text" id="birthday" class="datepicker form-control" name="data[User][birthday]" value="'. 
 											$this->Time->format($user['birthday'], '%d/%m/%Y')
 										.'" />';
 								?>
@@ -93,8 +94,8 @@
 								if ($user['gender'] == 'M') $male = 'selected';
 								else if ($user['gender'] == 'F') $female = 'selected';
 								echo '<div class="form-group">';
-									echo '<select id="sexo" class="selectpicker" name="data[User][gender]">';
-										echo '<option>No especificado</option>';
+									echo '<select id="sexo" class="selectpicker form-control" name="data[User][gender]">';
+										echo '<option value="">No especificado</option>';
 										echo '<option value="M" '.$male.'>Masculino</option>';
 										echo '<option value="F" '.$female.'>Femenino</option>';
 									echo '</select>';
@@ -142,10 +143,10 @@
 						
 							<label for="provincia">Provincia</label>
 							<div class="form-group">
-								<select id="provincia" class="selectpicker" name="data[User][province]">
+								<select id="provincia" class="selectpicker form-control" name="data[User][province]">
 									<?php
 										if (empty($user['province'])) {
-											echo '<option>Seleccionar provincia</option>';
+											echo '<option value="">Seleccionar provincia</option>';
 										} else {
 											echo '<option value="'. $user['province'] .'" selected>'. $user['province'] .'</option>';
 										}

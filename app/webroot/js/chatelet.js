@@ -35,9 +35,10 @@ $(document).ready(function() {
 		return false;
 	});
 	if (typeof $.fn.datepicker != 'undefined'){ 
-	$('.datepicker').datepicker({
-		format: 'dd/mm/yyyy'
-	});
+		$('.datepicker').datepicker({
+			format: 'dd/mm/yyyy',
+			language: 'es'
+		});
 	}
 	//$('.selectpicker').selectpicker();
 

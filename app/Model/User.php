@@ -78,15 +78,24 @@ public $validate = array(
     			'required' => true,
     			'allowEmpty' => false,
     			'message' => 'El campo email es requerido'
-			)
+			),
+            'unique' => array(
+                'rule' => 'isUnique',
+                'on'=>'create',
+                'message'=>'Email ya registrado'
+            )
 		),
 		'password' => array(
 			'required' => array(
 				'rule' => 'notBlank',
 				'required' => false,
 				'allowEmpty' => true,
-				'message'  => 'La campo password es requerido'
-			)
+				'message'  => 'La campo contraseña es requerido'
+			),
+            'minLength' => array(
+                'rule' => array('minLength', '6'),
+                'message' => 'La contraseña debe tener 6 caracteres como minimo'
+            ),
 		),
 		'name' => array(
 			'required' => array(

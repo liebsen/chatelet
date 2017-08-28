@@ -7,6 +7,7 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
     	parent::beforeFilter();
+        $this->Auth->allow('register');
         $this->loadModel('Setting');
         $categories = $this->Category->find('all');
         $this->set('categories', $categories);
@@ -47,25 +48,25 @@ class UsersController extends AppController {
         return $this->redirect($this->Auth->logout());
     }
 
-    public function register() {
+    public function register()
+    {
         $this->autoRender = false;
         $this->RequestHandler->respondAs('application/json');
         if (!$this->request->is('post')) {
             return json_encode(array('success' => false));
         }
-
-        if ($this->User->save($this->request->data)) {
+        $saved = $this->User->save($this->request->data);
+        if (!empty($saved)) {
             $this->Auth->login();     
             $this->Session->setFlash(
                     'Bienvenido a Chatelet', 
                     'default', 
                     array('class' => 'hidden notice')
                 );
-            return json_encode(array('success' => true));
-
+            die(json_encode(array('success' => true)));
         } else {
             $errors = $this->User->validationErrors;
-            return json_encode(array('success' => false, 'errors' => $errors));
+            die(json_encode(array('success' => false, 'errors' => $errors)));
         }
         
     }
