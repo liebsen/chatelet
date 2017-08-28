@@ -304,11 +304,15 @@ html, body {
 	margin-bottom: 5px;
 }
 
-#particular-modal,
 #mayorista-modal {
 	font-size: 13px;
 	position: absolute;
 	/*overflow: visible;*/
+}
+#particular-modal{
+	font-size: 13px;
+	position: absolute;
+	overflow: visible;
 }
 
 #particular-modal .form-control,
