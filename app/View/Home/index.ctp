@@ -127,6 +127,7 @@
     <?php
     /*$popupBGToSplit=(strpos($home['img_popup_newsletter'], ';')===false)?$home['img_popup_newsletter']:substr($home['img_popup_newsletter'],1);*/
     $popupBG=explode(';', $home['img_popup_newsletter']);
+die(pr($popupBG));
     if(empty($popupBG[0])){
         unset($popupBG[0]);
     }
