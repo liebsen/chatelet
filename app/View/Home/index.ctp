@@ -125,11 +125,43 @@
             </div>
         </section>
     <?php
-    $popupBG=(strpos($home['img_popup_newsletter'], ';')===false)?$home['img_popup_newsletter']:substr($home['img_popup_newsletter'],1);
-    ?>
-        
+    /*$popupBGToSplit=(strpos($home['img_popup_newsletter'], ';')===false)?$home['img_popup_newsletter']:substr($home['img_popup_newsletter'],1);*/
+    $popupBG=explode(';', $home['img_popup_newsletter']);
+    if(empty($popupBG[0])){
+        unset($popupBG[0]);
+    }
+    ?>        
         <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
-            <div class="content" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').$popupBG.');':''?>">
+            <?php if(count($popupBG)>1):?>
+            <div class="content">
+                <a class="close" data-dismiss="modal">
+                    <span></span>
+                    <span></span>
+                </a>
+                <?php echo $this->Form->create('Contact'); ?>
+                <?php if(empty($home['text_popup_newsletter'])):?>
+                    <h1>Suscribite a nuestro<br /><span>Newsletter</span></h1>
+                    <p>Y recibí las últimas novedades</p>
+                <?php else:?>
+                   <?php echo $home['text_popup_newsletter'];?>
+                <?php endif;?>   
+                  <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                  <input type="submit" id="enviar" value="ok">
+                <?php echo $this->Form->end(); ?> 
+                <div id="carousel-newsletter" class="carousel slide" data-ride="carousel">
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                      <img src="<?=Configure::read('imageUrlBase').$popupBG[0]?>">
+                    </div>
+                    <div class="item">
+                      <img src="<?=Configure::read('imageUrlBase').$popupBG[1]?>">
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <?php else:?>
+            <div class="content" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').$popupBG[0].');':''?>">
                 <a class="close" data-dismiss="modal">
                     <span></span>
                     <span></span>
@@ -144,12 +176,10 @@
                 <?php endif;?>   
                       <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
                       <input type="submit" id="enviar" value="ok">
-                    <?php echo $this->Form->end(); ?>
-         
+                    <?php echo $this->Form->end(); ?> 
             </div>
+        <?php endif;?>
         </div><!-- /.modal -->
-
-
 <script>
 var myIndex = 0;
 //carousel();
@@ -164,5 +194,6 @@ function carousel() {
     if (myIndex > x.length) {myIndex = 1}
     x[myIndex-1].style.display = "block";
     setTimeout(carousel, 9000);
+    $("#carousel-newsletter").carousel();
 }
 </script>

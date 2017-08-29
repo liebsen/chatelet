@@ -547,7 +547,7 @@ $(function(){
 					return false;
 				}else{
 					images_newsletter.push(data);
-				    input.val( data );
+				    input.val(images_newsletter.join(';'));
 					drawImagesNewsletter(images_newsletter);
 				}
 
