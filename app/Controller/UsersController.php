@@ -85,7 +85,7 @@ class UsersController extends AppController {
                 //$passwordHasher = new SimplePasswordHasher();
                 $pass = $pass1;//$passwordHasher->hash($pass1);
                                                                                                         
-                $this->User->save(array('User'=>array('id' => $user_data['User']['id'],'password' => $pass)));
+                $this->User->save(array('User'=>array('id' => $user_data['User']['id'],'password' => $pass)), false);
   
                         $email_data = array('id_user' => $user_data['User']['id'] ,
                                             'receiver_email' => $user_data['User']['email'],
