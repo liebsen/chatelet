@@ -134,9 +134,8 @@
                 $aux[] = $value;
             }
         }
-        $popupBG[] = $aux;
+        $popupBG = $aux;
     }
-die(pr($popupBG));
     ?>        
         <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
             <?php if(count($popupBG)>1):?>
