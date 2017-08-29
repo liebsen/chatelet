@@ -163,6 +163,11 @@
                     <div class="item">
                       <img src="<?=Configure::read('imageUrlBase').$popupBG[1]?>">
                     </div>
+                    <?php if(isset($popupBG[2]) && !empty($popupBG[2])):?>
+                    <div class="item">
+                      <img src="<?=Configure::read('imageUrlBase').$popupBG[2]?>">
+                    </div> 
+                    <?php endif;?>
                   </div>
                 </div>
             </div>
