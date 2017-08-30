@@ -821,4 +821,8 @@ span.count {
     #myModal .content form input[type="submit"] {
         width: 100%;
     }
+
+    #myModal .content form input[type="email"] {
+        margin-bottom: 25px
+    }
 }
