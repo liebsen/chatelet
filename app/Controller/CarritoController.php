@@ -132,7 +132,7 @@ class CarritoController extends AppController
 
 		if(!$this->request->is('post') || empty($user['postal_address']) || empty($user['street_n']) || empty($user['street']) || empty($user['localidad']) || empty($user['provincia']) || empty($user['name']) || empty($user['surname']) || empty($user['email']) || empty($user['telephone'])){
 			$this->Session->setFlash(
-                'Error al procesar la compra, por favor intente nuevamente.',
+                'Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.',
                 'default',
                 array('class' => 'hidden error')
             );
