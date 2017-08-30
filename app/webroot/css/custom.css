@@ -192,7 +192,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
     position: absolute;
     top: 35px;
     left: 40px;
-    width: 100%;
+    width: 90%;
     z-index: 1
 }
 #myModal .content form h1 { font-size: 26px; font-weight: 600; margin-bottom: 15px; }
