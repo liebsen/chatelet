@@ -814,12 +814,13 @@ span.count {
 
     #myModal .content form p {
         left: 15px;
+        width: 80%;
     }
     .ft___ml {
         padding: 0 15px;
         bottom:0
     }
-    #myModal .content form p, #myModal .content form input[type="email"],
+    #myModal .content form input[type="email"],
     #myModal .content form input[type="submit"] {
         width: 100%;
     }

@@ -182,7 +182,7 @@
 
                     <?php echo $this->Form->create('Contact'); ?>
                 <?php if(empty($home['text_popup_newsletter'])):?>
-                    <div style="float: left;    margin: 45px 0 75px 0;    padding: 50px 35px;    width: 100%;">
+                    <div style="float: left; margin: 45px 0 75px 0; padding: 50px 35px; width: 100%;">
                     <h1>Suscribite a nuestro<br /><span>Newsletter</span></h1>
                     <p style="font-size: 16px;font-weight: 500;margin-bottom: 40px;position:inherit;">Y recibí las últimas novedades</p>
                     </div>
