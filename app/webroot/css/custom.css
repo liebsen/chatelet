@@ -680,7 +680,9 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
         width: 100%;
     }
 
-
+    .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+        max-width: none;
+    }
 
 }
 
