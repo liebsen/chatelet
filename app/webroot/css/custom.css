@@ -175,7 +175,7 @@ footer .bottom a.tt { background-position: -40px -286px; }
 footer .bottom a.ig { background-position: -101px -286px; }
 
 
-.modal a.close { display: block; height: 35px; opacity: 1; position: absolute; right: 20px; top: 10px; width: 35px; }
+.modal a.close { display: block; height: 35px; opacity: 1; position: absolute; right: 20px; top: 10px; width: 35px; z-index: 1;}
 .modal a.close span { background: #f50081; display: block; height: 4px; margin-top: 25px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
 .modal a.close span:last-child { margin-top: -3px; -ms-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
 #myModal .content { /*background: url(../images/livebox-bg.jpg);*/ margin: 50px auto; overflow: hidden; position: relative; width: 990px; }
