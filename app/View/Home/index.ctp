@@ -174,7 +174,7 @@
                 </div>
             </div>
             <?php else:?>
-            <div class="content" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').$popupBG[0].');':''?>">
+            <div class="content" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').$popupBG[0].');':'background: url(images/livebox-bg.jpg);'?>">
                 <a class="close" data-dismiss="modal">
                     <span></span>
                     <span></span>
@@ -182,8 +182,10 @@
 
                     <?php echo $this->Form->create('Contact'); ?>
                 <?php if(empty($home['text_popup_newsletter'])):?>
+                    <div style="background: #ebe9ea;float: left;margin: 75px 0 75px 75px;padding: 50px 35px;width: 50%;">
                     <h1>Suscribite a nuestro<br /><span>Newsletter</span></h1>
-                    <p>Y recibí las últimas novedades</p>
+                    <p style="font-size: 16px;font-weight: 500;margin-bottom: 40px;position:inherit;">Y recibí las últimas novedades</p>
+                    </div>
                 <?php else:?>
                    <?php echo $home['text_popup_newsletter'];?>
                 <?php endif;?>
