@@ -62,7 +62,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 #menuShop ul li a { color: #464444; font-weight: 500; }
 
 .carousel { z-index: 2; }
-#carousel-newsletter.carousel { z-index: -1; position: absolute !important;}
+#carousel-newsletter.carousel { z-index: 0; position: absolute !important;}
 #carousel-example-generic { height: auto; }
 #carousel-example-generic .carousel-caption { left: 25%; line-height: .8; /*padding-bottom: 150px;*/ padding-top: 125px; /*position: relative;*/ text-align: left; text-shadow: none; width: 50%;display: none }
 #carousel-example-generic .carousel-caption h1 { color: #464444; font-size: 40px; font-weight: 600; margin-bottom: 15px; text-shadow: none; }
@@ -193,6 +193,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
     top: 35px;
     left: 40px;
     width: 100%;
+    z-index: 1
 }
 #myModal .content form h1 { font-size: 26px; font-weight: 600; margin-bottom: 15px; }
 #myModal .content form h1 span { color: #f40081; font-weight: 500; }
@@ -207,7 +208,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
     float: left;
 }
 #myModal .content form input[type="submit"] {
-    background: transparent;
+    background: #FFF;
     border: 2px solid #f50081;
     color: #f50081;
     font-size: 16px;
@@ -219,9 +220,10 @@ footer .bottom a.ig { background-position: -101px -286px; }
 .ft___ml {
     position: absolute;
     width: 100%;
-    bottom: 70px;
+    bottom: 50px;
     overflow: hidden;
     padding: 0 45px;
+    z-index: 1
 }
 #video { background: url(../images/videobg.png) center center no-repeat; background-size: cover; overflow: hidden; padding: 35px 150px; }
 #video h1 { color: #f50081; font-size: 40px; font-weight: 600; margin-bottom: 30px; margin-top: 10%; }
@@ -508,6 +510,7 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
         margin-bottom: 75px;
         width: 100%;
         position: relative;
+        background: #FFF;
     }
 
 	.navbar-nav { margin: 0; text-align: center; }
@@ -600,12 +603,11 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
 
 	.modal-open .modal { padding: 0 15px !important; }
 	#myModal .content { background-size: cover; }
-	#myModal .content form { margin: 50px 20px 20px; }
 	#myModal .content form h1 { font-size: 20px; }
 	#myModal .content form p { margin-bottom: 20px; }
 	#myModal .content form p, #myModal .content form input[type="email"] { font-size: 16px; }
-	#myModal .content form input[type="email"] { margin-bottom: 30px; padding: 10px 0; }
-	#myModal .content form input[type="submit"] { font-size: 16px; padding: 10px 0; }
+	#myModal .content form input[type="email"] { margin-bottom: 0; padding: 10px 0; }
+	#myModal .content form input[type="submit"] { font-size: 16px; padding: 14px 0; }
 
 	#video { margin-bottom: 20px; padding: 20px; }
 	#video h1 { font-size: 30px; }
@@ -804,4 +806,19 @@ span.count {
 #detalle .caract label.btn.active.oldSelectColor {
     border-radius: 100px!important;
     box-shadow:rgba(0, 0, 0, 0.125) 0px 3px 5px 0px inset!important;
+}
+
+
+@media (max-width: 661px) {
+
+    #myModal .content form p {
+        left: 15px;
+    }
+    .ft___ml {
+        padding: 0 15px;
+    }
+    #myModal .content form p, #myModal .content form input[type="email"],
+    #myModal .content form input[type="submit"] {
+        width: 100%;
+    }
 }
