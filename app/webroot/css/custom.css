@@ -208,7 +208,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
     float: left;
 }
 #myModal .content form input[type="submit"] {
-    background: #FFF;
+    background: transparent;
     border: 2px solid #f50081;
     color: #f50081;
     font-size: 16px;
@@ -510,7 +510,6 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
         margin-bottom: 75px;
         width: 100%;
         position: relative;
-        background: #FFF;
     }
 
 	.navbar-nav { margin: 0; text-align: center; }
@@ -816,6 +815,7 @@ span.count {
     }
     .ft___ml {
         padding: 0 15px;
+        bottom:0
     }
     #myModal .content form p, #myModal .content form input[type="email"],
     #myModal .content form input[type="submit"] {
