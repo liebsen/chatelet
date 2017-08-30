@@ -179,13 +179,50 @@ footer .bottom a.ig { background-position: -101px -286px; }
 .modal a.close span { background: #f50081; display: block; height: 4px; margin-top: 25px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
 .modal a.close span:last-child { margin-top: -3px; -ms-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
 #myModal .content { /*background: url(../images/livebox-bg.jpg);*/ margin: 50px auto; overflow: hidden; position: relative; width: 990px; }
-#myModal .content form { background: #ebe9ea; float: left; margin: 75px 0 75px 75px; padding: 50px 35px; width: 50%; }
+#myModal .content form {
+    float: left;
+    width: 100%;
+    min-height: 450px;
+    position: relative;
+}
+#myModal .content form p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    position: absolute;
+    top: 35px;
+    left: 40px;
+    width: 100%;
+}
 #myModal .content form h1 { font-size: 26px; font-weight: 600; margin-bottom: 15px; }
 #myModal .content form h1 span { color: #f40081; font-weight: 500; }
 #myModal .content form p { font-size: 16px; font-weight: 500; margin-bottom: 40px; }
-#myModal .content form input[type="email"] { background: transparent; border: none; border-bottom: 1px solid #aeaeae; font-size: 16px; margin-bottom: 60px; padding: 20px 0; width: 100%; }
-#myModal .content form input[type="submit"] { background: transparent; border: 2px solid #f50081; color: #f50081; font-size: 16px; font-weight: 600; padding: 18px 0; width: 100%; }
-
+#myModal .content form input[type="email"] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #aeaeae;
+    font-size: 16px;
+    padding: 15px 0;
+    width: 49%;
+    float: left;
+}
+#myModal .content form input[type="submit"] {
+    background: transparent;
+    border: 2px solid #f50081;
+    color: #f50081;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 18px 0;
+    width: 40%;
+    float: right;
+}
+.ft___ml {
+    position: absolute;
+    width: 100%;
+    bottom: 70px;
+    overflow: hidden;
+    padding: 0 45px;
+}
 #video { background: url(../images/videobg.png) center center no-repeat; background-size: cover; overflow: hidden; padding: 35px 150px; }
 #video h1 { color: #f50081; font-size: 40px; font-weight: 600; margin-bottom: 30px; margin-top: 10%; }
 #video p { font-size: 25px; font-weight: 500; line-height: 1.4; }
@@ -467,7 +504,11 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
 
 	.modal-open .modal { padding: 0 30px !important; }
 	#myModal .content { width: 100%; }
-	#myModal .content form { margin-bottom: 75px; width: auto; }
+	#myModal .content form {
+        margin-bottom: 75px;
+        width: 100%;
+        position: relative;
+    }
 
 	.navbar-nav { margin: 0; text-align: center; }
 	.navbar-nav > li { float: none; display: inline-block; }
