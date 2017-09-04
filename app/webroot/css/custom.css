@@ -804,6 +804,12 @@ span.count {
     span.count {
         display: none
     }
+    
+    #myModal .content {
+        min-height: 200px;
+        background-repeat-x: no-repeat !important;
+        background-repeat-y: no-repeat !important;
+    }
 }
 
 
