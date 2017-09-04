@@ -831,4 +831,25 @@ span.count {
     #myModal .content form input[type="email"] {
         margin-bottom: 25px
     }
+    #myModal .content {
+        min-height: 200px;
+        background-repeat-x: no-repeat !important;
+        background-repeat-y: no-repeat !important;
+    }    
+}
+/*IPHONE*/
+@media (max-width: 750px) {
+     #myModal .content {
+        min-height: 200px;
+        background-repeat-x: no-repeat !important;
+        background-repeat-y: no-repeat !important;
+    }    
+}
+
+@media (max-width: 640px) {
+     #myModal .content {
+        min-height: 200px;
+        background-repeat-x: no-repeat !important;
+        background-repeat-y: no-repeat !important;
+    }    
 }
