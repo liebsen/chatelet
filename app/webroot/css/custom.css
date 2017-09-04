@@ -601,7 +601,10 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
 	footer .bottom a { margin: 0 20px; }
 
 	.modal-open .modal { padding: 0 15px !important; }
-	#myModal .content { background-size: cover; }
+	#myModal .content { /*background-size: cover;*/    background-size: contain!important;
+    min-height: 200px;
+    background-repeat-x: no-repeat !important;
+    background-repeat-y: no-repeat !important; }
 	#myModal .content form h1 { font-size: 20px; }
 	#myModal .content form p { margin-bottom: 20px; }
 	#myModal .content form p, #myModal .content form input[type="email"] { font-size: 16px; }
