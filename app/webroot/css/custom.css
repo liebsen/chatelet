@@ -806,7 +806,8 @@ span.count {
     }
     
     #myModal .content {
-        min-height: 200px;
+        background-size: contain!important;
+        max-height: 200px;
         background-repeat-x: no-repeat !important;
         background-repeat-y: no-repeat !important;
     }
@@ -838,7 +839,8 @@ span.count {
         margin-bottom: 25px
     }
     #myModal .content {
-        min-height: 200px;
+        background-size: contain!important;
+        max-height: 200px;
         background-repeat-x: no-repeat !important;
         background-repeat-y: no-repeat !important;
     }    
@@ -846,7 +848,8 @@ span.count {
 /*IPHONE*/
 @media (max-width: 750px) {
      #myModal .content {
-        min-height: 200px;
+        background-size: contain!important;
+        max-height: 200px;
         background-repeat-x: no-repeat !important;
         background-repeat-y: no-repeat !important;
     }    
@@ -854,7 +857,8 @@ span.count {
 
 @media (max-width: 640px) {
      #myModal .content {
-        min-height: 200px;
+        background-size: contain!important;
+        max-height: 200px;
         background-repeat-x: no-repeat !important;
         background-repeat-y: no-repeat !important;
     }    
