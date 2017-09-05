@@ -151,7 +151,7 @@
                 <?php else:?>
                    <?php echo $home['text_popup_newsletter'];?>
                 <?php endif;?>  
-                <div class="ft___ml" style="display: none;"> 
+                <div class="ft___ml" <?php if(empty($home['display_popup_form'])):?>style="display: none;"<?php endif;?>> 
                   <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
                   <input type="submit" id="enviar" value="ok">
                 </div>
@@ -189,7 +189,7 @@
                 <?php else:?>
                    <?php echo $home['text_popup_newsletter'];?>
                 <?php endif;?>
-                <div class="ft___ml" style="display: none;">
+                <div class="ft___ml" <?php if(empty($home['display_popup_form'])):?>style="display: none;"<?php endif;?>>
                       <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
                       <input type="submit" id="enviar" value="ok">
                 </div>

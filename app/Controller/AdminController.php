@@ -281,6 +281,9 @@ if (!empty($this->request->query['test'])){
 	    	} else {
 	    		$data['url_mod_four'] = null;
 	    	}
+	    	if(!isset($data['display_popup_form'])){
+	    		$data['display_popup_form'] = 0;
+	    	}
 	    	$this->Home->save($data);
 		}
         

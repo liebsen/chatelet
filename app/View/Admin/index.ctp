@@ -305,6 +305,12 @@
 								<textarea id="HomeTextPopupNewsletter" name="text_popup_newsletter" class="form-control"><?php echo $p['Home']['text_popup_newsletter'] ?></textarea>
 							</div>
 						</div>
+						<div class="control-group">
+							<label class="control-label" for="columns-text"><?php echo __('Mostrar formulario en popup'); ?></label>
+							<div class="controls">
+								<input type="checkbox" name="display_popup_form" class="form-control" <?=(!empty($p['Home']['display_popup_form']))?'checked':''?>>
+							</div>
+						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="control-group">

@@ -21,3 +21,8 @@ ADD COLUMN `images` TEXT NULL DEFAULT NULL AFTER `code`;
 ALTER TABLE `chatelet_new`.`homes` 
 ADD COLUMN `text_popup_newsletter` TEXT NULL AFTER `url_mod_four`,
 ADD COLUMN `img_popup_newsletter` VARCHAR(255) NULL AFTER `text_popup_newsletter`;
+
+
+--05/09/2017
+ALTER TABLE `chatelet_new`.`homes` 
+ADD COLUMN `display_popup_form` TINYINT(1) UNSIGNED NULL DEFAULT 0 AFTER `img_popup_newsletter`;
