@@ -686,7 +686,19 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
     .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
         max-width: none;
     }
+    section#productOptions a > img {
+        max-width: 100%;
+    }
+    section#productOptions .col-xs-6 a .hover {
+        font-size: 10px;
+    }
+    section#productOptions .col-xs-6 a {
 
+        height: auto;
+    }
+    section#productOptions .col-xs-6 a .hover small {
+        
+    }
 }
 
 
