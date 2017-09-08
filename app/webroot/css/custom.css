@@ -702,6 +702,13 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
     #carousel-example-generic > .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
         max-width: 100%;
     }
+
+    #today .rectangle {
+        padding: 15px 0 65px;
+    }
+    #today {
+        padding: 15px;
+    }    
 }
 
 
