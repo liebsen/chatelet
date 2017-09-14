@@ -22,7 +22,7 @@
         <section id="productOptions">
             <div class="wrapper">
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="hidden-xs hidden-sm col-sm-3">
                         <nav>
                             <ul>
                                 <?php  
@@ -100,6 +100,27 @@
        
 		      
 		
+                    </div>
+                    <div class="visible-xs-* visible-sm-* col-sm-3">
+                        <nav>
+                            <ul>
+                                <?php  
+                                    foreach ($categories as $category) {
+                                        $category = $category['Category'];
+                                        echo '<li>';
+                                        echo $this->Html->link(
+                                            $category['name'], 
+                                            array(
+                                                'controller' => 'shop',
+                                                'action' => 'product',
+                                                intval($category['id'])
+                                            )
+                                        );
+                                        echo '</li>';
+                                    }
+                                   ?>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

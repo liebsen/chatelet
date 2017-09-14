@@ -833,6 +833,26 @@ span.count {
         background-repeat-x: no-repeat !important;
         background-repeat-y: no-repeat !important;
     }
+
+    #listShop a .hover{
+        border: 2px solid #f50081;
+        color: #f50081;
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 25px;
+        height: 90%;
+        left: 5%;
+        opacity: 1;
+        position: absolute;
+        text-align: center;
+        top: 5%;
+        width: 90%;
+        transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+        -webkit-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+    }
 }
 
 
@@ -884,4 +904,28 @@ span.count {
         background-repeat-x: no-repeat !important;
         background-repeat-y: no-repeat !important;
     }    
+}
+
+/*Mobile Icons NavTop*/
+@media (max-width: 860px) {
+
+    #listShop a .hover{
+        border: 2px solid #f50081;
+        color: #f50081;
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 25px;
+        height: 90%;
+        left: 5%;
+        opacity: 1;
+        position: absolute;
+        text-align: center;
+        top: 5%;
+        width: 90%;
+        transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+        -webkit-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+    }
 }
