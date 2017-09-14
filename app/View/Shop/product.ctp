@@ -101,7 +101,7 @@
 		      
 		
                     </div>
-                    <div class="visible-xs-* visible-sm-* col-sm-3">
+                    <div class="visible-xs-* visible-sm-* col-sm-3" style="clear: both;">
                         <nav>
                             <ul>
                                 <?php  
