@@ -840,7 +840,7 @@ span.count {
         font-size: 22px;
         font-weight: 500;
         line-height: 25px;
-        height: 90%;
+        height: 80%;
         left: 5%;
         opacity: 1;
         position: absolute;
@@ -853,6 +853,11 @@ span.count {
         -webkit-transition: all .3s ease-in-out;
         -o-transition: all .3s ease-in-out;
     }
+    #listShop a img {
+        margin: 0 auto;
+        text-align: center;
+    }
+   
 }
 
 
