@@ -251,7 +251,7 @@ $(document).ready(function() {
 			'image/jpg': true,
 		};
 		fd.append('data[file]', this.files[0]);
-		fd.append('data[alias]', alias);
+		fd.append('data[alias]', alias.replace('_', ' '));
 		fd.append('data[id]', productId);
 		var productProperty = me.parent().find("input[name='props["+ counter +"][id]']");
 		if($(productProperty).val()!=""){

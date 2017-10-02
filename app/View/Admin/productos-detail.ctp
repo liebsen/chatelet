@@ -112,7 +112,7 @@
                   if (isset($props)) {
                     foreach ($props as $index => $prop) {
                       $type = $prop['ProductProperty']['type'];
-                      $alias = $prop['ProductProperty']['alias'];
+                      $alias = str_replace(' ', '_', $prop['ProductProperty']['alias']);
                       $variable = $prop['ProductProperty']['variable'];
                       $id = $prop['ProductProperty']['id'];
                       $product_id = $prop['ProductProperty']['product_id'];
@@ -139,7 +139,7 @@
                              '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'"/>'.
                              '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
                              '<select class="code_sel" name="props['. $index .'][code]">'.$options.'</select>'.
-                             '<span class="alias_cont"><input type="text" name="props['. $index .'][alias]" value="'.$alias.'" class="changed variable" required placeholder="AA, 02, etc..."/></span>'.
+                             '<span class="alias_cont"><input type="text" name="props['. $index .'][alias]" value="'.$prop['ProductProperty']['alias'].'" class="changed variable" required placeholder="AA, 02, etc..."/></span>'.
                               '<div class="right">'.
                                 '<a class="btn btn-xs btn-danger remove-item" data-count="'.$index.'">Borrar</a>'.
                               '</div>'.
