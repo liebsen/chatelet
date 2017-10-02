@@ -174,7 +174,7 @@
                 </div>
             </div>
             <?php else:?>
-            <div class="content" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').$popupBG[0].');':'background: url(images/livebox-bg.jpg);'?>">
+            <div class="content" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').$popupBG[0].');background-repeat-y: no-repeat;':'background: url(images/livebox-bg.jpg);'?>">
                 <a class="close" data-dismiss="modal">
                     <span></span>
                     <span></span>
