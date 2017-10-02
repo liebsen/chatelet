@@ -244,12 +244,12 @@ $(document).ready(function() {
 			alert('Debe ingresar un alias');
 			return false;
 		}
-		var exist = $("#progress"+alias).length;
-		if(exist==0){
+		//var exist = $("#progress"+alias).length;
+		//if(exist==0){
 			$(this).parent().find("progress").show();
-		} else {
-			$("#progress"+alias).show();
-		}		
+		//} else {
+			//$("#progress"+alias).show();
+		//}		
 		var valid_types = {
 			'image/jpeg': true,
 			'image/jpg': true,
@@ -274,12 +274,12 @@ $(document).ready(function() {
 				    xhr.upload.addEventListener("progress", function(evt){
 				    	if (evt.lengthComputable) {
 				    		//$('#progress'+alias).attr({value:evt.loaded,max:evt.total});
-				    		var exist = $("#progress"+alias).length;
-				    		if(exist==0){
+				    		//var exist = $("#progress"+alias).length;
+				    		//if(exist==0){
 								$(auxThis).parent().find("progress").attr({value:evt.loaded,max:evt.total});
-							} else {
-								$("#progress"+alias).attr({value:evt.loaded,max:evt.total});
-							}
+							//} else {
+								//$("#progress"+alias).attr({value:evt.loaded,max:evt.total});
+							//}
 					    }
 					}, false);
 				    return xhr;
@@ -287,12 +287,12 @@ $(document).ready(function() {
 			})
 			.success(function(data) {
 				//$("#progress"+alias).hide();
-				var exist = $("#progress"+alias).length;
-				if(exist.length==0){
+				//var exist = $("#progress"+alias).length;
+				//if(exist.length==0){
 					$(auxThis).parent().find("progress").hide();
-				} else {
-					$("#progress"+alias).hide();
-				}
+				//} else {
+					//$("#progress"+alias).hide();
+				//}
 				if(data == 'fail'){
 					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
