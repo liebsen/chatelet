@@ -247,7 +247,7 @@ $(document).ready(function() {
 			alert('Debe ingresar un alias');
 			return false;
 		}
-		if(document.querySelector("#progress"+alias)==null){
+		if($("#progress"+alias).length==0){
 			$(this).parent().find("progress").show();
 		} else {
 			$("#progress"+alias).show();
@@ -276,7 +276,7 @@ $(document).ready(function() {
 				    xhr.upload.addEventListener("progress", function(evt){
 				    	if (evt.lengthComputable) {
 				    		//$('#progress'+alias).attr({value:evt.loaded,max:evt.total});
-				    		if(document.querySelector("#progress"+alias)==null){
+				    		if($("#progress"+alias).length==0){
 								$(auxThis).parent().find("progress").attr({value:evt.loaded,max:evt.total});
 							} else {
 								$("#progress"+alias).attr({value:evt.loaded,max:evt.total});
@@ -288,7 +288,7 @@ $(document).ready(function() {
 			})
 			.success(function(data) {
 				//$("#progress"+alias).hide();
-				if(document.querySelector("#progress"+alias)==null){
+				if($("#progress"+alias).length==0){
 					$(auxThis).parent().find("progress").hide();
 				} else {
 					$("#progress"+alias).hide();
