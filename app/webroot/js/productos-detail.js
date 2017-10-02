@@ -239,6 +239,7 @@ $(document).ready(function() {
 		var base_url = $("#image_thumb").data('url');
 		var alias = me.data('alias');
 		var ref = me.data('ref');
+		var auxThis = this;
 		if(alias==""){
 			alias = $("input[name='"+ref+"']").val();
 		}
@@ -276,7 +277,7 @@ $(document).ready(function() {
 				    	if (evt.lengthComputable) {
 				    		//$('#progress'+alias).attr({value:evt.loaded,max:evt.total});
 				    		if(document.querySelector("#progress"+alias)==null){
-								$(this).parent().find("progress").attr({value:evt.loaded,max:evt.total});
+								$(auxThis).parent().find("progress").attr({value:evt.loaded,max:evt.total});
 							} else {
 								$("#progress"+alias).attr({value:evt.loaded,max:evt.total});
 							}
@@ -288,7 +289,7 @@ $(document).ready(function() {
 			.success(function(data) {
 				//$("#progress"+alias).hide();
 				if(document.querySelector("#progress"+alias)==null){
-					$(this).parent().find("progress").hide();
+					$(auxThis).parent().find("progress").hide();
 				} else {
 					$("#progress"+alias).hide();
 				}
