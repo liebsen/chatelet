@@ -145,7 +145,7 @@
                               '</div>'.
                               '<input type="file" class="upload_color_image" id="ColorImage'.$alias.'" name="color_image" data-alias="'.$alias.'" data-url="'.Router::url('/admin/uploadImageColor').'" data-count="'.$index.'">'.
                               '<progress id="progress'.$alias.'" hidden></progress>'.
-                              '<ul id="ListUploaded'.$alias.'" class="list-inline">'.$images.'</ul>'.
+                              '<ul id="ListUploaded" class="list-inline">'.$images.'</ul>'.
                             '</li>';
                       }
                     }

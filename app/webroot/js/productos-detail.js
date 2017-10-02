@@ -298,8 +298,8 @@ $(document).ready(function() {
 					return false;
 				}
 				//$("#ProductPropertyImages"+alias).val(data.allImages);
-				if(document.querySelector("#ListUploaded"+alias)!=null){
-					$("#ListUploaded"+alias).append("<li><img src="+base_url+'thumb_'+data.image+" width='100px' data-alias='"+alias+"' data-file='"+data.image+"'><a href=\"#\" class=\"delete_image_color\" data-alias='"+alias+"' data-file='"+data.image+"' data-url='/admin/deleteImageColor' data-id='"+data.ppId+"'>X</a></li>");
+				if($(auxThis).parent().find("#ListUploaded")!=null){
+					$(auxThis).parent().find("#ListUploaded").append("<li><img src="+base_url+'thumb_'+data.image+" width='100px' data-alias='"+alias+"' data-file='"+data.image+"'><a href=\"#\" class=\"delete_image_color\" data-alias='"+alias+"' data-file='"+data.image+"' data-url='/admin/deleteImageColor' data-id='"+data.ppId+"'>X</a></li>");
 				} else {
 					var auxCount = me.data('count');
 					$("input[name='props["+ count +"][id]']").val(data.ppId);
