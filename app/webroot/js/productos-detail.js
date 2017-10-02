@@ -244,8 +244,13 @@ $(document).ready(function() {
 		}
 		if(alias==""){
 			alert('Debe ingresar un alias');
+			return false;
 		}
-		$("#progress"+alias).show();
+		if(document.querySelector("#progress"+alias)==null){
+			$(this).parent().find("progress").show();
+		} else {
+			$("#progress"+alias).show();
+		}		
 		var valid_types = {
 			'image/jpeg': true,
 			'image/jpg': true,
@@ -269,14 +274,24 @@ $(document).ready(function() {
 				    //Upload progress
 				    xhr.upload.addEventListener("progress", function(evt){
 				    	if (evt.lengthComputable) {
-				    		$('#progress'+alias).attr({value:evt.loaded,max:evt.total});
+				    		//$('#progress'+alias).attr({value:evt.loaded,max:evt.total});
+				    		if(document.querySelector("#progress"+alias)==null){
+								$(this).parent().find("progress").attr({value:evt.loaded,max:evt.total});
+							} else {
+								$("#progress"+alias).attr({value:evt.loaded,max:evt.total});
+							}
 					    }
 					}, false);
 				    return xhr;
 				}
 			})
 			.success(function(data) {
-				$("#progress"+alias).hide();
+				//$("#progress"+alias).hide();
+				if(document.querySelector("#progress"+alias)==null){
+					$(this).parent().find("progress").hide();
+				} else {
+					$("#progress"+alias).hide();
+				}
 				if(data == 'fail'){
 					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
