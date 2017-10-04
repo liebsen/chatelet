@@ -105,10 +105,7 @@ class AppController extends Controller
     }
 
   
-      public function sendEmail($data, $subject, $template) {
-
-        //pr($data);die;
-        
+    public function sendEmail($data, $subject, $template) {
         if (empty($data['receiver_email'])){
             return true;
         }
