@@ -211,10 +211,17 @@ if (!empty($this->request->query['test'])){
 			//Info Mergeapp/webroot/css/custom.css
 			$sale['collection']['deliver_cost'] = 0;
 			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
+			if($sale_number==1299){
+				CakeLog::write('error', var_export($local_desc, true));
+			}
+
 			if(!empty($local_desc)){
 				$sale['collection']['sale_products'] = Hash::extract($local_desc, '{n}.SaleProduct.description');
 			}else{
 				$sale['collection']['sale_products'] = array($sale['collection']['reason']);
+				if($sale_number==1299){
+					CakeLog::write('error', 'collection reason ' . var_export($sale['collection']['reason'], true));
+				}
 			}
 			$package = $this->Package->find('first',array( 'conditions' => array( 'Package.amount_max >=' => count( $sale['collection']['sale_products'] ) , 'Package.amount_min <=' => count( $sale['collection']['sale_products'] ) ) ));
 		
