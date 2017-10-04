@@ -127,6 +127,23 @@ class AppController extends Controller
         
     }
 
+    public function sendMail($message, $subject, $to)
+    {
+        $Email = new CakeEmail();
+        $Email->from(array(
+            'info@chatelet.com' => 'Chatelet'
+        ));
+        //pr($data);die;
+        $Email->to($to);
+        $Email->subject($subject);
+        //$Email->template($template, 'default');
+        $Email->emailFormat('html');
+        $Email->config('default');
+        //$Email->viewVars(array(
+        //    'data' => $data
+        //));
+        $Email->send($message);
+    }
 
     protected function save_file($file, $withThumb = false) {
         if (empty($file['name'])) {
