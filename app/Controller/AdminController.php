@@ -211,6 +211,7 @@ if (!empty($this->request->query['test'])){
 			//Info Mergeapp/webroot/css/custom.css
 			$sale['collection']['deliver_cost'] = 0;
 			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
+			CakeLog::write('error', 'sale_number ' . var_export($sale_number, true));
 			if($sale_number==1299){
 				CakeLog::write('error', var_export($local_desc, true));
 			}
