@@ -207,7 +207,9 @@ if (!empty($this->request->query['test'])){
 		foreach ($sales as &$sale) {
 			$details 		= explode('-|-', $sale['collection']['reason']);
 			$sale_number 	= (!empty($details[0]))?$details[0]:'PEDIDO : "00"';
-			str_replace("&quot;", '"', $sale_number);
+			if(strpos($sale_number, "&quot;")!== false){
+				$sale_number = html_entity_decode($sale_number);
+			}
 			//Info Mergeapp/webroot/css/custom.css
 			$sale['collection']['deliver_cost'] = 0;
 			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
