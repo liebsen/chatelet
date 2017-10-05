@@ -80,7 +80,7 @@ $(document).ready(function() {
 		var me = $(this);
 		var cindex = me.data('count');
 		var ppId = $("input[name='props["+ cindex +"][id]'").val(); 
-		if(ppId!=""){
+		if(ppId!="" && ppId!=undefined){
 			var r = confirm("Si elimina este registro no podra recuperarse. ¿Desea eliminarlo?");
         	if (r == true){
 				$.ajax({
