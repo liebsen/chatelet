@@ -35,8 +35,10 @@ $(function(){
     var moreviews = '';
     var surround = '';
     for(var i=0;i<images.length;i++){
-      moreviews += '<li class="dontResize"><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" onclick="currentDiv('+(i+ 1)+')"  id="img_01" src="https://d3baxuoyqsgua.cloudfront.net/thumb_'+images[i]+'" ></a></li>';
-      surround += '<img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="https://d3baxuoyqsgua.cloudfront.net/'+images[i]+'" data-cloudzoom=\'zoomSizeMode:"image",autoInside: 600\'/>';     
+      if(images[i]!=""){
+        moreviews += '<li class="dontResize"><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" onclick="currentDiv('+(i+ 1)+')"  id="img_01" src="https://d3baxuoyqsgua.cloudfront.net/thumb_'+images[i]+'" ></a></li>';
+        surround += '<img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="https://d3baxuoyqsgua.cloudfront.net/'+images[i]+'" data-cloudzoom=\'zoomSizeMode:"image",autoInside: 600\'/>';
+      }
     }
     $("#ul-moreviews").html(moreviews);
     $("#surround").html(surround);

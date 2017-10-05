@@ -41,15 +41,19 @@
         <div class="col-md-2 col-sm-5">
             <ul id="ul-moreviews">
                 <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
+                   <?php if(!empty($value)): ?>
                    <li class="dontResize"><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" 
                     onclick="currentDiv(<?=$key + 1?>)"  id="img_01" src="<?=Configure::read('imageUrlBase').'thumb_'.$value?>"></a></li>
+                    <?php endif;?>
                 <?php endforeach ?>
             </ul>
         </div>
         <div class="col-md-5 col-sm-7"  >
              <div id="surround">
                 <?php foreach ($colorImages[0]['images'] as $k => $v) : ?> 
+                    <?php if(!empty($v)): ?>
                     <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?=Configure::read('imageUrlBase').$v?>" data-cloudzoom='zoomSizeMode:"image",autoInside: 600'/> 
+                    <?php endif;?>
                   <?php endforeach ?>
              </div>
         </div>
@@ -118,6 +122,12 @@
                                     echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
                                     if (!empty($color['images'])) {
                                         $image = explode(';', $color['images']);
+                                        foreach ($image as $kk => $vv) {
+                                            if (!empty($vv)) {
+                                                $image[0] = $vv;
+                                                break;
+                                            }
+                                        }
                                         echo '<img src="'.Configure::read('imageUrlBase').'thumb_'.$image[0].'">';
                                     } else {
                                         echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';

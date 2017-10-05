@@ -1019,6 +1019,24 @@ public function promos(){
 	    $this->set('subscriptions', $subscriptions);
 		return $this->render('subscriptions');
 	}
+
+	public function onlyUploadImageColor()
+	{
+		header("Content-Type: application/json");
+		$this->autoRender = false;
+		$response = null;
+		if (!empty($this->request->data['file']['name'])) {
+			$response = $this->save_file($this->request->data['file'], true);//true param para generar thumbnail
+			$response = array('image'=>$response);
+		} else {
+			die('fail');
+		}
+		if (empty($response)) {
+			$response = 'fail';
+		}
+		die(json_encode($response, true));
+	}
+	
 	//TODO validar que no exista un registro con ese alias
 	public function uploadImageColor()
 	{

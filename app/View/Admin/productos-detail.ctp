@@ -1,7 +1,11 @@
 <?php
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
   echo $this->Html->css('productos-detail', array('inline' => false));
-  echo $this->Html->script('productos-detail', array('inline' => false));
+  if($this->request->params['pass'][0]=="add"){
+    echo $this->Html->script('productos-detail-add', array('inline' => false));
+  } else {
+    echo $this->Html->script('productos-detail', array('inline' => false));
+  }  
   /* ColorPicker */
   echo $this->Html->css('colorpicker', array('inline' => false));
   echo $this->Html->script('colorpicker', array('inline' => false));
@@ -119,7 +123,9 @@
                       $imagesArr = (!empty($prop['ProductProperty']['images']))?explode(';',$prop['ProductProperty']['images']):array();
                       $images = '';
                       foreach($imagesArr as $img){
-                        $images = $images . '<li><img src="'.Configure::read('imageUrlBase').'thumb_'.$img.'" width="100px"><a href="#" class="delete_image_color" data-alias="'.$alias.'" data-file="'.$img.'" data-url="'.Router::url('/admin/deleteImageColor').'" data-id="'.$prop['ProductProperty']['id'].'">X</a></li>';
+                        if(!empty($img)){
+                          $images = $images . '<li><img src="'.Configure::read('imageUrlBase').'thumb_'.$img.'" width="100px"><a href="#" class="delete_image_color" data-alias="'.$alias.'" data-file="'.$img.'" data-url="'.Router::url('/admin/deleteImageColor').'" data-id="'.$prop['ProductProperty']['id'].'">X</a></li>';
+                        }
                       }
                       $options = '';
                       foreach($colors as &$color){
