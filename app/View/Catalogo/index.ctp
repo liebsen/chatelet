@@ -43,7 +43,7 @@
                           if (empty($value))
                             continue; 
                           $alt_product = $value['LookBook'];
-                          $img = str_replace(".jpg", "", $alt_product['img_url']);
+                          $img = str_replace([".jpg", ".JPG"], "", $alt_product['img_url']);
                           $url = $this->Html->url(array(
                                   'controller' => 'catalogo',
                                   'action' => 'index',
