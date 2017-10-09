@@ -284,8 +284,9 @@ class CarritoController extends AppController
 		$this->RequestHandler->respondAs('application/json');
 		if ($this->request->is('post') && isset($this->request->data['id'])) {
 			$product = $this->Product->findById($this->request->data['id']);
-			
-			if ($product) {
+			//http://localhost/chatelet-new/shop/stock/v7092/52/02
+			$stock = file_get_contents("http://localhost/chatelet-new/shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code']);
+			if ($product && $stock) {
 				$product = $product['Product'];
 				$product['color'] = $this->request->data['color'];
 				$product['size'] = $this->request->data['size'];

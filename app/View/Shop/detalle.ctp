@@ -156,7 +156,7 @@
                     <div class="footer-producto" >
                         <?php //if($loggedIn){ ?>
 
-                            <a href="#" id="agregar-carro" class="add" >Agregar a mi carro</a>
+                            <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar a mi carro</a>
 
                         <?php //}else{ echo $this->Form->end(); ?>
 

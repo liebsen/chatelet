@@ -81,26 +81,26 @@ class UsersController extends AppController {
                             'conditions' => array('User.email' => $email_user)));
                
                 if(!empty($user_data)){   
-                $pass1 = substr($user_data['User']['password'], -6);
-                //$passwordHasher = new SimplePasswordHasher();
-                $pass = $pass1;//$passwordHasher->hash($pass1);
-                                                                                                        
-                $this->User->save(array('User'=>array('id' => $user_data['User']['id'],'password' => $pass)), false);
-  
-                        $email_data = array('id_user' => $user_data['User']['id'] ,
-                                            'receiver_email' => $user_data['User']['email'],
-                                            'name' =>  $user_data['User']['name'],
-                                            'password' => $pass1);
-                         
-                        $this->sendEmail($email_data,'Recuperar contraseña Chatelet', 'confirm_email');
+                    $pass1 = substr($user_data['User']['password'], -6);
+                    //$passwordHasher = new SimplePasswordHasher();
+                    $pass = $pass1;//$passwordHasher->hash($pass1);
+                                                                                                            
+                    $this->User->save(array('User'=>array('id' => $user_data['User']['id'],'password' => $pass)), false);
+      
+                    $email_data = array('id_user' => $user_data['User']['id'] ,
+                                        'receiver_email' => $user_data['User']['email'],
+                                        'name' =>  $user_data['User']['name'],
+                                        'password' => $pass1);
+                     
+                    $this->sendEmail($email_data,'Recuperar contraseña Chatelet', 'confirm_email');
 
-                        $this->Session->setFlash(
-                            'BIEN! Verifique su casilla de correo' , 
-                            'default', 
-                            array('class' => 'hidden notice')
-                         );
-                        return $this->redirect($this->referer());
-               
+                    $this->Session->setFlash(
+                        'BIEN! Verifique su casilla de correo' , 
+                        'default', 
+                        array('class' => 'hidden notice')
+                     );
+                    return $this->redirect($this->referer());
+                   
                 }else{
                     $this->Session->setFlash(
                         'Error',

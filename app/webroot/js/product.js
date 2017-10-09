@@ -1,12 +1,12 @@
 $(document).ready(function() {
 	//Stock
 	$('input[name="color"],#size').change(function(event) {
-		var url 		= $('#productForm').data('url');
-		var article 	= $('#productForm').data('article');
-		var color_code 	= $('input[name="color"]:checked').attr('code');
-		var size_number	= $('#size option:selected').val();
+		var url 		= $(event.target).closest("form").data('url');
+		var article 	= $(event.target).closest("form").data('article');
+		var color_code 	= $(event.target).closest("form").find('input[name="color"]:checked').attr('code');
+		var size_number	= $(event.target).closest("form").find('#size option:selected').val();
 
-		var stock_cont	= $('#stock_container');
+		var stock_cont	= $(event.target).closest("form").find('#stock_container');
 		var stock    	= '<i style="color:green;">Disponible <i>';
 		var stock_0 	= '<i style="color:red;">No Disponible</i>';
 		var missing 	= '<i> (Seleccione un color y talle) </i>';
@@ -52,15 +52,16 @@ $(document).ready(function() {
   
 
 
-	$('#agregar-carro').click(function(e) {
+	$(".add.agregar-carro").click(function(e) {
+		//this = e.target;
 		var data = {
-				id: $('#product_id').text().trim(),
-				color: $('input[name="color"]:checked').val(),
-				size: $('#size option:selected').val(),
-				alias: $('input[name="color"]:checked').attr('alias'),
-			},
-			url = $('#productForm').attr('action');
-		
+				id: $(e.target).closest('form').find("#product_id").text().trim(),
+				color: $(e.target).closest('form').find("input[name='color']:checked").val(),
+				color_code: $(e.target).closest("form").find('input[name="color"]:checked').attr('code'),
+				size: $(e.target).closest('form').find("#size option:selected").val(),
+				alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias'),
+			};
+		url = $("#productForm").attr('action');		
 		if (!data.color || !data.size) {
 			return $.growl.error({
 				title: '',
