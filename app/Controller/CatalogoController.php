@@ -55,7 +55,7 @@ class CatalogoController extends AppController {
 
 
         if(!empty($img_url)){
-        	$img_url = $img_url.'.jpg';
+        	$img_url = (strpos(strtolower($img_url), 'jpg')===false)?$img_url.'.jpg':$img_url;
             $lookbook_id = $this->LookBook->find('all',array('conditions' => array('LookBook.img_url' => $img_url)));
         }elseif(!empty($lookbook[0]['LookBook']['img_url'])){
             $img_url = $lookbook[0]['LookBook']['img_url'];
