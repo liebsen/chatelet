@@ -238,6 +238,27 @@ $(document).ready(function() {
             }
         });
     }
+    if(document.querySelector("#HomeForgotPasswordForm")!=null){
+        $("#HomeForgotPasswordForm").submit(function(e) {
+            if($("#HomeForgotPasswordForm").find('#login-email').val()==''){
+                return false;
+            }
+        });
+    }
+    if(document.querySelector("#ProductForgotPasswordForm")!=null){
+        $("#ProductForgotPasswordForm").submit(function(e) {
+            if($("#ProductForgotPasswordForm").find('#login-email').val()==''){
+                return false;
+            }
+        });
+    }
+    if(document.querySelector("#StoreForgotPasswordForm")!=null){
+        $("#StoreForgotPasswordForm").submit(function(e) {
+            if($("#StoreForgotPasswordForm").find('#login-email').val()==''){
+                return false;
+            }
+        });
+    }
     $("#login").on('click', function(event){
         event.preventDefault();
         if(document.querySelector("#ProductLoginForm")!=null){
@@ -258,9 +279,8 @@ $(document).ready(function() {
         if(document.querySelector("#CategoryLoginForm")!=null){
             $("#CategoryLoginForm").submit();
         }
-        if(document.querySelector("#ProductForgotPasswordForm")!=null){
-            $("#ProductForgotPasswordForm").submit();
+        if(document.querySelector("#loginForm")!=null){
+            $("#loginForm").submit();
         }
-
     });
 });

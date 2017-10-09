@@ -16,10 +16,7 @@
 				</h3>
 			</div>
 			<div class="modal-body">
-
-				 <?php echo $this->Form->create(false, array('url' => array('controller' => 'users', 'action' => 'login'))); 
-                  ?>
-                  
+				 <?php echo $this->Form->create(false, array('url' => array('controller' => 'users', 'action' => 'login'))); ?>                  
                     <p class="title">Iniciar Sesion</p>
                     <input type="email" id="login-email"  name="data[User][email]" placeholder="Email" />
                     <input type="password" id="login-password" name="data[User][password]" placeholder="Password" />
