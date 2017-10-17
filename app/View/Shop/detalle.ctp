@@ -52,7 +52,7 @@
              <div id="surround">
                 <?php foreach ($colorImages[0]['images'] as $k => $v) : ?> 
                     <?php if(!empty($v)): ?>
-                    <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?=Configure::read('imageUrlBase').$v?>" data-cloudzoom='zoomSizeMode:"image",autoInside: 600'/> 
+                    <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?=Configure::read('imageUrlBase').$v?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/> 
                     <?php endif;?>
                   <?php endforeach ?>
              </div>
