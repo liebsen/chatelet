@@ -22,6 +22,21 @@ class HomeController extends AppController {
 		
 		$home = $this->Home->find('first');
 		$this->set('home', $home['Home']);
+
+        if (isset($home['Home']['img_popup_newsletter']) && !empty($home['Home']['img_popup_newsletter'])) {
+            $popupBG=explode(';', $home['Home']['img_popup_newsletter']);
+            if (empty($popupBG[0])) {
+                $aux = array();
+                foreach ($popupBG as $key => $value) {
+                    if (!empty($value)) {
+                        $aux[] = $value;
+                    }
+                }
+                $popupBG = $aux;
+            }
+            list($ancho, $alto, $tipo, $atributos) = getimagesize(Configure::read('imageUrlBase').$popupBG[0]);
+            $this->set('popupBgWidth', $ancho);
+        }
  
 		$this->loadModel('Setting');
 		$setting 	= $this->Setting->findById('page_video');
