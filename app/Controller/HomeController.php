@@ -35,7 +35,10 @@ class HomeController extends AppController {
                 $popupBG = $aux;
             }
             list($ancho, $alto, $tipo, $atributos) = getimagesize(Configure::read('imageUrlBase').$popupBG[0]);
-            $this->set('popupBgWidth', $ancho);
+            if ($ancho<=990) {
+                $this->set('popupBgWidth', $ancho);
+                $this->set('popupBgHeight', $alto);
+            }
         }
  
 		$this->loadModel('Setting');
