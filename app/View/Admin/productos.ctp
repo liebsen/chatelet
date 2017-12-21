@@ -36,7 +36,7 @@
 			&nbsp;
 			&nbsp;
 
-		
+			
 			<div style="display:inline;">
 				<label class="" for="columns-text">Mostrar Shop </label>
 				<input type="checkbox" class="input-themed" name="show_shop" value="<?php echo @$show_shop ?>" <?php echo (!empty($show_shop))?'checked':''; ?>/>
@@ -163,6 +163,7 @@
 			&nbsp;
 			&nbsp;
 			<button class="btn btn-success" type="submit" style="margin-top: -2px;">Guardar</button>
+			<button class="btn btn-warning" name="only_categories" value="yes" type="submit" style="margin-top: -2px;">Guardar Solo Rubros</button>
 			<br />
 		</form>
 	</div>

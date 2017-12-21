@@ -562,8 +562,10 @@ public function promos(){
 
 			
 			
-			
-			//$this->update_products( $data['list_code'] , $data['list_code_desc']);
+			if (empty($data['only_categories']) || $data['only_categories'] != 'yes'){
+				error_log('Apply discount to all');
+				$this->update_products( $data['list_code'] , $data['list_code_desc']);
+			}
 			error_log('More discounts?');
 			if (!empty($data['more_list_code_desc'])){
 				error_log('More discounts? yes');
@@ -615,6 +617,7 @@ public function promos(){
 
 					$this->Product->saveField('discount', $discount);
 					$this->Product->saveField('price', $precio);
+					error_log('Update Product: '.$product['Product']['id'].' [price: '.$precio.' / discount: '.$discount.']');
 					//Debugger::log( $price );
 				}
 			}
