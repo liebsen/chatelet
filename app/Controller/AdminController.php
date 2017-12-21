@@ -520,7 +520,7 @@ public function promos(){
 		$this->loadModel('Setting');
 		if($this->request->is('post')){
 			$data = $this->request->data;
-			
+			pr($data);die;
 			$this->Setting->save(array(
 				'id' => 'stock_min',
 				'value' => $data['stock_min']
@@ -634,6 +634,7 @@ public function promos(){
         $this->set('image_prodshop',@$f['Setting']['value']);
         $this->set('list_code_desc',@$g['Setting']['value']);
 
+        //create table discount_lists (id int unsigned auto_increment primary key, item_index int unsigned, category_id int(10) unsigned not null, list_code varchar(30) not null,updated_at date);
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-justify',

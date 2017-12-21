@@ -47,9 +47,9 @@
 			&nbsp;
 	
 			<div class="col-xs-12">
-				<?php for($i=0;$i<5;$i++): ?>
+				<?php for($i=0;$i<10;$i++): ?>
 
-				<div class="row col-xs-12">
+				<div class="row">
 					<label class="" for="columns-text">Código de Lista Descuento:</label>
 					<input type="number" name="more_list_code_desc[]" value="<?php echo @$more_list_code_desc[$i] ?>" style="width:60px;text-align:center"/>
 					<select name="rubro[]" id="rubro">
@@ -158,7 +158,7 @@
             &nbsp;
 			&nbsp;
 			&nbsp;
-			<button class="btn btn-sm" type="submit" style="margin-top: -2px;">Guardar</button>
+			<button class="btn btn-success" type="submit" style="margin-top: -2px;">Guardar</button>
 			<br />
 		</form>
 	</div>
