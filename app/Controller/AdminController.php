@@ -633,7 +633,6 @@ public function promos(){
         $this->set('image_menushop',@$e['Setting']['value']);
         $this->set('image_prodshop',@$f['Setting']['value']);
         $this->set('list_code_desc',@$g['Setting']['value']);
-        $this->set('categories', $categories);
 
 		$navs = array(
 			'Lista' => array(
