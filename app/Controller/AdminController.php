@@ -582,7 +582,7 @@ public function promos(){
            			}
            		}
            	}
-
+           	pr($data);die;
 //       	$this->update_products( $data['list_code'] , $data['list_code_desc']);
 		}
 		$this->redirect(array( 'action' => 'productos' ));
