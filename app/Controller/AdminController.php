@@ -569,10 +569,10 @@ public function promos(){
            		$this->loadModel('DiscountList');
    				$this->DiscountList->query('DELETE FROM discount_lists;');
            		for($i=0;$i<10;$i++){
-           			if (!empty($data['more_list_code_desc'][$i]) && !empty($data['more_list_category'][$i])){
+           			if (!empty($data['more_list_code_desc'][$i]) && !empty($data['rubro'][$i])){
            				$this->DiscountList->create();
            				$dl = array(
-           				'category_id' => $data['more_list_category'][$i],
+           				'category_id' => $data['rubro'][$i],
            				'list_code' => $data['more_list_code_desc'][$i],
            				'item_index'=>$i,
            				'updated_at'=>date('Y-m-d H:i:s',time())
@@ -582,7 +582,6 @@ public function promos(){
            			}
            		}
            	}
-           	pr($data);die;
 //       	$this->update_products( $data['list_code'] , $data['list_code_desc']);
 		}
 		$this->redirect(array( 'action' => 'productos' ));
