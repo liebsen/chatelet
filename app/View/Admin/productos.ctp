@@ -53,6 +53,7 @@
 					<label class="" for="columns-text">Código de Lista Descuento:</label>
 					<input type="number" name="more_list_code_desc[]" value="<?php echo @$more_list_code_desc[$i] ?>" style="width:60px;text-align:center"/>
 					<select name="rubro[]" id="rubro">
+					<option value="0">Select Category</option>
 						<?php foreach ($cats as $cat): ?>
 							<option
 							<?php if ($cat['Category']['id'] == (int)$more_list_category[$i]) { echo ' selected="selected" '; } ?>
