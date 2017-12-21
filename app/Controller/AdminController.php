@@ -565,11 +565,14 @@ public function promos(){
 			
 
 			// save options
+			error_log('More discounts?');
 			if (!empty($data['more_list_code_desc'])){
+				error_log('More discounts? yes');
            		$this->loadModel('DiscountList');
    				$this->DiscountList->query('DELETE FROM discount_lists;');
            		for($i=0;$i<10;$i++){
            			if (!empty($data['more_list_code_desc'][$i]) && !empty($data['rubro'][$i])){
+						error_log('Rubro: '.$data['rubro'][$i].' / list: '.$data['more_list_code_desc'][$i]);
            				$this->DiscountList->create();
            				$dl = array(
            				'category_id' => $data['rubro'][$i],
