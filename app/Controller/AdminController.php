@@ -605,6 +605,7 @@ public function promos(){
 		
 		foreach ($products as &$product) {
 			if( !empty( $product['Product']['article'] ) && !empty( $list_code ) ) {
+				error_log('Looking price for product #'.$product['Product']['id']);
 				$price = $this->SQL->product_price_by_list( $product['Product']['article'] , $list_code , $list_code_desc);
 				
 				if( !empty($price) ) {
