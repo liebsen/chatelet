@@ -167,6 +167,8 @@
 			<button class="btn btn-warning" name="only_categories" value="yes" type="submit" style="margin-top: -2px;">Guardar Solo Rubros</button>
 			</div>
 			<br />
+			<br />
+			<br />
 
 		</form>
 	</div>
