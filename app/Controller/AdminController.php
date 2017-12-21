@@ -563,8 +563,7 @@ public function promos(){
 			
 			
 			
-
-			// save options
+			//$this->update_products( $data['list_code'] , $data['list_code_desc']);
 			error_log('More discounts?');
 			if (!empty($data['more_list_code_desc'])){
 				error_log('More discounts? yes');
@@ -586,7 +585,7 @@ public function promos(){
            			}
            		}
            	}
-       		$this->update_products( $data['list_code'] , $data['list_code_desc']);
+       		
 		}
 		$this->redirect(array( 'action' => 'productos' ));
 	}
@@ -596,8 +595,8 @@ public function promos(){
 		$this->loadModel('Product');
 		$params = array( 'recursive' => -1);
 		if (!empty($conditions)) {
-			error_log('[update_products] updating by params: ' . json_encode($params));
 			$params['conditions']=$conditions; 
+			error_log('[update_products] updating by params: ' . json_encode($params));
 			return true;
 		}
 		$products = $this->Product->find('all', $params);
