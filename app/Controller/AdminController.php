@@ -578,7 +578,8 @@ public function promos(){
            				'updated_at'=>date('Y-m-d H:i:s',time())
            				);
            				$this->DiscountList->save($dl);
-						//$this->update_products( $data['list_code'] , $data['list_code_desc'], $condition);
+           				$condition = array('Product.category_id'=>$data['rubro'][$i]);
+						$this->update_products( $data['list_code'] , $data['more_list_code_desc'][$i], $condition);
            			}
            		}
            	}
