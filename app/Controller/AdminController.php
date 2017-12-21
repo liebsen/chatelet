@@ -562,12 +562,12 @@ public function promos(){
 
 			
 			
-			$this->update_products( $data['list_code'] , $data['list_code_desc']);
+			
 
 			// save options
 			if (!empty($data['more_list_code_desc'])){
-   				$this->DiscountList->query('DELETE FROM discount_lists;');
            		$this->loadModel('DiscountList');
+   				$this->DiscountList->query('DELETE FROM discount_lists;');
            		for($i=0;$i<10;$i++){
            			if (!empty($data['more_list_code_desc'][$i]) && !empty($data['more_list_category'][$i])){
            				$this->DiscountList->create();
@@ -578,10 +578,12 @@ public function promos(){
            				'updated_at'=>date('Y-m-d H:i:s',time())
            				);
            				$this->DiscountList->save($dl);
+						//$this->update_products( $data['list_code'] , $data['list_code_desc'], $condition);
            			}
            		}
            	}
-			//$this->update_products( $data['list_code'] , $data['list_code_desc'], $condition);
+
+//       	$this->update_products( $data['list_code'] , $data['list_code_desc']);
 		}
 		$this->redirect(array( 'action' => 'productos' ));
 	}
