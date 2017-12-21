@@ -162,9 +162,12 @@
             &nbsp;
 			&nbsp;
 			&nbsp;
+			<div class="col-xs-12">
 			<button class="btn btn-success" type="submit" style="margin-top: -2px;">Guardar</button>
 			<button class="btn btn-warning" name="only_categories" value="yes" type="submit" style="margin-top: -2px;">Guardar Solo Rubros</button>
+			</div>
 			<br />
+
 		</form>
 	</div>
 </div>
