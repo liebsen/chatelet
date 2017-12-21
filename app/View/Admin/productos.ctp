@@ -46,7 +46,21 @@
 			&nbsp;
 			&nbsp;
 	
-			
+			<div class="col-xs-12">
+				<?php for($i=0;$i<5;$i++): ?>
+
+				<div style="display:inline;">
+					<label class="" for="columns-text">Código de Lista Descuento:</label>
+					<input type="number" name="more_list_code_desc[]" value="<?php echo @$more_list_code_desc[$i] ?>" style="width:60px;text-align:center"/>
+					<select name="rubro[]" id="rubro">
+						<?php foreach ($cats as $cat): ?>
+							<option value="<?=$cat['Category']['id']?>"><?=$cat['Category']['name']?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+
+				<?php endfor; ?>
+			</div>
 			<div style="display:inline;">
 				<label class="" for="columns-text">Imagen general del shop 
 

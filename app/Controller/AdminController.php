@@ -588,13 +588,36 @@ public function promos(){
 				}
 			}
 		}
+		// by list
+		return true;
+
+		foreach ($products as &$product) {
+			if( !empty( $product['Product']['article'] ) && !empty( $list_code ) ) {
+				$price = $this->SQL->product_price_by_list( $product['Product']['article'] , $list_code , $list_code_desc);
+				
+				if( !empty($price) ) {
+					$this->Product->id = $product['Product']['id'];
+					$precio = $price['precio']*100;
+					$precio = ((int)$precio) / 100;
+					
+					$discount = $price['discount']*100;
+					$discount = ((int)$discount) / 100;
+
+					$this->Product->saveField('discount', $discount);
+					$this->Product->saveField('price', $precio);
+					//Debugger::log( $price );
+				}
+			}
+		}
 
 		return true;
 	}
 
 	public function productos($action = null) {
 		$this->loadModel('Setting');
+		$this->loadModel('Category');
 		
+
 		$a = $this->Setting->findById('stock_min');
 		$b = $this->Setting->findById('list_code');
 		$c = $this->Setting->findById('show_shop');
@@ -610,6 +633,7 @@ public function promos(){
         $this->set('image_menushop',@$e['Setting']['value']);
         $this->set('image_prodshop',@$f['Setting']['value']);
         $this->set('list_code_desc',@$g['Setting']['value']);
+        $this->set('categories', $categories);
 
 		$navs = array(
 			'Lista' => array(
@@ -731,6 +755,10 @@ public function promos(){
 	    }
 
 	    $prods = $this->Product->find('all',array('order'=>array( 'Product.id DESC' )));
+	    $cats = $this->Category->find('all');
+	    $more_list_code_desc=[0,0,0,0,0];
+		$this->set('more_list_code_desc', $more_list_code_desc);
+		$this->set('cats', $cats);
 		$this->set('prods', $prods);
 	    $this->render('productos');
 	}
