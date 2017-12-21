@@ -561,14 +561,22 @@ public function promos(){
 			));
            
 			$this->update_products( $data['list_code'] , $data['list_code_desc']);
+
+			//$this->update_products( $data['list_code'] , $data['list_code_desc'], $condition);
 		}
 		$this->redirect(array( 'action' => 'productos' ));
 	}
 
-	public function update_products( $list_code , $list_code_desc )
+	public function update_products( $list_code , $list_code_desc, $conditions=false )
 	{    
 		$this->loadModel('Product');
-		$products = $this->Product->find('all',array( 'recursive' => -1 ));
+		$params = array( 'recursive' => -1);
+		if (!empty($conditions)) {
+			error_log('[update_products] updating by params: ' . json_encode($params));
+			$params['conditions']=$conditions; 
+			return true;
+		}
+		$products = $this->Product->find('all', $params);
 		
 		foreach ($products as &$product) {
 			if( !empty( $product['Product']['article'] ) && !empty( $list_code ) ) {
@@ -589,27 +597,6 @@ public function promos(){
 			}
 		}
 		// by list
-		return true;
-
-		foreach ($products as &$product) {
-			if( !empty( $product['Product']['article'] ) && !empty( $list_code ) ) {
-				$price = $this->SQL->product_price_by_list( $product['Product']['article'] , $list_code , $list_code_desc);
-				
-				if( !empty($price) ) {
-					$this->Product->id = $product['Product']['id'];
-					$precio = $price['precio']*100;
-					$precio = ((int)$precio) / 100;
-					
-					$discount = $price['discount']*100;
-					$discount = ((int)$discount) / 100;
-
-					$this->Product->saveField('discount', $discount);
-					$this->Product->saveField('price', $precio);
-					//Debugger::log( $price );
-				}
-			}
-		}
-
 		return true;
 	}
 
@@ -756,8 +743,15 @@ public function promos(){
 
 	    $prods = $this->Product->find('all',array('order'=>array( 'Product.id DESC' )));
 	    $cats = $this->Category->find('all');
-	    $more_list_code_desc=[0,0,0,0,0];
+	    $more_list_code_desc=[0,0,0,0,0,0,0,0,0,0];
+	    $more_list_category=[0,0,0,0,0,0,0,0,0,0];
+	    $this->loadModel('DiscountList');
+	    $discount_lists = $this->DiscountList->find('all',array('order'=>array( 'DiscountList.item_index ASC' )));
+	    foreach ($discount_lists as $dl){
+	    	$more_list_category[(int)$dl['DiscountList']['item_index']] = $dl['DiscountList']['category_id'];
+	    }
 		$this->set('more_list_code_desc', $more_list_code_desc);
+		$this->set('more_list_category', $more_list_category);
 		$this->set('cats', $cats);
 		$this->set('prods', $prods);
 	    $this->render('productos');

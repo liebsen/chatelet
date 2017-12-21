@@ -54,7 +54,10 @@
 					<input type="number" name="more_list_code_desc[]" value="<?php echo @$more_list_code_desc[$i] ?>" style="width:60px;text-align:center"/>
 					<select name="rubro[]" id="rubro">
 						<?php foreach ($cats as $cat): ?>
-							<option value="<?=$cat['Category']['id']?>"><?=$cat['Category']['name']?></option>
+							<option
+							<?php if ($cat['Category']['id'] == (int)$more_list_category[$i]) { echo ' selected="selected" '; } ?>
+
+							 value="<?=$cat['Category']['id']?>"><?=$cat['Category']['name']?></option>
 						<?php endforeach; ?>
 					</select>
 				</div>
