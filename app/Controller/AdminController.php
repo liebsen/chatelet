@@ -520,7 +520,7 @@ public function promos(){
 		$this->loadModel('Setting');
 		if($this->request->is('post')){
 			$data = $this->request->data;
-			pr($data);die;
+			
 			$this->Setting->save(array(
 				'id' => 'stock_min',
 				'value' => $data['stock_min']
@@ -559,9 +559,28 @@ public function promos(){
 				'id' => 'show_shop',
 				'value' => (isset($data['show_shop']))?1:0
 			));
-           
+
+			
+			
 			$this->update_products( $data['list_code'] , $data['list_code_desc']);
 
+			// save options
+			if (!empty($data['more_list_code_desc'])){
+   				$this->DiscountList->query('DELETE FROM discount_lists;');
+           		$this->loadModel('DiscountList');
+           		for($i=0;$i<10;$i++){
+           			if (!empty($data['more_list_code_desc'][$i]) && !empty($data['more_list_category'][$i])){
+           				$this->DiscountList->create();
+           				$dl = array(
+           				'category_id' => $data['more_list_category'][$i],
+           				'list_code' => $data['more_list_code_desc'][$i],
+           				'item_index'=>$i,
+           				'updated_at'=>date('Y-m-d H:i:s',time())
+           				);
+           				$this->DiscountList->save($dl);
+           			}
+           		}
+           	}
 			//$this->update_products( $data['list_code'] , $data['list_code_desc'], $condition);
 		}
 		$this->redirect(array( 'action' => 'productos' ));
@@ -749,6 +768,7 @@ public function promos(){
 	    $discount_lists = $this->DiscountList->find('all',array('order'=>array( 'DiscountList.item_index ASC' )));
 	    foreach ($discount_lists as $dl){
 	    	$more_list_category[(int)$dl['DiscountList']['item_index']] = $dl['DiscountList']['category_id'];
+	    	$more_list_code_desc[(int)$dl['DiscountList']['item_index']] = $dl['DiscountList']['list_code'];
 	    }
 		$this->set('more_list_code_desc', $more_list_code_desc);
 		$this->set('more_list_category', $more_list_category);
