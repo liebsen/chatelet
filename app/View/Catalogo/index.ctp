@@ -55,7 +55,7 @@
                             elseif(!empty($this->params['pass'][0]) && $img==$this->params['pass'][0]){ echo 'active';}?>"
                             data-img="<?=$img?>">
                              
-                              <img id="img_padding" onclick="javascript:window.location.href='<?php echo $url  ?>';" 
+                              <img id="img_padding" style="cursor:pointer;" onclick="javascript:window.location.href='<?php echo $url  ?>';" 
                                src="<?php echo Configure::read('imageUrlBase').$value['LookBook']['img_url'] ?>" >
                                
                            
