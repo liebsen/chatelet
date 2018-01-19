@@ -162,7 +162,11 @@
             <span></span>
             <span></span>
         </a>
-
+  <?php if (empty($talle_img)): ?>
+    <div align="center" class="centered">
+        <img src="<?=Configure::read('imageUrlBase')?><?=$talle_img?>" border="0" />
+    </div>
+  <?php else: ?>
         <div class="table">
             <h1>Tabla de conversión de talles</h1>
             <p>Utilíza la tabla como guía.</p>
@@ -210,6 +214,7 @@
                 </tr>
             </table>
         </div>
+      <?php endif; ?>
     </div>
 </div>
 

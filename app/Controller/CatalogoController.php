@@ -18,6 +18,10 @@ class CatalogoController extends AppController {
 	}
 	
 	public function index($img_url = null) {
+		$one_product = !empty($img_url);
+		$this->set('one_product', $one_product);
+		$talle_img = null;
+		
 
 		$this->loadModel('Setting');
 		$cat = $this->Catalog->find('first');
@@ -70,9 +74,13 @@ class CatalogoController extends AppController {
         if(!empty($lookbook_id)){
             foreach ($lookbook_id as $key => $value) {
             	$product_id = $value['LookBook']['product_id'];
-            	$product[] = $this->Product->findById($product_id);
+            	$p = $this->Product->findById($product_id);
+            	$product[] = $p;
+            	$c = $this->Category->findById($p['Product']['category_id']);
+            	$talle_img = $c["Category"]["size"];
             }
         }
+            $this->set('talle_img', $talle_img);
             $this->set('img_url', $img_url); 
             $properties_all = $this->ProductProperty->find('all');
             $this->set('properties_all',$properties_all);
