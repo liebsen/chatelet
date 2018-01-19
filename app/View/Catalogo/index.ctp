@@ -55,7 +55,7 @@
                             elseif(!empty($this->params['pass'][0]) && $img==$this->params['pass'][0]){ echo 'active';}?>"
                             data-img="<?=$img?>">
                              
-                              <img id="img_padding"  
+                              <img id="img_padding" onclick="javascript:window.location.href='<?php echo $url  ?>';" 
                                src="<?php echo Configure::read('imageUrlBase').$value['LookBook']['img_url'] ?>" >
                                
                            
@@ -162,7 +162,7 @@
             <span></span>
             <span></span>
         </a>
-<!--
+
         <div class="table">
             <h1>Tabla de conversión de talles</h1>
             <p>Utilíza la tabla como guía.</p>
@@ -209,10 +209,7 @@
                     <td>120</td>
                 </tr>
             </table>
-        </div>-->
-        <div align="center" class="centered">
-              <img src="" id="talleIdImg" border="0" />
-          </div>
+        </div>
     </div>
 </div>
 
