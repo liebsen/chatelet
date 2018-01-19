@@ -25,6 +25,10 @@ class CatalogoController extends AppController {
     
         $lookbook = $this->LookBook->find('all',array('group'=>'LookBook.img_url','fields' => 'LookBook.img_url' ));
 		$this->set('lookbook', $lookbook);
+		if ($img_url == 'test') {
+			pr($lookbook);
+			die;
+		}
         unset($setting);
 
 		$setting 	= $this->Setting->findById('page_video');

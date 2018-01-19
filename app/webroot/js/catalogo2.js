@@ -5,19 +5,22 @@ $(document).ready(function() {
     $("a.right.carousel-control").on('click', function(event){
         event.preventDefault();
         $('#carousel2 .carousel-inner').carousel('next');
+        /*
         if($('#carousel2 .carousel-inner').children('.item').hasClass('active')) {
              var img = $(".item.active").data('img');
              location.href = root+'/catalogo/index/'+img;
         }
+        */
         
     });
     $("a.left.carousel-control").on('click', function(event){
         event.preventDefault();
         $('#carousel2 .carousel-inner').carousel('prev');
+        /*
         if($('#carousel2 .carousel-inner').children('.item').hasClass('active')) {
              var img = $(".item.active").data('img');
              location.href = root+'/catalogo/index/'+img;
-        }
+        }*/
         
     });
 });

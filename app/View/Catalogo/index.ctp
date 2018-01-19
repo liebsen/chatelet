@@ -162,7 +162,7 @@
             <span></span>
             <span></span>
         </a>
-
+<!--
         <div class="table">
             <h1>Tabla de conversión de talles</h1>
             <p>Utilíza la tabla como guía.</p>
@@ -209,7 +209,10 @@
                     <td>120</td>
                 </tr>
             </table>
-        </div>
+        </div>-->
+        <div align="center" class="centered">
+              <img src="" id="talleIdImg" border="0" />
+          </div>
     </div>
 </div>
 
