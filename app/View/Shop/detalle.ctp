@@ -243,8 +243,8 @@
 
         <div class="table">
             <h1>Tabla de conversión de talles</h1>
-            <p>Utilíza la tabla como guía.</p>
-
+            <p>Utiliza la tabla como guía.</p>
+            <?php if (empty($category['Category']['size'])): ?>
             <table class="table">
                 <tr>
                     <td>Talle</td>
@@ -287,6 +287,11 @@
                     <td>120</td>
                 </tr>
             </table>
+        <?php else: ?>
+            <div align="center" class="centered">
+                <img src="<?=Configure::read('imageUrlBase')?><?=$category['Category']['size']?>" border="0" />
+            </div>
+        <?php endif; ?>
         </div>
     </div>
 </div><!-- /.modal -->
