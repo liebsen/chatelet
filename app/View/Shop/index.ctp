@@ -185,7 +185,7 @@
 
                                 <?php if(!empty($categories[9])){ ?>
                                     <div><a href=<?php echo router::url(array('controller' => 'shop', 'action' => 'product',
-                                             intval($categories[9]['Category']['id']))) ?> class="pd2">
+                                             intval($categories[9]['Category']['id']))) ?> class="pd2 pdlast">
                                         <img src=<?php echo Configure::read('imageUrlBase').$categories[9]['Category']['img_url']?> class="img-responsive img-cover">
                                         <span class="hover">
                                              <?php echo $categories[9]['Category']['name']?><br><br>
