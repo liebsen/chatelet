@@ -290,7 +290,7 @@
             </div>
         <?php else: ?>
             <div align="center" class="centered">
-                <img src="<?=Configure::read('imageUrlBase')?><?=$category['Category']['size']?>" border="0" />
+                <img src="<?=Configure::read('imageUrlBase')?><?=$category['Category']['size']?>" style="max-width:100%" border="0" />
             </div>
         <?php endif; ?>
         
