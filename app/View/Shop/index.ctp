@@ -7,6 +7,9 @@
             object-fit: cover;
             width:100%;
           }
+          a.pdlast .hover{
+            padding-top:70px;
+          }
         </style>
         <div id="headshop"  >
          <h1 class="name_shop">Shop</h1>
