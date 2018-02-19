@@ -12,7 +12,7 @@
           }
           @media(max-width:768px){
             a.pdlast .hover{
-              padding-top:50%!important;
+              padding-top:30px!important;
             }
           }
         </style>
