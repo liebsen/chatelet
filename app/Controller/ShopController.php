@@ -57,7 +57,7 @@ class ShopController extends AppController {
 	}
 	public function test() {
 
-	    $this->autoRender=false;
+	    	
 	    $this->loadModel('Setting');
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
@@ -70,7 +70,7 @@ class ShopController extends AppController {
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
-    	$this->render('Shop/index2');
+    	$this->render('index2');
 
 	}
 
