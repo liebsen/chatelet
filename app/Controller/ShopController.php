@@ -52,7 +52,9 @@ class ShopController extends AppController {
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
-          
+        if (!empty($this->request['test'])){
+        	$this->render('Shop/index2');
+        }
 
 	}
 
