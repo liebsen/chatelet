@@ -57,7 +57,7 @@ class ShopController extends AppController {
 	}
 	public function test() {
 
-	    
+	    $this->autoRender=false;
 	    $this->loadModel('Setting');
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
