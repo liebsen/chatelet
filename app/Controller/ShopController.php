@@ -34,7 +34,7 @@ class ShopController extends AppController {
 	}
 
 
-	public function index() {
+	public function bk_index() {
 
 	    $this->loadModel('Setting');
 		$setting 	= $this->Setting->findById('page_video');
@@ -55,7 +55,7 @@ class ShopController extends AppController {
          
 
 	}
-	public function test() {
+	public function index() {
 
 	    	
 	    $this->loadModel('Setting');
