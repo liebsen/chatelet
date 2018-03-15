@@ -117,7 +117,7 @@
                       if (!isset($carro)) $carro = array();
                       foreach($carro as $producto) { 
                         
-                          if($producto['discount']!= ""){ 
+                          if($producto['discount']!= "" && (float)$product['discount']>0){ 
                             $producto['price'] = $producto['discount'];
                           }
                           

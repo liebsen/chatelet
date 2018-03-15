@@ -29,7 +29,7 @@
 						$total = 0;
 						if (!isset($carro)) $carro = array();
 						foreach ($carro as $product) {
-							if ($product['discount']!= "") {
+							if ($product['discount']!= "" && (float)$product['discount']>0) {
                                 $product['price'] = $product['discount'];
                             }
 							$total += $product['price'];
