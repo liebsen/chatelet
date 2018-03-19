@@ -170,7 +170,7 @@ class CarritoController extends AppController
 				$desc.= $key.' : "'.$value.'"'.$separator;
 			}
 
-			if($producto['discount']!= ""){ 
+			if($producto['discount']!= "" && !empty((float)($producto['discount']))) { 
                 $producto['price'] = $producto['discount'];
             }
 			
