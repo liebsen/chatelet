@@ -15,7 +15,7 @@
 	text-align:center;
 	font-size:32px;
 	font-family: 'Poppins', Verdana, Arial, sans-serif;
-	margin:15px auto;
+	margin:0px auto 25px;
 	color: #ff4665;
 }
 .antes-str {
