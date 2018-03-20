@@ -147,7 +147,8 @@ class ShopController extends AppController {
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
-		
+    	$this->render('product2');
+
 	}
 	public function product2($category_id = null) {
 
