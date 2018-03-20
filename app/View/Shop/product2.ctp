@@ -80,9 +80,9 @@
 								$url['action'] = 'detalle';
 								$priceStr = '';
 								if (!empty($item['price'])){
-									$priceStr = '$ '.number_format($item['price'],2,".",",");
+									$priceStr = '$ '.$this->Number->currency($item['price'], 'USD', array('places' => 0));
 									if (!empty((float)$item['discount']) && $item['discount']!=$item['price']){
-										$priceStr = '$ '.number_format($item['discount'],2,".",",").' <span class="antes-str">Antes <span class="midscore">$ '.number_format($item['price'],2,".",",").'</span></span>';
+										$priceStr = '$ '.$this->Number->currency($item['discount'], 'USD', array('places' => 0)).' <span class="antes-str">Antes <span class="midscore">$ '.number_format($item['price'],2,".",",").'</span></span>';
 									}
 								}
 
