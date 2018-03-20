@@ -11,6 +11,18 @@
 	background: rgba(255,255,255,0.5);
 	color: #999;
 }
+.price {
+	text-align:center;
+	font-size:30px;
+	color: pink;
+}
+.antes-str {
+	color: grey;
+	font-size:24px;
+}
+.midscore{
+	text-decoration:line-through;
+}
 </style>
         <div id="headabrigos" >
               <h1 class="name_shop"><?php echo $name_categories; ?></h1>
