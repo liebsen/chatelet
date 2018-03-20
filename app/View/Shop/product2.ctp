@@ -13,14 +13,14 @@
 }
 .price {
 	text-align:center;
-	font-size:40px;
+	font-size:32px;
 	font-family: 'Poppins', Verdana, Arial, sans-serif;
 	margin:15px auto;
 	color: #ff4665;
 }
 .antes-str {
-	color: grey;
-	font-size:30px;
+	color: #999;
+	font-size:24px;
 }
 .midscore{
 	text-decoration:line-through;
@@ -81,8 +81,8 @@
 								$priceStr = '';
 								if (!empty($item['price'])){
 									$priceStr = '$ '.number_format($item['price'],2,".",",");
-									if (1 || !empty((float)$item['discount'])){
-										$priceStr .= ' <span class="antes-str">Antes <span class="midscore">$ '.number_format($item['discount'],2,".",",").'</span></span>';
+									if (!empty((float)$item['discount']) && $item['discount']!=$item['price']){
+										$priceStr = '$ '.number_format($item['discount'],2,".",",").' <span class="antes-str">Antes <span class="midscore">$ '.number_format($item['price'],2,".",",").'</span></span>';
 									}
 								}
 
