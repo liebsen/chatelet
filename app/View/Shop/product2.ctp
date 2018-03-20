@@ -64,6 +64,14 @@
 
 							if ($isProduct) {
 								$url['action'] = 'detalle';
+								$priceStr = '';
+								if (!empty($item['price'])){
+									$priceStr = '$ '.$item['price'];
+									if (!empty((float)$item['discount'])){
+										$priceStr .= ' <span class="antes-str">Antes <span class="midscore">$'..'</span></span>';
+									}
+								}
+
 							} else {
 								$url['action'] = 'index';
 							}
@@ -75,7 +83,7 @@
 									$content,
 								    $url,
 									array('escape' => false)
-								). '<div class="price">price $</div></div>';
+								). '<div class="price">'.$priceStr.'</div></div>';
                             }else{
 								
 		                        echo '<div data-id="'.$item["id"].'" class="col-xs-6 col-md-4 col-sm-6 add-no-stock"><div class="verifying-stock">Consultando stock...</div>'.
@@ -83,7 +91,7 @@
 										$content,
 										$url,
 										array('escape' => false)
-									). '<div class="price">price $</div></div>';
+									). '<div class="price">'.$priceStr.'</div></div>';
 							}
 						}
 
