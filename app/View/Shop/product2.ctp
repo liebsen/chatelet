@@ -68,7 +68,7 @@
 								if (!empty($item['price'])){
 									$priceStr = '$ '.$item['price'];
 									if (!empty((float)$item['discount'])){
-										$priceStr .= ' <span class="antes-str">Antes <span class="midscore">$'..'</span></span>';
+										$priceStr .= ' <span class="antes-str">Antes <span class="midscore">$ '.$item['discount'].'</span></span>';
 									}
 								}
 
