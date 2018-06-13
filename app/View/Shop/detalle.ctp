@@ -33,6 +33,7 @@
 ?>
 <script>
     var colorImages = <?=json_encode($colorImages, true)?>;
+    window.isGiftCard = <?=(int)$isGiftCard?>;
 </script>
 <section id="detalle"> 
     <div class="wrapper">
@@ -111,6 +112,7 @@
                 <?php if(!empty($product['desc'])):?>
                     <p><?php echo $product['desc']; ?></p>
                 <?php endif;?>
+                <?php if (!$isGiftCard): ?>
                     <h2>Color</h2>
                        
                    <div class="btn-group inline-block div_color_products" data-toggle="buttons">
@@ -152,7 +154,7 @@
                     <p>
                       <span style="color:#F50081;"> Stock:</span> <span id="stock_container"><i> (Seleccione un color y talle) </i></span>
                     </p>
-
+                    <?php endif; ?>
                     <div class="footer-producto" >
                         <?php //if($loggedIn){ ?>
 

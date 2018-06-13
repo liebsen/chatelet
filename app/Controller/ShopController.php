@@ -78,8 +78,13 @@ class ShopController extends AppController {
 		$stock = 0;
 		$list_code = Configure::read('list_code');
 		$this->autoRender = false;
-		if(!empty($article) && !empty($color_code) && !empty($size_number) && !empty($list_code))
-         $stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code);
+		if(!empty($article) && !empty($color_code) && !empty($size_number) && !empty($list_code)){
+			error_log('return ?');
+        	$stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code);
+		}elseif (!empty($article)) {
+			error_log('return 1');
+			return 1;
+		}
 
 		return $stock;
 	}
@@ -95,7 +100,7 @@ class ShopController extends AppController {
 			$stock = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
 		}
 		if (empty($stock)) return 'empty';
-
+		error_log('check stock');
 		echo "$stock";
 		die;
 	}
@@ -114,7 +119,7 @@ class ShopController extends AppController {
 
 		if ($category_id) {
 			$name_categories = $this->Category->findById($category_id);
-	                $name_categories = $name_categories['Category']['name'];
+            $name_categories = $name_categories['Category']['name'];
 
 			$products = $this->Product->findAllByCategoryId($category_id);
 	     	
@@ -165,7 +170,7 @@ class ShopController extends AppController {
 
 		if ($category_id) {
 			$name_categories = $this->Category->findById($category_id);
-	                $name_categories = $name_categories['Category']['name'];
+            $name_categories = $name_categories['Category']['name'];
 
 			$products = $this->Product->findAllByCategoryId($category_id);
 	     	
@@ -201,15 +206,18 @@ class ShopController extends AppController {
 		$product = $this->Product->findById($product_id);
 		$category = $this->Category->findById($category_id);
 		$name_categories = $category['Category']['name'];
-        
+		$isGiftCard=false;
+        if (strpos(strtolower($name_categories),'gift')!==FALSE){
+        	$isGiftCard=true;
+        }
 		$properties = $this->ProductProperty->findAllByProductId($product_id);
 	   
 
 		$details = $this->SQL->product_name_by_article($product['Product']['article']);
 		if(!empty($details)){
-        foreach ($details as $key => $value) {
-        	$details = $value;
-        }
+	        foreach ($details as $key => $value) {
+	        	$details = $value;
+	        }
         }
 		
 		$all_but_me = $this->Product->find('all', array(
@@ -244,6 +252,7 @@ class ShopController extends AppController {
 		$this->set('category', $category);
 		$this->set('product', $product['Product']);
 		$this->set('properties', $properties);
+		$this->set('isGiftCard', $isGiftCard);
 		$this->set('all_but_me', $all_but_me);
 	}
 

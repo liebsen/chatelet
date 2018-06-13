@@ -106,7 +106,6 @@ class AdminController extends AppController {
 		$this->autoRender = false;
 		$list_code = Configure::read('list_code');
 		$exists = $this->SQL->product_exists($article,$list_code);
-
 		if($exists){
 			return 'ok';
 		}else{

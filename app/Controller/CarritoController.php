@@ -284,7 +284,10 @@ class CarritoController extends AppController
 		$this->RequestHandler->respondAs('application/json');
 		if ($this->request->is('post') && isset($this->request->data['id'])) {
 			$product = $this->Product->findById($this->request->data['id']);
-			$stock = file_get_contents("http://www.chatelet.com.ar/shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code']);
+			$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
+			error_log($urlCheck);
+			$stock = file_get_contents($urlCheck);
+			error_log('stock:'.$stock);
 			if ($product && $stock) {
 				$product = $product['Product'];
 				$product['color'] = $this->request->data['color'];

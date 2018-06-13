@@ -61,22 +61,23 @@ $(document).ready(function() {
 				size: $(e.target).closest('form').find("#size option:selected").val(),
 				alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias'),
 			};
-		url = $("#productForm").attr('action');		
-		if (!data.color || !data.size) {
-			return $.growl.error({
-				title: '',
-				message: 'Por favor seleccione un color y un talle'
-			});
-		}else{
+		url = $("#productForm").attr('action');	
+		if (!isGiftCard){ 
+			if (!data.color || !data.size) {
+				return $.growl.error({
+					title: '',
+					message: 'Por favor seleccione un color y un talle'
+				});
+			} 
 
+			if ( !window.stock || window.stock == 0 ) {
+				return $.growl.error({
+					title: '',
+					message: 'No Disponible'
+				});
+			}
 		}
-
-		if ( !window.stock || window.stock == 0 ) {
-			return $.growl.error({
-				title: '',
-				message: 'No Disponible'
-			});
-		}
+		
       
 		$.post(url, $.param(data))
 			.success(function(res) {
