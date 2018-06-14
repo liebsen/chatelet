@@ -33,28 +33,7 @@ class ShopController extends AppController {
 
 	}
 
-
-	public function bk_index() {
-
-	    $this->loadModel('Setting');
-		$setting 	= $this->Setting->findById('page_video');
-		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
-		$this->set('page_video',$page_video);
-          
-    
-
-
-		$categories = $this->Category->find('all');
-		$this->set('categories', $categories);
-
-
-		$setting 			 = $this->Setting->findById('catalog_flap');
-		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
-		$this->set('catalog_flap',$catalog_flap);
-		unset($setting);
-         
-
-	}
+ 
 	public function index() {
 
 	    	
@@ -70,7 +49,7 @@ class ShopController extends AppController {
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
-    	$this->render('index2');
+    	$this->render('index');
 
 	}
 
@@ -102,8 +81,16 @@ class ShopController extends AppController {
 		echo "$stock";
 		die;
 	}
-	public function product($category_id = null) {
 
+	public function product($category_id = null) {
+		if (!empty($this->request->params['category'])) {
+			$tag = str_replace("-"," ",urldecode($this->request->params['category']));
+			$category = $this->Category->findByName($tag);
+			if (!empty($category['Category']['id'])){
+				$category_id = $category['Category']['id'];
+				error_log('url match category: '.$category_id);
+			}
+		}
 		$this->loadModel('Setting');
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
@@ -113,9 +100,9 @@ class ShopController extends AppController {
 	
 		$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
-        	$this->set('category_id', $category_id);
+    	$this->set('category_id', $category_id);
 
-		if ($category_id) {
+		if (!empty($category_id)) {
 			$name_categories = $this->Category->findById($category_id);
             $name_categories = $name_categories['Category']['name'];
 
@@ -129,13 +116,7 @@ class ShopController extends AppController {
 				if(!empty($product['Product']['article'])){
 					
 					$product['Product']['stock'] = 1;
-					/*
-					$list_code = Configure::read('list_code');
-				    $product['Product']['stock'] = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
-				    $details = $this->SQL->product_name_by_article($product['Product']['article']);
-				    if(!empty($details)){ 
-                    $product['Product']['name'] = $details['nombre'] ;
-				    }*/
+					 
 
 				}
 			}
@@ -150,55 +131,9 @@ class ShopController extends AppController {
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
-    	$this->render('product2');
+    	$this->render('product');
 
-	}
-	public function product2($category_id = null) {
-
-		$this->loadModel('Setting');
-		$setting 	= $this->Setting->findById('page_video');
-		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
-		$this->set('page_video',$page_video);
-
-		
-	
-		$categories = $this->Category->find('all');
-		$this->set('categories', $categories);
-        	$this->set('category_id', $category_id);
-
-		if ($category_id) {
-			$name_categories = $this->Category->findById($category_id);
-            $name_categories = $name_categories['Category']['name'];
-
-			$products = $this->Product->findAllByCategoryId($category_id);
-	     	
-
-			if (empty($products)) return $this->redirect(array('controller' => 'shop', 'action' => 'index'));
-            
-			foreach ($products as &$product) {	
-				$product['Product']['stock'] = 0;
-				if(!empty($product['Product']['article'])){
-					
-					$product['Product']['stock'] = 1; 
-
-				}
-			}
-			
-			rsort($products);
-
-           	$this->set('name_categories',$name_categories);
-			$this->set('products', $products);
-
-		}
-
-		$setting 			 = $this->Setting->findById('catalog_flap');
-		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
-		$this->set('catalog_flap',$catalog_flap);
-		unset($setting);
-
-    	$this->render('product2');
-	}
-   
+	} 
 
     public function detalle($product_id, $category_id) {
 		$product = $this->Product->findById($product_id);

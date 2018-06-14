@@ -11,6 +11,20 @@
 	background: rgba(255,255,255,0.5);
 	color: #999;
 }
+.price {
+	text-align:center;
+	font-size:32px;
+	font-family: 'Poppins', Verdana, Arial, sans-serif;
+	margin:0px auto 25px;
+	color: #ff4665;
+}
+.antes-str {
+	color: #999;
+	font-size:24px;
+}
+.midscore{
+	text-decoration:line-through;
+}
 </style>
         <div id="headabrigos" >
               <h1 class="name_shop"><?php echo $name_categories; ?></h1>
@@ -28,13 +42,17 @@
                                 <?php  
 				                    foreach ($categories as $category) {
 				                        $category = $category['Category'];
+				                        $slug =  str_replace(' ','-',strtolower($category['name']));
+					                      if (strpos($slug, 'trajes')!==false){
+					                        $slug = 'trajes-de-bano';
+					                      }
 				                        echo '<li>';
 				                        echo $this->Html->link(
 				                            $category['name'], 
 				                            array(
-				                                'controller' => 'shop',
-				                                'action' => 'product',
-				                                intval($category['id'])
+				                                'controller' => 'tienda',
+				                                'action' => 'productos',
+				                                $slug
 				                            )
 				                        );
 				                        echo '</li>';
@@ -54,18 +72,26 @@
 									'<small>'. $item['name'] .'</small>'.
 								'</span>';
 							$url = array(
-								'controller' => 'shop',
+								'controller' => 'tienda',
 								intval($item['id'])
 							);
 
 							if (!empty($item['category_id'])) {
-								$url[] = intval($item['category_id']);
+								$url[] = ($item['category_id']);
 							}
 
 							if ($isProduct) {
-								$url['action'] = 'detalle';
+								$url['action'] = 'producto';
+								$priceStr = '';
+								if (!empty($item['price'])){
+									$priceStr = $ctrl->Number->currency($item['price'], 'USD', array('places' => 0));
+									if (!empty((float)@$item['discount']) && @$item['discount']!=$item['price']){
+										$priceStr = $ctrl->Number->currency($item['discount'], 'USD', array('places' => 0)).' <span class="antes-str">Antes <span class="midscore">$ '.number_format($item['price'],2,".",",").'</span></span>';
+									}
+								}
+
 							} else {
-								$url['action'] = 'index';
+								$url['action'] = 'productos';
 							}
 
  							if(!$stock && $isProduct){
@@ -75,7 +101,7 @@
 									$content,
 								    $url,
 									array('escape' => false)
-								). '</div>';
+								). '<div class="price">'.$priceStr.'</div></div>';
                             }else{
 								
 		                        echo '<div data-id="'.$item["id"].'" class="col-xs-6 col-md-4 col-sm-6 add-no-stock"><div class="verifying-stock">Consultando stock...</div>'.
@@ -83,7 +109,7 @@
 										$content,
 										$url,
 										array('escape' => false)
-									). '</div>';
+									). '<div class="price">'.$priceStr.'</div></div>';
 							}
 						}
 
@@ -107,13 +133,17 @@
                                 <?php  
                                     foreach ($categories as $category) {
                                         $category = $category['Category'];
+                                        $slug =  str_replace(' ','-',strtolower($category['name']));
+					                      if (strpos($slug, 'trajes')!==false){
+					                        $slug = 'trajes-de-bano';
+					                      }
                                         echo '<li>';
                                         echo $this->Html->link(
                                             $category['name'], 
                                             array(
-                                                'controller' => 'shop',
-                                                'action' => 'product',
-                                                intval($category['id'])
+                                                'controller' => 'tienda',
+                                                'action' => 'productos',
+                                                $slug
                                             )
                                         );
                                         echo '</li>';

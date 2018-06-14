@@ -185,13 +185,17 @@
                   <?php  
                     foreach ($categories as $category) {
                       $category = $category['Category'];
+                      $slug =  str_replace(' ','-',strtolower($category['name']));
+                      if (strpos($slug, 'trajes')!==false){
+                        $slug = 'trajes-de-bano';
+                      }
                       echo '<li>';
                       echo $this->Html->link(
                           $category['name'], 
                           array(
-                              'controller' => 'shop',
-                              'action' => 'product',
-                              intval($category['id'])
+                              'controller' => 'tienda',
+                              'action' => 'productos',
+                             $slug
                           )
                       );
                       echo '</li>';

@@ -41,42 +41,51 @@
       <?php if(!empty($colorImages)):?>
         <div class="col-md-2 col-sm-5">
             <ul id="ul-moreviews">
+                <?php if (!empty($colorImages[0]['images'] )): ?>
                 <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
                    <?php if(!empty($value)): ?>
                    <li class="dontResize"><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" 
                     onclick="currentDiv(<?=$key + 1?>)"  id="img_01" src="<?=Configure::read('imageUrlBase').'thumb_'.$value?>"></a></li>
                     <?php endif;?>
                 <?php endforeach ?>
+                    <?php endif;?>
             </ul>
         </div>
         <div class="col-md-5 col-sm-7"  >
              <div id="surround">
+                 <?php if (!empty($colorImages[0]['images'] )): ?>
+
                 <?php foreach ($colorImages[0]['images'] as $k => $v) : ?> 
                     <?php if(!empty($v)): ?>
                     <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?=Configure::read('imageUrlBase').$v?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/> 
                     <?php endif;?>
                   <?php endforeach ?>
+                    <?php endif;?>
              </div>
         </div>
       <?php else:?>  
         <div class="col-md-2 col-sm-5">
             <ul id="ul-moreviews">
+                <?php if (!empty($images)): ?>
                 <?php foreach ($images as $key => $value) : ?>
                  <?php if (!empty($value)): ?>
                    <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" 
                     onclick="currentDiv(<?php $key = $key + 1; echo $key ?>)"  id="img_01" style="" src="<?php echo $value ?> " ></a></li>
                  <?php endif ?> 
                 <?php endforeach ?>
+                 <?php endif ?> 
             </ul>
         </div>
         <div class="col-md-5 col-sm-7"  >
              <div id="surround">
+                 <?php if (!empty($images)): ?>
+
                 <?php foreach ($images as $k => $v) : ?> 
-                    <?php if (!empty($v)): ?>
-                     <!--a href="#" ><img  class="mySlides"  id="mySlides"  src="<?php echo $v ?>" data-zoom-image="<?php echo $v ?>"/></a-->
+                    <?php if (!empty($v)): ?> 
                      <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?php echo $v ?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
                     <?php endif ?> 
                   <?php endforeach ?>
+                    <?php endif ?> 
              </div>
         </div>
     <?php endif;?>
@@ -119,7 +128,7 @@
                         <?php  foreach ($colors as $color) {
                                     $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
                                     $style = (empty($color['images']))?'oldSelectColor':'';
-                                    echo '<label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.$color['images'].'">';
+                                    echo '<label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
                                     echo "<small>".$color['alias']."</small>";
                                     echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
                                     if (!empty($color['images'])) {
@@ -181,8 +190,15 @@
     <div class="wrapper">
         <div class="row">  
             <div class="col-md-3 col-sm-3">
-                <a href="<?php echo router::url(array('controller' => 'shop', 'action' => 'index',
-                                 intval($category_id))) ?>" class="btBig">
+            <?php
+                $slug =  str_replace(' ','-',strtolower($category['Category']['name']));
+                  if (strpos($slug, 'trajes')!==false){
+                    $slug = 'trajes-de-bano';
+                  }
+
+            ?>
+                <a href="<?php echo router::url(array('controller' => 'tienda', 'action' => 'productos',
+                                 $slug)) ?>" class="btBig">
                   volver <br>
                    al  <span>SHOP</span>
                 </a>
