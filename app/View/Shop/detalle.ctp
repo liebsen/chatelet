@@ -220,7 +220,9 @@
                                 'controller' => 'shop',
                                 'action' => 'detalle',
                                 $alt_product['id'],
-                                $alt_product['category_id']
+                                $alt_product['category_id'],
+                                strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $alt_product['name']))),
+
                             )
                         );
                     if(!$stock){ ?>

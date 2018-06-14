@@ -78,6 +78,8 @@
 
 							if (!empty($item['category_id'])) {
 								$url[] = ($item['category_id']);
+								$url[] = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['name'])));
+
 							}
 
 							if ($isProduct) {
