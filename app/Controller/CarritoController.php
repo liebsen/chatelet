@@ -285,13 +285,25 @@ class CarritoController extends AppController
 		if ($this->request->is('post') && isset($this->request->data['id'])) {
 			$product = $this->Product->findById($this->request->data['id']);
 			$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
+
+			$ch = curl_init();
+		    curl_setopt($ch, CURLOPT_URL, $urlCheck);
+		    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+		    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+		    $stock = (string)curl_exec($ch);
+		    curl_close($ch);
+			if (empty($this->request->data['size']) && empty($this->request->data['color_code'])){
+				$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article'];
+				$stock=1;
+			}
 			error_log($urlCheck);
-			$stock = file_get_contents($urlCheck);
+
 			error_log('stock:'.$stock);
 			if ($product && $stock) {
 				$product = $product['Product'];
-				$product['color'] = $this->request->data['color'];
-				$product['size'] = $this->request->data['size'];
+				$product['color'] = @$this->request->data['color'];
+				$product['size'] = @$this->request->data['size'];
 				$product['alias'] = $this->request->data['alias'];
 
 

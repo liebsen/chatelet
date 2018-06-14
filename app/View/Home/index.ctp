@@ -3,18 +3,18 @@
 	echo $this->Session->flash();
 
 	$images 	= array();
-	$images_aux = explode(';', $home['img_url']);
+	$images_aux = explode(';', @$home['img_url']);
 	foreach ($images_aux as $key => $value) {
 		if(!empty($value))
 			$images[] 	= Configure::read('imageUrlBase').$value;
 	}
     
-    $img_url_one = str_replace(';', '', $home['img_url_one']);  
+    $img_url_one = str_replace(';', '', @$home['img_url_one']);  
  
-    $img_url_two = str_replace(';', '', $home['img_url_two']); 
+    $img_url_two = str_replace(';', '', @$home['img_url_two']); 
     
-    $img_url_three = str_replace(';', '', $home['img_url_three']); 
-    $img_url_four = str_replace(';', '', $home['img_url_four']); 
+    $img_url_three = str_replace(';', '', @$home['img_url_three']); 
+    $img_url_four = str_replace(';', '', @$home['img_url_four']); 
    
 ?>
 
@@ -125,8 +125,7 @@
             </div>
         </section>
     <?php
-    /*$popupBGToSplit=(strpos($home['img_popup_newsletter'], ';')===false)?$home['img_popup_newsletter']:substr($home['img_popup_newsletter'],1);*/
-    $popupBG=explode(';', $home['img_popup_newsletter']);
+    $popupBG=explode(';', @$home['img_popup_newsletter']);
     if(empty($popupBG[0])){
         $aux = array();
         foreach($popupBG as $key=>$value){

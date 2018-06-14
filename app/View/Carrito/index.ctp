@@ -29,7 +29,7 @@
 						$total = 0;
 						if (!isset($carro)) $carro = array();
 						foreach ($carro as $product) {
-							if ($product['discount']!= "" && (float)$product['discount']>0) {
+							if (!empty($product['discount']) && (float)@$product['discount']>0) {
                                 $product['price'] = $product['discount'];
                             }
 							$total += $product['price'];
@@ -42,8 +42,13 @@
 									echo '<img style="margin-top:10px;" src="'.Configure::read('imageUrlBase').$product['img_url'].'" class="thumb" style="display:block;" />';
 								echo '</td>';
 								echo '<td>';
+								if (!empty($product['alias'])){
 									echo '<p class="color">Color: <span class="color-block">'. $product['alias'] .'</span></p>';
+								}
+								if (!empty($product['size'])){
+
 									echo '<p>Talle: <span class="talle">'. $product['size'] .'</span></p>';
+								}
 								echo '</td>';
 								echo '<td>';
 									echo $this->Html->link('<span class="glyphicon glyphicon-trash"></span>',
