@@ -63,7 +63,7 @@ class ShopController extends AppController {
 			$stock = 1;
 		}
 
-		die((string)$stock);
+		return (string)$stock;
 	}
 
 	public function check_stock($product_id){
