@@ -165,19 +165,10 @@ class ShopController extends AppController {
 		foreach ($all_but_me as &$products) {	
 				$products['Product']['stock'] = 0;
 				if(!empty($products['Product']['article'])){
-					$products['Product']['stock'] = 1;
-/*
-					$list_code = Configure::read('list_code');
-				    $products['Product']['stock'] = $this->SQL->product_exists_general($products['Product']['article'],$list_code);
-				    $details = $this->SQL->product_name_by_article($products['Product']['article']);
-				    if(!empty($details)){ 
-                    $products['Product']['name'] = $details['nombre'] ;
-				    }
-*/
+					$products['Product']['stock'] = 1; 
 				}
 			}
 
-		
 		
         $this->set('details',$details);
 		$this->set('category_id',$category_id);
@@ -186,6 +177,9 @@ class ShopController extends AppController {
 		$this->set('product', $product['Product']);
 		$this->set('properties', $properties);
 		$this->set('isGiftCard', $isGiftCard);
+		if ($isGiftCard && !empty($product['Product']['img_url'])) {
+			$this->set('img_url', $product['Product']['img_url']);
+		}
 		$this->set('all_but_me', $all_but_me);
 	}
 
