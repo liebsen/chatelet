@@ -286,18 +286,20 @@ class CarritoController extends AppController
 			$product = $this->Product->findById($this->request->data['id']);
 			$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
 
-			$ch = curl_init();
-		    curl_setopt($ch, CURLOPT_URL, $urlCheck);
-		    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-		    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
-		    $stock = (string)curl_exec($ch);
-		    curl_close($ch);
 			if (empty($this->request->data['size']) && empty($this->request->data['color_code'])){
-				$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article'];
+				//$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article'];
+				error_log('fake stock');
 				$stock=1;
+			}else{
+
+				error_log($urlCheck);
+				$ch = curl_init();
+			    curl_setopt($ch, CURLOPT_URL, $urlCheck);
+			    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+			    $stock = (string)curl_exec($ch);
+			    curl_close($ch);
 			}
-			error_log($urlCheck);
 
 			error_log('stock:'.$stock);
 			if ($product && $stock) {
