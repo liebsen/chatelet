@@ -79,8 +79,6 @@
         <div class="col-md-5 col-sm-7"  >
              <div id="surround">
                  <?php if (!empty($img_url)): ?>
-xxx
-                    
                     <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?php echo Configure::read('imageUrlBase').$img_url ?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
                 <?php elseif (!empty($images)): ?>
 
