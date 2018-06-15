@@ -296,6 +296,7 @@ class CarritoController extends AppController
 				$ch = curl_init();
 			    curl_setopt($ch, CURLOPT_URL, $urlCheck);
 			    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 			    $stock = (string)curl_exec($ch);
 			    curl_close($ch);
