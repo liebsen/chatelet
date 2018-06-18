@@ -185,7 +185,7 @@ $(document).ready(function() {
                 console.warn(entero)
                 questionText = entero.replace(/[0-9]/g,'');
                 console.warn(questionText)
-			    var res = (entero).slice(1);
+			    var res = (entero).slice(entero.indexOf(".")+1);
                 console.warn(res)
 			    var article = questionText + Math.floor(res);
                 console.warn(article)
