@@ -186,6 +186,9 @@ $(document).ready(function() {
                 questionText = entero.replace(/[0-9]/g,'');
                 console.warn(questionText)
 			    var res = (entero).slice(1);
+                if (entero.indexOf('GIFT')>-1) {
+					res = (entero).slice(5);
+                }
                 console.warn(res)
 			    var article = questionText + Math.floor(res);
                 console.warn(article)
