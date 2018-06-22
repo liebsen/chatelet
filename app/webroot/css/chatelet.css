@@ -304,8 +304,12 @@ html, body {
 	margin-bottom: 5px;
 }
 
-#particular-modal,
 #mayorista-modal {
+	font-size: 13px;
+	position: absolute;
+	/*overflow: visible;*/
+}
+#particular-modal{
 	font-size: 13px;
 	position: absolute;
 	overflow: visible;
@@ -411,5 +415,4 @@ span.validation-email {
 span.validation-password {
 	display: block;
     color: #a94442;
-} 
-/*fin Rodolfo*/
+}  
