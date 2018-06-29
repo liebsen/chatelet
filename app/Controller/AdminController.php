@@ -598,6 +598,8 @@ public function promos(){
 		if (!empty($conditions)) {
 			$params['conditions']=$conditions; 
 			error_log('[update_products] updating by params: ' . json_encode($params));
+		}else{
+			error_log('[update_products] all');
 		}
 		$products = $this->Product->find('all', $params);
 		
