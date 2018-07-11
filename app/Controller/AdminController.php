@@ -607,7 +607,7 @@ public function promos(){
 			if( !empty( $product['Product']['article'] ) && !empty( $list_code ) ) {
 				CakeLog::write('debug', 'Looking price for product #'.$product['Product']['id'].' / article: '.$product['Product']['article'].' / list: '.$list_code.' / list_desc: '.$list_code_desc);
 				$price = $this->SQL->product_price_by_list( $product['Product']['article'] , $list_code , $list_code_desc);
-				error_log('result: '.json_encode($price));
+				CakeLog::write('debug', 'result: '.json_encode($price));
 				if( !empty($price) ) {
 					$this->Product->id = $product['Product']['id'];
 					$precio = $price['precio']*100;

@@ -26,6 +26,8 @@ class SQLComponent extends Component {
 		$stmt->execute();
         
         while ($row = $stmt->fetch()) {  
+        	CakeLog::write('debug', 'query: '."EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
+        	CakeLog::write('debug', json_encode($row));
 			if( !empty( $row['codigo'] ) && strpos($row['codigo'], '.0000') && !empty($row['precio1']) ){
             	$precio['precio'] = $row['precio1'];
                 $precio['discount'] = $row['precio2'];
