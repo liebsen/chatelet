@@ -42,10 +42,9 @@
         			</td>	
         			<td class="col-xs-6">
         				<?php 
-
-                        foreach ($sale['collection']['sale_products'] as $reason): ?>
-        					<div class="row">
-        					<?php $column = 4;  ?>
+                         foreach ($sale['collection']['sale_products'] as $reason): ?>
+                            <div class="row">
+                            <?php $column = 4;  ?>
 
                                 <?php if (!$personalInfoShowed): ?>
                                 <p><strong>Datos Personales: </strong></p>
@@ -55,35 +54,50 @@
                                         <?php $details = explode('-|-', $reason);
                                         if (count($details) > 10){$column=6;} 
                                          ?>
-                                        <?php foreach ($details as $key => $detail): ?>
-                                            <?php if ($key <= $column) continue; ?>
+                                        <?php foreach ($details as $key => $detail): ?> 
                                             <?php $extra = explode(' : ', $detail) ?>
                                             <?php if (!empty($extra[0]) && !empty($extra[1])): ?>
+                                                <?php if (in_array(trim(strtoupper($extra[0])), array('PEDIDO','CODIGO','PRODUCTO','COLOR','PRECIO_DESCUENTO','PRECIO_LISTA'))) continue; ?>
                                                 <li><?php echo $extra[0] ?>: <?php echo $extra[1] ?></li>
                                             <?php endif ?>
                                         <?php endforeach; $personalInfoShowed=true; ?>
                                     </ul>
                                 </div>
                                 <?php endif; ?>
-
-	        					<div class="col-xs-12">
-                                    <p><strong>Producto: </strong></p>
-                                    <ul class="list">
+                            </div>
+                        <?php endforeach; ?>
+                        <table border="1">
+                        <?php foreach ($sale['collection']['sale_products'] as $indice => $reason): ?>
+        					  
+                                     
+                                    
                                         <?php $details = explode('-|-', $reason); 
                                         if (count($details) > 10){$column=6;}
                                         ?>
-                                        <?php foreach ($details as $key => $detail): ?>
-				        					<?php if ($key > $column) continue; ?>
-				        					<?php $extra = explode(' : ', $detail) ?>
-				        					<?php if (!empty($extra[0]) && !empty($extra[1])): ?>
-				        						<li><?php echo $extra[0] ?>: <?php echo $extra[1] ?></li>
+                                        <?php if (!$indice): ?>
+                                            <tr>
+                                        <?php foreach ($details as $key => $detail): ?> 
+                                            <?php $extra = explode(' : ', $detail) ?>
+                                        <?php if (!empty($extra[0])): ?>
+                                            <?php if (!in_array(trim(strtoupper($extra[0])), array('PEDIDO','CODIGO','PRODUCTO','COLOR','PRECIO_DESCUENTO','PRECIO_LISTA'))) continue; ?>
+                                                <td><?php echo $extra[0] ?></td>
+                                        <?php endif ?> 
+                                        <?php endforeach ?>
+                                        </tr>
+                                        <?php endif; ?>
+                                        <tr class="list">
+                                        <?php foreach ($details as $key => $detail):  
+                                        ?>
+                                            <?php $extra = explode(' : ', $detail) ?>
+                                            <?php if (!empty($extra[1])): ?>
+				        					<?php if (!in_array(trim(strtoupper($extra[0])), array('PEDIDO','CODIGO','PRODUCTO','COLOR','PRECIO_DESCUENTO','PRECIO_LISTA'))) continue; ?>
+				        						<td><?php echo $extra[1] ?></td>
 				        					<?php endif ?>
 				        				<?php endforeach ?>
-			        				</ul>	
-	        					</div>
-        					</div>
+                                        </tr>
         				<?php endforeach ?>
-        			</td>	
+        			     </table>
+                     </td>	
         			<td class="col-xs-1 text-center">
         				<?php if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
         					<a target="_new" href="<?php echo Router::url(array('action'=>'getTicket',$sale['local_sale']['id']),true) ?>">TICKET</a> <br />
