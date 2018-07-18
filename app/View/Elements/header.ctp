@@ -117,7 +117,7 @@
                       if (!isset($carro)) $carro = array();
                       foreach($carro as $producto) { 
                         
-                          if($producto['discount']!= "" && (float)$producto['discount']>0){ 
+                          if(!empty($producto['discount']) && (float)$producto['discount']>0){ 
                             $producto['price'] = $producto['discount'];
                           }
                           
@@ -185,13 +185,17 @@
                   <?php  
                     foreach ($categories as $category) {
                       $category = $category['Category'];
+                      $slug =  str_replace(' ','-',strtolower($category['name']));
+                      if (strpos($slug, 'trajes')!==false){
+                        $slug = 'trajes-de-bano';
+                      }
                       echo '<li>';
                       echo $this->Html->link(
                           $category['name'], 
                           array(
-                              'controller' => 'shop',
-                              'action' => 'product',
-                              intval($category['id'])
+                              'controller' => 'tienda',
+                              'action' => 'productos',
+                             $slug
                           )
                       );
                       echo '</li>';

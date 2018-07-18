@@ -284,11 +284,29 @@ class CarritoController extends AppController
 		$this->RequestHandler->respondAs('application/json');
 		if ($this->request->is('post') && isset($this->request->data['id'])) {
 			$product = $this->Product->findById($this->request->data['id']);
-			$stock = file_get_contents("http://www.chatelet.com.ar/shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code']);
+			$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
+
+			if (empty($this->request->data['size']) && empty($this->request->data['color_code'])){
+				//$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article'];
+				error_log('fake stock');
+				$stock=1;
+			}else{
+
+				error_log($urlCheck);
+				$ch = curl_init();
+			    curl_setopt($ch, CURLOPT_URL, $urlCheck);
+			    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+			    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+			    $stock = (string)curl_exec($ch);
+			    curl_close($ch);
+			}
+
+			error_log('stock:'.$stock);
 			if ($product && $stock) {
 				$product = $product['Product'];
-				$product['color'] = $this->request->data['color'];
-				$product['size'] = $this->request->data['size'];
+				$product['color'] = @$this->request->data['color'];
+				$product['size'] = @$this->request->data['size'];
 				$product['alias'] = $this->request->data['alias'];
 
 

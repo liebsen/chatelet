@@ -25,6 +25,9 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 	Router::connect('/', array('controller' => 'home', 'action' => 'index'));
+	Router::connect('/tienda', array('controller' => 'shop', 'action' => 'index'));
+	Router::connect('/tienda/productos/:category', array('controller' => 'shop', 'action' => 'product'));
+	Router::connect('/tienda/producto/*', array('controller' => 'shop', 'action' => 'detalle'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

@@ -182,10 +182,21 @@ $(document).ready(function() {
                 $('input[name="desc"]').val(product.descripcion);
 
                 var entero = product.codArticulo;
-                questionText = entero.replace(/[0-9]/g,'');
-			    var res = (entero).slice(1);
-			    var article = questionText + Math.floor(res);
-                var codArticulo = article.replace(".",'');
+                console.warn(entero)
+                if (entero.indexOf('GIFT')>-1) {
+					codArticulo = entero.slice(0,5);
+                }else{
+                	questionText = entero.replace(/[0-9]/g,'');
+	                console.warn(questionText)
+				    var res = (entero).slice(1);
+						
+	                console.warn(res)
+				    var article = questionText + Math.floor(res);
+	                console.warn(article)
+	                var codArticulo = article.replace(".",'');
+	                console.warn(codArticulo)
+                }
+                
 				$('input[name="article"]').val(codArticulo);
 
 				var precio = parseFloat( product.Precio*1.21 );

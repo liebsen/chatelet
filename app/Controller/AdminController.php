@@ -106,7 +106,6 @@ class AdminController extends AppController {
 		$this->autoRender = false;
 		$list_code = Configure::read('list_code');
 		$exists = $this->SQL->product_exists($article,$list_code);
-
 		if($exists){
 			return 'ok';
 		}else{
@@ -563,17 +562,17 @@ public function promos(){
 			
 			
 			if (empty($data['only_categories']) || $data['only_categories'] != 'yes'){
-				error_log('Apply discount to all');
+				CakeLog::write('debug', 'Apply discount to all');
 				$this->update_products( $data['list_code'] , $data['list_code_desc']);
 			}
-			error_log('More discounts?');
+			CakeLog::write('debug', 'More discounts?');
 			if (!empty($data['more_list_code_desc'])){
-				error_log('More discounts? yes');
+				CakeLog::write('debug', 'More discounts? yes');
            		$this->loadModel('DiscountList');
    				$this->DiscountList->query('DELETE FROM discount_lists;');
            		for($i=0;$i<10;$i++){
            			if (!empty($data['more_list_code_desc'][$i]) && !empty($data['rubro'][$i])){
-						error_log('Rubro: '.$data['rubro'][$i].' / list: '.$data['more_list_code_desc'][$i]);
+						CakeLog::write('debug', 'Rubro: '.$data['rubro'][$i].' / list: '.$data['more_list_code_desc'][$i]);
            				$this->DiscountList->create();
            				$dl = array(
            				'category_id' => $data['rubro'][$i],
@@ -598,15 +597,17 @@ public function promos(){
 		$params = array( 'recursive' => -1);
 		if (!empty($conditions)) {
 			$params['conditions']=$conditions; 
-			error_log('[update_products] updating by params: ' . json_encode($params));
+			CakeLog::write('debug', '[update_products] updating by params: ' . json_encode($params));
+		}else{
+			CakeLog::write('debug', '[update_products] all');
 		}
 		$products = $this->Product->find('all', $params);
 		
 		foreach ($products as &$product) {
 			if( !empty( $product['Product']['article'] ) && !empty( $list_code ) ) {
-				error_log('Looking price for product #'.$product['Product']['id']);
+				CakeLog::write('debug', 'Looking price for product #'.$product['Product']['id'].' / article: '.$product['Product']['article'].' / list: '.$list_code.' / list_desc: '.$list_code_desc);
 				$price = $this->SQL->product_price_by_list( $product['Product']['article'] , $list_code , $list_code_desc);
-				
+				CakeLog::write('debug', 'result: '.json_encode($price));
 				if( !empty($price) ) {
 					$this->Product->id = $product['Product']['id'];
 					$precio = $price['precio']*100;
@@ -617,7 +618,7 @@ public function promos(){
 
 					$this->Product->saveField('discount', $discount);
 					$this->Product->saveField('price', $precio);
-					error_log('Update Product: '.$product['Product']['id'].' [price: '.$precio.' / discount: '.$discount.']');
+					CakeLog::write('debug', 'Update Product: '.$product['Product']['id'].' [price: '.$precio.' / discount: '.$discount.']');
 					//Debugger::log( $price );
 				}
 			}
