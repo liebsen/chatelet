@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div id="carrito" class="col-md-8">
-			<h3 id="heading">Carrito de compras // <span class="grey">Proceso de compra</span></h3>
+			<h3 id="heading" style="margin:10px 0px">Carrito de compras // <span class="grey">Proceso de compra</span></h3>
 			<?php
 				echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
 				echo '<input type="hidden" id="checkout" value="'. $this->Html->url(array('controller' => 'carrito', 'action' => 'checkout')) .'" />'
@@ -26,9 +26,11 @@
 				<tbody>
 					<?php
 					    $row = 0;
+						$subtotal = 0;
 						$total = 0;
 						if (!isset($carro)) $carro = array();
 						foreach ($carro as $product) {
+
 							if (!empty($product['discount']) && (float)@$product['discount']>0) {
                                 $product['price'] = $product['discount'];
                             }
@@ -61,14 +63,16 @@
 									);
 								echo '</td>';
 								echo '<td>';
-									echo '<span class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 0)) .'</span>';
+									echo '<span class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</span>';
 								echo '</td>';
 							echo '</tr>';
-							$row += 1;
+							$row += 1; 
 						}
+
 					?>
 				</tbody>
 			</table>
+			<div class="price">Subtotal: <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
 			<?php echo $this->element('oca') ?>
 		</div>
 		<div class="col-md-2"></div>

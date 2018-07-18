@@ -199,9 +199,9 @@ class AdminController extends AppController {
 
 		//Get and merge local-remote data.
 		$sales = $this->getMPSales();
-if (!empty($this->request->query['test'])){
-        pr($sales);die;
-}
+		if (!empty($this->request->query['test'])){
+		        pr($sales);die;
+		}
 
 		foreach ($sales as &$sale) {
 			$details 		= explode('-|-', $sale['collection']['reason']);
@@ -209,10 +209,11 @@ if (!empty($this->request->query['test'])){
 			if(strpos($sale_number, "&quot;")!== false){
 				$sale_number = html_entity_decode($sale_number);
 			}
+
 			//Info Mergeapp/webroot/css/custom.css
 			$sale['collection']['deliver_cost'] = 0;
-			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
-			if(!empty($local_desc)){
+			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" ))); 
+			if(!empty($local_desc)){  
 				$sale['collection']['sale_products'] = Hash::extract($local_desc, '{n}.SaleProduct.description');
 			}else{
 				$sale['collection']['sale_products'] = array($sale['collection']['reason']);
@@ -223,12 +224,13 @@ if (!empty($this->request->query['test'])){
 			foreach ($local_desc as $key => $value) {
 				$sale_id = (!empty($value['SaleProduct']['sale_id']))?$value['SaleProduct']['sale_id']:0;
 				$local_sale = $this->Sale->findById($sale_id);
+				 
 				$sale['collection']['deliver_cost'] = (!empty($local_sale['Sale']['deliver_cost']))?$local_sale['Sale']['deliver_cost']:0;
 				$sale['local_sale'] = $local_sale['Sale'];
 			}
 		}
 		$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
-
+		//pr($sales);die;
 		$this->set('sales',$sales);
 	}
 

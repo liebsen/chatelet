@@ -154,6 +154,8 @@ class CarritoController extends AppController
 				'PRODUCTO'  => $producto['name'],
 				'COLOR'  	=> $producto['color'].' '.$producto['alias'],
 				'TALLE'  	=> $producto['size'],
+				'PRECIO_LISTA'  	=> $producto['price'],
+				'PRECIO_DESCUENTO'  	=> $producto['discount'],
 				'NOMBRE' 	=> $user['name'],
 				'APPELLIDO'	=> $user['surname'],
 				'EMAIL'		=> $user['email'],
@@ -169,9 +171,9 @@ class CarritoController extends AppController
 			foreach ($values as $key => $value) {
 				$desc.= $key.' : "'.$value.'"'.$separator;
 			}
-
-			if($producto['discount']!= "" && !empty((float)($producto['discount']))) { 
-                $producto['price'] = $producto['discount'];
+			$unit_price =$producto['price'];
+			if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) { 
+                $unit_price = @$producto['discount'];
             }
 			
 			$items[] = array(
@@ -179,13 +181,15 @@ class CarritoController extends AppController
 				'description' => $desc,
 				'quantity' => 1,
 				'currency_id' => 'ARS',
-				'unit_price' => (int) $producto['price']
+				'unit_price' => (int) $unit_price
 			);
 
 			$product_ids[] = array(
 				'product_id' => $producto['id'],
 				'color' => $producto['color'],
 				'size' => $producto['size'],
+				'precio_lista' => $producto['price'],
+				'precio_vendido' => (!empty($producto['discount']))?$producto['discount']:$producto['price'],
 				'sale_id' => $sale_id,
 				'id' => null,
 				'description' => $desc
@@ -220,7 +224,7 @@ class CarritoController extends AppController
 		}
 
 		//Register Extra Info 
-		$this->Sale->save(array(
+		$to_save = array(
 			'id' 		=> $sale_id,
 			'nroremito'	=> $sale_id,
 			'apellido'	=> $user['surname'],
@@ -236,7 +240,9 @@ class CarritoController extends AppController
 			'email'		=> $user['email'],
 			'package_id'=> $delivery_data['itemsData']['package']['id'],
 			'value' 	=> $delivery_data['itemsData']['price'],
-		));
+		);
+		error_log(json_encode($to_save));
+		$this->Sale->save($to_save);
 		
 		//MP
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
@@ -303,6 +309,7 @@ class CarritoController extends AppController
 			}
 
 			error_log('stock:'.$stock);
+			//$stock=1;
 			if ($product && $stock) {
 				$product = $product['Product'];
 				$product['color'] = @$this->request->data['color'];
@@ -344,11 +351,16 @@ class CarritoController extends AppController
 	}
 
 	private function notify_user($data){
-		$message = '<strong>'.ucfirst($data['user']['name']).' '.ucfirst($data['user']['surname']).'</strong>, gracias por tu compra!.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.<br /><br/> Proximamente se te enviaran los datos de envio de tu producto.<br/><br/><a href="www.chatelet.com.ar">www.chatelet.com.ar</a>';
-
-		$this->sendEmail($message,'Compra Realizada en Chatelet',$data['user']['email']);
+		$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).' '.ucfirst($data['user']['surname']).'</strong>, gracias por tu compra!.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p><p>Tu compra ser&aacute; preparada para su env&iacute;o a la brevedad.</p><p>Los pedidos se realizan y despachan los d&iacute;as h&aacute;biles de 10 a 17hs.<br/></p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+		error_log('[email] notifying user '.$data['user']['email']);
+		$this->sendMail($message,'Compra Realizada en Chatelet',$data['user']['email']);
 	}
 
+	public function test() {
+		$this->sendMail('hello','Test via en Chatelet','francisco.marasco@gmail.com');
+		die('ok');
+
+	}
 	public function clear() {
 		if( $this->Session->check( 'sale_data' ) ){			
 			$sale_data = $this->Session->read('sale_data');

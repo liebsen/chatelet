@@ -1,12 +1,12 @@
 <?php echo $this->Html->css('clear',array('inline' => false)) ?>
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12 text-center">
+		<div class="col-xs-12 text-center"><br /><br /><br />
 			<h1 class="heading">Gracias por tu compra!</h1>
 			<p>Tu n&uacute;mero de pedido es: <span class="pink"><?php echo $sale_data['sale_id'] ?></span></p>
 			<p>Se te ha enviado un email con este n&uacute;mero a <span class="pink"><?php echo $sale_data['user']['email'] ?></span></p>
 			<br />
-			<a href="<?php echo $this->Html->url(array('controller'=>'shop','action'=>'index')) ?>" class="link">Continuar</a>
+			<a href="<?php echo $this->Html->url(array('controller'=>'shop','action'=>'index')) ?>" class="link">Continuar</a><br /><br /><br />
 		</div>
 	</div>
 </div>

@@ -14,7 +14,10 @@
                 </tr>
             </thead>
             <tbody>
-            	<?php foreach ($sales as $sale): ?>
+            	<?php foreach ($sales as $sale): 
+
+                $personalInfoShowed=false;
+                ?>
         		<tr>
         			<td class="col-xs-1 text-center">
         				<?php echo date('d/m/Y',strtotime($sale['collection']['date_approved'])) ?><br />
@@ -38,39 +41,46 @@
 	                	</div>
         			</td>	
         			<td class="col-xs-6">
-        				<?php foreach ($sale['collection']['sale_products'] as $reason): ?>
+        				<?php 
+
+                        foreach ($sale['collection']['sale_products'] as $reason): ?>
         					<div class="row">
-        					<?php $column = 4; ?>
-	        					<div class="col-xs-1"></div>
-	        					<div class="col-xs-5">
-	        						<dl class="list">
-				        				<?php $details = explode('-|-', $reason); ?>
-				        				<?php foreach ($details as $key => $detail): ?>
+        					<?php $column = 4;  ?>
+
+                                <?php if (!$personalInfoShowed): ?>
+                                <p><strong>Datos Personales: </strong></p>
+
+                                <div class="col-xs-12">
+                                    <ul class="list">
+                                        <?php $details = explode('-|-', $reason);
+                                        if (count($details) > 10){$column=6;} 
+                                         ?>
+                                        <?php foreach ($details as $key => $detail): ?>
+                                            <?php if ($key <= $column) continue; ?>
+                                            <?php $extra = explode(' : ', $detail) ?>
+                                            <?php if (!empty($extra[0]) && !empty($extra[1])): ?>
+                                                <li><?php echo $extra[0] ?>: <?php echo $extra[1] ?></li>
+                                            <?php endif ?>
+                                        <?php endforeach; $personalInfoShowed=true; ?>
+                                    </ul>
+                                </div>
+                                <?php endif; ?>
+
+	        					<div class="col-xs-12">
+                                    <p><strong>Producto: </strong></p>
+                                    <ul class="list">
+                                        <?php $details = explode('-|-', $reason); 
+                                        if (count($details) > 10){$column=6;}
+                                        ?>
+                                        <?php foreach ($details as $key => $detail): ?>
 				        					<?php if ($key > $column) continue; ?>
 				        					<?php $extra = explode(' : ', $detail) ?>
 				        					<?php if (!empty($extra[0]) && !empty($extra[1])): ?>
-				        						<dt><?php echo $extra[0] ?></dt>
-				                        		<dd><?php echo $extra[1] ?></dd>
+				        						<li><?php echo $extra[0] ?>: <?php echo $extra[1] ?></li>
 				        					<?php endif ?>
 				        				<?php endforeach ?>
-			        				</dl>	
+			        				</ul>	
 	        					</div>
-	        					<div class="col-xs-6">
-	        						<dl class="list">
-				        				<?php $details = explode('-|-', $reason); ?>
-				        				<?php foreach ($details as $key => $detail): ?>
-				        					<?php if ($key <= $column) continue; ?>
-				        					<?php $extra = explode(' : ', $detail) ?>
-				        					<?php if (!empty($extra[0]) && !empty($extra[1])): ?>
-				        						<dt><?php echo $extra[0] ?></dt>
-				                        		<dd><?php echo $extra[1] ?></dd>
-				        					<?php endif ?>
-				        				<?php endforeach ?>
-			        				</dl>
-	        					</div>
-        					</div>
-        					<div class="row">
-        						<hr /> 
         					</div>
         				<?php endforeach ?>
         			</td>	
