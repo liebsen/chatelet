@@ -137,7 +137,6 @@ class AdminController extends AppController {
 		 
 		$sale['orden_retiro'] = $oca->ingresoORNuevo($sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
 		//$t = $this->Sale->save($sale);
-
 		return $sale;
 	}
 
@@ -145,7 +144,6 @@ class AdminController extends AppController {
 		$this->autoRender = false;
 		$this->Sale->recursive = -1;
 		$sale = $this->Sale->findById($sale_id);
-		
 		if(empty($sale) || empty($sale['Sale']['package_id']) || empty($sale['Sale']['value']) || empty($sale['Sale']['email']) || empty($sale['Sale']['telefono']) || empty($sale['Sale']['provincia']) || empty($sale['Sale']['localidad']) || empty($sale['Sale']['cp']) || empty($sale['Sale']['nro']) || empty($sale['Sale']['calle']) || empty($sale['Sale']['nombre']) || empty($sale['Sale']['apellido']))
 			die('Venta no encontrada o incompleta.');
 		

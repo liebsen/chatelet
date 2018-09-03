@@ -239,6 +239,8 @@ class Oca
 	    $cadena = utf8_decode($cadena);
 	    $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
 	    $cadena = strtolower($cadena);
+	        $cadena = preg_replace('/[^a-z0-9 -]+/', '', $cadena);
+
 	    return utf8_encode($cadena);
 	}
 
@@ -308,7 +310,6 @@ class Oca
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		
 		$xml = curl_exec($ch);
-//print_r($xml);die;
 		$OrdenRetiro = @$this->getTextBetweenTags( 'OrdenRetiro' , $xml , 1 );
 		
 		return $OrdenRetiro;
