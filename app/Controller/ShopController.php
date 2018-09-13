@@ -57,11 +57,12 @@ class ShopController extends AppController {
 		$list_code = Configure::read('list_code');
 		$this->autoRender = false;
 		if(!empty($article) && !empty($color_code) && !empty($size_number) ){
-        	$stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code);
+			CakeLog::write('debug','article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code);
+	        	$stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code);
 		}elseif (!empty($article)) {
 			$stock = 1;
 		}
-
+		CakeLog::write('debug','stock: '.$stock);
 		return (string)$stock;
 	}
 
@@ -73,12 +74,12 @@ class ShopController extends AppController {
 		$list_code = Configure::read('list_code');
 
 		if(!empty($product['Product']['article'])){
+			CakeLog::write('debug','checking SQL '.$product_id);
 			$stock = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
 		}
 		if (empty($stock)) return 'empty';
-		error_log('check stock');
-		echo "$stock";
-		die;
+		CakeLog::write('debug','checking stock: '.$stock);
+		die("$stock");
 	}
 
 	public function product($category_id = null) {
