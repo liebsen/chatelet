@@ -13,6 +13,7 @@
 }
 .price {
 	text-align:center;
+	height:60px;
 	font-size:32px;
 	font-family: 'Poppins', Verdana, Arial, sans-serif;
 	margin:0px auto 25px;
