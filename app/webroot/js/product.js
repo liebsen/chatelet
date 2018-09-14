@@ -1,12 +1,12 @@
-$(document).ready(function() {
-	//Stock
-	$('input[name="color"],#size').change(function(event) {
-		var url 		= $(event.target).closest("form").data('url');
-		var article 	= $(event.target).closest("form").data('article');
-		var color_code 	= $(event.target).closest("form").find('input[name="color"]:checked').attr('code');
-		var size_number	= $(event.target).closest("form").find('#size option:selected').val();
+function pideStock(obj){
 
-		var stock_cont	= $(event.target).closest("form").find('#stock_container');
+		console.log('changed');
+		var url 		= $(obj).closest("form").data('url');
+		var article 	= $(obj).closest("form").data('article');
+		var color_code 	= $(obj).closest("form").find('input[name="color"]:checked').attr('code');
+		var size_number	= $(obj).closest("form").find('#size option:selected').val();
+
+		var stock_cont	= $(obj).closest("form").find('#stock_container');
 		var stock    	= '<i style="color:green;">Disponible <i>';
 		var stock_0 	= '<i style="color:red;">No Disponible</i>';
 		var missing 	= '<i> (Seleccione un color y talle) </i>';
@@ -46,6 +46,18 @@ $(document).ready(function() {
 		}else{
 			stock_cont.html(missing);
 		}
+}
+$(document).ready(function() {
+	//Stock
+	$('.oldSelectColor').click(function(event) {
+		window.lastColorObj = $(this);
+		setTimeout(function(){
+			console.log('codeColor: ',$(window.lastColorObj).parent().find('input[name="color"]:checked').attr('code'));
+			pideStock(window.lastColorObj)
+		},500)
+	});
+	$('input[name="color"],#size').change(function(event) {
+		pideStock(event.target)
 	});
     
 
