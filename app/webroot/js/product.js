@@ -49,7 +49,7 @@ function pideStock(obj){
 }
 $(document).ready(function() {
 	//Stock
-	$('.oldSelectColor').click(function(event) {
+	$('.oldSelectColor,.loadColorImages').click(function(event) {
 		window.lastColorObj = $(this);
 		setTimeout(function(){
 			console.log('codeColor: ',$(window.lastColorObj).parent().find('input[name="color"]:checked').attr('code'));
