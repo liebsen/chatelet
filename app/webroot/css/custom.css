@@ -313,7 +313,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/
 #detalle h1 { color: #f50081; font-size: 30px; font-weight: 500; margin-bottom: 10px; }
 #detalle > p { font-size: 18px; font-weight: 500; margin-bottom: 20px; }
-#detalle .price { background: #FFF; color: #404040; height: 60px; display: inline-block; font-size: 18px; font-weight: 500; line-height: .9; padding: 10px 15px; }
+#detalle .price { background: #FFF; color: #404040; display: inline-block; font-size: 18px; font-weight: 500; line-height: .9; padding: 10px 15px; }
 #detalle .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
 #detalle .caract { color: #404040; margin-top: 25px; }
 #detalle .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
