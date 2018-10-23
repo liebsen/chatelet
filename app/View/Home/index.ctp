@@ -1,7 +1,6 @@
 <?php
 
 	echo $this->Session->flash();
-
 	$images 	= array();
 	$images_aux = explode(';', @$home['img_url']);
 	foreach ($images_aux as $key => $value) {
@@ -18,7 +17,9 @@
    
 ?>
 
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" 
+
+        >
       
           <!-- Wrapper for slides -->
           <div class="carousel-inner " role="listbox">
@@ -137,43 +138,105 @@
     }
     ?>        
         <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
-            <?php if(count($popupBG)>1):?>
+
+        <?php if(count($popupBG)>1):?>
+
             <div class="content">
+
+               
+
+
+
                 <a class="close" data-dismiss="modal">
                     <span></span>
                     <span></span>
                 </a>
                 <?php echo $this->Form->create('Contact'); ?>
+
+
                 <?php if(empty($home['text_popup_newsletter'])):?>
                     <!--h1>Suscribite a nuestro<br /><span>Newsletter</span></h1>
                     <p>Y recibí las últimas novedades</p-->
                 <?php else:?>
                    <?php echo $home['text_popup_newsletter'];?>
                 <?php endif;?>  
-                <div class="ft___ml" <?php if(empty($home['display_popup_form'])):?>style="display: none;"<?php endif;?>> 
+
+
+                <div class="ft___ml" <?php if(empty($home['display_popup_form'])):?> style="display: none;" <?php endif;?>> 
                   <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
                   <input type="submit" id="enviar" value="ok">
                 </div>
                 <?php echo $this->Form->end(); ?> 
-                <div id="carousel-newsletter" class="carousel slide" data-ride="carousel">
+
+
+
+                <div id="carousel-newsletter" class="carousel slide" data-ride="carousel" <?php if(!empty($home['display_popup_form_in_last'])){ echo " data-wrap='false' "; } ?> >
                   <!-- Wrapper for slides -->
-                  <div class="carousel-inner" role="listbox">
+                  <div class="carousel-inner news-carousel" role="listbox">
                     <div class="item active">
+
+                     
+
                       <img src="<?=Configure::read('imageUrlBase').$popupBG[0]?>">
+                         <?php if(!empty($home['display_popup_form_in_last'])):?>
+                <div class="in_last">
+                <?php echo $this->Form->create('Contact'); ?>
+                        <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                        <input type="submit" id="enviar" value="ok">
+                <?php echo $this->Form->end(); ?> 
+                </div>
+                <?php endif; ?>
                     </div>
                     <div class="item">
                       <img src="<?=Configure::read('imageUrlBase').$popupBG[1]?>">
+
+                     <?php if(!empty($home['display_popup_form_in_last'])):?>
+
+                <div class="in_last">
+                <?php echo $this->Form->create('Contact'); ?>
+                        <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                        <input type="submit" id="enviar" value="ok">
+                <?php echo $this->Form->end(); ?> 
+                </div>
+                <?php endif; ?>
+
                     </div>
                     <?php if(isset($popupBG[2]) && !empty($popupBG[2])):?>
                     <div class="item">
+
+                  
+
+
                       <img src="<?=Configure::read('imageUrlBase').$popupBG[2]?>">
+
+
+                         <?php if(!empty($home['display_popup_form_in_last'])):?>
+                <div class="in_last">
+                <?php echo $this->Form->create('Contact'); ?>
+                        <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                        <input type="submit" id="enviar" value="ok">
+                <?php echo $this->Form->end(); ?> 
+                </div>
+                <?php endif; ?>
                     </div> 
                     <?php endif;?>
                   </div>
                 </div>
             </div>
-            <?php else:?>
+
+        <?php else:?>
+
             <div class="content" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: 100%;':''?>">
+
+                <?php if(!empty($home['display_popup_form_in_last'])):?>
+                <div class="in_last">
+                <?php echo $this->Form->create('Contact'); ?>
+                        <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                        <input type="submit" id="enviar" value="ok">
+                <?php echo $this->Form->end(); ?> 
+                </div>
+                <?php endif; ?>
+
                 <a class="close" data-dismiss="modal">
                     <span></span>
                     <span></span>
@@ -188,7 +251,9 @@
                 <?php else:?>
                    <?php echo $home['text_popup_newsletter'];?>
                 <?php endif;?>
-                <div class="ft___ml" <?php if(empty($home['display_popup_form'])):?>style="display: none;"<?php endif;?>>
+                <div class="ft___ml" <?php if(empty($home['display_popup_form'])):?> style="display: none;"<?php endif;?>>
+
+
                       <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
                       <input type="submit" id="enviar" value="ok">
                 </div>
@@ -196,11 +261,42 @@
             </div>
         <?php endif;?>
         </div><!-- /.modal -->
+
+
+
+<?php if(!empty($home['display_popup_form_in_last'])):?>
+    <style type="text/css">
+
+        .news-carousel .item:last-child .in_last form {
+            position: absolute!important;
+            top:0px;
+        } 
+
+        .news-carousel .item:last-child .in_last form input[type="email"] {
+            margin-top: 217px;
+            margin-left: 36px;
+            border: none;
+        }
+        
+        .news-carousel .item:last-child .in_last form input[type="submit"] {
+            margin-top: 30px;
+            float: left!important;
+            border: none!important;
+            margin-left: 50px;
+            clear: both;
+            color: transparent!important;
+        }
+
+    </style>
+
+<?php endif; ?>
+
+
 <script>
 var myIndex = 0;
-//carousel();
-
+//carousel(); 
 function carousel() {
+    console.log('carousel executing')
     var i;
     var x = document.getElementsByClassName("mySlides");
     for (i = 0; i < x.length; i++) {

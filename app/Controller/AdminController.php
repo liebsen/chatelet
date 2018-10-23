@@ -285,6 +285,9 @@ class AdminController extends AppController {
 	    	if(!isset($data['display_popup_form'])){
 	    		$data['display_popup_form'] = 0;
 	    	}
+	    	if(!isset($data['display_popup_form_in_last'])){
+	    		$data['display_popup_form_in_last'] = 0;
+	    	}
 	    	$this->Home->save($data);
 		}
         

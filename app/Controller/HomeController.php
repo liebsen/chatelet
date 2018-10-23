@@ -40,7 +40,6 @@ class HomeController extends AppController {
                 $this->set('popupBgHeight', $alto);
             }
         }
- 
 		$this->loadModel('Setting');
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
@@ -66,7 +65,7 @@ class HomeController extends AppController {
             $saved = $this->Subscription->save($toSave);
 	            if(!empty($saved)){
 	               $this->Session->setFlash(
-	                    'Bien!,email registrado', 
+	                    'Gracias por unirte a las novedades', 
 	                    'default', 
 	                    array('class' => 'hidden notice')
 	                );	

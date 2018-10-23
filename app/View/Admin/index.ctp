@@ -311,6 +311,12 @@
 								<input type="checkbox" name="display_popup_form" class="form-control" <?=(!empty($p['Home']['display_popup_form']))?'checked':''?>>
 							</div>
 						</div>
+						<div class="control-group">
+							<label class="control-label" for="columns-text"><?php echo __('Mostrar formulario en ultimo popup solamente'); ?></label>
+							<div class="controls">
+								<input type="checkbox" name="display_popup_form_in_last" class="form-control" <?=(!empty($p['Home']['display_popup_form_in_last']))?'checked':''?>>
+							</div>
+						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="control-group">
