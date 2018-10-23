@@ -275,7 +275,7 @@
         .news-carousel .item:last-child .in_last form input[type="email"] {
             margin-top: 217px;
             margin-left: 36px;
-            border: none;
+            border: none!important;
         }
         
         .news-carousel .item:last-child .in_last form input[type="submit"] {
