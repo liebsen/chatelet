@@ -163,7 +163,7 @@
 
 
                 <div class="ft___ml" <?php if(empty($home['display_popup_form'])):?> style="display: none;" <?php endif;?>> 
-                  <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                  <input type="email" name="data[Subscription][email]" required>
                   <input type="submit" id="enviar" value="ok">
                 </div>
                 <?php echo $this->Form->end(); ?> 
@@ -181,7 +181,7 @@
                          <?php if(!empty($home['display_popup_form_in_last'])):?>
                 <div class="in_last">
                 <?php echo $this->Form->create('Contact'); ?>
-                        <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                        <input type="email" name="data[Subscription][email]" required>
                         <input type="submit" id="enviar" value="ok">
                 <?php echo $this->Form->end(); ?> 
                 </div>
@@ -194,7 +194,7 @@
 
                 <div class="in_last">
                 <?php echo $this->Form->create('Contact'); ?>
-                        <input type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                        <input type="email" name="data[Subscription][email]" required>
                         <input type="submit" id="enviar" value="ok">
                 <?php echo $this->Form->end(); ?> 
                 </div>
