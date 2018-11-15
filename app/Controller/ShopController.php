@@ -35,8 +35,6 @@ class ShopController extends AppController {
 
  
 	public function index() {
-
-	    	
 	    $this->loadModel('Setting');
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
@@ -44,6 +42,7 @@ class ShopController extends AppController {
           
 		$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
+//var_dump($categories);die;
 		$setting 			 = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
@@ -51,7 +50,11 @@ class ShopController extends AppController {
     	$this->render('index');
 
 	}
-
+	public function die_categories(){
+		$this->loadModel('Category');
+		$categories = $this->Category->find('all');
+		var_dump($categories);die;
+	}
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
 		$stock = 0;
 		$list_code = Configure::read('list_code');

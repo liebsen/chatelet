@@ -216,8 +216,22 @@
                                 </a></div>
                              
                             <?php } ?>
+
+			<?php if(!empty($categories[16])){ ?>
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('  ',' '),array('n','-'),
+                                strtolower($categories[16]['Category']['name'])))); ?>" class="pd2">
+                                    <img src=<?php echo Configure::read('imageUrlBase').$categories[16]['Category']['img_url']?> class="img-responsive img-cover">
+                                    <span class="hover">
+                                         <?php echo $categories[16]['Category']['name']?><br><br>
+
+                                    </span>
+                                </a></div>
+
+                            <?php } ?>
+
                             <?php if(!empty($categories[15])){ ?>
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[15]['Category']['name'])))); ?>" class="pd2">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),
+				strtolower($categories[15]['Category']['name'])))); ?>" class="pd2">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[15]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
                                          <?php echo $categories[15]['Category']['name']?><br><br>
@@ -226,6 +240,9 @@
                                 </a></div>
                              
                             <?php } ?>
+			
+
+
                         </div>
                     </div>
                   <?php //endforeach; ?>  
