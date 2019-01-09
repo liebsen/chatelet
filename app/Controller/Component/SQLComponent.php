@@ -94,14 +94,15 @@ class SQLComponent extends Component {
 
 	public function general_stock(){
 		try {
-			error_log('stock:query init;');
+			echo "\r\nstock:query init;";
 			$stmt = $this->conn->prepare("EXEC pa_stock_todos;");
-			error_log('stock:query prepared;');
+			echo "\r\nstock:query prepared;";
 			$stmt->execute();
-			error_log('stock:query executed;');
-			return (array)$stmt->fetchAll();
+			echo "\r\nstock:query executed;";
+			$ret= (array)$stmt->fetchAll();
+			return $ret;
 		}catch (Exception $e) {
-			error_log('Error with general stock: '.$e->getMessage());
+			echo "\r\nError with general stock: ".$e->getMessage();
 			return array();
 		}
 	}
