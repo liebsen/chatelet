@@ -24,15 +24,15 @@ class SQLComponent extends Component {
 		$precio = array();
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
 		$stmt->execute();
-        
-        while ($row = $stmt->fetch()) {  
+
+        while ($row = $stmt->fetch()) {
         	CakeLog::write('debug', 'query: '."EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
         	CakeLog::write('debug', json_encode($row));
 			if( !empty( $row['codigo'] ) && strpos($row['codigo'], '.0000') && !empty($row['precio1']) ){
             	$precio['precio'] = $row['precio1'];
                 $precio['discount'] = $row['precio2'];
-			} 
-			    
+			}
+
 
 				return $precio;
 
@@ -92,6 +92,24 @@ class SQLComponent extends Component {
 		return 0;
 	}
 
+	public function general_stock(){
+		$stmt = $this->conn->prepare("EXEC pa_stock_todos;");
+		$stmt->execute();
+
+		while ($row = $stmt->fetch()) {
+			print_r($row);
+			/*
+			if(!empty($row['codigo'])){
+				$params = explode('.', $row['codigo']);
+				if(!empty($params[1]) && ($params[1] != '0000') && $params[1] == ($size_number.$color_code)){
+					return $row['stock'];
+				}
+			}*/
+		}
+		die;
+		return 0;
+	}
+
 	public function product_details($article,$list_code){
 		$details = array(
 			'sizes' 	=> array(),
@@ -118,7 +136,7 @@ class SQLComponent extends Component {
 						$details['colors'][] = $color_code;
 				}
 			}
-		}		
+		}
 
 		return $details; //Key-> size | Values -> colors
 	}
@@ -202,12 +220,12 @@ class SQLComponent extends Component {
 	public function productsByLisCod($prod_cod, $lis_cod) {
 		$results = array();
 		if (empty($lis_cod) || empty($prod_cod)) return $results;
-	
+
 		$stmt = $this->conn->prepare("
-			SELECT a.ArtCod AS codArticulo, 
-				   a.ArtNom AS descripcion, 
-				   c.descripcion AS colorPrenda, 
-				   al.LisCod AS listaPrecio, 
+			SELECT a.ArtCod AS codArticulo,
+				   a.ArtNom AS descripcion,
+				   c.descripcion AS colorPrenda,
+				   al.LisCod AS listaPrecio,
 				   al.Precio
 
 			FROM   Art a INNER JOIN
