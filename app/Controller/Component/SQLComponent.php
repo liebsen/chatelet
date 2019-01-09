@@ -93,21 +93,14 @@ class SQLComponent extends Component {
 	}
 
 	public function general_stock(){
-		$stmt = $this->conn->prepare("EXEC pa_stock_todos;");
-		$stmt->execute();
-
-		while ($row = $stmt->fetch()) {
-			print_r($row);
-			/*
-			if(!empty($row['codigo'])){
-				$params = explode('.', $row['codigo']);
-				if(!empty($params[1]) && ($params[1] != '0000') && $params[1] == ($size_number.$color_code)){
-					return $row['stock'];
-				}
-			}*/
+		try {
+			$stmt = $this->conn->prepare("EXEC pa_stock_todos;");
+			$stmt->execute();
+			return (array)$stmt->fetchAll();
+		}catch (Exception $e){
+			echo 'Error with general stock '.$e->getMessage();
+			return array();
 		}
-		die;
-		return 0;
 	}
 
 	public function product_details($article,$list_code){
