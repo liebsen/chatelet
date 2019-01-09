@@ -51,20 +51,25 @@ class ShopController extends AppController {
 
 	}
 	public function die_general_stock(){
+
 			$all_stock = $this->SQL->general_stock();
-			foreach ($all_stok as $row){
-				$record = [];
-				$exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
-				if (!empty($exists)){
-					$record['id'] = $exists['StockCount']['id'];
+			if (!empty($all_stock)){
+				foreach ($all_stok as $row){
+					$record = [];
+					$exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
+					if (!empty($exists)){
+						$record['id'] = $exists['StockCount']['id'];
+					}
+					$record['cod_articulo'] = $row['cod_articulo'];
+					$record['stock'] = (int)$row['cantidad'];
+					error_log('Saving '.json_encode($record));
+					$success=$this->StockCount->save($record);
+					if (!$success){
+						error_log('Failed to save');
+					}
 				}
-				$record['cod_articulo'] = $row['cod_articulo'];
-				$record['stock'] = (int)$row['cantidad'];
-				error_log('Saving '.json_encode($record));
-				$success=$this->StockCount->save($record);
-				if (!$success){
-					error_log('Failed to save');
-				}
+			}else{
+				error_log('general stock response is empty.');
 			}
 	}
 	public function die_categories(){
