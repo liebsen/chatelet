@@ -51,7 +51,7 @@ class ShopController extends AppController {
 
 	}
 	public function die_general_stock(){
-
+			$this->autoRender = false;
 			$all_stock = $this->SQL->general_stock();
 			if (!empty($all_stock)){
 				foreach ($all_stok as $row){
