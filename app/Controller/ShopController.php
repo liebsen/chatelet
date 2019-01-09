@@ -58,7 +58,7 @@ class ShopController extends AppController {
 			if (!empty($all_stock)){
 				foreach ($all_stock as $row){
 					$record = [];
-					$article_id = substr($row['cod_articulo'],0,strpos($row['cod_articulo'],'.')-1);
+					$article_id = substr($row['cod_articulo'],0,strpos($row['cod_articulo'],'.'));
 
 					$existArticle = $this->Product->findByArticle($article_id);
 					if (!empty($existArticle)){
