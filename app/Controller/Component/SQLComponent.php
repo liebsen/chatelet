@@ -12,8 +12,7 @@ class SQLComponent extends Component {
 		try {
 			$this->conn = new PDO("dblib:host=$myServer;dbname=$myDB", $myUser, $myPass);
 		} catch (PDOException $e) {
-			echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-			exit;
+			error_log("Failed to get DB handle: " . $e->getMessage() . "\n");
 		}
 	}
 	public function __destruct() {
