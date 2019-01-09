@@ -62,6 +62,15 @@ class ShopController extends AppController {
 
 					$existArticle = $this->Product->findByArticle($article_id);
 					if (!empty($existArticle)){
+
+						if ($row['cod_articulo'] === $article_id.'.0000'){
+						// update article stock
+							$this->Product->updateAll(
+								array('Product.stock_total' => (int)$row['cantidad']),
+								array('Product.article' => $article_id)
+							);
+						}
+						//
 						$exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
 						if (!empty($exists)){
 							$record['id'] = $exists['StockCount']['id'];
