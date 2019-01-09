@@ -68,6 +68,7 @@ class ShopController extends AppController {
 						}else{
 							$this->StockCount->create();
 						}
+						$record['article_id'] = $article_id;
 						$record['cod_articulo'] = $row['cod_articulo'];
 						$record['stock'] = (int)$row['cantidad'];
 						echo "\r\nSaving ".json_encode($record);
