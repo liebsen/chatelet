@@ -108,8 +108,7 @@
 								</div>';
               }else{
 
-		            echo '<div data-id="'.$item["id"].'" class="col-xs-6 col-md-4 col-sm-6 add-no-stock">
-											<img src="/images/agotado3.png" class="out_stock" />'.
+		            echo '<div data-id="'.$item["id"].'" class="col-xs-6 col-md-4 col-sm-6 add-no-stock">'.
 									 $ctrl->Html->link(
 										$content,
 										$url,
