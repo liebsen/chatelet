@@ -53,22 +53,30 @@ class ShopController extends AppController {
 	public function die_general_stock(){
 			$this->autoRender = false;
 			$this->loadModel('StockCount');
+			$this->loadModel('Product');
 			$all_stock = $this->SQL->general_stock();
 			if (!empty($all_stock)){
 				foreach ($all_stock as $row){
 					$record = [];
-					$exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
-					if (!empty($exists)){
-						$record['id'] = $exists['StockCount']['id'];
+					$article_id = substr($row['cod_articulo'],0,strpos($row['cod_articulo'],'.')-1);
+
+					$existArticle = $this->Product->findByArticle($article_id);
+					if (!empty($existArticle)){
+						$exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
+						if (!empty($exists)){
+							$record['id'] = $exists['StockCount']['id'];
+						}else{
+							$this->StockCount->create();
+						}
+						$record['cod_articulo'] = $row['cod_articulo'];
+						$record['stock'] = (int)$row['cantidad'];
+						echo "\r\nSaving ".json_encode($record);
+						$success=$this->StockCount->save($record);
+						if (!$success){
+							echo "\r\nFailed to save";
+						}
 					}else{
-						$this->StockCount->create();
-					}
-					$record['cod_articulo'] = substr($row['cod_articulo'],0,strpos($row['cod_articulo'],'.')-1);
-					$record['stock'] = (int)$row['cantidad'];
-					echo "\r\nSaving ".json_encode($record);
-					$success=$this->StockCount->save($record);
-					if (!$success){
-						echo "\r\nFailed to save";
+						echo "\r\nArticle {$article_id} not needed";
 					}
 				}
 			}else{
