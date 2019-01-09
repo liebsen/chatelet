@@ -77,7 +77,7 @@ class ShopController extends AppController {
 							echo "\r\nFailed to save";
 						}
 					}else{
-						echo "\r\nArticle {$article_id} not needed";
+						//echo "\r\nArticle {$article_id} not needed";
 					}
 				}
 			}else{
