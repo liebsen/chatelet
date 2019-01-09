@@ -40,7 +40,7 @@
                     <div class="hidden-xs hidden-sm col-sm-3">
                         <nav>
                             <ul>
-                                <?php  
+                                <?php
 				                    foreach ($categories as $category) {
 				                        $category = $category['Category'];
 				                        $slug =  str_replace(' ','-',strtolower($category['name']));
@@ -49,7 +49,7 @@
 					                      }
 				                        echo '<li>';
 				                        echo $this->Html->link(
-				                            $category['name'], 
+				                            $category['name'],
 				                            array(
 				                                'controller' => 'tienda',
 				                                'action' => 'productos',
@@ -64,10 +64,10 @@
                     </div>
 
                     <div class="col-sm-9">
-                      
+
 					<?php
 						function createSection($item, $ctrl, $isProduct = false) {
-							$stock = (!empty($item['stock']))?1:0;
+							$stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
 							$content = '<img class="img-responsive"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />'.
 								'<span class="hover">'.
 									'<small>'. $item['name'] .'</small>'.
@@ -104,15 +104,18 @@
 									$content,
 								    $url,
 									array('escape' => false)
-								). '<div class="price">'.$priceStr.'</div></div>';
-                            }else{
-								
-		                        echo '<div data-id="'.$item["id"].'" class="col-xs-6 col-md-4 col-sm-6 add-no-stock"><div class="verifying-stock">Consultando stock...</div>'.
+								). '<div class="price">'.$priceStr.'</div>
+								</div>';
+              }else{
+
+		            echo '<div data-id="'.$item["id"].'" class="col-xs-6 col-md-4 col-sm-6 add-no-stock">
+											<img src="/images/agotado3.png" class="out_stock" />'.
 									 $ctrl->Html->link(
 										$content,
 										$url,
 										array('escape' => false)
-									). '<div class="price">'.$priceStr.'</div></div>';
+									). '<div class="price">'.$priceStr.'</div>
+									</div>';
 							}
 						}
 
@@ -126,14 +129,14 @@
 							}
 						}
 					?>
-       
-		      
-		
+
+
+
                     </div>
                     <div class="hidden-lg hidden-md visible-xs-* visible-sm-* col-sm-3" style="clear: both;">
                         <nav>
                             <ul>
-                                <?php  
+                                <?php
                                     foreach ($categories as $category) {
                                         $category = $category['Category'];
                                         $slug =  str_replace(' ','-',strtolower($category['name']));
@@ -142,7 +145,7 @@
 					                      }
                                         echo '<li>';
                                         echo $this->Html->link(
-                                            $category['name'], 
+                                            $category['name'],
                                             array(
                                                 'controller' => 'tienda',
                                                 'action' => 'productos',
@@ -166,7 +169,7 @@
                         Las prendas que estan en el Shop como principal en cada rubro, no estan a la venta.
                     </div>
                     <div class="col-md-4 bx2 blr">
-                        Los cambios se realizan dentro de los 30 días de efectuada la compra en cualquiera de las sucursales presentando el ticket correspondiente. 
+                        Los cambios se realizan dentro de los 30 días de efectuada la compra en cualquiera de las sucursales presentando el ticket correspondiente.
                     </div>
                     <div class="col-md-4 bx3">
                         Las prendas deben estar sin uso y con la etiqueta de código de barras correspondiente adherida.
@@ -184,7 +187,7 @@ function checkStock(i){
 
 	 $.ajax({
         type: "GET",
-        url: baseUrl + 'shop/check_stock/' + product_id, 
+        url: baseUrl + 'shop/check_stock/' + product_id,
         processData: false,
         contentType: false,
         cache: false,
@@ -202,12 +205,14 @@ function checkStock(i){
 }
 window.product_list = new Array();
 $(function(){
+	/*
 	$('.add-no-stock').each(function(i,item){
 		product_list[i] = item;
 		setTimeout(function(){
 			checkStock(i);
 		},500*i)
 	})
+	*/
 })
 </script>
 <?php
@@ -248,6 +253,6 @@ var google_remarketing_only = true;
 <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/853044157/?guid=ON&amp;script=0"/>
 </div>
 </noscript>
-<?php 
+<?php
 }
 ?>
