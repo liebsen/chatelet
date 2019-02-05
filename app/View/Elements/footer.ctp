@@ -1,15 +1,16 @@
 <?php echo $this->Html->css('font-awesome', array('inline' => false)); ?>
-    <footer>  
+    <footer>
             <div class="wrapper">
                 <div class="col-md-3 col-sm-6">
                     <h3>Shop online</h3>
                     <ul>
-                    <?php  
+                    <?php
+                    if (!empty($categories)){
                     foreach ($categories as $category) {
                         $category = $category['Category'];
                         echo '<li>';
                         echo $this->Html->link(
-                            $category['name'], 
+                            $category['name'],
                             array(
                                 'controller' => 'shop',
                                 'action' => 'product',
@@ -18,31 +19,32 @@
                         );
                         echo '</li>';
                     }
+                    }
                    ?>
                     </ul>
                 </div>
 
                 <div class="col-md-3 col-sm-6">
                     <h3>LookBook</h3>
-                    <ul>  
+                    <ul>
                        <li>
-                         <?php echo $this->Html->link($catalog_first_line, 
+                         <?php echo $this->Html->link($catalog_first_line,
                          array('controller' => 'catalogo', 'action' => 'index')); ?>
                        </li>
-                       
+
                     </ul>
                 </div>
 
                 <div class="col-md-3 col-sm-6 clb">
                     <h3>Información</h3>
                     <ul>
-                        <li> 
+                        <li>
 	                      <?php echo $this->Html->link('Sucursales', array('controller' => 'sucursales', 'action' => 'index'));?>
 	                    </li>
-                        <li> 
+                        <li>
                           <?php echo $this->Html->link('Ayuda', array('controller' => 'ayuda', 'action' => 'como_comprar')); ?>
                         </li>
-	                    <li> 
+	                    <li>
 						  <?php echo $this->Html->link('Contacto', array('controller' => 'contacto', 'action' => 'index')); ?>
 						</li>
                     </ul>
@@ -50,9 +52,9 @@
 
                 <div class="col-md-3 col-sm-6">
                   <!--  <a href="mailto:sueldos@chatelet.com.ar"><h4>Trabaja con nosotros</h4></a>-->
-                    
+
                     <a href="#"  data-toggle="modal" data-target="#particular-email"><h4>Trabaja con nosotros</h4></a>
-                    
+
                         <!--<a href="#">
                         <span></span>
                         Chateá con un<br>asesor online

@@ -13,49 +13,49 @@
               <span class="icon-bar"></span>
           </button>
       </div>
-    
+
        <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
 
-          <li>   
-            <?php 
+          <li>
+            <?php
                 echo $this->Html->link('Lookbook', array('controller' => 'catalogo', 'action' => 'index'));
-            ?> 
+            ?>
           </li>
           <?php if( !empty($show_shop) ): ?>
             <li>
-              <?php 
+              <?php
                   echo $this->Html->link('Shop', array('controller' => 'shop', 'action' => 'index'),array('class'=>'viewSubMenu'));
               ?>
-            </li> 
+            </li>
           <?php endif ?>
           <li>
-              <?php 
-                echo $this->Html->link('Promociones', array('controller' => 'shop', 'action' => 'promos')); 
+              <?php
+                echo $this->Html->link('Promociones', array('controller' => 'shop', 'action' => 'promos'));
               ?>
           </li>
           <li>
-              <?php 
-                echo $this->Html->link('Sucursales', array('controller' => 'sucursales', 'action' => 'index')); 
+              <?php
+                echo $this->Html->link('Sucursales', array('controller' => 'sucursales', 'action' => 'index'));
               ?>
           </li>
           <li>
-              <?php 
-                echo $this->Html->link('Ayuda', array('controller' => 'ayuda', 'action' => 'como_comprar')); 
+              <?php
+                echo $this->Html->link('Ayuda', array('controller' => 'ayuda', 'action' => 'como_comprar'));
               ?>
           </li>
           <li>
-            <?php 
-              echo $this->Html->link('Contacto', array('controller' => 'contacto', 'action' => 'index')); 
+            <?php
+              echo $this->Html->link('Contacto', array('controller' => 'contacto', 'action' => 'index'));
             ?>
           </li>
         </ul>
 
-   
-      
+
+
         <ul class="nav navbar-nav navbar-right">
-         <!-- .Login -->  
+         <!-- .Login -->
           <li class="dropdown">
              <?php if ($loggedIn) { ?>
              <a href="#" class="dropdown-toggle user js-activated" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
@@ -88,7 +88,7 @@
                         echo '<span class="fa fa-pencil"></span>';
                       echo '</a>';
                       echo $this->Html->link('Cerrar sesion', array(
-                          'controller' => 'users', 
+                          'controller' => 'users',
                           'action' => 'logout'
                         ),
                         array(
@@ -100,7 +100,7 @@
                     </div>
                 </li>
               </ul>
-            <?php } else { ?>  
+            <?php } else { ?>
              <a href="#" class="dropdown-toggle user" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion">Perfíl</a>
             <?php } ?>
           </li><!-- /.Login -->
@@ -115,18 +115,18 @@
                     <?php
                       $total = 0;
                       if (!isset($carro)) $carro = array();
-                      foreach($carro as $producto) { 
-                        
-                          if(!empty($producto['discount']) && (float)$producto['discount']>0){ 
+                      foreach($carro as $producto) {
+
+                          if(!empty($producto['discount']) && (float)$producto['discount']>0){
                             $producto['price'] = $producto['discount'];
                           }
-                          
+
                           $total += $producto['price'];
                           echo '<li>';
                             echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. $this->Number->currency($producto['price'], 'USD', array('places' => 0)) . '</strong>';
                           echo '</li>';
                         }
-                      
+
                     ?>
                   </ol>
                   <p>
@@ -145,7 +145,7 @@
                       }
                     ?>
                     <span class="right">
-                      <?php 
+                      <?php
                         if ($this->Session->check('Carro')) {
                           echo $this->Html->link('Pagar', array(
                               'controller' => 'carrito',
@@ -153,7 +153,7 @@
                             ), array(
                               'class' => 'pink pay',
                             )
-                          ); 
+                          );
                         } else {
                           echo 'Pagar';
                         }
@@ -179,10 +179,11 @@
         <div class="row">
             <img  class="pull-left" src="<?php echo Configure::read('imageUrlBase').$image_menushop?>" >
             <div class="col-sm-6">
-                
+
                 <h3>Shop</h3>
                 <ul>
-                  <?php  
+                  <?php
+                  if (!empty($categories)){
                     foreach ($categories as $category) {
                       $category = $category['Category'];
                       $slug =  str_replace(' ','-',strtolower($category['name']));
@@ -191,7 +192,7 @@
                       }
                       echo '<li>';
                       echo $this->Html->link(
-                          $category['name'], 
+                          $category['name'],
                           array(
                               'controller' => 'tienda',
                               'action' => 'productos',
@@ -199,6 +200,7 @@
                           )
                       );
                       echo '</li>';
+                    }
                     }
                   ?>
                 </ul>

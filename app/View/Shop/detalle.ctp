@@ -35,7 +35,7 @@
     var colorImages = <?=json_encode($colorImages, true)?>;
     window.isGiftCard = <?=(int)$isGiftCard?>;
 </script>
-<section id="detalle"> 
+<section id="detalle">
     <div class="wrapper">
       <div class="row">
       <?php if(!empty($colorImages)):?>
@@ -44,7 +44,7 @@
                 <?php if (!empty($colorImages[0]['images'] )): ?>
                 <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
                    <?php if(!empty($value)): ?>
-                   <li class="dontResize"><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" 
+                   <li class="dontResize"><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
                     onclick="currentDiv(<?=$key + 1?>)"  id="img_01" src="<?=Configure::read('imageUrlBase').'thumb_'.$value?>"></a></li>
                     <?php endif;?>
                 <?php endforeach ?>
@@ -55,25 +55,25 @@
              <div id="surround">
                  <?php if (!empty($colorImages[0]['images'] )): ?>
 
-                <?php foreach ($colorImages[0]['images'] as $k => $v) : ?> 
+                <?php foreach ($colorImages[0]['images'] as $k => $v) : ?>
                     <?php if(!empty($v)): ?>
-                    <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?=Configure::read('imageUrlBase').$v?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/> 
+                    <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?=Configure::read('imageUrlBase').$v?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
                     <?php endif;?>
                   <?php endforeach ?>
                     <?php endif;?>
              </div>
         </div>
-      <?php else:?>  
+      <?php else:?>
         <div class="col-md-2 col-sm-5">
             <ul id="ul-moreviews">
                 <?php if (!empty($images)): ?>
                 <?php foreach ($images as $key => $value) : ?>
                  <?php if (!empty($value)): ?>
-                   <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" 
+                   <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
                     onclick="currentDiv(<?php $key = $key + 1; echo $key ?>)"  id="img_01" style="" src="<?php echo $value ?> " ></a></li>
-                 <?php endif ?> 
+                 <?php endif ?>
                 <?php endforeach ?>
-                 <?php endif ?> 
+                 <?php endif ?>
             </ul>
         </div>
         <div class="col-md-5 col-sm-7"  >
@@ -82,10 +82,10 @@
                     <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?php echo Configure::read('imageUrlBase').$img_url ?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
                 <?php elseif (!empty($images)): ?>
 
-                <?php foreach ($images as $k => $v) : ?> 
-                    <?php if (!empty($v)): ?> 
+                <?php foreach ($images as $k => $v) : ?>
+                    <?php if (!empty($v)): ?>
                      <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?php echo $v ?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
-                    <?php endif ?> 
+                    <?php endif ?>
                   <?php endforeach ?>
                 <?php endif; ?>
              </div>
@@ -108,24 +108,24 @@
                 <h1> <?php echo $product['name'];?> </h1>
 
                  <p><?php echo $name_categories; ?></p>
-                 <p> Art. <span><?php echo $product['article']; ?></span></p> 
+                 <p> Art. <span><?php echo $product['article']; ?></span></p>
                 <?php  if(!empty($product['discount'])) {
                       echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['price'] ."'>".
                            $this->Number->currency($product['price'], 'USD', array('places' => 2)). "</span>
-                           ahora <span   class='price'>".'$'. $product['discount']."</span>"; 
+                           ahora <span   class='price'>".'$'. $product['discount']."</span>";
                     }else{
                       echo  "<span id='price' class='price' data-price='".'$'. $product['price'] ."'>".
                             $this->Number->currency($product['price'], 'USD', array(
                             'places' => 2)). "</span>";
                  }?>
-                        
+
                 <div class="caract">
                 <?php if(!empty($product['desc'])):?>
                     <p><?php echo $product['desc']; ?></p>
                 <?php endif;?>
                 <?php if (!$isGiftCard): ?>
                     <h2>Color</h2>
-                       
+
                    <div class="btn-group inline-block div_color_products" data-toggle="buttons">
                         <?php  foreach ($colors as $color) {
                                     $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
@@ -149,7 +149,7 @@
                             }
                         ?>
                     </div>
-                   
+
                    <h2>Talle
                     <select id="size" name="size" style="background-color: white; " >
                         <option value="">Seleccionar</option>
@@ -175,22 +175,22 @@
 
                             <!--a href="#" id="register" data-toggle="modal" class="add" data-target="#particular-login">
                             Agregar a mi carro</a-->
-                            
+
                         <?php //}  ?>
                     </div>
-                </div> 
+                </div>
               </div>
-            </div>  
+            </div>
           </div>
        </div>
     </div>
 </section>
 
 
-     
+
 <section id="productOptions">
     <div class="wrapper">
-        <div class="row">  
+        <div class="row">
             <div class="col-md-3 col-sm-3">
             <?php
                 $slug =  str_replace(' ','-',strtolower($category['Category']['name']));
@@ -208,16 +208,16 @@
 
             <div class="col-md-9 col-sm-9">
                 <div class="row">
-                    <?php 
+                    <?php
                     foreach($all_but_me as $alt_product):
                         $alt_product = $alt_product['Product'];
-                        $stock = (!empty($alt_product['stock']))?1:0; 
+                        $stock = (!empty($alt_product['stock_total']))?(int)$alt_product['stock_total']:0;
                         if(!empty($details)){
                             $name = $details;
                         }else{
                             $name = $alt_product['name'];
                         }
-                        
+
                         $url = $this->Html->url(array(
                                 'controller' => 'shop',
                                 'action' => 'detalle',
@@ -229,10 +229,10 @@
                         );
                     if(!$stock){ ?>
                      <div class="col-md-4 col-sm-6">
-                        <a href="<?php echo $url ?>" >   
+                        <a href="<?php echo $url ?>" >
                             <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
                             <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
-                            <span class="hover"> 
+                            <span class="hover">
                               <small><?php echo $alt_product['name'] ?></small>
                             </span>
                         </a>
@@ -240,10 +240,10 @@
                     <?php }else{ ?>
 
                       <div data-id="<?=$alt_product['id']?>" class="col-md-4 col-sm-6 add-no-stock">
-                        <div class="verifying-stock">Consultando stock...</div>
+
                         <a href="<?php echo $url ?>" >
                             <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
-                            <span class="hover"> 
+                            <span class="hover">
                               <small><?php echo $alt_product['name'] ?></small>
                             </span>
                         </a>
@@ -315,7 +315,7 @@
                 <img src="<?=Configure::read('imageUrlBase')?><?=$category['Category']['size']?>" style="max-width:100%" border="0" />
             </div>
         <?php endif; ?>
-        
+
     </div>
 </div><!-- /.modal -->
 
@@ -354,7 +354,7 @@ function checkStock(i){
     var $html = '<img src="' + baseUrl + 'images/agotado3.png" class="out_stock" />';
      $.ajax({
         type: "GET",
-        url: baseUrl + 'shop/check_stock/' + product_id, 
+        url: baseUrl + 'shop/check_stock/' + product_id,
         processData: false,
         contentType: false,
         cache: false,
@@ -372,12 +372,14 @@ function checkStock(i){
 }
 window.product_list = new Array();
 $(function(){
+  /*
     $('.add-no-stock').each(function(i,item){
         product_list[i] = item;
         setTimeout(function(){
             checkStock(i);
         }, 500*i);
     })
+    */
 })
 </script>
 <form action="/chatelet-new/users/login" id="ProductLoginForm" method="post">

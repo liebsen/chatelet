@@ -12,8 +12,7 @@ class SQLComponent extends Component {
 		try {
 			$this->conn = new PDO("dblib:host=$myServer;dbname=$myDB", $myUser, $myPass);
 		} catch (PDOException $e) {
-			echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-			exit;
+			error_log("Failed to get DB handle: " . $e->getMessage() . "\n");
 		}
 	}
 	public function __destruct() {
@@ -24,15 +23,15 @@ class SQLComponent extends Component {
 		$precio = array();
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
 		$stmt->execute();
-        
-        while ($row = $stmt->fetch()) {  
+
+        while ($row = $stmt->fetch()) {
         	CakeLog::write('debug', 'query: '."EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
         	CakeLog::write('debug', json_encode($row));
 			if( !empty( $row['codigo'] ) && strpos($row['codigo'], '.0000') && !empty($row['precio1']) ){
             	$precio['precio'] = $row['precio1'];
                 $precio['discount'] = $row['precio2'];
-			} 
-			    
+			}
+
 
 				return $precio;
 
@@ -92,6 +91,21 @@ class SQLComponent extends Component {
 		return 0;
 	}
 
+	public function general_stock(){
+		try {
+			echo "\r\nstock:query init;";
+			$stmt = $this->conn->prepare("EXEC pa_stock_todos;");
+			echo "\r\nstock:query prepared;";
+			$stmt->execute();
+			echo "\r\nstock:query executed;";
+			$ret= (array)$stmt->fetchAll();
+			return $ret;
+		}catch (Exception $e) {
+			echo "\r\nError with general stock: ".$e->getMessage();
+			return array();
+		}
+	}
+
 	public function product_details($article,$list_code){
 		$details = array(
 			'sizes' 	=> array(),
@@ -118,7 +132,7 @@ class SQLComponent extends Component {
 						$details['colors'][] = $color_code;
 				}
 			}
-		}		
+		}
 
 		return $details; //Key-> size | Values -> colors
 	}
@@ -202,12 +216,12 @@ class SQLComponent extends Component {
 	public function productsByLisCod($prod_cod, $lis_cod) {
 		$results = array();
 		if (empty($lis_cod) || empty($prod_cod)) return $results;
-	
+
 		$stmt = $this->conn->prepare("
-			SELECT a.ArtCod AS codArticulo, 
-				   a.ArtNom AS descripcion, 
-				   c.descripcion AS colorPrenda, 
-				   al.LisCod AS listaPrecio, 
+			SELECT a.ArtCod AS codArticulo,
+				   a.ArtNom AS descripcion,
+				   c.descripcion AS colorPrenda,
+				   al.LisCod AS listaPrecio,
 				   al.Precio
 
 			FROM   Art a INNER JOIN
