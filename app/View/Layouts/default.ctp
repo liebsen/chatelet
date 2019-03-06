@@ -1,5 +1,6 @@
 <?php 
 	echo $this->element('top');
+        echo $this->element('fb-pixel');
 	echo $this->element('header');
 
 	/* Page Content */
