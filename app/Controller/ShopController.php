@@ -133,6 +133,7 @@ class ShopController extends AppController {
 	public function product($category_id = null) {
 		if (!empty($this->request->params['category'])) {
 			$tag = str_replace("-"," ",urldecode($this->request->params['category']));
+			$tag = str_replace('otoño invierno', 'otoño-invierno', $tag);
 			$category = $this->Category->findByName($tag);
 			if (!empty($category['Category']['id'])){
 				$category_id = $category['Category']['id'];
