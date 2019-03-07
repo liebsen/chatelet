@@ -365,11 +365,15 @@ class CarritoController extends AppController
 
 	}
 	public function failed() {
-			error_log('Failed payment: '.json_encode($this->Session->read('sale_data')));
+			$data = $this->Session->read('sale_data');
+			error_log('Failed payment: '.json_encode($data));
 			$this->Session->delete('Carro');
 			$this->Session->delete('sale_data');
-
-			return $this->redirect(array('controller' => 'home', 'action' => 'index'));
+			if (!empty($_GET['collection_status']) && $_GET['collection_status']=='pending'){
+				return $this->render('clear');
+			}else{
+				return $this->render('clear_no');
+			}
 
 	}
 
