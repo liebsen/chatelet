@@ -4,7 +4,7 @@ class CarritoController extends AppController
 {
 	public $uses = array('Product', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook');
 	public $components = array("RequestHandler");
-	
+
 	public function beforeFilter()
 	{
     	parent::beforeFilter();
@@ -92,14 +92,14 @@ class CarritoController extends AppController
 		if(!empty($data)){
 			$oca = new Oca();
 			//$PesoTotal, $VolumenTotal, $CodigoPostalOrigen, $CodigoPostalDestino, $CantidadPaquetes, $ValorDeclarado, $Cuit, $Operativa
-			$response = $oca->tarifarEnvioCorporativo( 
-				$data['weight'] , 
-				$data['volume'] , 
-				1708 , 
-				$cp , 
+			$response = $oca->tarifarEnvioCorporativo(
+				$data['weight'] ,
+				$data['volume'] ,
+				1708 ,
+				$cp ,
 				1 ,
-				intval($data['price']) , 
-				'30-71119953-1', 
+				intval($data['price']) ,
+				'30-71119953-1',
 				271263
 				//96637
 			);
@@ -118,7 +118,7 @@ class CarritoController extends AppController
 
 	public function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
-		
+
 		// VAR - Validate
 		$carro = $this->Session->read('Carro');
 		$user_id = $this->Auth->user('id');
@@ -143,7 +143,7 @@ class CarritoController extends AppController
 		//Register Sale
 		$this->Sale->save(array('id' => null,'user_id' => $user['id']));
 		$sale_id = $this->Sale->id;
-		
+
 		//Mercadopago
 		foreach ($carro as $producto) {
 			$desc = '';
@@ -172,10 +172,10 @@ class CarritoController extends AppController
 				$desc.= $key.' : "'.$value.'"'.$separator;
 			}
 			$unit_price =$producto['price'];
-			if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) { 
+			if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
                 $unit_price = @$producto['discount'];
             }
-			
+
 			$items[] = array(
 				'title' => $desc,
 				'description' => $desc,
@@ -210,7 +210,7 @@ class CarritoController extends AppController
 			'id' => $sale_id,
 			'deliver_cost' => $price
 		));
-		
+
 		//Re - Registar Sale Products
 		$sale['Sale']['id'] = $sale_id;
 		if (!$this->SaleProduct->saveMany($product_ids)) {
@@ -223,7 +223,7 @@ class CarritoController extends AppController
 			return $this->redirect($this->referer());
 		}
 
-		//Register Extra Info 
+		//Register Extra Info
 		$to_save = array(
 			'id' 		=> $sale_id,
 			'nroremito'	=> $sale_id,
@@ -243,11 +243,11 @@ class CarritoController extends AppController
 		);
 		error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
-		
+
 		//MP
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$success_url = Router::url(array('controller' => 'carrito', 'action' => 'clear'), true);
-		$failure_url = Router::url(null, true);
+		$failure_url = Router::url(array('controller' => 'carrito', 'action' => 'failed'), true);
 		$preference_data = array(
 		    'items' => $items,
 		    'payer' => array(
@@ -271,15 +271,18 @@ class CarritoController extends AppController
 			'preference'=> $preference,
 		);
 		$this->Session->write('sale_data',$sale_data);
-		
+
 		//Setting
-		if(true){
+		if(empty(Configure::read('MP_IN_SANDBOX_MODE'))) {
 			//Production
 			$mp->sandbox_mode(FALSE);
+			error_log('entering mp production mode');
 			return $this->redirect($preference['response']['init_point']);
 		}else{
 			//Sandbox
 			$mp->sandbox_mode(TRUE);
+			error_log('entering mp sandbox mode');
+			error_log($preference['response']['sandbox_init_point']);
 			return $this->redirect($preference['response']['sandbox_init_point']);
 		}
 
@@ -327,12 +330,12 @@ class CarritoController extends AppController
 		}
 		return json_encode(array('success' => false));
 	}
-    
-  
+
+
 
 	public function remove($row = null) {
 		$this->autoRender = false;
-		
+
 		/*if (isset($product_id) && $this->Session->check('Carro.'. $product_id)) {
 			$this->Session->delete('Carro.'. $product_id);
 		}*/
@@ -361,8 +364,20 @@ class CarritoController extends AppController
 		die('ok');
 
 	}
-	public function clear() {
-		if( $this->Session->check( 'sale_data' ) ){			
+	public function failed() {
+			error_log('Failed payment: '.json_encode($this->Session->read('sale_data')));
+			$this->Session->delete('Carro');
+			$this->Session->delete('sale_data');
+
+			return $this->redirect(array('controller' => 'home', 'action' => 'index'));
+
+	}
+
+
+	public function clear() { //success
+		error_log('success payment: '.json_encode($this->Session->read('sale_data')));
+
+		if( $this->Session->check( 'sale_data' ) ){
 			$sale_data = $this->Session->read('sale_data');
 			$this->Sale->save(array(
 				'id' 		=> $sale_data['sale_id'],
@@ -377,5 +392,7 @@ class CarritoController extends AppController
 			$this->Session->delete('sale_data');
 			return $this->redirect(array('controller' => 'home', 'action' => 'index'));
 		}
-	} 
+	}
+
+
 }
