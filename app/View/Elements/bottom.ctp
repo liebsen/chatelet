@@ -26,7 +26,7 @@
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
   ga('require', 'ecommerce');
-  ga('create', 'UA-101622211-1', 'auto');
+  ga('create', 'UA-101622211-2', 'auto');
   ga('send', 'pageview');
 
 </script>
