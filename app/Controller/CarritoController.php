@@ -353,8 +353,14 @@ class CarritoController extends AppController
 		return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 	}
 
-	private function notify_user($data){
-		$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).' '.ucfirst($data['user']['surname']).'</strong>, gracias por tu compra!.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p><p>Tu compra ser&aacute; preparada para su env&iacute;o a la brevedad.</p><p>Los pedidos se realizan y despachan los d&iacute;as h&aacute;biles de 10 a 17hs.<br/></p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+	private function notify_user($data, $status){
+		if ($status=='success'){
+			$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).' '.ucfirst($data['user']['surname']).'</strong>, gracias por tu compra!.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p><p>Tu compra ser&aacute; preparada para su env&iacute;o a la brevedad.</p><p>Los pedidos se realizan y despachan los d&iacute;as h&aacute;biles de 10 a 17hs.<br/></p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+
+		}else{
+			$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).' '.ucfirst($data['user']['surname']).'</strong>, gracias por tu compra! Aguardamos recibir el pago para contactarte.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p><p>Tu compra ser&aacute; preparada para su env&iacute;o a la brevedad.</p><p>Los pedidos se realizan y despachan los d&iacute;as h&aacute;biles de 10 a 17hs.<br/></p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+
+		}
 		error_log('[email] notifying user '.$data['user']['email']);
 		$this->sendMail($message,'Compra Realizada en Chatelet',$data['user']['email']);
 	}
@@ -370,6 +376,7 @@ class CarritoController extends AppController
 			$this->Session->delete('Carro');
 			$this->Session->delete('sale_data');
 			if (!empty($_GET['collection_status']) && $_GET['collection_status']=='pending'){
+				$this->notify_user($data, 'pending');
 				return $this->render('clear');
 			}else{
 				return $this->render('clear_no');
@@ -388,7 +395,7 @@ class CarritoController extends AppController
 				'completed' => 1
 			));
 			$this->set('sale_data',$this->Session->read('sale_data'));
-			$this->notify_user($this->Session->read('sale_data'));
+			$this->notify_user($this->Session->read('sale_data'), 'success');
 			$this->Session->delete('Carro');
 			$this->Session->delete('sale_data');
 		}else{
