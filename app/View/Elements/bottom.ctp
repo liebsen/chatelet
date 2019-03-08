@@ -25,8 +25,8 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('require', 'ecommerce');
   ga('create', 'UA-101622211-2', 'auto');
+  ga('require', 'ecommerce');
   ga('send', 'pageview');
 
 </script>
