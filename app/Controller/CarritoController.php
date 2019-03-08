@@ -375,10 +375,13 @@ class CarritoController extends AppController
 			error_log('Failed payment: '.json_encode($data));
 			$this->Session->delete('Carro');
 			$this->Session->delete('sale_data');
+			$this->set('sale_data',$data);
 			if (!empty($_GET['collection_status']) && $_GET['collection_status']=='pending'){
+				error_log('pending');
 				$this->notify_user($data, 'pending');
 				return $this->render('clear');
 			}else{
+				error_log('failed');
 				return $this->render('clear_no');
 			}
 
@@ -398,7 +401,9 @@ class CarritoController extends AppController
 			$this->notify_user($this->Session->read('sale_data'), 'success');
 			$this->Session->delete('Carro');
 			$this->Session->delete('sale_data');
+			error_log('success');
 		}else{
+			error_log('no sale data');
 			$this->Session->delete('Carro');
 			$this->Session->delete('sale_data');
 			return $this->redirect(array('controller' => 'home', 'action' => 'index'));
