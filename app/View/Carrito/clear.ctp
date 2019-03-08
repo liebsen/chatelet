@@ -21,6 +21,35 @@ var google_conversion_color = "ffffff";
 var google_conversion_label = "swosCM7lunIQvdfhlgM";
 var google_remarketing_only = false;
 /* ]]> */
+
+setTimeout(function(){
+	console.log('save ecommerce:');
+	ga('ecommerce:addTransaction', {
+	  'id': '<?php echo $sale_data['sale_id'] ?>',                     // Transaction ID. Required.
+	  'affiliation': 'Chatelet',   // Affiliation or store name.
+	  'revenue': '<?php echo $sale_data['total'] ?>',               // Grand Total.
+	  'shipping': '1',                  // Shipping.
+	  'tax': '0'                     // Tax.
+	});
+
+	// items
+
+	<?php if (!empty($sale_data['items'])): $index=1000; foreach ($sale_data['items'] as $item): $index++;
+	$slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['title'])));
+	?>
+	ga('ecommerce:addItem', {
+	  'id': '<?=$index?>',                     // Transaction ID. Required.
+	  'name': '<?=$item["title"]?>',    // Product name. Required.
+	  'sku': '<?=$slug?>',                 // SKU/code.
+	  'category': 'Todos',         // Category or variation.
+	  'price': '<?=$item["unit_price"]?>',                 // Unit price.
+	  'quantity': '1'                   // Quantity.
+	});
+	<?php endforeach; endif; ?>
+
+	ga('ecommerce:send');
+
+},3000);
 </script>
 <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
 </script>

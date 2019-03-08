@@ -118,7 +118,7 @@ class CarritoController extends AppController
 
 	public function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
-
+		$total=0;
 		// VAR - Validate
 		$carro = $this->Session->read('Carro');
 		$user_id = $this->Auth->user('id');
@@ -183,7 +183,8 @@ class CarritoController extends AppController
 				'currency_id' => 'ARS',
 				'unit_price' => (int) $unit_price
 			);
-
+			$total+=(int)$unit_price;
+			error_log('suming '.(int)$unit_price);
 			$product_ids[] = array(
 				'product_id' => $producto['id'],
 				'color' => $producto['color'],
@@ -206,6 +207,9 @@ class CarritoController extends AppController
 			'currency_id' => 'ARS',
 			'unit_price' => $price
 		);
+		error_log('suming '.$price);
+		$total += $price;
+
 		$this->Sale->save(array(
 			'id' => $sale_id,
 			'deliver_cost' => $price
@@ -269,6 +273,8 @@ class CarritoController extends AppController
 			'items' 	=> $items,
 			'sale_id' 	=> $sale_id,
 			'preference'=> $preference,
+			'products'=>$product_ids,
+			'total'=>$total
 		);
 		$this->Session->write('sale_data',$sale_data);
 
