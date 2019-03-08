@@ -355,10 +355,10 @@ class CarritoController extends AppController
 
 	private function notify_user($data, $status){
 		if ($status=='success'){
-			$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).' '.ucfirst($data['user']['surname']).'</strong>, gracias por tu compra!.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p><p>Tu compra ser&aacute; preparada para su env&iacute;o a la brevedad.</p><p>Los pedidos se realizan y despachan los d&iacute;as h&aacute;biles de 10 a 17hs.<br/></p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+			$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).'</strong>, gracias por tu compra!.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p><p>Tu compra ser&aacute; preparada para su env&iacute;o a la brevedad.</p><p>Los pedidos se realizan y despachan los d&iacute;as h&aacute;biles de 10 a 17hs.<br/></p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
 
 		}else{
-			$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).' '.ucfirst($data['user']['surname']).'</strong>, gracias por tu compra! Aguardamos recibir el pago para contactarte.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p><p>Tu compra ser&aacute; preparada para su env&iacute;o a la brevedad.</p><p>Los pedidos se realizan y despachan los d&iacute;as h&aacute;biles de 10 a 17hs.<br/></p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+			$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).'</strong>, gracias por tu compra! Aguardamos recibir el pago para contactarte.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p><p>Tu compra ser&aacute; preparada para su env&iacute;o a la brevedad.</p><p>Los pedidos se realizan y despachan los d&iacute;as h&aacute;biles de 10 a 17hs.<br/></p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
 
 		}
 		error_log('[email] notifying user '.$data['user']['email']);
