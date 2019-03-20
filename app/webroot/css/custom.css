@@ -530,7 +530,7 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
         padding-bottom: 25px;
     }
 
-	#opts .col-md-6:first-child { border-right: none; border-bottom: 3px solid #efb0d2; }
+	#opts .col-md-6:first-child { border-right: none; border-bottom: 0px solid #fff; }
 
 	#location { padding-bottom: 30px; }
 	#suscribe .col-md-6:first-child { margin-bottom: 30px; }
@@ -690,7 +690,7 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
         max-width: 100%;
     }
     section#productOptions .col-xs-6 a .hover {
-        
+
     }
     section#productOptions .col-xs-6 a {
 
@@ -708,7 +708,7 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
     }
     #today {
         padding: 5px 0;
-    }    
+    }
 }
 
 
@@ -716,7 +716,7 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
  padding-left: 20%;
  padding-right: 20%;
 }
-  
+
 
 
 div.cloudzoom-black:nth-child(3) {
@@ -757,7 +757,7 @@ span.out{
 	left: 10px;
 	top: -34px;*/
 }
-	
+
 .name_shop{
 	position: absolute;
     z-index: 1;
@@ -768,17 +768,17 @@ span.out{
     margin-left: 45%;
     margin-top: 5%;
     text-indent: -999999999px
-    
+
 }
 
 .img_resp{
     width: 100%;
     z-index: 0;
-    height: auto;	
+    height: auto;
     background: #eaeaea;
     margin-bottom: 100px;
     padding: 15px 0;
-}    
+}
 
 
 /*Icon Shoop Nav Top*/
@@ -826,7 +826,7 @@ span.count {
     span.count {
         display: none
     }
-    
+
     #myModal .content {
         background-size: contain!important;
         max-height: 200px;
@@ -858,7 +858,7 @@ span.count {
         text-align: center;
         float: none;
     }
-   
+
 }
 
 
@@ -891,7 +891,7 @@ span.count {
         max-height: 200px;
         background-repeat-x: no-repeat !important;
         background-repeat-y: no-repeat !important;
-    }    
+    }
 }
 /*IPHONE*/
 @media (max-width: 750px) {
@@ -900,7 +900,7 @@ span.count {
         max-height: 200px;
         background-repeat-x: no-repeat !important;
         background-repeat-y: no-repeat !important;
-    }    
+    }
 }
 
 @media (max-width: 640px) {
@@ -909,7 +909,7 @@ span.count {
         max-height: 200px;
         background-repeat-x: no-repeat !important;
         background-repeat-y: no-repeat !important;
-    }    
+    }
 }
 
 /*Mobile Icons NavTop*/
