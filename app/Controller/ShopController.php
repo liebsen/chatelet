@@ -64,9 +64,20 @@ class ShopController extends AppController {
 					if (!empty($existArticle)){
 
 						if ($row['cod_articulo'] === $article_id.'.0000'){
-						// update article stock
+
+							$toUpdate = array(
+								'Product.stock_total' => (int)$row['cantidad']
+							);
+
+							// update article name
+							$details_name = $this->SQL->product_name_by_article($row['cod_articulo']);
+					    if(!empty($details_name['nombre'])){
+		              $toUpdate['Product.nombre'] = $details_name['nombre'] ;
+							}
+							echo "Updating ".json_encode($toUpdate);
+							// update article stock
 							$this->Product->updateAll(
-								array('Product.stock_total' => (int)$row['cantidad']),
+								$toUpdate,
 								array('Product.article' => $article_id)
 							);
 						}
