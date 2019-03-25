@@ -79,7 +79,7 @@ class ShopController extends AppController {
 							echo "\r\nUpdating ".json_encode($toUpdate);
 							// update article stock
 							$this->Product->updateAll(
-								$toUpdate,
+								array($toUpdate),
 								array('Product.article' => $article_id)
 							);
 							die('OK');
