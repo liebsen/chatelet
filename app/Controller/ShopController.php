@@ -68,20 +68,33 @@ class ShopController extends AppController {
 							$toUpdate = array(
 								'Product.stock_total' => (int)$row['cantidad']
 							);
-
+							$replaceNames = false;
 							// update article name
+							if ($replaceNames){
 							$details_name = $this->SQL->product_name_by_article($article_id);
 							echo "\r\ndetail name: ".json_encode($details_name);
-
+							}
 
 							// update article stock
-							$this->Product->updateAll(
-								array(
-									'Product.stock_total' => (int)$row['cantidad'],
-									'Product.name' => "'". (string)@$details_name['nombre'] ."'"
-								),
-								array('Product.article' => $article_id)
-							); 
+
+								if ($replaceNames){
+									$this->Product->updateAll(
+										array(
+											'Product.stock_total' => (int)$row['cantidad'],
+											'Product.name' => "'". (string)@$details_name['nombre'] ."'"
+										),
+										array('Product.article' => $article_id)
+									);
+								}else{
+									$this->Product->updateAll(
+										array(
+											'Product.stock_total' => (int)$row['cantidad'],
+											//'Product.name' => "'". (string)@$details_name['nombre'] ."'"
+										),
+										array('Product.article' => $article_id)
+									);
+								}
+
 						}
 						//
 						$exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
