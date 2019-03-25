@@ -81,8 +81,7 @@ class ShopController extends AppController {
 									'Product.name' => "'". (string)@$details_name['nombre'] ."'"
 								),
 								array('Product.article' => $article_id)
-							);
-							die('OK');
+							); 
 						}
 						//
 						$exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
