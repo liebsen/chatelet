@@ -66,7 +66,7 @@ class ShopController extends AppController {
 						if ($row['cod_articulo'] === $article_id.'.0000'){
 
 							$toUpdate = array(
-								'stock_total' => (int)$row['cantidad']
+								'Product.stock_total' => (int)$row['cantidad']
 							);
 
 							// update article name
@@ -74,12 +74,12 @@ class ShopController extends AppController {
 							echo "\r\ndetail name: ".json_encode($details_name);
 
 					    if(!empty($details_name['nombre'])){
-		              $toUpdate['Product.name'] = (string)@$details_name['nombre'] ;
+		              $toUpdate['Product.name'] = (string)@$details_name['nombre'];
 							}
 							echo "\r\nUpdating ".json_encode($toUpdate);
 							// update article stock
 							$this->Product->updateAll(
-								array($toUpdate),
+								$toUpdate,
 								array('Product.article' => $article_id)
 							);
 							die('OK');
