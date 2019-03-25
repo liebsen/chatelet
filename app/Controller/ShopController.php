@@ -72,9 +72,9 @@ class ShopController extends AppController {
 							// update article name
 							$details_name = $this->SQL->product_name_by_article($row['cod_articulo']);
 					    if(!empty($details_name['nombre'])){
-		              $toUpdate['Product.nombre'] = $details_name['nombre'] ;
+		              $toUpdate['Product.name'] = $details_name['nombre'] ;
 							}
-							echo "Updating ".json_encode($toUpdate);
+							echo "\r\nUpdating ".json_encode($toUpdate);
 							// update article stock
 							$this->Product->updateAll(
 								$toUpdate,
@@ -91,7 +91,7 @@ class ShopController extends AppController {
 						$record['article_id'] = $article_id;
 						$record['cod_articulo'] = $row['cod_articulo'];
 						$record['stock'] = (int)$row['cantidad'];
-						echo "\r\nSaving ".json_encode($record);
+						//echo "\r\nSaving ".json_encode($record);
 						$success=$this->StockCount->save($record);
 						if (!$success){
 							echo "\r\nFailed to save";
