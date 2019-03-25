@@ -78,11 +78,11 @@ class ShopController extends AppController {
 							}
 							echo "\r\nUpdating ".json_encode($toUpdate);
 							// update article stock
+							var_dump($toUpdate);
 							$this->Product->updateAll(
 								$toUpdate,
 								array('Product.article' => $article_id)
 							);
-							var_dump($toUpdate);die;
 							die('OK');
 						}
 						//
