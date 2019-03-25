@@ -76,17 +76,12 @@ class ShopController extends AppController {
 
 							// update article stock
 							$this->Product->updateAll(
-								array('Product.stock_total' => (int)$row['cantidad']),
+								array(
+									'Product.stock_total' => (int)$row['cantidad'],
+									'Product.name' => "'"+ (string)@$details_name['nombre'] + "'"
+								),
 								array('Product.article' => $article_id)
 							);
-
-							$this->Product->updateAll(
-								array('Product.name'=> (string)@$details_name['nombre']),
-								array('Product.article' => $article_id)
-							);
-
-
-							die('OK');
 						}
 						//
 						$exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
