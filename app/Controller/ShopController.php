@@ -74,11 +74,10 @@ class ShopController extends AppController {
 							echo "\r\ndetail name: ".json_encode($details_name);
 
 					    if(!empty($details_name['nombre'])){
-		              $toUpdate['nombre'] = (string)@$details_name['nombre'] ;
+		              $toUpdate['Product.name'] = (string)@$details_name['nombre'] ;
 							}
 							echo "\r\nUpdating ".json_encode($toUpdate);
 							// update article stock
-							var_dump($toUpdate);
 							$this->Product->updateAll(
 								$toUpdate,
 								array('Product.article' => $article_id)
