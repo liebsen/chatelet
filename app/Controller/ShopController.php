@@ -72,8 +72,9 @@ class ShopController extends AppController {
 							// update article name
 							$details_name = $this->SQL->product_name_by_article($article_id);
 							echo "\r\ndetail name: ".json_encode($details_name);
+
 					    if(!empty($details_name['nombre'])){
-		              $toUpdate['Product.name'] = $details_name['nombre'] ;
+		              $toUpdate['Product.nombre'] = $details_name['nombre'] ;
 							}
 							echo "\r\nUpdating ".json_encode($toUpdate);
 							// update article stock
@@ -81,6 +82,7 @@ class ShopController extends AppController {
 								$toUpdate,
 								array('Product.article' => $article_id)
 							);
+							die('OK');
 						}
 						//
 						$exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
