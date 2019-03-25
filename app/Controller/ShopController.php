@@ -77,7 +77,7 @@ class ShopController extends AppController {
 							// update article stock
 							$this->Product->updateAll(
 								array(
-									'Product.stock_total' => (int)$row['cantidad'],
+									//'Product.stock_total' => (int)$row['cantidad'],
 									'Product.name' => "'"+ (string)@$details_name['nombre'] + "'"
 								),
 								array('Product.article' => $article_id)
