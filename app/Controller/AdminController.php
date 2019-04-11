@@ -176,7 +176,7 @@ class AdminController extends AppController {
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$filters = array(
             "range" => "date_created",
-            "begin_date" => "NOW-120MONTH",
+            "begin_date" => "NOW-12MONTH",
             "end_date" => "NOW",
             "limit" => 1000,
             "status" => "approved",
