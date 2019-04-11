@@ -214,7 +214,7 @@ class AdminController extends AppController {
 				$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
 
 
-
+				$exists=[];
 
     foreach($sales as $sale) {
 
@@ -226,15 +226,22 @@ class AdminController extends AppController {
 					$extra = explode(' : ', $detail);
 					if (!empty($extra[0]) && !empty($extra[1])){
 						if (strtolower(trim($extra[0]))==='email'){
-							array_push($arraux, str_replace(array("\"","&quot;"), "",@$extra[1]));
-							array_push($list, $arraux);
-				      $arraux = [];
+							$email=str_replace(array("\"","&quot;"), "",@$extra[1]);
+							if (in_array($email, $exists)){
+
+							}else{
+								$exists[] = $email;
+								array_push($arraux, $email);
+								array_push($list, $arraux);
+					      $arraux = [];
+							}
+
 						}
 					}
 				}
 			}
     }
-		$list = array_unique($list);
+
     $output = fopen("php://output",'w') or die("Can't open php://output");
     header("Content-Type:application/csv");
     header("Content-Disposition:attachment;filename=sales_emails.csv");
