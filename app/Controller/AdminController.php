@@ -220,11 +220,12 @@ class AdminController extends AppController {
 
 
 			foreach ($sale['collection']['sale_products'] as $reason){
+				error_log($reason);
 				$details = explode('-|-', $reason);
 				foreach ($details as $key => $detail){
 					$extra = explode(' : ', $detail);
 					if (!empty($extra[0]) && !empty($extra[1])){
-						if (strtolower($extra[0])==='email'){
+						if (strtolower(trim($extra[0]))==='email'){
 							array_push($arraux, @$extra[1]);
 							array_push($list, $arraux);
 				      $arraux = [];
