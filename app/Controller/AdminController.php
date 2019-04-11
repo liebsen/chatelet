@@ -226,7 +226,7 @@ class AdminController extends AppController {
 					$extra = explode(' : ', $detail);
 					if (!empty($extra[0]) && !empty($extra[1])){
 						if (strtolower(trim($extra[0]))==='email'){
-							array_push($arraux, @$extra[1]);
+							array_push($arraux, str_replace(array("\"","&quot;"), "",@$extra[1]));
 							array_push($list, $arraux);
 				      $arraux = [];
 						}
