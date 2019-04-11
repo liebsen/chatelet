@@ -210,26 +210,28 @@ class AdminController extends AppController {
 						$sale['collection']['sale_products'] = array($sale['collection']['reason']);
 					}
 
-					$package = $this->Package->find('first',array( 'conditions' => array( 'Package.amount_max >=' => count( $sale['collection']['sale_products'] ) , 'Package.amount_min <=' => count( $sale['collection']['sale_products'] ) ) ));
-
-					//Deliver Cost
-					foreach ($local_desc as $key => $value) {
-						$sale_id = (!empty($value['SaleProduct']['sale_id']))?$value['SaleProduct']['sale_id']:0;
-						$local_sale = $this->Sale->findById($sale_id);
-
-						$sale['collection']['deliver_cost'] = (!empty($local_sale['Sale']['deliver_cost']))?$local_sale['Sale']['deliver_cost']:0;
-						$sale['local_sale'] = $local_sale['Sale'];
-					}
 				}
 				$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
 
 
 
 
-    foreach($sales as $item) {
-      array_push($arraux, @$item['collection']['payer']['email']);
-      array_push($list, $arraux);
-      $arraux = [];
+    foreach($sales as $sale) {
+
+
+			foreach ($sale['collection']['sale_products'] as $reason){
+				$details = explode('-|-', $reason);
+				foreach ($details as $key => $detail){
+					$extra = explode(' : ', $detail);
+					if (!empty($extra[0]) && !empty($extra[1])){
+						if (strtolower($extra[0])==='email'){
+							array_push($arraux, @$extra[1]);
+							array_push($list, $arraux);
+				      $arraux = [];
+						}
+					}
+				}
+			}
     }
 
     $output = fopen("php://output",'w') or die("Can't open php://output");
