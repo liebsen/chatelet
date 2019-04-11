@@ -4,7 +4,7 @@ require_once(APP . 'Vendor' . DS . 'oca.php');
 class AdminController extends AppController {
 	public $uses = array('AdminMenu','Promo','Package','SaleProduct','Sale');
 	public $components = array('SQL', 'RequestHandler');
-	
+
 	public function beforeFilter() {
     	parent::beforeFilter();
     	$this->Auth->deny();
@@ -37,7 +37,7 @@ class AdminController extends AppController {
 		);
 
 		$this->set('template', $template);
-  
+
 		// Primary navigation array (the primary navigation will be created automatically based on this array, up to 3 level deep)
 		$menu = $this->AdminMenu->find('all');
 		$this->set('primary_nav', $menu);
@@ -58,7 +58,7 @@ class AdminController extends AppController {
 		//$details =   $this->SQL->product_name_by_article('V7000');
 	//EXAMPLE: I5005/03/02/173
 		$details =   $this->SQL->product_stock('v7269','44','02','179');
-		
+
 		pr($details);
 	}
 
@@ -85,10 +85,10 @@ class AdminController extends AppController {
 		foreach ($products as &$product) {
 			$details = $this->SQL->product_price_by_list($prod_cod,$lis_cod,$lis_cod2);
 			$details_name = $this->SQL->product_name_by_article($prod_cod);
-		    if(!empty($details_name)){ 
+		    if(!empty($details_name)){
               $product['nombre'] = $details_name['nombre'] ;
             }else{
-		      $product['nombre'] = $product['descripcion'] ;	
+		      $product['nombre'] = $product['descripcion'] ;
 	        }
 
 			$product['discount'] = $details['discount'];
@@ -134,7 +134,7 @@ class AdminController extends AppController {
 		$sale = $sale['Sale'];
 		$package = $this->Package->findById($sale['package_id']);
 		$package = $package['Package'];
-		 
+
 		$sale['orden_retiro'] = $oca->ingresoORNuevo($sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
 		//$t = $this->Sale->save($sale);
 		return $sale;
@@ -146,7 +146,7 @@ class AdminController extends AppController {
 		$sale = $this->Sale->findById($sale_id);
 		if(empty($sale) || empty($sale['Sale']['package_id']) || empty($sale['Sale']['value']) || empty($sale['Sale']['email']) || empty($sale['Sale']['telefono']) || empty($sale['Sale']['provincia']) || empty($sale['Sale']['localidad']) || empty($sale['Sale']['cp']) || empty($sale['Sale']['nro']) || empty($sale['Sale']['calle']) || empty($sale['Sale']['nombre']) || empty($sale['Sale']['apellido']))
 			die('Venta no encontrada o incompleta.');
-		
+
 		//if(empty($sale['Sale']['orden_retiro'])){
 			$sale = $this->setOrdenRetiro($sale);
 		//}else{
@@ -156,12 +156,12 @@ class AdminController extends AppController {
 		if(!empty($sale['orden_retiro'])){
 			$this->redirect( "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['orden_retiro']}&CUIT=30-71119953-1" );
 		}else{
-			die('Error: no se pudo generar la etiqueta.');	
+			die('Error: no se pudo generar la etiqueta.');
 		}
 	}
 
 	public function delete_package($id = 0){
-		$this->Package->delete($id); 
+		$this->Package->delete($id);
 		$this->redirect(array( 'action' => 'oca' ));
 	}
 
@@ -186,6 +186,27 @@ class AdminController extends AppController {
         return (!empty($searchResult['response']['results']))?$searchResult['response']['results']:array();
 	}
 
+	public function sales_export_mails(){
+		$this->autoRender=false;
+		$list = [];
+    $arraux = [];
+		$sales = $this->getMPSales();
+    foreach($sales as $item) {
+      array_push($arraux, @$item['collection']['payer']['email']);
+      array_push($list, $arraux);
+      $arraux = [];
+    }
+
+    $output = fopen("php://output",'w') or die("Can't open php://output");
+    header("Content-Type:application/csv");
+    header("Content-Disposition:attachment;filename=sales_emails.csv");
+    fputcsv($output, array('Email'));
+    foreach ($list as $campos) {
+        fputcsv($output, $campos);
+    }
+
+    fclose($output);
+	}
 	public function sales(){
 		$h1 = array(
 			'name' => 'Ventas',
@@ -210,19 +231,19 @@ class AdminController extends AppController {
 
 			//Info Mergeapp/webroot/css/custom.css
 			$sale['collection']['deliver_cost'] = 0;
-			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" ))); 
-			if(!empty($local_desc)){  
+			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
+			if(!empty($local_desc)){
 				$sale['collection']['sale_products'] = Hash::extract($local_desc, '{n}.SaleProduct.description');
 			}else{
 				$sale['collection']['sale_products'] = array($sale['collection']['reason']);
 			}
 			$package = $this->Package->find('first',array( 'conditions' => array( 'Package.amount_max >=' => count( $sale['collection']['sale_products'] ) , 'Package.amount_min <=' => count( $sale['collection']['sale_products'] ) ) ));
-		
+
 			//Deliver Cost
 			foreach ($local_desc as $key => $value) {
 				$sale_id = (!empty($value['SaleProduct']['sale_id']))?$value['SaleProduct']['sale_id']:0;
 				$local_sale = $this->Sale->findById($sale_id);
-				 
+
 				$sale['collection']['deliver_cost'] = (!empty($local_sale['Sale']['deliver_cost']))?$local_sale['Sale']['deliver_cost']:0;
 				$sale['local_sale'] = $local_sale['Sale'];
 			}
@@ -252,7 +273,7 @@ class AdminController extends AppController {
 		}
 		die($response);
 	}
-	
+
 	public function isAuthorized($user) {
 	    // If we're trying to access the admin view, verify permission:
 	    if ('admin' === $this->Auth->user('role')) return true;  // User is admin, allow
@@ -260,7 +281,7 @@ class AdminController extends AppController {
 	}
 
 	public function index() {
-		
+
 	    $this->loadModel('Category');
 		$cats = $this->Category->find('all');
   		$this->set('cats', $cats);
@@ -290,7 +311,7 @@ class AdminController extends AppController {
 	    	}
 	    	$this->Home->save($data);
 		}
-        
+
 		$p = $this->Home->find('first');
 		$this->set('p', $p);
 	}
@@ -352,7 +373,7 @@ class AdminController extends AppController {
                 $file_real_name = $this->save_file($current);
                 if($file_real_name){
                     $pictures[] = $file_real_name;
-                }                
+                }
             }
             if (empty($old['images'])) $old['images'] = '';
             if (!empty($old['images'])) {
@@ -420,7 +441,7 @@ class AdminController extends AppController {
 	    switch ($action) {
 	    	case 'add':
 	    	    if ($this->request->is('POST')){
-			        $this->autoRender = false;        
+			        $this->autoRender = false;
 
 			        $data = $this->request->data;
 
@@ -440,10 +461,10 @@ class AdminController extends AppController {
 			        if($file_real_name2){
 			            $data['size'] = $file_real_name2;
 			        }
-			        
+
 			        $this->Category->save($data);
 
-			        return $this->redirect(array('action'=>'categorias')); 
+			        return $this->redirect(array('action'=>'categorias'));
     			} else {
 	    			return $this->render('categorias-detail');
 	    		}
@@ -454,7 +475,7 @@ class AdminController extends AppController {
 		    		$this->loadModel('Product');
 
 		    		$this->Product->deleteall(array('Product.category_id' => $this->request->data['id']));
-		    		$this->Category->delete($this->request->data['id']);        
+		    		$this->Category->delete($this->request->data['id']);
 		    	}
 	    		break;
 	    	case 'edit':
@@ -480,7 +501,7 @@ class AdminController extends AppController {
 			        if($file_real_name2){
 			            $data['size'] = $file_real_name2;
 			        }
-			        
+
 			        $this->Category->save($data);
 	    		} else {
 		    		$hasId = array_key_exists(1, $this->request->pass);
@@ -522,7 +543,7 @@ public function promos(){
 		$this->loadModel('Setting');
 		if($this->request->is('post')){
 			$data = $this->request->data;
-			
+
 			$this->Setting->save(array(
 				'id' => 'stock_min',
 				'value' => $data['stock_min']
@@ -536,34 +557,34 @@ public function promos(){
 				'id' => 'list_code_desc',
 				'value' => $data['list_code_desc']
 			));
-            
-                
+
+
             $image_bannershop = $this->Setting->save(array(
 				'id' => 'image_bannershop',
 				'value' =>$data['image_bannershop']
 			));
-	
-	   
+
+
 			$this->Setting->save(array(
 				'id' => 'image_menushop',
 				'value' => $data['image_menushop']
 			));
-		
-  
-       
+
+
+
             $this->Setting->save(array(
 				'id' => 'image_prodshop',
 				'value' => $data['image_prodshop']
-			));  
-       
+			));
+
 
 			$this->Setting->save(array(
 				'id' => 'show_shop',
 				'value' => (isset($data['show_shop']))?1:0
 			));
 
-			
-			
+
+
 			if (empty($data['only_categories']) || $data['only_categories'] != 'yes'){
 				CakeLog::write('debug', 'Apply discount to all');
 				$this->update_products( $data['list_code'] , $data['list_code_desc']);
@@ -589,23 +610,23 @@ public function promos(){
            			}
            		}
            	}
-       		
+
 		}
 		$this->redirect(array( 'action' => 'productos' ));
 	}
 
 	public function update_products( $list_code , $list_code_desc, $conditions=false )
-	{    
+	{
 		$this->loadModel('Product');
 		$params = array( 'recursive' => -1);
 		if (!empty($conditions)) {
-			$params['conditions']=$conditions; 
+			$params['conditions']=$conditions;
 			CakeLog::write('debug', '[update_products] updating by params: ' . json_encode($params));
 		}else{
 			CakeLog::write('debug', '[update_products] all');
 		}
 		$products = $this->Product->find('all', $params);
-		
+
 		foreach ($products as &$product) {
 			if( !empty( $product['Product']['article'] ) && !empty( $list_code ) ) {
 				CakeLog::write('debug', 'Looking price for product #'.$product['Product']['id'].' / article: '.$product['Product']['article'].' / list: '.$list_code.' / list_desc: '.$list_code_desc);
@@ -615,7 +636,7 @@ public function promos(){
 					$this->Product->id = $product['Product']['id'];
 					$precio = $price['precio']*100;
 					$precio = ((int)$precio) / 100;
-					
+
 					$discount = $price['discount']*100;
 					$discount = ((int)$discount) / 100;
 
@@ -633,7 +654,7 @@ public function promos(){
 	public function productos($action = null) {
 		$this->loadModel('Setting');
 		$this->loadModel('Category');
-		
+
 
 		$a = $this->Setting->findById('stock_min');
 		$b = $this->Setting->findById('list_code');
@@ -681,7 +702,7 @@ public function promos(){
     	switch ($action) {
 	    	case 'add':
 	    	    if ($this->request->is('POST')){
-			        $this->autoRender = false;        
+			        $this->autoRender = false;
 
 			        $data = $this->request->data;
 
@@ -693,7 +714,7 @@ public function promos(){
 			        if($file_real_name){
 			            $data['img_url'] = $file_real_name;
 			        }
-                  
+
 			        $this->Product->save($data);
 
 
@@ -704,7 +725,7 @@ public function promos(){
 			        	$this->ProductProperty->saveMany($data['props']);
 			        }
 
-			        return $this->redirect(array('action'=>'productos')); 
+			        return $this->redirect(array('action'=>'productos'));
     			} else {
     				$this->loadModel('Category');
 				    $cats = $this->Category->find('all');
@@ -720,9 +741,9 @@ public function promos(){
 	    	case 'delete':
 		    	if ($this->request->is('post')) {
 		    		$this->autoRender = false;
-					
+
 					$this->ProductProperty->deleteall(array('ProductProperty.product_id' => $this->request->data['id']));
-		    		$this->Product->delete($this->request->data['id']);        
+		    		$this->Product->delete($this->request->data['id']);
 		    	}
 	    		break;
 	    	case 'edit':
@@ -739,7 +760,7 @@ public function promos(){
 			        if($file_real_name){
 			            $data['img_url'] = $file_real_name;
 			        }
-			        
+
 			        $this->Product->save($data);
 			        /*if(!empty($this->request->data['id'])){
 			        	$this->ProductProperty->deleteAll(array( 'ProductProperty.product_id' => $this->request->data['id'] ));
@@ -752,7 +773,7 @@ public function promos(){
 		    		if (!$hasId) break;
 		    		$prod = $this->Product->find('first', array('conditions' => array('id' => $this->request->pass[1])));
 		    		$this->set('prod', $prod);
-    				
+
     				$this->loadModel('Category');
 				    $cats = $this->Category->find('all');
 					$this->set('cats', $cats);
@@ -816,7 +837,7 @@ public function promos(){
 	    	    if ($this->request->is('POST')){
 			        $this->autoRender = false;
 			        $this->Store->save($this->request->data);
-			        return $this->redirect(array('action'=>'sucursales')); 
+			        return $this->redirect(array('action'=>'sucursales'));
     			} else {
     				$this->loadModel('Store');
 				    $cats = $this->Store->find('all');
@@ -829,7 +850,7 @@ public function promos(){
 		    	if ($this->request->is('post')) {
 		    		$this->autoRender = false;
 
-		    		$this->Store->delete($this->request->data['id']);        
+		    		$this->Store->delete($this->request->data['id']);
 		    	}
 	    		break;
 	    	case 'edit':
@@ -848,7 +869,7 @@ public function promos(){
 	    }
 	    $stores = $this->Store->find('all');
 	    $this->set('stores', $stores);
-		return $this->render('sucursales');		
+		return $this->render('sucursales');
 	}
 
 	public function contacto($action = null) {
@@ -870,7 +891,7 @@ public function promos(){
 		$this->loadModel('Contact');
     	if ($action == 'delete' && $this->request->is('post')) {
     		$this->autoRender = false;
-    		$this->Contact->delete($this->request->data['id']);        
+    		$this->Contact->delete($this->request->data['id']);
     	}
 
 	    $contacts = $this->Contact->find('all',array('order'=>array( 'Contact.id DESC' )));
@@ -904,9 +925,9 @@ public function promos(){
 	   	switch ($action) {
 	    	case 'add':
 	    	    if ($this->request->is('POST')){
-			        $this->autoRender = false;        
+			        $this->autoRender = false;
 			        $this->User->save($this->request->data);
-			        return $this->redirect(array('action'=>'usuarios')); 
+			        return $this->redirect(array('action'=>'usuarios'));
     			} else {
 	    			return $this->render('usuarios-detail');
 	    		}
@@ -914,7 +935,7 @@ public function promos(){
 	    	case 'delete':
 		    	if ($this->request->is('post')) {
 		    		$this->autoRender = false;
-		    		$this->User->delete($this->request->data['id']);        
+		    		$this->User->delete($this->request->data['id']);
 		    	}
 	    		break;
 	    	case 'edit':
@@ -932,10 +953,10 @@ public function promos(){
 	    }
 	    $users = $this->User->find('all');
 	    $this->set('users', $users);
-		return $this->render('usuarios');	
+		return $this->render('usuarios');
 	}
 
-	
+
 
 	public function refresh_colors() {
 		$this->RequestHandler->respondAs('application/json');
@@ -964,7 +985,7 @@ public function promos(){
 			} else {
 				return $this->redirect(array('controller' => 'admin', 'action' => 'login'));
 			}
-		}		
+		}
 	}
 
 	public function logout() {
@@ -974,7 +995,7 @@ public function promos(){
 
 
 	public function lookbook($action = null) {
-		
+
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-justify',
@@ -989,13 +1010,13 @@ public function promos(){
 
 			);
 		$this->set('navs', $navs);
-       
+
 		$h1 = array(
 			'name' => 'Look Book',
 			'icon' => 'gi gi-list'
 			);
 		$this->set('h1', $h1);
-   	   
+
 	    $this->loadModel('Product');
 	    $prods = $this->Product->find('all');
 		$this->set('prods', $prods);
@@ -1009,29 +1030,29 @@ public function promos(){
     	switch ($action) {
 	    	case 'add':
 	    	    if ($this->request->is('POST')){
-			        $this->autoRender = false;        
+			        $this->autoRender = false;
 
 			        $data = $this->request->data;
-		        
-			        if(!empty($data['props']) && !empty($data['img_url'])) { 
-			   
-				        foreach ($data['props'] as &$prop) { 
-                                 
+
+			        if(!empty($data['props']) && !empty($data['img_url'])) {
+
+				        foreach ($data['props'] as &$prop) {
+
                             $product_detail = $this->Product->find('first', array('conditions'=>array('id'=>$prop['id'])));
-                             
+
 				        	   $toSave[] = array(
 				        	   	    'img_url' => $data['img_url'],
           			                'product_id' => $prop['id'],
 					                'article' => $product_detail['Product']['article'],
 					                'name'=>$product_detail['Product']['name'],
 					            );
-             	        }  
+             	        }
                             $this->LookBooks->saveAll($toSave);
 			        }
-                    
-			        return $this->redirect(array('action'=>'lookbook')); 
+
+			        return $this->redirect(array('action'=>'lookbook'));
     			} else {
-    	
+
 	    			return $this->render('lookbook-detail');
 	    		}
 	    		break;
@@ -1039,12 +1060,12 @@ public function promos(){
 	    	case 'delete':
 		    	if ($this->request->is('post')) {
 		    		$this->autoRender = false;
-		    		$this->LookBooks->delete($this->request->data['id']);       
+		    		$this->LookBooks->delete($this->request->data['id']);
 		    	}
 	    		break;
 	    }
 	}
-   
+
 
     public function subscriptions($action = null) {
 		$navs = array(
@@ -1055,7 +1076,7 @@ public function promos(){
 			)
 		);
 		$this->set('navs', $navs);
-        
+
 		$h1 = array(
 			'name' => 'Newsletter',
 			'icon' => 'gi gi-list'
@@ -1089,7 +1110,7 @@ public function promos(){
 		}
 		die(json_encode($response, true));
 	}
-	
+
 	//TODO validar que no exista un registro con ese alias
 	public function uploadImageColor()
 	{
