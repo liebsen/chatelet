@@ -73,6 +73,7 @@
 				</tbody>
 			</table>
 			<div class="price">Subtotal: <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
+			<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 			<?php echo $this->element('oca') ?>
 		</div>
 		<div class="col-md-2"></div>

@@ -1,4 +1,6 @@
 $(function(){
+	var subtotal = $('#subtotal_compra').val();
+
 	callStart = function(){
 		$('#cost_container').addClass('hide');
 		$('#loading').removeClass('hide');
@@ -28,9 +30,11 @@ $(function(){
 
 	var timeout = null;
 	$('#cp').change(function(event){
-		event.preventDefault();
+		console.log(subtotal);
+                event.preventDefault();
 		var url = $(this).data('url');
 		var cp 	= $('#cp').val();
+		$('#free_delivery').text('');
 		callStart();		
 		$.getJSON( url+'/'+cp , function(json, textStatus) {
 			callEnd();
@@ -40,7 +44,13 @@ $(function(){
 				if (!json.price || parseInt(json.price) == 0){
 					json.price = 114;
 				}
-				$('#cost').text( parseInt(json.price) );
+		                if (subtotal >= 3200){
+		                        console.log('Envio gratis');
+	                                $('#cost').text( 0 );
+					$('#free_delivery').text('Envio gratis!');
+				}else{
+	                                $('#cost').text( parseInt(json.price) );
+				}
 				console.log(parseFloat($('#cost').text()));	
 				$('#cp').removeClass('wrong');
 				$('#cp').addClass('ok');
@@ -64,7 +74,7 @@ $(function(){
 			onErrorAlert('No tienes productos en el carrito.');
 			return false;
 		} 
-		if( !a || !b || !c || 1>parseFloat($('#cost').text()) ){
+		if( !a || !b || !c || 1>parseFloat($('#cost').text()) && subtotal<3200 ){
 			$('#cp').focus();
 			$('#cp').removeClass('ok');
 			$('#cp').addClass('wrong');

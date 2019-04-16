@@ -6,7 +6,7 @@
 		<strong>CP:</strong> <input type="text" name="" value="" id="cp" class="both"	data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'delivery_cost')) ?>" />
 		&nbsp;
 		<span id="cost_container">
-			<strong>$<span id="cost">0</span>.00</strong>
+			<strong>$<span id="cost">0</span>.00</strong> <span id="free_delivery"></span>
 		</span>
 		<span id="loading" class="hide">
 			<?php echo $this->Html->image('loader.gif',array('height'=>20)) ?>
