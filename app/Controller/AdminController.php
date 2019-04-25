@@ -264,7 +264,7 @@ class AdminController extends AppController {
 		//Get and merge local-remote data.
 		$sales = $this->getMPSales();
 		if (!empty($this->request->query['test'])){
-		        pr($sales);die;
+		        var_dump($sales);die;
 		}
 
 		foreach ($sales as &$sale) {

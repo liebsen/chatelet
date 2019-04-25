@@ -207,9 +207,13 @@ class CarritoController extends AppController
 			'currency_id' => 'ARS',
 			'unit_price' => $price
 		);
-		error_log('suming '.$price);
-		$total += $price;
-
+		if (intval($total)>=3200){
+                	error_log('without delivery bc price is :'.$total);
+			$price=0;
+		}else{
+			error_log('suming delivery to price: '.$total);
+			$total += $price;
+		}
 		$this->Sale->save(array(
 			'id' => $sale_id,
 			'deliver_cost' => $price
