@@ -9,6 +9,7 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div id="carrito" class="col-md-8">
+			<a class="keep-buying" href="javascript:history.go(-1)">Seguir comprando</a>
 			<h3 id="heading" style="margin:10px 0px">Carrito de compras // <span class="grey">Proceso de compra</span></h3>
 			<?php
 				echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
@@ -40,7 +41,7 @@
 							echo '<tr product_row>';
 								echo '<td>';
 									echo '<span class="name">'. $product['name'] .'</span>';
-									echo "<div class='clearfix'></div>";								
+									echo "<div class='clearfix'></div>";
 									echo '<img style="margin-top:10px;" src="'.Configure::read('imageUrlBase').$product['img_url'].'" class="thumb" style="display:block;" />';
 								echo '</td>';
 								echo '<td>';
@@ -55,9 +56,9 @@
 								echo '<td>';
 									echo $this->Html->link('<span class="glyphicon glyphicon-trash"></span>',
 										array(
-											'controller' => 'carrito', 
+											'controller' => 'carrito',
 											'action' => 'remove',
-											$row 
+											$row
 										),
 										array ('class' => 'trash', 'escape' => false)
 									);
@@ -66,7 +67,7 @@
 									echo '<span class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</span>';
 								echo '</td>';
 							echo '</tr>';
-							$row += 1; 
+							$row += 1;
 						}
 
 					?>
