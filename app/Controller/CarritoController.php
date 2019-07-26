@@ -200,19 +200,20 @@ class CarritoController extends AppController
 		// Add Delivery
 		$delivery_data = json_decode( $this->delivery_cost($user['postal_address']) ,true);
 		$price = (int)$delivery_data['price'];
-		$items[] = array(
-			'title' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
-			'description' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
-			'quantity' => 1,
-			'currency_id' => 'ARS',
-			'unit_price' => $price
-		);
+
 		if (intval($total)>=3200){
-                	error_log('without delivery bc price is :'.$total);
+      error_log('without delivery bc price is :'.$total);
 			$price=0;
 		}else{
 			error_log('suming delivery to price: '.$total);
 			$total += $price;
+			$items[] = array(
+				'title' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
+				'description' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
+				'quantity' => 1,
+				'currency_id' => 'ARS',
+				'unit_price' => $price
+			);
 		}
 		$this->Sale->save(array(
 			'id' => $sale_id,
