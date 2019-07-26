@@ -141,7 +141,7 @@ a.pay{
 	#carrito {
 		border:none!important;
 	}
-	#keep-buying { 
+	.keep-buying { 
 		text-align: center;
 		margin-top: 8px;
 		margin-bottom: 8px;
