@@ -1,7 +1,7 @@
 
 <?php
   echo $this->Html->css('w3', array('inline' => false));
-  
+
 	echo $this->Html->script('catalogo', array('inline' => false));
   echo $this->Html->script('catalogo2', array('inline' => false));
 	/* Slider */
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-     
+
        <section id="lookbook">
            <div class="col-md-5">
               <div id="carousel2">
@@ -37,11 +37,11 @@
                   </a>
                   <!-- Wrapper for slides -->
                   <div class="carousel-inner" role="listbox">
-                    <?php 
-                     
+                    <?php
+
                       foreach ($lookbook as $key => $value):
                           if (empty($value))
-                            continue; 
+                            continue;
                           $alt_product = $value['LookBook'];
                           $img = str_replace([".jpg", ".JPG"], "", $alt_product['img_url']);
                           $url = $this->Html->url(array(
@@ -50,34 +50,34 @@
                                   $img
                               )
                           ); ?>
-                        
-                            <div class="item <?php if(empty($this->params['pass'][0]) && !$key){echo 'active';} 
+
+                            <div class="item <?php if(empty($this->params['pass'][0]) && !$key){echo 'active';}
                             elseif(!empty($this->params['pass'][0]) && $img==$this->params['pass'][0]){ echo 'active';}?>"
                             data-img="<?=$img?>">
-                             
-                              <img id="img_padding" style="cursor:pointer;" onclick="javascript:window.location.href='<?php echo $url  ?>';" 
+
+                              <img id="img_padding" style="cursor:pointer;" onclick="javascript:window.location.href='<?php echo $url  ?>';"
                                src="<?php echo Configure::read('imageUrlBase').$value['LookBook']['img_url'] ?>" >
-                               
-                           
+
+
                           </div>
-                          
-                  <?php endforeach; ?> 
+
+                  <?php endforeach; ?>
                   </div>
              </div>
            </div>
-           
-           <?php if(!empty($product)){ ?>   
+
+           <?php if(!empty($product)){ ?>
            <div class="col-md-7">
-            <h3>Elegí tu look para vivir tu momento.</h3> 
-              <ul> 
-                 <?php foreach ($product as $k => $v) : ?> 
+            <h3>Elegí tu look para vivir tu momento.</h3>
+              <ul>
+                 <?php foreach ($product as $k => $v) : ?>
                     <?php if (!empty($v)): ?>
                        <?php
                           echo $this->Form->create(null, array(
                               'url' => array(
                                   'controller' => 'carrito',
                                   'action' => 'add'
-                              ),  
+                              ),
                               'id' => 'productForm',
                               'data-url' => Router::url(array( 'controller' => 'shop','action' => 'stock' )),
                               'data-article' => $v['Product']['article']
@@ -91,28 +91,28 @@
                           <div class="col-sm-9">
                               <span class="hidden" id="product_id"><?php echo $v['Product']['id']; ?></span>
                               <h2><?php echo $v['Product']['name']; ?></h2>
-                                <p>Art. <span><?php echo $v['Product']['article']; ?></span></p>  
-                                <p><span><?php echo $v['Product']['desc']; ?></span></p>  
+                                <p>Art. <span><?php echo $v['Product']['article']; ?></span></p>
+                                <p><span><?php echo $v['Product']['desc']; ?></span></p>
                                 <p> <?php  if(!empty($v['Product']['discount'])) {
                                       echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $v['Product']['price'] ."'>".
                                            $this->Number->currency($v['Product']['price'], 'USD', array('places' => 0)). "</span>
-                                           ahora <span      style='padding: 3px;float: none;'' class='price'>".'$'. $v['Product']['discount']."</span>"; 
+                                           ahora <span      style='padding: 3px;float: none;'' class='price'>".'$'. $v['Product']['discount']."</span>";
                                     }else{
                                       echo  "<span id='price' class='price' data-price='". $v['Product']['price'] ."'>".
                                             $this->Number->currency($v['Product']['price'], 'USD', array(
                                             'places' => 0)). "</span>";
                                  }?>
                                 <?php  $colors = array();
-                                      $sizes = array();     
-                                      foreach ($properties_all as $property) { 
-                                          if($property['ProductProperty']['product_id'] == $v['Product']['id']){ 
+                                      $sizes = array();
+                                      foreach ($properties_all as $property) {
+                                          if($property['ProductProperty']['product_id'] == $v['Product']['id']){
                                           switch ($property['ProductProperty']['type']) {
                                               case 'color':
                                               array_push($colors, $property['ProductProperty']);
                                               break;
                                               case 'size':
                                               array_push($sizes, $property['ProductProperty']);
-                                              break; 
+                                              break;
                                           }
                                         }
                                       }
@@ -128,7 +128,7 @@
                                           }
                                       ?>
                                   </div>
-                                 <h4></h4>                    
+                                 <h4></h4>
                                  <h2>Talle
                                   <select id="size" name="size" style="background-color: white; " >
                                       <option value="">Seleccionar</option>
@@ -138,19 +138,19 @@
                                           }
                                       ?>
                                   </select>
-                                 <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a><h4></h4> 
-                        
+                                 <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a><h4></h4>
+
                              <p> <span style="color:#F50081;">Stock:</span> <span id="stock_container" ><i> (Seleccione un color y talle) </i></span></p>
                               <div class="footer-producto">
-                                 <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar a mi carro</a>
+                                 <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar al carrito</a>
                               </div>
                             <?php echo $this->Form->end(); ?>
-                             
+
                           </div>
                         </div>
                       </li>
 
-                    <?php endif ?> 
+                    <?php endif ?>
                   <?php endforeach ?>
               </ul>
            </div>
@@ -217,8 +217,3 @@
       <?php endif; ?>
     </div>
 </div>
-
-
-
-
-
