@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div id="carrito" class="col-md-8">
-			<a class="keep-buying" href="/tienda">Seguir comprando</a>
+			<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			<h3 id="heading" style="margin:10px 0px">Carrito de compras // <span class="grey">Proceso de compra</span></h3>
 			<?php
 				echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
