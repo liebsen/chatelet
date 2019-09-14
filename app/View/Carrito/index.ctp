@@ -13,7 +13,7 @@
 
 			<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 		</div>
-			<h3 id="heading" style="margin:10px 0px">Carrito de compras // <span class="grey">Proceso de compra</span></h3>
+			<h3 id="heading" style="margin:10px 0px">Carrito de compras</h3>
 			<?php
 				echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
 				echo '<input type="hidden" id="checkout" value="'. $this->Html->url(array('controller' => 'carrito', 'action' => 'checkout')) .'" />'

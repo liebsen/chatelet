@@ -11,13 +11,22 @@
 	background: rgba(255,255,255,0.5);
 	color: #999;
 }
+.desc-prod {
+	text-align: center;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #333;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+}
 .price {
 	text-align:center;
 	height:60px;
-	font-size:32px;
+	font-size:24px;
 	font-family: 'Poppins', Verdana, Arial, sans-serif;
-	margin:0px auto 25px;
-	color: #ff4665;
+	margin:10px auto 20px;
+	color: #444;
 }
 .antes-str {
 	color: #999;
@@ -35,7 +44,7 @@
 
 
         <section id="productOptions">
-            <div class="wrapper">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="hidden-xs hidden-sm col-sm-3">
                         <nav>
@@ -68,10 +77,8 @@
 					<?php
 						function createSection($item, $ctrl, $isProduct = false) {
 							$stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
-							$content = '<img class="img-responsive"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />'.
-								'<span class="hover">'.
-									'<small>'. $item['name'] .'</small>'.
-								'</span>';
+							$content = '<img class="img-responsive"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />';
+
 							$url = array(
 								'controller' => 'tienda',
 								intval($item['id'])
@@ -104,7 +111,11 @@
 									$content,
 								    $url,
 									array('escape' => false)
-								). '<div class="price">'.$priceStr.'</div>
+								).
+								'<div class="desc-prod">'.
+									'<small>'. $item['name'] .'</small>'.
+								'</div>'.
+								'<div class="price">'.$priceStr.'</div>
 								</div>';
               }else{
 
@@ -132,7 +143,7 @@
 
 
                     </div>
-                    <div class="hidden-lg hidden-md visible-xs-* visible-sm-* col-sm-3" style="clear: both;">
+                    <div class="hidden-lg hidden-md visible-xs-* visible-sm-* col-sm-3">
                         <nav>
                             <ul>
                                 <?php

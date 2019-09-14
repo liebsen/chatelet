@@ -5,17 +5,10 @@
         <style type="text/css">
           .img-cover {
             object-fit: cover;
-						object-position: top;
+						object-position: top center;
             width:100%;
           }
-          a.pdlast .hover{
-            padding-top:70px!important;
-          }
-          @media(max-width:768px){
-            a.pdlast .hover{
-              padding-top:30px!important;
-            }
-          }
+
         </style>
         <div id="headshop"  >
          <h1 class="name_shop">Shop</h1>
@@ -34,7 +27,7 @@
                      <div class="col-xs-12">
                         <div class="row">
                                 <?php if(!empty($categories[0])){ ?>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                 <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[0]['Category']['name'])))); ?>" class="pd1">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[0]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
@@ -46,7 +39,7 @@
                                 <?php } ?>
 
                                 <?php if(!empty($categories[1])){ ?>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                 <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[1]['Category']['name'])))); ?>" class="pd1">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[1]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
@@ -58,7 +51,7 @@
                                 <?php } ?>
 
                                 <?php if(!empty($categories[2])){ ?>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                 <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[2]['Category']['name'])))); ?>" class="pd4">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[2]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
@@ -73,7 +66,7 @@
 
 
                                 <?php if(!empty($categories[3])){ ?>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                 <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[3]['Category']['name'])))); ?>" class="pd2">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[3]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
@@ -85,7 +78,7 @@
                                 <?php } ?>
 
                                  <?php if(!empty($categories[4])){ ?>
-                                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                 <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[4]['Category']['name'])))); ?>" class="pd2">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[4]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
@@ -98,7 +91,7 @@
 
 
                                 <?php if(!empty($categories[11])){ ?>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
 
                                     <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[11]['Category']['name'])))); ?>" class="pd2">
                                         <img src=<?php echo Configure::read('imageUrlBase').$categories[11]['Category']['img_url']?> class="img-responsive img-cover">
@@ -111,7 +104,7 @@
                                 <?php } ?>
 
                                  <?php if(!empty($categories[10])){ ?>
-                                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[10]['Category']['name'])))); ?>" class="pd2">
                                         <img src=<?php echo Configure::read('imageUrlBase').$categories[10]['Category']['img_url']?> class="img-responsive img-cover">
                                         <span class="hover">
@@ -123,7 +116,7 @@
                                 <?php } ?>
 
                                 <?php if(!empty($categories[5])){ ?>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                 <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[5]['Category']['name'])))); ?>" class="pd3">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[5]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
@@ -135,7 +128,7 @@
                                 <?php } ?>
 
                                 <?php if(!empty($categories[6])){ ?>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                 <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[6]['Category']['name'])))); ?>" class="pd3">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[6]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
@@ -147,7 +140,7 @@
                                 <?php } ?>
 
                                  <?php if(!empty($categories[12])){ ?>
-                                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[12]['Category']['name'])))); ?>" class="pd2">
                                         <img src=<?php echo Configure::read('imageUrlBase').$categories[12]['Category']['img_url']?> class="img-responsive img-cover">
                                         <span class="hover">
@@ -160,7 +153,7 @@
 
 
                                   <?php if(!empty($categories[8])){ ?>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                 <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[8]['Category']['name'])))); ?>" class="pd4">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[8]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
@@ -171,7 +164,7 @@
                                 </div>
                                 <?php } ?>
                                 <?php if(!empty($categories[7])){ ?>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
                                 <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[7]['Category']['name'])))); ?>" class="pd4">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[7]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
@@ -183,7 +176,7 @@
                                 <?php } ?>
 
                                 <?php if(!empty($categories[13])){ ?>
-                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
                                     <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[13]['Category']['name'])))); ?>" class="pd2">
                                         <img src=<?php echo Configure::read('imageUrlBase').$categories[13]['Category']['img_url']?> class="img-responsive img-cover">
                                         <span class="hover">
@@ -195,7 +188,7 @@
                                 <?php } ?>
 
                                 <?php if(!empty($categories[9])){ ?>
-                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
                                     <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower('trajes-de-bano')))); ?>" class="pd2 pdlast">
                                         <img src=<?php echo Configure::read('imageUrlBase').$categories[9]['Category']['img_url']?> class="img-responsive img-cover">
                                         <span class="hover">
@@ -208,7 +201,7 @@
 
 
                             <?php if(!empty($categories[14])){ ?>
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[14]['Category']['name'])))); ?>" class="pd2">
+                            <div class="col-xs-12 col-sm-6 col-md-4"><a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($categories[14]['Category']['name'])))); ?>" class="pd2">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[14]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
                                          <?php echo $categories[14]['Category']['name']?><br><br>
@@ -219,7 +212,7 @@
                             <?php } ?>
 
 			<?php if(!empty($categories[16])){ ?>
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('  ',' '),array('n','-'),
+                            <div class="col-xs-12 col-sm-6 col-md-4"><a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('  ',' '),array('n','-'),
                                 strtolower($categories[16]['Category']['name'])))); ?>" class="pd2">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[16]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
@@ -231,7 +224,7 @@
                             <?php } ?>
 
                             <?php if(!empty($categories[15])){ ?>
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),
+                            <div class="col-xs-12 col-sm-6 col-md-4"><a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),
 				strtolower($categories[15]['Category']['name'])))); ?>" class="pd2">
                                     <img src=<?php echo Configure::read('imageUrlBase').$categories[15]['Category']['img_url']?> class="img-responsive img-cover">
                                     <span class="hover">
