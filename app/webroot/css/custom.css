@@ -173,9 +173,9 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 #suscribe form input[type="submit"] { color: #FFF; font-weight: 600; margin-top: 10px; text-align: right; width: 10% }
 
 footer { background: #e7e7e7; overflow: hidden; padding: 40px 0 0; }
-footer h3 { color: #464444; font-size: 16px; font-weight: 600; margin-bottom: 35px; }
+footer h3 { color: #464444; font-size: 16px; text-transform: uppercase; font-weight: 600; margin-bottom: 35px; }
 footer h3:after { background: #f50081; content: ""; display: block; height: 2px; margin-top: 15px; width: 50px; }
-footer a { color: #464444; font-size: 14px; }
+footer a { color: #464444; font-size: 14px; text-transform: uppercase;  }
 footer ul li { margin-bottom: 15px; }
 footer .col-md-3:first-child ul { column-count: 2; }
 footer .col-md-3 h4 { color: #f50081; font-size: 16px; font-weight: 600; margin-bottom: 25px; }
