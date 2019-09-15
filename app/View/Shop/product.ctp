@@ -19,6 +19,17 @@
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     font-size: 16px;
+
+		overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   line-height: 1.4;        /* fallback */
+   max-height: 3;       /* fallback */
+}
+.desc-cont {
+height: 114px; overflow: hidden;
 }
 .price {
 	text-align:center;
@@ -105,21 +116,22 @@
 							}
 
  							if(!$stock && $isProduct){
-								echo '<div class="col-xs-12 col-md-4 col-sm-6" > '.
+								echo '<div class="col-xs-12 col-lg-4 col-md-6 col-sm-6" > '.
 								     '<img src="'.Router::url('/').'images/agotado3.png" class="out_stock" />'.
 								     $ctrl->Html->link(
 									$content,
 								    $url,
 									array('escape' => false)
 								).
+								'<div class="desc-cont">'.
 								'<div class="desc-prod">'.
 									'<small>'. $item['name'] .'</small>'.
 								'</div>'.
 								'<div class="price">'.$priceStr.'</div>
-								</div>';
+								</div></div>';
               }else{
 
-		            echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-md-4 col-sm-6 add-no-stock">'.
+		            echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
 									 $ctrl->Html->link(
 										$content,
 										$url,
