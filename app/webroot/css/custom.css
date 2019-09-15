@@ -738,6 +738,9 @@ ul#ul-moreviews li.dontResize img {width: 100%;}
         object-position: top center;
         width: 100%;
     }
+    .contain-xs {
+      object-fit: contain;
+    }
     .news-carousel > .item > img{
       object-fit: contain;
       object-position: top center;

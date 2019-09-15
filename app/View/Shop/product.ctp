@@ -38,7 +38,7 @@
 </style>
         <div id="headabrigos" >
               <h1 class="name_shop"><?php echo $name_categories; ?></h1>
-         <img class="img_resp"src="<?php echo Configure::read('imageUrlBase').$image_prodshop ?>"  img-responsive>
+         <img class="img_resp" src="<?php echo Configure::read('imageUrlBase').$image_prodshop ?>"  img-responsive>
         </div>
 
 
@@ -77,7 +77,7 @@
 					<?php
 						function createSection($item, $ctrl, $isProduct = false) {
 							$stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
-							$content = '<img class="img-responsive"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />';
+							$content = '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />';
 
 							$url = array(
 								'controller' => 'tienda',
@@ -105,7 +105,7 @@
 							}
 
  							if(!$stock && $isProduct){
-								echo '<div class="col-xs-6 col-md-4 col-sm-6" > '.
+								echo '<div class="col-xs-12 col-md-4 col-sm-6" > '.
 								     '<img src="'.Router::url('/').'images/agotado3.png" class="out_stock" />'.
 								     $ctrl->Html->link(
 									$content,
@@ -119,7 +119,7 @@
 								</div>';
               }else{
 
-		            echo '<div data-id="'.$item["id"].'" class="col-xs-6 col-md-4 col-sm-6 add-no-stock">'.
+		            echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-md-4 col-sm-6 add-no-stock">'.
 									 $ctrl->Html->link(
 										$content,
 										$url,
@@ -143,7 +143,7 @@
 
 
                     </div>
-                    <div class="hidden-lg hidden-md visible-xs-* visible-sm-* col-sm-3">
+                    <div class="hidden-lg hidden-md visible-xs-* visible-sm-* col-sm-3 col-xs-12">
                         <nav>
                             <ul>
                                 <?php
