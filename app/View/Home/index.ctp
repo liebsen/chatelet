@@ -107,7 +107,7 @@
         }
 
         echo '<div class="rectangle hidden-xs visible-sm visible-md visible-lg img-responsive" style="background-image: url('.Configure::read('imageUrlBase').$img_url_four.');">'.'<h1>'.$home['module_four'].'</h1>'.'</div>';
-        echo '<img class="img-responsive visible-xs hidden-sm hidden-md hidden-lg" src="'.Configure::read('imageUrlBase').$img_url_four.'" />';
+        echo '<img class="visible-xs hidden-sm hidden-md hidden-lg" src="'.Configure::read('imageUrlBase').$img_url_four.'" />';
 
 						echo '</a>';
         ?>
