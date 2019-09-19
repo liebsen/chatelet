@@ -188,16 +188,22 @@ $(document).ready(function() {
 					var pos = entero.indexOf(".");
 					if (pos>-1){
         		questionText = entero.substr(0,pos);
+
+	    			var article = questionText
+	          console.warn(article)
+	          var codArticulo = article.replace(".",'');
+	          console.warn(codArticulo)
 					}else{
 						questionText = entero.replace(/[0-9]/g,'');
+						console.warn(questionText)
+	    			var res = (entero).slice(1);
+	          console.warn(res)
+	    			var article = questionText + Math.floor(res);
+	          console.warn(article)
+	          var codArticulo = article.replace(".",'');
+	          console.warn(codArticulo)
 					}
-          console.warn(questionText)
-    			var res = (entero).slice(1);
-          console.warn(res)
-    			var article = questionText + Math.floor(res);
-          console.warn(article)
-          var codArticulo = article.replace(".",'');
-          console.warn(codArticulo)
+
         }
 
 				$('input[name="article"]').val(codArticulo);
