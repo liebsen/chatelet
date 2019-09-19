@@ -8,22 +8,17 @@
 			$images[] 	= Configure::read('imageUrlBase').$value;
 	}
 
-    $img_url_one = str_replace(';', '', @$home['img_url_one']);
-
-    $img_url_two = str_replace(';', '', @$home['img_url_two']);
-
-    $img_url_three = str_replace(';', '', @$home['img_url_three']);
-    $img_url_four = str_replace(';', '', @$home['img_url_four']);
+  $img_url_one = str_replace(';', '', @$home['img_url_one']);
+  $img_url_two = str_replace(';', '', @$home['img_url_two']);
+  $img_url_three = str_replace(';', '', @$home['img_url_three']);
+  $img_url_four = str_replace(';', '', @$home['img_url_four']);
 
 ?>
 
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
-
-        >
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
           <!-- Wrapper for slides -->
           <div class="carousel-inner " role="listbox">
-
 
             <?php foreach ($images as $key => $value): ?>
                 <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
@@ -107,10 +102,14 @@
             if(!empty($home['url_mod_four'])){
                 echo '<a href='.$home['url_mod_four'].'>' ;
             } else {
-            echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+            	echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
             }
         }
-            echo '<div class="rectangle" img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_four.');">'.'<h1>'.$home['module_four'].'</h1>'.'</div>'.'</a>';
+
+        echo '<div class="rectangle hidden-xs visible-sm visible-md visible-lg img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_four.');">'.'<h1>'.$home['module_four'].'</h1>'.'</div>';
+        echo '<img class="img-responsive visible-xs hidden-sm hidden-md hidden-lg" src="'.Configure::read('imageUrlBase').$img_url_four.'" />';
+
+						echo '</a>';
         ?>
         </section>
     <?php endif;?>
@@ -143,10 +142,6 @@
 
             <div class="content">
 
-
-
-
-
                 <a class="close" data-dismiss="modal">
                     <span></span>
                     <span></span>
@@ -161,21 +156,16 @@
                    <?php echo $home['text_popup_newsletter'];?>
                 <?php endif;?>
 
-
                 <div class="ft___ml" <?php if(empty($home['display_popup_form'])):?> style="display: none;" <?php endif;?>>
                   <input type="email" name="data[Subscription][email]" required>
                   <input type="submit" id="enviar" value="ok">
                 </div>
                 <?php echo $this->Form->end(); ?>
 
-
-
                 <div id="carousel-newsletter" class="carousel slide" data-ride="carousel" <?php if(!empty($home['display_popup_form_in_last'])){ echo " data-wrap='false' "; } ?> >
                   <!-- Wrapper for slides -->
                   <div class="carousel-inner news-carousel" role="listbox">
                     <div class="item active">
-
-
 
                       <img src="<?=Configure::read('imageUrlBase').$popupBG[0]?>">
                          <?php if(!empty($home['display_popup_form_in_last'])):?>
@@ -204,11 +194,7 @@
                     <?php if(isset($popupBG[2]) && !empty($popupBG[2])):?>
                     <div class="item">
 
-
-
-
                       <img src="<?=Configure::read('imageUrlBase').$popupBG[2]?>">
-
 
                          <?php if(!empty($home['display_popup_form_in_last'])):?>
                 <div class="in_last">
