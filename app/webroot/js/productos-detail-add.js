@@ -55,7 +55,7 @@ $(document).ready(function() {
 		if( texts[1] ) {
 			var string = texts[1].toLowerCase();
 			string = string.charAt(0).toUpperCase() + string.slice(1);
-			
+
 			option.closest('li').find('[alias]').val( string );
 		}
 	}
@@ -79,7 +79,7 @@ $(document).ready(function() {
 	$(document).on('click', '.remove-item', function() {
 		var me = $(this);
 		var cindex = me.data('count');
-		var ppId = $("input[name='props["+ cindex +"][id]'").val(); 
+		var ppId = $("input[name='props["+ cindex +"][id]'").val();
 		if(ppId!="" && ppId!=undefined){
 			var r = confirm("Si elimina este registro no podra recuperarse. ¿Desea eliminarlo?");
         	if (r == true){
@@ -88,7 +88,7 @@ $(document).ready(function() {
 					data: {"id": ppId},
 					type: 'POST'
 				}).success(function(data) {
-					
+
 			  	});
 			  	// Remove item that I'm in
 				me.closest('li').remove();
@@ -96,7 +96,7 @@ $(document).ready(function() {
 		} else {
 			me.closest('li').remove();
 		}
-		
+
 	});
 
 	$('#productos-detail').submit(function() {
@@ -110,7 +110,7 @@ $(document).ready(function() {
 		var valid 	= false;
 		var url 	= $('#productos-detail').data('article-url');
 		var article = $('[name="article"]').val();
-		
+
 		url = url+'/'+article;
 
 		$.ajax({
@@ -124,10 +124,10 @@ $(document).ready(function() {
 			}
 		})
 		.fail(function() {
-			
+
 		})
 		.always(function() {
-			
+
 		});
 
 		if(valid){
@@ -155,7 +155,7 @@ $(document).ready(function() {
 			lis_code2 = $('#lis_cod2').val(),
 			url = $(this).data('url'),
 			me = $(this);
-		
+
 		if (searching) return;
 		if (!lis_code) return alert('Por favor, ingrese un codigo de lista');
 		if (!lis_code2) return alert('Por favor, ingrese un codigo de lista de descuento');
@@ -166,8 +166,8 @@ $(document).ready(function() {
 		searching = true;
 		me.text('Buscando...').addClass('btn-info');
 
-		$.ajax(url) 
-			.success(function(res) {  
+		$.ajax(url)
+			.success(function(res) {
 				if ($.isArray(res.results) && !res.results.length) {
 					searching = false;
 					me.text('Buscar').removeClass('btn-info');
@@ -178,36 +178,39 @@ $(document).ready(function() {
 				var color = res.colors.Color;
 
 				$('input[name="name"]').val(product.nombre);
-                
-                $('input[name="desc"]').val(product.descripcion);
+        $('input[name="desc"]').val(product.descripcion);
 
-                var entero = product.codArticulo;
-                console.warn(entero)
-                if (entero.indexOf('GIFT')>-1) {
+        var entero = product.codArticulo;
+        console.warn(entero)
+        if (entero.indexOf('GIFT')>-1) {
 					codArticulo = entero.slice(0,5);
-                }else{
-                	questionText = entero.replace(/[0-9]/g,'');
-	                console.warn(questionText)
-				    var res = (entero).slice(1);
-						
-	                console.warn(res)
-				    var article = questionText + Math.floor(res);
-	                console.warn(article)
-	                var codArticulo = article.replace(".",'');
-	                console.warn(codArticulo)
-                }
-                
+        }else{
+					var pos = entero.indexOf(".");
+					if (pos>-1){
+        		questionText = entero.substr(0,pos);
+					}else{
+						questionText = entero.replace(/[0-9]/g,'');
+					}
+          console.warn(questionText)
+    			var res = (entero).slice(1);
+          console.warn(res)
+    			var article = questionText + Math.floor(res);
+          console.warn(article)
+          var codArticulo = article.replace(".",'');
+          console.warn(codArticulo)
+        }
+
 				$('input[name="article"]').val(codArticulo);
 
 				var precio = parseFloat( product.Precio*1.21 );
 				precio = parseInt( precio*100 );
          		$('input[name="price"]').val( precio/100 );
-                
-                
+
+
 				var Descuento = parseFloat( product.discount );
 				Descuento = parseInt( Descuento*100 );
        			$('input[name="discount"]').val(Descuento/100);
-				
+
 
 				me.text('Buscar').removeClass('btn-info');
 				searching = false;
@@ -252,7 +255,7 @@ $(document).ready(function() {
 		var me = $(this);
 		var url	= baseUrl+'admin/onlyUploadImageColor';
 		var counter = $(me).data('count');
-		//var input 	= $(me).data('input');		
+		//var input 	= $(me).data('input');
 		var base_url = $("#image_thumb").data('url');
 		var alias = me.data('alias');
 		var ref = me.data('ref');
