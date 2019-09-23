@@ -290,7 +290,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #listShop a { /*background: #e7e7e7;*/ display: block; margin-bottom: 30px; overflow: hidden; position: relative; }
 #listShop a img { height:440px; opacity: 0.8; float: left; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #listShop a .hover {
-
+  display: none;
   border: 0px solid #f50081;
    color: #f50081;
     font-size: 22px;
@@ -967,6 +967,7 @@ span.count {
 @media (max-width: 860px) {
 
     #listShop a .hover{
+
         border: 0px;
         color: #222;
         height: 30%;
