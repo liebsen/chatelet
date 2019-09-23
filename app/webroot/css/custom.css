@@ -97,7 +97,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
     height: 500px;
     background-position: top center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 }
 #today .rectangle h1 { color: #464444; font-size: 40px; line-height: 1.2; margin-bottom: 30px; }
 #today .rectangle h1 span { color: #f50081; }
