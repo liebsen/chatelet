@@ -90,6 +90,11 @@ height: 114px; overflow: hidden;
 							$stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
 							$content = '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />';
 
+							if ($isProduct){
+								 $content.='<span class="hover">'.
+	               '<small>'. $item['name'] .'</small>'.
+	               '</span>';
+							}
 							$url = array(
 								'controller' => 'tienda',
 								intval($item['id'])
