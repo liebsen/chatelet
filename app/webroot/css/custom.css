@@ -289,6 +289,9 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #listShop { padding-bottom: 100px; }
 #listShop a { /*background: #e7e7e7;*/ display: block; margin-bottom: 30px; overflow: hidden; position: relative; }
 #listShop a img { height:440px; opacity: 0.8; float: left; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
+.hidden-force {
+  display: none!important;
+}
 #listShop a .hover {
   border: 0px solid #f50081;
    color: #f50081;
