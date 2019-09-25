@@ -391,7 +391,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 .btn-group.inline-block.div_color_products {margin-bottom: 15px}
 
 ul#ul-moreviews li img {width: 40%}
-ul#ul-moreviews li.dontResize img {width: 100%;}
+ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 
 #myModal2 .content { background: url(../images/tablebg.png) no-repeat center center; background-size: cover; margin: 50px auto; overflow: hidden; padding: 50px; position: relative; width: 900px; }
