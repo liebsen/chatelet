@@ -57,7 +57,10 @@
                 }else{
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                 }
-                echo '<div class="rectangle" img-responsive style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>'.'</a>';
+
+								echo '<div class="rectangle hidden-xs visible-sm visible-md visible-lg img-responsive" style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>';
+								echo '<img class="visible-xs hidden-sm hidden-md hidden-lg" style="width:100%;" src="'.Configure::read('imageUrlBase').$img_url_one.'" />'.'<h1>'.$home['module_one'].'</h1>';
+								echo '</a>';
             ?>
         <?php endif;?>
         </section>
