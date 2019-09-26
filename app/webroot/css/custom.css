@@ -910,10 +910,10 @@ span.count {
         margin: 0 auto;
         text-align: center;
         float: none;
+
     }
 
 }
-
 
 #detalle .caract label.btn.active.oldSelectColor {
     border-radius: 100px!important;
@@ -944,6 +944,10 @@ span.count {
         max-height: 200px;
         background-repeat-x: no-repeat !important;
         background-repeat-y: no-repeat !important;
+    }
+    #listShop a img {
+      height: 340px;
+      object-fit: contain;
     }
 }
 /*IPHONE*/
