@@ -111,7 +111,7 @@ height: 114px; overflow: hidden;
 								$priceStr = '';
 								if (!empty($item['price'])){
 									$priceStr = $ctrl->Number->currency($item['price'], 'USD', array('places' => 0));
-									if (!empty((float)@$item['discount']) && @$item['discount']!=$item['price']){
+									if (!empty((float)@$item['discount']) && @$item['discount']!==$item['price']){
 										$priceStr = $ctrl->Number->currency($item['discount'], 'USD', array('places' => 2)).' <span class="antes-str"><span class="midscore">'.$ctrl->Number->currency($item['price'], 'USD', array('places' => 2)).'</span></span>';
 									}
 								}

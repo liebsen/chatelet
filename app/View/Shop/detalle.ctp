@@ -109,7 +109,7 @@
 
                  <p><?php echo $name_categories; ?></p>
                  <p> Art. <span><?php echo $product['article']; ?></span></p>
-                <?php  if(!empty($product['discount'])) {
+                <?php  if(!empty($product['discount']) && $product['price']!==$product['discount']) {
                       echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['price'] ."'>".
                            $this->Number->currency($product['price'], 'USD', array('places' => 2)). "</span>
                            ahora <span   class='price'>".'$'. $product['discount']."</span>";
