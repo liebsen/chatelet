@@ -19,12 +19,12 @@ $(function () {
     $('#menuShop a.close').click(function () {
         $('#menuShop').fadeOut();
     })
-    if(document.querySelector("#myModal")!=null){
+    if(document.querySelector("#myModal")!=null && $('.js-show-modal') && $('.js-show-modal').length){
         setTimeout(function () {
             $('#myModal').modal({ show: true })
         }, 3000)
     }
-    
+
 
     // Toggle Side content
     /*body.toggleClass('hide-side-content');*/

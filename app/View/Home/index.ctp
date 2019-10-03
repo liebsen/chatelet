@@ -143,7 +143,7 @@
 
         <?php if(count($popupBG)>1):?>
 
-            <div class="content">
+            <div class="content js-show-modal">
 
                 <a class="close" data-dismiss="modal">
                     <span></span>
@@ -213,9 +213,9 @@
                 </div>
             </div>
 
-        <?php else:?>
+        <?php elseif (count($popupBG)==1):?>
 
-            <div class="content" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: 100%;':''?>">
+            <div class="content js-show-modal" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: 100%;':''?>">
 
                 <?php if(!empty($home['display_popup_form_in_last'])):?>
                 <div class="in_last">
