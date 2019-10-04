@@ -1,3 +1,6 @@
+function isDateBeforeToday(date) {
+    return new Date(date.toDateString()) < new Date(new Date().toDateString());
+}
 $(function(){
 	var subtotal = $('#subtotal_compra').val();
 
@@ -35,7 +38,7 @@ $(function(){
 		var url = $(this).data('url');
 		var cp 	= $('#cp').val();
 		$('#free_delivery').text('');
-		callStart();		
+		callStart();
 		$.getJSON( url+'/'+cp , function(json, textStatus) {
 			callEnd();
 			clearTimeout(timeout);
@@ -44,36 +47,36 @@ $(function(){
 				if (!json.price || parseInt(json.price) == 0){
 					json.price = 114;
 				}
-		                if (subtotal >= 3200){
-		                        console.log('Envio gratis');
-	                                $('#cost').text( 0 );
+        if (subtotal >= 3200 || !isDateBeforeToday(new Date(2019, 11, 1))) {
+          console.log('Envio gratis');
+          $('#cost').text( 0 );
 					$('#free_delivery').text('Envio gratis!');
 				}else{
-	                                $('#cost').text( parseInt(json.price) );
+          $('#cost').text( parseInt(json.price) );
 				}
-				console.log(parseFloat($('#cost').text()));	
+				console.log(parseFloat($('#cost').text()));
 				$('#cp').removeClass('wrong');
 				$('#cp').addClass('ok');
 				onSuccessAlert('Codigo Valido');
 			}else{
 				$('#cp').removeClass('ok');
 				$('#cp').addClass('wrong');
-				$('#cost').text( parseInt(0) );	
+				$('#cost').text( parseInt(0) );
 				timeout = setTimeout( "onErrorAlert('Codigo Postal inexistente.')" , 200);
 			}
-			$('#cp').attr( 'data-valid' , parseInt(json.valid) );		
+			$('#cp').attr( 'data-valid' , parseInt(json.valid) );
 		});
 	});
 
 	$('#siguiente').click(function(event){
 		event.preventDefault();
-		var a = $('#cp').val(); 
+		var a = $('#cp').val();
 		var b = parseInt($('#cp').attr('data-valid'));
 		var c = $('[product_row]').length;
 		if(!c){
 			onErrorAlert('No tienes productos en el carrito.');
 			return false;
-		} 
+		}
 		if( !a || !b || !c || 1>parseFloat($('#cost').text()) && subtotal<3200 ){
 			$('#cp').focus();
 			$('#cp').removeClass('ok');
