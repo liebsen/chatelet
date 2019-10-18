@@ -744,7 +744,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
     .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
         max-width: 100%;
         object-fit: cover;
-        height: 90vh;
+        height: 60vh;
         object-position: top center;
         width: 100%;
     }
