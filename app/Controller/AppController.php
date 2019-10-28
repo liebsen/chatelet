@@ -39,7 +39,7 @@ class AppController extends Controller
         'ResizeImage',
         'Auth' => array(
             'authenticate' => array(
-                'Basic', 
+                'Basic',
                 'Form' => array(
                     'fields' => array('username' => 'email')
                 )
@@ -80,7 +80,7 @@ class AppController extends Controller
         $this->loadModel('Setting');
         $a = $this->Setting->findById('stock_min');
         $b = $this->Setting->findById('list_code');
-        
+
         Configure::write('stock_min', @$a['Setting']['value']);
         Configure::write('list_code', @$b['Setting']['value']);
 
@@ -90,7 +90,7 @@ class AppController extends Controller
             if ($this->request->params['controller']!='admin') {
                 $this->redirect('/admin');
             }
-            
+
         }
 
         $this->loadModel('Setting');
@@ -104,7 +104,7 @@ class AppController extends Controller
         $this->set('image_menushop',$image_menushop);
     }
 
-  
+
     public function sendEmail($data, $subject, $template) {
         if (empty($data['receiver_email'])){
             return true;
@@ -124,7 +124,7 @@ class AppController extends Controller
             'data' => $data
         ));
         $Email->send();
-        
+
     }
 
     public function sendMail($message, $subject, $to)
@@ -160,11 +160,14 @@ class AppController extends Controller
         }
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $new_name = $randomString.'.'.$ext;
+				// resize image.
+				$resized_new_name = 'resized_' . $new_name;
+				$this->ResizeImage->thumbnail($tmp_name, $resized_new_name, 1000);
         $uploadToS3 = $this->S3->save($tmp_name, $new_name);
         if ($withThumb) {
             $thumb_new_name = 'thumb_' . $new_name;
             //Creamos thumbnail
-            $this->ResizeImage->thumbnail($tmp_name, $thumb_new_name, 100);
+            $this->ResizeImage->thumbnail($tmp_name, $thumb_new_name, 400);
             $thumbUploadToS3 = $this->S3->save($tmp_name, $thumb_new_name);
         }
         //$aux = explode(';', $uploadToS3);
