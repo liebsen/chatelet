@@ -137,7 +137,7 @@
 				'<div class="price">'.$priceStr.'</div>
 				</div></div>';
       }else{
-				$discount_flag = 	(@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191105)?'<div class="discount-flag">20% OFF</div>':'';
+				$discount_flag = 	(@$_GET['testing']=='1' || @$item['category_id']!='128' && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191105)?'<div class="discount-flag">20% OFF</div>':'';
         echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
 			$discount_flag.
 					 $ctrl->Html->link(
