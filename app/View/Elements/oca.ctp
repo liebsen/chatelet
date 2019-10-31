@@ -1,4 +1,4 @@
-<?php echo $this->Html->script('oca.js?avoidcache=17',array( 'inline' => false )) ?>
+<?php echo $this->Html->script('oca.js?avoidcache=18',array( 'inline' => false )) ?>
 <?php echo $this->Html->css('oca_front',array( 'inline' => false )) ?>
 <div class="row">
 	<div class="col-xs-12">
