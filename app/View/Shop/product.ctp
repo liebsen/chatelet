@@ -149,7 +149,7 @@ $desc_30 = ['v9002','v9117','v9009','v9049','v9079','v9096','v9104','v9223','v92
 						$content,
 						$url,
 						array('escape' => false)
-					). '<div class="price">'.$priceStr.'</div>
+					). '<div class="price">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
 					</div>';
 			}
 		}
