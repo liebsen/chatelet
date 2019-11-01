@@ -139,11 +139,12 @@ $desc_30 = ['V9002','V9117','V9009','V9049','V9079','V9096','V9104','V9223','V92
 				</div></div>';
       }else{
 				$number_disc = 20;
+				$desc_30 = ['V9002','V9117','V9009','V9049','V9079','V9096','V9104','V9223','V9243','V9129','V9117','V9162','V9233','V9165','V8240','V9125','V9186','V9113','V9076','V9031','V9025','V9187','V9080','V9038','V9093','V9098','V9112','V9117','V9009','V9030','V9179','V9069','V9062','V9135','V9565','V9579','V7109','V9166','V9126','V9174','V9113','V9026','V9100','V9096','V9048','V9147','V9574','V9073','V9110','V9093','V9098','V9140','V9175','V9167'];
+
 				if (in_array((string)@$item['article'], $desc_30,false)) {
 
 					$number_disc = 30;
 				}
-				error_log(json_encode($desc_30));
 				$discount_flag = 	(@$_GET['testing']=='1' && @$item['category_id']!='128' || @$item['category_id']!='128' && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106)?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
         echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
 			$discount_flag.
