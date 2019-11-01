@@ -34,7 +34,7 @@
                                        <?php echo $categories[0]['Category']['name']?><br>
 
                                     </span>
-                                <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[0]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[0]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                 </div>
                                 <?php } ?>
 
@@ -46,7 +46,7 @@
                                          <?php echo $categories[1]['Category']['name']?><br><br>
 
                                     </span>
-                                <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[1]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[1]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                 </div>
                                 <?php } ?>
 
@@ -58,7 +58,7 @@
                                          <?php echo $categories[2]['Category']['name']?><br><br>
 
                                     </span>
-                                <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[2]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[2]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                 </div>
                                 <?php } ?>
 
@@ -73,7 +73,7 @@
                                          <?php echo $categories[3]['Category']['name']?><br><br>
 
                                     </span>
-                                <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[3]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[3]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                 </div>
                                 <?php } ?>
 
@@ -85,7 +85,7 @@
                                          <?php echo $categories[4]['Category']['name']?><br><br>
 
                                     </span>
-                                <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[4]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[4]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                 </div>
                                 <?php } ?>
 
@@ -99,7 +99,7 @@
                                              <?php echo $categories[11]['Category']['name']?><br><br>
 
                                         </span>
-                                    <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[11]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                    <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[11]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                   </div>
                                 <?php } ?>
 
@@ -111,7 +111,7 @@
                                              <?php echo $categories[10]['Category']['name']?><br><br>
 
                                         </span>
-                                    <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[10]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                    <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[10]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                     </div>
                                 <?php } ?>
 
@@ -123,7 +123,7 @@
                                          <?php echo $categories[5]['Category']['name']?><br><br>
 
                                     </span>
-                                <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[5]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[5]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                 </div>
                                 <?php } ?>
 
@@ -135,7 +135,7 @@
                                          <?php echo $categories[6]['Category']['name']?><br><br>
 
                                     </span>
-                                <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[6]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[6]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                 </div>
                                 <?php } ?>
 
@@ -147,7 +147,7 @@
                                              <?php echo $categories[12]['Category']['name']?><br><br>
 
                                         </span>
-                                    <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[12]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                    <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[12]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                     </div>
                                 <?php } ?>
 
@@ -160,7 +160,7 @@
                                          <?php echo $categories[8]['Category']['name']?><br><br>
 
                                     </span>
-                                <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[8]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[8]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                 </div>
                                 <?php } ?>
                                 <?php if(!empty($categories[7])){ ?>
@@ -171,7 +171,7 @@
                                          <?php echo $categories[7]['Category']['name']?><br><br>
 
                                     </span>
-                                <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[7]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[7]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                 </div>
                                 <?php } ?>
 
@@ -183,7 +183,7 @@
                                              <?php echo $categories[13]['Category']['name']?><br><br>
 
                                         </span>
-                                    <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[13]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                    <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[13]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                     </div>
                                 <?php } ?>
 
@@ -195,7 +195,7 @@
                                              <?php echo $categories[9]['Category']['name']?><br><br>
 
                                         </span>
-                                    <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[9]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                    <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[9]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
                                     </div>
                                 <?php } ?>
 
@@ -207,7 +207,7 @@
                                          <?php echo $categories[14]['Category']['name']?><br><br>
 
                                     </span>
-                                <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[14]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[14]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
 															</div>
 
                             <?php } ?>
@@ -220,7 +220,7 @@
                                          <?php echo $categories[16]['Category']['name']?><br><br>
 
                                     </span>
-                                <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[16]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[16]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
 															</div>
 
                             <?php } ?>
@@ -233,7 +233,7 @@
                                          <?php echo $categories[15]['Category']['name']?><br><br>
 
                                     </span>
-                                <?php if (@$_GET['testing']=='1' || (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[15]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
+                                <?php if (@$_GET['testing']=='1' || false && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106 && strtolower($categories[15]['Category']['name'])!='liquidacion'){ echo '<div class="discount-flag">20% OFF</div>'; } ?></a>
 															</div>
 
                             <?php } ?>
