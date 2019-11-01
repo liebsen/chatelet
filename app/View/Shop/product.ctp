@@ -143,6 +143,7 @@ $desc_30 = ['V9002','V9117','V9009','V9049','V9079','V9096','V9104','V9223','V92
 
 					$number_disc = 30;
 				}
+				error_log(json_encode($desc_30));
 				$discount_flag = 	(@$_GET['testing']=='1' && @$item['category_id']!='128' || @$item['category_id']!='128' && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106)?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
         echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
 			$discount_flag.
