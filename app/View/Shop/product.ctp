@@ -139,7 +139,7 @@ $desc_30 = ['v9002','v9117','v9009','v9049','v9079','v9096','v9104','v9223','v92
 				</div></div>';
       }else{
 				$number_disc = 20;
-				if (in_array((string)$item['cod_chatelet'],$desc_30)){
+				if (in_array((string)$item['article'],$desc_30)){
 					$number_disc = 30;
 				}
 				$discount_flag = 	(@$_GET['testing']=='1' && @$item['category_id']!='128' || @$item['category_id']!='128' && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106)?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
