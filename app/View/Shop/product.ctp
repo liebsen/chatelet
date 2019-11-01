@@ -1,4 +1,5 @@
 <?php
+$desc_30 = ['v9002','v9117','v9009','v9049','v9079','v9096','v9104','v9223','v9243','v9129','v9117','v9162','v9233','v9165','v8240','v9125','v9186','v9113','v9076','v9031','v9025','v9187','v9080','v9038','v9093','v9098','v9112','v9117','v9009','v9030','v9179','v9069','v9062','v9135','v9565','v9579','v7109','v9166','v9126','v9174','v9113','v9026','v9100','v9096','v9048','v9147','v9574','v9073','v9110','v9093','v9098','v9140','v9175','v9167'];
 	echo $this->Session->flash();
 ?>
 <style>
@@ -137,7 +138,11 @@
 				'<div class="price">'.$priceStr.'</div>
 				</div></div>';
       }else{
-				$discount_flag = 	(@$_GET['testing']=='1' && @$item['category_id']!='128' || @$item['category_id']!='128' && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106)?'<div class="discount-flag">20% OFF</div>':'';
+				$number_disc = 20;
+				if (in_array((string)$item['cod_chatelet'],$desc_30)){
+					$number_disc = 30;
+				}
+				$discount_flag = 	(@$_GET['testing']=='1' && @$item['category_id']!='128' || @$item['category_id']!='128' && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106)?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
         echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
 			$discount_flag.
 					 $ctrl->Html->link(
