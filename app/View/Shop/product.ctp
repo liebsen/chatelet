@@ -192,7 +192,7 @@
 				'V9175',
 				'V9167'];
 
-				if (in_array((string)@$item['article'], $desc_30,false)) {
+				if (in_array(strtoupper((string)@$item['article']), $desc_30,false)) {
 
 					$number_disc = 30;
 				}
