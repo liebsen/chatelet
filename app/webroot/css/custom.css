@@ -33,7 +33,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   top:0;
   right: 0;
 }
-@media(max-width:992px){
+@media(max-width:1200px){
   .discount-flag {
     padding: 10px 20px;
     top: 0;
