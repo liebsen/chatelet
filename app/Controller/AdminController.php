@@ -753,7 +753,7 @@ public function promos(){
 
 			        $file_real_name = null;
 			        if(!empty($this->request->params['form']['image']['name'])){
-			            $file_real_name = $this->save_file($this->request->params['form']['image']);
+			            $file_real_name = $this->save_file($this->request->params['form']['image'], true);
 			        }
 
 			        if($file_real_name){
