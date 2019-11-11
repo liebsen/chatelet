@@ -196,7 +196,7 @@
 
 					$number_disc = 30;
 				}
-				$discount_flag = 	(@$_GET['testing']=='1' && @$item['category_id']!='128' || @$item['category_id']!='128' && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106)?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
+				$discount_flag = 	(false && @$_GET['testing']=='1' && @$item['category_id']!='128' || @$item['category_id']!='128' && (int)gmdate('Ym')>201910 && (int)gmdate('Ymd')<20191106)?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
         echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
 			$discount_flag.
 					 $ctrl->Html->link(
