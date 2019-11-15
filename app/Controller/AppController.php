@@ -162,18 +162,13 @@ class AppController extends Controller
         $new_name = $randomString.'.'.$ext;
         if ($withThumb) {
 
-						// resize image.
-						$resized_new_name = 'resized_' . $new_name;
-						$this->ResizeImage->thumbnail($tmp_name, $resized_new_name, 1000);
-		        $uploadToS3 = $this->S3->save($tmp_name, $resized_new_name);
-
             $thumb_new_name = 'thumb_' . $new_name;
             //Creamos thumbnail
-            $this->ResizeImage->thumbnail($tmp_name, $thumb_new_name, 400);
+            $this->ResizeImage->thumbnail($tmp_name, $thumb_new_name, 1000);
             $thumbUploadToS3 = $this->S3->save($tmp_name, $thumb_new_name);
-        }else{
-					$uploadToS3 = $this->S3->save($tmp_name, $new_name);
+      //  }else{
 				}
+				$uploadToS3 = $this->S3->save($tmp_name, $new_name);
         //$aux = explode(';', $uploadToS3);
         //$response = array_pop($aux);
         return $uploadToS3;
