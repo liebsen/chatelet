@@ -64,7 +64,7 @@ class ResizeImageComponent extends Component
         } catch (Exception $ex) {
             CakeLog::write('error', $ex->getMessage());
         }
-        
+
     }
 
     public function thumbnail($nombre_fichero, $newName, $target = null)
@@ -97,6 +97,9 @@ class ResizeImageComponent extends Component
                 imagesavealpha( $thumb, true );
             } elseif (strtolower($extension)=='jpg' || strtolower($extension)=='jpeg') {
                 $origen = imagecreatefromjpeg($nombre_fichero);
+            }
+            if ($target){
+              $nombre_fichero = $target;
             }
             // Cambiar el tamaño
             imagecopyresized($thumb, $origen, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
