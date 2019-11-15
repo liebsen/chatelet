@@ -161,11 +161,11 @@ class AppController extends Controller
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $new_name = $randomString.'.'.$ext;
         if ($withThumb) {
-					
+
             $thumb_new_name = 'thumb_' . $new_name;
             //Creamos thumbnail
-            $this->ResizeImage->thumbnail($tmp_name, './'.$thumb_new_name, 1000);
-            $thumbUploadToS3 = $this->S3->save('./'.$thumb_new_name, $thumb_new_name);
+            $this->ResizeImage->thumbnail($tmp_name, $thumb_new_name, 4000);
+            $thumbUploadToS3 = $this->S3->save($thumb_new_name, $thumb_new_name);
       //  }else{
 				}
 				$uploadToS3 = $this->S3->save($tmp_name, $new_name);

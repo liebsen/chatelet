@@ -70,9 +70,7 @@ class ResizeImageComponent extends Component
     public function thumbnail($nombre_fichero, $newName, $target = null)
     {
         try {
-            if (!empty($target)){
-              $nombre_fichero = $newName;
-            }
+           
             list($width, $height) = getimagesize($nombre_fichero);
             if ($width > $height) {
                 if (empty($target)) {
