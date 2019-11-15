@@ -161,7 +161,7 @@ class AppController extends Controller
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $new_name = $randomString.'.'.$ext;
         if ($withThumb) {
-
+					
             $thumb_new_name = 'thumb_' . $new_name;
             //Creamos thumbnail
             $this->ResizeImage->thumbnail($tmp_name, './'.$thumb_new_name, 1000);

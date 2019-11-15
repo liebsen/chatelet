@@ -70,6 +70,9 @@ class ResizeImageComponent extends Component
     public function thumbnail($nombre_fichero, $newName, $target = null)
     {
         try {
+            if (!empty($target)){
+              $nombre_fichero = $newName;
+            }
             list($width, $height) = getimagesize($nombre_fichero);
             if ($width > $height) {
                 if (empty($target)) {
@@ -98,9 +101,7 @@ class ResizeImageComponent extends Component
             } elseif (strtolower($extension)=='jpg' || strtolower($extension)=='jpeg') {
                 $origen = imagecreatefromjpeg($nombre_fichero);
             }
-            if ($target){
-              $nombre_fichero = $target;
-            }
+
             // Cambiar el tamaño
             imagecopyresized($thumb, $origen, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
             if (strtolower($extension)=='png') {
