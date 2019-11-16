@@ -165,7 +165,7 @@ class AppController extends Controller
         if ($withThumb) {
             $thumb_new_name = 'thumb_' . $new_name;
             //Creamos thumbnail
-            $this->ResizeImage->thumbnail($tmp_name, $thumb_new_name, 1000);
+            $this->ResizeImage->thumbnail($tmp_name, $thumb_new_name, 2000);
             $thumbUploadToS3 = $this->S3->save($tmp_name, $thumb_new_name);
 						error_log('saved: '.$thumb_new_name);
       //  }else{
