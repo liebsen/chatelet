@@ -760,7 +760,7 @@ public function promos(){
 			        if($file_real_name){
 			            $data['img_url'] = $file_real_name;
 			        }
-
+							$data['with_thumb']=1;
 			        $this->Product->save($data);
 
 
@@ -802,7 +802,7 @@ public function promos(){
 			        if(!empty($this->request->params['form']['image']['name'])){
 			            $file_real_name = $this->save_file($this->request->params['form']['image'], true, 2000);
 			        }
-
+							$data['with_thumb']=1;
 			        if($file_real_name){
 			            $data['img_url'] = $file_real_name;
 			        }

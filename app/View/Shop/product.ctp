@@ -89,7 +89,11 @@
 	<?php
 		function createSection($item, $ctrl, $isProduct = false) {
 			$stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
-			$content = '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />';
+			if (empty($item['with_thumb'])){
+				$content = '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />';
+			}else{
+				$content = '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . 'thumb_'.$item['img_url'] .'" />';
+			}
 
 			if ($isProduct){
 				 $content.='<span class="hover">'.
