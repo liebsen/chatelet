@@ -531,6 +531,7 @@ class AdminController extends AppController {
 
 			        $file_real_name = null;
 			        if(!empty($this->request->params['form']['image']['name'])){
+									error_log('trying to edit save file');
 			            $file_real_name = $this->save_file($this->request->params['form']['image']);
 			        }
 
@@ -799,7 +800,7 @@ public function promos(){
 
 			        $file_real_name = null;
 			        if(!empty($this->request->params['form']['image']['name'])){
-			            $file_real_name = $this->save_file($this->request->params['form']['image']);
+			            $file_real_name = $this->save_file($this->request->params['form']['image'], true);
 			        }
 
 			        if($file_real_name){
