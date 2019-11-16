@@ -754,7 +754,7 @@ public function promos(){
 
 			        $file_real_name = null;
 			        if(!empty($this->request->params['form']['image']['name'])){
-			            $file_real_name = $this->save_file($this->request->params['form']['image'], true);
+			            $file_real_name = $this->save_file($this->request->params['form']['image'], true, 2000);
 			        }
 
 			        if($file_real_name){
@@ -800,7 +800,7 @@ public function promos(){
 
 			        $file_real_name = null;
 			        if(!empty($this->request->params['form']['image']['name'])){
-			            $file_real_name = $this->save_file($this->request->params['form']['image'], true);
+			            $file_real_name = $this->save_file($this->request->params['form']['image'], true, 2000);
 			        }
 
 			        if($file_real_name){

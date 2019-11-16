@@ -145,7 +145,7 @@ class AppController extends Controller
         $Email->send($message);
     }
 
-    protected function save_file($file, $withThumb = false) {
+    protected function save_file($file, $withThumb = false, $size=400) {
         if (empty($file['name'])) {
             return false;
         }
@@ -165,7 +165,7 @@ class AppController extends Controller
         if ($withThumb) {
             $thumb_new_name = 'thumb_' . $new_name;
             //Creamos thumbnail
-            $this->ResizeImage->thumbnail($tmp_name, $thumb_new_name, 2000);
+            $this->ResizeImage->thumbnail($tmp_name, $thumb_new_name, $size);
             $thumbUploadToS3 = $this->S3->save($tmp_name, $thumb_new_name);
 						error_log('saved: '.$thumb_new_name);
       //  }else{
