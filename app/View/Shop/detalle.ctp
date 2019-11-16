@@ -141,7 +141,7 @@
                                                 break;
                                             }
                                         }
-                                        echo '<img src="'.Configure::read('imageUrlBase').'thumb_'.$image[0].'">';
+                                        echo '<img style="max-height: 100px;" src="'.Configure::read('imageUrlBase').'thumb_'.$image[0].'">';
                                     } else {
                                         echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
                                     }
