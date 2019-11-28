@@ -47,7 +47,7 @@ $(function(){
 				if (!json.price || parseInt(json.price) == 0){
 					json.price = 114;
 				}
-        if (subtotal >= 3500 || !isDateBeforeToday(new Date(2019, 10, 1))) {
+        if (subtotal >= 3500 || !isDateBeforeToday(new Date(2019, 11, 4))) {
           console.log('Envio gratis');
           $('#cost').text( 0 );
 					$('#free_delivery').text('Envio gratis!');
