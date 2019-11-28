@@ -15,3 +15,5 @@ create table stock_count (id int unsigned auto_increment primary key, cod_articu
 alter table stock_count add column article_id varchar(20);
 
 alter table products add column stock_total int default '1';
+
+alter table products add column with_thumb tinyint default 0;
