@@ -77,7 +77,7 @@ $(function(){
 			onErrorAlert('No tienes productos en el carrito.');
 			return false;
 		}
-		if( !a || !b || !c || (1>parseFloat($('#cost').text()) && subtotal<3500 && isDateBeforeToday(new Date(2019, 10, 1)) )) {
+		if( !a || !b || !c || (1>parseFloat($('#cost').text()) && subtotal<3500 && isDateBeforeToday(new Date(2019, 11, 4)) )) {
 			$('#cp').focus();
 			$('#cp').removeClass('ok');
 			$('#cp').addClass('wrong');
