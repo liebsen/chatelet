@@ -145,7 +145,7 @@
 
 				if (in_array(strtoupper((string)@$item['article']), $desc_30,false)) {
 
-					$number_disc = 30;
+					$number_disc = 35;
 				}
 				$discount_flag = 	( /*@$_GET['testing']=='1' &&*/ @$item['category_id']!='128' || @$item['category_id']!='128' )?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
         echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
