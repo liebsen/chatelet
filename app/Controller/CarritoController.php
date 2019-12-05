@@ -201,7 +201,7 @@ class CarritoController extends AppController
 		$delivery_data = json_decode( $this->delivery_cost($user['postal_address']) ,true);
 		$price = (int)$delivery_data['price'];
 
-		if (intval($total)>=3500 || gmdate('Y-m-d',time())<'2019-12-04'){
+		if (intval($total)>=3500){//}|| gmdate('Y-m-d',time())<'2019-12-04'){
       error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
 			$price=0;
 		}else{
