@@ -147,9 +147,10 @@
 
 					$number_disc = 35;
 				}
-				$discount_flag = 	( /*@$_GET['testing']=='1' &&*/ @$item['category_id']!='128' || @$item['category_id']!='128' )?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
-        echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
-			$discount_flag.
+				$discount_flag = '';// 	( /*@$_GET['testing']=='1' &&*/ @$item['category_id']!='128' || @$item['category_id']!='128' )?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
+
+				echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
+				$discount_flag.
 					 $ctrl->Html->link(
 						$content,
 						$url,
