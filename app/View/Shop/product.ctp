@@ -140,16 +140,12 @@
 				'<div class="price">'.$priceStr.'</div>
 				</div></div>';
       } else {
-				$number_disc = 15;
-				$desc_20 = ['V9584','V9576','V9503','V9511'];
-				$desc_30 = ['V6279','V6219','V9135','V8262','V8057','V8226','V8263','V7293','V6196','V9009','V9030','V9079','V9080','V9096','V9098','V9104','V9110','V9125','V9126','V9135','V9140','V9162','V9166','V9179','V9579'];
-
+				$number_disc = 20;
+				$desc_30 = ['V9009','V8057','V8263','V9058','V9125','V9136','V9080','V9166','V7293','V6196'];
 				if (in_array(strtoupper((string)@$item['article']), $desc_30,false)) {
 					$number_disc = 30;
-				}elseif(in_array(strtoupper((string)@$item['article']), $desc_20,false)) {
-					$number_disc = 20;
 				}
-				$discount_flag = ( false /* @$_GET['testing']=='1' &&  @$item['category_id']!='128' || @$item['category_id']!='128'*/ )?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
+				$discount_flag = (@$item['category_id']!='128')?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
 
 				echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
 				$discount_flag.
