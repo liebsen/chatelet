@@ -141,9 +141,12 @@
 				</div></div>';
       } else {
 				$number_disc = 20;
+				$desc_10 = ['V0623','V0618','V0625','V0610','V0614','V0621','V0620','V0630','V0629','V0628','V0615','V0599','V0619','V0624','V0621','V0619','V0627','V0613','V0600','V0614','V9576','V9503','V9511','V9584'];
 				$desc_30 = ['V9009','V8057','V8263','V9058','V9125','V9136','V9080','V9166','V7293','V6196'];
 				if (in_array(strtoupper((string)@$item['article']), $desc_30,false)) {
 					$number_disc = 30;
+				}else if (in_array(strtoupper((string)@$item['article']), $desc_10,false)) {
+					$number_disc = 10;
 				}
 				$discount_flag = (@$item['category_id']!='128')?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
 
