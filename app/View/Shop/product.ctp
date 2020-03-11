@@ -3,6 +3,7 @@
 <script>
 function updateSrcTo(obj){
 	obj.src = $(obj).attr('url-copy');
+	obj.onerror = false;
 }
 </script>
 <style>
