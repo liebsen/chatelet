@@ -97,7 +97,7 @@ function updateSrcTo(obj, url){
 			if (empty($item['with_thumb'])){
 				$content = '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />';
 			}else{
-				$content = '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . 'thumb_'.$item['img_url'] .'"  onerror=updateSrcTo(this, "'.Configure::read('imageUrlBase') . $item['img_url'].'") />';
+				$content = '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . 'thumb_'.$item['img_url'] .'" url-copy="'.Configure::read('imageUrlBase') . $item['img_url'].'" onError=updateSrcTo(this) />';
 			}
 
 			if ($isProduct){
