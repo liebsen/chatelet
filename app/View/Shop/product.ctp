@@ -1,8 +1,8 @@
 <?php	echo $this->Session->flash();
 ?>
 <script>
-function updateSrcTo(obj, url){
-	obj.src = url;
+function updateSrcTo(obj){
+	obj.src = $(obj).attr('url-copy');
 }
 </script>
 <style>
