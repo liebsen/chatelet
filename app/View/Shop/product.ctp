@@ -146,12 +146,18 @@ function updateSrcTo(obj){
 				'<div class="price">'.$priceStr.'</div>
 				</div></div>';
       } else {
-				$number_disc = 0;
-				$desc_20 = ['I8508','I8601','I9020','I9064','I9024','I9023','I9175','I9030','I9034','I9055','I9062','I9026','I9049','I9059','I9140','I9519','I9115','I9119','I9516','I9099','I9575','I9162','I9145','I9134','I9131','I9018','I9102','I9122','I9010','I9117','I9124'];
+				$number_disc = 10;
+				$desc_30 = ['I8508','I8601','I9020','I9064','I9024','I9023','I9175','I9030','I9034','I9055','I9062','I9026','I9049','I9059','I9140','I9519','I9115','I9119','I9516','I9099','I9575','I9162','I9145','I9134','I9131','I9018','I9102','I9122','I9010','I9117','I9124'];
+				if (in_array(strtoupper((string)@$item['article']), $desc_30,false)) {
+					$number_disc = 30;
+				}
+				$desc_20 = ['I0002','I0003','I0005','I0008','I0009','I0011','I0012','I0014','I0016','I0017','I0018','I0023','I0024','I0027','I0028','I0029','I0030','I0032','I0033','I0034','I0035','I0037','I0039','I0041','I0042','I0043','I0045','I0046','I0049','I0055','I0056','I0058','I0059','I0060','I0070','I0075','I0081','I0084','I0089','I0099','I0104','I0105','I0107'];
 				if (in_array(strtoupper((string)@$item['article']), $desc_20,false)) {
 					$number_disc = 20;
 				}
-				$discount_flag = '';//(@$item['category_id']!='134' && !empty($number_disc))?'<div class="discount-flag">20% OFF</div>':'';
+
+				
+				$discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="discount-flag">20% OFF</div>':'';
 
 				echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
 				$discount_flag.
