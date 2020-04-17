@@ -157,7 +157,7 @@ function updateSrcTo(obj){
 				}
 
 				
-				$discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="discount-flag">20% OFF</div>':'';
+				$discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
 
 				echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
 				$discount_flag.
