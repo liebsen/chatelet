@@ -58,8 +58,9 @@ class ShopController extends AppController {
 			if (!empty($all_stock)){
 				foreach ($all_stock as $row){
 					$record = [];
+					echo "------\n".json_encode($row,true);
 					$article_id = substr($row['cod_articulo'],0,strpos($row['cod_articulo'],'.'));
-					echo "article_id: ".$article_id;
+					//echo "article_id: ".$article_id;
 					$existArticle = $this->Product->findByArticle($article_id);
 					if (!empty($existArticle)){
 						echo "exists article_id: ".$article_id;
@@ -71,8 +72,8 @@ class ShopController extends AppController {
 							$replaceNames = false;
 							// update article name
 							if ($replaceNames){
-							$details_name = $this->SQL->product_name_by_article($article_id);
-							echo "\r\ndetail name: ".json_encode($details_name);
+								$details_name = $this->SQL->product_name_by_article($article_id);
+								echo "\r\ndetail name: ".json_encode($details_name);
 							}
 
 							// update article stock
@@ -113,7 +114,7 @@ class ShopController extends AppController {
 							echo "\r\nFailed to save";
 						}
 					}else{
-						echo "\r\nArticle {$article_id} not needed";
+					//	echo "\r\nArticle {$article_id} not needed";
 					}
 				}
 			}else{
