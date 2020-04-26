@@ -59,10 +59,10 @@ class ShopController extends AppController {
 				foreach ($all_stock as $row){
 					$record = [];
 					$article_id = substr($row['cod_articulo'],0,strpos($row['cod_articulo'],'.'));
-
+					echo "article_id: ".$article_id;
 					$existArticle = $this->Product->findByArticle($article_id);
 					if (!empty($existArticle)){
-
+						echo "exists article_id: ".$article_id;
 						if ($row['cod_articulo'] === $article_id.'.0000'){
 
 							$toUpdate = array(
@@ -94,6 +94,7 @@ class ShopController extends AppController {
 										array('Product.article' => $article_id)
 									);
 								}
+								echo "article_id updated: ".$article_id;
 
 						}
 						//
@@ -106,13 +107,13 @@ class ShopController extends AppController {
 						$record['article_id'] = $article_id;
 						$record['cod_articulo'] = $row['cod_articulo'];
 						$record['stock'] = (int)$row['cantidad'];
-						//echo "\r\nSaving ".json_encode($record);
+						echo "\r\nSaving ".json_encode($record);
 						$success=$this->StockCount->save($record);
 						if (!$success){
 							echo "\r\nFailed to save";
 						}
 					}else{
-						//echo "\r\nArticle {$article_id} not needed";
+						echo "\r\nArticle {$article_id} not needed";
 					}
 				}
 			}else{
