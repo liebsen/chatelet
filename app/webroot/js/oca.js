@@ -47,7 +47,8 @@ $(function(){
 				if (!json.price || parseInt(json.price) == 0){
 					json.price = 114;
 				}
-        if (subtotal >= 3500){ // || !isDateBeforeToday(new Date(2019, 11, 4))) {
+		//free delivery
+        if (1 || subtotal >= 3500){ // || !isDateBeforeToday(new Date(2019, 11, 4))) {
           console.log('Envio gratis');
           $('#cost').text( 0 );
 					$('#free_delivery').text('Envio gratis!');
@@ -77,7 +78,8 @@ $(function(){
 			onErrorAlert('No tienes productos en el carrito.');
 			return false;
 		}
-		if( !a || !b || !c || (1>parseFloat($('#cost').text()) && subtotal<3500 )){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
+		// free delivery
+		if(false && (!a || !b || !c || (1>parseFloat($('#cost').text()) && subtotal<3500 ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
 			$('#cp').focus();
 			$('#cp').removeClass('ok');
 			$('#cp').addClass('wrong');
