@@ -366,10 +366,28 @@ class CarritoController extends AppController
 
 	private function notify_user($data, $status){
 		if ($status=='success'){
-			$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).'</strong>, gracias por tu compra!.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p><p>Tu compra ser&aacute; preparada para su env&iacute;o a la brevedad.</p><p>Los pedidos se realizan y despachan los d&iacute;as h&aacute;biles de 10 a 17hs.<br/></p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+			$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).'</strong>, gracias por tu compra!.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
+			<p>Tu compra será procesada dentro de las 72 hr. de haberse acreditado el pago.
+</p><p>Los pedidos se despachan en días hábiles.
+</p><p>Te comentamos que los tiempos de entrega se pueden ver afectados por la cuarentena.
+</p><p>Recuerde que las fechas son estimativas, dado que por razones de logística el correo
+puede reprogramar las fechas, siendo esto ajeno a nosotros. Por favor estate atento
+a la fecha de entrega para que la misma sea exitosa. 
+</p><p>Ante cualquier consulta no dudes en contactarnos a través de VENTASONLINE@OUTLOOK.COM.AR, indicándonos número de compra.
+</p><p>¡Te agradecemos la comprensión!
+</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
 
 		}else{
-			$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).'</strong>, gracias por tu compra! Aguardamos recibir el pago para contactarte.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p><p>Tu compra ser&aacute; preparada para su env&iacute;o a la brevedad.</p><p>Los pedidos se realizan y despachan los d&iacute;as h&aacute;biles de 10 a 17hs.<br/></p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+			$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).'</strong>, gracias por tu compra! Aguardamos recibir el pago para contactarte.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
+			<p>Tu compra será procesada dentro de las 72 hr. de haberse acreditado el pago.
+</p><p>Los pedidos se despachan en días hábiles.
+</p><p>Te comentamos que los tiempos de entrega se pueden ver afectados por la cuarentena.
+</p><p>Recuerde que las fechas son estimativas, dado que por razones de logística el correo
+puede reprogramar las fechas, siendo esto ajeno a nosotros. Por favor estate atento
+a la fecha de entrega para que la misma sea exitosa. 
+</p><p>Ante cualquier consulta no dudes en contactarnos a través de VENTASONLINE@OUTLOOK.COM.AR, indicándonos número de compra.
+</p><p>¡Te agradecemos la comprensión!
+</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
 
 		}
 		error_log('[email] notifying user '.$data['user']['email']);
