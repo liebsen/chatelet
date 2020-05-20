@@ -48,7 +48,7 @@ $(function(){
 					json.price = 114;
 				}
 		//free delivery
-        if (1 || subtotal >= 3500){ // || !isDateBeforeToday(new Date(2019, 11, 4))) {
+        if (subtotal >= 3500){ // || !isDateBeforeToday(new Date(2019, 11, 4))) {
           console.log('Envio gratis');
           $('#cost').text( 0 );
 					$('#free_delivery').text('Envio gratis!');
@@ -79,7 +79,7 @@ $(function(){
 			return false;
 		}
 		// free delivery
-		if(false && (!a || !b || !c || (1>parseFloat($('#cost').text()) && subtotal<3500 ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
+		if((!a || !b || !c || (1>parseFloat($('#cost').text()) && subtotal<3500 ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
 			$('#cp').focus();
 			$('#cp').removeClass('ok');
 			$('#cp').addClass('wrong');
