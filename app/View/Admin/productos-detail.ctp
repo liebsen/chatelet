@@ -73,6 +73,13 @@
           </div>
           <br />
           <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Mostrar Descuento? (0 o vacio para ignorar)'); ?></label>
+            <div class="controls">
+              <input type="text" id="" name="discount_label" value="<?php echo (isset($prod)) ? $prod['Product']['discount_label'] : ''; ?>">
+            </div>
+          </div>
+          <br />
+          <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
             <div class="controls">
               <input type="text" id="" name="name" value="<?php echo (isset($prod)) ? $prod['Product']['name'] : ''; ?>" required>
