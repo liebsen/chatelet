@@ -664,6 +664,8 @@ public function promos(){
            		}
            	}
 		}
+		return $this->redirect(array( 'action' => 'productos' ));
+
 		}
 	}
 
