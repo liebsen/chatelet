@@ -159,12 +159,12 @@ function updateSrcTo(obj){
 				}
 
 				if (in_array(strtoupper((string)@$item['article']), array('I0117','I0116'),false)) {
-                                        $number_disc = 0;
-                                }
+					$number_disc = 0;
+				}
 				
 
-				if (!empty($item['discount_label'])){
-					$number_disc = (int)$item['discount_label'];
+				if (!empty($item['discount_label_show'])){
+					$number_disc = (int)$item['discount_label_show'];
 				}
 				$discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
 

@@ -629,7 +629,12 @@ public function promos(){
 				'value' => (isset($data['show_shop']))?1:0
 			));
 
-
+			if (!empty($data['execute_discounts']) && $data['execute_discounts']=='yes') {
+				CakeLog::write('debug', 'Apply discount labels');
+				$this->loadModel('Product');
+				$this->Product->updateAll(
+					array('Product.discount_label_show' => 'Product.discount_label'));
+			}
 
 			if (empty($data['only_categories']) || $data['only_categories'] != 'yes'){
 				CakeLog::write('debug', 'Apply discount to all');
