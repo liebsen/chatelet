@@ -634,7 +634,9 @@ public function promos(){
 				$this->loadModel('Product');
 				$this->Product->updateAll(
 					array('Product.discount_label_show' => 'Product.discount_label'));
-			}
+				$this->redirect(array( 'action' => 'productos' ));
+
+			}else{
 
 			if (empty($data['only_categories']) || $data['only_categories'] != 'yes'){
 				CakeLog::write('debug', 'Apply discount to all');
@@ -661,9 +663,8 @@ public function promos(){
            			}
            		}
            	}
-
 		}
-		$this->redirect(array( 'action' => 'productos' ));
+		}
 	}
 
 	public function update_products( $list_code , $list_code_desc, $conditions=false )
