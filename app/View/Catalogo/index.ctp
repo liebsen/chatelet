@@ -138,7 +138,7 @@
                                           }
                                       ?>
                                   </select>
-                                 <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a><h4></h4>
+                                 <a class="table" target="_blank" href="/talles.pdf">Ver tabla de talles</a><h4></h4>
 
                              <p> <span style="color:#F50081;">Stock:</span> <span id="stock_container" ><i> (Seleccione un color y talle) </i></span></p>
                               <div class="footer-producto">
