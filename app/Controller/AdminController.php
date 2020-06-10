@@ -961,7 +961,6 @@ public function promos(){
 
 		if (!empty($setting) && !empty($setting['Setting']['extra'])) {
 			$zp = explode(',', trim($setting['Setting']['extra']));
-			print_r($zp);die;
 			$amount = count($zp);
 		}
 		$this->set('setting', $setting);
