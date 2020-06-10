@@ -19,10 +19,16 @@
             <label class="control-label" for="columns-text"><?php echo __('¿Por mayor?'); ?></label>
             <div class="controls">
             <p>
-                <input type="radio" name="data[value]" value="default" <?php if (!empty($setting['Setting']['shipping_type'] == 'default')){ echo "checked"; } ?> /> - Envíos gratis a partir de 3500 pesos, se genera etiqueta en todas las compras
+                <input type="radio" name="data[value]" value="default" <?php if (!empty($setting['Setting']['shipping_type'] == 'default')){ echo "checked=checked"; } ?> /> - Envíos gratis a partir de 3500 pesos, se genera etiqueta en todas las compras
             </p>
             <p>
-                <input type="radio" name="data[value]" value="default" <?php if (!empty($setting['Setting']['shipping_type'] == 'no_label')){ echo "checked"; } ?> /> - En envíos gratis a partir de 3500 pesos, no se genera etiqueta en los códigos postales determinados que se hace envío interno
+                <input type="radio" name="data[value]" value="no_label" <?php if (!empty($setting['Setting']['shipping_type'] == 'no_label')){ echo "checked=checked"; } ?> /> - En envíos gratis a partir de 3500 pesos, no se genera etiqueta en los códigos postales determinados que se hace envío interno
+            </p>
+            <p>
+                <input type="radio" name="data[value]" value="free" <?php if (!empty($setting['Setting']['shipping_type'] == 'free')){ echo "checked=checked"; } ?> /> - Envíos gratis sin monto mínimo, se genera etiqueta en todos los casos.
+            </p>
+            <p>
+                <input type="radio" name="data[value]" value="zip_code" <?php if (!empty($setting['Setting']['shipping_type'] == 'zip_code')){ echo "checked=checked"; } ?> /> - Envío gratis sin monto mínimo, no se genera etiqueta en los códigos postales determinados que se hace envío interno.
             </p>
             </div>
           </div>          
