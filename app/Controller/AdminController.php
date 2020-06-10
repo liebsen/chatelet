@@ -957,7 +957,14 @@ public function promos(){
 		} 
 		
 		$setting = $this->Setting->find('first', array('conditions' => array('id' => 'shipping_type')));
+		$amount = 0;
+
+		if (!empty($setting) && !empty($setting['Setting']['extra'])) {
+			$zp = explode(',', trim($setting['Setting']['extra']));
+			$amount = count($zp);
+		}
 		$this->set('setting', $setting);
+		$this->set('amount', $amount);
 		return $this->render('settings-shipping');
 	}
 	public function contacto($action = null) {
