@@ -218,9 +218,10 @@ class CarritoController extends AppController
 		//shipping-code 
 
 		$freeShipping = intval($total)>=3500;
-		
+		$shipping_type_value = 'default';
 		$shipping_config = $this->Setting->findById('shipping_type');
 		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
+			$shipping_type_value = @$shipping_config['Setting']['value'];
 			if (@$shipping_config['Setting']['value'] == 'default'){
 				// default = same
 			}
@@ -255,7 +256,8 @@ class CarritoController extends AppController
 
 		$this->Sale->save(array(
 			'id' => $sale_id,
-			'deliver_cost' => $price
+			'deliver_cost' => $price,
+			'shipping_type' => $shipping_type_value
 		));
 
 		//Re - Registar Sale Products
