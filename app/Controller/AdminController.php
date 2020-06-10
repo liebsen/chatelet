@@ -952,7 +952,7 @@ public function promos(){
 		} 
 		
 		$setting = $this->Setting->find('first', array('conditions' => array('id' => 'shipping_type')));
-		$this->set('setting', $setting);
+		pr($setting);die;$this->set('setting', $setting);
 		return $this->render('settings-shipping');
 	}
 	public function contacto($action = null) {
