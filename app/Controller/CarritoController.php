@@ -26,6 +26,20 @@ class CarritoController extends AppController
 
 	public function index()
 	{
+		$freeShipping = 0;
+		$shipping_config = $this->Setting->findById('shipping_type');
+		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
+			 
+			if (@$shipping_config['Setting']['value'] == 'free'){
+				// envio gratis siempre
+				$freeShipping = 1;
+			}
+			if (@$shipping_config['Setting']['value'] == 'zip_code'){
+				$freeShipping = 1;
+			}
+			error_log('shipping_value: '.@$shipping_config['Setting']['value']);
+		}
+		$this->set('freeShipping', $freeShipping);
 	}
 
 	public function getLocalidadProvincia($id)

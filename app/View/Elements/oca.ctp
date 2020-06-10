@@ -1,5 +1,6 @@
 <?php echo $this->Html->script('oca.js?avoidcache=23',array( 'inline' => false )) ?>
 <?php echo $this->Html->css('oca_front',array( 'inline' => false )) ?>
+<script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <div class="row">
 	<div class="col-xs-12">
 		<h3 id="heading" style="margin:10px 0px">Costo de Envio // <span class="grey">Oca</span></h3>
