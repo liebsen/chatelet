@@ -948,6 +948,11 @@ public function promos(){
 		if ($this->request->is('post')) {
 			$this->autoRender = false;
 			$data = $this->request->data;
+			if ($data['value'] == 'zip_code' && !empty($data['zip_code'])) {
+				$data['extra'] = $data['zip_code'];
+			}else{
+				$data['extra'] ='';
+			}
 			$this->Setting->save($data);
 		} 
 		
