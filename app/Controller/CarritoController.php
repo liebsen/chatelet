@@ -200,8 +200,30 @@ class CarritoController extends AppController
 		// Add Delivery
 		$delivery_data = json_decode( $this->delivery_cost($user['postal_address']) ,true);
 		$price = (int)$delivery_data['price'];
+		
+		//shipping-code 
+
+		$freeShipping = intval($total)>=3500;
+		
+		$shipping_config = $this->Setting->findById('shipping_type');
+		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
+			if (@$shipping_config['Setting']['value'] == 'default'){
+				// default = same
+			}
+			if (@$shipping_config['Setting']['value'] == 'no_label'){
+				// default = same
+			}
+			if (@$shipping_config['Setting']['value'] == 'free'){
+				// envio gratis siempre
+				$freeShipping = true;
+			}
+			if (@$shipping_config['Setting']['value'] == 'zip_code'){
+				$freeShipping = true;
+			}
+			error_log('shipping_value: '.@$shipping_config['Setting']['value']);
+		}
 		// free delivery
-		if (intval($total)>=3500){//}|| gmdate('Y-m-d',time())<'2019-12-04'){
+		if ($freeShipping) { 
      		error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
 			$price=0;
 		}else{
@@ -215,6 +237,8 @@ class CarritoController extends AppController
 				'unit_price' => $price
 			);
 		}
+
+
 		$this->Sale->save(array(
 			'id' => $sale_id,
 			'deliver_cost' => $price
