@@ -926,6 +926,35 @@ public function promos(){
 		return $this->render('sucursales');
 	}
 
+	public function shipping($action = null) {
+		$navs = array(
+			'Envios' => array(
+				'icon' 		=> 'gi gi-circle_plus',
+				'url'		=> Configure::read('mUrl').'/admin/shipping',
+				'active'	=> 'edit'
+				)
+
+			);
+		$this->set('navs', $navs);
+
+		$h1 = array(
+			'name' => 'Envios',
+			'icon' => 'gi gi-list'
+			);
+		$this->set('h1', $h1);
+
+	    $this->loadModel('Setting');
+    	 
+		if ($this->request->is('post')) {
+			$this->autoRender = false;
+			$data = $this->request->data;
+			$this->Setting->save($data);
+		} 
+		
+		$setting = $this->Setting->find('first', array('conditions' => array('id' => 'shipping_type')));
+		$this->set('setting', $setting);
+		return $this->render('settings-shipping');
+	}
 	public function contacto($action = null) {
 		$navs = array(
 			'Lista' => array(
