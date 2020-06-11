@@ -110,7 +110,14 @@
                         if (@$sale['shipping_type'] == 'no_label' || @$sale['shipping_type'] == 'zip_code' ):
                             //check zip code:
                             
-                            $sale['cp']
+                            $zips_arr = implode(',', $zips);
+                            if (in_array(@$sale['cp'], $zips_arr)):
+                                // sin etiqueta
+                            else:
+                                if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
+                                    <a target="_new" href="<?php echo Router::url(array('action'=>'getTicket',$sale['local_sale']['id']),true) ?>">TICKET</a> <br />
+                                <?php endif;
+                            endif;
                         else:
                             if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
                                 <a target="_new" href="<?php echo Router::url(array('action'=>'getTicket',$sale['local_sale']['id']),true) ?>">TICKET</a> <br />
