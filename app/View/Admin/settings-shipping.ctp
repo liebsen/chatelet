@@ -33,7 +33,7 @@
             </div><br />       
            
                 <small>Ingrese los codigos postales separados por coma (,) - [Actualmente <strong><?=$amount?></strong> códigos]</small><br />
-                <textarea rows="4" name="data[zip_code]"><?php if (!empty($setting['Setting']['value'] == 'zip_code')){ echo $setting['Setting']['extra']; }?></textarea>
+                <textarea rows="4" name="data[zip_code]"><?php echo $setting['Setting']['extra']; ?></textarea>
                 <br />
 
       <div class="form-actions">
