@@ -261,7 +261,10 @@ class AdminController extends AppController {
 		$this->loadModel('Home');
 		$this->loadModel('Setting');
 
-		$zips = $this->Setting->findById('shipping_type');
+		$zips = $this->Setting->findById('shipping_type');//print_r($zips);die;
+		if (!empty($zips['Setting']['extra'])){
+			$zips = $zips['Setting']['extra'];
+		}else { $zips = ''; }
 		//Get and merge local-remote data.
 		$sales = $this->getMPSales();
 		if (!empty($this->request->query['test'])){
