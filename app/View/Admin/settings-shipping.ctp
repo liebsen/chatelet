@@ -29,11 +29,13 @@
             </p>
             <p>
                 <input type="radio" name="data[value]" value="zip_code" <?php if (!empty($setting['Setting']['value'] == 'zip_code')){ echo "checked=checked"; } ?> /> - Envío gratis sin monto mínimo, no se genera etiqueta en los códigos postales determinados que se hace envío interno.
-                <br />
+            </p>
+            </div><br />       
+           
                 <small>Ingrese los codigos postales separados por coma (,) - [Actualmente <strong><?=$amount?></strong> códigos]</small><br />
                 <textarea rows="4" name="data[zip_code]"><?php if (!empty($setting['Setting']['value'] == 'zip_code')){ echo $setting['Setting']['extra']; }?></textarea>
-            </p>
-            </div><br />               
+                <br />
+
       <div class="form-actions">
         <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Guardar</button>
       </div>

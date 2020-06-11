@@ -106,10 +106,18 @@
         			     </table>
                      </td>
         			<td class="col-xs-1 text-center">
-        				<?php if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
-        					<a target="_new" href="<?php echo Router::url(array('action'=>'getTicket',$sale['local_sale']['id']),true) ?>">TICKET</a> <br />
-        				<?php endif ?>
-        				$<?php
+                        <?php 
+                        if (@$sale['shipping_type'] == 'no_label' || @$sale['shipping_type'] == 'zip_code' ):
+                            //check zip code:
+                            
+                            $sale['cp']
+                        else:
+                            if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
+                                <a target="_new" href="<?php echo Router::url(array('action'=>'getTicket',$sale['local_sale']['id']),true) ?>">TICKET</a> <br />
+                            <?php endif ?>
+                        <?php 
+                        endif;
+        				 
         				$defaultCost = 54;
         				if (date('Ymd',strtotime($sale['collection']['date_approved'])) > '20161108')
         					$defaultCost=0;

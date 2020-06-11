@@ -259,8 +259,9 @@ class AdminController extends AppController {
 			);
 		$this->set('h1', $h1);
 		$this->loadModel('Home');
+		$this->loadModel('Setting');
 
-
+		$zips = $this->Setting->findById('shipping_type');
 		//Get and merge local-remote data.
 		$sales = $this->getMPSales();
 		if (!empty($this->request->query['test'])){
@@ -296,6 +297,7 @@ class AdminController extends AppController {
 		$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
 		//pr($sales);die;
 		$this->set('sales',$sales);
+		$this->set('zips',$zips);
 	}
 
 
@@ -948,11 +950,7 @@ public function promos(){
 		if ($this->request->is('post')) {
 			$this->autoRender = false;
 			$data = $this->request->data;
-			if ($data['value'] == 'zip_code' && !empty($data['zip_code'])) {
-				$data['extra'] = $data['zip_code'];
-			}else{
-				$data['extra'] ='';
-			}
+			$data['extra'] = $data['zip_code'];
 			$this->Setting->save($data);
 		} 
 		
