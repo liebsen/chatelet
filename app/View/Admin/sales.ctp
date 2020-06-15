@@ -111,9 +111,11 @@
                         if (@$sale['local_sale']['shipping_type'] == 'no_label' || @$sale['local_sale']['shipping_type'] == 'zip_code' ):
                             //check zip code:
                             
-                            $zips_arr = implode(',', $zips);
-                            if (in_array(@$sale['cp'], $zips_arr)):
-                                // sin etiqueta
+                            $zips_arr = explode(',', $zips); 
+//			echo @$sale['local_sale']['cp'].' / '.json_encode($zips_arr,true). ' / '.$zips;
+                            if (in_array(@(int)$sale['local_sale']['cp'], $zips_arr) || empty($sale['collection']['deliver_cost'])):
+                                // sin etiqueta  
+			echo "(Sin Etiqueta)";
                             else:
                                 if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
                                     <a target="_new" href="<?php echo Router::url(array('action'=>'getTicket',$sale['local_sale']['id']),true) ?>">TICKET</a> <br />
@@ -129,6 +131,7 @@
         				$defaultCost = 54;
         				if (date('Ymd',strtotime($sale['collection']['date_approved'])) > '20161108')
         					$defaultCost=0;
+echo " $ ";
         				echo (!empty($sale['collection']['deliver_cost']))?$sale['collection']['deliver_cost']:$defaultCost ?> <br />
         				(<?php echo count($sale['collection']['sale_products']) ?> item)
         			</td>

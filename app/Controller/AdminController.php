@@ -261,7 +261,6 @@ class AdminController extends AppController {
 		$this->loadModel('Home');
 		$this->loadModel('Setting');
 
-		 
 		//Get and merge local-remote data.
 		$sales = $this->getMPSales();
 		if (!empty($this->request->query['test'])){
