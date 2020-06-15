@@ -105,7 +105,7 @@
         				<?php endforeach ?>
         			     </table>
                      </td>
-        			<td class="col-xs-1 text-center">[[<?=@$sale['shipping_type']?>]]
+        			<td class="col-xs-1 text-center"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
                         <?php 
                         $zips = @$sale['local_sale']['zip_codes'];
                         if (@$sale['local_sale']['shipping_type'] == 'no_label' || @$sale['local_sale']['shipping_type'] == 'zip_code' ):
