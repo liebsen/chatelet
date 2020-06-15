@@ -219,8 +219,10 @@ class CarritoController extends AppController
 
 		$freeShipping = intval($total)>=3500;
 		$shipping_type_value = 'default';
+		$zipCodes='';
 		$shipping_config = $this->Setting->findById('shipping_type');
 		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
+			$zipCodes = @$shipping_config['Setting']['extra'];
 			$shipping_type_value = @$shipping_config['Setting']['value'];
 			if (@$shipping_config['Setting']['value'] == 'default'){
 				// default = same
@@ -289,6 +291,7 @@ class CarritoController extends AppController
 			'email'		=> $user['email'],
 			'package_id'=> $delivery_data['itemsData']['package']['id'],
 			'value' 	=> $delivery_data['itemsData']['price'],
+			'zip_codes' => $zipCodes
 		);
 		error_log(json_encode($to_save));
 		$this->Sale->save($to_save);

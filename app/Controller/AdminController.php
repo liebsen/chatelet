@@ -261,13 +261,12 @@ class AdminController extends AppController {
 		$this->loadModel('Home');
 		$this->loadModel('Setting');
 
-		$zips = $this->Setting->findById('shipping_type');
+		 
 		//Get and merge local-remote data.
 		$sales = $this->getMPSales();
 		if (!empty($this->request->query['test'])){
 		        var_dump($sales);die;
 		}
-
 		foreach ($sales as &$sale) {
 			$details 		= explode('-|-', $sale['collection']['reason']);
 			$sale_number 	= (!empty($details[0]))?$details[0]:'PEDIDO : "00"';
@@ -289,7 +288,6 @@ class AdminController extends AppController {
 			foreach ($local_desc as $key => $value) {
 				$sale_id = (!empty($value['SaleProduct']['sale_id']))?$value['SaleProduct']['sale_id']:0;
 				$local_sale = $this->Sale->findById($sale_id);
-
 				$sale['collection']['deliver_cost'] = (!empty($local_sale['Sale']['deliver_cost']))?$local_sale['Sale']['deliver_cost']:0;
 				$sale['local_sale'] = $local_sale['Sale'];
 			}
@@ -297,7 +295,6 @@ class AdminController extends AppController {
 		$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
 		//pr($sales);die;
 		$this->set('sales',$sales);
-		$this->set('zips',$zips);
 	}
 
 
