@@ -113,7 +113,7 @@
                             
                             $zips_arr = explode(',', $zips); 
 //			echo @$sale['local_sale']['cp'].' / '.json_encode($zips_arr,true). ' / '.$zips;
-                            if (in_array(@(int)$sale['local_sale']['cp'], $zips_arr) || empty($sale['collection']['deliver_cost'])):
+                            if (in_array(@(int)$sale['local_sale']['cp'], $zips_arr)): // || empty($sale['collection']['deliver_cost'])):
                                 // sin etiqueta  
 			echo "(Sin Etiqueta)";
                             else:
