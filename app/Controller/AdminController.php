@@ -573,7 +573,7 @@ public function promos(){
 			}
 		}
 		$h1 = array(
-			'name' => 'Promociones',
+			'name' => 'Compra por WhatsApp',
 			'icon' => 'gi gi-display'
 			);
 		$this->set('h1', $h1);

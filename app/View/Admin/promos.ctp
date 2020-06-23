@@ -3,7 +3,7 @@
 
 <div class="block block-themed">
 	<div class="block-title">
-		<h4><?php echo __('Promociones') ?></h4>
+		<h4><?php echo __('Compra por WhatsApp') ?></h4>
 	</div>
 
 	<div class="block-content">
