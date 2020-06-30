@@ -55,7 +55,11 @@
             <?php if(!empty($home['category_mod_one'])){
                 echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_one'])).'>';
                 }else{
-                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                    if(!empty($home['url_mod_one'])){
+                        echo '<a href='.$home['url_mod_one'].'>' ;
+                    } else {
+                        echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                    }
                 }
 
 								echo '<div class="rectangle hidden-xs visible-sm visible-md visible-lg img-responsive" style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>';
@@ -69,7 +73,11 @@
                 <?php if(!empty($home['category_mod_two'])){
                     echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
                     }else{
-                    echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                        if(!empty($home['url_mod_two'])){
+                            echo '<a href='.$home['url_mod_two'].'>' ;
+                        } else {
+                            echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                        }
                     }
                     echo $home['module_two'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_two.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
                 ?>
@@ -80,7 +88,11 @@
             <?php if(!empty($home['category_mod_three'])){
                   echo '<a  class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_three'])).'>';
                  }else{
-                  echo '<a  class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                    if(!empty($home['url_mod_three'])){
+                        echo '<a href='.$home['url_mod_three'].'>' ;
+                    } else {
+                        echo '<a class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                    }
                  }
                 echo $home['module_three'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_three.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
             ?>
