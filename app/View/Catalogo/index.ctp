@@ -138,7 +138,7 @@
                                           }
                                       ?>
                                   </select>
-                                 <a class="table" target="_blank" href="/talles.pdf">Ver tabla de talles</a><h4></h4>
+                                 <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a><h4></h4>
 
                              <p> <span style="color:#F50081;">Stock:</span> <span id="stock_container" ><i> (Seleccione un color y talle) </i></span></p>
                               <div class="footer-producto">
@@ -168,51 +168,7 @@
     </div>
   <?php else: ?>
         <div class="table">
-            <h1>Tabla de conversión de talles</h1>
-            <p>Utilíza la tabla como guía.</p>
-
-            <table class="table">
-                <tr>
-                    <td>Talle</td>
-                    <td>42/07/S</td>
-                    <td>44/08/M</td>
-                    <td>46/09/L</td>
-                    <td>48/10/XL</td>
-                    <td>50/12/XXL</td>
-                    <td>52/13/XXL</td>
-                    <td>54/14/XXXL</td>
-                </tr>
-                <tr>
-                    <td>Busto</td>
-                    <td>92</td>
-                    <td>96</td>
-                    <td>100</td>
-                    <td>104</td>
-                    <td>108</td>
-                    <td>112</td>
-                    <td>116</td>
-                </tr>
-                <tr>
-                    <td>Cintura</td>
-                    <td>68</td>
-                    <td>72</td>
-                    <td>76</td>
-                    <td>80</td>
-                    <td>84</td>
-                    <td>88</td>
-                    <td>92</td>
-                </tr>
-                <tr>
-                    <td>Cadera</td>
-                    <td>96</td>
-                    <td>100</td>
-                    <td>104</td>
-                    <td>108</td>
-                    <td>112</td>
-                    <td>116</td>
-                    <td>120</td>
-                </tr>
-            </table>
+        <img src="/talles.jpg" style="max-width: 100%;max-height:100%;height:auto:width:100%" />
         </div>
       <?php endif; ?>
     </div>
