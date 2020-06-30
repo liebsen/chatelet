@@ -167,7 +167,7 @@
 					<button class="btn btn-success" type="submit" style="margin-top: -2px;">Guardar</button>
 					<button class="btn btn-warning" name="only_categories" value="yes" type="submit" style="margin-top: -2px;">Guardar Solo Rubros</button>
 					<br />
-					<input type="checkbox" name="no-update-prices" /> No actualizar precios
+					<input type="checkbox" name="no-update-prices" value="yes" /> No actualizar precios, solo cambiar Stock Config / Visibilidad del Shop
 				</div>
 			</div>
 			<br />

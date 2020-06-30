@@ -651,7 +651,9 @@ public function promos(){
 				'id' => 'show_shop',
 				'value' => (isset($data['show_shop']))?1:0
 			));
-
+			if (!empty($data['no-update-prices']) && $data['no-update-prices']=='yes'){
+				return $this->redirect(array( 'action' => 'productos' ));
+			}
 			if (!empty($data['execute_discounts']) && $data['execute_discounts']=='yes') {
 				CakeLog::write('debug', 'Apply discount labels');
 				$this->loadModel('Product');
