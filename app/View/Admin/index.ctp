@@ -91,7 +91,10 @@
 				                                <option <?php echo $category_selected; ?> value="<?php echo $category['Category']['id']; ?>">
 				                                <?php echo $category['Category']['name']; ?></option>
 				                             <?php } ?> 
-			                        </select>
+			                        		 <option value="url" <?=(isset($p['Home']['url_mod_one']) && !empty($p['Home']['url_mod_one']))?'selected':''?>>URL</option>
+									</select>
+									<input type="url" id="txturlone" name="url_mod_one" value="<?=(isset($p['Home']['url_mod_one']) && !empty($p['Home']['url_mod_one']))?$p['Home']['url_mod_one']:''?>" placeholder="Ingrese url" class="form-control <?=(isset($p['Home']['url_mod_one']) && !empty($p['Home']['url_mod_one']))?'':'hidden'?>">
+
 								</div>
 							</div>  
 						</div>  
@@ -147,7 +150,10 @@
 				                                <option <?php echo $category_selected; ?> value="<?php echo $category['Category']['id']; ?>">
 				                                <?php echo $category['Category']['name']; ?></option>
 				                             <?php } ?> 
-			                        </select>
+			                        		 <option value="url" <?=(isset($p['Home']['url_mod_two']) && !empty($p['Home']['url_mod_two']))?'selected':''?>>URL</option>
+									</select>
+									<input type="url" id="txturltwo" name="url_mod_two" value="<?=(isset($p['Home']['url_mod_two']) && !empty($p['Home']['url_mod_two']))?$p['Home']['url_mod_two']:''?>" placeholder="Ingrese url" class="form-control <?=(isset($p['Home']['url_mod_two']) && !empty($p['Home']['url_mod_two']))?'':'hidden'?>">
+
 								</div>
 				            </div>
 						</div>  
@@ -204,8 +210,11 @@
 				                                        } ?>
 				                                <option <?php echo $category_selected; ?> value="<?php echo $category['Category']['id']; ?>">
 				                                <?php echo $category['Category']['name']; ?></option>
-				                             <?php } ?> 
-			                        </select>
+											 <?php } ?> 
+											 <option value="url" <?=(isset($p['Home']['url_mod_three']) && !empty($p['Home']['url_mod_three']))?'selected':''?>>URL</option>
+									</select>
+									<input type="url" id="txturlthree" name="url_mod_three" value="<?=(isset($p['Home']['url_mod_three']) && !empty($p['Home']['url_mod_three']))?$p['Home']['url_mod_three']:''?>" placeholder="Ingrese url" class="form-control <?=(isset($p['Home']['url_mod_three']) && !empty($p['Home']['url_mod_three']))?'':'hidden'?>">
+
 								</div>
 				            </div>
 						</div>  

@@ -338,8 +338,33 @@ class AdminController extends AppController {
 
 		if ($this->request->is('post')) {
 	        $data = $this->request->data;
+	    	if(empty($data['url_mod_one'])) {
+	    		$data['url_mod_one']=null;
+	    	}
+	    	if(empty($data['url_mod_two'])) {
+	    		$data['url_mod_two']=null;
+	    	}
+	    	if(empty($data['url_mod_three'])) {
+	    		$data['url_mod_three']=null;
+	    	}
 	    	if(empty($data['url_mod_four'])) {
 	    		$data['url_mod_four']=null;
+			}
+			
+	    	if ($data['category_mod_one'] == 'url') {
+	    		$data['category_mod_one'] = null;
+	    	} else {
+	    		$data['url_mod_one'] = null;
+	    	}
+	    	if ($data['category_mod_two'] == 'url') {
+	    		$data['category_mod_two'] = null;
+	    	} else {
+	    		$data['url_mod_two'] = null;
+	    	}
+	    	if ($data['category_mod_three'] == 'url') {
+	    		$data['category_mod_three'] = null;
+	    	} else {
+	    		$data['url_mod_three'] = null;
 	    	}
 	    	if ($data['category_mod_four'] == 'url') {
 	    		$data['category_mod_four'] = null;
