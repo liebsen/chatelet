@@ -162,9 +162,13 @@
             &nbsp;
 			&nbsp;
 			&nbsp;
-			<div class="col-xs-12">
-			<button class="btn btn-success" type="submit" style="margin-top: -2px;">Guardar</button>
-			<button class="btn btn-warning" name="only_categories" value="yes" type="submit" style="margin-top: -2px;">Guardar Solo Rubros</button>
+			<div class="row">
+				<div class="col-xs-12">
+					<button class="btn btn-success" type="submit" style="margin-top: -2px;">Guardar</button>
+					<button class="btn btn-warning" name="only_categories" value="yes" type="submit" style="margin-top: -2px;">Guardar Solo Rubros</button>
+					<br />
+					<input type="checkbox" name="no-update-prices" /> No actualizar precios
+				</div>
 			</div>
 			<br />
 			<button class="btn btn-success" name="execute_discounts" value="yes" type="submit" style="margin-top: -2px;">Actualizar etiquetas de descuento</button>
