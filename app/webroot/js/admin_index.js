@@ -379,7 +379,36 @@ $(function(){
 				$("#txturlfour").addClass('hidden');
 			}
 		});
-		
+	});
+	$("#category_mod_one").on('change', function(event){
+		var option = $( "#category_mod_one option:selected" );
+		$("#category_mod_one option:selected").each(function(){
+			if($(this).val()=='url'){
+				$("#txturlone").removeClass('hidden');
+			} else {
+				$("#txturlone").addClass('hidden');
+			}
+		});
+	});
+	$("#category_mod_two").on('change', function(event){
+		var option = $( "#category_mod_two option:selected" );
+		$("#category_mod_two option:selected").each(function(){
+			if($(this).val()=='url'){
+				$("#txturltwo").removeClass('hidden');
+			} else {
+				$("#txturltwo").addClass('hidden');
+			}
+		});
+	});
+	$("#category_mod_three").on('change', function(event){
+		var option = $( "#category_mod_three option:selected" );
+		$("#category_mod_three option:selected").each(function(){
+			if($(this).val()=='url'){
+				$("#txturlthree").removeClass('hidden');
+			} else {
+				$("#txturlthree").addClass('hidden');
+			}
+		});
 	});
 
 	var drawImagesFour = function(images_four){
