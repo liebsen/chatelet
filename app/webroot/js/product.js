@@ -75,7 +75,7 @@ $(document).ready(function() {
 			};
 		url = $("#productForm").attr('action');
 		if (!isGiftCard){
-			if (!data.color || !data.size) {
+			if ((!data.color && !data.color_code) || !data.size) {
 				return $.growl.error({
 					title: '',
 					message: 'Por favor seleccione un color y un talle'
