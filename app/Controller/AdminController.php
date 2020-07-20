@@ -61,13 +61,16 @@ class AdminController extends AppController {
 		// $details =   $this->SQL->product_stock('v7269','44','02','179');
 //		pr($details);
 
-require_once(APP . 'Vendor' . DS . 'mercadopago.php');
+		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$filters = array(
             "range" => "date_created",
             "begin_date" => "2019-10-21T00:00:00Z",
             "end_date" => "NOW",
-            "limit" => 1000, 
+			"limit" => 500, 
+			"status" => "approved",
+            "sort" => "id",
+            "criteria" => "desc",
             "operation_type" => "regular_payment"
         );
 		$searchResult = $mp->search_payment($filters,0,1000);
@@ -193,6 +196,8 @@ require_once(APP . 'Vendor' . DS . 'mercadopago.php');
             "end_date" => "NOW",
             "limit" => 1000,
             "status" => "approved",
+            "sort" => "id",
+            "criteria" => "desc",
             "operation_type" => "regular_payment"
         );
         $searchResult = $mp->search_payment($filters,0,1000);
