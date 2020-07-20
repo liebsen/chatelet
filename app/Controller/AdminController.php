@@ -50,6 +50,7 @@ class AdminController extends AppController {
 	}
 
 	public function test(){
+		
 		$this->autoRender = false;
 
 		//$details = $this->SQL->product_price_by_list('V7000','180','05');
@@ -57,9 +58,21 @@ class AdminController extends AppController {
 		//$details = $this->SQL->productsByLisCod('V7000','05');
 		//$details =   $this->SQL->product_name_by_article('V7000');
 	//EXAMPLE: I5005/03/02/173
-		$details =   $this->SQL->product_stock('v7269','44','02','179');
+		// $details =   $this->SQL->product_stock('v7269','44','02','179');
+//		pr($details);
 
-		pr($details);
+require_once(APP . 'Vendor' . DS . 'mercadopago.php');
+		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
+		$filters = array(
+            "range" => "date_created",
+            "begin_date" => "2019-10-21T00:00:00Z",
+            "end_date" => "NOW",
+            "limit" => 1000, 
+            "operation_type" => "regular_payment"
+        );
+		$searchResult = $mp->search_payment($filters,0,1000);
+		print_r($searchResult);die;
+		
 	}
 
 
@@ -176,7 +189,7 @@ class AdminController extends AppController {
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$filters = array(
             "range" => "date_created",
-            "begin_date" => "2014-10-21T00:00:00Z",
+            "begin_date" => "2019-10-21T00:00:00Z",
             "end_date" => "NOW",
             "limit" => 1000,
             "status" => "approved",
