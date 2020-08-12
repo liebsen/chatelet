@@ -38,7 +38,7 @@ $(function(){
     for(var i=0;i<images.length;i++){
       if(images[i]!=""){
         p++;
-        moreviews += '<li class="dontResize"><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" onclick="currentDiv('+p+')" title="key__'+p+'"  id="img_01" src="https://d3baxuoyqsgua.cloudfront.net/thumb_'+images[i]+'" ></a></li>';
+        moreviews += '<li class="dontResize"><a href="javacript:void(0)"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive" onclick="currentDiv('+p+')" title="key__'+p+'"  id="img_01" src="https://d3baxuoyqsgua.cloudfront.net/thumb_'+images[i]+'" ></a></li>';
         surround += '<img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="https://d3baxuoyqsgua.cloudfront.net/'+images[i]+'" data-cloudzoom=\'zoomSizeMode:"image",autoInside: 600\'/>';
       }
     }

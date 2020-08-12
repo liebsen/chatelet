@@ -44,7 +44,7 @@
                 <?php if (!empty($colorImages[0]['images'] )): $ppp=0; ?>
                 <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
                    <?php if(!empty($value)): $ppp++;?>
-                   <li class="dontResize"><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
+                   <li class="dontResize"><a href="javacript:void(0)"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
                     onclick="currentDiv(<?=$ppp;?>)" title="ck_image_<?=$ppp?>"  id="img_01" src="<?=Configure::read('imageUrlBase').'thumb_'.$value?>"></a></li>
                     <?php endif;?>
                 <?php endforeach ?>
@@ -69,7 +69,7 @@
                 <?php if (!empty($images)): $pkey=0;?>
                 <?php foreach ($images as $key => $value) : ?>
                  <?php if (!empty($value)): $pkey++;?>
-                   <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
+                   <li><a href="javacript:void(0)"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
                     onclick="currentDiv(<?php $key = $key + 1; echo $pkey ?>)"  id="img_01" title="image<?=$pkey?>" style="" src="<?php echo $value ?> " ></a></li>
                  <?php endif ?>
                 <?php endforeach ?>
