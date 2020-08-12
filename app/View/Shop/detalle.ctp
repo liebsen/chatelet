@@ -227,8 +227,17 @@
 
                             )
                         );
+
+                $number_disc = 10;
+				if (isset($alt_product['discount_label_show'])){
+					$number_disc = (int)@$alt_product['discount_label_show'];
+				}
+				$discount_flag = (@$alt_product['category_id']!='134' && !empty($number_disc))?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
+
+
+
                     if(!$stock){ ?>
-                     <div class="col-md-4 col-sm-6">
+                     <div class="col-md-4 col-sm-6"><?=$discount_flag?>
                         <a href="<?php echo $url ?>" >
                             <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
                             <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
@@ -239,7 +248,7 @@
                     </div>
                     <?php }else{ ?>
 
-                      <div data-id="<?=$alt_product['id']?>" class="col-md-4 col-sm-6 add-no-stock">
+                      <div data-id="<?=$alt_product['id']?>" class="col-md-4 col-sm-6 add-no-stock"><?=$discount_flag?>
 
                         <a href="<?php echo $url ?>" >
                             <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
