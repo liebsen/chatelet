@@ -11,6 +11,7 @@ function currentDiv(n) {
 }
 
 function showDivs(n) {
+  slideIndex=n;
   var i;
   var x = $('.mySlides');
   var dots = $('.demo');
