@@ -70,7 +70,7 @@
                 <?php foreach ($images as $key => $value) : ?>
                  <?php if (!empty($value)): $pkey++;?>
                    <li><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
-                    onclick="currentDiv(<?php $key = $key + 1; echo $pkey ?>)"  id="img_01" style="" src="<?php echo $value ?> " ></a></li>
+                    onclick="currentDiv(<?php $key = $key + 1; echo $pkey ?>)"  id="img_01" title="image<?=$pkey?>" style="" src="<?php echo $value ?> " ></a></li>
                  <?php endif ?>
                 <?php endforeach ?>
                  <?php endif ?>
