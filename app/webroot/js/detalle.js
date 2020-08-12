@@ -45,6 +45,6 @@ $(function(){
     $("#ul-moreviews").html(moreviews);
     $("#surround").html(surround);
     CloudZoom.quickStart();
-    showDivs(0);
+    showDivs(1);
   });
 });
