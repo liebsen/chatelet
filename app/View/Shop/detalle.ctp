@@ -41,11 +41,11 @@
       <?php if(!empty($colorImages)):?>
         <div class="col-md-2 col-sm-5">
             <ul id="ul-moreviews">
-                <?php if (!empty($colorImages[0]['images'] )): ?>
+                <?php if (!empty($colorImages[0]['images'] )): $ppp=0; ?>
                 <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
                    <?php if(!empty($value)): ?>
                    <li class="dontResize"><a href="#"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
-                    onclick="currentDiv(<?=$key + 1?>)" title="ck_image_<?=$key+1?>"  id="img_01" src="<?=Configure::read('imageUrlBase').'thumb_'.$value?>"></a></li>
+                    onclick="currentDiv(<?=$ppp?>)" title="ck_image_<?=$ppp?>"  id="img_01" src="<?=Configure::read('imageUrlBase').'thumb_'.$value?>"></a></li>
                     <?php endif;?>
                 <?php endforeach ?>
                     <?php endif;?>
