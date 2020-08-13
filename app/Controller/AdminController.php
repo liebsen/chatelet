@@ -173,13 +173,13 @@ class AdminController extends AppController {
 		}
 		$sale = $this->setOrdenRetiro($sale);
 		if(!empty($sale['def_orden_retiro'])){
-			if (true || $send_email){
+			if (!empty($sale['def_orden_tracking']) && $send_email) {
 				$user = $this->User->findById($sale['user_id']);
 				$emailTo = @$user['email'];
 				$emailTo = 'francisco.marasco@gmail.com';
 
 				$message = '<p>Hola <strong>'.ucfirst(@$user['name']).'</strong>, gracias por tu compra! 
-				</p><p>Puedes seguir tu envío a través del sitio de OCA: https://www.oca.com.ar/envios/paquetes/<br />Ingresando el número de envio: '.@$sale['def_orden_retiro'].'
+				</p><p>Puedes seguir tu envío a través del sitio de OCA: https://www.oca.com.ar/envios/paquetes/<br />Ingresando el número de envio: '.@$sale['def_orden_tracking'].'
 				</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
 
 				error_log('[email] notifying the tracking for user '.$emailTo);
