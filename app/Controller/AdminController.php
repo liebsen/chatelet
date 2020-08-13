@@ -154,6 +154,7 @@ class AdminController extends AppController {
 		$oca_result = $oca->ingresoORNuevo($sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
 		$sale['def_orden_retiro'] = @$oca_result['retiro'];
 		$sale['def_orden_tracking'] = @$oca_result['tracking'];
+		$sale['def_mail_sent'] = 1;
 		$t = @$this->Sale->save($sale);
 		return $sale;
 	}
@@ -161,18 +162,30 @@ class AdminController extends AppController {
 	public function getTicket($sale_id = null){
 		$this->autoRender = false;
 		$this->Sale->recursive = -1;
+		$send_email = false;
 		$sale = $this->Sale->findById($sale_id);
 		if(empty($sale) || empty($sale['Sale']['package_id']) || empty($sale['Sale']['value']) || empty($sale['Sale']['email']) || empty($sale['Sale']['telefono']) || empty($sale['Sale']['provincia']) || empty($sale['Sale']['localidad']) || empty($sale['Sale']['cp']) || empty($sale['Sale']['nro']) || empty($sale['Sale']['calle']) || empty($sale['Sale']['nombre']) || empty($sale['Sale']['apellido']))
 			die('Venta no encontrada o incompleta.');
+		
+		if (empty($sale['def_mail_sent'])){
+			$send_email = true;
+		}
+		$sale = $this->setOrdenRetiro($sale);
+		if(!empty($sale['def_orden_retiro'])){
+			if (true || $send_email){
+				$user = $this->User->findById($sale['user_id']);
+				$emailTo = @$user['email'];
+				$emailTo = 'francisco.marasco@gmail.com';
 
-		//if(empty($sale['Sale']['orden_retiro'])){
-			$sale = $this->setOrdenRetiro($sale);
-		//}else{
-	//		$sale = $sale['Sale'];
-	//	}
-	if(!empty($sale['def_orden_retiro'])){
+				$message = '<p>Hola <strong>'.ucfirst(@$user['name']).'</strong>, gracias por tu compra! 
+				</p><p>Puedes seguir tu envío a través del sitio de OCA: https://www.oca.com.ar/envios/paquetes/<br />Ingresando el número de envio: '.@$sale['def_orden_retiro'].'
+				</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+
+				error_log('[email] notifying the tracking for user '.$emailTo);
+				$this->sendMail($message,'Compra Realizada en Chatelet',$emailTo);
+			}
 		$this->redirect( "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1" );
-	}else{
+		}else{
 			die('Error: no se pudo generar la etiqueta.');
 		}
 	}

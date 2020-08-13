@@ -132,8 +132,7 @@ class AppController extends Controller
         $Email = new CakeEmail();
         $Email->from(array(
             'info@chatelet.com' => 'Chatelet'
-        ));
-        //pr($data);die;
+        )); 
         $Email->to($to);
         $Email->subject($subject);
         //$Email->template($template, 'default');
