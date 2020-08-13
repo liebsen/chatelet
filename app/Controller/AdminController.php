@@ -170,10 +170,10 @@ class AdminController extends AppController {
 		//}else{
 	//		$sale = $sale['Sale'];
 	//	}
-
-		if(!empty($sale['orden_retiro'])){
-			$this->redirect( "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['orden_retiro']}&CUIT=30-71119953-1" );
-		}else{
+	if(!empty($sale['orden_retiro'])){
+		$this->redirect( "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['orden_retiro']}&CUIT=30-71119953-1" );
+	}else{
+		print_r($sale);die;
 			die('Error: no se pudo generar la etiqueta.');
 		}
 	}
