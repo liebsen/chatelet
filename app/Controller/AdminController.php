@@ -161,6 +161,7 @@ class AdminController extends AppController {
 
 	public function getTicket($sale_id = null){
 		$this->autoRender = false;
+		$this->loadModel('User');
 		$this->Sale->recursive = -1;
 		$send_email = false;
 		$sale = $this->Sale->findById($sale_id);
