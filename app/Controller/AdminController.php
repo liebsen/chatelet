@@ -150,9 +150,11 @@ class AdminController extends AppController {
 		$sale = $sale['Sale'];
 		$package = $this->Package->findById($sale['package_id']);
 		$package = $package['Package'];
-
-		$sale['orden_retiro'] = $oca->ingresoORNuevo($sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
-		//$t = $this->Sale->save($sale);
+		
+		$oca_result = $oca->ingresoORNuevo($sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
+		$sale['def_orden_retiro'] = @$oca_result['retiro'];
+		$sale['def_orden_tracking'] = @$oca_result['tracking'];
+		$t = @$this->Sale->save($sale);
 		return $sale;
 	}
 

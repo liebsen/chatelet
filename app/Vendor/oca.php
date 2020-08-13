@@ -311,6 +311,15 @@ class Oca
 		
 		$xml = curl_exec($ch);
 		$OrdenRetiro = @$this->getTextBetweenTags( 'OrdenRetiro' , $xml , 1 );
+
+		$xml = curl_exec($ch); //die($xml);
+		$OrdenRetiro = @$this->getTextBetweenTags( 'OrdenRetiro' , $xml , 1 );
+		$nroEnvio = @$this->getTextBetweenTags( 'NumeroEnvio' , $xml , 1 );
+//              die($nroEnvio);
+		return ['retiro'=>$OrdenRetiro, 'tracking'=>$nroEnvio];
+
+
+		
 		
 		return $OrdenRetiro;
 	}
