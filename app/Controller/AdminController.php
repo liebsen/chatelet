@@ -168,7 +168,7 @@ class AdminController extends AppController {
 		if(empty($sale) || empty($sale['Sale']['package_id']) || empty($sale['Sale']['value']) || empty($sale['Sale']['email']) || empty($sale['Sale']['telefono']) || empty($sale['Sale']['provincia']) || empty($sale['Sale']['localidad']) || empty($sale['Sale']['cp']) || empty($sale['Sale']['nro']) || empty($sale['Sale']['calle']) || empty($sale['Sale']['nombre']) || empty($sale['Sale']['apellido']))
 			die('Venta no encontrada o incompleta.');
 		
-		if (empty($sale['def_mail_sent'])){
+		if (empty($sale['Sale']['def_mail_sent'])){
 			$send_email = true;
 		}
 		$sale = $this->setOrdenRetiro($sale);
@@ -176,7 +176,7 @@ class AdminController extends AppController {
 			if (!empty($sale['def_orden_tracking']) && $send_email) {
 				$user = $this->User->findById($sale['user_id']);
 				$emailTo = @$user['email'];
-				$emailTo = 'francisco.marasco@gmail.com';
+				//$emailTo = 'francisco.marasco@gmail.com';
 
 				$message = '<p>Hola <strong>'.ucfirst(@$user['name']).'</strong>, gracias por tu compra! 
 				</p><p>Puedes seguir tu envío a través del sitio de OCA: https://www.oca.com.ar/envios/paquetes/<br />Ingresando el número de envio: '.@$sale['def_orden_tracking'].'
@@ -184,6 +184,8 @@ class AdminController extends AppController {
 
 				error_log('[email] notifying the tracking for user '.$emailTo);
 				$this->sendMail($message,'Compra Realizada en Chatelet',$emailTo);
+			}else{
+				error_log('[email] ignored bc was sent before');
 			}
 		$this->redirect( "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1" );
 		}else{
