@@ -32,6 +32,24 @@
     }
 ?>
 <script>
+var ec_data = {
+  'ecommerce': {
+    'detail': {
+      'actionField': {'list': 'DetalleProducto'},    // 'detail' actions have an optional list property.
+      'products': [{
+        'name': '<?php echo @$product['name']; ?>',         // Name or ID is required.
+        'id': '<?php echo @$product['id'];?>',
+        'price': '<?php echo @$product['discount']; ?>',
+        'brand': 'Chatelet',
+        'category': '<?php echo @$category['Category']['name']; ?>',
+        'variant': ''
+       }]
+     }
+   }
+};
+console.log(ec_data)
+dataLayer.push(ec_data);
+
     var colorImages = <?=json_encode($colorImages, true)?>;
     window.isGiftCard = <?=(int)$isGiftCard?>;
 </script>
