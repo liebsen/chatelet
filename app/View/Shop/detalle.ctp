@@ -50,7 +50,8 @@ window.ec_data = {
 
 window.dataLayer = window.dataLayer || [];
 setTimeout(function(){
-    window.dataLayer.push(ec_data);
+    console.log(window.ec_data);
+    window.dataLayer.push(window.ec_data);
 },1000)
 
     var colorImages = <?=json_encode($colorImages, true)?>;
