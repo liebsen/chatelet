@@ -32,7 +32,7 @@
     }
 ?>
 <script>
-var ec_data = {
+window.ec_data = {
   'ecommerce': {
     'detail': {
       'actionField': {'list': 'DetalleProducto'},    // 'detail' actions have an optional list property.
@@ -47,8 +47,11 @@ var ec_data = {
      }
    }
 };
-console.log(ec_data)
-dataLayer.push(ec_data);
+
+window.dataLayer = window.dataLayer || [];
+setTimeout(function(){
+    window.dataLayer.push(ec_data);
+},1000)
 
     var colorImages = <?=json_encode($colorImages, true)?>;
     window.isGiftCard = <?=(int)$isGiftCard?>;
