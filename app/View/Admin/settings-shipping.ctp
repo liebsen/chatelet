@@ -19,10 +19,10 @@
             <label class="control-label" for="columns-text"><?php echo __('Tipo de envío'); ?></label>
             <div class="controls">
             <p>
-                <input type="radio" name="data[value]" value="default" <?php if (!empty($setting['Setting']['value'] == 'default')){ echo "checked=checked"; } ?> /> - Envíos gratis a partir de 3500 pesos, se genera etiqueta en todas las compras
+                <input type="radio" name="data[value]" value="default" <?php if (!empty($setting['Setting']['value'] == 'default')){ echo "checked=checked"; } ?> /> - Envíos gratis a partir de 4500 pesos, se genera etiqueta en todas las compras
             </p>
             <p>
-                <input type="radio" name="data[value]" value="no_label" <?php if (!empty($setting['Setting']['value'] == 'no_label')){ echo "checked=checked"; } ?> /> - En envíos gratis a partir de 3500 pesos, no se genera etiqueta en los códigos postales determinados que se hace envío interno
+                <input type="radio" name="data[value]" value="no_label" <?php if (!empty($setting['Setting']['value'] == 'no_label')){ echo "checked=checked"; } ?> /> - En envíos gratis a partir de 4500 pesos, no se genera etiqueta en los códigos postales determinados que se hace envío interno
             </p>
             <p>
                 <input type="radio" name="data[value]" value="free" <?php if (!empty($setting['Setting']['value'] == 'free')){ echo "checked=checked"; } ?> /> - Envíos gratis sin monto mínimo, se genera etiqueta en todos los casos.

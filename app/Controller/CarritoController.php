@@ -217,7 +217,7 @@ class CarritoController extends AppController
 		
 		//shipping-code 
 
-		$freeShipping = intval($total)>=3500;
+		$freeShipping = intval($total)>=4500;
 		$shipping_type_value = 'default';
 		$zipCodes='';
 		$shipping_config = $this->Setting->findById('shipping_type');

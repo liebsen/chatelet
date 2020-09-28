@@ -48,7 +48,7 @@ $(function(){
 					json.price = 114;
 				}
 				//free delivery
-				if (freeShipping || subtotal >= 3500){  
+				if (freeShipping || subtotal >= 4500){  
 					console.log('Envio gratis');
 					$('#cost').text( 0 );
 					$('#free_delivery').text('Envio gratis!');
@@ -71,7 +71,7 @@ $(function(){
 
 	$('#siguiente').click(function(event){
 		event.preventDefault();
-		var envioGratis = subtotal>=3500;
+		var envioGratis = subtotal>=4500;
 		if (freeShipping) {
 			envioGratis = true
 		}
