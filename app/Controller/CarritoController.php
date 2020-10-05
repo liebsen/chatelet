@@ -39,6 +39,8 @@ class CarritoController extends AppController
 			}
 			error_log('shipping_value: '.@$shipping_config['Setting']['value']);
 		}
+		$freeShipping = 1;
+		// free shipping until 12/10
 		$this->set('freeShipping', $freeShipping);
 	}
 
@@ -239,6 +241,9 @@ class CarritoController extends AppController
 			}
 			error_log('shipping_value: '.@$shipping_config['Setting']['value']);
 		}
+		// freeShipping until 12/10
+		$freeShipping = true;
+		error_log('Putting freeshipping until 12/10');
 		// free delivery
 		if ($freeShipping) { 
      		error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
