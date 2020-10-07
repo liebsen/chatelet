@@ -11,6 +11,9 @@ app/webroot/files/uploads/*
 /build
 /dist
 /tags
+/vendor
+/composer.lock
+/Plugin
 
 # OS generated files #
 ######################
