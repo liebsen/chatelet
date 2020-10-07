@@ -35,11 +35,11 @@ class CarritoController extends AppController
 				$freeShipping = 1;
 			}
 			if (@$shipping_config['Setting']['value'] == 'zip_code'){
-				$freeShipping = 1;
+				// $freeShipping = 1;
 			}
 			error_log('shipping_value: '.@$shipping_config['Setting']['value']);
 		}
-		$freeShipping = 1;
+		// $freeShipping = 1;
 		// free shipping until 12/10
 		$this->set('freeShipping', $freeShipping);
 	}
@@ -219,7 +219,7 @@ class CarritoController extends AppController
 		
 		//shipping-code 
 
-		$freeShipping = intval($total)>=4500;
+		$freeShipping = intval($total)>=3500;
 		$shipping_type_value = 'default';
 		$zipCodes='';
 		$shipping_config = $this->Setting->findById('shipping_type');
@@ -237,13 +237,13 @@ class CarritoController extends AppController
 				$freeShipping = true;
 			}
 			if (@$shipping_config['Setting']['value'] == 'zip_code'){
-				$freeShipping = true;
+				// $freeShipping = true;
 			}
 			error_log('shipping_value: '.@$shipping_config['Setting']['value']);
 		}
 		// freeShipping until 12/10
-		$freeShipping = true;
-		error_log('Putting freeshipping until 12/10');
+		// $freeShipping = true;
+		// error_log('Putting freeshipping until 12/10');
 		// free delivery
 		if ($freeShipping) { 
      		error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));

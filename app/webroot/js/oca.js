@@ -33,8 +33,7 @@ $(function(){
 
 	var timeout = null;
 	$('#cp').change(function(event){
-		console.log(subtotal);
-                event.preventDefault();
+    event.preventDefault();
 		var url = $(this).data('url');
 		var cp 	= $('#cp').val();
 		$('#free_delivery').text('');
@@ -42,13 +41,12 @@ $(function(){
 		$.getJSON( url+'/'+cp , function(json, textStatus) {
 			callEnd();
 			clearTimeout(timeout);
-			console.log(json);
 			if( json.valid ){
 				if (!json.price || parseInt(json.price) == 0){
 					json.price = 114;
 				}
 				//free delivery
-				if (freeShipping || subtotal >= 4500){  
+				if (freeShipping || subtotal >= 3500){  
 					console.log('Envio gratis');
 					$('#cost').text( 0 );
 					$('#free_delivery').text('Envio gratis!');
@@ -71,7 +69,7 @@ $(function(){
 
 	$('#siguiente').click(function(event){
 		event.preventDefault();
-		var envioGratis = subtotal>=4500;
+		var envioGratis = subtotal>=3500;
 		if (freeShipping) {
 			envioGratis = true
 		}
