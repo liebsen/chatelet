@@ -26,10 +26,11 @@ class CarritoController extends AppController
 
 	public function index()
 	{
-		$freeShipping = 0;
+		$data = $this->getItemsData();
+		$shipping_price = $this->Setting->findById('shipping_price_min');
+		$freeShipping = intval($data['price'])>=intval($shipping_price['Setting']['value']);
 		$shipping_config = $this->Setting->findById('shipping_type');
 		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
-			 
 			if (@$shipping_config['Setting']['value'] == 'free'){
 				// envio gratis siempre
 				$freeShipping = 1;
@@ -218,8 +219,8 @@ class CarritoController extends AppController
 		$price = (int)$delivery_data['price'];
 		
 		//shipping-code 
-
-		$freeShipping = intval($total)>=3500;
+		$shipping_price = $this->Setting->findById('shipping_price_min');
+		$freeShipping = intval($total)>=intval($shipping_price['Setting']['value']);
 		$shipping_type_value = 'default';
 		$zipCodes='';
 		$shipping_config = $this->Setting->findById('shipping_type');

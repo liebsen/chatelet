@@ -1003,22 +1003,30 @@ public function promos(){
 			);
 		$this->set('h1', $h1);
 
-	    $this->loadModel('Setting');
-    	 
+	  $this->loadModel('Setting');
 		if ($this->request->is('post')) {
 			$this->autoRender = false;
 			$data = $this->request->data;
 			$data['extra'] = $data['zip_code'];
 			$this->Setting->save($data);
+
+			/* shipping min price */
+			$data['id'] = 'shipping_price_min';
+			$data['value'] = $data['shipping_price_min'];
+			$data['extra'] = null;
+			$this->Setting->save($data);
 		} 
 		
 		$setting = $this->Setting->find('first', array('conditions' => array('id' => 'shipping_type')));
+		$price = $this->Setting->find('first', array('conditions' => array('id' => 'shipping_price_min')));
 		$amount = 0;
 
 		if (!empty($setting) && !empty($setting['Setting']['extra'])) {
 			$zp = explode(',', trim($setting['Setting']['extra']));
 			$amount = count($zp);
 		}
+
+		$this->set('price', $price);
 		$this->set('setting', $setting);
 		$this->set('amount', $amount);
 		return $this->render('settings-shipping');
