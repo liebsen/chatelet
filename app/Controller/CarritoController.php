@@ -40,8 +40,6 @@ class CarritoController extends AppController
 			}
 			error_log('shipping_value: '.@$shipping_config['Setting']['value']);
 		}
-		// $freeShipping = 1;
-		// free shipping until 12/10
 		$this->set('freeShipping', $freeShipping);
 	}
 
