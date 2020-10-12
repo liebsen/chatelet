@@ -14,7 +14,6 @@ $(document).ready(function() {
 		e.preventDefault()
 		if (confirm('Estás seguro que que querés borrar este producto del carrito?')) {
 			const target = $(e.target).closest('.trash')
-
 		  $.get(target.attr('href'), res => {
 
 		  	let item = JSON.parse(res)
