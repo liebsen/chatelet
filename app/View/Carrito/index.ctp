@@ -63,7 +63,10 @@
 											'action' => 'remove',
 											$row
 										),
-										array ('class' => 'trash', 'escape' => false)
+										array (
+											'class' => 'trash',
+											'escape' => false
+										)
 									);
 								echo '</td>';
 								echo '<td>';

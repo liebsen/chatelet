@@ -312,20 +312,21 @@ div.cloudzoom-black:nth-child(2) {
 </style>
 
 <script>
-dataLayer.push({
-  'ecommerce': {
-    'detail': {
-      'actionField': {'list': 'Producto'},    // 'detail' actions have an optional list property.
-      'products': [{
-        'name': '<?php echo $product['article'];?>',         // Name or ID is required.
-        'id': '<?php echo $product['id'];?>',
-        'price': '<?php echo $product['discount'];?>',
-        'brand': '<?php echo $product['name'];?>',
-        'category': '<?php echo $category['Category']['name'];?>'
-       }]
-     }
-   }
-})
+    /* @Analytics: detail */
+    dataLayer.push({
+      'ecommerce': {
+        'detail': {
+          'actionField': {'list': 'Producto'},    // 'detail' actions have an optional list property.
+          'products': [{
+            'name': '<?php echo $product['article'];?>',         // Name or ID is required.
+            'id': '<?php echo $product['id'];?>',
+            'price': '<?php echo $product['discount'];?>',
+            'brand': '<?php echo $product['name'];?>',
+            'category': '<?php echo $category['Category']['name'];?>'
+           }]
+         }
+       }
+    })
 </script>
 
 

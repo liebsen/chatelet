@@ -56,23 +56,20 @@ $(document).ready(function() {
 			pideStock(window.lastColorObj)
 		},500)
 	});
+
 	$('input[name="color"],#size').change(function(event) {
 		pideStock(event.target)
 	});
 
-
-
-
-
 	$(".add.agregar-carro").click(function(e) {
 		//this = e.target;
 		var data = {
-				id: $(e.target).closest('form').find("#product_id").text().trim(),
-				color: $(e.target).closest('form').find("input[name='color']:checked").val(),
-				color_code: $(e.target).closest("form").find('input[name="color"]:checked').attr('code'),
-				size: $(e.target).closest('form').find("#size option:selected").val(),
-				alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias'),
-			};
+			id: $(e.target).closest('form').find("#product_id").text().trim(),
+			color: $(e.target).closest('form').find("input[name='color']:checked").val(),
+			color_code: $(e.target).closest("form").find('input[name="color"]:checked').attr('code'),
+			size: $(e.target).closest('form').find("#size option:selected").val(),
+			alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias'),
+		};
 		url = $("#productForm").attr('action');
 		if (!isGiftCard){
 			if ((!data.color && !data.color_code) || !data.size) {
@@ -90,47 +87,61 @@ $(document).ready(function() {
 			}
 		}
 
-
 		$.post(url, $.param(data))
 			.success(function(res) {
 				if (res.success) {
-	                $.growl.notice({
-	                    title: 'Producto agregado al carrito',
-	                    message: 'Puede seguir agregando más productos o ir a la sección Pagar'
-	                });
-	                var reload = function() {
-	                	window.location.href = '/carrito'
-	                };
-	                setTimeout(reload, 3000);
-	                $('.growl-close').click(reload);
+
+					fbq('track', 'AddToCart')
+
+					/* @Analytics: addToCart */
+					dataLayer.push({
+					  'event': 'addToCart',
+					  'ecommerce': {
+					    'currencyCode': 'ARS',
+					    'add': {         
+					      'products': [{
+					        'name': $('.product').text(),
+					        'id': data.id,
+					        'price': $('.price').text(),
+					        'brand': 'Google',
+					        'category': 'Apparel',
+					        'variant': data.alias,
+					        'quantity': 1
+					       }]
+					    }
+					  }
+					});
+
+
+          $.growl.notice({
+            title: 'Producto agregado al carrito',
+            message: 'Puede seguir agregando más productos o ir a la sección Pagar'
+          });
+          var reload = function() {
+          	window.location.href = '/carrito'
+          };
+          setTimeout(reload, 3000);
+          $('.growl-close').click(reload);
 				} else {
-                    $.growl.error({
-                        title: 'Ocurrio un error al agregar el producto al carrito',
-                        message: 'Por favor, intente nuevamente'
-                    });
+          $.growl.error({
+            title: 'Ocurrio un error al agregar el producto al carrito',
+            message: 'Por favor, intente nuevamente'
+          });
 				}
 			})
 			.fail(function() {
-                $.growl.error({
-                    title: 'Ocurrio un error al agregar el producto al carrito',
-                    message: 'Por favor, intente nuevamente'
-                });
+        $.growl.error({
+          title: 'Ocurrio un error al agregar el producto al carrito',
+          message: 'Por favor, intente nuevamente'
+        });
 			});
 
 		return false;
 	});
-
-
-
-
-
-
 
 	$('.info-icon').click(function(e) {
 		var me = $(this);
 		var position = me.offset();
 		window.open(me.attr('data-image'), 'Talles', 'height=323px, width=642px, resizable=no, status=no, toolbar=no, menubar=no, location=no, top='+ position.top +'px, left=' + position.left +'px');
 	});
-
-
 });

@@ -397,7 +397,9 @@ class CarritoController extends AppController
 		/*if (isset($product_id) && $this->Session->check('Carro.'. $product_id)) {
 			$this->Session->delete('Carro.'. $product_id);
 		}*/
+		$item = false;
 		if (isset($row) && $this->Session->check('Carro.'. $row)) {
+			$item = $this->Session->read('Carro.'. $row);
 			$this->Session->delete('Carro.'. $row);
 		}
 		$carro = $this->Session->read('Carro');
@@ -408,7 +410,9 @@ class CarritoController extends AppController
 			$i++;
 		}
 		$this->Session->write('Carro', $aux);
-		return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
+
+		return json_encode($item);
+		// return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 	}
 
 	private function notify_user($data, $status){
