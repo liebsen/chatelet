@@ -23,4 +23,32 @@ $(function(){
 			});
 		}
 	});
+
+	$('#checkout-form').submit(form => {
+		fbq('track', 'InitiateCheckout')
+		let products = []
+		carrito.forEach(e => {
+			products.push({
+        'name': e.article,
+        'id': e.id,
+        'price': e.discount,
+        'brand': e.name,
+        'category': e.name,
+        'variant': e.alias,
+        'quantity': 1
+			})
+		})
+	  dataLayer.push({
+	    'event': 'checkout',
+	    'ecommerce': {
+	      'checkout': {
+	        'actionField': {'step': 1, 'option': 'Visa'},
+	        'products': products
+	      }
+	    },
+	    'eventCallback': function() {
+	      return true
+	    }
+	  })
+	})
 });

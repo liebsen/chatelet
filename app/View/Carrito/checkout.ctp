@@ -1,3 +1,6 @@
+<script>
+const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETTY_PRINT);?>
+</script>
 <?php
 	echo $this->Html->css('checkout', array('inline' => false));
 	echo $this->Session->flash();

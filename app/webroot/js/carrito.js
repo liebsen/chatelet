@@ -24,13 +24,13 @@ $(document).ready(function() {
 				  'ecommerce': {
 				    'remove': {                               // 'remove' actionFieldObject measures.
 				      'products': [{                          //  removing a product to a shopping cart.
-				          'name': item.article,
-				          'id': item.id,
-				          'price': item.discount,
-				          'brand': item.name,
-				          // 'category': 'Apparel',
-				          'variant': item.alias,
-				          'quantity': 1
+			          'name': item.article,
+			          'id': item.id,
+			          'price': item.discount,
+			          'brand': item.name,
+			          // 'category': 'Apparel',
+			          'variant': item.alias,
+			          'quantity': 1
 				      }]
 				    }
 				  },

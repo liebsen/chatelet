@@ -1,4 +1,39 @@
 <?php echo $this->Html->css('clear',array('inline' => false)) ?>
+<?php 
+	$productos = [];
+	echo "<pre>";
+	foreach ($sale_data['products'] as $item) {
+		$description = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['description'])));
+		$parts = explode('-----',$description);
+		$codigo = '';
+		$producto = '';
+		$variant = '';
+
+		foreach ($parts as $part) {
+			preg_match('/codigo-(.*)/', $part, $matches, PREG_OFFSET_CAPTURE);
+			if ($matches[1]) {
+				$codigo = $matches[1][0];
+			}
+			preg_match('/producto-(.*)/', $part, $matches, PREG_OFFSET_CAPTURE);
+			if ($matches[1]) {
+				$producto = $matches[1][0];
+			}
+			preg_match('/color-(.*)/', $part, $matches, PREG_OFFSET_CAPTURE);
+			if ($matches[1]) {
+				$variant = $matches[1][0];
+			}
+		}
+
+		array_push($productos, (object) [
+      'name' => $codigo,     // Name or ID is required.
+      'id' => $item['product_id'],
+      'price' => $item['precio_vendido'],
+      'brand' => $producto,
+      'variant'=> $variant,
+      'quantity' => 1
+		]);
+	}
+?>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 text-center"><br /><br /><br />
@@ -12,49 +47,20 @@
 </div>
 <!-- Google Code for Venta Online Conversion Page -->
 <script type="text/javascript">
-/* <![CDATA[ */
-console.log('sale_data', <?php echo json_encode($sale_data); ?>);
-var google_conversion_id = 853044157;
-var google_conversion_language = "en";
-var google_conversion_format = "3";
-var google_conversion_color = "ffffff";
-var google_conversion_label = "swosCM7lunIQvdfhlgM";
-var google_remarketing_only = false;
-/* ]]> */
-
-setTimeout(function(){
-	console.log('save ecommerce:');
-	ga('ecommerce:addTransaction', {
-	  'id': '<?php echo $sale_data['sale_id'] ?>',                     // Transaction ID. Required.
-	  'affiliation': 'Chatelet',   // Affiliation or store name.
-	  'revenue': '<?php echo $sale_data['total'] ?>',               // Grand Total.
-	  'shipping': '1',                  // Shipping.
-	  'tax': '0'                     // Tax.
-	});
-
-	// items
-
-	<?php if (!empty($sale_data['items'])): $index=1000; foreach ($sale_data['items'] as $item): $index++;
-	$slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['title'])));
-	?>
-	ga('ecommerce:addItem', {
-	  'id': '<?=$index?>',                     // Transaction ID. Required.
-	  'name': '<?=$item["title"]?>',    // Product name. Required.
-	  'sku': '<?=$slug?>',                 // SKU/code.
-	  'category': 'Todos',         // Category or variation.
-	  'price': '<?=$item["unit_price"]?>',                 // Unit price.
-	  'quantity': '1'                   // Quantity.
-	});
-	<?php endforeach; endif; ?>
-
-	ga('ecommerce:send');
-
-},3000);
+	fbq('track', 'Purchase', {value: <?php echo $sale_data['total'] ?>, currency: 'ARS'});
+	dataLayer.push({
+	  'ecommerce': {
+	    'purchase': {
+	      'actionField': {
+	        'id': '<?php echo $sale_data['sale_id'] ?>',
+	        'affiliation': 'Online Store',
+	        'revenue': '<?php echo $sale_data['total'] ?>',
+	        'tax':'21',
+	        'shipping': '1'
+	      },
+	      'products': <?php echo json_encode($productos, JSON_PRETTY_PRINT);?>
+	    }
+	  }
+	})
 </script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-<div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/853044157/?label=swosCM7lunIQvdfhlgM&amp;guid=ON&amp;script=0"/>
-</div>
-</noscript>
+

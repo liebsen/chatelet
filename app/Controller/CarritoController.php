@@ -479,8 +479,8 @@ a la fecha de entrega para que la misma sea exitosa.
 			));
 			$this->set('sale_data',$this->Session->read('sale_data'));
 			$this->notify_user($this->Session->read('sale_data'), 'success');
-			$this->Session->delete('Carro');
-			$this->Session->delete('sale_data');
+			// $this->Session->delete('Carro');
+			// $this->Session->delete('sale_data');
 			error_log('success');
 		}else{
 			error_log('no sale data');
