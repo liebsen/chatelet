@@ -265,56 +265,15 @@ function checkStock(i){
         }
    });
 }
-window.product_list = new Array();
-$(function(){
-	/*
-	$('.add-no-stock').each(function(i,item){
-		product_list[i] = item;
-		setTimeout(function(){
-			checkStock(i);
-		},500*i)
-	})
-	*/
+window.product_list = new Array()
+fbq('trackCustom', 'ViewCategory', {id: '<?php echo $category_id;?>'})
+dataLayer.push({
+  'ecommerce': {
+    'detail': {
+      'actionField': {'list': '<?php echo $name_categories;?>'}
+    }
+  }
 })
-</script>
-<?php
 
-if (!empty($category_id) && (int)$category_id == 57){
-?>
-<script type="text/javascript">
-/* <![CDATA[ */
-var google_conversion_id = 853044157;
-var google_custom_params = window.google_tag_params;
-var google_remarketing_only = true;
-/* ]]> */
 </script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-<div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/853044157/?guid=ON&amp;script=0"/>
-</div>
-</noscript>
 
-<?php
-}
-
-if (!empty($category_id) && (int)$category_id == 14){
-?>
-<script type="text/javascript">
-/* <![CDATA[ */
-var google_conversion_id = 853044157;
-var google_custom_params = window.google_tag_params;
-var google_remarketing_only = true;
-/* ]]> */
-</script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-<div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/853044157/?guid=ON&amp;script=0"/>
-</div>
-</noscript>
-<?php
-}
-?>
