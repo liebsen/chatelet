@@ -175,7 +175,8 @@
 </div>
 
 <script>
-    /* @GoogleTags: detail */
+    /* @Analytics: detail */
+    fbq('track', 'ViewContent')
     dataLayer.push({
       'ecommerce': {
         'detail': {

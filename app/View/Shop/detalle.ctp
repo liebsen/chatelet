@@ -313,6 +313,7 @@ div.cloudzoom-black:nth-child(2) {
 
 <script>
     /* @Analytics: detail */
+    fbq('track', 'ViewContent')
     dataLayer.push({
       'ecommerce': {
         'detail': {
