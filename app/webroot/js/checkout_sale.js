@@ -38,6 +38,11 @@ $(function(){
         'quantity': 1
 			})
 		})
+		gtag('event', 'begin_checkout', {
+		  "items": products,
+		  "coupon": ""
+		})
+		/*
 	  dataLayer.push({
 	    'event': 'checkout',
 	    'ecommerce': {
@@ -49,6 +54,6 @@ $(function(){
 	    'eventCallback': function() {
 	      return true
 	    }
-	  })
+	  })*/
 	})
 });

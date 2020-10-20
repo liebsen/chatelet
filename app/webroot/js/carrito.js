@@ -17,28 +17,27 @@ $(document).ready(function() {
 		  $.get(target.attr('href'), res => {
 
 		  	let item = JSON.parse(res)
-				fbq('track', 'RemoveFromCart')
 				/* @Analytics: removeFromCart */
-				dataLayer.push({
-				  'event': 'removeFromCart',
-				  'ecommerce': {
-				    'remove': {                               // 'remove' actionFieldObject measures.
-				      'products': [{                          //  removing a product to a shopping cart.
-			          'name': item.article,
-			          'id': item.id,
-			          'price': item.discount,
-			          'brand': item.name,
-			          // 'category': 'Apparel',
-			          'variant': item.alias,
-			          'quantity': 1
-				      }]
+				fbq('track', 'RemoveFromCart')
+				gtag('event', 'remove_from_cart', {
+				  "items": [
+				    {
+				      "id": item.id,
+				      "name": item.article,
+				      // "list_name": "Results",
+				      "brand": item.name,
+				      // "category": "Apparel/T-Shirts",
+				      "variant": item.alias,
+				      "list_position": 1,
+				      "quantity": 1,
+				      "price": item.discount
 				    }
-				  },
-					'eventCallback': function() {
-       			// document.location = productObj.url
-       			location.href = '/carrito'
-     			}
-				});				
+				  ]
+				})
+
+				setTimeout(() => {
+					location.href = '/carrito'
+				}, 1000)
 			})
 		}
 	})

@@ -266,7 +266,11 @@ function checkStock(i){
    });
 }
 window.product_list = new Array()
-fbq('trackCustom', 'ViewCategory', {id: '<?php echo $category_id;?>'})
+fbq('trackCustom', 'ViewCategory', {
+  id: '<?php echo $category_id;?>',
+  name: '<?php echo $name_categories;?>'
+})
+
 dataLayer.push({
   'ecommerce': {
     'detail': {

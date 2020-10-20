@@ -90,10 +90,35 @@ $(document).ready(function() {
 		$.post(url, $.param(data))
 			.success(function(res) {
 				if (res.success) {
-
+					window.dataLayer = window.dataLayer || []
 					fbq('track', 'AddToCart')
-
 					/* @Analytics: addToCart */
+					gtag('event', 'add_to_cart', {
+					  "items": [
+					    {
+					      "id": data.id,
+					      "name": $('.product').text(),
+					      // "list_name": "Search Results",
+					      // "brand": "Google",
+					      // "category": "Apparel/T-Shirts",
+					      "variant": data.alias,
+					      "list_position": 1,
+					      "quantity": 1,
+					      "price": $('.price').text()
+					    }
+					  ]
+					})
+
+          $.growl.notice({
+            title: 'Producto agregado al carrito',
+            message: 'Puede seguir agregando más productos o ir a la sección Pagar'
+          });
+          var reload = function() {
+          	window.location.href = '/carrito'
+          };
+          setTimeout(reload, 3000);
+          $('.growl-close').click(reload);
+					/*
 					dataLayer.push({
 					  'event': 'addToCart',
 					  'ecommerce': {
@@ -109,19 +134,19 @@ $(document).ready(function() {
 					        'quantity': 1
 					       }]
 					    }
-					  }
-					});
-
-
-          $.growl.notice({
-            title: 'Producto agregado al carrito',
-            message: 'Puede seguir agregando más productos o ir a la sección Pagar'
-          });
-          var reload = function() {
-          	window.location.href = '/carrito'
-          };
-          setTimeout(reload, 3000);
-          $('.growl-close').click(reload);
+					  },
+						'eventCallback': function() {
+		          $.growl.notice({
+		            title: 'Producto agregado al carrito',
+		            message: 'Puede seguir agregando más productos o ir a la sección Pagar'
+		          });
+		          var reload = function() {
+		          	window.location.href = '/carrito'
+		          };
+		          setTimeout(reload, 3000);
+		          $('.growl-close').click(reload);
+	     			}
+					}) */
 				} else {
           $.growl.error({
             title: 'Ocurrio un error al agregar el producto al carrito',
