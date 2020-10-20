@@ -48,7 +48,16 @@
 <!-- Google Code for Venta Online Conversion Page -->
 <script type="text/javascript">
 	fbq('track', 'Purchase', {value: <?php echo $sale_data['total'] ?>, currency: 'ARS'});
-	dataLayer.push({
+	gtag('event', 'purchase', {
+	  "transaction_id": '<?php echo $sale_data['sale_id'] ?>',
+	  "affiliation": 'Online Store',
+	  "value": <?php echo $sale_data['total'] ?>,
+	  "currency": "ARS",
+	  "tax": 0,
+	  "shipping": 0,
+	  "items": <?php echo json_encode($productos, JSON_PRETTY_PRINT);?>
+	})
+	/* dataLayer.push({
 	  'ecommerce': {
 	    'purchase': {
 	      'actionField': {
@@ -61,6 +70,6 @@
 	      'products': <?php echo json_encode($productos, JSON_PRETTY_PRINT);?>
 	    }
 	  }
-	})
+	}) */
 </script>
 
