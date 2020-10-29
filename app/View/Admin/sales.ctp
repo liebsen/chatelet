@@ -119,11 +119,13 @@
                             else:
                                 if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
                                     <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
+                                    <span></span>
                                 <?php endif;
                             endif;
                         else:
                             if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
                                 <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
+                                <span></span>
                             <?php endif ?>
                         <?php 
                         endif;

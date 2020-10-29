@@ -4,10 +4,16 @@ $(document).ready(function() {
 });
 
 function getTicket(sale_id, parent) {
-  $(parent).text('Imprimiendo...')
-  $.get('/admin/getTicket2', res => {
-    let item = JSON.parse(res)
-    $(parent).text(item.message)
-    console.log(item)
+  $(parent).text('Espere...')
+  $.get('/admin/getTicket', res => {
+    $(parent).text('TICKET')
+    let data = JSON.parse(res)
+    let target = $(parent).next()
+    $(target).text(data.message)
+    $(target).addClass(`text-${data.status}`)
+    console.log(data)
+    if (data.url) {
+      window.open(data.url, 'OCA', `height=${window.screen.availHeight},width=${window.screen.availWidth}`)
+    }
   })
 }    

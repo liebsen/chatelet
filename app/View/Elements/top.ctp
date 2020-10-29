@@ -8,9 +8,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <title>Chatelet</title>
+    <title>Châtelet</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Châtelet" />
+    <meta property="og:description" content="Sé tu propio modelo de mujer" />
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://chatelet.com.ar/img/share.jpg" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
