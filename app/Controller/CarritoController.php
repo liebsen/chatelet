@@ -144,7 +144,7 @@ class CarritoController extends AppController
 		$user['telephone'] = @preg_replace("/[^0-9]/","",$user['telephone']);
 		$user['floor'] = (!empty($user['floor']))?$user['floor']:'';
 		$user['depto'] = (!empty($user['depto']))?$user['depto']:'';
-
+		$user['ticket_cambio'] = ($user['ticket_regalo']==='on'?1:0);
 		if(!$this->request->is('post') || empty($user['postal_address']) || empty($user['street_n']) || empty($user['street']) || empty($user['localidad']) || empty($user['provincia']) || empty($user['name']) || empty($user['surname']) || empty($user['email']) || empty($user['telephone'])){
 			$this->Session->setFlash(
                 'Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.',
@@ -175,6 +175,8 @@ class CarritoController extends AppController
 				'APPELLIDO'	=> $user['surname'],
 				'EMAIL'		=> $user['email'],
 				'TELEFONO'	=> $user['telephone'],
+				'DNI'	=> $user['dni'],
+				'TICKET'	=> $user['ticket_cambio'],
 				'PROV'		=> $user['provincia'],
 				'LOC'		=> $user['localidad'],
 				'CALLE'		=> $user['street'],
@@ -245,7 +247,7 @@ class CarritoController extends AppController
 		// error_log('Putting freeshipping until 12/10');
 		// free delivery
 		if ($freeShipping) { 
-     		error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
+     	error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
 			$price=0;
 		}else{
 			error_log('suming delivery to price: '.$total);
@@ -259,7 +261,6 @@ class CarritoController extends AppController
 			);
 		}
 
-
 		$this->Sale->save(array(
 			'id' => $sale_id,
 			'deliver_cost' => $price,
@@ -269,12 +270,12 @@ class CarritoController extends AppController
 		//Re - Registar Sale Products
 		$sale['Sale']['id'] = $sale_id;
 		if (!$this->SaleProduct->saveMany($product_ids)) {
-            $this->Session->setFlash(
-                'Error al procesar la compra, por favor intente nuevamente',
-                'default',
-                array('class' => 'hidden error')
-            );
-            $this->Sale->delete($sale_id,true);
+      $this->Session->setFlash(
+          'Error al procesar la compra, por favor intente nuevamente',
+          'default',
+          array('class' => 'hidden error')
+      );
+      $this->Sale->delete($sale_id,true);
 			return $this->redirect($this->referer());
 		}
 
@@ -284,6 +285,7 @@ class CarritoController extends AppController
 			'nroremito'	=> $sale_id,
 			'apellido'	=> $user['surname'],
 			'nombre'	=> $user['name'],
+			'dni'	=> $user['dni'],
 			'calle'		=> $user['street'],
 			'nro'		=> $user['street_n'],
 			'piso'		=> $user['floor'],
@@ -293,6 +295,7 @@ class CarritoController extends AppController
 			'provincia'	=> $user['provincia'],
 			'telefono'	=> $user['telephone'],
 			'email'		=> $user['email'],
+			'ticket_cambio'		=> $user['ticket_cambio'],
 			'package_id'=> $delivery_data['itemsData']['package']['id'],
 			'value' 	=> $delivery_data['itemsData']['price'],
 			'zip_codes' => $zipCodes

@@ -177,7 +177,21 @@
 <script>
     /* @Analytics: detail */
     fbq('track', 'ViewContent')
-    dataLayer.push({
+    gtag('event', 'view_item', {
+      "items": [
+        {
+          'id': '<?php echo $product['id'];?>',
+          'name': '<?php echo $product['article'];?>',
+          "list_name": "Product detail",
+          'brand': '<?php echo $product['name'];?>',
+          'category': '<?php echo $category['Category']['name'];?>',
+          "list_position": 1,
+          "quantity": 1,
+          'price': '<?php echo $product['discount'];?>'
+        }
+      ]
+    })
+    /* dataLayer.push({
       'ecommerce': {
         'detail': {
           'actionField': {'list': 'Producto'},    // 'detail' actions have an optional list property.
@@ -190,5 +204,5 @@
            }]
          }
        }
-    })
+    }) */
 </script>

@@ -1,4 +1,5 @@
-
+  
+<?php if($_SERVER['REMOTE_ADDR'] !== '127.0.0.1'):?>
   <!--Start of Zopim Live Chat Script-->
   <script type="text/javascript">
   window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
@@ -8,6 +9,7 @@
   type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
   </script>
   <!--End of Zopim Live Chat Script-->
+<?php endif;?>
 
   	<?php
       echo $this->Html->script('chatelet', array('inline' => false));

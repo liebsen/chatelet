@@ -80,7 +80,12 @@
 				</tbody>
 			</table>
 			<div class="price">Subtotal: <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
+			<div class="cost_total hidden">
+				<hr>
+				<div class="price text-right">Total: $<span id="cost_total"></span></div>
+			</div>
 			<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
+			<input type="checkbox" id="ticket_cambio" value="1" /> <label for="ticket_cambio">Es para regalo</label>
 			<?php 
 			echo $this->element('oca', array('freeShipping' => $freeShipping));
 			

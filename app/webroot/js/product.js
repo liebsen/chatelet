@@ -87,6 +87,8 @@ $(document).ready(function() {
 			}
 		}
 
+		$(e.target).text('Agregando...')
+
 		$.post(url, $.param(data))
 			.success(function(res) {
 				if (res.success) {

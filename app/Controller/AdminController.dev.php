@@ -1,4 +1,4 @@
-<?php
+<?php 
 App::uses('CakeTime', 'Utility');
 require_once(APP . 'Vendor' . DS . 'oca.php');
 class AdminController extends AppController {
@@ -10,6 +10,7 @@ class AdminController extends AppController {
     	$this->Auth->deny();
     	$this->Auth->allow('login','test','update_products');
     	// Template variables
+
 		$template = array(
 		    'name'          => 'Chatelet',
 		    'version'       => '1.5',
@@ -32,8 +33,8 @@ class AdminController extends AppController {
 		    //                   'army', 'autumn', 'night', 'diamond', 'cherry', 'sun'
 		    //                   'asphalt'
 		    'theme'         => '',
-            'active_page'   => $this->request->params['action'],
-            'active_sub'   => $this->request->params['action']
+        'active_page'   => $this->request->params['action'],
+        'active_sub'   => $this->request->params['action']
 		);
 
 		$this->set('template', $template);
@@ -47,6 +48,7 @@ class AdminController extends AppController {
 		$this->Auth->logoutRedirect = array('controller' => 'admin', 'action' => 'login');
 		$this->Auth->unauthorizedRedirect = array('controller' => 'admin', 'action' => 'login');
 		$this->layout = 'admin';
+
 	}
 
 	public function test(){
@@ -250,17 +252,17 @@ class AdminController extends AppController {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$filters = array(
-            "range" => "date_created",
-            "begin_date" => "2020-09-01T00:00:00Z",
-            "end_date" => "NOW",
-            "limit" => 1000,
-            "status" => "approved",
-            "sort" => "id",
-            "criteria" => "desc",
-            "operation_type" => "regular_payment"
-        );
-        $searchResult = $mp->search_payment($filters,0,1000);
-        return (!empty($searchResult['response']['results']))?$searchResult['response']['results']:array();
+        "range" => "date_created",
+        "begin_date" => "2020-10-28T00:00:00Z",
+        "end_date" => "NOW",
+        "limit" => 1000,
+        "status" => "approved",
+        "sort" => "id",
+        "criteria" => "desc",
+        "operation_type" => "regular_payment"
+    );
+    $searchResult = $mp->search_payment($filters,0,1000);
+    return (!empty($searchResult['response']['results']))?$searchResult['response']['results']:array();
 	}
 
 	public function sales_export_mails(){
@@ -268,9 +270,6 @@ class AdminController extends AppController {
 		$list = [];
     $arraux = [];
 		$sales = $this->getMPSales();
-
-
-
 				foreach ($sales as &$sale) {
 					$details 		= explode('-|-', $sale['collection']['reason']);
 					$sale_number 	= (!empty($details[0]))?$details[0]:'PEDIDO : "00"';
@@ -335,14 +334,17 @@ class AdminController extends AppController {
 			'name' => 'Ventas',
 			'icon' => 'gi gi-display'
 			);
+
 		$this->set('h1', $h1);
 		$this->loadModel('Home');
+
 		$this->loadModel('Setting');
 
 		//Get and merge local-remote data.
 		$sales = $this->getMPSales();
+
 		if (!empty($this->request->query['test'])){
-		        var_dump($sales);die;
+		  var_dump($sales);die;
 		}
 
 		foreach ($sales as &$sale) {
@@ -354,6 +356,7 @@ class AdminController extends AppController {
 
 			//Info Mergeapp/webroot/css/custom.css
 			$sale['collection']['deliver_cost'] = 0;
+
 			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
 			if(!empty($local_desc)){
 				$sale['collection']['sale_products'] = Hash::extract($local_desc, '{n}.SaleProduct.description');
@@ -370,8 +373,10 @@ class AdminController extends AppController {
 				$sale['local_sale'] = $local_sale['Sale'];
 			}
 		}
-		$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
-		//pr($sales);die;
+		if (count($sales)) {
+			$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
+		}
+
 		$this->set('shipping_price_min',$shipping_price = $this->Setting->findById('shipping_price_min'));
 		$this->set('sales',$sales);
 	}

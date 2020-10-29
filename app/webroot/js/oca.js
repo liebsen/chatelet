@@ -30,6 +30,9 @@ $(function(){
 		});
 	}
 
+	formatNumber = function (num) {
+	  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+	}
 
 	var timeout = null;
 	$('#cp').change(function(event){
@@ -51,7 +54,11 @@ $(function(){
 					$('#cost').text( 0 );
 					$('#free_delivery').text('Envio gratis!');
 				}else{
-					$('#cost').text( parseInt(json.price) );
+					let cost = parseInt(json.price)
+					let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost)
+					$('#cost_total').text( total )
+					$('.cost_total').removeClass('hidden')
+					$('#cost').text( cost );
 				}
 				console.log(parseFloat($('#cost').text()));
 				$('#cp').removeClass('wrong');
@@ -83,7 +90,11 @@ $(function(){
 			$('#cp').addClass('wrong');
 			return false;
 		}else{
-			window.location.href = $(this).attr('link-to')||$(this).prop('link-to');
+			let location = $(this).attr('link-to')||$(this).prop('link-to')
+			if ($('#ticket_cambio').is(':checked')) {
+				location+= '?ticket=1'
+			}
+			window.location.href = location;
 		}
 
 	});

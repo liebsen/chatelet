@@ -31,6 +31,10 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 				<input type="text" class="form-control" id="apellido" name="surname" value="<?= (!empty($userData['User']['surname']))?$userData['User']['surname']:''; ?>" required>
 			</div>
 			<div class="form-group">
+				<label for="dni">DNI</label>
+				<input type="number" class="form-control" id="dni" name="dni" value="<?= (!empty($userData['User']['dni']))?$userData['User']['dni']:''; ?>" required>
+			</div>
+			<div class="form-group">
 				<label for="email">Email</label>
 				<input type="email" class="form-control" id="email" name="email" value="<?= (!empty($userData['User']['email']))?$userData['User']['email']:''; ?>" required>
 			</div>
@@ -72,6 +76,10 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 					$cp = $this->Session->read('cp');
 					echo '<input readonly="readonly" type="text" class="form-control" id="codigo_postal" name="postal_address" value="'. $cp .'" required>';
 				?>
+			</div>
+			<div class="form-group">
+				<input type="checkbox" id="ticket_regalo" name="ticket_regalo"<?php echo $_GET['ticket'] ? ' checked' : ''; ?>>
+				<label for="ticket_regalo">Es para regalo</label>
 			</div>
 			<div class="form-group hide">
 				<label for="pais">Envío</label>

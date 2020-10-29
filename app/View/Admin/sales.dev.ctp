@@ -2,15 +2,34 @@
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 <?php echo $this->Html->script('admin-sales', array('inline' => false)); ?>
 <div class="row">
-    <div class="col-xs-12">
-        <a href="/admin/sales_export_mails" target="_blank">
-            <button class="btn btn-success" type="button" style="margin-top: -2px;">Exportar Emails</button>
-        </a>
-    </div>
+	<div class="col-xs-12">
+		<a href="/admin/sales_export_mails" target="_blank">
+		<button class="btn btn-success" type="button" style="margin-top: -2px;">Exportar Emails</button>
+        <select onchange="set_sales_date_range('begin_date', this)">
+            <?php 
+            for ($i = 0; $i < 12; $i++) {
+                $date = strtotime($date . ' - ' . $i . ' month');
+                ?><option value="<?php echo strtotime($date)?>"><?php echo $date;?></option><?php 
+            } ?>
+        </select>
+        <select onchange="set_sales_date_range('end_date', this)">
+            <?php 
+            for ($i = 0; $i < 12; ) {
+                $date = strtotime($date . ' - ' . $i . ' month');
+                ?><option value="<?php echo strtotime($date)?>"><?php echo $date;?></option><?php 
+            } ?>
+        </select>
+	</a>
+	</div>
 </div>
+
+<?php 
+echo "end";
+exit;
+?>
 <div class="row">
-    <div class="col-xs-12 table-responsive">
-        <table id="example-datatables2" class="table table-striped table-bordered table-hover">
+	<div class="col-xs-12 table-responsive">
+		<table id="example-datatables2" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th class="text-center">Fecha</th>
@@ -21,34 +40,34 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($sales as $sale):
+            	<?php foreach ($sales as $sale):
 
                 $personalInfoShowed=false;
                 ?>
-                <tr>
-                    <td class="col-xs-1 text-center">
-                        <?php echo date('d/m/Y',strtotime($sale['collection']['date_approved'])) ?><br />
-                        <?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?><br />
-                    </td>
-                    <td class="col-xs-3">
-                        <div class="row">
-                            <div class="col-xs-2"></div>
-                            <div class="col-xs-10">
-                                <dl class="list">
-                                    <dt>Nombre</dt>
-                                    <dd><?php echo $sale['collection']['payer']['first_name'] ?>&nbsp;</dd>
-                                    <dt>Apellido</dt>
-                                    <dd><?php echo $sale['collection']['payer']['last_name'] ?>&nbsp;</dd>
-                                    <dt>Email</dt>
-                                    <dd><?php echo $sale['collection']['payer']['email'] ?>&nbsp;</dd>
-                                    <dt>Telefono</dt>
-                                    <dd><?php echo $sale['collection']['payer']['phone']['number'] ?>&nbsp;</dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="col-xs-6">
-                        <?php
+        		<tr>
+        			<td class="col-xs-1 text-center">
+        				<?php echo date('d/m/Y',strtotime($sale['collection']['date_approved'])) ?><br />
+        				<?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?><br />
+        			</td>
+        			<td class="col-xs-3">
+        				<div class="row">
+	                		<div class="col-xs-2"></div>
+	                		<div class="col-xs-10">
+		        				<dl class="list">
+			                        <dt>Nombre</dt>
+			                        <dd><?php echo $sale['collection']['payer']['first_name'] ?>&nbsp;</dd>
+			                        <dt>Apellido</dt>
+			                        <dd><?php echo $sale['collection']['payer']['last_name'] ?>&nbsp;</dd>
+			                        <dt>Email</dt>
+			                        <dd><?php echo $sale['collection']['payer']['email'] ?>&nbsp;</dd>
+			                        <dt>Telefono</dt>
+			                        <dd><?php echo $sale['collection']['payer']['phone']['number'] ?>&nbsp;</dd>
+			                    </dl>
+	                		</div>
+	                	</div>
+        			</td>
+        			<td class="col-xs-6">
+        				<?php
                          foreach ($sale['collection']['sale_products'] as $reason): ?>
                             <div class="row">
                             <?php $column = 4;  ?>
@@ -97,25 +116,25 @@
                                         ?>
                                             <?php $extra = explode(' : ', $detail) ?>
                                             <?php if (!empty($extra[1])): ?>
-                                            <?php if (!in_array(trim(strtoupper($extra[0])), array('PEDIDO','CODIGO','PRODUCTO','TALLE','COLOR','PRECIO_DESCUENTO','PRECIO_LISTA'))) continue; ?>
-                                                <td><?php echo $extra[1] ?></td>
-                                            <?php endif ?>
-                                        <?php endforeach ?>
+				        					<?php if (!in_array(trim(strtoupper($extra[0])), array('PEDIDO','CODIGO','PRODUCTO','TALLE','COLOR','PRECIO_DESCUENTO','PRECIO_LISTA'))) continue; ?>
+				        						<td><?php echo $extra[1] ?></td>
+				        					<?php endif ?>
+				        				<?php endforeach ?>
                                         </tr>
-                        <?php endforeach ?>
-                         </table>
+        				<?php endforeach ?>
+        			     </table>
                      </td>
-                    <td class="col-xs-1 text-center"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
+        			<td class="col-xs-1 text-center"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
                         <?php 
                         $zips = @$sale['local_sale']['zip_codes'];
                         if (@$sale['local_sale']['shipping_type'] == 'no_label' || @$sale['local_sale']['shipping_type'] == 'zip_code' ):
                             //check zip code:
                             
                             $zips_arr = explode(',', $zips); 
-//          echo @$sale['local_sale']['cp'].' / '.json_encode($zips_arr,true). ' / '.$zips;
+//			echo @$sale['local_sale']['cp'].' / '.json_encode($zips_arr,true). ' / '.$zips;
                             if ( (int)@$sale['collection']['transaction_amount'] > $shipping_price_min['Setting']['value'] && in_array(@(int)$sale['local_sale']['cp'], $zips_arr)): // || empty($sale['collection']['deliver_cost'])):
                                 // sin etiqueta  
-            echo "(Sin Etiqueta)";
+			echo "(Sin Etiqueta)";
                             else:
                                 if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
                                     <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
@@ -127,20 +146,21 @@
                             <?php endif ?>
                         <?php 
                         endif;
-                         
-                        $defaultCost = 54;
-                        if (date('Ymd',strtotime($sale['collection']['date_approved'])) > '20161108')
-                            $defaultCost=0;
+        				 
+        				$defaultCost = 54;
+        				if (date('Ymd',strtotime($sale['collection']['date_approved'])) > '20161108')
+        					$defaultCost=0;
 echo " $ ";
-                        echo (!empty($sale['collection']['deliver_cost']))?$sale['collection']['deliver_cost']:$defaultCost ?> <br />
-                        (<?php echo count($sale['collection']['sale_products']) ?> item)
-                    </td>
-                    <td class="col-xs-1 text-center">
-                        $<?php echo $sale['collection']['transaction_amount'] ?>
-                    </td>
-                </tr>
-                <?php endforeach ?>
+        				echo (!empty($sale['collection']['deliver_cost']))?$sale['collection']['deliver_cost']:$defaultCost ?> <br />
+                        <span class="btn btn-info" onclick="getTicket('<?php echo $sale['collection']['id'];?>', this)">TICKET</span> <br />
+        				(<?php echo count($sale['collection']['sale_products']) ?> item)
+        			</td>
+        			<td class="col-xs-1 text-center">
+        				$<?php echo $sale['collection']['transaction_amount'] ?>
+        			</td>
+        		</tr>
+            	<?php endforeach ?>
             </tbody>
         </table>
-    </div>
+	</div>
 </div>
