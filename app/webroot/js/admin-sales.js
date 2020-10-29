@@ -8,10 +8,9 @@ function getTicket(sale_id, parent) {
   $.get('/admin/getTicket', res => {
     $(parent).text('TICKET')
     let data = JSON.parse(res)
-    let target = $(parent).next()
+    let target = $(parent).next().next()
     $(target).text(data.message)
     $(target).addClass(`text-${data.status}`)
-    console.log(data)
     if (data.url) {
       window.open(data.url, 'OCA', `height=${window.screen.availHeight},width=${window.screen.availWidth}`)
     }
