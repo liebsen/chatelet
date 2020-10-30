@@ -169,35 +169,39 @@ class AdminController extends AppController {
 		$this->Sale->recursive = -1;
 		$send_email = false;
 		$sale = $this->Sale->findById($sale_id);
-		if(empty($sale) || empty($sale['Sale']['package_id']) || empty($sale['Sale']['value']) || empty($sale['Sale']['email']) || empty($sale['Sale']['telefono']) || empty($sale['Sale']['provincia']) || empty($sale['Sale']['localidad']) || empty($sale['Sale']['cp']) || empty($sale['Sale']['nro']) || empty($sale['Sale']['calle']) || empty($sale['Sale']['nombre']) || empty($sale['Sale']['apellido']))
+		if (empty($sale) || empty($sale['Sale']['package_id']) || empty($sale['Sale']['value']) || empty($sale['Sale']['email']) || empty($sale['Sale']['telefono']) || empty($sale['Sale']['provincia']) || empty($sale['Sale']['localidad']) || empty($sale['Sale']['cp']) || empty($sale['Sale']['nro']) || empty($sale['Sale']['calle']) || empty($sale['Sale']['nombre']) || empty($sale['Sale']['apellido'])) {
 			// die('Venta no encontrada o incompleta.');
 			$data['message'] = 'Venta incompleta';
-		
-		if (empty($sale['Sale']['def_mail_sent'])){
-			$send_email = true;
-		}
-		$sale = $this->setOrdenRetiro($sale);
-		if(!empty($sale['def_orden_retiro'])){
-			if (!empty($sale['def_orden_tracking']) && $send_email) {
-				$user = $this->User->findById($sale['user_id']);
-				$emailTo = @$user['email'];
-				//$emailTo = 'francisco.marasco@gmail.com';
-
-				$message = '<p>Hola <strong>'.ucfirst(@$user['name']).'</strong>, gracias por tu compra! 
-				</p><p>Puedes seguir tu envío a través del sitio de OCA: https://www.oca.com.ar/envios/paquetes/<br />Ingresando el número de envio: '.@$sale['def_orden_tracking'].'
-				</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
-
-				error_log('[email] notifying the tracking for user '.$emailTo);
-				$data['status'] = 'success';
-				$data['message'] = 'Notificación enviada';
-				$this->sendMail($message,'Compra Realizada en Chatelet',$emailTo);
-			}else{
-				error_log('[email] ignored bc was sent before');
-				$data['status'] = 'success';
-				$data['message'] = 'Ya enviado previamente';
+		} else {
+			
+			if (empty($sale['Sale']['def_mail_sent'])) {
+				$send_email = true;
 			}
-			$data['url'] = "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
-			// $this->redirect( "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1" );
+
+			$sale = $this->setOrdenRetiro($sale);
+
+			if (!empty($sale['def_orden_retiro'])) {
+				if (!empty($sale['def_orden_tracking']) && $send_email) {
+					$user = $this->User->findById($sale['user_id']);
+					$emailTo = @$user['email'];
+					//$emailTo = 'francisco.marasco@gmail.com';
+
+					$message = '<p>Hola <strong>'.ucfirst(@$user['name']).'</strong>, gracias por tu compra! 
+					</p><p>Puedes seguir tu envío a través del sitio de OCA: https://www.oca.com.ar/envios/paquetes/<br />Ingresando el número de envio: '.@$sale['def_orden_tracking'].'
+					</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+
+					error_log('[email] notifying the tracking for user '.$emailTo);
+					$data['status'] = 'success';
+					$data['message'] = 'Notificación enviada';
+					$this->sendMail($message,'Compra Realizada en Chatelet',$emailTo);
+				} else {
+					error_log('[email] ignored bc was sent before');
+					$data['status'] = 'success';
+					$data['message'] = 'Ya enviado previamente';
+				}
+				$data['url'] = "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
+				// $this->redirect( "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1" );
+			}
 		}
 		echo json_encode($data);
 	}
