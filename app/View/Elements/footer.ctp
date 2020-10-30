@@ -61,7 +61,7 @@
                     </a>-->
                 </div>
 
-                <p class="text-center">Chatelet <?php echo date('Y'); ?>. Buenos Aires, Argentina. Todos los derechos reservados</p>
+                <p class="text-center">Châtelet <?php echo date('Y'); ?>. Buenos Aires, Argentina. Todos los derechos reservados</p>
             </div>
 
             <div class="bottom">

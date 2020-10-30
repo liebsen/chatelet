@@ -56,9 +56,10 @@ $(function(){
 				}else{
 					let cost = parseInt(json.price)
 					let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost)
-					$('#cost_total').text( total )
-					$('.cost_total').removeClass('hidden')
+
 					$('#cost').text( cost );
+					$('#cost_total').text( total )
+					$('.cost_total').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
 				}
 				console.log(parseFloat($('#cost').text()));
 				$('#cp').removeClass('wrong');

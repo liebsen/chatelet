@@ -11,10 +11,10 @@ class AdminController extends AppController {
     	$this->Auth->allow('login','test','update_products');
     	// Template variables
 		$template = array(
-		    'name'          => 'Chatelet',
+		    'name'          => 'Châtelet',
 		    'version'       => '1.5',
 		    'author'        => 'Infinixsoft <desarrollo@infinixsoft.com>',
-		    'title'         => 'Admin panel - Chatelet',
+		    'title'         => 'Admin panel - Châtelet',
 		    'description'   => '',
 		    // 'fixed-top'         for a top fixed header
 		    // 'fixed-bottom'      for a bottom fixed header
@@ -154,7 +154,6 @@ class AdminController extends AppController {
 		$oca_result = $oca->ingresoORNuevo($sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
 		$sale['def_orden_retiro'] = @$oca_result['retiro'];
 		$sale['def_orden_tracking'] = @$oca_result['tracking'];
-		$sale['def_mail_sent'] = 1;
 		$t = @$this->Sale->save($sale);
 		return $sale;
 	}
@@ -191,9 +190,12 @@ class AdminController extends AppController {
 					</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
 
 					error_log('[email] notifying the tracking for user '.$emailTo);
+
 					$data['status'] = 'success';
 					$data['message'] = 'Notificación enviada';
-					$this->sendMail($message,'Compra Realizada en Chatelet',$emailTo);
+
+					$this->sendMail($message,'Compra Realizada en Châtelet',$emailTo);
+					$this->Sale->save(['def_mail_sent' => 1]);
 				} else {
 					error_log('[email] ignored bc was sent before');
 					$data['status'] = 'success';
@@ -230,7 +232,7 @@ class AdminController extends AppController {
 				</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
 
 				error_log('[email] notifying the tracking for user '.$emailTo);
-				$this->sendMail($message,'Compra Realizada en Chatelet',$emailTo);
+				$this->sendMail($message,'Compra Realizada en Châtelet',$emailTo);
 			}else{
 				error_log('[email] ignored bc was sent before');
 			}

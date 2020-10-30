@@ -18,7 +18,7 @@
 		                    <br/><br/>
 		                    <?php echo $this->html->image(Router::url('/',true)."images/logo.jpg"); ?>
 		                    <br/><br/><br/>
-		                    &copy; <?php echo date('Y',time()); ?> Copyright Chatelet;
+		                    &copy; <?php echo date('Y',time()); ?> Copyright Châtelet;
 		                    <p>All rights reserved.</p>
                             <br/><br/><br/>
 		                </td>

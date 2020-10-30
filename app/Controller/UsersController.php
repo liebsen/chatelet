@@ -26,7 +26,7 @@ class UsersController extends AppController {
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 $this->Session->setFlash(
-                    'Bienvenido a Chatelet', 
+                    'Bienvenido a Châtelet', 
                     'default', 
                     array('class' => 'hidden notice')
                 );
@@ -59,7 +59,7 @@ class UsersController extends AppController {
         if (!empty($saved)) {
             $this->Auth->login();     
             $this->Session->setFlash(
-                    'Bienvenido a Chatelet', 
+                    'Bienvenido a Châtelet', 
                     'default', 
                     array('class' => 'hidden notice')
                 );
@@ -92,7 +92,7 @@ class UsersController extends AppController {
                                         'name' =>  $user_data['User']['name'],
                                         'password' => $pass1);
                      
-                    $this->sendEmail($email_data,'Recuperar contraseña Chatelet', 'confirm_email');
+                    $this->sendEmail($email_data,'Recuperar contraseña Châtelet', 'confirm_email');
 
                     $this->Session->setFlash(
                         'BIEN! Verifique su casilla de correo' , 

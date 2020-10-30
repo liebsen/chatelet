@@ -445,11 +445,11 @@ a la fecha de entrega para que la misma sea exitosa.
 
 		}
 		error_log('[email] notifying user '.$data['user']['email']);
-		$this->sendMail($message,'Compra Realizada en Chatelet',$data['user']['email']);
+		$this->sendMail($message,'Compra Realizada en Châtelet',$data['user']['email']);
 	}
 
 	public function test() {
-		$this->sendMail('hello','Test via en Chatelet','francisco.marasco@gmail.com');
+		$this->sendMail('hello','Test via en Châtelet','francisco.marasco@gmail.com');
 		die('ok');
 
 	}

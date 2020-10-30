@@ -115,20 +115,20 @@
 //          echo @$sale['local_sale']['cp'].' / '.json_encode($zips_arr,true). ' / '.$zips;
                             if ( (int)@$sale['collection']['transaction_amount'] > $shipping_price_min['Setting']['value'] && in_array(@(int)$sale['local_sale']['cp'], $zips_arr)): // || empty($sale['collection']['deliver_cost'])):
                                 // sin etiqueta  
-            echo "(Sin Etiqueta)";
+                                echo "(Sin Etiqueta)";
                             else:
-                                echo '<span class="text-info">' . ($sale['local_sale']['def_mail_sent'] ? '' : 'No ') . 'Enviada</span>';
+                                echo '<p class="text-info">' . ($sale['local_sale']['def_mail_sent'] ? '' : 'No ') . 'Enviada 1</p>';
                                 if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
 
                                     <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
-                                    <div></div>
+                                    <p></p>
                                 <?php endif;
                             endif;
                         else:
-                            echo '<span class="text-info">' . ($sale['local_sale']['def_mail_sent'] ? '' : 'No ') . 'Enviada</span>';
+                            echo '<p class="text-info">' . ($sale['local_sale']['def_mail_sent'] ? '' : 'No ') . 'Enviada 2</p>';
                             if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
                                 <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
-                                <div></div>
+                                <p></p>
                             <?php endif ?>
                         <?php 
                         endif;
@@ -136,7 +136,7 @@
                         $defaultCost = 54;
                         if (date('Ymd',strtotime($sale['collection']['date_approved'])) > '20161108')
                             $defaultCost=0;
-echo " $ ";
+                        echo " $ ";
                         echo (!empty($sale['collection']['deliver_cost']))?$sale['collection']['deliver_cost']:$defaultCost ?> <br />
                         (<?php echo count($sale['collection']['sale_products']) ?> item)
                     </td>

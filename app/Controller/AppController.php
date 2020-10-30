@@ -112,7 +112,7 @@ class AppController extends Controller
 
         $Email = new CakeEmail();
         $Email->from(array(
-            'info@chatelet.com' => 'Chatelet'
+            'info@chatelet.com' => 'Châtelet'
         ));
         //pr($data);die;
         $Email->to($data['receiver_email']);
@@ -131,7 +131,7 @@ class AppController extends Controller
     {
         $Email = new CakeEmail();
         $Email->from(array(
-            'info@chatelet.com' => 'Chatelet'
+            'info@chatelet.com' => 'Châtelet'
         )); 
         $Email->to($to);
         $Email->subject($subject);
