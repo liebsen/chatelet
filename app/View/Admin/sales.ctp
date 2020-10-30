@@ -117,12 +117,15 @@
                                 // sin etiqueta  
             echo "(Sin Etiqueta)";
                             else:
+                                echo '<span class="text-info">' . ($sale['local_sale']['def_mail_sent'] ? '' : 'No ') . 'Enviada</span>';
                                 if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
+
                                     <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
                                     <div></div>
                                 <?php endif;
                             endif;
                         else:
+                            echo '<span class="text-info">' . ($sale['local_sale']['def_mail_sent'] ? '' : 'No ') . 'Enviada</span>';
                             if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
                                 <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
                                 <div></div>

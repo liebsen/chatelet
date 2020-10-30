@@ -161,7 +161,10 @@ class AdminController extends AppController {
 
 	public function getTicket($sale_id = null){
 		$this->autoRender = false;
-		$data = ['status' => 'danger', 'message' => 'Error'];
+		$data = [
+			'status' => 'danger',
+			'message' => 'Error'
+		];
 		$this->loadModel('User');
 		$this->Sale->recursive = -1;
 		$send_email = false;
@@ -187,7 +190,7 @@ class AdminController extends AppController {
 				error_log('[email] notifying the tracking for user '.$emailTo);
 				$data['status'] = 'success';
 				$data['message'] = 'Notificación enviada';
-				// $this->sendMail($message,'Compra Realizada en Chatelet',$emailTo);
+				$this->sendMail($message,'Compra Realizada en Chatelet',$emailTo);
 			}else{
 				error_log('[email] ignored bc was sent before');
 				$data['status'] = 'success';
@@ -195,8 +198,6 @@ class AdminController extends AppController {
 			}
 			$data['url'] = "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
 			// $this->redirect( "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1" );
-		}else{
-			// die('Error: no se pudo generar la etiqueta.');
 		}
 		echo json_encode($data);
 	}
