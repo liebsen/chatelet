@@ -183,11 +183,11 @@ class AdminController extends AppController {
 
 			if (!empty($sale['def_orden_retiro'])) {
 				if (!empty($sale['def_orden_tracking']) && $send_email) {
-					$user = $this->User->findById($sale['user_id']);
-					$emailTo = @$user['email'];
+					// $user = $this->User->findById($sale['user_id']);
+					$emailTo = @$sale['email'];
 					//$emailTo = 'francisco.marasco@gmail.com';
 
-					$message = '<p>Hola <strong>'.ucfirst(@$user['name']).'</strong>, gracias por tu compra! 
+					$message = '<p>Hola <strong>'.ucfirst(@$sale['nombre']).'</strong>, gracias por tu compra! 
 					</p><p>Puedes seguir tu envío a través del sitio de OCA: https://www.oca.com.ar/envios/paquetes/<br />Ingresando el número de envio: '.@$sale['def_orden_tracking'].'
 					</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
 
@@ -196,7 +196,14 @@ class AdminController extends AppController {
 					$data['status'] = 'success';
 					$data['message'] = 'Notificación enviada';
 
-					$this->sendMail($message,'Compra Realizada en Châtelet',$emailTo);
+					/*
+					$data['sale_id'] = $sale_id;
+					$data['user_id'] = $sale['user_id'];
+					$data['user'] = json_encode($user);
+					$data['sale'] = json_encode($sale);
+					*/
+
+					$this->sendMail($message,'Compra Realizada en Châtelet', $emailTo);
 					$this->Sale->save(['def_mail_sent' => 1]);
 				} else {
 					error_log('[email] ignored bc was sent before');
