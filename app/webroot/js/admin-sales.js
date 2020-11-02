@@ -4,15 +4,15 @@ $(document).ready(function() {
 });
 
 function getTicket(sale_id, parent) {
-  $(parent).text('Espere...')
-  $.get('/admin/getTicket', res => {
+  $(parent).text('Enviando...')
+  $.get('/admin/getTicket/' + sale_id, res => {
     $(parent).text('TICKET')
     let data = JSON.parse(res)
     let target = $(parent).next().next()
     $(target).text(data.message)
     $(target).addClass(`text-${data.status}`)
     if (data.url) {
-      window.open(data.url, 'OCA', `height=${window.screen.availHeight},width=${window.screen.availWidth}`)
+      window.open(data.url, 'OCA' + sale_id, `height=460,width=315`)
     }
   })
 }    

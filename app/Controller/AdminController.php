@@ -65,7 +65,7 @@ class AdminController extends AppController {
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$filters = array(
             "range" => "date_created",
-            "begin_date" => "2019-10-21T00:00:00Z",
+            "begin_date" => "2020-10-31T00:00:00Z",
             "end_date" => "NOW",
 			"limit" => 500, 
 			"status" => "approved",
@@ -74,6 +74,7 @@ class AdminController extends AppController {
             "operation_type" => "regular_payment"
         );
 		$searchResult = $mp->search_payment($filters,0,1000);
+		echo '<pre>';
 		print_r($searchResult);die;
 		
 	}
@@ -168,6 +169,7 @@ class AdminController extends AppController {
 		$this->Sale->recursive = -1;
 		$send_email = false;
 		$sale = $this->Sale->findById($sale_id);
+
 		if (empty($sale) || empty($sale['Sale']['package_id']) || empty($sale['Sale']['value']) || empty($sale['Sale']['email']) || empty($sale['Sale']['telefono']) || empty($sale['Sale']['provincia']) || empty($sale['Sale']['localidad']) || empty($sale['Sale']['cp']) || empty($sale['Sale']['nro']) || empty($sale['Sale']['calle']) || empty($sale['Sale']['nombre']) || empty($sale['Sale']['apellido'])) {
 			// die('Venta no encontrada o incompleta.');
 			$data['message'] = 'Venta incompleta';
@@ -206,6 +208,7 @@ class AdminController extends AppController {
 			}
 		}
 		echo json_encode($data);
+		exit;
 	}
 
 	public function getTicket2($sale_id = null){
