@@ -119,14 +119,14 @@
                             else:
                                 if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
                                     <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
-                                    <p><?php echo ($sale['local_sale']['def_mail_sent'] ? '' : 'No ') . 'Enviada';?></p>
+                                    <?php echo ($sale['local_sale']['def_mail_sent'] ? '<p class="text-success">Notificación enviada</p>' : '<p class="text-danger">Notificación no enviada</p>');?>
                                 <?php endif;
                             endif;
                         else:
                             
                             if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
                                 <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
-                                <p><?php echo ($sale['local_sale']['def_mail_sent'] ? '' : 'No ') . 'Enviada';?></p>
+                                <?php echo ($sale['local_sale']['def_mail_sent'] ? '<p class="text-success">Notificación enviada</p>' : '<p class="text-danger">Notificación no enviada</p>');?>
                             <?php endif ?>
                         <?php 
                         endif;
