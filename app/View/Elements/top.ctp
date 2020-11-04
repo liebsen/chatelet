@@ -14,7 +14,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Châtelet" />
     <meta property="og:description" content="Sé tu propio modelo de mujer" />
-    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://chatelet.com.ar/images/share-image.jpg" />
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://chatelet.com.ar/images/share-041120.jpg" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
