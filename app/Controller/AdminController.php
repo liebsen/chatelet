@@ -165,6 +165,7 @@ class AdminController extends AppController {
 			'status' => 'danger',
 			'message' => 'Error'
 		];
+		error_log('[ticket] generating for sale ' . $sale_id);
 		$this->loadModel('User');
 		$this->Sale->recursive = -1;
 		$send_email = false;
@@ -174,7 +175,6 @@ class AdminController extends AppController {
 			// die('Venta no encontrada o incompleta.');
 			$data['message'] = 'Venta incompleta';
 		} else {
-			
 			if (empty($sale['Sale']['def_mail_sent'])) {
 				$send_email = true;
 			}
@@ -195,14 +195,6 @@ class AdminController extends AppController {
 
 					$data['status'] = 'success';
 					$data['message'] = 'Notificación enviada';
-
-					/*
-					$data['sale_id'] = $sale_id;
-					$data['user_id'] = $sale['user_id'];
-					$data['user'] = json_encode($user);
-					$data['sale'] = json_encode($sale);
-					*/
-
 					$this->sendMail($message,'Compra Realizada en Châtelet', $emailTo);
 					$this->Sale->save(['def_mail_sent' => 1]);
 				} else {
@@ -211,11 +203,9 @@ class AdminController extends AppController {
 					$data['message'] = 'Ya enviado previamente';
 				}
 				$data['url'] = "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
-				// $this->redirect( "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1" );
 			}
 		}
-		echo json_encode($data);
-		exit;
+		die(json_encode($data));
 	}
 
 	public function getTicket2($sale_id = null){
