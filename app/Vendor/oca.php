@@ -275,7 +275,7 @@ class Oca
 		return $OrdenRetiro;
 	}
 
-	public function ingresoORNuevo($nroremito,$apellido,$nombre,$calle,$nro,$piso,$depto,$cp,$localidad,$provincia,$telefono,$email,$alto,$ancho,$largo,$peso,$valor){
+	public function ingresoORNuevo($nroremito,$apellido,$nombre,$calle,$nro,$piso,$depto,$cp,$localidad,$provincia,$telefono,$email,$alto,$ancho,$largo,$peso,$valor) {
 		$apellido 	= $this->normaliza($apellido);
 		$nombre 	= $this->normaliza($nombre);
 		$calle 		= $this->normaliza($calle);
