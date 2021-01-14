@@ -2,7 +2,8 @@
 class ShopController extends AppController {
 	public $uses = array('Product', 'ProductProperty','Promo','Catalogo','Category','LookBook');
 	public $helpers = array('Number');
-	public $components = array('SQL', 'RequestHandler');
+	// public $components = array('SQL', 'RequestHandler');
+	public $components = array('RequestHandler');
 
 
 	public function beforeFilter() {
@@ -127,6 +128,7 @@ class ShopController extends AppController {
 		var_dump($categories);die;
 	}
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
+		$this->SQL = $this->Components->load('SQL');
 		$stock = 0;
 		$list_code = Configure::read('list_code');
 		$this->autoRender = false;
@@ -222,13 +224,13 @@ class ShopController extends AppController {
         }
 		$properties = $this->ProductProperty->findAllByProductId($product_id);
 
-
+		/*
 		$details = $this->SQL->product_name_by_article($product['Product']['article']);
 		if(!empty($details)){
 	        foreach ($details as $key => $value) {
 	        	$details = $value;
 	        }
-        }
+        } */
 
 		$all_but_me = $this->Product->find('all', array(
 				'recursive' => -1,
@@ -247,7 +249,7 @@ class ShopController extends AppController {
 			}
 
 
-        $this->set('details',$details);
+        // $this->set('details',$details);
 		$this->set('category_id',$category_id);
         $this->set('name_categories',$name_categories);
 		$this->set('category', $category);
