@@ -365,7 +365,8 @@ class CarritoController extends AppController
 				error_log($urlCheck);
 				$ch = curl_init();
 			    curl_setopt($ch, CURLOPT_URL, $urlCheck);
-			    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
 			    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 			    $stock = (string)curl_exec($ch);
@@ -373,6 +374,7 @@ class CarritoController extends AppController
 			}
 
 			error_log('stock:'.$stock);
+			// error_log('curl:'.$stock);
 			//$stock=1;
 			if ($product && $stock) {
 				$product = $product['Product'];
