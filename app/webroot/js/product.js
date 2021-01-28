@@ -1,6 +1,8 @@
 function pideStock(obj){
 
 		console.log('changed');
+		$(".add.agregar-carro").text('Agregar')
+
 		var url 		= $(obj).closest("form").data('url');
 		var article 	= $(obj).closest("form").data('article');
 		var color_code 	= $(obj).closest("form").find('input[name="color"]:checked').attr('code');
@@ -60,7 +62,6 @@ $(document).ready(function() {
 	$('input[name="color"],#size').change(function(event) {
 		pideStock(event.target)
 	});
-
 	$(".add.agregar-carro").click(function(e) {
 		//this = e.target;
 		var data = {

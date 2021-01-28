@@ -111,7 +111,15 @@ CakeLog::config('error', array(
 ));
 
 
-Configure::write('baseUrl','http://localhost:8040/'); 
+function siteURL() {
+  $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || 
+    $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+  $domainName = $_SERVER['HTTP_HOST'];
+  return $protocol.$domainName.'/';
+}
+
+// Configure::write('baseUrl','http://localhost:8040/'); 
+Configure::write('baseUrl',siteURL()); 
 Configure::write('S3.accessKey','AKIAJGNWSIAUPGFVLJTQ'); 
 Configure::write('S3.secret','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'); 
 Configure::write('imageUrlBase','https://d3baxuoyqsgua.cloudfront.net/'); 
