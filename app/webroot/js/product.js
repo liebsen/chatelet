@@ -1,7 +1,7 @@
 function pideStock(obj){
 
 		console.log('changed');
-		$(".add.agregar-carro").text('Agregar')
+		$(".add.agregar-carro").text('Agregar al carrito')
 
 		var url 		= $(obj).closest("form").data('url');
 		var article 	= $(obj).closest("form").data('article');
