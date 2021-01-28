@@ -53,6 +53,7 @@ class ShopController extends AppController {
 	}
 	public function die_general_stock(){
 			$this->autoRender = false;
+			$this->SQL = $this->Components->load('SQL');
 			$this->loadModel('StockCount');
 			$this->loadModel('Product');
 			$all_stock = $this->SQL->general_stock();
@@ -144,6 +145,7 @@ class ShopController extends AppController {
 
 	public function check_stock($product_id){
 		$this->autoRender = false;
+		$this->SQL = $this->Components->load('SQL');
 		$this->loadModel('Product');
 		$product = $this->Product->findById($product_id);
 		$stock = 0;
