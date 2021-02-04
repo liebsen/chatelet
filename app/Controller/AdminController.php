@@ -3,7 +3,8 @@ App::uses('CakeTime', 'Utility');
 require_once(APP . 'Vendor' . DS . 'oca.php');
 class AdminController extends AppController {
 	public $uses = array('AdminMenu','Promo','Package','SaleProduct','Sale');
-	public $components = array('SQL', 'RequestHandler');
+	//public $components = array('SQL', 'RequestHandler');
+	public $components = array('RequestHandler');
 
 	public function beforeFilter() {
     	parent::beforeFilter();
@@ -83,6 +84,7 @@ class AdminController extends AppController {
 	public function get_product($prod_cod = null, $lis_cod = null , $lis_cod2 = null) {
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
+		$this->SQL = $this->Components->load('SQL');
 		$prod_parts = explode('.', $prod_cod);
 		$products = $this->SQL->productsByLisCod($prod_parts[0], $lis_cod);
 		 // CakeLog::write('error', $full_now.' '.$full_end);
@@ -121,6 +123,7 @@ class AdminController extends AppController {
 
 	public function check_article($article = null){
 		$this->autoRender = false;
+		$this->SQL = $this->Components->load('SQL');
 		$list_code = Configure::read('list_code');
 		$exists = $this->SQL->product_exists($article,$list_code);
 		if($exists){
@@ -784,6 +787,7 @@ public function promos(){
 	public function update_products( $list_code , $list_code_desc, $conditions=false )
 	{
 		$this->loadModel('Product');
+		$this->SQL = $this->Components->load('SQL');
 		$params = array( 'recursive' => -1);
 		if (!empty($conditions)) {
 			$params['conditions']=$conditions;
@@ -820,7 +824,7 @@ public function promos(){
 	public function productos($action = null) {
 		$this->loadModel('Setting');
 		$this->loadModel('Category');
-
+		$this->SQL = $this->Components->load('SQL');
 
 		$a = $this->Setting->findById('stock_min');
 		$b = $this->Setting->findById('list_code');
@@ -1171,6 +1175,7 @@ public function promos(){
 
 	public function refresh_colors() {
 		$this->RequestHandler->respondAs('application/json');
+		$this->SQL = $this->Components->load('SQL');
 		$this->autoRender = false;
 		$this->loadModel('Color');
 		$colors = $this->SQL->colors();
@@ -1182,6 +1187,7 @@ public function promos(){
 	public function refresh_seasons() {
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
+		$this->SQL = $this->Components->load('SQL');
 		$this->loadModel('Season');
 		$seasons = $this->SQL->seasons();
 		$this->Season->deleteAll(array('1 = 1'), false);
