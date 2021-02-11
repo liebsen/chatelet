@@ -10,8 +10,8 @@ $csv_filename = 'export_products.csv';
 // database variables
 $hostname = "localhost";
 $user = "root";
-//$password = "n@XBQVPgb4b4BddJ3D3dns4Xg!";
-$password = "coala090";
+$password = "n@XBQVPgb4b4BddJ3D3dns4Xg!";
+//$password = "coala090";
 $database = "chatelet";
 
 function mysqli_field_name($result, $field_offset)
