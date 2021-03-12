@@ -109,6 +109,11 @@ class CarritoController extends AppController
 
 		//Data
 		$data = $this->getItemsData();
+		$unit_price = $data['price'];
+		if(!empty($data['discount']) && !empty((float)(@$data['discount']))) {
+            $unit_price = @$data['discount'];
+        }
+
 		if(!empty($data)){
 			$oca = new Oca();
 			//$PesoTotal, $VolumenTotal, $CodigoPostalOrigen, $CodigoPostalDestino, $CantidadPaquetes, $ValorDeclarado, $Cuit, $Operativa
@@ -118,7 +123,7 @@ class CarritoController extends AppController
 				1708 ,
 				$cp ,
 				1 ,
-				intval($data['price']) ,
+				intval($unit_price) ,
 				'30-71119953-1',
 				271263
 				//96637
