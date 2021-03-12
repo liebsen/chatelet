@@ -78,7 +78,7 @@ class CarritoController extends AppController
 		$items = $this->Session->read('Carro');
 		foreach ($items as $key => $item) {
 			$data['count'] ++;
-			$data['price'] += $item['price'];
+			$data['price'] += $item['discount'] ?: $item['price'];
 		}
 		$package = $this->Package->find('first',array('conditions' => array( 'Package.amount_min <=' => $data['count'] , 'Package.amount_max >=' => $data['count'] )));
 		if(!empty($package)){
