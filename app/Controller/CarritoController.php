@@ -28,8 +28,12 @@ class CarritoController extends AppController
 	{
 		$data = $this->getItemsData();
 		$shipping_price = $this->Setting->findById('shipping_price_min');
-		$freeShipping = intval($data['price'])>=intval($shipping_price['Setting']['value']);
-		error_log('freeshipping prod price: '.intval($data['price']));
+		$unit_price = $producto['price'];
+		if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
+            $unit_price = @$producto['discount'];
+        }
+		$freeShipping = intval($unit_price)>=intval($shipping_price['Setting']['value']);
+		error_log('freeshipping unit price: '.intval($unit_price));
 		$shipping_config = $this->Setting->findById('shipping_type');
 		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
 			if (@$shipping_config['Setting']['value'] == 'free'){
