@@ -29,6 +29,7 @@ class CarritoController extends AppController
 		$data = $this->getItemsData();
 		$shipping_price = $this->Setting->findById('shipping_price_min');
 		$freeShipping = intval($data['price'])>=intval($shipping_price['Setting']['value']);
+		error_log('freeshipping prod price: '.intval($data['price']));
 		$shipping_config = $this->Setting->findById('shipping_type');
 		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
 			if (@$shipping_config['Setting']['value'] == 'free'){
@@ -221,6 +222,7 @@ class CarritoController extends AppController
 		//shipping-code 
 		$shipping_price = $this->Setting->findById('shipping_price_min');
 		$freeShipping = intval($total)>=intval($shipping_price['Setting']['value']);
+		error_log('freeshipping prod price: '.$total);
 		$shipping_type_value = 'default';
 		$zipCodes='';
 		$shipping_config = $this->Setting->findById('shipping_type');
@@ -235,7 +237,7 @@ class CarritoController extends AppController
 			}
 			if (@$shipping_config['Setting']['value'] == 'free'){
 				// envio gratis siempre
-				$freeShipping = true;
+				// $freeShipping = true;
 			}
 			if (@$shipping_config['Setting']['value'] == 'zip_code'){
 				// $freeShipping = true;
