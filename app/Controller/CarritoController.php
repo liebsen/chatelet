@@ -106,6 +106,7 @@ class CarritoController extends AppController
 
 		//Codigo Postal
 		$this->Session->write('cp',$cp);
+		$shipping_price = $this->Setting->findById('shipping_price_min');
 
 		//Data
 		$data = $this->getItemsData();
@@ -113,6 +114,8 @@ class CarritoController extends AppController
 		if(!empty($data['discount']) && !empty((float)(@$data['discount']))) {
             $unit_price = @$data['discount'];
         }
+
+		$freeShipping = intval($unit_price)>=intval($shipping_price['Setting']['value']);
 
 		if(!empty($data)){
 			$oca = new Oca();
@@ -138,7 +141,12 @@ class CarritoController extends AppController
 		//Price
 		$price = (!empty($response[0]['Precio'])) ? (int)$response[0]['Precio'] : 0 ;
 
-		return json_encode(array( 'price' => $price , 'valid' => $valid , 'itemsData' => $data ));
+		return json_encode(array(
+			'freeShipping' => $freeShipping,
+			'price' => $price ,
+			'valid' => $valid ,
+			'itemsData' => $data
+		));
 	}
 
 	public function sale() {

@@ -49,10 +49,10 @@ $(function(){
 					json.price = 114;
 				}
 				//free delivery
-				if (freeShipping){  
+				if (json.freeShipping){  
 					console.log('Envio gratis');
 					$('#cost').text( 0 );
-					$('#free_delivery').text('Envío gratis!');
+					$('#free_delivery').text('Envio gratis!');
 				}else{
 					let cost = parseInt(json.price)
 					let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost)
