@@ -33,7 +33,7 @@ class CarritoController extends AppController
 		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
 			if (@$shipping_config['Setting']['value'] == 'free'){
 				// envio gratis siempre
-				$freeShipping = 1;
+				// $freeShipping = 1;
 			}
 			if (@$shipping_config['Setting']['value'] == 'zip_code'){
 				// $freeShipping = 1;
