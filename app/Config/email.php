@@ -2,17 +2,21 @@
 
 class EmailConfig {
 
-            public $default = array(
-                  'transport' => 'Smtp',
-                  'from' => array('francisco@infinixsoft.com' => 'chatelet.com'),
-                  'host' => 'mail.infinixsoft.com',
-                  'port' => 25,
-                  'timeout' => 30,
-                  'username' => 'francisco@infinixsoft.com',
-                  // 'password' => 'Fran4850',
-                  'password' => 'A@spOWo9fS',
-                  'charset' => 'utf-8',
-                  'tls' => false,
-                  //'headerCharset' => 'utf-8',
-            );
+      public $default = array(
+            'transport' => 'Smtp',
+            'from' => array('no-responder@chatelet.com.ar' => 'Châtelet'),
+            // 'host' => 'mail.infinixsoft.com',
+            'host' => 'smtp.gmail.com',
+            // 'port' => 465,
+            'port' => 587,
+            'timeout' => 30,
+            'username' => 'chateletfacebook@gmail.com',
+            // 'password' => 'Fran4850',
+            // 'password' => 'A@spOWo9fS',
+            'password' => 'clryubbbmjeljkpp',
+            'charset' => 'utf-8',
+            'tls' => true
+            // 'ssl' => true
+            //'headerCharset' => 'utf-8',
+      );
 }

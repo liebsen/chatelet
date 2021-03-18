@@ -470,7 +470,7 @@ a la fecha de entrega para que la misma sea exitosa.
 	}
 
 	public function test() {
-		$this->sendMail('hello','Test via en Châtelet','francisco.marasco@gmail.com');
+		$this->sendMail('hello','Test via en Châtelet','overlemonsoft@gmail.com');
 		die('ok');
 
 	}
