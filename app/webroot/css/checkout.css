@@ -14,6 +14,10 @@ a.volver {
 	margin-top: 37px;
 }
 
+input[disabled] {
+	filter: grayscale(1);
+}
+
 .siguiente {
 	display: inline-block;
 	margin: 10px 0;

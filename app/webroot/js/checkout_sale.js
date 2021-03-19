@@ -25,6 +25,10 @@ $(function(){
 	});
 
 	$('#checkout-form').submit(form => {
+		const submit = $(form.target).find('input[type="submit"]').first()
+		submit.prop('disabled', true)
+		submit.val('Por favor espere...')
+
 		fbq('track', 'InitiateCheckout')
 		let products = []
 		carrito.forEach(e => {

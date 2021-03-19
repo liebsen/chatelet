@@ -88,7 +88,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 					<option value="internacional">Internacional</option>
 				</select>
 			</div>
-			<input type="submit" class="siguiente" value="Siguiente" />
+			<input type="submit" class="siguiente" value="Finalizar compra" />
 		</form>
 	</div>
 	<div class="col-md-4"></div>
