@@ -13,7 +13,7 @@
 			<?php echo $this->Html->image('loader.gif',array('height'=>20)) ?>
 		</span>
 		<br />
-		<p style="margin:10px 0px"><i><small>Ingrese su código postal y luego presione Enter.</small></i></p>
+		<p style="margin:10px 0px"><i><small>Ingrese su código postal</small></i></p>
 	</div>
 	<div class="col-xs-12">
 		<br />

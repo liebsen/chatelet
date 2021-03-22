@@ -35,44 +35,51 @@ $(function(){
 	}
 
 	var timeout = null;
-	$('#cp').change(function(event){
-    event.preventDefault();
-		var url = $(this).data('url');
-		var cp 	= $('#cp').val();
-		$('#free_delivery').text('');
-		callStart();
-		$.getJSON( url+'/'+cp , function(json, textStatus) {
-			callEnd();
-			clearTimeout(timeout);
-			if( json.valid ){
-				if (!json.price || parseInt(json.price) == 0){
-					json.price = 114;
-				}
-				//free delivery
-				if (json.freeShipping){  
-					console.log('Envio gratis');
-					$('#cost').text( 0 );
-					$('#free_delivery').text('Envio gratis!');
-				}else{
-					let cost = parseInt(json.price)
-					let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost)
+	var timeout2 = null;
+	$('#cp').keyup(function(event){
+		if (timeout2) {
+			clearTimeout(timeout2)
+		}
+		let t = this
+	    event.preventDefault();
+		timeout2 = setTimeout(function () {
+			var url = $(t).data('url');
+			var cp 	= $('#cp').val();
+			$('#free_delivery').text('');
+			callStart();
+			$.getJSON( url+'/'+cp , function(json, textStatus) {
+				callEnd();
+				clearTimeout(timeout);
+				if( json.valid ){
+					if (!json.price || parseInt(json.price) == 0){
+						json.price = 114;
+					}
+					//free delivery
+					if (json.freeShipping){  
+						console.log('Envio gratis');
+						$('#cost').text( 0 );
+						$('#free_delivery').text('Envio gratis!');
+					}else{
+						let cost = parseInt(json.price)
+						let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost)
 
-					$('#cost').text( cost );
-					$('#cost_total').text( total )
-					$('.cost_total').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
+						$('#cost').text( cost );
+						$('#cost_total').text( total )
+						$('.cost_total').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
+					}
+					console.log(parseFloat($('#cost').text()));
+					$('#cp').removeClass('wrong');
+					$('#cp').addClass('ok');
+					onSuccessAlert('Codigo Postal válido');
+				}else{
+					$('#cp').removeClass('ok');
+					$('#cp').addClass('wrong');
+					$('#cost').text( parseInt(0) );
+					timeout = setTimeout( "onErrorAlert('Codigo Postal inexistente.')" , 200);
 				}
-				console.log(parseFloat($('#cost').text()));
-				$('#cp').removeClass('wrong');
-				$('#cp').addClass('ok');
-				onSuccessAlert('Codigo Postal válido');
-			}else{
-				$('#cp').removeClass('ok');
-				$('#cp').addClass('wrong');
-				$('#cost').text( parseInt(0) );
-				timeout = setTimeout( "onErrorAlert('Codigo Postal inexistente.')" , 200);
-			}
-			$('#cp').attr( 'data-valid' , parseInt(json.valid) );
-		});
+				$('#cp').attr( 'data-valid' , parseInt(json.valid) );
+			});
+		}, 2000)
 	});
 
 	$('#siguiente').click(function(event){
