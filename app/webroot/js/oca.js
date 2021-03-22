@@ -56,7 +56,7 @@ $(function(){
 					}
 					//free delivery
 					if (json.freeShipping){  
-						console.log('Envio gratis');
+						// console.log('Envio gratis');
 						$('#cost').text( 0 );
 						$('#free_delivery').text('Envio gratis!');
 					}else{
@@ -67,7 +67,7 @@ $(function(){
 						$('#cost_total').text( total )
 						$('.cost_total').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
 					}
-					console.log(parseFloat($('#cost').text()));
+					// console.log(parseFloat($('#cost').text()));
 					$('#cp').removeClass('wrong');
 					$('#cp').addClass('ok');
 					onSuccessAlert('Codigo Postal válido');
@@ -107,6 +107,10 @@ $(function(){
 		}
 
 	});
+
+	if ($('#cp').val()) {
+		$('#cp').keyup()
+	}
 });
 
 window.onerror = function (msg, url, lineNo, columnNo, error) {
