@@ -81,7 +81,7 @@ $(function(){
 		var b = parseInt($('#cp').attr('data-valid'));
 		var c = $('[product_row]').length;
 		if(!c){
-			onErrorAlert('No tienes productos en el carrito.');
+			onErrorAlert('No tienes productos en el carrito');
 			return false;
 		}
 		// free delivery
@@ -89,6 +89,7 @@ $(function(){
 			$('#cp').focus();
 			$('#cp').removeClass('ok');
 			$('#cp').addClass('wrong');
+			onErrorAlert('Por favor ingrese su código postal');
 			return false;
 		}else{
 			let location = $(this).attr('link-to')||$(this).prop('link-to')
