@@ -19,6 +19,7 @@
 	},
 	"require": {
 		"php": ">=5.2.8",
+		"guzzlehttp/guzzle": "6.5.x-dev",
 		"ext-mcrypt": "*"
 	},
 	"require-dev": {

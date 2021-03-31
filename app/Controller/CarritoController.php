@@ -1,9 +1,70 @@
 <?php
 require_once(APP . 'Vendor' . DS . 'oca.php');
+require_once(APP . 'Vendor' . DS . 'curl.php');
+
 class CarritoController extends AppController
 {
 	public $uses = array('Product', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook');
 	public $components = array("RequestHandler");
+
+	public function test() {
+		// $this->sendMail('hello','Test via en Châtelet','overlemonsoft@gmail.com');
+		$curl = new Curl();
+		$token = $curl->post('https://api.ar.treggo.co/1/token', [
+			"email" => "overlemonsoft@gmail.com",
+			"secret" => "cc202e78-56d3-4e07-82bb-1e7452e54453",
+			"mode" => "production"
+		]);
+
+		$body = json_decode($token->body);
+
+		if ($body->token) {
+			var_dump($body->token);
+			die();
+			
+			$curl2 = new Curl();
+			$curl2->headers['Authorization'] = "Bearer {$body->token}";
+			$rate = $curl2->post('https://api.ar.treggo.co/1/rates', [
+				/*  "pickup" => [
+					"address" => "Campora 636",
+					"locality" => "Esquel",
+					"zip" => 9200
+				],
+				"delivery" => [
+					"address" => "Alvear 636",
+					"locality" => "Esquel",
+					"zip" => 9200
+				], */
+				"pickup" => [
+					"address" => "Rivadavia 1234",
+					"locality" => "CABA",
+				    "latitude" => "-71.0833300",
+				    "longitude" => "-41.5500000",
+					"zip" => 1424
+				],
+				"delivery" => [
+				    "address" => "Corrientes 12345",
+				    "latitude" => "-71.0833300",
+				    "longitude" => "-41.5500000",
+				    "locality" => "CABA",
+				    "zip" => 1424
+				],
+				"size" => [
+				    "weight" => 200,
+				    "height" => 200,
+				    "length" => 200,
+				    "width" => 200
+				],
+				"method" => "ondemand",
+				"type" => "auto",
+				"packages" => 1
+			]);
+			echo "<pre>";
+			print_r(json_decode($rate->body));
+		}
+		 
+		die('ok');
+	}
 
 	public function beforeFilter()
 	{
@@ -469,11 +530,6 @@ a la fecha de entrega para que la misma sea exitosa.
 		$this->sendMail($message,'Compra Realizada en Châtelet',$data['user']['email']);
 	}
 
-	public function test() {
-		$this->sendMail('hello','Test via en Châtelet','overlemonsoft@gmail.com');
-		die('ok');
-
-	}
 	public function failed() {
 			$data = $this->Session->read('sale_data');
 			error_log('Failed payment: '.json_encode($data));
