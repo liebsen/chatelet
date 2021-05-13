@@ -10,6 +10,44 @@
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
 
+.link { 
+	color: #e10c76;
+}
+
+.link:hover { 
+	color: #f10c76;
+}
+
+.generic-select {
+	margin: 0;
+}
+.generic-select li {
+	padding: 0.75rem 0.5rem	;
+	border: 1px solid #e10c76;
+	border-radius: 0.25rem;
+	background-color: white;
+	color: #e10c76;
+	cursor: pointer;
+	background-image: url(../images/chevron_right_pink.svg);
+	background-position: right center;
+	background-repeat: no-repeat;
+	background-size: 30px;
+	margin-bottom: 0.25rem;
+}
+
+.generic-select li:hover {
+	background-color: #e10c76;
+	background-image: url(../images/chevron_right_white.svg);
+	color: white;
+}
+
+.generic-select li.selected {
+	background-color: #c8729d;
+	background-color: #c8729d;
+	background-image: url(../images/chevron_right_white.svg);
+	color: white;
+}
+
 .grey {
 	color: grey;
 }

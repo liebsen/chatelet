@@ -23,7 +23,6 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 
 .wrapper { margin: 0 auto; max-width: 1600px; }
 
-
 .navbar { background: #FFF; border: 0; border-radius: 0; box-shadow: 0 2px 4px rgba(0,0,0,.2); margin: 0; min-height: 0; padding: 20px; position: relative; z-index: 3; }
 .navbar-brand { background: url(../images/sprite.png) no-repeat; height: 28px; margin-top: 7px; padding: 0; text-indent: -9999px; width: 162px; }
 .navbar-nav { margin-left: 80px; }

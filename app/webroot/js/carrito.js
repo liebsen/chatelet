@@ -1,4 +1,26 @@
+	var selectStore = e => {
+		$('.takeaway-options li').removeClass('selected')
+		$(e).addClass('selected')
+		console.log($(e))
+	}
+
 $(document).ready(function() {
+	$('.swap').on('click', function() {
+		const target = $(this).attr('swap-target')
+		$('.shipment-options').addClass('hide')
+		$(`.${target}`).removeClass('hide')
+		if(target === 'takeaway' && !$('.takeaway-loading').hasClass('hide')) {
+			$.get('/carrito/takeaway_stores', res => {
+				console.log(res)
+				$(res).each((i, item) => {
+					console.log(item, i)
+					$('.takeaway-options').append(`<li onclick="selectStore(this)">${item.Store.name} - ${item.Store.address}</li>`)
+				})
+				$('.takeaway-loading').addClass('hide')
+			})
+		}
+	})
+
 	$('#checkout-modal').on('click', 'a', function() {
 		var me = $(this);
 
