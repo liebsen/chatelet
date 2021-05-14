@@ -19,14 +19,15 @@
 }
 
 .generic-select {
-	margin: 0;
+	margin: 2rem 0;
 }
+
 .generic-select li {
-	padding: 0.75rem 0.5rem	;
-	border: 1px solid #e10c76;
+	padding: 0.75rem;
+	border: 1px solid #c8729d;
 	border-radius: 0.25rem;
 	background-color: white;
-	color: #e10c76;
+	color: #c8729d;
 	cursor: pointer;
 	background-image: url(../images/chevron_right_pink.svg);
 	background-position: right center;
@@ -36,15 +37,15 @@
 }
 
 .generic-select li:hover {
-	background-color: #e10c76;
+	background-color: #c8729d;
 	background-image: url(../images/chevron_right_white.svg);
 	color: white;
 }
 
 .generic-select li.selected {
-	background-color: #c8729d;
-	background-color: #c8729d;
-	background-image: url(../images/chevron_right_white.svg);
+	background-color: #e10c76;
+	border-color: #e10c76;
+	background-image: url(../images/check.png);
 	color: white;
 }
 

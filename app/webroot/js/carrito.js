@@ -11,10 +11,9 @@ $(document).ready(function() {
 		$(`.${target}`).removeClass('hide')
 		if(target === 'takeaway' && !$('.takeaway-loading').hasClass('hide')) {
 			$.get('/carrito/takeaway_stores', res => {
-				console.log(res)
 				$(res).each((i, item) => {
 					console.log(item, i)
-					$('.takeaway-options').append(`<li onclick="selectStore(this)">${item.Store.name} - ${item.Store.address}</li>`)
+					$('.takeaway-options').append(`<li store-id="${item.Store.id}" store-address="${item.Store.name}, ${item.Store.address}" onclick="selectStore(this)">${item.Store.name} - ${item.Store.address}</li>`)
 				})
 				$('.takeaway-loading').addClass('hide')
 			})

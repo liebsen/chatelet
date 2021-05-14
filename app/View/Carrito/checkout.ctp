@@ -71,11 +71,19 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 			</div>
 			<span class="clearfix"></span>
 			<div class="form-group">
+			<?php if ($_GET['cargo'] === 'shipment'):?>
 				<label for="codigo_postal">Código Postal</label>
 				<?php
 					$cp = $this->Session->read('cp');
 					echo '<input readonly="readonly" type="text" class="form-control" id="codigo_postal" name="postal_address" value="'. $cp .'" required>';
 				?>
+			<?php endif;?>
+			<?php if ($_GET['cargo'] === 'takeaway'):?>
+				<input type="hidden" name="cargo" value="<?php echo $_GET['cargo'];?>"
+				<input type="hidden" name="store" value="<?php echo $_GET['store'];?>"
+				<label>Retiro en sucursal</label>
+				<p><?php echo $_GET['store_address'];?></p>
+			<?php endif;?>
 			</div>
 			<div class="form-group">
 				<input type="checkbox" id="ticket_regalo" name="ticket_regalo"<?php echo $_GET['ticket'] ? ' checked' : ''; ?>>

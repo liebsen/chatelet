@@ -84,28 +84,48 @@ $(function(){
 
 	$('#siguiente').click(function(event){
 		event.preventDefault();
-		var a = $('#cp').val();
-		var b = parseInt($('#cp').attr('data-valid'));
 		var c = $('[product_row]').length;
+		let location = $(this).attr('link-to')||$(this).prop('link-to')
+
 		if(!c){
-			onErrorAlert('No tienes productos en el carrito');
+			onErrorAlert('No tienes productos en el carrito');	
 			return false;
-		}
-		// if((!a || !b || !c || (1>parseFloat($('#cost').text()) && !freeShipping ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
-		if(!a || !b || !c){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
-			$('#cp').focus();
-			$('#cp').removeClass('ok');
-			$('#cp').addClass('wrong');
-			onErrorAlert('Por favor ingrese su código postal');
-			return false;
-		}else{
-			let location = $(this).attr('link-to')||$(this).prop('link-to')
-			if ($('#ticket_cambio').is(':checked')) {
-				location+= '?ticket=1'
-			}
-			window.location.href = location;
 		}
 
+		if ($('.shipment').is(':visible')) {
+			var a = $('#cp').val();
+			var b = parseInt($('#cp').attr('data-valid'));
+			// if((!a || !b || !c || (1>parseFloat($('#cost').text()) && !freeShipping ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
+			if(!a || !b || !c){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
+				$('#cp').focus();
+				$('#cp').removeClass('ok');
+				$('#cp').addClass('wrong');
+				onErrorAlert('Por favor ingrese su código postal');
+				return false;
+			}else{
+				location+= '?cargo=shipment'
+			}
+		} else if($('.takeaway').is(':visible')) {
+			const selected = $('.takeaway-options li.selected')
+			if (!selected.length) {
+				onErrorAlert('Por favor seleccione una sucursar para pasar a retirar el producto');	
+				return false;
+			} else {
+				const store_id = selected.attr('store-id')
+				const store_address = selected.attr('store-address')
+				if (store_id) {
+					location+= '?cargo=takeaway&store=' + store_id + '&store_address=' + store_address
+				}
+			}
+		} else {
+			onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal');
+			return false;
+		}
+
+		if ($('#ticket_cambio').is(':checked')) {
+			location+= '&ticket=1'
+		}
+		window.location.href = location;
 	});
 
 	if ($('#cp').val()) {
