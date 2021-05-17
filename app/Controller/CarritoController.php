@@ -232,7 +232,8 @@ class CarritoController extends AppController
 		$user['telephone'] = @preg_replace("/[^0-9]/","",$user['telephone']);
 		$user['floor'] = (!empty($user['floor']))?$user['floor']:'';
 		$user['depto'] = (!empty($user['depto']))?$user['depto']:'';
-		$user['ticket_cambio'] = ($user['ticket_regalo']==='on'?1:0);
+		$user['ticket_cambio'] = (isset($user['ticket_regalo']) && $user['ticket_regalo']==='on'?1:0);
+
 		if(!$this->request->is('post') || empty($user['postal_address']) || empty($user['street_n']) || empty($user['street']) || empty($user['localidad']) || empty($user['provincia']) || empty($user['name']) || empty($user['surname']) || empty($user['email']) || empty($user['telephone'])){
 			$this->Session->setFlash(
                 'Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.',
@@ -272,6 +273,9 @@ class CarritoController extends AppController
 				'PISO'		=> $user['floor'],
 				'DPTO'		=> $user['depto'],
 				'COD POST'	=> $user['postal_address'],
+				'CARGO'	=> $user['cargo'],
+				'STORE'	=> $user['store'],
+				'STORE_ADDR'	=> $user['store_address']
 			);
 			foreach ($values as $key => $value) {
 				$desc.= $key.' : "'.$value.'"'.$separator;
@@ -302,69 +306,72 @@ class CarritoController extends AppController
 			);
 		}
 
-		// Add Delivery
-		$delivery_data = json_decode( $this->delivery_cost($user['postal_address']) ,true);
-		$price = (int)$delivery_data['price'];
+		$shipment_cost = 0;
+		if ($user['cargo'] === 'shipment') {
+			// Add Delivery
+			$delivery_data = json_decode( $this->delivery_cost($user['postal_address']) ,true);
+			$shipment_cost = (int)$delivery_data['price'];
 		
-		//shipping-code 
-		$shipping_price = $this->Setting->findById('shipping_price_min');
-		$freeShipping = intval($total)>=intval($shipping_price['Setting']['value']);
-		error_log('freeshipping prod price: '.$total);
-		$shipping_type_value = 'default';
-		$zipCodes='';
-		$shipping_config = $this->Setting->findById('shipping_type');
-		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
-			$zipCodes = @$shipping_config['Setting']['extra'];
-			$shipping_type_value = @$shipping_config['Setting']['value'];
-			if (@$shipping_config['Setting']['value'] == 'default'){
-				// default = same
+			//shipping-code 
+			$shipping_price = $this->Setting->findById('shipping_price_min');
+			$freeShipping = intval($total)>=intval($shipping_price['Setting']['value']);
+			error_log('freeshipping prod price: '.$total);
+			$shipping_type_value = 'default';
+			$zipCodes='';
+			$shipping_config = $this->Setting->findById('shipping_type');
+			if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
+				$zipCodes = @$shipping_config['Setting']['extra'];
+				$shipping_type_value = @$shipping_config['Setting']['value'];
+				if (@$shipping_config['Setting']['value'] == 'default'){
+					// default = same
+				}
+				if (@$shipping_config['Setting']['value'] == 'no_label'){
+					// default = same
+				}
+				if (@$shipping_config['Setting']['value'] == 'free'){
+					// envio gratis siempre
+					// $freeShipping = true;
+				}
+				if (@$shipping_config['Setting']['value'] == 'zip_code'){
+					// $freeShipping = true;
+				}
+				error_log('shipping_value: '.@$shipping_config['Setting']['value']);
 			}
-			if (@$shipping_config['Setting']['value'] == 'no_label'){
-				// default = same
+			// freeShipping until 12/10
+			// $freeShipping = true;
+			// error_log('Putting freeshipping until 12/10');
+			// free delivery
+			if ($freeShipping) { 
+	     		error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
+				$shipment_cost=0;
+			} else {
+				error_log('suming delivery to price: '.$total);
+				$total += $shipment_cost;
+				$items[] = array(
+					'title' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
+					'description' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
+					'quantity' => 1,
+					'currency_id' => 'ARS',
+					'unit_price' => $shipment_cost
+				);
 			}
-			if (@$shipping_config['Setting']['value'] == 'free'){
-				// envio gratis siempre
-				// $freeShipping = true;
-			}
-			if (@$shipping_config['Setting']['value'] == 'zip_code'){
-				// $freeShipping = true;
-			}
-			error_log('shipping_value: '.@$shipping_config['Setting']['value']);
-		}
-		// freeShipping until 12/10
-		// $freeShipping = true;
-		// error_log('Putting freeshipping until 12/10');
-		// free delivery
-		if ($freeShipping) { 
-     	error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
-			$price=0;
-		}else{
-			error_log('suming delivery to price: '.$total);
-			$total += $price;
-			$items[] = array(
-				'title' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
-				'description' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
-				'quantity' => 1,
-				'currency_id' => 'ARS',
-				'unit_price' => $price
-			);
 		}
 
 		$this->Sale->save(array(
 			'id' => $sale_id,
-			'deliver_cost' => $price,
+			'deliver_cost' => $shipment_cost,
 			'shipping_type' => $shipping_type_value
 		));
 
 		//Re - Registar Sale Products
 		$sale['Sale']['id'] = $sale_id;
 		if (!$this->SaleProduct->saveMany($product_ids)) {
-      $this->Session->setFlash(
-          'Error al procesar la compra, por favor intente nuevamente',
-          'default',
-          array('class' => 'hidden error')
-      );
-      $this->Sale->delete($sale_id,true);
+	      	$this->Session->setFlash(
+    	      	'Error al procesar la compra, por favor intente nuevamente',
+        	  	'default',
+        		array('class' => 'hidden error')
+      		);
+      		$this->Sale->delete($sale_id,true);
 			return $this->redirect($this->referer());
 		}
 
@@ -385,6 +392,9 @@ class CarritoController extends AppController
 			'telefono'	=> $user['telephone'],
 			'email'		=> $user['email'],
 			'ticket_cambio'		=> $user['ticket_cambio'],
+			'cargo'		=> $user['cargo'],
+			'store'		=> $user['store'],
+			'store_address'		=> $user['store_address'],
 			'package_id'=> $delivery_data['itemsData']['package']['id'],
 			'value' 	=> $delivery_data['itemsData']['price'],
 			'zip_codes' => $zipCodes
