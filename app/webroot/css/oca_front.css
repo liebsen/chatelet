@@ -1,3 +1,4 @@
+
 .both{
 	border: 1px solid #39B3D7;
 	padding-left: 5px;
@@ -9,6 +10,13 @@
 	border-color: #07BC31;
 }
 #cp{
-	border-radius: 5px;
-	height: 25px;
+	border-radius: 0.25rem;
+	padding: 0.5rem;
+	max-width: 10rem;
 }
+
+.cargo-title {
+	margin:10px 0px;
+	font-weight: 800;
+}
+

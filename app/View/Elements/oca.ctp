@@ -1,39 +1,45 @@
 <?php echo $this->Html->script('oca.js?avoidcache=24',array( 'inline' => false )) ?>
 <?php echo $this->Html->css('oca_front',array( 'inline' => false )) ?>
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
-<div class="row">
+<div class="row is-rounded">
+	<h3 class="h3 text-center">¿Cómo desea recibir su compra?</h3>
 	<div class="col-xs-12 shipment-options shipping">
-		<h3 id="heading" style="margin:10px 0px">Costo de Envio // <span class="grey">Oca</span></h3>
-		<strong>CP:</strong> <input type="text" name="" value="" id="cp" class="both" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'delivery_cost')) ?>" />
-		&nbsp;
-		<span id="cost_container">
-			<strong>$<span id="cost">0</span>.00</strong> <span id="free_delivery"></span>
-		</span>
-		<span id="loading" class="hide">
-			<?php echo $this->Html->image('loader.gif',array('height'=>20)) ?>
-		</span>
-		<br />
+		<hr>
+		<h3 id="heading" class="cargo-title">Costo de Envio // <span>Oca</span></h3>
 		<p style="margin:10px 0px">
 			<i>
-				<small>Ingrese su código postal</small>
-			</i> ó 
-			<a class="link swap" swap-target="takeaway" href="javascript:void(0)">solicite Retiro en Sucursal</a>
-		</p>		
+				<small>Para envíos a domicilio ingrese su código postal</small>
+			</i>
+		</p>
+		<div class="form-group">
+			<input type="text" name="" placeholder="ej. 3962" value="" id="cp" class="both" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'delivery_cost')) ?>" />
+			&nbsp;
+			<span id="loading" class="hide">
+				<?php echo $this->Html->image('loader.gif',array('height'=>20)) ?>
+			</span>
+		</div>
+		<div class="form-group">
+			<span id="cost_container" class="text-muted">
+				<span>Costo de envío:</span> <strong>$<span id="cost">0</span>.00</strong> <span id="free_delivery"></span>
+			</span>
+		</div>
+		<hr>
 	</div>
-	<div class="col-xs-12 shipment-options takeaway hide">
-		<h3 id="heading" style="margin:10px 0px">Retiro en Sucursal // <span class="grey">Sin cargo de envío</span></h3>
-		<strong>Sucursal:</strong> 
-		<ul class="generic-select takeaway-options"></ul>
-		<span id="loading" class="takeaway-loading">
-			<?php echo $this->Html->image('loader.gif',array('height'=>20)) ?>
-		</span>
-		<br />
+	<div class="col-xs-12 shipment-options takeaway">
+		<h3 id="heading" class="cargo-title">Retiro en Sucursal // <span>Sin cargo de envío</span></h3>
 		<p style="margin:10px 0px">
 			<i>
-				<small>solicite Retiro en Sucursal</small>
-			</i> ó 
-			<a class="link swap" swap-target="shipping" href="javascript:void(0)">Ingrese su código postal</a>
+				<small>Solicite Retiro en Sucursal y evite cargos de envío</small>
+			</i>
 		</p>		
+
+		<ul class="generic-select takeaway-options">
+			<?php foreach ($stores as $store):?>
+				<li store="<?php echo $store['Store']['name'];?>"
+					store-address="<?php echo $store['Store']['address'];?>"
+					onclick="selectStore(this)"><?php echo $store['Store']['name'];?> <?php echo $store['Store']['address'];?></li>
+			<?php endforeach;?>
+		</ul>
 	</div>
 
 	<div class="col-xs-12">

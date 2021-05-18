@@ -106,6 +106,10 @@ class CarritoController extends AppController
 			}
 			error_log('shipping_value: '.@$shipping_config['Setting']['value']);
 		}
+		$stores = $this->Store->find('all', [
+			'conditions' => ['takeaway' => 1]
+		]);
+		$this->set('stores', $stores);
 		$this->set('freeShipping', $freeShipping);
 	}
 
@@ -232,7 +236,7 @@ class CarritoController extends AppController
 		$user['telephone'] = @preg_replace("/[^0-9]/","",$user['telephone']);
 		$user['floor'] = (!empty($user['floor']))?$user['floor']:'';
 		$user['depto'] = (!empty($user['depto']))?$user['depto']:'';
-		$user['ticket_cambio'] = ($user['ticket_regalo']==='on'?1:0);
+		$user['ticket_cambio'] = (isset($user['ticket_regalo']) && $user['ticket_regalo']==='on'?1:0);
 		if(!$this->request->is('post') || $user['cargo'] === 'shipment' && empty($user['postal_address']) || empty($user['street_n']) || empty($user['street']) || empty($user['localidad']) || empty($user['provincia']) || empty($user['name']) || empty($user['surname']) || empty($user['email']) || empty($user['telephone'])){
 			$this->Session->setFlash(
                 'Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.',

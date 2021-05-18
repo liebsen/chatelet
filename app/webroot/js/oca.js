@@ -3,15 +3,17 @@ function isDateBeforeToday(date) {
 }
 $(function(){
 	var subtotal = $('#subtotal_compra').val();
-
 	callStart = function(){
+		$('#cost_container').removeClass('text-muted', 'text-success');
 		$('#cost_container').addClass('hide');
 		$('#loading').removeClass('hide');
 	}
 
 	callEnd = function(){
+		window.cargo = 'shipment'
 		$('#loading').addClass('hide');
 		$('#cost_container').removeClass('hide');
+		$('#cost_container').addClass('text-success');
 	}
 
 	onErrorAlert = function(text){
@@ -91,8 +93,8 @@ $(function(){
 			onErrorAlert('No tienes productos en el carrito');	
 			return false;
 		}
-
-		if ($('.shipment').is(':visible')) {
+		location+= '?cargo=' + cargo
+		if (cargo === 'shipment') {
 			var a = $('#cp').val();
 			var b = parseInt($('#cp').attr('data-valid'));
 			// if((!a || !b || !c || (1>parseFloat($('#cost').text()) && !freeShipping ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
@@ -102,19 +104,18 @@ $(function(){
 				$('#cp').addClass('wrong');
 				onErrorAlert('Por favor ingrese su código postal');
 				return false;
-			}else{
-				location+= '?cargo=shipment'
 			}
-		} else if($('.takeaway').is(':visible')) {
+		} else if(cargo === 'takeaway') {
 			const selected = $('.takeaway-options li.selected')
 			if (!selected.length) {
 				onErrorAlert('Por favor seleccione una sucursar para pasar a retirar el producto');	
 				return false;
 			} else {
-				const store_id = selected.attr('store-id')
-				const store_address = selected.attr('store-address')
-				if (store_id) {
-					location+= '?cargo=takeaway&store=' + store_id + '&store_address=' + store_address
+				if (selected.attr('store')) {
+					location+= '&store=' + selected.attr('store') + '&store_address=' + selected.attr('store-address')
+				} else {
+					onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal');
+					return false;
 				}
 			}
 		} else {
@@ -125,6 +126,7 @@ $(function(){
 		if ($('#ticket_cambio').is(':checked')) {
 			location+= '&ticket=1'
 		}
+
 		window.location.href = location;
 	});
 

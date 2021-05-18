@@ -18,7 +18,52 @@
 				echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
 				echo '<input type="hidden" id="checkout" value="'. $this->Html->url(array('controller' => 'carrito', 'action' => 'checkout')) .'" />'
 			?>
-			<table class="table">
+			<div class="mobile">
+			<?php if (!isset($carro)) $carro = array();
+			foreach ($carro as $product) {
+
+				if (!empty($product['discount']) && (float)@$product['discount']>0) {
+                    $product['price'] = $product['discount'];
+                }
+				$total += $product['price'];
+				if (!isset($product['color'])) $product['color'] = '';
+				if (!isset($product['size'])) $product['size'] = '';
+				echo '<div>';
+					echo '<div>';
+						echo '<span class="name">'. $product['name'] .'</span>';
+						echo "<div class='clearfix'></div>";
+						echo '<img style="margin-top:10px;" src="'.Configure::read('imageUrlBase').$product['img_url'].'" class="thumb" style="display:block;" />';
+					echo '</div>';
+					echo '<div>';
+					if (!empty($product['alias'])){
+						echo '<p class="color">Color: <span class="color-block">'. $product['alias'] .'</span></p>';
+					}
+					if (!empty($product['size'])){
+
+						echo '<p>Talle: <span class="talle">'. $product['size'] .'</span></p>';
+					}
+					echo $this->Html->link('<span class="glyphicon glyphicon-trash"></span>',
+						array(
+							'controller' => 'carrito',
+							'action' => 'remove',
+							$row
+						),
+						array (
+							'class' => 'trash',
+							'escape' => false
+						)
+					);
+
+					echo '</div>';
+					echo '<div>';
+						echo '<span class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</span>';
+					echo '</div>';
+				echo '</div>';
+				echo '<hr>';
+				$row += 1;
+			} ?>
+			</div>
+			<table class="table desktop">
 				<thead>
 					<tr>
 						<th>Producto</th>

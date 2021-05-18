@@ -1017,3 +1017,38 @@ span.count {
         -o-transition: all .3s ease-in-out;
     }
 }
+
+.is-rounded {
+    padding: 0.75rem;
+    margin: 1.5rem 0.5rem;
+    background-color: #f8ede3;
+    border-radius: 0.25rem;
+}
+
+.is-rounded hr {
+    border-color: #ff75a0;
+}
+
+/* responsive */
+
+.mobile, .desktop {
+  display: none;
+}
+
+@media screen and (max-width:768px), print {
+  .mobile {
+    display: block;
+  }
+  .is-rounded {
+    margin: 0;
+  }
+  .desktop {
+    display: none;
+  }
+}
+
+@media screen and (min-width:769px), print {
+  .desktop {
+    display: block;
+  }
+}

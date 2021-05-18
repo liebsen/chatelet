@@ -1,25 +1,13 @@
-	var selectStore = e => {
-		$('.takeaway-options li').removeClass('selected')
-		$(e).addClass('selected')
-		console.log($(e))
-	}
+var cargo = ''
+var selectStore = e => {
+	cargo = 'takeaway'
+	$('#cp').val('')
+	$('#cost_container').html('')
+	$('.takeaway-options li').removeClass('selected')
+	$(e).addClass('selected')
+}
 
 $(document).ready(function() {
-	$('.swap').on('click', function() {
-		const target = $(this).attr('swap-target')
-		$('.shipment-options').addClass('hide')
-		$(`.${target}`).removeClass('hide')
-		if(target === 'takeaway' && !$('.takeaway-loading').hasClass('hide')) {
-			$.get('/carrito/takeaway_stores', res => {
-				$(res).each((i, item) => {
-					console.log(item, i)
-					$('.takeaway-options').append(`<li store-id="${item.Store.id}" store-address="${item.Store.name}, ${item.Store.address}" onclick="selectStore(this)">${item.Store.name} - ${item.Store.address}</li>`)
-				})
-				$('.takeaway-loading').addClass('hide')
-			})
-		}
-	})
-
 	$('#checkout-modal').on('click', 'a', function() {
 		var me = $(this);
 
