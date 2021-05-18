@@ -3,7 +3,7 @@
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <div class="row is-rounded">
 	<h3 class="h3 text-center desktop">¿Cómo desea recibir su compra?</h3>
-	<h5 class="h3 text-center mobile">¿Cómo desea recibir su compra?</h5>
+	<h4 class="h4 text-center mobile">¿Cómo desea recibir su compra?</h4>
 	<div class="col-xs-12 shipment-options shipping">
 		<hr>
 		<h3 id="heading" class="cargo-title">Costo de Envio // <span>Oca</span></h3>

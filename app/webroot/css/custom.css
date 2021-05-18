@@ -1040,7 +1040,8 @@ span.count {
     display: block;
   }
   .is-rounded {
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
   .desktop {
     display: none;
