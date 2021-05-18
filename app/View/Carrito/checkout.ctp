@@ -79,9 +79,9 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 				?>
 			<?php endif;?>
 			<?php if ($_GET['cargo'] === 'takeaway'):?>
-				<input type="hidden" name="cargo" value="<?php echo $_GET['cargo'];?>"
-				<input type="hidden" name="store" value="<?php echo $_GET['store'];?>"
-				<input type="hidden" name="store_address" value="<?php echo $_GET['store_address'];?>"
+				<input type="hidden" name="cargo" value="<?php echo $_GET['cargo'];?>"/>
+				<input type="hidden" name="store" value="<?php echo $_GET['store'];?>"/>
+				<input type="hidden" name="store_address" value="<?php echo $_GET['store_address'];?>"/>
 				<label>Retiro en sucursal</label>
 				<p><?php echo $_GET['store_address'];?></p>
 			<?php endif;?>
