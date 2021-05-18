@@ -2,7 +2,8 @@
 <?php echo $this->Html->css('oca_front',array( 'inline' => false )) ?>
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <div class="row is-rounded">
-	<h3 class="h3 text-center">¿Cómo desea recibir su compra?</h3>
+	<h3 class="h3 text-center desktop">¿Cómo desea recibir su compra?</h3>
+	<h5 class="h3 text-center mobile">¿Cómo desea recibir su compra?</h5>
 	<div class="col-xs-12 shipment-options shipping">
 		<hr>
 		<h3 id="heading" class="cargo-title">Costo de Envio // <span>Oca</span></h3>
@@ -29,7 +30,7 @@
 		<h3 id="heading" class="cargo-title">Retiro en Sucursal // <span>Sin cargo de envío</span></h3>
 		<p style="margin:10px 0px">
 			<i>
-				<small>Solicite Retiro en Sucursal y evite cargos de envío</small>
+				<small>Solicite esta opción para evitar cargos de envío</small>
 			</i>
 		</p>		
 
