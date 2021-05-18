@@ -18,6 +18,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 		?>
 	</div>
 	<div class="col-md-4 form-container is-rounded">
+		<h5 class="h5 text-center">Ingrese sus datos para finalizar la compra</h5>
 		<form role="form" method="post" id="checkout-form" action="<?php echo $this->Html->url(array(
 					'controller' => 'carrito',
 					'action' => 'sale'
@@ -82,11 +83,15 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 				<input type="hidden" name="cargo" value="<?php echo $_GET['cargo'];?>"/>
 				<input type="hidden" name="store" value="<?php echo $_GET['store'];?>"/>
 				<input type="hidden" name="store_address" value="<?php echo $_GET['store_address'];?>"/>
-				<label>Retiro en sucursal</label>
-				<p><?php echo $_GET['store_address'];?></p>
+				<hr>
+				<div class="form-group">
+					<label>Retiro en sucursal</label>
+					<p class="text-success"><?php echo $_GET['store'];?>, <?php echo $_GET['store_address'];?></p>
+				</div>
 			<?php endif;?>
 			</div>
 			<div class="form-group">
+				<hr>
 				<input type="checkbox" id="ticket_regalo" name="ticket_regalo"<?php echo $_GET['ticket'] ? ' checked' : ''; ?>>
 				<label for="ticket_regalo">Es para regalo</label>
 			</div>
