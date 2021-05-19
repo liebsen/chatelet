@@ -10,6 +10,7 @@
 				<th class="hidden-phone hidden-tablet"><?php echo __('Dirección'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Telefono'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('¿Por mayor?'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Takeaway'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Local'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Coordenadas'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -31,7 +32,12 @@
 					</td>
 					<td>
 						<?=
-							($store['Store']['por_mayor']) ? 'Si' : 'No'
+							($store['Store']['por_mayor']) ? 'Sí' : 'No'
+						?>
+					</td>
+					<td>
+						<?=
+							($store['Store']['takeaway']) ? 'Sí' : 'No'
 						?>
 					</td>
 					<td>

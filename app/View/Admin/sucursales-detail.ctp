@@ -51,8 +51,20 @@
                 $por_mayor = (isset($store) && $store['Store']['por_mayor'] == 1) ? 'checked' : '';
                 $por_menor = (isset($store) && $store['Store']['por_mayor'] == 0) ? 'checked' : '';
               ?>
-              Si <input type="radio" name="data[por_mayor]" value="1" <?php echo $por_mayor; ?> /> - 
+              Sí <input type="radio" name="data[por_mayor]" value="1" <?php echo $por_mayor; ?> /> - 
               No <input type="radio" name="data[por_mayor]" value="0" <?php echo $por_menor; ?> />
+            </div>
+          </div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Takeaway'); ?></label>
+            <div class="controls">
+              <?php
+                $takeaway1 = (isset($store) && $store['Store']['takeaway'] == 1) ? 'checked' : '';
+                $takeaway2 = (isset($store) && $store['Store']['takeaway'] == 0) ? 'checked' : '';
+              ?>
+              Sí <input type="radio" name="data[takeaway]" value="1" <?php echo $takeaway1; ?> /> - 
+              No <input type="radio" name="data[takeaway]" value="0" <?php echo $takeaway2; ?> />
             </div>
           </div>
           <br />
