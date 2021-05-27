@@ -145,7 +145,7 @@
 		</div>
 		<div class="col-md-2"></div>
 	</div>
-	<div class="row">
+	<!--div class="row">
 		<div class="col-md-4"></div>
 		<div id="instrucciones" class="col-md-4">
 			<p id="como-comprar">Como comprar</p>
@@ -159,5 +159,5 @@
 			</a>
 		</div>
 		<div class="col-md-4"></div>
-	</div>
+	</div-->
 </div>
