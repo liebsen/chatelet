@@ -59,6 +59,10 @@ class AyudaController extends AppController {
 		
 	}
 
+	public function politicas_de_cambio() {
+		
+	}
+
 	public function faq() {
 		
 	}

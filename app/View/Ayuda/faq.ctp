@@ -20,6 +20,7 @@
             <a href="como_comprar" >¿Como comprar?</a>
             <a href="envios">Envíos</a>
             <a href="metodos_de_pago">Métodos de pago</a>
+            <a href="politicas_de_cambio">Políticas de cambio</a>
             <a href="faq" class="active">Preguntas frecuentes</a>
         </section>
 
@@ -30,7 +31,7 @@
                     <p>El costo de envío y tiempo de entrega dependerá de la ubicación de cada usuario y del peso del pedido. Se  recomienda consultar la tabla de envío.</p>
 
                     <h3>¿Dónde puedo realizar el seguimiento de mi pedido?</h3>
-                    <p>Todos los envíos son efectuados por OCA y podes seguir el estado del mismo ingresando en www.oca.com.ar</p>
+                    <p>Todos los envíos son efectuados por OCA y podes seguir el estado del mismo ingresando en <a href="https://www.oca.com.ar/Busquedas/Envios" target="_blank">la página de búsqueda de envíos de OCA</a></p>
                 </div>
 
                 <div class="col-sm-6">

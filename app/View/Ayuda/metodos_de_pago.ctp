@@ -21,6 +21,7 @@
             <a href="como_comprar" >¿Como comprar?</a>
             <a href="envios">Envíos</a>
             <a href="metodos_de_pago" class="active">Métodos de pago</a>
+            <a href="politicas_de_cambio">Políticas de cambio</a>
             <a href="faq" >Preguntas frecuentes</a>
         </section>
 
