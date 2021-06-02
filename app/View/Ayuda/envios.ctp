@@ -35,8 +35,8 @@
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-6 boxs">
-                        La respuesta 'Número Inexistente' puede darse si la estampilla no está cargada en el sistema de OCA pero el paquete está enviado.<br>
-                        Si el estado del envio es 'En sucursal de destino', podés llamar e ir a buscar el paquete vos mismo. De todas maneras, podés esperar a recibirlo en la dirección de entrega.
+                        <p><strong>Los pedidos serán despachados entre las 48 y 72 hs hábiles</strong></p>
+                        <p><strong>Durante acciones especiales como Hot Sale, Cybermonday, black friday y promociones en el sitio web los tiempos de procesamiento, envío y entrega pueden verse afectados.</strong></p>
                     </div>
                     <div class="col-md-6">
                         <h3>Envío por OCA</h3>
@@ -45,15 +45,12 @@
                         <h3>Retiro en Sucursal</h3>
                         <p>Los pedidos tardan en llegar a la sucursal elegida entre 10 y 15 días hábiles. Una vez que llegue al local, nos comunicaremos con vos por mail para avisarte que ya podés ir a retirar tu compra. Recordá que deberás acercarte al local con tu DNI y el número de pedido y contas con 15 días para ir a retirarlo.</p>
                     </div>
-                    <div class="col-md-6">
-                        <h3>Los pedidos serán despachados entre las 48 y 72 hs hábiles</h3>
-                        <h3>Durante acciones especiales como Hot Sale, Cybermonday, black friday y promociones en el sitio web los tiempos de procesamiento, envío y entrega pueden verse afectados.</h3>
-                    </div>
                 </div>
             </div>
         </section>
 
         <section id="referncia">
+
             <div class="wrapper">
                 <h2>Referencia de estados</h2>
                 <div class="bx">
@@ -75,6 +72,16 @@
                 <div class="bx">
                     <h3>En tránsito</h3>
                     <p>Paquete Viajando</p>
+                </div>
+            </div>
+        </section>
+        <section id="desarrollo">
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-6 boxs">
+                        La respuesta 'Número Inexistente' puede darse si la estampilla no está cargada en el sistema de OCA pero el paquete está enviado.<br>
+                        Si el estado del envio es 'En sucursal de destino', podés llamar e ir a buscar el paquete vos mismo. De todas maneras, podés esperar a recibirlo en la dirección de entrega.
+                    </div>
                 </div>
             </div>
         </section>

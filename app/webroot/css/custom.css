@@ -477,7 +477,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #referncia .bx { border-right: 1px solid #fadcea; float: left; font-size: 17px; padding: 0 45px; width: 20%; }
 #referncia .bx h3 { color: #51177d; font-size: 16px; font-weight: 600; margin-bottom: 5px; }
 #referncia .bx p { font-size: 14px; line-height: 1.4; }
-#referncia ul { column-count: 2; column-gap: 20px; }
+/*#referncia ul { column-count: 2; column-gap: 20px; }*/
 #referncia ul li { border-bottom: 2px solid #fadcea; font-size: 14px; line-height: 1.5; padding: 30px 0; }
 
 

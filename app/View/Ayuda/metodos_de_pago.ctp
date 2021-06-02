@@ -37,9 +37,9 @@
                 <ul>
                     <li>* Pagando con las tarjetas de crédito habilitadas tu pedido será reservado por un periodo de 24 hs y quedaremos a la espera de la confirmación de la operación por parte de mercado pago.</li>
                     <li>** Abonando en RapiPago, Pago Fácil o Bapro, el pedido será reservado por un periodo de 24/48 hs. Transcurrido ese tiempo, la reserva caducará y tu pedido será cancelado. Cuánto antes realices el pago, antes podrás recibirlo en tu domicilio!</li>
-                    <li>***El pago se acredita en el momento por lo que tu pedido será despachado en 24 hs. En todos los casos CHATELET te mantendrá informado sobre el estado del pedido y el tiempo de acreditación del pago dependerá del sistema que seleccione el cliente.</li>
+                    <!--li>***El pago se acredita en el momento por lo que tu pedido será despachado en 24 hs. En todos los casos CHATELET te mantendrá informado sobre el estado del pedido y el tiempo de acreditación del pago dependerá del sistema que seleccione el cliente.</li-->
                     <li>*** Las prendas no tienen cambio.</li>
-                    <li>*** Las prendas que estan en el Shop como principal en cada rubro no estan a la venta.</li>
+                    <!--li>*** Las prendas que estan en el Shop como principal en cada rubro no estan a la venta.</li-->
                 </ul>
             </div>
         </section>
