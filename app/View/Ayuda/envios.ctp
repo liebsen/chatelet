@@ -39,11 +39,11 @@
                         <p><strong>Durante acciones especiales como Hot Sale, Cybermonday, black friday y promociones en el sitio web los tiempos de procesamiento, envío y entrega pueden verse afectados.</strong></p>
                     </div>
                     <div class="col-md-6">
-                        <h3>Envío por OCA</h3>
-                        <p>Los envíos se realizan a través de OCA en un plazo de entre 7 y 10 días hábiles (dependiendo de la región). Se puede hacer el seguimiento del mismo mediante un link que se envía al mail.</p>
-                        <p>En caso de no encontrarse a la hora de la visita se dejara un aviso, y se realizara una segunda visita. Si nuevamente no hay nadie en el domicilio, el paquete volverá a nuestra     oficina por falta de recepción y el cliente deberá abonar nuevamente el envío.</p>
-                        <h3>Retiro en Sucursal</h3>
-                        <p>Los pedidos tardan en llegar a la sucursal elegida entre 10 y 15 días hábiles. Una vez que llegue al local, nos comunicaremos con vos por mail para avisarte que ya podés ir a retirar tu compra. Recordá que deberás acercarte al local con tu DNI y el número de pedido y contas con 15 días para ir a retirarlo.</p>
+                        <h3 class="text-left">Envío por OCA</h3>
+                        <p class="text-left">Los envíos se realizan a través de OCA en un plazo de entre 7 y 10 días hábiles (dependiendo de la región). Se puede hacer el seguimiento del mismo mediante un link que se envía al mail.</p>
+                        <p class="text-left">En caso de no encontrarse a la hora de la visita se dejara un aviso, y se realizara una segunda visita. Si nuevamente no hay nadie en el domicilio, el paquete volverá a nuestra     oficina por falta de recepción y el cliente deberá abonar nuevamente el envío.</p>
+                        <h3 class="text-left">Retiro en Sucursal</h3>
+                        <p class="text-left">Los pedidos tardan en llegar a la sucursal elegida entre 10 y 15 días hábiles. Una vez que llegue al local, nos comunicaremos con vos por mail para avisarte que ya podés ir a retirar tu compra. Recordá que deberás acercarte al local con tu DNI y el número de pedido y contas con 15 días para ir a retirarlo.</p>
                     </div>
                 </div>
             </div>

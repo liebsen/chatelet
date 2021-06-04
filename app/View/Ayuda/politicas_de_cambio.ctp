@@ -29,7 +29,7 @@
                 <div class="col-sm-6">
                     <p>Podes acercarte a realizar el cambio en cualquier local exclusivo de la marca, dentro de los 30 días de recibido el producto en tu domicilio y/o sucursal o, desde el día que realizaste la compra de manera presencial.</p>
 
-                    <p>Los artículos deberán estar en el mismo estado en el que fueron recibidos, sin haber sido utilizados y con sus etiquetas originales. Deberás presentar tu ticket de cambio / factura de compra.</p>
+                    <p>Los artículos deberán estar en el mismo estado en el que fueron recibidos, sin haber sido utilizados y con sus etiquetas originales. Deberás presentar tu ticket de cambio/factura de compra.</p>
 
                 </div>
 
