@@ -469,8 +469,8 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headhelp .box2 input[type="submit"] { background: #51177d; border: none; color: #FFF; float: right; font-size: 16px; height: 60px; width: 48%; }
 #desarrollo { overflow: hidden; padding: 50px 0; }
 #desarrollo .boxs { font-size: 14px; }
-#desarrollo .boxs:first-child { background: url(../images/box4.png) no-repeat left center; background-size: contain; padding-left: 260px; }
-#desarrollo .boxs:last-child { background: url(../images/box5.png) no-repeat left center; background-size: contain; padding-left: 250px; text-align: left; }
+#desarrollo .boxs:first-child { background: url(../images/box4.png) no-repeat left center; background-size: 200px; padding-left: 240px; }
+#desarrollo .boxs:last-child { background: url(../images/box5.png) no-repeat left center; background-size: 260px; padding-left: 300px; text-align: left; }
 #desarrollo h3 { font-size: 22px; font-weight: 600; margin-bottom: 15px; }
 #desarrollo p { font-size: 15px; margin-bottom: 55px; }
 #referncia { padding: 60px 0; overflow: hidden; }
@@ -633,7 +633,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headhelp .box.box2 { padding-bottom: 20px; }
 
 	#desarrollo .boxs:first-child { margin-bottom: 30px; margin-left: 25px; padding-left: 150px; }
-	#desarrollo .boxs:last-child { background-size: 100px; }
+	#desarrollo .boxs:last-child { background-size: 130px; }
 
 	#myModal2 .content .table { overflow: hidden; overflow-x: scroll; }
 }
@@ -716,7 +716,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headhelp .box2 h3 { background-position: center 20px; padding-top: 50px; }
 	#headhelp .box2 input[type="text"] { margin-bottom: 20px; }
 	#headhelp .box2 input[type="text"], #headhelp .box2 input[type="submit"] { float: none; width: 100%; }
-	#desarrollo .boxs { background-position: center 20px !important;  padding: 130px 20px 20px 20px !important; }
+	#desarrollo .boxs { background-position: center top !important;  padding: 130px 20px 20px 20px !important; }
 	#referncia .bx { border-right: none; border-bottom: 1px solid #fadcea; padding: 15px 0; width: 100%; }
 
 	#myModal2 .content { padding: 70px 20px 20px; }
