@@ -22,7 +22,8 @@ body { font-family: 'Poppins', Verdana, Arial, Sans-Serif; }
 a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none; }
 
 .wrapper { margin: 0 auto; max-width: 1270px; }
-
+.link { color: #f50081; font-weight: 600; }
+.link:hover { color: #f50081; font-weight: 600; text-decoration: underline; }
 .discount-flag {
   position: absolute;
   background: #ff4581;
@@ -468,7 +469,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headhelp .box2 input[type="submit"] { background: #51177d; border: none; color: #FFF; float: right; font-size: 16px; height: 60px; width: 48%; }
 #desarrollo { overflow: hidden; padding: 50px 0; }
 #desarrollo .boxs { font-size: 14px; }
-#desarrollo .boxs:first-child { background: url(../images/box4.png) no-repeat left center; background-size: contain; padding-left: 180px; }
+#desarrollo .boxs:first-child { background: url(../images/box4.png) no-repeat left center; background-size: contain; padding-left: 260px; }
 #desarrollo .boxs:last-child { background: url(../images/box5.png) no-repeat left center; background-size: contain; padding-left: 250px; text-align: left; }
 #desarrollo h3 { font-size: 22px; font-weight: 600; margin-bottom: 15px; }
 #desarrollo p { font-size: 15px; margin-bottom: 55px; }
@@ -631,7 +632,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headhelp .box { padding: 20px 20px 0; }
 	#headhelp .box.box2 { padding-bottom: 20px; }
 
-	#desarrollo .boxs:first-child { margin-bottom: 30px; padding-left: 170px; }
+	#desarrollo .boxs:first-child { margin-bottom: 30px; margin-left: 25px; padding-left: 150px; }
 	#desarrollo .boxs:last-child { background-size: 100px; }
 
 	#myModal2 .content .table { overflow: hidden; overflow-x: scroll; }
