@@ -103,6 +103,9 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-12 clearfix">
+                                    <div class="pull-left">
+                                        <a href="/" class="btn btn-info remove-margin">Go to site</a>
+                                    </div>
                                     <div class="pull-right">
                                         <button type="submit" class="btn btn-success remove-margin">Login</button>
                                     </div>

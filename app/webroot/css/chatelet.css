@@ -99,11 +99,18 @@ html, body {
 
 .dropdown-menu a.pink {
 	color: #e10c76;
+	display: inline-block;
+	padding: 0.5rem;
+
+}
+#bs-example-navbar-collapse-1 > .navbar-nav > li > a {
+	line-height: 25px;	
 }
 
 .dropdown-menu ol {
 	color: #b4b4b4;
 	padding-left: 25px;
+	padding-right: 25px;
 }
 
 .dropdown-menu p {
@@ -113,14 +120,14 @@ html, body {
 
 .dropdown-menu .bottom {
 	border-top: 1px solid #e10c76;
-	padding-top: 10px;
+	padding-top: 0.5rem;
+	padding-bottom: 1.25rem;
 }
 
 .dropdown-menu .bottom>.right {
 	background-color: #e10c76;
 	color: #FFFFFF;
 	border-radius: 5px;
-	padding:  2px 5px 2px 5px;
 }
 
 #login-email,
