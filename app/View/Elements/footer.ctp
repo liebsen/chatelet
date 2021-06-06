@@ -23,8 +23,7 @@
                    ?>
                     </ul>
                 </div>
-<pre>
-    <?php var_dump($catalog_first_line);?>
+
                 <div class="col-md-3 col-sm-6">
                     <h3>LookBook</h3>
                     <ul>
