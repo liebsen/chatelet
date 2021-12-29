@@ -159,6 +159,7 @@ class AdminController extends AppController {
 		$sale['def_orden_retiro'] = @$oca_result['retiro'];
 		$sale['def_orden_tracking'] = @$oca_result['tracking'];
 		$t = @$this->Sale->save($sale);
+		$sale['raw_xml'] = @$oca_result['rawXML'];
 		return $sale;
 	}
 
@@ -207,6 +208,8 @@ class AdminController extends AppController {
 				}
 				// $data['url'] = "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
 				$data['url'] = "http://www5.oca.com.ar/OcaEPakNet/Views/Impresiones/Etiquetas.aspx?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
+			} else {
+				$data['message'] = strip_tags($sale['raw_xml']);
 			}
 		}
 		die(json_encode($data));

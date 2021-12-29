@@ -316,7 +316,7 @@ class Oca
 		$OrdenRetiro = @$this->getTextBetweenTags( 'OrdenRetiro' , $xml , 1 );
 		$nroEnvio = @$this->getTextBetweenTags( 'NumeroEnvio' , $xml , 1 );
 //              die($nroEnvio);
-		return ['retiro'=>$OrdenRetiro, 'tracking'=>$nroEnvio];
+		return ['retiro'=>$OrdenRetiro, 'tracking'=>$nroEnvio, 'rawXML' => $xml];
 
 
 		
