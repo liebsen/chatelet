@@ -70,6 +70,17 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
     text-align: center;
     color: #e398c1;
 }
+.navbar-nav>li>a.search {
+    background: url(../img/lupa.png) no-repeat center;
+    display: inline-block;
+    height: 50px;
+    padding: 0;
+    width: 54px;
+    font-size: 11px;
+    padding-top: 41px;
+    text-align: center;
+    color: #e398c1;
+}
 #menuShop {z-index: 12; background: #FFF; border-bottom: 2px solid #efb0d2; left: 0; display: none; padding: 40px 0; position: absolute; top: 85px; width: 100%; }
 #menuShop a.close { display: block; height: 25px; opacity: 1; position: absolute; right: 10px; top: 10px; width: 25px; }
 #menuShop a.close span { background: #f50081; display: block; height: 2px; margin-top: 12px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
@@ -871,6 +882,27 @@ span.out{
 }
 
 
+.header-search {
+    background-color: #f50081!important;
+    border-radius: 0;
+    position: absolute;
+    top: 4.5rem;
+    padding: .75em 1em;
+}
+
+
+.input-search {
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #f50081;
+    color: white;
+    border: none;
+}
+
+.p-0 {
+    padding: 0!important;
+}
+
 /*Icon Shoop Nav Top*/
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background-color: transparent;
@@ -1050,6 +1082,17 @@ span.count {
 }
 
 @media screen and (min-width:769px), print {
+
+    .header-search:after {
+        position: absolute;
+        content: "";
+        top: -.5em;
+        border-bottom: .5em solid #fff;
+        border-bottom-color: #f50081;
+        border-left: .5em solid transparent;
+        border-right: .5em solid transparent;
+        right: 1rem;
+    }    
   .desktop {
     display: block;
   }

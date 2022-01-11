@@ -314,5 +314,16 @@ class ShopController extends AppController {
 		$this->set('all_but_me', $all_but_me);
 	}
 
+	public function search(){
+		$this->autoRender = false;
+		$this->loadModel('Product');
+		$q = $this->request->data['q'];
+		$data = $this->Product->find('all',array('conditions'=>array( 'Product.name LIKE' => "%$q%" )));
+		$result = [];
+		foreach($data as $item) {
+			$result[]= $item['Product'];
+		}
+		die(json_encode($result));
+	}
 }
 ?>

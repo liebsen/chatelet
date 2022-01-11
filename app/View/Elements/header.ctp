@@ -164,6 +164,15 @@
               </li>
             </ul>
           </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle search" data-toggle="dropdown"></a>
+            <ul class="dropdown-menu header-search">
+              <li>
+                <input type="text" class="form-input input-search" placeholder="Buscar...">
+                <div class="search-results"></div>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

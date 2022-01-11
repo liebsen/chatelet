@@ -12,4 +12,11 @@ $(function () {
 	setTimeout(function () {
 		$('#myModal').modal({ show: true })
 	}, 3000)
+
+  console.log('start')
+  $('#header_search').submit(e => {
+    console.log(this)
+    console.log(e)
+    return false
+  })
 })

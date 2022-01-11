@@ -31,7 +31,17 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 .navbar-nav>li>a.user { background: url(../images/sprite.png) no-repeat 0 -38px; display: inline-block; height: 41px; padding: 0; width: 41px; }
 .navbar-nav>li>a.shop { background: url(../images/sprite.png) no-repeat -46px -38px; display: inline-block; height: 41px; padding: 0; width: 41px; }
 .navbar-nav>li>a .badge { background: #f50081; border-radius: 50%; line-height: 1; margin-left: -10px; margin-top: -10px; padding: 5px 8px; }
-
+.navbar-nav>li>a.search {
+    background: url(../img/lupa.png) no-repeat center;
+    display: inline-block;
+    height: 50px;
+    padding: 0;
+    width: 54px;
+    font-size: 11px;
+    padding-top: 41px;
+    text-align: center;
+    color: #e398c1;
+}
 #carousel-example-generic { height: auto; }
 #carousel-example-generic .carousel-caption { left: 25%; line-height: .8; padding-bottom: 150px; padding-top: 125px; position: relative; text-align: left; text-shadow: none; width: 50%; }
 #carousel-example-generic .carousel-caption h1 { color: #464444; font-size: 60px; font-weight: 600; margin-bottom: 25px; text-shadow: none; }
