@@ -37,6 +37,14 @@ function updateSrcTo(obj){
 	height: 114px;
 	overflow: hidden;
 }
+.name {
+  text-align:center;
+  font-size:20px;
+  font-weight: 800;
+  font-family: 'Poppins', Verdana, Arial, sans-serif;
+  margin:10px auto 20px;
+  color: #f50081;
+}
 .price {
 	text-align:center;
 	height:60px;
@@ -103,7 +111,7 @@ function updateSrcTo(obj){
 
 			if ($isProduct){
 				 $content.='<span class="hover">'.
-         '<small>'. $item['name'] .'</small>'.
+         '<small>'. $item['desc'] .'</small>'.
          '</span>';
 			}
 			$url = array(
@@ -141,8 +149,9 @@ function updateSrcTo(obj){
 				).
 				'<div class="desc-cont">'.
 				'<div class="desc-prod">'.
-					'<small>'. $item['name'] .'</small>'.
+					'<small>'. $item['desc'] .'</small>'.
 				'</div>'.
+        '<div class="name">'.$item['name'].'</div>' . 
 				'<div class="price">'.$priceStr.'</div>
 				</div></div>';
       } else {
@@ -175,7 +184,7 @@ function updateSrcTo(obj){
 						$content,
 						$url,
 						array('escape' => false)
-					). '<div class="price">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
+					). '<div class="name">'.$item['name'].'</div><div class="price">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
 					</div>';
 			}
 		}
