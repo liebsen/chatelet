@@ -321,13 +321,15 @@ class ShopController extends AppController {
 		$data = $this->Product->find('all',array('conditions'=>array('or' => array('Product.name LIKE' => "%$q%",'Product.desc LIKE' => "%$q%")), 'limit' => 10));
 		$result = [];
 		foreach($data as $item) {
-			$result[]= $item['Product'];
-			/*
+			// $result[]= $item['Product'];
 			$result[]= [
+				'id' => $item['Product']['id'],
+				'category_id' => $item['Product']['category_id'],
 				'name' => $item['Product']['name'],
 				'desc' => $item['Product']['desc'],
+				'slug' => str_replace(' ','-',strtolower($item['Product']['desc'])),
 				'img_url' => Configure::read('imageUrlBase') . $item['Product']['img_url']
-			];			*/
+			];
 		}
 		die(json_encode($result));
 	}

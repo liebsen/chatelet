@@ -164,21 +164,8 @@
               </li>
             </ul>
           </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle search" data-toggle="dropdown"></a>
-            <ul class="dropdown-menu header-search">
-              <li>
-                <div class="box-search">
-                  <input type="text" class="form-input input-search" placeholder="Buscar...">
-                  <svg class="spinner-search" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-                    <rect class="spinner__rect" x="0" y="0" width="100" height="100" fill="none"></rect>
-                    <circle class="spinner__circle" cx="50" cy="50" r="40" stroke="#ffffff" fill="none" stroke-width="8" stroke-linecap="round">
-                    </circle>
-                  </svg>
-                </div>
-                <div class="search-results"></div>
-              </li>
-            </ul>
+          <li>
+            <a href="#" class="action-search"></a>
           </li>
         </ul>
       </div><!-- /.navbar-collapse -->
@@ -186,7 +173,32 @@
 </nav>
 
 
-<div id="menuShop">
+<div id="menuSearch" class="menuLayer">
+  <a class="close">
+    <span></span>
+    <span></span>
+  </a>
+  <div class="wrapper">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>Buscar</h3>    
+        <div class="box-search">
+          <input type="text" class="form-input input-search" placeholder="Buscar...">
+          <svg class="spinner-search" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+            <rect class="spinner__rect" x="0" y="0" width="100" height="100" fill="none"></rect>
+            <circle class="spinner__circle" cx="50" cy="50" r="40" stroke="#ffffff" fill="none" stroke-width="8" stroke-linecap="round">
+            </circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 search-results"></div>
+    </div>
+  </div>
+</div>
+
+<div id="menuShop" class="menuLayer">
     <a class="close">
         <span></span>
         <span></span>

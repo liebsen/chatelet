@@ -16,8 +16,8 @@ $(function () {
       $('#menuShop').fadeOut();
     }
   })
-  $('#menuShop a.close').click(function () {
-    $('#menuShop').fadeOut();
+  $('.menuLayer a.close').click(function () {
+    $('.menuLayer').fadeOut();
   })
   if(document.querySelector("#myModal")!=null && $('.js-show-modal') && $('.js-show-modal').length){
     setTimeout(function () {
@@ -25,10 +25,15 @@ $(function () {
     }, 3000)
   }
 
-  $('.dropdown-toggle.search').click(() => {
+  $('.action-search').click(() => {
+    $('#menuSearch').fadeIn();
     setTimeout(() => {
       if($('.input-search').is(':visible')) {
         $('.input-search').focus()            
+      }
+      if (localStorage.getItem('lastsearch')) {
+        $('.input-search').val(localStorage.getItem('lastsearch'))
+        $('.input-search').keyup()
       }
     }, 500)        
   })
@@ -39,16 +44,28 @@ $(function () {
     }
     searchInt = setTimeout(() => {
       $('.spinner-search').addClass('searching')
+      let q = $('.input-search').val().trim()
+      localStorage.setItem('lastsearch', q)
       $.ajax({
         type: "POST",
         url: "/shop/search/",
-        data: JSON.stringify({q: $('.input-search').val().trim()}),
+        data: JSON.stringify({q: q}),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
           let str = ''
           $.each(data, function(key, val) {
-            str += '<a href="/tienda/producto/'+ val.id+'/'+val.category_id+'/'+val.desc+'"><div class="search-item"><div class="search-item-img" style="background-image: url('+val.img_url+')"></div><div class="search-item-text"><h3>'+val.name+'</h3><p>'+val.desc+'</p></div></div></a>';
+            str += '<div class="col col-md-6 col-lg-4">' + 
+              '<a href="/tienda/producto/'+ val.id+'/'+val.category_id+'/'+val.slug+'">' + 
+                '<div class="row">' + 
+                  '<div class="col-sm-4 is-background-cover is-background-border" style="background-image: url('+val.img_url+')"></div>' + 
+                  '<div class="col-sm-6">' + 
+                    '<h3>'+val.name+'</h3>' + 
+                    '<p class="text-dark">'+val.desc+'</p>' + 
+                  '</div>' + 
+                '</div>' +
+              '</a>' + 
+            '</div>'
           })
           $('.search-results').html(str)
         },

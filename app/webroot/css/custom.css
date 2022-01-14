@@ -70,7 +70,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
     text-align: center;
     color: #e398c1;
 }
-.navbar-nav>li>a.search {
+.navbar-nav>li>a.action-search {
     background: url(../img/lupa.png) no-repeat center;
     display: inline-block;
     height: 50px;
@@ -81,15 +81,15 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
     text-align: center;
     color: #e398c1;
 }
-#menuShop {z-index: 12; background: #FFF; border-bottom: 2px solid #efb0d2; left: 0; display: none; padding: 40px 0; position: absolute; top: 85px; width: 100%; }
-#menuShop a.close { display: block; height: 25px; opacity: 1; position: absolute; right: 10px; top: 10px; width: 25px; }
-#menuShop a.close span { background: #f50081; display: block; height: 2px; margin-top: 12px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
-#menuShop a.close span:last-child { margin-top: -3px; -ms-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
-#menuShop img { margin-right: 50px; }
-#menuShop h3 { color: #222; font-size: 16px; font-weight: normal; text-transform: uppercase; margin-bottom: 30px; }
-#menuShop ul { column-count: 3; column-gap: 40px; font-size: 13px; }
-#menuShop ul li { margin-bottom: 15px; }
-#menuShop ul li a {
+.menuLayer {z-index: 12; background: #FFF; border-bottom: 2px solid #efb0d2; left: 0; display: none; padding: 40px 0; position: absolute; top: 85px; width: 100%; }
+.menuLayer a.close { display: block; height: 25px; opacity: 1; position: absolute; right: 10px; top: 10px; width: 25px; }
+.menuLayer a.close span { background: #f50081; display: block; height: 2px; margin-top: 12px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
+.menuLayer a.close span:last-child { margin-top: -3px; -ms-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
+.menuLayer img { margin-right: 50px; }
+.menuLayer h3 { color: #222; font-size: 16px; font-weight: normal; text-transform: uppercase; margin-bottom: 30px; }
+.menuLayer ul { column-count: 3; column-gap: 40px; font-size: 13px; }
+.menuLayer ul li { margin-bottom: 15px; }
+.menuLayer ul li a {
   color: #222;
       font-weight: normal;
       text-transform: uppercase;
@@ -882,16 +882,43 @@ span.out{
 }
 
 
-.header-search {
-    background-color: #f50081!important;
-    border-radius: 0;
-    position: absolute;
-    top: 4.5rem;
-    padding: .75em 1em;
+.spinner-search {
+  position: absolute;
+  top: -0.1rem;
+  right: 0;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
 }
 
-.header-search ul {
-    padding: 0;
+.is-background-border {
+  border: 1px solid #666;
+}
+
+.is-background-cover {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.search-results {
+  padding-top: 1rem;
+}
+
+.search-results .is-background-cover {
+  min-height: 15rem;
+  margin-bottom: 1rem;
+}
+
+.search-results h3  {
+  margin-bottom: 0.5rem;
+}
+
+.search-results p {
+  color: #666;
+}
+
+.spinner-search.searching {
+    opacity: 1;
 }
 
 @keyframes spinning-circle {
@@ -912,53 +939,6 @@ span.out{
   animation: 2s linear spinning-circle infinite;
 }
 
-.box-search {
-    position: relative;
-    padding: 0;
-}
-
-.spinner-search {
-    position: absolute;
-    top: -0.1rem;
-    right: 0;
-    transition: opacity 0.5s ease-in-out;
-    opacity: 0;
-}
-
-.spinner-search.searching {
-    opacity: 1;
-}
-
-.input-search {
-    width: 20rem;
-    font-size: 1rem;
-    font-weight: bold;
-    color: white;
-    background-color: #f50081;
-    color: white;
-    border: none;
-}
-
-.search-item-img {
-    border: 1px solid white;
-    filter: brightness(0.8);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    min-width: 5rem;
-}
-
-.search-item {
-    display: flex;
-    flex-direction: row;
-    padding: 0.5rem;
-    color: white;
-}
-.search-item-text h3 {
-    font-size: 1rem;
-    font-weight: bold;
-    padding-left: 0.5rem;
-}
 
 .p-0 {
     padding: 0!important;
@@ -1143,17 +1123,6 @@ span.count {
 }
 
 @media screen and (min-width:769px), print {
-
-    .header-search:after {
-        position: absolute;
-        content: "";
-        top: -.5em;
-        border-bottom: .5em solid #fff;
-        border-bottom-color: #f50081;
-        border-left: .5em solid transparent;
-        border-right: .5em solid transparent;
-        right: 1rem;
-    }    
   .desktop {
     display: block;
   }
