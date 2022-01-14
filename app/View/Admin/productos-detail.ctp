@@ -90,7 +90,8 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Descripción'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="desc" value="<?php echo (isset($prod)) ? $prod['Product']['desc'] : ''; ?>" >
+              <textarea name="desc" rows=5><?php echo (isset($prod)) ? $prod['Product']['desc'] : ''; ?></textarea>
+              <!--input type="text" id="" name="desc" value="<?php echo (isset($prod)) ? $prod['Product']['desc'] : ''; ?>" -->
             </div>
           </div>
           <br />

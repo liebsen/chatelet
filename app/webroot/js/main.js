@@ -38,22 +38,27 @@ $(function () {
         clearInterval(searchInt)
     }
     searchInt = setTimeout(() => {
+      $('.spinner-search').addClass('searching')
       $.ajax({
         type: "POST",
         url: "/shop/search/",
-        data: JSON.stringify({q: $(this).val()}),
+        data: JSON.stringify({q: $('.input-search').val().trim()}),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
           console.log(data)
-         /* $.each(data, function(key, val) {
-                      str += '<li id="a'+key+'" term="'+val+'" data-did="'+key+'">'+val+'</li>';
-          }); */
+          let str = ''
+          $.each(data, function(key, val) {
+            str += '<a href="/tienda/producto/'+ val.id+'/'+val.category_id+'/'+val.desc+'"><div class="search-item"><div class="search-item-img" style="background-image: url('+val.img_url+')"></div><div class="search-item-text"><h3>'+val.name+'</h3><p>'+val.desc+'</p></div></div></a>';
+          })
+          $('.search-results').html(str)
         },
         error: function (errormessage) {
           console.log(errormessage)
           //oPrnt.find("ul.result").html('<li><b>No Results</b></li>');
         }
+      }).then(() => {
+        $('.spinner-search').removeClass('searching')
       })
     }, 500)        
   })

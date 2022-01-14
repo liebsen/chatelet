@@ -318,10 +318,16 @@ class ShopController extends AppController {
 		$this->autoRender = false;
 		$this->loadModel('Product');
 		$q = $this->request->data['q'];
-		$data = $this->Product->find('all',array('conditions'=>array( 'Product.name LIKE' => "%$q%" )));
+		$data = $this->Product->find('all',array('conditions'=>array('or' => array('Product.name LIKE' => "%$q%",'Product.desc LIKE' => "%$q%"))));
 		$result = [];
 		foreach($data as $item) {
 			$result[]= $item['Product'];
+			/*
+			$result[]= [
+				'name' => $item['Product']['name'],
+				'desc' => $item['Product']['desc'],
+				'img_url' => Configure::read('imageUrlBase') . $item['Product']['img_url']
+			];			*/
 		}
 		die(json_encode($result));
 	}
