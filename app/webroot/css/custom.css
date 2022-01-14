@@ -940,6 +940,8 @@ span.out{
 }
 
 .search-item-img {
+    border: 1px solid white;
+    filter: brightness(0.8);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

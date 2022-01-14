@@ -46,7 +46,6 @@ $(function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-          console.log(data)
           let str = ''
           $.each(data, function(key, val) {
             str += '<a href="/tienda/producto/'+ val.id+'/'+val.category_id+'/'+val.desc+'"><div class="search-item"><div class="search-item-img" style="background-image: url('+val.img_url+')"></div><div class="search-item-text"><h3>'+val.name+'</h3><p>'+val.desc+'</p></div></div></a>';

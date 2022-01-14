@@ -318,7 +318,7 @@ class ShopController extends AppController {
 		$this->autoRender = false;
 		$this->loadModel('Product');
 		$q = $this->request->data['q'];
-		$data = $this->Product->find('all',array('conditions'=>array('or' => array('Product.name LIKE' => "%$q%",'Product.desc LIKE' => "%$q%"))));
+		$data = $this->Product->find('all',array('conditions'=>array('or' => array('Product.name LIKE' => "%$q%",'Product.desc LIKE' => "%$q%")), 'limit' => 10));
 		$result = [];
 		foreach($data as $item) {
 			$result[]= $item['Product'];
