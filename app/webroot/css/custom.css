@@ -972,7 +972,9 @@ span.out{
   overflow: hidden;
   width: 75px; height: 75px;
   text-align: right;
+  cursor: pointer;
 }
+
 .ribbon span {
   font-size: 10px;
   font-weight: bold;
@@ -990,6 +992,7 @@ span.out{
   position: absolute;
   top: 19px; right: -21px;
 }
+
 .ribbon span::before {
   content: "";
   position: absolute; left: 0px; top: 100%;
@@ -999,6 +1002,7 @@ span.out{
   border-bottom: 3px solid transparent;
   border-top: 3px solid #79A70A;
 }
+
 .ribbon span::after {
   content: "";
   position: absolute; right: 0px; top: 100%;

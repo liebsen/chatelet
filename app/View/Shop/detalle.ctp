@@ -53,6 +53,9 @@
         </div>
         <div class="col-md-5 col-sm-7"  >
              <div id="surround">
+                <?php if ($product['promo'] !== '') :?>
+                    <div class="ribbon"><span>PROMO <?= $product['promo'] ?></span></div>
+                <?php endif ?>
                  <?php if (!empty($colorImages[0]['images'] )): ?>
 
                 <?php foreach ($colorImages[0]['images'] as $k => $v) : ?>
@@ -239,6 +242,9 @@
                     if(!$stock){ ?>
                      <div class="col-md-4 col-sm-6"><?=$discount_flag?>
                         <a href="<?php echo $url ?>" >
+                            <?php if ($alt_product['promo'] !== '') :?>
+                                <div class="ribbon"><span>PROMO <?= $alt_product['promo'] ?></span></div>
+                            <?php endif ?>
                             <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
                             <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                             <span class="hover">
