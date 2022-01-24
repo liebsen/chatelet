@@ -327,6 +327,7 @@ class ShopController extends AppController {
 				'category_id' => $item['Product']['category_id'],
 				'name' => $item['Product']['name'],
 				'desc' => $item['Product']['desc'],
+				'price' => $item['Product']['discount'] ? $item['Product']['discount'] : $item['Product']['price'],
 				'slug' => str_replace(' ','-',strtolower($item['Product']['desc'])),
 				'img_url' => Configure::read('imageUrlBase') . $item['Product']['img_url']
 			];

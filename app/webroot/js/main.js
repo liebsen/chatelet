@@ -58,10 +58,10 @@ $(function () {
             str += '<div class="col col-md-6 col-lg-4">' + 
               '<a href="/tienda/producto/'+ val.id+'/'+val.category_id+'/'+val.slug+'">' + 
                 '<div class="row">' + 
-                  '<div class="col-sm-4 is-background-cover is-background-border" style="background-image: url('+val.img_url+')"></div>' + 
-                  '<div class="col-sm-6">' + 
-                    '<h3>'+val.name+'</h3>' + 
-                    '<p class="text-dark">'+val.desc+'</p>' + 
+                  '<div class="col-sm-12">' + 
+                    '<div class="is-background-cover is-background-search" style="background-image: url('+val.img_url+')"><p>'+val.desc+'</p></div>' + 
+                    '<h2 class="text-center">'+val.name+'</h2>' + 
+                    '<h3 class="text-center">$'+val.price+'</h3>' + 
                   '</div>' + 
                 '</div>' +
               '</a>' + 
