@@ -109,6 +109,10 @@ function updateSrcTo(obj){
 				$content = '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . 'thumb_'.$item['img_url'] .'" url-copy="'.Configure::read('imageUrlBase') . $item['img_url'].'" onError=updateSrcTo(this) />';
 			}
 
+      if ($item['promo'] !== '') {
+        $content.= '<div class="ribbon"><span>PROMO ' . $item['promo'] . '</span></div>';
+      }
+
 			if ($isProduct){
 				 $content.='<span class="hover">'.
          '<small>'. $item['desc'] .'</small>'.
