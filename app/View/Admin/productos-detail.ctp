@@ -110,6 +110,17 @@
           </div>
           <br />
           <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Promoción'); ?></label>
+            <div class="controls">
+              <select class="form-control" name="promo">
+                <option value="">No</option>
+                <option value="2x1"<?= $prod['Product']['promo'] === '2x1' ? ' selected' : '' ?>>2x1</option>
+                <option value="3x2"<?= $prod['Product']['promo'] === '3x2' ? ' selected' : '' ?>>3x2</option>
+              </select>
+            </div>
+          </div>
+          <br />          
+          <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Número de artículo'); ?></label>
             <div class="controls">
               <input type="text" id="" name="article" value="<?php echo (isset($prod)) ? $prod['Product']['article'] : ''; ?>" required>

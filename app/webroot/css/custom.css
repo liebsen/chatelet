@@ -899,8 +899,14 @@ span.out{
   display: flex;
   flex-direction: row;
 }
+
+.search-results a:hover ..is-background-cover {
+  filter: contrast(200%);
+}
+
 .search-results .is-background-cover {
   min-height: 15rem;
+  min-width: 10rem;
   margin-bottom: 1rem;
 }
 

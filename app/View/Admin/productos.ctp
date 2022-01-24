@@ -185,6 +185,7 @@
 			<tr>
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>
 				<th class="text-center hidden-phone"><?php echo __('Descripcion'); ?></th>
+				<th class="text-center hidden-phone"><?php echo __('Promo'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>
 				<th class="text-center hidden-phone"><?php echo __('Precio'); ?></th>
 				<th class="text-center hidden-phone"><?php echo __('Nro de Articulo'); ?></th>
@@ -202,6 +203,13 @@
 					</td>
 					<td>
 						<?=$product['Product']['desc']?>
+					</td>
+					<td>
+					<?php if($product['Product']['promo'] !== '') :?>
+						<span class="badge badge-inverse">
+							<?= $product['Product']['promo'] ?>
+						</span>
+					<?php endif ?>
 					</td>
 					<td>          
 						<?php

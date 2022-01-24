@@ -1046,6 +1046,69 @@ public function promos(){
 		return $this->render('sucursales');
 	}
 
+	public function cupones($action = null) {
+		$navs = array(
+			'Lista' => array(
+				'icon' 		=> 'gi gi-list',
+				'url'		=> Configure::read('mUrl').'/admin/cupones',
+				'active'	=> 'cupones'
+				),
+			'Nueva Sucursal' => array(
+				'icon' 		=> 'gi gi-circle_plus',
+				'url'		=> Configure::read('mUrl').'/admin/cupones/add',
+				'active'	=> 'add'
+				)
+
+			);
+		$this->set('navs', $navs);
+
+		$h1 = array(
+			'name' => 'Cupones',
+			'icon' => 'gi gi-tags'
+			);
+		$this->set('h1', $h1);
+
+	    $this->loadModel('Coupon');
+    	switch ($action) {
+	    	case 'add':
+	    	    if ($this->request->is('POST')){
+			        $this->autoRender = false;
+			        $this->Store->save($this->request->data);
+			        return $this->redirect(array('action'=>'cupones'));
+    			} else {
+    				$this->loadModel('Store');
+				    $cats = $this->Store->find('all');
+					$this->set('cats', $cats);
+					$this->set('sel', true);
+	    			return $this->render('cupones-detail');
+	    		}
+	    		break;
+	    	case 'delete':
+		    	if ($this->request->is('post')) {
+		    		$this->autoRender = false;
+
+		    		$this->Coupon->delete($this->request->data['id']);
+		    	}
+	    		break;
+	    	case 'edit':
+	    		if ($this->request->is('post')) {
+	    			$this->autoRender = false;
+	    			$data = $this->request->data;
+			        $this->Coupon->save($data);
+	    		} else {
+		    		$hasId = array_key_exists(1, $this->request->pass);
+		    		if (!$hasId) break;
+		    		$store = $this->Coupon->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+		    		$this->set('store', $store);
+		    		return $this->render('sucursales-detail');
+	    		}
+	    		break;
+	    }
+	    $stores = $this->Coupon->find('all');
+	    $this->set('coupons', $coupons);
+		return $this->render('cupones');
+	}
+
 	public function shipping($action = null) {
 		$navs = array(
 			'Envios' => array(
