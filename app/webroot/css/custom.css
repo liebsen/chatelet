@@ -906,7 +906,7 @@ span.out{
 .search-results p {
     opacity: 0;
     font-weight: 800;
-    color: #666;
+    color: #222;
     padding: 1rem;
     transition: opacity 0.25s ease-in-out; 
 }

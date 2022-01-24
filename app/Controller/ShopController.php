@@ -322,12 +322,13 @@ class ShopController extends AppController {
 		$result = [];
 		foreach($data as $item) {
 			// $result[]= $item['Product'];
+			$price = $item['Product']['discount'] ? $item['Product']['discount'] : $item['Product']['price'];
 			$result[]= [
 				'id' => $item['Product']['id'],
 				'category_id' => $item['Product']['category_id'],
 				'name' => $item['Product']['name'],
 				'desc' => $item['Product']['desc'],
-				'price' => $item['Product']['discount'] ? $item['Product']['discount'] : $item['Product']['price'],
+				'price' => number_format($price),
 				'slug' => str_replace(' ','-',strtolower($item['Product']['desc'])),
 				'img_url' => Configure::read('imageUrlBase') . $item['Product']['img_url']
 			];
