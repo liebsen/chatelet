@@ -19,7 +19,7 @@
 				<tr>
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'cupones','edit',$coupon['Coupon']['id']))?>">
-							<?=$coupon['Coupon']['title']?>
+							<?=$coupon['Coupon']['title']?> <?=$coupon['Coupon']['enabled'] === '0' ? '(Inactivo)': ''?>
 						</a>
 					</td>	                 
 					<td>

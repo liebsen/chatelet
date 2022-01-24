@@ -26,6 +26,17 @@
         <div class="col-md-6">
           <h4 class="sub-header">Información Principal</h4>
           <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
+            <div class="controls">
+              <?php
+                $enabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '1') ? 'checked' : '';
+                $disabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '0') ? 'checked' : '';
+              ?>
+              <label for="enabled_1">Activo</label> <input type="radio" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
+              <label for="enabled_0">Inactivo</label> <input type="radio" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
+            </div>
+          </div>        
+          <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
             <div class="controls">
               <input type="text" id="" name="data[title]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['title'] : ''; ?>" required>
@@ -46,8 +57,8 @@
                 $percentage = (isset($coupon) && $coupon['Coupon']['type_coupon'] == 'percentage') ? 'checked' : '';
                 $nominal = (isset($coupon) && $coupon['Coupon']['type_coupon'] == 'nominal') ? 'checked' : '';
               ?>
-              Porcentual <input type="radio" name="data[type_coupon]" value="percentage" <?php echo $percentage; ?> /> - 
-              Nominal <input type="radio" name="data[type_coupon]" value="nominal" <?php echo $nominal; ?> />
+              <label for="type_0">Porcentual</label> <input type="radio" id="type_0" name="data[type_coupon]" value="percentage" <?php echo $percentage; ?> /> &nbsp; 
+              <label for="type_1">Nominal</label> <input type="radio" id="type_1" name="data[type_coupon]" value="nominal" <?php echo $nominal; ?> />
             </div>
           </div>
           <br />
