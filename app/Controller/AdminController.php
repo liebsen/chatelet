@@ -1053,7 +1053,7 @@ public function promos(){
 				'url'		=> Configure::read('mUrl').'/admin/cupones',
 				'active'	=> 'cupones'
 				),
-			'Nueva Sucursal' => array(
+			'Nuevo Cupón' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> Configure::read('mUrl').'/admin/cupones/add',
 				'active'	=> 'add'
@@ -1073,11 +1073,11 @@ public function promos(){
 	    	case 'add':
 	    	    if ($this->request->is('POST')){
 			        $this->autoRender = false;
-			        $this->Store->save($this->request->data);
+			        $this->Coupon->save($this->request->data);
 			        return $this->redirect(array('action'=>'cupones'));
     			} else {
-    				$this->loadModel('Store');
-				    $cats = $this->Store->find('all');
+    				$this->loadModel('Coupon');
+				    $cats = $this->Coupon->find('all');
 					$this->set('cats', $cats);
 					$this->set('sel', true);
 	    			return $this->render('cupones-detail');
@@ -1100,11 +1100,11 @@ public function promos(){
 		    		if (!$hasId) break;
 		    		$store = $this->Coupon->find('first', array('conditions' => array('id' => $this->request->pass[1])));
 		    		$this->set('store', $store);
-		    		return $this->render('sucursales-detail');
+		    		return $this->render('cupones-detail');
 	    		}
 	    		break;
 	    }
-	    $stores = $this->Coupon->find('all');
+	    $coupons = $this->Coupon->find('all');
 	    $this->set('coupons', $coupons);
 		return $this->render('cupones');
 	}

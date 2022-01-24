@@ -1,13 +1,16 @@
 <?php
+  echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('cupones-detail', array('inline' => false));
-  echo $this->Html->css('cupones-detail', array('inline' => false));
+  // echo $this->Html->css('cupones-detail', array('inline' => false));
+  echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
+  $weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 ?>
 <?php echo $this->element('admin-menu');?>
 <div class="block block-themed">
   <div class="block-title">
     <h4>
     <?php
-      echo (isset($store)) ? __('Editar Cupón') : __('Agregar Cupón');
+      echo (isset($coupon)) ? __('Editar Cupón') : __('Agregar Cupón');
     ?>
     </h4>
   </div>
@@ -20,82 +23,80 @@
         }
       ?>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <h4 class="sub-header">Información Principal</h4>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[name]" value="<?php echo (isset($store)) ? $store['Store']['name'] : ''; ?>" required>
+              <input type="text" id="" name="data[title]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['title'] : ''; ?>" required>
             </div>
           </div>
           <br />
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Dirección'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Código'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[address]" value="<?php echo (isset($store)) ? $store['Store']['address'] : ''; ?>" required>
+              <input type="text" id="" name="data[code]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['code'] : ''; ?>" required>
             </div>
           </div>
           <br />
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Teléfono'); ?></label>
-            <div class="controls">
-              <input type="text" id="" name="data[phone]" value="<?php echo (isset($store)) ? $store['Store']['phone'] : ''; ?>" required>
-            </div>
-          </div>
-          <br />
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('¿Por mayor?'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Tipo de cupón'); ?></label>
             <div class="controls">
               <?php
-                $por_mayor = (isset($store) && $store['Store']['por_mayor'] == 1) ? 'checked' : '';
-                $por_menor = (isset($store) && $store['Store']['por_mayor'] == 0) ? 'checked' : '';
+                $percentage = (isset($coupon) && $coupon['Coupon']['type_coupon'] == 'percentage') ? 'checked' : '';
+                $nominal = (isset($coupon) && $coupon['Coupon']['type_coupon'] == 'nominal') ? 'checked' : '';
               ?>
-              Sí <input type="radio" name="data[por_mayor]" value="1" <?php echo $por_mayor; ?> /> - 
-              No <input type="radio" name="data[por_mayor]" value="0" <?php echo $por_menor; ?> />
+              Porcentual <input type="radio" name="data[type_coupon]" value="percentage" <?php echo $percentage; ?> /> - 
+              Nominal <input type="radio" name="data[type_coupon]" value="nominal" <?php echo $nominal; ?> />
             </div>
           </div>
           <br />
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Takeaway'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Descuento del cupón'); ?></label>
             <div class="controls">
-              <?php
-                $takeaway1 = (isset($store) && $store['Store']['takeaway'] == 1) ? 'checked' : '';
-                $takeaway2 = (isset($store) && $store['Store']['takeaway'] == 0) ? 'checked' : '';
-              ?>
-              Sí <input type="radio" name="data[takeaway]" value="1" <?php echo $takeaway1; ?> /> - 
-              No <input type="radio" name="data[takeaway]" value="0" <?php echo $takeaway2; ?> />
+              <input type="number" id="" name="data[discount]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['discount'] : ''; ?>" required>
             </div>
           </div>
-          <br />
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Numero de local'); ?></label>
-            <div class="controls">
-              <input type="number" id="" name="data[local]" value="<?php echo (isset($store)) ? $store['Store']['local'] : ''; ?>" required>
-            </div>
-          </div>
-          <br />
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Latitud'); ?></label>
-            <div class="controls">
-              <input type="text" id="lat" name="data[lat]" value="<?php echo (isset($store)) ? $store['Store']['lat'] : ''; ?>">
-            </div>
-          </div>
-          <br />
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Latitud'); ?></label>
-            <div class="controls">
-              <input type="text" id="lng" name="data[lng]" value="<?php echo (isset($store)) ? $store['Store']['lng'] : ''; ?>">
-            </div>
-          </div>
-          <br />
         </div> 
-        <div class="col-md-8">
-          <h4 class="sub-header">Ubicación</h4>
-          <div id="panel" style="display: none;">
-            <input id="address" type="text" placeholder="Dirección, Ciudad, País">
-            <input id="geocode" type="button" value="Localizar">
+        <div class="col-md-6">
+          <h4 class="sub-header">Validez</h4>
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Fecha desde'); ?></label>
+            <div class="controls">
+              <input type="text" class="datepicker form-control" id="" name="data[date_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_from'] : ''; ?>">
+            </div>
           </div>
-          <div id="map-canvas"></div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Fecha hasta'); ?></label>
+            <div class="controls">
+              <input type="text" class="datepicker form-control" id="" name="data[date_until]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_until'] : ''; ?>">
+            </div>
+          </div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Hora desde'); ?></label>
+            <div class="controls">
+              <input type="text" class="form-control" id="" name="data[hour_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['hour_from'] : ''; ?>">
+            </div>
+          </div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Hora hasta'); ?></label>
+            <div class="controls">
+              <input type="text" class="form-control" id="" name="data[hour_until]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['hour_until'] : ''; ?>">
+            </div>
+          </div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Días de semana'); ?></label>
+            <div class="controls">
+              <?php for($i=0; $i < 7; $i++):?>
+                <input type="checkbox" name="weekdays" value="<?= $i ?>"/><?= $weekdays[$i] ?>
+              <?php endfor ?>
+            </div>
+          </div>
+          <br />          
         </div>             
       </div>      
       <br />               
