@@ -60,7 +60,7 @@ $(function () {
                 '<div class="row">' + 
                   '<div class="col-sm-12">' + 
                     '<div class="is-background-cover is-background-search" style="background-image: url('+val.img_url+')"><p>'+val.desc+'</p></div>' + 
-                    '<h2>'+val.name+'</h2>' + 
+                    '<h2 class="text-center">'+val.name+'</h2>' + 
                     '<h3 class="text-center">$'+val.price+'</h3>' + 
                   '</div>' + 
                 '</div>' +
