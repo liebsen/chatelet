@@ -1098,8 +1098,8 @@ public function promos(){
 	    		} else {
 		    		$hasId = array_key_exists(1, $this->request->pass);
 		    		if (!$hasId) break;
-		    		$store = $this->Coupon->find('first', array('conditions' => array('id' => $this->request->pass[1])));
-		    		$this->set('store', $store);
+		    		$coupon = $this->Coupon->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+		    		$this->set('coupon', $coupon);
 		    		return $this->render('cupones-detail');
 	    		}
 	    		break;

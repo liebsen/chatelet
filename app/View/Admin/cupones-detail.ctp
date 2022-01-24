@@ -89,10 +89,11 @@
           </div>
           <br />
           <div class="control-group">
+            <input type="hidden" id="weekdays" name="data[weekdays]" value="<?= isset($coupon) ? $coupon['Coupon']['weekdays'] : '' ?>" />
             <label class="control-label" for="columns-text"><?php echo __('Días de semana'); ?></label>
             <div class="controls">
-              <?php for($i=0; $i < 7; $i++):?>
-                <input type="checkbox" name="weekdays" value="<?= $i ?>"/><?= $weekdays[$i] ?>
+              <?php for($i=0; $i < count($weekdays); $i++):?>
+                <input type="checkbox" class="weekdays" name="weekdays" value="<?= $i ?>" id="w<?= $i ?>" <?= strpos($coupon['Coupon']['weekdays'], (string) $i) !== false ? ' checked' : '' ?>/> <label for="w<?= $i ?>"> &nbsp;<?= $weekdays[$i] ?></label><br>
               <?php endfor ?>
             </div>
           </div>

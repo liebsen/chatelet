@@ -26,7 +26,7 @@
 						<?=$coupon['Coupon']['code']?>
 					</td>
 					<td>
-						<?=$coupon['Coupon']['coupon_type']?>
+						<?=$coupon['Coupon']['coupon_type'] === 'percentage' ? 'Porcentaje': 'Nominal'?>
 					</td>
 					<td>
 						<?=$coupon['Coupon']['discount']?>
