@@ -318,12 +318,25 @@ class ShopController extends AppController {
 		$this->autoRender = false;
 		$this->loadModel('Product');
 		$q = $this->request->data['q'];
-		$data = $this->Product->find('all',array('conditions'=>array('or' => array('Product.name LIKE' => "%$q%",'Product.desc LIKE' => "%$q%")), 'limit' => 10));
-		$result = [];
+		$p = $this->request->data['p'] ? intval($this->request->data['p']) : 0;
+		$s = $this->request->data['s'] ? intval($this->request->data['s']) : 10;
+
+		$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
+		$data = $this->Product->find('all',[
+			'conditions' => [
+				'or' => [
+					'Product.name LIKE' => "%$q%",
+					'Product.desc LIKE' => "%$q%"
+				]
+			],
+			'limit' => $s,
+			'offset' => $s * $p
+		]);
+		$results = [];
 		foreach($data as $item) {
 			// $result[]= $item['Product'];
 			$price = $item['Product']['discount'] ? $item['Product']['discount'] : $item['Product']['price'];
-			$result[]= [
+			$results[]= [
 				'id' => $item['Product']['id'],
 				'category_id' => $item['Product']['category_id'],
 				'name' => $item['Product']['name'],
@@ -334,7 +347,9 @@ class ShopController extends AppController {
 				'img_url' => Configure::read('imageUrlBase') . $item['Product']['img_url']
 			];
 		}
-		die(json_encode($result));
+		die(json_encode([
+			'results' => $results,
+			'query' => $query
+		]));
 	}
 }
-?>

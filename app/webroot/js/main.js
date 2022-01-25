@@ -1,4 +1,62 @@
 //new WOW().init();
+let searchInt = 0
+let searchPageSize = 6
+let searchPage = 0
+let loadMoreSearch = p => {
+  searchPage = p
+  apiSearch(localStorage.getItem('lastsearch'))
+}
+
+let apiSearch = q => {    
+  $.ajax({
+    type: "POST",
+    url: "/shop/search/",
+    data: JSON.stringify({q: q, p: searchPage, s: searchPageSize}),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: function (data) {
+      let str = ''
+      $('.search-more').html('')
+      $.each(data.results, function(key, val) {
+        str += '<div class="col col-md-4 col-lg-3 search-item">' + 
+          '<a href="/tienda/producto/'+ val.id+'/'+val.category_id+'/'+val.slug+'">' + 
+            '<div class="row">' + 
+              '<div class="col-sm-12">' + 
+                '<div class="is-background-cover is-background-search" style="background-image: url('+val.img_url+')">' + (val.promo.length ? '<div class="ribbon"><span>PROMO ' + val.promo + '</span></div>' : '') + '<p class="search-desc">'+val.desc+'</p></div>' + 
+                '<h2 class="text-center">'+val.name+'</h2>' + 
+                '<h3 class="text-center">$'+val.price+'</h3>' + 
+              '</div>' + 
+            '</div>' +
+          '</a>' + 
+        '</div>'
+      })
+      if (str === '') {
+        $('.search-results').html('<p class="results-text">No hay resultados para esta búsqueda</p>')
+      } else {
+        if (!searchPage) {
+          $('.search-results').html(str)
+        } else {
+          $('.search-results').append(str)
+        }
+        setTimeout(() => {
+          console.log(parseInt(data.query[0].count))
+          console.log($('.search-item').length)
+          if (parseInt(data.query[0].count) > $('.search-item').length) {
+            $('.search-more').html('<a href="javascript:loadMoreSearch(' + (searchPage + 1) + ')">Mostrar más resultados</a>')
+          }
+        }, 500)
+      }
+    },
+    error: function (errormessage) {
+      console.log(errormessage)
+      //oPrnt.find("ul.result").html('<li><b>No Results</b></li>');
+    }
+  }).then(() => {
+    setTimeout(() => {
+      document.querySelector('.spinner-search').classList.remove('searching')
+    }, 100)
+  })    
+}
 
 $(function () {
   var body    = $('body');
@@ -37,48 +95,19 @@ $(function () {
       }
     }, 500)        
   })
-  let searchInt = 0
+
+
   $('.input-search').keyup(e => {
     if (searchInt) {
         clearInterval(searchInt)
     }
+    document.querySelector('.spinner-search').classList.add('searching')
     searchInt = setTimeout(() => {
-      $('.spinner-search').addClass('searching')
       let q = $('.input-search').val().trim()
       localStorage.setItem('lastsearch', q)
-      $.ajax({
-        type: "POST",
-        url: "/shop/search/",
-        data: JSON.stringify({q: q}),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (data) {
-          let str = ''
-          $.each(data, function(key, val) {
-            str += '<div class="col col-md-6 col-lg-4">' + 
-              '<a href="/tienda/producto/'+ val.id+'/'+val.category_id+'/'+val.slug+'">' + 
-                '<div class="row">' + 
-                  '<div class="col-sm-12">' + 
-                    '<div class="is-background-cover is-background-search" style="background-image: url('+val.img_url+')">' + (val.promo.length ? '<div class="ribbon"><span>PROMO ' + val.promo + '</span></div>' : '') + '<p class="search-desc">'+val.desc+'</p></div>' + 
-                    '<h2 class="text-center">'+val.name+'</h2>' + 
-                    '<h3 class="text-center">$'+val.price+'</h3>' + 
-                  '</div>' + 
-                '</div>' +
-              '</a>' + 
-            '</div>'
-          })
-          $('.search-results').html(str ? str : '<p class="results-text">No hay resultados para esta búsqueda</p>')
-        },
-        error: function (errormessage) {
-          console.log(errormessage)
-          //oPrnt.find("ul.result").html('<li><b>No Results</b></li>');
-        }
-      }).then(() => {
-        $('.spinner-search').removeClass('searching')
-      })
+      apiSearch(q)
     }, 500)        
   })
-          
   // Toggle Side content
   /*body.toggleClass('hide-side-content');*/
   $('#toggle-side-content').click(function(){ body.toggleClass('hide-side-content');if(body.hasClass('hide-side-content')){$('#page-sidebar.collapse').collapse('hide');} else {$('#page-sidebar.collapse').collapse('show');}});
