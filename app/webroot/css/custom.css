@@ -909,6 +909,8 @@ span.out{
     color: #222;
     padding: 1rem;
     transition: opacity 0.25s ease-in-out; 
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);    
 }
 
 .search-more {
@@ -920,7 +922,8 @@ span.out{
     border: 2px solid #f50081;
     padding: 0.75rem 1rem;
     border-radius: 0.25rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
+    font-weight: 800;
     text-decoration: none;    
 }
 

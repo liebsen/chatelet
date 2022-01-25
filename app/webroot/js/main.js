@@ -1,6 +1,6 @@
 //new WOW().init();
 let searchInt = 0
-let searchPageSize = 6
+let searchPageSize = 12
 let searchPage = 0
 let loadMoreSearch = p => {
   searchPage = p
@@ -101,6 +101,7 @@ $(function () {
     if (searchInt) {
         clearInterval(searchInt)
     }
+    searchPage = 0
     document.querySelector('.spinner-search').classList.add('searching')
     searchInt = setTimeout(() => {
       let q = $('.input-search').val().trim()
