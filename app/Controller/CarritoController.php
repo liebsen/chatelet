@@ -8,6 +8,86 @@ class CarritoController extends AppController
 	public $components = array("RequestHandler");
 
 	public function test() {
+		// $carro = $this->Session->read('Carro');
+		$carro = [
+			[
+				"id" => 4120,
+	      "name" => "Remera Keili (1)",
+	      "price" => 2989.99,
+	      "discount" => 2989.99,
+	      "promo" => "3x2"
+			],[
+				"id" => 4120,
+	      "name" => "Remera Keili (2)",
+	      "price" => 2989.99,
+	      "discount" => 2989.99,
+	      "promo" => "3x2"
+			],[
+				"id" => 4120,
+	      "name" => "Remera Keili (3)",
+	      "price" => 2989.99,
+	      "discount" => 2989.99,
+	      "promo" => "3x2"
+			],[
+				"id" => 4120,
+	      "name" => "Remera Keili (4)",
+	      "price" => 2989.99,
+	      "discount" => 2989.99,
+	      "promo" => "3x2"
+			],[
+				"id" => 4120,
+	      "name" => "Remera Keili (5)",
+	      "price" => 2989.99,
+	      "discount" => 2989.99,
+	      "promo" => "3x2"
+			]
+		];
+		echo "<pre>";
+
+		$quants = [];
+		$promos = [];
+		$counted = [];
+		/*count prods */
+		foreach($carro as $product) {
+			if (!isset($quants[$product['id']])) {
+				$quants[$product['id']] = 0;
+			}
+			$quants[$product['id']]++;
+		}
+		/*count promos */
+		foreach($carro as $product) {
+			if (!empty($product['promo'])) {
+				if (!isset($promos[$product['id']])) {
+					$parts = explode('x', $product['promo']);
+					$promo_val = intval($parts[0]);
+					$promos[$product['id']] = floor($quants[$product['id']] / $promo_val);
+				}
+			}
+		}
+		/*set promos prices if exists */
+		foreach($carro as $product) {
+			/*product has promo, check if applies*/
+			if (!empty($product['promo'])) {
+				$parts = explode('x', $product['promo']);
+				$promo_val = intval($parts[0]);
+				$promo_min = intval($parts[1]);
+				if ($promos[$product['id']]) {
+					var_dump($product['name']);
+					if (!isset($counted[$product['id']])) {
+						$counted[$product['id']] = 0;
+					}
+					$counted[$product['id']]++;
+					var_dump($counted[$product['id']] % $promo_val);
+					if ($counted[$product['id']] % $promo_val === 0) {
+						var_dump('-------------------');
+						$promos[$product['id']]--;
+					}
+				}
+			}
+		}
+		
+		die();
+
 		// $this->sendMail('hello','Test via en Châtelet','overlemonsoft@gmail.com');
 		$curl = new Curl();
 		$token = $curl->post('https://api.ar.treggo.co/1/token', [
@@ -484,13 +564,12 @@ class CarritoController extends AppController
 			// error_log('curl:'.$stock);
 			//$stock=1;
 			if ($product && $stock) {
+				$carro = $this->Session->read('Carro');
 				$product = $product['Product'];
 				$product['color'] = @$this->request->data['color'];
 				$product['size'] = @$this->request->data['size'];
 				$product['alias'] = $this->request->data['alias'];
-
-
-				$carro = $this->Session->read('Carro');
+			
 				$carro[] = $product;
 				$this->Session->write('Carro', $carro);
 
@@ -573,7 +652,6 @@ a la fecha de entrega para que la misma sea exitosa.
 			}
 
 	}
-
 
 	public function clear() { //success
 		error_log('success payment: '.json_encode($this->Session->read('sale_data')));

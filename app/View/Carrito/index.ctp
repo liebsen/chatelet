@@ -10,9 +10,8 @@
 		<div class="col-md-2"></div>
 		<div id="carrito" class="col-md-8">
 			<div id="siguiente-block">
-
-			<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
-		</div>
+				<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
+			</div>
 			<h3 id="heading" style="margin:10px 0px">Carrito de compras</h3>
 			<?php
 				echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
@@ -23,8 +22,8 @@
 			foreach ($carro as $product) {
 
 				if (!empty($product['discount']) && (float)@$product['discount']>0) {
-                    $product['price'] = $product['discount'];
-                }
+          $product['price'] = $product['discount'];
+        }
 				$total += $product['price'];
 				if (!isset($product['color'])) $product['color'] = '';
 				if (!isset($product['size'])) $product['size'] = '';
@@ -74,18 +73,21 @@
 				</thead>
 				<tbody>
 					<?php
-					    $row = 0;
+					  $row = 0;
 						$subtotal = 0;
 						$total = 0;
 						if (!isset($carro)) $carro = array();
-						foreach ($carro as $product) {
 
-							if (!empty($product['discount']) && (float)@$product['discount']>0) {
-                                $product['price'] = $product['discount'];
-                            }
+						foreach ($carro as $product) {
+							// CarritoController::check_promo_prices($product)
+							/* if (!empty($product['discount']) && (float)@$product['discount']>0) {
+                $product['price'] = $product['discount'];
+              } */
+
 							$total += $product['price'];
 							if (!isset($product['color'])) $product['color'] = '';
 							if (!isset($product['size'])) $product['size'] = '';
+
 							echo '<tr product_row>';
 								echo '<td>';
 									echo '<span class="name">'. $product['name'] .'</span>';
@@ -97,7 +99,6 @@
 									echo '<p class="color">Color: <span class="color-block">'. $product['alias'] .'</span></p>';
 								}
 								if (!empty($product['size'])){
-
 									echo '<p>Talle: <span class="talle">'. $product['size'] .'</span></p>';
 								}
 								echo '</td>';
@@ -115,7 +116,10 @@
 									);
 								echo '</td>';
 								echo '<td>';
-									echo '<span class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</span>';
+								if (!empty($product['oldprice'])){
+									echo '<span class="oldprice">'. $this->Number->currency($product['oldprice'], 'USD', array('places' => 2)) .'</span>';
+								}
+								echo '<span class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</span>';
 								echo '</td>';
 							echo '</tr>';
 							$row += 1;

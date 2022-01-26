@@ -4,6 +4,7 @@ let searchPageSize = 12
 let searchPage = 0
 let loadMoreSearch = p => {
   searchPage = p
+  $('.search-more a').text('Cargando...')
   apiSearch(localStorage.getItem('lastsearch'))
 }
 
@@ -39,8 +40,6 @@ let apiSearch = q => {
           $('.search-results').append(str)
         }
         setTimeout(() => {
-          console.log(parseInt(data.query[0].count))
-          console.log($('.search-item').length)
           if (parseInt(data.query[0].count) > $('.search-item').length) {
             $('.search-more').html('<a href="javascript:loadMoreSearch(' + (searchPage + 1) + ')">Mostrar más resultados</a>')
           }
@@ -99,7 +98,7 @@ $(function () {
 
   $('.input-search').keyup(e => {
     if (searchInt) {
-        clearInterval(searchInt)
+      clearInterval(searchInt)
     }
     searchPage = 0
     document.querySelector('.spinner-search').classList.add('searching')
