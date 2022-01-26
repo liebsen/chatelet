@@ -616,7 +616,7 @@ class CarritoController extends AppController
 				$promo_min = intval($parts[1]);
 				if ($promos[$product['id']]) {
           $carro[$key]['oldprice'] = $product['price'];
-          $carro[$key]['price'] = number_format($promo_min / $promo_val * $product['price'], 2);
+          $carro[$key]['price'] = round($promo_min / $promo_val * $product['price']);
           error_log('[carrito] '.$product['price']);
 					if (!isset($counted[$product['id']])) {
 						$counted[$product['id']] = 0;
@@ -625,6 +625,11 @@ class CarritoController extends AppController
 					if ($counted[$product['id']] % $promo_val === 0) {
 						$promos[$product['id']]--;
 					}
+				} else {
+					if ($product['oldprice']) {
+						$carro[$key]['price'] = $product['oldprice'];
+						unset($carro[$key]['oldprice']);
+					}					
 				}
 			}
 		}
@@ -652,8 +657,7 @@ class CarritoController extends AppController
 			$aux[$i] = $value;
 			$i++;
 		}
-		// $this->Session->write('Carro', $this->applyPromosFromCart($aux));
-		$this->Session->write('Carro', $aux);
+		$this->Session->write('Carro', $this->applyPromosFromCart($aux));
 
 		return json_encode($item);
 		// return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));

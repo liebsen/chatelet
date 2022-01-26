@@ -13,7 +13,7 @@
 				<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			</div>
 			<h3 id="heading" style="margin:10px 0px">Carrito de compras</h3>
-			<?php if (isset($carro)) :?>			
+			<?php if (isset($carro) && !empty($carro)) :?>			
 			<?php
 				echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
 				echo '<input type="hidden" id="checkout" value="'. $this->Html->url(array('controller' => 'carrito', 'action' => 'checkout')) .'" />'
@@ -118,9 +118,9 @@
 								echo '</td>';
 								echo '<td>';
 								if (!empty($product['oldprice'])){
-									echo '<span class="oldprice">'. $this->Number->currency($product['oldprice'], 'USD', array('places' => 2)) .'</span>';
+									echo '<div class="oldprice">'. $this->Number->currency($product['oldprice'], 'USD', array('places' => 2)) .'</div>';
 								}
-								echo '<span class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</span>';
+								echo '<div class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</div>';
 								echo '</td>';
 							echo '</tr>';
 							$row += 1;
@@ -142,7 +142,7 @@
 			<br><br>
 			<?php endif;?>
 			<?php 
-			if ($total) {
+			if (isset($carro) && !empty($carro)) {
 				echo $this->element('oca', array('freeShipping' => $freeShipping));
 			}
 			
@@ -150,7 +150,7 @@
 		</div>
 		<div class="col-md-2"></div>
 	</div>
-	<?php if ($total) :?>
+	<?php if (isset($carro) && !empty($carro)) :?>
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div id="siguiente-block" class="col-md-8">
