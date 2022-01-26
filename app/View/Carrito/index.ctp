@@ -13,6 +13,7 @@
 				<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			</div>
 			<h3 id="heading" style="margin:10px 0px">Carrito de compras</h3>
+			<?php if (isset($carro)) :?>			
 			<?php
 				echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
 				echo '<input type="hidden" id="checkout" value="'. $this->Html->url(array('controller' => 'carrito', 'action' => 'checkout')) .'" />'
@@ -133,15 +134,23 @@
 				<hr>
 				<div class="price text-right">Total: $<span id="cost_total"></span></div>
 			</div>
+			
 			<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 			<input type="checkbox" id="ticket_cambio" value="1" /> <label for="ticket_cambio">Es para regalo</label>
+			<?php else: ?>
+			<div class="price">El carrito de compras está vacío.</div><div> Intente agregar productos para comprar.</div>
+			<br><br>
+			<?php endif;?>
 			<?php 
-			echo $this->element('oca', array('freeShipping' => $freeShipping));
+			if ($total) {
+				echo $this->element('oca', array('freeShipping' => $freeShipping));
+			}
 			
 			?>
 		</div>
 		<div class="col-md-2"></div>
 	</div>
+	<?php if ($total) :?>
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div id="siguiente-block" class="col-md-8">
@@ -149,6 +158,7 @@
 		</div>
 		<div class="col-md-2"></div>
 	</div>
+	<?php endif;?>
 	<!--div class="row">
 		<div class="col-md-4"></div>
 		<div id="instrucciones" class="col-md-4">

@@ -8,7 +8,10 @@ class CarritoController extends AppController
 	public $components = array("RequestHandler");
 
 	public function test() {
-		// $carro = $this->Session->read('Carro');
+		$carro = $this->Session->read('Carro');
+		echo "<pre>";
+		print_r($carro);
+		die();
 		$carro = [
 			[
 				"id" => 4120,
@@ -541,7 +544,7 @@ class CarritoController extends AppController
 		$this->RequestHandler->respondAs('application/json');
 		if ($this->request->is('post') && isset($this->request->data['id'])) {
 			$product = $this->Product->findById($this->request->data['id']);
-			$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
+			$urlCheck = Configure::read('baseUrl')."shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
 
 			if (empty($this->request->data['size']) && empty($this->request->data['color_code'])){
 				//$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article'];
@@ -569,9 +572,12 @@ class CarritoController extends AppController
 				$product['color'] = @$this->request->data['color'];
 				$product['size'] = @$this->request->data['size'];
 				$product['alias'] = $this->request->data['alias'];
-			
+
 				$carro[] = $product;
-				$this->Session->write('Carro', $carro);
+				error_log('[carrito] '.json_encode($carro));
+				$data = $this->applyPromosFromCart($carro);
+				error_log('[carrito] '.json_encode($data));
+				$this->Session->write('Carro', $data);
 
 			//	$this->Session->write('Carro.'. $product['id'], $product);
 				return json_encode(array('success' => true));
@@ -580,7 +586,53 @@ class CarritoController extends AppController
 		return json_encode(array('success' => false));
 	}
 
+	private function applyPromosFromCart($carro) {
+		$quants = [];
+		$promos = [];
+		$counted = [];
+		/*count prods */
+		foreach($carro as $product) {
+			if (!isset($quants[$product['id']])) {
+				$quants[$product['id']] = 0;
+			}
+			$quants[$product['id']]++;
+		}
+		/*count promos */
+		foreach($carro as $product) {
+			if (!empty($product['promo'])) {
+				if (!isset($promos[$product['id']])) {
+					$parts = explode('x', $product['promo']);
+					$promo_val = intval($parts[0]);
+					$promos[$product['id']] = floor($quants[$product['id']] / $promo_val);
+				}
+			}
+		}
+		/*set promos prices if exists */
+		foreach($carro as $key => $product) {
+			/*product has promo, check if applies*/
+			if (!empty($product['promo'])) {
+				$parts = explode('x', $product['promo']);
+				$promo_val = intval($parts[0]);
+				$promo_min = intval($parts[1]);
+				if ($promos[$product['id']]) {
+          $carro[$key]['oldprice'] = $product['price'];
+          $carro[$key]['price'] = number_format($promo_min / $promo_val * $product['price'], 2);
+          error_log('[carrito] '.$product['price']);
+					if (!isset($counted[$product['id']])) {
+						$counted[$product['id']] = 0;
+					}
+					$counted[$product['id']]++;
+					if ($counted[$product['id']] % $promo_val === 0) {
+						$promos[$product['id']]--;
+					}
+				}
+			}
+		}
 
+		// error_log('[carrito] '.json_encode($carro));
+
+		return $carro;
+	}
 
 	public function remove($row = null) {
 		$this->autoRender = false;
@@ -600,6 +652,7 @@ class CarritoController extends AppController
 			$aux[$i] = $value;
 			$i++;
 		}
+		// $this->Session->write('Carro', $this->applyPromosFromCart($aux));
 		$this->Session->write('Carro', $aux);
 
 		return json_encode($item);
