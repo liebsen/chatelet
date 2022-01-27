@@ -13,7 +13,7 @@
 			</i>
 		</p>
 		<div class="form-group">
-			<input type="text" name="" placeholder="ej. 1425" value="" id="cp" class="both" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'delivery_cost')) ?>" />
+			<input type="text" name="" placeholder="ej. 1425" value="" id="cp" class="both input-rounded" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'delivery_cost')) ?>" />
 			&nbsp;
 			<span id="loading" class="hide">
 				<?php echo $this->Html->image('loader.gif',array('height'=>20)) ?>

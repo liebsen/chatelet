@@ -9,7 +9,7 @@
 .ok{
 	border-color: #07BC31;
 }
-#cp{
+.input-rounded{
 	border-radius: 0.25rem;
 	padding: 0.5rem;
 	max-width: 10rem;
