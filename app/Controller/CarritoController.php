@@ -8,6 +8,15 @@ class CarritoController extends AppController
 	public $components = array("RequestHandler");
 
 	public function test() {
+		echo "<pre>";
+		var_dump("aaa");
+		$products = $this->Product->find('all');
+		foreach($products as $product) {
+			$name = substr($product['Product']['desc'],0,strpos($product['Product']['desc'],'.'));
+			$product['Product']['name'] = $name;
+			$this->Product->save($product);
+		}
+		die("mmm");
 		$carro = $this->Session->read('Carro');
 		echo "<pre>";
 		print_r($carro);
@@ -610,25 +619,30 @@ class CarritoController extends AppController
 		/*set promos prices if exists */
 		foreach($carro as $key => $product) {
 			/*product has promo, check if applies*/
+			if (!empty($product['discount']) && (float)@$product['discount']>0) {
+        $product['price'] = $product['discount'];
+      }			
 			if (!empty($product['promo'])) {
 				$parts = explode('x', $product['promo']);
 				$promo_val = intval($parts[0]);
 				$promo_min = intval($parts[1]);
 				if ($promos[$product['id']]) {
-          $carro[$key]['oldprice'] = $product['price'];
-          $carro[$key]['price'] = round($promo_min / $promo_val * $product['price']);
-          error_log('[carrito] '.$product['price']);
-					if (!isset($counted[$product['id']])) {
-						$counted[$product['id']] = 0;
-					}
-					$counted[$product['id']]++;
-					if ($counted[$product['id']] % $promo_val === 0) {
-						$promos[$product['id']]--;
+					if (!isset($product['old_price'])) {
+	          $carro[$key]['old_price'] = $product['price'];
+	          $carro[$key]['price'] = round($promo_min / $promo_val * $product['price']);
+	          error_log('[carrito] '.$product['price']);
+						if (!isset($counted[$product['id']])) {
+							$counted[$product['id']] = 0;
+						}
+						$counted[$product['id']]++;
+						if ($counted[$product['id']] % $promo_val === 0) {
+							$promos[$product['id']]--;
+						}
 					}
 				} else {
-					if ($product['oldprice']) {
-						$carro[$key]['price'] = $product['oldprice'];
-						unset($carro[$key]['oldprice']);
+					if ($product['old_price']) {
+						$carro[$key]['price'] = $product['old_price'];
+						unset($carro[$key]['old_price']);
 					}					
 				}
 			}

@@ -20,11 +20,11 @@
 			?>
 			<div class="mobile">
 			<?php if (!isset($carro)) $carro = array();
-			foreach ($carro as $product) {
+		  $row = 0;
+			$subtotal = 0;
+			$total = 0;
 
-				if (!empty($product['discount']) && (float)@$product['discount']>0) {
-          $product['price'] = $product['discount'];
-        }
+			foreach ($carro as $product) {
 				$total += $product['price'];
 				if (!isset($product['color'])) $product['color'] = '';
 				if (!isset($product['size'])) $product['size'] = '';
@@ -32,11 +32,16 @@
 					echo '<div>';
 						echo '<span class="name">'. $product['name'] .'</span>';
 						echo "<div class='clearfix'></div>";
-						echo '<img style="margin-top:10px;" src="'.Configure::read('imageUrlBase').$product['img_url'].'" class="thumb" style="display:block;" />';
+						echo "<div class='cart-img'>";
+						if ($product['promo'] !== '' && isset($product['old_price'])) {
+							echo "<div class='ribbon'><span>PROMO " . $product['promo'] . "</span></div>";
+						}
+						echo '<img src="'.Configure::read('imageUrlBase').$product['img_url'].'" class="thumb" style="display:block;" />';
+					echo '</div>';
 					echo '</div>';
 					echo '<div>';
 					if (!empty($product['alias'])){
-						echo '<p class="color">Color: <span class="color-block">'. $product['alias'] .'</span></p>';
+						echo '<p class="color">Color: <span class="talle">'. $product['alias'] .'</span></p>';
 					}
 					if (!empty($product['size'])){
 
@@ -56,7 +61,10 @@
 
 					echo '</div>';
 					echo '<div>';
-						echo '<span class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</span>';
+					if (!empty($product['old_price'])){
+						echo '<div class="old_price">'. $this->Number->currency($product['old_price'], 'USD', array('places' => 2)) .'</div>';
+					}					
+						echo '<div class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</div>';
 					echo '</div>';
 				echo '</div>';
 				echo '<hr>';
@@ -80,11 +88,6 @@
 						if (!isset($carro)) $carro = array();
 
 						foreach ($carro as $product) {
-							// CarritoController::check_promo_prices($product)
-							/* if (!empty($product['discount']) && (float)@$product['discount']>0) {
-                $product['price'] = $product['discount'];
-              } */
-
 							$total += $product['price'];
 							if (!isset($product['color'])) $product['color'] = '';
 							if (!isset($product['size'])) $product['size'] = '';
@@ -93,11 +96,16 @@
 								echo '<td>';
 									echo '<span class="name">'. $product['name'] .'</span>';
 									echo "<div class='clearfix'></div>";
-									echo '<img style="margin-top:10px;" src="'.Configure::read('imageUrlBase').$product['img_url'].'" class="thumb" style="display:block;" />';
+									echo "<div class='cart-img'>";
+									if ($product['promo'] !== '' && isset($product['old_price'])) {
+										echo "<div class='ribbon'><span>PROMO " . $product['promo'] . "</span></div>";
+									}
+									echo '<img src="'.Configure::read('imageUrlBase').$product['img_url'].'" class="thumb" style="display:block;" />';
+									echo '</div>';	
 								echo '</td>';
 								echo '<td>';
 								if (!empty($product['alias'])){
-									echo '<p class="color">Color: <span class="color-block">'. $product['alias'] .'</span></p>';
+									echo '<p class="color">Color: <span class="talle">'. $product['alias'] .'</span></p>';
 								}
 								if (!empty($product['size'])){
 									echo '<p>Talle: <span class="talle">'. $product['size'] .'</span></p>';
@@ -117,8 +125,8 @@
 									);
 								echo '</td>';
 								echo '<td>';
-								if (!empty($product['oldprice'])){
-									echo '<div class="oldprice">'. $this->Number->currency($product['oldprice'], 'USD', array('places' => 2)) .'</div>';
+								if (!empty($product['old_price'])){
+									echo '<div class="old_price">'. $this->Number->currency($product['old_price'], 'USD', array('places' => 2)) .'</div>';
 								}
 								echo '<div class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</div>';
 								echo '</td>';

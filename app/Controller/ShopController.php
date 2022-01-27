@@ -122,6 +122,13 @@ class ShopController extends AppController {
 			}else{
 				echo "\r\nGeneral stock response is empty.";
 			}
+
+		/* upate products names */
+		$products = $this->Product->find('all');
+		foreach($products as $product) {
+			$product['Product']['name'] = substr($product['Product']['desc'],0,strpos($product['Product']['desc'],'.'));
+			$this->Product->save($product);
+		}
 	}
 	public function die_categories(){
 		$this->loadModel('Category');

@@ -81,7 +81,14 @@
 	font-weight: bold;
 }
 
-.oldprice {
+.cart-img {
+	min-height: 135px;
+	background-color: #f8f8f8;
+	position: relative;
+	display: inline-block;
+	margin-top: 1rem;
+}
+.old_price {
 	text-decoration: line-through;
 }
 .price {
@@ -135,7 +142,6 @@ a.trash {
 
 .thumb {
 	width: 100px;
-	margin-right: 10px;
 	float: left;
 }
 
