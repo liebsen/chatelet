@@ -10,35 +10,41 @@
       var cp  = $('#coupon').val();
       $('#free_delivery').text('');
       document.querySelector('.coupon-loading').classList.remove('hide')
-      $.getJSON( url+'/'+cp , function(json, textStatus) {
+      $.post( url, { coupon: cp }, function(json, textStatus) {
         document.querySelector('.coupon-loading').classList.add('hide')
-        clearTimeout(timeout);
-        if( json.valid ){
-          if (!json.price || parseInt(json.price) == 0){
-            json.price = 114;
+        clearTimeout(timeout)
+        console.log(json)
+        if( json.Coupon ){
+          let coupon_type = json.Coupon.coupon_type
+          let discount = parseFloat(json.Coupon.discount)
+          let total_orig = $('#subtotal_compra').val()
+          let total = 0
+          let subtotal = 0
+          if (coupon_type === 'percentage') {
+            total = total_orig * (1 - discount / 100)
+          } else {
+            total-= discount
           }
-          //free delivery
-          if (json.freeShipping){  
-            // console.log('Envio gratis');
-            $('#cost').text( 0 );
-            $('#free_delivery').text('Envio gratis!');
-          }else{
-            let cost = parseInt(json.price)
-            let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost)
+          console.log(total_orig)
+          console.log(total)
+          console.log('---')
+          total = formatNumber(parseFloat(total.toFixed(2)))
 
-            $('#cost').text( cost );
-            $('#cost_total').text( total )
-            $('.cost_total').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
-          }
+          $('#cost').text( total );
+          $('#cost_total').text( total )
+          $('#coupon_bonus').text( total )
+          $('.cost_total').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
+
+
           // console.log(parseFloat($('#cost').text()));
           $('#cp').removeClass('wrong');
-          $('#cp').addClass('ok');
-          onSuccessAlert('Codigo Postal válido');
+          $('#cp').addClass(json.Coupon.code);
+          onSuccessAlert(json.Coupon.info);
         }else{
           $('#cp').removeClass('ok');
           $('#cp').addClass('wrong');
           $('#cost').text( parseInt(0) );
-          timeout = setTimeout( "onErrorAlert('Codigo Postal inexistente.')" , 200);
+          timeout = setTimeout( "onErrorAlert('Cupón inválido.')" , 200);
         }
         $('#cp').attr( 'data-valid' , parseInt(json.valid) );
       });

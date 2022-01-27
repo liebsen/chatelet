@@ -37,16 +37,16 @@
             </div>
           </div>        
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Código'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[title]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['title'] : ''; ?>" required>
+              <input type="text" id="" name="data[code]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['code'] : ''; ?>" required>
             </div>
           </div>
           <br />
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Código'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Info'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[code]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['code'] : ''; ?>" required>
+              <textarea id="" name="data[title]" required><?php echo (isset($coupon)) ? $coupon['Coupon']['title'] : ''; ?></textarea>
             </div>
           </div>
           <br />

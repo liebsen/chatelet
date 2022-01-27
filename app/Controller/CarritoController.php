@@ -4,7 +4,7 @@ require_once(APP . 'Vendor' . DS . 'curl.php');
 
 class CarritoController extends AppController
 {
-	public $uses = array('Product', 'Store', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook');
+	public $uses = array('Product', 'Store', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook', 'Coupon');
 	public $components = array("RequestHandler");
 
 	public function test() {
@@ -264,6 +264,17 @@ class CarritoController extends AppController
 			'conditions' => ['takeaway' => 1]
 		]);
 		return json_encode($stores);
+	}
+	public function coupon($cp = null){
+		$this->RequestHandler->respondAs('application/json');
+		$this->autoRender = false;
+		$coupon = $this->Coupon->find('first', [
+			'conditions' => [
+				'code' => $this->request->data['coupon'],
+				'enabled' => 1
+			]
+		]);
+		return json_encode($coupon);		
 	}
 
 	public function delivery_cost($cp = null){

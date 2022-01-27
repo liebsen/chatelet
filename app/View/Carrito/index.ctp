@@ -152,7 +152,7 @@
 			<?php 
 			if (isset($carro) && !empty($carro)) {
 				echo $this->element('oca', array('freeShipping' => $freeShipping));
-				echo $this->element('cupon');
+				echo $this->element('cupon', array('total' => $total));
 			}
 			
 			?>

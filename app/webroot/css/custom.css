@@ -969,6 +969,19 @@ span.out{
   position: relative;
 }
 
+.field {
+    margin:10px 0px;
+}
+
+#coupon_data_container {
+    font-size: 1rem;
+}
+
+#coupon_data_container .figure {
+    font-weight: 800;
+}
+
+#coupon_data_container {
 .ribbon {
   position: absolute;
   right: -5px; top: -5px;
