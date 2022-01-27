@@ -1,13 +1,13 @@
 <?php echo $this->Html->script('coupon.js',array( 'inline' => false )) ?>
 <div class="row is-rounded">
 	<h3 class="h3 text-center desktop">¿Tenés cupón de descuento?</h3>
-	<h4 class="h4 text-center mobile">¿Tenés cupón de descuento?</h4>
+	<h4 class="h4 text-center mobile">Obtenga beneficios exclusivos con nuestro explusivo sistema de beneficios</h4>
 	<div class="col-xs-12 shipment-options shipping">
 		<hr>
 		<h3 id="heading" class="cargo-title">Cupón // <span>Ingresá tu cupón de descuento</span></h3>
 		<p class="field">
 			<i>
-				<small>Ingresá tu cupón de descuento</small>
+				<small>Ingrese su cupón de descuento</small>
 			</i>
 		</p>
 		<div class="form-group">
