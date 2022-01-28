@@ -982,6 +982,8 @@ span.out{
 }
 
 #coupon_data_container {
+}
+
 .ribbon {
   position: absolute;
   right: -5px; top: -5px;
@@ -1086,6 +1088,7 @@ span.out{
 }
 
 span.count {
+    opacity: 0;
     position: absolute;
     top: 17px;
     left: 0;

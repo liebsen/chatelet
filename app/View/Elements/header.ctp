@@ -1,5 +1,5 @@
 
-<nav class="navbar">
+<nav class="navbar animated fadeIn speed delay">
   <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -105,7 +105,7 @@
             <?php } ?>
           </li><!-- /.Login -->
           <li class="dropdown">
-            <span class="count"><?=count($carro)?></span>
+            <span class="count animated scaleIn speed delay2"><?=count($carro)?></span>
             <a href="#" class="dropdown-toggle shop js-activated" data-toggle="dropdown" data-hover="dropdown">Mi pedido</a>
             <ul class="dropdown-menu">
               <li>

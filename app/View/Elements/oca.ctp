@@ -21,7 +21,7 @@
 		</div>
 		<div class="form-group">
 			<span id="cost_container" class="text-muted">
-				<span>Costo de envío:</span> <strong>$<span id="cost">0</span>.00</strong> <span id="free_delivery"></span>
+				<span>Costo de envío:</span> <span class="figure">$<span id="cost">0</span>.00</span> <span id="free_delivery"></span>
 			</span>
 		</div>
 		<hr>
