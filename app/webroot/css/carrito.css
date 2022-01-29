@@ -13,6 +13,7 @@
 .carrito-item-row {
 	display: flex;
 	flex-direction: row;
+	padding: 0.5rem;
 }
 
 .carrito-item-col {
