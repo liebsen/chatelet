@@ -984,6 +984,9 @@ span.out{
 #coupon_data_container {
 }
 
+.cost_total {
+    opacity: 0;
+}
 .ribbon {
   position: absolute;
   right: -5px; top: -5px;
@@ -1233,6 +1236,7 @@ span.count {
 .is-rounded {
     padding: 0.75rem;
     margin: 1.5rem 0.5rem;
+    margin-top: 0;
     background-color: #f8ede3;
     border-radius: 0.25rem;
 }
@@ -1272,5 +1276,12 @@ span.count {
   }
   .search-results .is-background-cover {
     min-height: 15rem;
-  }  
+  }
+  .carrito-row {
+    display: flex;
+    flex-direction: row;
+  }
+  .carrito-col {
+    flex: 1;
+  }
 }

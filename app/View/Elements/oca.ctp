@@ -43,10 +43,6 @@
 		</ul>
 	</div>
 
-	<div class="col-xs-12">
-		<br />
-		<br />
-	</div>
 </div>
 
 <script>

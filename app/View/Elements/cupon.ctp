@@ -1,6 +1,6 @@
 <?php echo $this->Html->script('coupon.js',array( 'inline' => false )) ?>
 <div class="row is-rounded">
-	<h3 class="h3 text-center desktop">¿Tenés cupón de descuento?</h3>
+	<h3 class="h3 text-center desktop">Cupón de descuento</h3>
 	<h4 class="h4 text-center mobile">Obtenga beneficios exclusivos con nuestro explusivo sistema de beneficios</h4>
 	<div class="col-xs-12 shipment-options shipping">
 		<hr>
@@ -23,22 +23,19 @@
 					<span>Costo original:</span>
 					$<span id="coupon_orig" class="figure"><?= number_format($total, 2) ?></span>
 				</p>
-				<p class="field">
-					<span>Costo bonificado:</span> 
-					$<span id="coupon_bonus" class="figure"><?= number_format($total, 2) ?></span>
-				</p>
-				<p class="field">
-					<span>Beneficio del cupón:</span>
-					$<span class="figure" id="coupon_cost">0</span>
-				</p>
+				<div class="processed-coupon-data animated speed hidden">
+					<p class="field">
+						<span>Costo bonificado:</span> 
+						$<span id="coupon_bonus" class="figure"><?= number_format($total, 2) ?></span>
+					</p>
+					<p class="field">
+						<span>Beneficio del cupón:</span>
+						$<span class="figure" id="coupon_cost">0</span>
+					</p>
+				</div>
 			</span>
 		</div>
 		<hr>
-	</div>
-
-	<div class="col-xs-12">
-		<br />
-		<br />
 	</div>
 </div>
 

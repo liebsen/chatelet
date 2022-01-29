@@ -251,7 +251,7 @@ class CarritoController extends AppController
 		$oca = new Oca();
 		$centers = $oca->getCentrosImposicionPorCP( $cp );
 		if( !empty($centers) ){
-			return 1;
+			return $centers;
 		}else{
 			return 0;
 		}
@@ -313,15 +313,16 @@ class CarritoController extends AppController
 		}
 
 		//CP Check
-		$valid = $this->checkCP($cp);
+		$centros = $this->checkCP($cp);
 
 		//Price
 		$price = (!empty($response[0]['Precio'])) ? (int)$response[0]['Precio'] : 0 ;
 
 		return json_encode(array(
 			'freeShipping' => $freeShipping,
-			'price' => $price ,
-			'valid' => $valid ,
+			'price' => $price,
+			'valid' => isset($centros) && $centros ? 1 : 0,
+			'centros' => $centros,
 			'itemsData' => $data
 		));
 	}

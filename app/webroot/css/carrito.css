@@ -10,6 +10,19 @@
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
 
+.carrito-item-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.carrito-item-col {
+	flex: 1;
+}
+
+.cart-img-col {
+	max-width: 120px;
+}
+
 .link { 
 	color: #e10c76;
 }
@@ -90,9 +103,11 @@
 }
 .old_price {
 	text-decoration: line-through;
+	text-align: right;
 }
 .price {
 	font-size: 24px;
+	text-align: right;
 }
 
 #siguiente-block {
@@ -146,12 +161,14 @@ a.trash {
 }
 
 .color {
-	margin-bottom: 30px;
+	margin-bottom: 0.25rem;
 }
 
 .name {
+	display: block;
 	font-weight: bold;
 	font-size: 16px;
+	margin-bottom: 1.5rem;
 }
 
 a.pink {

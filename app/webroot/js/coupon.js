@@ -12,6 +12,8 @@
       document.querySelector('.coupon-loading').classList.remove('hide')
       $.post( url, { coupon: cp }, function(json, textStatus) {
         document.querySelector('.coupon-loading').classList.add('hide')
+        document.querySelector('processed-coupon-data').classList.add('hidden')
+        document.querySelector('processed-coupon-data').classList.remove('fadeIn')
         clearTimeout(timeout)
         console.log(json)
         if( json.Coupon ){
@@ -46,6 +48,8 @@
           $('#cost').text( parseInt(0) );
           timeout = setTimeout( "onErrorAlert('Cupón inválido.')" , 200);
         }
+        document.querySelector('processed-coupon-data').classList.remove('hidden')
+        document.querySelector('processed-coupon-data').classList.add('fadeIn')
         $('#cp').attr( 'data-valid' , parseInt(json.valid) );
       });
     }, 2000)
