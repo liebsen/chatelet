@@ -83,16 +83,20 @@ $(function () {
   }
 
   $('.action-search').click(() => {
-    $('#menuSearch').fadeIn();
-    setTimeout(() => {
-      if($('.input-search').is(':visible')) {
-        $('.input-search').focus()            
-      }
-      if (localStorage.getItem('lastsearch')) {
-        $('.input-search').val(localStorage.getItem('lastsearch'))
-        $('.input-search').keyup()
-      }
-    }, 500)        
+    if ($('#menuSearch').is(':visible')) {
+      $('#menuSearch').fadeOut();
+    } else {
+      $('#menuSearch').fadeIn();
+      setTimeout(() => {
+        if($('.input-search').is(':visible')) {
+          $('.input-search').focus()            
+        }
+        if (localStorage.getItem('lastsearch')) {
+          $('.input-search').val(localStorage.getItem('lastsearch'))
+          $('.input-search').keyup()
+        }
+      }, 500)
+    }
   })
 
 
