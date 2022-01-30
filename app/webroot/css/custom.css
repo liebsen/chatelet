@@ -1241,6 +1241,14 @@ span.count {
     border-radius: 0.25rem;
 }
 
+.is-success {
+    background-color: #d0f7cd;
+}
+
+.is-success h3 {
+    color: #4f804f;
+}
+
 .is-rounded hr {
     border-color: #dbcec3;
 }

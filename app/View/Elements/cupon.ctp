@@ -1,5 +1,5 @@
 <?php echo $this->Html->script('coupon.js',array( 'inline' => false )) ?>
-<div class="row is-rounded">
+<div class="row is-rounded is-success">
 	<h3 class="h3 text-center desktop">Cupón de descuento</h3>
 	<h4 class="h4 text-center mobile">Obtenga beneficios exclusivos con nuestro explusivo sistema de beneficios</h4>
 	<div class="col-xs-12 shipment-options shipping">

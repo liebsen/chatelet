@@ -12,7 +12,7 @@
 			<div id="siguiente-block">
 				<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			</div>
-			<h3 id="heading" style="margin:10px 0px">Carrito de compras</h3>
+			<!--h3 id="heading" style="margin:10px 0px">Carrito de compras</h3-->
 			<?php if (isset($carro) && !empty($carro)) :?>			
 			<?php
 				echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
@@ -72,6 +72,19 @@
 						echo '<hr>';
 						$row += 1;
 					} ?>
+						<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
+						<div class="field">
+							<input type="checkbox" id="ticket_cambio" value="1" /> <label for="ticket_cambio">Es para regalo</label>
+						</div>
+						<div class="field">
+							<div class="price">Subtotal: <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
+						</div>
+						<div class="field">
+							<div class="cost_total animated speed fadeIn delay">
+								<hr>
+								<div class="price text-right">Total: <span id="cost_total"><?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></span></div>
+							</div>
+						</div>
 					</div>
 					<?php else: ?>
 					<div class="price">El carrito de compras está vacío.</div><div> Intente agregar productos para comprar.</div>
