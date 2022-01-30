@@ -130,6 +130,9 @@ html, body {
 	background-color: #e10c76;
 	color: #FFFFFF;
 	border-radius: 5px;
+	padding: 0.25rem 1rem;
+	font-size: 1rem;
+	font-weight: 800;
 }
 
 #login-email,
@@ -305,7 +308,9 @@ html, body {
 	/*font-size: 24px;*/
 	text-align: center;
 	border: 0;
-	padding: 5px 0;
+	font-size: 1.25rem;
+	font-weight: 800;
+	padding: 0.75rem 1rem;
 	margin-top: 10px;
 	/*font-style: italic;*/
 	/*font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
