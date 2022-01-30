@@ -85,6 +85,9 @@
 								<div class="price text-right">Total: <span id="cost_total"><?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></span></div>
 							</div>
 						</div>
+						<div class="mobile">
+							<hr>
+						</div>
 					</div>
 					<?php else: ?>
 					<div class="price">El carrito de compras está vacío.</div><div> Intente agregar productos para comprar.</div>
