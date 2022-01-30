@@ -993,6 +993,9 @@ span.out{
 #coupon_data_container {
 }
 
+.text-left {
+    text-align: left!important;
+}
 .cost_total {
     opacity: 0;
 }

@@ -99,7 +99,7 @@
 						</div>
 					</div>
 					<?php else: ?>
-					<div class="price">El carrito de compras está vacío.</div><div> Intente agregar productos para comprar.</div>
+					<div class="price text-left">El carrito de compras está vacío.</div><div> Intente agregar productos para comprar.</div>
 					<br><br>
 					<?php endif;?>
 				</div>
