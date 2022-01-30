@@ -9,7 +9,6 @@ class CarritoController extends AppController
 
 	public function test() {
 		echo "<pre>";
-		var_dump("aaa");
 		$products = $this->Product->find('all');
 		foreach($products as $product) {
 			$name = substr($product['Product']['desc'],0,strpos($product['Product']['desc'],'.'));
@@ -265,6 +264,7 @@ class CarritoController extends AppController
 		]);
 		return json_encode($stores);
 	}
+
 	public function coupon($cp = null){
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;

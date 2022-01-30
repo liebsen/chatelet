@@ -323,6 +323,15 @@ footer .bottom a.ig { background-position: -101px -286px; }
 .hidden-force {
   display: none!important;
 }
+.is-flex {
+    display: flex;
+}
+.spinner-input {
+    position: relative;
+    top: 0.35rem;
+    right: 2.5rem;
+}
+
 #listShop a .hover {
   border: 0px solid #f50081;
    color: #f50081;

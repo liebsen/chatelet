@@ -11,13 +11,17 @@
 			</i>
 		</p>
 		<div class="form-group">
-			<input type="text" name="" placeholder="ej. CHA10" value="" id="coupon" class="both input-rounded" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'coupon')) ?>" />
+			<input type="text" name="" placeholder="ej. CHA10" value="" id="coupon" class="both input-rounded" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'coupon')) ?>" autocomplete="off" />
 			&nbsp;
 			<span id="loading" class="hide coupon-loading">
-				<?php echo $this->Html->image('loader.gif',array('height'=>20)) ?>
+        <svg class="spinner-input" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+          <rect class="spinner__rect" x="0" y="0" width="100" height="100" fill="none"></rect>
+          <circle class="spinner__circle" cx="50" cy="50" r="40" stroke="#f41c80" fill="none" stroke-width="8" stroke-linecap="round">
+          </circle>
+        </svg>
 			</span>
 		</div>
-		<div class="form-group">
+		<!--div class="form-group">
 			<span id="coupon_data_container" class="text-muted">
 				<p class="field">
 					<span>Costo original:</span>
@@ -34,7 +38,7 @@
 					</p>
 				</div>
 			</span>
-		</div>
+		</div-->
 	</div>
 </div>
 

@@ -12,18 +12,22 @@
 				<small>Para envíos a domicilio ingrese su código postal</small>
 			</i>
 		</p>
-		<div class="form-group">
+		<div class="form-group is-flex">
 			<input type="text" name="" placeholder="ej. 1425" value="" id="cp" class="both input-rounded" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'delivery_cost')) ?>" />
 			&nbsp;
 			<span id="loading" class="hide">
-				<?php echo $this->Html->image('loader.gif',array('height'=>20)) ?>
+        <svg class="spinner-input" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+          <rect class="spinner__rect" x="0" y="0" width="100" height="100" fill="none"></rect>
+          <circle class="spinner__circle" cx="50" cy="50" r="40" stroke="#f41c80" fill="none" stroke-width="8" stroke-linecap="round">
+          </circle>
+        </svg>				
 			</span>
 		</div>
-		<div class="form-group">
+		<!--div class="form-group">
 			<span id="cost_container" class="text-muted">
-				<span>Costo de envío:</span> <span class="figure">$<span id="cost">0</span>.00</span> <span id="free_delivery"></span>
+				<span>Costo de envío:</span> <span class="figure">$<span id="cost_delivery">0</span>.00</span> <span id="free_delivery"></span>
 			</span>
-		</div>
+		</div-->
 		<hr>
 	</div>
 	<div class="col-xs-12 shipment-options takeaway">

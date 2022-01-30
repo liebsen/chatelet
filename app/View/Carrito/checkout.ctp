@@ -18,7 +18,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 		?>
 	</div>
 	<div class="col-md-4 form-container is-rounded">
-		<h5 class="h5 text-center">Ingrese sus datos para finalizar la compra</h5>
+		<h3 class="h3 text-center">Ingrese sus datos para finalizar la compra</h3>
 		<hr>
 		<form role="form" method="post" id="checkout-form" action="<?php echo $this->Html->url(array(
 					'controller' => 'carrito',

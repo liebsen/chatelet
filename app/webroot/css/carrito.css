@@ -1,7 +1,7 @@
-#carrito {
+/* #carrito {
 	border: 1px solid grey;
 	border-radius: 5px;
-}
+} */
 
 #heading {
 	color: #e10d74;
@@ -9,10 +9,22 @@
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
 
+
+.carrito-row {
+	padding-top: 1rem;
+}
 .carrito-item-row {
 	display: flex;
 	flex-direction: row;
 	padding: 0.5rem;
+}
+
+.text-dark {
+	color: #666!important;
+}
+
+.text-green {
+	color: green!important;
 }
 
 .carrito-item-col {

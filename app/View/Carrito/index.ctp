@@ -7,11 +7,13 @@
 ?>
 <div id="main" class="container">
 	<div class="row">
+		<div id="siguiente-block">
+			<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-1"></div>
 		<div id="carrito" class="col-md-10">
-			<div id="siguiente-block">
-				<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
-			</div>
 			<!--h3 id="heading" style="margin:10px 0px">Carrito de compras</h3-->
 			<?php if (isset($carro) && !empty($carro)) :?>			
 			<?php
@@ -31,7 +33,7 @@
 						if (!isset($product['color'])) $product['color'] = '';
 						if (!isset($product['size'])) $product['size'] = '';
 
-						echo '<div class="carrito-item-row">';
+						echo '<div class="carrito-item-row" product_row>';
 							echo '<div class="carrito-item-col cart-img-col">';
 							//echo "<div class='clearfix'></div>";
 								echo "<div class='cart-img'>";
@@ -73,16 +75,23 @@
 						$row += 1;
 					} ?>
 						<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
+						<input type="hidden" id="subtotal_envio" value="" />
 						<div class="field">
 							<input type="checkbox" id="ticket_cambio" value="1" /> <label for="ticket_cambio">Es para regalo</label>
 						</div>
 						<div class="field">
-							<div class="price">Subtotal: <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
+							<div class="price text-dark">Subtotal <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
+						</div>
+						<div class="field coupon-discount hidden animated speed">
+							<div class="price text-green">Descuento $<span id="coupon_bonus">0</span><span>.00</span></div>
+						</div>
+						<div class="field delivery-cost hidden animated speed">
+							<div class="price text-dark">Envío <span id="delivery_cp"></span> $<span id="cost_delivery">0</span><span>.00</span></div>
 						</div>
 						<div class="field">
 							<div class="cost_total animated speed fadeIn delay">
 								<hr>
-								<div class="price text-right">Total: <span id="cost_total"><?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></span></div>
+								<div class="price text-right">Total $<span id="cost_total"><?php echo number_format($total); ?></span><span>.00</span></div>
 							</div>
 						</div>
 						<div class="mobile">

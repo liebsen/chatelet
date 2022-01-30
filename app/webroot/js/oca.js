@@ -48,6 +48,7 @@ $(function(){
 			var url = $(t).data('url');
 			var cp 	= $('#cp').val();
 			$('#free_delivery').text('');
+			document.querySelector('.delivery-cost').classList.add('hidden')
 			callStart();
 			$.getJSON( url+'/'+cp , function(json, textStatus) {
 				callEnd();
@@ -65,7 +66,11 @@ $(function(){
 						let cost = parseInt(json.price)
 						let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost)
 
-						$('#cost').text( cost );
+						document.querySelector('.delivery-cost').classList.remove('hidden')
+						document.querySelector('.delivery-cost').classList.add('fadeIn')
+						$('#subtotal_envio').val(cost);
+						$('#delivery_cp').text( `(${cp})` );
+						$('#cost_delivery').text( formatNumber(cost) );
 						$('#cost_total').text( total )
 						$('.cost_total').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
 					}
