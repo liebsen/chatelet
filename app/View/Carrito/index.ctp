@@ -119,42 +119,44 @@
 	</div>
 
 	<!-- subtotals exlusive mobile -->
-	<div class="is-bottom is-mobile-resume">
-		<div class="field">
-			<div class="price text-dark">
-				<?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?>
-				<br>
-				<span class="text-small">Productos</span>
-			</div>
-		</div>
-		<div class="field coupon-discount animated speed">
-			<div class="price text-green">$<span class="coupon_bonus">0</span><span>.00</span>
-				<br>
-				<span class="text-small">Cupón</span>
-			</div>
-		</div>
-		<div class="field delivery-cost animated speed">
-			<div class="price text-dark">
-				<span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span>
-				<br>
-				<span class="text-small">Envío</span>										
-			</div>
-		</div>
-		<div class="field">
-			<div class="cost_total-container animated speed fadeIn delay">
-				<div class="price text-right">
-					$<span class="cost_total"><?php echo number_format($total); ?></span><span>.00</span>
+	<div class="mobile">
+		<div class="is-bottom is-mobile-resume">
+			<div class="field">
+				<div class="price text-dark">
+					<?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?>
 					<br>
-					<span class="text-small">Esta compra</span>
+					<span class="text-small">Productos</span>
 				</div>
 			</div>
-		</div>
-		<div class="field">
-			<div id="siguiente-block" class="animated speed scaleIn delay2">
-				<a href="javascript:void(0)" class="disabled has-icons" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">
-					<span class="icon"><span class="glyphicon glyphicon-chevron-right"></span>
-				</a>
-			</div>			
+			<div class="field coupon-discount animated speed">
+				<div class="price text-green">$<span class="coupon_bonus">0</span><span>.00</span>
+					<br>
+					<span class="text-small">Cupón</span>
+				</div>
+			</div>
+			<div class="field delivery-cost animated speed">
+				<div class="price text-dark">
+					<span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span>
+					<br>
+					<span class="text-small">Envío</span>										
+				</div>
+			</div>
+			<div class="field">
+				<div class="cost_total-container animated speed fadeIn delay">
+					<div class="price text-right">
+						$<span class="cost_total"><?php echo number_format($total); ?></span><span>.00</span>
+						<br>
+						<span class="text-small">Esta compra</span>
+					</div>
+				</div>
+			</div>
+			<div class="field">
+				<div id="siguiente-block" class="animated speed scaleIn delay2">
+					<a href="javascript:void(0)" class="disabled has-icons" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">
+						<span class="icon"><span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+				</div>			
+			</div>
 		</div>
 	</div>
 	<!-- end subtotals exlusive mobile -->						

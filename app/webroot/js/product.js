@@ -27,23 +27,18 @@ function pideStock(obj){
 		if(url && article && color_code && size_number){
 
 			var test = document.querySelector('.footer-producto');
-            $(test).find('a').hide();
-            stock_cont.html(stock_v);
+      $(test).find('a').hide();
+      stock_cont.html(stock_v);
 
-		  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
-
+	  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
 				if(data != 0){
-				    //stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
+				  //stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
 					stock_cont.html(stock);
 					$(test).find('a').show();
 				}else{
 					stock_cont.html( stock_0 );
 				}
-
-
-
-             	window.stock = data;
-
+				window.stock = data;
 			});
 		}else{
 			stock_cont.html(missing);
