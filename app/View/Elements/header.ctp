@@ -117,9 +117,9 @@
                       if (!isset($carro)) $carro = array();
                       foreach($carro as $producto) {
 
-                          if(!empty($producto['discount']) && (float)$producto['discount']>0){
+                          /* if(!empty($producto['discount']) && (float)$producto['discount']>0){
                             $producto['price'] = $producto['discount'];
-                          }
+                          } */
 
                           $total += $producto['price'];
                           echo '<li>';

@@ -1,6 +1,6 @@
 function pideStock(obj){
 
-		console.log('changed');
+		// console.log('changed');
 		$(".add.agregar-carro").text('Agregar al carrito')
 
 		var url 		= $(obj).closest("form").data('url');
@@ -54,7 +54,7 @@ $(document).ready(function() {
 	$('.oldSelectColor,.loadColorImages').click(function(event) {
 		window.lastColorObj = $(this);
 		setTimeout(function(){
-			console.log('codeColor: ',$(window.lastColorObj).parent().find('input[name="color"]:checked').attr('code'));
+			// console.log('codeColor: ',$(window.lastColorObj).parent().find('input[name="color"]:checked').attr('code'));
 			pideStock(window.lastColorObj)
 		},500)
 	});

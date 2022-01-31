@@ -50,10 +50,10 @@
 
 .generic-select li {
 	padding: 0.75rem;
-	border: 1px solid #c8729d;
+	border: 1px solid #e10d74;
 	border-radius: 0.25rem;
 	background-color: white;
-	color: #c8729d;
+	color: #e10d74;
 	cursor: pointer;
 	background-image: url(../images/chevron_right_pink.svg);
 	background-position: right center;
@@ -63,14 +63,14 @@
 }
 
 .generic-select li:hover {
-	background-color: #c8729d;
+	background-color: #e10d74;
 	background-image: url(../images/chevron_right_white.svg);
 	color: white;
 }
 
 .generic-select li.selected {
-	background-color: #e10c76;
-	border-color: #e10c76;
+	background-color: #e10d74;
+	border-color: #e10d74;
 	background-image: url(../images/check.png);
 	color: white;
 }
