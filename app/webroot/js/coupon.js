@@ -40,8 +40,8 @@
 
 
           $('#cost').text( total );
-          $('#cost_total').text( total )
-          $('#coupon_bonus').text( discounted )
+          $('.cost_total').text( total )
+          $('.coupon_bonus').text( discounted )
           $('.cost_total').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
 
           document.querySelector('.coupon-discount').classList.remove('hidden')

@@ -83,15 +83,15 @@
 							<div class="price text-dark">Productos <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
 						</div>
 						<div class="field coupon-discount hidden animated speed">
-							<div class="price text-green">Cupón $<span id="coupon_bonus">0</span><span>.00</span></div>
+							<div class="price text-green">Cupón $<span class="coupon_bonus">0</span><span>.00</span></div>
 						</div>
 						<div class="field delivery-cost hidden animated speed">
-							<div class="price text-dark">Envío <span id="delivery_cp"></span> $<span id="cost_delivery">0</span><span>.00</span></div>
+							<div class="price text-dark">Envío <span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span></div>
 						</div>
 						<div class="field">
-							<div class="cost_total animated speed fadeIn delay">
+							<div class="cost_total-container animated speed fadeIn delay">
 								<hr>
-								<div class="price text-right">Total $<span id="cost_total"><?php echo number_format($total); ?></span><span>.00</span></div>
+								<div class="price text-right">Total $<span class="cost_total"><?php echo number_format($total); ?></span><span>.00</span></div>
 							</div>
 						</div>
 						<div class="mobile">
@@ -128,22 +128,22 @@
 			</div>
 		</div>
 		<div class="field coupon-discount animated speed">
-			<div class="price text-green">$<span id="coupon_bonus">0</span><span>.00</span>
+			<div class="price text-green">$<span class="coupon_bonus">0</span><span>.00</span>
 				<br>
 				<span class="text-small">Cupón</span>
 			</div>
 		</div>
 		<div class="field delivery-cost animated speed">
 			<div class="price text-dark">
-				<span id="delivery_cp"></span> $<span id="cost_delivery">0</span><span>.00</span>
+				<span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span>
 				<br>
 				<span class="text-small">Envío</span>										
 			</div>
 		</div>
 		<div class="field">
-			<div class="cost_total animated speed fadeIn delay">
+			<div class="cost_total-container animated speed fadeIn delay">
 				<div class="price text-right">
-					$<span id="cost_total"><?php echo number_format($total); ?></span><span>.00</span>
+					$<span class="cost_total"><?php echo number_format($total); ?></span><span>.00</span>
 					<br>
 					<span class="text-small">Esta compra</span>
 				</div>

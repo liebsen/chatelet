@@ -70,9 +70,9 @@ $(function(){
 						document.querySelector('.delivery-cost').classList.add('fadeIn')
 						$('#subtotal_envio').val(cost);
 						$('#delivery_cp').text( `(${cp})` );
-						$('#cost_delivery').text( formatNumber(cost) );
-						$('#cost_total').text( total )
-						$('.cost_total').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
+						$('.cost_delivery').text( formatNumber(cost) );
+						$('.cost_total').text( total )
+						$('.cost_total-container').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
 					}
 					// console.log(parseFloat($('#cost').text()));
 					$('#cp').removeClass('wrong');

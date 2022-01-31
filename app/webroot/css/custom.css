@@ -1022,9 +1022,12 @@ span.out{
 .text-small {
     font-size: 0.75rem!important;
 }
-.cost_total {
+.cost_total-container {
     opacity: 0;
 }
+.cost_total {
+}
+
 .ribbon {
   position: absolute;
   right: -5px; top: -5px;

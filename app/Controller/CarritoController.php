@@ -387,10 +387,13 @@ class CarritoController extends AppController
 			foreach ($values as $key => $value) {
 				$desc.= $key.' : "'.$value.'"'.$separator;
 			}
-			$unit_price =$producto['price'];
+
+			$unit_price = $producto['price'];
+
+			/* 
 			if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
-                $unit_price = @$producto['discount'];
-            }
+        $unit_price = @$producto['discount'];
+      } */
 
 			$items[] = array(
 				'title' => $desc,
@@ -405,8 +408,8 @@ class CarritoController extends AppController
 				'product_id' => $producto['id'],
 				'color' => $producto['color'],
 				'size' => $producto['size'],
-				'precio_lista' => $producto['price'],
-				'precio_vendido' => (!empty($producto['discount']))?$producto['discount']:$producto['price'],
+				'precio_lista' => (!empty($producto['old_price']))?$producto['old_price']:$producto['price'],
+				'precio_vendido' => $producto['price'],
 				'sale_id' => $sale_id,
 				'id' => null,
 				'description' => $desc
