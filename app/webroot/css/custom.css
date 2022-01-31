@@ -524,6 +524,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #referncia ul { column-count: 2; column-gap: 20px; }
 #referncia ul li { border-bottom: 2px solid #fadcea; font-size: 14px; line-height: 1.5; padding: 30px 0; }
 #surround {
+    background-color: #
     position: relative;
 }
 
@@ -1051,6 +1052,7 @@ span.out{
   text-transform: uppercase;
   text-align: center;
   line-height: 1.888rem;
+  font-weight: 800;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   width: 100px;
@@ -1071,6 +1073,7 @@ span.out{
   border-right: 3px solid transparent;
   border-bottom: 3px solid transparent;
   border-top: 3px solid #CA779A;
+  opacity: 0.5;
 }
 
 .ribbon span::after {
@@ -1081,6 +1084,7 @@ span.out{
   border-right: 3px solid #CA779A;
   border-bottom: 3px solid transparent;
   border-top: 3px solid #CA779A;
+  opacity: 0.5;
 }
 
 
