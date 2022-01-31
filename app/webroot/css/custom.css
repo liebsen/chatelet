@@ -21,6 +21,29 @@ body { font-family: 'Poppins', Verdana, Arial, Sans-Serif; }
 
 a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none; }
 
+.is-bottom {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+.is-mobile-resume {
+    left: 0;
+    background-color: white;
+    padding: 0.75rem 1rem;
+    z-index: 10;
+}
+.is-mobile-resume .field {
+    flex: 1;
+}
+
+.is-mobile-resume .price {
+    font-size: 1rem;
+    text-align: center;
+}
+
 .wrapper { margin: 0 auto; max-width: 1270px; }
 .link { color: #f50081; font-weight: 600; }
 .link:hover { color: #f50081; font-weight: 600; text-decoration: underline; }
@@ -995,6 +1018,9 @@ span.out{
 
 .text-left {
     text-align: left!important;
+}
+.text-small {
+    font-size: 0.75rem!important;
 }
 .cost_total {
     opacity: 0;

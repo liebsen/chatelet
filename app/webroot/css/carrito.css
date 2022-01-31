@@ -142,6 +142,10 @@
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
 
+#siguiente.has-icons {
+	min-width: auto;
+}
+
 #instrucciones {
 	margin-top: 20px;
 	list-style-position:inside;
