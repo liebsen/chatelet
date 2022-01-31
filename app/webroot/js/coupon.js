@@ -30,6 +30,7 @@
           } else {
             total-= discount
           }
+          total = parseInt(total)
           discounted = formatNumber(parseInt(total_orig - total))
           console.log(total_orig)
           console.log(delivery_cost)
