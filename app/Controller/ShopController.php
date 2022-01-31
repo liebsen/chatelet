@@ -336,6 +336,7 @@ class ShopController extends AppController {
 					'Product.desc LIKE' => "%$q%"
 				]
 			],
+			'order' => ['Product.promo DESC'],
 			'limit' => $s,
 			'offset' => $s * $p
 		]);
