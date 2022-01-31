@@ -38,7 +38,7 @@
 							//echo "<div class='clearfix'></div>";
 								echo "<div class='cart-img'>";
 								if ($product['promo'] !== '' && isset($product['old_price'])) {
-									echo "<div class='ribbon'><span>PROMO " . $product['promo'] . "</span></div>";
+									echo "<div class='ribbon'><span>" . $product['promo'] . "</span></div>";
 								}
 								echo '<img src="'.Configure::read('imageUrlBase').$product['img_url'].'" class="thumb" style="display:block;" />';
 							echo '</div>';
@@ -83,7 +83,7 @@
 							<div class="price text-dark">Productos <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
 						</div>
 						<div class="field coupon-discount hidden animated speed">
-							<div class="price text-green">Cupón $<span class="coupon_bonus">0</span><span>.00</span></div>
+							<div class="price text-green">Cupón &mdash; $<span class="coupon_bonus">0</span><span>.00</span></div>
 						</div>
 						<div class="field delivery-cost hidden animated speed">
 							<div class="price text-dark">Envío <span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span></div>
@@ -129,14 +129,14 @@
 				</div>
 			</div>
 			<div class="field coupon-discount animated speed">
-				<div class="price text-green">$<span class="coupon_bonus">0</span><span>.00</span>
+				<div class="price text-green">&mdash; $<span class="coupon_bonus">0</span><span>.00</span>
 					<br>
 					<span class="text-small">Cupón</span>
 				</div>
 			</div>
 			<div class="field delivery-cost animated speed">
 				<div class="price text-dark">
-					<span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span>
+					<span id="delivery_cp"></span>$<span class="cost_delivery">0</span><span>.00</span>
 					<br>
 					<span class="text-small">Envío</span>										
 				</div>

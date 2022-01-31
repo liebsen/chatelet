@@ -223,7 +223,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 #suscribe strong { font-weight: 600; }
 #suscribe form { border-bottom: 2px solid #f99fcb; overflow: hidden; }
 #suscribe form input { background: transparent; border: none; color: #fac7de; float: left; width: 90%; }
-#suscribe form input[type="submit"] { color: #FFF; font-weight: 600; margin-top: 10px; text-align: right; width: 10% }
+#suscribe form input[type="submit"] { color: #FFF; font-weight: 600; margin-top: 6px; text-align: right; width: 10%; font-weight: 800; color: white; }
 
 footer { background: #fefefe; overflow: hidden; padding: 40px 0 0; }
 footer h3 { color: #464444; font-size: 16px; text-transform: uppercase; font-weight: 600; margin-bottom: 35px; }
@@ -485,7 +485,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #formulario label.mr { margin-right: 100px; }
 #formulario input[type="email"] { margin-top: 70px; }
 #formulario textarea { margin-top: 65px; height: 150px; margin-bottom: 57px; }
-#formulario input[type="submit"] { background: transparent; border: 2px solid #f50081; color: #f50081; font-size: 16px; font-weight: 600; height: 60px; width: 100%; }
+#formulario input[type="submit"] { background: transparent; border: 2px solid #f50081; color: #f50081; font-size: 1.25rem; font-weight: 800; height: 60px; width: 100%; border-radius: 5px;}
 #formulario label span { border: 2px solid #868686; border-radius: 50%; cursor: pointer; display: block; float: left; height: 22px; margin-right: 10px; margin-top: -5px; padding: 4px; width: 22px; }
 #formulario label span i { background: #f50081; border-radius: 50%; display: none; height: 10px; }
 #formulario label input { display: none; }
@@ -965,6 +965,10 @@ span.out{
     display: flex;
     align-items: flex-end;
     padding: 1rem;
+    transition: filter 0.25s ease-in-out;
+}
+.is-background-search:hover {
+    filter: contrast(1.25);
 }
 .is-background-search:hover p {
     opacity: 1;
@@ -1039,31 +1043,32 @@ span.out{
 }
 
 .ribbon span {
-  font-size: 10px;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #FFF;
   text-transform: uppercase;
   text-align: center;
-  line-height: 20px;
+  line-height: 1.888rem;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   width: 100px;
+  height: 30px;
   display: block;
-  background: #79A70A;
-  background: linear-gradient(#9BC90D 0%, #79A70A 100%);
+  background: #CA779A;
+  background: linear-gradient(#F50081 0%, #FF0086 100%);
   box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
   position: absolute;
-  top: 19px; right: -21px;
+  top: 10px;
 }
 
 .ribbon span::before {
   content: "";
   position: absolute; left: 0px; top: 100%;
   z-index: -1;
-  border-left: 3px solid #79A70A;
+  border-left: 3px solid #CA779A;
   border-right: 3px solid transparent;
   border-bottom: 3px solid transparent;
-  border-top: 3px solid #79A70A;
+  border-top: 3px solid #CA779A;
 }
 
 .ribbon span::after {
@@ -1071,9 +1076,9 @@ span.out{
   position: absolute; right: 0px; top: 100%;
   z-index: -1;
   border-left: 3px solid transparent;
-  border-right: 3px solid #79A70A;
+  border-right: 3px solid #CA779A;
   border-bottom: 3px solid transparent;
-  border-top: 3px solid #79A70A;
+  border-top: 3px solid #CA779A;
 }
 
 

@@ -110,7 +110,7 @@ function updateSrcTo(obj){
 			}
 
       if ($item['promo'] !== '') {
-        $content.= '<div class="ribbon"><span>PROMO ' . $item['promo'] . '</span></div>';
+        $content.= '<div class="ribbon"><span>' . $item['promo'] . '</span></div>';
       }
 
 			if ($isProduct){

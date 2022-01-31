@@ -24,7 +24,7 @@
                     </ul>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
+                <!--div class="col-md-3 col-sm-6">
                     <h3>LookBook</h3>
                     <ul>
                        <li>
@@ -33,7 +33,7 @@
                        </li>
 
                     </ul>
-                </div>
+                </div-->
 
                 <div class="col-md-3 col-sm-6 clb">
                     <h3>Información</h3>
