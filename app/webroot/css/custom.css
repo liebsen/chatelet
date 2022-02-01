@@ -451,6 +451,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
   border-radius: 0!important;
   padding: 0.5rem; 
   text-align: center;
+  width: 33%;
 }
 #detalle .caract label.btn small {
   display: block; 
@@ -462,7 +463,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #detalle .caract label.btn img {
   border: solid 2px transparent;
   border-radius: 5px;
-  width: 8rem;
+  width: 100%;
   height: 10rem;
   margin-bottom: 0.5rem;
 }
@@ -477,6 +478,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
   background-color: white;
   border: 2px solid #CA779A;
   border-radius: 5px;
+  width: 100%;
 }
 
 ul#ul-moreviews li img {width: 40%}
