@@ -63,11 +63,9 @@ function updateSrcTo(obj){
 </style>
 
 <div id="headabrigos" >
-      <h1 class="name_shop"><?php echo $name_categories; ?></h1>
- <img class="img_resp" src="<?php echo Configure::read('imageUrlBase').$image_prodshop ?>"  img-responsive>
+  <h1 class="name_shop"><?php echo $name_categories; ?></h1>
+  <img class="img_resp" src="<?php echo Configure::read('imageUrlBase').$image_prodshop ?>"  img-responsive>
 </div>
-
-
 
 <section id="productOptions">
     <div class="container-fluid">
@@ -180,10 +178,11 @@ function updateSrcTo(obj){
 				if (isset($item['discount_label_show'])){
 					$number_disc = (int)@$item['discount_label_show'];
 				}
-				$discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
+				// $discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
+        $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
 
 				echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
-				$discount_flag.
+				$promo_ribbon.
 					 $ctrl->Html->link(
 						$content,
 						$url,

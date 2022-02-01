@@ -117,7 +117,7 @@
                                         }
                                       }
                                 ?>
-                                <h2>Color</h2>
+                                <div class="field">
                                   <div class="btn-group inline-block div_color_products" data-toggle="buttons">
                                       <?php  foreach ($colors as $color) {
                                                   echo '<label class="btn" style ="    border-radius: 100px;">';
@@ -128,19 +128,22 @@
                                           }
                                       ?>
                                   </div>
-                                 <h4></h4>
-                                 <h2>Talle
-                                  <select id="size" name="size" style="background-color: white; " >
-                                      <option value="">Seleccionar</option>
-                                      <?php
-                                          foreach ($sizes as $size) {
-                                              echo '<option value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</option>';
-                                          }
-                                      ?>
-                                  </select>
+                                </div>
+                                <div class="field">
+                                  <div class="p-select">
+                                    <select id="size" name="size">
+                                        <option value="">Seleccionar</option>
+                                        <?php
+                                            foreach ($sizes as $size) {
+                                                echo '<option value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</option>';
+                                            }
+                                        ?>
+                                    </select>
+                                  </div>
+                                </div>
                                  <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a><h4></h4>
+                                 <p> <span style="color:#F50081;">Stock:</span> <span id="stock_container" ><i> (Seleccione un color y talle) </i></span></p>
 
-                             <p> <span style="color:#F50081;">Stock:</span> <span id="stock_container" ><i> (Seleccione un color y talle) </i></span></p>
                               <div class="footer-producto">
                                  <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar al carrito</a>
                               </div>

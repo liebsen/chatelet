@@ -95,7 +95,7 @@
         </div>
     <?php endif;?>
             <div>
-            <div class="col-md-4">
+            <div class="col-md-5">
              <?php
                 echo $this->Form->create(null, array(
                     'url' => array(
@@ -127,43 +127,47 @@
                     <p><?php echo $product['desc']; ?></p>
                 <?php endif;?>
                 <?php if (!$isGiftCard): ?>
-                    <h2>Color</h2>
-
-                   <div class="btn-group inline-block div_color_products" data-toggle="buttons">
-                        <?php  foreach ($colors as $color) {
-                                    $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
-                                    $style = (empty($color['images']))?'oldSelectColor':'';
-                                    echo '<label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
-                                    echo "<small>".$color['alias']."</small>";
-                                    echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
-                                    if (!empty($color['images'])) {
-                                        $image = explode(';', $color['images']);
-                                        foreach ($image as $kk => $vv) {
-                                            if (!empty($vv)) {
-                                                $image[0] = $vv;
-                                                break;
+                    <!--h2>Color</h2-->
+                    <div class="field">
+                       <div class="btn-group inline-block div_color_products" data-toggle="buttons">
+                            <?php  foreach ($colors as $color) {
+                                        $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
+                                        $style = (empty($color['images']))?'oldSelectColor':'';
+                                        echo '<label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
+                                        
+                                        echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
+                                        if (!empty($color['images'])) {
+                                            $image = explode(';', $color['images']);
+                                            foreach ($image as $kk => $vv) {
+                                                if (!empty($vv)) {
+                                                    $image[0] = $vv;
+                                                    break;
+                                                }
                                             }
+                                            echo '<img src="'.Configure::read('imageUrlBase').'thumb_'.$image[0].'">';
+                                        } else {
+                                            echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
                                         }
-                                        echo '<img style="max-height: 100px;" src="'.Configure::read('imageUrlBase').'thumb_'.$image[0].'">';
-                                    } else {
-                                        echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
-                                    }
-                                echo '</label>';
-                            }
-                        ?>
+                                        echo "<small>".$color['alias']."</small>";
+                                    echo '</label>';
+                                }
+                            ?>
+                        </div>
                     </div>
-
-                   <h2>Talle
-                    <select id="size" name="size" style="background-color: white; " >
-                        <option value="">Seleccionar</option>
-                        <?php
-                            foreach ($sizes as $size) {
-                                echo '<option value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</option>';
-                            }
-                        ?>
-                    </select>
+                    <div class="field">
+                        <div class="p-select">
+                            <select id="size" name="size">
+                                <option value="">Talle</option>
+                                <?php
+                                    foreach ($sizes as $size) {
+                                        echo '<option value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</option>';
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
                     <div class="marginTop">
-                    <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a><h4></h4>
+                        <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
                     </div>
                     <p>
                       <span style="color:#F50081;"> Stock:</span> <span id="stock_container"><i> (Seleccione un color y talle) </i></span>
@@ -236,11 +240,11 @@
 					$number_disc = (int)@$alt_product['discount_label_show'];
 				}
 				$discount_flag = (@$alt_product['category_id']!='134' && !empty($number_disc))?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
-
+                $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
 
 
                     if(!$stock){ ?>
-                     <div class="col-md-4 col-sm-6"><?=$discount_flag?>
+                     <div class="col-md-4 col-sm-6"><?=$promo_ribbon?>
                         <a href="<?php echo $url ?>" >
                             <?php if ($alt_product['promo'] !== '') :?>
                                 <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
@@ -254,7 +258,7 @@
                     </div>
                     <?php }else{ ?>
 
-                      <div data-id="<?=$alt_product['id']?>" class="col-md-4 col-sm-6 add-no-stock"><?=$discount_flag?>
+                      <div data-id="<?=$alt_product['id']?>" class="col-md-4 col-sm-6 add-no-stock"><?=$promo_ribbon?>
 
                         <a href="<?php echo $url ?>" >
                             <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">

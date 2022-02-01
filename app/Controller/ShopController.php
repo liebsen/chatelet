@@ -245,8 +245,10 @@ class ShopController extends AppController {
 				'recursive' => -1,
 				'conditions' => array(
 					'category_id' => $category_id,
-					'id <>' => $product_id
-				)
+					'id <>' => $product_id,
+					'stock_total > ' => 0
+				),
+				'order' => ['Product.promo DESC']
 			)
 		);
 
@@ -307,8 +309,10 @@ class ShopController extends AppController {
 				'recursive' => -1,
 				'conditions' => array(
 					'category_id' => $category_id,
-					'id <>' => $product_id
-				)
+					'id <>' => $product_id,
+					'stock_total > ' => 0
+				),
+				'order' => ['Product.promo DESC']
 			)
 		);
 
@@ -334,7 +338,8 @@ class ShopController extends AppController {
 				'or' => [
 					'Product.name LIKE' => "%$q%",
 					'Product.desc LIKE' => "%$q%"
-				]
+				],
+				'stock_total > ' => 0
 			],
 			'order' => ['Product.promo DESC'],
 			'limit' => $s,

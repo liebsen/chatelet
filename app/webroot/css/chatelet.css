@@ -407,12 +407,12 @@ span.user {
 }
 
 .marginTop {
-	margin-top: 15px;
+	margin-top: 2rem;
 }
 
 @media screen and (max-width: 768px) {
   	.marginTop {
-    	margin-top: 10px;
+    	margin-top: 1rem;
   	}
 	#detalle .caract .marginTop a.table {
 	    background: url(../images/sizes.png) no-repeat right center;

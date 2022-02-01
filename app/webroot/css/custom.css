@@ -446,12 +446,38 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
 #detalle .caract {margin-top: 25px}
 #detalle .caract h2 {margin-bottom: 10px}
-#detalle .caract label.btn {    box-shadow: none;border-radius: 0!important;margin: 0 15px 0 0;padding: 0;}
-#detalle .caract label.btn small {display: block}
-#detalle .caract label.btn img {border: solid 2px transparent}
-#detalle .caract label.btn.active img {border: solid 2px #000;}
+#detalle .caract label.btn {
+  box-shadow: none;
+  border-radius: 0!important;
+  padding: 0.5rem; 
+  text-align: center;
+}
+#detalle .caract label.btn small {
+  display: block; 
+  font-size: 1rem;
+  font-weight: 800;
+  max-width: 8rem;
+  white-space: break-spaces;
+}
+#detalle .caract label.btn img {
+  border: solid 2px transparent;
+  border-radius: 5px;
+  width: 8rem;
+  height: 10rem;
+  margin-bottom: 0.5rem;
+}
+
+#detalle .caract label.btn.active img {
+  border: solid 2px #f50081;
+}
 #detalle .caract .color-block {display: none}
-.btn-group.inline-block.div_color_products {margin-bottom: 15px}
+.btn-group.inline-block.div_color_products {
+  margin-bottom: 1rem;
+  padding: 0.25rem;
+  background-color: white;
+  border: 2px solid #CA779A;
+  border-radius: 5px;
+}
 
 ul#ul-moreviews li img {width: 40%}
 ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
@@ -524,7 +550,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #referncia ul { column-count: 2; column-gap: 20px; }
 #referncia ul li { border-bottom: 2px solid #fadcea; font-size: 14px; line-height: 1.5; padding: 30px 0; }
 #surround {
-    background-color: #
     position: relative;
 }
 
@@ -978,6 +1003,10 @@ span.out{
     background-color: rgba(255,255,255,0.75);
 }
 
+.add-no-stock {
+    position: relative;
+}
+
 .search-item {
     opacity: 0;
     animation-name: fadeIn;
@@ -1073,6 +1102,26 @@ span.out{
     opacity: 0;
 }
 .cost_total {
+}
+
+.p-select {
+  display: inline-block;
+  background-color: white;
+  background-size: 2rem;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-image: url(../images/chevron_right_pink.svg);  
+}
+
+.p-select select {
+  background-color: transparent;
+  padding: 0.5rem;
+  padding-right: 2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 800;
+  border: 2px solid #CA779A;
+  appearance:none;
 }
 
 .ribbon {
