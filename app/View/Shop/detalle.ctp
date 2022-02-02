@@ -129,7 +129,7 @@
                 <?php if (!$isGiftCard): ?>
                     <!--h2>Color</h2-->
                     <div class="field">
-                       <div class="btn-group inline-block div_color_products" data-toggle="buttons">
+                       <div class="btn-group inline-block div_color_products animated" data-toggle="buttons">
                             <?php  foreach ($colors as $color) {
                                         $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
                                         $style = (empty($color['images']))?'oldSelectColor':'';
@@ -155,7 +155,7 @@
                         </div>
                     </div>
                     <div class="field">
-                        <div class="p-select">
+                        <div class="p-select animated delay">
                             <select id="size" name="size">
                                 <option value="">Talle</option>
                                 <?php
