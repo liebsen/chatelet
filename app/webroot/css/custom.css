@@ -451,7 +451,6 @@ footer .bottom a.ig { background-position: -101px -286px; }
   border-radius: 0!important;
   padding: 0.5rem; 
   text-align: center;
-  width: 33%;
 }
 #detalle .caract label.btn small {
   display: block; 
@@ -465,6 +464,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
   border-radius: 5px;
   width: 100%;
   height: 12rem;
+  min-width: 8rem;
   margin-bottom: 0.5rem;
 }
 
