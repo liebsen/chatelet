@@ -135,6 +135,14 @@ class ShopController extends AppController {
 		$categories = $this->Category->find('all');
 		var_dump($categories);die;
 	}
+	public function fix_names(){
+		/* upate products names */
+		$products = $this->Product->find('all');
+		foreach($products as $product) {
+			$product['Product']['name'] = substr($product['Product']['desc'],0,strpos($product['Product']['desc'],'.'));
+			$this->Product->save($product);
+		}
+	}
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
 		$this->SQL = $this->Components->load('SQL');
 		$stock = 0;
