@@ -69,6 +69,12 @@ $(document).ready(function() {
 		url = $("#productForm").attr('action');
 		if (!isGiftCard){
 			if ((!data.color && !data.color_code) || !data.size) {
+				document.querySelector('.div_color_products').classList.remove('animated', 'flash')
+				document.querySelector('.div_color_products').classList.add('animated', 'flash')
+				setTimeout(() => {
+					document.querySelector('.p-select').classList.remove('animated', 'flash')
+					document.querySelector('.p-select').classList.add('animated', 'flash')
+				}, 1000)
 				return $.growl.error({
 					title: '',
 					message: 'Por favor seleccione un color y un talle'
