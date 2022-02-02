@@ -136,6 +136,8 @@ class ShopController extends AppController {
 		var_dump($categories);die;
 	}
 	public function fix_names(){
+		$this->autoRender = false;
+		$this->loadModel('Product');		
 		/* upate products names */
 		$products = $this->Product->find('all');
 		foreach($products as $product) {
