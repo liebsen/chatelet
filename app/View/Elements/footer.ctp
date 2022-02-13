@@ -6,19 +6,19 @@
                     <ul>
                     <?php
                     if (!empty($categories)){
-                    foreach ($categories as $category) {
-                        $category = $category['Category'];
-                        echo '<li>';
-                        echo $this->Html->link(
-                            $category['name'],
-                            array(
-                                'controller' => 'shop',
-                                'action' => 'product',
-                                intval($category['id'])
-                            )
-                        );
-                        echo '</li>';
-                    }
+                        foreach ($categories as $category) {
+                            $category = $category['Category'];
+                            echo '<li>';
+                            echo $this->Html->link(
+                                $category['name'],
+                                array(
+                                    'controller' => 'shop',
+                                    'action' => 'product',
+                                    intval($category['id'])
+                                )
+                            );
+                            echo '</li>';
+                        }
                     }
                    ?>
                     </ul>
@@ -27,11 +27,23 @@
                 <div class="col-md-3 col-sm-6">
                     <h3>LookBook</h3>
                     <ul>
-                       <li>
-                         <?php echo $this->Html->link($catalog_first_line,
-                         array('controller' => 'catalogo', 'action' => 'index')); ?>
-                       </li>
-
+                <?php
+                if (!empty($lookBook)){
+                    foreach ($lookBook as $item) {
+                        $item = $item['LookBook'];
+                        echo '<li>';
+                        echo $this->Html->link(
+                            $item['name'],
+                            array(
+                                'controller' => 'catalogo',
+                                'action' => 'action',
+                                intval($item['id'])
+                            )
+                        );
+                        echo '</li>';
+                    }
+                }
+               ?>
                     </ul>
                 </div>
 
@@ -52,9 +64,19 @@
 
                 <div class="col-md-3 col-sm-6">
                   <!--  <a href="mailto:sueldos@chatelet.com.ar"><h4>Trabaja con nosotros</h4></a>-->
-
-                    <a href="#"  data-toggle="modal" data-target="#particular-email"><h4>Trabaja con nosotros</h4></a>
-
+                    <h3>Empresa</h3>
+                    <ul>
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#particular-email">
+                                <span>Trabajá con nosotros</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:$zopim.livechat.window.show();">
+                                <span>Chateá con un asesor</span>
+                            </a>
+                        </li>
+                    </ul>
                         <!--<a href="#">
                         <span></span>
                         Chateá con un<br>asesor online

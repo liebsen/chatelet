@@ -251,20 +251,15 @@
                             <?php endif ?>
                             <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
                             <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
-                            <span class="hover">
-                              <small><?php echo $alt_product['name'] ?></small>
-                            </span>
+                            <h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3>
                         </a>
                     </div>
                     <?php }else{ ?>
 
-                      <div data-id="<?=$alt_product['id']?>" class="col-md-4 col-sm-6 add-no-stock"><?=$promo_ribbon?>
-
+                      <div data-id="<?=$alt_product['id']?>" class="col-md-4 col-sm-6 add-no-stock"><?=$promo_ribbon ?>
                         <a href="<?php echo $url ?>" >
-                            <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
-                            <span class="hover">
-                              <small><?php echo $alt_product['name'] ?></small>
-                            </span>
+                            <img class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
+                            <h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3>
                         </a>
                     </div>
                    <?php }endforeach; ?>

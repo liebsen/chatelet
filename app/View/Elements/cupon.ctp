@@ -6,7 +6,7 @@
 		<hr>
 		<h3 id="heading" class="cargo-title">Cupón // <span>Ingresá tu cupón de descuento</span></h3>
 		<p class="field">
-			<i>
+			<i class="coupon-text animated speed">
 				<small>Obtenga beneficios exclusivos con nuestro explusivo sistema de beneficios. Ingrese su cupón de descuento</small>
 			</i>
 		</p>

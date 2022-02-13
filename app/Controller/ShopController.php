@@ -335,6 +335,57 @@ class ShopController extends AppController {
 		$this->set('all_but_me', $all_but_me);
 	}
 
+	private function filter_coupons ($data) {
+		$results = [];
+		foreach($data as $item) {
+			// $result[]= $item['Product'];
+			$coupon_type = '';
+			$date = date('YYYY-m-d');
+			$time = date('H:i:s');
+			$product = $item['Product'];
+			$coupon_type = isset($product['hour_from']) && isset($product['hour_until']) ? 'time' : $coupon_type;
+			$coupon_type = isset($product['date_from']) && isset($product['date_until']) && $coupon_type === '' ? 'date' : $coupon_type;
+			$coupon_type = isset($product['date_from']) && isset($product['date_until']) && $coupon_type === 'time' ? 'datetime' : $coupon_type;
+
+			$inTime = $product['hour_from'] >= $time && $product['hour_until'] < $time;
+			$inDate = $product['date_from'] >= $date && $product['date_until'] < $date;
+			$inDateTime = $inTime && $inDate;
+
+			switch ($coupon_type) {
+				case 'time':
+					if ($inTime) break; else continue;
+				case 'date':
+					if ($inDate) { 
+						break;
+					} else {
+						continue;
+					}
+					break;
+				case 'datetime':
+					if ($inDateTime) { 
+						break;
+					} else {
+						continue;
+					}
+					break;
+				case '':
+					break;
+			}
+			$price = $product['discount'] ? $product['discount'] : $product['price'];
+			$results[]= [
+				'id' => $product['id'],
+				'category_id' => $product['category_id'],
+				'name' => $product['name'],
+				'desc' => $product['desc'],
+				'promo' => $product['promo'],
+				'price' => number_format($price),
+				'slug' => str_replace(' ','-',strtolower($product['desc'])),
+				'img_url' => Configure::read('imageUrlBase') . $product['img_url']
+			];
+		}
+		return $results;
+	}
+
 	public function search(){
 		$this->autoRender = false;
 		$this->loadModel('Product');
@@ -355,23 +406,10 @@ class ShopController extends AppController {
 			'limit' => $s,
 			'offset' => $s * $p
 		]);
-		$results = [];
-		foreach($data as $item) {
-			// $result[]= $item['Product'];
-			$price = $item['Product']['discount'] ? $item['Product']['discount'] : $item['Product']['price'];
-			$results[]= [
-				'id' => $item['Product']['id'],
-				'category_id' => $item['Product']['category_id'],
-				'name' => $item['Product']['name'],
-				'desc' => $item['Product']['desc'],
-				'promo' => $item['Product']['promo'],
-				'price' => number_format($price),
-				'slug' => str_replace(' ','-',strtolower($item['Product']['desc'])),
-				'img_url' => Configure::read('imageUrlBase') . $item['Product']['img_url']
-			];
-		}
+
+		/* filter_coupons: check periods validity if any */
 		die(json_encode([
-			'results' => $results,
+			'results' => ShopController::filter_coupons($data),
 			'query' => $query
 		]));
 	}

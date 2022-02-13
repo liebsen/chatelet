@@ -82,7 +82,7 @@ $(function(){
 					$('#cp').removeClass('ok');
 					$('#cp').addClass('wrong');
 					$('#cost').text( parseInt(0) );
-					timeout = setTimeout( "onErrorAlert('Codigo Postal inexistente.')" , 200);
+					timeout = setTimeout( "onErrorAlert('Codigo Postal inexistente')" , 200);
 				}
 				$('#cp').attr( 'data-valid' , parseInt(json.valid) );
 			});

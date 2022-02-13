@@ -51,13 +51,16 @@
 
           // console.log(parseFloat($('#cost').text()));
           $('#coupon').removeClass('wrong');
-          $('#coupon').addClass(json.Coupon.code);
-          onSuccessAlert(json.Coupon.info);
+          $('#coupon').addClass('ok');
+          onSuccessAlert('Cupón válido');
+          $('.coupon-text').html(`<h3>${json.Coupon.code}</h3><p>${json.Coupon.info}</p>`)
+          $('.coupon-text').removeClass('fadeIn')
+          $('.coupon-text').addClass('fadeIn')
         }else{
           $('#coupon').removeClass('ok');
           $('#coupon').addClass('wrong');
           $('#cost').text( parseInt(0) );
-          timeout = setTimeout( "onErrorAlert('Cupón inválido.')" , 200);
+          timeout = setTimeout( "onErrorAlert('Cupón inexistente')" , 200);
         }
         // document.querySelector('processed-coupon-data').classList.remove('hidden')
         // document.querySelector('processed-coupon-data').classList.add('fadeIn')

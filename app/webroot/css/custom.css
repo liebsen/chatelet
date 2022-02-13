@@ -450,8 +450,13 @@ footer .bottom a.ig { background-position: -101px -286px; }
   box-shadow: none;
   border-radius: 0!important;
   padding: 0.5rem; 
+  color: #666;
   text-align: center;
   min-width: 10rem;
+}
+
+#detalle .caract label.btn {
+    color: black;
 }
 #detalle .caract label.btn small {
   display: block; 
@@ -470,7 +475,8 @@ footer .bottom a.ig { background-position: -101px -286px; }
 }
 
 #detalle .caract label.btn.active img {
-  border: solid 2px #f50081;
+    border: solid 10px #fff;
+    box-shadow: 0 0 2px #ca779a;
 }
 #detalle .caract .color-block {display: none}
 .btn-group.inline-block.div_color_products {
@@ -1179,6 +1185,16 @@ span.out{
   opacity: 0.5;
 }
 
+
+.article-related-title {
+  display: block;
+  color: black;
+  font-weight: 800;
+  padding: 0.25rem;  
+}
+.coupon-text h3 {
+  font-weight: 800;
+}
 
 .results-text {
     padding: 1rem;
