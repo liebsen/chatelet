@@ -7,7 +7,7 @@
 ?>
 <div id="main" class="container">
 	<div class="row">
-		<div id="siguiente-block">
+		<div class="col-md-12" id="siguiente-block">
 			<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 							//echo "<div class='clearfix'></div>";
 								echo "<div class='cart-img'>";
 								if ($product['promo'] !== '' && isset($product['old_price'])) {
-									echo "<div class='ribbon'><span>" . $product['promo'] . "</span></div>";
+									echo "<div class='ribbon small'><span>" . $product['promo'] . "</span></div>";
 								}
 								echo '<img src="'.Configure::read('imageUrlBase').$product['img_url'].'" class="thumb" style="display:block;" />';
 							echo '</div>';
@@ -91,7 +91,7 @@
 						<div class="field">
 							<div class="cost_total-container animated speed fadeIn delay">
 								<hr>
-								<div class="price text-right">Total $<span class="cost_total"><?php echo number_format($total); ?></span><span>.00</span></div>
+								<div class="price text-right">Esta compra $<span class="cost_total"><?php echo number_format($total); ?></span><span>.00</span></div>
 							</div>
 						</div>
 						<div class="mobile">
@@ -129,14 +129,14 @@
 				</div>
 			</div>
 			<div class="field coupon-discount animated speed">
-				<div class="price text-green">&mdash; $<span class="coupon_bonus">0</span><span>.00</span>
+				<div class="price text-green">$<span class="coupon_bonus">0</span><!--span>.00</span-->
 					<br>
 					<span class="text-small">Cupón</span>
 				</div>
 			</div>
 			<div class="field delivery-cost animated speed">
 				<div class="price text-dark">
-					<span id="delivery_cp"></span>$<span class="cost_delivery">0</span><span>.00</span>
+					<span id="delivery_cp"></span>$<span class="cost_delivery">0</span><!--span>.00</span-->
 					<br>
 					<span class="text-small">Envío</span>										
 				</div>
@@ -144,7 +144,7 @@
 			<div class="field">
 				<div class="cost_total-container animated speed fadeIn delay">
 					<div class="price text-right">
-						$<span class="cost_total"><?php echo number_format($total); ?></span><span>.00</span>
+						$<span class="cost_total animated speed delay"><?php echo number_format($total); ?></span><!--span>.00</span-->
 						<br>
 						<span class="text-small">Esta compra</span>
 					</div>
@@ -152,7 +152,7 @@
 			</div>
 			<div class="field">
 				<div id="siguiente-block" class="animated speed scaleIn delay2">
-					<a href="javascript:void(0)" class="disabled has-icons" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">
+					<a href="javascript:void(0)" class="disabled cart-btn-green shrink has-icons" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">
 						<span class="icon"><span class="glyphicon glyphicon-chevron-right"></span>
 					</a>
 				</div>			
@@ -164,7 +164,7 @@
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div id="siguiente-block" class="col-md-10">
-		<a href="javascript:void(0)" class="disabled" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
+		<a href="javascript:void(0)" class="disabled cart-btn-green" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
 		</div>
 		<div class="col-md-1"></div>
 	</div>

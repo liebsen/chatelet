@@ -32,7 +32,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 .is-mobile-resume {
     left: 0;
     background-color: white;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem;
     z-index: 10;
 }
 .is-mobile-resume .field {
@@ -1185,6 +1185,15 @@ span.out{
   opacity: 0.5;
 }
 
+.ribbon.small span {
+  top: 8px;
+  left: 22px;
+  width: 70px;
+  height: 20px;
+  left: 22px;
+  font-size: 0.75rem;
+  line-height: 1.22rem;
+}
 
 .article-related-title {
   display: block;
@@ -1429,6 +1438,15 @@ span.count {
   }
   .desktop {
     display: none;
+  }
+  .text-small {
+    font-size: 0.5rem !important;
+  }
+  .cart-btn-green {
+    min-width: 100%!important;
+  }
+  .is-mobile-resume .field {
+    padding: 0.25rem;
   }
 }
 
