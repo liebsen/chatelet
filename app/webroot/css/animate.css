@@ -29,6 +29,10 @@
   animation-delay: 1s;
 }
 
+.delay1 {
+  animation-delay: 0.5s;
+}
+
 .delay2 {
   animation-delay: 2s;
 }

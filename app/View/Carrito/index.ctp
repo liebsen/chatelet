@@ -83,7 +83,7 @@
 							<div class="price text-dark">Productos <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
 						</div>
 						<div class="field coupon-discount hidden animated speed">
-							<div class="price text-green">Cupón &mdash; $<span class="coupon_bonus">0</span><span>.00</span></div>
+							<div class="price text-success">Cupón $<span class="coupon_bonus">0</span><span>.00</span></div>
 						</div>
 						<div class="field delivery-cost hidden animated speed">
 							<div class="price text-dark">Envío <span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span></div>
@@ -118,44 +118,42 @@
 		<div class="col-md-1"></div>
 	</div>
 
-	<!-- subtotals exlusive mobile -->
-	<div class="mobile">
-		<div class="is-bottom is-mobile-resume">
-			<div class="field">
-				<div class="price text-dark">
-					<?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?>
+	<!-- bottom bar carrito resume and checkout -->
+	<div class="is-bottom is-mobile-resume">
+		<div class="field animated speed slideInUp">
+			<div class="price text-white">
+				<?php echo $this->Number->currency($total, 'USD', array('places' => 0)); ?>
+				<br>
+				<span class="text-small">Productos</span>
+			</div>
+		</div>
+		<div class="field coupon-discount animated speed slideInUp">
+			<div class="price text-white">$<span class="coupon_bonus">0</span><!--span>.00</span-->
+				<br>
+				<span class="text-small">Cupón</span>
+			</div>
+		</div>
+		<div class="field delivery-cost animated speed slideInUp">
+			<div class="price text-white">
+				<span id="delivery_cp"></span>$<span class="cost_delivery">0</span><!--span>.00</span-->
+				<br>
+				<span class="text-small">Envío</span>										
+			</div>
+		</div>
+		<div class="field">
+			<div class="cost_total-container animated speed fadeIn">
+				<div class="price text-right text-white">
+					$<span class="cost_total animated speed delay"><?php echo number_format($total); ?></span><!--span>.00</span-->
 					<br>
-					<span class="text-small">Productos</span>
+					<span class="text-small">Esta compra</span>
 				</div>
 			</div>
-			<div class="field coupon-discount animated speed">
-				<div class="price text-green">$<span class="coupon_bonus">0</span><!--span>.00</span-->
-					<br>
-					<span class="text-small">Cupón</span>
-				</div>
-			</div>
-			<div class="field delivery-cost animated speed">
-				<div class="price text-dark">
-					<span id="delivery_cp"></span>$<span class="cost_delivery">0</span><!--span>.00</span-->
-					<br>
-					<span class="text-small">Envío</span>										
-				</div>
-			</div>
-			<div class="field">
-				<div class="cost_total-container animated speed fadeIn delay">
-					<div class="price text-right">
-						$<span class="cost_total animated speed delay"><?php echo number_format($total); ?></span><!--span>.00</span-->
-						<br>
-						<span class="text-small">Esta compra</span>
-					</div>
-				</div>
-			</div>
-			<div class="field">
-				<div id="siguiente-block" class="animated speed scaleIn delay2">
-					<a href="javascript:void(0)" class="disabled cart-btn-green shrink has-icons" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">
-						<span class="icon"><span class="glyphicon glyphicon-chevron-right"></span>
-					</a>
-				</div>			
+		</div>
+		<div class="field">
+			<div id="siguiente-block" class="animated speed scaleIn delay2">
+				<a href="javascript:void(0)" class="disabled cart-btn-green shrink has-icons" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">
+					<span class="icon"><span class="glyphicon glyphicon-chevron-right"></span>
+				</a>
 			</div>
 		</div>
 	</div>

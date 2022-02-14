@@ -19,6 +19,7 @@
 	padding: 0.5rem;
 }
 
+/*
 .text-dark {
 	color: #666!important;
 }
@@ -27,6 +28,16 @@
 	color: green!important;
 }
 
+.text-white {
+  color: white!important;
+}
+.text-warning {
+  color: #fbad19;
+}
+.text-info {
+  color: blue!important;
+}
+*/
 .carrito-item-col {
 	flex: 1;
 }
@@ -104,7 +115,7 @@
 
 .talle,
 .price {
-	color: black;
+	/* color: black; */
 	font-weight: bold;
 }
 

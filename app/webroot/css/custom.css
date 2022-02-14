@@ -30,18 +30,30 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 }
 
 .is-mobile-resume {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;  
     left: 0;
-    background-color: white;
+    background-color: #ce0971; /* #f50081; */
     padding: 0.5rem;
     z-index: 10;
 }
 .is-mobile-resume .field {
-    flex: 1;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .is-mobile-resume .price {
     font-size: 1rem;
     text-align: center;
+}
+
+.text-white {
+  color: white!important;
+}
+
+.text-dark {
+  color: #333!important;
 }
 
 .wrapper { margin: 0 auto; max-width: 1270px; }
@@ -1446,8 +1458,9 @@ span.count {
     min-width: 100%!important;
   }
   .is-mobile-resume .field {
-    padding: 0.25rem;
-  }
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+  }  
 }
 
 @media screen and (min-width:769px), print {
