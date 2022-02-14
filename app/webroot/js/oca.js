@@ -64,8 +64,8 @@ $(function(){
 						$('#free_delivery').text('Envio gratis!');
 					}else{
 						let cost = parseInt(json.price)
-						let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost)
-
+						let coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
+						let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
 						document.querySelector('.delivery-cost').classList.remove('hidden')
 						document.querySelector('.delivery-cost').classList.add('fadeIn')
 						$('#subtotal_envio').val(cost);

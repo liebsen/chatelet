@@ -32,13 +32,7 @@
           }
           total = parseInt(total)
           discounted = formatNumber(parseInt(total_orig - total))
-          console.log(total_orig)
-          console.log(delivery_cost)
-          console.log(total)
-          console.log(discounted)
-          console.log('---')
           total = formatNumber(parseFloat(total + parseInt(delivery_cost)))
-
 
           $('#cost').text( total );
           $('.coupon_bonus').text( discounted )
