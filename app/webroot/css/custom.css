@@ -34,7 +34,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
     flex-direction: row;
     justify-content: center;  
     left: 0;
-    background-color: #ce0971; /* #f50081; */
+    background-color: #f50081; /* #ce0971; */
     padding: 0.5rem;
     z-index: 10;
 }
@@ -1102,6 +1102,10 @@ span.out{
     margin:10px 0px;
 }
 
+#coupon {
+  margin-bottom: 0.85rem;
+}
+
 #coupon_data_container {
     font-size: 1rem;
 }
@@ -1118,6 +1122,7 @@ span.out{
 }
 .text-small {
     font-size: 0.75rem!important;
+    font-weight: 400;
 }
 .cost_total-container {
     opacity: 0;
