@@ -119,20 +119,18 @@
 	font-weight: bold;
 }
 
+.old_price {
+	text-decoration: line-through;
+	text-align: right;
+}
+
+
 .cart-img {
 	min-height: 135px;
 	background-color: #f8f8f8;
 	position: relative;
 	display: inline-block;
 	margin-top: 1rem;
-}
-.old_price {
-	text-decoration: line-through;
-	text-align: right;
-}
-.price {
-	font-size: 24px;
-	text-align: right;
 }
 
 #siguiente-block {
@@ -260,5 +258,8 @@ a.pay{
 @media screen and (min-width:769px), print {
 	.carrito-items {
 		padding-right: 1rem;
+	}
+	.carrito-items .price {
+		font-size: 1.5rem;
 	}
 }

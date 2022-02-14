@@ -44,8 +44,8 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 }
 
 .is-mobile-resume .price {
-    font-size: 1rem;
-    text-align: center;
+  font-size: 1.75rem;
+  text-align: center;
 }
 
 .text-white {
@@ -54,6 +54,10 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 
 .text-dark {
   color: #333!important;
+}
+
+.text-weight-thin {
+  font-weight: 400;
 }
 
 .wrapper { margin: 0 auto; max-width: 1270px; }
@@ -1464,8 +1468,11 @@ span.count {
   }
   .is-mobile-resume .field {
     margin-left: 0.25rem;
-    margin-right: 0.25rem;
-  }  
+    margin-right: 0.25rem;    
+  }
+  .is-mobile-resume .price {
+    font-size: 1.25rem;
+  }
 }
 
 @media screen and (min-width:769px), print {

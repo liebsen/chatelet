@@ -76,22 +76,22 @@
 					} ?>
 						<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 						<input type="hidden" id="subtotal_envio" value="" />
-						<div class="field">
+						<div class="field text-right">
 							<input type="checkbox" id="ticket_cambio" value="1" /> <label for="ticket_cambio">Es para regalo</label>
 						</div>
-						<div class="field">
-							<div class="price text-dark">Productos <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
+						<div class="field text-right">
+							<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
 						</div>
-						<div class="field coupon-discount hidden animated speed">
-							<div class="price text-success">Cupón $<span class="coupon_bonus">0</span><span>.00</span></div>
+						<div class="field text-right coupon-discount hidden animated speed">
+							<div class="price text-success"><span class="text-weight-thin">Cupón </span> $<span class="coupon_bonus">0</span><span>.00</span></div>
 						</div>
-						<div class="field delivery-cost hidden animated speed">
-							<div class="price text-dark">Envío <span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span></div>
+						<div class="field text-right delivery-cost hidden animated speed">
+							<div class="price text-dark"><span class="text-weight-thin">Envío </span> <span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span></div>
 						</div>
-						<div class="field">
+						<div class="field text-right">
 							<div class="cost_total-container animated speed fadeIn delay">
 								<hr>
-								<div class="price text-right">Esta compra $<span class="cost_total"><?php echo number_format($total); ?></span><span>.00</span></div>
+								<div class="price"><span class="text-weight-thin">Esta compra </span> $<span class="cost_total"><?php echo number_format($total); ?></span><span>.00</span></div>
 							</div>
 						</div>
 						<div class="mobile">
