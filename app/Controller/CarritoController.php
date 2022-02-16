@@ -274,7 +274,84 @@ class CarritoController extends AppController
 				'enabled' => 1
 			]
 		]);
-		return json_encode($coupon);		
+		return json_encode(self::filter_coupon($coupon));
+	}
+
+	private function filter_coupon ($data) {
+		$coupon_type = '';
+		$date = date('Y-m-d');
+		$week = (string) date('w');
+		$time = time();
+		$hour = date('H:i:s');
+		$item = $data['Coupon'];
+		$coupon_type = isset($item['hour_from']) && isset($item['hour_until']) ? 'time' : $coupon_type;
+		$coupon_type = isset($item['date_from']) && isset($item['date_until']) && $coupon_type === '' ? 'date' : $coupon_type;
+		$coupon_type = isset($item['date_from']) && isset($item['date_until']) && $coupon_type === 'time' ? 'datetime' : $coupon_type;
+
+		$inTime = strtotime($item['hour_from']) <= strtotime($hour) && strtotime($item['hour_until']) > strtotime($hour);
+		$inDate = strtotime($item['date_from']) <= strtotime($date) && strtotime($item['date_until']) > strtotime($date);
+		error_log('(1) ' . $item['date_from'] . ' / ' . $item['date_until']);
+		error_log('(2) ' . $date );
+		error_log('(3) ' . $item['hour_from'] . ' / ' . $item['hour_until']);
+		error_log('(4) ' . $hour );
+		if ($inTime) error_log('(intime!) ');
+		if ($inDate) error_log('(indate!) ');
+		$inDateTime = $inTime && $inDate;
+
+		if (strpos($item['weekdays'], $w) !== false) {
+			$valid = [];
+			$weekdays = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+			foreach($item['weekdays'] as $week) {
+				$valid[] = $weekdays[$week];
+			}
+			$str = implode(', ', $valid);
+			return (object) [
+				'status' => 'error',
+				'message' => "Esta promo solo es válida para días de semana {$str}"
+			];
+		}
+		switch ($coupon_type) {
+			case 'time':
+				if ($inTime) {
+					return (object) [
+						'status' => 'success',
+						'data' => $item
+					];
+				} else {
+					return (object) [
+						'status' => 'error',
+						'message' => "Esta promo solo es válida para horario {$item['hour_from']} / {$item['hour_until']}"
+					];
+				}
+			case 'date':
+				if ($inDate) { 
+					return (object) [
+						'status' => 'success',
+						'data' => $item
+					];
+				} else {
+					return (object) [
+						'status' => 'error',
+						'message' => "Esta promo solo es válida para fecha {$item['date_from']} / {$item['date_until']}"
+					];
+				}
+				break;
+			case 'datetime':
+				if ($inDateTime) { 
+					return (object) [
+						'status' => 'success',
+						'data' => $item
+					];
+				} else {
+					return (object) [
+						'status' => 'error',
+						'message' => "Esta promo solo es válida para fecha {$item['date_from']} {$item['hour_from']} / {$item['date_until']} {$item['hour_until']}"
+					];
+				}
+				break;
+			case '':
+				break;
+		}
 	}
 
 	public function delivery_cost($cp = null){

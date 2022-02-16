@@ -10,7 +10,7 @@
 				<small>Obtenga beneficios exclusivos con nuestro explusivo sistema de beneficios. Ingrese su cupón de descuento</small>
 			</i>
 		</p>
-		<div class="form-group">
+		<div class="form-group is-flex">
 			<input type="text" name="" placeholder="ej. CHA10" value="" id="coupon" class="both input-rounded" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'coupon')) ?>" autocomplete="off" />
 			&nbsp;
 			<span id="loading" class="hide coupon-loading">

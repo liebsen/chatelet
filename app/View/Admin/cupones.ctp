@@ -7,7 +7,6 @@
 	<table id="cupones-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>
-				<th class="text-center hidden-phone"><?php echo __('Título'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Tipo'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Valor'); ?></th>
@@ -17,11 +16,6 @@
 		<tbody>
 			<?php foreach ($coupons as $key => $coupon): ?>        
 				<tr>
-					<td>
-						<a href="<?=$this->Html->url(array('action'=>'cupones','edit',$coupon['Coupon']['id']))?>">
-							<?=$coupon['Coupon']['title']?> <?=$coupon['Coupon']['enabled'] === '0' ? '(Inactivo)': ''?>
-						</a>
-					</td>	                 
 					<td>
 						<?=$coupon['Coupon']['code']?>
 					</td>

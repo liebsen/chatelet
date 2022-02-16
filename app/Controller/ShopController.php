@@ -406,10 +406,22 @@ class ShopController extends AppController {
 			'limit' => $s,
 			'offset' => $s * $p
 		]);
-
-		/* filter_coupons: check periods validity if any */
+		$results = [];
+		foreach($data as $item) {
+			$price = $item['Product']['discount'] ? $item['Product']['discount'] : $item['Product']['price'];
+			$results[]= [
+				'id' => $item['Product']['id'],
+				'category_id' => $item['Product']['category_id'],
+				'name' => $item['Product']['name'],
+				'desc' => $item['Product']['desc'],
+				'promo' => $item['Product']['promo'],
+				'price' => number_format($price),
+				'slug' => str_replace(' ','-',strtolower($item['Product']['desc'])),
+				'img_url' => Configure::read('imageUrlBase') . $item['Product']['img_url']
+			];
+		}
 		die(json_encode([
-			'results' => ShopController::filter_coupons($data),
+			'results' => $results,
 			'query' => $query
 		]));
 	}

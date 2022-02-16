@@ -36,7 +36,7 @@ $(document).ready(function() {
 	});
 	if (typeof $.fn.datepicker != 'undefined'){ 
 		$('.datepicker').datepicker({
-			format: 'dd/mm/yyyy',
+			format: $(this).data('format') || 'dd/mm/yyyy',
 			language: 'es'
 		});
 	}

@@ -5,9 +5,11 @@
 }
 .wrong{
 	border-color: #E10D74;
+  color: #E10D74;
 }
 .ok{
 	border-color: #07BC31;
+  color: #4f804f;
 }
 .input-rounded{
 	border-radius: 0.25rem;

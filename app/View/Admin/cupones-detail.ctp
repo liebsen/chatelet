@@ -46,7 +46,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Info'); ?></label>
             <div class="controls">
-              <textarea id="" name="data[title]" required><?php echo (isset($coupon)) ? $coupon['Coupon']['title'] : ''; ?></textarea>
+              <textarea id="" name="data[info]" required><?php echo (isset($coupon)) ? $coupon['Coupon']['info'] : ''; ?></textarea>
             </div>
           </div>
           <br />
@@ -54,11 +54,11 @@
             <label class="control-label" for="columns-text"><?php echo __('Tipo de cupón'); ?></label>
             <div class="controls">
               <?php
-                $percentage = (isset($coupon) && $coupon['Coupon']['type_coupon'] == 'percentage') ? 'checked' : '';
-                $nominal = (isset($coupon) && $coupon['Coupon']['type_coupon'] == 'nominal') ? 'checked' : '';
+                $percentage = (isset($coupon) && $coupon['Coupon']['coupon_type'] == 'percentage') ? 'checked' : '';
+                $nominal = (isset($coupon) && $coupon['Coupon']['coupon_type'] == 'nominal') ? 'checked' : '';
               ?>
-              <label for="type_0">Porcentual</label> <input type="radio" id="type_0" name="data[type_coupon]" value="percentage" <?php echo $percentage; ?> /> &nbsp; 
-              <label for="type_1">Nominal</label> <input type="radio" id="type_1" name="data[type_coupon]" value="nominal" <?php echo $nominal; ?> />
+              <label for="type_0">Porcentual</label> <input type="radio" id="type_0" name="data[coupon_type]" value="percentage" <?php echo $percentage; ?> /> &nbsp; 
+              <label for="type_1">Nominal</label> <input type="radio" id="type_1" name="data[coupon_type]" value="nominal" <?php echo $nominal; ?> />
             </div>
           </div>
           <br />
@@ -74,14 +74,14 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Fecha desde'); ?></label>
             <div class="controls">
-              <input type="text" class="datepicker form-control" id="" name="data[date_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_from'] : ''; ?>">
+              <input type="text" class="datepicker form-control" data-date-format="dd/mm/yyyy" id="" name="data[date_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_from'] : ''; ?>">
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Fecha hasta'); ?></label>
             <div class="controls">
-              <input type="text" class="datepicker form-control" id="" name="data[date_until]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_until'] : ''; ?>">
+              <input type="text" class="datepicker form-control" data-date-format="dd/mm/yyyy" id="" name="data[date_until]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_until'] : ''; ?>">
             </div>
           </div>
           <br />

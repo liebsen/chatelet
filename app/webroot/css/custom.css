@@ -1108,6 +1108,7 @@ span.out{
 
 #coupon {
   margin-bottom: 0.85rem;
+  text-transform: uppercase;
 }
 
 #coupon_data_container {

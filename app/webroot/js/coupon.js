@@ -10,16 +10,13 @@
       var coupon  = $('#coupon').val();
       $('#free_delivery').text('');
       document.querySelector('.coupon-loading').classList.remove('hide')
-      document.querySelector('.coupon-discount').classList.add('hidden')
+      // document.querySelector('.coupon-discount').classList.add('hidden')
       $.post( url, { coupon: coupon }, function(json, textStatus) {
         document.querySelector('.coupon-loading').classList.add('hide')
-        // document.querySelector('.processed-coupon-data').classList.add('hidden')
-        // document.querySelector('.processed-coupon-data').classList.remove('fadeIn')
         clearTimeout(timeout)
-        console.log(json)
-        if( json.Coupon ){
-          let coupon_type = json.Coupon.coupon_type
-          let discount = parseFloat(json.Coupon.discount)
+        if( json.status == 'success' ){
+          let coupon_type = json.data.coupon_type
+          let discount = parseFloat(json.data.discount)
           let discounted = 0
           let total_orig = $('#subtotal_compra').val()
           let delivery_cost = $('#subtotal_envio').val() || 0
@@ -45,14 +42,15 @@
           $('#coupon').removeClass('wrong');
           $('#coupon').addClass('ok');
           onSuccessAlert('Cupón válido');
-          $('.coupon-text').html(`<h3>${json.Coupon.code}</h3><p>${json.Coupon.info}</p>`)
+          $('.coupon-text').html(`<h3>${json.data.code}</h3><p>${json.data.info}</p>`)
           $('.coupon-text').removeClass('fadeIn')
           $('.coupon-text').addClass('fadeIn')
         }else{
           $('#coupon').removeClass('ok');
           $('#coupon').addClass('wrong');
-          $('#cost').text( parseInt(0) );
-          timeout = setTimeout( "onErrorAlert('Cupón inexistente')" , 200);
+          $('#cost').text( '0' );
+          console.log(json.message)
+          timeout = setTimeout( `onErrorAlert('${json.message}')` , 200);
         }
         // document.querySelector('processed-coupon-data').classList.remove('hidden')
         // document.querySelector('processed-coupon-data').classList.add('fadeIn')
