@@ -483,7 +483,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
   margin: auto;
 }
 #detalle .caract label.btn .color-option {
-  border: solid 2px #fff;
+  border: solid 2px transparent;
   border-radius: 5px;
   width: 100%;
   height: 12rem;
@@ -501,10 +501,13 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
 #detalle .caract .color-block {display: none}
 .btn-group.inline-block.div_color_products {
+  display: flex;
+  justify-content: center;  
   margin-bottom: 1rem;
   padding: 0.25rem;
   background-color: white;
-  border: 2px solid #CA779A;
+  /* border: 2px solid #CA779A;
+  box-shadow: 0 0 2rem #0009; */
   border-radius: 5px;
   width: 100%;
 }
@@ -1156,7 +1159,7 @@ span.out{
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 800;
-  border: 2px solid #CA779A;
+  /* border: 2px solid #CA779A; */
   appearance:none;
 }
 
