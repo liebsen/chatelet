@@ -1483,6 +1483,10 @@ span.count {
   .is-mobile-resume .price {
     font-size: 1.25rem;
   }
+  .btn-group.inline-block.div_color_products {
+    flex-direction: column;
+  }
+
 }
 
 @media screen and (min-width:769px), print {
