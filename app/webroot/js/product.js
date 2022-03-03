@@ -24,14 +24,14 @@ function pideStock(obj){
 		if(url && article && color_code && size_number){
 
 			var test = document.querySelector('.footer-producto');
-      $(test).find('a').hide();
+      $(test).find('a').css({visibility: 'hidden'});
       stock_cont.html(stock_v);
 
 	  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
 				if(data != 0){
 				  //stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
 					stock_cont.html(stock);
-					$(test).find('a').show();
+					$(test).find('a').css({visibility: 'visible'});
 				}else{
 					stock_cont.html( stock_0 );
 				}

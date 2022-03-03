@@ -144,7 +144,7 @@
                                                     break;
                                                 }
                                             }
-                                            echo '<img src="'.Configure::read('imageUrlBase').''.$image[0].'">';
+                                            echo '<div class="color-option" style="background-image: url('.Configure::read('imageUrlBase').$image[0].')"></div>';
                                         } else {
                                             echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
                                         }
