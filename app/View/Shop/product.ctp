@@ -39,16 +39,19 @@ function updateSrcTo(obj){
 }
 .name {
   text-align:center;
-  font-size:20px;
+  font-size:1.25rem;
   font-weight: 800;
   font-family: 'Poppins', Verdana, Arial, sans-serif;
   margin:10px auto 20px;
   color: #f50081;
+  max-width: 18rem;
+  margin: auto;
 }
 .price {
 	text-align:center;
 	height:60px;
-	font-size:24px;
+	font-size:1.5rem;
+  font-weight: 800;
 	font-family: 'Poppins', Verdana, Arial, sans-serif;
 	margin:10px auto 20px;
 	color: #444;
@@ -113,7 +116,7 @@ function updateSrcTo(obj){
 
 			if ($isProduct){
 				 $content.='<span class="hover">'.
-         '<small>'. $item['desc'] .'</small>'.
+         '<!--small>'. $item['desc'] .'</small-->'.
          '</span>';
 			}
 			$url = array(
@@ -179,10 +182,9 @@ function updateSrcTo(obj){
 					$number_disc = (int)@$item['discount_label_show'];
 				}
 				// $discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
-        $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
+        // $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
 
 				echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
-				$promo_ribbon.
 					 $ctrl->Html->link(
 						$content,
 						$url,
