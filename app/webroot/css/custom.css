@@ -434,7 +434,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/
 #detalle h1 { color: #f50081; font-size: 30px; font-weight: 500; margin-bottom: 10px; }
 #detalle > p { font-size: 18px; font-weight: 500; margin-bottom: 20px; }
-#detalle .price { background: #FFF; color: #333; display: inline-block; font-size: 1.25rem; font-weight: 800; line-height: .9; padding: 10px 15px; margin-top: 0.5rem; }
+#detalle .price { background: #FFF; color: #333; display: inline-block; font-size: 1.25rem; font-weight: 800; line-height: .9; padding: 10px 15px; margin-top: 0.5rem; border-radius: 5px;}
 #detalle .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
 #detalle .caract { color: #404040; /* margin-top: 25px; */ }
 #detalle .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
@@ -504,7 +504,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
   display: flex;
   justify-content: center;  
   margin-bottom: 1rem;
-  padding: 0.25rem;
+  padding: 0.5rem;
   background-color: white;
   /* border: 2px solid #CA779A;
   box-shadow: 0 0 2rem #0009; */
@@ -1145,7 +1145,7 @@ span.out{
 
 .p-select {
   display: inline-block;
-  background-color: white;
+  background-color: transparent;
   background-size: 2rem;
   background-repeat: no-repeat;
   background-position: right center;
@@ -1153,13 +1153,13 @@ span.out{
 }
 
 .p-select select {
-  background-color: transparent;
+  background-color: white;
   padding: 0.5rem;
   padding-right: 2rem;
   border-radius: 5px;
   font-size: 1rem;
   font-weight: 800;
-  /* border: 2px solid #CA779A; */
+  border: 2px solid white;
   appearance:none;
 }
 
