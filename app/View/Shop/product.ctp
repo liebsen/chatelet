@@ -46,6 +46,7 @@ function updateSrcTo(obj){
   color: #f50081;
   max-width: 18rem;
   margin: auto;
+  min-height: 4rem;
 }
 .price {
 	text-align:center;
@@ -115,9 +116,7 @@ function updateSrcTo(obj){
       }
 
 			if ($isProduct){
-				 $content.='<span class="hover">'.
-         '<!--small>'. $item['desc'] .'</small-->'.
-         '</span>';
+				 // $content.='<span class="hover">'. '<small>'. $item['desc'] .'</small>'. '</span>';
 			}
 			$url = array(
 				'controller' => 'tienda',
