@@ -434,11 +434,11 @@ footer .bottom a.ig { background-position: -101px -286px; }
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/
 #detalle h1 { color: #f50081; font-size: 30px; font-weight: 500; margin-bottom: 10px; }
 #detalle > p { font-size: 18px; font-weight: 500; margin-bottom: 20px; }
-#detalle .price { background: #FFF; color: #333; display: inline-block; font-size: 18px; font-weight: 500; line-height: .9; padding: 10px 15px; }
+#detalle .price { background: #FFF; color: #333; display: inline-block; font-size: 1.25rem; font-weight: 800; line-height: .9; padding: 10px 15px; margin-top: 0.5rem; }
 #detalle .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
-#detalle .caract { color: #404040; margin-top: 25px; }
+#detalle .caract { color: #404040; /* margin-top: 25px; */ }
 #detalle .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
-#detalle .caract p { /*border-bottom: 2px solid #c2c2c2;*/ font-size: 1rem; padding: 30px 0;padding-bottom: 10px; line-height: 1.25;}
+#detalle .caract p { /*border-bottom: 2px solid #c2c2c2;*/ font-size: 1rem; padding: 1rem 0;padding-bottom: 10px; line-height: 1.25;}
 #detalle .caract .size { margin-bottom: 25px; }
 #detalle .caract .size a { color: #404040; display: inline-block; font-size: 16px; margin-right: 20px; }
 #detalle .caract .size a.active { color: #f50081; }
@@ -460,7 +460,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #detalle .caract .social a.tt { background-position: -118px -40px; }
 #detalle .caract .social a.pr { background-position: -144px -40px; }
 
-#detalle .caract {margin-top: 25px}
+/* #detalle .caract {margin-top: 25px} */
 #detalle .caract h2 {margin-bottom: 10px}
 #detalle .caract label.btn {
   box-shadow: none;

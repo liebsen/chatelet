@@ -13,10 +13,7 @@ function pideStock(obj){
 		var stock_0 	= '<i style="color:red;">No Disponible</i>';
 		var missing 	= '<i> (Seleccione un color y talle) </i>';
 		var no_color	= '<i> (Seleccione color) <i>';
-
-	    var stock_v  	= '<i style="color:gray;">Consultando ... </i>';
-
-
+	  var stock_v  	= '<i style="color:gray;">Consultando ... </i>';
 
 		if(!color_code){
 			stock_cont.html(no_color);

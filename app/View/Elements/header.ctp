@@ -52,8 +52,6 @@
           </li>
         </ul>
 
-
-
         <ul class="nav navbar-nav navbar-right">
          <!-- .Login -->
           <li class="dropdown">
@@ -110,7 +108,11 @@
             <ul class="dropdown-menu">
               <li>
                 <div>
+                <?php if ($this->Session->check('Carro')): ?>
                   <p class="title">Mi Carrito</p>
+                <?php else: ?>
+                  <p>Tu carrito de compras está vacío</p>
+                <?php endif ?>
                   <ol id="items">
                     <?php
                       $total = 0;
@@ -129,37 +131,31 @@
 
                     ?>
                   </ol>
+                <?php if ($this->Session->check('Carro')): ?>
                   <p>
                     Total <span class="right"><?php echo $this->Number->currency($total, 'USD', array('places' => 0)); ?></span>
                   </p>
                   <p class="bottom">
                     <?php
-                      if ($this->Session->check('Carro')) {
-                        echo $this->Html->link('Modificar', array(
-                          'controller' => 'carrito',
-                          'action' => 'index'
-                          )
-                        );
-                      } else {
-                        echo 'Modificar';
-                      }
+                      echo $this->Html->link('Modificar', array(
+                        'controller' => 'carrito',
+                        'action' => 'index'
+                        )
+                      );
                     ?>
                     <span class="right">
                       <?php
-                        if ($this->Session->check('Carro')) {
-                          echo $this->Html->link('Pagar', array(
-                              'controller' => 'carrito',
-                              'action' => 'index'
-                            ), array(
-                              'class' => 'pink pay',
-                            )
-                          );
-                        } else {
-                          echo 'Pagar';
-                        }
+                        echo $this->Html->link('Pagar', array(
+                            'controller' => 'carrito',
+                            'action' => 'index'
+                          ), array(
+                            'class' => 'pink pay',
+                          )
+                        );
                       ?>
                     </span>
                   </p>
+                  <?php endif ?>
                 </div>
               </li>
             </ul>
