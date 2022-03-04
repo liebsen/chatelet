@@ -160,7 +160,7 @@
                                 <option value="">Talle</option>
                                 <?php
                                     foreach ($sizes as $size) {
-                                        echo '<option value="'. ucfirst($size['variable']) .'">'. ucfirst($size['variable']) .'</option>';
+                                        echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
                                     }
                                 ?>
                             </select>

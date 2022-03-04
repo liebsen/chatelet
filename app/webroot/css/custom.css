@@ -1145,19 +1145,20 @@ span.out{
 
 .p-select {
   display: inline-block;
-  background-color: transparent;
+  background-color: white;
   background-size: 2rem;
   background-repeat: no-repeat;
   background-position: right center;
-  background-image: url(../images/chevron_right_pink.svg);  
+  background-image: url(../images/chevron_right_pink.svg);
+  border-radius: 5px;
 }
 
 .p-select select {
-  background-color: white;
+  background-color: transparent;
   padding: 0.5rem;
   padding-right: 2rem;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 800;
   border: 2px solid white;
   appearance:none;
