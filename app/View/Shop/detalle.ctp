@@ -108,12 +108,11 @@
                 ));
             ?>
             <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
-                <h1> <?php echo $product['name'];?> </h1>
-
-                 <p><?php echo $name_categories; ?></p>
-                 <p> Art. <span><?php echo $product['article']; ?></span></p>
+                <h1><?php echo $product['name'];?></h1>
+                <p><?php echo $name_categories; ?></p>
+                <p class=""> Art. <span><?php echo $product['article']; ?></span></p>
                 <?php  if(!empty($product['discount']) && $product['price']!==$product['discount']) {
-                      echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['price'] ."'>".
+                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['price'] ."'>".
                            $this->Number->currency($product['price'], 'USD', array('places' => 2)). "</span>
                            ahora <span   class='price'>".'$'. $product['discount']."</span>";
                     }else{
@@ -157,7 +156,7 @@
                     <div class="field">
                         <div class="p-select animated delay">
                             <select id="size" name="size">
-                                <option value="">Talle</option>
+                                <!--option value="">Talle</option-->
                                 <?php
                                     foreach ($sizes as $size) {
                                         echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';

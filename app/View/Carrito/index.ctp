@@ -33,6 +33,13 @@
 						if (!isset($product['color'])) $product['color'] = '';
 						if (!isset($product['size'])) $product['size'] = '';
 
+						$url = $this->Html->url(array(
+              'controller' => 'shop',
+              'action' => 'detalle',
+              $product['id'],
+              $product['category_id'],
+              strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
+            ));
 						echo '<div class="carrito-item-row" product_row>';
 							echo '<div class="carrito-item-col cart-img-col">';
 							//echo "<div class='clearfix'></div>";
@@ -40,7 +47,9 @@
 								if ($product['promo'] !== '' && isset($product['old_price'])) {
 									echo "<div class='ribbon small'><span>" . $product['promo'] . "</span></div>";
 								}
+                echo '<a href="' . $url . '">';
 								echo '<img src="'.Configure::read('imageUrlBase').$product['img_url'].'" class="thumb" style="display:block;" />';
+								echo '</a>';
 							echo '</div>';
 							echo '</div>';
 							echo '<div class="carrito-item-col">';
@@ -151,7 +160,7 @@
 		</div>
 		<div class="field">
 			<div id="siguiente-block" class="animated speed scaleIn delay2">
-				<a href="javascript:void(0)" class="disabled cart-btn-green shrink has-icons" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">
+				<a href="javascript:void(0)" class="disabled cart-btn-green shrink has-icons cart-go-button" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">
 					<span class="icon"><span class="glyphicon glyphicon-chevron-right"></span>
 				</a>
 			</div>
@@ -162,7 +171,7 @@
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div id="siguiente-block" class="col-md-10">
-		<a href="javascript:void(0)" class="disabled cart-btn-green" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
+		<a href="javascript:void(0)" class="disabled cart-btn-green cart-go-button" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
 		</div>
 		<div class="col-md-1"></div>
 	</div>

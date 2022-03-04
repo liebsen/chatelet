@@ -88,7 +88,7 @@ $(function(){
 		}, 2000)
 	});
 
-	$('#siguiente').click(function(event){
+	$('.cart-go-button').click(function(event){
 		event.preventDefault();
 		var c = $('[product_row]').length;
 		let location = $(this).attr('link-to')||$(this).prop('link-to')

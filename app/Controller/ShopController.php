@@ -146,14 +146,16 @@ class ShopController extends AppController {
 		}
 	}
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
+		$this->autoRender = false;
+
+		return 1;
 		$this->SQL = $this->Components->load('SQL');
 		$stock = 0;
 		$list_code = Configure::read('list_code');
-		$this->autoRender = false;
 		if(!empty($article) && !empty($color_code) && !empty($size_number) ){
 			CakeLog::write('debug','article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code);
-	        	$stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code);
-		}elseif (!empty($article)) {
+	    $stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code);
+		} elseif (!empty($article)) {
 			$stock = 1;
 		}
 		CakeLog::write('debug','stock: '.$stock);
