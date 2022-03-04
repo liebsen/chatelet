@@ -21,6 +21,10 @@ body { font-family: 'Poppins', Verdana, Arial, Sans-Serif; }
 
 a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none; }
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 700;
+  letter-spacing: -0.05rem;
+}
 .is-bottom {
     display: inline-flex;
     align-items: center;
@@ -1112,7 +1116,8 @@ span.out{
 }
 
 .field {
-    margin:10px 0px;
+  margin:10px 0px;
+  letter-spacing: -0.05rem;
 }
 
 #coupon {
@@ -1448,9 +1453,9 @@ span.count {
     background-color: #d0f7cd;
 }
 
-.is-success h3 {
+/* .is-success h3 {
     color: #4f804f;
-}
+} */
 
 .is-rounded hr {
     border-color: #dbcec3;
