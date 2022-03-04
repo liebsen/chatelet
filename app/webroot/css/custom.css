@@ -506,6 +506,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
   margin-bottom: 1rem;
   padding: 1rem;
   background-color: white;
+  box-shadow: 2px 2px 0 #6661;  
   /* border: 2px solid #CA779A;
   box-shadow: 0 0 2rem #0009; */
   border-radius: 5px;
@@ -1146,6 +1147,7 @@ span.out{
 .p-select {
   display: inline-block;
   background-color: white;
+  box-shadow: 2px 2px 0 #6661;
   background-size: 2rem;
   background-repeat: no-repeat;
   background-position: right center;
@@ -1230,7 +1232,7 @@ span.out{
   display: block;
   color: black;
   font-weight: 800;
-  padding: 0.25rem;
+  padding: 1rem 0.25rem;
   text-align: center;
 }
 .coupon-text h3 {
