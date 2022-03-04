@@ -12,6 +12,7 @@ a.volver {
 
 .form-container {
 	margin-top: 37px;
+	padding: 1.5rem;
 }
 
 input[disabled] {
