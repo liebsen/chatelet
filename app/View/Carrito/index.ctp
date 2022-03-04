@@ -85,22 +85,22 @@
 					} ?>
 						<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 						<input type="hidden" id="subtotal_envio" value="" />
-						<div class="field text-right">
+						<div class="field text-right mb-2">
 							<input type="checkbox" id="ticket_cambio" value="1" /> <label for="ticket_cambio">Es para regalo</label>
 						</div>
-						<div class="field text-right">
+						<div class="field text-right products-total hidden">
 							<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
 						</div>
 						<div class="field text-right coupon-discount hidden animated speed">
-							<div class="price text-success"><span class="text-weight-thin">Cupón </span> $<span class="coupon_bonus">0</span><span>.00</span></div>
+							<div class="price text-success"><span class="text-weight-thin">Descuento </span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
 						</div>
 						<div class="field text-right delivery-cost hidden animated speed">
 							<div class="price text-dark"><span class="text-weight-thin">Envío </span> <span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span></div>
 						</div>
 						<div class="field text-right">
 							<div class="cost_total-container animated speed fadeIn delay">
-								<hr>
-								<div class="price"><span class="text-weight-thin">Esta compra </span> $<span class="cost_total"><?php echo number_format($total); ?></span><span>.00</span></div>
+								<!--hr-->
+								<div class="price"><span class="text-weight-thin">Esta compra </span> $<span class="cost_total"><?= number_format($total, 2) ?></span><!--span>.00</span--></div>
 							</div>
 						</div>
 						<div class="mobile">
@@ -129,32 +129,32 @@
 
 	<!-- bottom bar carrito resume and checkout -->
 	<div class="is-bottom is-mobile-resume">
-		<div class="field animated speed slideInUp">
+		<div class="field animated speed slideInUp products-total hidden">
 			<div class="price text-white">
-				<?php echo $this->Number->currency($total, 'USD', array('places' => 0)); ?>
+				$<?= number_format($total, 2) ?>
 				<br>
-				<span class="text-small">Productos</span>
+				<span class="cart-bottom-label">Productos</span>
 			</div>
 		</div>
-		<div class="field coupon-discount animated speed slideInUp">
+		<div class="field coupon-discount animated speed slideInUp hidden">
 			<div class="price text-white">$<span class="coupon_bonus">0</span><!--span>.00</span-->
 				<br>
-				<span class="text-small">Cupón</span>
+				<span class="cart-bottom-label">Descuento</span>
 			</div>
 		</div>
-		<div class="field delivery-cost animated speed slideInUp">
+		<div class="field delivery-cost animated speed slideInUp hidden">
 			<div class="price text-white">
 				<span id="delivery_cp"></span>$<span class="cost_delivery">0</span><!--span>.00</span-->
 				<br>
-				<span class="text-small">Envío</span>										
+				<span class="cart-bottom-label">Envío</span>										
 			</div>
 		</div>
 		<div class="field">
 			<div class="cost_total-container animated speed fadeIn">
 				<div class="price text-right text-white">
-					$<span class="cost_total animated speed delay"><?php echo number_format($total); ?></span><!--span>.00</span-->
+					$<span class="cost_total animated speed delay"><?= number_format($total, 2) ?></span><!--span>.00</span-->
 					<br>
-					<span class="text-small">Esta compra</span>
+					<span class="cart-bottom-label">Esta compra</span>
 				</div>
 			</div>
 		</div>

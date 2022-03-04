@@ -4,10 +4,10 @@
 	<h4 class="h4 text-center mobile">Cupón de descuento</h4>
 	<div class="col-xs-12 shipment-options shipping">
 		<hr>
-		<h3 id="heading" class="cargo-title">Cupón // <span>Ingresá tu cupón de descuento</span></h3>
+		<h3 id="heading" class="cargo-title">Cupón // <span>Ingrese su cupón de descuento</span></h3>
 		<p class="field">
 			<i class="coupon-text animated speed">
-				<small>Obtenga beneficios exclusivos con nuestro explusivo sistema de beneficios. Ingrese su cupón de descuento</small>
+				<small>Obtenga beneficios exclusivos con nuestro exclusivo sistema de beneficios.</small>
 			</i>
 		</p>
 		<div class="form-group is-flex">

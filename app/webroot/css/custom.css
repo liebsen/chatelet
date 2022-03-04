@@ -1139,9 +1139,9 @@ span.out{
 .text-left {
     text-align: left!important;
 }
-.text-small {
-    font-size: 0.75rem!important;
-    font-weight: 400;
+.cart-bottom-label {
+  font-size: 1rem!important;
+  font-weight: 700;
 }
 .cost_total-container {
     opacity: 0;
@@ -1467,6 +1467,14 @@ span.count {
   display: none;
 }
 
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
 @media screen and (max-width:768px), print {
   .mobile {
     display: block;
@@ -1479,7 +1487,7 @@ span.count {
     display: none;
   }
   .text-small {
-    font-size: 0.5rem !important;
+    font-size: 0.75rem !important;
   }
   .cart-btn-green {
     min-width: 100%!important;

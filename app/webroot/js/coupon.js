@@ -27,16 +27,17 @@
           } else {
             total-= discount
           }
-          total = parseInt(total)
-          discounted = formatNumber(parseInt(total_orig - total))
-          total = formatNumber(parseFloat(total + parseInt(delivery_cost)))
-
-          $('#cost').text( total );
+          total = parseFloat(total).toFixed(2)
+          console.log('1: ' + total)
+          discounted = formatNumber(parseFloat(total_orig - total).toFixed(2))
+          format_total = formatNumber(parseFloat(total + parseFloat(delivery_cost)))
+          $('#cost').text( format_total );
           $('.coupon_bonus').text( discounted )
-          fxTotal(total)
+          fxTotal(format_total)
 
-          document.querySelector('.coupon-discount').classList.remove('hidden')
-          document.querySelector('.coupon-discount').classList.add('fadeIn')
+          $('.products-total').removeClass('hidden')
+          $('.coupon-discount').removeClass('hidden')
+          $('.coupon-discount').addClass('fadeIn')
 
           // console.log(parseFloat($('#cost').text()));
           $('#coupon').removeClass('wrong');
