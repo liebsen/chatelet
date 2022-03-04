@@ -23,7 +23,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 700;
-  letter-spacing: -0.05rem;
+  letter-spacing: -0.03rem;
 }
 .is-bottom {
     display: inline-flex;
@@ -1117,7 +1117,7 @@ span.out{
 
 .field {
   margin:10px 0px;
-  letter-spacing: -0.05rem;
+  letter-spacing: -0.03rem;
 }
 
 #coupon {
