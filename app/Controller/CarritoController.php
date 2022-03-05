@@ -350,6 +350,11 @@ class CarritoController extends AppController
 				}
 				break;
 			case '':
+			default:
+					return (object) [
+						'status' => 'error',
+						'message' => "Este código no pertenece a ninguna promoción."
+					];			
 				break;
 		}
 	}

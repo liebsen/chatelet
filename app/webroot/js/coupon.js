@@ -28,7 +28,6 @@
             total-= discount
           }
           total = parseFloat(total).toFixed(2)
-          console.log('1: ' + total)
           discounted = formatNumber(parseFloat(total_orig - total).toFixed(2))
           format_total = formatNumber(parseFloat(total + parseFloat(delivery_cost)))
           $('#cost').text( format_total );
@@ -50,7 +49,6 @@
           $('#coupon').removeClass('ok');
           $('#coupon').addClass('wrong');
           $('#cost').text( '0' );
-          console.log(json.message)
           timeout = setTimeout( `onErrorAlert('${json.message}')` , 200);
         }
         // document.querySelector('processed-coupon-data').classList.remove('hidden')
