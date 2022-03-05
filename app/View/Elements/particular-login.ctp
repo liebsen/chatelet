@@ -12,12 +12,12 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3 class="modal-title" id="modal-title">
-					<?php  echo 'Iniciar Sesion'; ?>
+					<?php  echo 'Iniciar Sesión'; ?>
 				</h3>
 			</div>
 			<div class="modal-body">
 				 <?php echo $this->Form->create(false, array('url' => array('controller' => 'users', 'action' => 'login'))); ?>                  
-                    <p class="title">Iniciar Sesion</p>
+                    <p class="title mb-1">Ingrese su email y contraseña para continuar.</p>
                     <input type="email" id="login-email"  name="data[User][email]" placeholder="Email" />
                     <input type="password" id="login-password" name="data[User][password]" placeholder="Password" />
                     <input type="submit" id="login" form="" value="Ingresar" />
