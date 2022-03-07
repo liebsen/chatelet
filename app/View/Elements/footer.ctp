@@ -36,8 +36,8 @@
                             $item['name'],
                             array(
                                 'controller' => 'catalogo',
-                                'action' => 'action',
-                                intval($item['id'])
+                                'action' => 'index'/*,
+                                intval($item['id'])*/
                             )
                         );
                         echo '</li>';

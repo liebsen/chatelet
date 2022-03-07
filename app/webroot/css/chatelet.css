@@ -124,7 +124,8 @@ html, body {
 .dropdown-menu .bottom {
 	border-top: 1px solid #e10c76;
 	padding-top: 0.5rem;
-	padding-bottom: 1.25rem;
+	padding-bottom: 0.5rem;
+	min-height: 3.25rem;
 }
 
 .dropdown-menu .bottom>.right {

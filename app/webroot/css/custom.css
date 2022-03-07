@@ -472,7 +472,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
   padding: 0.5rem; 
   color: #666;
   text-align: center;
-  min-width: 10rem;
+  flex: 0 0 33.333333%;
 }
 
 #detalle .caract label.btn {
@@ -515,6 +515,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
   box-shadow: 0 0 2rem #0009; */
   border-radius: 5px;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 ul#ul-moreviews li img {width: 40%}

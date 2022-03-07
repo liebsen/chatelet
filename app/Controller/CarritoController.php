@@ -4,7 +4,7 @@ require_once(APP . 'Vendor' . DS . 'curl.php');
 
 class CarritoController extends AppController
 {
-	public $uses = array('Product', 'Store', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook', 'Coupon');
+	public $uses = array('Product', 'ProductProperty', 'Store', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook', 'Coupon');
 	public $components = array("RequestHandler");
 
 	public function test() {
@@ -697,7 +697,17 @@ class CarritoController extends AppController
 		$promos = [];
 		$counted = [];
 		/*count prods */
-		foreach($carro as $product) {
+		foreach($carro as $key => $product) {
+      $prop = $this->ProductProperty->find('all', array('conditions' => array(
+  			'product_id' => $product['id'],
+  			'alias' => $product['alias']
+  		)));
+
+  		if ($prop) {
+  			$arrImages = explode(';', $prop[0]['images']);
+  			$carro[$key]['alias_image'] = $arrImages[0];
+  		}
+		
 			if (!isset($quants[$product['id']])) {
 				$quants[$product['id']] = 0;
 			}
@@ -718,7 +728,7 @@ class CarritoController extends AppController
 			/*product has promo, check if applies*/
 			if (!empty($product['discount']) && (float)@$product['discount']>0) {
         $product['price'] = $product['discount'];
-      }			
+      }
 			if (!empty($product['promo'])) {
 				$parts = explode('x', $product['promo']);
 				$promo_val = intval($parts[0]);

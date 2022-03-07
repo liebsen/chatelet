@@ -27,12 +27,12 @@
 				  $row = 0;
 					$subtotal = 0;
 					$total = 0;
+					$promosaved = 0;
 
 					foreach ($carro as $product) {
 						$total += $product['price'];
 						if (!isset($product['color'])) $product['color'] = '';
 						if (!isset($product['size'])) $product['size'] = '';
-
 						$url = $this->Html->url(array(
               'controller' => 'shop',
               'action' => 'detalle',
@@ -45,10 +45,11 @@
 							//echo "<div class='clearfix'></div>";
 								echo "<div class='cart-img'>";
 								if ($product['promo'] !== '' && isset($product['old_price'])) {
+									$promosaved+= (float) $product['old_price'] - $product['price'];
 									echo "<div class='ribbon small'><span>" . $product['promo'] . "</span></div>";
 								}
                 echo '<a href="' . $url . '">';
-								echo '<img src="'.Configure::read('imageUrlBase').$product['img_url'].'" class="thumb" style="display:block;" />';
+								echo '<img src="'.Configure::read('imageUrlBase').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
 								echo '</a>';
 							echo '</div>';
 							echo '</div>';
@@ -107,7 +108,6 @@
 							<hr>
 						</div>
 					</div>
-
 					<?php else: ?>
 					<div class="price text-left">El carrito de compras está vacío.</div><div> Intente agregar productos para comprar.</div>
 					<br><br>
@@ -142,6 +142,14 @@
 				<span class="cart-bottom-label">Descuento</span>
 			</div>
 		</div>
+		<?php if($promosaved):?>
+		<div class="field animated speed slideInUp">
+			<div class="price text-white">$<span class=""><?= number_format($promosaved, 2) ?></span><!--span>.00</span-->
+				<br>
+				<span class="cart-bottom-label">Ahorro por promo</span>
+			</div>
+		</div>
+		<?php endif ?>		
 		<div class="field delivery-cost animated speed slideInUp hidden">
 			<div class="price text-white">
 				<span id="delivery_cp"></span>$<span class="cost_delivery">0</span><!--span>.00</span-->
