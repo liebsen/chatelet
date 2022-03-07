@@ -141,7 +141,12 @@ class ShopController extends AppController {
 		/* upate products names */
 		$products = $this->Product->find('all');
 		foreach($products as $product) {
-			$product['Product']['name'] = substr($product['Product']['desc'],0,strpos($product['Product']['desc'],'.'));
+			if(strpos($product['Product']['desc'], '.') !== false) {
+				$product['Product']['name'] = substr($product['Product']['desc'],0,strpos($product['Product']['desc'],'.'));
+			}
+			if(strpos($product['Product']['name'], ',') !== false) {
+				$product['Product']['name'] = substr($product['Product']['name'],0,strpos($product['Product']['name'],','));
+			}
 			$this->Product->save($product);
 		}
 	}
