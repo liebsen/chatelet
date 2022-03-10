@@ -95,8 +95,18 @@
 						<div class="field text-right coupon-discount hidden animated speed">
 							<div class="price text-success"><span class="text-weight-thin">Descuento </span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
 						</div>
+						<?php if($promosaved):?>
+						<div class="field text-right animated speed slideInUp">
+							<div class="price text-success">
+								<span class="text-weight-thin">Ahorro promo </span>
+								$<span class=""><?= number_format($promosaved, 2) ?></span>
+							</div>
+						</div>
+						<?php endif ?>		
 						<div class="field text-right delivery-cost hidden animated speed">
-							<div class="price text-dark"><span class="text-weight-thin">Envío </span> <span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span></div>
+							<div class="price text-dark">
+								<span class="text-weight-thin">Envío </span>
+								<span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span></div>
 						</div>
 						<div class="field text-right">
 							<div class="cost_total-container animated speed fadeIn delay">
@@ -128,7 +138,7 @@
 	</div>
 
 	<!-- bottom bar carrito resume and checkout -->
-	<div class="is-bottom is-mobile-resume">
+	<!--div class="is-bottom is-mobile-resume">
 		<div class="field animated speed slideInUp products-total hidden">
 			<div class="price text-white">
 				$<?= number_format($total, 2) ?>
@@ -137,14 +147,14 @@
 			</div>
 		</div>
 		<div class="field coupon-discount animated speed slideInUp hidden">
-			<div class="price text-white">$<span class="coupon_bonus">0</span><!--span>.00</span-->
+			<div class="price text-white">$<span class="coupon_bonus">0</span>
 				<br>
 				<span class="cart-bottom-label">Descuento</span>
 			</div>
 		</div>
 		<?php if($promosaved):?>
 		<div class="field animated speed slideInUp">
-			<div class="price text-white">$<span class=""><?= number_format($promosaved, 2) ?></span><!--span>.00</span-->
+			<div class="price text-white">$<span class=""><?= number_format($promosaved, 2) ?></span>
 				<br>
 				<span class="cart-bottom-label">Ahorro por promo</span>
 			</div>
@@ -152,7 +162,7 @@
 		<?php endif ?>		
 		<div class="field delivery-cost animated speed slideInUp hidden">
 			<div class="price text-white">
-				<span id="delivery_cp"></span>$<span class="cost_delivery">0</span><!--span>.00</span-->
+				<span id="delivery_cp"></span>$<span class="cost_delivery">0</span>
 				<br>
 				<span class="cart-bottom-label">Envío</span>										
 			</div>
@@ -160,7 +170,7 @@
 		<div class="field">
 			<div class="cost_total-container animated speed fadeIn">
 				<div class="price text-right text-white">
-					$<span class="cost_total animated speed delay"><?= number_format($total, 2) ?></span><!--span>.00</span-->
+					$<span class="cost_total animated speed delay"><?= number_format($total, 2) ?></span>
 					<br>
 					<span class="cart-bottom-label">Esta compra</span>
 				</div>
@@ -173,7 +183,7 @@
 				</a>
 			</div>
 		</div>
-	</div>
+	</div-->
 	<!-- end subtotals exlusive mobile -->						
 	<?php if (isset($carro) && !empty($carro)) :?>
 	<div class="row">
