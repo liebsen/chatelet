@@ -124,13 +124,12 @@
 					<?php endif;?>
 				</div>
 				<div class="carrito-col">
-					<?php 
+				<?php 
 					if (isset($carro) && !empty($carro)) {
 						echo $this->element('oca', array('freeShipping' => $freeShipping));
 						echo $this->element('cupon', array('total' => $total));
-					}
-					
-					?>
+					}					
+				?>
 				</div>
 			</div>
 		</div>

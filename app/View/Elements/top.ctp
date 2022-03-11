@@ -17,6 +17,21 @@
     <meta property="og:image" itemprop="image primaryImageOfPage" content="https://chatelet.com.ar/images/share-041120.jpg" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
+    <?php if(isset($product)):?>
+    <!-- FB OpenGraph -->
+    <meta property="og:title" content="<?= $product['name'] ?>">
+    <meta property="og:description" content="<?= $product['name'] ?>">
+    <meta property="og:url" content="<?= $this->Html->url(['controller' => 'shop', 'action' => 'detalle', $product['id'], $product['category_id'], strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))], true) ?>">
+    <meta property="og:image" content="<?= Configure::read('imageUrlBase') . $product['img_url'] ?>">
+    <meta property="product:brand" content="Chatelet">
+    <meta property="product:availability" content="<?= intval($product['stock_total']) ? 'in stock' : 'out of stock' ?>">
+    <meta property="product:condition" content="new">
+    <meta property="product:price:amount" content="<?= $product['price'] ?>">
+    <meta property="product:price:currency" content="ARS">
+    <meta property="product:retailer_item_id" content="<?= $product['article'] ?>">
+    <meta property="product:item_group_id" content="<?= $product['category_id'] ?>">
+    <?php endif ?>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?=Configure::read('GA_CODE')?>"></script>
     <script>
@@ -25,7 +40,6 @@
       gtag('js', new Date());
       gtag('config', '<?=Configure::read('GA_CODE')?>');
     </script>
-
 
     <!-- Bootstrap -->
     <?php
