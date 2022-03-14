@@ -102,12 +102,20 @@
 								$<span class=""><?= number_format($promosaved, 2) ?></span>
 							</div>
 						</div>
-						<?php endif ?>		
+						<?php endif ?>
+						<?php if($freeShipping):?>
+						<div class="field text-right animated speed">
+							<div class="price text-success">
+								<span class="text-weight-thin">Envío </span>
+								<span id="delivery_cp"></span> <span>gratuito</span></div>
+						</div>
+						<?php else: ?>
 						<div class="field text-right delivery-cost hidden animated speed">
 							<div class="price text-dark">
 								<span class="text-weight-thin">Envío </span>
 								<span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span></div>
 						</div>
+						<?php endif ?>
 						<div class="field text-right">
 							<div class="cost_total-container animated speed fadeIn delay">
 								<!--hr-->

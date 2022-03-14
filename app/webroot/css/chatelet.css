@@ -103,7 +103,6 @@ html, body {
 	color: #e10c76;
 	display: inline-block;
 	padding: 0.5rem;
-
 }
 
 #bs-example-navbar-collapse-1 > .navbar-nav > li > a {
@@ -118,7 +117,6 @@ html, body {
 
 .dropdown-menu p {
 	padding: 15px 10px;
-
 }
 
 .dropdown-menu .bottom {
@@ -128,7 +126,7 @@ html, body {
 	min-height: 3.25rem;
 }
 
-.dropdown-menu .bottom>.right {
+.dropdown-menu .bottom > .right {
 	background-color: #e10c76;
 	color: #FFFFFF;
 	border-radius: 5px;

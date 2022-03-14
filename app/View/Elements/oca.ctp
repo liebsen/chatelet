@@ -6,7 +6,11 @@
 	<h4 class="h4 text-center mobile">¿Cómo desea recibir su compra?</h4>
 	<div class="col-xs-12 shipment-options shipping">
 		<hr>
+		<?php if($freeShipping): ?>
+		<h3 id="heading" class="cargo-title">Envío gratuito // <span>Oca</span></h3>
+		<?php else: ?>
 		<h3 id="heading" class="cargo-title">Costo de Envio // <span>Oca</span></h3>
+		<?php endif ?>
 		<p style="margin:10px 0px">
 			<i>
 				<small>Para envíos a domicilio ingrese su código postal</small>

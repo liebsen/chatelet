@@ -43,7 +43,7 @@ $(function(){
 			clearTimeout(timeout2)
 		}
 		let t = this
-	    event.preventDefault();
+	  event.preventDefault();
 		timeout2 = setTimeout(function () {
 			var url = $(t).data('url');
 			var cp 	= $('#cp').val();
@@ -54,27 +54,27 @@ $(function(){
 				callEnd();
 				clearTimeout(timeout);
 				if( json.valid ){
-					if (!json.price || parseInt(json.price) == 0){
-						json.price = 114;
-					}
+					$('.products-total').removeClass('hidden')
+					let cost = 0
 					//free delivery
 					if (json.freeShipping){  
 						// console.log('Envio gratis');
-						$('#cost').text( 0 );
+						$('#subtotal_envio').val( 0 );
 						$('#free_delivery').text('Envio gratis!');
 					}else{
 						let cost = parseInt(json.price)
-						let coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
-						let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
-						$('.products-total').removeClass('hidden')
 						$('.delivery-cost').removeClass('hidden')
 						$('.delivery-cost').addClass('fadeIn')
 						$('#subtotal_envio').val(cost);
 						$('#delivery_cp').text( `(${cp})` );
-						$('.cost_delivery').text( formatNumber(cost) );
-
-						fxTotal(total)
+						$('.cost_delivery').text( formatNumber(cost));
 					}
+					console.log(cost)
+					let coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
+					console.log(coupon)
+					let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
+					console.log(total)
+					fxTotal(total)
 					// console.log(parseFloat($('#cost').text()));
 					$('#cp').removeClass('wrong');
 					$('#cp').addClass('ok');

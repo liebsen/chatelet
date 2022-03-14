@@ -7,7 +7,7 @@
 		<h3 id="heading" class="cargo-title">Cupón // <span>Ingrese su cupón de descuento</span></h3>
 		<p class="field">
 			<i class="coupon-text animated speed">
-				<small>Obtenga beneficios exclusivos con nuestro exclusivo sistema de beneficios.</small>
+				<small>Obtenga beneficios exclusivos con nuestro sistema de beneficios.</small>
 			</i>
 		</p>
 		<div class="form-group is-flex">
