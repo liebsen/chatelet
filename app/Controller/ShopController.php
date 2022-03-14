@@ -152,8 +152,7 @@ class ShopController extends AppController {
 	}
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
 		$this->autoRender = false;
-
-		return 1;
+		// return 1;
 		$this->SQL = $this->Components->load('SQL');
 		$stock = 0;
 		$list_code = Configure::read('list_code');
