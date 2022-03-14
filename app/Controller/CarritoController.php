@@ -704,7 +704,8 @@ class CarritoController extends AppController
   		)));
 
   		if ($prop) {
-  			$arrImages = explode(';', $prop[0]['images']);
+  			$arrImages = array_values(array_filter(explode(';', $prop[0]['ProductProperty']['images'])));
+  			// error_log('$arrImages:'.json_encode($arrImages));
   			$carro[$key]['alias_image'] = $arrImages[0];
   		}
 		

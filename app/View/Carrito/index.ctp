@@ -54,7 +54,7 @@
 							echo '</div>';
 							echo '</div>';
 							echo '<div class="carrito-item-col">';
-							echo '<span class="name">'. $product['name'] .'</span>';
+							echo '<span class="name">'. $product['name'] . '</span>';
 							if (!empty($product['alias'])){
 								echo '<p class="color">Color: <span class="talle">'. $product['alias'] .'</span></p>';
 							}
