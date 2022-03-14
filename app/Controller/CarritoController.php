@@ -284,7 +284,7 @@ class CarritoController extends AppController
 		$time = time();
 		$hour = date('H:i:s');
 		$item = $data['Coupon'];
-		$coupon_type = isset($item['hour_from']) && isset($item['hour_until']) ? 'time' : $coupon_type;
+		$coupon_type = isset($item['hour_from']) && isset($item['hour_until']) && $item['hour_from'] !== '00:00:00' && $item['hour_until'] !== '00:00:00' ? 'time' : $coupon_type;
 		$coupon_type = isset($item['date_from']) && isset($item['date_until']) && $coupon_type === '' ? 'date' : $coupon_type;
 		$coupon_type = isset($item['date_from']) && isset($item['date_until']) && $coupon_type === 'time' ? 'datetime' : $coupon_type;
 

@@ -1094,10 +1094,6 @@ public function promos(){
 	    		if ($this->request->is('post')) {
 	    			$this->autoRender = false;
 	    			$data = $this->request->data;
-	    			if ($data['hour_from'] === '00:00:00' && $data['hour_until'] === '00:00:00') {
-	    				$data['hour_from'] = '';
-	    				$data['hour_until'] = '';
-	    			}
 			      $this->Coupon->save($data);
 	    		} else {
 		    		$hasId = array_key_exists(1, $this->request->pass);
