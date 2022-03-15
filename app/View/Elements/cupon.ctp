@@ -11,7 +11,7 @@
 			</i>
 		</p>
 		<div class="form-group is-flex">
-			<input type="text" name="" placeholder="ej. CHA10" value="" id="coupon" class="both input-rounded" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'coupon')) ?>" autocomplete="off" />
+			<input type="text" name="" placeholder="ej. CHA10" value="" class="input-coupon both input-rounded" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'coupon')) ?>" autocomplete="off" />
 			&nbsp;
 			<span id="loading" class="hide coupon-loading">
         <svg class="spinner-input" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">

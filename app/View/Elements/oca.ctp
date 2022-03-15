@@ -17,7 +17,7 @@
 			</i>
 		</p>
 		<div class="form-group is-flex">
-			<input type="text" name="" placeholder="ej. 1425" value="" id="cp" class="both input-rounded" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'delivery_cost')) ?>" />
+			<input type="text" name="" placeholder="ej. 1425" value="" class="input-cp both input-rounded" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'delivery_cost')) ?>" />
 			&nbsp;
 			<span id="loading" class="hide">
         <svg class="spinner-input" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
@@ -56,6 +56,6 @@
 <script>
 	let user_cp = '<?php echo $user['postal_address'];?>'
 	if (user_cp) {
-		$('#cp').val(user_cp)
+		$('.input-cp').val(user_cp)
 	}
 </script>

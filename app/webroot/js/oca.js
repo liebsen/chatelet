@@ -38,7 +38,7 @@ $(function(){
 
 	var timeout = null;
 	var timeout2 = null;
-	$('#cp').keyup(function(event){
+	$('.input-cp').keyup(function(event){
 		if (timeout2) {
 			clearTimeout(timeout2)
 		}
@@ -46,7 +46,8 @@ $(function(){
 	  event.preventDefault();
 		timeout2 = setTimeout(function () {
 			var url = $(t).data('url');
-			var cp 	= $('#cp').val();
+			var cp 	= $('.input-cp').val();
+			var cost = 0
 			$('#free_delivery').text('');
 			$('.delivery-cost').addClass('hidden')
 			callStart();
@@ -55,14 +56,15 @@ $(function(){
 				clearTimeout(timeout);
 				if( json.valid ){
 					$('.products-total').removeClass('hidden')
-					let cost = 0
 					//free delivery
 					if (json.freeShipping){  
 						// console.log('Envio gratis');
-						$('#subtotal_envio').val( 0 );
-						$('#free_delivery').text('Envio gratis!');
+						// $('#subtotal_envio').val( 0 );
+						// $('#free_delivery').text('Envio gratis!');
 					}else{
-						let cost = parseInt(json.price)
+						console.log('aaaaaaa')
+						console.log(json.price)
+						cost = parseInt(json.price)
 						$('.delivery-cost').removeClass('hidden')
 						$('.delivery-cost').addClass('fadeIn')
 						$('#subtotal_envio').val(cost);
@@ -76,16 +78,16 @@ $(function(){
 					console.log(total)
 					fxTotal(total)
 					// console.log(parseFloat($('#cost').text()));
-					$('#cp').removeClass('wrong');
-					$('#cp').addClass('ok');
+					$('.input-cp').removeClass('wrong');
+					$('.input-cp').addClass('ok');
 					onSuccessAlert('Codigo Postal válido');
 				}else{
-					$('#cp').removeClass('ok');
-					$('#cp').addClass('wrong');
+					$('.input-cp').removeClass('ok');
+					$('.input-cp').addClass('wrong');
 					$('#cost').text( parseInt(0) );
 					timeout = setTimeout( "onErrorAlert('Codigo Postal inexistente')" , 200);
 				}
-				$('#cp').attr( 'data-valid' , parseInt(json.valid) );
+				$('.input-cp').attr( 'data-valid' , parseInt(json.valid) );
 			});
 		}, 2000)
 	});
@@ -101,13 +103,13 @@ $(function(){
 		}
 		location+= '?cargo=' + cargo
 		if (cargo === 'shipment') {
-			var a = $('#cp').val();
-			var b = parseInt($('#cp').attr('data-valid'));
+			var a = $('.input-cp').val();
+			var b = parseInt($('.input-cp').attr('data-valid'));
 			// if((!a || !b || !c || (1>parseFloat($('#cost').text()) && !freeShipping ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
 			if(!a || !b || !c){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
-				$('#cp').focus();
-				$('#cp').removeClass('ok');
-				$('#cp').addClass('wrong');
+				$('.input-cp').focus();
+				$('.input-cp').removeClass('ok');
+				$('.input-cp').addClass('wrong');
 				onErrorAlert('Por favor ingrese su código postal');
 				return false;
 			}
@@ -136,8 +138,8 @@ $(function(){
 		window.location.href = location;
 	});
 
-	if ($('#cp').val()) {
-		$('#cp').keyup()
+	if ($('.input-cp').val()) {
+		$('.input-cp').keyup()
 	}
 });
 

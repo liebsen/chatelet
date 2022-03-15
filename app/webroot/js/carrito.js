@@ -1,7 +1,7 @@
 var cargo = ''
 var selectStore = e => {
 	cargo = 'takeaway'
-	$('#cp').val('')
+	$('.input-cp').val('')
 	$('#cost_container').html('')
 	$('.takeaway-options li').removeClass('selected')
 	$(e).addClass('selected')

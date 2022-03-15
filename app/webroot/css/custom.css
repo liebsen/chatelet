@@ -25,6 +25,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 700;
   letter-spacing: -0.03rem;
 }
+
+.is-absolute {
+  position: absolute;
+}
+.is-relative {
+  position: relative;
+}
+
+.has-background-grey {
+  background-color: #999;
+}
+
 .is-bottom {
     display: inline-flex;
     align-items: center;
@@ -505,12 +517,16 @@ footer .bottom a.ig { background-position: -101px -286px; }
   box-shadow: 2px 2px 0 #CA779A;
 }
 
+#detalle .caract label.btn:first-child .color-option {
+  box-shadow: 2px 2px 0 #CA779A;
+}
+
 #detalle .caract .color-block {display: none}
 .btn-group.inline-block.div_color_products {
   display: flex;
-  justify-content: center;  
+  justify-content: flex-start;  
   margin-bottom: 1rem;
-  padding: 1rem;
+  padding: 0;
   /* border: 2px solid #CA779A;
   background-color: white;
   box-shadow: 2px 2px 0 #6661;  
@@ -1124,20 +1140,20 @@ span.out{
   line-height: 1.25;
 }
 
-#coupon {
+.input-coupon {
   margin-bottom: 0.85rem;
   text-transform: uppercase;
 }
 
-#coupon_data_container {
+.input-coupon_data_container {
     font-size: 1rem;
 }
 
-#coupon_data_container .figure {
+.input-coupon_data_container .figure {
     font-weight: 800;
 }
 
-#coupon_data_container {
+.input-coupon_data_container {
 }
 
 .text-left {

@@ -52,7 +52,7 @@
             </ul>
         </div>
         <div class="col-md-5 col-sm-7"  >
-             <div id="surround">
+             <div class="is-relative has-background-grey">
                 <?php if ($product['promo'] !== '') :?>
                     <div class="ribbon"><span><?= $product['promo'] ?></span></div>
                 <?php endif ?>
@@ -60,7 +60,9 @@
 
                 <?php foreach ($colorImages[0]['images'] as $k => $v) : ?>
                     <?php if(!empty($v)): ?>
-                    <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?=Configure::read('imageUrlBase').$v?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
+                    <div id="surround">
+                        <img class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?=Configure::read('imageUrlBase').$v?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
+                    </div>
                     <?php endif;?>
                   <?php endforeach ?>
                     <?php endif;?>

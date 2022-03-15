@@ -89,7 +89,7 @@
 						<div class="field text-right mb-2">
 							<input type="checkbox" id="ticket_cambio" value="1" /> <label for="ticket_cambio">Es para regalo</label>
 						</div>
-						<div class="field text-right products-total hidden">
+						<div class="field text-right products-total">
 							<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
 						</div>
 						<div class="field text-right coupon-discount hidden animated speed">
@@ -136,6 +136,7 @@
 					if (isset($carro) && !empty($carro)) {
 						echo $this->element('oca', array('freeShipping' => $freeShipping));
 						echo $this->element('cupon', array('total' => $total));
+						echo $this->element('cart-toolbox', array('freeShipping' => $freeShipping, 'total' => $total));
 					}					
 				?>
 				</div>
@@ -143,55 +144,7 @@
 		</div>
 		<div class="col-md-1"></div>
 	</div>
-
-	<!-- bottom bar carrito resume and checkout -->
-	<!--div class="is-bottom is-mobile-resume">
-		<div class="field animated speed slideInUp products-total hidden">
-			<div class="price text-white">
-				$<?= number_format($total, 2) ?>
-				<br>
-				<span class="cart-bottom-label">Productos</span>
-			</div>
-		</div>
-		<div class="field coupon-discount animated speed slideInUp hidden">
-			<div class="price text-white">$<span class="coupon_bonus">0</span>
-				<br>
-				<span class="cart-bottom-label">Descuento</span>
-			</div>
-		</div>
-		<?php if($promosaved):?>
-		<div class="field animated speed slideInUp">
-			<div class="price text-white">$<span class=""><?= number_format($promosaved, 2) ?></span>
-				<br>
-				<span class="cart-bottom-label">Ahorro por promo</span>
-			</div>
-		</div>
-		<?php endif ?>		
-		<div class="field delivery-cost animated speed slideInUp hidden">
-			<div class="price text-white">
-				<span id="delivery_cp"></span>$<span class="cost_delivery">0</span>
-				<br>
-				<span class="cart-bottom-label">Envío</span>										
-			</div>
-		</div>
-		<div class="field">
-			<div class="cost_total-container animated speed fadeIn">
-				<div class="price text-right text-white">
-					$<span class="cost_total animated speed delay"><?= number_format($total, 2) ?></span>
-					<br>
-					<span class="cart-bottom-label">Esta compra</span>
-				</div>
-			</div>
-		</div>
-		<div class="field">
-			<div id="siguiente-block" class="animated speed scaleIn delay2">
-				<a href="javascript:void(0)" class="disabled cart-btn-green shrink has-icons cart-go-button" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">
-					<span class="icon"><span class="glyphicon glyphicon-chevron-right"></span>
-				</a>
-			</div>
-		</div>
-	</div-->
-	<!-- end subtotals exlusive mobile -->						
+					
 	<?php if (isset($carro) && !empty($carro)) :?>
 	<div class="row">
 		<div class="col-md-1"></div>

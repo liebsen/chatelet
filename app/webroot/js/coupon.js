@@ -1,5 +1,5 @@
   var timeout = null;
-  $('#coupon').keyup(function(event){
+  $('.input-coupon').keyup(function(event){
     if (timeout) {
       clearTimeout(timeout)
     }
@@ -7,7 +7,11 @@
     event.preventDefault();
     timeout = setTimeout(function () {
       var url = $(t).data('url');
-      var coupon  = $('#coupon').val();
+      var coupon  = $('.input-coupon').val();
+      var c2 = event.target.value
+      console.log(event.target)
+      console.log(c2)
+
       $('#free_delivery').text('');
       document.querySelector('.coupon-loading').classList.remove('hide')
       // document.querySelector('.coupon-discount').classList.add('hidden')
@@ -39,21 +43,21 @@
           $('.coupon-discount').addClass('fadeIn')
 
           // console.log(parseFloat($('#cost').text()));
-          $('#coupon').removeClass('wrong');
-          $('#coupon').addClass('ok');
+          $('.input-coupon').removeClass('wrong');
+          $('.input-coupon').addClass('ok');
           onSuccessAlert('Cupón válido');
           $('.coupon-text').html(`<h3>${json.data.code}</h3><p>${json.data.info}</p>`)
           $('.coupon-text').removeClass('fadeIn')
           $('.coupon-text').addClass('fadeIn')
         }else{
-          $('#coupon').removeClass('ok');
-          $('#coupon').addClass('wrong');
+          $('.input-coupon').removeClass('ok');
+          $('.input-coupon').addClass('wrong');
           $('#cost').text( '0' );
           timeout = setTimeout( `onErrorAlert('${json.message}')` , 200);
         }
         // document.querySelector('processed-coupon-data').classList.remove('hidden')
         // document.querySelector('processed-coupon-data').classList.add('fadeIn')
-        $('#coupon').attr( 'data-valid' , parseInt(json.valid) );
+        $('.input-coupon').attr( 'data-valid' , parseInt(json.valid) );
       });
     }, 2000)
   });
