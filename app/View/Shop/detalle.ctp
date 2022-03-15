@@ -131,12 +131,12 @@
                     <!--h2>Color</h2-->
                     <div class="field">
                        <div class="btn-group inline-block div_color_products animated" data-toggle="buttons">
-                            <?php  foreach ($colors as $color) {
+                            <?php  foreach ($colors as $i => $color) {
                                         $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
                                         $style = (empty($color['images']))?'oldSelectColor':'';
                                         echo '<label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
                                         
-                                        echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
+                                        echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'"' . (!$i ? ' checked' : '') . '>';
                                         if (!empty($color['images'])) {
                                             $image = explode(';', $color['images']);
                                             foreach ($image as $kk => $vv) {
