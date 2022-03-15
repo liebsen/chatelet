@@ -101,18 +101,18 @@
 						<div class="field text-right coupon-discount hidden animated speed">
 							<div class="price text-success"><span class="text-weight-thin">Descuento </span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
 						</div>
-						<?php if($promosaved):?>
-						<div class="field text-right animated speed slideInUp">
-							<div class="price text-success">
-								<span class="text-weight-thin">Ahorro promo </span>
-								$<span class=""><?= number_format($promosaved, 2) ?></span>
-							</div>
-						</div>
-						<?php endif ?>
 						<div class="field text-right delivery-cost hidden animated speed">
 							<div class="price text-dark">
 								<span class="text-weight-thin">Envío </span>
 								<span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span></div>
+						</div>
+						<?php endif ?>
+						<?php if($promosaved):?>
+						<div class="field text-right animated speed slideInUp">
+							<div class="price text-success">
+								<span class="text-weight-thin">Ahorro promo </span>
+								$<span class=""><?= number_format($promosaved, 2, ',', '.') ?></span>
+							</div>
 						</div>
 						<?php endif ?>
 						<div class="field text-right">
