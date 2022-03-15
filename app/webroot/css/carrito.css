@@ -123,6 +123,8 @@
 .old_price {
 	text-decoration: line-through;
 	text-align: right;
+	color: #888;
+	font-weight: 500;	
 }
 
 
