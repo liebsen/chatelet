@@ -4,13 +4,15 @@
 <div class="row is-rounded">
 	<h3 class="h3 text-center desktop">¿Cómo desea recibir su compra?</h3>
 	<h4 class="h4 text-center mobile">¿Cómo desea recibir su compra?</h4>
+
 	<div class="col-xs-12 shipment-options shipping">
 		<hr>
-		<?php if($freeShipping): ?>
-		<h3 id="heading" class="cargo-title">Envío gratuito // <span>Oca</span></h3>
-		<?php else: ?>
-		<h3 id="heading" class="cargo-title">Costo de Envio // <span>Oca</span></h3>
-		<?php endif ?>
+			<?php if(!$freeShipping): ?>
+			<h3 id="heading" class="cargo-title">Costo de Envio // <span>Oca</span></h3>
+			<?php else: ?>
+			<h3 class="text-success">Envío gratuito // <span>Oca</span></h3>
+			<?php endif ?>		
+		<?php if(!$freeShipping): ?>
 		<p style="margin:10px 0px">
 			<i>
 				<small>Para envíos a domicilio ingrese su código postal</small>
@@ -27,6 +29,7 @@
         </svg>				
 			</span>
 		</div>
+		<?php endif ?>		
 		<!--div class="form-group">
 			<span id="cost_container" class="text-muted">
 				<span>Costo de envío:</span> <span class="figure">$<span id="cost_delivery">0</span>.00</span> <span id="free_delivery"></span>
@@ -34,6 +37,7 @@
 		</div-->
 		<hr>
 	</div>
+	
 	<div class="col-xs-12 shipment-options takeaway">
 		<h3 id="heading" class="cargo-title">Retiro en Sucursal // <span>Sin cargo de envío</span></h3>
 		<p style="margin:10px 0px">

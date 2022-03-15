@@ -76,9 +76,9 @@
 
 							echo '<br>';
 							if (!empty($product['old_price'])){
-								echo '<div class="old_price">'. $this->Number->currency($product['old_price'], 'USD', array('places' => 2)) .'</div>';
+								echo '<div class="old_price text-grey">'. $this->Number->currency($product['old_price'], 'USD', array('places' => 2)) .'</div>';
 							}					
-							echo '<div class="price">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</div>';
+							echo '<div class="price' . (!empty($product['old_price']) ? ' text-success' : '' ) . '">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</div>';
 						echo '</div>';
 						echo '</div>';
 						echo '<hr>';
@@ -89,6 +89,13 @@
 						<div class="field text-right mb-2">
 							<input type="checkbox" id="ticket_cambio" value="1" /> <label for="ticket_cambio">Es para regalo</label>
 						</div>
+						<?php if($freeShipping):?>
+						<div class="field text-right animated speed">
+							<div class="price text-success">
+								<span class="text-weight-thin">Envío </span>
+								<span id="delivery_cp"></span> <span>gratuito</span></div>
+						</div>
+						<?php else: ?>
 						<div class="field text-right products-total">
 							<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
 						</div>
@@ -103,13 +110,6 @@
 							</div>
 						</div>
 						<?php endif ?>
-						<?php if($freeShipping):?>
-						<div class="field text-right animated speed">
-							<div class="price text-success">
-								<span class="text-weight-thin">Envío </span>
-								<span id="delivery_cp"></span> <span>gratuito</span></div>
-						</div>
-						<?php else: ?>
 						<div class="field text-right delivery-cost hidden animated speed">
 							<div class="price text-dark">
 								<span class="text-weight-thin">Envío </span>
