@@ -125,7 +125,7 @@
 
                           $total += $producto['price'];
                           echo '<li>';
-                            echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. $this->Number->currency($producto['price'], 'USD', array('places' => 0)) . '</strong>';
+                            echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. $this->Number->currency($producto['price'], 'ARS', array('places' => 0)) . '</strong>';
                           echo '</li>';
                         }
 
@@ -133,7 +133,7 @@
                   </ol>
                 <?php if ($this->Session->check('Carro')): ?>
                   <p>
-                    Total <span class="right"><?php echo $this->Number->currency($total, 'USD', array('places' => 0)); ?></span>
+                    Total <span class="right"><?php echo $this->Number->currency($total, 'ARS', array('places' => 0)); ?></span>
                   </p>
                   <p class="bottom">
                     <?php

@@ -90,14 +90,12 @@ class AppController extends Controller
             if ($this->request->params['controller']!='admin') {
                 $this->redirect('/admin');
             }
-
         }
 
         $this->loadModel('Setting');
         $setting    = $this->Setting->findById('show_shop');
         $show_shop  = (!empty($setting['Setting']['value'])) ? 1 : 0;
         $this->set('show_shop',$show_shop);
-
 
         $setting_menu    = $this->Setting->findById('image_menushop');
         $image_menushop = (!empty($setting_menu['Setting']['value'])) ? $setting_menu['Setting']['value'] : '';

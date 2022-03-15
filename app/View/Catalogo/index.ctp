@@ -95,11 +95,11 @@
                                 <p><span><?php echo $v['Product']['desc']; ?></span></p>
                                 <p> <?php  if(!empty($v['Product']['discount']) && $v['Product']['price'] !== $v['Product']['discount']) {
                                       echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $v['Product']['price'] ."'>".
-                                           $this->Number->currency($v['Product']['price'], 'USD', array('places' => 0)). "</span>
+                                           $this->Number->currency($v['Product']['price'], 'ARS', array('places' => 0)). "</span>
                                            ahora <span      style='padding: 3px;float: none;'' class='price'>".'$'. $v['Product']['discount']."</span>";
                                     }else{
                                       echo  "<span id='price' class='price' data-price='". $v['Product']['price'] ."'>".
-                                            $this->Number->currency($v['Product']['price'], 'USD', array(
+                                            $this->Number->currency($v['Product']['price'], 'ARS', array(
                                             'places' => 0)). "</span>";
                                  }?>
                                 <?php  $colors = array();

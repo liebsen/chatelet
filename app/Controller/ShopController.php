@@ -372,7 +372,7 @@ class ShopController extends AppController {
 				'name' => $item['Product']['name'],
 				'desc' => $item['Product']['desc'],
 				'promo' => $item['Product']['promo'],
-				'price' => number_format($price),
+				'price' => number_format($price, 2, ',', '.'),
 				'slug' => str_replace(' ','-',strtolower($item['Product']['desc'])),
 				'img_url' => Configure::read('imageUrlBase') . $item['Product']['img_url']
 			];

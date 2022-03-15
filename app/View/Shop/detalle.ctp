@@ -115,11 +115,11 @@
                 <p class=""> Art. <span><?php echo $product['article']; ?></span></p>
                 <?php  if(!empty($product['discount']) && $product['price']!==$product['discount']) {
                     echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['price'] ."'>".
-                           $this->Number->currency($product['price'], 'USD', array('places' => 2)). "</span>
+                           $this->Number->currency($product['price'], 'ARS', array('places' => 2)). "</span>
                            ahora <span   class='price'>".'$'. $product['discount']."</span>";
                     }else{
                       echo  "<span id='price' class='price' data-price='".'$'. $product['price'] ."'>".
-                            $this->Number->currency($product['price'], 'USD', array(
+                            $this->Number->currency($product['price'], 'ARS', array(
                             'places' => 2)). "</span>";
                  }?>
 

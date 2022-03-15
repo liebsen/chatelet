@@ -65,6 +65,11 @@ class CakeNumber {
 			'zero' => 0, 'places' => 2, 'thousands' => ',', 'decimals' => '.', 'negative' => '()', 'escape' => true,
 			'fractionExponent' => 0
 		),
+		'ARS' => array(
+			'wholeSymbol' => '$', 'wholePosition' => 'before', 'fractionSymbol' => 'c', 'fractionPosition' => 'after',
+			'zero' => 0, 'places' => 2, 'thousands' => '.', 'decimals' => ',', 'negative' => '()', 'escape' => true,
+			'fractionExponent' => 2
+		)
 	);
 
 /**

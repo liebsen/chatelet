@@ -25,12 +25,12 @@
 			<span id="coupon_data_container" class="text-muted">
 				<p class="field">
 					<span>Costo original:</span>
-					$<span id="coupon_orig" class="figure"><?= number_format($total, 2) ?></span>
+					$<span id="coupon_orig" class="figure"><?= number_format($total, 2, ',', '.') ?></span>
 				</p>
 				<div class="processed-coupon-data animated speed hidden">
 					<p class="field">
 						<span>Costo bonificado:</span> 
-						$<span id="coupon_bonus" class="figure"><?= number_format($total, 2) ?></span>
+						$<span id="coupon_bonus" class="figure"><?= number_format($total, 2, ',', '.') ?></span>
 					</p>
 					<p class="field">
 						<span>Beneficio del cupón:</span>

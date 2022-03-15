@@ -1,7 +1,6 @@
 <?php
 	echo $this->Html->css('carrito', array('inline' => false));
 	echo $this->Html->script('carrito', array('inline' => false));
-
 	echo $this->Session->flash();
 	echo $this->element('checkout-modal');
 ?>
@@ -76,9 +75,9 @@
 
 							echo '<br>';
 							if (!empty($product['old_price'])){
-								echo '<div class="old_price text-grey">'. $this->Number->currency($product['old_price'], 'USD', array('places' => 2)) .'</div>';
+								echo '<div class="old_price text-grey">'. $this->Number->currency($product['old_price'], 'ARS', array('places' => 2)) .'</div>';
 							}					
-							echo '<div class="price' . (!empty($product['old_price']) ? ' text-success' : '' ) . '">'. $this->Number->currency($product['price'], 'USD', array('places' => 2)) .'</div>';
+							echo '<div class="price' . (!empty($product['old_price']) ? ' text-success' : '' ) . '">'. $this->Number->currency($product['price'], 'ARS', array('places' => 2)) .'</div>';
 						echo '</div>';
 						echo '</div>';
 						echo '<hr>';
@@ -97,7 +96,7 @@
 						</div>
 						<?php else: ?>
 						<div class="field text-right products-total">
-							<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?php echo $this->Number->currency($total, 'USD', array('places' => 2)); ?></div>
+							<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= $this->Number->currency($total, 'ARS', array('places' => 2)) ?></div>
 						</div>
 						<div class="field text-right coupon-discount hidden animated speed">
 							<div class="price text-success"><span class="text-weight-thin">Descuento </span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
@@ -119,7 +118,7 @@
 						<div class="field text-right">
 							<div class="cost_total-container animated speed fadeIn delay">
 								<!--hr-->
-								<div class="price"><span class="text-weight-thin">Esta compra </span> $<span class="cost_total"><?= number_format($total, 2) ?></span><!--span>.00</span--></div>
+								<div class="price"><span class="text-weight-thin">Esta compra </span> $<span class="cost_total"><?= number_format($total, 2, ',', '.') ?></span><!--span>.00</span--></div>
 							</div>
 						</div>
 						<div class="mobile">
