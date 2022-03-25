@@ -46,10 +46,13 @@
 
       <section id="suscribe">
             <div class="wrapper">
-                <div class="col-md-6">Suscribite y conocé las <strong>novedades</strong></div>
+                <div class="col-md-6">
+                    <h4>Estemos <strong>conectad@s</strong></h4>
+                    <p>Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
+                </div>
                 <div class="col-md-6">
                     <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
-                      <input type="text" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                      <input type="text" name="data[Subscription][email]" placeholder="Ingrese su email" required>
                       <input type="submit" id="enviar" value="ok">
                     <?php echo $this->Form->end(); ?>
                 </div>

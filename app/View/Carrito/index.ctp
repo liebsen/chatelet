@@ -118,7 +118,7 @@
 						<div class="field text-right">
 							<div class="cost_total-container animated speed fadeIn delay">
 								<!--hr-->
-								<div class="price"><span class="text-weight-thin">Esta compra </span> $<span class="cost_total"><?= number_format($total, 2, ',', '.') ?></span><!--span>.00</span--></div>
+								<div class="price"><span class="text-weight-thin">Total </span> $<span class="cost_total"><?= number_format($total, 2, ',', '.') ?></span><!--span>.00</span--></div>
 							</div>
 						</div>
 						<div class="mobile">

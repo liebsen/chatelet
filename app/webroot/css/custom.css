@@ -253,12 +253,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 #location .col-md-8 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
 #location .col-md-8 ul li:last-child:before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
 
-#suscribe { background: #f50081; color: #FFF; font-size: 22px; font-weight: 400; overflow: hidden; padding: 25px 0; }
+#suscribe { background: #bfbfbf; color: #333; font-size: 1.25rem; font-weight: 400; overflow: hidden; padding: 25px 0; }
 #suscribe .col-md-6:first-child { padding-top: 12px; }
-#suscribe .col-md-6:last-child:before { background: url(../images/sprite.png) no-repeat -82px -171px; content: ""; display: block; float: left; height: 47px; margin-right: 20px; width: 62px; }
+/* #suscribe .col-md-6:last-child:before { background: url(../images/sprite.png) no-repeat -82px -171px; content: ""; display: block; float: left; height: 47px; margin-right: 20px; width: 62px; } */
 #suscribe strong { font-weight: 600; }
-#suscribe form { border-bottom: 2px solid #f99fcb; overflow: hidden; }
-#suscribe form input { background: transparent; border: none; color: #fac7de; float: left; width: 90%; }
+#suscribe form { border-bottom: 2px solid #fff; overflow: hidden; }
+#suscribe form input { background: transparent; border: none; color: #fff; float: left; width: 90%; }
+#suscribe form input:placeholder { color: whitesmoke; }
 #suscribe form input[type="submit"] { color: #FFF; font-weight: 600; margin-top: 6px; text-align: right; width: 10%; font-weight: 800; color: white; }
 
 footer { background: #fefefe; overflow: hidden; padding: 40px 0 0; }
@@ -1469,7 +1470,7 @@ span.count {
     padding: 0.75rem;
     margin: 1.5rem 0.5rem;
     margin-top: 0;
-    background-color: #f8ede3;
+    background-color: #ddd;
     border-radius: 0.25rem;
 }
 

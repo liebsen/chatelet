@@ -20,7 +20,7 @@
         <div class="price text-right text-white">
           $<span class="cost_total animated speed delay"><?= number_format($total, 2, ',', '.') ?></span>
           <br>
-          <span class="cart-bottom-label">Esta compra</span>
+          <span class="cart-bottom-label">Total</span>
         </div>
       </div>
     </div>
