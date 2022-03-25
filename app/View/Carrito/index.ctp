@@ -77,7 +77,7 @@
 							if (!empty($product['old_price'])){
 								echo '<div class="old_price text-grey">'. $this->Number->currency($product['old_price'], 'ARS', array('places' => 2)) .'</div>';
 							}					
-							echo '<div class="price' . (!empty($product['old_price']) ? ' text-success' : '' ) . '">'. $this->Number->currency($product['price'], 'ARS', array('places' => 2)) .'</div>';
+							echo '<div class="price' . (!empty($product['old_price']) ? ' text-theme' : '' ) . '">'. $this->Number->currency($product['price'], 'ARS', array('places' => 2)) .'</div>';
 						echo '</div>';
 						echo '</div>';
 						echo '<hr>';
@@ -90,7 +90,7 @@
 						</div>
 						<?php if($freeShipping):?>
 						<div class="field text-right animated speed">
-							<div class="price text-success">
+							<div class="price text-theme">
 								<span class="text-weight-thin">Envío </span>
 								<span id="delivery_cp"></span> <span>gratuito</span></div>
 						</div>
@@ -99,7 +99,7 @@
 							<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= $this->Number->currency($total, 'ARS', array('places' => 2)) ?></div>
 						</div>
 						<div class="field text-right coupon-discount hidden animated speed">
-							<div class="price text-success"><span class="text-weight-thin">Descuento </span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
+							<div class="price text-theme"><span class="text-weight-thin">Descuento </span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
 						</div>
 						<div class="field text-right delivery-cost hidden animated speed">
 							<div class="price text-dark">
@@ -109,7 +109,7 @@
 						<?php endif ?>
 						<?php if($promosaved):?>
 						<div class="field text-right animated speed slideInUp">
-							<div class="price text-success">
+							<div class="price text-theme">
 								<span class="text-weight-thin">Ahorro promo </span>
 								$<span class=""><?= number_format($promosaved, 2, ',', '.') ?></span>
 							</div>
