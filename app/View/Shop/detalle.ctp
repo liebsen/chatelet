@@ -255,7 +255,7 @@
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                         </a>
                         <div class="name"><?= $alt_product['name'] ?></div>
-                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>">$<?= number_format($alt_product['price'], 2, ',', '.') ?></div>
+                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>">$<?= \price_format($alt_product['price']) ?></div>
                     </div>
                     <?php }else{ ?>
 
@@ -268,7 +268,7 @@
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                         </a>
                         <div class="name"><?= $alt_product['name'] ?></div>
-                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>">$<?= number_format($alt_product['price'], 2, ',', '.') ?></div>
+                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>">$<?= \price_format($alt_product['price']) ?></div>
                     </div>
                    <?php }endforeach; ?>
                 </div>

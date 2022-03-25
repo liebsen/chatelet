@@ -36,7 +36,7 @@ let apiSearch = q => {
               '<div class="col-sm-12">' + 
                 '<div class="is-background-cover is-background-search" style="background-image: url('+val.img_url+')">' + (val.promo.length ? '<div class="ribbon"><span>' + val.promo + '</span></div>' : '') + '<p class="search-desc">'+val.desc+'</p></div>' + 
                 '<h2 class="text-center">'+val.name+'</h2>' + 
-                '<h3 class="text-center">$'+val.price+'</h3>' + 
+                '<h3 class="text-center' + (val.promo.length ? ' text-theme' : '') + '">$'+val.price+'</h3>' + 
               '</div>' + 
             '</div>' +
           '</a>' + 

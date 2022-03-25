@@ -114,9 +114,9 @@ function updateSrcTo(obj){
 				$url['action'] = 'producto';
 				$priceStr = '';
 				if (!empty($item['price'])){
-					$priceStr = $ctrl->Number->currency($item['price'], 'ARS', array('places' => 0));
+					$priceStr = \price_format($item['price']);
 					if (!empty((float)@$item['discount']) && @$item['discount']!==$item['price']){
-						$priceStr = $ctrl->Number->currency($item['discount'], 'ARS', array('places' => 2)).' <span class="antes-str"><span class="midscore">'.$ctrl->Number->currency($item['price'], 'ARS', array('places' => 2)).'</span></span>';
+						$priceStr = \price_format($item['discount']).' <span class="antes-str"><span class="midscore">'.\price_format($item['price']).'</span></span>';
 					}
 				}
 
@@ -137,7 +137,7 @@ function updateSrcTo(obj){
 					'<small>'. $item['desc'] .'</small>'.
 				'</div>'.
         '<div class="name">'.$item['name'].'</div>' . 
-				'<div class="price' .  ($item['promo'] !== '' ? ' text-theme' : '') . '">'.$priceStr.'</div>
+				'<div class="price' .  ($item['promo'] !== '' ? ' text-theme' : '') . '">$'.$priceStr.'</div>
 				</div></div>';
       } else {
 		  // list of products.
@@ -169,7 +169,7 @@ function updateSrcTo(obj){
 						$content,
 						$url,
 						array('escape' => false)
-					). '<div class="name">'.$item['name'].'</div><div class="price' . ($item['promo'] !== '' ? ' text-theme' : '') . '">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
+					). '<div class="name">'.$item['name'].'</div><div class="price' . ($item['promo'] !== '' ? ' text-theme' : '') . '">$'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
 					</div>';
 			}
 		}

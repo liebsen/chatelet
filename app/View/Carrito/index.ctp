@@ -111,14 +111,14 @@
 						<div class="field text-right animated speed slideInUp">
 							<div class="price text-theme">
 								<span class="text-weight-thin">Ahorro promo </span>
-								$<span class=""><?= number_format($promosaved, 2, ',', '.') ?></span>
+								$<span class=""><?= \price_format($promosaved) ?></span>
 							</div>
 						</div>
 						<?php endif ?>
 						<div class="field text-right">
 							<div class="cost_total-container animated speed fadeIn delay">
 								<!--hr-->
-								<div class="price"><span class="text-weight-thin">Total </span> $<span class="cost_total"><?= number_format($total, 2, ',', '.') ?></span><!--span>.00</span--></div>
+								<div class="price"><span class="text-weight-thin">Total </span> $<span class="cost_total"><?= \price_format($total) ?></span><!--span>.00</span--></div>
 							</div>
 						</div>
 						<div class="mobile">

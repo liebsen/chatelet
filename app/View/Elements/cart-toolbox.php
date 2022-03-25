@@ -18,7 +18,7 @@
     <div class="field">
       <div class="cost_total-container animated speed fadeIn">
         <div class="price text-right text-white">
-          $<span class="cost_total animated speed delay"><?= number_format($total, 2, ',', '.') ?></span>
+          $<span class="cost_total animated speed delay"><?= \price_format($total) ?></span>
           <br>
           <span class="cart-bottom-label">Total</span>
         </div>
