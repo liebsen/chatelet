@@ -453,7 +453,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #detalle li a { display: inline-block; overflow: hidden; }
 #detalle li a img { float: left; }
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/
-#detalle h1 { color: #f50081; font-size: 30px; font-weight: 700; margin-bottom: 10px; }
+#detalle h1 { color: #404040; font-size: 30px; font-weight: 700; margin-bottom: 10px; }
 #detalle > p { font-size: 1rem; font-weight: 600; margin-bottom: 20px; }
 #detalle .price { background: #FFF; color: #333; display: inline-block; font-size: 1.25rem; font-weight: 800; line-height: .9; padding: 10px 15px; margin-top: 0.5rem; border-radius: 5px;}
 #detalle .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
@@ -497,8 +497,8 @@ footer .bottom a.ig { background-position: -101px -286px; }
 }
 #detalle .caract label.btn small {
   display: block; 
+  color: #404040;
   font-size: 1rem;
-  font-weight: 800;
   max-width: 8rem;
   white-space: break-spaces;
   margin: auto;
@@ -1017,7 +1017,7 @@ span.out{
 .search-results h2 {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
-    color: #f50081;
+    color: #404040;
     font-weight: 800;
 }
 .search-results h3 {
@@ -1141,7 +1141,7 @@ span.out{
 
 .field {
   margin:10px 0px;
-  letter-spacing: -0.03rem;
+  /* letter-spacing: -0.03rem; */
   line-height: 1.25;
 }
 

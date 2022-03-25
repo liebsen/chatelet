@@ -43,10 +43,10 @@ function updateSrcTo(obj){
   font-weight: 800;
   font-family: 'Poppins', Verdana, Arial, sans-serif;
   margin:10px auto 20px;
-  color: #f50081;
+  color: #999;
   max-width: 18rem;
   margin: auto;
-  min-height: 4rem;
+  min-height: 3rem;
 }
 .price {
 	text-align:center;
