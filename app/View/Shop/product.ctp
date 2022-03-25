@@ -37,26 +37,7 @@ function updateSrcTo(obj){
 	height: 114px;
 	overflow: hidden;
 }
-.name {
-  text-align:center;
-  font-size: 1.25rem;
-  font-weight: 800;
-  font-family: 'Poppins', Verdana, Arial, sans-serif;
-  margin:10px auto 20px;
-  color: #404040;
-  max-width: 18rem;
-  margin: auto;
-  min-height: 3rem;
-}
-.price {
-	text-align:center;
-	height:60px;
-	font-size:1.5rem;
-  font-weight: 800;
-	font-family: 'Poppins', Verdana, Arial, sans-serif;
-	margin:10px auto 20px;
-	color: #444;
-}
+
 .antes-str {
 	color: #999;
 	font-size:24px;
@@ -156,7 +137,7 @@ function updateSrcTo(obj){
 					'<small>'. $item['desc'] .'</small>'.
 				'</div>'.
         '<div class="name">'.$item['name'].'</div>' . 
-				'<div class="price">'.$priceStr.'</div>
+				'<div class="price' .  ($item['promo'] !== '' ? ' text-theme' : '') . '">'.$priceStr.'</div>
 				</div></div>';
       } else {
 		  // list of products.
@@ -188,7 +169,7 @@ function updateSrcTo(obj){
 						$content,
 						$url,
 						array('escape' => false)
-					). '<div class="name">'.$item['name'].'</div><div class="price">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
+					). '<div class="name">'.$item['name'].'</div><div class="price' . ($item['promo'] !== '' ? ' text-theme' : '') . '">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
 					</div>';
 			}
 		}
