@@ -801,7 +801,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
     height: auto!important;
     object-fit: contain!important;
   }
-  #productOptions .col-sm-9 a img { height: 400px;
+  #productOptions .col-sm-9 a img { 
       object-fit: contain;
   }
   #today .rectangle {
