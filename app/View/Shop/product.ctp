@@ -39,11 +39,11 @@ function updateSrcTo(obj){
 }
 .name {
   text-align:center;
-  font-size:1.25rem;
+  font-size: 1.25rem;
   font-weight: 800;
   font-family: 'Poppins', Verdana, Arial, sans-serif;
   margin:10px auto 20px;
-  color: #999;
+  color: #404040;
   max-width: 18rem;
   margin: auto;
   min-height: 3rem;

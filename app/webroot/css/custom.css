@@ -21,10 +21,6 @@ body { font-family: 'Poppins', Verdana, Arial, Sans-Serif; }
 
 a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none; }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: 700;
-  letter-spacing: -0.03rem;
-}
 
 .is-absolute {
   position: absolute;
@@ -1259,11 +1255,15 @@ span.out{
 }
 
 .article-related-title {
-  display: block;
-  color: black;
+  text-align:center;
+  font-size: 1.25rem;
   font-weight: 800;
-  padding: 1rem 0.25rem;
-  text-align: center;
+  font-family: 'Poppins', Verdana, Arial, sans-serif;
+  margin:10px auto 20px;
+  color: #404040;
+  max-width: 18rem;
+  margin: auto;
+  min-height: 3rem;
 }
 .coupon-text h3 {
   font-weight: 800;
