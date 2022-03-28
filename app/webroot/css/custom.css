@@ -399,7 +399,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 .name {
   text-align:center;
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 500;
   font-family: 'Poppins', Verdana, Arial, sans-serif;
   margin:10px auto 20px;
   color: #404040;
@@ -1043,7 +1043,7 @@ span.out{
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
     color: #808080;
-    font-weight: 800;
+    font-weight: 500;
 }
 .search-results h3 {
     font-size: 1.25rem;
@@ -1052,7 +1052,7 @@ span.out{
 
 .search-results .search-desc {
     opacity: 0;
-    font-weight: 800;
+    font-weight: 500;
     color: #222;
     padding: 1rem;
     transition: opacity 0.25s ease-in-out; 
