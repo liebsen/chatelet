@@ -106,7 +106,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     text-align: center;
   }
 }
-.navbar { background: #FFF; border: 0; border-radius: 0; box-shadow: 0 2px 4px rgba(0,0,0,.2); margin: 0; min-height: 0; padding: 20px; position: relative; z-index: 3; }
+.modal-content {
+  box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.2);
+}
+.navbar { background: #FFF; border: 0; border-radius: 0; 
+  /* box-shadow: 0 2px 4px rgba(0,0,0,.2); */
+  box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.2);
+  margin: 0; min-height: 0; padding: 20px; position: relative; z-index: 3; }
 .navbar-brand { background: url(../images/sprite.png) no-repeat; height: 28px; margin-top: 7px; padding: 0; text-indent: -9999px; width: 162px; }
 .navbar-nav { margin-left: 80px; }
 .navbar-nav>li>a { color: #404040; font-size: 14px; text-transform: uppercase;margin: 0 15px; padding: 12px 0; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; white-space: nowrap; }
@@ -409,7 +415,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 }
 .price {
   text-align:center;
-  height:60px;
+  /* height:60px; */
   font-size:1.5rem;
   font-weight: 800;
   font-family: 'Poppins', Verdana, Arial, sans-serif;
@@ -544,11 +550,11 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
 #detalle .caract label.btn.active .color-option {
   /* border: solid 2px #CA779A; */
-  box-shadow: 2px 2px 0 #CA779A;
+  box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.2);
 }
 
 #detalle .caract label.btn:first-child .color-option {
-  box-shadow: 2px 2px 0 #CA779A;
+  box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.2);
 }
 
 #detalle .caract .color-block {display: none}
@@ -1144,7 +1150,7 @@ span.out{
 }
 
 .search-results .is-background-cover {
-  min-height: 25rem;
+  min-height: 30rem;
   min-width: 10rem;
   margin-bottom: 1rem;
 }
@@ -1496,11 +1502,12 @@ span.count {
 }
 
 .is-rounded {
-    padding: 0.75rem;
-    margin: 1.5rem 0.5rem;
-    margin-top: 0;
-    background-color: whitesmoke;
-    border-radius: 0.25rem;
+  padding: 0.75rem;
+  margin: 1.5rem 0.5rem;
+  margin-top: 0;
+  background-color: whitesmoke;
+  border-radius: 0.25rem;
+  box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.2);
 }
 
 .is-success {
@@ -1570,7 +1577,7 @@ span.count {
     left: 27rem;
   }
   .search-results .is-background-cover {
-    min-height: 15rem;
+    min-height: 30rem;
   }
   .carrito-row {
     display: flex;

@@ -62,8 +62,6 @@ $(function(){
 						// $('#subtotal_envio').val( 0 );
 						// $('#free_delivery').text('Envio gratis!');
 					}else{
-						console.log('aaaaaaa')
-						console.log(json.price)
 						cost = parseInt(json.price)
 						$('.delivery-cost').removeClass('hidden')
 						$('.delivery-cost').addClass('fadeIn')
@@ -71,17 +69,13 @@ $(function(){
 						$('#delivery_cp').text( `(${cp})` );
 						$('.cost_delivery').text( formatNumber(cost));
 					}
-					console.log(cost)
 					let coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
-					console.log(coupon)
 					let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
-					console.log(total)
 					fxTotal(total)
-					// console.log(parseFloat($('#cost').text()));
 					$('.input-cp').removeClass('wrong');
 					$('.input-cp').addClass('ok');
 					onSuccessAlert('Codigo Postal válido');
-				}else{
+				} else {
 					$('.input-cp').removeClass('ok');
 					$('.input-cp').addClass('wrong');
 					$('#cost').text( parseInt(0) );
@@ -101,7 +95,6 @@ $(function(){
 			onErrorAlert('No tienes productos en el carrito');	
 			return false;
 		}
-		location+= '?cargo=' + cargo
 		if (cargo === 'shipment') {
 			var a = $('.input-cp').val();
 			var b = parseInt($('.input-cp').attr('data-valid'));
@@ -122,15 +115,20 @@ $(function(){
 				if (selected.attr('store')) {
 					location+= '&store=' + selected.attr('store') + '&store_address=' + selected.attr('store-address')
 				} else {
-					onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal');
+					onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal (1)');
 					return false;
 				}
 			}
 		} else {
-			onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal');
-			return false;
+			if (window.freeShipping) {
+				window.cargo = 'shipment'
+			} else {
+				onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal (2)');
+				return false
+			}
 		}
 
+		location+= '?cargo=' + cargo
 		if ($('#ticket_cambio').is(':checked')) {
 			location+= '&ticket=1'
 		}
