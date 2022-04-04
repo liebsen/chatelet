@@ -553,9 +553,9 @@ footer .bottom a.ig { background-position: -101px -286px; }
   box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.2);
 }
 
-#detalle .caract label.btn:first-child .color-option {
+/* #detalle .caract label.btn:first-child .color-option {
   box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.2);
-}
+} */
 
 #detalle .caract .color-block {display: none}
 .btn-group.inline-block.div_color_products {
