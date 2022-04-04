@@ -136,7 +136,7 @@
                                         $style = (empty($color['images']))?'oldSelectColor':'';
                                         echo '<label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
                                         
-                                        echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'"' . (!$i ? ' checked' : '') . '>';
+                                        echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
                                         if (!empty($color['images'])) {
                                             $image = explode(';', $color['images']);
                                             foreach ($image as $kk => $vv) {
@@ -158,7 +158,7 @@
                     <div class="field">
                         <div class="p-select animated delay">
                             <select id="size" name="size">
-                                <!--option value="">Talle</option-->
+                                <option value="">Talle</option>
                                 <?php
                                     foreach ($sizes as $size) {
                                         echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';

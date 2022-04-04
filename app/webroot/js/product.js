@@ -65,6 +65,7 @@ $(document).ready(function() {
 		};
 		url = $("#productForm").attr('action');
 		if (!isGiftCard){
+			// console.log(data.color, data.color_code, data.size)
 			if ((!data.color && !data.color_code) || !data.size) {
 				document.querySelector('.div_color_products').classList.remove('flash')
 				document.querySelector('.p-select').classList.remove('flash')				
