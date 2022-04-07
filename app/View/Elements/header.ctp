@@ -53,6 +53,10 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#" class="action-search"></a>
+          </li>
+        
          <!-- .Login -->
           <li class="dropdown">
              <?php if ($loggedIn) { ?>
@@ -111,7 +115,7 @@
                 <?php if ($this->Session->check('Carro')): ?>
                   <p class="title">Mi Carrito</p>
                 <?php else: ?>
-                  <p>Tu carrito de compras está vacío</p>
+                  <p class="notification">Tu carrito de compras está vacío</p>
                 <?php endif ?>
                   <ol id="items">
                     <?php
@@ -128,7 +132,6 @@
                             echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. $this->Number->currency($producto['price'], 'ARS', array('places' => 0)) . '</strong>';
                           echo '</li>';
                         }
-
                     ?>
                   </ol>
                 <?php if ($this->Session->check('Carro')): ?>
@@ -159,9 +162,6 @@
                 </div>
               </li>
             </ul>
-          </li>
-          <li>
-            <a href="#" class="action-search"></a>
           </li>
         </ul>
       </div><!-- /.navbar-collapse -->

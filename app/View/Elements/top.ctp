@@ -51,10 +51,9 @@
       echo $this->Html->css('bootstrapValidator.min');
 
       echo $this->Html->css('jquery.growl');
-      echo $this->Html->css('chatelet');
-      echo $this->Html->css('custom.css?3nov1');
+      echo $this->Html->css('chatelet.css?' . Configure::read('DIST_VERSION'));
+      echo $this->Html->css('custom.css?' . Configure::read('DIST_VERSION'));
       echo $this->Html->css('animate');
-
 
       echo $this->fetch('meta');
       echo $this->fetch('css');
@@ -68,7 +67,7 @@
       echo $this->Html->script('bootstrapValidator.min');
       echo $this->Html->script('wow.min');
       echo $this->Html->script('plugins');
-      echo $this->Html->script('main.js?sjdh38hd2');
+      echo $this->Html->script('main.js?' . Configure::read('DIST_VERSION'));
 
 //      echo $this->fetch('script');
     ?>
