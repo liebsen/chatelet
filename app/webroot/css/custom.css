@@ -417,6 +417,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 .is-flex-end {
   display: flex;
   align-items: flex-end;
+  flex-direction: column;
 }
 
 .spinner-input {
