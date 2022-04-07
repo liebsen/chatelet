@@ -56,7 +56,7 @@
           <li>
             <a href="#" class="action-search"></a>
           </li>
-        
+
          <!-- .Login -->
           <li class="dropdown">
              <?php if ($loggedIn) { ?>
@@ -188,8 +188,8 @@
         </div>
       </div>
     </div>
-    <div class="row display-flex search-results"></div>
-    <div class="row display-flex search-more"></div>
+    <div class="row display-flex is-justify-center search-results"></div>
+    <div class="row display-flex is-justify-center search-more"></div>
   </div>
 </div>
 
