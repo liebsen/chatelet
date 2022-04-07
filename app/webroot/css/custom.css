@@ -118,7 +118,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .navbar-nav { margin-left: 80px; }
 .navbar-nav>li>a {
   color: #404040;
-  font-size: 14px;
+  font-size: 1rem;
   text-transform: uppercase;
   margin: 0; 
   padding: 0.75rem 0; 
@@ -130,7 +130,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   white-space: nowrap; 
 }
 .navbar-nav:not(.navbar-right)>li>a {
-  margin: 0 0.75rem; 
+  margin: 0 0.5rem; 
 }
 .nav>li>a:focus, .nav>li>a:hover { background: none; color: #f50081; }
 .navbar-nav>li>a.user {
@@ -292,7 +292,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 footer { background: #fefefe; overflow: hidden; padding: 40px 0 0; }
 footer h3 { color: #464444; font-size: 16px; text-transform: uppercase; font-weight: 600; margin-bottom: 35px; }
 footer h3:after { background: #f50081; content: ""; display: block; height: 2px; margin-top: 15px; width: 50px; }
-footer a { color: #464444; font-size: 14px; text-transform: uppercase;  }
+footer a { color: #464444; font-size: 1rem; text-transform: uppercase;  }
 footer a:hover { color: #f50081; }
 footer ul li { margin-bottom: 15px; }
 footer .col-md-3:first-child ul { column-count: 2; }
@@ -733,7 +733,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headhelp .box { padding: 40px 40px 20px; }
 	#headhelp .box p { font-size: 16px; margin-bottom: 20px; }
 	#headhelp .box h3 { font-size: 18px; }
-	#optionsHelp a, #desarrollo h3, #desarrollo p { font-size: 16px; }
+	#optionsHelp a, #desarrollo h3, #desarrollo p { font-size: 1.25rem; }
 	#desarrollo small { font-size: 14px; }
 	#referncia ul li, #headhelp .box2 input[type="text"], #headhelp .box2 input[type="submit"] { font-size: 14px; }
 	#referncia h2 { font-size: 18px; margin-bottom: 30px; }
