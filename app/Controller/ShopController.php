@@ -152,9 +152,9 @@ class ShopController extends AppController {
 	}
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
 		$this->autoRender = false;
-		// if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') {
+		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') {
 			return 1;
-		// }
+		}
 		$this->SQL = $this->Components->load('SQL');
 		$stock = 0;
 		$list_code = Configure::read('list_code');
