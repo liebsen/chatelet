@@ -285,7 +285,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 #suscribe .h3 { margin-top: 0; }
 #suscribe strong { font-weight: 900; }
 #suscribe form { border-bottom: 2px solid rgb(51, 51, 51); overflow: hidden; }
-#suscribe form input { background: transparent; border: none; color: rgb(51, 51, 51); float: left; width: 90%; font-size: 1.75rem;}
+#suscribe form input { background: transparent; border: none; color: rgb(51, 51, 51); float: left; width: 90%; font-size: 1.75rem;font-weight: 800;}
 #suscribe form input:placeholder { color: rgb(70, 70, 70); }
 #suscribe form input[type="submit"] { color: rgb(51, 51, 51); font-weight: 600; margin-top: 6px; text-align: right; width: 10%; font-weight: 800; }
 
@@ -1617,4 +1617,7 @@ span.count {
   .carrito-col {
     flex: 1;
   }
+  .is-flex-end {
+    flex-direction: row;
+  }  
 }
