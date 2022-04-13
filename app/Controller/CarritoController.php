@@ -460,7 +460,7 @@ class CarritoController extends AppController
 				'EMAIL'		=> $user['email'],
 				'TELEFONO'	=> $user['telephone'],
 				'DNI'	=> $user['dni'],
-				'TICKET'	=> $user['regalo'],
+				'REGALO'	=> $user['regalo'],
 				'PROV'		=> $user['provincia'],
 				'LOC'		=> $user['localidad'],
 				'CALLE'		=> $user['street'],
@@ -483,7 +483,7 @@ class CarritoController extends AppController
 			if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
         $unit_price = @$producto['discount'];
       } */
-
+      error_log('----product price: ' . $unit_price);
 			$items[] = array(
 				'title' => $desc,
 				'description' => $desc,
@@ -571,14 +571,15 @@ class CarritoController extends AppController
      	error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
 			$delivery_cost=0;
 		}else{
-			error_log('suming delivery to price: '.$total);
+			error_log('suming delivery to price: '.$delivery_cost);
 			$total += $delivery_cost;
+			error_log('suming total: '.$total);
 			$items[] = array(
 				'title' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
 				'description' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
 				'quantity' => 1,
 				'currency_id' => 'ARS',
-				'unit_price' => $price
+				'unit_price' => $delivery_cost
 			);
 		}
 

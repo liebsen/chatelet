@@ -33,9 +33,10 @@
           }
           total = parseFloat(total).toFixed(2)
           discounted = formatNumber(parseFloat(total_orig - total).toFixed(2))
-          format_total = formatNumber(parseFloat(total + parseFloat(delivery_cost)))
+          format_total = formatNumber(parseFloat(total) + parseFloat(delivery_cost))
           $('#cost').text( format_total );
           $('.coupon_bonus').text( discounted )
+
           fxTotal(format_total)
 
           $('.products-total').removeClass('hidden')

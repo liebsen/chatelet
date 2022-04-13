@@ -1,3 +1,4 @@
+var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
 var cargo = ''
 var selectStore = e => {
 	cargo = 'takeaway'
@@ -26,7 +27,6 @@ $(document).ready(function() {
 		let store = ''
 		let store_address = ''
 		let location = $(this).attr('link-to')||$(this).prop('link-to')
-		let preferences = JSON.parse(localStorage.getItem('carrito')) || {}
 
 		if(!c){
 			onErrorAlert('No tienes productos en el carrito')
@@ -105,4 +105,4 @@ $(document).ready(function() {
 			})
 		}
 	})
-});
+})
