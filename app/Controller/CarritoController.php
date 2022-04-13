@@ -428,6 +428,7 @@ class CarritoController extends AppController
 		$user['telephone'] = @preg_replace("/[^0-9]/","",$user['telephone']);
 		$user['floor'] = (!empty($user['floor']))?$user['floor']:'';
 		$user['depto'] = (!empty($user['depto']))?$user['depto']:'';
+		$user['coupon'] = (!empty($user['coupon']))?strtoupper($user['depto']):'';
 		$user['regalo'] = (isset($user['regalo']) && $user['regalo']==='on'?1:0);
 		if(!$this->request->is('post') || $user['cargo'] === 'shipment' && empty($user['postal_address']) || empty($user['street_n']) || empty($user['street']) || empty($user['localidad']) || empty($user['provincia']) || empty($user['name']) || empty($user['surname']) || empty($user['email']) || empty($user['telephone'])){
 			$this->Session->setFlash(
@@ -506,7 +507,7 @@ class CarritoController extends AppController
 		}
 		
 		// Check coupon
-		if (isset($user['coupon']) && $user['coupon'])  {
+		if (isset($user['coupon']) && $user['coupon'] !== '')  {
 	    $coupon = $this->Coupon->find('first', [
 	      'conditions' => [
 	        'code' => $user['coupon'],
