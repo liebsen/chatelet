@@ -1,4 +1,6 @@
   var timeout = null;
+  var coupon = '';
+
   $('.input-coupon').keyup(function(event){
     if (timeout) {
       clearTimeout(timeout)
@@ -9,16 +11,14 @@
       var url = $(t).data('url');
       var coupon  = $('.input-coupon').val();
       var c2 = event.target.value
-      console.log(event.target)
-      console.log(c2)
-
       $('#free_delivery').text('');
       document.querySelector('.coupon-loading').classList.remove('hide')
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || {}
       // document.querySelector('.coupon-discount').classList.add('hidden')
       $.post( url, { coupon: coupon }, function(json, textStatus) {
         document.querySelector('.coupon-loading').classList.add('hide')
         clearTimeout(timeout)
-        if( json.status == 'success' ){
+        if( json.status == 'success' ) {
           let coupon_type = json.data.coupon_type
           let discount = parseFloat(json.data.discount)
           let discounted = 0
@@ -49,6 +49,8 @@
           $('.coupon-text').html(`<h3>${json.data.code}</h3><p>${json.data.info}</p>`)
           $('.coupon-text').removeClass('fadeIn')
           $('.coupon-text').addClass('fadeIn')
+          carrito.coupon = coupon.toUpperCase()
+          localStorage.setItem('carrito', JSON.stringify(carrito))
         }else{
           $('.input-coupon').removeClass('ok');
           $('.input-coupon').addClass('wrong');

@@ -274,6 +274,12 @@ class CarritoController extends AppController
 				'enabled' => 1
 			]
 		]);
+		if (!$coupon) {
+			return json_encode((object) [
+				'status' => 'error',
+				'message' => "No tenemos esa promo disponible ahora"
+			]);
+		}
 		return json_encode(self::filter_coupon($coupon));
 	}
 
@@ -298,10 +304,10 @@ class CarritoController extends AppController
 		if ($inDate) error_log('(indate!) ');
 		$inDateTime = $inTime && $inDate;
 
-		if (strpos($item['weekdays'], $w) !== false) {
+		if (strpos($item['weekdays'], $week) === false) {
 			$valid = [];
 			$weekdays = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-			foreach($item['weekdays'] as $week) {
+			foreach(str_split($item['weekdays']) as $week) {
 				$valid[] = $weekdays[$week];
 			}
 			$str = implode(', ', $valid);
@@ -422,7 +428,7 @@ class CarritoController extends AppController
 		$user['telephone'] = @preg_replace("/[^0-9]/","",$user['telephone']);
 		$user['floor'] = (!empty($user['floor']))?$user['floor']:'';
 		$user['depto'] = (!empty($user['depto']))?$user['depto']:'';
-		$user['ticket_cambio'] = (isset($user['ticket_regalo']) && $user['ticket_regalo']==='on'?1:0);
+		$user['regalo'] = (isset($user['regalo']) && $user['regalo']==='on'?1:0);
 		if(!$this->request->is('post') || $user['cargo'] === 'shipment' && empty($user['postal_address']) || empty($user['street_n']) || empty($user['street']) || empty($user['localidad']) || empty($user['provincia']) || empty($user['name']) || empty($user['surname']) || empty($user['email']) || empty($user['telephone'])){
 			$this->Session->setFlash(
                 'Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.',
@@ -454,7 +460,7 @@ class CarritoController extends AppController
 				'EMAIL'		=> $user['email'],
 				'TELEFONO'	=> $user['telephone'],
 				'DNI'	=> $user['dni'],
-				'TICKET'	=> $user['ticket_cambio'],
+				'TICKET'	=> $user['regalo'],
 				'PROV'		=> $user['provincia'],
 				'LOC'		=> $user['localidad'],
 				'CALLE'		=> $user['street'],
@@ -463,6 +469,7 @@ class CarritoController extends AppController
 				'DPTO'		=> $user['depto'],
 				'COD POST'	=> $user['postal_address'],
 				'CARGO'	=> $user['cargo'],
+				'CUPON'	=> $user['coupon'],
 				'STORE'	=> $user['store'],
 				'STORE_ADDR'	=> $user['store_address']
 			);
@@ -497,12 +504,33 @@ class CarritoController extends AppController
 				'description' => $desc
 			);
 		}
+		
+		// Check coupon
+		if (isset($user['coupon']) && $user['coupon'])  {
+	    $coupon = $this->Coupon->find('first', [
+	      'conditions' => [
+	        'code' => $user['coupon'],
+	        'enabled' => 1
+	      ]
+	    ]);
+	    if ($coupon) {
+				$applicable = self::filter_coupon($coupon);
+				if ($applicable->status === 'success') {
+					$discount = (float) $applicable->data['discount'];
+					if($applicable->data['coupon_type'] === 'percentage') {
+						$total = $total * (1 - $discount / 100);
+					} else {
+						$total-= $discount;
+					}
+				}
+		  }
+	  }
 
 		// Add Delivery
 		$delivery_data = json_decode( $this->delivery_cost($user['postal_address']) ,true);
-		$price = 0;
+		$delivery_cost = 0;
 		if (isset($delivery_data['price'])) {
-			$price = (int) $delivery_data['price'];
+			$delivery_cost = (int) $delivery_data['price'];
 		}
 		
 		//shipping-code 
@@ -541,10 +569,10 @@ class CarritoController extends AppController
 		// free delivery
 		if ($freeShipping) { 
      	error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
-			$price=0;
+			$delivery_cost=0;
 		}else{
 			error_log('suming delivery to price: '.$total);
-			$total += $price;
+			$total += $delivery_cost;
 			$items[] = array(
 				'title' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
 				'description' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
@@ -556,7 +584,7 @@ class CarritoController extends AppController
 
 		$this->Sale->save(array(
 			'id' => $sale_id,
-			'deliver_cost' => $price,
+			'deliver_cost' => $delivery_cost,
 			'shipping_type' => $shipping_type_value
 		));
 
@@ -588,11 +616,12 @@ class CarritoController extends AppController
 			'provincia'	=> $user['provincia'],
 			'telefono'	=> $user['telephone'],
 			'email'		=> $user['email'],
-			'ticket_cambio'		=> $user['ticket_cambio'],
+			'regalo'		=> $user['regalo'],
 			'package_id'=> $delivery_data['itemsData']['package']['id'],
 			'value' 	=> $delivery_data['itemsData']['price'],
 			'zip_codes' => $zipCodes,
 			'cargo'		=> $user['cargo'],
+			'coupon'	=> $user['coupon'],
 			'store'		=> $user['store'],
 			'store_address'		=> $user['store_address']
 		);

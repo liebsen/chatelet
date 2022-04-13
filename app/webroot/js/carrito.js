@@ -19,6 +19,64 @@ $(document).ready(function() {
 			}, 200);
 		}
 	});
+
+	$('.cart-go-button').click(function(event){
+		event.preventDefault();
+		var c = $('[product_row]').length;
+		let store = ''
+		let store_address = ''
+		let location = $(this).attr('link-to')||$(this).prop('link-to')
+		let preferences = JSON.parse(localStorage.getItem('carrito')) || {}
+
+		if(!c){
+			onErrorAlert('No tienes productos en el carrito')
+			return false;
+		}
+		if (cargo === 'shipment') {
+			var a = $('.input-cp').val();
+			var b = parseInt($('.input-cp').attr('data-valid'));
+			// if((!a || !b || !c || (1>parseFloat($('#cost').text()) && !freeShipping ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
+			if(!a || !b || !c){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
+				$('.input-cp').focus();
+				$('.input-cp').removeClass('ok');
+				$('.input-cp').addClass('wrong');
+				onErrorAlert('Por favor ingrese su código postal');
+				return false;
+			}
+		} else if(cargo === 'takeaway') {
+			const selected = $('.takeaway-options li.selected')
+			if (!selected.length) {
+				onErrorAlert('Por favor seleccione una sucursar para pasar a retirar el producto');	
+				return false;
+			} else {
+				if (selected.attr('store')) {
+					store = selected.attr('store')
+					store_address = selected.attr('store-address')
+				} else {
+					onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal (1)');
+					return false;
+				}
+			}
+		} else {
+			if (freeShipping) {
+				cargo = 'shipment'
+			} else {
+				onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal (2)');
+				return false
+			}
+		}
+
+		preferences.cargo = cargo
+		preferences.store = store
+		preferences.store_address = store_address
+		preferences.ticket_cambio = $('#ticket_cambio').is(':checked') ? 1 : 0
+
+		localStorage.setItem('carrito', JSON.stringify(preferences))
+		console.log('11-------------')
+		console.log(location)
+		window.location.href = location;
+	});
+
 	$('.trash').on('click', e => {
 		e.preventDefault()
 		if (confirm('Estás seguro que que querés borrar este producto del carrito?')) {

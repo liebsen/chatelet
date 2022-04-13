@@ -25,6 +25,10 @@ $(document).ready(function() {
 		flash.remove();
 	});
 
+	$('.gotocart').click(() => {
+		location.href = '/carrito'
+	})
+	
 	$('.dropdown-menu').click(function(e) {
 		var target = $(e.target);
 

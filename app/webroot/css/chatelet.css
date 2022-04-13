@@ -17,6 +17,10 @@ html, body {
 	height: 100%;
 }
 
+.is-hidden {
+	display: none;
+}
+
 #wrapper {
 	min-height: 100%;
 	position: relative;

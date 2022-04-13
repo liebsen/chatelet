@@ -24,6 +24,11 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 					'controller' => 'carrito',
 					'action' => 'sale'
 				)) ?>">
+			<input type="hidden" name="coupon" value=""/>
+			<input type="hidden" name="cargo" value=""/>
+			<input type="hidden" name="store" value=""/>
+			<input type="hidden" name="store_address" value=""/>
+
 			<div class="form-group">
 				<label for="nombre">Nombre</label>
 				<input type="text" class="form-control" id="nombre" name="name" value="<?= (!empty($userData['User']['name']))?$userData['User']['name']:''; ?>" required>
@@ -72,29 +77,24 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 				<input style="margin-left:1%;width:49%;float:left;" class="form-control" placeholder="A,B,C..." name="depto" type="text" value="<?= (!empty($userData['User']['depto']))?$userData['User']['depto']:''; ?>"/>
 			</div>
 			<span class="clearfix"></span>
-			<div class="form-group">
-			<?php if ($_GET['cargo'] === 'shipment'):?>
+			<div class="form-group cargo-shipment is-hidden">
 				<label for="codigo_postal">Código Postal</label>
 				<?php
 					$cp = $this->Session->read('cp');
 					echo '<input readonly="readonly" type="text" class="form-control" id="codigo_postal" name="postal_address" value="'. $cp .'" required>';
 				?>
-			<?php endif;?>
-			<?php if ($_GET['cargo'] === 'takeaway'):?>
-				<input type="hidden" name="cargo" value="<?php echo $_GET['cargo'];?>"/>
-				<input type="hidden" name="store" value="<?php echo $_GET['store'];?>"/>
-				<input type="hidden" name="store_address" value="<?php echo $_GET['store_address'];?>"/>
+			</div>
+			<div class="form-group cargo-takeaway is-hidden">
 				<hr>
 				<div class="form-group">
 					<label>Retiro en sucursal</label>
-					<p class="text-success"><?php echo $_GET['store'];?>, <?php echo $_GET['store_address'];?></p>
+					<p class="text-success store-address"></p>
 				</div>
-			<?php endif;?>
 			</div>
 			<div class="form-group">
 				<hr>
-				<input type="checkbox" id="ticket_regalo" name="ticket_regalo"<?php echo $_GET['ticket'] ? ' checked' : ''; ?>>
-				<label for="ticket_regalo">Es para regalo</label>
+				<input type="checkbox" id="regalo" name="regalo">
+				<label for="regalo">Es para regalo</label>
 			</div>
 			<div class="form-group hide">
 				<label for="pais">Envío</label>
@@ -111,7 +111,15 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 <?php if(!$loggedIn):?>
 <script>
 $(function(){
-$('#particular-login').modal('show');
-});
+	$('#particular-login').modal('show')
+	let carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+	$(`.cargo-${carrito.cargo}`).removeClass('is-hidden')
+	$('#regalo').prop('checked', carrito.regalo)
+	$('.store-address').text([carrito.store, carrito.store_address].join(', '))
+	Object.keys(carrito).forEach(key => {
+		console.log(key, carrito[key])
+		$('#checkout-form').find(`input[name='${key}']`).val(carrito[key])
+	})
+})
 </script>
 <?php endif;?>

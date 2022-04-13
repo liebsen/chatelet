@@ -108,7 +108,7 @@
           </li><!-- /.Login -->
           <li class="dropdown">
             <span class="count animated scaleIn speed delay2"><?=count($carro)?></span>
-            <a href="#" class="dropdown-toggle shop js-activated" data-toggle="dropdown" data-hover="dropdown">Mi pedido</a>
+            <a href="#" class="dropdown-toggle gotocart shop js-activated" data-toggle="dropdown" data-hover="dropdown">Mi pedido</a>
             <ul class="dropdown-menu">
               <li>
                 <div>
