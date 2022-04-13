@@ -1,4 +1,4 @@
-<?php echo $this->Html->script('coupon.js',array( 'inline' => false )) ?>
+<?php echo $this->Html->script('coupon.js?v=' . Configure::read('APP_DIST'),array( 'inline' => false )) ?>
 <div class="row is-rounded">
 	<h3 class="h3 text-center desktop">Cupón de descuento</h3>
 	<h4 class="h4 text-center mobile">Cupón de descuento</h4>

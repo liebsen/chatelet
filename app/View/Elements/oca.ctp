@@ -1,4 +1,4 @@
-<?php echo $this->Html->script('oca.js?avoidcache=24',array( 'inline' => false )) ?>
+<?php echo $this->Html->script('oca.js?v=' . Configure::read('APP_DIST'),array( 'inline' => false )) ?>
 <?php echo $this->Html->css('oca_front',array( 'inline' => false )) ?>
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <div class="row is-rounded">
