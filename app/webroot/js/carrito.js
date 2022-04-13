@@ -70,10 +70,7 @@ $(document).ready(function() {
 		preferences.store = store
 		preferences.store_address = store_address
 		preferences.ticket_cambio = $('#ticket_cambio').is(':checked') ? 1 : 0
-
 		localStorage.setItem('carrito', JSON.stringify(preferences))
-		console.log('11-------------')
-		console.log(location)
 		window.location.href = location;
 	});
 

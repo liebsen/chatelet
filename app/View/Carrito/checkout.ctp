@@ -103,7 +103,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 					<option value="internacional">Internacional</option>
 				</select>
 			</div>
-			<input type="submit" class="siguiente" value="Finalizar compra" />
+			<input type="submit" class="siguiente cart-done" value="Finalizar compra" />
 		</form>
 	</div>
 	<div class="col-md-4"></div>
@@ -117,8 +117,10 @@ $(function(){
 	$('#regalo').prop('checked', carrito.regalo)
 	$('.store-address').text([carrito.store, carrito.store_address].join(', '))
 	Object.keys(carrito).forEach(key => {
-		console.log(key, carrito[key])
 		$('#checkout-form').find(`input[name='${key}']`).val(carrito[key])
+	})
+	$('.cart-done').click(function () {
+		localStorage.removeItem('carrito')
 	})
 })
 </script>
