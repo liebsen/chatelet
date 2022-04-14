@@ -1621,7 +1621,10 @@ span.count {
     flex-direction: row;
   }
   .carrito-col {
-    flex: 1;
+    flex: 1;    
+  }
+  .carrito-col:last-child {
+    max-width: 22rem;
   }
   .is-flex-end {
     flex-direction: row;
