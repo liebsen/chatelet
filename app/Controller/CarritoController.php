@@ -523,9 +523,15 @@ class CarritoController extends AppController
 					if($applicable->data['coupon_type'] === 'percentage') {
 						error_log('total: '.$total);
 						error_log('discount: '.$discount);
-						$total = $total * (1 - $discount / 100);
+						$total = round($total * (1 - $discount / 100), 2);
+						foreach($items as $k => $item) {
+							$items[$k]['unit_price'] = round($items[$k]['unit_price'] * (1 - $discount / 100), 2);
+						}
 					} else {
 						$total-= $discount;
+						foreach($items as $k => $item) {
+							$items[$k]['unit_price'] = $items[$k]['unit_price']-= $discount / count($items);
+						}
 					}
 					error_log('coupon applied now total: '.$total);
 				}
@@ -638,6 +644,7 @@ class CarritoController extends AppController
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$success_url = Router::url(array('controller' => 'carrito', 'action' => 'clear'), true);
 		$failure_url = Router::url(array('controller' => 'carrito', 'action' => 'failed'), true);
+
 		$preference_data = array(
 		    'items' => $items,
 		    'payer' => array(
