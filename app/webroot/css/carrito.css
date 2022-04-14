@@ -63,11 +63,12 @@
 	padding: 0.75rem;
 	border: 1px solid #e10d74;
 	border-radius: 0.25rem;
+	font-weight: 600;
 	background-color: white;
 	color: #e10d74;
 	cursor: pointer;
 	background-image: url(../images/chevron_right_pink.svg);
-	background-position: right center;
+	background-position: right 0.5rem center;
 	background-repeat: no-repeat;
 	background-size: 30px;
 	margin-bottom: 0.25rem;

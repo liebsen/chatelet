@@ -58,8 +58,17 @@
 </div>
 
 <script>
-	let user_cp = '<?php echo $user['postal_address'];?>'
-	if (user_cp) {
-		$('.input-cp').val(user_cp)
+	oca_init = () => {
+		let user_cp = '<?php echo $user['postal_address'];?>'
+		let last_cp = localStorage.getItem('lastcp') || false
+		let cp = last_cp
+
+		if (!cp && user_cp) {
+			cp = user_cp
+		}
+
+		$('.input-cp').val(cp)
+		localStorage.setItem('lastcp', cp)
 	}
+	oca_init()
 </script>

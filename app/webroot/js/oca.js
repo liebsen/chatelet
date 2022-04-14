@@ -39,17 +39,24 @@ $(function(){
 	var timeout = null;
 	var timeout2 = null;
 	$('.input-cp').keyup(function(event){
+	  event.preventDefault()
 		if (timeout2) {
 			clearTimeout(timeout2)
 		}
 		let t = this
 		var total_orig = $('#subtotal_compra').val()
+		var cp 	= $('.input-cp').val();
+
+		$('.input-cp').removeClass('ok');				
 		$('.delivery-cost').addClass('hidden')
-		$('.takeaway-options li').removeClass('selected')			
-	  event.preventDefault();
+		$('.takeaway-options li').removeClass('selected')
+
+		if(cp.trim() === '') {
+			return false
+		}
+
 		timeout2 = setTimeout(function () {
 			var url = $(t).data('url');
-			var cp 	= $('.input-cp').val();
 			var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 			var cost = 0
 			$('#free_delivery').text('');
@@ -62,11 +69,14 @@ $(function(){
 					$('.products-total').removeClass('hidden')
 					//free delivery
 					if (json.freeShipping){  
-						// console.log('Envio gratis');
+						console.log('Envio gratis!')
 						// $('#subtotal_envio').val( 0 );
 						// $('#free_delivery').text('Envio gratis!');
 					}else{
 						cost = parseInt(json.price)
+						if (cost <= 0) {
+							return setTimeout( "onErrorAlert('El servicio de oca no está disponible en este momento, intente en unos instantes.')" , 200);
+						}
 						$('.delivery-cost').removeClass('hidden')
 						$('.delivery-cost').addClass('fadeIn')
 						$('#subtotal_envio').val(cost);
@@ -79,7 +89,6 @@ $(function(){
 					$('.input-cp').addClass('ok');
 					onSuccessAlert('Codigo Postal válido');
 				} else {
-					$('.input-cp').removeClass('ok');
 					$('.input-cp').addClass('wrong');
 					$('#cost').text( parseInt(0) );
 					let total = formatNumber(parseFloat($('#subtotal_compra').val()) - coupon)

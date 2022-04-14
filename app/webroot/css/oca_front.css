@@ -7,15 +7,19 @@
 	border-color: #E10D74;
   color: #E10D74;
 }
-.ok{
+.ok {
 	border-color: #07BC31;
   color: #4f804f;
+	background-image: url(../images/check.png);
+	background-position: right 0.5rem center;
+	background-repeat: no-repeat;
+	background-size: 30px;  
 }
 .input-rounded{
 	border-radius: 0.25rem;
 	padding: 0.5rem 0.75rem;
 	max-width: 10rem;
-	font-weight: 600;
+	font-weight: 800;
 	font-size: 1.25rem;	
 }
 
