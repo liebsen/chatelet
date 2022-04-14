@@ -44,7 +44,7 @@
           $('.input-coupon').removeClass('wrong');
           $('.input-coupon').addClass('ok');
           onSuccessAlert('Cupón válido');
-          $('.coupon-text').html(`<h3>${json.data.code}</h3><p>${json.data.info}</p>`)
+          $('.coupon-text').html(`<div class="alert alert-success" role="alert"><h3>${json.data.code}</h3><p>${json.data.info}</p></div>`)
           $('.coupon-text').removeClass('fadeIn')
           $('.coupon-text').addClass('fadeIn')
 
