@@ -11,6 +11,7 @@
     timeout = setTimeout(function () {
       var url = $(t).data('url');
       var coupon  = $('.input-coupon').val();
+      var total_orig = $('#subtotal_compra').val()
       var c2 = event.target.value
       $('#free_delivery').text('');
       document.querySelector('.coupon-loading').classList.remove('hide')
@@ -22,7 +23,6 @@
           let coupon_type = json.data.coupon_type
           let discount = parseFloat(json.data.discount)
           let discounted = 0
-          let total_orig = $('#subtotal_compra').val()
           let delivery_cost = $('#subtotal_envio').val() || 0
           let total = 0
           let subtotal = 0
@@ -53,6 +53,8 @@
           carrito.coupon = coupon.toUpperCase()
           localStorage.setItem('carrito', JSON.stringify(carrito))
         }else{
+          $('.coupon-discount').addClass('hidden')
+          fxTotal(formatNumber(total_orig))
           $('.input-coupon').removeClass('ok');
           $('.input-coupon').addClass('wrong');
           $('#cost').text( '0' );

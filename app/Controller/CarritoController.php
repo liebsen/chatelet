@@ -83,14 +83,11 @@ class CarritoController extends AppController
 				$promo_val = intval($parts[0]);
 				$promo_min = intval($parts[1]);
 				if ($promos[$product['id']]) {
-					var_dump($product['name']);
 					if (!isset($counted[$product['id']])) {
 						$counted[$product['id']] = 0;
 					}
 					$counted[$product['id']]++;
-					var_dump($counted[$product['id']] % $promo_val);
 					if ($counted[$product['id']] % $promo_val === 0) {
-						var_dump('-------------------');
 						$promos[$product['id']]--;
 					}
 				}
@@ -418,6 +415,7 @@ class CarritoController extends AppController
 	public function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$total=0;
+		$total_wo_discount = 0;
 		// VAR - Validate
 		$carro = $this->Session->read('Carro');
 		$user_id = $this->Auth->user('id');
@@ -505,7 +503,8 @@ class CarritoController extends AppController
 				'description' => $desc
 			);
 		}
-		
+		$total_wo_discount = $total;
+
 		error_log('tmp total: '.$total);
 		// Check coupon
 		if (isset($user['coupon']) && $user['coupon'] !== '')  {
@@ -525,12 +524,22 @@ class CarritoController extends AppController
 						error_log('discount: '.$discount);
 						$total = round($total * (1 - $discount / 100), 2);
 						foreach($items as $k => $item) {
-							$items[$k]['unit_price'] = round($items[$k]['unit_price'] * (1 - $discount / 100), 2);
+							$item_price = round($item['unit_price'] * (1 - $discount / 100), 2);
+							$items[$k]['unit_price'] = $item_price;
+							if ($product_ids[$k]) {
+								$product_ids[$k]['precio_vendido'] = $item_price;
+							}
+							error_log('(coupon) fixing item price (1): ' . $item_price);
 						}
 					} else {
 						$total-= $discount;
 						foreach($items as $k => $item) {
-							$items[$k]['unit_price'] = $items[$k]['unit_price']-= $discount / count($items);
+							$item_price = $item['unit_price']-= round($discount / count($items), 2);
+							$items[$k]['unit_price'] = $item_price;
+							if ($product_ids[$k]) {
+								$product_ids[$k]['precio_vendido'] = $item_price;
+							}
+							error_log('(coupon) fixing item price (2): ' . $item_price);
 						}
 					}
 					error_log('coupon applied now total: '.$total);
@@ -547,11 +556,13 @@ class CarritoController extends AppController
 		
 		//shipping-code 
 		$shipping_price = $this->Setting->findById('shipping_price_min');
-		$freeShipping = intval($total)>=intval($shipping_price['Setting']['value']);
+		$freeShipping = intval($total_wo_discount)>=intval($shipping_price['Setting']['value']);
 
 		if ($user['cargo'] == 'takeaway') {
 			$freeShipping = true;
 		}
+
+		error_log('free_shipping: '.$freeShipping);
 
 		$shipping_type_value = 'default';
 		$zipCodes='';
