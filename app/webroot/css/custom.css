@@ -1539,7 +1539,7 @@ span.count {
   margin-top: 0;
   background-color: whitesmoke;
   border-radius: 0.25rem;
-  box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.2);
+  box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.1);
 }
 
 .is-success {
