@@ -51,9 +51,10 @@
     padding: 5px;
     margin: 5px; }
   .growl.growl-medium {
-    width: 250px;
-    padding: 10px;
-    margin: 10px; }
+    width: 280px;
+    padding: 1rem;
+    padding-top: 0.75rem;
+    margin: 1rem; }
   .growl.growl-large {
     width: 300px;
     padding: 15px;
@@ -73,13 +74,14 @@
   .growl .growl-close {
     cursor: pointer;
     float: right;
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 1rem;
+    line-height: 1.25rem;
     font-weight: normal;
     font-family: helvetica, verdana, sans-serif; }
   .growl .growl-title {
-    font-size: 18px;
-    line-height: 24px; }
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 2rem; }
   .growl .growl-message {
-    font-size: 14px;
-    line-height: 18px; }
+    font-size: 1rem;
+    line-height: 1.25rem; }

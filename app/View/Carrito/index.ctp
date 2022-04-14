@@ -11,8 +11,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div id="carrito" class="col-md-10">
+		<div id="carrito">
 			<!--h3 id="heading" style="margin:10px 0px">Carrito de compras</h3-->
 			<?php if (isset($carro) && !empty($carro)) :?>			
 			<?php
@@ -142,7 +141,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-1"></div>
 	</div>
 					
 	<?php if (isset($carro) && !empty($carro)) :?>

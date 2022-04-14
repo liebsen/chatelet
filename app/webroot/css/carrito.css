@@ -9,10 +9,12 @@
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
 
-
 .carrito-row {
 	padding-top: 1rem;
+	max-width: 50rem;
+	margin: auto;	
 }
+
 .carrito-item-row {
 	display: flex;
 	flex-direction: row;
