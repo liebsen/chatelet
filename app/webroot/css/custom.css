@@ -1551,7 +1551,9 @@ span.count {
 /* .is-success h3 {
     color: #4f804f;
 } */
-
+.is-rounded p {
+  line-height: 1.25;
+}
 .is-rounded hr {
     border-color: #dbcec3;
 }
