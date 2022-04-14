@@ -423,7 +423,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
 .spinner-input {
     position: relative;
-    top: 0.35rem;
+    top: 0.5rem;
     right: 2.5rem;
 }
 
@@ -1094,6 +1094,8 @@ span.out{
 .search-more {
     align-items: center;
     justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 .search-more a {
     color: #f50081;

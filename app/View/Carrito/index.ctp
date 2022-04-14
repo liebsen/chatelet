@@ -1,6 +1,6 @@
 <?php
-	echo $this->Html->css('carrito', array('inline' => false));
-	echo $this->Html->script('carrito', array('inline' => false));
+	echo $this->Html->css('carrito.css?v=' . Configure::read('APP_DIST'), array('inline' => false));
+	echo $this->Html->script('carrito.js?v=' . Configure::read('APP_DIST'), array('inline' => false));
 	echo $this->Session->flash();
 	echo $this->element('checkout-modal');
 ?>
