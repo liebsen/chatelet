@@ -2,6 +2,7 @@ var cargo = ''
 var selectStore = e => {
 	var total_orig = $('#subtotal_compra').val()
 	var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
+	$('.input-cp').removeClass('ok')
 	$('.input-cp').val('')
 	$('#cost_container').html('')
 	$('.takeaway-options li').removeClass('selected')
