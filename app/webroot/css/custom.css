@@ -1225,7 +1225,10 @@ span.out{
   font-weight: 700;
 }
 .cost_total-container {
-    opacity: 0;
+  opacity: 0;
+}
+.cost_total-container .price {
+  color: #e10d74;
 }
 .cost_total {
 }
