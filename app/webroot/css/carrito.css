@@ -63,11 +63,11 @@
 
 .generic-select li {
 	padding: 0.75rem;
-	border: 1px solid #e10d74;
+	border: 1px solid #e10d7440;
 	border-radius: 0.25rem;
-	font-weight: 600;
+	font-weight: 400;
 	background-color: white;
-	color: #e10d74;
+	color: #e10d74b3;
 	cursor: pointer;
 	background-image: url(../images/chevron_right_pink.svg);
 	background-position: right 0.5rem center;
