@@ -51,8 +51,6 @@
           $('.coupon-text').removeClass('fadeIn')
           $('.coupon-text').addClass('fadeIn')
           carrito.coupon = coupon.toUpperCase()
-          console.log('upte carritio')
-          console.log(carrito)
           localStorage.setItem('carrito', JSON.stringify(carrito))
         }else{
           $('.input-coupon').removeClass('ok');
