@@ -629,8 +629,7 @@ class CarritoController extends AppController
 		);
 		error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
-		die();
-		
+
 		//MP
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$success_url = Router::url(array('controller' => 'carrito', 'action' => 'clear'), true);
