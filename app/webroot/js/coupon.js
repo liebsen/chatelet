@@ -33,11 +33,8 @@
           }
           total = parseFloat(total).toFixed(2)
           discounted = formatNumber(parseFloat(total_orig - total).toFixed(2))
-          format_total = formatNumber(parseFloat(total) + parseFloat(delivery_cost))
-          $('#cost').text( format_total );
           $('.coupon_bonus').text( discounted )
 
-          fxTotal(format_total)
 
           $('.products-total').removeClass('hidden')
           $('.coupon-discount').removeClass('hidden')
@@ -53,10 +50,13 @@
 
           if(!freeShipping) {
             $('.free-shipping').addClass('hidden')
-            $('.coupon-discount').addClass('hidden')
-            format_total = formatNumber(parseFloat(total_orig) + parseFloat(delivery_cost))            
-            fxTotal(formatNumber(format_total), true)
+            format_total = formatNumber(parseFloat(total) + parseFloat(delivery_cost))
+            $('#cost').text( format_total );
+          } else {
+            format_total = formatNumber(parseFloat(total_orig) + parseFloat(delivery_cost))
+            $('.coupon-discount').addClass('hidden')            
           }
+          fxTotal(format_total)
           carrito.coupon = coupon.toUpperCase()
           localStorage.setItem('carrito', JSON.stringify(carrito))
         }else{

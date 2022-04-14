@@ -8,17 +8,15 @@ let loadMoreSearch = p => {
   apiSearch(localStorage.getItem('lastsearch'))
 }
 
-let fxTotal = (total, noanim) => {
+let fxTotal = (total) => {
   $('.cost_total').text( total )
-  if (!noanim) {
-    document.querySelector('.cost_total-container').classList.remove('fadeIn', 'fadeOut', 'delay')
-    document.querySelector('.cost_total-container').classList.add('hidden')
-    setTimeout(() => {
-      document.querySelector('.cost_total-container').classList.remove('hidden')
-      document.querySelector('.cost_total-container').classList.add('delay', 'fadeIn')
-      // $('.cost_total-container').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
-    }, 200)
-  }
+  document.querySelector('.cost_total-container').classList.remove('fadeIn', 'fadeOut', 'delay')
+  document.querySelector('.cost_total-container').classList.add('hidden')
+  setTimeout(() => {
+    document.querySelector('.cost_total-container').classList.remove('hidden')
+    document.querySelector('.cost_total-container').classList.add('delay', 'fadeIn')
+    // $('.cost_total-container').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
+  }, 100)
 }
 
 let apiSearch = q => {    

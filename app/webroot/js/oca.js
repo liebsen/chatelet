@@ -45,6 +45,7 @@ $(function(){
 		let t = this
 		var total_orig = $('#subtotal_compra').val()
 		$('.delivery-cost').addClass('hidden')
+		$('.takeaway-options li').removeClass('selected')			
 	  event.preventDefault();
 		timeout2 = setTimeout(function () {
 			var url = $(t).data('url');

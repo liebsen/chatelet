@@ -1,14 +1,14 @@
 var cargo = ''
 var selectStore = e => {
 	var total_orig = $('#subtotal_compra').val()
-	$('.input-cp').val('')
+	var delivery_cost = $('#subtotal_envio').val() || 0
 	$('.input-cp').val('')
 	$('#cost_container').html('')
 	$('.takeaway-options li').removeClass('selected')
 	$(e).addClass('selected')
-  $('.coupon-discount').addClass('hidden')
   $('.delivery-cost').addClass('hidden')
-  fxTotal(formatNumber(total_orig))
+  format_total = formatNumber(parseFloat(total_orig) + parseFloat(delivery_cost))
+  fxTotal(format_total)
 	cargo = 'takeaway'
 }
 
