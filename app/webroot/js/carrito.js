@@ -7,6 +7,7 @@ var selectStore = e => {
 	$('.takeaway-options li').removeClass('selected')
 	$(e).addClass('selected')
   $('.coupon-discount').addClass('hidden')
+  $('.delivery-cost').addClass('hidden')
   fxTotal(formatNumber(total_orig))
 	cargo = 'takeaway'
 }

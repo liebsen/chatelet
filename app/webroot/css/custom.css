@@ -1226,6 +1226,8 @@ span.out{
 }
 .cost_total-container {
     opacity: 0;
+    padding-top: 0.25rem;
+    border-top: 1px solid #ccc;
 }
 .cost_total {
 }

@@ -43,6 +43,8 @@ $(function(){
 			clearTimeout(timeout2)
 		}
 		let t = this
+		var total_orig = $('#subtotal_compra').val()
+		$('.delivery-cost').addClass('hidden')
 	  event.preventDefault();
 		timeout2 = setTimeout(function () {
 			var url = $(t).data('url');
@@ -79,6 +81,7 @@ $(function(){
 					$('.input-cp').removeClass('ok');
 					$('.input-cp').addClass('wrong');
 					$('#cost').text( parseInt(0) );
+					fxTotal(formatNumber(total_orig))
 					timeout = setTimeout( "onErrorAlert('Codigo Postal inexistente')" , 200);
 				}
 				$('.input-cp').attr( 'data-valid' , parseInt(json.valid) );
