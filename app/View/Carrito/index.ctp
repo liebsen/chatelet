@@ -89,7 +89,7 @@
 							<input type="checkbox" id="ticket_cambio" value="1" /> <label for="ticket_cambio">Es para regalo</label>
 						</div>
 						<?php if($freeShipping):?>
-						<div class="field text-right animated speed">
+						<div class="field text-right free-shipping animated speed">
 							<div class="price text-theme">
 								<span class="text-weight-thin">Envío </span>
 								<span id="delivery_cp"></span> <span>gratuito</span></div>

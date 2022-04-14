@@ -300,7 +300,10 @@ class CarritoController extends AppController
 		if ($inTime) error_log('(intime!) ');
 		if ($inDate) error_log('(indate!) '); */
 		$inDateTime = $inTime && $inDate;
+    $shipping_price = $this->Setting->findById('shipping_price_min');
+    $freeShipping = intval($data['price'])>=intval($shipping_price['Setting']['value']);
 
+		$item['free_shipping'] = $freeShipping;
 		if (strpos($item['weekdays'], $week) === false) {
 			$valid = [];
 			$weekdays = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
@@ -503,6 +506,7 @@ class CarritoController extends AppController
 				'description' => $desc
 			);
 		}
+		
 		$total_wo_discount = $total;
 
 		error_log('tmp total: '.$total);
@@ -556,7 +560,7 @@ class CarritoController extends AppController
 		
 		//shipping-code 
 		$shipping_price = $this->Setting->findById('shipping_price_min');
-		$freeShipping = intval($total_wo_discount)>=intval($shipping_price['Setting']['value']);
+		$freeShipping = intval($total)>=intval($shipping_price['Setting']['value']);
 
 		if ($user['cargo'] == 'takeaway') {
 			$freeShipping = true;

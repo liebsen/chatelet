@@ -50,6 +50,12 @@
           $('.coupon-text').html(`<h3>${json.data.code}</h3><p>${json.data.info}</p>`)
           $('.coupon-text').removeClass('fadeIn')
           $('.coupon-text').addClass('fadeIn')
+
+          if(!json.data.free_shipping) {
+            $('.free-shipping').addClass('hidden')
+            $('.coupon-discount').addClass('hidden')
+            fxTotal(formatNumber(total_orig))
+          }
           carrito.coupon = coupon.toUpperCase()
           localStorage.setItem('carrito', JSON.stringify(carrito))
         }else{

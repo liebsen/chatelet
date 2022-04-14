@@ -1,10 +1,14 @@
 var cargo = ''
 var selectStore = e => {
-	cargo = 'takeaway'
+	var total_orig = $('#subtotal_compra').val()
+	$('.input-cp').val('')
 	$('.input-cp').val('')
 	$('#cost_container').html('')
 	$('.takeaway-options li').removeClass('selected')
 	$(e).addClass('selected')
+  $('.coupon-discount').addClass('hidden')
+  fxTotal(formatNumber(total_orig))
+	cargo = 'takeaway'
 }
 
 $(document).ready(function() {
