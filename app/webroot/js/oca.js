@@ -49,6 +49,7 @@ $(function(){
 		timeout2 = setTimeout(function () {
 			var url = $(t).data('url');
 			var cp 	= $('.input-cp').val();
+			var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 			var cost = 0
 			$('#free_delivery').text('');
 			$('.delivery-cost').addClass('hidden')
@@ -71,7 +72,6 @@ $(function(){
 						$('#delivery_cp').text( `(${cp})` );
 						$('.cost_delivery').text( formatNumber(cost));
 					}
-					let coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 					let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
 					fxTotal(total)
 					$('.input-cp').removeClass('wrong');
@@ -81,7 +81,8 @@ $(function(){
 					$('.input-cp').removeClass('ok');
 					$('.input-cp').addClass('wrong');
 					$('#cost').text( parseInt(0) );
-					fxTotal(formatNumber(total_orig))
+					let total = formatNumber(parseFloat($('#subtotal_compra').val()) - coupon)
+					fxTotal(formatNumber(total))
 					timeout = setTimeout( "onErrorAlert('Codigo Postal inexistente')" , 200);
 				}
 				$('.input-cp').attr( 'data-valid' , parseInt(json.valid) );
