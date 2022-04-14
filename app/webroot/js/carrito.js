@@ -1,4 +1,3 @@
-var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
 var cargo = ''
 var selectStore = e => {
 	cargo = 'takeaway'
@@ -24,6 +23,7 @@ $(document).ready(function() {
 	$('.cart-go-button').click(function(event){
 		event.preventDefault();
 		var c = $('[product_row]').length;
+		var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
 		let store = ''
 		let store_address = ''
 		let location = $(this).attr('link-to')||$(this).prop('link-to')

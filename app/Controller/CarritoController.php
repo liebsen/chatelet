@@ -296,12 +296,12 @@ class CarritoController extends AppController
 
 		$inTime = strtotime($item['hour_from']) <= strtotime($hour) && strtotime($item['hour_until']) > strtotime($hour);
 		$inDate = strtotime($item['date_from']) <= strtotime($date) && strtotime($item['date_until']) > strtotime($date);
-		error_log('(1) ' . $item['date_from'] . ' / ' . $item['date_until']);
+		/* error_log('(1) ' . $item['date_from'] . ' / ' . $item['date_until']);
 		error_log('(2) ' . $date );
 		error_log('(3) ' . $item['hour_from'] . ' / ' . $item['hour_until']);
 		error_log('(4) ' . $hour );
 		if ($inTime) error_log('(intime!) ');
-		if ($inDate) error_log('(indate!) ');
+		if ($inDate) error_log('(indate!) '); */
 		$inDateTime = $inTime && $inDate;
 
 		if (strpos($item['weekdays'], $week) === false) {
@@ -484,7 +484,7 @@ class CarritoController extends AppController
 			if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
         $unit_price = @$producto['discount'];
       } */
-      error_log('----product price: ' . $unit_price);
+      // error_log('----product price: ' . $unit_price);
 			$items[] = array(
 				'title' => $desc,
 				'description' => $desc,
@@ -493,7 +493,7 @@ class CarritoController extends AppController
 				'unit_price' => (int) $unit_price
 			);
 			$total+=(int)$unit_price;
-			error_log('suming '.(int)$unit_price);
+			// error_log('suming '.(int)$unit_price);
 			$product_ids[] = array(
 				'product_id' => $producto['id'],
 				'color' => $producto['color'],
@@ -506,6 +506,7 @@ class CarritoController extends AppController
 			);
 		}
 		
+		error_log('tmp total: '.$total);
 		// Check coupon
 		if (isset($user['coupon']) && $user['coupon'] !== '')  {
 	    $coupon = $this->Coupon->find('first', [
@@ -518,11 +519,15 @@ class CarritoController extends AppController
 				$applicable = self::filter_coupon($coupon);
 				if ($applicable->status === 'success') {
 					$discount = (float) $applicable->data['discount'];
+					error_log('coupon type : '.$applicable->data['coupon_type']);
 					if($applicable->data['coupon_type'] === 'percentage') {
+						error_log('total: '.$total);
+						error_log('discount: '.$discount);
 						$total = $total * (1 - $discount / 100);
 					} else {
 						$total-= $discount;
 					}
+					error_log('coupon applied now total: '.$total);
 				}
 		  }
 	  }
@@ -542,7 +547,6 @@ class CarritoController extends AppController
 			$freeShipping = true;
 		}
 
-		error_log('freeshipping prod price: '.$total);
 		$shipping_type_value = 'default';
 		$zipCodes='';
 		$shipping_config = $this->Setting->findById('shipping_type');

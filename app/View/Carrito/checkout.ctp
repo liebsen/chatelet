@@ -108,21 +108,27 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 	</div>
 	<div class="col-md-4"></div>
 </div>
-<?php if(!$loggedIn):?>
 <script>
 $(function(){
+	console.log('checkout!')
+<?php if(!$loggedIn):?>	
 	$('#particular-login').modal('show')
+<?php endif;?>
 	let carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	$(`.cargo-${carrito.cargo}`).removeClass('is-hidden')
 	$('#regalo').prop('checked', carrito.regalo)
 	$('.store-address').text([carrito.store, carrito.store_address].join(', '))
 	Object.keys(carrito).forEach(key => {
+		console.log(key)
+		console.log(carrito[key])
+		console.log('---')
 		$('#checkout-form').find(`input[name='${key}']`).val(carrito[key])
 	})
 	$('#checkout-form').submit(function () {
-		localStorage.removeItem('carrito')
+		console.log('submit-')
+		console.log(this)
+		// localStorage.removeItem('carrito')
 		return true
 	})
 })
 </script>
-<?php endif;?>
