@@ -1,6 +1,6 @@
 
 .both{
-	border: 1px solid #39B3D7;
+	border: 1px solid #e10d7499;
 	padding-left: 5px;
 }
 .wrong{
@@ -17,14 +17,14 @@
 }
 .input-rounded{
 	border-radius: 0.25rem;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 0.75rem;
 	max-width: 10rem;
 	font-weight: 800;
-	font-size: 1.25rem;	
 }
 
 .cargo-title {
 	margin:10px 0px;
 	font-weight: 800;
+	line-height: 1.25;
 }
 
