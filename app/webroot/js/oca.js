@@ -88,6 +88,7 @@ $(function(){
 					$('.input-cp').removeClass('wrong');
 					$('.input-cp').addClass('ok');
 					onSuccessAlert('Codigo Postal válido');
+					localStorage.setItem('lastcp', cp)
 				} else {
 					$('.input-cp').addClass('wrong');
 					$('#cost').text( parseInt(0) );
