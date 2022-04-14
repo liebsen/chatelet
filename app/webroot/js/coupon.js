@@ -6,12 +6,13 @@
       clearTimeout(timeout)
     }
     let t = this
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || {}
     event.preventDefault();
     timeout = setTimeout(function () {
       var url = $(t).data('url');
+      var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
       var coupon  = $('.input-coupon').val();
       var total_orig = $('#subtotal_compra').val()
+      var delivery_cost = $('#subtotal_envio').val() || 0
       var c2 = event.target.value
       $('#free_delivery').text('');
       document.querySelector('.coupon-loading').classList.remove('hide')
@@ -23,7 +24,6 @@
           let coupon_type = json.data.coupon_type
           let discount = parseFloat(json.data.discount)
           let discounted = 0
-          let delivery_cost = $('#subtotal_envio').val() || 0
           let total = 0
           let subtotal = 0
           if (coupon_type === 'percentage') {
@@ -51,10 +51,11 @@
           $('.coupon-text').removeClass('fadeIn')
           $('.coupon-text').addClass('fadeIn')
 
-          if(!json.data.free_shipping) {
+          if(!freeShipping) {
             $('.free-shipping').addClass('hidden')
             $('.coupon-discount').addClass('hidden')
-            fxTotal(formatNumber(total_orig))
+            format_total = formatNumber(parseFloat(total_orig) + parseFloat(delivery_cost))            
+            fxTotal(formatNumber(format_total), true)
           }
           carrito.coupon = coupon.toUpperCase()
           localStorage.setItem('carrito', JSON.stringify(carrito))
@@ -64,6 +65,8 @@
           $('.input-coupon').removeClass('ok');
           $('.input-coupon').addClass('wrong');
           $('#cost').text( '0' );
+          format_total = formatNumber(parseFloat(total_orig) + parseFloat(delivery_cost))            
+          fxTotal(formatNumber(format_total), true)
           timeout = setTimeout( `onErrorAlert('${json.message}')` , 200);
         }
         // document.querySelector('processed-coupon-data').classList.remove('hidden')

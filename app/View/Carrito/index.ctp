@@ -115,6 +115,7 @@
 							</div>
 						</div>
 						<?php endif ?>
+						<hr>
 						<div class="field text-right">
 							<div class="cost_total-container animated speed fadeIn delay">
 								<!--hr-->

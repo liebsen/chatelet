@@ -300,10 +300,6 @@ class CarritoController extends AppController
 		if ($inTime) error_log('(intime!) ');
 		if ($inDate) error_log('(indate!) '); */
 		$inDateTime = $inTime && $inDate;
-    $shipping_price = $this->Setting->findById('shipping_price_min');
-    $freeShipping = intval($data['price'])>=intval($shipping_price['Setting']['value']);
-
-		$item['free_shipping'] = $freeShipping;
 		if (strpos($item['weekdays'], $week) === false) {
 			$valid = [];
 			$weekdays = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
