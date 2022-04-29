@@ -118,6 +118,7 @@
                 <option value="3x2"<?= $prod['Product']['promo'] === '3x2' ? ' selected' : '' ?>>3x2</option>
                 <option value="4x3"<?= $prod['Product']['promo'] === '4x3' ? ' selected' : '' ?>>4x3</option>
                 <option value="5x4"<?= $prod['Product']['promo'] === '5x4' ? ' selected' : '' ?>>5x4</option>
+                <option value="3x1"<?= $prod['Product']['promo'] === '3x1' ? ' selected' : '' ?>>3x1</option>
               </select>
             </div>
           </div>
