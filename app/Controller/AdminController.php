@@ -33,8 +33,7 @@ class AdminController extends AppController {
 		    //                   'army', 'autumn', 'night', 'diamond', 'cherry', 'sun'
 		    //                   'asphalt'
 		    'theme'         => '',
-            'active_page'   => $this->request->params['action'],
-            'active_sub'   => $this->request->params['action']
+        'active_page'   => $this->request->params['action']
 		);
 
 		$this->set('template', $template);
@@ -582,12 +581,12 @@ class AdminController extends AppController {
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',
 				'url'		=> Configure::read('mUrl').'/admin/categorias',
-				'active'	=> 'categorias'
+				'active'	=> '/admin/categorias'
 				),
 			'Nueva Categoria' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> Configure::read('mUrl').'/admin/categorias/add',
-				'active'	=> 'add'
+				'active'	=> '/admin/categorias/add'
 				)
 
 			);
@@ -851,12 +850,12 @@ public function promos(){
 			'Lista' => array(
 				'icon' 		=> 'gi gi-justify',
 				'url'		=> Configure::read('mUrl').'/admin/productos',
-				'active'	=> 'productos'
+				'active'	=> '/admin/productos'
 				),
 			'Nuevo Producto' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> Configure::read('mUrl').'/admin/productos/add',
-				'active'	=> 'add'
+				'active'	=> '/admin/productos/add'
 				)
 
 			);
@@ -988,12 +987,12 @@ public function promos(){
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',
 				'url'		=> Configure::read('mUrl').'/admin/sucursales',
-				'active'	=> 'sucursales'
+				'active'	=> '/admin/sucursales'
 				),
 			'Nueva Sucursal' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> Configure::read('mUrl').'/admin/sucursales/add',
-				'active'	=> 'add'
+				'active'	=> '/admin/sucursales/add'
 				)
 
 			);
@@ -1051,12 +1050,12 @@ public function promos(){
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',
 				'url'		=> Configure::read('mUrl').'/admin/cupones',
-				'active'	=> 'cupones'
+				'active'	=> '/admin/cupones'
 				),
 			'Nuevo Cupón' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> Configure::read('mUrl').'/admin/cupones/add',
-				'active'	=> 'add'
+				'active'	=> '/admin/cupones/add'
 				)
 
 			);
@@ -1109,6 +1108,69 @@ public function promos(){
 		return $this->render('cupones');
 	}
 
+	public function logistica($action = null) {
+		$navs = array(
+			'Lista' => array(
+				'icon' 		=> 'gi gi-list',
+				'url'		=> Configure::read('mUrl').'/admin/logistica',
+				'active'	=> '/admin/logistica'
+				),
+			'Nueva Logística' => array(
+				'icon' 		=> 'gi gi-circle_plus',
+				'url'		=> Configure::read('mUrl').'/admin/logistica/add',
+				'active'	=> '/admin/logistica/add'
+				)
+
+			);
+		$this->set('navs', $navs);
+
+		$h1 = array(
+			'name' => 'Logística',
+			'icon' => 'gi gi-truck'
+			);
+		$this->set('h1', $h1);
+
+	    $this->loadModel('Logistic');
+    	switch ($action) {
+	    	case 'add':
+	    	    if ($this->request->is('POST')){
+			        $this->autoRender = false;
+			        $this->Logistic->save($this->request->data);
+			        return $this->redirect(array('action'=>'logistica'));
+    			} else {
+    				$this->loadModel('Logistic');
+				    $cats = $this->Logistic->find('all');
+					$this->set('cats', $cats);
+					$this->set('sel', true);
+	    			return $this->render('logistica-detail');
+	    		}
+	    		break;
+	    	case 'delete':
+		    	if ($this->request->is('post')) {
+		    		$this->autoRender = false;
+
+		    		$this->Logistic->delete($this->request->data['id']);
+		    	}
+	    		break;
+	    	case 'edit':
+	    		if ($this->request->is('post')) {
+	    			$this->autoRender = false;
+	    			$data = $this->request->data;
+			      $this->Logistic->save($data);
+	    		} else {
+		    		$hasId = array_key_exists(1, $this->request->pass);
+		    		if (!$hasId) break;
+		    		$logistic = $this->Logistic->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+		    		$this->set('logistic', $logistic);
+		    		return $this->render('logistica-detail');
+	    		}
+	    		break;
+	    }
+	    $logistics = $this->Logistic->find('all');
+	    $this->set('logistics', $logistics);
+		return $this->render('logistica');
+	}
+
 	public function shipping($action = null) {
 		$navs = array(
 			'Envios' => array(
@@ -1159,7 +1221,7 @@ public function promos(){
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',
 				'url'		=> Configure::read('mUrl').'/admin/contacto',
-				'active'	=> 'contacto'
+				'active'	=> '/admin/contacto'
 			)
 		);
 		$this->set('navs', $navs);
@@ -1186,12 +1248,12 @@ public function promos(){
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',
 				'url'		=> Configure::read('mUrl').'/admin/usuarios',
-				'active'	=> 'usuarios'
+				'active'	=> '/admin/usuarios'
 				),
 			'Nuevo Usuario' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> Configure::read('mUrl').'/admin/usuarios/add',
-				'active'	=> 'add'
+				'active'	=> '/admin/usuarios/add'
 				)
 
 			);
@@ -1284,12 +1346,12 @@ public function promos(){
 			'Lista' => array(
 				'icon' 		=> 'gi gi-justify',
 				'url'		=> Configure::read('mUrl').'/admin/lookbook',
-				'active'	=> 'lookbook'
+				'active'	=> '/admin/lookbook'
 				),
 			'Nuevo Look Book' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> Configure::read('mUrl').'/admin/lookbook/add',
-				'active'	=> 'add'
+				'active'	=> '/admin/lookbook/add'
 				)
 
 			);
@@ -1356,7 +1418,7 @@ public function promos(){
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',
 				'url'		=> Configure::read('mUrl').'/admin/subscription',
-				'active'	=> 'Newsletter'
+				'active'	=> '/admin/newsletter'
 			)
 		);
 		$this->set('navs', $navs);
