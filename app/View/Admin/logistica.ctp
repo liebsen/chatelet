@@ -23,7 +23,7 @@
 						<?=$logistic['Logistic']['code']?>
 					</td>
 					<td>
-						<?=$logistic['Logistic']['discount']?>
+						<?=$logistic['Logistic']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
 					</td>
 					<td>
 						<div class="btn-group">   

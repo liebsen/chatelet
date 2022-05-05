@@ -50,14 +50,14 @@
           <div class="control-group">
             <label class="control-label" for="info"><?php echo __('Info'); ?></label>
             <div class="controls">
-              <textarea id="info" name="data[info]" required><?php echo (isset($logistic)) ? $logistic['Logistic']['info'] : ''; ?></textarea>
+              <textarea id="info" name="data[info]"><?php echo (isset($logistic)) ? $logistic['Logistic']['info'] : ''; ?></textarea>
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="zips"><?php echo __('Códigos postales'); ?></label>
             <div class="controls">
-              <textarea id="zips" name="data[zips]" required><?php echo (isset($logistic)) ? $logistic['Logistic']['zips'] : ''; ?></textarea>
+              <textarea id="zips" name="data[zips]"><?php echo (isset($logistic)) ? $logistic['Logistic']['zips'] : ''; ?></textarea>
             </div>
           </div>
         </div>             

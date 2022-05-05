@@ -10,6 +10,7 @@
 				<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Tipo'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Valor'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Activo'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
 		</thead>
@@ -24,6 +25,9 @@
 					</td>
 					<td>
 						<?=$coupon['Coupon']['discount']?>
+					</td>
+					<td>
+						<?=$coupon['Coupon']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
 					</td>
 					<td>
 						<div class="btn-group">   
