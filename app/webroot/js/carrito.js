@@ -37,6 +37,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		var c = $('[product_row]').length;
 		var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
+		let shipping = ''
 		let store = ''
 		let store_address = ''
 		let location = $(this).attr('link-to')||$(this).prop('link-to')
@@ -46,6 +47,19 @@ $(document).ready(function() {
 			return false;
 		}
 		if (cargo === 'shipment') {
+			const shipping_cargo = $('.shipping-options li.selected')
+			if (!shipping_cargo.length) {
+				onErrorAlert('Por favor seleccione una empresa de logística para el envío del producto o seleccione retiro en sucursal');	
+				return false;
+			} else {
+				if (shipping_cargo.attr('cargo')) {
+					shipping = shipping_cargo.attr('cargo')
+				} else {
+					onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal (1)');
+					return false;
+				}
+			}
+
 			var a = $('.input-cp').val();
 			var b = parseInt($('.input-cp').attr('data-valid'));
 			// if((!a || !b || !c || (1>parseFloat($('#cost').text()) && !freeShipping ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
@@ -57,14 +71,14 @@ $(document).ready(function() {
 				return false;
 			}
 		} else if(cargo === 'takeaway') {
-			const selected = $('.takeaway-options li.selected')
-			if (!selected.length) {
+			const takeaway = $('.takeaway-options li.selected')
+			if (!takeaway.length) {
 				onErrorAlert('Por favor seleccione una sucursar para pasar a retirar el producto');	
 				return false;
 			} else {
-				if (selected.attr('store')) {
-					store = selected.attr('store')
-					store_address = selected.attr('store-address')
+				if (takeaway.attr('store')) {
+					store = takeaway.attr('store')
+					store_address = takeaway.attr('store-address')
 				} else {
 					onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal (1)');
 					return false;
@@ -79,6 +93,7 @@ $(document).ready(function() {
 			}
 		}
 
+		preferences.shipping = shipping
 		preferences.cargo = cargo
 		preferences.store = store
 		preferences.store_address = store_address

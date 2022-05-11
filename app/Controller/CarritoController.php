@@ -540,7 +540,8 @@ class CarritoController extends AppController
 				'CARGO'	=> $user['cargo'],
 				'CUPON'	=> $user['coupon'],
 				'STORE'	=> $user['store'],
-				'STORE_ADDR'	=> $user['store_address']
+				'STORE_ADDR'	=> $user['store_address'],
+				'SHIPPING'	=> $user['shipping']
 			);
 			foreach ($values as $key => $value) {
 				$desc.= $key.' : "'.$value.'"'.$separator;
@@ -717,7 +718,8 @@ class CarritoController extends AppController
 			'cargo'		=> $user['cargo'],
 			'coupon'	=> $user['coupon'],
 			'store'		=> $user['store'],
-			'store_address'		=> $user['store_address']
+			'store_address'		=> $user['store_address'],
+			'shipping'		=> $user['shipping']
 		);
 		error_log(json_encode($to_save));
 		$this->Sale->save($to_save);

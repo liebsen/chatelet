@@ -32,7 +32,7 @@
 			<div>
 					<p class="p">
 						<i>
-							<small>Seleccione una empresa para realizar el envío</small>
+							<small>Seleccione la empresa de logística de su confianza para realizar el envío</small>
 						</i>
 					</p>
 			</div>

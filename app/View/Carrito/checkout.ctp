@@ -24,6 +24,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 					'controller' => 'carrito',
 					'action' => 'sale'
 				)) ?>">
+			<input type="hidden" name="shipping" value=""/>
 			<input type="hidden" name="coupon" value=""/>
 			<input type="hidden" name="cargo" value=""/>
 			<input type="hidden" name="store" value=""/>
