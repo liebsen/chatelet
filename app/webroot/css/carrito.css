@@ -64,9 +64,9 @@
 }
 
 .shipping-options .shipping-logo {
-	background-size: 30px, 8rem;
-	background-repeat: no-repeat, no-repeat;
-	background-position: right 0.5rem center, left center;
+	background-size: 8rem;
+	background-repeat: no-repeat;
+	background-position: left center;
 	text-align: right;
 	padding-right: 2.5rem;
 	font-weight: 800;

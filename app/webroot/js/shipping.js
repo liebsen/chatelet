@@ -40,12 +40,14 @@ $(function(){
 	  return new Date(date.toDateString()) < new Date(new Date().toDateString());
 	}
 
-	selectShipping = function (cargo, cost) {
+	selectShipping = function (e, cargo, cost) {
 		var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 		if (cost <= 0) {
 			return setTimeout( "onErrorAlert('El servicio de oca no está disponible en este momento, intente en unos instantes.')" , 200);
 		}
 
+		$('.shipping-options li').removeClass('selected')
+		$(e).addClass('selected')
 		$('.delivery-cost').removeClass('hidden')
 		$('.delivery-cost').addClass('fadeIn')
 		$('#subtotal_envio').val(cost);
@@ -54,6 +56,7 @@ $(function(){
 
 		let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
 		fxTotal(total)
+		onSuccessAlert(`Usted seleccionó ${cargo.toUpperCase()} como servicio de entrega`);
 	}
 
 	$('.input-cp').keyup(function(event){
@@ -96,7 +99,7 @@ $(function(){
 							var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
 							Object.keys(json.rates).forEach(cargo => {
 								const price = json.rates[cargo].price
-								rates+= `<li shipping="${cargo}" onclick="selectShipping('${cargo}',${parseInt(price)})" class="shipping-logo" style="background-image: url(/images/chevron_right_pink.svg), url(/images/${cargo}.svg)"><span class="text-uppercase">$${price}</span></li>`
+								rates+= `<li shipping="${cargo}" onclick="selectShipping(this, '${cargo}',${parseInt(price)})"><div class="shipping-logo" style="background-image: url(/images/${cargo}.svg)"><span class="text-uppercase">$${price}</span></div></li>`
 							})
 							rates+= `</ul>`
 							document.querySelector('.shipping-block .slot').innerHTML = rates

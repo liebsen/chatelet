@@ -56,7 +56,7 @@
 			</i>
 		</p>		
 
-		<ul class="generic-select takeaway-options">
+		<ul class="generic-select takeaway-options animated zoomInRight">
 			<?php foreach ($stores as $store):?>
 				<li store="<?php echo $store['Store']['name'];?>"
 					store-address="<?php echo $store['Store']['address'];?>"

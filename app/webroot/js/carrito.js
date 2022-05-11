@@ -16,6 +16,7 @@ var selectStore = e => {
   $('.delivery-cost').addClass('hidden')
   format_total = formatNumber(parseFloat(total_orig) - coupon)
   fxTotal(format_total)
+  onSuccessAlert(`Usted seleccionó takeaway para retirar por sucursal - ${e.textContent} - `);
 	cargo = 'takeaway'
 }
 
