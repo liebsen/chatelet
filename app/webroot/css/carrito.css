@@ -9,6 +9,13 @@
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
 
+.is-capitalize {
+  text-transform: capitalize !important;
+}
+.p {
+	margin:10px 0px;
+}
+
 .carrito-row {
 	padding-top: 1rem;
 	max-width: 50rem;

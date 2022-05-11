@@ -1,6 +1,21 @@
 function isDateBeforeToday(date) {
     return new Date(date.toDateString()) < new Date(new Date().toDateString());
 }
+
+function selectShipping (id, cost) {
+	var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
+	if (cost <= 0) {
+		return setTimeout( "onErrorAlert('El servicio de oca no está disponible en este momento, intente en unos instantes.')" , 200);
+	}
+	$('.delivery-cost').removeClass('hidden')
+	$('.delivery-cost').addClass('fadeIn')
+	$('#subtotal_envio').val(cost);
+	$('.cost_delivery').text( formatNumber(cost));		
+	$('.shipping-option-selected').text(id)	
+	let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
+	fxTotal(total)
+}
+
 $(function(){
 	var subtotal = $('#subtotal_compra').val();
 	callStart = function(){
@@ -43,10 +58,11 @@ $(function(){
 		if (timeout2) {
 			clearTimeout(timeout2)
 		}
-		let t = this
+		var url = $(this).data('url')
 		var total_orig = $('#subtotal_compra').val()
 		var cp 	= $('.input-cp').val();
-
+		
+		document.querySelector('.shipping-block').classList.add('hidden')
 		$('.input-cp').removeClass('ok');				
 		$('.delivery-cost').addClass('hidden')
 		$('.takeaway-options li').removeClass('selected')
@@ -56,8 +72,6 @@ $(function(){
 		}
 
 		timeout2 = setTimeout(function () {
-			var url = $(t).data('url');
-			var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 			var cost = 0
 			$('#free_delivery').text('');
 			$('.delivery-cost').addClass('hidden')
@@ -74,33 +88,25 @@ $(function(){
 						// $('#free_delivery').text('Envio gratis!');
 					}else{
 						if (json.rates) {
-							var rates = `<ul class="generic-select shipping-options">`
-							Object.keys(json.rates).forEach(i => {
-								const price = json.rates[i].price
-								rates+= `<li shipping="${i}" onclick="selectShipping(this)" class="shipping-logo" style="background-image: url(/images/chevron_right_pink.svg), url(/images/${i}.svg)"><span class="text-uppercase">$${price}</span></li>`
+							var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
+							Object.keys(json.rates).forEach(tag => {
+								const price = json.rates[tag].price
+								rates+= `<li shipping="${tag}" onclick="selectShipping('${tag}',${parseInt(price)})" class="shipping-logo" style="background-image: url(/images/chevron_right_pink.svg), url(/images/${tag}.svg)"><span class="text-uppercase">$${price}</span></li>`
 							})
 							rates+= `</ul>`
-							document.querySelector('.shipping-block').innerHTML = rates
-							document.querySelector('.shipping-block').classList.remove('hidden')
+							document.querySelector('.shipping-block .slot').innerHTML = rates
+							$('#delivery_cp').html( `<span class="shipping-option-selected is-capitalize"></span> (${cp})` );
+							localStorage.setItem('lastcp', cp)		
+							setTimeout(() => {
+								$('.input-cp').removeClass('wrong');
+								$('.input-cp').addClass('ok');
+								onSuccessAlert('Codigo Postal válido');
+								document.querySelector('.shipping-block').classList.remove('hidden')	
+							}, 750)
 						} else {
 							timeout = setTimeout( "onErrorAlert('Error al solicitar cotizacion. Por favor intente otra vez en unos instantes.')" , 200);
 						}
-						cost = parseInt(json.price)
-						if (cost <= 0) {
-							return setTimeout( "onErrorAlert('El servicio de oca no está disponible en este momento, intente en unos instantes.')" , 200);
-						}
-						$('.delivery-cost').removeClass('hidden')
-						$('.delivery-cost').addClass('fadeIn')
-						$('#subtotal_envio').val(cost);
-						$('#delivery_cp').text( `(${cp})` );
-						$('.cost_delivery').text( formatNumber(cost));
 					}
-					let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
-					fxTotal(total)
-					$('.input-cp').removeClass('wrong');
-					$('.input-cp').addClass('ok');
-					onSuccessAlert('Codigo Postal válido');
-					localStorage.setItem('lastcp', cp)
 				} else {
 					$('.input-cp').addClass('wrong');
 					$('#cost').text( parseInt(0) );
@@ -112,6 +118,7 @@ $(function(){
 			});
 		}, 2000)
 	});
+
 
 	if ($('.input-cp').val()) {
 		$('.input-cp').keyup()

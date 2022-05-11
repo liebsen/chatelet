@@ -7,12 +7,12 @@
 	<hr>
 	<div class="col-xs-12 shipment-options shipping">
 		<?php if(!$freeShipping): ?>
-		<h3 id="heading" class="cargo-title">Costo de Envio // <span>Oca</span></h3>
+		<h3 id="heading" class="cargo-title">Costo de Envío // <span>Oca</span></h3>
 		<?php else: ?>
 		<h3 class="text-success">Envío gratuito // <span>Oca</span></h3>
 		<?php endif ?>		
 		<?php if(!$freeShipping): ?>
-		<p style="margin:10px 0px">
+		<p class="p">
 			<i>
 				<small>Para envíos a domicilio ingrese su código postal</small>
 			</i>
@@ -28,7 +28,16 @@
         </svg>				
 			</span>
 		</div>
-		<div class="form-group is-flex shipping-block hidden">
+		<div class="form-group shipping-block hidden">
+			<div>
+					<p class="p">
+						<i>
+							<small>Seleccione una empresa para realizar el envío</small>
+						</i>
+					</p>
+			</div>
+			<div class="slot">
+			</div>
 		</div>
 		<?php endif ?>		
 		<!--div class="form-group">
