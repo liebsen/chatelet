@@ -133,7 +133,7 @@
 				<div class="carrito-col">
 				<?php 
 					if (isset($carro) && !empty($carro)) {
-						echo $this->element('oca', array('freeShipping' => $freeShipping));
+						echo $this->element('shipping', array('freeShipping' => $freeShipping));
 						echo $this->element('cupon', array('total' => $total));
 						// echo $this->element('cart-toolbox', array('freeShipping' => $freeShipping, 'total' => $total));
 					}					

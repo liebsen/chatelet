@@ -65,7 +65,7 @@ $(function(){
 			$.getJSON( url+'/'+cp , function(json, textStatus) {
 				callEnd();
 				clearTimeout(timeout);
-				if( json.valid ){
+				if( json.rates ){
 					$('.products-total').removeClass('hidden')
 					//free delivery
 					if (json.freeShipping){  
@@ -73,6 +73,18 @@ $(function(){
 						// $('#subtotal_envio').val( 0 );
 						// $('#free_delivery').text('Envio gratis!');
 					}else{
+						if (json.rates) {
+							var rates = `<ul class="generic-select shipping-options">`
+							Object.keys(json.rates).forEach(i => {
+								const price = json.rates[i].price
+								rates+= `<li shipping="${i}" store-address="9 de Julio 1495" onclick="selectShipping(this)"><img src="/images/${i}.svg" height="30"/><span class="text-uppercase">${price}</span></li>`
+							})
+							rates+= `</ul>`
+							document.querySelector('.shipping-block').innerHTML = rates
+							document.querySelector('.shipping-block').classList.remove('hidden')
+						} else {
+							timeout = setTimeout( "onErrorAlert('Error al solicitar cotizacion. Por favor intente otra vez en unos instantes.')" , 200);
+						}
 						cost = parseInt(json.price)
 						if (cost <= 0) {
 							return setTimeout( "onErrorAlert('El servicio de oca no está disponible en este momento, intente en unos instantes.')" , 200);

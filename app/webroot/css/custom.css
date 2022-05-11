@@ -421,10 +421,10 @@ footer .bottom a.ig { background-position: -101px -286px; }
   flex-direction: column;
 }
 
-.spinner-input {
-    position: relative;
-    top: 0.5rem;
-    right: 2.5rem;
+.spinner-container {
+  position: relative;
+  top: 0.35rem;
+  right: 2.5rem;
 }
 
 .name {

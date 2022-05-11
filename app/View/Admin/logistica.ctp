@@ -17,7 +17,7 @@
 			<?php foreach ($logistics as $key => $logistic): ?>        
 				<tr>
 					<td>
-						<?=$logistic['Logistic']['code']?>
+						<?=$logistic['Logistic']['title']?>
 					</td>
 					<td>
 						<?=$logistic['Logistic']['code']?>

@@ -4,7 +4,10 @@ require_once(APP . 'Vendor' . DS . 'curl.php');
 
 class CarritoController extends AppController
 {
-	public $uses = array('Product', 'ProductProperty', 'Store', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook', 'Coupon');
+	private $andreani_ep = 'https://apisqa.andreani.com'; 
+	// private $andreani_ep = 'https://apis.andreani.com'; 
+
+	public $uses = array('Product', 'ProductProperty', 'Store', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook', 'Coupon', 'Logistic');
 	public $components = array("RequestHandler");
 
 	public function test() {
@@ -229,21 +232,23 @@ class CarritoController extends AppController
 	{
 		$data = array('count' => 0, 'price' => 0);
 		$items = $this->Session->read('Carro');
-		foreach ($items as $key => $item) {
-			$data['count'] ++;
-			$data['price'] += $item['discount'] ?: $item['price'];
-		}
-		$package = $this->Package->find('first',array('conditions' => array( 'Package.amount_min <=' => $data['count'] , 'Package.amount_max >=' => $data['count'] )));
-		if(!empty($package)){
-			$data['package']= $package['Package'];
-			$data['weight'] = $package['Package']['weight']/1000;
-			$data['volume'] = ($package['Package']['width']/100)*($package['Package']['height']/100)*($package['Package']['depth']/100);
-			return $data;
+		if ($items) {
+			foreach ($items as $key => $item) {
+				$data['count'] ++;
+				$data['price'] += $item['discount'] ?: $item['price'];
+			}
+			$package = $this->Package->find('first',array('conditions' => array( 'Package.amount_min <=' => $data['count'] , 'Package.amount_max >=' => $data['count'] )));
+			if(!empty($package)){
+				$data['package']= $package['Package'];
+				$data['weight'] = $package['Package']['weight']/1000;
+				$data['volume'] = ($package['Package']['width']/100)*($package['Package']['height']/100)*($package['Package']['depth']/100);
+				return $data;
+			}
 		}
 		return false;
 	}
 
-	private function checkCP($cp){
+	private function checkOcaCP($cp){
 		$oca = new Oca();
 		$centers = $oca->getCentrosImposicionPorCP( $cp );
 		if( !empty($centers) ){
@@ -373,11 +378,75 @@ class CarritoController extends AppController
 		$data = $this->getItemsData();
 		$unit_price = $data['price'];
 		if(!empty($data['discount']) && !empty((float)(@$data['discount']))) {
-            $unit_price = @$data['discount'];
-        }
+      $unit_price = @$data['discount'];
+    }
 
 		$freeShipping = intval($unit_price)>=intval($shipping_price['Setting']['value']);
 
+		$json = array(
+			'freeShipping' => $freeShipping,
+			'rates' => [],
+			'itemsData' => $data
+		);
+
+		if(!empty($data)){
+			$logistics = $this->Logistic->find('all',[
+				'conditions' => ['enabled' => true]
+			]);
+
+			foreach($logistics as $logistic) {
+				$item = $logistic['Logistic'];
+				$code = $item['code'];
+				$row = [];
+				if(method_exists($this, "calculate_shipping_{$code}")) {
+					$row = $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price);
+				} else {
+					if ($item['zips'] === '' || in_array($cp, explode(' ', $item['zips']))) {
+						$row = [
+							'price' => 100,
+							'valid' => 1,
+							'centros' => []
+						];
+					}
+				}
+
+				if (!isset($json['rates'][$item['code']])) {
+					$json['rates'][$item['code']] = [];
+				}
+
+				$json['rates'][$item['code']] = $row;
+			}
+		}
+
+		return json_encode($json);
+	}
+
+	public function andreani_cotiza () {
+		$this->autoRender = false;
+		$data = $this->getItemsData();
+		$cp = '1400';
+		$this->calculate_shipping_andreani($data, $cp, $data['price']);
+	}
+	
+	private function calculate_shipping_andreani ($data, $cp, $price) {
+		$contrato = '300006611';
+		$cliente = 'CL0003750';
+		$width = $data['package']['width'];
+		$height = $data['package']['height'];
+		$depth = $data['package']['depth'];
+		$width = $data['package']['width'];
+		$weight = round($data['package']['weight'] / 1000);
+		$url = "{$this->andreani_ep}/v1/tarifas?cpDestino={$cp}&contrato=300006611&cliente=CL0003750&sucursalOrigen=BAR&bultos[0][valorDeclarado]={$price}&bultos[0][volumen]=200&bultos[0][kilos]={$weight}&bultos[0][altoCm]={$depth}&bultos[0][largoCm]={$height}&bultos[0][anchoCm]={$width}";
+
+		$response = json_decode(file_get_contents($url));
+		return [
+			'price' => (float) $response->tarifaConIva->total,
+			'centros' => [],
+			'valid' => true,
+		];
+	} 
+
+	private function calculate_shipping_oca ($data, $cp, $price) {
 		if(!empty($data)){
 			$oca = new Oca();
 			//$PesoTotal, $VolumenTotal, $CodigoPostalOrigen, $CodigoPostalDestino, $CantidadPaquetes, $ValorDeclarado, $Cuit, $Operativa
@@ -387,28 +456,25 @@ class CarritoController extends AppController
 				1708 ,
 				$cp ,
 				1 ,
-				intval($unit_price) ,
+				intval($price) ,
 				'30-71119953-1',
 				271263
 				//96637
 			);
-		}else{
+		} else {
 			$response = array();
 		}
 
 		//CP Check
-		$centros = $this->checkCP($cp);
-
+		$centros = $this->checkOcaCP($cp);
 		//Price
-		$price = (!empty($response[0]['Precio'])) ? (int)$response[0]['Precio'] : 0 ;
+		$price = !empty($response[0]['Precio']) ? (int) $response[0]['Precio'] : 0;
 
-		return json_encode(array(
-			'freeShipping' => $freeShipping,
+		return [
 			'price' => $price,
-			'valid' => isset($centros) && $centros ? 1 : 0,
 			'centros' => $centros,
-			'itemsData' => $data
-		));
+			'valid' => isset($centros) && $centros ? 1 : 0,
+		];
 	}
 
 	public function sale() {
@@ -734,7 +800,8 @@ class CarritoController extends AppController
 
 				$carro[] = $product;
 				error_log('[carrito] '.json_encode($carro));
-				$data = $this->applyPromosFromCart($carro);
+				$data = $this->getComputedCart($carro);
+				// $this->applyPromosFromCart($carro);
 				error_log('[carrito] '.json_encode($data));
 				$this->Session->write('Carro', $data);
 
@@ -743,6 +810,10 @@ class CarritoController extends AppController
 			}
 		}
 		return json_encode(array('success' => false));
+	}
+
+	private function getComputedCart ($data) {
+		return $this->applyPromosFromCart($data ?: $this->Session->read('Carro'));
 	}
 
 	private function applyPromosFromCart($carro) {
@@ -832,8 +903,8 @@ class CarritoController extends AppController
 			$aux[$i] = $value;
 			$i++;
 		}
-		$this->Session->write('Carro', $this->applyPromosFromCart($aux));
 
+		$this->Session->write('Carro', $this->getComputedCart($aux));
 		return json_encode($item);
 		// return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 	}
@@ -906,6 +977,4 @@ a la fecha de entrega para que la misma sea exitosa.
 			return $this->redirect(array('controller' => 'home', 'action' => 'index'));
 		}
 	}
-
-
 }
