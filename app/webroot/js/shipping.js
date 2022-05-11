@@ -77,7 +77,7 @@ $(function(){
 							var rates = `<ul class="generic-select shipping-options">`
 							Object.keys(json.rates).forEach(i => {
 								const price = json.rates[i].price
-								rates+= `<li shipping="${i}" store-address="9 de Julio 1495" onclick="selectShipping(this)"><img src="/images/${i}.svg" height="30"/><span class="text-uppercase">${price}</span></li>`
+								rates+= `<li shipping="${i}" onclick="selectShipping(this)" class="shipping-logo" style="background-image: url(/images/chevron_right_pink.svg), url(/images/${i}.svg)"><span class="text-uppercase">$${price}</span></li>`
 							})
 							rates+= `</ul>`
 							document.querySelector('.shipping-block').innerHTML = rates
