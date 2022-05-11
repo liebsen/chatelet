@@ -1,23 +1,8 @@
-function isDateBeforeToday(date) {
-    return new Date(date.toDateString()) < new Date(new Date().toDateString());
-}
-
-function selectShipping (id, cost) {
-	var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
-	if (cost <= 0) {
-		return setTimeout( "onErrorAlert('El servicio de oca no está disponible en este momento, intente en unos instantes.')" , 200);
-	}
-	$('.delivery-cost').removeClass('hidden')
-	$('.delivery-cost').addClass('fadeIn')
-	$('#subtotal_envio').val(cost);
-	$('.cost_delivery').text( formatNumber(cost));		
-	$('.shipping-option-selected').text(id)	
-	let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
-	fxTotal(total)
-}
-
 $(function(){
 	var subtotal = $('#subtotal_compra').val();
+	var timeout = null;
+	var timeout2 = null;
+
 	callStart = function(){
 		$('#cost_container').removeClass('text-muted', 'text-success');
 		$('#cost_container').addClass('hide');
@@ -51,18 +36,38 @@ $(function(){
 	  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
 	}
 
-	var timeout = null;
-	var timeout2 = null;
+	isDateBeforeToday = function(date) {
+	  return new Date(date.toDateString()) < new Date(new Date().toDateString());
+	}
+
+	selectShipping = function (cargo, cost) {
+		var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
+		if (cost <= 0) {
+			return setTimeout( "onErrorAlert('El servicio de oca no está disponible en este momento, intente en unos instantes.')" , 200);
+		}
+
+		$('.delivery-cost').removeClass('hidden')
+		$('.delivery-cost').addClass('fadeIn')
+		$('#subtotal_envio').val(cost);
+		$('.cost_delivery').text( formatNumber(cost));		
+		$('.shipping-cargo').text(cargo)	
+
+		let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
+		fxTotal(total)
+	}
+
 	$('.input-cp').keyup(function(event){
 	  event.preventDefault()
 		if (timeout2) {
 			clearTimeout(timeout2)
 		}
+
 		var url = $(this).data('url')
 		var total_orig = $('#subtotal_compra').val()
 		var cp 	= $('.input-cp').val();
 		
 		document.querySelector('.shipping-block').classList.add('hidden')
+
 		$('.input-cp').removeClass('ok');				
 		$('.delivery-cost').addClass('hidden')
 		$('.takeaway-options li').removeClass('selected')
@@ -89,13 +94,13 @@ $(function(){
 					}else{
 						if (json.rates) {
 							var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
-							Object.keys(json.rates).forEach(tag => {
-								const price = json.rates[tag].price
-								rates+= `<li shipping="${tag}" onclick="selectShipping('${tag}',${parseInt(price)})" class="shipping-logo" style="background-image: url(/images/chevron_right_pink.svg), url(/images/${tag}.svg)"><span class="text-uppercase">$${price}</span></li>`
+							Object.keys(json.rates).forEach(cargo => {
+								const price = json.rates[cargo].price
+								rates+= `<li shipping="${cargo}" onclick="selectShipping('${cargo}',${parseInt(price)})" class="shipping-logo" style="background-image: url(/images/chevron_right_pink.svg), url(/images/${cargo}.svg)"><span class="text-uppercase">$${price}</span></li>`
 							})
 							rates+= `</ul>`
 							document.querySelector('.shipping-block .slot').innerHTML = rates
-							$('#delivery_cp').html( `<span class="shipping-option-selected is-capitalize"></span> (${cp})` );
+							$('#delivery_cp').html( `<span class="shipping-cargo is-capitalize"></span> (${cp})` );
 							localStorage.setItem('lastcp', cp)		
 							setTimeout(() => {
 								$('.input-cp').removeClass('wrong');
@@ -118,7 +123,6 @@ $(function(){
 			});
 		}, 2000)
 	});
-
 
 	if ($('.input-cp').val()) {
 		$('.input-cp').keyup()
