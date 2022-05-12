@@ -106,14 +106,6 @@
 						<div class="field text-right coupon-discount hidden animated speed">
 							<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="promo-code"></span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
 						</div>
-						<?php if($promosaved):?>
-						<div class="field text-right animated speed slideInUp">
-							<div class="price text-success">
-								<span class="text-weight-thin">Ahorro promo </span>
-								$<span class=""><?= \price_format($promosaved) ?></span>
-							</div>
-						</div>
-						<?php endif ?>
 						<hr>
 						<div class="field text-right">
 							<div class="cost_total-container animated speed fadeIn delay">
