@@ -152,8 +152,8 @@
 	background-color: #f8f8f8;
 	position: relative;
 	display: inline-block;
-	border-radius: 5px;
-	box-shadow: 2px 2px 0 #6663;
+	border-radius: 0.25rem;
+	box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.1);
 }
 
 #siguiente-block {
@@ -285,7 +285,7 @@ a.pay{
 		padding-right: 1rem;
 	}
 	.carrito-items .price {
-		padding: 0.25rem 0;
+		margin: 0;
 		text-align: right;
 	}
 }
