@@ -35,8 +35,10 @@
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-6 boxs">
-                        <p><strong>Los pedidos serán despachados entre las 48 y 72 hs hábiles</strong></p>
-                        <p><strong>Durante acciones especiales como Hot Sale, Cybermonday, black friday y promociones en el sitio web los tiempos de procesamiento, envío y entrega pueden verse afectados.</strong></p>
+                        <div class="boxs-reframe">
+                            <p><strong>Los pedidos serán despachados entre las 48 y 72 hs hábiles</strong></p>
+                            <p><strong>Durante acciones especiales como Hot Sale, Cybermonday, black friday y promociones en el sitio web los tiempos de procesamiento, envío y entrega pueden verse afectados.</strong></p>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <h3 class="text-left">Envío por OCA</h3>
@@ -79,8 +81,10 @@
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-6 boxs">
-                        <p>La respuesta 'Número Inexistente' puede darse si la estampilla no está cargada en el sistema de OCA pero el paquete está enviado.</p>
-                        <p>Si el estado del envio es 'En sucursal de destino', podés llamar e ir a buscar el paquete vos mismo. De todas maneras, podés esperar a recibirlo en la dirección de entrega.</p>
+                        <div class="boxs-reframe">
+                            <p>La respuesta 'Número Inexistente' puede darse si la estampilla no está cargada en el sistema de OCA pero el paquete está enviado.</p>
+                            <p>Si el estado del envio es 'En sucursal de destino', podés llamar e ir a buscar el paquete vos mismo. De todas maneras, podés esperar a recibirlo en la dirección de entrega.</p>
+                        </div>
                     </div>
                 </div>
             </div>
