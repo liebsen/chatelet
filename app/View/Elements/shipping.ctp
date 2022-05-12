@@ -7,7 +7,7 @@
 	<hr>
 	<div class="col-xs-12 shipment-options shipping">
 		<?php if(!$freeShipping): ?>
-		<h3 id="heading" class="cargo-title">Costo de Envío // <span>Oca</span></h3>
+		<h3 id="heading" class="cargo-title">Costo de Envío</h3>
 		<?php else: ?>
 		<h3 class="text-success">Envío gratuito // <span>Oca</span></h3>
 		<?php endif ?>		
@@ -18,7 +18,7 @@
 			</i>
 		</p>
 		<div class="form-group is-flex">
-			<input type="text" name="" placeholder="ej. 1425" value="" class="input-cp both input-rounded" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'delivery_cost')) ?>" />
+			<input type="text" name="" placeholder="ej. 1400" value="" class="input-cp both input-rounded" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'delivery_cost')) ?>" />
 			&nbsp;
 			<span id="loading" class="hide shipping-loading spinner-container animated">
         <svg class="spinner-input" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
@@ -32,7 +32,7 @@
 			<div>
 					<p class="p">
 						<i>
-							<small>Seleccione la empresa de logística de su confianza para realizar el envío</small>
+							<small>Seleccione la empresa de logística de su confianza para realizar este envío</small>
 						</i>
 					</p>
 			</div>
@@ -49,7 +49,7 @@
 	</div>
 	
 	<div class="col-xs-12 shipment-options takeaway">
-		<h3 id="heading" class="cargo-title">Retiro en Sucursal // <span>Sin cargo de envío</span></h3>
+		<h3 id="heading" class="cargo-title">Retiro en Sucursal</h3>
 		<p style="margin:10px 0px">
 			<i>
 				<small>Solicite esta opción para evitar cargos de envío</small>
