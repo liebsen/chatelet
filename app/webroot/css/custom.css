@@ -760,7 +760,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headhelp .box2 input[type="submit"] { height: 59px; }
 	#desarrollo { font-size: 16px; }
 	#desarrollo .boxs { font-size: 1rem; }
-	#desarrollo .boxs:first-child { background-size: 100px; padding-left: 130px; }
+	#desarrollo .boxs:first-child { background-size: 100px; padding-left: 11rem; }
 	#desarrollo .boxs:last-child { background-size: 150px; padding-left: 170px; }
 	#desarrollo a.bt { 
     padding: 10px 50px; 
