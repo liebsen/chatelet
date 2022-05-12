@@ -636,8 +636,8 @@ class CarritoController extends AppController
 		// Add Delivery
 		$delivery_data = json_decode( $this->delivery_cost($user['postal_address'], $user['shipping']),true);
 		$delivery_cost = 0;
-		if (isset($delivery_data[0]['price'])) {
-			$delivery_cost = (int) $delivery_data[0]['price'];
+		if (isset($delivery_data['rates'][$user['shipping']]['price'])) {
+			$delivery_cost = (int) $delivery_data['rates'][$user['shipping']]['price'];
 		}
 		
 		//shipping-code 
