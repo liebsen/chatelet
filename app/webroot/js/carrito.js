@@ -55,10 +55,10 @@ $(document).ready(function() {
 				onErrorAlert('Por favor seleccione una empresa de logística para el envío del producto o seleccione retiro en sucursal');	
 				return false;
 			} else {
-				if (shipping_cargo.attr('cargo')) {
-					shipping = shipping_cargo.attr('cargo')
+				if (shipping_cargo.attr('shipping')) {
+					shipping = shipping_cargo.attr('shipping')
 				} else {
-					onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal (1)');
+					onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal (2)');
 					return false;
 				}
 			}

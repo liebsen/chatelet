@@ -381,7 +381,7 @@ class CarritoController extends AppController
 		$this->autoRender = false;
 
 		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') {
-			$dummy = '{"freeShipping":false,"rates":{"oca":{"price":799,"centros":[{"idCentroImposicion":"51","IdSucursalOCA":"27","Sigla":"EQS","Descripcion":"ESQUEL                        ","Calle":"MITRE","Numero":"777  ","Torre":" ","Piso":"     ","Depto":"    ","Localidad":"ESQUEL                   ","IdProvincia":"9","idCodigoPostal":"19681","Telefono":"02945-451164   ","eMail":"","Provincia":"CHUBUT                        ","CodigoPostal":"9200    "}],"valid":1},"andreani":{"price":5295.98,"centros":[],"valid":true}},"itemsData":{"count":2,"price":8280,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}';
+			$dummy = '{"valid": 1,"freeShipping":false,"rates":{"oca":{"price":799,"centros":[{"idCentroImposicion":"51","IdSucursalOCA":"27","Sigla":"EQS","Descripcion":"ESQUEL                        ","Calle":"MITRE","Numero":"777  ","Torre":" ","Piso":"     ","Depto":"    ","Localidad":"ESQUEL                   ","IdProvincia":"9","idCodigoPostal":"19681","Telefono":"02945-451164   ","eMail":"","Provincia":"CHUBUT                        ","CodigoPostal":"9200    "}],"valid":1},"andreani":{"price":5295.98,"centros":[],"valid":true}},"itemsData":{"count":2,"price":8280,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}';
 			return json_encode(json_decode($dummy));
 		}
 
@@ -400,6 +400,7 @@ class CarritoController extends AppController
 
 		$json = array(
 			'freeShipping' => $freeShipping,
+			'valid' => 1,
 			'rates' => [],
 			'itemsData' => $data
 		);
@@ -424,7 +425,6 @@ class CarritoController extends AppController
 					if ($item['zips'] === '' || in_array($cp, explode(' ', $item['zips']))) {
 						$row = [
 							'price' => 100,
-							'valid' => 1,
 							'centros' => []
 						];
 					}
@@ -433,7 +433,6 @@ class CarritoController extends AppController
 				if (!isset($json['rates'][$item['code']])) {
 					$json['rates'][$item['code']] = [];
 				}
-
 				$json['rates'][$item['code']] = $row;
 			}
 		}

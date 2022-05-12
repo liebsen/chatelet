@@ -119,6 +119,7 @@ $(function(){
 	$('#regalo').prop('checked', carrito.regalo)
 	$('.store-address').text([carrito.store, carrito.store_address].join(', '))
 	Object.keys(carrito).forEach(key => {
+		console.log(key, carrito[key])
 		$('#checkout-form').find(`input[name='${key}']`).val(carrito[key])
 	})
 	$('#checkout-form').submit(function () {
