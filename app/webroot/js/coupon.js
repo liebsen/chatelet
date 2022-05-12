@@ -5,20 +5,27 @@
     if (timeout) {
       clearTimeout(timeout)
     }
-    let t = this
+    var url = $(this).data('url');    
+    document.querySelector('.coupon-loading').classList.remove('fadeIn')
+    document.querySelector('.coupon-loading').classList.add('fadeIn')
+    document.querySelector('.coupon-loading').classList.remove('hide')
     event.preventDefault();
     timeout = setTimeout(function () {
-      var url = $(t).data('url');
       var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
       var coupon  = $('.input-coupon').val();
       var total_orig = $('#subtotal_compra').val()
       var delivery_cost = $('#subtotal_envio').val() || 0
       var c2 = event.target.value
       $('#free_delivery').text('');
-      document.querySelector('.coupon-loading').classList.remove('hide')
-      // document.querySelector('.coupon-discount').classList.add('hidden')
       $.post( url, { coupon: coupon }, function(json, textStatus) {
-        document.querySelector('.coupon-loading').classList.add('hide')
+        setTimeout(() => {
+          document.querySelector('.coupon-loading').classList.remove('fadeOut', 'fadeIn')
+          document.querySelector('.coupon-loading').classList.add('fadeOut')
+          document.querySelector('.coupon-loading').classList.add('hide')
+        }, 800)
+        setTimeout(() => {
+          document.querySelector('.coupon-loading').classList.add('hide')
+        }, 900)
         clearTimeout(timeout)
         if( json.status == 'success' ) {
           let coupon_type = json.data.coupon_type
@@ -33,9 +40,8 @@
           }
           total = parseFloat(total).toFixed(2)
           discounted = formatNumber(parseFloat(total_orig - total).toFixed(2))
+
           $('.coupon_bonus').text( discounted )
-
-
           $('.products-total').removeClass('hidden')
           $('.coupon-discount').removeClass('hidden')
           $('.coupon-discount').addClass('fadeIn')
@@ -43,7 +49,7 @@
           // console.log(parseFloat($('#cost').text()));
           $('.input-coupon').removeClass('wrong');
           $('.input-coupon').addClass('ok');
-          onSuccessAlert('Cupón válido');
+          onSuccessAlert(`${json.data.code}`, 'Cupón válido');
           $('.coupon-text').html(`<div class="alert alert-success" role="alert"><h3>${json.data.code}</h3><p>${json.data.info}</p></div>`)
           $('.coupon-text').removeClass('fadeIn')
           $('.coupon-text').addClass('fadeIn')
@@ -67,7 +73,7 @@
           $('#cost').text( '0' );
           format_total = formatNumber(parseFloat(total_orig) + parseFloat(delivery_cost))            
           fxTotal(formatNumber(format_total), true)
-          timeout = setTimeout( `onErrorAlert('${json.message}')` , 200);
+          timeout = setTimeout( `onErrorAlert('${json.title}', '${json.message}')` , 200);
         }
         // document.querySelector('processed-coupon-data').classList.remove('hidden')
         // document.querySelector('processed-coupon-data').classList.add('fadeIn')

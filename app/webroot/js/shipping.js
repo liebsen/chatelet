@@ -4,30 +4,40 @@ $(function(){
 	var timeout2 = null;
 
 	callStart = function(){
-		$('#cost_container').removeClass('text-muted', 'text-success');
-		$('#cost_container').addClass('hide');
-		$('#loading').removeClass('hide');
+		setTimeout(() => {
+			$('#cost_container').removeClass('text-muted', 'text-success');
+			$('#cost_container').addClass('hide');
+			$('#loading').removeClass('hide');
+		}, 50)
 	}
 
 	callEnd = function(){
 		cargo = 'shipment'
-		$('#loading').addClass('hide');
-		$('#cost_container').removeClass('hide');
-		$('#cost_container').addClass('text-success');
+		$('.shipping-loading').removeClass('animated fadeOut');
+		$('#cost_container').removeClass('animated fadeIn');
+		setTimeout(() => {
+			$('.shipping-loading').addClass('animated fadeOut');		
+			$('#cost_container').addClass('animated fadeIn');
+		}, 1)
+		setTimeout(() => {
+			$('#cost_container').removeClass('hide');
+			$('.shipping-loading').addClass('hide');
+			$('#cost_container').addClass('text-success');
+		}, 500)
 	}
 
-	onErrorAlert = function(text){
+	onErrorAlert = function(title, text){
 		$('#growls').remove();
 		$.growl.error({
-			title: 'Error',
+			title: title || 'Error',
 			message: text
 		});
 	}
 
-	onSuccessAlert = function(text){
+	onSuccessAlert = function(title, text){
 		$('#growls').remove();
 		$.growl.notice({
-			title: 'OK',
+			title: title || 'OK',
 			message: text
 		});
 	}
@@ -56,7 +66,7 @@ $(function(){
 
 		let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
 		fxTotal(total)
-		onSuccessAlert(`Usted seleccionó ${cargo.toUpperCase()} como servicio de entrega`);
+		onSuccessAlert(cargo.toUpperCase(), `Usted seleccionó ${cargo.toUpperCase()} como servicio de entrega`);
 	}
 
 	$('.input-cp').keyup(function(event){
@@ -108,7 +118,7 @@ $(function(){
 							setTimeout(() => {
 								$('.input-cp').removeClass('wrong');
 								$('.input-cp').addClass('ok');
-								onSuccessAlert('Codigo Postal válido');
+								onSuccessAlert(cp, 'Codigo Postal válido ✓');
 								document.querySelector('.shipping-block').classList.remove('hidden')	
 							}, 750)
 						} else {

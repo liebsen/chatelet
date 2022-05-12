@@ -279,6 +279,7 @@ class CarritoController extends AppController
 		if (!$coupon) {
 			return json_encode((object) [
 				'status' => 'error',
+				'title' => "Promo desconocida",
 				'message' => "No tenemos esa promo disponible ahora"
 			]);
 		}
@@ -314,7 +315,8 @@ class CarritoController extends AppController
 			$str = implode(', ', $valid);
 			return (object) [
 				'status' => 'error',
-				'message' => "Esta promo solo es válida para días de semana {$str}"
+				'title' => "Restricción horaria",
+				'message' => "Esta promo solo es válida para días de semana {$str}. Puede volver a intentar mas adelante"
 			];
 		}
 		switch ($coupon_type) {
@@ -327,6 +329,7 @@ class CarritoController extends AppController
 				} else {
 					return (object) [
 						'status' => 'error',
+						'title' => "Restricción horaria",
 						'message' => "Esta promo solo es válida para horario {$item['hour_from']} / {$item['hour_until']}"
 					];
 				}
@@ -339,6 +342,7 @@ class CarritoController extends AppController
 				} else {
 					return (object) [
 						'status' => 'error',
+						'title' => "Restricción fecha",
 						'message' => "Esta promo solo es válida para fecha {$item['date_from']} / {$item['date_until']}"
 					];
 				}
@@ -352,6 +356,7 @@ class CarritoController extends AppController
 				} else {
 					return (object) [
 						'status' => 'error',
+						'title' => "Restricción fecha",
 						'message' => "Esta promo solo es válida para fecha {$item['date_from']} {$item['hour_from']} / {$item['date_until']} {$item['hour_until']}"
 					];
 				}
@@ -360,6 +365,7 @@ class CarritoController extends AppController
 			default:
 					return (object) [
 						'status' => 'error',
+						'title' => "Promo desconocida",
 						'message' => "Este código no pertenece a ninguna promoción."
 					];			
 				break;
