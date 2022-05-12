@@ -100,7 +100,7 @@ $(document).ready(function() {
 		preferences.cargo = cargo
 		preferences.store = store
 		preferences.store_address = store_address
-		preferences.ticket_cambio = $('#ticket_cambio').is(':checked') ? 1 : 0
+		preferences.regalo = $('#regalo').is(':checked') ? 1 : 0
 		localStorage.setItem('carrito', JSON.stringify(preferences))
 		window.location.href = location;
 	});
