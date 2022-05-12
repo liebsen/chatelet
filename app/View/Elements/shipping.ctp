@@ -4,8 +4,8 @@
 <div class="row is-rounded">
 	<h3 class="h3 text-center desktop">¿Cómo desea recibir su compra?</h3>
 	<h4 class="h4 text-center mobile">¿Cómo desea recibir su compra?</h4>
-	<hr>
 	<div class="col-xs-12 shipment-options shipping">
+		<hr>
 		<?php if(!$freeShipping): ?>
 		<h3 id="heading" class="cargo-title">Costo de Envío</h3>
 		<?php else: ?>

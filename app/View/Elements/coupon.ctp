@@ -2,8 +2,8 @@
 <div class="row is-rounded">
 	<h3 class="h3 text-center desktop">Cupón de descuento</h3>
 	<h4 class="h4 text-center mobile">Cupón de descuento</h4>
-	<hr>
 	<div class="col-xs-12 shipment-options shipping">
+		<hr>
 		<h3 id="heading" class="cargo-title">Cupón // <span>Ingrese su cupón de descuento</span></h3>
 		<p class="field">
 			<i class="coupon-text animated speed">
