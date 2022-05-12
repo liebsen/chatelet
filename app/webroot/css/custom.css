@@ -1085,9 +1085,10 @@ span.out{
 
 .search-results .search-desc {
     opacity: 0;
-    font-weight: 500;
-    color: #222;
-    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #333;
+    padding: 0.75rem;
     transition: opacity 0.25s ease-in-out; 
     border-radius: 3px;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);    
@@ -1110,31 +1111,43 @@ span.out{
 }
 
 .is-background-search {
-    position: relative;
-    background-color: #f8f8f8;
-    display: flex;
-    align-items: flex-end;
-    padding: 1rem;
-    transition: all 0.25s ease-in-out;
+  position: relative;
+  background-color: #f8f8f8;
+  display: flex;
+  align-items: flex-end;
+  /* padding: 1rem; */
+  transition: all 0.25s ease-in-out;
+  border: 3px solid transparent;
 }
-.is-background-search:hover {
-    filter: contrast(1.25);
+
+.search-item:hover .is-background-search {
+  filter: contrast(1.25);
+  border-color: #999;
 }
-.is-background-search:hover p {
-    opacity: 1;
-    background-color: rgba(255,255,255,0.75);
+
+.search-item:hover p {
+  opacity: 1;
+  background-color: rgba(255,255,255,0.75);
+}
+
+.search-item h2 {
+  transition: all 0.25s ease;  
+}
+
+.search-item:hover h2 {
+  color: #e60088;
 }
 
 .add-no-stock {
-    position: relative;
+  position: relative;
 }
 
 .search-item {
-    opacity: 0;
-    animation-name: fadeIn;
-    animation-duration: 1s;
-    animation-fill-mode: both;
-    animation-delay: 1.5s;
+  opacity: 0;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: 1.5s;
 }
 
 .search-item:nth-child(1) {

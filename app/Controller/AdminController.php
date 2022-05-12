@@ -157,8 +157,8 @@ class AdminController extends AppController {
 		$oca_result = $oca->ingresoORNuevo($sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
 		$sale['def_orden_retiro'] = @$oca_result['retiro'];
 		$sale['def_orden_tracking'] = @$oca_result['tracking'];
-		$t = @$this->Sale->save($sale);
 		$sale['raw_xml'] = @$oca_result['rawXML'];
+		$t = @$this->Sale->save($sale);
 		return $sale;
 	}
 

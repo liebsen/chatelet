@@ -376,7 +376,7 @@ class CarritoController extends AppController
 		}
 	}
 
-	public function delivery_cost($cp = null){
+	public function delivery_cost($cp, $code = null){
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 
@@ -405,8 +405,13 @@ class CarritoController extends AppController
 		);
 
 		if(!empty($data)){
+			$conditions = ['enabled' => true];
+			if ($code) {
+				$conditions['code'] = strtolower($code);
+			}
+
 			$logistics = $this->Logistic->find('all',[
-				'conditions' => ['enabled' => true]
+				'conditions' => $conditions
 			]);
 
 			foreach($logistics as $logistic) {
@@ -630,10 +635,10 @@ class CarritoController extends AppController
 	  }
 
 		// Add Delivery
-		$delivery_data = json_decode( $this->delivery_cost($user['postal_address']) ,true);
+		$delivery_data = json_decode( $this->delivery_cost($user['postal_address'], $user['shipping']),true);
 		$delivery_cost = 0;
-		if (isset($delivery_data['price'])) {
-			$delivery_cost = (int) $delivery_data['price'];
+		if (isset($delivery_data[0]['price'])) {
+			$delivery_cost = (int) $delivery_data[0]['price'];
 		}
 		
 		//shipping-code 
