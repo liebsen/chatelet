@@ -44,12 +44,12 @@
   transition: all 0.4s ease-in-out; }
   .growl.growl-incoming {
     scale: 0.5;
-    transform: translateY(-25rem);
+    transform: translateX(50rem);
     opacity: 0;
     filter: alpha(opacity=0); }
   .growl.growl-outgoing {
     scale: 0.5;
-    transform: translateY(-25rem);
+    transform: translateX(50rem);
     opacity: 0;
     filter: alpha(opacity=0); }
   .growl.growl-small {

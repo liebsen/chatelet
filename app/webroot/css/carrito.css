@@ -69,6 +69,14 @@
 	background-position: left center;
 	text-align: right;
 	padding-right: 2.5rem;
+	min-height: 33px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;	
+}
+
+.shipping-options li {
+	padding: 0.25rem!important;
 }
 
 .generic-select {
@@ -91,6 +99,7 @@
 	background-size: 30px;
 	margin-bottom: 0.25rem;
 	transition: all 0.25s ease;
+	min-height: 44px;
 }
 
 .generic-select li:hover {
