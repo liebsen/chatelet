@@ -104,7 +104,7 @@
 							<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= $this->Number->currency($total, 'ARS', array('places' => 2)) ?></div>
 						</div>
 						<div class="field text-right coupon-discount hidden animated speed">
-							<div class="price text-theme"><span class="text-weight-thin">Descuento </span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
+							<div class="price text-theme"><span class="text-weight-thin">Descuento </span><span class="promo-code"></span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
 						</div>
 						<?php if($promosaved):?>
 						<div class="field text-right animated speed slideInUp">
@@ -134,7 +134,7 @@
 				<?php 
 					if (isset($carro) && !empty($carro)) {
 						echo $this->element('shipping', array('freeShipping' => $freeShipping));
-						echo $this->element('cupon', array('total' => $total));
+						echo $this->element('coupon', array('total' => $total));
 						// echo $this->element('cart-toolbox', array('freeShipping' => $freeShipping, 'total' => $total));
 					}					
 				?>

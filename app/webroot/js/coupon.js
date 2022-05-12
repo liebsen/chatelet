@@ -53,7 +53,7 @@
           $('.coupon-text').html(`<div class="alert alert-success" role="alert"><h3>${json.data.code}</h3><p>${json.data.info}</p></div>`)
           $('.coupon-text').removeClass('fadeIn')
           $('.coupon-text').addClass('fadeIn')
-
+          $('.promo-code').text(json.data.code)
           if(!freeShipping) {
             $('.free-shipping').addClass('hidden')
             format_total = formatNumber(parseFloat(total) + parseFloat(delivery_cost))

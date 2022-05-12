@@ -364,10 +364,14 @@ class CarritoController extends AppController
 			case '':
 			default:
 					return (object) [
+						'status' => 'success',
+						'data' => $item
+					];			
+					/* return (object) [
 						'status' => 'error',
 						'title' => "Promo desconocida",
 						'message' => "Este código no pertenece a ninguna promoción."
-					];			
+					]; */			
 				break;
 		}
 	}
