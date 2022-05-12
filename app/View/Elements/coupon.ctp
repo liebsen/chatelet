@@ -21,6 +21,10 @@
         </svg>
 			</span>
 		</div>
+		<div class="coupon-info alert alert-success animated hidden">
+			<h3 class="coupon-info-title"></h3>
+			<p class="coupon-info-info"></p>
+		</div>
 		<!--div class="form-group">
 			<span id="coupon_data_container" class="text-muted">
 				<p class="field">

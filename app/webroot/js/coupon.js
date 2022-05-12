@@ -9,6 +9,9 @@
     document.querySelector('.coupon-loading').classList.remove('fadeIn')
     document.querySelector('.coupon-loading').classList.add('fadeIn')
     document.querySelector('.coupon-loading').classList.remove('hide')
+    $('.coupon-info').addClass('hidden')
+    $('.coupon-info').removeClass('fadeInRight, fadeOutRight')
+    // $('.coupon-info').html('')
     event.preventDefault();
     timeout = setTimeout(function () {
       var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
@@ -44,15 +47,16 @@
           $('.coupon_bonus').text( discounted )
           $('.products-total').removeClass('hidden')
           $('.coupon-discount').removeClass('hidden')
-          $('.coupon-discount').addClass('fadeIn')
+          $('.coupon-discount').addClass('fadeInRight')
 
           // console.log(parseFloat($('#cost').text()));
           $('.input-coupon').removeClass('wrong');
           $('.input-coupon').addClass('ok');
           onSuccessAlert(`${json.data.code}`, 'Cupón válido');
-          $('.coupon-text').html(`<div class="alert alert-success" role="alert"><h3>${json.data.code}</h3><p>${json.data.info}</p></div>`)
-          $('.coupon-text').removeClass('fadeIn')
-          $('.coupon-text').addClass('fadeIn')
+          $('.coupon-info-title').text(json.data.code)
+          $('.coupon-info-info').text(json.data.info)
+          $('.coupon-info').removeClass('hidden')
+          $('.coupon-info').addClass('fadeInRight')
           $('.promo-code').text(json.data.code)
           if(!freeShipping) {
             $('.free-shipping').addClass('hidden')
