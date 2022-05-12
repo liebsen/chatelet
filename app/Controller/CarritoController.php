@@ -511,7 +511,7 @@ class CarritoController extends AppController
 		$user['floor'] = (!empty($user['floor']))?$user['floor']:'';
 		$user['depto'] = (!empty($user['depto']))?$user['depto']:'';
 		$user['coupon'] = (!empty($user['coupon']))?strtoupper($user['coupon']):'';
-		$user['regalo'] = (isset($user['regalo']) || $user['regalo']==='on'?1:0);
+		$user['regalo'] = (isset($user['regalo']) && $user['regalo']?1:0);
 		if(!$this->request->is('post') || $user['cargo'] === 'shipment' && empty($user['postal_address']) || empty($user['street_n']) || empty($user['street']) || empty($user['localidad']) || empty($user['provincia']) || empty($user['name']) || empty($user['surname']) || empty($user['email']) || empty($user['telephone'])){
 			$this->Session->setFlash(
                 'Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.',
