@@ -83,7 +83,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .text-theme {
   color: #f50081!important;
 }
-
+.text-success {
+  color: #11a611!important;
+}
 .wrapper { margin: 0 auto; max-width: 1270px; }
 .link { color: #f50081; font-weight: 600; }
 .link:hover { color: #f50081; font-weight: 600; text-decoration: underline; }
@@ -445,7 +447,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
   font-weight: 800;
   font-family: 'Poppins', Verdana, Arial, sans-serif;
   margin:10px auto 20px;
-  color: #444;
+  /* color: #444; */
 }
 
 #listShop a .hover {

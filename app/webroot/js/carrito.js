@@ -3,11 +3,14 @@ var selectStore = e => {
 	var total_orig = $('#subtotal_compra').val()
 	var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 	
-	document.querySelector('.shipping-options').classList.remove('zoomInRight')
-	document.querySelector('.shipping-options').classList.add('zoomOutRight')
-	setTimeout(() => {
-		document.querySelector('.shipping-block').classList.add('hidden')		
-	}, 500)
+	if (document.querySelector('.shipping-options')) {
+		document.querySelector('.shipping-options').classList.remove('zoomInRight')
+		document.querySelector('.shipping-options').classList.add('zoomOutRight')
+		setTimeout(() => {
+			document.querySelector('.shipping-block').classList.add('hidden')		
+		}, 500)
+	}
+	$('.free-shipping').addClass('hidden')
 	$('.input-cp').removeClass('ok')
 	$('.input-cp').val('')
 	$('#cost_container').html('')

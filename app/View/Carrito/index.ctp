@@ -89,7 +89,7 @@
 						</div>
 						<?php if($freeShipping):?>
 						<div class="field text-right free-shipping animated speed">
-							<div class="price text-theme">
+							<div class="price text-success">
 								<span class="text-weight-thin">Envío </span>
 								<span id="delivery_cp"></span> <span>gratuito</span></div>
 						</div>
@@ -104,11 +104,11 @@
 							<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= $this->Number->currency($total, 'ARS', array('places' => 2)) ?></div>
 						</div>
 						<div class="field text-right coupon-discount hidden animated speed">
-							<div class="price text-theme"><span class="text-weight-thin">Descuento </span><span class="promo-code"></span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
+							<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="promo-code"></span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
 						</div>
 						<?php if($promosaved):?>
 						<div class="field text-right animated speed slideInUp">
-							<div class="price text-theme">
+							<div class="price text-success">
 								<span class="text-weight-thin">Ahorro promo </span>
 								$<span class=""><?= \price_format($promosaved) ?></span>
 							</div>

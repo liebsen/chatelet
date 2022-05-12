@@ -58,24 +58,22 @@
           $('.coupon-info').removeClass('hidden')
           $('.coupon-info').addClass('fadeInRight')
           $('.promo-code').text(json.data.code)
-          if(!freeShipping) {
-            $('.free-shipping').addClass('hidden')
-            format_total = formatNumber(parseFloat(total) + parseFloat(delivery_cost))
-            $('#cost').text( format_total );
-          } else {
-            format_total = formatNumber(parseFloat(total_orig) + parseFloat(delivery_cost))
-            $('.coupon-discount').addClass('hidden')            
-          }
+          $('.free-shipping').addClass('hidden')
+          format_total = formatNumber(parseFloat(total) + parseFloat(delivery_cost))
+          $('#cost').text( format_total );
+          console.log(1, format_total)
           fxTotal(format_total)
           carrito.coupon = coupon.toUpperCase()
           localStorage.setItem('carrito', JSON.stringify(carrito))
         }else{
           $('.coupon-discount').addClass('hidden')
-          fxTotal(formatNumber(total_orig))
+
+          // fxTotal(formatNumber(total_orig))
           $('.input-coupon').removeClass('ok');
           $('.input-coupon').addClass('wrong');
           $('#cost').text( '0' );
           format_total = formatNumber(parseFloat(total_orig) + parseFloat(delivery_cost))            
+          console.log(2, format_total)
           fxTotal(formatNumber(format_total), true)
           timeout = setTimeout( `onErrorAlert('${json.title}', '${json.message}')` , 200);
         }
