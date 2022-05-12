@@ -33,20 +33,23 @@
     margin-right: auto; }
 
 .growl {
-  opacity: 0.9;
-  filter: alpha(opacity=90);
+  opacity: 0.95;
+  filter: alpha(opacity=95);
   position: relative;
   border-radius: 4px;
   scale: 1;
+  box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.1);
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out; }
   .growl.growl-incoming {
-    scale: 0.1;
+    scale: 0.25;
+    transform: translateY(-25rem);
     opacity: 0;
     filter: alpha(opacity=0); }
   .growl.growl-outgoing {
-    scale: 0.1;
+    scale: 0.25;
+    transform: translateY(-25rem);
     opacity: 0;
     filter: alpha(opacity=0); }
   .growl.growl-small {
@@ -77,14 +80,15 @@
   .growl .growl-close {
     cursor: pointer;
     float: right;
-    font-size: 1rem;
+    font-size: 2rem;
     line-height: 1.25rem;
     font-weight: normal;
     font-family: helvetica, verdana, sans-serif; }
   .growl .growl-title {
     font-size: 1.5rem;
     font-weight: bold;
-    line-height: 1.25rem; }
+    line-height: 1.5rem;
+    margin-bottom: 0.25rem;}
   .growl .growl-message {
     font-size: 1rem;
     line-height: 1.25rem; }
