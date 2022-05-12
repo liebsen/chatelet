@@ -655,7 +655,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #desarrollo small { color: #908c8e; font-size: 15px; }
 #headhelp .box2 { border-color: #51177d; padding: 70px 90px 80px; }
 #headhelp .box2 h3 { background: url(../images/oca.png) no-repeat 25px #51177d; color: #FFF; font-size: 16px; padding: 15px 25px; text-align: right; }
-#headhelp .box2 input[type="text"] { background: transparent; border: 2px solid #51177d; font-size: 16px; padding: 15px 11px; text-align: center; width: 48%; }
+#headhelp .box2 input[type="text"] { background: transparent; border: 2px solid #51177d; font-size: 16px; padding: 15px 11px; text-align: center; width: 48%; min-height: 60px;}
 #headhelp .box2 input[type="submit"] { background: #51177d; border: none; color: #FFF; float: right; font-size: 16px; height: 60px; width: 48%; }
 #desarrollo { overflow: hidden; padding: 50px 0; }
 #desarrollo .boxs { font-size: 1rem; }
