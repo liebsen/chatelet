@@ -187,7 +187,7 @@ class ShopController extends AppController {
 	}
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
 		$this->autoRender = false;
-		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') {
+		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || $_SERVER['SERVER_NAME'] === 'test.chatelet.com.ar')) {
 			return 1;
 		}
 		$this->SQL = $this->Components->load('SQL');
