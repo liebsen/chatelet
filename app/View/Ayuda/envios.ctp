@@ -24,11 +24,11 @@
         </div>
 
          <section id="optionsHelp">
-            <a href="como_comprar" >¿Como comprar?</a>
-            <a href="envios" class="active">Envíos</a>
-            <a href="metodos_de_pago" >Métodos de pago</a>
-            <a href="politicas_de_cambio">Políticas de cambio</a>
-            <a href="faq" >Preguntas frecuentes</a>
+            <a href="/ayuda/como_comprar" >¿Cómo comprar?</a>
+            <a href="/ayuda/envios" class="active">Envíos</a>
+            <a href="/ayuda/metodos_de_pago" >Métodos de pago</a>
+            <a href="/ayuda/politicas_de_cambio">Políticas de cambio</a>
+            <a href="/ayuda/faq" >Preguntas frecuentes</a>
         </section>
 
         <section id="desarrollo">
