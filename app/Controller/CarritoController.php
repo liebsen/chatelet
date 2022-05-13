@@ -910,7 +910,7 @@ class CarritoController extends AppController
 						}
 					}
 				} else {
-					if ($product['old_price']) {
+					if (isset($product['old_price'])) {
 						$carro[$key]['price'] = $product['old_price'];
 						unset($carro[$key]['old_price']);
 					}					
