@@ -71,9 +71,13 @@
 	let user_cp = '<?php echo $user['postal_address'];?>'
 	let last_cp = localStorage.getItem('lastcp') || false
 	let cp = last_cp
+	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	if (!cp) {
 		cp = user_cp
 	}
-	$('.input-cp').val(cp)
+	console.log(carrito.cargo)
+	if (carrito.cargo === 'shipment') {
+		$('.input-cp').val(cp)
+	}
 	localStorage.setItem('lastcp', cp)
 </script>

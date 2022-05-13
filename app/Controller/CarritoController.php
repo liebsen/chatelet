@@ -465,6 +465,23 @@ class CarritoController extends AppController
 		];
 	} 
 
+	private function andreani_token () {
+		$this->autoRender = false;
+		$uri =  "{$this->andreani_ep}/login";
+		$ch = curl_init($uri);
+		$cred = base64_encode('usuario_test:DI$iKqMClEtM');
+		curl_setopt_array($ch, array(
+	    CURLOPT_HTTPHEADER  => array("Authorization: Basic {$cred}"),
+	    CURLOPT_RETURNTRANSFER  =>true,
+	    CURLOPT_VERBOSE     => 1
+		));
+		$out = curl_exec($ch);
+		curl_close($ch);
+		// echo response output
+		$json = json_decode($out);
+		return $json->token;
+	}
+
 	private function calculate_shipping_oca ($data, $cp, $price) {
 		if(!empty($data)){
 			$oca = new Oca();

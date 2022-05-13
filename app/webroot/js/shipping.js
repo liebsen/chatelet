@@ -3,53 +3,6 @@ $(function(){
 	var timeout = null;
 	var timeout2 = null;
 
-	callStart = function(){
-		setTimeout(() => {
-			$('#cost_container').removeClass('text-muted', 'text-success');
-			$('#cost_container').addClass('hide');
-			$('#loading').removeClass('hide');
-		}, 50)
-	}
-
-	callEnd = function(){
-		cargo = 'shipment'
-		$('.shipping-loading').removeClass('animated fadeOut');
-		$('#cost_container').removeClass('animated fadeIn');
-		setTimeout(() => {
-			$('.shipping-loading').addClass('animated fadeOut');		
-			$('#cost_container').addClass('animated fadeIn');
-		}, 1)
-		setTimeout(() => {
-			$('#cost_container').removeClass('hide');
-			$('.shipping-loading').addClass('hide');
-			$('#cost_container').addClass('text-success');
-		}, 500)
-	}
-
-	onErrorAlert = function(title, text){
-		$('#growls').remove();
-		$.growl.error({
-			title: title || 'Error',
-			message: text
-		});
-	}
-
-	onSuccessAlert = function(title, text){
-		$('#growls').remove();
-		$.growl.notice({
-			title: title || 'OK',
-			message: text
-		});
-	}
-
-	formatNumber = function (num) {
-	  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
-	}
-
-	isDateBeforeToday = function(date) {
-	  return new Date(date.toDateString()) < new Date(new Date().toDateString());
-	}
-
 	selectShipping = function (e, cargo, cost) {
 		var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 		if (cost <= 0) {
@@ -107,6 +60,7 @@ $(function(){
 					}else{
 						if (json.rates) {
 							var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
+
 							Object.keys(json.rates).forEach(cargo => {
 								const price = json.rates[cargo].price
 								rates+= `<li shipping="${cargo}" onclick="selectShipping(this, '${cargo}',${parseInt(price)})"><div class="shipping-logo" style="background-image: url(/images/${cargo}.svg)"><span class="text-uppercase">$${parseInt(price)}</span></div></li>`
@@ -120,6 +74,10 @@ $(function(){
 								$('.input-cp').addClass('ok');
 								onSuccessAlert(cp, 'Codigo Postal válido ✓');
 								document.querySelector('.shipping-block').classList.remove('hidden')	
+								var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+								if (carrito.shipping) {
+									$(`.shipping-options li[shipping="${carrito.shipping}"]`).click()
+								}
 							}, 750)
 						} else {
 							timeout = setTimeout( "onErrorAlert('Error al solicitar cotizacion. Por favor intente otra vez en unos instantes.')" , 200);
