@@ -1,56 +1,48 @@
 <?php
+
 class ShopController extends AppController {
 	public $uses = array('Product', 'ProductProperty','Promo','Catalogo','Category','LookBook');
 	public $helpers = array('Number');
 	// public $components = array('SQL', 'RequestHandler');
 	public $components = array('RequestHandler');
 
-
 	public function beforeFilter() {
-    	parent::beforeFilter();
-    	$this->loadModel('Setting');
-
+  	parent::beforeFilter();
+  	$this->loadModel('Setting');
 		$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
-
-        $setting 	= $this->Setting->findById('image_prodshop');
+    $setting = $this->Setting->findById('image_prodshop');
 		$image_prodshop = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('image_prodshop',$image_prodshop);
-
-        $setting 	= $this->Setting->findById('image_bannershop');
+    $setting = $this->Setting->findById('image_bannershop');
 		$image_bannershop = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('image_bannershop',$image_bannershop);
-
-        $this->loadModel('LookBook');
+    $this->loadModel('LookBook');
 		$lookbook = $this->LookBook->find('all');
 		$this->set('lookBook', $lookbook);
-        unset($setting);
-
-    	$setting 			= $this->Setting->findById('catalog_first_line');
+    unset($setting);
+  	$setting 			= $this->Setting->findById('catalog_first_line');
 		$catalog_first_line = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_first_line',$catalog_first_line);
 		unset($setting);
-
-
 	}
 
-
 	public function index() {
-	    $this->loadModel('Setting');
+	  $this->loadModel('Setting');
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('page_video',$page_video);
 
 		$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
-//var_dump($categories);die;
+		//var_dump($categories);die;
 		$setting 			 = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
-    	$this->render('index');
-
+   	$this->render('index');
 	}
+
 	public function die_general_stock(){
 			$this->autoRender = false;
 			$this->SQL = $this->Components->load('SQL');
@@ -60,7 +52,7 @@ class ShopController extends AppController {
 			if (!empty($all_stock)){
 				foreach ($all_stock as $row){
 					$record = [];
-					echo "------\n".json_encode($row,true);
+					// echo "------\n".json_encode($row,true);
 					$article_id = substr($row['cod_articulo'],0,strpos($row['cod_articulo'],'.'));
 					//echo "article_id: ".$article_id;
 					$existArticle = $this->Product->findByArticle($article_id);
@@ -185,9 +177,10 @@ class ShopController extends AppController {
 			$this->Product->save($product);
 		}
 	}
+
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
 		$this->autoRender = false;
-		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || $_SERVER['SERVER_NAME'] === 'test.chatelet.com.ar')) {
+		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || $_SERVER['SERVER_NAME'] === 'test.chatelet.com.ar') {
 			return 1;
 		}
 		$this->SQL = $this->Components->load('SQL');
@@ -264,7 +257,7 @@ class ShopController extends AppController {
 
 			rsort($products);
 
-           	$this->set('name_categories',$name_categories);
+      $this->set('name_categories',$name_categories);
 			$this->set('products', $products);
 		}
 
@@ -276,7 +269,7 @@ class ShopController extends AppController {
 
 	}
 
-    public function detalle($product_id, $category_id) {
+  public function detalle($product_id, $category_id) {
 		$product = $this->Product->findById($product_id);
 		$category = $this->Category->findById($category_id);
 		$name_categories = $category['Category']['name'];
@@ -306,14 +299,13 @@ class ShopController extends AppController {
 		);
 
 		foreach ($all_but_me as &$products) {
-				$products['Product']['stock'] = 0;
-				if(!empty($products['Product']['article'])){
-					$products['Product']['stock'] = 1;
-				}
+			$products['Product']['stock'] = 0;
+			if(!empty($products['Product']['article'])){
+				$products['Product']['stock'] = 1;
 			}
+		}
 
-
-        // $this->set('details',$details);
+    // $this->set('details',$details);
 		$this->set('category_id',$category_id);
         $this->set('name_categories',$name_categories);
 		$this->set('category', $category);
@@ -343,7 +335,7 @@ class ShopController extends AppController {
 
 	}
 
-	  public function detalletest($product_id, $category_id) {
+	public function detalletest($product_id, $category_id) {
 		$product = $this->Product->findById($product_id);
 		$category = $this->Category->findById($category_id);
 		$name_categories = $category['Category']['name'];
