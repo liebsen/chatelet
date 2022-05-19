@@ -136,40 +136,49 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 .nav>li>a:focus, .nav>li>a:hover { background: none; color: #f50081; }
 .navbar-nav>li>a.user {
-    background: url(../images/sprite.png) no-repeat 8px -38px!important;
-    display: inline-block;
-    height: 50px;
-    padding: 0;
-    width: 54px;
-    font-size: 11px;
-    padding-top: 41px;
-    text-align: center;
-    color: #e398c1;
+  background: url(../images/sprite.png) no-repeat 8px -38px!important;
+  display: inline-block;
+  height: 50px;
+  padding: 0;
+  width: 54px;
+  font-size: 11px;
+  padding-top: 41px;
+  text-align: center;
+  color: #e398c1;
 }
 .navbar-nav>li>a.shop {
-    background: url(../images/sprite.png) no-repeat -41px -38px;
-    display: inline-block;
-    height: 50px;
-    padding: 0;
-    width: 54px;
-    font-size: 11px;
-    padding-top: 41px;
-    text-align: center;
-    color: #e398c1;
+  background: url(../images/sprite.png) no-repeat -41px -38px;
+  display: inline-block;
+  height: 50px;
+  padding: 0;
+  width: 54px;
+  font-size: 11px;
+  padding-top: 41px;
+  text-align: center;
+  color: #e398c1;
 }
 .navbar-nav>li>a.action-search {
-    background: url(../img/lupa.png) no-repeat center;
-    display: inline-block;
-    height: 50px;
-    padding: 0;
-    width: 54px;
-    font-size: 11px;
-    padding-top: 41px;
-    text-align: center;
-    color: #e398c1;
+  background: url(../img/lupa.png) no-repeat center;
+  display: inline-block;
+  height: 50px;
+  padding: 0;
+  width: 54px;
+  font-size: 11px;
+  padding-top: 41px;
+  text-align: center;
+  color: #e398c1;
 }
 .menuLayer {z-index: 12; background: #FFF; border-bottom: 2px solid #efb0d2; left: 0; display: none; padding: 40px 0; position: absolute; top: 85px; width: 100%; }
-.menuLayer a.close { display: block; height: 25px; opacity: 1; position: absolute; right: 10px; top: 10px; width: 25px; }
+.menuLayer a.close { 
+  position: absolute;
+  z-index: 1;
+  display: block; 
+  width: 1.5rem; 
+  height: 1.5rem; 
+  opacity: 1; 
+  right: 1.5rem; 
+  top: 2rem;   
+}
 .menuLayer a.close span { background: #f50081; display: block; height: 2px; margin-top: 12px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
 .menuLayer a.close span:last-child { margin-top: -2px; -ms-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
 .menuLayer img { margin-right: 50px; }
@@ -435,7 +444,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
   font-weight: 500;
   font-family: 'Poppins', Verdana, Arial, sans-serif;
   margin:10px auto 20px;
-  color: #404040;
+  color: #e10d74;
   max-width: 18rem;
   margin: auto;
   min-height: 3rem;
@@ -1606,6 +1615,10 @@ span.count {
 
 .mr-1 {
   margin-right: 1rem;
+}
+
+.is-clickable {
+  cursor: pointer;
 }
 
 @media screen and (max-width:768px), print {

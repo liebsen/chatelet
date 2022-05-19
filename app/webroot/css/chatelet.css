@@ -95,8 +95,7 @@ html, body {
 .dropdown-menu {
 	font-size: 1rem;
 	top: 5.5rem;
-	padding-left: 5px;
-	padding-right: 4px;
+	padding: 1rem;
 }
 
 .dropdown-menu a {
