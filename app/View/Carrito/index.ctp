@@ -84,7 +84,7 @@
 					} ?>
 						<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 						<input type="hidden" id="subtotal_envio" value="" />
-						<div class="field text-right mb-2">
+						<div class="field text-right mb-2 mr-1">
 							<input type="checkbox" id="regalo" value="1" /> <label for="regalo">Es para regalo</label>
 						</div>
 						<?php if($freeShipping):?>
