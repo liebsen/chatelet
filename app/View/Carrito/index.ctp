@@ -52,7 +52,7 @@
 							echo '</div>';
 							echo '</div>';
 							echo '<div class="carrito-item-col">';
-							echo '<span class="name">'. $product['name'] . '</span>';
+							echo '<span class="name is-carrito">'. $product['name'] . '</span>';
 							if (!empty($product['alias'])){
 								echo '<p class="color">Color: <span class="talle">'. $product['alias'] .'</span></p>';
 							}
@@ -118,7 +118,9 @@
 						</div>
 					</div>
 					<?php else: ?>
-					<div class="price text-left">El carrito de compras está vacío.</div><div> Intente agregar productos para comprar.</div>
+					<div class="container">
+						<div class="price text-left">El carrito de compras está vacío.</div><div> Intente agregar productos para comprar.</div>
+					</div>
 					<br><br>
 					<?php endif;?>
 				</div>

@@ -155,7 +155,7 @@
 }
 
 .cart-img {
-	min-height: 135px;
+	min-height: 12rem;
 	background-color: #f8f8f8;
 	position: relative;
 	display: inline-block;
@@ -228,12 +228,13 @@ a.trash {
 	margin-bottom: 0.25rem;
 }
 
-.name {
+.name.is-carrito {
 	display: block;
-	font-weight: bold;
+	font-weight: 400;
+	text-align: left;
 	font-size: 1.25rem;
+	margin-top: 0.25rem;
 	margin-bottom: 0.75rem;
-	letter-spacing: -0.03rem;
 }
 
 a.pink {
