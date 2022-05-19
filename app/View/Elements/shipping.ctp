@@ -2,8 +2,7 @@
 <?php echo $this->Html->css('oca_front.css?v=' . Configure::read('APP_DIST'),array( 'inline' => false )) ?>
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <div class="row is-rounded">
-	<h3 class="h3 text-center desktop">¿Cómo desea recibir su compra?</h3>
-	<h4 class="h4 text-center mobile">¿Cómo desea recibir su compra?</h4>
+	<h3 class="h3 text-center">¿Cómo desea recibir su compra?</h3>
 	<div class="col-xs-12 shipment-options shipping">
 		<hr>
 		<?php if(!$freeShipping): ?>
