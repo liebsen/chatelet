@@ -1,6 +1,13 @@
 <?php
 App::uses('CakeTime', 'Utility');
 require_once(APP . 'Vendor' . DS . 'oca.php');
+
+require __DIR__ . '/../Vendor/andreani/vendor/autoload.php';
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/../Vendor/andreani/');
+$dotenv->load();
+
+use AlejoASotelo\Andreani;
+
 class AdminController extends AppController {
 	public $uses = array('AdminMenu','Promo','Package','SaleProduct','Sale');
 	//public $components = array('SQL', 'RequestHandler');
@@ -47,6 +54,26 @@ class AdminController extends AppController {
 		$this->Auth->logoutRedirect = array('controller' => 'admin', 'action' => 'login');
 		$this->Auth->unauthorizedRedirect = array('controller' => 'admin', 'action' => 'login');
 		$this->layout = 'admin';
+	}
+
+	public function test_andreani() {
+		$this->autoRender = false;
+		$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
+		echo '<pre>';
+		var_dump($ws);
+		$bultos = array(
+		    array(
+		        'volumen' => 200,
+		        'kilos' => 1.3,
+		        'pesoAforado' => 5,
+		        'valorDeclarado' => 1200, // $1200
+		    ),
+		);
+
+		$result = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
+
+		var_dump($result);
+
 	}
 
 	public function test(){

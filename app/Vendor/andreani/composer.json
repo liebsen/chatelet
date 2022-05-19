@@ -1,0 +1,6 @@
+{
+    "require": {
+        "alejoasotelo/andreani": "^0.8.2",
+        "vlucas/phpdotenv": "^2.0"
+    }
+}
