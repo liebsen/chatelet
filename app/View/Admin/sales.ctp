@@ -26,7 +26,7 @@
                 $personalInfoShowed=false;
                 ?>
                 <tr>
-                    <td class="col-xs-1 text-center">
+                    <td class="col-xs-1 text-center" data-sort="<?php echo date('Y-m-d',strtotime($sale['collection']['date_approved'])) ?>">
                         <?php echo date('d/m/Y',strtotime($sale['collection']['date_approved'])) ?><br />
                         <?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?><br />
                     </td>
