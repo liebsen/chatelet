@@ -10,7 +10,6 @@
 		<?php else: ?>
 		<h3 class="text-success">Envío gratuito // <span>Oca</span></h3>
 		<?php endif ?>		
-		<?php if(!$freeShipping): ?>
 		<p class="p">
 			<i>
 				<small>Para envíos a domicilio ingrese su código postal</small>
@@ -38,7 +37,6 @@
 			<div class="slot">
 			</div>
 		</div>
-		<?php endif ?>		
 		<!--div class="form-group">
 			<span id="cost_container" class="text-muted">
 				<span>Costo de envío:</span> <span class="figure">$<span id="cost_delivery">0</span>.00</span> <span id="free_delivery"></span>
