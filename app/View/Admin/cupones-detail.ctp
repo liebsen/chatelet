@@ -40,9 +40,9 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Código'); ?></label>
             <div class="controls">
-              <input type="text" class="form-control" id="" name="data[code]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['code'] : ''; ?>" required>
+              <input type="text" class="form-control" id="" name="data[code]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['code'] : ''; ?>" <?= isset($coupon) ? 'disabled' : 'required' ?>>
             </div>
-            <small class="text-muted">El código es el título del cupón para el cliente. Funciona como una especie de contraseña.</small>
+             <small class="text-danger">El código es el título del cupón para el cliente. Este valor solo puede editarse una vez.</small>
           </div>
           <br />
           <div class="control-group">

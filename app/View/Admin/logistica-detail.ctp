@@ -37,19 +37,19 @@
             <small class="text-muted">Indica el estado de esta logística. En caso de inactivo el cliente no podrá utilizar esta opción.</small>
           </div>        
           <div class="control-group">
+            <label class="control-label" for="code"><?php echo __('Código'); ?></label>
+            <div class="controls">
+              <input type="text" class="form-control" id="code" name="data[code]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['code'] : ''; ?>" <?= isset($logistic) ? 'disabled' : 'required' ?>>
+            </div>
+            <small class="text-danger">Indica el código de logística. Si no estás seguro consultá con el programador. Este valor solo puede editarse una vez.</small>
+          </div>
+          <br />
+          <div class="control-group">
             <label class="control-label" for="title"><?php echo __('Nombre'); ?></label>
             <div class="controls">
               <input type="text" class="form-control" id="title" name="data[title]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['title'] : ''; ?>" required>
             </div>
-            <small class="text-muted">Indica el nombre de esta logística. Es probable que aparezca en algún correo que enviemos al cliente.</small>
-          </div>
-          <br />
-          <div class="control-group">
-            <label class="control-label" for="code"><?php echo __('Código'); ?></label>
-            <div class="controls">
-              <input type="text" class="form-control" id="code" name="data[code]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['code'] : ''; ?>" required>
-            </div>
-            <small class="text-muted">Indica el código de logística. En general se trata del nombre de la empresa en minuscula. Ej: oca, andreani, etc.</small>
+            <small class="text-muted">Indica el título de esta logística. Es probable que aparezca en algún correo que enviemos al cliente para informarle del código de seguimiento o eventualmente otro estado envío.</small>
           </div>
           <br />
           <div class="control-group">

@@ -8,7 +8,7 @@
 		<thead>
 			<tr>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Alcance'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Activo'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
@@ -20,7 +20,7 @@
 						<?=$logistic['Logistic']['title']?>
 					</td>
 					<td>
-						<?=$logistic['Logistic']['code']?>
+						<?= isset($logistic['Logistic']['zips']) && $logistic['Logistic']['zips'] != '' ? 'Local' : 'Nacional'?>
 					</td>
 					<td>
 						<?=$logistic['Logistic']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
