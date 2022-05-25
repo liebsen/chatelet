@@ -21,7 +21,7 @@
       ?>
       <div class="container">
         <div class="row">
-          <div class="col">
+          <div class="col-md-6">
             <h4 class="sub-header">Información Principal</h4>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
@@ -36,7 +36,7 @@
                 <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
               </div>
               <small class="text-muted">Indica el estado de esta logística. En caso de inactivo el cliente no podrá utilizar esta opción.</small>
-            </div>        
+            </div>
             <div class="control-group">
               <label class="control-label" for="code"><?php echo __('Código'); ?></label>
               <div class="controls">
@@ -60,7 +60,9 @@
               </div>
               <small class="text-muted">Agrega mas información sobre esta logística que merezca ser informada al cliente.</small>
             </div>
-            <br />
+          </div>
+          <div class="col-md-6">
+            <h4 class="sub-header">Alcance local</h4>
             <div class="control-group">
               <label class="control-label" for="zips"><?php echo __('Códigos postales'); ?></label>
               <div class="controls">
