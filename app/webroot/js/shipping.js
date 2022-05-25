@@ -61,7 +61,7 @@ $(function(){
 						if (json.rates) {
 							var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
 							json.rates.forEach(rate => {
-								rates+= `<li shipping="${cargo}" onclick="selectShipping(this, '${code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')"><span class="text-uppercase">$${parseInt(rate.price)}</span></div></li>`
+								rates+= `<li shipping="${cargo}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')"><span class="text-uppercase">$${parseInt(rate.price)}</span></div></li>`
 							})
 							rates+= `</ul>`
 							document.querySelector('.shipping-block .slot').innerHTML = rates
@@ -92,10 +92,6 @@ $(function(){
 			});
 		}, 2000)
 	});
-
-	if ($('.input-cp').val()) {
-		$('.input-cp').keyup()
-	}
 });
 
 window.onerror = function (msg, url, lineNo, columnNo, error) {

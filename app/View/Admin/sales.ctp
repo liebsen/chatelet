@@ -113,7 +113,7 @@
                             
                             $zips_arr = explode(',', $zips); 
 //          echo @$sale['local_sale']['cp'].' / '.json_encode($zips_arr,true). ' / '.$zips;
-                            if ( (int)@$sale['collection']['transaction_amount'] > $shipping_price_min['Setting']['value'] && in_array(@(int)$sale['local_sale']['cp'], $zips_arr)): // || empty($sale['collection']['deliver_cost'])):
+                            if ( (int)@$sale['collection']['transaction_amount'] > $shipping_price_min['Setting']['value'] || $sale['local_sale']['cargo'] != 'shipment' || in_array(@(int)$sale['local_sale']['cp'], $zips_arr)): // || empty($sale['collection']['deliver_cost'])):
                                 // sin etiqueta  
                                 echo "(Sin Etiqueta)";
                             else:

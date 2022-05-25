@@ -194,4 +194,12 @@ $(document).ready(function() {
 	if (carrito.cargo === 'takeaway' && carrito.store.length) {
 		$(`.takeaway-options li[store="${carrito.store}"]`).click()
 	}
+
+	var lastcp = localStorage.getItem('lastcp') || 0
+	if (lastcp) {
+		$('.input-cp').val(lastcp)
+		setTimeout(() => {
+			$('.input-cp').keyup()	
+		},1000)		
+	}
 })

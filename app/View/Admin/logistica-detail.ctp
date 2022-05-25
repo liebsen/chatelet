@@ -82,7 +82,7 @@
               <div class="controls">
                 <textarea id="zips" class="form-control" name="data[zips]" rows="10"><?php echo (isset($logistic)) ? $logistic['Logistic']['zips'] : ''; ?></textarea>
               </div>
-              <small class="text-muted">Establece si es de alcance local. Indica los códigos postales que abarca la zona de cobertura de esta logística. Si se deja en blanco se entiende que abarca todo el país.</small>
+              <small class="text-muted">Establece si es de alcance local. Indica los códigos postales <strong>separados por un espacio</strong> que abarca la zona de cobertura de esta logística. Si se deja en blanco se entiende que abarca todo el país.</small>
             </div>
             <br />
             <div class="control-group">
