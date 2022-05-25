@@ -22,7 +22,7 @@
           echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
         }
       ?>
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-md-6">
             <h4 class="sub-header">Información Principal</h4>
@@ -30,7 +30,7 @@
               <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
               <div class="controls">
                 <?php
-                  $enabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '1') ? 'checked' : '';
+                  $enabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '1') || !isset($coupon) ? 'checked' : '';
                   $disabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '0') ? 'checked' : '';
                 ?>
                 <label for="enabled_1">Activo</label> <input type="radio" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
@@ -58,7 +58,7 @@
               <label class="control-label" for="columns-text"><?php echo __('Tipo de cupón'); ?></label>
               <div class="controls">
                 <?php
-                  $percentage = (isset($coupon) && $coupon['Coupon']['coupon_type'] == 'percentage') ? 'checked' : '';
+                  $percentage = (isset($coupon) && $coupon['Coupon']['coupon_type'] == 'percentage') || !isset($coupon) ? 'checked' : '';
                   $nominal = (isset($coupon) && $coupon['Coupon']['coupon_type'] == 'nominal') ? 'checked' : '';
                 ?>
                 <label for="type_0">Porcentual</label> <input type="radio" id="type_0" name="data[coupon_type]" value="percentage" <?php echo $percentage; ?> /> &nbsp; 
@@ -68,7 +68,7 @@
             </div>
             <br />
             <div class="control-group">
-              <label class="control-label" for="columns-text"><?php echo __('Descuento del cupón'); ?></label>
+              <label class="control-label" for="columns-text"><?php echo __('Valor descuento del cupón'); ?></label>
               <div class="controls">
                 <input type="number" class="form-control" id="" name="data[discount]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['discount'] : ''; ?>" required>
               </div>
@@ -97,8 +97,9 @@
               <label class="control-label" for="columns-text"><?php echo __('Hora desde'); ?></label>
               <div class="controls">
                 <select class="form-control" name="data[hour_from]">
+                  <option value="" selected>Sin horario</option>
                 <?php for($i=5; $i < 24; $i++) :?>
-                  <option value="<?= $i ?>:00:00"<?php echo (isset($coupon) && $coupon['Coupon']['hour_from'] === "{$i}:00:00") ?  : ' selected' ?>><?= $i ?>:00</option>
+                  <option value="<?= $i ?>:00:00"<?php echo (isset($coupon) && $coupon['Coupon']['hour_from'] === "{$i}:00:00") ? ' selected' : '' ?>><?= $i ?>:00</option>
                 <?php endfor ?>
                 </select>              
               </div>
@@ -109,8 +110,9 @@
               <label class="control-label" for="columns-text"><?php echo __('Hora hasta'); ?></label>
               <div class="controls">
                 <select class="form-control" name="data[hour_until]">
+                  <option value="" selected>Sin horario</option>
                 <?php for($i=5; $i < 24; $i++) :?>
-                  <option value="<?= $i ?>:00:00"<?php echo (isset($coupon) && $coupon['Coupon']['hour_until'] === "{$i}:00:00") ?  : ' selected' ?>><?= $i ?>:00</option>
+                  <option value="<?= $i ?>:00:00"<?php echo (isset($coupon) && $coupon['Coupon']['hour_until'] === "{$i}:00:00") ? ' selected' : '' ?>><?= $i ?>:00</option>
                 <?php endfor ?>
                 </select>              
               </div>

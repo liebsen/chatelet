@@ -19,7 +19,7 @@
           echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
         }
       ?>
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-md-6">
             <h4 class="sub-header">Información Principal</h4>
