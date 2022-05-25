@@ -34,12 +34,14 @@
               <label for="enabled_0">Inactivo</label>
               <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
             </div>
+            <small class="text-muted">Indica el estado de esta logística. En caso de inactivo el cliente no podrá utilizar esta opción.</small>
           </div>        
           <div class="control-group">
             <label class="control-label" for="title"><?php echo __('Nombre'); ?></label>
             <div class="controls">
               <input type="text" class="form-control" id="title" name="data[title]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['title'] : ''; ?>" required>
             </div>
+            <small class="text-muted">Indica el nombre de esta logística. Es probable que aparezca en algún correo que enviemos al cliente.</small>
           </div>
           <br />
           <div class="control-group">
@@ -47,6 +49,7 @@
             <div class="controls">
               <input type="text" class="form-control" id="code" name="data[code]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['code'] : ''; ?>" required>
             </div>
+            <small class="text-muted">Indica el código de logística. En general se trata del nombre de la empresa en minuscula. Ej: oca, andreani, etc.</small>
           </div>
           <br />
           <div class="control-group">
@@ -54,13 +57,15 @@
             <div class="controls">
               <textarea id="info"  class="form-control" name="data[info]"><?php echo (isset($logistic)) ? $logistic['Logistic']['info'] : ''; ?></textarea>
             </div>
+            <small class="text-muted">Agrega mas información sobre esta logística que merezca ser informada al cliente.</small>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="zips"><?php echo __('Códigos postales'); ?></label>
             <div class="controls">
-              <textarea id="zips" name="data[zips]"><?php echo (isset($logistic)) ? $logistic['Logistic']['zips'] : ''; ?></textarea>
+              <textarea id="zips" class="form-control" name="data[zips]"><?php echo (isset($logistic)) ? $logistic['Logistic']['zips'] : ''; ?></textarea>
             </div>
+            <small class="text-muted">Indica los vódigos postales que abarca la zona de cobertura de esta logística. Si se deja en blanco se entiende que abarca todo el país.</small>
           </div>
         </div>             
       </div>      
