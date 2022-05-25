@@ -70,9 +70,9 @@
             </div>
             <br />
             <div class="control-group">
-              <label class="control-label" for="zips"><?php echo __('Tarifa'); ?></label>
+              <label class="control-label" for="price"><?php echo __('Tarifa'); ?></label>
               <div class="controls">
-                <textarea id="zips" class="form-control" name="data[zips]" rows="10"><?php echo (isset($logistic)) ? $logistic['Logistic']['zips'] : ''; ?></textarea>
+                <input type="number" class="form-control" id="price" step="1" name="data[price]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['price'] : ''; ?>">
               </div>
               <small class="text-muted">En caso de logística de alcance local indica la tarifa por envío.</small>
             </div>
