@@ -44,6 +44,20 @@
               </div>
               <small class="text-danger">Indica el código de logística. Si no estás seguro consultá con el programador. Este valor solo puede editarse una vez.</small>
             </div>
+            <br />       
+            <div class="control-group">
+              <label class="control-label" for=""><?=__('Seleccione una imagen de Logística')?></label>
+            <?php if(isset($logistic) && $logistic['Logistic']['image']) :?>
+              <br>
+              <div class="img-thumbnail">
+                <img src="<?= $logistic['Logistic']['image'] ?>" height=60 />
+              </div>
+              <br>
+            <?php endif ?>
+              <div class="controls">
+                <input type="file" class="attached" name="image">
+              </div>
+            </div>
             <br />
             <div class="control-group">
               <label class="control-label" for="title"><?php echo __('Nombre'); ?></label>

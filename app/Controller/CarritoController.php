@@ -1,6 +1,13 @@
 <?php
+
 require_once(APP . 'Vendor' . DS . 'oca.php');
 require_once(APP . 'Vendor' . DS . 'curl.php');
+require __DIR__ . '/../Vendor/andreani/vendor/autoload.php';
+
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/../Vendor/andreani/');
+$dotenv->load();
+
+use AlejoASotelo\Andreani;
 
 class CarritoController extends AppController
 {
@@ -380,7 +387,7 @@ class CarritoController extends AppController
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 
-		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') {
+		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.2') {
 			$dummy = '{"valid": 1,"freeShipping":false,"rates":{"oca":{"price":799,"centros":[{"idCentroImposicion":"51","IdSucursalOCA":"27","Sigla":"EQS","Descripcion":"ESQUEL                        ","Calle":"MITRE","Numero":"777  ","Torre":" ","Piso":"     ","Depto":"    ","Localidad":"ESQUEL                   ","IdProvincia":"9","idCodigoPostal":"19681","Telefono":"02945-451164   ","eMail":"","Provincia":"CHUBUT                        ","CodigoPostal":"9200    "}],"valid":1},"andreani":{"price":5295.98,"centros":[],"valid":true}},"itemsData":{"count":2,"price":8280,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}';
 			return json_encode(json_decode($dummy));
 		}
@@ -400,9 +407,7 @@ class CarritoController extends AppController
 
 		$json = array(
 			'freeShipping' => $freeShipping,
-			'valid' => 1,
-			'rates' => [],
-			'itemsData' => $data
+			'rates' => []
 		);
 
 		if(!empty($data)){
@@ -420,20 +425,27 @@ class CarritoController extends AppController
 				$code = $item['code'];
 				$row = [];
 				if(method_exists($this, "calculate_shipping_{$code}")) {
-					$row = $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price);
+					$row = [
+			      'title' => $item['title'],
+			      'code' => $item['code'],
+			      'image' => $item['image'],
+						'price' => $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+						'centros' => [],
+						'valid' =>  true
+					];
 				} else {
 					if ($item['zips'] === '' || in_array($cp, explode(' ', $item['zips']))) {
 						$row = [
-							'price' => 100,
-							'centros' => []
+				      'title' => $item['title'],
+				      'image' => $item['image'],
+				      'code' => $item['code'],
+							'price' => $item['price'],
+							'centros' => [],
+							'valid' =>  true
 						];
 					}
 				}
-
-				if (!isset($json['rates'][$item['code']])) {
-					$json['rates'][$item['code']] = [];
-				}
-				$json['rates'][$item['code']] = $row;
+				$json['rates'][] = $row;
 			}
 		}
 
@@ -448,7 +460,32 @@ class CarritoController extends AppController
 	}
 	
 	private function calculate_shipping_andreani ($data, $cp, $price) {
-		$contrato = '300006611';
+		$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
+		echo '<pre>';
+		var_dump($data);
+		$width = $data['package']['width'];
+		$height = $data['package']['height'];
+		$depth = $data['package']['depth'];
+		$width = $data['package']['width'];
+		$weight = round($data['package']['weight'] / 1000);
+		$bultos = [
+	    [
+        //'volumen' => $data['volume'] * 1000,
+        'anchoCm' => $width,
+        'largoCm' => $height,
+        'altoCm' =>$depth,
+        'kilos' => $data['weight'],
+        // 'pesoAforado' => 5,
+        'valorDeclarado' => $price // $1200
+	    ]
+		];
+
+		$result = $ws->cotizarEnvio($cp, getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_USUARIO'));
+		var_dump($result);
+
+		return $result->tarifaConIva->total;
+
+		/* $contrato = '300006611';
 		$cliente = 'CL0003750';
 		$width = $data['package']['width'];
 		$height = $data['package']['height'];
@@ -458,11 +495,7 @@ class CarritoController extends AppController
 		$url = "{$this->andreani_ep}/v1/tarifas?cpDestino={$cp}&contrato=300006611&cliente=CL0003750&sucursalOrigen=BAR&bultos[0][valorDeclarado]={$price}&bultos[0][volumen]=200&bultos[0][kilos]={$weight}&bultos[0][altoCm]={$depth}&bultos[0][largoCm]={$height}&bultos[0][anchoCm]={$width}";
 
 		$response = json_decode(file_get_contents($url));
-		return [
-			'price' => (float) $response->tarifaConIva->total,
-			'centros' => [],
-			'valid' => true,
-		];
+		return (float) $response->tarifaConIva->total; */
 	} 
 
 	private function andreani_token () {
@@ -506,11 +539,7 @@ class CarritoController extends AppController
 		//Price
 		$price = !empty($response[0]['Precio']) ? (int) $response[0]['Precio'] : 0;
 
-		return [
-			'price' => $price,
-			'centros' => $centros,
-			'valid' => isset($centros) && $centros ? 1 : 0,
-		];
+		return $price;
 	}
 
 	public function sale() {

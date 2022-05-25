@@ -60,10 +60,8 @@ $(function(){
 					}else{
 						if (json.rates) {
 							var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
-
-							Object.keys(json.rates).forEach(cargo => {
-								const price = json.rates[cargo].price
-								rates+= `<li shipping="${cargo}" onclick="selectShipping(this, '${cargo}',${parseInt(price)})"><div class="shipping-logo" style="background-image: url(/images/${cargo}.svg)"><span class="text-uppercase">$${parseInt(price)}</span></div></li>`
+							json.rates.forEach(rate => {
+								rates+= `<li shipping="${cargo}" onclick="selectShipping(this, '${code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')"><span class="text-uppercase">$${parseInt(rate.price)}</span></div></li>`
 							})
 							rates+= `</ul>`
 							document.querySelector('.shipping-block .slot').innerHTML = rates
@@ -90,7 +88,7 @@ $(function(){
 					fxTotal(formatNumber(total))
 					timeout = setTimeout( "onErrorAlert('Codigo Postal inexistente')" , 200);
 				}
-				$('.input-cp').attr( 'data-valid' , parseInt(json.valid) );
+				$('.input-cp').attr( 'data-valid' , json.rates.length );
 			});
 		}, 2000)
 	});

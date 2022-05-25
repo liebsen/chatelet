@@ -121,6 +121,7 @@ function siteURL() {
 
 // Configure::write('baseUrl','http://localhost:8040/'); 
 Configure::write('baseUrl',siteURL()); 
+Configure::write('uploadUrl',siteURL() . 'files/uploads/'); 
 Configure::write('S3.accessKey','AKIAJGNWSIAUPGFVLJTQ'); 
 Configure::write('S3.secret','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'); 
 Configure::write('imageUrlBase','https://d3baxuoyqsgua.cloudfront.net/'); 

@@ -60,7 +60,6 @@ class AdminController extends AppController {
 		$this->autoRender = false;
 		$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
 		echo '<pre>';
-		var_dump($ws);
 		$bultos = array(
 		    array(
 		        'volumen' => 200,
@@ -72,7 +71,8 @@ class AdminController extends AppController {
 
 		$result = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
 
-		var_dump($result);
+		var_dump($result->tarifaConIva->total);
+		die();
 
 	}
 
@@ -1135,6 +1135,23 @@ public function promos(){
 		return $this->render('cupones');
 	}
 
+	private function saveFileIfExists($name, $data) {
+		/* save file if any */
+    $filepath = '';
+		if (isset($_FILES[$name])) {
+      $file = $_FILES[$name];
+      $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+      $key = uniqid() . '.' . $ext;
+      $dest = __DIR__ . '/../webroot/files/uploads/' . $key;
+      $url = "";
+
+      if(copy($file['tmp_name'],$dest)){
+        $filepath = Configure::read('uploadUrl') . $key;
+      }
+    }
+    return $filepath;
+	}
+
 	public function logistica($action = null) {
 		$navs = array(
 			'Lista' => array(
@@ -1162,20 +1179,21 @@ public function promos(){
 	    	case 'add':
 	    	    if ($this->request->is('POST')){
 			        $this->autoRender = false;
-			        $this->Logistic->save($this->request->data);
+			        $data = $this->request->data;
+			        $data['image'] = $this->saveFileIfExists('image', $data);
+			        $this->Logistic->save($data);
 			        return $this->redirect(array('action'=>'logistica'));
     			} else {
     				$this->loadModel('Logistic');
 				    $cats = $this->Logistic->find('all');
-					$this->set('cats', $cats);
-					$this->set('sel', true);
+						$this->set('cats', $cats);
+						$this->set('sel', true);
 	    			return $this->render('logistica-detail');
 	    		}
 	    		break;
 	    	case 'delete':
 		    	if ($this->request->is('post')) {
 		    		$this->autoRender = false;
-
 		    		$this->Logistic->delete($this->request->data['id']);
 		    	}
 	    		break;
@@ -1183,6 +1201,7 @@ public function promos(){
 	    		if ($this->request->is('post')) {
 	    			$this->autoRender = false;
 	    			$data = $this->request->data;
+	    			$data['image'] = $this->saveFileIfExists('image', $data);
 			      $this->Logistic->save($data);
 	    		} else {
 		    		$hasId = array_key_exists(1, $this->request->pass);
