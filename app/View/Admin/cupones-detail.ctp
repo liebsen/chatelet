@@ -48,7 +48,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Info'); ?></label>
             <div class="controls">
-              <textarea id="" class="form-control" name="data[info]" required><?php echo (isset($coupon)) ? $coupon['Coupon']['info'] : ''; ?></textarea>
+              <textarea id="" class="form-control" name="data[info]" rows="5" required><?php echo (isset($coupon)) ? $coupon['Coupon']['info'] : ''; ?></textarea>
             </div>
             <small class="text-muted">Describí brevemente de que se trata este cupón.</small>
           </div>
@@ -102,9 +102,6 @@
               </select>              
             </div>
             <small class="text-muted">Seleccioná desde qué horario el cupón debería estar disponible.</small>
-            <div class="controls">
-              <input type="text" class="form-control" id="" name="data[hour_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['hour_from'] : ''; ?>">
-            </div>
           </div>
           <br />
           <div class="control-group">
@@ -127,7 +124,7 @@
                 <input type="checkbox" class="weekdays" name="weekdays" value="<?= $i ?>" id="w<?= $i ?>" <?= strpos($selected, (string) $i) !== false ? ' checked' : '' ?>/> <label for="w<?= $i ?>"> &nbsp;<?= $weekdays[$i] ?></label><br>
               <?php endfor ?>
             </div>
-            <small class="text-muted">Seleccioná el horario hasta el que el cupón debería estar disponible.</small>
+            <small class="text-muted">Seleccioná los días de la semana en que el cupón debería estar disponible.</small>
           </div>
           <br />          
         </div>             
