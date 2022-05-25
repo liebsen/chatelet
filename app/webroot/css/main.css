@@ -625,7 +625,7 @@ body {
 
 .block-content {
     margin: 0;
-    padding: 20px 20px 5px;
+    padding: 1rem 2.5rem;
     border: 2px solid #eee;
     border-top: none;
 }
@@ -762,6 +762,10 @@ body {
 .mini-profile {
     padding: 30px 10px;
     background: white;
+}
+
+.mini-profile img {
+   max-height: 4rem;
 }
 
 .mini-profile a {
@@ -2603,7 +2607,7 @@ header.navbar .navbar-brand {
 label,
 .control-label,
 .form-control {
-    font-size: 13px;
+    font-size: 1rem;
 }
 
 label {
@@ -3340,7 +3344,6 @@ a:focus {
 .carousel-control,
 .tooltip-inner,
 .navbar,
-.form-control,
 .pagination > li:first-child > a,
 .pagination > li:first-child > span,
 .pagination > li:last-child > a,

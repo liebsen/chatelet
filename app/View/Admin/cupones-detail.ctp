@@ -4,7 +4,7 @@
   // echo $this->Html->css('cupones-detail', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
   $weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-?>
+  ?>
 <?php echo $this->element('admin-menu');?>
 <div class="block block-themed">
   <div class="block-title">
@@ -35,19 +35,22 @@
               <label for="enabled_1">Activo</label> <input type="radio" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
               <label for="enabled_0">Inactivo</label> <input type="radio" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
             </div>
+            <small class="text-muted">Estado principal de este Cupón</small>
           </div>        
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Código'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[code]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['code'] : ''; ?>" required>
+              <input type="text" class="form-control" id="" name="data[code]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['code'] : ''; ?>" required>
             </div>
+            <small class="text-muted">El código es el título del cupón para el cliente. Funciona como una especie de contraseña.</small>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Info'); ?></label>
             <div class="controls">
-              <textarea id="" name="data[info]" required><?php echo (isset($coupon)) ? $coupon['Coupon']['info'] : ''; ?></textarea>
+              <textarea id="" class="form-control" name="data[info]" required><?php echo (isset($coupon)) ? $coupon['Coupon']['info'] : ''; ?></textarea>
             </div>
+            <small class="text-muted">Describí brevemente de que se trata este cupón.</small>
           </div>
           <br />
           <div class="control-group">
@@ -60,13 +63,15 @@
               <label for="type_0">Porcentual</label> <input type="radio" id="type_0" name="data[coupon_type]" value="percentage" <?php echo $percentage; ?> /> &nbsp; 
               <label for="type_1">Nominal</label> <input type="radio" id="type_1" name="data[coupon_type]" value="nominal" <?php echo $nominal; ?> />
             </div>
+            <small class="text-muted">El tipo de cupón puede ser porcentual en que usaremos un valor de 0-100, o nominal indicando el monto a beneficiar de acuerdo. La divisa es peso argentino ARS</small>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Descuento del cupón'); ?></label>
             <div class="controls">
-              <input type="number" id="" name="data[discount]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['discount'] : ''; ?>" required>
+              <input type="number" class="form-control" id="" name="data[discount]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['discount'] : ''; ?>" required>
             </div>
+            <small class="text-muted">El valor de descuento puede ser porcentaje o valor nominal en ARS.</small>
           </div>
         </div> 
         <div class="col-md-6">
@@ -76,6 +81,7 @@
             <div class="controls">
               <input type="text" class="datepicker form-control" data-date-format="dd/mm/yyyy" id="" name="data[date_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_from'] : ''; ?>">
             </div>
+            <small class="text-muted">Seleccioná desde qué fecha el cupón debería estar disponible.</small>
           </div>
           <br />
           <div class="control-group">
@@ -83,10 +89,19 @@
             <div class="controls">
               <input type="text" class="datepicker form-control" data-date-format="dd/mm/yyyy" id="" name="data[date_until]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_until'] : ''; ?>">
             </div>
+            <small class="text-muted">Seleccioná hasta qué fecha el cupón debería estar disponible.</small>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Hora desde'); ?></label>
+            <div class="controls">
+              <select class="form-control" name="data[hour_from]">
+              <?php for($i=5; $i < 24; $i++) :?>
+                <option value="<?= $i ?>:00:00"<?php echo (isset($coupon) && $coupon['Coupon']['hour_from'] === "{$i}:00:00") ?  : ' selected' ?>><?= $i ?>:00</option>
+              <?php endfor ?>
+              </select>              
+            </div>
+            <small class="text-muted">Seleccioná desde qué horario el cupón debería estar disponible.</small>
             <div class="controls">
               <input type="text" class="form-control" id="" name="data[hour_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['hour_from'] : ''; ?>">
             </div>
@@ -95,24 +110,31 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Hora hasta'); ?></label>
             <div class="controls">
-              <input type="text" class="form-control" id="" name="data[hour_until]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['hour_until'] : ''; ?>">
+              <select class="form-control" name="data[hour_until]">
+              <?php for($i=5; $i < 24; $i++) :?>
+                <option value="<?= $i ?>:00:00"<?php echo (isset($coupon) && $coupon['Coupon']['hour_until'] === "{$i}:00:00") ?  : ' selected' ?>><?= $i ?>:00</option>
+              <?php endfor ?>
+              </select>              
             </div>
+            <small class="text-muted">Seleccioná hasta qué horario el cupón debería estar disponible.</small>
           </div>
           <br />
           <div class="control-group">
             <input type="hidden" id="weekdays" name="data[weekdays]" value="<?= isset($coupon) ? $coupon['Coupon']['weekdays'] : '' ?>" />
             <label class="control-label" for="columns-text"><?php echo __('Días de semana'); ?></label>
             <div class="controls">
-              <?php for($i=0; $i < count($weekdays); $i++):?>
-                <input type="checkbox" class="weekdays" name="weekdays" value="<?= $i ?>" id="w<?= $i ?>" <?= strpos($coupon['Coupon']['weekdays'], (string) $i) !== false ? ' checked' : '' ?>/> <label for="w<?= $i ?>"> &nbsp;<?= $weekdays[$i] ?></label><br>
+              <?php $selected = isset($coupon) && $coupon['Coupon']['weekdays']? $coupon['Coupon']['weekdays'] : '12345'; for($i=0; $i < count($weekdays); $i++):?>
+                <input type="checkbox" class="weekdays" name="weekdays" value="<?= $i ?>" id="w<?= $i ?>" <?= strpos($selected, (string) $i) !== false ? ' checked' : '' ?>/> <label for="w<?= $i ?>"> &nbsp;<?= $weekdays[$i] ?></label><br>
               <?php endfor ?>
             </div>
+            <small class="text-muted">Seleccioná el horario hasta el que el cupón debería estar disponible.</small>
           </div>
           <br />          
         </div>             
       </div>      
       <br />               
       <div class="form-actions">
+        <a href="/admin/cupones" class="btn btn-info"><i class="icon-repeat"></i> Back</a>
         <button type="reset" class="btn btn-danger"><i class="icon-repeat"></i> Reset</button>
         <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
       </div>

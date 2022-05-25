@@ -392,7 +392,7 @@ class AdminController extends AppController {
 				$sale_number = html_entity_decode($sale_number);
 			}
 
-			//Info Mergeapp/webroot/css/custom.css
+			//Info metaphone(str)rgeapp/webroot/css/custom.css
 			$sale['collection']['deliver_cost'] = 0;
 			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
 			if(!empty($local_desc)){

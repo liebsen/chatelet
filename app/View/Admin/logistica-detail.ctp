@@ -26,31 +26,33 @@
             <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
             <div class="controls">
               <?php
-                $enabled = (isset($logistic) && $logistic['Logistic']['enabled'] === '1') ? 'checked' : '';
-                $disabled = (isset($logistic) && $logistic['Logistic']['enabled'] === '0') ? 'checked' : '';
+                $enabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 1) ? 'checked' : '';
+                $disabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 0) ? 'checked' : '';
               ?>
-              <label for="enabled_1">Activo</label> <input type="radio" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
-              <label for="enabled_0">Inactivo</label> <input type="radio" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
+              <label for="enabled_1">Activo</label>
+              <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp;
+              <label for="enabled_0">Inactivo</label>
+              <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
             </div>
           </div>        
           <div class="control-group">
             <label class="control-label" for="title"><?php echo __('Nombre'); ?></label>
             <div class="controls">
-              <input type="text" id="title" name="data[title]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['title'] : ''; ?>" required>
+              <input type="text" class="form-control" id="title" name="data[title]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['title'] : ''; ?>" required>
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="code"><?php echo __('Código'); ?></label>
             <div class="controls">
-              <input type="text" id="code" name="data[code]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['code'] : ''; ?>" required>
+              <input type="text" class="form-control" id="code" name="data[code]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['code'] : ''; ?>" required>
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="info"><?php echo __('Info'); ?></label>
             <div class="controls">
-              <textarea id="info" name="data[info]"><?php echo (isset($logistic)) ? $logistic['Logistic']['info'] : ''; ?></textarea>
+              <textarea id="info"  class="form-control" name="data[info]"><?php echo (isset($logistic)) ? $logistic['Logistic']['info'] : ''; ?></textarea>
             </div>
           </div>
           <br />
@@ -64,6 +66,7 @@
       </div>      
       <br />               
       <div class="form-actions">
+        <a href="/admin/logistica" class="btn btn-info"><i class="icon-repeat"></i> Back</a>
         <button type="reset" class="btn btn-danger"><i class="icon-repeat"></i> Reset</button>
         <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
       </div>
