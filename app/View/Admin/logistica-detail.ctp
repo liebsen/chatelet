@@ -74,7 +74,7 @@
               <div class="controls">
                 <input type="number" class="form-control" id="price" step="1" name="data[price]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['price'] : ''; ?>">
               </div>
-              <small class="text-muted">En caso de logística de alcance local indica la tarifa por envío.</small>
+              <small class="text-muted">En caso de logística de alcance local indica la tarifa por envío expresada en peso argentino ARS.</small>
             </div>
           </div>             
         </div>  
