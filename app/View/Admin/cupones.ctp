@@ -8,8 +8,7 @@
 		<thead>
 			<tr>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Tipo'); ?></th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Valor'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Beneficio'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Activo'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
@@ -21,10 +20,7 @@
 						<?=$coupon['Coupon']['code']?>
 					</td>
 					<td>
-						<?=$coupon['Coupon']['coupon_type'] === 'percentage' ? 'Porcentaje': 'Nominal'?>
-					</td>
-					<td>
-						<?=$coupon['Coupon']['discount']?>
+						<?=$coupon['Coupon']['discount']?><?=$coupon['Coupon']['coupon_type'] === 'percentage' ? '%': 'ARS'?>
 					</td>
 					<td>
 						<?=$coupon['Coupon']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
