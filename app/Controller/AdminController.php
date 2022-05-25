@@ -176,6 +176,15 @@ class AdminController extends AppController {
 	}
 
 	private function setOrdenRetiro($sale){
+		$shipping = $sale['shipping'];
+		$response = null;
+		if(method_exists($this, "add_order_{$shipping}")) {
+			$response = $this->{"add_order_{$shipping}"}($sale);
+		}
+		return $response;
+	}
+
+	private function add_order_oca ($sale) {
 		$oca = new Oca();
 		$sale = $sale['Sale'];
 		$package = $this->Package->findById($sale['package_id']);
@@ -186,9 +195,104 @@ class AdminController extends AppController {
 		$sale['def_orden_tracking'] = @$oca_result['tracking'];
 		$sale['raw_xml'] = @$oca_result['rawXML'];
 		$t = @$this->Sale->save($sale);
-		return $sale;
+		return $sale;		
 	}
 
+	private function add_order_andreani ($sale) {
+		$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
+		// Datos de ejemplo obtenidos de https://developers.andreani.com/documentacion/2#crearOrden
+		$orden = [
+		    'contrato' => '400006711',
+		    'origen' => [
+		        'postal' => [
+		            'codigoPostal' => '3378',
+		            'calle' => 'Av Falsa',
+		            'numero' => '380',
+		            'localidad' => 'Puerto Esperanza',
+		            'region' => '',
+		            'pais' => 'Argentina',
+		            'componentesDeDireccion' => [
+		                [
+		                    'meta' => 'entreCalle',
+		                    'contenido' => 'Medina y Jualberto',
+		                ],
+		            ],
+		        ],
+		    ],
+		    'destino' => [
+		      'postal' => [
+		        'codigoPostal' => '1292',
+		        'calle' => 'Macacha Guemes',
+		        'numero' => '28',
+		        'localidad' => 'C.A.B.A.',
+		        'region' => 'AR-B',
+		        'pais' => 'Argentina',
+		        'componentesDeDireccion' => [
+		          [
+		            'meta' => 'piso',
+		            'contenido' => '2',
+		          ],
+		          [
+		            'meta' => 'departamento',
+		            'contenido' => 'B',
+		          ],
+		        ],
+		      ],
+		    ],
+		    'remitente' => [
+		      'nombreCompleto' => 'Alberto Lopez',
+		      'email' => 'remitente@andreani.com',
+		      'documentoTipo' => 'DNI',
+		      'documentoNumero' => '33111222',
+		      'telefonos' => [
+		        [
+		          'tipo' => 1,
+		          'numero' => '113332244',
+		        ],
+		      ],
+		    ],
+		    'destinatario' => [
+		        [
+		            'nombreCompleto' => 'Juana Gonzalez',
+		            'email' => 'destinatario@andreani.com',
+		            'documentoTipo' => 'DNI',
+		            'documentoNumero' => '33999888',
+		            'telefonos' => [
+		                [
+		                    'tipo' => 1,
+		                    'numero' => '1112345678',
+		                ],
+		            ],
+		        ],
+		    ],
+		    'productoAEntregar' => 'Aire Acondicionado',
+		    'bultos' => [
+		        [
+		            'kilos' => 2,
+		            'largoCm' => 10,
+		            'altoCm' => 50,
+		            'anchoCm' => 10,
+		            'volumenCm' => 5000,
+		            'valorDeclaradoSinImpuestos' => 1200,
+		            'valorDeclaradoConImpuestos' => 1452,
+		            'referencias' => [
+		                [
+		                    'meta' => 'detalle',
+		                    'contenido' => 'Secador de pelo',
+		                ],
+		                [
+		                    'meta' => 'idCliente',
+		                    'contenido' => '10000',
+		                ],
+		            ],
+		        ],
+		    ],
+		];
+
+		$response = $ws->addOrden($orden);
+
+		var_dump($response);		
+	}
 	public function getTicket($sale_id = null){
 		$this->autoRender = false;
 		$data = [
@@ -1170,7 +1274,7 @@ public function promos(){
 
 		$h1 = array(
 			'name' => 'Logística',
-			'icon' => 'gi gi-truck'
+			'icon' => 'gi gi-cargo'
 			);
 		$this->set('h1', $h1);
 

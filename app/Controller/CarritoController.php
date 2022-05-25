@@ -434,7 +434,7 @@ class CarritoController extends AppController
 						'valid' =>  true
 					];
 				} else {
-					if ($item['zips'] === '' || in_array($cp, explode(' ', $item['zips']))) {
+					if ($item['zips'] === '' || in_array($cp, explode(',', $item['zips']))) {
 						$row = [
 				      'title' => $item['title'],
 				      'image' => $item['image'],
