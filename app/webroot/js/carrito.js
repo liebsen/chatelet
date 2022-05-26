@@ -200,6 +200,15 @@ $(document).ready(function() {
 		$('.input-cp').val(lastcp)
 		setTimeout(() => {
 			$('.input-cp').keyup()	
+			onSuccessAlert('Consultando código postal', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`)			
 		},1000)		
 	}
+
+	setTimeout(() => {
+		var total = parseInt(document.getElementById('total').value)
+		var shipping_price_min = parseInt(document.getElementById('shipping_price_min').value)
+		if (total < shipping_price_min) {
+			onSuccessAlert('¿Desea envío gratis?', `Las compras de al menos $${shipping_price_min} gozan de envío gratis. Agregue $${shipping_price_min - total} a su compra para obtener envío gratis`)
+		}
+	}, 8000)
 })

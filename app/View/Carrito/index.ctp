@@ -138,6 +138,8 @@
 	</div>
 					
 	<?php if (isset($carro) && !empty($carro)) :?>
+	<input type="hidden" id="shipping_price_min" value="<?= $shipping_price_min ?>">
+	<input type="hidden" id="total" value="<?= $total ?>">
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div id="siguiente-block" class="col-md-10">

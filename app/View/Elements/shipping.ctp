@@ -47,7 +47,7 @@
 	
 	<div class="col-xs-12 shipment-options takeaway">
 		<h3 id="heading" class="cargo-title">Retiro en Sucursal</h3>
-		<p style="margin:10px 0px">
+		<p class="p">
 			<i>
 				<small>Solicite esta opción para evitar cargos de envío</small>
 			</i>

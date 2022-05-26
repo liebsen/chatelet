@@ -166,20 +166,20 @@ class CarritoController extends AppController
 
 	public function beforeFilter()
 	{
-    	parent::beforeFilter();
-    	$this->loadModel('Setting');
-    	$categories = $this->Category->find('all');
+  	parent::beforeFilter();
+  	$this->loadModel('Setting');
+  	$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
-		$setting = $this->Setting->findById('catalog_flap');
-		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$catalog_flap_map = $this->Setting->findById('catalog_flap');
+		$catalog_flap = (!empty($catalog_flap_map['Setting']['value'])) ? $catalog_flap_map['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
-		unset($setting);
-        $this->loadModel('Setting');
-    	$setting = $this->Setting->findById('catalog_first_line');
-		$catalog_first_line = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+    $catalog_first_line_map = $this->Setting->findById('catalog_first_line');
+		$catalog_first_line = (!empty($catalog_first_line_map['Setting']['value'])) ? $catalog_first_line_map['Setting']['value'] : '';
 		$this->set('catalog_first_line',$catalog_first_line);
-		unset($setting);
 		$lookbook = $this->LookBook->find('all');
+    $shipping_price_min_map = $this->Setting->findById('shipping_price_min');
+		$shipping_price_min = (!empty($shipping_price_min_map['Setting']['value'])) ? $shipping_price_min_map['Setting']['value'] : '';
+		$this->set('shipping_price_min',$shipping_price_min);
 		$this->set('lookBook', $lookbook);
 	}
 
