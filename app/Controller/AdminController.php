@@ -1263,19 +1263,17 @@ public function promos(){
 		return $this->render('cupones');
 	}
 
-	private function saveFileIfExists($name, $data) {
+	private function saveFile($name, $data) {
 		/* save file if any */
     $filepath = '';
-		if (isset($_FILES[$name])) {
-      $file = $_FILES[$name];
-      $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-      $key = uniqid() . '.' . $ext;
-      $dest = __DIR__ . '/../webroot/files/uploads/' . $key;
-      $url = "";
+    $file = $_FILES[$name];
+    $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+    $key = uniqid() . '.' . $ext;
+    $dest = __DIR__ . '/../webroot/files/uploads/' . $key;
+    $url = "";
 
-      if(copy($file['tmp_name'],$dest)){
-        $filepath = Configure::read('uploadUrl') . $key;
-      }
+    if(copy($file['tmp_name'],$dest)){
+      $filepath = Configure::read('uploadUrl') . $key;
     }
     return $filepath;
 	}
@@ -1308,7 +1306,9 @@ public function promos(){
     	    if ($this->request->is('POST')){
 		        $this->autoRender = false;
 		        $data = $this->request->data;
-		        $data['image'] = $this->saveFileIfExists('image', $data);
+		        if (isset($_FILES['image']) && $_FILES['image']['size']) {
+		        	$data['image'] = $this->saveFile('image', $data);
+		        }
 		        $this->Logistic->save($data);
 		        return $this->redirect(array('action'=>'logistica'));
     			} else {
@@ -1329,7 +1329,9 @@ public function promos(){
 	    		if ($this->request->is('post')) {
 	    			$this->autoRender = false;
 	    			$data = $this->request->data;
-	    			$data['image'] = $this->saveFileIfExists('image', $data);
+	    			if (isset($_FILES['image']) && $_FILES['image']['size']) {
+	    				$data['image'] = $this->saveFile('image', $data);
+	    			}
 			      $this->Logistic->save($data);
 	    		} else {
 		    		$hasId = array_key_exists(1, $this->request->pass);
