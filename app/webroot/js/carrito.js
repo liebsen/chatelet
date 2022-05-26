@@ -53,7 +53,6 @@ callEnd = function(){
 }
 
 onErrorAlert = function(title, text){
-	$('#growls').remove();
 	$.growl.error({
 		title: title || 'Error',
 		message: text,
@@ -62,7 +61,6 @@ onErrorAlert = function(title, text){
 }
 
 onSuccessAlert = function(title, text){
-	$('#growls').remove();
 	$.growl.notice({
 		title: title || 'OK',
 		message: text,
@@ -210,7 +208,7 @@ $(document).ready(function() {
 		$('.input-cp').val(lastcp)
 		setTimeout(() => {
 			$('.input-cp').keyup()	
-			onSuccessAlert('Consultando código postal', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`)			
+			onWarningAlert('Consultando código postal', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`)			
 		},1000)		
 	}
 
