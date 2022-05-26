@@ -407,7 +407,8 @@ class CarritoController extends AppController
 
 		$json = array(
 			'freeShipping' => $freeShipping,
-			'rates' => []
+			'rates' => [],
+			'itemsData' => $data
 		);
 
 		if(!empty($data)){
