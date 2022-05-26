@@ -56,13 +56,23 @@ onErrorAlert = function(title, text){
 	$('#growls').remove();
 	$.growl.error({
 		title: title || 'Error',
-		message: text
+		message: text,
+		queue: true
 	});
 }
 
 onSuccessAlert = function(title, text){
 	$('#growls').remove();
 	$.growl.notice({
+		title: title || 'OK',
+		message: text,
+		queue: true
+	});
+}
+
+onWarningAlert = function(title, text){
+	// $('#growls').remove();
+	$.growl.warning({
 		title: title || 'OK',
 		message: text
 	});
@@ -204,11 +214,11 @@ $(document).ready(function() {
 		},1000)		
 	}
 
-	setTimeout(() => {
-		var total = parseInt(document.getElementById('total').value)
-		var shipping_price_min = parseInt(document.getElementById('shipping_price_min').value)
-		if (total < shipping_price_min) {
+	var total = parseInt(document.getElementById('total').value)
+	var shipping_price_min = parseInt(document.getElementById('shipping_price_min').value)
+	if (total < shipping_price_min) {
+		setTimeout(() => {
 			onSuccessAlert('¿Desea envío gratis?', `Las compras de al menos $${shipping_price_min} gozan de envío gratis. Agregue $${shipping_price_min - total} a su compra para obtener envío gratis`)
-		}
-	}, 8000)
+		}, 3000)
+	}
 })
