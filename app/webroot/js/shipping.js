@@ -3,7 +3,7 @@ $(function(){
 	var timeout = null;
 	var timeout2 = null;
 
-	selectShipping = function (e, cargo, cost) {
+	selectShipping = function (e, shipping, cost) {
 		var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 		if (cost <= 0) {
 			return setTimeout( "onErrorAlert('El servicio de oca no está disponible en este momento, intente en unos instantes.')" , 200);
@@ -15,11 +15,11 @@ $(function(){
 		$('.delivery-cost').addClass('fadeIn')
 		$('#subtotal_envio').val(cost);
 		$('.cost_delivery').text( formatNumber(cost));		
-		$('.shipping-cargo').text(cargo)	
+		$('.shipping-cargo').text(shipping)	
 
 		let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
 		fxTotal(total)
-		onSuccessAlert(cargo.toUpperCase(), `Usted seleccionó ${cargo.toUpperCase()} como servicio de entrega`);
+		onSuccessAlert(shipping.toUpperCase(), `Usted seleccionó ${shipping.toUpperCase()} como servicio de entrega`);
 	}
 
 	$('.input-cp').keyup(function(event){
@@ -61,7 +61,7 @@ $(function(){
 						if (json.rates) {
 							var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
 							json.rates.forEach(rate => {
-								rates+= `<li shipping="${cargo}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')"><span class="text-uppercase">$${parseInt(rate.price)}</span></div></li>`
+								rates+= `<li shipping="${rate.code}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')"><span class="text-uppercase">$${parseInt(rate.price)}</span></div></li>`
 							})
 							rates+= `</ul>`
 							document.querySelector('.shipping-block .slot').innerHTML = rates
