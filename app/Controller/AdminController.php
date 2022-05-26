@@ -143,10 +143,6 @@ class AdminController extends AppController {
 		return json_encode(array('results' => $products, 'colors' => $color ));
 	}
 
-
-
-
-
 	public function check_article($article = null){
 		$this->autoRender = false;
 		$this->SQL = $this->Components->load('SQL');
@@ -193,106 +189,114 @@ class AdminController extends AppController {
 		$oca_result = $oca->ingresoORNuevo($sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
 		$sale['def_orden_retiro'] = @$oca_result['retiro'];
 		$sale['def_orden_tracking'] = @$oca_result['tracking'];
-		$sale['raw_xml'] = @$oca_result['rawXML'];
 		$t = @$this->Sale->save($sale);
+		$sale['raw_xml'] = @$oca_result['rawXML'];
 		return $sale;		
 	}
 
 	private function add_order_andreani ($sale) {
+		$sale = $sale['Sale'];
+    $package = $this->Package->findById($sale['package_id']);
+    $package = $package['Package'];
 		$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
-		// Datos de ejemplo obtenidos de https://developers.andreani.com/documentacion/2#crearOrden
+
 		$orden = [
-		    'contrato' => '400006711',
-		    'origen' => [
-		        'postal' => [
-		            'codigoPostal' => '3378',
-		            'calle' => 'Av Falsa',
-		            'numero' => '380',
-		            'localidad' => 'Puerto Esperanza',
-		            'region' => '',
-		            'pais' => 'Argentina',
-		            'componentesDeDireccion' => [
-		                [
-		                    'meta' => 'entreCalle',
-		                    'contenido' => 'Medina y Jualberto',
-		                ],
-		            ],
-		        ],
-		    ],
-		    'destino' => [
-		      'postal' => [
-		        'codigoPostal' => '1292',
-		        'calle' => 'Macacha Guemes',
-		        'numero' => '28',
-		        'localidad' => 'C.A.B.A.',
-		        'region' => 'AR-B',
-		        'pais' => 'Argentina',
-		        'componentesDeDireccion' => [
-		          [
-		            'meta' => 'piso',
-		            'contenido' => '2',
-		          ],
-		          [
-		            'meta' => 'departamento',
-		            'contenido' => 'B',
-		          ],
-		        ],
-		      ],
-		    ],
-		    'remitente' => [
-		      'nombreCompleto' => 'Alberto Lopez',
-		      'email' => 'remitente@andreani.com',
-		      'documentoTipo' => 'DNI',
-		      'documentoNumero' => '33111222',
-		      'telefonos' => [
-		        [
-		          'tipo' => 1,
-		          'numero' => '113332244',
-		        ],
-		      ],
-		    ],
-		    'destinatario' => [
-		        [
-		            'nombreCompleto' => 'Juana Gonzalez',
-		            'email' => 'destinatario@andreani.com',
-		            'documentoTipo' => 'DNI',
-		            'documentoNumero' => '33999888',
-		            'telefonos' => [
-		                [
-		                    'tipo' => 1,
-		                    'numero' => '1112345678',
-		                ],
-		            ],
-		        ],
-		    ],
-		    'productoAEntregar' => 'Aire Acondicionado',
-		    'bultos' => [
-		        [
-		            'kilos' => 2,
-		            'largoCm' => 10,
-		            'altoCm' => 50,
-		            'anchoCm' => 10,
-		            'volumenCm' => 5000,
-		            'valorDeclaradoSinImpuestos' => 1200,
-		            'valorDeclaradoConImpuestos' => 1452,
-		            'referencias' => [
-		                [
-		                    'meta' => 'detalle',
-		                    'contenido' => 'Secador de pelo',
-		                ],
-		                [
-		                    'meta' => 'idCliente',
-		                    'contenido' => '10000',
-		                ],
-		            ],
-		        ],
-		    ],
+	    'contrato' => getenv('ANDREANI_SUCURSAL'),
+	    'origen' => [
+        'postal' => [
+          'codigoPostal' => '3378',
+          'calle' => 'Av Falsa',
+          'numero' => '380',
+          'localidad' => 'Puerto Esperanza',
+          'region' => '',
+          'pais' => 'Argentina',
+          'componentesDeDireccion' => [
+            [
+              'meta' => 'entreCalle',
+              'contenido' => 'Medina y Jualberto',
+            ]
+          ]
+        ]
+	    ],
+	    'destino' => [
+	      'postal' => [
+	        'codigoPostal' => @$sale['cp'],
+	        'calle' => @$sale['calle'],
+	        'numero' => @$sale['nro'],
+	        'localidad' => @$sale['localidad'],
+	        'region' => @$sale['provincia'],
+	        'pais' => 'Argentina',
+	        'componentesDeDireccion' => [
+	          [
+	            'meta' => 'piso',
+	            'contenido' => @$sale['piso']
+	          ],
+	          [
+	            'meta' => 'departamento',
+	            'contenido' => @$sale['depto']
+	          ]
+	        ]
+	      ]
+	    ],
+	    'remitente' => [
+	      'nombreCompleto' => 'Alberto Lopez',
+	      'email' => 'remitente@andreani.com',
+	      'documentoTipo' => 'DNI',
+	      'documentoNumero' => '33111222',
+	      'telefonos' => [
+	        [
+	          'tipo' => 1,
+	          'numero' => '113332244'
+	        ]
+	      ]
+	    ],
+	    'destinatario' => [
+        [
+          'nombreCompleto' => @$sale['nombre'] . ' ' . @$sale['apellido'],
+          'email' => @$sale['email'],
+          'documentoTipo' => 'DNI',
+          'documentoNumero' => @$sale['dni'],
+          'telefonos' => [
+            [
+              'tipo' => 1,
+              'numero' => @$sale['telefono']
+            ]
+          ]
+        ]
+	    ],
+	    'productoAEntregar' => 'Aire Acondicionado',
+	    'bultos' => [
+        [
+				'kilos' => (float) $package['weight'],
+				//'anchoCm' => (float) $package['width'],
+				//'largoCm' => (float) $package['height'],
+				//'altoCm' => (float) $package['depth'],
+        'volumenCm' => (integer) $package['width'] * $package['height'] * $package['depth'],
+        'valorDeclaradoSinImpuestos' => @$sale['value'],
+        'valorDeclaradoConImpuestos' => @$sale['value'],
+        'referencias' => [
+            [
+              'meta' => 'detalle',
+              'contenido' => 'Secador de pelo'
+            ],
+            [
+              'meta' => 'idCliente',
+              'contenido' => '10000'
+            ]
+          ]
+        ]
+	    ]
 		];
 
 		$response = $ws->addOrden($orden);
-
-		var_dump($response);		
+		$nroEnvio = @$response['bultos'][0]['numeroDeEnvio'];
+    $sale['def_orden_retiro'] = $nroEnvio;
+    $sale['def_orden_tracking'] = $nroEnvio;
+    $t = @$this->Sale->save($sale);
+    $sale['raw_xml'] = @$response;
+   	return $sale;   
 	}
+
 	public function getTicket($sale_id = null){
 		$this->autoRender = false;
 		$data = [
@@ -314,15 +318,20 @@ class AdminController extends AppController {
 			}
 
 			$sale = $this->setOrdenRetiro($sale);
-
+			$data['shipping'] = @$sale['shipping'];
 			if (!empty($sale['def_orden_retiro'])) {
 				if (!empty($sale['def_orden_tracking']) && $send_email) {
 					// $user = $this->User->findById($sale['user_id']);
 					$emailTo = @$sale['email'];
 					//$emailTo = 'francisco.marasco@gmail.com';
 
+					$urlSeguimiento = 'https://www.oca.com.ar/envios/paquetes/';
+					if ($sale['shipping'] == 'andreani') {
+						$urlSeguimiento = 'https://www.andreani.com/#!/personas';
+					}
+
 					$message = '<p>Hola <strong>'.ucfirst(@$sale['nombre']).'</strong>, gracias por tu compra! 
-					</p><p>Puedes seguir tu envío a través del sitio de OCA: https://www.oca.com.ar/envios/paquetes/<br />Ingresando el número de envio: '.@$sale['def_orden_tracking'].'
+					</p><p>Puedes seguir tu envío a través del sitio de ' . strtouppercase($sale['shipping']) . ': ' . $urlSeguimiento . '<br /> Ingresando el número de envio: '.@$sale['def_orden_tracking'].'
 					</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
 
 					error_log('[email] notifying the tracking for user '.$emailTo);
@@ -337,7 +346,22 @@ class AdminController extends AppController {
 					$data['message'] = 'Ya enviado previamente';
 				}
 				// $data['url'] = "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
-				$data['url'] = "http://www5.oca.com.ar/OcaEPakNet/Views/Impresiones/Etiquetas.aspx?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
+
+
+				// etiquetas
+				if ($sale['shipping'] == 'andreani') {
+					$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
+
+					$response = $ws->getEtiqueta(@$sale['def_orden_tracking'], Andreani::ETIQUETA_ESTANDAR);
+					if (!is_null($response) && isset($response->pdf)) {
+						$dest = __DIR__ . '/../webroot/files/andreani/' . $sale['def_orden_tracking'] . '.pdf';
+					  file_put_contents($dest, $response->pdf);
+					  $data['url'] = Configure::read('baseUrl') . 'files/andreani/' . $sale['def_orden_tracking'] . '.pdf';
+					}
+
+				} else {
+					$data['url'] = "http://www5.oca.com.ar/OcaEPakNet/Views/Impresiones/Etiquetas.aspx?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
+				}
 			} else {
 				$data['message'] = strip_tags($sale['raw_xml']);
 			}
@@ -1281,12 +1305,12 @@ public function promos(){
 	    $this->loadModel('Logistic');
     	switch ($action) {
 	    	case 'add':
-	    	    if ($this->request->is('POST')){
-			        $this->autoRender = false;
-			        $data = $this->request->data;
-			        $data['image'] = $this->saveFileIfExists('image', $data);
-			        $this->Logistic->save($data);
-			        return $this->redirect(array('action'=>'logistica'));
+    	    if ($this->request->is('POST')){
+		        $this->autoRender = false;
+		        $data = $this->request->data;
+		        $data['image'] = $this->saveFileIfExists('image', $data);
+		        $this->Logistic->save($data);
+		        return $this->redirect(array('action'=>'logistica'));
     			} else {
     				$this->loadModel('Logistic');
 				    $cats = $this->Logistic->find('all');
@@ -1366,6 +1390,7 @@ public function promos(){
 		$this->set('amount', $amount);
 		return $this->render('settings-shipping');
 	}
+
 	public function contacto($action = null) {
 		$navs = array(
 			'Lista' => array(

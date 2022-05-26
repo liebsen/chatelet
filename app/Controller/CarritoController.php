@@ -461,31 +461,28 @@ class CarritoController extends AppController
 	
 	private function calculate_shipping_andreani ($data, $cp, $price) {
 		$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
-		$width = $data['package']['width'];
-		$height = $data['package']['height'];
-		$depth = $data['package']['depth'];
-		$width = $data['package']['width'];
-		$weight = round($data['package']['weight'] / 1000);
+		$package = $data['package'];
 		$bultos = [
 	    [
         //'volumen' => $data['volume'] * 1000,
-        'anchoCm' => (float) $width,
-        'largoCm' => (float) $height,
-        'altoCm' => (float) $depth,
-        'kilos' => (float) $data['weight'],
+        // 'anchoCm' => (float) $package['width'],
+        // 'largoCm' => (float) $package['height'],
+        // 'altoCm' => (float) $package['depth'],
+        'kilos' => (float) $package['weight'],
+        'volumen' => (integer) $package['width'] * $package['height'] * $package['depth'],
         // 'pesoAforado' => 5,
         'valorDeclarado' => (integer) $price // $1200
 	    ]
 		];
 
-		$bultos = array(
+		/* $bultos = array(
 		    array(
 		        'volumen' => 200,
 		        'kilos' => 1.3,
 		        'pesoAforado' => 5,
 		        'valorDeclarado' => 1200, // $1200
 		    ),
-		);
+		); */
 		$cp = (integer) $cp;
 		// $response = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
 		$response = $ws->cotizarEnvio($cp, '300006611', $bultos, 'CL0003750');
