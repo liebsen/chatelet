@@ -386,6 +386,7 @@ class CarritoController extends AppController
 	public function delivery_cost($cp, $code = null){
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
+		$this->loadModel('LogisticsPrices');
 
 		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.2') {
 			$dummy = '{"valid": 1,"freeShipping":false,"rates":{"oca":{"price":799,"centros":[{"idCentroImposicion":"51","IdSucursalOCA":"27","Sigla":"EQS","Descripcion":"ESQUEL                        ","Calle":"MITRE","Numero":"777  ","Torre":" ","Piso":"     ","Depto":"    ","Localidad":"ESQUEL                   ","IdProvincia":"9","idCodigoPostal":"19681","Telefono":"02945-451164   ","eMail":"","Provincia":"CHUBUT                        ","CodigoPostal":"9200    "}],"valid":1},"andreani":{"price":5295.98,"centros":[],"valid":true}},"itemsData":{"count":2,"price":8280,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}';
@@ -415,38 +416,75 @@ class CarritoController extends AppController
 			$conditions = ['enabled' => true];
 			if ($code) {
 				$conditions['code'] = strtolower($code);
-			}
-
-			$logistics = $this->Logistic->find('all',[
-				'conditions' => $conditions
-			]);
-
-			foreach($logistics as $logistic) {
-				$item = $logistic['Logistic'];
-				$code = $item['code'];
-				$row = [];
-				if(method_exists($this, "calculate_shipping_{$code}")) {
-					$row = [
-			      'title' => $item['title'],
-			      'code' => $item['code'],
-			      'image' => $item['image'],
-						'price' => $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
-						'centros' => [],
-						'valid' =>  true
-					];
+				$logistic = $this->Logistic->find('first',[
+					'conditions' => $conditions
+				]);
+				if ($logistic['Logistic']['local_prices']) {
+					// buscamos logísticas de alcance nacional
+					$locals = $this->LogisticsPrices->find('first', ['conditions' => ['logistic_id' => $logistic['Logistic']['id'], 'zips LIKE' => "%{$cp}%"]]);
+					$item = $locals['LogisticsPrices'];
+					$parent = $this->Logistic->findById($item['logistic_id'])['Logistic'];
+          $row = [
+            'title' => $parent['title'],
+            'image' => $parent['image'],
+            'code' => $parent['code'],
+            'price' => $item['price'],
+            'centros' => [],
+            'valid' =>  true
+          ];
+          $json['rates'][] = $row;
 				} else {
-					if ($item['zips'] === '' || in_array($cp, explode(',', $item['zips']))) {
+					if (method_exists($this, "calculate_shipping_{$code}")) {
 						$row = [
 				      'title' => $item['title'],
-				      'image' => $item['image'],
 				      'code' => $item['code'],
-							'price' => $item['price'],
+				      'image' => $item['image'],
+							'price' => $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+							'centros' => [],
+							'valid' =>  true
+						];
+						$json['rates'][] = $row;
+					}
+				}
+			} else {
+				// buscamos logísticas de alcance nacional
+				$conditions['local_prices'] = false;
+				$logistics = $this->Logistic->find('all',[
+					'conditions' => $conditions
+				]);
+
+				foreach($logistics as $logistic) {
+					$item = $logistic['Logistic'];
+					$code = $item['code'];
+					$row = [];
+					if (method_exists($this, "calculate_shipping_{$code}")) {
+						$row = [
+				      'title' => $item['title'],
+				      'code' => $item['code'],
+				      'image' => $item['image'],
+							'price' => $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
 							'centros' => [],
 							'valid' =>  true
 						];
 					}
+					$json['rates'][] = $row;
 				}
-				$json['rates'][] = $row;
+
+				// buscamos logísticas de alcance local
+				$locals = $this->LogisticsPrices->find('all', ['conditions' => ['zips LIKE' => "%{$cp}%"]]);
+				foreach($locals as $logistic_price) {
+					$item = $logistic_price['LogisticsPrices'];
+					$parent = $this->Logistic->findById($item['logistic_id'])['Logistic'];
+          $row = [
+            'title' => $parent['title'],
+            'image' => $parent['image'],
+            'code' => $parent['code'],
+            'price' => $item['price'],
+            'centros' => [],
+            'valid' =>  true
+          ];
+          $json['rates'][] = $row;
+				}
 			}
 		}
 
