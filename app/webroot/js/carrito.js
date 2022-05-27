@@ -206,7 +206,7 @@ $(document).ready(function() {
 	}
 
 	var lastcp = localStorage.getItem('lastcp') || 0
-	if (lastcp) {
+	if (lastcp && $('#subtotal_compra').val()) {
 		$('.input-cp').val(lastcp)
 		setTimeout(() => {
 			$('#calulate_shipping').submit()	

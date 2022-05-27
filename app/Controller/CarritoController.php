@@ -413,21 +413,27 @@ class CarritoController extends AppController
 		);
 
 		if(!empty($data)){
-			$conditions = ['enabled' => true];
 			if ($code) {
-				$conditions['code'] = strtolower($code);
+				$code = strtolower($code);
 				$logistic = $this->Logistic->find('first',[
-					'conditions' => $conditions
-				]);
-				if ($logistic['Logistic']['local_prices']) {
+					'conditions' => [
+						'enabled' => true,
+						'code' => $code
+					]
+				])['Logistic'];
+				if ($logistic['local_prices']) {
 					// buscamos logísticas de alcance nacional
-					$locals = $this->LogisticsPrices->find('first', ['conditions' => ['logistic_id' => $logistic['Logistic']['id'], 'zips LIKE' => "%{$cp}%"]]);
-					$item = $locals['LogisticsPrices'];
-					$parent = $this->Logistic->findById($item['logistic_id'])['Logistic'];
+					$locals = $this->LogisticsPrices->find('first', [
+						'conditions' => [
+							'logistic_id' => $logistic['id'],
+							'zips LIKE' => "%{$cp}%"
+						]
+					])['LogisticsPrices'];
+					$item = $locals;
           $row = [
-            'title' => $parent['title'],
-            'image' => $parent['image'],
-            'code' => $parent['code'],
+            'title' => $logistic['title'],
+            'image' => $logistic['image'],
+            'code' => $logistic['code'],
             'price' => $item['price'],
             'centros' => [],
             'valid' =>  true
@@ -436,9 +442,9 @@ class CarritoController extends AppController
 				} else {
 					if (method_exists($this, "calculate_shipping_{$code}")) {
 						$row = [
-				      'title' => $item['title'],
-				      'code' => $item['code'],
-				      'image' => $item['image'],
+				      'title' => $logistic['title'],
+				      'code' => $logistic['code'],
+				      'image' => $logistic['image'],
 							'price' => $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
 							'centros' => [],
 							'valid' =>  true
@@ -448,9 +454,11 @@ class CarritoController extends AppController
 				}
 			} else {
 				// buscamos logísticas de alcance nacional
-				$conditions['local_prices'] = false;
 				$logistics = $this->Logistic->find('all',[
-					'conditions' => $conditions
+					'conditions' => [
+						'enabled' => true,
+						'local_prices' => false
+					]
 				]);
 
 				foreach($logistics as $logistic) {
