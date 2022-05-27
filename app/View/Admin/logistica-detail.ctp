@@ -124,7 +124,7 @@
               <button class="btn btn-success" type="button" onclick="edit_logistic_price(<?php echo $price['LogisticsPrices']['id'] ?>)">
                 <i class="gi gi-pencil"></i>
               </button>
-              <button class="btn btn-danger" type="button" onclick="remove_logistic_price(<?php echo $price['LogisticsPrices']['id'] ?>)">
+              <button class="btn btn-danger" type="button" data-loading-text="<i class='gi gi-clock'></i>" onclick="remove_logistic_price(<?php echo $price['LogisticsPrices']['id'] ?>, this)">
                 <i class="gi gi-remove"></i>
               </button>
             </div>
@@ -161,7 +161,7 @@
         </div>
         <div class="form-group">
           <button class="btn btn-info" type="button" onclick="$('.logistic-price-form').addClass('hide')">Cancelar</button>
-          <button class="btn btn-success" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" type="submit">Guardar</button>
+          <button class="btn btn-success btn-save-logistic-prices" data-loading-text="<i class='gi gi-clock'></i>" type="submit">Guardar</button>
         </div>
       </form>
     </div>
