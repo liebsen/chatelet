@@ -15,8 +15,8 @@
     <meta property="og:title" content="Châtelet" />
     <meta property="og:description" content="Sé tu propio modelo de mujer" />
     <meta property="og:image" itemprop="image primaryImageOfPage" content="https://chatelet.com.ar/images/share-041120.jpg" />
+    <meta name="facebook-domain-verification" content="mz62jgu2bv7lu4new0t9pno88ekmxx" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-
     <?php if(isset($product)):?>
     <!-- FB OpenGraph -->
     <meta property="og:title" content="<?= $product['name'] ?>">
