@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
   <head>
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="IE=10">
     <meta http-equiv="X-UA-Compatible" content="IE=11">
@@ -19,8 +18,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <?php if(isset($product)):?>
     <!-- FB OpenGraph -->
-    <meta property="og:title" content="<?= $product['name'] ?>">
-    <meta property="og:description" content="<?= $product['name'] ?>">
+    <meta property="og:title" content="<?= ucwords(strtolower($product['name'])) ?>">
+    <meta property="og:description" content="<?= ucwords(strtolower($product['name'])) ?>">
     <meta property="og:url" content="<?= $this->Html->url(['controller' => 'shop', 'action' => 'detalle', $product['id'], $product['category_id'], strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))], true) ?>">
     <meta property="og:image" content="<?= Configure::read('imageUrlBase') . $product['img_url'] ?>">
     <meta property="product:brand" content="Chatelet">
@@ -30,6 +29,7 @@
     <meta property="product:price:currency" content="ARS">
     <meta property="product:retailer_item_id" content="<?= $product['article'] ?>">
     <meta property="product:item_group_id" content="<?= $product['category_id'] ?>">
+    <meta property="product:google_product_category" content="<?= $product['category_id'] ?>">
     <?php endif ?>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,8 +46,8 @@
 
       echo $this->Html->css('font-awesome.min');
       echo $this->Html->css('bootstrap-select');
-      echo $this->Html->css('bootstrap.min');
-      echo $this->Html->css('bootstrap');
+      // echo $this->Html->css('bootstrap.min');
+      echo $this->Html->css('bootstrap.css?' . Configure::read('DIST_VERSION'));
       echo $this->Html->css('bootstrapValidator.min');
 
       echo $this->Html->css('jquery.growl.css?' . Configure::read('DIST_VERSION'));

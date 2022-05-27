@@ -20,7 +20,7 @@
 						<?=$logistic['Logistic']['title']?>
 					</td>
 					<td>
-						<?= isset($logistic['Logistic']['zips']) && $logistic['Logistic']['zips'] != '' ? 'Local' : 'Nacional'?>
+						<?= isset($logistic['Logistic']['local_prices']) && $logistic['Logistic']['local_prices'] ? 'Local' : 'Nacional'?>
 					</td>
 					<td>
 						<?=$logistic['Logistic']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>

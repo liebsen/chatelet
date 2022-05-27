@@ -196,6 +196,10 @@ body {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.bg-success {
+  background-color: #dff0d8!important;
+}
+
 #page-container {
     width: 95%;
     min-width: 320px;

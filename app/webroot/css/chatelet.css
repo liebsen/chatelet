@@ -21,6 +21,20 @@ html, body {
 	display: none;
 }
 
+.btn {
+	min-height: 2.75rem;
+}
+
+.input-group-append {
+  margin-left: -1px;
+}
+
+.input-group-append, .input-group-prepend {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 #wrapper {
 	min-height: 100%;
 	position: relative;

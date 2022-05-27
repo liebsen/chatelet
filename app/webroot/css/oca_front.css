@@ -15,10 +15,16 @@
 	background-repeat: no-repeat;
 	background-size: 30px;  
 }
+
+.input-group-btn .btn {
+	min-width: 6rem;
+}
 .input-rounded{
+	min-height: 2.75rem;
+	font-size: 1rem;	
 	border-radius: 0.25rem;
 	padding: 0.5rem 0.75rem;
-	max-width: 10rem;
+	max-width: 14rem;
 	font-weight: 800;
 }
 

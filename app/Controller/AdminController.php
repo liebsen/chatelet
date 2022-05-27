@@ -1300,51 +1300,70 @@ public function promos(){
 			);
 		$this->set('h1', $h1);
 
-	    $this->loadModel('Logistic');
-    	switch ($action) {
-	    	case 'add':
-    	    if ($this->request->is('POST')){
-		        $this->autoRender = false;
-		        $data = $this->request->data;
-		        if (isset($_FILES['image']) && $_FILES['image']['size']) {
-		        	$data['image'] = $this->saveFile('image', $data);
-		        }
-		        $this->Logistic->save($data);
-		        return $this->redirect(array('action'=>'logistica'));
-    			} else {
-    				$this->loadModel('Logistic');
-				    $cats = $this->Logistic->find('all');
-						$this->set('cats', $cats);
-						$this->set('sel', true);
-	    			return $this->render('logistica-detail');
-	    		}
-	    		break;
-	    	case 'delete':
-		    	if ($this->request->is('post')) {
-		    		$this->autoRender = false;
-		    		$this->Logistic->delete($this->request->data['id']);
-		    	}
-	    		break;
-	    	case 'edit':
-	    		if ($this->request->is('post')) {
-	    			$this->autoRender = false;
-	    			$data = $this->request->data;
-	    			if (isset($_FILES['image']) && $_FILES['image']['size']) {
-	    				$data['image'] = $this->saveFile('image', $data);
-	    			}
-			      $this->Logistic->save($data);
-	    		} else {
-		    		$hasId = array_key_exists(1, $this->request->pass);
-		    		if (!$hasId) break;
-		    		$logistic = $this->Logistic->find('first', array('conditions' => array('id' => $this->request->pass[1])));
-		    		$this->set('logistic', $logistic);
-		    		return $this->render('logistica-detail');
-	    		}
-	    		break;
-	    }
-	    $logistics = $this->Logistic->find('all');
-	    $this->set('logistics', $logistics);
+    $this->loadModel('Logistic');
+  	switch ($action) {
+    	case 'add':
+  	    if ($this->request->is('POST')){
+	        $this->autoRender = false;
+	        $data = $this->request->data;
+	        if (isset($_FILES['image']) && $_FILES['image']['size']) {
+	        	$data['image'] = $this->saveFile('image', $data);
+	        }
+	        $this->Logistic->save($data);
+	        return $this->redirect(array('action'=>'logistica'));
+  			} else {
+			    $cats = $this->Logistic->find('all');
+					$this->set('cats', $cats);
+					$this->set('sel', true);
+    			return $this->render('logistica-detail');
+    		}
+    		break;
+    	case 'delete':
+	    	if ($this->request->is('post')) {
+	    		$this->autoRender = false;
+	    		$this->Logistic->delete($this->request->data['id']);
+	    	}
+    		break;
+    	case 'edit':
+    		if ($this->request->is('post')) {
+    			$this->autoRender = false;
+    			$data = $this->request->data;
+    			if (isset($_FILES['image']) && $_FILES['image']['size']) {
+    				$data['image'] = $this->saveFile('image', $data);
+    			}
+		      $this->Logistic->save($data);
+    		} else {
+    			$this->loadModel('LogisticsPrices');
+	    		$hasId = array_key_exists(1, $this->request->pass);
+	    		if (!$hasId) break;
+	    		$logistic = $this->Logistic->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+    			$prices = $this->LogisticsPrices->find('all', ['conditions' => ['logistic_id' => $this->request->pass[1]]]);
+	    		$this->set('logistic', $logistic);
+	    		$this->set('logistic_prices', $prices);
+	    		return $this->render('logistica-detail');
+    		}
+    		break;
+    }
+    $logistics = $this->Logistic->find('all');
+    $this->set('logistics', $logistics);
+
 		return $this->render('logistica');
+	}
+
+	public function save_logistic_price() {
+		$this->autoRender = false;
+    if ($this->request->is('POST')) {
+    	$this->loadModel('LogisticsPrices');
+    	$data = $this->request->data;
+      $result = $this->LogisticsPrices->save($data);
+      return json_encode(['status' => 'success', 'data' => $result['LogisticsPrices']]);
+    }
+	}
+	public function remove_logistic_price() {
+		$this->autoRender = false;
+		$this->loadModel('LogisticsPrices');
+		$this->LogisticsPrices->delete($this->request->data['id']);
+		return json_encode(['status' => 'success']);
 	}
 
 	public function shipping($action = null) {

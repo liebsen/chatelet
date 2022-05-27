@@ -31,20 +31,22 @@ var selectStore = e => {
 
 callStart = function(){
 	setTimeout(() => {
+		$('.btn-calculate-shipping').button('loading')
 		$('#cost_container').removeClass('text-muted', 'text-success');
 		$('#cost_container').addClass('hide');
-		$('#loading').removeClass('hide');
-	}, 50)
+		// $('#loading').removeClass('hide');
+	}, 10)
 }
 
 callEnd = function(){
 	cargo = 'shipment'
+	$('.btn-calculate-shipping').button('reset')
 	$('.shipping-loading').removeClass('animated fadeOut');
 	$('#cost_container').removeClass('animated fadeIn');
 	setTimeout(() => {
 		$('.shipping-loading').addClass('animated fadeOut');		
 		$('#cost_container').addClass('animated fadeIn');
-	}, 1)
+	}, 10)
 	setTimeout(() => {
 		$('#cost_container').removeClass('hide');
 		$('.shipping-loading').addClass('hide');
@@ -207,8 +209,8 @@ $(document).ready(function() {
 	if (lastcp) {
 		$('.input-cp').val(lastcp)
 		setTimeout(() => {
-			$('.input-cp').keyup()	
-			onWarningAlert('Consultando código postal', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`)			
+			$('#calulate_shipping').submit()	
+			onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`)			
 		},1000)		
 	}
 
