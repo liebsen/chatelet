@@ -216,7 +216,12 @@ $(document).ready(function() {
 	var shipping_price_min = parseInt(document.getElementById('shipping_price_min').value)
 	if (total < shipping_price_min) {
 		setTimeout(() => {
-			onSuccessAlert('¿Desea envío gratis?', `Las compras de al menos $${shipping_price_min} gozan de envío gratis. Agregue $${shipping_price_min - total} a su compra para obtener envío gratis`)
+			let block = document.querySelector('.shipping-price-min-alert')
+			if (block) {
+				block.querySelector('.shipping-price-min-alert-text').textContent = `Las compras de al menos $${shipping_price_min} gozan de envío gratis. Agregue $${shipping_price_min - total} a su compra para obtener envío gratis`
+				block.classList.remove('is-hidden')
+				block.classList.add('zoomInRight')
+			}			
 		}, 3000)
 	}
 })

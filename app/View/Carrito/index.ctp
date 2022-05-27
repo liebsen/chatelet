@@ -6,6 +6,14 @@
 ?>
 <div id="main" class="container">
 	<div class="row">
+		<div class="col-md-12 is-hidden shipping-price-min-alert animated">
+			<div class="alert alert-success" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>				
+				<span class="shipping-price-min-alert-text h4"></span>
+			</div>		
+		</div>
 		<div class="col-md-12" id="siguiente-block">
 			<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 		</div>
