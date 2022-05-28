@@ -113,7 +113,7 @@
     <table class="table table-striped" id="tarifas">
       <thead>
         <tr>
-          <th><?php echo __('Nombre'); ?></th>
+          <th><?php echo __('Zona'); ?></th>
           <th><?php echo __('Códigos postales'); ?></th>
           <th><?php echo __('Tarifa'); ?></th>
           <th><?php echo __('Observaciones'); ?></th>
@@ -166,17 +166,17 @@
           <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
           <div class="controls">
             <label for="enabled_1">Activo</label>
-            <input type="radio"  id="enabled_1" name="enabled" value="1" /> &nbsp;
+            <input type="radio" id="enabled_1" name="enabled" value="1" /> &nbsp;
             <label for="enabled_0">Inactivo</label>
-            <input type="radio"  id="enabled_0" name="enabled" value="0" />
+            <input type="radio" id="enabled_0" name="enabled" value="0" />
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label" for="info"><?php echo __('Nombre'); ?></label>
+          <label class="control-label" for="info"><?php echo __('Zona'); ?></label>
           <div class="controls">
             <input type="text" class="form-control" id="title" max-length="100" name="title" value="" placeholder="Zona Norte GBA" required>
           </div>
-          <small class="text-muted">Nombre para denominzar esta zona de logística.</small>
+          <small class="text-muted">Nombre para denominar esta zona de logística.</small>
         </div>        
         <div class="form-group">
           <label class="control-label" for="info"><?php echo __('Códigos postales'); ?></label>
