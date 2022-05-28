@@ -1,5 +1,5 @@
 $(function(){
-	var subtotal = $('#subtotal_compra').val();
+	var subtotal = $('#subtotal_compra').val()
 	selectShipping = function (e, shipping, cost) {
 		var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 		if (cost <= 0) {
@@ -40,9 +40,9 @@ $(function(){
 
 		$('#free_delivery').text('');
 		$('.delivery-cost').addClass('hidden')
-		callStart();
+		callStart()
 		$.getJSON( url+'/'+cp , function(json, textStatus) {
-			callEnd();
+			callEnd()
 			if( json.rates.length ){
 				$('.products-total').removeClass('hidden')
 				//free delivery
@@ -50,26 +50,25 @@ $(function(){
 					console.log('Envio gratis!')
 					// $('#subtotal_envio').val( 0 );
 					// $('#free_delivery').text('Envio gratis!');
-				}else{
-					var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
-					json.rates.forEach(rate => {
-						rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')"><span class="text-uppercase">$${parseInt(rate.price)}</span></div></li>`
-					})
-					rates+= `</ul>`
-					document.querySelector('.shipping-block .slot').innerHTML = rates
-					$('#delivery_cp').html( `<span class="shipping-cargo is-capitalize"></span> (${cp})` );
-					localStorage.setItem('lastcp', cp)		
-					setTimeout(() => {
-						$('.input-cp').removeClass('wrong');
-						$('.input-cp').addClass('ok');
-						onSuccessAlert(cp, '✓ Codigo Postal válido');
-						document.querySelector('.shipping-block').classList.remove('hidden')	
-						var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-						if (carrito.shipping) {
-							$(`.shipping-options li[shipping="${carrito.shipping}"]`).click()
-						}
-					}, 750)
 				}
+				var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
+				json.rates.forEach(rate => {
+					rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')"><span class="text-uppercase">$${parseInt(rate.price)}</span></div></li>`
+				})
+				rates+= `</ul>`
+				document.querySelector('.shipping-block .slot').innerHTML = rates
+				$('#delivery_cp').html( `<span class="shipping-cargo is-capitalize"></span> (${cp})` );
+				localStorage.setItem('lastcp', cp)		
+				setTimeout(() => {
+					$('.input-cp').removeClass('wrong');
+					$('.input-cp').addClass('ok');
+					onSuccessAlert(cp, '✓ Codigo Postal válido');
+					document.querySelector('.shipping-block').classList.remove('hidden')	
+					var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+					if (carrito.shipping) {
+						$(`.shipping-options li[shipping="${carrito.shipping}"]`).click()
+					}
+				}, 750)
 			} else {
 				$('.input-cp').addClass('wrong');
 				$('#cost').text( parseInt(0) );
