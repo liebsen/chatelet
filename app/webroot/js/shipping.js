@@ -37,9 +37,8 @@ $(function(){
 
 		$('.input-cp').removeClass('ok');				
 		$('.delivery-cost').addClass('hidden')
-		$('.takeaway-options li').removeClass('selected')
+		// $('.takeaway-options li').removeClass('selected')
 
-		console.log(cp)
 		if(cp_input == '' || cp < 1000 || cp > 9999) {
 			onErrorAlert('Código postal inválido', `Por favor ingrese un código postal válido`);
 			return false
@@ -67,12 +66,12 @@ $(function(){
 				$('#delivery_cp').html( `<span class="shipping-cargo is-capitalize"></span> (${cp})` );
 				localStorage.setItem('lastcp', cp)		
 				setTimeout(() => {
-					$('.input-cp').removeClass('wrong');
+					$('.input-cp').removeClass('wrong     ');
 					$('.input-cp').addClass('ok');
 					onSuccessAlert(cp, '✓ Codigo Postal válido');
 					document.querySelector('.shipping-block').classList.remove('hidden')	
 					var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-					if (carrito.shipping) {
+					if (carrito.cargo === 'shipment' && carrito.shipping) {
 						$(`.shipping-options li[shipping="${carrito.shipping}"]`).click()
 					}
 				}, 750)

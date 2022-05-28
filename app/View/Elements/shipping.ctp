@@ -56,7 +56,7 @@
 			<?php foreach ($stores as $store):?>
 				<li store="<?php echo $store['Store']['name'];?>"
 					store-address="<?php echo $store['Store']['address'];?>"
-					onclick="selectStore(this)"><span class="text-uppercase"><?php echo $store['Store']['name'];?></span>, <?php echo $store['Store']['address'];?></li>
+					onclick="selectStore(this)"><span><?php echo $store['Store']['address'];?></span>, <span class="text-uppercase"><?php echo $store['Store']['name'];?></span></li>
 			<?php endforeach;?>
 		</ul>
 	</div>

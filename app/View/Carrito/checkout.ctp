@@ -114,7 +114,7 @@ $(function(){
 <?php if(!$loggedIn):?>	
 	$('#particular-login').modal('show')
 <?php endif;?>
-	let carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	$(`.cargo-${carrito.cargo}`).removeClass('is-hidden')
 	$('#regalo').prop('checked', carrito.regalo)
 	$('.store-address').text([carrito.store, carrito.store_address].join(', '))
