@@ -210,9 +210,16 @@ html, body {
 #items {
 	height: 100px;
 	min-width: 320px;
+	padding-left: 0.85rem;
 	overflow-y: auto;
 	overflow-x: hidden;
 	text-overflow: ellipsis;
+}
+
+#items li {
+	border-bottom: 1px dashed #dedede;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
 }
 
 .ellipsis {
