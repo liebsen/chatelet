@@ -1329,6 +1329,9 @@ public function promos(){
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
 	    		$this->Logistic->delete($this->request->data['id']);
+		    	$this->LogisticsPrices->deleteall([
+		    		'Product.category_id' => $this->request->data['id']
+		    	]);
 	    	}
     		break;
     	case 'edit':

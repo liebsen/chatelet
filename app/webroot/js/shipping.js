@@ -3,7 +3,7 @@ $(function(){
 	selectShipping = function (e, shipping, cost) {
 		var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 		if (cost <= 0) {
-			return setTimeout( "onErrorAlert('No disponible', 'El servicio de logística no está disponible en este momento, intente en unos instantes.')" , 200)
+			return setTimeout( `onErrorAlert('No disponible', 'El servicio de logística ${shipping.toUpperCase()} no está disponible en este momento, intente en unos instantes.')` , 200)
 		}
 
 		$('.shipping-options li').removeClass('selected')
