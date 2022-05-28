@@ -207,7 +207,7 @@
     </div>
   <?php else: ?>
     <div class="">
-      <strong><?= $logistic['Logistic']['title'] ?></strong> <span>tiene alcance nacional y o puede aceptar tarifas ya que está integrada a la tienda mediante api</span>
+      <strong><?= $logistic['Logistic']['title'] ?></strong> <span>tiene alcance nacional y no puede aceptar tarifas ya que está integrada a la tienda mediante api.</span>
     </div>
   <?php endif ?>
   </div>
