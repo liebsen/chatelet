@@ -66,12 +66,12 @@
 }
 
 .shipping-options .shipping-logo {
-	background-size: 65%;
+	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: left center;
 	text-align: right;
 	padding-right: 2.5rem;
-	min-height: 44px;
+	min-height: 42px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;	
