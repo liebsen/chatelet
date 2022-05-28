@@ -396,7 +396,8 @@ class CarritoController extends AppController
 		//Codigo Postal
 		$this->Session->write('cp',$cp);
 		$shipping_price = $this->Setting->findById('shipping_price_min');
-
+		$cp1 = substr($cp, 0, 3) . '*';
+		$cp2 = substr($cp, 0, 2) . '**';
 		//Data
 		$data = $this->getItemsData();
 		$unit_price = $data['price'];
@@ -426,7 +427,12 @@ class CarritoController extends AppController
 					$locals = $this->LogisticsPrices->find('first', [
 						'conditions' => [
 							'logistic_id' => $logistic['id'],
-							'zips LIKE' => "%{$cp}%"
+							'enabled' => true,
+	            'OR' => [
+	              ['zips LIKE' => "%{$cp1}%"],
+	              ['zips LIKE' => "%{$cp2}%"],
+	              ['zips LIKE' => "%{$cp}%"]
+	            ]
 						]
 					])['LogisticsPrices'];
 					$item = $locals;
@@ -479,7 +485,16 @@ class CarritoController extends AppController
 				}
 
 				// buscamos logísticas de alcance local
-				$locals = $this->LogisticsPrices->find('all', ['conditions' => ['zips LIKE' => "%{$cp}%"]]);
+				$locals = $this->LogisticsPrices->find('all', [
+					'conditions' => [
+						'enabled' => true,
+            'OR' => [
+              ['zips LIKE' => "%{$cp1}%"],
+              ['zips LIKE' => "%{$cp2}%"],
+              ['zips LIKE' => "%{$cp}%"]
+            ]
+					]
+				]);
 				foreach($locals as $logistic_price) {
 					$item = $logistic_price['LogisticsPrices'];
 					$parent = $this->Logistic->findById($item['logistic_id'])['Logistic'];

@@ -1309,8 +1309,15 @@ public function promos(){
 	        if (isset($_FILES['image']) && $_FILES['image']['size']) {
 	        	$data['image'] = $this->saveFile('image', $data);
 	        }
-	        $this->Logistic->save($data);
-	        return $this->redirect(array('action'=>'logistica'));
+	        $result = $this->Logistic->save($data);
+					$url = array(
+				    'action' => 'logistica',
+				    'edit',
+				    $result['Logistic']['id'],
+				    '#' => 'tarifas'
+					);
+					return $this->redirect($url);
+	        // return $this->redirect(array('action'=>'logistica'));
   			} else {
 			    $cats = $this->Logistic->find('all');
 					$this->set('cats', $cats);

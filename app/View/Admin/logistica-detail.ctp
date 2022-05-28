@@ -37,6 +37,8 @@
               </div>
               <small class="text-muted">Indica el estado de esta logística. En caso de inactivo el cliente no podrá utilizar esta opción.</small>
             </div>
+            <br>
+
             <div class="control-group">
               <label class="control-label" for="code"><?php echo __('Código'); ?></label>
               <div class="controls">
@@ -56,6 +58,21 @@
           </div>
           <div class="col-md-6">
             <h4 class="sub-header">Mas datos</h4>
+            <div class="control-group">
+              <label class="control-label" for="columns-text"><?php echo __('Alcance'); ?></label>
+              <div class="controls">
+                <?php
+                  $enabled = (isset($logistic) && $logistic['Logistic']['local_prices'] == 1 || !isset($logistic)) ? 'checked' : '';
+                  $disabled = (isset($logistic) && $logistic['Logistic']['local_prices'] == 0) ? 'checked' : '';
+                ?>
+                <label for="enabled_1">Local</label>
+                <input type="radio" class="form-control" id="enabled_1" name="data[local_prices]" value="1" <?php echo $enabled; ?> /> &nbsp;
+                <label for="enabled_0">Nacional</label>
+                <input type="radio" class="form-control" id="enabled_0" name="data[local_prices]" value="0" <?php echo $disabled; ?> />
+              </div>
+              <small class="text-muted">Indica si la logística utiliza una configuración local o si está integrada a la tienda mediante api. Seleccione <strong>Alcance Local</strong> para agregar tarifas.</small>
+            </div>
+            <br>
             <div class="control-group">
               <label class="control-label" for="info"><?php echo __('Info'); ?></label>
               <div class="controls">
@@ -91,8 +108,9 @@
   <?php if(isset($logistic_prices) &&  $logistic['Logistic']['local_prices']) :?>
     <hr>
     <h4 class="sub-header">Tarifas</h4>
+    <p class="p">Usted puede editar las tarifas de esta logística de acuerdo a las zonas que están representadas por códigos postales. Los códigos postales en Argentina contienen cuatro números. Puede asignarlos de forma taxativa (ej: 1440, 1441) o con expresiones (ej: 92**, 930*). Mas información sobre <a href="https://códigos-postales.cybo.com/argentina/#mapwrap" target="_blank">códigos postales de argentina</a></p>
     <button class="btn btn-success" type="button" onclick="edit_logistic_price()">Agregar</button>
-    <table class="table table-striped">
+    <table class="table table-striped" id="tarifas">
       <thead>
         <tr>
           <th><?php echo __('Códigos postales'); ?></th>
@@ -143,7 +161,7 @@
           <div class="controls">
             <textarea id="zips" class="form-control" name="zips" rows="5" placeholder="Indique códigos postales válidos" required></textarea>
           </div>
-          <small class="text-muted">Indica los códigos postales <strong>separados por un espacio</strong> que abarca la zona de cobertura de esta logística.</small>
+          <small class="text-muted">Indica los códigos postales <strong>separados por coma o espacio</strong> que abarca la zona de cobertura de esta logística.</small>
         </div>
         <div class="form-group">
           <label class="control-label" for="info"><?php echo __('Tarifa'); ?></label>
