@@ -29,7 +29,8 @@ $(function(){
 	$('#calulate_shipping').submit(e => {
 		var url = $('#calulate_shipping').data('url')
 		var total_orig = $('#subtotal_compra').val()
-		var cp = parseInt($('.input-cp').val())
+		var cp_input = $('.input-cp').val().trim()
+		var cp = parseInt(cp_input)
 		var cost = 0
 
 		document.querySelector('.shipping-block').classList.add('hidden')
@@ -38,7 +39,8 @@ $(function(){
 		$('.delivery-cost').addClass('hidden')
 		$('.takeaway-options li').removeClass('selected')
 
-		if(cp < 1000 || cp > 9999) {
+		console.log(cp)
+		if(cp_input == '' || cp < 1000 || cp > 9999) {
 			onErrorAlert('Código postal inválido', `Por favor ingrese un código postal válido`);
 			return false
 		}
