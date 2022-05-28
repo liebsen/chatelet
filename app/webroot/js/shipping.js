@@ -11,11 +11,16 @@ $(function(){
 		$(e).addClass('selected')
 		$('.delivery-cost').removeClass('hidden')
 		$('.delivery-cost').addClass('fadeIn')
-		$('#subtotal_envio').val(cost)
-		$('.cost_delivery').text( formatNumber(cost))
 		$('.shipping-cargo').text(shipping)	
 
-		let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
+		var price = parseFloat($('#subtotal_compra').val()) - coupon
+		if (!freeShipping) {
+			price+= cost
+			$('#subtotal_envio').val(cost)
+			$('.cost_delivery').text( formatNumber(cost))
+		}
+
+		let total = formatNumber(price)
 		let info = $(e).data('info')
 		fxTotal(total)
 		onSuccessAlert(shipping.toUpperCase(), info || `Usted seleccionó ${shipping.toUpperCase()} como servicio de entrega`);
