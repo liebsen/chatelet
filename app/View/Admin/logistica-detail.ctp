@@ -1,6 +1,6 @@
 <?php
-  echo $this->Html->script('logistic-detail', array('inline' => false));
-  echo $this->Html->css('logistic-detail', array('inline' => false));
+  echo $this->Html->script('logistica-detail', array('inline' => false));
+  echo $this->Html->css('logistica-detail', array('inline' => false));
 ?>
 <?php echo $this->element('admin-menu');?>
 <div class="block block-themed">
@@ -27,7 +27,7 @@
               <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
               <div class="controls">
                 <?php
-                  $enabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 1) ? 'checked' : '';
+                  $enabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 1 || !isset($logistic)) ? 'checked' : '';
                   $disabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 0) ? 'checked' : '';
                 ?>
                 <label for="enabled_1">Activo</label>
@@ -40,7 +40,7 @@
             <div class="control-group">
               <label class="control-label" for="code"><?php echo __('Código'); ?></label>
               <div class="controls">
-                <input type="text" class="form-control" id="code" name="data[code]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['code'] : ''; ?>" <?= isset($logistic) ? 'disabled' : 'required' ?>>
+                <input type="text" class="form-control" id="code" name="data[code]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['code'] : ''; ?>" <?= isset($logistic) ? 'disabled' : 'readonly' ?>>
               </div>
               <small class="text-danger">Indica el código de logística. Si no estás seguro consultá con el programador. Este valor solo puede editarse una vez.</small>
             </div>

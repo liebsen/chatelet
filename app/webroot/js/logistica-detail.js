@@ -1,13 +1,20 @@
-$(document).ready(function() {
-  $('#add-logistoc-price').click(e => {
+$(document).ready(() => {
+  if (!$('#code').is(':disabled')) {
+    $('#title').keyup(e => {
+      let str = $(e.target).val()
+      let slug = convertToSlug(str)
+      $('#code').val(slug)
+    })
+  }
+})
 
-  });
-});
+function convertToSlug(Text) {
+  return Text.toLowerCase().replace(/ /g, '').replace(/[^\w-]+/g, '')
+}
 
 function edit_logistic_price(price_id) {
   let block = $('#prices_' + price_id)
   if (block) {
-    console.log(price_id)
     $('.logistic-price-form #id').val(price_id)
     $('.logistic-price-form #zips').val(block.find('.zips').text().trim())
     $('.logistic-price-form #info').val(block.find('.info').text().trim())
