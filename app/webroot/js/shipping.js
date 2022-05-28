@@ -7,6 +7,7 @@ $(function(){
 		}
 
 		$('.shipping-options li').removeClass('selected')
+		$('.takeaway-options li').removeClass('selected')
 		$(e).addClass('selected')
 		$('.delivery-cost').removeClass('hidden')
 		$('.delivery-cost').addClass('fadeIn')
