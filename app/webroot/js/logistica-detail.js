@@ -15,6 +15,8 @@ function convertToSlug(Text) {
 function edit_logistic_price(price_id) {
   let block = $('#prices_' + price_id)
   if (block) {
+    var radio = block.hasClass('bg-light') ? 0 : 1
+    $(`.logistic-price-form #enabled_${radio}`).prop('checked', true)
     $('.logistic-price-form #id').val(price_id)
     $('.logistic-price-form #zips').val(block.find('.zips').text().trim())
     $('.logistic-price-form #info').val(block.find('.info').text().trim())
@@ -33,17 +35,21 @@ function save_logistic_price () {
       $('.btn-save-logistic-prices').button('reset')
       let data = JSON.parse(res)
       if(data.status === 'success') {
-        let block = $('#prices_' + data.data.id)
+        var block = $('#prices_' + data.data.id)
+        var state = data.data.enabled == 1 ? 'bg-success' : 'bg-light'
+        console.log('state', state)
         if (block.length) {
-          block.find('.zips').text(formData.zips)
-          block.find('.info').text(formData.info)
-          block.find('.title').text(formData.title)
-          block.find('.price').text(formData.price)
-          block.addClass('bg-success')
+          block.removeClass('bg-light')
+          block.addClass(state)
+          block.find('.zips').text(data.data.zips)
+          block.find('.info').text(data.data.info)
+          block.find('.title').text(data.data.title)
+          block.find('.price').text(data.data.price)          
         } else {
-          let row = `<tr id="prices_${data.data.id}" class="bg-success">
+          
+          let row = `<tr id="prices_${data.data.id}" class="${state}">
             <td>
-              <p class="info">
+              <p class="title">
                 <strong>${data.data.title}</strong>
               </p>
             </td>
@@ -77,7 +83,7 @@ function save_logistic_price () {
         }
         $('.logistic-price-form').addClass('hide')
       }
-    }, 2000)
+    }, 500)
   })
   return false;
 }

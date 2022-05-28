@@ -200,6 +200,11 @@ body {
   background-color: #dff0d8!important;
 }
 
+.bg-light {
+    background-color: #e8e8e8 !important;
+    color: #a8a8a8 !important;
+}
+
 #page-container {
     width: 95%;
     min-width: 320px;

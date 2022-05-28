@@ -122,7 +122,7 @@
       </thead>
       <tbody id="table_prices">
       <?php foreach($logistic_prices as $price) :?>
-        <tr id="prices_<?= $price['LogisticsPrices']['id'] ?>">
+        <tr id="prices_<?= $price['LogisticsPrices']['id'] ?>" class="<?= !$price['LogisticsPrices']['enabled'] ? 'bg-light' : '' ?>">
           <td>
             <p class="title">
               <?php echo $price['LogisticsPrices']['title'] ?>
@@ -162,6 +162,15 @@
       <form id="add_logistic_price" onsubmit="return save_logistic_price()">
         <input type="hidden" name="id" id="id" value="">
         <input type="hidden" name="logistic_id" value="<?= $logistic['Logistic']['id'] ?>">
+        <div class="control-group">
+          <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
+          <div class="controls">
+            <label for="enabled_1">Activo</label>
+            <input type="radio"  id="enabled_1" name="enabled" value="1" /> &nbsp;
+            <label for="enabled_0">Inactivo</label>
+            <input type="radio"  id="enabled_0" name="enabled" value="0" />
+          </div>
+        </div>
         <div class="form-group">
           <label class="control-label" for="info"><?php echo __('Nombre'); ?></label>
           <div class="controls">
