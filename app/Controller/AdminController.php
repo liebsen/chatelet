@@ -1330,7 +1330,7 @@ public function promos(){
 	    		$this->autoRender = false;
 	    		$this->Logistic->delete($this->request->data['id']);
 		    	$this->LogisticsPrices->deleteall([
-		    		'Product.category_id' => $this->request->data['id']
+		    		'logistic_id' => $this->request->data['id']
 		    	]);
 	    	}
     		break;
