@@ -18,6 +18,7 @@ function edit_logistic_price(price_id) {
     $('.logistic-price-form #id').val(price_id)
     $('.logistic-price-form #zips').val(block.find('.zips').text().trim())
     $('.logistic-price-form #info').val(block.find('.info').text().trim())
+    $('.logistic-price-form #title').val(block.find('.title').text().trim())
     $('.logistic-price-form #price').val(block.find('.price').text().trim())
   }
   $('.logistic-price-form').removeClass('hide')
@@ -36,10 +37,16 @@ function save_logistic_price () {
         if (block.length) {
           block.find('.zips').text(formData.zips)
           block.find('.info').text(formData.info)
+          block.find('.title').text(formData.title)
           block.find('.price').text(formData.price)
           block.addClass('bg-success')
         } else {
           let row = `<tr id="prices_${data.data.id}" class="bg-success">
+            <td>
+              <p class="info">
+                <strong>${data.data.title}</strong>
+              </p>
+            </td>
             <td>
               <p class="zips">
                 ${data.data.zips}

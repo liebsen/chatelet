@@ -113,6 +113,7 @@
     <table class="table table-striped" id="tarifas">
       <thead>
         <tr>
+          <th><?php echo __('Nombre'); ?></th>
           <th><?php echo __('Códigos postales'); ?></th>
           <th><?php echo __('Tarifa'); ?></th>
           <th><?php echo __('Observaciones'); ?></th>
@@ -122,6 +123,11 @@
       <tbody id="table_prices">
       <?php foreach($logistic_prices as $price) :?>
         <tr id="prices_<?= $price['LogisticsPrices']['id'] ?>">
+          <td>
+            <p class="title">
+              <?php echo $price['LogisticsPrices']['title'] ?>
+            </p>
+          </td>
           <td>
             <p class="zips">
               <?php echo $price['LogisticsPrices']['zips'] ?>
@@ -156,6 +162,13 @@
       <form id="add_logistic_price" onsubmit="return save_logistic_price()">
         <input type="hidden" name="id" id="id" value="">
         <input type="hidden" name="logistic_id" value="<?= $logistic['Logistic']['id'] ?>">
+        <div class="form-group">
+          <label class="control-label" for="info"><?php echo __('Nombre'); ?></label>
+          <div class="controls">
+            <input type="text" class="form-control" id="title" max-length="100" name="title" value="" placeholder="Zona Norte GBA" required>
+          </div>
+          <small class="text-muted">Nombre para denominzar esta zona de logística.</small>
+        </div>        
         <div class="form-group">
           <label class="control-label" for="info"><?php echo __('Códigos postales'); ?></label>
           <div class="controls">
