@@ -439,6 +439,7 @@ class CarritoController extends AppController
           $row = [
             'title' => $logistic['title'],
             'image' => $logistic['image'],
+            'info' => implode('. ', array_filter([$logistic['info'], $item['info']])),
             'code' => $logistic['code'],
             'price' => $item['price'],
             'centros' => [],
@@ -451,6 +452,7 @@ class CarritoController extends AppController
 				      'title' => $logistic['title'],
 				      'code' => $logistic['code'],
 				      'image' => $logistic['image'],
+				      'info' => $logistic['info'],
 							'price' => $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
 							'centros' => [],
 							'valid' =>  true
@@ -476,6 +478,7 @@ class CarritoController extends AppController
 				      'title' => $item['title'],
 				      'code' => $item['code'],
 				      'image' => $item['image'],
+				      'info' => $item['info'],
 							'price' => $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
 							'centros' => [],
 							'valid' =>  true
@@ -502,6 +505,7 @@ class CarritoController extends AppController
             'title' => $parent['title'],
             'image' => $parent['image'],
             'code' => $parent['code'],
+            'info' => implode('. ', array_filter([$parent['info'], $item['info']])),
             'price' => $item['price'],
             'centros' => [],
             'valid' =>  true

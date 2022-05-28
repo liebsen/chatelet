@@ -3,20 +3,21 @@ $(function(){
 	selectShipping = function (e, shipping, cost) {
 		var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 		if (cost <= 0) {
-			return setTimeout( "onErrorAlert('El servicio de oca no está disponible en este momento, intente en unos instantes.')" , 200);
+			return setTimeout( "onErrorAlert('El servicio de logística no está disponible en este momento, intente en unos instantes.')" , 200)
 		}
 
 		$('.shipping-options li').removeClass('selected')
 		$(e).addClass('selected')
 		$('.delivery-cost').removeClass('hidden')
 		$('.delivery-cost').addClass('fadeIn')
-		$('#subtotal_envio').val(cost);
-		$('.cost_delivery').text( formatNumber(cost));		
+		$('#subtotal_envio').val(cost)
+		$('.cost_delivery').text( formatNumber(cost))
 		$('.shipping-cargo').text(shipping)	
 
 		let total = formatNumber(parseFloat($('#subtotal_compra').val()) + cost - coupon)
+		let info = $(e).data('info')
 		fxTotal(total)
-		onSuccessAlert(shipping.toUpperCase(), `Usted seleccionó ${shipping.toUpperCase()} como servicio de entrega`);
+		onSuccessAlert(shipping.toUpperCase(), info || `Usted seleccionó ${shipping.toUpperCase()} como servicio de entrega`);
 	}
 
 	$('#calulate_shipping').submit(e => {
@@ -51,7 +52,7 @@ $(function(){
 				}else{
 					var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
 					json.rates.forEach(rate => {
-						rates+= `<li shipping="${rate.code}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')"><span class="text-uppercase">$${parseInt(rate.price)}</span></div></li>`
+						rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')"><span class="text-uppercase">$${parseInt(rate.price)}</span></div></li>`
 					})
 					rates+= `</ul>`
 					document.querySelector('.shipping-block .slot').innerHTML = rates
