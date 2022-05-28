@@ -526,32 +526,36 @@ class CarritoController extends AppController
 	}
 	
 	private function calculate_shipping_andreani ($data, $cp, $price) {
-		$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
+		$ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), getenv('ANDREANI_CONTRATO'), getenv('ANDREANI_DEBUG'));
 		$package = $data['package'];
-		$bultos = [
+		/*$bultos = [
 	    [
-        //'volumen' => $data['volume'] * 1000,
+        // 'volumen' => $data['volume'] * 1000,
         // 'anchoCm' => (float) $package['width'],
         // 'largoCm' => (float) $package['height'],
         // 'altoCm' => (float) $package['depth'],
-        'kilos' => (float) $package['weight'],
+        'kilos' => (float) $package['weight'] / 1000,
         'volumen' => (integer) $package['width'] * $package['height'] * $package['depth'],
         // 'pesoAforado' => 5,
         'valorDeclarado' => (integer) $price // $1200
 	    ]
-		];
+		];*/
 
-		/* $bultos = array(
+		$bultos = array(
 		    array(
 		        'volumen' => 200,
 		        'kilos' => 1.3,
 		        'pesoAforado' => 5,
 		        'valorDeclarado' => 1200, // $1200
 		    ),
-		); */
+		);
 		$cp = (integer) $cp;
-		// $response = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
-		$response = $ws->cotizarEnvio($cp, '300006611', $bultos, 'CL0003750');
+		$response = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
+		// $response = $ws->cotizarEnvio($cp, '300006611', $bultos, 'CL0003750');
+		echo '<pre>';
+		var_dump($bultos);
+		var_dump($ws);
+		var_dump($response);
 		// $result = $ws->cotizarEnvio((integer) $cp, getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_USUARIO'));
 		return $response->tarifaConIva->total;
 

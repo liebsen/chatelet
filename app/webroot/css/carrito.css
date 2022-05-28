@@ -66,19 +66,19 @@
 }
 
 .shipping-options .shipping-logo {
-	background-size: 8rem;
+	background-size: 65%;
 	background-repeat: no-repeat;
 	background-position: left center;
 	text-align: right;
 	padding-right: 2.5rem;
-	min-height: 33px;
+	min-height: 44px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;	
 }
 
 .shipping-options li {
-	padding: 0.25rem!important;
+	padding: 0!important;
 }
 
 .generic-select {

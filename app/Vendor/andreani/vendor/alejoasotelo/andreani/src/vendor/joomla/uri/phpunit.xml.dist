@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php" colors="false">
+	<testsuites>
+		<testsuite name="Unit">
+			<directory suffix="Test.php" phpVersion="7.1.0" phpVersionOperator="&lt;">Tests/php53</directory>
+			<directory suffix="Test.php" phpVersion="7.1.0" phpVersionOperator=">=">Tests/php71</directory>
+		</testsuite>
+	</testsuites>
+</phpunit>
