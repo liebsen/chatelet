@@ -87,9 +87,9 @@ class AppController extends Controller
         if(!empty($this->Auth->user('role')) && $this->Auth->user('role') == 'admin'){
             $site_visits = $this->site_visits();
             $this->set('site_visits',$site_visits);
-            if ($this->request->params['controller']!='admin') {
+            /* if ($this->request->params['controller']!='admin') {
                 $this->redirect('/admin');
-            }
+            } */
         }
 
         $this->loadModel('Setting');
