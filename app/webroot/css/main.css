@@ -634,7 +634,7 @@ body {
 
 .block-content {
     margin: 0;
-    padding: 1rem 2rem;
+    padding: 1rem;
     border: 2px solid #eee;
     border-top: none;
 }
@@ -774,7 +774,7 @@ body {
 }
 
 .mini-profile img {
-   max-height: 4rem;
+   max-height: 2rem;
 }
 
 .mini-profile a {
@@ -2758,6 +2758,9 @@ textarea.form-control {
 }
 
 /* Tables + DataTables */
+
+/* table */
+
 .table {
     margin-bottom: 20px;
 }
@@ -2777,7 +2780,7 @@ textarea.form-control {
     background: #2980b9;
     color: #fff;
     padding: 12px 8px;
-    font-weight: 300;
+    font-weight: 600;
     font-size: 15px;
 }
 
@@ -2793,7 +2796,8 @@ textarea.form-control {
 
 .table tbody > tr > th,
 .table tbody > tr > td {
-    padding: 12px 8px 8px;
+    /* padding: 12px 8px 8px; */
+    padding: 1rem 1.75rem 1rem;
 }
 
 .table tr:first-child > td {
@@ -3626,6 +3630,12 @@ a.thumbnail-borderless,
 
 /* Mobile up to portrait tablet */
 @media (max-width: 767px) {
+
+    /* bootstrap tables for mobile */
+    .table {
+        display: block;
+        overflow-x: auto;
+    }
 
     .login-btn {
         top: 75px;
