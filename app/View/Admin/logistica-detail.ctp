@@ -220,7 +220,9 @@
   </div>
 </div>
 <?php else: ?>
-<div class="has-card-background card-alcance-nacional">
-  <h3><?= $logistic['Logistic']['title'] ?></h3> <p>tiene alcance nacional y no puede aceptar tarifas ya que está integrada a la tienda mediante api.</p>
+<div class="content">
+  <div class="has-card-background card-alcance-nacional">
+    <h3>Alcance Nacional</h3><p><strong><?= $logistic['Logistic']['title'] ?></strong> tiene alcance nacional y no puede aceptar tarifas ya que está integrada a la tienda mediante api.</p>
+  </div>
 </div>
 <?php endif ?>

@@ -2012,7 +2012,7 @@ pre, code {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6, h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
-    font-weight: 300;
+    font-weight: 600;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -3982,4 +3982,27 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
 div.cloudzoom-black:nth-child(3) {
     display: none;
+}
+
+/* custom */
+
+.has-card-background {
+    min-height: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    background-repeat: no-repeat;
+    background-size: 25rem;
+    background-position: center top;
+} 
+
+.card-alcance-nacional {
+  background-image: url(/img/art/team.svg);
+}
+
+@media (min-width: 768px) { 
+    .has-card-background {
+        background-size: 30rem;
+    }
 }
