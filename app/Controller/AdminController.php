@@ -1216,12 +1216,6 @@ public function promos(){
 			);
 		$this->set('navs', $navs);
 
-		$h1 = array(
-			'name' => 'Cupones',
-			'icon' => 'gi gi-tags'
-			);
-		$this->set('h1', $h1);
-
 	    $this->loadModel('Coupon');
     	switch ($action) {
 	    	case 'add':
@@ -1234,6 +1228,11 @@ public function promos(){
 				    $cats = $this->Coupon->find('all');
 					$this->set('cats', $cats);
 					$this->set('sel', true);
+						$h1 = array(
+							'name' => 'Nuevo Cupón',
+							'icon' => 'gi gi-tags'
+							);
+						$this->set('h1', $h1);						
 	    			return $this->render('cupones-detail');
 	    		}
 	    		break;
@@ -1254,12 +1253,23 @@ public function promos(){
 		    		if (!$hasId) break;
 		    		$coupon = $this->Coupon->find('first', array('conditions' => array('id' => $this->request->pass[1])));
 		    		$this->set('coupon', $coupon);
+						$h1 = array(
+							'name' => $coupon['Coupon']['code'],
+							'icon' => 'gi gi-tags'
+							);
+						$this->set('h1', $h1);		    		
 		    		return $this->render('cupones-detail');
 	    		}
 	    		break;
 	    }
 	    $coupons = $this->Coupon->find('all');
 	    $this->set('coupons', $coupons);
+
+			$h1 = array(
+				'name' => 'Cupones',
+				'icon' => 'gi gi-tags'
+				);
+			$this->set('h1', $h1);	    
 		return $this->render('cupones');
 	}
 
@@ -1290,16 +1300,8 @@ public function promos(){
 				'url'		=> Configure::read('mUrl').'/admin/logistica/add',
 				'active'	=> '/admin/logistica/add'
 				)
-
 			);
 		$this->set('navs', $navs);
-
-		$h1 = array(
-			'name' => 'Logística',
-			'icon' => 'gi gi-cargo'
-			);
-		$this->set('h1', $h1);
-
     $this->loadModel('Logistic');
   	switch ($action) {
     	case 'add':
@@ -1322,6 +1324,11 @@ public function promos(){
 			    $cats = $this->Logistic->find('all');
 					$this->set('cats', $cats);
 					$this->set('sel', true);
+					$h1 = [
+						'name' => 'Nueva logística',
+						'icon' => 'gi gi-cargo'
+					];
+					$this->set('h1', $h1);  					
     			return $this->render('logistica-detail');
     		}
     		break;
@@ -1348,6 +1355,11 @@ public function promos(){
 	    		if (!$hasId) break;
 	    		$logistic = $this->Logistic->find('first', array('conditions' => array('id' => $this->request->pass[1])));
     			$prices = $this->LogisticsPrices->find('all', ['conditions' => ['logistic_id' => $this->request->pass[1]]]);
+					$h1 = [
+						'name' => $logistic['Logistic']['title'],
+						'icon' => 'gi gi-cargo'
+					];
+					$this->set('h1', $h1);    			
 	    		$this->set('logistic', $logistic);
 	    		$this->set('logistic_prices', $prices);
 	    		return $this->render('logistica-detail');
@@ -1355,6 +1367,11 @@ public function promos(){
     		break;
     }
     $logistics = $this->Logistic->find('all');
+		$h1 = [
+			'name' => 'Logística',
+			'icon' => 'gi gi-cargo'
+		];
+		$this->set('h1', $h1);      
     $this->set('logistics', $logistics);
 
 		return $this->render('logistica');
