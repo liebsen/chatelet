@@ -1,0 +1,12 @@
+.has-card-background {
+  min-height: 20rem;
+  display: flex;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+} 
+
+.card-alcance-nacional {
+  background-image: url(/img/art/team.svg);
+}

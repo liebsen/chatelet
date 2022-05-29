@@ -105,9 +105,21 @@
         <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Guardar</button>
       </div>
     </form>
-  <?php if(isset($logistic_prices) && $logistic['Logistic']['local_prices']) :?>
-    <hr>
-    <h4 class="sub-header">Tarifas</h4>
+  </div>
+</div>
+
+<?php if(isset($logistic_prices) && $logistic['Logistic']['local_prices']) :?>
+
+<div class="block block-themed">
+  <div class="block-title">
+    <h4>
+    <?php
+      echo (isset($logistic)) ? __('Tarifas de ' . $logistic['Logistic']['title']) : __('Agregar Tarifas');
+    ?>
+    </h4>
+  </div>
+
+  <div class="block-content">
     <p class="p">Usted puede editar las tarifas de esta logística de acuerdo a las zonas que están representadas por códigos postales. Los códigos postales en Argentina contienen cuatro números. Puede asignarlos de forma taxativa (ej: 1440, 1441) o con expresiones (ej: 92**, 930*). Mas información sobre <a href="https://códigos-postales.cybo.com/argentina/#mapwrap" target="_blank">códigos postales de argentina</a></p>
     <button class="btn btn-success" type="button" onclick="edit_logistic_price()">Agregar</button>
     <table class="table table-striped" id="tarifas">
@@ -205,10 +217,10 @@
         </div>
       </form>
     </div>
-  <?php else: ?>
-    <div class="">
-      <strong><?= $logistic['Logistic']['title'] ?></strong> <span>tiene alcance nacional y no puede aceptar tarifas ya que está integrada a la tienda mediante api.</span>
-    </div>
-  <?php endif ?>
   </div>
 </div>
+<?php else: ?>
+<div class="has-card-background card-alcance-nacional">
+  <h3><?= $logistic['Logistic']['title'] ?></h3> <p>tiene alcance nacional y no puede aceptar tarifas ya que está integrada a la tienda mediante api.</p>
+</div>
+<?php endif ?>
