@@ -189,8 +189,8 @@ class CarritoController extends AppController
 		$shipping_price = $this->Setting->findById('shipping_price_min');
 		$unit_price = $data['price'];
 		if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
-            $unit_price = @$producto['discount'];
-        }
+      $unit_price = @$producto['discount'];
+    }
 		$freeShipping = intval($data['price'])>=intval($shipping_price['Setting']['value']);
 		error_log('freeshipping unit price: '.intval($unit_price));
 		$shipping_config = $this->Setting->findById('shipping_type');
@@ -642,8 +642,15 @@ class CarritoController extends AppController
 			die;
 		}
 
+		$sale_object = array('id' => null,'user_id' => $user['id']);
+		$logistic = $this->Logistic->findByCode($user['shipping']);
+
+		if(isset($logistic)) {
+			$sale_object['logistic_id'] = $logistic['Logistic']['id'];
+		}
+
 		//Register Sale
-		$this->Sale->save(array('id' => null,'user_id' => $user['id']));
+		$this->Sale->save($sale_object);
 		$sale_id = $this->Sale->id;
 
 		//Mercadopago
@@ -683,10 +690,9 @@ class CarritoController extends AppController
 
 			$unit_price = $producto['price'];
 
-			/* 
 			if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
         $unit_price = @$producto['discount'];
-      } */
+      }
       // error_log('----product price: ' . $unit_price);
 			$items[] = array(
 				'title' => $desc,
@@ -858,6 +864,8 @@ class CarritoController extends AppController
 		error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
 
+		error_log("total mp: " . $total);
+		return json_encode(['status' => 'ok']);
 		//MP
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$success_url = Router::url(array('controller' => 'carrito', 'action' => 'clear'), true);
