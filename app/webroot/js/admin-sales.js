@@ -16,7 +16,7 @@ function getTicket(sale_id, parent) {
     $(target).text(data.message)
     $(target).addClass(`text-${data.status}`)
     if (data.url) {
-      window.open(data.url, data.shipping + sale_id, `height=460,width=315`)
+      window.open(data.url, data.shipping + sale_id, `height=${data.height},width=${data.width}`)
     }
   })
 }    

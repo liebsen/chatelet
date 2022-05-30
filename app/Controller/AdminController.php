@@ -360,20 +360,25 @@ class AdminController extends AppController {
 			if (!empty($sale['def_orden_retiro'])) {
 				if (!empty($sale['def_orden_tracking']) && $send_email) {
 					// $user = $this->User->findById($sale['user_id']);
-					$emailTo = @$sale['email'];
-					//$emailTo = 'francisco.marasco@gmail.com';
-
-					$urlSeguimiento = false;
-
-					if ($sale['shipping'] == 'oca') {
-						$urlSeguimiento = 'https://www.oca.com.ar/envios/paquetes/';
-					} else if ($sale['shipping'] == 'andreani') {
-						$urlSeguimiento = 'https://www.andreani.com/#!/personas';
+					$mapper = $this->Logistic->findById($sale['logistic_id']);
+					$logistic = [
+						// 'tracking_url' => Configure::read('baseUrl') . 'envios/',
+						'width' => 400,
+						'height' => 300
+					];
+					
+					if (isset($mapper)) {
+						$logistic = $mapper['Logistic'];
 					}
 
+					$data['width'] = $logistic['width'];
+					$data['height'] = $logistic['height'];
+
+					$emailTo = @$sale['email'];
+					//$emailTo = 'francisco.marasco@gmail.com';
 					$message = '<p>Hola <strong>'.ucfirst(@$sale['nombre']).'</strong>, gracias por tu compra!</p>';
-					if ($urlSeguimiento)  {
-						$message.= '<p>Puedes seguir tu envío a través del sitio de ' . strtouppercase($sale['shipping']) . ': ' . $urlSeguimiento . '<br /> Ingresando el número de envio: '.@$sale['def_orden_tracking'].'</p>';
+					if (isset($logistic) && $logistic['tracking_url'])  {
+						$message.= '<p>Puedes seguir tu envío a través del sitio de ' . strtouppercase($sale['shipping']) . ': ' . @$logistic['tracking_url'] . '<br /> Ingresando el número de envio: '.@$sale['def_orden_tracking'].'</p>';
 					} else {
 						$message.= '<p>El envío de tu compra está a cargo de '.strtouppercase($sale['shipping']).' y código de envío es '.@$sale['def_orden_tracking'].' </p>';
 					}
