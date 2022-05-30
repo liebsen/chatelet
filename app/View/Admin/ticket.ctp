@@ -21,33 +21,33 @@
       <?php if(isset($ticket)): ?>
         <div class="row">
           <div class="col">
-            <pre>
-              <table class="table table-striped">
+            <code>
+              <table class="table">
                 <tr>
-                  <th colspan="2"><?= strtoupper($ticket['def_orden_retiro']) ?></th>
+                  <th colspan="2"><strong><?= strtoupper($ticket['def_orden_retiro']) ?></strong></th>
                 </tr>
                 <tr>
-                  <td><?php echo __('Nombre'); ?></td>
+                  <td><strong><?php echo __('Nombre'); ?></strong></td>
                   <td><?= $ticket['nombre'] ?> <?= $ticket['apellido'] ?></td>
                 </tr>
                 <tr>
-                  <td><?php echo __('DNI'); ?></td>
+                  <td><strong><?php echo __('DNI'); ?></strong></td>
                   <td><?= $ticket['dni'] ?></td>
                 </tr>
                 <tr>
-                  <td><?php echo __('Teléfono'); ?></td>
+                  <td><strong><?php echo __('Teléfono'); ?></strong></td>
                   <td><?= $ticket['telefono'] ?></td>
                 </tr>
                 <tr>
-                  <td><?php echo __('Dirección'); ?></td>
+                  <td><strong><?php echo __('Dirección'); ?></strong></td>
                   <td><?= $ticket['calle'] ?> <?= $ticket['nro'] ?> <?= $ticket['piso'] ?> <?= $ticket['depto'] ?> (<?= $ticket['cp'] ?>) <?= $ticket['localidad'] ?> <?= $ticket['provincia'] ?></td>
                 </tr>
                 <tr>
-                  <td><?php echo __('Fecha y hora'); ?></td>
+                  <td><strong><?php echo __('Fecha y hora'); ?></strong></td>
                   <td><?= $ticket['created'] ?></td>
                 </tr>
               </table>
-            </pre>           
+            </code>           
             <br />               
             <div class="form-actions">
               <button type="reset" class="btn btn-danger" onclick="window.close()"><i class="icon-close"></i> Cerrar</button>
