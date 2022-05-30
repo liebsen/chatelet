@@ -92,12 +92,8 @@ function updateSrcTo(obj){
 				$content = '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . 'thumb_'.$item['img_url'] .'" url-copy="'.Configure::read('imageUrlBase') . $item['img_url'].'" onError=updateSrcTo(this) />';
 			}
 
-      if ($item['promo'] !== '') {
-        $content.= '<div class="ribbon"><span>' . $item['promo'] . '</span></div>';
-      }
-
 			if ($isProduct){
-				 // $content.='<span class="hover">'. '<small>'. $item['desc'] .'</small>'. '</span>';
+				 $content.='<span class="hide">'. '<small>'. $item['desc'] .'</small>'. '</span>';
 			}
 			$url = array(
 				'controller' => 'tienda',
@@ -124,7 +120,7 @@ function updateSrcTo(obj){
 				$url['action'] = 'productos';
 			}
 
-				if(!$stock && $isProduct){
+			if(!$stock && $isProduct){
 				echo '<div class="col-xs-12 col-lg-4 col-md-6 col-sm-6" >'.
 				     '<img src="'.Router::url('/').'images/agotado3.png" class="out_stock" />'.
 				     $ctrl->Html->link(
@@ -161,10 +157,11 @@ function updateSrcTo(obj){
 				if (isset($item['discount_label_show'])){
 					$number_disc = (int)@$item['discount_label_show'];
 				}
-				// $discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
-        // $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
 
-				echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'.
+				$discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="ribbon left small special-padding"><span>'.$number_disc.'% OFF</span></div>':'';
+        $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon special-padding"><span>'.$item['promo'].'</span></div>':'';
+
+				echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'. $discount_flag . $promo_ribbon . 
 					 $ctrl->Html->link(
 						$content,
 						$url,

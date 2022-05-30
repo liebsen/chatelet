@@ -97,14 +97,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   padding: 20px;
   font-size: 20px;
   top:0;
-  right: 0;
+  left: 1rem;
 }
 @media(max-width:5000px){
   .discount-flag {
     padding: 10px 20px;
     top: 0;
     width: 45%;
-    left: 55%;
+    left: 1rem;
     text-align: center;
   }
 }
@@ -444,10 +444,11 @@ footer .bottom a.ig { background-position: -101px -286px; }
   font-weight: 500;
   font-family: 'Poppins', Verdana, Arial, sans-serif;
   margin:10px auto 20px;
-  color: #e10d74;
+  color: #666;
   max-width: 18rem;
   margin: auto;
-  min-height: 3rem;
+  /*min-height: 3rem;*/
+  margin-bottom: 0.25rem;
 }
 .price {
   text-align:center;
@@ -455,7 +456,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
   font-size:1.5rem;
   font-weight: 800;
   font-family: 'Poppins', Verdana, Arial, sans-serif;
-  margin:10px auto 20px;
+  margin:10px auto 30px;
   /* color: #444; */
 }
 
@@ -1298,6 +1299,7 @@ span.out{
   appearance:none;
 }
 
+/* ribbons */
 .ribbon {
   position: absolute;
   right: -5px; top: -5px;
@@ -1351,13 +1353,26 @@ span.out{
 }
 
 .ribbon.small span {
-  top: 8px;
-  left: 22px;
-  width: 70px;
-  height: 20px;
-  left: 22px;
   font-size: 0.75rem;
-  line-height: 1.22rem;
+}
+
+.ribbon.special-padding {
+  right: 10px;
+}
+
+.ribbon.left.special-padding {
+  left: 10px;
+}
+
+.ribbon.left {
+  left: 0;
+  right: auto;
+}
+
+.ribbon.left span {
+  background: #CA779A!important;
+  transform: translate(-1.25rem, 2.5rem) rotate(-45deg);
+  transform-origin: top left;
 }
 
 .article-related-title {

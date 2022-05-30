@@ -36,6 +36,9 @@
 					$promosaved = 0;
 
 					foreach ($carro as $product) {
+						if (!empty($product['discount']) && (float)@$product['discount']>0) {
+              $product['price'] = $product['discount'];
+            }						
 						$total += $product['price'];
 						if (!isset($product['color'])) $product['color'] = '';
 						if (!isset($product['size'])) $product['size'] = '';

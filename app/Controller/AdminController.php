@@ -106,6 +106,44 @@ class AdminController extends AppController {
 		
 	}
 
+	public function test_ticket ($id) {
+		$this->autoRender = false;
+
+		var_dump($id);
+		/* procedimiento de chequear estado de envío y generar etiquetas */
+
+		$sale = $this->Sale->findById($id)['Sale'];
+
+		if (!$sale) {
+			throw new Exception("No existe tal venta", 500);
+		}
+
+		$shipping = $sale['shipping'];
+		$logistic = $this->Logistic->findByTitle($shipping)['Logistic'];
+
+		if (!$logistic) {
+			throw new Exception("Esta venta no registra envíos", 500);
+		}
+
+		$response = null;
+
+		if(method_exists($this, "add_order_{$shipping}")) {
+			$response = $this->{"add_order_{$shipping}"}($sale);
+		} else {
+			$response = $this->add_order_logistic($sale, $logistic);
+		}
+		echo '<pre>';
+		var_dump($response);
+		return $response;
+	}
+
+	private function add_order_logistic($sale, $logistic){
+		$sale['def_orden_retiro'] = @$logistic[''];
+		$sale['def_orden_tracking'] = @$oca_result['tracking'];
+		$t = @$this->Sale->save($sale);
+		$sale['raw_xml'] = @$oca_result['rawXML'];
+		return $sale;		
+	}
 
 	public function get_product($prod_cod = null, $lis_cod = null , $lis_cod2 = null) {
 		$this->RequestHandler->respondAs('application/json');
@@ -318,21 +356,29 @@ class AdminController extends AppController {
 			}
 
 			$sale = $this->setOrdenRetiro($sale);
-			$data['shipping'] = @$sale['shipping'];
+			$data['shipping'] = @strtolower($sale['shipping']);
 			if (!empty($sale['def_orden_retiro'])) {
 				if (!empty($sale['def_orden_tracking']) && $send_email) {
 					// $user = $this->User->findById($sale['user_id']);
 					$emailTo = @$sale['email'];
 					//$emailTo = 'francisco.marasco@gmail.com';
 
-					$urlSeguimiento = 'https://www.oca.com.ar/envios/paquetes/';
-					if ($sale['shipping'] == 'andreani') {
+					$urlSeguimiento = false;
+
+					if ($sale['shipping'] == 'oca') {
+						$urlSeguimiento = 'https://www.oca.com.ar/envios/paquetes/';
+					} else if ($sale['shipping'] == 'andreani') {
 						$urlSeguimiento = 'https://www.andreani.com/#!/personas';
 					}
 
-					$message = '<p>Hola <strong>'.ucfirst(@$sale['nombre']).'</strong>, gracias por tu compra! 
-					</p><p>Puedes seguir tu envío a través del sitio de ' . strtouppercase($sale['shipping']) . ': ' . $urlSeguimiento . '<br /> Ingresando el número de envio: '.@$sale['def_orden_tracking'].'
-					</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+					$message = '<p>Hola <strong>'.ucfirst(@$sale['nombre']).'</strong>, gracias por tu compra!</p>';
+					if ($urlSeguimiento)  {
+						$message.= '<p>Puedes seguir tu envío a través del sitio de ' . strtouppercase($sale['shipping']) . ': ' . $urlSeguimiento . '<br /> Ingresando el número de envio: '.@$sale['def_orden_tracking'].'</p>';
+					} else {
+						$message.= '<p>El envío de tu compra está a cargo de '.strtouppercase($sale['shipping']).' y código de envío es '.@$sale['def_orden_tracking'].' </p>';
+					}
+
+					$message.= '<br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
 
 					error_log('[email] notifying the tracking for user '.$emailTo);
 
@@ -356,17 +402,30 @@ class AdminController extends AppController {
 					if (!is_null($response) && isset($response->pdf)) {
 						$dest = __DIR__ . '/../webroot/files/andreani/' . $sale['def_orden_tracking'] . '.pdf';
 					  file_put_contents($dest, $response->pdf);
-					  $data['url'] = Configure::read('baseUrl') . 'files/andreani/' . $sale['def_orden_tracking'] . '.pdf';
+					  $url = Configure::read('baseUrl') . 'files/andreani/' . $sale['def_orden_tracking'] . '.pdf';
 					}
-
+				} else if ($sale['shipping'] == 'oca') { 
+					$url = "http://www5.oca.com.ar/OcaEPakNet/Views/Impresiones/Etiquetas.aspx?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
 				} else {
-					$data['url'] = "http://www5.oca.com.ar/OcaEPakNet/Views/Impresiones/Etiquetas.aspx?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
+					$url = Configure::read('baseUrl') . "admin/tickets/{$sale['def_orden_retiro']}";
 				}
+				$data['url'] = $url;
 			} else {
 				$data['message'] = strip_tags($sale['raw_xml']);
 			}
 		}
 		die(json_encode($data));
+	}
+
+	public function tickets ($order_retiro) {
+		$this->layout = false;
+		$item = $this->Sale->find('first', [
+			'conditions' => [
+				'id' => $order_retiro
+			]
+		]);
+		$this->set('ticket', $item['Sale']);
+		return $this->render('ticket');
 	}
 
 	public function getTicket2($sale_id = null){
@@ -540,7 +599,7 @@ class AdminController extends AppController {
 		}
 		$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
 		//pr($sales);die;
-		$this->set('shipping_price_min',$shipping_price = $this->Setting->findById('shipping_price_min'));
+		$this->set('shipping_price_min',$this->Setting->findById('shipping_price_min'));
 		$this->set('sales',$sales);
 	}
 
