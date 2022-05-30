@@ -9,6 +9,9 @@
         body {
           padding: 1rem;
         }
+        .bg-light {
+          background-color: whitesmoke;
+        }
         @media print {
           .form-actions {
             display: none;
@@ -27,6 +30,10 @@
                   <th colspan="2"><strong><?= strtoupper($ticket['def_orden_retiro']) ?></strong></th>
                 </tr>
                 <tr>
+                  <td><strong><?php echo __('Fecha y hora'); ?></strong></td>
+                  <td><?= $ticket['created'] ?></td>
+                </tr>
+                <tr>
                   <td><strong><?php echo __('Nombre'); ?></strong></td>
                   <td><?= $ticket['nombre'] ?> <?= $ticket['apellido'] ?></td>
                 </tr>
@@ -42,9 +49,13 @@
                   <td><strong><?php echo __('Dirección'); ?></strong></td>
                   <td><?= $ticket['calle'] ?> <?= $ticket['nro'] ?> <?= $ticket['piso'] ?> <?= $ticket['depto'] ?> (<?= $ticket['cp'] ?>) <?= $ticket['localidad'] ?> <?= $ticket['provincia'] ?></td>
                 </tr>
-                <tr>
-                  <td><strong><?php echo __('Fecha y hora'); ?></strong></td>
-                  <td><?= $ticket['created'] ?></td>
+                <tr class="bg-light">
+                  <td><strong><?php echo __('Peso'); ?></strong></td>
+                  <td><?= $package['weight'] / 1000 ?>kg</td>
+                </tr>
+                <tr class="bg-light">
+                  <td><strong><?php echo __('Volumen'); ?></strong></td>
+                  <td><?= (integer) $package['width'] * $package['height'] * $package['depth'] ?>cm3</td>
                 </tr>
               </table>
             </code>           

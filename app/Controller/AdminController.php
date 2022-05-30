@@ -419,12 +419,14 @@ class AdminController extends AppController {
 
 	public function tickets ($order_retiro) {
 		$this->layout = false;
-		$item = $this->Sale->find('first', [
+		$sale = $this->Sale->find('first', [
 			'conditions' => [
 				'id' => $order_retiro
 			]
 		]);
-		$this->set('ticket', $item['Sale']);
+		$package = $this->Package->findById($sale['Sale']['package_id']);
+		$this->set('ticket', $sale['Sale']);
+		$this->set('package', $package['Package']);
 		return $this->render('ticket');
 	}
 
