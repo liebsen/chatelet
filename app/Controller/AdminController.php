@@ -138,10 +138,11 @@ class AdminController extends AppController {
 	}
 
 	private function add_order_logistic($sale, $logistic){
-		$sale['def_orden_retiro'] = @$logistic[''];
-		$sale['def_orden_tracking'] = @$oca_result['tracking'];
+		$order_nro = @strtoupper($logistic['Logistic']['code']).$sale['Sale']['id'];
+		$sale['def_orden_retiro'] = $order_nro;
+		$sale['def_orden_tracking'] = $order_nro;
 		$t = @$this->Sale->save($sale);
-		$sale['raw_xml'] = @$oca_result['rawXML'];
+		$sale['raw_xml'] = 'default';
 		return $sale;		
 	}
 
@@ -211,10 +212,13 @@ class AdminController extends AppController {
 
 	private function setOrdenRetiro($sale){
 		$shipping = $sale['shipping'];
+		$logistic = $this->Logistic->findByTitle($sale['Sale']['shipping']);
 		$response = null;
 		if(method_exists($this, "add_order_{$shipping}")) {
 			$response = $this->{"add_order_{$shipping}"}($sale);
-		}
+		} else {
+      $response = $this->add_order_logistic($sale, $logistic);
+    }
 		return $response;
 	}
 
