@@ -430,40 +430,6 @@ class AdminController extends AppController {
 		return $this->render('ticket');
 	}
 
-	public function getTicket2($sale_id = null){
-		$this->autoRender = false;
-		$this->loadModel('User');
-		$this->Sale->recursive = -1;
-		$send_email = false;
-		$sale = $this->Sale->findById($sale_id);
-		if(empty($sale) || empty($sale['Sale']['package_id']) || empty($sale['Sale']['value']) || empty($sale['Sale']['email']) || empty($sale['Sale']['telefono']) || empty($sale['Sale']['provincia']) || empty($sale['Sale']['localidad']) || empty($sale['Sale']['cp']) || empty($sale['Sale']['nro']) || empty($sale['Sale']['calle']) || empty($sale['Sale']['nombre']) || empty($sale['Sale']['apellido']))
-			die('Venta no encontrada o incompleta.');
-		
-		if (empty($sale['Sale']['def_mail_sent'])){
-			$send_email = true;
-		}
-		$sale = $this->setOrdenRetiro($sale);
-		if(!empty($sale['def_orden_retiro'])){
-			if (!empty($sale['def_orden_tracking']) && $send_email) {
-				$user = $this->User->findById($sale['user_id']);
-				$emailTo = @$user['email'];
-				//$emailTo = 'francisco.marasco@gmail.com';
-
-				$message = '<p>Hola <strong>'.ucfirst(@$user['name']).'</strong>, gracias por tu compra! 
-				</p><p>Puedes seguir tu envío a través del sitio de OCA: https://www.oca.com.ar/envios/paquetes/<br />Ingresando el número de envio: '.@$sale['def_orden_tracking'].'
-				</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
-
-				error_log('[email] notifying the tracking for user '.$emailTo);
-				$this->sendMail($message,'Compra Realizada en Châtelet',$emailTo);
-			}else{
-				error_log('[email] ignored bc was sent before');
-			}
-		$this->redirect( "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1" );
-		}else{
-			die('Error: no se pudo generar la etiqueta.');
-		}
-	}
-
 	public function delete_package($id = 0){
 		$this->Package->delete($id);
 		$this->redirect(array( 'action' => 'oca' ));
@@ -498,33 +464,27 @@ class AdminController extends AppController {
     $arraux = [];
 		$sales = $this->getMPSales();
 
+		foreach ($sales as &$sale) {
+			$details 		= explode('-|-', $sale['collection']['reason']);
+			$sale_number 	= (!empty($details[0]))?$details[0]:'PEDIDO : "00"';
+			if(strpos($sale_number, "&quot;")!== false){
+				$sale_number = html_entity_decode($sale_number);
+			}
 
+			//Info Mergeapp/webroot/css/custom.css
+			$sale['collection']['deliver_cost'] = 0;
+			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
+			if(!empty($local_desc)){
+				$sale['collection']['sale_products'] = Hash::extract($local_desc, '{n}.SaleProduct.description');
+			}else{
+				$sale['collection']['sale_products'] = array($sale['collection']['reason']);
+			}
+		}
 
-				foreach ($sales as &$sale) {
-					$details 		= explode('-|-', $sale['collection']['reason']);
-					$sale_number 	= (!empty($details[0]))?$details[0]:'PEDIDO : "00"';
-					if(strpos($sale_number, "&quot;")!== false){
-						$sale_number = html_entity_decode($sale_number);
-					}
-
-					//Info Mergeapp/webroot/css/custom.css
-					$sale['collection']['deliver_cost'] = 0;
-					$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
-					if(!empty($local_desc)){
-						$sale['collection']['sale_products'] = Hash::extract($local_desc, '{n}.SaleProduct.description');
-					}else{
-						$sale['collection']['sale_products'] = array($sale['collection']['reason']);
-					}
-
-				}
-				$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
-
-
-				$exists=[];
+		$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
+		$exists=[];
 
     foreach($sales as $sale) {
-
-
 			foreach ($sale['collection']['sale_products'] as $reason){
 				error_log($reason);
 				$details = explode('-|-', $reason);
@@ -541,7 +501,6 @@ class AdminController extends AppController {
 								array_push($list, $arraux);
 					      $arraux = [];
 							}
-
 						}
 					}
 				}
@@ -553,7 +512,7 @@ class AdminController extends AppController {
     header("Content-Disposition:attachment;filename=sales_emails.csv");
     fputcsv($output, array('Email'));
     foreach ($list as $campos) {
-        fputcsv($output, $campos);
+      fputcsv($output, $campos);
     }
 
     fclose($output);
@@ -561,9 +520,9 @@ class AdminController extends AppController {
 
 	public function sales(){
 		$h1 = array(
-			'name' => 'Ventas',
-			'icon' => 'gi gi-display'
-			);
+		'name' => 'Ventas',
+		'icon' => 'gi gi-display'
+		);
 		$this->set('h1', $h1);
 		$this->loadModel('Home');
 		$this->loadModel('Setting');
@@ -571,7 +530,7 @@ class AdminController extends AppController {
 		//Get and merge local-remote data.
 		$sales = $this->getMPSales();
 		if (!empty($this->request->query['test'])){
-		        var_dump($sales);die;
+		  var_dump($sales);die;
 		}
 
 		foreach ($sales as &$sale) {
@@ -633,60 +592,59 @@ class AdminController extends AppController {
 	}
 
 	public function index() {
-
-	    $this->loadModel('Category');
+	  $this->loadModel('Category');
 		$cats = $this->Category->find('all');
-  		$this->set('cats', $cats);
+  	$this->set('cats', $cats);
 
 		$h1 = array(
-			'name' => 'Página Principal',
-			'icon' => 'gi gi-display'
-			);
+		'name' => 'Página Principal',
+		'icon' => 'gi gi-display'
+		);
 		$this->set('h1', $h1);
 		$this->loadModel('Home');
 
 		if ($this->request->is('post')) {
-	        $data = $this->request->data;
-	    	if(empty($data['url_mod_one'])) {
-	    		$data['url_mod_one']=null;
-	    	}
-	    	if(empty($data['url_mod_two'])) {
-	    		$data['url_mod_two']=null;
-	    	}
-	    	if(empty($data['url_mod_three'])) {
-	    		$data['url_mod_three']=null;
-	    	}
-	    	if(empty($data['url_mod_four'])) {
-	    		$data['url_mod_four']=null;
+        $data = $this->request->data;
+    	if(empty($data['url_mod_one'])) {
+    		$data['url_mod_one']=null;
+    	}
+    	if(empty($data['url_mod_two'])) {
+    		$data['url_mod_two']=null;
+    	}
+    	if(empty($data['url_mod_three'])) {
+    		$data['url_mod_three']=null;
+    	}
+    	if(empty($data['url_mod_four'])) {
+    		$data['url_mod_four']=null;
 			}
-			
-	    	if ($data['category_mod_one'] == 'url') {
-	    		$data['category_mod_one'] = null;
-	    	} else {
-	    		$data['url_mod_one'] = null;
-	    	}
-	    	if ($data['category_mod_two'] == 'url') {
-	    		$data['category_mod_two'] = null;
-	    	} else {
-	    		$data['url_mod_two'] = null;
-	    	}
-	    	if ($data['category_mod_three'] == 'url') {
-	    		$data['category_mod_three'] = null;
-	    	} else {
-	    		$data['url_mod_three'] = null;
-	    	}
-	    	if ($data['category_mod_four'] == 'url') {
-	    		$data['category_mod_four'] = null;
-	    	} else {
-	    		$data['url_mod_four'] = null;
-	    	}
-	    	if(!isset($data['display_popup_form'])){
-	    		$data['display_popup_form'] = 0;
-	    	}
-	    	if(!isset($data['display_popup_form_in_last'])){
-	    		$data['display_popup_form_in_last'] = 0;
-	    	}
-	    	$this->Home->save($data);
+		
+    	if ($data['category_mod_one'] == 'url') {
+    		$data['category_mod_one'] = null;
+    	} else {
+    		$data['url_mod_one'] = null;
+    	}
+    	if ($data['category_mod_two'] == 'url') {
+    		$data['category_mod_two'] = null;
+    	} else {
+    		$data['url_mod_two'] = null;
+    	}
+    	if ($data['category_mod_three'] == 'url') {
+    		$data['category_mod_three'] = null;
+    	} else {
+    		$data['url_mod_three'] = null;
+    	}
+    	if ($data['category_mod_four'] == 'url') {
+    		$data['category_mod_four'] = null;
+    	} else {
+    		$data['url_mod_four'] = null;
+    	}
+    	if(!isset($data['display_popup_form'])){
+    		$data['display_popup_form'] = 0;
+    	}
+    	if(!isset($data['display_popup_form_in_last'])){
+    		$data['display_popup_form_in_last'] = 0;
+    	}
+    	$this->Home->save($data);
 		}
 
 		$p = $this->Home->find('first');

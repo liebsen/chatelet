@@ -47,14 +47,23 @@
               <small class="text-danger">Indica el código de logística. Si no estás seguro consultá con el programador. Este valor solo puede editarse una vez.</small>
             </div>
             <br />       
-
             <div class="control-group">
               <label class="control-label" for="title"><?php echo __('Nombre'); ?></label>
               <div class="controls">
-                <input type="text" class="form-control" id="title" name="data[title]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['title'] : ''; ?>" required>
+                <input type="text" class="form-control" id="title" name="data[title]" value="<?= (isset($logistic)) ? $logistic['Logistic']['title'] : '' ?>" required>
               </div>
               <small class="text-muted">Indica el título de esta logística. Es probable que aparezca en algún correo que enviemos al cliente para informarle del código de seguimiento o eventualmente otro estado envío.</small>
             </div>
+            <br /> 
+          <?php if(isset($logistic) && !$logistic['Logistic']['local_prices']) :?>
+            <div class="control-group">
+              <label class="control-label" for="tracking_url"><?php echo __('URL Tracking'); ?></label>
+              <div class="controls">
+                <input type="text" max-length="255" size="60" class="form-control" id="tracking_url" name="data[tracking_url]" value="<?php echo (isset($logistic)) ? $logistic['Logistic']['tracking_url'] : ''; ?>" required>
+              </div>
+              <small class="text-muted">Indica la url del enlace que recibirá el cliente por correo electrónico para chequear el estado de su envío. Generalmente está enlazado a algún sitio de <?= $logistic['Logistic']['title'] ?></small>
+            </div>            
+          <?php endif ?>
           </div>
           <div class="col-md-6">
             <h4 class="sub-header">Mas datos</h4>
