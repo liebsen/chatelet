@@ -49,14 +49,14 @@
                   <td><strong><?php echo __('Dirección'); ?></strong></td>
                   <td><?= $ticket['calle'] ?> <?= $ticket['nro'] ?> <?= $ticket['piso'] ?> <?= $ticket['depto'] ?> (<?= $ticket['cp'] ?>) <?= $ticket['localidad'] ?> <?= $ticket['provincia'] ?></td>
                 </tr>
-                <tr class="bg-light">
+                <!--tr class="bg-light">
                   <td><strong><?php echo __('Peso'); ?></strong></td>
                   <td><?= $package['weight'] / 1000 ?>kg</td>
                 </tr>
                 <tr class="bg-light">
                   <td><strong><?php echo __('Volumen'); ?></strong></td>
                   <td><?= (integer) $package['width'] * $package['height'] * $package['depth'] ?>cm3</td>
-                </tr>
+                </tr-->
               </table>
             </code>           
             <br />               

@@ -210,9 +210,9 @@ class CarritoController extends AppController
 		$this->set('shipping_price_min',$shipping_price_min);
 		
 		$vars = [
-			'precio_min_envio_gratis' => $shipping_price_min,
-			'resto_min_envio_gratis' => (integer) $shipping_price_min - (integer) $data['price'],
-			'total' => $data['price']
+			'precio_min_envio_gratis' => number_format($shipping_price_min, 0, ',', '.'),
+			'resto_min_envio_gratis' => number_format($shipping_price_min - (integer) $data['price'], 0, ',', '.'),
+			'total' => number_format($data['price'], 0, ',', '.')
 		];
 
     $mapper = $this->Setting->findById('display_text_shipping_min_price');
