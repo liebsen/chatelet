@@ -56,6 +56,18 @@ class AdminController extends AppController {
 		$this->layout = 'admin';
 	}
 
+	public function test2() {
+		$this->loadModel('LogisticsPrices');
+		$this->autoRender = false;
+		$price = $this->LogisticsPrices->find('first', [
+			'conditions' => [
+				'logistic_id' => 3
+			]
+		]);		
+		echo '<pre>';
+		var_dump($price);
+		die();
+	}
 	public function test_andreani() {
 		$this->autoRender = false;
 		$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
@@ -384,7 +396,24 @@ class AdminController extends AppController {
 					if (isset($logistic) && $logistic['tracking_url'])  {
 						$message.= '<p>Puedes seguir tu envío a través del sitio de ' . strtouppercase($sale['shipping']) . ': ' . @$logistic['tracking_url'] . '<br /> Ingresando el número de envio: '.@$sale['def_orden_tracking'].'</p>';
 					} else {
+						// find price info
+						$this->loadModel('LogisticsPrices');
+						$price = $this->LogisticsPrices->find('first', [
+							'conditions' => [
+								'logistic_id' => @$sale['logistic_id'],
+		            'OR' => [
+		              ['zips LIKE' => "%{$cp1}%"],
+		              ['zips LIKE' => "%{$cp2}%"],
+		              ['zips LIKE' => "%{$cp}%"]
+		            ]
+							]
+						]);
+
 						$message.= '<p>El envío de tu compra está a cargo de '.strtouppercase($sale['shipping']).' y código de envío es '.@$sale['def_orden_tracking'].' </p>';
+						$info = array_filter([$logistic['info'], $price['LogisticsPrices']['info']]);
+						if (!empty($info)) {
+							$message.= '<p>'.implode('</p><p>', $info).'</p>';
+						}
 					}
 
 					$message.= '<br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
@@ -1678,7 +1707,7 @@ public function promos(){
       	$this->Setting->save(['id' => $id, 'value' => $value]);
       }
 		}
-		
+
 		$data = [];
 		$map = $this->Setting->findById('display_text_shipping_min_price');
 		$data['display_text_shipping_min_price'] = $map['Setting']['value'];

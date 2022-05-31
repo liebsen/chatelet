@@ -157,11 +157,7 @@ class CarritoController extends AppController
 				"type" => "auto",
 				"packages" => 1
 			]);
-			echo "<pre>";
-			print_r(json_decode($rate->body));
 		}
-		 
-		die('ok');
 	}
 
 	public function beforeFilter()
@@ -673,6 +669,7 @@ class CarritoController extends AppController
 
 		if(isset($logistic)) {
 			$sale_object['logistic_id'] = $logistic['Logistic']['id'];
+			$sale_object['logistic_id'] = $logistic['Logistic']['id'];
 		}
 
 		//Register Sale
@@ -887,11 +884,9 @@ class CarritoController extends AppController
 			'store_address'		=> $user['store_address'],
 			'shipping'		=> $user['shipping']
 		);
-		error_log(json_encode($to_save));
+		// error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
-
 		error_log("total mp: " . $total);
-		return json_encode(['status' => 'ok']);
 		//MP
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$success_url = Router::url(array('controller' => 'carrito', 'action' => 'clear'), true);
