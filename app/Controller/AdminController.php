@@ -1360,6 +1360,7 @@ public function promos(){
 			);
 		$this->set('navs', $navs);
     $this->loadModel('Logistic');
+    $this->loadModel('LogisticsPrices');
   	switch ($action) {
     	case 'add':
   	    if ($this->request->is('POST')){
