@@ -11,7 +11,7 @@
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			    <span aria-hidden="true">&times;</span>
 			  </button>				
-				<span class="shipping-price-min-alert-text h4"></span>
+				<span class="shipping-price-min-alert-text"><?= $text_shipping_min_price ?></span>
 			</div>		
 		</div>
 		<div class="col-md-12" id="siguiente-block">

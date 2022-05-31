@@ -204,11 +204,37 @@ class CarritoController extends AppController
 			}
 			error_log('shipping_value: '.@$shipping_config['Setting']['value']);
 		}
+
+		$mapper = $this->Setting->findById('shipping_price_min');
+		$shipping_price_min = (!empty($mapper['Setting']['value'])) ? $mapper['Setting']['value'] : '';
+		$this->set('shipping_price_min',$shipping_price_min);
+		
+		$vars = [
+			'precio_min_envio_gratis' => $shipping_price_min,
+			'resto_min_envio_gratis' => (integer) $shipping_price_min - (integer) $data['price'],
+			'total' => $data['price']
+		];
+
+    $mapper = $this->Setting->findById('display_text_shipping_min_price');
+    $display_text_shipping_min_price = $mapper['Setting']['value'];
+    $mapper = $this->Setting->findById('text_shipping_min_price');
+		$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['value'])) ? $this->parse_tpl($mapper['Setting']['value'], $vars) : '';
+		$this->set('text_shipping_min_price',$text_shipping_min_price);
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);
 		$this->set('stores', $stores);
 		$this->set('freeShipping', $freeShipping);
+	}
+
+	private function parse_tpl ($str, $data) {
+		$html = $str;
+		$openingTag = "{{";
+		$closingTag = "}}";
+    foreach ($data as $key => $value) {
+      $html = str_replace($openingTag . $key . $closingTag, $value, $html);
+    }		
+		return $html;
 	}
 
 	public function getLocalidadProvincia($id)
@@ -304,8 +330,8 @@ class CarritoController extends AppController
 		$coupon_type = isset($item['date_from']) && isset($item['date_until']) && $coupon_type === '' ? 'date' : $coupon_type;
 		$coupon_type = isset($item['date_from']) && isset($item['date_until']) && $coupon_type === 'time' ? 'datetime' : $coupon_type;
 
-		$inTime = strtotime($item['hour_from']) <= strtotime($hour) && strtotime($item['hour_until']) > strtotime($hour);
-		$inDate = strtotime($item['date_from']) <= strtotime($date) && strtotime($item['date_until']) > strtotime($date);
+		$inTime = strtotime($item['hour_from']) <= strtotime($hour) && strtotime($item['hour_until']) >= strtotime($hour);
+		$inDate = strtotime($item['date_from']) <= strtotime($date) && strtotime($item['date_until']) >= strtotime($date);
 		/* error_log('(1) ' . $item['date_from'] . ' / ' . $item['date_until']);
 		error_log('(2) ' . $date );
 		error_log('(3) ' . $item['hour_from'] . ' / ' . $item['hour_until']);

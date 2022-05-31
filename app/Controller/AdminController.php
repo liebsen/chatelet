@@ -1,8 +1,8 @@
 <?php
 App::uses('CakeTime', 'Utility');
 require_once(APP . 'Vendor' . DS . 'oca.php');
-
 require __DIR__ . '/../Vendor/andreani/vendor/autoload.php';
+
 $dotenv = new Dotenv\Dotenv(__DIR__ . '/../Vendor/andreani/');
 $dotenv->load();
 
@@ -127,7 +127,7 @@ class AdminController extends AppController {
 
 		$response = null;
 
-		if(method_exists($this, "add_order_{$shipping}")) {
+		if($logistic['local_prices'] && method_exists($this, "add_order_{$shipping}")) {
 			$response = $this->{"add_order_{$shipping}"}($sale);
 		} else {
 			$response = $this->add_order_logistic($sale, $logistic);
@@ -214,7 +214,7 @@ class AdminController extends AppController {
 		$shipping = $sale['shipping'];
 		$logistic = $this->Logistic->findByTitle($sale['Sale']['shipping']);
 		$response = null;
-		if(method_exists($this, "add_order_{$shipping}")) {
+		if($logistic['Logistic']['local_prices'] && method_exists($this, "add_order_{$shipping}")) {
 			$response = $this->{"add_order_{$shipping}"}($sale);
 		} else {
       $response = $this->add_order_logistic($sale, $logistic);
@@ -1663,8 +1663,32 @@ public function promos(){
 	    }
 	}
 
+	public function carrito() {
+		$h1 = array(
+			'name' => 'Carrito',
+			'icon' => 'gi gi-shopping_cart'
+		);
 
-    public function subscriptions($action = null) {
+		$this->set('h1', $h1);
+		$this->set('navs', []);
+		$this->loadModel('Setting');
+
+		if ($this->request->is('post')) {
+      foreach($this->request->data as $id => $value) {
+      	$this->Setting->save(['id' => $id, 'value' => $value]);
+      }
+		}
+		
+		$data = [];
+		$map = $this->Setting->findById('display_text_shipping_min_price');
+		$data['display_text_shipping_min_price'] = $map['Setting']['value'];
+		$map = $this->Setting->findById('text_shipping_min_price');
+		$data['text_shipping_min_price'] = $map['Setting']['value'];
+
+		$this->set('data', $data);
+	}
+
+  public function subscriptions($action = null) {
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',

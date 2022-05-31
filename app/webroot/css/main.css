@@ -182,6 +182,9 @@ body.login .form-group {
     box-shadow: none !important;
 }
 
+.w-100 {
+    width: 100%!important;
+}
 /*
 =================================================================
 (#m02mls) MAIN LAYOUT
