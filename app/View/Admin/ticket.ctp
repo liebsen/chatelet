@@ -9,6 +9,7 @@
       <style>
         body {
           font-family: 'Poppins', Verdana, Arial, Sans-Serif;
+          font-size: 1rem;
           padding: 1rem;
         }
         .bg-light {
@@ -23,6 +24,9 @@
           height: 3.5rem;
           margin-left: 1rem;
           margin-bottom: 1.5rem;
+        }
+        .table {
+          display: inline-block;
         }
         @media print {
           .form-actions {
@@ -39,10 +43,10 @@
           <div class="col">
             <div class="shop-logo">
             </div>
-            <table class="table">
+            <table class="table table-striped">
               <tr>
-                <td><h6><?php echo __('Órden de retiro'); ?></h6></td>
-                <td><h4 class="text-info"><?= strtoupper($ticket['def_orden_retiro']) ?></h4></td>
+                <td width="150"><h6><?php echo __('Órden de retiro'); ?></h6></td>
+                <td><h5 class="text-info"><?= strtoupper($ticket['def_orden_retiro']) ?></h5></td>
               </tr>
               <tr>
                 <td><h6><?php echo __('Fecha y hora'); ?></h6></td>
@@ -62,7 +66,7 @@
               </tr>
               <tr>
                 <td><h6><?php echo __('Dirección'); ?></h6></td>
-                <td><h5><?= $ticket['calle'] ?> <?= $ticket['nro'] ?> <?= $ticket['piso'] ?> <?= $ticket['depto'] ?> (<?= $ticket['cp'] ?>) <?= $ticket['localidad'] ?> <?= $ticket['provincia'] ?></h5></td>
+                <td><h5><?= $ticket['calle'] ?> <?= $ticket['nro'] ?> <?= $ticket['piso'] ?> <?= $ticket['depto'] ?><br><?= $ticket['localidad'] ?> (<?= $ticket['cp'] ?>)<br><?= $ticket['provincia'] ?></h5></td>
               </tr>
               <!--tr class="bg-light">
                 <td><h6><?php echo __('Peso'); ?></h6></td>
