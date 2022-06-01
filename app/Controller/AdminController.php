@@ -463,7 +463,7 @@ class AdminController extends AppController {
 		$this->layout = false;
 		$sale = $this->Sale->find('first', [
 			'conditions' => [
-				'id' => $order_retiro
+				'def_orden_retiro' => $order_retiro
 			]
 		]);
 		$package = $this->Package->findById($sale['Sale']['package_id']);

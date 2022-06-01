@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  getTicket(10992)
   $('#example-datatables2').DataTable({
     "order": [],
     "language": {
