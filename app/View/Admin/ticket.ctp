@@ -66,7 +66,14 @@
               </tr>
               <tr>
                 <td><h6><?php echo __('Dirección'); ?></h6></td>
-                <td><h5><?= $ticket['calle'] ?> <?= $ticket['nro'] ?> <?= $ticket['piso'] ?> <?= $ticket['depto'] ?><br><?= $ticket['localidad'] ?> (<?= $ticket['cp'] ?>)<br><?= $ticket['provincia'] ?></h5></td>
+                <td>
+                  <h5><?= $ticket['calle'] ?> <?= $ticket['nro'] ?> <?= $ticket['piso'] ?> <?= $ticket['depto'] ?><br>
+                  <?= $ticket['localidad'] ?> (<?= $ticket['cp'] ?>)<br><?= $ticket['provincia'] ?></h5>
+                  <br>
+                  <?php $address = $ticket['calle'].' '.$ticket['nro'].', '.$ticket['localidad'].' '. $ticket['provincia'] . ', Argentina'; ?>
+                  <img width="300" height="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=3&markers=color:blue|<?= urlencode($address) ?>&zoom=10&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">
+                  <img width="300" height="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=3&markers=color:blue|<?= urlencode($address) ?>&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">
+                </td>
               </tr>
               <!--tr class="bg-light">
                 <td><h6><?php echo __('Peso'); ?></h6></td>
