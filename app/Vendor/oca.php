@@ -72,7 +72,7 @@ class Oca
 								'Localidad'				=> $ci->getElementsByTagName('Localidad')->item(0)->nodeValue,
 								'IdProvincia'			=> $ci->getElementsByTagName('IdProvincia')->item(0)->nodeValue,
 								'idCodigoPostal'		=> $ci->getElementsByTagName('idCodigoPostal')->item(0)->nodeValue,
-								'Telefono'				=> $ci->getElementsByTagName('Telefono')->item(0)->nodeValue,
+								'Telefono'				=> @$ci->getElementsByTagName('Telefono')->item(0)->nodeValue,
 								'eMail'					=> $ci->getElementsByTagName('eMail')->item(0)->nodeValue,
 								'Provincia'				=> $ci->getElementsByTagName('Provincia')->item(0)->nodeValue,
 								'CodigoPostal'			=> $ci->getElementsByTagName('CodigoPostal')->item(0)->nodeValue
