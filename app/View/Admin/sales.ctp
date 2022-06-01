@@ -106,31 +106,18 @@
                          </table>
                      </td>
                     <td class="col-xs-1 text-center"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
+                        <?php
+                        if (!empty($sale['local_sale']['id']) && 
+                            !empty($sale['local_sale']['apellido']) && 
+                            !empty($sale['local_sale']['cargo']) && 
+                            $sale['local_sale']['cargo'] == 'shipment') : ?>
+                            <span class="text-info"><?= strtoupper($sale['local_sale']['shipping']) ?></span><br>
+                            <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
+                            <?= $sale['local_sale']['def_mail_sent'] ? '<p class="text-success">Notificación enviada</p>' : '<p class="text-danger">Notificación no enviada</p>';?>
+                        <?php else: ?>
+                            <p class="text-muted">(Sin Etiqueta)</p>
+                        <?php endif ?>
                         <?php 
-                        $zips = @$sale['local_sale']['zip_codes'];
-                        if (@$sale['local_sale']['shipping_type'] == 'no_label' || @$sale['local_sale']['shipping_type'] == 'zip_code' ):
-                            //check zip code:
-                            
-                            $zips_arr = explode(',', $zips); 
-//          echo @$sale['local_sale']['cp'].' / '.json_encode($zips_arr,true). ' / '.$zips;
-                            if ( (int)@$sale['collection']['transaction_amount'] > $shipping_price_min['Setting']['value'] || $sale['local_sale']['cargo'] != 'shipment' || in_array(@(int)$sale['local_sale']['cp'], $zips_arr)): // || empty($sale['collection']['deliver_cost'])):
-                                // sin etiqueta  
-                                echo "(Sin Etiqueta)";
-                            else:
-                                if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
-                                    <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
-                                    <?php echo ($sale['local_sale']['def_mail_sent'] ? '<p class="text-success">Notificación enviada</p>' : '<p class="text-danger">Notificación no enviada</p>');?>
-                                <?php endif;
-                            endif;
-                        else:
-                            
-                            if (!empty($sale['local_sale']['id'])  && !empty($sale['local_sale']['apellido'])): ?>
-                                <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
-                                <?php echo ($sale['local_sale']['def_mail_sent'] ? '<p class="text-success">Notificación enviada</p>' : '<p class="text-danger">Notificación no enviada</p>');?>
-                            <?php endif ?>
-                        <?php 
-                        endif;
-                         
                         $defaultCost = 54;
                         if (date('Ymd',strtotime($sale['collection']['date_approved'])) > '20161108')
                             $defaultCost=0;

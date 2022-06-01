@@ -486,17 +486,18 @@ class AdminController extends AppController {
 	private function getMPSales(){
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
+		$limit = $_SERVER['REMOTE_ADDR'] == '127.0.0.1' ? 20 : 500;
 		$filters = array(
             "range" => "date_created",
-            "begin_date" => "2020-09-01T00:00:00Z",
+            "begin_date" => "2022-01-01T00:00:00Z",
             "end_date" => "NOW",
-            "limit" => 1000,
+            "limit" => $limit,
             "status" => "approved",
             "sort" => "id",
             "criteria" => "desc",
             "operation_type" => "regular_payment"
         );
-        $searchResult = $mp->search_payment($filters,0,1000);
+        $searchResult = $mp->search_payment($filters,0,$limit);
         return (!empty($searchResult['response']['results']))?$searchResult['response']['results']:array();
 	}
 
