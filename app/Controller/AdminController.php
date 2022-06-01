@@ -224,7 +224,7 @@ class AdminController extends AppController {
 
 	private function setOrdenRetiro($sale){
 		$shipping = $sale['shipping'];
-		$logistic = $this->Logistic->findByTitle($sale['Sale']['shipping']);
+		$logistic = $this->Logistic->findByCode($shipping);
 		$response = null;
 		if($logistic['Logistic']['local_prices'] && method_exists($this, "add_order_{$shipping}")) {
 			$response = $this->{"add_order_{$shipping}"}($sale);
