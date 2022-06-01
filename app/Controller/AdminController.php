@@ -398,7 +398,7 @@ class AdminController extends AppController {
 					//$emailTo = 'francisco.marasco@gmail.com';
 					$message = '<p>Hola <strong>'.ucfirst(@$sale['nombre']).'</strong>, gracias por tu compra!</p>';
 					if (isset($logistic) && $logistic['tracking_url'])  {
-						$message.= '<p>Puedes seguir tu envío a través del sitio de ' . strtouppercase($sale['shipping']) . ': ' . @$logistic['tracking_url'] . '<br /> Ingresando el número de envio: '.@$sale['def_orden_tracking'].'</p>';
+						$message.= '<p>Puedes seguir tu envío a través del sitio de ' . strtoupper($sale['shipping']) . ': ' . @$logistic['tracking_url'] . '<br /> Ingresando el número de envio: '.@$sale['def_orden_tracking'].'</p>';
 					} else {
 						// find price info
 						$this->loadModel('LogisticsPrices');
@@ -413,7 +413,7 @@ class AdminController extends AppController {
 							]
 						]);
 
-						$message.= '<p>El envío de tu compra está a cargo de '.strtouppercase($sale['shipping']).' y código de envío es '.@$sale['def_orden_tracking'].' </p>';
+						$message.= '<p>El envío de tu compra está a cargo de '.strtoupper($sale['shipping']).' y código de envío es '.@$sale['def_orden_tracking'].' </p>';
 						$info = array_filter([$logistic['info'], $price['LogisticsPrices']['info']]);
 						if (!empty($info)) {
 							$message.= '<p>'.implode('</p><p>', $info).'</p>';
