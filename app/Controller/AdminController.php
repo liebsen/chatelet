@@ -371,7 +371,7 @@ class AdminController extends AppController {
 
 			$sale = $sale['Sale'];
 
-			if (empty($sale['Sale']['def_mail_sent'])) {
+			if (empty($sale['def_mail_sent'])) {
 				$send_email = true;
 			}
 
