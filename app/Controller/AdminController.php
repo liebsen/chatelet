@@ -367,6 +367,9 @@ class AdminController extends AppController {
 			// die('Venta no encontrada o incompleta.');
 			$data['message'] = 'Venta incompleta';
 		} else {
+
+			$sale = $sale['Sale'];
+
 			if (empty($sale['Sale']['def_mail_sent'])) {
 				$send_email = true;
 			}
