@@ -223,6 +223,7 @@ class AdminController extends AppController {
 	}
 
 	private function setOrdenRetiro($sale){
+		$this->loadModel('Logistic');
 		$shipping = $sale['shipping'];
 		$logistic = $this->Logistic->findByCode($shipping);
 		$response = null;
