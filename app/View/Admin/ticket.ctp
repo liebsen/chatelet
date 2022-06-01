@@ -20,9 +20,9 @@
           background-color: transparent;
           background-position: center left;
           background-image: url(/img/logo.jpg);
-          height: 3rem;
+          height: 3.5rem;
           margin-left: 1rem;
-          margin-bottom: 1rem;
+          margin-bottom: 1.5rem;
         }
         @media print {
           .form-actions {
