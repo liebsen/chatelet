@@ -4,6 +4,7 @@
   // echo $this->Html->css('cupones-detail', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
   ?>
+<?php echo $this->Html->script('admin-sales', array('inline' => false)); ?>
 <?php echo $this->element('admin-menu');?>
 <div class="block block-themed">
   <div class="block-title">
