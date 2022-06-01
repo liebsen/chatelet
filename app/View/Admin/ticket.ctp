@@ -83,8 +83,8 @@
             </table>
             <?php $address = $ticket['calle'].' '.$ticket['nro'].', '.$ticket['localidad'].' '. $ticket['provincia'] . ', Argentina'; ?>
 
-            <img width="300" height="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=3&markers=color:blue|<?= urlencode($address) ?>&zoom=10&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">
-            <img width="300" height="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=3&markers=color:blue|<?= urlencode($address) ?>&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">            
+            <img width="300" height="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=1&markers=color:blue|<?= urlencode($address) ?>&zoom=10&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">
+            <img width="300" height="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=1&markers=color:blue|<?= urlencode($address) ?>&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">            
             <br />
             <h6>Gracias por su compra.</h6>            
             <div class="form-actions">
