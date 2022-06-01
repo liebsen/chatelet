@@ -1,14 +1,14 @@
 <?php echo $this->Html->script('shipping.js?v=' . Configure::read('APP_DIST'),array( 'inline' => false )) ?>
 <?php echo $this->Html->css('oca_front.css?v=' . Configure::read('APP_DIST'),array( 'inline' => false )) ?>
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
-<div class="row is-rounded">
+<div class="row is-rounded animated fadeIn">
 	<h3 class="h3 text-center">¿Cómo desea recibir su compra?</h3>
 	<div class="col-xs-12 shipment-options shipping">
 		<hr>
 		<?php if(!$freeShipping): ?>
-		<h3 id="heading" class="cargo-title">Costo de Envío</h3>
+		<h4 id="heading" class="cargo-title">1. Costo de Envío</h4>
 		<?php else: ?>
-		<h3 class="text-success">Envío gratuito // <span>Seleccione opción de envío</span></h3>
+		<h3 class="text-success animated scaleIn">Envío gratuito // <span>Seleccione opción de envío</span></h3>
 		<?php endif ?>		
 		<p class="p">
 			<i>
@@ -25,13 +25,15 @@
 				</div>
 			</form>
 		</div>
+		<br>
 		<div class="form-group shipping-block hidden">
 			<div>
-					<p class="p">
-						<i>
-							<small>Seleccione la empresa de logística de su confianza para realizar este envío</small>
-						</i>
-					</p>
+				<h4 id="heading" class="cargo-title">2. Seleccione tipo de envío</h4>
+				<p class="p">
+					<i>
+						<small>Seleccione la empresa de logística de su confianza para realizar este envío</small>
+					</i>
+				</p>
 			</div>
 			<div class="slot">
 			</div>

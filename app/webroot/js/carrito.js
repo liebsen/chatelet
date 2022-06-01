@@ -110,19 +110,19 @@ $(document).ready(function() {
 		let location = $(this).attr('link-to')||$(this).prop('link-to')
 
 		if(!c){
-			onErrorAlert('No tienes productos en el carrito')
+			onSuccessAlert('Carrito vacío','No tienes productos en el carrito')
 			return false;
 		}
 		if (cargo === 'shipment') {
 			const shipping_cargo = $('.shipping-options li.selected')
 			if (!shipping_cargo.length) {
-				onErrorAlert('Por favor seleccione una empresa de logística para el envío del producto o seleccione retiro en sucursal');	
+				onErrorAlert('¿Cómo desea recibir su compra?', 'Por favor seleccione un tipo de envío para su compra o seleccione Retiro en Sucursal para evitar cargos de envío');	
 				return false;
 			} else {
 				if (shipping_cargo.attr('shipping')) {
 					shipping = shipping_cargo.attr('shipping')
 				} else {
-					onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal (2)');
+					onErrorAlert('¿Cómo desea recibir su compra?','Por favor indique su código postal o seleccione retiro en sucursal');
 					return false;
 				}
 			}
@@ -134,20 +134,20 @@ $(document).ready(function() {
 				$('.input-cp').focus();
 				$('.input-cp').removeClass('ok');
 				$('.input-cp').addClass('wrong');
-				onErrorAlert('Por favor ingrese su código postal');
+				onErrorAlert('Código postal', 'Por favor ingrese su código postal');
 				return false;
 			}
 		} else if(cargo === 'takeaway') {
 			const takeaway = $('.takeaway-options li.selected')
 			if (!takeaway.length) {
-				onErrorAlert('Por favor seleccione una sucursar para pasar a retirar el producto');	
+				onErrorAlert('Seleccione sucursal', 'Por favor seleccione una sucursal para retirar su compra');	
 				return false;
 			} else {
 				if (takeaway.attr('store')) {
 					store = takeaway.attr('store')
 					store_address = takeaway.attr('store-address')
 				} else {
-					onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal (1)');
+					onErrorAlert('¿Cómo desea recibir su compra?','Por favor indique su código postal o seleccione retiro en sucursal');
 					return false;
 				}
 			}
@@ -155,7 +155,7 @@ $(document).ready(function() {
 			if (freeShipping) {
 				cargo = 'shipment'
 			} else {
-				onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal (2)');
+				onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal');
 				return false
 			}
 		}
