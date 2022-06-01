@@ -55,27 +55,31 @@ callEnd = function(){
 	}, 500)
 }
 
-onErrorAlert = function(title, text){
+onErrorAlert = function(title, text, duration){
 	$.growl.error({
 		title: title || 'Error',
 		message: text,
-		queue: true
+		queue: true,
+		duration: duration || 15000
 	});
 }
 
-onSuccessAlert = function(title, text){
+onSuccessAlert = function(title, text, duration){
 	$.growl.notice({
 		title: title || 'OK',
 		message: text,
-		queue: true
+		queue: true,
+		duration: duration || 15000
 	});
 }
 
-onWarningAlert = function(title, text){
+onWarningAlert = function(title, text, duration){
 	// $('#growls').remove();
 	$.growl.warning({
 		title: title || 'OK',
-		message: text
+		message: text,
+		queue: true,
+		duration: duration || 15000
 	});
 }
 
@@ -110,7 +114,7 @@ $(document).ready(function() {
 		let location = $(this).attr('link-to')||$(this).prop('link-to')
 
 		if(!c){
-			onSuccessAlert('Carrito vacío','No tienes productos en el carrito')
+			onSuccessAlert('Carrito vacío','No tienes productos en el carrito', 5000)
 			return false;
 		}
 		if (cargo === 'shipment') {
@@ -134,7 +138,7 @@ $(document).ready(function() {
 				$('.input-cp').focus();
 				$('.input-cp').removeClass('ok');
 				$('.input-cp').addClass('wrong');
-				onErrorAlert('Código postal', 'Por favor ingrese su código postal');
+				onErrorAlert('¿Cómo desea recibir su compra?', 'Por favor ingrese su código postal');
 				return false;
 			}
 		} else if(cargo === 'takeaway') {
@@ -155,7 +159,7 @@ $(document).ready(function() {
 			if (freeShipping) {
 				cargo = 'shipment'
 			} else {
-				onErrorAlert('Por favor indique su código postal o seleccione retiro en sucursal');
+				onErrorAlert('¿Cómo desea recibir su compra?','Por favor indique su código postal o seleccione Retiro en Sucursal para envitar cargos de envío');
 				return false
 			}
 		}
@@ -211,8 +215,8 @@ $(document).ready(function() {
 		$('.input-cp').val(lastcp)
 		setTimeout(() => {
 			$('#calulate_shipping').submit()	
-			onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`)			
-		},1000)		
+			onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
+		}, 1000)		
 	}
 
 	var total = parseInt(document.getElementById('total').value)
