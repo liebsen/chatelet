@@ -16,17 +16,12 @@
           background-color: whitesmoke;
         }
         .shop-logo {
-          background-repeat: no-repeat;
-          background-size: contain;
-          background-color: transparent;
-          background-position: center left;
-          background-image: url(/img/logo.jpg);
-          height: 3.5rem;
           margin-left: 1rem;
           margin-bottom: 1.5rem;
         }
         .table {
           display: inline-block;
+          margin-bottom: 0;
         }
         @media print {
           .form-actions {
@@ -41,8 +36,7 @@
       <?php if(isset($ticket)): ?>
         <div class="row">
           <div class="col">
-            <div class="shop-logo">
-            </div>
+            <img class="shop-logo" height="40" src="/img/logo.jpg">
             <table class="table table-striped">
               <tr>
                 <td width="150"><h6><?php echo __('Órden de retiro'); ?></h6></td>
