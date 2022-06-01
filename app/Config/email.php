@@ -13,7 +13,8 @@ class EmailConfig {
             'username' => 'chateletfacebook@gmail.com',
             // 'password' => 'Fran4850',
             // 'password' => 'A@spOWo9fS',
-            'password' => 'clryubbbmjeljkpp',
+            //'password' => 'clryubbbmjeljkpp',
+            'password' => 'arwheujigsnivwqm',
             'charset' => 'utf-8',
             'tls' => true
             // 'ssl' => true
