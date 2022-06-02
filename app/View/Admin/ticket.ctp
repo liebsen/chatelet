@@ -23,6 +23,10 @@
           display: inline-block;
           margin-bottom: 0;
         }
+        .text-orden-retiro {
+          font-size: 1.5rem;
+          font-weight: 800;
+        }
         @media print {
           .form-actions {
             padding-top: 1rem;
@@ -40,11 +44,11 @@
             <table class="table table-striped">
               <tr>
                 <td width="150"><h6><?php echo __('Órden de retiro'); ?></h6></td>
-                <td><h5 class="text-info"><?= strtoupper($ticket['def_orden_retiro']) ?></h5></td>
+                <td><h5 class="text-orden-retiro"><?= strtoupper($ticket['def_orden_retiro']) ?></h5></td>
               </tr>
               <tr>
                 <td><h6><?php echo __('Fecha y hora'); ?></h6></td>
-                <td><h5><?= $ticket['created'] ?></h5></td>
+                <td><h5><?= date('d-m-y H:i', strtotime($ticket['created'])) ?></h5></td>
               </tr>
               <tr>
                 <td><h6><?php echo __('Nombre'); ?></h6></td>
@@ -77,8 +81,8 @@
             </table>
             <?php $address = $ticket['calle'].' '.$ticket['nro'].', '.$ticket['localidad'].' '. $ticket['provincia'] . ', Argentina'; ?>
 
-            <img width="300" height="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=1&markers=color:blue|<?= urlencode($address) ?>&zoom=11&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">
-            <img width="300" height="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=1&markers=color:blue|<?= urlencode($address) ?>&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">            
+            <img width="200" height="200" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=1&markers=color:blue|<?= urlencode($address) ?>&zoom=11&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">
+            <img width="200" height="200" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=1&markers=color:blue|<?= urlencode($address) ?>&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">            
             <br />
             <h6>Gracias por su compra.</h6>            
             <div class="form-actions">
