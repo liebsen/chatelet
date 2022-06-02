@@ -1,4 +1,4 @@
-<?php $weekdays = ['dom','lun','mar','mie','jue','vie','sáb'] ?>
+<?php $weekdays = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'] ?>
 <!DOCTYPE html>
   <html>
     <head>
@@ -49,7 +49,7 @@
               </tr>
               <tr>
                 <td><h6><?php echo __('Fecha y hora'); ?></h6></td>
-                <td><h5><?= implode(' ', [$weekdays[date('w', strtotime($ticket['created']))],date('j/n/y H:i', strtotime($ticket['created']))]) ?></h5></td>
+                <td><h5><?= implode(' ', [date('j/n/y H:i', strtotime($ticket['created'])), ' ('.$weekdays[date('w', strtotime($ticket['created']))].')']) ?></h5></td>
               </tr>
               <tr>
                 <td><h6><?php echo __('Nombre'); ?></h6></td>
