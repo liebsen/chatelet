@@ -959,7 +959,7 @@ class CarritoController extends AppController
 				$carro = $this->Session->read('Carro');
 				$count = $this->request->data['count'];
 				$product = $product['Product'];
-				$index = 0;
+				$index = -1;
 
 				if (!empty($product['discount']) && (float)@$product['discount']>0) {
 	        $product['price'] = $product['discount'];
@@ -973,6 +973,8 @@ class CarritoController extends AppController
 						}
 					}
 				}
+				error_log('index');
+				error_log($index);
 
 				$product['count'] = $count;
 				$product['unit_price'] = $product['price'];
@@ -981,7 +983,7 @@ class CarritoController extends AppController
 				$product['size'] = @$this->request->data['size'];
 				$product['alias'] = $this->request->data['alias'];
 
-				if ($index) {
+				if ($index > -1) {
 					$carro[$index] = $product;
 				} else {
 					$carro[] = $product;
