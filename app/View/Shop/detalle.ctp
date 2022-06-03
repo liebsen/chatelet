@@ -177,6 +177,19 @@
                     <div class="footer-producto" >
                         <?php //if($loggedIn){ ?>
 
+                            <div class="form-inline carrito-count">
+                              <div class="form-group">
+                                <div class="input-group carrito-selector">
+                                    <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
+                                        <span class="fa fa-minus"></span>
+                                    </div>                                    
+                                  <input type="text" size="2" class="form-control input-lg text-center" id="carritoItemCount" placeholder="Cantidad" value="1">
+                                  <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
+                                   <span class="fa fa-plus"></span>
+                                   </div>
+                                </div>
+                              </div>
+                            </div>                            
                             <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar al carrito</a>
 
                         <?php //}else{ echo $this->Form->end(); ?>

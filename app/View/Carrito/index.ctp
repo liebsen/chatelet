@@ -42,52 +42,67 @@
 						$total += $product['price'];
 						if (!isset($product['color'])) $product['color'] = '';
 						if (!isset($product['size'])) $product['size'] = '';
-						$url = $this->Html->url(array(
+						$item_url = $this->Html->url(array(
               'controller' => 'shop',
               'action' => 'detalle',
               $product['id'],
               $product['category_id'],
               strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
             ));
-						echo '<div class="carrito-item-row" product_row>';
-							echo '<div class="carrito-item-col cart-img-col">';
-							//echo "<div class='clearfix'></div>";
-								echo "<div class='cart-img'>";
-								if ($product['promo'] !== '' && isset($product['old_price'])) {
-									$promosaved+= (float) $product['old_price'] - $product['price'];
-									echo "<div class='ribbon small'><span>" . $product['promo'] . "</span></div>";
-								}
-                echo '<a href="' . $url . '">';
-								echo '<img src="'.Configure::read('imageUrlBase').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
-								echo '</a>';
-							echo '</div>';
-							echo '</div>';
-							echo '<div class="carrito-item-col">';
-							echo '<span class="name is-carrito">'. $product['name'] . '</span>';
-							if (!empty($product['alias'])){
-								echo '<p class="color">Color: <span class="talle">'. $product['alias'] .'</span></p>';
-							}
-							if (!empty($product['size'])){
+						echo '<div class="carrito-item-row is-clickable" product_row>';
+						echo '<div class="carrito-item-col cart-img-col">';
+						//echo "<div class='clearfix'></div>";
+						echo "<div class='cart-img'>";
+						if ($product['promo'] !== '' && isset($product['old_price'])) {
+							$promosaved+= (float) $product['old_price'] - $product['price'];
+							echo "<div class='ribbon small'><span>" . $product['promo'] . "</span></div>";
+						}
+            // echo '<a href="' . $item_url . '">';
+						echo '<img src="'.Configure::read('imageUrlBase').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
+						// echo '</a>';
+						echo '</div>';
+						echo '</div>';
+						echo '<div class="carrito-item-col carrito-item-'.$product['id'].'">';
+						echo '<span class="name is-carrito">'. $product['name'] . '</span>';
 
-								echo '<p>Talle: <span class="talle">'. $product['size'] .'</span></p>';
-							}
-							echo $this->Html->link('<span class="glyphicon glyphicon-trash"></span>',
-								array(
-									'controller' => 'carrito',
-									'action' => 'remove',
-									$row
-								),
-								array (
-									'class' => 'trash',
-									'escape' => false
-								)
-							);
-
-							echo '<br>';
-							if (!empty($product['old_price'])){
-								echo '<div class="old_price text-grey">'. $this->Number->currency($product['old_price'], 'ARS', array('places' => 2)) .'</div>';
-							}					
-							echo '<div class="price' . (!empty($product['old_price']) ? ' text-theme' : '' ) . '">'. $this->Number->currency($product['price'], 'ARS', array('places' => 2)) .'</div>';
+						if (!empty($product['alias'])){
+							echo '<p class="color">Color: <span class="talle">'. $product['alias'] .'</span></p>';
+						}
+						if (!empty($product['size'])){
+							echo '<p class="color">Talle: <span class="talle">'. $product['size'] .'</span></p>';
+						}
+						if (!empty($product['count'])){
+							echo '<p>Cant.: <span class="talle">'. $product['count'] .'</span></p>';
+						}
+						echo $this->Html->link('<span class="glyphicon glyphicon-trash"></span>',
+							array(
+								'controller' => 'carrito',
+								'action' => 'remove',
+								$row
+							),
+							array (
+								'class' => 'trash',
+								'escape' => false
+							)
+						);
+						echo '<br>';
+						if (!empty($product['old_price'])){
+							echo '<div class="old_price text-grey">'. $this->Number->currency($product['old_price'], 'ARS', array('places' => 2)) .'</div>';
+						}					
+						echo '<div class="price' . (!empty($product['old_price']) ? ' text-theme' : '' ) . '">'. $this->Number->currency($product['price'], 'ARS', array('places' => 2)) .'</div>';
+						echo '<div class="form-inline carrito-count">
+						  <div class="form-group">
+						    <div class="input-group carrito-selector">
+						      <div class="input-group-addon input-lg is-clickable" onclick="removeItemCount('.$product['id'].')">
+						       <span class="fa fa-minus"></span>
+						      </div>
+						      <input type="text" size="2" class="form-control input-lg text-center" id="carritoItemCount" placeholder="Cantidad" value="' . $product['count'] . '">
+						      <div class="input-group-addon input-lg is-clickable" onclick="addItemCount('.$product['id'].')">
+						       <span class="fa fa-plus"></span>
+						       </div>
+						    </div>
+						  </div>
+						</div>';
 						echo '</div>';
 						echo '</div>';
 						echo '<hr>';
@@ -149,6 +164,15 @@
 	</div>
 					
 	<?php if (isset($carro) && !empty($carro)) :?>
+	<div id="carritoItem" class="menuLayer">
+	  <a class="close">
+	    <span></span>
+	    <span></span>
+	  </a>
+		<div class="carrito-item">
+			<div class="carrito-item-block"></div>
+		</div>
+	</div>
 	<input type="hidden" id="shipping_price_min" value="<?= $shipping_price_min ?>">
 	<input type="hidden" id="total" value="<?= $total ?>">
 	<div class="row">

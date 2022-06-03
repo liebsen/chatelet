@@ -25,6 +25,14 @@ html, body {
 	min-height: 2.75rem;
 }
 
+.carrito-count {
+	margin-bottom: 0.5rem;
+}
+
+.carrito-selector {
+  max-width: 10rem;
+}
+
 .input-group-append {
   margin-left: -1px;
 }

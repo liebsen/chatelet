@@ -25,8 +25,8 @@ var selectStore = e => {
   preferences.store = $(e).attr('store')
   preferences.store_address = $(e).attr('store_address')
   localStorage.setItem('carrito', JSON.stringify(preferences))
-
-  onSuccessAlert('Usted seleccionó takeaway', `Puede retirar su producto por sucursal - ${e.textContent} -`);
+  var carrito_takeaway_text = $('.carrito_takeaway_text').text()
+  onSuccessAlert('Usted seleccionó takeaway', `Puede retirar su producto por sucursal - ${e.textContent} - ${carrito_takeaway_text}`);
 	cargo = 'takeaway'
 }
 
@@ -91,7 +91,29 @@ isDateBeforeToday = function(date) {
   return new Date(date.toDateString()) < new Date(new Date().toDateString());
 }
 
+addItemCount = function(id) {
+	console.log(id)
+}
+removeItemCount = function(id) {
+	console.log(id)	
+}
+
 $(document).ready(function() {
+
+	/* carrito item viewer */
+	$('.carrito-item-row').on('click', function(e) {
+		var html = $(this).html()
+		// var price = $(this).find('#carritoItemCount').val()
+		$('body').css('overflow-y', 'hidden')
+		$('.carrito-item-block').html(html)
+		$('#carritoItem').addClass('active')
+	})
+
+	$('#carritoItem .close').on('click', function(e) {
+		$('body').css('overflow-y', 'auto')
+		$('#carritoItem').removeClass('active')
+	})
+
 	$('#checkout-modal').on('click', 'a', function() {
 		var me = $(this);
 
@@ -175,6 +197,7 @@ $(document).ready(function() {
 
 	$('.trash').on('click', e => {
 		e.preventDefault()
+		e.stopPropagation()
 		if (confirm('Estás seguro que que querés borrar este producto del carrito?')) {
 			const target = $(e.target).closest('.trash')
 		  $.get(target.attr('href'), res => {

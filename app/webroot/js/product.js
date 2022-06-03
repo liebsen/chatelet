@@ -1,3 +1,14 @@
+function addCount() {
+	var value = parseInt($('#carritoItemCount').val()) + 1
+	if (value > 99) value = 99
+	$('#carritoItemCount').val(value)
+}
+function removeCount() {
+	var value = parseInt($('#carritoItemCount').val()) - 1
+	if (value < 1) value = 1
+	$('#carritoItemCount').val(value)
+}
+
 function pideStock(obj){
 
 		// console.log('changed');
@@ -57,6 +68,7 @@ $(document).ready(function() {
 	$(".add.agregar-carro").click(function(e) {
 		//this = e.target;
 		var data = {
+			count: parseInt($('#carritoItemCount').val()),
 			id: $(e.target).closest('form').find("#product_id").text().trim(),
 			color: $(e.target).closest('form').find("input[name='color']:checked").val(),
 			color_code: $(e.target).closest("form").find('input[name="color"]:checked').attr('code'),

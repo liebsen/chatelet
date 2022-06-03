@@ -50,7 +50,7 @@
 		<h3 id="heading" class="cargo-title">Retiro en Sucursal</h3>
 		<p class="p">
 			<i>
-				<small>Solicite esta opción para evitar cargos de envío</small>
+				<small>Solicite esta opción para evitar cargos de envío. <span class="carrito_takeaway_text"><?= $carrito_takeaway_text ?></span></small>
 			</i>
 		</p>		
 

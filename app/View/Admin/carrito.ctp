@@ -42,6 +42,13 @@
 <strong>{{precio_min_envio_gratis}}</strong> Monto de compra para envío gratis <br>
 <strong>{{resto_min_envio_gratis}}</strong> Monto que falta para alcanzar el mínimo de envío gratos <br>
 <strong>{{total}}</strong> Total del carrito. </span>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="columns-text"><?php echo __('Texto carrito takeaway'); ?></label>
+              <div class="controls">
+                <textarea name="carrito_takeaway_text" class="form-control w-100"><?= $data['carrito_takeaway_text'] ?></textarea>
+              </div>
+              <span class="text-muted">texto que se muestra en el carrito cuando el usuario selecciona método de entrega takeaway.</span>
             </div>  
           </div> 
         </div>

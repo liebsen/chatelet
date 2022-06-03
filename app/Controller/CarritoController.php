@@ -65,23 +65,15 @@ class CarritoController extends AppController
 		];
 		echo "<pre>";
 
-		$quants = [];
 		$promos = [];
 		$counted = [];
-		/*count prods */
-		foreach($carro as $product) {
-			if (!isset($quants[$product['id']])) {
-				$quants[$product['id']] = 0;
-			}
-			$quants[$product['id']]++;
-		}
 		/*count promos */
 		foreach($carro as $product) {
 			if (!empty($product['promo'])) {
 				if (!isset($promos[$product['id']])) {
 					$parts = explode('x', $product['promo']);
 					$promo_val = intval($parts[0]);
-					$promos[$product['id']] = floor($quants[$product['id']] / $promo_val);
+					$promos[$product['id']] = floor($product['count'] / $promo_val);
 				}
 			}
 		}
@@ -211,14 +203,17 @@ class CarritoController extends AppController
 			'total' => number_format($data['price'], 0, ',', '.')
 		];
 
+    $mapper = $this->Setting->findById('carrito_takeaway_text');
+    $carrito_takeaway_text = $mapper['Setting']['extra'];
     $mapper = $this->Setting->findById('display_text_shipping_min_price');
     $display_text_shipping_min_price = $mapper['Setting']['value'];
     $mapper = $this->Setting->findById('text_shipping_min_price');
-		$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['value'])) ? $this->parse_tpl($mapper['Setting']['value'], $vars) : '';
-		$this->set('text_shipping_min_price',$text_shipping_min_price);
+		$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['extra'])) ? $this->parse_tpl($mapper['Setting']['extra'], $vars) : '';
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);
+		$this->set('text_shipping_min_price',$text_shipping_min_price);
+		$this->set('carrito_takeaway_text',$carrito_takeaway_text);
 		$this->set('stores', $stores);
 		$this->set('freeShipping', $freeShipping);
 	}
@@ -410,8 +405,8 @@ class CarritoController extends AppController
 		$this->autoRender = false;
 		$this->loadModel('LogisticsPrices');
 
-		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.2') {
-			$dummy = '{"valid": 1,"freeShipping":false,"rates":{"oca":{"price":799,"centros":[{"idCentroImposicion":"51","IdSucursalOCA":"27","Sigla":"EQS","Descripcion":"ESQUEL                        ","Calle":"MITRE","Numero":"777  ","Torre":" ","Piso":"     ","Depto":"    ","Localidad":"ESQUEL                   ","IdProvincia":"9","idCodigoPostal":"19681","Telefono":"02945-451164   ","eMail":"","Provincia":"CHUBUT                        ","CodigoPostal":"9200    "}],"valid":1},"andreani":{"price":5295.98,"centros":[],"valid":true}},"itemsData":{"count":2,"price":8280,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}';
+		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') {
+			$dummy = '{"freeShipping":false,"rates":[{"title":"Oca","code":"oca","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/628eb1ba29efd.svg","info":"Env\u00edos a todo el pa\u00eds","price":987,"centros":[],"valid":true},{"title":"Speed Moto","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/6292a6f2d79b7.jpg","code":"speedmoto","info":"10 a\u00f1os brindando confianza a nuestros clientes","price":"700.00","centros":[],"valid":true}],"itemsData":{"count":1,"price":1994.99,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}';
 			return json_encode(json_decode($dummy));
 		}
 
@@ -931,13 +926,12 @@ class CarritoController extends AppController
 			error_log($preference['response']['sandbox_init_point']);
 			return $this->redirect($preference['response']['sandbox_init_point']);
 		}
-
 	}
 
 	public function add() {
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');
-		if ($this->request->is('post') && isset($this->request->data['id'])) {
+		if ($this->request->is('post') && isset($this->request->data['id']) && isset($this->request->data['count'])) {
 			$product = $this->Product->findById($this->request->data['id']);
 			$urlCheck = Configure::read('baseUrl')."shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
 
@@ -963,12 +957,36 @@ class CarritoController extends AppController
 			//$stock=1;
 			if ($product && $stock) {
 				$carro = $this->Session->read('Carro');
+				$count = $this->request->data['count'];
 				$product = $product['Product'];
+				$index = 0;
+
+				if (!empty($product['discount']) && (float)@$product['discount']>0) {
+	        $product['price'] = $product['discount'];
+	      }				
+				/* check if exists */
+				if (!empty($carro)) {
+					foreach($carro as $key => $item) {
+						if ($product['id'] == $this->request->data['id']) {
+							$index = $key;
+							$count+= (int) $item['count'];
+						}
+					}
+				}
+
+				$product['count'] = $count;
+				$product['unit_price'] = $product['price'];
+				$product['price'] = number_format($product['price'] * $count, 2);
 				$product['color'] = @$this->request->data['color'];
 				$product['size'] = @$this->request->data['size'];
 				$product['alias'] = $this->request->data['alias'];
 
-				$carro[] = $product;
+				if ($index) {
+					$carro[$index] = $product;
+				} else {
+					$carro[] = $product;
+				}
+
 				error_log('[carrito] '.json_encode($carro));
 				$data = $this->getComputedCart($carro);
 				// $this->applyPromosFromCart($carro);
@@ -987,7 +1005,6 @@ class CarritoController extends AppController
 	}
 
 	private function applyPromosFromCart($carro) {
-		$quants = [];
 		$promos = [];
 		$counted = [];
 		/*count prods */
@@ -1002,11 +1019,6 @@ class CarritoController extends AppController
   			// error_log('$arrImages:'.json_encode($arrImages));
   			$carro[$key]['alias_image'] = $arrImages[0];
   		}
-		
-			if (!isset($quants[$product['id']])) {
-				$quants[$product['id']] = 0;
-			}
-			$quants[$product['id']]++;
 		}
 		/*count promos */
 		foreach($carro as $product) {
@@ -1014,16 +1026,14 @@ class CarritoController extends AppController
 				if (!isset($promos[$product['id']])) {
 					$parts = explode('x', $product['promo']);
 					$promo_val = intval($parts[0]);
-					$promos[$product['id']] = floor($quants[$product['id']] / $promo_val);
+					$promos[$product['id']] = floor($product['count'] / $promo_val);
 				}
 			}
 		}
 		/*set promos prices if exists */
 		foreach($carro as $key => $product) {
 			/*product has promo, check if applies*/
-			if (!empty($product['discount']) && (float)@$product['discount']>0) {
-        $product['price'] = $product['discount'];
-      }
+
 			if (!empty($product['promo'])) {
 				$parts = explode('x', $product['promo']);
 				$promo_val = intval($parts[0]);
@@ -1053,6 +1063,17 @@ class CarritoController extends AppController
 		// error_log('[carrito] '.json_encode($carro));
 
 		return $carro;
+	}
+
+	public function reset($row = null) {
+		$this->autoRender = false;
+		$this->Session->delete('Carro');
+	}
+
+	public function show($row = null) {
+		$this->autoRender = false;
+		echo '<pre>';
+		var_dump($this->Session->read('Carro'));
 	}
 
 	public function remove($row = null) {
