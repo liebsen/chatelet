@@ -11,9 +11,6 @@ use AlejoASotelo\Andreani;
 
 class CarritoController extends AppController
 {
-	private $andreani_ep = 'https://apisqa.andreani.com'; 
-	// private $andreani_ep = 'https://apis.andreani.com'; 
-
 	public $uses = array('Product', 'ProductProperty', 'Store', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook', 'Coupon', 'Logistic');
 	public $components = array("RequestHandler");
 
@@ -65,15 +62,23 @@ class CarritoController extends AppController
 		];
 		echo "<pre>";
 
+		$grouped = [];
 		$promos = [];
 		$counted = [];
+		/*count prods */
+		foreach($carro as $product) {
+			if (!isset($grouped[$product['id']])) {
+				$grouped[$product['id']] = 0;
+			}
+			$grouped[$product['id']]++;
+		}
 		/*count promos */
 		foreach($carro as $product) {
 			if (!empty($product['promo'])) {
 				if (!isset($promos[$product['id']])) {
 					$parts = explode('x', $product['promo']);
 					$promo_val = intval($parts[0]);
-					$promos[$product['id']] = floor($product['count'] / $promo_val);
+					$promos[$product['id']] = floor($grouped[$product['id']] / $promo_val);
 				}
 			}
 		}
@@ -203,17 +208,15 @@ class CarritoController extends AppController
 			'total' => number_format($data['price'], 0, ',', '.')
 		];
 
-    $mapper = $this->Setting->findById('carrito_takeaway_text');
-    $carrito_takeaway_text = $mapper['Setting']['extra'];
     $mapper = $this->Setting->findById('display_text_shipping_min_price');
     $display_text_shipping_min_price = $mapper['Setting']['value'];
     $mapper = $this->Setting->findById('text_shipping_min_price');
-		$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['extra'])) ? $this->parse_tpl($mapper['Setting']['extra'], $vars) : '';
+		$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['value'])) ? $this->parse_tpl($mapper['Setting']['value'], $vars) : '';
+		$this->set('text_shipping_min_price',$text_shipping_min_price);
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);
-		$this->set('text_shipping_min_price',$text_shipping_min_price);
-		$this->set('carrito_takeaway_text',$carrito_takeaway_text);
+		$this->set('carrosorted', $this->get_cart_sorted());
 		$this->set('stores', $stores);
 		$this->set('freeShipping', $freeShipping);
 	}
@@ -589,23 +592,6 @@ class CarritoController extends AppController
 		return (float) $response->tarifaConIva->total; */
 	} 
 
-	private function andreani_token () {
-		$this->autoRender = false;
-		$uri =  "{$this->andreani_ep}/login";
-		$ch = curl_init($uri);
-		$cred = base64_encode('usuario_test:DI$iKqMClEtM');
-		curl_setopt_array($ch, array(
-	    CURLOPT_HTTPHEADER  => array("Authorization: Basic {$cred}"),
-	    CURLOPT_RETURNTRANSFER  =>true,
-	    CURLOPT_VERBOSE     => 1
-		));
-		$out = curl_exec($ch);
-		curl_close($ch);
-		// echo response output
-		$json = json_decode($out);
-		return $json->token;
-	}
-
 	private function calculate_shipping_oca ($data, $cp, $price) {
 		if(!empty($data)){
 			$oca = new Oca();
@@ -928,6 +914,18 @@ class CarritoController extends AppController
 		}
 	}
 
+	public function reset($row = null) {
+		$this->autoRender = false;
+		$this->Session->delete('Carro');
+	}
+
+	public function show($row = null) {
+		$this->autoRender = false;
+		echo '<pre>';
+		var_dump($this->Session->read('Carro'));
+	}
+
+
 	public function add() {
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');
@@ -957,43 +955,21 @@ class CarritoController extends AppController
 			//$stock=1;
 			if ($product && $stock) {
 				$carro = $this->Session->read('Carro');
-				$count = $this->request->data['count'];
 				$product = $product['Product'];
-				$index = -1;
-
-				if (!empty($product['discount']) && (float)@$product['discount']>0) {
-	        $product['price'] = $product['discount'];
-	      }				
-				/* check if exists */
-				if (!empty($carro)) {
-					foreach($carro as $key => $item) {
-						if ($product['id'] == $this->request->data['id']) {
-							$index = $key;
-							$count+= (int) $item['count'];
-						}
-					}
-				}
-				error_log('index');
-				error_log($index);
-
-				$product['count'] = $count;
-				$product['unit_price'] = $product['price'];
-				$product['price'] = number_format($product['price'] * $count, 2);
 				$product['color'] = @$this->request->data['color'];
 				$product['size'] = @$this->request->data['size'];
 				$product['alias'] = $this->request->data['alias'];
 
-				if ($index > -1) {
-					$carro[$index] = $product;
-				} else {
+				for ($i=0; $i < $this->request->data['count']; $i++) {
 					$carro[] = $product;
 				}
-
+				// $carro = array_fill(count($carro), $this->request->data['count'], $product);
 				error_log('[carrito] '.json_encode($carro));
-				$data = $this->getComputedCart($carro);
-				// $this->applyPromosFromCart($carro);
-				error_log('[carrito] '.json_encode($data));
-				$this->Session->write('Carro', $data);
+				//$data = $this->get_cart_computed($carro);
+				//$data = $this->process_cart($carro);
+				// $this->process_cart($carro);
+				error_log('[carrito] '.json_encode($this->process_cart($carro)));
+				$this->Session->write('Carro', $this->process_cart($carro));
 
 			//	$this->Session->write('Carro.'. $product['id'], $product);
 				return json_encode(array('success' => true));
@@ -1002,11 +978,32 @@ class CarritoController extends AppController
 		return json_encode(array('success' => false));
 	}
 
-	private function getComputedCart ($data) {
-		return $this->applyPromosFromCart($data ?: $this->Session->read('Carro'));
+	private function get_cart_sorted() {
+		$carro = $this->Session->read('Carro');
+		$grouped = [];
+		$processed = [];
+		foreach($carro as $key => $product) {
+			$group_criteria = $product['id'].$product['size'].str_replace('#','',$product['color']);
+			if (!isset($grouped[$group_criteria])) {
+				$grouped[$group_criteria] = 0;
+			}
+			$grouped[$group_criteria]++;
+			if ($grouped[$group_criteria] === 1) {
+				$product['count'] = 1;
+				$processed[$group_criteria] = $product;
+			} else {
+				$processed[$group_criteria]['count'] = $grouped[$group_criteria];
+				$processed[$group_criteria]['price']+= $product['price'];
+			}			
+		}
+		return $carro;
 	}
 
-	private function applyPromosFromCart($carro) {
+	private function process_cart($carro) {
+		if (empty($carro)) {
+			$carro = $this->Session->read('Carro');
+		}
+		$grouped = [];
 		$promos = [];
 		$counted = [];
 		/*count prods */
@@ -1021,6 +1018,11 @@ class CarritoController extends AppController
   			// error_log('$arrImages:'.json_encode($arrImages));
   			$carro[$key]['alias_image'] = $arrImages[0];
   		}
+		
+			if (!isset($grouped[$product['id']])) {
+				$grouped[$product['id']] = 0;
+			}
+			$grouped[$product['id']]++;
 		}
 		/*count promos */
 		foreach($carro as $product) {
@@ -1028,14 +1030,16 @@ class CarritoController extends AppController
 				if (!isset($promos[$product['id']])) {
 					$parts = explode('x', $product['promo']);
 					$promo_val = intval($parts[0]);
-					$promos[$product['id']] = floor($product['count'] / $promo_val);
+					$promos[$product['id']] = floor($grouped[$product['id']] / $promo_val);
 				}
 			}
 		}
 		/*set promos prices if exists */
 		foreach($carro as $key => $product) {
 			/*product has promo, check if applies*/
-
+			if (!empty($product['discount']) && (float)@$product['discount']>0) {
+        $product['price'] = $product['discount'];
+      }
 			if (!empty($product['promo'])) {
 				$parts = explode('x', $product['promo']);
 				$promo_val = intval($parts[0]);
@@ -1067,17 +1071,6 @@ class CarritoController extends AppController
 		return $carro;
 	}
 
-	public function reset($row = null) {
-		$this->autoRender = false;
-		$this->Session->delete('Carro');
-	}
-
-	public function show($row = null) {
-		$this->autoRender = false;
-		echo '<pre>';
-		var_dump($this->Session->read('Carro'));
-	}
-
 	public function remove($row = null) {
 		$this->autoRender = false;
 
@@ -1090,14 +1083,14 @@ class CarritoController extends AppController
 			$this->Session->delete('Carro.'. $row);
 		}
 		$carro = $this->Session->read('Carro');
-		$aux = array();
+		$data = array();
 		$i = 0;
 		foreach ($carro as $key => $value) {
-			$aux[$i] = $value;
+			$data[$i] = $value;
 			$i++;
 		}
-
-		$this->Session->write('Carro', $this->getComputedCart($aux));
+		// $this->Session->write('Carro', $this->get_cart_computed($aux));
+		$this->Session->write('Carro', $this->process_cart($data));
 		return json_encode($item);
 		// return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 	}

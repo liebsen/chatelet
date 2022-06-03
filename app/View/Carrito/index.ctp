@@ -35,7 +35,7 @@
 					$total = 0;
 					$promosaved = 0;
 
-					foreach ($carro as $product) {
+					foreach ($carrosorted as $product) {
 						if (!empty($product['discount']) && (float)@$product['discount']>0) {
               $product['price'] = $product['discount'];
             }						
