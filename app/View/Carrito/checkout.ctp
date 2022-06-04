@@ -94,8 +94,9 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 			</div>
 			<div class="form-group">
 				<hr>
-				<input type="checkbox" id="regalo" name="regalo">
-				<label for="regalo">Es para regalo</label>
+				<label>
+				  <input type="checkbox" id="regalo" name="regalo"><span class="label-text">Es para regalo</span>
+				</label>
 			</div>
 			<div class="form-group hide">
 				<label for="pais">Envío</label>

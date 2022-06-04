@@ -8,7 +8,7 @@
 		<?php if(!$freeShipping): ?>
 		<h4 id="heading" class="cargo-title">1. Costo de Envío</h4>
 		<?php else: ?>
-		<h3 class="text-success animated scaleIn">1. Envío gratuito // <span>Seleccione opción de envío</span></h3>
+		<h4 class="cargo-title text-success animated scaleIn">1. Envío gratuito // <span>Seleccione opción de envío</span></h4>
 		<?php endif ?>		
 		<p class="p">
 			<i>
@@ -43,7 +43,7 @@
 				<span>Costo de envío:</span> <span class="figure">$<span id="cost_delivery">0</span>.00</span> <span id="free_delivery"></span>
 			</span>
 		</div-->
-		<hr>
+		<hr class="or">
 	</div>
 	
 	<div class="col-xs-12 shipment-options takeaway">
