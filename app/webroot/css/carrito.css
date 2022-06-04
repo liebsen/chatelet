@@ -179,7 +179,7 @@
 	position: relative;
 	display: inline-block;
 	border-radius: 0.25rem;
-	box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.1);
+	box-shadow: 0.2rem 0.2rem 0 rgba(0,0,0,.2);
 	transition: all 0.25s ease;
 }
 
@@ -203,6 +203,12 @@
 	background-color: #07bc31;
 	padding: 0.75rem 1rem;
 	border-radius: 0.25rem;
+	cursor: pointer;
+}
+
+.ch-btn-success.disable {
+	background-color: #666;
+	cursor: default;
 }
 
 #siguiente.has-icons {
@@ -232,7 +238,7 @@ a.trash {
 	display: inline-block;
 	color: #ff1a1a;
 	font-size: 18px;
-	margin-top: 13px;
+	margin-top: 1px;
 	margin-bottom: 1rem;
 }
 
@@ -269,7 +275,7 @@ a.trash {
 	font-weight: 400;
 	text-align: left;
 	font-size: 1.25rem;
-	margin-top: 0.25rem;
+	margin-top: 1rem;
 	margin-bottom: 0.75rem;
 }
 

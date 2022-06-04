@@ -116,15 +116,7 @@ isDateBeforeToday = function(date) {
   return new Date(date.toDateString()) < new Date(new Date().toDateString());
 }
 
-addItemCount = function(id) {
-	console.log(id)
-}
-removeItemCount = function(id) {
-	console.log(id)	
-}
-
 var currentCarritoIndex = 0
-
 var show_cart_item = index => {
 	var target = document.querySelectorAll('.carrito-item-row')[index]
 	if (target) {
@@ -316,8 +308,13 @@ $(document).ready(function() {
 	if (lastcp && $('#subtotal_compra').val()) {
 		$('.input-cp').val(lastcp)
 		setTimeout(() => {
-			$('#calulate_shipping').submit()	
-			onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
+			const takeaway = $('.takeaway-options li.selected')
+			if(!takeaway || freeShipping) {
+				$('#calulate_shipping').submit()	
+				onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
+			} else {
+				onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000)
+			}
 		}, 1000)		
 	}
 

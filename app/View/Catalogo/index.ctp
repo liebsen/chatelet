@@ -91,8 +91,6 @@
                           <div class="col-sm-9">
                               <span class="hidden" id="product_id"><?php echo $v['Product']['id']; ?></span>
                               <h2><?php echo $v['Product']['name']; ?></h2>
-                                <p>Art. <span><?php echo $v['Product']['article']; ?></span></p>
-                                <p><span><?php echo $v['Product']['desc']; ?></span></p>
                                 <p> <?php  if(!empty($v['Product']['discount']) && $v['Product']['price'] !== $v['Product']['discount']) {
                                       echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $v['Product']['price'] ."'>".
                                            str_replace(',00','',$this->Number->currency($v['Product']['price'], 'ARS', array('places' => 0)). "</span>
@@ -101,7 +99,10 @@
                                       echo  "<span id='price' class='price' data-price='". $v['Product']['price'] ."'>".
                                             str_replace(',00','',$this->Number->currency($v['Product']['price'], 'ARS', array(
                                             'places' => 0)). "</span>";
-                                 }?>
+                                 }?></p>
+                                <p>Art. <span><?php echo $v['Product']['article']; ?></span></p>
+                                <p><span><?php echo $v['Product']['desc']; ?></span></p>
+                                 
                                 <?php  $colors = array();
                                       $sizes = array();
                                       foreach ($properties_all as $property) {

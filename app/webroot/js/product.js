@@ -1,14 +1,105 @@
 function addCount() {
-	var value = parseInt($('#carritoItemCount').val()) + 1
+	var value = parseInt($('#carritoItem.active .form-count').val()) + 1
 	if (value > 99) value = 99
-	$('#carritoItemCount').val(value)
-}
-function removeCount() {
-	var value = parseInt($('#carritoItemCount').val()) - 1
-	if (value < 1) value = 1
-	$('#carritoItemCount').val(value)
+	$('#carritoItem.active .form-count').val(value)
+	checkCount(value)
 }
 
+function removeCount() {
+	var value = parseInt($('#carritoItem.active .form-count').val()) - 1
+	if (value < 1) value = 1
+	$('#carritoItem.active .form-count').val(value)
+	checkCount(value)
+}
+
+function checkCount(value) {
+	if (value !== parseInt($('#carritoItem.active .form-count').attr('original-value'))) {
+		$('#carritoItem.active .ch-btn-success').removeClass('disable')
+	} else {
+		$('#carritoItem.active .ch-btn-success').addClass('disable')
+	}
+}
+
+function changeCart() {
+	console.log('modifica carrito')
+}
+
+function addCart(data, button, text) {
+	$(button).text(text || 'Agregando...')
+	$.post('/carrito/add', $.param(data))
+		.success(function(res) {
+			if (res.success) {
+				window.dataLayer = window.dataLayer || []
+				fbq('track', 'AddToCart')
+				/* @Analytics: addToCart */
+				gtag('event', 'add_to_cart', {
+				  "items": [
+				    {
+				      "id": data.id,
+				      "name": $('.product').text(),
+				      // "list_name": "Search Results",
+				      // "brand": "Google",
+				      // "category": "Apparel/T-Shirts",
+				      "variant": data.alias,
+				      "list_position": 1,
+				      "quantity": data.count,
+				      "price": $('.price').text()
+				    }
+				  ]
+				})
+
+        $.growl.notice({
+          title: 'Agregado al carrito',
+          message: 'Puede seguir agregando más productos o finalizar esta compra en la sección carrito'
+        });
+        var reload = function() {
+        	window.location.href = '/carrito'
+        };
+        setTimeout(reload, 3000);
+        $('.growl-close').click(reload);
+				/*
+				dataLayer.push({
+				  'event': 'addToCart',
+				  'ecommerce': {
+				    'currencyCode': 'ARS',
+				    'add': {         
+				      'products': [{
+				        'name': $('.product').text(),
+				        'id': data.id,
+				        'price': $('.price').text(),
+				        'brand': 'Google',
+				        'category': 'Apparel',
+				        'variant': data.alias,
+				        'quantity': 1
+				       }]
+				    }
+				  },
+					'eventCallback': function() {
+	          $.growl.notice({
+	            title: 'Producto agregado al carrito',
+	            message: 'Puede seguir agregando más productos o ir a la sección Pagar'
+	          });
+	          var reload = function() {
+	          	window.location.href = '/carrito'
+	          };
+	          setTimeout(reload, 3000);
+	          $('.growl-close').click(reload);
+     			}
+				}) */
+			} else {
+        $.growl.error({
+          title: 'Ocurrio un error al agregar el producto al carrito',
+          message: 'Por favor, intente nuevamente'
+        });
+			}
+		})
+		.fail(function() {
+      $.growl.error({
+        title: 'Ocurrio un error al agregar el producto al carrito',
+        message: 'Por favor, intente nuevamente'
+      });
+		});	
+}
 function pideStock(obj){
 
 		// console.log('changed');
@@ -52,6 +143,8 @@ function pideStock(obj){
 			stock_cont.html(missing);
 		}
 }
+
+
 $(document).ready(function() {
 	//Stock
 	$('.oldSelectColor,.loadColorImages').click(function(event) {
@@ -65,17 +158,9 @@ $(document).ready(function() {
 	$('input[name="color"],#size').change(function(event) {
 		pideStock(event.target)
 	});
+
 	$(".add.agregar-carro").click(function(e) {
 		//this = e.target;
-		var data = {
-			count: parseInt($('#carritoItemCount').val()),
-			id: $(e.target).closest('form').find("#product_id").text().trim(),
-			color: $(e.target).closest('form').find("input[name='color']:checked").val(),
-			color_code: $(e.target).closest("form").find('input[name="color"]:checked').attr('code'),
-			size: $(e.target).closest('form').find("#size option:selected").val(),
-			alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias'),
-		};
-		url = $("#productForm").attr('action');
 		if (!isGiftCard){
 			// console.log(data.color, data.color_code, data.size)
 			if ((!data.color && !data.color_code) || !data.size) {
@@ -99,82 +184,16 @@ $(document).ready(function() {
 			}
 		}
 
-		$(e.target).text('Agregando...')
+		var data = {
+			count: parseInt($('#carritoItem.active .form-count').val()),
+			id: $(e.target).closest('form').find("#product_id").text().trim(),
+			color: $(e.target).closest('form').find("input[name='color']:checked").val(),
+			color_code: $(e.target).closest("form").find('input[name="color"]:checked').attr('code'),
+			size: $(e.target).closest('form').find("#size option:selected").val(),
+			alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias'),
+		}
 
-		$.post(url, $.param(data))
-			.success(function(res) {
-				if (res.success) {
-					window.dataLayer = window.dataLayer || []
-					fbq('track', 'AddToCart')
-					/* @Analytics: addToCart */
-					gtag('event', 'add_to_cart', {
-					  "items": [
-					    {
-					      "id": data.id,
-					      "name": $('.product').text(),
-					      // "list_name": "Search Results",
-					      // "brand": "Google",
-					      // "category": "Apparel/T-Shirts",
-					      "variant": data.alias,
-					      "list_position": 1,
-					      "quantity": 1,
-					      "price": $('.price').text()
-					    }
-					  ]
-					})
-
-          $.growl.notice({
-            title: 'Producto agregado al carrito',
-            message: 'Puede seguir agregando más productos o ir a la sección Pagar'
-          });
-          var reload = function() {
-          	window.location.href = '/carrito'
-          };
-          setTimeout(reload, 3000);
-          $('.growl-close').click(reload);
-					/*
-					dataLayer.push({
-					  'event': 'addToCart',
-					  'ecommerce': {
-					    'currencyCode': 'ARS',
-					    'add': {         
-					      'products': [{
-					        'name': $('.product').text(),
-					        'id': data.id,
-					        'price': $('.price').text(),
-					        'brand': 'Google',
-					        'category': 'Apparel',
-					        'variant': data.alias,
-					        'quantity': 1
-					       }]
-					    }
-					  },
-						'eventCallback': function() {
-		          $.growl.notice({
-		            title: 'Producto agregado al carrito',
-		            message: 'Puede seguir agregando más productos o ir a la sección Pagar'
-		          });
-		          var reload = function() {
-		          	window.location.href = '/carrito'
-		          };
-		          setTimeout(reload, 3000);
-		          $('.growl-close').click(reload);
-	     			}
-					}) */
-				} else {
-          $.growl.error({
-            title: 'Ocurrio un error al agregar el producto al carrito',
-            message: 'Por favor, intente nuevamente'
-          });
-				}
-			})
-			.fail(function() {
-        $.growl.error({
-          title: 'Ocurrio un error al agregar el producto al carrito',
-          message: 'Por favor, intente nuevamente'
-        });
-			});
-
+		addCart(data, e.target)
 		return false;
 	});
 

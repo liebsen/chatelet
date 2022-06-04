@@ -92,17 +92,17 @@
 							<div class="form-inline">
 							  <div class="form-group">
 							    <div class="input-group carrito-selector">
-							      <div class="input-group-addon input-lg is-clickable" onclick="removeItemCount('.$product['id'].')">
+							      <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
 							       <span class="fa fa-minus"></span>
 							      </div>
-							      <input type="text" size="2" class="form-control input-lg text-center" id="carritoItemCount" placeholder="Cantidad" value="' . $product['count'] . '">
-							      <div class="input-group-addon input-lg is-clickable" onclick="addItemCount('.$product['id'].')">
+							      <input type="text" size="2" class="form-control form-count input-lg text-center" placeholder="Cantidad" value="' . $product['count'] . '" original-value="' . $product['count'] . '">
+							      <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
 							       <span class="fa fa-plus"></span>
 							       </div>
 							    </div>
 							  </div>
 							</div>
-							<a href="#" class="ch-btn-success">Cambiar</a>
+							<a href="javascript:changeCart()" class="ch-btn-success disable">Cambiar</a>
 						</div>';
 						echo '</div>';
 						echo '</div>';

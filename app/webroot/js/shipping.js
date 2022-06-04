@@ -66,7 +66,7 @@ $(function(){
 				$('#delivery_cp').html( `<span class="shipping-cargo is-capitalize"></span> (${cp})` );
 				localStorage.setItem('lastcp', cp)		
 				setTimeout(() => {
-					$('.input-cp').removeClass('wrong     ');
+					$('.input-cp').removeClass('wrong');
 					$('.input-cp').addClass('ok');
 					onSuccessAlert(cp, '✓ Codigo Postal válido');
 					document.querySelector('.shipping-block').classList.remove('hidden')	

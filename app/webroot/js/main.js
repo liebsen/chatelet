@@ -104,7 +104,9 @@ $(function () {
         }
         if (localStorage.getItem('lastsearch')) {
           $('.input-search').val(localStorage.getItem('lastsearch'))
-          $('.input-search').keyup()
+          if(!$('.search-item').length){
+            $('.input-search').keyup()
+          }
         }
       }, 500)
     }

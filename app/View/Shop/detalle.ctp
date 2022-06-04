@@ -111,8 +111,6 @@
             ?>
             <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
                 <h1><?php echo $product['name'];?></h1>
-                <p><?php echo $name_categories; ?></p>
-                <p class=""> Art. <span><?php echo $product['article']; ?></span></p>
                 <?php  if(!empty($product['discount']) && $product['price']!==$product['discount']) {
                     echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['price'] ."'>".
                            $this->Number->currency($product['price'], 'ARS', array('places' => 2)). "</span>
@@ -122,7 +120,8 @@
                             $this->Number->currency($product['price'], 'ARS', array(
                             'places' => 2)). "</span>";
                  }?>
-
+                <p><?php echo $name_categories; ?></p>
+                <p class=""> Art. <span><?php echo $product['article']; ?></span></p>
                 <div class="caract">
                 <?php if(!empty($product['desc'])):?>
                     <p><?php echo $product['desc']; ?></p>
@@ -183,7 +182,7 @@
                                         <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
                                             <span class="fa fa-minus"></span>
                                         </div>                                    
-                                      <input type="text" size="2" class="form-control input-lg text-center" id="carritoItemCount" placeholder="Cantidad" value="1">
+                                      <input type="text" size="2" class="form-control input-lg text-center" placeholder="Cantidad" value="1">
                                       <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
                                        <span class="fa fa-plus"></span>
                                        </div>
