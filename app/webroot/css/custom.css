@@ -171,7 +171,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .menuLayer {z-index: 12; background: #FFF; border-bottom: 2px solid #efb0d2; left: 0; display: none; padding: 40px 0; position: absolute; top: 85px; width: 100%; }
 .menuLayer a.close { 
   position: absolute;
-  z-index: 1;
+  z-index: 100;
   display: block; 
   width: 1.5rem; 
   height: 1.5rem; 
