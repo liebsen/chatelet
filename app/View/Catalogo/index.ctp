@@ -95,11 +95,11 @@
                                 <p><span><?php echo $v['Product']['desc']; ?></span></p>
                                 <p> <?php  if(!empty($v['Product']['discount']) && $v['Product']['price'] !== $v['Product']['discount']) {
                                       echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $v['Product']['price'] ."'>".
-                                           $this->Number->currency($v['Product']['price'], 'ARS', array('places' => 0)). "</span>
-                                           ahora <div><span style='padding: 3px;float: none;'' class='price'>".$this->Number->currency($v['Product']['discount'], 'ARS', array('places' => 0))."</span></div>";
+                                           str_replace(',00','',$this->Number->currency($v['Product']['price'], 'ARS', array('places' => 0)). "</span>
+                                           ahora <div><span style='padding: 3px;float: none;'' class='price'>".str_replace(',00','',$this->Number->currency($v['Product']['discount'], 'ARS', array('places' => 0))."</span></div>";
                                     }else{
                                       echo  "<span id='price' class='price' data-price='". $v['Product']['price'] ."'>".
-                                            $this->Number->currency($v['Product']['price'], 'ARS', array(
+                                            str_replace(',00','',$this->Number->currency($v['Product']['price'], 'ARS', array(
                                             'places' => 0)). "</span>";
                                  }?>
                                 <?php  $colors = array();

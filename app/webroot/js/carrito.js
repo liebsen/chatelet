@@ -108,7 +108,7 @@ function number_format (number, decimals, dec_point, thousands_sep) {
 }
 
 formatNumber = function (num) {
-	return number_format(num, 2, ',', '.')
+	return '$'+number_format(num, 2, ',', '.').replace(',00','')
   //return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
 }
 

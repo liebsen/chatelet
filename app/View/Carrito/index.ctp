@@ -84,9 +84,9 @@
 						);
 						echo '<br>';
 						if (!empty($product['old_price'])){
-							echo '<div class="old_price text-grey">'. $this->Number->currency($product['old_price'], 'ARS', array('places' => 2)) .'</div>';
+							echo '<div class="old_price text-grey">'. str_replace(',00','',$this->Number->currency($product['old_price'], 'ARS', array('places' => 2))) .'</div>';
 						}					
-						echo '<div class="price' . (!empty($product['old_price']) ? ' text-theme' : '' ) . '">'. $this->Number->currency($product['price'], 'ARS', array('places' => 2)) .'</div>';
+						echo '<div class="price' . (!empty($product['old_price']) ? ' text-theme' : '' ) . '">'. str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))) .'</div>';
 						echo '<div class="form-inline carrito-count">
 						  <div class="form-group">
 						    <div class="input-group carrito-selector">
@@ -124,7 +124,7 @@
 						</div>
 						<?php endif ?>
 						<div class="field text-right products-total">
-							<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= $this->Number->currency($total, 'ARS', array('places' => 2)) ?></div>
+							<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))) ?></div>
 						</div>
 						<div class="field text-right coupon-discount hidden animated speed">
 							<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="promo-code"></span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
@@ -133,7 +133,7 @@
 						<div class="field text-right">
 							<div class="cost_total-container animated speed fadeIn delay">
 								<!--hr-->
-								<div class="price"><span class="text-weight-thin">Total </span> <span class="cost_total"><?= $this->Number->currency($total, 'ARS', array('places' => 2)) ?></span><!--span>.00</span--></div>
+								<div class="price"><span class="text-weight-thin">Total </span> <span class="cost_total"><?= str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))) ?></span><!--span>.00</span--></div>
 							</div>
 						</div>
 						<div class="mobile">

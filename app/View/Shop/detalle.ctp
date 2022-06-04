@@ -115,11 +115,11 @@
                 <p class=""> Art. <span><?php echo $product['article']; ?></span></p>
                 <?php  if(!empty($product['discount']) && $product['price']!==$product['discount']) {
                     echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['price'] ."'>".
-                           $this->Number->currency($product['price'], 'ARS', array('places' => 2)). "</span>
-                           ahora <div><span class='price'>". $this->Number->currency($product['discount'],'ARS', array('places' => 0))."</span></div>";
+                           str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))). "</span>
+                           ahora <div><span class='price'>". str_replace(',00','',$this->Number->currency($product['discount'],'ARS', array('places' => 0))."</span></div>";
                     }else{
                       echo  "<span id='price' class='price' data-price='".'$'. $product['price'] ."'>".
-                            $this->Number->currency($product['price'], 'ARS', array(
+                            str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array(
                             'places' => 2)). "</span>";
                  }?>
 
@@ -268,7 +268,7 @@
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                         </a>
                         <div class="name"><?= $alt_product['name'] ?></div>
-                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>">$<?= $this->Number->currency($alt_product['price'], 'ARS', array('places' => 2)) ?></div>
+                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>">$<?= str_replace(',00','',$this->Number->currency($alt_product['price'], 'ARS', array('places' => 2))) ?></div>
                     </div>
                     <?php }else{ ?>
 
@@ -281,7 +281,7 @@
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                         </a>
                         <div class="name"><?= $alt_product['name'] ?></div>
-                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>">$<?= $this->Number->currency($alt_product['price'], 'ARS', array('places' => 2)) ?></div>
+                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>">$<?= str_replace(',00','',$this->Number->currency($alt_product['price'], 'ARS', array('places' => 2))) ?></div>
                     </div>
                    <?php }endforeach; ?>
                 </div>

@@ -111,9 +111,9 @@ function updateSrcTo(obj){
 				$priceStr = '';
 				if (!empty($item['price'])){
 					// $priceStr = \price_format($item['price']);
-          $priceStr = $this->Number->currency($item['price'], 'ARS', array('places' => 2));
+          $priceStr = str_replace(',00','',$this->Number->currency($item['price'], 'ARS', array('places' => 2)));
 					if (!empty((float)@$item['discount']) && @$item['discount']!==$item['price']){
-						$priceStr = $this->Number->currency($item['discount'], 'ARS', array('places' => 2)).' <span class="antes-str"><span class="midscore">'.$this->Number->currency($item['price'], 'ARS', array('places' => 2)).'</span></span>';
+						$priceStr = str_replace(',00','',$this->Number->currency($item['discount'], 'ARS', array('places' => 2))).' <span class="antes-str"><span class="midscore">'.str_replace(',00','',$this->Number->currency($item['price'], 'ARS', array('places' => 2))).'</span></span>';
 					}
 				}
 
