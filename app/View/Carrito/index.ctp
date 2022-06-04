@@ -166,9 +166,21 @@
 	    <span></span>
 	    <span></span>
 	  </a>
-		<div class="carrito-item">
-			<div class="carrito-item-block"></div>
-		</div>
+	  <div class="carousel carousel-carrito" id="carousel-example-generic">
+	  	<div class="carousel-inner">
+				<div class="carrito-item">
+					<div class="carrito-item-block"></div>
+				</div>
+			</div>
+			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="arrow arrow-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="arrow arrow-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+	  </div>
 	</div>
 	<input type="hidden" id="shipping_price_min" value="<?= $shipping_price_min ?>">
 	<input type="hidden" id="total" value="<?= $total ?>">

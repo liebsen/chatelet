@@ -220,9 +220,7 @@ $(document).ready(function() {
 		window.location.href = location;
 	});
 
-	$('.trash').on('click', e => {
-		e.preventDefault()
-		e.stopPropagation()
+	$(document).on('click', '.trash', e => {
 		if (confirm('Estás seguro que que querés borrar este producto del carrito?')) {
 			const target = $(e.target).closest('.trash')
 		  $.get(target.attr('href'), res => {
