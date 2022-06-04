@@ -239,6 +239,24 @@ a.trash {
 	margin-bottom: 0.25rem;
 }
 
+.count-circle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	background-color: pink;
+	border-radius: 100%;
+	left: -0.25rem;
+	top: -0.25rem;
+	width: 2rem;
+	height: 2rem;
+}
+
+.count-circle span {
+	color: white;
+	font-size: 1rem;
+	font-weight: 700;
+}
 .name.is-carrito {
 	display: block;
 	font-weight: 400;

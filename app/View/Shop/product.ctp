@@ -110,9 +110,10 @@ function updateSrcTo(obj){
 				$url['action'] = 'producto';
 				$priceStr = '';
 				if (!empty($item['price'])){
-					$priceStr = \price_format($item['price']);
+					// $priceStr = \price_format($item['price']);
+          $priceStr = $this->Number->currency($item['price'], 'ARS', array('places' => 2));
 					if (!empty((float)@$item['discount']) && @$item['discount']!==$item['price']){
-						$priceStr = \price_format($item['discount']).' <span class="antes-str"><span class="midscore">'.\price_format($item['price']).'</span></span>';
+						$priceStr = $this->Number->currency($item['discount'], 'ARS', array('places' => 2)).' <span class="antes-str"><span class="midscore">'.$this->Number->currency($item['price'], 'ARS', array('places' => 2)).'</span></span>';
 					}
 				}
 

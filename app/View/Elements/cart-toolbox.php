@@ -18,7 +18,7 @@
     <div class="field">
       <div class="cost_total-container animated speed fadeIn">
         <div class="price text-right text-white">
-          $<span class="cost_total animated speed delay"><?= \price_format($total) ?></span>
+          <span class="cost_total animated speed delay"><?= $this->Number->currency($total, 'ARS', array('places' => 2)) ?></span>
           <br>
           <span class="cart-bottom-label">Total</span>
         </div>

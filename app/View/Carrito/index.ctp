@@ -54,6 +54,9 @@
 							$promosaved+= (float) $product['old_price'] - $product['price'];
 							echo "<div class='ribbon small'><span>" . $product['promo'] . "</span></div>";
 						}
+						if (!empty($product['count']) && $product['count'] > 1){
+							echo '<div class="count-circle"><span>'. $product['count'] .'</span></div>';
+						}
             // echo '<a href="' . $item_url . '">';
 						echo '<img src="'.Configure::read('imageUrlBase').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
 						// echo '</a>';
@@ -67,9 +70,6 @@
 						}
 						if (!empty($product['size'])){
 							echo '<p class="color">Talle: <span class="talle">'. $product['size'] .'</span></p>';
-						}
-						if (!empty($product['count'])){
-							echo '<p>Cant.: <span class="talle">'. $product['count'] .'</span></p>';
 						}
 						echo $this->Html->link('<span class="glyphicon glyphicon-trash"></span>',
 							array(
@@ -133,7 +133,7 @@
 						<div class="field text-right">
 							<div class="cost_total-container animated speed fadeIn delay">
 								<!--hr-->
-								<div class="price"><span class="text-weight-thin">Total </span> $<span class="cost_total"><?= \price_format($total) ?></span><!--span>.00</span--></div>
+								<div class="price"><span class="text-weight-thin">Total </span> <span class="cost_total"><?= $this->Number->currency($total, 'ARS', array('places' => 2)) ?></span><!--span>.00</span--></div>
 							</div>
 						</div>
 						<div class="mobile">

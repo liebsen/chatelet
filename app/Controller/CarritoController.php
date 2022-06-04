@@ -988,7 +988,7 @@ class CarritoController extends AppController
 		$grouped = [];
 		$processed = [];
 		foreach($carro as $key => $product) {
-			$group_criteria = $product['id'].$product['size'].str_replace('#','',$product['color']);
+			$group_criteria = $product['id'].$product['size'].$product['color'].$product['alias'];
 			if (!isset($grouped[$group_criteria])) {
 				$grouped[$group_criteria] = 0;
 			}
