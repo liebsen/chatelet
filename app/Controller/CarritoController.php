@@ -987,25 +987,28 @@ class CarritoController extends AppController
 		$carro = $this->Session->read('Carro');
 		$grouped = [];
 		$processed = [];
-		foreach($carro as $key => $product) {
-			$group_criteria = $product['id'].$product['size'].$product['color'].$product['alias'];
-			if (!isset($grouped[$group_criteria])) {
-				$grouped[$group_criteria] = 0;
+		if (!empty($carro)) {
+			foreach($carro as $key => $product) {
+				$group_criteria = $product['id'].$product['size'].$product['color'].$product['alias'];
+				$group_criteria = $product['id'].$product['size'].$product['color'].$product['alias'];
+				if (!isset($grouped[$group_criteria])) {
+					$grouped[$group_criteria] = 0;
+				}
+				$grouped[$group_criteria]++;
+				if ($grouped[$group_criteria] === 1) {
+					$product['count'] = 1;
+					if (!empty($product['discount']) && (float)@$product['discount']>0) {
+	          $product['price'] = $product['discount'];
+	        }
+					$processed[$group_criteria] = $product;
+				} else {
+					if (!empty($product['discount']) && (float)@$product['discount']>0) {
+	          $product['price'] = $product['discount'];
+	        }						
+					$processed[$group_criteria]['count'] = $grouped[$group_criteria];
+					$processed[$group_criteria]['price']+= $product['price'];
+				}			
 			}
-			$grouped[$group_criteria]++;
-			if ($grouped[$group_criteria] === 1) {
-				$product['count'] = 1;
-				if (!empty($product['discount']) && (float)@$product['discount']>0) {
-          $product['price'] = $product['discount'];
-        }
-				$processed[$group_criteria] = $product;
-			} else {
-				if (!empty($product['discount']) && (float)@$product['discount']>0) {
-          $product['price'] = $product['discount'];
-        }						
-				$processed[$group_criteria]['count'] = $grouped[$group_criteria];
-				$processed[$group_criteria]['price']+= $product['price'];
-			}			
 		}
 		return $processed;
 	}
