@@ -36,10 +36,7 @@
 					$promosaved = 0;
 
 					foreach ($carrosorted as $product) {
-						if (!empty($product['discount']) && (float)@$product['discount']>0) {
-              $product['price'] = $product['discount'];
-            }						
-						$total += $product['price'];
+						$total+= $product['price'];
 						if (!isset($product['color'])) $product['color'] = '';
 						if (!isset($product['size'])) $product['size'] = '';
 						$item_url = $this->Html->url(array(
@@ -123,7 +120,7 @@
 						<div class="field text-right delivery-cost hidden animated speed">
 							<div class="price text-dark">
 								<span class="text-weight-thin">Envío </span>
-								<span id="delivery_cp"></span> $<span class="cost_delivery">0</span><span>.00</span></div>
+								<span id="delivery_cp"></span> $<span class="cost_delivery">0</span></div>
 						</div>
 						<?php endif ?>
 						<div class="field text-right products-total">

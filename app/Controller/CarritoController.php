@@ -925,6 +925,11 @@ class CarritoController extends AppController
 		var_dump($this->Session->read('Carro'));
 	}
 
+	public function sorted() {
+		$this->autoRender = false;
+		echo '<pre>';
+		var_dump($this->get_cart_sorted());
+	}
 
 	public function add() {
 		$this->autoRender = false;
@@ -966,10 +971,10 @@ class CarritoController extends AppController
 				// $carro = array_fill(count($carro), $this->request->data['count'], $product);
 				error_log('[carrito] '.json_encode($carro));
 				//$data = $this->get_cart_computed($carro);
-				//$data = $this->process_cart($carro);
-				// $this->process_cart($carro);
-				error_log('[carrito] '.json_encode($this->process_cart($carro)));
-				$this->Session->write('Carro', $this->process_cart($carro));
+				//$data = $this->get_cart_processed($carro);
+				// $this->get_cart_processed($carro);
+				error_log('[carrito] '.json_encode($this->get_cart_processed($carro)));
+				$this->Session->write('Carro', $this->get_cart_processed($carro));
 
 			//	$this->Session->write('Carro.'. $product['id'], $product);
 				return json_encode(array('success' => true));
@@ -990,16 +995,22 @@ class CarritoController extends AppController
 			$grouped[$group_criteria]++;
 			if ($grouped[$group_criteria] === 1) {
 				$product['count'] = 1;
+				if (!empty($product['discount']) && (float)@$product['discount']>0) {
+          $product['price'] = $product['discount'];
+        }
 				$processed[$group_criteria] = $product;
 			} else {
+				if (!empty($product['discount']) && (float)@$product['discount']>0) {
+          $product['price'] = $product['discount'];
+        }						
 				$processed[$group_criteria]['count'] = $grouped[$group_criteria];
 				$processed[$group_criteria]['price']+= $product['price'];
 			}			
 		}
-		return $carro;
+		return $processed;
 	}
 
-	private function process_cart($carro) {
+	private function get_cart_processed($carro) {
 		if (empty($carro)) {
 			$carro = $this->Session->read('Carro');
 		}
@@ -1090,7 +1101,7 @@ class CarritoController extends AppController
 			$i++;
 		}
 		// $this->Session->write('Carro', $this->get_cart_computed($aux));
-		$this->Session->write('Carro', $this->process_cart($data));
+		$this->Session->write('Carro', $this->get_cart_processed($data));
 		return json_encode($item);
 		// return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 	}

@@ -100,7 +100,7 @@ if (!empty($failed)) {
 }
 
 function price_format ($num) {
-	$num = number_format($num, 2, ',', '.');
+	$num = number_format((float) $num, 2, ',', '.');
 	return str_replace(',00','', $num);
 }
 
