@@ -58,7 +58,8 @@
 							echo '<div class="count-circle"><span>'. $product['count'] .'</span></div>';
 						}
             // echo '<a href="' . $item_url . '">';
-						echo '<img src="'.Configure::read('imageUrlBase').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
+						// echo '<img src="'.Configure::read('imageUrlBase').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
+						echo '<div class="carrito-item-image" style="background-image: url('.Configure::read('imageUrlBase').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 						// echo '</a>';
 						echo '</div>';
 						echo '</div>';
@@ -87,18 +88,21 @@
 							echo '<div class="old_price text-grey">'. str_replace(',00','',$this->Number->currency($product['old_price'], 'ARS', array('places' => 2))) .'</div>';
 						}					
 						echo '<div class="price' . (!empty($product['old_price']) ? ' text-theme' : '' ) . '">'. str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))) .'</div>';
-						echo '<div class="form-inline carrito-count">
-						  <div class="form-group">
-						    <div class="input-group carrito-selector">
-						      <div class="input-group-addon input-lg is-clickable" onclick="removeItemCount('.$product['id'].')">
-						       <span class="fa fa-minus"></span>
-						      </div>
-						      <input type="text" size="2" class="form-control input-lg text-center" id="carritoItemCount" placeholder="Cantidad" value="' . $product['count'] . '">
-						      <div class="input-group-addon input-lg is-clickable" onclick="addItemCount('.$product['id'].')">
-						       <span class="fa fa-plus"></span>
-						       </div>
-						    </div>
-						  </div>
+						echo '<div class="carrito-count">
+							<div class="form-inline">
+							  <div class="form-group">
+							    <div class="input-group carrito-selector">
+							      <div class="input-group-addon input-lg is-clickable" onclick="removeItemCount('.$product['id'].')">
+							       <span class="fa fa-minus"></span>
+							      </div>
+							      <input type="text" size="2" class="form-control input-lg text-center" id="carritoItemCount" placeholder="Cantidad" value="' . $product['count'] . '">
+							      <div class="input-group-addon input-lg is-clickable" onclick="addItemCount('.$product['id'].')">
+							       <span class="fa fa-plus"></span>
+							       </div>
+							    </div>
+							  </div>
+							</div>
+							<a href="#" class="ch-btn-success">Cambiar</a>
 						</div>';
 						echo '</div>';
 						echo '</div>';
@@ -150,7 +154,7 @@
 				<div class="carrito-col">
 				<?php 
 					if (isset($carro) && !empty($carro)) {
-						echo $this->element('shipping', array('freeShipping' => $freeShipping));
+						echo $this->element('shipping', array('freeShipping' => $freeShipping, 'carrito_takeaway_text' => $carrito_takeaway_text));
 						echo $this->element('coupon', array('total' => $total));
 						// echo $this->element('cart-toolbox', array('freeShipping' => $freeShipping, 'total' => $total));
 					}					

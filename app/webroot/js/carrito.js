@@ -125,20 +125,68 @@ removeItemCount = function(id) {
 
 var currentCarritoIndex = 0
 
-$(document).ready(function() {
+var show_cart_item = index => {
+	var target = document.querySelectorAll('.carrito-item-row')[index]
+	if (target) {
+		if (!index) {
+			$('#carritoItem .carousel-control.left').addClass('is-hidden')
+		} else {
+			$('#carritoItem .carousel-control.left').removeClass('is-hidden')
+		}
+		if (index >= document.querySelectorAll('.carrito-item-row').length-1) {
+			$('#carritoItem .carousel-control.right').addClass('is-hidden')
+		} else {
+			$('#carritoItem .carousel-control.right').removeClass('is-hidden')
+		}
+		return new Promise((resolve, reject) => {
+			if ($('#carritoItem').hasClass('active')) {
+				$('#carritoItem').removeClass('scaleIn')
+				$('#carritoItem').addClass('scaleOut')
+				setTimeout(() => {
+					resolve()
+				}, 100)
+			} else {
+				resolve()
+			}
+		}).then(() => {
+			$('#carritoItem').removeClass('scaleOut')
+			$('.carrito-item-block').html($(target).html())
+			$('body').css('overflow-y', 'hidden')
+			if (!$('#carritoItem').hasClass('active')) {
+				$('#carritoItem').addClass('active')
+			}
+			$('#carritoItem').addClass('scaleIn')
+		})
+	}
+}
 
+$(document).ready(function() {
 	/* carrito item viewer */
 	$('.carrito-item-row').on('click', function(e) {
-		var html = $(this).html()
-		currentCarritoIndex = [...e.target.parentNode.children].indexOf(e.target)
-		console.log(currentCarritoIndex)
+		currentCarritoIndex = [...document.querySelectorAll('.carrito-item-row')].indexOf(this)
 		// var price = $(this).find('#carritoItemCount').val()
-		$('body').css('overflow-y', 'hidden')
-		$('.carrito-item-block').html(html)
-		$('#carritoItem').addClass('active')
-		$('#carritoItem').addClass('scaleIn')
+		show_cart_item(currentCarritoIndex)
 	})
-
+	$('#carritoItem .carousel-control.left').on('click', function(e) {
+    e.preventDefault()
+		if (currentCarritoIndex > 0) {
+			currentCarritoIndex--
+		} else {
+			currentCarritoIndex = document.querySelectorAll('.carrito-item-row').length
+		}
+		show_cart_item(currentCarritoIndex)
+		console.log('prev')
+	})
+	$('#carritoItem .carousel-control.right').on('click', function(e) {
+    e.preventDefault()
+		if (currentCarritoIndex < document.querySelectorAll('.carrito-item-row').length) {
+			currentCarritoIndex++
+		} else {
+			currentCarritoIndex = 0
+		}
+		show_cart_item(currentCarritoIndex)
+		console.log('next')
+	})
 	$('#carritoItem .close').on('click', function(e) {
 		$('body').css('overflow-y', 'auto')
 		$('#carritoItem').removeClass('active')
@@ -227,6 +275,8 @@ $(document).ready(function() {
 	});
 
 	$(document).on('click', '.trash', e => {
+		e.preventDefault()
+		e.stopPropagation()
 		if (confirm('Estás seguro que que querés borrar este producto del carrito?')) {
 			const target = $(e.target).closest('.trash')
 		  $.get(target.attr('href'), res => {

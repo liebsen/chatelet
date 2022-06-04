@@ -25,7 +25,7 @@ html, body {
 	min-height: 2.75rem;
 }
 
-.carrito-count {
+.carrito-count .form-inline {
 	margin-bottom: 0.5rem;
 }
 

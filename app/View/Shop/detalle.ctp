@@ -115,11 +115,11 @@
                 <p class=""> Art. <span><?php echo $product['article']; ?></span></p>
                 <?php  if(!empty($product['discount']) && $product['price']!==$product['discount']) {
                     echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['price'] ."'>".
-                           str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))). "</span>
-                           ahora <div><span class='price'>". str_replace(',00','',$this->Number->currency($product['discount'],'ARS', array('places' => 0))."</span></div>";
+                           $this->Number->currency($product['price'], 'ARS', array('places' => 2)). "</span>
+                           ahora <div><span class='price'>". $this->Number->currency($product['discount'],'ARS', array('places' => 0))."</span></div>";
                     }else{
                       echo  "<span id='price' class='price' data-price='".'$'. $product['price'] ."'>".
-                            str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array(
+                            $this->Number->currency($product['price'], 'ARS', array(
                             'places' => 2)). "</span>";
                  }?>
 
@@ -176,21 +176,23 @@
                     <?php endif; ?>
                     <div class="footer-producto" >
                         <?php //if($loggedIn){ ?>
-
-                            <div class="form-inline carrito-count">
-                              <div class="form-group">
-                                <div class="input-group carrito-selector">
-                                    <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
-                                        <span class="fa fa-minus"></span>
-                                    </div>                                    
-                                  <input type="text" size="2" class="form-control input-lg text-center" id="carritoItemCount" placeholder="Cantidad" value="1">
-                                  <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
-                                   <span class="fa fa-plus"></span>
-                                   </div>
+                            <div class="carrito-count">
+                                <div class="form-inline">
+                                  <div class="form-group">
+                                    <div class="input-group carrito-selector">
+                                        <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
+                                            <span class="fa fa-minus"></span>
+                                        </div>                                    
+                                      <input type="text" size="2" class="form-control input-lg text-center" id="carritoItemCount" placeholder="Cantidad" value="1">
+                                      <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
+                                       <span class="fa fa-plus"></span>
+                                       </div>
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>                            
-                            <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar al carrito</a>
+                                <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar al carrito</a>
+                            </div>
+                            
 
                         <?php //}else{ echo $this->Form->end(); ?>
 
@@ -268,7 +270,7 @@
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                         </a>
                         <div class="name"><?= $alt_product['name'] ?></div>
-                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>">$<?= str_replace(',00','',$this->Number->currency($alt_product['price'], 'ARS', array('places' => 2))) ?></div>
+                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>">$<?= $this->Number->currency($alt_product['price'], 'ARS', array('places' => 2)) ?></div>
                     </div>
                     <?php }else{ ?>
 
@@ -281,7 +283,7 @@
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                         </a>
                         <div class="name"><?= $alt_product['name'] ?></div>
-                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>">$<?= str_replace(',00','',$this->Number->currency($alt_product['price'], 'ARS', array('places' => 2))) ?></div>
+                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>">$<?= $this->Number->currency($alt_product['price'], 'ARS', array('places' => 2)) ?></div>
                     </div>
                    <?php }endforeach; ?>
                 </div>

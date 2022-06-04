@@ -216,8 +216,11 @@ class CarritoController extends AppController
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);
+		$map = $this->Setting->findById('carrito_takeaway_text');
+ 		$carrito_takeaway_text = $map['Setting']['extra'];		
 		$this->set('carrosorted', $this->get_cart_sorted());
 		$this->set('stores', $stores);
+		$this->set('carrito_takeaway_text', $carrito_takeaway_text);
 		$this->set('freeShipping', $freeShipping);
 	}
 

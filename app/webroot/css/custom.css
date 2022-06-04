@@ -878,7 +878,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#carousel-example-generic .carousel-caption p { font-size: 14px; margin-bottom: 20px; }
 	#carousel-example-generic .carousel-caption span, #carousel-example-generic .carousel-caption a { font-size: 14px; }
 	#carousel-example-generic .carousel-caption a { padding: 10px 30px; }
-	#carousel-example-generic .carousel-control { width: 30px; }
+	#carousel-example-generic .carousel-control { width: 60px; }
 	#carousel-example-generic .carousel-control .arrow { background-size: 100px; height: 46px; margin-left: -13.5px; margin-top: -23px; width: 27px; }
 	#carousel-example-generic .carousel-control .arrow.arrow-right { background-position: -33px -55px; }
 	#carousel-example-generic .carousel-control .arrow.arrow-left { background-position: -2px -55px; }
