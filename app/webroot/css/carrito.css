@@ -319,6 +319,8 @@ a.pay{
 	display: flex!important;
 	justify-content: center;
 	align-items: center;
+  -webkit-animation-duration: 0.25s;
+  animation-duration: 0.25s;	
 	opacity: 0;
 }
 

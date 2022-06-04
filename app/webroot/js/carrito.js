@@ -123,20 +123,26 @@ removeItemCount = function(id) {
 	console.log(id)	
 }
 
+var currentCarritoIndex = 0
+
 $(document).ready(function() {
 
 	/* carrito item viewer */
 	$('.carrito-item-row').on('click', function(e) {
 		var html = $(this).html()
+		currentCarritoIndex = [...e.target.parentNode.children].indexOf(e.target)
+		console.log(currentCarritoIndex)
 		// var price = $(this).find('#carritoItemCount').val()
 		$('body').css('overflow-y', 'hidden')
 		$('.carrito-item-block').html(html)
 		$('#carritoItem').addClass('active')
+		$('#carritoItem').addClass('scaleIn')
 	})
 
 	$('#carritoItem .close').on('click', function(e) {
 		$('body').css('overflow-y', 'auto')
 		$('#carritoItem').removeClass('active')
+		$('#carritoItem').removeClass('scaleIn')
 	})
 
 	$('#checkout-modal').on('click', 'a', function() {

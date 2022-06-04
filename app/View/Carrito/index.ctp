@@ -161,7 +161,7 @@
 	</div>
 					
 	<?php if (isset($carro) && !empty($carro)) :?>
-	<div id="carritoItem" class="menuLayer">
+	<div id="carritoItem" class="menuLayer animated">
 	  <a class="close">
 	    <span></span>
 	    <span></span>
