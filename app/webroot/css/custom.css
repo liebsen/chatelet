@@ -1166,6 +1166,7 @@ span.out{
 */
 .add-no-stock {
   position: relative;
+  min-height: 35rem;
 }
 
 .search-item {
