@@ -203,9 +203,9 @@ class CarritoController extends AppController
 		$this->set('shipping_price_min',$shipping_price_min);
 		
 		$vars = [
-			'precio_min_envio_gratis' => number_format($shipping_price_min, 0, ',', '.'),
-			'resto_min_envio_gratis' => number_format($shipping_price_min - (integer) $data['price'], 0, ',', '.'),
-			'total' => number_format($data['price'], 0, ',', '.')
+			'precio_min_envio_gratis' => str_replace(',00','',number_format($shipping_price_min, 0, ',', '.')),
+			'resto_min_envio_gratis' => str_replace(',00','',number_format($shipping_price_min - (integer) $data['price'], 0, ',', '.')),
+			'total' => str_replace(',00','',number_format($data['price'], 0, ',', '.'))
 		];
 
     $mapper = $this->Setting->findById('display_text_shipping_min_price');
@@ -917,7 +917,7 @@ class CarritoController extends AppController
 		}
 	}
 
-	public function reset($row = null) {
+	public function empty($row = null) {
 		$this->autoRender = false;
 		$this->Session->delete('Carro');
 	}
@@ -964,20 +964,31 @@ class CarritoController extends AppController
 			if ($product && $stock) {
 				$carro = $this->Session->read('Carro');
 				$product = $product['Product'];
+
+				/* remove all of the kind */
+				$group_criteria = $this->request->data['id'].$this->request->data['size'].$this->request->data['color'].$this->request->data['alias'];
+				$filter = [];
+				foreach($carro as $key => $item) {
+					if($group_criteria != $item['id'].$item['size'].$item['color'].$item['alias']) {
+						$filter[]= $item;
+					}
+				}
+
 				$product['color'] = @$this->request->data['color'];
 				$product['size'] = @$this->request->data['size'];
-				$product['alias'] = $this->request->data['alias'];
+				$product['alias'] = @$this->request->data['alias'];
+				$product['color_code'] = @$this->request->data['color_code'];
 
 				for ($i=0; $i < $this->request->data['count']; $i++) {
-					$carro[] = $product;
+					$filter[] = $product;
 				}
 				// $carro = array_fill(count($carro), $this->request->data['count'], $product);
-				error_log('[carrito] '.json_encode($carro));
+				error_log('[carrito] '.json_encode($filter));
 				//$data = $this->get_cart_computed($carro);
 				//$data = $this->get_cart_processed($carro);
 				// $this->get_cart_processed($carro);
-				error_log('[carrito] '.json_encode($this->get_cart_processed($carro)));
-				$this->Session->write('Carro', $this->get_cart_processed($carro));
+				error_log('[carrito] '.json_encode($this->get_cart_processed($filter)));
+				$this->Session->write('Carro', $this->get_cart_processed($filter));
 
 			//	$this->Session->write('Carro.'. $product['id'], $product);
 				return json_encode(array('success' => true));
@@ -993,7 +1004,6 @@ class CarritoController extends AppController
 		if (!empty($carro)) {
 			foreach($carro as $key => $product) {
 				$group_criteria = $product['id'].$product['size'].$product['color'].$product['alias'];
-				$group_criteria = $product['id'].$product['size'].$product['color'].$product['alias'];
 				if (!isset($grouped[$group_criteria])) {
 					$grouped[$group_criteria] = 0;
 				}
@@ -1001,11 +1011,13 @@ class CarritoController extends AppController
 				if ($grouped[$group_criteria] === 1) {
 					$product['count'] = 1;
 					if (!empty($product['discount']) && (float)@$product['discount']>0) {
+						$product['old_price'] = $product['price'];
 	          $product['price'] = $product['discount'];
 	        }
 					$processed[$group_criteria] = $product;
 				} else {
 					if (!empty($product['discount']) && (float)@$product['discount']>0) {
+						$product['old_price'] = $product['price'];
 	          $product['price'] = $product['discount'];
 	        }						
 					$processed[$group_criteria]['count'] = $grouped[$group_criteria];
@@ -1055,6 +1067,7 @@ class CarritoController extends AppController
 		foreach($carro as $key => $product) {
 			/*product has promo, check if applies*/
 			if (!empty($product['discount']) && (float)@$product['discount']>0) {
+				$product['old_price'] = $product['price'];
         $product['price'] = $product['discount'];
       }
 			if (!empty($product['promo'])) {

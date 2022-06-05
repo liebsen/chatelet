@@ -63,11 +63,11 @@
 						// echo '</a>';
 						echo '</div>';
 						echo '</div>';
-						echo '<div class="carrito-item-col carrito-item-'.$product['id'].'">';
+						echo '<div class="carrito-item-col carrito-data" data-json=\''.json_encode($product).'\'>';
 						echo '<span class="name is-carrito">'. $product['name'] . '</span>';
 
 						if (!empty($product['alias'])){
-							echo '<p class="color">Color: <span class="talle">'. $product['alias'] .'</span></p>';
+							echo '<p class="color">Color: <span class="color" color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></p>';
 						}
 						if (!empty($product['size'])){
 							echo '<p class="color">Talle: <span class="talle">'. $product['size'] .'</span></p>';
@@ -87,7 +87,7 @@
 						if (!empty($product['old_price'])){
 							echo '<div class="old_price text-grey">'. str_replace(',00','',$this->Number->currency($product['old_price'], 'ARS', array('places' => 2))) .'</div>';
 						}					
-						echo '<div class="price' . (!empty($product['old_price']) ? ' text-theme' : '' ) . '">'. str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))) .'</div>';
+						echo '<div class="price">'. str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))) .'</div>';
 						echo '<div class="carrito-count">
 							<div class="form-inline">
 							  <div class="form-group">
@@ -95,14 +95,14 @@
 							      <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
 							       <span class="fa fa-minus"></span>
 							      </div>
-							      <input type="text" size="2" class="form-control form-count input-lg text-center" placeholder="Cantidad" value="' . $product['count'] . '" original-value="' . $product['count'] . '">
+							      <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="' . $product['count'] . '" original-value="' . $product['count'] . '">
 							      <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
 							       <span class="fa fa-plus"></span>
 							       </div>
 							    </div>
 							  </div>
 							</div>
-							<a href="javascript:changeCart()" class="ch-btn-success disable">Cambiar</a>
+							<a href="javascript:changeCart(this)" class="ch-btn-success disable">Cambiar</a>
 						</div>';
 						echo '</div>';
 						echo '</div>';
@@ -167,7 +167,7 @@
 	</div>
 					
 	<?php if (isset($carro) && !empty($carro)) :?>
-	<div id="carritoItem" class="menuLayer animated">
+	<div id="carritoItem" class="menuLayer has-item-counter animated">
 	  <a class="close">
 	    <span></span>
 	    <span></span>

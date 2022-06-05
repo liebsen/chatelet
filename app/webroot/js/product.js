@@ -1,27 +1,38 @@
 function addCount() {
-	var value = parseInt($('#carritoItem.active .form-count').val()) + 1
+	var value = parseInt($('.has-item-counter.active .product-count').val()) + 1
 	if (value > 99) value = 99
-	$('#carritoItem.active .form-count').val(value)
+	$('.has-item-counter.active .product-count').val(value)
 	checkCount(value)
 }
 
 function removeCount() {
-	var value = parseInt($('#carritoItem.active .form-count').val()) - 1
+	var value = parseInt($('.has-item-counter.active .product-count').val()) - 1
 	if (value < 1) value = 1
-	$('#carritoItem.active .form-count').val(value)
+	$('.has-item-counter.active .product-count').val(value)
 	checkCount(value)
 }
 
 function checkCount(value) {
-	if (value !== parseInt($('#carritoItem.active .form-count').attr('original-value'))) {
-		$('#carritoItem.active .ch-btn-success').removeClass('disable')
+	if (value !== parseInt($('.has-item-counter.active .product-count').attr('original-value'))) {
+		$('.has-item-counter.active .ch-btn-success').removeClass('disable')
 	} else {
-		$('#carritoItem.active .ch-btn-success').addClass('disable')
+		$('.has-item-counter.active .ch-btn-success').addClass('disable')
 	}
 }
 
-function changeCart() {
-	console.log('modifica carrito')
+function changeCart(btn) {
+	var json = $('.has-item-counter.active .carrito-data').data('json')
+	var item = JSON.parse(JSON.stringify(json))
+	var count = $('.has-item-counter.active .product-count').val();
+	var data = {
+		count: parseInt(count),
+		id: item.id,
+		color: item.color,
+		color_code: item.color_code,
+		size: item.size,
+		alias: item.alias,
+	}	
+	addCart(data, btn)
 }
 
 function addCart(data, button, text) {
@@ -161,6 +172,14 @@ $(document).ready(function() {
 
 	$(".add.agregar-carro").click(function(e) {
 		//this = e.target;
+		var data = {
+			count: parseInt($('.product-count').val()),
+			id: $(e.target).closest('form').find("#product_id").text().trim(),
+			color: $(e.target).closest('form').find("input[name='color']:checked").val(),
+			color_code: $(e.target).closest("form").find('input[name="color"]:checked').attr('code'),
+			size: $(e.target).closest('form').find("#size option:selected").val(),
+			alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias'),
+		}
 		if (!isGiftCard){
 			// console.log(data.color, data.color_code, data.size)
 			if ((!data.color && !data.color_code) || !data.size) {
@@ -182,15 +201,6 @@ $(document).ready(function() {
 					message: 'No Disponible'
 				});
 			}
-		}
-
-		var data = {
-			count: parseInt($('#carritoItem.active .form-count').val()),
-			id: $(e.target).closest('form').find("#product_id").text().trim(),
-			color: $(e.target).closest('form').find("input[name='color']:checked").val(),
-			color_code: $(e.target).closest("form").find('input[name="color"]:checked').attr('code'),
-			size: $(e.target).closest('form').find("#size option:selected").val(),
-			alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias'),
 		}
 
 		addCart(data, e.target)
