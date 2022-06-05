@@ -158,7 +158,7 @@ function updateSrcTo(obj){
           $number_disc = (int)@$item['discount_label_show'];
         }
 
-        $discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="ribbon left small special-padding"><span>'.$number_disc.'% OFF</span></div>':'';
+        $discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="ribbon bottom-left small special-padding"><span>'.$number_disc.'% OFF</span></div>':'';
         $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon special-padding"><span>'.$item['promo'].'</span></div>':'';
 
         echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'. $discount_flag . $promo_ribbon . 

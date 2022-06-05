@@ -357,6 +357,10 @@ a.pay{
   margin-top: 0.5rem;
 }
 
+#carritoItem .old_price {
+	text-align: center;
+}
+
 #carritoItem .cart-img img {
 	margin: 0;
 }

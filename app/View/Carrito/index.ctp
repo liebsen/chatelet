@@ -43,7 +43,7 @@
 		          $number_disc = (int)@$product['discount_label_show'];
 		        }
 
-		        $discount_flag = (@$product['category_id']!='134' && !empty($number_disc))?'<div class="ribbon left small special-padding2"><span>'.$number_disc.'% OFF</span></div>':'';
+		        $discount_flag = (@$product['category_id']!='134' && !empty($number_disc))?'<div class="ribbon bottom-left small special-padding2"><span>'.$number_disc.'% OFF</span></div>':'';
 
 						$item_url = $this->Html->url(array(
               'controller' => 'shop',
@@ -58,7 +58,7 @@
 						echo "<div class='cart-img'>" . $discount_flag;
 						if ($product['promo'] !== '' && isset($product['old_price'])) {
 							$promosaved+= (float) $product['old_price'] - $product['price'];
-							$reached = isset($product['promo_enabled']) && $product['promo_enabled']?'':' not-reached';
+							$reached = isset($product['promo_enabled']) && $product['promo_enabled']?'':' disable';
 							echo "<div class='ribbon small".$reached."'><span>" . $product['promo'] . "</span></div>";
 						}
 						if (!empty($product['count']) && $product['count'] > 1){
