@@ -299,9 +299,7 @@ $(document).ready(function() {
 		}
 	})
 
-	console.log('.btn-change-count')
 	$(document).on('click', '.btn-change-count',function(e) {
-		console.log('click')
 		var json = $('.has-item-counter.active .carrito-data').data('json')
 		var item = JSON.parse(JSON.stringify(json))
 		var count = $('.has-item-counter.active .product-count').val();
@@ -313,9 +311,8 @@ $(document).ready(function() {
 			size: item.size,
 			alias: item.alias,
 		}
-		addCart(data, e.target)
+		addCart(data, e.target, 'Modificando...')
 	})
-
 
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	if (carrito.cargo === 'takeaway' && carrito.store.length) {

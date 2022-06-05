@@ -1024,6 +1024,15 @@ class CarritoController extends AppController
 					$processed[$group_criteria]['price']+= $product['price'];
 				}			
 			}
+			foreach($processed as $key => $item) {
+				if (!empty($product['promo'])) {
+					$parts = explode('x', $product['promo']);
+					$count = intval($parts[0]);
+					if ($item['count'] >= $count) {
+						$processed[$key]['promo_enabled'] = true;
+					}
+				}
+			}
 		}
 		return $processed;
 	}
@@ -1095,9 +1104,7 @@ class CarritoController extends AppController
 				}
 			}
 		}
-
 		// error_log('[carrito] '.json_encode($carro));
-
 		return $carro;
 	}
 

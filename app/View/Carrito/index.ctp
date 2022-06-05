@@ -58,7 +58,8 @@
 						echo "<div class='cart-img'>" . $discount_flag;
 						if ($product['promo'] !== '' && isset($product['old_price'])) {
 							$promosaved+= (float) $product['old_price'] - $product['price'];
-							echo "<div class='ribbon small'><span>" . $product['promo'] . "</span></div>";
+							$reached = isset($product['promo_enabled']) && $product['promo_enabled']?'':' not-reached';
+							echo "<div class='ribbon small".$reached."'><span>" . $product['promo'] . "</span></div>";
 						}
 						if (!empty($product['count']) && $product['count'] > 1){
 							echo '<div class="count-circle"><span>'. $product['count'] .'</span></div>';

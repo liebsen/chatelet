@@ -1354,6 +1354,10 @@ span.out{
   opacity: 0.5;
 }
 
+
+.ribbon.not-reached span {
+  background: linear-gradient(#9b9b9b 0%, #939191 100%);
+}
 .ribbon.small span {
   font-size: 0.75rem;
 }
