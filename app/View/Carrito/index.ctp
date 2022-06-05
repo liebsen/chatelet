@@ -108,7 +108,7 @@
 							    </div>
 							  </div>
 							</div>
-							<a href="javascript:changeCart(this)" class="ch-btn-success disable">Cambiar</a>
+							<span class="ch-btn-success btn-change-count disable">Cambiar</span>
 						</div>';
 						echo '</div>';
 						echo '</div>';

@@ -20,20 +20,6 @@ function checkCount(value) {
 	}
 }
 
-function changeCart(btn) {
-	var json = $('.has-item-counter.active .carrito-data').data('json')
-	var item = JSON.parse(JSON.stringify(json))
-	var count = $('.has-item-counter.active .product-count').val();
-	var data = {
-		count: parseInt(count),
-		id: item.id,
-		color: item.color,
-		color_code: item.color_code,
-		size: item.size,
-		alias: item.alias,
-	}	
-	addCart(data, btn)
-}
 
 function addCart(data, button, text) {
 	$(button).text(text || 'Agregando...')

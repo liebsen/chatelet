@@ -1620,6 +1620,10 @@ span.count {
   border-bottom: 1px solid white;
 }
 
+.is-rounded h3 {
+  margin-bottom: 0;
+}
+
 /* responsive */
 
 .mobile, .desktop {

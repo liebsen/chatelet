@@ -299,6 +299,24 @@ $(document).ready(function() {
 		}
 	})
 
+	console.log('.btn-change-count')
+	$(document).on('click', '.btn-change-count',function(e) {
+		console.log('click')
+		var json = $('.has-item-counter.active .carrito-data').data('json')
+		var item = JSON.parse(JSON.stringify(json))
+		var count = $('.has-item-counter.active .product-count').val();
+		var data = {
+			count: parseInt(count),
+			id: item.id,
+			color: item.color,
+			color_code: item.color_code,
+			size: item.size,
+			alias: item.alias,
+		}
+		addCart(data, e.target)
+	})
+
+
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	if (carrito.cargo === 'takeaway' && carrito.store.length) {
 		$(`.takeaway-options li[store="${carrito.store}"]`).click()
