@@ -1366,6 +1366,10 @@ span.out{
   left: 10px;
 }
 
+.ribbon.left.special-padding2 {
+  left: -5px;
+}
+
 .ribbon.left {
   left: 0;
   right: auto;

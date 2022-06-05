@@ -39,6 +39,12 @@
 						$total+= $product['price'];
 						if (!isset($product['color'])) $product['color'] = '';
 						if (!isset($product['size'])) $product['size'] = '';
+		        if (isset($product['discount_label_show'])){
+		          $number_disc = (int)@$product['discount_label_show'];
+		        }
+
+		        $discount_flag = (@$product['category_id']!='134' && !empty($number_disc))?'<div class="ribbon left small special-padding2"><span>'.$number_disc.'% OFF</span></div>':'';
+
 						$item_url = $this->Html->url(array(
               'controller' => 'shop',
               'action' => 'detalle',
@@ -49,7 +55,7 @@
 						echo '<div class="carrito-item-row is-clickable" product_row>';
 						echo '<div class="carrito-item-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
-						echo "<div class='cart-img'>";
+						echo "<div class='cart-img'>" . $discount_flag;
 						if ($product['promo'] !== '' && isset($product['old_price'])) {
 							$promosaved+= (float) $product['old_price'] - $product['price'];
 							echo "<div class='ribbon small'><span>" . $product['promo'] . "</span></div>";
@@ -85,7 +91,7 @@
 						);
 						echo '<br>';
 						if (!empty($product['old_price'])){
-							echo '<div class="old_price text-grey">'. str_replace(',00','',$this->Number->currency($product['old_price'], 'ARS', array('places' => 2))) .'</div>';
+							echo '<div class="old_price text-grey">'. str_replace(',00','',$this->Number->currency($product['old_price'] * $product['count'], 'ARS', array('places' => 2))) .'</div>';
 						}					
 						echo '<div class="price">'. str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))) .'</div>';
 						echo '<div class="carrito-count">
