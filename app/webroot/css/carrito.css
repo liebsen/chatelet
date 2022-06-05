@@ -354,6 +354,7 @@ a.pay{
 #carritoItem .cart-img {
   height: 14.5rem;
   width: 12rem; 
+  margin-top: 0.5rem;
 }
 
 #carritoItem .cart-img img {
