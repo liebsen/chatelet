@@ -166,11 +166,7 @@
 	font-weight: bold;
 }
 
-.old_price {
-	text-decoration: line-through;
-	text-align: right;
-	font-weight: 500;	
-}
+
 
 .cart-img {
 	height: 10rem;

@@ -465,6 +465,12 @@ footer .bottom a.ig { background-position: -101px -286px; }
   /* color: #444; */
 }
 
+.old_price {
+  text-decoration: line-through;
+  text-align: right;
+  font-weight: 500; 
+}
+
 #listShop a .hover {
   border: 0px solid #f50081;
    color: #f50081;
@@ -1331,7 +1337,8 @@ span.out{
   display: block;
   background: #CA779A;
   background: linear-gradient(#F50081 0%, #FF0086 100%);
-  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  box-shadow: 0 3px 10px -5px rgba(0,0,0,0.8);
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
   position: absolute;
   top: 10px;
 }
@@ -1378,16 +1385,20 @@ span.out{
   font-size: 0.75rem;
 }
 
-.ribbon.special-padding {
+.ribbon.sp1 {
   right: 10px;
 }
 
-.ribbon.left.special-padding {
+.ribbon.left.sp1 {
   left: 10px;
 }
 
-.ribbon.left.special-padding2 {
+.ribbon.left.sp2 {
   left: -5px;
+}
+
+.ribbon.sp3 {
+  top: -8px;
 }
 
 .ribbon.left {

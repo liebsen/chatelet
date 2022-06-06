@@ -86,10 +86,20 @@ function updateSrcTo(obj){
   <?php
     function createSection($item, $ctrl, $isProduct = false) {
       $stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
+      $number_disc = 0;
+      
+      if (isset($item['discount_label_show'])){
+        $number_disc = (int)@$item['discount_label_show'];
+      }
+
+      $discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="ribbon bottom-left small sp1"><span>'.$number_disc.'% OFF</span></div>':'';
+      $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon sp1"><span>'.$item['promo'].'</span></div>':'';
+      $content = $discount_flag . $promo_ribbon;
+
       if (empty($item['with_thumb'])){
-        $content = '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />';
+        $content.= '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />';
       }else{
-        $content = '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . 'thumb_'.$item['img_url'] .'" url-copy="'.Configure::read('imageUrlBase') . $item['img_url'].'" onError=updateSrcTo(this) />';
+        $content.= '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . 'thumb_'.$item['img_url'] .'" url-copy="'.Configure::read('imageUrlBase') . $item['img_url'].'" onError=updateSrcTo(this) />';
       }
 
       if ($isProduct){
@@ -133,7 +143,7 @@ function updateSrcTo(obj){
           '<small>'. $item['desc'] .'</small>'.
         '</div>'.
         '<div class="name">'.$item['name'].'</div>' . 
-        '<div class="price' .  ($item['promo'] !== '' ? ' text-theme' : '') . '">$'.$priceStr.'</div>
+        '<div class="price' .  ($item['promo'] !== '' ? ' text-theme' : '') . '">'.$priceStr.'</div>
         </div></div>';
       } else {
       // list of products.
@@ -154,14 +164,7 @@ function updateSrcTo(obj){
         }
         */
 
-        if (isset($item['discount_label_show'])){
-          $number_disc = (int)@$item['discount_label_show'];
-        }
-
-        $discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="ribbon bottom-left small special-padding"><span>'.$number_disc.'% OFF</span></div>':'';
-        $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon special-padding"><span>'.$item['promo'].'</span></div>':'';
-
-        echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'. $discount_flag . $promo_ribbon . 
+        echo '<div data-id="'.$item["id"].'" class="col-xs-12 col-lg-4 col-md-6 col-sm-6 add-no-stock">'. 
            $ctrl->Html->link(
             $content,
             $url,

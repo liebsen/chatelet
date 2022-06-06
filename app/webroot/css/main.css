@@ -3639,10 +3639,11 @@ a.thumbnail-borderless,
 @media (max-width: 767px) {
 
     /* bootstrap tables for mobile */
+    /*
     .table {
         display: block;
         overflow-x: auto;
-    }
+    }*/
 
     .login-btn {
         top: 75px;

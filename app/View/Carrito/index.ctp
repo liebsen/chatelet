@@ -43,7 +43,7 @@
 		          $number_disc = (int)@$product['discount_label_show'];
 		        }
 
-		        $discount_flag = (@$product['category_id']!='134' && !empty($number_disc))?'<div class="ribbon bottom-left small special-padding2"><span>'.$number_disc.'% OFF</span></div>':'';
+		        $discount_flag = (@$product['category_id']!='134' && !empty($number_disc))?'<div class="ribbon bottom-left small sp2"><span>'.$number_disc.'% OFF</span></div>':'';
 
 						$item_url = $this->Html->url(array(
               'controller' => 'shop',
