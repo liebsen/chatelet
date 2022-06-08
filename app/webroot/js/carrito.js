@@ -333,16 +333,18 @@ $(document).ready(function() {
 		}, 1000)		
 	}
 
-	var total = parseInt(document.getElementById('total').value)
-	var shipping_price_min = parseInt(document.getElementById('shipping_price_min').value)
-	var display = document.querySelector('.shipping-price-min-alert-text').textContent.trim() != ''
-	if (display && total < shipping_price_min) {
-		setTimeout(() => {
-			let block = document.querySelector('.shipping-price-min-alert')
-			if (block) {
-				block.classList.remove('is-hidden')
-				block.classList.add('zoomInRight')
-			}			
-		}, 3000)
+	if (document.getElementById('total')) {
+		var total = parseInt(document.getElementById('total').value)
+		var shipping_price_min = parseInt(document.getElementById('shipping_price_min').value)
+		var display = document.querySelector('.shipping-price-min-alert-text').textContent.trim() != ''
+		if (display && total < shipping_price_min) {
+			setTimeout(() => {
+				let block = document.querySelector('.shipping-price-min-alert')
+				if (block) {
+					block.classList.remove('is-hidden')
+					block.classList.add('zoomInRight')
+				}			
+			}, 3000)
+		}
 	}
 })

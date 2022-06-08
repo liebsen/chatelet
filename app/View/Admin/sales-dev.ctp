@@ -14,7 +14,7 @@
             <thead>
                 <tr>
                     <th class="text-center">Fecha</th>
-                    <th class="text-center">Cliente - (MercadoPago)</th>
+                    <!--th class="text-center">Cliente - (MercadoPago)</th-->
                     <th class="text-center">Detalles</th>
                     <th class="text-center">Envio</th>
                     <th class="text-center">Total</th>
@@ -30,7 +30,7 @@
                         <?php echo date('d/m/Y',strtotime($sale['collection']['date_approved'])) ?><br />
                         <?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?><br />
                     </td>
-                    <td class="col-xs-3">
+                    <!--td class="col-xs-3">
                         <div class="row">
                             <div class="col-xs-2"></div>
                             <div class="col-xs-10">
@@ -46,7 +46,7 @@
                                 </dl>
                             </div>
                         </div>
-                    </td>
+                    </td-->
                     <td class="col-xs-6">
                         <?php
                          foreach ($sale['collection']['sale_products'] as $reason): ?>
