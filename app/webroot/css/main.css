@@ -4010,3 +4010,10 @@ div.cloudzoom-black:nth-child(3) {
         background-size: 30rem;
     }
 }
+@media print {
+  .table-bordered,
+  .table-bordered th,
+  .table-bordered td {
+    border: none!important;
+  }
+}

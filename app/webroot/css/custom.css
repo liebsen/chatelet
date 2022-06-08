@@ -1369,6 +1369,7 @@ span.out{
 .ribbon.disable span {
   background: linear-gradient(#d7d7d7 0%, #dbdbdb 100%);
   color: #b5b5b5;
+  text-shadow: none;
 }
 
 .ribbon.disable span:before {
