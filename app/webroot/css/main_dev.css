@@ -182,6 +182,9 @@ body.login .form-group {
     box-shadow: none !important;
 }
 
+.w-100 {
+    width: 100%!important;
+}
 /*
 =================================================================
 (#m02mls) MAIN LAYOUT
@@ -194,6 +197,15 @@ body {
     line-height: 1.6;
     font-size: 13px;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.bg-success {
+  background-color: #dff0d8!important;
+}
+
+.bg-light {
+    background-color: #e8e8e8 !important;
+    color: #a8a8a8 !important;
 }
 
 #page-container {
@@ -625,7 +637,7 @@ body {
 
 .block-content {
     margin: 0;
-    padding: 20px 20px 5px;
+    padding: 1rem;
     border: 2px solid #eee;
     border-top: none;
 }
@@ -762,6 +774,10 @@ body {
 .mini-profile {
     padding: 30px 10px;
     background: white;
+}
+
+.mini-profile img {
+   max-height: 2rem;
 }
 
 .mini-profile a {
@@ -1999,7 +2015,7 @@ pre, code {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6, h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
-    font-weight: 300;
+    font-weight: 600;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -2603,7 +2619,11 @@ header.navbar .navbar-brand {
 label,
 .control-label,
 .form-control {
-    font-size: 13px;
+    font-size: 1rem;
+}
+
+.form-actions {
+    text-align: right;
 }
 
 label {
@@ -2745,6 +2765,9 @@ textarea.form-control {
 }
 
 /* Tables + DataTables */
+
+/* table */
+
 .table {
     margin-bottom: 20px;
 }
@@ -2764,7 +2787,7 @@ textarea.form-control {
     background: #2980b9;
     color: #fff;
     padding: 12px 8px;
-    font-weight: 300;
+    font-weight: 600;
     font-size: 15px;
 }
 
@@ -2780,7 +2803,8 @@ textarea.form-control {
 
 .table tbody > tr > th,
 .table tbody > tr > td {
-    padding: 12px 8px 8px;
+    /* padding: 12px 8px 8px; */
+    padding: 1rem 1.75rem 1rem;
 }
 
 .table tr:first-child > td {
@@ -2929,31 +2953,31 @@ table.table thead .sorting_desc_disabled {
 .table thead .sorting_desc_disabled { background-image: url('../img/jquery.datatables/sort_desc_disabled.png'); }
 
 .dataTable {
-  clear: both;
-  margin-bottom: 0 !important;
-  max-width: none !important;
+	clear: both;
+	margin-bottom: 0 !important;
+	max-width: none !important;
 }
 
 .dataTable th:active {
-  outline: none;
+	outline: none;
 }
 
 .dataTables_scrollHead table {
-  margin-bottom: 0 !important;
+	margin-bottom: 0 !important;
 }
 
 .dataTables_scrollBody table {
-  border-top: none;
-  margin-bottom: 0 !important;
+	border-top: none;
+	margin-bottom: 0 !important;
 }
 
 .dataTables_scrollBody tbody tr:first-child th,
 .dataTables_scrollBody tbody tr:first-child td {
-  border-top: none;
+	border-top: none;
 }
 
 .dataTables_scrollFoot table {
-  border-top: none;
+	border-top: none;
 }
 
 table.dataTable thead .sorting_asc:after {
@@ -3340,7 +3364,6 @@ a:focus {
 .carousel-control,
 .tooltip-inner,
 .navbar,
-.form-control,
 .pagination > li:first-child > a,
 .pagination > li:first-child > span,
 .pagination > li:last-child > a,
@@ -3615,16 +3638,19 @@ a.thumbnail-borderless,
 /* Mobile up to portrait tablet */
 @media (max-width: 767px) {
 
+    /* bootstrap tables for mobile */
+    /*
+    .table {
+        display: block;
+        overflow-x: auto;
+    }*/
+
     .login-btn {
         top: 75px;
     }
 
     body {
         padding: 0;
-    }
-
-    header.navbar {
-        min-height: 81px;
     }
 
     header.navbar.navbar-fixed-top,
@@ -3960,4 +3986,34 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
 div.cloudzoom-black:nth-child(3) {
     display: none;
+}
+
+/* custom */
+
+.has-card-background {
+    min-height: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    background-repeat: no-repeat;
+    background-size: 25rem;
+    background-position: center top;
+} 
+
+.card-alcance-nacional {
+  background-image: url(/img/art/team.svg);
+}
+
+@media (min-width: 768px) { 
+    .has-card-background {
+        background-size: 30rem;
+    }
+}
+@media print {
+  .table-bordered,
+  .table-bordered th,
+  .table-bordered td {
+    border: none!important;
+  }
 }
