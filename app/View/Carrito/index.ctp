@@ -120,7 +120,7 @@
 					} ?>
 						<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 						<input type="hidden" id="subtotal_envio" value="" />
-						<div class="field text-left mb-2 mr-1">
+						<div class="field text-center mb-2 mr-1">
 							<label>
 							  <input type="checkbox" class="form-control" id="regalo" value="1" /><span class="label-text">Es para regalo</span>
 							</label>
