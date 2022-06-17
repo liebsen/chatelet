@@ -970,7 +970,7 @@ class CarritoController extends AppController
 				$filter = [];
 
 				if (!empty($carro)) {
-					@foreach($carro as $key => $item) {
+					foreach($carro as $key => $item) {
 						if($group_criteria != $item['id'].$item['size'].$item['color'].$item['alias']) {
 							$filter[]= $item;
 						}
@@ -987,9 +987,6 @@ class CarritoController extends AppController
 				}
 				// $carro = array_fill(count($carro), $this->request->data['count'], $product);
 				error_log('[carrito] '.json_encode($filter));
-				//$data = $this->get_cart_computed($carro);
-				//$data = $this->get_cart_processed($carro);
-				// $this->get_cart_processed($carro);
 				error_log('[carrito] '.json_encode($this->get_cart_processed($filter)));
 				$this->Session->write('Carro', $this->get_cart_processed($filter));
 
@@ -1025,6 +1022,9 @@ class CarritoController extends AppController
 	        }						
 					$processed[$group_criteria]['count'] = $grouped[$group_criteria];
 					$processed[$group_criteria]['price']+= $product['price'];
+					if (!empty($product['discount'])) {
+						$processed[$group_criteria]['old_price']+= $product['discount'];
+					}
 				}			
 			}
 			foreach($processed as $key => $item) {

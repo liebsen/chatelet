@@ -53,6 +53,7 @@
               strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
             ));
 						echo '<div class="carrito-item-row is-clickable" product_row>';
+						echo '<div class="help"><span>Click para cambiar</span></div>';
 						echo '<div class="carrito-item-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
 						echo "<div class='cart-img'>" . $discount_flag;
@@ -91,8 +92,8 @@
 							)
 						);
 						echo '<br>';
-						echo '<div class="text-center">';
-						if (!empty($product['old_price'])){
+						echo '<div class="text-right">';
+						if (!empty($product['old_price']) && $product['old_price'] != $product['price']){
 							echo '<span class="old_price text-grey">'. str_replace(',00','',$this->Number->currency($product['old_price'] * $product['count'], 'ARS', array('places' => 2))) .'</span>';
 						}					
 						echo '<span class="price">'. str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))) .'</span>';

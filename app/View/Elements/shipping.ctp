@@ -8,7 +8,7 @@
 		<?php if(!$freeShipping): ?>
 		<h4 id="heading" class="cargo-title">1. Costo de Envío</h4>
 		<?php else: ?>
-		<h4 class="cargo-title text-success animated scaleIn">1. Envío gratuito // <span>Seleccione opción de envío</span></h4>
+		<h4 class="cargo-title text-success animated scaleIn">1. Envío gratuito<span></span></h4>
 		<?php endif ?>		
 		<p class="p">
 			<i>
@@ -28,7 +28,7 @@
 		<br>
 		<div class="form-group shipping-block hidden">
 			<div>
-				<h4 id="heading" class="cargo-title">2. Seleccione tipo de envío</h4>
+				<h4 id="heading" class="cargo-title<?= $freeShipping ? ' text-success' : '' ?>">2. Seleccione tipo de envío</h4>
 				<p class="p">
 					<i>
 						<small>Seleccione la empresa de logística de su confianza para realizar este envío</small>

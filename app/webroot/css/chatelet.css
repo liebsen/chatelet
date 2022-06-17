@@ -317,6 +317,7 @@ html, body {
 
 .modal-title {
 	color: #e10c76;
+	font-size: 1rem;
 	/*font-style: italic;
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
