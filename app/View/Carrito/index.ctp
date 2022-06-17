@@ -53,7 +53,7 @@
               strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
             ));
 						echo '<div class="carrito-item-row is-clickable" product_row>';
-						echo '<div class="help"><span>Click para cambiar</span></div>';
+						echo '<div class="help"><span>Modificar cantidad</span></div>';
 						echo '<div class="carrito-item-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
 						echo "<div class='cart-img'>" . $discount_flag;

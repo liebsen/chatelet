@@ -340,6 +340,10 @@ a.pay{
 	min-width: inherit;
 }
 
+.cart-btn-green.ready {
+	background-color: #e60088;
+}
+
 .cart-btn-green:hover {
 	background-color: #e60088;
 }
