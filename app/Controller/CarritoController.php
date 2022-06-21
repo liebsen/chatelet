@@ -575,11 +575,11 @@ class CarritoController extends AppController
 
 		$cp = (integer) $cp;
 		// $response = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
-		echo '<pre>';
+		/* echo '<pre>';
 		var_dump($cp);
 		var_dump(getenv('ANDREANI_CONTRATO'));
 		var_dump(getenv('ANDREANI_CLIENTE'));
-		var_dump($bultos);
+		var_dump($bultos); */
 		$response = $ws->cotizarEnvio($cp, getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
 		// $result = $ws->cotizarEnvio((integer) $cp, getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_USUARIO'));
 		return isset($response->tarifaConIva) ? $response->tarifaConIva->total : null;
