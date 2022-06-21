@@ -572,12 +572,17 @@ class CarritoController extends AppController
 		        'valorDeclarado' => 1200, // $1200
 		    ),
 		); */
-		
+
 		$cp = (integer) $cp;
 		// $response = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
-		$response = $ws->cotizarEnvio($cp, '300006611', $bultos, 'CL0003750');
+		echo '<pre>';
+		var_dump($cp);
+		var_dump(getenv('ANDREANI_CONTRATO'));
+		var_dump(getenv('ANDREANI_CLIENTE'));
+		var_dump($bultos);
+		$response = $ws->cotizarEnvio($cp, getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
 		// $result = $ws->cotizarEnvio((integer) $cp, getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_USUARIO'));
-		return $response->tarifaConIva->total;
+		return isset($response->tarifaConIva) ? $response->tarifaConIva->total : null;
 
 		/* $contrato = '300006611';
 		$cliente = 'CL0003750';
