@@ -70,7 +70,8 @@ class AdminController extends AppController {
 	}
 	public function test_andreani() {
 		$this->autoRender = false;
-		$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
+    $ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), getenv('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
+
 		echo '<pre>';
 		$bultos = array(
 		    array(
@@ -81,7 +82,8 @@ class AdminController extends AppController {
 		    ),
 		);
 
-		$result = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
+		// $result = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
+    $response = $ws->cotizarEnvio($_GET['cp'], getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
 
 		var_dump($result->tarifaConIva->total);
 		die();
