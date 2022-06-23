@@ -85,7 +85,7 @@ class AdminController extends AppController {
 		// $result = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
   	$response = $ws->cotizarEnvio($_GET['cp'], getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
     echo '<pre>';
-		var_dump($result);
+		var_dump($response);
 		exit();
 	}
 
