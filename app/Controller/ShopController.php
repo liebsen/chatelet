@@ -1,5 +1,13 @@
 <?php
 
+require __DIR__ . '/../Vendor/andreani/vendor/autoload.php';
+
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/../Vendor/andreani/');
+$dotenv->load();
+
+use AlejoASotelo\Andreani;
+
+
 class ShopController extends AppController {
 	public $uses = array('Product', 'ProductProperty','Promo','Catalogo','Category','LookBook');
 	public $helpers = array('Number');
@@ -41,6 +49,31 @@ class ShopController extends AppController {
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
    	$this->render('index');
+	}
+
+	public function test_andreani() {
+		$this->autoRender = false;
+    $ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), getenv('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
+
+		echo '<pre>';
+		$bultos = array(
+	    array(
+        'volumen' => 200,
+        'kilos' => 1.3,
+        'altoCm' => 1,
+				'anchoCm' => 2,
+				'largoCm' => 1.5,
+        'pesoAforado' => 5,
+        'valorDeclarado' => 1200
+	    )
+		);
+		/* https://apis.andreani.com/v1/tarifas?cpDestino=1400&contrato=300006611&cliente=CL0003750&sucursalOrigen=BAR&bultos[0][valorDeclarado]=1200&bultos[0][volumen]=200&bultos[0][kilos]=1.3&bultos[0][altoCm]=1&bultos[0][largoCm]=1.5&bultos[0][anchoCm]=2 */ 
+		// $response = $ws->cotizarEnvio($_GET['cp'], '300006611', $bultos, 'CL0003750');
+  	$response = $ws->cotizarEnvio(intval($_GET['cp']), getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
+    echo '<pre>';
+    echo "cp " . $_GET['cp'] . "\n";
+		var_dump($response);
+		exit();
 	}
 
 	public function die_general_stock(){
