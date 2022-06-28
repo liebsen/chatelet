@@ -565,8 +565,7 @@ class CarritoController extends AppController
         'valorDeclarado' => (integer) $price // $1200
 	    ]
 		];
-		error_log(json_encode($bultos));
-		
+
 		/* $bultos = array(
 		    array(
 		        'volumen' => 200,
