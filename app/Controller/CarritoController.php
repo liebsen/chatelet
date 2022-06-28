@@ -270,9 +270,6 @@ class CarritoController extends AppController
 			$package = $this->Package->find('first',array('conditions' => array( 'Package.amount_min <=' => $data['count'] , 'Package.amount_max >=' => $data['count'] )));
 			if(!empty($package)){
 				$data['package']= $package['Package'];
-				$data['width'] = $package['Package']['width'];
-				$data['height'] = $package['Package']['height'];
-				$data['depth'] = $package['Package']['height'];
 				$data['weight'] = $package['Package']['weight']/1000;
 				$data['volume'] = ($package['Package']['width']/100)*($package['Package']['height']/100)*($package['Package']['depth']/100);
 				return $data;
@@ -548,19 +545,21 @@ class CarritoController extends AppController
 		$this->autoRender = false;
 		$data = $this->getItemsData();
 		$cp = '1400';
-		$this->calculate_shipping_andreani($data, $cp, $data['price']);
+		$result = $this->calculate_shipping_andreani($data, $cp, $data['price']);
+		echo '<pre>';
+		var_dump($result);
 	}
 	
 	private function calculate_shipping_andreani ($data, $cp, $price) {
 		$ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), getenv('ANDREANI_CONTRATO'), getenv('ANDREANI_DEBUG'));
-		// $package = $data['package'];
+		$package = $data['package'];
 		$bultos = [
 	    [
-        'volumen' => $data['volume'] * 1000,
-        'anchoCm' => (float) $data['width'],
-        'largoCm' => (float) $data['height'],
-        'altoCm' => (float) $data['depth'],
-        'kilos' => (float) $data['weight'] / 1000,
+        'volumen' => (float) $package['width'] * (float) $package['height'] * (float) $package['depth'],
+        'anchoCm' => (float) $package['width'],
+        'largoCm' => (float) $package['height'],
+        'altoCm' => (float) $package['depth'],
+        'kilos' => (float) $package['weight'] / 1000,
         // 'volumen' => (integer) $package['width'] * $package['height'] * $package['depth'],
         // 'pesoAforado' => 5,
         'valorDeclarado' => (integer) $price // $1200
@@ -574,8 +573,11 @@ class CarritoController extends AppController
 		        'pesoAforado' => 5,
 		        'valorDeclarado' => 1200, // $1200
 		    ),
-		); */
-
+		); 
+		echo '<pre>';
+		var_dump($data);
+		var_dump($bultos);
+		*/
 		$cp = (integer) $cp;
 		$response = $ws->cotizarEnvio($cp, getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
 		return isset($response->tarifaConIva) ? $response->tarifaConIva->total : null;
