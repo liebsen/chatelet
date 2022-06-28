@@ -76,6 +76,34 @@ class ShopController extends AppController {
 		exit();
 	}
 
+	public function test_andreani_business() {
+		$this->autoRender = false;
+		$nrocliente = '0012009105';
+		$contrato = '400025425';
+    $ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), $nrocliente, 0);
+		echo '<pre>';
+		$bultos = array(
+	    array(
+        'volumen' => 200,
+        'kilos' => 1.3,
+        'altoCm' => 1,
+				'anchoCm' => 2,
+				'largoCm' => 1.5,
+        'pesoAforado' => 5,
+        'valorDeclarado' => 1200
+	    )
+		);
+		/* https://apis.andreani.com/v1/tarifas?cpDestino=1400&contrato=300006611&cliente=CL0003750&sucursalOrigen=BAR&bultos[0][valorDeclarado]=1200&bultos[0][volumen]=200&bultos[0][kilos]=1.3&bultos[0][altoCm]=1&bultos[0][largoCm]=1.5&bultos[0][anchoCm]=2 */ 
+		// $response = $ws->cotizarEnvio($_GET['cp'], '300006611', $bultos, 'CL0003750');
+  	$response = $ws->cotizarEnvio(intval($_GET['cp']), $contrato, $bultos, $nrocliente);
+    echo '<pre>';
+    echo "cp " . $_GET['cp'] . "\n";
+    echo "contrato " . $contrato . "\n";
+    echo "nrocliente " . $nrocliente . "\n";
+		var_dump($response);
+		exit();
+	}	
+
 	public function die_general_stock(){
 			$this->autoRender = false;
 			$this->SQL = $this->Components->load('SQL');
