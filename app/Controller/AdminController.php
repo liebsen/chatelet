@@ -302,14 +302,14 @@ class AdminController extends AppController {
 	      ]
 	    ],
 	    'remitente' => [
-	      'nombreCompleto' => 'Alberto Lopez',
-	      'email' => 'remitente@andreani.com',
+	      'nombreCompleto' => 'Chatelet',
+	      'email' => 'chateletonline@outlook.com.ar',
 	      'documentoTipo' => 'DNI',
-	      'documentoNumero' => '33111222',
+	      'documentoNumero' => '35881327',
 	      'telefonos' => [
 	        [
 	          'tipo' => 1,
-	          'numero' => '113332244'
+	          'numero' => '35881327'
 	        ]
 	      ]
 	    ],
@@ -327,20 +327,20 @@ class AdminController extends AppController {
           ]
         ]
 	    ],
-	    'productoAEntregar' => 'Aire Acondicionado',
+	    'productoAEntregar' => 'Compra en Chatelet',
 	    'bultos' => [
         [
-				'kilos' => (float) $package['weight'],
+				'kilos' => (float) $package['weight'] / 1000,
 				//'anchoCm' => (float) $package['width'],
 				//'largoCm' => (float) $package['height'],
 				//'altoCm' => (float) $package['depth'],
-        'volumenCm' => (integer) $package['width'] * $package['height'] * $package['depth'],
+        'volumenCm' => (float) $package['width'] * (float) $package['height'] * (float) $package['depth'],
         'valorDeclaradoSinImpuestos' => @$sale['value'],
         'valorDeclaradoConImpuestos' => @$sale['value'],
         'referencias' => [
             [
               'meta' => 'detalle',
-              'contenido' => 'Secador de pelo'
+              'contenido' => 'Compra en Chatelet'
             ],
             [
               'meta' => 'idCliente',
