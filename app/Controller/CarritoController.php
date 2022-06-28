@@ -270,6 +270,9 @@ class CarritoController extends AppController
 			$package = $this->Package->find('first',array('conditions' => array( 'Package.amount_min <=' => $data['count'] , 'Package.amount_max >=' => $data['count'] )));
 			if(!empty($package)){
 				$data['package']= $package['Package'];
+				$data['width'] = $package['Package']['width'];
+				$data['height'] = $package['Package']['height'];
+				$data['depth'] = $package['Package']['height'];
 				$data['weight'] = $package['Package']['weight']/1000;
 				$data['volume'] = ($package['Package']['width']/100)*($package['Package']['height']/100)*($package['Package']['depth']/100);
 				return $data;
@@ -413,7 +416,7 @@ class CarritoController extends AppController
 		//Codigo Postal
 		$this->Session->write('cp',$cp);
 
-		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') {
+		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.11') {
 			$dummy = '{"freeShipping":false,"rates":[{"title":"Oca","code":"oca","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/628eb1ba29efd.svg","info":"Env\u00edos a todo el pa\u00eds","price":987,"centros":[],"valid":true},{"title":"Speed Moto","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/6292a6f2d79b7.jpg","code":"speedmoto","info":"10 a\u00f1os brindando confianza a nuestros clientes","price":"700.00","centros":[],"valid":true}],"itemsData":{"count":1,"price":1994.99,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}';
 			return json_encode(json_decode($dummy));
 		}
@@ -550,15 +553,15 @@ class CarritoController extends AppController
 	
 	private function calculate_shipping_andreani ($data, $cp, $price) {
 		$ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), getenv('ANDREANI_CONTRATO'), getenv('ANDREANI_DEBUG'));
-		$package = $data['package'];
+		// $package = $data['package'];
 		$bultos = [
 	    [
-        // 'volumen' => $data['volume'] * 1000,
-        // 'anchoCm' => (float) $package['width'],
-        // 'largoCm' => (float) $package['height'],
-        // 'altoCm' => (float) $package['depth'],
-        'kilos' => (float) $package['weight'] / 1000,
-        'volumen' => (integer) $package['width'] * $package['height'] * $package['depth'],
+        'volumen' => $data['volume'] * 1000,
+        'anchoCm' => (float) $data['width'],
+        'largoCm' => (float) $data['height'],
+        'altoCm' => (float) $data['depth'],
+        'kilos' => (float) $data['weight'] / 1000,
+        // 'volumen' => (integer) $package['width'] * $package['height'] * $package['depth'],
         // 'pesoAforado' => 5,
         'valorDeclarado' => (integer) $price // $1200
 	    ]
@@ -574,27 +577,8 @@ class CarritoController extends AppController
 		); */
 
 		$cp = (integer) $cp;
-		// $response = $ws->cotizarEnvio(1832, '300006611', $bultos, 'CL0003750');
-		/* echo '<pre>';
-		var_dump($cp);
-		var_dump(getenv('ANDREANI_CONTRATO'));
-		var_dump(getenv('ANDREANI_CLIENTE'));
-		var_dump($bultos); */
 		$response = $ws->cotizarEnvio($cp, getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
-		// $result = $ws->cotizarEnvio((integer) $cp, getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_USUARIO'));
 		return isset($response->tarifaConIva) ? $response->tarifaConIva->total : null;
-
-		/* $contrato = '300006611';
-		$cliente = 'CL0003750';
-		$width = $data['package']['width'];
-		$height = $data['package']['height'];
-		$depth = $data['package']['depth'];
-		$width = $data['package']['width'];
-		$weight = round($data['package']['weight'] / 1000);
-		$url = "{$this->andreani_ep}/v1/tarifas?cpDestino={$cp}&contrato=300006611&cliente=CL0003750&sucursalOrigen=BAR&bultos[0][valorDeclarado]={$price}&bultos[0][volumen]=200&bultos[0][kilos]={$weight}&bultos[0][altoCm]={$depth}&bultos[0][largoCm]={$height}&bultos[0][anchoCm]={$width}";
-
-		$response = json_decode(file_get_contents($url));
-		return (float) $response->tarifaConIva->total; */
 	} 
 
 	private function calculate_shipping_oca ($data, $cp, $price) {
