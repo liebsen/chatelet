@@ -565,7 +565,6 @@ class CarritoController extends AppController
         'valorDeclarado' => (integer) $price // $1200
 	    ]
 		];
-
 		/* $bultos = array(
 		    array(
 		        'volumen' => 200,

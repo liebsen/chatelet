@@ -78,29 +78,63 @@ class ShopController extends AppController {
 
 	public function test_andreani_business() {
 		$this->autoRender = false;
-		$nrocliente = '0012009105';
-		$contrato = '400025425';
-    $ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), $nrocliente, 0);
-		echo '<pre>';
-		$bultos = array(
-	    array(
-        'volumen' => 200,
-        'kilos' => 1.3,
-        'altoCm' => 1,
-				'anchoCm' => 2,
-				'largoCm' => 1.5,
-        'pesoAforado' => 5,
-        'valorDeclarado' => 1200
-	    )
-		);
-		/* https://apis.andreani.com/v1/tarifas?cpDestino=1400&contrato=300006611&cliente=CL0003750&sucursalOrigen=BAR&bultos[0][valorDeclarado]=1200&bultos[0][volumen]=200&bultos[0][kilos]=1.3&bultos[0][altoCm]=1&bultos[0][largoCm]=1.5&bultos[0][anchoCm]=2 */ 
-		// $response = $ws->cotizarEnvio($_GET['cp'], '300006611', $bultos, 'CL0003750');
-  	$response = $ws->cotizarEnvio(intval($_GET['cp']), $contrato, $bultos, $nrocliente);
-    echo '<pre>';
-    echo "cp " . $_GET['cp'] . "\n";
-    echo "contrato " . $contrato . "\n";
-    echo "nrocliente " . $nrocliente . "\n";
-		var_dump($response);
+		$nrocliente = isset($_GET['nrocliente']) ? $_GET['nrocliente'] : 0;
+		$contrato = isset($_GET['contrato']) ? $_GET['contrato'] : 0;
+		$volumen = isset($_GET['volumen']) ? $_GET['volumen'] : 0;
+		$kilos = isset($_GET['kilos']) ? $_GET['kilos'] : 0;
+		$valor = isset($_GET['valor']) ? $_GET['valor'] : 0;
+		$cp = isset($_GET['cp']) ? $_GET['cp'] : 0;
+		if ($contrato) {
+	    $ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), $nrocliente, 0);
+			echo '<pre>';
+			$bultos = array(
+		    array(
+	        'volumen' => $volumen,
+	        'kilos' => $kilos,
+	        //'altoCm' => 1,
+					//'anchoCm' => 2,
+					//'largoCm' => 1.5,
+	        //'pesoAforado' => 5,
+	        'valorDeclarado' => $valor
+		    )
+			);
+			/* https://apis.andreani.com/v1/tarifas?cpDestino=1400&contrato=300006611&cliente=CL0003750&sucursalOrigen=BAR&bultos[0][valorDeclarado]=1200&bultos[0][volumen]=200&bultos[0][kilos]=1.3&bultos[0][altoCm]=1&bultos[0][largoCm]=1.5&bultos[0][anchoCm]=2 */ 
+			// $response = $ws->cotizarEnvio($_GET['cp'], '300006611', $bultos, 'CL0003750');
+	  	$response = $ws->cotizarEnvio($cp, $contrato, $bultos, $nrocliente);
+	    $price = isset($response->tarifaConIva) ? $response->tarifaConIva->total : null;
+	    echo "<h1>$" . $price . "</h1>";
+		}
+		echo '<form action="">
+			<fieldset>
+				<legend>Cod cliente</legend>
+					<select name="nrocliente">
+					<option value="CL0003750">Basico CL0003750</option>
+					<option value="0012009105">Empresa 0012009105</option>
+				</select>
+			</fieldset>
+			<fieldset>
+				<legend>Contrato envío simple</legend>
+					<select name="contrato">
+					<option value="300006611">Basico 300006611</option>
+					<option value="400025425">Empresa 400025425</option>
+				</select>
+			</fieldset>
+			<fieldset>
+				<legend>CP Destino</legend>
+				<input type="number" name="cp" placeholder="1824">
+			</fieldset>
+			<fieldset>
+				<legend>Valores paquete</legend>
+					<label>Volumen (cm3)</label>
+					<input type="number" name="volumen" placeholder="4200">
+					<label>Peso (kg)</label>
+					<input type="number" name="kilos" placeholder="1">
+					<label>Valor declarado (ARS)</label>
+					<input type="number" name="valor" placeholder="2200">
+				</select>
+			</fieldset>			
+			<input type="submit" value="Cotizar">
+		</form>';
 		exit();
 	}	
 
