@@ -258,9 +258,8 @@ class AdminController extends AppController {
 	}
 
 	private function add_order_andreani ($sale) {
-		$sale = $sale['Sale'];
     $mapper = $this->Package->findById($sale['package_id']);
-    $package = $mapper['Package'];
+    $package = @$mapper['Package'];
 		$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
 		$orden = [
 	    'contrato' => getenv('ANDREANI_CONTRATO'),
