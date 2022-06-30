@@ -234,7 +234,7 @@ class AdminController extends AppController {
 		$logistic = $this->Logistic->findByCode($shipping);
 		$response = null;
 		if(!$logistic['Logistic']['local_prices'] && method_exists($this, "add_order_{$shipping}")) {
-			error_log('oca andreani ' . $shipping);
+			error_log('shipping ' . $shipping);
 			$response = $this->{"add_order_{$shipping}"}($sale);
 		} else {
 			error_log('locals');
@@ -259,12 +259,11 @@ class AdminController extends AppController {
 
 	private function add_order_andreani ($sale) {
 		$sale = $sale['Sale'];
-    $package = $this->Package->findById($sale['package_id']);
-    $package = $package['Package'];
+    $mapper = $this->Package->findById($sale['package_id']);
+    $package = $mapper['Package'];
 		$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
-
 		$orden = [
-	    'contrato' => getenv('ANDREANI_SUCURSAL'),
+	    'contrato' => getenv('ANDREANI_CONTRATO'),
 	    'origen' => [
         'postal' => [
           'codigoPostal' => '3378',
@@ -309,7 +308,7 @@ class AdminController extends AppController {
 	      'telefonos' => [
 	        [
 	          'tipo' => 1,
-	          'numero' => '35881327'
+	          'numero' => '1155042428'
 	        ]
 	      ]
 	    ],
@@ -330,21 +329,21 @@ class AdminController extends AppController {
 	    'productoAEntregar' => 'Compra en Chatelet',
 	    'bultos' => [
         [
-				'kilos' => (float) $package['weight'] / 1000,
-				//'anchoCm' => (float) $package['width'],
-				//'largoCm' => (float) $package['height'],
-				//'altoCm' => (float) $package['depth'],
+				'anchoCm' => (float) $package['width'],
+				'largoCm' => (float) $package['height'],
+				'altoCm' => (float) $package['depth'],
         'volumenCm' => (float) $package['width'] * (float) $package['height'] * (float) $package['depth'],
+				'kilos' => (float) $package['weight'] / 1000,
         'valorDeclaradoSinImpuestos' => @$sale['value'],
         'valorDeclaradoConImpuestos' => @$sale['value'],
         'referencias' => [
             [
-              'meta' => 'detalle',
+              'meta' => 'Detalle',
               'contenido' => 'Compra en Chatelet'
             ],
             [
-              'meta' => 'idCliente',
-              'contenido' => '10000'
+              'meta' => 'Cód. Cliente',
+              'contenido' => @$sale['user_id']
             ]
           ]
         ]
