@@ -53,9 +53,9 @@ class ShopController extends AppController {
 
 	public function test_andreani() {
 		$this->autoRender = false;
+		echo '<h4>Cotizaciones Andreani</h4>
+		<p>Las cotizaciones se realizan en ambiente real de Andreani</p>';
     $ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), getenv('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
-
-		echo '<pre>';
 		$bultos = array(
 	    array(
         'volumen' => 200,
@@ -78,13 +78,10 @@ class ShopController extends AppController {
 
 	public function test_andreani_business() {
 		$this->autoRender = false;
-		$nrocliente = isset($_GET['nrocliente']) ? $_GET['nrocliente'] : 0;
-		$contrato = isset($_GET['contrato']) ? $_GET['contrato'] : 0;
-		$volumen = isset($_GET['volumen']) ? $_GET['volumen'] : 0;
-		$kilos = isset($_GET['kilos']) ? $_GET['kilos'] : 0;
-		$valor = isset($_GET['valor']) ? $_GET['valor'] : 0;
-		$cp = isset($_GET['cp']) ? $_GET['cp'] : 0;
-		if ($contrato) {
+		extract($_POST);
+		echo '<h4 style="margin:0.25rem">Cotizaciones Andreani</h4>
+		<p style="margin:0.25rem">Las cotizaciones se realizan en ambiente real de Andreani</p>';
+		if (isset($nrocliente) && isset($contrato)) {
 	    $ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), $nrocliente, 0);
 			echo '<pre>';
 			$bultos = array(
@@ -104,36 +101,37 @@ class ShopController extends AppController {
 	    $price = isset($response->tarifaConIva) ? $response->tarifaConIva->total : null;
 	    echo "<h1>$" . $price . "</h1>";
 		}
-		echo '<form action="">
+
+		echo '<form action="" method="POST">
 			<fieldset>
 				<legend>Cod cliente</legend>
-					<select name="nrocliente">
-					<option value="CL0003750">Basico CL0003750</option>
-					<option value="0012009105">Empresa 0012009105</option>
+				<select name="nrocliente">
+					<option value="CL0003750"'.(@$nrocliente==='CL0003750'?' selected':'').'>Basico CL0003750</option>
+					<option value="0012009105"'.(@$nrocliente==='0012009105'?' selected':'').'>Empresa 0012009105</option>
 				</select>
 			</fieldset>
 			<fieldset>
 				<legend>Contrato envío simple</legend>
 					<select name="contrato">
-					<option value="300006611">Basico 300006611</option>
-					<option value="400025425">Empresa 400025425</option>
+					<option value="300006611"'.(@$contrato==='300006611'?' selected':'').'>Basico 300006611</option>
+					<option value="400025425"'.(@$contrato==='400025425'?' selected':'').'>Empresa 400025425</option>
 				</select>
 			</fieldset>
 			<fieldset>
 				<legend>CP Destino</legend>
-				<input type="number" name="cp" placeholder="1824">
+				<input type="number" name="cp" placeholder="1824" value="'.@$cp.'">
 			</fieldset>
 			<fieldset>
 				<legend>Valores paquete</legend>
 					<label>Volumen (cm3)</label>
-					<input type="number" name="volumen" placeholder="4200">
+					<input type="number" name="volumen" placeholder="4200" value="'.@$volumen.'">
 					<label>Peso (kg)</label>
-					<input type="number" name="kilos" placeholder="1">
+					<input type="number" name="kilos" placeholder="1" value="'.@$kilos.'">
 					<label>Valor declarado (ARS)</label>
-					<input type="number" name="valor" placeholder="2200">
+					<input type="number" name="valor" placeholder="2200" value="'.@$valor.'">
 				</select>
 			</fieldset>			
-			<input type="submit" value="Cotizar">
+			<input style="margin:0.25rem" type="submit" value="Cotizar">
 		</form>';
 		exit();
 	}	
