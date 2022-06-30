@@ -349,8 +349,10 @@ class AdminController extends AppController {
         ]
 	    ]
 		];
-
+		echo '<pre>';
+		var_dump($orden);
 		$response = $ws->addOrden($orden);
+		var_dump($response);
 		$nroEnvio = @$response['bultos'][0]['numeroDeEnvio'];
     $sale['def_orden_retiro'] = $nroEnvio;
     $sale['def_orden_tracking'] = $nroEnvio;
