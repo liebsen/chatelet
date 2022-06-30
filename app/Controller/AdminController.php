@@ -364,6 +364,7 @@ class AdminController extends AppController {
 		}
 
 		$orden['reponse'] = $reponse;
+		var_dump(__DIR__.'/../../logs/'.@$sale['id'].'_'.date('YmdHi').'.json');
 		file_put_contents(__DIR__.'/../../logs/'.@$sale['id'].'_'.date('YmdHi').'.json', json_encode($orden));
 
    	return $sale;   
