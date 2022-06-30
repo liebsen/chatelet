@@ -265,16 +265,16 @@ class AdminController extends AppController {
 	    'contrato' => getenv('ANDREANI_CONTRATO'),
 	    'origen' => [
         'postal' => [
-          'codigoPostal' => '3378',
-          'calle' => 'Av Falsa',
-          'numero' => '380',
-          'localidad' => 'Puerto Esperanza',
+          'codigoPostal' => '1708',
+          'calle' => '25 de Mayo',
+          'numero' => '497',
+          'localidad' => 'Morón',
           'region' => '',
           'pais' => 'Argentina',
           'componentesDeDireccion' => [
             [
               'meta' => 'entreCalle',
-              'contenido' => 'Medina y Jualberto',
+              'contenido' => 'Mitre y Norberto García Silva',
             ]
           ]
         ]
@@ -286,17 +286,7 @@ class AdminController extends AppController {
 	        'numero' => @$sale['nro'],
 	        'localidad' => @$sale['localidad'],
 	        'region' => @$sale['provincia'],
-	        'pais' => 'Argentina',
-	        'componentesDeDireccion' => [
-	          [
-	            'meta' => 'piso',
-	            'contenido' => @$sale['piso']
-	          ],
-	          [
-	            'meta' => 'departamento',
-	            'contenido' => @$sale['depto']
-	          ]
-	        ]
+	        'pais' => 'Argentina'
 	      ]
 	    ],
 	    'remitente' => [
@@ -348,15 +338,34 @@ class AdminController extends AppController {
         ]
 	    ]
 		];
-		echo '<pre>';
-		var_dump($orden);
+
+		if (!empty($sale['piso']) || !empty($sale['depto'])) {
+			$orden['destino']['postal']['componentesDeDireccion'] = [
+        [
+          'meta' => 'piso',
+          'contenido' => @$sale['piso']
+        ],
+        [
+          'meta' => 'departamento',
+          'contenido' => @$sale['depto']
+        ]
+      ];
+		}
+
 		$response = $ws->addOrden($orden);
-		var_dump($response);
-		$nroEnvio = @$response['bultos'][0]['numeroDeEnvio'];
-    $sale['def_orden_retiro'] = $nroEnvio;
-    $sale['def_orden_tracking'] = $nroEnvio;
-    $t = @$this->Sale->save($sale);
-    $sale['raw_xml'] = @$response;
+		if (!is_null($response)) {
+			$nroEnvio = @$response['bultos'][0]['numeroDeEnvio'];
+	    $sale['def_orden_retiro'] = $nroEnvio;
+	    $sale['def_orden_tracking'] = $nroEnvio;
+	    $t = @$this->Sale->save($sale);
+	    $sale['raw_xml'] = @$response;
+		} else {
+			echo '<pre>';
+			print_r($orden);
+			var_dump($response);
+			$sale['raw_xml'] = 'Andreani falló';
+		}
+
    	return $sale;   
 	}
 
