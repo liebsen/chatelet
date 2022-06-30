@@ -83,7 +83,6 @@ class ShopController extends AppController {
 		<p style="margin:0.25rem">Las cotizaciones se realizan en ambiente real de Andreani</p>';
 		if (isset($nrocliente) && isset($contrato)) {
 	    $ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), $nrocliente, 0);
-			echo '<pre>';
 			$bultos = array(
 		    array(
 	        'volumen' => $volumen,
