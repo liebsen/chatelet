@@ -360,11 +360,11 @@ class AdminController extends AppController {
 	    $t = @$this->Sale->save($sale);
 	    $sale['raw_xml'] = @$response;
 		} else {
-			echo '<pre>';
-			print_r($orden);
-			var_dump($response);
 			$sale['raw_xml'] = 'Andreani falló';
 		}
+
+		$orden['reponse'] = $reponse;
+		file_put_contents(__DIR__.'/../../logs/'.@$sale['id'].'_'.date('YmdHi').'.json', json_encode($orden));
 
    	return $sale;   
 	}
