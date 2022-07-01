@@ -412,7 +412,6 @@ class CarritoController extends AppController
 		$this->loadModel('LogisticsPrices');
 		//Codigo Postal
 		$this->Session->write('cp',$cp);
-
 		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.11') {
 			$dummy = '{"freeShipping":false,"rates":[{"title":"Oca","code":"oca","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/628eb1ba29efd.svg","info":"Env\u00edos a todo el pa\u00eds","price":987,"centros":[],"valid":true},{"title":"Speed Moto","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/6292a6f2d79b7.jpg","code":"speedmoto","info":"10 a\u00f1os brindando confianza a nuestros clientes","price":"700.00","centros":[],"valid":true}],"itemsData":{"count":1,"price":1994.99,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}';
 			return json_encode(json_decode($dummy));
@@ -487,79 +486,120 @@ class CarritoController extends AppController
 			} else {
 				// buscamos todas las opciones disponibles
 				// buscamos prioridad en envíos gratutios si lo hubiera.
-
-				$conditions = [
-					'conditions' => [
-						'enabled' => true,
-						'free_shipping' => true,
-						'local_prices' => false
-					]
-				];
 				if ($freeShipping) {
-					$logistics = $this->Logistic->find('all', $conditions);
-				}
+					$local_prices_ids = [];
+					$logistics = $this->Logistic->find('all', [
+						'conditions' => [
+							'enabled' => true,
+							'free_shipping' => true
+						]
+					]);
 
-				if (empty($logistics)) {
-					unset($conditions['conditions']['free_shipping']);
-					$logistics = $this->Logistic->find('all', $conditions);
-				}
+					// get quotes for free shipping
+					foreach($logistics as $logistic) {
+						if($logistic['Logistic']['local_prices']) {
+							$local_prices_ids[] = $logistic['Logistic']['id'];							
+						} else {
+							$item = $logistic['Logistic'];
+							$code = $item['code'];
+							$row = [];
+							if (method_exists($this, "calculate_shipping_{$code}")) {
+								$row = [
+						      'title' => $item['title'],
+						      'code' => $item['code'],
+						      'image' => $item['image'],
+						      'info' => $item['info'],
+									'price' => $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+									'centros' => [],
+									'valid' =>  true
+								];
+							}
+							$json['rates'][] = $row;
+						}
+					}	
 
-				foreach($logistics as $logistic) {
-					$item = $logistic['Logistic'];
-					$code = $item['code'];
-					$row = [];
-					if (method_exists($this, "calculate_shipping_{$code}")) {
-						$row = [
-				      'title' => $item['title'],
-				      'code' => $item['code'],
-				      'image' => $item['image'],
-				      'info' => $item['info'],
-							'price' => $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
-							'centros' => [],
-							'valid' =>  true
-						];
+					$local_prices = $this->LogisticsPrices->find('all', [
+						'conditions' => [
+							'logistic_id' => $local_prices_ids,
+							'enabled' => true,
+	            'OR' => [
+	              ['zips LIKE' => "%{$cp1}%"],
+	              ['zips LIKE' => "%{$cp2}%"],
+	              ['zips LIKE' => "%{$cp}%"]
+	            ]
+						]
+					]);
+
+					foreach($local_prices as $logistic_price) {
+						$item = $logistic_price['LogisticsPrices'];
+						$parent = $this->Logistic->findById($item['logistic_id'])['Logistic'];
+	          $row = [
+	            'title' => $parent['title'],
+	            'image' => $parent['image'],
+	            'code' => $parent['code'],
+	            'info' => implode('. ', array_filter([$parent['info'], $item['info']])),
+	            'price' => $item['price'],
+	            'centros' => [],
+	            'valid' =>  true
+	          ];
+	          $json['rates'][] = $row;
 					}
-					$json['rates'][] = $row;
 				}
 
-				// buscamos logísticas de alcance local
-				// buscamos prioridad en envíos gratutios si lo hubiera.
+				if(empty($json['rates'])) {
+	        // buscamos logísticas de alcance nacional
+	        $logistics = $this->Logistic->find('all',[
+	          'conditions' => [
+	            'enabled' => true,
+	            'local_prices' => false
+	          ]
+	        ]);
 
-				$conditions = [
-					'conditions' => [
-						'enabled' => true,
-						'free_shipping' => true,
-            'OR' => [
-              ['zips LIKE' => "%{$cp1}%"],
-              ['zips LIKE' => "%{$cp2}%"],
-              ['zips LIKE' => "%{$cp}%"]
-            ]
-					]
-				];
+	        foreach($logistics as $logistic) {
+	          $item = $logistic['Logistic'];
+	          $code = $item['code'];
+	          $row = [];
+	          if (method_exists($this, "calculate_shipping_{$code}")) {
+	            $row = [
+	              'title' => $item['title'],
+	              'code' => $item['code'],
+	              'image' => $item['image'],
+	              'info' => $item['info'],
+	              'price' => $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+	              'centros' => [],
+	              'valid' =>  true
+	            ];
+	          }
+	          $json['rates'][] = $row;
+	        }
 
-				if ($freeShipping) {
-					$locals = $this->LogisticsPrices->find('all', $conditions);
-				}
+	        // buscamos logísticas de alcance local
+	        $locals = $this->LogisticsPrices->find('all', [
+	          'conditions' => [
+	            'enabled' => true,
+	            'OR' => [
+	              ['zips LIKE' => "%{$cp1}%"],
+	              ['zips LIKE' => "%{$cp2}%"],
+	              ['zips LIKE' => "%{$cp}%"]
+	            ]
+	          ]
+	        ]);
 
-				if(empty($locals)) {
-					unset($conditions['conditions']['free_shipping']);
-					$locals = $this->LogisticsPrices->find('all', $conditions);
-				}
-
-				foreach($locals as $logistic_price) {
-					$item = $logistic_price['LogisticsPrices'];
-					$parent = $this->Logistic->findById($item['logistic_id'])['Logistic'];
-          $row = [
-            'title' => $parent['title'],
-            'image' => $parent['image'],
-            'code' => $parent['code'],
-            'info' => implode('. ', array_filter([$parent['info'], $item['info']])),
-            'price' => $item['price'],
-            'centros' => [],
-            'valid' =>  true
-          ];
-          $json['rates'][] = $row;
-				}
+	        foreach($locals as $logistic_price) {
+	          $item = $logistic_price['LogisticsPrices'];
+	          $parent = $this->Logistic->findById($item['logistic_id'])['Logistic'];
+	          $row = [
+	            'title' => $parent['title'],
+	            'image' => $parent['image'],
+	            'code' => $parent['code'],
+	            'info' => implode('. ', array_filter([$parent['info'], $item['info']])),
+	            'price' => $item['price'],
+	            'centros' => [],
+	            'valid' =>  true
+	          ];
+	          $json['rates'][] = $row;
+	        }
+	      }
 			}
 		}
 
@@ -712,7 +752,6 @@ class CarritoController extends AppController
 			if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
         $unit_price = @$producto['discount'];
       }
-      // error_log('----product price: ' . $unit_price);
 			$items[] = array(
 				'title' => $desc,
 				'description' => $desc,
@@ -721,7 +760,6 @@ class CarritoController extends AppController
 				'unit_price' => (int) $unit_price
 			);
 			$total+=(int)$unit_price;
-			// error_log('suming '.(int)$unit_price);
 			$product_ids[] = array(
 				'product_id' => $producto['id'],
 				'color' => $producto['color'],
@@ -736,7 +774,6 @@ class CarritoController extends AppController
 		
 		$total_wo_discount = $total;
 
-		error_log('tmp total: '.$total);
 		// Check coupon
 		if (isset($user['coupon']) && $user['coupon'] !== '')  {
 	    $coupon = $this->Coupon->find('first', [
@@ -749,10 +786,7 @@ class CarritoController extends AppController
 				$applicable = self::filter_coupon($coupon);
 				if ($applicable->status === 'success') {
 					$discount = (float) $applicable->data['discount'];
-					error_log('coupon type : '.$applicable->data['coupon_type']);
 					if($applicable->data['coupon_type'] === 'percentage') {
-						error_log('total: '.$total);
-						error_log('discount: '.$discount);
 						$total = round($total * (1 - $discount / 100), 2);
 						foreach($items as $k => $item) {
 							$item_price = round($item['unit_price'] * (1 - $discount / 100), 2);
@@ -760,7 +794,6 @@ class CarritoController extends AppController
 							if ($product_ids[$k]) {
 								$product_ids[$k]['precio_vendido'] = $item_price;
 							}
-							error_log('(coupon) fixing item price (1): ' . $item_price);
 						}
 					} else {
 						$total-= $discount;
@@ -770,10 +803,8 @@ class CarritoController extends AppController
 							if ($product_ids[$k]) {
 								$product_ids[$k]['precio_vendido'] = $item_price;
 							}
-							error_log('(coupon) fixing item price (2): ' . $item_price);
 						}
 					}
-					error_log('coupon applied now total: '.$total);
 				}
 		  }
 	  }
@@ -792,8 +823,6 @@ class CarritoController extends AppController
 		if ($user['cargo'] == 'takeaway') {
 			$freeShipping = true;
 		}
-
-		error_log('free_shipping: '.$freeShipping);
 
 		$shipping_type_value = 'default';
 		$zipCodes='';
@@ -814,7 +843,7 @@ class CarritoController extends AppController
 			if (@$shipping_config['Setting']['value'] == 'zip_code'){
 				// $freeShipping = true;
 			}
-			error_log('shipping_value: '.@$shipping_config['Setting']['value']);
+			// error_log('shipping_value: '.@$shipping_config['Setting']['value']);
 		}
 		// freeShipping until 12/10
 		// $freeShipping = true;
