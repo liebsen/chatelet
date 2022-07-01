@@ -438,6 +438,7 @@ class CarritoController extends AppController
 
 		if(!empty($data)){
 			if ($code) {
+				// necesitamos cotizacion de una empresa
 				$code = strtolower($code);
 				$logistic = $this->Logistic->find('first',[
 					'conditions' => [
@@ -446,7 +447,7 @@ class CarritoController extends AppController
 					]
 				])['Logistic'];
 				if ($logistic['local_prices']) {
-					// buscamos logísticas de alcance nacional
+					// buscamos las tarifas
 					$locals = $this->LogisticsPrices->find('first', [
 						'conditions' => [
 							'logistic_id' => $logistic['id'],
@@ -484,13 +485,24 @@ class CarritoController extends AppController
 					}
 				}
 			} else {
-				// buscamos logísticas de alcance nacional
-				$logistics = $this->Logistic->find('all',[
+				// buscamos todas las opciones disponibles
+				// buscamos prioridad en envíos gratutios si lo hubiera.
+
+				$conditions = [
 					'conditions' => [
 						'enabled' => true,
+						'free_shipping' => true,
 						'local_prices' => false
 					]
-				]);
+				];
+				if ($freeShipping) {
+					$logistics = $this->Logistic->find('all', $conditions);
+				}
+
+				if (empty($logistics)) {
+					unset($conditions['conditions']['free_shipping']);
+					$logistics = $this->Logistic->find('all', $conditions);
+				}
 
 				foreach($logistics as $logistic) {
 					$item = $logistic['Logistic'];
@@ -511,16 +523,29 @@ class CarritoController extends AppController
 				}
 
 				// buscamos logísticas de alcance local
-				$locals = $this->LogisticsPrices->find('all', [
+				// buscamos prioridad en envíos gratutios si lo hubiera.
+
+				$conditions = [
 					'conditions' => [
 						'enabled' => true,
+						'free_shipping' => true,
             'OR' => [
               ['zips LIKE' => "%{$cp1}%"],
               ['zips LIKE' => "%{$cp2}%"],
               ['zips LIKE' => "%{$cp}%"]
             ]
 					]
-				]);
+				];
+
+				if ($freeShipping) {
+					$locals = $this->LogisticsPrices->find('all', $conditions);
+				}
+
+				if(empty($locals)) {
+					unset($conditions['conditions']['free_shipping']);
+					$locals = $this->LogisticsPrices->find('all', $conditions);
+				}
+
 				foreach($locals as $logistic_price) {
 					$item = $logistic_price['LogisticsPrices'];
 					$parent = $this->Logistic->findById($item['logistic_id'])['Logistic'];

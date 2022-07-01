@@ -9,14 +9,17 @@ $(document).ready(function() {
 })
 
 function getTicket(sale_id, parent) {
+  var target = undefined
+  if (parent) {
+    target = $(parent).next().next()
+  }  
   $(parent).text('Enviando...')
+  $(target).text('')
   $.get('/admin/getTicket/' + sale_id, res => {
     $(parent).text('TICKET')
     let data = JSON.parse(res)
     let target = null
-    if (parent) {
-      target = $(parent).next().next()
-    }
+
     if (target) {
       $(target).text(data.message)
       $(target).addClass(`text-${data.status}`)

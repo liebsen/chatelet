@@ -9,6 +9,7 @@
 			<tr>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Alcance'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Envío gratuito'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Activo'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
@@ -21,6 +22,9 @@
 					</td>
 					<td>
 						<?= isset($logistic['Logistic']['local_prices']) && $logistic['Logistic']['local_prices'] ? 'Local' : 'Nacional'?>
+					</td>
+					<td>
+						<?=$logistic['Logistic']['free_shipping'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
 					</td>
 					<td>
 						<?=$logistic['Logistic']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>

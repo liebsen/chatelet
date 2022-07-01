@@ -38,7 +38,6 @@
               <small class="text-muted">Indica el estado de esta logística. En caso de inactivo el cliente no podrá utilizar esta opción.</small>
             </div>
             <br>
-
             <div class="control-group">
               <label class="control-label" for="code"><?php echo __('Código'); ?></label>
               <div class="controls">
@@ -66,6 +65,28 @@
           <?php endif ?>
           </div>
           <div class="col-md-6">
+            <h4 class="sub-header"><?php echo __('Prioridad de oferta'); ?></h4>
+            <div class="alert alert-primary">
+              <div class="control-group">
+                <label class="control-label" for="columns-text"><?php echo __('Envíos gratuitos'); ?></label>
+                <div class="controls">
+                  <?php
+                    $enabled = (isset($logistic) && $logistic['Logistic']['free_shipping'] == 1 || !isset($logistic)) ? 'checked' : '';
+                    $disabled = (isset($logistic) && $logistic['Logistic']['free_shipping'] == 0) ? 'checked' : '';
+                  ?>
+                  <label for="free_shipping_1">Disponible</label>
+                  <input type="radio" class="form-control" id="free_shipping_1" name="data[free_shipping]" value="1" <?php echo $enabled; ?> /> &nbsp;
+                  <label for="free_shipping_0">No Disponible</label>
+                  <input type="radio" class="form-control" id="free_shipping_0" name="data[free_shipping]" value="0" <?php echo $disabled; ?> />
+                </div>
+                <small class="text-muted">Indica si esta logística estará disponible para los envíos gratuitos. Si está activo significa que esta logística tendrá prioridad para los envíos gratuitos. <span class="alert-link">Establezca <i>Disponible</i> para que las clientas puedan seleccionar <i><?= $logistic['Logistic']['title'] ?></i> para sus envíos gratuitos.</span></small>
+                <?php if($enabled && $logistic['Logistic']['local_prices']): ?>
+                  <br>
+                  <br>
+                  <small class="text-danger alert-link"><b>Exclusividad no garantizada.</b> <i> <?= $logistic['Logistic']['title'] ?></i> tiene alcance local, esto significa que solo estará disponible para envíos gratuitos dentro de su área de cobertura, caso contrario se mostrarán otras opciones de envío a la clienta que pueden no estar establecidas como disponibles para envío gratuito.</small>
+                <?php endif ?>
+              </div>
+            </div>            
             <h4 class="sub-header">Mas datos</h4>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Alcance'); ?></label>
@@ -103,10 +124,10 @@
                 <input type="file" class="attached" name="image">
               </div>
             </div>
-            <br />
-          </div>             
-        </div>  
-      </div>    
+            <br>
+          </div>
+        </div>
+      </div>
       <br />
       <div class="form-actions">
         <a href="/admin/logistica" class="btn btn-info"><i class="icon-repeat"></i> Atrás</a>
