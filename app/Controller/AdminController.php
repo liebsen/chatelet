@@ -353,6 +353,9 @@ class AdminController extends AppController {
 		}
 
 		$response = $ws->addOrden($orden);
+		echo '<pre>';
+		print_r($orden);
+		var_dump($response);
 		if (!is_null($response)) {
 			$nroEnvio = @$response['bultos'][0]['numeroDeEnvio'];
 	    $sale['def_orden_retiro'] = $nroEnvio;
@@ -363,7 +366,7 @@ class AdminController extends AppController {
 			$sale['raw_xml'] = 'Andreani falló';
 		}
 
-		$orden['reponse'] = $reponse;
+		$orden['response'] = $response;
 		file_put_contents(__DIR__.'/../logs/'.@$sale['id'].'_'.date('YmdHi').'.json', json_encode($orden, JSON_PRETTY_PRINT));
 
    	return $sale;   
