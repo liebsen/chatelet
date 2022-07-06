@@ -354,7 +354,9 @@ class AdminController extends AppController {
 
 		$response = $ws->addOrden($orden);
 		echo '<pre>';
+		var_dump('orden');
 		print_r($orden);
+		var_dump('response');
 		var_dump($response);
 		if (!is_null($response)) {
 			$nroEnvio = @$response['bultos'][0]['numeroDeEnvio'];
