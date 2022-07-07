@@ -422,7 +422,7 @@ class Andreani
         $this->response = $response;
 
         // Si es una petición satisfactoria devuelvo el body.
-        if ($response->code >= 200 && $response->code <= 299) {
+        if ($response->code >= 200 && $response->code <= 599) {
             return $decodeBody ? json_decode($response->body) : $response->body;
         } else {
             return null;

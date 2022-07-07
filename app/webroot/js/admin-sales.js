@@ -18,8 +18,6 @@ function getTicket(sale_id, parent) {
   $.get('/admin/getTicket/' + sale_id, res => {
     $(parent).text('TICKET')
     let data = JSON.parse(res)
-    let target = null
-
     if (target) {
       $(target).text(data.message)
       $(target).addClass(`text-${data.status}`)

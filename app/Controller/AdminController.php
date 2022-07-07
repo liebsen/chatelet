@@ -87,9 +87,9 @@ class AdminController extends AppController {
 		/* https://apis.andreani.com/v1/tarifas?cpDestino=1400&contrato=300006611&cliente=CL0003750&sucursalOrigen=BAR&bultos[0][valorDeclarado]=1200&bultos[0][volumen]=200&bultos[0][kilos]=1.3&bultos[0][altoCm]=1&bultos[0][largoCm]=1.5&bultos[0][anchoCm]=2 */ 
 		// $response = $ws->cotizarEnvio($_GET['cp'], '300006611', $bultos, 'CL0003750');
   	$response = $ws->cotizarEnvio(intval($_GET['cp']), getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
-    echo '<pre>';
-    echo "cp " . $_GET['cp'] . "\n";
-		var_dump($response);
+    // echo '<pre>';
+    // echo "cp " . $_GET['cp'] . "\n";
+		// var_dump($response);
 		exit();
 	}
 
@@ -323,8 +323,8 @@ class AdminController extends AppController {
 				'altoCm' => (float) $package['depth'],
         'volumenCm' => (float) $package['width'] * (float) $package['height'] * (float) $package['depth'],
 				'kilos' => (float) $package['weight'] / 1000,
-        'valorDeclaradoSinImpuestos' => @$sale['value'],
-        'valorDeclaradoConImpuestos' => @$sale['value'],
+        'valorDeclaradoSinImpuestos' => (float) @$sale['value'],
+        'valorDeclaradoConImpuestos' => (float) @$sale['value'],
         'referencias' => [
             [
               'meta' => 'Detalle',
@@ -353,22 +353,15 @@ class AdminController extends AppController {
 		}
 
 		$response = $ws->addOrden($orden);
-		echo '<pre>';
-		var_dump('orden');
-		print_r($orden);
-		var_dump('response');
-		var_dump($response);
+
 		if (!is_null($response)) {
-			$nroEnvio = @$response['bultos'][0]['numeroDeEnvio'];
+			$nroEnvio = @$response->bultos[0]['numeroDeEnvio'];
 	    $sale['def_orden_retiro'] = $nroEnvio;
 	    $sale['def_orden_tracking'] = $nroEnvio;
 	    $t = @$this->Sale->save($sale);
-	    $sale['raw_xml'] = @$response;
-		} else {
-			$sale['raw_xml'] = 'Andreani falló';
 		}
 
-		$orden['response'] = $response;
+	  $sale['raw_xml'] = @$response->detail;
 		file_put_contents(__DIR__.'/../logs/'.@$sale['id'].'_'.date('YmdHi').'.json', json_encode($orden, JSON_PRETTY_PRINT));
 
    	return $sale;   
