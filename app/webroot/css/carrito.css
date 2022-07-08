@@ -193,7 +193,9 @@
 	font-weight: bold;
 }
 
-
+.price.is-large {
+	font-size: 1.5rem;
+}
 
 .cart-img {
 	height: 10rem;
