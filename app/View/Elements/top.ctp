@@ -11,6 +11,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="<?= Configure::read('imageUrlBase') ?>" />
     <meta property="og:title" content="Châtelet" />
     <meta property="og:description" content="Sé tu propio modelo de mujer" />
     <meta property="og:image" itemprop="image primaryImageOfPage" content="https://chatelet.com.ar/images/share-080722.jpg" />
