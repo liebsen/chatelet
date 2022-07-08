@@ -409,6 +409,8 @@ a.pay{
 
 .shipping-price-min-alert {
 	background-color: #e10d74;
+	margin-bottom: 1rem;
+	border-radius: 0.25rem;
 }
 
 .shipping-price-min-text {
