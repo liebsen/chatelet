@@ -342,7 +342,7 @@ $(document).ready(function() {
 				let block = document.querySelector('.shipping-price-min-alert')
 				if (block) {
 					block.classList.remove('is-hidden')
-					block.classList.add('zoomInRight')
+					block.classList.add('fadeIn')
 				}			
 			}, 3000)
 		}

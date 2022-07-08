@@ -7,10 +7,7 @@
 <div id="main" class="container">
 	<div class="row">
 		<div class="col-md-12 is-hidden shipping-price-min-alert animated">
-			<div class="alert alert-success" role="alert">
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			    <span aria-hidden="true">&times;</span>
-			  </button>				
+			<div class="shipping-price-min-text">
 				<span class="shipping-price-min-alert-text"><?= $text_shipping_min_price ?></span>
 			</div>		
 		</div>

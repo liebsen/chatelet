@@ -405,6 +405,23 @@ a.pay{
 	z-index: 50001;
 }
 
+.shipping-price-min-alert {
+	background-color: #e10d74;
+}
+
+.shipping-price-min-text {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	font-size: 1.25rem;
+	line-height: 1.5;
+	padding: 1.5rem;
+	font-weight: 800;
+	color: white;
+	text-shadow: 0 0 5px rgba(255,255,255,0.25);
+}
+
 @media (max-width: 768px) {
 	#main {
 		padding-top:10px!important;
@@ -420,6 +437,20 @@ a.pay{
 	}
 }
 @media screen and (min-width:769px), print {
+
+	.shipping-price-min-alert {
+		background-repeat: no-repeat;
+		background-size: 25%;
+		background-position: top right;
+		background-image: url('/images/free-shipping-bg.jpg');
+	}	
+
+	.shipping-price-min-text {
+		padding-right: 25%;
+		font-size: 2rem;
+		line-height: 1;
+	}
+
 	.carrito-items {
 		padding-right: 1rem;
 	}
