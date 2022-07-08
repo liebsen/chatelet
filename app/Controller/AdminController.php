@@ -353,9 +353,10 @@ class AdminController extends AppController {
 		}
 
 		$response = $ws->addOrden($orden);
+		file_put_contents(__DIR__.'/../logs/'.@$sale['id'].'_'.date('YmdHi').'.json', json_encode($response, JSON_PRETTY_PRINT));
 
 		if (!is_null($response)) {
-			$nroEnvio = @$response->bultos[0]['numeroDeEnvio'];
+			$nroEnvio = @$response->bultos[0]->numeroDeEnvio;
 	    $sale['def_orden_retiro'] = $nroEnvio;
 	    $sale['def_orden_tracking'] = $nroEnvio;
 	    $t = @$this->Sale->save($sale);

@@ -1,0 +1,34 @@
+{
+    "estado": "Pendiente",
+    "tipo": "B2C",
+    "sucursalDeDistribucion": {
+        "nomenclatura": "FLO",
+        "descripcion": "FLORES (AV JUAN B ALBERDI)",
+        "id": "15"
+    },
+    "sucursalDeRendicion": {
+        "nomenclatura": "RZS",
+        "descripcion": "RENDICIONES ZONA SUR",
+        "id": "284"
+    },
+    "sucursalDeImposicion": {},
+    "sucursalAbastecedora": {},
+    "fechaCreacion": "2022-07-08T11:57:02-03:00",
+    "numeroDePermisionaria": "RNPSP N\u00ba 586",
+    "descripcionServicio": "Encomienda eCommerce",
+    "bultos": [
+        {
+            "numeroDeBulto": "1",
+            "numeroDeEnvio": "360000070575370",
+            "totalizador": "1\/1",
+            "linking": [
+                {
+                    "meta": "Etiqueta",
+                    "contenido": "https:\/\/apisqa.andreani.com\/v2\/ordenes-de-envio\/API0000000540110\/etiquetas?bulto=1"
+                }
+            ]
+        }
+    ],
+    "agrupadorDeBultos": "API0000000540110",
+    "etiquetasPorAgrupador": "https:\/\/apisqa.andreani.com\/v2\/ordenes-de-envio\/API0000000540110\/etiquetas"
+}
