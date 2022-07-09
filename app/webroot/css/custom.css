@@ -1380,13 +1380,16 @@ span.out{
   width: 75px; height: 75px;
   text-align: right;
   cursor: pointer;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: both;
 }
 
 .ribbon span {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #FFF;
-  text-transform: uppercase;
   text-align: center;
   line-height: 1.75rem;
   font-weight: 800;
@@ -1468,7 +1471,7 @@ span.out{
 }
 
 .ribbon.left span {
-  background: #CA779A!important;
+  background: #5CB85C!important;
   transform: translate(-1.25rem, 2.5rem) rotate(-45deg);
   transform-origin: top left;
 }
@@ -1501,6 +1504,14 @@ span.out{
   border-right: 3px solid transparent;
   border-bottom: 3px solid #5A825A;
   border-top: 3px solid transparent;
+}
+
+.ribbon.large {
+  transform: scale(1.6) translateY(0.75rem) translateX(-0.75rem);  
+}
+
+.ribbon.left.large {
+  transform: scale(1.6) translateY(0.75rem) translateX(0.75rem);  
 }
 
 .article-related-title {

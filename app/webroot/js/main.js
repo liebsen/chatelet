@@ -30,11 +30,12 @@ let apiSearch = q => {
       let str = ''
       $('.search-more').html('')
       $.each(data.results, function(key, item) {
+        console.log(item.discount_label)
         str += '<div class="col col-md-4 col-lg-3 search-item animate fadeIn">' +
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 
             '<div class="row">' + 
               '<div class="col-sm-12">' + 
-                '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.discount_label.length ? '<div class="ribbon small bottom-left"><span>' + item.discount_label + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
+                '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.discount_label ? '<div class="ribbon small left sp2"><span>' + item.discount_label + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
                 '<h2 class="text-center">'+item.name+'</h2>' + 
                 '<h3 class="price text-center">$'+item.price+' '+(item.discount.length ? '<span class="old_price text-grey">$' + item.discount + '</span>' : '') + '</h3>' + 
               '</div>' + 
