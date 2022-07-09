@@ -51,10 +51,10 @@
                     <?php endif;?>
             </ul>
         </div>
-        <div class="col-md-5 col-sm-7"  >
-             <div class="is-relative has-background-grey">
+        <div class="col-md-5 col-sm-7">
+             <div class="is-product-photo">
                 <?php if ($product['discount_label_show'] !== '') :?>
-                    <div class="ribbon large left small sp2"><span><?= $product['discount_label_show'] ?>% OFF</span></div>
+                    <div class="ribbon large bottom-left small sp2"><span><?= $product['discount_label_show'] ?>% OFF</span></div>
                 <?php endif ?>
                 <?php if ($product['promo'] !== '') :?>
                     <div class="ribbon large"><span><?= $product['promo'] ?></span></div>
@@ -265,7 +265,7 @@
                      <div class="col-md-4 col-sm-6">
                         <a href="<?php echo $url ?>" >
                             <?php if ($alt_product['discount_label_show'] !== '') :?>
-                                <div class="ribbon left small"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
+                                <div class="ribbon bottom-left small"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
                             <?php endif ?>
                             <?php if ($alt_product['promo'] !== '') :?>
                                 <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
@@ -282,10 +282,10 @@
                       <div data-id="<?=$alt_product['id']?>" class="col-md-4 col-sm-6 add-no-stock">
                         <a href="<?php echo $url ?>">
                             <?php if ($alt_product['discount_label_show'] !== '') :?>
-                                <div class="ribbon left small sp1"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
+                                <div class="ribbon bottom-left small sp1"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
                             <?php endif ?>
                             <?php if ($alt_product['promo'] !== '') :?>
-                                <div class="ribbon sp1"><span><?= $alt_product['promo'] ?></span></div>
+                                <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
                             <?php endif ?>
                             <img class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->

@@ -101,8 +101,10 @@ label input[type=checkbox]:disabled + .label-text:before {
 .text-grey {
   color: #888;
 }
-.has-background-grey {
-  background-color: #999;
+.is-product-photo {
+  position: relative;
+  background-color: rgba(0,0,0,0.1);
+  min-height: 46rem;
 }
 
 .is-bottom {
@@ -576,7 +578,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #productOptions nav li a:hover { color: #f50081; }
 #productOptions a.btBig { border: 2px solid #f50081; color: #6e6e6e; display: block; font-size: 40px; font-weight: 600; padding: 240px 0; text-align: center; }
 #productOptions a.btBig span { color: #f50081; font-size: 27px; }
-#productOptions .col-sm-9 a {  /*background: #e7e7e7;*/ display: inline-table; width: 100%; min-height: 27.5rem; background-color: whitesmoke; margin-bottom: 10px; overflow: hidden; position: static;height: auto; }
+#productOptions .col-sm-9 a {  /*background: #e7e7e7;*/ display: inline-table; width: 100%; min-height: 27.5rem; background-color: whitesmoke; margin-bottom: 10px; overflow: hidden; position: relative;height: auto; }
 #productOptions .col-sm-9 a img { height: 440px;
     object-fit: cover;
     object-position: top center; margin: 0 auto;transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
@@ -1512,8 +1514,8 @@ span.out{
   transform: scale(1.6) translateY(0.75rem) translateX(-0.75rem);  
 }
 
-.ribbon.left.large {
-  transform: scale(1.6) translateY(0.75rem) translateX(0.75rem);  
+.ribbon.bottom-left.large {
+  transform: scale(1.6) translateY(-0.75rem) translateX(0.75rem);  
 }
 
 .article-related-title {
