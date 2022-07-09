@@ -276,7 +276,7 @@
                       <div data-id="<?=$alt_product['id']?>" class="col-md-4 col-sm-6 add-no-stock"><?=$promo_ribbon ?>
                         <a href="<?php echo $url ?>">
                             <?php if ($alt_product['promo'] !== '') :?>
-                                <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
+                                <div class="ribbon sp1"><span><?= $alt_product['promo'] ?></span></div>
                             <?php endif ?>
                             <img class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->

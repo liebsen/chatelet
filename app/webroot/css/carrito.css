@@ -37,7 +37,8 @@
 	position: absolute;
 	display: flex;
 	justify-content: center;
-	background-color: rgba(50,50,50,0.1);
+	border-radius: 0.25rem;
+	background-color: rgba(80,80,80,0.1);
 	align-items: center;
 	z-index: 10;
 	bottom: 0;
