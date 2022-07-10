@@ -5,7 +5,7 @@
         "name": "POLERA BETH",
         "desc": "POLERA BETH. CONICA, CON CUELLO VOLCADO Y MANGA CAIDA CON PU\u00d1O. TEJIDO MORLEY.",
         "img_url": "mtOTd9sHZnQipvGnfls4wOkMz.jpg",
-        "price": 2450,
+        "price": "4900",
         "article": "i2025",
         "category_id": "172",
         "gallery": "",
@@ -19,30 +19,6 @@
         "size": "52",
         "alias": "Cemento",
         "color_code": "26",
-        "alias_image": "1IJHfvtTvM1UEGTP3EzYlmdbv.jpg",
-        "old_price": "4900"
-    },
-    {
-        "id": "4270",
-        "cod_chatelet": null,
-        "name": "POLERA BETH",
-        "desc": "POLERA BETH. CONICA, CON CUELLO VOLCADO Y MANGA CAIDA CON PU\u00d1O. TEJIDO MORLEY.",
-        "img_url": "mtOTd9sHZnQipvGnfls4wOkMz.jpg",
-        "price": 2450,
-        "article": "i2025",
-        "category_id": "172",
-        "gallery": "",
-        "discount": "4900",
-        "promo": "2x1",
-        "stock_total": "97",
-        "with_thumb": "1",
-        "discount_label": "10",
-        "discount_label_show": "10",
-        "color": "#ffffff",
-        "size": "52",
-        "alias": "Cemento",
-        "color_code": "26",
-        "alias_image": "1IJHfvtTvM1UEGTP3EzYlmdbv.jpg",
-        "old_price": "4900"
+        "alias_image": "1IJHfvtTvM1UEGTP3EzYlmdbv.jpg"
     }
 ]

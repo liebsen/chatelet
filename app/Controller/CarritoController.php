@@ -1031,7 +1031,7 @@ class CarritoController extends AppController
 				// error_log('[carrito] '.json_encode($this->cart_filter($filter)));
 				$carro = $this->cart_filter($filter);
 
-				if ($_SERVER['REQUEST_ADDR'] == '127.0.0.1') {
+				if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 					file_put_contents(__DIR__.'/../logs/carrito.json', json_encode($carro, JSON_PRETTY_PRINT));
 				}
 

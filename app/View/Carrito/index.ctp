@@ -62,10 +62,10 @@
 						if (!empty($product['count']) && $product['count'] > 1){
 							echo '<div class="count-circle"><span>'. $product['count'] .'</span></div>';
 						}
-            // echo '<a href="' . $item_url . '">';
+            echo '<a href="' . $item_url . '">';
 						// echo '<img src="'.Configure::read('imageUrlBase').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
 						echo '<div class="carrito-item-image" style="background-image: url('.Configure::read('imageUrlBase').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
-						// echo '</a>';
+						echo '</a>';
 						echo '</div>';
 						echo '</div>';
 						echo '<div class="carrito-item-col carrito-data" data-json=\''.json_encode($product).'\'>';
