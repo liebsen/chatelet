@@ -1491,6 +1491,11 @@ span.out{
   top: auto;  
 }
 
+.ribbon.bottom-left.sp2 {
+  left: -8px;
+  bottom: -8px;
+}
+
 .ribbon.bottom-left span {
   background: #5CB85C!important;
   transform: translate(-1.3rem, -0.9rem) rotate(45deg);
