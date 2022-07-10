@@ -54,7 +54,7 @@
         <div class="col-md-5 col-sm-7">
              <div class="is-product-photo">
                 <?php if ($product['discount_label_show'] !== '') :?>
-                    <div class="ribbon large bottom-left small sp2"><span><?= $product['discount_label_show'] ?>% OFF</span></div>
+                    <div class="ribbon large bottom-left small"><span><?= $product['discount_label_show'] ?>% OFF</span></div>
                 <?php endif ?>
                 <?php if ($product['promo'] !== '') :?>
                     <div class="ribbon large"><span><?= $product['promo'] ?></span></div>

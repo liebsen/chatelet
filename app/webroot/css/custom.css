@@ -665,20 +665,22 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #detalle .caract label.btn .color-option {
   border: none;
   box-shadow: none;
-  border-radius: 0;
+  border: solid 3px transparent;
   width: 100%;
+  opacity: 0.8;
   height: 12rem;
   margin-bottom: 0.5rem;
   background-color: #f8f8f8;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  transition: all 0.25s linear;
+  transition: all 0.15s linear;
+  border-radius: 0.5rem;
 }
 
 #detalle .caract label.btn.active .color-option {
-  /* border: solid 2px #CA779A; */
-  box-shadow: inset 3px 3px 0 #f50081, inset -3px -3px 0 #f50081;
+  opacity: 1;
+  border: solid 3px #CA779A;
 }
 
 /* #detalle .caract label.btn:first-child .color-option {
