@@ -205,7 +205,6 @@
 	position: relative;
 	display: inline-block;
 	border-radius: 0.25rem;
-	box-shadow: var(--box-shadow);
 	transition: all 0.25s ease;
 }
 

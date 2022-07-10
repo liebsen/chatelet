@@ -1029,7 +1029,11 @@ class CarritoController extends AppController
 				// $carro = array_fill(count($carro), $this->request->data['count'], $product);
 				error_log('[carrito] '.json_encode($filter));
 				error_log('[carrito] '.json_encode($this->get_cart_processed($filter)));
-				$this->Session->write('Carro', $this->get_cart_processed($filter));
+
+				$carro = $this->get_cart_processed($filter);
+				file_put_contents(__DIR__.'/../logs/carrito.json', json_encode($carro, JSON_PRETTY_PRINT));
+
+				$this->Session->write('Carro', $carro);
 
 			//	$this->Session->write('Carro.'. $product['id'], $product);
 				return json_encode(array('success' => true));
@@ -1119,10 +1123,6 @@ class CarritoController extends AppController
 		/*set promos prices if exists */
 		foreach($carro as $key => $product) {
 			/*product has promo, check if applies*/
-			if (!empty($product['discount']) && (float)@$product['discount']>0) {
-				$product['old_price'] = $product['price'];
-        $product['price'] = $product['discount'];
-      }
 			if (!empty($product['promo'])) {
 				$parts = explode('x', $product['promo']);
 				$promo_val = intval($parts[0]);
@@ -1147,32 +1147,44 @@ class CarritoController extends AppController
 					}					
 				}
 			}
+			if (empty($product['old_price']) && !empty($product['discount']) && (float)@$product['discount']>0) {
+				$product['old_price'] = $product['price'];
+        $product['price'] = $product['discount'];
+      }			
 		}
 		// error_log('[carrito] '.json_encode($carro));
 		return $carro;
 	}
 
-	public function remove($row = null) {
+	public function remove($id = null) {
 		$this->autoRender = false;
 
 		/*if (isset($product_id) && $this->Session->check('Carro.'. $product_id)) {
 			$this->Session->delete('Carro.'. $product_id);
 		}*/
 		$item = false;
-		if (isset($row) && $this->Session->check('Carro.'. $row)) {
-			$item = $this->Session->read('Carro.'. $row);
-			$this->Session->delete('Carro.'. $row);
-		}
 		$carro = $this->Session->read('Carro');
 		$data = array();
 		$i = 0;
-		foreach ($carro as $key => $value) {
-			$data[$i] = $value;
+		$removed = 0;
+		foreach ($carro as $key => $item) {
+			error_log($item['id']);
+			error_log($item['id'] !== $id);
+			error_log('.-----------');
+			if ($item['id'] !== $id) {
+				$data[$i] = $item;
+			} else {
+				$removed = 1;
+			}
 			$i++;
 		}
 		// $this->Session->write('Carro', $this->get_cart_computed($aux));
-		$this->Session->write('Carro', $this->get_cart_processed($data));
-		return json_encode($item);
+		if (count($data)) {
+			$this->Session->write('Carro', $this->get_cart_processed($data));
+		} else {
+			$this->Session->delete('Carro');
+		}
+		return json_encode($removed);
 		// return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 	}
 

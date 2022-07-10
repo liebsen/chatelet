@@ -57,7 +57,7 @@
 						if ($product['promo'] !== '' && isset($product['old_price'])) {
 							$promosaved+= (float) $product['old_price'] - $product['price'];
 							$reached = isset($product['promo_enabled']) && $product['promo_enabled']?'':' disable';
-							echo "<div class='ribbon small".$reached."'><span>" . $product['promo'] . "</span></div>";
+							echo "<div class='ribbon".$reached."'><span>" . $product['promo'] . "</span></div>";
 						}
 						if (!empty($product['count']) && $product['count'] > 1){
 							echo '<div class="count-circle"><span>'. $product['count'] .'</span></div>';
@@ -81,7 +81,7 @@
 							array(
 								'controller' => 'carrito',
 								'action' => 'remove',
-								$row
+								$product['id']
 							),
 							array (
 								'class' => 'trash',

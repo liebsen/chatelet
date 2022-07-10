@@ -1469,6 +1469,10 @@ span.out{
   right: -8px;
 }
 
+.ribbon.sp4 {
+  right: -8px;
+}
+
 .ribbon.left {
   left: 0;
   right: auto;
