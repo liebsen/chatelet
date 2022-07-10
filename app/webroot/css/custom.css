@@ -235,7 +235,18 @@ label input[type=checkbox]:disabled + .label-text:before {
   text-align: center;
   color: #e398c1;
 }
-.menuLayer {z-index: 12; background: #FFF; border-bottom: 2px solid #efb0d2; left: 0; display: none; padding: 40px 0; position: absolute; top: 85px; width: 100%; }
+.menuLayer {
+  z-index: 12;
+  background: #FFF;
+  /* border-bottom: 2px solid #efb0d2; */
+  box-shadow: var(--box-shadow);
+  left: 0;
+  display: none;
+  padding: 40px 0;
+  position: absolute;
+  top: 85px;
+  width: 100%;
+}
 .menuLayer a.close { 
   position: absolute;
   z-index: 100;

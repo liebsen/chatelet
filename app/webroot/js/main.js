@@ -113,7 +113,6 @@ $(function () {
     }
   })
 
-
   $('.input-search').keyup(e => {
     if (searchInt) {
       clearInterval(searchInt)
@@ -129,4 +128,15 @@ $(function () {
   // Toggle Side content
   /*body.toggleClass('hide-side-content');*/
   $('#toggle-side-content').click(function(){ body.toggleClass('hide-side-content');if(body.hasClass('hide-side-content')){$('#page-sidebar.collapse').collapse('hide');} else {$('#page-sidebar.collapse').collapse('show');}});
+
+  /* trigger search from url */
+
+  if(window.location.hash) {
+    var query = window.location.hash.replace('#', '')
+    if (query) {
+      $('.action-search').click()
+      $('.input-search').val(query)
+      $('.input-search').keyup()
+    }
+  }
 })
