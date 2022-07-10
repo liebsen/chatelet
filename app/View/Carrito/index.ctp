@@ -50,7 +50,7 @@
               strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
             ));
 						echo '<div class="carrito-item-row is-clickable" product_row>';
-						echo '<div class="help"><span>Modificar cantidad</span></div>';
+						echo '<div class="help"><span>MODIFICAR</span></div>';
 						echo '<div class="carrito-item-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
 						echo "<div class='cart-img'>" . $discount_flag;
@@ -77,7 +77,7 @@
 						if (!empty($product['size'])){
 							echo '<p class="color">Talle: <span class="talle">'. $product['size'] .'</span></p>';
 						}
-						echo $this->Html->link('<span class="glyphicon glyphicon-trash"></span>',
+						echo $this->Html->link('<span class="glyphicon glyphicon-trash carrito-hide-element"></span>',
 							array(
 								'controller' => 'carrito',
 								'action' => 'remove',
@@ -95,7 +95,7 @@
 						}					
 						echo '<span class="price">'. str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))) .'</span>';
 						echo '</div>';
-						echo '<div class="carrito-count">
+						echo '<div class="carrito-hide-element">
 							<div class="form-inline">
 							  <div class="form-group">
 							    <div class="input-group carrito-selector">

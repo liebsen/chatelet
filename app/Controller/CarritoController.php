@@ -1027,15 +1027,15 @@ class CarritoController extends AppController
 					$filter[] = $product;
 				}
 				// $carro = array_fill(count($carro), $this->request->data['count'], $product);
-				error_log('[carrito] '.json_encode($filter));
-				error_log('[carrito] '.json_encode($this->get_cart_processed($filter)));
+				// error_log('[carrito] '.json_encode($filter));
+				// error_log('[carrito] '.json_encode($this->cart_filter($filter)));
+				$carro = $this->cart_filter($filter);
 
-				$carro = $this->get_cart_processed($filter);
-				file_put_contents(__DIR__.'/../logs/carrito.json', json_encode($carro, JSON_PRETTY_PRINT));
+				if ($_SERVER['REQUEST_ADDR'] == '127.0.0.1') {
+					file_put_contents(__DIR__.'/../logs/carrito.json', json_encode($carro, JSON_PRETTY_PRINT));
+				}
 
 				$this->Session->write('Carro', $carro);
-
-			//	$this->Session->write('Carro.'. $product['id'], $product);
 				return json_encode(array('success' => true));
 			}
 		}
@@ -1045,7 +1045,7 @@ class CarritoController extends AppController
 	private function get_cart_sorted() {
 		$carro = $this->Session->read('Carro');
 		$grouped = [];
-		$processed = [];
+		$sort = [];
 		if (!empty($carro)) {
 			foreach($carro as $key => $product) {
 				$group_criteria = $product['id'].$product['size'].$product['color'].$product['alias'];
@@ -1059,33 +1059,33 @@ class CarritoController extends AppController
 						$product['old_price'] = $product['price'];
 	          $product['price'] = $product['discount'];
 	        }
-					$processed[$group_criteria] = $product;
+					$sort[$group_criteria] = $product;
 				} else {
 					if (!empty($product['discount']) && (float)@$product['discount']>0) {
 						$product['old_price'] = $product['price'];
 	          $product['price'] = $product['discount'];
 	        }						
-					$processed[$group_criteria]['count'] = $grouped[$group_criteria];
-					$processed[$group_criteria]['price']+= $product['price'];
+					$sort[$group_criteria]['count'] = $grouped[$group_criteria];
+					$sort[$group_criteria]['price']+= $product['price'];
 					if (!empty($product['discount'])) {
-						$processed[$group_criteria]['old_price']+= $product['discount'];
+						$sort[$group_criteria]['old_price']+= $product['discount'];
 					}
 				}			
 			}
-			foreach($processed as $key => $item) {
+			foreach($sort as $key => $item) {
 				if (!empty($product['promo'])) {
 					$parts = explode('x', $product['promo']);
 					$count = intval($parts[0]);
 					if ($item['count'] >= $count) {
-						$processed[$key]['promo_enabled'] = true;
+						$sort[$key]['promo_enabled'] = true;
 					}
 				}
 			}
 		}
-		return $processed;
+		return $sort;
 	}
 
-	private function get_cart_processed($carro) {
+	private function cart_filter($carro) {
 		if (empty($carro)) {
 			$carro = $this->Session->read('Carro');
 		}
@@ -1180,7 +1180,7 @@ class CarritoController extends AppController
 		}
 		// $this->Session->write('Carro', $this->get_cart_computed($aux));
 		if (count($data)) {
-			$this->Session->write('Carro', $this->get_cart_processed($data));
+			$this->Session->write('Carro', $this->cart_filter($data));
 		} else {
 			$this->Session->delete('Carro');
 		}

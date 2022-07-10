@@ -93,7 +93,7 @@
 	margin: auto;
 }
 
-.carrito-count {
+.carrito-hide-element {
 	display: none;
 }
 
@@ -369,7 +369,8 @@ a.pay{
 #carritoItem .help {
 	opacity: 0;
 }
-#carritoItem .carrito-count {
+
+#carritoItem .carrito-hide-element {
 	display: block;
 	text-align: center;
 }
