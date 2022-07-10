@@ -218,7 +218,7 @@ class CarritoController extends AppController
 		]);
 		$map = $this->Setting->findById('carrito_takeaway_text');
  		$carrito_takeaway_text = $map['Setting']['extra'];		
-		$this->set('carrosorted', $this->get_cart_sorted());
+		$this->set('carrosorted', $this->cart_sort());
 		$this->set('stores', $stores);
 		$this->set('carrito_takeaway_text', $carrito_takeaway_text);
 		$this->set('freeShipping', $freeShipping);
@@ -972,7 +972,7 @@ class CarritoController extends AppController
 	public function sorted() {
 		$this->autoRender = false;
 		echo '<pre>';
-		var_dump($this->get_cart_sorted());
+		var_dump($this->cart_sort());
 	}
 
 	public function add() {
@@ -1042,39 +1042,39 @@ class CarritoController extends AppController
 		return json_encode(array('success' => false));
 	}
 
-	private function get_cart_sorted() {
+	private function cart_sort() {
 		$carro = $this->Session->read('Carro');
 		$grouped = [];
 		$sort = [];
 		if (!empty($carro)) {
-			foreach($carro as $key => $product) {
-				$group_criteria = $product['id'].$product['size'].$product['color'].$product['alias'];
+			foreach($carro as $key => $item) {
+				$group_criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
 				if (!isset($grouped[$group_criteria])) {
 					$grouped[$group_criteria] = 0;
 				}
 				$grouped[$group_criteria]++;
 				if ($grouped[$group_criteria] === 1) {
-					$product['count'] = 1;
-					if (!empty($product['discount']) && (float)@$product['discount']>0) {
-						$product['old_price'] = $product['price'];
-	          $product['price'] = $product['discount'];
-	        }
-					$sort[$group_criteria] = $product;
+					$item['count'] = 1;
+					/* if (!empty($item['discount']) && (float)@$item['discount']>0) {
+						$item['old_price'] = $item['price'];
+	          $item['price'] = $item['discount'];
+	        } */
+					$sort[$group_criteria] = $item;
 				} else {
-					if (!empty($product['discount']) && (float)@$product['discount']>0) {
-						$product['old_price'] = $product['price'];
-	          $product['price'] = $product['discount'];
-	        }						
+					/* if (!empty($item['discount']) && (float)@$item['discount']>0) {
+						$item['old_price'] = $item['price'];
+	          $item['price'] = $item['discount'];
+	        }	*/					
 					$sort[$group_criteria]['count'] = $grouped[$group_criteria];
-					$sort[$group_criteria]['price']+= $product['price'];
-					if (!empty($product['discount'])) {
-						$sort[$group_criteria]['old_price']+= $product['discount'];
-					}
+					/* $sort[$group_criteria]['price']+= $item['price'];
+					if (!empty($item['discount'])) {
+						$sort[$group_criteria]['old_price']+= $item['discount'];
+					} */
 				}			
 			}
 			foreach($sort as $key => $item) {
-				if (!empty($product['promo'])) {
-					$parts = explode('x', $product['promo']);
+				if (!empty($item['promo'])) {
+					$parts = explode('x', $item['promo']);
 					$count = intval($parts[0]);
 					if ($item['count'] >= $count) {
 						$sort[$key]['promo_enabled'] = true;
@@ -1082,6 +1082,11 @@ class CarritoController extends AppController
 				}
 			}
 		}
+
+		if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+			file_put_contents(__DIR__.'/../logs/carrito_sort.json', json_encode($sort, JSON_PRETTY_PRINT));
+		}
+
 		return $sort;
 	}
 

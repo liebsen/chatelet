@@ -30,6 +30,12 @@
 	position: relative;
 	flex-direction: row;
 	padding: 0.5rem;
+	margin: 1rem 0;
+	border-radius: 0.5rem;
+}
+
+.carrito-item-row:nth-child(even) {
+	background-color: whitesmoke;
 }
 
 .carrito-item-row .help {
@@ -37,7 +43,7 @@
 	position: absolute;
 	display: flex;
 	justify-content: center;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	background-color: rgba(80,80,80,0.1);
 	align-items: center;
 	z-index: 10;
@@ -64,7 +70,7 @@
 	background-size: cover;
 	background-position: center center;
 	display: inline-block;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	width: 100%;
 	height: 100%;
 }
@@ -116,6 +122,8 @@
 	text-align: right;
 	padding-right: 3rem;
 	min-height: 42px;
+	border-top-left-radius: 0.5rem;
+	border-bottom-left-radius: 0.5rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;	
@@ -134,7 +142,7 @@
 .generic-select li {
 	padding: 0.75rem;
 	border: 1px solid #e10d7499;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	font-weight: 400;
 	background-color: white;
 	color: #e10d74e6;
@@ -204,7 +212,7 @@
 	background-color: #f8f8f8;
 	position: relative;
 	display: inline-block;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	transition: all 0.25s ease;
 }
 
@@ -227,7 +235,7 @@
 	color: white;
 	background-color: #07bc31;
 	padding: 0.75rem 1rem;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 	cursor: pointer;
 }
 
@@ -297,7 +305,7 @@ a.trash {
 }
 .name.is-carrito {
 	display: block;
-	font-weight: 400;
+	font-weight: 900;
 	text-align: left;
 	font-size: 1.25rem;
 	margin-top: 1rem;
@@ -335,7 +343,7 @@ a.pay{
 	background-color: #bebebe;
 	padding: 0.75rem 1rem;
 	min-width: 20rem;
-	border-radius: 5px;
+	border-radius: 0.5rem;
 	transition: all 0.25s ease;
 }
 .cart-btn-green.shrink {
@@ -411,7 +419,7 @@ a.pay{
 .shipping-price-min-alert {
 	background-color: #e10d74;
 	margin-bottom: 1rem;
-	border-radius: 0.25rem;
+	border-radius: 0.75rem;
 }
 
 .shipping-price-min-text {

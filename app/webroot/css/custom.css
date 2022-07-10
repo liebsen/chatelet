@@ -260,7 +260,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .menuLayer a.close span { background: #f50081; display: block; height: 2px; margin-top: 12px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
 .menuLayer a.close span:last-child { margin-top: -2px; -ms-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
 .menuLayer img { margin-right: 50px; }
-.menuLayer h3 { color: #222; font-size: 16px; font-weight: normal; text-transform: uppercase; margin-bottom: 30px; }
+.menuLayer h3 { color: #f50081; font-size: 16px; font-weight: normal; text-transform: uppercase; margin-bottom: 30px; }
 .menuLayer ul { column-count: 3; column-gap: 40px; font-size: 13px; }
 .menuLayer ul li { margin-bottom: 15px; }
 .menuLayer ul li a {
@@ -519,10 +519,10 @@ footer .bottom a.ig { background-position: -101px -286px; }
 .name {
   text-align:center;
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 900;
   font-family: 'Poppins', Verdana, Arial, sans-serif;
   margin:10px auto 20px;
-  color: #666;
+  color: black;
   max-width: 18rem;
   margin: auto;
   /*min-height: 3rem;*/
@@ -607,7 +607,14 @@ footer .bottom a.ig { background-position: -101px -286px; }
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/
 #detalle h1 { color: #404040; font-size: 30px; font-weight: 700; margin-bottom: 10px; margin-top: 10px; }
 #detalle > p { font-size: 1rem; font-weight: 600; margin-bottom: 20px; }
-#detalle .price { background: #FFF; color: #333; height: auto; display: inline-block; font-size: 1.25rem; font-weight: 800; line-height: .9; padding: 10px 15px; margin-top: 0.5rem; border-radius: 5px;}
+#detalle .price {
+  color: #f50081;
+  height: auto;
+  display: inline-block;
+  font-size: 1.75rem;
+  font-weight: 900;
+  margin-top: 0.5rem;
+}
 #detalle .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
 #detalle .caract { color: #404040; /* margin-top: 25px; */ }
 #detalle .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
@@ -755,7 +762,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #desarrollo .boxs { font-size: 1rem; }
 #desarrollo .boxs .boxs-reframe {
   padding: 1rem 1.25rem;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   background-color: transparent;
   background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%, rgba(250,250,250,0.7) 0%, rgba(250,250,250,0.25) 100.2% );
 }
@@ -1186,8 +1193,8 @@ span.out{
 .search-results h2 {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
-    color: #808080;
-    font-weight: 500;
+    color: black;
+    font-weight: 900;
 }
 .search-results h3 {
     font-size: 1.25rem;
@@ -1215,7 +1222,7 @@ span.out{
     color: #f50081;
     border: 2px solid #f50081;
     padding: 0.75rem 1rem;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     font-size: 1rem;
     font-weight: 800;
     text-decoration: none;    
@@ -1862,7 +1869,7 @@ span.count {
   .is-rounded {
     margin: 1.5rem 0.5rem;
     margin-top: 0;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     box-shadow: var(--box-shadow);
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {

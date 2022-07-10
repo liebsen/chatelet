@@ -1,5 +1,5 @@
-[
-    {
+{
+    "427052#ffffffCemento": {
         "id": "4270",
         "cod_chatelet": null,
         "name": "POLERA BETH",
@@ -19,9 +19,10 @@
         "size": "52",
         "alias": "Cemento",
         "color_code": "26",
-        "alias_image": "1IJHfvtTvM1UEGTP3EzYlmdbv.jpg"
+        "alias_image": "1IJHfvtTvM1UEGTP3EzYlmdbv.jpg",
+        "count": 1
     },
-    {
+    "424503#ffffffBordo": {
         "id": "4245",
         "cod_chatelet": null,
         "name": "POLERA COLLETE",
@@ -42,29 +43,8 @@
         "alias": "Bordo",
         "color_code": "09",
         "alias_image": "WfOmGKEnf6tJsdgxSJXKL2fHx.jpg",
-        "old_price": "7853.99"
-    },
-    {
-        "id": "4245",
-        "cod_chatelet": null,
-        "name": "POLERA COLLETE",
-        "desc": "POLERA COLLETE. CUELLO 1\/2 POLO DE MORLEY CON BOTONCITOS, MANGA LARGA. DETALLE TERMINACION VISTA MORLEY, TEJIDO CON SPANDEX LISO.",
-        "img_url": "5hoNtUQfAPGfwC1sFq8mQWwAG.jpg",
-        "price": 3927,
-        "article": "i2500",
-        "category_id": "176",
-        "gallery": "",
-        "discount": "7853.99",
-        "promo": "2x1",
-        "stock_total": "133",
-        "with_thumb": "1",
-        "discount_label": "0",
-        "discount_label_show": "10",
-        "color": "#ffffff",
-        "size": "03",
-        "alias": "Bordo",
-        "color_code": "09",
-        "alias_image": "WfOmGKEnf6tJsdgxSJXKL2fHx.jpg",
-        "old_price": "7853.99"
+        "old_price": "7853.99",
+        "count": 2,
+        "promo_enabled": true
     }
-]
+}

@@ -30,7 +30,7 @@
 				  $row = 0;
 					$subtotal = 0;
 					$total = 0;
-					$promosaved = 0;
+					// $promosaved = 0;
 
 					foreach ($carrosorted as $product) {
 						$total+= $product['price'];
@@ -40,7 +40,7 @@
 		          $number_disc = (int)@$product['discount_label_show'];
 		        }
 
-		        $discount_flag = (@$product['category_id']!='134' && !empty($number_disc))?'<div class="ribbon bottom-left small sp2"><span>'.$number_disc.'% OFF</span></div>':'';
+		        $discount_flag = (@$product['category_id']!='134' && !empty($number_disc))?'<div class="ribbon bottom-left small"><span>'.$number_disc.'% OFF</span></div>':'';
 
 						$item_url = $this->Html->url(array(
               'controller' => 'shop',
@@ -54,8 +54,8 @@
 						echo '<div class="carrito-item-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
 						echo "<div class='cart-img'>" . $discount_flag;
-						if ($product['promo'] !== '' && isset($product['old_price'])) {
-							$promosaved+= (float) $product['old_price'] - $product['price'];
+						if ($product['promo'] !== '') {
+							// $promosaved+= (float) $product['old_price'] - $product['price'];
 							$reached = isset($product['promo_enabled']) && $product['promo_enabled']?'':' disable';
 							echo "<div class='ribbon".$reached."'><span>" . $product['promo'] . "</span></div>";
 						}
@@ -113,7 +113,7 @@
 						</div>';
 						echo '</div>';
 						echo '</div>';
-						echo '<hr>';
+						// echo '<hr>';
 						$row += 1;
 					} ?>
 						<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
