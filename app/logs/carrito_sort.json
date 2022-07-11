@@ -24,5 +24,31 @@
         "old_price": "3990",
         "uid": 0,
         "count": 1
+    },
+    "425546#ffffffNegro": {
+        "id": "4255",
+        "cod_chatelet": null,
+        "name": "BLUSA BELLA",
+        "desc": "BLUSA BELLA. ESCOTE V Y MANGA 3\/4 CON DETALLE RECORTE COMBINADO FRANJA BICOLOR, TEJIDO FIBRANA ESTAMPADA.",
+        "img_url": "F8UR4BkIz4edJSHWmq8w3V81v.jpg",
+        "price": "4790",
+        "article": "i2022",
+        "category_id": "177",
+        "gallery": "",
+        "discount": "4790",
+        "promo": "2x1",
+        "stock_total": "160",
+        "with_thumb": "1",
+        "discount_label": "10",
+        "discount_label_show": "10",
+        "color": "#ffffff",
+        "size": "46",
+        "alias": "Negro",
+        "color_code": "02",
+        "alias_image": "HjmuV3VX1nkg6YK5TnJretpH1.jpg",
+        "original_price": "4790",
+        "old_price": "4790",
+        "uid": 1,
+        "count": 1
     }
 }

@@ -45,9 +45,9 @@
 
 
       <section id="suscribe">
-            <div class="wrapper is-flex-end">
+            <div class="wrapper container is-flex-end">
                 <div class="col-md-6">
-                    <h4>Estemos <strong>conectad@s</strong></h4>
+                    <h2 class="h2 m-0">Estemos <strong>conectad@s</strong></h2>
                     <p>Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
                 </div>
                 <div class="col-md-6">

@@ -91,6 +91,10 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 
+.m-0 {
+  margin: 0!important;
+}
+
 .is-absolute {
   position: absolute;
 }

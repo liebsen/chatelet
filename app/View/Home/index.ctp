@@ -129,9 +129,9 @@
         </section>
     <?php endif;?>
         <section id="suscribe">
-            <div class="wrapper is-flex-end content">
+            <div class="wrapper container is-flex-end">
                 <div class="col-md-6">
-                    <h3 class="h3">Estemos <strong>conectad@s</strong></h3>
+                    <h2 class="h2">Estemos <strong>conectad@s</strong></h2>
                     <p>Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
                 </div>
                 <div class="col-md-6">
