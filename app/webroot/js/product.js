@@ -23,6 +23,7 @@ function checkCount(value) {
 
 
 function addCart(data, button, text) {
+	$(button).addClass('adding')
 	$(button).text(text || 'Agregando...')
 	$.post('/carrito/add', $.param(data))
 		.success(function(res) {

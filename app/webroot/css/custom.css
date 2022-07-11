@@ -633,7 +633,8 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #detalle .caract .colors a.grisoscuro { background: #5a5a5a; }
 #detalle .caract .colors a.verde { background: #42604e; }
 #detalle .caract .colors a.azul { background: #294c70; }
-#detalle .caract .add { background: #f50081; color: #FFF; display: block; font-size: 1.25rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center; width: 100%; border-radius: 5px;}
+#detalle .caract .add { background: #f50081; color: #FFF; display: block; font-size: 1.25rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center; width: 100%; border-radius: 5px; transition: all 0.25s ease-in;}
+#detalle .caract .add.adding { background-color: #808080; }
 #detalle .caract .social { margin-top: 40px; text-align: center; }
 #detalle .caract .social a { background-image: url(../images/sprite.png); display: inline-block; height: 19px; margin: 0 25px; width: 19px; }
 #detalle .caract .social a.fb { background-position: -92px -40px; }
@@ -675,7 +676,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
   background-position: center center;
   background-size: cover;
   transition: all 0.15s linear;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 #detalle .caract label.btn.active .color-option {
@@ -1224,7 +1225,7 @@ span.out{
     color: #f50081;
     border: 2px solid #f50081;
     padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     font-size: 1rem;
     font-weight: 800;
     text-decoration: none;    

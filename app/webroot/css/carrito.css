@@ -142,7 +142,7 @@
 .generic-select li {
 	padding: 0.75rem;
 	border: 1px solid #e10d7499;
-	border-radius: 0.5rem;
+	border-radius: 0.25rem;
 	font-weight: 400;
 	background-color: white;
 	color: #e10d74e6;
@@ -237,6 +237,11 @@
 	padding: 0.75rem 1rem;
 	border-radius: 0.5rem;
 	cursor: pointer;
+	transition: all 0.25s ease-in;
+}
+
+.ch-btn-success.adding {
+	background-color: #808080;
 }
 
 .ch-btn-success.disable {
