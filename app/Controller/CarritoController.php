@@ -211,7 +211,7 @@ class CarritoController extends AppController
     $mapper = $this->Setting->findById('display_text_shipping_min_price');
     $display_text_shipping_min_price = $mapper['Setting']['value'];
     $mapper = $this->Setting->findById('text_shipping_min_price');
-		$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['value'])) ? $this->parse_tpl($mapper['Setting']['value'], $vars) : '';
+		$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['value'])) ? $this->parseTemplate($mapper['Setting']['value'], $vars) : '';
 		$this->set('text_shipping_min_price',$text_shipping_min_price);
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
@@ -224,7 +224,7 @@ class CarritoController extends AppController
 		$this->set('freeShipping', $freeShipping);
 	}
 
-	private function parse_tpl ($str, $data) {
+	private function parseTemplate ($str, $data) {
 		$html = $str;
 		$openingTag = "{{";
 		$closingTag = "}}";
@@ -288,7 +288,7 @@ class CarritoController extends AppController
 		}
 	}
 
-	public function takeaway_stores($cp = null){
+	public function takeawayStores($cp = null){
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 		$stores = $this->Store->find('all', [
@@ -313,10 +313,10 @@ class CarritoController extends AppController
 				'message' => "No tenemos esa promo disponible ahora"
 			]);
 		}
-		return json_encode(self::filter_coupon($coupon));
+		return json_encode(self::filterCoupon($coupon));
 	}
 
-	private function filter_coupon ($data) {
+	private function filterCoupon ($data) {
 		$coupon_type = '';
 		$date = date('Y-m-d');
 		$week = (string) date('w');
@@ -406,7 +406,7 @@ class CarritoController extends AppController
 		}
 	}
 
-	public function delivery_cost($cp, $code = null){
+	public function deliveryCost($cp, $code = null){
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 		$this->loadModel('LogisticsPrices');
@@ -783,7 +783,7 @@ class CarritoController extends AppController
 	      ]
 	    ]);
 	    if ($coupon) {
-				$applicable = self::filter_coupon($coupon);
+				$applicable = self::filterCoupon($coupon);
 				if ($applicable->status === 'success') {
 					$discount = (float) $applicable->data['discount'];
 					if($applicable->data['coupon_type'] === 'percentage') {
@@ -810,7 +810,7 @@ class CarritoController extends AppController
 	  }
 
 		// Add Delivery
-		$delivery_data = json_decode( $this->delivery_cost($user['postal_address'], $user['shipping']),true);
+		$delivery_data = json_decode( $this->deliveryCost($user['postal_address'], $user['shipping']),true);
 		$delivery_cost = 0;
 		if (isset($delivery_data['rates'][0]['price'])) {
 			$delivery_cost = (int) $delivery_data['rates'][0]['price'];
@@ -1144,7 +1144,6 @@ class CarritoController extends AppController
 						$sorted = array_column($groups[$promo], 'price');
 						array_multisort($sorted, SORT_DESC, $groups[$promo]);
 						$offset = $promo_key - $promo_val;
-						//$remove = $sorted[count($sorted) - 1];
 						$refs = array_slice($groups[$promo], 0, $promo_val);
 						$refs_ids = [];
 						foreach ($refs as $ref) {
