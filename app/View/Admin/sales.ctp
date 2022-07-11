@@ -5,7 +5,12 @@
     <div class="col-xs-12">
         <a href="/admin/sales_export_mails" target="_blank">
             <button class="btn btn-success" type="button" style="margin-top: -2px;">Exportar Emails</button>
+        </a> 
+        <?php if(!isset($_GET['extended'])) :?>
+        <a href="/admin/sales?extended=1">
+            <button class="btn btn-success" type="button" style="margin-top: -2px;">Más ventas</button>
         </a>
+        <?php endif ?>
     </div>
 </div>
 <div class="row">

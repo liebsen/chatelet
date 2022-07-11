@@ -454,21 +454,20 @@ a.pay{
 		margin-bottom: 8px;
 	}
 }
-@media screen and (min-width:769px), print {
 
+@media screen and (min-width:769px), print {
 	.shipping-price-min-alert {
 		background-repeat: no-repeat;
 		background-size: 25%;
 		background-position: top right;
 		background-image: url('/images/free-shipping-bg.jpg');
 	}	
-
 	.shipping-price-min-text {
+		padding: 2.5rem 1.5rem;
 		padding-right: 25%;
 		font-size: 1.5rem;
 		line-height: 1;
 	}
-
 	.carrito-items {
 		padding-right: 1rem;
 	}

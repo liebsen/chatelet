@@ -13,9 +13,13 @@ function getTicket(sale_id, parent) {
   if (parent) {
     target = $(parent).next().next()
   }  
-  $(parent).text('Enviando...')
+  $(parent).removeClass('btn-info')
+  $(parent).addClass('btn-default')
+  $(parent).text('ESPERE')
   $(target).text('')
   $.get('/admin/getTicket/' + sale_id, res => {
+    $(parent).removeClass('btn-default')
+    $(parent).addClass('btn-info')
     $(parent).text('TICKET')
     let data = JSON.parse(res)
     if (target) {

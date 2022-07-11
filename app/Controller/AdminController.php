@@ -217,8 +217,8 @@ class AdminController extends AppController {
 		}
 
 		$h1 = array(
-			'name' => 'Oca',
-			'icon' => 'gi gi-display'
+			'name' => 'Paquetería',
+			'icon' => 'gi gi-package'
 			);
 		$this->set('h1', $h1);
 		$this->loadModel('Home');
@@ -499,7 +499,7 @@ class AdminController extends AppController {
 	private function getMPSales(){
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
-		$limit = $_SERVER['REMOTE_ADDR'] == '127.0.0.1' ? 20 : 500;
+		$limit = isset($_GET['extended']) ? 500 : 20;
 		$filters = array(
             "range" => "date_created",
             "begin_date" => "2022-01-01T00:00:00Z",
@@ -577,7 +577,7 @@ class AdminController extends AppController {
 	public function sales(){
 		$h1 = array(
 		'name' => 'Ventas',
-		'icon' => 'gi gi-display'
+		'icon' => 'gi gi-money'
 		);
 		$this->set('h1', $h1);
 		$this->loadModel('Home');
