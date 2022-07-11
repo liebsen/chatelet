@@ -17,6 +17,10 @@
 				    <button class="btn btn-success btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" type="submit">Calcular</button>
 				  </div>
 				</div>
+				<br>
+				<div class="input-group">
+					<span class="text-muted">Obtenga beneficios exclusivos <a href="#" id="register" class="open-Modal" data-toggle="modal" data-dismiss="modal"  data-target="#particular-modal">registrándose</a> en nuestra tienda</span>
+				</div>
 			</form>
 
 			<!--input type="text" name="" placeholder="ej. CHA10" value="" class="input-coupon both input-rounded" data-valid="0" data-url="<?php echo $this->Html->url(array('action'=>'coupon')) ?>" autocomplete="off" />
