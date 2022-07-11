@@ -5,7 +5,7 @@
         "name": "REMERA ALYSA CLASICA",
         "desc": "REMERA ALYSA CLASICA. ESCOTE V Y MANGA 3\/4. TEJIDO VENECIA BUFFING ESTAMPADO.",
         "img_url": "AevnOMngHczUP1kVWKQKSYtDW.jpg",
-        "price": "3990",
+        "price": 0,
         "article": "i2004",
         "category_id": "172",
         "gallery": "",
@@ -20,9 +20,10 @@
         "alias": "Verde petroleo",
         "color_code": "34",
         "alias_image": "Vcsz6AnEY91A7uZUvFgLyOd2m.jpg",
-        "original_price": "3990",
+        "original_price": 0,
         "old_price": "3990",
         "uid": 0,
+        "promo_enabled": 1,
         "count": 1
     },
     "425546#ffffffNegro": {
@@ -49,6 +50,7 @@
         "original_price": "4790",
         "old_price": "4790",
         "uid": 1,
-        "count": 1
+        "count": 3,
+        "promo_enabled": true
     }
 }

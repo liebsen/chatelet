@@ -237,7 +237,7 @@
 	padding: 0.75rem 1rem;
 	border-radius: 0.5rem;
 	cursor: pointer;
-	transition: all 0.25s ease-in;
+	transition: all 0.5s ease-in;
 }
 
 .ch-btn-success.adding {
