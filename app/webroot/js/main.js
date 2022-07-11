@@ -131,11 +131,13 @@ $(function () {
 
   /* trigger search from url */
 
-  if(window.location.hash) {
-    var query = window.location.hash.replace('#', '')
-    if (query) {
+  if(window.location.pathname === '/' && window.location.hash.indexOf('buscar:') > -1) {
+    var q = window.location.hash.replace('#buscar:', '')
+    if (q) {
+      localStorage.setItem('lastsearch', q)
+      $('#myModal').remove()
       $('.action-search').click()
-      $('.input-search').val(query)
+      $('.input-search').val(q)
       $('.input-search').keyup()
     }
   }

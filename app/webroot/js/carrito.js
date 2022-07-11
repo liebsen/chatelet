@@ -336,7 +336,7 @@ $(document).ready(function() {
 	if (document.getElementById('total')) {
 		var total = parseInt(document.getElementById('total').value)
 		var shipping_price_min = parseInt(document.getElementById('shipping_price_min').value)
-		var display = document.querySelector('.shipping-price-min-alert-text').textContent.trim() != ''
+		var display = document.querySelector('.shipping-price-min-text span').textContent.trim() != ''
 		if (display && total < shipping_price_min) {
 			setTimeout(() => {
 				let block = document.querySelector('.shipping-price-min-alert')

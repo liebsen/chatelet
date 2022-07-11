@@ -1094,69 +1094,134 @@ class CarritoController extends AppController
 		if (empty($carro)) {
 			$carro = $this->Session->read('Carro');
 		}
-		$grouped = [];
-		$promos = [];
-		$counted = [];
+		$groups = [];
+		$counts = [];
+		// $counted = [];
 		/*count prods */
-		foreach($carro as $key => $product) {
-      $prop = $this->ProductProperty->find('all', array('conditions' => array(
-  			'product_id' => $product['id'],
-  			'alias' => $product['alias']
-  		)));
+		if (!empty($carro)) {
 
-  		if ($prop) {
-  			$arrImages = array_values(array_filter(explode(';', $prop[0]['ProductProperty']['images'])));
-  			// error_log('$arrImages:'.json_encode($arrImages));
-  			$carro[$key]['alias_image'] = $arrImages[0];
-  		}
-		
-			if (!isset($grouped[$product['id']])) {
-				$grouped[$product['id']] = 0;
+			/* apply basic prices and fill promos data */
+			foreach($carro as $key => $item) {
+	      $prop = $this->ProductProperty->find('all', array('conditions' => array(
+	  			'product_id' => $item['id'],
+	  			'alias' => $item['alias']
+	  		)));
+
+	  		if ($prop) {
+	  			$arrImages = array_values(array_filter(explode(';', $prop[0]['ProductProperty']['images'])));
+	  			$carro[$key]['alias_image'] = $arrImages[0];
+	  		}
+
+				$carro[$key]['original_price'] = $item['price'];
+
+				if (!empty($item['discount']) && (float) @$item['discount'] > 0) {
+					$carro[$key]['old_price'] = $item['price'];
+	        $carro[$key]['price'] = $item['discount'];
+	      }
+			
+				if (!isset($groups[$item['promo']])) {
+					// $groups[$item['promo']] = [];
+					$groups[$item['promo']] = [];
+				}
+				$groups[$item['promo']][] = $item;
+				// $groups[$item['promo']]++;
 			}
-			$grouped[$product['id']]++;
-		}
-		/*count promos */
-		foreach($carro as $product) {
-			if (!empty($product['promo'])) {
-				if (!isset($promos[$product['id']])) {
-					$parts = explode('x', $product['promo']);
-					$promo_val = intval($parts[0]);
-					$promos[$product['id']] = floor($grouped[$product['id']] / $promo_val);
+
+			$debug = [];
+
+			// appy promo qunatities
+			foreach($carro as $key => $item) {
+				$promo = $item['promo'];
+				if (!empty($promo)) {
+					$debug[] = "{$item['name']} ({$promo})";
+					$promos = $groups[$promo];
+					$parts = explode('x', $promo);
+					$promo_key = intval($parts[0]);
+					$promo_val = intval($parts[1]);
+					if (count($promos) >= $promo_key) {
+						$debug[] = "applies bc promo list is: ".count($promos);
+						$sorted = array_column($promos, 'price');
+						array_multisort($sorted, SORT_DESC, $promos);
+						$offset = $promo_key - $promo_val;
+						//$remove = $sorted[count($sorted) - 1];
+						$frees = array_slice($promos, count($promos) - $offset, $offset);
+						$debug[] = "items to free:".count($frees);
+						foreach ($frees as $j => $free) {
+							foreach ($carro as $k => $i) {
+								if(intval($i['id']) === intval($free['id'])) {
+									$carro[$k]['old_price'] = $i['price'];
+									$carro[$k]['price'] = 0;
+									$carro[$k]['promo_enabled'] = 1;
+									$debug[] = "setting free {$i['name']} ({$i['id']})";
+									foreach ($promos as $l => $p) {
+										if (intval($p['id']) === intval($free['id'])) {
+											$debug[] = "remove from promos id ".$p['id'];
+											unset($groups[$promo][$l]);
+										}
+										if (intval($p['id']) === intval($i['id'])) {
+											$debug[] = "remove from promos id ".$p['id'];
+											unset($groups[$promo][$l]);
+										}
+									}									
+								}
+							}
+						}
+					}
+					// $carro[$key]['']
+					// $groups[$item['promo']]-= $promo_val;
 				}
 			}
 		}
-		/*set promos prices if exists */
-		foreach($carro as $key => $product) {
-			/*product has promo, check if applies*/
-			if (!empty($product['promo'])) {
-				$parts = explode('x', $product['promo']);
+
+		if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+			file_put_contents(__DIR__.'/../logs/sorted.json', json_encode($debug, JSON_PRETTY_PRINT));
+		}
+
+
+		/*count promos */
+		/*
+		foreach($carro as $item) {
+			if (!empty($item['promo'])) {
+				if (!isset($promos[$item['promo']])) {
+					$parts = explode('x', $item['promo']);
+					$promo_val = intval($parts[0]);
+					$promos[$item['promo']] = floor($grouped[$item['promo']] / $promo_val);
+				}
+			}
+		} */
+		/*set promos prices if exist */
+		/*
+		foreach($carro as $key => $item) {
+			if (!empty($item['promo'])) {
+				$parts = explode('x', $item['promo']);
 				$promo_val = intval($parts[0]);
 				$promo_min = intval($parts[1]);
-				if ($promos[$product['id']]) {
-					if (!isset($product['old_price'])) {
-	          $carro[$key]['old_price'] = $product['price'];
-	          $carro[$key]['price'] = round($promo_min / $promo_val * $product['price']);
-	          error_log('[carrito] '.$product['price']);
-						if (!isset($counted[$product['id']])) {
-							$counted[$product['id']] = 0;
+				if ($promos[$item['id']]) {
+					if (!isset($item['old_price'])) {
+	          $carro[$key]['old_price'] = $item['price'];
+	          $carro[$key]['price'] = round($promo_min / $promo_val * $item['price']);
+	          error_log('[carrito] '.$item['price']);
+						if (!isset($counted[$item['id']])) {
+							$counted[$item['id']] = 0;
 						}
-						$counted[$product['id']]++;
-						if ($counted[$product['id']] % $promo_val === 0) {
-							$promos[$product['id']]--;
+						$counted[$item['id']]++;
+						if ($counted[$item['id']] % $promo_val === 0) {
+							$promos[$item['id']]--;
 						}
 					}
 				} else {
-					if (isset($product['old_price'])) {
-						$carro[$key]['price'] = $product['old_price'];
+					if (isset($item['old_price'])) {
+						$carro[$key]['price'] = $item['old_price'];
 						unset($carro[$key]['old_price']);
 					}					
 				}
 			}
-			if (empty($product['old_price']) && !empty($product['discount']) && (float)@$product['discount']>0) {
+			*/
+			/* if (empty($product['old_price']) && !empty($product['discount']) && (float)@$product['discount']>0) {
 				$product['old_price'] = $product['price'];
         $product['price'] = $product['discount'];
-      }			
-		}
+      }	
+		}*/		
 		// error_log('[carrito] '.json_encode($carro));
 		return $carro;
 	}

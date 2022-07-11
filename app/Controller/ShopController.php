@@ -474,7 +474,8 @@ class ShopController extends AppController {
 			'conditions' => [
 				'or' => [
 					'Product.name LIKE' => "%$q%",
-					'Product.desc LIKE' => "%$q%"
+					'Product.desc LIKE' => "%$q%",
+					'Product.promo' => "$q"
 				],
 				'stock_total > ' => 0
 			],

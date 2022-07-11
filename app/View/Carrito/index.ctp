@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-md-12 is-hidden shipping-price-min-alert animated">
 			<div class="shipping-price-min-text">
-				<span class="shipping-price-min-alert-text"><?= $text_shipping_min_price ?></span>
+				<span><?= $text_shipping_min_price ?></span>
 			</div>		
 		</div>
 		<div class="col-md-12" id="siguiente-block">
@@ -40,7 +40,7 @@
 		          $number_disc = (int)@$product['discount_label_show'];
 		        }
 
-		        $discount_flag = (@$product['category_id']!='134' && !empty($number_disc))?'<div class="ribbon bottom-left small"><span>'.$number_disc.'% OFF</span></div>':'';
+		        // $discount_flag = (@$product['category_id']!='134' && !empty($number_disc))?'<div class="ribbon bottom-left small"><span>'.$number_disc.'% OFF</span></div>':'';
 
 						$item_url = $this->Html->url(array(
               'controller' => 'shop',
@@ -53,7 +53,14 @@
 						echo '<div class="help"><span>MODIFICAR</span></div>';
 						echo '<div class="carrito-item-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
-						echo "<div class='cart-img'>" . $discount_flag;
+						echo "<div class='cart-img'>";
+						if ($product['discount_label_show']) {
+							if ($product['price']) {
+								echo '<div class="ribbon bottom-left small"><span>'.$product['discount_label_show'].'% OFF</span></div>';
+							} else {
+								echo '<div class="ribbon bottom-left small"><span>GRATIS</span></div>';
+							}
+						}
 						if ($product['promo'] !== '') {
 							// $promosaved+= (float) $product['old_price'] - $product['price'];
 							$reached = isset($product['promo_enabled']) && $product['promo_enabled']?'':' disable';
