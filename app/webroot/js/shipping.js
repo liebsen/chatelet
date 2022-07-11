@@ -59,7 +59,7 @@ $(function(){
 				}
 				var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
 				json.rates.forEach(rate => {
-					if (!isNan(rate.price)) {
+					if (!isNaN(rate.price)) {
 						rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')"><span class="text-uppercase">$${parseInt(rate.price)}</span></div></li>`
 					}
 				})
