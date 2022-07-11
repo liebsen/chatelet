@@ -159,6 +159,7 @@ $(document).ready(function() {
 	});
 
 	$(".add.agregar-carro").click(function(e) {
+		e.preventDefault()
 		//this = e.target;
 		var data = {
 			count: parseInt($('.product-count').val()),
@@ -171,15 +172,13 @@ $(document).ready(function() {
 		if (!isGiftCard){
 			// console.log(data.color, data.color_code, data.size)
 			if ((!data.color && !data.color_code) || !data.size) {
-				document.querySelector('.div_color_products').classList.remove('flash')
-				document.querySelector('.p-select').classList.remove('flash')				
+				document.querySelector('.article-tools').classList.remove('fadeIn', 'flash')
 				setTimeout(() => {
-					document.querySelector('.div_color_products').classList.add('flash')
-					document.querySelector('.p-select').classList.add('flash')
+					document.querySelector('.article-tools').classList.add('flash')
 				}, 10)
-				return $.growl.error({
-					title: '',
-					message: 'Por favor seleccione un color y un talle'
+				return $.growl.warning({
+					title: 'Talle y color',
+					message: 'Por favor seleccione un talle y un color'
 				});
 			}
 

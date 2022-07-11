@@ -65,7 +65,7 @@
             <ul class="dropdown-menu">
                <li>
                  <div id="login-panel">
-                  <div id="control-panel">
+                  <div class="control-panel">
                     <p class="title">Panel de Usuario</p>
                     <div id="user-data">
                       <div id="user-name"><?php echo $user['name'] . " " . $user['surname']; ?></div>
@@ -111,7 +111,7 @@
             <a href="#" class="dropdown-toggle gotocart shop js-activated" data-toggle="dropdown" data-hover="dropdown">Mi pedido</a>
             <ul class="dropdown-menu">
               <li>
-                <div>
+                <div class="control-panel">
                 <?php if ($this->Session->check('Carro')): ?>
                   <p class="title">Mi Carrito</p>
                 <?php else: ?>
@@ -140,9 +140,13 @@
                   </p>
                   <p class="bottom">
                     <?php
-                      echo $this->Html->link('Modificar', array(
+                      echo $this->Html->link('<span class="fa fa-pencil"></span>', array(
                         'controller' => 'carrito',
                         'action' => 'index'
+                        ),
+                        array(
+                          'class' => 'pencil',
+                          'escape' => false
                         )
                       );
                     ?>
@@ -152,7 +156,7 @@
                             'controller' => 'carrito',
                             'action' => 'index'
                           ), array(
-                            'class' => 'pink pay',
+                            'class' => 'right'
                           )
                         );
                       ?>

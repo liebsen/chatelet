@@ -153,14 +153,14 @@ html, body {
 	min-height: 3.25rem;
 }
 
-.dropdown-menu .bottom > .right {
+/* .dropdown-menu .bottom > .right {
 	background-color: #e10c76;
 	color: #FFFFFF;
 	border-radius: 5px;
 	padding: 0.25rem 1rem;
 	font-size: 1rem;
 	font-weight: 800;
-}
+} */
 
 .modal-body > form {
   padding: 1rem;
@@ -270,8 +270,9 @@ html, body {
 	padding: 0 10px;
 }
 
-#control-panel {
-	padding: 5px 10px;
+.control-panel {
+	padding: 0.25rem 0.75rem;
+	min-width: 20rem;
 }
 
 #user-data {

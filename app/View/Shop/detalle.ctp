@@ -53,7 +53,7 @@
         </div>
         <div class="col-md-5 col-sm-7">
              <div class="is-product-photo">
-                <?php if ($product['discount_label_show'] !== '') :?>
+                <?php if (intval($product['discount_label_show']) > 0) :?>
                     <div class="ribbon large bottom-left small"><span><?= $product['discount_label_show'] ?>% OFF</span></div>
                 <?php endif ?>
                 <?php if ($product['promo'] !== '') :?>
@@ -131,42 +131,44 @@
                 <?php endif;?>
                 <?php if (!$isGiftCard): ?>
                     <!--h2>Color</h2-->
-                    <div class="field">
-                       <div class="btn-group inline-block div_color_products animated" data-toggle="buttons">
-                            <?php  foreach ($colors as $i => $color) {
-                                        $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
-                                        $style = (empty($color['images']))?'oldSelectColor':'';
-                                        echo '<label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
-                                        
-                                        echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
-                                        if (!empty($color['images'])) {
-                                            $image = explode(';', $color['images']);
-                                            foreach ($image as $kk => $vv) {
-                                                if (!empty($vv)) {
-                                                    $image[0] = $vv;
-                                                    break;
+                    <div class="article-tools animated fadeIn">
+                        <div class="field">
+                           <div class="btn-group inline-block div_color_products animated fadeIn" data-toggle="buttons">
+                                <?php  foreach ($colors as $i => $color) {
+                                            $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
+                                            $style = (empty($color['images']))?'oldSelectColor':'';
+                                            echo '<label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
+                                            
+                                            echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
+                                            if (!empty($color['images'])) {
+                                                $image = explode(';', $color['images']);
+                                                foreach ($image as $kk => $vv) {
+                                                    if (!empty($vv)) {
+                                                        $image[0] = $vv;
+                                                        break;
+                                                    }
                                                 }
+                                                echo '<div class="color-option" style="background-image: url('.Configure::read('imageUrlBase').$image[0].')"></div>';
+                                            } else {
+                                                echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
                                             }
-                                            echo '<div class="color-option" style="background-image: url('.Configure::read('imageUrlBase').$image[0].')"></div>';
-                                        } else {
-                                            echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
-                                        }
-                                        echo "<small>".$color['alias']."</small>";
-                                    echo '</label>';
-                                }
-                            ?>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="p-select animated delay">
-                            <select id="size" name="size">
-                                <option value="">Talle</option>
-                                <?php
-                                    foreach ($sizes as $size) {
-                                        echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
+                                            echo "<small>".$color['alias']."</small>";
+                                        echo '</label>';
                                     }
                                 ?>
-                            </select>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="p-select">
+                                <select id="size" name="size">
+                                    <option value="">Talle</option>
+                                    <?php
+                                        foreach ($sizes as $size) {
+                                            echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
+                                        }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="marginTop">
@@ -264,7 +266,7 @@
                     if(!$stock){ ?>
                      <div class="col-md-4 col-sm-6">
                         <a href="<?php echo $url ?>" >
-                            <?php if ($alt_product['discount_label_show'] !== '') :?>
+                            <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
                                 <div class="ribbon bottom-left small"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
                             <?php endif ?>
                             <?php if ($alt_product['promo'] !== '') :?>
@@ -281,7 +283,7 @@
 
                       <div data-id="<?=$alt_product['id']?>" class="col-md-4 col-sm-6 add-no-stock">
                         <a href="<?php echo $url ?>">
-                            <?php if ($alt_product['discount_label_show'] !== '') :?>
+                            <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
                                 <div class="ribbon bottom-left small sp1"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
                             <?php endif ?>
                             <?php if ($alt_product['promo'] !== '') :?>
