@@ -32,7 +32,7 @@
 					$total = 0;
 					// $promosaved = 0;
 
-					foreach ($carrosorted as $product) {
+					foreach ($sorted as $product) {
 						$total+= $product['price'];
 						if (!isset($product['color'])) $product['color'] = '';
 						if (!isset($product['size'])) $product['size'] = '';
