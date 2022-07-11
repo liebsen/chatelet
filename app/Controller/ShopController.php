@@ -63,7 +63,7 @@ class ShopController extends AppController {
         'altoCm' => 1,
 				'anchoCm' => 2,
 				'largoCm' => 1.5,
-        'pesoAforado' => 5,
+        // 'pesoAforado' => 5,
         'valorDeclarado' => 1200
 	    )
 		);

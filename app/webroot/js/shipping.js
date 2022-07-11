@@ -59,7 +59,9 @@ $(function(){
 				}
 				var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
 				json.rates.forEach(rate => {
-					rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')"><span class="text-uppercase">$${parseInt(rate.price)}</span></div></li>`
+					if (!isNan(rate.price)) {
+						rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')"><span class="text-uppercase">$${parseInt(rate.price)}</span></div></li>`
+					}
 				})
 				rates+= `</ul>`
 				document.querySelector('.shipping-block .slot').innerHTML = rates
