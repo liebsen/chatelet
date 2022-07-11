@@ -1118,12 +1118,14 @@ class CarritoController extends AppController
 					$carro[$key]['old_price'] = $item['price'];
 	        $carro[$key]['price'] = $item['discount'];
 	      }
+
+	      $carro[$key]['uid'] = $key;
 			
 				if (!isset($groups[$item['promo']])) {
 					// $groups[$item['promo']] = [];
 					$groups[$item['promo']] = [];
 				}
-				$groups[$item['promo']][] = $item;
+				$groups[$item['promo']][] = $carro[$key];
 				// $groups[$item['promo']]++;
 			}
 
@@ -1134,41 +1136,39 @@ class CarritoController extends AppController
 				$promo = $item['promo'];
 				if (!empty($promo)) {
 					$debug[] = "{$item['name']} ({$promo})";
-					$promos = $groups[$promo];
 					$parts = explode('x', $promo);
 					$promo_key = intval($parts[0]);
 					$promo_val = intval($parts[1]);
-					if (count($promos) >= $promo_key) {
-						$debug[] = "applies bc promo list is: ".count($promos);
-						$sorted = array_column($promos, 'price');
-						array_multisort($sorted, SORT_DESC, $promos);
+					if (count($groups[$promo]) > $promo_key) {
+						$debug[] = "applies bc promo list is: ".count($groups[$promo]);
+						$sorted = array_column($groups[$promo], 'price');
+						array_multisort($sorted, SORT_DESC, $groups[$promo]);
 						$offset = $promo_key - $promo_val;
 						//$remove = $sorted[count($sorted) - 1];
-						$frees = array_slice($promos, count($promos) - $offset, $offset);
+						$refs = array_slice($groups[$promo], 0, $promo_val);
+						$refs_ids = [];
+						foreach ($refs as $ref) {
+							$refs_ids[] = $ref['id'];
+						}
+						$frees = array_slice($groups[$promo], count($groups[$promo]) - $offset, $offset);
 						$debug[] = "items to free:".count($frees);
 						foreach ($frees as $j => $free) {
 							foreach ($carro as $k => $i) {
-								if(intval($i['id']) === intval($free['id'])) {
+								if($i['uid'] === $free['uid']) {
+									$refs_ids[] = $free['uid'];
 									$carro[$k]['old_price'] = $i['price'];
 									$carro[$k]['price'] = 0;
 									$carro[$k]['promo_enabled'] = 1;
-									$debug[] = "setting free {$i['name']} ({$i['id']})";
-									foreach ($promos as $l => $p) {
-										if (intval($p['id']) === intval($free['id'])) {
-											$debug[] = "remove from promos id ".$p['id'];
-											unset($groups[$promo][$l]);
-										}
-										if (intval($p['id']) === intval($i['id'])) {
-											$debug[] = "remove from promos id ".$p['id'];
-											unset($groups[$promo][$l]);
-										}
-									}									
+									$debug[] = "setting free {$i['name']} ({$i['uid']})";
+									$groups[$promo] = array_filter($groups[$promo], function($item) use ($refs_ids) {
+										return !in_array($item['uid'], $refs_ids);
+									});
+									$debug[] = "(1)remove from promos id ".implode('-', $refs_ids);
+									$debug[] = "(1)promos count ".count($groups[$promo]);
 								}
 							}
 						}
 					}
-					// $carro[$key]['']
-					// $groups[$item['promo']]-= $promo_val;
 				}
 			}
 		}

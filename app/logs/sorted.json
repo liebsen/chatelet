@@ -1,10 +1,16 @@
 [
     "POLERA COLLETE (2x1)",
-    "applies bc promo list is: 2",
+    "applies bc promo list is: 4",
     "items to free:1",
-    "setting free REMERA AYLIN (4250)",
-    "remove from promos id 4250",
-    "remove from promos id 4250",
+    "setting free REMERA AYLIN (1)",
+    "(1)remove from promos id 4254-1",
+    "(1)promos count 3",
     "REMERA AYLIN (2x1)",
-    "SACO HANA (3x2)"
+    "applies bc promo list is: 3",
+    "items to free:1",
+    "setting free POLERA COLLETE (0)",
+    "(1)remove from promos id 4254-0",
+    "(1)promos count 2",
+    "CHAQUETA ANGELINA (2x1)",
+    "CHAQUETA ANGELINA (2x1)"
 ]
