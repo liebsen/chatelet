@@ -260,7 +260,7 @@ class AdminController extends AppController {
 	private function add_order_andreani ($sale) {
     $mapper = $this->Package->findById($sale['package_id']);
     $package = @$mapper['Package'];
-		$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
+		$ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), getenv('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
 		$orden = [
 	    'contrato' => getenv('ANDREANI_CONTRATO'),
 	    'origen' => [
@@ -353,7 +353,7 @@ class AdminController extends AppController {
 		}
 
 		$response = $ws->addOrden($orden);
-		file_put_contents(__DIR__.'/../logs/'.@$sale['id'].'_'.date('YmdHi').'.json', json_encode($response, JSON_PRETTY_PRINT));
+		file_put_contents(__DIR__.'/../logs/'.@$sale['id'].'_response.json', json_encode($response, JSON_PRETTY_PRINT));
 
 		if (!is_null($response)) {
 			$nroEnvio = @$response->bultos[0]->numeroDeEnvio;
@@ -362,8 +362,8 @@ class AdminController extends AppController {
 	    $t = @$this->Sale->save($sale);
 		}
 
-	  $sale['raw_xml'] = @$response->detail;
-		file_put_contents(__DIR__.'/../logs/'.@$sale['id'].'_'.date('YmdHi').'.json', json_encode($orden, JSON_PRETTY_PRINT));
+	  $sale['raw_xml'] = @$response->detail ?: @$response->message;
+		file_put_contents(__DIR__.'/../logs/'.@$sale['id'].'_orden.json', json_encode($orden, JSON_PRETTY_PRINT));
 
    	return $sale;   
 	}
@@ -451,7 +451,7 @@ class AdminController extends AppController {
 
 				// etiquetas
 				if ($sale['shipping'] == 'andreani') {
-					$ws = new Andreani(getenv('ANDREANI_USUARIO'), env('ANDREANI_CLAVE'), env('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
+					$ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), getenv('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
 
 					$response = $ws->getEtiqueta(@$sale['def_orden_tracking'], Andreani::ETIQUETA_ESTANDAR);
 					if (!is_null($response) && isset($response->pdf)) {

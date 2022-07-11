@@ -313,7 +313,7 @@ $(document).ready(function() {
 		}
 		addCart(data, e.target, 'Modificando...')
 	})
-
+	
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	if (carrito.cargo === 'takeaway' && carrito.store.length) {
 		$(`.takeaway-options li[store="${carrito.store}"]`).click()

@@ -20,6 +20,10 @@ $(function(){
 			$('.cost_delivery').text( formatNumber(cost))
 		}
 
+	  var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
+	  preferences.cargo = 'shipment'
+	  localStorage.setItem('carrito', JSON.stringify(preferences))
+
 		let total = formatNumber(price)
 		let info = $(e).data('info')
 		fxTotal(total)
@@ -79,6 +83,10 @@ $(function(){
 					var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 					if (carrito.cargo === 'shipment' && carrito.shipping) {
 						$(`.shipping-options li[shipping="${carrito.shipping}"]`).click()
+					} else {
+						if (json.rates.length === 1) {
+							$(`.shipping-options li:first-child`).click()
+						}
 					}
 				}, 750)
 			} else {
