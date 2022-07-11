@@ -218,7 +218,7 @@ class CarritoController extends AppController
 		]);
 		$map = $this->Setting->findById('carrito_takeaway_text');
  		$carrito_takeaway_text = $map['Setting']['extra'];		
-		$this->set('carrosorted', $this->cart_sort());
+		$this->set('carrosorted', $this->sort());
 		$this->set('stores', $stores);
 		$this->set('carrito_takeaway_text', $carrito_takeaway_text);
 		$this->set('freeShipping', $freeShipping);
@@ -972,7 +972,7 @@ class CarritoController extends AppController
 	public function sorted() {
 		$this->autoRender = false;
 		echo '<pre>';
-		var_dump($this->cart_sort());
+		var_dump($this->sort());
 	}
 
 	public function add() {
@@ -1028,8 +1028,8 @@ class CarritoController extends AppController
 				}
 				// $carro = array_fill(count($carro), $this->request->data['count'], $product);
 				// error_log('[carrito] '.json_encode($filter));
-				// error_log('[carrito] '.json_encode($this->cart_filter($filter)));
-				$carro = $this->cart_filter($filter);
+				// error_log('[carrito] '.json_encode($this->filter($filter)));
+				$carro = $this->filter($filter);
 
 				if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 					file_put_contents(__DIR__.'/../logs/carrito.json', json_encode($carro, JSON_PRETTY_PRINT));
@@ -1042,7 +1042,7 @@ class CarritoController extends AppController
 		return json_encode(array('success' => false));
 	}
 
-	private function cart_sort() {
+	private function sort() {
 		$carro = $this->Session->read('Carro');
 		$grouped = [];
 		$sort = [];
@@ -1090,7 +1090,7 @@ class CarritoController extends AppController
 		return $sort;
 	}
 
-	private function cart_filter($carro) {
+	private function filter($carro) {
 		if (empty($carro)) {
 			$carro = $this->Session->read('Carro');
 		}
@@ -1248,9 +1248,9 @@ class CarritoController extends AppController
 			}
 			$i++;
 		}
-		// $this->Session->write('Carro', $this->get_cart_computed($aux));
+		// $this->Session->write('Carro', $this->get_computed($aux));
 		if (count($data)) {
-			$this->Session->write('Carro', $this->cart_filter($data));
+			$this->Session->write('Carro', $this->filter($data));
 		} else {
 			$this->Session->delete('Carro');
 		}
