@@ -529,6 +529,7 @@ class AdminController extends AppController {
 
 			//Info Mergeapp/webroot/css/custom.css
 			$sale['collection']['deliver_cost'] = 0;
+			$sale['collection']['deliver_cost_original'] = 1;
 			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
 			if(!empty($local_desc)){
 				$sale['collection']['sale_products'] = Hash::extract($local_desc, '{n}.SaleProduct.description');
@@ -598,6 +599,7 @@ class AdminController extends AppController {
 
 			//Info metaphone(str)rgeapp/webroot/css/custom.css
 			$sale['collection']['deliver_cost'] = 0;
+			$sale['collection']['deliver_cost_original'] = 1;
 			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
 			if(!empty($local_desc)){
 				$sale['collection']['sale_products'] = Hash::extract($local_desc, '{n}.SaleProduct.description');
@@ -611,7 +613,7 @@ class AdminController extends AppController {
 				$sale_id = (!empty($value['SaleProduct']['sale_id']))?$value['SaleProduct']['sale_id']:0;
 				$local_sale = $this->Sale->findById($sale_id);
 				$sale['collection']['deliver_cost'] = (!empty($local_sale['Sale']['deliver_cost']))?$local_sale['Sale']['deliver_cost']:0;
-				$sale['collection']['deliver_cost_original'] = (!empty($local_sale['Sale']['deliver_cost']))?$local_sale['Sale']['deliver_cost']:0;
+				$sale['collection']['deliver_cost_original'] = (!empty($local_sale['Sale']['deliver_cost_original']))?$local_sale['Sale']['deliver_cost_original']:0;
 				$sale['local_sale'] = $local_sale['Sale'];
 			}
 		}
