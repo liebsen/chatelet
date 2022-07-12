@@ -49,6 +49,7 @@
         "original_price": "3990",
         "old_price": 7980,
         "uid": 1,
-        "count": 2
+        "count": 2,
+        "promo_enabled": 1
     }
 }

@@ -1044,6 +1044,9 @@ class CarritoController extends AppController
 					$sort[$criteria]['count'] = $groups[$criteria];
 					$sort[$criteria]['price']+= $item['price'];
 					$sort[$criteria]['old_price']+= $item['old_price'];
+					if (!empty($item['promo_enabled'])) {
+						$sort[$criteria]['promo_enabled'] = $item['promo_enabled'];
+					}
 				}			
 			}
 		}
