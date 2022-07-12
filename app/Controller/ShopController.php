@@ -54,7 +54,7 @@ class ShopController extends AppController {
 	public function test_andreani() {
 		$this->autoRender = false;
 		echo '<h4>Cotizaciones Andreani</h4>
-		<p>Las cotizaciones se realizan en ambiente real de Andreani</p>';
+		<p>Las cotizaciones se realizan en ambiente ' . (getenv('ANDREANI_DEBUG') ? 'pruebas': 'real' ) .' de Andreani</p>';
     $ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), getenv('ANDREANI_CLIENTE'), getenv('ANDREANI_DEBUG'));
 		$bultos = array(
 	    array(
