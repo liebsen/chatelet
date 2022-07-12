@@ -147,10 +147,10 @@
 							</div>
 							<?php endif ?>
 							<div class="field text-right products-total">
-								<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))) ?></div>
+								<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= str_replace(',00','',$this->Number->currency($total + $promosaved, 'ARS', array('places' => 2))) ?></div>
 							</div>
 							<div class="field text-right coupon-discount <?= $promosaved ? '' : 'hidden' ?> animated speed">
-								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="promo-code"></span> $<span class="coupon_bonus"><?= $promosaved ?: 0 ?></span><!--span>.00</span--></div>
+								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="promo-code"></span> <span class="coupon_bonus"><?= str_replace(',00','',$this->Number->currency($promosaved, 'ARS', array('places' => 2))) ?></span><!--span>.00</span--></div>
 							</div>
 							<hr>
 							<div class="field text-right">
