@@ -1371,11 +1371,11 @@ a.tile:hover {
 }
 
 .switch-success span {
-    border-color: #b1cc16;
+    border-color: #01c801;
 }
 
 .switch-success input:checked + span {
-    background-color: #b1cc16;
+    background-color: #01c801;
 }
 
 .switch-warning span {
@@ -1623,7 +1623,7 @@ li.plan-featured h1 {
 }
 
 .inbox-list a.unread {
-    border-color: #b1cc16;
+    border-color: #01c801;
 }
 
 .inbox-list-username,
@@ -1704,7 +1704,7 @@ li.plan-featured h1 {
 }
 
 .chat-people a.chat-online {
-    border-left: 5px solid #b1cc16;
+    border-left: 5px solid #01c801;
 }
 
 .chat-people a.chat-away {
@@ -2061,7 +2061,7 @@ a.text-info:focus {
 .text-success,
 a.text-success:hover,
 a.text-success:focus {
-    color: #b1cc16;
+    color: #01c801;
 }
 
 .text-black,
@@ -2128,7 +2128,7 @@ a.text-black:focus {
 .badge-success[href],
 .badge-success[href]:hover,
 .badge-success[href]:focus {
-    background-color: #b1cc16;
+    background-color: #01c801;
 }
 
 .label-info,
@@ -3036,7 +3036,7 @@ table.dataTable thead .sorting:before {
 }
 
 .btn-success {
-    background: #b1cc16;
+    background: #01c801;
 }
 
 .btn-danger,
@@ -3279,7 +3279,7 @@ table.dataTable thead .sorting:before {
 }
 
 .progress .progress-bar-success {
-    background-color: #b1cc16;
+    background-color: #01c801;
 }
 
 .progress .progress-bar-info {
