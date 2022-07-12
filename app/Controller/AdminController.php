@@ -611,6 +611,7 @@ class AdminController extends AppController {
 				$sale_id = (!empty($value['SaleProduct']['sale_id']))?$value['SaleProduct']['sale_id']:0;
 				$local_sale = $this->Sale->findById($sale_id);
 				$sale['collection']['deliver_cost'] = (!empty($local_sale['Sale']['deliver_cost']))?$local_sale['Sale']['deliver_cost']:0;
+				$sale['collection']['deliver_cost_original'] = (!empty($local_sale['Sale']['deliver_cost']))?$local_sale['Sale']['deliver_cost']:0;
 				$sale['local_sale'] = $local_sale['Sale'];
 			}
 		}

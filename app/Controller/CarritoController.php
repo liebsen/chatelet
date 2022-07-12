@@ -686,7 +686,18 @@ class CarritoController extends AppController
 
 		if(isset($logistic)) {
 			$sale_object['logistic_id'] = $logistic['Logistic']['id'];
-			$sale_object['logistic_id'] = $logistic['Logistic']['id'];
+		}
+
+
+		// Add Delivery
+		$delivery_data = json_decode( $this->deliveryCost($user['postal_address'], $user['shipping']),true);
+		$delivery_cost = 0;
+		if (isset($delivery_data['rates'][0]['price'])) {
+			$delivery_cost = (int) $delivery_data['rates'][0]['price'];
+		}
+
+		if(!empty($delivery_cost)) {
+			$sale_object['deliver_cost_original'] = $delivery_cost;
 		}
 
 		//Register Sale
@@ -791,16 +802,10 @@ class CarritoController extends AppController
 		  }
 	  }
 
-		// Add Delivery
-		$delivery_data = json_decode( $this->deliveryCost($user['postal_address'], $user['shipping']),true);
-		$delivery_cost = 0;
-		if (isset($delivery_data['rates'][0]['price'])) {
-			$delivery_cost = (int) $delivery_data['rates'][0]['price'];
-		}
 
 		//shipping-code 
-		$shipping_price = $this->Setting->findById('shipping_price_min');
-		$freeShipping = intval($total)>=intval($shipping_price['Setting']['value']);
+		$mapper = $this->Setting->findById('shipping_price_min');
+		$freeShipping = intval($total)>=intval($mapper['Setting']['value']);
 
 		if ($user['cargo'] == 'takeaway') {
 			$freeShipping = true;

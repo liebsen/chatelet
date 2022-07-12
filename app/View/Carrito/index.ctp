@@ -98,9 +98,9 @@
 						echo '<br>';
 						echo '<div class="text-right">';
 						if (!empty($product['old_price']) && $product['old_price'] != $product['price']){
-							echo '<span class="old_price text-grey">'. str_replace(',00','',$this->Number->currency($product['old_price'], 'ARS', array('places' => 2))) .'</span>';
+							echo '<span class="old_price text-grey animated fadeIn delay2">'. str_replace(',00','',$this->Number->currency($product['old_price'], 'ARS', array('places' => 2))) .'</span>';
 						}					
-						echo '<span class="price">'. str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))) .'</span>';
+						echo '<span class="price animated fadeIn delay">'. str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))) .'</span>';
 						echo '</div>';
 						echo '<div class="carrito-hide-element">
 							<div class="form-inline">

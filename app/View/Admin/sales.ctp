@@ -123,11 +123,16 @@
                             <p class="text-muted">(Sin Etiqueta)</p>
                         <?php endif ?>
                         <?php 
-                        $defaultCost = 54;
+                        $defaultCost = 1;
                         if (date('Ymd',strtotime($sale['collection']['date_approved'])) > '20161108')
                             $defaultCost=0;
-                        echo " $ ";
-                        echo (!empty($sale['collection']['deliver_cost']))?$sale['collection']['deliver_cost']:$defaultCost ?> <br />
+                        $state = empty($sale['collection']['deliver_cost']) ? 'text-danger' : '';
+                        echo '<p class="'.$state.'"> $';
+                        if (!empty($sale['collection']['deliver_cost_original'])) {
+                            echo (!empty($sale['collection']['deliver_cost_original']))?$sale['collection']['deliver_cost_original']:$defaultCost;
+                        } else {
+                            echo (!empty($sale['collection']['deliver_cost']))?$sale['collection']['deliver_cost']:$defaultCost;
+                        } ?></p>
                         (<?php echo count($sale['collection']['sale_products']) ?> item)
                     </td>
                     <td class="col-xs-1 text-center">
