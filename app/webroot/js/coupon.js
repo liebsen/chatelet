@@ -28,8 +28,8 @@ $(function(){
         }
         total = parseFloat(total).toFixed(2)
         discounted = formatNumber(parseFloat(total_orig - total).toFixed(2))
-
-        $('.coupon_bonus').text( discounted )
+        var prev_discount = parseFloat($('.coupon_bonus').text())
+        $('.coupon_bonus').text( prev_discount + discounted )
         $('.products-total').removeClass('hidden')
         $('.coupon-discount').removeClass('hidden')
         $('.coupon-discount').addClass('fadeInRight')

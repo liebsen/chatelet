@@ -32,7 +32,7 @@
 				  $row = 0;
 					$subtotal = 0;
 					$total = 0;
-					// $promosaved = 0;
+					$promosaved = 0;
 
 					foreach ($sorted as $product) {
 						$total+= $product['price'];
@@ -63,8 +63,10 @@
 								echo '<div class="ribbon bottom-left small"><span>GRATIS</span></div>';
 							}
 						}
-						if ($product['promo'] !== '') {
-							// $promosaved+= (float) $product['old_price'] - $product['price'];
+						if (empty($product['price'])) {
+							$promosaved+= (float) $product['old_price'];
+						}
+						if ($product['promo'] !== '') {							
 							$disable = !isset($product['promo_enabled']) ? ' disable' : '';
 							echo "<div class='ribbon".$disable."'><span>" . $product['promo'] . "</span></div>";
 						}
@@ -123,41 +125,43 @@
 						// echo '<hr>';
 						$row += 1;
 					} ?>
-						<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
-						<input type="hidden" id="subtotal_envio" value="" />
-						<div class="field text-center mb-2 mr-1">
-							<label>
-							  <input type="checkbox" id="regalo" value="1" /><span class="label-text">Es para regalo</span>
-							</label>
-						</div>
-						<?php if($freeShipping):?>
-						<div class="field text-right free-shipping animated speed">
-							<div class="price text-success">
-								<span class="text-weight-thin">Envío </span>
-								<span id="delivery_cp"></span> <span>gratuito</span></div>
-						</div>
-						<?php else: ?>
-						<div class="field text-right delivery-cost hidden animated speed">
-							<div class="price text-dark">
-								<span class="text-weight-thin">Envío </span>
-								<span id="delivery_cp"></span> $<span class="cost_delivery">0</span></div>
-						</div>
-						<?php endif ?>
-						<div class="field text-right products-total">
-							<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))) ?></div>
-						</div>
-						<div class="field text-right coupon-discount hidden animated speed">
-							<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="promo-code"></span> $<span class="coupon_bonus">0</span><!--span>.00</span--></div>
-						</div>
-						<hr>
-						<div class="field text-right">
-							<div class="cost_total-container animated speed fadeIn delay">
-								<!--hr-->
-								<div class="price is-large"><span class="text-weight-thin">Total </span> <span class="cost_total"><?= str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))) ?></span><!--span>.00</span--></div>
+						<div class="animated fadeIn delay2">
+							<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
+							<input type="hidden" id="subtotal_envio" value="" />
+							<div class="field text-center mb-2 mr-1">
+								<label>
+								  <input type="checkbox" id="regalo" value="1" /><span class="label-text">Es para regalo</span>
+								</label>
 							</div>
-						</div>
-						<div class="mobile">
+							<?php if($freeShipping):?>
+							<div class="field text-right free-shipping animated speed">
+								<div class="price text-success">
+									<span class="text-weight-thin">Envío </span>
+									<span id="delivery_cp"></span> <span>gratuito</span></div>
+							</div>
+							<?php else: ?>
+							<div class="field text-right delivery-cost hidden animated speed">
+								<div class="price text-dark">
+									<span class="text-weight-thin">Envío </span>
+									<span id="delivery_cp"></span> $<span class="cost_delivery">0</span></div>
+							</div>
+							<?php endif ?>
+							<div class="field text-right products-total">
+								<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))) ?></div>
+							</div>
+							<div class="field text-right coupon-discount <?= $promosaved ? '' : 'hidden' ?> animated speed">
+								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="promo-code"></span> $<span class="coupon_bonus"><?= $promosaved ?: 0 ?></span><!--span>.00</span--></div>
+							</div>
 							<hr>
+							<div class="field text-right">
+								<div class="cost_total-container animated speed fadeIn delay">
+									<!--hr-->
+									<div class="price is-large"><span class="text-weight-thin">Total </span> <span class="cost_total"><?= str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))) ?></span><!--span>.00</span--></div>
+								</div>
+							</div>
+							<div class="mobile">
+								<hr>
+							</div>
 						</div>
 					</div>
 					<?php else: ?>
@@ -167,7 +171,7 @@
 					<br><br>
 					<?php endif;?>
 				</div>
-				<div class="carrito-col">
+				<div class="carrito-col animated slideInRight">
 				<?php 
 					if (isset($carro) && !empty($carro)) {
 						echo $this->element('shipping', array('freeShipping' => $freeShipping, 'carrito_takeaway_text' => $carrito_takeaway_text));
