@@ -159,9 +159,6 @@
 									<div class="price is-large"><span class="text-weight-thin">Total </span> <span class="cost_total"><?= str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))) ?></span><!--span>.00</span--></div>
 								</div>
 							</div>
-							<div class="mobile">
-								<hr>
-							</div>
 						</div>
 					</div>
 					<?php else: ?>

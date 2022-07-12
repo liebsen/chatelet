@@ -469,7 +469,6 @@ a.pay{
 .shipping-price-min-alert {
 	background-color: #e10d74;
 	margin-bottom: 1rem;
-	border-radius: 0.75rem;
 }
 
 .shipping-price-min-text {
@@ -506,6 +505,7 @@ a.pay{
 		background-size: 25%;
 		background-position: top right;
 		background-image: url('/images/free-shipping-bg.jpg');
+		border-radius: 0.75rem;
 	}	
 	.shipping-price-min-text {
 		padding: 2.5rem 1.5rem;
