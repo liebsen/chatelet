@@ -62,15 +62,15 @@ class CarritoController extends AppController
 		];
 		echo "<pre>";
 
-		$grouped = [];
+		$groups = [];
 		$promos = [];
 		$counted = [];
 		/*count prods */
 		foreach($carro as $product) {
-			if (!isset($grouped[$product['id']])) {
-				$grouped[$product['id']] = 0;
+			if (!isset($groups[$product['id']])) {
+				$groups[$product['id']] = 0;
 			}
-			$grouped[$product['id']]++;
+			$groups[$product['id']]++;
 		}
 		/*count promos */
 		foreach($carro as $product) {
@@ -78,7 +78,7 @@ class CarritoController extends AppController
 				if (!isset($promos[$product['id']])) {
 					$parts = explode('x', $product['promo']);
 					$promo_val = intval($parts[0]);
-					$promos[$product['id']] = floor($grouped[$product['id']] / $promo_val);
+					$promos[$product['id']] = floor($groups[$product['id']] / $promo_val);
 				}
 			}
 		}
@@ -226,10 +226,8 @@ class CarritoController extends AppController
 
 	private function parseTemplate ($str, $data) {
 		$html = $str;
-		$openingTag = "{{";
-		$closingTag = "}}";
     foreach ($data as $key => $value) {
-      $html = str_replace($openingTag . $key . $closingTag, $value, $html);
+      $html = str_replace(["{{" . $key . "}}", "{{ " . $key . " }}"], $value, $html);
     }		
 		return $html;
 	}
@@ -625,23 +623,9 @@ class CarritoController extends AppController
         'largoCm' => (float) $package['height'],
         'altoCm' => (float) $package['depth'],
         'kilos' => (float) $package['weight'] / 1000,
-        // 'volumen' => (integer) $package['width'] * $package['height'] * $package['depth'],
-        // 'pesoAforado' => 5,
         'valorDeclarado' => (integer) $price // $1200
 	    ]
 		];
-		/* $bultos = array(
-		    array(
-		        'volumen' => 200,
-		        'kilos' => 1.3,
-		        'pesoAforado' => 5,
-		        'valorDeclarado' => 1200, // $1200
-		    ),
-		); 
-		echo '<pre>';
-		var_dump($data);
-		var_dump($bultos);
-		*/
 		$cp = (integer) $cp;
 		$response = $ws->cotizarEnvio($cp, getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
 		return isset($response->tarifaConIva) ? $response->tarifaConIva->total : null;
@@ -1007,12 +991,12 @@ class CarritoController extends AppController
 				$product = $product['Product'];
 
 				/* remove all of the kind */
-				$group_criteria = $this->request->data['id'].$this->request->data['size'].$this->request->data['color'].$this->request->data['alias'];
+				$criteria = $this->request->data['id'].$this->request->data['size'].$this->request->data['color'].$this->request->data['alias'];
 				$filter = [];
 
 				if (!empty($carro)) {
 					foreach($carro as $key => $item) {
-						if($group_criteria != $item['id'].$item['size'].$item['color'].$item['alias']) {
+						if($criteria != $item['id'].$item['size'].$item['color'].$item['alias']) {
 							$filter[]= $item;
 						}
 					}
@@ -1044,42 +1028,23 @@ class CarritoController extends AppController
 
 	private function sort() {
 		$carro = $this->Session->read('Carro');
-		$grouped = [];
+		$groups = [];
 		$sort = [];
 		if (!empty($carro)) {
 			foreach($carro as $key => $item) {
-				$group_criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
-				if (!isset($grouped[$group_criteria])) {
-					$grouped[$group_criteria] = 0;
+				$criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
+				if (!isset($groups[$criteria])) {
+					$groups[$criteria] = 0;
 				}
-				$grouped[$group_criteria]++;
-				if ($grouped[$group_criteria] === 1) {
+				$groups[$criteria]++;
+				if ($groups[$criteria] === 1) {
 					$item['count'] = 1;
-					/* if (!empty($item['discount']) && (float)@$item['discount']>0) {
-						$item['old_price'] = $item['price'];
-	          $item['price'] = $item['discount'];
-	        } */
-					$sort[$group_criteria] = $item;
+					$sort[$criteria] = $item;
 				} else {
-					/* if (!empty($item['discount']) && (float)@$item['discount']>0) {
-						$item['old_price'] = $item['price'];
-	          $item['price'] = $item['discount'];
-	        }	*/					
-					$sort[$group_criteria]['count'] = $grouped[$group_criteria];
-					/* $sort[$group_criteria]['price']+= $item['price'];
-					if (!empty($item['discount'])) {
-						$sort[$group_criteria]['old_price']+= $item['discount'];
-					} */
+					$sort[$criteria]['count'] = $groups[$criteria];
+					$sort[$criteria]['price']+= $item['price'];
+					$sort[$criteria]['old_price']+= $item['old_price'];
 				}			
-			}
-			foreach($sort as $key => $item) {
-				if (!empty($item['promo'])) {
-					$parts = explode('x', $item['promo']);
-					$count = intval($parts[0]);
-					if ($item['count'] >= $count) {
-						$sort[$key]['promo_enabled'] = true;
-					}
-				}
 			}
 		}
 
@@ -1135,11 +1100,11 @@ class CarritoController extends AppController
 			foreach($carro as $key => $item) {
 				$promo = $item['promo'];
 				if (!empty($promo)) {
-					$debug[] = "{$item['name']} ({$promo})";
+					$debug[] = "{$item['uid']} - {$item['name']} ({$promo})";
 					$parts = explode('x', $promo);
 					$promo_key = intval($parts[0]);
 					$promo_val = intval($parts[1]);
-					if (count($groups[$promo]) > $promo_key) {
+					if (count($groups[$promo]) >= $promo_key) {
 						$debug[] = "applies bc promo list is: ".count($groups[$promo]);
 						$sorted = array_column($groups[$promo], 'price');
 						array_multisort($sorted, SORT_DESC, $groups[$promo]);
@@ -1147,7 +1112,7 @@ class CarritoController extends AppController
 						$refs = array_slice($groups[$promo], 0, $promo_val);
 						$refs_ids = [];
 						foreach ($refs as $ref) {
-							$refs_ids[] = $ref['id'];
+							$refs_ids[] = $ref['uid'];
 						}
 						$frees = array_slice($groups[$promo], count($groups[$promo]) - $offset, $offset);
 						$debug[] = "items to free:".count($frees);
@@ -1184,7 +1149,7 @@ class CarritoController extends AppController
 				if (!isset($promos[$item['promo']])) {
 					$parts = explode('x', $item['promo']);
 					$promo_val = intval($parts[0]);
-					$promos[$item['promo']] = floor($grouped[$item['promo']] / $promo_val);
+					$promos[$item['promo']] = floor($groups[$item['promo']] / $promo_val);
 				}
 			}
 		} */

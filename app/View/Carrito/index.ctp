@@ -65,11 +65,8 @@
 						}
 						if ($product['promo'] !== '') {
 							// $promosaved+= (float) $product['old_price'] - $product['price'];
-							$reached = isset($product['promo_enabled']) && $product['promo_enabled']?'':' disable';
-							echo "<div class='ribbon".$reached."'><span>" . $product['promo'] . "</span></div>";
-						}
-						if (!empty($product['count']) && $product['count'] > 1){
-							echo '<div class="count-circle"><span>'. $product['count'] .'</span></div>';
+							$disable = !isset($product['promo_enabled']) ? ' disable' : '';
+							echo "<div class='ribbon".$disable."'><span>" . $product['promo'] . "</span></div>";
 						}
             echo '<a href="' . $item_url . '">';
 						// echo '<img src="'.Configure::read('imageUrlBase').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
@@ -81,11 +78,12 @@
 						echo '<span class="name is-carrito">'. $product['name'] . '</span>';
 
 						if (!empty($product['alias'])){
-							echo '<p class="color">Color: <span class="color" color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></p>';
+							echo '<p class="color">Color: <span class="talle" color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></p>';
 						}
 						if (!empty($product['size'])){
 							echo '<p class="color">Talle: <span class="talle">'. $product['size'] .'</span></p>';
 						}
+						echo '<p class="color">Cantidad: <span class="talle">'. $product['count'] .'</span></p>';
 						echo $this->Html->link('<span class="glyphicon glyphicon-trash carrito-hide-element"></span>',
 							array(
 								'controller' => 'carrito',
@@ -100,7 +98,7 @@
 						echo '<br>';
 						echo '<div class="text-right">';
 						if (!empty($product['old_price']) && $product['old_price'] != $product['price']){
-							echo '<span class="old_price text-grey">'. str_replace(',00','',$this->Number->currency($product['old_price'] * $product['count'], 'ARS', array('places' => 2))) .'</span>';
+							echo '<span class="old_price text-grey">'. str_replace(',00','',$this->Number->currency($product['old_price'], 'ARS', array('places' => 2))) .'</span>';
 						}					
 						echo '<span class="price">'. str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))) .'</span>';
 						echo '</div>';
