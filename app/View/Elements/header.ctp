@@ -128,7 +128,8 @@
                           } */
 
                           $total += $producto['price'];
-                          echo '<li>';
+                          $color = empty($producto['price'])?'text-success':'text-dark';
+                          echo '<li class="'.$color.'">';
                             echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. str_replace(',00','',$this->Number->currency($producto['price'], 'ARS', array('places' => 2))) . '</strong>';
                           echo '</li>';
                         }
