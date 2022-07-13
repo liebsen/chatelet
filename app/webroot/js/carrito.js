@@ -155,9 +155,11 @@ var show_cart_item = index => {
 $(document).ready(function() {
 	/* carrito item viewer */
 	$('.carrito-item-row').on('click', function(e) {
-		currentCarritoIndex = [...document.querySelectorAll('.carrito-item-row')].indexOf(this)
-		// var price = $(this).find('#carritoItemCount').val()
-		show_cart_item(currentCarritoIndex)
+		if (e.target.className !== 'glyphicon glyphicon-remove') {
+			currentCarritoIndex = [...document.querySelectorAll('.carrito-item-row')].indexOf(this)
+			// var price = $(this).find('#carritoItemCount').val()
+			show_cart_item(currentCarritoIndex)
+		}
 	})
 	$('#carritoItem .carousel-control.left').on('click', function(e) {
     e.preventDefault()

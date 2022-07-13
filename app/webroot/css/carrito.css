@@ -120,6 +120,12 @@
 	height: 100%;
 }
 
+.carrito-remove {
+	position: absolute;
+	z-index: 20;
+	top: 0.5rem;
+	right: 0.5rem;
+}
 /*
 .text-dark {
 	color: #666!important;

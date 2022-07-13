@@ -52,7 +52,20 @@
               strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
             ));
 						echo '<div class="carrito-item-row is-clickable" product_row>';
-						echo '<div class="help"><span>MODIFICAR</span></div>';
+						echo '<div class="carrito-remove">';
+						echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
+							array(
+								'controller' => 'carrito',
+								'action' => 'remove',
+								$product['id']
+							),
+							array (
+								'class' => 'trash',
+								'escape' => false
+							)
+						);
+						echo '</div>';
+						echo '<div class="help"><span><span class="glyphicon glyphicon-edit"></span> <span> MODIFICAR</span></span></div>';
 						echo '<div class="carrito-item-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
 						echo "<div class='cart-img'>";
@@ -86,17 +99,6 @@
 							echo '<p class="color">Talle: <span class="talle">'. $product['size'] .'</span></p>';
 						}
 						echo '<p class="color">Cantidad: <span class="talle">'. $product['count'] .'</span></p>';
-						echo $this->Html->link('<span class="glyphicon glyphicon-trash carrito-hide-element"></span>',
-							array(
-								'controller' => 'carrito',
-								'action' => 'remove',
-								$product['id']
-							),
-							array (
-								'class' => 'trash',
-								'escape' => false
-							)
-						);
 						echo '<br>';
 						echo '<div class="text-right">';
 						if (!empty($product['old_price']) && $product['old_price'] != $product['price']){
