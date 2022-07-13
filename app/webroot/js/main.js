@@ -8,14 +8,18 @@ let loadMoreSearch = p => {
   apiSearch(localStorage.getItem('lastsearch'))
 }
 
+let strtoFloat = (text) => { 
+  return parseFloat(parseFloat(text.replace('.', '').replace(',', '').replace('$', '')).toFixed(2))
+}
+
 let fxTotal = (total) => {
   $('.cost_total').text( total )
-  document.querySelector('.cost_total-container').classList.remove('fadeIn', 'fadeOut', 'delay')
-  document.querySelector('.cost_total-container').classList.add('hidden')
+  const block = document.querySelector('.cost_total-container')
+  block.classList.remove('fadeIn', 'fadeOut', 'delay')
+  block.classList.add('hidden')
   setTimeout(() => {
-    document.querySelector('.cost_total-container').classList.remove('hidden')
-    document.querySelector('.cost_total-container').classList.add('delay', 'fadeIn')
-    // $('.cost_total-container').removeClass('hidden').css({opacity: 0}).fadeTo('slow', 1)
+    block.classList.remove('hidden')
+    block.classList.add('delay', 'fadeIn')
   }, 100)
 }
 

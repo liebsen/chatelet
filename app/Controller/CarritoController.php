@@ -365,10 +365,12 @@ class CarritoController extends AppController
 						'data' => $item
 					];
 				} else {
+					$date_from = date('j M Y', strtotime($item['date_from']));
+					$date_until = date('j M Y', strtotime($item['date_until']));
 					return (object) [
 						'status' => 'error',
 						'title' => "Restricción fecha",
-						'message' => "Esta promo solo es válida para fecha {$item['date_from']} / {$item['date_until']}"
+						'message' => "Esta promo solo es válida para periodo {$date_from} al {$date_until}"
 					];
 				}
 				break;

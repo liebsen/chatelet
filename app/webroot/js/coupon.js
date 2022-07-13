@@ -27,12 +27,14 @@ $(function(){
           total-= discount
         }
         total = parseFloat(total).toFixed(2)
-        discounted = formatNumber(parseFloat(total_orig - total).toFixed(2))
-        var prev_discount = parseFloat($('.coupon_bonus').text())
-        $('.coupon_bonus').text( prev_discount + discounted )
+        discounted = parseFloat(parseFloat(total_orig - total).toFixed(2))
+        discounted = formatNumber(discounted)
+
+        $('.coupon_bonus').text( discounted )
         $('.products-total').removeClass('hidden')
         $('.coupon-discount').removeClass('hidden')
         $('.coupon-discount').addClass('fadeInRight')
+
 
         // console.log(parseFloat($('#cost').text()));
         $('.input-coupon').removeClass('wrong');
@@ -57,7 +59,6 @@ $(function(){
         $('.input-coupon').addClass('wrong');
         $('#cost').text( '0' );
         format_total = formatNumber(parseFloat(total_orig) + parseFloat(delivery_cost))            
-        console.log(2, format_total)
         fxTotal(formatNumber(format_total), true)
         timeout = setTimeout( `onErrorAlert('${json.title}', '${json.message}')` , 200);
       }
