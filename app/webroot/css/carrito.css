@@ -99,9 +99,10 @@
 	transition: all 0.25s ease;
 }
 
-.carrito-item-row .help > span {
+.carrito-item-row .help > div {
 	padding: 0.5rem;
-	font-size: 1rem;
+	font-size: 1.25rem;
+	font-style: italic;
 	border-radius: 5px;
 	background-color: #e10d74;
 	color: white;

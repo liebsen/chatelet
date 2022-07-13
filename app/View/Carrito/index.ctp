@@ -52,7 +52,7 @@
               strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
             ));
 						echo '<div class="carrito-item-row is-clickable" product_row>';
-						echo '<div class="carrito-remove">';
+						echo '<div class="carrito-remove" title="Eliminar del carrito">';
 						echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
 							array(
 								'controller' => 'carrito',
@@ -65,7 +65,7 @@
 							)
 						);
 						echo '</div>';
-						echo '<div class="help"><span><span class="glyphicon glyphicon-edit"></span> <span> MODIFICAR</span></span></div>';
+						echo '<div class="help" title="Modificar este item del carrito"><div><span class="glyphicon glyphicon-edit"></span> <span> modificar</span></div></div>';
 						echo '<div class="carrito-item-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
 						echo "<div class='cart-img'>";
