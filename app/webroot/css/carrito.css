@@ -467,7 +467,7 @@ a.pay{
 }
 
 .shipping-price-min-alert {
-	background-color: #e10d74;
+	background-color: #808080;
 	margin-bottom: 1rem;
 }
 
@@ -479,7 +479,7 @@ a.pay{
 	font-size: 1.25rem;
 	line-height: 1.5;
 	padding: 1.5rem;
-	font-weight: 800;
+	font-weight: 400;
 	color: white;
 	text-shadow: 0 0 5px rgba(255,255,255,0.25);
 }
