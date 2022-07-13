@@ -214,7 +214,6 @@
 </section>
 
 
-
 <section id="productOptions">
     <div class="wrapper">
         <div class="row">
@@ -277,7 +276,7 @@
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                         </a>
                         <div class="name"><?= $alt_product['name'] ?></div>
-                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>"><?= str_replace(',00','',$this->Number->currency($alt_product['price'], 'ARS', array('places' => 2))) ?></div>
+                        <div class="price text-theme"><?= str_replace(',00','',$this->Number->currency($alt_product['price'], 'ARS', array('places' => 2))) ?></div>
                     </div>
                     <?php }else{ ?>
 
@@ -293,7 +292,7 @@
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                         </a>
                         <div class="name"><?= $alt_product['name'] ?></div>
-                        <div class="price<?= $alt_product['promo'] !== '' ? ' text-theme' : '' ?>"><?= str_replace(',00','',$this->Number->currency($alt_product['price'], 'ARS', array('places' => 2))) ?></div>
+                        <div class="price text-theme"><?= str_replace(',00','',$this->Number->currency($alt_product['price'], 'ARS', array('places' => 2))) ?></div>
                     </div>
                    <?php }endforeach; ?>
                 </div>
