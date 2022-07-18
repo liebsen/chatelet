@@ -1205,9 +1205,6 @@ class CarritoController extends AppController
 		$i = 0;
 		$removed = 0;
 		foreach ($carro as $key => $item) {
-			error_log($item['id']);
-			error_log($item['id'] !== $id);
-			error_log('.-----------');
 			if ($item['id'] !== $id) {
 				$data[$i] = $item;
 			} else {

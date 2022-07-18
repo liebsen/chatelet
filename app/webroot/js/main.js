@@ -134,8 +134,9 @@ $(function () {
 
   /* trigger search from url */
 
-  if(window.location.pathname === '/' && window.location.hash.indexOf('buscar:') > -1) {
-    var q = window.location.hash.replace('#buscar:', '')
+  const queryCode = 'q'
+  if(window.location.pathname === '/' && window.location.hash.indexOf(`${queryCode}:`) > -1) {
+    var q = window.location.hash.replace(`#${queryCode}:`, '')
     if (q) {
       localStorage.setItem('lastsearch', q)
       $('#myModal').remove()
