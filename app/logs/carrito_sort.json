@@ -1,1 +1,28 @@
-[]
+{
+    "425046#ffffffNegro": {
+        "id": "4250",
+        "cod_chatelet": null,
+        "name": "REMERA AYLIN",
+        "desc": "REMERA AYLIN. ESCOTE V Y MANGA CAMPANA CON DETALLE RECORTE COMBINADO TULL CON LUREX. TEJIDO MODAL CREPE LISO.",
+        "img_url": "ou3YkPPTPlfCg5AGlC3V152PA.jpg",
+        "price": "3990",
+        "article": "i2019",
+        "category_id": "172",
+        "gallery": "",
+        "discount": "3990",
+        "promo": "2x1",
+        "stock_total": "98",
+        "with_thumb": "1",
+        "discount_label": "10",
+        "discount_label_show": "10",
+        "color": "#ffffff",
+        "size": "46",
+        "alias": "Negro",
+        "color_code": "02",
+        "alias_image": "EsYX9lxHKIaaVyEavk5UNIZPG.jpg",
+        "original_price": "3990",
+        "old_price": "3990",
+        "uid": 0,
+        "count": 1
+    }
+}

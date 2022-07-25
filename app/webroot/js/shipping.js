@@ -6,6 +6,8 @@ $(function(){
 			return setTimeout( `onErrorAlert('No disponible', 'El servicio de logística ${shipping.toUpperCase()} no está disponible en este momento, intente en unos instantes.')` , 200)
 		}
 
+		cargo = 'shipment'
+
 		$('.shipping-options li').removeClass('selected')
 		$('.takeaway-options li').removeClass('selected')
 		$(e).addClass('selected')
@@ -21,7 +23,7 @@ $(function(){
 		}
 
 	  var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
-	  preferences.cargo = 'shipment'
+	  preferences.cargo = cargo
 	  localStorage.setItem('carrito', JSON.stringify(preferences))
 
 		let total = formatNumber(price)
