@@ -491,7 +491,7 @@ class ShopController extends AppController {
 				'category_id' => $item['Product']['category_id'],
 				'name' => $item['Product']['name'],
 				'desc' => $item['Product']['desc'],
-				'discount' => isset($item['Product']['discount']) && $item['Product']['discount'] != $item['Product']['price'] ? $item['Product']['discount'] : 0,
+				'discount' => isset($item['Product']['discount']) && $item['Product']['discount'] != $item['Product']['price'] ? str_replace(',00','',number_format($item['Product']['discount'], 2, ',', '.')) : 0,
 				'promo' => $item['Product']['promo'],
 				'discount_label' => intval($item['Product']['discount_label_show']),
 				'price' => str_replace(',00','',number_format($price, 2, ',', '.')),
