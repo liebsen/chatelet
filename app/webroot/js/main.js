@@ -46,6 +46,7 @@ let apiSearch = q => {
           '</a>' + 
         '</div>'
       })
+
       if (str === '') {
         $('.search-results').html('<p class="results-text">No hay resultados para esta búsqueda</p>')
       } else {
