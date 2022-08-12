@@ -40,7 +40,7 @@ let apiSearch = q => {
               '<div class="col-sm-12">' + 
                 '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.discount_label ? '<div class="ribbon small bottom-left sp2"><span>' + item.discount_label + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
                 '<h2 class="text-center">'+item.name+'</h2>' + 
-                '<h3 class="price text-center">'+(item.discount.length && item.discount !== item.price ? '<span class="old_price text-grey">$' + item.discount + '</span>' : '') + '<span>$' + item.price + '</span></h3>' + 
+                '<h3 class="price text-center">'+(item.discount.length && parseInt(item.discount) !== parseInt(item.price) ? '<span class="old_price text-grey">$' + item.discount + '</span>' : '') + '<span>$' + item.price + '</span></h3>' + 
               '</div>' + 
             '</div>' +
           '</a>' + 
