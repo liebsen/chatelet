@@ -80,7 +80,7 @@
                 <td><?= (integer) $package['width'] * $package['height'] * $package['depth'] ?>cm3</td>
               </tr-->
             </table>
-            <?php $address = $ticket['calle'].' '.$ticket['nro'].', '.$ticket['localidad'].' '. $ticket['provincia'] . ', Argentina'; ?>
+            <?php $address = $ticket['calle'].' '.$ticket['nro'].', '.$ticket['localidad'].' '.$ticket['cp']. ', '. $ticket['provincia'].', Argentina'; ?>
 
             <img width="200" height="200" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=1&markers=color:blue|<?= urlencode($address) ?>&zoom=11&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">
             <img width="200" height="200" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=1&markers=color:blue|<?= urlencode($address) ?>&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">            
