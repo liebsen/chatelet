@@ -11,8 +11,7 @@ $(function(){
 		$('.shipping-options li').removeClass('selected')
 		$('.takeaway-options li').removeClass('selected')
 		$(e).addClass('selected')
-		$('.delivery-cost').removeClass('hidden')
-		$('.delivery-cost').addClass('fadeIn')
+		$('.delivery-cost').addClass('hidden')
 		$('.shipping-cargo').text(shipping)	
 
 		var price = parseFloat($('#subtotal_compra').val()) - coupon
@@ -20,6 +19,9 @@ $(function(){
 			price+= cost
 			$('#subtotal_envio').val(cost)
 			$('.cost_delivery').text( formatNumber(cost))
+		} else {
+			$('.delivery-cost').removeClass('hidden')
+			$('.delivery-cost').addClass('fadeIn')
 		}
 
 	  var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
@@ -55,6 +57,7 @@ $(function(){
 		callStart()
 		$.getJSON( url+'/'+cp , function(json, textStatus) {
 			callEnd()
+			window.freeShipping = json.freeShipping
 			if( json.rates.length ){
 				$('.products-total').removeClass('hidden')
 				//free delivery

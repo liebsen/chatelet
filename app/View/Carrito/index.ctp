@@ -146,7 +146,7 @@
 							<div class="field text-right delivery-cost hidden animated speed">
 								<div class="price text-dark">
 									<span class="text-weight-thin">Envío </span>
-									<span id="delivery_cp"></span> $<span class="cost_delivery">0</span></div>
+									<span id="delivery_cp"></span> <span class="cost_delivery">0</span></div>
 							</div>
 							<?php endif ?>
 							<div class="field text-right products-total">
