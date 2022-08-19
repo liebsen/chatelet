@@ -598,7 +598,7 @@ class CarritoController extends AppController
 		$freeShipping = false;
 		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
 			if (@$shipping_config['Setting']['value'] == 'min_price'){
-				$freeShipping = intval($total_price) >= intval($shipping_price['Setting']['value']);	
+				$freeShipping = intval($price) >= intval($shipping_price['Setting']['value']);	
 			}
 			if (@$shipping_config['Setting']['value'] == 'zip_code'){
 				$zip_codes = explode(',',$shipping_config['Setting']['extra']);
