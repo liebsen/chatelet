@@ -1470,14 +1470,7 @@ public function promos(){
 	}
 
 	public function shipping($action = null) {
-		$navs = array(
-			'Envios' => array(
-				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/shipping',
-				'active'	=> 'edit'
-				)
-
-			);
+		$navs = array();
 		$this->set('navs', $navs);
 
 		$h1 = array(

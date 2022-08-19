@@ -6,7 +6,7 @@
 ?>
 <div id="main" class="container">
 	<div class="row">
-		<?php if(!$freeShipping): ?>
+		<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
 		<div class="col-md-12 shipping-price-min-alert animated fadeIn">
 			<div class="shipping-price-min-text">
 				<span><?= $text_shipping_min_price ?></span>

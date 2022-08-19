@@ -181,24 +181,14 @@ class CarritoController extends AppController
 		$data = $this->getItemsData();
 		$shipping_price = $this->Setting->findById('shipping_price_min');
 		$total_price = $data['price'];
-		$freeShipping = intval($total_price)>=intval($shipping_price['Setting']['value']);
+		$freeShipping = $this->isFreeShipping($total_price);
 		error_log('freeshipping unit price: '.intval($total_price));
-		$shipping_config = $this->Setting->findById('shipping_type');
-		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
-			if (@$shipping_config['Setting']['value'] == 'free'){
-				// envio gratis siempre
-				// $freeShipping = 1;
-			}
-			if (@$shipping_config['Setting']['value'] == 'zip_code'){
-				// $freeShipping = 1;
-			}
-			error_log('shipping_value: '.@$shipping_config['Setting']['value']);
-		}
-
+		$stores = $this->Store->find('all', [
+			'conditions' => ['takeaway' => 1]
+		]);
 		$mapper = $this->Setting->findById('shipping_price_min');
 		$shipping_price_min = (!empty($mapper['Setting']['value'])) ? $mapper['Setting']['value'] : '';
 		$this->set('shipping_price_min',$shipping_price_min);
-		
 		$vars = [
 			'precio_min_envio_gratis' => str_replace(',00','',number_format($shipping_price_min, 0, ',', '.')),
 			'resto_min_envio_gratis' => str_replace(',00','',number_format($shipping_price_min - (integer) $data['price'], 0, ',', '.')),
@@ -208,11 +198,11 @@ class CarritoController extends AppController
     $mapper = $this->Setting->findById('display_text_shipping_min_price');
     $display_text_shipping_min_price = $mapper['Setting']['value'];
     $mapper = $this->Setting->findById('text_shipping_min_price');
-		$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['value'])) ? $this->parseTemplate($mapper['Setting']['value'], $vars) : '';
-		$this->set('text_shipping_min_price',$text_shipping_min_price);
-		$stores = $this->Store->find('all', [
-			'conditions' => ['takeaway' => 1]
-		]);
+
+		if (@$shipping_config['Setting']['value'] == 'min_price') {
+			$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['value'])) ? $this->parseTemplate($mapper['Setting']['value'], $vars) : '';
+			$this->set('text_shipping_min_price',$text_shipping_min_price);
+		}					
 		$map = $this->Setting->findById('carrito_takeaway_text');
  		$carrito_takeaway_text = $map['Setting']['extra'];		
 		$this->set('sorted', $this->sort());
@@ -424,8 +414,7 @@ class CarritoController extends AppController
       $unit_price = @$data['discount'];
     }
 
-		$freeShipping = intval($unit_price)>=intval($shipping_price['Setting']['value']);
-
+		$freeShipping = $this->isFreeShipping($unit_price, $cp);
 		$json = array(
 			'freeShipping' => $freeShipping,
 			'rates' => [],
@@ -603,6 +592,30 @@ class CarritoController extends AppController
 		return json_encode($json);
 	}
 
+	public function isFreeShipping ($price, $zip_code = 0) {
+		$shipping_config = $this->Setting->findById('shipping_type');
+		$shipping_price = $this->Setting->findById('shipping_price_min');
+		$freeShipping = false;
+		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
+			if (@$shipping_config['Setting']['value'] == 'min_price'){
+				$freeShipping = intval($total_price) >= intval($shipping_price['Setting']['value']);	
+			}
+			if (@$shipping_config['Setting']['value'] == 'zip_code'){
+				$zip_codes = explode(',',$shipping_config['Setting']['extra']);
+				if (count($zip_codes) && $zip_code) {
+					$filter = [];
+					foreach($zip_codes as $code) {
+						$filter[] = trim($code);
+					}
+					$freeShipping = in_array($zip_code, $filter);
+				}
+			}
+			// error_log('shipping_value: '.@$shipping_config['Setting']['value']);
+		}		
+		return $freeShipping;
+		// return intval($price) >= intval($shipping_price['Setting']['value']);
+	}
+
 	public function andreani_cotiza () {
 		$this->autoRender = false;
 		$data = $this->getItemsData();
@@ -766,7 +779,7 @@ class CarritoController extends AppController
 	      ]
 	    ]);
 	    if ($coupon) {
-				$applicable = self::filterCoupon($coupon);
+				$applicable = $this->filterCoupon($coupon);
 				if ($applicable->status === 'success') {
 					$discount = (float) $applicable->data['discount'];
 					if($applicable->data['coupon_type'] === 'percentage') {
@@ -794,6 +807,7 @@ class CarritoController extends AppController
 
 		// Add Delivery
 		$delivery_cost = 0;
+		$freeShipping = $this->isFreeShipping($total, $user['postal_address']);
 		if ($user['cargo'] == 'takeaway') {
 			$freeShipping = true;
 		} else {
@@ -804,34 +818,6 @@ class CarritoController extends AppController
 			}
 		}
 
-		//shipping-code 
-		$mapper = $this->Setting->findById('shipping_price_min');
-		$freeShipping = intval($total)>=intval($mapper['Setting']['value']);
-		$shipping_type_value = 'default';
-		$zipCodes='';
-		$shipping_config = $this->Setting->findById('shipping_type');
-		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
-			$zipCodes = @$shipping_config['Setting']['extra'];
-			$shipping_type_value = @$shipping_config['Setting']['value'];
-			if (@$shipping_config['Setting']['value'] == 'default'){
-				// default = same
-			}
-			if (@$shipping_config['Setting']['value'] == 'no_label'){
-				// default = same
-			}
-			if (@$shipping_config['Setting']['value'] == 'free'){
-				// envio gratis siempre
-				// $freeShipping = true;
-			}
-			if (@$shipping_config['Setting']['value'] == 'zip_code'){
-				// $freeShipping = true;
-			}
-			// error_log('shipping_value: '.@$shipping_config['Setting']['value']);
-		}
-		// freeShipping until 12/10
-		// $freeShipping = true;
-		// error_log('Putting freeshipping until 12/10');
-		// free delivery
 		if ($freeShipping) { 
      	error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
 			// $delivery_cost=0;

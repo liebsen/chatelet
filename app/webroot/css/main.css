@@ -2740,6 +2740,12 @@ textarea.form-control {
     -webkit-appearance: none;
 }
 
+input[type="radio"].form-control {
+    position: relative;
+    top: -0.25rem;
+    zoom: 2;
+}
+
 textarea.form-control {
     max-width: 100%;
 }
@@ -3960,4 +3966,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
 div.cloudzoom-black:nth-child(3) {
     display: none;
+}
+
+.is-clickable {
+    cursor: pointer;
 }
