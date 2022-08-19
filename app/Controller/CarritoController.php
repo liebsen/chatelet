@@ -834,6 +834,10 @@ class CarritoController extends AppController
 			);
 		}
 
+		$shipping_config = $this->Setting->findById('shipping_type');
+		$shipping_type_value = @$shipping_config['Setting']['value'];
+		$zipCodes = @$shipping_config['Setting']['extra'];
+		
 		$this->Sale->save(array(
 			'id' => $sale_id,
 			'free_shipping' => $freeShipping,
