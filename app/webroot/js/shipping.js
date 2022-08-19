@@ -18,12 +18,10 @@ $(function(){
 		if (!freeShipping) {
 			price+= cost
 			$('#subtotal_envio').val(cost)
-			$('.cost_delivery').text( formatNumber(cost))
-		} else {
 			$('.delivery-cost').removeClass('hidden')
 			$('.delivery-cost').addClass('fadeIn')
+			$('.cost_delivery').text( formatNumber(cost))
 		}
-
 	  var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
 	  preferences.cargo = cargo
 	  localStorage.setItem('carrito', JSON.stringify(preferences))
