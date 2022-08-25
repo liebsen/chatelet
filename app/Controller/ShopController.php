@@ -363,6 +363,11 @@ class ShopController extends AppController {
 
   public function detalle($product_id, $category_id) {
 		$product = $this->Product->findById($product_id);
+
+		if (!isset($product)) {
+			throw new NotFoundException();
+		}
+
 		$category = $this->Category->findById($category_id);
 		$name_categories = $category['Category']['name'];
 		$isGiftCard=false;
@@ -397,9 +402,13 @@ class ShopController extends AppController {
 			}
 		}
 
+		if (isset($product['Product']['discount']) && $product['Product']['discount']) {
+			$product['Product']['price'] = $product['Product']['discount'];
+		}
+		
     // $this->set('details',$details);
 		$this->set('category_id',$category_id);
-        $this->set('name_categories',$name_categories);
+    $this->set('name_categories',$name_categories);
 		$this->set('category', $category);
 		$this->set('product', $product['Product']);
 		$this->set('properties', $properties);

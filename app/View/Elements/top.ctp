@@ -10,14 +10,9 @@
     <title>Châtelet</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="<?= Configure::read('imageUrlBase') ?>" />
-    <meta property="og:title" content="Châtelet" />
-    <meta property="og:description" content="Sé tu propio modelo de mujer" />
-    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://chatelet.com.ar/images/share-080722.jpg" />
     <meta name="facebook-domain-verification" content="mz62jgu2bv7lu4new0t9pno88ekmxx" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <?php if(isset($product)):?>
+    <?php if(isset($product) && isset($product['name'])):?>
     <!-- FB OpenGraph -->
     <meta property="og:title" content="<?= ucwords(strtolower($product['name'])) ?>">
     <meta property="og:description" content="<?= ucwords(strtolower($product['name'])) ?>">
@@ -31,6 +26,12 @@
     <meta property="product:retailer_item_id" content="<?= $product['article'] ?>">
     <meta property="product:item_group_id" content="<?= $product['category_id'] ?>">
     <meta property="product:google_product_category" content="<?= $product['category_id'] ?>">
+    <?php else: ?>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<?= Configure::read('imageUrlBase') ?>" />
+    <meta property="og:title" content="Châtelet" />
+    <meta property="og:description" content="Sé tu propio modelo de mujer" />
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://chatelet.com.ar/images/share-080722.jpg" />
     <?php endif ?>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
