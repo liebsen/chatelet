@@ -12,11 +12,11 @@
 				 <?php 
                     echo $this->Form->create(null, array('url' => array('controller' => 'users', 'action' => 'forgot_password'))); 
                   ?>
-                    <p class="title">Ingrese su correo</p>
+                    <p class="title">Ingresá tu correo</p>
                     <input type="email" id="login-email"  name="data[User][email]" placeholder="Email" />
                     <input type="submit" id="login" value="Enviar" />
                     <span id="forgot-password" >
-                    Recibira un correo electronico con su nueva contraseña
+                    Recibirás un correo electrónico con tu nueva contraseña
                     </span>
 
                   <?php echo $this->Form->end(); ?>

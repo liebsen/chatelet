@@ -17,7 +17,7 @@
 			</div>
 			<div class="modal-body">
 				 <?php echo $this->Form->create(false, array('url' => array('controller' => 'users', 'action' => 'login'))); ?>                  
-                    <p class="title mb-1">Ingrese su email y contraseña para continuar.</p>
+                    <p class="title mb-1">Ingresá tu email y contraseña para continuar.</p>
                     <input type="email" id="login-email"  name="data[User][email]" placeholder="Email" />
                     <input type="password" id="login-password" name="data[User][password]" placeholder="Password" />
                     <input type="submit" id="login" form="" value="Ingresar" />

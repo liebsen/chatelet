@@ -12,7 +12,7 @@
 		<?php endif ?>		
 		<p class="p">
 			<i>
-				<small>Para envíos a domicilio ingrese su código postal</small>
+				<small>Para envíos a domicilio ingresá tu código postal</small>
 			</i>
 		</p>
 		<div class="form-group is-flex">

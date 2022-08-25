@@ -147,9 +147,9 @@ $(document).ready(function() {
 			me = $(this);
 		
 		if (searching) return;
-		if (!lis_code) return alert('Por favor, ingrese un codigo de lista');
-		if (!lis_code2) return alert('Por favor, ingrese un codigo de lista de descuento');
-		if (!product_code) return alert('Por favor, ingrese un codigo de producto');
+		if (!lis_code) return alert('Por favor, ingresá un codigo de lista');
+		if (!lis_code2) return alert('Por favor, ingresá un codigo de lista de descuento');
+		if (!product_code) return alert('Por favor, ingresá un codigo de producto');
 
 
 		url = [url, product_code, lis_code, lis_code2].join('/');
@@ -161,7 +161,7 @@ $(document).ready(function() {
 				if ($.isArray(res.results) && !res.results.length) {
 					searching = false;
 					me.text('Buscar').removeClass('btn-info');
-					return alert('No se encontro el producto buscado');
+					return alert('No se encontró el producto buscado');
 				}
 				var product = res.results[0];
 

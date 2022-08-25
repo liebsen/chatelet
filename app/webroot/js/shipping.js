@@ -46,7 +46,7 @@ $(function(){
 		// $('.takeaway-options li').removeClass('selected')
 
 		if(cp_input == '' || cp < 1000 || cp > 9999) {
-			onErrorAlert('Código postal inválido', `Por favor ingrese un código postal válido`);
+			onErrorAlert('Código postal inválido', `Por favor ingresá un código postal válido`);
 			return false
 		}
 

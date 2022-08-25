@@ -10,12 +10,12 @@
 				<h4 class="modal-title" id="modal-title">Carrito de Compras // <span class="grey">Proceso de compra</span></h4>
 			</div>
 			<div class="modal-body">
-				<h4 class="checkout-title">Necesita iniciar sesion para poder realizar una compra</h4>
+				<h4 class="checkout-title">Necesitás iniciar sesión para poder realizar una compra</h4>
 				<p class="checkout-text">
-					Por favor, <a href="#" class="pink login">inicie sesion</a> o <a href="#" class="pink" data-toggle="modal" data-target="#registro-modal">registre una nueva cuenta</a>.
+					Por favor, <a href="#" class="pink login">inicie sesion</a> o <a href="#" class="pink" data-toggle="modal" data-target="#registro-modal">registrate con tu cuenta</a>.
 				</p>
 				<p>
-					Si necesita ayuda, por ingrese a la seccion 
+					Si necesitas ayuda, ingresá a la sección 
 					<?php 
 						echo $this->Html->link('¿Cómo comprar?', 
 							array(
