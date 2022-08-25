@@ -403,6 +403,7 @@ class ShopController extends AppController {
 		}
 
 		if (isset($product['Product']['discount']) && $product['Product']['discount']) {
+			$product['Product']['old_price'] = $product['Product']['price'];
 			$product['Product']['price'] = $product['Product']['discount'];
 		}
 		
@@ -494,19 +495,23 @@ class ShopController extends AppController {
 		]);
 		$results = [];
 		foreach($data as $item) {
-			$price = $item['Product']['discount'] ? $item['Product']['discount'] : $item['Product']['price'];
-			$results[]= [
+			$price = $item['Product']['price'];
+			$result = [
 				'id' => $item['Product']['id'],
 				'category_id' => $item['Product']['category_id'],
 				'name' => $item['Product']['name'],
 				'desc' => $item['Product']['desc'],
-				'discount' => isset($item['Product']['discount']) && $item['Product']['discount'] != $item['Product']['price'] ? str_replace(',00','',number_format($item['Product']['discount'], 2, ',', '.')) : 0,
 				'promo' => $item['Product']['promo'],
 				'discount_label' => intval($item['Product']['discount_label_show']),
-				'price' => str_replace(',00','',number_format($price, 2, ',', '.')),
 				'slug' => str_replace(' ','-',strtolower($item['Product']['desc'])),
 				'img_url' => Configure::read('imageUrlBase') . $item['Product']['img_url']
 			];
+			if (isset($item['Product']['discount']) && $item['Product']['discount'] !== $price) {
+				$result['old_price'] = str_replace(',00','',number_format($price, 2, ',', '.'));
+				$price = $item['Product']['discount'];
+			}
+			$result['price'] = str_replace(',00','',number_format($price, 2, ',', '.'));
+			$results[]= $result;
 		}
 		die(json_encode([
 			'results' => $results,

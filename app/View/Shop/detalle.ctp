@@ -114,10 +114,10 @@
             ?>
             <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
                 <h1><?php echo $product['name'];?></h1>
-                <?php  if(!empty($product['discount']) && $product['price']!==$product['discount']) {
-                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['price'] ."'>".
-                           str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))). "</span>
-                           ahora <div><span class='price'>". str_replace(',00','',$this->Number->currency($product['discount'],'ARS', array('places' => 2)))."</span></div>";
+                <?php  if(!empty($product['old_price']) && $product['price']!==$product['old_price']) {
+                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['old_price'] ."'>".
+                           str_replace(',00','',$this->Number->currency($product['old_price'], 'ARS', array('places' => 2))). "</span>
+                           ahora <div><span class='price'>". str_replace(',00','',$this->Number->currency($product['price'],'ARS', array('places' => 2)))."</span></div>";
                     }else{
                       echo  "<span id='price' class='price' data-price='".'$'. $product['price'] ."'>".
                             str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array(

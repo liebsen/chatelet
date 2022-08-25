@@ -38,9 +38,9 @@ function updateSrcTo(obj){
   overflow: hidden;
 }
 
-.antes-str {
+.old-price {
   color: #999;
-  font-size:24px;
+  font-size:1.25rem;
 }
 .midscore{
   text-decoration:line-through;
@@ -122,7 +122,7 @@ function updateSrcTo(obj){
         if (!empty($item['price'])){
           $priceStr = \price_format($item['price']);
           if (!empty((float)@$item['discount']) && @$item['discount']!==$item['price']){
-            $priceStr = \price_format($item['discount']).' <span class="antes-str"><span class="midscore">'.\price_format($item['price']).'</span></span>';
+            $priceStr = \price_format($item['discount']).' <span class="old-price"><span class="midscore">'.\price_format($item['price']).'</span></span>';
           }
         }
 

@@ -24,5 +24,32 @@
         "old_price": "3990",
         "uid": 0,
         "count": 1
+    },
+    "424650#ffffffBeige": {
+        "id": "4246",
+        "cod_chatelet": null,
+        "name": "REMERA ALEXANDRA CLASICA",
+        "desc": "REMERA ALEXANDRA CLASICA. ESCOTE BASE Y MANGA 3\/4. TEJIDO VENECIA BUFFING ESTAMPADO ESFUMADO.",
+        "img_url": "lFnACRRyc3ktqshkRZCmq1pBz.jpg",
+        "price": 0,
+        "article": "i2001",
+        "category_id": "172",
+        "gallery": "",
+        "discount": "2990",
+        "promo": "2x1",
+        "stock_total": "149",
+        "with_thumb": "1",
+        "discount_label": "10",
+        "discount_label_show": "10",
+        "color": "#ffffff",
+        "size": "50",
+        "alias": "Beige",
+        "color_code": "14",
+        "alias_image": "XmocoqX9UGRLGPwdZETYhY4ll.jpg",
+        "original_price": "3990",
+        "old_price": "2990",
+        "uid": 1,
+        "promo_enabled": 1,
+        "count": 1
     }
 }

@@ -18,4 +18,5 @@
     <a href="/" class="btn btn-lg btn-link">Volver a inicio</a>
     <a href="/contacto" class="btn btn-lg btn-link">Contactar al administrador</a>
   </div>
+  <hr>
 </div>
