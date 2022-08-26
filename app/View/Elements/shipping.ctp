@@ -31,7 +31,7 @@
 				<h4 id="heading" class="cargo-title<?= $freeShipping ? ' text-success' : '' ?>">2. Seleccione tipo de envío</h4>
 				<p class="p">
 					<i>
-						<small>Seleccione la empresa de logística de su confianza para realizar este envío</small>
+						<small>Elegí la empresa de tu confianza para realizar este envío</small>
 					</i>
 				</p>
 			</div>
@@ -50,7 +50,7 @@
 		<h3 id="heading" class="cargo-title">Retiro en Sucursal</h3>
 		<p class="p">
 			<i>
-				<small>Solicite esta opción para evitar cargos de envío. <span class="carrito_takeaway_text"><?= $carrito_takeaway_text ?></span></small>
+				<small>Elegí esta opción para evitar cargos de envío. <span class="carrito_takeaway_text"><?= $carrito_takeaway_text ?></span></small>
 			</i>
 		</p>		
 
