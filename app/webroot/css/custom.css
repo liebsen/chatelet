@@ -550,6 +550,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 .old_price {
   text-decoration: line-through;
   text-align: right;
+  color: #666;
   font-weight: 500; 
 }
 
