@@ -208,11 +208,12 @@ class ShopController extends AppController {
 			}
 
 		/* upate products names */
+		/* 
 		$products = $this->Product->find('all');
 		foreach($products as $product) {
 			$product['Product']['name'] = substr($product['Product']['desc'],0,strpos($product['Product']['desc'],'.'));
 			$this->Product->save($product);
-		}
+		} */
 	}
 	public function die_categories(){
 		$this->loadModel('Category');
