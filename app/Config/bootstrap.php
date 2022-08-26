@@ -25,7 +25,7 @@
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 Configure::write('mUrl','');
-Configure::write('APP_DIST', '2.82');
+Configure::write('APP_DIST', '2.83');
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.
