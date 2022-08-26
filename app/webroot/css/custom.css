@@ -1650,6 +1650,9 @@ span.count {
 
 /*Mobile Icons NavTop*/
 @media (max-width: 767px) {
+    .menuLayer a.close {
+      top: -1rem;
+    }
     .navbar-nav>li>a.user, .navbar-nav>li>a.shop {
         background: none!important;
         height: auto;
