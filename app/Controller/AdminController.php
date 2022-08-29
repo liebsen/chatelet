@@ -368,6 +368,34 @@ class AdminController extends AppController {
    	return $sale;   
 	}
 
+	public function updateSaleLogistic($sale_id = null){
+		$this->autoRender = false;
+		$this->loadModel('Logistics');
+		$json = [
+			'status' => 'error',
+			'message' => 'La venta no fue actualizada'
+		];
+    if ($this->request->is('POST')) {
+    	$data = $this->request->data;
+			$json = [
+				'status' => 'success',
+				'message' => 'La venta fue actualizada'
+			];
+			$logistic = $this->Logistics->find('first', [
+				'conditions' => [
+					'id' => $data['logistic_id']
+				]
+			]);
+			$sale = $this->Sale->findById($sale_id);
+			$save = [];
+			$save = ['id' => $sale_id];
+			$save['logistic_id'] = (integer) $data['logistic_id'];
+			$save['shipping'] = $logistic['Logistics']['code'];
+			$t = $this->Sale->save($save);
+		}
+		die(json_encode($json));
+	}
+
 	public function getTicket($sale_id = null){
 		$this->autoRender = false;
 		$data = [
@@ -582,6 +610,7 @@ class AdminController extends AppController {
 		$this->set('h1', $h1);
 		$this->loadModel('Home');
 		$this->loadModel('Setting');
+		$this->loadModel('Logistics');
 
 		//Get and merge local-remote data.
 		$sales = $this->getMPSales();
@@ -616,7 +645,9 @@ class AdminController extends AppController {
 		}
 		$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
 		//pr($sales);die;
+    $logistics = $this->Logistics->find('all',array('conditions'=>array( 'enabled' => 1 )));
 		$this->set('shipping_price_min',$this->Setting->findById('shipping_price_min'));
+		$this->set('logistics',$logistics);
 		$this->set('sales',$sales);
 	}
 

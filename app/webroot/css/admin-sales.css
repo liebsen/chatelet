@@ -1,0 +1,32 @@
+.fullhd-selector {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;  
+  width: 100vw;
+  height: 100vh;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content:  center;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.25s ease 0.25s;
+}
+
+.is-clickable {
+  cursor: pointer;
+}
+
+.fullhd-selector .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 3rem;
+  color: red;
+}
+
+.fullhd-selector.active {
+  pointer-events: inherit;
+  opacity: 1;
+}

@@ -1,6 +1,35 @@
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
+<?php echo $this->Html->css('/css/admin-sales.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 <?php echo $this->Html->script('admin-sales', array('inline' => false)); ?>
+
+<!-- logistic selector -->
+<div class="fullhd-selector logistic-selector">
+    <span class="close is-clickable" onclick="$('.logistic-selector').removeClass('active')">
+        <i class="gi gi-remove_2"></i>
+    </span>
+    <div class="row">
+        <div class="col-xs-12">
+            <form id="update_logistic">
+                <h3>Logística de venta <span id="logistic_sale_id"></span></h3>
+                <div class="form-group">
+                <?php foreach($logistics as $logistic): ?>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="logistic_option" id="logistic_option_<?= $logistic['Logistics']['id'] ?>" value="<?= $logistic['Logistics']['id'] ?>" data-name="<?= $logistic['Logistics']['code'] ?>">
+                      <label class="form-check-label" for="logistic_option_<?= $logistic['Logistics']['id'] ?>">
+                        <?= $logistic['Logistics']['title'] ?>
+                      </label>
+                    </div>
+                <?php endforeach ?>
+                </div>
+                <div class="form-group">
+                    <button type="button" id="logistic_save_btn" class="btn btn-primary" onclick="logisticUpdate()">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-xs-12">
         <a href="/admin/sales_export_mails" target="_blank">
@@ -116,8 +145,15 @@
                             !empty($sale['local_sale']['apellido']) && 
                             !empty($sale['local_sale']['cargo']) && 
                             $sale['local_sale']['cargo'] == 'shipment') : ?>
-                            <span class="text-info"><?= strtoupper($sale['local_sale']['shipping']) ?></span><br>
-                            <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span> <br />
+                            <span class="text-info" id="shipping_title_<?= $sale['local_sale']['id'] ?>"><?= strtoupper($sale['local_sale']['shipping']) ?></span><br>
+                            <?php if (empty($sale['local_sale']['def_orden_retiro'])):?>
+                                <span class="btn btn-link" onclick="editLogistic(<?= $sale['local_sale']['id'] ?>, <?= $sale['local_sale']['logistic_id'] ?>)">
+                                    <i class="gi gi-edit"></i> Cambiar logística
+                                </span><br>
+                            <?php endif ?>
+
+                            <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span>
+                             <br />
                             <?= $sale['local_sale']['def_mail_sent'] ? '<p class="text-success">Notificación enviada</p>' : '<p class="text-danger">Notificación no enviada</p>';?>
                         <?php else: ?>
                             <p class="text-muted">(Sin Etiqueta)</p>
