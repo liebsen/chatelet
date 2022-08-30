@@ -13,6 +13,9 @@ var sale_id = 0
 function editLogistic (sale_id, logistic_id) {
   const selectr = $('.logistic-selector')
   $(`#logistic_option_${logistic_id}`).click()
+  $('#logistic_save_btn').text('Actualizar')
+  $('#logistic_save_btn').addClass('btn-primary')
+  $('#logistic_save_btn').removeClass('btn-success')
   $('.logistic_sale_id').text('')
   window.sale_id = 0
   if (selectr.hasClass('active')) {
@@ -31,8 +34,12 @@ function logisticUpdate () {
   $('#logistic_save_btn').text('Actualizando...')
   $.post('/admin/updateSaleLogistic/' + sale_id, {logistic_id: selected.val()}).then(res => {
     $(`#shipping_title_${sale_id}`).text(name_selected.toUpperCase())
-    $('#logistic_save_btn').text('Actualizar')
-    $('.logistic-selector').removeClass('active')
+    $('#logistic_save_btn').removeClass('btn-primary')
+    $('#logistic_save_btn').addClass('btn-disabled')
+    $('#logistic_save_btn').text('Actualizado')
+    setTimeout(() => {
+      $('.logistic-selector').removeClass('active')
+    }, 1000)
   })
 }
 
