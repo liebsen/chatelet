@@ -83,7 +83,7 @@
                     </td>
                     <td class="col-xs-6">
                         <?php
-                         foreach ($sale['collection']['sale_products'] as $reason): ?>
+                        foreach (@$sale['collection']['sale_products'] as $reason): ?>
                             <div class="row">
                             <?php $column = 4;  ?>
 
