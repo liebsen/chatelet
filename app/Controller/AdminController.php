@@ -472,7 +472,7 @@ class AdminController extends AppController {
 				} else {
 					error_log('[email] ignored bc was sent before');
 					$data['status'] = 'success';
-					$data['message'] = 'Ya enviado previamente';
+					$data['message'] = 'Ya solicitado previamente';
 				}
 				// $data['url'] = "https://www1.oca.com.ar/ocaepak/Envios/EtiquetasCliente.asp?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
 
@@ -615,6 +615,7 @@ class AdminController extends AppController {
 		//Get and merge local-remote data.
 		$sales = $this->getMPSales();
 		if (!empty($this->request->query['test'])){
+			echo '<pre>';
 		  var_dump($sales);die;
 		}
 
@@ -625,22 +626,27 @@ class AdminController extends AppController {
 				$sale_number = html_entity_decode($sale_number);
 			}
 
-			//Info metaphone(str)rgeapp/webroot/css/custom.css
-			$sale['collection']['deliver_cost'] = 0;
-			$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
-			if(!empty($local_desc)){
-				$sale['collection']['sale_products'] = Hash::extract($local_desc, '{n}.SaleProduct.description');
-			}else{
-				$sale['collection']['sale_products'] = array($sale['collection']['reason']);
-			}
-			$package = $this->Package->find('first',array( 'conditions' => array( 'Package.amount_max >=' => count( $sale['collection']['sale_products'] ) , 'Package.amount_min <=' => count( $sale['collection']['sale_products'] ) ) ));
+			if (strpos($sale_number,'PEDIDO') !== false) {
+				//Info metaphone(str)rgeapp/webroot/css/custom.css
+				$sale['collection']['deliver_cost'] = 0;
+				$local_desc		= $this->SaleProduct->find('all',array('conditions'=>array( 'SaleProduct.description LIKE' => "%$sale_number%" )));
+				if(!empty($local_desc)){
+					$sale['collection']['sale_products'] = Hash::extract($local_desc, '{n}.SaleProduct.description');
+				}else{
+					$sale['collection']['sale_products'] = array($sale['collection']['reason']);
+				}
+				$package = $this->Package->find('first',array( 'conditions' => array( 'Package.amount_max >=' => count( $sale['collection']['sale_products'] ) , 'Package.amount_min <=' => count( $sale['collection']['sale_products'] ) ) ));
 
-			//Deliver Cost
-			foreach ($local_desc as $key => $value) {
-				$sale_id = (!empty($value['SaleProduct']['sale_id']))?$value['SaleProduct']['sale_id']:0;
-				$local_sale = $this->Sale->findById($sale_id);
-				$sale['collection']['deliver_cost'] = (!empty($local_sale['Sale']['deliver_cost']))?$local_sale['Sale']['deliver_cost']:0;
-				$sale['local_sale'] = $local_sale['Sale'];
+				//Deliver Cost
+				foreach ($local_desc as $key => $value) {
+					$sale_id = (!empty($value['SaleProduct']['sale_id']))?$value['SaleProduct']['sale_id']:0;
+
+					if ($sale_id) {
+						$local_sale = $this->Sale->findById($sale_id);
+						$sale['collection']['deliver_cost'] = (!empty($local_sale['Sale']['deliver_cost']))?$local_sale['Sale']['deliver_cost']:0;
+						// $sale['local_sale'] = $local_sale['Sale'];
+					}
+				}
 			}
 		}
 		$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');

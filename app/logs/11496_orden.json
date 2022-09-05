@@ -1,0 +1,77 @@
+{
+    "contrato": "400025425",
+    "origen": {
+        "postal": {
+            "codigoPostal": "1708",
+            "calle": "25 de Mayo",
+            "numero": "497",
+            "localidad": "Mor\u00f3n",
+            "region": "",
+            "pais": "Argentina",
+            "componentesDeDireccion": [
+                {
+                    "meta": "entreCalle",
+                    "contenido": "Mitre y Norberto Garc\u00eda Silva"
+                }
+            ]
+        }
+    },
+    "destino": {
+        "postal": {
+            "codigoPostal": "1879",
+            "calle": "Ricardo Gutierrez 775",
+            "numero": "775",
+            "localidad": "QUILMES OESTE",
+            "region": "BUENOS AIRES",
+            "pais": "Argentina"
+        }
+    },
+    "remitente": {
+        "nombreCompleto": "Chatelet",
+        "email": "chateletonline@outlook.com.ar",
+        "documentoTipo": "DNI",
+        "documentoNumero": "35881327",
+        "telefonos": [
+            {
+                "tipo": 1,
+                "numero": "1155042428"
+            }
+        ]
+    },
+    "destinatario": [
+        {
+            "nombreCompleto": "azucena del ROSARIO OVIEDO",
+            "email": "azucenaoviedo55@yahoo.com.ar",
+            "documentoTipo": "DNI",
+            "documentoNumero": "11599841",
+            "telefonos": [
+                {
+                    "tipo": 1,
+                    "numero": "1161636360"
+                }
+            ]
+        }
+    ],
+    "productoAEntregar": "Compra en Chatelet",
+    "bultos": [
+        {
+            "anchoCm": 24,
+            "largoCm": 9,
+            "altoCm": 20,
+            "volumenCm": 4320,
+            "kilos": 1,
+            "valorDeclaradoSinImpuestos": 5799,
+            "valorDeclaradoConImpuestos": 5799,
+            "referencias": [
+                {
+                    "meta": "Detalle",
+                    "contenido": "Compra en Chatelet"
+                },
+                {
+                    "meta": "C\u00f3d. Cliente",
+                    "contenido": null
+                }
+            ]
+        }
+    ]
+}

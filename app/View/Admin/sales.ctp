@@ -5,7 +5,7 @@
 
 <!-- logistic selector -->
 <div class="fullhd-selector logistic-selector">
-    <span class="close is-clickable" onclick="$('.logistic-selector').removeClass('active')">
+    <span class="close is-clickable" onclick="logisticsClose()">
         <i class="gi gi-remove_2"></i>
     </span>
     <div class="row">

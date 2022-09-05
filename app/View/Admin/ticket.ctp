@@ -6,6 +6,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
       <link rel="shortcut icon" href="/img/favicon.ico">
       <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+      <?= $this->Html->css('plugins') ?>
       <?= $this->Html->css('bootstrap') ?>
       <style>
         body {
@@ -19,6 +20,16 @@
         .shop-logo {
           margin-left: 1rem;
           margin-bottom: 1.5rem;
+        }
+        .is-close {
+          width: 4rem;
+          height: 4rem;          
+          position: fixed;
+          z-index: 10;
+          top: 2rem;
+          right: 1rem;
+          color: red;
+          font-size: 2rem;
         }
         .table {
           display: inline-block;
@@ -38,6 +49,10 @@
     </head>
     <body>
       <div class="container-fluid">
+        <span class="is-close is-clickable" onclick="window.close()">
+            <i class="gi gi-remove_2"></i>
+        </span>
+
       <?php if(isset($ticket)): ?>
         <div class="row">
           <div class="col">

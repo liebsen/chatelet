@@ -11,21 +11,30 @@ $(document).ready(function() {
 var sale_id = 0
 
 function editLogistic (sale_id, logistic_id) {
+  window.sale_id = 0
   const selectr = $('.logistic-selector')
-  $(`#logistic_option_${logistic_id}`).click()
+  $('body').css('overflow-y', 'hidden')
+  $('.logistic_sale_id').text('')
   $('#logistic_save_btn').text('Actualizar')
   $('#logistic_save_btn').addClass('btn-primary')
   $('#logistic_save_btn').removeClass('btn-success')
-  $('.logistic_sale_id').text('')
-  window.sale_id = 0
+  $(`#logistic_option_${logistic_id}`).click()
+  $('#update_logistic .form-check-input').each(e => {
+    $(e).prop('disabled', false)
+  })
+  $(`#logistic_option_${logistic_id}`).prop('disabled', true)
   if (selectr.hasClass('active')) {
     selectr.removeClass('active')
   } else {
     $('#logistic_sale_id').text(sale_id)
-    $(`#logistic_option_${logistic_id}`).prop('disabled', true)
     selectr.addClass('active')
     window.sale_id = sale_id
   }
+}
+
+function logisticsClose() {
+  $('body').css('overflow-y', 'auto')
+  $('.logistic-selector').removeClass('active')
 }
 
 function logisticUpdate () {
@@ -38,7 +47,7 @@ function logisticUpdate () {
     $('#logistic_save_btn').addClass('btn-disabled')
     $('#logistic_save_btn').text('Actualizado')
     setTimeout(() => {
-      $('.logistic-selector').removeClass('active')
+      logisticsClose()
     }, 1000)
   })
 }
@@ -49,12 +58,12 @@ function getTicket(sale_id, parent) {
     target = $(parent).next().next()
   }  
   $(parent).removeClass('btn-info')
-  $(parent).addClass('btn-default')
-  $(parent).text('ESPERE')
+  $(parent).addClass('btn-disabled')
+  $(parent).text('SOLICITANDO...')
   $(target).text('')
   $.get('/admin/getTicket/' + sale_id, res => {
     $(parent).removeClass('btn-default')
-    $(parent).addClass('btn-info')
+    $(parent).addClass('btn-primary')
     $(parent).text('TICKET')
     let data = JSON.parse(res)
     if (target) {
