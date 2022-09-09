@@ -108,7 +108,7 @@
                             </div>
                         <?php endforeach; ?>
                         <table border="1">
-                        <?php foreach ($sale['collection']['sale_products'] as $indice => $reason): ?>
+                        <?php foreach (@$sale['collection']['sale_products'] as $indice => $reason): ?>
 
 
 
