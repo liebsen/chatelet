@@ -55,7 +55,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($sales as $sale):
+                <?php foreach ((array) $sales as $sale):
 
                 $personalInfoShowed=false;
                 ?>
@@ -83,7 +83,7 @@
                     </td>
                     <td class="col-xs-6">
                         <?php
-                        foreach (@$sale['collection']['sale_products'] as $reason): ?>
+                        foreach ((array) $sale['collection']['sale_products'] as $reason): ?>
                             <div class="row">
                             <?php $column = 4;  ?>
 
@@ -108,7 +108,7 @@
                             </div>
                         <?php endforeach; ?>
                         <table border="1">
-                        <?php foreach (@$sale['collection']['sale_products'] as $indice => $reason): ?>
+                        <?php foreach ((array) $sale['collection']['sale_products'] as $indice => $reason): ?>
 
 
 
