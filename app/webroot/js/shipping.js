@@ -85,14 +85,13 @@ $(function(){
 					onSuccessAlert(cp, '✓ Codigo Postal válido');
 					document.querySelector('.shipping-block').classList.remove('hidden')	
 					var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-					/*
 					if (carrito.cargo === 'shipment' && carrito.shipping) {
 						$(`.shipping-options li[shipping="${carrito.shipping}"]`).click()
 					} else {
 						if (json.rates.length === 1) {
 							$(`.shipping-options li:first-child`).click()
 						}
-					} */
+					}
 				}, 750)
 			} else {
 				$('.input-cp').addClass('wrong');

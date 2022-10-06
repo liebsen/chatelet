@@ -412,6 +412,7 @@ html, body {
   padding: 1.25rem;
 }
 .card-title {
+	font-size: 1.25rem;
   margin-bottom: .75rem;
 }
 .card-subtitle {

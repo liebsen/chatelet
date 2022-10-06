@@ -24,7 +24,7 @@ $(function(){
 		}
 	});
 
-	$('#checkout-form').submit(form => {
+	$('#checkoutform').submit(form => {
 		const submit = $(form.target).find('input[type="submit"]').first()
 		submit.prop('disabled', true)
 		submit.val('Por favor espere...')

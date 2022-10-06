@@ -171,6 +171,7 @@ $(document).ready(function() {
 		show_cart_item(currentCarritoIndex)
 		console.log('prev')
 	})
+
 	$('#carritoItem .carousel-control.right').on('click', function(e) {
     e.preventDefault()
 		if (currentCarritoIndex < document.querySelectorAll('.carrito-item-row').length) {
@@ -179,8 +180,8 @@ $(document).ready(function() {
 			currentCarritoIndex = 0
 		}
 		show_cart_item(currentCarritoIndex)
-		console.log('next')
 	})
+
 	$('#carritoItem .close').on('click', function(e) {
 		$('body').css('overflow-y', 'auto')
 		$('#carritoItem').removeClass('active')
@@ -320,13 +321,12 @@ $(document).ready(function() {
 	if (carrito.cargo === 'takeaway' && carrito.store.length) {
 		$(`.takeaway-options li[store="${carrito.store}"]`).click()
 	}
-
 	var lastcp = localStorage.getItem('lastcp') || 0
 	if (lastcp && $('#subtotal_compra').val()) {
 		$('.input-cp').val(lastcp)
 		setTimeout(() => {
 			const takeaway = $('.takeaway-options li.selected')
-			if(!takeaway || freeShipping) {
+			if(!takeaway.length || freeShipping) {
 				$('#calulate_shipping').submit()	
 				onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
 			} else {
