@@ -17,8 +17,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 * { outline: none; }
 
-body { font-family: 'Roboto Condensed', Verdana, Arial, Sans-Serif; }
-
 a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none; }
 
 .wrapper { margin: 0 auto; max-width: 1600px; }

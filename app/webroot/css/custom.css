@@ -22,8 +22,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 * { outline: none; }
 
-body { font-family: 'Roboto Condensed', Verdana, Arial, Sans-Serif; }
-
 a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none; }
 
 
@@ -537,7 +535,6 @@ footer .bottom a.ig { background-position: -101px -286px; }
   text-align:center;
   font-size: 1.25rem;
   font-weight: 900;
-  font-family: 'Roboto Condensed', Verdana, Arial, sans-serif;
   margin:10px auto 20px;
   color: black;
   max-width: 18rem;
@@ -550,7 +547,6 @@ footer .bottom a.ig { background-position: -101px -286px; }
   /* height:60px; */
   font-size: 1.25rem;
   font-weight: 800;
-  font-family: 'Roboto Condensed', Verdana, Arial, sans-serif;
   margin:10px auto 30px;
   /* color: #444; */
 }
@@ -1571,7 +1567,6 @@ span.out{
   text-align:center;
   font-size: 1.25rem;
   font-weight: 800;
-  font-family: 'Roboto Condensed', Verdana, Arial, sans-serif;
   margin:10px auto 20px;
   color: #404040;
   max-width: 18rem;

@@ -5,12 +5,12 @@
       <title><?= strtoupper($ticket['def_orden_retiro']) ?></title>
       <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
       <link rel="shortcut icon" href="/img/favicon.ico">
-      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,500,600,700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=<?= urlencode(Configure::read('font')) ?>:<?= Configure::read('fontsizes') ?>" rel="stylesheet">
       <?= $this->Html->css('plugins') ?>
       <?= $this->Html->css('bootstrap') ?>
       <style>
         body {
-          font-family: 'Roboto Condensed', Verdana, Arial, Sans-Serif;
+          font-family: '<?= Configure::read('font') ?>', Verdana, Arial, Sans-Serif;
           font-size: 1rem;
           padding: 1rem;
         }
