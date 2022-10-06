@@ -430,8 +430,10 @@ footer .col-md-3 h4 { color: #f50081; font-size: 16px; font-weight: 600; margin-
 footer .col-md-3 h4 + a { color: #f50081; display: inline-block; font-size: 15px; line-height: 17px; padding-top: 10px; }
 footer .col-md-3 h4 + a span { background: url(../images/sprite.png) no-repeat 11px -218px #FFF; border-radius: 50%; box-shadow: 0 3px 4px rgba(0,0,0,.2); display: block; float: left; height: 61px; margin-right: 20px; margin-top: -10px; width: 61px; }
 footer p { clear: both; font-size: 14px; padding: 40px 0; }
-footer .bottom { background: #FFF; padding: 25px 0; text-align: center; transform: scale(0.75);}
-footer .bottom a { background-image: url(../images/sprite.png); display: inline-block; height: 48px; margin: 0 50px; width: 48px; }
+footer .bottom { background: #FFF; padding: 25px 0; text-align: center; 
+transform: scale(0.5);
+opacity: 0.75;}
+footer .bottom a { background-image: url(../images/sprite.png); display: inline-block; height: 48px; margin: 0 5px; width: 48px; }
 footer .bottom a.fb { background-position: 10px -286px; }
 footer .bottom a.tt { background-position: -40px -286px; }
 footer .bottom a.ig { background-position: -101px -286px; }
@@ -1031,7 +1033,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#suscribe form input { width: 85%; }
 	#suscribe form input[type="submit"] { width: 15%; }
 
-	footer .bottom a { margin: 0 20px; }
+	footer .bottom a { margin: 0 10px; }
 
 	.modal-open .modal { padding: 0 15px !important; }
 	#myModal .content { /*background-size: cover;*/    background-size: contain!important;
