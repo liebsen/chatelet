@@ -24,7 +24,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 			  <div class="card-body">
 			    <h5 class="card-title">
 			    	<i class="fa fa-truck"></i>
-			    	Envío por <span class="shipping"></span> </h5>
+			    	Envía <span class="shipping text-uppercase"></span> </h5>
 			    <h6>
 			    	$<span class="shipping_price"></span>			    	
 			    </h6>

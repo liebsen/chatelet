@@ -148,10 +148,7 @@ $list_status = [
                     <td class="col-xs-1"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
                     <?php 
                     $defaultCost = 0; ?>
-                    <strong
-                        id="shipping_title_<?= $sale['local_sale']['id'] ?>"
-                        onclick="getTicket('<?= $sale['local_sale']['id'] ?>', this)"
-                    >
+                    <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" onclick="getTicket('<?= @$sale['local_sale']['id'] ?>', this)">
                         <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty($sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
                     </strong><br>
                     <small>$<?= !empty($sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></small>
