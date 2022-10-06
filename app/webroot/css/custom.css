@@ -429,7 +429,7 @@ footer .col-md-3:first-child ul { column-count: 2; }
 footer .col-md-3 h4 { color: #f50081; font-size: 16px; font-weight: 600; margin-bottom: 25px; }
 footer .col-md-3 h4 + a { color: #f50081; display: inline-block; font-size: 15px; line-height: 17px; padding-top: 10px; }
 footer .col-md-3 h4 + a span { background: url(../images/sprite.png) no-repeat 11px -218px #FFF; border-radius: 50%; box-shadow: 0 3px 4px rgba(0,0,0,.2); display: block; float: left; height: 61px; margin-right: 20px; margin-top: -10px; width: 61px; }
-footer p { clear: both; font-size: 14px; padding: 40px 0; }
+footer p { clear: both; font-size: 14px; padding-top: 4rem;}
 footer .bottom { background: #FFF; padding: 25px 0; text-align: center; 
 transform: scale(0.5);
 opacity: 0.75;}
@@ -772,7 +772,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headcontacto .box { border: 2px solid #f50081; padding: 100px 90px; }
 #headcontacto .box h3 { font-size: 22px; font-weight: 500; margin-bottom: 30px; }
 #headcontacto .box p { font-size: 16px; line-height: 1.5; }
-#formulario { background: url(../images/arrow-down.gif) no-repeat center top; padding: 80px 0; }
+#formulario { background: url(../images/arrow-down-grey.gif) no-repeat center top; padding: 80px 0; }
 #formulario .wrapper { /*background: url(../images/formbg.jpg) no-repeat left center;*/ background-size: contain; }
 #formulario input[type="text"], #formulario input[type="email"], #formulario textarea { background: transparent; border: none; border-bottom: 1px solid #464444; font-size: 16px; padding: 22px 0; width: 100%; }
 #formulario h3 { font-size: 22px; margin: 90px 0 70px; }
