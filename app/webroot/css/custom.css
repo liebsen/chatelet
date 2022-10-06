@@ -624,7 +624,7 @@ footer .bottom a.ig { background-position: -101px -286px; }
 
 }
 #listShop a .hover small { color: #252424; font-size: 18px; }
-#listShop a .hover small:after { background: #f50081; content: ""; display: block; height: 3px; margin: 15px auto 0; width: 50px; }
+#listShop a .hover small:after { background: #f50081; content: ""; display: block; height: 4px;border-radius: 4px; margin: 15px auto 0; width: 50px; }
 
 #listShop a:hover img { filter: grayscale(0%); opacity: 1; }
 #listShop a:hover .hover { opacity: 0.6; }
@@ -650,7 +650,7 @@ align-items: center;}
     object-position: top center; margin: 0 auto;transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #productOptions .col-sm-9 a .hover { border: 2px solid #f50081; color: #f50081; font-size: 40px; font-weight: 500; height: 90%; left: 5%; opacity: 0; padding-top: 30%; position: absolute; text-align: center; top: 5%; width: 90%; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #productOptions .col-sm-9 a .hover small { color: #252424; font-size: 22px; }
-#productOptions .col-sm-9 a .hover small:after { background: #f50081; content: ""; display: block; height: 3px; margin: 15px auto 0; width: 50px; }
+#productOptions .col-sm-9 a .hover small:after { background: #f50081; content: ""; display: block; height: 4px;border-radius: 4px; margin: 15px auto 0; width: 50px; }
 #productOptions .col-sm-9 a:hover img { filter: grayscale(100%); opacity: .5; }
 #productOptions .col-sm-9 a:hover .hover { opacity: 1; }
 
@@ -772,7 +772,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 .map { overflow: hidden; }
 .map .col-md-4 { background: url(../images/mapbg.png) no-repeat center center; background-size: cover; padding: 200px 0 200px 150px; }
 .map .col-md-4 h1 { color: #f50081; font-size: 40px; font-weight: 600; }
-.map .col-md-4 h1:after { background: #f50081; content: ""; display: block; margin-top: 50px; height: 3px; width: 75px; }
+.map .col-md-4 h1:after { background: #f50081; content: ""; display: block; margin-top: 50px; height: 4px;border-radius: 4px; width: 75px; }
 
 #headcontacto { background: url(../images/videobg.png) no-repeat center center; background-size: cover; padding: 65px 0; }
 #headcontacto .wrapper { /*background: url(../images/contactohead.png) no-repeat center center;*/ background-size: contain; }
@@ -797,7 +797,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 #headhelp { background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover; padding: 65px 0; }
 #headhelp h1 { color: #f50081; font-size: 38px; font-weight: 600; margin-top: 70px; }
-#headhelp h1:after { background: #f50081; content: ""; display: block; margin-top: 50px; height: 3px; width: 75px; }
+#headhelp h1:after { background: #f50081; content: ""; display: block; margin-top: 50px; height: 4px;border-radius: 4px; width: 75px; }
 #headhelp .box { border: 2px solid #f50081; padding: 90px 90px 50px; }
 #headhelp .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; }
 #headhelp .box p { font-size: 15px; line-height: 1.5; margin-bottom: 45px; }
@@ -1280,7 +1280,7 @@ span.out{
     border: 2px solid #f50081;
     padding: 0.75rem 1rem;
     border-radius: 0.25rem;
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 800;
     text-decoration: none;    
 }

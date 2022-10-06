@@ -434,7 +434,7 @@ html, body {
 	display: inline-block;
 	color: #e60088;
 	padding: 0.5rem 0.75rem;
-	border-radius: 1rem;
+	border-radius: 0.25rem;
 	background-color: white;
 	border: 1px solid #e60088;
 	margin: 0.25rem;
