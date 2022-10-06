@@ -1293,6 +1293,7 @@ span.out{
 
 .search-item {
   opacity: 0;
+  flex: 1;
   animation-name: fadeIn;
   animation-duration: 1s;
   animation-fill-mode: both;
@@ -1341,7 +1342,7 @@ span.out{
 }
 
 .search-results .is-background-cover {
-  min-height: 30rem;
+  min-height: 15rem;
   min-width: 10rem;
   margin-bottom: 1rem;
 }

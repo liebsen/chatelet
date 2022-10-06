@@ -34,7 +34,7 @@ let apiSearch = q => {
       let str = ''
       $('.search-more').html('')
       $.each(data.results, function(key, item) {
-        str += '<div class="col col-md-4 col-lg-3 search-item animate fadeIn">' +
+        str += '<div class="col-sm-6 col-md-4 col-lg-3 search-item animate fadeIn">' +
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 
             '<div class="row">' + 
               '<div class="col-sm-12">' + 
