@@ -5,6 +5,10 @@
 	src: url('../fonts/BauerBodni Blk BT Black.ttf');
 }*/
 
+body {
+	background-color: #f8f8f8;
+}
+
 a {
 	color: white;
 }

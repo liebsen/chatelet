@@ -35,6 +35,7 @@
   background-clip: border-box;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .75rem;
+  background-color: white;
 	min-height: 12rem;
   -webkit-animation-name: slideInLeft;
   animation-name: slideInLeft;
