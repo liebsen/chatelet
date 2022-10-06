@@ -53,6 +53,9 @@ $list_status = [
             <button class="btn btn-success" type="button" style="margin-top: -2px;">Más ventas</button>
         </a>
         <?php endif ?>
+        <button class="btn btn-success" type="button" id="expandall" style="margin-top: -2px;">
+            <i class="gi gi-expand"></i>
+        </button>
     </div>
 </div>
 <div class="row">
@@ -63,7 +66,7 @@ $list_status = [
                     <th class="text-center">Fecha</th>
                     <th class="text-center">Cliente</th>
                     <th class="text-center toggle-table toggle-table-hidden">Detalles</th>
-                    <th class="text-center toggle-table toggle-table-hidden">Envio</th>
+                    <th class="text-center">Envío</th>
                     <th class="text-center">Método de pago</th>
                     <th class="text-center">Estado</th>
                     <th class="text-center">Total</th>
@@ -80,8 +83,8 @@ $list_status = [
                         <small><?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?></small><br />
                     </td>
                     <td class="col-xs-3">
-                        <strong><?php echo @$sale['collection']['cardholder']['name'] ?></strong><br>
-                        <small><?php echo @$sale['collection']['cardholder']['identification']['type'] ?> <?php echo @$sale['collection']['cardholder']['identification']['number'] ?></small>
+                        <strong><?php echo @$sale['collection']['cardholder']['name'] ?: @$sale['collection']['local_sale']['nombre'] . ' ' . @$sale['collection']['local_sale']['apellido'] ?></strong><br>
+                        <small><?php echo @$sale['collection']['cardholder']['identification']['type'] ?: @$sale['collection']['local_sale']['dni'] ?> <?php echo @$sale['collection']['cardholder']['identification']['number'] ?></small>
                     </td>
                     <td class="col-xs-6 toggle-table toggle-table-hidden">
                         <?php
@@ -141,7 +144,7 @@ $list_status = [
                         <?php endforeach ?>
                          </table>
                      </td>
-                    <td class="col-xs-1 text-center toggle-table toggle-table-hidden"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
+                    <td class="col-xs-1"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
                         <?php
                         if (!empty($sale['local_sale']['id']) && 
                             !empty($sale['local_sale']['apellido']) && 
@@ -151,14 +154,12 @@ $list_status = [
                             <?php if (empty($sale['local_sale']['def_orden_retiro'])):?>
                                 <span class="btn btn-link" onclick="editLogistic(<?= $sale['local_sale']['id'] ?>, <?= $sale['local_sale']['logistic_id'] ?>)">
                                     <i class="gi gi-edit"></i> Cambiar logística
-                                </span><br>
+                                </span>
                             <?php endif ?>
-
                             <span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span>
-                             <br />
                             <?= $sale['local_sale']['def_mail_sent'] ? '<p class="text-success">Notificación enviada</p>' : '<p class="text-danger">Notificación no enviada</p>';?>
                         <?php else: ?>
-                            <p class="text-muted">(Sin Etiqueta)</p>
+                            <small class="text-muted">(Sin Etiqueta)</small>
                         <?php endif ?>
                         <?php 
                         $defaultCost = 0;
@@ -172,7 +173,7 @@ $list_status = [
                     </td>
                     <td class="col-xs-3">
                         <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong><br>                        
-                        <small><?php echo @$sale['collection']['merchant_order_id'] ?></small>
+                        <small><?php echo $sale['collection']['payment_type'] === 'credit_card' ? @$sale['collection']['last_four_digits'] : @$sale['collection']['merchant_order_id'] ?></small>
                     </td>                    
                     <td class="col-xs-3">
                         <strong><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>

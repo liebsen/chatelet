@@ -2,11 +2,10 @@
 <?php echo $this->Html->css('oca_front.css?v=' . Configure::read('APP_DIST'),array( 'inline' => false )) ?>
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <div class="row is-rounded animated fadeIn">
-	<h3 class="h3 text-center">¿Cómo desea recibir<br> su compra?</h3>
+	<h3>¿Cómo querés recibir<br> tu compra?</h3>
 	<div class="col-xs-12 shipment-options shipping">
-		<hr>
 		<?php if(!$freeShipping): ?>
-		<h4 id="heading" class="cargo-title">1. Costo de Envío</h4>
+		<h4 id="heading" class="cargo-title">Envío a Domicilio</h4>
 		<?php else: ?>
 		<h4 class="cargo-title text-success animated fadeIn">1. Envío gratuito<span></span></h4>
 		<?php endif ?>		
@@ -47,7 +46,7 @@
 	</div>
 	
 	<div class="col-xs-12 shipment-options takeaway">
-		<h3 id="heading" class="cargo-title">Retiro en Sucursal</h3>
+		<h4 id="heading" class="cargo-title">Retiro en Sucursal</h4>
 		<p class="p">
 			<i>
 				<small>Elegí esta opción para evitar cargos de envío. <span class="carrito_takeaway_text"><?= $carrito_takeaway_text ?></span></small>

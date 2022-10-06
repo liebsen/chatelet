@@ -17,7 +17,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 * { outline: none; }
 
-body { font-family: 'Poppins', Verdana, Arial, Sans-Serif; }
+body { font-family: 'Roboto Condensed', Verdana, Arial, Sans-Serif; }
 
 a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none; }
 

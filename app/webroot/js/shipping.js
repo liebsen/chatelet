@@ -24,6 +24,7 @@ $(function(){
 		}
 	  var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
 	  preferences.cargo = cargo
+	  preferences.shipping_price = cost
 	  localStorage.setItem('carrito', JSON.stringify(preferences))
 
 		let total = formatNumber(price)

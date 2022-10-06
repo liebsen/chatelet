@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="facebook-domain-verification" content="mz62jgu2bv7lu4new0t9pno88ekmxx" />
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,500,600,700,800" rel="stylesheet">
     <?php if(isset($product) && isset($product['name'])):?>
     <!-- FB OpenGraph -->
     <meta property="og:title" content="<?= ucwords(strtolower($product['name'])) ?>">

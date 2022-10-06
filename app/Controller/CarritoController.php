@@ -238,7 +238,6 @@ class CarritoController extends AppController
 		$oca = new Oca();
 		$provincias = $oca->getProvincias();
 		$this->set('provincias',$provincias);
-
 		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
 		$this->set('userData',$user);
 	}

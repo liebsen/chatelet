@@ -23,11 +23,11 @@
 }
 
 .toggle-active, .toggle-active td {
-  background-color: white!important;
+  background-color: #f1f1f1!important;
 }
 
 .toggle-active td:hover {
-  background-color: white!important;
+  background-color: #f1f1f1!important;
 }
 
 .fullhd-selector .close {

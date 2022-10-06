@@ -1,9 +1,8 @@
 <?php echo $this->Html->script('coupon.js?v=' . Configure::read('APP_DIST'),array( 'inline' => false )) ?>
 <div class="row is-rounded">
-	<h3 class="h3 text-center">Beneficios exclusivos</h3>
+	<h3>Beneficios exclusivos</h3>
 	<div class="col-xs-12 shipment-options shipping">
-		<hr>
-		<h3 id="heading" class="cargo-title">Cupón promocional<span></span></h3>
+		<h4 id="heading" class="cargo-title">Cupón promocional<span></span></h4>
 		<p class="field">
 			<i class="coupon-text animated speed">
 				<small>Ingresá tu cupón de descuento. Beneficio exclusivo para clientas registradas.</small>

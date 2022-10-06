@@ -169,7 +169,7 @@
 					</div>
 					<?php else: ?>
 					<div class="container">
-						<div class="price text-left">El carrito de compras está vacío.</div><div> Intente agregar productos para comprar.</div>
+						<div class="price text-left">El carrito de compras está vacío.</div><div> Agregá al menos un producto para continuar.</div>
 					</div>
 					<br><br>
 					<?php endif;?>

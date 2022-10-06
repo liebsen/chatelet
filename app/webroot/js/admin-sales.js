@@ -1,6 +1,20 @@
 $(document).ready(function() {
   // getTicket(10999)
 
+  $('#expandall').click(e => {
+    var active = $('.toggle-active').length
+    $(e.target).parents('tr').find('.toggle-table').each((i,e) => {
+      if (active) {
+        $(e).addClass('toggle-table-hidden')
+      } else {
+        $(e).removeClass('toggle-table-hidden')
+      }      
+    })
+    $('toggle-active').each((i,e) => {
+      $(e).removeClass('toggle-active')
+    })
+  })
+
   $('#example-datatables2 tr:not(first)').click(e => {
     if($('.toggle-active').length) {
       $('.toggle-active').removeClass('toggle-active')
