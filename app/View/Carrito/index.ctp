@@ -145,7 +145,7 @@
 							<?php else: ?>
 							<div class="field text-right delivery-cost hidden animated speed">
 								<div class="price text-dark">
-									<span class="text-weight-thin">Envío </span>
+									<span class="text-weight-thin">Envía </span>
 									<span id="delivery_cp"></span> <span class="cost_delivery">0</span></div>
 							</div>
 							<?php endif ?>
@@ -174,7 +174,7 @@
 					<br><br>
 					<?php endif;?>
 				</div>
-				<div class="carrito-col animated slideInRight">
+				<div class="carrito-col">
 				<?php 
 					if (isset($carro) && !empty($carro)) {
 						echo $this->element('shipping', array('freeShipping' => $freeShipping, 'carrito_takeaway_text' => $carrito_takeaway_text));

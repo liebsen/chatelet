@@ -77,7 +77,7 @@ $(function(){
 				})
 				rates+= `</ul>`
 				document.querySelector('.shipping-block .slot').innerHTML = rates
-				$('#delivery_cp').html( `<span class="shipping-cargo is-capitalize"></span> (${cp})` );
+				$('#delivery_cp').html( `<span class="shipping-cargo is-uppercase"></span> (${cp})` );
 				localStorage.setItem('lastcp', cp)		
 				setTimeout(() => {
 					$('.input-cp').removeClass('wrong');

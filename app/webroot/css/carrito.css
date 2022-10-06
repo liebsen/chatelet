@@ -30,6 +30,7 @@
 	position: relative;
 	flex-direction: row;
 	padding: 0.5rem;
+	min-height: 200px;
 	margin: 1rem 0;
   background-clip: border-box;
   border: 1px solid rgba(0,0,0,.125);

@@ -104,6 +104,16 @@ label input[type=checkbox]:disabled + .label-text:before {
 .mt-2 {
   margin-top: 0.5rem!important;
 }
+.mt-3 {
+  margin-top: 0.75rem!important;
+}
+.mt-4 {
+  margin-top: 1rem!important;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
 
 .is-absolute {
   position: absolute;
@@ -593,7 +603,10 @@ footer .bottom a.ig { background-position: -101px -286px; }
 #listShop a:hover img { filter: grayscale(0%); opacity: 1; }
 #listShop a:hover .hover { opacity: 0.6; }
 #infoShop { background: #fadcea; padding: 25px 0; }
-#infoShop .col-md-4 { color: #5c5a5a; font-size: 16px; line-height: 1.5; padding: 40px; }
+#infoShop .col-md-4 { color: #5c5a5a; font-size: 16px; line-height: 1.5; min-height: 10rem;
+display: flex;
+justify-content: center;
+align-items: center;}
 #infoShop .col-md-4.blr { border-left: 5px solid #FFF; border-right: 5px solid #FFF; }
 #infoShop .bx1 { background: url(../images/box1.png) no-repeat 50px center; }
 #infoShop .bx2 { background: url(../images/box2.png) no-repeat 50px center; }
