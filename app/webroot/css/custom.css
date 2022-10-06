@@ -414,14 +414,23 @@ label input[type=checkbox]:disabled + .label-text:before {
 /* #suscribe .col-md-6:last-child:before { background: url(../images/sprite.png) no-repeat -82px -171px; content: ""; display: block; float: left; height: 47px; margin-right: 20px; width: 62px; } */
 #suscribe .h3 { margin-top: 0; }
 #suscribe strong { font-weight: 900; }
-#suscribe form { border-bottom: 2px solid rgb(51, 51, 51); overflow: hidden; }
+#suscribe form {  overflow: hidden; }
+#suscribe form:after { 
+background: #f50081;
+content: "";
+display: block;
+height: 4px;
+margin-top: 38px;
+width: 100%;
+border-radius: 4px;
+}
 #suscribe form input { background: transparent; border: none; color: rgb(51, 51, 51); float: left; width: 90%; font-size: 1.5rem;font-weight: 600;}
 #suscribe form input:placeholder { color: rgb(70, 70, 70); }
-#suscribe form input[type="submit"] { color: rgb(51, 51, 51); font-weight: 600; margin-top: 6px; text-align: right; width: 10%; font-weight: 800; }
+#suscribe form input[type="submit"] { color: #f50081; font-weight: 600; margin-top: 6px; text-align: right; width: 10%; font-weight: 800; }
 
 footer { background: #fefefe; overflow: hidden; padding: 40px 0 0; }
 footer h3 { color: #464444; font-size: 16px; text-transform: uppercase; font-weight: 600; margin-bottom: 35px; }
-footer h3:after { background: #f50081; content: ""; display: block; height: 2px; margin-top: 15px; width: 50px; }
+footer h3:after { background: #f50081; content: ""; display: block; height: 4px;border-radius: 4px; margin-top: 15px; width: 50px; }
 footer a { color: #464444; font-size: 1rem; font-weight: 200; text-transform: uppercase;  }
 footer a:hover { color: #f50081; }
 footer ul li { margin-bottom: 15px; }
@@ -768,7 +777,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headcontacto { background: url(../images/videobg.png) no-repeat center center; background-size: cover; padding: 65px 0; }
 #headcontacto .wrapper { /*background: url(../images/contactohead.png) no-repeat center center;*/ background-size: contain; }
 #headcontacto h1 { color: #f50081; font-size: 40px; font-weight: 600; margin-top: 70px; }
-#headcontacto h1:after { background: #f50081; content: ""; display: block; margin-top: 50px; height: 3px; width: 75px; }
+#headcontacto h1:after { background: #f50081; content: ""; display: block; margin-top: 50px; height: 4px;border-radius: 4px; width: 75px; }
 #headcontacto .box { border: 2px solid #f50081; padding: 100px 90px; }
 #headcontacto .box h3 { font-size: 22px; font-weight: 500; margin-bottom: 30px; }
 #headcontacto .box p { font-size: 16px; line-height: 1.5; }
