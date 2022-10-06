@@ -28,7 +28,9 @@ $(document).ready(function() {
     $(e.target).parents('table').find('thead').first('tr').find('.toggle-table').each((i,e) => {
       $(e).toggleClass('toggle-table-hidden')
     })
-    $(e.target).parents('tr').toggleClass('toggle-active')
+    if (!$(e.target).parents('tr').hasClass('toggle-active')) {
+      $(e.target).parents('tr').addClass('toggle-active')
+    }
   })
 
   $('#example-datatables2').DataTable({
