@@ -2,7 +2,20 @@
 <?php echo $this->Html->css('/css/admin-sales.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 <?php echo $this->Html->script('admin-sales', array('inline' => false)); ?>
+<?php 
 
+$list_payments = [
+    '' => "Desconocido",
+    'credit_card' => "Tarjeta de Crédito",
+    'account_money' => "Efectivo",
+];
+$list_status = [
+    '' => "Desconocido",
+    'approved' => "Aprobado",
+    'processing' => "Procesando...",
+    'rejected' => "Rechazado",
+];
+?>
 <!-- logistic selector -->
 <div class="fullhd-selector logistic-selector">
     <span class="close is-clickable" onclick="logisticsClose()">
@@ -48,9 +61,11 @@
             <thead>
                 <tr>
                     <th class="text-center">Fecha</th>
-                    <th class="text-center">Cliente - (MercadoPago)</th>
-                    <th class="text-center">Detalles</th>
-                    <th class="text-center">Envio</th>
+                    <th class="text-center">Cliente</th>
+                    <th class="text-center toggle-table toggle-table-hidden">Detalles</th>
+                    <th class="text-center toggle-table toggle-table-hidden">Envio</th>
+                    <th class="text-center">Método de pago</th>
+                    <th class="text-center">Estado</th>
                     <th class="text-center">Total</th>
                 </tr>
             </thead>
@@ -59,31 +74,18 @@
 
                 $personalInfoShowed=false;
                 ?>
-                <tr>
-                    <td class="col-xs-1 text-center" data-sort="<?php echo date('Y-m-d',strtotime($sale['collection']['date_approved'])) ?>">
-                        <?php echo date('d/m/Y',strtotime($sale['collection']['date_approved'])) ?><br />
-                        <?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?><br />
+                <tr class="is-clickable">
+                    <td class="col-xs-1" data-sort="<?php echo date('Y-m-d',strtotime($sale['collection']['date_approved'])) ?>">
+                        <strong><?php echo date('d/m/Y',strtotime($sale['collection']['date_approved'])) ?></strong><br />
+                        <small><?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?></small><br />
                     </td>
                     <td class="col-xs-3">
-                        <div class="row">
-                            <div class="col-xs-2"></div>
-                            <div class="col-xs-10">
-                                <dl class="list">
-                                    <dt>Nombre</dt>
-                                    <dd><?php echo $sale['collection']['payer']['first_name'] ?>&nbsp;</dd>
-                                    <dt>Apellido</dt>
-                                    <dd><?php echo $sale['collection']['payer']['last_name'] ?>&nbsp;</dd>
-                                    <dt>Email</dt>
-                                    <dd><?php echo $sale['collection']['payer']['email'] ?>&nbsp;</dd>
-                                    <dt>Telefono</dt>
-                                    <dd><?php echo $sale['collection']['payer']['phone']['number'] ?>&nbsp;</dd>
-                                </dl>
-                            </div>
-                        </div>
+                        <strong><?php echo @$sale['collection']['cardholder']['name'] ?></strong><br>
+                        <small><?php echo @$sale['collection']['cardholder']['identification']['type'] ?> <?php echo @$sale['collection']['cardholder']['identification']['number'] ?></small>
                     </td>
-                    <td class="col-xs-6">
+                    <td class="col-xs-6 toggle-table toggle-table-hidden">
                         <?php
-                        foreach ((array) $sale['collection']['sale_products'] as $reason): ?>
+                        foreach ((array) @$sale['collection']['sale_products'] as $reason): ?>
                             <div class="row">
                             <?php $column = 4;  ?>
 
@@ -108,7 +110,7 @@
                             </div>
                         <?php endforeach; ?>
                         <table border="1">
-                        <?php foreach ((array) $sale['collection']['sale_products'] as $indice => $reason): ?>
+                        <?php foreach ((array) @$sale['collection']['sale_products'] as $indice => $reason): ?>
 
 
 
@@ -139,7 +141,7 @@
                         <?php endforeach ?>
                          </table>
                      </td>
-                    <td class="col-xs-1 text-center"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
+                    <td class="col-xs-1 text-center toggle-table toggle-table-hidden"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
                         <?php
                         if (!empty($sale['local_sale']['id']) && 
                             !empty($sale['local_sale']['apellido']) && 
@@ -166,10 +168,18 @@
                         echo '<p class="'.$state.'"> $';
                         echo (!empty($sale['collection']['deliver_cost']))?$sale['collection']['deliver_cost']:$defaultCost;
                         echo '</p>'?>
-                        (<?php echo count($sale['collection']['sale_products']) ?> item)
+                        (<?php echo count(@$sale['collection']['sale_products']) ?> item)
                     </td>
+                    <td class="col-xs-3">
+                        <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong><br>                        
+                        <small><?php echo @$sale['collection']['merchant_order_id'] ?></small>
+                    </td>                    
+                    <td class="col-xs-3">
+                        <strong><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>
+                        <small><?php echo @$sale['collection']['date_approved'] ?></small>
+                    </td>                    
                     <td class="col-xs-1 text-center">
-                        $<?php echo $sale['collection']['transaction_amount'] ?>
+                        <strong>$<?php echo $sale['collection']['transaction_amount'] ?></strong>
                     </td>
                 </tr>
                 <?php endforeach ?>

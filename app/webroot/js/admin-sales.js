@@ -1,5 +1,22 @@
 $(document).ready(function() {
   // getTicket(10999)
+
+  $('#example-datatables2 tr:not(first)').click(e => {
+    if($('.toggle-active').length) {
+      $('.toggle-active').removeClass('toggle-active')
+      $('.toggle-active').find('.toggle-table').each((i,e) => {
+        $(e).toggleClass('toggle-table-hidden')
+      })      
+    }
+    $(e.target).parents('tr').find('.toggle-table').each((i,e) => {
+      $(e).toggleClass('toggle-table-hidden')
+    })
+    $(e.target).parents('table').find('thead').first('tr').find('.toggle-table').each((i,e) => {
+      $(e).toggleClass('toggle-table-hidden')
+    })
+    $(e.target).parents('tr').toggleClass('toggle-active')
+  })
+
   $('#example-datatables2').DataTable({
     "order": [],
     "language": {

@@ -386,6 +386,33 @@ html, body {
 	margin-bottom: 0;
 }
 
+.w-mobile {
+	max-width: 25rem;
+	margin: auto;
+}
+.cart-btn-green {
+	display: inline-block;
+	font-size: 1.25rem;
+	font-weight: 800;
+	color: white;
+	background-color: #bebebe;
+	padding: 0.75rem 1rem;
+	min-width: 20rem;
+	border-radius: 0.5rem;
+	transition: all 0.25s ease;
+}
+.cart-btn-green.shrink {
+	min-width: inherit;
+}
+
+.cart-btn-green.ready {
+	background-color: #e60088;
+}
+
+.cart-btn-green:hover {
+	background-color: #e60088;
+}
+
 .center-text {
 	text-align: center;
 }

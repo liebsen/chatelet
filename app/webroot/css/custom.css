@@ -50,8 +50,9 @@ label {
   cursor: pointer;
   color: #383A3F;
   display: block;
-  margin-bottom: 10px;
-  font-size: 1.2em;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 1em;
 }
 label input[type=checkbox] + .label-text:hover:before {
   color: #e10d74;

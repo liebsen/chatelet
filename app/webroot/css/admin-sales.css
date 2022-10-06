@@ -1,3 +1,11 @@
+.toggle-table {
+
+}
+
+.toggle-table-hidden {
+  display: none!important;
+}
+
 .fullhd-selector {
   position: fixed;
   top: 0;
@@ -14,8 +22,12 @@
   transition: all 0.25s ease 0.25s;
 }
 
-.is-clickable {
-  cursor: pointer;
+.toggle-active, .toggle-active td {
+  background-color: white!important;
+}
+
+.toggle-active td:hover {
+  background-color: white!important;
 }
 
 .fullhd-selector .close {
