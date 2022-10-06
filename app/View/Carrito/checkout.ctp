@@ -29,7 +29,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 			    	$<span class="shipping_price"></span>			    	
 			    </h6>
 			  <?php if($loggedIn): ?>
-			    <p class="card-text"><?= $userData['User']['address'] ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>)</p>
+			    <p class="card-text"><?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street'] ? $userData['User']['street_n'] : '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>)</p>
 			  <?php endif ?>
 			    <a href="/carrito" class="card-link">Modificar</a>
 			    <span class="card-link is-clickable" onclick="toggleform()" class="card-link">Modificar dirección</span>
@@ -101,18 +101,16 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 						</div>
 						<div class="form-group">
 							<label for="direccion">Provincia</label>
-							<select class="form-control" name="provincia" required data-url="<?php echo Router::url(array('action'=>'getLocalidadProvincia'),true) ?>">
+							<select class="form-control" name="provincia" autocomplete="off">
 								<option value=""></option>
 								<?php foreach ($provincias as $key => $value): ?>
-									<option data-id="<?php echo $value['id'] ?>" value="<?php echo $value['provincia']; ?>"><?php echo ucfirst($value['provincia']) ?></option>
+									<option value="<?php echo $value['provincia']; ?>"<?= strtoupper($value['provincia']) == strtoupper($userData['User']['province']) ? '  selected' : ''?>><?php echo ucfirst($value['provincia']) ?></option>
 								<?php endforeach ?>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="direccion">Localidad</label>
-							<select class="form-control" name="localidad" required>
-								<option></option>
-							</select>
+							<input type="text" class="form-control" name="localidad" value="<?= $userData['User']['city'] ?>" required>
 						</div>
 						<span class="clearfix"></span>
 						<div class="form-group">
@@ -122,7 +120,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 						</div>
 						<span class="clearfix"></span>
 						<div class="form-group">
-							<label for="direccion">Nº de Piso y Departamento</label>
+							<label for="direccion">Piso y Departamento</label>
 							<input style="margin-right:1%;width:49%;float:left;" min="0" class="form-control" placeholder="1,2,3..." name="floor" type="number" value="<?=(!empty($userData['User']['floor']))?$userData['User']['floor']:''; ?>"/>
 							<input style="margin-left:1%;width:49%;float:left;" class="form-control" placeholder="A,B,C..." name="depto" type="text" value="<?= (!empty($userData['User']['depto']))?$userData['User']['depto']:''; ?>"/>
 						</div>

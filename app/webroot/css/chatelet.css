@@ -17,6 +17,9 @@ html, body {
 	height: 100%;
 }
 
+.modal {
+	overflow-y: auto;
+}
 .is-hidden {
 	display: none!important;
 }
@@ -362,12 +365,16 @@ html, body {
 
 #mayorista-modal {
 	font-size: 13px;
-	position: absolute;
-	/*overflow: visible;*/
+	/*position: absolute;
+	overflow: visible;*/
 }
-#particular-modal{
-	font-size: 13px;
-	position: absolute;
+#particular-modal .modal-content, 
+#mayorista-modal .modal-content,
+#particular-login .modal-content,
+#particular-password .modal-content{
+	max-width: 25rem;
+	margin: auto;
+	/*position: absolute; */
 }
 
 #particular-modal .form-control,

@@ -18,6 +18,10 @@
 			'telephone' => '',
 			'another_telephone' => '',
 			'address' => '',
+			'street' => '',
+			'street_n' => '',
+			'floor' => '',
+			'depto' => '',
 			'province' => '',
 			'city' => '',
 			'neighborhood' => '',
@@ -49,10 +53,7 @@
 					}
 				?>
 				<div class="row">
-					<div class="col-md-2"></div>
-					<div class="col-md-8 ">
-					         
-					         
+					<div class="col">
 							<label for="email">Email</label>
 							<div class="form-group">
 								<?php
@@ -133,12 +134,16 @@
 									echo '<input type="tel" id="another-tel" class="form-control" name="data[User][another_telephone]" value="'. $user['another_telephone'] .'" />';
 								?>
 							</div>
-				
-							<label for="direccion">Direccion</label>
+							<label for="direccion">Calle y Número</label>
 							<div class="form-group">
-								<?php
-									echo '<input type="text" id="direccion" class="form-control" name="data[User][address]" value="'. $user['address'] .'" />';
-								?>
+								<input style="width:75%;float:left;" type="text" id="direccion" class="form-control" name="data[User][street]" value="<?= $user['street'] ?>" required />
+								<input style="margin-left:1%;width:24%;float:left;" min="0" class="form-control" placeholder="1234" name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
+							</div>
+
+							<label for="direccion">Piso y Departamento</label>
+							<div class="form-group">
+								<input style="margin-right:1%;width:49%;float:left;" min="0" class="form-control" placeholder="1,2,3..." name="data[User][floor]" type="number" value="<?= $user['floor'] ?>"/>
+								<input style="margin-left:1%;width:49%;float:left;" class="form-control" placeholder="A,B,C..." name="data[User][depto]" type="text" value="<?= $user['depto'] ?>"/>
 							</div>
 						
 							<label for="provincia">Provincia</label>
@@ -201,8 +206,6 @@
 							</div>
 						
 					</div>
-				
-					<div class="col-md-2"></div>
 				</div>
 				<div class="row">
 					<div class="col-md-2"></div>

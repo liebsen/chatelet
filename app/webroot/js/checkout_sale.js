@@ -1,6 +1,6 @@
 $(function(){
 	//Events
-	$('[name="provincia"]').change(function(event){
+	/* $('[name="provincia"]').change(function(event){
 		var province_id 	= $(this).find('option:selected').data('id');
 		var province_name 	= $(this).find('option:selected').html();
 		var url 			= $(this).data('url');
@@ -22,7 +22,7 @@ $(function(){
 				}
 			});
 		}
-	});
+	}); */
 
 	$('#checkoutform').submit(form => {
 		const submit = $(form.target).find('input[type="submit"]').first()
