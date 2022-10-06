@@ -427,10 +427,19 @@ html, body {
   margin-bottom: 0;
 }
 .card-link {
+	display: inline-block;
 	color: #e60088;
+	padding: 0.5rem 0.75rem;
+	border-radius: 1rem;
+	background-color: white;
+	border: 1px solid #e60088;
+	margin: 0.25rem;
+	margin-top: 1.25rem;
+	transition: all 0.25s ease;
 }
 .card-link:hover {
-	color: #ef0088;
+	background-color: #e60088;
+	color: white;
 }
 .cart-btn-green {
 	display: inline-block;

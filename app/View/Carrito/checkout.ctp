@@ -59,7 +59,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 			    	<i class="fa fa-user"></i>
 			    	<?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?>
 			    </h5>
-			    <h6><?= $userData['User']['dni'] ?></h6>
+			    <h6>DNI <?= $userData['User']['dni'] ?></h6>
 			    <p class="card-text"><?= $userData['User']['email'] ?></p>
 			    <span class="card-link is-clickable" onclick="toggleform()" class="card-link">Modificar</span>
 			  </div>

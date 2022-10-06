@@ -84,8 +84,8 @@ $list_status = [
                         <small><?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?></small><br />
                     </td>
                     <td class="col-xs-3">
-                        <strong><?php echo @$sale['collection']['cardholder']['name'] ?: @$sale['collection']['local_sale']['nombre'] . ' ' . @$sale['collection']['local_sale']['apellido'] ?></strong><br>
-                        <small><?php echo @$sale['collection']['cardholder']['identification']['type'] ?: @$sale['collection']['local_sale']['dni'] ?> <?php echo @$sale['collection']['cardholder']['identification']['number'] ?></small>
+                        <strong><?php echo @$sale['collection']['cardholder']['name'] ?: @$sale['local_sale']['nombre'] . ' ' . @$sale['local_sale']['apellido'] ?></strong><br>
+                        <small><?php echo @$sale['collection']['cardholder']['identification']['type'] ?: @$sale['local_sale']['dni'] ?> <?php echo @$sale['collection']['cardholder']['identification']['number'] ?></small>
                     </td>
                     <td class="col-xs-6 toggle-table toggle-table-hidden">
                         <?php
