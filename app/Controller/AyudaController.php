@@ -65,15 +65,16 @@ class AyudaController extends AppController {
 		$map = $this->Setting->findById('carrito_takeaway_text');
 		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
 		$map = $this->Setting->findById('onlinebanking_explain_text');
-		$data['onlinebanking_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('onlinebanking_instructions');
-		$data['onlinebanking_instructions'] = @$map['Setting']['value'];
-
-		explain
-
+		$data['onlinebanking_explain_text'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('onlinebanking_instructions_text');
+		$data['onlinebanking_instructions_text'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('onlinebanking_explain_title');
+		$data['onlinebanking_explain_title'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('onlinebanking_instructions_title');
+		$data['onlinebanking_instructions_title'] = @$map['Setting']['value'];
 
 		$this->set('data', $data);
-		return $this->render('onlinebanking');
+		// return $this->render('onlinebanking');
 	}
 
 	public function metodos_de_pago() {

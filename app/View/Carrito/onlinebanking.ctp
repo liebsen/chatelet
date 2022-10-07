@@ -4,6 +4,12 @@
                   <div class="col-md-6">
                       <h1>Transferencia<br>bancaria</h1>
                   </div>
+                  <pre>
+                    <?php 
+                    var_dump($data);
+                    die();
+
+                    ?>
                   <div class="col-md-6">
                       <div class="box">
                           <h3><?= $data['onlinebanking_explain_title'] ?></h3>
