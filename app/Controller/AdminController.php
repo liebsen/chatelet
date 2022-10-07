@@ -1764,11 +1764,14 @@ public function promos(){
 		$data['text_shipping_min_price'] = $map['Setting']['extra'];
 		$map = $this->Setting->findById('carrito_takeaway_text');
 		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
-		$map = $this->Setting->findById('checkout_bank_text');
-		$data['checkout_bank_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('checkout_bank_instructions');
-		$data['checkout_bank_instructions'] = @$map['Setting']['value'];
-
+		$map = $this->Setting->findById('onlinebanking_explain_title');
+		$data['onlinebanking_explain_title'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('onlinebanking_explain_text');
+		$data['onlinebanking_explain_text'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('onlinebanking_instructions_title');
+		$data['onlinebanking_instructions_title'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('onlinebanking_instructions_text');
+		$data['onlinebanking_instructions_text'] = @$map['Setting']['value'];
 
 		$this->set('data', $data);
 	}

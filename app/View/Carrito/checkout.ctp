@@ -47,6 +47,9 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 			    	<span class="store"></span>
 			    	<span class="store_address"></span>			    	
 			    </p>
+			    <p class="card-text">
+			    	<?= $data['carrito_takeaway_text'] ?>
+			    </p>
 			    <a href="/carrito" class="card-link">Modificar</a>
 			  </div>
 			</div>

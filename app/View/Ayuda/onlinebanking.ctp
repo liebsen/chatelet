@@ -6,11 +6,11 @@
                   </div>
                   <div class="col-md-6">
                       <div class="box">
-                          <h3><?= $data['onlinebanking_explain_title'] ?></h3>
-                          <div class="pre" style="white-space: pre"><?= $data['onlinebanking_explain_text'] ?></div>
+                          <h3>Datos para completar tu compra</h3>
+                          <div class="pre" style="white-space: pre"><?= $data['checkout_bank_text'] ?></div>
                           <br><br>
-                          <h3 class="mt-4"><?= $data['onlinebanking_instructions_title'] ?></h3>
-                          <div class="pre" style="white-space: pre"><?= $data['onlinebanking_instructions_text'] ?></div>
+                          <h3 class="mt-4">Enviar comprobante</h3>
+                          <div class="pre" style="white-space: pre"><?= $data['checkout_bank_instructions'] ?></div>
                       </div>
                   </div>
               </div>

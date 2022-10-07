@@ -54,16 +54,30 @@
           <div class="col-md-6">
             <h4 class="sub-header">Información bancaria</h4>
             <div class="control-group">
-              <label class="control-label" for="columns-text"><?php echo __('Texto pago manual'); ?></label>
+              <label class="control-label" for="columns-text"><?php echo __('Título describe datos bancarios'); ?></label>
               <div class="controls">
-                <textarea name="checkout_bank_text" class="form-control w-100"><?= $data['checkout_bank_text'] ?></textarea>
+                <input name="onlinebanking_explain_title" class="form-control w-100" value="<?= $data['onlinebanking_explain_title'] ?>"/>
               </div>
-              <span class="text-muted">Indica los datos de cuenta bancaria para que los clientes puedan pagar via trasnferencia. Ej: CBU, Alias, etc...</span>              
+              <span class="text-muted">Título antes de mostrar los datos bancarios. (Ej: Datos para completar tu compra)</span>              
             </div>
+            <div class="control-group">
+              <label class="control-label" for="columns-text"><?php echo __('Texto describe datos bancarios'); ?></label>
+              <div class="controls">
+                <textarea name="onlinebanking_explain_text" class="form-control w-100"><?= $data['onlinebanking_explain_text'] ?></textarea>
+              </div>
+              <span class="text-muted">Indica los datos de cuenta bancaria para que los clientes puedan pagar via trasnferencia. Ej: CBU, Alias, etc... </span>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="columns-text"><?php echo __('Título instrucciones pago manual'); ?></label>
+              <div class="controls">
+                <input name="onlinebanking_instructions_title" class="form-control w-100" value="<?= $data['onlinebanking_instructions_title'] ?>"/>
+              </div>
+              <span class="text-muted">Título antes de mostrar los datos bancarios. (Ej: Datos para completar tu compra)</span>              
+            </div>            
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Texto instrucciones pago manual'); ?></label>
               <div class="controls">
-                <textarea name="checkout_bank_instructions" class="form-control w-100"><?= $data['checkout_bank_instructions'] ?></textarea>
+                <textarea name="onlinebanking_instructions_text" class="form-control w-100"><?= $data['onlinebanking_instructions_text'] ?></textarea>
               </div>
               <span class="text-muted">Indica las instrucciones complementarias para enviar los comprobantes. Ej: enviar comprobante por whatsapp al siguiente número...</span>
             </div>

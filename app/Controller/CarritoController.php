@@ -239,6 +239,10 @@ class CarritoController extends AppController
 		$provincias = $oca->getProvincias();
 		$this->set('provincias',$provincias);
 		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
+		$map = $this->Setting->findById('carrito_takeaway_text');
+		$data = [];
+		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
+		$this->set('data',$data);		
 		$this->set('userData',$user);
 	}
 
@@ -669,24 +673,7 @@ class CarritoController extends AppController
 		return $price;
 	}
 
-	public function onlinebanking() {
 
-		$data = [];
-		$map = $this->Setting->findById('display_text_shipping_min_price');
-		$data['display_text_shipping_min_price'] = $map['Setting']['value'];
-		$map = $this->Setting->findById('text_shipping_min_price');
-		$data['text_shipping_min_price'] = $map['Setting']['extra'];
-		$map = $this->Setting->findById('carrito_takeaway_text');
-		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
-		$map = $this->Setting->findById('checkout_bank_text');
-		$data['checkout_bank_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('checkout_bank_instructions');
-		$data['checkout_bank_instructions'] = @$map['Setting']['value'];
-
-
-		$this->set('data', $data);
-		return $this->render('onlinebanking');
-	}
 	public function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$total=0;
@@ -907,7 +894,7 @@ class CarritoController extends AppController
 		error_log("total mp: " . $total);
 
 		if ($user['payment_method'] === 'bank') {
-			return $this->redirect(array( 'action' => 'onlinebanking' ));
+			return $this->redirect(array( 'controller' => 'ayuda', 'action' => 'onlinebanking' ));
 		}
 
 		//MP
