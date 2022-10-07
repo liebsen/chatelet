@@ -8,7 +8,7 @@
                       <div class="box">
                           <h3><?= $data['onlinebanking_explain_title'] ?></h3>
                           <p class="font-system"><?= $data['onlinebanking_explain_text'] ?></p>
-                          <br>
+                        
                           <h3 class="mt-4"><?= $data['onlinebanking_instructions_title'] ?></h3>
                           <p class="font-system"><?= $data['onlinebanking_instructions_text'] ?></p>
                       </div>
