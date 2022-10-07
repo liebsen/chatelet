@@ -11,7 +11,7 @@
 		<div class="form-group is-flex">
 			<form id="calulate_coupon" data-url="<?php echo $this->Html->url(array('action'=>'coupon')) ?>">
 				<div class="input-group">
-				  <input type="text" name="" placeholder="Tu cupón" value="" class="form-control input-coupon both input-rounded" data-valid="0" autocomplete="off" />
+				  <input type="text" name="" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" data-valid="0" autocomplete="off" />
 				  <div class="input-group-btn">
 				    <button class="btn btn-success btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" type="submit">Calcular</button>
 				  </div>
