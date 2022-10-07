@@ -16,7 +16,7 @@
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
       <div class="container-fluid">
         <div class="row">
-          <div class="col">
+          <div class="col-md-6">
             <h4 class="sub-header">Información Principal</h4>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Mostrar texto en carrito cuando no se alcance el precio de envío gratis'); ?></label>
@@ -51,6 +51,23 @@
               <span class="text-muted">texto que se muestra en el carrito cuando el usuario selecciona método de entrega takeaway.</span>
             </div>  
           </div> 
+          <div class="col-md-6">
+            <h4 class="sub-header">Información bancaria</h4>
+            <div class="control-group">
+              <label class="control-label" for="columns-text"><?php echo __('Texto pago manual'); ?></label>
+              <div class="controls">
+                <textarea name="checkout_bank_text" class="form-control w-100"><?= $data['checkout_bank_text'] ?></textarea>
+              </div>
+              <span class="text-muted">Indica los datos de cuenta bancaria para que los clientes puedan pagar via trasnferencia. Ej: CBU, Alias, etc...</span>              
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="columns-text"><?php echo __('Texto instrucciones pago manual'); ?></label>
+              <div class="controls">
+                <textarea name="checkout_bank_instructions" class="form-control w-100"><?= $data['checkout_bank_instructions'] ?></textarea>
+              </div>
+              <span class="text-muted">Indica las instrucciones complementarias para enviar los comprobantes. Ej: enviar comprobante por whatsapp al siguiente número...</span>
+            </div>
+          </div>
         </div>
       </div>  
       <br />               

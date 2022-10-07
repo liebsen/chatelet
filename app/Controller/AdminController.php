@@ -1764,6 +1764,11 @@ public function promos(){
 		$data['text_shipping_min_price'] = $map['Setting']['extra'];
 		$map = $this->Setting->findById('carrito_takeaway_text');
 		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
+		$map = $this->Setting->findById('checkout_bank_text');
+		$data['checkout_bank_text'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('checkout_bank_instructions');
+		$data['checkout_bank_instructions'] = @$map['Setting']['value'];
+
 
 		$this->set('data', $data);
 	}

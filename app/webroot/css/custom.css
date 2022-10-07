@@ -1941,9 +1941,9 @@ span.count {
     flex-direction: row;
   }
   .is-rounded {
-    margin: 1rem 0.25rem;
+    margin: 1rem 0;
     margin-top: 0;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     border: 1px solid rgba(0,0,0,.125);
     /* box-shadow: var(--box-shadow); */
   }

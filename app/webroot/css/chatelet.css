@@ -32,6 +32,9 @@ html, body {
 	min-height: 2.75rem;
 }
 
+.d-inline {
+	display: inline!important;
+}
 .carrito-count .form-inline {
 	margin-bottom: 0.5rem;
 	margin-top: 0.75rem;

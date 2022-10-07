@@ -14,11 +14,17 @@ a.volver .fa {
 	margin-right: 0.5rem;
 }
 
+.text-justify {
+	text-align: justify;
+}
 .form-container {
-	margin-top: 37px;
+	margin-top: 18px;
 	padding: 1.5rem;
 }
 
+.payment-method {
+	margin: 2rem 0;
+}
 input[disabled] {
 	filter: grayscale(1);
 }

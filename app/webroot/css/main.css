@@ -241,6 +241,10 @@ body {
     margin: 0 0 0 200px;
 }
 
+.w-100 {
+    width: 100%!important;
+}
+
 .affix {
     top: 0;
     left: 0;
@@ -2749,6 +2753,7 @@ input[type="radio"].form-control {
 textarea.form-control {
     max-width: 100%;
 }
+
 
 /* Tables + DataTables */
 .table {

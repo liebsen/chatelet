@@ -669,6 +669,24 @@ class CarritoController extends AppController
 		return $price;
 	}
 
+	public function onlinebanking() {
+
+		$data = [];
+		$map = $this->Setting->findById('display_text_shipping_min_price');
+		$data['display_text_shipping_min_price'] = $map['Setting']['value'];
+		$map = $this->Setting->findById('text_shipping_min_price');
+		$data['text_shipping_min_price'] = $map['Setting']['extra'];
+		$map = $this->Setting->findById('carrito_takeaway_text');
+		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
+		$map = $this->Setting->findById('checkout_bank_text');
+		$data['checkout_bank_text'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('checkout_bank_instructions');
+		$data['checkout_bank_instructions'] = @$map['Setting']['value'];
+
+
+		$this->set('data', $data);
+		return $this->render('onlinebanking');
+	}
 	public function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$total=0;
@@ -840,6 +858,7 @@ class CarritoController extends AppController
 		$this->Sale->save(array(
 			'id' => $sale_id,
 			'free_shipping' => $freeShipping,
+			'payment_method' => $user['payment_method'],
 			'deliver_cost' => $delivery_cost,
 			'shipping_type' => $shipping_type_value
 		));
@@ -878,6 +897,7 @@ class CarritoController extends AppController
 			'zip_codes' => $zipCodes,
 			'cargo'		=> $user['cargo'],
 			'coupon'	=> $user['coupon'],
+			'metodo_pago'	=> $user['payment_method'],
 			'store'		=> $user['store'],
 			'store_address'		=> $user['store_address'],
 			'shipping'		=> $user['shipping']
@@ -885,6 +905,11 @@ class CarritoController extends AppController
 		// error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
 		error_log("total mp: " . $total);
+
+		if ($user['payment_method'] === 'bank') {
+			return $this->redirect(array( 'action' => 'onlinebanking' ));
+		}
+
 		//MP
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$success_url = Router::url(array('controller' => 'carrito', 'action' => 'clear'), true);

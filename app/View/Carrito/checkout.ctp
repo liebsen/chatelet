@@ -77,6 +77,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 						<input type="hidden" name="coupon" value=""/>
 						<input type="hidden" name="cargo" value=""/>
 						<input type="hidden" name="store" value=""/>
+						<input type="hidden" name="postal_address" value="<?= $this->Session->read('cp') ?>"/>
 						<input type="hidden" name="store_address" value=""/>
 
 						<div class="form-group">
@@ -127,13 +128,40 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 						<span class="clearfix"></span>
 					</div>
 				</div>
-				<div class="col-12 center">
+				<div class="col-12 mt-4">
+					<div class="card">
+					  <div class="card-body">
+					    <h5 class="card-title">
+					    	<i class="fa fa-credit-card"></i>
+					    	¿Cómo querés pagar tu compra?
+					    </h5>
+					    <h6>Seleccioná un método de pago</h6>
+					    <div class="row payment-method">
+					    	<div class="col-sm-6 text-center">
+					    		<input type="radio" class="" id="enabled_1" name="payment_method" value="mercadopago" required />
+				          <label for="enabled_1" class="d-inline">
+				          	<span class="h4">Online</span><br>
+				          	<p class="mt-2">Pagá a través de Mercadopago online con débito, crédito o rapipago</p>
+				        	</label>				          
+				        </div>
+				        <div class="col-sm-6 text-center">				          
+				          <input type="radio" class="" id="enabled_0" name="payment_method" value="bank" required />
+				          <label for="enabled_0" class="d-inline">
+				          	<span class="h4">Manual</span><br>
+				          	<p class="mt-2">Pagá a través de transferencia bancaria con online banking</p>
+				          </label>
+				        </div>
+			        </div>
+					  </div>
+					</div>
+				</div>
+				<div class="col-12 mt-4 center">
 					<label class="form-group">
 					  <input type="checkbox" id="regalo" name="regalo"><span class="label-text">Es para regalo</span><br><br>
 					</label>
 				</div>
-				<div class="col-12 center">
-					<input type="submit" class="cart-btn-green" value="Finalizar compra" />
+				<div class="col-12 mt-3 center">
+					<input type="submit" onclick="$('.checkoutform-container').removeClass('hide')" class="cart-btn-green" value="Finalizar compra" />
 				</div>
 			</form>
 		</div>
