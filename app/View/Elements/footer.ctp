@@ -1,7 +1,7 @@
 <?php echo $this->Html->css('font-awesome', array('inline' => false)); ?>
     <footer>
             <div class="wrapper">
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <h3>Shop online</h3>
                     <ul>
                     <?php
@@ -24,12 +24,13 @@
                     </ul>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
+                <?php
+                if (!empty($lookBook)){ ?>
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <h3>LookBook</h3>
                     <ul>
-                <?php
-                if (!empty($lookBook)){
-                    foreach ($lookBook as $item) {
+                <?php foreach ($lookBook as $item) {
                         $item = $item['LookBook'];
                         echo '<li>';
                         echo $this->Html->link(
@@ -47,7 +48,7 @@
                     </ul>
                 </div>
 
-                <div class="col-md-3 col-sm-6 clb">
+                <div class="col-md-3 col-sm-6 col-xs-12 clb">
                     <h3>Información</h3>
                     <ul>
                         <li>
@@ -62,7 +63,7 @@
                     </ul>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                   <!--  <a href="mailto:sueldos@chatelet.com.ar"><h4>Trabaja con nosotros</h4></a>-->
                     <h3>Empresa</h3>
                     <ul>
