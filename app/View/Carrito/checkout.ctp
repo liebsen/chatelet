@@ -152,7 +152,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 									</div>
 									<div class="form-group">
 										<label for="direccion">Localidad</label>
-										<input type="text" class="form-control" name="localidad" value="<?= $userData['User']['city'] ?>" required>
+										<input type="text" class="form-control" name="localidad" value="<?= isset($userData['User']) ? $userData['User']['city'] : '' ?>" required>
 									</div>
 									<span class="clearfix"></span>
 									<div class="form-group">
