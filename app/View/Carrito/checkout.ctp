@@ -35,8 +35,9 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 								  <div class="card-body">
 								    <h5 class="card-title">
 								    	<i class="fa fa-truck"></i>
-								    	Envía <span class="shipping text-uppercase"></span> </h5>
-								    <h6>
+								    	Envía <span class="shipping text-uppercase"></span>
+								    </h5>
+								    <h6 class="card-subtitle">
 								    	<span class="shipping_price"></span>			    	
 								    </h6>
 								  <?php if($loggedIn): ?>
@@ -54,7 +55,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 								    	<i class="fa fa-building-o"></i>
 								    	Retiro en sucursal
 								    </h5>
-								    <h6>
+								    <h6 class="card-subtitle">
 								    	<span class="store"></span>
 								    	<span class="store_address"></span>			    	
 								    </h6>
@@ -73,13 +74,13 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 								    	<i class="fa fa-credit-card"></i>
 								    	¿Cómo querés pagar tu compra?
 								    </h5>
-								    <h6>Seleccioná un método de pago</h6>
+								    <h6 class="card-subtitle">Seleccioná un método de pago</h6>
 								    <div class="row payment-method">
 								    	<div class="col-sm-6 text-center option-rounded">
 								    		<input type="radio" class="" id="enabled_1" name="payment_method" value="mercadopago" required />
 							          <label for="enabled_1" class="d-inline">
 							          	<span class="h4">Online</span><br>
-							          	<p class="mt-4 text-small">Pagá a través de Mercadopago con débito, crédito, rapipago y más</p>
+							          	<p class="mt-4 text-small">Pagá con débito, crédito, rapipago y más a través de Mercadopago</p>
 							        	</label>				          
 							        </div>
 							        <div class="col-sm-6 offset-md-1 text-center option-rounded">				          
@@ -104,7 +105,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 							    	<i class="fa fa-user"></i>
 							    	<?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?>
 							    </h5>
-							    <h6>DNI <?= $userData['User']['dni'] ?></h6>
+							    <h6 class="card-subtitle">DNI <?= $userData['User']['dni'] ?></h6>
 							    <p class="card-text"><?= $userData['User']['email'] ?></p>
 							    <span class="card-link is-clickable" onclick="toggleform()" class="card-link">Modificar</span>
 							  </div>
@@ -169,8 +170,6 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 								</div>
 							</div>
 						</div>
-
-
 						<div class="col-12 mt-4 center">
 							<label class="form-group">
 							  <input type="checkbox" id="regalo" name="regalo"><span class="label-text">Es para regalo</span><br><br>

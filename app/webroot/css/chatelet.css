@@ -445,11 +445,11 @@ html, body {
 }
 .card-title {
 	font-size: 1.25rem;
-  margin-bottom: 4px;
+  margin-bottom: 0.15rem;
 }
 .card-subtitle {
-  margin-top: -.375rem;
-  margin-bottom: 0;
+	color: #666;
+  margin-bottom: 0.5rem;
 }
 .card-link {
 	display: inline-block;

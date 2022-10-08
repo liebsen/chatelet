@@ -1075,7 +1075,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#lookbook .social a { margin: 0 20px; }
 	#video p { font-size: 20px; }
 
-	#infoShop .col-md-4 { background-size: 18%; }
+	#infoShop .col-md-4 { background-size: 30%; }
 
 	#productOptions nav { margin-bottom: 20px; }
 
@@ -2123,7 +2123,7 @@ span.count {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: 0px;
   }
-  
+
   .is-flex-end {
     flex-direction: row;
   }

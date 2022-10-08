@@ -14,7 +14,7 @@ if(isset($_REQUEST['font'])):
             Siguiente
           </a>
           <a class="font-link" href="#">
-            Autorefresh )
+            Autorefresh
             <input type="checkbox" id="autorefresh" onclick="autorefreshCheck(this.checked)" <?= isset($_REQUEST['autorefresh']) && $_REQUEST['autorefresh'] ? ' checked' : '' ?>/>
         </a>
     </div>

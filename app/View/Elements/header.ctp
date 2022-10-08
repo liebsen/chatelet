@@ -32,7 +32,7 @@
           <?php endif ?>
           <li>
               <?php
-                echo $this->Html->link('Compra por WhatsApp', array('controller' => 'shop', 'action' => 'promos'));
+                echo $this->Html->link('WhatsApp', array('controller' => 'shop', 'action' => 'promos'));
               ?>
           </li>
           <li>
