@@ -200,9 +200,10 @@ html, body {
 
 #login-email,
 #login-password {
-	padding: 5px;
+	padding: 6px 12px;
 	border-radius: 0px;
 	margin-bottom: 10px;
+	min-height: 34px;
 	background-color: #dbd9da;
 	border: 0;
 	width: 100%;
@@ -217,8 +218,9 @@ html, body {
 	/*font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 	width: 100%;
 	text-align: center;
-	border-radius: 6px;
-	/*font-size: 1.5em;*/
+	border-radius: 0px;
+	font-size: 1.25rem;
+	font-weight: 800;
 	border: 0;
 }
 
@@ -355,12 +357,16 @@ html, body {
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
 
+.modal-header {
+	min-height: 50px;
+}
+
 .grey {
 	color: grey;
 }
 
 .modal-body label {
-	color: #c3c3c3;
+	color: #383A3F;
 	margin-top: 10px;
 }
 
