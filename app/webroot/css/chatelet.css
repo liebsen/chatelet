@@ -42,7 +42,7 @@ html, body {
 
 .instructions {
 	padding: 0.75rem 1rem;
-	border-radius: 4px;
+	border-radius: 5px;
 	/* background-color: #fdb5db; */
 	background-color: whitesmoke;
 	color: #777; /* theme secondary #fdb5db; */
@@ -438,7 +438,7 @@ html, body {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0,0,0,.125);
-  border-radius: 4px;
+  border-radius: 5px;
 }
 .card-body {
   -webkit-box-flex: 1;
@@ -458,7 +458,7 @@ html, body {
 	display: inline-block;
 	color: #e60088;
 	padding: 0.5rem 0.75rem;
-	border-radius: 4px;
+	border-radius: 5px;
 	background-color: white;
 	border: 1px solid #e60088;
 	margin: 0.25rem;
@@ -479,7 +479,7 @@ html, body {
 	background-color: #bebebe;
 	padding: 0.75rem 1rem;
 	min-width: 20rem;
-	border-radius: 4px;
+	border-radius: 5px;
 	transition: all 0.25s ease;
 }
 .cart-btn-green.shrink {
