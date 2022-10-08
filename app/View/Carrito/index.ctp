@@ -66,7 +66,7 @@
 							)
 						);
 						echo '</div>';
-						echo '<div class="help" title="Modificar este item del carrito"><div><span class="glyphicon glyphicon-edit"></span> <span> modificar</span></div></div>';
+						echo '<div class="help" title="Modificar este item del carrito"><div><span class="glyphicon glyphicon-edit"></span> <span class="font-system"> modificar</span></div></div>';
 						echo '<div class="carrito-item-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
 						echo "<div class='cart-img'>";
