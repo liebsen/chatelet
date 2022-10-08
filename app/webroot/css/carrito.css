@@ -37,7 +37,7 @@
 	background-position: left center;
 	text-align: right;
 	padding-right: 3rem;
-	min-height: 42px;
+	min-height: 46px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;	
@@ -67,7 +67,7 @@
 	background-size: 30px;
 	margin-bottom: 0.25rem;
 	transition: all 0.25s ease;
-	min-height: 44px;
+	min-height: 46px;
 }
 
 .generic-select li:hover {
