@@ -112,7 +112,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 							</div>
 						</div>
 					<?php endif ?>						
-						<div class="col-12  mt-4 checkoutform-container<?= !empty($userData['User']['id']) ? ' hide' : '' ?>">
+						<div class="col-12 checkoutform-container<?= !empty($userData['User']['id']) ? ' hide' : 'mt-4' ?>">
 							<div class="row is-rounded">
 								<h3 class="">Ingresá tus datos para finalizar la compra</h3>
 								<input type="hidden" name="shipping" value=""/>
