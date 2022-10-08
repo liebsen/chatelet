@@ -43,10 +43,11 @@
                         );
                         echo '</li>';
                     }
-                }
-               ?>
+                    ?>
                     </ul>
                 </div>
+                    
+                <?php } ?>
 
                 <div class="col-md-3 col-sm-6 col-xs-12 clb">
                     <h3>Información</h3>

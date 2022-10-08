@@ -435,6 +435,7 @@ border-radius: 4px;
 #suscribe form input[type="submit"] { color: #f50081; font-weight: 600; margin-top: 6px; text-align: right; width: 10%; font-weight: 800; }
 
 footer { background: #fefefe; overflow: hidden; padding: 40px 0 0; }
+footer > .wrapper { padding: 0 0.5rem; }
 footer h3 { color: #464444; font-size: 18px; text-transform: uppercase; font-weight: 600; margin-bottom: 1.25rem; margin-top: 4rem; }
 footer h3:after { background: #f50081; content: ""; display: block; height: 4px;border-radius: 4px; margin-top: 15px; width: 50px; }
 footer a { color: #464444; font-size: 1rem; font-weight: 200; text-transform: uppercase;  }
@@ -808,7 +809,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #formulario label input { display: none; }
 #formulario label span.active i { display: block; }
 
-#headhelp { background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover; padding: 65px 0; }
+#headhelp { background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover; padding: 65px 0; overflow-x: hidden;}
 #headhelp h1 { color: #f50081; font-size: 38px; font-weight: 600; margin-top: 70px; }
 #headhelp h1:after { background: #f50081; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 #headhelp .box { border: 2px solid #f50081; padding: 90px 90px 50px; }
@@ -861,7 +862,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 @media (max-width: 1599px) {
-	.wrapper { padding: 0 0.5rem; }
+	.wrapper { padding: 0 1.5rem; }
 	.map .col-md-4 { padding: 200px 0 200px 50px; }
 
 	#headhelp .box { padding: 60px 50px 25px }
