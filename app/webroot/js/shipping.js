@@ -30,7 +30,7 @@ $(function(){
 		let total = formatNumber(price)
 		let info = $(e).data('info')
 		fxTotal(total)
-		onSuccessAlert(shipping.toUpperCase(), info || `Usted seleccionó ${shipping.toUpperCase()} como servicio de entrega`);
+		onSuccessAlert(shipping.toUpperCase(), info || `Seleccionaste ${shipping.toUpperCase()} como servicio de entrega`);
 	}
 
 	$('#calulate_shipping').submit(e => {

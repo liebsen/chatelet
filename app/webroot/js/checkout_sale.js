@@ -38,12 +38,12 @@ $(function(){
 			var text = carrito[key]
 			if (key === 'shipping_price') {
 				if (carrito.freeShipping) {
-					text = 'Gratis'
+					text = '<span class="text-success">Gratis</span>'
 				} else {
 					text = `$${text}`
 				}
 			}
-			$(`.${key}`).text(text)
+			$(`.${key}`).html(text)
 		}
 		if ($('#checkoutform').find(`input[name='${key}']`).length) {
 			$('#checkoutform').find(`input[name='${key}']`).val(carrito[key])
