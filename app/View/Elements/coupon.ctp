@@ -8,7 +8,7 @@
 				<small>Ingresá tu cupón de descuento. Beneficio exclusivo para clientas registradas.</small>
 			</i>
 		</p>
-		<div class="form-group is-flex">
+		<div class="form-group is-flex-center">
 			<form id="calulate_coupon" data-url="<?php echo $this->Html->url(array('action'=>'coupon')) ?>">
 				<div class="input-group">
 				  <input type="text" name="" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" data-valid="0" autocomplete="off" />

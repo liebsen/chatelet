@@ -183,7 +183,7 @@
                             <div class="carrito-count has-item-counter active">
                                 <div class="form-inline">
                                   <div class="form-group">
-                                    <div class="input-group carrito-selector">
+                                    <div class="input-group carrito-selector mt-4">
                                         <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
                                             <span class="fa fa-minus"></span>
                                         </div>                                    

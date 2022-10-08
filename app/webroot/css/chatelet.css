@@ -43,7 +43,7 @@ html, body {
 
 .instructions {
 	padding: 0.75rem 1rem;
-	border-radius: 3px;
+	border-radius: 0px;
 	/* background-color: #fdb5db; */
 	background-color: whitesmoke;
 	color: #777; /* theme secondary #fdb5db; */
@@ -188,7 +188,7 @@ html, body {
 /* .dropdown-menu .bottom > .right {
 	background-color: #e10c76;
 	color: #FFFFFF;
-	border-radius: 3px;
+	border-radius: 0px;
 	padding: 0.25rem 1rem;
 	font-size: 1rem;
 	font-weight: 800;
@@ -201,7 +201,7 @@ html, body {
 #login-email,
 #login-password {
 	padding: 5px;
-	border-radius: 3px;
+	border-radius: 0px;
 	margin-bottom: 10px;
 	background-color: #dbd9da;
 	border: 0;
@@ -366,7 +366,7 @@ html, body {
 
 .modal-body input {
 	border: 1px solid #bebebe;
-	border-radius: 3px;
+	border-radius: 0px;
 }
 
 .datepicker.dropdown-menu {
@@ -421,10 +421,7 @@ html, body {
 	margin-bottom: 0;
 }
 
-.w-mobile {
-	max-width: 25rem;
-	margin: auto;
-}
+
 .card {
   position: relative;
   display: -webkit-box;
@@ -438,8 +435,7 @@ html, body {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0,0,0,.125);
-  border-radius: 3px;
+  border-radius: 0px;
 }
 .card-body {
   -webkit-box-flex: 1;
@@ -459,12 +455,12 @@ html, body {
 	display: inline-block;
 	color: #e60088;
 	padding: 0.5rem 0.75rem;
-	border-radius: 3px;
+	border-radius: 0px;
 	background-color: white;
-	border: 1px solid #e60088;
 	margin: 0.25rem;
 	margin-top: 1.25rem;
 	margin-bottom: 0;
+	border: 1px solid #e60088;  
 	transition: all 0.25s ease;
 }
 .card-link:hover {
@@ -473,6 +469,7 @@ html, body {
 }
 .cart-btn-green {
 	display: inline-block;
+	text-align: center;
 	font-size: 1.25rem;
 	font-weight: 800;
 	color: white;
@@ -480,7 +477,7 @@ html, body {
 	background-color: #bebebe;
 	padding: 0.75rem 1rem;
 	min-width: 20rem;
-	border-radius: 3px;
+	border-radius: 0px;
 	transition: all 0.25s ease;
 }
 .cart-btn-green.shrink {

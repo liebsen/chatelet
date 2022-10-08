@@ -14,7 +14,7 @@
 				<small>Para envíos a domicilio ingresá tu código postal</small>
 			</i>
 		</p>
-		<div class="form-group is-flex">
+		<div class="form-group is-flex-center">
 			<form id="calulate_shipping" data-url="<?php echo $this->Html->url(array('action'=>'deliveryCost')) ?>">
 				<div class="input-group">
 				  <input type="text" name="" placeholder="Tu código postal" value="" class="form-control input-cp input-lg both input-rounded" data-valid="0" />

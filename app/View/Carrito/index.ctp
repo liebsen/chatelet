@@ -13,7 +13,7 @@
 			</div>		
 		</div>
 		<?php endif ?>
-		<div class="col-md-12" id="siguiente-block">
+		<div class="col-md-12 text-center">
 			<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			<!--a class="keep-buying cart-btn-green" href="/#q:">Seguir comprando</a-->
 		</div>
@@ -110,7 +110,7 @@
 						echo '<div class="carrito-hide-element">
 							<div class="form-inline">
 							  <div class="form-group">
-							    <div class="input-group carrito-selector">
+							    <div class="input-group carrito-selector mt-4">
 							      <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
 							       <span class="fa fa-minus"></span>
 							      </div>
@@ -211,12 +211,10 @@
 	</div>
 	<input type="hidden" id="shipping_price_min" value="<?= $shipping_price_min ?>">
 	<input type="hidden" id="total" value="<?= $total ?>">
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div id="siguiente-block" class="col-md-10">
+	<div class="row mt-4">
+		<div class="col-md-12 text-center">
 		<a href="javascript:void(0)" class="disabled cart-btn-green cart-go-button" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
 		</div>
-		<div class="col-md-1"></div>
 	</div>
 	<?php endif;?>
 	<!--div class="row">

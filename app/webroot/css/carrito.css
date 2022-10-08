@@ -1,6 +1,6 @@
 /* #carrito {
 	border: 1px solid grey;
-	border-radius: 3px;
+	border-radius: 0px;
 } */
 
 
@@ -17,150 +17,6 @@
 
 .p {
 	margin: 0.5rem 0 1.25rem;
-}
-
-.input-lg {
-	font-size: 1.1rem!important;
-}
-
-.carrito-row {
-	padding-top: 1rem;
-	max-width: 45rem;
-	margin: auto;	
-}
-
-.carrito-item-row {
-	display: flex;
-	justify-content: center;
-	align-items: center;	
-	position: relative;
-	flex-direction: row;
-	padding-right: 1.25rem;
-	padding-left: 0;
-	min-height: 200px;
-  background-clip: border-box;
-  background-color: white;
-	min-height: 12rem;
-  -webkit-animation-name: slideInLeft;
-  animation-name: slideInLeft;
-  -webkit-animation-duration: 0.5s;
-  animation-duration: 0.5s;
-  animation-delay: 1s;
-  animation-timing-function: ease-out;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-.carrito-item-row:nth-child(even) {
-	background-color: #f8f8f8;
-}
-
-.carrito-item-row:nth-child(1) {
-	animation-delay: 0.1s;
-}
-
-.carrito-item-row:nth-child(2) {
-	animation-delay: 0.2s;
-}
-
-.carrito-item-row:nth-child(3) {
-	animation-delay: 0.3s;
-}
-
-.carrito-item-row:nth-child(4) {
-	animation-delay: 0.4s;
-}
-
-.carrito-item-row:nth-child(5) {
-	animation-delay: 0.5s;
-}
-
-.carrito-item-row:nth-child(6) {
-	animation-delay: 0.6s;
-}
-
-.carrito-item-row:nth-child(7) {
-	animation-delay: 0.7s;
-}
-
-.carrito-item-row:nth-child(8) {
-	animation-delay: 0.8s;
-}
-
-.carrito-item-row:nth-child(9) {
-	animation-delay: 0.9s;
-}
-
-.carrito-item-row .help {
-	opacity: 0;
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	border-radius: 3px;
-	background-color: rgba(80,80,80,0.1);
-	align-items: center;
-	z-index: 10;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	top: 0;
-	transition: all 0.25s ease;
-}
-
-.carrito-item-row .help > div {
-	padding: 0.5rem;
-	font-size: 1.25rem;
-	font-style: italic;
-	border-radius: 3px;
-	background-color: #e10d74;
-	color: white;
-}
-
-.carrito-item-row:hover .help {
-	opacity: 1;
-}
-.carrito-item-image {
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
-	display: inline-block;
-	border-radius: 3px;
-	width: 100%;
-	height: 100%;
-}
-
-.carrito-remove {
-	position: absolute;
-	z-index: 20;
-	top: 0.5rem;
-	right: 0.5rem;
-}
-/*
-.text-dark {
-	color: #666!important;
-}
-
-.text-green {
-	color: green!important;
-}
-
-.text-white {
-  color: white!important;
-}
-.text-warning {
-  color: #fbad19;
-}
-.text-info {
-  color: blue!important;
-}
-*/
-.carrito-item-col {
-	flex: 1;
-	margin: auto;
-}
-
-.carrito-hide-element {
-	display: none;
 }
 
 .cart-img-col {
@@ -182,8 +38,6 @@
 	text-align: right;
 	padding-right: 3rem;
 	min-height: 42px;
-	border-top-left-radius: 0.25rem;
-	border-bottom-left-radius: 0.25rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;	
@@ -202,7 +56,7 @@
 .generic-select li {
 	padding: 0.75rem;
 	border: 1px solid #e10d7499;
-	border-radius: 3px;
+	border-radius: 0px;
 	font-weight: 400;
 	background-color: white;
 	color: #e10d74e6;
@@ -272,7 +126,7 @@
 	background-color: #f8f8f8;
 	position: relative;
 	display: inline-block;
-	border-radius: 3px;
+	border-radius: 0px;
 	transition: all 0.25s ease;
 }
 
@@ -295,7 +149,7 @@
 	color: white;
 	background-color: #07bc31;
 	padding: 0.75rem 1rem;
-	border-radius: 3px;
+	border-radius: 0px;
 	cursor: pointer;
 	transition: all 0.5s ease-in;
 }
@@ -343,7 +197,7 @@ a.trash {
 .thumb {
 	width: 8rem;
 	float: left;
-	border-radius: 3px;
+	border-radius: 0px;
 }
 
 .color {
@@ -499,25 +353,12 @@ a.pay{
 		background-size: 25%;
 		background-position: top right;
 		background-image: url('/images/free-shipping-bg.jpg');
-		border-radius: 3px;
+		border-radius: 0px;
 	}	
 	.shipping-price-min-text {
 		padding: 2.5rem 1.5rem;
 		padding-right: 25%;
 		font-size: 1.5rem;
 		line-height: 1.25;
-	}
-	.carrito-items {
-		padding-right: 1rem;
-	}
-	.carrito-items .price {
-		margin: 0;
-		text-align: right;
-	}
-	.carrito-item-row {
-		background-color: white!important;
-		margin-bottom: 0.75rem;
-	  border: 1px solid rgba(0,0,0,.125);
-	  border-radius: 3px;
 	}
 }
