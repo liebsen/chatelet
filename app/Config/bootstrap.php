@@ -27,7 +27,7 @@ Cache::config('default', array('engine' => 'File'));
 Configure::write('mUrl','');
 Configure::write('font','Fira Sans Condensed');
 Configure::write('fontsizes','300,400,500,600,700');
-Configure::write('APP_DIST', '2.84');
+Configure::write('APP_DIST', '2.85');
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.

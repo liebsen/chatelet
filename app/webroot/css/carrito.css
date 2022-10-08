@@ -20,7 +20,7 @@
 }
 
 .input-lg {
-	font-size: 1.25rem!important;
+	font-size: 1.1rem!important;
 }
 
 .carrito-row {
@@ -39,8 +39,6 @@
 	padding-left: 0;
 	min-height: 200px;
   background-clip: border-box;
-  border: 1px solid rgba(0,0,0,.125);
-  border-radius: 4px;
   background-color: white;
 	min-height: 12rem;
   -webkit-animation-name: slideInLeft;
@@ -515,5 +513,10 @@ a.pay{
 	.carrito-items .price {
 		margin: 0;
 		text-align: right;
+	}
+	.carrito-item-row {
+		margin-bottom: 0.75rem;
+	  border: 1px solid rgba(0,0,0,.125);
+	  border-radius: 4px;
 	}
 }

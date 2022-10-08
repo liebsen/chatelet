@@ -1,3 +1,7 @@
+function toggleform() {
+	$('.checkoutform-container').toggleClass('hide')
+}
+
 $(function(){
 	//Events
 	/* $('[name="provincia"]').change(function(event){
@@ -24,10 +28,37 @@ $(function(){
 		}
 	}); */
 
+	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+	$(`.cargo-${carrito.cargo}`).removeClass('hide')
+	$('#regalo').prop('checked', carrito.regalo)
+	//$('.store-address').text([carrito.store, carrito.store_address].join(', '))
+	//$('.shipping-text').text([carrito.shipping, carrito.shipping_price].join(', '))
+	Object.keys(carrito).forEach(key => {
+		console.log(key)
+		if ($(`.${key}`).length) {
+			var text = carrito[key]
+			if (key === 'shipping_price') {
+				if (carrito.freeShipping) {
+					text = 'Gratis'
+				} else {
+					text = `$${text}`
+				}
+			}
+			$(`.${key}`).text(text)
+		}
+		if ($('#checkoutform').find(`input[name='${key}']`).length) {
+			$('#checkoutform').find(`input[name='${key}']`).val(carrito[key])
+		}
+	})
+
 	$('#checkoutform').submit(form => {
+
 		const submit = $(form.target).find('input[type="submit"]').first()
 		submit.prop('disabled', true)
 		submit.val('Por favor espere...')
+
+		localStorage.removeItem('carrito')
+
 
 		fbq('track', 'InitiateCheckout')
 		let products = []

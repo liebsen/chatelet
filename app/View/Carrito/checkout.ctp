@@ -26,7 +26,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 			    	<i class="fa fa-truck"></i>
 			    	Envía <span class="shipping text-uppercase"></span> </h5>
 			    <h6>
-			    	$<span class="shipping_price"></span>			    	
+			    	<span class="shipping_price"></span>			    	
 			    </h6>
 			  <?php if($loggedIn): ?>
 			    <p class="card-text"><?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street'] ? $userData['User']['street_n'] : '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>)</p>
@@ -140,18 +140,18 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 					    </h5>
 					    <h6>Seleccioná un método de pago</h6>
 					    <div class="row payment-method">
-					    	<div class="col-sm-6 text-center">
+					    	<div class="col-sm-6 text-center option-rounded">
 					    		<input type="radio" class="" id="enabled_1" name="payment_method" value="mercadopago" required />
 				          <label for="enabled_1" class="d-inline">
 				          	<span class="h4">Online</span><br>
-				          	<p class="mt-2">Pagá a través de Mercadopago online con débito, crédito o rapipago</p>
+				          	<p class="mt-4 text-small">Pagá a través de Mercadopago con débito, crédito, rapipago y más</p>
 				        	</label>				          
 				        </div>
-				        <div class="col-sm-6 text-center">				          
+				        <div class="col-sm-6 offset-md-1 text-center option-rounded">				          
 				          <input type="radio" class="" id="enabled_0" name="payment_method" value="bank" required />
 				          <label for="enabled_0" class="d-inline">
-				          	<span class="h4">Manual</span><br>
-				          	<p class="mt-2">Pagá a través de transferencia bancaria con online banking</p>
+				          	<span class="h4">Transferencia</span><br>
+				          	<p class="mt-4 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
 				          </label>
 				        </div>
 			        </div>
@@ -171,32 +171,9 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 	</div>
 </div>
 <script>
-function toggleform() {
-	console.log('toggleform')
-	$('.checkoutform-container').toggleClass('hide')
-}
-
-$(function(){
-
 <?php if(!$loggedIn):?>	
+$(function(){
 	$('#particular-login').modal('show')
-<?php endif;?>
-	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-	$(`.cargo-${carrito.cargo}`).removeClass('hide')
-	$('#regalo').prop('checked', carrito.regalo)
-	//$('.store-address').text([carrito.store, carrito.store_address].join(', '))
-	//$('.shipping-text').text([carrito.shipping, carrito.shipping_price].join(', '))
-	Object.keys(carrito).forEach(key => {
-		if ($(`.${key}`).length) {
-			$(`.${key}`).text(carrito[key])
-		}
-		if ($('#checkoutform').find(`input[name='${key}']`).length) {
-			$('#checkoutform').find(`input[name='${key}']`).val(carrito[key])
-		}
-	})
-	$('#checkoutform').submit(function () {
-		localStorage.removeItem('carrito')
-		return true
-	})
 })
+<?php endif;?>
 </script>

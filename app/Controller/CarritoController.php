@@ -242,7 +242,7 @@ class CarritoController extends AppController
 		$map = $this->Setting->findById('carrito_takeaway_text');
 		$data = [];
 		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
-		$this->set('data',$data);		
+		$this->set('data',$data);
 		$this->set('userData',$user);
 	}
 

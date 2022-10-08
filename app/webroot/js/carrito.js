@@ -260,6 +260,7 @@ $(document).ready(function() {
 			}
 		}
 
+		preferences.freeShipping = freeShipping
 		preferences.shipping = shipping
 		preferences.cargo = cargo
 		preferences.store = store
