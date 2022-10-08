@@ -276,6 +276,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   position: absolute;
   top: 85px;
   width: 100%;
+  overflow-x: hidden;
 }
 .menuLayer a.close { 
   position: absolute;
@@ -284,8 +285,8 @@ label input[type=checkbox]:disabled + .label-text:before {
   width: 2rem; 
   height: 2rem; 
   opacity: 1; 
-  right: 2rem; 
-  top: 4rem;   
+  right: 1rem; 
+  top: 1rem;   
 }
 .menuLayer a.close span { 
   background: #f50081;
@@ -1715,7 +1716,7 @@ span.count {
 /*Mobile Icons NavTop*/
 @media (max-width: 767px) {
     .menuLayer a.close {
-      top: -1rem;
+      top: 0.25rem;
     }
     .navbar-nav>li>a.user, .navbar-nav>li>a.shop {
         background: none!important;
