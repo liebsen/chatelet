@@ -122,7 +122,7 @@ function updateSrcTo(obj){
         if (!empty($item['price'])){
           $priceStr = \price_format($item['price']);
           if (!empty(@$item['old_price'])){
-            $priceStr.= ' <span class="old_price">$'.\price_format($item['old_price']).'</span>';
+            $priceStr = '<span class="old_price">$'.\price_format($item['old_price']).'</span>$' . $priceStr;
           }
         }
 
@@ -169,7 +169,7 @@ function updateSrcTo(obj){
             $content,
             $url,
             array('escape' => false)
-          ). '<div class="name">'.$item['name'].'</div><div class="price text-theme">$'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
+          ). '<div class="name">'.$item['name'].'</div><div class="price text-theme">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
           </div>';
       }
     }
