@@ -25,8 +25,8 @@
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 Configure::write('mUrl','');
-Configure::write('font','Fira Sans Condensed');
-Configure::write('fontsizes','300,400,500,600,700');
+Configure::write('font', ($_REQUEST['font'] ? urldecode($_REQUEST['font']) : 'Fira Sans Condensed'));
+Configure::write('fontsizes',($_REQUEST['font'] ?: '300,400,500,600,700'));
 Configure::write('APP_DIST', '2.85');
 
 /**
