@@ -41,7 +41,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 								    	<span class="shipping_price"></span>			    	
 								    </h6>
 								  <?php if($loggedIn): ?>
-								    <p class="card-text"><?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street'] ? $userData['User']['street_n'] : '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>)</p>
+								    <p class="card-text"><?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street_n'] ?: '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>)</p>
 								  <?php endif ?>
 								    <a href="/carrito" class="card-link">Modificar</a>
 								    <span class="card-link is-clickable" onclick="toggleform()" class="card-link">Modificar dirección</span>
@@ -158,7 +158,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 									<span class="clearfix"></span>
 									<div class="form-group">
 										<label for="direccion">Calle y Número</label>
-										<input style="width:75%;float:left;" type="text" class="form-control" placeholder="Riobamba" id="calle" name="street" value="<?= (!empty($userData['User']['street']))?$userData['User']['street']:''; ?>" required>
+										<input style="width:75%;float:left;" type="text" class="form-control" placeholder="Riobamba" id="calle" name="street" value="<?= (!empty($userData['User']['street']))?$userData['User']['street']: !empty($userData['User']['address'])?$userData['User']['address']: ''; ?>" required>
 										<input style="margin-left:1%;width:24%;float:left;" min="0" class="form-control" placeholder="1234" name="street_n" type="number" value="<?=(!empty($userData['User']['street_n']))?$userData['User']['street_n']:''; ?>" required/>
 									</div>
 									<span class="clearfix"></span>
