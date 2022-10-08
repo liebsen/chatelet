@@ -436,6 +436,7 @@ html, body {
   background-color: #fff;
   background-clip: border-box;
   border-radius: 0px;
+  min-height: 10.5rem;
 }
 .card-body {
   -webkit-box-flex: 1;

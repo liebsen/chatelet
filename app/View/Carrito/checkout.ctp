@@ -47,7 +47,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 								  </div>
 								</div>
 							</div>
-							<div class="col-12 mt-4 cargo-takeaway hide">
+							<div class="col-12 cargo-takeaway hide">
 								<div class="card">
 								  <div class="card-body">
 								    <h5 class="card-title">
