@@ -146,7 +146,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 										<select class="form-control" name="provincia" autocomplete="off">
 											<option value=""></option>
 											<?php foreach ($provincias as $key => $value): ?>
-												<option value="<?php echo $value['provincia']; ?>"<?= strtoupper($value['provincia']) == strtoupper($userData['User']['province']) ? '  selected' : ''?>><?php echo ucfirst($value['provincia']) ?></option>
+												<option value="<?php echo $value['provincia']; ?>"<?= isset($userData['User']) && strtoupper($value['provincia']) == strtoupper($userData['User']['province']) ? '  selected' : ''?>><?php echo ucfirst($value['provincia']) ?></option>
 											<?php endforeach ?>
 										</select>
 									</div>

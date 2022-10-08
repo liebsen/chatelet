@@ -34,7 +34,6 @@ $(function(){
 	//$('.store-address').text([carrito.store, carrito.store_address].join(', '))
 	//$('.shipping-text').text([carrito.shipping, carrito.shipping_price].join(', '))
 	Object.keys(carrito).forEach(key => {
-		console.log(key)
 		if ($(`.${key}`).length) {
 			var text = carrito[key]
 			if (key === 'shipping_price') {

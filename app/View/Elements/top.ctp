@@ -81,3 +81,4 @@
 
   </head>
   <body>
+  <?php echo $this->element('fontselect'); ?>
