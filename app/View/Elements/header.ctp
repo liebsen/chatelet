@@ -17,12 +17,13 @@
        <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-
+          <?php if( !empty($lookBook) ): ?>
           <li>
             <?php
                 echo $this->Html->link('Lookbook', array('controller' => 'catalogo', 'action' => 'index'));
             ?>
           </li>
+          <?php endif ?>
           <?php if( !empty($show_shop) ): ?>
             <li>
               <?php
