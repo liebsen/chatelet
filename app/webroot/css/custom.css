@@ -1837,6 +1837,10 @@ span.count {
   background-color: #f1f1f1;
 }
 
+.is-rounded-content {
+  padding: 0.75rem;
+}
+
 .is-success {
     background-color: #d0f7cd;
 }
@@ -1856,11 +1860,11 @@ span.count {
 
 .is-rounded h3 {
   margin-bottom: 0;
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  padding-bottom: 0.5rem;
+  font-size: 2rem;
+  line-height: 2rem;
+  padding: 0;
+  margin: 0.75rem 1rem;
   border-bottom: 1px solid #f7cae0;
-  margin: 0.5rem;
   padding-bottom: 1.5rem;  
 }
 

@@ -13,7 +13,7 @@
 				<div class="input-group">
 				  <input type="text" name="" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" data-valid="0" autocomplete="off" />
 				  <div class="input-group-btn">
-				    <button class="btn btn-success btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" type="submit">Calcular</button>
+				    <button class="btn btn-success btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" type="submit">Calcular</button>
 				  </div>
 				</div>
 				<br>

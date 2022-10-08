@@ -69,20 +69,20 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 			</div>
 		</div>
 	<?php endif ?>
-		<div class="col-12 checkoutform-container<?= !empty($userData['User']['id']) ? ' hide' : '' ?>">
+		<div class="col-12 mt-4 checkoutform-container<?= !empty($userData['User']['id']) ? ' hide' : '' ?>">
 			<form role="form" method="post" id="checkoutform" action="<?php echo $this->Html->url(array(
 						'controller' => 'carrito',
 						'action' => 'sale'
 					)) ?>">
-				<div class="row form-container is-rounded">
+				<div class="row is-rounded">
 					<h3 class="">Ingresá tus datos para finalizar la compra</h3>
-						<input type="hidden" name="shipping" value=""/>
-						<input type="hidden" name="coupon" value=""/>
-						<input type="hidden" name="cargo" value=""/>
-						<input type="hidden" name="store" value=""/>
-						<input type="hidden" name="postal_address" value="<?= $this->Session->read('cp') ?>"/>
-						<input type="hidden" name="store_address" value=""/>
-
+					<input type="hidden" name="shipping" value=""/>
+					<input type="hidden" name="coupon" value=""/>
+					<input type="hidden" name="cargo" value=""/>
+					<input type="hidden" name="store" value=""/>
+					<input type="hidden" name="postal_address" value="<?= $this->Session->read('cp') ?>"/>
+					<input type="hidden" name="store_address" value=""/>
+					<div class="is-rounded-content">
 						<div class="form-group">
 							<label for="nombre">Nombre</label>
 							<input type="text" class="form-control" id="nombre" name="name" value="<?= (!empty($userData['User']['name']))?$userData['User']['name']:''; ?>" required>
@@ -128,7 +128,6 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 							<input style="margin-right:1%;width:49%;float:left;" min="0" class="form-control" placeholder="1,2,3..." name="floor" type="number" value="<?=(!empty($userData['User']['floor']))?$userData['User']['floor']:''; ?>"/>
 							<input style="margin-left:1%;width:49%;float:left;" class="form-control" placeholder="A,B,C..." name="depto" type="text" value="<?= (!empty($userData['User']['depto']))?$userData['User']['depto']:''; ?>"/>
 						</div>
-						<span class="clearfix"></span>
 					</div>
 				</div>
 				<div class="col-12 mt-4">
