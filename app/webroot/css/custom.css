@@ -457,7 +457,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 .modal a.close { display: block; height: 35px; opacity: 1; position: absolute; right: 20px; top: 10px; width: 35px; z-index: 1;}
 .modal a.close span { background: #f50081; display: block; height: 4px; margin-top: 25px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
 .modal a.close span:last-child { margin-top: -3px; -ms-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
-#myModal .content { /*background: url(../images/livebox-bg.jpg);*/ margin: 50px auto; overflow: hidden; position: relative; width: 990px; }
+#myModal .content { background: url(../images/livebox-bg.jpg); /* margin: 50px auto;*/ overflow: hidden; position: relative; width: 100%; height: 100%;}
 #myModal .content form {
     float: left;
     width: 100%;
@@ -950,7 +950,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 	#menuShop { display: none !important; }
 
-	.modal-open .modal { padding: 0 30px !important; }
+	/* .modal-open .modal { padding: 0 30px !important; } */
 	#myModal .content { width: 100%; }
 	#myModal .content form {
         margin-bottom: 75px;
@@ -1057,10 +1057,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 	footer .bottom a { margin: 0 10px; }
 	.modal-open .modal { padding: 0px!important; }
-	#myModal .content { /*background-size: cover;*/    background-size: contain!important;
-    min-height: 200px;
-    background-repeat-x: no-repeat !important;
-    background-repeat-y: no-repeat !important; }
 	#myModal .content form h1 { font-size: 20px; }
 	#myModal .content form p { margin-bottom: 20px; }
 	#myModal .content form p, #myModal .content form input[type="email"] { font-size: 16px; }
@@ -1737,13 +1733,6 @@ span.count {
         display: none
     }
 
-    #myModal .content {
-        background-size: contain!important;
-        max-height: 200px;
-        background-repeat-x: no-repeat !important;
-        background-repeat-y: no-repeat !important;
-    }
-
     #listShop a .hover{
 
     }
@@ -1787,33 +1776,9 @@ span.count {
     #myModal .content form input[type="email"] {
         margin-bottom: 25px
     }
-    #myModal .content {
-        background-size: contain!important;
-        max-height: 200px;
-        background-repeat-x: no-repeat !important;
-        background-repeat-y: no-repeat !important;
-    }
     #listShop a img {
       height: 340px;
       object-fit: contain;
-    }
-}
-/*IPHONE*/
-@media (max-width: 750px) {
-     #myModal .content {
-        background-size: contain!important;
-        max-height: 400px;
-        background-repeat-x: no-repeat !important;
-        background-repeat-y: no-repeat !important;
-    }
-}
-
-@media (max-width: 640px) {
-     #myModal .content {
-        background-size: contain!important;
-        max-height: 200px;
-        background-repeat-x: no-repeat !important;
-        background-repeat-y: no-repeat !important;
     }
 }
 

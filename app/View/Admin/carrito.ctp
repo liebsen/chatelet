@@ -34,7 +34,7 @@
               <small class="text-muted">Indica si debe mostrarse un mensaje para alentar al cliente a obtener un envío gratis agregando más productos a su carrito.</small>
             </div>            
             <div class="control-group">
-              <label class="control-label" for="columns-text"><?php echo __('Texto carrito envío gratis'); ?></label>
+              <label class="control-label" for="columns-text"><?php echo __('Carrito envío gratis'); ?></label>
               <div class="controls">
                 <textarea name="text_shipping_min_price" class="form-control w-100"><?= @$data['text_shipping_min_price'] ?></textarea>
               </div>
@@ -44,7 +44,7 @@
 <strong>{{total}}</strong> Total del carrito. </span>
             </div>
             <div class="control-group">
-              <label class="control-label" for="columns-text"><?php echo __('Texto carrito takeaway'); ?></label>
+              <label class="control-label" for="columns-text"><?php echo __('Carrito takeaway'); ?></label>
               <div class="controls">
                 <textarea name="carrito_takeaway_text" class="form-control w-100"><?= @$data['carrito_takeaway_text'] ?></textarea>
               </div>

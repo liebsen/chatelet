@@ -28,6 +28,32 @@ html, body {
 	display: none!important;
 }
 
+.js-show-modal {
+	position: relative;
+}
+
+.tap-to-continue {
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	padding: 0.75rem 1.25rem;
+	border: 1px solid white;
+	color: white;
+}
+.tap-to-continue .fa {
+	margin-right: 0.5rem;
+}
+.icon-huge {
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+	min-height: 15rem;
+}
+
+.icon-huge .fa {
+	font-size: 10rem;
+}
+
 .d-flex {
 	display: flex;
 }

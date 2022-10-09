@@ -154,16 +154,16 @@
         $popupBG = $aux;
     }
     ?>
-        <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
+        <div class="modal fade" tabindex="-1" id="myModal" role="dialog" style="background-color: #262427;">
 
         <?php if(count($popupBG)>1):?>
 
-            <div class="content js-show-modal">
+            <div class="content js-show-modal" data-dismiss="modal">
 
-                <a class="close" data-dismiss="modal">
+                <!--a class="close" data-dismiss="modal">
                     <span></span>
                     <span></span>
-                </a>
+                </a-->
                 <?php echo $this->Form->create('Contact'); ?>
 
 
@@ -230,7 +230,10 @@
 
         <?php elseif (count($popupBG)==1):?>
 
-            <div class="content js-show-modal" style="<?=(!empty($home['img_popup_newsletter']))?'background: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: 100%;':''?>">
+            <div class="content js-show-modal is-clickable animated fadeIn slow delay3" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
+                <div class="tap-to-continue animated fadeIn delay3">
+                    <i class="fa fa-bell"></i> Continuar
+                </div>
 
                 <?php if(!empty($home['display_popup_form_in_last'])):?>
                 <div class="in_last">
@@ -241,10 +244,10 @@
                 </div>
                 <?php endif; ?>
 
-                <a class="close" data-dismiss="modal">
+                <!--a class="close" data-dismiss="modal">
                     <span></span>
                     <span></span>
-                </a>
+                </a-->
                     <?php $formStyle=(isset($popupBgHeight))?array('style'=>'min-height:'.$popupBgHeight.'px;'):array();?>
                     <?php echo $this->Form->create('Contact', $formStyle); ?>
                 <?php if(empty($home['text_popup_newsletter'])):?>

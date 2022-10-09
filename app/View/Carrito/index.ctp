@@ -1,3 +1,4 @@
+
 <?php
 	echo $this->Html->css('carrito.css?v=' . Configure::read('APP_DIST'), array('inline' => false));
 	echo $this->Html->script('carrito.js?v=' . Configure::read('APP_DIST'), array('inline' => false));
@@ -168,8 +169,12 @@
 						</div>
 					</div>
 					<?php else: ?>
-					<div class="container">
-						<div class="price text-left">El carrito de compras está vacío.</div><div> Agregá al menos un producto para continuar.</div>
+					<div class="container text-center">
+						<div class="icon-huge">
+							<i class="fa fa-bell-o text-primary"></i>
+						</div>
+						<h3 class="h3 text-center">El carrito de compras está vacío.</h3>
+						<div>Agregá al menos un producto para continuar.</div>
 					</div>
 					<br><br>
 					<?php endif;?>
@@ -184,6 +189,12 @@
 				?>
 				</div>
 			</div>
+		<?php if (!isset($carro)): ?>
+			<div class="col-md-12 text-center">
+				<a href="#" class="action-search cart-btn-green">Buscar</a>
+				<!--a class="keep-buying cart-btn-green" href="/#q:">Seguir comprando</a-->
+			</div>
+		<?php endif ?>
 		</div>
 	</div>
 					
