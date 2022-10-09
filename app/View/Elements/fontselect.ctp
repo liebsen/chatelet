@@ -37,7 +37,6 @@ if(isset($_REQUEST['font'])):
     <script>
       function setFont(e) {
         var url = `${window.location.pathname}?font=${encodeURI(e)}&autorefresh=${document.getElementById('autorefresh').checked}`
-        console.log(url)
         window.location = url
       }
       function nextFont(){
