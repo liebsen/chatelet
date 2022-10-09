@@ -917,13 +917,13 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 	#headcontacto h1 { font-size: 30px; }
 	#headcontacto .box { padding: 60px 50px; }
-	#headcontacto .box h3 { font-size: 1.5rem; }
+	#headcontacto .box h3 { font-size: 1.25rem; }
 	#headcontacto .box p { font-size: 1rem; }
 
 	#headhelp h1 { font-size: 40px; }
 	#headhelp .box { padding: 40px 40px 20px; border-radius: 0px; }
 	#headhelp .box p { font-size: 1rem; margin-bottom: 20px; }
-	#headhelp .box h3 { font-size: 18px; }
+	#headhelp .box h3 { font-size: 1.25rem; }
 	#optionsHelp a, #desarrollo p { font-size: 1.25rem; }
 	#desarrollo small { font-size: 0.75rem; }
 	#referncia ul li, #headhelp .box2 input[type="text"], #headhelp .box2 input[type="submit"] { font-size: 14px; }
