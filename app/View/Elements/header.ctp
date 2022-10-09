@@ -62,7 +62,7 @@
           <li class="dropdown">
              <?php if ($loggedIn) { ?>
              <a href="#" class="dropdown-toggle user js-activated" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
-             Perfíl</a>
+             Mi Perfil</a>
             <ul class="dropdown-menu">
                <li>
                  <div id="login-panel">
@@ -104,7 +104,7 @@
                 </li>
               </ul>
             <?php } else { ?>
-             <a href="#" class="dropdown-toggle user" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion">Perfíl</a>
+             <a href="#" class="dropdown-toggle user" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion">Mi Perfil</a>
             <?php } ?>
           </li><!-- /.Login -->
           <li class="dropdown">

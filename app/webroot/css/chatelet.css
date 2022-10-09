@@ -194,10 +194,6 @@ html, body {
 	font-weight: 800;
 } */
 
-.modal-body > form {
-  padding: 1rem;
-}
-
 #login-email,
 #login-password {
 	padding: 6px 12px;
@@ -350,12 +346,21 @@ html, body {
 	float: left;
 }
 
+/* mobile first */
+.modal-dialog {
+  margin:0!important;
+}
+.modal-content {
+  min-height: 100vh;
+}
+
 .modal-title {
 	color: #e10c76;
 	font-size: 1rem;
 	/*font-style: italic;
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
+
 
 .modal-header {
 	min-height: 50px;
@@ -566,18 +571,31 @@ span.user {
 	margin-top: 1.25rem;
 }
 
+@media screen and (min-width: 769px) {
+	.modal-dialog {
+		margin: auto!important;
+		min-height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.modal-content {
+	  min-height: auto;
+	}
+}
+
 @media screen and (max-width: 768px) {
-  	.marginTop {
-    	margin-top: 1rem;
-  	}
+	.marginTop {
+  	margin-top: 1rem;
+	}
 	#detalle .caract .marginTop a.table {
-	    background: url(../images/sizes.png) no-repeat right center;
-	    color: #f50081;
-	    font-size: 16px;
-	    font-weight: 600;
-	    padding-right: 35px;
-	    padding-top: 5px;
-	    background-size: 1.75rem;
+    background: url(../images/sizes.png) no-repeat right center;
+    color: #f50081;
+    font-size: 16px;
+    font-weight: 600;
+    padding-right: 35px;
+    padding-top: 5px;
+    background-size: 1.75rem;
 	}
 }
 span.validation-email {

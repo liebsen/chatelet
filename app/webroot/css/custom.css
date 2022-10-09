@@ -1057,8 +1057,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#suscribe form input[type="submit"] { width: 15%; }
 
 	footer .bottom a { margin: 0 10px; }
-
-	.modal-open .modal { padding: 0 15px !important; }
+	.modal-open .modal { padding: 0px!important; }
 	#myModal .content { /*background-size: cover;*/    background-size: contain!important;
     min-height: 200px;
     background-repeat-x: no-repeat !important;

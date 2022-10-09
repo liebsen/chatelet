@@ -6,14 +6,14 @@
   z-index: 50000;
   position: fixed; }
   #growls.default {
-    top: 10px;
-    right: 10px; }
+    top: 0px;
+    right: 0px; }
   #growls.tl {
     top: 10px;
     left: 10px; }
   #growls.tr {
-    top: 10px;
-    right: 10px; }
+    top: 0px;
+    right: 0px; }
   #growls.bl {
     bottom: 10px;
     left: 10px; }
@@ -38,33 +38,31 @@
   position: relative;
   border-radius: 0px;
   scale: 1;
+  transform: translateY(0rem);
   box-shadow: var(--box-shadow);
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out; }
   .growl.growl-incoming {
-    scale: 0.5;
-    transform: translateX(50rem);
+    scale: 0.75;
+    transform: translateY(-10rem);
     opacity: 0;
     filter: alpha(opacity=0); }
   .growl.growl-outgoing {
-    scale: 0.5;
-    transform: translateX(50rem);
+    scale: 0.75;
+    transform: translateY(-10rem);
     opacity: 0;
     filter: alpha(opacity=0); }
   .growl.growl-small {
-    width: 200px;
-    padding: 5px;
-    margin: 5px; }
+    width: 100vw;
+    padding: 5px;}
   .growl.growl-medium {
-    width: 280px;
+    width: 100vw;
     padding: 1rem;
-    padding-top: 0.75rem;
-    margin: 1rem; }
+    padding-top: 0.75rem;}
   .growl.growl-large {
-    width: 300px;
-    padding: 15px;
-    margin: 15px; }
+    width: 100vw;
+    padding: 15px;}
   .growl.growl-default {
     color: #FFF;
     background: #7f8c8d; }
@@ -92,3 +90,19 @@
   .growl .growl-message {
     font-size: 1rem;
     line-height: 1.25rem; }
+
+@media screen and (min-width: 769px) {
+  #growls.default {
+    top: 10px;
+    right: 10px; 
+  }
+  .growl.growl-small {
+    width: 200px;
+    margin: 5px; }
+  .growl.growl-medium {
+    width: 280px;
+    margin: 1rem; }
+  .growl.growl-large {
+    width: 300px;  
+    margin: 15px; }  
+}    
