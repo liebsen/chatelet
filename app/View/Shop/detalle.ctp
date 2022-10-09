@@ -45,7 +45,7 @@
                 <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
                    <?php if(!empty($value)): $ppp++;?>
                    <li class="dontResize"><a href="javacript:void(0)"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
-                    onclick="currentDiv(<?=$ppp;?>)" title="ck_image_<?=$ppp?>"  id="img_01" src="<?=Configure::read('imageUrlBase').'thumb_'.$value?>"></a></li>
+                    onclick="currentDiv(<?=$ppp;?>)" title="ck_image_<?=$ppp?>"  id="img_01" src="<?=Configure::read('imageUrlBase').''.$value?>"></a></li>
                     <?php endif;?>
                 <?php endforeach ?>
                     <?php endif;?>
