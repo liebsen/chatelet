@@ -196,7 +196,7 @@
 					?>
 				</div>
 			
-				<label for="codigo-postal">Codigo Postal</label>
+				<label for="codigo-postal">Código Postal</label>
 				<div class="form-group">
 					<?php
 						echo '<input type="text" id="codigo-postal" class="form-control" name="data[User][postal_address]" value="'. $user['postal_address'] .'" />';

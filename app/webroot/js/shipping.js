@@ -82,7 +82,7 @@ $(function(){
 				setTimeout(() => {
 					$('.input-cp').removeClass('wrong');
 					$('.input-cp').addClass('ok');
-					onSuccessAlert(cp, '✓ Codigo Postal válido');
+					onSuccessAlert(cp, '✓ Código Postal válido');
 					document.querySelector('.shipping-block').classList.remove('hidden')	
 					var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 					if (carrito.cargo === 'shipment' && carrito.shipping) {

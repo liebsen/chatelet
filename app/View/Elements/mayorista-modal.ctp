@@ -108,7 +108,7 @@
 							<input type="text" id="barrio" class="form-control" name="data[User][neighborhood]" />
 						</div>
 						<div class="form-group">
-							<label for="codigo-postal">Codigo Postal</label>
+							<label for="codigo-postal">Código Postal</label>
 							<input type="text" id="codigo-postal" class="form-control" name="data[User][postal_address]" />
 						</div>
 						<input type="submit" id="enviar-registro" value="Enviar" />

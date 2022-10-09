@@ -168,7 +168,7 @@
           </div>
           <br />
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Codigo Postal'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Código Postal'); ?></label>
             <div class="controls">
               <input type="text" id="" name="data[postal_address]" value="<?php echo (isset($usuario)) ? $usuario['User']['postal_address'] : ''; ?>">
             </div>
