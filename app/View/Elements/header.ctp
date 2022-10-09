@@ -140,7 +140,7 @@
                   <p>
                     Total <span class="right"><?php echo str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))); ?></span>
                   </p>
-                  <p class="bottom">
+                  <p class="bottom" title="Ir al carrito">
                     <?php
                       echo $this->Html->link('<span class="fa fa-pencil"></span>', array(
                         'controller' => 'carrito',

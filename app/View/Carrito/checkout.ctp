@@ -52,7 +52,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 								<div class="card">
 								  <div class="card-body">
 								    <h5 class="card-title">
-								    	<i class="fa fa-building-o"></i>
+								    	<i class="fa fa-car"></i>
 								    	Retiro en sucursal
 								    </h5>
 								    <h6 class="card-subtitle">
