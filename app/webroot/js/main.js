@@ -34,15 +34,11 @@ let apiSearch = q => {
       let str = ''
       $('.search-more').html('')
       $.each(data.results, function(key, item) {
-        str += '<div class="col-sm-6 col-md-4 col-lg-3 search-item animate fadeIn">' +
+        str += '<div class="col-xs-6 col-md-4 col-lg-3 search-item animate fadeIn">' +
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 
-            '<div class="row">' + 
-              '<div class="col-sm-12">' + 
-                '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.discount_label ? '<div class="ribbon small bottom-left sp2"><span>' + item.discount_label + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
-                '<h2 class="text-center">'+item.name+'</h2>' + 
-                '<h3 class="price text-center">'+(item.old_price ? '<span class="old_price text-grey">$' + item.old_price + '</span>' : '') + '<span>$' + item.price + '</span></h3>' + 
-              '</div>' + 
-            '</div>' +
+            '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.discount_label ? '<div class="ribbon small bottom-left sp2"><span>' + item.discount_label + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
+            '<h2 class="text-center">'+item.name+'</h2>' + 
+            '<h3 class="price text-center">'+(item.old_price ? '<span class="old_price text-grey">$' + item.old_price + '</span>' : '') + '<span>$' + item.price + '</span></h3>' + 
           '</a>' + 
         '</div>'
       })
