@@ -448,8 +448,8 @@ footer .col-md-3 h4 + a span { background: url(../images/sprite.png) no-repeat 1
 footer p { clear: both; font-size: 14px; padding-top: 4rem;}
 footer .bottom { background: #FFF; padding: 25px 0; text-align: center; 
 opacity: 0.75;}
-/*footer .bottom a { background-image: url(../images/sprite.png); display: inline-block; height: 48px; margin: 0 5px; width: 48px; }
-footer .bottom a.fb { background-position: 10px -286px; }
+footer .bottom a { display: inline-block; margin: 0 10px; }
+/*footer .bottom a.fb { background-position: 10px -286px; }
 footer .bottom a.tt { background-position: -40px -286px; }
 footer .bottom a.ig { background-position: -101px -286px; } */
 
