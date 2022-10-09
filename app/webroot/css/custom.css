@@ -447,12 +447,11 @@ footer .col-md-3 h4 + a { color: #f50081; display: inline-block; font-size: 15px
 footer .col-md-3 h4 + a span { background: url(../images/sprite.png) no-repeat 11px -218px #FFF; border-radius: 50%; box-shadow: 0 3px 4px rgba(0,0,0,.2); display: block; float: left; height: 61px; margin-right: 20px; margin-top: -10px; width: 61px; }
 footer p { clear: both; font-size: 14px; padding-top: 4rem;}
 footer .bottom { background: #FFF; padding: 25px 0; text-align: center; 
-transform: scale(0.5);
 opacity: 0.75;}
-footer .bottom a { background-image: url(../images/sprite.png); display: inline-block; height: 48px; margin: 0 5px; width: 48px; }
+/*footer .bottom a { background-image: url(../images/sprite.png); display: inline-block; height: 48px; margin: 0 5px; width: 48px; }
 footer .bottom a.fb { background-position: 10px -286px; }
 footer .bottom a.tt { background-position: -40px -286px; }
-footer .bottom a.ig { background-position: -101px -286px; }
+footer .bottom a.ig { background-position: -101px -286px; } */
 
 
 .modal a.close { display: block; height: 35px; opacity: 1; position: absolute; right: 20px; top: 10px; width: 35px; z-index: 1;}
@@ -2148,4 +2147,7 @@ span.count {
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-top: 10px;
   }
+  footer > .wrapper {
+    padding: 0 2rem;
+  }  
 }
