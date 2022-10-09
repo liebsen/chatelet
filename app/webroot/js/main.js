@@ -127,7 +127,15 @@ $(function () {
   })
   // Toggle Side content
   /*body.toggleClass('hide-side-content');*/
-  $('#toggle-side-content').click(function(){ body.toggleClass('hide-side-content');if(body.hasClass('hide-side-content')){$('#page-sidebar.collapse').collapse('hide');} else {$('#page-sidebar.collapse').collapse('show');}});
+  $('#toggle-side-content').click(function(){ 
+    if(body.hasClass('hide-side-content')){
+      $('#page-sidebar.collapse').collapse('hide');
+    } else {
+      $('#page-sidebar.collapse').collapse('show');
+    }
+    body.toggleClass('hide-side-content');
+
+  });
 
   /* trigger search from url */
 

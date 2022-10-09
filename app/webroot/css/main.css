@@ -217,7 +217,7 @@ body {
 
 #pre-page-content {
     padding: 20px;
-    min-height: 140px;
+    /* min-height: 140px; */
     background-color: #f0f0f0;
 }
 
@@ -897,6 +897,8 @@ body {
 }
 
 #pre-page-content h1 i {
+    position: relative;
+    top: -2rem;
     float: left;
     width: 80px;
     height: 80px;

@@ -83,7 +83,7 @@
                 <?php if($enabled && $logistic['Logistic']['local_prices']): ?>
                   <br>
                   <br>
-                  <small class="text-danger alert-link"><b>Exclusividad no garantizada.</b> <i> <?= $logistic['Logistic']['title'] ?></i> tiene alcance local, esto significa que solo estará disponible para envíos gratuitos dentro de su área de cobertura, caso contrario se mostrarán otras opciones de envío a la clienta que pueden no estar establecidas como disponibles para envío gratuito.</small>
+                  <small class="text-danger alert-link"><b>Exclusividad no garantizada.</b> <i> <?= $logistic['Logistic']['title'] ?></i> tiene alcance local, esto significa que solo estará disponible para envíos gratuitos dentro de su área de cobertura, caso contrario se mostrarán otras opciones de envío que pueden no estar establecidas como disponibles para envío gratuito.</small>
                 <?php endif ?>
               </div>
             </div>            
@@ -150,7 +150,7 @@
   </div>
 
   <div class="block-content">
-    <p class="p">Usted puede editar las tarifas de esta logística de acuerdo a las zonas que están representadas por códigos postales. Los códigos postales en Argentina contienen cuatro números. Puede asignarlos de forma taxativa (ej: 1440, 1441) o con expresiones (ej: 92**, 930*). Mas información sobre <a href="https://códigos-postales.cybo.com/argentina/#mapwrap" target="_blank">códigos postales de argentina</a></p>
+    <p class="p">Usted puede editar las tarifas de esta logística de acuerdo a las zonas que están representadas por códigos postales. Los códigos postales en Argentina contienen cuatro números. Puede asignarlos de forma taxativa (ej: 1440, 1441) o agrupar con expresiones (ej: 92**, 930*). Mas información sobre <a href="https://códigos-postales.cybo.com/argentina/#mapwrap" target="_blank">códigos postales de argentina</a></p>
     <button class="btn btn-success" type="button" onclick="edit_logistic_price()">Agregar</button>
     <table class="table table-striped" id="tarifas">
       <thead>
