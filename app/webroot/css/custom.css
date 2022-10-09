@@ -110,6 +110,12 @@ label input[type=checkbox]:disabled + .label-text:before {
 .mt-4 {
   margin-top: 1rem!important;
 }
+.mb-4 {
+  margin-bottom: 1rem!important;
+}
+.mb-5 {
+  margin-bottom: 1.25rem!important;
+}
 
 .text-uppercase {
   text-transform: uppercase;
@@ -813,7 +819,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headhelp h1 { color: #f50081; font-size: 38px; font-weight: 600; margin-top: 70px; }
 #headhelp h1:after { background: #f50081; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 #headhelp .box { border: 2px solid #f50081; padding: 90px 90px 50px; }
-#headhelp .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; }
+#headhelp .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; margin-top: 0;}
 #headhelp .box p { font-size: 15px; line-height: 1.5; margin-bottom: 45px; }
 #headhelp .box p a { color: #f50081; font-weight: 600; }
 #optionsHelp { padding: 35px 0; text-align: center; font-size: 1.5rem; font-weight: 800;}
