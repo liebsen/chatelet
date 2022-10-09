@@ -19,7 +19,9 @@
           </div>
           <div class="row mb-5">
             <div class="col-md-12 mt-3 text-center">
-              <a href="https://wa.me/?text=<?= urlencode($data['onlinebanking_explain_title']) ?><?= urlencode($data['onlinebanking_explain_text']) ?><?= urlencode($data['onlinebanking_instructions_title']) ?><?= urlencode($data['onlinebanking_instructions_text']) ?><?= urlencode($data['onlinebanking_instructions_text']) ?><?= urlencode($data['onlinebanking_total_text']) ?>" class="btn cart-btn-green" title="Enviar por WhatsApp" target="_blank" />Enviar por WhatsApp</a>
+              <a href="https://wa.me/?text=<?= urlencode($data['onlinebanking_explain_title']) ?><?= urlencode($data['onlinebanking_explain_text']) ?><?= urlencode($data['onlinebanking_instructions_title']) ?><?= urlencode($data['onlinebanking_instructions_text']) ?><?= urlencode($data['onlinebanking_instructions_text']) ?><?= urlencode($data['onlinebanking_total_text']) ?>" class="btn cart-btn-green" title="Enviar por WhatsApp" target="_blank" />
+                Enviar por WhatsApp
+              </a>
             </div>
           </div>
         </div>
