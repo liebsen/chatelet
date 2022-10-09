@@ -803,6 +803,11 @@ body {
     filter: alpha(opacity=100);
 }
 
+.mini-profile > img {
+    max-height: 20px;
+    margin: auto;
+}
+
 /* Sidebar Tabs */
 .sidebar-tabs {
     background-color: #696969;
@@ -3427,6 +3432,7 @@ a.thumbnail-borderless,
     outline: 0 !important;
 }
 
+
 /*
 =================================================================
 (#m08res) RESPONSIVE
@@ -3634,7 +3640,7 @@ a.thumbnail-borderless,
         padding: 0;
     }
 
-    header.navbar {
+    /*header.navbar {
         min-height: 81px;
     }
 
@@ -3667,7 +3673,7 @@ a.thumbnail-borderless,
 
     .landing-container header.navbar {
         min-height: 42px;
-    }
+    }*/
 
     #top-search {
         left: 0;

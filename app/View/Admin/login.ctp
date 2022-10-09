@@ -148,7 +148,7 @@
                     if ($('html').hasClass('csstransitions')) timeout = 750;
 
                     // On button hover or touch reveal the login form
-                    $('.login-btn').mouseenter(function(){
+                    $('.login-btn').click(function(){
                         $('.left-door, .right-door, .login-btn').addClass('login-animate');
 
                         setTimeout(function(){
