@@ -57,7 +57,11 @@ class AyudaController extends AppController {
 
 	public function onlinebanking($id) {
 		$sale = $this->Sale->findById($id);
-		$price = $sale['Sale']['deliver_cost'] + $sale['Sale']['value'];
+		$price = $sale['Sale']['value'];
+
+		if (empty($sale['Sale']['free_shipping'])) {
+			$price+= $sale['Sale']['deliver_cost'];
+		}
 
 		$data = [];
 		$map = $this->Setting->findById('display_text_shipping_min_price');
