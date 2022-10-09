@@ -46,10 +46,12 @@ $(function(){
         $('.coupon-info').addClass('fadeInRight')
         $('.promo-code').text(json.data.code)
         $('.free-shipping').addClass('hidden')
-        format_total = formatNumber(parseFloat(total) + parseFloat(delivery_cost))
+        var price = parseFloat(total) + parseFloat(delivery_cost)
+        format_total = formatNumber(price)
         $('#cost').text( format_total );
         fxTotal(format_total)
         carrito.coupon = coupon.toUpperCase()
+        carrito.total_price = price
         localStorage.setItem('carrito', JSON.stringify(carrito))
       }else{
         $('.coupon-discount').addClass('hidden')

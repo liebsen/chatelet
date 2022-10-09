@@ -74,7 +74,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 								    	<i class="fa fa-credit-card"></i>
 								    	¿Cómo querés pagar tu compra?
 								    </h5>
-								    <h6 class="card-subtitle">Seleccioná un método de pago</h6>
+								    <h6 class="card-subtitle">Esta compra $<span class="total_price"></span>.  Seleccioná un método de pago</h6>
 								    <div class="row payment-method">
 								    	<div class="col-sm-6 text-center option-rounded">
 								    		<input type="radio" class="" id="enabled_1" name="payment_method" value="mercadopago" required />

@@ -1,6 +1,6 @@
 <?php
 class AyudaController extends AppController {
-	public $uses = array('Category','LookBook');
+	public $uses = array('Category','LookBook','Sale');
 	public $components = array("OCA");
 
 	public function beforeFilter() {
@@ -52,10 +52,12 @@ class AyudaController extends AppController {
 			));
 			$this->set('tracking', $tracking);
 		}
-
 	}
 
-	public function onlinebanking() {
+
+	public function onlinebanking($id) {
+		$sale = $this->Sale->findById($id);
+		$price = @$sale['Sale']['delivery_cost'] + $sale['Sale']['value'];
 
 		$data = [];
 		$map = $this->Setting->findById('display_text_shipping_min_price');
@@ -72,6 +74,7 @@ class AyudaController extends AppController {
 		$data['onlinebanking_explain_title'] = @$map['Setting']['value'];
 		$map = $this->Setting->findById('onlinebanking_instructions_title');
 		$data['onlinebanking_instructions_title'] = @$map['Setting']['value'];
+		$data['total_price'] = @$price;
 
 		$this->set('data', $data);
 		// return $this->render('onlinebanking');

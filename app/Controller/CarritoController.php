@@ -894,7 +894,7 @@ class CarritoController extends AppController
 		error_log("total mp: " . $total);
 
 		if ($user['payment_method'] === 'bank') {
-			return $this->redirect(array( 'controller' => 'ayuda', 'action' => 'onlinebanking' ));
+			return $this->redirect(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id ));
 		}
 
 		//MP
