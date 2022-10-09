@@ -395,6 +395,12 @@ html, body {
 	min-height: 50px;
 }
 
+.float-top-right {
+ 	position: fixed!important;
+ 	top: 1.5rem!important;
+ 	right: 1.5rem!important; 
+}
+ 
 .grey {
 	color: lightgrey;
 }

@@ -134,7 +134,7 @@
 				</div>
 				<label for="direccion">Calle y Número</label>
 				<div class="form-group d-flex">
-					<input style="" type="text" id="direccion" class="form-control" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Av. Callao" required />
+					<input style="" type="text" id="direccion" class="form-control" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
 					<input style="max-width: 25%;margin-left: 1%" min="0" class="form-control" placeholder="1234" name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
 				</div>
 

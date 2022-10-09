@@ -286,7 +286,8 @@ label input[type=checkbox]:disabled + .label-text:before {
   height: 2rem; 
   opacity: 1; 
   right: 1.5rem; 
-  top: 1rem;   
+  top: 1.5rem;
+  transition: all 0.25s ease-out;
 }
 .menuLayer a.close span { 
   background: #f50081;
@@ -1382,7 +1383,7 @@ span.out{
 
 .search-results .is-background-cover {
   min-height: 15rem;
-  min-width: 15rem;
+  min-width: 10rem;
   margin-bottom: 1rem;
 }
 
@@ -1712,7 +1713,7 @@ span.count {
 /*Mobile Icons NavTop*/
 @media (max-width: 767px) {
     .menuLayer a.close {
-      top: -0.15rem;
+      top: 0;
     }
     .navbar-nav>li>a.user, .navbar-nav>li>a.shop {
         background: none!important;
@@ -1810,7 +1811,7 @@ span.count {
 
 .is-rounded {
   padding: 0.75rem 0.5rem;
-  padding-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
   background-color: #f1f1f1;
 }
 
