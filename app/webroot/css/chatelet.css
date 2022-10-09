@@ -617,6 +617,9 @@ span.user {
 	.modal-content {
 	  min-height: auto;
 	}
+	.modal-body {
+		padding: 1.75rem;
+	}
 }
 
 @media screen and (max-width: 768px) {
