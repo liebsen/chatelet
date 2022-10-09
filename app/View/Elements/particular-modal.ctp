@@ -119,29 +119,29 @@
 					?>
 				</div>
 			
-				<label for="tel">Telefono</label>
+				<label for="tel">Teléfono</label>
 				<div class="form-group">
 					<?php
 						echo '<input type="tel" id="tel" class="form-control" name="data[User][telephone]" value="'. $user['telephone'] .'" />';
 					?>
 				</div>
 		
-				<label for="another-tel">Otro telefono</label>
+				<label for="another-tel">Otro teléfono</label>
 				<div class="form-group">
 					<?php
 						echo '<input type="tel" id="another-tel" class="form-control" name="data[User][another_telephone]" value="'. $user['another_telephone'] .'" />';
 					?>
 				</div>
 				<label for="direccion">Calle y Número</label>
-				<div class="form-group">
-					<input style="width:75%;float:left;" type="text" id="direccion" class="form-control" name="data[User][street]" value="<?= $user['street'] ?>" required />
-					<input style="margin-left:1%;width:24%;float:left;" min="0" class="form-control" placeholder="1234" name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
+				<div class="form-group d-flex">
+					<input style="" type="text" id="direccion" class="form-control" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Av. Callao" required />
+					<input style="max-width: 25%;margin-left: 1%" min="0" class="form-control" placeholder="1234" name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
 				</div>
 
-				<label for="direccion">Piso y Departamento</label>
-				<div class="form-group">
-					<input style="width:49%;float:left;" min="0" class="form-control" placeholder="1,2,3..." name="data[User][floor]" type="number" value="<?= $user['floor'] ?>"/>
-					<input style="margin-left:1%;width:49%;float:left;" class="form-control" placeholder="A,B,C..." name="data[User][depto]" type="text" value="<?= $user['depto'] ?>"/>
+				<label for="floor">Piso y Departamento</label>
+				<div class="form-group d-flex">
+					<input style="" min="0" id="floor" class="form-control" placeholder="1,2,3..." name="data[User][floor]" type="number" value="<?= $user['floor'] ?>"/>
+					<input style="max-width: 50%;margin-left: 1%" class="form-control" placeholder="A,B,C..." name="data[User][depto]" type="text" value="<?= $user['depto'] ?>"/>
 				</div>
 			
 				<label for="provincia">Provincia</label>
