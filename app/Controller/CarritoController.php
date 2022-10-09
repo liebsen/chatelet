@@ -703,7 +703,7 @@ class CarritoController extends AppController
 		$sale_object = array('id' => null,'user_id' => $user['id']);
 		$logistic = $this->Logistic->findByCode($user['shipping']);
 
-		if(isset($logistic)) {
+		if(isset($logistic['Logistic'])) {
 			$sale_object['logistic_id'] = $logistic['Logistic']['id'];
 		}
 
