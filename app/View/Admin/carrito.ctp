@@ -4,8 +4,8 @@
   // echo $this->Html->css('cupones-detail', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
   ?>
-<?php echo $this->Html->script('admin-sales', array('inline' => false)); ?>
-<?php echo $this->element('admin-menu');?>
+<?php // echo $this->Html->script('admin-sales', array('inline' => false)); ?>
+<?php // echo $this->element('admin-menu');?>
 <div class="block block-themed">
   <div class="block-title">
     <h4>Configuración de carrito</h4>
@@ -13,7 +13,7 @@
   </div>
 
   <div class="block-content">
-    <form action="" method="post" class="form-inline" enctype="multipart/form-data">
+    <form action="" method="post" class="form-inline">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6">
@@ -36,7 +36,7 @@
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Texto carrito envío gratis'); ?></label>
               <div class="controls">
-                <textarea name="text_shipping_min_price" class="form-control w-100"><?= $data['text_shipping_min_price'] ?></textarea>
+                <textarea name="text_shipping_min_price" class="form-control w-100"><?= @$data['text_shipping_min_price'] ?></textarea>
               </div>
               <span class="text-muted">texto que se muestra en el carrito cuando el usuario no alcanza el mínimo de compra para envío gratis. Podés usar variables como <br>
 <strong>{{precio_min_envio_gratis}}</strong> Monto de compra para envío gratis <br>
@@ -46,7 +46,7 @@
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Texto carrito takeaway'); ?></label>
               <div class="controls">
-                <textarea name="carrito_takeaway_text" class="form-control w-100"><?= $data['carrito_takeaway_text'] ?></textarea>
+                <textarea name="carrito_takeaway_text" class="form-control w-100"><?= @$data['carrito_takeaway_text'] ?></textarea>
               </div>
               <span class="text-muted">texto que se muestra en el carrito cuando el usuario selecciona método de entrega takeaway.</span>
             </div>  
@@ -56,31 +56,38 @@
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Título describe datos bancarios'); ?></label>
               <div class="controls">
-                <input name="onlinebanking_explain_title" class="form-control w-100" value="<?= $data['onlinebanking_explain_title'] ?>"/>
+                <input name="onlinebanking_explain_title" class="form-control w-100" value="<?= @$data['onlinebanking_explain_title'] ?>"/>
               </div>
               <span class="text-muted">Título antes de mostrar los datos bancarios. (Ej: Datos para completar tu compra)</span>              
             </div>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Texto describe datos bancarios'); ?></label>
               <div class="controls">
-                <textarea name="onlinebanking_explain_text" class="form-control w-100"><?= $data['onlinebanking_explain_text'] ?></textarea>
+                <textarea name="onlinebanking_explain_text" class="form-control w-100"><?= @$data['onlinebanking_explain_text'] ?></textarea>
               </div>
               <span class="text-muted">Indica los datos de cuenta bancaria para que los clientes puedan pagar via trasnferencia. Ej: CBU, Alias, etc... </span>
             </div>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Título instrucciones pago manual'); ?></label>
               <div class="controls">
-                <input name="onlinebanking_instructions_title" class="form-control w-100" value="<?= $data['onlinebanking_instructions_title'] ?>"/>
+                <input name="onlinebanking_instructions_title" class="form-control w-100" value="<?= @$data['onlinebanking_instructions_title'] ?>"/>
               </div>
               <span class="text-muted">Título antes de mostrar los datos bancarios. (Ej: Datos para completar tu compra)</span>              
             </div>            
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Texto instrucciones pago manual'); ?></label>
               <div class="controls">
-                <textarea name="onlinebanking_instructions_text" class="form-control w-100"><?= $data['onlinebanking_instructions_text'] ?></textarea>
+                <textarea name="onlinebanking_instructions_text" class="form-control w-100"><?= @$data['onlinebanking_instructions_text'] ?></textarea>
               </div>
               <span class="text-muted">Indica las instrucciones complementarias para enviar los comprobantes. Ej: enviar comprobante por whatsapp al siguiente número...</span>
             </div>
+            <div class="control-group">
+              <label class="control-label" for="columns-text"><?php echo __('Título instrucciones pago manual'); ?></label>
+              <div class="controls">
+                <input name="onlinebanking_total_text" class="form-control w-100" value="<?= @$data['onlinebanking_total_text'] ?>"/>
+              </div>
+              <span class="text-muted">Texto que que se muestra antes de informar sobre el monto total de la operación. (Ej: Monto a transferir para esta operación)</span>             
+            </div>             
           </div>
         </div>
       </div>  

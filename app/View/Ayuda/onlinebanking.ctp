@@ -8,7 +8,7 @@
                       <div class="box">
                           <h3><?= $data['onlinebanking_explain_title'] ?></h3>
                           <p class="font-system"><?= $data['onlinebanking_explain_text'] ?></p>
-                          <p class="font-system">Monto a depositar por esta compra $<?= $data['total_price'] ?></p>
+                          <p class="font-system"><?= $data['onlinebanking_total_text'] ?> $<?= $data['total_price'] ?></p>
                           <h3 class="mt-4"><?= $data['onlinebanking_instructions_title'] ?></h3>
                           <p class="font-system"><?= $data['onlinebanking_instructions_text'] ?></p>
                       </div>
