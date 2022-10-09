@@ -74,10 +74,15 @@
     background: #F39C12; }
   .growl .growl-close {
     cursor: pointer;
-    float: right;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     font-size: 2rem;
     line-height: 1.25rem;
     font-weight: normal;
+    opacity: 0;
     font-family: helvetica, verdana, sans-serif; }
   .growl .growl-title {
     font-size: 1.5rem;
