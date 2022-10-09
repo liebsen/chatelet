@@ -8,11 +8,11 @@
 <div id="main" class="container">
 	<div class="row">
 		<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
-		<div class="col-md-12 shipping-price-min-alert animated fadeIn">
+		<!--div class="col-md-12 shipping-price-min-alert animated fadeIn">
 			<div class="shipping-price-min-text">
 				<span><?= $text_shipping_min_price ?></span>
 			</div>		
-		</div>
+		</div-->
 		<?php endif ?>
 		<div class="col-md-12 text-center">
 			<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
@@ -244,3 +244,13 @@
 		<div class="col-md-4"></div>
 	</div-->
 </div>
+
+<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
+<script>
+	$(function(){
+		setTimeout(() => {
+			onWarningAlert('Más beneficios','<?= $text_shipping_min_price ?>', 5000)	
+		}, 15000)		
+	})
+</script>
+<?php endif ?>
