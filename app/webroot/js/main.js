@@ -87,6 +87,13 @@ $(function () {
   })
   $('.menuLayer a.close').click(function () {
     $('.menuLayer').fadeOut();
+    if (!$('.navbar-toggle').hasClass('collapsed')) {
+      $('.navbar-toggle').addClass('collapsed')
+    }
+    if ($('.navbar-collapse').hasClass('in')) {
+      $('.navbar-collapse').removeClass('in')
+    }
+    window.scrollTo(0,0)
   })
   if(document.querySelector("#myModal")!=null && $('.js-show-modal') && $('.js-show-modal').length){
     setTimeout(function () {
