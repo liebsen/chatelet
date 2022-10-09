@@ -171,7 +171,7 @@
 					<?php else: ?>
 					<div class="container text-center">
 						<div class="icon-huge">
-							<i class="fa fa-bell-o text-primary"></i>
+							<i class="fa fa-bell-o grey"></i>
 						</div>
 						<h3 class="h3 text-center">El carrito de compras está vacío.</h3>
 						<div>Agregá al menos un producto para continuar.</div>
@@ -222,7 +222,7 @@
 	</div>
 	<input type="hidden" id="shipping_price_min" value="<?= $shipping_price_min ?>">
 	<input type="hidden" id="total" value="<?= $total ?>">
-	<div class="row mt-4">
+	<div class="row">
 		<div class="col-md-12 text-center">
 		<a href="javascript:void(0)" class="disabled cart-btn-green cart-go-button" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
 		</div>
