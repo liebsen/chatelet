@@ -36,7 +36,7 @@
                         'action' => 'como_comprar',
                          2
                         ), array(
-                        'class' => 'cart-btn-green'
+                        'class' => 'btn cart-btn-green'
                         ));
                     ?>
                     </div>

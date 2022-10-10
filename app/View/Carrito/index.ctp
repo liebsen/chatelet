@@ -15,7 +15,7 @@
 		</div-->
 		<?php endif ?>
 		<div class="col-md-12 mt-4 text-center">
-			<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
+			<a class="btn keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			<!--a class="keep-buying cart-btn-green" href="/#q:">Seguir comprando</a-->
 		</div>
 	</div>
@@ -191,7 +191,7 @@
 			</div>
 		<?php if (!isset($carro)): ?>
 			<div class="col-md-12 text-center">
-				<a href="#" class="action-search cart-btn-green">Buscar</a>
+				<a href="#" class="btn action-search cart-btn-green">Buscar</a>
 				<!--a class="keep-buying cart-btn-green" href="/#q:">Seguir comprando</a-->
 			</div>
 		<?php endif ?>
@@ -224,7 +224,7 @@
 	<input type="hidden" id="total" value="<?= $total ?>">
 	<div class="row">
 		<div class="col-md-12 text-center">
-		<a href="javascript:void(0)" class="disabled cart-btn-green cart-go-button" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
+		<a href="javascript:void(0)" class="btn cart-btn-green cart-go-button" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
 		</div>
 	</div>
 	<?php endif;?>

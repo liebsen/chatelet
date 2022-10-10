@@ -80,6 +80,8 @@ class AyudaController extends AppController {
 		$data['onlinebanking_instructions_title'] = @$map['Setting']['value'];
 		$map = $this->Setting->findById('onlinebanking_total_text');
 		$data['onlinebanking_total_text'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('onlinebanking_whatsapp');
+		$data['onlinebanking_whatsapp'] = @$map['Setting']['value'];
 		$data['total_price'] = @$price;
 
 		$this->set('data', $data);

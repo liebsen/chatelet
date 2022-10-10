@@ -73,7 +73,14 @@
                 <input name="onlinebanking_instructions_title" class="form-control w-100" value="<?= @$data['onlinebanking_instructions_title'] ?>"/>
               </div>
               <span class="text-muted">Título antes de mostrar los datos bancarios. (Ej: Datos para completar tu compra)</span>              
-            </div>            
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="columns-text"><?php echo __('WhatsApp para enviar comprobante'); ?></label>
+              <div class="controls">
+                <input type="number" name="onlinebanking_whatsapp" class="form-control w-100" value="<?= @$data['onlinebanking_whatsapp'] ?>"/>
+              </div>
+              <span class="text-muted">Poné tu número de WhatsApp para que te puedan enviar el comprobante. (Ej: 541147022997)</span>            
+            </div> 
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Desarrolla Instrucciones de la operación'); ?></label>
               <div class="controls">

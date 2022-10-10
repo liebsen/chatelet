@@ -19,7 +19,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 						'controller' => 'carrito',
 						'action' => 'index'
 					), array(
-						'class' => 'cart-btn-green',
+						'class' => 'btn cart-btn-green',
 						'escape' => false
 					));
 				?>
@@ -181,7 +181,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 		</div>
 		<div class="row mt-4">
 			<div class="col-md-12 mt-3 text-center">
-				<input type="submit" onclick="$('.checkoutform-container').removeClass('hide')" class="cart-btn-green" value="Finalizar compra" />
+				<input type="submit" onclick="$('.checkoutform-container').removeClass('hide')" class="btn cart-btn-green" value="Finalizar compra" />
 			</div>
 		</div>
 	</form>
