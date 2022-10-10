@@ -36,13 +36,13 @@ let apiSearch = q => {
       $.each(data.results, function(key, item) {
         var name = item.name 
         if (name.length >= 18) {
-          name = `<span style="font-size:1rem!important">${name}</span>`
+          name = `<span style="font-size:1.25rem!important">${name}</span>`
         }
         if (name.length >= 21) {
-          name = `<span style="font-size:0.75rem!important">${name}</span>`
+          name = `<span style="font-size:1.15rem!important">${name}</span>`
         }
         if (name.length >= 24) {
-          name = `<span style="font-size:0.5rem!important">${name}</span>`
+          name = `<span style="font-size:1rem!important">${name}</span>`
         }        
         str += '<div class="col-xs-6 col-md-4 col-lg-3 search-item animate fadeIn">' +
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 

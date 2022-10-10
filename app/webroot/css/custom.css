@@ -670,6 +670,7 @@ align-items: center;}
     min-height: 15rem; 
     max-height: 15rem;
     object-fit: cover;
+    background-color: #c2c2c2;
     object-position: top center; margin: 0 auto;transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #productOptions .col-sm-9 a .hover { border: 2px solid #f50081; color: #f50081; font-size: 40px; font-weight: 500; height: 90%; left: 5%; opacity: 0; padding-top: 30%; position: absolute; text-align: center; top: 5%; width: 90%; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #productOptions .col-sm-9 a .hover small { color: #252424; font-size: 22px; }
@@ -2124,6 +2125,11 @@ span.count {
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-top: 10px;
   }
+  #productOptions .col-sm-9 a img { 
+    min-height: 20rem; 
+    max-height: 20rem;
+  }
+
   footer > .wrapper {
     padding: 0 2rem;
   }  

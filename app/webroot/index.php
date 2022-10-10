@@ -107,13 +107,13 @@ function price_format ($num) {
 function title_fontsize ($str) {
   $font_size = 0;
   if (strlen($str) >= 18) {
-      $font_size = '1rem';
+      $font_size = '1.25rem';
   }
   if (strlen($str) >= 20) {
-      $font_size = '0.75rem';
+      $font_size = '1.15rem';
   }
   if (strlen($str) >= 24) {
-      $font_size = '0.5rem';
+      $font_size = '1rem';
   }
   if ($font_size){
       $str = '<span style="font-size:'.$font_size.'!important">'.$str.'</span>';
