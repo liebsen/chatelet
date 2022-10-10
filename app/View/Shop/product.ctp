@@ -119,14 +119,7 @@ function updateSrcTo(obj){
       if ($isProduct) {
         $url['action'] = 'producto';
         $priceStr = '';
-        $item_name = $item['name'];
-        if (strlen($item_name) > 18) {
-            $item_name = '<span style="font-size:1rem!important">'.$item_name.'</span>';
-        }
-        if (strlen($item_name) > 22) {
-            $item_name = '<span style="font-size:0.75rem!important">'.$item_name.'</span>';
-        }
-
+        $item_name = \title_fontsize($item['name']);
 
         if (!empty($item['price'])){
           $priceStr = '$'. \price_format($item['price']);

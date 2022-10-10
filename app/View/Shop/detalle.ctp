@@ -238,13 +238,7 @@
                     foreach($all_but_me as $alt_product):
                         $alt_product = $alt_product['Product'];
                         $stock = (!empty($alt_product['stock_total']))?(int)$alt_product['stock_total']:0;
-                        $alt_product_name = $alt_product['name'];
-                        if (strlen($alt_product_name) > 18) {
-                            $alt_product_name = '<span style="font-size:1rem!important">'.$alt_product_name.'</span>';
-                        }
-                        if (strlen($alt_product_name) > 22) {
-                            $alt_product_name = '<span style="font-size:0.75rem!important">'.$alt_product_name.'</span>';
-                        }
+                        $alt_product_name = \title_fontsize($alt_product['name']);
 
                         $url = $this->Html->url(array(
                                 'controller' => 'shop',

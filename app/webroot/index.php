@@ -104,6 +104,23 @@ function price_format ($num) {
 	return str_replace(',00','', $num);
 }
 
+function title_fontsize ($str) {
+  $font_size = 0;
+  if (strlen($str) >= 18) {
+      $font_size = '1rem';
+  }
+  if (strlen($str) >= 20) {
+      $font_size = '0.75rem';
+  }
+  if (strlen($str) >= 24) {
+      $font_size = '0.5rem';
+  }
+  if ($font_size){
+      $str = '<span style="font-size:'.$font_size.'!important">'.$str.'</span>';
+  }
+	return $str;
+}
+
 App::uses('Dispatcher', 'Routing');
 
 $Dispatcher = new Dispatcher();
