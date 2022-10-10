@@ -823,7 +823,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #formulario label span.active i { display: block; }
 
 #headhelp { background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover; padding: 65px 0; overflow-x: hidden;}
-#headhelp h1 { color: #f50081; font-size: 38px; font-weight: 600; margin-top: 70px; }
+#headhelp h1 { color: #f50081; font-size: 40px; font-weight: 600; margin-top: 70px; }
 #headhelp h1:after { background: #f50081; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 #headhelp .box { border: 2px solid #f50081; padding: 90px 90px 50px; }
 #headhelp .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; margin-top: 0;}

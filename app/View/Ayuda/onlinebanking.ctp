@@ -10,7 +10,9 @@
             <div class="col-md-6">
               <h3 class="h3"><?= $data['onlinebanking_explain_title'] ?></h3>
               <p class="font-system"><?= $data['onlinebanking_explain_text'] ?>
-                Monto a transferir: $<?= $data['total_price'] ?>
+              <?php if(isset($data['total_price'])): ?>
+              <br>Monto a transferir: $<?= $data['total_price'] ?>
+              <?php endif ?>
               </p><br>
             </div>
             <div class="col-md-6">
@@ -24,11 +26,13 @@
                 Compartir este texto
               </a>
             </div>
+            <?php if(isset($data['onlinebanking_whatsapp'])): ?>
             <div class="col-md-6 mt-3 text-center">
               <a class="btn cart-btn-green shrink" href="https://wa.me/<?= $data['onlinebanking_whatsapp'] ?>?text=Hola te escribo de la web de Chatelet para enviarte el comprobante de transferencia..." target="_blank">
                 Enviar comprobante
               </a>
             </div>
+            <?php endif ?>
           </div>
         </div>
       </div>
