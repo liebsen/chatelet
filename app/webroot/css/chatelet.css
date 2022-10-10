@@ -516,6 +516,9 @@ html, body {
 	background-color: #e60088;
 	color: white;
 }
+.card-text {
+	min-height: 2rem;
+}
 .cart-btn-green {
 	display: inline-block;
 	text-align: center;
