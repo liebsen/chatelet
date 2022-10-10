@@ -67,7 +67,7 @@ class AyudaController extends AppController {
 		$map = $this->Setting->findById('display_text_shipping_min_price');
 		$data['display_text_shipping_min_price'] = $map['Setting']['value'];
 		$map = $this->Setting->findById('text_shipping_min_price');
-		$data['text_shipping_min_price'] = $map['Setting']['extra'];
+		$data['text_shipping_min_price'] = $map['Setting']['value'];
 		$map = $this->Setting->findById('carrito_takeaway_text');
 		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
 		$map = $this->Setting->findById('onlinebanking_explain_text');
