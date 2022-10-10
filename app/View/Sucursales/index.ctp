@@ -11,7 +11,7 @@
                 <h1>Nuestras<br>sucursales</h1>
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-8 p-0">
 
                 <div id="map-canvas" class="sucursales sucursal"  data-url="<?php echo $this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>"></div>
             </div>

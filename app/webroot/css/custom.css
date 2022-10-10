@@ -792,7 +792,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #myModal2 .content .table tr:first-child td { border-top: none; }
 #myModal2 .content .table tr td:first-child { color: #f50081; text-align: left; }
 
-.map { overflow: hidden; }
+.map { overflow: hidden; background-color: #e7e7e7;}
 .map .col-md-4 { background: url(../images/mapbg.png) no-repeat center center; background-size: cover; padding: 200px 0 200px 150px; }
 .map .col-md-4 h1 { color: #f50081; font-size: 40px; font-weight: 600; }
 .map .col-md-4 h1:after { background: #f50081; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
