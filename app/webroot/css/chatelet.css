@@ -619,6 +619,9 @@ span.user {
 	.modal-body {
 		padding: 1.75rem;
 	}
+	.cloudzoom img {
+	    height: 40rem;
+	}
 }
 
 @media screen and (max-width: 768px) {
