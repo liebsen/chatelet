@@ -124,7 +124,7 @@ function updateSrcTo(obj){
         if (!empty($item['price'])){
           $priceStr = '$'. \price_format($item['price']);
           if (!empty(@$item['old_price'])){
-            $priceStr = '<span class="old_price">$'.\price_format($item['old_price']).'</span>$' . $priceStr;
+            $priceStr = '<span class="old_price">$'.\price_format($item['old_price']).'</span>' . $priceStr;
           }
         }
 
