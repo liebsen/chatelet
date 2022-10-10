@@ -9,12 +9,13 @@
           <div class="row">
             <div class="col-md-6">
               <h3 class="h3"><?= $data['onlinebanking_explain_title'] ?></h3>
-              <p class="font-system"><?= $data['onlinebanking_explain_text'] ?></p><br>
+              <p class="font-system"><?= $data['onlinebanking_explain_text'] ?>
+                Monto a transferir: $<?= $data['total_price'] ?>
+              </p><br>
             </div>
             <div class="col-md-6">
               <h3 class="h3"><?= $data['onlinebanking_instructions_title'] ?></h3>
               <p class="font-system"><?= $data['onlinebanking_instructions_text'] ?></p>
-              <p class="font-system"><?= $data['onlinebanking_total_text'] ?> $<?= $data['total_price'] ?></p>
             </div>
           </div>
           <div class="row mb-5">

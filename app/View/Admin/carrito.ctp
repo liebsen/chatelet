@@ -88,13 +88,13 @@
               </div>
               <span class="text-muted">Indica las instrucciones complementarias para enviar los comprobantes. Ej: enviar comprobante por whatsapp al siguiente número...</span>
             </div>
-            <div class="control-group">
+            <!--div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Monto total de la operación'); ?></label>
               <div class="controls">
                 <input name="onlinebanking_total_text" class="form-control w-100" value="<?= @$data['onlinebanking_total_text'] ?>"/>
               </div>
               <span class="text-muted">Texto que que se muestra antes de informar sobre el monto total de la operación. (Ej: Monto a transferir para esta operación)</span>             
-            </div>             
+            </div-->             
           </div>
         </div>
       </div>  
