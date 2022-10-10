@@ -195,6 +195,7 @@ class CarritoController extends AppController
 			'total' => str_replace(',00','',number_format($data['price'], 0, ',', '.'))
 		];
 
+
     $mapper = $this->Setting->findById('display_text_shipping_min_price');
     $display_text_shipping_min_price = $mapper['Setting']['value'];
     $mapper = $this->Setting->findById('text_shipping_min_price');
