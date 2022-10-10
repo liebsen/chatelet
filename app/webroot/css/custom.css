@@ -825,7 +825,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headhelp .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; margin-top: 0;}
 #headhelp .box p { font-size: 15px; line-height: 1.5; margin-bottom: 45px; }
 #headhelp .box p a { color: #f50081; font-weight: 600; }
-#optionsHelp { padding: 35px 0; text-align: center; font-size: 1.5rem; font-weight: 800;}
+#optionsHelp { padding: 35px 0; padding-bottom: 38px; text-align: center; font-size: 1.5rem; font-weight: 800;}
 #optionsHelp a { color: #404040; display: inline-block; font-size: 1.25rem; margin: 0 25px; }
 #optionsHelp a.active { color: #f50081; }
 #desarrollo { background: #fadcea; font-size: 22px; line-height: 1.4; padding: 60px 0; }
