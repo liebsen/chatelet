@@ -880,7 +880,7 @@ class CarritoController extends AppController
 			'email'		=> $user['email'],
 			'regalo'		=> $user['regalo'],
 			'package_id'=> @$delivery_data['itemsData']['package']['id'],
-			'value' 	=> @$delivery_data['itemsData']['price'],
+			'value' 	=> $total, // @$delivery_data['itemsData']['price'],
 			'zip_codes' => $zipCodes,
 			'cargo'		=> $user['cargo'],
 			'coupon'	=> $user['coupon'],

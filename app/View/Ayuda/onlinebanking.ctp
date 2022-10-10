@@ -18,11 +18,13 @@
             </div>
           </div>
           <div class="row mb-5">
-            <div class="col-md-12 mt-3 text-center">
+            <div class="col-md-6 mt-3 text-center">
               <a class="btn cart-btn-green shrink" href="https://wa.me/?text=<?= urlencode($data['onlinebanking_explain_title']) ?><?= urlencode($data['onlinebanking_explain_text']) ?><?= urlencode($data['onlinebanking_instructions_title']) ?><?= urlencode($data['onlinebanking_instructions_text']) ?><?= urlencode($data['onlinebanking_instructions_text']) ?><?= urlencode($data['onlinebanking_total_text']) ?>" title="Enviar por WhatsApp" target="_blank">
-                Compartir instrucciones
+                Compartir este texto
               </a>
-              <a class="btn cart-btn-green" href="https://wa.me/<?= $data['onlinebanking_whatsapp'] ?>?text=Hola te escribo de la web de Chatelet para enviarte el comprobante de transferencia..." target="_blank">
+            </div>
+            <div class="col-md-6 mt-3 text-center">
+              <a class="btn cart-btn-green shrink" href="https://wa.me/<?= $data['onlinebanking_whatsapp'] ?>?text=Hola te escribo de la web de Chatelet para enviarte el comprobante de transferencia..." target="_blank">
                 Enviar comprobante
               </a>
             </div>
