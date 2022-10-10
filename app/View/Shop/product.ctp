@@ -143,7 +143,7 @@ function updateSrcTo(obj){
           '<small>'. $item['desc'] .'</small>'.
         '</div>'.
         '<div class="name">'.$item['name'].'</div>' . 
-        '<div class="price text-theme">'.$priceStr.'</div>
+        '<div class="price text-theme">'. str_replace(',00','',$this->Number->currency($priceStr, 'ARS', array('places' => 2))) .'</div>
         </div></div>';
       } else {
       // list of products.
@@ -169,7 +169,7 @@ function updateSrcTo(obj){
             $content,
             $url,
             array('escape' => false)
-          ). '<div class="name">'.$item['name'].'</div><div class="price text-theme">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
+          ). '<div class="name">'.$item['name'].'</div><div class="price text-theme">$'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
           </div>';
       }
     }

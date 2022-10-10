@@ -13,7 +13,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 			)) ?>">
 
 		<div class="row">
-			<div class="col-md-12 text-center">
+			<div class="col-md-12 mt-4 text-center">
 				<?php
 					echo $this->Html->link('Volver al carrito', array(
 						'controller' => 'carrito',

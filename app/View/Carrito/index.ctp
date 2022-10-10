@@ -14,7 +14,7 @@
 			</div>		
 		</div-->
 		<?php endif ?>
-		<div class="col-md-12 text-center">
+		<div class="col-md-12 mt-4 text-center">
 			<a class="keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			<!--a class="keep-buying cart-btn-green" href="/#q:">Seguir comprando</a-->
 		</div>

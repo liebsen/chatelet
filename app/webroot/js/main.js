@@ -96,7 +96,9 @@ $(function () {
     window.scrollTo(0,0)
   })
   if(document.querySelector("#myModal")!=null && $('.js-show-modal') && $('.js-show-modal').length){
+    console.log('a(1)')
     setTimeout(function () {
+      console.log('a(2)')
       $('#myModal').modal({ show: true })
     }, 3000)
   }

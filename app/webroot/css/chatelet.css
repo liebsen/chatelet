@@ -14,7 +14,7 @@ a {
 }
 
 a:hover {
-	color: white!important;
+	color: white;
 }
 
 html, body {
@@ -60,6 +60,10 @@ html, body {
 
 .btn {
 	min-height: 2.75rem;
+}
+
+.btn:hover {
+	color:white!important;
 }
 
 
@@ -109,11 +113,6 @@ html, body {
 #wrapper {
 	min-height: 100%;
 	position: relative;
-}
-
-#main {
-	padding-bottom: 80px;
-	padding-top: 65px;
 }
 
 .logo {
