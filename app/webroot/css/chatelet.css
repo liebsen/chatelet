@@ -69,8 +69,6 @@ html, body {
 
 .font-system {
 	font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
-	word-break: break-all;
-	word-wrap: break-word;
 	white-space: break-spaces;	
 }
 
