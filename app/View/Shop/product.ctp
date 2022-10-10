@@ -119,6 +119,15 @@ function updateSrcTo(obj){
       if ($isProduct) {
         $url['action'] = 'producto';
         $priceStr = '';
+        $item_name = $item['name'];
+        if (strlen($item_name) > 18) {
+            $item_name = '<span style="font-size:1rem!important">'.$item_name.'</span>';
+        }
+        if (strlen($item_name) > 22) {
+            $item_name = '<span style="font-size:0.75rem!important">'.$item_name.'</span>';
+        }
+
+
         if (!empty($item['price'])){
           $priceStr = '$'. \price_format($item['price']);
           if (!empty(@$item['old_price'])){
@@ -142,7 +151,7 @@ function updateSrcTo(obj){
         '<div class="desc-prod">'.
           '<small>'. $item['desc'] .'</small>'.
         '</div>'.
-        '<div class="name">'.$item['name'].'</div>' . 
+        '<div class="name">'.$item_name.'</div>' . 
         '<div class="price text-theme">'. str_replace(',00','',$this->Number->currency($priceStr, 'ARS', array('places' => 2))) .'</div>
         </div></div>';
       } else {
@@ -169,7 +178,7 @@ function updateSrcTo(obj){
             $content,
             $url,
             array('escape' => false)
-          ). '<div class="name">'.$item['name'].'</div><div class="price text-theme">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
+          ). '<div class="name">'.$item_name.'</div><div class="price text-theme">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
           </div>';
       }
     }

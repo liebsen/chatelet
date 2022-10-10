@@ -238,10 +238,12 @@
                     foreach($all_but_me as $alt_product):
                         $alt_product = $alt_product['Product'];
                         $stock = (!empty($alt_product['stock_total']))?(int)$alt_product['stock_total']:0;
-                        if(!empty($details)){
-                            $name = $details;
-                        }else{
-                            $name = $alt_product['name'];
+                        $alt_product_name = $alt_product['name'];
+                        if (strlen($alt_product_name) > 18) {
+                            $alt_product_name = '<span style="font-size:1rem!important">'.$alt_product_name.'</span>';
+                        }
+                        if (strlen($alt_product_name) > 22) {
+                            $alt_product_name = '<span style="font-size:0.75rem!important">'.$alt_product_name.'</span>';
                         }
 
                         $url = $this->Html->url(array(
@@ -275,7 +277,7 @@
                             <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                         </a>
-                        <div class="name"><?= $alt_product['name'] ?></div>
+                        <div class="name"><?= $alt_product_name ?></div>
                         <div class="price text-theme"><?= str_replace(',00','',$this->Number->currency($alt_product['price'], 'ARS', array('places' => 2))) ?></div>
                     </div>
                     <?php }else{ ?>
@@ -291,7 +293,7 @@
                             <img class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                         </a>
-                        <div class="name"><?= $alt_product['name'] ?></div>
+                        <div class="name"><?= $alt_product_name ?></div>
                         <div class="price text-theme"><?= $alt_product['old_price'] ? '<span class="old_price">' .  str_replace(',00','',$this->Number->currency($alt_product['old_price'], 'ARS', array('places' => 2))). '</span>' : '' ?><?= str_replace(',00','',$this->Number->currency($alt_product['price'], 'ARS', array('places' => 2))) ?></div>
                     </div>
                    <?php }endforeach; ?>
