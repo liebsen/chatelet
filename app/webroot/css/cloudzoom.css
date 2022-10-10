@@ -1,4 +1,7 @@
 
+.cloudzoom img {
+    height: 60vh;
+}
 /* CSS for lens */
 .cloudzoom-lens {
     border: 8px solid #f50081;

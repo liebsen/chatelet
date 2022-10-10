@@ -112,8 +112,8 @@ function pideStock(obj){
 		var stock_cont	= $(obj).closest("form").find('#stock_container');
 		var stock    	= '<i style="color:green;">Disponible <i>';
 		var stock_0 	= '<i style="color:red;">No Disponible</i>';
-		var missing 	= '<i> (Seleccione un color y talle) </i>';
-		var no_color	= '<i> (Seleccione color) <i>';
+		var missing 	= '<i> (Elegí color y talle) </i>';
+		var no_color	= '<i> (Elegí color) <i>';
 	  var stock_v  	= '<i style="color:gray;">Consultando ... </i>';
 
 		if(!color_code){

@@ -730,6 +730,7 @@ align-items: center;}
     color: black;
     padding-left: 0;
     padding-right: 0;
+    max-width: 10rem;
 }
 #detalle .caract label.btn small {
   display: block; 
@@ -2055,9 +2056,6 @@ span.count {
   }
   .is-mobile-resume .price {
     font-size: 1.25rem;
-  }
-  .btn-group.inline-block.div_color_products {
-    flex-direction: column;
   }
   #desarrollo .boxs:first-child { padding-left: 150px; }
 }
