@@ -8,7 +8,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="box box2">
-                            <p>Los datos son extraidos de OCA. También se puede consultar el estado del envío comunicándose con el centro de atención al cliente de OCA: 0800-999-7700</p>
+                            <p>Los datos son extraídos de OCA. También se puede consultar el estado del envío comunicándose con el centro de atención al cliente de OCA: 0800-999-7700</p>
 
                             <h3>Seguimiento de paquetes</h3>
                              <?php echo $this->Form->create() ?>
@@ -36,8 +36,10 @@
                 <div class="row">
                     <div class="col-md-6 boxs">
                         <div class="boxs-reframe">
-                            <p><strong>Los pedidos serán despachados entre las 48 y 72 hs hábiles</strong></p>
-                            <p><strong>Durante acciones especiales como Hot Sale, Cybermonday, black friday y promociones en el sitio web los tiempos de procesamiento, envío y entrega pueden verse afectados.</strong></p>
+                            <h3>Tiempos de entrega</h3>
+                            <p><strong>Los pedidos serán despachados entre 2 y 3 días hábiles. <!-- <?= $data['carrito_takeaway_text'] ?> --></strong></p>
+                            <h3>Periodos especiales</h3>
+                            <p><strong>Durante acciones especiales como Hot Sale, Cybermonday, Black Friday y promociones en el sitio web los tiempos de procesamiento, envío y entrega pueden verse afectados.</strong></p>
                         </div>
                     </div>
                     <div class="col-md-6">

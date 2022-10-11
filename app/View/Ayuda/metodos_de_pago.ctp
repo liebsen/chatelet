@@ -9,7 +9,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="box">
-                            <p>Todos los pagos se realizan a través de mercado pago. Si tu elección es realizarlo con tarjeta de crédito (*) (<strong>VISA, MasterCard, Argencard, American Express, Tarjeta Naranja, Cabal, Tarjeta Shopping e Italcred</strong>) mercado pago solicitará los datos necesarios y podrá enviarte una confirmación para que puedas validarla por cuestiones de seguridad.</p>
+                            <h3>Comprá en Châtelet con tu método preferido</h3>
+                            <p>Podés pagar desde tu casa a través de mercado pago o transferencia bancaria. Si tu elección es realizarlo con tarjeta de crédito (*) (<strong>VISA, MasterCard, Argencard, American Express, Tarjeta Naranja, Cabal, Tarjeta Shopping e Italcred</strong>) mercado pago solicitará los datos necesarios y podrá enviarte una confirmación para que puedas validarla por cuestiones de seguridad.</p>
                             <p>Pagos a través de RapiPago o Pago Fácil o Bapro (**), mercado pago solicitará datos básicos para poder emitir la boleta correspondiente y que la puedas imprimir y abonar en cualquier centro de pago autorizado.</p>
                         </div>
                     </div>
@@ -34,6 +35,7 @@
 
         <section id="referncia">
             <div class="wrapper">
+                <h3>Comprá en Châtelet con tu método preferido</h3>
                 <ul>
                     <li>* Pagando con las tarjetas de crédito habilitadas tu pedido será reservado por un periodo de 24 hs y quedaremos a la espera de la confirmación de la operación por parte de mercado pago.</li>
                     <li>** Abonando en RapiPago, Pago Fácil o Bapro, el pedido será reservado por un periodo de 24/48 hs. Transcurrido ese tiempo, la reserva caducará y tu pedido será cancelado. Cuánto antes realices el pago, antes podrás recibirlo en tu domicilio!</li>

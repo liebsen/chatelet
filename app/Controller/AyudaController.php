@@ -42,6 +42,10 @@ class AyudaController extends AppController {
 	}
 
 	public function envios() {
+		$map = $this->Setting->findById('carrito_takeaway_text');
+		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
+		$this->set('data', $data);
+
 		if ($this->request->is('post')) {
 			$data = $this->request->data;
 
