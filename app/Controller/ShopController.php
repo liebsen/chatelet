@@ -315,7 +315,7 @@ class ShopController extends AppController {
 			$category = $this->Category->findByName($tag);
 			if (!empty($category['Category']['id'])){
 				$category_id = $category['Category']['id'];
-				error_log('url match category: '.$category_id);
+				// error_log('url match category: '.$category_id);
 			}
 		}
 		$this->loadModel('Setting');

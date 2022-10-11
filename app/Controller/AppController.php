@@ -142,7 +142,7 @@ class AppController extends Controller
         $Email->send($message);
     }
 
-    protected function save_file($file, $withThumb = false, $size=200) {
+    protected function save_file($file, $withThumb = false, $size=300) {
         if (empty($file['name'])) {
             return false;
         }

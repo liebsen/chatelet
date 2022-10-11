@@ -525,6 +525,7 @@ class AdminController extends AppController {
 	}
 
 	private function getMPSales(){
+		return json_decode(file_get_contents(__DIR__ . '/dummy/mpsales.json'), true);
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$limit = isset($_GET['extended']) ? 500 : 10;
@@ -602,6 +603,28 @@ class AdminController extends AppController {
     fclose($output);
 	}
 
+	private function getSales(){
+		$online = $this->getMPSales();
+		$date = strtotime("-1 week");
+		// Local data
+		if ($online) {
+			// $date = strtotime($online[count($online)-1]['collection']['date_created']);
+		}
+		$stamp = date('Y-m-d H:i', $date);
+		$mapper = $this->Sale->find('all',array('conditions'=>array( 'Sale.created >' => "$stamp" )));
+		$manual = [];
+		foreach($mapper as $item) {
+			$manual[] = [
+				'collection' => [
+					'reason' => "PEDIDO : {$item->Sale->id}",
+					'date_approved' => date('c', strtotime($item->Sale->created))
+				]
+			];
+		}
+
+		return array_merge($online, $manual);
+	}
+
 	public function sales(){
 		$h1 = array(
 		'name' => 'Ventas',
@@ -613,11 +636,9 @@ class AdminController extends AppController {
 		$this->loadModel('Logistics');
 
 		//Get and merge local-remote data.
-		$sales = $this->getMPSales();
-		if (!empty($this->request->query['test'])){
-			echo '<pre>';
-		  var_dump($sales);die;
-		}
+		$sales = $this->getSales();
+
+
 
 		foreach ($sales as &$sale) {
 			$details 		= explode('-|-', $sale['collection']['reason']);
@@ -650,6 +671,11 @@ class AdminController extends AppController {
 			}
 		}
 		$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
+		if (!empty($this->request->query['test'])){
+			echo '<pre>';
+			var_dump($sales);
+		  // var_dump(json_decode(json_encode($sales)));die;
+		}		
 		//pr($sales);die;
     $logistics = $this->Logistics->find('all',array('conditions'=>array( 'enabled' => 1 )));
 		$this->set('shipping_price_min',$this->Setting->findById('shipping_price_min'));
