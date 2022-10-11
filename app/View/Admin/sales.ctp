@@ -185,12 +185,12 @@ $list_status = [
                         <strong>Takeaway</strong>
                     <?php endif ?>
                     <?php if (empty($sale['local_sale']['def_orden_retiro'])):?>
-                        <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-info" onclick="editLogistic(event,<?= $sale['local_sale']['id'] ?>,<?= $sale['local_sale']['logistic_id'] ?>)">
+                        <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-info" onclick="showLayer(event,'ticket',<?= $sale['local_sale']['id'] ?>)">
                             <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty($sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
                         </strong>
                     <?php else: ?>
-                        <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>">
-                            <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty($sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
+                        <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success">
+                            <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty($sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>
                         </strong>
                     <?php endif ?>
                     <br>
@@ -198,7 +198,7 @@ $list_status = [
                     <?php
                     if (!empty($sale['local_sale']['id']) && !empty($sale['local_sale']['apellido']) && !empty($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] == 'shipment'): ?>
                         <!--span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span-->
-                        <?= $sale['local_sale']['def_mail_sent'] ? '<i class="fa fa-check text-success" title="Notificación enviada"></i>' : '<i class="fa fa-clock-o text-info" onclick="showLayer(event,\'ticket\',' . $sale['local_sale']['id'] . ')" title="Notificación pendiente"></i>' ?>
+                        <?= $sale['local_sale']['def_mail_sent'] ? '<i class="fa fa-check text-success" title="Notificación enviada"></i>' : '<i class="fa fa-pencil text-info" onclick="editLogistic(event,' . $sale['local_sale']['id'] . ',' . $sale['local_sale']['logistic_id'] . ')" title="Notificación pendiente"></i>' ?>
                     <?php endif ?>
                     </td>
                 </tr>
