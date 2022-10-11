@@ -7,6 +7,7 @@
 $list_payments = [
     '' => "Transferencia",
     'credit_card' => "Tarjeta de Crédito",
+    'debit_card' => "Tarjeta de Débito",
     'ticket' => "Ticket",
     'account_money' => "Efectivo",
 ];
@@ -17,15 +18,35 @@ $list_status = [
     'rejected' => "Rechazado",
 ];
 ?>
-<!-- logistic selector -->
-<div class="fullhd-selector logistic-selector">
-    <span class="close is-clickable" onclick="logisticsClose()">
+
+<!-- ticket layer -->
+
+<div class="fullhd-layer ticket-layer">
+    <span class="close is-clickable" onclick="layerClose()">
         <i class="gi gi-remove_2"></i>
     </span>
     <div class="row">
         <div class="col-xs-12">
             <form id="update_logistic">
-                <h3>Logística de venta <span id="logistic_sale_id"></span></h3>
+                <h3>Generar etiqueta para <span class="sale_id"></span></h3>
+                <div class="form-group">
+                    <button type="button" id="ticket_gen_btn" class="btn btn-primary" onclick="getTicket()">Generar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- logistic layer -->
+
+<div class="fullhd-layer logistic-layer">
+    <span class="close is-clickable" onclick="layerClose()">
+        <i class="gi gi-remove_2"></i>
+    </span>
+    <div class="row">
+        <div class="col-xs-12">
+            <form id="update_logistic">
+                <h3>Logística de venta <span class="sale_id"></span></h3>
                 <div class="form-group">
                 <?php foreach($logistics as $logistic): ?>
                     <div class="form-check">
@@ -69,7 +90,7 @@ $list_status = [
                     <th class="text-center toggle-table toggle-table-hidden">Detalles</th>
                     <th class="text-center">Envío</th>
                     <th class="text-center">Método de pago</th>
-                    <th class="text-center">Estado</th>
+                    <th class="text-center">Estado del pago</th>
                     <th class="text-center">Total</th>
                 </tr>
             </thead>
@@ -148,23 +169,24 @@ $list_status = [
                     <td class="col-xs-1"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
                     <?php 
                     $defaultCost = 0; ?>
-                    <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" onclick="getTicket('<?= @$sale['local_sale']['id'] ?>', this)">
-                        <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty($sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
-                    </strong><br>
+                    <?php if (isset($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] === 'takeaway'):?>
+                        <strong>Takeaway</strong>
+                    <?php endif ?>
+                    <?php if (empty($sale['local_sale']['def_orden_retiro'])):?>
+                        <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-info">
+                            <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty($sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
+                        </strong>
+                    <?php else: ?>
+                        <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" onclick="editLogistic(event,<?= $sale['local_sale']['id'] ?>,<?= $sale['local_sale']['logistic_id'] ?>)">
+                            <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty($sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
+                        </strong>
+                    <?php endif ?>
+                    <br>
                     <small>$<?= !empty($sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></small>
                     <?php
                     if (!empty($sale['local_sale']['id']) && !empty($sale['local_sale']['apellido']) && !empty($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] == 'shipment'): ?>
-                        <?php if (empty($sale['local_sale']['def_orden_retiro'])):?>
-                            <span class="btn btn-link" onclick="editLogistic(event,<?= $sale['local_sale']['id'] ?>, <?= $sale['local_sale']['logistic_id'] ?>)">
-                                <i class="gi gi-edit"></i>
-                            </span>
-                        <?php endif ?>
                         <!--span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span-->
-                        <?= $sale['local_sale']['def_mail_sent'] ? '<i class="fa fa-check-square-o text-success" title="Notificación enviada"></i>' : '<i class="fa fa-times text-danger" title="Notificación no enviada"></i>' ?>
-                    <?php else: ?>
-                        <?php if(@$sale['local_sale']['cargo'] === 'takeaway'): ?>
-                            <i class="fa building-o text-muted" title="Takeaway"></i>
-                        <?php endif ?>
+                        <?= $sale['local_sale']['def_mail_sent'] ? '<i class="fa fa-check-square-o text-success" title="Notificación enviada"></i>' : '<i class="fa fa-clock-o text-info" onclick="showLayer(event,\'ticket\',' . $sale['local_sale']['id'] . ')" title="Notificación pendiente"></i>' ?>
                     <?php endif ?>
                     </td>
                     <td class="col-xs-3">

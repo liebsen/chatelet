@@ -43,13 +43,28 @@ $(document).ready(function() {
 
 var sale_id = 0
 
+function showLayer (e, layer, sale_id) {
+  e.preventDefault()
+  e.stopPropagation()
+  window.sale_id = 0
+  const selectr = $(`${layer}-layer`)
+  $('.sale_id').text('')
+  if (selectr.hasClass('active')) {
+    selectr.removeClass('active')
+  } else {
+    $('.sale_id').text(sale_id)
+    window.sale_id = sale_id    
+    selectr.addClass('active')
+  }  
+  return false
+}
 function editLogistic (e, sale_id, logistic_id) {
   e.preventDefault()
   e.stopPropagation()
   window.sale_id = 0
-  const selectr = $('.logistic-selector')
+  const selectr = $('.logistic-layer')
   $('body').css('overflow-y', 'hidden')
-  $('.logistic_sale_id').text('')
+  $('.sale_id').text('')
   $('#logistic_save_btn').text('Actualizar')
   $('#logistic_save_btn').addClass('btn-primary')
   $('#logistic_save_btn').removeClass('btn-success')
@@ -61,16 +76,16 @@ function editLogistic (e, sale_id, logistic_id) {
   if (selectr.hasClass('active')) {
     selectr.removeClass('active')
   } else {
-    $('#logistic_sale_id').text(sale_id)
+    $('.sale_id').text(sale_id)
     selectr.addClass('active')
     window.sale_id = sale_id
   }
   return false
 }
 
-function logisticsClose() {
+function layerClose() {
   $('body').css('overflow-y', 'auto')
-  $('.logistic-selector').removeClass('active')
+  $('.fullhd-layer').removeClass('active')
 }
 
 function logisticUpdate () {
@@ -83,20 +98,20 @@ function logisticUpdate () {
     $('#logistic_save_btn').addClass('btn-disabled')
     $('#logistic_save_btn').text('Actualizado')
     setTimeout(() => {
-      logisticsClose()
+      layerClose()
     }, 1000)
   })
 }
 
-function getTicket(sale_id, parent) {
-  var target = undefined
-  if (parent) {
-    target = $(parent).next().next()
-  }  
+function getTicket(sale_id) {
+  var parent = $(`#shipping_title_${sale_id}`)
+  var target = $(parent).next().next()
+
   $(parent).removeClass('btn-info')
   $(parent).addClass('btn-disabled')
   $(parent).text('SOLICITANDO...')
   $(target).text('')
+
   $.get('/admin/getTicket/' + sale_id, res => {
     $(parent).removeClass('btn-default')
     $(parent).addClass('btn-primary')

@@ -6,7 +6,7 @@
   display: none!important;
 }
 
-.fullhd-selector {
+.fullhd-layer {
   position: fixed;
   top: 0;
   left: 0;
@@ -30,7 +30,7 @@
   background-color: #f1f1f1!important;
 }
 
-.fullhd-selector .close {
+.fullhd-layer .close {
   position: absolute;
   z-index: 10;
   width: 4rem;
@@ -41,7 +41,7 @@
   color: red;
 }
 
-.fullhd-selector.active {
+.fullhd-layer.active {
   pointer-events: inherit;
   opacity: 1;
 }

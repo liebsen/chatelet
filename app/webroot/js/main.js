@@ -159,9 +159,13 @@ $(function () {
   $(window).scroll(function(e) {
     var scroll = $(window).scrollTop()
     if (scroll > 200) {
-      document.querySelector('.menuLayer .close').classList.add('float-top-right')
+      if(document.querySelector('.menuLayer .close')) {
+        document.querySelector('.menuLayer .close').classList.add('float-top-right')
+      }
     } else {
-      document.querySelector('.menuLayer .close').classList.remove('float-top-right')
+      if(document.querySelector('.menuLayer .close')) {
+        document.querySelector('.menuLayer .close').classList.remove('float-top-right')
+      }
     }
   })
   /* trigger search from url */
