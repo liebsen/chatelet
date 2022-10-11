@@ -28,7 +28,7 @@ $list_status = [
     <div class="row">
         <div class="col-xs-12">
             <form id="update_logistic">
-                <h3>Generar etiqueta para <span class="sale_id"></span></h3>
+                <h3>Generar etiqueta para venta <span class="sale_id"></span></h3>
                 <div class="form-group">
                     <button type="button" id="ticket_gen_btn" class="btn btn-primary" onclick="getTicket()">Generar</button>
                 </div>
@@ -46,7 +46,7 @@ $list_status = [
     <div class="row">
         <div class="col-xs-12">
             <form id="update_logistic">
-                <h3>Logística de venta <span class="sale_id"></span></h3>
+                <h3>Cambiar logística de venta <span class="sale_id"></span></h3>
                 <div class="form-group">
                 <?php foreach($logistics as $logistic): ?>
                     <div class="form-check">
@@ -198,7 +198,7 @@ $list_status = [
                     <?php
                     if (!empty($sale['local_sale']['id']) && !empty($sale['local_sale']['apellido']) && !empty($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] == 'shipment'): ?>
                         <!--span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span-->
-                        <?= $sale['local_sale']['def_mail_sent'] ? '<i class="fa fa-check text-success" title="Notificación enviada"></i>' : '<i class="fa fa-pencil text-info" onclick="editLogistic(event,' . $sale['local_sale']['id'] . ',' . $sale['local_sale']['logistic_id'] . ')" title="Notificación pendiente"></i>' ?>
+                        <?= $sale['local_sale']['def_mail_sent'] ? '' : '<i class="fa fa-pencil text-info" onclick="editLogistic(event,' . $sale['local_sale']['id'] . ',' . $sale['local_sale']['logistic_id'] . ')" title="Notificación pendiente"></i>' ?>
                     <?php endif ?>
                     </td>
                 </tr>
