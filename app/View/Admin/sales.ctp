@@ -5,13 +5,13 @@
 <?php 
 
 $list_payments = [
-    '' => "Desconocido",
+    '' => "Transferencia",
     'credit_card' => "Tarjeta de Crédito",
     'ticket' => "Ticket",
     'account_money' => "Efectivo",
 ];
 $list_status = [
-    '' => "Desconocido",
+    '' => "Pendiente",
     'approved' => "Aprobado",
     'processing' => "Procesando...",
     'rejected' => "Rechazado",
@@ -155,7 +155,7 @@ $list_status = [
                     <?php
                     if (!empty($sale['local_sale']['id']) && !empty($sale['local_sale']['apellido']) && !empty($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] == 'shipment'): ?>
                         <?php if (empty($sale['local_sale']['def_orden_retiro'])):?>
-                            <span class="btn btn-link" onclick="editLogistic(<?= $sale['local_sale']['id'] ?>, <?= $sale['local_sale']['logistic_id'] ?>)">
+                            <span class="btn btn-link" onclick="editLogistic(event,<?= $sale['local_sale']['id'] ?>, <?= $sale['local_sale']['logistic_id'] ?>)">
                                 <i class="gi gi-edit"></i>
                             </span>
                         <?php endif ?>
@@ -169,14 +169,14 @@ $list_status = [
                     </td>
                     <td class="col-xs-3">
                         <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong><br>
-                        <small><?php echo $sale['collection']['payment_type'] === 'credit_card' ? @$sale['collection']['last_four_digits'] : @$sale['collection']['merchant_order_id'] ?></small>
+                        <small><?= @$sale['collection']['payment_type'] === 'credit_card' ? @$sale['collection']['last_four_digits'] : @$sale['collection']['merchant_order_id'] ?></small>
                     </td>                    
                     <td class="col-xs-3">
                         <strong><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>
                         <small><?php echo @$sale['collection']['date_approved'] ?></small>
                     </td>                    
                     <td class="col-xs-1 text-center">
-                        <strong>$<?php echo $sale['collection']['transaction_amount'] ?> </strong><br>
+                        <strong>$<?= @$sale['collection']['transaction_amount'] ?: @$sale['local_sale']['value'] ?> </strong><br>
                         <small>(<?= count(@$sale['collection']['sale_products']) ?> items)</small>
                     </td>
                 </tr>

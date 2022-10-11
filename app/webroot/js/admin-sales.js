@@ -43,7 +43,9 @@ $(document).ready(function() {
 
 var sale_id = 0
 
-function editLogistic (sale_id, logistic_id) {
+function editLogistic (e, sale_id, logistic_id) {
+  e.preventDefault()
+  e.stopPropagation()
   window.sale_id = 0
   const selectr = $('.logistic-selector')
   $('body').css('overflow-y', 'hidden')
@@ -63,6 +65,7 @@ function editLogistic (sale_id, logistic_id) {
     selectr.addClass('active')
     window.sale_id = sale_id
   }
+  return false
 }
 
 function logisticsClose() {

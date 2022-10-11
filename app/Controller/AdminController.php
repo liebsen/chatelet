@@ -611,13 +611,16 @@ class AdminController extends AppController {
 			// $date = strtotime($online[count($online)-1]['collection']['date_created']);
 		}
 		$stamp = date('Y-m-d H:i', $date);
-		$mapper = $this->Sale->find('all',array('conditions'=>array( 'Sale.created >' => "$stamp" )));
+		$mapper = $this->Sale->find('all',array('conditions'=>array( 
+			'Sale.payment_method' => "bank",
+			'Sale.created >' => "$stamp"
+		)));
 		$manual = [];
 		foreach($mapper as $item) {
 			$manual[] = [
 				'collection' => [
-					'reason' => "PEDIDO : {$item->Sale->id}",
-					'date_approved' => date('c', strtotime($item->Sale->created))
+					'reason' => "PEDIDO : \"{$item['Sale']['id']}\"",
+					'date_approved' => date('c', strtotime($item['Sale']['created']))					
 				]
 			];
 		}
@@ -637,7 +640,9 @@ class AdminController extends AppController {
 
 		//Get and merge local-remote data.
 		$sales = $this->getSales();
-
+		//echo '<pre>';
+		//var_dump($sales);
+		//die('--');
 
 
 		foreach ($sales as &$sale) {
@@ -656,7 +661,7 @@ class AdminController extends AppController {
 				}else{
 					$sale['collection']['sale_products'] = array($sale['collection']['reason']);
 				}
-				$package = $this->Package->find('first',array( 'conditions' => array( 'Package.amount_max >=' => count( $sale['collection']['sale_products'] ) , 'Package.amount_min <=' => count( $sale['collection']['sale_products'] ) ) ));
+				// $package = $this->Package->find('first',array( 'conditions' => array( 'Package.amount_max >=' => count( $sale['collection']['sale_products'] ) , 'Package.amount_min <=' => count( $sale['collection']['sale_products'] ) ) ));
 
 				//Deliver Cost
 				foreach ($local_desc as $key => $value) {
@@ -670,6 +675,7 @@ class AdminController extends AppController {
 				}
 			}
 		}
+
 		$sales = Hash::sort($sales, '{n}.collection.date_approved', 'desc');
 		if (!empty($this->request->query['test'])){
 			echo '<pre>';
