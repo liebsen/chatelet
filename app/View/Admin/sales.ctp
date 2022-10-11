@@ -88,10 +88,10 @@ $list_status = [
                     <th class="text-center">Fecha</th>
                     <th class="text-center">Cliente</th>
                     <th class="text-center toggle-table toggle-table-hidden">Detalles</th>
-                    <th class="text-center">Envío</th>
                     <th class="text-center">Método de pago</th>
                     <th class="text-center">Estado del pago</th>
                     <th class="text-center">Total</th>
+                    <th class="text-center">Envío</th>
                 </tr>
             </thead>
             <tbody>
@@ -166,6 +166,18 @@ $list_status = [
                         <?php endforeach ?>
                          </table>
                      </td>
+                    <td class="col-xs-3">
+                        <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong><br>
+                        <small><?= @$sale['collection']['payment_type'] === 'credit_card' ? @$sale['collection']['last_four_digits'] : @$sale['collection']['merchant_order_id'] ?></small>
+                    </td>
+                    <td class="col-xs-3">
+                        <strong><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>
+                        <small><?php echo @$sale['collection']['date_approved'] ?></small>
+                    </td>
+                    <td class="col-xs-1 text-center">
+                        <strong>$<?= @$sale['collection']['transaction_amount'] ?: @$sale['local_sale']['value'] ?> </strong><br>
+                        <small>(<?= count(@$sale['collection']['sale_products']) ?> items)</small>
+                    </td>
                     <td class="col-xs-1"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
                     <?php 
                     $defaultCost = 0; ?>
@@ -173,11 +185,11 @@ $list_status = [
                         <strong>Takeaway</strong>
                     <?php endif ?>
                     <?php if (empty($sale['local_sale']['def_orden_retiro'])):?>
-                        <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-info">
+                        <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-info" onclick="editLogistic(event,<?= $sale['local_sale']['id'] ?>,<?= $sale['local_sale']['logistic_id'] ?>)">
                             <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty($sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
                         </strong>
                     <?php else: ?>
-                        <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" onclick="editLogistic(event,<?= $sale['local_sale']['id'] ?>,<?= $sale['local_sale']['logistic_id'] ?>)">
+                        <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>">
                             <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty($sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
                         </strong>
                     <?php endif ?>
@@ -186,20 +198,8 @@ $list_status = [
                     <?php
                     if (!empty($sale['local_sale']['id']) && !empty($sale['local_sale']['apellido']) && !empty($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] == 'shipment'): ?>
                         <!--span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span-->
-                        <?= $sale['local_sale']['def_mail_sent'] ? '<i class="fa fa-check-square-o text-success" title="Notificación enviada"></i>' : '<i class="fa fa-clock-o text-info" onclick="showLayer(event,\'ticket\',' . $sale['local_sale']['id'] . ')" title="Notificación pendiente"></i>' ?>
+                        <?= $sale['local_sale']['def_mail_sent'] ? '<i class="fa fa-check text-success" title="Notificación enviada"></i>' : '<i class="fa fa-clock-o text-info" onclick="showLayer(event,\'ticket\',' . $sale['local_sale']['id'] . ')" title="Notificación pendiente"></i>' ?>
                     <?php endif ?>
-                    </td>
-                    <td class="col-xs-3">
-                        <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong><br>
-                        <small><?= @$sale['collection']['payment_type'] === 'credit_card' ? @$sale['collection']['last_four_digits'] : @$sale['collection']['merchant_order_id'] ?></small>
-                    </td>                    
-                    <td class="col-xs-3">
-                        <strong><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>
-                        <small><?php echo @$sale['collection']['date_approved'] ?></small>
-                    </td>                    
-                    <td class="col-xs-1 text-center">
-                        <strong>$<?= @$sale['collection']['transaction_amount'] ?: @$sale['local_sale']['value'] ?> </strong><br>
-                        <small>(<?= count(@$sale['collection']['sale_products']) ?> items)</small>
                     </td>
                 </tr>
                 <?php endforeach ?>

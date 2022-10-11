@@ -396,6 +396,16 @@ class AdminController extends AppController {
 		die(json_encode($json));
 	}
 
+	public function getTicketFake($sale_id = null){
+		$this->autoRender = false;
+		$data = [
+			'status' => 'success',
+			'message' => 'Notificación enviada',
+			'url' => Configure::read('baseUrl') . "admin/tickets/{$sale['def_orden_retiro']}"
+		];
+		die(json_encode($data));		
+	}
+
 	public function getTicket($sale_id = null){
 		$this->autoRender = false;
 		$data = [

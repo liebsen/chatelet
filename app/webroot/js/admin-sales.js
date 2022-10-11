@@ -47,7 +47,7 @@ function showLayer (e, layer, sale_id) {
   e.preventDefault()
   e.stopPropagation()
   window.sale_id = 0
-  const selectr = $(`${layer}-layer`)
+  const selectr = $(`.${layer}-layer`)
   $('.sale_id').text('')
   if (selectr.hasClass('active')) {
     selectr.removeClass('active')
@@ -112,7 +112,7 @@ function getTicket(sale_id) {
   $(parent).text('SOLICITANDO...')
   $(target).text('')
 
-  $.get('/admin/getTicket/' + sale_id, res => {
+  $.get('/admin/getTicketFake/' + sale_id, res => {
     $(parent).removeClass('btn-default')
     $(parent).addClass('btn-primary')
     $(parent).text('TICKET')
