@@ -66,7 +66,7 @@ $(function(){
 					// $('#subtotal_envio').val( 0 );
 					// $('#free_delivery').text('Envio gratis!');
 				}
-				var rates = `<ul class="generic-select shipping-options animated zoomInRight">`
+				var rates = `<ul class="generic-select shipping-options">`
 				json.rates.forEach(rate => {
 					if (!isNaN(rate.price)) {
 						var price = '<span class="text-success">Gratis</span>'
