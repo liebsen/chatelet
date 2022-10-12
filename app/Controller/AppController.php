@@ -77,7 +77,7 @@ class AppController extends Controller
         $basicfont = 'Roboto Condensed';
         $font = $basicfont;
         // 'Fira Sans Condensed', 'Sniglet','Roboto Condensed', 'Archivo Narrow'
-        $fontweight = '300,400,500,600,700,800';
+        $fontweight = '300,400,500,600,700';
 
         if ($this->Session->read('font')) {
             $font = $this->Session->read('font');
