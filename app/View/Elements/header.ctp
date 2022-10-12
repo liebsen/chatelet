@@ -176,12 +176,12 @@
 
 
 <div id="menuSearch" class="menuLayer">
-  <a class="close">
+  <a class="close float-tr">
     <span></span>
     <span></span>
   </a>
   <div class="wrapper">
-    <div class="row">
+    <div class="row float-tl">
       <div class="col-sm-12">
         <!--h3>Buscar</h3-->
         <div class="box-search animate speed">

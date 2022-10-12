@@ -133,7 +133,7 @@ function updateSrcTo(obj){
       }
 
       if(!$stock && $isProduct){
-        echo '<div class="col-xs-6 col-md-4 col-lg-3">'.
+        echo '<div class="col-xs-6 col-md-3 col-lg-2">'.
              '<img src="'.Router::url('/').'images/agotado3.png" class="out_stock" />'.
              $ctrl->Html->link(
           $content,
@@ -166,7 +166,7 @@ function updateSrcTo(obj){
         }
         */
 
-        echo '<div data-id="'.$item["id"].'" class="col-xs-6 col-md-4 col-lg-3 add-no-stock">'. 
+        echo '<div data-id="'.$item["id"].'" class="col-xs-6 col-md-3 col-lg-2 add-no-stock">'. 
            $ctrl->Html->link(
             $content,
             $url,

@@ -44,7 +44,7 @@ let apiSearch = q => {
         if (name.length >= 24) {
           name = `<span style="font-size:1rem!important">${name}</span>`
         }        
-        str += '<div class="col-xs-6 col-md-4 col-lg-3 search-item animate fadeIn">' +
+        str += '<div class="col-xs-6 col-md-3 col-lg-2 search-item animate fadeIn">' +
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 
             '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.discount_label ? '<div class="ribbon small bottom-left sp2"><span>' + item.discount_label + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
             '<h2 class="text-center">'+name+'</h2>' + 
@@ -112,6 +112,7 @@ $(function () {
   }
 
   $('.action-search').click(() => {
+    $('.menuLayer').hide()
     if ($('#menuSearch').is(':visible')) {
       $('#menuSearch').fadeOut();
     } else {
@@ -157,12 +158,18 @@ $(function () {
   $(window).scroll(function(e) {
     var scroll = $(window).scrollTop()
     if (scroll > 200) {
-      if(document.querySelector('.menuLayer .close')) {
-        document.querySelector('.menuLayer .close').classList.add('float-top-right')
+      if(document.querySelector('.float-tl')) {
+        document.querySelector('.float-tl').classList.add('float-top-left')
+      }
+      if(document.querySelector('.float-tr')) {
+        document.querySelector('.float-tr').classList.add('float-top-right')
       }
     } else {
-      if(document.querySelector('.menuLayer .close')) {
-        document.querySelector('.menuLayer .close').classList.remove('float-top-right')
+      if(document.querySelector('.float-tl')) {
+        document.querySelector('.float-tl').classList.remove('float-top-left')
+      }
+      if(document.querySelector('.float-tr')) {
+        document.querySelector('.float-tr').classList.remove('float-top-right')
       }
     }
   })
