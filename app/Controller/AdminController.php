@@ -725,8 +725,8 @@ class AdminController extends AppController {
 
 		$this->set('list_payments', [
 	    '' => "CBU/Alias",
-	    'credit_card' => "Tarjeta de Crédito",
-	    'debit_card' => "Tarjeta de Débito",
+	    'credit_card' => "Crédito",
+	    'debit_card' => "Débito",
 	    'ticket' => "Ticket",
 	    'account_money' => "Efectivo",
 		]);
