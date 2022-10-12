@@ -79,8 +79,8 @@
                   <label for="free_shipping_0">No Disponible</label>
                   <input type="radio" class="form-control" id="free_shipping_0" name="data[free_shipping]" value="0" <?php echo $disabled; ?> />
                 </div>
-                <small class="text-muted">Indica si esta logística estará disponible para los envíos gratuitos. Si está activo significa que esta logística tendrá prioridad para los envíos gratuitos. <span class="alert-link">Establezca <i>Disponible</i> para que las clientas puedan seleccionar <i><?= $logistic['Logistic']['title'] ?></i> para sus envíos gratuitos.</span></small>
-                <?php if($enabled && $logistic['Logistic']['local_prices']): ?>
+                <small class="text-muted">Indica si esta logística estará disponible para los envíos gratuitos. Si está activo significa que esta logística tendrá prioridad para los envíos gratuitos. <span class="alert-link">Establezca <i>Disponible</i> para que las clientas puedan seleccionar <i><?= @$logistic['Logistic']['title'] ?></i> para sus envíos gratuitos.</span></small>
+                <?php if($enabled && @$logistic['Logistic']['local_prices']): ?>
                   <br>
                   <br>
                   <small class="text-danger alert-link"><b>Exclusividad no garantizada.</b> <i> <?= $logistic['Logistic']['title'] ?></i> tiene alcance local, esto significa que solo estará disponible para envíos gratuitos dentro de su área de cobertura, caso contrario se mostrarán otras opciones de envío que pueden no estar establecidas como disponibles para envío gratuito.</small>
