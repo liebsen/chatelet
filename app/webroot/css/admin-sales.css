@@ -19,6 +19,7 @@
   align-items: center;
   pointer-events: none;
   opacity: 0;
+  padding: 2rem;
   transition: all 0.25s ease 0.25s;
 }
 

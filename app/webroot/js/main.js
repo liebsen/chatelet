@@ -136,6 +136,7 @@ $(function () {
       clearInterval(searchInt)
     }
     searchPage = 0
+    window.scrollTo(0,0)
     document.querySelector('.spinner-search').classList.add('searching')
     searchInt = setTimeout(() => {
       let q = $('.input-search').val().trim()

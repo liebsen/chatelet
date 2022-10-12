@@ -398,15 +398,22 @@ class AdminController extends AppController {
 
 	public function getTicketFake($sale_id = null){
 		$this->autoRender = false;
+		$this->Sale->recursive = -1;
 		$sale = $this->Sale->findById($sale_id);
 		$sale = $sale['Sale'];
+		$orden = "{$sale['shipping']}$sale_id";
+		$this->Sale->save([
+			'id' => $sale_id,
+			'def_orden_retiro' => $orden
+		]);
 		$data = [
 			'status' => 'success',
 			'message' => 'Notificación enviada',
-			'shipping' => "speedmoto",
+			'shipping' => "{$sale['shipping']}",
+			'cargo' => "{$sale['cargo']}",
 			'width' => 400,
 			'height' => 300,
-			'url' => Configure::read('baseUrl') . "admin/tickets/{$sale['def_orden_retiro']}"
+			'url' => Configure::read('baseUrl') . "admin/tickets/{$orden}"
 		];
 		die(json_encode($data));		
 	}
@@ -530,6 +537,7 @@ class AdminController extends AppController {
 				}
 				$data['url'] = $url;
 				$data['shipping'] = $sale['shipping'];
+				$data['cargo'] = $sale['cargo'];
 			} else {
 				$data['message'] = strip_tags($sale['raw_xml']);
 			}

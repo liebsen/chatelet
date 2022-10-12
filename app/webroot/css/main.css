@@ -248,6 +248,15 @@ body {
 .bg-info-i {
   background-color: #d9edf7!important;
 }
+.bg-success-i {
+  background-color: #dff0d8!important;
+}
+.bg-danger-i {
+  background-color: #f2dede!important;
+}
+.bg-warning-i {
+  background-color: #e8ffa8!important;
+}
 
 .affix {
     top: 0;

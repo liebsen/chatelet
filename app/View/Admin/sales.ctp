@@ -110,7 +110,7 @@
                 $personalInfoShowed=false;
                 $paybank=$sale['local_sale']['payment_method']==='bank'&&empty($sale['local_sale']['completed']);
                 ?>
-                <tr class="is-clickable<?= $paybank ? ' bg-info-i' : '' ?>">
+                <tr class="is-clickable<?= $paybank ? ' bg-warning-i' : '' ?>">
                     <td class="col-xs-1" data-sort="<?php echo date('Y-m-d',strtotime($sale['collection']['date_approved'])) ?>">
                         <strong><?php echo date('d/m/Y',strtotime($sale['collection']['date_approved'])) ?></strong><br />
                         <small><?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?></small><br />

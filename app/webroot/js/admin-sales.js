@@ -99,12 +99,12 @@ function logisticUpdate () {
     $('#logistic_save_btn').text('Actualizado')
     setTimeout(() => {
       layerClose()
-    }, 1000)
+    }, 3000)
   })
 }
 
 function getTicket(sale_id) {
-  var parent = $(`#shipping_title_${sale_id}`)
+  var row = $(`#shipping_title_${sale_id}`)
   var button = $('#ticket_get_btn')
   button.addClass('btn-disabled')
   button.text('Solicitando...')
@@ -113,12 +113,16 @@ function getTicket(sale_id) {
     if(data.status==='success'){
       button.removeClass('btn-disabled')
       button.text('Generar')
-      alert(data.message)
-      parent.className = ''
-      parent.addClass(`text-${data.status}`)
-      if (data.url) {
+      row.prop("onclick", null)
+      row.className = ''
+      row.addClass(`text-${data.status}`)
+      if (data.url && confirm('¿Querés ver el ticket?')) {
         window.open(data.url, data.shipping + sale_id, `height=${data.height},width=${data.width}`)
       }
+      button.after(`<span>${data.message}</span>`)
+      setTimeout(() => {
+        layerClose()
+      }, 3000)
     } else {
       alert('Algo salió mal. Volvé a intentar en unos instantes')
     }
@@ -126,13 +130,19 @@ function getTicket(sale_id) {
 }
 
 function setComplete(){
+  var row = $(`#bank_title_${sale_id}`)
+  var button = $('#ticket_get_btn')
+  button.addClass('btn-disabled')
+  button.text('Solicitando...')
   $.get('/admin/saleComplete/' + sale_id, res => {
     let data = JSON.parse(res)
-    console.log(data)
     if(data.status==='success'){
-      var parent = $(`#bank_title_${sale_id}`)
-      parent.className = ''
-      parent.addClass(`text-${data.status}`)
+      row.className = ''
+      row.text(`Aprobado`)
+      row.addClass(`text-${data.status}`)
+      if($('#generate_ticket_from_bank').is(':checked')){
+        getTicket(sale_id)
+      }
     } else {
       alert('Algo salió mal. Volvé a intentar en unos instantes')
     }

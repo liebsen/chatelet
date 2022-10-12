@@ -1417,6 +1417,10 @@ span.out{
   font-size: 1.5rem;
   font-weight: 800;
   width: 100%;
+  transition: all 0.25s ease-out;
+}
+.input-search:focus {
+  background-color: #fadcea;
 }
 .box-search {
   display: flex;
