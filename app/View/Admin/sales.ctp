@@ -98,8 +98,8 @@
                     <th class="text-center">Fecha</th>
                     <th class="text-center">Cliente</th>
                     <th class="text-center toggle-table toggle-table-hidden">Detalles</th>
-                    <th class="text-center">Método de pago</th>
-                    <th class="text-center">Estado del pago</th>
+                    <th class="text-center">Método</th>
+                    <th class="text-center">Estado</th>
                     <th class="text-center">Total</th>
                     <th class="text-center">Envío</th>
                 </tr>
