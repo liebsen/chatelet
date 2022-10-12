@@ -649,6 +649,9 @@ span.user {
     padding-top: 5px;
     background-size: 1.75rem;
 	}
+	.carrito-selector {
+		margin-top: 1rem;
+	}
 }
 span.validation-email {
 	display: block;
@@ -657,4 +660,4 @@ span.validation-email {
 span.validation-password {
 	display: block;
     color: #a94442;
-}  
+}
