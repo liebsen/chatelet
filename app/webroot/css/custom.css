@@ -733,10 +733,16 @@ align-items: center;}
 }
 
 #detalle .caract label.btn {
+  position: relative;
     color: black;
     padding-left: 0;
     padding-right: 0;
     max-width: 10rem;
+    transition: all 0.25s ease-out;
+}
+#detalle .caract label.active {
+  z-index: 99;
+  transform: scale(1.25);
 }
 #detalle .caract label.btn small {
   display: block; 
@@ -765,6 +771,7 @@ align-items: center;}
 #detalle .caract label.btn.active .color-option {
   opacity: 1;
   border: solid 3px #CA779A;
+  box-shadow: 0 0 1rem rgba(0,0,0,0.5);
 }
 
 /* #detalle .caract label.btn:first-child .color-option {
