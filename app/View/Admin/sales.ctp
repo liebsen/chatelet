@@ -175,20 +175,19 @@
                          </table>
                      </td>
                     <td class="col-xs-1">
-                        <?php if($paybank): ?>
-                        <strong class="text-info" id="bank_title_<?= $sale['local_sale']['id'] ?>" onclick="showLayer(event,'bank',<?= $sale['local_sale']['id'] ?>)"><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong>
-                        <?php else: ?>
-                        <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong>
-                        <?php endif ?>
-                        <br>
+                        <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong><br>
                         <small><?= @$sale['collection']['payment_type'] === 'credit_card' ? @$sale['collection']['last_four_digits'] : @$sale['collection']['merchant_order_id'] ?></small>
                     </td>
                     <td class="col-xs-1">
                     <?php if($sale['local_sale']['payment_method']==='bank'): ?>
-                        <strong><?php echo @$sale['local_sale']['completed'] ? 'Aprobado' : 'Pendiente' ?></strong><br>
+                        <?php if($sale['local_sale']['completed']): ?>
+                        <strong class="text-success">Aprobado</strong>
+                        <?php else: ?>
+                        <strong class="text-info" id="bank_title_<?= $sale['local_sale']['id'] ?>" onclick="showLayer(event,'bank',<?= $sale['local_sale']['id'] ?>)">Pendiente</strong>
+                        <?php endif ?><br>
                         <small><?php echo @$sale['local_sale']['modified'] ?></small>
                     <?php else: ?>
-                        <strong><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>
+                        <strong class="<?= @$sale['local_sale']['completed'] ? 'text-success' : 'text-info' ?>"><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>
                         <small><?php echo @$sale['collection']['date_approved'] ?></small>
                     <?php endif ?>
                     </td>
