@@ -27,7 +27,7 @@ Cache::config('default', array('engine' => 'File'));
 Configure::write('mUrl','');
 Configure::write('font', 'Archivo Narrow');
 Configure::write('fontweight', '300,400,500,600,700,800');
-Configure::write('APP_DIST', '3.27');
+Configure::write('APP_DIST', '3.29');
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.

@@ -607,7 +607,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   /* height:60px; */
   font-size: 1.25rem;
   font-weight: 800;
-  margin:10px auto 30px;
+  margin:10px auto 10px;
   /* color: #444; */
 }
 
@@ -715,7 +715,7 @@ align-items: center;}
 #detalle .caract .colors a.grisoscuro { background: #5a5a5a; }
 #detalle .caract .colors a.verde { background: #42604e; }
 #detalle .caract .colors a.azul { background: #294c70; }
-#detalle .caract .add { background: #f50081; color: #FFF; display: block; font-size: 1.25rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center; width: 100%; border-radius: 0px; transition: all 0.5s ease-in;}
+#detalle .caract .add { background: #f50081; min-height: 46px; min-width: 10rem; color: #FFF; display: block; font-size: 1.25rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center;border-radius: 0px; transition: all 0.5s ease-in;}
 #detalle .caract .add.adding { background-color: #808080; }
 #detalle .caract .social { margin-top: 40px; text-align: center; }
 #detalle .caract .social a { background-image: url(../images/sprite.png); display: inline-block; height: 19px; margin: 0 25px; width: 19px; }
@@ -730,7 +730,7 @@ align-items: center;}
   border-radius: 0!important;
   color: #666;
   text-align: center;
-  flex: 0 0 33.333333%;
+  flex: 0 0 25%;
 }
 
 #detalle .caract label.btn {
@@ -2107,7 +2107,7 @@ span.count {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: 0px;
   }
-  #opts a { max-height: 315px; }
+
   .is-flex-end {
     flex-direction: row;
   }
@@ -2121,7 +2121,6 @@ span.count {
   .card {    
     border: 1px solid rgba(0,0,0,.125);
   }
-
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-top: 10px;
   }
@@ -2129,6 +2128,8 @@ span.count {
     min-height: 20rem; 
     max-height: 20rem;
   }
+  #opts a { max-height: 315px; }
+  #detalle .caract .add {min-width: 15rem; }
 
   footer > .wrapper {
     padding: 0 2rem;

@@ -114,6 +114,7 @@
             ?>
             <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
                 <h1><?php echo $product['name'];?></h1>
+                <p class="text-muted"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
                 <?php  if(!empty($product['old_price']) && $product['price']!==$product['old_price']) {
                     echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['old_price'] ."'>".
                            str_replace(',00','',$this->Number->currency($product['old_price'], 'ARS', array('places' => 2))). "</span>
@@ -123,8 +124,6 @@
                             str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array(
                             'places' => 2))). "</span>";
                  }?>
-                <p><?php echo $name_categories; ?></p>
-                <p class=""> Art. <span><?php echo $product['article']; ?></span></p>
                 <div class="caract">
                 <?php if(!empty($product['desc'])):?>
                     <p><?php echo $product['desc']; ?></p>
@@ -180,10 +179,13 @@
                     <?php endif; ?>
                     <div class="footer-producto" >
                         <?php //if($loggedIn){ ?>
-                            <div class="carrito-count has-item-counter active">
-                                <div class="form-inline">
+                            <div class="row carrito-count has-item-counter active">
+                                <div class="col-xs-12 col-sm-6">
+                                    <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar al carrito</a>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-inline">
                                   <div class="form-group">
-                                    <div class="input-group carrito-selector mt-4">
+                                    <div class="input-group carrito-selector">
                                         <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
                                             <span class="fa fa-minus"></span>
                                         </div>                                    
@@ -194,7 +196,6 @@
                                     </div>
                                   </div>
                                 </div>
-                                <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar al carrito</a>
                             </div>
                             
 
