@@ -74,7 +74,7 @@ class AppController extends Controller
         $carro = $this->Session->read('Carro');
         $this->set('carro', $carro);
 
-        $basicfont = 'Archivo Narrow';
+        $basicfont = 'Roboto Condensed';
         $font = $basicfont;
         // 'Fira Sans Condensed', 'Sniglet','Roboto Condensed', 'Archivo Narrow'
         $fontweight = '300,400,500,600,700,800';
