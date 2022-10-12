@@ -349,14 +349,16 @@ label input[type=checkbox]:disabled + .label-text:before {
 #carousel-example-generic .carousel-control.left { left: 0%; }
 #carousel-example-generic .carousel-control.right { right: 0%; }
 
-#today { padding: 10px 0px; text-align: center; }
+#today { text-align: center; }
+#today a { display: grid; }
 
 #today .rectangle {
-  font-size: 40px; font-weight: 500;
-    height: 500px;
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  font-size: 40px;
+  font-weight: 500;
+  height: 500px;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #today .rectangle h1 { color: #464444; font-size: 40px; line-height: 1.2; margin-bottom: 30px; }
 #today .rectangle h1 span { color: #f50081; }
@@ -370,7 +372,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 #opts .mod:first-child { border-right: 0px solid #efb0d2; }
 #opts .mod:first-child a {/* background: url(../images/box11.png) no-repeat center 60px; */transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #opts .mod:last-child a {/*background: url(../images/box11.png) no-repeat center 60px;*/ transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
-#opts a { color: #464444; display: block; font-size: 18px; line-height: 23px; /*padding: 250px 0 70px;*/ width: 100%; }
+#opts a { color: #464444; display: block; font-size: 18px; line-height: 23px; max-height: 264px; /*padding: 250px 0 70px;*/ width: 100%; }
 #opts a:hover { color: #FFF; }
 #opts .mod:first-child a:hover { /*background: url(../images/box1.png) no-repeat center 60px ;*/ }
 /*#opts .col-md-6:last-child a:hover { background: url(../images/box1.png) no-repeat center 60px ; }*/
@@ -979,8 +981,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 	#carousel-example-generic .carousel-caption { left: 15%; width: 70%; }
 
-	#today { padding: 15px; }
-
     #location .col-md-12 {
         padding-left: 25px;
         padding-right: 25px;
@@ -1185,9 +1185,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
     #today .rectangle {
         padding: 15px 0 65px;
-    }
-    #today {
-        padding: 5px 0;
     }
 }
 
@@ -2109,7 +2106,7 @@ span.count {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: 0px;
   }
-
+  #opts a { max-height: 315px; }
   .is-flex-end {
     flex-direction: row;
   }

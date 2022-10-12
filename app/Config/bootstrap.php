@@ -28,7 +28,7 @@ Configure::write('mUrl','');
 // 'Fira Sans Condensed', 'Sniglet','Roboto Condensed', 'Archivo Narrow'
 Configure::write('font', ($_REQUEST['font'] ? urldecode($_REQUEST['font']) : 'Archivo Narrow'));
 Configure::write('fontsizes',($_REQUEST['font'] ?: '400,500,600,700,800'));
-Configure::write('APP_DIST', '3.25');
+Configure::write('APP_DIST', '3.26');
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.
