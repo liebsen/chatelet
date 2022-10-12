@@ -96,7 +96,7 @@ class AppController extends Controller
         $setting    = $this->Setting->findById('show_shop');
         $show_shop  = (!empty($setting['Setting']['value'])) ? 1 : 0;
         $this->set('show_shop',$show_shop);
-
+        $this->set('home',strtolower($this->request->params['controller'])==='home');
         $setting_menu    = $this->Setting->findById('image_menushop');
         $image_menushop = (!empty($setting_menu['Setting']['value'])) ? $setting_menu['Setting']['value'] : '';
         $this->set('image_menushop',$image_menushop);
