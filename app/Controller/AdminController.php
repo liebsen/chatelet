@@ -398,14 +398,40 @@ class AdminController extends AppController {
 
 	public function getTicketFake($sale_id = null){
 		$this->autoRender = false;
+		$sale = $this->Sale->findById($sale_id);
+		$sale = $sale['Sale'];
 		$data = [
 			'status' => 'success',
 			'message' => 'Notificación enviada',
+			'shipping' => "speedmoto",
+			'width' => 400,
+			'height' => 300,
 			'url' => Configure::read('baseUrl') . "admin/tickets/{$sale['def_orden_retiro']}"
 		];
 		die(json_encode($data));		
 	}
 
+	public function saleComplete($sale_id = null){
+		$this->autoRender = false;
+		$this->Sale->recursive = -1;
+		$sale = $this->Sale->findById($sale_id);
+		$data = [
+			'status' => 'success',
+			'message' => 'Venta completada'
+		];
+		if(!empty($sale)) {
+			$this->Sale->save([
+				'id' => $sale_id,
+				'completed' => 1
+			]);
+		} else {
+			$data = [
+				'status' => 'danger',
+				'message' => 'No se encontró la venta'
+			];
+		}
+		die(json_encode($data));
+	}
 	public function getTicket($sale_id = null){
 		$this->autoRender = false;
 		$data = [
@@ -503,6 +529,7 @@ class AdminController extends AppController {
 					$url = Configure::read('baseUrl') . "admin/tickets/{$sale['def_orden_retiro']}";
 				}
 				$data['url'] = $url;
+				$data['shipping'] = $sale['shipping'];
 			} else {
 				$data['message'] = strip_tags($sale['raw_xml']);
 			}
@@ -690,10 +717,27 @@ class AdminController extends AppController {
 		if (!empty($this->request->query['test'])){
 			echo '<pre>';
 			var_dump($sales);
+			die();
 		  // var_dump(json_decode(json_encode($sales)));die;
 		}		
 		//pr($sales);die;
     $logistics = $this->Logistics->find('all',array('conditions'=>array( 'enabled' => 1 )));
+
+		$this->set('list_payments', [
+	    '' => "Transferencia",
+	    'credit_card' => "Tarjeta de Crédito",
+	    'debit_card' => "Tarjeta de Débito",
+	    'ticket' => "Ticket",
+	    'account_money' => "Efectivo",
+		]);
+
+		$this->set('list_status', [
+	    '' => "Pendiente",
+	    'approved' => "Aprobado",
+	    'processing' => "Procesando...",
+	    'rejected' => "Rechazado",
+		]);
+
 		$this->set('shipping_price_min',$this->Setting->findById('shipping_price_min'));
 		$this->set('logistics',$logistics);
 		$this->set('sales',$sales);

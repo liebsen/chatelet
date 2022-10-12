@@ -2,22 +2,32 @@
 <?php echo $this->Html->css('/css/admin-sales.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 <?php echo $this->Html->script('admin-sales', array('inline' => false)); ?>
-<?php 
 
-$list_payments = [
-    '' => "Transferencia",
-    'credit_card' => "Tarjeta de Crédito",
-    'debit_card' => "Tarjeta de Débito",
-    'ticket' => "Ticket",
-    'account_money' => "Efectivo",
-];
-$list_status = [
-    '' => "Pendiente",
-    'approved' => "Aprobado",
-    'processing' => "Procesando...",
-    'rejected' => "Rechazado",
-];
-?>
+<!-- bank layer -->
+
+<div class="fullhd-layer bank-layer">
+    <span class="close is-clickable" onclick="layerClose()">
+        <i class="gi gi-remove_2"></i>
+    </span>
+    <div class="row">
+        <div class="col-xs-12">
+            <form id="update_logistic">
+                <h3>Marcar como completada venta <span class="sale_id"></span></h3>
+                <div class="form-group">
+                    <input class="form-input" type="checkbox" id="generate_ticket_from_bank" value="1" checked/>
+                  <label for="generate_ticket_from_bank">
+                    Generar ticket
+                  </label>
+                </div>                
+                <div class="form-group">
+                    <button type="button" id="ticket_gen_btn" class="btn btn-primary" onclick="setComplete()">Completada</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- logistic layer -->
 
 <!-- ticket layer -->
 
@@ -98,8 +108,9 @@ $list_status = [
                 <?php foreach ((array) $sales as $sale):
 
                 $personalInfoShowed=false;
+                $paybank=$sale['local_sale']['payment_method']==='bank'&&empty($sale['local_sale']['completed']);
                 ?>
-                <tr class="is-clickable">
+                <tr class="is-clickable<?= $paybank ? ' bg-info-i' : '' ?>">
                     <td class="col-xs-1" data-sort="<?php echo date('Y-m-d',strtotime($sale['collection']['date_approved'])) ?>">
                         <strong><?php echo date('d/m/Y',strtotime($sale['collection']['date_approved'])) ?></strong><br />
                         <small><?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?></small><br />
@@ -164,12 +175,22 @@ $list_status = [
                          </table>
                      </td>
                     <td class="col-xs-1">
-                        <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong><br>
+                        <?php if($paybank): ?>
+                        <strong class="text-info" id="bank_title_<?= $sale['local_sale']['id'] ?>" onclick="showLayer(event,'bank',<?= $sale['local_sale']['id'] ?>)"><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong>
+                        <?php else: ?>
+                        <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong>
+                        <?php endif ?>
+                        <br>
                         <small><?= @$sale['collection']['payment_type'] === 'credit_card' ? @$sale['collection']['last_four_digits'] : @$sale['collection']['merchant_order_id'] ?></small>
                     </td>
                     <td class="col-xs-1">
+                    <?php if($sale['local_sale']['payment_method']==='bank'): ?>
+                        <strong><?php echo @$sale['local_sale']['completed'] ? 'Aprobado' : 'Pendiente' ?></strong><br>
+                        <small><?php echo @$sale['local_sale']['modified'] ?></small>
+                    <?php else: ?>
                         <strong><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>
                         <small><?php echo @$sale['collection']['date_approved'] ?></small>
+                    <?php endif ?>
                     </td>
                     <td class="col-xs-1 text-center">
                         <strong>$<?= @$sale['collection']['transaction_amount'] ?: @$sale['local_sale']['value'] ?> </strong><br>

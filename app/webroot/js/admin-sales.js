@@ -105,24 +105,36 @@ function logisticUpdate () {
 
 function getTicket(sale_id) {
   var parent = $(`#shipping_title_${sale_id}`)
-  var target = $(parent).next().next()
-
-  $(parent).removeClass('btn-info')
-  $(parent).addClass('btn-disabled')
-  $(parent).text('SOLICITANDO...')
-  $(target).text('')
-
+  var button = $('#ticket_get_btn')
+  button.addClass('btn-disabled')
+  button.text('Solicitando...')
   $.get('/admin/getTicketFake/' + sale_id, res => {
-    $(parent).removeClass('btn-default')
-    $(parent).addClass('btn-primary')
-    $(parent).text('TICKET')
     let data = JSON.parse(res)
-    if (target) {
-      $(target).text(data.message)
-      $(target).addClass(`text-${data.status}`)
-    }
-    if (data.url) {
-      window.open(data.url, data.shipping + sale_id, `height=${data.height},width=${data.width}`)
+    if(data.status==='success'){
+      button.removeClass('btn-disabled')
+      button.text('Generar')
+      alert(data.message)
+      parent.className = ''
+      parent.addClass(`text-${data.status}`)
+      if (data.url) {
+        window.open(data.url, data.shipping + sale_id, `height=${data.height},width=${data.width}`)
+      }
+    } else {
+      alert('Algo salió mal. Volvé a intentar en unos instantes')
     }
   })
-}    
+}
+
+function setComplete(){
+  $.get('/admin/saleComplete/' + sale_id, res => {
+    let data = JSON.parse(res)
+    console.log(data)
+    if(data.status==='success'){
+      var parent = $(`#bank_title_${sale_id}`)
+      parent.className = ''
+      parent.addClass(`text-${data.status}`)
+    } else {
+      alert('Algo salió mal. Volvé a intentar en unos instantes')
+    }
+  })
+}

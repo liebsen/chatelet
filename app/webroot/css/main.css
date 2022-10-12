@@ -245,6 +245,10 @@ body {
     width: 100%!important;
 }
 
+.bg-info-i {
+  background-color: #d9edf7!important;
+}
+
 .affix {
     top: 0;
     left: 0;
