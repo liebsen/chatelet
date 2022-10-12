@@ -115,6 +115,9 @@ function title_fontsize ($str) {
   if (strlen($str) >= 24) {
       $font_size = '1rem';
   }
+  if (strlen($str) >= 28) {
+      $font_size = '0.75rem';
+  }  
   if ($font_size){
       $str = '<span style="font-size:'.$font_size.'!important">'.$str.'</span>';
   }
