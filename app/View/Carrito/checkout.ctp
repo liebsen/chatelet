@@ -86,7 +86,7 @@ const carrito = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETT
 							        <div class="col-sm-6 offset-md-1 text-center option-rounded">				          
 							          <input type="radio" class="" id="enabled_0" name="payment_method" value="bank" required />
 							          <label for="enabled_0" class="d-inline">
-							          	<span class="h4">Transferencia</span><br>
+							          	<span class="h4">CBU/Alias</span><br>
 							          	<p class="mt-4 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
 							          </label>
 							        </div>

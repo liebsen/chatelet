@@ -724,7 +724,7 @@ class AdminController extends AppController {
     $logistics = $this->Logistics->find('all',array('conditions'=>array( 'enabled' => 1 )));
 
 		$this->set('list_payments', [
-	    '' => "Transferencia",
+	    '' => "CBU/Alias",
 	    'credit_card' => "Tarjeta de Crédito",
 	    'debit_card' => "Tarjeta de Débito",
 	    'ticket' => "Ticket",
