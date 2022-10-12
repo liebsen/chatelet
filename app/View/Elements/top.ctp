@@ -11,7 +11,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="facebook-domain-verification" content="mz62jgu2bv7lu4new0t9pno88ekmxx" />
-    <link href="https://fonts.googleapis.com/css?family=<?= urlencode(Configure::read('font')) ?>:<?= Configure::read('fontsizes') ?>" rel="stylesheet">
     <?php if(isset($product) && isset($product['name'])):?>
     <!-- FB OpenGraph -->
     <meta property="og:title" content="<?= ucwords(strtolower($product['name'])) ?>">
@@ -33,9 +32,10 @@
     <meta property="og:description" content="Sé tu propio modelo de mujer" />
     <meta property="og:image" itemprop="image primaryImageOfPage" content="https://chatelet.com.ar/images/share-080722.jpg" />
     <?php endif ?>
+    <link href="https://fonts.googleapis.com/css?family=<?= urlencode($font) ?>:<?= $fontweight ?>" rel="stylesheet">
     <style>
       body {
-        font-family: '<?= Configure::read('font') ?>', Verdana, Arial, Sans-Serif!important;
+        font-family: '<?= $font ?>', Verdana, Arial, Sans-Serif!important;
       }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->

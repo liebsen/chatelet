@@ -74,6 +74,29 @@ class AppController extends Controller
         $carro = $this->Session->read('Carro');
         $this->set('carro', $carro);
 
+        $basicfont = 'Archivo Narrow';
+        $font = $basicfont;
+        // 'Fira Sans Condensed', 'Sniglet','Roboto Condensed', 'Archivo Narrow'
+        $fontweight = '300,400,500,600,700,800';
+
+        if ($this->Session->read('font')) {
+            $font = $this->Session->read('font');
+        }
+
+        if (isset($_REQUEST['font'])) {
+            $font = urldecode($_REQUEST['font']);
+            $this->Session->write('font',urldecode($_REQUEST['font']));
+        }
+
+        if (isset($_REQUEST['exitfont'])) {
+            $font = $basicfont;
+            $this->Session->delete('font');
+        }
+
+
+        $this->set('font', $font);
+        $this->set('fontweight', $fontweight);
+
         Configure::write('client_id', '6773841105361656');
         Configure::write('client_secret', 'hBHd6LiSEaTqgQXI2KSGO5C7uCBSINhW');
 

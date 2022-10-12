@@ -223,7 +223,8 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav { margin-left: 80px; }
 .navbar-nav>li>a {
   color: #404040;
-  font-size: 1rem;
+  font-size: 1.25rem;
+  font-weight: 400;
   text-transform: uppercase;
   margin: 0; 
   padding: 0.75rem 0; 
@@ -314,15 +315,15 @@ label input[type=checkbox]:disabled + .label-text:before {
   transform: rotate(-45deg);
 }
 .menuLayer img { margin-right: 50px; }
-.menuLayer h3 { color: #f50081; font-size: 16px; font-weight: normal; text-transform: uppercase; margin-bottom: 30px; }
-.menuLayer ul { column-count: 3; column-gap: 40px; font-size: 13px; }
+.menuLayer h3 { color: #f50081; font-size: 1.25rem; font-weight: normal; text-transform: uppercase; margin-bottom: 30px; }
+.menuLayer ul { column-count: 3; column-gap: 40px; font-size: 1.25rem; }
 .menuLayer ul li { margin-bottom: 15px; }
 .menuLayer ul li a {
   color: #222;
       font-weight: normal;
       text-transform: uppercase;
-      font-size: 1rem;
-      font-weight: 200;
+      font-size: 1.25rem;
+      font-weight: 300;
   }
 .carousel-inner > .item > a > img{
   max-width: 100%;
