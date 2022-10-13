@@ -105,7 +105,7 @@ function price_format ($num) {
 }
 
 function title_fontsize ($str) {
-  $font_size = 0;
+  $font_size = '1.5rem';
   if (strlen($str) >= 18) {
       $font_size = '1.25rem';
   }

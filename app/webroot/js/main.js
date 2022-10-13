@@ -47,20 +47,23 @@ let apiSearch = q => {
       let str = ''
       $('.search-more').html('')
       $.each(data.results, function(key, item) {
-        var name = item.name 
-        if (name.length >= 18) {
-          name = `<span style="font-size:1.25rem!important">${name}</span>`
+        var size = '1.5rem'
+        if (item.name.length >= 18) {
+          size = '1.25rem'
         }
-        if (name.length >= 21) {
-          name = `<span style="font-size:1.15rem!important">${name}</span>`
+        if (item.name.length >= 21) {
+          size = '1.15rem'
         }
-        if (name.length >= 24) {
-          name = `<span style="font-size:1rem!important">${name}</span>`
+        if (item.name.length >= 24) {
+          size = '1rem'
+        }        
+        if (item.name.length >= 28) {
+          size = '0.75rem'
         }        
         str += '<div class="col-xs-6 col-md-3 col-lg-2 search-item animate fadeIn">' +
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 
             '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.discount_label ? '<div class="ribbon small bottom-left sp2"><span>' + item.discount_label + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
-            '<h2 class="text-center">'+name+'</h2>' + 
+            '<h2 class="text-center">'+`<span style="font-size:${size}!important">${item.name}</span>`+'</h2>' + 
             '<h3 class="price text-center">'+(item.old_price ? '<span class="old_price text-grey">$' + item.old_price + '</span>' : '') + '<span>$' + item.price + '</span></h3>' + 
           '</a>' + 
         '</div>'
