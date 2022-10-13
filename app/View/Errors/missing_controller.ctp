@@ -1,6 +1,6 @@
 <div class="notfound">
   <div class="container">
-    <h1 class="h1">501 Missing controller</h1>
+    <h1 class="h1">404 No encontrado</h1>
     <p>No pudimos encontrar el recurso que buscás, si pensás que es un error contactate con nosotros</p>
   </div>
   <hr>

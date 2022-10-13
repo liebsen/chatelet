@@ -173,8 +173,8 @@
 						<div class="icon-huge">
 							<i class="fa fa-warning grey"></i>
 						</div>
-						<h3 class="h3 text-center">Tu carrito de compras está vacío.</h3>
-						<div>Agregá al menos un producto para continuar.</div>
+						<h3 class="h3 text-center">Tu carrito de compras está vacío</h3>
+						<div>Agregá al menos un producto para continuar</div>
 					</div>
 					<br><br>
 					<?php endif;?>

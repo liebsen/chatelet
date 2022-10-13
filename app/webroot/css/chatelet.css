@@ -68,7 +68,7 @@ html, body {
 	min-height: 2.75rem;
 }
 
-.btn:hover {
+.btn:not(.btn-link):hover {
 	color:white!important;
 }
 

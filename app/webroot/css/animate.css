@@ -20,6 +20,11 @@
   animation-iteration-count: infinite;
 }
 
+.animated.slow {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
 .animated.hinge {
   -webkit-animation-duration: 2s;
   animation-duration: 2s;

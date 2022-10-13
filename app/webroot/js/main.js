@@ -2,7 +2,7 @@
 let searchInt = 0
 let searchPageSize = 12
 let searchPage = 0
-let focusAnim = 'tada'
+let focusAnim = 'shake'
 let loadMoreSearch = p => {
   searchPage = p
   $('.search-more a').text('Cargando...')
@@ -30,9 +30,9 @@ let focusEl = (text) => {
       scrollTop: $(text).offset().top
     }, 500)
     setTimeout(() => {
-      $(text).removeClass(`animated ${focusAnim}`)
-      $(text).addClass(`animated ${focusAnim}`)
-    }, 500)
+      $(text).removeClass(`animated slow ${focusAnim}`)
+      $(text).addClass(`animated slow ${focusAnim}`)
+    }, 1000)
   }
 }
 

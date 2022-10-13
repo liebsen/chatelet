@@ -220,7 +220,7 @@
 
         <?php elseif (count($popupBG)==1):?>
 
-            <div class="content js-show-modal is-clickable animated fadeIn slow delay3" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
+            <div class="content js-show-modal is-clickable animated fadeIn delay3" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
                 <div class="tap-to-continue animated fadeIn delay3">
                     Continuar <i class="fa fa-forward"></i>
                 </div>
