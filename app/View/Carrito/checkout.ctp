@@ -43,8 +43,9 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 								  <?php if($loggedIn): ?>
 								    <p class="card-text"><?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street_n'] ?: '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>)</p>
 								  <?php endif ?>
-								    <a href="/carrito" class="card-link">Modificar</a>
+								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link">Modificar</a>
 								    <span class="card-link is-clickable" onclick="toggleform()" class="card-link">Modificar dirección</span>
+								    <a href="/carrito#f:.beneficios-exclusivos" class="card-link">Ingresar cupón</a>
 								  </div>
 								</div>
 							</div>
@@ -62,7 +63,8 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 								    <p class="card-text">
 								    	<?= $data['carrito_takeaway_text'] ?>
 								    </p>
-								    <a href="/carrito" class="card-link">Modificar</a>
+								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link">Modificar</a>
+								    <a href="/carrito#f:.beneficios-exclusivos" class="card-link">Ingresar cupón</a>
 								  </div>
 								</div>
 							</div>
@@ -189,7 +191,9 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 <script>
 <?php if(!$loggedIn):?>	
 $(function(){
-	$('#particular-login').modal('show')
+	setTimeout(() => {
+		$('#particular-login').modal('show')
+	}, 1000)
 })
 <?php endif;?>
 </script>

@@ -23,6 +23,18 @@ let fxTotal = (total) => {
   }, 100)
 }
 
+let focusEl = (text) => { 
+  if ($(text) && !$(text).hasClass('hide')) {
+    $('html, body').animate({
+      scrollTop: $(text).offset().top
+    }, 500)
+    setTimeout(() => {
+      $(text).removeClass('animated shake')
+      $(text).addClass('animated shake')
+    }, 500)
+  }
+}
+
 let apiSearch = q => {    
   $.ajax({
     type: "POST",
@@ -176,17 +188,24 @@ $(function () {
       }
     }
   })
+
   /* trigger search from url */
 
-  const queryCode = 'q'
-  if(window.location.pathname === '/' && window.location.hash.indexOf(`${queryCode}:`) > -1) {
-    var q = window.location.hash.replace(`#${queryCode}:`, '')
-    if (q) {
-      localStorage.setItem('lastsearch', q)
-      $('#myModal').remove()
-      $('.action-search').click()
-      $('.input-search').val(q)
-      $('.input-search').keyup()
+  if (window.location.hash) {
+    const queryCode = 'q'
+    const focusCode = 'f'
+    if(window.location.pathname === '/' && window.location.hash.indexOf(`${queryCode}:`) > -1) {
+      var q = window.location.hash.replace(`#${queryCode}:`, '')
+      if (q) {
+        localStorage.setItem('lastsearch', q)
+        $('#myModal').remove()
+        $('.action-search').click()
+        $('.input-search').val(q)
+        $('.input-search').keyup()
+      }
+    }
+    if (window.location.hash.indexOf(`${focusCode}:`) > -1) {
+      focusEl(window.location.hash.replace(`#${focusCode}:`, ''))
     }
   }
 })

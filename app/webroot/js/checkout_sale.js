@@ -1,5 +1,6 @@
 function toggleform() {
 	$('.checkoutform-container').toggleClass('hide')
+	focusEl('.checkoutform-container')
 }
 
 $(function(){
