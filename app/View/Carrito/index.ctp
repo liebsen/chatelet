@@ -171,9 +171,9 @@
 					<?php else: ?>
 					<div class="container text-center">
 						<div class="icon-huge">
-							<i class="fa fa-bell-o grey"></i>
+							<i class="fa fa-warning grey"></i>
 						</div>
-						<h3 class="h3 text-center">El carrito de compras está vacío.</h3>
+						<h3 class="h3 text-center">Tu carrito de compras está vacío.</h3>
 						<div>Agregá al menos un producto para continuar.</div>
 					</div>
 					<br><br>
