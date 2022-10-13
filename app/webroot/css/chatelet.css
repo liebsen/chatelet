@@ -72,10 +72,28 @@ html, body {
 	color:white!important;
 }
 
-
 .font-system {
 	font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
-	white-space: break-spaces;	
+}
+
+.pre-system {
+	white-space: break-spaces;
+	line-height: 1.25;
+}
+.bg-info-i {
+  background-color: #d9edf7!important;
+}
+.bg-success-i {
+  background-color: #dff0d8!important;
+}
+.bg-danger-i {
+  background-color: #f2dede!important;
+}
+.bg-warning-i {
+  background-color: #e8ffa8!important;
+}
+.mw-26 {
+	max-width: 26rem;
 }
 
 .instructions {

@@ -155,7 +155,9 @@ $(function () {
     body.toggleClass('hide-side-content');
 
   });
-
+  $('body').click(() => {
+    $('.menuLayer').hide()
+  })
   $(window).scroll(function(e) {
     var scroll = $(window).scrollTop()
     if (scroll > 200) {

@@ -68,6 +68,7 @@ class AyudaController extends AppController {
 		}
 
 		$data = [];
+		$data['id'] = $id;
 		$map = $this->Setting->findById('display_text_shipping_min_price');
 		$data['display_text_shipping_min_price'] = $map['Setting']['value'];
 		$map = $this->Setting->findById('text_shipping_min_price');
