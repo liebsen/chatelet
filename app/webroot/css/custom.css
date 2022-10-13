@@ -110,6 +110,9 @@ label input[type=checkbox]:disabled + .label-text:before {
 .mt-4 {
   margin-top: 1rem!important;
 }
+.mt-8 {
+  margin-top: 1.5rem!important;
+}
 .mb-4 {
   margin-bottom: 1rem!important;
 }
