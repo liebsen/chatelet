@@ -697,8 +697,8 @@ class CarritoController extends AppController
 		$user['regalo'] = (isset($user['regalo']) && $user['regalo']?1:0);
 		if(!$this->request->is('post') || $user['cargo'] === 'shipment' && empty($user['postal_address']) || empty($user['street_n']) || empty($user['street']) || empty($user['localidad']) || empty($user['provincia']) || empty($user['name']) || empty($user['surname']) || empty($user['email']) || empty($user['telephone'])){
 			$this->Session->setFlash('Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.','default',array('class' => 'hidden error'));
-			error_log('checkout error')
-			error_log(json_encode($user))
+			error_log('checkout error');
+			error_log(json_encode($user));
 			$this->redirect(array( 'action' => 'clear' ));
 			die;
 		}
