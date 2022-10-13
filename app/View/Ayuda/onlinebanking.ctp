@@ -9,7 +9,7 @@
           <span class="h4 text-white">Monto a transferir $<?= number_format($data['total_price'], 2, ',', '.') ?></span>
         </div>
         <?php endif ?>
-        <p class="pre-system mt-4"><?= $data['onlinebanking_explain_text'] ?>
+        <p class="pre-system mt-4"><?= $data['onlinebanking_explain_text'] ?><br>Ref. #<?= $data['id'] ?></p>
       </div>
       <div class="col-md-6">
         <div class="box">
