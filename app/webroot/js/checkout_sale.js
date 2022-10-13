@@ -51,9 +51,9 @@ $(function(){
 	})
 
 	$('#checkoutform').submit(form => {
-		const submit = $(form.target).find('input[type="submit"]').first()
+		const submit = $('.checkout-btn')
 		submit.prop('disabled', true)
-		submit.val('Por favor espere...')
+		submit.text('Por favor espere...')
 
 		localStorage.removeItem('carrito')
 		fbq('track', 'InitiateCheckout')

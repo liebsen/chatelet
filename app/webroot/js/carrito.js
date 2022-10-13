@@ -262,6 +262,10 @@ $(document).ready(function() {
 			}
 		}
 
+		const submit = $('.cart-go-button')
+		submit.prop('disabled', true)
+		submit.text('Por favor espere...')
+
 		preferences.freeShipping = freeShipping
 		preferences.shipping = shipping
 		preferences.cargo = cargo
