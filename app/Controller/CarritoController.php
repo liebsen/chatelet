@@ -236,21 +236,19 @@ class CarritoController extends AppController
 
 	public function checkout()
 	{
-		$items = $this->Session->read('Carro');
-		if ($items) {
-			$oca = new Oca();
-			$provincias = $oca->getProvincias();
-			$this->set('provincias',$provincias);
-			$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
-			$map = $this->Setting->findById('carrito_takeaway_text');
-			$data = [];
-			$data['carrito_takeaway_text'] = $map['Setting']['extra'];
-			$this->set('data',$data);
-			$this->set('userData',$user);
-		} else {
+		if (!$this->Session->read('Carro')) {
 			$this->redirect(array( 'action' => 'clear' ));
 			die;
 		}
+		$oca = new Oca();
+		$provincias = $oca->getProvincias();
+		$this->set('provincias',$provincias);
+		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
+		$map = $this->Setting->findById('carrito_takeaway_text');
+		$data = [];
+		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
+		$this->set('data',$data);
+		$this->set('userData',$user);
 	}
 
 	private function getItemsData()
@@ -698,11 +696,9 @@ class CarritoController extends AppController
 		$user['coupon'] = (!empty($user['coupon']))?strtoupper($user['coupon']):'';
 		$user['regalo'] = (isset($user['regalo']) && $user['regalo']?1:0);
 		if(!$this->request->is('post') || $user['cargo'] === 'shipment' && empty($user['postal_address']) || empty($user['street_n']) || empty($user['street']) || empty($user['localidad']) || empty($user['provincia']) || empty($user['name']) || empty($user['surname']) || empty($user['email']) || empty($user['telephone'])){
-			$this->Session->setFlash(
-                'Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.',
-                'default',
-                array('class' => 'hidden error')
-            );
+			$this->Session->setFlash('Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.','default',array('class' => 'hidden error'));
+			error_log('checkout error')
+			error_log(json_encode($user))
 			$this->redirect(array( 'action' => 'clear' ));
 			die;
 		}

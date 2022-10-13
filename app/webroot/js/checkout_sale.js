@@ -58,8 +58,6 @@ $(function(){
 		localStorage.removeItem('carrito')
 		fbq('track', 'InitiateCheckout')
 		let items = []
-		console.log('carrito_items')
-		console.log(carrito_items)
 		if(carrito_items && carrito_items.length) {
 			carrito_items.forEach(e => {
 				items.push({
