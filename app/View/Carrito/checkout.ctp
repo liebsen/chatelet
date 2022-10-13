@@ -64,7 +64,7 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 								    	<?= $data['carrito_takeaway_text'] ?>
 								    </p>
 								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link">Modificar</a>
-								    <a href="/carrito#f:.beneficios-exclusivos" class="card-link">Ingresar cupón</a>
+								    <a href="/carrito#f:.shipment-options.takeaway" class="card-link">Modificar sucursal</a>
 								  </div>
 								</div>
 							</div>
@@ -93,6 +93,7 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 							          </label>
 							        </div>
 						        </div>
+								    <a href="/carrito#f:.beneficios-exclusivos" class="card-link">Ingresar cupón</a>
 								  </div>
 								</div>
 							</div>
