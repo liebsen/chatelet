@@ -45,7 +45,6 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 								  <?php endif ?>
 								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link">Modificar</a>
 								    <span class="card-link is-clickable" onclick="toggleform()" class="card-link">Modificar dirección</span>
-								    <a href="/carrito#f:.beneficios-exclusivos" class="card-link">Ingresar cupón</a>
 								  </div>
 								</div>
 							</div>
@@ -85,7 +84,7 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 							          	<p class="mt-4 text-small">Pagá con débito, crédito, rapipago través de Mercadopago</p>
 							        	</label>				          
 							        </div>
-							        <div class="col-sm-6 offset-md-1 text-center option-rounded">				          
+							        <div class="col-sm-6 offset-md-1 text-center option-rounded">
 							          <input type="radio" class="" id="enabled_0" name="payment_method" value="bank" required />
 							          <label for="enabled_0" class="d-inline">
 							          	<span class="h4">CBU/Alias</span><br>

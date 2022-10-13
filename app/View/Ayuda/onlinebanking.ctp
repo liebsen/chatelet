@@ -12,7 +12,7 @@
         <p class="pre-system mt-4"><?= $data['onlinebanking_explain_text'] ?><br>Ref. #<?= $data['id'] ?></p><br><br>
       </div>
       <div class="col-md-6">
-        <div class="box">
+        <div class="box enviar-comprobante">
           <h3 class="h3"><?= $data['onlinebanking_instructions_title'] ?></h3>
           <p class="pre-system font-system"><?= $data['onlinebanking_instructions_text'] ?></p>
           <div class="row mb-5">
