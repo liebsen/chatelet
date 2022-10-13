@@ -224,7 +224,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav>li>a {
   color: #404040;
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: 300;
   text-transform: uppercase;
   margin: 0; 
   padding: 0.75rem 0; 
@@ -315,7 +315,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   transform: rotate(-45deg);
 }
 .menuLayer img { margin-right: 50px; }
-.menuLayer h3 { color: #f50081; font-size: 1.25rem; font-weight: normal; text-transform: uppercase; margin-bottom: 30px; }
+.menuLayer h3 { color: #f50081; font-size: 1.25rem; font-weight: 600; text-transform: uppercase; margin-bottom: 30px; }
 .menuLayer ul { column-count: 3; column-gap: 40px; font-size: 1.25rem; }
 .menuLayer ul li { margin-bottom: 15px; }
 .menuLayer ul li a {
@@ -897,8 +897,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
     background-position: top center;
     background-size: cover;
   }
-	.navbar-nav { margin-left: 40px; }
-	.navbar-nav>li>a { margin: 0 5px; }
 
 	#carousel-example-generic .carousel-caption { padding-bottom: 100px; padding-top: 100px; }
 	#carousel-example-generic .carousel-caption h1 { font-size: 40px; }
@@ -982,8 +980,9 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
         position: relative;
     }
 
-	.navbar-nav { margin: 0; text-align: center; }
+	.navbar-nav { margin: 0; text-align: center; padding-top: 0.75rem;}
 	.navbar-nav > li { float: none; display: inline-block; }
+  .navbar-nav > li > a { font-size: 1.25rem;  }
 	.navbar-nav>li>a .badge { left: 5px; position: absolute; top: 5px; }
 
 	#carousel-example-generic .carousel-caption { left: 15%; width: 70%; }
@@ -1729,7 +1728,10 @@ span.count {
     font-weight: 900;
 }
 
-
+span.count.is-empty {
+  color: whitesmoke;
+  background-color: #e398c1;
+}
 
 
 
@@ -1743,8 +1745,8 @@ span.count {
         height: auto;
         padding: 0;
         width: 100%;
-        font-size: 16px;
-        padding-top: 12px;
+        font-size: 1.25rem;
+        padding: 0.75rem 0;
         text-align: center;
         color: #dc559f;
         margin: 0 auto;

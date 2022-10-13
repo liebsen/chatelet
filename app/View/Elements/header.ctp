@@ -108,7 +108,7 @@
             <?php } ?>
           </li><!-- /.Login -->
           <li class="dropdown">
-            <span class="count animated scaleIn speed delay2"><?=count($carro)?></span>
+            <span class="count <?=count($carro)?:'is-empty '?>animated scaleIn speed delay2"><?=count($carro)?></span>
             <a href="#" class="dropdown-toggle gotocart shop js-activated" data-toggle="dropdown" data-hover="dropdown">Mi pedido</a>
             <ul class="dropdown-menu">
               <li>

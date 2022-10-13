@@ -236,15 +236,21 @@ class CarritoController extends AppController
 
 	public function checkout()
 	{
-		$oca = new Oca();
-		$provincias = $oca->getProvincias();
-		$this->set('provincias',$provincias);
-		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
-		$map = $this->Setting->findById('carrito_takeaway_text');
-		$data = [];
-		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
-		$this->set('data',$data);
-		$this->set('userData',$user);
+		$items = $this->Session->read('Carro');
+		if ($items) {
+			$oca = new Oca();
+			$provincias = $oca->getProvincias();
+			$this->set('provincias',$provincias);
+			$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
+			$map = $this->Setting->findById('carrito_takeaway_text');
+			$data = [];
+			$data['carrito_takeaway_text'] = $map['Setting']['extra'];
+			$this->set('data',$data);
+			$this->set('userData',$user);
+		} else {
+			$this->redirect(array( 'action' => 'clear' ));
+			die;
+		}
 	}
 
 	private function getItemsData()

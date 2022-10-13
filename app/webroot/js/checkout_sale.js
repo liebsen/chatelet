@@ -51,31 +51,32 @@ $(function(){
 	})
 
 	$('#checkoutform').submit(form => {
-
 		const submit = $(form.target).find('input[type="submit"]').first()
 		submit.prop('disabled', true)
 		submit.val('Por favor espere...')
 
 		localStorage.removeItem('carrito')
-
-
 		fbq('track', 'InitiateCheckout')
-		let products = []
-		carrito.forEach(e => {
-			products.push({
-        'name': e.article,
-        'id': e.id,
-        'price': e.discount,
-        'brand': e.name,
-        'category': e.name,
-        'variant': e.alias,
-        'quantity': 1
+		let items = []
+		console.log('carrito_items')
+		console.log(carrito_items)
+		if(carrito_items && carrito_items.length) {
+			carrito_items.forEach(e => {
+				items.push({
+	        'name': e.article,
+	        'id': e.id,
+	        'price': e.discount,
+	        'brand': e.name,
+	        'category': e.name,
+	        'variant': e.alias,
+	        'quantity': 1
+				})
 			})
-		})
-		gtag('event', 'begin_checkout', {
-		  "items": products,
-		  "coupon": ""
-		})
+			gtag('event', 'begin_checkout', {
+			  "items": items,
+			  "coupon": ""
+			})
+		}
 		/*
 	  dataLayer.push({
 	    'event': 'checkout',
