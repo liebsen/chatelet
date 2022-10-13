@@ -80,7 +80,7 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 								    		<input type="radio" class="" id="enabled_1" name="payment_method" value="mercadopago" required />
 							          <label for="enabled_1" class="d-inline">
 							          	<span class="h4">Online</span><br>
-							          	<p class="mt-4 text-small">Pagá con débito, crédito, rapipago y más a través de Mercadopago</p>
+							          	<p class="mt-4 text-small">Pagá con débito, crédito, rapipago través de Mercadopago</p>
 							        	</label>				          
 							        </div>
 							        <div class="col-sm-6 offset-md-1 text-center option-rounded">				          
