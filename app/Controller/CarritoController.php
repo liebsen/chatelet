@@ -898,7 +898,7 @@ class CarritoController extends AppController
 
 		if ($user['payment_method'] === 'bank') {
 			$this->Session->delete('Carro');
-			return $this->redirect(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.enviar-comprobante' ));
+			return $this->redirect(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' ));
 		}
 
 		//MP

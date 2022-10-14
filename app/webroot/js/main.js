@@ -2,7 +2,7 @@
 let searchInt = 0
 let searchPageSize = 12
 let searchPage = 0
-let focusAnim = 'shake'
+let focusAnim = 'flash'
 let loadMoreSearch = p => {
   searchPage = p
   $('.search-more a').text('Cargando...')
@@ -26,13 +26,15 @@ let fxTotal = (total) => {
 
 let focusEl = (text) => { 
   if ($(text) && !$(text).hasClass('hide')) {
-    $('html, body').animate({
-      scrollTop: $(text).offset().top
-    }, 500)
+    if($(window).width() < 768) {
+      $('html, body').animate({
+        scrollTop: $(text).offset().top
+      }, 500)
+    }
     setTimeout(() => {
       $(text).removeClass(`animated slow ${focusAnim}`)
       $(text).addClass(`animated slow ${focusAnim}`)
-    }, 1000)
+    }, 800)
   }
 }
 
