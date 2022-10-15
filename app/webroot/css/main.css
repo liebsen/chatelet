@@ -642,7 +642,7 @@ body {
 
 .block-content {
     margin: 0;
-    padding: 20px 20px 5px;
+    padding: 20px 5px 20px;
     border: 2px solid #eee;
     border-top: none;
 }
