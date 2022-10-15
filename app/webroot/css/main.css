@@ -588,6 +588,12 @@ body {
     background-color: #fff;
 }
 
+.block-content .control-group {
+    border-bottom: 1px solid #ebebeb;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
 .block .block {
     margin: 0 0 15px;
 }
@@ -612,7 +618,7 @@ body {
 .block-title h4,
 .block-title h5,
 .block-title h6 {
-    display: inline-block;
+    /* display: inline-block; */
     padding: 12px 10px 10px;
     margin: 0;
     line-height: normal;
@@ -642,7 +648,7 @@ body {
 
 .block-content {
     margin: 0;
-    padding: 20px 5px 20px;
+    padding: 15px;
     border: 2px solid #eee;
     border-top: none;
 }
@@ -3736,10 +3742,6 @@ a.thumbnail-borderless,
 
     .block.block-tiles {
         margin-bottom: 4px;
-    }
-
-    .block-content {
-        padding: 15px 15px 5px;
     }
 
     .block-content.full,

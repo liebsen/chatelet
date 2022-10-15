@@ -1879,6 +1879,8 @@ public function promos(){
 		}
 
 		$data = [];
+		$map = $this->Setting->findById('onlinebanking_enable');
+		$data['onlinebanking_enable'] = @$map['Setting']['value'];
 		$map = $this->Setting->findById('onlinebanking_explain_title');
 		$data['onlinebanking_explain_title'] = @$map['Setting']['value'];
 		$map = $this->Setting->findById('onlinebanking_explain_text');
