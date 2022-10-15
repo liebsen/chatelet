@@ -1858,6 +1858,27 @@ public function promos(){
 		$data['text_shipping_min_price'] = $map['Setting']['value'];
 		$map = $this->Setting->findById('carrito_takeaway_text');
 		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
+
+		$this->set('data', $data);
+	}
+
+	public function cbualias() {
+		$h1 = array(
+			'name' => 'CBU/Alias',
+			'icon' => 'gi gi-bank'
+		);
+
+		$this->set('h1', $h1);
+		$this->set('navs', []);
+		$this->loadModel('Setting');
+
+		if ($this->request->is('post')) {
+      foreach($this->request->data as $id => $value) {
+      	$this->Setting->save(['id' => $id, 'value' => $value]);
+      }
+		}
+
+		$data = [];
 		$map = $this->Setting->findById('onlinebanking_explain_title');
 		$data['onlinebanking_explain_title'] = @$map['Setting']['value'];
 		$map = $this->Setting->findById('onlinebanking_explain_text');
@@ -1872,7 +1893,7 @@ public function promos(){
 		$data['onlinebanking_whatsapp'] = @$map['Setting']['value'];
 
 		$this->set('data', $data);
-	}
+	}	
 
   public function subscriptions($action = null) {
 		$navs = array(

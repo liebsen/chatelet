@@ -95,14 +95,14 @@
 								    		<input type="radio" class="" id="enabled_1" name="payment_method" value="mercadopago" required />
 							          <label for="enabled_1" class="d-inline">
 							          	<span class="h4">Online</span><br>
-							          	<p class="mt-4 text-small">Pagá con débito, crédito, rapipago través de Mercadopago</p>
+							          	<p class="mt-2 text-small">Pagá con débito, crédito, rapipago través de Mercadopago</p>
 							        	</label>				          
 							        </div>
 							        <div class="col-xs-12 option-rounded">
 							          <input type="radio" class="" id="enabled_0" name="payment_method" value="bank" required />
 							          <label for="enabled_0" class="d-inline">
 							          	<span class="h4">CBU/Alias</span><br>
-							          	<p class="mt-4 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
+							          	<p class="mt-2 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
 							          </label>
 							        </div>
 						        </div>
