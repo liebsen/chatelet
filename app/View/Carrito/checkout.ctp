@@ -1,11 +1,11 @@
-<script>
-const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETTY_PRINT);?>
-</script>
 <?php
 	echo $this->Html->css('checkout', array('inline' => false));
 	echo $this->Session->flash();
 	echo $this->Html->script('checkout_sale',array('inline' => false));
 ?>
+<script>
+	const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETTY_PRINT);?>
+</script>
 <div id="main" class="container">
 	<form role="form" method="post" id="checkoutform" action="<?php echo $this->Html->url(array(
 				'controller' => 'carrito',
@@ -30,7 +30,22 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 				<div class="carrito-row">
 					<div class="carrito-col">
 						<div class="carrito-items">
-							<div class="col-12 cargo-shipment hide">
+						<?php if($loggedIn): ?>
+							<div class="col-12">
+								<div class="card">
+								  <div class="card-body">
+								    <h5 class="card-title">
+								    	<i class="fa fa-user"></i>
+								    	<?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?>
+								    </h5>
+								    <h6 class="card-subtitle">DNI <?= $userData['User']['dni'] ?></h6>
+								    <p class="card-text"><?= $userData['User']['email'] ?></p>
+								    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="card-link">Modificar</span>
+								  </div>
+								</div>
+							</div>
+						<?php endif ?>						
+							<div class="col-12 mt-4-d cargo-shipment hide">
 								<div class="card">
 								  <div class="card-body">
 								    <h5 class="card-title">
@@ -44,11 +59,11 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 								    <p class="card-text"><?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street_n'] ?: '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>)</p>
 								  <?php endif ?>
 								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link">Modificar</a>
-								    <span class="card-link is-clickable" onclick="toggleform()" class="card-link">Modificar dirección</span>
+								    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="card-link">Modificar dirección</span>
 								  </div>
 								</div>
 							</div>
-							<div class="col-12 cargo-takeaway hide">
+							<div class="col-12 mt-4-d cargo-takeaway hide">
 								<div class="card">
 								  <div class="card-body">
 								    <h5 class="card-title">
@@ -67,8 +82,7 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 								  </div>
 								</div>
 							</div>
-
-							<div class="col-12 mt-4">
+							<div class="col-12 mt-4-d">
 								<div class="card">
 								  <div class="card-body">
 								    <h5 class="card-title">
@@ -92,29 +106,33 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 							          </label>
 							        </div>
 						        </div>
-								    <a href="/carrito#f:.beneficios-exclusivos" class="card-link">Ingresar cupón</a>
 								  </div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="carrito-col">
-					<?php if($loggedIn): ?>
 						<div class="col-12">
 							<div class="card">
 							  <div class="card-body">
 							    <h5 class="card-title">
-							    	<i class="fa fa-user"></i>
-							    	<?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?>
+							    	<i class="fa fa-pencil"></i>
+							    	Resumen de tu compra
 							    </h5>
-							    <h6 class="card-subtitle">DNI <?= $userData['User']['dni'] ?></h6>
-							    <p class="card-text"><?= $userData['User']['email'] ?></p>
-							    <span class="card-link is-clickable" onclick="toggleform()" class="card-link">Modificar</span>
+							    <h6 class="card-subtitle">
+							    	El total de tu compra es $<span class="total_price"></span>
+							    </h6>
+							    <p class="card-text">
+							    	$<span class="coupon"></span>
+							    </p>
+									<label class="form-group">
+									  <input type="checkbox" id="regalo" name="regalo"><span class="label-text">Es para regalo</span><br><br>
+									</label>
+								  <a href="/carrito#f:.beneficios-exclusivos" class="card-link">Ingresar cupón</a>
 							  </div>
 							</div>
-						</div>
-					<?php endif ?>						
-						<div class="col-12 checkoutform-container<?= !empty($userData['User']['id']) ? ' hide mt-4' : '' ?>">
+						</div>						
+						<div class="col-12 mt-4-d checkoutform-container">
 							<div class="row is-rounded">
 								<h3 class="">Ingresá tus datos para finalizar la compra</h3>
 								<input type="hidden" name="shipping" value=""/>
@@ -171,11 +189,6 @@ const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-12 mt-4 center">
-							<label class="form-group">
-							  <input type="checkbox" id="regalo" name="regalo"><span class="label-text">Es para regalo</span><br><br>
-							</label>
 						</div>
 					</div>					
 				</div>

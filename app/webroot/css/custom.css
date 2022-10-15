@@ -547,9 +547,19 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #carousel2 .carousel-control.left { left: 0%; }
 #carousel2 .carousel-control.right { right: 0%; }
 
-#headshop, #headabrigos {/*background: url(../images/headshop.jpg) no-repeat center center;*/ color: #FFF; font-size: 40px; font-weight: 600; height: 220px; /*padding-top: 90px;*/ text-align: center; }
+#headshop, #headabrigos {
+  /*background: url(../images/headshop.jpg) no-repeat center center;*/ 
+  display: contents;
+  color: #FFF; 
+  font-size: 40px; 
+  font-weight: 600; 
+  /* height: 220px; padding-top: 90px;*/ 
+  text-align: center; 
+  min-height: 10rem;
+  background-color: #ebebeb;
+}
 /*#headabrigos { background: url(../images/headabrigo.jpg) no-repeat center center; }*/
-#filters { /*background: #eaeaea;*/ margin-bottom: 100px; /*padding: 35px 0; */}
+#filters { /*background: #eaeaea;*/  /* margin-bottom: 100px; padding: 35px 0; */}
 #filters h3 { font-size: 16px; font-weight: 600; margin-bottom: 20px; }
 #filters .colors a { border-radius: 50%; display: inline-block; height: 20px; margin-right: 20px; width: 20px; }
 #filters .colors a.celeste { background: #71afd7; }
@@ -565,7 +575,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #filters .prices label span { border: 1px solid #000; cursor: pointer; display: inline-block; height: 20px; margin-right: 10px; padding: 3px; width: 20px; }
 #filters .prices label span i { background: #000; display: none; height: 12px; width: 100%; }
 #filters .prices label span.active i { display: block; }
-#listShop { padding-bottom: 100px; }
+#listShop { padding-bottom: 100px;}
 #listShop a { /*background: #e7e7e7;*/ display: block; margin-bottom: 30px; overflow: hidden; position: relative; }
 #listShop a img { height:20rem; opacity: 0.8; float: left; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 .hidden-force {
@@ -916,7 +926,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#lookbook h2 { font-size: 22px; }
 	#lookbook p, #lookbook .price, #lookbook .add { font-size: 16px; }
 
-	#headshop, #headabrigos { background-size: cover; height: 150px; /*padding-top: 50px;*/ }
+	#headshop, #headabrigos { background-size: cover; /*height: 150px; padding-top: 50px;*/ }
 
 	#filters h3 { font-size: 21px; }
 	#filters .colors a { height: 20px; margin-right: 10px; width: 20px; }
@@ -1100,7 +1110,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 	#productOptions nav { margin-bottom: 20px; }
 
-	#detalle { padding-top: 25px; }
+	#detalle { padding-top: 15px; }
 	#detalle .col-md-3 li { display: inline-block; }
 	#detalle .col-md-3 li a img { width: 90px; }
 	#detalle .col-sm-7 img { width: 100%!important; }
@@ -1262,8 +1272,8 @@ span.out{
     z-index: 0;
     height: auto;
     background: #eaeaea;
-    margin-bottom: 100px;
     padding: 0;
+    margin:0;
 }
 
 .is-background-cover {
@@ -1841,9 +1851,11 @@ span.count.is-empty {
   padding: 0.75rem 0.5rem;
   padding-bottom: 0.5rem;
   background-color: #f1f1f1;
+  display: grid;
 }
 
 .is-rounded-content {
+  display: inline-block;
   padding: 0.75rem;
 }
 
@@ -2081,13 +2093,22 @@ span.count.is-empty {
   .old_price {
     font-size: 1rem;
   }
+  .agregar-carro {
+    margin-top: 1rem;
+  }
+  .card {
+    border-bottom: 1px solid #e2e2e2;
+  }
 }
 
 @media screen and (min-width:769px), print {
   .w-mobile {
     max-width: 25rem;
     margin: auto;
-  }  
+  }
+  .mt-4-d {
+    margin-top: 1rem!important;
+  }
   .desktop {
     display: block;
   }
@@ -2123,7 +2144,6 @@ span.count.is-empty {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: 0px;
   }
-
   .is-flex-end {
     flex-direction: row;
   }
@@ -2146,7 +2166,7 @@ span.count.is-empty {
   }
   #opts a { max-height: 315px; }
   #detalle .caract .add {min-width: 15rem; }
-
+  #listShop { padding-top: 1.25rem; }
   footer > .wrapper {
     padding: 0 2rem;
   }  
