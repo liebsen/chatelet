@@ -26,15 +26,16 @@ let fxTotal = (total) => {
 
 let focusEl = (text) => { 
   if ($(text) && !$(text).hasClass('hide')) {
-    if($(window).width() < 768) {
+    let position = $(text).offset().top
+    if(position > $(window).height()) {
       $('html, body').animate({
-        scrollTop: $(text).offset().top
+        scrollTop: position
       }, 500)
     }
     setTimeout(() => {
       $(text).removeClass(`animated slow ${focusAnim}`)
       $(text).addClass(`animated slow ${focusAnim}`)
-    }, 800)
+    }, 1000)
   }
 }
 
