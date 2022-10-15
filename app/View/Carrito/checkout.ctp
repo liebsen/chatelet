@@ -91,14 +91,14 @@
 								    </h5>
 								    <h6 class="card-subtitle">Total $<span class="total_price"></span>.  Seleccioná un método de pago</h6>
 								    <div class="row payment-method">
-								    	<div class="col-sm-6 text-center option-rounded">
+								    	<div class="col-xs-12 option-rounded">
 								    		<input type="radio" class="" id="enabled_1" name="payment_method" value="mercadopago" required />
 							          <label for="enabled_1" class="d-inline">
 							          	<span class="h4">Online</span><br>
 							          	<p class="mt-4 text-small">Pagá con débito, crédito, rapipago través de Mercadopago</p>
 							        	</label>				          
 							        </div>
-							        <div class="col-sm-6 offset-md-1 text-center option-rounded">
+							        <div class="col-xs-12 option-rounded">
 							          <input type="radio" class="" id="enabled_0" name="payment_method" value="bank" required />
 							          <label for="enabled_0" class="d-inline">
 							          	<span class="h4">CBU/Alias</span><br>

@@ -138,29 +138,29 @@
 								</label>
 							</div>
 							<?php if($freeShipping):?>
-							<div class="field text-right free-shipping animated speed">
+							<div class="summary-item text-right free-shipping animated speed">
 								<div class="price text-success">
 									<span class="text-weight-thin">Envío </span>
 									<span id="delivery_cp"></span> <span>gratuito</span></div>
 							</div>
 							<?php else: ?>
-							<div class="field text-right delivery-cost hidden animated speed">
+							<div class="summary-item text-right delivery-cost hidden animated speed">
 								<div class="price text-dark">
 									<span class="text-weight-thin">Envía </span>
 									<span id="delivery_cp"></span> <span class="cost_delivery">0</span></div>
 							</div>
 							<?php endif ?>
-							<div class="field text-right products-total">
+							<div class="summary-item text-right products-total">
 								<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= str_replace(',00','',$this->Number->currency($total + $promosaved, 'ARS', array('places' => 2))) ?></div>
 							</div>
-							<div class="field text-right <?= $promosaved ? '' : 'hidden' ?> animated speed">
+							<div class="summary-item text-right <?= $promosaved ? '' : 'hidden' ?> animated speed">
 								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="">PROMO</span> <span><?= str_replace(',00','',$this->Number->currency($promosaved, 'ARS', array('places' => 2))) ?></span><!--span>.00</span--></div>
 							</div>
-							<div class="field text-right coupon-discount hidden animated speed">
+							<div class="summary-item text-right coupon-discount hidden animated speed">
 								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="promo-code"></span> <span class="coupon_bonus">0</span><!--span>.00</span--></div>
 							</div>							
 							<hr>
-							<div class="field text-right">
+							<div class="summary-item text-right">
 								<div class="cost_total-container animated speed fadeIn delay">
 									<!--hr-->
 									<div class="price is-large"><span class="text-weight-thin">Total </span> <span class="cost_total"><?= str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))) ?></span><!--span>.00</span--></div>
