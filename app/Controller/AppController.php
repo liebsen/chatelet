@@ -68,6 +68,8 @@ class AppController extends Controller
     }
 
     public function beforeFilter() {
+        require __DIR__ . '/../functions.php';
+
         $this->Auth->allow();
         $this->set('loggedIn', $this->Auth->loggedIn());
         $this->set('user', $this->Auth->user());

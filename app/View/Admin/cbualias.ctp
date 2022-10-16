@@ -16,9 +16,8 @@
     <form action="" method="post" class="form-inline">
       <div class="row">
         <div class="col-md-6">
-          <h4 class="sub-header">Información bancaria</h4>
+          <h4 class="sub-header">Activar pagos CBU/Alias en la tienda</h4>
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Activar pagos CBU/Alias en la tienda'); ?></label>
             <div class="controls">
               <?php
                 $enabled = $data['onlinebanking_enable'] == 1 ? 'checked' : '';
@@ -30,7 +29,9 @@
               <input type="radio" class="form-control" id="enabled_0" name="data[onlinebanking_enable]" value="0" <?php echo $disabled; ?> />
             </div>
             <span class="text-muted">Indica si están habilitados los pagos por CBU/Alias desde la tienda.</span>
-          </div>               
+          </div>
+          <br>
+          <h4 class="sub-header">Información bancaria</h4>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Datos bancarios'); ?></label>
             <div class="controls">

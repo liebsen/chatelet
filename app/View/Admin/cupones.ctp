@@ -10,11 +10,12 @@
 				<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Beneficio'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Activo'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Vigente'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($coupons as $key => $coupon): ?>        
+			<?php foreach ($coupons as $key => $coupon): ?> 
 				<tr>
 					<td>
 						<?=$coupon['Coupon']['code']?>
@@ -24,6 +25,9 @@
 					</td>
 					<td>
 						<?=$coupon['Coupon']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
+					</td>
+					<td>
+						<?=\filtercoupon($coupon)->status !== 'error' ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
 					</td>
 					<td>
 						<div class="btn-group">   

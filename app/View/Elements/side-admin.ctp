@@ -44,6 +44,7 @@
                                 // Get link's vital info
                                 $url = (isset($link['url']) && $link['url']) ? Router::url($link['url']) : '#';
                                 $active = (isset($link['url']) && ($template['active_page'] == $link['url'])) ? ' active' : '';
+                                $update = !empty($link['update']) ? ' update' : '';
                                 $icon = (isset($link['icon']) && $link['icon']) ? '<i class="' . $link['icon'] . '"></i>' : '';
 
                                 // Check if we need add the class active to the li element (only if a sublink is active)
@@ -71,8 +72,8 @@
                                     $menu_link = 'menu-link';
                                 }
 
-                                if ($menu_link || $active)
-                                    $link_class = ' class="'. $menu_link . $active .'"';
+                                if ($menu_link || $active || $update)
+                                    $link_class = ' class="'. $menu_link . $active . $update . '"';
                             ?>
                             <li<?php echo $li_active; ?>>
                                 <a href="<?php echo $url; ?>"<?php echo $link_class; ?>><?php echo $icon . $link['name']; ?></a>

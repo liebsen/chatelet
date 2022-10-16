@@ -99,33 +99,7 @@ if (!empty($failed)) {
 	trigger_error("CakePHP core could not be found. Check the value of CAKE_CORE_INCLUDE_PATH in APP/webroot/index.php. It should point to the directory containing your " . DS . "cake core directory and your " . DS . "vendors root directory.", E_USER_ERROR);
 }
 
-function price_format ($num) {
-	$num = number_format((float) $num, 2, ',', '.');
-	return str_replace(',00','', $num);
-}
-
-function title_fontsize ($str) {
-  $font_size = '1.5rem';
-  if (strlen($str) >= 18) {
-      $font_size = '1.25rem';
-  }
-  if (strlen($str) >= 20) {
-      $font_size = '1.15rem';
-  }
-  if (strlen($str) >= 24) {
-      $font_size = '1rem';
-  }
-  if (strlen($str) >= 28) {
-      $font_size = '0.75rem';
-  }  
-  if ($font_size){
-      $str = '<span style="font-size:'.$font_size.'!important">'.$str.'</span>';
-  }
-	return $str;
-}
-
 App::uses('Dispatcher', 'Routing');
-
 $Dispatcher = new Dispatcher();
 $Dispatcher->dispatch(
 	new CakeRequest(),

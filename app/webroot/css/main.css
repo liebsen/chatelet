@@ -487,6 +487,7 @@ body {
 
 #primary-nav li a {
     display: block;
+    position: relative;
     color: #eee;
     padding: 10px 10px 8px;
     border-left-width: 0;
@@ -512,6 +513,17 @@ body {
     border: 0;
 }
 
+#primary-nav li a.update:after {
+    content:"";
+    font-size: 1rem;
+    background-color: lightgreen;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 100%;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+}
 #primary-nav a > i {
     width: 20px;
     text-align: center;

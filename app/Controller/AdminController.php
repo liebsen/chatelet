@@ -9,7 +9,7 @@ $dotenv->load();
 use AlejoASotelo\Andreani;
 
 class AdminController extends AppController {
-	public $uses = array('AdminMenu','Promo','Package','SaleProduct','Sale');
+	public $uses = array('AdminMenu','Promo','Package','SaleProduct','Sale','Setting');
 	//public $components = array('SQL', 'RequestHandler');
 	public $components = array('RequestHandler');
 
@@ -47,13 +47,40 @@ class AdminController extends AppController {
 
 		// Primary navigation array (the primary navigation will be created automatically based on this array, up to 3 level deep)
 		$menu = $this->AdminMenu->find('all');
+
+		$data = [];
+		$map = $this->Setting->findById('onlinebanking_enable');
+		$onlinebanking_enable = @$map['Setting']['value'];
+		$coupon_enable = self::couponsAvailable();
+		foreach($menu as $i => $v) {
+			if($v['url']==='/admin/cupones'){
+				$menu[$i]['update'] = !empty($coupon_enable);
+			}
+			if($v['url']==='/admin/cbualias'){
+				$menu[$i]['update'] = !empty($onlinebanking_enable);
+			}
+		}
 		$this->set('primary_nav', $menu);
-
-
 		$this->Auth->loginAction = array('controller' => 'admin', 'action' => 'login');
 		$this->Auth->logoutRedirect = array('controller' => 'admin', 'action' => 'login');
 		$this->Auth->unauthorizedRedirect = array('controller' => 'admin', 'action' => 'login');
 		$this->layout = 'admin';
+	}
+
+	public function couponsAvailable(){
+		$this->loadModel('Coupon');
+		$available = false;
+		$map = $this->Coupon->find('all', [
+			'conditions' => [
+				'enabled' => 1
+			]
+		]);
+		foreach($map as $item) {
+			if (\filtercoupon($item)->status !== 'error') {
+				$available = true;
+			}
+		}
+		return $available;
 	}
 
 	public function test2() {
@@ -1533,7 +1560,7 @@ public function promos(){
 					$this->set('sel', true);
 					$h1 = [
 						'name' => 'Nueva logística',
-						'icon' => 'gi gi-cargo'
+						'icon' => 'gi gi-truck'
 					];
 					$this->set('h1', $h1);  					
     			return $this->render('logistica-detail');
@@ -1564,7 +1591,7 @@ public function promos(){
     			$prices = $this->LogisticsPrices->find('all', ['conditions' => ['logistic_id' => $this->request->pass[1]]]);
 					$h1 = [
 						'name' => $logistic['Logistic']['title'],
-						'icon' => 'gi gi-cargo'
+						'icon' => 'gi gi-truck'
 					];
 					$this->set('h1', $h1);    			
 	    		$this->set('logistic', $logistic);
@@ -1576,7 +1603,7 @@ public function promos(){
     $logistics = $this->Logistic->find('all');
 		$h1 = [
 			'name' => 'Logística',
-			'icon' => 'gi gi-cargo'
+			'icon' => 'gi gi-truck'
 		];
 		$this->set('h1', $h1);      
     $this->set('logistics', $logistics);
