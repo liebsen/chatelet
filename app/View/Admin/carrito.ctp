@@ -9,7 +9,6 @@
 <div class="block block-themed">
   <div class="block-title">
     <h4>Configuración de carrito</h4>
-    </h4>
   </div>
 
   <div class="block-content">

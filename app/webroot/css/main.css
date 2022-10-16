@@ -795,7 +795,7 @@ body {
 
 /* Mini Sidebar Profile */
 .mini-profile {
-    padding: 30px 10px;
+    padding: 1rem;
     background: white;
 }
 
@@ -2650,6 +2650,11 @@ label,
 
 label {
     font-weight: normal;
+    cursor: pointer;
+}
+
+.datepicker {
+    padding: 0.25rem 1.25rem;
 }
 
 .control-label {

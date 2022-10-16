@@ -49,15 +49,15 @@ class AdminController extends AppController {
 		$menu = $this->AdminMenu->find('all');
 
 		$data = [];
-		$map = $this->Setting->findById('onlinebanking_enable');
-		$onlinebanking_enable = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_enable');
+		$bank_enable = @$map['Setting']['value'];
 		$coupon_enable = self::couponsAvailable();
 		foreach($menu as $i => $v) {
 			if($v['url']==='/admin/cupones'){
 				$menu[$i]['update'] = !empty($coupon_enable);
 			}
-			if($v['url']==='/admin/cbualias'){
-				$menu[$i]['update'] = !empty($onlinebanking_enable);
+			if($v['url']==='/admin/bank'){
+				$menu[$i]['update'] = !empty($bank_enable);
 			}
 		}
 		$this->set('primary_nav', $menu);
@@ -67,7 +67,7 @@ class AdminController extends AppController {
 		$this->layout = 'admin';
 	}
 
-	public function couponsAvailable(){
+	private function couponsAvailable(){
 		$this->loadModel('Coupon');
 		$available = false;
 		$map = $this->Coupon->find('all', [
@@ -1889,7 +1889,7 @@ public function promos(){
 		$this->set('data', $data);
 	}
 
-	public function cbualias() {
+	public function bank() {
 		$h1 = array(
 			'name' => 'CBU/Alias',
 			'icon' => 'gi gi-bank'
@@ -1906,20 +1906,26 @@ public function promos(){
 		}
 
 		$data = [];
-		$map = $this->Setting->findById('onlinebanking_enable');
-		$data['onlinebanking_enable'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('onlinebanking_explain_title');
-		$data['onlinebanking_explain_title'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('onlinebanking_explain_text');
-		$data['onlinebanking_explain_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('onlinebanking_instructions_title');
-		$data['onlinebanking_instructions_title'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('onlinebanking_instructions_text');
-		$data['onlinebanking_instructions_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('onlinebanking_total_text');
-		$data['onlinebanking_total_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('onlinebanking_whatsapp');
-		$data['onlinebanking_whatsapp'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_enable');
+		$data['bank_enable'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_explain_title');
+		$data['bank_explain_title'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_explain_text');
+		$data['bank_explain_text'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_instructions_title');
+		$data['bank_instructions_title'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_instructions_text');
+		$data['bank_instructions_text'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_total_text');
+		$data['bank_total_text'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_whatsapp');
+		$data['bank_whatsapp'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_discount_enable');
+		$data['bank_discount_enable'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_discount');
+		$data['bank_discount'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_discount_text');
+		$data['bank_discount_text'] = @$map['Setting']['value'];
 
 		$this->set('data', $data);
 	}	

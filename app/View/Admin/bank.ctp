@@ -9,9 +9,7 @@
 <div class="block block-themed">
   <div class="block-title">
     <h4>CBU/Alias y Descuentos</h4>
-    </h4>
   </div>
-
   <div class="block-content">
     <form action="" method="post" class="form-inline">
       <div class="row">
@@ -20,77 +18,93 @@
           <div class="control-group">
             <div class="controls">
               <?php
-                $enabled = $data['onlinebanking_enable'] == 1 ? 'checked' : '';
-                $disabled = $data['onlinebanking_enable'] == 0 ? 'checked' : '';
+                $enabled = $data['bank_enable'] == 1 ? 'checked' : '';
+                $disabled = $data['bank_enable'] == 0 ? 'checked' : '';
               ?>
               <label for="enabled_1">Activo</label>
-              <input type="radio" class="form-control" id="enabled_1" name="data[onlinebanking_enable]" value="1" <?php echo $enabled; ?> /> &nbsp;
+              <input type="radio" class="form-control" id="enabled_1" name="data[bank_enable]" value="1" <?php echo $enabled; ?> /> &nbsp;
               <label for="enabled_0">Inactivo</label>
-              <input type="radio" class="form-control" id="enabled_0" name="data[onlinebanking_enable]" value="0" <?php echo $disabled; ?> />
+              <input type="radio" class="form-control" id="enabled_0" name="data[bank_enable]" value="0" <?php echo $disabled; ?> />
             </div>
             <span class="text-muted">Indica si están habilitados los pagos por CBU/Alias desde la tienda.</span>
           </div>
           <br>
+         <h4 class="sub-header">Descuento por pago con CBU/Alias (%)</h4>
+          <div class="control-group">
+            <div class="controls">
+              <?php
+                $enabled = @$data['bank_discount_enable'] == 1 ? 'checked' : '';
+                $disabled = @$data['bank_discount_enable'] == 0 ? 'checked' : '';
+              ?>
+              <label for="enabled_11">Activo</label>
+              <input type="radio" class="form-control" id="enabled_11" name="data[bank_discount_enable]" value="1" <?php echo $enabled; ?> /> &nbsp;
+              <label for="enabled_10">Inactivo</label>
+              <input type="radio" class="form-control" id="enabled_10" name="data[bank_discount_enable]" value="0" <?php echo $disabled; ?> />
+            </div>
+            <span class="text-muted">Indica si están habilitado el descuento por los pagos por CBU/Alias desde la tienda.</span>
+          </div>
+          <br>          
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Descuento para pagos por CBU/Alias'); ?></label>
+            <div class="controls">
+              <input type="number" max="100" min="0" name="bank_discount" class="form-control w-100" value="<?= @$data['bank_discount'] ?>"/>
+            </div>
+            <span class="text-muted">Porcentaje de descuento para pagos con CBU/Alias. (Ej: 10%, 20%, etc)</span>              
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Desarrolla Datos bancarios'); ?></label>
+            <div class="controls">
+              <textarea name="bank_discount_text" class="form-control w-100"><?= @$data['bank_discount_text'] ?></textarea>
+            </div>
+            <span class="text-muted">Desarrolla los descuentos para pagos por CBU/Alias</span>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+                     
           <h4 class="sub-header">Información bancaria</h4>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Datos bancarios'); ?></label>
             <div class="controls">
-              <input name="onlinebanking_explain_title" class="form-control w-100" value="<?= @$data['onlinebanking_explain_title'] ?>"/>
+              <input name="bank_explain_title" class="form-control w-100" value="<?= @$data['bank_explain_title'] ?>"/>
             </div>
             <span class="text-muted">Título antes de mostrar los datos bancarios. (Ej: Datos para completar tu compra)</span>              
           </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Desarrolla Datos bancarios'); ?></label>
             <div class="controls">
-              <textarea name="onlinebanking_explain_text" class="form-control w-100"><?= @$data['onlinebanking_explain_text'] ?></textarea>
+              <textarea name="bank_explain_text" class="form-control w-100"><?= @$data['bank_explain_text'] ?></textarea>
             </div>
             <span class="text-muted">Indica los datos de cuenta bancaria para que los clientes puedan pagar via trasnferencia. Ej: CBU, Alias, etc... </span>
           </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Instrucciones de la operación'); ?></label>
             <div class="controls">
-              <input name="onlinebanking_instructions_title" class="form-control w-100" value="<?= @$data['onlinebanking_instructions_title'] ?>"/>
+              <input name="bank_instructions_title" class="form-control w-100" value="<?= @$data['bank_instructions_title'] ?>"/>
             </div>
             <span class="text-muted">Título antes de mostrar los datos bancarios. (Ej: Datos para completar tu compra)</span>              
           </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('WhatsApp para enviar comprobante'); ?></label>
             <div class="controls">
-              <input type="number" name="onlinebanking_whatsapp" class="form-control w-100" value="<?= @$data['onlinebanking_whatsapp'] ?>"/>
+              <input type="number" name="bank_whatsapp" class="form-control w-100" value="<?= @$data['bank_whatsapp'] ?>"/>
             </div>
             <span class="text-muted">Poné tu número de WhatsApp para que te puedan enviar el comprobante. (Ej: 541147022997)</span>            
           </div> 
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Desarrolla Instrucciones de la operación'); ?></label>
             <div class="controls">
-              <textarea name="onlinebanking_instructions_text" class="form-control w-100"><?= @$data['onlinebanking_instructions_text'] ?></textarea>
+              <textarea name="bank_instructions_text" class="form-control w-100"><?= @$data['bank_instructions_text'] ?></textarea>
             </div>
             <span class="text-muted">Indica las instrucciones complementarias para enviar los comprobantes. Ej: enviar comprobante por whatsapp al siguiente número...</span>
           </div>
           <!--div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Monto total de la operación'); ?></label>
             <div class="controls">
-              <input name="onlinebanking_total_text" class="form-control w-100" value="<?= @$data['onlinebanking_total_text'] ?>"/>
+              <input name="bank_total_text" class="form-control w-100" value="<?= @$data['bank_total_text'] ?>"/>
             </div>
             <span class="text-muted">Texto que que se muestra antes de informar sobre el monto total de la operación. (Ej: Monto a transferir para esta operación)</span>             
-          </div-->             
-        </div>
-        <div class="col-md-6">
-          <h4 class="sub-header">Descuentos</h4>
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Datos bancarios'); ?></label>
-            <div class="controls">
-              <input name="onlinebanking_explain_title" class="form-control w-100" value="<?= @$data['onlinebanking_explain_title'] ?>"/>
-            </div>
-            <span class="text-muted">Título antes de mostrar los datos bancarios. (Ej: Datos para completar tu compra)</span>              
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Desarrolla Datos bancarios'); ?></label>
-            <div class="controls">
-              <textarea name="onlinebanking_explain_text" class="form-control w-100"><?= @$data['onlinebanking_explain_text'] ?></textarea>
-            </div>
-            <span class="text-muted">Indica los datos de cuenta bancaria para que los clientes puedan pagar via trasnferencia. Ej: CBU, Alias, etc... </span>
-          </div>
+          </div-->  
         </div> 
       </div>
       <br />               
