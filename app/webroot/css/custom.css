@@ -430,7 +430,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 #location .col-md-8 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
 #location .col-md-8 ul li:last-child:before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
 
-#suscribe { background: #e6e6e6; color: #333; font-size: 1.25rem; font-weight: 400; overflow: hidden; padding: 25px 0; }
+#suscribe { background: #e6e6e6; color: #333; font-size: 1.25rem; font-weight: 400; overflow: hidden; padding: 2.5rem 0; }
 #suscribe .col-md-6:first-child { padding-top: 0.5rem; padding-bottom: 0.5rem; }
 /* #suscribe .col-md-6:last-child:before { background: url(../images/sprite.png) no-repeat -82px -171px; content: ""; display: block; float: left; height: 47px; margin-right: 20px; width: 62px; } */
 #suscribe .h3 { margin-top: 0; }
