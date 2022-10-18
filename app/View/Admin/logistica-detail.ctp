@@ -30,9 +30,9 @@
                   $enabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 1 || !isset($logistic)) ? 'checked' : '';
                   $disabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 0) ? 'checked' : '';
                 ?>
-                <label for="enabled_1">Activo</label>
+                <label for="enabled_1">Sí</label>
                 <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp;
-                <label for="enabled_0">Inactivo</label>
+                <label for="enabled_0">No</label>
                 <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
               </div>
               <small class="text-muted">Indica el estado de esta logística. En caso de inactivo el cliente no podrá utilizar esta opción.</small>
@@ -207,9 +207,9 @@
         <div class="control-group">
           <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
           <div class="controls">
-            <label for="enabled_1">Activo</label>
+            <label for="enabled_1">Sí</label>
             <input type="radio" id="enabled_1" name="enabled" value="1" /> &nbsp;
-            <label for="enabled_0">Inactivo</label>
+            <label for="enabled_0">No</label>
             <input type="radio" id="enabled_0" name="enabled" value="0" />
           </div>
         </div>

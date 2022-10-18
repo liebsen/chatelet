@@ -24,9 +24,9 @@
                 $enabled = $data['display_text_shipping_min_price'] == 1 ? 'checked' : '';
                 $disabled = $data['display_text_shipping_min_price'] == 0 ? 'checked' : '';
               ?>
-              <label for="enabled_1">Activo</label>
+              <label for="enabled_1">Sí</label>
               <input type="radio" class="form-control" id="enabled_1" name="data[display_text_shipping_min_price]" value="1" <?php echo $enabled; ?> /> &nbsp;
-              <label for="enabled_0">Inactivo</label>
+              <label for="enabled_0">No</label>
               <input type="radio" class="form-control" id="enabled_0" name="data[display_text_shipping_min_price]" value="0" <?php echo $disabled; ?> />
             </div>
             <span class="text-muted">Indica si debe mostrarse un mensaje para alentar al cliente a obtener un envío gratis agregando más productos a su carrito.</span>

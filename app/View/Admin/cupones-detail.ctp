@@ -32,8 +32,8 @@
                 $enabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '1') || !isset($coupon) ? 'checked' : '';
                 $disabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '0') ? 'checked' : '';
               ?>
-              <label for="enabled_1">Activo</label> <input type="radio" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
-              <label for="enabled_0">Inactivo</label> <input type="radio" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
+              <label for="enabled_1">Sí</label> <input type="radio" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
+              <label for="enabled_0">No</label> <input type="radio" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
             </div>
             <small class="text-muted">Estado principal de este Cupón</small>
           </div>        

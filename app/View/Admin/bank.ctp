@@ -21,15 +21,15 @@
                 $enabled = $data['bank_enable'] == 1 ? 'checked' : '';
                 $disabled = $data['bank_enable'] == 0 ? 'checked' : '';
               ?>
-              <label for="enabled_1">Activo</label>
+              <label for="enabled_1">Sí</label>
               <input type="radio" class="form-control" id="enabled_1" name="data[bank_enable]" value="1" <?php echo $enabled; ?> /> &nbsp;
-              <label for="enabled_0">Inactivo</label>
+              <label for="enabled_0">No</label>
               <input type="radio" class="form-control" id="enabled_0" name="data[bank_enable]" value="0" <?php echo $disabled; ?> />
             </div>
             <span class="text-muted">Indica si están habilitados los pagos por CBU/Alias desde la tienda.</span>
           </div>
           <br>
-          <h4 class="sub-header">Descuento por pago con CBU/Alias (%)</h4>
+          <h4 class="sub-header">Descuento por pago con CBU/Alias</h4>
           <div class="row">
             <div class="col-md-6">
               <div class="control-group">
@@ -38,9 +38,9 @@
                     $enabled = @$data['bank_discount_enable'] == 1 ? 'checked' : '';
                     $disabled = @$data['bank_discount_enable'] == 0 ? 'checked' : '';
                   ?>
-                  <label for="enabled_11">Activo</label>
+                  <label for="enabled_11">Sí</label>
                   <input type="radio" class="form-control" id="enabled_11" name="data[bank_discount_enable]" value="1" <?php echo $enabled; ?> /> &nbsp;
-                  <label for="enabled_10">Inactivo</label>
+                  <label for="enabled_10">No</label>
                   <input type="radio" class="form-control" id="enabled_10" name="data[bank_discount_enable]" value="0" <?php echo $disabled; ?> />
                 </div>
                 <span class="text-muted">Indica si están habilitado el descuento por los pagos por CBU/Alias desde la tienda.</span>
@@ -48,9 +48,9 @@
             </div>
             <div class="col-md-6">
               <div class="control-group">
-                <label class="control-label" for="columns-text"><?php echo __('Descuento para pagos por CBU/Alias'); ?></label>
+                <label class="control-label" for="columns-text"><?php echo __('Descuento (%)'); ?></label>
                 <div class="controls">
-                  <input type="number" max="100" min="0" name="bank_discount" class="form-control w-100" value="<?= @$data['bank_discount'] ?>"/>
+                  <input type="number" max="100" min="0" name="bank_discount" class="form-control w-100" value="<?= @$data['bank_discount'] ?>" <?= $disabled ? 'disabled': '' ?>/>
                 </div>
                 <span class="text-muted">Porcentaje de descuento para pagos con CBU/Alias. (Ej: 10%, 20%, etc)</span>              
               </div>
