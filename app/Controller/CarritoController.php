@@ -244,9 +244,16 @@ class CarritoController extends AppController
 		$provincias = $oca->getProvincias();
 		$this->set('provincias',$provincias);
 		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
-		$map = $this->Setting->findById('carrito_takeaway_text');
 		$data = [];
+		$map = $this->Setting->findById('carrito_takeaway_text');
 		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
+		$map = $this->Setting->findById('bank_enable');
+		$data['bank_enable'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_discount_enable');
+		$data['bank_discount_enable'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_discount');
+		$data['bank_discount'] = @$map['Setting']['value'];
+
 		$this->set('data',$data);
 		$this->set('userData',$user);
 	}

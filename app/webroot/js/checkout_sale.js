@@ -1,39 +1,11 @@
-function toggleform() {
-	$('.checkoutform-container').toggleClass('hide')
-	focusEl('.checkoutform-container')
-}
-
 $(function(){
-	//Events
-	/* $('[name="provincia"]').change(function(event){
-		var province_id 	= $(this).find('option:selected').data('id');
-		var province_name 	= $(this).find('option:selected').html();
-		var url 			= $(this).data('url');
-		$('[name="localidad"]').empty();
-
-		if(province_id){
-			$.ajax({
-				url: url+'/'+province_id,
-				type: 'GET',
-				dataType: 'json',
-				data: {},
-			})
-			.done(function(data) {
-				$.each(data, function(index, localidad) {
-					$('[name="localidad"]').append('<option value="'+localidad.localidad+'">'+localidad.localidad+'</option>');
-				});
-				if(data.length == 0 && province_name){
-					$('[name="localidad"]').append('<option value="'+province_name+'">'+province_name+'</option>');
-				}
-			});
-		}
-	}); */
-
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+
 	$(`.cargo-${carrito.cargo}`).removeClass('hide')
 	$('#regalo').prop('checked', carrito.regalo)
 	//$('.store-address').text([carrito.store, carrito.store_address].join(', '))
 	//$('.shipping-text').text([carrito.shipping, carrito.shipping_price].join(', '))
+
 	Object.keys(carrito).forEach(key => {
 		if ($(`.${key}`).length) {
 			var text = carrito[key]
@@ -55,6 +27,7 @@ $(function(){
 		$('.payment-method .option-rounded').removeClass('is-selected')
 		$(e.target).parent().addClass('is-selected')
 	})
+
 	$('#checkoutform').submit(form => {
 		const submit = $('.checkout-btn')
 		submit.prop('disabled', true)
@@ -93,5 +66,29 @@ $(function(){
 	      return true
 	    }
 	  })*/
+	//Events
+	/* $('[name="provincia"]').change(function(event){
+		var province_id 	= $(this).find('option:selected').data('id');
+		var province_name 	= $(this).find('option:selected').html();
+		var url 			= $(this).data('url');
+		$('[name="localidad"]').empty();
+
+		if(province_id){
+			$.ajax({
+				url: url+'/'+province_id,
+				type: 'GET',
+				dataType: 'json',
+				data: {},
+			})
+			.done(function(data) {
+				$.each(data, function(index, localidad) {
+					$('[name="localidad"]').append('<option value="'+localidad.localidad+'">'+localidad.localidad+'</option>');
+				});
+				if(data.length == 0 && province_name){
+					$('[name="localidad"]').append('<option value="'+province_name+'">'+province_name+'</option>');
+				}
+			});
+		}
+	}); */	
 	})
 });
