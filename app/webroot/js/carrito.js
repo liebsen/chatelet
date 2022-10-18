@@ -328,6 +328,13 @@ $(document).ready(function() {
 	if (carrito.cargo === 'takeaway' && carrito.store.length) {
 		$(`.takeaway-options li[store="${carrito.store}"]`).click()
 	}
+	if (carrito.coupon && carrito.coupon.length) {
+		$('.input-coupon').val(carrito.coupon)
+		setTimeout(() => {
+			$('.btn-calculate-coupon').click()
+		}, 1000)
+	}
+
 	var lastcp = localStorage.getItem('lastcp') || 0
 	if (lastcp && $('#subtotal_compra').val()) {
 		$('.input-cp').val(lastcp)
