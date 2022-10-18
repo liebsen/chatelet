@@ -2142,7 +2142,7 @@ span.count.is-empty {
     background-color: white!important;
     margin-bottom: 0.75rem;
     border: 1px solid #e398c1;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
   }
   .is-flex-end {
     flex-direction: row;
@@ -2150,13 +2150,13 @@ span.count.is-empty {
   .is-rounded {
     margin: 1rem 0;
     margin-top: 0;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     border: 1px solid #ccc;
     /* box-shadow: var(--box-shadow); */
   }
   .card {    
     border: 1px solid #ccc;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-top: 10px;
