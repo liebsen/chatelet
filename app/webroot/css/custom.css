@@ -616,8 +616,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   margin-top: 0.5rem;
 }
 .price {
-  text-align:center;
-  /* height:60px; */
+  /* text-align:center;
+   height:60px; */
   font-size: 1.25rem;
   font-weight: 800;
   margin:10px auto 10px;
@@ -1878,12 +1878,12 @@ span.count.is-empty {
 
 .is-rounded h3 {
   margin-bottom: 0;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
+  font-size: 1.75rem;
+  line-height: 1.75rem;
   padding: 0;
   margin: 0.75rem 1rem;
   border-bottom: 1px solid #f7cae0;
-  padding-bottom: 1.5rem;  
+  padding-bottom: 1rem;  
 }
 
 .is-rounded hr {

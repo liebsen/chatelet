@@ -2789,7 +2789,10 @@ textarea.form-control {
 input[type="radio"].form-control {
     position: relative;
     top: -0.25rem;
-    zoom: 2;
+    transition: scale(1.5);
+    cursor: pointer;
+    width: auto;
+    min-width: 3rem;
 }
 
 textarea.form-control {
@@ -3469,6 +3472,13 @@ a.thumbnail-borderless,
     outline: 0 !important;
 }
 
+.form-actions {
+    position: fixed;
+    bottom: 0;
+    z-index: 99;
+    min-height: 5rem;
+    min-width: 100vw;
+}
 
 /*
 =================================================================
@@ -3476,9 +3486,13 @@ a.thumbnail-borderless,
 =================================================================
 */
 
+
 /* Landscape tablet and up */
 @media (min-width: 992px) {
 
+    .form-actions {
+        left: 25rem;
+    }
     /* Hide Side Content */
     .hide-side-content #page-sidebar {
         display: none !important;
@@ -3862,6 +3876,7 @@ a.thumbnail-borderless,
     }
 }
 
+
 /* Landscape phones and down */
 @media (max-width: 480px) {
 
@@ -4014,4 +4029,16 @@ div.cloudzoom-black:nth-child(3) {
 
 .is-clickable {
     cursor: pointer;
+}
+
+.switch-scale {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1);
+}
+
+.switch-scale > label {
+    font-size: 1.5rem;
+    margin: 1rem;
 }

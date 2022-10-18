@@ -16,7 +16,7 @@
         <div class="col-md-6">
           <h4 class="sub-header">Activar pagos CBU/Alias en la tienda</h4>
           <div class="control-group">
-            <div class="controls text-center">
+            <div class="controls text-center switch-scale">
               <?php
                 $enabled = $data['bank_enable'] == 1 ? 'checked' : '';
                 $disabled = $data['bank_enable'] == 0 ? 'checked' : '';
@@ -33,7 +33,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="control-group">
-                <div class="controls text-center">
+                <div class="controls text-center switch-scale">
                   <?php
                     $enabled = @$data['bank_discount_enable'] == 1 ? 'checked' : '';
                     $disabled = @$data['bank_discount_enable'] == 0 ? 'checked' : '';
