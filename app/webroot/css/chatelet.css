@@ -581,6 +581,10 @@ select {
 	background-color: #e60088;
 }
 
+.cart-btn-green.disabled {
+	background-color: #bebebe;
+}
+
 .cart-btn-green:hover {
 	background-color: #e60088;
 }

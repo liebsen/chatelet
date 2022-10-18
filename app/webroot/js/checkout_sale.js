@@ -31,6 +31,7 @@ $(function(){
 	$('#checkoutform').submit(form => {
 		const submit = $('.checkout-btn')
 		submit.prop('disabled', true)
+		submit.addClass('disabled')
 		submit.text('Por favor espere...')
 
 		localStorage.removeItem('carrito')

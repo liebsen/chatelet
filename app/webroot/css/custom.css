@@ -188,6 +188,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .text-theme {
   color: #f50081!important;
+  text-align: center;
 }
 .text-success {
   color: #11a611!important;
