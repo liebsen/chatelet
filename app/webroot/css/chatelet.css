@@ -529,9 +529,15 @@ select {
 	font-size: 1.25rem;
   margin-bottom: 0.25rem;
 }
+.card-title i {
+	color: lightgray;
+	font-size: 2rem;
+	margin-right: 0.25rem;
+}
+
 .card-subtitle {
 	color: #666;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .card-link {
 	display: inline-block;
