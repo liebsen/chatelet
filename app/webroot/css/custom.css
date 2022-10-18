@@ -1894,6 +1894,11 @@ span.count.is-empty {
 
 /* carrito items */
 
+.coupon-info-title {
+  margin-left: 0!important;
+  margin-right: 0!important;
+  border-color: #9add9b!important;
+}
 
 .input-lg {
   font-size: 1.1rem!important;
