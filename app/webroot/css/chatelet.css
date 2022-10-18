@@ -526,13 +526,15 @@ select {
   padding: 1.25rem;
 }
 .card-title {
+	display: flex;
+	align-items: center;	
 	font-size: 1.25rem;
   margin-bottom: 0.5rem;
 }
 .card-title i {
 	color: lightgray;
 	font-size: 2rem;
-	margin-right: 0.25rem;
+	margin-right: 0.5rem;
 }
 
 .card-subtitle {
