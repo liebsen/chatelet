@@ -535,14 +535,13 @@ select {
 }
 .card-link {
 	display: inline-block;
-	color: #e60088;
+	color: white;
 	padding: 0.5rem 0.75rem;
-	border-radius: 0.5rem;
-	background-color: white;
+	border-radius: 0.25rem;
+	background-color: #e398c1;
 	margin-right: 0.25rem;
 	margin-top: 1.25rem;
 	margin-bottom: 0;
-	border: 1px solid #e60088;  
 	transition: all 0.25s ease;
 }
 .card-link:hover {
