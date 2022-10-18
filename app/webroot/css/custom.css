@@ -955,7 +955,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headcontacto .box p { font-size: 1rem; }
 
 	#headhelp h1 { font-size: 40px; }
-	#headhelp .box { padding: 40px 40px 20px; border-radius: 0px; }
+	#headhelp .box { padding: 40px 40px 20px; border-radius: 0.75rem; }
 	#headhelp .box p { font-size: 1rem; margin-bottom: 20px; }
 	#headhelp .box h3 { font-size: 1.25rem; }
 	#optionsHelp a, #desarrollo p { font-size: 1.25rem; }
