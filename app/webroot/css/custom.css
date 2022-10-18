@@ -1884,7 +1884,7 @@ span.count.is-empty {
   padding: 0;
   margin: 0.75rem 1rem;
   border-bottom: 1px solid #f7cae0;
-  padding-bottom: 1rem;  
+  padding-bottom: 0.5rem;  
 }
 
 .is-rounded hr {
@@ -2096,6 +2096,7 @@ span.count.is-empty {
     font-size: 1.25rem;
   }
   #desarrollo .boxs:first-child { padding-left: 150px; }
+  #carrito { margin-bottom: 1rem; }
   .old_price {
     font-size: 1rem;
   }
