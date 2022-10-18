@@ -27,7 +27,7 @@ let fxTotal = (total) => {
 let focusEl = (text) => { 
   if ($(text) && !$(text).hasClass('hide')) {
     let position = $(text).offset().top
-    if(position > $(window).height()) {
+    if(position > $(window).height() - 100) {
       $('html, body').animate({
         scrollTop: position
       }, 500)
@@ -100,6 +100,12 @@ let apiSearch = q => {
 
 $(function () {
   var body    = $('body');
+  body.click((e) => {
+    if(!$(e.target).hasClass('action-search')) {
+      $('.menuLayer').hide()
+    }
+  })  
+
   $('#filters .prices label span, #formulario label span').click(function () {
     $('#filters .prices label span, #formulario label span').removeClass('active');
     $(this).addClass('active')
@@ -172,13 +178,8 @@ $(function () {
       $('#page-sidebar.collapse').collapse('show');
     }
     body.toggleClass('hide-side-content');
-
   });
-  $('body').click((e) => {
-    if(!$(e.target).hasClass('action-search')) {
-      $('.menuLayer').hide()
-    }
-  })
+
   $(window).scroll(function(e) {
     var scroll = $(window).scrollTop()
     if (scroll > 200) {
