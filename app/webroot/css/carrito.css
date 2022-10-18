@@ -173,7 +173,7 @@
 	color: white;
 	background-color: #07bc31;
 	padding: 0.75rem 1rem;
-	border-radius: 0px;
+	border-radius: 0.75rem;
 	cursor: pointer;
 	transition: all 0.5s ease-in;
 }
@@ -336,6 +336,10 @@ a.pay{
 	pointer-events: inherit;
 	opacity: 1;
 	z-index: 50001;
+}
+
+#carritoItem .carrito-remove {
+	display: none;
 }
 
 .shipping-price-min-alert {

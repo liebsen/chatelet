@@ -3,6 +3,7 @@ var selectStore = e => {
 	var total_orig = $('#subtotal_compra').val()
 	var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 	
+
 	/* if (document.querySelector('.shipping-options')) {
 		document.querySelector('.shipping-options').classList.remove('zoomInRight')
 		document.querySelector('.shipping-options').classList.add('zoomOutRight')
@@ -155,6 +156,10 @@ var show_cart_item = index => {
 }
 
 $(document).ready(function() {
+	const submit = $('.checkout-btn')
+	submit.prop('disabled', false)
+	submit.removeClass('disabled')
+	submit.text('Siguiente')
 	/* carrito item viewer */
 	$('.carrito-item-row').on('click', function(e) {
 		if (e.target.className !== 'glyphicon glyphicon-remove') {
