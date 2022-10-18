@@ -19,7 +19,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Mostrar texto en carrito cuando no se alcance el precio de envío gratis'); ?></label>
 
-            <div class="controls">
+            <div class="controls text-center">
               <?php
                 $enabled = $data['display_text_shipping_min_price'] == 1 ? 'checked' : '';
                 $disabled = $data['display_text_shipping_min_price'] == 0 ? 'checked' : '';

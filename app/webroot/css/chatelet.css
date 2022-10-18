@@ -500,7 +500,6 @@ html, body {
 	margin-bottom: 0;
 }
 
-
 .card {
   position: relative;
   display: -webkit-box;
@@ -534,7 +533,7 @@ html, body {
 	display: inline-block;
 	color: #e60088;
 	padding: 0.5rem 0.75rem;
-	border-radius: 0px;
+	border-radius: 0.25rem;
 	background-color: white;
 	margin-right: 0.25rem;
 	margin-top: 1.25rem;

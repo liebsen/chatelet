@@ -516,7 +516,7 @@ body {
 #primary-nav li a.update:after {
     content:"";
     font-size: 1rem;
-    background-color: lightgreen;
+    background-color: orange;
     width: 0.75rem;
     height: 0.75rem;
     border-radius: 100%;

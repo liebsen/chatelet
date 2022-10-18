@@ -25,7 +25,7 @@
             <h4 class="sub-header">Información Principal</h4>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
-              <div class="controls">
+              <div class="controls text-center">
                 <?php
                   $enabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 1 || !isset($logistic)) ? 'checked' : '';
                   $disabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 0) ? 'checked' : '';
@@ -69,7 +69,7 @@
             <div class="alert alert-primary">
               <div class="control-group">
                 <label class="control-label" for="columns-text"><?php echo __('Envíos gratuitos'); ?></label>
-                <div class="controls">
+                <div class="controls text-center">
                   <?php
                     $enabled = (isset($logistic) && $logistic['Logistic']['free_shipping'] == 1 || !isset($logistic)) ? 'checked' : '';
                     $disabled = (isset($logistic) && $logistic['Logistic']['free_shipping'] == 0) ? 'checked' : '';
@@ -90,7 +90,7 @@
             <h4 class="sub-header">Mas datos</h4>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Alcance'); ?></label>
-              <div class="controls">
+              <div class="controls text-center">
                 <?php
                   $enabled = (isset($logistic) && $logistic['Logistic']['local_prices'] == 1 || !isset($logistic)) ? 'checked' : '';
                   $disabled = (isset($logistic) && $logistic['Logistic']['local_prices'] == 0) ? 'checked' : '';

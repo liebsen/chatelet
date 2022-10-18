@@ -16,7 +16,7 @@
         <div class="col-md-6">
           <h4 class="sub-header">Activar pagos CBU/Alias en la tienda</h4>
           <div class="control-group">
-            <div class="controls">
+            <div class="controls text-center">
               <?php
                 $enabled = $data['bank_enable'] == 1 ? 'checked' : '';
                 $disabled = $data['bank_enable'] == 0 ? 'checked' : '';
@@ -29,36 +29,33 @@
             <span class="text-muted">Indica si están habilitados los pagos por CBU/Alias desde la tienda.</span>
           </div>
           <br>
-         <h4 class="sub-header">Descuento por pago con CBU/Alias (%)</h4>
-          <div class="control-group">
-            <div class="controls">
-              <?php
-                $enabled = @$data['bank_discount_enable'] == 1 ? 'checked' : '';
-                $disabled = @$data['bank_discount_enable'] == 0 ? 'checked' : '';
-              ?>
-              <label for="enabled_11">Activo</label>
-              <input type="radio" class="form-control" id="enabled_11" name="data[bank_discount_enable]" value="1" <?php echo $enabled; ?> /> &nbsp;
-              <label for="enabled_10">Inactivo</label>
-              <input type="radio" class="form-control" id="enabled_10" name="data[bank_discount_enable]" value="0" <?php echo $disabled; ?> />
+          <h4 class="sub-header">Descuento por pago con CBU/Alias (%)</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="control-group">
+                <div class="controls text-center">
+                  <?php
+                    $enabled = @$data['bank_discount_enable'] == 1 ? 'checked' : '';
+                    $disabled = @$data['bank_discount_enable'] == 0 ? 'checked' : '';
+                  ?>
+                  <label for="enabled_11">Activo</label>
+                  <input type="radio" class="form-control" id="enabled_11" name="data[bank_discount_enable]" value="1" <?php echo $enabled; ?> /> &nbsp;
+                  <label for="enabled_10">Inactivo</label>
+                  <input type="radio" class="form-control" id="enabled_10" name="data[bank_discount_enable]" value="0" <?php echo $disabled; ?> />
+                </div>
+                <span class="text-muted">Indica si están habilitado el descuento por los pagos por CBU/Alias desde la tienda.</span>
+              </div>
             </div>
-            <span class="text-muted">Indica si están habilitado el descuento por los pagos por CBU/Alias desde la tienda.</span>
-          </div>
-          <br>          
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Descuento para pagos por CBU/Alias'); ?></label>
-            <div class="controls">
-              <input type="number" max="100" min="0" name="bank_discount" class="form-control w-100" value="<?= @$data['bank_discount'] ?>"/>
+            <div class="col-md-6">
+              <div class="control-group">
+                <label class="control-label" for="columns-text"><?php echo __('Descuento para pagos por CBU/Alias'); ?></label>
+                <div class="controls">
+                  <input type="number" max="100" min="0" name="bank_discount" class="form-control w-100" value="<?= @$data['bank_discount'] ?>"/>
+                </div>
+                <span class="text-muted">Porcentaje de descuento para pagos con CBU/Alias. (Ej: 10%, 20%, etc)</span>              
+              </div>
             </div>
-            <span class="text-muted">Porcentaje de descuento para pagos con CBU/Alias. (Ej: 10%, 20%, etc)</span>              
           </div>
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Desarrolla Datos bancarios'); ?></label>
-            <div class="controls">
-              <textarea name="bank_discount_text" class="form-control w-100"><?= @$data['bank_discount_text'] ?></textarea>
-            </div>
-            <span class="text-muted">Desarrolla los descuentos para pagos por CBU/Alias</span>
-          </div>
-
         </div>
         <div class="col-md-6">
                      

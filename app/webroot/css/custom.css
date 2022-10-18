@@ -1860,7 +1860,7 @@ span.count.is-empty {
 }
 
 .is-success {
-    background-color: #d0f7cd;
+  background-color: #d0f7cd;
 }
 
 /* .is-success h3 {
@@ -1972,7 +1972,7 @@ span.count.is-empty {
   position: absolute;
   display: flex;
   justify-content: center;
-  border-radius: 0px;
+  border-radius: 1rem;
   background-color: rgba(80,80,80,0.1);
   align-items: center;
   z-index: 10;
@@ -2141,8 +2141,8 @@ span.count.is-empty {
   .carrito-item-row {
     background-color: white!important;
     margin-bottom: 0.75rem;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: 0px;
+    border: 1px solid #e398c1;
+    border-radius: 1rem;
   }
   .is-flex-end {
     flex-direction: row;
@@ -2150,12 +2150,13 @@ span.count.is-empty {
   .is-rounded {
     margin: 1rem 0;
     margin-top: 0;
-    border-radius: 0px;
-    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 1rem;
+    border: 1px solid #e398c1;
     /* box-shadow: var(--box-shadow); */
   }
   .card {    
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid #e398c1;
+    border-radius: 1rem;
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-top: 10px;

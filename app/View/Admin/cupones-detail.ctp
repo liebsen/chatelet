@@ -27,7 +27,7 @@
           <h4 class="sub-header">Información Principal</h4>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
-            <div class="controls">
+            <div class="controls text-center">
               <?php
                 $enabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '1') || !isset($coupon) ? 'checked' : '';
                 $disabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '0') ? 'checked' : '';
