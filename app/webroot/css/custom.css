@@ -728,7 +728,7 @@ align-items: center;}
 #detalle .caract .colors a.grisoscuro { background: #5a5a5a; }
 #detalle .caract .colors a.verde { background: #42604e; }
 #detalle .caract .colors a.azul { background: #294c70; }
-#detalle .caract .add { background: #f50081; min-height: 46px; min-width: 10rem; color: #FFF; display: block; font-size: 1.25rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center;border-radius: 0px; transition: all 0.5s ease-in;}
+#detalle .caract .add { background: #f50081; min-height: 46px; min-width: 10rem; color: #FFF; display: block; font-size: 1.25rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center;border-radius: 0.5rem; transition: all 0.5s ease-in;}
 #detalle .caract .add.adding { background-color: #808080; }
 #detalle .caract .social { margin-top: 40px; text-align: center; }
 #detalle .caract .social a { background-image: url(../images/sprite.png); display: inline-block; height: 19px; margin: 0 25px; width: 19px; }
@@ -1879,12 +1879,12 @@ span.count.is-empty {
 
 .is-rounded h3 {
   margin-bottom: 0;
-  font-size: 1.35rem;
-  line-height: 1.35rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
   padding: 0;
   margin: 0.75rem 1rem;
   border-bottom: 1px solid #f7cae0;
-  padding-bottom: 0.5rem;  
+  padding-bottom: 1rem;  
 }
 
 .is-rounded hr {
