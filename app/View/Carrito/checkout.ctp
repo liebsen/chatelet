@@ -71,8 +71,8 @@
 								    	Retiro en sucursal
 								    </h5>
 								    <h6 class="card-subtitle">
-								    	<span class="store"></span>
-								    	<span class="store_address"></span>			    	
+								    	<span class="store_address"></span>
+								    	<span class="store"></span>								    	
 								    </h6>
 								    <p class="card-text">
 								    	<?= $data['carrito_takeaway_text'] ?>

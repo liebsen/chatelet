@@ -527,7 +527,7 @@ select {
 }
 .card-title {
 	font-size: 1.25rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 .card-title i {
 	color: lightgray;
@@ -538,6 +538,7 @@ select {
 .card-subtitle {
 	color: #666;
   margin-bottom: 1rem;
+  font-weight: 500;
 }
 .card-link {
 	display: inline-block;
@@ -556,6 +557,7 @@ select {
 }
 .card-text {
 	min-height: 2rem;
+	line-height: 1.25;
 }
 .cart-btn-green {
 	display: inline-block;
