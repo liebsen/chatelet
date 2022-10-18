@@ -459,7 +459,7 @@ footer ul li { margin-bottom: 15px; }
 footer .col-md-3 h4 { color: #f50081; font-size: 16px; font-weight: 600; margin-bottom: 25px; }
 footer .col-md-3 h4 + a { color: #f50081; display: inline-block; font-size: 15px; line-height: 17px; padding-top: 10px; }
 footer .col-md-3 h4 + a span { background: url(../images/sprite.png) no-repeat 11px -218px #FFF; border-radius: 50%; box-shadow: 0 3px 4px rgba(0,0,0,.2); display: block; float: left; height: 61px; margin-right: 20px; margin-top: -10px; width: 61px; }
-footer p { clear: both; font-size: 14px; padding-top: 4rem;}
+footer p { clear: both; font-size: 14px; padding-top: 4rem;padding-left: 1rem;padding-right: 1rem;}
 footer .bottom { background: #FFF; padding: 25px 0; text-align: center; 
 opacity: 0.75;}
 footer .bottom a { display: inline-block; margin: 0 10px; }
@@ -901,7 +901,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	.wrapper { padding: 0 1.5rem; }
 	.map .col-md-4 { padding: 200px 0 200px 50px; }
 
-	#headhelp .box { padding: 60px 50px 25px }
+	#headhelp .box { padding: 60px 50px 25px;  border-radius: 0.75rem;  }
 }
 
 @media (max-width: 1199px) {

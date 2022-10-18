@@ -21,6 +21,10 @@ html, body {
 	min-height: 100%;
 }
 
+select {
+	padding-left: 6px!important;
+}
+
 .modal {
 	overflow-y: auto;
 }

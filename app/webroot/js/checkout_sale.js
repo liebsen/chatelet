@@ -51,6 +51,10 @@ $(function(){
 		}
 	})
 
+	$('.payment-method input[type=radio]').click(e => {
+		$('.payment-method .option-rounded').removeClass('is-selected')
+		$(e.target).parent().addClass('is-selected')
+	})
 	$('#checkoutform').submit(form => {
 		const submit = $('.checkout-btn')
 		submit.prop('disabled', true)
