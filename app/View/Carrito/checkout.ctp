@@ -77,8 +77,8 @@
 								    <p class="card-text">
 								    	<?= $data['carrito_takeaway_text'] ?>
 								    </p>
-								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link">Modificar</a>
-								    <a href="/carrito#f:.shipment-options.takeaway" class="card-link">Modificar sucursal</a>
+								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link">Solicitar envío a domicilio</a>
+								    <a href="/carrito#f:.shipment-options.takeaway" class="card-link">Modificar</a>
 								  </div>
 								</div>
 							</div>

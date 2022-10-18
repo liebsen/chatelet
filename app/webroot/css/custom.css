@@ -618,7 +618,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 .price {
   /* text-align:center;
    height:60px; */
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 800;
   margin:10px auto 10px;
   /* color: #444; */
@@ -1916,7 +1916,7 @@ span.count.is-empty {
   align-items: center;  
   position: relative;
   flex-direction: row;
-  padding-right: 1.25rem;
+  padding-right: 1rem;
   padding-left: 0;
   min-height: 200px;
   background-clip: border-box;

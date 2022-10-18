@@ -25,9 +25,10 @@ let fxTotal = (total) => {
 }
 
 let focusEl = (text) => { 
-  if ($(text) && !$(text).hasClass('hide')) {
-    let position = $(text).offset().top
-    if(position > $(window).height() - 100) {
+  var e = $(text) 
+  if (e && !e.hasClass('hide')) {
+    let position = e.offset().top
+    if(position > $(window).height() - e.height()) {
       $('html, body').animate({
         scrollTop: position
       }, 500)
