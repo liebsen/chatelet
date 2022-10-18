@@ -2141,7 +2141,7 @@ span.count.is-empty {
   .carrito-item-row {
     background-color: white!important;
     margin-bottom: 0.75rem;
-    border: 1px solid #e398c1;
+    border: 1px solid #ccc;
     border-radius: 0.75rem;
   }
   .is-flex-end {
