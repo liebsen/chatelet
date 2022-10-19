@@ -40,7 +40,24 @@ let focusEl = (text) => {
   }
 }
 
-let apiSearch = q => {    
+let findSize = (str) => {
+  var size = '1.5rem'
+  if (str.length >= 18) {
+    size = '1.25rem'
+  }
+  if (str.length >= 21) {
+    size = '1.15rem'
+  }
+  if (str.length >= 24) {
+    size = '1rem'
+  }        
+  if (str.length >= 28) {
+    size = '0.75rem'
+  }
+  return size
+}
+
+let apiSearch = (q) => {    
   $.ajax({
     type: "POST",
     url: "/shop/search/",
@@ -50,29 +67,15 @@ let apiSearch = q => {
     success: function (data) {
       let str = ''
       $('.search-more').html('')
-      $.each(data.results, function(key, item) {
-        var size = '1.5rem'
-        if (item.name.length >= 18) {
-          size = '1.25rem'
-        }
-        if (item.name.length >= 21) {
-          size = '1.15rem'
-        }
-        if (item.name.length >= 24) {
-          size = '1rem'
-        }        
-        if (item.name.length >= 28) {
-          size = '0.75rem'
-        }        
+      $.each(data.results, function(key, item) {       
         str += '<div class="col-xs-6 col-md-3 col-lg-2 search-item animate fadeIn">' +
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 
             '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.discount_label ? '<div class="ribbon small bottom-left sp2"><span>' + item.discount_label + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
-            '<h2 class="text-center">'+`<span style="font-size:${size}!important">${item.name}</span>`+'</h2>' + 
+            '<h2 class="text-center">'+`<span style="font-size:${findSize(item.name)}!important">${item.name}</span>`+'</h2>' + 
             '<h3 class="price text-center">'+(item.old_price ? '<span class="old_price text-grey">$' + item.old_price + '</span>' : '') + '<span>$' + item.price + '</span></h3>' + 
           '</a>' + 
         '</div>'
       })
-
       if (str === '') {
         $('.search-results').html('<p class="results-text">No hay resultados para esta búsqueda</p>')
       } else {
@@ -82,6 +85,10 @@ let apiSearch = q => {
           $('.search-results').append(str)
         }
         setTimeout(() => {
+          var w = ($('.search-item').length / data.query[0].count) * 100
+          //$('.search-info').html(`${$('.search-item').length} / ${data.query[0].count}`)
+          $('.search-bar').css({'width': `${w}%`})
+
           if (parseInt(data.query[0].count) > $('.search-item').length) {
             $('.search-more').html('<a href="javascript:loadMoreSearch(' + (searchPage + 1) + ')">Mostrar más resultados</a>')
           }

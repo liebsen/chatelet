@@ -485,10 +485,11 @@ class ShopController extends AppController {
 	public function search(){
 		$this->autoRender = false;
 		$this->loadModel('Product');
+
+		$results = [];
 		$q = $this->request->data['q'];
 		$p = $this->request->data['p'] ? intval($this->request->data['p']) : 0;
 		$s = $this->request->data['s'] ? intval($this->request->data['s']) : 10;
-
 		$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
 		$data = $this->Product->find('all',[
 			'conditions' => [
@@ -503,7 +504,7 @@ class ShopController extends AppController {
 			'limit' => $s,
 			'offset' => $s * $p
 		]);
-		$results = [];
+
 		foreach($data as $item) {
 			$price = $item['Product']['price'];
 			$result = [
@@ -523,6 +524,7 @@ class ShopController extends AppController {
 			$result['price'] = str_replace(',00','',number_format($price, 2, ',', '.'));
 			$results[]= $result;
 		}
+
 		die(json_encode([
 			'results' => $results,
 			'query' => $query

@@ -192,6 +192,10 @@
             </circle>
           </svg>
         </div>
+        <div class="search-bar-container">
+          <div class="search-bar"></div>
+        </div>
+        <!--p class="search-info"></p-->
       </div>
     </div>
     <div class="row display-flex is-justify-center search-results"></div>

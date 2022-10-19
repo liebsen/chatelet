@@ -1435,6 +1435,26 @@ span.out{
 .input-search:focus {
   background-color: #fadcea;
 }
+
+.search-bar-container {
+  display: inline-block;
+  height: 0.5rem;
+  width: 100%;
+  max-width: 30rem;
+  background-color: #f7dbea;
+}
+.search-bar {
+  height: 0.5rem;
+  width: 0%;
+  background-color: #f50081;
+  transition: all 0.5s ease-in-out;
+}
+.search-info {
+  color: #f50081;
+  font-size: 1rem;
+  font-weight: 600;
+  padding-top: 0.5rem;
+}
 .box-search {
   display: flex;
   position: relative;
@@ -2120,7 +2140,7 @@ span.count.is-empty {
     display: block;
   }
   .input-search {
-    width: 30rem;
+    max-width: 30rem;
   }
   .spinner-search {
     left: 27rem;
