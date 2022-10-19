@@ -706,7 +706,7 @@ class CarritoController extends AppController
 		}
 		
 		$total_wo_discount = $total;
-
+		error_log('suming total (wo_discount): '.$total);
 		// Check coupon
 		if (isset($user['coupon']) && $user['coupon'] !== '')  {
 	    $coupon = $this->Coupon->find('first', [
@@ -740,17 +740,19 @@ class CarritoController extends AppController
 					}
 				}
 		  }
+		  error_log('suming total (coupon): '.$total);
 	  }
 
 	  // Check bank paying method
 	  if ($user['payment_method'] === 'bank') {
 	  	if($bank_discount_enable && $bank_discount) {
 	  		$total = round($total * (1 - $bank_discount / 100), 2);
+	  		error_log('suming total (bank): '.$total);
 	  	}
 	  }
 		// Add Delivery
 		$delivery_cost = 0;
-		$freeShipping = $this->isFreeShipping($total, $user['postal_address']);
+		$freeShipping = $this->isFreeShipping($total_wo_discount, $user['postal_address']);
 		if ($user['cargo'] == 'takeaway') {
 			$freeShipping = true;
 		} else {

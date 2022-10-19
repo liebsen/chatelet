@@ -2194,7 +2194,7 @@ span.count.is-empty {
     max-height: 20rem;
   }
   #opts a { max-height: 315px; }
-  #detalle .caract .add {min-width: 15rem; }
+  #detalle .caract .add {min-width: 10rem; }
   #listShop { padding-top: 1.25rem; }
   footer > .wrapper {
     padding: 0 2rem;
