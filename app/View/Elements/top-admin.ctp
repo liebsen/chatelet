@@ -100,7 +100,16 @@
                             <!-- Divider -->
                             <li class="divider-vertical"></li>
                             <li class="dropdown dropdown-theme-options pull-right">
-                                <a href="<?=$this->Html->url(array('controller'=>'admin','action'=>'logout'))?>" class="dropdown-toggle">Salir</a>
+                                <a href="<?=$this->Html->url(array('controller'=>'admin','action'=>'logout'))?>" class="dropdown-toggle">
+                                    <i class="gi gi-exit"></i> 
+                                    Salir
+                                </a>
+                            </li>
+                            <li class="dropdown dropdown-theme-options pull-right">
+                                <a href="/">
+                                    <i class="gi gi-home"></i> 
+                                    Tienda
+                                </a>
                             </li>
                         </ul>
                     </div>

@@ -11,16 +11,19 @@
 		<div class="form-group is-flex-center">
 			<form id="calulate_coupon" data-url="<?php echo $this->Html->url(array('action'=>'coupon')) ?>">
 				<div class="input-group">
-				  <input type="text" name="" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" data-valid="0" autocomplete="off" />
+				  <input type="text" name="" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
 				  <div class="input-group-btn">
-				    <button class="btn btn-success btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" type="submit">Calcular</button>
+				    <button class="btn btn-success btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="submit">Calcular</button>
 				  </div>
 				</div>
 				<br>
 			</form>
 		</div>
 		<div class="coupon-info alert alert-success animated hidden">
-			<h3 class="coupon-info-title"></h3>
+			<h3>
+				<i class="fa fa-tags"></i> 
+				<span class="coupon-info-title"></span>
+			</h3>
 			<p class="coupon-info-info"></p>
 		</div>
 	</div>
