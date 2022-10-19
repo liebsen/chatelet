@@ -594,6 +594,11 @@ select {
 	text-align: center;
 }
 
+.text-bold {
+	font-weight: 600!important;
+}
+
+
 .registro-heading {
 	color: #e10c76;
 	font-style: italic;

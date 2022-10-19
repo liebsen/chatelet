@@ -130,10 +130,10 @@
 							    	El total de tu compra es $<span class="total_price"></span>
 							    </h6>
 							    <p class="card-text text-success coupon-block hide">
-							    	Descuento <strong><span class="coupon"></span> $<span class="coupon_bonus"></span></strong>
+							    	Descuento <span class="text-bold"><span class="coupon"></span> $<span class="coupon_bonus"></span></span>
 							    </p>
 							    <p class="card-text text-success bank-block hide">
-							    	Descuento <strong>CBU/Alias $<span class="bank_bonus"></span></strong>
+							    	Descuento <span class="text-bold">CBU/Alias $<span class="bank_bonus"></span></span>
 							    </p>
 									<label class="form-group">
 									  <input type="checkbox" id="regalo" name="regalo"><span class="label-text">Es para regalo</span><br><br>
