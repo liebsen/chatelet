@@ -1425,7 +1425,7 @@ span.out{
 
 .input-search {
   padding: 1rem;
-  border-radius: 0px;
+  border-radius: 0.5rem;
   border-color: #f50081;
   font-size: 1.5rem;
   font-weight: 800;
@@ -1441,12 +1441,14 @@ span.out{
   height: 0.5rem;
   width: 20rem;
   background-color: #f7dbea;
+  border-radius: 0.5rem;
 }
 .search-bar {
   height: 0.5rem;
   width: 0%;
   background-color: #f50081;
   transition: all 0.5s ease-in-out;
+  border-radius: 0.5rem;
 }
 .search-info {
   color: #f50081;
