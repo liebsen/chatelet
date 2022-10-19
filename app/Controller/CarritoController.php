@@ -11,7 +11,7 @@ use AlejoASotelo\Andreani;
 
 class CarritoController extends AppController
 {
-	public $uses = array('Product', 'ProductProperty', 'Store', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook', 'Coupon', 'Logistic');
+	public $uses = array('Product', 'ProductProperty', 'Store', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook', 'Coupon', 'Logistic', 'Setting');
 	public $components = array("RequestHandler");
 
 	public function test() {
@@ -160,7 +160,6 @@ class CarritoController extends AppController
 	public function beforeFilter()
 	{
   	parent::beforeFilter();
-  	$this->loadModel('Setting');
   	$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
 		$catalog_flap_map = $this->Setting->findById('catalog_flap');
@@ -610,6 +609,22 @@ class CarritoController extends AppController
 		$user['depto'] = (!empty($user['depto']))?$user['depto']:'';
 		$user['coupon'] = (!empty($user['coupon']))?strtoupper($user['coupon']):'';
 		$user['regalo'] = (isset($user['regalo']) && $user['regalo']?1:0);
+
+		$map = $this->Setting->findById('bank_enable');
+		$bank_enable = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_discount_enable');
+		$bank_discount_enable = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_discount');
+		$bank_discount = @$map['Setting']['value'];
+
+		// check if payment method is bank and bank payment is not available
+		if ($user['payment_method'] === 'bank' && !$bank_enable) {
+			$this->Session->setFlash('No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias.','default',array('class' => 'hidden error'));
+			error_log('checkout error: bank not available');
+			$this->redirect(array( 'controller' => 'carrito', 'action' => 'checkout' ));
+			die;
+		}
+
 		if(!$this->request->is('post') || $user['cargo'] === 'shipment' && empty($user['postal_address']) || empty($user['street_n']) || empty($user['street']) || empty($user['localidad']) || empty($user['provincia']) || empty($user['name']) || empty($user['surname']) || empty($user['email']) || empty($user['telephone'])){
 			$this->Session->setFlash('Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.','default',array('class' => 'hidden error'));
 			error_log('checkout error');
@@ -727,6 +742,12 @@ class CarritoController extends AppController
 		  }
 	  }
 
+	  // Check bank paying method
+	  if ($user['payment_method'] === 'bank') {
+	  	if($bank_discount_enable && $bank_discount) {
+	  		$total = round($total * (1 - $bank_discount / 100), 2);
+	  	}
+	  }
 		// Add Delivery
 		$delivery_cost = 0;
 		$freeShipping = $this->isFreeShipping($total, $user['postal_address']);
@@ -811,6 +832,7 @@ class CarritoController extends AppController
 		$this->Sale->save($to_save);
 		error_log("total mp: " . $total);
 
+		// check if paying method is bank
 		if ($user['payment_method'] === 'bank') {
 			$this->Session->delete('Carro');
 			return $this->redirect(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' ));

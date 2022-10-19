@@ -540,7 +540,6 @@ select {
 .card-subtitle {
 	color: #666;
   margin-bottom: 1rem;
-  font-weight: 500;
 }
 .card-link {
 	display: inline-block;

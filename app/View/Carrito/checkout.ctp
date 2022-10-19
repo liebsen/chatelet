@@ -4,7 +4,12 @@
 	echo $this->Html->script('checkout_sale',array('inline' => false));
 ?>
 <script>
-	const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETTY_PRINT);?>
+	const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETTY_PRINT);?>;
+	const bank = {
+		enable: <?= isset($data['bank_enable']) ? $data['bank_enable'] : 0 ?>,
+		discount_enable: <?= isset($data['bank_discount_enable']) ? $data['bank_discount_enable'] : 0 ?>,
+		discount: <?= isset($data['bank_discount']) ? $data['bank_discount'] : 0 ?>
+	}
 </script>
 <div id="main" class="container">
 	<form role="form" method="post" id="checkoutform" action="<?php echo $this->Html->url(array(
@@ -124,8 +129,11 @@
 							    <h6 class="card-subtitle">
 							    	El total de tu compra es $<span class="total_price"></span>
 							    </h6>
-							    <p class="card-text">
-							    	$<span class="coupon"></span>
+							    <p class="card-text text-success coupon-block hide">
+							    	Descuento por cupón <span class="coupon"></span> $<span class="coupon_bonus"></span>
+							    </p>
+							    <p class="card-text text-success bank-block hide">
+							    	Descuento por pago por CBU/Alias $<span class="bank_bonus"></span>
 							    </p>
 									<label class="form-group">
 									  <input type="checkbox" id="regalo" name="regalo"><span class="label-text">Es para regalo</span><br><br>

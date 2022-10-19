@@ -9,6 +9,9 @@ $(function(){
 	Object.keys(carrito).forEach(key => {
 		if ($(`.${key}`).length) {
 			var text = carrito[key]
+			if (key === 'coupon') {
+				$('.coupon-block').removeClass('hide')
+			}
 			if (key === 'shipping_price') {
 				if (carrito.freeShipping) {
 					text = '<span class="text-success">Gratis</span>'
@@ -24,6 +27,18 @@ $(function(){
 	})
 
 	$('.payment-method input[type=radio]').click(e => {
+		var selected = $(this).find(':checked').val()
+		var total_orig = carrito.total_price
+		if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
+			var total = total_orig * (1 - bank.discount / 100)
+			var discounted = parseFloat(total_orig - total).toFixed(2)
+			$('.total_price').text(total.toFixed(2))
+			$('.bank_bonus').text(discounted)
+			$('.bank-block').removeClass('hide')
+		} else {
+			$('.bank-block').addClass('hide')
+			$('.total_price').text(total_orig.toFixed(2))
+		}
 		$('.payment-method .option-rounded').removeClass('is-selected')
 		$(e.target).parent().addClass('is-selected')
 	})

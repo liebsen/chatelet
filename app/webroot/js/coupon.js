@@ -28,9 +28,9 @@ $(function(){
         }
         total = parseFloat(total).toFixed(2)
         discounted = parseFloat(parseFloat(total_orig - total).toFixed(2))
-        discounted = formatNumber(discounted)
+        discounted_formatted = formatNumber(discounted)
 
-        $('.coupon_bonus').text( discounted )
+        $('.coupon_bonus').text( discounted_formatted )
         $('.products-total').removeClass('hidden')
         $('.coupon-discount').removeClass('hidden')
         $('.coupon-discount').addClass('fadeInRight')
@@ -51,6 +51,7 @@ $(function(){
         $('#cost').text( format_total );
         fxTotal(format_total)
         carrito.coupon = coupon.toUpperCase()
+        carrito.coupon_bonus = discounted
         carrito.total_price = price
         localStorage.setItem('carrito', JSON.stringify(carrito))
       }else{

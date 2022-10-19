@@ -50,7 +50,7 @@
               <div class="control-group">
                 <label class="control-label" for="columns-text"><?php echo __('Descuento (%)'); ?></label>
                 <div class="controls">
-                  <input type="number" max="100" min="0" name="bank_discount" class="form-control w-100" value="<?= @$data['bank_discount'] ?>" <?= $disabled ? 'disabled': '' ?>/>
+                  <input type="number" max="100" min="0" size="4" name="bank_discount" class="form-control" value="<?= @$data['bank_discount'] ?>" <?= $disabled ? 'disabled': '' ?>/>
                 </div>
                 <span class="text-muted">Porcentaje de descuento para pagos con CBU/Alias. (Ej: 10%, 20%, etc)</span>              
               </div>

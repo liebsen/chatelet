@@ -27,7 +27,7 @@ Cache::config('default', array('engine' => 'File'));
 Configure::write('mUrl','');
 Configure::write('font', 'Roboto Condensed');
 Configure::write('fontweight', '300,400,500,600,700,800');
-Configure::write('APP_DIST', '3.42');
+Configure::write('APP_DIST', '3.43');
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.
@@ -112,7 +112,6 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
-
 
 function siteURL() {
   $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || 
