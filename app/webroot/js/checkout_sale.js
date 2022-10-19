@@ -26,6 +26,10 @@ $(function(){
 		}
 	})
 
+	if(!carrito.coupon) {
+		$('.coupon-actions-block').removeClass('hide')
+	}
+
 	$('.payment-method input[type=radio]').click(e => {
 		var selected = $(this).find(':checked').val()
 		var total_orig = carrito.total_price
