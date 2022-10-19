@@ -1429,7 +1429,7 @@ span.out{
   border-color: #f50081;
   font-size: 1.5rem;
   font-weight: 800;
-  width: 100%;
+  width: 20rem;
   transition: all 0.25s ease-out;
 }
 .input-search:focus {
@@ -1439,8 +1439,7 @@ span.out{
 .search-bar-container {
   display: inline-block;
   height: 0.5rem;
-  width: 100%;
-  max-width: 30rem;
+  width: 20rem;
   background-color: #f7dbea;
 }
 .search-bar {
