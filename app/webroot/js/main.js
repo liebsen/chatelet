@@ -123,7 +123,9 @@ $(function () {
 
   $('ul.nav a').hover(function () {
     if( $(this).attr('class') == 'viewSubMenu' ) {
-      $('#menuShop').fadeIn();
+      if (!$('.menuLayer').length) {
+        $('#menuShop').fadeIn();
+      }
     } else {
       $('#menuShop').fadeOut();
     }

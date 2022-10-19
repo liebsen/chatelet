@@ -1317,14 +1317,14 @@ span.out{
     padding-bottom: 2rem;
 }
 .search-more a {
-    color: #f50081;
-    border: 2px solid #f50081;
-    padding: 0.75rem 1rem;
-    border-radius: 0px;
-    font-size: 1.25rem;
-    font-weight: 800;
-    text-decoration: none;    
-    transition: all 0.25s ease;
+  color: #f50081;
+  border: 2px solid #f50081;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-decoration: none;    
+  transition: all 0.25s ease;
 }
 .search-more a:hover {
   background-color: #f50081;
@@ -1447,7 +1447,7 @@ span.out{
   height: 0.5rem;
   width: 0%;
   background-color: #f50081;
-  transition: all 0.5s ease-in-out;
+  transition: all 1s ease-in-out;
   border-radius: 0.5rem;
 }
 .search-info {
