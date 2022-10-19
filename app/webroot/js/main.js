@@ -100,9 +100,9 @@ let apiSearch = q => {
 }
 
 $(function () {
-  var body    = $('body');
+  var body = $('body');
   body.click((e) => {
-    if(!$(e.target).hasClass('action-search')) {
+    if(!$(e.target).hasClass('action-search') && !$(e.target).parents('.menuLayer').length) {
       $('.menuLayer').hide()
     }
   })  
