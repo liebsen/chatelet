@@ -716,7 +716,7 @@ class CarritoController extends AppController
 	      ]
 	    ]);
 	    if ($coupon) {
-				$applicable = \filtercoupon($coupon)->status !== 'error';
+				$applicable = \filtercoupon($coupon);
 				if ($applicable->status === 'success') {
 					$discount = (float) $applicable->data['discount'];
 					if($applicable->data['coupon_type'] === 'percentage') {

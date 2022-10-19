@@ -1,7 +1,7 @@
 var coupon = '';
 $(function(){
-  $('#calulate_coupon').submit(event => {
-    var url = $('#calulate_coupon').data('url');    
+  $('#calculate_coupon').submit(event => {
+    var url = $('#calculate_coupon').data('url');    
     $('.coupon-info').addClass('hidden')
     $('.coupon-info').removeClass('fadeInRight, fadeOutRight')
     // $('.coupon-info').html('')

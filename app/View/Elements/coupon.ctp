@@ -9,7 +9,7 @@
 			</i>
 		</p>
 		<div class="form-group is-flex-center">
-			<form id="calulate_coupon" data-url="<?php echo $this->Html->url(array('action'=>'coupon')) ?>">
+			<form id="calculate_coupon" data-url="<?php echo $this->Html->url(array('action'=>'coupon')) ?>">
 				<div class="input-group">
 				  <input type="text" name="" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
 				  <div class="input-group-btn">

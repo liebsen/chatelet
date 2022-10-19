@@ -1,13 +1,20 @@
 $(function(){
 	var subtotal = $('#subtotal_compra').val()
 	selectShipping = function (e, shipping, cost) {
-		var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 		if (cost <= 0) {
 			return setTimeout( `onErrorAlert('No disponible', 'El servicio de logística ${shipping.toUpperCase()} no está disponible en este momento, intente en unos instantes.')` , 200)
 		}
 
-		cargo = 'shipment'
+		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+		var coupon = parseInt($('.coupon_bonus').text()) || 0
 
+		if (!coupon) {
+			if (carrito.coupon_bonus)		 {
+				coupon = carrito.coupon_bonus
+			}
+		}
+
+		cargo = 'shipment'
 		$('.shipping-options li').removeClass('selected')
 		$('.takeaway-options li').removeClass('selected')
 		$(e).addClass('selected')

@@ -400,6 +400,9 @@ select {
 	margin-bottom: 5px;
 }
 
+#menuSearch {
+	background-color: #f7ecf1;
+}
 .float-left {
 	float: left;
 }

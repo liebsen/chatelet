@@ -40,6 +40,8 @@
 	background-repeat: no-repeat;
 	background-position: left center;
 	text-align: right;
+	border-top-left-radius: 0.25rem;
+	border-bottom-left-radius: 0.25rem;
 	padding-right: 3rem;
 	min-height: 46px;
 	display: flex;
