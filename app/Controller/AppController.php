@@ -19,6 +19,8 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+require_once __DIR__ . '/../functions.php';
+
 App::uses('Controller', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 
@@ -68,8 +70,6 @@ class AppController extends Controller
     }
 
     public function beforeFilter() {
-        require __DIR__ . '/../functions.php';
-
         $this->Auth->allow();
         $this->set('loggedIn', $this->Auth->loggedIn());
         $this->set('user', $this->Auth->user());

@@ -26,10 +26,10 @@
               <label for="enabled_0">No</label>
               <input type="radio" class="form-control" id="enabled_0" name="data[bank_enable]" value="0" <?php echo $disabled; ?> />
             </div>
-            <span class="text-muted">Indica si están habilitados los pagos por CBU/Alias desde la tienda.</span>
+            <span class="text-muted">Indica si están habilitados los pagos CBU/Alias desde la tienda.</span>
           </div>
           <br>
-          <h4 class="sub-header">Descuento por pago con CBU/Alias</h4>
+          <h4 class="sub-header">Descuento por pago CBU/Alias</h4>
           <div class="row">
             <div class="col-md-6">
               <div class="control-group">
@@ -43,7 +43,7 @@
                   <label for="enabled_10">No</label>
                   <input type="radio" class="form-control" id="enabled_10" name="data[bank_discount_enable]" value="0" <?php echo $disabled; ?> />
                 </div>
-                <span class="text-muted">Indica si están habilitado el descuento por los pagos por CBU/Alias desde la tienda.</span>
+                <span class="text-muted">Indica si existe descuento por los pagos CBU/Alias desde la tienda.</span>
               </div>
             </div>
             <div class="col-md-6">
