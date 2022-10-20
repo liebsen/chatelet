@@ -114,6 +114,3 @@ $(function(){
 	})
 })
 
-window.onerror = function (msg, url, lineNo, columnNo, error) {
-  onErrorAlert(`${msg}:${lineNo}`);
-}

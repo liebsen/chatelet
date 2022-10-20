@@ -51,6 +51,16 @@ class ShopController extends AppController {
    	$this->render('index');
 	}
 
+	public function log_error() {
+		$this->autoRender = false;
+		if($this->request->is('post')) {
+			echo '<pre>';
+			var_dump($this->request->data);
+			error_log('*** client error *** ' . json_encode($this->request->data));
+		}
+		die();
+	}
+
 	public function test_andreani() {
 		$this->autoRender = false;
 		echo '<h4>Cotizaciones Andreani</h4>

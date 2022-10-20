@@ -257,4 +257,9 @@ $(function () {
       focusEl(window.location.hash.replace(`#${focusCode}:`, ''))
     }
   }
+
+  window.onerror = function (msg, url, lineNo, columnNo, error) {
+    onErrorAlert(`${msg}:${lineNo}`);
+    $.post('/shop/log_error', {message: msg, url: url, line: lineNo})
+  }
 })
