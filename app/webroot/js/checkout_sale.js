@@ -1,5 +1,35 @@
+var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+var select_payment = (e) => {
+	var selected = $(e).find(':checked').val()
+	var subtotal = carrito.subtotal_price
+	var bank_bonus = 0
+	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
+		bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
+		$('.bank_bonus').text(bank_bonus.toFixed(2))
+		$('.bank-block').removeClass('hide')
+	} else {
+		$('.bank-block').addClass('hide')
+	}
+	var total = subtotal
+	if (!carrito.freeShipping && carrito.shipping_price) {
+		total+= carrito.shipping_price
+	}
+	if (carrito.coupon_bonus) {
+		total-= carrito.coupon_bonus
+	}
+	if (bank_bonus) {
+		total-= bank_bonus
+	}
+  console.log('subtotal',subtotal)
+  console.log('total',total)
+  console.log('bank_bonus',bank_bonus)
+
+	$('.total_price').text(total.toFixed(2))
+	$('.payment-method .option-rounded').removeClass('is-selected')
+	$(e).addClass('is-selected')
+}
+
 $(function(){
-	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 
 	$(`.cargo-${carrito.cargo}`).removeClass('hide')
 	$('#regalo').prop('checked', carrito.regalo)
@@ -34,36 +64,8 @@ $(function(){
   	}, 2000)
 	}
 
-	$('body').on('click touchstart', '.payment-method .option-rounded', e => {
+	//$('body').on('click touchstart', '.payment-method .option-rounded', e => {
 	//$('.payment-method .option-rounded').click(e => {
-		var selected = $(this).find(':checked').val()
-		var subtotal = carrito.subtotal_price
-		var bank_bonus = 0
-		if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
-			bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
-			$('.bank_bonus').text(bank_bonus.toFixed(2))
-			$('.bank-block').removeClass('hide')
-		} else {
-			$('.bank-block').addClass('hide')
-		}
-		var total = subtotal
-		if (!carrito.freeShipping && carrito.shipping_price) {
-			total+= carrito.shipping_price
-		}
-		if (carrito.coupon_bonus) {
-			total-= carrito.coupon_bonus
-		}
-		if (bank_bonus) {
-			total-= bank_bonus
-		}
-    console.log('subtotal',subtotal)
-    console.log('total',total)
-    console.log('bank_bonus',bank_bonus)
-
-		$('.total_price').text(total.toFixed(2))
-		$('.payment-method .option-rounded').removeClass('is-selected')
-		$(e.target).parent().addClass('is-selected')
-	})
 
 	$('#checkoutform').submit(form => {
 		const submit = $('.checkout-btn')

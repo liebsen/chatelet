@@ -164,7 +164,7 @@
 						    </h5>
 						    <h6 class="card-subtitle">Total $<span class="total_price"></span>.  Seleccioná un método de pago</h6>
 						    <div class="row card-row payment-method">
-						    	<div class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>">
+						    	<div class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>" onclick="select_payment(this)">
 						    		<input type="radio" class="" id="online" name="payment_method" value="mercadopago" required <?= !$data['bank_enable'] ? 'checked': '' ?>/>
 					          <label for="online" class="d-inline">
 					          	<span class="h4">Online</span><br>
@@ -172,7 +172,7 @@
 					        	</label>				          
 					        </div>
 					      <?php if($data['bank_enable']): ?>
-					        <div class="col-xs-12 is-clickable option-rounded">
+					        <div class="col-xs-12 is-clickable option-rounded" onclick="select_payment(this)">
 					          <input type="radio" class="" id="bank" name="payment_method" value="bank" required />
 					          <label for="bank" class="d-inline">
 					          	<span class="h4">CBU/Alias</span><br>
