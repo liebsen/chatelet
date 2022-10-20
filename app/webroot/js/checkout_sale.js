@@ -34,7 +34,7 @@ $(function(){
   	}, 2000)
 	}
 
-	$('.payment-method input[type=radio]').click(e => {
+	$('.payment-method .option-rounded').click(e => {
 		var selected = $(this).find(':checked').val()
 		var subtotal = carrito.subtotal_price
 		var bank_bonus = 0
