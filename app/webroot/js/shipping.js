@@ -7,19 +7,17 @@ $(function(){
 
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 		var coupon = parseInt($('.coupon_bonus').text()) || 0
-
-		if (!coupon) {
-			if (carrito.coupon_bonus)		 {
-				coupon = carrito.coupon_bonus
-			}
-		}
-
 		cargo = 'shipment'
+
 		$('.shipping-options li').removeClass('selected')
 		$('.takeaway-options li').removeClass('selected')
 		$(e).addClass('selected')
 		$('.delivery-cost').addClass('hidden')
 		$('.shipping-cargo').text(shipping)	
+
+		if (!coupon && carrito.coupon_bonus) {
+			coupon = carrito.coupon_bonus
+		}
 
 		var price = parseFloat($('#subtotal_compra').val()) - coupon
 		if (!freeShipping) {

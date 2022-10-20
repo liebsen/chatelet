@@ -11,6 +11,16 @@ $(function(){
     var total_orig = $('#subtotal_compra').val()
     var delivery_cost = $('#subtotal_envio').val() || 0
     var c2 = event.target.value
+
+    if (!total_orig && carrito.total_price) {
+        total_orig = carrito.total_price
+    }
+
+    if (!delivery_cost && carrito.shipping_price) {
+        delivery_cost = carrito.shipping_price
+    }
+
+
     $('#free_delivery').text('');
     $('.btn-calculate-shipping').button('loading')
     $.post( url, { coupon: coupon }, function(json, textStatus) {

@@ -224,12 +224,14 @@ $(document).ready(function() {
 			const shipping_cargo = $('.shipping-options li.selected')
 			if (!shipping_cargo.length) {
 				onErrorAlert('¿Cómo querés recibir tu compra?', 'Por favor seleccione un tipo de envío para su compra o seleccione Retiro en Sucursal para evitar cargos de envío');	
+				location.hash = 'f:.como-queres-recibir-tu-compra'
 				return false;
 			} else {
 				if (shipping_cargo.attr('shipping')) {
 					shipping = shipping_cargo.attr('shipping')
 				} else {
 					onErrorAlert('¿Cómo querés recibir tu compra?','Por favor indique su código postal o seleccione retiro en sucursal');
+					location.hash = 'f:.como-queres-recibir-tu-compra'
 					return false;
 				}
 			}

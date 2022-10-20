@@ -3,8 +3,6 @@ $(function(){
 
 	$(`.cargo-${carrito.cargo}`).removeClass('hide')
 	$('#regalo').prop('checked', carrito.regalo)
-	//$('.store-address').text([carrito.store, carrito.store_address].join(', '))
-	//$('.shipping-text').text([carrito.shipping, carrito.shipping_price].join(', '))
 
 	Object.keys(carrito).forEach(key => {
 		if ($(`.${key}`).length) {
@@ -34,7 +32,7 @@ $(function(){
 		var selected = $(this).find(':checked').val()
 		var total_orig = carrito.total_price
 		if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
-			var total = total_orig * (1 - bank.discount / 100)
+			var total = total_orig * (1 - parseFloat(bank.discount) / 100)
 			var discounted = parseFloat(total_orig - total).toFixed(2)
 			$('.total_price').text(total.toFixed(2))
 			$('.bank_bonus').text(discounted)
