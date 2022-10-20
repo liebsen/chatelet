@@ -12,7 +12,7 @@
 	}
 </script>
 <div id="main" class="container">
-	<form role="form" method="post" id="checkoutform" action="<?php echo $this->Html->url(array(
+	<form role="form" method="post" id="checkoutform" autocomplete="off" action="<?php echo $this->Html->url(array(
 				'controller' => 'carrito',
 				'action' => 'sale'
 			)) ?>">
@@ -36,7 +36,7 @@
 					<div class="carrito-col">
 						<div class="carrito-items">
 						<?php if($loggedIn): ?>
-							<div class="col-12">
+							<!--div class="col-12">
 								<div class="card">
 								  <div class="card-body">
 								    <h5 class="card-title">
@@ -48,27 +48,9 @@
 								    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="card-link">Modificar</span>
 								  </div>
 								</div>
-							</div>
+							</div-->
 						<?php endif ?>						
-							<div class="col-12 mt-4-d cargo-shipment hide">
-								<div class="card">
-								  <div class="card-body">
-								    <h5 class="card-title">
-								    	<i class="fa fa-truck"></i>
-								    	Envía <span class="shipping text-uppercase"></span>
-								    </h5>
-								    <h6 class="card-subtitle">
-								    	<span class="shipping_price"></span>			    	
-								    </h6>
-								  <?php if($loggedIn): ?>
-								    <p class="card-text"><?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street_n'] ?: '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>)</p>
-								  <?php endif ?>
-								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link">Modificar</a>
-								    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="card-link">Modificar dirección</span>
-								  </div>
-								</div>
-							</div>
-							<div class="col-12 mt-4-d cargo-takeaway hide">
+							<!--div class="col-xs-12 mt-4-d cargo-takeaway hide">
 								<div class="card">
 								  <div class="card-body">
 								    <h5 class="card-title">
@@ -86,40 +68,7 @@
 								    <a href="/carrito#f:.shipment-options.takeaway" class="card-link">Modificar</a>
 								  </div>
 								</div>
-							</div>
-							<div class="col-12 mt-4-d">
-								<div class="card">
-								  <div class="card-body">
-								    <h5 class="card-title">
-								    	<i class="fa fa-credit-card"></i>
-								    	¿Cómo querés pagar tu compra?
-								    </h5>
-								    <h6 class="card-subtitle">Total $<span class="total_price"></span>.  Seleccioná un método de pago</h6>
-								    <div class="row payment-method">
-								    	<div class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>">
-								    		<input type="radio" class="" id="online" name="payment_method" value="mercadopago" required <?= !$data['bank_enable'] ? 'checked': '' ?>/>
-							          <label for="online" class="d-inline">
-							          	<span class="h4">Online</span><br>
-							          	<p class="mt-2 text-small">Pagá con débito, crédito, rapipago través de Mercadopago</p>
-							        	</label>				          
-							        </div>
-							      <?php if($data['bank_enable']): ?>
-							        <div class="col-xs-12 is-clickable option-rounded">
-							          <input type="radio" class="" id="bank" name="payment_method" value="bank" required />
-							          <label for="bank" class="d-inline">
-							          	<span class="h4">CBU/Alias</span><br>
-							          	<p class="mt-2 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
-							          </label>
-							        </div>
-							       <?php endif ?>
-						        </div>
-								  </div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carrito-col">
-						<div class="col-12">
+							</div-->
 							<div class="card">
 							  <div class="card-body">
 							    <h5 class="card-title">
@@ -129,22 +78,109 @@
 							    <h6 class="card-subtitle">
 							    	El total de tu compra es $<span class="total_price"></span>
 							    </h6>
-							    <p class="card-text text-success coupon-block hide">
-							    	Descuento <span class="text-bold"><span class="coupon"></span> $<span class="coupon_bonus"></span></span>
-							    </p>
-							    <p class="card-text text-success bank-block hide">
-							    	Descuento <span class="text-bold">CBU/Alias $<span class="bank_bonus"></span></span>
-							    </p>
+							    <div class="row card-row">
+							    	<?php if($loggedIn): ?>
+							    	<div class="col-xs-12 is-clickable option-regular">
+						          <label for="online" class="d-inline">
+						          	<span class="h4">Cliente</span><br>
+						          	<p class="mt-2"><?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?> (DNI <?= $userData['User']['dni'] ?>)</p>
+						        	</label>				          
+						        </div>
+						      	<?php endif ?>
+							    	<div class="col-xs-12 option-regular">
+						          <label for="online" class="d-inline">
+											<?php if($freeShipping): ?>
+						          	<span class="h4 text-success">Envío gratis</span>
+											<?php else: ?>
+						          	<span class="h4">Costo de envío</span><br>
+						          	<p class="mt-2">
+						          		<span class="shipping_price"></span>
+												<?php if($loggedIn): ?>
+											    <br><span> Entrega <span class="shipping text-uppercase"></span> en 
+											    	<?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street_n'] ?: '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>) 
+											    </span>
+											  <?php endif ?>													
+						          	</p>
+						          <?php endif ?>
+						        	</label>				          
+						        </div>  
+						        
+							    	<div class="col-xs-12 option-regular cargo-takeaway hide">
+						          <label for="online" class="d-inline">
+						          	<span class="h4">Costo de envío</span><br>
+						          	<p class="mt-2">
+						          		<span class="store_address"></span>
+                    			<span class="store"></span>
+                    			<?= $data['carrito_takeaway_text'] ?>
+                    		</p>
+                    	</label>
+                    </div>
+							    	<div class="col-xs-12 option-regular coupon-block hide">
+						          <label for="online" class="d-inline text-success">
+						          	<span class="h4 text-success">Descuento Cupón</span><br>
+						          	<p class="mt-2">
+						          		<span class="text-bold"><span class="coupon"></span> $<span class="coupon_bonus"></span>
+						          	</p>
+						          </span>
+						        </div>
+							    	<div class="col-xs-12 option-regular bank-block hide">
+						          <label for="online" class="d-inline">
+						          	<span class="h4 text-success">Descuento CBU/Alias</span><br>
+						          	<p class="mt-2">
+						          		$<span class="bank_bonus"></span>
+						          	</p>
+						          </span>
+						        </div>
+							    	<div class="col-xs-12 option-regular">
+						          <label for="online" class="d-inline">
+						          	<span class="h4">Total a pagar</span><br>
+						          	<p class="mt-2">
+						          		$<span class="total_price"></span>
+						          	</p>
+						          </span>
+						        </div>
+						      </div>
 									<label class="form-group">
 									  <input type="checkbox" id="regalo" name="regalo"><span class="label-text">Es para regalo</span><br><br>
 									</label>
-									<div class="coupon-actions-block hide">
-								  	<a href="/carrito#f:.beneficios-exclusivos" class="card-link">Ingresar cupón</a>
+									<div class="row card-row">
+								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link cargo-shipment hide">Modificar</a>
+								    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="cargo-shipment hide">Modificar dirección</span>
+								  	<a href="/carrito#f:.beneficios-exclusivos" class="card-link coupon-actions-block hide">Ingresar cupón</a>
 								  </div>
-							  </div>
-							</div>
-						</div>						
-						<div class="col-12 mt-4-d checkoutform-container">
+								</div>
+							</div>				
+						</div>
+					</div>
+					<div class="carrito-col">
+						<div class="card">
+						  <div class="card-body">
+						    <h5 class="card-title">
+						    	<i class="fa fa-credit-card"></i>
+						    	¿Cómo querés pagar tu compra?
+						    </h5>
+						    <h6 class="card-subtitle">Total $<span class="total_price"></span>.  Seleccioná un método de pago</h6>
+						    <div class="row card-row payment-method">
+						    	<div class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>">
+						    		<input type="radio" class="" id="online" name="payment_method" value="mercadopago" required <?= !$data['bank_enable'] ? 'checked': '' ?>/>
+					          <label for="online" class="d-inline">
+					          	<span class="h4">Online</span><br>
+					          	<p class="mt-2 text-small">Pagá con débito, crédito, rapipago través de Mercadopago</p>
+					        	</label>				          
+					        </div>
+					      <?php if($data['bank_enable']): ?>
+					        <div class="col-xs-12 is-clickable option-rounded">
+					          <input type="radio" class="" id="bank" name="payment_method" value="bank" required />
+					          <label for="bank" class="d-inline">
+					          	<span class="h4">CBU/Alias</span><br>
+					          	<p class="mt-2 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
+					          </label>
+					        </div>
+					       <?php endif ?>
+				        </div>
+						  </div>
+						</div>
+						<div class="mt-4-d checkoutform-container">
 							<div class="row is-rounded">
 								<h3 class="">Ingresá tus datos para finalizar la compra</h3>
 								<input type="hidden" name="shipping" value=""/>

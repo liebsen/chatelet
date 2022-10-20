@@ -546,18 +546,18 @@ select {
 }
 .card-link {
 	display: inline-block;
-	color: white;
-	padding: 0.5rem 0.75rem;
-	border-radius: 0.25rem;
+	color: #f50081;
+	padding: 0.5rem 0;
+	/*border-radius: 0.25rem;
 	background-color: #e398c1;
 	margin-right: 0.25rem;
-	margin-top: 1.25rem;
-	margin-bottom: 0;
+	margin-top: 0.5rem;
+	margin-bottom: 0;*/
 	transition: all 0.25s ease;
 }
 .card-link:hover {
-	background-color: #e60088;
-	color: white;
+	/*background-color: #e60088; */
+	color: #e398c1;
 }
 .card-text {
 	min-height: 2rem;
@@ -688,7 +688,10 @@ span.user {
 		padding: 1.75rem;
 	}
 	.cloudzoom img {
-	    height: 40rem;
+	  height: 40rem;
+	}
+	.card-body {
+	  padding: 1.25rem;
 	}
 }
 

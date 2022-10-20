@@ -253,6 +253,12 @@ class CarritoController extends AppController
 		$map = $this->Setting->findById('bank_discount');
 		$data['bank_discount'] = @$map['Setting']['value'];
 
+		$items = $this->getItemsData();
+		$shipping_price = $this->Setting->findById('shipping_price_min');
+		$total_price = $items['price'];
+		$freeShipping = $this->isFreeShipping($total_price);
+
+		$this->set('freeShipping', $freeShipping);
 		$this->set('data',$data);
 		$this->set('userData',$user);
 	}
