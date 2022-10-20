@@ -34,7 +34,8 @@ $(function(){
   	}, 2000)
 	}
 
-	$('.payment-method .option-rounded').click(e => {
+	$('body').on('click touchstart', '.payment-method .option-rounded', e => {
+	//$('.payment-method .option-rounded').click(e => {
 		var selected = $(this).find(':checked').val()
 		var subtotal = carrito.subtotal_price
 		var bank_bonus = 0
