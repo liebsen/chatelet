@@ -2014,7 +2014,7 @@ span.count.is-empty {
   padding: 0.5rem;
   font-size: 1.25rem;
   font-style: italic;
-  border-radius: 0px;
+  border-radius: 0.5rem;
   background-color: #e10d74;
   color: white;
 }

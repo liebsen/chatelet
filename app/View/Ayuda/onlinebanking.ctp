@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6 datos-bancarios">
         <h1 class="m-0">CBU/Alias</h1>
-        <h3 class="h3 mw-26"><?= $data['bank_explain_title'] ?></h3>
+        <h3 class="h3 mt-2 mw-26"><?= $data['bank_explain_title'] ?></h3>
         <?php if(isset($data['total_price'])): ?>
         <div class="badge bg-black">
           <span class="h4 text-white">Monto a transferir $<?= number_format($data['total_price'], 2, ',', '.') ?></span>
