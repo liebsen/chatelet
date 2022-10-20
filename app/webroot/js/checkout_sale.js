@@ -37,8 +37,9 @@ $(function(){
 	$('.payment-method input[type=radio]').click(e => {
 		var selected = $(this).find(':checked').val()
 		var subtotal = carrito.subtotal_price
+		var bank_bonus = 0
 		if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
-			var bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
+			bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
 			$('.bank_bonus').text(bank_bonus.toFixed(2))
 			$('.bank-block').removeClass('hide')
 		} else {

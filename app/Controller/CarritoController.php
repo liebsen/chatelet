@@ -774,7 +774,6 @@ class CarritoController extends AppController
 		$freeShipping = $this->isFreeShipping($total_wo_discount, $user['postal_address']);
 		if (!$freeShipping && $user['cargo'] !== 'takeaway') {
 			$delivery_data = json_decode( $this->deliveryCost($user['postal_address'], $user['shipping']),true);
-
 			if (isset($delivery_data['rates'][0]['price'])) {
 				$delivery_cost = (int) $delivery_data['rates'][0]['price'];
 			}
