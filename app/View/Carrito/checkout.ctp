@@ -1,15 +1,11 @@
 <?php
-	echo $this->Html->css('checkout', array('inline' => false));
+	echo $this->Html->css('checkout.css?v=' . Configure::read('APP_DIST'), array('inline' => false));
 	echo $this->Session->flash();
-	echo $this->Html->script('checkout_sale',array('inline' => false));
+	echo $this->Html->script('checkout_sale.js?v=' . Configure::read('APP_DIST'),array('inline' => false));
 ?>
 <script>
 	const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETTY_PRINT);?>;
-	const bank = {
-		enable: <?= isset($data['bank_enable']) ? $data['bank_enable'] : 0 ?>,
-		discount_enable: <?= isset($data['bank_discount_enable']) ? $data['bank_discount_enable'] : 0 ?>,
-		discount: <?= isset($data['bank_discount']) ? $data['bank_discount'] : 0 ?>
-	}
+	const bank = {enable: <?= isset($data['bank_enable']) ? $data['bank_enable'] : 0 ?>,discount_enable: <?= isset($data['bank_discount_enable']) ? $data['bank_discount_enable'] : 0 ?>,discount: <?= isset($data['bank_discount']) ? $data['bank_discount'] : 0 ?>}
 </script>
 <div id="main" class="container">
 	<form role="form" method="post" id="checkoutform" autocomplete="off" action="<?php echo $this->Html->url(array(
@@ -76,7 +72,7 @@
 							    	Resumen de tu compra
 							    </h5>
 							    <h6 class="card-subtitle">
-							    	El total de tu compra es $<span class="total_price"></span>
+							    	Revisá el resumen de tu compra.
 							    </h6>
 							    <div class="row card-row">
 							    	<?php if($loggedIn): ?>
@@ -89,14 +85,22 @@
 						      	<?php endif ?>
 							    	<div class="col-xs-12 option-regular">
 						          <label for="online" class="d-inline">
+						          	<span class="h4">Subtotal productos</span><br>
+						          	<p class="mt-2 text-bold">
+						          		$<span class="subtotal_price"></span>
+                    		</p>
+                    	</label>
+                    </div>						        
+							    	<div class="col-xs-12 option-regular">
+						          <label for="online" class="d-inline">
 											<?php if($freeShipping): ?>
 						          	<span class="h4 text-success">Envío gratis</span>
 											<?php else: ?>
 						          	<span class="h4">Costo de envío</span><br>
 						          	<p class="mt-2">
-						          		<span class="shipping_price"></span>
+						          		<span class="shipping_price text-bold"></span>
 												<?php if($loggedIn): ?>
-											    <br><span> Entrega <span class="shipping text-uppercase"></span> en 
+											    <br><br><span> Entrega <span class="shipping text-uppercase"></span> en 
 											    	<?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street_n'] ?: '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>) 
 											    </span>
 											  <?php endif ?>													
@@ -104,7 +108,6 @@
 						          <?php endif ?>
 						        	</label>				          
 						        </div>  
-						        
 							    	<div class="col-xs-12 option-regular cargo-takeaway hide">
 						          <label for="online" class="d-inline">
 						          	<span class="h4">Costo de envío</span><br>
@@ -116,17 +119,17 @@
                     	</label>
                     </div>
 							    	<div class="col-xs-12 option-regular coupon-block hide">
-						          <label for="online" class="d-inline text-success">
-						          	<span class="h4 text-success">Descuento Cupón</span><br>
-						          	<p class="mt-2">
-						          		<span class="text-bold"><span class="coupon"></span> $<span class="coupon_bonus"></span>
+						          <label for="online" class="d-inline">
+						          	<span class="h4 text-success">Descuento <span class="coupon"></span></span><br>
+						          	<p class="mt-2 text-bold">
+						          		$<span class="coupon_bonus"></span>
 						          	</p>
 						          </span>
 						        </div>
 							    	<div class="col-xs-12 option-regular bank-block hide">
 						          <label for="online" class="d-inline">
 						          	<span class="h4 text-success">Descuento CBU/Alias</span><br>
-						          	<p class="mt-2">
+						          	<p class="mt-2 text-bold">
 						          		$<span class="bank_bonus"></span>
 						          	</p>
 						          </span>
@@ -134,7 +137,7 @@
 							    	<div class="col-xs-12 option-regular">
 						          <label for="online" class="d-inline">
 						          	<span class="h4">Total a pagar</span><br>
-						          	<p class="mt-2">
+						          	<p class="mt-2 text-bold">
 						          		$<span class="total_price"></span>
 						          	</p>
 						          </span>

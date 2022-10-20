@@ -49,7 +49,7 @@ function addCart(data, button, text) {
 
         $.growl.notice({
           title: 'Agregado al carrito',
-          message: 'Puede seguir agregando más productos o finalizar esta compra en la sección carrito'
+          message: 'Podés seguir agregando más productos o finalizar esta compra en la sección carrito'
         });
         var reload = function() {
         	window.location.href = '/carrito'
@@ -76,7 +76,7 @@ function addCart(data, button, text) {
 					'eventCallback': function() {
 	          $.growl.notice({
 	            title: 'Producto agregado al carrito',
-	            message: 'Puede seguir agregando más productos o ir a la sección Pagar'
+	            message: 'Podés seguir agregando más productos o ir a la sección Pagar'
 	          });
 	          var reload = function() {
 	          	window.location.href = '/carrito'
@@ -87,8 +87,8 @@ function addCart(data, button, text) {
 				}) */
 			} else {
         $.growl.error({
-          title: 'Ocurrio un error al agregar el producto al carrito',
-          message: 'Por favor, intente nuevamente'
+          title: 'Ocurrió un error al agregar el producto al carrito',
+          message: 'Por favor, intentá nuevamente en unos instantes'
         });
 			}
 		})

@@ -1,6 +1,6 @@
 var cargo = ''
 var selectStore = e => {
-	var total_orig = $('#subtotal_compra').val()
+	var total_orig = parseFloat($('#subtotal_compra').val())
 	var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 	
 
@@ -19,12 +19,13 @@ var selectStore = e => {
 	$('#cost_container').html('')
 	$(e).addClass('selected')
   $('.delivery-cost').addClass('hidden')
-  var price = parseFloat(total_orig) - coupon
+  var price = parseFloat(total_orig - coupon)
   format_total = formatNumber(price)
   fxTotal(format_total)
   var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
   preferences.cargo = 'takeaway'
   preferences.total_price = price
+  preferences.subtotal_price = subtotal
   preferences.store = $(e).attr('store')
   preferences.store_address = $(e).attr('store_address')
   localStorage.setItem('carrito', JSON.stringify(preferences))
@@ -58,33 +59,6 @@ callEnd = function(){
 	}, 500)
 }
 
-onErrorAlert = function(title, text, duration){
-	$.growl.error({
-		title: title || 'Error',
-		message: text,
-		queue: true,
-		duration: duration || 15000
-	});
-}
-
-onSuccessAlert = function(title, text, duration){
-	$.growl.notice({
-		title: title || 'OK',
-		message: text,
-		queue: true,
-		duration: duration || 15000
-	});
-}
-
-onWarningAlert = function(title, text, duration){
-	// $('#growls').remove();
-	$.growl.warning({
-		title: title || 'OK',
-		message: text,
-		queue: true,
-		duration: duration || 15000
-	});
-}
 
 function number_format (number, decimals, dec_point, thousands_sep) {
     // Strip all characters but numerical ones.

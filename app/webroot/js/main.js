@@ -106,6 +106,35 @@ let apiSearch = (q) => {
   })    
 }
 
+
+onErrorAlert = function(title, text, duration){
+  $.growl.error({
+    title: title || 'Error',
+    message: text,
+    queue: true,
+    duration: duration || 15000
+  });
+}
+
+onSuccessAlert = function(title, text, duration){
+  $.growl.notice({
+    title: title || 'OK',
+    message: text,
+    queue: true,
+    duration: duration || 15000
+  });
+}
+
+onWarningAlert = function(title, text, duration){
+  // $('#growls').remove();
+  $.growl.warning({
+    title: title || 'OK',
+    message: text,
+    queue: true,
+    duration: duration || 15000
+  });
+}
+
 $(function () {
   var body = $('body');
   body.click((e) => {

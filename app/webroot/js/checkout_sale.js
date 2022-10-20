@@ -28,19 +28,37 @@ $(function(){
 		$('.coupon-actions-block').removeClass('hide')
 	}
 
+	if (bank.enable && bank.discount_enable && bank.discount) {
+		setTimeout(() => {
+  		onSuccessAlert('Pagá con CBU/Alias', `Y obtené un ${bank.discount}% de descuento en tu compra`);		
+  	}, 2000)
+	}
+
 	$('.payment-method input[type=radio]').click(e => {
 		var selected = $(this).find(':checked').val()
-		var total_orig = carrito.total_price
+		var subtotal = carrito.subtotal_price
 		if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
-			var total = total_orig * (1 - parseFloat(bank.discount) / 100)
-			var discounted = parseFloat(total_orig - total).toFixed(2)
-			$('.total_price').text(total.toFixed(2))
-			$('.bank_bonus').text(discounted)
+			var bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
+			$('.bank_bonus').text(bank_bonus.toFixed(2))
 			$('.bank-block').removeClass('hide')
 		} else {
 			$('.bank-block').addClass('hide')
-			$('.total_price').text(total_orig.toFixed(2))
 		}
+		var total = subtotal
+		if (!carrito.freeShipping && carrito.shipping_price) {
+			total+= carrito.shipping_price
+		}
+		if (carrito.coupon_bonus) {
+			total-= carrito.coupon_bonus
+		}
+		if (bank_bonus) {
+			total-= bank_bonus
+		}
+    console.log('subtotal',subtotal)
+    console.log('total',total)
+    console.log('bank_bonus',bank_bonus)
+
+		$('.total_price').text(total.toFixed(2))
 		$('.payment-method .option-rounded').removeClass('is-selected')
 		$(e.target).parent().addClass('is-selected')
 	})

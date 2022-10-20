@@ -714,6 +714,8 @@ class CarritoController extends AppController
 		$total_wo_discount = $total;
 		error_log('suming total (wo_discount): '.$total);
 		// Check coupon
+		$coupon_bonus = 0;
+		$bank_bonus = 0;
 		if (isset($user['coupon']) && $user['coupon'] !== '')  {
 	    $coupon = $this->Coupon->find('first', [
 	      'conditions' => [
@@ -726,7 +728,7 @@ class CarritoController extends AppController
 				if ($applicable->status === 'success') {
 					$discount = (float) $applicable->data['discount'];
 					if($applicable->data['coupon_type'] === 'percentage') {
-						$total = round($total * (1 - $discount / 100), 2);
+						$coupon_bonus = round($total_wo_discount * ($discount / 100), 2);
 						foreach($items as $k => $item) {
 							$item_price = round($item['unit_price'] * (1 - $discount / 100), 2);
 							$items[$k]['unit_price'] = $item_price;
@@ -735,7 +737,7 @@ class CarritoController extends AppController
 							}
 						}
 					} else {
-						$total-= $discount;
+						$coupon_bonus = $discount;
 						foreach($items as $k => $item) {
 							$item_price = $item['unit_price']-= round($discount / count($items), 2);
 							$items[$k]['unit_price'] = $item_price;
@@ -746,22 +748,31 @@ class CarritoController extends AppController
 					}
 				}
 		  }
-		  error_log('suming total (coupon): '.$total);
+		  //error_log('minus (coupon bonus): '.$coupon_bonus);
 	  }
 
 	  // Check bank paying method
 	  if ($user['payment_method'] === 'bank') {
 	  	if($bank_discount_enable && $bank_discount) {
-	  		$total = round($total * (1 - $bank_discount / 100), 2);
-	  		error_log('suming total (bank): '.$total);
+	  		$bank_bonus = round($total_wo_discount * ($bank_discount / 100), 2);
+	  		// error_log('suming total (bank): '.$total);
 	  	}
 	  }
+
+	  if ($coupon_bonus) {
+	  	$total-= $coupon_bonus;
+	  	error_log('suming total (coupon bonus): '.$total);
+	  }
+
+	  if ($bank_bonus) {
+	  	$total-= $bank_bonus;
+	  	error_log('suming total (bank bonus): '.$total);
+	  }
+
 		// Add Delivery
 		$delivery_cost = 0;
 		$freeShipping = $this->isFreeShipping($total_wo_discount, $user['postal_address']);
-		if ($user['cargo'] == 'takeaway') {
-			$freeShipping = true;
-		} else {
+		if (!$freeShipping && $user['cargo'] !== 'takeaway') {
 			$delivery_data = json_decode( $this->deliveryCost($user['postal_address'], $user['shipping']),true);
 
 			if (isset($delivery_data['rates'][0]['price'])) {

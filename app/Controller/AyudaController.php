@@ -63,9 +63,9 @@ class AyudaController extends AppController {
 		$sale = $this->Sale->findById($id);
 		$price = $sale['Sale']['value'];
 
-		if (isset($sale['Sale']['deliver_cost']) && empty($sale['Sale']['free_shipping'])) {
+		/* if (isset($sale['Sale']['deliver_cost']) && empty($sale['Sale']['free_shipping'])) {
 			$price+= $sale['Sale']['deliver_cost'];
-		}
+		} */
 
 		$data = [];
 		$data['id'] = $id;

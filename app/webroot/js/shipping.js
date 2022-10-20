@@ -7,6 +7,7 @@ $(function(){
 
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 		var coupon = parseInt($('.coupon_bonus').text()) || 0
+		var subtotal = parseFloat($('#subtotal_compra').val())
 		cargo = 'shipment'
 
 		$('.shipping-options li').removeClass('selected')
@@ -19,7 +20,7 @@ $(function(){
 			coupon = carrito.coupon_bonus
 		}
 
-		var price = parseFloat($('#subtotal_compra').val()) - coupon
+		var price = parseFloat(subtotal - coupon)
 		if (!freeShipping) {
 			price+= cost
 			$('#subtotal_envio').val(cost)
@@ -31,6 +32,7 @@ $(function(){
 	  preferences.cargo = cargo
 	  preferences.shipping_price = cost
 	  preferences.total_price = price
+	  preferences.subtotal_price = subtotal
 	  localStorage.setItem('carrito', JSON.stringify(preferences))
 
 		let total = formatNumber(price)

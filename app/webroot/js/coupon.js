@@ -8,18 +8,19 @@ $(function(){
     event.preventDefault();
     var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
     var coupon  = $('.input-coupon').val();
-    var total_orig = $('#subtotal_compra').val()
+    var subtotal = $('#subtotal_compra').val()
     var delivery_cost = $('#subtotal_envio').val() || 0
     var c2 = event.target.value
 
-    if (!total_orig && carrito.total_price) {
-        total_orig = carrito.total_price
+    if (!subtotal && carrito.subtotal_price) {
+        subtotal = carrito.subtotal_price
     }
 
-    if (!delivery_cost && carrito.shipping_price) {
+    if (!freeShipping && !delivery_cost && carrito.shipping_price) {
         delivery_cost = carrito.shipping_price
     }
-
+    console.log('subtotal',subtotal)
+    console.log('delivery_cost',delivery_cost)
 
     $('#free_delivery').text('');
     $('.btn-calculate-shipping').button('loading')
@@ -30,22 +31,19 @@ $(function(){
         let discount = parseFloat(json.data.discount)
         let discounted = 0
         let total = 0
-        let subtotal = 0
         if (coupon_type === 'percentage') {
-          total = total_orig * (1 - discount / 100)
+          total = subtotal * (1 - discount / 100)
         } else {
           total-= discount
         }
         total = parseFloat(total).toFixed(2)
-        discounted = parseFloat(parseFloat(total_orig - total).toFixed(2))
+        discounted = parseFloat(parseFloat(subtotal - total).toFixed(2))
         discounted_formatted = formatNumber(discounted)
 
         $('.coupon_bonus').text( discounted_formatted )
         $('.products-total').removeClass('hidden')
         $('.coupon-discount').removeClass('hidden')
         $('.coupon-discount').addClass('fadeInRight')
-
-
         // console.log(parseFloat($('#cost').text()));
         $('.input-coupon').removeClass('wrong');
         $('.input-coupon').addClass('ok');
@@ -67,11 +65,11 @@ $(function(){
       }else{
         $('.coupon-discount').addClass('hidden')
 
-        // fxTotal(formatNumber(total_orig))
+        // fxTotal(formatNumber(subtotal))
         $('.input-coupon').removeClass('ok');
         $('.input-coupon').addClass('wrong');
         $('#cost').text( '0' );
-        format_total = formatNumber(parseFloat(total_orig) + parseFloat(delivery_cost))            
+        format_total = formatNumber(parseFloat(subtotal) + parseFloat(delivery_cost))            
         fxTotal(formatNumber(format_total), true)
         timeout = setTimeout( `onErrorAlert('${json.title}', '${json.message}')` , 200);
       }
