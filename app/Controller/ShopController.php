@@ -61,6 +61,14 @@ class ShopController extends AppController {
 		die();
 	}
 
+	public function test_email($email) {
+		$this->autoRender = false;
+		if (!empty($email)) {
+			$this->sendMail('hello','🌼 Test via en Châtelet',$email);
+		}
+		die();
+	}
+
 	public function test_andreani() {
 		$this->autoRender = false;
 		echo '<h4>Cotizaciones Andreani</h4>
