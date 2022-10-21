@@ -1184,32 +1184,40 @@ class CarritoController extends AppController
 
 	private function notify_user($data, $status){
 		if ($status=='success'){
-			$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).'</strong>, gracias por tu compra!.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
-			<p>Tu compra será procesada dentro de las 72 hr. de haberse acreditado el pago.
-</p><p>Los pedidos se despachan en días hábiles.
-</p><p>Te comentamos que los tiempos de entrega se pueden ver afectados por la cuarentena.
-</p><p>Recuerde que las fechas son estimativas, dado que por razones de logística el correo
-puede reprogramar las fechas, siendo esto ajeno a nosotros. Por favor estate atento
-a la fecha de entrega para que la misma sea exitosa. 
-</p><p>Ante cualquier consulta no dudes en contactarnos a través de VENTASONLINE@OUTLOOK.COM.AR, indicándonos número de compra.
-</p><p>¡Te agradecemos la comprensión!
-</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+
+$message = '<p>¡Hola <strong>'.ucfirst($data['user']['name']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHATELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
+
+<p>Te enviaremos el pedido cuando recibamos la confirmación de la
+venta por parte del medio de pago elegido.</p>
+
+<p>Tu compra será procesada dentro de las 72hs de haberse acreditado
+el pago.</p>
+
+<p>Ante cualquier consulta no dudes en contactarnos a través de VENTASONLINE@OUTLOOK.COM.AR, indicándonos número de pedido.</p>
+
+<p>¡Muchas gracias!</p>
+
+<br/><a href="https://www.chatelet.com.ar">CHATELET</a>';
 
 		}else{
-			$message = '<p>Hola <strong>'.ucfirst($data['user']['name']).'</strong>, gracias por tu compra! Aguardamos recibir el pago para contactarte.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
-			<p>Tu compra será procesada dentro de las 72 hr. de haberse acreditado el pago.
-</p><p>Los pedidos se despachan en días hábiles.
-</p><p>Te comentamos que los tiempos de entrega se pueden ver afectados por la cuarentena.
-</p><p>Recuerde que las fechas son estimativas, dado que por razones de logística el correo
-puede reprogramar las fechas, siendo esto ajeno a nosotros. Por favor estate atento
-a la fecha de entrega para que la misma sea exitosa. 
-</p><p>Ante cualquier consulta no dudes en contactarnos a través de VENTASONLINE@OUTLOOK.COM.AR, indicándonos número de compra.
-</p><p>¡Te agradecemos la comprensión!
-</p><br/><a href="https://www.chatelet.com.ar">www.chatelet.com.ar</a>';
+
+$message = '<p>¡Hola <strong>'.ucfirst($data['user']['name']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHATELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
+
+<p>Te enviaremos el pedido cuando recibamos la confirmación de la
+venta por parte del medio de pago elegido.</p>
+
+<p>Tu compra será procesada dentro de las 72hs de haberse acreditado
+el pago.</p>
+
+<p>Ante cualquier consulta no dudes en contactarnos a través de VENTASONLINE@OUTLOOK.COM.AR, indicándonos número de pedido.</p>
+
+<p>¡Muchas gracias!</p>
+
+<br/><a href="https://www.chatelet.com.ar">CHATELET</a>';
 
 		}
 		error_log('[email] notifying user '.$data['user']['email']);
-		$this->sendMail($message,'Compra Realizada en Châtelet',$data['user']['email']);
+		$this->sendMail($message,'Gracias por comprar en CHATELET',$data['user']['email']);
 	}
 
 	public function failed() {
