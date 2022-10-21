@@ -3,7 +3,6 @@ var cargo = ''
 var selectStore = e => {
 	var total_orig = parseFloat($('#subtotal_compra').val())
 	var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
-	
 
 	/* if (document.querySelector('.shipping-options')) {
 		document.querySelector('.shipping-options').classList.remove('zoomInRight')
@@ -26,7 +25,7 @@ var selectStore = e => {
   var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
   preferences.cargo = 'takeaway'
   preferences.total_price = price
-  preferences.subtotal_price = subtotal
+  preferences.subtotal_price = total_orig
   preferences.store = $(e).attr('store')
   preferences.store_address = $(e).attr('store_address')
   localStorage.setItem('carrito', JSON.stringify(preferences))
