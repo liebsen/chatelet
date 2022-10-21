@@ -1217,7 +1217,7 @@ el pago.</p>
 
 		}
 		error_log('[email] notifying user '.$data['user']['email']);
-		$this->sendMail($message,'Gracias por comprar en CHATELET',$data['user']['email']);
+		$this->sendMail($message,'❀ Gracias por comprar en CHATELET',$data['user']['email']);
 	}
 
 	public function failed() {

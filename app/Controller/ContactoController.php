@@ -61,7 +61,7 @@ class ContactoController extends AppController {
 				$message.= '<br />Tipo: '.$data['Contact']['client_type'];
 				$message.= '<br /><br /><br /> Para contestar este mensaje, debe crear un nuevo correo copiando la dirección de correo electrónico que el cliente completó.';
 				
-				$subject = 'Contacto Châtelet - NO RESPONDER';
+				$subject = '❀ Contacto Châtelet - NO RESPONDER';
 				$to = 'chateletonline@chatelet.com.ar';
 				
 				$this->sendMail($message, $subject, $to);
