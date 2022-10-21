@@ -147,9 +147,17 @@
 									  <input type="checkbox" id="regalo" name="regalo"><span class="label-text">Es para regalo</span><br><br>
 									</label>
 									<div class="row card-row">
-								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link cargo-shipment hide">Modificar</a>
-								    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="cargo-shipment hide">Modificar dirección</span>
-								  	<a href="/carrito#f:.beneficios-exclusivos" class="card-link coupon-actions-block hide">Ingresar cupón</a>
+								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link cargo-shipment hide">
+								    	<i class="fa fa-truck"></i> Modificar método de entrega
+								    </a>
+								    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="cargo-shipment hide">
+								    	<i class="fa fa-map-marker"></i>
+								    	Modificar dirección
+								    </span>
+								  	<a href="/carrito#f:.beneficios-exclusivos" class="card-link coupon-actions-block hide">
+								  		<i class="fa fa-tag"></i>
+								  		Ingresar cupón
+								  	</a>
 								  </div>
 								</div>
 							</div>				
