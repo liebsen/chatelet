@@ -91,7 +91,7 @@
                     		</p>
                     	</label>
                     </div>						        
-							    	<div class="col-xs-12 option-regular">
+							    	<div class="col-xs-12 option-regular shipping-block hide">
 						          <label for="online" class="d-inline">
 											<?php if($freeShipping): ?>
 						          	<span class="h4 text-success">Envío gratis</span>
@@ -110,10 +110,10 @@
 						        </div>  
 							    	<div class="col-xs-12 option-regular cargo-takeaway hide">
 						          <label for="online" class="d-inline">
-						          	<span class="h4">Costo de envío</span><br>
+						          	<span class="h4">Retiro en susursal</span><br>
 						          	<p class="mt-2">
-						          		<span class="store_address"></span>
-                    			<span class="store"></span>
+						          		<span class="text-bold store_address"></span>
+                    			<span class="text-bold store"></span>
                     			<?= $data['carrito_takeaway_text'] ?>
                     		</p>
                     	</label>

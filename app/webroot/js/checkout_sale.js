@@ -34,25 +34,31 @@ $(function(){
 	$(`.cargo-${carrito.cargo}`).removeClass('hide')
 	$('#regalo').prop('checked', carrito.regalo)
 
-	Object.keys(carrito).forEach(key => {
-		if ($(`.${key}`).length) {
-			var text = carrito[key]
-			if (key === 'coupon') {
-				$('.coupon-block').removeClass('hide')
+	Object.keys(carrito).forEach(e => {
+		if ($(`.${e}`).length) {
+			if ($('#checkoutform').find(`input[name='${e}']`).length) {
+				$('#checkoutform').find(`input[name='${e}']`).val(carrito[e])
 			}
-			if (key === 'shipping_price') {
-				if (carrito.freeShipping) {
-					text = '<span class="text-success">Gratis</span>'
-				} else {
-					text = `$${text}`
-				}
+			if ($(`.${e}`)) {
+				$(`.${e}`).html(carrito[e])
 			}
-			$(`.${key}`).html(text)
-		}
-		if ($('#checkoutform').find(`input[name='${key}']`).length) {
-			$('#checkoutform').find(`input[name='${key}']`).val(carrito[key])
 		}
 	})
+
+	if (carrito.cargo === 'takeaway') {
+		$('.cargo-takeaway').removeClass('hide')
+	}
+
+	if (carrito.cargo === 'shipment') {
+		var price = ''
+		if (carrito.freeShipping) {
+			price = '<span class="text-success">Gratis</span>'
+		} else {
+			price = `$${carrito.shipping_price}`
+		}
+		$('.shipping_price').html(price)
+		$('.shipping-block').removeClass('hide')
+	}
 
 	if(!carrito.coupon) {
 		$('.coupon-actions-block').removeClass('hide')
