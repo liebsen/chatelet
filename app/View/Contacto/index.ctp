@@ -9,7 +9,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="box w-leaves">
-                            <h3>¿Tiene alguna consulta o sugerencia?</h3>
+                            <h3>¿Tenés alguna consulta o sugerencia?</h3>
                             <p>Complete el siguiente formulario y háganos llegar sus inquietudes o recomendaciones que crea pertinentes.</p>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-md-6">
                     <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
-                      <input type="text" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                      <input class="p-1" type="text" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
                       <input type="submit" id="enviar" value="ok">
                     <?php echo $this->Form->end(); ?>
                 </div>
@@ -65,7 +65,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<h1 class="heading">Contacto</h1>
-			<h3 class="subheading">¿Tiene alguna consulta o sugerencia?</h3>
+			<h3 class="subheading">¿Tenés alguna consulta o sugerencia?</h3>
 			<p class="info">
 				Complete el siguiente formulario y háganos llegar sus inquietudes o recomendaciones que crea pertinentes.
 			</p>

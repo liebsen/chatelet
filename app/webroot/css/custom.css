@@ -122,6 +122,9 @@ label input[type=checkbox]:disabled + .label-text:before {
 .ml-2 {
   margin-left: 0.5rem!important;
 }
+.p-1 {
+  padding: 0.25rem;
+}
 
 .text-uppercase {
   text-transform: uppercase;
@@ -970,7 +973,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#location .col-md-4.search p { font-size: 1rem; }
 
 	#headcontacto h1 { font-size: 30px; }
-	#headcontacto .box { padding: 60px 50px; }
+	#headcontacto .box { padding: 60px 50px; min-height: 18rem; }
 	#headcontacto .box h3 { font-size: 1.25rem; }
 	#headcontacto .box p { font-size: 1rem; }
 
