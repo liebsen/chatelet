@@ -42,7 +42,7 @@ let focusEl = (text) => {
 
 let findSize = (str) => {
   var size = '1.5rem'
-  if (str.length >= 18) {
+  if (str.length >= 16) {
     size = '1.25rem'
   }
   if (str.length >= 21) {
