@@ -146,8 +146,24 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .box {
-  border-radius: 0px;
+  border-radius: 1rem;
   background-color: rgba(255,255,255,0.5);
+}
+
+.box.w-leaves {
+  /* background-image: url(../images/clipart/47040.svg); */
+  background-image: url(../images/clipart/47.png);
+  background-position: 110% 90%;
+  background-repeat: no-repeat;
+  background-size: 11rem;
+}
+
+.box.w-leaves2 {
+  /* background-image: url(../images/clipart/47040.svg); */
+  background-image: url(../images/clipart/holly-leaf-decorative-border-free-svg-file-SvgHeart.Com.png);
+  background-position: 110% 90%;
+  background-repeat: no-repeat;
+  background-size: 11rem;
 }
 
 .is-bottom {
@@ -959,7 +975,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headcontacto .box p { font-size: 1rem; }
 
 	#headhelp h1 { font-size: 40px; }
-	#headhelp .box { padding: 40px 40px 20px; border-radius: 0.75rem; }
+	#headhelp .box { padding: 40px 40px 20px; border-radius: 0.75rem; min-height: 18rem;}
 	#headhelp .box p { font-size: 1rem; margin-bottom: 20px; }
 	#headhelp .box h3 { font-size: 1.25rem; }
 	#optionsHelp a, #desarrollo p { font-size: 1.25rem; }
@@ -2187,6 +2203,9 @@ span.count.is-empty {
     border-radius: 1rem;
     border: 1px solid #ccc;
     /* box-shadow: var(--box-shadow); */
+  }
+  .box.w-leaves {
+    background-position: 100% 90%;
   }
   .card {    
     border: 1px solid #ccc;

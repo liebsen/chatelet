@@ -5,7 +5,7 @@
                         <h1>¿Cómo<br>comprar?</h1>
                     </div>
                     <div class="col-md-6">
-                        <div class="box">
+                        <div class="box w-leaves">
                             <h3>¿Tiene alguna consulta o sugerencia?</h3>
                             <p>Para comprar un producto de nuestro catalogo, primero debes tener una cuenta registrada en nuestro sitio. Si todavía no estás registrado/a <a href="#">hace click aquí</a>.</p>
                         </div>

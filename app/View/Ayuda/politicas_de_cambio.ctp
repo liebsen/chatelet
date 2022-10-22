@@ -8,7 +8,7 @@
                         <h1>Políticas de<br>cambio</h1>
                     </div>
                     <div class="col-md-6">
-                        <div class="box">
+                        <div class="box w-leaves">
                             <h3>Garantía de confianza</h3>
                             <p>En el caso de que el/la cliente/a no se encuentre conforme con el producto adquirido, siempre vas a poder cambiarlo por cualquier otro de igual valor o varios productos que equivalgan o superen al valor del saldo a favor. La diferencia será abonada por el cliente al momento del cambio.</p>
                         </div>

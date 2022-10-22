@@ -8,7 +8,7 @@
                         <h1>Contactate<br>con nosotros</h1>
                     </div>
                     <div class="col-md-6">
-                        <div class="box">
+                        <div class="box w-leaves">
                             <h3>¿Tiene alguna consulta o sugerencia?</h3>
                             <p>Complete el siguiente formulario y háganos llegar sus inquietudes o recomendaciones que crea pertinentes.</p>
                         </div>

@@ -7,7 +7,7 @@
                         <h1>Consultar<br>envíos</h1>
                     </div>
                     <div class="col-md-6">
-                        <div class="box box2">
+                        <div class="box w-leavesbox2">
                             <p>Los datos son extraídos de OCA. También se puede consultar el estado del envío comunicándose con el centro de atención al cliente de OCA: 0800-999-7700</p>
 
                             <h3>Seguimiento de paquetes</h3>
