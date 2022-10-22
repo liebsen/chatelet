@@ -119,6 +119,9 @@ label input[type=checkbox]:disabled + .label-text:before {
 .mb-5 {
   margin-bottom: 1.25rem!important;
 }
+.ml-2 {
+  margin-left: 0.5rem!important;
+}
 
 .text-uppercase {
   text-transform: uppercase;
@@ -2001,7 +2004,7 @@ span.count.is-empty {
   position: absolute;
   display: flex;
   justify-content: center;
-  border-radius: 2rem;
+  border-radius: 1rem;
   background-color: rgba(80,80,80,0.1);
   align-items: center;
   z-index: 10;
@@ -2172,8 +2175,8 @@ span.count.is-empty {
     background-color: white!important;
     margin-bottom: 0.75rem;
     border: 1px solid #ccc;
-    border-radius: 2rem;
-    padding: 2rem 2rem 1rem 1rem;
+    border-radius: 1rem;
+    padding: 1rem;
   }
   .is-flex-end {
     flex-direction: row;
@@ -2181,13 +2184,13 @@ span.count.is-empty {
   .is-rounded {
     margin: 1rem 0;
     margin-top: 0;
-    border-radius: 2rem;
+    border-radius: 1rem;
     border: 1px solid #ccc;
     /* box-shadow: var(--box-shadow); */
   }
   .card {    
     border: 1px solid #ccc;
-    border-radius: 2rem;
+    border-radius: 1rem;
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-top: 10px;
