@@ -43,7 +43,7 @@
 	border-top-left-radius: 2rem;
 	border-bottom-left-radius: 2rem;
 	padding-right: 4rem;
-	min-height: 46px;
+	min-height: 45px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;	
@@ -69,7 +69,7 @@
 	color: #e10d74e6;
 	cursor: pointer;
 	background-image: url(../images/chevron_right_pink.svg);
-	background-position: right 0.5rem center;
+	background-position: right 0.75rem center;
 	background-repeat: no-repeat;
 	background-size: 30px;
 	margin-bottom: 0.5rem;

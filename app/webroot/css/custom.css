@@ -1872,7 +1872,7 @@ span.count.is-empty {
 }
 
 .is-rounded {
-  padding: 1.25rem;
+  padding: 1rem;
   padding-bottom: 0.5rem;
   background-color: #f7ecf1;
   display: grid;
