@@ -402,6 +402,7 @@ select {
 
 #menuSearch {
 	background-color: #f7ecf1;
+	padding-top: 0.5rem;
 }
 .float-left {
 	float: left;
@@ -574,7 +575,7 @@ select {
 	background-color: #bebebe;
 	min-width: 20rem;
 	min-height: 46px;
-	border-radius: 1.5rem;
+	border-radius: 1rem;
 	transition: all 0.25s ease;
 }
 .cart-btn-green.shrink {

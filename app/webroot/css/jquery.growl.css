@@ -38,6 +38,7 @@
   position: relative;
   border-radius: 0.75rem;
   margin-bottom: 10px;
+  margin-left: 10px;
   scale: 1;
   box-shadow: 1px 1px 5px 0 rgba(26, 26, 67, .05), 39px 62.5px 125px -25px rgba(50, 50, 93, .2), 23.4px 37.5px 75px -37.5px rgba(0, 0, 0, .4);
   -webkit-transition: all 0.4s ease-in-out;

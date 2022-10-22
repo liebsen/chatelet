@@ -174,7 +174,7 @@
 							<i class="fa fa-warning grey"></i>
 						</div>
 						<h3 class="h3 text-center">Tu carrito de compras está vacío</h3>
-						<div>Agregá al menos un producto para continuar</div>
+						<div>¿Te interesaría buscar por palabra clave?</div>
 					</div>
 					<br><br>
 					<?php endif;?>
@@ -191,7 +191,7 @@
 			</div>
 		<?php if (!isset($carro)): ?>
 			<div class="col-md-12 text-center">
-				<a href="#" class="btn action-search cart-btn-green">Buscar</a>
+				<a href="#" class="btn action-search cart-btn-green">Buscar por palabra clave</a>
 				<!--a class="keep-buying cart-btn-green" href="/#q:">Seguir comprando</a-->
 			</div>
 		<?php endif ?>
