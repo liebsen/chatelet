@@ -177,7 +177,7 @@ $(document).ready(function() {
 				}, 10)
 				return $.growl.warning({
 					title: 'Talle y color',
-					message: 'Por favor seleccione un talle y un color'
+					message: 'Por favor seleccioná Talle y Color'
 				});
 			}
 

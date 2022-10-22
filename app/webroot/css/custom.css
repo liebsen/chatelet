@@ -2218,8 +2218,8 @@ span.count.is-empty {
     margin-top: 10px;
   }
   #productOptions .col-sm-9 a img { 
-    min-height: 20rem; 
-    max-height: 20rem;
+    /* min-height: 20rem; 
+    max-height: 20rem; */
   }
   #opts a { max-height: 315px; }
   #detalle .caract .add {min-width: 10rem; }
