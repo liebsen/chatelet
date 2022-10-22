@@ -680,7 +680,7 @@ align-items: center;}
 #productOptions nav li { border-bottom: 1px solid rgba(194, 194, 194, 0.27); padding: 20px 0; }
 #productOptions nav li a { color: #222; font-size: 16px; text-transform: uppercase; font-weight: normal; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #productOptions nav li a:hover { color: #f50081; }
-#productOptions a.btBig { border: 2px solid #f50081; color: #6e6e6e; display: block; font-size: 40px; font-weight: 600; padding: 240px 0; text-align: center; border-radius: 1rem;}
+#productOptions a.btBig { border: 2px solid #f50081; color: #6e6e6e; display: block; font-size: 40px; font-weight: 600; padding: 240px 0; text-align: center; border-radius: 2rem;}
 #productOptions a.btBig span { color: #f50081; font-size: 27px; }
 #productOptions .col-sm-9 a {  /*background: #e7e7e7;*/ display: inline-table; width: 100%; background-color: whitesmoke; margin-bottom: 10px; overflow: hidden; position: relative;height: auto; }
 #productOptions .col-sm-9 a img { 
@@ -728,7 +728,7 @@ align-items: center;}
 #detalle .caract .colors a.grisoscuro { background: #5a5a5a; }
 #detalle .caract .colors a.verde { background: #42604e; }
 #detalle .caract .colors a.azul { background: #294c70; }
-#detalle .caract .add { background: #f50081; min-height: 46px; min-width: 10rem; color: #FFF; display: block; font-size: 1.25rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center;border-radius: 1rem; transition: all 0.5s ease-in;}
+#detalle .caract .add { background: #f50081; min-height: 46px; min-width: 10rem; color: #FFF; display: block; font-size: 1.25rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center;border-radius: 2rem; transition: all 0.5s ease-in;}
 #detalle .caract .add.adding { background-color: #808080; }
 #detalle .caract .social { margin-top: 40px; text-align: center; }
 #detalle .caract .social a { background-image: url(../images/sprite.png); display: inline-block; height: 19px; margin: 0 25px; width: 19px; }
@@ -856,7 +856,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #optionsHelp a { color: #404040; display: inline-block; font-size: 1.25rem; padding: 0 25px; }
 #optionsHelp a.active { color: #f50081; }
 #desarrollo { background: #fadcea; font-size: 22px; line-height: 1.4; padding: 60px 0; }
-#desarrollo a.bt { /*border: 3px solid #f50081;*/ color: #f50081; display: inline-block; font-size: 1.5rem; padding: 20px 120px; background-color: #fff3; border-radius: 1rem;}
+#desarrollo a.bt { /*border: 3px solid #f50081;*/ color: #f50081; display: inline-block; font-size: 1.5rem; padding: 20px 120px; background-color: #fff3; border-radius: 2rem;}
 /* #desarrollo .row { display: flex; align-items: center; } */
 #desarrollo .col-md-6:last-child { text-align: right; }
 #desarrollo img { margin-bottom: 15px; max-width: 100%; }
@@ -1320,7 +1320,7 @@ span.out{
   color: #f50081;
   border: 2px solid #f50081;
   padding: 0.75rem 1rem;
-  border-radius: 1rem;
+  border-radius: 2rem;
   font-size: 1.25rem;
   font-weight: 800;
   text-decoration: none;    
@@ -1424,32 +1424,33 @@ span.out{
 }
 
 .input-search {
-  padding: 1rem;
-  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 2rem;
   border-color: #f50081;
   font-size: 1.5rem;
   font-weight: 800;
-  width: 20rem;
+  background-color: #fadcea;
+  width: 18rem;
   transition: all 0.25s ease-out;
 }
 .input-search:focus {
-  background-color: #fadcea;
+  background-color: white;
 }
 
 .search-bar-container {
   display: inline-block;
   height: 0.5rem;
-  width: 18rem;
-  margin: 0 1rem;
+  width: 15rem;
+  margin: 0.25rem 1.5rem;
   background-color: #f7dbea;
-  border-radius: 1rem;
+  border-radius: 2rem;
 }
 .search-bar {
   height: 0.5rem;
   width: 0%;
   background-color: #f50081;
   transition: all 1s ease-in-out;
-  border-radius: 1rem;
+  border-radius: 2rem;
 }
 .search-info {
   color: #f50081;
@@ -2015,7 +2016,7 @@ span.count.is-empty {
   padding: 0.5rem;
   font-size: 1.25rem;
   font-style: italic;
-  border-radius: 1rem;
+  border-radius: 2rem;
   background-color: #e10d74;
   color: white;
 }

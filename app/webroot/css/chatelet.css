@@ -575,7 +575,7 @@ select {
 	background-color: #bebebe;
 	min-width: 20rem;
 	min-height: 46px;
-	border-radius: 1rem;
+	border-radius: 2rem;
 	transition: all 0.25s ease;
 }
 .cart-btn-green.shrink {
