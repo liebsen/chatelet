@@ -110,10 +110,10 @@
 						        </div>  
 							    	<div class="col-xs-12 option-regular cargo-takeaway hide">
 						          <label for="online" class="d-inline">
-						          	<span class="h4">Retiro en susursal</span><br>
-						          	<p class="mt-2">
+						          	<span class="h4">Retiro en sucursal</span><br>
+						          	<p class="mt-2"> Elegiste retirarlo en 
 						          		<span class="text-bold store_address"></span>
-                    			<span class="text-bold store"></span>
+                    			<span class="text-bold store"></span>. 
                     			<?= $data['carrito_takeaway_text'] ?>
                     		</p>
                     	</label>
@@ -137,7 +137,7 @@
 							    	<div class="col-xs-12 option-regular">
 						          <label for="online" class="d-inline">
 						          	<span class="h4">Total a pagar</span><br>
-						          	<p class="mt-2 text-bold">
+						          	<p class="mt-2 text-bold h3">
 						          		$<span class="total_price"></span>
 						          	</p>
 						          </span>

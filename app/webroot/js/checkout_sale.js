@@ -67,6 +67,9 @@ $(function(){
 	if(!carrito.coupon) {
 		$('.coupon-actions-block').removeClass('hide')
 		$('.coupon-actions-block').addClass('animated scaleIn')
+	} else {
+		$('.coupon-block').removeClass('hide')
+		$('.coupon-block').addClass('animated scaleIn')
 	}
 
 	if (bank.enable && bank.discount_enable && bank.discount) {
