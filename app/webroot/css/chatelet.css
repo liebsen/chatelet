@@ -574,7 +574,7 @@ select {
 	background-color: #bebebe;
 	min-width: 20rem;
 	min-height: 46px;
-	border-radius: 0.5rem;
+	border-radius: 1.5rem;
 	transition: all 0.25s ease;
 }
 .cart-btn-green.shrink {
@@ -691,7 +691,7 @@ span.user {
 	  height: 40rem;
 	}
 	.card-body {
-	  padding: 1.25rem;
+	  padding: 2rem;
 	}
 }
 
