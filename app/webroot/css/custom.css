@@ -125,6 +125,9 @@ label input[type=checkbox]:disabled + .label-text:before {
 .p-1 {
   padding: 0.25rem;
 }
+.mb-0 {
+  margin-bottom: 0!important;
+}
 
 .text-uppercase {
   text-transform: uppercase;

@@ -80,13 +80,17 @@
 						          <label for="online" class="d-inline">
 						          	<span class="h4">Cliente</span><br>
 						          	<p class="mt-2"><?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?> (DNI <?= $userData['User']['dni'] ?>)</p>
+										    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="cargo-shipment hide">
+										    	<i class="fa fa-map-marker"></i>
+										    	Modificar dirección
+										    </span>
 						        	</label>				          
 						        </div>
 						      	<?php endif ?>
 							    	<div class="col-xs-12 option-regular">
 						          <label for="online" class="d-inline">
 						          	<span class="h4">Subtotal productos</span><br>
-						          	<p class="mt-2 text-bold">
+						          	<p class="mt-2 text-bold h3 mb-0">
 						          		$<span class="subtotal_price"></span>
                     		</p>
                     	</label>
@@ -98,12 +102,15 @@
 											<?php else: ?>
 						          	<span class="h4">Costo de envío</span><br>
 						          	<p class="mt-2">
-						          		<span class="shipping_price text-bold"></span>
+						          		<span class="shipping_price text-bold h3 mb-0"></span>
 												<?php if($loggedIn): ?>
 											    <br><br><span> Entrega <span class="shipping text-uppercase"></span> en 
 											    	<?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street_n'] ?: '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>) 
 											    </span>
-											  <?php endif ?>													
+											  <?php endif ?>
+											  	<a href="/carrito#f:.shipment-options.shipping" class="card-link">
+											    	<i class="fa fa-truck"></i> Retirar en sucursal
+											    </a>
 						          	</p>
 						          <?php endif ?>
 						        	</label>				          
@@ -115,13 +122,16 @@
 						          		<span class="text-bold store_address"></span>
                     			<span class="text-bold store"></span>. 
                     			<?= $data['carrito_takeaway_text'] ?>
+											    <a href="/carrito#f:.shipment-options.takeaway" class="card-link">
+											    	<i class="fa fa-truck"></i> Solicitar envío 
+											    </a>
                     		</p>
                     	</label>
                     </div>
 							    	<div class="col-xs-12 option-regular coupon-block hide">
 						          <label for="online" class="d-inline">
 						          	<span class="h4">Descuento <span class="coupon"></span></span><br>
-						          	<p class="mt-2 text-bold text-success">
+						          	<p class="mt-2 text-bold text-success h3 mb-0">
 						          		$<span class="coupon_bonus"></span>
 						          	</p>
 						          </span>
@@ -129,7 +139,7 @@
 							    	<div class="col-xs-12 option-regular bank-block hide">
 						          <label for="online" class="d-inline">
 						          	<span class="h4">Descuento CBU/Alias</span><br>
-						          	<p class="mt-2 text-bold text-success">
+						          	<p class="mt-2 text-bold text-success h3 mb-0">
 						          		$<span class="bank_bonus"></span>
 						          	</p>
 						          </span>
@@ -137,23 +147,16 @@
 							    	<div class="col-xs-12 option-regular">
 						          <label for="online" class="d-inline">
 						          	<span class="h4">Total a pagar</span><br>
-						          	<p class="mt-2 text-bold h3">
+						          	<p class="mt-2 text-bold h3 mb-0">
 						          		$<span class="total_price"></span>
 						          	</p>
 						          </span>
 						        </div>
 						      </div>
-									<label class="form-group">
+									<label class="form-group mt-4">
 									  <input type="checkbox" id="regalo" name="regalo"><span class="label-text">Es para regalo</span><br><br>
 									</label>
 									<div class="row card-row">
-								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link cargo-shipment hide">
-								    	<i class="fa fa-truck"></i> Modificar método de entrega
-								    </a>
-								    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="cargo-shipment hide">
-								    	<i class="fa fa-map-marker"></i>
-								    	Modificar dirección
-								    </span>
 								  	<a href="/carrito#f:.beneficios-exclusivos" class="card-link coupon-actions-block hide">
 								  		<i class="fa fa-tag"></i>
 								  		Ingresar cupón
