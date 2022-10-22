@@ -120,16 +120,16 @@
                     </div>
 							    	<div class="col-xs-12 option-regular coupon-block hide">
 						          <label for="online" class="d-inline">
-						          	<span class="h4 text-success">Descuento <span class="coupon"></span></span><br>
-						          	<p class="mt-2 text-bold">
+						          	<span class="h4">Descuento <span class="coupon"></span></span><br>
+						          	<p class="mt-2 text-bold text-success">
 						          		$<span class="coupon_bonus"></span>
 						          	</p>
 						          </span>
 						        </div>
 							    	<div class="col-xs-12 option-regular bank-block hide">
 						          <label for="online" class="d-inline">
-						          	<span class="h4 text-success">Descuento CBU/Alias</span><br>
-						          	<p class="mt-2 text-bold">
+						          	<span class="h4">Descuento CBU/Alias</span><br>
+						          	<p class="mt-2 text-bold text-success">
 						          		$<span class="bank_bonus"></span>
 						          	</p>
 						          </span>

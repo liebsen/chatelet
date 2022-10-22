@@ -7,6 +7,7 @@ var select_payment = (e) => {
 		bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
 		$('.bank_bonus').text(bank_bonus.toFixed(2))
 		$('.bank-block').removeClass('hide')
+		$('.bank-block').addClass('animated scaleIn')
 	} else {
 		$('.bank-block').addClass('hide')
 	}
@@ -32,6 +33,7 @@ var select_payment = (e) => {
 $(function(){
 
 	$(`.cargo-${carrito.cargo}`).removeClass('hide')
+	$(`.cargo-${carrito.cargo}`).addClass('animated scaleIn')
 	$('#regalo').prop('checked', carrito.regalo)
 
 	Object.keys(carrito).forEach(e => {
@@ -47,6 +49,7 @@ $(function(){
 
 	if (carrito.cargo === 'takeaway') {
 		$('.cargo-takeaway').removeClass('hide')
+		$('.cargo-takeaway').addClass('animated scaleIn')
 	}
 
 	if (carrito.cargo === 'shipment') {
@@ -58,10 +61,12 @@ $(function(){
 		}
 		$('.shipping_price').html(price)
 		$('.shipping-block').removeClass('hide')
+		$('.shipping-block').addClass('animated scaleIn')
 	}
 
 	if(!carrito.coupon) {
 		$('.coupon-actions-block').removeClass('hide')
+		$('.coupon-actions-block').addClass('animated scaleIn')
 	}
 
 	if (bank.enable && bank.discount_enable && bank.discount) {
