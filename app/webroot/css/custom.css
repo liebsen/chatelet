@@ -286,7 +286,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   display: none;
   padding: 40px 0;
   position: absolute;
-  top: 85px;
+  top: 94px;
   width: 100%;
   overflow-x: hidden;
 }
