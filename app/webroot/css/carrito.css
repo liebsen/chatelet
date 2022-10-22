@@ -213,11 +213,8 @@
 }
 
 a.trash {
-	display: inline-block;
 	color: #ff1a1a;
 	font-size: 18px;
-	margin-top: 1px;
-	margin-bottom: 1rem;
 }
 
 .thumb {

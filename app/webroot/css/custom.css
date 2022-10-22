@@ -1897,10 +1897,9 @@ span.count.is-empty {
 }
 
 .is-rounded {
-  padding: 1rem;
-  padding-bottom: 0.5rem;
-  background-color: #f7ecf1;
   display: grid;
+  padding: 0.5rem;
+  background-color: #f7ecf1;
 }
 
 .is-rounded-content {
@@ -2060,11 +2059,17 @@ span.count.is-empty {
 }
 
 .carrito-remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   z-index: 20;
-  top: 1rem;
-  right: 1rem;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.75rem;
+  height: 1.75rem;
 }
+
 /*
 .text-dark {
   color: #666!important;
@@ -2199,6 +2204,7 @@ span.count.is-empty {
     border: 1px solid #ccc;
     border-radius: 1rem;
     padding: 1rem;
+    padding-left: 0;
   }
   .is-flex-end {
     flex-direction: row;
