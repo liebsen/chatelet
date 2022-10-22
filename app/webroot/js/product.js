@@ -108,10 +108,9 @@ function pideStock(obj){
 		var article 	= $(obj).closest("form").data('article');
 		var color_code 	= $(obj).closest("form").find('input[name="color"]:checked').attr('code');
 		var size_number	= $(obj).closest("form").find('#size option:selected').val();
-
 		var stock_cont	= $(obj).closest("form").find('#stock_container');
-		var stock    	= '<i style="color:green;">Disponible <i>';
-		var stock_0 	= '<i style="color:red;">No Disponible</i>';
+		var stock    	= '<i style="color:green;font-weight:600;">Disponible <i>';
+		var stock_0 	= '<i style="color:red;font-weight:600;">No Disponible</i>';
 		var missing 	= '<i> (Elegí color y talle) </i>';
 		var no_color	= '<i> (Elegí color) <i>';
 	  var stock_v  	= '<i style="color:gray;">Consultando ... </i>';

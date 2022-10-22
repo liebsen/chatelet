@@ -1,1 +1,28 @@
-[]
+{
+    "425246#ffffffVerde seco": {
+        "id": "4252",
+        "cod_chatelet": null,
+        "name": "REMERA CONICA AFRODITA",
+        "desc": "REMERA CONICA AFRODITA. ESCOTE V CON MANGA CAIDA 3\/4, DETALLE RECORTE. TEJIDO JERSEY ESTAMPADO BATICK.",
+        "img_url": "TeYXAQBylpViycO06SyMgAE7V.jpg",
+        "price": "2895",
+        "article": "i2101",
+        "category_id": "184",
+        "gallery": "",
+        "discount": "2895",
+        "promo": "",
+        "stock_total": "44",
+        "with_thumb": "1",
+        "discount_label": "20",
+        "discount_label_show": "20",
+        "color": "#ffffff",
+        "size": "46",
+        "alias": "Verde seco",
+        "color_code": "43",
+        "alias_image": "vIo1FD3aquT89UlE7RwZSBEWX.jpg",
+        "original_price": "3618.99",
+        "old_price": "3618.99",
+        "uid": 0,
+        "count": 1
+    }
+}

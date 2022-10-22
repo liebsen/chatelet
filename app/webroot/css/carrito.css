@@ -40,9 +40,9 @@
 	background-repeat: no-repeat;
 	background-position: left center;
 	text-align: right;
-	border-top-left-radius: 0.25rem;
-	border-bottom-left-radius: 0.25rem;
-	padding-right: 3rem;
+	border-top-left-radius: 2rem;
+	border-bottom-left-radius: 2rem;
+	padding-right: 4rem;
 	min-height: 46px;
 	display: flex;
 	flex-direction: column;
@@ -60,7 +60,7 @@
 }
 
 .generic-select li {
-	padding: 0.75rem;
+	padding: 0.75rem 1rem;
 	border: 1px solid #e10d7499;
 	border-radius: 2rem;
 	line-height: 1.25;
