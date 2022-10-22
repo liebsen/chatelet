@@ -88,16 +88,16 @@ function price_format ($num) {
 
 function title_fontsize ($str) {
   $font_size = '1.5rem';
-  if (strlen($str) >= 18) {
+  if (strlen($str) >= 15) {
       $font_size = '1.25rem';
   }
-  if (strlen($str) >= 20) {
+  if (strlen($str) >= 19) {
       $font_size = '1.15rem';
   }
-  if (strlen($str) >= 24) {
+  if (strlen($str) >= 22) {
       $font_size = '1rem';
   }
-  if (strlen($str) >= 28) {
+  if (strlen($str) >= 26) {
       $font_size = '0.75rem';
   }  
   if ($font_size){

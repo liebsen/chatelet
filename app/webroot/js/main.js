@@ -42,16 +42,16 @@ let focusEl = (text) => {
 
 let findSize = (str) => {
   var size = '1.5rem'
-  if (str.length >= 16) {
+  if (str.length >= 15) {
     size = '1.25rem'
   }
-  if (str.length >= 21) {
+  if (str.length >= 19) {
     size = '1.15rem'
   }
-  if (str.length >= 24) {
+  if (str.length >= 22) {
     size = '1rem'
   }        
-  if (str.length >= 28) {
+  if (str.length >= 26) {
     size = '0.75rem'
   }
   return size
@@ -152,7 +152,7 @@ $(function () {
 
   $('ul.nav a').hover(function () {
     if( $(this).attr('class') == 'viewSubMenu' ) {
-      if (!$('.menuLayer').length) {
+      if (!$('.menuLayer').is(':visible').length) {
         $('#menuShop').fadeIn();
       }
     } else {

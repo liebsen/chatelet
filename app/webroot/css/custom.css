@@ -1301,7 +1301,7 @@ span.out{
 
 .is-background-cover {
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 110%;
   background-position: center center;
 }
 
@@ -1436,7 +1436,7 @@ span.out{
 }
 
 .search-results .is-background-cover {
-  min-height: 15rem;
+  min-height: 17rem;
   min-width: 10rem;
   margin-bottom: 1rem;
 }
@@ -2171,7 +2171,7 @@ span.count.is-empty {
     left: 27rem;
   }
   .search-results .is-background-cover {
-    min-height: 20rem;
+    /* min-height: 20rem; */
   }
   .carrito-row {
     display: flex;
