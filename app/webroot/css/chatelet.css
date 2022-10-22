@@ -417,8 +417,9 @@ select {
 }
 
 .modal-title {
-	color: #e10c76;
+	color: white;
 	font-size: 1rem;
+	font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
 	/*font-style: italic;
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
@@ -426,6 +427,14 @@ select {
 
 .modal-header {
 	min-height: 50px;
+	background-color: #e10c76;
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;	
+}
+
+.modal-header .close {
+	color: white;
+	opacity: 0.9;
 }
 
 .float-top-right {
@@ -453,7 +462,6 @@ select {
 
 .modal-body input {
 	border: 1px solid #bebebe;
-	border-radius: 0px;
 }
 
 .datepicker.dropdown-menu {
@@ -467,6 +475,7 @@ select {
 	/*font-size: 24px;*/
 	text-align: center;
 	border: 0;
+	border-radius: 2rem;
 	font-size: 1.25rem;
 	font-weight: 800;
 	padding: 0.75rem 1rem;
@@ -490,6 +499,7 @@ select {
 #particular-password .modal-content{
 	max-width: 25rem;
 	margin: auto;
+	border-radius: 1rem;
 	/*position: absolute; */
 }
 

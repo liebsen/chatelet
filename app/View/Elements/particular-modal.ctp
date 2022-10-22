@@ -52,33 +52,33 @@
 						echo '<input type="hidden" name="data[User][id]" value="'. $user['id'] .'" />';
 					}
 				?>
-				<label for="email">Email</label>
+				<label class="ml-1" for="email">Email</label>
 				<div class="form-group">
 					<?php
 						echo '<input type="email" id="email" class="form-control " name="data[User][email]" value="'. $user['email'] .'" />';
 					?>
 				</div>
 				<span class="validation-email"></span>
-				<label for="password">Contraseña</label>
+				<label class="ml-1" for="password">Contraseña</label>
 				<div class="form-group">
 					<input type="password" id="password" class="form-control" name="data[User][password]" />
 				</div>
 				<span class="validation-password"></span>
-				<label for="nombre">Nombre</label>
+				<label class="ml-1" for="nombre">Nombre</label>
 				<div class="form-group">
 					<?php
 						echo '<input type="text" id="nombre" class="form-control" name="data[User][name]" value="'. $user['name'] .'" />';
 					?>
 				</div>
 			
-				<label for="apellido">Apellido</label>
+				<label class="ml-1" for="apellido">Apellido</label>
 				<div class="form-group">
 					<?php
 						echo '<input type="text" id="apellido" class="form-control" name="data[User][surname]" value="'. $user['surname'] .'" />';
 					?>
 				</div>
 			
-				<label for="nacimiento">Fecha de Nacimiento (dd/mm/aaaa) </label>
+				<label class="ml-1" for="nacimiento">Fecha de Nacimiento (dd/mm/aaaa) </label>
 				<div class="form-group">
 					<?php
 						echo '<input type="text" id="birthday" class="datepicker form-control" name="data[User][birthday]" value="'. 
@@ -87,7 +87,7 @@
 					?>
 				</div>
 	
-				<label for="sexo">Sexo</label>
+				<label class="ml-1" for="sexo">Sexo</label>
 				<?php
 					$male = $female = '';
 					if ($user['gender'] == 'M') $male = 'selected';
@@ -101,50 +101,40 @@
 					echo '</div>';
 				?>
 			
-				<label for="dni">DNI</label>
+				<label class="ml-1" for="dni">DNI</label>
 				<div class="form-group">
 					<?php
 						echo '<input type="text" id="dni" class="form-control" name="data[User][dni]" value="'. $user['dni'] .'" />';
 					?>
 				</div>
 	
-				<label>Newsletter</label>
-				<div class="form-group">
-					<?php
-						$subscribed = $unsubscribed = '';
-						if ($user['newsletter'] == '1') $subscribed = 'checked="checked"';
-						else if ($user['newsletter'] == '0') $unsubscribed = 'checked="checked"';
-						echo 'Si <input type="radio" name="data[User][newsletter]" value="1" '.$subscribed.' /> - '; 
-						echo 'No <input type="radio" name="data[User][newsletter]" value="0" '.$unsubscribed.' />';
-					?>
-				</div>
 			
-				<label for="tel">Teléfono</label>
+				<label class="ml-1" for="tel">Teléfono</label>
 				<div class="form-group">
 					<?php
 						echo '<input type="tel" id="tel" class="form-control" name="data[User][telephone]" value="'. $user['telephone'] .'" />';
 					?>
 				</div>
 		
-				<label for="another-tel">Otro teléfono</label>
+				<label class="ml-1" for="another-tel">Otro teléfono</label>
 				<div class="form-group">
 					<?php
 						echo '<input type="tel" id="another-tel" class="form-control" name="data[User][another_telephone]" value="'. $user['another_telephone'] .'" />';
 					?>
 				</div>
-				<label for="direccion">Calle y Número</label>
+				<label class="ml-1" for="direccion">Calle y Número</label>
 				<div class="form-group d-flex">
 					<input style="" type="text" id="direccion" class="form-control" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
 					<input style="max-width: 25%;margin-left: 1%" min="0" class="form-control" placeholder="1234" name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
 				</div>
 
-				<label for="floor">Piso y Departamento</label>
+				<label class="ml-1" for="floor">Piso y Departamento</label>
 				<div class="form-group d-flex">
 					<input style="" min="0" id="floor" class="form-control" placeholder="1,2,3..." name="data[User][floor]" type="number" value="<?= $user['floor'] ?>"/>
 					<input style="max-width: 50%;margin-left: 1%" class="form-control" placeholder="A,B,C..." name="data[User][depto]" type="text" value="<?= $user['depto'] ?>"/>
 				</div>
 			
-				<label for="provincia">Provincia</label>
+				<label class="ml-1" for="provincia">Provincia</label>
 				<div class="form-group">
 					<select id="provincia" class="selectpicker form-control" name="data[User][province]">
 						<?php
@@ -182,29 +172,41 @@
 					</select>
 				</div>
 		
-				<label for="ciudad">Ciudad</label>
+				<label class="ml-1" for="ciudad">Ciudad</label>
 				<div class="form-group">
 					<?php
 						echo '<input type="text" id="ciudad" class="form-control" name="data[User][city]" value="'. $user['city'] .'" />';
 					?>
 				</div>
 			
-				<label for="barrio">Barrio</label>
+				<label class="ml-1" for="barrio">Barrio</label>
 				<div class="form-group">
 					<?php
 						 echo '<input type="text" id="barrio" class="form-control" name="data[User][neighborhood]" value="'. $user['neighborhood'] .'" />';
 					?>
 				</div>
 			
-				<label for="codigo-postal">Código Postal</label>
+				<label class="ml-1" for="codigo-postal">Código Postal</label>
 				<div class="form-group">
 					<?php
 						echo '<input type="text" id="codigo-postal" class="form-control" name="data[User][postal_address]" value="'. $user['postal_address'] .'" />';
 					?>
 				</div>
+
+				<label>Newsletter</label>
+				<div class="form-group">
+					<?php
+						$subscribed = $unsubscribed = '';
+						if ($user['newsletter'] == '1') $subscribed = 'checked="checked"';
+						else if ($user['newsletter'] == '0') $unsubscribed = 'checked="checked"';
+						echo 'Si <input type="radio" name="data[User][newsletter]" value="1" '.$subscribed.' /> - '; 
+						echo 'No <input type="radio" name="data[User][newsletter]" value="0" '.$unsubscribed.' />';
+					?>
+				</div>
+
 				<div class="row">
 					<div class="col-md-2"></div>
-					<div class="col-md-8">
+					<div class="col-md-8 mt-8">
 			     		<input type="submit" id="enviar-registro" value="Enviar" />
 					</div>
 					<div class="col-md-2"></div>
