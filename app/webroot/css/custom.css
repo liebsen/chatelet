@@ -2059,8 +2059,8 @@ span.count.is-empty {
 .carrito-remove {
   position: absolute;
   z-index: 20;
-  top: 1.25rem;
-  right: 1.25rem;
+  top: 1rem;
+  right: 1rem;
 }
 /*
 .text-dark {
