@@ -24,7 +24,7 @@
             <?php if(isset($data['bank_whatsapp'])): ?>
             <div class="col-xs-12 mt-3 text-center">
               <a class="btn cart-btn-green shrink" href="https://wa.me/<?= $data['bank_whatsapp'] ?>?text=Hola te escribo de la web de Chatelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$data['id'].')') ?> ..." target="_blank">
-                Enviar comprobante
+                Enviar por WhatsApp
               </a>
             </div>
             <?php endif ?>

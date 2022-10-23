@@ -7,7 +7,7 @@
                     <div class="col-md-6">
                         <div class="box w-leaves">
                             <h3>¿Tenés alguna consulta o sugerencia?</h3>
-                            <p>Para comprar un producto de nuestro catalogo, primero debes tener una cuenta registrada en nuestro sitio. Si todavía no estás registrado/a <a href="#" id="register" data-toggle="modal" data-target="#particular-modal">hace click aquí</a>.</p>
+                            <p>Para comprar un producto de nuestro catálogo, primero debes tener una cuenta registrada en nuestro sitio. Si todavía no estás registrado/a <a href="#" id="register" data-toggle="modal" data-target="#particular-modal">hace click aquí</a>.</p>
                         </div>
                     </div>
                 </div>

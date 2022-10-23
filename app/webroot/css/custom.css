@@ -158,10 +158,14 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .box.w-leaves {
   /* background-image: url(../images/clipart/47040.svg); */
-  background-image: url(../images/clipart/47.png);
-  background-position: 100% 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;  
+  background-image: url(../images/clipart/47b.png);
+  background-position: -200% 35%;
   background-repeat: no-repeat;
-  background-size: 11rem;
+  background-size: 110%;
 }
 
 .box.w-leaves2 {
@@ -873,7 +877,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headhelp { background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover; padding: 65px 0; overflow-x: hidden;}
 #headhelp h1 { color: #f50081; font-size: 40px; font-weight: 600; margin-top: 50px; }
 #headhelp h1:after { background: #f50081; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
-#headhelp .box { border: 2px solid #f50081; padding: 90px 90px 50px; }
+#headhelp .box { border: 2px solid #f50081; padding: 6rem 5rem 1rem; }
 #headhelp .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; margin-top: 0;}
 #headhelp .box p { font-size: 15px; line-height: 1.5; margin-bottom: 45px; }
 #headhelp .box p a { color: #f50081; font-weight: 600; }
@@ -927,7 +931,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	.wrapper { padding: 0 1.5rem; }
 	.map .col-md-4 { padding: 200px 0 200px 50px; }
 
-	#headhelp .box { padding: 60px 50px 25px;  border-radius: 0.75rem;  }
+	#headhelp .box { padding: 6rem 5rem 1rem;  border-radius: 0.75rem;  }
 }
 
 @media (max-width: 1199px) {
@@ -981,7 +985,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headcontacto .box p { font-size: 1rem; }
 
 	#headhelp h1 { font-size: 40px; }
-	#headhelp .box { padding: 40px 40px 20px; border-radius: 0.75rem; min-height: 18rem;}
+	#headhelp .box { padding: 40px 40px 20px; border-radius: 0.75rem; /* min-height: 18rem;*/}
 	#headhelp .box p { font-size: 1rem; margin-bottom: 20px; }
 	#headhelp .box h3 { font-size: 1.25rem; }
 	#optionsHelp a, #desarrollo p { font-size: 1.25rem; }
@@ -1068,7 +1072,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#formulario input[type="submit"] { font-size: 16px; height: 60px; }
 
 	#headhelp h1 { margin-bottom: 20px; }
-	#headhelp .box { padding: 20px 20px 0; border-radius: 0px; }
+	#headhelp .box { padding: 90px 20px 0; border-radius: 0px; }
 	#headhelp .box.box2 { padding-bottom: 20px; }
 
 	#desarrollo .boxs:first-child { margin-bottom: 30px; }
@@ -2223,7 +2227,8 @@ span.count.is-empty {
   }
 
   .box.w-leaves {
-    background-position: 100% 90%;
+    background-position: -90% 35%;
+    min-height: 20rem;
   }
   .card {    
     border: 1px solid #ccc;
