@@ -77,7 +77,7 @@
 							    <div class="row card-row">
 							    	<?php if($loggedIn): ?>
 							    	<div class="col-xs-12 is-clickable option-regular">
-						          <label for="online" class="d-inline">
+						          <label class="d-inline">
 						          	<span class="h4">Cliente</span><br>
 						          	<p class="mt-2"><?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?> (DNI <?= $userData['User']['dni'] ?>)</p>
 										    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="cargo-shipment hide">
@@ -88,7 +88,7 @@
 						        </div>
 						      	<?php endif ?>
 							    	<div class="col-xs-12 option-regular">
-						          <label for="online" class="d-inline">
+						          <label class="d-inline">
 						          	<span class="h4">Subtotal productos</span><br>
 						          	<p class="mt-2 text-bold h4 mb-0">
 						          		$<span class="subtotal_price"></span>
@@ -96,7 +96,7 @@
                     	</label>
                     </div>						        
 							    	<div class="col-xs-12 option-regular shipping-block hide">
-						          <label for="online" class="d-inline">
+						          <label class="d-inline">
 											<?php if($freeShipping): ?>
 						          	<span class="h4 text-success">Envío gratis</span>
 											<?php else: ?>
@@ -116,7 +116,7 @@
 						        	</label>				          
 						        </div>  
 							    	<div class="col-xs-12 option-regular cargo-takeaway hide">
-						          <label for="online" class="d-inline">
+						          <label class="d-inline">
 						          	<span class="h4">Retiro en sucursal</span><br>
 						          	<p class="mt-2"> Elegiste retirarlo en 
 						          		<span class="text-bold store_address"></span>
@@ -129,7 +129,7 @@
                     	</label>
                     </div>
 							    	<div class="col-xs-12 option-regular coupon-block hide">
-						          <label for="online" class="d-inline">
+						          <label class="d-inline">
 						          	<span class="h4">Descuento <span class="coupon"></span></span><br>
 						          	<p class="mt-2 text-bold text-success h4 mb-0">
 						          		$<span class="coupon_bonus"></span>
@@ -137,7 +137,7 @@
 						          </span>
 						        </div>
 							    	<div class="col-xs-12 option-regular bank-block hide">
-						          <label for="online" class="d-inline">
+						          <label class="d-inline">
 						          	<span class="h4">Descuento CBU/Alias</span><br>
 						          	<p class="mt-2 text-bold text-success h4 mb-0">
 						          		$<span class="bank_bonus"></span>
@@ -145,7 +145,7 @@
 						          </span>
 						        </div>
 							    	<div class="col-xs-12 option-regular">
-						          <label for="online" class="d-inline text-muted">
+						          <label class="d-inline text-muted">
 						          	<span class="h3">Total a pagar</span><br>
 						          	<p class="mt-2 text-bold h3 mb-0">
 						          		$<span class="total_price"></span>
@@ -176,8 +176,8 @@
 						    <h6 class="card-subtitle">Total $<span class="total_price"></span>.  Seleccioná un método de pago</h6>
 						    <div class="row card-row payment-method">
 						    	<div class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>" onclick="select_payment(this)">
-						    		<input type="radio" class="" id="online" name="payment_method" value="mercadopago" required <?= !$data['bank_enable'] ? 'checked': '' ?>/>
-					          <label for="online" class="d-inline">
+						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !$data['bank_enable'] ? 'checked': '' ?>/>
+					          <label for="mercadopago" class="d-inline">
 					          	<span class="h4">Online</span><br>
 					          	<p class="mt-2 text-small">Pagá con débito, crédito, rapipago través de Mercadopago</p>
 					        	</label>				          

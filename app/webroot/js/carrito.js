@@ -24,9 +24,9 @@ var selectStore = e => {
   fxTotal(format_total)
   var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
   preferences.cargo = 'takeaway'
-  preferences.total_price = price
+  preferences.total_price = price.toFixed(2)
   preferences.shipping_price = 0
-  preferences.subtotal_price = total_orig
+  preferences.subtotal_price = total_orig.toFixed(2)
   preferences.store = $(e).attr('store')
   preferences.store_address = $(e).attr('store_address')
   localStorage.setItem('carrito', JSON.stringify(preferences))

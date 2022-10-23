@@ -1,6 +1,6 @@
 var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 var lastcp = localStorage.getItem('lastcp') || 0
-var lastpm = localStorage.getItem('pm') || 'online'
+var lastpm = localStorage.getItem('pm') || 'mercadopago'
 
 //new WOW().init();
 let searchInt = 0
@@ -8,7 +8,15 @@ let searchPageSize = 12
 let searchPage = 0
 let focusAnim = 'flash'
 
-formatNumber = function (num) {
+let formatNumber = (float) => {
+  if (typeof num === 'string') {
+    //return num
+  }
+
+  return number_format(float, 2, ',', '.') 
+}
+
+formatNumber2 = function (num) {
   if (typeof num === 'string') {
     return num
   }
@@ -46,11 +54,6 @@ let number_format = (number, decimals, dec_point, thousands_point) => {
 
   return number;
 }
-
-/* let formatNumber = (float) => {
-  console.log(float)
-  return number_format(float, 2, ',', '.') 
-} */
 
 let strtoFloat = (text) => { 
   return parseFloat(parseFloat(text.replace('.', '').replace(',', '').replace('$', '')).toFixed(2))

@@ -547,6 +547,7 @@ select {
 	display: flex;
 	align-items: center;	
 	font-size: 1.25rem;
+	line-height: 1.15;
   margin-bottom: 0.5rem;
 }
 .card-title i {
@@ -707,6 +708,7 @@ span.user {
 	}
 	.card-body {
 	  padding: 2rem;
+	  padding-top: 1.5rem;
 	}
 }
 

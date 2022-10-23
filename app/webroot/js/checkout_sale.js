@@ -20,9 +20,9 @@ var select_payment = (e) => {
 	if (bank_bonus) {
 		total-= bank_bonus
 	}
-  console.log('subtotal',subtotal)
-  console.log('total',total)
-  console.log('bank_bonus',bank_bonus)
+  //console.log('subtotal',subtotal)
+  //console.log('total',total)
+  //console.log('bank_bonus',bank_bonus)
 
   localStorage.setItem('pm', selected)
 	$('.total_price').text(formatNumber(total.toFixed(2)))
@@ -42,7 +42,7 @@ $(function(){
 				$('#checkoutform').find(`input[name='${e}']`).val(carrito[e])
 			}
 			if ($(`.${e}`)) {
-				$(`.${e}`).html(carrito[e])
+				$(`.${e}`).html(isNaN(carrito[e]) ? carrito[e] : formatNumber(carrito[e]))
 			}
 		}
 	})
@@ -50,7 +50,7 @@ $(function(){
 	if(lastpm) {
 		setTimeout(() => {
 			$('#'+lastpm).click()
-		}, 200)
+		}, 100)
 		// $('input[name=payment_method]').val(lastpm)
 	}
 	if (carrito.cargo === 'takeaway') {
