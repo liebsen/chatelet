@@ -360,18 +360,6 @@ a.pay{
 }
 
 @media (max-width: 768px) {
-	#main {
-		padding-top:10px!important;
-	}
-	#carrito {
-		border:none!important;
-		margin-top:20px!important;
-	}
-	.keep-buying {
-		text-align: center;
-		margin-top: 8px;
-		margin-bottom: 8px;
-	}
 }
 
 @media screen and (min-width:769px), print {

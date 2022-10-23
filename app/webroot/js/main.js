@@ -3,7 +3,36 @@ let searchInt = 0
 let searchPageSize = 12
 let searchPage = 0
 let focusAnim = 'flash'
-let loadMoreSearch = p => {
+
+onErrorAlert = function(title, text, duration){
+  $.growl.error({
+    title: title || 'Error',
+    message: text,
+    queue: true,
+    duration: duration || 15000
+  });
+}
+
+onSuccessAlert = function(title, text, duration){
+  $.growl.notice({
+    title: title || 'OK',
+    message: text,
+    queue: true,
+    duration: duration || 15000
+  });
+}
+
+onWarningAlert = function(title, text, duration){
+  // $('#growls').remove();
+  $.growl.warning({
+    title: title || 'OK',
+    message: text,
+    queue: true,
+    duration: duration || 15000
+  });
+}
+
+let loadMoreSearch = (p) => {
   searchPage = p
   $('.search-more a').text('Cargando...')
   apiSearch(localStorage.getItem('lastsearch'))
@@ -86,9 +115,7 @@ let apiSearch = (q) => {
         }
         setTimeout(() => {
           var w = ($('.search-item').length / data.query[0].count) * 100
-          //$('.search-info').html(`${$('.search-item').length} / ${data.query[0].count}`)
           $('.search-bar').css({'width': `${w}%`})
-
           if (parseInt(data.query[0].count) > $('.search-item').length) {
             $('.search-more').html('<a href="javascript:loadMoreSearch(' + (searchPage + 1) + ')">Mostrar más resultados</a>')
           }
@@ -104,35 +131,6 @@ let apiSearch = (q) => {
       document.querySelector('.spinner-search').classList.remove('searching')
     }, 100)
   })    
-}
-
-
-onErrorAlert = function(title, text, duration){
-  $.growl.error({
-    title: title || 'Error',
-    message: text,
-    queue: true,
-    duration: duration || 15000
-  });
-}
-
-onSuccessAlert = function(title, text, duration){
-  $.growl.notice({
-    title: title || 'OK',
-    message: text,
-    queue: true,
-    duration: duration || 15000
-  });
-}
-
-onWarningAlert = function(title, text, duration){
-  // $('#growls').remove();
-  $.growl.warning({
-    title: title || 'OK',
-    message: text,
-    queue: true,
-    duration: duration || 15000
-  });
 }
 
 $(function () {
@@ -159,6 +157,7 @@ $(function () {
       $('#menuShop').fadeOut();
     }
   })
+
   $('.menuLayer a.close').click(function () {
     $('.menuLayer').fadeOut();
     if (!$('.navbar-toggle').hasClass('collapsed')) {
@@ -169,6 +168,7 @@ $(function () {
     }
     window.scrollTo(0,0)
   })
+
   if(document.querySelector("#myModal")!=null && $('.js-show-modal') && $('.js-show-modal').length){
     setTimeout(function () {
       $('#myModal').modal({ show: true })
@@ -208,6 +208,7 @@ $(function () {
       apiSearch(q)
     }, 500)        
   })
+
   // Toggle Side content
   /*body.toggleClass('hide-side-content');*/
   $('#toggle-side-content').click(function(){ 

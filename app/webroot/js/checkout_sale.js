@@ -5,7 +5,7 @@ var select_payment = (e) => {
 	var bank_bonus = 0
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
 		bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
-		$('.bank_bonus').text(bank_bonus.toFixed(2))
+		$('.bank_bonus').text(strtoFloat(bank_bonus.toFixed(2)))
 		$('.bank-block').removeClass('hide')
 		$('.bank-block').addClass('animated scaleIn')
 	} else {
@@ -25,7 +25,7 @@ var select_payment = (e) => {
   console.log('total',total)
   console.log('bank_bonus',bank_bonus)
 
-	$('.total_price').text(total.toFixed(2))
+	$('.total_price').text(strtoFloat(total.toFixed(2)))
 	$('.payment-method .option-rounded').removeClass('is-selected')
 	$(e).addClass('is-selected')
 }
@@ -57,7 +57,7 @@ $(function(){
 		if (carrito.freeShipping) {
 			price = '<span class="text-success">Gratis</span>'
 		} else {
-			price = `$${carrito.shipping_price}`
+			price = `$${strtoFloat(carrito.shipping_price)}`
 		}
 		$('.shipping_price').html(price)
 		$('.shipping-block').removeClass('hide')

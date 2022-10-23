@@ -90,7 +90,7 @@
 							    	<div class="col-xs-12 option-regular">
 						          <label for="online" class="d-inline">
 						          	<span class="h4">Subtotal productos</span><br>
-						          	<p class="mt-2 text-bold h3 mb-0">
+						          	<p class="mt-2 text-bold h4 mb-0">
 						          		$<span class="subtotal_price"></span>
                     		</p>
                     	</label>
@@ -102,7 +102,7 @@
 											<?php else: ?>
 						          	<span class="h4">Costo de envío</span><br>
 						          	<p class="mt-2">
-						          		<span class="shipping_price text-bold h3 mb-0"></span>
+						          		<span class="shipping_price text-bold h4 mb-0"></span>
 												<?php if($loggedIn): ?>
 											    <br><br><span> Entrega <span class="shipping text-uppercase"></span> en 
 											    	<?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street_n'] ?: '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>) 
@@ -131,7 +131,7 @@
 							    	<div class="col-xs-12 option-regular coupon-block hide">
 						          <label for="online" class="d-inline">
 						          	<span class="h4">Descuento <span class="coupon"></span></span><br>
-						          	<p class="mt-2 text-bold text-success h3 mb-0">
+						          	<p class="mt-2 text-bold text-success h4 mb-0">
 						          		$<span class="coupon_bonus"></span>
 						          	</p>
 						          </span>
@@ -139,14 +139,14 @@
 							    	<div class="col-xs-12 option-regular bank-block hide">
 						          <label for="online" class="d-inline">
 						          	<span class="h4">Descuento CBU/Alias</span><br>
-						          	<p class="mt-2 text-bold text-success h3 mb-0">
+						          	<p class="mt-2 text-bold text-success h4 mb-0">
 						          		$<span class="bank_bonus"></span>
 						          	</p>
 						          </span>
 						        </div>
 							    	<div class="col-xs-12 option-regular">
-						          <label for="online" class="d-inline">
-						          	<span class="h4">Total a pagar</span><br>
+						          <label for="online" class="d-inline text-muted">
+						          	<span class="h3">Total a pagar</span><br>
 						          	<p class="mt-2 text-bold h3 mb-0">
 						          		$<span class="total_price"></span>
 						          	</p>

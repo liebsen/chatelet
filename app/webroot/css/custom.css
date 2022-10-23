@@ -2130,8 +2130,7 @@ span.count.is-empty {
     display: block;
   }
   .is-rounded {
-    margin-left: 0;
-    margin-right: 0;
+    padding: 2rem;
   }
   .desktop {
     display: none;
