@@ -6,15 +6,15 @@ $(function(){
 		}
 
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-		var coupon = parseInt(strtoFloat($('.coupon_bonus').text()))
-		var subtotal = parseFloat(strtoFloat($('#subtotal_compra').val())) || carrito.subtotal_price
+		var coupon = parseInt($('.coupon_bonus').text())
+		var subtotal = parseFloat($('#subtotal_compra').val()) || carrito.subtotal_price
 		cargo = 'shipment'
 
 
 		if(!coupon && carrito.coupon_bonus) {
 			coupon = carrito.coupon_bonus
 		}
-		
+
 		$('.shipping-options li').removeClass('selected')
 		$('.takeaway-options li').removeClass('selected')
 		$(e).addClass('selected')
@@ -57,8 +57,8 @@ $(function(){
 		var cp = parseInt(cp_input)
 		var cost = 0
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-		var coupon = parseInt(strtoFloat($('.coupon_bonus').text())) || carrito.coupon_bonus
-		var subtotal = parseFloat(strtoFloat($('#subtotal_compra').val())) || carrito.subtotal_price
+		var coupon = parseInt($('.coupon_bonus').text()) || carrito.coupon_bonus
+		var subtotal = parseFloat($('#subtotal_compra').val()) || carrito.subtotal_price
 
 		document.querySelector('.shipping-block').classList.add('hidden')
 
