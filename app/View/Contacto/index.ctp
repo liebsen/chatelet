@@ -10,7 +10,7 @@
                     <div class="col-md-6">
                         <div class="box w-leaves">
                             <h3>¿Tenés alguna consulta o sugerencia?</h3>
-                            <p>Complete el siguiente formulario y háganos llegar sus inquietudes o recomendaciones que crea pertinentes.</p>
+                            <p>Completá el siguiente formulario y hacenos llegar tus inquietudes o recomendaciones que creas pertinentes.</p>
                         </div>
                     </div>
                 </div>
