@@ -3,7 +3,7 @@
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <div class="row is-rounded como-queres-recibir-tu-compra">
 	<h3>¿Cómo querés recibir tu compra?</h3>
-	<div class="col-xs-12 shipment-options shipping">
+	<div class="shipment-options shipping">
 		<?php if(!$freeShipping): ?>
 		<h4 id="heading" class="cargo-title">Envío a Domicilio</h4>
 		<?php else: ?>
@@ -45,7 +45,7 @@
 		<hr class="or">
 	</div>
 	
-	<div class="col-xs-12 shipment-options takeaway">
+	<div class="shipment-options takeaway">
 		<h4 id="heading" class="cargo-title">Retiro en Sucursal</h4>
 		<p class="p">
 			<i>
