@@ -146,7 +146,7 @@
 						        </div>
 							    	<div class="col-xs-12 option-regular">
 						          <label class="d-inline text-muted">
-						          	<span class="h3">Total a pagar</span><br>
+						          	<span class="h4">Total a pagar</span><br>
 						          	<p class="mt-2 text-bold h3 mb-0">
 						          		$<span class="total_price"></span>
 						          	</p>
@@ -178,7 +178,7 @@
 						    	<div class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>" onclick="select_payment(this)">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !$data['bank_enable'] ? 'checked': '' ?>/>
 					          <label for="mercadopago" class="d-inline">
-					          	<span class="h4">Online</span><br>
+					          	<span class="h4">Mercado Pago</span><br>
 					          	<p class="mt-2 text-small">Pagá con débito, crédito, rapipago través de Mercadopago</p>
 					        	</label>				          
 					        </div>
