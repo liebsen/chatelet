@@ -60,7 +60,7 @@ $(function(){
         fxTotal(format_total)
         carrito.coupon = coupon.toUpperCase()
         carrito.coupon_bonus = discounted
-        carrito.total_price = price.toFixed(2)
+        carrito.total_price = parseFloat(price.toFixed(2))
         localStorage.setItem('carrito', JSON.stringify(carrito))
       }else{
         $('.coupon-discount').addClass('hidden')

@@ -14,11 +14,12 @@ function filtercoupon ($data) {
   $inTime = strtotime($item['hour_from']) <= strtotime($hour) && strtotime($item['hour_until']) >= strtotime($hour);
   $inDate = strtotime($item['date_from']) <= strtotime($date) && strtotime($item['date_until']) >= strtotime($date);
   $inDateTime = $inTime && $inDate;
-  if (strpos($item['weekdays'], $week) === false) {
+
+  if (strlen($coupon_type) && strpos($item['weekdays'], $week) === false) {
     $valid = [];
     $weekdays = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
     foreach(str_split($item['weekdays']) as $week) {
-      $valid[] = $weekdays[$week];
+      $valid[] = @$weekdays[$week];
     }
     $str = implode(', ', $valid);
     return (object) [
@@ -27,6 +28,7 @@ function filtercoupon ($data) {
       'message' => "Esta promo solo es válida para días de semana {$str}. Puede volver a intentar mas adelante"
     ];
   }
+
   switch ($coupon_type) {
     case 'time':
       if ($inTime) {

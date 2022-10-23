@@ -1,30 +1,4 @@
 {
-    "435746Gris": {
-        "id": "4357",
-        "cod_chatelet": null,
-        "name": "SACON BUDAPEST",
-        "desc": "SACON BUDAPEST. ENTALLADO, CON CUELLO SOLAPA Y MANGA LARGA, DETALLE FRENTE CON RECORTE Y BOLSILLOS TAPITA. TEJIDO PA\u00d1O LISO.",
-        "img_url": "dyXCjT10nljdsfDYhSyAvTI59.jpg",
-        "price": "23671.99",
-        "article": "i2033",
-        "category_id": "184",
-        "gallery": "",
-        "discount": "23671.99",
-        "promo": "",
-        "stock_total": "148",
-        "with_thumb": "1",
-        "discount_label": "20",
-        "discount_label_show": "20",
-        "color": "",
-        "size": "46",
-        "alias": "Gris",
-        "color_code": "12",
-        "alias_image": "ImfyDGCfsVmkX2GKrxjVTJR2a.jpg",
-        "original_price": "23671.99",
-        "old_price": "23671.99",
-        "uid": 1,
-        "count": 1
-    },
     "488802#ffffffMarron claro": {
         "id": "4888",
         "cod_chatelet": null,
@@ -48,7 +22,7 @@
         "alias_image": "7m6coweQg2HAMugifQR9FxCoO.jpg",
         "original_price": "14900",
         "old_price": "14900",
-        "uid": 2,
+        "uid": 1,
         "count": 1
     }
 }

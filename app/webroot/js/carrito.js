@@ -19,14 +19,14 @@ var selectStore = e => {
 	$('#cost_container').html('')
 	$(e).addClass('selected')
   $('.delivery-cost').addClass('hidden')
-  var price = parseFloat(total_orig - coupon)
+  var price = parseFloat((total_orig - coupon).toFixed(2))
   format_total = formatNumber(price)
   fxTotal(format_total)
   var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
   preferences.cargo = 'takeaway'
-  preferences.total_price = price.toFixed(2)
+  preferences.total_price = price
   preferences.shipping_price = 0
-  preferences.subtotal_price = total_orig.toFixed(2)
+  preferences.subtotal_price = total_orig
   preferences.store = $(e).attr('store')
   preferences.store_address = $(e).attr('store_address')
   localStorage.setItem('carrito', JSON.stringify(preferences))

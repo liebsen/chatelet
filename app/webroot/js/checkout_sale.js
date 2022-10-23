@@ -4,7 +4,7 @@ var select_payment = (e) => {
 	var bank_bonus = 0
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
 		bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
-		$('.bank_bonus').text(formatNumber(bank_bonus.toFixed(2)))
+		$('.bank_bonus').text(formatNumber(bank_bonus))
 		$('.bank-block').removeClass('hide')
 		$('.bank-block').addClass('animated scaleIn')
 	} else {
@@ -25,7 +25,7 @@ var select_payment = (e) => {
   //console.log('bank_bonus',bank_bonus)
 
   localStorage.setItem('pm', selected)
-	$('.total_price').text(formatNumber(total.toFixed(2)))
+	$('.total_price').text(formatNumber(total))
 	$('.payment-method .option-rounded').removeClass('is-selected')
 	$(e).addClass('is-selected')
 }
@@ -42,7 +42,11 @@ $(function(){
 				$('#checkoutform').find(`input[name='${e}']`).val(carrito[e])
 			}
 			if ($(`.${e}`)) {
-				$(`.${e}`).html(isNaN(carrito[e]) ? carrito[e] : formatNumber(carrito[e]))
+				let value = carrito[e]
+				if (typeof value === 'number') {
+					value = formatNumber(value)	
+				}
+				$(`.${e}`).html(value)
 			}
 		}
 	})
