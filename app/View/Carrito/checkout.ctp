@@ -195,7 +195,7 @@
 						  </div>
 						</div>
 						<div class="mt-4-d checkoutform-container">
-							<div class="row is-rounded">
+							<div class="is-rounded">
 								<h3 class="">Ingresá tus datos para finalizar la compra</h3>
 								<input type="hidden" name="shipping" value=""/>
 								<input type="hidden" name="coupon" value=""/>

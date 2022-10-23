@@ -1,7 +1,7 @@
 <?php echo $this->Html->script('shipping.js?v=' . Configure::read('APP_DIST'),array( 'inline' => false )) ?>
 <?php echo $this->Html->css('oca_front.css?v=' . Configure::read('APP_DIST'),array( 'inline' => false )) ?>
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
-<div class="row is-rounded como-queres-recibir-tu-compra">
+<div class="is-rounded como-queres-recibir-tu-compra">
 	<h3>¿Cómo querés recibir tu compra?</h3>
 	<div class="shipment-options shipping">
 		<?php if(!$freeShipping): ?>
