@@ -37,17 +37,15 @@ $(function(){
 	$('#regalo').prop('checked', carrito.regalo)
 
 	Object.keys(carrito).forEach(e => {
+		if ($('#checkoutform').find(`input[name='${e}']`).length) {
+			$('#checkoutform').find(`input[name='${e}']`).val(carrito[e])
+		}
 		if ($(`.${e}`).length) {
-			if ($('#checkoutform').find(`input[name='${e}']`).length) {
-				$('#checkoutform').find(`input[name='${e}']`).val(carrito[e])
+			let value = carrito[e]
+			if (typeof value === 'number') {
+				value = formatNumber(value)	
 			}
-			if ($(`.${e}`)) {
-				let value = carrito[e]
-				if (typeof value === 'number') {
-					value = formatNumber(value)	
-				}
-				$(`.${e}`).html(value)
-			}
+			$(`.${e}`).html(value)
 		}
 	})
 
