@@ -6,22 +6,31 @@ $(function(){
 		}
 
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-		var coupon = parseInt(strtoFloat($('.coupon_bonus').text())) || carrito.coupon_bonus
+		var coupon = parseInt(strtoFloat($('.coupon_bonus').text()))
 		var subtotal = parseFloat(strtoFloat($('#subtotal_compra').val())) || carrito.subtotal_price
 		cargo = 'shipment'
 
+
+		if(!coupon && carrito.coupon_bonus) {
+			coupon = carrito.coupon_bonus
+		}
+		
 		$('.shipping-options li').removeClass('selected')
 		$('.takeaway-options li').removeClass('selected')
 		$(e).addClass('selected')
 		$('.delivery-cost').addClass('hidden')
 		$('.shipping-cargo').text(shipping)	
 
+		console.log('subtotal',subtotal)
+		console.log('coupon',coupon)
 		var price = parseFloat((subtotal - coupon).toFixed(2))
+		console.log('price(1)',price)
 		if (!freeShipping) {
 			price+= cost
 			$('#subtotal_envio').val(cost)
 			$('.delivery-cost').removeClass('hidden')
 			$('.delivery-cost').addClass('fadeIn')
+			console.log('cost',cost)
 			$('.cost_delivery').text( formatNumber(cost))
 		}
 		//console.log('selectShipping (subtotal)', subtotal)
@@ -34,6 +43,7 @@ $(function(){
 	  preferences.subtotal_price = subtotal
 	  localStorage.setItem('carrito', JSON.stringify(preferences))
 
+	  console.log('price',price)
 		let total = formatNumber(price)
 		let info = $(e).data('info')
 		fxTotal(total)

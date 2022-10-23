@@ -1,7 +1,7 @@
 
 <?php
-	echo $this->Html->css('carrito.css?v=' . Configure::read('APP_DIST'), array('inline' => false));
-	echo $this->Html->script('carrito.js?v=' . Configure::read('APP_DIST'), array('inline' => false));
+	echo $this->Html->css('carrito.css?v=' . Configure::read('DIST_VERSION'), array('inline' => false));
+	echo $this->Html->script('carrito.js?v=' . Configure::read('DIST_VERSION'), array('inline' => false));
 	echo $this->Session->flash();
 	echo $this->element('checkout-modal');
 ?>

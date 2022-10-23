@@ -1,5 +1,11 @@
 <?php
 
+function log2file($path, $data, $mode="a"){
+  $fh = fopen($path, $mode) or die($path);
+  fwrite($fh,$data . "\n");
+  fclose($fh);
+  chmod($path, 0777);
+}
 
 function filtercoupon ($data) {
   $coupon_type = '';

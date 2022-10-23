@@ -1,7 +1,7 @@
 <?php
-	echo $this->Html->css('checkout.css?v=' . Configure::read('APP_DIST'), array('inline' => false));
+	echo $this->Html->css('checkout.css?v=' . Configure::read('DIST_VERSION'), array('inline' => false));
 	echo $this->Session->flash();
-	echo $this->Html->script('checkout_sale.js?v=' . Configure::read('APP_DIST'),array('inline' => false));
+	echo $this->Html->script('checkout_sale.js?v=' . Configure::read('DIST_VERSION'),array('inline' => false));
 ?>
 <script>
 	const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETTY_PRINT);?>;

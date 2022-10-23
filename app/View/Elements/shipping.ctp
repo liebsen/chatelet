@@ -1,5 +1,5 @@
-<?php echo $this->Html->script('shipping.js?v=' . Configure::read('APP_DIST'),array( 'inline' => false )) ?>
-<?php echo $this->Html->css('oca_front.css?v=' . Configure::read('APP_DIST'),array( 'inline' => false )) ?>
+<?php echo $this->Html->script('shipping.js?v=' . Configure::read('DIST_VERSION'),array( 'inline' => false )) ?>
+<?php echo $this->Html->css('oca_front.css?v=' . Configure::read('DIST_VERSION'),array( 'inline' => false )) ?>
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <div class="is-rounded como-queres-recibir-tu-compra">
 	<h3>¿Cómo querés recibir tu compra?</h3>

@@ -22,12 +22,16 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+$path = __DIR__ .'/../version';
+$version = (float) file_get_contents($path);
+
+
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 Configure::write('mUrl','');
 Configure::write('font', 'Roboto Condensed');
 Configure::write('fontweight', '300,400,500,600,700,800');
-Configure::write('APP_DIST', '3.95');
+Configure::write('APP_DIST', $version);
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.

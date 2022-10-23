@@ -56,9 +56,9 @@
       echo $this->Html->css('bootstrap.css?' . Configure::read('DIST_VERSION'));
       echo $this->Html->css('bootstrapValidator.min');
 
-      echo $this->Html->css('jquery.growl.css?' . Configure::read('DIST_VERSION'));
-      echo $this->Html->css('chatelet.css?' . Configure::read('DIST_VERSION'));
-      echo $this->Html->css('custom.css?' . Configure::read('DIST_VERSION'));
+      echo $this->Html->css('jquery.growl.css?v=' . Configure::read('DIST_VERSION'));
+      echo $this->Html->css('chatelet.css?v=' . Configure::read('DIST_VERSION'));
+      echo $this->Html->css('custom.css?v=' . Configure::read('DIST_VERSION'));
       echo $this->Html->css('animate');
 
       echo $this->fetch('meta');
