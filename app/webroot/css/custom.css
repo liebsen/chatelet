@@ -1901,7 +1901,7 @@ span.count.is-empty {
 
 .is-rounded {
   display: grid;
-  padding: 1rem;
+  padding: 1.25rem;
   background-color: #f7ecf1;
 }
 

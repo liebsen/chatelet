@@ -15,7 +15,7 @@
 			</i>
 		</p>
 		<div class="form-group is-flex-center">
-			<form id="calulate_shipping" data-url="<?php echo $this->Html->url(array('action'=>'deliveryCost')) ?>">
+			<form class="w-100" id="calulate_shipping" data-url="<?php echo $this->Html->url(array('action'=>'deliveryCost')) ?>">
 				<div class="input-group">
 				  <input type="text" name="" placeholder="Tu código postal" value="" class="form-control input-cp input-lg both input-rounded" title="Ingresá tu código postal" data-valid="0" />
 				  <div class="input-group-btn">
