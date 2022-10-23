@@ -67,11 +67,11 @@
           </div>
           <br />
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Valor descuento del cupón'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Valor de descuento'); ?></label>
             <div class="controls">
               <input type="number" class="form-control" id="" name="data[discount]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['discount'] : ''; ?>" required>
             </div>
-            <small class="text-muted">El valor de descuento puede ser porcentaje o valor nominal en ARS.</small>
+            <small class="text-muted">El valor de descuento será variable de acuerdo al monto si es Porcentual ó fijo si es Nominal.<br>Moneda actual: ARS</small>
           </div>
         </div> 
         <div class="col-md-6">
