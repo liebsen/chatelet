@@ -1729,7 +1729,7 @@ span.out{
 }
 .spinner-search {
   position: absolute;
-  top: 1.15rem;
+  top: 0.9rem;
   left: calc(100% - 3rem);
   transition: opacity 0.5s ease-in-out;
   opacity: 0;
@@ -2176,7 +2176,7 @@ span.count.is-empty {
     max-width: 30rem;
   }
   .spinner-search {
-    left: 27rem;
+    left: 16.25rem;
   }
   .search-results .is-background-cover {
     /* min-height: 20rem; */

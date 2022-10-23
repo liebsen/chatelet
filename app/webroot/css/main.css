@@ -2792,7 +2792,7 @@ input[type="radio"].form-control {
     transition: scale(1.5);
     cursor: pointer;
     width: auto;
-    min-width: 3rem;
+    min-width: 2rem;
 }
 
 textarea.form-control {
