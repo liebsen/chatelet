@@ -32,8 +32,8 @@
                 $enabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '1') || !isset($coupon) ? 'checked' : '';
                 $disabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '0') ? 'checked' : '';
               ?>
-              <label for="enabled_1">Sí</label> <input type="radio" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
-              <label for="enabled_0">No</label> <input type="radio" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
+              <label for="enabled_1">Sí</label> <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
+              <label for="enabled_0">No</label> <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
             </div>
             <small class="text-muted">Estado principal de este Cupón</small>
           </div>        
@@ -60,8 +60,8 @@
                 $percentage = (isset($coupon) && $coupon['Coupon']['coupon_type'] == 'percentage') || !isset($coupon) ? 'checked' : '';
                 $nominal = (isset($coupon) && $coupon['Coupon']['coupon_type'] == 'nominal') ? 'checked' : '';
               ?>
-              <label for="type_0">Porcentual</label> <input type="radio" id="type_0" name="data[coupon_type]" value="percentage" <?php echo $percentage; ?> /> &nbsp; 
-              <label for="type_1">Nominal</label> <input type="radio" id="type_1" name="data[coupon_type]" value="nominal" <?php echo $nominal; ?> />
+              <label for="type_0">Porcentual</label> <input type="radio"  class="form-control" id="type_0" name="data[coupon_type]" value="percentage" <?php echo $percentage; ?> /> &nbsp; 
+              <label for="type_1">Nominal</label> <input type="radio"  class="form-control" id="type_1" name="data[coupon_type]" value="nominal" <?php echo $nominal; ?> />
             </div>
             <small class="text-muted">El tipo de cupón puede ser porcentual en que usaremos un valor de 0-100, o nominal indicando el monto a beneficiar expresado en peso argentino ARS.</small>
           </div>
