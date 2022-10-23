@@ -1898,13 +1898,12 @@ span.count.is-empty {
 
 .is-rounded {
   display: grid;
-  padding: 0.75rem;
+  padding: 1rem;
   background-color: #f7ecf1;
 }
 
 .is-rounded-content {
   display: inline-block;
-  padding: 0.75rem;
 }
 
 .is-success {
@@ -2212,6 +2211,7 @@ span.count.is-empty {
   .is-rounded {
     margin: 1rem 0;
     margin-top: 0;
+    padding: 1.75rem;
     border-radius: 1rem;
     border: 1px solid #ccc;
     /* box-shadow: var(--box-shadow); */
