@@ -221,7 +221,7 @@
 										<input type="tel" class="form-control" id="telefono" name="telephone" value="<?= (!empty($userData['User']['telephone']))?$userData['User']['telephone']:''; ?>" required>
 									</div>
 									<div class="form-group">
-										<label for="direccion">Provincia</label>
+										<label class="ml-2" for="direccion">Provincia</label>
 										<select class="form-control" name="provincia" autocomplete="off">
 											<option value=""></option>
 											<?php foreach ($provincias as $key => $value): ?>
