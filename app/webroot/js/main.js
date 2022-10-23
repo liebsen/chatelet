@@ -56,7 +56,7 @@ let number_format = (number, decimals, dec_point, thousands_point) => {
 }
 
 let strtoFloat = (text) => { 
-  return parseFloat(parseFloat(text.replace('.', '').replace(',', '').replace('$', '')).toFixed(2))
+  return parseFloat(parseFloat(text.replace('.', '').replace('$', '')).toFixed(2))
 }
 
 let fxTotal = (total) => {
