@@ -9,8 +9,8 @@ let searchPage = 0
 let focusAnim = 'flash'
 
 let formatNumber = (float) => {
-  if (typeof num === 'string') {
-    //return num
+  if (typeof float === 'string') {
+    return float
   }
 
   return number_format(float, 2, ',', '.') 
