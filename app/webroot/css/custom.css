@@ -1449,7 +1449,7 @@ span.out{
 }
 
 .input-search {
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 2rem;
   border-color: #f50081;
   font-size: 1.5rem;
@@ -1898,7 +1898,7 @@ span.count.is-empty {
 
 .is-rounded {
   display: grid;
-  padding: 0.5rem;
+  padding: 0.75rem;
   background-color: #f7ecf1;
 }
 
