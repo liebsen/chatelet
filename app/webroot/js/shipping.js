@@ -6,7 +6,7 @@ $(function(){
 		}
 
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-		var coupon = parseInt($('.coupon_bonus').text()) || 0
+		var coupon = parseFloat($('.coupon_bonus').text()) || carrito.coupon_bonus
 		var subtotal = parseFloat($('#subtotal_compra').val())
 		cargo = 'shipment'
 
