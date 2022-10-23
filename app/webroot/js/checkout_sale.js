@@ -1,5 +1,10 @@
+var last_selected = ''
 var select_payment = (e) => {
 	var selected = $(e).find(':checked').val()
+	if(!selected) {
+		return false
+	}
+	last_selected = selected	
 	var subtotal = carrito.subtotal_price
 	var bank_bonus = 0
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
@@ -23,11 +28,12 @@ var select_payment = (e) => {
   //console.log('subtotal',subtotal)
   //console.log('total',total)
   //console.log('bank_bonus',bank_bonus)
-
+  onSuccessAlert((selected === 'bank' ? 'CBU/Alias' : 'Mercadopago'), '✓ Método de pago seleccionado');
   localStorage.setItem('pm', selected)
 	$('.total_price').text(formatNumber(total))
 	$('.payment-method .option-rounded').removeClass('is-selected')
 	$(e).addClass('is-selected')
+
 }
 
 $(function(){
