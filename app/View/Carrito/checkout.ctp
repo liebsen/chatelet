@@ -108,7 +108,7 @@
 											    	<?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street_n'] ?: '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>) 
 											    </span>
 											  <?php endif ?>
-											  	<a href="/carrito#f:.shipment-options.shipping" class="card-link">
+											  	<br><a href="/carrito#f:.shipment-options.takeaway" class="card-link">
 											    	<i class="fa fa-truck"></i> Retirar en sucursal
 											    </a>
 						          	</p>
@@ -122,7 +122,7 @@
 						          		<span class="text-bold store_address"></span>
                     			<span class="text-bold store"></span>. 
                     			<?= $data['carrito_takeaway_text'] ?>
-											    <a href="/carrito#f:.shipment-options.takeaway" class="card-link">
+											    <a href="/carrito#f:.shipment-options.shipping" class="card-link">
 											    	<i class="fa fa-truck"></i> Solicitar envío 
 											    </a>
                     		</p>
