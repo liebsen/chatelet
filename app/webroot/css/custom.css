@@ -353,17 +353,18 @@ label input[type=checkbox]:disabled + .label-text:before {
 .menuLayer ul li { margin-bottom: 15px; }
 .menuLayer ul li a {
   color: #222;
-      font-weight: normal;
-      text-transform: uppercase;
-      font-size: 1.25rem;
-      font-weight: 300;
-  }
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  line-height: 1.1;
+  font-weight: 300;
+}
 .carousel-inner > .item > a > img{
   max-width: 100%;
-    object-fit: cover;
-    height: 90vh;
-    object-position: top center;
-    width: 100%;
+  object-fit: cover;
+  height: 90vh;
+  object-position: top center;
+  width: 100%;
 }
 .carousel { z-index: 2; }
 #carousel-newsletter.carousel { z-index: 0; position: absolute !important;}
