@@ -35,65 +35,6 @@ var selectStore = e => {
 	cargo = 'takeaway'
 }
 
-callStart = function(){
-	setTimeout(() => {
-		$('.btn-calculate-shipping').button('loading')
-		$('#cost_container').removeClass('text-muted', 'text-success');
-		$('#cost_container').addClass('hide');
-		// $('#loading').removeClass('hide');
-	}, 10)
-}
-
-callEnd = function(){
-	cargo = 'shipment'
-	$('.btn-calculate-shipping').button('reset')
-	$('.shipping-loading').removeClass('animated fadeOut');
-	$('#cost_container').removeClass('animated fadeIn');
-	setTimeout(() => {
-		$('.shipping-loading').addClass('animated fadeOut');		
-		$('#cost_container').addClass('animated fadeIn');
-	}, 10)
-	setTimeout(() => {
-		$('#cost_container').removeClass('hide');
-		$('.shipping-loading').addClass('hide');
-		$('#cost_container').addClass('text-success');
-	}, 500)
-}
-
-
-function number_format (number, decimals, dec_point, thousands_sep) {
-    // Strip all characters but numerical ones.
-    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
-    var n = !isFinite(+number) ? 0 : +number,
-        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-        s = '',
-        toFixedFix = function (n, prec) {
-            var k = Math.pow(10, prec);
-            return '' + Math.round(n * k) / k;
-        };
-    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-    if (s[0].length > 3) {
-        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-    }
-    if ((s[1] || '').length < prec) {
-        s[1] = s[1] || '';
-        s[1] += new Array(prec - s[1].length + 1).join('0');
-    }
-    return s.join(dec);
-}
-
-formatNumber = function (num) {
-	return '$'+number_format(num, 2, ',', '.').replace(',00','')
-  //return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
-}
-
-isDateBeforeToday = function(date) {
-  return new Date(date.toDateString()) < new Date(new Date().toDateString());
-}
-
 var currentCarritoIndex = 0
 var show_cart_item = index => {
 	var target = document.querySelectorAll('.carrito-item-row')[index]
@@ -318,7 +259,6 @@ $(document).ready(function() {
 		}, 1000)
 	}
 
-	var lastcp = localStorage.getItem('lastcp') || 0
 	if (lastcp && $('#subtotal_compra').val()) {
 		$('.input-cp').val(lastcp)
 		setTimeout(() => {

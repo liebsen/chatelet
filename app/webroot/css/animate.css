@@ -58,7 +58,6 @@
   animation-delay: 10s;
 }
 
-
 @keyframes scaleIn {
   0% {
     opacity: 0;

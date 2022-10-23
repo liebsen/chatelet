@@ -1,49 +1,63 @@
+var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+var lastcp = localStorage.getItem('lastcp') || 0
+var lastpm = localStorage.getItem('pm') || 'online'
+
 //new WOW().init();
 let searchInt = 0
 let searchPageSize = 12
 let searchPage = 0
 let focusAnim = 'flash'
 
-onErrorAlert = function(title, text, duration){
-  $.growl.error({
-    title: title || 'Error',
-    message: text,
-    queue: true,
-    duration: duration || 15000
-  });
+formatNumber = function (num) {
+  if (typeof num === 'string') {
+    return num
+  }
+  return '$'+number_format(num, 2, ',', '.').replace(',00','')
+  //return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
 }
 
-onSuccessAlert = function(title, text, duration){
-  $.growl.notice({
-    title: title || 'OK',
-    message: text,
-    queue: true,
-    duration: duration || 15000
-  });
+isDateBeforeToday = function(date) {
+  return new Date(date.toDateString()) < new Date(new Date().toDateString());
 }
 
-onWarningAlert = function(title, text, duration){
-  // $('#growls').remove();
-  $.growl.warning({
-    title: title || 'OK',
-    message: text,
-    queue: true,
-    duration: duration || 15000
-  });
+let number_format = (number, decimals, dec_point, thousands_point) => { 
+  if (number == null || !isFinite(number)) {
+    throw new TypeError("number is not valid");
+  }
+
+  if (!decimals) {
+    var len = number.toString().split('.').length;
+    decimals = len > 1 ? len : 0;
+  }
+
+  if (!dec_point) {
+    dec_point = '.';
+  }
+
+  if (!thousands_point) {
+    thousands_point = ',';
+  }
+
+  number = parseFloat(number).toFixed(decimals);
+  number = number.replace(".", dec_point);
+  var splitNum = number.split(dec_point);
+  splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
+  number = splitNum.join(dec_point);
+
+  return number;
 }
 
-let loadMoreSearch = (p) => {
-  searchPage = p
-  $('.search-more a').text('Cargando...')
-  apiSearch(localStorage.getItem('lastsearch'))
-}
+/* let formatNumber = (float) => {
+  console.log(float)
+  return number_format(float, 2, ',', '.') 
+} */
 
 let strtoFloat = (text) => { 
   return parseFloat(parseFloat(text.replace('.', '').replace(',', '').replace('$', '')).toFixed(2))
 }
 
 let fxTotal = (total) => {
-  $('.cost_total').text( total )
+  $('.cost_total').text( formatNumber(total) )
   const block = document.querySelector('.cost_total-container')
   block.classList.remove('fadeIn', 'fadeOut', 'delay')
   block.classList.add('hidden')
@@ -85,6 +99,68 @@ let findSize = (str) => {
   }
   return size
 }
+
+onErrorAlert = function(title, text, duration){
+  $.growl.error({
+    title: title || 'Error',
+    message: text,
+    queue: true,
+    duration: duration || 15000
+  });
+}
+
+onSuccessAlert = function(title, text, duration){
+  $.growl.notice({
+    title: title || 'OK',
+    message: text,
+    queue: true,
+    duration: duration || 15000
+  });
+}
+
+onWarningAlert = function(title, text, duration){
+  // $('#growls').remove();
+  $.growl.warning({
+    title: title || 'OK',
+    message: text,
+    queue: true,
+    duration: duration || 15000
+  })
+}
+
+let loadMoreSearch = (p) => {
+  searchPage = p
+  $('.search-more a').text('Cargando...')
+  apiSearch(localStorage.getItem('lastsearch'))
+}
+
+
+callStart = function(){
+  setTimeout(() => {
+    $('.btn-calculate-shipping').button('loading')
+    $('#cost_container').removeClass('text-muted', 'text-success');
+    $('#cost_container').addClass('hide');
+    // $('#loading').removeClass('hide');
+  }, 10)
+}
+
+callEnd = function(){
+  cargo = 'shipment'
+  $('.btn-calculate-shipping').button('reset')
+  $('.shipping-loading').removeClass('animated fadeOut');
+  $('#cost_container').removeClass('animated fadeIn');
+  setTimeout(() => {
+    $('.shipping-loading').addClass('animated fadeOut');    
+    $('#cost_container').addClass('animated fadeIn');
+  }, 10)
+  setTimeout(() => {
+    $('#cost_container').removeClass('hide');
+    $('.shipping-loading').addClass('hide');
+    $('#cost_container').addClass('text-success');
+  }, 500)
+}
+
+
 
 let apiSearch = (q) => {    
   $.ajax({

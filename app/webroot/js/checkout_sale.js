@@ -1,11 +1,10 @@
-var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 var select_payment = (e) => {
 	var selected = $(e).find(':checked').val()
 	var subtotal = carrito.subtotal_price
 	var bank_bonus = 0
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
 		bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
-		$('.bank_bonus').text(strtoFloat(bank_bonus.toFixed(2)))
+		$('.bank_bonus').text(formatNumber(bank_bonus.toFixed(2)))
 		$('.bank-block').removeClass('hide')
 		$('.bank-block').addClass('animated scaleIn')
 	} else {
@@ -25,7 +24,8 @@ var select_payment = (e) => {
   console.log('total',total)
   console.log('bank_bonus',bank_bonus)
 
-	$('.total_price').text(strtoFloat(total.toFixed(2)))
+  localStorage.setItem('pm', selected)
+	$('.total_price').text(formatNumber(total.toFixed(2)))
 	$('.payment-method .option-rounded').removeClass('is-selected')
 	$(e).addClass('is-selected')
 }
@@ -47,6 +47,12 @@ $(function(){
 		}
 	})
 
+	if(lastpm) {
+		setTimeout(() => {
+			$('#'+lastpm).click()
+		}, 200)
+		// $('input[name=payment_method]').val(lastpm)
+	}
 	if (carrito.cargo === 'takeaway') {
 		$('.cargo-takeaway').removeClass('hide')
 		$('.cargo-takeaway').addClass('animated scaleIn')
@@ -57,7 +63,7 @@ $(function(){
 		if (carrito.freeShipping) {
 			price = '<span class="text-success">Gratis</span>'
 		} else {
-			price = `$${strtoFloat(carrito.shipping_price)}`
+			price = `$${formatNumber(carrito.shipping_price)}`
 		}
 		$('.shipping_price').html(price)
 		$('.shipping-block').removeClass('hide')

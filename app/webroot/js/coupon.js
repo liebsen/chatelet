@@ -19,8 +19,8 @@ $(function(){
     if (!freeShipping && !delivery_cost && carrito.shipping_price) {
         delivery_cost = carrito.shipping_price
     }
-    console.log('subtotal',subtotal)
-    console.log('delivery_cost',delivery_cost)
+    // console.log('subtotal',subtotal)
+    // console.log('delivery_cost',delivery_cost)
 
     $('#free_delivery').text('');
     $('.btn-calculate-shipping').button('loading')
