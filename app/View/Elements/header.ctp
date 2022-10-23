@@ -191,9 +191,9 @@
             <circle class="spinner__circle" cx="50" cy="50" r="40" stroke="#f41c80" fill="none" stroke-width="8" stroke-linecap="round">
             </circle>
           </svg>
-        </div>
-        <div class="search-bar-container">
-          <div class="search-bar"></div>
+          <div class="search-bar-container">
+            <div class="search-bar"></div>
+          </div>
         </div>
         <!--p class="search-info"></p-->
       </div>
