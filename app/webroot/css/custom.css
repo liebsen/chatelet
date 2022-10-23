@@ -159,7 +159,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .box.w-leaves {
   /* background-image: url(../images/clipart/47040.svg); */
   background-image: url(../images/clipart/47.png);
-  background-position: 110% 90%;
+  background-position: 100% 90%;
   background-repeat: no-repeat;
   background-size: 11rem;
 }
