@@ -116,7 +116,7 @@
                 <?php if ($this->Session->check('Carro')): ?>
                   <p class="title">Mi Carrito</p>
                 <?php else: ?>
-                  <p class="notification">Tu carrito de compras está vacío</p>
+                  <p class="notification text-muted">Tu carrito de compras está vacío</p>
                 <?php endif ?>
                   <ol id="items">
                     <?php
