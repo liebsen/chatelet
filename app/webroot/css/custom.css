@@ -858,7 +858,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headcontacto h1 { color: #f50081; font-size: 40px; font-weight: 600; margin-top: 70px; }
 #headcontacto h1:after { background: #f50081; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 #headcontacto .box { border: 2px solid #f50081; padding: 100px 90px; }
-#headcontacto .box h3 { font-size: 22px; font-weight: 500; margin-bottom: 30px; }
+#headcontacto .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; margin-top: 0; }
 #headcontacto .box p { font-size: 16px; line-height: 1.5; }
 #formulario { background: url(../images/arrow-down-grey.gif) no-repeat center top; padding: 80px 0; }
 #formulario .wrapper { /*background: url(../images/formbg.jpg) no-repeat left center;*/ background-size: contain; }
