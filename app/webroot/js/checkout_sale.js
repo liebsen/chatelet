@@ -88,9 +88,6 @@ $(function(){
   	}, 2000)
 	}
 
-	//$('body').on('click touchstart', '.payment-method .option-rounded', e => {
-	//$('.payment-method .option-rounded').click(e => {
-
 	$('#checkoutform').submit(form => {
 		const submit = $('.checkout-btn')
 		submit.prop('disabled', true)

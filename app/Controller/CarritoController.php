@@ -772,19 +772,21 @@ class CarritoController extends AppController
 		// Add Delivery
 		$delivery_cost = 0;
 		$freeShipping = $this->isFreeShipping($total_wo_discount, $user['postal_address']);
-		if (!$freeShipping && $user['cargo'] !== 'takeaway') {
-			$delivery_data = json_decode( $this->deliveryCost($user['postal_address'], $user['shipping']),true);
-			if (isset($delivery_data['rates'][0]['price'])) {
-				$delivery_cost = (int) $delivery_data['rates'][0]['price'];
-			}
-		}
 
 		if ($freeShipping) { 
      	error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
 			// $delivery_cost=0;
-		}else{
-			error_log('suming delivery to price: '.$delivery_cost);
-			$total += $delivery_cost;
+		} else {
+			if ($user['cargo'] !== 'takeaway') {
+				$delivery_data = json_decode( $this->deliveryCost($user['postal_address'], $user['shipping']),true);
+
+				if (isset($delivery_data['rates'][0]['price'])) {
+					$delivery_cost = (int) $delivery_data['rates'][0]['price'];
+				}
+
+				error_log('suming delivery to price: '.$delivery_cost);
+				$total += $delivery_cost;
+			}
 			error_log('suming total: '.$total);
 			$items[] = array(
 				'title' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
