@@ -605,7 +605,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	}
 
 	private function getMPSales(){
-		return json_decode(file_get_contents(__DIR__ . '/dummy/mpsales.json'), true);
+		// return json_decode(file_get_contents(__DIR__ . '/dummy/mpsales.json'), true);
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$limit = isset($_GET['extended']) ? 500 : 10;
@@ -688,7 +688,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$date = strtotime("-1 week");
 		// Local data
 		if ($online) {
-			// $date = strtotime($online[count($online)-1]['collection']['date_created']);
+			$date = strtotime($online[count($online)-1]['collection']['date_created']);
 		}
 		$stamp = date('Y-m-d H:i', $date);
 		$mapper = $this->Sale->find('all',array('conditions'=>array( 
