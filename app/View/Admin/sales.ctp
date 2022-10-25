@@ -109,6 +109,9 @@
 
                 $personalInfoShowed=false;
                 $paybank = @$sale['local_sale']['payment_method']==='bank' && empty(@$sale['local_sale']['completed']);
+                if (!count(@$sale['collection']['sale_products'])) {
+                    continue;
+                }
                 ?>
                 <tr class="is-clickable<?= $paybank ? ' bg-warning-i' : '' ?>">
                     <td class="col-xs-1" data-sort="<?php echo date('Y-m-d',strtotime($sale['collection']['date_approved'])) ?>">
