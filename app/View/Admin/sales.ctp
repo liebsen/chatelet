@@ -108,7 +108,7 @@
                 <?php foreach ((array) $sales as $sale):
 
                 $personalInfoShowed=false;
-                $paybank=$sale['local_sale']['payment_method']==='bank'&&empty($sale['local_sale']['completed']);
+                $paybank = @$sale['local_sale']['payment_method']==='bank' && empty(@$sale['local_sale']['completed']);
                 ?>
                 <tr class="is-clickable<?= $paybank ? ' bg-warning-i' : '' ?>">
                     <td class="col-xs-1" data-sort="<?php echo date('Y-m-d',strtotime($sale['collection']['date_approved'])) ?>">
@@ -179,7 +179,7 @@
                         <small><?= @$sale['collection']['payment_type'] === 'credit_card' ? @$sale['collection']['last_four_digits'] : @$sale['collection']['merchant_order_id'] ?></small>
                     </td>
                     <td class="col-xs-1">
-                    <?php if($sale['local_sale']['payment_method']==='bank'): ?>
+                    <?php if(@$sale['local_sale']['payment_method']==='bank'): ?>
                         <?php if($sale['local_sale']['completed']): ?>
                         <strong class="text-success">Aprobado</strong>
                         <?php else: ?>
@@ -201,21 +201,21 @@
                     <?php if (isset($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] === 'takeaway'):?>
                         <strong>Takeaway</strong>
                     <?php endif ?>
-                    <?php if (empty($sale['local_sale']['def_orden_retiro'])):?>
-                        <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-info" onclick="showLayer(event,'ticket',<?= $sale['local_sale']['id'] ?>)">
-                            <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty($sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
+                    <?php if (empty(@$sale['local_sale']['def_orden_retiro'])):?>
+                        <strong id="shipping_title_<?= @$sale['local_sale']['id'] ?>" class="text-info" onclick="showLayer(event,'ticket',<?= @$sale['local_sale']['id'] ?>)">
+                            <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
                         </strong>
                     <?php else: ?>
                         <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success">
-                            <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty($sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>
+                            <?= strtoupper(@$sale['local_sale']['shipping']) ?> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>
                         </strong>
                     <?php endif ?>
                     <br>
-                    <small>$<?= !empty($sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></small>
+                    <small>$<?= !empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></small>
                     <?php
-                    if (!empty($sale['local_sale']['id']) && !empty($sale['local_sale']['apellido']) && !empty($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] == 'shipment'): ?>
+                    if (!empty(@$sale['local_sale']['id']) && !empty(@$sale['local_sale']['apellido']) && !empty(@$sale['local_sale']['cargo']) && @$sale['local_sale']['cargo'] == 'shipment'): ?>
                         <!--span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span-->
-                        <?= $sale['local_sale']['def_mail_sent'] ? '' : '<i class="fa fa-pencil text-info" onclick="editLogistic(event,' . $sale['local_sale']['id'] . ',' . $sale['local_sale']['logistic_id'] . ')" title="Notificación pendiente"></i>' ?>
+                        <?= @$sale['local_sale']['def_mail_sent'] ? '' : '<i class="fa fa-pencil text-info" onclick="editLogistic(event,' . @$sale['local_sale']['id'] . ',' . @$sale['local_sale']['logistic_id'] . ')" title="Notificación pendiente"></i>' ?>
                     <?php endif ?>
                     </td>
                 </tr>
