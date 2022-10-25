@@ -85,9 +85,9 @@
             <button class="btn btn-success" type="button" style="margin-top: -2px;">Más ventas</button>
         </a>
         <?php endif ?>
-        <button class="btn btn-success" type="button" id="expandall" style="margin-top: -2px;">
+        <!--button class="btn btn-success" type="button" id="expandall" style="margin-top: -2px;">
             <i class="gi gi-expand"></i>
-        </button>
+        </button-->
     </div>
 </div>
 <div class="row">
