@@ -60,29 +60,29 @@
             <table class="table table-striped">
               <tr>
                 <td width="150"><h6><?php echo __('Órden de retiro'); ?></h6></td>
-                <td><h5 class="text-orden-retiro"><?= strtoupper($ticket['def_orden_retiro']) ?></h5></td>
+                <td><h4 class="text-orden-retiro"><?= strtoupper($ticket['def_orden_retiro']) ?></h4></td>
               </tr>
               <tr>
                 <td><h6><?php echo __('Fecha y hora'); ?></h6></td>
-                <td><h5><?= implode(' ', [date('j/n/y H:i', strtotime($ticket['created'])), ' ('.$weekdays[date('w', strtotime($ticket['created']))].')']) ?></h5></td>
+                <td><h4><?= implode(' ', [date('j/n/y H:i', strtotime($ticket['created'])), ' ('.$weekdays[date('w', strtotime($ticket['created']))].')']) ?></h4></td>
               </tr>
               <tr>
                 <td><h6><?php echo __('Nombre'); ?></h6></td>
-                <td><h5><?= $ticket['nombre'] ?> <?= $ticket['apellido'] ?></h5></td>
+                <td><h4><?= $ticket['nombre'] ?> <?= $ticket['apellido'] ?></h4></td>
               </tr>
               <tr>
                 <td><h6><?php echo __('DNI'); ?></h6></td>
-                <td><h5><?= $ticket['dni'] ?></h5></td>
+                <td><h4><?= $ticket['dni'] ?></h4></td>
               </tr>
               <tr>
                 <td><h6><?php echo __('Teléfono'); ?></h6></td>
-                <td><h5><?= $ticket['telefono'] ?></h5></td>
+                <td><h4><?= $ticket['telefono'] ?></h4></td>
               </tr>
               <tr>
                 <td><h6><?php echo __('Dirección'); ?></h6></td>
                 <td>
-                  <h5><?= $ticket['calle'] ?> <?= $ticket['nro'] ?> <?= $ticket['piso'] ?> <?= $ticket['depto'] ?><br>
-                  <?= $ticket['localidad'] ?> (<?= $ticket['cp'] ?>)<br><?= $ticket['provincia'] ?></h5>
+                  <h4><?= $ticket['calle'] ?> <?= $ticket['nro'] ?> <?= $ticket['piso'] ?> <?= $ticket['depto'] ?><br>
+                  <?= $ticket['localidad'] ?> (<?= $ticket['cp'] ?>)<br><?= $ticket['provincia'] ?></h4>
                   <br>
                 </td>
               </tr>
