@@ -103,12 +103,12 @@ function logisticUpdate () {
   })
 }
 
-function getTicket(sale_id) {
+function getTicket() {
   var row = $(`#shipping_title_${sale_id}`)
   var button = $('#ticket_get_btn')
   button.addClass('btn-disabled')
   button.text('Solicitando...')
-  $.get('/admin/getTicketFake/' + sale_id, res => {
+  $.get('/admin/getTicket/' + sale_id, res => {
     let data = JSON.parse(res)
     if(data.status==='success'){
       button.removeClass('btn-disabled')
