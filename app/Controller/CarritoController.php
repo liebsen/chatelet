@@ -772,14 +772,13 @@ class CarritoController extends AppController
 		// Add Delivery
 		$delivery_cost = 0;
 		$freeShipping = $this->isFreeShipping($total_wo_discount, $user['postal_address']);
+		$delivery_data = json_decode( $this->deliveryCost($user['postal_address'], $user['shipping']),true);
 
 		if ($freeShipping) { 
      	error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
 			// $delivery_cost=0;
 		} else {
 			if ($user['cargo'] !== 'takeaway') {
-				$delivery_data = json_decode( $this->deliveryCost($user['postal_address'], $user['shipping']),true);
-
 				if (isset($delivery_data['rates'][0]['price'])) {
 					$delivery_cost = (int) $delivery_data['rates'][0]['price'];
 				}
