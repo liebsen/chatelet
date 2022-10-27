@@ -10,7 +10,7 @@ $(document).ready(function() {
         $(e).removeClass('toggle-table-hidden')
       }      
     })
-    $('toggle-active').each((i,e) => {
+    $('.toggle-active').each((i,e) => {
       $(e).removeClass('toggle-active')
     })
   })
