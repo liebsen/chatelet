@@ -1,13 +1,25 @@
 $(document).ready(function() {
   // getTicket(10999)
 
-  $('#expandall').click(e => {
-    var active = $('.toggle-active').length
-    $(e.target).parents('tr').find('.toggle-table').each((i,e) => {
-      if (active) {
-        $(e).addClass('toggle-table-hidden')
-      } else {
+  $('#printbtn').click(e => {
+    console.log('printbtn')
+    // restore original view
+    $('.toggle-table').each((i,e) => {
+      if ($(e).hasClass('toggle-table-hidden')) {
         $(e).removeClass('toggle-table-hidden')
+      }
+    })
+    return window.print()
+  })
+  $('#expandall').click(e => {
+    // var active = $('.toggle-active').length
+    $('.toggle-table').each((i,e) => {
+      if ($(e).hasClass('toggle-table-hidden')) {
+        $(e).removeClass('toggle-table-hidden')
+        $('#expandall').text('Contraer')
+      } else {
+        $('#expandall').text('Expandir')
+        $(e).addClass('toggle-table-hidden')
       }      
     })
     $('.toggle-active').each((i,e) => {

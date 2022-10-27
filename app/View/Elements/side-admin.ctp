@@ -12,7 +12,7 @@
 <!-- Left Sidebar -->
 <!-- In the PHP version you can set the following options from the config file -->
 <!-- Add the class .sticky for a sticky sidebar -->
-<aside id="page-sidebar" class="collapse navbar-collapse navbar-main-collapse<?php if ($template['sidebar'] == 'sticky') { echo ' sticky'; } ?>">
+<aside id="page-sidebar" class="collapse navbar-collapse hide-print navbar-main-collapse<?php if ($template['sidebar'] == 'sticky') { echo ' sticky'; } ?>">
     <!--
     Wrapper for scrolling functionality
     Used only if the .sticky class added above. You can remove it and you will have a sticky sidebar

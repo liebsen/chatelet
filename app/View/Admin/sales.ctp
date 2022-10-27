@@ -75,7 +75,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row hide-print">
     <div class="col-xs-12">
         <a href="/admin/sales_export_mails" target="_blank">
             <button class="btn btn-success" type="button" style="margin-top: -2px;">Exportar Emails</button>
@@ -86,14 +86,17 @@
         </a>
         <?php endif ?>
         <button class="btn btn-success" type="button" id="expandall" style="margin-top: -2px;">
-            <i class="gi gi-expand"></i>
+            Expandir todo
+        </button>
+        <button class="btn btn-muted" type="button" id="printbtn" style="margin-top: -2px;">
+            <i class="fa fa-print fa-lg"></i>
         </button>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 table-responsive">
         <table id="example-datatables2" class="table table-striped table-bordered table-hover">
-            <thead>
+            <thead class="hide-print">
                 <tr>
                     <th class="text-center">Fecha</th>
                     <th class="text-center">Cliente</th>
