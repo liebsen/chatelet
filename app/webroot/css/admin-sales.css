@@ -58,6 +58,9 @@
 #update_logistic button {
   font-size: 1.5rem;
 }
+#example-datatables2 td {
+  vertical-align: top;
+}
 
 @media print {
   @page {
