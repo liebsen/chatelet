@@ -103,7 +103,7 @@ function logisticUpdate () {
   $('#logistic_save_btn').text('Actualizando...')
   $.post('/admin/updateSaleLogistic/' + sale_id, {logistic_id: selected.val()}).then(res => {
     //$(`#shipping_title_${sale_id}`).text(name_selected.toUpperCase())
-    $(`#shipping_image_${sale_id}`).attr('src',${image_selected})
+    $(`#shipping_image_${sale_id}`).attr('src',image_selected)
     $('#logistic_save_btn').removeClass('btn-primary')
     $('#logistic_save_btn').addClass('btn-disabled')
     $('#logistic_save_btn').text('Actualizado')
