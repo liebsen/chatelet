@@ -20,7 +20,7 @@ class AdminController extends AppController {
     	// Template variables
 		$template = array(
 		    'name'          => 'Châtelet',
-		    'version'       => '2.1',
+		    'version'       => '2.1', // Configure::read('DIST_VERSION'),
 		    'author'        => 'Infinixsoft <desarrollo@infinixsoft.com>',
 		    'title'         => 'Admin panel - Châtelet',
 		    'description'   => '',

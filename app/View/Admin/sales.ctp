@@ -100,9 +100,9 @@
                 <tr>
                     <th class="text-center">Fecha</th>
                     <th class="text-center">Cliente</th>
-                    <th class="text-center">Método</th>
                     <th class="text-center">Total</th>
                     <th class="text-center">Envío</th>
+                    <th class="text-center">Pago</th>
                 </tr>
             </thead>
             <tbody>
@@ -175,25 +175,14 @@
                              </table>
                         </div>
                     </td>
-                    <td class="col-xs-1">
-                        <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong><br>
-                    <?php if(@$sale['local_sale']['payment_method']==='bank'): ?>
-                        <?php if($sale['local_sale']['completed']): ?>
-                        <strong class="text-success"><?php echo @$list_status[$sale['collection']['status']] ?></strong>
-                        <?php else: ?>
-                        <strong class="text-info" id="bank_title_<?= $sale['local_sale']['id'] ?>" onclick="showLayer(event,'bank',<?= $sale['local_sale']['id'] ?>)"><?php echo @$list_status[$sale['collection']['status']] ?></strong>
-                        <?php endif ?><br>
-                        <small><?php echo @$sale['local_sale']['modified'] ?></small>
-                    <?php else: ?>
-                        <strong class="<?= @$sale['collection']['status'] === 'approved' ? 'text-success' : 'text-info' ?>"><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>
-                        <small><?php echo @$sale['collection']['date_approved'] ?></small>
-                    <?php endif ?>                        
-                        <!--small><?= @$sale['collection']['payment_type'] === 'credit_card' ? @$sale['collection']['last_four_digits'] : @$sale['collection']['merchant_order_id'] ?></small-->
-                    </td>
+
+
                     <td class="col-xs-1 text-center">
                         <strong>$<?= @$sale['collection']['transaction_amount'] ?: @$sale['local_sale']['value'] ?> </strong><br>
                         <small>(<?= count(@$sale['collection']['sale_products']) ?> items)</small>
                     </td>
+
+
                     <td class="col-xs-1 text-center"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
                     <?php 
                     $defaultCost = 0; ?>
@@ -222,6 +211,24 @@
                     <?php endif ?>
                     <?php endif ?>                    
                     </td>
+
+                    <td class="col-xs-1">
+                        <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong><br>
+                    <?php if(@$sale['local_sale']['payment_method']==='bank'): ?>
+                        <?php if($sale['local_sale']['completed']): ?>
+                        <strong class="text-success"><?php echo @$list_status[$sale['collection']['status']] ?></strong>
+                        <?php else: ?>
+                        <strong class="text-info" id="bank_title_<?= $sale['local_sale']['id'] ?>" onclick="showLayer(event,'bank',<?= $sale['local_sale']['id'] ?>)"><?php echo @$list_status[$sale['collection']['status']] ?></strong>
+                        <?php endif ?><br>
+                        <small><?php echo @$sale['local_sale']['modified'] ?></small>
+                    <?php else: ?>
+                        <strong class="<?= @$sale['collection']['status'] === 'approved' ? 'text-success' : 'text-info' ?>"><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>
+                        <small><?php echo @$sale['collection']['date_approved'] ?></small>
+                    <?php endif ?>                        
+                        <!--small><?= @$sale['collection']['payment_type'] === 'credit_card' ? @$sale['collection']['last_four_digits'] : @$sale['collection']['merchant_order_id'] ?></small-->
+                    </td>
+
+
                 </tr>
                 <?php endforeach ?>
             </tbody>

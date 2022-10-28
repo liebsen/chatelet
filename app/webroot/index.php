@@ -25,6 +25,8 @@ if (!defined('DS')) {
 	define('DS', DIRECTORY_SEPARATOR);
 }
 
+
+
 /**
  * These defines should only be edited if you have cake installed in
  * a directory layout other than the way it is distributed.
@@ -61,7 +63,8 @@ if (!defined('APP_DIR')) {
  * The following line differs from its sibling
  * /lib/Cake/Console/Templates/skel/webroot/index.php
  */
-//define('CAKE_CORE_INCLUDE_PATH', ROOT . DS . 'lib');
+
+define('CAKE_CORE_INCLUDE_PATH', ROOT . DS . 'lib');
 
 /**
  * Editing below this line should NOT be necessary.
@@ -84,6 +87,7 @@ if (php_sapi_name() === 'cli-server') {
 }
 
 if (!defined('CAKE_CORE_INCLUDE_PATH')) {
+
 	if (function_exists('ini_set')) {
 		ini_set('include_path', ROOT . DS . 'lib' . PATH_SEPARATOR . ini_get('include_path'));
 	}
@@ -95,6 +99,7 @@ if (!defined('CAKE_CORE_INCLUDE_PATH')) {
 		$failed = true;
 	}
 }
+
 if (!empty($failed)) {
 	trigger_error("CakePHP core could not be found. Check the value of CAKE_CORE_INCLUDE_PATH in APP/webroot/index.php. It should point to the directory containing your " . DS . "cake core directory and your " . DS . "vendors root directory.", E_USER_ERROR);
 }
