@@ -25,8 +25,8 @@
 
 
 $path = __DIR__ .'/../version';
-$version = (float) file_get_contents($path);
-
+$version_count = (float) file_get_contents($path);
+$version = (float) $version_count / 1000
 
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
