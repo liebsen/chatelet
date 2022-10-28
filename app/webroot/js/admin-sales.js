@@ -9,6 +9,11 @@ $(document).ready(function() {
         $(e).removeClass('toggle-table-hidden')
       }
     })
+    setTimeout(() => {
+      $('.toggle-table').each((i,e) => {
+        $(e).addClass('toggle-table-hidden')
+      })      
+    }, 1000)
     return window.print()
   })
   $('#expandall').click(e => {
@@ -16,9 +21,9 @@ $(document).ready(function() {
     $('.toggle-table').each((i,e) => {
       if ($(e).hasClass('toggle-table-hidden')) {
         $(e).removeClass('toggle-table-hidden')
-        $('#expandall').text('Contraer')
+        $('#expandall').text('Contraer todo')
       } else {
-        $('#expandall').text('Expandir')
+        $('#expandall').text('Expandir todo')
         $(e).addClass('toggle-table-hidden')
       }      
     })

@@ -2328,13 +2328,13 @@ th {
 }
 table col[class*="col-"] {
   position: static;
-  display: table-column;
+  /*display: table-column;*/
   float: none;
 }
 table td[class*="col-"],
 table th[class*="col-"] {
   position: static;
-  display: table-cell;
+  /*display: table-cell;*/
   float: none;
 }
 .table > thead > tr > td.active,
