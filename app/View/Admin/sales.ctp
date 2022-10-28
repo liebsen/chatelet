@@ -207,15 +207,16 @@
                     <?php if (isset($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] === 'takeaway'):?>
                         <strong>Takeaway</strong>
                     <?php else: ?>
-                    <?php
-                    if (!empty(@$sale['local_sale']['id']) && !empty(@$sale['local_sale']['apellido']) && !empty(@$sale['local_sale']['cargo']) && @$sale['local_sale']['cargo'] == 'shipment'): ?>
-                        <!--span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span-->
-                        <?= @$sale['local_sale']['def_mail_sent'] ? '' : '<i class="fa fa-pencil text-info" onclick="editLogistic(event,' . @$sale['local_sale']['id'] . ',' . @$sale['local_sale']['logistic_id'] . ')" title="Notificación pendiente"></i>' ?>
-                    <?php endif ?>
 
                     <?php if (empty(@$sale['local_sale']['def_orden_retiro'])):?>
                         <strong>$<?= !empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></strong>
 
+                        <?php
+                        if (!empty(@$sale['local_sale']['id']) && !empty(@$sale['local_sale']['apellido']) && !empty(@$sale['local_sale']['cargo']) && @$sale['local_sale']['cargo'] == 'shipment'): ?>
+                            <!--span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span-->
+                            <?= @$sale['local_sale']['def_mail_sent'] ? '' : '<i class="fa fa-pencil text-info" onclick="editLogistic(event,' . @$sale['local_sale']['id'] . ',' . @$sale['local_sale']['logistic_id'] . ')" title="Notificación pendiente"></i>' ?>
+                        <?php endif ?>
+                        
                         <div id="shipping_title_<?= @$sale['local_sale']['id'] ?>" class="text-info">
                             <div class="shipping-logo" id="shipping_image_<?= @$sale['local_sale']['id'] ?>" style="background-image: url(<?= @$logistics_images[$sale['local_sale']['shipping']] ?>)"  onclick="showLayer(event,'ticket',<?= @$sale['local_sale']['id'] ?>)">
                             </div>
