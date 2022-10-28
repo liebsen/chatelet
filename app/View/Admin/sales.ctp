@@ -60,7 +60,7 @@
                 <div class="form-group">
                 <?php foreach($logistics as $logistic): ?>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="logistic_option" id="logistic_option_<?= $logistic['Logistics']['id'] ?>" value="<?= $logistic['Logistics']['id'] ?>" data-name="<?= $logistic['Logistics']['code'] ?>">
+                      <input class="form-check-input" type="radio" name="logistic_option" id="logistic_option_<?= $logistic['Logistics']['id'] ?>" value="<?= $logistic['Logistics']['id'] ?>" data-name="<?= $logistic['Logistics']['code'] ?>" data-image="<?= $logistic['Logistics']['image'] ?>">
                       <label class="form-check-label" for="logistic_option_<?= $logistic['Logistics']['id'] ?>">
                         <?= $logistic['Logistics']['title'] ?>
                       </label>
@@ -207,24 +207,25 @@
                     <?php if (isset($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] === 'takeaway'):?>
                         <strong>Takeaway</strong>
                     <?php endif ?>
-                    <?php if (empty(@$sale['local_sale']['def_orden_retiro'])):?>
-                        <strong id="shipping_title_<?= @$sale['local_sale']['id'] ?>" class="text-info" onclick="showLayer(event,'ticket',<?= @$sale['local_sale']['id'] ?>)">
-                            <div class="shipping-logo" style="background-image: url(<?= @$logistics_images[$sale['local_sale']['shipping']] ?>)">
-                            </div>
-                            <!-- <?= @strtoupper($sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
-                        </strong>
-                    <?php else: ?>
-                        <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success">
-                            <div class="shipping-logo" style="background-image: url(<?= @$logistics_images[$sale['local_sale']['shipping']] ?>)">
-                            </div>
-                            <!-- <?= strtoupper(@$sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>
-                        </strong>
-                    <?php endif ?>
-                    <small>$<?= !empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></small>
+                    <strong>$<?= !empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></strong>
                     <?php
                     if (!empty(@$sale['local_sale']['id']) && !empty(@$sale['local_sale']['apellido']) && !empty(@$sale['local_sale']['cargo']) && @$sale['local_sale']['cargo'] == 'shipment'): ?>
                         <!--span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span-->
                         <?= @$sale['local_sale']['def_mail_sent'] ? '' : '<i class="fa fa-pencil text-info" onclick="editLogistic(event,' . @$sale['local_sale']['id'] . ',' . @$sale['local_sale']['logistic_id'] . ')" title="Notificación pendiente"></i>' ?>
+                    <?php endif ?>
+
+                    <?php if (empty(@$sale['local_sale']['def_orden_retiro'])):?>
+                        <div id="shipping_title_<?= @$sale['local_sale']['id'] ?>" class="text-info">
+                            <div class="shipping-logo" id="shipping_image_<?= @$sale['local_sale']['id'] ?>" style="background-image: url(<?= @$logistics_images[$sale['local_sale']['shipping']] ?>)"  onclick="showLayer(event,'ticket',<?= @$sale['local_sale']['id'] ?>)">
+                            </div>
+                            <!-- <?= @strtoupper($sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
+                        </div>
+                    <?php else: ?>
+                        <div id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success">
+                            <div class="shipping-logo" style="background-image: url(<?= @$logistics_images[$sale['local_sale']['shipping']] ?>)">
+                            </div>
+                            <!-- <?= strtoupper(@$sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>
+                        </div>
                     <?php endif ?>
                     </td>
                 </tr>

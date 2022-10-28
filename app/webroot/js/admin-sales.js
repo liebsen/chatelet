@@ -108,9 +108,11 @@ function layerClose() {
 function logisticUpdate () {
   var selected = $("#update_logistic input[name='logistic_option']:checked")
   var name_selected = selected.data('name')
+  var image_selected = selected.data('image')
   $('#logistic_save_btn').text('Actualizando...')
   $.post('/admin/updateSaleLogistic/' + sale_id, {logistic_id: selected.val()}).then(res => {
-    $(`#shipping_title_${sale_id}`).text(name_selected.toUpperCase())
+    //$(`#shipping_title_${sale_id}`).text(name_selected.toUpperCase())
+    $(`#shipping_image_${sale_id}`).css({backgroundImage: `url(${image_selected})`})
     $('#logistic_save_btn').removeClass('btn-primary')
     $('#logistic_save_btn').addClass('btn-disabled')
     $('#logistic_save_btn').text('Actualizado')
