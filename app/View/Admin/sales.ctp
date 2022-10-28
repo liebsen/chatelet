@@ -206,8 +206,9 @@
                     $defaultCost = 0; ?>
                     <?php if (isset($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] === 'takeaway'):?>
                         <strong>Takeaway</strong>
+                    <?php else: ?>
+                        <strong>$<?= !empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></strong>
                     <?php endif ?>
-                    <strong>$<?= !empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></strong>
                     <?php
                     if (!empty(@$sale['local_sale']['id']) && !empty(@$sale['local_sale']['apellido']) && !empty(@$sale['local_sale']['cargo']) && @$sale['local_sale']['cargo'] == 'shipment'): ?>
                         <!--span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span-->
