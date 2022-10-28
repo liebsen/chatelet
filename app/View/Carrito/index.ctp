@@ -137,6 +137,9 @@
 								  <input type="checkbox" id="regalo" value="1" /><span class="label-text">Es para regalo</span>
 								</label>
 							</div>
+							<div class="summary-item text-right products-total">
+								<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= str_replace(',00','',$this->Number->currency($total + $promosaved, 'ARS', array('places' => 2))) ?></div>
+							</div>
 							<?php if($freeShipping):?>
 							<div class="summary-item text-right free-shipping animated speed">
 								<div class="price text-success">
@@ -150,9 +153,6 @@
 									<span id="delivery_cp"></span> $<span class="cost_delivery">0</span></div>
 							</div>
 							<?php endif ?>
-							<div class="summary-item text-right products-total">
-								<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= str_replace(',00','',$this->Number->currency($total + $promosaved, 'ARS', array('places' => 2))) ?></div>
-							</div>
 							<div class="summary-item text-right <?= $promosaved ? '' : 'hidden' ?> animated speed">
 								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="">PROMO</span> <span><?= str_replace(',00','',$this->Number->currency($promosaved, 'ARS', array('places' => 2))) ?></span><!--span>.00</span--></div>
 							</div>

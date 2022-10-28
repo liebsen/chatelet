@@ -19,8 +19,6 @@ $(function(){
     if (!freeShipping && !delivery_cost && carrito.shipping_price) {
         delivery_cost = carrito.shipping_price
     }
-    // console.log('subtotal',subtotal)
-    // console.log('delivery_cost',delivery_cost)
 
     $('#free_delivery').text('');
     $('.btn-calculate-shipping').button('loading')
@@ -36,8 +34,8 @@ $(function(){
         } else {
           total-= discount
         }
-        total = parseFloat(total).toFixed(2)
-        discounted = parseFloat(parseFloat(subtotal - total).toFixed(2))
+        //total = parseFloat(total).toFixed(2)
+        discounted = parseFloat(subtotal - total)
         discounted_formatted = formatNumber(discounted)
 
         $('.coupon_bonus').text( discounted_formatted )
@@ -55,6 +53,11 @@ $(function(){
         $('.promo-code').text(json.data.code)
         $('.free-shipping').addClass('hidden')
         var price = parseFloat(total) + parseFloat(delivery_cost)
+        console.log('subtotal',subtotal)
+        console.log('delivery_cost',delivery_cost)
+        console.log('discounted',discounted)
+        console.log('price',price)
+
         format_total = formatNumber(price)
         $('#cost').text( format_total );
         fxTotal(format_total)
