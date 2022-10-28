@@ -1,21 +1,14 @@
 $(document).ready(function() {
-  // getTicket(10999)
-
   $('#printbtn').click(e => {
-    console.log('printbtn')
-    // restore original view
-    $('.toggle-table').each((i,e) => {
-      if ($(e).hasClass('toggle-table-hidden')) {
-        $(e).removeClass('toggle-table-hidden')
-      }
-    })
+    $('.toggle-table').removeClass('toggle-table-hidden')
     setTimeout(() => {
-      $('.toggle-table').each((i,e) => {
-        $(e).addClass('toggle-table-hidden')
-      })      
-    }, 1000)
-    return window.print()
+      window.print()
+      $('.toggle-table').addClass('toggle-table-hidden')
+    }, 1)
+    
+    return false
   })
+
   $('#expandall').click(e => {
     const state = $('#expandall').text() === 'Contraer todo' ? 0 : 1
     const text = state ? 'Contraer todo' : 'Expandir todo'
@@ -155,7 +148,7 @@ function setComplete(){
     let data = JSON.parse(res)
     if(data.status==='success'){
       row.className = ''
-      row.text(`Aprobado`)
+      // row.text(`Aprobado`)
       row.removeClass('text-info')
       row.removeClass('text-success')
       row.addClass(`text-${data.status}`)

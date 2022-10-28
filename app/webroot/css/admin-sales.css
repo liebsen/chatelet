@@ -63,10 +63,6 @@
   font-size: 1.5rem;
 }
 
-#example-datatables2 td {
-  vertical-align: top;
-}
-
 @media print {
   @page {
     /* size: A4;  DIN A4 standard, Europe */
@@ -89,10 +85,6 @@
   #example-datatables2_wrapper > .row:nth-child(odd) {
     display: none;
   }
-  #example-datatables2 td:nth-child(2),
-  #example-datatables2 th:nth-child(2) {
-    display: none;
-  }
   #page-content {
     margin: 0;
   }
@@ -106,14 +98,6 @@
   #example-datatables2 td {
     width: auto;
     color: #333!important;
-  }
-  #example-datatables2 td:nth-child(4), 
-  #example-datatables2 th:nth-child(4) {
-    display: none;
-  }
-  #example-datatables2 td:nth-child(5),
-  #example-datatables2 th:nth-child(5)  {
-    display: none;
   }
 }
 
