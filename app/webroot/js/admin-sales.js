@@ -17,16 +17,14 @@ $(document).ready(function() {
     return window.print()
   })
   $('#expandall').click(e => {
-    // var active = $('.toggle-active').length
-    $('.toggle-table').each((i,e) => {
-      if ($(e).hasClass('toggle-table-hidden')) {
-        $(e).removeClass('toggle-table-hidden')
-        $('#expandall').text('Contraer todo')
-      } else {
-        $('#expandall').text('Expandir todo')
-        $(e).addClass('toggle-table-hidden')
-      }      
-    })
+    const state = $('#expandall').text() === 'Contraer todo' ? 0 : 1
+    const text = state ? 'Contraer todo' : 'Expandir todo'
+    if (state) {
+      $('.toggle-table').removeClass('toggle-table-hidden')
+    } else {
+      $('.toggle-table').addClass('toggle-table-hidden')
+    }
+    $('#expandall').text(text)
     $('.toggle-active').each((i,e) => {
       $(e).removeClass('toggle-active')
     })
