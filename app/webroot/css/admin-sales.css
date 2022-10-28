@@ -95,8 +95,8 @@
     width: auto;
     color: #333!important;
   }
-  #example-datatables2 > tr > td:nth-child(5),
-  #example-datatables2 > tr > th:nth-child(5) {
+  #example-datatables2 > tbody > tr > td:nth-child(5),
+  #example-datatables2 > tbody > tr > th:nth-child(5) {
     display: none;
   }  
 }
