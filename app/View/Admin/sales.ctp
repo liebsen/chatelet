@@ -207,8 +207,6 @@
                     <?php if (isset($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] === 'takeaway'):?>
                         <strong>Takeaway</strong>
                     <?php else: ?>
-                        <strong>$<?= !empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></strong>
-                    <?php endif ?>
                     <?php
                     if (!empty(@$sale['local_sale']['id']) && !empty(@$sale['local_sale']['apellido']) && !empty(@$sale['local_sale']['cargo']) && @$sale['local_sale']['cargo'] == 'shipment'): ?>
                         <!--span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span-->
@@ -216,18 +214,22 @@
                     <?php endif ?>
 
                     <?php if (empty(@$sale['local_sale']['def_orden_retiro'])):?>
+                        <strong>$<?= !empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></strong>
+
                         <div id="shipping_title_<?= @$sale['local_sale']['id'] ?>" class="text-info">
                             <div class="shipping-logo" id="shipping_image_<?= @$sale['local_sale']['id'] ?>" style="background-image: url(<?= @$logistics_images[$sale['local_sale']['shipping']] ?>)"  onclick="showLayer(event,'ticket',<?= @$sale['local_sale']['id'] ?>)">
                             </div>
                             <!-- <?= @strtoupper($sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
                         </div>
                     <?php else: ?>
+                        <strong class="text-success">$<?= !empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></strong>
                         <div id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success">
                             <div class="shipping-logo" style="background-image: url(<?= @$logistics_images[$sale['local_sale']['shipping']] ?>)">
                             </div>
                             <!-- <?= strtoupper(@$sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>
                         </div>
                     <?php endif ?>
+                    <?php endif ?>                    
                     </td>
                 </tr>
                 <?php endforeach ?>
