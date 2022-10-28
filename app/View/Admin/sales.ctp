@@ -209,14 +209,17 @@
                     <?php endif ?>
                     <?php if (empty(@$sale['local_sale']['def_orden_retiro'])):?>
                         <strong id="shipping_title_<?= @$sale['local_sale']['id'] ?>" class="text-info" onclick="showLayer(event,'ticket',<?= @$sale['local_sale']['id'] ?>)">
-                            <?= @strtoupper($sale['local_sale']['shipping']) ?> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
+                            <div class="shipping-logo" style="background-image: url(<?= @$logistics_images[$sale['local_sale']['shipping']] ?>)">
+                            </div>
+                            <!-- <?= @strtoupper($sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
                         </strong>
                     <?php else: ?>
                         <strong id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success">
-                            <?= strtoupper(@$sale['local_sale']['shipping']) ?> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>
+                            <div class="shipping-logo" style="background-image: url(<?= @$logistics_images[$sale['local_sale']['shipping']] ?>)">
+                            </div>
+                            <!-- <?= strtoupper(@$sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>
                         </strong>
                     <?php endif ?>
-                    <br>
                     <small>$<?= !empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></small>
                     <?php
                     if (!empty(@$sale['local_sale']['id']) && !empty(@$sale['local_sale']['apellido']) && !empty(@$sale['local_sale']['cargo']) && @$sale['local_sale']['cargo'] == 'shipment'): ?>

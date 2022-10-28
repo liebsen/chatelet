@@ -605,7 +605,9 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	}
 
 	private function getMPSales(){
-		// return json_decode(file_get_contents(__DIR__ . '/dummy/mpsales.json'), true);
+		if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+			return json_decode(file_get_contents(__DIR__ . '/dummy/mpsales.json'), true);
+		}
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$limit = isset($_GET['extended']) ? 500 : 10;
@@ -766,6 +768,12 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		//pr($sales);die;
     $logistics = $this->Logistics->find('all',array('conditions'=>array( 'enabled' => 1 )));
 
+    $logistics_images = [];
+    foreach($logistics as $logistic) {
+    	$logistics_images[$logistic['Logistics']['code']] = $logistic['Logistics']['image'];
+    }
+
+		$this->set('logistics_images', $logistics_images);
 		$this->set('list_payments', [
 	    '' => "CBU/Alias",
 	    'credit_card' => "Crédito",

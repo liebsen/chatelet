@@ -2,6 +2,14 @@
   display: none;
 }
 
+.shipping-logo {
+  width: 100px;
+  height: 35px;
+  border-radius: 3rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 .fullhd-layer {
   position: fixed;
   top: 0;
