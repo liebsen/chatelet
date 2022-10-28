@@ -51,7 +51,7 @@
                                 $li_active = '';
                                 $menu_link = '';
 
-                                if (strpos($link['url'],$template['active_page'])!== false) {
+                                if (strpos($link['url'],'/'.$template['active_page'])!== false) {
                                     $li_active = ' class="active"';
                                 }
                                 if (isset($link['sub']) && $link['sub']) {
