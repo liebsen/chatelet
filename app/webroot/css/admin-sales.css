@@ -99,6 +99,10 @@
     width: auto;
     color: #333!important;
   }
+  #example-datatables2 td:nth-child(5),
+  #example-datatables2 th:nth-child(5) {
+    display: none;
+  }  
 }
 
 /*
