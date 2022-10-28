@@ -3,15 +3,11 @@
 }
 
 .shipping-logo {
-  width: 60px;
-  height: 20px;
+  width: 75px;
+  height: 30px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 0;
-  transform: scale(1.2);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  border-radius: 3px;
 }
 .fullhd-layer {
   position: fixed;
@@ -99,8 +95,8 @@
     width: auto;
     color: #333!important;
   }
-  #example-datatables2 td:nth-child(5),
-  #example-datatables2 th:nth-child(5) {
+  #example-datatables2 > tr > td:nth-child(5),
+  #example-datatables2 > tr > th:nth-child(5) {
     display: none;
   }  
 }

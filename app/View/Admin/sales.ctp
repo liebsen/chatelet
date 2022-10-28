@@ -198,7 +198,7 @@
                         <?php endif ?>
                     <?php if (empty(@$sale['local_sale']['def_orden_retiro'])):?>
                         <div id="shipping_title_<?= @$sale['local_sale']['id'] ?>" class="text-info text-center">
-                            <div class="shipping-logo" id="shipping_image_<?= @$sale['local_sale']['id'] ?>" style="background-image: url(<?= @$logistics_images[$sale['local_sale']['shipping']] ?>)"  onclick="showLayer(event,'ticket',<?= @$sale['local_sale']['id'] ?>)">
+                            <img class="shipping-logo" id="shipping_image_<?= @$sale['local_sale']['id'] ?>" src="<?= @$logistics_images[$sale['local_sale']['shipping']] ?>" onclick="showLayer(event,'ticket',<?= @$sale['local_sale']['id'] ?>)">
                             </div>
                             <!-- <?= @strtoupper($sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
                         </div>
