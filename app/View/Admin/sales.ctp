@@ -204,7 +204,7 @@
                         </div>
                     <?php else: ?>
                         <div id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success text-center">
-                            <div class="shipping-logo" src="<?= @$logistics_images[$sale['local_sale']['shipping']] ?>">
+                            <img class="shipping-logo" src="<?= @$logistics_images[$sale['local_sale']['shipping']] ?>">
                             </div>
                             <!-- <?= strtoupper(@$sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>
                         </div>
