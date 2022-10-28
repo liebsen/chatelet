@@ -156,6 +156,8 @@ function setComplete(){
     if(data.status==='success'){
       row.className = ''
       row.text(`Aprobado`)
+      row.removeClass('text-info')
+      row.removeClass('text-success')
       row.addClass(`text-${data.status}`)
       if($('#generate_ticket_from_bank').is(':checked')){
         getTicket(sale_id)
