@@ -193,7 +193,7 @@
                         <?php endif ?><br>
                         <small><?php echo @$sale['local_sale']['modified'] ?></small>
                     <?php else: ?>
-                        <strong class="<?= @$sale['local_sale']['completed'] ? 'text-success' : 'text-info' ?>"><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>
+                        <strong class="<?= @$list_status[$sale['collection']['status']] === 'approved' ? 'text-success' : 'text-info' ?>"><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>
                         <small><?php echo @$sale['collection']['date_approved'] ?></small>
                     <?php endif ?>
                     </td>
