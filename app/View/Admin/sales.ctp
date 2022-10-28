@@ -95,8 +95,8 @@
 </div>
 <div class="row">
     <div class="col-xs-12 table-responsive">
-        <table id="example-datatables2" class="table table-striped table-bordered table-hover">
-            <thead class="hide-print">
+        <table id="example-datatables2" class="table table-striped table-bordered table-hover print-friendly">
+            <thead>
                 <tr>
                     <th class="text-center">Fecha</th>
                     <th class="text-center">Cliente</th>

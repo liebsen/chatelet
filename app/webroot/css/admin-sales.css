@@ -1,5 +1,5 @@
 .toggle-table-hidden {
-  display: none!important;
+  display: none;
 }
 
 .fullhd-layer {
@@ -52,6 +52,59 @@
   font-size: 1.5rem;
 }
 
+@media print {
+  @page {
+    /* size: A4;  DIN A4 standard, Europe */
+    margin:0;
+  }
+  /* html, body {
+    width: 210mm;
+    height: 282mm;
+    font-size: 11px;
+    background: #FFF;
+    overflow:visible;
+  } */
+
+  .hide-print,
+  .dataTables_filter,
+  #page-sidebar,
+  #primary-nav {
+    display: none;
+  }
+  #example-datatables2_wrapper > .row:nth-child(odd) {
+    display: none;
+  }
+  #example-datatables2 td:nth-child(2),
+  #example-datatables2 th:nth-child(2) {
+    display: none;
+  }
+  #page-content {
+    margin: 0;
+  }
+  #example-datatables2 {
+    border: none;
+  }
+  #example-datatables2 tr {
+    border: none;
+    border-bottom: 1px solid #666;
+  }
+  #example-datatables2 td {
+    width: auto;
+  }
+  #example-datatables2 td:nth-child(4), 
+  #example-datatables2 th:nth-child(4) {
+    display: none;
+  }
+  #example-datatables2 td:nth-child(5),
+  #example-datatables2 th:nth-child(5)  {
+    display: none;
+  }
+}
+
+/*
+table.print-friendly tr td, table.print-friendly tr th {
+    page-break-inside: avoid;
+}
 
 @media print {
   .hide-print,
@@ -81,3 +134,4 @@
     display: none;
   }
 }
+*/
