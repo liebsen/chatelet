@@ -52,6 +52,10 @@
   font-size: 1.5rem;
 }
 
+#example-datatables2 td {
+  vertical-align: top;
+}
+
 @media print {
   @page {
     /* size: A4;  DIN A4 standard, Europe */
