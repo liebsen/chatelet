@@ -552,14 +552,16 @@ class ShopController extends AppController {
 		// save search
 		$search = [];
 		$search['name'] = $q;
-		$search['user_id'] = $this->Auth->user('id');
+		$search['user_id'] = 1;
+		if ($this->Auth->user('id')) {
+			$search['user_id'] = $this->Auth->user('id');
+		}
 		$search['created'] = date('Y-m-d H:i:s');
 		$search['referer'] = $_SERVER['HTTP_REFERER'];
 		$search['page'] = $p+1;
 		$search['results'] = count($results);
 
 		$this->Search->save($search);
-
 		exit();		
 	}
 }
