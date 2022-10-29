@@ -503,6 +503,7 @@ class ShopController extends AppController {
 	public function search(){
 		$this->autoRender = false;
 		$this->loadModel('Product');
+		$this->loadModel('Search');
 
 		$results = [];
 		$q = $this->request->data['q'];
@@ -543,9 +544,21 @@ class ShopController extends AppController {
 			$results[]= $result;
 		}
 
-		die(json_encode([
+		echo json_encode([
 			'results' => $results,
 			'query' => $query
-		]));
+		]);
+
+		// save search
+		$search = [];
+		$search['name'] = $q;
+		$search['user_id'] = $this->Auth->user('id');
+		$search['created'] = date('Y-m-d H:i:s');
+		$search['referer'] = $_SERVER['HTTP_REFERER'];
+		$search['results'] = count($results);
+
+		$this->Search->save($search);
+
+		exit();		
 	}
 }
