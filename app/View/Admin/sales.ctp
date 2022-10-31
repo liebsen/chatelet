@@ -216,9 +216,9 @@
                         <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong><br>
                     <?php if(@$sale['local_sale']['payment_method']==='bank'): ?>
                         <?php if($sale['local_sale']['completed']): ?>
-                        <strong class="text-success">Aprobado</strong>
+                        <strong class="text-success" title="<?php echo @$sale['local_sale']['modified'] ?>">Aprobado</strong>
                         <?php else: ?>
-                        <strong class="text-info" id="bank_title_<?= $sale['local_sale']['id'] ?>" onclick="showLayer(event,'bank',<?= $sale['local_sale']['id'] ?>)" title="<?php echo @$sale['local_sale']['modified'] ?>"><?php echo @$list_status[$sale['collection']['status']] ?></strong>
+                        <strong class="text-info" id="bank_title_<?= $sale['local_sale']['id'] ?>" onclick="showLayer(event,'bank',<?= $sale['local_sale']['id'] ?>)"><?php echo @$list_status[$sale['collection']['status']] ?></strong>
                         <?php endif ?><br>
                     <?php else: ?>
                         <strong class="<?= @$sale['collection']['status'] === 'approved' ? 'text-success' : 'text-info' ?>" title="<?php echo @$sale['collection']['date_approved'] ?>"><?php echo @$list_status[$sale['collection']['status']] ?></strong><br>
