@@ -189,8 +189,8 @@
                     <?php if (isset($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] === 'takeaway'):?>
                         <strong>Takeaway</strong>
                     <?php else: ?>
+                        <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
                         <strong>$<?= !empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></strong>
-
                         <?php
                         if (!empty(@$sale['local_sale']['id']) && !empty(@$sale['local_sale']['apellido']) && !empty(@$sale['local_sale']['cargo']) && @$sale['local_sale']['cargo'] == 'shipment'): ?>
                             <!--span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span-->
@@ -200,7 +200,6 @@
                         <div id="shipping_title_<?= @$sale['local_sale']['id'] ?>" class="text-info text-center">
                             <img class="shipping-logo" id="shipping_image_<?= @$sale['local_sale']['id'] ?>" src="<?= @$logistics_images[$sale['local_sale']['shipping']] ?>" onclick="showLayer(event,'ticket',<?= @$sale['local_sale']['id'] ?>)">
                             </div>
-                            <!-- <?= @strtoupper($sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
                         </div>
                     <?php else: ?>
                         <div id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success text-center">
