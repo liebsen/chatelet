@@ -30,7 +30,7 @@ isDateBeforeToday = function(date) {
 
 let number_format = (number, decimals, dec_point, thousands_point) => { 
   if (number == null || !isFinite(number)) {
-    throw new TypeError("number is not valid");
+    throw new TypeError("number is not valid: " + number);
   }
 
   if (!decimals) {
