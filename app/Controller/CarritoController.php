@@ -724,6 +724,7 @@ class CarritoController extends AppController
 	      ]
 	    ]);
 	    if ($coupon) {
+	    	error_log('suming check coupon:'.$coupon);
 				$applicable = \filtercoupon($coupon);
 				if ($applicable->status === 'success') {
 					$discount = (float) $applicable->data['discount'];
@@ -754,8 +755,9 @@ class CarritoController extends AppController
 	  // Check bank paying method
 	  if ($user['payment_method'] === 'bank') {
 	  	if($bank_discount_enable && $bank_discount) {
+	  		error_log('suming applying bank');
 	  		$bank_bonus = round($total_wo_discount * ($bank_discount / 100), 2);
-	  		// error_log('suming total (bank): '.$total);
+	  		error_log('suming applying (bank): '.$bank_bonus);
 	  	}
 	  }
 
@@ -776,7 +778,7 @@ class CarritoController extends AppController
 		$delivery_cost = (int) $delivery_data['rates'][0]['price'];
 
 		if ($freeShipping) { 
-     	error_log('without delivery bc price is :'.$total.' and date = '.gmdate('Y-m-d'));
+     	error_log('without delivery bc price is :'.$total.', cp:'. @$user['postal_address'] .'  and date = '.gmdate('Y-m-d'));
 			// $delivery_cost=0;
 		} else {
 			if ($user['cargo'] !== 'takeaway') {
