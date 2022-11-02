@@ -260,7 +260,7 @@
 
 
                     if(!$stock){ ?>
-                     <div class="col-xs-6 col-md-4 col-lg-3">
+                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <a href="<?php echo $url ?>" >
                             <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
                                 <div class="ribbon bottom-left small"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
@@ -277,7 +277,7 @@
                     </div>
                     <?php }else{ ?>
 
-                      <div data-id="<?=$alt_product['id']?>" class="col-xs-6 col-md-4 col-lg-3 add-no-stock">
+                      <div data-id="<?=$alt_product['id']?>" class="col-sm-6 col-md-4 col-lg-3 add-no-stock">
                         <a href="<?php echo $url ?>">
                             <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
                                 <div class="ribbon bottom-left small sp1"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>

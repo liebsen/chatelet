@@ -176,7 +176,7 @@ let apiSearch = (q) => {
       let str = ''
       $('.search-more').html('')
       $.each(data.results, function(key, item) {       
-        str += '<div class="col-xs-6 col-md-3 col-lg-2 search-item animate fadeIn">' +
+        str += '<div class="col-sm-6 col-md-3 col-lg-2 search-item animate fadeIn">' +
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 
             '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.discount_label ? '<div class="ribbon small bottom-left sp2"><span>' + item.discount_label + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
             '<h2 class="text-center">'+`<span style="font-size:${findSize(item.name)}!important">${item.name}</span>`+'</h2>' + 
