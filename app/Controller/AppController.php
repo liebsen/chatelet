@@ -80,7 +80,12 @@ class AppController extends Controller
         $font = $basicfont;
         // 'Fira Sans Condensed', 'Sniglet','Roboto Condensed', 'Archivo Narrow'
         $fontweight = '300,400,500,600,700';
-
+        $version_file = __DIR__ . '/../version';
+        $version_count = '1.1.1';
+        if(file_exists($version_file)) {
+            $version_date = date("\a\c\\t\u\a\l\i\z\a\d\o d-m-Y \a \l\a\s  H:i:s.", filemtime($version_file));
+            $version_count = file_get_contents($version_file);
+        }
         if ($this->Session->read('font')) {
             $font = $this->Session->read('font');
         }
@@ -125,6 +130,7 @@ class AppController extends Controller
         $setting_menu    = $this->Setting->findById('image_menushop');
         $image_menushop = (!empty($setting_menu['Setting']['value'])) ? $setting_menu['Setting']['value'] : '';
         $this->set('image_menushop',$image_menushop);
+        $this->set('version', (int) $version_count / 1000 . ' ' . $version_date);
     }
 
 
