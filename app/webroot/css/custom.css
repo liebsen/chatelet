@@ -2257,8 +2257,8 @@ span.count.is-empty {
     min-height: 20rem; 
     /* max-height: 20rem; */
   }
-  #opts .mod-item { min-height: 30rem;} 
-  #opts a { max-height: 30rem; }
+  /* #opts .mod-item { min-height: 30rem;} 
+  #opts a { max-height: 30rem; } */
   #detalle .caract .add {min-width: 10rem; }
   #listShop { padding-top: 1.25rem; }
   footer > .wrapper {
