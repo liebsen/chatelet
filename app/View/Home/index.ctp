@@ -62,8 +62,8 @@
                     }
                 }
 
-								echo '<div class="rectangle hidden-xs visible-sm visible-md visible-lg img-responsive" style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>';
-								echo '<img class="visible-xs hidden-sm hidden-md hidden-lg" style="width:100%;" src="'.Configure::read('imageUrlBase').$img_url_one.'" />'.'<h1>'.$home['module_one'].'</h1>';
+								echo '<div class="rectangle img-responsive" style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>';
+								// echo '<img class="visible-xs hidden-sm hidden-md hidden-lg" style="width:100%;" src="'.Configure::read('imageUrlBase').$img_url_one.'" />'.'<h1>'.$home['module_one'].'</h1>';
 								echo '</a>';
             ?>
         <?php endif;?>
@@ -79,7 +79,7 @@
                             echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                         }
                     }
-                    echo $home['module_two'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_two.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
+                    echo $home['module_two'].'<div class="mod-item img-responsive" style=background-image:url('.Configure::read('imageUrlBase').$img_url_two.')></div>'.'</a>';
                 ?>
             </div>
 
@@ -94,7 +94,7 @@
                         echo '<a class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                     }
                  }
-                echo $home['module_three'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_three.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
+                echo $home['module_three'].'<div class="mod-item img-responsive" style=background-image:url('.Configure::read('imageUrlBase').$img_url_three.')></div>'.'</a>';
             ?>
             </div>
         </section>
@@ -111,8 +111,8 @@
             }
         }
 
-        echo '<div class="rectangle hidden-xs visible-sm visible-md visible-lg img-responsive" style="background-image: url('.Configure::read('imageUrlBase').$img_url_four.');">'.'<h1>'.$home['module_four'].'</h1>'.'</div>';
-        echo '<img class="visible-xs hidden-sm hidden-md hidden-lg" style="width:100%;" src="'.Configure::read('imageUrlBase').$img_url_four.'" />';
+        echo '<div class="rectangle img-responsive" style="background-image: url('.Configure::read('imageUrlBase').$img_url_four.');">'.'<h1>'.$home['module_four'].'</h1>'.'</div>';
+        // echo '<img class="visible-xs hidden-sm hidden-md hidden-lg" style="width:100%;" src="'.Configure::read('imageUrlBase').$img_url_four.'" />';
 
 						echo '</a>';
         ?>
@@ -222,7 +222,7 @@
 
             <div class="content js-show-modal is-clickable animated fadeIn delay3" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
                 <div class="tap-to-continue animated fadeIn delay3">
-                    Continuar <i class="fa fa-forward"></i>
+                    Presione para continuar <i class="fa fa-forward"></i>
                 </div>
 
                 <?php if(!empty($home['display_popup_form_in_last'])):?>
