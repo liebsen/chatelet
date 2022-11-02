@@ -12,8 +12,7 @@
         </style>
         <div id="headshop"  >
          <h1 class="name_shop">Shop</h1>
-         <img class="img_resp" src="<?php echo Configure::read('imageUrlBase').$image_bannershop ?>"  img-responsive>
-
+         <div class="img-resp" style="background-image:url(<?php echo Configure::read('imageUrlBase').$image_bannershop ?>)"></div>
         </div>
 
         <section id="filters">

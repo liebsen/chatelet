@@ -49,7 +49,7 @@ function updateSrcTo(obj){
 
 <div id="headabrigos" >
   <h1 class="name_shop"><?php echo $name_categories; ?></h1>
-  <img class="img_resp" src="<?php echo Configure::read('imageUrlBase').$image_prodshop ?>"  img-responsive>
+  <div class="img-resp" style="background-image:url(<?php echo Configure::read('imageUrlBase').$image_prodshop ?>)"></div>  
 </div>
 
 <section id="productOptions">
