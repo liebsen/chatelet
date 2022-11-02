@@ -728,7 +728,7 @@ align-items: center;}
 #productOptions a.btBig span { color: #f50081; font-size: 27px; }
 #productOptions .col-sm-9 a {  /*background: #e7e7e7;*/ display: inline-table; width: 100%; background-color: whitesmoke; margin-bottom: 10px; overflow: hidden; position: relative;height: auto; }
 #productOptions .col-sm-9 a img { 
-    min-height: 21rem; 
+    min-height: 10rem; 
     /* max-height: 15rem; */
     object-fit: cover;
     object-position: top center; margin: 0 auto;transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
