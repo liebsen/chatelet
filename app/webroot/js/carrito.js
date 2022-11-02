@@ -192,7 +192,7 @@ $(document).ready(function() {
 		submit.text('Por favor espere...')
 
 		preferences.freeShipping = freeShipping
-		preferences.shipping = shipping
+		//preferences.shipping = shipping
 		preferences.cargo = cargo
 		preferences.store = store
 		preferences.store_address = store_address
