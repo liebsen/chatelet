@@ -22,29 +22,30 @@ $(function(){
 		$('.delivery-cost').addClass('hidden')
 		$('.shipping-cargo').text(shipping)	
 
-		console.log('subtotal',subtotal)
-		console.log('coupon',coupon)
+		//console.log('subtotal',subtotal)
+		//console.log('coupon',coupon)
 		var price = parseFloat((subtotal - coupon).toFixed(2))
-		console.log('price(1)',price)
+		//console.log('price(1)',price)
 		if (!freeShipping) {
 			price+= cost
 			$('#subtotal_envio').val(cost)
 			$('.delivery-cost').removeClass('hidden')
 			$('.delivery-cost').addClass('fadeIn')
-			console.log('cost',cost)
+			//console.log('cost',cost)
 			$('.cost_delivery').text( formatNumber(cost))
 		}
 		//console.log('selectShipping (subtotal)', subtotal)
 		//console.log('selectShipping (total_price)', price)
 		//console.log('selectShipping (coupon_bonus)', coupon)		
 	  var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
+		preferences.shipping = shipping
 	  preferences.cargo = cargo
 	  preferences.shipping_price = cost
 	  preferences.total_price = price
 	  preferences.subtotal_price = subtotal
 	  localStorage.setItem('carrito', JSON.stringify(preferences))
 
-	  console.log('price',price)
+	  //console.log('price',price)
 		let total = formatNumber(price)
 		let info = $(e).data('info')
 		fxTotal(total)
