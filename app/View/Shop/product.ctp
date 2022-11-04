@@ -127,7 +127,6 @@ function updateSrcTo(obj){
             $priceStr = '<span class="old_price">$'.\price_format($item['old_price']).'</span>' . $priceStr;
           }
         }
-
       } else {
         $url['action'] = 'productos';
       }
