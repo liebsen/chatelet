@@ -399,14 +399,14 @@ label input[type=checkbox]:disabled + .label-text:before {
 #today .rectangle h1 span { color: #f50081; }
 #today .rectangle p { color: #464444; font-size: 25px; }
 
-
 #opts { color: #464444; font-size: 27px; font-weight: 500; margin-bottom: 0px; line-height: 1.2; overflow: hidden; text-align: center; }
 #opts img { /*margin-bottom: 50px;*/ }
 #opts .margin{/*padding: 160px;*/}
 #opts .mod-item { padding: 0; 
-min-height: 50vh;
+min-height: 24rem;
 background-position: center center;
-background-size: cover;}
+background-size: cover;
+background-repeat: no-repeat;}
 
 #opts .mod:first-child { border-right: 0px solid #efb0d2; }
 #opts .mod:first-child a {/* background: url(../images/box11.png) no-repeat center 60px; */transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
