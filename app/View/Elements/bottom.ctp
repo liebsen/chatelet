@@ -1,4 +1,4 @@
-<?php if($_SERVER['REMOTE_ADDR'] !== '127.0.0.1'): ?>
+<?php if($_SERVER['REMOTE_ADDR'] !== '127.0.0.11'): ?>
   <!--Start of Zopim Live Chat Script-->
   <script type="text/javascript">
   window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=

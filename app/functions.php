@@ -90,7 +90,7 @@ function filtercoupon ($data) {
 }
 
 function price_format ($num) {
-  $num = number_format((float) $num, 2, ',', '.');
+  $num = number_format((float) ceil($num), 2, ',', '.');
   return str_replace(',00','', $num);
 }
 

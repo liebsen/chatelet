@@ -25,6 +25,10 @@ select {
 	padding-left: 6px!important;
 }
 
+#launcher {
+	visibility: hidden;
+}
+
 .modal {
 	overflow-y: auto;
 }
