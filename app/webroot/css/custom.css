@@ -176,6 +176,13 @@ label input[type=checkbox]:disabled + .label-text:before {
   background-size: 11rem;
 }
 
+.slider-full {
+  min-height: calc(100vh - 3rem);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
 .is-bottom {
   display: inline-flex;
   align-items: center;

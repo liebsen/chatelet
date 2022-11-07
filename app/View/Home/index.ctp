@@ -23,7 +23,7 @@
             <?php foreach ($images as $key => $value): ?>
                 <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
                     <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
-                        <img  src=<?php echo $value; ?>   img-responsive>
+                        <div class="slider-full" style="background-image:url(<?php echo $value; ?>)"></div>
                     </a>
 
                     <div class="carousel-caption">
