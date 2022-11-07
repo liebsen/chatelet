@@ -177,7 +177,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .slider-full {
-  min-height: calc(100vh - 3rem);
+  min-height: calc(100vh - 8.5rem);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -410,7 +410,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 #opts img { /*margin-bottom: 50px;*/ }
 #opts .margin{/*padding: 160px;*/}
 #opts .mod-item { padding: 0; 
-min-height: 24rem;
+min-height: 200px;
 background-position: center center;
 background-size: cover;
 background-repeat: no-repeat;}
@@ -2202,6 +2202,9 @@ span.count.is-empty {
 }
 
 @media screen and (min-width:769px), print {
+  .slider-full {
+    min-height: calc(100vh - 5.5rem);
+  }
   .w-mobile {
     max-width: 25rem;
     margin: auto;
@@ -2279,7 +2282,7 @@ span.count.is-empty {
     min-height: 21rem; 
     /* max-height: 20rem; */
   }
-  /* #opts .mod-item { min-height: 30rem;} 
+  #opts .mod-item { min-height: 24rem;} 
   #opts a { max-height: 30rem; } */
   #detalle .caract .add {min-width: 10rem; }
   #listShop { padding-top: 1.25rem; }

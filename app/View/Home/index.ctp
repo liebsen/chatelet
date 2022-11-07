@@ -79,7 +79,8 @@
                             echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                         }
                     }
-                    echo $home['module_two'].'<div class="mod-item img-responsive" style=background-image:url('.Configure::read('imageUrlBase').$img_url_two.')></div>'.'</a>';
+                    echo $home['module_two'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_two.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
+                    // echo $home['module_two'].'<div class="mod-item img-responsive" style=background-image:url('.Configure::read('imageUrlBase').$img_url_two.')></div>'.'</a>';
                 ?>
             </div>
 
@@ -94,7 +95,8 @@
                         echo '<a class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                     }
                  }
-                echo $home['module_three'].'<div class="mod-item img-responsive" style=background-image:url('.Configure::read('imageUrlBase').$img_url_three.')></div>'.'</a>';
+                echo $home['module_three'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_three.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
+                // echo $home['module_three'].'<div class="mod-item img-responsive" style=background-image:url('.Configure::read('imageUrlBase').$img_url_three.')></div>'.'</a>';
             ?>
             </div>
         </section>

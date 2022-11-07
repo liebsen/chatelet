@@ -718,6 +718,9 @@ span.user {
 	}
 }
 
+@media screen and (min-width: 360px) {
+	#opts .mod-item { min-height: 220px;} 
+}
 @media screen and (max-width: 768px) {
 	.marginTop {
   	margin-top: 1rem;
