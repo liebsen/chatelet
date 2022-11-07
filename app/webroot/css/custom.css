@@ -411,7 +411,14 @@ background-repeat: no-repeat;}
 #opts .mod:first-child { border-right: 0px solid #efb0d2; }
 #opts .mod:first-child a {/* background: url(../images/box11.png) no-repeat center 60px; */transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #opts .mod:last-child a {/*background: url(../images/box11.png) no-repeat center 60px;*/ transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
-#opts a { color: #464444; display: block; font-size: 18px; line-height: 23px; max-height: 264px; /*padding: 250px 0 70px;*/ width: 100%; }
+#opts a { 
+  color: #464444; 
+  display: block; 
+  font-size: 18px; 
+  line-height: 23px; 
+  /* max-height: 264px; padding: 250px 0 70px;*/ 
+  width: 100%; 
+}
 #opts a:hover { color: #FFF; }
 #opts .mod:first-child a:hover { /*background: url(../images/box1.png) no-repeat center 60px ;*/ }
 /*#opts .col-md-6:last-child a:hover { background: url(../images/box1.png) no-repeat center 60px ; }*/
@@ -2262,7 +2269,7 @@ span.count.is-empty {
     margin-left: 10px;
   }
   #productOptions .col-sm-9 a img { 
-    min-height: 20rem; 
+    min-height: 21rem; 
     /* max-height: 20rem; */
   }
   /* #opts .mod-item { min-height: 30rem;} 
