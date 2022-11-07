@@ -423,7 +423,8 @@ background-repeat: no-repeat;}
   display: block; 
   font-size: 18px; 
   line-height: 23px; 
-  /* max-height: 264px; padding: 250px 0 70px;*/ 
+  max-height: 264px; 
+  /* padding: 250px 0 70px;*/ 
   width: 100%; 
 }
 #opts a:hover { color: #FFF; }
