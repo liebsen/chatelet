@@ -57,7 +57,7 @@ select {
 	bottom: 1rem;
 	left: 1rem;
 	white-space: nowrap;
-	border-radius: 3rem;
+	border-radius: 0;
 	padding: 0.75rem 1.25rem;
 	border: 1px solid white;
 	color: white;
@@ -446,8 +446,6 @@ select {
 .modal-header {
 	min-height: 50px;
 	background-color: #e10c76;
-	border-top-left-radius: 1rem;
-	border-top-right-radius: 1rem;	
 }
 
 .modal-header .close {
@@ -492,7 +490,7 @@ select {
 	/*font-size: 24px;*/
 	text-align: center;
 	border: 0;
-	border-radius: 2rem;
+	border-radius: 0;
 	font-size: 1.25rem;
 	font-weight: 800;
 	padding: 0.75rem 1rem;
@@ -516,7 +514,7 @@ select {
 #particular-password .modal-content{
 	max-width: 25rem;
 	margin: auto;
-	border-radius: 1rem;
+	border-radius: 0;
 	/*position: absolute; */
 }
 
@@ -603,7 +601,7 @@ select {
 	background-color: #bebebe;
 	min-width: 20rem;
 	min-height: 46px;
-	border-radius: 2rem;
+	border-radius: 0;
 	transition: all 0.25s ease;
 }
 .cart-btn-green.shrink {

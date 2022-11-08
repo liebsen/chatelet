@@ -1,5 +1,5 @@
 :root {
-  --box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  --box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   --box-shadow-inset: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   --box-shadow-downwards: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;;
 }
@@ -153,7 +153,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .box {
-  border-radius: 1rem;
+  border-radius: 0;
   background-color: rgba(255,255,255,0.5);
 }
 
@@ -747,7 +747,7 @@ align-items: center;}
 #productOptions nav li { border-bottom: 1px solid rgba(194, 194, 194, 0.27); padding: 20px 0; }
 #productOptions nav li a { color: #222; font-size: 1.25rem; line-height: 1.1; text-transform: uppercase; font-weight: 300; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #productOptions nav li a:hover { color: #f50081; }
-#productOptions a.btBig { border: 2px solid #f50081; color: #6e6e6e; display: block; font-size: 40px; font-weight: 600; padding: 240px 0; text-align: center; border-radius: 1rem;}
+#productOptions a.btBig { border: 2px solid #f50081; color: #6e6e6e; display: block; font-size: 40px; font-weight: 600; padding: 240px 0; text-align: center; border-radius: 0;}
 #productOptions a.btBig span { color: #f50081; font-size: 27px; }
 #productOptions .col-sm-9 a {  /*background: #e7e7e7;*/ display: inline-table; width: 100%; background-color: whitesmoke; margin-bottom: 10px; overflow: hidden; position: relative;height: auto; }
 #productOptions .col-sm-9 a img { 
@@ -795,7 +795,7 @@ align-items: center;}
 #detalle .caract .colors a.grisoscuro { background: #5a5a5a; }
 #detalle .caract .colors a.verde { background: #42604e; }
 #detalle .caract .colors a.azul { background: #294c70; }
-#detalle .caract .add { background: #f50081; min-height: 46px; min-width: 10rem; color: #FFF; display: block; font-size: 1.25rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center;border-radius: 2rem; transition: all 0.5s ease-in;}
+#detalle .caract .add { background: #f50081; min-height: 46px; min-width: 10rem; color: #FFF; display: block; font-size: 1.25rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center;border-radius: 0; transition: all 0.5s ease-in;}
 #detalle .caract .add.adding { background-color: #808080; }
 #detalle .caract .social { margin-top: 40px; text-align: center; }
 #detalle .caract .social a { background-image: url(../images/sprite.png); display: inline-block; height: 19px; margin: 0 25px; width: 19px; }
@@ -923,7 +923,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #optionsHelp a { color: #404040; display: inline-block; font-size: 1.25rem; padding: 0 25px; }
 #optionsHelp a.active { color: #f50081; }
 #desarrollo { background: #fadcea; font-size: 22px; line-height: 1.4; padding: 60px 0; }
-#desarrollo a.bt { /*border: 3px solid #f50081;*/ color: #f50081; display: inline-block; font-size: 1.5rem; padding: 20px 120px; background-color: #fff3; border-radius: 2rem;}
+#desarrollo a.bt { /*border: 3px solid #f50081;*/ color: #f50081; display: inline-block; font-size: 1.5rem; padding: 20px 120px; background-color: #fff3; border-radius: 0;}
 /* #desarrollo .row { display: flex; align-items: center; } */
 #desarrollo .col-md-6:last-child { text-align: right; }
 #desarrollo img { margin-bottom: 15px; max-width: 100%; }
@@ -969,7 +969,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	.wrapper { padding: 0 1.5rem; }
 	.map .col-md-4 { padding: 200px 0 200px 50px; }
 
-	#headhelp .box { padding: 6rem 5rem 1rem;  border-radius: 0.75rem;  }
+	#headhelp .box { padding: 6rem 5rem 1rem;  border-radius: 0;  }
 }
 
 @media (max-width: 1199px) {
@@ -1023,7 +1023,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headcontacto .box p { font-size: 1rem; }
 
 	#headhelp h1 { font-size: 40px; }
-	#headhelp .box { padding: 40px 40px 20px; border-radius: 0.75rem; /* min-height: 18rem;*/}
+	#headhelp .box { padding: 40px 40px 20px; border-radius: 0; /* min-height: 18rem;*/}
 	#headhelp .box p { font-size: 1rem; margin-bottom: 20px; }
 	#headhelp .box h3 { font-size: 1.25rem; }
 	#optionsHelp a, #desarrollo p { font-size: 1.25rem; }
@@ -1386,7 +1386,7 @@ span.out{
   color: #f50081;
   border: 2px solid #f50081;
   padding: 0.75rem 1rem;
-  border-radius: 2rem;
+  border-radius: 0;
   font-size: 1.25rem;
   font-weight: 800;
   text-decoration: none;    
@@ -1491,7 +1491,7 @@ span.out{
 
 .input-search {
   padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
+  border-radius: 0;
   border-color: #f50081;
   font-size: 1.5rem;
   font-weight: 800;
@@ -1509,14 +1509,14 @@ span.out{
   width: calc(100% - 3rem);
   margin: 0.25rem 1.5rem;
   background-color: #f7dbea;
-  border-radius: 2rem;
+  border-radius: 0;
 }
 .search-bar {
   height: 0.5rem;
   width: 0%;
   background-color: #f50081;
   transition: all 1s ease-in-out;
-  border-radius: 2rem;
+  border-radius: 0;
 }
 .search-info {
   color: #f50081;
@@ -2068,7 +2068,7 @@ span.count.is-empty {
   position: absolute;
   display: flex;
   justify-content: center;
-  border-radius: 1rem;
+  border-radius: 0;
   background-color: rgba(80,80,80,0.1);
   align-items: center;
   z-index: 10;
@@ -2083,7 +2083,7 @@ span.count.is-empty {
   padding: 0.5rem;
   font-size: 1.25rem;
   font-style: italic;
-  border-radius: 2rem;
+  border-radius: 0;
   background-color: #e10d74;
   color: white;
 }
@@ -2096,7 +2096,7 @@ span.count.is-empty {
   background-size: cover;
   background-position: center center;
   display: inline-block;
-  border-radius: 0.75rem;
+  border-radius: 0;
   width: 100%;
   height: 100%;
 }
@@ -2248,7 +2248,7 @@ span.count.is-empty {
   .carrito-item-row {
     background-color: white!important;
     margin-bottom: 0.75rem;    
-    border-radius: 1rem;
+    border-radius: 0;
     padding: 1rem;
     box-shadow: var(--box-shadow);
     padding-left: 0;
@@ -2260,7 +2260,7 @@ span.count.is-empty {
     margin: 1rem 0;
     margin-top: 0;
     padding: 1.75rem;
-    border-radius: 1rem;
+    border-radius: 0;
     box-shadow: var(--box-shadow);
     /* box-shadow: var(--box-shadow); */
   }
@@ -2275,7 +2275,7 @@ span.count.is-empty {
   }
   .card {
     box-shadow: var(--box-shadow);
-    border-radius: 1rem;
+    border-radius: 0;
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-top: 10px;

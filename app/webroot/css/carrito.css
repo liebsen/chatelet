@@ -64,7 +64,7 @@
 .generic-select li {
 	padding: 0.75rem 1.25rem;
 	border: 1px solid #e10d7499;
-	border-radius: 2rem;
+	border-radius: 0;
 	line-height: 1.25;
 	font-weight: 400;
 	background-color: white;
@@ -177,7 +177,7 @@
 	color: white;
 	background-color: #07bc31;
 	padding: 0.75rem 1rem;
-	border-radius: 0.75rem;
+	border-radius: 0;
 	cursor: pointer;
 	transition: all 0.5s ease-in;
 }
