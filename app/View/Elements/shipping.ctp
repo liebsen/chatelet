@@ -7,7 +7,7 @@
 		<?php if(!$freeShipping): ?>
 		<h4 id="heading" class="cargo-title">Envío a Domicilio</h4>
 		<?php else: ?>
-		<h4 class="cargo-title text-success">1. Envío gratuito<span></span></h4>
+		<h4 class="cargo-title">1. Envío gratuito<span></span></h4>
 		<?php endif ?>		
 		<p class="p">
 			<i>
@@ -27,7 +27,7 @@
 		<br>
 		<div class="form-group shipping-block hidden">
 			<div>
-				<h4 id="heading" class="cargo-title<?= $freeShipping ? ' text-success' : '' ?>">2. Seleccione tipo de envío</h4>
+				<h4 class="cargo-title">2. Seleccione tipo de envío</h4>
 				<p class="p">
 					<i>
 						<small>Elegí la empresa de tu confianza para realizar este envío</small>
@@ -46,7 +46,7 @@
 	</div>
 	
 	<div class="shipment-options takeaway">
-		<h4 id="heading" class="cargo-title">Retiro en Sucursal</h4>
+		<h4 class="cargo-title">Retiro en Sucursal</h4>
 		<p class="p">
 			<i>
 				<small>Elegí esta opción para evitar cargos de envío. <span class="carrito_takeaway_text"><?= $carrito_takeaway_text ?></span></small>

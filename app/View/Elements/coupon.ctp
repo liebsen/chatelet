@@ -1,6 +1,6 @@
 <?php echo $this->Html->script('coupon.js?v=' . Configure::read('APP_DIST'),array( 'inline' => false )) ?>
 <div class="is-rounded beneficios-exclusivos">
-	<h3>Beneficios exclusivos</h3>
+	<h3>Obtené beneficios exclusivos</h3>
 	<div class="shipment-options shipping">
 		<h4 id="heading" class="cargo-title">Cupón promocional<span></span></h4>
 		<p class="field">

@@ -362,6 +362,9 @@ a.pay{
 }
 
 @media (max-width: 768px) {
+	/*.como-queres-recibir-tu-compra {
+		padding-top: 3rem;
+	}*/
 }
 
 @media screen and (min-width:769px), print {

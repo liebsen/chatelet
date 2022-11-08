@@ -1,5 +1,6 @@
 :root {
-  --box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  --box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  --box-shadow-inset: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   --box-shadow-downwards: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;;
 }
 
@@ -1704,9 +1705,9 @@ span.out{
 }
 
 .ribbon.bottom-left {
-  left: -5px;
+  left: -4px;
   right: auto;
-  bottom: -5px;
+  bottom: -3px;
   top: auto;  
 }
 
@@ -1973,6 +1974,7 @@ span.count.is-empty {
   padding: 0;
   border-bottom: 1px solid #f7cae0;
   padding-bottom: 1rem;  
+  margin-bottom: 1rem;
 }
 
 .is-rounded hr {
@@ -2094,7 +2096,7 @@ span.count.is-empty {
   background-size: cover;
   background-position: center center;
   display: inline-block;
-  border-radius: 0px;
+  border-radius: 0.75rem;
   width: 100%;
   height: 100%;
 }
@@ -2105,8 +2107,8 @@ span.count.is-empty {
   align-items: center;
   position: absolute;
   z-index: 20;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0.35rem;
+  right: 0.35rem;
   width: 1.75rem;
   height: 1.75rem;
 }
@@ -2171,6 +2173,7 @@ span.count.is-empty {
   }
   .is-rounded {
     padding: 1rem;
+    padding-top: 3rem;
   }
   .desktop {
     display: none;
@@ -2244,10 +2247,10 @@ span.count.is-empty {
   }
   .carrito-item-row {
     background-color: white!important;
-    margin-bottom: 0.75rem;
-    border: 1px solid #ccc;
+    margin-bottom: 0.75rem;    
     border-radius: 1rem;
     padding: 1rem;
+    box-shadow: var(--box-shadow);
     padding-left: 0;
   }
   .is-flex-end {
@@ -2258,7 +2261,7 @@ span.count.is-empty {
     margin-top: 0;
     padding: 1.75rem;
     border-radius: 1rem;
-    border: 1px solid #ccc;
+    box-shadow: var(--box-shadow);
     /* box-shadow: var(--box-shadow); */
   }
   
@@ -2270,8 +2273,8 @@ span.count.is-empty {
     background-position: -90% 55%;
     min-height: 20rem;
   }
-  .card {    
-    border: 1px solid #ccc;
+  .card {
+    box-shadow: var(--box-shadow);
     border-radius: 1rem;
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
