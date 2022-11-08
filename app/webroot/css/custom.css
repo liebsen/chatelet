@@ -2069,7 +2069,7 @@ span.count.is-empty {
   display: flex;
   justify-content: center;
   border-radius: 0;
-  background-color: rgba(80,80,80,0.1);
+  background-color: transparent;
   align-items: center;
   z-index: 10;
   bottom: 0;
