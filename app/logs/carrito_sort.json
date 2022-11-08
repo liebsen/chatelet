@@ -1,30 +1,4 @@
 {
-    "488946#ffffffVerde limon": {
-        "id": "4889",
-        "cod_chatelet": null,
-        "name": "CHAQUETA REGINA",
-        "desc": "CHAQUETA REGINA. CUELLO SOLAPA Y MANGA 3\/4 CON UN BOTON. TEJIDO LINO LISO.",
-        "img_url": "GMbxeugwwvcAtsnYZzMevMRab.jpg",
-        "price": "14900",
-        "article": "v3093",
-        "category_id": "178",
-        "gallery": "",
-        "discount": "14900",
-        "promo": "",
-        "stock_total": "137",
-        "with_thumb": "1",
-        "discount_label": "15",
-        "discount_label_show": "15",
-        "color": "#ffffff",
-        "size": "46",
-        "alias": "Verde limon",
-        "color_code": "57",
-        "alias_image": "fIAR9tGgj9hZG2ptFwx00wCca.jpg",
-        "original_price": "14900",
-        "old_price": "14900",
-        "uid": 0,
-        "count": 1
-    },
     "436446#ffffffMarron": {
         "id": "4364",
         "cod_chatelet": null,
@@ -46,8 +20,8 @@
         "alias": "Marron",
         "color_code": "07",
         "alias_image": "qQApnNH8TZdtCax4KWh0O3cF4.jpg",
-        "original_price": "17490",
-        "old_price": 34980,
+        "original_price": "13991.99",
+        "old_price": 27983.98,
         "uid": 1,
         "count": 2
     }

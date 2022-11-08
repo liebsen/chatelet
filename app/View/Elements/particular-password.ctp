@@ -13,7 +13,7 @@
                     echo $this->Form->create(null, array('url' => array('controller' => 'users', 'action' => 'forgot_password'))); 
                   ?>
                     <p class="title">Ingresá tu correo</p>
-                    <input type="email" id="login-email"  name="data[User][email]" placeholder="Email" />
+                    <input type="email" id="login-email" class="form-control"  name="data[User][email]" placeholder="Email" />
                     <input type="submit" id="login" value="Enviar" />
                     <span id="forgot-password" >
                     Recibirás un correo electrónico con tu nueva contraseña

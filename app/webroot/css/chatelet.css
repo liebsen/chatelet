@@ -40,6 +40,14 @@ select {
    width: 100%!important;
 }
 
+.flex {
+	display: flex;
+} 
+
+.align-items-center {
+	align-items: center;
+}
+
 .js-show-modal {
 	position: relative;
 }
@@ -467,7 +475,6 @@ select {
 
 .modal-body label {
 	color: #383A3F;
-	margin-top: 10px;
 }
 
 .modal-body input {

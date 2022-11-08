@@ -25,11 +25,11 @@
         <section id="desarrollo">
             <div class="wrapper">
                 <div class="row">
-                    <div class="col-md-6 col-sm-8">
+                    <div class="col-md-6 col-sm-12">
                         <p class="alert m-0">Si ya estás registrado/a y querés saber como empezar a comprar, ingresá en continuar:</p>
                     </div>
 
-                    <div class="col-md-6 col-sm-4">
+                    <div class="col-md-6 col-sm-12  flex align-items-center">
                         <?php
 		            	echo $this->Html->link('Continuar', array(
                         'controller' => 'ayuda',

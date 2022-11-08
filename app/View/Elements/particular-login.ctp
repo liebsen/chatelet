@@ -18,11 +18,10 @@
 			<div class="modal-body">
 				 <?php echo $this->Form->create(false, array('url' => array('controller' => 'users', 'action' => 'login'))); ?>                  
                     <p class="title mb-1">Ingresá tu email y contraseña para continuar.</p>
-                    <input type="email" id="login-email"  name="data[User][email]" placeholder="Email" />
-                    <input type="password" id="login-password" name="data[User][password]" placeholder="Password" />
-                    <input type="submit" id="login" form="" value="Ingresar" />
-                   
-                    <a href="#" id="forgot-password"     class="open-Modal" 
+                    <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" />
+                    <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Password" />
+                    <input type="submit" id="login" form="" value="Ingresar" />                   
+                    <a href="#" id="forgot-password" class="open-Modal" 
                       data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvide mi contraseña</a>
 
                   <?php echo $this->Form->end(); ?>

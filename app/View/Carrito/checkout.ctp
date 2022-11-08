@@ -201,27 +201,27 @@
 								<input type="hidden" name="store_address" value=""/>
 								<div class="is-rounded-content">
 									<div class="form-group">
-										<label class="ml-2" for="nombre">Nombre</label>
+										<label for="nombre">Nombre</label>
 										<input type="text" class="form-control" id="nombre" name="name" value="<?= (!empty($userData['User']['name']))?$userData['User']['name']:''; ?>" required>
 									</div>
 									<div class="form-group">
-										<label class="ml-2" for="apellido">Apellido</label>
+										<label for="apellido">Apellido</label>
 										<input type="text" class="form-control" id="apellido" name="surname" value="<?= (!empty($userData['User']['surname']))?$userData['User']['surname']:''; ?>" required>
 									</div>
 									<div class="form-group">
-										<label class="ml-2" for="dni">DNI</label>
+										<label for="dni">DNI</label>
 										<input type="number" class="form-control" id="dni" name="dni" value="<?= (!empty($userData['User']['dni']))? str_replace('.', '', $userData['User']['dni']):''; ?>" required>
 									</div>
 									<div class="form-group">
-										<label class="ml-2" for="email">Email</label>
+										<label for="email">Email</label>
 										<input type="email" class="form-control" id="email" name="email" value="<?= (!empty($userData['User']['email']))?$userData['User']['email']:''; ?>" required>
 									</div>
 									<div class="form-group">
-										<label class="ml-2" for="telefono">Teléfono</label>
+										<label for="telefono">Teléfono</label>
 										<input type="tel" class="form-control" id="telefono" name="telephone" value="<?= (!empty($userData['User']['telephone']))?$userData['User']['telephone']:''; ?>" required>
 									</div>
 									<div class="form-group">
-										<label class="ml-2" for="direccion">Provincia</label>
+										<label for="direccion">Provincia</label>
 										<select class="form-control" name="provincia" autocomplete="off">
 											<option value=""></option>
 											<?php foreach ($provincias as $key => $value): ?>
@@ -230,18 +230,18 @@
 										</select>
 									</div>
 									<div class="form-group">
-										<label class="ml-2" for="direccion">Localidad</label>
+										<label for="direccion">Localidad</label>
 										<input type="text" class="form-control" name="localidad" value="<?= isset($userData['User']) ? $userData['User']['city'] : '' ?>" required>
 									</div>
 									<span class="clearfix"></span>
 									<div class="form-group">
-										<label class="ml-2" for="direccion">Calle y Número</label>
+										<label for="direccion">Calle y Número</label>
 										<input style="width:75%;float:left;" type="text" class="form-control" placeholder="Riobamba" id="calle" name="street" value="<?= (!empty($userData['User']['street']))?$userData['User']['street']: !empty($userData['User']['address'])?$userData['User']['address']: ''; ?>" required>
 										<input style="margin-left:1%;width:24%;float:left;" min="0" class="form-control" placeholder="1234" name="street_n" type="number" value="<?=(!empty($userData['User']['street_n']))?$userData['User']['street_n']:''; ?>" required/>
 									</div>
 									<span class="clearfix"></span>
 									<div class="form-group">
-										<label class="ml-2" for="direccion">Piso y Departamento</label>
+										<label for="direccion">Piso y Departamento</label>
 										<input style="margin-right:1%;width:49%;float:left;" min="0" class="form-control" placeholder="1,2,3..." name="floor" type="number" value="<?=(!empty($userData['User']['floor']))?$userData['User']['floor']:''; ?>"/>
 										<input style="margin-left:1%;width:49%;float:left;" class="form-control" placeholder="A,B,C..." name="depto" type="text" value="<?= (!empty($userData['User']['depto']))?$userData['User']['depto']:''; ?>"/>
 									</div>
