@@ -25,6 +25,8 @@
 
 .cart-img-col {
 	text-align: center;
+	min-width: 10rem;
+	max-width: 10rem;
 }
 
 .link { 
