@@ -1,15 +1,14 @@
 <?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
 <?php echo $this->element('admin-menu'); ?>
 <?php echo $this->Html->css('draggable-table', array('inline' => false));?>
+<?php echo $this->Html->script('draggable-table', array('inline' => false));?>
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
-<?php echo $this->Html->script('draggable-table', array('inline' => false));?>
 <div class="block-section">
-	<table id="categorias-datatables" class="table table-bordered table-hover table-condensed draggable-table">
+	<table id="categorias-datatables" class="table table-bordered table-hover table-condensed draggable-table" data-url="/admin/category_order">
 		<thead>
 			<tr>
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
-				<th class="hidden-phone hidden-tablet"><?php echo __('Orden'); ?></th> 
 				<th class="hidden-phone hidden-tablet"><?php echo __('Ancho'); ?></th> 
 				<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
 				<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th>    
@@ -17,15 +16,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($cats as $key => $category): ?>        
+			<?php foreach ($cats as $key => $category): ?>
 				<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>">
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
 							<?=$category['Category']['name']?>
 						</a>
-					</td>
-					<td>
-						<?php if(!empty(@$category['Category']['ordernum'])) echo $category['Category']['ordernum'] ?>
 					</td>
 					<td>
 						<?php if(empty(@$category['Category']['colsize'])) echo 'Auto' ?>

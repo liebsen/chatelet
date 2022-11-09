@@ -253,6 +253,24 @@ class AdminController extends AppController {
 			]);
 		}
 	}
+
+	public function product_order(){
+		$this->autoRender = false;
+		$this->loadModel('Product');
+		if($this->request->is('post')){
+			$data = $this->request->data;
+			$this->Product->save([
+				'id' => $data['row1_id'],
+				'ordernum' => $data['row2_order']
+			]);
+			$this->Product->save([
+				'id' => $data['row2_id'],
+				'ordernum' => $data['row1_order']
+			]);
+		}
+	}
+
+
 	public function oca(){
 		if($this->request->is('post')){
 			$this->Package->save($this->request->data);
@@ -838,7 +856,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 	public function index() {
 	  $this->loadModel('Category');
-		$cats = $this->Category->find('all');
+		$cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
   	$this->set('cats', $cats);
 
 		$h1 = array(
@@ -1093,7 +1111,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	    		}
 	    		break;
 	    }
-	    $cats = $this->Category->find('all');
+	    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 		$this->set('cats', $cats);
 	    $this->render('categorias');
 	}
@@ -1320,7 +1338,7 @@ public function promos(){
 			        return $this->redirect(array('action'=>'productos'));
     			} else {
     				$this->loadModel('Category');
-				    $cats = $this->Category->find('all');
+				    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 					$this->set('cats', $cats);
 					$this->set('sel', true);
 
@@ -1367,7 +1385,7 @@ public function promos(){
 		    		$this->set('prod', $prod);
 
     				$this->loadModel('Category');
-				    $cats = $this->Category->find('all');
+				    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 					$this->set('cats', $cats);
 					$this->set('sel', true);
 
@@ -1385,7 +1403,7 @@ public function promos(){
 	    }
 
 	    $prods = $this->Product->find('all',array('order'=>array( 'Product.id DESC' )));
-	    $cats = $this->Category->find('all');
+	    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 	    $more_list_code_desc=[0,0,0,0,0,0,0,0,0,0];
 	    $more_list_category=[0,0,0,0,0,0,0,0,0,0];
 	    $this->loadModel('DiscountList');

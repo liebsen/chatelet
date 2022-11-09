@@ -53,10 +53,10 @@ $(function(){
         $('.promo-code').text(json.data.code)
         $('.free-shipping').addClass('hidden')
         var price = parseFloat(total) + parseFloat(delivery_cost)
-        console.log('subtotal',subtotal)
-        console.log('delivery_cost',delivery_cost)
-        console.log('discounted',discounted)
-        console.log('price',price)
+        //console.log('subtotal',subtotal)
+        //console.log('delivery_cost',delivery_cost)
+        //console.log('discounted',discounted)
+        //console.log('price',price)
 
         format_total = formatNumber(price)
         $('#cost').text( format_total );
@@ -77,7 +77,7 @@ $(function(){
         fxTotal(formatNumber(format_total), true)
         timeout = setTimeout( `onErrorAlert('${json.title}', '${json.message}')` , 200);
       }
-       localStorage.setItem('carrito', JSON.stringify(carrito))
+      localStorage.setItem('carrito', JSON.stringify(carrito))
 
       // document.querySelector('processed-coupon-data').classList.remove('hidden')
       // document.querySelector('processed-coupon-data').classList.add('fadeIn')

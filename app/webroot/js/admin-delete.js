@@ -28,14 +28,7 @@ $(document).ready(function() {
     $('#sucursales-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
 
     $('#categorias-datatables').DataTable({
-      "order": [[1, 'asc']],
-      "searching": false, 
-      "info": false, 
-      "paging": false, 
-      "aoColumnDefs": [{ 
-        "bSortable": false, 
-        "aTargets": [ 3 ]
-      }], 
+      "ordering": false,
       "language": {
         "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
       }

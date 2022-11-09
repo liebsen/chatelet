@@ -52,7 +52,7 @@
       table.removeChild(dragElem);
       dragElem = null;
       mouseDrag = false;
-      $.post('/admin/category_order', {
+      $.post(table.getAttribute('data-url'), {
         row1_id: row1.attributes['data-id'].value,
         row2_id: row2.attributes['data-id'].value,
         row1_order: row1.attributes['data-order'].value,
