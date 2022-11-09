@@ -1,7 +1,6 @@
 
 .draggable-table {
-  position: absolute;
-  clear: both;
+  position: relative;
 }
 .draggable-table .draggable-table__drag {
   position: absolute;
