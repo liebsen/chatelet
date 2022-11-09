@@ -605,7 +605,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	}
 
 	private function getMPSales(){
-		if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+		if ($_SERVER['REMOTE_ADDR'] == '127.0.0.11') {
 			return json_decode(file_get_contents(__DIR__ . '/dummy/mpsales.json'), true);
 		}
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
