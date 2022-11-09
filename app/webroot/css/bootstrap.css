@@ -2561,7 +2561,7 @@ output {
   margin-bottom: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   min-height: 34px;
-  background-color: #f8f8f8;
+  background-color: #fbfbfb;
   border: 1px solid #bebebe;
   width: 100%;  
 }
@@ -4496,7 +4496,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
+  background-color: #fbfbfb;
   border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {
