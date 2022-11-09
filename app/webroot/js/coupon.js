@@ -64,9 +64,10 @@ $(function(){
         carrito.coupon = coupon.toUpperCase()
         carrito.coupon_bonus = discounted
         carrito.total_price = parseFloat(price.toFixed(2))
-        localStorage.setItem('carrito', JSON.stringify(carrito))
       }else{
         $('.coupon-discount').addClass('hidden')
+        carrito.coupon = ''
+        carrito.coupon_bonus = 0
 
         // fxTotal(formatNumber(subtotal))
         $('.input-coupon').removeClass('ok');
@@ -76,6 +77,8 @@ $(function(){
         fxTotal(formatNumber(format_total), true)
         timeout = setTimeout( `onErrorAlert('${json.title}', '${json.message}')` , 200);
       }
+       localStorage.setItem('carrito', JSON.stringify(carrito))
+
       // document.querySelector('processed-coupon-data').classList.remove('hidden')
       // document.querySelector('processed-coupon-data').classList.add('fadeIn')
       $('.input-coupon').attr( 'data-valid' , parseInt(json.valid) );
