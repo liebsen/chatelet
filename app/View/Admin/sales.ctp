@@ -181,9 +181,7 @@
                         <strong>$<?= @$sale['collection']['transaction_amount'] ?: @$sale['local_sale']['value'] ?> </strong><br>
                         <small>(<?= count(@$sale['collection']['sale_products']) ?> items)</small>
                     </td>
-
-
-                    <td class="col-xs-1 text-center"><!--[[<?=@$sale['local_sale']['shipping_type']?>]]-->
+                    <td class="col-xs-1 text-center<?= @$sale['local_sale']['cargo'] !== 'takeaway' ? (empty(@$sale['local_sale']['def_orden_retiro']) ? ' bg-danger animated flash slow infinite' : ' bg-success') : '' ?>">
                     <?php 
                     $defaultCost = 0; ?>
                     <?php if (isset($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] === 'takeaway'):?>
@@ -198,16 +196,10 @@
                         <?php endif ?>
                         <?php if (empty(@$sale['local_sale']['def_orden_retiro'])):?>
                         <div id="shipping_title_<?= @$sale['local_sale']['id'] ?>" class="text-info text-center is-clickable"  onclick="showLayer(event,'ticket',<?= @$sale['local_sale']['id'] ?>)">
-                            <span class="badge badge-danger">
-                                <i class="fa fa-clock-o"></i>
-                            </span>
-                            <img class="shipping-logo" id="shipping_image_<?= @$sale['local_sale']['id'] ?>" src="<?= @$logistics_images[$sale['local_sale']['shipping']] ?>">
+                            <img class="shipping-logo pending" id="shipping_image_<?= @$sale['local_sale']['id'] ?>" src="<?= @$logistics_images[$sale['local_sale']['shipping']] ?>">
                         </div>
                         <?php else: ?>
-                        <div id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success text-center is-clickable">
-                            <span class="badge badge-success">
-                                <i class="fa fa-check"></i>
-                            </span>
+                        <div id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success text-center">
                             <img class="shipping-logo" src="<?= @$logistics_images[$sale['local_sale']['shipping']] ?>">
                         </div>
                         <!-- <?= strtoupper(@$sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>

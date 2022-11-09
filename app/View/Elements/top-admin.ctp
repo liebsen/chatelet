@@ -40,6 +40,7 @@
             echo $this->Html->css('bootstrap');
             echo $this->Html->css('plugins');
             echo $this->Html->css('main');
+            echo $this->Html->css('animate');
 
             if ($template['theme']) {
                 echo $this->Html->css('themes/'.$template['theme']);
