@@ -2259,7 +2259,7 @@ span.count.is-empty {
   .is-rounded {
     margin: 1rem 0;
     margin-top: 0;
-    padding: 1.75rem;
+    padding: 1.5rem;
     border-radius: 3px;
     box-shadow: var(--box-shadow);
     /* box-shadow: var(--box-shadow); */
