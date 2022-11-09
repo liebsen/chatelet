@@ -1,0 +1,27 @@
+
+.draggable-table {
+  position: absolute;
+  clear: both;
+}
+.draggable-table .draggable-table__drag {
+  position: absolute;
+  z-index: 10;
+  cursor: grabbing;
+  opacity: 1;
+}
+.draggable-table thead th {
+  height: 25px;
+  font-weight: bold;
+  text-transform: capitalize;
+  padding: 10px;
+  user-select: none;
+}
+.draggable-table tbody tr {
+  cursor: grabbing;
+}
+.draggable-table tbody tr.is-dragging {
+  background: #f1c40f;
+}
+.draggable-table tbody tr.is-dragging td {
+  color: #ffe683;
+}

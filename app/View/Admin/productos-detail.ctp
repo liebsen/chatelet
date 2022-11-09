@@ -119,7 +119,15 @@
               </select>
             </div>
           </div>
-          <br />          
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
+            <div class="controls">
+              <input type="number" name="data[ordernum]" value="<?= $cat['Category']['ordernum']?>">
+            </div>
+            <small class="text-muted">Seleccioná el orden de prioridad este producto</small>
+          </div>
+          <br>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Número de artículo'); ?></label>
             <div class="controls">

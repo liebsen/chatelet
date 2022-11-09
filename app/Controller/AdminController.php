@@ -238,6 +238,21 @@ class AdminController extends AppController {
 		}
 	}
 
+	public function category_order(){
+		$this->autoRender = false;
+		$this->loadModel('Category');
+		if($this->request->is('post')){
+			$data = $this->request->data;
+			$this->Category->save([
+				'id' => $data['row1_id'],
+				'ordernum' => $data['row2_order']
+			]);
+			$this->Category->save([
+				'id' => $data['row2_id'],
+				'ordernum' => $data['row1_order']
+			]);
+		}
+	}
 	public function oca(){
 		if($this->request->is('post')){
 			$this->Package->save($this->request->data);

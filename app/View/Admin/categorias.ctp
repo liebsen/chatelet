@@ -1,9 +1,11 @@
 <?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
 <?php echo $this->element('admin-menu'); ?>
+<?php echo $this->Html->css('draggable-table', array('inline' => false));?>
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
+<?php echo $this->Html->script('draggable-table', array('inline' => false));?>
 <div class="block-section">
-	<table id="categorias-datatables" class="table table-bordered table-hover table-condensed">
+	<table id="categorias-datatables" class="table table-bordered table-hover table-condensed draggable-table">
 		<thead>
 			<tr>
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
@@ -16,7 +18,7 @@
 		</thead>
 		<tbody>
 			<?php foreach ($cats as $key => $category): ?>        
-				<tr>
+				<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>">
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
 							<?=$category['Category']['name']?>
