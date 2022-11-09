@@ -130,7 +130,7 @@ class AppController extends Controller
         $setting_menu    = $this->Setting->findById('image_menushop');
         $image_menushop = (!empty($setting_menu['Setting']['value'])) ? $setting_menu['Setting']['value'] : '';
         $this->set('image_menushop',$image_menushop);
-        $this->set('version', (int) $version_count / 1000 . ' ' . $version_date);
+        $this->set('version_text', (int) $version_count / 100 . ' ' . $version_date);
     }
 
 
