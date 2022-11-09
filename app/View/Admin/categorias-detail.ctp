@@ -39,11 +39,33 @@
               <input type="file" class="attached" name="size">
             </div>
           </div>
-          <br />            
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Ancho de columna'); ?></label>
+            <div class="controls">
+              <select class="form-control" name="data[colsize]">
+                <option value="0"<?= empty($cat['Category']['colsize']) ? ' selected' : '' ?>>Auto</option>
+                <option value="3"<?= @$cat['Category']['colsize'] == '3' ? ' selected' : '' ?>>25%</option>
+                <option value="4"<?= @$cat['Category']['colsize'] == '4' ? ' selected' : '' ?>>33%</option>
+                <option value="6"<?= @$cat['Category']['colsize'] == '6' ? ' selected' : '' ?>>50%</option>
+                <option value="12"<?= @$cat['Category']['colsize'] == '12' ? ' selected' : '' ?>>100%</option>
+              </select>              
+            </div>
+            <small class="text-muted">Seleccioná el ancho de columna para esta categoría (solo para dispositivos de escritorio y smart-tv).</small>
+          </div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
+            <div class="controls">
+              <input type="number" name="data[ordernum]" value="<?= $cat['Category']['ordernum']?>">
+            </div>
+            <small class="text-muted">Seleccioná el orden de prioridad esta categoría</small>
+          </div>
         </div>                
       </div>      
       <br />               
       <div class="form-actions">
+        <a href="/admin/categorias" class="btn btn-info"><i class="icon-repeat"></i> Atrás</a>
         <button type="reset" class="btn btn-danger"><i class="icon-repeat"></i> Reset</button>
         <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
       </div>

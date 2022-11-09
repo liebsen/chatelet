@@ -7,6 +7,8 @@
 		<thead>
 			<tr>
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
+				<th class="hidden-phone hidden-tablet"><?php echo __('Orden'); ?></th> 
+				<th class="hidden-phone hidden-tablet"><?php echo __('Ancho'); ?></th> 
 				<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
 				<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th>    
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -19,7 +21,17 @@
 						<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
 							<?=$category['Category']['name']?>
 						</a>
-					</td>	                 
+					</td>
+					<td>
+						<?php if(!empty(@$category['Category']['ordernum'])) echo $category['Category']['ordernum'] ?>
+					</td>
+					<td>
+						<?php if(empty(@$category['Category']['colsize'])) echo 'Auto' ?>
+						<?php if(@$category['Category']['colsize'] == '3') echo '25%' ?>
+						<?php if(@$category['Category']['colsize'] == '4') echo '33%' ?>
+						<?php if(@$category['Category']['colsize'] == '6') echo '50%' ?>
+						<?php if(@$category['Category']['colsize'] == '12') echo '100%' ?>
+					</td>
 					<td>          
 						<?php
 							if(!empty($category['Category']['img_url'])){
@@ -33,7 +45,7 @@
 								echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('imageUrlBase') . $category['Category']['size'] ."''>LINK</a>";
 							}
 						?>     
-					</td> 
+					</td>
 					<td>
 						<div class="btn-group">   
 							<a 
