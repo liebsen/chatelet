@@ -6,7 +6,7 @@
 }*/
 
 body {
-	background-color: #f8f8f8;
+	background-color: #fbfbfb;
 }
 
 a {
@@ -57,7 +57,7 @@ select {
 	bottom: 1rem;
 	left: 1rem;
 	white-space: nowrap;
-	border-radius: 0;
+	border-radius: 3px;
 	padding: 0.75rem 1.25rem;
 	border: 1px solid white;
 	color: white;
@@ -120,7 +120,7 @@ select {
 
 .instructions {
 	padding: 0.75rem 1rem;
-	border-radius: 0px;
+	border-radius: 3px;
 	/* background-color: #fdb5db; */
 	background-color: whitesmoke;
 	color: #777; /* theme secondary #fdb5db; */
@@ -264,7 +264,7 @@ select {
 /* .dropdown-menu .bottom > .right {
 	background-color: #e10c76;
 	color: #FFFFFF;
-	border-radius: 0px;
+	border-radius: 3px;
 	padding: 0.25rem 1rem;
 	font-size: 1rem;
 	font-weight: 800;
@@ -273,7 +273,7 @@ select {
 #login-email,
 #login-password {
 	padding: 6px 12px;
-	border-radius: 0px;
+	border-radius: 3px;
 	margin-bottom: 10px;
 	min-height: 34px;
 	background-color: #dbd9da;
@@ -290,7 +290,7 @@ select {
 	/*font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 	width: 100%;
 	text-align: center;
-	border-radius: 0px;
+	border-radius: 3px;
 	font-size: 1.25rem;
 	font-weight: 800;
 	border: 0;
@@ -490,7 +490,7 @@ select {
 	/*font-size: 24px;*/
 	text-align: center;
 	border: 0;
-	border-radius: 0;
+	border-radius: 3px;
 	font-size: 1.25rem;
 	font-weight: 800;
 	padding: 0.75rem 1rem;
@@ -514,7 +514,7 @@ select {
 #particular-password .modal-content{
 	max-width: 25rem;
 	margin: auto;
-	border-radius: 0;
+	border-radius: 3px;
 	/*position: absolute; */
 }
 
@@ -546,7 +546,7 @@ select {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border-radius: 0px;
+  border-radius: 3px;
 }
 .card-body {
   -webkit-box-flex: 1;
@@ -601,7 +601,7 @@ select {
 	background-color: #bebebe;
 	min-width: 20rem;
 	min-height: 46px;
-	border-radius: 0;
+	border-radius: 3px;
 	transition: all 0.25s ease;
 }
 .cart-btn-green.shrink {
