@@ -4,7 +4,7 @@
 
 <div class="block block-themed">
 	<div class="block-title">
-		<h4><?php echo __('Página Principal') ?></h4>
+		<h4><?php echo __('Presentación') ?></h4>
 	</div>
 
 	<div class="block-content">

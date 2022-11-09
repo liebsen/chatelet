@@ -827,8 +827,8 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
   	$this->set('cats', $cats);
 
 		$h1 = array(
-		'name' => 'Página Principal',
-		'icon' => 'gi gi-display'
+		'name' => 'Presentación',
+		'icon' => 'fa fa-eye'
 		);
 		$this->set('h1', $h1);
 		$this->loadModel('Home');

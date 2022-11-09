@@ -340,6 +340,14 @@ $(function () {
 
   window.onerror = function (msg, url, lineNo, columnNo, error) {
     onErrorAlert(`${msg}:${lineNo}`);
-    $.post('/shop/log_error', {message: msg, url: url, line: lineNo})
+    var browser = {
+      appCodeName: navigator.appCodeName,
+      appName: navigator.appName,
+      appVersion: navigator.appVersion,
+      cookieEnabled: navigator.cookieEnabled,
+      platform: navigator.platform,
+      userAgent: navigator.userAgent
+    }
+    $.post('/shop/log_error', {message: msg + JSON.stringify(browser), url: url, line: lineNo})
   }
 })
