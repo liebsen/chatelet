@@ -197,18 +197,18 @@
                             <?= @$sale['local_sale']['def_mail_sent'] ? '' : '<i class="fa fa-pencil text-success" onclick="editLogistic(event,' . @$sale['local_sale']['id'] . ',' . @$sale['local_sale']['logistic_id'] . ')" title="Notificación pendiente"></i>' ?>
                         <?php endif ?>
                         <?php if (empty(@$sale['local_sale']['def_orden_retiro'])):?>
-                        <div id="shipping_title_<?= @$sale['local_sale']['id'] ?>" class="text-info text-center">
-                            <img class="shipping-logo" id="shipping_image_<?= @$sale['local_sale']['id'] ?>" src="<?= @$logistics_images[$sale['local_sale']['shipping']] ?>" onclick="showLayer(event,'ticket',<?= @$sale['local_sale']['id'] ?>)">
-                        </div>
-                        <div class="badge badge-danger">
-                            <i class="fa fa-clock-o"></i>
+                        <div id="shipping_title_<?= @$sale['local_sale']['id'] ?>" class="text-info text-center is-clickable"  onclick="showLayer(event,'ticket',<?= @$sale['local_sale']['id'] ?>)">
+                            <span class="badge badge-danger">
+                                <i class="fa fa-clock-o"></i>
+                            </span>
+                            <img class="shipping-logo" id="shipping_image_<?= @$sale['local_sale']['id'] ?>" src="<?= @$logistics_images[$sale['local_sale']['shipping']] ?>">
                         </div>
                         <?php else: ?>
-                        <div id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success text-center">
+                        <div id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success text-center is-clickable">
+                            <span class="badge badge-success">
+                                <i class="fa fa-check"></i>
+                            </span>
                             <img class="shipping-logo" src="<?= @$logistics_images[$sale['local_sale']['shipping']] ?>">
-                        </div>
-                        <div class="badge badge-success">
-                            <i class="fa fa-check"></i>
                         </div>
                         <!-- <?= strtoupper(@$sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>
                         <?php endif ?>
