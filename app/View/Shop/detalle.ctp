@@ -115,13 +115,13 @@
             <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
                 <h1><?php echo $product['name'];?></h1>
                 <p class="text-muted"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
-                <?php  if(!empty($product['old_price']) && $product['price']!==$product['old_price']) {
-                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $product['old_price'] ."'>".
-                           str_replace(',00','',$this->Number->currency($product['old_price'], 'ARS', array('places' => 2))). "</span>
-                           ahora <div><span class='price'>". str_replace(',00','',$this->Number->currency($product['price'],'ARS', array('places' => 2)))."</span></div>";
+                <?php  if(!empty(ceil($product['old_price'])) && ceil($product['price'])!==ceil($product['old_price'])) {
+                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($product['old_price']) ."'>".
+                           str_replace(',00','',$this->Number->currency(ceil($product['old_price']), 'ARS', array('places' => 2))). "</span>
+                           ahora <div><span class='price'>". str_replace(',00','',$this->Number->currency(ceil($product['price']),'ARS', array('places' => 2)))."</span></div>";
                     }else{
-                      echo  "<span id='price' class='price' data-price='".'$'. $product['price'] ."'>".
-                            str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array(
+                      echo  "<span id='price' class='price' data-price='".'$'. ceil($product['price']) ."'>".
+                            str_replace(',00','',$this->Number->currency(ceil($product['price']), 'ARS', array(
                             'places' => 2))). "</span>";
                  }?>
                 <div class="caract">
@@ -273,7 +273,7 @@
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                         </a>
                         <div class="name"><?= $alt_product_name ?></div>
-                        <div class="price text-theme"><?= str_replace(',00','',$this->Number->currency($alt_product['price'], 'ARS', array('places' => 2))) ?></div>
+                        <div class="price text-theme"><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
                     </div>
                     <?php }else{ ?>
 
@@ -289,7 +289,7 @@
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                         </a>
                         <div class="name"><?= $alt_product_name ?></div>
-                        <div class="price text-theme"><?= $alt_product['old_price'] ? '<span class="old_price">' .  str_replace(',00','',$this->Number->currency($alt_product['old_price'], 'ARS', array('places' => 2))). '</span>' : '' ?><?= str_replace(',00','',$this->Number->currency($alt_product['price'], 'ARS', array('places' => 2))) ?></div>
+                        <div class="price text-theme"><?= ceil($alt_product['old_price']) ? '<span class="old_price">' .  str_replace(',00','',$this->Number->currency(ceil($alt_product['old_price']), 'ARS', array('places' => 2))). '</span>' : '' ?><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
                     </div>
                    <?php }endforeach; ?>
                 </div>

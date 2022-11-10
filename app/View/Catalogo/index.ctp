@@ -91,13 +91,13 @@
                           <div class="col-sm-9">
                               <span class="hidden" id="product_id"><?php echo $v['Product']['id']; ?></span>
                               <h2><?php echo $v['Product']['name']; ?></h2>
-                                <p> <?php  if(!empty($v['Product']['discount']) && $v['Product']['price'] !== $v['Product']['discount']) {
-                                      echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". $v['Product']['price'] ."'>".
-                                           str_replace(',00','',$this->Number->currency($v['Product']['price'], 'ARS', array('places' => 0))). "</span>
-                                           ahora <div><span style='padding: 3px;float: none;'' class='price'>".str_replace(',00','',$this->Number->currency($v['Product']['discount'], 'ARS', array('places' => 0)))."</span></div>";
+                                <p> <?php  if(!empty(ceil($v['Product']['discount'])) && ceil($v['Product']['price']) !== ceil($v['Product']['discount'])) {
+                                      echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($v['Product']['price']) ."'>".
+                                           str_replace(',00','',$this->Number->currency(ceil($v['Product']['price']), 'ARS', array('places' => 0))). "</span>
+                                           ahora <div><span style='padding: 3px;float: none;'' class='price'>".str_replace(',00','',$this->Number->currency(ceil($v['Product']['discount']), 'ARS', array('places' => 0)))."</span></div>";
                                     }else{
-                                      echo  "<span id='price' class='price' data-price='". $v['Product']['price'] ."'>".
-                                      str_replace(',00','',$this->Number->currency($v['Product']['price'], 'ARS', array(
+                                      echo  "<span id='price' class='price' data-price='". ceil($v['Product']['price']) ."'>".
+                                      str_replace(',00','',$this->Number->currency(ceil($v['Product']['price']), 'ARS', array(
                                             'places' => 0))). "</span>";
                                  }?></p>
                                 <p>Art. <span><?php echo $v['Product']['article']; ?></span></p>

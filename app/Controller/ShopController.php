@@ -525,7 +525,7 @@ class ShopController extends AppController {
 		]);
 
 		foreach($data as $item) {
-			$price = $item['Product']['price'];
+			$price = ceil($item['Product']['price']);
 			$result = [
 				'id' => $item['Product']['id'],
 				'category_id' => $item['Product']['category_id'],
@@ -536,7 +536,7 @@ class ShopController extends AppController {
 				'slug' => str_replace(' ','-',strtolower($item['Product']['desc'])),
 				'img_url' => Configure::read('imageUrlBase') . $item['Product']['img_url']
 			];
-			if (isset($item['Product']['discount']) && $item['Product']['discount'] !== $price) {
+			if (isset($item['Product']['discount']) && ceil($item['Product']['discount']) !== $price) {
 				$result['old_price'] = str_replace(',00','',number_format($price, 2, ',', '.'));
 				$price = $item['Product']['discount'];
 			}
