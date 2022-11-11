@@ -1428,6 +1428,7 @@ span.out{
   position: relative;
   margin-bottom: 1rem;
   text-align: center;
+  min-height: 25rem;
 }
 
 .search-item {
@@ -2282,10 +2283,10 @@ span.count.is-empty {
     margin-top: 10px;
     margin-left: 10px;
   }
-  #productOptions .product-list a img { 
+  /*#productOptions .product-list a img { 
     min-height: 22rem; 
     max-height: 22rem;
-  }
+  }*/
   #opts .mod-item { min-height: 24rem;} 
   #opts a { max-height: 30rem; } */
   #detalle .caract .add {min-width: 10rem; }
