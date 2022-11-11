@@ -751,8 +751,8 @@ align-items: center;}
 #productOptions a.btBig span { color: #f50081; font-size: 27px; }
 #productOptions .product-list a {  /*background: #e7e7e7;*/ display: inline-table; width: 100%; background-color: whitesmoke; margin-bottom: 10px; overflow: hidden; position: relative;height: auto; }
 #productOptions .product-list a img { 
-    min-height: 10rem; 
-    /* max-height: 15rem; */
+    min-height: 18rem; 
+    max-height: 18rem;
     object-fit: cover;
     object-position: top center; margin: 0 auto;transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #productOptions .product-list a .hover { border: 2px solid #f50081; color: #f50081; font-size: 40px; font-weight: 500; height: 90%; left: 5%; opacity: 0; padding-top: 30%; position: absolute; text-align: center; top: 5%; width: 90%; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
@@ -1426,7 +1426,7 @@ span.out{
 */
 .add-no-stock {
   position: relative;
-  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .search-item {
@@ -2282,8 +2282,8 @@ span.count.is-empty {
     margin-left: 10px;
   }
   #productOptions .product-list a img { 
-    min-height: 21rem; 
-    /* max-height: 20rem; */
+    min-height: 22rem; 
+    max-height: 22rem;
   }
   #opts .mod-item { min-height: 24rem;} 
   #opts a { max-height: 30rem; } */
