@@ -80,7 +80,32 @@ function updateSrcTo(obj){
                     </ul>
                 </nav>
             </div>
-
+            <div class="hidden-lg hidden-md visible-xs-* visible-sm-* col-sm-3 col-xs-12">
+                <nav>
+                    <ul>
+                        <?php
+                            foreach ($categories as $category) {
+                                $category = $category['Category'];
+                                $slug =  str_replace(' ',
+                                '-',strtolower($category['name']));
+                        if (strpos($slug, 'trajes')!==false){
+                          $slug = 'trajes-de-bano';
+                        }
+                                echo '<li>';
+                                echo $this->Html->link(
+                                    $category['name'],
+                                    array(
+                                        'controller' => 'tienda',
+                                        'action' => 'productos',
+                                        $slug
+                                    )
+                                );
+                                echo '</li>';
+                            }
+                           ?>
+                    </ul>
+                </nav>
+            </div>
             <div class="col-sm-9 product-list">
 
   <?php
@@ -189,32 +214,7 @@ function updateSrcTo(obj){
 
 
             </div>
-            <div class="hidden-lg hidden-md visible-xs-* visible-sm-* col-sm-3 col-xs-12">
-                <nav>
-                    <ul>
-                        <?php
-                            foreach ($categories as $category) {
-                                $category = $category['Category'];
-                                $slug =  str_replace(' ',
-                                '-',strtolower($category['name']));
-                        if (strpos($slug, 'trajes')!==false){
-                          $slug = 'trajes-de-bano';
-                        }
-                                echo '<li>';
-                                echo $this->Html->link(
-                                    $category['name'],
-                                    array(
-                                        'controller' => 'tienda',
-                                        'action' => 'productos',
-                                        $slug
-                                    )
-                                );
-                                echo '</li>';
-                            }
-                           ?>
-                    </ul>
-                </nav>
-            </div>
+
         </div>
     </div>
 </section>
