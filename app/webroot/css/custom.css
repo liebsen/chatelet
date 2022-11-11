@@ -1908,10 +1908,10 @@ span.count.is-empty {
     #myModal .content form input[type="email"] {
         margin-bottom: 25px
     }
-    #listShop a img {
+    /*#listShop a img {
       height: 340px;
       object-fit: contain;
-    }
+    }*/
 }
 
 /*Mobile Icons NavTop*/
