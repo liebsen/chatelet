@@ -80,7 +80,7 @@ function updateSrcTo(obj){
                     </ul>
                 </nav>
             </div>
-            <div class="hidden-lg hidden-md visible-xs-* visible-sm-* col-sm-3 col-xs-12">
+            <div class="hidden-lg hidden-md visible-xs-* visible-sm-* col-sm-12 col-xs-12">
                 <nav>
                     <ul>
                         <?php
@@ -106,7 +106,7 @@ function updateSrcTo(obj){
                     </ul>
                 </nav>
             </div>
-            <div class="col-sm-9 product-list">
+            <div class="col-md-9 product-list">
 
   <?php
     function createSection($item, $ctrl, $isProduct = false) {
