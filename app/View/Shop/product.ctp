@@ -81,7 +81,7 @@ function updateSrcTo(obj){
                 </nav>
             </div>
 
-            <div class="col-sm-9">
+            <div class="col-sm-9 product-list">
 
   <?php
     function createSection($item, $ctrl, $isProduct = false) {

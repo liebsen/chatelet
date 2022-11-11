@@ -3474,11 +3474,20 @@ a.thumbnail-borderless,
 }
 
 .form-actions {
+    text-align: right;
     position: fixed;
     bottom: 0;
+    right: 3.5rem;
     z-index: 99;
     min-height: 5rem;
     min-width: 100vw;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 1rem;
 }
 
 /*
@@ -3492,7 +3501,7 @@ a.thumbnail-borderless,
 @media (min-width: 992px) {
 
     .form-actions {
-        left: 25rem;
+        left: 21.5rem;
     }
     /* Hide Side Content */
     .hide-side-content #page-sidebar {
