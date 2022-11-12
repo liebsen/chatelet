@@ -2228,7 +2228,7 @@ span.count.is-empty {
     max-width: 30rem;
   }
   .spinner-search {
-    left: 16.25rem;
+    right: 1rem;
   }
   .search-results .is-background-cover {
     /* min-height: 20rem; */

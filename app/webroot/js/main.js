@@ -163,8 +163,6 @@ callEnd = function(){
   }, 500)
 }
 
-
-
 let apiSearch = (q) => {    
   $.ajax({
     type: "POST",
@@ -186,6 +184,7 @@ let apiSearch = (q) => {
       })
       if (str === '') {
         $('.search-results').html('<p class="results-text">No hay resultados para esta búsqueda</p>')
+        $('.search-bar').css({'width': `0%`})
       } else {
         if (!searchPage) {
           $('.search-results').html(str)
@@ -193,7 +192,7 @@ let apiSearch = (q) => {
           $('.search-results').append(str)
         }
         setTimeout(() => {
-          var w = data.query[0].count ? ($('.search-item').length / data.query[0].count) * 100 : 0
+          var w = ($('.search-item').length / data.query[0].count) * 100
           $('.search-bar').css({'width': `${w}%`})
           if (parseInt(data.query[0].count) > $('.search-item').length) {
             $('.search-more').html('<a href="javascript:loadMoreSearch(' + (searchPage + 1) + ')">Mostrar más resultados</a>')
@@ -275,14 +274,20 @@ $(function () {
   })
 
   $('.input-search').keyup(e => {
+    let q = $('.input-search').val().trim()
+
+    if (q.length < 3) {
+      return false
+    }
+
     if (searchInt) {
       clearInterval(searchInt)
     }
+    
     searchPage = 0
     window.scrollTo(0,0)
     document.querySelector('.spinner-search').classList.add('searching')
     searchInt = setTimeout(() => {
-      let q = $('.input-search').val().trim()
       localStorage.setItem('lastsearch', q)
       apiSearch(q)
     }, 500)        
