@@ -153,7 +153,7 @@
 						          </span>
 						        </div>
 						      </div>
-									<label class="form-group mt-4 scl-125">
+									<label class="form-group mt-4">
 									  <input type="checkbox" id="regalo" name="regalo"><span class="label-text text-muted">Es para regalo</span><br><br>
 									</label>
 									<div class="row card-row">

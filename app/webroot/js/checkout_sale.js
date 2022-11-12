@@ -11,7 +11,7 @@ var select_payment = (e) => {
 		bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
 		$('.bank_bonus').text(formatNumber(bank_bonus))
 		$('.bank-block').removeClass('hide')
-		$('.bank-block').addClass('animated scaleIn')
+		$('.bank-block').addClass('animated fadeIn')
 	} else {
 		$('.bank-block').addClass('hide')
 	}
@@ -39,7 +39,7 @@ var select_payment = (e) => {
 $(function(){
 
 	$(`.cargo-${carrito.cargo}`).removeClass('hide')
-	$(`.cargo-${carrito.cargo}`).addClass('animated scaleIn')
+	$(`.cargo-${carrito.cargo}`).addClass('animated fadeIn')
 	$('#regalo').prop('checked', carrito.regalo)
 
 	Object.keys(carrito).forEach(e => {
@@ -63,7 +63,7 @@ $(function(){
 	}
 	if (carrito.cargo === 'takeaway') {
 		$('.cargo-takeaway').removeClass('hide')
-		$('.cargo-takeaway').addClass('animated scaleIn')
+		$('.cargo-takeaway').addClass('animated fadeIn')
 	}
 
 	if (carrito.cargo === 'shipment') {
@@ -75,15 +75,15 @@ $(function(){
 		}
 		$('.shipping_price').html(price)
 		$('.shipping-block').removeClass('hide')
-		$('.shipping-block').addClass('animated scaleIn')
+		$('.shipping-block').addClass('animated fadeIn')
 	}
 
 	if(!carrito.coupon) {
 		$('.coupon-actions-block').removeClass('hide')
-		$('.coupon-actions-block').addClass('animated scaleIn')
+		$('.coupon-actions-block').addClass('animated fadeIn')
 	} else {
 		$('.coupon-block').removeClass('hide')
-		$('.coupon-block').addClass('animated scaleIn')
+		$('.coupon-block').addClass('animated fadeIn')
 	}
 
 	if (bank.enable && bank.discount_enable && bank.discount) {

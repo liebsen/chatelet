@@ -44,6 +44,9 @@ select {
 	transform: scale(1.25);
 }
 
+.transform-origin-left {
+	transform-origin: left;
+}
 .flex {
 	display: flex;
 } 
