@@ -28,13 +28,6 @@
 							}
 						?>     
 					</td> 
-					<td>          
-						<?php
-							if(!empty($banner['Banner']['size'])){
-								echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('imageUrlBase') . $banner['Banner']['size'] ."''>LINK</a>";
-							}
-						?>     
-					</td>
 					<td>
 						<div class="btn-group">   
 							<a 
