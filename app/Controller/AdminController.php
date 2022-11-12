@@ -1970,7 +1970,7 @@ public function promos(){
 		$map = $this->Setting->findById('bank_whatsapp');
 		$data['bank_whatsapp'] = @$map['Setting']['value'];
 		$map = $this->Setting->findById('bank_discount_enable');
-		$data['bank_discount_enable'] = @$map['Setting']['value'];
+		$data['bank_discount_enable'] = (integer) @$map['Setting']['value'];
 		$map = $this->Setting->findById('bank_discount');
 		$data['bank_discount'] = @$map['Setting']['value'];
 		$map = $this->Setting->findById('bank_discount_text');
