@@ -44,7 +44,7 @@
             <label class="control-label" for="columns-text"><?php echo __('Ancho de columna'); ?></label>
             <div class="controls">
               <select class="form-control" name="data[colsize]">
-                <option value="0"<?= empty($cat['Category']['colsize']) ? ' selected' : '' ?>>Auto</option>
+                <option value="6"<?= empty($cat['Category']['colsize']) ? ' selected' : '' ?>>Auto</option>
                 <option value="3"<?= @$cat['Category']['colsize'] == '3' ? ' selected' : '' ?>>25%</option>
                 <option value="4"<?= @$cat['Category']['colsize'] == '4' ? ' selected' : '' ?>>33%</option>
                 <option value="6"<?= @$cat['Category']['colsize'] == '6' ? ' selected' : '' ?>>50%</option>
