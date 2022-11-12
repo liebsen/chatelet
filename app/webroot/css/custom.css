@@ -358,7 +358,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .menuLayer img { margin-right: 50px; }
 .menuLayer h3 { color: #f50081; font-size: 1rem; font-weight: 600; text-transform: uppercase; margin-bottom: 30px; }
 .menuLayer ul { column-count: 3; column-gap: 40px; font-size: 1rem; }
-.menuLayer ul li { margin-bottom: 15px; }
+.menuLayer ul li { margin-bottom: 0.75rem; }
 .menuLayer ul li a {
   color: #222;
   font-weight: normal;

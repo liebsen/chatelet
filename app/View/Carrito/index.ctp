@@ -133,10 +133,14 @@
 							<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 							<input type="hidden" id="subtotal_envio" value="" />
 							<div class="field text-center mb-2 mr-1">
-								<label>
-								  <input type="checkbox" id="regalo" value="1" /><span class="label-text">Es para regalo</span>
+								<label class="scl-125">
+								  <input type="checkbox" id="regalo" value="1" /><span class="label-text text-muted">Es para regalo</span>
 								</label>
 							</div>
+							<div class="summary-item text-right">
+								<div class="price text-muted">Resumen de tu compra</div>								
+							</div>
+							<hr>
 							<div class="summary-item text-right products-total">
 								<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= str_replace(',00','',$this->Number->currency($total + $promosaved, 'ARS', array('places' => 2))) ?></div>
 							</div>

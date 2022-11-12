@@ -40,6 +40,10 @@ select {
    width: 100%!important;
 }
 
+.scl-125 {
+	transform: scale(1.25);
+}
+
 .flex {
 	display: flex;
 } 
