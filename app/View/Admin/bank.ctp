@@ -33,6 +33,11 @@
           <div class="row">
             <div class="col-md-6">
               <div class="control-group">
+                <pre>
+                <?php 
+                var_dump($data['bank_discount_enable']);
+                var_dump(data['bank_discount_enable'] == 1);
+                var_dump(data['bank_discount_enable'] == 0); ?>
                 <div class="controls text-center switch-scale">
                   <?php
                     $enabled = @$data['bank_discount_enable'] == 1 ? 'checked' : '';
