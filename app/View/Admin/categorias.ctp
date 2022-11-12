@@ -5,7 +5,7 @@
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 <div class="block-section">
-	<table id="categorias-datatables" class="table table-bordered table-hover table-condensed draggable-table" data-url="/admin/category_order">
+	<table id="categorias-datatables" class="table table-bordered table-hover table-condensed draggable-table" data-url="/admin/ordernum/category">
 		<thead>
 			<tr>
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        

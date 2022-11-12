@@ -238,38 +238,22 @@ class AdminController extends AppController {
 		}
 	}
 
-	public function category_order(){
+	public function ordernum($tag){
 		$this->autoRender = false;
-		$this->loadModel('Category');
-		if($this->request->is('post')){
+		$name = ucfirst($tag);
+		$this->loadModel($name);
+		if($this->request->is('post') && !empty($this->{$name})){
 			$data = $this->request->data;
-			$this->Category->save([
+			$this->{$name}->save([
 				'id' => $data['row1_id'],
 				'ordernum' => $data['row2_order']
 			]);
-			$this->Category->save([
+			$this->{$name}->save([
 				'id' => $data['row2_id'],
 				'ordernum' => $data['row1_order']
 			]);
 		}
 	}
-
-	public function product_order(){
-		$this->autoRender = false;
-		$this->loadModel('Product');
-		if($this->request->is('post')){
-			$data = $this->request->data;
-			$this->Product->save([
-				'id' => $data['row1_id'],
-				'ordernum' => $data['row2_order']
-			]);
-			$this->Product->save([
-				'id' => $data['row2_id'],
-				'ordernum' => $data['row1_order']
-			]);
-		}
-	}
-
 
 	public function oca(){
 		if($this->request->is('post')){
@@ -1019,104 +1003,102 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 				'icon' 		=> 'gi gi-list',
 				'url'		=> Configure::read('mUrl').'/admin/categorias',
 				'active'	=> '/admin/categorias'
-				),
+			),
 			'Nueva Categoria' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> Configure::read('mUrl').'/admin/categorias/add',
 				'active'	=> '/admin/categorias/add'
-				)
+			)
+		);
 
-			);
 		$this->set('navs', $navs);
-
 		$h1 = array(
 			'name' => 'Categorias',
 			'icon' => 'gi gi-list'
-			);
+		);
 		$this->set('h1', $h1);
+    $this->loadModel('Category');
+    switch ($action) {
+    	case 'add':
+    	    if ($this->request->is('POST')){
+		        $this->autoRender = false;
 
-	    $this->loadModel('Category');
-	    switch ($action) {
-	    	case 'add':
-	    	    if ($this->request->is('POST')){
-			        $this->autoRender = false;
+		        $data = $this->request->data;
 
-			        $data = $this->request->data;
+		        $file_real_name = null;
+		        if(!empty($this->request->params['form']['image']['name'])){
+		            $file_real_name = $this->save_file($this->request->params['form']['image']);
+		        }
 
-			        $file_real_name = null;
-			        if(!empty($this->request->params['form']['image']['name'])){
-			            $file_real_name = $this->save_file($this->request->params['form']['image']);
-			        }
+		        $file_real_name2 = null;
+		        if(!empty($this->request->params['form']['size']['name'])){
+		            $file_real_name2 = $this->save_file($this->request->params['form']['size']);
+		        }
 
-			        $file_real_name2 = null;
-			        if(!empty($this->request->params['form']['size']['name'])){
-			            $file_real_name2 = $this->save_file($this->request->params['form']['size']);
-			        }
+		        if($file_real_name){
+		            $data['img_url'] = $file_real_name;
+		        }
+		        if($file_real_name2){
+		            $data['size'] = $file_real_name2;
+		        }
 
-			        if($file_real_name){
-			            $data['img_url'] = $file_real_name;
-			        }
-			        if($file_real_name2){
-			            $data['size'] = $file_real_name2;
-			        }
+		        $this->Category->save($data);
 
-			        $this->Category->save($data);
+		        return $this->redirect(array('action'=>'categorias'));
+  			} else {
+    			return $this->render('categorias-detail');
+    		}
+    		break;
+    	case 'delete':
+	    	if ($this->request->is('post')) {
+	    		$this->autoRender = false;
+	    		$this->loadModel('Product');
 
-			        return $this->redirect(array('action'=>'categorias'));
-    			} else {
-	    			return $this->render('categorias-detail');
-	    		}
-	    		break;
-	    	case 'delete':
-		    	if ($this->request->is('post')) {
-		    		$this->autoRender = false;
-		    		$this->loadModel('Product');
+	    		$this->Product->deleteall(array('Product.category_id' => $this->request->data['id']));
+	    		$this->Category->delete($this->request->data['id']);
+	    	}
+    		break;
+    	case 'edit':
+    		if ($this->request->is('post')) {
+    			$this->autoRender = false;
 
-		    		$this->Product->deleteall(array('Product.category_id' => $this->request->data['id']));
-		    		$this->Category->delete($this->request->data['id']);
-		    	}
-	    		break;
-	    	case 'edit':
-	    		if ($this->request->is('post')) {
-	    			$this->autoRender = false;
+    			$data = $this->request->data;
 
-	    			$data = $this->request->data;
+		        $file_real_name = null;
+		        if(!empty($this->request->params['form']['image']['name'])){
+								error_log('trying to edit save file');
+		            $file_real_name = $this->save_file($this->request->params['form']['image']);
+		        }
 
-			        $file_real_name = null;
-			        if(!empty($this->request->params['form']['image']['name'])){
-									error_log('trying to edit save file');
-			            $file_real_name = $this->save_file($this->request->params['form']['image']);
-			        }
+		        $file_real_name2 = null;
+		        if(!empty($this->request->params['form']['size']['name'])){
+		            $file_real_name2 = $this->save_file($this->request->params['form']['size']);
+		        }
 
-			        $file_real_name2 = null;
-			        if(!empty($this->request->params['form']['size']['name'])){
-			            $file_real_name2 = $this->save_file($this->request->params['form']['size']);
-			        }
+		        if($file_real_name){
+		            $data['img_url'] = $file_real_name;
+		        }
 
-			        if($file_real_name){
-			            $data['img_url'] = $file_real_name;
-			        }
+		        if($file_real_name2){
+		            $data['size'] = $file_real_name2;
+		        }
 
-			        if($file_real_name2){
-			            $data['size'] = $file_real_name2;
-			        }
-
-			        $this->Category->save($data);
-	    		} else {
-		    		$hasId = array_key_exists(1, $this->request->pass);
-		    		if (!$hasId) break;
-		    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));
-		    		$this->set('cat', $cat);
-		    		return $this->render('categorias-detail');
-	    		}
-	    		break;
-	    }
-	    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+		        $this->Category->save($data);
+    		} else {
+	    		$hasId = array_key_exists(1, $this->request->pass);
+	    		if (!$hasId) break;
+	    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    		$this->set('cat', $cat);
+	    		return $this->render('categorias-detail');
+    		}
+    		break;
+    }
+	  $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 		$this->set('cats', $cats);
-	    $this->render('categorias');
+	  $this->render('categorias');
 	}
 
-public function promos(){
+	public function promos(){
 		if($this->request->is('post')){
 			$data = $this->request->data;
 			if(!empty($data['Promo']['image']['name'])){
@@ -1555,6 +1537,88 @@ public function promos(){
 		return $this->render('cupones');
 	}
 
+
+	public function banners($action = null) {
+		$navs = array(
+			'Lista' => array(
+				'icon' 		=> 'gi gi-list',
+				'url'		=> Configure::read('mUrl').'/admin/banners',
+				'active'	=> '/admin/banners'
+			),
+			'Nuevo Banner' => array(
+				'icon' 		=> 'gi gi-circle_plus',
+				'url'		=> Configure::read('mUrl').'/admin/banners/add',
+				'active'	=> '/admin/banners/add'
+			)
+		);
+
+		$this->set('navs', $navs);
+		$h1 = array(
+			'name' => 'Banners',
+			'icon' => 'gi gi-list'
+		);
+		$this->set('h1', $h1);
+    $this->loadModel('Banner');
+    switch ($action) {
+    	case 'add':
+    	    if ($this->request->is('POST')){
+		        $this->autoRender = false;
+
+		        $data = $this->request->data;
+
+		        $file_real_name = null;
+		        if(!empty($this->request->params['form']['image']['name'])){
+		            $file_real_name = $this->save_file($this->request->params['form']['image']);
+		        }
+
+		        if($file_real_name){
+		            $data['img_url'] = $file_real_name;
+		        }
+
+		        $this->Banner->save($data);
+
+		        return $this->redirect(array('action'=>'banners'));
+  			} else {
+    			return $this->render('banners-detail');
+    		}
+    		break;
+    	case 'delete':
+	    	if ($this->request->is('post')) {
+	    		$this->autoRender = false;
+	    		$this->Banner->delete($this->request->data['id']);
+	    	}
+    		break;
+    	case 'edit':
+    		if ($this->request->is('post')) {
+    			$this->autoRender = false;
+
+    			$data = $this->request->data;
+
+	        $file_real_name = null;
+	        if(!empty($this->request->params['form']['image']['name'])){
+							error_log('trying to edit save file');
+	            $file_real_name = $this->save_file($this->request->params['form']['image']);
+	        }
+
+	        if($file_real_name){
+	            $data['img_url'] = $file_real_name;
+	        }
+
+
+	        $this->Banner->save($data);
+    		} else {
+	    		$hasId = array_key_exists(1, $this->request->pass);
+	    		if (!$hasId) break;
+	    		$item = $this->Banner->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    		$this->set('item', $item);
+	    		return $this->render('banners-detail');
+    		}
+    		break;
+    }
+	  $banners = $this->Banner->find('all',['order' => ['Banner.ordernum ASC']]);
+		$this->set('banners', $banners);
+	  $this->render('banners');
+	}
 	private function saveFile($name, $data) {
 		/* save file if any */
     $filepath = '';
@@ -1837,78 +1901,73 @@ public function promos(){
 		$this->redirect($this->Auth->logout());
 	}
 
-
-
 	public function lookbook($action = null) {
-
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-justify',
 				'url'		=> Configure::read('mUrl').'/admin/lookbook',
 				'active'	=> '/admin/lookbook'
-				),
+			),
 			'Nuevo Look Book' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> Configure::read('mUrl').'/admin/lookbook/add',
 				'active'	=> '/admin/lookbook/add'
-				)
+			)
+		);
 
-			);
 		$this->set('navs', $navs);
 
 		$h1 = array(
 			'name' => 'Look Book',
 			'icon' => 'gi gi-list'
-			);
+		);
+
 		$this->set('h1', $h1);
-
-	    $this->loadModel('Product');
-	    $prods = $this->Product->find('all');
+    $this->loadModel('Product');
+    $prods = $this->Product->find('all');
 		$this->set('prods', $prods);
-	    $this->render('productos');
-
-        $this->loadModel('LookBooks');
-	    $lookb = $this->LookBooks->find('all');
+    $this->render('productos');
+    $this->loadModel('LookBooks');
+    $lookb = $this->LookBooks->find('all');
 		$this->set('lookb', $lookb);
-	    $this->render('lookbook');
+    $this->render('lookbook');
 
-    	switch ($action) {
-	    	case 'add':
-	    	    if ($this->request->is('POST')){
-			        $this->autoRender = false;
+  	switch ($action) {
+    	case 'add':
+  	    if ($this->request->is('POST')){
+	        $this->autoRender = false;
+	        $data = $this->request->data;
 
-			        $data = $this->request->data;
+	        if(!empty($data['props']) && !empty($data['img_url'])) {
+		        foreach ($data['props'] as &$prop) {
+              $product_detail = $this->Product->find('first', array('conditions'=>array('id'=>$prop['id'])));
+		        	$toSave[] = array(
+      	   	    'img_url' => $data['img_url'],
+			          'product_id' => $prop['id'],
+                'article' => $product_detail['Product']['article'],
+                'name'=>$product_detail['Product']['name'],
+            	);
+   	        }
+            $this->LookBooks->saveAll($toSave);
+	        }
 
-			        if(!empty($data['props']) && !empty($data['img_url'])) {
+	        return $this->redirect(array('action'=>'lookbook'));
+  			} else {
 
-				        foreach ($data['props'] as &$prop) {
+    			return $this->render('lookbook-detail');
+    		}
 
-                            $product_detail = $this->Product->find('first', array('conditions'=>array('id'=>$prop['id'])));
+    	break;
 
-				        	   $toSave[] = array(
-				        	   	    'img_url' => $data['img_url'],
-          			                'product_id' => $prop['id'],
-					                'article' => $product_detail['Product']['article'],
-					                'name'=>$product_detail['Product']['name'],
-					            );
-             	        }
-                            $this->LookBooks->saveAll($toSave);
-			        }
+    	case 'delete':
 
-			        return $this->redirect(array('action'=>'lookbook'));
-    			} else {
+	    	if ($this->request->is('post')) {
+	    		$this->autoRender = false;
+	    		$this->LookBooks->delete($this->request->data['id']);
+	    	}
 
-	    			return $this->render('lookbook-detail');
-	    		}
-	    		break;
-
-	    	case 'delete':
-		    	if ($this->request->is('post')) {
-		    		$this->autoRender = false;
-		    		$this->LookBooks->delete($this->request->data['id']);
-		    	}
-	    		break;
-	    }
+    	break;
+    }
 	}
 
 	public function carrito() {

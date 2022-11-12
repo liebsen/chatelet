@@ -182,7 +182,7 @@ echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' 
 </div>
 <?php echo $this->element('admin-menu'); ?>
 <div class="block-section table-responsive">
-	<table id="example-datatables" class="table table-bordered table-hover" data-url="/admin/product_order">
+	<table id="example-datatables" class="table table-bordered table-hover" data-url="/admin/ordernum/product">
 		<thead>
 			<tr>
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>
