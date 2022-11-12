@@ -25,6 +25,13 @@
               <input type="text" id="" name="data[href]" value="<?php echo (isset($item)) ? $item['Banner']['href'] : ''; ?>" required>
             </div>
           </div>
+          <br /> 
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Abrir enlace en otra pestaña'); ?></label>
+            <div class="controls">
+              <input type="checkbox" name="data[blank]" class="form-control" <?=(!empty($p['Home']['display_popup_form']))?'checked':''?>>
+            </div>
+          </div>          
           <br />       
           <div class="control-group">
             <label class="control-label" for=""><?=__('Seleccione una imagen de Banner')?></label>
@@ -36,7 +43,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
-              <input type="number" name="data[ordernum]" value="<?= $item['Banner']['ordernum']?>">
+              <input type="number" name="data[ordernum]" value="<?=  !empty($item) ? $item['Banner']['ordernum'] : '100' ?>">
             </div>
             <small class="text-muted">Seleccioná el orden de prioridad esta categoría</small>
           </div>

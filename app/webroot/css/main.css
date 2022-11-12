@@ -3501,7 +3501,7 @@ a.thumbnail-borderless,
 @media (min-width: 992px) {
 
     .form-actions {
-        left: 21.5rem;
+        right: 2.5rem;
     }
     /* Hide Side Content */
     .hide-side-content #page-sidebar {

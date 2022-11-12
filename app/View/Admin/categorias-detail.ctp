@@ -57,7 +57,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
-              <input type="number" name="data[ordernum]" value="<?= !empty($cat) ? $cat['Category']['ordernum'] : '' ?>">
+              <input type="number" name="data[ordernum]" value="<?= !empty($cat) ? $cat['Category']['ordernum'] : '100' ?>">
             </div>
             <small class="text-muted">Seleccioná el orden de prioridad esta categoría</small>
           </div>
