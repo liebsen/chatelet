@@ -193,7 +193,7 @@ let apiSearch = (q) => {
           $('.search-results').append(str)
         }
         setTimeout(() => {
-          var w = ($('.search-item').length / data.query[0].count) * 100
+          var w = data.query[0].count ? ($('.search-item').length / data.query[0].count) * 100 : 0
           $('.search-bar').css({'width': `${w}%`})
           if (parseInt(data.query[0].count) > $('.search-item').length) {
             $('.search-more').html('<a href="javascript:loadMoreSearch(' + (searchPage + 1) + ')">Mostrar más resultados</a>')
