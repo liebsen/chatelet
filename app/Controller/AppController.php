@@ -130,7 +130,6 @@ class AppController extends Controller
         ]);
 
         $this->set('banners', $banners);
-
         $this->loadModel('Setting');
         $setting    = $this->Setting->findById('show_shop');
         $show_shop  = (!empty($setting['Setting']['value'])) ? 1 : 0;

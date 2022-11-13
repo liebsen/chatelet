@@ -40,6 +40,13 @@ $(document).ready(function() {
       }
     });
 
+    $('#searches-datatables').DataTable({
+      "ordering": false,
+      "language": {
+        "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      }
+    });
+
     $('#example-datatables').dataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
     $('#contacto-datatables').dataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
     

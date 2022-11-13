@@ -1619,6 +1619,46 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$this->set('banners', $banners);
 	  $this->render('banners');
 	}
+
+	public function searches($action = null) {
+		$navs = array(
+			'Lista' => array(
+				'icon' 		=> 'gi gi-list',
+				'url'		=> Configure::read('mUrl').'/admin/search',
+				'active'	=> '/admin/search'
+			),
+			'Nuevo Banner' => array(
+				'icon' 		=> 'gi gi-circle_plus',
+				'url'		=> Configure::read('mUrl').'/admin/search/add',
+				'active'	=> '/admin/search/add'
+			)
+		);
+
+		$this->set('navs', $navs);
+		$h1 = array(
+			'name' => 'Búsquedas',
+			'icon' => 'gi gi-list'
+		);
+		$this->set('h1', $h1);
+    $this->loadModel('Search');
+	  $searches = $this->Search->find('all',array(
+	    'joins' => array(
+        array(
+          'table' => 'users',
+          'alias' => 'UserJoin',
+          'type' => 'INNER',
+          'conditions' => array(
+              'UserJoin.id = Search.user_id'
+          )
+        )
+	    ),
+	    'fields' => array('UserJoin.*', 'Search.*'),
+	  	'order' => array('Search.id DESC'),
+    ));
+		$this->set('searches', $searches);
+	  $this->render('searches');
+	}
+
 	private function saveFile($name, $data) {
 		/* save file if any */
     $filepath = '';
