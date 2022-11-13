@@ -287,7 +287,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   padding: 0;
   width: 54px;
   font-size: 11px;
-  padding-top: 41px;
+  padding-top: 38px;
   text-align: center;
   color: #e398c1;
 }
@@ -298,7 +298,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   padding: 0;
   width: 54px;
   font-size: 11px;
-  padding-top: 41px;
+  padding-top: 38px;
   text-align: center;
   color: #e398c1;
 }
@@ -759,7 +759,7 @@ align-items: center;}
 
 #productOptions  .product-categories {
   position: relative;
-  z-index: 99;
+  z-index: 2;
 }
 #productOptions .product-list a .hover { border: 2px solid #f50081; color: #f50081; font-size: 40px; font-weight: 500; height: 90%; left: 5%; opacity: 0; padding-top: 30%; position: absolute; text-align: center; top: 5%; width: 90%; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #productOptions .product-list a .hover small { color: #252424; font-size: 22px; }
