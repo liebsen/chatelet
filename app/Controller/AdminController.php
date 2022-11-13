@@ -1646,13 +1646,13 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
         array(
           'table' => 'users',
           'alias' => 'UserJoin',
-          'type' => 'INNER',
+          'type' => 'LEFT',
           'conditions' => array(
               'UserJoin.id = Search.user_id'
           )
         )
 	    ),
-	    'fields' => array('UserJoin.*', 'Search.*'),
+	    'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Search.*'),
 	  	'order' => array('Search.id DESC'),
     ));
 		$this->set('searches', $searches);
