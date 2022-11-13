@@ -72,6 +72,8 @@ function updateSrcTo(obj){
                                 'controller' => 'tienda',
                                 'action' => 'productos',
                                 $slug
+                            ), array(
+                              'class' => ($category_id === $category['id'] ? 'text-theme' : '')
                             )
                         );
                         echo '</li>';
@@ -80,7 +82,7 @@ function updateSrcTo(obj){
                     </ul>
                 </nav>
             </div>
-            <div class="hidden-lg hidden-md visible-xs-* visible-sm-* col-sm-12 col-xs-12">
+            <div class="hidden-lg hidden-md visible-xs-* visible-sm-* col-sm-12 col-xs-12 product-categories">
                 <nav>
                     <ul>
                         <?php
@@ -91,18 +93,20 @@ function updateSrcTo(obj){
                         if (strpos($slug, 'trajes')!==false){
                           $slug = 'trajes-de-bano';
                         }
-                                echo '<li>';
-                                echo $this->Html->link(
-                                    $category['name'],
-                                    array(
-                                        'controller' => 'tienda',
-                                        'action' => 'productos',
-                                        $slug
-                                    )
-                                );
-                                echo '</li>';
-                            }
-                           ?>
+                        echo '<li>';
+                        echo $this->Html->link(
+                          $category['name'],
+                          array(
+                              'controller' => 'tienda',
+                              'action' => 'productos',
+                              $slug
+                          ), array(
+                            'class' => ($category_id === $category['id'] ? 'text-theme' : '')
+                          )
+                        );
+                        echo '</li>';
+                    }
+                   ?>
                     </ul>
                 </nav>
             </div>
