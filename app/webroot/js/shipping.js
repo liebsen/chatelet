@@ -7,10 +7,9 @@ $(function(){
 		}
 
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-		var coupon = parseInt($('.coupon_bonus').text())
+		var coupon = parseInt($('.coupon_bonus').text()) || 0
 		var subtotal = parseFloat($('#subtotal_compra').val()) || carrito.subtotal_price
 		cargo = 'shipment'
-
 
 		if(!coupon && carrito.coupon_bonus) {
 			coupon = carrito.coupon_bonus
@@ -24,7 +23,7 @@ $(function(){
 
 		//console.log('subtotal',subtotal)
 		//console.log('coupon',coupon)
-		var price = parseFloat((subtotal - coupon).toFixed(2))
+		var price = subtotal - coupon
 		//console.log('price(1)',price)
 		if (!freeShipping) {
 			price+= cost

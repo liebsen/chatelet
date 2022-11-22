@@ -1,4 +1,5 @@
-const max_count = 5
+var max_count = 5
+
 function addCount() {
 	var value = parseInt($('.has-item-counter.active .product-count').val()) + 1
 	if (value > max_count) max_count = 5
