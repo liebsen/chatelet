@@ -52,11 +52,16 @@
       table.removeChild(dragElem);
       dragElem = null;
       mouseDrag = false;
+      const order1 = row1.attributes['data-order'].value
+      const order2 = row2.attributes['data-order'].value
       $.post(table.getAttribute('data-url'), {
         row1_id: row1.attributes['data-id'].value,
         row2_id: row2.attributes['data-id'].value,
-        row1_order: row1.attributes['data-order'].value,
-        row2_order: row2.attributes['data-order'].value
+        row1_order: order1,
+        row2_order: order2
+      }).then(() => {
+        row1.attributes['data-order'].value = order2
+        row2.attributes['data-order'].value = order1
       })
     })
   }  
@@ -114,13 +119,7 @@
         { view: window, cancelable: true, bubbles: true }
       ));    
   }  
-  
-  
-  
-  
-  
-
-  
+    
   function getRows() {
     return table.querySelectorAll('tbody tr');
   }    
