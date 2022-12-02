@@ -351,8 +351,11 @@ class ShopController extends AppController {
 			$name_categories = $this->Category->findById($category_id);
             $name_categories = $name_categories['Category']['name'];
 
-			$products = $this->Product->findAllByCategoryId($category_id);
-
+			//$products = $this->Product->findAllByCategoryId($category_id,['order' => ['Product.ordernum ASC']]);
+			$products = $this->Product->find('all',[
+				'conditions' => ['category_id' => $category_id ],
+				'order' => ['Product.ordernum ASC']
+			]);
 
 			if (empty($products)) return $this->redirect(array('controller' => 'shop', 'action' => 'index'));
 
@@ -415,7 +418,7 @@ class ShopController extends AppController {
 					'id <>' => $product_id,
 					'stock_total > ' => 0
 				),
-				'order' => ['Product.promo DESC']
+				'order' => ['Product.ordernum ASC']
 			)
 		);
 
