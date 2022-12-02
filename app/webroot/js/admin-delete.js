@@ -47,7 +47,9 @@ $(document).ready(function() {
       }
     });
 
-    $('#example-datatables').dataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
+    $('#example-datatables').dataTable({"aoColumnDefs": [ 
+      { "bSortable": false, "aTargets": [ 7 ] } 
+    ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
     $('#contacto-datatables').dataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
     
     /*new $.fn.dataTable.Responsive($('#example-datatables'), {
