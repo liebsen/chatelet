@@ -30,7 +30,7 @@
           </div>
           <br />     
           <div class="dummy-block<?php echo $setting['Setting']['value'] == 'default' ? ' dummy-block-hidden' : '' ?>">
-            <small>Ingrese el monto mínimo. Ingrese 0 para deshabilitar. </small> 
+            <small>Ingrese el monto mínimo. <span class="dummy-sub-block<?php echo $setting['Setting']['value'] != 'zip_code' ? ' dummy-block-hidden' : '' ?>">Ingrese valor cero para deshabilitar monto mínimo. </span></small> 
             <br />
             <input class="form-control" type="number" name="shipping_price_min" value="<?php echo $price['Setting']['value']; ?>"/>
             <br /> 
