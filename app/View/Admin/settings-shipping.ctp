@@ -25,7 +25,7 @@
               <input class="form-control" type="radio" name="data[value]" id="min_price" value="min_price" <?php if (!empty($setting['Setting']['value'] == 'min_price')){ echo "checked=checked"; } ?> /> <label  class="is-clickable" for="min_price">Envío gratuito para compra mínima [<b><?php echo $price['Setting']['value']; ?></b> pesos]</label>
             </p>
             <p>
-              <input class="form-control" type="radio" name="data[value]" id="zip_code" value="zip_code" <?php if (!empty($setting['Setting']['value'] == 'zip_code')){ echo "checked=checked"; } ?> /> <label  class="is-clickable" for="zip_code">Envío gratuito para código postal [<b><?=$amount?></b> códigos postales]</label>
+              <input class="form-control" type="radio" name="data[value]" id="zip_code" value="zip_code" <?php if (!empty($setting['Setting']['value'] == 'zip_code')){ echo "checked=checked"; } ?> /> <label  class="is-clickable" for="zip_code">Envío gratuito para código postal. Monto mínimo permanece activo si el valor es mayor a cero. [<b><?=$amount?></b> códigos postales]</label>
             </p>
           </div>
           <br />     

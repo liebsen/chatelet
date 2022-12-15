@@ -525,12 +525,12 @@ class CarritoController extends AppController
 		$shipping_price = $this->Setting->findById('shipping_price_min');
 		$freeShipping = false;
 		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
-			if (@$shipping_config['Setting']['value'] == 'min_price'){
-				$freeShipping = intval($price) >= intval($shipping_price['Setting']['value']);	
+			if (@$shipping_config['Setting']['value'] == 'min_price' || $shipping_price['Setting']['value'] > 1){
+				$freeShipping = intval($price) >= intval($shipping_price['Setting']['value']);
 			}
-			if (@$shipping_config['Setting']['value'] == 'zip_code'){
+			if (!$freeShipping && $zip_code && @$shipping_config['Setting']['value'] == 'zip_code'){
 				$zip_codes = explode(',',$shipping_config['Setting']['extra']);
-				if (count($zip_codes) && $zip_code) {
+				if (count($zip_codes)) {
 					$filter = [];
 					foreach($zip_codes as $code) {
 						$filter[] = trim($code);
