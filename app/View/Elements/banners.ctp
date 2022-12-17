@@ -1,4 +1,4 @@
-<div id="carousel-banners" class="carousel slide animated fadeIn speed delay2" data-interval="3000" data-ride="carousel">
+<div id="carousel-banners" class="carousel slide animated fadeIn"data-interval="10000" data-ride="carousel">
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
   <?php foreach ($banners as $key => $banner): ?>
