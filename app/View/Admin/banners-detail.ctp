@@ -67,7 +67,7 @@
       </div>      
       <br />               
       <div class="form-actions">
-        <a href="/admin/categorias" class="btn btn-info"><i class="icon-repeat"></i> Atrás</a>
+        <a href="/admin/banners" class="btn btn-info"><i class="icon-repeat"></i> Atrás</a>
         <button type="reset" class="btn btn-danger"><i class="icon-repeat"></i> Reset</button>
         <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
       </div>
