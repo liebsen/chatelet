@@ -75,7 +75,14 @@ class AppController extends Controller
         $this->set('user', $this->Auth->user());
         $carro = $this->Session->read('Carro');
         $this->set('carro', $carro);
+        $this->loadModel('Banner');
 
+        $banners = $this->Banner->find('all', [
+          'conditions' => ['enabled' => 1],
+          'order' => ['Banner.ordernum ASC']
+        ]);
+
+        $this->set('banners', $banners);
         $basicfont = 'Roboto Condensed';
         $font = $basicfont;
         // 'Fira Sans Condensed', 'Sniglet','Roboto Condensed', 'Archivo Narrow'

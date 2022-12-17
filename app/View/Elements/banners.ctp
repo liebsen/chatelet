@@ -2,13 +2,15 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
   <?php foreach ($banners as $key => $banner): ?>
-    <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>">
+    <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>">
       <a href="<?php echo router::url($banner['Banner']['href']) ?>">
         <?php if($banner['Banner']['img_url']):?>
-          <div class="slider-full" style="background-image:url(<?php echo $value; ?>)"></div>
+          <div class="slider" style="background-image:url(<?php echo $banner['Banner']['img_url']; ?>)"></div>
         <?php else: ?>
         <div class="carousel-caption">
-            <span><span class="text-bold"><?php echo $banner['Banner']['title']; ?></span>: <?php echo $banner['Banner']['text']; ?></span>
+          <span>
+            <span class="text-bold"><?php echo $banner['Banner']['title']; ?></span>: <?php echo $banner['Banner']['text']; ?>
+          </span>
         </div>
         <?php endif ?>
       </a>
