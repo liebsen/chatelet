@@ -8,7 +8,7 @@
           <div class="slider-full" style="background-image:url(<?php echo $value; ?>)"></div>
         <?php else: ?>
         <div class="carousel-caption">
-            <span><?php echo $banner['Banner']['title']; ?> : <?php echo $banner['Banner']['text']; ?></span>
+            <span><span class="text-bold"><?php echo $banner['Banner']['title']; ?></span>: <?php echo $banner['Banner']['text']; ?></span>
         </div>
         <?php endif ?>
       </a>
