@@ -23,10 +23,10 @@ class HomeController extends AppController {
 		$home = $this->Home->find('first');
 		$this->set('home', $home['Home']);
     $this->loadModel('Banner');
+
     $banners = $this->Banner->find('all', [
-        'conditions' => [
-            'enabled' => 1
-        ]
+      'conditions' => ['enabled' => 1],
+      'order' => ['Banner.ordernum ASC']
     ]);
 
     $this->set('banners', $banners);
