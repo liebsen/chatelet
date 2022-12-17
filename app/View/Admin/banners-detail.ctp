@@ -16,16 +16,30 @@
           echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
         }
       ?>
-      <div class="row-fluid">
-        <div class="span6">
+      <div class="row">
+        <div class="col-md-6">
           <h4 class="sub-header">Información Principal</h4>
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
+            <div class="controls">
+              <input class="form-control" type="text" id="" name="data[title]" value="<?php echo (isset($item)) ? $item['Banner']['title'] : ''; ?>" required>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
+            <div class="controls">
+              <textarea class="form-control" name="data[text]" required><?php echo (isset($item)) ? $item['Banner']['text'] : ''; ?></textarea>
+            </div>
+          </div>          
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Enlace'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[href]" value="<?php echo (isset($item)) ? $item['Banner']['href'] : ''; ?>" required>
+              <input class="form-control" type="text" id="" name="data[href]" value="<?php echo (isset($item)) ? $item['Banner']['href'] : ''; ?>" required>
             </div>
           </div>
-          <br /> 
+          <br />
+        </div>
+        <div class="col-md-6">
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Abrir enlace en otra pestaña'); ?></label>
             <div class="controls">
@@ -36,18 +50,20 @@
           <div class="control-group">
             <label class="control-label" for=""><?=__('Seleccione una imagen de Banner')?></label>
             <div class="controls">
-              <input type="file" class="attached" name="image">
+              <input class="form-control" type="file" class="attached" name="image">
             </div>
           </div>
           <br /> 
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
-              <input type="number" name="data[ordernum]" value="<?=  !empty($item) ? $item['Banner']['ordernum'] : '100' ?>">
+              <input class="form-control" type="number" name="data[ordernum]" value="<?=  !empty($item) ? $item['Banner']['ordernum'] : '100' ?>">
             </div>
-            <small class="text-muted">Seleccioná el orden de prioridad esta categoría</small>
+            <small class="text-muted">Seleccioná el orden de prioridad para esta banner</small>
           </div>
-        </div>                
+          <br />
+        </div>  
+        <br />              
       </div>      
       <br />               
       <div class="form-actions">

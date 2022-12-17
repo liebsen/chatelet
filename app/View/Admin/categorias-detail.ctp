@@ -59,7 +59,7 @@
             <div class="controls">
               <input type="number" name="data[ordernum]" value="<?= !empty($cat) ? $cat['Category']['ordernum'] : '100' ?>">
             </div>
-            <small class="text-muted">Seleccioná el orden de prioridad esta categoría</small>
+            <small class="text-muted">Seleccioná el orden de prioridad para esta categoría</small>
           </div>
         </div>                
       </div>      
