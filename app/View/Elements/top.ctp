@@ -82,4 +82,6 @@
   </head>
   <body>
   <?php echo $this->element('fontselect'); ?>
-  <?php echo $this->element('banner'); ?>
+  <?php if(!empty($banners)) :?>
+  <?php echo $this->element('banners'); ?>
+  <?php endif ?>
