@@ -82,3 +82,4 @@
   </head>
   <body>
   <?php echo $this->element('fontselect'); ?>
+  <?php echo $this->element('banner'); ?>

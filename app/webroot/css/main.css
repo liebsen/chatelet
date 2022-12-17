@@ -2855,7 +2855,8 @@ textarea.form-control {
 
 .table.table-condensed tbody > tr > th,
 .table.table-condensed tbody > tr > td {
-    padding: 2px 5px 1px;
+    /*padding: 2px 5px 1px;*/
+    padding: 0.75rem 1rem;
 }
 
 .table.table-bordered {
@@ -3483,12 +3484,12 @@ a.thumbnail-borderless,
     min-width: 100vw;
 }
 
-.controls {
+/* .controls {
     display: flex;
     justify-content: center;
     align-items: center;
     grid-gap: 1rem;
-}
+} */
 
 /*
 =================================================================

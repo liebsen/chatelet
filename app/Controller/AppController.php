@@ -122,14 +122,6 @@ class AppController extends Controller
             } */
         }
         
-        $this->loadModel('Banner');
-        $banners = $this->Banner->find('all', [
-            'conditions' => [
-                'enabled' => 1
-            ]
-        ]);
-
-        $this->set('banners', $banners);
         $this->loadModel('Setting');
         $setting    = $this->Setting->findById('show_shop');
         $show_shop  = (!empty($setting['Setting']['value'])) ? 1 : 0;

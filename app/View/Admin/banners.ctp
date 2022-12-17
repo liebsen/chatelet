@@ -8,6 +8,7 @@
 	<table id="banners-datatables" class="table table-bordered table-hover table-condensed draggable-table" data-url="/admin/banner_order">
 		<thead>
 			<tr>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Banner'); ?></th>    
 				<th class="hidden-phone hidden-tablet"><?php echo __('Enlace'); ?></th>    
 				<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -16,6 +17,11 @@
 		<tbody>
 			<?php foreach ($banners as $key => $banner): ?>
 				<tr data-id="<?= $banner['Banner']['id'] ?>" data-order="<?= $banner['Banner']['ordernum'] ?>">
+					<td>
+						<a href="<?=$this->Html->url(array('action'=>'banners','edit',$banner['Banner']['id']))?>">
+							<?=$banner['Banner']['title']?>
+						</a>
+					</td>
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'banners','edit',$banner['Banner']['id']))?>">
 							<?=$banner['Banner']['href']?>

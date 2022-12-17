@@ -22,7 +22,14 @@ class HomeController extends AppController {
 		
 		$home = $this->Home->find('first');
 		$this->set('home', $home['Home']);
+    $this->loadModel('Banner');
+    $banners = $this->Banner->find('all', [
+        'conditions' => [
+            'enabled' => 1
+        ]
+    ]);
 
+    $this->set('banners', $banners);
     if (isset($home['Home']['img_popup_newsletter']) && !empty($home['Home']['img_popup_newsletter'])) {
       $popupBG=explode(';', $home['Home']['img_popup_newsletter']);
       if (empty($popupBG[0])) {
