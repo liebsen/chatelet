@@ -812,9 +812,9 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	}
 
 
-	public function remove_promo($id = null){
+	public function remove_whatsapp($id = null){
 		$this->Promo->delete($id);
-		$this->redirect(array( 'action' => 'promos' ));
+		$this->redirect(array( 'action' => 'whatsapp' ));
 	}
 
 	public function save_file_admin()
@@ -1098,7 +1098,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	  $this->render('categorias');
 	}
 
-	public function promos(){
+	public function whatsapp(){
 		if($this->request->is('post')){
 			$data = $this->request->data;
 			if(!empty($data['Promo']['image']['name'])){
@@ -1115,8 +1115,8 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			);
 		$this->set('h1', $h1);
 
-		$promos = $this->Promo->find('all');
-		$this->set('promos',$promos);
+		$items = $this->Promo->find('all');
+		$this->set('items',$items);
 	}
 
 

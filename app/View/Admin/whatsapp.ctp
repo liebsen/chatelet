@@ -1,5 +1,5 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
-<?php echo $this->Html->script('promos',array('inline' => false)) ?>
+<?php echo $this->Html->script('whatsapp',array('inline' => false)) ?>
 
 <div class="block block-themed">
 	<div class="block-title">
@@ -26,11 +26,11 @@
 			</div>
 			<div class="col-xs-8">
 				<ul class="list-unstyled">
-					<?php foreach ($promos as $key => $promo): ?>
+					<?php foreach ($items as $key => $item): ?>
 					<li>
 						<br />
-						<img src="<?php echo Configure::read('imageUrlBase') . $promo['Promo']['image'] ?>" width="200">
-						<button class="btn btn-danger" onclick="window.location.href='<?php echo $this->Html->url(array('action'=>'remove_promo',$promo['Promo']['id'])) ?>'">x</button>
+						<img src="<?php echo Configure::read('imageUrlBase') . $item['Promo']['image'] ?>" width="200">
+						<button class="btn btn-danger" onclick="window.location.href='<?php echo $this->Html->url(array('action'=>'remove_whatsapp',$item['Promo']['id'])) ?>'">x</button>
 						<br />
 					</li>
 					<?php endforeach ?>
