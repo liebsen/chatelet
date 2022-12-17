@@ -29,13 +29,12 @@
 <style>
   #carousel-banners {
     font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
-    height: 40px;
     background-color: black;
     color: white;
   }
   #carousel-banners .carousel-caption {
       position: inherit;
-      padding: 0.5rem;
+      padding: 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
