@@ -33,11 +33,14 @@
     font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
     background-color: black;
     color: white;
+    height: 64px;
   }
   #carousel-banners .carousel-caption {
       position: inherit;
       padding: 1rem;
       display: flex;
+      height: 60px;
+      line-height: 1.25;
       justify-content: center;
       align-items: center;
   }
