@@ -230,7 +230,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .text-success {
   color: #11a611!important;
 }
-.wrapper { margin: 0 auto; max-width: 1270px; }
+.wrapper { margin: 0 auto; max-width: 1440px; }
 .link { color: #f50081; font-weight: 600; }
 .link:hover { color: #f50081; font-weight: 600; text-decoration: underline; }
 .discount-flag {
@@ -334,8 +334,8 @@ label input[type=checkbox]:disabled + .label-text:before {
   width: 2rem; 
   height: 2rem; 
   opacity: 1; 
-  right: 1.5rem; 
-  top: 1.5rem;
+  right: 2rem; 
+  top: 2rem;
   transition: all 0.25s ease-out;
 }
 .menuLayer a.close span { 
