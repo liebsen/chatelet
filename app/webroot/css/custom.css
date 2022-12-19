@@ -148,7 +148,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .is-product-photo {
   position: relative;
   background-color: rgba(0,0,0,0.1);
-  min-height: 20rem;
+  min-height: 46rem;
   /* min-height: 35rem; */
 }
 
