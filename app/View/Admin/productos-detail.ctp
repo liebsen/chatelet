@@ -208,7 +208,7 @@
                              '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'" />'.
                              '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
                           '<div class="right">'.
-                            '<a class="btn btn-xs btn-danger remove-item">Borrar</a>'.
+                            '<a class="btn btn-xs btn-danger remove-item" data-count="'.$index.'">Borrar</a>'.
                           '</div>'.
                         '</li>';
                       }
