@@ -75,10 +75,12 @@ $(document).ready(function() {
 		$('#size').empty();
 	}
 
-	$(document).on('click', '.remove-item', function() {
+	$(document).on('click', '.remove-item', function(e) {
 		var me = $(this);
+		var target = $(e.target);
 		var cindex = me.data('count');
 		console.log(me)
+		console.log(target)
 		console.log(cindex)
 		var ppId = $("input[name='props["+ cindex +"][id]'").val(); 
 		if(ppId!=""){
