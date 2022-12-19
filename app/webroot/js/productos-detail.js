@@ -75,22 +75,21 @@ $(document).ready(function() {
 		$('#size').empty();
 	}
 
-	$(document).on('click', '.remove-item', function(e) {
+	$(document).on('click', '.remove-item', function() {
 		var me = $(this);
-		var target = $(e.target);
 		var cindex = me.data('count');
-		console.log(me)
-		console.log(target)
-		console.log(cindex)
 		var ppId = $("input[name='props["+ cindex +"][id]'").val(); 
 		if(ppId!=""){
 			var r = confirm("Si elimina este registro no podra recuperarse. ¿Desea eliminarlo?");
         	if (r == true){
-        		console.log('---',ppId)
-				$.post(baseUrl+'admin/deleteProductProperty', {"id": ppId}).then((res) => {
-					console.log(res)
-		  	});
-		  	// Remove item that I'm in
+				$.ajax({
+					url: baseUrl+'admin/deleteProductProperty',
+					data: {"id": ppId},
+					type: 'POST'
+				}).success(function(data) {
+					
+			  	});
+			  	// Remove item that I'm in
 				me.closest('li').remove();
 			}
 		} else {
