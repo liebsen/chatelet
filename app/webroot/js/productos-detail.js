@@ -78,6 +78,8 @@ $(document).ready(function() {
 	$(document).on('click', '.remove-item', function() {
 		var me = $(this);
 		var cindex = me.data('count');
+		console.log(me)
+		console.log(cindex)
 		var ppId = $("input[name='props["+ cindex +"][id]'").val(); 
 		if(ppId!=""){
 			var r = confirm("Si elimina este registro no podra recuperarse. ¿Desea eliminarlo?");
