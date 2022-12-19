@@ -12,8 +12,6 @@ class CatalogoController extends AppController {
 		$catalog_first_line = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_first_line',$catalog_first_line);
 		unset($setting);
-   	$categories = $this->Category->find('all');
-		$this->set('categories', $categories);
     $lookbook = $this->LookBook->find('all');
 		$this->set('lookBook', $lookbook);
 	}

@@ -76,6 +76,7 @@ class AppController extends Controller
         $carro = $this->Session->read('Carro');
         $this->set('carro', $carro);
         $this->loadModel('Banner');
+        $this->loadModel('Category');
 
         $banners = $this->Banner->find('all', [
           'conditions' => ['enabled' => 1],
@@ -83,6 +84,9 @@ class AppController extends Controller
         ]);
 
         $this->set('banners', $banners);
+        $categories = $this->Category->find('all',array('order'=>array( 'Category.ordernum ASC' )));
+        $this->set('categories', $categories);
+
         $basicfont = 'Roboto Condensed';
         $font = $basicfont;
         // 'Fira Sans Condensed', 'Sniglet','Roboto Condensed', 'Archivo Narrow'

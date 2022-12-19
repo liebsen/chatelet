@@ -2203,9 +2203,11 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		header("Content-Type: application/json");
 		$this->loadModel('ProductProperty');
 		$this->autoRender = false;
+		$status = false;
 		if ($this->request->is('post')) {
-			$this->ProductProperty->delete($this->data['id']);
+			$status = $this->ProductProperty->delete($this->data['id']);
 		}
+		echo json_encode(['status' => $status]);
 		die();
 	}
 

@@ -6,8 +6,6 @@ class AyudaController extends AppController {
 	public function beforeFilter() {
     	parent::beforeFilter();
     	$this->loadModel('Setting');
-    	$categories = $this->Category->find('all');
-		$this->set('categories', $categories);
 		$setting 			 = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);

@@ -82,14 +82,11 @@ $(document).ready(function() {
 		if(ppId!=""){
 			var r = confirm("Si elimina este registro no podra recuperarse. ¿Desea eliminarlo?");
         	if (r == true){
-				$.ajax({
-					url: baseUrl+'admin/deleteProductProperty',
-					data: {"id": ppId},
-					type: 'POST'
-				}).success(function(data) {
-					
-			  	});
-			  	// Remove item that I'm in
+        		console.log('---',ppId)
+				$.post(baseUrl+'admin/deleteProductProperty', {"id": ppId}).then((res) => {
+					console.log(res)
+		  	});
+		  	// Remove item that I'm in
 				me.closest('li').remove();
 			}
 		} else {

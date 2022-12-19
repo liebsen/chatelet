@@ -5,8 +5,6 @@ class ContactoController extends AppController {
 	public function beforeFilter() {
     	parent::beforeFilter();
     	$this->loadModel('Setting');
-    	$categories = $this->Category->find('all');
-		$this->set('categories', $categories);
         
         $lookbook = $this->LookBook->find('all');
 		$this->set('lookBook', $lookbook);

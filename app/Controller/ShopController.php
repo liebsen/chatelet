@@ -17,8 +17,6 @@ class ShopController extends AppController {
 	public function beforeFilter() {
   	parent::beforeFilter();
   	$this->loadModel('Setting');
-		$categories = $this->Category->find('all',array('order'=>array( 'Category.ordernum ASC' )));
-		$this->set('categories', $categories);
     $setting = $this->Setting->findById('image_prodshop');
 		$image_prodshop = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('image_prodshop',$image_prodshop);
@@ -41,8 +39,6 @@ class ShopController extends AppController {
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('page_video',$page_video);
 
-		$categories = $this->Category->find('all',array('order'=>array( 'Category.ordernum ASC' )));
-		$this->set('categories', $categories);
 		//var_dump($categories);die;
 		$setting 			 = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';

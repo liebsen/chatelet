@@ -160,8 +160,6 @@ class CarritoController extends AppController
 	public function beforeFilter()
 	{
   	parent::beforeFilter();
-  	$categories = $this->Category->find('all');
-		$this->set('categories', $categories);
 		$catalog_flap_map = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($catalog_flap_map['Setting']['value'])) ? $catalog_flap_map['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);

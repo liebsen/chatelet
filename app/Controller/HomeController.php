@@ -46,8 +46,6 @@ class HomeController extends AppController {
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('page_video',$page_video);
 		$this->loadModel('Category');
-		$categories = $this->Category->find('all');
-		$this->set('categories', $categories);
     $this->loadModel('Store');
 		$stores = $this->Store->find('all');
 		$this->set('stores', $stores);
