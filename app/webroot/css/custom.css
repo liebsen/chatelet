@@ -334,7 +334,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   width: 2rem; 
   height: 2rem; 
   opacity: 1; 
-  right: 2rem; 
+  right: 1.5rem; 
   top: 2rem;
   transition: all 0.25s ease-out;
 }
@@ -1859,7 +1859,7 @@ span.count.is-empty {
 
 @media (max-width: 767px) {
     .menuLayer a.close {
-      top: 1.5rem;
+      top: 2rem;
     }
     .navbar-nav>li>a.user, .navbar-nav>li>a.shop {
         background: none!important;
