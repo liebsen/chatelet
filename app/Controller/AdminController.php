@@ -1101,8 +1101,18 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	public function whatsapp(){
 		if($this->request->is('post')){
 			$data = $this->request->data;
-			if(!empty($data['Promo']['image']['name'])){
-				$file = $this->save_file( $data['Promo']['image'] );
+			$promo = $data['Promo'];
+
+			unset($data['Promo']);
+	    $this->loadModel('Setting');
+	    if ($this->request->is('post')) {
+	      foreach($data as $id => $value) {
+	        $this->Setting->save(['id' => $id, 'value' => $value]);
+	      }
+	    }
+
+			if(!empty($promo['image']['name'])){
+				$file = $this->save_file( $promo['image'] );
 				$this->Promo->save(array(
 					'id' => null,
 					'image' => $file,

@@ -121,9 +121,24 @@ class AppController extends Controller
         $this->loadModel('Setting');
         $a = $this->Setting->findById('stock_min');
         $b = $this->Setting->findById('list_code');
+        $c = $this->Setting->findById('whatsapp_enabled');
+        $d = $this->Setting->findById('whatsapp_text');
+        $e = $this->Setting->findById('whatsapp_phone');
+        $f = $this->Setting->findById('whatsapp_autohide');
+        $g = $this->Setting->findById('whatsapp_animated');
 
         Configure::write('stock_min', @$a['Setting']['value']);
         Configure::write('list_code', @$b['Setting']['value']);
+
+        $data = [
+            'whatsapp_enabled' => @$c['Setting']['value'],
+            'whatsapp_text' => @$d['Setting']['value'],
+            'whatsapp_phone' => @$e['Setting']['value'],
+            'whatsapp_autohide' => @$f['Setting']['value'],
+            'whatsapp_animated' => @$g['Setting']['value']
+        ];
+
+        $this->set('data', $data);
 
         if(!empty($this->Auth->user('role')) && $this->Auth->user('role') == 'admin'){
             $site_visits = $this->site_visits();
