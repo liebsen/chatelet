@@ -761,6 +761,7 @@ span.validation-password {
 
 .whatsapp-block {
 	position: fixed;
+	z-index: 10;
 	bottom: 1rem;
 	right: 1rem;
 	display: flex;
@@ -780,4 +781,20 @@ span.validation-password {
 	border-radius: 100%;
 	background-color: #5cb85c;
 	color: white;
+}
+
+.whatsapp-text {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.25rem;
+	background-color: #5cb85c;
+	color: white;
+	border-radius: 10rem;
+	position: absolute;
+	right: 0.5rem;
+	bottom: 0;
+	padding: 0.5rem 2rem;
+	z-index: -1;
+	width: 15rem;
 }

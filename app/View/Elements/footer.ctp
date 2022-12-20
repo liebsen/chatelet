@@ -2,7 +2,11 @@
 <?php if ($data['whatsapp_enabled']): ?>
     <a href="https://wa.me/<?= $data['whatsapp_phone'] ?>?text=" class="d-block whatsapp-block animated scaleIn delay3">
         <i class="fa fa-whatsapp"></i>
-        <span class="whatsapp-text"><?= $data['whatsapp_text'] ?></span>
+        <?php if(!empty($data['whatsapp_text'])): ?>
+        <span class="whatsapp-text font-system">
+            <?= $data['whatsapp_text'] ?>
+        </span>
+        <?php endif ?>
     </a>
 <?php endif ?>
     <footer>
