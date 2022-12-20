@@ -794,7 +794,7 @@ span.validation-password {
 	position: absolute;
 	right: 0.5rem;
 	bottom: 0;
-	padding: 0.5rem 2rem;
+	padding: 1.25rem 2rem;
 	z-index: -1;
 	width: 15rem;
 }
