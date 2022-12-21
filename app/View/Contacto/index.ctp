@@ -8,7 +8,7 @@
           <h1>Contactate<br>con nosotros</h1>
         </div>
         <div class="col-md-6">
-          <div class="animated rubberBand delay1">                      
+          <div class="animated bounceIn delay1">                      
             <div class="box w-leaves">
               <h3>¿Tenés alguna consulta o sugerencia?</h3>
               <p>Completá el siguiente formulario y hacenos llegar tus inquietudes o recomendaciones que creas pertinentes.</p>
