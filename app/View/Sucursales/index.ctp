@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-6">
                     <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
-                      <input class="p-1" type="text" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                      <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
                       <input type="submit" id="enviar" value="ok">
                     <?php echo $this->Form->end(); ?>
                 </div>
