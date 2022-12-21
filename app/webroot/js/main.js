@@ -296,10 +296,7 @@ $(function () {
   if (document.querySelector('.autohide')) {
     var segs = parseInt(Array.from(document.querySelector('.autohide').classList).filter(e => e.indexOf('segs-') > -1)[0].replace('segs-','')) || 30
     setTimeout(() => {
-      document.querySelector('.autohide').classList.remove('animated','chatIn')
-      setTimeout(() => {
-        document.querySelector('.autohide').classList.add('animated','chatOut')
-      }, 10)
+      document.querySelector('.autohide > .whatsapp-text').classList.add('animated','chatOut')
     }, segs * 1000)
   }
   // Toggle Side content
