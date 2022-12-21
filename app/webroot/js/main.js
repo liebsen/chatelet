@@ -293,6 +293,15 @@ $(function () {
     }, 500)        
   })
 
+  if (document.querySelector('.autohide')) {
+    var segs = parseInt(Array.from(document.querySelector('.autohide').classList).filter(e => e.indexOf('segs-') > -1)[0].replace('segs-','')) || 30
+    setTimeout(() => {
+      document.querySelector('.autohide').classList.remove('animated','chatIn')
+      setTimeout(() => {
+        document.querySelector('.autohide').classList.add('animated','chatOut')
+      }, 10)
+    }, segs * 1000)
+  }
   // Toggle Side content
   /*body.toggleClass('hide-side-content');*/
   $('#toggle-side-content').click(function(){ 
