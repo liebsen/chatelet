@@ -787,7 +787,8 @@ span.validation-password {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 1.25rem;
+	font-size: 1rem;
+	line-height: 1.25;
 	background-color: #5cb85c;
 	color: white;
 	border-radius: 10rem;
@@ -796,5 +797,5 @@ span.validation-password {
 	bottom: 0;
 	padding: 1.25rem 2rem;
 	z-index: -1;
-	width: 15rem;
+	width: 16rem;
 }
