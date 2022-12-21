@@ -21,10 +21,6 @@ html, body {
 	min-height: 100%;
 }
 
-select {
-	padding-left: 6px!important;
-}
-
 #launcher {
 	visibility: hidden;
 }
@@ -529,9 +525,9 @@ select {
 #particular-modal .dropdown-toggle.selectpicker,
 #mayorista-modal .dropdown-toggle.selectpicker {
 	display: inline-block;
+	padding: 5px 10px;
 	/*height: 25px;*/
-//*	width: 190px !important; */
-	padding: 4px;
+	/*	width: 190px !important; */
 }
 
 #particular-modal .bootstrap-select,
