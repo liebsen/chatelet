@@ -1099,12 +1099,12 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	}
 
 	public function whatsapp(){
+	  $this->loadModel('Setting');
 		if($this->request->is('post')){
 			$data = $this->request->data;
 			$promo = $data['Promo'];
 
 			unset($data['Promo']);
-	    $this->loadModel('Setting');
 	    if ($this->request->is('post')) {
 	      foreach($data as $id => $value) {
 	        $this->Setting->save(['id' => $id, 'value' => $value]);
@@ -1125,6 +1125,18 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			);
 		$this->set('h1', $h1);
 
+		$data = [];
+		$map = $this->Setting->findById('whatsapp_enabled');
+		$data['whatsapp_enabled'] = $map['Setting']['value'];
+		$map = $this->Setting->findById('whatsapp_phone');
+		$data['whatsapp_phone'] = $map['Setting']['value'];
+		$map = $this->Setting->findById('whatsapp_text');
+		$data['whatsapp_text'] = $map['Setting']['value'];
+		$map = $this->Setting->findById('whatsapp_autohide');
+		$data['whatsapp_autohide'] = $map['Setting']['value'];
+		$map = $this->Setting->findById('whatsapp_animated');
+		$data['whatsapp_animated'] = $map['Setting']['value'];
+		$this->set('data', $data);
 		$items = $this->Promo->find('all');
 		$this->set('items',$items);
 	}
