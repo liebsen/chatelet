@@ -62,14 +62,12 @@ select {
 .tap-to-continue {
 	position: absolute;
 	bottom: 1rem;
-	right: 1rem;
-	background-color: #f50081;
+	left: 1rem;
+	text-align: center;
 	white-space: nowrap;
 	border-radius: 3px;
 	padding: 0.75rem 1.25rem;
-	border: 1px solid white;
 	color: white;
-	box-shadow: 0 0 8px #0006;
 	text-shadow: 0 0 2px #0006;
 }
 .tap-to-continue .fa {
@@ -762,7 +760,7 @@ span.validation-password {
 .whatsapp-block {
 	position: fixed;
 	opacity: 0;
-	z-index: 10;
+	z-index: 1060;
 	bottom: 1rem;
 	right: 1rem;
 	display: flex;
