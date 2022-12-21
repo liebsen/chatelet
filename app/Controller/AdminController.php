@@ -1136,8 +1136,9 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$data['whatsapp_autohide'] = $map['Setting']['value'];
 		$map = $this->Setting->findById('whatsapp_animated');
 		$data['whatsapp_animated'] = $map['Setting']['value'];
-		$this->set('data', $data);
+
 		$items = $this->Promo->find('all');
+		$this->set('data', $data);		
 		$this->set('items',$items);
 	}
 

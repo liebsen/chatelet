@@ -1,10 +1,12 @@
 <?php echo $this->Html->css('font-awesome', array('inline' => false)); ?>
 <?php if ($data['whatsapp_enabled']): ?>
-    <a href="https://wa.me/<?= $data['whatsapp_phone'] ?>?text=" class="d-block whatsapp-block animated scaleIn delay3">
+    <a href="https://wa.me/<?= $data['whatsapp_phone'] ?>?text=" class="d-block whatsapp-block animated slideInUp delay3">
         <i class="fa fa-whatsapp"></i>
         <?php if(!empty($data['whatsapp_text'])): ?>
         <span class="whatsapp-text font-system">
-            <?= $data['whatsapp_text'] ?>
+            <span class="animated scaleIn delay4">
+                <?= $data['whatsapp_text'] ?>                    
+            </span>
         </span>
         <?php endif ?>
     </a>
