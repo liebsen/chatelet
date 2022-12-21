@@ -7,17 +7,20 @@
                         <h1>Consultar<br>envíos</h1>
                     </div>
                     <div class="col-md-6">
-                        <div class="box w-leavesbox2">
-                            <p>Los datos son extraídos de OCA. También se puede consultar el estado del envío comunicándose con el centro de atención al cliente de OCA: 0800-999-7700</p>
+                        <div class="animated rubberBand delay1">
+                            <div class="box w-leaves">
+                                <h3>¿Tenés alguna consulta o sugerencia?</h3>
+                                <p>Los datos son extraídos de OCA. También se puede consultar el estado del envío comunicándose con el centro de atención al cliente de OCA: 0800-999-7700</p>
 
-                            <h3>Seguimiento de paquetes</h3>
-                             <?php echo $this->Form->create() ?>
-                             <form>
-                                <input type="text" class="guia" name="data[guia]" placeholder="Nº de pieza" required>
-                                <input type="submit" class="consultar" id="consult" value="Consultar">
-                            </form>
-                            <?php echo $this->Form->end(); ?>
-                        </div>
+                                <h3>Seguimiento de paquetes</h3>
+                                 <?php echo $this->Form->create() ?>
+                                 <form>
+                                    <input type="text" class="guia" name="data[guia]" placeholder="Nº de pieza" required>
+                                    <input type="submit" class="consultar" id="consult" value="Consultar">
+                                </form>
+                                <?php echo $this->Form->end(); ?>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
             </div>

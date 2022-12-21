@@ -8,9 +8,11 @@
                         <h1>Preguntas<br>frecuentes</h1>
                     </div>
                     <div class="col-md-6">
-                        <div class="box w-leaves">
-                            <h3>Lo que tenés que saber antes de comprar</h3>
-                            <p>Si tenes alguna consulta no dudes en contactarte con nosotros o recurrir a las preguntas frecuentes que se encuentran a continuación:</p>
+                        <div class="animated rubberBand delay1">
+                            <div class="box w-leaves">
+                                <h3>Lo que tenés que saber antes de comprar</h3>
+                                <p>Si tenes alguna consulta no dudes en contactarte con nosotros o recurrir a las preguntas frecuentes que se encuentran a continuación:</p>
+                            </div>
                         </div>
                     </div>
                 </div>

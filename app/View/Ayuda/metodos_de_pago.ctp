@@ -8,10 +8,12 @@
                         <h1>Métodos<br>de pago</h1>
                     </div>
                     <div class="col-md-6">
-                        <div class="box w-leaves">
-                            <h3>Comprá en Châtelet con tu método preferido</h3>
-                            <p>Podés pagar desde tu casa a través de mercado pago o transferencia bancaria. Si tu elección es realizarlo con tarjeta de crédito (*) (<strong>VISA, MasterCard, Argencard, American Express, Tarjeta Naranja, Cabal, Tarjeta Shopping e Italcred</strong>) mercado pago solicitará los datos necesarios y podrá enviarte una confirmación para que puedas validarla por cuestiones de seguridad.</p>
-                            <p>Pagos a través de RapiPago o Pago Fácil o Bapro (**), mercado pago solicitará datos básicos para poder emitir la boleta correspondiente y que la puedas imprimir y abonar en cualquier centro de pago autorizado.</p>
+                        <div class="animated rubberBand delay1">
+                            <div class="box w-leaves">                        
+                                <h3>Comprá en Châtelet con tu método preferido</h3>
+                                <p>Podés pagar desde tu casa a través de mercado pago o transferencia bancaria. Si tu elección es realizarlo con tarjeta de crédito (*) (<strong>VISA, MasterCard, Argencard, American Express, Tarjeta Naranja, Cabal, Tarjeta Shopping e Italcred</strong>) mercado pago solicitará los datos necesarios y podrá enviarte una confirmación para que puedas validarla por cuestiones de seguridad.</p>
+                                <p>Pagos a través de RapiPago o Pago Fácil o Bapro (**), mercado pago solicitará datos básicos para poder emitir la boleta correspondiente y que la puedas imprimir y abonar en cualquier centro de pago autorizado.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
