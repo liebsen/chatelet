@@ -752,7 +752,7 @@ span.user {
 }
 span.validation-email {
 	display: block;
-    color: #a94442;
+  color: #a94442;
 }
 span.validation-password {
 	display: block;
@@ -776,8 +776,8 @@ span.validation-password {
 	justify-content: center;
 	align-items: center;	
 	font-size: 3.5rem;
-	width: 5rem;
-	height: 5rem;
+	width: 4.5rem;
+	height: 4.5rem;
 	border-radius: 100%;
 	background-color: #5cb85c;
 	color: white;
@@ -789,6 +789,7 @@ span.validation-password {
 	align-items: center;
 	font-size: 1rem;
 	line-height: 1.25;
+	height: 4.5rem;
 	background-color: #5cb85c;
 	color: white;
 	border-radius: 10rem;
