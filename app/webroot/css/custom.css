@@ -318,7 +318,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   z-index: 12;
   background: #FFF;
   /* border-bottom: 2px solid #efb0d2; */
-  box-shadow: var(--box-shadow-downwards);
+  box-shadow: var(--box-shadow);
   left: 0;
   display: none;
   padding: 40px 0;
@@ -2282,6 +2282,9 @@ span.count.is-empty {
   
   .box-search {
     width: 18rem;
+  }
+  .float-top-left .box-search {
+    margin-left: 1.25rem;
   }
 
   .box.w-leaves {
