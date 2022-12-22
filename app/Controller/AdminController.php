@@ -2128,7 +2128,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',
-				'url'		=> Configure::read('mUrl').'/admin/subscription',
+				'url'		=> Configure::read('mUrl').'/admin/subscriptions',
 				'active'	=> '/admin/newsletter'
 			)
 		);
