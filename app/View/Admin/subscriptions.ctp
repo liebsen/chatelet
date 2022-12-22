@@ -3,10 +3,21 @@
 	echo $this->Html->script('admin-delete', array('inline' => false));
 ?>
 <div class="row hide-print">
-  <div class="col-xs-12">
-    <a href="/admin/subscription_export_mails" target="_blank">
-      <button class="btn btn-success" type="button">Exportar Emails</button>
-    </a> 
+  <div class="col-xs-12 text-right p-2">
+		<div class="d-inline dropdown">
+		  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Exportar
+		  </button>
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		    <a class="dropdown-item" href="/admin/newsletter_export_emails?limit=100">100</a>
+		    <a class="dropdown-item" href="/admin/newsletter_export_emails?limit=250">250</a>
+		    <a class="dropdown-item" href="/admin/newsletter_export_emails?limit=500">500</a>
+		    <a class="dropdown-item" href="/admin/newsletter_export_emails?limit=1000">1000</a>
+		    <a class="dropdown-item" href="/admin/newsletter_export_emails?limit=5000">5000</a>
+		    <a class="dropdown-item" href="/admin/newsletter_export_emails?limit=0">Todos</a>
+		  </div>
+		</div>
+
     <?php if(!isset($_GET['extended'])) :?>
     <a href="/admin/subscriptions?extended=1">
       <button class="btn btn-success" type="button">Ver todas</button>

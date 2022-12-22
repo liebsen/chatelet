@@ -25,6 +25,10 @@
 =================================================================
 */
 
+.d-inline {
+    display: inline;
+}
+
 .left-door, .right-door {
     width: 50%;
     height: 100%;

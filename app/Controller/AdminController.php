@@ -642,16 +642,28 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     return (!empty($searchResult['response']['results']))?$searchResult['response']['results']:array();
 	}
 
-  public function subscription_export_mails(){
+  public function newsletter_export_emails(){
     $this->autoRender=false;
 		$this->loadModel('Subscription');
 
     $list = [];
     $arraux = [];
-    $subscriptions = $this->Subscription->find('all',array('conditions'=>array( 'Subscription.email LIKE' => "%@%" )));
+	
+    $config = array(
+    	'conditions' => array( 'Subscription.email LIKE' => "%@%" ),
+    	'order' => array('Subscription.id DESC')
+    );
+
+    if (!empty($_REQUEST['limit'])) {
+    	$config['limit'] = $_REQUEST['limit'];
+    }
+
+    $subscriptions = $this->Subscription->find('all',$config);
 
     foreach($subscriptions as $subscription) {
-      array_push($list, $subscription['Subscription']['email']);
+      $email = $subscription['Subscription']['email'];
+			array_push($arraux, $email);
+			array_push($list, $arraux);      
     }
 
     $output = fopen("php://output",'w') or die("Can't open php://output");
