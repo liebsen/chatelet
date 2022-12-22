@@ -1,6 +1,6 @@
 <?php echo $this->Html->css('font-awesome', array('inline' => false)); ?>
 <?php if ($data['whatsapp_enabled']): ?>
-    <a href="https://wa.me/<?= $data['whatsapp_phone'] ?>?text=" class="d-block whatsapp-block animated chatIn delay2<?= !empty($data['whatsapp_autohide']) ? " autohide segs-{$data['whatsapp_autohide']}" : '' ?>" target="_blank">
+    <a href="https://wa.me/<?= $data['whatsapp_phone'] ?>?text=Hola, tengo una consulta" class="d-block whatsapp-block animated chatIn delay2<?= !empty($data['whatsapp_autohide']) ? " autohide segs-{$data['whatsapp_autohide']}" : '' ?>" target="_blank">
       <i class="fa fa-whatsapp"></i>
       <?php if(!empty($data['whatsapp_text'])): ?>
       <span class="whatsapp-text font-system">
@@ -84,7 +84,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:$zopim.livechat.window.show();">
+                    <!--a href="javascript:$zopim.livechat.window.show();"-->
+                    <a href="https://wa.me/<?= $data['whatsapp_phone'] ?>?text=Hola, deseo hablar con un asesor" target="_blank">
                         <span>Chateá con un asesor</span>
                     </a>
                 </li>
