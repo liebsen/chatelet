@@ -642,6 +642,29 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     return (!empty($searchResult['response']['results']))?$searchResult['response']['results']:array();
 	}
 
+  public function subscription_export_mails(){
+    $this->autoRender=false;
+		$this->loadModel('Subscription');
+
+    $list = [];
+    $arraux = [];
+    $subscriptions = $this->Subscription->find('all',array('conditions'=>array( 'Subscription.email LIKE' => "%@%" )));
+
+    foreach($subscriptions as $subscription) {
+      array_push($list, $subscription['Subscription']['email']);
+    }
+
+    $output = fopen("php://output",'w') or die("Can't open php://output");
+    header("Content-Type:application/csv");
+    header("Content-Disposition:attachment;filename=subscriptions_emails.csv");
+    fputcsv($output, array('Email'));
+    foreach ($list as $campos) {
+      fputcsv($output, $campos);
+    }
+
+    fclose($output);
+  }
+
 	public function sales_export_mails(){
 		$this->autoRender=false;
 		$list = [];
@@ -2118,13 +2141,22 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$this->set('h1', $h1);
 
 		$this->loadModel('Subscription');
-    	if ($action == 'delete' && $this->request->is('post')) {
-    		$this->autoRender = false;
-    		$this->Subscription->delete($this->request->data['id']);
-    	}
+  	if ($action == 'delete' && $this->request->is('post')) {
+  		$this->autoRender = false;
+  		$this->Subscription->delete($this->request->data['id']);
+  	}
 
-	    $subscriptions = $this->Subscription->find('all',array('order'=>array( 'Subscription.id DESC' )));
-	    $this->set('subscriptions', $subscriptions);
+  	$config = array(
+    	'order'=> array( 'Subscription.id DESC' )
+    );
+
+    if (empty($_REQUEST['extended'])) {
+    	$config['limit'] = 10;
+    }
+
+    $subscriptions = $this->Subscription->find('all',$config);
+
+    $this->set('subscriptions', $subscriptions);
 		return $this->render('subscriptions');
 	}
 

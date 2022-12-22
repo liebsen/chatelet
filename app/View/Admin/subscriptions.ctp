@@ -2,6 +2,18 @@
 	echo $this->element('admin-menu');
 	echo $this->Html->script('admin-delete', array('inline' => false));
 ?>
+<div class="row hide-print">
+  <div class="col-xs-12">
+    <a href="/admin/subscription_export_mails" target="_blank">
+      <button class="btn btn-success" type="button">Exportar Emails</button>
+    </a> 
+    <?php if(!isset($_GET['extended'])) :?>
+    <a href="/admin/subscriptions?extended=1">
+      <button class="btn btn-success" type="button">Ver todas</button>
+    </a>
+    <?php endif ?>
+  </div>
+</div>
 <div class="block-section">
 	<table id="example-datatables" class="table table-bordered table-hover">
 		<thead>
