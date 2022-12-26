@@ -263,6 +263,11 @@ body {
   background-color: #e8ffa8!important;
 }
 
+.order-saved {
+    position: fixed;
+    right: -15rem;
+    bottom: 1rem;
+}
 .affix {
     top: 0;
     left: 0;

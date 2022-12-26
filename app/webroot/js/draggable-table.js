@@ -3,7 +3,7 @@
   
   const table = document.querySelector('.table');
   const tbody = table.querySelector('tbody');
-  
+  tbody.innerHTML+= '<div class="order-saved"><i class="fa fa-hand-o-up fa-lg"></i></div>'
   var currRow = null,
       row1,row2,
       dragElem = null,
@@ -62,6 +62,11 @@
       }).then(() => {
         row1.attributes['data-order'].value = order2
         row2.attributes['data-order'].value = order1
+        document.querySelector('.order-saved').classList.add('slideInRight')
+        setTimeout(() => {
+          document.querySelector('.order-saved').classList.remove('slideInRight')
+          document.querySelector('.order-saved').classList.add('slideInLeft')
+        })
       })
     })
   }  
