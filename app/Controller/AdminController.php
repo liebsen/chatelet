@@ -646,8 +646,8 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     $this->autoRender=false;
 		$this->loadModel('Subscription');
 
-    $list = [];
-    $arraux = [];
+    //$list = [];
+    //$arraux = [];
 	
     $config = array(
     	'conditions' => array( 'Subscription.email LIKE' => "%@%" ),
@@ -659,21 +659,17 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     }
 
     $subscriptions = $this->Subscription->find('all',$config);
-
-    foreach($subscriptions as $subscription) {
-      $email = $subscription['Subscription']['email'];
-			array_push($arraux, $email);
-			array_push($list, $arraux);      
-    }
-
     $output = fopen("php://output",'w') or die("Can't open php://output");
     header("Content-Type:application/csv");
     header("Content-Disposition:attachment;filename=subscriptions_emails.csv");
-    fputcsv($output, array('Email'));
-    foreach ($list as $campos) {
-      fputcsv($output, $campos);
-    }
+    fputcsv($output, ['email']);
 
+    foreach($subscriptions as $subscription) {
+      //$email = ;
+      fputcsv($output, [['email' => $subscription['Subscription']['email']]]);
+			//array_push($arraux, $email);
+			//array_push($list, $arraux);      
+    }
     fclose($output);
   }
 
