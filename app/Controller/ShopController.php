@@ -370,7 +370,7 @@ class ShopController extends AppController {
 				}
 			}
 
-			rsort($products);
+			//rsort($products);
 
       $this->set('name_categories',$name_categories);
 			$this->set('products', $products);
