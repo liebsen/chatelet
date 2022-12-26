@@ -662,11 +662,11 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     $output = fopen("php://output",'w') or die("Can't open php://output");
     header("Content-Type:application/csv");
     header("Content-Disposition:attachment;filename=subscriptions_emails.csv");
-    fputcsv($output, ['email']);
+    fputcsv($output, ['Email']);
 
     foreach($subscriptions as $subscription) {
       //$email = ;
-      fputcsv($output, [['email' => $subscription['Subscription']['email']]]);
+      fputcsv($output, [$subscription['Subscription']['email']]);
 			//array_push($arraux, $email);
 			//array_push($list, $arraux);      
     }
