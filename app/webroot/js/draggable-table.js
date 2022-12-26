@@ -3,7 +3,7 @@
   
   const table = document.querySelector('.table');
   const tbody = table.querySelector('tbody');
-  tbody.innerHTML+= '<div class="order-saved"><i class="fa fa-hand-o-up fa-lg"></i></div>'
+  document.body.innerHTML+= '<div class="order-saved"><i class="fa fa-hand-o-up fa-lg"></i></div>'
   var currRow = null,
       row1,row2,
       dragElem = null,
