@@ -1435,7 +1435,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	    		break;
 	    }
 
-	    $prods = $this->Product->find('all',array('order'=>array( 'Product.ordernum ASC' )));
+	    $prods = $this->Product->find('all',array('order'=>array( 'Product.category_id ASC','Product.ordernum ASC' )));
 	    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 	    $more_list_code_desc=[0,0,0,0,0,0,0,0,0,0];
 	    $more_list_category=[0,0,0,0,0,0,0,0,0,0];
