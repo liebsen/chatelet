@@ -3,7 +3,6 @@
   
   const table = document.querySelector('.table');
   const tbody = table.querySelector('tbody');
-  document.body.innerHTML+= '<div class="order-saved"><i class="fa fa-hand-o-up fa-lg"></i></div>'
   var currRow = null,
       row1,row2,
       dragElem = null,
@@ -14,6 +13,7 @@
       mouseDrag = false;  
   
   function init() {
+    document.body.innerHTML+= '<div class="order-saved"><i class="fa fa-hand-o-up fa-lg"></i></div>'
     bindMouse();
   }
   
