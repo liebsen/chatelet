@@ -265,7 +265,11 @@ body {
 
 .order-saved {
     position: fixed;
-    right: -15rem;
+    z-index: 1079;
+    opacity: 0;
+    font-size: 2rem;
+    transform: translate3d(15rem, 0, 0);
+    right: 1rem;
     bottom: 1rem;
 }
 .affix {
