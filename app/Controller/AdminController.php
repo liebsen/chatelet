@@ -1310,10 +1310,10 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$this->set('stock_min',@$a['Setting']['value']);
 		$this->set('list_code',@$b['Setting']['value']);
 		$this->set('show_shop',@$c['Setting']['value']);
-        $this->set('image_bannershop',@$d['Setting']['value']);
-        $this->set('image_menushop',@$e['Setting']['value']);
-        $this->set('image_prodshop',@$f['Setting']['value']);
-        $this->set('list_code_desc',@$g['Setting']['value']);
+    $this->set('image_bannershop',@$d['Setting']['value']);
+    $this->set('image_menushop',@$e['Setting']['value']);
+    $this->set('image_prodshop',@$f['Setting']['value']);
+    $this->set('list_code_desc',@$g['Setting']['value']);
 
         //create table discount_lists (id int unsigned auto_increment primary key, item_index int unsigned, category_id int(10) unsigned not null, list_code varchar(30) not null,updated_at date);
 		$navs = array(
@@ -1435,7 +1435,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	    		break;
 	    }
 
-	    $prods = $this->Product->find('all',array('order'=>array( 'Product.id DESC' )));
+	    $prods = $this->Product->find('all',array('order'=>array( 'Product.ordernum ASC' )));
 	    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 	    $more_list_code_desc=[0,0,0,0,0,0,0,0,0,0];
 	    $more_list_category=[0,0,0,0,0,0,0,0,0,0];
