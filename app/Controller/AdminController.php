@@ -665,10 +665,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     fputcsv($output, ['Email']);
 
     foreach($subscriptions as $subscription) {
-      //$email = ;
       fputcsv($output, [$subscription['Subscription']['email']]);
-			//array_push($arraux, $email);
-			//array_push($list, $arraux);      
     }
     fclose($output);
   }
