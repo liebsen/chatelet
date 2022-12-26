@@ -62,6 +62,7 @@
       }).then(() => {
         row1.attributes['data-order'].value = order2
         row2.attributes['data-order'].value = order1
+        document.querySelector('.order-saved').classList.remove('chatOut')
         document.querySelector('.order-saved').classList.add('chatIn')
         setTimeout(() => {
           document.querySelector('.order-saved').classList.remove('chatIn')
