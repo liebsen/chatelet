@@ -89,8 +89,8 @@
                     </a>
                 </li>
                 <li>
-                    <!--a href="javascript:$zopim.livechat.window.show();"-->
-                    <a href="https://wa.me/<?= $data['whatsapp_phone'] ?>?text=Hola, deseo hablar con un asesor" target="_blank">
+                    <a href="javascript:$zopim.livechat.window.show();">
+                    <!--a href="https://wa.me/<?= $data['whatsapp_phone'] ?>?text=Hola, deseo hablar con un asesor" target="_blank"-->
                         <span>Chateá con un asesor</span>
                     </a>
                 </li>
