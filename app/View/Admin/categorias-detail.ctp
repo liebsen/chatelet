@@ -22,7 +22,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[name]" value="<?php echo (isset($cat)) ? $cat['Category']['name'] : ''; ?>" required>
+              <input class="form-control" type="text" id="" name="data[name]" value="<?php echo (isset($cat)) ? $cat['Category']['name'] : ''; ?>" required>
             </div>
           </div>
           <br />       
@@ -33,7 +33,7 @@
               <img src="<?php echo Configure::read('imageUrlBase').$cat['Category']['img_url']?>" width="300">
             <?php endif ?>
             <div class="controls">
-              <input type="file" class="attached" name="image">
+              <input  class="form-control" type="file" class="attached" name="image">
             </div>
           </div>
           <br /> 
@@ -44,7 +44,7 @@
               <img src="<?php echo Configure::read('imageUrlBase').$cat['Category']['size']?>" width="300">
             <?php endif ?>
             <div class="controls">
-              <input type="file" class="attached" name="size">
+              <input  class="form-control" type="file" class="attached" name="size">
             </div>
           </div>
           <br />
@@ -66,7 +66,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
-              <input type="number" name="data[ordernum]" value="<?= !empty($cat) ? $cat['Category']['ordernum'] : '100' ?>">
+              <input  class="form-control" type="number" name="data[ordernum]" value="<?= !empty($cat) ? $cat['Category']['ordernum'] : '100' ?>">
             </div>
             <small class="text-muted">Seleccioná el orden de prioridad para esta categoría</small>
           </div>
