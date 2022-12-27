@@ -50,28 +50,76 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+        <section id="today" class="today-class-home">
+        <?php if(!empty($img_url_one)):?>
+            <?php if(!empty($home['category_mod_one'])){
+                echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_one'])).'>';
+                }else{
+                    if(!empty($home['url_mod_one'])){
+                        echo '<a href='.$home['url_mod_one'].'>' ;
+                    } else {
+                        echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                    }
+                }
 
-        <section id="listShop">
-          <div class="wrapper">
-            <div class="row">
-              <div class="col-xs-12">
-                <div class="row">
-              <?php foreach($categories as $category): ?>
-              <div class="col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
-                <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1">
-                  <img src="<?php echo Configure::read('imageUrlBase').$category['Category']['img_url']?>"" class="img-responsive img-cover">
-                  <span class="hover hidden-force">
-                     <?php echo $category['Category']['name']?><br>
-
-                  </span>
-                </a>
-              </div>
-              <?php endforeach ?>
-              </div></div>
+								echo '<div class="rectangle img-responsive" style="background-image: url('.Configure::read('imageUrlBase').$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>';
+								// echo '<img class="visible-xs hidden-sm hidden-md hidden-lg" style="width:100%;" src="'.Configure::read('imageUrlBase').$img_url_one.'" />'.'<h1>'.$home['module_one'].'</h1>';
+								echo '</a>';
+            ?>
+        <?php endif;?>
+        </section>
+        <section id="opts">
+            <div class="col-md-6 box-imgs no-padding" >
+                <?php if(!empty($home['category_mod_two'])){
+                    echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_two'])).'>';
+                    }else{
+                        if(!empty($home['url_mod_two'])){
+                            echo '<a href='.$home['url_mod_two'].'>' ;
+                        } else {
+                            echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                        }
+                    }
+                    //echo $home['module_two'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_two.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
+                    echo $home['module_two'].'<div class="mod-item img-responsive" style=background-image:url('.Configure::read('imageUrlBase').$img_url_two.')></div>'.'</a>';
+                ?>
             </div>
-          </div>
+
+            <div class="col-md-6 box-imgs no-padding">
+
+            <?php if(!empty($home['category_mod_three'])){
+                  echo '<a  class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_three'])).'>';
+                 }else{
+                    if(!empty($home['url_mod_three'])){
+                        echo '<a href='.$home['url_mod_three'].'>' ;
+                    } else {
+                        echo '<a class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+                    }
+                 }
+                //echo $home['module_three'].'<img  class="mod" src='.Configure::read('imageUrlBase').$img_url_three.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
+                echo $home['module_three'].'<div class="mod-item img-responsive" style=background-image:url('.Configure::read('imageUrlBase').$img_url_three.')></div>'.'</a>';
+            ?>
+            </div>
         </section>
 
+    <?php if(!empty($home['img_url_four'])):?>
+        <section id="today">
+        <?php if(!empty($home['category_mod_four'])){
+            echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'product',$home['category_mod_four'])).'>';
+        }else{
+            if(!empty($home['url_mod_four'])){
+                echo '<a href='.$home['url_mod_four'].'>' ;
+            } else {
+            	echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
+            }
+        }
+
+        echo '<div class="rectangle img-responsive" style="background-image: url('.Configure::read('imageUrlBase').$img_url_four.');">'.'<h1>'.$home['module_four'].'</h1>'.'</div>';
+        // echo '<img class="visible-xs hidden-sm hidden-md hidden-lg" style="width:100%;" src="'.Configure::read('imageUrlBase').$img_url_four.'" />';
+
+						echo '</a>';
+        ?>
+        </section>
+    <?php endif;?>
         <section id="suscribe">
             <div class="wrapper container is-flex-end">
                 <div class="col-md-6">
