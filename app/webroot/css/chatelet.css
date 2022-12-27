@@ -799,7 +799,7 @@ span.validation-password {
 	color: white;
 	border-radius: 10rem;
 	position: absolute;
-	right: 0.85rem;
+	right: 0.5rem;
 	bottom: 0;
 	padding: 1rem 1.5rem;
 	z-index: -1;
