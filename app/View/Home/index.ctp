@@ -58,9 +58,9 @@
                 <div class="row">
               <?php foreach($categories as $category): ?>
               <div class="col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
-                <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1">
+                <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
                   <img src="<?php echo Configure::read('imageUrlBase').$category['Category']['img_url']?>"" class="img-responsive img-cover">
-                  <span class="name hover">
+                  <span class="name p-1 text-uppercase">
                      <?php echo $category['Category']['name']?><br>
                   </span>
                 </a>

@@ -646,7 +646,16 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #filters .prices label span.active i { display: block; }
 #listShop { padding-bottom: 100px;}
 #listShop a { /*background: #e7e7e7;*/ display: block; margin-bottom: 30px; overflow: hidden; position: relative; }
-#listShop a img { height:20rem; opacity: 0.8; float: left; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
+#listShop a img {
+  /* height:20rem; */
+  opacity: 0.8;
+  float: left;
+  transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out; 
+}
 .hidden-force {
   display: none!important;
 }
