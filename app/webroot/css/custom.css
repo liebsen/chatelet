@@ -1333,7 +1333,8 @@ span.out{
   bottom: 2rem;
   right: 2rem;
   z-index: 1;
-  color: black;
+  color: white;
+  box-shadow: 0 0 5px #3333;
   font-size: 40px;
   font-weight: 600;
   margin: auto;
@@ -1341,6 +1342,7 @@ span.out{
 
 .img-resp{
   padding: 0; 
+  position: relative;
   min-height: 25vh;
   background-position: center center;
   background-size: cover;  

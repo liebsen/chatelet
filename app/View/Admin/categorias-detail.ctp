@@ -27,7 +27,19 @@
           </div>
           <br />       
           <div class="control-group">
-            <label class="control-label" for=""><?=__('Seleccione una imagen de Categoría')?></label>
+            <label class="control-label" for=""><?=__('Seleccione una imagen de banner para esta categoría')?></label>
+            <?php if(!empty($cat['Category']['banner_url'])):?>
+              <hr>
+              <img src="<?php echo Configure::read('imageUrlBase').$cat['Category']['banner_url']?>" width="300">
+            <?php endif ?>
+            <div class="controls">
+              <input  class="form-control" type="file" class="attached" name="image">
+            </div>
+          </div>
+
+          <br />       
+          <div class="control-group">
+            <label class="control-label" for=""><?=__('Seleccione una imagen de listado para esta categoría')?></label>
             <?php if(!empty($cat['Category']['img_url'])):?>
               <hr>
               <img src="<?php echo Configure::read('imageUrlBase').$cat['Category']['img_url']?>" width="300">
