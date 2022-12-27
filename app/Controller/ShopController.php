@@ -347,6 +347,7 @@ class ShopController extends AppController {
 			$category = $this->Category->findById($category_id);
       $name_categories = $category['Category']['name'];
       $img_categories = $category['Category']['img_url'];
+      $banner_categories = $category['Category']['banner_url'];
 
 			//$products = $this->Product->findAllByCategoryId($category_id,['order' => ['Product.ordernum ASC']]);
 			$products = $this->Product->find('all',[
@@ -375,6 +376,7 @@ class ShopController extends AppController {
 
       $this->set('name_categories',$name_categories);
       $this->set('img_categories',$img_categories);
+      $this->set('banner_categories',$banner_categories);
 			$this->set('products', $products);
 		}
 

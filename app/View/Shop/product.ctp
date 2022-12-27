@@ -47,11 +47,13 @@ function updateSrcTo(obj){
 }
 </style>
 
+<?php if(!empty($banner_categories)): ?>
 <div id="headabrigos">
-  <div class="img-resp is-main" style="background-image:url(<?php echo Configure::read('imageUrlBase').$img_categories ?>)">
-    <h1 class="name_shop animated delay3 fadeIn"><?php echo $name_categories; ?></h1>
+  <div class="img-resp is-main" style="background-image:url(<?php echo Configure::read('imageUrlBase').$banner_categories ?>)">
+    <h1 class="name_shop animated delay3 fadeIn"><?php echo $banner_categories; ?></h1>
   </div>  
 </div>
+<?php endif ?>
 
 <section id="productOptions">
     <div class="container-fluid">
