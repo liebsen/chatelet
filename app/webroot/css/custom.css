@@ -690,6 +690,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   margin: auto;
   min-height: 1.5rem;
   margin-bottom: 0.25rem;
+  line-height: 1.5;
   /* margin-top: 0.5rem; */
 }
 .price {
