@@ -27,7 +27,11 @@
           </div>
           <br />       
           <div class="control-group">
-            <label class="control-label" for=""><?=__('Seleccione una imagen de Categoria')?></label>
+            <label class="control-label" for=""><?=__('Seleccione una imagen de Categoría')?></label>
+            <?php if(!empty($cat['Category']['img_url'])):?>
+              <hr>
+              <img src="<?php echo Configure::read('imageUrlBase').$cat['Category']['img_url']?>" width="300">
+            <?php endif ?>
             <div class="controls">
               <input type="file" class="attached" name="image">
             </div>
@@ -35,6 +39,10 @@
           <br /> 
           <div class="control-group">
             <label class="control-label" for=""><?=__('Seleccione una imagen de Talles')?></label>
+            <?php if(!empty($cat['Category']['size'])):?>
+              <hr>
+              <img src="<?php echo Configure::read('imageUrlBase').$cat['Category']['size']?>" width="300">
+            <?php endif ?>
             <div class="controls">
               <input type="file" class="attached" name="size">
             </div>
