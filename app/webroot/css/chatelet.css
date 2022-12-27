@@ -767,19 +767,23 @@ span.validation-password {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	grid-gap: 1rem;	
+	grid-gap: 0.75rem;	
 }
 
-.whatsapp-block > .fa {
+.whatsapp-block > a > .fa {
 	display: flex;
 	justify-content: center;
 	align-items: center;	
-	font-size: 3.25rem;
-	width: 4.5rem;
-	height: 4.5rem;
+	font-size: 2.25rem;
+	width: 3.5rem;
+	height: 3.5rem;
 	border-radius: 100%;
 	background-color: #5cb85c;
 	color: white;
+}
+
+.whatsapp-block > a.chat > .fa{
+	background-color: #D20D67;
 }
 
 .whatsapp-text {
@@ -787,15 +791,16 @@ span.validation-password {
 	justify-content: center;
 	align-items: center;
 	font-size: 1rem;
-	line-height: 1.25;
-	height: 4.5rem;
+	line-height: 1;
+	height: 3.5rem;
 	background-color: #5cb85c;
 	color: white;
 	border-radius: 10rem;
 	position: absolute;
 	right: 0.5rem;
 	bottom: 0;
-	padding: 1.25rem 2rem;
+	padding: 1rem 1.5rem;
 	z-index: -1;
-	width: 16rem;
+	width: 15rem;
 }
+
