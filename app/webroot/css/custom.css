@@ -1339,6 +1339,11 @@ span.out{
   background-color: #eaeaea;
 }
 
+.img-resp.is-main {
+  min-height: 36rem;
+  background-position: top center;
+}
+
 .is-background-cover {
   background-repeat: no-repeat;
   background-size: 110%;
