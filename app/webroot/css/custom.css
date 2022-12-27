@@ -1329,15 +1329,13 @@ span.out{
 
 .name_shop{
 	position: absolute;
-    z-index: 1;
-    color: #FFF;
-    font-size: 40px;
-    font-weight: 600;
-    margin: auto;
-    margin-left: 45%;
-    margin-top: 5%;
-    text-indent: -999999999px
-
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1;
+  color: black;
+  font-size: 40px;
+  font-weight: 600;
+  margin: auto;
 }
 
 .img-resp{
@@ -1349,7 +1347,7 @@ span.out{
 }
 
 .img-resp.is-main {
-  min-height: 36rem;
+  min-height: 30rem;
   background-position: top center;
 }
 

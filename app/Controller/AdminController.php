@@ -1041,7 +1041,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 		$this->set('navs', $navs);
 		$h1 = array(
-			'name' => 'Categorias',
+			'name' => 'Categorías',
 			'icon' => 'gi gi-list'
 		);
 		$this->set('h1', $h1);
