@@ -28,7 +28,10 @@
 						<?php if(@$category['Category']['colsize'] == '20') echo '20%' ?>
 						<?php if(@$category['Category']['colsize'] == '3') echo '25%' ?>
 						<?php if(@$category['Category']['colsize'] == '4') echo '33%' ?>
+						<?php if(@$category['Category']['colsize'] == '40') echo '40%' ?>
 						<?php if(@$category['Category']['colsize'] == '6') echo '50%' ?>
+						<?php if(@$category['Category']['colsize'] == '60') echo '60%' ?>
+						<?php if(@$category['Category']['colsize'] == '80') echo '80%' ?>
 						<?php if(@$category['Category']['colsize'] == '12') echo '100%' ?>
 					</td>
 					<td>          
