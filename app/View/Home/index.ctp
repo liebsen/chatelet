@@ -54,7 +54,7 @@
         <section id="listShop">
           <div class="wrapper">
             <div class="row">
-              <div class="col-xs-12">
+              <div class="col-xs-12 p-0">
                 <div class="row">
               <?php foreach($categories as $category): ?>
               <div class="col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
