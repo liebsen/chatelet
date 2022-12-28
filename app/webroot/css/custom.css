@@ -649,6 +649,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #listShop a img {
   height:20rem;
   object-fit: cover;
+  object-position: top center;
   width: 100%;
   opacity: 0.8;
   margin-bottom: 0.5rem;
@@ -760,7 +761,9 @@ align-items: center;}
 #productOptions nav li a:hover { color: #f50081; }
 #productOptions a.btBig { border: 2px solid #f50081; color: #6e6e6e; display: block; font-size: 40px; font-weight: 600; padding: 240px 0; text-align: center; border-radius: 3px;}
 #productOptions a.btBig span { color: #f50081; font-size: 27px; }
-#productOptions .product-list a {  /*background: #e7e7e7;*/ display: inline-table; width: auto; background-color: transparent; margin-bottom: 10px; overflow: hidden; position: relative;height: auto; }
+#productOptions .product-list a {  /*background: #e7e7e7;*/ 
+  display: inline-table; width: 100%; 
+  background-color: transparent; margin-bottom: 10px; overflow: hidden; position: relative;height: auto; }
 #productOptions .product-list a img { 
   /*min-height: 20rem;
   max-height: 20rem;
@@ -1900,7 +1903,6 @@ span.count.is-empty {
 
     }
     #listShop a img {
-        margin: 0 auto;
         text-align: center;
         float: none;
 

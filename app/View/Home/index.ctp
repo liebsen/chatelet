@@ -53,11 +53,11 @@
 
         <section id="listShop">
           <div class="wrapper">
-            <div class="row">
-              <div class="col-xs-12 p-0">
-                <div class="row">
+            <div class="row m-1">
+              <div class="col-xs-12 p-1">
+                <div class="row m-1">
               <?php foreach($categories as $category): ?>
-              <div class="col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
+              <div class="p-1 col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
                 <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
                   <img src="<?php echo Configure::read('imageUrlBase').$category['Category']['img_url']?>" class="img-responsive img-cover">
                   <span class="name p-1 text-uppercase">
