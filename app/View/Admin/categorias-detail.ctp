@@ -65,7 +65,7 @@
             <div class="controls">
               <select class="form-control" name="data[colsize]">
                 <option value="6"<?= empty($cat['Category']['colsize']) ? ' selected' : '' ?>>Auto</option>
-                <option value="2"<?= @$cat['Category']['colsize'] == '2' ? ' selected' : '' ?>>20%</option>
+                <option value="20"<?= @$cat['Category']['colsize'] == '20' ? ' selected' : '' ?>>20%</option>
                 <option value="3"<?= @$cat['Category']['colsize'] == '3' ? ' selected' : '' ?>>25%</option>
                 <option value="4"<?= @$cat['Category']['colsize'] == '4' ? ' selected' : '' ?>>33%</option>
                 <option value="6"<?= @$cat['Category']['colsize'] == '6' ? ' selected' : '' ?>>50%</option>

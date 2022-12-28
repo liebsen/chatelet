@@ -25,6 +25,7 @@
 					</td>
 					<td>
 						<?php if(empty(@$category['Category']['colsize'])) echo 'Auto' ?>
+						<?php if(@$category['Category']['colsize'] == '20') echo '20%' ?>
 						<?php if(@$category['Category']['colsize'] == '3') echo '25%' ?>
 						<?php if(@$category['Category']['colsize'] == '4') echo '33%' ?>
 						<?php if(@$category['Category']['colsize'] == '6') echo '50%' ?>
