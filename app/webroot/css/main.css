@@ -263,15 +263,6 @@ body {
   background-color: #e8ffa8!important;
 }
 
-.order-saved {
-    position: fixed;
-    z-index: 1079;
-    opacity: 0;
-    font-size: 2rem;
-    transform: translate3d(15rem, 0, 0);
-    right: 1rem;
-    bottom: 1rem;
-}
 .affix {
     top: 0;
     left: 0;

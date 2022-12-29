@@ -13,7 +13,7 @@
       mouseDrag = false;  
   
   function init() {
-    window.document.body.insertAdjacentHTML( 'afterbegin', '<div class="order-saved animated"><i class="fa fa-thumbs-o-up fa-lg"></i></div>' );
+    window.document.body.insertAdjacentHTML( 'afterbegin', '<div class="draggable-saved animated"><i class="fa fa-thumbs-o-up fa-lg"></i></div>' );
     bindMouse();
   }
   
@@ -62,11 +62,11 @@
       }).then(() => {
         row1.attributes['data-order'].value = order2
         row2.attributes['data-order'].value = order1
-        document.querySelector('.order-saved').classList.remove('chatOut')
-        document.querySelector('.order-saved').classList.add('chatIn')
+        document.querySelector('.draggable-saved').classList.remove('chatOut')
+        document.querySelector('.draggable-saved').classList.add('chatIn')
         setTimeout(() => {
-          document.querySelector('.order-saved').classList.remove('chatIn')
-          document.querySelector('.order-saved').classList.add('chatOut')
+          document.querySelector('.draggable-saved').classList.remove('chatIn')
+          document.querySelector('.draggable-saved').classList.add('chatOut')
         }, 3000)
       })
     })
