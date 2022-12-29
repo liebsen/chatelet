@@ -1099,7 +1099,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		        }
 
 		        $file_real_name1 = null;
-		        if(!empty($this->request->params['form']['size']['name'])){
+		        if(!empty($this->request->params['form']['banner']['name'])){
 		            $file_real_name1 = $this->save_file($this->request->params['form']['banner']);
 		        }
 
