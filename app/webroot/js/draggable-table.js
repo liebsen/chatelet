@@ -52,6 +52,7 @@
       table.removeChild(dragElem);
       dragElem = null;
       mouseDrag = false;
+      if(!row1) return;
       const order1 = row1.attributes['data-order'].value
       const order2 = row2.attributes['data-order'].value
       $.post(table.getAttribute('data-url'), {
