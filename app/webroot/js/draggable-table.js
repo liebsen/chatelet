@@ -64,6 +64,7 @@
         row2.attributes['data-order'].value = order1
         document.querySelector('.draggable-saved').classList.remove('chatOut')
         document.querySelector('.draggable-saved').classList.add('chatIn')
+        clearSelection()
         setTimeout(() => {
           document.querySelector('.draggable-saved').classList.remove('chatIn')
           document.querySelector('.draggable-saved').classList.add('chatOut')
@@ -71,6 +72,15 @@
       })
     })
   }  
+
+  function clearSelection(){ 
+    if (window.getSelection) {
+      window.getSelection().removeAllRanges();
+    }
+    else if (document.selection) {
+      document.selection.empty();
+    }
+  }
   
   function swapRow(row, index) {
      let currIndex = Array.from(tbody.children).indexOf(currRow)
