@@ -1098,6 +1098,11 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		            $file_real_name = $this->save_file($this->request->params['form']['image']);
 		        }
 
+		        $file_real_name1 = null;
+		        if(!empty($this->request->params['form']['size']['name'])){
+		            $file_real_name1 = $this->save_file($this->request->params['form']['banner_url']);
+		        }
+
 		        $file_real_name2 = null;
 		        if(!empty($this->request->params['form']['size']['name'])){
 		            $file_real_name2 = $this->save_file($this->request->params['form']['size']);
@@ -1106,6 +1111,11 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		        if($file_real_name){
 		            $data['img_url'] = $file_real_name;
 		        }
+
+		        if($file_real_name1){
+		            $data['banner_url'] = $file_real_name1;
+		        }
+
 
 		        if($file_real_name2){
 		            $data['size'] = $file_real_name2;
