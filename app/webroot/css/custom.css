@@ -1342,6 +1342,7 @@ span.out{
   font-size: 40px;
   font-weight: 600;
   margin: auto;
+  text-shadow: 0 0 8px #666;
 }
 
 .img-resp{
