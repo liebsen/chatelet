@@ -52,7 +52,7 @@
               <img src="<?php echo Configure::read('imageUrlBase').$cat['Category']['banner_url']?>" width="300">
             <?php endif ?>
             <div class="controls">
-              <input  class="form-control" type="file" class="attached" name="image">
+              <input  class="form-control" type="file" class="attached" name="banner">
             </div>
           </div>
 
