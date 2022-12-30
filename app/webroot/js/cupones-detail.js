@@ -7,7 +7,6 @@ $(document).ready(function() {
 		$('.weekdays').each(function(e, i) {
 			weekdays+= $(i).is(':checked') ? $(i).val() : ''
 		})
-		console.log(weekdays)
 		$('#weekdays').val(weekdays)
 	})
 });

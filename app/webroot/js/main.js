@@ -94,10 +94,10 @@ let findSize = (str) => {
   if (str.length >= 19) {
     size = '1.15rem'
   }
-  if (str.length >= 22) {
+  if (str.length >= 24) {
     size = '1rem'
   }        
-  if (str.length >= 26) {
+  if (str.length >= 30) {
     size = '0.75rem'
   }
   return size

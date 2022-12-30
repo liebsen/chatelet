@@ -685,7 +685,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 }
 
 .name {
-  text-align:center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   font-size: 1rem;
   font-weight: 900;
   margin:10px auto 20px;
