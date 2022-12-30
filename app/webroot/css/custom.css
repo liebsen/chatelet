@@ -746,8 +746,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #listShop a .hover small { color: #252424; font-size: 18px; }
 #listShop a .hover small:after { background: #f50081; content: ""; display: block; height: 4px;border-radius: 3px; margin: 15px auto 0; width: 50px; }
 
-#listShop a:hover img { filter: contrast(150%); opacity: 1; }
-#listShop a:hover .hover { opacity: 0.6; }
+#listShop a:hover img { filter: contrast(120%); opacity: 0.95; }
+#listShop a:hover .hover { opacity: 0.75; }
 #infoShop { background: #fadcea; padding: 25px 0; }
 #infoShop .col-md-4 { color: #5c5a5a; font-size: 16px; line-height: 1.5; min-height: 10rem;
 display: flex;
@@ -781,10 +781,31 @@ align-items: center;}
   position: relative;
   z-index: 2;
 }
-#productOptions .product-list a .hover { border: 2px solid #f50081; color: #f50081; font-size: 40px; font-weight: 500; height: 90%; left: 5%; opacity: 0; padding-top: 30%; position: absolute; text-align: center; top: 5%; width: 90%; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
+#productOptions .product-list a .hover { 
+  border: 2px solid #f50081; 
+  color: #f50081; 
+  font-size: 40px; 
+  font-weight: 500; 
+  height: 90%; 
+  left: 5%; 
+  opacity: 0; 
+  padding-top: 30%; 
+  position: absolute; 
+  text-align: center; 
+  top: 5%; 
+  width: 90%; 
+  transition: all .3s ease-in-out; 
+  -moz-transition: all .3s ease-in-out; 
+  -ms-transition: all .3s ease-in-out; 
+  -webkit-transition: all .3s ease-in-out; 
+  -o-transition: all .3s ease-in-out; 
+}
 #productOptions .product-list a .hover small { color: #252424; font-size: 22px; }
 #productOptions .product-list a .hover small:after { background: #f50081; content: ""; display: block; height: 4px;border-radius: 3px; margin: 15px auto 0; width: 50px; }
-#productOptions .product-list a:hover img { filter: contrast(150%); opacity: .5; }
+#productOptions .product-list a:hover img { 
+  filter: contrast(120%); 
+  opacity: .95; 
+}
 #productOptions .product-list a:hover .hover { opacity: 1; }
 
 #detalle { background: url(../images/detallebg.jpg) no-repeat center center; background-size: cover; padding-top: 50px;    padding-bottom: 50px; }
@@ -1358,7 +1379,7 @@ span.out{
 }
 
 .img-resp.is-main {
-  min-height: 20rem;
+  min-height: 18.5rem;
   background-position: top center;
 }
 
@@ -1427,7 +1448,7 @@ span.out{
 }
 
 .search-item:hover .is-background-search {
-  filter: contrast(150%);
+  filter: contrast(120%);
 }
 /*
 .search-item:hover p {
@@ -1497,7 +1518,7 @@ span.out{
 }
 
 .search-results a:hover ..is-background-cover {
-  filter: contrast(150%);
+  filter: contrast(120%);
 }
 
 .search-results .is-background-cover {
