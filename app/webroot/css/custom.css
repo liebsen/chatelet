@@ -318,7 +318,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   z-index: 12;
   background: #FFF;
   /* border-bottom: 2px solid #efb0d2; */
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-downwards);
   left: 0;
   display: none;
   padding: 40px 0;
