@@ -137,20 +137,21 @@ function updateSrcTo(obj){
       }
 
       if(!$stock && $isProduct){
+        $content.= '<div class="desc-cont">'.
+          '<div class="desc-prod">'.
+            '<small>'. $item['desc'] .'</small>'.
+          '</div>'.
+          '<div class="name">'.$item_name.'</div>' . 
+          '<div class="price text-theme">'. str_replace(',00','',$this->Number->currency($priceStr, 'ARS', array('places' => 2))) .'</div>
+          </div>
+        </div>';
         echo '<div class="col-sm-6 col-md-4 col-lg-3 p-1">'.
-             '<img src="'.Router::url('/').'images/agotado3.png" class="out_stock" />'.
-             $ctrl->Html->link(
+          '<img src="'.Router::url('/').'images/agotado3.png" class="out_stock" />'.
+          $ctrl->Html->link(
           $content,
-            $url,
+          $url,
           array('escape' => false)
-        ).
-        '<div class="desc-cont">'.
-        '<div class="desc-prod">'.
-          '<small>'. $item['desc'] .'</small>'.
-        '</div>'.
-        '<div class="name">'.$item_name.'</div>' . 
-        '<div class="price text-theme">'. str_replace(',00','',$this->Number->currency($priceStr, 'ARS', array('places' => 2))) .'</div>
-        </div></div>';
+        );
       } else {
       // list of products.
        
@@ -172,11 +173,11 @@ function updateSrcTo(obj){
 
         echo '<div data-id="'.$item["id"].'" class="col-sm-6 col-md-4 col-lg-3 p-1 add-no-stock">'. 
            $ctrl->Html->link(
-            $content,
+            $content. '<div class="name">'.$item_name.'</div><div class="price text-theme">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
+          </div>',
             $url,
             array('escape' => false)
-          ). '<div class="name">'.$item_name.'</div><div class="price text-theme">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
-          </div>';
+          );
       }
     }
 

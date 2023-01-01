@@ -271,9 +271,9 @@
                             <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
                             <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
+                            <div class="name"><?= $alt_product_name ?></div>
+                            <div class="price text-theme"><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
                         </a>
-                        <div class="name"><?= $alt_product_name ?></div>
-                        <div class="price text-theme"><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
                     </div>
                     <?php }else{ ?>
 
@@ -287,9 +287,9 @@
                             <?php endif ?>
                             <img class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
+                            <div class="name"><?= $alt_product_name ?></div>
+                            <div class="price text-theme"><?= ceil($alt_product['old_price']) && ceil($alt_product['old_price']) !== ceil($alt_product['price']) ? '<span class="old_price">' .  str_replace(',00','',$this->Number->currency(ceil($alt_product['old_price']), 'ARS', array('places' => 2))). '</span>' : '' ?><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
                         </a>
-                        <div class="name"><?= $alt_product_name ?></div>
-                        <div class="price text-theme"><?= ceil($alt_product['old_price']) && ceil($alt_product['old_price']) !== ceil($alt_product['price']) ? '<span class="old_price">' .  str_replace(',00','',$this->Number->currency(ceil($alt_product['old_price']), 'ARS', array('places' => 2))). '</span>' : '' ?><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
                     </div>
                    <?php }endforeach; ?>
                 </div>
