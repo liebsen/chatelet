@@ -76,6 +76,7 @@ $(document).ready(function() {
 		return false;
 	});
     
-
-	google.maps.event.addDomListener(window, 'load', initialize);
+	if (google) {
+		google.maps.event.addDomListener(window, 'load', initialize);
+	}
 });
