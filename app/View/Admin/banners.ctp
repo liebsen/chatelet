@@ -8,9 +8,10 @@
 	<table id="banners-datatables" class="table table-bordered table-hover table-condensed draggable-table" data-url="/admin/ordernum/banner">
 		<thead>
 			<tr>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Banner'); ?></th>    
-				<th class="hidden-phone hidden-tablet"><?php echo __('Enlace'); ?></th>    
-				<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
+				<th class="hidden-phone hidden-tablet"><?php echo __('Banner'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Activo'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Enlace'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
 		</thead>
@@ -21,6 +22,9 @@
 						<a href="<?=$this->Html->url(array('action'=>'banners','edit',$banner['Banner']['id']))?>">
 							<?=$banner['Banner']['title']?>
 						</a>
+					</td>
+					<td>
+						<?=$banner['Banner']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
 					</td>
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'banners','edit',$banner['Banner']['id']))?>">

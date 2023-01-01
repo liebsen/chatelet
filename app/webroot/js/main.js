@@ -299,6 +299,14 @@ $(function () {
       document.querySelector('.autohide > .whatsapp-text').classList.add('animated','chatOut')
     }, segs * 1000)
   }
+
+  var menuLayerTop = 94;
+  if (document.getElementById('carousel-banners')) {
+    menuLayerTop = 157;
+  }
+  document.querySelectorAll('.menuLayer').forEach(e => {
+    e.style.top = `${menuLayerTop}px`;
+  })
   // Toggle Side content
   /*body.toggleClass('hide-side-content');*/
   $('#toggle-side-content').click(function(){ 
