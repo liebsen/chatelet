@@ -29,8 +29,8 @@
             <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
             <div class="controls text-center switch-scale">
               <?php
-                $enabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '1') || !isset($coupon) ? 'checked' : '';
-                $disabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '0') ? 'checked' : '';
+                $enabled = (isset($item) && $item['Banner']['enabled'] === '1') || !isset($item) ? 'checked' : '';
+                $disabled = (isset($item) && $item['Banner']['enabled'] === '0') ? 'checked' : '';
               ?>
               <label for="enabled_1">Sí</label> <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
               <label for="enabled_0">No</label> <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />

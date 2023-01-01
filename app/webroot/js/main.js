@@ -302,7 +302,8 @@ $(function () {
 
   var menuLayerTop = 94;
   if (document.getElementById('carousel-banners')) {
-    menuLayerTop = 157;
+    const height = document.getElementById('carousel-banners').clientHeight
+    menuLayerTop+= height;
   }
   document.querySelectorAll('.menuLayer').forEach(e => {
     e.style.top = `${menuLayerTop}px`;
