@@ -22,12 +22,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-
-
 $path = __DIR__ .'/../version';
 $version_count = (float) file_get_contents($path);
 $version = (float) $version_count / 1000;
-$version_short = number_format($version / 1000, 1);
 
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));

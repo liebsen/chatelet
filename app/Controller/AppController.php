@@ -156,6 +156,7 @@ class AppController extends Controller
         $image_menushop = (!empty($setting_menu['Setting']['value'])) ? $setting_menu['Setting']['value'] : '';
         $this->set('image_menushop',$image_menushop);
         $version_short = number_format($version_count / 1000, 1);
+        $version_short = str_replace('.0', '', $version_short);
         $this->set('version_text', $version_short . ' ' . $version_date);
     }
 
