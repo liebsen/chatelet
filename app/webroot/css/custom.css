@@ -306,7 +306,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav:not(.navbar-right)>li>a {
   margin: 0 0.5rem; 
 }
-.nav>li>a:focus, .nav>li>a:hover { border: none;}
+.nav>li>a:focus, .nav>li>a:hover { border: none; background-color: transparent;}
 .navbar-nav>li>a.user {
   background-image: url(../img/ic_usuario.svg);
 }
