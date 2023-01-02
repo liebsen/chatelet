@@ -26,16 +26,14 @@
           <?php endif ?>
           <?php if( !empty($show_shop) ): ?>
             <li>
-              <?php
-                  echo $this->Html->link('Shop', array('controller' => 'shop', 'action' => 'index'),array('class'=>'viewSubMenu'));
-              ?>
+              <a href="/#listShop"><?= $p['Home']['navbar_main_title'] ?></a>
             </li>
           <?php endif ?>
-          <li>
+          <!--li>
               <?php
                 echo $this->Html->link('WhatsApp', array('controller' => 'shop', 'action' => 'promos'));
               ?>
-          </li>
+          </li-->
           <li>
               <?php
                 echo $this->Html->link('Sucursales', array('controller' => 'sucursales', 'action' => 'index'));
@@ -203,7 +201,7 @@
   </div>
 </div>
 
-<div id="menuShop" class="menuLayer">
+<!--div id="menuShop" class="menuLayer">
     <a class="close">
         <span></span>
         <span></span>
@@ -240,4 +238,4 @@
             </div>
         </div>
     </div>
-</div>
+</div-->

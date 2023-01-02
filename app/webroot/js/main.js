@@ -177,8 +177,8 @@ let apiSearch = (q) => {
         str += '<div class="col-sm-6 col-md-3 col-lg-2 search-item animate fadeIn">' +
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 
             '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.discount_label ? '<div class="ribbon small bottom-left sp2"><span>' + item.discount_label + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
-            '<h2 class="text-center">'+`<span style="font-size:${findSize(item.name)}!important">${item.name}</span>`+'</h2>' + 
-            '<h3 class="price text-center">'+(item.old_price ? '<span class="old_price text-grey">$' + item.old_price + '</span>' : '') + '<span>$' + item.price + '</span></h3>' + 
+            '<h2 class="text-center">'+`<span>${item.name}</span>`+'</h2>' + 
+            '<div class="price-list text-center mb-2">'+(item.old_price ? '<span class="old_price text-grey">$' + item.old_price + '</span>' : '') + '<span>$' + item.price + '</span></div>' + 
           '</a>' + 
         '</div>'
       })

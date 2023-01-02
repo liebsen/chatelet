@@ -124,7 +124,7 @@ function updateSrcTo(obj){
       if ($isProduct) {
         $url['action'] = 'producto';
         $priceStr = '';
-        $item_name = \title_fontsize($item['name']);
+        $item_name = $item['name'];
 
         if (!empty($item['price'])){
           $priceStr = '$'. \price_format($item['price']);
@@ -142,7 +142,7 @@ function updateSrcTo(obj){
             '<small>'. $item['desc'] .'</small>'.
           '</div>'.
           '<div class="name">'.$item_name.'</div>' . 
-          '<div class="price text-theme">'. str_replace(',00','',$this->Number->currency($priceStr, 'ARS', array('places' => 2))) .'</div>
+          '<div class="price-list">'. str_replace(',00','',$this->Number->currency($priceStr, 'ARS', array('places' => 2))) .'</div>
           </div>
         </div>';
         echo '<div class="col-sm-6 col-md-4 col-lg-3 p-1">'.
@@ -173,7 +173,7 @@ function updateSrcTo(obj){
 
         echo '<div data-id="'.$item["id"].'" class="col-sm-6 col-md-4 col-lg-3 p-1 add-no-stock">'. 
            $ctrl->Html->link(
-            $content. '<div class="name">'.$item_name.'</div><div class="price text-theme">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
+            $content. '<div class="name">'.$item_name.'</div><div class="price-list">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
           </div>',
             $url,
             array('escape' => false)

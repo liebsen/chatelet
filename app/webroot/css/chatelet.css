@@ -739,7 +739,7 @@ span.user {
 	#opts .mod-item { min-height: 220px;} 
 }
 @media screen and (max-width: 768px) {
-	.whatsapp-block > .whatsapp-text {
+	.whatsapp-block .whatsapp-text {
 		display: none;
 	}
 	.marginTop {

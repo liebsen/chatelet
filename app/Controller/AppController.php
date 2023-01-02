@@ -147,7 +147,10 @@ class AppController extends Controller
             } */
         }
         
-        $this->loadModel('Setting');
+        $this->loadModel('Home');
+        $p = $this->Home->find('first');
+        $this->set('p', $p);
+
         $setting    = $this->Setting->findById('show_shop');
         $show_shop  = (!empty($setting['Setting']['value'])) ? 1 : 0;
         $this->set('show_shop',$show_shop);

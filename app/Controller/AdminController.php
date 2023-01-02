@@ -880,9 +880,12 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 		if ($this->request->is('post')) {
         $data = $this->request->data;
+    	if(empty($data['navbar_main_title'])) {
+    		$data['navbar_main_title']='Shop';
+    	}
     	if(empty($data['url_mod_one'])) {
     		$data['url_mod_one']=null;
-    	}
+    	}    	
     	if(empty($data['url_mod_two'])) {
     		$data['url_mod_two']=null;
     	}
@@ -919,6 +922,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     	if(!isset($data['display_popup_form_in_last'])){
     		$data['display_popup_form_in_last'] = 0;
     	}
+    	
     	$this->Home->save($data);
 		}
 

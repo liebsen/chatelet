@@ -301,7 +301,23 @@
 						</div>
 					</div>
 				</div>             
-			</div>      
+			</div>	
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-12">
+						<label class="control-label" for="columns-text"><?php echo __('Home'); ?></label>
+					</div>
+					<div class="col-md-9">
+						<div class="control-group">
+							<label class="control-label" for="columns-text"><?php echo __('Texto del menú principal'); ?></label>
+							<div class="controls">
+								<input type="text" id="" name="data[navbar_main_title]" value="<?php echo $p['Home']['navbar_main_title'] ?>">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="row">
 				<div class="col-md-12">
 					<div class="col-md-12">

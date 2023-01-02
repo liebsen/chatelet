@@ -239,7 +239,7 @@
                     foreach($all_but_me as $alt_product):
                         $alt_product = $alt_product['Product'];
                         $stock = (!empty($alt_product['stock_total']))?(int)$alt_product['stock_total']:0;
-                        $alt_product_name = \title_fontsize($alt_product['name']);
+                        $alt_product_name =$alt_product['name'];
 
                         $url = $this->Html->url(array(
                                 'controller' => 'shop',
@@ -272,7 +272,7 @@
                             <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                             <div class="name"><?= $alt_product_name ?></div>
-                            <div class="price text-theme"><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
+                            <div class="price-list"><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
                         </a>
                     </div>
                     <?php }else{ ?>
@@ -288,7 +288,7 @@
                             <img class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                             <div class="name"><?= $alt_product_name ?></div>
-                            <div class="price text-theme"><?= ceil($alt_product['old_price']) && ceil($alt_product['old_price']) !== ceil($alt_product['price']) ? '<span class="old_price">' .  str_replace(',00','',$this->Number->currency(ceil($alt_product['old_price']), 'ARS', array('places' => 2))). '</span>' : '' ?><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
+                            <div class="price-list"><?= ceil($alt_product['old_price']) && ceil($alt_product['old_price']) !== ceil($alt_product['price']) ? '<span class="old_price">' .  str_replace(',00','',$this->Number->currency(ceil($alt_product['old_price']), 'ARS', array('places' => 2))). '</span>' : '' ?><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
                         </a>
                     </div>
                    <?php }endforeach; ?>
