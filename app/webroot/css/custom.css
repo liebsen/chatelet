@@ -293,7 +293,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   padding: 0;
   width: 54px;
   font-size: 0.75rem;
-  padding-top: 46px;
+  padding-top: 44px;
   text-align: center;
   background-color: transparent;
 }
@@ -1865,31 +1865,28 @@ span.out{
 }
 
 span.count {
-    opacity: 0;
-    position: absolute;
-    z-index: 9;
-    top: 22px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 13px;
-    top: 17px;
-    color: #ffffff;
-    background-color: #404040;
-    width: 18px;
-    height: 18px;
-    margin: 0 auto;
-    border-radius: 100%;
-    line-height: 17px;
-    font-weight: 900;
+  opacity: 0;
+  position: absolute;
+  z-index: 9;
+  top: 22px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 13px;
+  color: #ffffff;
+  background-color: #404040;
+  width: 18px;
+  height: 18px;
+  margin: 0 auto;
+  border-radius: 100%;
+  line-height: 17px;
+  font-weight: 900;
 }
 
 span.count.is-empty {
   color: whitesmoke;
-  background-color: #e398c1;
+  background-color: #606060;
 }
-
-
 
 /*Mobile Icons NavTop*/
 @media (max-width: 992px) {
