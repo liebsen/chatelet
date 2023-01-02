@@ -1112,7 +1112,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
         position: relative;
     }
 
-	.navbar-nav { margin: 0; text-align: center; padding-top: 0.75rem;}
+	.navbar-nav { margin: 0; text-align: center; }
 	.navbar-nav > li { float: none; display: inline-block; }
   .navbar-nav > li > a { font-size: 1rem;  }
 	.navbar-nav>li>a .badge { left: 5px; position: absolute; top: 5px; }
@@ -1908,7 +1908,7 @@ span.count.is-empty {
     .menuLayer a.close {
       top: 2rem;
     }
-    .navbar-nav>li>a.user, .navbar-nav>li>a.shop {
+    .navbar-right>li>a {
         background: none!important;
         height: auto;
         padding: 0;
@@ -1916,7 +1916,6 @@ span.count.is-empty {
         font-size: 1rem;
         padding: 0.75rem 0;
         text-align: center;
-        color: #dc559f;
         margin: 0 auto;
     }
     #productOptions nav li, #productOptions nav li a {
