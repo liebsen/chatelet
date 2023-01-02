@@ -328,6 +328,9 @@ $(function () {
       if(document.querySelector('.float-tr')) {
         document.querySelector('.float-tr').classList.add('float-top-right')
       }
+
+      document.querySelector('body').style.paddingTop = `${document.querySelector('.navbar-chatelet').clientHeight}px`
+      document.querySelector('.navbar-chatelet').classList.add('fixed')
     } else {
       if(document.querySelector('.float-tl')) {
         document.querySelector('.float-tl').classList.remove('float-top-left')
@@ -335,6 +338,9 @@ $(function () {
       if(document.querySelector('.float-tr')) {
         document.querySelector('.float-tr').classList.remove('float-top-right')
       }
+
+      document.querySelector('body').style.paddingTop = 0
+      document.querySelector('.navbar-chatelet').classList.remove('fixed')
     }
   })
 
