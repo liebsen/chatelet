@@ -26,7 +26,7 @@
           <?php endif ?>
           <?php if( !empty($show_shop) ): ?>
             <li>
-              <a href="/#listShop"><?= $p['Home']['navbar_main_title'] ?></a>
+              <a href="/Home#listShop"><?= $p['Home']['navbar_main_title'] ?></a>
             </li>
           <?php endif ?>
           <!--li>
