@@ -53,7 +53,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="#" class="action-search"></a>
+            <a href="#" class="action-search">Buscar</a>
           </li>
 
          <!-- .Login -->
@@ -102,17 +102,17 @@
                 </li>
               </ul>
             <?php } else { ?>
-             <a href="#" class="dropdown-toggle user" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion">Mi Perfil</a>
+             <a href="#" class="dropdown-toggle user" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion">Registrate</a>
             <?php } ?>
           </li><!-- /.Login -->
           <li class="dropdown">
             <span class="count <?=count($carro)?'':'is-empty '?>animated scaleIn speed delay2"><?=count($carro)?></span>
-            <a href="#" class="dropdown-toggle gotocart shop js-activated" data-toggle="dropdown" data-hover="dropdown">Mi pedido</a>
+            <a href="#" class="dropdown-toggle gotocart shop js-activated" data-toggle="dropdown" data-hover="dropdown">Tu pedido</a>
             <ul class="dropdown-menu">
               <li>
                 <div class="control-panel">
                 <?php if ($this->Session->check('Carro')): ?>
-                  <p class="title">Mi Carrito</p>
+                  <p class="title">Tu pedido</p>
                 <?php else: ?>
                   <p class="notification text-muted">Tu carrito de compras está vacío</p>
                 <?php endif ?>
