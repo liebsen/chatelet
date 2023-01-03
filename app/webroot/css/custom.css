@@ -880,7 +880,7 @@ align-items: center;}
 }
 #detalle .caract label.active {
   z-index: 99;
-  transform: scale(1.25);
+  transform: scale(1.1);
 }
 #detalle .caract label.btn small {
   display: block; 
