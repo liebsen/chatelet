@@ -178,9 +178,9 @@
     <span></span>
     <span></span>
   </a>
-  <div class="wrapper">
+  <div class="wrapper pt-2">
     <div class="row float-tl">
-      <div class="col-sm-12 ml-0 mt-2">
+      <div class="col-sm-12 m-0">
         <!--h3>Buscar</h3-->
         <div class="box-search animate speed">
           <input type="text" class="form-input input-search" placeholder="Buscar...">

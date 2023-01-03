@@ -306,7 +306,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav:not(.navbar-right)>li>a {
   margin: 0 0.5rem; 
 }
-.nav>li>a:focus, .nav>li>a:hover { border: none; background-color: transparent;}
+.nav>li>a:focus, .nav>li>a:hover { border: none; background-color: transparent; }
 .navbar-nav>li>a.user {
   background-image: url(../img/ic_usuario.svg);
 }
@@ -336,7 +336,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   width: 2rem; 
   height: 2rem; 
   opacity: 1; 
-  right: 1.5rem; 
+  right: 1.25rem; 
   top: 2rem;
   transition: all 0.25s ease-out;
 }
@@ -1906,7 +1906,7 @@ span.count.is-empty {
 
 @media (max-width: 767px) {
     .menuLayer a.close {
-      top: 2rem;
+      top: 1.5rem;
     }
     .navbar-right>li>a {
         background: none!important;

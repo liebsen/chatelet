@@ -706,58 +706,6 @@ span.user {
 	margin-top: 1.25rem;
 }
 
-@media screen and (min-width: 992px) {
-  .box {
-    transform: scale(1) perspective(1024px) rotateY(-10deg) rotateX(3deg) rotate(3deg) translateY(0rem) translateX(-2rem);
-    box-shadow: 1px 1px 5px 0 rgba(26, 26, 67, .05), 39px 62.5px 125px -25px rgba(50, 50, 93, .2), 23.4px 37.5px 75px -37.5px rgba(0, 0, 0, .4);
-  }
-}
-
-@media screen and (min-width: 769px) {
-	.modal-dialog {
-		margin: auto!important;
-		min-height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	.modal-content {
-	  min-height: auto;
-	}
-	.modal-body {
-		padding: 1.75rem;
-	}
-	.cloudzoom img {
-	  height: 40rem;
-	}
-	.card-body {
-	  padding: 1.5rem;
-	}
-}
-
-@media screen and (min-width: 360px) {
-	#opts .mod-item { min-height: 220px;} 
-}
-@media screen and (max-width: 768px) {
-	.whatsapp-block .whatsapp-text {
-		display: none;
-	}
-	.marginTop {
-  	margin-top: 1rem;
-	}
-	#detalle .caract .marginTop a.table {
-    background: url(../images/sizes.png) no-repeat right center;
-    color: #f50081;
-    font-size: 16px;
-    font-weight: 600;
-    padding-right: 35px;
-    padding-top: 5px;
-    background-size: 1.75rem;
-	}
-	.carrito-selector {
-		margin-top: 1rem;
-	}
-}
 span.validation-email {
 	display: block;
   color: #a94442;
@@ -816,3 +764,61 @@ span.validation-password {
 	width: 15rem;
 }
 
+@media screen and (min-width: 992px) {
+  .box {
+    transform: scale(1) perspective(1024px) rotateY(-10deg) rotateX(3deg) rotate(3deg) translateY(0rem) translateX(-2rem);
+    box-shadow: 1px 1px 5px 0 rgba(26, 26, 67, .05), 39px 62.5px 125px -25px rgba(50, 50, 93, .2), 23.4px 37.5px 75px -37.5px rgba(0, 0, 0, .4);
+  }
+}
+
+@media screen and (min-width: 769px) {
+	.modal-dialog {
+		margin: auto!important;
+		min-height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.modal-content {
+	  min-height: auto;
+	}
+	.modal-body {
+		padding: 1.75rem;
+	}
+	.cloudzoom img {
+	  height: 40rem;
+	}
+	.card-body {
+	  padding: 1.5rem;
+	}
+}
+
+@media screen and (min-width: 360px) {
+	#opts .mod-item { min-height: 220px;} 
+}
+@media screen and (max-width: 768px) {
+	.whatsapp-block .whatsapp-text {
+		display: none;
+	}
+	.marginTop {
+  	margin-top: 1rem;
+	}
+	#detalle .caract .marginTop a.table {
+    background: url(../images/sizes.png) no-repeat right center;
+    color: #f50081;
+    font-size: 16px;
+    font-weight: 600;
+    padding-right: 35px;
+    padding-top: 5px;
+    background-size: 1.75rem;
+	}
+	.carrito-selector {
+		margin-top: 1rem;
+	}
+}
+
+@media screen and (max-height: 360px) {
+	.whatsapp-block {
+		display: none;
+	}
+}
