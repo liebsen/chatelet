@@ -152,6 +152,15 @@ label input[type=checkbox]:disabled + .label-text:before {
   /* min-height: 35rem; */
 }
 
+.carrito-count {
+  display: flex;
+  grid-gap: 1rem;
+}
+.footer-producto {
+  display: flex;
+  justify-content: center;
+}
+
 .box {
   border-radius: 3px;
   background-color: rgba(255,255,255,0.5);
@@ -2253,6 +2262,9 @@ span.count.is-empty {
     font-size: 1rem;
   }
   #desarrollo .boxs:first-child { padding-left: 150px; }
+  #detalle .caract label.btn .color-option {
+    height: 15rem;
+  }
   #carrito { margin-bottom: 1rem; }
   .old_price {
     font-size: 1rem;

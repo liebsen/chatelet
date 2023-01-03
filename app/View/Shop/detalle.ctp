@@ -177,7 +177,7 @@
                       <span style="color:#F50081;"> Stock:</span> <span id="stock_container"><i> (Elegí color y talle) </i></span>
                     </p>
                     <?php endif; ?>
-                    <div class="footer-producto" >
+                    <div class="row footer-producto">
                         <?php //if($loggedIn){ ?>
                             <div class="row carrito-count has-item-counter active" title="Cantidad de este producto">
                                 <div class="col-xs-12 col-sm-4 form-inline">
