@@ -1242,7 +1242,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#detalle .col-md-3 li a img { width: 90px; }
 	#detalle .col-sm-7 img { width: 100%!important; }
 	#detalle .col-md-4 .caract .social { margin: 20px 0; }
-	#productOptions a.btBig { margin-bottom: 20px; padding: 60px 30px; }
+	#productOptions a.btBig { margin-bottom: 20px; padding: 30px; }
 
 	#headcontacto .box { padding: 20px; }
   #optionsHelp {padding: 0;}
