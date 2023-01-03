@@ -337,7 +337,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   height: 2rem; 
   opacity: 1; 
   right: 1.25rem; 
-  top: 2rem;
+  top: 1.5rem;
   transition: all 0.25s ease-out;
 }
 .menuLayer a.close span { 
