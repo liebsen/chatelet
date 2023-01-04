@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-chatelet animated<?= $home ? ' fadeIn speed delay' : '' ?>">
+<nav class="navbar navbar-chatelet animated<?= $home ? ' fadeIn speed delay3' : '' ?>">
   <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">

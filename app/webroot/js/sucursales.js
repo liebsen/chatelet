@@ -4,6 +4,7 @@ $(document).ready(function() {
 		markers = window.markers = {};
 
 	function initialize() {
+		if (!google) return
 		var mapOptions = {
 				zoom: 11,
 				center: new google.maps.LatLng(-34.6121795, -58.5297722)

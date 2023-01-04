@@ -1,12 +1,12 @@
 var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 var lastcp = localStorage.getItem('lastcp') || 0
 var lastpm = localStorage.getItem('pm') || 'mercadopago'
-
+var lastscroll = 0
 //new WOW().init();
 let searchInt = 0
 let searchPageSize = 12
 let searchPage = 0
-let focusAnim = 'flash'
+let focusAnim = 'pulse'
 
 let formatNumber = (float) => {
   if (typeof float === 'string') {
@@ -321,6 +321,9 @@ $(function () {
 
   $(window).scroll(function(e) {
     var scroll = $(window).scrollTop()
+    var navbar = document.querySelector('.navbar-chatelet')
+    navbar.classList.remove('fadeIn', 'slideInUp')
+
     if (scroll > 200) {
       if(document.querySelector('.float-tl')) {
         document.querySelector('.float-tl').classList.add('float-top-left')
@@ -329,8 +332,13 @@ $(function () {
         document.querySelector('.float-tr').classList.add('float-top-right')
       }
 
-      document.querySelector('body').style.paddingTop = `${document.querySelector('.navbar-chatelet').clientHeight}px`
-      document.querySelector('.navbar-chatelet').classList.add('fixed')
+      if (!navbar.classList.contains('fixed')) {
+        document.querySelector('body').style.paddingTop = `${navbar.clientHeight}px`
+        setTimeout(() => {
+           navbar.classList.add('fadeIn')
+        }, 200)
+        navbar.classList.add('fixed')
+      }
     } else {
       if(document.querySelector('.float-tl')) {
         document.querySelector('.float-tl').classList.remove('float-top-left')
@@ -338,10 +346,20 @@ $(function () {
       if(document.querySelector('.float-tr')) {
         document.querySelector('.float-tr').classList.remove('float-top-right')
       }
-
-      document.querySelector('body').style.paddingTop = 0
-      document.querySelector('.navbar-chatelet').classList.remove('fixed')
+      if (lastscroll > scroll) {
+        console.log('** upwards')
+        if (navbar.classList.contains('fixed')) {
+          document.querySelector('body').style.paddingTop = 0
+          navbar.classList.remove('fixed')
+        }
+      } else {
+        console.log('** backwards')
+        navbar.classList.remove('fadeIn')
+        navbar.classList.add('slideInDown')
+      }
     }
+
+    lastscroll = scroll
   })
 
   /* trigger search from url */
