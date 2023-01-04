@@ -107,12 +107,12 @@
                                     Salir
                                 </a>
                             </li>
-                            <li class="dropdown dropdown-theme-options pull-right">
+                            <!--li class="dropdown dropdown-theme-options pull-right">
                                 <a href="/" target="_blank">
                                     <i class="gi gi-home"></i> 
                                     Tienda
                                 </a>
-                            </li>
+                            </li-->
                         </ul>
                     </div>
                     <!-- END Sidebar Toggle Buttons -->

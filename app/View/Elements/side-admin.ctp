@@ -21,7 +21,9 @@
     <div class="side-scrollable">
         <!-- Mini Profile -->
         <div class="mini-profile">
+            <a href="/" target="_blank">
             <?php echo $this->Html->image('logo.jpg', array('class' => 'img-responsive')); ?>
+            </a>
         </div>
         <!-- END Mini Profile -->
 

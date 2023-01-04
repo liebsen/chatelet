@@ -1185,6 +1185,28 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	}
 
 
+
+public function promos(){
+		if($this->request->is('post')){
+			$data = $this->request->data;
+			if(!empty($data['Promo']['image']['name'])){
+				$file = $this->save_file( $data['Promo']['image'] );
+				$this->Promo->save(array(
+					'id' => null,
+					'image' => $file,
+				));
+			}
+		}
+		$h1 = array(
+			'name' => 'Compra por WhatsApp',
+			'icon' => 'gi gi-display'
+			);
+		$this->set('h1', $h1);
+
+		$promos = $this->Promo->find('all');
+		$this->set('promos',$promos);
+	}
+
 	public function products_settings(){
 		$this->loadModel('Setting');
 		if($this->request->is('post')){
