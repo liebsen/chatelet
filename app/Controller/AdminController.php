@@ -51,13 +51,23 @@ class AdminController extends AppController {
 		$data = [];
 		$map = $this->Setting->findById('bank_enable');
 		$bank_enable = @$map['Setting']['value'];
+		$map = $this->Setting->findById('whatsapp_enabled');
+		$whatsapp_enabled = @$map['Setting']['value'];
 		$coupon_enable = self::couponsAvailable();
+		$banners_enable = self::bannersAvailable();
+
 		foreach($menu as $i => $v) {
+			if($v['url']==='/admin/whatsapp'){
+				$menu[$i]['update'] = !empty($whatsapp_enabled);
+			}
 			if($v['url']==='/admin/cupones'){
 				$menu[$i]['update'] = !empty($coupon_enable);
 			}
 			if($v['url']==='/admin/bank'){
 				$menu[$i]['update'] = !empty($bank_enable);
+			}
+			if($v['url']==='/admin/banners'){
+				$menu[$i]['update'] = !empty($banners_enable);
 			}
 		}
 		$this->set('primary_nav', $menu);
@@ -69,6 +79,22 @@ class AdminController extends AppController {
 
 	private function couponsAvailable(){
 		$this->loadModel('Coupon');
+		$available = false;
+		$map = $this->Coupon->find('all', [
+			'conditions' => [
+				'enabled' => 1
+			]
+		]);
+		foreach($map as $item) {
+			if (\filtercoupon($item)->status !== 'error') {
+				$available = true;
+			}
+		}
+		return $available;
+	}
+
+	private function bannersAvailable(){
+		$this->loadModel('Banner');
 		$available = false;
 		$map = $this->Coupon->find('all', [
 			'conditions' => [
