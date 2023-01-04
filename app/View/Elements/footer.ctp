@@ -1,5 +1,5 @@
 <?php echo $this->Html->css('font-awesome', array('inline' => false)); ?>
-<?php if ($data['whatsapp_enabled']): ?>
+<?php if (@$data['whatsapp_enabled']): ?>
     <div class="whatsapp-block animated chatIn delay2">
       <a href="javascript:$zopim.livechat.window.show()" class="chat" title="Contactanos por Chat">
         <i class="fa fa-comments-o"></i>
