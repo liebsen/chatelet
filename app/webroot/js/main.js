@@ -247,7 +247,7 @@ $(function () {
     window.scrollTo(0,0)
   })
 
-  if(document.querySelector("#myModal")!=null && $('.js-show-modal') && $('.js-show-modal').length){
+  if(window.location.hash.indexOf('listShop') === -1 && document.querySelector("#myModal")!=null && $('.js-show-modal') && $('.js-show-modal').length){
     setTimeout(function () {
       $('#myModal').modal({ show: true })
     }, 3000)

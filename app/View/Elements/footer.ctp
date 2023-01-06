@@ -19,7 +19,7 @@
     <footer>
       <div class="wrapper">
         <div class="col-md-4 col-sm-6 col-xs-12">
-          <h3>Shop online</h3>
+          <h3>Colección</h3>
           <ul>
           <?php
           if (!empty($categories)){
@@ -101,20 +101,9 @@
             </a>-->
         </div>
 
-        <p class="text-center text-muted"><span class="is-clickable" title="Châtelet v<?= $version_text ?>">Châtelet</span> <?php echo date('Y'); ?>. Buenos Aires, Argentina. Todos los derechos reservados</p>
+        <p class="text-center text-muted mb-4"><span class="is-clickable" title="Châtelet v<?= $version_text ?>">Châtelet</span> <?php echo date('Y'); ?>. Buenos Aires, Argentina. Todos los derechos reservados</p>
       </div>
 
-      <div class="bottom">
-        <a href="https://twitter.com/chateletmoda" target="_blank">
-            <i class="fa fa-twitter"></i>
-        </a>
-        <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" target="_blank">
-            <i class="fa fa-facebook"></i>
-        </a>
-        <a href="https://www.instagram.com/chateletmoda/" target="_blank">
-            <i class="fa fa-instagram"></i>
-        </a>
-      </div>
     </footer>
 
     <?php echo $this->Html->script('plugins', array('inline'=>false))?>

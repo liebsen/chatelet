@@ -74,13 +74,13 @@
         <section id="suscribe">
             <div class="wrapper container is-flex-end">
                 <div class="col-md-6">
-                    <h2 class="h2 mt-0 mb-1">Estemos <strong>conectad@s</strong></h2>
-                    <p>Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
+                    <h2 class="h2 mt-0 mb-1 text-uppercase">Newsletter - Estemos <strong>conectad@s</strong></h2>
+                    <p class="text-uppercase">Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
                 </div>
                 <div class="col-md-6">
                     <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
                       <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
-                      <input type="submit" id="enviar" value="ok">
+                      <input type="submit" id="enviar" value="confirmar">
                     <?php echo $this->Form->end(); ?>
                 </div>
             </div>
@@ -176,7 +176,7 @@
             <div class="content js-show-modal is-clickable animated fadeIn delay3" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
                 <div class="tap-to-continue animated fadeIn delay3">
                     <i class="fa fa-hand-o-right mr-2"></i> 
-                    <span class="ml-2">Continuar con la tienda</span>
+                    <span class="ml-2">Continuar a la tienda</span>
                 </div>
 
                 <?php if(!empty($home['display_popup_form_in_last'])):?>
@@ -213,6 +213,19 @@
         <?php endif;?>
         </div><!-- /.modal -->
 
+
+        <div class="social-bottom">
+            <span class="text-uppercase"><h6>Seguinos en nuestras redes</h6></span>
+            <a href="https://twitter.com/chateletmoda" target="_blank">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" target="_blank">
+                <i class="fa fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/chateletmoda/" target="_blank">
+                <i class="fa fa-instagram"></i>
+            </a>
+        </div>
 
 
 <?php if(!empty($home['display_popup_form_in_last'])):?>
