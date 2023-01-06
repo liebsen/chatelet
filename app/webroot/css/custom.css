@@ -300,20 +300,20 @@ label input[type=checkbox]:disabled + .label-text:before {
   -o-transition: all .3s ease-in-out; 
   white-space: nowrap; 
 }
-.navbar-nav.navbar-right>li>a {
-  background-size: 50px;
-  background-position: center;
-  background-repeat: no-repeat;  
-  color: #404040;  
-  height: 50px;
-  padding: 0;
-  width: 54px;
-  font-size: 0.75rem;
-  padding-top: 44px;
-  text-align: center;
-  background-color: transparent;
-}
 @media (min-width: 768px) {
+  .navbar-nav.navbar-right>li>a {
+    background-size: 50px;
+    background-position: center;
+    background-repeat: no-repeat;  
+    color: #404040;  
+    height: 50px;
+    padding: 0;
+    width: 54px;
+    font-size: 0.75rem;
+    padding-top: 44px;
+    text-align: center;
+    background-color: transparent;
+  }
   .navbar-right {
     position: relative;
     top: -0.5rem;
