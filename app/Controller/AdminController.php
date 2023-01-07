@@ -1645,6 +1645,70 @@ public function promos(){
 		return $this->render('cupones');
 	}
 
+	public function admin_menu($action = null) {
+		$navs = array(
+			'Lista' => array(
+				'icon' 		=> 'gi gi-list',
+				'url'		=> Configure::read('mUrl').'/admin/admin_menu',
+				'active'	=> '/admin/admin_menu'
+			),
+			'Nuevo Menú de Administrador' => array(
+				'icon' 		=> 'gi gi-circle_plus',
+				'url'		=> Configure::read('mUrl').'/admin/admin_menu/add',
+				'active'	=> '/admin/admin_menu/add'
+			)
+		);
+
+		$this->set('navs', $navs);
+		$h1 = array(
+			'name' => 'Menu',
+			'icon' => 'gi gi-list'
+		);
+		$this->set('h1', $h1);
+    $this->loadModel('AdminMenu');
+    switch ($action) {
+    	case 'add':
+    	    if ($this->request->is('POST')){
+		        $this->autoRender = false;
+
+		        $data = $this->request->data;
+		        $this->AdminMenu->save($data);
+
+		        return $this->redirect(array('action'=>'admin_menu'));
+  			} else {
+    			return $this->render('admin-menu-detail');
+    		}
+    		break;
+    	case 'delete':
+	    	if ($this->request->is('post')) {
+	    		$this->autoRender = false;
+	    		$this->AdminMenu->delete($this->request->data['id']);
+	    	}
+    		break;
+    	case 'edit':
+    		if ($this->request->is('post')) {
+    			$this->autoRender = false;
+
+    			$data = $this->request->data;
+	        $this->AdminMenu->save($data);
+    		} else {
+	    		$hasId = array_key_exists(1, $this->request->pass);
+	    		if (!$hasId) break;
+	    		$item = $this->AdminMenu->find('first', [
+	    			'conditions' => [
+	    				'id' => $this->request->pass[1]
+	    			],
+	    			'order' => ['AdminMenu.ordernum ASC']
+	    		]);
+	    		$this->set('item', $item);
+	    		return $this->render('admin-menu-detail');
+    		}
+    		break;
+    }
+	  $menu = $this->AdminMenu->find('all',['order' => ['AdminMenu.ordernum ASC']]);
+		$this->set('adminMenu', $menu);
+	  $this->render('admin-menu');
+	}
 
 	public function banners($action = null) {
 		$navs = array(
