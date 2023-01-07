@@ -46,7 +46,7 @@ class AdminController extends AppController {
 		$this->set('template', $template);
 
 		// Primary navigation array (the primary navigation will be created automatically based on this array, up to 3 level deep)
-		$menu = $this->AdminMenu->find('all');
+		$menu = $this->AdminMenu->find('all',['order' => ['AdminMenu.ordernum ASC']]);
 
 		$data = [];
 		$map = $this->Setting->findById('bank_enable');
