@@ -96,17 +96,12 @@ class AdminController extends AppController {
 	private function bannersAvailable(){
 		$this->loadModel('Banner');
 		$available = false;
-		$map = $this->Coupon->find('all', [
+		$map = $this->Banner->find('all', [
 			'conditions' => [
 				'enabled' => 1
 			]
 		]);
-		foreach($map as $item) {
-			if (\filtercoupon($item)->status !== 'error') {
-				$available = true;
-			}
-		}
-		return $available;
+		return count($map);
 	}
 
 	public function test2() {
