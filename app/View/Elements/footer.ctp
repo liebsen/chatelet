@@ -101,7 +101,7 @@
             </a>-->
         </div>
 
-        <p class="text-center text-muted mb-4 text-uppercase"><span class="is-clickable" title="Châtelet v<?= $version_text ?>">Châtelet</span> <?php echo date('Y'); ?>. Buenos Aires, Argentina. Todos los derechos reservados</p>
+        <p class="text-center text-muted mb-4 text-uppercase h6"><span class="is-clickable" title="Châtelet v<?= $version_text ?>">Châtelet</span> <?php echo date('Y'); ?>. Buenos Aires, Argentina. Todos los derechos reservados</p>
       </div>
 
     </footer>
