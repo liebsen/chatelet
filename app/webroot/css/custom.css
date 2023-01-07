@@ -308,7 +308,7 @@ label input[type=checkbox]:disabled + .label-text:before {
     color: #404040;  
     height: 50px;
     padding: 0;
-    width: 54px;
+    width: 60px;
     font-size: 0.75rem;
     padding-top: 44px;
     text-align: center;
