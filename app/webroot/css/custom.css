@@ -531,6 +531,23 @@ border-radius: 4px;
   font-size: 2rem;
   margin-left: 1rem;
 }
+
+.social-bottom i.fa-facebook {
+  font-size: 1.65rem;
+}
+
+.social-bottom i.fa-instagram {
+  position: relative;
+  top: -1px;
+}
+
+.fa-messages {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 2rem;
+  background-image: url(../images/chat-icon.svg);
+}
+
 footer { background: #e6e6e6; overflow: hidden; padding: 40px 0 0; }
 footer > .wrapper { padding: 0 0.5rem; }
 footer h3 { color: #464444; font-size: 18px; text-transform: uppercase; font-weight: 600; margin-bottom: 1.25rem; margin-top: 2rem; }

@@ -2,7 +2,7 @@
 <?php if (@$data['whatsapp_enabled']): ?>
     <div class="whatsapp-block animated chatIn delay2">
       <a href="javascript:$zopim.livechat.window.show()" class="chat" title="Contactanos por Chat">
-        <i class="fa fa-comments-o"></i>
+        <i class="fa fa-messages"></i>
       </a>
       <a href="https://wa.me/<?= $data['whatsapp_phone'] ?>?text=Hola, tengo una consulta" class="d-block<?= !empty($data['whatsapp_autohide']) ? " autohide segs-{$data['whatsapp_autohide']}" : '' ?>" target="_blank" title="Contactanos por WhatsApp">
         <i class="fa fa-whatsapp"></i>
