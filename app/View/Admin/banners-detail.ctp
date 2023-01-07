@@ -32,10 +32,10 @@
                 $enabled = (isset($item) && $item['Banner']['enabled'] === '1') || !isset($item) ? 'checked' : '';
                 $disabled = (isset($item) && $item['Banner']['enabled'] === '0') ? 'checked' : '';
               ?>
-              <label for="enabled_1">Sí</label> <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
-              <label for="enabled_0">No</label> <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
+              <label for="enabled_1">Activo</label> <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
+              <label for="enabled_0">Inactivo</label> <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
             </div>
-            <small class="text-muted">Estado principal de este Cupón</small>
+            <small class="text-muted">Estado principal de este Banner</small>
           </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
