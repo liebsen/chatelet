@@ -336,12 +336,9 @@ class ShopController extends AppController {
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('page_video',$page_video);
-
-
-
 		$categories = $this->Category->find('all',array('order'=>array( 'Category.ordernum ASC' )));
 		$this->set('categories', $categories);
-    	$this->set('category_id', $category_id);
+    $this->set('category_id', $category_id);
 
 		if (!empty($category_id)) {
 			$category = $this->Category->findById($category_id);
@@ -380,6 +377,9 @@ class ShopController extends AppController {
 			$this->set('products', $products);
 		}
 
+		if(empty($category)) {
+			throw new NotFoundException();
+		}
 		$setting 			 = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
