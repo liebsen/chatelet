@@ -259,21 +259,94 @@ class AdminController extends AppController {
 		}
 	}
 
+
+	 /*
+		* ordernum
+		* recieves two parameters id and order, being order the desired order 
+		* number position of the table.
+		* 
+	  */
+
 	public function ordernum($tag){
+		$this->autoRender = false;
+		$data = $this->request->data;
+		$name = ucfirst($tag);
+		$this->loadModel($name);
+
+		if($this->request->is('post') && !empty($this->{$name})){
+			$list = $this->{$name}->find('all',[
+				'order' => [
+					"{$name}.ordernum ASC"
+				]
+			]);
+
+			$active_item = $this->{$name}->find('first',[
+				'conditions' => [
+					'id' => $data['id']
+				]
+			]);
+
+			$orderlist = [];
+			$active_order = 0;
+			// we save the current ordering in a separate array
+			foreach($list as $i => $item) {
+				if ($item[$name]['id'] == $data['id']) {
+					$active_order = $i;
+				}
+				$orderlist[$i] = $item[$name]['id'];
+			}
+
+			// now we manipulate the list and update to the new ordering requested.
+			// the order parameter is the desired new position of the list.
+
+			// we delete the old position of the active item being requested order for
+
+			unset($orderlist[$active_order]);
+			//array_splice($orderlist, $active_item[$name]['ordernum'] - 1, 1);
+			// reindex
+			$orderlist = array_values($orderlist);
+			// now we add the active item into the new slot required
+			array_splice($orderlist, $data['ordernum'] - 1, 0, $data['id']);
+
+			// finally we update database based on our new orderlist
+			foreach($orderlist as $ordernum => $id) {
+				$this->{$name}->save([
+					'id' => $id,
+					'ordernum' => $ordernum + 1
+				]);			
+			}
+		}
+	}
+
+	public function ordernum2($tag){
 		$this->autoRender = false;
 		$name = ucfirst($tag);
 		$this->loadModel($name);
-		if($this->request->is('post') && !empty($this->{$name})){
-			$data = $this->request->data;
+		$data = $this->request->data;
+		$list = $this->{$name}->find('all',[
+			'order' => ["{$name}.ordernum ASC"]
+		]);
+
+		$json = [];
+
+		foreach($list as $i => $item) {
+			$j = $i + 1;
+			if ($item[$name]['id'] == (int) $data['id']) {
+				$j = (int) $data['index'];
+			}
+			if ($item[$name]['id'] == (int) $data['id2']) {
+				$j = (int) $data['index2'];
+			}
+			$json[$j] = $item[$name]['name'];
 			$this->{$name}->save([
-				'id' => $data['row1_id'],
-				'ordernum' => $data['row2_order']
-			]);
-			$this->{$name}->save([
-				'id' => $data['row2_id'],
-				'ordernum' => $data['row1_order']
+				'id' => $item[$name]['id'],
+				'ordernum' => $j
 			]);
 		}
+
+		//print_r(json_encode($json, JSON_PRETTY_PRINT));
+		die(json_encode($json, JSON_PRETTY_PRINT));
+		//print_r($map);
 	}
 
 	public function oca(){

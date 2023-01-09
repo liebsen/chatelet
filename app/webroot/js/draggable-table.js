@@ -53,16 +53,17 @@
       dragElem = null;
       mouseDrag = false;
       if(!row1) return;
-      const order1 = row1.attributes['data-order'].value
-      const order2 = row2.attributes['data-order'].value
+      //const order1 = row1.attributes['data-order'].value
+      //const ordernum = row2.attributes['data-order'].value
+      const current = mouseY < 0 ? row1 : row2
+      const ordernum = current.rowIndex
+      const id = current.attributes['data-id'].value
       $.post(table.getAttribute('data-url'), {
-        row1_id: row1.attributes['data-id'].value,
-        row2_id: row2.attributes['data-id'].value,
-        row1_order: order1,
-        row2_order: order2
-      }).then(() => {
-        row1.attributes['data-order'].value = order2
-        row2.attributes['data-order'].value = order1
+        id: id,
+        ordernum: ordernum
+      }).then((res) => {
+        row1.attributes['data-order'].value = ordernum
+        //row2.attributes['data-order'].value = order1
         document.querySelector('.draggable-saved').classList.remove('chatOut')
         document.querySelector('.draggable-saved').classList.add('chatIn')
         clearSelection()
