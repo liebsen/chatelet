@@ -74,7 +74,7 @@
         <section id="suscribe">
             <div class="wrapper container is-flex-end">
                 <div class="col-md-6">
-                    <h2 class="h2 mt-0 mb-1 text-uppercase">Newsletter - Estemos <strong>conectad@s</strong></h2>
+                    <h2 class="h4 mt-0 mb-1 text-uppercase">Newsletter - Estemos <strong>conectad@s</strong></h2>
                     <p class="card-title text-uppercase">Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
                 </div>
                 <div class="col-md-6">
