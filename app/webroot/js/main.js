@@ -326,7 +326,7 @@ $(function () {
       navbar.classList.remove('fadeIn', 'slideInUp')
     }
 
-    if (scroll > 200) {
+    if (scroll > 380) {
       if(document.querySelector('.float-tl')) {
         document.querySelector('.float-tl').classList.add('float-top-left')
       }
