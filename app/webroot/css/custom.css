@@ -503,19 +503,21 @@ background-repeat: no-repeat;}
 /* #suscribe .col-md-6:last-child:before { background: url(../images/sprite.png) no-repeat -82px -171px; content: ""; display: block; float: left; height: 47px; margin-right: 20px; width: 62px; } */
 #suscribe .h3 { margin-top: 0; }
 #suscribe strong { font-weight: 900; }
-#suscribe form {  overflow: hidden; }
+#suscribe form {  overflow: hidden; display: flex;
+justify-content: space-between;}
 #suscribe form:after { 
-background: #666;
-content: "";
-display: block;
-height: 4px;
-margin-top: 38px;
-width: 100%;
-border-radius: 4px;
+  position: absolute;
+  background: #666;
+  content: "";
+  display: block;
+  height: 4px;
+  margin-top: 38px;
+  width: 100%;
+  border-radius: 4px;
 }
-#suscribe form input { background: transparent; border: none; color: rgb(51, 51, 51); float: left; width: 80%; font-size: 1.5rem;font-weight: 400;}
+#suscribe form input { background: transparent; border: none; color: rgb(51, 51, 51); float: left; font-size: 1.5rem;font-weight: 400;}
 #suscribe form input:placeholder { color: rgb(70, 70, 70); }
-#suscribe form input[type="submit"] { color: black; font-weight: 600; margin-top: 6px; text-align: right; width: 20%; font-weight: 800; }
+#suscribe form input[type="submit"] { color: black; font-weight: 600; margin-top: 6px; text-align: right; font-weight: 800; }
 
 .social-bottom {
   display: flex;
@@ -1251,9 +1253,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#location .col-md-8 h3, #location .col-md-8 h4 { font-size: 18px; }
 
 	#suscribe .col-md-6:last-child:before { display: none; }
-	#suscribe form input { width: 70%; }
-	#suscribe form input[type="submit"] { width: 30%; }
-
 	footer .bottom a { margin: 0 10px; }
 	.modal-open .modal { padding: 0px!important; }
 	#myModal .content form h1 { font-size: 20px; }
