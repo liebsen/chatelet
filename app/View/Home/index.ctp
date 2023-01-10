@@ -215,7 +215,7 @@
 
 
         <div class="social-bottom">
-            <span class="text-uppercase"><h6>Seguinos en nuestras redes</h6></span>
+            <span class="text-uppercase"><p class="h4">Seguinos en nuestras redes</p></span>
             <a href="https://twitter.com/chateletmoda" target="_blank">
                 <i class="fa fa-twitter"></i>
             </a>
