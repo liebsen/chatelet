@@ -507,15 +507,14 @@ background-repeat: no-repeat;}
 justify-content: space-between;}
 #suscribe form:after { 
   position: absolute;
-  background: #666;
+  background: #000;
   content: "";
   display: block;
   height: 4px;
-  margin-top: 38px;
-  width: 100%;
+  width: calc(100% - 20px);
   border-radius: 4px;
 }
-#suscribe form input { background: transparent; border: none; color: rgb(51, 51, 51); float: left; font-size: 1.5rem;font-weight: 400;}
+#suscribe form input { background: transparent; border: none; color: rgb(51, 51, 51); float: left; font-size: 1.25rem;font-weight: 400;}
 #suscribe form input:placeholder { color: rgb(70, 70, 70); }
 #suscribe form input[type="submit"] { color: black; font-weight: 600; margin-top: 6px; text-align: right; font-weight: 800; }
 
