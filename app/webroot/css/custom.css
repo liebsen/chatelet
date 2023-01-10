@@ -1251,8 +1251,8 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#location .col-md-8 h3, #location .col-md-8 h4 { font-size: 18px; }
 
 	#suscribe .col-md-6:last-child:before { display: none; }
-	#suscribe form input { width: 85%; }
-	#suscribe form input[type="submit"] { width: 15%; }
+	#suscribe form input { width: 70%; }
+	#suscribe form input[type="submit"] { width: 30%; }
 
 	footer .bottom a { margin: 0 10px; }
 	.modal-open .modal { padding: 0px!important; }
