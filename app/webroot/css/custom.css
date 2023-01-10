@@ -512,12 +512,12 @@ justify-content: space-between;}
   content: "";
   display: block;
   height: 4px;
-  width: calc(100% - 20px);
+  width: calc(100% - 30px);
   border-radius: 4px;
 }
-#suscribe form input { background: transparent; border: none; color: rgb(51, 51, 51); float: left; font-size: 1.25rem;font-weight: 400;}
+#suscribe form input { background: transparent; border: none; color: rgb(51, 51, 51); float: left; font-size: 1.25rem;font-weight: 400;flex: 1;}
 #suscribe form input:placeholder { color: rgb(70, 70, 70); }
-#suscribe form input[type="submit"] { color: black; font-weight: 600; margin-top: 6px; text-align: right; font-weight: 800; }
+#suscribe form input[type="submit"] { color: black; font-weight: 600; margin-top: 6px; text-align: right; font-weight: 800; max-width: 6rem;}
 
 .social-bottom {
   display: flex;
