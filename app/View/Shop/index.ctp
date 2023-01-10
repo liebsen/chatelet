@@ -41,7 +41,7 @@
   <div class="wrapper">
     <div class="row">
       <div class="col-md-4 bx1">
-          Las prendas que estan en el Shop como principal en cada rubro, no estan a la venta.
+          Los envíos por compra online tienen una demora de 7 a 10 días hábiles.
       </div>
       <div class="col-md-4 bx2 blr">
           Los cambios se realizan dentro de los 30 días de efectuada la compra en cualquiera de las sucursales presentando el ticket correspondiente.
