@@ -827,7 +827,16 @@ align-items: center;}
   display: inline-block;
   width: 100%;
   object-fit: cover;
-  object-position: top center; margin: 0 auto;transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
+  object-position: center center;
+  margin: 0 auto;
+  transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
+
+#productOptions .product-list.posnum-2 a img {
+  object-position: top center;
+}
+#productOptions .product-list.posnum-3 a img {
+  object-position: bottom center;
+}
 
 #productOptions  .product-categories {
   position: relative;
@@ -929,7 +938,7 @@ align-items: center;}
   max-width: 8rem;
   font-weight: 800;
   white-space: break-spaces;
-  margin: auto;
+  margin-right: 1rem;
 }
 #detalle .caract label.btn .color-option {
   border: none;
@@ -946,6 +955,14 @@ align-items: center;}
   background-size: cover;
   transition: all 0.15s linear;
   border-radius: 3px;
+}
+
+#detalle .caract.posnum-2 label.btn .color-option {
+  background-position: top center;
+}
+
+#detalle .caract.posnum-3 label.btn .color-option {
+  background-position: bottom center;
 }
 
 #detalle .caract label.btn.active .color-option {

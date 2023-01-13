@@ -50,7 +50,7 @@ function updateSrcTo(obj){
 <?php if(!empty($banner_categories)): ?>
 <div id="headabrigos">
   <div class="img-resp is-main" style="background-image:url(<?php echo Configure::read('imageUrlBase').$banner_categories ?>)">
-    <!--h1 class="name_shop animated delay3 fadeIn"><?php echo $name_categories; ?></h1-->
+    <!--h1 class="name_shop animated delay3 fadeIn"><?php echo $category['name']; ?></h1-->
   </div>  
 </div>
 <?php endif ?>
@@ -85,8 +85,7 @@ function updateSrcTo(obj){
                     </ul>
                 </nav>
             </div>
-
-            <div class="col-md-9 product-list">
+            <div class="col-md-9 product-list posnum-<?= @$category['posnum'] ?>">
 
   <?php
     function createSection($item, $ctrl, $isProduct = false) {
@@ -270,14 +269,14 @@ function checkStock(i){
 }
 window.product_list = new Array()
 fbq('trackCustom', 'ViewCategory', {
-  id: '<?php echo $category_id;?>',
-  name: '<?php echo $name_categories;?>'
+  id: '<?= $category_id ?>',
+  name: '<?= $category['name'] ?>'
 })
 
 dataLayer.push({
   'ecommerce': {
     'detail': {
-      'actionField': {'list': '<?php echo $name_categories;?>'}
+      'actionField': {'list': '<?= $category['name'] ?>'}
     }
   }
 })

@@ -10,6 +10,7 @@
 			<tr>
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
 				<th class="hidden-phone hidden-tablet"><?php echo __('Ancho'); ?></th> 
+				<th class="hidden-phone hidden-tablet"><?php echo __('Posición'); ?></th> 
 				<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
 				<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th>    
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -24,7 +25,7 @@
 					</a>
 				</td>
 				<td>
-					<?php if(empty(@$category['Category']['colsize'])) echo 'Auto' ?>
+					<?php if(empty(@$category['Category']['colsize'])) echo '<span class="text-muted">Auto</span>' ?>
 					<?php if(@$category['Category']['colsize'] == '20') echo '20%' ?>
 					<?php if(@$category['Category']['colsize'] == '3') echo '25%' ?>
 					<?php if(@$category['Category']['colsize'] == '4') echo '33%' ?>
@@ -33,6 +34,12 @@
 					<?php if(@$category['Category']['colsize'] == '60') echo '60%' ?>
 					<?php if(@$category['Category']['colsize'] == '80') echo '80%' ?>
 					<?php if(@$category['Category']['colsize'] == '12') echo '100%' ?>
+				</td>
+				<td>
+					<?php if(empty(@$category['Category']['posnum'])) echo '<span class="text-muted">Auto</span>' ?>
+					<?php if(@$category['Category']['posnum'] == '1') echo '<span class="text-muted">Auto</span>' ?>
+					<?php if(@$category['Category']['posnum'] == '2') echo 'Arriba' ?>
+					<?php if(@$category['Category']['posnum'] == '3') echo 'Abajo' ?>
 				</td>
 				<td>          
 					<?php

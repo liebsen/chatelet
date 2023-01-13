@@ -233,7 +233,7 @@
                 </a>
             </div>
 
-            <div class="col-md-9 product-list">
+            <div class="col-md-9 product-list posnum-<?= $category['Category']['posnum'] ?>">
                 <div class="row">
                     <?php
                     foreach($all_but_me as $alt_product):

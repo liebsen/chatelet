@@ -45,6 +45,7 @@
             <small class="text-muted">Seleccioná el ancho de columna para esta categoría (solo para dispositivos de escritorio y smart-tv).</small>
           </div>
           <br />
+        
           <div class="control-group">
             <label class="control-label" for=""><?=__('Seleccione una imagen de banner para esta categoría')?></label>
             <?php if(!empty($cat['Category']['banner_url'])):?>
@@ -69,6 +70,18 @@
           </div>
           <br /> 
           <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Posición de la imagen para todos los productos. '); ?></label>
+            <div class="controls">
+              <select class="form-control" name="data[posnum]">
+                <option value="1"<?= empty($cat['Category']['posnum']) ? ' selected' : '' ?>>Auto</option>
+                <option value="2"<?= @$cat['Category']['posnum'] == '2' ? ' selected' : '' ?>>Arriba</option>
+                <option value="3"<?= @$cat['Category']['posnum'] == '3' ? ' selected' : '' ?>>Abajo</option>
+              </select>              
+            </div>
+            <small class="text-muted">Seleccioná la posición para las imágenes de los productos. (ej: sombreros, chals: arriba, pantalones, zapatos: abajo, blusa: auto, ... </small>
+          </div>
+          <br />            
+          <div class="control-group">
             <label class="control-label" for=""><?=__('Seleccione una imagen de Talles')?></label>
             <?php if(!empty($cat['Category']['size'])):?>
               <hr>
@@ -87,6 +100,7 @@
             </div>
             <small class="text-muted">Seleccioná el orden de prioridad para esta categoría</small>
           </div>
+
         </div>                
       </div>      
       <br />               
