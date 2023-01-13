@@ -341,8 +341,8 @@ class ShopController extends AppController {
     $this->set('category_id', $category_id);
 
 		if (!empty($category_id)) {
-			//$mapper = $this->Category->findById($category_id);
-      //$category = $mapper['Category'];
+			$mapper = $this->Category->findById($category_id);
+      $category = $mapper['Category'];
 
 			//$products = $this->Product->findAllByCategoryId($category_id,['order' => ['Product.ordernum ASC']]);
 			$products = $this->Product->find('all',[

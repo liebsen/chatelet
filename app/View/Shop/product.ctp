@@ -62,21 +62,21 @@ function updateSrcTo(obj){
                 <nav>
                     <ul>
                         <?php
-                    foreach ($categories as $category) {
-                        $category = $category['Category'];
-                        $slug =  str_replace(' ','-',strtolower($category['name']));
+                    foreach ($categories as $cat) {
+                        $cat = $cat['Category'];
+                        $slug =  str_replace(' ','-',strtolower($cat['name']));
                         if (strpos($slug, 'trajes')!==false){
                           $slug = 'trajes-de-bano';
                         }
                         echo '<li>';
                         echo $this->Html->link(
-                            $category['name'],
+                            $cat['name'],
                             array(
                                 'controller' => 'tienda',
                                 'action' => 'productos',
                                 $slug
                             ), array(
-                              'class' => ($category_id === $category['id'] ? 'text-theme' : '')
+                              'class' => ($category_id === $cat['id'] ? 'text-theme' : '')
                             )
                         );
                         echo '</li>';
