@@ -252,8 +252,8 @@ class Oca
 		$localidad 	= $this->normaliza($localidad);
 		$provincia 	= $this->normaliza($provincia);
 		$email 		= $this->normaliza($email);
-		$idOperativa = 396726; // 96637;
-		$XML_Retiro = '<ROWS><cabecera ver="1.0" nrocuenta="149543/001" /><retiro calle="9 DE JULIO" nro="234" piso="-" depto="-" cp="1708" localidad="MORON" provincia="BUENOS AIRES" contacto="PAOLA BLANCO" email="ventasonline@chatelet.com.ar" solicitante="PAOLA BLANCO" observaciones="Ninguna" centrocosto="0" /><envios><envio idoperativa="'.$idOperativa.'" nroremito="'.$nroremito.'"><destinatario apellido="'.$apellido.'" nombre="'.$nombre.'" calle="'.$calle.'" nro="'.$nro.'" piso="'.$piso.'" depto="'.$depto.'" cp="'.$cp.'" localidad="'.$localidad.'" provincia="'.$provincia.'" telefono="'.$telefono.'" email="'.$email.'" idci="0" celular="'.$telefono.'"/><paquetes><paquete alto="'.$alto.'" ancho="'.$ancho.'" largo="'.$largo.'" peso="'.$peso.'" valor="'.$valor.'" cant="1"/></paquetes></envio></envios></ROWS>';
+		$idOperativa = 271263; //396726;  96637;
+		$XML_Retiro = '<ROWS><cabecera ver="1.0" nrocuenta="187915/000" /><retiro calle="9 DE JULIO" nro="234" piso="-" depto="-" cp="1708" localidad="MORON" provincia="BUENOS AIRES" contacto="PAOLA BLANCO" email="ventasonline@chatelet.com.ar" solicitante="PAOLA BLANCO" observaciones="Ninguna" centrocosto="0" /><envios><envio idoperativa="'.$idOperativa.'" nroremito="'.$nroremito.'"><destinatario apellido="'.$apellido.'" nombre="'.$nombre.'" calle="'.$calle.'" nro="'.$nro.'" piso="'.$piso.'" depto="'.$depto.'" cp="'.$cp.'" localidad="'.$localidad.'" provincia="'.$provincia.'" telefono="'.$telefono.'" email="'.$email.'" idci="0" celular="'.$telefono.'"/><paquetes><paquete alto="'.$alto.'" ancho="'.$ancho.'" largo="'.$largo.'" peso="'.$peso.'" valor="'.$valor.'" cant="1"/></paquetes></envio></envios></ROWS>';
 		$query_data = "usr=ventasonline@chatelet.com.ar&psw=provee004&XML_Retiro=$XML_Retiro&ConfirmarRetiro=True&DiasRetiro=14&FranjaHoraria=1";
 
 		$ch = curl_init();
@@ -283,9 +283,9 @@ class Oca
 		$localidad 	= $this->normaliza($localidad);
 		$provincia 	= $this->normaliza($provincia);
 		$email 		= $this->normaliza($email);
-		$idOperativa = "396726"; // 96637;
+		$idOperativa = 271263; // "396726"; 96637;
 
-		$XML_Retiro = '<ROWS><cabecera ver="2.0" nrocuenta="149543/001" /><origenes>';
+		$XML_Retiro = '<ROWS><cabecera ver="2.0" nrocuenta="187915/000" /><origenes>';
 		$XML_Retiro.= '<origen calle="9 DE JULIO" nro="234" piso="" depto="" cp="1708"';
 		$XML_Retiro.= ' localidad="MORON" provincia="BUENOS AIRES" contacto="PAOLA BLANCO"';
 		$XML_Retiro.= ' email="ventasonline@chatelet.com.ar" solicitante="PAOLA BLANCO"';

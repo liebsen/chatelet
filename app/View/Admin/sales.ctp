@@ -98,6 +98,7 @@
         <table id="example-datatables2" class="table table-striped table-bordered table-hover print-friendly">
             <thead>
                 <tr>
+                    <th class="text-center">ID</th>
                     <th class="text-center">Fecha</th>
                     <th class="text-center">Cliente</th>
                     <th class="text-center">Total</th>
@@ -115,6 +116,9 @@
                 }
                 ?>
                 <tr class="is-clickable<?= $paybank ? ' bg-warning-i' : '' ?>">
+                    <td class="col-xs-1">
+                        <span><?php echo @$sale['local_sale']['id'] ?> </span>
+                    </td>
                     <td class="col-xs-1" data-sort="<?php echo date('Y-m-d',strtotime($sale['collection']['date_approved'])) ?>">
                         <strong><?php echo date('d/m/Y',strtotime($sale['collection']['date_approved'])) ?></strong><br />
                         <small><?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?></small><br />

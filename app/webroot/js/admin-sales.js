@@ -134,7 +134,8 @@ function getTicket() {
         layerClose()
       }, 3000)
     } else {
-      alert('Algo salió mal. Volvé a intentar en unos instantes')
+      const message = data.message.replace(/\s+/g, ' ').trim()
+      alert(`Algo salió mal: "${message}". Volvé a intentar en unos instantes`)
     }
   })
 }
@@ -156,7 +157,8 @@ function setComplete(){
         getTicket(sale_id)
       }
     } else {
-      alert('Algo salió mal. Volvé a intentar en unos instantes')
+      const message = data.message.replace(/\s+/g, ' ').trim()
+      alert(`Algo salió mal: "${message}". Volvé a intentar en unos instantes`)
     }
   })
 }
