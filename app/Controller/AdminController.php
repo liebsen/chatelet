@@ -1935,6 +1935,7 @@ public function promos(){
 		$this->set('navs', $navs);
     $this->loadModel('Logistic');
     $this->loadModel('LogisticsPrices');
+    $this->loadModel('Setting');
   	switch ($action) {
     	case 'add':
   	    if ($this->request->is('POST')){
@@ -1981,6 +1982,14 @@ public function promos(){
     				$data['image'] = $this->saveFile('image', $data);
     			}
 		      $this->Logistic->save($data);
+          if(!empty($this->request->data['config'])) {
+            foreach($this->request->data['config'] as $id => $value) {
+              $this->Setting->save([
+                'id' => $id,
+                'value' => $value
+              ]);
+            }
+          }		      
     		} else {
     			$this->loadModel('LogisticsPrices');
 	    		$hasId = array_key_exists(1, $this->request->pass);
@@ -1994,6 +2003,14 @@ public function promos(){
 					$this->set('h1', $h1);    			
 	    		$this->set('logistic', $logistic);
 	    		$this->set('logistic_prices', $prices);
+          $code = $logistic['Logistic']['code'];
+          $config = $this->Setting->find('all', [
+            'conditions' => [
+              'id LIKE' => "{$code}%"
+            ]
+          ]);
+
+          $this->set('config', $config);	    		
 	    		return $this->render('logistica-detail');
     		}
     		break;

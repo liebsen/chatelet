@@ -63,6 +63,20 @@
               <small class="text-muted">Indica la url del enlace que recibirá el cliente por correo electrónico para chequear el estado de su envío. Generalmente está enlazado a algún sitio de <?= $logistic['Logistic']['title'] ?></small>
             </div>            
           <?php endif ?>
+          <?php if(!empty($config)): ?>
+            <h4 class="sub-header">Configuración</h4>
+            <?php foreach($config as $item):?>
+            <br>
+            <div class="control-group">
+              <label class="control-label" for="<?= $item['Setting']['id'] ?>"><?php echo __(strtok($item['Setting']['extra'], ':')); ?></label>
+              <div class="controls">
+                <input type="text" max-length="255" size="60" class="form-control" id="<?= $item['Setting']['id'] ?>" name="config[<?= $item['Setting']['id'] ?>]" value="<?= @$item['Setting']['value'] ?>" required>
+              </div>
+              <small class="text-muted"><?= substr($item['Setting']['extra'], strpos($item['Setting']['extra'], ":") + 1) ?></small>
+            </div>
+          <?php endforeach ?>
+          <?php endif ?>
+
           </div>
           <div class="col-md-6">
             <h4 class="sub-header"><?php echo __('Prioridad de oferta'); ?></h4>

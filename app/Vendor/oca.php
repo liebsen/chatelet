@@ -257,8 +257,7 @@ class Oca
 		$query_data = "usr=ventasonline@chatelet.com.ar&psw=provee004&XML_Retiro=$XML_Retiro&ConfirmarRetiro=True&DiasRetiro=14&FranjaHoraria=1";
 
 		$ch = curl_init();
-		// curl_setopt($ch, CURLOPT_URL,"http://webservice.oca.com.ar/oep_tracking/Oep_Track.asmx/IngresoOR");
-		curl_setopt($ch, CURLOPT_URL,"http://webservice.oca.com.ar/ePak_tracking/Oep_TrackEPak.asmx/IngresoORMultiplesRetiros");
+		curl_setopt($ch, CURLOPT_URL,"http://webservice.oca.com.ar/epak_tracking/Oep_TrackEPak.asmx/IngresoORMultiplesRetiros");
 		curl_setopt($ch, CURLOPT_POST, 1);	                            
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $query_data);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -300,7 +299,7 @@ class Oca
 		$XML_Retiro.= '<paquete alto="'.$alto.'" ancho="'.$ancho.'" largo="'.$largo.'" peso="'.$peso.'"';
 		$XML_Retiro.= ' valor="'.$valor.'" cant="1"/></paquetes></envio></envios></origen></origenes></ROWS>';
 
-		$query_data = "usr=logistik_chatelet@hotmail.com&psw=LogistiK0002&xml_Datos=$XML_Retiro&ConfirmarRetiro=True&ArchivoCliente=&ArchivoProceso=";//DiasRetiro=14&FranjaHoraria=1";
+		$query_data = "usr=chateletonline@outlook.com.ar&psw=25deMayo202&xml_Datos=$XML_Retiro&ConfirmarRetiro=True&ArchivoCliente=&ArchivoProceso=";//DiasRetiro=14&FranjaHoraria=1";
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL,"http://webservice.oca.com.ar/epak_tracking/Oep_TrackEPak.asmx/IngresoORMultiplesRetiros");
 		curl_setopt($ch, CURLOPT_POST, 1);	                            
