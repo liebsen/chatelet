@@ -383,11 +383,21 @@ class AdminController extends AppController {
 
 	private function add_order_oca ($sale) {
 		$oca = new Oca();
+		$this->loadModel('Setting');
+		$nrocuenta = $this->Setting->findById('oca_nro_cuenta');
+		$nrocuenta = @$nrocuenta['Setting']['value'];
+		$idoperativa = $this->Setting->findById('oca_id_operativa');
+		$idoperativa = @$idoperativa['Setting']['value'];
+		$usr = $this->Setting->findById('oca_usr');
+		$usr = @$usr['Setting']['value'];
+		$psw = $this->Setting->findById('oca_psw');
+		$psw = @$psw['Setting']['value'];
+
 		//$sale = $sale['Sale'];
 		$package = $this->Package->findById($sale['package_id']);
 		$package = $package['Package'];
 		
-		$oca_result = $oca->ingresoORNuevo($sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
+		$oca_result = $oca->ingresoORNuevo($nrocuenta, $idoperativa, $usr, $psw, $sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
 		$sale['def_orden_retiro'] = @$oca_result['retiro'];
 		$sale['def_orden_tracking'] = @$oca_result['tracking'];
 		$t = @$this->Sale->save($sale);

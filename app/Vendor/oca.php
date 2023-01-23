@@ -275,7 +275,7 @@ class Oca
 		return $OrdenRetiro;
 	}
 
-	public function ingresoORNuevo($nroremito,$apellido,$nombre,$calle,$nro,$piso,$depto,$cp,$localidad,$provincia,$telefono,$email,$alto,$ancho,$largo,$peso,$valor) {
+	public function ingresoORNuevo($nrocuenta, $idoperativa, $usr, $psw, $nroremito,$apellido,$nombre,$calle,$nro,$piso,$depto,$cp,$localidad,$provincia,$telefono,$email,$alto,$ancho,$largo,$peso,$valor) {
 		$apellido 	= $this->normaliza($apellido);
 		$nombre 	= $this->normaliza($nombre);
 		$calle 		= $this->normaliza($calle);
@@ -283,15 +283,14 @@ class Oca
 		$localidad 	= $this->normaliza($localidad);
 		$provincia 	= $this->normaliza($provincia);
 		$email 		= $this->normaliza($email);
-		$idOperativa = 396726; // "396726"; 96637;
 
-		$XML_Retiro = '<ROWS><cabecera ver="2.0" nrocuenta="187915/000" /><origenes>';
+		$XML_Retiro = '<ROWS><cabecera ver="2.0" nrocuenta="'.$nrocuenta.'" /><origenes>';
 		$XML_Retiro.= '<origen calle="9 DE JULIO" nro="234" piso="" depto="" cp="1708"';
 		$XML_Retiro.= ' localidad="MORON" provincia="BUENOS AIRES" contacto="PAOLA BLANCO"';
 		$XML_Retiro.= ' email="ventasonline@chatelet.com.ar" solicitante="PAOLA BLANCO"';
 		$XML_Retiro.= ' observaciones="Ninguna" centrocosto="0" idfranjahoraria="1"';
 		$XML_Retiro.= ' idcentroimposicionorigen="113" fecha="'.date("Ymd").'"><envios>';
-		$XML_Retiro.= ' <envio idoperativa="'.$idOperativa.'" nroremito="'.$nroremito.'">';
+		$XML_Retiro.= ' <envio idoperativa="'.$idoperativa.'" nroremito="'.$nroremito.'">';
 		$XML_Retiro.= ' <destinatario apellido="'.$apellido.'" nombre="'.$nombre.'" calle="'.$calle.'"';
 		$XML_Retiro.= ' nro="'.$nro.'" piso="'.$piso.'" depto="'.$depto.'" cp="'.$cp.'"';
 		$XML_Retiro.= ' localidad="'.$localidad.'" provincia="'.$provincia.'" telefono="'.$telefono.'"';
@@ -299,7 +298,7 @@ class Oca
 		$XML_Retiro.= '<paquete alto="'.$alto.'" ancho="'.$ancho.'" largo="'.$largo.'" peso="'.$peso.'"';
 		$XML_Retiro.= ' valor="'.$valor.'" cant="1"/></paquetes></envio></envios></origen></origenes></ROWS>';
 
-		$query_data = "usr=chateletonline@outlook.com.ar&psw=25deMayo202&xml_Datos=$XML_Retiro&ConfirmarRetiro=True&ArchivoCliente=&ArchivoProceso=";//DiasRetiro=14&FranjaHoraria=1";
+		$query_data = "usr=".$usr."&psw=".$psw."&xml_Datos=$XML_Retiro&ConfirmarRetiro=True&ArchivoCliente=&ArchivoProceso=";//DiasRetiro=14&FranjaHoraria=1";
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL,"http://webservice.oca.com.ar/epak_tracking/Oep_TrackEPak.asmx/IngresoORMultiplesRetiros");
 		curl_setopt($ch, CURLOPT_POST, 1);	                            
@@ -318,8 +317,7 @@ class Oca
 //              die($nroEnvio);
 		return ['retiro'=>$OrdenRetiro, 'tracking'=>$nroEnvio, 'rawXML' => $xml];
 
-
-		
+	
 		
 		return $OrdenRetiro;
 	}
