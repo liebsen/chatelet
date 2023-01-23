@@ -66,7 +66,6 @@
           <?php if(!empty($config)): ?>
             <h4 class="sub-header">Configuración</h4>
             <?php foreach($config as $item):?>
-            <br>
             <div class="control-group">
               <label class="control-label" for="<?= $item['Setting']['id'] ?>"><?php echo __(strtok($item['Setting']['extra'], ':')); ?></label>
               <div class="controls">
