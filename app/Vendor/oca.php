@@ -257,7 +257,8 @@ class Oca
 		$query_data = "usr=ventasonline@chatelet.com.ar&psw=provee004&XML_Retiro=$XML_Retiro&ConfirmarRetiro=True&DiasRetiro=14&FranjaHoraria=1";
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL,"http://webservice.oca.com.ar/oep_tracking/Oep_Track.asmx/IngresoOR");
+		// curl_setopt($ch, CURLOPT_URL,"http://webservice.oca.com.ar/oep_tracking/Oep_Track.asmx/IngresoOR");
+		curl_setopt($ch, CURLOPT_URL,"http://webservice.oca.com.ar/ePak_tracking/Oep_TrackEPak.asmx/IngresoORMultiplesRetiros");
 		curl_setopt($ch, CURLOPT_POST, 1);	                            
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $query_data);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
