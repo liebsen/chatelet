@@ -319,15 +319,12 @@ class CarritoController extends AppController
 		return json_encode(\filtercoupon($coupon));
 	}
 
-	public function deliveryCost($sale){
-		echo '<pre>';
-		var_dump($sale);
-		die();
+	public function deliveryCost($cp, $sale){
 		if ($sale['cargo'] === 'takeaway') {
 			return 0;
 		}
 
-		$cp = @$sale['postal_address'];
+		$cp = $cp ?: @$sale['postal_address'];
 		$code = @$sale['shipping'];
 
 		$this->RequestHandler->respondAs('application/json');
@@ -782,7 +779,7 @@ class CarritoController extends AppController
 		// Add Delivery
 		$delivery_cost = 0;
 		$freeShipping = $this->isFreeShipping($total_wo_discount, $user['postal_address']);
-		$delivery_data = json_decode( $this->deliveryCost($user));
+		$delivery_data = json_decode( $this->deliveryCost(null, $user));
 		$delivery_cost = (int) $delivery_data['rates'][0]['price'];
 
 		if ($freeShipping) { 
