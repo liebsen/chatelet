@@ -320,6 +320,9 @@ class CarritoController extends AppController
 	}
 
 	public function deliveryCost($sale){
+		echo '<pre>';
+		var_dump($sale);
+		die();
 		if ($sale['cargo'] === 'takeaway') {
 			return 0;
 		}
