@@ -264,7 +264,7 @@ $(document).ready(function() {
 		$('.input-cp').val(lastcp)
 		setTimeout(() => {
 			const takeaway = $('.takeaway-options li.selected')
-			if(!takeaway.length || freeShipping) {
+			if(cargo === 'shipping' && !takeaway.length || freeShipping) {
 				$('#calulate_shipping').submit()	
 				onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
 			} else {

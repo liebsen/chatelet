@@ -79,7 +79,7 @@ class AppController extends Controller
         $this->loadModel('Category');
 
         $banners = $this->Banner->find('all', [
-          'conditions' => ['enabled' => 1],
+          'conditions' => ['enabled' => 1, 'title <>' => ''],
           'order' => ['Banner.ordernum ASC']
         ]);
 

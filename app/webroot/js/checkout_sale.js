@@ -1,11 +1,14 @@
 var last_selected = ''
 var select_payment = (e) => {
+	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var selected = $(e).find(':checked').val()
 	if(!selected) {
 		return false
 	}
 	last_selected = selected	
 	var subtotal = carrito.subtotal_price
+	console.log(subtotal)
+	console.log(carrito)
 	var bank_bonus = 0
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
 		bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
@@ -33,18 +36,19 @@ var select_payment = (e) => {
 	$('.total_price').text(formatNumber(total))
 	$('.payment-method .option-rounded').removeClass('is-selected')
 	$(e).addClass('is-selected')
-
 }
 
 $(function(){
-
 	$(`.cargo-${carrito.cargo}`).removeClass('hide')
 	$(`.cargo-${carrito.cargo}`).addClass('animated fadeIn')
 	$('#regalo').prop('checked', carrito.regalo)
 
 	Object.keys(carrito).forEach(e => {
-		if ($('#checkoutform').find(`input[name='${e}']`).length) {
-			$('#checkoutform').find(`input[name='${e}']`).val(carrito[e])
+		const h = $('#checkoutform').find(`input[name='${e}']`)
+		console.log('?',e)
+		if (h.length && carrito[e]) {
+			console.log(e,carrito[e])
+			h.val(carrito[e])
 		}
 		if ($(`.${e}`).length) {
 			let value = carrito[e]
@@ -97,8 +101,9 @@ $(function(){
 		submit.prop('disabled', true)
 		submit.addClass('disabled')
 		submit.text('Por favor espere...')
+		$('.checkoutform-container').removeClass('hide')
 
-		localStorage.removeItem('carrito')
+		//localStorage.removeItem('carrito')
 		fbq('track', 'InitiateCheckout')
 		let items = []
 		if(carrito_items && carrito_items.length) {
@@ -118,42 +123,5 @@ $(function(){
 			  "coupon": ""
 			})
 		}
-		/*
-	  dataLayer.push({
-	    'event': 'checkout',
-	    'ecommerce': {
-	      'checkout': {
-	        'actionField': {'step': 1, 'option': 'Visa'},
-	        'products': products
-	      }
-	    },
-	    'eventCallback': function() {
-	      return true
-	    }
-	  })*/
-	//Events
-	/* $('[name="provincia"]').change(function(event){
-		var province_id 	= $(this).find('option:selected').data('id');
-		var province_name 	= $(this).find('option:selected').html();
-		var url 			= $(this).data('url');
-		$('[name="localidad"]').empty();
-
-		if(province_id){
-			$.ajax({
-				url: url+'/'+province_id,
-				type: 'GET',
-				dataType: 'json',
-				data: {},
-			})
-			.done(function(data) {
-				$.each(data, function(index, localidad) {
-					$('[name="localidad"]').append('<option value="'+localidad.localidad+'">'+localidad.localidad+'</option>');
-				});
-				if(data.length == 0 && province_name){
-					$('[name="localidad"]').append('<option value="'+province_name+'">'+province_name+'</option>');
-				}
-			});
-		}
-	}); */	
 	})
 });

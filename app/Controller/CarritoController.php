@@ -319,12 +319,19 @@ class CarritoController extends AppController
 		return json_encode(\filtercoupon($coupon));
 	}
 
-	public function deliveryCost($cp, $code = null){
+	public function deliveryCost($sale){
+		if ($sale['cargo'] === 'takeaway') {
+			return 0;
+		}
+
+		$cp = @$sale['postal_address'];
+		$code = @$sale['shipping'];
+
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 		$this->loadModel('LogisticsPrices');
 		//Codigo Postal
-		$this->Session->write('cp',$cp);
+		$this->Session->write('cp', $cp);
 		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.11') {
 			$dummy = '{"freeShipping":false,"rates":[{"title":"Oca","code":"oca","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/628eb1ba29efd.svg","info":"Env\u00edos a todo el pa\u00eds","price":987,"centros":[],"valid":true},{"title":"Speed Moto","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/6292a6f2d79b7.jpg","code":"speedmoto","info":"10 a\u00f1os brindando confianza a nuestros clientes","price":"700.00","centros":[],"valid":true}],"itemsData":{"count":1,"price":1994.99,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}';
 			return json_encode(json_decode($dummy));
@@ -772,14 +779,15 @@ class CarritoController extends AppController
 		// Add Delivery
 		$delivery_cost = 0;
 		$freeShipping = $this->isFreeShipping($total_wo_discount, $user['postal_address']);
-		$delivery_data = json_decode( $this->deliveryCost($user['postal_address'], $user['shipping']),true);
+		$delivery_data = json_decode( $this->deliveryCost($user));
 		$delivery_cost = (int) $delivery_data['rates'][0]['price'];
 
 		if ($freeShipping) { 
      	error_log('without delivery bc price is :'.$total.', cp:'. @$user['postal_address'] .'  and date = '.gmdate('Y-m-d'));
 			// $delivery_cost=0;
 		} else {
-			if ($user['cargo'] !== 'takeaway') {
+			var_dump($user['cargo']);
+			if ($user['cargo'] === 'shipping') {
 				/* if (isset($delivery_data['rates'][0]['price'])) {
 				} */
 				error_log('suming delivery to price: '.$delivery_cost);
@@ -874,8 +882,8 @@ class CarritoController extends AppController
 		    	'pending' => $failure_url
 	    	)
 		);
-		$preference = $mp->create_preference($preference_data);
 
+		$preference = $mp->create_preference($preference_data);
 		//Save Data
 		$sale_data = array(
 			'user' 		=> $user,
@@ -1226,6 +1234,7 @@ el pago.</p>
 			$this->Session->delete('Carro');
 			$this->Session->delete('sale_data');
 			$this->set('sale_data',$data);
+			$this->set('failed', true);
 			if (!empty($_GET['collection_status']) && $_GET['collection_status']=='pending'){
 				error_log('pending');
 				$this->notify_user($data, 'pending');

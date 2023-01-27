@@ -254,7 +254,7 @@
 		</div>
 		<div class="row mt-4">
 			<div class="col-md-12 mt-3 text-center">
-				<input type="submit" onclick="$('.checkoutform-container').removeClass('hide')" class="btn cart-btn-green checkout-btn" value="Finalizar compra" />
+				<input type="submit" class="btn cart-btn-green checkout-btn" value="Finalizar compra" />
 			</div>
 		</div>
 	</form>

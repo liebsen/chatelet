@@ -1,7 +1,6 @@
 <?php echo $this->Html->css('clear',array('inline' => false)) ?>
 <?php 
 	$productos = [];
-	echo "<pre>";
 	foreach ($sale_data['products'] as $item) {
 		$description = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['description'])));
 		$parts = explode('-----',$description);
@@ -47,6 +46,10 @@
 </div>
 <!-- Google Code for Venta Online Conversion Page -->
 <script type="text/javascript">
+<?php if(!$failed):?>
+	localStorage.removeItem('carrito')
+<? endif ?>
+
 	fbq('track', 'Purchase', {value: <?php echo $sale_data['total'] ?>, currency: 'ARS'});
 	gtag('event', 'purchase', {
 	  "transaction_id": '<?php echo $sale_data['sale_id'] ?>',
