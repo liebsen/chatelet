@@ -319,7 +319,7 @@ class CarritoController extends AppController
 		return json_encode(\filtercoupon($coupon));
 	}
 
-	public function deliveryCost($cp, $sale){
+	public function deliveryCost($cp, $sale = null){
 		if ($sale['cargo'] === 'takeaway') {
 			return 0;
 		}
