@@ -324,7 +324,7 @@ class CarritoController extends AppController
 			return 0;
 		}
 
-		$cp = $cp ?: @$sale['postal_address'];
+		$cp = $cp ? $cp : @$sale['postal_address'];
 		$code = @$sale['shipping'];
 
 		$this->RequestHandler->respondAs('application/json');
