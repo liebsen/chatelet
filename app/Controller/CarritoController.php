@@ -321,7 +321,11 @@ class CarritoController extends AppController
 
 	public function deliveryCost($cp, $sale = null){
 		if ($sale['cargo'] === 'takeaway') {
-			return 0;
+			return (object) [
+				'rates' => [
+					'price' => 0
+				]
+			];
 		}
 
 		$cp = $cp ? $cp : @$sale['postal_address'];
@@ -655,6 +659,7 @@ class CarritoController extends AppController
 		$this->Sale->save($sale_object);
 		$sale_id = $this->Sale->id;
 
+
 		//Mercadopago
 		foreach ($carro as $producto) {
 			$desc = '';
@@ -695,7 +700,7 @@ class CarritoController extends AppController
 			/* if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
         $unit_price = @$producto['discount'];
       } */
-      
+
 			$items[] = array(
 				'title' => $desc,
 				'description' => $desc,
@@ -780,13 +785,12 @@ class CarritoController extends AppController
 		$delivery_cost = 0;
 		$freeShipping = $this->isFreeShipping($total_wo_discount, $user['postal_address']);
 		$delivery_data = json_decode( $this->deliveryCost(null, $user));
-		$delivery_cost = (int) $delivery_data['rates'][0]['price'];
+		$delivery_cost = (integer) $delivery_data->rates[0]->price;
 
 		if ($freeShipping) { 
      	error_log('without delivery bc price is :'.$total.', cp:'. @$user['postal_address'] .'  and date = '.gmdate('Y-m-d'));
 			// $delivery_cost=0;
 		} else {
-			var_dump($user['cargo']);
 			if ($user['cargo'] === 'shipping') {
 				/* if (isset($delivery_data['rates'][0]['price'])) {
 				} */
@@ -844,7 +848,7 @@ class CarritoController extends AppController
 			'telefono'	=> $user['telephone'],
 			'email'		=> $user['email'],
 			'regalo'		=> $user['regalo'],
-			'package_id'=> @$delivery_data['itemsData']['package']['id'],
+			'package_id'=> @$delivery_data->itemsData->package->id,
 			'value' 	=> $total, // @$delivery_data['itemsData']['price'],
 			'zip_codes' => $zipCodes,
 			'cargo'		=> $user['cargo'],
