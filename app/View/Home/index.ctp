@@ -260,7 +260,7 @@
 var myIndex = 0;
 //carousel();
 function carousel() {
-    console.log('carousel executing')
+    //console.log('carousel executing')
     var i;
     var x = document.getElementsByClassName("mySlides");
     for (i = 0; i < x.length; i++) {
