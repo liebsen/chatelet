@@ -86,7 +86,7 @@ html, body {
 .tap-to-continue:hover {
 	transform: scale(1.1);
   background-color: #f70095;
-  border-color: #f7009599;
+  border-color: #f7009533;
   color: whitesmoke;
 }
 
