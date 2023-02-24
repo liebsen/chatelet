@@ -68,8 +68,8 @@ html, body {
 	left: 1rem;
 	text-align: center;
 	white-space: nowrap;
-	padding: 0.75rem 1rem;
-	font-size: 1rem;
+	padding: 1rem 1.25rem;
+	font-size: 1.1rem;
 	text-shadow: 0 0 2px #0009;
 	font-weight: 500;
   /*background-color: #363733;*/
@@ -91,7 +91,7 @@ html, body {
 }
 
 .tap-to-continue > .fa:before {
-	margin-left: 0.5rem;
+	font-size: 1.25rem;
 }
 
 .icon-huge {
@@ -818,6 +818,11 @@ span.validation-password {
 
 @media screen and (min-width: 360px) {
 	#opts .mod-item { min-height: 220px;} 
+}
+@media screen and (max-width: 512px) {
+	.tap-to-continue > span {
+		display: none;
+	}
 }
 @media screen and (max-width: 768px) {
 	.whatsapp-block .whatsapp-text {
