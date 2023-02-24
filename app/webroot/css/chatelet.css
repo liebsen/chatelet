@@ -56,6 +56,12 @@ html, body {
 	position: relative;
 }
 
+.notfound {
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;	
+}
 .tap-to-continue {
 	position: absolute;
 	bottom: 1rem;
