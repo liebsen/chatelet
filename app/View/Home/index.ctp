@@ -175,7 +175,7 @@
 
             <div class="content js-show-modal is-clickable animated fadeIn delay3" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
                 <div class="tap-to-continue animated fadeIn delay3">
-                    <i class="fa fa-hand-o-right mr-2"></i> 
+                    <i class="fa fa-chevron-right mr-2"></i> 
                     <span class="ml-2">Continuar a la tienda</span>
                 </div>
 

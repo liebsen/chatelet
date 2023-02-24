@@ -68,19 +68,32 @@ html, body {
 	left: 1rem;
 	text-align: center;
 	white-space: nowrap;
-	border-radius: 3px;
 	padding: 0.75rem 1rem;
-	color: white;
 	font-size: 1rem;
-	text-shadow: 0 0 2px #0006;
-  background-color: #333;
+	text-shadow: 0 0 2px #0009;
+	font-weight: 500;
+  /*background-color: #363733;*/
+  background-color: white;
+  border: 3px solid #f70095;
+  text-transform: uppercase;
   border-radius: 5rem;
-  border: 1px solid whitesmoke;
+  box-shadow: rgb(0 0 0 / 16%) 3px 3px 4px;
+	color: #f70095;
+	transition: all 0.1s ease-in;
   /*box-shadow: 0 0 0.5rem #fff3;*/
 }
-.tap-to-continue .fa {
+
+.tap-to-continue:hover {
+	transform: scale(1.1);
+  background-color: #f70095;
+  border-color: #f7009599;
+  color: whitesmoke;
+}
+
+.tap-to-continue > .fa:before {
 	margin-left: 0.5rem;
 }
+
 .icon-huge {
 	display: flex;
 	justify-content: center;
