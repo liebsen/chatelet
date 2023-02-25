@@ -97,13 +97,15 @@ function updateSrcTo(obj){
 
       $discount_flag = (@$item['category_id']!='134' && !empty($number_disc))?'<div class="ribbon bottom-left small sp1"><span>'.$number_disc.'% OFF</span></div>':'';
       $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon sp1"><span>'.$item['promo'].'</span></div>':'';
-      $content = $discount_flag . $promo_ribbon;
+      $content= '<div style="position:relative">';
+      $content.= $discount_flag . $promo_ribbon;
 
       if (empty($item['with_thumb'])){
         $content.= '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />';
       }else{
         $content.= '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . 'thumb_'.$item['img_url'] .'" url-copy="'.Configure::read('imageUrlBase') . $item['img_url'].'" onError=updateSrcTo(this) />';
       }
+      $content.= '</div>';
 
       if ($isProduct){
          $content.='<span class="hide">'. '<small>'. $item['desc'] .'</small>'. '</span>';

@@ -279,6 +279,7 @@
 
                       <div data-id="<?=$alt_product['id']?>" class="col-sm-6 col-md-4 col-lg-3 p-1 add-no-stock">
                         <a href="<?php echo $url ?>">
+                            <div style="position: relative;">
                             <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
                                 <div class="ribbon bottom-left small sp1"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
                             <?php endif ?>
@@ -286,6 +287,7 @@
                                 <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
                             <?php endif ?>
                             <img class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
+                            </div>
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                             <div class="name"><?= $alt_product_name ?></div>
                             <div class="price-list"><?= @ceil($alt_product['old_price']) && ceil($alt_product['old_price']) !== ceil($alt_product['price']) ? '<span class="old_price">' .  str_replace(',00','',$this->Number->currency(ceil($alt_product['old_price']), 'ARS', array('places' => 2))). '</span>' : '' ?><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
