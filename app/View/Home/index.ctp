@@ -15,7 +15,7 @@
 
 ?>
 
-        <div id="carousel-example-generic" class="carousel slide animated fadeIn speed delay2" data-interval="3000" data-ride="carousel">
+        <div id="carousel-example-generic" class="carousel slide" data-interval="3000" data-ride="carousel">
 
           <!-- Wrapper for slides -->
           <div class="carousel-inner " role="listbox">
@@ -173,7 +173,7 @@
 
         <?php elseif (count($popupBG)==1):?>
 
-            <div class="content js-show-modal is-clickable animated fadeIn delay1" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
+            <div class="content js-show-modal is-clickable" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
                 <div class="tap-to-continue animated fadeIn delay3" title="Continuar a la tienda">
                     <i class="fa fa-chevron-right mr-0"></i> 
                     <span class="ml-2">Continuar<span class="d-none d-lg-block d-xl-block"> a la tienda</span></span>

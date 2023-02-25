@@ -250,7 +250,7 @@ $(function () {
   if(window.location.hash.indexOf('listShop') === -1 && document.querySelector("#myModal")!=null && $('.js-show-modal') && $('.js-show-modal').length){
     setTimeout(function () {
       $('#myModal').modal({ show: true })
-    }, 3000)
+    }, 10)
   }
 
   $('.action-search').click(() => {
