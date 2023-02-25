@@ -20,6 +20,7 @@ a:hover {
 
 html, body {
 	min-height: 100%;
+	scroll-behavior: smooth;
 }
 
 #launcher {

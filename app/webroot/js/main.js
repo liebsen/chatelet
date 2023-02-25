@@ -247,10 +247,14 @@ $(function () {
     window.scrollTo(0,0)
   })
 
-  if(window.location.hash.indexOf('listShop') === -1 && document.querySelector("#myModal")!=null && $('.js-show-modal') && $('.js-show-modal').length){
-    setTimeout(function () {
-      $('#myModal').modal({ show: true })
-    }, 10)
+  if(window.location.hash.indexOf('listShop') === -1 ){
+    if(document.querySelector("#myModal")!=null && $('.js-show-modal') && $('.js-show-modal').length) {
+      setTimeout(function () {
+        $('#myModal').modal({ show: true })
+      }, 10)
+    }
+  } else {
+    $('#listShop').addClass('push')
   }
 
   $('.action-search').click(() => {

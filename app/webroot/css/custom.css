@@ -2438,6 +2438,7 @@ span.count.is-empty {
   #opts a { max-height: 30rem; } */
   #detalle .caract .add {min-width: 10rem; }
   #listShop { padding-top: 1.25rem; }
+  #listShop.push { padding-top: 6.25rem;  }
   footer > .wrapper {
     padding: 0 2rem;
   }
