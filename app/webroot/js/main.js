@@ -256,7 +256,7 @@ $(function () {
   if (window.location.hash.indexOf('listShop') > -1) {
     setTimeout(() => {
       window.scrollBy(0, -93)
-    }, 8000)
+    }, 5000)
   }
 
   $('.action-search').click(() => {
