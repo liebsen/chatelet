@@ -279,7 +279,7 @@
 
                       <div data-id="<?=$alt_product['id']?>" class="col-sm-6 col-md-4 col-lg-3 p-1 add-no-stock">
                         <a href="<?php echo $url ?>">
-                            <div style="position: relative;">
+                            <div class="ribbon-container">
                             <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
                                 <div class="ribbon bottom-left small sp1"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
                             <?php endif ?>
