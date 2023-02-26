@@ -94,7 +94,7 @@ class AppController extends Controller
         $version_file = __DIR__ . '/../version';
         $version_count = 1111;
         if(file_exists($version_file)) {
-            $version_date = date("\a\c\\t\u\a\l\i\z\a\d\o d-m-Y \a \l\a\s  H:i:s.", filemtime($version_file));
+            $version_date = date("\ú\l\\t\i\m\a \a\c\\t\u\a\l\i\z\a\c\i\ó\\n d/m/Y H:i\h\s", filemtime($version_file));
             $version_count = (int) file_get_contents($version_file);
         }
         if ($this->Session->read('font')) {
