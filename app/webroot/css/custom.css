@@ -2147,6 +2147,7 @@ span.count.is-empty {
 
 .carrito-col {
   display: flex;
+  flex-direction: column;
 }
 
 .carrito-item-row {
