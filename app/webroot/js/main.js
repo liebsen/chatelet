@@ -7,6 +7,7 @@ let searchInt = 0
 let searchPageSize = 12
 let searchPage = 0
 let focusAnim = 'pulse'
+let clock = 0
 
 let formatNumber = (float) => {
   if (typeof float === 'string') {
@@ -326,48 +327,54 @@ $(function () {
   });
 
   $(window).scroll(function(e) {
-    var scroll = $(window).scrollTop()
-    var navbar = document.querySelector('.navbar-chatelet')
-    if (navbar) {
-      navbar.classList.remove('fadeIn', 'slideInUp')
+    if(clock) {
+      clearInterval(clock)
     }
+    clock = setTimeout(() => {
+      var scroll = $(window).scrollTop()
+      var navbar = document.querySelector('.navbar-chatelet')
+      if (scroll > 300) {
+        if(document.querySelector('.float-tl')) {
+          document.querySelector('.float-tl').classList.add('float-top-left')
+        }
+        if(document.querySelector('.float-tr')) {
+          document.querySelector('.float-tr').classList.add('float-top-right')
+        }
 
-    if (scroll > 380) {
-      if(document.querySelector('.float-tl')) {
-        document.querySelector('.float-tl').classList.add('float-top-left')
-      }
-      if(document.querySelector('.float-tr')) {
-        document.querySelector('.float-tr').classList.add('float-top-right')
-      }
-
-      if (navbar && !navbar.classList.contains('fixed')) {
-        document.querySelector('body').style.paddingTop = `${navbar.clientHeight}px`
-        setTimeout(() => {
-           navbar.classList.add('fadeIn')
-        }, 200)
-        navbar.classList.add('fixed')
-      }
-    } else {
-      if(document.querySelector('.float-tl')) {
-        document.querySelector('.float-tl').classList.remove('float-top-left')
-      }
-      if(document.querySelector('.float-tr')) {
-        document.querySelector('.float-tr').classList.remove('float-top-right')
-      }
-      if (lastscroll > scroll) {
+        if (lastscroll > scroll) {
+          // up
+          if (navbar && !navbar.classList.contains('fixed')) {
+            navbar.classList.remove('fadeOut','fadeIn')
+            setTimeout(() => {
+              document.querySelector('body').style.paddingTop = `${navbar.clientHeight}px`
+              navbar.classList.add('fadeIn','fixed')
+            }, 10)
+          } 
+        } else {
+          // down
+          if (navbar && navbar.classList.contains('fixed')) {
+            document.querySelector('body').style.paddingTop = 0
+            navbar.classList.remove('fixed','fadeIn')
+            navbar.classList.remove('fadeOut')
+            setTimeout(() => {
+              navbar.classList.add('fadeOut')    
+            }, 10)            
+          }
+        }
+      } else {
+        if(document.querySelector('.float-tl')) {
+          document.querySelector('.float-tl').classList.remove('float-top-left')
+        }
+        if(document.querySelector('.float-tr')) {
+          document.querySelector('.float-tr').classList.remove('float-top-right')
+        }
         if (navbar && navbar.classList.contains('fixed')) {
           document.querySelector('body').style.paddingTop = 0
           navbar.classList.remove('fixed')
         }
-      } else {
-        if (navbar) {
-          navbar.classList.remove('fadeIn')
-          navbar.classList.add('slideInDown')
-        }
       }
-    }
-
-    lastscroll = scroll
+      lastscroll = scroll
+    }, 300)
   })
 
   /* trigger search from url */
