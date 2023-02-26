@@ -459,6 +459,11 @@ html, body {
 	background-color: #f7ecf1;
 	padding-top: 0.5rem;
 }
+
+#menuSearch .wrapper {
+	max-width: 70rem;
+}
+
 .float-left {
 	float: left;
 }

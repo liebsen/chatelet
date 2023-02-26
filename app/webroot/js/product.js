@@ -101,7 +101,6 @@ function addCart(data, button, text) {
 		});	
 }
 function pideStock(obj){
-
 		// console.log('changed');
 		$(".add.agregar-carro").text('Agregar al carrito')
 
@@ -117,22 +116,30 @@ function pideStock(obj){
 	  var stock_v  	= '<i style="color:gray;">Consultando ... </i>';
 
 		if(!color_code){
+			onSuccessAlert('','Elegí un color para este producto')
 			stock_cont.html(no_color);
+			return false;
+		}
+
+		if(!size_number){
+			onSuccessAlert('','Elegí un talle para este producto')
 			return false;
 		}
 
 		window.stock = 0;
 		if(url && article && color_code && size_number){
-
+			onSuccessAlert('Consultando stock','...')
 			var test = document.querySelector('.footer-producto');
-      $(test).find('a').css({visibility: 'hidden'});
+      $(test).find('a').animate({opacity: 0.25});
       stock_cont.html(stock_v);
 
 	  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
 				if(data != 0){
 				  //stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
 					stock_cont.html(stock);
-					$(test).find('a').css({visibility: 'visible'});
+					setTimeout(() => {
+						$(test).find('a').animate({opacity: 1});
+					}, 1000)
 				}else{
 					stock_cont.html( stock_0 );
 				}
