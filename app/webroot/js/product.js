@@ -128,7 +128,7 @@ function pideStock(obj){
 
 		window.stock = 0;
 		if(url && article && color_code && size_number){
-			onSuccessAlert('Consultando stock','...')
+			onSuccessAlert('','Consultando stock ...')
 			var test = document.querySelector('.footer-producto');
       $(test).find('a').animate({opacity: 0.25});
       stock_cont.html(stock_v);

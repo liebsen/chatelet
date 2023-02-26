@@ -132,8 +132,8 @@
 						<div class="animated fadeIn delay2">
 							<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 							<input type="hidden" id="subtotal_envio" value="" />
-							<div class="field text-center mb-2 mr-1">
-								<label class="scl-125">
+							<div class="text-center mb-2 mr-1">
+								<label>
 								  <input type="checkbox" id="regalo" value="1" /><span class="label-text text-muted">Es para regalo</span>
 								</label>
 							</div>
