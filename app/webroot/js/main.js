@@ -307,7 +307,7 @@ $(function () {
     }, segs * 1000)
   }
 
-  var menuLayerTop = 94;
+  var menuLayerTop = 0;
   if (document.getElementById('carousel-banners')) {
     const height = document.getElementById('carousel-banners').clientHeight
     menuLayerTop+= height;
