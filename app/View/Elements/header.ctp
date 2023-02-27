@@ -197,7 +197,7 @@
       </div>
     </div>
     <div class="row display-flex is-justify-center search-results">
-      <p class="results-text text-muted">Podés buscar por prenda (ej: remeras, pantalones) o tela (jersey, lino, etc)</p>
+      <p class="results-text text-muted">¿Sin mucha inspiración? Probá con  remera, pantalón, malla, jersey, lino, algodón ...</p>
     </div>
     <div class="row display-flex is-justify-center search-more"></div>
   </div>
