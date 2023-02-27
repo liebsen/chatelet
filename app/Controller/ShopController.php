@@ -10,7 +10,7 @@ use AlejoASotelo\Andreani;
 
 class ShopController extends AppController {
 	public $uses = array('Product', 'ProductProperty','Promo','Catalogo','Category','LookBook');
-	public $helpers = array('Number');
+	public $helpers = array('Number', 'Tile');
 	// public $components = array('SQL', 'RequestHandler');
 	public $components = array('RequestHandler');
 

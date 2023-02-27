@@ -196,46 +196,9 @@
         <!--p class="search-info"></p-->
       </div>
     </div>
-    <div class="row display-flex is-justify-center search-results"></div>
+    <div class="row display-flex is-justify-center search-results">
+      <p class="results-text text-muted">Podés buscar por prenda (ej: remeras, pantalones) o tela (jersey, lino, etc)</p>
+    </div>
     <div class="row display-flex is-justify-center search-more"></div>
   </div>
 </div>
-
-<!--div id="menuShop" class="menuLayer">
-    <a class="close">
-        <span></span>
-        <span></span>
-    </a>
-    <div class="wrapper">
-        <div class="row">
-            <img  class="pull-left" src="<?php echo Configure::read('imageUrlBase').$image_menushop?>" >
-            <div class="col-sm-6">
-
-                <h3>Shop</h3>
-                <ul>
-                  <?php
-                  if (!empty($categories)){
-                    foreach ($categories as $category) {
-                      $category = $category['Category'];
-                      $slug =  str_replace(' ','-',strtolower($category['name']));
-                      if (strpos($slug, 'trajes')!==false){
-                        $slug = 'trajes-de-bano';
-                      }
-                      echo '<li>';
-                      echo $this->Html->link(
-                          $category['name'],
-                          array(
-                              'controller' => 'tienda',
-                              'action' => 'productos',
-                             $slug
-                          )
-                      );
-                      echo '</li>';
-                    }
-                    }
-                  ?>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div-->
