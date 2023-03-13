@@ -791,7 +791,7 @@ class CarritoController extends AppController
      	error_log('without delivery bc price is :'.$total.', cp:'. @$user['postal_address'] .'  and date = '.gmdate('Y-m-d'));
 			// $delivery_cost=0;
 		} else {
-			if ($user['cargo'] === 'shipping') {
+			if ($user['cargo'] === 'shipment') {
 				/* if (isset($delivery_data['rates'][0]['price'])) {
 				} */
 				error_log('suming delivery to price: '.$delivery_cost);
