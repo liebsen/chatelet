@@ -264,12 +264,12 @@ $(document).ready(function() {
 		$('.input-cp').val(lastcp)
 		setTimeout(() => {
 			const takeaway = $('.takeaway-options li.selected')
-			if(cargo === 'shipping' && !takeaway.length || freeShipping) {
+			if(cargo === 'shipment' && !takeaway.length || freeShipping) {
 				$('#calulate_shipping').submit()	
 				onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
 			} else {
 				onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000)
 			}
-		}, 1000)		
+		}, 1000)
 	}
 })
