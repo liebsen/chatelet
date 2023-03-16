@@ -803,6 +803,7 @@ body {
 .mini-profile {
     padding: 1.75rem 3rem;
     background: white;
+    text-align: center;
 }
 
 .mini-profile a {
@@ -840,9 +841,8 @@ body {
     filter: alpha(opacity=100);
 }
 
-.mini-profile > img {
-    padding: 1.5rem 2rem;
-    margin: auto;
+.mini-profile > a > img {
+    max-height: 2rem;
 }
 
 /* Sidebar Tabs */
@@ -2487,7 +2487,8 @@ header.navbar .navbar-brand {
 /* Nav Pills and Tabs */
 .navbar-nav-custom > li > a > i,
 .nav > li > a > i {
-    font-size: 2rem;
+    font-size: 2.25rem;
+    line-height: 0.75;
     margin-right: 0.5rem;
 }
 

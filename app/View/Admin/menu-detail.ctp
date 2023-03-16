@@ -69,7 +69,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Abrir enlace en otra pestaña'); ?></label>
             <div class="controls">
-              <input type="checkbox" name="data[target_blank]" class="form-control" <?=(!empty($p['Home']['display_popup_form']))?'checked':''?>>
+              <input type="checkbox" name="data[target_blank]" class="form-control"<?= $item['Menu']['target_blank'] === 'on' ? ' checked' : '' ?>>
             </div>
           </div>          
           <br />       

@@ -3,7 +3,7 @@
   <div class="carousel-inner" role="listbox">
   <?php foreach ($banners as $key => $banner): ?>
     <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>">
-      <a href="<?php echo router::url($banner['Banner']['href']) ?>">
+      <a href="<?php echo router::url($banner['Banner']['href']) ?>"<?= $banner['Banner']['target_blank'] === 'on' ? ' target="blank"' : '' ?>>
         <?php if($banner['Banner']['img_url']):?>
           <div class="slider" style="background-image:url(<?php echo $banner['Banner']['img_url']; ?>)"></div>
         <?php else: ?>

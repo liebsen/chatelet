@@ -1453,9 +1453,10 @@ public function promos(){
     $this->set('list_code_desc',@$g['Setting']['value']);
 
         //create table discount_lists (id int unsigned auto_increment primary key, item_index int unsigned, category_id int(10) unsigned not null, list_code varchar(30) not null,updated_at date);
+    
 		$navs = array(
 			'Lista' => array(
-				'icon' 		=> 'gi gi-justify',
+				'icon' 		=> 'gi gi-shirt',
 				'url'		=> Configure::read('mUrl').'/admin/productos',
 				'active'	=> '/admin/productos'
 				),
@@ -1854,7 +1855,7 @@ public function promos(){
 	            $data['img_url'] = $file_real_name;
 	        }
 
-
+	        $data['target_blank'] = @$data['target_blank'] ?: '';
 	        $this->Banner->save($data);
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
@@ -1937,10 +1938,10 @@ public function promos(){
 	        }
 
 	        if($file_real_name){
-	            $data['img_url'] = $file_real_name;
+	          $data['img_url'] = $file_real_name;
 	        }
 
-
+	        $data['target_blank'] = @$data['target_blank'] ?: '';
 	        $this->Menu->save($data);
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);

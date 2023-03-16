@@ -29,11 +29,11 @@
 
         <!-- Sidebar Tabs -->
         <div class="sidebar-tabs-con">
-            <ul class="sidebar-tabs" data-toggle="tabs">
+            <!--ul class="sidebar-tabs" data-toggle="tabs">
                 <li class="active">
                     <a href="#side-tab-menu"><i class="gi gi-list"></i></a>
                 </li>
-            </ul>
+            </ul-->
             <div class="tab-content">
                 <div class="tab-pane active" id="side-tab-menu">
                     <!-- Primary Navigation -->
