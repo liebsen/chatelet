@@ -492,6 +492,7 @@ body {
 
 #primary-nav li a {
     display: block;
+    font-size: 1.5rem;
     position: relative;
     color: #eee;
     padding: 10px 10px 8px;
@@ -530,7 +531,8 @@ body {
     top: 1rem;
 }
 #primary-nav a > i {
-    width: 20px;
+    width: 3rem;
+    font-size: 2rem;
     text-align: center;
     display: inline-block;
     margin: -3px 10px 0 0;
@@ -2485,7 +2487,8 @@ header.navbar .navbar-brand {
 /* Nav Pills and Tabs */
 .navbar-nav-custom > li > a > i,
 .nav > li > a > i {
-    font-size: 14px;
+    font-size: 2rem;
+    margin-right: 0.5rem;
 }
 
 .nav-pills > li > a,
@@ -2493,6 +2496,7 @@ header.navbar .navbar-brand {
 .nav-tabs > li > a,
 .nav-tabs.nav-stacked > li > a {
     margin: 0;
+    font-size: 1.5rem;
     padding: 12px 14px;
 }
 

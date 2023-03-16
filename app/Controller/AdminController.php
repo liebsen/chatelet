@@ -984,9 +984,6 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 		if ($this->request->is('post')) {
         $data = $this->request->data;
-    	if(empty($data['navbar_main_title'])) {
-    		$data['navbar_main_title']='Shop';
-    	}
     	if(empty($data['url_mod_one'])) {
     		$data['url_mod_one']=null;
     	}    	
@@ -1473,7 +1470,7 @@ public function promos(){
 
 		$h1 = array(
 			'name' => 'Productos',
-			'icon' => 'gi gi-list'
+			'icon' => 'gi gi-shirt'
 			);
 		$this->set('h1', $h1);
 
@@ -1595,7 +1592,7 @@ public function promos(){
 	public function sucursales($action = null) {
 		$navs = array(
 			'Lista' => array(
-				'icon' 		=> 'gi gi-list',
+				'icon' 		=> 'fa fa-map-marker',
 				'url'		=> Configure::read('mUrl').'/admin/sucursales',
 				'active'	=> '/admin/sucursales'
 				),
@@ -1610,7 +1607,7 @@ public function promos(){
 
 		$h1 = array(
 			'name' => 'Sucursales',
-			'icon' => 'gi gi-list'
+			'icon' => 'fa fa-map-marker'
 			);
 		$this->set('h1', $h1);
 
@@ -1810,7 +1807,7 @@ public function promos(){
 		$this->set('navs', $navs);
 		$h1 = array(
 			'name' => 'Banners',
-			'icon' => 'gi gi-list'
+			'icon' => 'gi gi-picture'
 		);
 		$this->set('h1', $h1);
     $this->loadModel('Banner');
@@ -1818,9 +1815,7 @@ public function promos(){
     	case 'add':
     	    if ($this->request->is('POST')){
 		        $this->autoRender = false;
-
 		        $data = $this->request->data;
-
 		        $file_real_name = null;
 		        if(!empty($this->request->params['form']['image']['name'])){
 		            $file_real_name = $this->save_file($this->request->params['form']['image']);
@@ -1875,6 +1870,109 @@ public function promos(){
 	  $this->render('banners');
 	}
 
+	public function menu($action = null) {
+		$navs = array(
+			'Lista' => array(
+				'icon' 		=> 'fa fa-ellipsis-v',
+				'url'		=> Configure::read('mUrl').'/admin/menu',
+				'active'	=> '/admin/menu'
+			),
+			'Nuevo Menú' => array(
+				'icon' 		=> 'gi gi-circle_plus',
+				'url'		=> Configure::read('mUrl').'/admin/menu/add',
+				'active'	=> '/admin/menu/add'
+			)
+		);
+
+		$this->set('navs', $navs);
+		$h1 = array(
+			'name' => 'Menu',
+			'icon' => 'fa fa-ellipsis-v'
+		);
+		$this->set('h1', $h1);
+    $this->loadModel('Menu');
+    $this->loadModel('Category');
+    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+		$this->set('cats', $cats);
+
+    switch ($action) {
+    	case 'add':
+    	    if ($this->request->is('POST')){
+		        $this->autoRender = false;
+
+		        $data = $this->request->data;
+
+		        $file_real_name = null;
+		        if(!empty($this->request->params['form']['image']['name'])){
+		            $file_real_name = $this->save_file($this->request->params['form']['image']);
+		        }
+
+		        if($file_real_name){
+		            $data['img_url'] = $file_real_name;
+		        }
+
+		        $this->Menu->save($data);
+
+		        return $this->redirect(array('action'=>'menu'));
+  			} else {
+    			return $this->render('menu-detail');
+    		}
+    		break;
+    	case 'delete':
+	    	if ($this->request->is('post')) {
+	    		$this->autoRender = false;
+	    		$this->Menu->delete($this->request->data['id']);
+	    	}
+    		break;
+    	case 'edit':
+    		if ($this->request->is('post')) {
+    			$this->autoRender = false;
+
+    			$data = $this->request->data;
+
+	        $file_real_name = null;
+	        if(!empty($this->request->params['form']['image']['name'])){
+							error_log('trying to edit save file');
+	            $file_real_name = $this->save_file($this->request->params['form']['image']);
+	        }
+
+	        if($file_real_name){
+	            $data['img_url'] = $file_real_name;
+	        }
+
+
+	        $this->Menu->save($data);
+    		} else {
+	    		$hasId = array_key_exists(1, $this->request->pass);
+	    		if (!$hasId) break;
+	    		$item = $this->Menu->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+
+				  
+	    		$this->set('item', $item);
+	    		return $this->render('menu-detail');
+    		}
+    		break;
+    }
+	  $menu = $this->Menu->find('all',['order' => ['Menu.ordernum ASC']]);
+
+		foreach($menu as $i => $item) {
+			$name = '';
+			foreach($cats as $cat) {
+				if ($cat['Category']['id'] === $item['Menu']['category_id']) {
+					$name = $cat['Category']['name'];
+				}
+			}
+			if (strlen($name)) {
+				$menu[$i]['Menu']['category_name'] = $name;
+			}
+	  }
+	  /*foreach($menu as $item) {
+			$item['category_name'] = array_search(function($e){ $e['Category']['id'] === $item['Menu']['category'] }, $cats)['Category']['name'];
+	  }*/
+		$this->set('menu', $menu);
+	  $this->render('menu');
+	}	
+
 	public function searches($action = null) {
 		$navs = array(
 			'Lista' => array(
@@ -1882,11 +1980,11 @@ public function promos(){
 				'url'		=> Configure::read('mUrl').'/admin/search',
 				'active'	=> '/admin/search'
 			),
-			'Nuevo Banner' => array(
+			/*'Nuevo Banner' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> Configure::read('mUrl').'/admin/search/add',
 				'active'	=> '/admin/search/add'
-			)
+			)*/
 		);
 
 		$this->set('navs', $navs);

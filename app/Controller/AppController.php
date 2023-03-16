@@ -75,6 +75,7 @@ class AppController extends Controller
         $this->set('user', $this->Auth->user());
         $carro = $this->Session->read('Carro');
         $this->set('carro', $carro);
+        $this->loadModel('Menu');
         $this->loadModel('Banner');
         $this->loadModel('Category');
 
@@ -83,6 +84,9 @@ class AppController extends Controller
           'order' => ['Banner.ordernum ASC']
         ]);
 
+        $menus = $this->Menu->query('SELECT menus.title, menus.text, menus.target_blank, categories.name AS category_name FROM menus LEFT JOIN categories ON categories.id = menus.category_id WHERE menus.enabled ORDER BY menus.ordernum ASC');
+
+        $this->set('menus', $menus);
         $this->set('banners', $banners);
         $categories = $this->Category->find('all',array('order'=>array( 'Category.ordernum ASC' )));
         $this->set('categories', $categories);

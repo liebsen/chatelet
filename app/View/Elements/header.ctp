@@ -24,9 +24,18 @@
             ?>
           </li>
           <?php endif ?>
+          <?php foreach($menus as $menu): ?>
+            <li>
+              <a href="<?php echo $this->Html->url(array(
+              'controller' => 'tienda',
+              'action' => 'productos',
+              str_replace(array('ñ',' '),array('n','-'),strtolower($menu['categories']['category_name']))
+            )); ?>" title="<?= $menu['menus']['title'] ?>"<?= $menu['menus']['target_blank'] ? ' target="blank"' : '' ?>><?= $menu['menus']['title'] ?></a>
+            </li>
+          <?php endforeach ?>
           <?php if( !empty($show_shop) ): ?>
             <li>
-              <a href="/Home#listShop"><?= $p['Home']['navbar_main_title'] ?></a>
+              <a href="/Shop">Shop</a>
             </li>
           <?php endif ?>
           <!--li>
