@@ -10,8 +10,8 @@
 			<tr>
 				<th class="hidden-phone hidden-tablet">&nbsp;</th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Menu'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Enlace'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Categoría'); ?></th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Texto'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
 		</thead>
@@ -27,13 +27,13 @@
 						</a>
 					</td>
 					<td>
+						<?=strlen($menu['Menu']['href']) ? $menu['Menu']['href'] : '-' ?>
+					</td>
+					<td>
 						<a href="<?=$this->Html->url(array('action'=>'menu','edit',$menu['Menu']['id']))?>">
 							<?= isset($menu['Menu']['category_name']) ? $menu['Menu']['category_name'] : '-' ?>
 						</a>
 					</td>
-					<td>          
-						<?=$menu['Menu']['text']?>   
-					</td> 
 					<td>
 						<div class="btn-group">   
 							<a 
