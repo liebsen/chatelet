@@ -60,7 +60,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
             <div class="controls">
-              <textarea class="form-control" name="data[text]" required><?php echo (isset($item)) ? $item['Menu']['text'] : ''; ?></textarea>
+              <textarea class="form-control" name="data[text]"><?php echo (isset($item)) ? $item['Menu']['text'] : ''; ?></textarea>
             </div>
           </div>          
 
@@ -77,7 +77,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Abrir enlace en otra pestaña'); ?></label>
             <div class="controls">
-              <input type="checkbox" name="data[target_blank]" class="form-control"<?= $item['Menu']['target_blank'] === 'on' ? ' checked' : '' ?>>
+              <input type="checkbox" name="data[target_blank]" class="form-control"<?= isset($item) ? ($item['Menu']['target_blank'] === 'on' ? ' checked' : '') : '' ?>>
             </div>
           </div>          
           <br />       

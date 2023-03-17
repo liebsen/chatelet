@@ -28,7 +28,7 @@
 					</td>
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'menu','edit',$menu['Menu']['id']))?>">
-							<?=$menu['Menu']['category_name']?>
+							<?= isset($menu['Menu']['category_name']) ? $menu['Menu']['category_name'] : '-' ?>
 						</a>
 					</td>
 					<td>          

@@ -41,7 +41,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
             <div class="controls">
-              <textarea class="form-control" name="data[text]" required><?php echo (isset($item)) ? $item['Banner']['text'] : ''; ?></textarea>
+              <textarea class="form-control" name="data[text]"><?php echo (isset($item)) ? $item['Banner']['text'] : ''; ?></textarea>
             </div>
           </div>          
           <div class="control-group">
