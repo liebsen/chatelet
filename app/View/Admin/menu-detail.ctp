@@ -38,6 +38,13 @@
             </div>
           </div>
           <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Enlace'); ?></label>
+            <div class="controls">
+              <input class="form-control" type="text" id="" name="data[href]" value="<?php echo (isset($item)) ? $item['Menu']['href'] : ''; ?>">
+            </div>
+            <small class="text-muted">Indica la URL que el menú debe seguir.</small>
+          </div>          
+          <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Categoría'); ?></label>
             <div class="controls">
               <select class="form-control" name="category_id">
@@ -47,6 +54,7 @@
               <?php endforeach ?>
               </select>
             </div>
+            <small class="text-muted">Seleccioná la categoría que seguirá este menú. (No aplica en caso de tener Enlace activo)</small>
           </div>
 
           <div class="control-group">

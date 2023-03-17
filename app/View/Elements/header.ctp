@@ -26,7 +26,7 @@
           <?php endif ?>
           <?php foreach($menus as $menu): ?>
             <li>
-              <a href="<?php echo $this->Html->url(array(
+              <a href="<?= !empty($menu['menus']['href']) && strlen($menu['menus']['href']) ? $menu['menus']['href'] : $this->Html->url(array(
               'controller' => 'tienda',
               'action' => 'productos',
               str_replace(array('ñ',' '),array('n','-'),strtolower($menu['categories']['category_name']))

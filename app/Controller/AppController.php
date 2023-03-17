@@ -84,7 +84,7 @@ class AppController extends Controller
           'order' => ['Banner.ordernum ASC']
         ]);
 
-        $menus = $this->Menu->query('SELECT menus.title, menus.text, menus.target_blank, categories.name AS category_name FROM menus LEFT JOIN categories ON categories.id = menus.category_id WHERE menus.enabled ORDER BY menus.ordernum ASC');
+        $menus = $this->Menu->query('SELECT menus.title, menus.text, menus.href, menus.target_blank, categories.name AS category_name FROM menus LEFT JOIN categories ON categories.id = menus.category_id WHERE menus.enabled ORDER BY menus.ordernum ASC');
 
         $this->set('menus', $menus);
         $this->set('banners', $banners);
