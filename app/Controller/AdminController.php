@@ -1133,7 +1133,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	public function categorias($action = null) {
 		$navs = array(
 			'Lista' => array(
-				'icon' 		=> 'gi gi-list',
+				'icon' 		=> 'gi gi-picture',
 				'url'		=> Configure::read('mUrl').'/admin/categorias',
 				'active'	=> '/admin/categorias'
 			),
@@ -1147,7 +1147,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$this->set('navs', $navs);
 		$h1 = array(
 			'name' => 'Categorías',
-			'icon' => 'gi gi-list'
+			'icon' => 'gi gi-picture'
 		);
 		$this->set('h1', $h1);
     $this->loadModel('Category');
@@ -1656,7 +1656,7 @@ public function promos(){
 	public function cupones($action = null) {
 		$navs = array(
 			'Lista' => array(
-				'icon' 		=> 'gi gi-list',
+				'icon' 		=> 'gi gi-tags',
 				'url'		=> Configure::read('mUrl').'/admin/cupones',
 				'active'	=> '/admin/cupones'
 				),
@@ -1794,7 +1794,7 @@ public function promos(){
 	public function banners($action = null) {
 		$navs = array(
 			'Lista' => array(
-				'icon' 		=> 'gi gi-list',
+				'icon' 		=> 'fa fa-shirtsinbulk',
 				'url'		=> Configure::read('mUrl').'/admin/banners',
 				'active'	=> '/admin/banners'
 			),
@@ -1808,7 +1808,7 @@ public function promos(){
 		$this->set('navs', $navs);
 		$h1 = array(
 			'name' => 'Banners',
-			'icon' => 'gi gi-picture'
+			'icon' => 'fa fa-shirtsinbulk'
 		);
 		$this->set('h1', $h1);
     $this->loadModel('Banner');
@@ -1977,7 +1977,7 @@ public function promos(){
 	public function searches($action = null) {
 		$navs = array(
 			'Lista' => array(
-				'icon' 		=> 'gi gi-list',
+				'icon' 		=> 'gi gi-search',
 				'url'		=> Configure::read('mUrl').'/admin/search',
 				'active'	=> '/admin/search'
 			),
@@ -1991,7 +1991,7 @@ public function promos(){
 		$this->set('navs', $navs);
 		$h1 = array(
 			'name' => 'Búsquedas',
-			'icon' => 'gi gi-list'
+			'icon' => 'gi gi-search'
 		);
 		$this->set('h1', $h1);
     $this->loadModel('Search');
@@ -2031,7 +2031,7 @@ public function promos(){
 	public function logistica($action = null) {
 		$navs = array(
 			'Lista' => array(
-				'icon' 		=> 'gi gi-list',
+				'icon' 		=> 'gi gi-cargo',
 				'url'		=> Configure::read('mUrl').'/admin/logistica',
 				'active'	=> '/admin/logistica'
 				),
@@ -2156,8 +2156,8 @@ public function promos(){
 		$this->set('navs', $navs);
 
 		$h1 = array(
-			'name' => 'Envios',
-			'icon' => 'gi gi-list'
+			'name' => 'Envíos',
+			'icon' => 'gi gi-car'
 			);
 		$this->set('h1', $h1);
 
@@ -2193,7 +2193,7 @@ public function promos(){
 	public function contacto($action = null) {
 		$navs = array(
 			'Lista' => array(
-				'icon' 		=> 'gi gi-list',
+				'icon' 		=> 'gi gi-envelope',
 				'url'		=> Configure::read('mUrl').'/admin/contacto',
 				'active'	=> '/admin/contacto'
 			)
@@ -2202,7 +2202,7 @@ public function promos(){
 
 		$h1 = array(
 			'name' => 'Contacto',
-			'icon' => 'gi gi-list'
+			'icon' => 'gi gi-envelope'
 			);
 		$this->set('h1', $h1);
 
@@ -2220,7 +2220,7 @@ public function promos(){
 	public function usuarios($action = null) {
 		$navs = array(
 			'Lista' => array(
-				'icon' 		=> 'gi gi-list',
+				'icon' 		=> 'gi gi-user',
 				'url'		=> Configure::read('mUrl').'/admin/usuarios',
 				'active'	=> '/admin/usuarios'
 				),
@@ -2235,7 +2235,7 @@ public function promos(){
 
 		$h1 = array(
 			'name' => 'Usuarios',
-			'icon' => 'gi gi-list'
+			'icon' => 'gi gi-user'
 			);
 		$this->set('h1', $h1);
 
@@ -2330,7 +2330,7 @@ public function promos(){
 
 		$h1 = array(
 			'name' => 'Look Book',
-			'icon' => 'gi gi-list'
+			'icon' => 'gi gi-display'
 		);
 
 		$this->set('h1', $h1);
@@ -2452,7 +2452,7 @@ public function promos(){
   public function subscriptions($action = null) {
 		$navs = array(
 			'Lista' => array(
-				'icon' 		=> 'gi gi-list',
+				'icon' 		=> 'gi gi-envelope',
 				'url'		=> Configure::read('mUrl').'/admin/subscriptions',
 				'active'	=> '/admin/newsletter'
 			)
@@ -2461,7 +2461,7 @@ public function promos(){
 
 		$h1 = array(
 			'name' => 'Newsletter',
-			'icon' => 'gi gi-list'
+			'icon' => 'gi gi-envelope'
 			);
 		$this->set('h1', $h1);
 

@@ -31,12 +31,12 @@
             <!--small class="text-muted">Estado principal de este Banner</small-->
           </div>          
           <h4 class="sub-header">Información Principal</h4>
-          <div class="control-group">
+          <!--div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
             <div class="controls">
               <input class="form-control" type="text" id="" name="data[title]" value="<?php echo (isset($item)) ? $item['Banner']['title'] : ''; ?>" required>
             </div>
-          </div>
+          </div-->
 
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
