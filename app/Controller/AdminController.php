@@ -1871,6 +1871,63 @@ public function promos(){
 	  $this->render('banners');
 	}
 
+	public function legends($action = null) {
+		$navs = array(
+			'Lista' => array(
+				'icon' 		=> 'fa fa-credit-card',
+				'url'		=> Configure::read('mUrl').'/admin/legends',
+				'active'	=> '/admin/legends'
+			),
+			'Nueva Leyenda' => array(
+				'icon' 		=> 'gi gi-circle_plus',
+				'url'		=> Configure::read('mUrl').'/admin/legends/add',
+				'active'	=> '/admin/legends/add'
+			)
+		);
+
+		$this->set('navs', $navs);
+		$h1 = array(
+			'name' => 'Leyendas',
+			'icon' => 'fa fa-credit-card'
+		);
+		$this->set('h1', $h1);
+    $this->loadModel('Legend');
+    switch ($action) {
+    	case 'add':
+    	    if ($this->request->is('POST')){
+		        $this->autoRender = false;
+		        $data = $this->request->data;
+		        $this->Legend->save($data);
+		        return $this->redirect(array('action'=>'legends'));
+  			} else {
+    			return $this->render('legends-detail');
+    		}
+    		break;
+    	case 'delete':
+	    	if ($this->request->is('post')) {
+	    		$this->autoRender = false;
+	    		$this->Legend->delete($this->request->data['id']);
+	    	}
+    		break;
+    	case 'edit':
+    		if ($this->request->is('post')) {
+    			$this->autoRender = false;
+    			$data = $this->request->data;
+	        $this->Legend->save($data);
+    		} else {
+	    		$hasId = array_key_exists(1, $this->request->pass);
+	    		if (!$hasId) break;
+	    		$item = $this->Legend->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    		$this->set('item', $item);
+	    		return $this->render('legends-detail');
+    		}
+    		break;
+    }
+	  $legends = $this->Legend->find('all',['order' => ['Legend.ordernum ASC']]);
+		$this->set('legends', $legends);
+	  $this->render('legends');
+	}	
+
 	public function menu($action = null) {
 		$navs = array(
 			'Lista' => array(

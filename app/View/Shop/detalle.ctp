@@ -291,6 +291,14 @@
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                             <div class="name"><?= $alt_product_name ?></div>
                             <div class="price-list"><?= @ceil($alt_product['old_price']) && ceil($alt_product['old_price']) !== ceil($alt_product['price']) ? '<span class="old_price">' .  str_replace(',00','',$this->Number->currency(ceil($alt_product['old_price']), 'ARS', array('places' => 2))). '</span>' : '' ?><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
+                        <?php if(count($legends)): ?>
+                            <div class="legends">
+                                <?php foreach ($legends as $legend): ?>
+                                    <span class="text-dark"><?= str_replace(['{cuotas}','{monto}'], [$legend['Legend']['dues'],round($alt_product['price']/$legend['Legend']['dues'])
+                                        ],$legend['Legend']['title']) ?></span>
+                                <?php endforeach ?>
+                            </div>
+                        <?php endif ?>
                         </a>
                     </div>
                    <?php }endforeach; ?>
@@ -300,8 +308,7 @@
     </div>
 </section>
 
-
- <div class="modal fade" tabindex="-1" id="myModal2" role="dialog">
+<div class="modal fade" tabindex="-1" id="myModal2" role="dialog">
     <div class="content">
         <a class="close" data-dismiss="modal">
             <span></span>

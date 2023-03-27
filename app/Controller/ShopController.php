@@ -332,7 +332,16 @@ class ShopController extends AppController {
 				// error_log('url match category: '.$category_id);
 			}
 		}
+    $this->loadModel('Legend');
 		$this->loadModel('Setting');
+
+    $legends = $this->Legend->find('all', [
+      'conditions' => ['enabled' => 1, 'title <>' => ''],
+      'order' => ['Legend.ordernum ASC']
+    ]);
+
+    $this->set('legends', $legends);
+
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('page_video',$page_video);
@@ -385,10 +394,15 @@ class ShopController extends AppController {
 
   public function detalle($product_id, $category_id) {
 		$product = $this->Product->findById($product_id);
-
+		$this->loadModel('Legend');
 		if (!isset($product)) {
 			throw new NotFoundException();
 		}
+
+    $legends = $this->Legend->find('all', [
+      'conditions' => ['enabled' => 1, 'title <>' => ''],
+      'order' => ['Legend.ordernum ASC']
+    ]);
 
 		$category = $this->Category->findById($category_id);
 		$name_categories = $category['Category']['name'];
@@ -443,6 +457,7 @@ class ShopController extends AppController {
 		if ($isGiftCard && !empty($product['Product']['img_url'])) {
 			$this->set('img_url', $product['Product']['img_url']);
 		}
+		$this->set('legends', $legends);
 		$this->set('all_but_me', $all_but_me);
 	}
 

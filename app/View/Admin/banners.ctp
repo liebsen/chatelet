@@ -57,7 +57,7 @@
 						data-id="<?=$banner['Banner']['id']?>" 
 						data-url-back="<?=$this->Html->url(array('action'=>'banners'))?>" 
 						data-delurl="<?=$this->Html->url(array('action'=>'banners', 'delete'))?>" 
-						data-msg="¿Eliminar categoria? Precación: Se borraran los productos que esten contenidos en esta categoria."                   
+						data-msg="¿Eliminar banner?"
 						>
 						<i class="gi gi-remove"></i>
 					</a>

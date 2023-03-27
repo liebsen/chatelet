@@ -6,7 +6,7 @@ class TileHelper extends AppHelper {
   /**
   * @param string $query, This is the search query you will pass from the view
   */
-  function tile($item, $isProduct = false) {
+  function tile($item, $isProduct = false, $legends) {
     $str = '';
     $stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
     $number_disc = 0;
@@ -91,9 +91,20 @@ class TileHelper extends AppHelper {
       }
       */
 
+      $legendStr = '';
+      if(!empty($legends)) {
+          $legendStr.= '<div class="legends">';
+              foreach ($legends as $legend) {
+                  $legendStr.= '<span class="text-dark">' . str_replace(['{cuotas}','{monto}'], [$legend['Legend']['dues'],round($item['price']/$legend['Legend']['dues'])
+                      ],$legend['Legend']['title']) . '</span>';
+              }
+          $legendStr.= '</div>';
+      }
+
+
       $str = '<div data-id="'.$item["id"].'" class="col-sm-6 col-md-4 col-lg-3 p-1 add-no-stock">'. 
          $this->Html->link(
-          $content. '<div class="name">'.$item_name.'</div><div class="price-list">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>
+          $content. '<div class="name">'.$item_name.'</div><div class="price-list">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>'.$legendStr.'
         </div>',
           $url,
           array('escape' => false)

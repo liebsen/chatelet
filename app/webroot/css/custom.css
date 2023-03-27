@@ -1684,6 +1684,9 @@ span.out{
 .input-coupon_data_container {
 }
 
+.legends {
+  padding: 0.5rem;
+}
 .text-left {
     text-align: left!important;
 }
