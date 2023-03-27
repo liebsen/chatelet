@@ -11,6 +11,7 @@
 				<th class="hidden-phone hidden-tablet">&nbsp;</th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Leyenda'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Cuotas'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Interés'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
 		</thead>
@@ -28,6 +29,11 @@
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'legends','edit',$legend['Legend']['id']))?>">
 							<?=$legend['Legend']['dues']?>
+						</a>
+					</td>
+					<td>
+						<a href="<?=$this->Html->url(array('action'=>'legends','edit',$legend['Legend']['id']))?>">
+							<?=$legend['Legend']['interest']?>%
 						</a>
 					</td>
 					<td>

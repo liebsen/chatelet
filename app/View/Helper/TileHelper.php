@@ -95,8 +95,18 @@ class TileHelper extends AppHelper {
       if(!empty($legends)) {
           $legendStr.= '<div class="legends">';
               foreach ($legends as $legend) {
-                  $legendStr.= '<span class="text-dark">' . str_replace(['{cuotas}','{monto}'], [$legend['Legend']['dues'],round($item['price']/$legend['Legend']['dues'])
-                      ],$legend['Legend']['title']) . '</span>';
+                $price = $item['price'];
+                if(!empty($legend['Legend']['interest'])){
+                  $price = round($price * (1 + $legend['Legend']['interest'] / 100));
+                }
+                $legendStr.= '<span class="text-dark">' . str_replace([
+                    '{cuotas}','{interes}','{monto}'
+                ], [
+                    $legend['Legend']['dues'],
+                    $legend['Legend']['interest'],
+                    str_replace(',00','',$this->Number->currency(ceil($price/$legend['Legend']['dues']), 'ARS', array('places' => 2)))
+                ],
+                $legend['Legend']['title']) . '</span>';
               }
           $legendStr.= '</div>';
       }

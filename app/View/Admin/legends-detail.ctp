@@ -19,8 +19,8 @@
             <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
             <div class="controls text-center switch-scale">
               <?php
-                $enabled = (isset($item) && $item['Legend']['enabled'] === '1') || !isset($item) ? 'checked' : '';
-                $disabled = (isset($item) && $item['Legend']['enabled'] === '0') ? 'checked' : '';
+                $enabled = (isset($item) && $item['Legend']['enabled'] == 1) || !isset($item) ? 'checked' : '';
+                $disabled = (isset($item) && $item['Legend']['enabled'] == 0) ? 'checked' : '';
               ?>
               <label for="enabled_1">Activo</label> <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
               <label for="enabled_0">Inactivo</label> <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
@@ -31,9 +31,10 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
             <div class="controls">
-              <input class="form-control" type="text" id="" name="data[title]" value="<?php echo (isset($item)) ? $item['Legend']['title'] : ''; ?>" required>
+              <textarea class="form-control" name="data[title]"><?php echo (isset($item)) ? $item['Legend']['title'] : ''; ?></textarea>
+              <!--input class="form-control" type="text" id="" name="data[title]" value="<?php echo (isset($item)) ? $item['Legend']['title'] : ''; ?>" required-->
             </div>
-            <small class="text-muted">ej: {cuotas} cuotas de ${monto}</small>
+            <small class="text-muted">Podés usar las variables: {cuotas}, {interes} y {monto}. Ej: {cuotas} cuotas de ${monto}</small>
           </div>
 
           <div class="control-group">
@@ -41,6 +42,13 @@
             <div class="controls">
               <input class="form-control" type="number" id="" name="data[dues]" value="<?php echo (isset($item)) ? $item['Legend']['dues'] : ''; ?>" required>
             </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Interés'); ?></label>
+            <div class="controls">
+              <input class="form-control" type="number" id="" name="data[interest]" value="<?php echo (isset($item)) ? $item['Legend']['interest'] : ''; ?>" required>
+            </div>
+            <small class="text-muted">Interés de las cuotas expresado en porcentaje. Ej: 10%</small>
           </div>
           <br />
         </div>
