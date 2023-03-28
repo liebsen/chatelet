@@ -46,7 +46,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Interés'); ?></label>
             <div class="controls">
-              <input class="form-control" type="number" id="" name="data[interest]" value="<?php echo (isset($item)) ? $item['Legend']['interest'] : ''; ?>" required>
+              <input class="form-control" type="number" step="any" id="" name="data[interest]" value="<?php echo (isset($item)) ? $item['Legend']['interest'] : ''; ?>" required>
             </div>
             <small class="text-muted">Interés de las cuotas expresado en porcentaje. Ej: 10%</small>
           </div>
