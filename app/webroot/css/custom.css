@@ -228,6 +228,13 @@ label input[type=checkbox]:disabled + .label-text:before {
   color: #333!important;
 }
 
+.text-legend {
+  display: block;
+  text-align: left;
+  padding-left: 1rem;
+  color: #666!important; 
+}
+
 .text-weight-thin {
   font-weight: 400;
 }

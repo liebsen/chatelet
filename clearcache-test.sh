@@ -1,0 +1,1 @@
+rm -rf /var/www/chatelet-test/app/tmp/cache/persistent/myapp* && sudo rm -rf /var/www/chatelet-test/app/tmp/cache/models/myapp*

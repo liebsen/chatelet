@@ -2,7 +2,7 @@
 <div class="block block-themed">
   <div class="block-title">
     <h4><?php 
-      echo (isset($item)) ? __('Editar Leyenda') : __('Agregar Leyenda');
+      echo (isset($item)) ? __('Editar Financiación') : __('Agregar Financiación');
     ?></h4>
   </div>
 
@@ -50,6 +50,14 @@
             </div>
             <small class="text-muted">Interés de las cuotas expresado en porcentaje. Ej: 10%</small>
           </div>
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Monto mínimo'); ?></label>
+            <div class="controls">
+              <input class="form-control" type="number" step="any" id="" name="data[min_sale]" value="<?php echo (isset($item)) ? $item['Legend']['min_sale'] : ''; ?>" required>
+            </div>
+            <small class="text-muted">Monto mínimo de la compra expresado en valores nominales. Ej: 50.000ARS</small>
+          </div>
+
           <br />
         </div>
         <div class="col-md-6">

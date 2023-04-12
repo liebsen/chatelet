@@ -99,7 +99,7 @@ class TileHelper extends AppHelper {
                 if(!empty($legend['Legend']['interest'])){
                   $price = round($price * (1 + $legend['Legend']['interest'] / 100));
                 }
-                $legendStr.= '<span class="text-dark">' . str_replace([
+                $legendStr.= '<span class="text-legend">' . str_replace([
                     '{cuotas}','{interes}','{monto}'
                 ], [
                     $legend['Legend']['dues'],

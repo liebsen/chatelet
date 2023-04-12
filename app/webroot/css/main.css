@@ -3259,6 +3259,10 @@ table.dataTable thead .sorting:before {
     filter: alpha(opacity=100);
 }
 
+.btn-adjust {
+    margin-top: -2px;
+}
+
 /* Popover */
 .popover {
     padding: 0;

@@ -1878,7 +1878,7 @@ public function promos(){
 				'url'		=> Configure::read('mUrl').'/admin/legends',
 				'active'	=> '/admin/legends'
 			),
-			'Nueva Leyenda' => array(
+			'Nueva Financiación' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> Configure::read('mUrl').'/admin/legends/add',
 				'active'	=> '/admin/legends/add'
@@ -1887,7 +1887,7 @@ public function promos(){
 
 		$this->set('navs', $navs);
 		$h1 = array(
-			'name' => 'Leyendas',
+			'name' => 'Financiación',
 			'icon' => 'fa fa-credit-card'
 		);
 		$this->set('h1', $h1);

@@ -299,7 +299,7 @@
                                       $price = round($price * (1 + $legend['Legend']['interest'] / 100));
                                     }
                                     ?>
-                                    <span class="text-dark"><?= str_replace([
+                                    <span class="text-legend"><?= str_replace([
                                         '{cuotas}','{interes}','{monto}'
                                     ], [
                                         $legend['Legend']['dues'],

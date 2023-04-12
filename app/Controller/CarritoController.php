@@ -169,6 +169,11 @@ class CarritoController extends AppController
 		$lookbook = $this->LookBook->find('all');
     $shipping_price_min_map = $this->Setting->findById('shipping_price_min');
 		$shipping_price_min = (!empty($shipping_price_min_map['Setting']['value'])) ? $shipping_price_min_map['Setting']['value'] : '';
+		$legends = $this->Legend->find('all', [
+			'conditions' => ['enabled' => 1],
+			'order' => ['Legend.dues ASC']
+		]);
+		$this->set('legends', $legends);
 		$this->set('shipping_price_min',$shipping_price_min);
 		$this->set('lookBook', $lookbook);
 	}
@@ -684,13 +689,14 @@ class CarritoController extends AppController
 				'NRO'		=> $user['street_n'],
 				'PISO'		=> $user['floor'],
 				'DPTO'		=> $user['depto'],
-				'COD POST'	=> $user['postal_address'],
+				'COD_POST'	=> $user['postal_address'],
 				'CARGO'	=> $user['cargo'],
 				'CUPON'	=> $user['coupon'],
 				'STORE'	=> $user['store'],
 				'STORE_ADDR'	=> $user['store_address'],
 				'SHIPPING'	=> $user['shipping']
 			);
+
 			foreach ($values as $key => $value) {
 				$desc.= $key.' : "'.$value.'"'.$separator;
 			}
@@ -884,7 +890,9 @@ class CarritoController extends AppController
 		    	'success' => $success_url,
 		    	'failure' => $failure_url,
 		    	'pending' => $failure_url
-	    	)
+	    	)/*,
+	    	'payment_methods' => array(
+	    	)*/
 		);
 
 		$preference = $mp->create_preference($preference_data);

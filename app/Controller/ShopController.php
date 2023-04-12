@@ -336,7 +336,7 @@ class ShopController extends AppController {
 		$this->loadModel('Setting');
 
     $legends = $this->Legend->find('all', [
-      'conditions' => ['enabled' => 1, 'title <>' => ''],
+      'conditions' => ['enabled' => 1],
       'order' => ['Legend.ordernum ASC']
     ]);
 
@@ -401,7 +401,7 @@ class ShopController extends AppController {
 
     $legends = $this->Legend->find('all', [
       'conditions' => ['enabled' => 1, 'title <>' => ''],
-      'order' => ['Legend.ordernum ASC']
+      'order' => ['Legend.dues ASC']
     ]);
 
 		$category = $this->Category->findById($category_id);

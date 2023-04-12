@@ -78,17 +78,17 @@
 <div class="row hide-print">
     <div class="col-xs-12">
         <a href="/admin/sales_export_mails" target="_blank">
-            <button class="btn btn-success" type="button" style="margin-top: -2px;">Exportar Emails</button>
+            <button class="btn btn-success btn-adjust" type="button">Exportar Emails</button>
         </a> 
         <?php if(!isset($_GET['extended'])) :?>
         <a href="/admin/sales?extended=1">
-            <button class="btn btn-success" type="button" style="margin-top: -2px;">Más ventas</button>
+            <button class="btn btn-success btn-adjust" type="button">Más ventas</button>
         </a>
         <?php endif ?>
-        <button class="btn btn-success" type="button" id="expandall" style="margin-top: -2px;">
+        <button class="btn btn-success btn-adjust" type="button" id="expandall">
             Expandir todo
         </button>
-        <button class="btn btn-muted" type="button" id="printbtn" style="margin-top: -2px;">
+        <button class="btn btn-muted btn-adjust" type="button" id="printbtn">
             <i class="fa fa-print fa-lg"></i>
         </button>
     </div>
