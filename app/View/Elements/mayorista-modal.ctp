@@ -22,19 +22,19 @@
 						?>
 						<div class="form-group">
 							<label for="email">Email</label>
-							<input type="email" id="email" class="form-control" name="data[User][email]" />
+							<input type="email"  class="form-control" name="data[User][email]" />
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
-							<input type="password" id="password" class="form-control" name="data[User][password]" />
+							<input type="password" class="form-control" name="data[User][password]" />
 						</div>
 						<div class="form-group">
 							<label for="nombre">Nombre</label>
-							<input type="text" id="nombre" class="form-control" name="data[User][name]" />
+							<input type="text" class="form-control" name="data[User][name]" />
 						</div>
 						<div class="form-group">
 							<label for="apellido">Apellido</label>
-							<input type="text" id="apellido" class="form-control" name="data[User][surname]" />
+							<input type="text" class="form-control" name="data[User][surname]" />
 						</div>
 						<div class="form-group">
 							<label for="nacimiento">Fecha de Nacimiento</label>
@@ -42,7 +42,7 @@
 						</div>
 						<div class="form-group">
 							<label for="sexo">Sexo</label>
-							<select id="sexo" class="selectpicker form-control" name="data[User][gender]">
+							<select class="selectpicker form-control" name="data[User][gender]">
 								<option>No especificado</option>
 								<option value="M">Masculino</option>
 								<option value="F">Femenino</option>
@@ -50,7 +50,7 @@
 						</div>
 						<div class="form-group">
 							<label for="dni">DNI</label>
-							<input type="text" id="dni" class="form-control" name="data[User][dni]" />
+							<input type="text" class="form-control" name="data[User][dni]" />
 						</div>
 						<div class="form-group">
 							<label>Newsletter</label>

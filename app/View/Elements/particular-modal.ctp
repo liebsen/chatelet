@@ -55,33 +55,33 @@
 				<label class="ml-1" for="email">Email</label>
 				<div class="form-group">
 					<?php
-						echo '<input type="email" id="email" class="form-control " name="data[User][email]" value="'. $user['email'] .'" />';
+						echo '<input type="email" class="form-control " name="data[User][email]" value="'. $user['email'] .'" />';
 					?>
 				</div>
 				<span class="validation-email"></span>
 				<label class="ml-1" for="password">Contraseña</label>
 				<div class="form-group">
-					<input type="password" id="password" class="form-control" name="data[User][password]" />
+					<input type="password" class="form-control" name="data[User][password]" />
 				</div>
 				<span class="validation-password"></span>
 				<label class="ml-1" for="nombre">Nombre</label>
 				<div class="form-group">
 					<?php
-						echo '<input type="text" id="nombre" class="form-control" name="data[User][name]" value="'. $user['name'] .'" />';
+						echo '<input type="text" class="form-control" name="data[User][name]" value="'. $user['name'] .'" />';
 					?>
 				</div>
 			
 				<label class="ml-1" for="apellido">Apellido</label>
 				<div class="form-group">
 					<?php
-						echo '<input type="text" id="apellido" class="form-control" name="data[User][surname]" value="'. $user['surname'] .'" />';
+						echo '<input type="text" class="form-control" name="data[User][surname]" value="'. $user['surname'] .'" />';
 					?>
 				</div>
 			
 				<label class="ml-1" for="nacimiento">Fecha de Nacimiento (dd/mm/aaaa) </label>
 				<div class="form-group">
 					<?php
-						echo '<input type="text" id="birthday" class="datepicker form-control" name="data[User][birthday]" value="'. 
+						echo '<input type="text" class="datepicker form-control" name="data[User][birthday]" value="'. 
 								$this->Time->format($user['birthday'], '%d/%m/%Y')
 							.'" />';
 					?>
@@ -93,7 +93,7 @@
 					if ($user['gender'] == 'M') $male = 'selected';
 					else if ($user['gender'] == 'F') $female = 'selected';
 					echo '<div class="form-group">';
-						echo '<select id="sexo" class="selectpicker form-control" name="data[User][gender]">';
+						echo '<select class="selectpicker form-control" name="data[User][gender]">';
 							echo '<option value="">No especificado</option>';
 							echo '<option value="M" '.$male.'>Masculino</option>';
 							echo '<option value="F" '.$female.'>Femenino</option>';
@@ -104,7 +104,7 @@
 				<label class="ml-1" for="dni">DNI</label>
 				<div class="form-group">
 					<?php
-						echo '<input type="text" id="dni" class="form-control" name="data[User][dni]" value="'. $user['dni'] .'" />';
+						echo '<input type="text" class="form-control" name="data[User][dni]" value="'. $user['dni'] .'" />';
 					?>
 				</div>
 	
@@ -112,19 +112,19 @@
 				<label class="ml-1" for="tel">Teléfono</label>
 				<div class="form-group">
 					<?php
-						echo '<input type="tel" id="tel" class="form-control" name="data[User][telephone]" value="'. $user['telephone'] .'" />';
+						echo '<input type="tel" class="form-control" name="data[User][telephone]" value="'. $user['telephone'] .'" />';
 					?>
 				</div>
 		
 				<label class="ml-1" for="another-tel">Otro teléfono</label>
 				<div class="form-group">
 					<?php
-						echo '<input type="tel" id="another-tel" class="form-control" name="data[User][another_telephone]" value="'. $user['another_telephone'] .'" />';
+						echo '<input type="tel" class="form-control" name="data[User][another_telephone]" value="'. $user['another_telephone'] .'" />';
 					?>
 				</div>
 				<label class="ml-1" for="direccion">Calle y Número</label>
 				<div class="form-group d-flex">
-					<input style="" type="text" id="direccion" class="form-control" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
+					<input style="" type="text" class="form-control" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
 					<input style="max-width: 25%;margin-left: 1%" min="0" class="form-control" placeholder="1234" name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
 				</div>
 

@@ -263,6 +263,7 @@ class CarritoController extends AppController
 
 		$this->set('freeShipping', $freeShipping);
 		$this->set('data',$data);
+		$this->set('total',$total_price);
 		$this->set('userData',$user);
 	}
 

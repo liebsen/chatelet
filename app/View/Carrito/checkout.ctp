@@ -178,7 +178,7 @@
 						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>" onclick="select_payment(this)">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !$data['bank_enable'] ? 'checked': '' ?>/>
 					          	<span class="h4">Mercado Pago</span><br>
-					          	<p class="mt-2 text-small">Pagá con débito, crédito, rapipago través de Mercadopago</p>
+					          	<p class="mt-2 text-small">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
 				        	</label>				          
 					      <?php if($data['bank_enable']): ?>
 					        <label for="bank" class="col-xs-12 is-clickable option-rounded" onclick="select_payment(this)">
@@ -190,6 +190,41 @@
 				        </div>
 						  </div>
 						</div>
+					<?php if(count($legends)): ?>
+						<div class="card mt-4-d">
+						  <div class="card-body">
+						    <h5 class="card-title">
+						    	<i class="fa fa-credit-card"></i>
+						    	¿Querés financiar tu compra?
+						    </h5>
+						    <h6 class="card-subtitle">Seleccioná las cuotas</h6>
+						    <div class="row card-row payment-dues">
+					        <label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(this)">
+					          <input type="radio" class="" id="dues_1" name="payment_dues" value="1" required checked />
+				          	<span class="h4">Sin financiación</span><br>
+				          	<p class="mt-2 text-small">Pagar sin financiación</p>
+				          </label>						    	
+						    <?php foreach($legends as $legend): ?>
+						    	<?php if($total >= $legend['Legend']['min_sale']):?>
+						    	<label for="dues_<?= $legend['Legend']['dues'] ?>" class="col-xs-12 is-clickable option-rounded"  data-interest="<?= $legend['Legend']['interest'] ?>" onclick="select_dues(this)">
+						    		<input type="radio" id="dues_<?= $legend['Legend']['dues'] ?>" name="payment_dues" value="<?= $legend['Legend']['dues'] ?>" required/>
+					          	<span class="h4"><?= $legend['Legend']['dues'] ?> cuotas</span><br>
+					          	<p class="mt-2 text-small"><?= 
+								str_replace([
+                    '{cuotas}','{interes}','{monto}'
+                ], [
+                    $legend['Legend']['dues'],
+                    $legend['Legend']['interest'],
+                    str_replace(',00','',$this->Number->currency(ceil($total/$legend['Legend']['dues']), 'ARS', array('places' => 2)))
+                ],
+                $legend['Legend']['title']) ?></p>
+				        	</label>
+				        <?php endif ?>
+				        <?php endforeach ?>
+				        </div>
+						  </div>
+						</div>						
+					<?php endif ?>
 						<div class="mt-4-d checkoutform-container">
 							<div class="is-rounded">
 								<h3 class="">Ingresá tus datos para finalizar la compra</h3>

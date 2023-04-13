@@ -1,15 +1,54 @@
 var last_selected = ''
-var select_payment = (e) => {
+var calculateTotal = (settings) => {
+	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+	var subtotal = carrito.subtotal_price
+	var total = subtotal
+	if (!carrito.freeShipping && carrito.shipping_price) {
+		total+= carrito.shipping_price
+	}
+	if (carrito.coupon_bonus) {
+		total-= carrito.coupon_bonus
+	}
+	if (settings) { 
+		if(settings.bank_bonus) {
+			total-= settings.bank_bonus
+		}
+		if(settings.interest) {
+			total*= (Number(settings.interest) / 100) + 1
+		}
+	}
+	$('.total_price').text(formatNumber(total))
+
+  //console.log('subtotal',subtotal)
+  //console.log('total',total)
+  //console.log('bank_bonus',bank_bonus)
+}
+var select_dues = (e) => {
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var selected = $(e).find(':checked').val()
 	if(!selected) {
 		return false
+	}	
+	$('#mercadopago').click()
+	var interest = $(e).data('interest')
+
+  calculateTotal({interest: interest})
+  onSuccessAlert(`${selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
+  localStorage.setItem('pd', selected)
+	$('.payment-dues .option-rounded').removeClass('is-selected')
+	$(e).addClass('is-selected')
+}
+
+var select_payment = (e) => {
+	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+	var subtotal = carrito.subtotal_price
+
+	var selected = $(e).find(':checked').val()
+	var bank_bonus = 0
+	if(!selected) {
+		return false
 	}
 	last_selected = selected	
-	var subtotal = carrito.subtotal_price
-	console.log(subtotal)
-	console.log(carrito)
-	var bank_bonus = 0
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
 		bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
 		$('.bank_bonus').text(formatNumber(bank_bonus))
@@ -18,22 +57,9 @@ var select_payment = (e) => {
 	} else {
 		$('.bank-block').addClass('hide')
 	}
-	var total = subtotal
-	if (!carrito.freeShipping && carrito.shipping_price) {
-		total+= carrito.shipping_price
-	}
-	if (carrito.coupon_bonus) {
-		total-= carrito.coupon_bonus
-	}
-	if (bank_bonus) {
-		total-= bank_bonus
-	}
-  //console.log('subtotal',subtotal)
-  //console.log('total',total)
-  //console.log('bank_bonus',bank_bonus)
+  calculateTotal({ bank_bonus: bank_bonus})
   onSuccessAlert((selected === 'bank' ? 'CBU/Alias' : 'Mercadopago'), '✓ Método de pago seleccionado');
   localStorage.setItem('pm', selected)
-	$('.total_price').text(formatNumber(total))
 	$('.payment-method .option-rounded').removeClass('is-selected')
 	$(e).addClass('is-selected')
 }
