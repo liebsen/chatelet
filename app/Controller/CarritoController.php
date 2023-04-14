@@ -783,7 +783,7 @@ class CarritoController extends AppController
 			$legend = $this->Legend->findByDues($user['dues']);
 			if($legend && $legend['Legend']['interest']) {
 				$interest = (float) $legend['Legend']['interest'];
-				$total*= ($interest / 100) + 1
+				$total*= ($interest / 100) + 1;
 				error_log('suming total (dues interest): '.$total);
 				foreach($items as $k => $item) {
 					$item_price = round($item['unit_price'] * (1 + $discount / 100), 2);
