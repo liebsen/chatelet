@@ -327,11 +327,8 @@ class CarritoController extends AppController
 
 	public function deliveryCost($cp, $sale = null){
 		if ($sale['cargo'] === 'takeaway') {
-			return (object) [
-				'rates' => [
-					'price' => 0
-				]
-			];
+			$json['rates'][] = 0;
+			return $json;
 		}
 
 		$cp = $cp ? $cp : @$sale['postal_address'];
@@ -532,7 +529,7 @@ class CarritoController extends AppController
 			}
 		}
 
-		return json_encode($json);
+		return $json;
 	}
 
 	public function isFreeShipping ($price, $zip_code = 0) {
@@ -786,7 +783,7 @@ class CarritoController extends AppController
 				$total*= ($interest / 100) + 1;
 				error_log('suming total (dues interest): '.$total);
 				foreach($items as $k => $item) {
-					$item_price = round($item['unit_price'] * (1 + $discount / 100), 2);
+					$item_price = round($item['unit_price'] * (1 + $interest / 100), 2);
 					$items[$k]['unit_price'] = $item_price;
 					if ($product_ids[$k]) {
 						$product_ids[$k]['precio_vendido'] = $item_price;
@@ -808,8 +805,8 @@ class CarritoController extends AppController
 		// Add Delivery
 		$delivery_cost = 0;
 		$freeShipping = $this->isFreeShipping($total_wo_discount, $user['postal_address']);
-		$delivery_data = json_decode( $this->deliveryCost(null, $user));
-		$delivery_cost = (integer) $delivery_data->rates[0]->price;
+		$delivery_data = $this->deliveryCost(null, $user);
+		$delivery_cost = (integer) $delivery_data['rates'][0];
 
 		if ($freeShipping) { 
      	error_log('without delivery bc price is :'.$total.', cp:'. @$user['postal_address'] .'  and date = '.gmdate('Y-m-d'));

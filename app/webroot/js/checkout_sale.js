@@ -29,7 +29,9 @@ var select_dues = (e) => {
 	if(!selected) {
 		return false
 	}	
-	$('#mercadopago').click()
+	if(!$('#mercadopago').is(':checked')) {
+		$('#mercadopago').click()
+	}
 	var interest = $(e).data('interest')
 
   calculateTotal({interest: interest})
