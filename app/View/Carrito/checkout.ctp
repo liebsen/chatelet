@@ -208,16 +208,7 @@
 						    	<?php if($total >= $legend['Legend']['min_sale']):?>
 						    	<label for="dues_<?= $legend['Legend']['dues'] ?>" class="col-xs-12 is-clickable option-rounded"  data-interest="<?= $legend['Legend']['interest'] ?>" onclick="select_dues(this)">
 						    		<input type="radio" id="dues_<?= $legend['Legend']['dues'] ?>" name="payment_dues" value="<?= $legend['Legend']['dues'] ?>" required/>
-					          	<span class="h4"><?= $legend['Legend']['dues'] ?> cuotas de <?= 
-								str_replace([
-                    '{cuotas}','{interes}','{monto}'
-                ], [
-                    $legend['Legend']['dues'],
-                    $legend['Legend']['interest'],
-                    str_replace(',00','',$this->Number->currency(
-                    	ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']), 'ARS', array('places' => 2)))
-                ],
-                $legend['Legend']['title']) ?></span>
+					          	<span class="h4"><?= $legend['Legend']['dues'] ?> cuotas de <?= str_replace(',00','',$this->Number->currency(ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']), 'ARS', array('places' => 2))) ?></span>
 					          	<!--p class="mt-2 text-small"></p-->
 				        	</label>
 				        <?php endif ?>

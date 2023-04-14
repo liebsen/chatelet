@@ -230,7 +230,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .text-legend {
   display: block;
-  text-align: left;
+  text-align: center;
   padding-left: 1rem;
   color: #666!important; 
 }
