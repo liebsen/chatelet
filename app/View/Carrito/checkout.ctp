@@ -215,7 +215,8 @@
                 ], [
                     $legend['Legend']['dues'],
                     $legend['Legend']['interest'],
-                    str_replace(',00','',$this->Number->currency(ceil($total/$legend['Legend']['dues']), 'ARS', array('places' => 2)))
+                    str_replace(',00','',$this->Number->currency(
+                    	ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']), 'ARS', array('places' => 2)))
                 ],
                 $legend['Legend']['title']) ?></p>
 				        	</label>
