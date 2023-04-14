@@ -630,6 +630,7 @@ class CarritoController extends AppController
 		$user['depto'] = (!empty($user['depto']))?$user['depto']:'';
 		$user['coupon'] = (!empty($user['coupon']))?strtoupper($user['coupon']):'';
 		$user['regalo'] = (isset($user['regalo']) && $user['regalo']?1:0);
+		$user['dues'] = (isset($user['payment_dues']) && $user['payment_dues']?intval($user['payment_dues']):1);
 
 		$map = $this->Setting->findById('bank_enable');
 		$bank_enable = @$map['Setting']['value'];
@@ -665,7 +666,6 @@ class CarritoController extends AppController
 		$this->Sale->save($sale_object);
 		$sale_id = $this->Sale->id;
 
-
 		//Mercadopago
 		foreach ($carro as $producto) {
 			$desc = '';
@@ -695,7 +695,8 @@ class CarritoController extends AppController
 				'CUPON'	=> $user['coupon'],
 				'STORE'	=> $user['store'],
 				'STORE_ADDR'	=> $user['store_address'],
-				'SHIPPING'	=> $user['shipping']
+				'SHIPPING'	=> $user['shipping'],
+				'CUOTAS'	=> $user['dues']
 			);
 
 			foreach ($values as $key => $value) {
@@ -777,6 +778,22 @@ class CarritoController extends AppController
 	  		error_log('suming applying (bank): '.$bank_bonus);
 	  	}
 	  }
+
+		if($user['dues'] > 1) {
+			$legend = $this->Legend->findByDues($user['dues']);
+			if($legend && $legend['Legend']['interest']) {
+				$interest = (float) $legend['Legend']['interest'];
+				$total*= ($interest / 100) + 1
+				error_log('suming total (dues interest): '.$total);
+				foreach($items as $k => $item) {
+					$item_price = round($item['unit_price'] * (1 + $discount / 100), 2);
+					$items[$k]['unit_price'] = $item_price;
+					if ($product_ids[$k]) {
+						$product_ids[$k]['precio_vendido'] = $item_price;
+					}
+				}				
+			}
+		}
 
 	  if ($coupon_bonus) {
 	  	$total-= $coupon_bonus;
@@ -863,7 +880,8 @@ class CarritoController extends AppController
 			'metodo_pago'	=> $user['payment_method'],
 			'store'		=> $user['store'],
 			'store_address'		=> $user['store_address'],
-			'shipping'		=> $user['shipping']
+			'shipping'		=> $user['shipping'],
+			'dues'		=> $user['dues']
 		);
 		// error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
@@ -881,19 +899,20 @@ class CarritoController extends AppController
 		$failure_url = Router::url(array('controller' => 'carrito', 'action' => 'failed'), true);
 
 		$preference_data = array(
-		    'items' => $items,
-		    'payer' => array(
-		    	'name' => $user['name'],
-		    	'surname' => $user['surname'],
-		    	'email' => $user['email']
-	    	),
-		    'back_urls' => array(
-		    	'success' => $success_url,
-		    	'failure' => $failure_url,
-		    	'pending' => $failure_url
-	    	)/*,
-	    	'payment_methods' => array(
-	    	)*/
+	    'items' => $items,
+	    'payer' => array(
+	    	'name' => $user['name'],
+	    	'surname' => $user['surname'],
+	    	'email' => $user['email']
+    	),
+	    'back_urls' => array(
+	    	'success' => $success_url,
+	    	'failure' => $failure_url,
+	    	'pending' => $failure_url
+    	),
+    	'payment_methods' => array(
+    		'installments' => $user['dues']
+    	)
 		);
 
 		$preference = $mp->create_preference($preference_data);

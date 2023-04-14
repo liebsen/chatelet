@@ -71,7 +71,7 @@ $(function(){
 
 	Object.keys(carrito).forEach(e => {
 		const h = $('#checkoutform').find(`input[name='${e}']`)
-		console.log('?',e)
+		//console.log('?',e)
 		if (h.length && carrito[e]) {
 			console.log(e,carrito[e])
 			h.val(carrito[e])
