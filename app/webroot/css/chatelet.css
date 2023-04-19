@@ -708,6 +708,34 @@ a.pay{
 	color:#FFFFFF !important;
 }
 
+#dues_message {
+	z-index: -1;
+	opacity: 0;
+	display: none;
+	background-color: whitesmoke;
+	color: #333;
+	font-size: 1.5rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#dues_message.show {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+	display: flex!important;
+	z-index: 10000!important;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;	
+}
+
 /*Rodolfo*/
 
 a.table:hover {

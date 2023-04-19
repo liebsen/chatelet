@@ -1,4 +1,5 @@
 var last_selected = ''
+var dues_selected = ''
 var calculateTotal = (settings) => {
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var subtotal = carrito.subtotal_price
@@ -25,18 +26,19 @@ var calculateTotal = (settings) => {
 }
 var select_dues = (e) => {
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-	var selected = $(e).find(':checked').val()
-	if(!selected) {
+	dues_selected = $(e).find(':checked').val()
+	if(!dues_selected) {
 		return false
 	}	
 	if(!$('#mercadopago').is(':checked')) {
 		$('#mercadopago').click()
 	}
+
 	var interest = $(e).data('interest')
 
   calculateTotal({interest: interest})
-  onSuccessAlert(`${selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
-  localStorage.setItem('pd', selected)
+  onSuccessAlert(`${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
+  localStorage.setItem('pd', dues_selected)
 	$('.payment-dues .option-rounded').removeClass('is-selected')
 	$(e).addClass('is-selected')
 }
@@ -56,6 +58,7 @@ var select_payment = (e) => {
 		$('.bank_bonus').text(formatNumber(bank_bonus))
 		$('.bank-block').removeClass('hide')
 		$('.bank-block').addClass('animated fadeIn')
+		$('#dues_1').click()
 	} else {
 		$('.bank-block').addClass('hide')
 	}
@@ -124,7 +127,19 @@ $(function(){
   	}, 2000)
 	}
 
+	$('#submitcheckoutbutton').click(e => {
+		if(dues_selected && dues_selected > 1){ // show legend
+			$('#dues_message').addClass('show')
+			$('.dues-message-dues').text(dues_selected)
+		} else {
+			$('#submitform').click()
+		}
+	})
+
 	$('#checkoutform').submit(form => {
+		// mostrar leyenda solicitando la elección correcta de cuotas.
+
+		// Asegurate de seleccionar {cuotas} cuotas.
 		const submit = $('.checkout-btn')
 		submit.prop('disabled', true)
 		submit.addClass('disabled')

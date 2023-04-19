@@ -7,6 +7,14 @@
 	const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETTY_PRINT);?>;
 	const bank = {enable: <?= isset($data['bank_enable']) ? $data['bank_enable'] : 0 ?>,discount_enable: <?= isset($data['bank_discount_enable']) ? $data['bank_discount_enable'] : 0 ?>,discount: <?= isset($data['bank_discount']) ? $data['bank_discount'] : 0 ?>}
 </script>
+<div id="dues_message" class="container">
+	<h3>Vamos a redirigirte a la pasarela de pagos<h3>
+	<h4>Asegurate de seleccionar <span class="dues-message-dues"></span> cuotas en MercadoPago</h4>
+	<hr>
+	<div>
+		<button type="button" onclick="$('#submitform').click()" class="btn cart-btn-green" href="" class="mp-link">Entendido, continuar a MercadoPago</button>
+	</div>
+</div>
 <div id="main" class="container">
 	<form role="form" method="post" id="checkoutform" autocomplete="off" action="<?php echo $this->Html->url(array(
 				'controller' => 'carrito',
@@ -290,7 +298,10 @@
 		</div>
 		<div class="row mt-4">
 			<div class="col-md-12 mt-3 text-center">
-				<input type="submit" class="btn cart-btn-green checkout-btn" value="Finalizar compra" />
+				<button type="button" id="submitcheckoutbutton" class="btn cart-btn-green checkout-btn">
+					Finalizar compra
+				</button>
+				<input type="submit" id="submitform" class="hidden-force" />
 			</div>
 		</div>
 	</form>
