@@ -60,6 +60,7 @@ $(function(){
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 		var coupon = parseInt($('.coupon_bonus').text()) || carrito.coupon_bonus
 		var subtotal = parseFloat($('#subtotal_compra').val()) || carrito.subtotal_price
+
 		document.querySelector('.shipping-block').classList.add('hidden')
 
 		$('.input-cp').removeClass('ok');				
@@ -74,18 +75,9 @@ $(function(){
 		$('#free_delivery').text('');
 		$('.delivery-cost').addClass('hidden')
 		callStart()
-
-		console.log('a(0)')
 		$.getJSON( url+'/'+cp , function(json, textStatus) {
-			console.log('a(1)')
-
 			callEnd()
-
-			console.log('a(2)')
 			window.freeShipping = json.freeShipping
-			console.log('a(3)')
-			console.log(json)
-
 			if( json.rates.length ){
 				$('.products-total').removeClass('hidden')
 				//free delivery
@@ -122,7 +114,6 @@ $(function(){
 					}
 				}, 750)
 			} else {
-				console.log('a(7)')
 				$('.input-cp').addClass('wrong');
 				$('#cost').text( parseInt(0) );
 				let total = formatNumber(subtotal - coupon)
@@ -131,7 +122,6 @@ $(function(){
 			}
 			$('.input-cp').attr( 'data-valid' , json.rates.length );
 		})
-		console.log('a(8)')
 		return false
 	})
 })

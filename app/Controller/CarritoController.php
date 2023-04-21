@@ -354,18 +354,12 @@ class CarritoController extends AppController
 		if(!empty($data['discount']) && !empty((float)(@$data['discount']))) {
       $unit_price = @$data['discount'];
     }
-
-
-
 		$freeShipping = $this->isFreeShipping($unit_price, $cp);
-
-
 		$json = array(
 			'freeShipping' => $freeShipping,
 			'rates' => [],
 			'itemsData' => $data
 		);
-
 
 		if(!empty($data)){
 			if ($code) {
@@ -879,7 +873,7 @@ class CarritoController extends AppController
 			'telefono'	=> $user['telephone'],
 			'email'		=> $user['email'],
 			'regalo'		=> $user['regalo'],
-			'package_id'=> @$delivery_data->itemsData->package->id,
+			'package_id'=> @$delivery_data['itemsData']['package']['id'] ?: 1,
 			'value' 	=> $total, // @$delivery_data['itemsData']['price'],
 			'zip_codes' => $zipCodes,
 			'cargo'		=> $user['cargo'],
