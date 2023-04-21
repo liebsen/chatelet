@@ -114,9 +114,11 @@
              <a href="#" class="dropdown-toggle user" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion">Registrate</a>
             <?php } ?>
           </li><!-- /.Login -->
-          <li class="dropdown">
-            <span class="count <?=count($carro)?'':'is-empty '?>animated scaleIn speed delay2"><?=count($carro)?></span>
-            <a href="#" class="dropdown-toggle gotocart shop js-activated" data-toggle="dropdown" data-hover="dropdown">Tu pedido</a>
+          <li class="dropdown is-clickable">
+            <a href="#" class="dropdown-toggle gotocart shop js-activated" data-toggle="dropdown" data-hover="dropdown">
+              <span class="count <?=count($carro)?'':'is-empty '?>animated scaleIn speed delay2"><?=count($carro)?></span>
+              <span>Tu pedido</span>
+            </a>
             <ul class="dropdown-menu">
               <li>
                 <div class="control-panel">
