@@ -293,20 +293,7 @@
                             <div class="price-list"><?= @ceil($alt_product['old_price']) && ceil($alt_product['old_price']) !== ceil($alt_product['price']) ? '<span class="old_price">' .  str_replace(',00','',$this->Number->currency(ceil($alt_product['old_price']), 'ARS', array('places' => 2))). '</span>' : '' ?><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
                         <?php if(count($legends)): ?>
                             <div class="legends">
-                                <?php foreach ($legends as $legend): 
-                                    $price = $alt_product['price'];
-                                    if(!empty($legend['Legend']['interest'])){
-                                      $price = round($price * (1 + $legend['Legend']['interest'] / 100));
-                                    }
-                                    ?>
-                                    <span class="text-legend"><?= str_replace([
-                                        '{cuotas}','{interes}','{monto}'
-                                    ], [
-                                        $legend['Legend']['dues'],
-                                        $legend['Legend']['interest'],
-                                        str_replace(',00','',$this->Number->currency(ceil($price/$legend['Legend']['dues']), 'ARS', array('places' => 2)))
-                                        ],$legend['Legend']['title']) ?></span>
-                                <?php endforeach ?>
+                                <?= $this->App->parse_legend_table($legends, $alt_product['price']) ?>
                             </div>
                         <?php endif ?>
                         </a>

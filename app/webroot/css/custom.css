@@ -1693,9 +1693,12 @@ span.out{
 
 .legends {
   padding: 0.5rem;
+  max-width: 15rem;
+  margin: auto;  
 }
+
 .text-left {
-    text-align: left!important;
+  text-align: left!important;
 }
 .cart-bottom-label {
   font-size: 1rem!important;

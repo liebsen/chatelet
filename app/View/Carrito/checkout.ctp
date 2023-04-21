@@ -14,6 +14,8 @@
 	<div>
 		<button type="button" onclick="$('#submitform').click()" class="btn cart-btn-green" href="" class="mp-link">Entendido, continuar a MercadoPago</button>
 	</div>
+	<hr>
+	<span>¡Muchas gracias!</span>
 </div>
 <div id="main" class="container">
 	<form role="form" method="post" id="checkoutform" autocomplete="off" action="<?php echo $this->Html->url(array(
