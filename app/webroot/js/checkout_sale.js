@@ -1,5 +1,6 @@
 var last_selected = ''
 var dues_selected = ''
+var prevent_default = false
 var calculateTotal = (settings) => {
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var subtotal = carrito.subtotal_price
@@ -30,7 +31,7 @@ var select_dues = (e) => {
 	if(!dues_selected) {
 		return false
 	}	
-	if(!$('#mercadopago').is(':checked')) {
+	if(!$('#mercadopago').is(':checked') && !prevent_default) {
 		$('#mercadopago').click()
 	}
 
@@ -41,6 +42,7 @@ var select_dues = (e) => {
   localStorage.setItem('pd', dues_selected)
 	$('.payment-dues .option-rounded').removeClass('is-selected')
 	$(e).addClass('is-selected')
+	prevent_default = false
 }
 
 var select_payment = (e) => {
@@ -58,6 +60,7 @@ var select_payment = (e) => {
 		$('.bank_bonus').text(formatNumber(bank_bonus))
 		$('.bank-block').removeClass('hide')
 		$('.bank-block').addClass('animated fadeIn')
+		prevent_default = true
 		$('#dues_1').click()
 	} else {
 		$('.bank-block').addClass('hide')
@@ -78,7 +81,6 @@ $(function(){
 		const h = $('#checkoutform').find(`input[name='${e}']`)
 		//console.log('?',e)
 		if (h.length && carrito[e]) {
-			console.log(e,carrito[e])
 			h.val(carrito[e])
 		}
 		if ($(`.${e}`).length) {
