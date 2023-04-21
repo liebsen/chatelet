@@ -2569,7 +2569,7 @@ output {
   line-height: 1.42857143;
   color: #555;
   background-image: none;
-  border-radius: 0;
+  border-radius: 0.25rem;
   margin-bottom: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   min-height: 34px;

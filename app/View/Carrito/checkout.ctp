@@ -237,7 +237,7 @@
 						</div>						
 					<?php endif ?>
 						<div class="mt-4-d checkoutform-container">
-							<div class="is-rounded">
+							<div class="is-rounded pt-3">
 						    <h5 class="card-title">
 									<i class="fa fa-user"></i>
 									Ingresá tus datos para finalizar la compra
