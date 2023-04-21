@@ -131,6 +131,13 @@ label input[type=checkbox]:disabled + .label-text:before {
   padding-top: 0!important;
 }
 
+.pr-3 {
+  padding-right: 0.75rem!important;
+}
+.pl-3 {
+  padding-left: 0.75rem!important;
+}
+
 .pt-3 {
   padding-top: 0.75rem!important;
 }

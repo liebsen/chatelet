@@ -184,7 +184,7 @@
 						    	¿Cómo querés pagar tu compra?
 						    </h5>
 						    <h6 class="card-subtitle">Total $<span class="total_price"></span>.  Seleccioná un método de pago</h6>
-						    <div class="row card-row payment_method">
+						    <div class="row card-row payment_method pl-3 pr-3">
 						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>" onclick="select_payment(this)">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !$data['bank_enable'] ? 'checked': '' ?>/>
 					          	<span class="h4">Mercado Pago</span><br>
@@ -208,7 +208,7 @@
 						    	¿Querés financiar tu compra?
 						    </h5>
 						    <h6 class="card-subtitle">Seleccioná las cuotas</h6>
-						    <div class="row card-row payment_dues">
+						    <div class="row card-row payment_dues pl-3 pr-3">
 					        <label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(this)">
 					          <input type="radio" class="" id="dues_1" name="payment_dues" value="1" required checked />
 				          	<span class="h4"> 1 cuota</span><br>
