@@ -644,7 +644,7 @@ html, body {
 	background-color: #bebebe;
 	min-width: 20rem;
 	min-height: 46px;
-	border-radius: 3px;
+	border-radius: 0.5rem;
 	transition: all 0.25s ease;
 }
 .cart-btn-green.shrink {
