@@ -325,7 +325,8 @@ class CarritoController extends AppController
 		return json_encode(\filtercoupon($coupon));
 	}
 
-	public function deliveryCost($cp, $sale = null){
+	public function deliveryCost($cp, $sale = null, $encode = true){
+
 		if ($sale['cargo'] === 'takeaway') {
 			$json['rates'][] = 0;
 			return $json;
@@ -354,15 +355,21 @@ class CarritoController extends AppController
       $unit_price = @$data['discount'];
     }
 
+
+
 		$freeShipping = $this->isFreeShipping($unit_price, $cp);
+
+
 		$json = array(
 			'freeShipping' => $freeShipping,
 			'rates' => [],
 			'itemsData' => $data
 		);
 
+
 		if(!empty($data)){
 			if ($code) {
+
 				// necesitamos cotizacion de una empresa
 				$code = strtolower($code);
 				$logistic = $this->Logistic->find('first',[
@@ -529,7 +536,11 @@ class CarritoController extends AppController
 			}
 		}
 
-		return $json;
+		if($encode){
+			return json_encode($json);
+		} else {
+			return $json;	
+		}		
 	}
 
 	public function isFreeShipping ($price, $zip_code = 0) {
@@ -609,7 +620,6 @@ class CarritoController extends AppController
 
 		return $price;
 	}
-
 
 	public function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
@@ -805,7 +815,7 @@ class CarritoController extends AppController
 		// Add Delivery
 		$delivery_cost = 0;
 		$freeShipping = $this->isFreeShipping($total_wo_discount, $user['postal_address']);
-		$delivery_data = $this->deliveryCost(null, $user);
+		$delivery_data = $this->deliveryCost(null, $user, false);
 		$delivery_cost = (integer) $delivery_data['rates'][0];
 
 		if ($freeShipping) { 
