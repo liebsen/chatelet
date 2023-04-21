@@ -231,7 +231,7 @@
                 $legend['Legend']['title']) ?></p>
 				        	</label>
 				        <?php endif ?>
-				        <?php endforeach ?>
+			        <?php endforeach ?>
 				        </div>
 						  </div>
 						</div>						
