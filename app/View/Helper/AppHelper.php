@@ -153,7 +153,7 @@ class AppHelper extends Helper {
   function parse_legend_table($legends, $price){
     $price = (float) $price;
     $str = '';
-    $str.="<table class='table table-striped text-muted'>";
+    $str.="<table class='table table-condensed table-sm table-striped text-muted'>";
     $str.="<thead class='thead-dark'><tr>
       <th class='text-center'>Cuotas</th>
       <th class='text-center'>Monto</th>
