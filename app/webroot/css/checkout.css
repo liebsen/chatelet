@@ -54,6 +54,7 @@ a.volver .fa {
 .option-rounded input[type=radio]{
 	position: relative;
 	top: -1px;
+	margin-right: 0.5rem;
 }
 
 .text-justify {
