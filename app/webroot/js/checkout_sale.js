@@ -1,6 +1,5 @@
 var last_selected = ''
 var dues_selected = ''
-var prevent_default = false
 var calculateTotal = (settings) => {
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var subtotal = carrito.subtotal_price
@@ -25,14 +24,22 @@ var calculateTotal = (settings) => {
   //console.log('total',total)
   //console.log('bank_bonus',bank_bonus)
 }
+
+var select_radio = (name, value) => {
+	const e = $(`input[name=${name}][value=${value}]`)
+	e.prop("checked",true)
+	$(`.${name} .option-rounded`).removeClass('is-selected')
+	e.parent().addClass('is-selected')
+}
+
 var select_dues = (e) => {
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	dues_selected = $(e).find(':checked').val()
 	if(!dues_selected) {
 		return false
 	}	
-	if(!$('#mercadopago').is(':checked') && !prevent_default) {
-		$('#mercadopago').click()
+	if(!$('#mercadopago').is(':checked') && dues_selected > 1) {
+		select_radio('payment_method', 'mercadopago')
 	}
 
 	var interest = $(e).data('interest')
@@ -40,7 +47,7 @@ var select_dues = (e) => {
   calculateTotal({interest: interest})
   onSuccessAlert(`${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
   localStorage.setItem('pd', dues_selected)
-	$('.payment-dues .option-rounded').removeClass('is-selected')
+	$('.payment_dues .option-rounded').removeClass('is-selected')
 	$(e).addClass('is-selected')
 	prevent_default = false
 }
@@ -48,27 +55,26 @@ var select_dues = (e) => {
 var select_payment = (e) => {
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var subtotal = carrito.subtotal_price
-
 	var selected = $(e).find(':checked').val()
 	var bank_bonus = 0
 	if(!selected) {
 		return false
 	}
+
 	last_selected = selected	
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
 		bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
 		$('.bank_bonus').text(formatNumber(bank_bonus))
 		$('.bank-block').removeClass('hide')
 		$('.bank-block').addClass('animated fadeIn')
-		prevent_default = true
-		$('#dues_1').click()
+		select_radio('payment_dues', 1)
 	} else {
 		$('.bank-block').addClass('hide')
 	}
   calculateTotal({ bank_bonus: bank_bonus})
   onSuccessAlert((selected === 'bank' ? 'CBU/Alias' : 'Mercadopago'), '✓ Método de pago seleccionado');
   localStorage.setItem('pm', selected)
-	$('.payment-method .option-rounded').removeClass('is-selected')
+	$('.payment_method .option-rounded').removeClass('is-selected')
 	$(e).addClass('is-selected')
 }
 
@@ -140,7 +146,6 @@ $(function(){
 
 	$('#checkoutform').submit(form => {
 		// mostrar leyenda solicitando la elección correcta de cuotas.
-
 		// Asegurate de seleccionar {cuotas} cuotas.
 		const submit = $('.checkout-btn')
 		submit.prop('disabled', true)
