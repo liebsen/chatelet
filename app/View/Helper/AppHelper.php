@@ -124,7 +124,7 @@ class AppHelper extends Helper {
       $legendStr = '';
       if(!empty($legends)) {
         $legendStr.= '<div class="legends">';
-        $legendStr.= self::parse_legend_table($legends, $item['price']);
+        $legendStr.= self::parse_legend_texts($legends, $item['price']);
         $legendStr.= '</div>';
       }
 
@@ -139,15 +139,31 @@ class AppHelper extends Helper {
     return $str;
   }
 
-  function parse_legend_sentence($legend, $price){
-    return '<span class="text-legend">' . str_replace([
-        '{cuotas}','{interes}','{monto}'
-    ], [
-        $legend['Legend']['dues'],
-        $legend['Legend']['interest'],
-        str_replace(',00','',$this->Number->currency(ceil($price/$legend['Legend']['dues']), 'ARS', array('places' => 2)))
-    ],
-    $legend['Legend']['title']) . '</span>';
+  function parse_legend_texts($legends, $price){
+    $price = (float) $price;
+    $str = '';
+    foreach ($legends as $legend) {
+      $dues = $legend['Legend']['dues'];
+      $interest = (float) $legend['Legend']['interest'];
+      $min_sale = (float) $legend['Legend']['min_sale'];
+      $formatted_price = str_replace(',00','',$this->Number->currency(ceil($price/$legend['Legend']['dues']), 'ARS', array('places' => 2)));
+
+      if(!empty($interest)){
+        $price = round($price * (1 + $interest / 100));
+      }
+
+      if($price >= $min_sale) {
+        $str.= '<span class="text-legend">' . str_replace([
+          '{cuotas}','{interes}','{monto}'
+        ], [
+          $dues,
+          $interest,
+          str_replace(',00','',$this->Number->currency(ceil($price/$dues), 'ARS', array('places' => 2)))
+        ],
+        $legend['Legend']['title']) . '</span>';
+      }
+    }
+    return $str;
   }
 
   function parse_legend_table($legends, $price){

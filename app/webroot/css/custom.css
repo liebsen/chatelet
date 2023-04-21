@@ -228,12 +228,6 @@ label input[type=checkbox]:disabled + .label-text:before {
   color: #333!important;
 }
 
-.text-legend {
-  display: block;
-  text-align: center;
-  padding-left: 1rem;
-  color: #666!important; 
-}
 
 .text-weight-thin {
   font-weight: 400;
@@ -1692,18 +1686,26 @@ span.out{
 }
 
 .legends {
-  padding: 0.5rem;
-  max-width: 12rem;
-  margin: auto;  
+}
+
+.text-legend {
+  display: block;
+  color: #666!important; 
+}
+
+.margin-auto {
+  margin: auto;
 }
 
 .text-left {
   text-align: left!important;
 }
+
 .cart-bottom-label {
   font-size: 1rem!important;
   font-weight: 700;
 }
+
 .cost_total-container {
   opacity: 0;
   padding: 0.25rem 0;  
