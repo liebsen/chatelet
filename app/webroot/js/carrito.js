@@ -32,7 +32,8 @@ var selectStore = e => {
   preferences.store_address = $(e).attr('store_address')
   localStorage.setItem('carrito', JSON.stringify(preferences))
   var carrito_takeaway_text = $('.carrito_takeaway_text').text()
-  onSuccessAlert('Seleccionaste takeaway', `Puede retirar su producto por sucursal - ${e.textContent} - ${carrito_takeaway_text}`);
+  const suc = e.textContent.split(' ')[0]
+  onSuccessAlert(`Seleccionaste Retiro en sucursal ${suc.replace(',','')}`, `Podes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. ${carrito_takeaway_text}`);
 	cargo = 'takeaway'
 }
 
