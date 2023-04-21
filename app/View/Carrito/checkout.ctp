@@ -89,7 +89,7 @@
 							    	<div class="col-xs-12 is-clickable option-regular">
 						          <label class="d-inline">
 						          	<span class="h4">Cliente</span><br>
-						          	<p class="mt-2"><?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?> (DNI <?= $userData['User']['dni'] ?>)</p>
+						          	<p class="mt-2 text-muted"><?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?> (DNI <?= $userData['User']['dni'] ?>)</p>
 										    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="cargo-shipment hide">
 										    	<i class="fa fa-map-marker"></i>
 										    	Modificar dirección
@@ -111,7 +111,7 @@
 						          	<span class="h4 text-success">Envío gratis</span>
 											<?php else: ?>
 						          	<span class="h4">Costo de envío</span><br>
-						          	<p class="mt-2">
+						          	<p class="mt-2 text-muted">
 						          		<span class="shipping_price text-bold h4 mb-0"></span>
 												<?php if($loggedIn): ?>
 											    <br><br><span> Entrega <span class="shipping text-uppercase"></span> en 
@@ -128,7 +128,7 @@
 							    	<div class="col-xs-12 option-regular cargo-takeaway hide">
 						          <label class="d-inline">
 						          	<span class="h4">Retiro en sucursal</span><br>
-						          	<p class="mt-2"> Elegiste retirarlo en 
+						          	<p class="mt-2 text-muted"> Elegiste retirarlo en 
 						          		<span class="text-bold store_address"></span>
                     			<span class="text-bold store"></span>. 
                     			<?= $data['carrito_takeaway_text'] ?>
@@ -157,7 +157,7 @@
 							    	<div class="col-xs-12 option-regular">
 						          <label class="d-inline text-muted">
 						          	<span class="h4">Total a pagar</span><br>
-						          	<p class="mt-2 text-bold h3 mb-0">
+						          	<p class="mt-2 text-bold total-price h3 mb-0">
 						          		$<span class="total_price"></span>
 						          	</p>
 						          </span>
@@ -188,13 +188,13 @@
 						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>" onclick="select_payment(this)">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !$data['bank_enable'] ? 'checked': '' ?>/>
 					          	<span class="h4">Mercado Pago</span><br>
-					          	<p class="mt-2 text-small">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
+					          	<p class="mt-2 text-small text-muted">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
 				        	</label>				          
 					      <?php if($data['bank_enable']): ?>
 					        <label for="bank" class="col-xs-12 is-clickable option-rounded" onclick="select_payment(this)">
 					          <input type="radio" class="" id="bank" name="payment_method" value="bank" required />
 				          	<span class="h4">CBU/Alias</span><br>
-				          	<p class="mt-2 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
+				          	<p class="mt-2 text-small text-muted">Pagá a través de transferencia bancaria con tu home banking</p>
 				          </label>
 					       <?php endif ?>
 				        </div>
@@ -204,7 +204,7 @@
 						<div class="card mt-4-d">
 						  <div class="card-body">
 						    <h5 class="card-title">
-						    	<i class="fa fa-credit-card"></i>
+						    	<i class="fa fa-money"></i>
 						    	¿Querés financiar tu compra?
 						    </h5>
 						    <h6 class="card-subtitle">Seleccioná las cuotas</h6>
@@ -219,7 +219,7 @@
 						    	<label for="dues_<?= $legend['Legend']['dues'] ?>" class="col-xs-12 is-clickable option-rounded"  data-interest="<?= $legend['Legend']['interest'] ?>" onclick="select_dues(this)">
 						    		<input type="radio" id="dues_<?= $legend['Legend']['dues'] ?>" name="payment_dues" value="<?= $legend['Legend']['dues'] ?>" required/>
 					          	<span class="h4"> <?= $legend['Legend']['dues'] ?> cuotas</span><br>
-					          	<p class="mt-2 text-small"><?= 
+					          	<p class="mt-2 text-small text-muted"><?= 
 								str_replace([
                     '{cuotas}','{interes}','{monto}'
                 ], [
@@ -238,7 +238,10 @@
 					<?php endif ?>
 						<div class="mt-4-d checkoutform-container">
 							<div class="is-rounded">
-								<h3 class="">Ingresá tus datos para finalizar la compra</h3>
+						    <h5 class="card-title">
+									<i class="fa fa-user"></i>
+									Ingresá tus datos para finalizar la compra
+						    </h5>
 								<input type="hidden" name="shipping" value=""/>
 								<input type="hidden" name="coupon" value=""/>
 								<input type="hidden" name="cargo" value=""/>

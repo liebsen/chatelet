@@ -79,19 +79,19 @@
     top: 0;
     right: 0;
     bottom: 0;
-    font-size: 2rem;
+    font-size: 1.25rem;
     line-height: 1.25rem;
     font-weight: normal;
     opacity: 0;
     font-family: helvetica, verdana, sans-serif; }
   .growl .growl-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: bold;
-    line-height: 1.5rem;
+    line-height: 1.25rem;
     margin-bottom: 0.25rem;}
   .growl .growl-message {
     font-size: 1rem;
-    line-height: 1.25rem; }
+    line-height: 1rem; }
 
 @media screen and (min-width: 769px) {
   #growls.default {
