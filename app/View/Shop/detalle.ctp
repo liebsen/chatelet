@@ -124,7 +124,7 @@
                             str_replace(',00','',$this->Number->currency(ceil($product['price']), 'ARS', array(
                             'places' => 2))). "</span>";
                  }?>
-                 <div class="legends">
+                 <div class="legends mt-0">
                     <?= $this->App->parse_legend_texts($legends, $product['price']) ?>
                  </div>
                 <div class="caract">

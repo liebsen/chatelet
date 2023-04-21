@@ -1686,6 +1686,11 @@ span.out{
 }
 
 .legends {
+  margin-top: 0.5rem;
+}
+
+.mt-0 {
+  margin: 0!important;
 }
 
 .text-legend {
