@@ -397,6 +397,10 @@ html, body {
 	margin: 0 5px;
 }
 
+.text-footer {
+	text-shadow: -1px -1px 1px #fff6, 1px 1px 1px #3333;
+}
+
 .left {
 	float: left;
 }

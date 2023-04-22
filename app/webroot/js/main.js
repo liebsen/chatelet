@@ -381,7 +381,7 @@ $(function () {
         }
       }
       lastscroll = scroll
-    }, 300)
+    }, 3000)
   })
 
   /* trigger search from url */
