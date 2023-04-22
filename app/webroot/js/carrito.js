@@ -1,7 +1,6 @@
 var cargo = ''
 
 var selectStore = e => {
-	console.log('selectStore')
 	var total_orig = parseFloat($('#subtotal_compra').val())
 	var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
 
@@ -94,7 +93,6 @@ $(document).ready(function() {
 			currentCarritoIndex = document.querySelectorAll('.carrito-item-row').length
 		}
 		show_cart_item(currentCarritoIndex)
-		console.log('prev')
 	})
 
 	$('#carritoItem .carousel-control.right').on('click', function(e) {
