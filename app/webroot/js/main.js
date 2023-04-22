@@ -332,6 +332,7 @@ $(function () {
     }
     clock = setTimeout(() => {
       var scroll = $(window).scrollTop()
+      var tops = document.querySelectorAll('.top-fixable')
       var navbar = document.querySelector('.navbar-chatelet')
       if (scroll > 300) {
         if(document.querySelector('.float-tl')) {
@@ -342,24 +343,30 @@ $(function () {
         }
 
         if (lastscroll > scroll) {
-          // up
-          if (navbar && !navbar.classList.contains('fixed')) {
-            navbar.classList.remove('fadeOut','fadeIn')
-            setTimeout(() => {
-              document.querySelector('body').style.paddingTop = `${navbar.clientHeight}px`
-              navbar.classList.add('fadeIn','fixed')
-            }, 10)
-          } 
+           // up
+          tops.forEach((e) => {
+            if (e && !e.classList.contains('top-fixed')) {
+              navbar.classList.remove('fadeOut','fadeIn')
+              setTimeout(() => {
+                document.querySelector('body').style.paddingTop = `${navbar.clientHeight}px`
+                navbar.classList.add('fadeIn','top-fixed')
+              }, 10)
+            } 
+          })
         } else {
-          // down
-          if (navbar && navbar.classList.contains('fixed')) {
-            document.querySelector('body').style.paddingTop = 0
-            navbar.classList.remove('fixed','fadeIn')
-            navbar.classList.remove('fadeOut')
-            setTimeout(() => {
-              navbar.classList.add('fadeOut')    
-            }, 10)            
-          }
+          tops.forEach((e) => {
+            // down
+            if (e && e.classList.contains('top-fixed')) {
+              if (e.classList.contains('navbar-chatelet')) {
+                document.querySelector('body').style.paddingTop = 0
+              }
+              navbar.classList.remove('top-fixed','fadeIn')
+              navbar.classList.remove('fadeOut')
+              setTimeout(() => {
+                navbar.classList.add('fadeOut')    
+              }, 10)            
+            }
+          })
         }
       } else {
         if(document.querySelector('.float-tl')) {
@@ -368,9 +375,9 @@ $(function () {
         if(document.querySelector('.float-tr')) {
           document.querySelector('.float-tr').classList.remove('float-top-right')
         }
-        if (navbar && navbar.classList.contains('fixed')) {
+        if (navbar && navbar.classList.contains('top-fixed')) {
           document.querySelector('body').style.paddingTop = 0
-          navbar.classList.remove('fixed')
+          navbar.classList.remove('top-fixed')
         }
       }
       lastscroll = scroll

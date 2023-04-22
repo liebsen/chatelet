@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-chatelet animated fadeIn speed delay">
+<nav class="navbar navbar-chatelet top-fixable animated fadeIn speed delay">
   <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -193,7 +193,7 @@
     <div class="row">
       <div class="col-sm-12 m-0">
         <!--h3>Buscar</h3-->
-        <div class="box-search animate speed">
+        <div class="box-search top-fixable animate speed">
           <input type="text" class="form-input input-search" placeholder="Buscar...">
           <svg class="spinner-search" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
             <rect class="spinner__rect" x="0" y="0" width="100" height="100" fill="none"></rect>

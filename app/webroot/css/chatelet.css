@@ -196,8 +196,8 @@ html, body {
 	margin-top: -8px;
 }
 
-.navbar-chatelet.fixed {
-	position: fixed;
+.top-fixed {
+	position: fixed!important;
 	width: 100%;
 	left: 0;
 	top: 0;
@@ -555,8 +555,6 @@ html, body {
 #particular-login .modal-content,
 #particular-password .modal-content{
 	max-width: 25rem;
-	margin: auto;
-	border-radius: 3px;
 	/*position: absolute; */
 }
 
