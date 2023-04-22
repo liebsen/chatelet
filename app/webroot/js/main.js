@@ -334,7 +334,7 @@ $(function () {
       var scroll = $(window).scrollTop()
       var tops = document.querySelectorAll('.top-fixable')
       var navbar = document.querySelector('.navbar-chatelet')
-      if (scroll > 300) {
+      if (scroll > 250) {
         if(document.querySelector('.float-tl')) {
           document.querySelector('.float-tl').classList.add('float-top-left')
         }
