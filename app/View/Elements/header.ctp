@@ -191,7 +191,7 @@
   </a>
   <div class="wrapper pt-2">
     <div class="row">
-      <div class="col-sm-12 m-0">
+      <div class="col-sm-12 m-0 box-search-container">
         <!--h3>Buscar</h3-->
         <div class="box-search top-fixable animate speed">
           <input type="text" class="form-input input-search" placeholder="Buscar...">

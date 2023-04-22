@@ -343,13 +343,15 @@ $(function () {
         }
 
         if (lastscroll > scroll) {
-           // up
+          // up
           tops.forEach((e) => {
             if (e && !e.classList.contains('top-fixed')) {
-              navbar.classList.remove('fadeOut','fadeIn')
+              e.classList.remove('fadeOut','fadeIn')
               setTimeout(() => {
-                document.querySelector('body').style.paddingTop = `${navbar.clientHeight}px`
-                navbar.classList.add('fadeIn','top-fixed')
+                if (e.classList.contains('navbar-chatelet')) {
+                  document.querySelector('body').style.paddingTop = `${e.clientHeight}px`
+                }
+                e.classList.add('fadeIn','top-fixed')
               }, 10)
             } 
           })
@@ -360,10 +362,10 @@ $(function () {
               if (e.classList.contains('navbar-chatelet')) {
                 document.querySelector('body').style.paddingTop = 0
               }
-              navbar.classList.remove('top-fixed','fadeIn')
-              navbar.classList.remove('fadeOut')
+              e.classList.remove('top-fixed','fadeIn')
+              e.classList.remove('fadeOut')
               setTimeout(() => {
-                navbar.classList.add('fadeOut')    
+                e.classList.add('fadeOut')    
               }, 10)            
             }
           })
@@ -375,13 +377,17 @@ $(function () {
         if(document.querySelector('.float-tr')) {
           document.querySelector('.float-tr').classList.remove('float-top-right')
         }
-        if (navbar && navbar.classList.contains('top-fixed')) {
-          document.querySelector('body').style.paddingTop = 0
-          navbar.classList.remove('top-fixed')
-        }
+        tops.forEach((e) => {
+          if (e && e.classList.contains('top-fixed')) {
+            if (e.classList.contains('navbar-chatelet')) {
+              document.querySelector('body').style.paddingTop = 0
+            }
+            navbar.classList.remove('top-fixed')
+          }
+        })
       }
       lastscroll = scroll
-    }, 3000)
+    }, 400)
   })
 
   /* trigger search from url */

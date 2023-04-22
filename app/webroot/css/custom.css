@@ -1672,15 +1672,22 @@ span.out{
   font-weight: 600;
   padding-top: 0.5rem;
 }
+.box-search-container {
+  min-height: 72px;
+}
 .box-search {
   display: flex;
+  z-index: 999;
   flex-direction: column;
   justify-content: center;
   align-items: center;  
   position: relative;
   max-width: calc(100vw - 6rem);
 }
-
+.box-search.top-fixed {
+  top: 1rem;
+  left: 1rem;
+}
 .field {
   margin: 0.75rem 0 1.75rem;
   /* letter-spacing: -0.03rem; */
