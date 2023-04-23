@@ -1714,6 +1714,11 @@ span.out{
   margin-top: 0.5rem;
 }
 
+.legends.legends-left {
+  text-align: left;
+  padding-left: 1rem;
+}
+
 .text-legend {
   display: block;
   text-align: left;

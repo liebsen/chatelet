@@ -123,7 +123,7 @@ class AppHelper extends Helper {
 
       $legendStr = '';
       if(!empty($legends)) {
-        $legendStr.= '<div class="legends">';
+        $legendStr.= '<div class="legends legends-left">';
         $legendStr.= self::parse_legend_texts($legends, $item['price']);
         $legendStr.= '</div>';
       }
