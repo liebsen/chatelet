@@ -359,13 +359,14 @@ $(function () {
           tops.forEach((e) => {
             // down
             if (e && e.classList.contains('top-fixed')) {
+              e.classList.remove('top-fixed', 'fadeIn', 'fadeOut')
               if (e.classList.contains('navbar-chatelet')) {
                 document.querySelector('body').style.paddingTop = 0
+              } else {
+                setTimeout(() => {
+                  e.classList.add('fadeOut')    
+                }, 10)            
               }
-              e.classList.remove('top-fixed', 'fadeIn', 'fadeOut')
-              setTimeout(() => {
-                e.classList.add('fadeOut')    
-              }, 10)            
             }
           })
         }
