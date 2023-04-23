@@ -1116,7 +1116,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 @media (max-width: 1599px) {
-	.wrapper { padding: 0 2rem; }
+	.wrapper { padding: 0 1rem; overflow: hidden; }
 	.map .col-md-4 { padding: 200px 0 200px 50px; }
 
 	#headhelp .box { padding: 6rem 5rem 1rem;  border-radius: 3px;  }

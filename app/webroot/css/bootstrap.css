@@ -2571,10 +2571,10 @@ output {
   background-image: none;
   border-radius: 0.25rem;
   margin-bottom: 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  /*box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;*/
   min-height: 34px;
   background-color: #fbfbfb;
-  border: 1px solid #bebebe;
+  border: 2px solid #999;
   width: 100%;  
 }
 .form-control:focus {

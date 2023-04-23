@@ -216,7 +216,7 @@
 				          </label>						    	
 						    <?php foreach($legends as $legend): ?>
 						    	<?php if($total >= $legend['Legend']['min_sale']):?>
-						    	<label for="dues_<?= $legend['Legend']['dues'] ?>" class="col-xs-12 is-clickable option-rounded"  data-interest="<?= $legend['Legend']['interest'] ?>" onclick="select_dues(event,this)">
+						    	<label for="dues_<?= $legend['Legend']['dues'] ?>" class="col-xs-12 is-clickable option-rounded is-secondary"  data-interest="<?= $legend['Legend']['interest'] ?>" onclick="select_dues(event,this)">
 						    		<input type="radio" id="dues_<?= $legend['Legend']['dues'] ?>" name="payment_dues" value="<?= $legend['Legend']['dues'] ?>" required/>
 					          	<span class="h4"> <?= $legend['Legend']['dues'] ?> cuotas</span><br>
 					          	<p class="mt-2 text-small text-muted"><?= 

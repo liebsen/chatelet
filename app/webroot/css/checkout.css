@@ -48,14 +48,19 @@ a.volver .fa {
 	transition: all 0.25s ease-in;
 }
 
+.option-rounded.is-secondary:not(.is-selected) {
+	opacity: 0.5;
+}
+
 .option-rounded.is-selected {
 	border-color: #3c763d;
 	color: #3c763d;
 	background-color: #dff0d8;
 }
 
-.option-rounded.is-secondary:not(.is-selected) {
-	opacity: 0.5!important;
+
+.option-rounded:hover {
+	opacity: 1!important;
 }
 
 .option-rounded input[type=radio]{

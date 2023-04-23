@@ -68,7 +68,7 @@
             
         <?php } ?>
 
-        <div class="col-md-4 col-sm-6 col-xs-12 clb">
+        <div class="col-md-4 col-sm-6 col-xs-12">
           <h3>Información</h3>
           <ul>
             <li>

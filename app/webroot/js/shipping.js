@@ -15,8 +15,9 @@ $(function(){
 			coupon = carrito.coupon_bonus
 		}
 
-		$('.shipping-options li').removeClass('selected')
-		$('.takeaway-options li').removeClass('selected')
+		$('.shipping-options li').removeClass('selected secondary')
+		$('.takeaway-options li').removeClass('selected secondary')
+		$('.shipping-options li').addClass('secondary')
 		$(e).addClass('selected')
 		$('.delivery-cost').addClass('hidden')
 		$('.shipping-cargo').text(shipping)	

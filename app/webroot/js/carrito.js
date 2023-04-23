@@ -11,8 +11,9 @@ var selectStore = e => {
 			document.querySelector('.shipping-block').classList.add('hidden')		
 		}, 500)
 	} */
-	$('.takeaway-options li').removeClass('selected')
-	$('.shipping-options li').removeClass('selected')
+	$('.takeaway-options li').removeClass('selected secondary')
+	$('.shipping-options li').removeClass('selected secondary')
+	$('.takeaway-options li').addClass('secondary')
 	$('.free-shipping').addClass('hidden')
 	$('.input-cp').removeClass('ok')
 	$('.input-cp').val('')
