@@ -82,6 +82,8 @@
   animation-duration: 1s;
   animation-fill-mode: both;
   animation-delay: 0.8s;	
+	opacity: 1;
+	transition: all 0.25s ease-in;
 }
 
 .generic-select li:hover {
@@ -95,6 +97,10 @@
 	border-color: #30c73c;
 	background-image: url(../images/check.png);
 	color: #30c73c;
+}
+
+.generic-select li.secondary:not(.selected) {
+	opacity: 0.5!important;
 }
 
 .generic-select li:nth-child(1) {

@@ -32,9 +32,12 @@ var select_radio = (name, value) => {
 	e.parent().addClass('is-selected')
 }
 
-var select_dues = (e) => {
+var select_dues = (e,item) => {
+	e.preventDefault()
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-	dues_selected = $(e).find(':checked').val()
+	dues_selected = $(item).find('input').val()
+	$(item).find('input').prop('checked', true) // force since preventdefault
+
 	if(!dues_selected) {
 		return false
 	}	
@@ -47,15 +50,18 @@ var select_dues = (e) => {
   calculateTotal({interest: interest})
   onSuccessAlert(`${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
   localStorage.setItem('pd', dues_selected)
-	$('.payment_dues .option-rounded').removeClass('is-selected')
-	$(e).addClass('is-selected')
+	$('.payment_dues .option-rounded').removeClass('is-selected is-secondary')
+	$('.payment_dues .option-rounded').addClass('is-secondary')
+	$(item).addClass('is-selected')
 	prevent_default = false
 }
 
-var select_payment = (e) => {
+var select_payment = (e,item) => {
+	e.preventDefault()
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var subtotal = carrito.subtotal_price
-	var selected = $(e).find(':checked').val()
+	var selected = $(item).find('input').val()
+	$(item).find('input').prop('checked', true)
 	var bank_bonus = 0
 	if(!selected) {
 		return false
@@ -74,8 +80,9 @@ var select_payment = (e) => {
   calculateTotal({ bank_bonus: bank_bonus})
   onSuccessAlert((selected === 'bank' ? 'CBU/Alias' : 'Mercadopago'), '✓ Método de pago seleccionado');
   localStorage.setItem('pm', selected)
-	$('.payment_method .option-rounded').removeClass('is-selected')
-	$(e).addClass('is-selected')
+	$('.payment_method .option-rounded').removeClass('is-selected is-secondary')
+	$('.payment_method .option-rounded').addClass('is-secondary')
+	$(item).addClass('is-selected')
 }
 
 $(function(){
@@ -100,7 +107,9 @@ $(function(){
 
 	if(lastpm) {
 		setTimeout(() => {
-			$('#'+lastpm).click()
+			if($(`#${lastpm}`)) {
+				$(`#${lastpm}`).click()
+			}
 		}, 100)
 		// $('input[name=payment_method]').val(lastpm)
 	}

@@ -185,13 +185,13 @@
 						    </h5>
 						    <h6 class="card-subtitle">Total $<span class="total_price"></span>.  Seleccioná un método de pago</h6>
 						    <div class="row card-row payment_method pl-3 pr-3">
-						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>" onclick="select_payment(this)">
+						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !$data['bank_enable'] ? 'checked': '' ?>/>
 					          	<span class="h4">Mercado Pago</span><br>
 					          	<p class="mt-2 text-small text-muted">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
 				        	</label>				          
 					      <?php if($data['bank_enable']): ?>
-					        <label for="bank" class="col-xs-12 is-clickable option-rounded" onclick="select_payment(this)">
+					        <label for="bank" class="col-xs-12 is-clickable option-rounded" onclick="select_payment(event,this)">
 					          <input type="radio" class="" id="bank" name="payment_method" value="bank" required />
 				          	<span class="h4">CBU/Alias</span><br>
 				          	<p class="mt-2 text-small text-muted">Pagá a través de transferencia bancaria con tu home banking</p>
@@ -209,14 +209,14 @@
 						    </h5>
 						    <h6 class="card-subtitle">Seleccioná las cuotas</h6>
 						    <div class="row card-row payment_dues pl-3 pr-3">
-					        <label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(this)">
+					        <label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(event,this)">
 					          <input type="radio" class="" id="dues_1" name="payment_dues" value="1" required checked />
 				          	<span class="h4"> 1 cuota</span><br>
 				          	<p class="mt-2 text-small">1 cuota de <?= str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))) ?></p>
 				          </label>						    	
 						    <?php foreach($legends as $legend): ?>
 						    	<?php if($total >= $legend['Legend']['min_sale']):?>
-						    	<label for="dues_<?= $legend['Legend']['dues'] ?>" class="col-xs-12 is-clickable option-rounded"  data-interest="<?= $legend['Legend']['interest'] ?>" onclick="select_dues(this)">
+						    	<label for="dues_<?= $legend['Legend']['dues'] ?>" class="col-xs-12 is-clickable option-rounded"  data-interest="<?= $legend['Legend']['interest'] ?>" onclick="select_dues(event,this)">
 						    		<input type="radio" id="dues_<?= $legend['Legend']['dues'] ?>" name="payment_dues" value="<?= $legend['Legend']['dues'] ?>" required/>
 					          	<span class="h4"> <?= $legend['Legend']['dues'] ?> cuotas</span><br>
 					          	<p class="mt-2 text-small text-muted"><?= 
