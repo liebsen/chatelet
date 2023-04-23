@@ -278,6 +278,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 .modal-content {
   box-shadow: var(--box-shadow);
+  border-radius: 1rem;
 }
 
 .navbar { 
