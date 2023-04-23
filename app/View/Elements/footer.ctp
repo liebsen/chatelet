@@ -23,19 +23,21 @@
           <ul>
           <?php
           if (!empty($categories)){
-              foreach ($categories as $category) {
-                  $category = $category['Category'];
-                  echo '<li>';
-                  echo $this->Html->link(
-                      $category['name'],
-                      array(
-                          'controller' => 'shop',
-                          'action' => 'product',
-                          intval($category['id'])
-                      )
-                  );
-                  echo '</li>';
+            foreach ($categories as $category) {
+              $category = $category['Category'];
+              if(strlen($category['name']) > 3) {
+                echo '<li>';
+                echo $this->Html->link(
+                    $category['name'],
+                    array(
+                        'controller' => 'shop',
+                        'action' => 'product',
+                        intval($category['id'])
+                    )
+                );
+                echo '</li>';
               }
+            }
           }
          ?>
           </ul>

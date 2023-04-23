@@ -1716,7 +1716,10 @@ span.out{
 
 .text-legend {
   display: block;
-  color: #666!important; 
+  text-align: left;
+  color: #666!important;
+  line-height: 1.25;
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
 }
 
 .margin-auto {
