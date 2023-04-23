@@ -31,9 +31,17 @@ html, body {
 	overflow-y: auto;
 }
 
+.modal-content {
+  box-shadow: var(--box-shadow);
+  border-radius: 1rem;
+}
+
 .modal-body{
 	background-color: #f8f8f8;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
+
 .modal-body label {
 	color: #383A3F;
 }
@@ -41,8 +49,6 @@ html, body {
 .modal-body input {
 	border: 1px solid #bebebe;
 }
-
-
 
 .is-hidden {
 	display: none!important;

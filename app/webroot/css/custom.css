@@ -276,10 +276,6 @@ label input[type=checkbox]:disabled + .label-text:before {
     text-align: center;
   }
 }
-.modal-content {
-  box-shadow: var(--box-shadow);
-  border-radius: 1rem;
-}
 
 .navbar { 
   background: #FFF; 
