@@ -300,7 +300,13 @@ label input[type=checkbox]:disabled + .label-text:before {
   text-indent: -9999px; 
   width: 162px; 
 }
-.navbar-nav { margin-left: 80px; }
+.navbar-nav { 
+  margin-left: 80px; 
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
 .navbar-nav>li>a {
   color: #404040;
   font-size: 1rem;
@@ -316,6 +322,9 @@ label input[type=checkbox]:disabled + .label-text:before {
   white-space: nowrap; 
 }
 @media (min-width: 768px) {
+  .navbar-nav { 
+    flex-direction: row;
+  }
   .navbar-nav.navbar-right>li>a {
     background-size: 50px;
     background-position: center;
@@ -1107,7 +1116,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 @media (max-width: 1599px) {
-	.wrapper { padding: 0 1.5rem; }
+	.wrapper { padding: 0 2rem; }
 	.map .col-md-4 { padding: 200px 0 200px 50px; }
 
 	#headhelp .box { padding: 6rem 5rem 1rem;  border-radius: 3px;  }
@@ -1789,6 +1798,15 @@ span.out{
   animation-duration: 1s;
   animation-delay: 5s;
   animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  animation-delay: 5s;
+  -webkit-animation-delay: 5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
 }
 
 .ribbon span {

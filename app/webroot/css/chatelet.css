@@ -30,6 +30,20 @@ html, body {
 .modal {
 	overflow-y: auto;
 }
+
+.modal-body{
+	background-color: #f8f8f8;
+}
+.modal-body label {
+	color: #383A3F;
+}
+
+.modal-body input {
+	border: 1px solid #bebebe;
+}
+
+
+
 .is-hidden {
 	display: none!important;
 }
@@ -194,6 +208,9 @@ html, body {
 .logo {
 	width: 200px;
 	margin-top: -8px;
+}
+
+.top-fixable {
 }
 
 .top-fixed {
@@ -519,15 +536,6 @@ html, body {
 .grey {
 	color: lightgrey;
 }
-
-.modal-body label {
-	color: #383A3F;
-}
-
-.modal-body input {
-	border: 1px solid #bebebe;
-}
-
 .datepicker.dropdown-menu {
 	z-index: 9999;
 }
@@ -561,8 +569,8 @@ html, body {
 #mayorista-modal .modal-content,
 #particular-login .modal-content,
 #particular-password .modal-content{
-	max-width: 25rem;
-	/*position: absolute; */
+	/*max-width: 25rem;
+	position: absolute; */
 }
 
 #particular-modal .form-control,

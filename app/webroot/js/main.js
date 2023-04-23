@@ -346,12 +346,12 @@ $(function () {
           // up
           tops.forEach((e) => {
             if (e && !e.classList.contains('top-fixed')) {
-              e.classList.remove('fadeOut','fadeIn')
+              e.classList.remove('fadeOut', 'fadeIn')
               setTimeout(() => {
                 if (e.classList.contains('navbar-chatelet')) {
                   document.querySelector('body').style.paddingTop = `${e.clientHeight}px`
                 }
-                e.classList.add('fadeIn','top-fixed')
+                e.classList.add('top-fixed', 'fadeIn')
               }, 10)
             } 
           })
@@ -362,8 +362,7 @@ $(function () {
               if (e.classList.contains('navbar-chatelet')) {
                 document.querySelector('body').style.paddingTop = 0
               }
-              e.classList.remove('top-fixed','fadeIn')
-              e.classList.remove('fadeOut')
+              e.classList.remove('top-fixed', 'fadeIn', 'fadeOut')
               setTimeout(() => {
                 e.classList.add('fadeOut')    
               }, 10)            
@@ -382,7 +381,7 @@ $(function () {
             if (e.classList.contains('navbar-chatelet')) {
               document.querySelector('body').style.paddingTop = 0
             }
-            navbar.classList.remove('top-fixed')
+            e.classList.remove('top-fixed')
           }
         })
       }
