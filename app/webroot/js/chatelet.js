@@ -4,19 +4,22 @@ $(document).ready(function() {
 		console.log(flash)
 		if (flash.hasClass('error')) {
 			$.growl.error({
-				title: flash.text()
+				title: flash.text(),
+				text: ''
 			});
 		}
 
 		if (flash.hasClass('notice')) {
 			$.growl.notice({
-				title: flash.text()
+				title: flash.text(),
+				text: ''
 			});
 		}
 
 		if (flash.hasClass('warning')) {
 			$.growl.warning({
-				message: flash.text()				
+				message: flash.text()		,
+				text: ''		
 			});
 		}
 
