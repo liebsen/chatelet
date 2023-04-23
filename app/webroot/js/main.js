@@ -312,7 +312,7 @@ $(function () {
     const height = document.getElementById('carousel-banners').clientHeight
     menuLayerTop+= height;
   }
-  document.querySelectorAll('.menuLayer').forEach(e => {
+  document.querySelectorAll('.menuLayer:not(.is-fullheight)').forEach(e => {
     e.style.top = `${menuLayerTop}px`;
   })
   // Toggle Side content

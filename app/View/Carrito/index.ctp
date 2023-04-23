@@ -203,7 +203,7 @@
 	</div>
 					
 	<?php if (isset($carro) && !empty($carro)) :?>
-	<div id="carritoItem" class="menuLayer has-item-counter animated">
+	<div id="carritoItem" class="menuLayer is-fullheight has-item-counter animated">
 	  <a class="close float-tr">
 	    <span></span>
 	    <span></span>
