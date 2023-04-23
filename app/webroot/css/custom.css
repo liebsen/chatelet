@@ -280,7 +280,9 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar { 
   background: #FFF; 
   border: 0; 
-  border-radius: 3px; 
+  border-radius: 0; 
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   /* box-shadow: 0 2px 4px rgba(0,0,0,.2); */
   box-shadow: var(--box-shadow);
   margin: 0; 
@@ -2441,7 +2443,7 @@ span.count.is-empty {
 
 @media screen and (min-width:769px), print {
   .slider-full {
-    min-height: calc(100vh - 5.5rem);
+    min-height: calc(100vh - 8rem);
   }
 
   .w-mobile {
