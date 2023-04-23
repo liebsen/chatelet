@@ -579,7 +579,7 @@ transition: all 0.2s ease-out;}
   background-image: url(../images/chat-icon.svg);
 }
 
-footer { background: #e6e6e6; overflow: hidden; padding: 40px 0 0; }
+footer { background: #f8f8f8; overflow: hidden; padding: 40px 0 0; }
 footer > .wrapper { padding: 0 0.5rem; }
 footer h3 { color: #464444; font-size: 18px; text-transform: uppercase; font-weight: 600; margin-bottom: 1.25rem; margin-top: 2rem; }
 footer h3:after { background: black; content: ""; display: block; height: 4px;border-radius: 4px; margin-top: 15px; width: 50px; }
