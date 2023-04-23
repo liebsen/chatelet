@@ -495,7 +495,7 @@ html, body {
 }
 .modal-content {
   min-height: 100vh;
-	border-radius: 1rem;
+	border-radius: 0.5rem;
 	margin: 2rem auto;
 }
 

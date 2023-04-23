@@ -359,7 +359,9 @@ class ShopController extends AppController {
 				'order' => ['Product.ordernum ASC']
 			]);
 
-			if (empty($products)) return $this->redirect(array('controller' => 'shop', 'action' => 'index'));
+			if (empty($products)){ 
+				return $this->redirect(array('controller' => 'shop', 'action' => 'index'));
+			}
 
 			foreach ($products as &$product) {
 				$product['Product']['stock'] = 0;
@@ -384,12 +386,13 @@ class ShopController extends AppController {
 		if(empty($category)) {
 			throw new NotFoundException();
 		}
-		$setting 			 = $this->Setting->findById('catalog_flap');
+
+		$setting = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
-    	$this->render('product');
 
+    $this->render('product');
 	}
 
   public function detalle($product_id, $category_id) {

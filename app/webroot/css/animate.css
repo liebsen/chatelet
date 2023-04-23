@@ -42,6 +42,10 @@
   animation-delay: 2s;
 }
 
+.delay25 {
+  animation-delay: 2.25s;
+}
+
 .delay3 {
   animation-delay: 3s;
 }

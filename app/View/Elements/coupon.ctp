@@ -16,7 +16,6 @@
 				    <button class="btn btn-success btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="submit">Calcular</button>
 				  </div>
 				</div>
-				<br>
 			</form>
 		</div>
 		<div class="coupon-info alert alert-success animated hidden">

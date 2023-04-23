@@ -57,7 +57,7 @@
 .generic-select {
 	width: 100%;
 	margin: 0.75rem 0;
-	margin-bottom: 1.25rem;
+	margin-bottom: 0;
 }
 
 .generic-select li {

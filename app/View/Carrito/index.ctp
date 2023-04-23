@@ -28,7 +28,7 @@
 				echo '<input type="hidden" id="checkout" value="'. $this->Html->url(array('controller' => 'carrito', 'action' => 'checkout')) .'" />'
 			?>
 			<div class="carrito-row">
-				<div class="carrito-col pt-3">
+				<div class="carrito-col">
 					<div class="carrito-items">
 					<?php if (!isset($carro)) $carro = array();
 				  $row = 0;

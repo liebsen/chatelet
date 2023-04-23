@@ -244,7 +244,6 @@ class CarritoController extends AppController
 		}
 		$oca = new Oca();
 		$provincias = $oca->getProvincias();
-		$this->set('provincias',$provincias);
 		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
 		$data = [];
 		$map = $this->Setting->findById('carrito_takeaway_text');
@@ -261,6 +260,7 @@ class CarritoController extends AppController
 		$total_price = $items['price'];
 		$freeShipping = $this->isFreeShipping($total_price);
 
+		$this->set('provincias',$provincias);
 		$this->set('freeShipping', $freeShipping);
 		$this->set('data',$data);
 		$this->set('total',$total_price);

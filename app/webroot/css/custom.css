@@ -2499,7 +2499,7 @@ span.count.is-empty {
     margin: 1rem 0;
     margin-top: 0;
     padding: 1.5rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     box-shadow: var(--box-shadow);
     /* box-shadow: var(--box-shadow); */
   }
@@ -2517,7 +2517,7 @@ span.count.is-empty {
   }
   .card {
     box-shadow: var(--box-shadow);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-top: 10px;
