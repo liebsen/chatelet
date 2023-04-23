@@ -635,7 +635,8 @@ html, body {
 }
 .card-link {
 	display: inline-block;
-	color: #f50081;
+	color: #dd6aa6;
+	font-weight: 600;
 	padding: 0.75rem 0.5rem;
 	border: 2px solid #e398c1;
 	border-radius: 0.5rem;

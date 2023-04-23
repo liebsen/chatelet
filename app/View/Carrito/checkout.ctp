@@ -90,10 +90,12 @@
 						          <label class="d-inline">
 						          	<span class="h4">Cliente</span><br>
 						          	<p class="mt-2 text-muted"><?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?> (DNI <?= $userData['User']['dni'] ?>)</p>
-										    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="cargo-shipment hide">
-										    	<i class="fa fa-map-marker"></i>
-										    	Modificar dirección
-										    </span>
+			                  <div class="row card-row mt-3">
+			                    <span onclick="$('input[name=street]').focus()" class="card-link">
+			                      <i class="fa fa-map-marker"></i>
+			                       Modificar dirección
+			                    </span>
+			                  </div>
 						        	</label>				          
 						        </div>
 						      	<?php endif ?>
@@ -132,11 +134,14 @@
 						          		<span class="text-bold store_address"></span>
                     			<span class="text-bold store"></span>. 
                     			<?= $data['carrito_takeaway_text'] ?>
-											    <a href="/carrito#f:.shipment-options.shipping" class="card-link">
-											    	<i class="fa fa-truck"></i> Solicitar envío 
-											    </a>
                     		</p>
                     	</label>
+		                  <div class="row card-row mt-3">
+		                    <a href="/carrito#f:.shipment-options.shipping" class="card-link">
+		                      <i class="fa fa-truck"></i>
+		                       Solicitar envío
+		                    </a>
+		                  </div>
                     </div>
 							    	<div class="col-xs-12 option-regular coupon-block hide">
 						          <label class="d-inline">
