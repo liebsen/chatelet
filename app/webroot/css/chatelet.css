@@ -478,6 +478,8 @@ html, body {
 }
 .modal-content {
   min-height: 100vh;
+	border-radius: 1rem;
+	margin: 2rem auto;
 }
 
 .modal-title {
@@ -488,10 +490,11 @@ html, body {
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
 
-
 .modal-header {
 	min-height: 50px;
 	background-color: #e10c76;
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;
 }
 
 .modal-header .close {

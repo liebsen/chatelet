@@ -1052,9 +1052,9 @@ class CarritoController extends AppController
 			}
 		}
 
-		if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+		/* if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 			file_put_contents(__DIR__.'/../logs/carrito_sort.json', json_encode($sort, JSON_PRETTY_PRINT));
-		}
+		}*/
 
 		return $sort;
 	}
