@@ -253,9 +253,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   color: #363633!important;
   text-align: center;
 }
-.text-success {
-  color: #11a611!important;
-}
+
 .wrapper { margin: 0 auto; max-width: 1440px; }
 .link { color: #363633; font-weight: 600; }
 .link:hover { color: #363633; font-weight: 600; text-decoration: underline; }

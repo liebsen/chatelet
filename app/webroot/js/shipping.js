@@ -106,9 +106,12 @@ $(function(){
 					onSuccessAlert(cp, '✓ Código Postal válido');
 					document.querySelector('.shipping-block').classList.remove('hidden')	
 					if (carrito.cargo === 'shipment' && carrito.shipping) {
+						console.log('click(1)',carrito.shipping)
 						$(`.shipping-options li[shipping="${carrito.shipping}"]`).click()
 					} else {
+						console.log('click(2)?')
 						if (json.rates.length === 1) {
+							console.log('click(3) .shipping-options li:first-child')
 							$(`.shipping-options li:first-child`).click()
 						}
 					}

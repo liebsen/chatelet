@@ -44,6 +44,7 @@
 	text-align: right;
 	padding-right: 4rem;
 	min-height: 45px;
+	border-radius: 0.5rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;	
@@ -91,9 +92,9 @@
 
 .generic-select li.selected {
 	background-color: #ffffff;
-	border-color: #59e10d;
+	border-color: #30c73c;
 	background-image: url(../images/check.png);
-	color: #7bc044;
+	color: #30c73c;
 }
 
 .generic-select li:nth-child(1) {
