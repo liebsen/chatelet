@@ -300,7 +300,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   width: 162px; 
 }
 .navbar-nav { 
-  margin-left: 80px; 
+  margin-left: 2rem;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;

@@ -4226,8 +4226,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-collapse.collapse {
     display: flex !important;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
     height: auto !important;
     padding-bottom: 0;
     overflow: visible !important;
