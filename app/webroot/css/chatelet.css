@@ -168,7 +168,7 @@ html, body {
 
 .instructions {
 	padding: 0.75rem 1rem;
-	border-radius: 3px;
+	border-radius: 0.5rem;
 	/* background-color: #fdb5db; */
 	background-color: whitesmoke;
 	color: #777; /* theme secondary #fdb5db; */
@@ -324,7 +324,7 @@ html, body {
 /* .dropdown-menu .bottom > .right {
 	background-color: #e10c76;
 	color: #FFFFFF;
-	border-radius: 3px;
+	border-radius: 0.5rem;
 	padding: 0.25rem 1rem;
 	font-size: 1rem;
 	font-weight: 800;
@@ -333,7 +333,7 @@ html, body {
 #login-email,
 #login-password {
 	padding: 6px 12px;
-	border-radius: 3px;
+	border-radius: 0.5rem;
 	margin-bottom: 10px;
 	min-height: 34px;
 	background-color: #dbd9da;
@@ -350,7 +350,7 @@ html, body {
 	/*font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 	width: 100%;
 	text-align: center;
-	border-radius: 3px;
+	border-radius: 0.5rem;
 	font-size: 1.25rem;
 	font-weight: 800;
 	border: 0;
@@ -501,7 +501,7 @@ html, body {
 }
 .modal-content {
   min-height: 100vh;
-	border-radius: 0.5rem;
+	border-radius: 1rem;
 	margin: 2rem auto;
 }
 
@@ -553,7 +553,7 @@ html, body {
 	/*font-size: 24px;*/
 	text-align: center;
 	border: 0;
-	border-radius: 3px;
+	border-radius: 0.5rem;
 	font-size: 1.25rem;
 	font-weight: 800;
 	padding: 0.75rem 1rem;
@@ -607,7 +607,7 @@ html, body {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border-radius: 3px;
+  border-radius: 0.5rem;
 }
 .card-body {
   -webkit-box-flex: 1;
