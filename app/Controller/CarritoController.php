@@ -810,8 +810,7 @@ class CarritoController extends AppController
 		$delivery_cost = 0;
 		$freeShipping = $this->isFreeShipping($total_wo_discount, $user['postal_address']);
 		$delivery_data = $this->deliveryCost(null, $user, false);
-		$delivery_cost = (integer) $delivery_data['rates'][0];
-
+		$delivery_cost = (integer) $delivery_data['rates'][0]['price'];
 		if ($freeShipping) { 
      	error_log('without delivery bc price is :'.$total.', cp:'. @$user['postal_address'] .'  and date = '.gmdate('Y-m-d'));
 			// $delivery_cost=0;
