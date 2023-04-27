@@ -125,7 +125,9 @@
                             'places' => 2))). "</span>";
                  }?>
                  <div class="legends mt-0">
-                    <?= $this->App->parse_legend_texts($legends, $product['price']) ?>
+                    <span>Sí hola..</span>
+                    <pre><?= var_dump($product['price']) ?></pre>
+                    <?= $this->App->parse_legend_texts($legends, (float) $product['price']) ?>
                  </div>
                 <div class="caract">
                 <?php if(!empty($product['desc'])):?>
