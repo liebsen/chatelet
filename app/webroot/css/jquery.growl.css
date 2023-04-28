@@ -68,7 +68,7 @@
     background: #C0392B; }
   .growl.growl-notice {
     color: #FFF;
-    background: #178b48; }
+    background: #e10d74; }
   .growl.growl-warning {
     color: #FFF;
     background: #b77c20; }
@@ -88,7 +88,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     line-height: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif; 
   }
   .growl .growl-message {

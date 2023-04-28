@@ -155,9 +155,6 @@ class AppHelper extends Helper {
       }
       
       if($price >= $min_sale) {
-        var_dump($legend['Legend']['dues'] .' - '. $price . ' - ' . $legend['Legend']['min_sale']);
-        error_log($legend['Legend']['dues'] .' - '. $price . ' - ' . $legend['Legend']['min_sale']);
-        error_log('ok');
         $str.= '<span class="text-legend">' . str_replace(['{cuotas}','{interes}','{monto}'], [
           $legend['Legend']['dues'],
           $legend['Legend']['interest'],
