@@ -53,9 +53,12 @@ a.volver .fa {
 }
 
 .option-rounded.is-selected {
-	border-color: #3c763d;
+	/*border-color: #3c763d;
 	color: #3c763d;
-	background-color: #dff0d8;
+	background-color: #dff0d8;*/
+	border-color: #e10d74;
+	color: #e10d74;
+	background-color: #e2007221;	
 }
 
 

@@ -93,10 +93,10 @@
 }
 
 .generic-select li.selected {
-	background-color: #ffffff;
-	border-color: #30c73c;
-	background-image: url(../images/check.png);
-	color: #30c73c;
+	background-color: #e2007221;
+	border-color: #e10d74;
+	background-image: url(../images/check-pink.png);
+	color: #e10d74;
 }
 
 .generic-select li.secondary:not(.selected) {

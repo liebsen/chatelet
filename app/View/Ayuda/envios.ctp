@@ -7,7 +7,7 @@
                         <h1>Consultar<br>envíos</h1>
                     </div>
                     <div class="col-md-6">
-                        <div class="animated bounceIn delay1 p-2">
+                        <div class="animated bounceIn delay1 leaves-pad">
                             <div class="box w-leaves">
                                 <h3>¿Tenés alguna consulta o sugerencia?</h3>
                                 <p>Los datos son extraídos de OCA. También se puede consultar el estado del envío comunicándose con el centro de atención al cliente de OCA: 0800-999-7700</p>

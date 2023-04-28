@@ -69,6 +69,7 @@ html, body {
 .transform-origin-left {
 	transform-origin: left;
 }
+
 .flex {
 	display: flex;
 } 
@@ -880,6 +881,7 @@ span.validation-password {
 @media screen and (min-width: 360px) {
 	#opts .mod-item { min-height: 220px;} 
 }
+
 @media screen and (max-width: 512px) {
 	.tap-to-continue > span {
 		display: none;
