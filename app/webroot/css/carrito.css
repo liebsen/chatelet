@@ -62,14 +62,14 @@
 
 .generic-select li {
 	padding: 0.75rem 1.25rem;
-	border: 2px solid #e10d7499;
+	border: 2px solid #bebebe99;
 	border-radius: 0.5rem;
 	line-height: 1.25;
 	font-weight: 400;
 	background-color: white;
-	color: #e10d74e6;
+	color: #aeaeae;
 	cursor: pointer;
-	background-image: url(../images/chevron_right_pink.svg);
+	background-image: url(../images/chevron_right_gray.svg);
 	background-position: right 0.75rem center;
 	background-repeat: no-repeat;
 	background-size: 30px;
@@ -87,7 +87,7 @@
 }
 
 .generic-select li:hover {
-	background-color: #e10d74;
+	background-color: #bebebe;
 	background-image: url(../images/chevron_right_white.svg);
 	color: white;
 }
