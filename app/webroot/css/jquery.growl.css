@@ -34,8 +34,8 @@
     margin-right: auto; }
 
 .growl {
-  opacity: 0.95;
-  filter: alpha(opacity=95);
+  opacity: 0.99;
+  filter: alpha(opacity=99);
   position: relative;
   border-radius: 0.5rem;
   margin-bottom: 10px;
