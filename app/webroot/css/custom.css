@@ -178,7 +178,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .box {
-  border-radius: 3px;
+  border-radius: 0.5rem;
   background-color: rgba(255,255,255,0.5);
 }
 
@@ -1042,7 +1042,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 #headcontacto { background: url(../images/videobg.png) no-repeat center center; background-size: cover; padding: 65px 0; }
 #headcontacto .wrapper { /*background: url(../images/contactohead.png) no-repeat center center;*/ background-size: contain; }
-#headcontacto h1 { color: #363633; font-size: 40px; font-weight: 600; margin-top: 70px; }
+#headcontacto h1 { color: #363633; font-size: 40px; font-weight: 600; margin-top: 70px; margin-left: 30px; }
 #headcontacto h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 #headcontacto .box { border: 2px solid #363633; padding: 100px 90px; }
 #headcontacto .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; margin-top: 0; }
@@ -1166,7 +1166,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	.map .col-md-4 h1 { font-size: 2.25rem; }
 	#location .col-md-4.search p { font-size: 1rem; }
 
-	#headcontacto h1 { font-size: 30px; }
+	#headcontacto h1 { font-size: 40px; }
 	#headcontacto .box { padding: 60px 50px; min-height: 20rem; }
 	#headcontacto .box h3 { font-size: 1rem; }
 	#headcontacto .box p { font-size: 1rem; }
