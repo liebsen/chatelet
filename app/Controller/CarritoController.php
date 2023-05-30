@@ -717,7 +717,7 @@ class CarritoController extends AppController
 				'currency_id' => 'ARS',
 				'unit_price' => (int) $unit_price
 			);
-			$total+=(int)$unit_price;
+			$total+= (float) $unit_price;
 			$product_ids[] = array(
 				'product_id' => $producto['id'],
 				'color' => $producto['color'],
@@ -730,7 +730,7 @@ class CarritoController extends AppController
 			);
 		}
 		
-		$total_wo_discount = $total;
+		$total_wo_discount = (int) $total;
 		error_log('suming total (wo_discount): '.$total);
 		// Check coupon
 		$coupon_bonus = 0;
@@ -808,7 +808,7 @@ class CarritoController extends AppController
 
 		// Add Delivery
 		$delivery_cost = 0;
-		$freeShipping = $this->isFreeShipping($total_wo_discount, $user['postal_address']);
+		$freeShipping = $this->isFreeShipping($total, $user['postal_address']);
 		$delivery_data = $this->deliveryCost(null, $user, false);
 		$delivery_cost = (integer) $delivery_data['rates'][0]['price'];
 		if ($freeShipping) { 
