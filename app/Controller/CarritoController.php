@@ -256,10 +256,12 @@ class CarritoController extends AppController
 		$data['bank_discount'] = @$map['Setting']['value'];
 
 		$items = $this->getItemsData();
-		$shipping_price = $this->Setting->findById('shipping_price_min');
+		$map = $this->Setting->findById('shipping_price_min');
+		$shipping_price = @$map['Setting']['value'];
 		$total_price = $items['price'];
 		$freeShipping = $this->isFreeShipping($total_price);
 
+		$this->set('shipping_price',$shipping_price);
 		$this->set('provincias',$provincias);
 		$this->set('freeShipping', $freeShipping);
 		$this->set('data',$data);

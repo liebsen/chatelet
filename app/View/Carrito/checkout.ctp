@@ -4,6 +4,7 @@
 	echo $this->Html->script('checkout_sale.js?v=' . Configure::read('DIST_VERSION'),array('inline' => false));
 ?>
 <script>
+	const shipping_price = <?= $shipping_price ?>;
 	const carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETTY_PRINT);?>;
 	const bank = {enable: <?= isset($data['bank_enable']) ? $data['bank_enable'] : 0 ?>,discount_enable: <?= isset($data['bank_discount_enable']) ? $data['bank_discount_enable'] : 0 ?>,discount: <?= isset($data['bank_discount']) ? $data['bank_discount'] : 0 ?>}
 </script>
@@ -109,23 +110,23 @@
                     </div>						        
 							    	<div class="col-xs-12 option-regular shipping-block hide">
 						          <label class="d-inline">
-											<?php if($freeShipping): ?>
-						          	<span class="h4 text-success">Envío gratis</span>
-											<?php else: ?>
-						          	<span class="h4">Costo de envío</span><br>
-						          	<p class="mt-2 text-muted">
-						          		<span class="shipping_price text-bold h4 mb-0"></span>
-												<?php if($loggedIn): ?>
-											    <br><br><span> Entrega <span class="shipping text-uppercase"></span> en 
-											    	<?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street_n'] ?: '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>) 
-											    </span>
-											  <?php endif ?>
-											  	<br><a href="/carrito#f:.shipment-options.takeaway" class="card-link">
-											    	<i class="fa fa-truck"></i> Retirar en sucursal
-											    </a>
-						          	</p>
-						          <?php endif ?>
-						        	</label>				          
+						          	<span class="h4 text-success free-shipping-block<?= $freeShipping ? '' : ' hidden' ?>">Envío gratis</span>
+												<div class="paid-shipping-block<?= $freeShipping ? ' hidden' : '' ?>">
+							          	<span class="h4">Costo de envío</span><br>
+							          	<p class="mt-2 text-muted">
+							          		<span class="shipping_price text-bold h4 mb-0"></span>
+													<?php if($loggedIn): ?>
+												    <br><br><span> Entrega <span class="shipping text-uppercase"></span> en 
+												    	<?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street_n'] ?: '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>) 
+												    </span>
+												  <?php endif ?>
+												  	<br><a href="/carrito#f:.shipment-options.takeaway" class="card-link">
+												    	<i class="fa fa-truck"></i> Retirar en sucursal
+												    </a>
+							          	</p>
+							          </div>
+						        	</label>
+						        	<p class="mt-2 text-muted">El monto mínimo para obtener beneficio <b>envío gratis</b> es de $<?= $shipping_price ?></p>
 						        </div>  
 							    	<div class="col-xs-12 option-regular cargo-takeaway hide">
 						          <label class="d-inline">
@@ -160,9 +161,9 @@
 						          </span>
 						        </div>
 							    	<div class="col-xs-12 option-regular">
-						          <label class="d-inline text-muted">
+						          <label class="d-inline text-theme">
 						          	<span class="h4">Total a pagar</span><br>
-						          	<p class="mt-2 text-bold total-price h3 mb-0">
+						          	<p class="mt-2 text-bold total-price text-left h3 mb-0">
 						          		$<span class="total_price"></span>
 						          	</p>
 						          </span>

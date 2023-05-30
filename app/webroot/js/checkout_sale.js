@@ -18,7 +18,24 @@ var calculateTotal = (settings) => {
 			total*= (Number(settings.interest) / 100) + 1
 		}
 	}
+
+	var free_shipping = total >= shipping_price
+	if(free_shipping) {
+		$('.paid-shipping-block').addClass('hidden')
+		$('.free-shipping-block').removeClass('hidden')
+	} else {
+		$('.free-shipping-block').addClass('hidden')
+		$('.paid-shipping-block').removeClass('hidden')
+	}
+	carrito.freeShipping = free_shipping
+	console.log(carrito.freeShipping)
+	if (!carrito.freeShipping && carrito.shipping_price) {
+		total+= carrito.shipping_price
+	}
+
+
 	$('.total_price').text(formatNumber(total))
+	localStorage.setItem('carrito', JSON.stringify(carrito))
 
   //console.log('subtotal',subtotal)
   //console.log('total',total)

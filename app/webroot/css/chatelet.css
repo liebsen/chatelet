@@ -645,6 +645,9 @@ html, body {
 	padding: 0.75rem 0.5rem;
 	border: 1px solid #e398c1;
 	border-radius: 0.5rem;
+	line-height: 1;
+	width: 100%;
+	margin-top: 0.5rem;
 	/*border-radius: 0.25rem;
 	background-color: #e398c1;
 	margin-right: 0.25rem;
