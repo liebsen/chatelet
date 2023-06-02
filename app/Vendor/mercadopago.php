@@ -290,6 +290,7 @@ class MPRestClient {
         );
 
         if ($response['status'] >= 400) {
+            var_dump($response);
             throw new Exception ($response['response']['message'], $response['status']);
         }
 
