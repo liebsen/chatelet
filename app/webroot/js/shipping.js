@@ -100,7 +100,7 @@ $(function(){
 				rates+= `</ul>`
 				document.querySelector('.shipping-block .slot').innerHTML = rates
 				$('#delivery_cp').html( `<span class="shipping-cargo text-uppercase"></span>` );
-				localStorage.setItem('lastcp', cp)		
+				localStorage.setItem('lastcp', cp)	
 				setTimeout(() => {
 					$('.input-cp').removeClass('wrong');
 					$('.input-cp').addClass('ok');
@@ -122,6 +122,7 @@ $(function(){
 				setTimeout( "onErrorAlert('Sin cobertura en esta zona', 'El código postal es correcto pero no disponemos de servicio de entrega para tu área.')", 200)
 			}
 			$('.input-cp').attr( 'data-valid' , json.rates.length );
+			$('.btn-calculate-shipping').button('reset')
 		})
 		return false
 	})

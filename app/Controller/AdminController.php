@@ -883,8 +883,6 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 				$sale_number = html_entity_decode($sale_number);
 			}
 
-			var_dump($sale_number);
-			
 			if (strpos($sale_number,'PEDIDO') !== false) {
 				//Info metaphone(str)rgeapp/webroot/css/custom.css
 				$sale['collection']['deliver_cost'] = 0;
