@@ -730,9 +730,6 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			return json_decode(file_get_contents(__DIR__ . '/dummy/mpsales.json'), true);
 		}
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
-		var_dump(Configure::read('client_id'));
-		var_dump(Configure::read('client_secret'));
-		
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$limit = isset($_GET['extended']) ? 500 : 10;
 		$filters = array(
