@@ -732,6 +732,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$limit = isset($_GET['extended']) ? 500 : 10;
+		
 		$filters = array(
       "range" => "date_created",
       "begin_date" => "2022-01-01T00:00:00Z",
