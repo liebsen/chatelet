@@ -744,9 +744,9 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
       "operation_type" => "regular_payment"
     );
     $searchResult = $mp->search_payment($filters,0,$limit);
-    echo '<pre>';
-    var_dump($searchResult);
-    die();
+    //echo '<pre>';
+    //var_dump($searchResult);
+    //die();
     return (!empty($searchResult['response']['results']))?$searchResult['response']['results']:array();
 	}
 
