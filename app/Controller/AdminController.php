@@ -160,10 +160,10 @@ class AdminController extends AppController {
       "begin_date" => "2020-10-31T00:00:00Z",
       "end_date" => "NOW",
 			"limit" => 500, 
-			//"status" => "approved",
+			"status" => "approved",
       "sort" => "id",
       "criteria" => "desc",
-      //"operation_type" => "regular_payment"
+      "operation_type" => "regular_payment"
     );
 		$searchResult = $mp->search_payment($filters,0,1000);
 		echo '<pre>';
@@ -730,9 +730,11 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			return json_decode(file_get_contents(__DIR__ . '/dummy/mpsales.json'), true);
 		}
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
+		var_dump(Configure::read('client_id'));
+		var_dump(Configure::read('client_secret'));
+		
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$limit = isset($_GET['extended']) ? 500 : 10;
-
 		$filters = array(
       "range" => "date_created",
       "begin_date" => "2022-01-01T00:00:00Z",
@@ -744,9 +746,6 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
       "operation_type" => "regular_payment"
     );
     $searchResult = $mp->search_payment($filters,0,$limit);
-    //echo '<pre>';
-    //var_dump($searchResult);
-    //die();
     return (!empty($searchResult['response']['results']))?$searchResult['response']['results']:array();
 	}
 
