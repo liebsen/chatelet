@@ -623,6 +623,11 @@ class CarritoController extends AppController
 		$total_wo_discount = 0;
 		// VAR - Validate
 		$carro = $this->Session->read('Carro');
+
+		if(empty($carro)) {
+			header("Location: /");
+			return false;
+		}
 		$user_id = $this->Auth->user('id');
 		$product_ids = array();
 		$items = array();

@@ -149,6 +149,49 @@ class MP {
     }
 
     /**
+     * Search payments according to filters, with pagination
+     * @param array $filters
+     * @param int $offset
+     * @param int $limit
+     * @return array(json)
+     */
+
+    private function build_query($params) {
+        if (function_exists("http_build_query")) {
+            return http_build_query($params, "", "&");
+        } else {
+            foreach ($params as $name => $value) {
+                $elements[] = "{$name}=" . urlencode($value);
+            }
+
+            return implode("&", $elements);
+        }
+    }
+        
+    public function search_payment($filters, $offset = 0, $limit = 0) {
+
+        $filters["offset"] = $offset;
+        $filters["limit"] = $limit;
+
+        $filters = $this->build_query($filters);
+
+        $uri_prefix = $this->sandbox ? "/sandbox" : "";
+
+        $request = array(
+            "uri" => "{$uri_prefix}/collections/search",
+            "params" => array(
+                "filters" => $filters,
+                "access_token" => $this->get_access_token()
+            )
+        );
+
+
+        $collection_result = MPRestClient::get($request);
+        return $collection_result;
+    }
+
+
+    /**
      * Update a checkout preference
      * @param string $id
      * @param array $preference
