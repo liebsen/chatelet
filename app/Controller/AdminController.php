@@ -737,7 +737,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
       "begin_date" => "2022-01-01T00:00:00Z",
       "end_date" => "NOW",
       "limit" => $limit,
-      "status" => "approved",
+      //"status" => "approved",
       "sort" => "id",
       "criteria" => "desc",
       "operation_type" => "regular_payment"
