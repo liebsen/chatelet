@@ -136,8 +136,6 @@ class MP {
         try {
             $access_token = $this->get_access_token();
 
-            var_dump($access_token);
-
             $filters["offset"] = $offset;
             $filters["limit"] = $limit;
 
