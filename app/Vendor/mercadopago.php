@@ -133,17 +133,21 @@ class MP {
      * @return array(json)
      */
     public function search_payment($filters, $offset = 0, $limit = 0) {
-        $access_token = $this->get_access_token();
+        try {
+            $access_token = $this->get_access_token();
 
-        $filters["offset"] = $offset;
-        $filters["limit"] = $limit;
+            $filters["offset"] = $offset;
+            $filters["limit"] = $limit;
 
-        $filters = $this->build_query($filters);
+            $filters = $this->build_query($filters);
 
-        $uri_prefix = $this->sandbox ? "/sandbox" : "";
-            
-        $collection_result = MPRestClient::get($uri_prefix."/collections/search?" . $filters . "&access_token=" . $access_token);
-        return $collection_result;
+            $uri_prefix = $this->sandbox ? "/sandbox" : "";
+                
+            $collection_result = MPRestClient::get($uri_prefix."/collections/search?" . $filters . "&access_token=" . $access_token);
+            return $collection_result;
+        } catch (Exception $e) {
+            echo "\r\nError with mercadopago: ".$e->getMessage();
+        }
     }
 
     /**
