@@ -146,6 +146,7 @@ class MP {
             $collection_result = MPRestClient::get($uri_prefix."/collections/search?" . $filters . "&access_token=" . $access_token);
             return $collection_result;
         } catch (Exception $e) {
+            var_dump($e);
             echo "\r\nError with mercadopago: ".$e->getMessage();
         }
     }
