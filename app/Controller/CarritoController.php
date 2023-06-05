@@ -643,7 +643,7 @@ class CarritoController extends AppController
 		$bank_discount = @$map['Setting']['value'];
 
 		// check if payment method is bank and bank payment is not available
-		if ($user['payment_method'] === 'bank' && !$bank_enable) {
+		if (!empty($user['payment_method']) && $user['payment_method'] === 'bank' && !$bank_enable) {
 			$this->Session->setFlash('No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias.','default',array('class' => 'hidden error'));
 			error_log('checkout error: bank not available');
 			$this->redirect(array( 'controller' => 'carrito', 'action' => 'checkout' ));

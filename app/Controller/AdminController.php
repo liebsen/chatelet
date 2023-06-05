@@ -742,7 +742,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
       "criteria" => "desc",
       "operation_type" => "regular_payment"
     );
-    $searchResult = $mp->search_payment($filters,0,$limit);
+    $searchResult = $mp->get_preference($filters,0,$limit);
     return (!empty($searchResult['response']['results']))?$searchResult['response']['results']:array();
 	}
 
@@ -883,6 +883,8 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 				$sale_number = html_entity_decode($sale_number);
 			}
 
+			var_dump($sale_number);
+			
 			if (strpos($sale_number,'PEDIDO') !== false) {
 				//Info metaphone(str)rgeapp/webroot/css/custom.css
 				$sale['collection']['deliver_cost'] = 0;
