@@ -849,7 +849,7 @@ span.validation-password {
 	bottom: 0;
 	padding: 1rem 1.5rem;
 	z-index: -1;
-	width: 15rem;
+	width: 16rem;
 }
 
 @media screen and (min-width: 992px) {
