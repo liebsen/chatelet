@@ -836,7 +836,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 	private function getSales(){
 		$online = $this->getMPSales();
-		$date = strtotime("-1 week");
+		$date = strtotime("-2 week");
 		// Local data
 		if ($online) {
 			$date = strtotime($online[count($online)-1]['collection']['date_created']);

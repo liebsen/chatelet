@@ -8,7 +8,7 @@
         <i class="fa fa-whatsapp"></i>
         <?php if(!empty($data['whatsapp_text'])): ?>
         <span class="whatsapp-text font-system">
-          <span class="animated scaleIn delay25">
+          <span class="animated scaleIn delay25 pr-3">
               <?= $data['whatsapp_text'] ?>                 
           </span>
         </span>
