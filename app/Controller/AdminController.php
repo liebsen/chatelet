@@ -156,15 +156,15 @@ class AdminController extends AppController {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$filters = array(
-            "range" => "date_created",
-            "begin_date" => "2020-10-31T00:00:00Z",
-            "end_date" => "NOW",
+      "range" => "date_created",
+      "begin_date" => "2020-10-31T00:00:00Z",
+      "end_date" => "NOW",
 			"limit" => 500, 
-			"status" => "approved",
-            "sort" => "id",
-            "criteria" => "desc",
-            "operation_type" => "regular_payment"
-        );
+			//"status" => "approved",
+      "sort" => "id",
+      "criteria" => "desc",
+      //"operation_type" => "regular_payment"
+    );
 		$searchResult = $mp->search_payment($filters,0,1000);
 		echo '<pre>';
 		print_r($searchResult);die;
@@ -861,9 +861,10 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 	public function sales(){
 		$h1 = array(
-		'name' => 'Ventas',
-		'icon' => 'gi gi-money'
+			'name' => 'Ventas',
+			'icon' => 'gi gi-money'
 		);
+
 		$this->set('h1', $h1);
 		$this->loadModel('Home');
 		$this->loadModel('Setting');
@@ -874,7 +875,6 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		//echo '<pre>';
 		//var_dump($sales);
 		//die('--');
-
 
 		foreach ($sales as &$sale) {
 			$details 		= explode('-|-', $sale['collection']['reason']);
