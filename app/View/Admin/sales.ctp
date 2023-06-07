@@ -106,7 +106,7 @@
                     <th class="text-center">Pago</th>
                 </tr>
             </thead>
-            <tbody><pre>
+            <tbody>
                 <?php foreach ((array) $sales as $sale):
                 $personalInfoShowed=false;
                 $paybank = @$sale['local_sale']['payment_method']==='bank' && empty(@$sale['local_sale']['completed']);
