@@ -118,9 +118,9 @@
                     <td class="col-xs-1">
                         <span><?php echo @$sale['local_sale']['id'] ?> </span>
                     </td>
-                    <td class="col-xs-1" data-sort="<?php echo date('Y-m-d',strtotime($sale['collection']['date_approved'])) ?>">
-                        <strong><?php echo date('d/m/Y',strtotime($sale['collection']['date_approved'])) ?></strong><br />
-                        <small><?php echo date('H:i:s',strtotime($sale['collection']['date_approved'])) ?></small><br />
+                    <td class="col-xs-1" data-sort="<?php echo date('Y-m-d',strtotime($sale['local_sale']['created'])) ?>">
+                        <strong><?php echo date('d/m/Y',strtotime($sale['local_sale']['created'])) ?></strong><br />
+                        <small><?php echo date('H:i:s',strtotime($sale['local_sale']['created'])) ?></small><br />
                     </td>
                     <td class="col-xs-3">
                         <strong><?php echo @$sale['collection']['cardholder']['name'] ?: @$sale['local_sale']['nombre'] . ' ' . @$sale['local_sale']['apellido'] ?></strong><br>
@@ -220,7 +220,7 @@
                         <?php endif ?><br>
                     <?php else: ?>
                         <strong class="<?= @$sale['local_sale']['completed'] == '1' ? 'text-success' : 'text-info' ?>" title="<?php echo @$sale['local_sale']['created'] ?>"><?php echo @$sale['local_sale']['completed'] == "1" ? "Pagado" : "Pendiente" ?></strong><br>
-                        <!--small><?php echo @$sale['collection']['date_approved'] ?></small-->
+                        <!--small><?php echo @$sale['local_sale']['created'] ?></small-->
                     <?php endif ?>                        
                         <!--small><?= @$sale['collection']['payment_type'] === 'credit_card' ? @$sale['collection']['last_four_digits'] : @$sale['collection']['merchant_order_id'] ?></small-->
                     </td>
