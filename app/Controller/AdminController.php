@@ -835,15 +835,15 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	}
 
 	private function getSales(){
-		$online = $this->getMPSales();
+		//$online = $this->getMPSales();
 		$date = strtotime("-2 week");
 		// Local data
-		if ($online) {
+		/*if ($online) {
 			$date = strtotime($online[count($online)-1]['collection']['date_created']);
-		}
+		}*/
 		$stamp = date('Y-m-d H:i', $date);
 		$mapper = $this->Sale->find('all',array('conditions'=>array( 
-			'Sale.payment_method' => "bank",
+			//'Sale.payment_method' => "bank",
 			'Sale.created >' => "$stamp"
 		)));
 		$manual = [];
@@ -856,7 +856,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			];
 		}
 
-		return array_merge($online, $manual);
+		return $manual;
 	}
 
 	public function sales(){
@@ -872,12 +872,12 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 		//Get and merge local-remote data.
 		$sales = $this->getSales();
-		//echo '<pre>';
-		//var_dump($sales);
-		//die('--');
+		/*echo '<pre>';
+		var_dump($sales);
+		die('--');*/
 
 		foreach ($sales as &$sale) {
-			$details 		= explode('-|-', $sale['collection']['reason']);
+			$details = explode('-|-', $sale['collection']['reason']);
 			$sale_number 	= (!empty($details[0]))?$details[0]:'PEDIDO : "00"';
 			if(strpos($sale_number, "&quot;")!== false){
 				$sale_number = html_entity_decode($sale_number);
