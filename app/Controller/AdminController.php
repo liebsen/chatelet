@@ -844,10 +844,10 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$stamp = date('Y-m-d H:i', $date);
 		$mapper = $this->Sale->find('all',[
 			'conditions' => [
-				'or' => [
+				/*'or' => [
 					'Sale.payment_method <>' => "mercadopago",
 					'Sale.completed' => "1",					
-				],
+				],*/
 				'and' => [
 					'Sale.created >' => "$stamp"
 				]
