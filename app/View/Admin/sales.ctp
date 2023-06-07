@@ -211,7 +211,7 @@
                     </td>
 
                     <td class="col-xs-1">
-                        <strong><?php echo @$list_payments[$sale['collection']['payment_type']] ?></strong><br>
+                        <strong><?php echo @$sale['local_sale']['payment_method']] ?></strong><br>
                     <?php if(@$sale['local_sale']['payment_method']==='bank'): ?>
                         <?php if($sale['local_sale']['completed']): ?>
                         <strong class="text-success" title="<?php echo @$sale['local_sale']['modified'] ?>">Aprobado</strong>
