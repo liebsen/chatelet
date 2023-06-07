@@ -842,10 +842,17 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			$date = strtotime($online[count($online)-1]['collection']['date_created']);
 		}*/
 		$stamp = date('Y-m-d H:i', $date);
-		$mapper = $this->Sale->find('all',array('conditions'=>array( 
-			//'Sale.payment_method' => "bank",
-			'Sale.created >' => "$stamp"
-		)));
+		$mapper = $this->Sale->find('all',[
+			'conditions' => [
+				'or' => [
+					'Sale.payment_method <>' => "mercadopago",
+					'Sale.completed' => "1",					
+				],
+				'and' => [
+					'Sale.created >' => "$stamp"
+				]
+			]
+		]);
 		$manual = [];
 		foreach($mapper as $item) {
 			$manual[] = [
