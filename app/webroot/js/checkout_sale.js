@@ -27,14 +27,14 @@ var calculateTotal = (settings) => {
 		$('.free-shipping-block').addClass('hidden')
 		$('.paid-shipping-block').removeClass('hidden')
 	}
-	carrito.freeShipping = free_shipping
-	console.log(carrito.freeShipping)
-	if (!carrito.freeShipping && carrito.shipping_price) {
-		total+= carrito.shipping_price
-	}
+	//carrito.freeShipping = free_shipping
+	//console.log(carrito.freeShipping)
+	//if (!carrito.freeShipping && carrito.shipping_price) {
+		//total+= carrito.shipping_price
+	//}
 
 
-	$('.total_price').text(formatNumber(total))
+	//$('.total_price').text(formatNumber(total))
 	localStorage.setItem('carrito', JSON.stringify(carrito))
 
   //console.log('subtotal',subtotal)

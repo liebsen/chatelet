@@ -298,9 +298,6 @@ class Oca
 		$XML_Retiro.= '<paquete alto="'.$alto.'" ancho="'.$ancho.'" largo="'.$largo.'" peso="'.$peso.'"';
 		$XML_Retiro.= ' valor="'.$valor.'" cant="1"/></paquetes></envio></envios></origen></origenes></ROWS>';
 
-		var_dump($XML_Retiro);
-		die();
-		
 		$query_data = "usr=".$usr."&psw=".$psw."&xml_Datos=$XML_Retiro&ConfirmarRetiro=True&ArchivoCliente=&ArchivoProceso=";//DiasRetiro=14&FranjaHoraria=1";
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL,"http://webservice.oca.com.ar/epak_tracking/Oep_TrackEPak.asmx/IngresoORMultiplesRetiros");
