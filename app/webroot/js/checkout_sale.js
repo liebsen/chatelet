@@ -4,9 +4,6 @@ var calculateTotal = (settings) => {
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var subtotal = carrito.subtotal_price
 	var total = subtotal
-	if (!carrito.freeShipping && carrito.shipping_price) {
-		total+= carrito.shipping_price
-	}
 	if (carrito.coupon_bonus) {
 		total-= carrito.coupon_bonus
 	}
@@ -24,17 +21,15 @@ var calculateTotal = (settings) => {
 		$('.paid-shipping-block').addClass('hidden')
 		$('.free-shipping-block').removeClass('hidden')
 	} else {
+		if (carrito.shipping_price) {
+			total+= carrito.shipping_price
+		}
 		$('.free-shipping-block').addClass('hidden')
 		$('.paid-shipping-block').removeClass('hidden')
 	}
-	//carrito.freeShipping = free_shipping
+	carrito.freeShipping = free_shipping
 	//console.log(carrito.freeShipping)
-	//if (!carrito.freeShipping && carrito.shipping_price) {
-		//total+= carrito.shipping_price
-	//}
-
-
-	//$('.total_price').text(formatNumber(total))
+	$('.total_price').text(formatNumber(total))
 	localStorage.setItem('carrito', JSON.stringify(carrito))
 
   //console.log('subtotal',subtotal)
