@@ -121,10 +121,20 @@ class AppHelper extends Helper {
       }
       */
 
+
       $legendStr = '';
       if(!empty($legends)) {
         $legendStr.= '<div class="legends legends-left">';
         $legendStr.= self::parse_legend_texts($legends, $item['price']);
+
+        if($item['mp_discount']){
+          $legendStr.= "<span class='text-legend'><span class='text-success'>-{$item['mp_discount']}% con mercadopago</span></span>";
+        }
+
+        if($item['bank_discount']){
+          $legendStr.= "<span class='text-legend text-success'><span class='text-success'>-{$item['bank_discount']}% con transferencia</span></span>";
+        }
+
         $legendStr.= '</div>';
       }
 
