@@ -7,7 +7,7 @@
 		<div class="control-group">
 			<label class="control-label" for="columns-text">Archivo: <span class="counter">0</span>%</label>
 			<div class="controls">
-				<input type="file" id="upload" data-input="[name='gallery']" data-count=".counter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+				<input class="form-control" type="file" id="upload" data-input="[name='gallery']" data-count=".counter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 				<input type="hidden" name="gallery" value="<?php echo (!empty( $prod['Product']['gallery'] )) ? $prod['Product']['gallery'] : null ; ?>" />
 			</div>
 		</div>

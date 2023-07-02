@@ -2807,6 +2807,7 @@ input[type="radio"].form-control {
 
 textarea.form-control {
     max-width: 100%;
+    min-width: 100%;
 }
 
 

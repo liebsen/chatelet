@@ -37,7 +37,7 @@
       position: inherit;
       padding: 1rem;
       display: flex;
-      height: 60px;
+      height: 64px;
       line-height: 1.25;
       justify-content: center;
       align-items: center;

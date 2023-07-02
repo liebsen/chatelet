@@ -1,10 +1,17 @@
 .right {
-	float: right;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
 }
 
 .remove-item {
 	cursor: pointer;
-	margin-top: 7px;
+}
+
+.d-flex {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.25rem;
 }
 
 .colorSelector {
@@ -22,17 +29,17 @@
 	height: 30px;
 	background: url(../img/select.png) center;
 }
-.alias_cont input{
+/*.alias_cont input{
 	position: absolute;
 	top: 15px;
 	left: 260px;
 	width: 160px;
-}
+}*/
 
-.code_sel {
+/*.code_sel {
   width: 160px;
   position: absolute;
   top: 15px;
   height: 26px;
   left: 70px;
-}
+}*/
