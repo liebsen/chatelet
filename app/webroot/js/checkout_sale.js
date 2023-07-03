@@ -1,14 +1,31 @@
 var last_selected = ''
 var dues_selected = ''
+var getSubtotal = (payment_method) => {
+	var subtotal = 0
+	carrito_items.map((e) => {
+		var price = e.price
+		if(payment_method === 'mercadopago' && e.mp_price) {
+			price = e.mp_price
+		}
+		else if(payment_method === 'bank' && e.bank_price) {
+			price = e.bank_price
+		}
+		subtotal+= parseFloat(price)
+	})
+	return subtotal
+}
+
 var calculateTotal = (settings) => {
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-	var subtotal = carrito.subtotal_price
+	//var subtotal = carrito.subtotal_price
+	var subtotal = getSubtotal(settings.payment_method)
 	var total = subtotal
 	if (carrito.coupon_bonus) {
 		total-= carrito.coupon_bonus
 	}
+
 	if (settings) { 
-		if(settings.bank_bonus) {
+		if(settings.bank_bonus) { // general
 			total-= settings.bank_bonus
 		}
 		if(settings.interest) {
@@ -27,6 +44,15 @@ var calculateTotal = (settings) => {
 		$('.free-shipping-block').addClass('hidden')
 		$('.paid-shipping-block').removeClass('hidden')
 	}
+
+	/*if(settings.payment_method === 'mercadopago' && carrito.mp_bonus) {
+		total-= parseFloat(carrito.mp_bonus)
+	}
+
+	if(settings.payment_method === 'bank' && carrito.bank_bonus) {
+		total-= parseFloat(carrito.bank_bonus)
+	}*/
+
 	carrito.freeShipping = free_shipping
 	//console.log(carrito.freeShipping)
 	$('.total_price').text(formatNumber(total))
@@ -59,7 +85,10 @@ var select_dues = (e,item) => {
 
 	var interest = $(e).data('interest')
 
-  calculateTotal({interest: interest})
+  calculateTotal({
+  	interest: interest, 
+  	payment_method: 'mercadopago',
+  })
   onSuccessAlert(`${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
   localStorage.setItem('pd', dues_selected)
 	$('.payment_dues .option-rounded').removeClass('is-selected is-secondary')
@@ -71,13 +100,13 @@ var select_dues = (e,item) => {
 var select_payment = (e,item) => {
 	e.preventDefault()
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-	var subtotal = carrito.subtotal_price
 	var selected = $(item).find('input').val()
 	$(item).find('input').prop('checked', true)
 	var bank_bonus = 0
 	if(!selected) {
 		return false
 	}
+	var subtotal = getSubtotal(selected)
 
 	last_selected = selected	
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
@@ -89,7 +118,11 @@ var select_payment = (e,item) => {
 	} else {
 		$('.bank-block').addClass('hide')
 	}
-  calculateTotal({ bank_bonus: bank_bonus})
+  calculateTotal({ 
+  	bank_bonus: bank_bonus,
+  	payment_method: selected,
+  })
+
   onSuccessAlert((selected === 'bank' ? 'CBU/Alias' : 'Mercadopago'), '✓ Método de pago seleccionado');
   localStorage.setItem('pm', selected)
 	$('.payment_method .option-rounded').removeClass('is-selected is-secondary')

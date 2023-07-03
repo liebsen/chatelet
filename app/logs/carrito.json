@@ -19,12 +19,16 @@
         "discount_label": "0",
         "discount_label_show": "0",
         "color": "#ffffff",
-        "size": "48",
-        "alias": "Arena",
-        "color_code": "61",
-        "alias_image": "r6nP53OeiBIQeiXNRxW6kWUBH.jpg",
+        "size": "46",
+        "alias": "Azul francia",
+        "color_code": "44",
+        "alias_image": "B07mFZJxwyQ9hToZa0P9mwjne.jpg",
         "original_price": "16390",
+        "mp_bonus": 1639,
+        "bank_bonus": 3278,
         "old_price": "16390",
+        "mp_price": 14751,
+        "bank_price": 13112,
         "uid": 0
     }
 ]

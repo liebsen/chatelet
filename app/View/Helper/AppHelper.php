@@ -167,10 +167,10 @@ class AppHelper extends Helper {
       }
     }
 
-    /*if($item['mp_discount']){
+    if($item['mp_discount']){
       $amount = str_replace(',00','',$this->Number->currency(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))), 'ARS', array('places' => 2)));
       $str.= "<span class='text-legend'><span class='text-success'>Con mercadopago {$amount}</span></span>";
-    }*/
+    }
 
     if($item['bank_discount']){
       $amount = str_replace(',00','',$this->Number->currency(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))), 'ARS', array('places' => 2)));

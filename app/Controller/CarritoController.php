@@ -1046,6 +1046,7 @@ class CarritoController extends AppController
 		$groups = [];
 		$sort = [];
 		if (!empty($carro)) {
+
 			foreach($carro as $key => $item) {
 				$criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
 				if (!isset($groups[$criteria])) {
@@ -1084,6 +1085,8 @@ class CarritoController extends AppController
 
 		if (!empty($carro)) {
 			/* apply basic prices and fill promos data */
+			$mp_bonus = 0;
+			$bank_bonus = 0;
 			foreach($carro as $key => $item) {
 	      $prop = $this->ProductProperty->find('all', array('conditions' => array(
 	  			'product_id' => $item['id'],
@@ -1096,15 +1099,23 @@ class CarritoController extends AppController
 	  		}
 
 				$carro[$key]['original_price'] = $item['price'];
+				$carro[$key]['mp_bonus'] = 0;
+				$carro[$key]['bank_bonus'] = 0;
 
 				if (!empty($item['discount']) && (float) @$item['discount'] > 0) {
 					$carro[$key]['old_price'] = $item['price'];
 	        $carro[$key]['price'] = $item['discount'];
 	      }
 
-	      /*if (!empty($item['mp_discount']) && (float) @$item['mp_discount'] > 0) {
-	      	$carro[$key]['price'] = str_replace(',00','',$this->Number->currency(ceil(round($carro[$key]['price'] * (1 - (float) $item['mp_discount'] / 100))), 'ARS', array('places' => 2)));
-	      }*/
+	      if (!empty($item['mp_discount']) && (float) @$item['mp_discount'] > 0) {
+	      	$carro[$key]['mp_price'] = ceil(round($carro[$key]['price'] * (1 - (float) $item['mp_discount'] / 100)));
+	      	$carro[$key]['mp_bonus']+= ceil(round($carro[$key]['price'] * ((float) $item['mp_discount'] / 100)));
+	      }
+
+	      if (!empty($item['bank_discount']) && (float) @$item['bank_discount'] > 0) {
+	      	$carro[$key]['bank_price'] = ceil(round($carro[$key]['price'] * (1 - (float) $item['bank_discount'] / 100)));
+	      	$carro[$key]['bank_bonus']+= ceil(round($carro[$key]['price'] * ((float) $item['bank_discount'] / 100)));
+	      }
 
 	      $carro[$key]['uid'] = $key;
 			
@@ -1116,6 +1127,8 @@ class CarritoController extends AppController
 				// $groups[$item['promo']]++;
 			}
 
+			//$carro['mp_bonus'] = $mp_bonus;
+			//$carro['bank_bonus'] = $bank_bonus;
 			$debug = [];
 
 			// appy promo qunatities

@@ -101,6 +101,13 @@
 							echo '<p class="color">Talle: <span class="talle">'. $product['size'] .'</span></p>';
 						}
 						echo '<p class="color">Cantidad: <span class="talle">'. $product['count'] .'</span></p>';
+						if(!empty($product['mp_price'])) {
+							echo '<p class="color">Mercadopago: <span class="talle">'. str_replace(',00','',$this->Number->currency($product['mp_price'], 'ARS', array('places' => 2))) .'</span></p>';
+						}
+						if(!empty($product['bank_price'])) {
+							echo '<p class="color">Banco: <span class="talle">'. str_replace(',00','',$this->Number->currency($product['bank_price'], 'ARS', array('places' => 2))) .'</span></p>';
+						}
+
 						echo '<br>';
 						echo '<div class="text-right">';
 						if (!empty($product['old_price']) && $product['old_price'] != $product['price']){
