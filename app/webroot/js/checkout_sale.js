@@ -1,5 +1,7 @@
 var last_selected = ''
 var dues_selected = ''
+
+
 var getSubtotal = (payment_method) => {
 	var subtotal = 0
 	carrito_items.map((e) => {
