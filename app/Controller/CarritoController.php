@@ -676,6 +676,20 @@ class CarritoController extends AppController
 
 		//Mercadopago
 		foreach ($carro as $producto) {
+			$unit_price = $producto['price'];
+
+			if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
+        $unit_price = @$producto['discount'];
+      }
+
+			if($user['payment_method'] === 'mercadopago' && !empty($producto['mp_discount']) && !empty((float)(@$producto['mp_discount']))) {
+        $unit_price = @ceil(round($unit_price * (1 - (float) $producto['mp_discount'] / 100)));
+      }
+
+			if($user['payment_method'] === 'bank' && !empty($producto['bank_discount']) && !empty((float)(@$producto['bank_discount']))) {
+        $unit_price = @ceil(round($unit_price * (1 - (float) $producto['bank_discount'] / 100)));
+      }
+
 			$desc = '';
 			$separator = ' -|- ';
 			$values = array(
@@ -685,7 +699,7 @@ class CarritoController extends AppController
 				'COLOR'  	=> $producto['color'].' '.$producto['alias'],
 				'TALLE'  	=> $producto['size'],
 				'PRECIO_LISTA'  	=> $producto['price'],
-				'PRECIO_DESCUENTO'  	=> $producto['discount'],
+				'PRECIO_DESCUENTO'  => $unit_price,
 				'NOMBRE' 	=> $user['name'],
 				'APPELLIDO'	=> $user['surname'],
 				'EMAIL'		=> $user['email'],
@@ -710,12 +724,6 @@ class CarritoController extends AppController
 			foreach ($values as $key => $value) {
 				$desc.= $key.' : "'.$value.'"'.$separator;
 			}
-
-			$unit_price = $producto['price'];
-
-			/* if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
-        $unit_price = @$producto['discount'];
-      } */
 
 			$items[] = array(
 				'title' => $desc,
@@ -1073,8 +1081,8 @@ class CarritoController extends AppController
 		$counts = [];
 		// $counted = [];
 		/*count prods */
-		if (!empty($carro)) {
 
+		if (!empty($carro)) {
 			/* apply basic prices and fill promos data */
 			foreach($carro as $key => $item) {
 	      $prop = $this->ProductProperty->find('all', array('conditions' => array(
@@ -1092,6 +1100,10 @@ class CarritoController extends AppController
 				if (!empty($item['discount']) && (float) @$item['discount'] > 0) {
 					$carro[$key]['old_price'] = $item['price'];
 	        $carro[$key]['price'] = $item['discount'];
+	      }
+
+	      if (!empty($item['mp_discount']) && (float) @$item['mp_discount'] > 0) {
+	      	$carro[$key]['price'] = str_replace(',00','',$this->Number->currency(ceil(round($carro[$key]['price'] * (1 - (float) $item['mp_discount'] / 100))), 'ARS', array('places' => 2)));
 	      }
 
 	      $carro[$key]['uid'] = $key;

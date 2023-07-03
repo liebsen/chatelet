@@ -186,12 +186,12 @@ echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' 
 		<thead>
 			<tr>
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>
-				<th class="text-center hidden-phone"><?php echo __('Descripcion'); ?></th>
+				<th class="text-center hidden-phone"><?php echo __('Descripción'); ?></th>
 				<th class="text-center hidden-phone"><?php echo __('Promo'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>
 				<th class="text-center hidden-phone"><?php echo __('Precio'); ?></th>
-				<th class="text-center hidden-phone"><?php echo __('Nro de Articulo'); ?></th>
-				<th class="text-center hidden-phone"><?php echo __('Categoria'); ?></th>
+				<th class="text-center hidden-phone"><?php echo __('Artículo'); ?></th>
+				<th class="text-center hidden-phone"><?php echo __('Categoría'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
 		</thead>
@@ -209,7 +209,7 @@ echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' 
 					<td>
 					<?php if($product['Product']['promo'] !== '') :?>
 						<span class="badge badge-inverse">
-							<?= $product['Product']['promo'] ?>
+							<?= !empty($product['Product']['promo']) ? $product['Product']['promo'] : '<span class="text-muted">Ninguna</span>' ?>
 						</span>
 					<?php endif ?>
 					</td>
@@ -219,7 +219,8 @@ echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' 
 						?>     
 					</td>
 					<td>
-						<?=$product['Product']['price']?>
+						<span class="<?= !empty($product['Product']['discount']) && $product['Product']['discount'] !== $product['Product']['price'] : 'text-success' : 'text-info' ?>"><?=str_replace(',00','',$this->Number->currency(ceil($product['Product']['discount'] ? $product['Product']['discount'] : $product['Product']['price']), 'ARS', array('places' => 2)))?>
+						</span>
 					</td>
 					<td>
 						<?=$product['Product']['article']?>
