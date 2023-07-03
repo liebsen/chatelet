@@ -1102,9 +1102,9 @@ class CarritoController extends AppController
 	        $carro[$key]['price'] = $item['discount'];
 	      }
 
-	      if (!empty($item['mp_discount']) && (float) @$item['mp_discount'] > 0) {
+	      /*if (!empty($item['mp_discount']) && (float) @$item['mp_discount'] > 0) {
 	      	$carro[$key]['price'] = str_replace(',00','',$this->Number->currency(ceil(round($carro[$key]['price'] * (1 - (float) $item['mp_discount'] / 100))), 'ARS', array('places' => 2)));
-	      }
+	      }*/
 
 	      $carro[$key]['uid'] = $key;
 			
