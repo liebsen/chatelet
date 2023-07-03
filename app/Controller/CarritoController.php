@@ -738,7 +738,7 @@ class CarritoController extends AppController
 				'color' => $producto['color'],
 				'size' => $producto['size'],
 				'precio_lista' => (!empty($producto['original_price']))?$producto['original_price']:$producto['price'],
-				'precio_vendido' => $producto['price'],
+				'precio_vendido' => $unit_price,
 				'sale_id' => $sale_id,
 				'id' => null,
 				'description' => $desc
