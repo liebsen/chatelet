@@ -123,17 +123,10 @@ class AppHelper extends Helper {
 
 
       $legendStr = '';
-      if(!empty($legends)) {
+      if(!empty($legends)) {  
         $legendStr.= '<div class="legends legends-left">';
-        $legendStr.= self::parse_legend_texts($legends, $item['price']);
+        $legendStr.= self::parse_legend_texts($legends, $item);
 
-        if($item['mp_discount']){
-          $legendStr.= "<span class='text-legend'><span class='text-success'>-{$item['mp_discount']}% con mercadopago</span></span>";
-        }
-
-        if($item['bank_discount']){
-          $legendStr.= "<span class='text-legend text-success'><span class='text-success'>-{$item['bank_discount']}% con transferencia</span></span>";
-        }
 
         $legendStr.= '</div>';
       }
@@ -149,8 +142,8 @@ class AppHelper extends Helper {
     return $str;
   }
 
-  function parse_legend_texts($legends, $price){
-    $price = (float) $price;
+  function parse_legend_texts($legends, $item){
+    $price = (float) $item['price'];
     $str = '';
     for ($i=0; $i<count($legends); $i++) {
       $legend = $legends[$i];
@@ -173,6 +166,16 @@ class AppHelper extends Helper {
         $legend['Legend']['title']) . '</span>';
       }
     }
+    if($item['mp_discount']){
+      $amount = str_replace(',00','',$this->Number->currency(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))), 'ARS', array('places' => 2)));
+      $str.= "<span class='text-legend'><span class='text-success'>{$amount} con mercadopago</span></span>";
+    }
+
+    if($item['bank_discount']){
+      $amount = str_replace(',00','',$this->Number->currency(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))), 'ARS', array('places' => 2)));
+      $str.= "<span class='text-legend text-success'><span class='text-success'>{$amount} con transferencia</span></span>";
+    }
+
     return $str;
   }
 

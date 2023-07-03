@@ -125,7 +125,7 @@
                             'places' => 2))). "</span>";
                  }?>
                  <div class="legends mt-0">
-                    <?= $this->App->parse_legend_texts($legends, (float) $product['price']) ?>
+                    <?= $this->App->parse_legend_texts($legends, $product) ?>
                  </div>
                 <div class="caract">
                 <?php if(!empty($product['desc'])):?>
@@ -296,7 +296,7 @@
                             <div class="price-list"><?= @ceil($alt_product['old_price']) && ceil($alt_product['old_price']) !== ceil($alt_product['price']) ? '<span class="old_price">' .  str_replace(',00','',$this->Number->currency(ceil($alt_product['old_price']), 'ARS', array('places' => 2))). '</span>' : '' ?><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
                         <?php if(count($legends)): ?>
                             <div class="legends">
-                                <?= $this->App->parse_legend_texts($legends, $alt_product['price']) ?>
+                                <?= $this->App->parse_legend_texts($legends, $alt_product) ?>
                             </div>
                         <?php endif ?>
                         </a>
