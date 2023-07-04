@@ -1601,9 +1601,17 @@ span.out{
   min-height: 24rem;
 }
 
+.prod-tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  grid-gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
 .prod-tags .badge {
   font-size: 1rem;
   text-shadow: 2px 2px 1px #6669;
+  border-radius: 0!important;
 }
 .search-item {
   opacity: 0;
