@@ -14,7 +14,7 @@ echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' 
 			<tr>
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>
 				<th class="text-center hidden-phone"><?php echo __('Descripción'); ?></th>
-				<th class="text-center hidden-phone"><?php echo __('Promo'); ?></th>
+				<!--th class="text-center hidden-phone"><?php echo __('Promo'); ?></th-->
 				<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>
 				<th class="text-center hidden-phone"><?php echo __('Precio'); ?></th>
 				<th class="text-center hidden-phone"><?php echo __('Artículo'); ?></th>
@@ -33,13 +33,13 @@ echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' 
 					<td>
 						<?=$product['Product']['desc']?>
 					</td>
-					<td>
+					<!--td>
 					<?php if($product['Product']['promo'] !== '') :?>
 						<span class="badge badge-inverse">
 							<?= !empty($product['Product']['promo']) ? $product['Product']['promo'] : '<span class="text-muted">Ninguna</span>' ?>
 						</span>
 					<?php endif ?>
-					</td>
+					</td-->
 					<td>          
 						<?php
 							echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('imageUrlBase') . $product['Product']['img_url'] ."''>LINK</a>";
