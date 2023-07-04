@@ -2337,14 +2337,19 @@ span.count.is-empty {
   left: 0;
   right: 0;
   top: 0;
+  border-radius: 1.5rem;
   transition: all 0.25s ease;
 }
 
+.carrito-item-row .help:hover {
+  background-color: #fff9;
+}
+
 .carrito-item-row .help > div {
-  padding: 0.5rem;
+  padding: 1rem;
   font-size: 1rem;
-  font-style: italic;
-  border-radius: 3px;
+  /*font-style: italic;*/
+  border-radius: 1.5rem;
   background-color: #e10d74;
   color: white;
 }
