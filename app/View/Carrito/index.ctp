@@ -101,14 +101,20 @@
 							echo '<p class="color">Talle: <span class="talle">'. $product['size'] .'</span></p>';
 						}
 						echo '<p class="color">Cantidad: <span class="talle">'. $product['count'] .'</span></p>';
-						if(!empty($product['mp_price'])) {
-							echo '<p class="text-success">Mercadopago: <span class="talle">'. str_replace(',00','',$this->Number->currency($product['mp_price'], 'ARS', array('places' => 2))) .'</span></p>';
-						}
-						if(!empty($product['bank_price'])) {
-							echo '<p class="text-success">Banco: <span class="talle">'. str_replace(',00','',$this->Number->currency($product['bank_price'], 'ARS', array('places' => 2))) .'</span></p>';
+
+						if(!empty($product['mp_discount']) || !empty($product['bank_discount'])) {
+							echo '<div class="d-flex gap-05 mb-05">';
+							if(!empty($product['mp_discount'])) {
+								echo '<span class="badge badge-success"><i class="fa fa-credit-card"></i> '. 
+									$product['mp_discount'] .'%</span>';
+							}
+							if(!empty($product['bank_discount'])) {
+								echo '<span class="badge badge-success"><i class="fa fa-bank"></i> '. 
+									$product['bank_discount'] .'%</span>';
+							}
+							echo '</div>';
 						}
 
-						echo '<br>';
 						echo '<div class="text-right">';
 						if (!empty($product['old_price']) && $product['old_price'] != $product['price']){
 							echo '<span class="old_price text-grey animated fadeIn delay2">'. str_replace(',00','',$this->Number->currency($product['old_price'], 'ARS', array('places' => 2))) .'</span>';

@@ -124,7 +124,7 @@ class AppHelper extends Helper {
 
       $legendStr = '';
       if(!empty($legends)) {  
-        $legendStr.= '<div class="legends legends-left">';
+        $legendStr.= '<div class="legends">';
         $legendStr.= self::parse_legend_texts($legends, $item);
 
 
@@ -144,7 +144,7 @@ class AppHelper extends Helper {
 
   function parse_legend_texts($legends, $item){
     $price = (float) $item['price'];
-    $str = '';
+    $str = '<div class="d-flex prod-tags justify-content-center gap-05">';
     for ($i=0; $i<count($legends); $i++) {
       $legend = $legends[$i];
       $interest = (float) $legend['Legend']['interest'];
@@ -158,24 +158,30 @@ class AppHelper extends Helper {
       }
       
       if($price >= $min_sale) {
-        $str.= '<span class="text-legend">' . str_replace(['{cuotas}','{interes}','{monto}'], [
+        $status = intval($legend['Legend']['interest']) ? 'warning' : 'info';
+        $str.= "<span class='badge badge-{$status}'>". $legend['Legend']['dues'] ." cuotas</span>";
+        /*$str.= '<span class="text-legend">' . str_replace(['{cuotas}','{interes}','{monto}'], [
           $legend['Legend']['dues'],
           $legend['Legend']['interest'],
           str_replace(',00','',$this->Number->currency(ceil((!empty($interest) ? round($wprice * (1 + (float) $legend['Legend']['interest'] / 100)) : $wprice)/$legend['Legend']['dues']), 'ARS', array('places' => 2)))
         ],
-        $legend['Legend']['title']) . '</span>';
+        $legend['Legend']['title']) . '</span>';*/
       }
     }
 
     if($item['mp_discount']){
       $amount = str_replace(',00','',$this->Number->currency(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))), 'ARS', array('places' => 2)));
-      $str.= "<span class='text-legend'><span class='text-success'>Con mercadopago {$amount}</span></span>";
+      //$str.= "<span class='text-legend'><span class='text-success'>Con mercadopago {$amount}</span></span>";
+      $str.= "<span class='badge badge-success' title='{$amount} abonando con mercadopago'><i class='fa fa-credit-card'></i> ". $item['mp_discount'] ."%</span>";
     }
 
     if($item['bank_discount']){
       $amount = str_replace(',00','',$this->Number->currency(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))), 'ARS', array('places' => 2)));
-      $str.= "<span class='text-legend text-success'><span class='text-success'>Con transferencia {$amount}</span></span>";
+      //$str.= "<span class='text-legend text-success'><span class='text-success'>Con transferencia {$amount}</span></span>";
+      $str.= "<span class='badge badge-success' title='{$amount} abonando con transferencia'><i class='fa fa-bank'></i> ". $item['mp_discount'] ."%</span>";
     }
+
+    $str.= "</div>";
 
     return $str;
   }

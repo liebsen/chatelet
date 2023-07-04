@@ -168,6 +168,30 @@ label input[type=checkbox]:disabled + .label-text:before {
    min-height: 35rem; */
 }
 
+.label-success,
+.label-success[href],
+.label-success[href]:hover,
+.label-success[href]:focus,
+.badge-success,
+.badge-success[href],
+.badge-success[href]:hover,
+.badge-success[href]:focus {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.label-neutral,
+.label-neutral[href],
+.label-neutral[href]:hover,
+.label-neutral[href]:focus,
+.badge-neutral,
+.badge-neutral[href],
+.badge-neutral[href]:hover,
+.badge-neutral[href]:focus {
+  background-color: #e9e9e9;
+  color: #333;
+}
+
 .carrito-count {
   display: flex;
   grid-gap: 1rem;
@@ -1574,9 +1598,13 @@ span.out{
   position: relative;
   margin-bottom: 1rem;
   text-align: center;
-  min-height: 23rem;
+  min-height: 24rem;
 }
 
+.prod-tags .badge {
+  font-size: 1rem;
+  text-shadow: 2px 2px 1px #6669;
+}
 .search-item {
   opacity: 0;
   /*flex: 1;*/
@@ -2366,6 +2394,10 @@ span.count.is-empty {
 
 .mobile, .desktop {
   display: none;
+}
+
+.mb-05 {
+  margin-bottom: 0.5rem;
 }
 
 .mb-1 {
