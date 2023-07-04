@@ -144,7 +144,6 @@
       <br />
       <div class="form-actions">
         <a href="/admin/logistica" class="btn btn-info"><i class="icon-repeat"></i> Atrás</a>
-        <button type="reset" class="btn btn-danger"><i class="icon-repeat"></i> Resetear</button>
         <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Guardar</button>
       </div>
     </form>
