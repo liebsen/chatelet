@@ -7,6 +7,85 @@ echo $this->Html->script('draggable-table', array('inline' => false));
 echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));
 echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));
 ?>
+<?php echo $this->element('admin-menu'); ?>
+<div class="block-section table-responsive">
+	<table id="example-datatables" class="table table-bordered table-hover draggable-table" data-url="/admin/ordernum/product">
+		<thead>
+			<tr>
+				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>
+				<th class="text-center hidden-phone"><?php echo __('Descripción'); ?></th>
+				<th class="text-center hidden-phone"><?php echo __('Promo'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>
+				<th class="text-center hidden-phone"><?php echo __('Precio'); ?></th>
+				<th class="text-center hidden-phone"><?php echo __('Artículo'); ?></th>
+				<th class="text-center hidden-phone"><?php echo __('Categoría'); ?></th>
+				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($prods as $key => $product): ?>        
+				<tr data-id="<?= $product['Product']['id'] ?>" data-order="<?= $product['Product']['ordernum'] ?>">
+					<td>
+						<a href="<?=$this->Html->url(array('action'=>'productos','edit',$product['Product']['id']))?>">
+							<?=$product['Product']['name']?>
+						</a>
+					</td>
+					<td>
+						<?=$product['Product']['desc']?>
+					</td>
+					<td>
+					<?php if($product['Product']['promo'] !== '') :?>
+						<span class="badge badge-inverse">
+							<?= !empty($product['Product']['promo']) ? $product['Product']['promo'] : '<span class="text-muted">Ninguna</span>' ?>
+						</span>
+					<?php endif ?>
+					</td>
+					<td>          
+						<?php
+							echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('imageUrlBase') . $product['Product']['img_url'] ."''>LINK</a>";
+						?>     
+					</td>
+					<td>
+						<span class="<?= !empty($product['Product']['discount']) && $product['Product']['discount'] !== $product['Product']['price'] ? 'text-success' : 'text-dark' ?>"><?=str_replace(',00','',$this->Number->currency(ceil($product['Product']['discount'] ? $product['Product']['discount'] : $product['Product']['price']), 'ARS', array('places' => 2)))?>
+						</span>
+					</td>
+					<td>
+						<?=$product['Product']['article']?>
+					</td>
+					<td>
+						<?=$product['Product']['category_id']?>
+					</td>
+					<td>
+						<div class="btn-group d-flex flex-nowrap">
+							<a 
+							href="<?=$this->Html->url(array('action'=>'productos','edit',$product['Product']['id']))?>" 
+							data-toggle="tooltip" 
+							title="" 
+							class="btn btn-xs btn-success" 
+							data-original-title="Editar">
+							<i class="gi gi-pencil"></i>
+						</a>             
+						<a 
+						href="#" 
+						data-toggle="tooltip" 
+						title="" 
+						class="btn btn-xs btn-danger deletebutton" 
+						data-original-title="Eliminar" 
+						data-id="<?=$product['Product']['id']?>" 
+						data-url-back="<?=$this->Html->url(array('action'=>'productos'))?>" 
+						data-delurl="<?=$this->Html->url(array('action'=>'productos', 'delete'))?>" 
+						data-msg="<?=__('¿Eliminar producto?')?>"                   
+						>
+						<i class="gi gi-remove"></i>
+					</a>
+				</div> 
+			</td>
+		</tr>
+		<?php endforeach ?>
+		</tbody>
+	</table>
+</div>
+
 <div class="block block-themed">
 	<div class="block-title">
 		<h4>Shop - Opciones</h4>
@@ -179,82 +258,4 @@ echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' 
 
 		</form>
 	</div>
-</div>
-<?php echo $this->element('admin-menu'); ?>
-<div class="block-section table-responsive">
-	<table id="example-datatables" class="table table-bordered table-hover draggable-table" data-url="/admin/ordernum/product">
-		<thead>
-			<tr>
-				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>
-				<th class="text-center hidden-phone"><?php echo __('Descripción'); ?></th>
-				<th class="text-center hidden-phone"><?php echo __('Promo'); ?></th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>
-				<th class="text-center hidden-phone"><?php echo __('Precio'); ?></th>
-				<th class="text-center hidden-phone"><?php echo __('Artículo'); ?></th>
-				<th class="text-center hidden-phone"><?php echo __('Categoría'); ?></th>
-				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php foreach ($prods as $key => $product): ?>        
-				<tr data-id="<?= $product['Product']['id'] ?>" data-order="<?= $product['Product']['ordernum'] ?>">
-					<td>
-						<a href="<?=$this->Html->url(array('action'=>'productos','edit',$product['Product']['id']))?>">
-							<?=$product['Product']['name']?>
-						</a>
-					</td>
-					<td>
-						<?=$product['Product']['desc']?>
-					</td>
-					<td>
-					<?php if($product['Product']['promo'] !== '') :?>
-						<span class="badge badge-inverse">
-							<?= !empty($product['Product']['promo']) ? $product['Product']['promo'] : '<span class="text-muted">Ninguna</span>' ?>
-						</span>
-					<?php endif ?>
-					</td>
-					<td>          
-						<?php
-							echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('imageUrlBase') . $product['Product']['img_url'] ."''>LINK</a>";
-						?>     
-					</td>
-					<td>
-						<span class="<?= !empty($product['Product']['discount']) && $product['Product']['discount'] !== $product['Product']['price'] ? 'text-success' : 'text-info' ?>"><?=str_replace(',00','',$this->Number->currency(ceil($product['Product']['discount'] ? $product['Product']['discount'] : $product['Product']['price']), 'ARS', array('places' => 2)))?>
-						</span>
-					</td>
-					<td>
-						<?=$product['Product']['article']?>
-					</td>
-					<td>
-						<?=$product['Product']['category_id']?>
-					</td>
-					<td>
-						<div class="btn-group">   
-							<a 
-							href="<?=$this->Html->url(array('action'=>'productos','edit',$product['Product']['id']))?>" 
-							data-toggle="tooltip" 
-							title="" 
-							class="btn btn-xs btn-success" 
-							data-original-title="Editar">
-							<i class="gi gi-pencil"></i>
-						</a>             
-						<a 
-						href="#" 
-						data-toggle="tooltip" 
-						title="" 
-						class="btn btn-xs btn-danger deletebutton" 
-						data-original-title="Eliminar" 
-						data-id="<?=$product['Product']['id']?>" 
-						data-url-back="<?=$this->Html->url(array('action'=>'productos'))?>" 
-						data-delurl="<?=$this->Html->url(array('action'=>'productos', 'delete'))?>" 
-						data-msg="<?=__('¿Eliminar producto?')?>"                   
-						>
-						<i class="gi gi-remove"></i>
-					</a>
-				</div> 
-			</td>
-		</tr>
-		<?php endforeach ?>
-		</tbody>
-	</table>
 </div>

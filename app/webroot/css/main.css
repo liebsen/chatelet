@@ -4052,6 +4052,14 @@ div.cloudzoom-black:nth-child(3) {
     display: none;
 }
 
+.d-flex {
+    display: flex;
+}
+
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+
 .is-clickable {
     cursor: pointer;
 }
