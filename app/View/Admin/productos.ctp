@@ -219,7 +219,7 @@ echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' 
 						?>     
 					</td>
 					<td>
-						<span class="<?= !empty($product['Product']['discount']) && $product['Product']['discount'] !== $product['Product']['price'] : 'text-success' : 'text-info' ?>"><?=str_replace(',00','',$this->Number->currency(ceil($product['Product']['discount'] ? $product['Product']['discount'] : $product['Product']['price']), 'ARS', array('places' => 2)))?>
+						<span class="<?= !empty($product['Product']['discount']) && $product['Product']['discount'] !== $product['Product']['price'] ? 'text-success' : 'text-info' ?>"><?=str_replace(',00','',$this->Number->currency(ceil($product['Product']['discount'] ? $product['Product']['discount'] : $product['Product']['price']), 'ARS', array('places' => 2)))?>
 						</span>
 					</td>
 					<td>
