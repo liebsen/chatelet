@@ -144,9 +144,9 @@ class AppHelper extends Helper {
 
   function parse_legend_texts($legends, $item){
     $price = (float) $item['price'];
-    
+    $str = '';
     if($item['mp_discount'] || $item['bank_discount']) {
-      $str = '<div class="prod-tags">';
+      $str.= '<div class="prod-tags">';
       if($item['mp_discount']){
         $amount = str_replace(',00','',$this->Number->currency(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))), 'ARS', array('places' => 2)));
         //$str.= "<span class='text-legend'><span class='text-success'>Con mercadopago {$amount}</span></span>";
@@ -178,17 +178,14 @@ class AppHelper extends Helper {
       if($price >= $min_sale) {
         //$status = intval($legend['Legend']['interest']) ? 'warning' : 'info';
         //$str.= "<span class='badge badge-{$status}'>". $legend['Legend']['dues'] ." cuotas</span>";
-        $str.= '<span class="text-legend">' . str_replace(['{cuotas}','{interes}','{monto}'], [
+        $str.= '<span class="text-legend">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
           $legend['Legend']['dues'],
           $legend['Legend']['interest'],
-          '<span class="text-success">' . str_replace(',00','',$this->Number->currency(ceil((!empty($interest) ? round($wprice * (1 + (float) $legend['Legend']['interest'] / 100)) : $wprice)/$legend['Legend']['dues']), 'ARS', array('places' => 2))) . '</span>'
+          '<span class="text-success">' . @str_replace(',00','',$this->Number->currency(ceil((!empty($interest) ? round($wprice * (1 + (float) $legend['Legend']['interest'] / 100)) : $wprice)/$legend['Legend']['dues']), 'ARS', array('places' => 2))) . '</span>'
         ],
         $legend['Legend']['title']) . '</span>';
       }
-    }
-
-
-    
+    }    
 
     return $str;
   }
