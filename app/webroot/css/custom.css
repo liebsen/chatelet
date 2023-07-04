@@ -2349,8 +2349,9 @@ span.count.is-empty {
   padding: 1rem;
   font-size: 1rem;
   /*font-style: italic;*/
-  border-radius: 1.5rem;
+  border-radius: 0.5rem;
   background-color: #e10d74;
+  border: 6px solid white;
   color: white;
 }
 
