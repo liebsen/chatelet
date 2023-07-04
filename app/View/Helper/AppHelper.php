@@ -150,13 +150,13 @@ class AppHelper extends Helper {
       if($item['mp_discount']){
         $amount = str_replace(',00','',$this->Number->currency(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))), 'ARS', array('places' => 2)));
         //$str.= "<span class='text-legend'><span class='text-success'>Con mercadopago {$amount}</span></span>";
-        $str.= "<span class='badge badge-success' title='{$amount} abonando con mercadopago'><i class='fa fa-credit-card'></i> -". $item['mp_discount'] ."%</span>";
+        $str.= "<span class='badge badge-success' title='{$amount} abonando con mercadopago'><i class='fa fa-credit-card'></i> ". $item['mp_discount'] ."%</span>";
       }
 
       if($item['bank_discount']){
         $amount = str_replace(',00','',$this->Number->currency(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))), 'ARS', array('places' => 2)));
         //$str.= "<span class='text-legend text-success'><span class='text-success'>Con transferencia {$amount}</span></span>";
-        $str.= "<span class='badge badge-success' title='{$amount} abonando con transferencia'><i class='fa fa-bank'></i> -". $item['mp_discount'] ."%</span>";
+        $str.= "<span class='badge badge-success' title='{$amount} abonando con transferencia'><i class='fa fa-bank'></i> ". $item['mp_discount'] ."%</span>";
       }
       $str.= "</div>";
     }
