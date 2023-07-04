@@ -245,7 +245,7 @@ $(function () {
     if ($('.navbar-collapse').hasClass('in')) {
       $('.navbar-collapse').removeClass('in')
     }
-    window.scrollTo(0,0)
+    //window.scrollTo(0,0)
   })
 
   if(window.location.hash.indexOf('listShop') === -1 && document.querySelector("#myModal")!=null && $('.js-show-modal') && $('.js-show-modal').length){
