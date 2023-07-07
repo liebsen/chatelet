@@ -117,9 +117,9 @@
 
 						echo '<div class="text-right">';
 						if (!empty($product['old_price']) && abs($product['old_price']-$product['price']) === 0){
-							echo '<span class="old_price text-grey animated fadeIn delay2">'. str_replace(',00','',$this->Number->currency($product['old_price'], 'ARS', array('places' => 2))) .'</span>';
+							echo '<span class="old_price text-grey animated fadeIn delay2">$ '. \price_format($product['old_price']) .'</span>';
 						}					
-						echo '<span class="price animated fadeIn delay">'. str_replace(',00','',$this->Number->currency($product['price'], 'ARS', array('places' => 2))) .'</span>';
+						echo '<span class="price animated fadeIn delay">$ '. \price_format($product['price']) .'</span>';
 						echo '</div>';
 						echo '<div class="carrito-hide-element">
 							<div class="form-inline">
@@ -155,7 +155,7 @@
 							</div>
 							<hr>
 							<div class="summary-item text-right products-total">
-								<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= str_replace(',00','',$this->Number->currency($total + $promosaved, 'ARS', array('places' => 2))) ?></div>
+								<div class="price text-dark"><span class="text-weight-thin">Productos </span> $ <?= \price_format($total + $promosaved) ?></div>
 							</div>
 							<?php if($freeShipping):?>
 							<div class="summary-item text-right free-shipping animated speed">
@@ -167,11 +167,11 @@
 							<div class="summary-item text-right delivery-cost hidden animated speed">
 								<div class="price text-dark">
 									<span class="text-weight-thin">Envía </span>
-									<span id="delivery_cp"></span> $<span class="cost_delivery">0</span></div>
+									<span id="delivery_cp"></span> $ <span class="cost_delivery">0</span></div>
 							</div>
 							<?php endif ?>
 							<div class="summary-item text-right <?= $promosaved ? '' : 'hidden' ?> animated speed">
-								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="">PROMO</span> <span><?= str_replace(',00','',$this->Number->currency($promosaved, 'ARS', array('places' => 2))) ?></span><!--span>.00</span--></div>
+								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="">PROMO</span> <span>$ <?= \price_format($promosaved) ?></span><!--span>.00</span--></div>
 							</div>
 							<div class="summary-item text-right coupon-discount hidden animated speed">
 								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="promo-code"></span> <span class="coupon_bonus">0</span><!--span>.00</span--></div>
@@ -180,7 +180,7 @@
 							<div class="summary-item text-right">
 								<div class="cost_total-container animated speed fadeIn delay">
 									<!--hr-->
-									<div class="price is-large"><span class="text-weight-thin">Total </span> <span class="cost_total"><?= str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))) ?></span><!--span>.00</span--></div>
+									<div class="price is-large"><span class="text-weight-thin">Total </span> <span class="cost_total">$ <?= \price_format($total) ?></span><!--span>.00</span--></div>
 								</div>
 							</div>
 						</div>

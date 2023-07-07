@@ -21,7 +21,7 @@ formatNumber2 = function (num) {
   if (typeof num === 'string') {
     return num
   }
-  return '$'+number_format(num, 2, ',', '.').replace(',00','')
+  return ' $ '+number_format(num, 2, ',', '.').replace(',00','')
   //return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
 }
 
@@ -61,7 +61,7 @@ let strtoFloat = (text) => {
 }
 
 let fxTotal = (total) => {
-  $('.cost_total').text( formatNumber(total) )
+  $('.cost_total').text( '$ ' + formatNumber(total) )
   const block = document.querySelector('.cost_total-container')
   block.classList.remove('fadeIn', 'fadeOut', 'delay')
   block.classList.add('hidden')

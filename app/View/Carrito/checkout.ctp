@@ -104,7 +104,7 @@
 						          <label class="d-inline">
 						          	<span class="h4">Subtotal productos</span><br>
 						          	<p class="mt-2 text-bold h4 mb-0">
-						          		$<span class="subtotal_price"></span>
+						          		$ <span class="subtotal_price"></span>
                     		</p>
                     	</label>
                     </div>						        
@@ -126,7 +126,7 @@
 							          	</p>
 							          </div>
 						        	</label>
-						        	<p class="mt-2 text-muted">El monto mínimo para obtener beneficio <b>envío gratis</b> es de $<?= $shipping_price ?></p>
+						        	<p class="mt-2 text-muted">El monto mínimo para obtener beneficio <b>envío gratis</b> es de $ <?= $shipping_price ?></p>
 						        </div>  
 							    	<div class="col-xs-12 option-regular cargo-takeaway hide">
 						          <label class="d-inline">
@@ -148,7 +148,7 @@
 						          <label class="d-inline">
 						          	<span class="h4">Descuento <span class="coupon"></span></span><br>
 						          	<p class="mt-2 text-bold text-success h4 mb-0">
-						          		$<span class="coupon_bonus"></span>
+						          		$ <span class="coupon_bonus"></span>
 						          	</p>
 						          </span>
 						        </div>
@@ -156,7 +156,7 @@
 						          <label class="d-inline">
 						          	<span class="h4">Descuento CBU/Alias</span><br>
 						          	<p class="mt-2 text-bold text-success h4 mb-0">
-						          		$<span class="bank_bonus"></span>
+						          		$ <span class="bank_bonus"></span>
 						          	</p>
 						          </span>
 						        </div>
@@ -164,7 +164,7 @@
 						          <label class="d-inline text-theme">
 						          	<span class="h4">Total a pagar</span><br>
 						          	<p class="mt-2 text-bold total-price text-left h3 mb-0">
-						          		$<span class="total_price"></span>
+						          		$ <span class="total_price"></span>
 						          	</p>
 						          </span>
 						        </div>
@@ -189,7 +189,7 @@
 						    	<i class="fa fa-credit-card"></i>
 						    	¿Cómo querés pagar tu compra?
 						    </h5>
-						    <h6 class="card-subtitle">Total $<span class="total_price"></span>.  Seleccioná un método de pago</h6>
+						    <h6 class="card-subtitle">Total $ <span class="total_price"></span>.  Seleccioná un método de pago</h6>
 						    <div class="row card-row payment_method pl-3 pr-3">
 						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !$data['bank_enable'] ? 'checked': '' ?>/>
@@ -218,7 +218,7 @@
 					        <label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(event,this)">
 					          <input type="radio" class="" id="dues_1" name="payment_dues" value="1" required checked />
 				          	<span class="h4"> 1 cuota</span><br>
-				          	<p class="mt-2 text-small">1 cuota de <?= str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))) ?></p>
+				          	<p class="mt-2 text-small">1 cuota de $ <?= \price_format($total) ?></p>
 				          </label>						    	
 						    <?php foreach($legends as $legend): ?>
 						    	<?php if($total >= $legend['Legend']['min_sale']):?>
@@ -231,8 +231,7 @@
                 ], [
                     $legend['Legend']['dues'],
                     $legend['Legend']['interest'],
-                    str_replace(',00','',$this->Number->currency(
-                    	ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']), 'ARS', array('places' => 2)))
+                    '$ ' . \price_format(ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']))
                 ],
                 $legend['Legend']['title']) ?></p>
 				        	</label>

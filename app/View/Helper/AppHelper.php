@@ -135,13 +135,7 @@ class AppHelper extends Helper {
       $price = $old_price;
     }
 
-    /*if (!empty($item['price'])){
-      $str.= '$'. \price_format($item['price']);
-      if (!empty(@$item['old_price']) && price_format($item['price']) !== price_format($item['old_price'])){
-        $str.= '<span class="old_price">$'.\price_format($item['old_price']).'</span>' . $price;
-      }
-    }*/
-    // price
+   // price
     $method = $item['bank_discount'] > $item['mp_discount'] ? 
       'transferencia' :
       'mercadopago';
