@@ -126,7 +126,7 @@ class AppHelper extends Helper {
     return $str;
   }
 
-  function show_prices_dues($legends, $item){
+  function show_prices_dues($legends, $item, $noprice = false){
     $price = (float) @$item['price'];
     $old_price = (float) @$item['old_price'];
     $str = '';
@@ -143,23 +143,25 @@ class AppHelper extends Helper {
     }*/
 
     // price
-    if(@$item['mp_discount'] || @$item['bank_discount']) {
-      $max = $item['bank_discount'] > $item['mp_discount'] ? 
-        $item['bank_discount'] :
-        $item['mp_discount'];
-      $new_price = ceil(round($price * (1 - (float) $max / 100)));
-      $str.= '
-        <span class="text-success">-' . $max . '%</span>
-        <span class="old_price"> $ '.\price_format($price) . '</span> 
-        <span> $ ' . \price_format($new_price) . '</span>
-        ';
-    } else {
-      if(!empty($item['old_price']) && abs($price-$old_price) === 0) {
-        $str.= '<span class="old_price"> $ '.\price_format($old_price) . '</span>';  
+    if(!$noprice) {
+      if(@$item['mp_discount'] || @$item['bank_discount']) {
+        $max = $item['bank_discount'] > $item['mp_discount'] ? 
+          $item['bank_discount'] :
+          $item['mp_discount'];
+        $new_price = ceil(round($price * (1 - (float) $max / 100)));
+        $str.= '
+          <span class="text-success">-' . $max . '%</span>
+          <span class="old_price"> $ '.\price_format($price) . '</span> 
+          <span> $ ' . \price_format($new_price) . '</span>
+          ';
+      } else {
+        if(!empty($item['old_price']) && abs($price-$old_price) === 0) {
+          $str.= '<span class="old_price"> $ '.\price_format($old_price) . '</span>';  
+        }
+        $str.= '<span> $ ' . \price_format($price) . '</span>';  
       }
-      $str.= '<span> $ ' . \price_format($price) . '</span>';  
     }
-
+    
     //$str.='<div class="legends-spacer"></div>';
     // discounts
     $str.='<div class="legends-container"><div class="legends">';
