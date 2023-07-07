@@ -886,7 +886,7 @@ align-items: center;}
   display: inline-block;
   width: 100%;
   min-width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center center;
   margin: 0 auto;
   transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
