@@ -159,10 +159,10 @@ class AppHelper extends Helper {
     // discounts
     $str.='<div class="legends">';
     if($item['mp_discount']){
-      $str.= "<span class='text-legend'><span class='text-success' title='Abonando con mercadopago'><i class='fa fa-credit-card'></i> -". $item['mp_discount'] ."%</span><span>$ " .\price_format(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))))."</span></span>";
+      $str.= "<span class='text-legend'><span class='text-success' title='Abonando con mercadopago'><i class='fa fa-credit-card'></i> -". $item['mp_discount'] ."%</span> <span> $ " .\price_format(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))))."</span></span>";
     }
     if(@$item['bank_discount']){
-      $str.= "<span class='text-legend'><span class='text-success' title='Abonando con transferencia'><i class='fa fa-bank'></i> -". $item['bank_discount'] ."%</span><span>$ " .\price_format(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))))."</span></span>";
+      $str.= "<span class='text-legend'><span class='text-success' title='Abonando con transferencia'><i class='fa fa-bank'></i> -". $item['bank_discount'] ."%</span> <span> $ " .\price_format(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))))."</span></span>";
     }
 
     // dues
@@ -170,7 +170,7 @@ class AppHelper extends Helper {
       $legend = $legends[$i];
       $interest = (float) $legend['Legend']['interest'];
       $min_sale = (float) $legend['Legend']['min_sale'];
-      $formatted_price = str_replace(',00','',$this->Number->currency(ceil($price/$legend['Legend']['dues']), 'ARS', array('places' => 2)));
+      //$formatted_price = str_replace(',00','',$this->Number->currency(ceil($price/$legend['Legend']['dues']), 'ARS', array('places' => 2)));
 
       $wprice = $price;
 
@@ -184,7 +184,7 @@ class AppHelper extends Helper {
         $str.= '<span class="text-legend">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
           $legend['Legend']['dues'],
           $legend['Legend']['interest'],
-          '<span class="text-success">' . @str_replace(',00','',$this->Number->currency(ceil((!empty($interest) ? round($wprice * (1 + (float) $legend['Legend']['interest'] / 100)) : $wprice)/$legend['Legend']['dues']), 'ARS', array('places' => 2))) . '</span>'
+          '<span class="text-success"> $ ' . \price_format(ceil((!empty($interest) ? round($wprice * (1 + (float) $legend['Legend']['interest'] / 100)) : $wprice)/$legend['Legend']['dues'])) . '</span>'
         ],
         $legend['Legend']['title']) . '</span>';
       }
