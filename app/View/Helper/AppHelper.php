@@ -142,6 +142,10 @@ class AppHelper extends Helper {
       }
     }*/
     // price
+    $method = $item['bank_discount'] > $item['mp_discount'] ? 
+      'transferencia' :
+      'mercadopago';
+
     if(!$noprice) {
       if(@$item['mp_discount'] || @$item['bank_discount']) {
         $max = $item['bank_discount'] > $item['mp_discount'] ? 
@@ -149,9 +153,10 @@ class AppHelper extends Helper {
           $item['mp_discount'];
         $new_price = ceil(round($price * (1 - (float) $max / 100)));
         $str.= '
-          <span class="text-success">-' . $max . '%</span>
+          <span class="badge badge-success">-' . $max . '%</span>
           <span class="old_price"> $ ' . \price_format($price) . '</span>
-          <span class="price_strong"> $ ' . \price_format($new_price) . '</span>
+          <span class="price_strong"> $ ' . \price_format($new_price) . '</span> 
+          <span><small>con ' . $method . '</small></span>
           ';
       } else {
         if(!empty($item['old_price']) && abs($price-$old_price) === 0) {
@@ -164,11 +169,11 @@ class AppHelper extends Helper {
     //$str.='<div class="legends-spacer"></div>';
     // discounts
     $str.='<div class="legends-container"><div class="legends' . ($noprice ? ' legends-left' : '') . '">';
-    if(@$item['bank_discount']){
-      $str.= "<span class='text-legend full-w'><span class='text-success' title='Abonando con transferencia'><i class='fa fa-bank'></i> -". $item['bank_discount'] ."%</span> <span class='text-success price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))))."</span></span>";
+    if(@$item['bank_discount'] && $method !== 'transferencia'){
+      $str.= "<span class='text-legend full-w'><span class='badge badge-success' title='Abonando con transferencia'> -". $item['bank_discount'] ."%</span> <span><small>con transferencia</small></span> <span class='text-success price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))))."</span> </span>";
     }
-    if($item['mp_discount']){
-      $str.= "<span class='text-legend full-w'><span class='text-success' title='Abonando con mercadopago'><i class='fa fa-credit-card'></i> -". $item['mp_discount'] ."%</span> <span class='text-success price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))))."</span></span>";
+    if($item['mp_discount'] && $method !== 'mercadopago'){
+      $str.= "<span class='text-legend full-w'><span class='badge badge-success' title='Abonando con mercadopago'> -". $item['mp_discount'] ."%</span> <span><small>con mercadopago</small></span> <span class='text-success price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))))."</span> </span>";
     }
 
     // dues
@@ -187,7 +192,7 @@ class AppHelper extends Helper {
       if($price >= $min_sale) {
         //$status = intval($legend['Legend']['interest']) ? 'warning' : 'info';
         //$str.= "<span class='badge badge-{$status}'>". $legend['Legend']['dues'] ." cuotas</span>";
-        $str.= '<span class="text-legend"><i class="fa fa-credit-card text-success"></i> ' . @str_replace(['{cuotas}','{interes}','{monto}'], [
+        $str.= '<span class="text-legend">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
           $legend['Legend']['dues'],
           $legend['Legend']['interest'],
           '<span class="text-success price_strong"> $ ' . \price_format(ceil((!empty($interest) ? round($wprice * (1 + (float) $legend['Legend']['interest'] / 100)) : $wprice)/$legend['Legend']['dues'])) . '</span>'

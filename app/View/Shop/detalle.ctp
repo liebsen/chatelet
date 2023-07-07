@@ -115,11 +115,24 @@
             <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
                 <h1><?php echo $product['name'];?></h1>
                 <p class="text-muted"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
-                <?php  if(!empty(ceil($product['old_price'])) && abs($product['price'])-$product['old_price'] > 0) {
-                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($product['old_price']) ."'>$ ".\price_format(ceil($product['old_price'])). "</span>
-                           ahora <div><span class='price'>$ ". \price_format(ceil($product['price']))."</span></div>";
+                <?php  
+                $price = @$product['price'];
+                $old_price = @$product['old_price'];
+                $max = 0;
+                if(!empty($product['bank_discount']) || !empty($product['bank_discount'])){
+                    $method = $product['bank_discount'] > $product['mp_discount'] ? 
+                      'transferencia' :
+                      'mercadopago';
+                    $max = $product['bank_discount'] > $product['mp_discount'] ? 
+                      $product['bank_discount'] :
+                      $product['mp_discount'];
+                    $old_price = $price;
+                    $price = ceil(round($price * (1 - (float) $max / 100)));
+                }
+                if(!empty($old_price) && abs($price-$old_price) > 0) {
+                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'>$ ".\price_format(ceil($old_price)). "</span> ahora <div>" . ($max ? '<span class="badge badge-success">-'.$max.'%</span> ' : '') . "<span><small> con " . $method . "</small></span> <span class='price'>$ ". \price_format(ceil($price))."</span></div>";
                     }else{
-                      echo  "<span id='price' class='price' data-price='".'$ '. ceil($product['price']) ."'>$ ".\price_format(ceil($product['price'])). "</span>";
+                      echo  "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)). "</span>";
                  }?>
                  <div class="mt-0 tags-start">
                     <?= $this->App->show_prices_dues($legends, $product, true) ?>
