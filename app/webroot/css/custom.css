@@ -1765,9 +1765,7 @@ span.out{
 
 .legends {
   display: inline-block;
-  border: 1px solid #ddd;
-  background-color: #eaeaea;
-  border-radius: 1.5rem;
+  border-top: 1px solid #ddd;
   padding: 0.5rem 0.75rem;
   margin-top: 0.25rem;
 }
@@ -1782,8 +1780,7 @@ span.out{
   text-align: left;
   color: #666!important;
   line-height: 1.333;
-  font-size: 0.9rem;
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
+  font-size: 1rem;
 }
 
 .margin-auto {

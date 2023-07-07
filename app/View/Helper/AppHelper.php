@@ -141,7 +141,6 @@ class AppHelper extends Helper {
         $str.= '<span class="old_price">$'.\price_format($item['old_price']).'</span>' . $price;
       }
     }*/
-
     // price
     if(!$noprice) {
       if(@$item['mp_discount'] || @$item['bank_discount']) {
@@ -151,17 +150,17 @@ class AppHelper extends Helper {
         $new_price = ceil(round($price * (1 - (float) $max / 100)));
         $str.= '
           <span class="text-success">-' . $max . '%</span>
-          <span class="old_price"> $ '.\price_format($price) . '</span> 
+          <span class="old_price"> $ ' . \price_format($price) . '</span>
           <span> $ ' . \price_format($new_price) . '</span>
           ';
       } else {
         if(!empty($item['old_price']) && abs($price-$old_price) === 0) {
-          $str.= '<span class="old_price"> $ '.\price_format($old_price) . '</span>';  
+          $str.= '<span class="old_price"> $ '.\price_format($old_price) . '</span>';
         }
-        $str.= '<span> $ ' . \price_format($price) . '</span>';  
+        $str.= '<span> $ ' . \price_format($price) . '</span>';
       }
     }
-    
+
     //$str.='<div class="legends-spacer"></div>';
     // discounts
     $str.='<div class="legends-container"><div class="legends">';

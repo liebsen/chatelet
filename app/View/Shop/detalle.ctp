@@ -120,8 +120,7 @@
                            str_replace(',00','',$this->Number->currency(ceil($product['old_price']), 'ARS', array('places' => 2))). "</span>
                            ahora <div><span class='price'>". str_replace(',00','',$this->Number->currency(ceil($product['price']),'ARS', array('places' => 2)))."</span></div>";
                     }else{
-                      echo  "<span id='price' class='price' data-price='".'$'. ceil($product['price']) ."'>".
-                            str_replace(',00','',$this->Number->currency(ceil($product['price']), 'ARS', array(
+                      echo  "<span id='price' class='price' data-price='".'$'. ceil($product['price']) ."'>".str_replace(',00','',$this->Number->currency(ceil($product['price']), 'ARS', array(
                             'places' => 2))). "</span>";
                  }?>
                  <div class="mt-0 tags-start">
@@ -324,10 +323,6 @@
 
     </div>
 </div><!-- /.modal -->
-
-
-
-
 <style>
 .verifying-stock {
     position: absolute;
@@ -408,6 +403,4 @@ $(function(){
     */
 })
 </script>
-<form action="/chatelet-new/users/login" id="ProductLoginForm" method="post">
-
-              </form>
+<form action="/chatelet-new/users/login" id="ProductLoginForm" method="post"></form>
