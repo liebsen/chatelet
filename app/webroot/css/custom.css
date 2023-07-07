@@ -821,8 +821,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   text-align: right;
   color: #666;
   font-weight: 500; 
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;  
+  /*margin-left: 0.5rem;
+  margin-right: 0.5rem;  */
 }
 
 #listShop a .hover {
@@ -1787,6 +1787,21 @@ span.out{
   color: #666!important;
   line-height: 1.5;
   font-size: 1rem;
+}
+
+.text-legend .badge {
+  position: relative;
+  top: -3px;
+}
+
+.text-legend .badge {
+  position: relative;
+  top: -6px;
+}
+
+.text-legend .badge.ml-1 {
+  position: relative;
+  top: -2px;
 }
 
 .text-legend.full-w {

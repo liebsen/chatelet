@@ -139,6 +139,10 @@ html, body {
 	justify-content: center;
 }
 
+.justify-content-start {
+	justify-content: flex-start;
+}
+
 .items-center {
 	align-items: center;
 }
