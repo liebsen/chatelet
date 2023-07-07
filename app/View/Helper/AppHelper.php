@@ -140,24 +140,25 @@ class AppHelper extends Helper {
 
     // price
     if(@$item['mp_discount'] || @$item['bank_discount']) {
-      $max = $item['mp_discount'];
-      if($item['bank_discount'] > $max) {
-        $max = $item['bank_discount'];
-      }
+      $max = $item['bank_discount'] > $item['mp_discount'] ? 
+        $item['bank_discount'] :
+        $item['mp_discount'];
       $new_price = ceil(round($price * (1 - (float) $max / 100)));
       $str.= '
         <span class="text-success">-' . $max . '%</span>
-        <span class="old_price">$ '.\price_format($price) . '</span> 
+        <span class="old_price"> $ '.\price_format($price) . '</span> 
         <span>$ ' . \price_format($new_price) . '</span>
         ';
     } else {
-      $str.= '
-        <span class="old_price">$ '.\price_format(@$item['old_price']) . '</span> 
-        <span>$ ' . \price_format(@$item['old_price']) . '</span>';
+      if(@$item['old_price'] !== @$item['price']) {
+        $str.= '<span class="old_price"> $ '.\price_format(@$item['old_price']) . '</span>';  
+      }
+      $str.= '<span>$ ' . \price_format(@$item['price']) . '</span>';  
     }
 
+    //$str.='<div class="legends-spacer"></div>';
     // discounts
-    $str.='<div class="legends">';
+    $str.='<div class="legends-container"><div class="legends">';
     if($item['mp_discount']){
       $str.= "<span class='text-legend'><span class='text-success' title='Abonando con mercadopago'><i class='fa fa-credit-card'></i> -". $item['mp_discount'] ."%</span> <span> $ " .\price_format(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))))."</span></span>";
     }
@@ -189,7 +190,7 @@ class AppHelper extends Helper {
         $legend['Legend']['title']) . '</span>';
       }
     }
-    $str.= '</div>';
+    $str.= '</div></div>';
     return $str;
   }
 
