@@ -115,13 +115,11 @@
             <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
                 <h1><?php echo $product['name'];?></h1>
                 <p class="text-muted"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
-                <?php  if(!empty(ceil($product['old_price'])) && ceil($product['price'])!==ceil($product['old_price'])) {
-                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($product['old_price']) ."'>".
-                           str_replace(',00','',$this->Number->currency(ceil($product['old_price']), 'ARS', array('places' => 2))). "</span>
-                           ahora <div><span class='price'>". str_replace(',00','',$this->Number->currency(ceil($product['price']),'ARS', array('places' => 2)))."</span></div>";
+                <?php  if(!empty(ceil($product['old_price'])) && abs($product['price'])-$product['old_price'] > 0) {
+                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($product['old_price']) ."'>$ ".\price_format(ceil($product['old_price'])). "</span>
+                           ahora <div><span class='price'>$ ". \price_format(ceil($product['price']))."</span></div>";
                     }else{
-                      echo  "<span id='price' class='price' data-price='".'$'. ceil($product['price']) ."'>".str_replace(',00','',$this->Number->currency(ceil($product['price']), 'ARS', array(
-                            'places' => 2))). "</span>";
+                      echo  "<span id='price' class='price' data-price='".'$ '. ceil($product['price']) ."'>$ ".\price_format(ceil($product['price'])). "</span>";
                  }?>
                  <div class="mt-0 tags-start">
                     <?= $this->App->show_prices_dues($legends, $product, true) ?>
