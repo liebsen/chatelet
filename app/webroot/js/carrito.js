@@ -246,6 +246,7 @@ $(document).ready(function() {
 			size: item.size,
 			alias: item.alias,
 		}
+		
 		addCart(data, e.target, 'Modificando...')
 	})
 	

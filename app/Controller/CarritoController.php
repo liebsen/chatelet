@@ -619,6 +619,7 @@ class CarritoController extends AppController
 
 	public function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
+
 		$total=0;
 		$total_wo_discount = 0;
 		// VAR - Validate
@@ -646,6 +647,8 @@ class CarritoController extends AppController
 		$bank_discount_enable = @$map['Setting']['value'];
 		$map = $this->Setting->findById('bank_discount');
 		$bank_discount = @$map['Setting']['value'];
+
+		error_log('payment method: ' . $user['payment_method']);
 
 		// check if payment method is bank and bank payment is not available
 		if (!empty($user['payment_method']) && $user['payment_method'] === 'bank' && !$bank_enable) {
@@ -789,9 +792,9 @@ class CarritoController extends AppController
 	  // Check bank paying method
 	  if ($user['payment_method'] === 'bank') {
 	  	if($bank_discount_enable && $bank_discount) {
-	  		error_log('suming applying bank');
+	  		//error_log('suming applying bank');
 	  		$bank_bonus = round($total_wo_discount * ($bank_discount / 100), 2);
-	  		error_log('suming applying (bank): '.$bank_bonus);
+	  		error_log('bank bonus: '.$bank_bonus);
 	  	}
 	  }
 
@@ -812,12 +815,12 @@ class CarritoController extends AppController
 		}
 
 	  if ($coupon_bonus) {
-	  	$total-= $coupon_bonus;
+	  	//$total-= $coupon_bonus;
 	  	error_log('suming total (coupon bonus): '.$total);
 	  }
 
 	  if ($bank_bonus) {
-	  	$total-= $bank_bonus;
+	  	//$total-= $bank_bonus;
 	  	error_log('suming total (bank bonus): '.$total);
 	  }
 
@@ -957,6 +960,14 @@ class CarritoController extends AppController
 		}
 	}
 
+	public function preference(){
+		$this->autoRender = false;
+		foreach($this->request->data as $name => $value) {
+			$this->Session->write($name, $value);
+		}
+		return json_encode(array('success' => true));
+	}
+
 	public function empty($row = null) {
 		$this->autoRender = false;
 		$this->Session->delete('Carro');
@@ -1028,6 +1039,8 @@ class CarritoController extends AppController
 				// $carro = array_fill(count($carro), $this->request->data['count'], $product);
 				// error_log('[carrito] '.json_encode($filter));
 				// error_log('[carrito] '.json_encode($this->filter($filter)));
+
+				// filter(1)
 				$carro = $this->filter($filter);
 
 				if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
@@ -1075,11 +1088,20 @@ class CarritoController extends AppController
 	}
 
 	private function filter($carro) {
+		$payment_method = $this->Session->read('payment_method') ?: 'mercadopago';
 		if (empty($carro)) {
 			$carro = $this->Session->read('Carro');
 		}
+
 		$groups = [];
 		$counts = [];
+		$map = $this->Setting->findById('bank_enable');
+		$bank_enable = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_discount_enable');
+		$bank_discount_enable = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_discount');
+		$bank_discount = @$map['Setting']['value'];
+
 		// $counted = [];
 		/*count prods */
 
@@ -1107,15 +1129,32 @@ class CarritoController extends AppController
 	        $carro[$key]['price'] = $item['discount'];
 	      }
 
-	      if (!empty($item['mp_discount']) && (float) @$item['mp_discount'] > 0) {
-	      	$carro[$key]['mp_price'] = ceil(round($carro[$key]['price'] * (1 - (float) $item['mp_discount'] / 100)));
-	      	$carro[$key]['mp_bonus']+= ceil(round($carro[$key]['price'] * ((float) $item['mp_discount'] / 100)));
+	      if (
+	      	$payment_method === 'mercadopago' && 
+	      	!empty($item['mp_discount']) && 
+	      	(float) @$item['mp_discount'] > 0
+	      ) {
+					$carro[$key]['old_price'] = $item['price'];
+	        $carro[$key]['price'] = ceil(round($carro[$key]['price'] * (1 - (float) $item['mp_discount'] / 100)));
 	      }
 
-	      if (!empty($item['bank_discount']) && (float) @$item['bank_discount'] > 0) {
-	      	$carro[$key]['bank_price'] = ceil(round($carro[$key]['price'] * (1 - (float) $item['bank_discount'] / 100)));
-	      	$carro[$key]['bank_bonus']+= ceil(round($carro[$key]['price'] * ((float) $item['bank_discount'] / 100)));
-	      }
+	      if($payment_method === 'bank') {
+		      if (
+		      	!empty($item['bank_discount']) && 
+		      	(float) @$item['bank_discount'] > 0
+		      ) {
+						$carro[$key]['old_price'] = $item['price'];
+		        $carro[$key]['price'] = ceil(round($carro[$key]['price'] * (1 - (float) $item['bank_discount'] / 100)));
+		      } else {
+		      	if ($bank_enable &&$bank_discount_enable) {
+							$carro[$key]['old_price'] = $item['price'];
+			        $carro[$key]['price'] = ceil(round($carro[$key]['price'] * (1 - (float) $bank_discount / 100)));
+			      }
+		      }
+		    }
+
+	      
+
 
 	      $carro[$key]['uid'] = $key;
 			
@@ -1176,52 +1215,6 @@ class CarritoController extends AppController
 			file_put_contents(__DIR__.'/../logs/sorted.json', json_encode($debug, JSON_PRETTY_PRINT));
 		}
 
-
-		/*count promos */
-		/*
-		foreach($carro as $item) {
-			if (!empty($item['promo'])) {
-				if (!isset($promos[$item['promo']])) {
-					$parts = explode('x', $item['promo']);
-					$promo_val = intval($parts[0]);
-					$promos[$item['promo']] = floor($groups[$item['promo']] / $promo_val);
-				}
-			}
-		} */
-		/*set promos prices if exist */
-		/*
-		foreach($carro as $key => $item) {
-			if (!empty($item['promo'])) {
-				$parts = explode('x', $item['promo']);
-				$promo_val = intval($parts[0]);
-				$promo_min = intval($parts[1]);
-				if ($promos[$item['id']]) {
-					if (!isset($item['old_price'])) {
-	          $carro[$key]['old_price'] = $item['price'];
-	          $carro[$key]['price'] = round($promo_min / $promo_val * $item['price']);
-	          error_log('[carrito] '.$item['price']);
-						if (!isset($counted[$item['id']])) {
-							$counted[$item['id']] = 0;
-						}
-						$counted[$item['id']]++;
-						if ($counted[$item['id']] % $promo_val === 0) {
-							$promos[$item['id']]--;
-						}
-					}
-				} else {
-					if (isset($item['old_price'])) {
-						$carro[$key]['price'] = $item['old_price'];
-						unset($carro[$key]['old_price']);
-					}					
-				}
-			}
-			*/
-			/* if (empty($product['old_price']) && !empty($product['discount']) && (float)@$product['discount']>0) {
-				$product['old_price'] = $product['price'];
-        $product['price'] = $product['discount'];
-      }	
-		}*/		
-		// error_log('[carrito] '.json_encode($carro));
 		return $carro;
 	}
 
@@ -1246,6 +1239,7 @@ class CarritoController extends AppController
 		}
 		// $this->Session->write('Carro', $this->get_computed($aux));
 		if (count($data)) {
+			// filter(2)
 			$this->Session->write('Carro', $this->filter($data));
 		} else {
 			$this->Session->delete('Carro');

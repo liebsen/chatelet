@@ -26,7 +26,13 @@ function checkCount(value) {
 function addCart(data, button, text) {
 	$(button).addClass('adding')
 	$(button).text(text || 'Agregando...')
-	$.post('/carrito/add', $.param(data))
+	$.post('/carrito/add', $.param({
+			...data,
+			...{
+				payment_method: localStorage.getItem('payment_method'),
+				payment_dues: localStorage.getItem('payment_dues'),
+			}
+		}))
 		.success(function(res) {
 			if (res.success) {
 				window.dataLayer = window.dataLayer || []

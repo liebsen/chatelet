@@ -1,6 +1,20 @@
 var last_selected = ''
 var dues_selected = ''
-
+var save_preference = (data) => {
+	localStorage.setItem(data.name, data.value)
+  $.post('/carrito/preference', $.param(data))
+	  .success(function(res) {
+	    if (res.success) {
+	    	console.log('preference ok!')
+	    }
+	  })
+	  .fail(function() {
+	    $.growl.error({
+	      title: 'Ocurrio un error al agregar el producto al carrito',
+	      message: 'Por favor, intente nuevamente'
+	    });
+  }); 
+}
 
 var getSubtotal = (payment_method) => {
 	var subtotal = 0
@@ -66,10 +80,12 @@ var calculateTotal = (settings) => {
 }
 
 var select_radio = (name, value) => {
-	const e = $(`input[name=${name}][value=${value}]`)
-	e.prop("checked",true)
-	$(`.${name} .option-rounded`).removeClass('is-selected')
-	e.parent().addClass('is-selected')
+  const e = $(`input[name=${name}][value=${value}]`)
+  e.prop("checked",true)
+  $(`.${name} .option-rounded`).removeClass('is-selected')
+  e.parent().addClass('is-selected')
+
+  save_preference({name: name,value: value})
 }
 
 var select_dues = (e,item) => {
@@ -92,7 +108,7 @@ var select_dues = (e,item) => {
   	payment_method: 'mercadopago',
   })
   onSuccessAlert(`${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
-  localStorage.setItem('pd', dues_selected)
+  save_preference({name: 'payment_dues',value: dues_selected})
 	$('.payment_dues .option-rounded').removeClass('is-selected is-secondary')
 	$('.payment_dues .option-rounded').addClass('is-secondary')
 	$(item).addClass('is-selected')
@@ -126,7 +142,7 @@ var select_payment = (e,item) => {
   })
 
   onSuccessAlert((selected === 'bank' ? 'CBU/Alias' : 'Mercadopago'), '✓ Método de pago seleccionado');
-  localStorage.setItem('pm', selected)
+  save_preference({name: 'payment_method',value: selected})
 	$('.payment_method .option-rounded').removeClass('is-selected is-secondary')
 	$('.payment_method .option-rounded').addClass('is-secondary')
 	$(item).addClass('is-selected')
