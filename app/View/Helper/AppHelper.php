@@ -127,9 +127,13 @@ class AppHelper extends Helper {
   }
 
   function show_prices_dues($legends, $item){
-    $price = (float) $item['price'];
+    $price = (float) @$item['price'];
+    $old_price = (float) @$item['old_price'];
     $str = '';
-    $old_price = @$item['old_price'];
+
+    if(empty($price)) {
+      $price = $old_price;
+    }
 
     /*if (!empty($item['price'])){
       $str.= '$'. \price_format($item['price']);
@@ -147,13 +151,13 @@ class AppHelper extends Helper {
       $str.= '
         <span class="text-success">-' . $max . '%</span>
         <span class="old_price"> $ '.\price_format($price) . '</span> 
-        <span>$ ' . \price_format($new_price) . '</span>
+        <span> $ ' . \price_format($new_price) . '</span>
         ';
     } else {
-      if(@$item['old_price'] !== @$item['price']) {
-        $str.= '<span class="old_price"> $ '.\price_format(@$item['old_price']) . '</span>';  
+      if(!empty($item['old_price']) && abs($price-$old_price) === 0) {
+        $str.= '<span class="old_price"> $ '.\price_format($old_price) . '</span>';  
       }
-      $str.= '<span>$ ' . \price_format(@$item['price']) . '</span>';  
+      $str.= '<span> $ ' . \price_format($price) . '</span>';  
     }
 
     //$str.='<div class="legends-spacer"></div>';
