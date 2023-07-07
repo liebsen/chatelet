@@ -1771,21 +1771,27 @@ span.out{
   background-color: #ebebeb;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  text-align: center;
 }
 
 .legends.legends-left {
   text-align: left;
-  padding-left: 1rem;
+}
+
+.price_strong {
+  font-weight: 600;
 }
 
 .text-legend {
   display: inline-block;
-  text-align: left;
   color: #666!important;
-  line-height: 1.333;
+  line-height: 1.5;
   font-size: 1rem;
 }
 
+.text-legend.full-w {
+  width: 100%;
+}
 .margin-auto {
   margin: auto;
 }
@@ -1833,8 +1839,8 @@ span.out{
 
 /* ribbons */
 .ribbon-container {
-  display: inline-block;
-  width: 100%;
+  /*display: inline-block;
+  width: 100%;*/
   position: relative;  
 }
 
@@ -2564,7 +2570,7 @@ span.count.is-empty {
     box-shadow: var(--box-shadow);
     /* box-shadow: var(--box-shadow); */
   }
-  #productOptions .product-list{
+  #productOptions .product-list .row {
     display: flex;
     flex-wrap: wrap;
   }
