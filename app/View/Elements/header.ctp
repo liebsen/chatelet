@@ -208,7 +208,7 @@
       </div>
     </div>
     <div class="row display-flex is-justify-center search-results">
-      <p class="results-text text-muted">¿Sin mucha inspiración? Probá con  remera, pantalón, malla, jersey, lino, algodón ...</p>
+      <p class="results-text text-muted">¿Qué estás buscando? Podés usar palabras clave como tipo de prenda ej: "remera", "pantalón", "malla" o tipo de tela ej: "jersey", "lino", "algodón" ...</p>
     </div>
     <div class="row display-flex is-justify-center search-more"></div>
   </div>

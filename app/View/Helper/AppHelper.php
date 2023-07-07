@@ -70,21 +70,16 @@ class AppHelper extends Helper {
       $url[] = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['name'])));
 
     }
-    $item_name = $item['name'];
-    $priceStr = '';
 
     if ($isProduct) {
       $url['action'] = 'producto';
-
-      if (!empty($item['price'])){
-        $priceStr = '$'. \price_format($item['price']);
-        if (!empty(@$item['old_price']) && price_format($item['price']) !== price_format($item['old_price'])){
-          $priceStr = '<span class="old_price">$'.\price_format($item['old_price']).'</span>' . $priceStr;
-        }
-      }
     } else {
       $url['action'] = 'productos';
     }
+
+    $item_name = $item['name'];
+    $priceStr = '';
+    $priceStr.= self::show_prices_dues($legends, $item);
 
     if(!$stock && $isProduct){
       $content.= '<div class="desc-cont">'.
@@ -92,7 +87,7 @@ class AppHelper extends Helper {
           '<small>'. $item['desc'] .'</small>'.
         '</div>'.
         '<div class="name">'.$item_name.'</div>' . 
-        '<div class="price-list">'. str_replace(',00','',$this->Number->currency($priceStr, 'ARS', array('places' => 2))) .'</div>
+        '<div class="price-list">'. $priceStr .'</div>
         </div>
       </div>';
       $str = '<div class="col-sm-6 col-md-4 col-lg-3 p-1">'.
@@ -121,20 +116,9 @@ class AppHelper extends Helper {
       }
       */
 
-
-      $legendStr = '';
-      if(!empty($legends)) {  
-        $legendStr.= '<div class="legends">';
-        $legendStr.= self::parse_legend_texts($legends, $item);
-
-
-        $legendStr.= '</div>';
-      }
-
       $str = '<div data-id="'.$item["id"].'" class="col-sm-6 col-md-4 col-lg-3 p-1 add-no-stock">'. 
          $this->Html->link(
-          $content. '<div class="name">'.$item_name.'</div><div class="price-list">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span>'.$legendStr.'
-        </div>',
+          $content. '<div class="name">'.$item_name.'</div><div class="price-list">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span></div>',
           $url,
           array('escape' => false)
         );
@@ -142,27 +126,46 @@ class AppHelper extends Helper {
     return $str;
   }
 
-  function parse_legend_texts($legends, $item){
+  function show_prices_dues($legends, $item){
     $price = (float) $item['price'];
     $str = '';
-    if($item['mp_discount'] || $item['bank_discount']) {
-      $str.= '<div class="prod-tags">';
-      if($item['mp_discount']){
-        $amount = str_replace(',00','',$this->Number->currency(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))), 'ARS', array('places' => 2)));
-        //$str.= "<span class='text-legend'><span class='text-success'>Con mercadopago {$amount}</span></span>";
-        $str.= "<span class='badge badge-success' title='{$amount} abonando con mercadopago'><i class='fa fa-credit-card'></i> ". $item['mp_discount'] ."%</span>";
-      }
+    $old_price = @$item['old_price'];
 
-      if($item['bank_discount']){
-        $amount = str_replace(',00','',$this->Number->currency(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))), 'ARS', array('places' => 2)));
-        //$str.= "<span class='text-legend text-success'><span class='text-success'>Con transferencia {$amount}</span></span>";
-        $str.= "<span class='badge badge-success' title='{$amount} abonando con transferencia'><i class='fa fa-bank'></i> ". $item['mp_discount'] ."%</span>";
+    /*if (!empty($item['price'])){
+      $str.= '$'. \price_format($item['price']);
+      if (!empty(@$item['old_price']) && price_format($item['price']) !== price_format($item['old_price'])){
+        $str.= '<span class="old_price">$'.\price_format($item['old_price']).'</span>' . $price;
       }
-      $str.= "</div>";
+    }*/
+
+    // price
+    if(@$item['mp_discount'] || @$item['bank_discount']) {
+      $max = $item['mp_discount'];
+      if($item['bank_discount'] > $max) {
+        $max = $item['bank_discount'];
+      }
+      $new_price = ceil(round($price * (1 - (float) $max / 100)));
+      $str.= '
+        <span class="text-success">-' . $max . '%</span>
+        <span class="old_price">$ '.\price_format($price) . '</span> 
+        <span>$ ' . \price_format($new_price) . '</span>
+        ';
+    } else {
+      $str.= '
+        <span class="old_price">$ '.\price_format(@$item['old_price']) . '</span> 
+        <span>$ ' . \price_format(@$item['old_price']) . '</span>';
     }
 
-    
+    // discounts
+    $str.='<div class="legends">';
+    if($item['mp_discount']){
+      $str.= "<span class='text-legend'><span class='text-success' title='Abonando con mercadopago'><i class='fa fa-credit-card'></i> -". $item['mp_discount'] ."%</span><span>$ " .\price_format(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))))."</span></span>";
+    }
+    if(@$item['bank_discount']){
+      $str.= "<span class='text-legend'><span class='text-success' title='Abonando con transferencia'><i class='fa fa-bank'></i> -". $item['bank_discount'] ."%</span><span>$ " .\price_format(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))))."</span></span>";
+    }
 
+    // dues
     for ($i=0; $i<count($legends); $i++) {
       $legend = $legends[$i];
       $interest = (float) $legend['Legend']['interest'];
@@ -185,11 +188,12 @@ class AppHelper extends Helper {
         ],
         $legend['Legend']['title']) . '</span>';
       }
-    }    
-
+    }
+    $str.= '</div>';
     return $str;
   }
 
+  /*
   function parse_legend_table($legends, $price){
     $price = (float) $price;
     $str = '';
@@ -219,5 +223,5 @@ class AppHelper extends Helper {
     }
     $str.= "</tbody></table>";
     return $str;
-  }
+  }*/
 }
