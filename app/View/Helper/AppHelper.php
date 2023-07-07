@@ -153,10 +153,9 @@ class AppHelper extends Helper {
           $item['mp_discount'];
         $new_price = ceil(round($price * (1 - (float) $max / 100)));
         $str.= '
-          <span class="badge badge-success">-' . $max . '%</span>
           <span class="old_price"> $ ' . \price_format($price) . '</span>
-          <span class="price_strong"> $ ' . \price_format($new_price) . '</span> 
-          <span><small>con ' . $method . '</small></span>
+          <span class="price_strong"> $ ' . \price_format($new_price) . '</span>           
+          <span class="badge badge-success">-' . $max . '% con ' . $method . '</span><span></span>
           ';
       } else {
         if(!empty($item['old_price']) && abs($price-$old_price) === 0) {
@@ -170,10 +169,10 @@ class AppHelper extends Helper {
     // discounts
     $str.='<div class="legends-container"><div class="legends' . ($noprice ? ' legends-left' : '') . '">';
     if(@$item['bank_discount'] && $method !== 'transferencia'){
-      $str.= "<span class='text-legend full-w'><span class='badge badge-success' title='Abonando con transferencia'> -". $item['bank_discount'] ."%</span> <span><small>con transferencia</small></span> <span class='text-success price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))))."</span> </span>";
+      $str.= "<span class='text-legend full-w'><span class='text-success price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))))."</span> <span class='badge badge-success' title='Abonando con transferencia'> -". $item['bank_discount'] ."% <span>con transferencia</span></span></span>";
     }
     if($item['mp_discount'] && $method !== 'mercadopago'){
-      $str.= "<span class='text-legend full-w'><span class='badge badge-success' title='Abonando con mercadopago'> -". $item['mp_discount'] ."%</span> <span><small>con mercadopago</small></span> <span class='text-success price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))))."</span> </span>";
+      $str.= "<span class='text-legend full-w'><span class='text-success price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))))."</span> <span class='badge badge-success' title='Abonando con mercadopago'> -". $item['mp_discount'] ."% <span>con mercadopago</span></span> </span>";
     }
 
     // dues

@@ -130,7 +130,7 @@
                     $price = ceil(round($price * (1 - (float) $max / 100)));
                 }
                 if(!empty($old_price) && abs($price-$old_price) > 0) {
-                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'>$ ".\price_format(ceil($old_price)). "</span> ahora <div>" . ($max ? '<span class="badge badge-success">-'.$max.'%</span> ' : '') . "<span><small> con " . $method . "</small></span> <span class='price'>$ ". \price_format(ceil($price))."</span></div>";
+                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'>$ ".\price_format(ceil($old_price)). "</span> ahora <div> <span class='price'>$ ". \price_format(ceil($price))."</span>" . ($max ? ' <span class="badge badge-success">-'.$max.'% <span> con ' . $method . '</span></span>' : '') . "</div>";
                     }else{
                       echo  "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)). "</span>";
                  }?>
