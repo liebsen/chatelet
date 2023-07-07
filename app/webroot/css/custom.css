@@ -1764,7 +1764,7 @@ span.out{
 }
 
 .legends {
-  display: inline;
+  display: inline-block;
   border: 1px solid #ddd;
   background-color: #eaeaea;
   border-radius: 1.5rem;
