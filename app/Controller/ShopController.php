@@ -558,6 +558,7 @@ class ShopController extends AppController {
 			$mp_price = 0;
 			$bank_price = 0;
 			$discounts = [];
+	    $legends = [];
 
 	    // dues
 	    for ($i=0; $i<count($legends_map); $i++) {

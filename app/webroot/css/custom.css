@@ -1619,6 +1619,7 @@ span.out{
 
 .search-item {
   opacity: 0;
+  margin-bottom: 1rem;
   /*flex: 1;*/
   animation-name: fadeIn;
   animation-duration: 1s;
@@ -1627,7 +1628,7 @@ span.out{
 }
 
 .search-item:nth-child(1) {
-    animation-delay: 0s;
+  animation-delay: 0s;
 }
 
 .search-item:nth-child(2) {
