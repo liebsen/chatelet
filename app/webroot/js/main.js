@@ -177,9 +177,9 @@ let apiSearch = (q) => {
       $.each(data.results, function(key, item) {    
         str += '<div class="col-sm-6 col-md-3 search-item animate fadeIn">' +
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 
-            '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.discount_label ? '<div class="ribbon small bottom-left sp2"><span>' + item.discount_label + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
+            '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.number_ribbon ? '<div class="ribbon small bottom-left sp2"><span>' + item.number_ribbon + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
             '<h2 class="text-center">'+`<span>${item.name}</span>`+'</h2>' + 
-            '<div class="price-list text-center mb-2">'+(item.old_price ? '<span class="old_price text-grey">$' + item.old_price + '</span>' : '') + '<span>$' + item.price + '</span></div>' + 
+            '<div class="price-list text-center mb-2">'+(item.old_price ? '<span class="old_price text-grey">$' + item.old_price + '</span>' : '') + '<span>$' + item.price + '</span>' + (item.info ? '<span class="text-success text-sm">'+item.info+'</span>' : '' ) + '</div>' + 
           '</a>' + 
         '</div>'
       })

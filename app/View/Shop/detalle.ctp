@@ -118,22 +118,14 @@
                 <?php  
                 $price = @$product['price'];
                 $old_price = @$product['old_price'];
-                $max = 0;
-                if(!empty($product['bank_discount']) || !empty($product['bank_discount'])){
-                    $method = $product['bank_discount'] > $product['mp_discount'] ? 
-                      'transferencia' :
-                      'mercadopago';
-                    $max = $product['bank_discount'] > $product['mp_discount'] ? 
-                      $product['bank_discount'] :
-                      $product['mp_discount'];
-                    $old_price = $price;
-                    $price = ceil(round($price * (1 - (float) $max / 100)));
-                }
+
                 if(!empty($old_price) && abs($price-$old_price) > 0) {
-                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'>$ ".\price_format(ceil($old_price)). "</span> ahora <div class=''> <span class='price'> $ ". \price_format(ceil($price))." </span> " . ($max ? ' <span class="badge badge-success">-'.$max.'% <span> con ' . $method . '</span></span>' : '') . "</div>";
-                    }else{
-                      echo  "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)). "</span>";
-                 }?>
+                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'>$ ".\price_format(ceil($old_price)). "</span> ahora <div class=''> <span class='price'> $ ". \price_format(ceil($price))." </span></div>";
+                }else{
+                      echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)). "</span>";
+                }
+
+                ?>
                  <div class="mt-0 tags-start">
                     <?= $this->App->show_prices_dues($legends, $product, true) ?>
                  </div>
@@ -264,11 +256,18 @@
                             )
                         );
 
-                $number_disc = 10;
+                $number_ribbon = 0;
 				if (isset($alt_product['discount_label_show'])){
-					$number_disc = (int)@$alt_product['discount_label_show'];
+					$number_ribbon = (int)@$alt_product['discount_label_show'];
 				}
-				$discount_flag = (@$alt_product['category_id']!='134' && !empty($number_disc))?'<div class="discount-flag">'.$number_disc.'% OFF</div>':'';
+                if (isset($alt_product['mp_discount']) && $alt_product['mp_discount'] > $number_ribbon){
+                  $number_ribbon = (int) @$alt_product['mp_discount'];
+                }
+                if (isset($alt_product['bank_discount']) && $alt_product['bank_discount'] > $number_ribbon){
+                  $number_ribbon = (int) @$alt_product['bank_discount'];
+                }
+
+				$discount_flag = (@$alt_product['category_id']!='134' && !empty($number_ribbon))?'<div class="discount-flag">'.$number_ribbon.'% OFF</div>':'';
                 $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
 
 
@@ -285,7 +284,7 @@
                             <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                             <div class="name"><?= $alt_product_name ?></div>
-                            <div class="price-list"><?= str_replace(',00','',$this->Number->currency(ceil($alt_product['price']), 'ARS', array('places' => 2))) ?></div>
+                            <div class="price-list"><?= \price_format(ceil($alt_product['price'])) ?></div>
                         </a>
                     </div>
                     <?php }else{ ?>
@@ -293,8 +292,21 @@
                       <div data-id="<?=$alt_product['id']?>" class="col-sm-6 col-md-4 col-lg-3 p-1 add-no-stock">
                         <a href="<?php echo $url ?>">
                             <div class="ribbon-container">
-                            <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
-                                <div class="ribbon bottom-left small sp1"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
+<?php 
+    $number_ribbon = 0;
+    
+    if (isset($alt_product['discount_label_show'])){
+      $number_ribbon = (int) @$alt_product['discount_label_show'];
+    }
+    if (isset($alt_product['mp_discount']) && $alt_product['mp_discount'] > $number_ribbon){
+      $number_ribbon = (int) @$alt_product['mp_discount'];
+    }
+    if (isset($alt_product['bank_discount']) && $alt_product['bank_discount'] > $number_ribbon){
+      $number_ribbon = (int) @$alt_product['bank_discount'];
+    }
+?><?php 
+                            if (!empty($number_ribbon)) :?>
+                                <div class="ribbon bottom-left small sp1"><span><?= $number_ribbon ?>% OFF</span></div>
                             <?php endif ?>
                             <?php if ($alt_product['promo'] !== '') :?>
                                 <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>

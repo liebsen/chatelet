@@ -541,22 +541,59 @@ class ShopController extends AppController {
 		]);
 
 		foreach($data as $item) {
-			$price = ceil($item['Product']['price']);
-			$result = [
-				'id' => $item['Product']['id'],
-				'category_id' => $item['Product']['category_id'],
-				'name' => $item['Product']['name'],
-				'desc' => $item['Product']['desc'],
-				'promo' => $item['Product']['promo'],
-				'discount_label' => intval($item['Product']['discount_label_show']),
-				'slug' => str_replace(' ','-',strtolower($item['Product']['desc'])),
-				'img_url' => Configure::read('imageUrlBase') . $item['Product']['img_url']
-			];
-			if (isset($item['Product']['discount']) && ceil($item['Product']['discount']) !== $price) {
-				$result['old_price'] = str_replace(',00','',number_format($price, 2, ',', '.'));
-				$price = $item['Product']['discount'];
+			$data = $item['Product'];
+			$price = ceil($data['price']);
+			$discount = ceil($data['discount']);
+			$old_price = null;
+			$number_ribbon = 0;
+			$mp_price = 0;
+			$bank_price = 0;
+			$info = null;
+
+			if (isset($discount) && abs($discount-$price) > 0) {
+				$old_price = $price;
+				$price = $discount;
 			}
-			$result['price'] = str_replace(',00','',number_format($price, 2, ',', '.'));
+
+      if(!empty(@$data['discount_label_show'])) {
+        $number_ribbon = $data['discount_label_show'];
+      }
+
+      if(!empty(@$data['mp_discount'])) {
+        $number_ribbon = $data['mp_discount'];
+        $mp_price = \price_format(ceil(round($price * (1 - (float) $data['mp_discount'] / 100))));
+      }
+
+      if(!empty(@$data['bank_discount'])) {
+        $number_ribbon = $data['bank_discount'];
+        $bank_price = \price_format(ceil(round($price * (1 - (float) $data['bank_discount'] / 100))));
+      }
+
+			$result = [
+				'id' => $data['id'],
+				'price' => \price_format($price),
+				'category_id' => $data['category_id'],
+				'name' => $data['name'],
+				'desc' => $data['desc'],
+				'promo' => $data['promo'],
+				'info' => $info,
+				'mp_discount' => $data['mp_discount'],
+				'bank_discount' => $data['bank_discount'],
+				'number_ribbon' => intval($number_ribbon),
+				'slug' => str_replace(' ','-',strtolower($data['desc'])),
+				'img_url' => Configure::read('imageUrlBase') . $data['img_url']
+			];
+
+			if(!empty($mp_price)){
+				$result['mp_price'] = \price_format($mp_price);
+			}
+			if(!empty($bank_price)){
+				$result['bank_price'] = \price_format($bank_price);
+			}
+			if(!empty($old_price)){
+				$result['old_price'] = \price_format($old_price);
+			}
+
 			$results[]= $result;
 		}
 

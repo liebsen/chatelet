@@ -1782,6 +1782,10 @@ span.out{
   font-weight: 600;
 }
 
+.text-sm {
+  font-size: 0.75rem;
+}
+
 .text-legend {
   display: inline-block;
   color: #666!important;
@@ -2377,11 +2381,11 @@ span.count.is-empty {
 
 .carrito-item-row .help > div {
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
   /*font-style: italic;*/
-  border-radius: 0.5rem;
+  border-radius: 1.5rem;
   background-color: #e10d74;
-  border: 6px solid white;
+  border: 8px solid white;
   color: white;
 }
 

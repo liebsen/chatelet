@@ -525,8 +525,8 @@ html, body {
 .modal-title {
 	color: white;
 	font-size: 1rem;
-	font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
-	/*font-style: italic;
+	/*font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
+	font-style: italic;
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
 
