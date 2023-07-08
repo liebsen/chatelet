@@ -518,10 +518,17 @@ class ShopController extends AppController {
 
 	public function search(){
 		$this->autoRender = false;
+
 		$this->loadModel('Product');
 		$this->loadModel('Search');
+		$this->loadModel('Legend');
 
-		$results = [];
+		// legends
+		$legends_map = $this->Legend->find('all', [
+			'conditions' => ['enabled' => 1],
+			'order' => ['Legend.dues ASC']
+		]);
+
 		$q = $this->request->data['q'];
 		$p = $this->request->data['p'] ? intval($this->request->data['p']) : 0;
 		$s = $this->request->data['s'] ? intval($this->request->data['s']) : 10;
@@ -540,48 +547,89 @@ class ShopController extends AppController {
 			'offset' => $s * $p
 		]);
 
+		$results = [];
+
 		foreach($data as $item) {
-			$data = $item['Product'];
-			$price = ceil($data['price']);
-			$discount = ceil($data['discount']);
+			$row = $item['Product'];
+			$price = ceil($row['price']);
+			$discount = ceil($row['discount']);
 			$old_price = null;
 			$number_ribbon = 0;
 			$mp_price = 0;
 			$bank_price = 0;
-			$info = null;
+			$discounts = [];
+
+	    // dues
+	    for ($i=0; $i<count($legends_map); $i++) {
+	      $legend = $legends_map[$i];
+	      $interest = (float) $legend['Legend']['interest'];
+	      $min_sale = (float) $legend['Legend']['min_sale'];
+	      //$formatted_price = str_replace(',00','',$this->Number->currency(ceil($price/$legend['Legend']['dues']), 'ARS', array('places' => 2)));
+
+	      $monto = $price;
+
+	      if(!empty($interest)){
+	        $monto = round($price * (1 + $interest / 100));
+	      }
+	      
+	      if($price >= $min_sale) {
+	        //$status = intval($legend['Legend']['interest']) ? 'warning' : 'info';
+	        //$str.= "<span class='badge badge-{$status}'>". $legend['Legend']['dues'] ." cuotas</span>";
+	        $legends[]= (object) [
+	        	'price' => ceil($monto / $legend['Legend']['dues']),
+	        	'text' => @str_replace(['{cuotas}','{interes}', '{monto}'], [$legend['Legend']['dues'], $legend['Legend']['interest'],''],$legend['Legend']['title'])
+	        ];
+	      }
+	    }
+
+	    if(!empty($row['bank_discount'])){
+	      $legends[]= (object) [
+	      	'price' => ceil(round($price * (1 - (float) $row['bank_discount'] / 100))),
+	      	'text' => 'transferencia',
+	      	'discount' => @$row['bank_discount']
+	      ];
+	    }
+
+	    if(!empty($row['mp_discount'])){
+	      $legends[]= (object) [
+	      	'price' => ceil(round($price * (1 - (float) $row['mp_discount'] / 100))),
+	      	'text' => 'mercadopago',
+	      	'discount' => @$row['mp_discount']
+	      ];
+	    }
 
 			if (isset($discount) && abs($discount-$price) > 0) {
 				$old_price = $price;
 				$price = $discount;
 			}
 
-      if(!empty(@$data['discount_label_show'])) {
-        $number_ribbon = $data['discount_label_show'];
+      if(!empty(@$row['discount_label_show'])) {
+        $number_ribbon = $row['discount_label_show'];
       }
 
-      if(!empty(@$data['mp_discount'])) {
-        $number_ribbon = $data['mp_discount'];
-        $mp_price = \price_format(ceil(round($price * (1 - (float) $data['mp_discount'] / 100))));
+      if(!empty(@$row['mp_discount'])) {
+        $number_ribbon = $row['mp_discount'];
+        $mp_price = \price_format(ceil(round($price * (1 - (float) $row['mp_discount'] / 100))));
       }
 
-      if(!empty(@$data['bank_discount'])) {
-        $number_ribbon = $data['bank_discount'];
-        $bank_price = \price_format(ceil(round($price * (1 - (float) $data['bank_discount'] / 100))));
+      if(!empty(@$row['bank_discount'])) {
+        $number_ribbon = $row['bank_discount'];
+        $bank_price = \price_format(ceil(round($price * (1 - (float) $row['bank_discount'] / 100))));
       }
 
 			$result = [
-				'id' => $data['id'],
+				'id' => $row['id'],
 				'price' => \price_format($price),
-				'category_id' => $data['category_id'],
-				'name' => $data['name'],
-				'desc' => $data['desc'],
-				'promo' => $data['promo'],
-				'info' => $info,
-				'mp_discount' => $data['mp_discount'],
-				'bank_discount' => $data['bank_discount'],
+				'category_id' => $row['category_id'],
+				'name' => $row['name'],
+				'desc' => $row['desc'],
+				'promo' => $row['promo'],
+				'legends' => $legends,
+				'mp_discount' => $row['mp_discount'],
+				'bank_discount' => $row['bank_discount'],
 				'number_ribbon' => intval($number_ribbon),
-				'slug' => str_replace(' ','-',strtolower($data['desc'])),
-				'img_url' => Configure::read('imageUrlBase') . $data['img_url']
+				'slug' => str_replace(' ','-',strtolower($row['desc'])),
+				'img_url' => Configure::read('imageUrlBase') . $row['img_url']
 			];
 
 			if(!empty($mp_price)){

@@ -1768,7 +1768,7 @@ span.out{
   border-top: 1px solid #ddd;
   padding: 0.5rem 0.75rem;
   margin-top: 0.25rem;
-  background-color: #efefef;
+  background-color: #f8f8f8;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   text-align: center;
@@ -1795,17 +1795,7 @@ span.out{
 
 .text-legend .badge {
   position: relative;
-  top: -3px;
-}
-
-.text-legend .badge {
-  position: relative;
-  top: -6px;
-}
-
-.text-legend .badge.ml-1 {
-  position: relative;
-  top: -2px;
+  top: -1px;
 }
 
 .text-legend.full-w {

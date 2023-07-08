@@ -1152,10 +1152,7 @@ class CarritoController extends AppController
 			      }
 		      }
 		    }
-
-	      
-
-
+		    
 	      $carro[$key]['uid'] = $key;
 			
 				if (!isset($groups[$item['promo']])) {

@@ -208,7 +208,10 @@
       </div>
     </div>
     <div class="row display-flex is-justify-center search-results">
-      <p class="results-text text-muted">¿Qué estás buscando? Podés usar palabras clave como tipo de prenda ej: "remera", "pantalón", "malla" o tipo de tela ej: "jersey", "lino", "algodón" ...</p>
+      <div class="content p-4" id="headhelp">
+        <h1>¿Qué estás buscando?</h1>
+        <p class="results-text text-muted"> Podés buscar por tipo de prenda, color, material ej: "remera", "pantalón", "malla", "jersey", "lino", "algodón", ... ¡Usa tu creatividad!</p>
+      </div>
     </div>
     <div class="row display-flex is-justify-center search-more"></div>
   </div>
