@@ -205,10 +205,13 @@ class CarritoController extends AppController
 		if (@$shipping_config['Setting']['value'] == 'min_price') {
 			$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['value'])) ? $this->parseTemplate($mapper['Setting']['value'], $vars) : '';
 			$this->set('text_shipping_min_price',$text_shipping_min_price);
-		}					
+		}
+
+		$this->Session->write('Carro', $this->update_cart());
+
 		$map = $this->Setting->findById('carrito_takeaway_text');
  		$carrito_takeaway_text = $map['Setting']['extra'];		
-		$this->set('sorted', $this->sort());
+		$this->set('sorted', $this->sort_cart());
 		$this->set('stores', $stores);
 		$this->set('carrito_takeaway_text', $carrito_takeaway_text);
 		$this->set('freeShipping', $freeShipping);
@@ -273,6 +276,7 @@ class CarritoController extends AppController
 	{
 		$data = array('count' => 0, 'price' => 0);
 		$items = $this->Session->read('Carro');
+
 		if ($items) {
 			foreach ($items as $key => $item) {
 				$data['count'] ++;
@@ -962,10 +966,12 @@ class CarritoController extends AppController
 
 	public function preference(){
 		$this->autoRender = false;
-		foreach($this->request->data as $name => $value) {
-			$this->Session->write($name, $value);
-		}
-		return json_encode(array('success' => true));
+		error_log('----------------'.$this->request->data['payment_method']);
+		$this->Session->write('payment_method', $this->request->data['payment_method']);
+		$carro = $this->update_cart();
+		$this->Session->write('Carro', $carro);
+
+		return json_encode(array('success' => true, 'data' => $carro));
 	}
 
 	public function empty($row = null) {
@@ -976,13 +982,14 @@ class CarritoController extends AppController
 	public function show($row = null) {
 		$this->autoRender = false;
 		echo '<pre>';
+		var_dump($this->Session->read('payment_method'));
 		var_dump($this->Session->read('Carro'));
 	}
 
 	public function sorted() {
 		$this->autoRender = false;
 		echo '<pre>';
-		var_dump($this->sort());
+		var_dump($this->sort_cart());
 	}
 
 	public function add() {
@@ -1041,34 +1048,61 @@ class CarritoController extends AppController
 				// error_log('[carrito] '.json_encode($this->filter($filter)));
 
 				// filter(1)
-				$carro = $this->filter($filter);
-
-				if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-					file_put_contents(__DIR__.'/../logs/carrito.json', json_encode($carro, JSON_PRETTY_PRINT));
-				}
-
-				$this->Session->write('Carro', $carro);
+				$this->Session->write('Carro', $this->update_cart($filter));
 				return json_encode(array('success' => true));
 			}
 		}
 		return json_encode(array('success' => false));
 	}
 
-	private function sort() {
+	private function sort_cart() {
 		$carro = $this->Session->read('Carro');
+		$payment_method = $this->Session->read('payment_method') ?: 'mercadopago';
+		$payment_dues = $this->Session->read('payment_dues') ?: '1';
 		$groups = [];
 		$sort = [];
-		if (!empty($carro)) {
+		error_log($payment_method);
 
+		if (!empty($carro)) {
 			foreach($carro as $key => $item) {
 				$criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
+				$price = @$item['price'];
+				$discount = 0;
+
+				if(!empty(@$item['discount'])) {
+					$old_price = $price;
+					$price = @$item['discount'];
+				}
+
+				if(!empty(@$item['discount_label_show'])) {
+					$old_price = $price;
+					$price = ceil(round($price * (1 - (float) @$item['discount_label_show'] / 100)));
+					$discount = @$item['discount_label_show'];
+				}
+
+				if(!empty(@$item['mp_discount']) && $payment_method === 'mercadopago') {
+					$old_price = $price;
+					$price = ceil(round($price * (1 - (float) @$item['mp_discount'] / 100)));
+					$discount = @$item['mp_discount'];
+				}
+				if(!empty(@$item['bank_discount']) && $payment_method === 'bank') {
+					$old_price = $price;
+					$price = ceil(round($price * (1 - (float) @$item['bank_discount'] / 100)));
+					$discount = @$item['bank_discount'];
+				}
+
+				$item['price'] = $price;
+				$item['old_price'] = $old_price;
+				$item['discount'] = $discount;
+
 				if (!isset($groups[$criteria])) {
 					$groups[$criteria] = 0;
 				}
+
 				$groups[$criteria]++;
 				if ($groups[$criteria] === 1) {
 					$item['count'] = 1;
-					$sort[$criteria] = $item;
+					$sort[$criteria] = (array) $item;
 				} else {
 					$sort[$criteria]['count'] = $groups[$criteria];
 					$sort[$criteria]['price']+= $item['price'];
@@ -1076,7 +1110,7 @@ class CarritoController extends AppController
 					if (!empty($item['promo_enabled'])) {
 						$sort[$criteria]['promo_enabled'] = $item['promo_enabled'];
 					}
-				}			
+				}
 			}
 		}
 
@@ -1087,8 +1121,10 @@ class CarritoController extends AppController
 		return $sort;
 	}
 
-	private function filter($carro) {
+	private function update_cart($carro=false) {
 		$payment_method = $this->Session->read('payment_method') ?: 'mercadopago';
+		error_log('********************'.$payment_method);
+
 		if (empty($carro)) {
 			$carro = $this->Session->read('Carro');
 		}
@@ -1107,8 +1143,6 @@ class CarritoController extends AppController
 
 		if (!empty($carro)) {
 			/* apply basic prices and fill promos data */
-			$mp_bonus = 0;
-			$bank_bonus = 0;
 			foreach($carro as $key => $item) {
 	      $prop = $this->ProductProperty->find('all', array('conditions' => array(
 	  			'product_id' => $item['id'],
@@ -1121,8 +1155,6 @@ class CarritoController extends AppController
 	  		}
 
 				$carro[$key]['original_price'] = $item['price'];
-				$carro[$key]['mp_bonus'] = 0;
-				$carro[$key]['bank_bonus'] = 0;
 
 				if (!empty($item['discount']) && (float) @$item['discount'] > 0) {
 					$carro[$key]['old_price'] = $item['price'];
@@ -1152,7 +1184,7 @@ class CarritoController extends AppController
 			      }
 		      }
 		    }
-		    
+
 	      $carro[$key]['uid'] = $key;
 			
 				if (!isset($groups[$item['promo']])) {
@@ -1163,22 +1195,16 @@ class CarritoController extends AppController
 				// $groups[$item['promo']]++;
 			}
 
-			//$carro['mp_bonus'] = $mp_bonus;
-			//$carro['bank_bonus'] = $bank_bonus;
-			$debug = [];
-
 			// appy promo qunatities
 			foreach($carro as $key => $item) {
 				$promo = $item['promo'];
 				if (!empty($promo)) {
-					$debug[] = "{$item['uid']} - {$item['name']} ({$promo})";
 					$parts = explode('x', $promo);
 					$promo_key = intval($parts[0]);
 					$promo_val = intval($parts[1]);
 					if (count($groups[$promo]) >= $promo_key) {
-						$debug[] = "applies bc promo list is: ".count($groups[$promo]);
 						$sorted = array_column($groups[$promo], 'price');
-						array_multisort($sorted, SORT_DESC, $groups[$promo]);
+						array_multisort_cart($sorted, SORT_DESC, $groups[$promo]);
 						$offset = $promo_key - $promo_val;
 						$refs = array_slice($groups[$promo], 0, $promo_val);
 						$refs_ids = [];
@@ -1186,7 +1212,6 @@ class CarritoController extends AppController
 							$refs_ids[] = $ref['uid'];
 						}
 						$frees = array_slice($groups[$promo], count($groups[$promo]) - $offset, $offset);
-						$debug[] = "items to free:".count($frees);
 						foreach ($frees as $j => $free) {
 							foreach ($carro as $k => $i) {
 								if($i['uid'] === $free['uid']) {
@@ -1194,22 +1219,15 @@ class CarritoController extends AppController
 									$carro[$k]['old_price'] = $i['price'];
 									$carro[$k]['price'] = 0;
 									$carro[$k]['promo_enabled'] = 1;
-									$debug[] = "setting free {$i['name']} ({$i['uid']})";
 									$groups[$promo] = array_filter($groups[$promo], function($item) use ($refs_ids) {
 										return !in_array($item['uid'], $refs_ids);
 									});
-									$debug[] = "(1)remove from promos id ".implode('-', $refs_ids);
-									$debug[] = "(1)promos count ".count($groups[$promo]);
 								}
 							}
 						}
 					}
 				}
 			}
-		}
-
-		if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-			file_put_contents(__DIR__.'/../logs/sorted.json', json_encode($debug, JSON_PRETTY_PRINT));
 		}
 
 		return $carro;
@@ -1237,7 +1255,7 @@ class CarritoController extends AppController
 		// $this->Session->write('Carro', $this->get_computed($aux));
 		if (count($data)) {
 			// filter(2)
-			$this->Session->write('Carro', $this->filter($data));
+			$this->Session->write('Carro', $this->update_cart($data));
 		} else {
 			$this->Session->delete('Carro');
 		}

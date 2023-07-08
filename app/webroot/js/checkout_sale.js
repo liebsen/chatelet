@@ -2,21 +2,10 @@ var last_selected = ''
 var dues_selected = ''
 var save_preference = (data) => {
 	localStorage.setItem(data.name, data.value)
-  $.post('/carrito/preference', $.param(data))
-	  .success(function(res) {
-	    if (res.success) {
-	    	console.log('preference ok!')
-	    }
-	  })
-	  .fail(function() {
-	    $.growl.error({
-	      title: 'Ocurrio un error al agregar el producto al carrito',
-	      message: 'Por favor, intente nuevamente'
-	    });
-  }); 
 }
 
-var getSubtotal = (payment_method) => {
+var getTotals = (payment_method) => {
+	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var subtotal = 0
 	carrito_items.map((e) => {
 		var price = e.price
@@ -28,15 +17,49 @@ var getSubtotal = (payment_method) => {
 		}
 		subtotal+= parseFloat(price)
 	})
+
+	$('.subtotal_price').text(formatNumber(subtotal))
+	var free_shipping = subtotal >= shipping_price
+	if(free_shipping) {
+		$('.paid-shipping-block').addClass('hidden')
+		$('.free-shipping-block').removeClass('hidden')
+	} else {
+		if (carrito.shipping_price) {
+			subtotal+= carrito.shipping_price
+		}
+		$('.free-shipping-block').addClass('hidden')
+		$('.paid-shipping-block').removeClass('hidden')
+	}
+	carrito.freeShipping = free_shipping
+	//console.log(carrito.freeShipping)
+	$('.total_price').text(formatNumber(subtotal))
+	localStorage.setItem('carrito', JSON.stringify(carrito))	
 	return subtotal
 }
 
-var calculateTotal = (settings) => {
+var checkTotals = (settings) => {
+	console.log('checkTotals')
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	//var subtotal = carrito.subtotal_price
-	var subtotal = getSubtotal(settings.payment_method)
-	var total = subtotal
-	if (carrito.coupon_bonus) {
+  $.post('/carrito/preference', $.param(settings))
+	  .success(function(res) {
+	  	var response = JSON.parse(res)
+	    if (response.success) {
+	    	carrito_items = response.data
+	    	getTotals(settings.payment_method)
+	    	console.log('preference ok!')
+	    }
+	  })
+	  .fail(function() {
+	    $.growl.error({
+	      title: 'Ocurrio un error al actualizar el carrito',
+	      message: 'Por favor, intente nuevamente en unos instantes'
+	    });
+  }); 
+
+	//getTotals(settings.payment_method)
+	//var total = subtotal
+	/*if (carrito.coupon_bonus) {
 		total-= carrito.coupon_bonus
 	}
 
@@ -47,19 +70,8 @@ var calculateTotal = (settings) => {
 		if(settings.interest) {
 			total*= (Number(settings.interest) / 100) + 1
 		}
-	}
+	}*/
 
-	var free_shipping = total >= shipping_price
-	if(free_shipping) {
-		$('.paid-shipping-block').addClass('hidden')
-		$('.free-shipping-block').removeClass('hidden')
-	} else {
-		if (carrito.shipping_price) {
-			total+= carrito.shipping_price
-		}
-		$('.free-shipping-block').addClass('hidden')
-		$('.paid-shipping-block').removeClass('hidden')
-	}
 
 	/*if(settings.payment_method === 'mercadopago' && carrito.mp_bonus) {
 		total-= parseFloat(carrito.mp_bonus)
@@ -69,10 +81,6 @@ var calculateTotal = (settings) => {
 		total-= parseFloat(carrito.bank_bonus)
 	}*/
 
-	carrito.freeShipping = free_shipping
-	//console.log(carrito.freeShipping)
-	$('.total_price').text(formatNumber(total))
-	localStorage.setItem('carrito', JSON.stringify(carrito))
 
   //console.log('subtotal',subtotal)
   //console.log('total',total)
@@ -103,7 +111,7 @@ var select_dues = (e,item) => {
 
 	var interest = $(e).data('interest')
 
-  calculateTotal({
+  checkTotals({
   	interest: interest, 
   	payment_method: 'mercadopago',
   })
@@ -124,7 +132,7 @@ var select_payment = (e,item) => {
 	if(!selected) {
 		return false
 	}
-	var subtotal = getSubtotal(selected)
+	var subtotal = getTotals(selected)
 
 	last_selected = selected	
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
@@ -136,7 +144,7 @@ var select_payment = (e,item) => {
 	} else {
 		$('.bank-block').addClass('hide')
 	}
-  calculateTotal({ 
+  checkTotals({ 
   	bank_bonus: bank_bonus,
   	payment_method: selected,
   })
@@ -186,7 +194,7 @@ $(function(){
 		if (carrito.freeShipping) {
 			price = '<span class="text-success">Gratis</span>'
 		} else {
-			price = `$${formatNumber(carrito.shipping_price)}`
+			price = `$ ${formatNumber(carrito.shipping_price)}`
 		}
 		$('.shipping_price').html(price)
 		$('.shipping-block').removeClass('hide')
