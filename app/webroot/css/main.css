@@ -229,7 +229,7 @@ body {
 #page-content {
     padding: 20px;
     min-height: 1200px;
-    background-color: #fff;
+    background-color: #f0f0f0;
 }
 
 #page-content + footer {
@@ -3977,6 +3977,43 @@ a.thumbnail-borderless,
         line-height: 1.7;
     }
 }
+
+
+
+.fullhd-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;  
+  width: 100vw;
+  height: 100vh;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content:  center;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+  padding: 2rem;
+  transition: all 0.25s ease;
+}
+
+
+.fullhd-layer .close {
+  position: absolute;
+  z-index: 10;
+  width: 4rem;
+  height: 4rem;
+  top: 2rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: red;
+}
+
+.fullhd-layer.active {
+  pointer-events: inherit;
+  opacity: 1;
+}
+
 
 /*
 =================================================================

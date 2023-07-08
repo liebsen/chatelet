@@ -4,6 +4,65 @@
 <?php echo $this->Html->script('draggable-table', array('inline' => false));?>
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
+<?php echo $this->Html->script('admin-categories.js?v=' . Configure::read('DIST_VERSION'), array('inline' => false)); ?>
+
+<div class="fullhd-layer bank-layer">
+  <span class="close is-clickable" onclick="layerClose()">
+      <i class="gi gi-remove_2"></i>
+  </span>
+  <div class="row">
+    <div class="col-xs-12">
+      <form id="update_logistic">
+        <h3>Establecer productos de <span class="category_name"></span> con descuento por pago por transferencia </h3>
+        <div class="form-group">
+          <input class="form-input" type="number" id="bank_discount" value=""/>
+          <label for="mark_all">
+            Descuento por transferencia (%)
+          </label>
+        </div>                  
+        <div class="form-group">
+          <input class="form-input" type="checkbox" id="existent_only" value="1" checked/>
+          <label for="existent_only">
+            Solo las que ya tienen descuento
+          </label>
+        </div>                
+        <div class="form-group">
+            <button type="button" id="bank_discount_btn" class="btn btn-primary" onclick="setBank()">Actualizar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="fullhd-layer mp-layer">
+  <span class="close is-clickable" onclick="layerClose()">
+      <i class="gi gi-remove_2"></i>
+  </span>
+  <div class="row">
+    <div class="col-xs-12">
+      <form id="update_logistic">
+        <h3>Establecer productos de <span class="category_name"></span> con descuento por pago por mercadopago </h3>
+        <div class="form-group">
+          <input class="form-input" type="number" id="mp_discount" value=""/>
+          <label for="mark_all">
+            Descuento por mercadopago (%)
+          </label>
+        </div>                  
+        <div class="form-group">
+          <input class="form-input" type="checkbox" id="existent_only" value="1" checked/>
+          <label for="existent_only">
+            Solo las que ya tienen descuento
+          </label>
+        </div>                
+        <div class="form-group">
+            <button type="button" id="mp_discount_btn" class="btn btn-primary" onclick="setMP()">Actualizar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="block-section">
 	<table id="categorias-datatables" class="table table-bordered table-hover table-condensed draggable-table" data-url="/admin/ordernum/category">
 		<thead>
@@ -73,7 +132,22 @@
 							class="btn btn-sm btn-success" 
 							data-original-title="Editar">
 							<i class="gi gi-pencil"></i>
-						</a>             
+						</a>
+						<a 
+							href="#"
+							title="Establecer descuento por transferencia"
+							class="btn btn-sm btn-warning" 
+							onclick="showLayer(event,'bank',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
+							<i class="gi gi-bank"></i>
+						</a>
+						<a 
+							href="#"
+							class="btn btn-sm btn-warning" 
+							title="Establecer descuento por mercadopago"
+							onclick="showLayer(event,'mp',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
+							<i class="gi gi-credit_card"></i>
+						</a>									
+          
 						<a 
 							href="#" 
 							data-toggle="tooltip" 
@@ -86,6 +160,7 @@
 							data-msg="¿Eliminar categoria? Precación: Se borraran los productos que esten contenidos en esta categoria.">
 							<i class="gi gi-remove"></i>
 						</a>
+
 					</div> 
 				</td>
 			</tr>

@@ -566,9 +566,61 @@ class AdminController extends AppController {
 		die(json_encode($data));		
 	}
 
+	public function categoryBank($category_id = null){
+		$this->autoRender = false;
+		if(!$this->isAuthorized()) {
+			die(json_encode(['status' => "error", 'message' => "Unauthorized"]));
+		}
+
+		$this->loadModel('Product');
+		$conds = ['Product.category_id' => (int) $this->request->data['id']];
+
+		if($this->request->data['existent_only']) {
+			$conds['Product.bank_discount > '] = 0;
+		}
+
+		$this->Product->updateAll(
+			[
+				'Product.bank_discount' => (float) $this->request->data['discount']
+			],
+			$conds			
+		);
+
+		die(json_encode(['status' => "success"]));	
+	}
+
+	public function categoryMp($category_id = null){
+		$this->autoRender = false;
+		if(!$this->isAuthorized()) {
+			die(json_encode(['status' => "error", 'message' => "Unauthorized"]));
+		}
+
+		$this->loadModel('Product');
+		$conds = ['Product.category_id' => (int) $this->request->data['id']];
+
+		if($this->request->data['existent_only']) {
+			$conds['Product.mp_discount > '] = 0;
+		}
+
+		$this->Product->updateAll(
+			[
+				'Product.mp_discount' => (float) $this->request->data['discount']
+			],
+			$conds			
+		);
+
+		die(json_encode(['status' => "success"]));	
+	}	
+
 	public function saleComplete($sale_id = null){
 		$this->autoRender = false;
 		$this->Sale->recursive = -1;
+
+		if(!$this->isAuthorized()) {
+			die(json_encode(['status' => "error", 'message' => "Unauthorized"]));
+		}
+
+
 		$sale = $this->Sale->findById($sale_id);
 		$data = [
 			'status' => 'success',
@@ -703,6 +755,12 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 	public function tickets ($order_retiro) {
 		$this->layout = false;
+
+		if(!$this->isAuthorized()) {
+			die(json_encode(['status' => "error", 'message' => "Unauthorized"]));
+		}
+
+
 		$sale = $this->Sale->find('first', [
 			'conditions' => [
 				'def_orden_retiro' => $order_retiro
@@ -950,7 +1008,6 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$this->set('sales',$sales);
 	}
 
-
 	public function remove_whatsapp($id = null){
 		$this->Promo->delete($id);
 		$this->redirect(array( 'action' => 'whatsapp' ));
@@ -971,7 +1028,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		die($response);
 	}
 
-	public function isAuthorized($user) {
+	public function isAuthorized() {
 	    // If we're trying to access the admin view, verify permission:
 	    if ('admin' === $this->Auth->user('role')) return true;  // User is admin, allow
 	    return false;                                // User isn't admin, deny
