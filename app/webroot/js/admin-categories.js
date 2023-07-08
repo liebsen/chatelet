@@ -24,37 +24,15 @@ function showLayer (e, layer, category_id, category_name) {
   return false
 }
 
-function setBank(){
-  var row = $(`#bank_title_${category_id}`)
-  var button = $('#bank_discount_btn')
+function categoryDiscount(type){
+  var button = $(`#${type}_discount_btn`)
   button.addClass('btn-disabled')
   button.text('Solicitando...')
-  $.post('/admin/categoryBank', { 
+  $.post('/admin/categoryDiscount', { 
     id: category_id, 
-    discount: $('#bank_discount').val(),
-    existent_only: $('#existent_only').is(':checked'),
-  }).then(res => {
-    let data = JSON.parse(res)
-    if(data.status==='success'){
-      button.text('Actualizar')
-      alert(`Se actualizó correctamente`)
-      layerClose()
-    } else {
-      const message = data.message.replace(/\s+/g, ' ').trim()
-      alert(`Algo salió mal: "${message}". Volvé a intentar en unos instantes`)
-    }
-  })
-}
-
-function setMP(){
-  var row = $(`#bank_title_${category_id}`)
-  var button = $('#mp_discount_btn')
-  button.addClass('btn-disabled')
-  button.text('Solicitando...')
-  $.post('/admin/categoryMp', { 
-    id: category_id, 
-    discount: $('#mp_discount').val(),
-    existent_only: $('#existent_only').is(':checked'),
+    type: type,
+    discount: $(`#${type}_discount`).val(),
+    existent_only: $(`#${type}_existent_only`).prop('checked'),
   }).then(res => {
     let data = JSON.parse(res)
     if(data.status==='success'){

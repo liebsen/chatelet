@@ -566,51 +566,32 @@ class AdminController extends AppController {
 		die(json_encode($data));		
 	}
 
-	public function categoryBank($category_id = null){
+	public function categoryDiscount($category_id = null){
 		$this->autoRender = false;
 		if(!$this->isAuthorized()) {
 			die(json_encode(['status' => "error", 'message' => "Unauthorized"]));
 		}
 
+		$type = $this->request->data['type'];
 		$this->loadModel('Product');
-		$conds = ['Product.category_id' => (int) $this->request->data['id']];
-
-		if($this->request->data['existent_only']) {
-			$conds['Product.bank_discount > '] = 0;
+		$conds = [];
+		$conds['Product.category_id'] = (int) $this->request->data['id'];
+		if($this->request->data['existent_only'] === 'true') {
+			$conds['Product.'.$type.'_discount > '] = 0;
 		}
 
 		$this->Product->updateAll(
 			[
-				'Product.bank_discount' => (float) $this->request->data['discount']
+				'Product.'.$type.'_discount' => (float) $this->request->data['discount']
 			],
 			$conds			
 		);
 
-		die(json_encode(['status' => "success"]));	
+		die(json_encode([
+			'status' => "success", 
+			"conds" => $conds,
+		]));	
 	}
-
-	public function categoryMp($category_id = null){
-		$this->autoRender = false;
-		if(!$this->isAuthorized()) {
-			die(json_encode(['status' => "error", 'message' => "Unauthorized"]));
-		}
-
-		$this->loadModel('Product');
-		$conds = ['Product.category_id' => (int) $this->request->data['id']];
-
-		if($this->request->data['existent_only']) {
-			$conds['Product.mp_discount > '] = 0;
-		}
-
-		$this->Product->updateAll(
-			[
-				'Product.mp_discount' => (float) $this->request->data['discount']
-			],
-			$conds			
-		);
-
-		die(json_encode(['status' => "success"]));	
-	}	
 
 	public function saleComplete($sale_id = null){
 		$this->autoRender = false;
