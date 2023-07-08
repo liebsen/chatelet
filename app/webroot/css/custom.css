@@ -1766,12 +1766,12 @@ span.out{
 
 .legends {
   display: inline-block;
-  border-top: 1px solid #ddd;
+  /*border-top: 1px solid #ddd;*/
   padding: 0.5rem 0.75rem;
   margin-top: 0.25rem;
-  background-color: #f8f8f8;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  background-color: white;
+  box-shadow: 2px 2px 0 #6661;  
+  border-radius: 3px;
   text-align: center;
 }
 
