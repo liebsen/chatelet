@@ -1771,7 +1771,8 @@ span.out{
   margin-top: 0.25rem;
   background-color: white;
   box-shadow: 2px 2px 0 #6661;  
-  border-radius: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   text-align: center;
 }
 
@@ -1852,12 +1853,14 @@ span.out{
 .ribbon-container {
   /*display: inline-block;
   width: 100%;*/
+  margin-bottom: 0.25rem;
   position: relative;  
 }
 
 .ribbon {
   position: absolute;
-  right: -5px; top: -5px;
+  right: -5px; 
+  top: -5px;
   z-index: 1;
   overflow: hidden;
   width: 75px; height: 75px;
