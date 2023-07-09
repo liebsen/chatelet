@@ -814,6 +814,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   font-size: 1rem;
   font-weight: 500;
   color: black;
+  display: flex;
+  flex-direction: column;  
 }
 
 .old_price {
@@ -885,10 +887,10 @@ align-items: center;}
   min-height: 18rem;
   display: inline-block;
   width: 100%;
-  min-width: 100%;*/
-  max-height: 20rem;
+  min-width: 100%;
+  max-height: 20rem;*/
   margin: auto;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center center;
   transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 
