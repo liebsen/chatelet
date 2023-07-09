@@ -880,12 +880,12 @@ align-items: center;}
 #productOptions .product-list a img { 
   /*min-height: 20rem;
   max-height: 20rem;
-  min-width: 14rem;*/
+  min-width: 14rem;
   max-height: 18rem;
   min-height: 18rem;
   display: inline-block;
   width: 100%;
-  min-width: 100%;
+  min-width: 100%;*/
   object-fit: contain;
   object-position: center center;
   margin: 0 auto;
@@ -1789,6 +1789,7 @@ span.out{
 
 .text-legend {
   display: inline-block;
+  width: 100%;
   color: #666!important;
   line-height: 1.5;
   font-size: 1rem;
