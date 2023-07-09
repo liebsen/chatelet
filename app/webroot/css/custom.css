@@ -894,6 +894,24 @@ align-items: center;}
   object-position: center center;
   transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 
+.product-image {
+  background-color: #e2e2e2;
+  display: inline-block;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 20rem;
+  max-height: 20rem;
+  transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
+}
+
+.product-image:hover { 
+  filter: contrast(120%); 
+  opacity: .95; 
+}
+
+
 #productOptions .product-list.posnum-2 a img {
   object-position: top center;
 }
@@ -986,8 +1004,8 @@ align-items: center;}
   color: black;
   padding-left: 0;
   padding-right: 0;
-  max-width: 7rem;
-  min-width: 7rem;
+  /*max-width: 7rem;
+  min-width: 7rem;*/
   transition: all 0.25s ease-out;
 }
 #detalle .caract label.active {
@@ -1001,7 +1019,7 @@ align-items: center;}
   max-width: 8rem;
   font-weight: 800;
   white-space: break-spaces;
-  margin-right: 1rem;
+  /*margin-right: 1rem;*/
 }
 #detalle .caract label.btn .color-option {
   border: none;
@@ -1774,8 +1792,8 @@ span.out{
   margin-top: 0.25rem;
   background-color: white;
   box-shadow: 2px 2px 0 #6661;  
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
   text-align: center;
 }
 

@@ -86,7 +86,7 @@
                       <li class="lc" style="border-bottom: 2px solid #c2c2c2;margin-bottom: 45px;padding-bottom: 45px;">
                         <div class="row">
                           <div class="col-sm-3">
-                            <img  class="img-responsive"   src="<?php echo Configure::read('imageUrlBase').$v['Product']['img_url'] ?>" >
+                            <img class="img-responsive" src="<?php echo Configure::read('imageUrlBase').$v['Product']['img_url'] ?>" >
                           </div>
                           <div class="col-sm-9">
                               <span class="hidden" id="product_id"><?php echo $v['Product']['id']; ?></span>

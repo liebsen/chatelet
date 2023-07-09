@@ -281,7 +281,7 @@
                                 <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
                             <?php endif ?>
                             <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
-                            <img  class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
+                            <div class="product-image" style="background-image: url('<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>')" alt=""></div>
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                             <div class="name"><?= $alt_product_name ?></div>
                             <div class="price-list"><?= \price_format(ceil($alt_product['price'])) ?></div>
@@ -311,7 +311,7 @@
                             <?php if ($alt_product['promo'] !== '') :?>
                                 <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
                             <?php endif ?>
-                            <img class="img-responsive" src="<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>" alt="">
+                            <div class="product-image" style="background-image: url('<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>')" alt=""></div>
                             </div>
                             <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                             <div class="name"><?= $alt_product_name ?></div>
