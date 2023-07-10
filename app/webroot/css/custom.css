@@ -899,6 +899,8 @@ align-items: center;}
 
 .product-info {
   background-color: #eaeaea;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;  
 }
 
 .product-info .name {
