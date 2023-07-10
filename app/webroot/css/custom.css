@@ -910,6 +910,12 @@ align-items: center;}
   padding-bottom: 0.5rem;
 }
 
+.product-badge {
+  min-width: 2.25rem;
+  display: inline-block;
+  text-align: left;
+}
+
 .product-image {
   background-color: #e2e2e2;
   display: inline-block;

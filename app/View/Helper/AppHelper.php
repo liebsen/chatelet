@@ -151,10 +151,10 @@ class AppHelper extends Helper {
     // discounts
     $str.='<div class="legends-container"><div class="legends' . ($noprice ? ' legends-left' : '') . '">';
     if(@$item['bank_discount']){
-      $str.= "<span class='text-legend'><span class='badge badge-success'>-".@$item['bank_discount']."%</span> <span>transferencia</span> <span class='text-success price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))))." </span> </span>";
+      $str.= "<span class='text-legend'><span class='text-success product-badge'>-".@$item['bank_discount']."%</span> <span class='text-success price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) $item['bank_discount'] / 100))))." </span> <span class='text-sm'>con transferencia</span> </span>";
     }
     if($item['mp_discount']){
-      $str.= "<span class='text-legend'><span class='badge badge-success'>-".@$item['mp_discount']."%</span> <span>mercadopago</span><span class='text-success price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))))." </span> </span>";
+      $str.= "<span class='text-legend'><span class='text-success product-badge'>-".@$item['mp_discount']."%</span> <span class='text-success price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) $item['mp_discount'] / 100))))." </span> <span class='text-sm'>con mercadopago</span> </span>";
     }
 
     // dues
@@ -172,7 +172,7 @@ class AppHelper extends Helper {
       
       if($price >= $min_sale) {
         //$status = intval($legend['Legend']['interest']) ? 'warning' : 'info';
-        //$str.= "<span class='badge badge-{$status}'>". $legend['Legend']['dues'] ." cuotas</span>";
+        //$str.= "<span class='text-{$status}'>". $legend['Legend']['dues'] ." cuotas</span>";
         $str.= '<span class="text-legend">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
           $legend['Legend']['dues'],
           $legend['Legend']['interest'],
