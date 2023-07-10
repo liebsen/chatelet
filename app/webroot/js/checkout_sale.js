@@ -97,8 +97,9 @@ var select_payment = (e,item) => {
 	} else {
 		$('.bank-block').addClass('hide')
 	}
+
   save_preference({ 
-  	bank_bonus: bank_bonus,
+  	// bank_bonus: bank_bonus,
   	payment_method: selected,
   })
 

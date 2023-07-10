@@ -5,6 +5,10 @@
 	echo $this->Html->script('carrito.js?v=' . Configure::read('DIST_VERSION'), array('inline' => false));
 	echo $this->Session->flash();
 	echo $this->element('checkout-modal');
+	$payment_methods = [
+		'bank' => 'transferencia',
+		'mercadopago' => 'mercado pago',
+	];
 ?>
 <div id="main" class="container">
 	<div class="row">
@@ -116,9 +120,8 @@
 							}
 							echo '</div>';
 						}
-
 						echo '<div class="text-right">';
-						if (!empty($product['old_price']) && abs($product['old_price']-$product['price']) === 0){
+						if (!empty($product['old_price'])){
 							echo '<span class="old_price text-grey animated fadeIn delay2">$ '. \price_format($product['old_price']) .'</span>';
 						}					
 						echo '<span class="price animated fadeIn delay">$ '. \price_format($product['price']) .'</span>';
@@ -182,8 +185,12 @@
 							<div class="summary-item text-right">
 								<div class="cost_total-container animated speed fadeIn delay">
 									<!--hr-->
-									<div class="price is-large"><span class="text-weight-thin">Total </span> <span class="cost_total">$ <?= \price_format($total) ?></span><!--span>.00</span--></div>
-								</div>
+									<div class="price is-large">
+										<span class="text-weight-thin">Total </span> 
+										<span class="cost_total">$ <?= \price_format($total) ?></span><!--span>.00</span-->
+									</div>
+									<small>Pagando con <?= $payment_methods[$this->Session->read('Config')['payment_method']] ?></small>
+								</div>								
 							</div>
 						</div>
 					</div>
