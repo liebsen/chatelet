@@ -124,12 +124,33 @@
                     $price = @$product['discount'];
                 }
 
-                if(!empty($old_price) && abs($price-$old_price) > 0) {
-                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'>$ ".\price_format(ceil($old_price)). "</span> ahora <div class=''> <span class='price'> $ ". \price_format(ceil($price))." </span></div>";
-                }else{
-                      echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)). "</span>";
+                $bank_price = 0;
+                $mp_price = 0;
+                $text = 'ahora';
+
+                if(@$product['bank_discount']){
+                  $bank_price = ceil(round($price * (1 - (float) @$product['bank_discount'] / 100)));
+                  if($bank_price < $price) {
+                    $old_price = $price;
+                    $price = $bank_price;
+                    $text = 'transferencia';
+                  }
                 }
 
+                if(@$product['mp_discount']){
+                  $mp_price = ceil(round($price * (1 - (float) @$product['mp_discount'] / 100)));
+                  if($mp_price < $price) {
+                    $old_price = $price;
+                    $price = $mp_price;
+                    $text = 'mercadopago';
+                  }
+                }
+
+                if(!empty($old_price) && abs($price-$old_price) > 0) {
+                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'>$ ".\price_format(ceil($old_price)). "</span> ahora ";
+                }
+
+                echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)) . ' <span class="text-sm">' . (strlen($text) ? 'con ' . $text : '') . '</span></span>';
                 ?>
                  <div class="mt-0 tags-start">
                     <?= $this->App->show_prices_dues($legends, $product, true) ?>
