@@ -966,8 +966,17 @@ class CarritoController extends AppController
 
 	public function preference(){
 		$this->autoRender = false;
-		error_log('----------------'.$this->request->data['payment_method']);
-		$this->Session->write('payment_method', $this->request->data['payment_method']);
+
+		$config = $this->Session->read('Config');
+		$data = $this->request->data;
+
+		// replace session config with post object pairs
+		foreach($data as $key => $item) {
+			$config[$key] = $item;
+		}
+
+		$this->Session->write('Config', $config);
+		error_log('payment_method:'.$config['payment_method']);
 		$carro = $this->update_cart();
 		$this->Session->write('Carro', $carro);
 
@@ -982,7 +991,7 @@ class CarritoController extends AppController
 	public function show($row = null) {
 		$this->autoRender = false;
 		echo '<pre>';
-		var_dump($this->Session->read('payment_method'));
+		var_dump($this->Session->read('Config'));
 		var_dump($this->Session->read('Carro'));
 	}
 
@@ -1057,13 +1066,14 @@ class CarritoController extends AppController
 
 	private function sort_cart() {
 		$carro = $this->Session->read('Carro');
-		$payment_method = $this->Session->read('payment_method') ?: 'mercadopago';
-		$payment_dues = $this->Session->read('payment_dues') ?: '1';
+		$config = $this->Session->read('Config');
+		$payment_method = @$config['payment_method'] ?: 'mercadopago';
+		$payment_dues = @$config['payment_dues'] ?: '1';
 		$groups = [];
 		$sort = [];
 		error_log($payment_method);
 
-		if (!empty($carro)) {
+		if (!empty(@$carro)) {
 			foreach($carro as $key => $item) {
 				$criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
 				$price = @$item['price'];
@@ -1122,8 +1132,9 @@ class CarritoController extends AppController
 	}
 
 	private function update_cart($carro=false) {
-		$payment_method = $this->Session->read('payment_method') ?: 'mercadopago';
-		error_log('********************'.$payment_method);
+		$config = $this->Session->read('Config');
+		$payment_method = @$config['payment_method'] ?: 'mercadopago';
+		error_log('*'.$payment_method);
 
 		if (empty($carro)) {
 			$carro = $this->Session->read('Carro');

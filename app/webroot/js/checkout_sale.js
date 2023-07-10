@@ -1,8 +1,11 @@
 var last_selected = ''
 var dues_selected = ''
-var save_preference = (data) => {
+
+
+
+/*var save_preference = (data) => {
 	localStorage.setItem(data.name, data.value)
-}
+}*/
 
 var getTotals = (payment_method) => {
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
@@ -37,63 +40,13 @@ var getTotals = (payment_method) => {
 	return subtotal
 }
 
-var checkTotals = (settings) => {
-	console.log('checkTotals')
-	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-	//var subtotal = carrito.subtotal_price
-  $.post('/carrito/preference', $.param(settings))
-	  .success(function(res) {
-	  	var response = JSON.parse(res)
-	    if (response.success) {
-	    	carrito_items = response.data
-	    	getTotals(settings.payment_method)
-	    	console.log('preference ok!')
-	    }
-	  })
-	  .fail(function() {
-	    $.growl.error({
-	      title: 'Ocurrio un error al actualizar el carrito',
-	      message: 'Por favor, intente nuevamente en unos instantes'
-	    });
-  }); 
-
-	//getTotals(settings.payment_method)
-	//var total = subtotal
-	/*if (carrito.coupon_bonus) {
-		total-= carrito.coupon_bonus
-	}
-
-	if (settings) { 
-		if(settings.bank_bonus) { // general
-			total-= settings.bank_bonus
-		}
-		if(settings.interest) {
-			total*= (Number(settings.interest) / 100) + 1
-		}
-	}*/
-
-
-	/*if(settings.payment_method === 'mercadopago' && carrito.mp_bonus) {
-		total-= parseFloat(carrito.mp_bonus)
-	}
-
-	if(settings.payment_method === 'bank' && carrito.bank_bonus) {
-		total-= parseFloat(carrito.bank_bonus)
-	}*/
-
-
-  //console.log('subtotal',subtotal)
-  //console.log('total',total)
-  //console.log('bank_bonus',bank_bonus)
-}
 
 var select_radio = (name, value) => {
   const e = $(`input[name=${name}][value=${value}]`)
   e.prop("checked",true)
   $(`.${name} .option-rounded`).removeClass('is-selected')
   e.parent().addClass('is-selected')
-
-  save_preference({name: name,value: value})
+  save_preference({ [name]: value })
 }
 
 var select_dues = (e,item) => {
@@ -111,12 +64,12 @@ var select_dues = (e,item) => {
 
 	var interest = $(e).data('interest')
 
-  checkTotals({
-  	interest: interest, 
-  	payment_method: 'mercadopago',
-  })
   onSuccessAlert(`${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
-  save_preference({name: 'payment_dues',value: dues_selected})
+  save_preference([
+  	{'payment_method':'mercadopago'},
+  	{'payment_dues':dues_selected}
+  ])
+
 	$('.payment_dues .option-rounded').removeClass('is-selected is-secondary')
 	$('.payment_dues .option-rounded').addClass('is-secondary')
 	$(item).addClass('is-selected')
@@ -144,13 +97,13 @@ var select_payment = (e,item) => {
 	} else {
 		$('.bank-block').addClass('hide')
 	}
-  checkTotals({ 
+  save_preference({ 
   	bank_bonus: bank_bonus,
   	payment_method: selected,
   })
 
   onSuccessAlert((selected === 'bank' ? 'CBU/Alias' : 'Mercadopago'), '✓ Método de pago seleccionado');
-  save_preference({name: 'payment_method',value: selected})
+  save_preference({'payment_method': selected})
 	$('.payment_method .option-rounded').removeClass('is-selected is-secondary')
 	$('.payment_method .option-rounded').addClass('is-secondary')
 	$(item).addClass('is-selected')

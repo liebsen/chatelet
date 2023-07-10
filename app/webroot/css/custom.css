@@ -815,7 +815,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   font-weight: 500;
   color: black;
   display: flex;
-  flex-direction: column;  
+  grid-gap: 0.5rem;
+  justify-content: center;
+  align-items: center;  
+  flex-direction: row;
 }
 
 .old_price {
@@ -894,23 +897,47 @@ align-items: center;}
   object-position: center center;
   transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 
+.product-info {
+  background-color: #eaeaea;
+}
+
+.product-info .name {
+  padding-top: 0.5rem;
+}
+
+.product-info .price-list {
+  padding-top: 0.25rem;
+  padding-bottom: 0.5rem;
+}
+
 .product-image {
   background-color: #e2e2e2;
   display: inline-block;
   width: 100%;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  /*background-size: cover;*/
+  background-size: 120%;
   min-height: 20rem;
   max-height: 20rem;
-  transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
+  transition: all .3s ease-in-out; 
+  -moz-transition: all .3s ease-in-out; 
+  -ms-transition: all .3s ease-in-out; 
+  -webkit-transition: all .3s ease-in-out; 
+  -o-transition: all .3s ease-in-out;   
 }
 
 .product-image:hover { 
-  filter: contrast(120%); 
-  opacity: .95; 
+  background-size: 130%;
+  filter: contrast(140%);
 }
 
+.posnum-2 {
+  background-position: top center;
+}
+.posnum-3 {
+  background-position: bottom center;
+}
 
 #productOptions .product-list.posnum-2 a img {
   object-position: top center;
@@ -960,12 +987,18 @@ align-items: center;}
 #detalle > p { font-size: 1rem; font-weight: 600; margin-bottom: 20px; }
 #detalle .price {
   color: #363633;
-  height: auto;
-  display: inline-block;
   font-size: 2rem;
   font-weight: 900;
   margin-top: 1rem;
+  padding: 0.25 1rem;
 }
+
+#detalle .price > span {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #666;
+}
+
 #detalle .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
 #detalle .caract { color: #404040; /* margin-top: 25px; */ }
 #detalle .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
@@ -1873,8 +1906,8 @@ span.out{
 /* ribbons */
 .ribbon-container {
   /*display: inline-block;
-  width: 100%;*/
   margin-bottom: 0.25rem;
+  width: 100%;*/  
   position: relative;  
 }
 

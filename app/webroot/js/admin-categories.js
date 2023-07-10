@@ -6,13 +6,14 @@ function layerClose() {
   $('.fullhd-layer').removeClass('active')
 }
 
-function showLayer (e, layer, category_id, category_name) {
+function showLayer (e, layer, mode, category_id, category_name) {
   e.preventDefault()
   e.stopPropagation()
   window.category_id = 0
   const selectr = $(`.${layer}-layer`)
   $('.category_id').text('')
   $('.category_name').text('')
+  $('.discount_mode').text(mode)
   if (selectr.hasClass('active')) {
     selectr.removeClass('active')
   } else {

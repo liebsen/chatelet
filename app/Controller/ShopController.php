@@ -434,14 +434,14 @@ class ShopController extends AppController {
 			)
 		);
 
-		foreach ($all_but_me as &$products) {
-			if (isset($products['Product']['discount']) && $products['Product']['discount']) {
-				$products['Product']['old_price'] = $products['Product']['price'];
-				$products['Product']['price'] = $products['Product']['discount'];
+		foreach ($all_but_me as &$item) {
+			if (isset($item['Product']['discount']) && $item['Product']['discount']) {
+				$item['Product']['old_price'] = $item['Product']['price'];
+				$item['Product']['price'] = $item['Product']['discount'];
 			}
-			$products['Product']['stock'] = 0;
-			if(!empty($products['Product']['article'])){
-				$products['Product']['stock'] = 1;
+			$item['Product']['stock'] = 0;
+			if(!empty($item['Product']['article'])){
+				$item['Product']['stock'] = 1;
 			}
 		}
 

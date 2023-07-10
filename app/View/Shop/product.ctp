@@ -85,11 +85,10 @@ function updateSrcTo(obj){
                 </nav>
             </div>
             <div class="col-md-9 product-list posnum-<?= @$category['posnum'] ?>">
-
   <?php
     if (isset($products)) {
       foreach ($products as $product) {
-        echo $this->App->tile($product['Product'], 1, $legends);
+        echo $this->App->tile($product['Product'], 1, $legends, $category['posnum']);
       } 
     } else {
       foreach ($categories as $category) {

@@ -1,16 +1,8 @@
+var currentCarritoIndex = 0
 var cargo = ''
-
 var selectStore = e => {
 	var total_orig = parseFloat($('#subtotal_compra').val())
 	var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
-
-	/* if (document.querySelector('.shipping-options')) {
-		document.querySelector('.shipping-options').classList.remove('zoomInRight')
-		document.querySelector('.shipping-options').classList.add('zoomOutRight')
-		setTimeout(() => {
-			document.querySelector('.shipping-block').classList.add('hidden')		
-		}, 500)
-	} */
 	$('.takeaway-options li').removeClass('selected secondary')
 	$('.shipping-options li').removeClass('selected secondary')
 	$('.takeaway-options li').addClass('secondary')
@@ -36,8 +28,6 @@ var selectStore = e => {
   onSuccessAlert(`Retirás en sucursal ${suc.replace(',','')}`, `Podes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. ${carrito_takeaway_text}`);
 	cargo = 'takeaway'
 }
-
-var currentCarritoIndex = 0
 var show_cart_item = index => {
 	var target = document.querySelectorAll('.carrito-item-row')[index]
 	if (target) {
@@ -78,6 +68,7 @@ $(document).ready(function() {
 	submit.prop('disabled', false)
 	submit.removeClass('disabled')
 	submit.text('Siguiente')
+
 	/* carrito item viewer */
 	$('.carrito-item-row').on('click', function(e) {
 		if (e.target.className !== 'glyphicon glyphicon-remove') {
@@ -86,6 +77,7 @@ $(document).ready(function() {
 			show_cart_item(currentCarritoIndex)
 		}
 	})
+
 	$('#carritoItem .carousel-control.left').on('click', function(e) {
     e.preventDefault()
 		if (currentCarritoIndex > 0) {
@@ -113,11 +105,10 @@ $(document).ready(function() {
 	})
 
 	$('#checkout-modal').on('click', 'a', function() {
-		var me = $(this);
-
+		var a = $(this);
 		$(window).scrollTop(0);
-		me.parents('#checkout-modal').modal('hide');
-		if (me.hasClass('login')) {
+		a.parents('#checkout-modal').modal('hide');
+		if (a.hasClass('login')) {
 			setTimeout(function() {
 				$('#iniciar-sesion').click();
 			}, 200);
@@ -137,6 +128,7 @@ $(document).ready(function() {
 			onSuccessAlert('Carrito vacío','No tienes productos en el carrito', 5000)
 			return false;
 		}
+
 		if (cargo === 'shipment') {
 			const shipping_cargo = $('.shipping-options li.selected')
 			if (!shipping_cargo.length) {

@@ -36,7 +36,7 @@ class AppHelper extends Helper {
   /**
   * @param string $query, This is the search query you will pass from the view
   */
-  function tile($item, $isProduct = false, $legends) {
+  function tile($item, $isProduct = false, $legends, $numpos = 3) {
     $str = '';
     $stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
     $number_ribbon = 0;
@@ -56,11 +56,12 @@ class AppHelper extends Helper {
     $content= '<div class="ribbon-container">';
     $content.= $discount_flag . $promo_ribbon;
 
-    if (empty($item['with_thumb'])){
+    /*if (empty($item['with_thumb'])){
       $content.= '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />';
     }else{
       $content.= '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . 'thumb_'.$item['img_url'] .'" url-copy="'.Configure::read('imageUrlBase') . $item['img_url'].'" onError=updateSrcTo(this) />';
-    }
+    }*/
+    $content.= '<div class="product-image numpos-'.$numpos.'" style="background-image: url(\''. Configure::read('imageUrlBase') . $item['img_url'] .'\')"></div>';
     $content.= '</div>';
 
     if ($isProduct){
@@ -81,7 +82,7 @@ class AppHelper extends Helper {
       $url['action'] = 'producto';
     } else {
       $url['action'] = 'productos';
-    }
+    } 
 
     $item_name = $item['name'];
     $priceStr = '';
@@ -92,8 +93,7 @@ class AppHelper extends Helper {
         '<div class="desc-prod">'.
           '<small>'. $item['desc'] .'</small>'.
         '</div>'.
-        '<div class="name">'.$item_name.'</div>' . 
-        '<div class="price-list">'. $priceStr .'</div>
+        '<div class="product-info"><div class="name" origin="1">'.$item_name.'</div>'. $priceStr .'</div>
         </div>
       </div>';
       $str = '<div class="col-sm-6 col-md-4 col-lg-3 p-1">'.
@@ -124,7 +124,7 @@ class AppHelper extends Helper {
 
       $str = '<div data-id="'.$item["id"].'" class="col-sm-6 col-md-4 col-lg-3 p-1 add-no-stock">'. 
          $this->Html->link(
-          $content. '<div class="name">'.$item_name.'</div><div class="price-list">'.$priceStr.'</div><span style="display:none">'.@$item['article'].'</span></div>',
+          $content. '<div class="product-info"><div class="name" origin="2">'.$item_name.'</div>'.$priceStr.'<span style="display:none">'.@$item['article'].'</span></div></div>',
           $url,
           array('escape' => false)
         );
@@ -135,20 +135,18 @@ class AppHelper extends Helper {
   function show_prices_dues($legends, $item, $noprice = false){
     $price = (float) @$item['price'];
     $old_price = (float) @$item['old_price'];
-    $str = '';
-
-    if(empty($price)) {
-      $price = $old_price;
-    }
 
     // price
     if(!$noprice) {
-      if(!empty($item['old_price']) && abs($price-$old_price) === 0) {
-        $str.= '<span class="old_price"> $ '.\price_format($old_price) . '</span>';
-      }
-      $str.= '<span class="price_strong"> $ ' . \price_format($price) . '</span>';
-    }
+      $str = '<div class="price-list">';
 
+      if(!empty($item['old_price'])) {
+        $str.= '<span class="old_price"> $ '.\price_format($item['old_price']) . '</span>';
+      }
+      $str.= '<span class="price_strong"> $ ' . \price_format($item['price']) . '</span>';
+      $str.= '</div>';
+    }
+  
     //$str.='<div class="legends-spacer"></div>';
     // discounts
     $str.='<div class="legends-container"><div class="legends' . ($noprice ? ' legends-left' : '') . '">';

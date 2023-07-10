@@ -119,6 +119,11 @@
                 $price = @$product['price'];
                 $old_price = @$product['old_price'];
 
+                if(!empty(@$product['discount']) && abs(@$product['discount']-@$product['price']) > 0) {
+                    $old_price = @$price;
+                    $price = @$product['discount'];
+                }
+
                 if(!empty($old_price) && abs($price-$old_price) > 0) {
                     echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'>$ ".\price_format(ceil($old_price)). "</span> ahora <div class=''> <span class='price'> $ ". \price_format(ceil($price))." </span></div>";
                 }else{
@@ -282,9 +287,11 @@
                             <?php endif ?>
                             <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
                             <div class="product-image" style="background-image: url('<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>')" alt=""></div>
-                            <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
-                            <div class="name"><?= $alt_product_name ?></div>
-                            <div class="price-list"><?= \price_format(ceil($alt_product['price'])) ?></div>
+                            <div class="product-info">
+                                <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
+                                <div class="name" origin="3"><?= $alt_product_name ?></div>
+                                <div class="price-list"><?= \price_format(ceil($alt_product['price'])) ?></div>
+                            </div>
                         </a>
                     </div>
                     <?php }else{ ?>
@@ -311,11 +318,11 @@
                             <?php if ($alt_product['promo'] !== '') :?>
                                 <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
                             <?php endif ?>
-                            <div class="product-image" style="background-image: url('<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>')" alt=""></div>
+                            <div class="product-image posnum-<?= $category['Category']['posnum'] ?>" style="background-image: url('<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>')" alt=""></div>
                             </div>
-                            <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
-                            <div class="name"><?= $alt_product_name ?></div>
-                            <div class="price-list">
+                            <div class="product-info">
+                                <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
+                                <div class="name" origin="4"><?= $alt_product_name ?></div>
                                 <?= $this->App->show_prices_dues($legends, $alt_product) ?>
                             </div>
                         </a>

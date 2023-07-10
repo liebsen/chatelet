@@ -1,6 +1,7 @@
-
 <?php
+	echo $this->Session->flash();
 	echo $this->Html->css('carrito.css?v=' . Configure::read('DIST_VERSION'), array('inline' => false));
+	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('DIST_VERSION'), array('inline' => false));
 	echo $this->Html->script('carrito.js?v=' . Configure::read('DIST_VERSION'), array('inline' => false));
 	echo $this->Session->flash();
 	echo $this->element('checkout-modal');
@@ -53,6 +54,7 @@
               $product['category_id'],
               strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
             ));
+
 						echo '<div class="carrito-item-row is-clickable" product_row>';
 						echo '<div class="carrito-remove animated fadeIn delay2" title="Eliminar del carrito">';
 						echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',

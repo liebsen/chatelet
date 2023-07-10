@@ -197,7 +197,7 @@ let apiSearch = (q) => {
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 
             '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.number_ribbon ? '<div class="ribbon small bottom-left sp2"><span>' + item.number_ribbon + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
             '<h2 class="text-center">'+`<span>${item.name}</span>`+'</h2>' + 
-            '<div class="price-list text-center">'+(item.old_price ? '<span class="old_price text-grey">$' + item.old_price + '</span>' : '') + '<span>$' + item.price + '</span></div>' + strLegends +
+            '<div class="price-list text-center mb-2">'+(item.old_price ? '<span class="old_price text-grey">$' + item.old_price + '</span>' : '') + '<span>$' + item.price + '</span></div>' + strLegends +
           '</a>' + 
         '</div>'
       })
