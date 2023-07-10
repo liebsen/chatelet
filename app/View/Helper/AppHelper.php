@@ -136,15 +136,36 @@ class AppHelper extends Helper {
     $price = (float) @$item['price'];
     $old_price = (float) @$item['old_price'];
     $str = "";
+    $bank_price = 0;
+    $mp_price = 0;
+    $text = 'ahora';
 
+    if(@$item['bank_discount']){
+      $bank_price = ceil(round($price * (1 - (float) @$item['bank_discount'] / 100)));
+      if($bank_price < $price) {
+        $old_price = $price;
+        $price = $bank_price;
+        $text = 'transferencia';
+      }
+    }
+
+    if(@$item['mp_discount']){
+      $mp_price = ceil(round($price * (1 - (float) @$item['mp_discount'] / 100)));
+      if($mp_price < $price) {
+        $old_price = $price;
+        $price = $mp_price;
+        $text = 'mercadopago';
+      }
+    }
+    
     // price
     if(!$noprice) {
       $str = '<div class="price-list">';
 
-      if(!empty($item['old_price'])) {
-        $str.= '<span class="old_price"> $ '.\price_format($item['old_price']) . '</span>';
+      if(!empty($old_price) && abs($old_price-$price > 0)) {
+        $str.= '<span class="old_price"> $ '.\price_format($old_price) . '</span>';
       }
-      $str.= '<span class="price_strong"> $ ' . \price_format($item['price']) . '</span>';
+      $str.= '<span class="price_strong"> $ ' . \price_format($price) . ' <span class="text-sm"> con ' . $text . '</span></span>';
       $str.= '</div>';
     }
   
@@ -152,11 +173,11 @@ class AppHelper extends Helper {
     // discounts
 
     $str.='<div class="legends-container"><div class="legends' . ($noprice ? ' legends-left' : '') . '">';
-    if(@$item['bank_discount']){
-      $str.= "<span class='text-legend'><span class='text-success product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) @$item['bank_discount'] / 100))))." </span> <span class='text-sm'>con transferencia</span> </span>";
+    if($bank_price && $text != 'bank') {
+      $str.= "<span class='text-legend'><span class='text-success product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format($bank_price)." </span> <span class='text-sm'>con transferencia</span> </span>";
     }
-    if(@$item['mp_discount']){
-      $str.= "<span class='text-legend'><span class='text-success product-badge'>-".@$item['mp_discount']."%</span> <span class='price_strong'> $ " .\price_format(ceil(round($price * (1 - (float) @$item['mp_discount'] / 100))))." </span> <span class='text-sm'>con mercadopago</span> </span>";
+    if($mp_price && $text != 'mp'){
+      $str.= "<span class='text-legend'><span class='text-success product-badge'>-".@$item['mp_discount']."%</span> <span class='price_strong'> $ " .\price_format($mp_price)." </span> <span class='text-sm'>con mercadopago</span> </span>";
     }
 
     // dues
