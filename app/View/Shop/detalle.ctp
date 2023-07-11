@@ -116,6 +116,7 @@
                 <h1><?php echo $product['name'];?></h1>
                 <p class="text-muted"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
                 <?php  
+                $orig_price = @$product['price'];
                 $price = @$product['price'];
                 $old_price = @$product['old_price'];
 
@@ -129,18 +130,18 @@
                 $text = 'ahora';
 
                 if(@$product['bank_discount']){
-                  $bank_price = ceil(round($price * (1 - (float) @$product['bank_discount'] / 100)));
+                  $bank_price = ceil(round($orig_price * (1 - (float) @$product['bank_discount'] / 100)));
                   if($bank_price < $price) {
-                    $old_price = $price;
+                    $old_price = $orig_price;
                     $price = $bank_price;
                     $text = 'transferencia';
                   }
                 }
 
                 if(@$product['mp_discount']){
-                  $mp_price = ceil(round($price * (1 - (float) @$product['mp_discount'] / 100)));
+                  $mp_price = ceil(round($orig_price * (1 - (float) @$product['mp_discount'] / 100)));
                   if($mp_price < $price) {
-                    $old_price = $price;
+                    $old_price = $orig_price;
                     $price = $mp_price;
                     $text = 'mercadopago';
                   }

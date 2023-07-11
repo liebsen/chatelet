@@ -133,6 +133,7 @@ class AppHelper extends Helper {
   }
 
   function show_prices_dues($legends, $item, $noprice = false){
+    $orig_price = (float) @$item['price'];
     $price = (float) @$item['price'];
     $old_price = (float) @$item['old_price'];
     $str = "";
@@ -141,18 +142,18 @@ class AppHelper extends Helper {
     $text = '';
 
     if(@$item['bank_discount']){
-      $bank_price = ceil(round($price * (1 - (float) @$item['bank_discount'] / 100)));
+      $bank_price = ceil(round($orig_price * (1 - (float) @$item['bank_discount'] / 100)));
       if($bank_price < $price) {
-        $old_price = $price;
+        $old_price = $orig_price;
         $price = $bank_price;
         $text = 'transferencia';
       }
     }
 
     if(@$item['mp_discount']){
-      $mp_price = ceil(round($price * (1 - (float) @$item['mp_discount'] / 100)));
+      $mp_price = ceil(round($orig_price * (1 - (float) @$item['mp_discount'] / 100)));
       if($mp_price < $price) {
-        $old_price = $price;
+        $old_price = $orig_price;
         $price = $mp_price;
         $text = 'mercadopago';
       }
