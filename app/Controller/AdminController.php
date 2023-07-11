@@ -572,17 +572,17 @@ class AdminController extends AppController {
 			die(json_encode(['status' => "error", 'message' => "Unauthorized"]));
 		}
 
-		$type = $this->request->data['type'];
+		$mode = $this->request->data['mode'];
 		$this->loadModel('Product');
 		$conds = [];
 		$conds['Product.category_id'] = (int) $this->request->data['id'];
 		if($this->request->data['existent_only'] === 'true') {
-			$conds['Product.'.$type.'_discount > '] = 0;
+			$conds['Product.'.$mode.'_discount > '] = 0;
 		}
 
 		$this->Product->updateAll(
 			[
-				'Product.'.$type.'_discount' => (float) $this->request->data['discount']
+				'Product.'.$mode.'_discount' => (float) $this->request->data['discount']
 			],
 			$conds			
 		);

@@ -1,5 +1,6 @@
 
 var category_id = 0
+var discount_mode = ''
 
 function layerClose() {
   $('body').css('overflow-y', 'auto')
@@ -10,6 +11,7 @@ function showLayer (e, layer, mode, category_id, category_name) {
   e.preventDefault()
   e.stopPropagation()
   window.category_id = 0
+  window.discount_mode = mode
   const selectr = $(`.${layer}-layer`)
   $('.category_id').text('')
   $('.category_name').text('')
@@ -25,13 +27,13 @@ function showLayer (e, layer, mode, category_id, category_name) {
   return false
 }
 
-function categoryDiscount(type){
+function categoryDiscount(){
   var button = $(`#discount_btn`)
   button.addClass('btn-disabled')
   button.text('Solicitando...')
   $.post('/admin/categoryDiscount', { 
     id: category_id, 
-    type: type,
+    mode: window.discount_mode,
     discount: $(`#discount`).val(),
     existent_only: $(`#existent_only`).prop('checked'),
   }).then(res => {
