@@ -1076,6 +1076,39 @@ class CarritoController extends AppController
 		if (!empty(@$carro)) {
 			foreach($carro as $key => $item) {
 				$criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
+				$price = @$item['price'];
+				$discount = 0;
+				$price_text = '';
+
+				if(!empty(@$item['discount'])) {
+					$old_price = $price;
+					$price = @$item['discount'];
+				}
+
+				if(!empty(@$item['discount_label_show'])) {
+					$old_price = $price;
+					$price = ceil(round($price * (1 - (float) @$item['discount_label_show'] / 100)));
+					$discount = @$item['discount_label_show'];
+				}
+
+				if(!empty(@$item['mp_discount']) && $payment_method === 'mercadopago') {
+					$old_price = $price;
+					$price = ceil(round($price * (1 - (float) @$item['mp_discount'] / 100)));
+					$discount = @$item['mp_discount'];
+					$price_text = 'mercadopago';
+				}
+				
+				if(!empty(@$item['bank_discount']) && $payment_method === 'bank') {
+					$old_price = $price;
+					$price = ceil(round($price * (1 - (float) @$item['bank_discount'] / 100)));
+					$discount = @$item['bank_discount'];
+					$price_text = 'transferencia';
+				}
+
+				$item['price'] = $price;
+				$item['old_price'] = $old_price;
+				$item['discount'] = $discount;
+				$item['price_text'] = $price_text;
 
 				if (!isset($groups[$criteria])) {
 					$groups[$criteria] = 0;
@@ -1106,7 +1139,6 @@ class CarritoController extends AppController
 	private function update_cart($carro=false) {
 		$config = $this->Session->read('Config');
 		$payment_method = @$config['payment_method'] ?: 'mercadopago';
-		$payment_text = '';
 		error_log('*'.$payment_method);
 
 		if (empty($carro)) {
@@ -1139,40 +1171,36 @@ class CarritoController extends AppController
 	  		}
 
 				$carro[$key]['original_price'] = $item['price'];
-        $price = @$item['price'];
-        $discount = 0;
-        $old_price = @$item['old_price'];
-        $price_text = '';
 
-        if(!empty(@$item['discount'])) {
-          $old_price = $price;
-          $price = @$item['discount'];
-        }
+				if (!empty($item['discount']) && (float) @$item['discount'] > 0) {
+					$carro[$key]['old_price'] = $item['price'];
+	        $carro[$key]['price'] = $item['discount'];
+	      }
 
-        if(!empty(@$item['discount_label_show'])) {
-        	$discount = $item['discount_label_show'];
-          //$old_price = $price;
-          //$price = ceil(round($price * (1 - (float) @$item['discount_label_show'] / 100)));
-        }
+	      if (
+	      	$payment_method === 'mercadopago' && 
+	      	!empty($item['mp_discount']) && 
+	      	(float) @$item['mp_discount'] > 0
+	      ) {
+					$carro[$key]['old_price'] = $item['price'];
+	        $carro[$key]['price'] = ceil(round($carro[$key]['price'] * (1 - (float) $item['mp_discount'] / 100)));
+	      }
 
-        if(!empty(@$item['mp_discount'])) {
-          $old_price = $price;
-          $price = ceil(round($price * (1 - (float) @$item['mp_discount'] / 100)));
-          $payment_text = 'mercadopago';
-          $discount = $item['mp_discount'];
-        }
-        
-        if(!empty(@$item['bank_discount']) && $payment_method === 'bank') {
-          $old_price = $price;
-          $price = ceil(round($price * (1 - (float) @$item['bank_discount'] / 100)));
-          $payment_text = 'transferencia';
-          $discount = $item['bank_discount'];
-        }
+	      if($payment_method === 'bank') {
+		      if (
+		      	!empty($item['bank_discount']) && 
+		      	(float) @$item['bank_discount'] > 0
+		      ) {
+						$carro[$key]['old_price'] = $item['price'];
+		        $carro[$key]['price'] = ceil(round($carro[$key]['price'] * (1 - (float) $item['bank_discount'] / 100)));
+		      } else {
+		      	if ($bank_enable &&$bank_discount_enable) {
+							$carro[$key]['old_price'] = $item['price'];
+			        $carro[$key]['price'] = ceil(round($carro[$key]['price'] * (1 - (float) $bank_discount / 100)));
+			      }
+		      }
+		    }
 
-        $carro[$key]['price'] = $price;
-        $carro[$key]['old_price'] = $old_price;
-        $carro[$key]['discount'] = $discount;
-        $carro[$key]['payment_text'] = $payment_text;
 	      $carro[$key]['uid'] = $key;
 			
 				if (!isset($groups[$item['promo']])) {

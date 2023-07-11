@@ -124,7 +124,7 @@ html, body {
 	display: flex;
 	justify-content: center;
 	align-items: center;	
-	min-height: 15rem;
+	min-height: 6rem;
 }
 
 .icon-huge .fa {
@@ -555,10 +555,23 @@ html, body {
 	top: 0.5rem !important;
 	left: 0.5rem !important;
 }
- 
+
+.text-shadow {
+	text-shadow: 2px 2px 0 #6661;  
+}
+
+.box-shadow {
+	box-shadow: 2px 2px 0 #6661;  
+}
+
 .grey {
 	color: lightgrey;
 }
+
+.yellow {
+	color: yellow;
+}
+
 .datepicker.dropdown-menu {
 	z-index: 9999;
 }

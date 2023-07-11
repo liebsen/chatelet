@@ -197,8 +197,8 @@
 					</div>
 					<?php else: ?>
 					<div class="container text-center">
-						<div class="icon-huge">
-							<i class="fa fa-warning grey"></i>
+						<div class="icon-huge mt-4">
+							<i class="fa fa-warning yellow text-shadow"></i>
 						</div>
 						<h3 class="h3 text-center">Tu carrito de compras está vacío</h3>
 						<div>¿Te interesaría buscar por palabra clave?</div>
