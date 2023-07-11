@@ -936,6 +936,7 @@ class CarritoController extends AppController
 			return $this->redirect(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' ));
 		}
 
+
 		//MP
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
 		$success_url = Router::url(array('controller' => 'carrito', 'action' => 'clear'), true);
@@ -957,6 +958,12 @@ class CarritoController extends AppController
     		'installments' => $user['dues']
     	)
 		);
+
+		if(!empty(Configure::read('MP_IN_SANDBOX_MODE'))) {
+			echo '<pre>';
+			var_dump($preference_data);
+			die("no payments yet");
+		}
 
 		$preference = $mp->create_preference($preference_data);
 		//Save Data

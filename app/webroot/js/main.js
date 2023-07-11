@@ -80,8 +80,8 @@ let focusEl = (text) => {
       }, 500)
     }
     setTimeout(() => {
-      $(text).removeClass(`animated slow ${focusAnim}`)
-      $(text).addClass(`animated slow ${focusAnim}`)
+      $(text).removeClass(`animated ${focusAnim}`)
+      $(text).addClass(`animated ${focusAnim}`)
     }, 1000)
   }
 }

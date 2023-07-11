@@ -1842,6 +1842,7 @@ span.out{
 }
 
 .price_strong {
+  color: black;
   font-weight: 600;
 }
 
@@ -2051,7 +2052,7 @@ span.out{
 }
 
 .ribbon.bottom-left span {
-  background: #5CB85C!important;
+  background: #e10d74!important;
   transform: translate(-1.3rem, -0.9rem) rotate(45deg);
   transform-origin: bottom left;
   box-shadow: 0 -3px 10px -5px rgba(0, 0, 0, 1);
@@ -2060,16 +2061,16 @@ span.out{
 .ribbon.bottom-left span:after {
   top: -5px;  
   border-left: 3px solid transparent;
-  border-right: 3px solid #5A825A;
-  border-bottom: 3px solid #5A825A;
+  border-right: 3px solid #e10d74;
+  border-bottom: 3px solid #e10d74;
   border-top: 3px solid transparent;
 }
 
 .ribbon.bottom-left span:before {
   top: -5px;
-  border-left: 3px solid #5A825A;
+  border-left: 3px solid #e10d74;
   border-right: 3px solid transparent;
-  border-bottom: 3px solid #5A825A;
+  border-bottom: 3px solid #e10d74;
   border-top: 3px solid transparent;
 }
 

@@ -200,7 +200,7 @@ class AppHelper extends Helper {
         $str.= '<span class="text-legend">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
           $legend['Legend']['dues'],
           $legend['Legend']['interest'],
-          '<span class="text-success price_strong"> $ ' . \price_format(ceil((!empty($interest) ? round($wprice * (1 + (float) $legend['Legend']['interest'] / 100)) : $wprice)/$legend['Legend']['dues'])) . '</span>'
+          '<span class="price_strong"> $ ' . \price_format(ceil((!empty($interest) ? round($wprice * (1 + (float) $legend['Legend']['interest'] / 100)) : $wprice)/$legend['Legend']['dues'])) . '</span>'
         ],
         $legend['Legend']['title']) . '</span>';
       }
