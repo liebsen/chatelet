@@ -1,6 +1,4 @@
-var last_selected = ''
 var dues_selected = ''
-var itemData = null
 var updateCart = (carrito) => {
 	if(!carrito) {
 		carrito = JSON.parse(localStorage.getItem('carrito')) || {}
@@ -53,17 +51,13 @@ var updateCart = (carrito) => {
 	}
 }
 
-var getTotals = (payment_method) => {
+var getTotals = () => {
+	var payment_method = carrito_config.payment_method
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var subtotal = 0
 	carrito_items.map((e) => {
 		var price = e.price
-		if(payment_method === 'mercadopago' && e.mp_price) {
-			price = e.mp_price
-		}
-		else if(payment_method === 'bank' && e.bank_price) {
-			price = e.bank_price
-		}
+		console.log(price)
 		subtotal+= parseFloat(price)
 	})
 
@@ -128,14 +122,13 @@ var select_payment = (e,item) => {
 	e.preventDefault()
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var selected = $(item).find('input').val()
+	carrito_config.payment_method = selected
 	$(item).find('input').prop('checked', true)
 	var bank_bonus = 0
 	if(!selected) {
 		return false
 	}
-	var subtotal = getTotals(selected)
-
-	last_selected = selected	
+	var subtotal = getTotals()
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
 		bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
 		$('.bank_bonus').text(formatNumber(bank_bonus))

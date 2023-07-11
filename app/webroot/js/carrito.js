@@ -262,7 +262,7 @@ $(document).ready(function() {
 				$('#calulate_shipping').submit()	
 				onWarningAlert('<i class="fa fa-calculator"></i> Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
 			} else {
-				onWarningAlert('<i class="fa fa-motorcycle"></i> Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000)
+				onWarningAlert('<i class="fa fa-truck"></i> Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000)
 			}
 		}, 1000)
 	}

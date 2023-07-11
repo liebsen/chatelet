@@ -1167,6 +1167,7 @@ class CarritoController extends AppController
 				}
 
 				$prod = $prod['Product'];
+				$price = $prod['price'];
 
 	      $prop = $this->ProductProperty->find('all', array('conditions' => array(
 	  			'product_id' => $prod['id'],
@@ -1179,8 +1180,9 @@ class CarritoController extends AppController
 	  		}
 
 				if (!empty($prod['discount']) && (float) @$prod['discount'] > 0) {
-					$carro[$key]['old_price'] = $prod['price'];
-	        $carro[$key]['price'] = $prod['discount'];
+					$carro[$key]['old_price'] = $price;
+					$price = $prod['discount'];
+	        $carro[$key]['price'] = $price;
 	      }
 
 	      if (
@@ -1188,21 +1190,32 @@ class CarritoController extends AppController
 	      	!empty($prod['mp_discount']) && 
 	      	(float) @$prod['mp_discount'] > 0
 	      ) {
-					$carro[$key]['old_price'] = $prod['price'];
-	        $carro[$key]['price'] = ceil(round($prod['price'] * (1 - (float) $prod['mp_discount'] / 100)));
+	      	error_log('A1');
+					$carro[$key]['old_price'] = $price;
+	        $carro[$key]['price'] = ceil(round($price * (1 - (float) $prod['mp_discount'] / 100)));
 	      }
 
 	      if (
 	      	!empty($prod['bank_discount']) && 
 	      	(float) @$prod['bank_discount'] > 0 && 
-	      	$payment_method === 'bank'
+	      	$payment_method === 'bank'	      	
 	      ) {
-					$carro[$key]['old_price'] = $prod['price'];
-	        $carro[$key]['price'] = ceil(round($prod['price'] * (1 - (float) $prod['bank_discount'] / 100)));
+	      	error_log('A2');
+					$carro[$key]['old_price'] = $price;
+	        $carro[$key]['price'] = ceil(round($price * (1 - (float) $prod['bank_discount'] / 100)));
 	      } else {
-	      	if ($bank_enable && $bank_discount_enable) {
-						$carro[$key]['old_price'] = $prod['price'];
-		        $carro[$key]['price'] = ceil(round($prod['price'] * (1 - (float) $bank_discount / 100)));
+	      	if (
+	      		$payment_method === 'bank' && 
+	      		$bank_enable && 
+	      		$bank_discount_enable
+	      	) {
+	      		error_log('A3');
+	      		$p = ceil(round($price * (1 - (float) $bank_discount / 100)));
+	      		error_log($price);
+	      		error_log($bank_discount);
+	      		error_log($p);
+						$carro[$key]['old_price'] = $price;
+		        $carro[$key]['price'] = $p;
 		      }
 	      }
 

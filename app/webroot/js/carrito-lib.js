@@ -8,6 +8,7 @@ var updateCart = (carrito) => {
     if (h.length && carrito[e]) {
       h.val(carrito[e])
     }
+    console.log(e, carrito[e])
     if ($(`.${e}`).length) {
       let value = carrito[e]
       if (typeof value === 'number') {
@@ -56,9 +57,12 @@ var save_preference = (settings) => {
       var response = JSON.parse(res)
       if (response.success) {
         var data = response.data
-        //getTotals(settings.payment_method)
+        data.forEach((e) => {
+          console.log(e.name, e.price)
+        })
+        carrito_items = data
+        getTotals()
         console.log('preference ok!')
-        console.log(data)
       }
     })
     .fail(function() {
