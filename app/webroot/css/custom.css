@@ -753,7 +753,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #filters .prices label span i { background: #000; display: none; height: 12px; width: 100%; }
 #filters .prices label span.active i { display: block; }
 #listShop { padding-bottom: 100px;}
-#listShop a { /*background: #e7e7e7;*/ display: block; margin-bottom: 30px; overflow: hidden; position: relative; }
+#listShop a { /*background: #efefef;*/ display: block; margin-bottom: 30px; overflow: hidden; position: relative; }
 #listShop a img {
   height:20rem;
   object-fit: cover;
@@ -879,7 +879,7 @@ align-items: center;}
 #productOptions nav li a.current{ color: magenta!important; }
 #productOptions a.btBig { border: 2px solid #363633; color: #6e6e6e; display: block; font-size: 40px; font-weight: 600; padding: 240px 0; text-align: center; border-radius: 3px;}
 #productOptions a.btBig span { color: #363633; font-size: 27px; }
-#productOptions .product-list a {  /*background: #e7e7e7;*/ 
+#productOptions .product-list a {  /*background: #efefef;*/ 
   /* display: inline-table;*/ width: 100%; 
   background-color: transparent; margin-bottom: 10px; overflow: hidden; position: relative;height: auto; }
 #productOptions .product-list a img { 
@@ -898,7 +898,6 @@ align-items: center;}
   transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 
 .product-info {
-  background-color: #eaeaea;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;  
 }
@@ -1124,7 +1123,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #myModal2 .content .table tr:first-child td { border-top: none; }
 #myModal2 .content .table tr td:first-child { color: #363633; text-align: left; }
 
-.map { overflow: hidden; background-color: #e7e7e7;}
+.map { overflow: hidden; background-color: #efefef;}
 .map .col-md-4 { background: url(../images/mapbg.png) no-repeat center center; background-size: cover; padding: 200px 0 200px 150px; }
 .map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 600; }
 .map .col-md-4 h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
@@ -2438,11 +2437,11 @@ span.count.is-empty {
 
 .carrito-item-row .help > div {
   padding: 1rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   /*font-style: italic;*/
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   background-color: #e10d74;
-  border: 8px solid white;
+  border: 5px solid white;
   color: white;
 }
 
