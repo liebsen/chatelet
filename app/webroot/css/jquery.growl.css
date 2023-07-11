@@ -56,21 +56,21 @@
   .growl.growl-small {
     padding: 0.5rem;}
   .growl.growl-medium {
-    padding: 1.5rem;}
+    padding: 1rem 1.25rem;}
   .growl.growl-large {
-    padding: 2rem;}
+    padding: 1.5rem 1.75rem;}
   .growl.growl-default {
     color: #FFF;
-    background: #7f8c8d; }
+    background: #e10d74; }
   .growl.growl-error {
     color: #FFF;
-    background: #C0392B; }
+    background: #e10d74; }
   .growl.growl-notice {
     color: #999;
     background: #ffffff; }
   .growl.growl-warning {
     color: #FFF;
-    background: #b77c20; }
+    background: #e10d74; }
   .growl .growl-close {
     cursor: pointer;
     position: absolute;
@@ -82,16 +82,14 @@
     line-height: 1.25rem;
     font-weight: normal;
     opacity: 0;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif; }
+  }
   .growl .growl-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: bold;
-    line-height: 1.5rem;
+    line-height: 1.25rem;
     margin-bottom: 0.75rem;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif; 
   }
   .growl .growl-message {
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif; 
     font-size: 1rem;
     line-height: 1rem; }
 

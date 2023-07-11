@@ -1,6 +1,5 @@
 var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 var lastcp = localStorage.getItem('lastcp') || 0
-var lastpm = localStorage.getItem('pm') || 'mercadopago'
 var lastscroll = 0
 //new WOW().init();
 let searchInt = 0

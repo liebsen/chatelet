@@ -1,11 +1,56 @@
 var last_selected = ''
 var dues_selected = ''
+var updateCart = (carrito) => {
+	if(!carrito) {
+		carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+	}
 
+	Object.keys(carrito).forEach(e => {
+		const h = $('#checkoutform').find(`input[name='${e}']`)
+		//console.log('?',e)
+		if (h.length && carrito[e]) {
+			h.val(carrito[e])
+		}
+		if ($(`.${e}`).length) {
+			let value = carrito[e]
+			if (typeof value === 'number') {
+				value = formatNumber(value)	
+			}
+			$(`.${e}`).html(value)
+		}
+	})
 
+	if (carrito.cargo === 'takeaway') {
+		$('.cargo-takeaway').removeClass('hide')
+		$('.cargo-takeaway').addClass('animated fadeIn')
+	}
 
-/*var save_preference = (data) => {
-	localStorage.setItem(data.name, data.value)
-}*/
+	if (carrito.cargo === 'shipment') {
+		var price = ''
+		if (carrito.freeShipping) {
+			price = '<span class="text-success">Gratis</span>'
+		} else {
+			price = `$ ${formatNumber(carrito.shipping_price)}`
+		}
+		$('.shipping_price').html(price)
+		$('.shipping-block').removeClass('hide')
+		$('.shipping-block').addClass('animated fadeIn')
+	}
+
+	if(!carrito.coupon) {
+		$('.coupon-actions-block').removeClass('hide')
+		$('.coupon-actions-block').addClass('animated fadeIn')
+	} else {
+		$('.coupon-block').removeClass('hide')
+		$('.coupon-block').addClass('animated fadeIn')
+	}
+
+	if (bank.enable && bank.discount_enable && bank.discount) {
+		setTimeout(() => {
+  		onSuccessAlert('<i class="fa fa-mobile"></i> Pagá con Transferencia', `Y obtené un ${bank.discount}% de descuento en tu compra`);		
+  	}, 2000)
+	}
+}
 
 var getTotals = (payment_method) => {
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
@@ -46,7 +91,8 @@ var select_radio = (name, value) => {
   e.prop("checked",true)
   $(`.${name} .option-rounded`).removeClass('is-selected')
   e.parent().addClass('is-selected')
-  save_preference({ [name]: value })
+  console.log('save(1)')
+  //save_preference({ [name]: value })
 }
 
 var select_dues = (e,item) => {
@@ -64,7 +110,8 @@ var select_dues = (e,item) => {
 
 	var interest = $(e).data('interest')
 
-  onSuccessAlert(`${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
+  onSuccessAlert(`<i class="fa fa-credit-card"></i> ${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
+  console.log('save(2)')
   save_preference([
   	{'payment_method':'mercadopago'},
   	{'payment_dues':dues_selected}
@@ -98,13 +145,11 @@ var select_payment = (e,item) => {
 		$('.bank-block').addClass('hide')
 	}
 
-  save_preference({ 
-  	// bank_bonus: bank_bonus,
-  	payment_method: selected,
-  })
+  onSuccessAlert('<i class="fa fa-mobile"></i> ' + (selected === 'bank' ? 'Transferencia' : 'Mercadopago'), '✓ Método de pago seleccionado');
 
-  onSuccessAlert((selected === 'bank' ? 'CBU/Alias' : 'Mercadopago'), '✓ Método de pago seleccionado');
-  save_preference({'payment_method': selected})
+  console.log('save(4)')
+  save_preference({payment_method: selected})
+
 	$('.payment_method .option-rounded').removeClass('is-selected is-secondary')
 	$('.payment_method .option-rounded').addClass('is-secondary')
 	$(item).addClass('is-selected')
@@ -115,59 +160,8 @@ $(function(){
 	$(`.cargo-${carrito.cargo}`).addClass('animated fadeIn')
 	$('#regalo').prop('checked', carrito.regalo)
 
-	Object.keys(carrito).forEach(e => {
-		const h = $('#checkoutform').find(`input[name='${e}']`)
-		//console.log('?',e)
-		if (h.length && carrito[e]) {
-			h.val(carrito[e])
-		}
-		if ($(`.${e}`).length) {
-			let value = carrito[e]
-			if (typeof value === 'number') {
-				value = formatNumber(value)	
-			}
-			$(`.${e}`).html(value)
-		}
-	})
+	updateCart()
 
-	if(lastpm) {
-		setTimeout(() => {
-			if($(`#${lastpm}`)) {
-				$(`#${lastpm}`).click()
-			}
-		}, 100)
-		// $('input[name=payment_method]').val(lastpm)
-	}
-	if (carrito.cargo === 'takeaway') {
-		$('.cargo-takeaway').removeClass('hide')
-		$('.cargo-takeaway').addClass('animated fadeIn')
-	}
-
-	if (carrito.cargo === 'shipment') {
-		var price = ''
-		if (carrito.freeShipping) {
-			price = '<span class="text-success">Gratis</span>'
-		} else {
-			price = `$ ${formatNumber(carrito.shipping_price)}`
-		}
-		$('.shipping_price').html(price)
-		$('.shipping-block').removeClass('hide')
-		$('.shipping-block').addClass('animated fadeIn')
-	}
-
-	if(!carrito.coupon) {
-		$('.coupon-actions-block').removeClass('hide')
-		$('.coupon-actions-block').addClass('animated fadeIn')
-	} else {
-		$('.coupon-block').removeClass('hide')
-		$('.coupon-block').addClass('animated fadeIn')
-	}
-
-	if (bank.enable && bank.discount_enable && bank.discount) {
-		setTimeout(() => {
-  		onSuccessAlert('Pagá con CBU/Alias', `Y obtené un ${bank.discount}% de descuento en tu compra`);		
-  	}, 2000)
-	}
 
 	$('#submitcheckoutbutton').click(e => {
 		if(dues_selected && dues_selected > 1){ // show legend

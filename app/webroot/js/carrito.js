@@ -25,7 +25,7 @@ var selectStore = e => {
   localStorage.setItem('carrito', JSON.stringify(preferences))
   var carrito_takeaway_text = $('.carrito_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
-  onSuccessAlert(`Retirás en sucursal ${suc.replace(',','')}`, `Podes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. ${carrito_takeaway_text}`);
+  onSuccessAlert(`<i class="fa fa-shopping-bag"></i> Retirás en sucursal ${suc.replace(',','')}`, `Podes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. ${carrito_takeaway_text}`);
 	cargo = 'takeaway'
 }
 var show_cart_item = index => {
@@ -125,21 +125,21 @@ $(document).ready(function() {
 		let location = $(this).attr('link-to')||$(this).prop('link-to')
 
 		if(!c){
-			onSuccessAlert('Carrito vacío','No tienes productos en el carrito', 5000)
+			onSuccessAlert('<i class="fa fa-warning"></i> Carrito vacío','No tienes productos en el carrito', 5000)
 			return false;
 		}
 
 		if (cargo === 'shipment') {
 			const shipping_cargo = $('.shipping-options li.selected')
 			if (!shipping_cargo.length) {
-				onErrorAlert('¿Cómo querés recibir tu compra?', 'Por favor seleccioná un tipo de envío para tu compra, también podés elegir Retiro en Sucursal para evitar cargos de envío');	
+				onErrorAlert('<i class="fa fa-warning"></i> ¿Cómo querés recibir tu compra?', 'Por favor seleccioná un tipo de envío para tu compra, también podés elegir Retiro en Sucursal para evitar cargos de envío');	
 				location.hash = 'f:.como-queres-recibir-tu-compra'
 				return false;
 			} else {
 				if (shipping_cargo.attr('shipping')) {
 					shipping = shipping_cargo.attr('shipping')
 				} else {
-					onErrorAlert('¿Cómo querés recibir tu compra?','Por favor introducí tu código postal, también podés elegir Retiro en Sucursal para evitar cargos de envío');
+					onErrorAlert('<i class="fa fa-warning"></i> ¿Cómo querés recibir tu compra?','Por favor introducí tu código postal, también podés elegir Retiro en Sucursal para evitar cargos de envío');
 					location.hash = 'f:.como-queres-recibir-tu-compra'
 					return false;
 				}
@@ -152,20 +152,20 @@ $(document).ready(function() {
 				$('.input-cp').focus();
 				$('.input-cp').removeClass('ok');
 				$('.input-cp').addClass('wrong');
-				onErrorAlert('¿Cómo querés recibir tu compra?', 'Por favor ingresá tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
+				onErrorAlert('<i class="fa fa-warning"></i> ¿Cómo querés recibir tu compra?', 'Por favor ingresá tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
 				return false;
 			}
 		} else if(cargo === 'takeaway') {
 			const takeaway = $('.takeaway-options li.selected')
 			if (!takeaway.length) {
-				onErrorAlert('Seleccioná sucursal', 'Por favor seleccioná una sucursal para retirar tu compra');	
+				onErrorAlert('<i class="fa fa-map-marker"></i> Seleccioná sucursal', 'Por favor seleccioná una sucursal para retirar tu compra');	
 				return false;
 			} else {
 				if (takeaway.attr('store')) {
 					store = takeaway.attr('store')
 					store_address = takeaway.attr('store-address')
 				} else {
-					onErrorAlert('¿Cómo querés recibir tu compra?','Por favor indicá tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
+					onErrorAlert('<i class="fa fa-warning"></i> ¿Cómo querés recibir tu compra?','Por favor indicá tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
 					return false;
 				}
 			}
@@ -173,7 +173,7 @@ $(document).ready(function() {
 			if (freeShipping) {
 				cargo = 'shipment'
 			} else {
-				onErrorAlert('¿Cómo querés recibir tu compra?','Por favor introducí tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
+				onErrorAlert('<i class="fa fa-warning"></i> ¿Cómo querés recibir tu compra?','Por favor introducí tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
 				return false
 			}
 		}
@@ -259,9 +259,9 @@ $(document).ready(function() {
 			const takeaway = $('.takeaway-options li.selected')
 			if(cargo === 'shipment' && !takeaway.length || freeShipping) {
 				$('#calulate_shipping').submit()	
-				onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
+				onWarningAlert('<i class="fa fa-calculator"></i> Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
 			} else {
-				onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000)
+				onWarningAlert('<i class="fa fa-motorcycle"></i> Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000)
 			}
 		}, 1000)
 	}

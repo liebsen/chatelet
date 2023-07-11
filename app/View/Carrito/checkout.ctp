@@ -3,13 +3,19 @@
 	echo $this->Html->css('checkout.css?v=' . Configure::read('DIST_VERSION'), array('inline' => false));
 	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('DIST_VERSION'), array('inline' => false));	
 	echo $this->Html->script('checkout_sale.js?v=' . Configure::read('DIST_VERSION'),array('inline' => false));
+	echo $this->element('carrito');
 ?>
 <script>
 	var shipping_price = <?= $shipping_price ?>;
 	var carrito_config = <?php echo json_encode($this->Session->read('Config'), JSON_PRETTY_PRINT);?>;
 	var carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETTY_PRINT);?>;
-	var bank = {enable: <?= isset($data['bank_enable']) ? $data['bank_enable'] : 0 ?>,discount_enable: <?= isset($data['bank_discount_enable']) ? $data['bank_discount_enable'] : 0 ?>,discount: <?= isset($data['bank_discount']) ? $data['bank_discount'] : 0 ?>}
+	var bank = {
+		enable: <?= isset($data['bank_enable']) ? $data['bank_enable'] : 0 ?>,
+		discount_enable: <?= isset($data['bank_discount_enable']) ? $data['bank_discount_enable'] : 0 ?>,
+		discount: <?= isset($data['bank_discount']) ? $data['bank_discount'] : 0 ?>
+	}
 </script>
+
 <div id="dues_message" class="container">
 	<h3>Vamos a redirigirte a la pasarela de pagos<h3>
 	<h4>Asegurate de seleccionar <span class="dues-message-dues"></span> cuotas en MercadoPago</h4>
@@ -156,7 +162,7 @@
 						        </div>
 							    	<div class="col-xs-12 option-regular bank-block hide">
 						          <label class="d-inline">
-						          	<span class="h4">Descuento CBU/Alias</span><br>
+						          	<span class="h4">Descuento pago Transferencia</span><br>
 						          	<p class="mt-2 text-bold text-success h4 mb-0">
 						          		$ <span class="bank_bonus"></span>
 						          	</p>
@@ -193,15 +199,15 @@
 						    </h5>
 						    <h6 class="card-subtitle">Total $ <span class="total_price"></span>.  Seleccioná un método de pago</h6>
 						    <div class="row card-row payment_method pl-3 pr-3">
-						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !$data['bank_enable'] ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
-						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !$data['bank_enable'] ? 'checked': '' ?>/>
+						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
+						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
 					          	<span class="h4">Mercado Pago</span><br>
 					          	<p class="mt-2 text-small">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
 				        	</label>				          
 					      <?php if($data['bank_enable']): ?>
-					        <label for="bank" class="col-xs-12 is-clickable option-rounded" onclick="select_payment(event,this)">
-					          <input type="radio" class="" id="bank" name="payment_method" value="bank" required />
-				          	<span class="h4">CBU/Alias</span><br>
+					        <label for="bank" class="col-xs-12 is-clickable option-rounded<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
+					          <input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
+				          	<span class="h4">Transferencia</span><br>
 				          	<p class="mt-2 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
 				          </label>
 					       <?php endif ?>

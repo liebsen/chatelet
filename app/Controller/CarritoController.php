@@ -245,6 +245,7 @@ class CarritoController extends AppController
 			$this->redirect(array( 'action' => 'clear' ));
 			die;
 		}
+		$config = $this->Session->read('Config');
 		$oca = new Oca();
 		$provincias = $oca->getProvincias();
 		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
@@ -269,6 +270,7 @@ class CarritoController extends AppController
 		$this->set('freeShipping', $freeShipping);
 		$this->set('data',$data);
 		$this->set('total',$total_price);
+		$this->set('config',$config);
 		$this->set('userData',$user);
 	}
 
@@ -301,6 +303,25 @@ class CarritoController extends AppController
 		}else{
 			return 0;
 		}
+	}
+
+	public function getCartData($id)
+	{
+		$this->RequestHandler->respondAs('application/json');
+		$this->autoRender = false;
+		$map = $this->Setting->findById('bank_enable');
+		$bank_enable = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_discount_enable');
+		$bank_discount_enable = @$map['Setting']['value'];
+		$map = $this->Setting->findById('bank_discount');
+		$bank_discount = @$map['Setting']['value'];
+
+		$response = (object) [
+			'enable' => @$bank_enable,
+			'discount_enable'=> @$bank_discount_enable,
+			'discount'=> @$bank_discount
+		];
+		return json_encode($response);
 	}
 
 	public function takeawayStores($cp = null){
