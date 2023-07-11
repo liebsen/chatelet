@@ -52,9 +52,20 @@
             </ul>
         </div>
         <div class="col-md-5">
-             <div class="is-product-photo">
-                <?php if (intval($product['discount_label_show']) > 0) :?>
-                    <div class="ribbon large bottom-left small"><span><?= $product['discount_label_show'] ?>% OFF</span></div>
+             <div class="is-product-photo"><?php 
+                $number_ribbon = 0;
+                if (isset($product['discount_label_show'])){
+                    $number_ribbon = (int)@$product['discount_label_show'];
+                }
+                if (isset($product['mp_discount']) && $product['mp_discount'] > $number_ribbon){
+                  $number_ribbon = (int) @$product['mp_discount'];
+                }
+                if (isset($product['bank_discount']) && $product['bank_discount'] > $number_ribbon){
+                  $number_ribbon = (int) @$product['bank_discount'];
+                } ?>
+
+                <?php if ($number_ribbon) :?>
+                    <div class="ribbon large bottom-left small"><span><?= $number_ribbon ?>% OFF</span></div>
                 <?php endif ?>
                 <?php if ($product['promo'] !== '') :?>
                     <div class="ribbon large"><span><?= $product['promo'] ?></span></div>
