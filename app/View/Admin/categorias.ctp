@@ -29,13 +29,13 @@
           </label>
         </div-->
         <div class="form-group">
-          <input class="form-input" type="checkbox" id="bank_existent_only" value="1" checked/>
+          <input class="form-input" type="checkbox" id="existent_only" value="1" checked/>
           <label for="existent_only">
             Solo las que ya tienen descuento
           </label>
         </div>                
         <div class="form-group">
-            <button type="button" id="bank_discount_btn" class="btn btn-primary" onclick="categoryDiscount('bank')">Actualizar</button>
+            <button type="button" id="discount_btn" class="btn btn-primary" onclick="categoryDiscount('bank')">Actualizar</button>
         </div>
       </form>
     </div>

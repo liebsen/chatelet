@@ -125,6 +125,7 @@
 							echo '<span class="old_price text-grey animated fadeIn delay2">$ '. \price_format($product['old_price']) .'</span>';
 						}					
 						echo '<span class="price animated fadeIn delay">$ '. \price_format($product['price']) .'</span>';
+						echo strlen(@$product['payment_text']) ? 'con ' . @$product['payment_text'] : '';
 						echo '</div>';
 						echo '<div class="carrito-hide-element">
 							<div class="form-inline">

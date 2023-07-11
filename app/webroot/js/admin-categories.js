@@ -26,14 +26,14 @@ function showLayer (e, layer, mode, category_id, category_name) {
 }
 
 function categoryDiscount(type){
-  var button = $(`#${type}_discount_btn`)
+  var button = $(`#discount_btn`)
   button.addClass('btn-disabled')
   button.text('Solicitando...')
   $.post('/admin/categoryDiscount', { 
     id: category_id, 
     type: type,
-    discount: $(`#${type}_discount`).val(),
-    existent_only: $(`#${type}_existent_only`).prop('checked'),
+    discount: $(`#discount`).val(),
+    existent_only: $(`#existent_only`).prop('checked'),
   }).then(res => {
     let data = JSON.parse(res)
     if(data.status==='success'){
