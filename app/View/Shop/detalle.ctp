@@ -5,7 +5,6 @@
     echo $this->Html->css('cloudzoom', array('inline' => false));
     echo $this->Html->script('jquery.growl', array('inline' => false));
     echo $this->Html->script('detalle', array('inline' => false));
-
     $images  = array();
     $images_aux = explode(';', $product['gallery']);
     foreach ($images_aux as $key => $value) {
@@ -32,7 +31,8 @@
     }
 ?>
 <script>
-    var colorImages = <?=json_encode($colorImages, true)?>;
+    var itemData = <?=json_encode($product, JSON_PRETTY_PRINT)?>;
+    var colorImages = <?=json_encode($colorImages, JSON_PRETTY_PRINT)?>;
     window.isGiftCard = <?=(int)$isGiftCard?>;
 </script>
 <section id="detalle">
@@ -127,6 +127,7 @@
                 <h1><?php echo $product['name'];?></h1>
                 <p class="text-muted mb-1"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
                 <?php  
+                
                 $orig_price = @$product['price'];
                 $price = @$product['price'];
                 $old_price = @$product['old_price'];
@@ -138,7 +139,7 @@
 
                 $bank_price = 0;
                 $mp_price = 0;
-                $text = 'ahora';
+                $text = '';
 
                 if(@$product['bank_discount']){
                   $bank_price = ceil(round($orig_price * (1 - (float) @$product['bank_discount'] / 100)));

@@ -1,5 +1,6 @@
 var currentCarritoIndex = 0
 var cargo = ''
+var itemData = null
 var selectStore = e => {
 	var total_orig = parseFloat($('#subtotal_compra').val())
 	var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0

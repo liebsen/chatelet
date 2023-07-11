@@ -87,12 +87,8 @@
 						echo '<div class="carrito-item-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
 						echo "<div class='cart-img'>";
-						if (!empty(intval($product['discount']))) {
-							if (intval($product['price'])) {
-								echo '<div class="ribbon bottom-left small"><span>'.$product['discount'].'% OFF</span></div>';
-							} else {
-								echo '<div class="ribbon bottom-left small"><span>GRATIS</span></div>';
-							}
+						if (!empty($product['number_ribbon'])) {
+							echo '<div class="ribbon bottom-left small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
 						}
 						if (empty($product['price'])) {
 							$promosaved+= (float) $product['old_price'];

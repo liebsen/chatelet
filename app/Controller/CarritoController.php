@@ -180,6 +180,9 @@ class CarritoController extends AppController
 
 	public function index()
 	{
+
+		$carro = $this->update();
+		$this->Session->write('Carro', $carro);
 		$data = $this->getItemsData();
 		$shipping_price = $this->Setting->findById('shipping_price_min');
 		$total_price = $data['price'];
@@ -197,7 +200,6 @@ class CarritoController extends AppController
 			'total' => str_replace(',00','',number_format($data['price'], 0, ',', '.'))
 		];
 
-
     $mapper = $this->Setting->findById('display_text_shipping_min_price');
     $display_text_shipping_min_price = $mapper['Setting']['value'];
     $mapper = $this->Setting->findById('text_shipping_min_price');
@@ -207,11 +209,9 @@ class CarritoController extends AppController
 			$this->set('text_shipping_min_price',$text_shipping_min_price);
 		}
 
-		$this->Session->write('Carro', $this->update_cart());
-
 		$map = $this->Setting->findById('carrito_takeaway_text');
  		$carrito_takeaway_text = $map['Setting']['extra'];		
-		$this->set('sorted', $this->sort_cart());
+		$this->set('sorted', $this->sort());
 		$this->set('stores', $stores);
 		$this->set('carrito_takeaway_text', $carrito_takeaway_text);
 		$this->set('freeShipping', $freeShipping);
@@ -245,6 +245,7 @@ class CarritoController extends AppController
 			$this->redirect(array( 'action' => 'clear' ));
 			die;
 		}
+
 		$config = $this->Session->read('Config');
 		$oca = new Oca();
 		$provincias = $oca->getProvincias();
@@ -264,7 +265,7 @@ class CarritoController extends AppController
 		$shipping_price = @$map['Setting']['value'];
 		$total_price = $items['price'];
 		$freeShipping = $this->isFreeShipping($total_price);
-
+	
 		$this->set('shipping_price',$shipping_price);
 		$this->set('provincias',$provincias);
 		$this->set('freeShipping', $freeShipping);
@@ -765,7 +766,7 @@ class CarritoController extends AppController
 				'product_id' => $producto['id'],
 				'color' => $producto['color'],
 				'size' => $producto['size'],
-				'precio_lista' => (!empty($producto['original_price']))?$producto['original_price']:$producto['price'],
+				'precio_lista' => (!empty($producto['orig_price']))?$producto['orig_price']:$producto['price'],
 				'precio_vendido' => $unit_price,
 				'sale_id' => $sale_id,
 				'id' => null,
@@ -1005,7 +1006,7 @@ class CarritoController extends AppController
 
 		$this->Session->write('Config', $config);
 		error_log('payment_method:'.$config['payment_method']);
-		$carro = $this->update_cart();
+		$carro = $this->update();
 		$this->Session->write('Carro', $carro);
 
 		return json_encode(array('success' => true, 'data' => $carro));
@@ -1026,13 +1027,17 @@ class CarritoController extends AppController
 	public function sorted() {
 		$this->autoRender = false;
 		echo '<pre>';
-		var_dump($this->sort_cart());
+		var_dump($this->sort());
 	}
 
 	public function add() {
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');
-		if ($this->request->is('post') && isset($this->request->data['id']) && isset($this->request->data['count'])) {
+		if (
+			$this->request->is('post') && 
+			isset($this->request->data['id']) && 
+			isset($this->request->data['count'])
+		) {
 			$product = $this->Product->findById($this->request->data['id']);
 			$urlCheck = Configure::read('baseUrl')."shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
 
@@ -1040,8 +1045,7 @@ class CarritoController extends AppController
 				//$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article'];
 				error_log('fake stock');
 				$stock=1;
-			}else{
-
+			} else {
 				error_log($urlCheck);
 				$ch = curl_init();
 			    curl_setopt($ch, CURLOPT_URL, $urlCheck);
@@ -1085,14 +1089,14 @@ class CarritoController extends AppController
 				// error_log('[carrito] '.json_encode($this->filter($filter)));
 
 				// filter(1)
-				$this->Session->write('Carro', $this->update_cart($filter));
+				$this->Session->write('Carro', $this->update($filter));
 				return json_encode(array('success' => true));
 			}
 		}
 		return json_encode(array('success' => false));
 	}
 
-	private function sort_cart() {
+	private function sort() {
 		$carro = $this->Session->read('Carro');
 		$config = $this->Session->read('Config');
 		$payment_method = @$config['payment_method'] ?: 'mercadopago';
@@ -1104,39 +1108,6 @@ class CarritoController extends AppController
 		if (!empty(@$carro)) {
 			foreach($carro as $key => $item) {
 				$criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
-				$price = @$item['price'];
-				$discount = 0;
-				$price_text = '';
-
-				if(!empty(@$item['discount'])) {
-					$old_price = $price;
-					$price = @$item['discount'];
-				}
-
-				if(!empty(@$item['discount_label_show'])) {
-					$old_price = $price;
-					$price = ceil(round($price * (1 - (float) @$item['discount_label_show'] / 100)));
-					$discount = @$item['discount_label_show'];
-				}
-
-				if(!empty(@$item['mp_discount']) && $payment_method === 'mercadopago') {
-					$old_price = $price;
-					$price = ceil(round($price * (1 - (float) @$item['mp_discount'] / 100)));
-					$discount = @$item['mp_discount'];
-					$price_text = 'mercadopago';
-				}
-				
-				if(!empty(@$item['bank_discount']) && $payment_method === 'bank') {
-					$old_price = $price;
-					$price = ceil(round($price * (1 - (float) @$item['bank_discount'] / 100)));
-					$discount = @$item['bank_discount'];
-					$price_text = 'transferencia';
-				}
-
-				$item['price'] = $price;
-				$item['old_price'] = $old_price;
-				$item['discount'] = $discount;
-				$item['price_text'] = $price_text;
 
 				if (!isset($groups[$criteria])) {
 					$groups[$criteria] = 0;
@@ -1164,7 +1135,7 @@ class CarritoController extends AppController
 		return $sort;
 	}
 
-	private function update_cart($carro=false) {
+	private function update($carro=false) {
 		$config = $this->Session->read('Config');
 		$payment_method = @$config['payment_method'] ?: 'mercadopago';
 		error_log('*'.$payment_method);
@@ -1188,8 +1159,17 @@ class CarritoController extends AppController
 		if (!empty($carro)) {
 			/* apply basic prices and fill promos data */
 			foreach($carro as $key => $item) {
+				$prod = $this->Product->findById($item['id']);
+
+				if(empty($prod)) {
+					unset($carro[$key]);
+					continue;
+				}
+
+				$prod = $prod['Product'];
+
 	      $prop = $this->ProductProperty->find('all', array('conditions' => array(
-	  			'product_id' => $item['id'],
+	  			'product_id' => $prod['id'],
 	  			'alias' => $item['alias']
 	  		)));
 
@@ -1198,46 +1178,56 @@ class CarritoController extends AppController
 	  			$carro[$key]['alias_image'] = $arrImages[0];
 	  		}
 
-				$carro[$key]['original_price'] = $item['price'];
-
-				if (!empty($item['discount']) && (float) @$item['discount'] > 0) {
-					$carro[$key]['old_price'] = $item['price'];
-	        $carro[$key]['price'] = $item['discount'];
+				if (!empty($prod['discount']) && (float) @$prod['discount'] > 0) {
+					$carro[$key]['old_price'] = $prod['price'];
+	        $carro[$key]['price'] = $prod['discount'];
 	      }
 
 	      if (
 	      	$payment_method === 'mercadopago' && 
-	      	!empty($item['mp_discount']) && 
-	      	(float) @$item['mp_discount'] > 0
+	      	!empty($prod['mp_discount']) && 
+	      	(float) @$prod['mp_discount'] > 0
 	      ) {
-					$carro[$key]['old_price'] = $item['price'];
-	        $carro[$key]['price'] = ceil(round($carro[$key]['price'] * (1 - (float) $item['mp_discount'] / 100)));
+					$carro[$key]['old_price'] = $prod['price'];
+	        $carro[$key]['price'] = ceil(round($prod['price'] * (1 - (float) $prod['mp_discount'] / 100)));
 	      }
 
-	      if($payment_method === 'bank') {
-		      if (
-		      	!empty($item['bank_discount']) && 
-		      	(float) @$item['bank_discount'] > 0
-		      ) {
-						$carro[$key]['old_price'] = $item['price'];
-		        $carro[$key]['price'] = ceil(round($carro[$key]['price'] * (1 - (float) $item['bank_discount'] / 100)));
-		      } else {
-		      	if ($bank_enable &&$bank_discount_enable) {
-							$carro[$key]['old_price'] = $item['price'];
-			        $carro[$key]['price'] = ceil(round($carro[$key]['price'] * (1 - (float) $bank_discount / 100)));
-			      }
+	      if (
+	      	!empty($prod['bank_discount']) && 
+	      	(float) @$prod['bank_discount'] > 0 && 
+	      	$payment_method === 'bank'
+	      ) {
+					$carro[$key]['old_price'] = $prod['price'];
+	        $carro[$key]['price'] = ceil(round($prod['price'] * (1 - (float) $prod['bank_discount'] / 100)));
+	      } else {
+	      	if ($bank_enable && $bank_discount_enable) {
+						$carro[$key]['old_price'] = $prod['price'];
+		        $carro[$key]['price'] = ceil(round($prod['price'] * (1 - (float) $bank_discount / 100)));
 		      }
-		    }
+	      }
 
-	      $carro[$key]['uid'] = $key;
-			
-				if (!isset($groups[$item['promo']])) {
-					// $groups[$item['promo']] = [];
-					$groups[$item['promo']] = [];
+				$number_ribbon = 0;
+	      if(!empty(@$prod['discount_label_show'])) {
+	        $number_ribbon = $prod['discount_label_show'];
+	      }
+
+	      if(!empty(@$prod['mp_discount'])) {
+	        $number_ribbon = $prod['mp_discount'];
+	        //$mp_price = \price_format(ceil(round($price * (1 - (float) $prod['mp_discount'] / 100))));
+	      }
+
+	      if(!empty(@$prod['bank_discount'])) {
+	        $number_ribbon = $prod['bank_discount'];
+	        //$bank_price = \price_format(ceil(round($price * (1 - (float) $prod['bank_discount'] / 100))));
+	      }
+	      $carro[$key]['number_ribbon'] = $number_ribbon;
+	      $carro[$key]['uid'] = $key;			
+				if (!isset($groups[$prod['promo']])) {
+					$groups[$prod['promo']] = [];
 				}
-				$groups[$item['promo']][] = $carro[$key];
-				// $groups[$item['promo']]++;
+				$groups[$prod['promo']][] = $carro[$key];
 			}
+			// $groups[$item['promo']]++;
 
 			// appy promo qunatities
 			foreach($carro as $key => $item) {
@@ -1248,7 +1238,7 @@ class CarritoController extends AppController
 					$promo_val = intval($parts[1]);
 					if (count($groups[$promo]) >= $promo_key) {
 						$sorted = array_column($groups[$promo], 'price');
-						array_multisort_cart($sorted, SORT_DESC, $groups[$promo]);
+						array_multisort($sorted, SORT_DESC, $groups[$promo]);
 						$offset = $promo_key - $promo_val;
 						$refs = array_slice($groups[$promo], 0, $promo_val);
 						$refs_ids = [];
@@ -1299,7 +1289,7 @@ class CarritoController extends AppController
 		// $this->Session->write('Carro', $this->get_computed($aux));
 		if (count($data)) {
 			// filter(2)
-			$this->Session->write('Carro', $this->update_cart($data));
+			$this->Session->write('Carro', $this->update($data));
 		} else {
 			$this->Session->delete('Carro');
 		}

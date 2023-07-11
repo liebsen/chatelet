@@ -1,5 +1,6 @@
 var last_selected = ''
 var dues_selected = ''
+var itemData = null
 var updateCart = (carrito) => {
 	if(!carrito) {
 		carrito = JSON.parse(localStorage.getItem('carrito')) || {}
@@ -45,7 +46,7 @@ var updateCart = (carrito) => {
 		$('.coupon-block').addClass('animated fadeIn')
 	}
 
-	if (bank.enable && bank.discount_enable && bank.discount) {
+	if (bank.enable && bank.discount_enable && bank.discount && carrito_config.payment_method !== 'bank') {
 		setTimeout(() => {
   		onSuccessAlert('<i class="fa fa-mobile"></i> Pagá con Transferencia', `Y obtené un ${bank.discount}% de descuento en tu compra`);		
   	}, 2000)

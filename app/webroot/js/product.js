@@ -1,4 +1,5 @@
 var max_count = 5
+var itemData = {}	
 
 function addCount() {
 	var value = parseInt($('.has-item-counter.active .product-count').val()) + 1
@@ -22,17 +23,10 @@ function checkCount(value) {
 	}
 }
 
-
 function addCart(data, button, text) {
 	$(button).addClass('adding')
 	$(button).text(text || 'Agregando...')
-	$.post('/carrito/add', $.param({
-			...data,
-			...{
-				payment_method: localStorage.getItem('payment_method'),
-				payment_dues: localStorage.getItem('payment_dues'),
-			}
-		}))
+	$.post('/carrito/add', $.param(data))
 		.success(function(res) {
 			if (res.success) {
 				window.dataLayer = window.dataLayer || []
@@ -106,6 +100,7 @@ function addCart(data, button, text) {
       });
 		});	
 }
+
 function pideStock(obj){
 		// console.log('changed');
 		$(".add.agregar-carro").text('Agregar al carrito')
@@ -122,19 +117,19 @@ function pideStock(obj){
 	  var stock_v  	= '<i style="color:gray;">Consultando ... </i>';
 
 		if(!color_code){
-			onSuccessAlert('','Elegí un color para este producto')
+			onSuccessAlert('<i class="fa fa-check"></i> Talle seleccionado','Elegí un color para este producto')
 			stock_cont.html(no_color);
 			return false;
 		}
 
 		if(!size_number){
-			onSuccessAlert('','Elegí un talle para este producto')
+			onSuccessAlert('<i class="fa fa-check"></i> Color seleccionado','Ahora elegí un talle para tu prenda')
 			return false;
 		}
 
 		window.stock = 0;
 		if(url && article && color_code && size_number){
-			onSuccessAlert('','Consultando stock ...')
+			onSuccessAlert('<i class="fa fa-server"></i> Un momento','Consultando stock ...')
 			var test = document.querySelector('.footer-producto');
       $(test).find('a').animate({opacity: 0.25});
       stock_cont.html(stock_v);
@@ -212,4 +207,19 @@ $(document).ready(function() {
 		var position = me.offset();
 		window.open(me.attr('data-image'), 'Talles', 'height=323px, width=642px, resizable=no, status=no, toolbar=no, menubar=no, location=no, top='+ position.top +'px, left=' + position.left +'px');
 	});
+
+	if(itemData) {
+		if(itemData.mp_discount || itemData.bank_discount) {
+			if(itemData.mp_discount) 	{
+				onSuccessAlert('<i class="fa fa-certificate"></i> Producto con descuento','Este producto tiene un descuento de ' + itemData.mp_discount + '% si comprás por mercadopago')		
+			}
+			if(itemData.bank_discount) 	{
+				onSuccessAlert('<i class="fa fa-certificate"></i> Producto con descuento','Este producto tiene un descuento de ' + itemData.bank_discount + '% si comprás por transferencia')		
+			}
+		} else {
+			if(itemData.discount_label_show) 	{
+				onSuccessAlert('<i class="fa fa-certificate"></i> Producto con descuento','Este producto tiene un descuento de ' + itemData.discount_label_show + '%')
+			}
+		}
+	}
 });
