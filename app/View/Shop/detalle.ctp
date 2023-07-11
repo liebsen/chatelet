@@ -125,7 +125,7 @@
             ?>
             <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
                 <h1><?php echo $product['name'];?></h1>
-                <p class="text-muted"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
+                <p class="text-muted mb-1"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
                 <?php  
                 $orig_price = @$product['price'];
                 $price = @$product['price'];
