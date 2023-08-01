@@ -159,7 +159,7 @@
                   }
                 }
 
-                if(!empty($old_price) && abs($price-$old_price) > 0) {
+                if(!empty($old_price) && abs($price-$old_price) > 1) {
                     echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'>$ ".\price_format(ceil($old_price)). "</span> ahora ";
                 }
 

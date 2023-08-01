@@ -599,7 +599,7 @@ class ShopController extends AppController {
 	      ];
 	    }
 
-			if (isset($discount) && abs($discount-$price) > 0) {
+			if (isset($discount) && abs($discount-$price) > 1) {
 				$old_price = $price;
 				$price = $discount;
 			}

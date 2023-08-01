@@ -127,7 +127,7 @@
 							echo '</div>';
 						}
 						echo '<div class="text-right">';
-						if (!empty($product['old_price'])){
+						if (!empty($product['old_price'] && abs($product['old_price']-$product['price']) > 1)){
 							echo '<span class="old_price text-grey animated fadeIn delay2">$ '. \price_format($product['old_price']) .'</span>';
 						}					
 						echo '<span class="price animated fadeIn delay">$ '. \price_format($product['price']) .'</span>';
