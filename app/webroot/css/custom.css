@@ -125,7 +125,10 @@ label input[type=checkbox]:disabled + .label-text:before {
   margin-left: 0.5rem!important;
 }
 .p-1 {
-  padding: 0.25rem;
+  padding: 0.25rem!important;
+}
+.p-5 {
+  padding: 1.5rem!important;
 }
 .pt-0 {
   padding-top: 0!important;
@@ -1580,7 +1583,7 @@ span.out{
 }
 
 .search-results {
-  padding-top: 1rem;
+  padding: 1rem;
   color: black;
 }
 
@@ -2097,11 +2100,11 @@ span.out{
 }
 
 .results-text {
-    padding: 1rem;
-    font-size: 1.5rem;
-    font-weight: 800;
-    opacity: 1;
-    color: #363633!important;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 1;
+  color: #363633!important;
 }
 .spinner-search {
   position: absolute;

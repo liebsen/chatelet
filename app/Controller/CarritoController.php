@@ -181,8 +181,8 @@ class CarritoController extends AppController
 	public function index()
 	{
 
-		$carro = $this->update();
-		$this->Session->write('Carro', $carro);
+		$this->update();
+		//$this->Session->write('Carro', $carro);
 		$data = $this->getItemsData();
 		$shipping_price = $this->Setting->findById('shipping_price_min');
 		$total_price = $data['price'];
@@ -204,6 +204,7 @@ class CarritoController extends AppController
     $display_text_shipping_min_price = $mapper['Setting']['value'];
     $mapper = $this->Setting->findById('text_shipping_min_price');
 		$shipping_config = $this->Setting->findById('shipping_type');
+
 		if (@$shipping_config['Setting']['value'] == 'min_price') {
 			$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['value'])) ? $this->parseTemplate($mapper['Setting']['value'], $vars) : '';
 			$this->set('text_shipping_min_price',$text_shipping_min_price);
@@ -1038,6 +1039,7 @@ class CarritoController extends AppController
 			isset($this->request->data['id']) && 
 			isset($this->request->data['count'])
 		) {
+
 			$product = $this->Product->findById($this->request->data['id']);
 			$urlCheck = Configure::read('baseUrl')."shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
 
@@ -1089,9 +1091,16 @@ class CarritoController extends AppController
 				// error_log('[carrito] '.json_encode($this->filter($filter)));
 
 				// filter(1)
-				$this->Session->write('Carro', $this->update($filter));
-				return json_encode(array('success' => true));
 			}
+
+			$config = $this->Session->read('Config');
+			$cur = $config['add_basket']?: 0;
+			$cur++;
+			$config['add_basket'] = $cur;
+			$this->Session->write('Carro', $this->update($filter));
+			$this->Session->write('Config', $config);
+
+			return json_encode(array('success' => true));
 		}
 		return json_encode(array('success' => false));
 	}

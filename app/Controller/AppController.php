@@ -73,8 +73,17 @@ class AppController extends Controller
         $this->Auth->allow();
         $this->set('loggedIn', $this->Auth->loggedIn());
         $this->set('user', $this->Auth->user());
-        $carro = $this->Session->read('Carro');
-        $this->set('carro', $carro);
+        $this->set('carro', $this->Session->read('Carro'));
+        $config = $this->Session->read('Config');
+        // ensure certain config entries...
+        if(empty($config['add_basket'])){
+            $config['add_basket'] = 0;
+        }
+        if(empty($config['payment_method'])){
+            $config['payment_method'] = 'mercadopago';
+        }
+
+        $this->set('config', $config);
         $this->loadModel('Menu');
         $this->loadModel('Banner');
         $this->loadModel('Category');

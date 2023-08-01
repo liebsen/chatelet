@@ -848,9 +848,9 @@ span.validation-password {
 	font-size: 2.25rem;
 	width: 3.5rem;
 	height: 3.5rem;
-	border-radius: 100%;
+	border-radius: 0.75rem;
 	background-color: #5cb85c;
-	box-shadow: rgba(0, 0, 0, 0.16) 3px 3px 4px;
+	box-shadow: rgba(0, 0, 0, 0.16) 3px 3px 3px;
 	color: white;
 }
 
@@ -866,13 +866,13 @@ span.validation-password {
 	line-height: 1;
 	height: 3.5rem;
 	background-color: #5cb85c;
-	box-shadow: rgba(0, 0, 0, 0.16) -3px 3px 4px;
+	box-shadow: rgba(0, 0, 0, 0.16) -3px 3px 3px;
 	color: white;
-	border-radius: 10rem;
+	border-radius: 0.75rem;
 	position: absolute;
 	right: 0.5rem;
 	bottom: 0;
-	padding: 1rem 1.5rem;
+	padding: 1.5rem 1rem;
 	z-index: -1;
 	width: 16rem;
 }

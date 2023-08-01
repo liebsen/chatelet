@@ -11,8 +11,8 @@
 ?>
 <script>
 	var shipping_price = '<?= @$shipping_price ?>';
-	var carrito_config = <?php echo json_encode($this->Session->read('Config'), JSON_PRETTY_PRINT);?>;
-	var carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETTY_PRINT);?>;
+	var carrito_config = <?php echo json_encode($config, JSON_PRETTY_PRINT);?>;
+	var carrito_items = <?php echo json_encode($carro, JSON_PRETTY_PRINT);?>;
 	var bank = {
 		enable: <?= isset($data['bank_enable']) ? $data['bank_enable'] : 0 ?>,
 		discount_enable: <?= isset($data['bank_discount_enable']) ? $data['bank_discount_enable'] : 0 ?>,
@@ -196,7 +196,7 @@
 										<span class="text-weight-thin">Total </span> 
 										<span class="cost_total">$ <?= \price_format($total) ?></span><!--span>.00</span-->
 									</div>
-									<small>Pagando con <?= $payment_methods[$this->Session->read('Config')['payment_method']] ?></small>
+									<small>Pagando con <?= $payment_methods[$config['payment_method']] ?></small>
 								</div>								
 							</div>
 						</div>
