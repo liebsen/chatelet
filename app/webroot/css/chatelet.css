@@ -194,7 +194,11 @@ html, body {
 }
 
 .form-control {
-	border-width: 2px;
+	border-width: 2px!important;
+}
+
+.form-control:focus {
+	border-color: #e10c76!important;
 }
 
 .d-inline {
