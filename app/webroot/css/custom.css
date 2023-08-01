@@ -1609,13 +1609,14 @@ span.out{
     box-shadow: 0 0 5px rgba(0,0,0,0.1);    
 }
 
-.search-more {
-    align-items: center;
-    justify-content: center;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+.search-buttons {
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
-.search-more a {
+
+.search-buttons a {
   color: #363633;
   border: 1px solid #363633;
   padding: 0.75rem 1rem;
@@ -1625,7 +1626,7 @@ span.out{
   text-decoration: none;    
   transition: all 0.25s ease;
 }
-.search-more a:hover {
+.search-buttons a:hover {
   background-color: #363633;
   color: white;
 }
@@ -1835,8 +1836,7 @@ span.out{
   margin-top: 0.25rem;
   background-color: white;
   box-shadow: 2px 2px 0 #6661;  
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+  border-radius: 0.25rem;
   text-align: center;
 }
 
@@ -1900,7 +1900,7 @@ span.out{
   background-repeat: no-repeat;
   background-position: right center;
   background-image: url(../images/chevron_right_pink.svg);
-  border-radius: 3px;
+  border-radius: 0.25rem;
 }
 
 .p-select select {

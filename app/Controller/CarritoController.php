@@ -1005,6 +1005,10 @@ class CarritoController extends AppController
 			$config[$key] = $item;
 		}
 
+    if(empty($config['payment_method'])){
+      $config['payment_method'] = 'mercadopago';
+    }
+
 		$this->Session->write('Config', $config);
 		error_log('payment_method:'.$config['payment_method']);
 		$carro = $this->update();

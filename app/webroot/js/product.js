@@ -48,7 +48,7 @@ function addCart(data, button, text) {
 				  ]
 				})
 
-        $.growl.notice({
+        $.growl.error({
           title: 'Agregado al carrito',
           message: 'Podés seguir agregando más productos o finalizar esta compra en la sección carrito'
         });

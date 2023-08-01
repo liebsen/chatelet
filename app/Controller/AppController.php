@@ -79,6 +79,7 @@ class AppController extends Controller
         if(empty($config['add_basket'])){
             $config['add_basket'] = 0;
         }
+        
         if(empty($config['payment_method'])){
             $config['payment_method'] = 'mercadopago';
         }
