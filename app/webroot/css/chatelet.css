@@ -192,6 +192,11 @@ html, body {
 	font-weight: 300;
 	line-height: 1.5;
 }
+
+.form-control {
+	border-width: 2px;
+}
+
 .d-inline {
 	display: inline!important;
 }
@@ -668,7 +673,7 @@ html, body {
 	color: #dd6aa6;
 	font-weight: 600;
 	padding: 0.75rem 0.5rem;
-	border: 1px solid #e398c1;
+	border: 2px solid #e398c1;
 	border-radius: 0.5rem;
 	line-height: 1;
 	width: 100%;

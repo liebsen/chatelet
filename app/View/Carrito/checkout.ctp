@@ -218,7 +218,7 @@
 						<div class="card mt-4-d">
 						  <div class="card-body">
 						    <h5 class="card-title">
-						    	<i class="fa fa-money"></i>
+						    	<i class="fa fa-calendar-o"></i>
 						    	¿Querés financiar tu compra?
 						    </h5>
 						    <h6 class="card-subtitle">Seleccioná las cuotas</h6>

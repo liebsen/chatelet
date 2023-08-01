@@ -139,9 +139,8 @@ var select_payment = (e,item) => {
 		$('.bank-block').addClass('hide')
 	}
 
-  onSuccessAlert('<i class="fa fa-mobile"></i> ' + (selected === 'bank' ? 'Transferencia' : 'Mercadopago'), '✓ Método de pago seleccionado');
+  onSuccessAlert('<i class="fa fa-credit-card"></i> ' + (selected === 'bank' ? 'Transferencia' : 'Mercadopago'), '✓ Método de pago seleccionado');
 
-  console.log('save(4)')
   save_preference({payment_method: selected})
 
 	$('.payment_method .option-rounded').removeClass('is-selected is-secondary')
@@ -155,8 +154,6 @@ $(function(){
 	$('#regalo').prop('checked', carrito.regalo)
 
 	updateCart()
-
-
 	$('#submitcheckoutbutton').click(e => {
 		if(dues_selected && dues_selected > 1){ // show legend
 			$('#dues_message').addClass('show')
