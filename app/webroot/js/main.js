@@ -137,7 +137,6 @@ let loadMoreSearch = (p) => {
   apiSearch(localStorage.getItem('lastsearch'))
 }
 
-
 callStart = function(){
   setTimeout(() => {
     $('.btn-calculate-shipping').button('loading')
@@ -200,8 +199,9 @@ let apiSearch = (q) => {
           '</a>' + 
         '</div>'
       })
+
       if (str === '') {
-        $('.search-results').html('<p class="results-text">No hay resultados para esta búsqueda</p>')
+        $('.search-results').html('<h1>No hay resultados para esta búsqueda</h1>')
         $('.search-bar').css({'width': `0%`})
       } else {
         if (!searchPage) {

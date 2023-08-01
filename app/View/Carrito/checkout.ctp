@@ -197,7 +197,7 @@
 						    	<i class="fa fa-credit-card"></i>
 						    	¿Cómo querés pagar tu compra?
 						    </h5>
-						    <h6 class="card-subtitle">Total $ <span class="total_price"></span>.  Seleccioná un método de pago</h6>
+						    <h6 class="card-subtitle">Total $ <span class="total_price"></span>.  Seleccioná un método de pago para realizar esta compra</h6>
 						    <div class="row card-row payment_method pl-3 pr-3">
 						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
@@ -221,7 +221,7 @@
 						    	<i class="fa fa-calendar-o"></i>
 						    	¿Querés financiar tu compra?
 						    </h5>
-						    <h6 class="card-subtitle">Seleccioná las cuotas</h6>
+						    <h6 class="card-subtitle">Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</h6>
 						    <div class="row card-row payment_dues pl-3 pr-3">
 					        <label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(event,this)">
 					          <input type="radio" class="" id="dues_1" name="payment_dues" value="1" required checked />
@@ -255,6 +255,7 @@
 									<i class="fa fa-user"></i>
 									Ingresá tus datos para finalizar la compra
 						    </h5>
+						    <h6 class="card-subtitle">Asegurate de verificar y actualizar tus datos correctos para que tu compra llegue a tu domicilio antes y mejor.</h6>
 								<input type="hidden" name="shipping" value=""/>
 								<input type="hidden" name="coupon" value=""/>
 								<input type="hidden" name="cargo" value=""/>
