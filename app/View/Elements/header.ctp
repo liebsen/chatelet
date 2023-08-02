@@ -213,7 +213,7 @@
         <p class="results-text text-muted"> Podés buscar por tipo de prenda, color, material ej: "remera", "pantalón", "malla", "jersey", "lino", "algodón", ... ¡Usa tu creatividad!</p>
       </div>
     </div>
-    <div class="row display-flex is-justify-center search-buttons gap-1">
+    <div class="row display-flex is-justify-center search-buttons gap-05">
       <div>
         <a href="javascript:$('.menuLayer').fadeOut();">Cerrar</a>
       </div>

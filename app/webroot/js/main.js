@@ -106,7 +106,7 @@ let findSize = (str) => {
 onErrorAlert = function(title, text, duration){
   $.growl.error({
     title: title || 'Error',
-    message: text,
+    message: text && text !== 'undefined' ? text : '',
     queue: true,
     duration: duration || 15000
   });
@@ -115,7 +115,7 @@ onErrorAlert = function(title, text, duration){
 onSuccessAlert = function(title, text, duration){
   $.growl.notice({
     title: title || 'OK',
-    message: text,
+    message: text && text !== 'undefined' ? text : '',
     queue: true,
     duration: duration || 15000
   });
@@ -125,7 +125,7 @@ onWarningAlert = function(title, text, duration){
   // $('#growls').remove();
   $.growl.warning({
     title: title || 'OK',
-    message: text,
+    message: text && text !== 'undefined' ? text : '',
     queue: true,
     duration: duration || 15000
   })

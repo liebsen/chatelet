@@ -1,7 +1,5 @@
 <?php
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
-  // echo $this->Html->script('cupones-detail', array('inline' => false));
-  // echo $this->Html->css('cupones-detail', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
   ?>
 <?php // echo $this->Html->script('admin-sales', array('inline' => false)); ?>

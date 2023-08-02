@@ -135,6 +135,14 @@ html, body {
 	display: flex;
 }
 
+.flex-nowrap {
+	flex-wrap: nowrap!important;
+}
+
+.flex-row {
+	flex-direction: row!important;
+}
+
 .justify-content-center {
 	justify-content: center;
 }
@@ -193,8 +201,14 @@ html, body {
 	line-height: 1.5;
 }
 
-.form-control {
+.form-control:not(select) {
 	border-width: 2px!important;
+	padding: 1.25rem 0.75rem!important;
+}
+
+select.form-control{
+	border-width: 2px!important;
+	min-height: 2.75rem;
 }
 
 .form-control:focus {
@@ -205,10 +219,13 @@ html, body {
 	display: inline!important;
 }
 
+.mh-4 {
+	max-height: 4rem;
+}
+
 .gap-1 {
 	grid-gap: 1rem;
 }
-
 .gap-05 {
 	grid-gap: 0.5rem;
 }
@@ -671,6 +688,9 @@ html, body {
 .card-subtitle {
 	color: #666;
   margin-bottom: 1rem;
+	font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.25;  
 }
 .card-link {
 	display: inline-block;
@@ -911,7 +931,7 @@ span.validation-password {
 	  height: 40rem;
 	}
 	.card-body {
-	  padding: 1rem 1.5rem;
+	  padding: 1.5rem;
 	}
 }
 

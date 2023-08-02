@@ -1,5 +1,7 @@
 <?php 
 	echo $this->Session->flash();
+  echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
+  echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('checkout.css?v=' . Configure::read('DIST_VERSION'), array('inline' => false));
 	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('DIST_VERSION'), array('inline' => false));	
 	echo $this->Html->script('checkout_sale.js?v=' . Configure::read('DIST_VERSION'),array('inline' => false));
@@ -91,7 +93,7 @@
 							    	Resumen de tu compra
 							    </h5>
 							    <h6 class="card-subtitle">
-							    	Revisá el resumen de tu compra.
+							    	Acá podés ver el resumen de tu compra. Luego de efectuada la compra te enviaremos un email con el código de seguimiento del envío.
 							    </h6>
 							    <div class="row card-row">
 							    	<?php if($loggedIn): ?>
@@ -99,8 +101,12 @@
 						          <label class="d-inline">
 						          	<span class="h4">Cliente</span><br>
 						          	<p class="mt-2 text-muted"><?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?> (DNI <?= $userData['User']['dni'] ?>)</p>
-			                  <div class="row card-row mt-3">
-			                    <span onclick="$('input[name=street]').focus()" class="card-link">
+			                  <div class="row card-row flex-row justify-content-center mt-3 gap-05">
+			                    <span data-toggle="modal" data-target="#particular-modal" class="card-link">
+			                      <i class="fa fa-user-o"></i>
+			                       Modificar datos
+			                    </span>
+			                    <span onclick="$('.checkoutform-container').removeClass('hide');$('input[name=street]').focus()" class="card-link">
 			                      <i class="fa fa-map-marker"></i>
 			                       Modificar dirección
 			                    </span>
@@ -180,7 +186,7 @@
 									<label class="form-group mt-4">
 									  <input type="checkbox" id="regalo" name="regalo"><span class="label-text text-muted">Es para regalo</span><br><br>
 									</label>
-									<div class="row card-row">
+									<div class="row card-row flex-row justify-content-center mt-3 gap-05">
 								  	<a href="/carrito#f:.beneficios-exclusivos" class="card-link coupon-actions-block hide">
 								  		<i class="fa fa-tag"></i>
 								  		Ingresar cupón
@@ -249,7 +255,7 @@
 						  </div>
 						</div>						
 					<?php endif ?>
-						<div class="mt-4-d checkoutform-container">
+						<div class="mt-4-d checkoutform-container hide">
 							<div class="is-rounded pt-3">
 						    <h5 class="card-title">
 									<i class="fa fa-user"></i>

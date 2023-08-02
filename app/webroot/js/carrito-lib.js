@@ -101,3 +101,14 @@ var save_preference = (settings) => {
   //console.log('total',total)
   //console.log('bank_bonus',bank_bonus)
 }
+
+$(function () {
+  $('#regalo').on('click', (e) => {
+    if($(e.target).is(':checked')) {
+      onErrorAlert('<i class="fa fa-gift"></i> Es para regalo', 'Prepararemos tu pedido con cuidado para que sea una entrega especial')
+    }
+  })
+})
+
+
+

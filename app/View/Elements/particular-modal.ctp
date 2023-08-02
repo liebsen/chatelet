@@ -1,6 +1,4 @@
 <?php
-	echo $this->Html->script('/bootstrap/js/datepicker', array('inline' => false));
-	echo $this->Html->script('locales/bootstrap-datepicker.es.js', array('inline' => false));
 	echo $this->Html->script('formValidation.min', array('inline' => false));
 	echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
 	echo $this->Html->script('bootstrapValidator', array('inline' => false));
@@ -65,7 +63,7 @@
 					<div class="col-md-6">
 						<label class="ml-1" for="password">Contraseña</label>
 						<div class="form-group">
-							<input type="password" class="form-control" name="data[User][password]" />
+							<input type="password" class="form-control" name="data[User][password]" autocomplete="current-password" />
 						</div>
 						<span class="validation-password"></span>
 					</div>
@@ -87,7 +85,7 @@
 							?>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6 mh-4">
 						<label class="ml-1" for="nacimiento">Fecha de Nacimiento (dd/mm/aaaa) </label>
 						<div class="form-group">
 							<?php
@@ -132,12 +130,17 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label class="ml-1" for="direccion">Calle y Número</label>
+						<label class="ml-1" for="direccion">Calle</label>
 						<div class="form-group d-flex">
 							<input style="" type="text" class="form-control" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
-							<input style="max-width: 25%;margin-left: 1%" min="0" class="form-control" placeholder="1234" name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
 						</div>
 					</div>
+					<div class="col-md-6">
+						<label class="ml-1" for="direccion">Número</label>
+						<div class="form-group d-flex">
+							<input min="0" class="form-control" placeholder="1234" name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
+						</div>
+					</div>					
 
 					<div class="col-md-6">
 						<label class="ml-1" for="another-tel">Otro teléfono</label>
@@ -148,13 +151,18 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-
-						<label class="ml-1" for="floor">Piso y Departamento</label>
+						<label class="ml-1" for="floor">Piso</label>
 						<div class="form-group d-flex">
 							<input style="" min="0" id="floor" class="form-control" placeholder="1,2,3..." name="data[User][floor]" type="number" value="<?= $user['floor'] ?>"/>
-							<input style="max-width: 50%;margin-left: 1%" class="form-control" placeholder="A,B,C..." name="data[User][depto]" type="text" value="<?= $user['depto'] ?>"/>
 						</div>
 					</div>
+					<div class="col-md-6">
+						<label class="ml-1" for="floor">Departamento</label>
+						<div class="form-group d-flex">
+							<input class="form-control" placeholder="A,B,C..." name="data[User][depto]" type="text" value="<?= $user['depto'] ?>"/>
+						</div>
+					</div>
+
 					<div class="col-md-6">
 					
 						<label class="ml-1" for="provincia">Provincia</label>
@@ -223,13 +231,13 @@
 					</div>
 					<div class="col-md-6">
 						<label>Newsletter</label>
-						<div class="form-group justify-content-center align-items-center">
+						<div class="form-group justify-content-center align-items-center p-3">
 							<?php
 								$subscribed = $unsubscribed = '';
 								if ($user['newsletter'] == '1') $subscribed = 'checked="checked"';
 								else if ($user['newsletter'] == '0') $unsubscribed = 'checked="checked"';
-								echo 'Sí <input type="radio" name="data[User][newsletter]" value="1" '.$subscribed.' /> - '; 
-								echo 'No <input type="radio" name="data[User][newsletter]" value="0" '.$unsubscribed.' />';
+								echo '<label class="d-inline" for="si">Sí</label> <input type="radio" id="si" name="data[User][newsletter]" value="1" '.$subscribed.' /> - '; 
+								echo '<label class="d-inline" for="no">No</label> <input type="radio" id="no" name="data[User][newsletter]" value="0" '.$unsubscribed.' />';
 							?>
 						</div>
 					</div>
