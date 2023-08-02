@@ -1014,7 +1014,7 @@ class CarritoController extends AppController
 		$carro = $this->update();
 		$this->Session->write('Carro', $carro);
 
-		return json_encode(array('success' => true, 'data' => $carro));
+		return json_encode(array('success' => true, 'data' => array_values($carro)));
 	}
 
 	public function empty($row = null) {

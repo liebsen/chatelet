@@ -10,7 +10,7 @@
 <script>
 	var shipping_price = <?= $shipping_price ?>;
 	var carrito_config = <?php echo json_encode($this->Session->read('Config'), JSON_PRETTY_PRINT);?>;
-	var carrito_items = <?php echo json_encode($this->Session->read('Carro'), JSON_PRETTY_PRINT);?>;
+	var carrito_items = <?php echo json_encode(array_values($this->Session->read('Carro')), JSON_PRETTY_PRINT);?>;
 	var bank = {
 		enable: <?= isset($data['bank_enable']) ? $data['bank_enable'] : 0 ?>,
 		discount_enable: <?= isset($data['bank_discount_enable']) ? $data['bank_discount_enable'] : 0 ?>,
