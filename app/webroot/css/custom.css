@@ -803,8 +803,9 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   align-content: center;
   align-items: center;
   font-size: 1.5rem;
-  font-weight: 300;
-  color: black;
+  font-weight: 800;
+  color: #666;
+  text-shadow: 1px 1px 1px #ccc;
   margin: auto;
   min-height: 1.5rem;
 }
@@ -933,6 +934,7 @@ align-items: center;}
   background-size: 120%;
   min-height: 20rem;
   max-height: 20rem;
+  border-radius: 3px;
   transition: all .3s ease-in-out; 
   -moz-transition: all .3s ease-in-out; 
   -ms-transition: all .3s ease-in-out; 
@@ -2166,9 +2168,10 @@ span.count {
   opacity: 0;
   position: absolute;
   z-index: 9;
-  top: 22px;
+  top: 23px;
   left: 0;
   right: 0;
+  padding-right: 1px;
   text-align: center;
   font-size: 13px;
   color: #ffffff;
@@ -2177,7 +2180,7 @@ span.count {
   height: 18px;
   margin: 0 auto;
   border-radius: 100%;
-  line-height: 17px;
+  line-height: 18px;
   font-weight: 900;
 }
 

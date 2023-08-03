@@ -3,8 +3,6 @@
 	border-radius: 3px;
 } */
 
-
-
 #heading {
 	color: #666; /* #e10d74; */
 	/*font-style: italic;
@@ -16,7 +14,7 @@
 }
 
 .summary-item {
-	margin: 1rem;
+	margin: 0.5rem;
 }
 
 .p {
@@ -79,9 +77,9 @@
   opacity: 0;
   /*flex: 1;*/
   animation-name: fadeIn;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: both;
-  animation-delay: 0.8s;	
+  animation-delay: 0.2s;	
 	opacity: 1;
 	transition: all 0.25s ease-in;
 }

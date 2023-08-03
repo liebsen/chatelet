@@ -73,15 +73,11 @@ let fxTotal = (total) => {
 let focusEl = (text) => { 
   var e = $(text) 
   if (e && !e.hasClass('hide')) {
-    let position = e.offset().top
-    if(position > $(window).height() - e.height()) {
-      $('html, body').animate({
-        scrollTop: position
-      }, 500)
-    }
+    e.get(0).scrollIntoView({ behavior: "smooth" });
     setTimeout(() => {
       $(text).removeClass(`animated ${focusAnim}`)
       $(text).addClass(`animated ${focusAnim}`)
+      $(text).find('input').first().focus()
     }, 1000)
   }
 }

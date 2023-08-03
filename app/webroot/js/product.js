@@ -1,5 +1,5 @@
 var max_count = 5
-var itemData = {}	
+var itemData = itemData || {}	
 
 function addCount() {
 	var value = parseInt($('.has-item-counter.active .product-count').val()) + 1
@@ -178,21 +178,22 @@ $(document).ready(function() {
 			alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias'),
 		}
 		if (!isGiftCard){
+			var product_name = $('#product_id').next().text()
 			// console.log(data.color, data.color_code, data.size)
 			if ((!data.color && !data.color_code) || !data.size) {
 				document.querySelector('.article-tools').classList.remove('fadeIn', 'flash')
 				setTimeout(() => {
 					document.querySelector('.article-tools').classList.add('flash')
 				}, 10)
-				return $.growl.warning({
-					title: 'Talle y color',
-					message: 'Por favor seleccioná Talle y Color'
+				return $.growl.notice({
+					title: '<i class="fa fa-magic"></i> Personalizá tu compra!',
+					message: 'Elegí entre ' + $('.color-option').length + ' colores y ' + $('#size option').length + ' talles para ' + product_name,
 				});
 			}
 
 			if ( !window.stock || window.stock == 0 ) {
 				return $.growl.error({
-					title: '',
+					title: ''+product_name,
 					message: 'No Disponible'
 				});
 			}
@@ -211,14 +212,14 @@ $(document).ready(function() {
 	if(itemData) {
 		if(itemData.mp_discount || itemData.bank_discount) {
 			if(itemData.mp_discount) 	{
-				onSuccessAlert('<i class="fa fa-certificate"></i> Producto con descuento','Este producto tiene un descuento de ' + itemData.mp_discount + '% si comprás por mercadopago')		
+				onSuccessAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un ' + itemData.mp_discount + '% de descuento si comprás por mercadopago')		
 			}
 			if(itemData.bank_discount) 	{
-				onSuccessAlert('<i class="fa fa-certificate"></i> Producto con descuento','Este producto tiene un descuento de ' + itemData.bank_discount + '% si comprás por transferencia')		
+				onSuccessAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un '  + itemData.bank_discount + '% de descuento si comprás por transferencia')		
 			}
 		} else {
 			if(itemData.discount_label_show) 	{
-				onSuccessAlert('<i class="fa fa-certificate"></i> Producto con descuento','Este producto tiene un descuento de ' + itemData.discount_label_show + '%')
+				onSuccessAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un ' + itemData.discount_label_show + '% de descuento. Aprovechá nuestras ofertas!')
 			}
 		}
 	}

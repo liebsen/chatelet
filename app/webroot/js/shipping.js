@@ -90,7 +90,7 @@ $(function(){
 				var rates = `<ul class="generic-select shipping-options">`
 				json.rates.forEach(rate => {
 					if (!isNaN(rate.price)) {
-						var price = '<span class="text-success">Gratis</span>'
+						var price = '<span class="text-success text-bold">Gratis</span>'
 						if (!json.freeShipping) {
 							price = `<span class="text-uppercase">$${parseInt(rate.price)}</span>`
 						}

@@ -27,7 +27,7 @@ var updateCart = (carrito) => {
 	if (carrito.cargo === 'shipment') {
 		var price = ''
 		if (carrito.freeShipping) {
-			price = '<span class="text-success">Gratis</span>'
+			price = '<span class="text-success text-bold">Gratis</span>'
 		} else {
 			price = `$ ${formatNumber(carrito.shipping_price)}`
 		}

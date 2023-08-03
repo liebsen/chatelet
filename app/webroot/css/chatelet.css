@@ -235,6 +235,18 @@ select.form-control{
   margin: auto;
 }
 
+.product-count:focus {
+	background-color: #ffcc66;
+}
+
+.input-group-addon.input-lg {
+	background-color: white;
+	border: none;
+  background-color: white;
+  box-shadow: 2px 2px 0 #6661;
+  border-radius: 0.25rem;
+}
+
 .input-group-append {
   margin-left: -1px;
 }
@@ -259,7 +271,8 @@ select.form-control{
 	margin-top: -8px;
 }
 
-.top-fixable {
+.form-control-feedback {
+	top: 5px !important;
 }
 
 .top-fixed {
