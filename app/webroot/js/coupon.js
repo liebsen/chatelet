@@ -8,11 +8,12 @@ $(function(){
     event.preventDefault();
     var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
     var coupon  = $('.input-coupon').val();
-    var subtotal = $('#subtotal_compra').val()
+    var subtotal = parseFloat($('#subtotal_compra').val())
     var delivery_cost = $('#subtotal_envio').val() || 0
     var c2 = event.target.value
 
     if (!subtotal && carrito.subtotal_price) {
+        console.log('subtotal(2)')
         subtotal = carrito.subtotal_price
     }
 
@@ -32,8 +33,10 @@ $(function(){
         if (coupon_type === 'percentage') {
           total = subtotal * (1 - discount / 100)
         } else {
-          total-= discount
+          total = subtotal - discount
         }
+        //console.log('total',total)
+        //console.log('discount',discount)
         //total = parseFloat(total).toFixed(2)
         discounted = parseFloat(subtotal - total)
         discounted_formatted = formatNumber(discounted)
@@ -53,6 +56,7 @@ $(function(){
         $('.promo-code').text(json.data.code)
         $('.free-shipping').addClass('hidden')
         var price = parseFloat(total) + parseFloat(delivery_cost)
+        
         //console.log('subtotal',subtotal)
         //console.log('delivery_cost',delivery_cost)
         //console.log('discounted',discounted)
