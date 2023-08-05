@@ -282,7 +282,7 @@
 <script>
 	$(function(){
 		setTimeout(() => {
-			onWarningAlert('<i class="fa fa-magic"></i> Más beneficios','<?= $text_shipping_min_price ?>', 15000)
+			onSuccessAlert('<i class="fa fa-magic"></i> Más beneficios','<?= $text_shipping_min_price ?>', 15000)
 		}, 15000)		
 	})
 </script>

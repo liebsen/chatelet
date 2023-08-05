@@ -1098,9 +1098,9 @@ class CarritoController extends AppController
 			}
 
 			$config = $this->Session->read('Config');
-			$cur = $config['add_basket']?: 0;
+			$cur = @$config['add_basket']?: 0;
 			$cur++;
-			$config['add_basket'] = $cur;
+			@$config['add_basket'] = $cur;
 			$this->Session->write('Carro', $this->update($filter));
 			$this->Session->write('Config', $config);
 

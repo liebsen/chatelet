@@ -802,7 +802,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   justify-content: center;
   align-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: #666;
   text-shadow: 1px 1px 1px #ccc;
@@ -1846,8 +1846,6 @@ span.out{
   padding: 0.5rem 0.75rem;
   margin-top: 0.25rem;
   background-color: white;
-  box-shadow: 2px 2px 0 #6661;  
-  border-radius: 0.25rem;
   text-align: center;
 }
 
@@ -2688,6 +2686,11 @@ span.count.is-empty {
     min-height: 20rem; 
     max-height: 20rem;
   }*/
+  .legends {
+    box-shadow: 2px 2px 0 #6661;  
+    border-radius: 0.25rem;
+  }
+  
   #opts .mod-item { min-height: 24rem;} 
   #opts a { max-height: 30rem; } */
   #detalle .caract .add {min-width: 10rem; }
