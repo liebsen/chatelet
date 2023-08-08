@@ -62,12 +62,19 @@ $(function(){
         //console.log('discounted',discounted)
         //console.log('price',price)
 
+        coupon = coupon.toUpperCase()
+
         format_total = formatNumber(price)
         $('#cost').text( format_total );
         fxTotal(format_total)
-        carrito.coupon = coupon.toUpperCase()
+        carrito.coupon = coupon
         carrito.coupon_bonus = discounted
         carrito.total_price = parseFloat(price.toFixed(2))
+
+        save_preference([
+            {'coupon':coupon},
+            {'coupon_total':total},
+        ])        
       }else{
         $('.coupon-discount').addClass('hidden')
         carrito.coupon = ''
