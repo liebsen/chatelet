@@ -51,51 +51,6 @@ var updateCart = (carrito) => {
 	}
 }
 
-var getTotals = () => {
-	var payment_method = carrito_config.payment_method
-	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-	var subtotal = 0
-	carrito_items.map((e) => {
-		var price = e.price
-		console.log(price)
-		subtotal+= parseFloat(price)
-	})
-
-	$('.subtotal_price').text(formatNumber(subtotal))
-	var free_shipping = subtotal >= shipping_price
-	if(free_shipping) {
-		$('.paid-shipping-block').addClass('hidden')
-		$('.free-shipping-block').removeClass('hidden')
-	} else {
-		if (carrito.shipping_price) {
-			subtotal+= carrito.shipping_price
-		}
-		$('.free-shipping-block').addClass('hidden')
-		$('.paid-shipping-block').removeClass('hidden')
-	}
-	carrito.freeShipping = free_shipping
-	//console.log(carrito.freeShipping)
-	if(carrito.coupon_total){
-		subtotal-= carrito.coupon_total
-	}
-	if(subtotal < 1) {
-		subtotal = 1
-	}
-	$('.total_price').text(formatNumber(subtotal))
-	localStorage.setItem('carrito', JSON.stringify(carrito))	
-	return subtotal
-}
-
-
-var select_radio = (name, value) => {
-  const e = $(`input[name=${name}][value=${value}]`)
-  e.prop("checked",true)
-  $(`.${name} .option-rounded`).removeClass('is-selected')
-  e.parent().addClass('is-selected')
-  console.log('save(1)')
-  //save_preference({ [name]: value })
-}
-
 var select_dues = (e,item) => {
 	e.preventDefault()
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
