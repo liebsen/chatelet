@@ -13,7 +13,7 @@
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
       <?php
         if (isset($this->request->pass[1])) {
-          echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
+          echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars(@$this->request->pass[1]) .'" />';
         }
       ?>
       <div class="row">
@@ -22,8 +22,8 @@
             <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
             <div class="controls text-center switch-scale">
               <?php
-                $enabled = (isset($item) && $item['Banner']['enabled'] === '1') || !isset($item) ? 'checked' : '';
-                $disabled = (isset($item) && $item['Banner']['enabled'] === '0') ? 'checked' : '';
+                $enabled = (isset($item) && @$item['Banner']['enabled'] === '1') || !isset($item) ? 'checked' : '';
+                $disabled = (isset($item) && @$item['Banner']['enabled'] === '0') ? 'checked' : '';
               ?>
               <label for="enabled_1">Activo</label> <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
               <label for="enabled_0">Inactivo</label> <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
@@ -54,9 +54,9 @@
         </div>
         <div class="col-md-6">
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Abrir enlace en otra pestaña'); ?></label>
+            <label class="control-label" for="target_blank"><?php echo __('Abrir enlace en otra pestaña'); ?></label>
             <div class="controls">
-              <input type="checkbox" name="data[target_blank]" class="form-control"<?= $item['Banner']['target_blank'] === 'on' ? ' checked' : '' ?>>
+              <input type="checkbox" name="data[target_blank]" id="target_blank" class="form-control"<?= @$item['Banner']['target_blank'] === 'on' ? ' checked' : '' ?>>
             </div>
           </div>          
           <br />       
