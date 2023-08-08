@@ -66,7 +66,7 @@
              </div>
            </div>
 
-           <?php if(!empty($product)){ ?>
+           <?php if(!empty($product)): ?>
            <div class="col-md-7">
             <h3>Elegí tu look para vivir tu momento.</h3>
               <ul>
@@ -160,7 +160,7 @@
                   <?php endforeach ?>
               </ul>
            </div>
-           <?php } ?>
+        <?php endif ?>
       </section>
 <div class="modal fade" tabindex="-1" id="myModal2" role="dialog">
     <div class="content">
@@ -179,36 +179,3 @@
       <?php endif; ?>
     </div>
 </div>
-
-<script>
-    /* @Analytics: detail */
-    fbq('track', 'ViewContent')
-    gtag('event', 'view_item', {
-      "items": [
-        {
-          'id': '<?php echo $product['id'];?>',
-          'name': '<?php echo $product['article'];?>',
-          "list_name": "Product detail",
-          'brand': '<?php echo $product['name'];?>',
-          'category': '<?php echo $category['Category']['name'];?>',
-          "list_position": 1,
-          "quantity": 1,
-          'price': '<?php echo $product['discount'];?>'
-        }
-      ]
-    })
-    /* dataLayer.push({
-      'ecommerce': {
-        'detail': {
-          'actionField': {'list': 'Producto'},    // 'detail' actions have an optional list property.
-          'products': [{
-            'name': '<?php echo $product['article'];?>',         // Name or ID is required.
-            'id': '<?php echo $product['id'];?>',
-            'price': '<?php echo $product['discount'];?>',
-            'brand': '<?php echo $product['name'];?>',
-            'category': '<?php echo $category['Category']['name'];?>'
-           }]
-         }
-       }
-    }) */
-</script>

@@ -24,8 +24,10 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-	Router::connect('/', array('controller' => 'home', 'action' => 'index'));
-	Router::connect('/tienda', array('controller' => 'shop', 'action' => 'index'));
+	//Router::connect('/', array('controller' => 'home', 'action' => 'index'));
+	//Router::connect('/tienda', array('controller' => 'shop', 'action' => 'index'));
+  //Router::connect('/catalogo', array('controller' => 'catalogo', 'action' => 'index'));
+  Router::connect('/catalogo/:img_url', array('controller' => 'catalogo', 'action' => 'index'));
 	Router::connect('/tienda/productos/:category', array('controller' => 'shop', 'action' => 'product'));
 	Router::connect('/tienda/producto/*', array('controller' => 'shop', 'action' => 'detalle'));
 

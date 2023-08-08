@@ -16,7 +16,8 @@ class CatalogoController extends AppController {
 		$this->set('lookBook', $lookbook);
 	}
 	
-	public function index($img_url = null) {
+	public function index() {
+    $img_url = @$this->request->params['img_url'];
 		$one_product = !empty($img_url);
 		$this->set('one_product', $one_product);
 		$talle_img = null;
@@ -26,12 +27,14 @@ class CatalogoController extends AppController {
     
     $lookbook = $this->LookBook->find('all',array('group'=>'LookBook.img_url','fields' => 'LookBook.img_url' ));
 		$this->set('lookbook', $lookbook);
-		
+
+
     if ($img_url == 'test') {
 			pr($lookbook);
 			die;
 		}
     
+
     unset($setting);
 
 		$setting 	= $this->Setting->findById('page_video');
@@ -83,5 +86,7 @@ class CatalogoController extends AppController {
     $properties_all = $this->ProductProperty->find('all');
     $this->set('properties_all',$properties_all);
    	$this->set('product', $product);
+
+    $this->render('index');
 	}
 }
