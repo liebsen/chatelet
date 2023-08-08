@@ -141,8 +141,8 @@ class AppHelper extends Helper {
     $mp_price = 0;
     $text = '';
 
-    if(@$item['bank_discount']){
-      $bank_price = ceil(round($orig_price * (1 - (float) @$item['bank_discount'] / 100)));
+    if(!empty(@$item['bank_discount']) && $item['bank_discount']) {
+      $bank_price = round($orig_price * (1 - (float) @$item['bank_discount'] / 100));
       if($bank_price < $price) {
         $old_price = $orig_price;
         $price = $bank_price;
@@ -150,15 +150,25 @@ class AppHelper extends Helper {
       }
     }
 
-    if(@$item['mp_discount']){
-      $mp_price = ceil(round($orig_price * (1 - (float) @$item['mp_discount'] / 100)));
+    if(!empty(@$item['mp_discount']) && $item['mp_discount']){
+      $mp_price = round($orig_price * (1 - (float) @$item['mp_discount'] / 100));
       if($mp_price < $price) {
         $old_price = $orig_price;
         $price = $mp_price;
         $text = 'mercadopago';
       }
     }
-    
+      
+      /*echo '<pre>';
+      var_dump("name:".$item['name']);
+      var_dump("mp_discount:".$item['mp_discount']);
+      var_dump("text:".$text);
+      var_dump("price:".$price);
+      var_dump("mp_price:".$mp_price);
+      var_dump("bank_price:".$bank_price);
+      var_dump("calc_price:".$calc_price);
+      die();*/
+
     // price
     if(!$noprice) {
       $str = '<div class="price-list">';
@@ -187,20 +197,26 @@ class AppHelper extends Helper {
       $min_sale = (float) $legend['Legend']['min_sale'];
       //$formatted_price = str_replace(',00','',$this->Number->currency(ceil($price/$legend['Legend']['dues']), 'ARS', array('places' => 2)));
 
-      $wprice = $price;
+      $calc_price = !empty($item['mp_discount']) && $item['mp_discount'] ? $mp_price : $orig_price;
+
 
       if(!empty($interest)){
-        $wprice = round($price * (1 + $interest / 100));
+        $calc_price = round($calc_price * (1 + $interest / 100));
       }
       
-      if($price >= $min_sale) {
+      /*echo '<pre>';
+      var_dump("min_sale:".$min_sale);
+      var_dump("calc_price:".$calc_price);
+      die();*/
+
+      if($calc_price >= $min_sale) {
         //$status = intval($legend['Legend']['interest']) ? 'warning' : 'info';
         //$str.= "<span class='text-{$status}'>". $legend['Legend']['dues'] ." cuotas</span>";
         
         $str.= '<span class="text-legend">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
           $legend['Legend']['dues'],
           $legend['Legend']['interest'],
-          '<span class="price_strong"> $ ' . \price_format(ceil((!empty($interest) ? round($wprice * (1 + (float) $legend['Legend']['interest'] / 100)) : $wprice)/$legend['Legend']['dues'])) . '</span>'
+          '<span class="price_strong"> $ ' . \price_format($calc_price/$legend['Legend']['dues']) . '</span>'
         ],
         $legend['Legend']['title']) . '</span>';
       }

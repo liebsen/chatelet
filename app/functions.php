@@ -106,12 +106,12 @@ function filtercoupon ($data) {
   return $ret;
 }
 
-function price_format ($num) {
+function price_format($num) {
   $num = number_format((float) ceil($num), 2, ',', '.');
   return str_replace(',00','', $num);
 }
 
-function title_fontsize ($str) {
+function title_fontsize($str) {
   $font_size = '1.5rem';
   if (strlen($str) >= 15) {
     $font_size = '1.25rem';

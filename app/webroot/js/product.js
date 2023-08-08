@@ -209,7 +209,7 @@ $(document).ready(function() {
 		window.open(me.attr('data-image'), 'Talles', 'height=323px, width=642px, resizable=no, status=no, toolbar=no, menubar=no, location=no, top='+ position.top +'px, left=' + position.left +'px');
 	});
 
-	if(itemData) {
+	/*if(itemData) {
 		if(itemData.mp_discount || itemData.bank_discount) {
 			if(parseInt(itemData.mp_discount)) 	{
 				onSuccessAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un ' + itemData.mp_discount + '% de descuento si comprás por mercadopago')		
@@ -222,5 +222,5 @@ $(document).ready(function() {
 				onSuccessAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un ' + itemData.discount_label_show + '% de descuento. Aprovechá nuestras ofertas!')
 			}
 		}
-	}
+	}*/
 });
