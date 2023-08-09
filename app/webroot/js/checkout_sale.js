@@ -96,11 +96,13 @@ var select_payment = (e,item) => {
 		$('.bank-block').removeClass('hide')
 		$('.bank-block').addClass('animated fadeIn')
 		select_radio('payment_dues', 1)
+		$('.payment_dues label').not(':first-child').addClass('hide')
 	} else {
+		$('.payment_dues label').removeClass('hide')
 		$('.bank-block').addClass('hide')
 	}
 
-  onSuccessAlert('<i class="fa fa-credit-card"></i> ' + (selected === 'bank' ? 'Transferencia' : 'Mercadopago'), '✓ Método de pago seleccionado');
+  onSuccessAlert('<i class="fa fa-credit-card"></i> ' + (selected === 'bank' ? 'Transferencia' : 'Mercado Pago'), '✓ Método de pago seleccionado');
 
   save_preference({payment_method: selected})
 
