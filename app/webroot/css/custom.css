@@ -274,13 +274,12 @@ label input[type=checkbox]:disabled + .label-text:before {
   color: #333!important;
 }
 
-
 .text-weight-thin {
   font-weight: 400;
 }
 
 .text-theme {
-  color: #363633!important;
+  color: #e10d74!important;
   text-align: center;
 }
 
@@ -802,9 +801,9 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   justify-content: center;
   align-content: center;
   align-items: center;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 800;
-  color: #666;
+  color: #333;
   text-shadow: 1px 1px 1px #ccc;
   margin: auto;
   min-height: 1.5rem;
@@ -1859,7 +1858,15 @@ span.out{
 }
 
 .text-sm {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 400!important;
+  background-color: #f8f8f8;
+  box-shadow: 2px 2px 1px #999;
+}
+
+.text-sm.mp {
 }
 
 .text-legend {
@@ -2109,6 +2116,7 @@ span.out{
 }
 
 .results-text {
+  background: none!important; 
   padding: 1rem;
   font-size: 1rem;
   font-weight: 500;

@@ -13,7 +13,7 @@ let formatNumber = (float) => {
     return float
   }
 
-  return number_format(float, 2, ',', '.') 
+  return number_format(float, 2, ',', '.').replace(',00','')
 }
 
 formatNumber2 = function (num) {
