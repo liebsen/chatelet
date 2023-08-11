@@ -1001,8 +1001,8 @@ align-items: center;}
 #detalle > p { font-size: 1rem; font-weight: 600; margin-bottom: 20px; }
 #detalle .price {
   color: #363633;
-  font-size: 2rem;
-  font-weight: 900;
+  font-size: 1.25rem;
+  font-weight: 800;
   margin-top: 1rem;
   padding: 0.25 1rem;
 }
@@ -1858,12 +1858,8 @@ span.out{
 }
 
 .text-sm {
-  font-size: 0.65rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 1rem;
+  font-size: 0.75rem;
   font-weight: 400!important;
-  background-color: #f8f8f8;
-  box-shadow: 2px 2px 1px #999;
 }
 
 .text-sm.mp {
@@ -2111,6 +2107,7 @@ span.out{
   margin: auto;
   min-height: 3rem;
 }
+
 .coupon-text h3 {
   font-weight: 800;
 }
@@ -2123,6 +2120,7 @@ span.out{
   opacity: 1;
   color: #363633!important;
 }
+
 .spinner-search {
   position: absolute;
   top: 0.9rem;
