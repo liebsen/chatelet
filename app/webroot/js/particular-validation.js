@@ -3,7 +3,7 @@ $(document).ready(function() {
     //var form = $('#particularForm');
 
     $('#particular-modal').bootstrapValidator({
-        message: 'This value is not valid',
+        message: 'Nos un valor válido para este campo',
         framework: 'bootstrap',
         excluded: ':disabled',
         submitButtons: 'input[type="submit"]',

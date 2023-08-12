@@ -47,11 +47,11 @@
   -moz-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out; }
   .growl.growl-incoming {
-    scale: 0.85;
+    scale: 0.01;
     opacity: 0;
     filter: alpha(opacity=0); }
   .growl.growl-outgoing {
-    scale: 0.85;
+    scale: 0.1;
     opacity: 0;
     filter: alpha(opacity=0); }
   .growl.growl-small {
@@ -67,7 +67,7 @@
     color: #FFF;
     background: #e10d74; }
   .growl.growl-notice {
-    color: #999;
+    color: #666;
     background: #fefefe; }
   .growl.growl-warning {
     color: #FFF;

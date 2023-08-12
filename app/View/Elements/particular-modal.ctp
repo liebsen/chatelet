@@ -120,8 +120,6 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-					
-					
 						<label class="ml-1" for="tel">Teléfono</label>
 						<div class="form-group">
 							<?php

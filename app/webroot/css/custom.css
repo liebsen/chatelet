@@ -1043,6 +1043,7 @@ align-items: center;}
 #detalle .caract h2 {margin-bottom: 10px}
 #detalle .caract label.btn {
   box-shadow: none;
+  max-width: 6rem;
   border-radius: 0!important;
   color: #666;
   text-align: center;
@@ -1076,7 +1077,8 @@ align-items: center;}
   margin-bottom: 0.25rem;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: contain;
+  background-size: cover;
+  background-color: whitesmoke;
   transition: all 0.15s linear;
   /*background-color: #f8f8f8;
   width: 100%;
@@ -1157,7 +1159,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #formulario label input { display: none; }
 #formulario label span.active i { display: block; }
 
-#headhelp { background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover; padding: 65px 0; overflow-x: hidden;}
+#headhelp { /*background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover;*/ padding: 65px 0; overflow-x: hidden;}
 #headhelp h1 { color: #363633; font-size: 40px; font-weight: 600; margin-top: 50px; }
 #headhelp h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 #headhelp .box { border: 2px solid #363633; padding: 6rem 5rem 1rem; }

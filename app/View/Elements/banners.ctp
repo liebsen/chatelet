@@ -38,7 +38,7 @@
       padding: 1rem;
       display: flex;
       height: 64px;
-      line-height: 1.25;
+      line-height: 1;
       justify-content: center;
       align-items: center;
   }

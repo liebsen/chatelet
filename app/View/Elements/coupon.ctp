@@ -18,7 +18,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="coupon-info alert alert-success animated hidden">
+		<div class="coupon-info alert mt-4 alert-success animated hidden">
 			<h3>
 				<i class="fa fa-tags"></i> 
 				<span class="coupon-info-title"></span>
