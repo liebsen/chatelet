@@ -251,7 +251,7 @@ $(document).ready(function() {
 		$('.input-coupon').val(carrito.coupon)
 		setTimeout(() => {
 			$('.btn-calculate-coupon').click()
-		}, 1000)
+		}, 5000)
 	}
 
 	if (lastcp && $('#subtotal_compra').val()) {

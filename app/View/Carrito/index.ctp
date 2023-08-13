@@ -190,7 +190,7 @@
 							</div>							
 							<hr>
 							<div class="summary-item text-right">
-								<div class="cost_total-container animated speed fadeIn delay">
+								<div class="cost_total-container animated speed fadeIn delay5">
 									<!--hr-->
 									<div class="price is-large">
 										<span class="text-weight-thin">Total </span> 
