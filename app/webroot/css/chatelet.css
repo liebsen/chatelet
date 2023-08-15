@@ -101,17 +101,18 @@ html, body {
 	font-weight: 500;
   /*background-color: #363733;*/
   background-color: white;
-  border: 2px solid #f70095;
   text-transform: uppercase;
   border-radius: 5rem;
-  box-shadow: rgb(0 0 0 / 16%) 3px 3px 4px;
 	color: #f70095;
 	transition: all 0.1s ease-in;
-  /*box-shadow: 0 0 0.5rem #fff3;*/
+  /*
+  border: 2px solid #f70095;
+  box-shadow: rgb(0 0 0 / 16%) 3px 3px 4px;
+  box-shadow: 0 0 0.5rem #fff3;*/
 }
 
 .tap-to-continue:hover {
-	transform: scale(1.1);
+	/*transform: scale(1.1);*/
   background-color: #f70095;
   border-color: #f7009533;
   color: whitesmoke;
