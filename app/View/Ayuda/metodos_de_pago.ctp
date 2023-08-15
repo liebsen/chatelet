@@ -24,7 +24,7 @@
             <a href="/ayuda/como_comprar" >¿Cómo comprar?</a>
             <a href="/ayuda/envios">Envíos</a>
             <a href="/ayuda/metodos_de_pago" class="active">Métodos de pago</a>
-            <a href="/ayuda/politicas_de_cambio">Políticas de cambio</a>
+            <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
             <a href="/ayuda/faq" >Preguntas frecuentes</a>
         </section>
 
