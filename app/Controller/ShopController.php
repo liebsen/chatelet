@@ -365,7 +365,11 @@ class ShopController extends AppController {
 
 			foreach ($products as &$product) {
 				$product['Product']['stock'] = 0;
-				if (isset($product['Product']['discount']) && $product['Product']['discount'] !== $product['Product']['price']) {
+				if (
+					isset($product['Product']['discount']) && 
+					$product['Product']['discount'] !== $product['Product']['price'] && 
+					$product['Product']['discount'] > 1
+				) {
 					$product['Product']['old_price'] = $product['Product']['price'];
 					$product['Product']['price'] = $product['Product']['discount'];
 				}
