@@ -15,7 +15,10 @@ function showLayer (e, layer, mode, category_id, category_name) {
   const selectr = $(`.${layer}-layer`)
   $('.category_id').text('')
   $('.category_name').text('')
-  $('.discount_mode').text(mode)
+
+  var mode_str = mode == 'bank' ? ' Transferencia' : 'Mercado Pago'
+  var title = `Descuento por ${mode_str} a ${category_name}`
+  $('.discount_mode').text(title)
   if (selectr.hasClass('active')) {
     selectr.removeClass('active')
   } else {
@@ -40,7 +43,7 @@ function categoryDiscount(){
     let data = JSON.parse(res)
     if(data.status==='success'){
       button.text('Actualizar')
-      alert(`Se actualizó correctamente`)
+      alert(`Se actualizó correctamente ${data.conds}`)
       layerClose()
     } else {
       const message = data.message.replace(/\s+/g, ' ').trim()
