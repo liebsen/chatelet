@@ -169,8 +169,8 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 .is-product-photo {
   position: relative;
-  background-color: rgba(0,0,0,0.1);
-  /*min-height: 46rem;
+  /*background-color: rgba(0,0,0,0.1);
+  min-height: 46rem;
    min-height: 35rem; */
 }
 
@@ -993,7 +993,7 @@ align-items: center;}
 
 #detalle { background: url(../images/detallebg.jpg) no-repeat center center; background-size: cover; padding-top: 50px;    padding-bottom: 50px; }
 /*#detalle ul { margin-top: 100px; }*/
-#detalle li { /*margin-bottom: 30px;*/ overflow: hidden; text-align: right; }
+#detalle li { /*margin-bottom: 30px;*/ overflow: hidden; text-align: right; margin-bottom: 1.5rem;}
 #detalle li a { display: inline-block; overflow: hidden; }
 #detalle li a img { float: left; max-height: 10rem;}
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/

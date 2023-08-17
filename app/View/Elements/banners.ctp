@@ -7,7 +7,7 @@
         <?php if($banner['Banner']['img_url']):?>
           <div class="slider" style="background-image:url(<?php echo $banner['Banner']['img_url']; ?>)"></div>
         <?php else: ?>
-        <div class="carousel-caption">
+        <div class="banner-caption">
           <span><?php echo $banner['Banner']['text']; ?></span>
         </div>
         <?php endif ?>
@@ -33,13 +33,23 @@
     color: white;
     height: 64px;
   }
-  #carousel-banners .carousel-caption {
-      position: inherit;
-      padding: 1rem;
-      display: flex;
-      height: 64px;
-      line-height: 1;
-      justify-content: center;
-      align-items: center;
+
+  #carousel-banners .banner-caption {
+    text-align: center;
+    font-size: 1rem;
+    position: inherit;
+    padding: 1rem;
+    display: flex;
+    height: 64px;
+    line-height: 1;
+    justify-content: center;
+    align-items: center;
   }
+
+  @media screen and (max-width:500px){
+    #carousel-banners .banner-caption {
+      font-size: 0.9rem;
+    }
+  }
+
 </style>
