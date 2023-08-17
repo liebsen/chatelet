@@ -31,7 +31,7 @@
     font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
     background-color: black;
     color: white;
-    height: 64px;
+    min-height: 64px;
   }
 
   #carousel-banners .banner-caption {
@@ -40,7 +40,6 @@
     position: inherit;
     padding: 1rem;
     display: flex;
-    height: 64px;
     line-height: 1;
     justify-content: center;
     align-items: center;
@@ -48,6 +47,7 @@
 
   @media screen and (max-width:500px){
     #carousel-banners .banner-caption {
+          height: 5rem;
       font-size: 0.9rem;
     }
   }
