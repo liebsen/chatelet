@@ -1425,7 +1425,8 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 	#productOptions nav { margin-bottom: 20px; }
 
-	#detalle { padding-top: 15px; }
+	#detalle { padding-top: 2rem;
+    margin-top: -1rem; }
 	#detalle .col-md-3 li { display: inline-block; }
 	#detalle .col-md-3 li a img { width: 90px; }
 	#detalle .col-sm-7 img { width: 100%!important; }

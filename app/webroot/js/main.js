@@ -400,7 +400,7 @@ $(function () {
         })
       }
       lastscroll = scroll
-    }, 400)
+    }, 500)
   })
 
   /* trigger search from url */
