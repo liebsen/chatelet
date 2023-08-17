@@ -876,8 +876,8 @@ span.validation-password {
 	position: fixed;
 	opacity: 0;
 	z-index: 1060;
-	bottom: 1rem;
-	right: 1rem;
+	bottom: 0.5rem;
+	right: 0.5rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
