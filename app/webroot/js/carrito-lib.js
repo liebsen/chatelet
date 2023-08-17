@@ -125,7 +125,7 @@ var getTotals = () => {
     $('.free-shipping-block').addClass('hidden')
     $('.paid-shipping-block').removeClass('hidden')
   }
-  carrito.freeShipping = free_shippingF
+  carrito.freeShipping = free_shipping
   //console.log('free_shipping',free_shipping)
   //console.log(carrito)
   if(carrito.coupon_bonus){
