@@ -48,7 +48,7 @@ function updateSrcTo(obj){
 <?php if(!empty($category['banner_url'])): ?>
 <div id="headabrigos">
   <div class="img-resp is-main" style="background-image:url(<?php echo Configure::read('imageUrlBase').$category['banner_url'] ?>)">
-    <h1 class="name_shop animated delay3 fadeIn"><?php echo $category['name']; ?></h1>
+    <!--h1 class="name_shop animated delay3 fadeIn"><?php echo $category['name']; ?></h1-->
   </div>  
 </div>
 <?php endif ?>
