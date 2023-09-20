@@ -930,8 +930,8 @@ align-items: center;}
   width: 100%;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
-  /*background-size: 100%;*/
+  /*background-size: cover;*/
+  background-size: 100%;
   min-height: 22rem;
   max-height: 22rem;
   border-radius: 3px;
@@ -943,7 +943,7 @@ align-items: center;}
 }
 
 .product-image:hover { 
-  background-size: 130%;
+  background-size: 110%;
   filter: contrast(140%);
 }
 
