@@ -930,10 +930,10 @@ align-items: center;}
   width: 100%;
   background-repeat: no-repeat;
   background-position: center;
-  /*background-size: cover;*/
-  background-size: 120%;
-  min-height: 20rem;
-  max-height: 20rem;
+  background-size: cover;
+  /*background-size: 100%;*/
+  min-height: 22rem;
+  max-height: 22rem;
   border-radius: 3px;
   transition: all .3s ease-in-out; 
   -moz-transition: all .3s ease-in-out; 
