@@ -14,7 +14,10 @@
   <div class="row">
     <div class="col-xs-12">
       <form id="update_discount">
-        <h1 class="discount_mode"></h1>
+        <h1 class="discount_mode">
+          <span class="category_name"></span>
+          <span class="category_name"></span>
+        </h1>
         <h3>Establecer productos de <span class="category_name"></span> con descuento por pago por transferencia </h3>
         <div class="form-group">
           <input class="form-input" type="number" id="discount" value=""/>

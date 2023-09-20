@@ -9,7 +9,7 @@
 </style>
 <div id="headshop">
   <!--h1 class="name_shop">Shop</h1-->
-  <div class="img-resp" style="background-image:url(<?php echo Configure::read('imageUrlBase').$image_bannershop ?>)"></div>
+  <div class="img-resp header-offset" style="background-image:url(<?php echo Configure::read('imageUrlBase').$image_bannershop ?>)"></div>
 </div>
 
 <section id="filters">
