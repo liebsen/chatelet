@@ -978,6 +978,9 @@ span.validation-password {
 	.carrito-selector {
 		margin-top: 1rem;
 	}
+	.col-mm-6 {
+    width: 50%;
+	}
 }
 
 @media screen and (max-height: 360px) {

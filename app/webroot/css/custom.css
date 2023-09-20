@@ -349,6 +349,12 @@ label input[type=checkbox]:disabled + .label-text:before {
   -o-transition: all .3s ease-in-out; 
   white-space: nowrap; 
 }
+
+@media (max-width: 440px) {
+  #headshop, #headabrigos {
+    display: none!important;
+  }
+}
 @media (min-width: 768px) {
   .navbar-nav { 
     flex-direction: row;
@@ -2200,6 +2206,10 @@ span.count.is-empty {
 
 /*Mobile Icons NavTop*/
 @media (max-width: 992px) {
+  .product-image {
+    min-height: 90dvh;
+    max-height: 90dvh;
+  }  
   ul#ul-moreviews {
     display: flex;
     overflow-x: auto;
