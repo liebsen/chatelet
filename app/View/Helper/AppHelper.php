@@ -122,7 +122,7 @@ class AppHelper extends Helper {
       }
       */
 
-      $str = '<div data-id="'.$item["id"].'" class="col-sm-6 col-md-4 col-lg-3 p-1 add-no-stock">'. 
+      $str = '<div data-id="'.$item["id"].'" class="col-sm-12 col-md-4 col-lg-3 p-1 add-no-stock">'. 
          $this->Html->link(
           $content. '<div class="product-info"><div class="name" origin="2">'.$item_name.'</div>'.$priceStr.'<span style="display:none">'.@$item['article'].'</span></div></div>',
           $url,
