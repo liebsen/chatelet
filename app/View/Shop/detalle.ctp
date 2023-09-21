@@ -330,7 +330,7 @@
                     </div>
                     <?php }else{ ?>
 
-                      <div data-id="<?=$alt_product['id']?>" class="col-sm-12 col-md-4 col-lg-3 p-1 add-no-stock">
+                      <div data-id="<?=$alt_product['id']?>" class="col-sm-6 col-md-4 col-lg-3 p-1 add-no-stock">
                         <a href="<?php echo $url ?>">
                             <div class="ribbon-container">
 <?php 

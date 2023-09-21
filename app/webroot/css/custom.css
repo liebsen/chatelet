@@ -351,6 +351,11 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 @media (max-width: 440px) {
+  .product-image {
+    min-height: 90dvh;
+    max-height: 90dvh;
+  }  
+  
   #headshop, #headabrigos {
     display: none!important;
   }
@@ -2206,10 +2211,6 @@ span.count.is-empty {
 
 /*Mobile Icons NavTop*/
 @media (max-width: 992px) {
-  .product-image {
-    min-height: 90dvh;
-    max-height: 90dvh;
-  }  
   ul#ul-moreviews {
     display: flex;
     overflow-x: auto;
