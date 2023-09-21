@@ -351,10 +351,6 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 @media (max-width: 440px) {
-  .product-image {
-    min-height: 90dvh;
-    max-height: 90dvh;
-  }  
   
   #headshop, #headabrigos {
     display: none!important;
@@ -362,8 +358,8 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 @media (min-width: 768px) {
   .product-image {
-    min-height: 70dvh!important;
-    max-height: 70dvh!important;
+    min-height: 90dvh;
+    max-height: 90dvh;
   }
   .navbar-nav { 
     flex-direction: row;
