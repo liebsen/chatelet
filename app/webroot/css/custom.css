@@ -361,6 +361,10 @@ label input[type=checkbox]:disabled + .label-text:before {
   }
 }
 @media (min-width: 768px) {
+  .product-image {
+    min-height: 70dvh!important;
+    max-height: 70dvh!important;
+  }
   .navbar-nav { 
     flex-direction: row;
   }

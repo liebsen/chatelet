@@ -184,10 +184,10 @@ class AppHelper extends Helper {
 
     $str.='<div class="legends-container"><div class="legends' . ($noprice ? ' legends-left' : '') . '">';
     if($bank_price && $text != 'transferencia') {
-      $str.= "<span class='text-legend'><span class='text-theme text-bold product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format($bank_price)." </span><br><span class='text-sm'>transferencia</span> </span>";
+      $str.= "<span class='text-legend'><span class='text-theme text-bold product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format($bank_price)." </span><span class='text-sm'>transferencia</span> </span>";
     }
     if($mp_price && $text != 'mercadopago'){
-      $str.= "<span class='text-legend'><span class='text-theme text-bold product-badge'>-".@$item['mp_discount']."%</span> <span class='price_strong'> $ " .\price_format($mp_price)." </span><br><span class='text-sm'>Mercado Pago</span> </span>";
+      $str.= "<span class='text-legend'><span class='text-theme text-bold product-badge'>-".@$item['mp_discount']."%</span> <span class='price_strong'> $ " .\price_format($mp_price)." </span><span class='text-sm'>Mercado Pago</span> </span>";
     }
 
     // dues
