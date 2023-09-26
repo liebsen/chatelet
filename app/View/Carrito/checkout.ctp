@@ -207,13 +207,13 @@
 						    <div class="row card-row payment_method pl-3 pr-3">
 						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
-					          	<span class="h4">Mercado Pago</span><br>
+					          	<span class="h4">con Mercado Pago</span><br>
 					          	<p class="mt-2 text-small">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
 				        	</label>				          
 					      <?php if($data['bank_enable']): ?>
 					        <label for="bank" class="col-xs-12 is-clickable option-rounded<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
 					          <input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
-				          	<span class="h4">Transferencia</span><br>
+				          	<span class="h4">con Transferencia</span><br>
 				          	<p class="mt-2 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
 				          </label>
 					       <?php endif ?>
