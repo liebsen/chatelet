@@ -943,8 +943,8 @@ align-items: center;}
   background-position: center;
   background-size: cover;
   /*background-size: 100%;*/
-  min-height: 22rem;
-  max-height: 22rem;
+  min-height: 26rem;
+  max-height: 26rem;
   border-radius: 3px;
   transition: all .3s ease-in-out; 
   -moz-transition: all .3s ease-in-out; 
