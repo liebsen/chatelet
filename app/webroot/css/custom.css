@@ -357,10 +357,6 @@ label input[type=checkbox]:disabled + .label-text:before {
   }
 }
 @media (min-width: 768px) {
-  .product-image {
-    min-height: 90dvh;
-    max-height: 90dvh;
-  }
   .navbar-nav { 
     flex-direction: row;
   }
@@ -383,6 +379,13 @@ label input[type=checkbox]:disabled + .label-text:before {
     top: -0.5rem;
   }
 }
+@media (min-width: 992px) {
+  .product-image {
+    min-height: 25rem;
+    max-height: 25rem;
+  }
+}
+
 .navbar-nav:not(.navbar-right)>li>a {
   margin: 0 0.5rem; 
 }
