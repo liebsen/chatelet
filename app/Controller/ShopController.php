@@ -7,7 +7,6 @@ $dotenv->load();
 
 use AlejoASotelo\Andreani;
 
-
 class ShopController extends AppController {
 	public $uses = array('Product', 'ProductProperty','Promo','Catalogo','Category','LookBook');
 	public $helpers = array('Number', 'App');

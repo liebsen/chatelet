@@ -163,7 +163,7 @@
                     echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'>$ ".\price_format(ceil($old_price)). "</span> ahora ";
                 }
 
-                echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)) . ' <span class="text-sm">' . (strlen($text) ? 'con ' . $text : '') . '</span></span>';
+                echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)) . ' <span class="text-sm">' . (strlen($text) ? 'con ' . strtoupper($text) : '') . '</span></span>';
                 ?>
                  <div class="mt-0 tags-start">
                     <?= $this->App->show_prices_dues($legends, $product, true) ?>

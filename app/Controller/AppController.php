@@ -140,6 +140,12 @@ class AppController extends Controller
         $e = $this->Setting->findById('whatsapp_phone');
         $f = $this->Setting->findById('whatsapp_autohide');
         $g = $this->Setting->findById('whatsapp_animated');
+        $h = $this->Setting->findById('opengraph_type');
+        $i = $this->Setting->findById('opengraph_title');
+        $j = $this->Setting->findById('opengraph_text');
+        $k = $this->Setting->findById('opengraph_image');
+        $l = $this->Setting->findById('opengraph_width');
+        $m = $this->Setting->findById('opengraph_height');
 
         Configure::write('stock_min', @$a['Setting']['value']);
         Configure::write('list_code', @$b['Setting']['value']);
@@ -149,7 +155,13 @@ class AppController extends Controller
             'whatsapp_text' => @$d['Setting']['value'],
             'whatsapp_phone' => @$e['Setting']['value'],
             'whatsapp_autohide' => @$f['Setting']['value'],
-            'whatsapp_animated' => @$g['Setting']['value']
+            'whatsapp_animated' => @$g['Setting']['value'],
+            'opengraph_type' => @$h['Setting']['value'] ?: 'website',
+            'opengraph_title' => @$i['Setting']['value'] ?: 'Aplicación',
+            'opengraph_text' => @$j['Setting']['value'] ?: 'Descripción de mi aplicación',
+            'opengraph_image' => @$k['Setting']['value'] ?: 'https://chatelet.com.ar/images/share-080722.jpg',
+            'opengraph_width' => @$l['Setting']['value'] ?: 500,
+            'opengraph_height' => @$m['Setting']['value'] ?: 500
         ];
 
         $this->set('data', $data);

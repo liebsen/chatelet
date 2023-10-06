@@ -1298,11 +1298,9 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			$promo = $data['Promo'];
 
 			unset($data['Promo']);
-	    if ($this->request->is('post')) {
-	      foreach($data as $id => $value) {
-	        $this->Setting->save(['id' => $id, 'value' => $value]);
-	      }
-	    }
+      foreach($data as $id => $value) {
+        $this->Setting->save(['id' => $id, 'value' => $value]);
+      }
 
 			if(!empty($promo['image']['name'])){
 				$file = $this->save_file( $promo['image'] );
@@ -1335,9 +1333,47 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$this->set('items',$items);
 	}
 
+	public function application(){
+	  $this->loadModel('Setting');
+		if($this->request->is('post')){
+			$data = $this->request->data;
+			$og = $data['opengraph'];
+			unset($data['opengraph']);
 
+      foreach($data as $id => $value) {
+        $this->Setting->save(['id' => $id, 'value' => $value]);
+      }
 
-public function promos(){
+			if(!empty($og['image']['name'])){
+				$file = $this->save_file( $og['image'] );
+				$this->Setting->save(['id' => 'opengraph_image', 'value' => Configure::read('imageUrlBase') . $file]);
+			}
+		}
+		$h1 = array(
+			'name' => 'Aplicación',
+			'icon' => 'gi gi-settings'
+			);
+
+		$this->set('h1', $h1);
+
+		$data = [];
+		$map = $this->Setting->findById('opengraph_title');
+		$data['opengraph_title'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('opengraph_text');
+		$data['opengraph_text'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('opengraph_image');
+		$data['opengraph_image'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('opengraph_type');
+		$data['opengraph_type'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('opengraph_width');
+		$data['opengraph_width'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('opengraph_height');
+		$data['opengraph_height'] = @$map['Setting']['value'];
+
+		$this->set('data', $data);		
+	}
+
+	public function promos(){
 		if($this->request->is('post')){
 			$data = $this->request->data;
 			if(!empty($data['Promo']['image']['name'])){

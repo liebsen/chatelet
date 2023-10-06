@@ -26,11 +26,11 @@
     <meta property="product:item_group_id" content="<?= $product['category_id'] ?>">
     <meta property="product:google_product_category" content="<?= $product['category_id'] ?>">
     <?php else: ?>
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="<?= Configure::read('imageUrlBase') ?>" />
-    <meta property="og:title" content="Châtelet" />
-    <meta property="og:description" content="Sé tu propio modelo de mujer" />
-    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://chatelet.com.ar/images/share-080722.jpg" />
+    <meta property="og:type" content="<?= $data['opengraph_type'] ?>" />
+    <meta property="og:url" content="<?= Configure::read('baseUrl') ?>" />
+    <meta property="og:title" content="<?= $data['opengraph_title'] ?>" />
+    <meta property="og:description" content="<?= $data['opengraph_text'] ?>" />
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="<?= $data['opengraph_image'] ?>" />
     <?php endif ?>
     <link href="https://fonts.googleapis.com/css?family=<?= urlencode($font) ?>:<?= $fontweight ?>" rel="stylesheet">
     <style>
