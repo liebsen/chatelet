@@ -49,12 +49,30 @@
 							<input type="file" name="data[opengraph][image]" value="" accept="image/*">
 						</div>
 					</div>
+        	<div class="row">
+        		<div class="col">
+			        <div class="control-group">
+			          <label class="control-label" for="columns-text"><?php echo __('Width'); ?></label>
+			          <div class="controls">
+			            <input type="number" maxlength="100" name="data[opengraph_width]" class="form-control" value="<?= @$data['opengraph_width'] ?>"/>
+			          </div>
+			          <span class="text-muted">Ancho de la imagen</span>
+			        </div>
+	        		<div class="col">
+			          <label class="control-label" for="columns-text"><?php echo __('Height'); ?></label>
+			          <div class="controls">
+			            <input type="number" maxlength="100" name="data[opengraph_height]" class="form-control" value="<?= @$data['opengraph_height'] ?>"/>
+			          </div>
+			          <span class="text-muted">Alto de la imagen.</span>
+			        </div>
+			      </div>
+	        </div>
 					<br />
-					<div class="control-group">						
+					<!--div class="control-group">						
 						<div class="controls">
 							<button class="btn btn-primary" type="submit">Agregar Imagen</button>
 						</div>
-					</div>
+					</div-->
 				<?php if($data['opengraph_image']): ?>
 					<img src="<?= $data['opengraph_image'] ?>" width="200">
 					<button class="btn btn-danger" onclick="window.location.href='<?php echo $this->Html->url(array('action'=>'remove_opengraph_image')) ?>'">x</button>
