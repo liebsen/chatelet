@@ -1015,9 +1015,9 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	}
 
 	public function isAuthorized() {
-	    // If we're trying to access the admin view, verify permission:
-	    if ('admin' === $this->Auth->user('role')) return true;  // User is admin, allow
-	    return false;                                // User isn't admin, deny
+    // If we're trying to access the admin view, verify permission:
+    if ('admin' === $this->Auth->user('role')) return true;  // User is admin, allow
+    return false;                                // User isn't admin, deny
 	}
 
 	public function index() {
