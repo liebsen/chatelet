@@ -201,14 +201,14 @@ class AppHelper extends Helper {
 
 
       if(!empty($interest)){
-        $calc_price = round($calc_price * (1 + $interest / 100));
+        //$calc_price = round($calc_price * (1 + $interest / 100));
       }
       
       /*echo '<pre>';
       var_dump("min_sale:".$min_sale);
       var_dump("calc_price:".$calc_price);
       die();*/
-      echo "<script> console.log('". $calc_price . ' - ' . $min_sale . "')</script>";
+      //echo "<script> console.log('". $calc_price . ' - ' . $min_sale . "')</script>";
       if($calc_price >= $min_sale) {
         //$status = intval($legend['Legend']['interest']) ? 'warning' : 'info';
         //$str.= "<span class='text-{$status}'>". $legend['Legend']['dues'] ." cuotas</span>";
