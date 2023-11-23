@@ -198,10 +198,10 @@ class AppHelper extends Helper {
       //$formatted_price = str_replace(',00','',$this->Number->currency(ceil($price/$legend['Legend']['dues']), 'ARS', array('places' => 2)));
 
       $calc_price = !empty($item['mp_discount']) && $item['mp_discount'] ? $mp_price : $orig_price;
-
+      $price_with_interest = $calc_price;
 
       if(!empty($interest)){
-        //$calc_price = round($calc_price * (1 + $interest / 100));
+        $price_with_interest = round($calc_price * (1 + $interest / 100));
       }
       
       /*echo '<pre>';
@@ -216,7 +216,7 @@ class AppHelper extends Helper {
         $str.= '<span class="text-legend">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
           $legend['Legend']['dues'],
           $legend['Legend']['interest'],
-          '<span class="price_strong"> $ ' . \price_format($calc_price/$legend['Legend']['dues']) . '</span>'
+          '<span class="price_strong"> $ ' . \price_format($price_with_interest/$legend['Legend']['dues']) . '</span>'
         ],
         $legend['Legend']['title']) . '</span>';
       }
