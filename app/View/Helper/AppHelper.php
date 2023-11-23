@@ -195,8 +195,6 @@ class AppHelper extends Helper {
       $legend = $legends[$i];
       $interest = (float) $legend['Legend']['interest'];
       $min_sale = (float) $legend['Legend']['min_sale'];
-      //$formatted_price = str_replace(',00','',$this->Number->currency(ceil($price/$legend['Legend']['dues']), 'ARS', array('places' => 2)));
-
       $calc_price = !empty($item['mp_discount']) && $item['mp_discount'] ? $mp_price : $orig_price;
       $price_with_interest = $calc_price;
 
@@ -204,15 +202,7 @@ class AppHelper extends Helper {
         $price_with_interest = round($calc_price * (1 + $interest / 100));
       }
       
-      /*echo '<pre>';
-      var_dump("min_sale:".$min_sale);
-      var_dump("calc_price:".$calc_price);
-      die();*/
-      //echo "<script> console.log('". $calc_price . ' - ' . $min_sale . "')</script>";
-      if($calc_price >= $min_sale) {
-        //$status = intval($legend['Legend']['interest']) ? 'warning' : 'info';
-        //$str.= "<span class='text-{$status}'>". $legend['Legend']['dues'] ." cuotas</span>";
-        
+      if($calc_price >= $min_sale) {        
         $str.= '<span class="text-legend">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
           $legend['Legend']['dues'],
           $legend['Legend']['interest'],
@@ -224,36 +214,4 @@ class AppHelper extends Helper {
     $str.= '</div></div>';
     return $str;
   }
-
-  /*
-  function parse_legend_table($legends, $price){
-    $price = (float) $price;
-    $str = '';
-    $str.="<table class='table table-condensed table-sm table-striped text-muted'>";
-    $str.="<thead class='thead-dark'><tr>
-      <th class='text-center'>Cuotas</th>
-      <th class='text-center'>Monto</th>
-      <th class='text-center'>Interés</th>
-    </tr></thead><tbody>";
-    foreach ($legends as $legend) {
-      $dues = $legend['Legend']['dues'];
-      $interest = (float) $legend['Legend']['interest'];
-      $min_sale = (float) $legend['Legend']['min_sale'];
-      $formatted_price = str_replace(',00','',$this->Number->currency(ceil($price/$legend['Legend']['dues']), 'ARS', array('places' => 2)));
-
-      if(!empty($interest)){
-        $price = round($price * (1 + $interest / 100));
-      }
-      $interest_icon = $interest ? 'check' : 'times';
-      if($price >= $min_sale) {
-        $str.= "<tr>
-          <td class='text-center'>{$dues}</td>
-          <td class='text-center'>{$formatted_price}</td>
-          <td class='text-center'><i class='fa fa-{$interest_icon}'></i></td>
-        </tr>";
-      }
-    }
-    $str.= "</tbody></table>";
-    return $str;
-  }*/
 }
