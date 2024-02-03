@@ -35,7 +35,7 @@
           <?php endif ?>
           <?php if( !empty($show_shop) ): ?>
             <li>
-              <a href="/Shop">Shop</a>
+              <a href="/Shop" class="viewSubMenu">Shop</a>
             </li>
           <?php endif ?>
           <!--li>
@@ -183,6 +183,44 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<div id="menuShop" class="menuLayer">
+    <a class="close">
+        <span></span>
+        <span></span>
+    </a>
+    <div class="wrapper">
+        <div class="row">
+            <img  class="pull-left" src="<?php echo Configure::read('imageUrlBase').$image_menushop?>" >
+            <div class="col-sm-6">
+
+                <h3>Shop</h3>
+                <ul>
+                  <?php
+                  if (!empty($categories)){
+                    foreach ($categories as $category) {
+                      $category = $category['Category'];
+                      $slug =  str_replace(' ','-',strtolower($category['name']));
+                      if (strpos($slug, 'trajes')!==false){
+                        $slug = 'trajes-de-bano';
+                      }
+                      echo '<li>';
+                      echo $this->Html->link(
+                          $category['name'],
+                          array(
+                              'controller' => 'tienda',
+                              'action' => 'productos',
+                             $slug
+                          )
+                      );
+                      echo '</li>';
+                    }
+                    }
+                  ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="menuSearch" class="menuLayer">
   <a class="close">
