@@ -163,7 +163,7 @@ class AppController extends Controller
             'opengraph_width' => @$l['Setting']['value'] ?: 500,
             'opengraph_height' => @$m['Setting']['value'] ?: 500
         ];
-
+        
         $this->set('data', $data);
 
         if(!empty($this->Auth->user('role')) && $this->Auth->user('role') == 'admin'){

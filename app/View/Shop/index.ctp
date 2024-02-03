@@ -27,7 +27,7 @@
           <img src="<?php echo Configure::read('imageUrlBase').$category['Category']['img_url']?>" class="img-responsive img-cover">
           
           <?php if(strlen($category['Category']['name']) > 3): ?>
-          <span class="name p-1 text-uppercase">
+          <span class="p-1 text-catalog text-uppercase">
              <?php echo $category['Category']['name']?><br>
           </span>
           <?php endif ?>

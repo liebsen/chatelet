@@ -773,7 +773,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #filters .prices label span i { background: #000; display: none; height: 12px; width: 100%; }
 #filters .prices label span.active i { display: block; }
 #listShop { padding-bottom: 100px;}
-#listShop a { /*background: #efefef;*/ display: block; margin-bottom: 30px; overflow: hidden; position: relative; }
+#listShop a { /*background: #efefef;*/ display: block; overflow: hidden; position: relative; }
 #listShop a img {
   height:20rem;
   object-fit: cover;
@@ -823,6 +823,19 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   margin: auto;
   min-height: 1.5rem;
 }
+
+.text-catalog {
+  display: block;
+  position: absolute;
+  z-index: 10;
+  top: auto;
+  bottom: 0;
+  text-shadow: 0 0 3px #3333;
+  font-size: 2rem;
+  font-weight: bolder; 
+  color: white;
+}
+
 .price {
   /* text-align:center;
    height:60px; */
