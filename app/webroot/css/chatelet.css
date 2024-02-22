@@ -285,62 +285,10 @@ select.form-control{
 	right: 0;
 }
 
-/*.navbar-chatelet {
-	padding-top: 20px;
-	padding-bottom: 10px;
-	margin-bottom: 40px;
-    -webkit-box-shadow: 0 1px 30px -12px black;
-       -moz-box-shadow: 0 1px 30px -12px black;
-            box-shadow: 0 1px 30px -12px black;
+.navbar-chatelet.top-fixed {
+	background: linear-gradient(white,hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.7) 70%, hsla(0,0%,100%,0));
+	box-shadow: none;
 }
-
-.navbar-chatelet .navbar-toggle {
-	border-color: #ddd;
-}
-
-.navbar-chatelet .navbar-toggle .icon-bar {
-	background-color: #888;
-}
-
-.navbar-chatelet .navbar-nav {
-	margin-left: 10px;
-}
-
-.navbar-chatelet .navbar-nav>li>a {
-	color: black;
-	text-transform: uppercase;
-	border-top: 3px solid transparent;
-	transition: border-top 600ms ease;
-	background-color: transparent;
-	padding-top: 12px;
-}
-
-.navbar-chatelet .navbar-nav>li>a:hover,
-.navbar-chatelet .navbar-nav>li>a:focus  {
-	background-color: transparent;
-	border-top: 3px solid #e10c76;
-}
-
-.navbar-chatelet .caret {
-	color: #e10c76;
-}
-
-.navbar-chatelet .facebook{
-	padding-right: 5px;
-	padding-left: 5px;
-	padding-top: 10px;
-}
-
-.navbar-chatelet .busqueda {
-	padding-right: 10px;
-}
-
-.navbar-chatelet .title {
-	padding: 5px;
-	color: #e10c76;
-	border-bottom: 1px solid #e10c76;
-}
-*/
 
 .dropdown-menu {
 	font-size: 1rem;

@@ -347,15 +347,25 @@ $(function () {
       var scroll = $(window).scrollTop()
       var tops = document.querySelectorAll('.top-fixable')
       var navbar = document.querySelector('.navbar-chatelet')
-      if (scroll > 250) {
+      if (scroll > 100) {
         if(document.querySelector('.float-tl')) {
           document.querySelector('.float-tl').classList.add('float-top-left')
         }
         if(document.querySelector('.float-tr')) {
           document.querySelector('.float-tr').classList.add('float-top-right')
         }
-
-        if (lastscroll > scroll) {
+        tops.forEach((e) => {
+          if (e && !e.classList.contains('top-fixed')) {
+            e.classList.remove('fadeOut', 'fadeIn')
+            setTimeout(() => {
+              if (e.classList.contains('navbar-chatelet')) {
+                document.querySelector('body').style.paddingTop = `${e.clientHeight}px`
+              }
+              e.classList.add('top-fixed', 'fadeIn')
+            }, 10)
+          } 
+        })
+        /*if (lastscroll > scroll) {
           // up
           tops.forEach((e) => {
             if (e && !e.classList.contains('top-fixed')) {
@@ -382,7 +392,7 @@ $(function () {
               }
             }
           })
-        }
+        }*/
       } else {
         if(document.querySelector('.float-tl')) {
           document.querySelector('.float-tl').classList.remove('float-top-left')
