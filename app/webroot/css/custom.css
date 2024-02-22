@@ -1970,11 +1970,10 @@ span.out{
 
 .ribbon {
   position: absolute;
-  right: -5px; 
-  top: -5px;
+  right: 1rem; 
+  top: 1rem;
   z-index: 1;
   overflow: hidden;
-  width: 75px; height: 75px;
   text-align: right;
   cursor: pointer;
   animation-name: fadeIn;
@@ -1989,30 +1988,33 @@ span.out{
   -webkit-animation-delay: 5s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-
 }
 
 .ribbon span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem; 
+  height: 3rem;
+  background: #CA779A;
   font-size: 1rem;
-  font-weight: bold;
   color: #FFF;
   text-align: center;
-  line-height: 1.75rem;
-  font-weight: 800;
-  transform: rotate(45deg);
+  margin: auto;
+  line-height: 1;
+  font-weight: bold;
+  border-radius: 100%;
+  word-spacing:9999px;
+  /*transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
-  width: 100px;
-  height: 30px;
-  display: block;
-  background: #CA779A;
+  width: 4rem;
+  height: 4rem;
   background: linear-gradient(#F50081 0%, #FF0086 100%);
   box-shadow: 0 3px 10px -5px rgba(0,0,0,0.8);
-  text-shadow: 0 0 2px rgba(0,0,0,0.25);
-  position: absolute;
-  top: 10px;
+  text-shadow: 0 0 2px rgba(0,0,0,0.25);*/
 }
 
-.ribbon span::before {
+/*.ribbon span::before {
   content: "";
   position: absolute; left: 0px; top: 100%;
   z-index: -1;
@@ -2032,7 +2034,7 @@ span.out{
   border-bottom: 3px solid transparent;
   border-top: 3px solid #CA779A;
   opacity: 0.5;
-}
+}*/
 
 
 .ribbon.disable span {
@@ -2084,14 +2086,14 @@ span.out{
 
 .ribbon.left span {
   background: #5CB85C!important;
-  transform: translate(-1.25rem, 2.5rem) rotate(-45deg);
-  transform-origin: top left;
+  /*transform: translate(-1.25rem, 2.5rem) rotate(-45deg);
+  transform-origin: top left;*/
 }
 
 .ribbon.bottom-left {
-  left: -4px;
+  left: 1rem;
   right: auto;
-  bottom: -3px;
+  bottom: 1rem;
   top: auto;  
 }
 
@@ -2102,12 +2104,12 @@ span.out{
 
 .ribbon.bottom-left span {
   background: #e10d74!important;
-  transform: translate(-1.3rem, -0.9rem) rotate(45deg);
+  /*transform: translate(-1.3rem, -0.9rem) rotate(45deg);
   transform-origin: bottom left;
-  box-shadow: 0 -3px 10px -5px rgba(0, 0, 0, 1);
+  box-shadow: 0 -3px 10px -5px rgba(0, 0, 0, 1);*/
 }
 
-.ribbon.bottom-left span:after {
+/*.ribbon.bottom-left span:after {
   top: -5px;  
   border-left: 3px solid transparent;
   border-right: 3px solid #e10d74;
@@ -2121,7 +2123,7 @@ span.out{
   border-right: 3px solid transparent;
   border-bottom: 3px solid #e10d74;
   border-top: 3px solid transparent;
-}
+}*/
 
 .ribbon.large {
   transform: scale(1.6) translateY(0.75rem) translateX(-0.75rem);  
