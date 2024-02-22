@@ -17,12 +17,12 @@
 </section>
 
 <section id="listShop">
-  <div class="wrapper">
+  <div class="wrapper-fluid">
     <div class="row m-0">
       <div class="col-xs-12">
         <div class="row">
       <?php foreach($categories as $category): ?>
-      <div class="p-1 col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
+      <div class="p-0 col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
         <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
           <img src="<?php echo Configure::read('imageUrlBase').$category['Category']['img_url']?>" class="img-responsive img-cover">
           

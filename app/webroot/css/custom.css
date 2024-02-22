@@ -772,7 +772,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #filters .prices label span { border: 1px solid #000; cursor: pointer; display: inline-block; height: 20px; margin-right: 10px; padding: 3px; width: 20px; }
 #filters .prices label span i { background: #000; display: none; height: 12px; width: 100%; }
 #filters .prices label span.active i { display: block; }
-#listShop { padding-bottom: 100px;}
+/*#listShop { padding-bottom: 100px;}*/
 #listShop a { /*background: #efefef;*/ display: block; overflow: hidden; position: relative; }
 #listShop a img {
   height:20rem;
@@ -2735,7 +2735,7 @@ span.count.is-empty {
   #opts .mod-item { min-height: 24rem;} 
   #opts a { max-height: 30rem; } */
   #detalle .caract .add {min-width: 10rem; }
-  #listShop { padding-top: 1.25rem; }
+  /*#listShop { padding-top: 1.25rem; }*/
   footer > .wrapper {
     padding: 0 2rem;
   }
