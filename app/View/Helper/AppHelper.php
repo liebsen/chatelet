@@ -175,7 +175,7 @@ class AppHelper extends Helper {
       if(!empty($old_price) && abs($old_price-$price > 1)) {
         $str.= '<span class="old_price"> $ '.\price_format($old_price) . '</span>';
       }
-      $str.= '<span class="price_strong"> $ ' . \price_format($price) . '<br><span class="text-sm">' . (strlen($text) ? "con {$text}" : "") . '</span></span>';
+      $str.= '<span class="price_strong"> $ ' . \price_format($price) . '</span><br><span class="text-sm">' . (strlen($text) ? "{$text}" : "") . '</span>';
       $str.= '</div>';
     }
   
@@ -184,10 +184,10 @@ class AppHelper extends Helper {
 
     $str.='<div class="legends-container"><div class="legends' . ($noprice ? ' legends-left' : '') . '">';
     if($bank_price && $text != 'Transferencia') {
-      $str.= "<span class='text-legend'><span class='text-theme text-bold product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format($bank_price)." </span><span class='text-sm'>con Transferencia</span> </span>";
+      $str.= "<span class='text-legend'><span class='text-theme text-bold product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format($bank_price)." </span><span class=''>Transferencia</span> </span>";
     }
     if($mp_price && $text != 'Mercado Pago'){
-      $str.= "<span class='text-legend'><span class='text-theme text-bold product-badge'>-".@$item['mp_discount']."%</span> <span class='price_strong'> $ " .\price_format($mp_price)." </span><span class='text-sm'>con Mercado Pago</span> </span>";
+      $str.= "<span class='text-legend'><span class='text-theme text-bold product-badge'>-".@$item['mp_discount']."%</span> <span class='price_strong'> $ " .\price_format($mp_price)." </span><span class=''>Mercado Pago</span> </span>";
     }
 
     // dues

@@ -860,7 +860,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   text-decoration: line-through;
   text-align: right;
   color: #666;
-  font-weight: 500; 
+  font-weight: 500;
+  white-space: nowrap; 
   /*margin-left: 0.5rem;
   margin-right: 0.5rem;  */
 }
@@ -948,6 +949,7 @@ align-items: center;}
 
 .product-badge {
   min-width: 2.25rem;
+  font-size: 1rem;
   display: inline-block;
   text-align: left;
 }
@@ -1891,6 +1893,8 @@ span.out{
 .price_strong {
   color: black;
   font-weight: 600;
+  font-size: 1rem;
+  white-space: nowrap;
 }
 
 .text-sm {
@@ -1905,8 +1909,8 @@ span.out{
   display: inline-block;
   width: 100%;
   color: #666!important;
-  line-height: 1.5;
-  font-size: 1rem;
+  line-height: 1;
+  font-size: 0.75rem;
 }
 
 .text-legend .badge {
