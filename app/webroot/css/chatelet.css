@@ -486,7 +486,6 @@ select.form-control{
 #menuSearch {
 	background-color: #f7ecf1;
 	padding-top: 0.5rem;
-	position: fixed!important;
 }
 
 #menuSearch .wrapper {
