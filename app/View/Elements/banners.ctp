@@ -1,4 +1,4 @@
-<div id="carousel-banners" class="carousel slide animated fadeIn"data-interval="10000" data-ride="carousel">
+<div id="carousel-banners" class="carousel slide animated fadeIn" data-interval="10000" data-ride="carousel">
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
   <?php foreach ($banners as $key => $banner): ?>
@@ -17,12 +17,12 @@
   </div>
   <!-- Controls -->
   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-      <span class="arrow arrow-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
+    <span class="arrow arrow-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
   </a>
   <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-      <span class="arrow arrow-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
+    <span class="arrow arrow-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
   </a>
 </div>
 

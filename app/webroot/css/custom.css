@@ -369,7 +369,7 @@ label input[type=checkbox]:disabled + .label-text:before {
     padding: 0;
     width: 60px;
     font-size: 0.75rem;
-    padding-top: 44px;
+    padding-top: 1.25rem;
     text-align: center;
     background-color: transparent;
   }
@@ -390,7 +390,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   margin: 0 0.5rem; 
 }
 .nav>li>a:focus, .nav>li>a:hover { border: none; background-color: transparent; }
-.navbar-nav>li>a.user {
+/*.navbar-nav>li>a.user {
   background-image: url(../img/ic_usuario.svg);
 }
 .navbar-nav>li>a.shop {
@@ -398,7 +398,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 .navbar-nav>li>a.action-search {
   background-image: url(../img/ic_lupa.svg);
-}
+}*/
 .menuLayer {
   z-index: 12;
   background: #FFF;
@@ -2208,9 +2208,8 @@ span.count {
   opacity: 0;
   position: absolute;
   z-index: 9;
-  top: 23px;
-  left: 0;
-  right: 0;
+  top: 1rem;
+  left: 2rem;
   text-align: center;
   font-size: 13px;
   color: #ffffff;

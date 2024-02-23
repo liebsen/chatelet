@@ -273,7 +273,9 @@ $(function () {
     }, 5000)
   }
 
-  $('.action-search').click(() => {
+  $('.action-search').click((e) => {
+    console.log('a1',e)
+    e.stopPropagation()
     $('.menuLayer').hide()
     if ($('#menuSearch').is(':visible')) {
       $('#menuSearch').fadeOut();
@@ -347,7 +349,7 @@ $(function () {
       var scroll = $(window).scrollTop()
       var tops = document.querySelectorAll('.top-fixable')
       var navbar = document.querySelector('.navbar-chatelet')
-      if (scroll > 100) {
+      if (scroll > 300) {
         if(document.querySelector('.float-tl')) {
           document.querySelector('.float-tl').classList.add('float-top-left')
         }

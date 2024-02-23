@@ -62,14 +62,14 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="#" class="action-search">Buscar</a>
+            <a href="#" class="action-search"><i class="fa fa-2x fa-search text-light"></i></a>
           </li>
 
          <!-- .Login -->
           <li class="dropdown">
              <?php if ($loggedIn) { ?>
-             <a href="#" class="dropdown-toggle user js-activated" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
-             Mi Perfil</a>
+             <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion"><i class="fa fa-2x fa-user-circle"></i>
+             </a>
             <ul class="dropdown-menu">
                <li>
                  <div id="login-panel">
@@ -111,13 +111,13 @@
                 </li>
               </ul>
             <?php } else { ?>
-             <a href="#" class="dropdown-toggle user" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion">Registrate</a>
+             <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion"><i class="fa fa-2x fa-user-circle"></i></a>
             <?php } ?>
           </li><!-- /.Login -->
           <li class="dropdown is-clickable">
-            <a href="#" class="dropdown-toggle gotocart shop js-activated" data-toggle="dropdown" data-hover="dropdown">
+            <a href="#" class="dropdown-toggle gotocart js-activated" data-toggle="dropdown" data-hover="dropdown">
               <span class="count <?=count($carro)?'':'is-empty '?>animated scaleIn speed delay2"><?=count($carro)?></span>
-              <span>Tu pedido</span>
+              <span><i class="fa fa-2x fa-shopping-cart"></i></span>
             </a>
             <ul class="dropdown-menu">
               <li>
