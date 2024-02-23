@@ -321,7 +321,8 @@ label input[type=checkbox]:disabled + .label-text:before {
   z-index: 3; 
 }
 .navbar-brand { 
-  background: url(../images/sprite.png) no-repeat; 
+  background: url(../img/logo.png) no-repeat; 
+  background-size: contain;
   height: 28px; 
   margin-top: 10px; 
   padding: 0; 
@@ -1321,7 +1322,8 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#myModal2 .content .table p { font-size: 18px; }
 	#myModal2 .content .table tr td { font-size: 16px; }
 }
-#menuShop { top: 9rem!important; }
+#menuShop {   position: fixed!important;
+top: 8rem!important; }
 
 @media (max-width: 991px) {
 	.navbar-header { float: none; }

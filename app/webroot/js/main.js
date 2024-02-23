@@ -323,10 +323,10 @@ $(function () {
   }
 
   var menuLayerTop = 0;
-  if (document.getElementById('carousel-banners')) {
+  /*if (document.getElementById('carousel-banners')) {
     const height = document.getElementById('carousel-banners').clientHeight
     menuLayerTop+= height;
-  }
+  }*/
   document.querySelectorAll('.menuLayer:not(.is-fullheight)').forEach(e => {
     e.style.top = `${menuLayerTop}px`;
   })

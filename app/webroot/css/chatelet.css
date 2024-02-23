@@ -285,11 +285,6 @@ select.form-control{
 	right: 0;
 }
 
-.navbar-chatelet.top-fixed {
-	background: linear-gradient(white,hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.7) 70%, hsla(0,0%,100%,0));
-	box-shadow: none;
-}
-
 .dropdown-menu {
 	font-size: 1rem;
 	top: 5.5rem;
@@ -491,6 +486,7 @@ select.form-control{
 #menuSearch {
 	background-color: #f7ecf1;
 	padding-top: 0.5rem;
+	position: fixed!important;
 }
 
 #menuSearch .wrapper {
@@ -877,6 +873,10 @@ span.validation-password {
 }
 
 @media screen and (min-width: 769px) {
+	.navbar-chatelet.top-fixed {
+		background: linear-gradient(white,hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.7) 70%, hsla(0,0%,100%,0));
+		box-shadow: none;
+	}	
 	.modal-dialog {
 		margin: auto!important;
 		min-height: 100vh;
