@@ -59,12 +59,13 @@
                   <?php foreach($categories as $category): ?>
                   <div class="p-0 col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
                     <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
-                      <img src="<?php echo Configure::read('uploadUrl').$category['Category']['img_url']?>" class="img-responsive img-cover">
-                      <?php //if(strlen($category['Category']['name']) > 3): ?>
-                      <!--span class="p-1 text-catalog text-uppercase">
-                        <?php echo $category['Category']['name']?><br>
-                      </span-->
-                      <?php //endif ?>
+                      <div class="d-flex justify-content-start align-items-center w-100" style="background: #eaeaea url('<?php echo Configure::read('uploadUrl').$category['Category']['img_url']?>') center center/cover no-repeat; height:360px;">  
+                          <?php if(strlen($category['Category']['name']) > 3): ?>
+                          <span class="p-1 text-catalog text-uppercase">
+                            <?php echo str_replace([', ', ' y '], [' ', ' '], $category['Category']['name'])?>
+                          </span>
+                          <?php endif ?>
+                        </div>
                     </a>
                   </div>
                   <?php endforeach ?>
