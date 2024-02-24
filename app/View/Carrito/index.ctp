@@ -98,8 +98,8 @@
 							echo "<div class='ribbon".$disable."'><span>" . $product['promo'] . "</span></div>";
 						}
             echo '<a href="' . $item_url . '">';
-						// echo '<img src="'.Configure::read('imageUrlBase').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
-						echo '<div class="carrito-item-image" style="background-image: url('.Configure::read('imageUrlBase').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
+						// echo '<img src="'.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
+						echo '<div class="carrito-item-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 						echo '</a>';
 						echo '</div>';
 						echo '</div>';

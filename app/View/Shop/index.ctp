@@ -9,7 +9,7 @@
 </style>
 <div id="headshop">
   <!--h1 class="name_shop">Shop</h1-->
-  <div class="img-resp header-offset" style="background-image:url(<?php echo Configure::read('imageUrlBase').$image_bannershop ?>)"></div>
+  <div class="img-resp header-offset" style="background-image:url(<?php echo Configure::read('uploadUrl').$image_bannershop ?>)"></div>
 </div>
 
 <section id="filters">
@@ -24,7 +24,7 @@
       <?php foreach($categories as $category): ?>
       <div class="p-0 col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
         <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
-          <img src="<?php echo Configure::read('imageUrlBase').$category['Category']['img_url']?>" class="img-responsive img-cover">
+          <img src="<?php echo Configure::read('uploadUrl').$category['Category']['img_url']?>" class="img-responsive img-cover">
           
           <?php //if(strlen($category['Category']['name']) > 3): ?>
           <!--span class="p-1 text-catalog text-uppercase">

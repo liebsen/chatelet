@@ -15,7 +15,7 @@
 		<div class="control-group">
 			<label class="control-label" for="columns-text"></label>
 			<div class="controls">
-				<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo Configure::read('imageUrlBase') ?>">
+				<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
 					<li style="margin-top:10px;margin-bottom:10px;">	
 						<img src="{{image}}" width="100"/> 
 						<a href="#" class="delete_image" data-input="[name='gallery']" data-file="{{file}}">X</a>

@@ -16,7 +16,7 @@
     <meta property="og:title" content="<?= ucwords(strtolower($product['name'])) ?>">
     <meta property="og:description" content="<?= ucwords(strtolower($product['name'])) ?>">
     <meta property="og:url" content="<?= $this->Html->url(['controller' => 'shop', 'action' => 'detalle', $product['id'], $product['category_id'], strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))], true) ?>">
-    <meta property="og:image" content="<?= Configure::read('imageUrlBase') . $product['img_url'] ?>">
+    <meta property="og:image" content="<?= Configure::read('uploadUrl') . $product['img_url'] ?>">
     <meta property="product:brand" content="Chatelet">
     <meta property="product:availability" content="<?= intval($product['stock_total']) ? 'in stock' : 'out of stock' ?>">
     <meta property="product:condition" content="new">

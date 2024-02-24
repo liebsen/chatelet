@@ -125,11 +125,14 @@ function siteURL() {
 }
 
 // Configure::write('baseUrl','http://localhost:8040/'); 
+$uploadLocal = true;
+
 Configure::write('baseUrl',siteURL()); 
-Configure::write('uploadUrl',siteURL() . 'files/uploads/'); 
+Configure::write('uploadUrl',$uploadLocal ? '/files/uploads/' : 'https://d3baxuoyqsgua.cloudfront.net/');
+Configure::write('uploadLocal',$uploadLocal); 
 Configure::write('S3.accessKey','AKIAJGNWSIAUPGFVLJTQ'); 
 Configure::write('S3.secret','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'); 
-Configure::write('imageUrlBase','https://d3baxuoyqsgua.cloudfront.net/'); 
+//Configure::write('uploadUrl','https://d3baxuoyqsgua.cloudfront.net/'); 
 //cache for https://s3.amazonaws.com/chatelet/'); 
 
 @include_once 'env.php';

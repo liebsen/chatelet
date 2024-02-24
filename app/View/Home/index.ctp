@@ -5,7 +5,7 @@
 	$images_aux = explode(';', @$home['img_url']);
 	foreach ($images_aux as $key => $value) {
 		if(!empty($value))
-			$images[] 	= Configure::read('imageUrlBase').$value;
+			$images[] 	= Configure::read('uploadUrl').$value;
 	}
 
   $img_url_one = str_replace(';', '', @$home['img_url_one']);
@@ -59,7 +59,7 @@
                   <?php foreach($categories as $category): ?>
                   <div class="p-0 col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
                     <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
-                      <img src="<?php echo Configure::read('imageUrlBase').$category['Category']['img_url']?>" class="img-responsive img-cover">
+                      <img src="<?php echo Configure::read('uploadUrl').$category['Category']['img_url']?>" class="img-responsive img-cover">
                       <?php //if(strlen($category['Category']['name']) > 3): ?>
                       <!--span class="p-1 text-catalog text-uppercase">
                         <?php echo $category['Category']['name']?><br>
@@ -131,7 +131,7 @@
                   <div class="carousel-inner news-carousel" role="listbox">
                     <div class="item active">
 
-                      <img src="<?=Configure::read('imageUrlBase').$popupBG[0]?>">
+                      <img src="<?=Configure::read('uploadUrl').$popupBG[0]?>">
                          <?php if(!empty($home['display_popup_form_in_last'])):?>
                 <div class="in_last">
                 <?php echo $this->Form->create('Contact'); ?>
@@ -142,7 +142,7 @@
                 <?php endif; ?>
                     </div>
                     <div class="item">
-                      <img src="<?=Configure::read('imageUrlBase').$popupBG[1]?>">
+                      <img src="<?=Configure::read('uploadUrl').$popupBG[1]?>">
 
                      <?php if(!empty($home['display_popup_form_in_last'])):?>
 
@@ -158,7 +158,7 @@
                     <?php if(isset($popupBG[2]) && !empty($popupBG[2])):?>
                     <div class="item">
 
-                      <img src="<?=Configure::read('imageUrlBase').$popupBG[2]?>">
+                      <img src="<?=Configure::read('uploadUrl').$popupBG[2]?>">
 
                          <?php if(!empty($home['display_popup_form_in_last'])):?>
                 <div class="in_last">
@@ -176,7 +176,7 @@
 
         <?php elseif (count($popupBG)==1):?>
 
-            <div class="content js-show-modal is-clickable" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('imageUrlBase').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
+            <div class="content js-show-modal is-clickable" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('uploadUrl').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
                 <div class="tap-to-continue animated fadeIn delay3" title="Continuar a la tienda">
                     <i class="fa fa-chevron-right mr-0"></i> 
                     <span class="ml-2">Continuar<span class="d-none d-lg-block d-xl-block"> a la tienda</span></span>

@@ -9,7 +9,7 @@
     $images_aux = explode(';', $product['gallery']);
     foreach ($images_aux as $key => $value) {
         if(!empty($value))
-            $images[]   = Configure::read('imageUrlBase').$value;
+            $images[]   = Configure::read('uploadUrl').$value;
     }
     echo $this->Session->flash();
     $colorImages = array();
@@ -45,7 +45,7 @@
                 <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
                    <?php if(!empty($value)): $ppp++;?>
                    <li class="dontResize"><a href="javacript:void(0)"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
-                    onclick="currentDiv(<?=$ppp;?>)" title="ck_image_<?=$ppp?>"  id="img_01" src="<?=Configure::read('imageUrlBase').'thumb_'.$value?>"></a></li>
+                    onclick="currentDiv(<?=$ppp;?>)" title="ck_image_<?=$ppp?>"  id="img_01" src="<?=Configure::read('uploadUrl').'thumb_'.$value?>"></a></li>
                     <?php endif;?>
                 <?php endforeach ?>
                     <?php endif;?>
@@ -75,7 +75,7 @@
                 <?php foreach ($colorImages[0]['images'] as $k => $v) : ?>
                     <?php if(!empty($v)): ?>
                     <div id="surround">
-                        <img class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?=Configure::read('imageUrlBase').$v?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
+                        <img class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?=Configure::read('uploadUrl').$v?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
                     </div>
                     <?php endif;?>
                   <?php endforeach ?>
@@ -98,7 +98,7 @@
         <div class="col-md-5 col-sm-7"  >
              <div id="surround">
                  <?php if (!empty($img_url)): ?>
-                    <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?php echo Configure::read('imageUrlBase').$img_url ?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
+                    <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?php echo Configure::read('uploadUrl').$img_url ?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
                 <?php elseif (!empty($images)): ?>
 
                 <?php foreach ($images as $k => $v) : ?>
@@ -191,7 +191,7 @@
                                                         break;
                                                     }
                                                 }
-                                                echo '<div class="color-option" style="background-image: url('.Configure::read('imageUrlBase').$image[0].')"></div>';
+                                                echo '<div class="color-option" style="background-image: url('.Configure::read('uploadUrl').$image[0].')"></div>';
                                             } else {
                                                 echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
                                             }
@@ -320,7 +320,7 @@
                                 <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
                             <?php endif ?>
                             <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
-                            <div class="product-image" style="background-image: url('<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>')" alt=""></div>
+                            <div class="product-image" style="background-image: url('<?php echo Configure::read('uploadUrl') . $alt_product['img_url'] ?>')" alt=""></div>
                             <div class="product-info">
                                 <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                                 <div class="name" origin="3"><?= $alt_product_name ?></div>
@@ -352,7 +352,7 @@
                             <?php if ($alt_product['promo'] !== '') :?>
                                 <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
                             <?php endif ?>
-                            <div class="product-image posnum-<?= $category['Category']['posnum'] ?>" style="background-image: url('<?php echo Configure::read('imageUrlBase') . $alt_product['img_url'] ?>')" alt=""></div>
+                            <div class="product-image posnum-<?= $category['Category']['posnum'] ?>" style="background-image: url('<?php echo Configure::read('uploadUrl') . $alt_product['img_url'] ?>')" alt=""></div>
                             </div>
                             <div class="product-info">
                                 <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
@@ -381,7 +381,7 @@
             </div>
         <?php else: ?>
             <div align="center" class="centered">
-                <img src="<?=Configure::read('imageUrlBase')?><?=$category['Category']['size']?>" style="max-width:100%" border="0" />
+                <img src="<?=Configure::read('uploadUrl')?><?=$category['Category']['size']?>" style="max-width:100%" border="0" />
             </div>
         <?php endif; ?>
 

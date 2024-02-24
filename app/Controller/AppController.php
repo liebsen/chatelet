@@ -229,33 +229,58 @@ class AppController extends Controller
         $Email->send($message);
     }
 
+    private function saveFile($file) {
+        /* save file if any */
+        $filepath = '';
+        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $key = uniqid() . '.' . $ext;
+        $dest = __DIR__ . '/../webroot/files/uploads/' . $key;
+        $url = "";
+
+        if(copy($file['tmp_name'],$dest)){
+          $filepath = Configure::read('uploadUrl') . $key;
+          if(!empty(Configure::read('uploadLocal'))){
+            $filepath = $key;
+          }
+        }
+
+        return $filepath;
+    }
+
     protected function save_file($file, $withThumb = false, $size=300) {
+
         if (empty($file['name'])) {
             return false;
         }
+
+        if(Configure::read('uploadLocal')) {
+            return $this->saveFile($file);
+        }
         $type = $file['type'];
         $tmp_name = $file['tmp_name'];
-
         $terms = explode('/', $type);
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
         for ($i = 0; $i < 25; $i++) {
             $randomString .= $characters[rand(0, strlen($characters) - 1)];
         }
+
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $new_name = $randomString.'.'.$ext;
-				$uploadToS3 = $this->S3->save($tmp_name, $new_name);
-				error_log('saved: '.$new_name);
+        $upload = copy($tmp_name, $new_name);
+    	//$uploadToS3 = $this->S3->save($tmp_name, $new_name);
+    	//error_log('saved: '.$new_name);
         if ($withThumb) {
             $thumb_new_name = 'thumb_' . $new_name;
             //Creamos thumbnail
             $this->ResizeImage->thumbnail($tmp_name, $thumb_new_name, $size);
             $thumbUploadToS3 = $this->S3->save($tmp_name, $thumb_new_name);
-						error_log('saved: '.$thumb_new_name);
-      //  }else{
-				}
+			error_log('saved: '.$thumb_new_name);
+		}
+
         //$aux = explode(';', $uploadToS3);
         //$response = array_pop($aux);
-        return $uploadToS3;
+        // return $uploadToS3;
+        return $upload;
     }
 }

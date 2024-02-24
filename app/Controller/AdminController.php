@@ -1210,23 +1210,22 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 		        $file_real_name = null;
 		        if(!empty($this->request->params['form']['image']['name'])){
-		            $file_real_name = $this->save_file($this->request->params['form']['image']);
+		          $file_real_name = $this->save_file($this->request->params['form']['image']);
 		        }
 
-		        $file_real_name2 = null;
-		        if(!empty($this->request->params['form']['size']['name'])){
-		            $file_real_name2 = $this->save_file($this->request->params['form']['size']);
+		        $file_size = null;
+		        if(!empty($this->request->params['form']['image']['size'])){
+		           $file_size = $this->request->params['form']['image']['size'];
 		        }
 
 		        if($file_real_name){
-		            $data['img_url'] = $file_real_name;
+		          $data['img_url'] = $file_real_name;
 		        }
-		        if($file_real_name2){
-		            $data['size'] = $file_real_name2;
+		        if($file_size){
+		          $data['size'] = $file_size;
 		        }
 
 		        $this->Category->save($data);
-
 		        return $this->redirect(array('action'=>'categorias'));
   			} else {
     			return $this->render('categorias-detail');
@@ -1258,22 +1257,21 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		            $file_real_name1 = $this->save_file($this->request->params['form']['banner']);
 		        }
 
-		        $file_real_name2 = null;
-		        if(!empty($this->request->params['form']['size']['name'])){
-		            $file_real_name2 = $this->save_file($this->request->params['form']['size']);
+		        $file_size = null;
+		        if(!empty($this->request->params['form']['image']['size'])){
+		          $file_size = $this->request->params['form']['image']['size'];
 		        }
 
 		        if($file_real_name){
-		            $data['img_url'] = $file_real_name;
+		          $data['img_url'] = $file_real_name;
 		        }
 
 		        if($file_real_name1){
-		            $data['banner_url'] = $file_real_name1;
+		          $data['banner_url'] = $file_real_name1;
 		        }
 
-
-		        if($file_real_name2){
-		            $data['size'] = $file_real_name2;
+		        if($file_size){
+		          $data['size'] = $file_size;
 		        }
 
 		        $this->Category->save($data);
@@ -1346,7 +1344,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 			if(!empty($og['image']['name'])){
 				$file = $this->save_file( $og['image'] );
-				$this->Setting->save(['id' => 'opengraph_image', 'value' => Configure::read('imageUrlBase') . $file]);
+				$this->Setting->save(['id' => 'opengraph_image', 'value' => Configure::read('uploadUrl') . $file]);
 			}
 		}
 		$h1 = array(
@@ -2043,16 +2041,14 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     	case 'add':
     	    if ($this->request->is('POST')){
 		        $this->autoRender = false;
-
 		        $data = $this->request->data;
-
 		        $file_real_name = null;
 		        if(!empty($this->request->params['form']['image']['name'])){
-		            $file_real_name = $this->save_file($this->request->params['form']['image']);
+		          $file_real_name = $this->save_file($this->request->params['form']['image']);
 		        }
 
 		        if($file_real_name){
-		            $data['img_url'] = $file_real_name;
+		          $data['img_url'] = $file_real_name;
 		        }
 
 		        $this->Menu->save($data);
@@ -2156,21 +2152,6 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	  $this->render('searches');
 	}
 
-	private function saveFile($name, $data) {
-		/* save file if any */
-    $filepath = '';
-    $file = $_FILES[$name];
-    $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-    $key = uniqid() . '.' . $ext;
-    $dest = __DIR__ . '/../webroot/files/uploads/' . $key;
-    $url = "";
-
-    if(copy($file['tmp_name'],$dest)){
-      $filepath = Configure::read('uploadUrl') . $key;
-    }
-    return $filepath;
-	}
-
 	public function logistica($action = null) {
 		$navs = array(
 			'Lista' => array(
@@ -2194,7 +2175,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	        $this->autoRender = false;
 	        $data = $this->request->data;
 	        if (isset($_FILES['image']) && $_FILES['image']['size']) {
-	        	$data['image'] = $this->saveFile('image', $data);
+	        	$data['image'] = $this->saveFile('image');
 	        }
 	        $result = $this->Logistic->save($data);
 					$url = array(
@@ -2231,7 +2212,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     			$this->autoRender = false;
     			$data = $this->request->data;
     			if (isset($_FILES['image']) && $_FILES['image']['size']) {
-    				$data['image'] = $this->saveFile('image', $data);
+    				$data['image'] = $this->saveFile('image');
     			}
 		      $this->Logistic->save($data);
           if(!empty($this->request->data['config'])) {

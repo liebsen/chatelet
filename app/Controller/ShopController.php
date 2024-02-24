@@ -633,7 +633,7 @@ class ShopController extends AppController {
 				'bank_discount' => $row['bank_discount'],
 				'number_ribbon' => intval($number_ribbon),
 				'slug' => str_replace(' ','-',strtolower($row['desc'])),
-				'img_url' => Configure::read('imageUrlBase') . $row['img_url']
+				'img_url' => Configure::read('uploadUrl') . $row['img_url']
 			];
 
 			if(!empty($mp_price)){

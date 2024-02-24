@@ -17,7 +17,7 @@
 				<tr>
 					<td>          
 						<?php
-							echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('imageUrlBase') . $lookbook['LookBooks']['img_url'] ."''>LINK</a>";
+							echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('uploadUrl') . $lookbook['LookBooks']['img_url'] ."''>LINK</a>";
 						?>     
 					</td>
 					<td>

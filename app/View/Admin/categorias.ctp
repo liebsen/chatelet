@@ -65,7 +65,13 @@
 			<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>">
 				<td>
 					<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
-						<?=$category['Category']['name']?>
+            <!--pre>
+              <?php var_dump($category);?>
+            </pre-->
+            <div class="d-flex justify-content-center align-items-center">
+              <img src="<?=Configure::read('uploadUrl'). $category['Category']['img_url']?>" width="200" />
+						  <?=$category['Category']['name']?>
+            </div>
 					</a>
 				</td>
 				<td>
@@ -88,14 +94,14 @@
 				<td>          
 					<?php
 						if(!empty($category['Category']['img_url'])){
-							echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('imageUrlBase') . $category['Category']['img_url'] ."''>LINK</a>";
+							echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('uploadUrl') . $category['Category']['img_url'] ."''>LINK</a>";
 						}
 					?>     
 				</td> 
 				<td>          
 					<?php
 						if(!empty($category['Category']['size'])){
-							echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('imageUrlBase') . $category['Category']['size'] ."''>LINK</a>";
+							echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('uploadUrl') . $category['Category']['size'] ."''>LINK</a>";
 						}
 					?>     
 				</td>

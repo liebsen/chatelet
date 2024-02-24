@@ -57,11 +57,11 @@ class AppHelper extends Helper {
     $content.= $discount_flag . $promo_ribbon;
 
     /*if (empty($item['with_thumb'])){
-      $content.= '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . $item['img_url'] .'" />';
+      $content.= '<img class="img-responsive contain-xs"  src="'. Configure::read('uploadUrl') . $item['img_url'] .'" />';
     }else{
-      $content.= '<img class="img-responsive contain-xs"  src="'. Configure::read('imageUrlBase') . 'thumb_'.$item['img_url'] .'" url-copy="'.Configure::read('imageUrlBase') . $item['img_url'].'" onError=updateSrcTo(this) />';
+      $content.= '<img class="img-responsive contain-xs"  src="'. Configure::read('uploadUrl') . 'thumb_'.$item['img_url'] .'" url-copy="'.Configure::read('uploadUrl') . $item['img_url'].'" onError=updateSrcTo(this) />';
     }*/
-    $content.= '<div class="product-image numpos-'.$numpos.'" style="background-image: url(\''. Configure::read('imageUrlBase') . $item['img_url'] .'\')"></div>';
+    $content.= '<div class="product-image numpos-'.$numpos.'" style="background-image: url(\''. Configure::read('uploadUrl') . $item['img_url'] .'\')"></div>';
     $content.= '</div>';
 
     if ($isProduct){
