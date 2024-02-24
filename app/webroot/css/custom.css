@@ -310,9 +310,9 @@ label input[type=checkbox]:disabled + .label-text:before {
   background: #FFF; 
   border: 0; 
   border-radius: 0; 
-  border-bottom-left-radius: 1rem;
+  /*border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  /* box-shadow: 0 2px 4px rgba(0,0,0,.2); */
+  box-shadow: 0 2px 4px rgba(0,0,0,.2); */
   box-shadow: var(--box-shadow);
   margin: 0; 
   min-height: 0; 
@@ -745,8 +745,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #carousel2 .carousel-control.right { right: 0%; }
 
 #headshop, #headabrigos {
-  /*background: url(../images/headshop.jpg) no-repeat center center;*/ 
-  display: contents;
+  /*background: url(../images/headshop.jpg) no-repeat center center;
+  display: contents;*/   
   color: #FFF; 
   font-size: 40px; 
   font-weight: 600; 
@@ -775,12 +775,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #filters .prices label span.active i { display: block; }
 /*#listShop { padding-bottom: 100px;}*/
 #listShop a { /*background: #efefef;*/ display: block; overflow: hidden; position: relative; }
-#listShop a img {
-  height:20rem;
-  object-fit: cover;
-  object-position: top center;
-  width: 100%;
-  opacity: 0.8;
+#listShop a .cat-image {
+  height:24rem;
   transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -ms-transition: all .3s ease-in-out;
@@ -894,12 +890,11 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   text-align: right;
   padding-right: 20px;
   padding-top: 200px;
-
 }
 #listShop a .hover small { color: #252424; font-size: 18px; }
 #listShop a .hover small:after { background: #363633; content: ""; display: block; height: 4px;border-radius: 3px; margin: 15px auto 0; width: 50px; }
 
-#listShop a:hover img { filter: contrast(120%); opacity: 0.95; }
+#listShop a:hover .cat-image { filter: contrast(120%); opacity: 0.95; }
 #listShop a:hover .hover { opacity: 0.75; }
 #infoShop { background: #f6f6f5; padding: 25px 0; }
 #infoShop .col-md-4 { color: #5c5a5a; font-size: 16px; line-height: 1.5; min-height: 10rem;
