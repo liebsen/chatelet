@@ -229,7 +229,7 @@ class AppController extends Controller
         $Email->send($message);
     }
 
-    private function saveFile($file) {
+    private function saveFile($file, $thumb = false, $size = 300) {
         /* save file if any */
         $filepath = '';
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
@@ -244,6 +244,16 @@ class AppController extends Controller
           }
         }
 
+        if ($thumb) {
+            $thumb_new_name = 'thumb_' . $key;
+            $dest = __DIR__ . '/../webroot/files/uploads/' . $thumb_new_name;
+            //Creamos thumbnail
+            $this->ResizeImage->thumbnail($file['tmp_name'], $thumb_new_name, $size);
+            if(!copy($file['tmp_name'],$dest)){
+                error_log('Error al generar thumbnail',$dest);
+            }
+        }
+
         return $filepath;
     }
 
@@ -254,7 +264,7 @@ class AppController extends Controller
         }
 
         if(Configure::read('uploadLocal')) {
-            return $this->saveFile($file);
+            return $this->saveFile($file,$withThumb,$size);
         }
         $type = $file['type'];
         $tmp_name = $file['tmp_name'];
