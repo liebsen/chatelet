@@ -65,10 +65,7 @@
 			<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>">
 				<td>
 					<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
-            <!--pre>
-              <?php var_dump($category);?>
-            </pre-->
-            <div class="d-flex justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-center gap-1">
               <img src="<?=Configure::read('uploadUrl'). $category['Category']['img_url']?>" width="200" />
 						  <?=$category['Category']['name']?>
             </div>
@@ -137,8 +134,7 @@
 							title="Establecer descuento por mercadopago"
 							onclick="showLayer(event,'discount','mp',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
 							<i class="gi gi-credit_card"></i>
-						</a>									
-          
+						</a>
 						<a 
 							href="#" 
 							data-toggle="tooltip" 
@@ -151,7 +147,6 @@
 							data-msg="¿Eliminar categoria? Precación: Se borraran los productos que esten contenidos en esta categoria.">
 							<i class="gi gi-remove"></i>
 						</a>
-
 					</div> 
 				</td>
 			</tr>

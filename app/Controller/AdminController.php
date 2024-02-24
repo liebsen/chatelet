@@ -1246,35 +1246,34 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
     			$data = $this->request->data;
 
-		        $file_real_name = null;
-		        if(!empty($this->request->params['form']['image']['name'])){
-								error_log('trying to edit save file');
-		            $file_real_name = $this->save_file($this->request->params['form']['image']);
-		        }
+	        $file_real_name = null;
+	        if(!empty($this->request->params['form']['image']['name'])){
+            $file_real_name = $this->save_file($this->request->params['form']['image']);
+	        }
 
-		        $file_real_name1 = null;
-		        if(!empty($this->request->params['form']['banner']['name'])){
-		            $file_real_name1 = $this->save_file($this->request->params['form']['banner']);
-		        }
+	        $file_real_name1 = null;
+	        if(!empty($this->request->params['form']['banner']['name'])){
+	           $file_real_name1 = $this->save_file($this->request->params['form']['banner']);
+	        }
 
-		        $file_size = null;
-		        if(!empty($this->request->params['form']['image']['size'])){
-		          $file_size = $this->request->params['form']['image']['size'];
-		        }
+	        $file_size = null;
+	        if(!empty($this->request->params['form']['image']['size'])){
+	          $file_size = $this->request->params['form']['image']['size'];
+	        }
 
-		        if($file_real_name){
-		          $data['img_url'] = $file_real_name;
-		        }
+	        if($file_real_name){
+	          $data['img_url'] = $file_real_name;
+	        }
 
-		        if($file_real_name1){
-		          $data['banner_url'] = $file_real_name1;
-		        }
+	        if($file_real_name1){
+	          $data['banner_url'] = $file_real_name1;
+	        }
 
-		        if($file_size){
-		          $data['size'] = $file_size;
-		        }
+	        if($file_size){
+	          $data['size'] = $file_size;
+	        }
 
-		        $this->Category->save($data);
+	        $this->Category->save($data);
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
