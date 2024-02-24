@@ -62,7 +62,7 @@
                       <div class="d-flex justify-content-start align-items-center p-3 w-100" style="background: #eaeaea url('<?php echo Configure::read('uploadUrl').$category['Category']['img_url']?>') center center/cover no-repeat; height:360px;">  
                           <?php if(strlen($category['Category']['name']) > 3): ?>
                           <span class="p-1 text-catalog text-uppercase">
-                            <?php echo str_replace([', ', ' y '], [' ', ' '], $category['Category']['name'])?>
+                            <?php echo str_replace([', ', ' y ', ' Y '], ' ', $category['Category']['name'])?>
                           </span>
                           <?php endif ?>
                         </div>
