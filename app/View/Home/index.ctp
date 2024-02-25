@@ -21,9 +21,15 @@
           <div class="carousel-inner " role="listbox">
 
             <?php foreach ($images as $key => $value): ?>
-                <div  class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
+                <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
                     <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
+                        <?php if (strpos($value, '.mp4') !== false):?>
+                        <video height="100%" class="carousel-video" playsinline autoplay muted loop>
+                            <source src="<?=$value?>" type="video/mp4">
+                        </video>
+                        <?php else: ?>
                         <div class="slider-full" style="background-image:url(<?php echo $value; ?>)"></div>
+                        <?php endif; ?>
                     </a>
 
                     <div class="carousel-caption">

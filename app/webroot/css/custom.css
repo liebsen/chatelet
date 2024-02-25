@@ -164,6 +164,12 @@ label input[type=checkbox]:disabled + .label-text:before {
   position: relative;
 }
 
+.carousel-video {
+  object-fit: cover;
+  width: 100%;
+  max-height: calc(100dvh - 10rem);
+}
+
 .text-grey {
   color: #888;
 }

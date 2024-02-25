@@ -54,6 +54,7 @@ $(function(){
 		var valid_types = {
 			'image/jpeg': true,
 			'image/jpg': true,
+			'video/mp4': true,
 		};
 		fd.append('data[file]', this.files[0]);
 

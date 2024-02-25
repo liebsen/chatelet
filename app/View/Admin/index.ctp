@@ -281,11 +281,15 @@
 					</div>
 					<br />
 					<div class="control-group">
-						<label class="control-label" for="columns-text">Imagenes</label>
+						<label class="control-label" for="columns-text">Imágenes</label>
 						<div class="controls">
 							<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
-								<li style="margin-top:10px;margin-bottom:10px;">	
+								<li style="margin-top:10px;margin-bottom:10px;">
+									{{#if video}}
+									<video src="{{image}}" width="100"/> 
+									{{else}}
 									<img src="{{image}}" width="100"/> 
+									{{/if}}
 									<a href="#" class="delete_image" data-input="[name='data[img_url]']" data-file="{{file}}">X</a>
 								</li>
 							</script>

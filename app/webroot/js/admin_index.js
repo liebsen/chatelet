@@ -22,7 +22,11 @@ $(function(){
 			if(image){
 				var source   	= $("#image_thumb").html();
 				var template 	= Handlebars.compile(source);
-				var context 	= {image: base_url+image , file: image }
+				var context 	= {
+					image: base_url+image, 
+					file: image,
+					video: image.includes('.mp4')
+				}
 				var html    	= template(context);
 
 				ul.append(html);
@@ -53,6 +57,7 @@ $(function(){
 		var valid_types = {
 			'image/jpeg': true,
 			'image/jpg': true,
+			'video/mp4': true,
 		};
 		fd.append('data[file]', this.files[0]);
 
