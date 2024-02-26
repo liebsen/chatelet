@@ -1214,13 +1214,14 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		        }
 
 		        $file_size = null;
-		        if(!empty($this->request->params['form']['image']['size'])){
-		           $file_size = $this->request->params['form']['image']['size'];
+		        if(!empty($this->request->params['form']['size']['name'])){
+		          $file_size = $this->save_file($this->request->params['form']['size']);
 		        }
 
 		        if($file_real_name){
 		          $data['img_url'] = $file_real_name;
 		        }
+		        
 		        if($file_size){
 		          $data['size'] = $file_size;
 		        }
@@ -1257,8 +1258,8 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	        }
 
 	        $file_size = null;
-	        if(!empty($this->request->params['form']['image']['size'])){
-	          $file_size = $this->request->params['form']['image']['size'];
+	        if(!empty($this->request->params['form']['size']['name'])){
+	          $file_size = $this->save_file($this->request->params['form']['size']);
 	        }
 
 	        if($file_real_name){
