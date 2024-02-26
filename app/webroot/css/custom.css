@@ -837,7 +837,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   bottom: 0;
   font-style: italic;*/
   text-align: left;
-  text-shadow: 0 0 3px #3333;
+  text-shadow: 0 0 3px #3339,0 0 8px #3336;
   font-size: 2rem;
   font-weight: 600; 
   color: white;

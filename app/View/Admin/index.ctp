@@ -281,7 +281,7 @@
 					</div>
 					<br />
 					<div class="control-group">
-						<label class="control-label" for="columns-text">Slide Home (jpg|jpeg|mp4)</label>
+						<label class="control-label" for="columns-text">Slider (jpg|jpeg|mp4)</label>
 						<div class="controls">
 							<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
 								<li style="margin-top:10px;margin-bottom:10px;">
