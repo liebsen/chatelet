@@ -469,21 +469,21 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 .carousel { z-index: 2; }
 #carousel-newsletter.carousel { z-index: 0; position: absolute !important;}
-#carousel-example-generic { height: auto; }
-#carousel-example-generic .carousel-caption { left: 25%; line-height: .8; /*padding-bottom: 150px;*/ padding-top: 125px; /*position: relative;*/ text-align: left; text-shadow: none; width: 50%;display: none }
-#carousel-example-generic .carousel-caption h1 { color: #464444; font-size: 40px; font-weight: 600; margin-bottom: 15px; text-shadow: none; }
-#carousel-example-generic .carousel-caption span { background: #363633; color: #FFF; display: inline-block; font-size: 30px; margin-bottom: 23px; padding: 12px 7px 5px 7px; }
-#carousel-example-generic .carousel-caption p { color: #464444; font-size: 20px; line-height: 1.6; margin-bottom: 70px; }
-#carousel-example-generic .carousel-caption a {border: 2px solid #f7f7f7;color: #f7f7f7; display: inline-block; font-size: 20px; padding: 15px 70px; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
-#carousel-example-generic .carousel-caption a:hover { background: #363633; border-color: #363633; color: #FFF; }
-#carousel-example-generic .carousel-inner .item { background-position: center top; background-size: cover; }
-#carousel-example-generic .carousel-control { color: #e44522; bottom: 33px; opacity: 1; top: inherit; width: 120px; z-index: 99; }
-#carousel-example-generic .carousel-control.left, #carousel-example-generic .carousel-control.right { background: none; height: 100%; top: 0; }
-#carousel-example-generic .carousel-control .arrow { background-image: url(../images/sprite.png); background-repeat: no-repeat; display: block; height: 74px; left: 50%; margin-left: -22px; margin-top: -37px; position: absolute; top: 50%; width: 44px; }
-#carousel-example-generic .carousel-control .arrow.arrow-left { background-position: -3px -89px; }
-#carousel-example-generic .carousel-control .arrow.arrow-right { background-position: -53px -89px; }
-#carousel-example-generic .carousel-control.left { left: 0%; }
-#carousel-example-generic .carousel-control.right { right: 0%; }
+#carousel { height: auto; }
+#carousel .carousel-caption { left: 25%; line-height: .8; /*padding-bottom: 150px;*/ padding-top: 125px; /*position: relative;*/ text-align: left; text-shadow: none; width: 50%;display: none }
+#carousel .carousel-caption h1 { color: #464444; font-size: 40px; font-weight: 600; margin-bottom: 15px; text-shadow: none; }
+#carousel .carousel-caption span { background: #363633; color: #FFF; display: inline-block; font-size: 30px; margin-bottom: 23px; padding: 12px 7px 5px 7px; }
+#carousel .carousel-caption p { color: #464444; font-size: 20px; line-height: 1.6; margin-bottom: 70px; }
+#carousel .carousel-caption a {border: 2px solid #f7f7f7;color: #f7f7f7; display: inline-block; font-size: 20px; padding: 15px 70px; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
+#carousel .carousel-caption a:hover { background: #363633; border-color: #363633; color: #FFF; }
+#carousel .carousel-inner .item { background-position: center top; background-size: cover; }
+#carousel .carousel-control { color: #e44522; bottom: 33px; opacity: 1; top: inherit; width: 120px; z-index: 99; }
+#carousel .carousel-control.left, #carousel .carousel-control.right { background: none; height: 100%; top: 0; }
+#carousel .carousel-control .arrow { background-image: url(../images/sprite.png); background-repeat: no-repeat; display: block; height: 74px; left: 50%; margin-left: -22px; margin-top: -37px; position: absolute; top: 50%; width: 44px; }
+#carousel .carousel-control .arrow.arrow-left { background-position: -3px -89px; }
+#carousel .carousel-control .arrow.arrow-right { background-position: -53px -89px; }
+#carousel .carousel-control.left { left: 0%; }
+#carousel .carousel-control.right { right: 0%; }
 
 #today { text-align: center; }
 #today a { display: grid; }
@@ -1263,11 +1263,11 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
     background-size: cover;
   }
 
-	#carousel-example-generic .carousel-caption { padding-bottom: 100px; padding-top: 100px; }
-	#carousel-example-generic .carousel-caption h1 { font-size: 40px; }
-	#carousel-example-generic .carousel-caption span { font-size: 30px; }
-	#carousel-example-generic .carousel-caption p { font-size: 18px; margin-bottom: 40px; }
-	#carousel-example-generic .carousel-caption a { font-size: 18px; padding: 15px 45px; }
+	#carousel .carousel-caption { padding-bottom: 100px; padding-top: 100px; }
+	#carousel .carousel-caption h1 { font-size: 40px; }
+	#carousel .carousel-caption span { font-size: 30px; }
+	#carousel .carousel-caption p { font-size: 18px; margin-bottom: 40px; }
+	#carousel .carousel-caption a { font-size: 18px; padding: 15px 45px; }
 	#location .col-md-8 { padding-left: 75px; padding-right: 75px; }
 
 	#video { padding: 35px 75px; }
@@ -1354,7 +1354,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   .navbar-nav > li > a { font-size: 1rem;  }
 	.navbar-nav>li>a .badge { left: 5px; position: absolute; top: 5px; }
 
-	#carousel-example-generic .carousel-caption { left: 15%; width: 70%; }
+	#carousel .carousel-caption { left: 15%; width: 70%; }
 
     #location .col-md-12 {
         padding-left: 25px;
@@ -1427,15 +1427,15 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	.navbar-toggle .icon-bar { background: #363633; width: 35px; }
 	.navbar-nav > li { display: block; width: 100%; }
 
-	#carousel-example-generic .carousel-caption { padding-bottom: 50px; padding-top: 50px; }
-	#carousel-example-generic .carousel-caption h1 { font-size: 20px; }
-	#carousel-example-generic .carousel-caption p { font-size: 14px; margin-bottom: 20px; }
-	#carousel-example-generic .carousel-caption span, #carousel-example-generic .carousel-caption a { font-size: 14px; }
-	#carousel-example-generic .carousel-caption a { padding: 10px 30px; }
-	#carousel-example-generic .carousel-control { width: 60px; }
-	#carousel-example-generic .carousel-control .arrow { background-size: 100px; height: 46px; margin-left: -13.5px; margin-top: -23px; width: 27px; }
-	#carousel-example-generic .carousel-control .arrow.arrow-right { background-position: -33px -55px; }
-	#carousel-example-generic .carousel-control .arrow.arrow-left { background-position: -2px -55px; }
+	#carousel .carousel-caption { padding-bottom: 50px; padding-top: 50px; }
+	#carousel .carousel-caption h1 { font-size: 20px; }
+	#carousel .carousel-caption p { font-size: 14px; margin-bottom: 20px; }
+	#carousel .carousel-caption span, #carousel .carousel-caption a { font-size: 14px; }
+	#carousel .carousel-caption a { padding: 10px 30px; }
+	#carousel .carousel-control { width: 60px; }
+	#carousel .carousel-control .arrow { background-size: 100px; height: 46px; margin-left: -13.5px; margin-top: -23px; width: 27px; }
+	#carousel .carousel-control .arrow.arrow-right { background-position: -33px -55px; }
+	#carousel .carousel-control .arrow.arrow-left { background-position: -2px -55px; }
 
 	#today .rectangle h1 { font-size: 30px; }
 	#today .rectangle p { font-size: 20px; }
@@ -1542,7 +1542,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
     section#productOptions .col-xs-6 a .hover small {
 
     }
-    #carousel-example-generic > .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    #carousel > .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
         max-width: 100%;
     }
 

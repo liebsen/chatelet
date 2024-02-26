@@ -13,11 +13,10 @@
   $img_url_three = str_replace(';', '', @$home['img_url_three']);
   $img_url_four = str_replace(';', '', @$home['img_url_four']);
 ?>
-
-        <div id="carousel-example-generic" class="carousel slide" data-interval="3000" data-ride="carousel">
+        <div id="carousel" class="carousel slide" data-interval="3000" data-ride="carousel">
 
           <!-- Wrapper for slides -->
-          <div class="carousel-inner " role="listbox">
+          <div class="carousel-inner" role="listbox">
 
             <?php foreach ($images as $key => $value): ?>
                 <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
@@ -46,11 +45,11 @@
           </div>
 
             <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
                 <span class="arrow arrow-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
                 <span class="arrow arrow-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>

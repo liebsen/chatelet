@@ -270,10 +270,14 @@ $(function () {
   $('#myModal').on('hidden.bs.modal', function () {
     setTimeout(() => {
       if(document.getElementById("carousel-video-1")){
-        console.log('play')
         document.getElementById("carousel-video-1").play()
       }
     }, 200)
+  });
+
+  $('#carousel').on('slide.bs.carousel', function () {
+    // check for videos
+    //console.log('slide event');
   });
 
   if (window.location.hash.indexOf('listShop') > -1) {

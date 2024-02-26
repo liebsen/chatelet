@@ -234,17 +234,17 @@
 	    <span></span>
 	    <span></span>
 	  </a>
-	  <div class="carousel carousel-carrito" id="carousel-example-generic">
+	  <div class="carousel carousel-carrito" id="carousel">
 	  	<div class="carousel-inner">
 				<div class="carrito-item">
 					<div class="carrito-item-block"></div>
 				</div>
 			</div>
-			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			<a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
         <span class="arrow arrow-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
         <span class="arrow arrow-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
