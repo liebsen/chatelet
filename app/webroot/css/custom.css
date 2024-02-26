@@ -430,7 +430,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   height: 2rem; 
   opacity: 1; 
   right: 1.25rem; 
-  top: 7.5rem;
+  top: 10.25rem;
   transition: all 0.25s ease-out;
 }
 .menuLayer a.close span { 
@@ -779,7 +779,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #filters .prices label span { border: 1px solid #000; cursor: pointer; display: inline-block; height: 20px; margin-right: 10px; padding: 3px; width: 20px; }
 #filters .prices label span i { background: #000; display: none; height: 12px; width: 100%; }
 #filters .prices label span.active i { display: block; }
-/*#listShop { padding-bottom: 100px;}*/
+#listShop { width: calc(100dvw - 10px); }
 #listShop a { /*background: #efefef;*/ display: block; overflow: hidden; position: relative; }
 #listShop a .cat-image {
   height:24rem;
@@ -791,8 +791,6 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 }
 #listShop .category-item {
   border-top: 5px solid white;
-} 
-#listShop .category-item:not(:last-child) {
   border-right: 5px solid white;
 }
 .hidden-force {
@@ -1746,6 +1744,7 @@ span.out{
   opacity: 0;
   margin-bottom: 1rem;
   /*flex: 1;*/
+  min-width: 15rem;
   animation-name: fadeIn;
   animation-duration: 1s;
   animation-fill-mode: both;
@@ -2639,6 +2638,9 @@ span.count.is-empty {
 }*/
 
 @media screen and (min-width:769px), print {
+  .menuLayer a.close { 
+    top: 7.5rem;
+  }  
   .slider-full {
     min-height: calc(100vh - 8rem);
   }

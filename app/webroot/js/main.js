@@ -274,7 +274,7 @@ $(function () {
   }
 
   $('.action-search').click((e) => {
-    console.log('a1',e)
+    $('.navbar-collapse').collapse('hide');
     e.stopPropagation()
     $('.menuLayer').hide()
     if ($('#menuSearch').is(':visible')) {
