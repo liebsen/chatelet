@@ -419,8 +419,6 @@ label input[type=checkbox]:disabled + .label-text:before {
   width: 100%;
   overflow-x: hidden;
   border-radius: 0;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;  
 }
 .menuLayer a.close { 
   position: absolute;
@@ -779,7 +777,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #filters .prices label span { border: 1px solid #000; cursor: pointer; display: inline-block; height: 20px; margin-right: 10px; padding: 3px; width: 20px; }
 #filters .prices label span i { background: #000; display: none; height: 12px; width: 100%; }
 #filters .prices label span.active i { display: block; }
-#listShop { width: calc(100dvw - 10px); }
+#listShop { width: calc(100dvw + 10px); overflow: hidden; }
 #listShop a { /*background: #efefef;*/ display: block; overflow: hidden; position: relative; }
 #listShop a .cat-image {
   height:24rem;
