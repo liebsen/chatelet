@@ -28,7 +28,7 @@
 
 <style>
   #carousel-banners {
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
+    /*font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;*/
     background-color: black;
     color: white;
   }
@@ -43,6 +43,7 @@
     justify-content: center;
     align-items: center;
     min-height: 64px;
+    font-weight: bolder;
   }
 
   @media screen and (max-width:500px){

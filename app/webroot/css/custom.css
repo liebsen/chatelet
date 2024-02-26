@@ -1901,7 +1901,7 @@ span.out{
 
 .price_strong {
   color: black;
-  font-weight: 600;
+  font-weight: bolder;
   font-size: 1rem;
   white-space: nowrap;
 }
@@ -2215,7 +2215,7 @@ span.count {
   margin: 0 auto;
   border-radius: 100%;
   line-height: 18px;
-  font-weight: 900;
+  font-weight: bolder;
 }
 
 span.count.is-empty {
