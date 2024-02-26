@@ -203,7 +203,7 @@
 							<i class="fa fa-warning text-danger"></i>
 						</div>
 						<h3 class="h3 text-center">Tu carrito de compras está vacío</h3>
-						<div>Para comprar agrega un producto. <a href="/ayuda" class="text-primary">Obtener más información acerca de como comprar</a></div>
+						<div>Para comprar agrega un producto. <a href="/ayuda/como_comprar" class="text-primary">Obtén más información acerca de como comprar</a></div>
 					</div>
 					<br><br>
 					<?php endif;?>

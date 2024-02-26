@@ -2017,9 +2017,9 @@ span.out{
   text-align: center;
   margin: auto;
   line-height: 1;
-  font-weight: bold;
+  font-weight: bolder;
   border-radius: 100%;
-  word-spacing:9999px;
+  word-spacing: 9999px;
   /*transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   width: 4rem;
