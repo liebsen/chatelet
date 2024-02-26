@@ -29,7 +29,7 @@ $version = (float) $version_count / 1000;
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 Configure::write('mUrl','');
-Configure::write('font', 'Roboto Condensed');
+Configure::write('font', 'DM Sans');
 Configure::write('fontweight', '300,400,500,600,700,800');
 Configure::write('DIST_VERSION', $version);
 

@@ -421,14 +421,14 @@ label input[type=checkbox]:disabled + .label-text:before {
   border-radius: 0;
 }
 .menuLayer a.close { 
-  position: absolute;
+  position: relative;
   z-index: 100;
   display: block; 
   width: 2rem; 
   height: 2rem; 
   opacity: 1; 
-  right: 1.25rem; 
-  top: 10.25rem;
+  right: 1rem; 
+  top: 1rem;
   transition: all 0.25s ease-out;
 }
 .menuLayer a.close span { 
@@ -2241,9 +2241,6 @@ span.count.is-empty {
 }
 
 @media (max-width: 767px) {
-    /*.menuLayer a.close {
-      top: 1.5rem;
-    }*/
     .navbar-right>li>a {
         background: none!important;
         height: auto;
@@ -2636,9 +2633,6 @@ span.count.is-empty {
 }*/
 
 @media screen and (min-width:769px), print {
-  .menuLayer a.close { 
-    top: 7.5rem;
-  }  
   .slider-full {
     min-height: calc(100vh - 8rem);
   }

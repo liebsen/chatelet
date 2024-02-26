@@ -23,7 +23,7 @@
                 <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
                     <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
                         <?php if (strpos($value, '.mp4') !== false):?>
-                        <video class="carousel-video" playsinline autoplay muted loop>
+                        <video class="carousel-video" id="carousel-video-<?= $key + 1?>" playsinline loop>
                             <source src="<?=$value?>" type="video/mp4">
                         </video>
                         <?php else: ?>

@@ -102,7 +102,7 @@ class AppController extends Controller
         
         $this->set('categories', $categories);
 
-        $basicfont = 'Roboto Condensed';
+        $basicfont = 'DM Sans';
         $font = $basicfont;
         // 'Fira Sans Condensed', 'Sniglet','Roboto Condensed', 'Archivo Narrow'
         $fontweight = '300,400,500,600,700';
