@@ -414,8 +414,8 @@ label input[type=checkbox]:disabled + .label-text:before {
   left: 0;
   display: none;
   padding: 40px 0;
-  position: absolute;
-  top: 94px;
+  /*position: absolute;
+  top: 94px;*/
   width: 100%;
   overflow-x: hidden;
   border-radius: 0;
@@ -788,6 +788,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   -ms-transition: all .3s ease-in-out;
   -webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out; 
+  border-top: 4px solid white;
 }
 .hidden-force {
   display: none!important;
@@ -832,12 +833,12 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   position: absolute;
   z-index: 10;
   top: auto;
-  bottom: 0;*/
+  bottom: 0;
+  font-style: italic;*/
   text-align: left;
   text-shadow: 0 0 3px #3333;
   font-size: 2rem;
-  font-style: italic;
-  font-weight: 400; 
+  font-weight: 600; 
   color: white;
   word-spacing: 9999px;
 }
@@ -900,8 +901,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #listShop a .hover small { color: #252424; font-size: 18px; }
 #listShop a .hover small:after { background: #363633; content: ""; display: block; height: 4px;border-radius: 3px; margin: 15px auto 0; width: 50px; }
 
-#listShop a:hover .cat-image { filter: contrast(120%); opacity: 0.95; }
-#listShop a:hover .hover { opacity: 0.75; }
+#listShop a:hover .cat-image { filter: contrast(150%); opacity: 0.9; }
+#listShop a:hover .hover { opacity: 0.9; }
 #infoShop { background: #f6f6f5; padding: 25px 0; }
 #infoShop .col-md-4 { color: #5c5a5a; font-size: 16px; line-height: 1.5; min-height: 10rem;
 display: flex;
@@ -1328,8 +1329,10 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#myModal2 .content .table p { font-size: 18px; }
 	#myModal2 .content .table tr td { font-size: 16px; }
 }
-#menuShop {   position: fixed!important;
-top: 8rem!important; }
+#menuShop {   
+  /*position: fixed!important;
+  top: 8rem!important; */
+}
 
 @media (max-width: 991px) {
 	.navbar-header { float: none; }
@@ -2067,28 +2070,6 @@ span.out{
   font-size: 1rem;
 }
 
-.ribbon.sp1 {
-  right: 10px;
-}
-
-.ribbon.left.sp1 {
-  left: 10px;
-}
-
-.ribbon.left.sp2 {
-  top: -8px;
-  left: -8px;
-}
-
-.ribbon.sp3 {
-  top: -8px;
-  right: -8px;
-}
-
-.ribbon.sp4 {
-  right: -8px;
-}
-
 .ribbon.left {
   left: 0;
   right: auto;
@@ -2100,19 +2081,22 @@ span.out{
   transform-origin: top left;*/
 }
 
-.ribbon.bottom-left {
-  left: 1rem;
+.ribbon.top-left {
+  left: 0.75rem;
   right: auto;
-  bottom: 1rem;
+  top: 0.75rem;
+  bottom: auto;  
+}
+
+.ribbon.bottom-left {
+  left: 0.75rem;
+  right: auto;
+  bottom: 0.75rem;
   top: auto;  
 }
 
-.ribbon.bottom-left.sp2 {
-  left: -8px;
-  bottom: -8px;
-}
-
-.ribbon.bottom-left span {
+.ribbon.bottom-left span,
+.ribbon.top-left span {
   background: #e10d74!important;
   /*transform: translate(-1.3rem, -0.9rem) rotate(45deg);
   transform-origin: bottom left;

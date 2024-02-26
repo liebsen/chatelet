@@ -29,10 +29,6 @@
 			</div>		
 		</div-->
 		<?php endif ?>
-		<div class="col-md-12 mt-8 text-center">
-			<a class="btn keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
-			<!--a class="keep-buying cart-btn-green" href="/#q:">Seguir comprando</a-->
-		</div>
 	</div>
 	<div class="row">
 		<div id="carrito">
@@ -204,10 +200,10 @@
 					<?php else: ?>
 					<div class="container text-center">
 						<div class="icon-huge mt-4">
-							<i class="fa fa-warning yellow text-shadow"></i>
+							<i class="fa fa-warning text-danger"></i>
 						</div>
 						<h3 class="h3 text-center">Tu carrito de compras está vacío</h3>
-						<div>¿Te interesaría buscar por palabra clave?</div>
+						<div>Para comprar agrega un producto. <a href="/ayuda" class="text-primary">Obtener más información acerca de como comprar</a></div>
 					</div>
 					<br><br>
 					<?php endif;?>
@@ -222,12 +218,13 @@
 				?>
 				</div>
 			</div>
-		<?php if (!isset($carro)): ?>
-			<div class="col-md-12 text-center">
-				<a href="#" class="btn action-search cart-btn-green">Buscar por palabra clave</a>
-				<!--a class="keep-buying cart-btn-green" href="/#q:">Seguir comprando</a-->
+			<div class="d-flex justify-content-center align-items-center gap-1">
+				<?php if (!isset($carro)): ?>
+					<a href="#" class="btn action-search cart-btn-green">Buscar por palabra clave</a>
+				<?php endif ?>
+				<a class="btn keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
+			<!--a class="keep-buying cart-btn-green" href="/#q:">Seguir comprando</a-->
 			</div>
-		<?php endif ?>
 		</div>
 	</div>
 					

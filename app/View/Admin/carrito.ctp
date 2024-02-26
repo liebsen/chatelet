@@ -52,7 +52,7 @@
       <br />               
       <div class="form-actions">
         <a href="/admin/cupones" class="btn btn-info"><i class="icon-repeat"></i> Atrás</a>
-        <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Guardar</button>
+        <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="icon-ok"></i> Guardar</button>
       </div>
     </form>
   </div>

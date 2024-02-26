@@ -12,7 +12,7 @@
         <p class="pre-system mt-4"><?= $data['bank_explain_text'] ?><br>Ref. #<?= $data['id'] ?></p><br><br>
       </div>
       <div class="col-md-6 enviar-comprobante">
-        <div class="animated slideInRight delay1 leaves-pad">
+        <div class="animated slideInRight delay2 leaves-pad">
           <div class="box w-leaves mt-8">  
             <h3 class="h3"><?= $data['bank_instructions_title'] ?></h3>
             <p class="pre-system font-system"><?= $data['bank_instructions_text'] ?></p>

@@ -12,7 +12,6 @@
   $img_url_two = str_replace(';', '', @$home['img_url_two']);
   $img_url_three = str_replace(';', '', @$home['img_url_three']);
   $img_url_four = str_replace(';', '', @$home['img_url_four']);
-
 ?>
 
         <div id="carousel-example-generic" class="carousel slide" data-interval="3000" data-ride="carousel">
@@ -24,7 +23,7 @@
                 <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
                     <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
                         <?php if (strpos($value, '.mp4') !== false):?>
-                        <video height="100%" class="carousel-video" playsinline autoplay muted loop>
+                        <video class="carousel-video" playsinline autoplay muted loop>
                             <source src="<?=$value?>" type="video/mp4">
                         </video>
                         <?php else: ?>
@@ -68,7 +67,7 @@
                       <div class="d-flex justify-content-start align-items-center cat-image p-3 w-100" style="background: #eaeaea url('<?php echo Configure::read('uploadUrl').$category['Category']['img_url']?>') center center/cover no-repeat;">  
                           <?php if(strlen($category['Category']['name']) > 3): ?>
                           <span class="p-1 text-catalog text-uppercase">
-                            <?php echo str_replace([', ', ' y ', ' Y '], ' ', $category['Category']['name'])?>
+                            <?php echo $this->App->cat_title($category['Category']['name'])?>
                           </span>
                           <?php endif ?>
                         </div>

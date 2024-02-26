@@ -41,7 +41,7 @@
           </div>
           <br />
           <div class="form-actions">
-            <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Guardar</button>
+            <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="icon-ok"></i> Guardar</button>
           </div>
         </div>          
       </div>      

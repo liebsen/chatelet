@@ -33,6 +33,16 @@ class AppHelper extends Helper {
 
   var $helpers = array('Html', 'Number');  // include the HTML helper
 
+  function cat_title($name){
+    return str_replace([
+      ' ,',
+      ' , ',
+      ', ',
+      ' y ',
+      ' Y '
+    ], ' ', $name);
+  }
+
   /**
   * @param string $query, This is the search query you will pass from the view
   */
@@ -51,8 +61,8 @@ class AppHelper extends Helper {
       $number_ribbon = (int) @$item['bank_discount'];
     }
 
-    $discount_flag = (@$item['category_id']!='134' && !empty($number_ribbon))?'<div class="ribbon bottom-left small sp1"><span>'.$number_ribbon.'% OFF</span></div>':'';
-    $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon sp1"><span>'.$item['promo'].'</span></div>':'';
+    $discount_flag = (@$item['category_id']!='134' && !empty($number_ribbon))?'<div class="ribbon top-left small"><span>'.$number_ribbon.'% OFF</span></div>':'';
+    $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
     $content= '<div class="ribbon-container">';
     $content.= $discount_flag . $promo_ribbon;
 

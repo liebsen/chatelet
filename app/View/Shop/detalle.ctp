@@ -65,7 +65,7 @@
                 } ?>
 
                 <?php if ($number_ribbon) :?>
-                    <div class="ribbon large bottom-left small"><span><?= $number_ribbon ?>% OFF</span></div>
+                    <div class="ribbon large top-left small"><span><?= $number_ribbon ?>% OFF</span></div>
                 <?php endif ?>
                 <?php if ($product['promo'] !== '') :?>
                     <div class="ribbon large"><span><?= $product['promo'] ?></span></div>
@@ -347,7 +347,7 @@
     }
 ?><?php 
                             if (!empty($number_ribbon)) :?>
-                                <div class="ribbon bottom-left small sp1"><span><?= $number_ribbon ?>% OFF</span></div>
+                                <div class="ribbon top-left small sp1"><span><?= $number_ribbon ?>% OFF</span></div>
                             <?php endif ?>
                             <?php if ($alt_product['promo'] !== '') :?>
                                 <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>

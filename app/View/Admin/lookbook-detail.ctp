@@ -65,8 +65,8 @@
       </div>      
       <br />               
       <div class="form-actions">
-        <button type="reset" class="btn btn-danger"><i class="icon-repeat"></i> Reset</button>
-        <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
+        <button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="icon-repeat"></i> Restaurar</button>
+        <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="icon-ok"></i> Guardar</button>
       </div>
     </form>
   </div>

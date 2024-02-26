@@ -130,7 +130,7 @@ html, body {
 }
 
 .icon-huge .fa {
-	font-size: 3rem;
+	font-size: 5rem;
 }
 
 .d-flex {
@@ -866,7 +866,7 @@ span.validation-password {
 
 @media screen and (min-width: 992px) {
   .box {
-    transform: scale(1) perspective(1024px) rotateY(-10deg) rotateX(3deg) rotate(3deg) translateY(0rem) translateX(-2rem);
+    /*transform: scale(1) perspective(1024px) rotateY(-10deg) rotateX(3deg) rotate(3deg) translateY(0rem) translateX(-2rem);*/
     box-shadow: 2px 1px 5px 0 rgba(26, 26, 67, .05), 10px 37.5px 42px -25px rgba(50, 50, 93, .2), 23.4px 37.5px 75px -37.5px rgba(0, 0, 0, .4);
   }
 }
