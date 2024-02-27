@@ -32,15 +32,21 @@ App::uses('Helper', 'View');
 class AppHelper extends Helper {
 
   var $helpers = array('Html', 'Number');  // include the HTML helper
-
+  var $title_exclude = ['Giftcard'];
   function cat_title($name){
-    return str_replace([
+    $reps = [
       ' ,',
       ' , ',
       ', ',
       ' y ',
       ' Y '
-    ], ' ', $name);
+    ];
+    foreach($this->title_exclude as $key => $val){
+      $reps[]= $val;
+      $reps[]= strtolower($val);
+      $reps[]= strtoupper($val);
+    }
+    return str_replace($reps, ' ', $name);
   }
 
   /**
