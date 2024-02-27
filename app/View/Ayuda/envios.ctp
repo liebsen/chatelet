@@ -1,5 +1,12 @@
 <?php $this->Html->script('ayuda', array('inline' => false)); ?>
 
+         <section id="optionsHelp">
+            <a href="/ayuda/como_comprar" >¿Cómo comprar?</a>
+            <a href="/ayuda/envios" class="active">Envíos</a>
+            <a href="/ayuda/metodos_de_pago" >Métodos de pago</a>
+            <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
+            <a href="/ayuda/faq" >Preguntas frecuentes</a>
+        </section>
         <div id="headhelp">
             <div class="wrapper">
                 <div class="row">
@@ -15,8 +22,10 @@
                                 <h3>Seguimiento de paquetes</h3>
                                  <?php echo $this->Form->create() ?>
                                  <form>
-                                    <input type="text" class="guia" name="data[guia]" placeholder="Nº de pieza" required>
-                                    <input type="submit" class="consultar" id="consult" value="Consultar">
+                                    <div class="d-flex justify-content-center align-items-center gap-1 mb-2">
+                                        <input type="text" class="form-control mb-0 guia" name="data[guia]" placeholder="Nº de pieza" required>
+                                        <input type="submit" class="btn btn-success consultar" id="consult" value="Consultar">
+                                    </div>
                                 </form>
                                 <?php echo $this->Form->end(); ?>
                             </div>
@@ -26,13 +35,6 @@
             </div>
         </div>
 
-         <section id="optionsHelp">
-            <a href="/ayuda/como_comprar" >¿Cómo comprar?</a>
-            <a href="/ayuda/envios" class="active">Envíos</a>
-            <a href="/ayuda/metodos_de_pago" >Métodos de pago</a>
-            <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
-            <a href="/ayuda/faq" >Preguntas frecuentes</a>
-        </section>
 
         <section id="desarrollo">
             <div class="wrapper">

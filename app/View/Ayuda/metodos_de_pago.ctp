@@ -1,7 +1,15 @@
 <?php
 	$this->Html->css('ayuda', array('inline' => false));
 ?>
-  <div id="headhelp">
+
+        <section id="optionsHelp">
+            <a href="/ayuda/como_comprar" >¿Cómo comprar?</a>
+            <a href="/ayuda/envios">Envíos</a>
+            <a href="/ayuda/metodos_de_pago" class="active">Métodos de pago</a>
+            <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
+            <a href="/ayuda/faq" >Preguntas frecuentes</a>
+        </section>
+          <div id="headhelp">
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-6">
@@ -20,13 +28,6 @@
             </div>
         </div>
 
-        <section id="optionsHelp">
-            <a href="/ayuda/como_comprar" >¿Cómo comprar?</a>
-            <a href="/ayuda/envios">Envíos</a>
-            <a href="/ayuda/metodos_de_pago" class="active">Métodos de pago</a>
-            <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
-            <a href="/ayuda/faq" >Preguntas frecuentes</a>
-        </section>
 
         <section id="desarrollo">
             <div class="wrapper text-center"> 

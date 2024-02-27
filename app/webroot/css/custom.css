@@ -1170,8 +1170,8 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #myModal2 .content .table tr:first-child td { border-top: none; }
 #myModal2 .content .table tr td:first-child { color: #363633; text-align: left; }
 
-.map { overflow: hidden; background-color: #efefef;}
-.map .col-md-4 { background: url(../images/mapbg.png) no-repeat center center; background-size: cover; padding: 200px 0 200px 150px; }
+.map { display: flex; overflow: hidden; background-color: #efefef;}
+.map .col-md-4 { background: url(../images/mapbg.png) no-repeat center center; background-size: cover; display: flex; justify-content: flex-start; align-items: center; padding-left: 5rem;}
 .map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 600; }
 .map .col-md-4 h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 
@@ -1219,10 +1219,10 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #desarrollo { overflow: hidden; padding: 50px 0; }
 #desarrollo .boxs { font-size: 1rem; }
 #desarrollo .boxs .boxs-reframe {
-  padding: 1rem 1.25rem;
-  border-radius: 3px;
+  padding: 2rem 2.25rem;
+  border-radius: 1rem;
   background-color: transparent;
-  border: 2px solid #363633;
+  border: 2px solid #6663;
   background-color: rgba(255,255,255,0.5);
 }
 #desarrollo .boxs:first-child { 
