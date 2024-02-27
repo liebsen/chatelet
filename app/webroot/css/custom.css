@@ -214,7 +214,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .box {
-  border-radius: 0.5rem;
+  border-radius: 1.5rem;
   background-color: rgba(255,255,255,0.5);
 }
 
@@ -1199,8 +1199,8 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headhelp { /*background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover;*/ padding: 65px 0; overflow-x: hidden;}
 #headhelp h1 { color: #363633; font-size: 40px; font-weight: 600; margin-top: 50px; }
 #headhelp h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
-#headhelp .box { border: 2px solid #363633; padding: 6rem 5rem 1rem; }
-#headhelp .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; margin-top: 0;}
+#headhelp .box { border: 2px solid #6666; padding: 4rem 5rem 1rem; }
+#headhelp .box h3 { font-size: 2.5rem; font-weight: 500; margin-bottom: 2rem; margin-top: 0;}
 #headhelp .box p { font-size: 15px; line-height: 1.5; margin-bottom: 45px; }
 #headhelp .box p a { color: #363633; font-weight: 600; }
 #optionsHelp { padding: 35px 0; padding-bottom: 40px; text-align: center; font-size: 1.5rem; font-weight: 800;}
