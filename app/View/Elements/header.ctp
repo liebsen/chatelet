@@ -126,7 +126,7 @@
                   <p class="title">Tu pedido</p>
                 <?php else: ?>
                   <h3> <i class="fa fa-shopping-cart fa-x2"></i> Tu carrito de compras está vacío.</h3>
-                  <p class="notification text-muted">Obtén más información <a href="/ayuda" class="text-primary">acerca de como comprar</a></p>
+                  <p class="notification text-muted">Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></p>
                 <?php endif ?>
                   <ol id="items">
                     <?php
