@@ -108,6 +108,7 @@ function pideStock(obj){
 		var url 		= $(obj).closest("form").data('url');
 		var article 	= $(obj).closest("form").data('article');
 		var color_code 	= $(obj).closest("form").find('input[name="color"]:checked').attr('code');
+		var color_alias 	= $(obj).closest("form").find('input[name="color"]:checked').attr('alias');
 		var size_number	= $(obj).closest("form").find('#size option:selected').val();
 		var stock_cont	= $(obj).closest("form").find('#stock_container');
 		var stock    	= '<i style="color:green;font-weight:600;">Disponible <i>';
@@ -117,19 +118,19 @@ function pideStock(obj){
 	  var stock_v  	= '<i style="color:gray;">Consultando ... </i>';
 
 		if(!color_code){
-			onSuccessAlert('<i class="fa fa-check"></i> Talle seleccionado','Elegí un color para este producto')
+			onSuccessAlert(`<i class="fa fa-check"></i> Talle ${size_number}`,`Elegí un color para este producto`)
 			stock_cont.html(no_color);
 			return false;
 		}
 
 		if(!size_number){
-			onSuccessAlert('<i class="fa fa-check"></i> Color seleccionado','Ahora elegí un talle para tu prenda')
+			onSuccessAlert(`<i class="fa fa-check"></i> Color ${color_alias}`,`Ahora elegí un talle para tu prenda`)
 			return false;
 		}
 
 		window.stock = 0;
 		if(url && article && color_code && size_number){
-			onSuccessAlert('<i class="fa fa-server"></i> Un momento','Consultando stock ...')
+			onWarningAlert('<i class="fa fa-server"></i> Un momento','Consultando stock ...')
 			var test = document.querySelector('.footer-producto');
       $(test).find('a').animate({opacity: 0.25});
       stock_cont.html(stock_v);

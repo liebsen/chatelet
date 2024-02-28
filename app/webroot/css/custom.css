@@ -1028,7 +1028,7 @@ align-items: center;}
 }
 #productOptions .product-list a:hover .hover { opacity: 1; }
 
-#detalle { background: url(../images/detallebg.jpg) no-repeat center center; background-size: cover; padding-top: 50px;    padding-bottom: 50px; }
+#detalle { /*background: url(../images/detallebg.jpg) no-repeat center center; background-size: cover;*/ padding-top: 50px;    padding-bottom: 50px; }
 /*#detalle ul { margin-top: 100px; }*/
 #detalle li { overflow: hidden; text-align: right; margin-bottom: 1.5rem;}
 #detalle li a { display: inline-block; overflow: hidden; }
