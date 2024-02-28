@@ -2083,7 +2083,7 @@ span.out{
   transform-origin: top left;*/
 }
 
-.ribbon.top-left {
+/*.ribbon.top-left {
   left: 0.75rem;
   right: auto;
   top: 0.75rem;
@@ -2095,7 +2095,7 @@ span.out{
   right: auto;
   bottom: 0.75rem;
   top: auto;  
-}
+}*/
 
 .ribbon.bottom-left span,
 .ribbon.top-left span {
