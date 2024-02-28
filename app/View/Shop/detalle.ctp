@@ -165,7 +165,7 @@
 
                 echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)) . ' <span class="text-sm">' . (strlen($text) ? 'con ' . strtoupper($text) : '') . '</span></span>';
                 ?>
-                 <div class="mt-0 tags-start">
+                 <div class="mt-1 mb-1 tags-start">
                     <?= $this->App->show_prices_dues($legends, $product, true) ?>
                  </div>
                 <div class="caract">
