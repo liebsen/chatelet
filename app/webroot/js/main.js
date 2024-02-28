@@ -287,8 +287,8 @@ $(function () {
   }
 
   $('.action-search').click((e) => {
-    if($('.navbar-collapse').collapse){
-      $('.navbar-collapse').collapse('hide');
+    if($('.navbar-collapse')){
+      $('.navbar-collapse').removeClass('in');
     }
     e.stopPropagation()
     $('.menuLayer').hide()
