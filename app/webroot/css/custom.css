@@ -1316,7 +1316,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headhelp h1 { font-size: 40px; }
 	#headhelp .box { padding: 40px 40px 20px; border-radius: 3px; /* min-height: 18rem;*/}
 	#headhelp .box p { font-size: 1rem; margin-bottom: 20px; }
-	#headhelp .box h3 { font-size: 1rem; }
+	#headhelp .box h3 { font-size: 2rem; }
 	#optionsHelp a, #desarrollo p { font-size: 1rem; }
 	#desarrollo small { font-size: 0.75rem; }
 	#referncia ul li, #headhelp .box2 input[type="text"], #headhelp .box2 input[type="submit"] { font-size: 14px; }

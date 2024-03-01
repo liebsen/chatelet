@@ -659,6 +659,16 @@ select.form-control{
 	margin-right: 0.75rem;
 }
 
+.margin-auto {
+	margin: auto;
+}
+.ordered-list {
+	list-style: auto;
+	margin-left: 1rem;
+}
+.ordered-list li{
+	margin-bottom: 1rem;
+}
 .card-subtitle {
 	color: #666;
   margin-bottom: 1rem;
