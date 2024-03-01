@@ -116,7 +116,9 @@
           </li><!-- /.Login -->
           <li class="dropdown is-clickable">
             <a href="#" class="dropdown-toggle gotocart js-activated" data-toggle="dropdown" data-hover="dropdown">
-              <span class="count <?=count($carro)?'':'is-empty '?>animated scaleIn speed delay2"><?=count($carro)?></span>
+              <?php if(count($carro)):?>
+              <span class="count animated scaleIn speed delay2"><?=count($carro)?></span>
+              <?php endif ?>
               <span><i class="fa fa-2x fa-shopping-cart"></i></span>
             </a>
             <ul class="dropdown-menu">
@@ -185,7 +187,7 @@
 </nav>
 
 <div id="menuShop" class="menuLayer">
-    <a class="close">
+    <a class="close position-relative">
         <span></span>
         <span></span>
     </a>
@@ -224,7 +226,7 @@
 </div>
 
 <div id="menuSearch" class="menuLayer">
-  <a class="close">
+  <a class="close position-relative">
     <span></span>
     <span></span>
   </a>

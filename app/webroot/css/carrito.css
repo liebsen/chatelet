@@ -13,10 +13,21 @@
   text-transform: capitalize !important;
 }
 
+.resume-totals {
+	margin-top: 2rem;
+}
+
 .summary-item {
 	margin: 0.5rem;
 }
 
+.cart-empty {
+	min-height: 30rem;
+	flex-direction: column;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .p {
 	margin: 0.5rem 0 1.25rem;
 }
@@ -286,12 +297,11 @@ a.pay{
 	color:#FFFFFF !important;
 }
 
-
 #carritoItem {
 	pointer-events: none;
 	position: fixed;
 	background-color: #f9f9f9;
-	top: 0;
+	top: 10rem;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -342,7 +352,7 @@ a.pay{
 #carritoItem.active {
 	pointer-events: inherit;
 	opacity: 1;
-	z-index: 50001;
+	z-index: 200;
 }
 
 #carritoItem .carrito-remove {

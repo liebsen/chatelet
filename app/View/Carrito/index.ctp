@@ -79,7 +79,7 @@
 							)
 						);
 						echo '</div>';
-						echo '<div class="help" title="Modificar este item del carrito"><div><span class="glyphicon glyphicon-edit"></span> <span class="font-system"> modificar</span></div></div>';
+						echo '<div class="help" title="Modificar este item del carrito"><div><span class="glyphicon glyphicon-edit"></span> <span class="font-system"> Modificar</span></div></div>';
 						echo '<div class="carrito-item-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
 						echo "<div class='cart-img'>";
@@ -130,6 +130,9 @@
 						echo strlen(@$product['payment_text']) ? 'con ' . @$product['payment_text'] : '';
 						echo '</div>';
 						echo '<div class="carrito-hide-element">
+							<label class="form-group mt-4">
+							  <input type="checkbox" id="regalo_' . $product['id'] .  '" name="regalo"><span class="label-text text-muted">Es para regalo</span><br><br>
+							</label>						
 							<div class="form-inline">
 							  <div class="form-group">
 							    <div class="input-group carrito-selector mt-4">
@@ -150,14 +153,14 @@
 						// echo '<hr>';
 						$row += 1;
 					} ?>
-						<div class="animated fadeIn delay2">
+						<div class="resume-totals animated fadeIn delay2">
 							<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 							<input type="hidden" id="subtotal_envio" value="" />
-							<div class="text-center mb-2 mr-1">
+							<!--div class="text-center mb-2 mr-1">
 								<label>
 								  <input type="checkbox" id="regalo" value="1" /><span class="label-text text-muted">Es para regalo</span>
 								</label>
-							</div>
+							</div-->
 							<div class="summary-item text-right">
 								<div class="price text-muted">Resumen de tu compra</div>								
 							</div>
@@ -192,13 +195,27 @@
 										<span class="text-weight-thin">Total </span> 
 										<span class="cost_total">$ <?= \price_format($total) ?></span><!--span>.00</span-->
 									</div>
-									<small>Pagando con <?= $payment_methods[$config['payment_method']] ?></small>
+									<small>Pagando con <?= strtoupper($payment_methods[$config['payment_method']]) ?></small>
 								</div>								
 							</div>
+							<div class="form-inline">
+								<h3 class="mt-1">Es para regalo</h3>
+							  <div class="form-group">
+							    <div class="input-group carrito-selector mt-4">
+							      <div class="input-group-addon input-lg is-clickable">
+							       <span class="fa fa-minus"></span>
+							      </div>
+							      <input type="text" name="giftcount" size="2" class="form-control gift-count input-lg text-center" placeholder="Cantidad" value="0" original-value="0">
+							      <div class="input-group-addon input-lg is-clickable">
+							       <span class="fa fa-plus"></span>
+							       </div>
+							    </div>
+							  </div>
+							</div>							
 						</div>
 					</div>
 					<?php else: ?>
-					<div class="container text-center">
+					<div class="container cart-empty text-center">
 						<div class="icon-huge mt-4">
 							<i class="fa fa-warning text-danger"></i>
 						</div>
@@ -218,9 +235,9 @@
 				?>
 				</div>
 			</div>
-			<div class="d-flex justify-content-center align-items-center gap-1">
+			<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-1 mb-1">
 				<?php if (!isset($carro)): ?>
-					<a href="#" class="btn action-search cart-btn-green">Buscar por palabra clave</a>
+					<a href="#" class="btn action-search cart-btn-green">Buscar</a>
 				<?php endif ?>
 				<a class="btn keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			  <?php if (isset($carro) && !empty($carro)) :?>

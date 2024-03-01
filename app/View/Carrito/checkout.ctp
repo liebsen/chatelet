@@ -52,40 +52,6 @@
 				<div class="carrito-row">
 					<div class="carrito-col">
 						<div class="carrito-items">
-						<?php if($loggedIn): ?>
-							<!--div class="col-12">
-								<div class="card">
-								  <div class="card-body">
-								    <h5 class="card-title">
-								    	<i class="fa fa-user"></i>
-								    	<?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?>
-								    </h5>
-								    <h6 class="card-subtitle">DNI <?= $userData['User']['dni'] ?></h6>
-								    <p class="card-text"><?= $userData['User']['email'] ?></p>
-								    <span class="card-link is-clickable" onclick="$('input[name=street]').focus()" class="card-link">Modificar</span>
-								  </div>
-								</div>
-							</div-->
-						<?php endif ?>						
-							<!--div class="col-xs-12 mt-4-d cargo-takeaway hide">
-								<div class="card">
-								  <div class="card-body">
-								    <h5 class="card-title">
-								    	<i class="fa fa-car"></i>
-								    	Retiro en sucursal
-								    </h5>
-								    <h6 class="card-subtitle">
-								    	<span class="store_address"></span>
-								    	<span class="store"></span>								    	
-								    </h6>
-								    <p class="card-text">
-								    	<?= $data['carrito_takeaway_text'] ?>
-								    </p>
-								    <a href="/carrito#f:.como-queres-recibir-tu-compra" class="card-link">Solicitar envío a domicilio</a>
-								    <a href="/carrito#f:.shipment-options.takeaway" class="card-link">Modificar</a>
-								  </div>
-								</div>
-							</div-->
 							<div class="card">
 							  <div class="card-body">
 							    <h5 class="card-title">
@@ -183,9 +149,9 @@
 						          </span>
 						        </div>
 						      </div>
-									<label class="form-group mt-4">
+									<!--label class="form-group mt-4">
 									  <input type="checkbox" id="regalo" name="regalo"><span class="label-text text-muted">Es para regalo</span><br><br>
-									</label>
+									</label-->
 									<div class="row card-row flex-row justify-content-center mt-3 gap-05">
 								  	<a href="/carrito#f:.beneficios-exclusivos" class="card-link coupon-actions-block hide">
 								  		<i class="fa fa-tag"></i>

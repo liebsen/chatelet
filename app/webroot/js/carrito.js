@@ -72,6 +72,7 @@ $(document).ready(function() {
 
 	/* carrito item viewer */
 	$('.carrito-item-row').on('click', function(e) {
+		$('html, body').addClass('disable-scroll')
 		if (e.target.className !== 'glyphicon glyphicon-remove') {
 			currentCarritoIndex = [...document.querySelectorAll('.carrito-item-row')].indexOf(this)
 			// var price = $(this).find('#carritoItemCount').val()

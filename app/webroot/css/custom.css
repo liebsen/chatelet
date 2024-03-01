@@ -421,7 +421,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   border-radius: 0;
 }
 .menuLayer a.close { 
-  position: relative;
+  position: fixed;
   z-index: 100;
   display: block; 
   width: 2rem; 
@@ -2205,18 +2205,19 @@ span.count {
   opacity: 0;
   position: absolute;
   z-index: 9;
-  top: 1rem;
-  left: 2rem;
+  top: 0.75rem;
+  left: 1.75rem;
   text-align: center;
-  font-size: 13px;
-  color: #ffffff;
-  background-color: #404040;
-  width: 18px;
-  height: 18px;
+  font-size: 1rem;
+  color: #e10d74;
+  background-color: white;
+  width: 1.5rem;
+  height: 1.5rem;
   margin: 0 auto;
   border-radius: 100%;
-  line-height: 18px;
+  line-height: 1.25;
   font-weight: bolder;
+  border: 2px solid #e10d74;
 }
 
 span.count.is-empty {
@@ -2337,7 +2338,7 @@ span.count.is-empty {
 .is-rounded {
   display: grid;
   padding: 1rem;
-  background-color: #f8f8f8;
+  background-color: white;
 }
 
 .is-rounded-content {
@@ -2594,9 +2595,9 @@ span.count.is-empty {
   .text-small {
     font-size: 0.75rem !important;
   }
-  .cart-btn-green {
+  /*.cart-btn-green {
     min-width: 100%!important;
-  }
+  }*/
   .is-mobile-resume .field {
     margin-left: 0.25rem;
     margin-right: 0.25rem;    
