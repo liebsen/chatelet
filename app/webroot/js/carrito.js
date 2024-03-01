@@ -101,7 +101,7 @@ $(document).ready(function() {
 	})
 
 	$('#carritoItem .close').on('click', function(e) {
-		$('body').css('overflow-y', 'auto')
+		$('html, body').removeClass('disable-scroll')
 		$('#carritoItem').removeClass('active')
 		$('#carritoItem').removeClass('scaleIn')
 	})
