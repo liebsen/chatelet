@@ -131,7 +131,7 @@
 						echo '</div>';
 						echo '<div class="carrito-hide-element">
 							<label class="form-group mt-4">
-							  <input type="checkbox" id="regalo_' . $product['id'] .  '" name="regalo"><span class="label-text text-muted">Es para regalo</span><br><br>
+							  <input class="giftchecks" type="checkbox" id="' . $product['id'] .  '"><span class="label-text text-muted">Es para regalo</span><br><br>
 							</label>						
 							<div class="form-inline">
 							  <div class="form-group">
@@ -156,11 +156,6 @@
 						<div class="resume-totals animated fadeIn delay2">
 							<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 							<input type="hidden" id="subtotal_envio" value="" />
-							<!--div class="text-center mb-2 mr-1">
-								<label>
-								  <input type="checkbox" id="regalo" value="1" /><span class="label-text text-muted">Es para regalo</span>
-								</label>
-							</div-->
 							<div class="summary-item text-right">
 								<div class="price text-muted">Resumen de tu compra</div>								
 							</div>
@@ -241,7 +236,7 @@
 				<?php endif ?>
 				<a class="btn keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			  <?php if (isset($carro) && !empty($carro)) :?>
-			    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
+			    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-success" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
 			  <?php endif ?>
 			</div>
 		</div>
@@ -271,7 +266,6 @@
 	</div>
 	<input type="hidden" id="shipping_price_min" value="<?= $shipping_price_min ?>">
 	<input type="hidden" id="total" value="<?= $total ?>">
-
 	<?php endif;?>
 	<!--div class="row">
 		<div class="col-md-4"></div>

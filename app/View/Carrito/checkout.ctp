@@ -149,9 +149,6 @@
 						          </span>
 						        </div>
 						      </div>
-									<!--label class="form-group mt-4">
-									  <input type="checkbox" id="regalo" name="regalo"><span class="label-text text-muted">Es para regalo</span><br><br>
-									</label-->
 									<div class="row card-row flex-row justify-content-center mt-3 gap-05">
 								  	<a href="/carrito#f:.beneficios-exclusivos" class="card-link coupon-actions-block hide">
 								  		<i class="fa fa-tag"></i>
@@ -234,6 +231,7 @@
 								<input type="hidden" name="store" value=""/>
 								<input type="hidden" name="postal_address" value="<?= $this->Session->read('cp') ?>"/>
 								<input type="hidden" name="store_address" value=""/>
+								<input type="hidden" name="gifts" value=""/>
 								<div class="is-rounded-content">
 									<div class="form-group">
 										<label for="nombre">Nombre</label>
@@ -289,7 +287,7 @@
 		</div>
 		<div class="row mt-4">
 			<div class="col-md-12 mt-3 text-center">
-				<button type="button" id="submitcheckoutbutton" class="btn cart-btn-green checkout-btn">
+				<button type="button" id="submitcheckoutbutton" class="btn cart-btn-green checkout-btn btn-success">
 					Finalizar compra
 				</button>
 				<input type="submit" id="submitform" class="hidden-force" />

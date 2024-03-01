@@ -1151,7 +1151,6 @@ class CarritoController extends AppController
 	private function update($carro=false) {
 		$config = $this->Session->read('Config');
 		$payment_method = @$config['payment_method'] ?: 'mercadopago';
-		error_log('*'.$payment_method);
 
 		if (empty($carro)) {
 			$carro = $this->Session->read('Carro');
@@ -1203,7 +1202,6 @@ class CarritoController extends AppController
 	      	!empty($prod['mp_discount']) && 
 	      	(float) @$prod['mp_discount'] > 0
 	      ) {
-	      	error_log('A1');
 					$carro[$key]['old_price'] = $price;
 	        $carro[$key]['price'] = ceil(round($price * (1 - (float) $prod['mp_discount'] / 100)));
 	      }
@@ -1213,7 +1211,6 @@ class CarritoController extends AppController
 	      	(float) @$prod['bank_discount'] > 0 && 
 	      	$payment_method === 'bank'	      	
 	      ) {
-	      	error_log('A2');
 					$carro[$key]['old_price'] = $price;
 	        $carro[$key]['price'] = ceil(round($price * (1 - (float) $prod['bank_discount'] / 100)));
 	      } else {
@@ -1222,11 +1219,7 @@ class CarritoController extends AppController
 	      		$bank_enable && 
 	      		$bank_discount_enable
 	      	) {
-	      		error_log('A3');
 	      		$p = ceil(round($price * (1 - (float) $bank_discount / 100)));
-	      		error_log($price);
-	      		error_log($bank_discount);
-	      		error_log($p);
 						$carro[$key]['old_price'] = $price;
 		        $carro[$key]['price'] = $p;
 		      }

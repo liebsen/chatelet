@@ -114,7 +114,6 @@ var select_payment = (e,item) => {
 $(function(){
 	$(`.cargo-${carrito.cargo}`).removeClass('hide')
 	$(`.cargo-${carrito.cargo}`).addClass('animated fadeIn')
-	$('#regalo').prop('checked', carrito.regalo)
 
 	updateCart()
 	$('#submitcheckoutbutton').click(e => {

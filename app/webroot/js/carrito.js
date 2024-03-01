@@ -29,7 +29,8 @@ var selectStore = e => {
   onSuccessAlert(`<i class="fa fa-shopping-bag"></i> Retirás en sucursal ${suc.replace(',','')}`, `Podes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. ${carrito_takeaway_text}`);
 	cargo = 'takeaway'
 }
-var show_cart_item = index => {
+var show_cart_item = (index) => {
+	console.log('show_cart_item')
 	var target = document.querySelectorAll('.carrito-item-row')[index]
 	if (target) {
 		if (!index) {
@@ -55,7 +56,7 @@ var show_cart_item = index => {
 		}).then(() => {
 			$('#carritoItem').removeClass('scaleOut')
 			$('.carrito-item-block').html($(target).html())
-			$('body').css('overflow-y', 'hidden')
+			$('html, body').addClass('disable-scroll')
 			if (!$('#carritoItem').hasClass('active')) {
 				$('#carritoItem').addClass('active')
 			}
@@ -72,10 +73,10 @@ $(document).ready(function() {
 
 	/* carrito item viewer */
 	$('.carrito-item-row').on('click', function(e) {
-		$('html, body').addClass('disable-scroll')
-		if (e.target.className !== 'glyphicon glyphicon-remove') {
+		var donts = ['glyphicon glyphicon-remove', 'giftchecks']	
+		if (!donts.includes(e.target.className)) {
+			$('html, body').addClass('disable-scroll')
 			currentCarritoIndex = [...document.querySelectorAll('.carrito-item-row')].indexOf(this)
-			// var price = $(this).find('#carritoItemCount').val()
 			show_cart_item(currentCarritoIndex)
 		}
 	})
@@ -226,6 +227,19 @@ $(document).ready(function() {
 				}, 1000)
 			})
 		}
+	})
+
+	$(document).on('click', '.giftchecks',function(e) {
+		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+		var target_id = parseInt(e.target.id)
+		if(!carrito.gifts) {
+			carrito.gifts = []
+		}
+		carrito.gifts = carrito.gifts.filter((id) => id != target_id)
+		if($(e.target).is(':checked')){
+			carrito.gifts.push(target_id)
+		}
+		localStorage.setItem('carrito', JSON.stringify(carrito))  
 	})
 
 	$(document).on('click', '.btn-change-count',function(e) {
