@@ -131,7 +131,7 @@
 						echo '</div>';
 						echo '<div class="carrito-hide-element">
 							<label class="form-group mt-4">
-							  <input class="giftchecks" type="checkbox" id="' . $product['id'] .  '"><span class="label-text text-muted">Es para regalo</span><br><br>
+							  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted">Es para regalo</span><br><br>
 							</label>						
 							<div class="form-inline">
 							  <div class="form-group">
@@ -193,10 +193,10 @@
 									<small>Pagando con <?= strtoupper($payment_methods[$config['payment_method']]) ?></small>
 								</div>								
 							</div>
-							<div class="form-inline">
+							<div class="form-inline gift-area hide">
 								<h3 class="mt-1">Es para regalo</h3>
 							  <div class="form-group">
-							    <div class="input-group carrito-selector mt-4">
+							    <div class="input-group mt-4">
 							      <div class="input-group-addon input-lg is-clickable">
 							       <span class="fa fa-minus"></span>
 							      </div>
@@ -230,13 +230,13 @@
 				?>
 				</div>
 			</div>
-			<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-1 mb-1">
+			<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-1 p-2">
 				<?php if (!isset($carro)): ?>
 					<a href="#" class="btn action-search cart-btn-green">Buscar</a>
 				<?php endif ?>
 				<a class="btn keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			  <?php if (isset($carro) && !empty($carro)) :?>
-			    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-success" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
+			    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-pink" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
 			  <?php endif ?>
 			</div>
 		</div>
@@ -267,29 +267,18 @@
 	<input type="hidden" id="shipping_price_min" value="<?= $shipping_price_min ?>">
 	<input type="hidden" id="total" value="<?= $total ?>">
 	<?php endif;?>
-	<!--div class="row">
-		<div class="col-md-4"></div>
-		<div id="instrucciones" class="col-md-4">
-			<p id="como-comprar">Como comprar</p>
-			<ol id="como-comprar-list">
-				<li>Selecciona todos los productos que deseas</li>
-				<li>Agregalos al carro de comprar</li>
-				<li>Ingresa a tu carro y presiona <strong>SIGUIENTE</strong></li>
-			</ol>
-			<a id="paypal">
-				<?php echo $this->Html->image('mercadopago.png',array('width'=>300)); ?>
-			</a>
-		</div>
-		<div class="col-md-4"></div>
-	</div-->
 </div>
 
-<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
 <script>
 	$(function(){
-		setTimeout(() => {
-			onSuccessAlert('<i class="fa fa-magic"></i> Más beneficios','<?= $text_shipping_min_price ?>', 15000)
-		}, 15000)		
+	<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
+			setTimeout(() => {
+				onSuccessAlert('<i class="fa fa-magic"></i> Más beneficios','<?= $text_shipping_min_price ?>', 15000)
+			}, 15000)		
+	<?php endif ?>
+		var gifts = carrito.gifts || []
+		$(carrito_items).each((i,e) => {
+			$('#giftcheck_' + e.id).attr('checked', gifts.includes(parseInt(e.id)))
+		})
 	})
 </script>
-<?php endif ?>

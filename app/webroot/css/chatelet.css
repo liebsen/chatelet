@@ -143,6 +143,7 @@ html, body {
 	left: 0;
 	right: 0;
 	bottom: 0;
+	background-color: white;
 }
 .icon-huge .fa {
 	font-size: 5rem;
@@ -673,9 +674,10 @@ select.form-control{
 	border: 2px solid #e398c1;
 	border-radius: 0.5rem;
 	line-height: 1;
-	width: 100%;
+	
 	margin-top: 0.5rem;
-	/*border-radius: 0.25rem;
+	/*width: 100%;
+	border-radius: 0.25rem;
 	background-color: #e398c1;
 	margin-right: 0.25rem;
 	margin-top: 0.5rem;
@@ -737,6 +739,11 @@ select.form-control{
 
 .btn-input-lg {
 	min-height: 46px;
+}
+
+.btn-pink {
+	background-color: #e10c76!important;
+	color: white!important;
 }
 
 .button-pink {

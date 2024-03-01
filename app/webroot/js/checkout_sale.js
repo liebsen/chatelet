@@ -66,7 +66,7 @@ var select_dues = (e,item) => {
 
 	var interest = $(e).data('interest')
 
-  onSuccessAlert(`<i class="fa fa-credit-card"></i> ${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
+  onSuccessAlert(`${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
   console.log('save(2)')
   save_preference([
   	{'payment_method':'mercadopago'},

@@ -703,7 +703,7 @@ class CarritoController extends AppController
 		//Register Sale
 		$this->Sale->save($sale_object);
 		$sale_id = $this->Sale->id;
-
+		$gift_ids = !empty($user->gifts) ? implode($user->gifts) : [];
 		//Mercadopago
 		foreach ($carro as $producto) {
 			$unit_price = $producto['price'];
@@ -735,7 +735,7 @@ class CarritoController extends AppController
 				'EMAIL'		=> $user['email'],
 				'TELEFONO'	=> $user['telephone'],
 				'DNI'	=> $user['dni'],
-				'REGALO'	=> $user['regalo'],
+				'REGALO'	=> @$gift_ids[$producto['id']] ? 'SÍ': 'NO',
 				'PROV'		=> $user['provincia'],
 				'LOC'		=> $user['localidad'],
 				'CALLE'		=> $user['street'],
@@ -961,11 +961,11 @@ class CarritoController extends AppController
     	)
 		);
 
-		if(!empty(Configure::read('MP_IN_SANDBOX_MODE'))) {
+		/*if(!empty(Configure::read('MP_IN_SANDBOX_MODE'))) {
 			echo '<pre>';
 			var_dump($preference_data);
 			die("no payments yet");
-		}
+		}*/
 
 		$preference = $mp->create_preference($preference_data);
 		//Save Data

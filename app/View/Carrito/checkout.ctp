@@ -35,19 +35,6 @@
 			)) ?>">
 
 		<div class="row">
-			<div class="col-md-12 mt-8 text-center">
-				<?php
-					echo $this->Html->link('Volver al carrito', array(
-						'controller' => 'carrito',
-						'action' => 'index'
-					), array(
-						'class' => 'btn cart-btn-green',
-						'escape' => false
-					));
-				?>
-			</div>	
-		</div>
-		<div class="row">
 			<div id="carrito">
 				<div class="carrito-row">
 					<div class="carrito-col">
@@ -67,15 +54,15 @@
 						          <label class="d-inline">
 						          	<span class="h4">Cliente</span><br>
 						          	<p class="mt-2 text-muted"><?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?> (DNI <?= $userData['User']['dni'] ?>)</p>
-			                  <div class="row card-row flex-row justify-content-center mt-3 gap-05">
-			                    <span data-toggle="modal" data-target="#particular-modal" class="card-link">
-			                      <i class="fa fa-user-o"></i>
+			                  <div class="row d-flex justify-content-center mt-3 gap-05">
+			                    <div data-toggle="modal" data-target="#particular-modal" class="col-xs-12 col-md-6 card-link">
+			                      <i class="fa fa-user-o fa-lg mr-1"></i>
 			                       Modificar datos
-			                    </span>
-			                    <span onclick="$('.checkoutform-container').removeClass('hide');$('input[name=street]').focus()" class="card-link">
-			                      <i class="fa fa-map-marker"></i>
+			                    </div>
+			                    <div onclick="$('.checkoutform-container').removeClass('hide');$('input[name=street]').focus()" class="card-link col-xs-12 col-md-6">
+			                      <i class="fa fa-map-marker fa-lg mr-1"></i>
 			                       Modificar dirección
-			                    </span>
+			                    </div>
 			                  </div>
 						        	</label>				          
 						        </div>
@@ -117,9 +104,9 @@
                     			<?= $data['carrito_takeaway_text'] ?>
                     		</p>
                     	</label>
-		                  <div class="row card-row mt-3">
+		                  <div class="row d-flex justify-content-center mt-3">
 		                    <a href="/carrito#f:.shipment-options.shipping" class="card-link">
-		                      <i class="fa fa-truck"></i>
+		                      <i class="fa fa-truck fa-lg mr-1"></i>
 		                       Solicitar envío
 		                    </a>
 		                  </div>
@@ -151,7 +138,7 @@
 						      </div>
 									<div class="row card-row flex-row justify-content-center mt-3 gap-05">
 								  	<a href="/carrito#f:.beneficios-exclusivos" class="card-link coupon-actions-block hide">
-								  		<i class="fa fa-tag"></i>
+								  		<i class="fa fa-tag fa-lg mr-1"></i>
 								  		Ingresar cupón
 								  	</a>
 								  </div>
@@ -285,22 +272,33 @@
 				</div>
 			</div>
 		</div>
-		<div class="row mt-4">
-			<div class="col-md-12 mt-3 text-center">
-				<button type="button" id="submitcheckoutbutton" class="btn cart-btn-green checkout-btn btn-success">
-					Finalizar compra
-				</button>
-				<input type="submit" id="submitform" class="hidden-force" />
-			</div>
+		<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-1 p-2">
+			<?php
+				echo $this->Html->link('Volver al carrito', array(
+					'controller' => 'carrito',
+					'action' => 'index'
+				), array(
+					'class' => 'btn cart-btn-green',
+					'escape' => false
+				));
+			?>			
+			<button type="button" id="submitcheckoutbutton" class="btn cart-btn-green checkout-btn btn-pink">
+				Finalizar compra
+			</button>
+			<input type="submit" id="submitform" class="hidden-force" />
 		</div>
 	</form>
 </div>
 <script>
 <?php if(!$loggedIn):?>	
 $(function(){
+	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	setTimeout(() => {
 		$('#particular-login').modal('show')
 	}, 1000)
+	if(carrito.gifts && carrito.gifts.length) {
+		$('#gifts').val(carrito.gifts.join(','))
+	}
 })
 <?php endif;?>
 </script>
