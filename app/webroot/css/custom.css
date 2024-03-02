@@ -1439,7 +1439,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#formulario input[type="submit"] { font-size: 16px; height: 60px; }
 
 	#headhelp h1 { margin-bottom: 20px; }
-	#headhelp .box { padding: 90px 20px 0; border-radius: 3px; }
+	#headhelp .box { padding: 90px 20px 0; border-radius: 1rem; }
 	#headhelp .box.box2 { padding-bottom: 20px; }
 
 	#desarrollo .boxs:first-child { margin-bottom: 30px; }
