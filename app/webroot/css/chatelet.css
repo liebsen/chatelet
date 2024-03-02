@@ -737,7 +737,7 @@ select.form-control{
 }
 
 .text-bold {
-	font-weight: 600!important;
+	font-weight: bolder!important;
 }
 
 
