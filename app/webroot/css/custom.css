@@ -1294,7 +1294,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	.wrapper { padding: 0 1rem; overflow: hidden; }
 	.map .col-md-4 { padding: 200px 0 200px 50px; }
 
-	#headhelp .box { padding: 6rem 5rem 1rem;  border-radius: 3px;  }
+	#headhelp .box { padding: 6rem 5rem 1rem;  border-radius: 1rem;  }
 }
 
 @media (max-width: 1199px) {
@@ -1348,7 +1348,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headcontacto .box p { font-size: 1rem; }
 
 	#headhelp h1 { font-size: 40px; }
-	#headhelp .box { padding: 4rem; border-radius: 1.5rem; /* min-height: 18rem;*/}
+	#headhelp .box { padding: 4rem; border-radius: 1rem; /* min-height: 18rem;*/}
 	#headhelp .box p { font-size: 1rem; margin-bottom: 20px; }
 	#headhelp .box h3 { font-size: 2rem; }
 	#optionsHelp a, #desarrollo p { font-size: 1rem; }
