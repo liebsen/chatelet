@@ -1194,7 +1194,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #formulario { background: url(../images/arrow-down.gif) no-repeat center top; padding: 80px 0; background-color: white;}
 #formulario .wrapper { /*background: url(../images/formbg.jpg) no-repeat left center;*/ background-size: contain; }
 #formulario input[type="text"], #formulario input[type="email"], #formulario textarea { background: transparent; border: none; border-bottom: 1px solid #464444; font-size: 16px; padding: 22px 0; width: 100%; }
-#formulario h3 { font-size: 22px; margin: 90px 0 70px; }
+#formulario h3 { font-size: 22px; margin: 80px 0 70px; }
 #formulario label { color: #aeaeae; font-size: 22px; display: inline-block; }
 #formulario label.mr { margin-right: 100px; }
 #formulario input[type="email"] { margin-top: 70px; }
@@ -1342,9 +1342,9 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	.map .col-md-4 h1 { font-size: 2.25rem; }
 	#location .col-md-4.search p { font-size: 1rem; }
 
-	#headcontacto h1 { font-size: 40px; }
+	#headcontacto h1 { font-size: 40px; letter-spacing: -0.1rem; }
 	#headcontacto .box { padding: 60px 50px; min-height: 20rem; }
-	#headcontacto .box h3 { font-size: 1rem; }
+	#headcontacto .box h3 { font-size: 2rem; }
 	#headcontacto .box p { font-size: 1rem; }
 
 	#headhelp h1 { font-size: 40px; }

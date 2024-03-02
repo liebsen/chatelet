@@ -4,11 +4,11 @@
   <div id="headcontacto">
     <div class="wrapper">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <h1>Contactate<br>con nosotros</h1>
         </div>
-        <div class="col-md-6">
-          <div class="animated slideInRight delay2 leaves-pad">                      
+        <div class="col-md-8">
+          <div class="animated slideInRight delay leaves-pad">                      
             <div class="box w-leaves">
               <h3>¿Tenés alguna consulta o sugerencia?</h3>
               <p>Completá el siguiente formulario y hacenos llegar tus inquietudes o recomendaciones que creas pertinentes.</p>

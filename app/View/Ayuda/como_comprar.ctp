@@ -10,7 +10,7 @@
                         <h1>¿Cómo<br>comprar?</h1>
                     </div>
                     <div class="col-md-8">
-                        <div class="animated slideInRight delay2 leaves-pad">
+                        <div class="animated slideInRight delay leaves-pad">
                             <div class="box w-leaves">
                                 <h3>¿Tenés alguna consulta o sugerencia?</h3>
                                 <p>Para comprar un producto de nuestro catálogo, primero debes tener una cuenta registrada en nuestro sitio. Si todavía no estás registrado/a <a href="#" id="register" data-toggle="modal" data-target="#particular-modal">hace click aquí</a>.</p>
