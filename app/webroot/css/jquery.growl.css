@@ -62,16 +62,16 @@
     padding: 1.5rem 1.75rem;}
   .growl.growl-default {
     color: #FFF;
-    background: #e10d74; }
+    background: #508D69; }
   .growl.growl-error {
     color: #FFF;
-    background: #e10d74; }
+    background: #7D0A0A; }
   .growl.growl-notice {
-    color: #666;
-    background: #fefefe; }
+    color: #860A35;
+    background: #FFC5C5; }
   .growl.growl-warning {
     color: #FFF;
-    background: #e10d74; }
+    background: #FFF67E; }
   .growl .growl-close {
     cursor: pointer;
     position: absolute;
