@@ -2,20 +2,14 @@
 	$this->Html->css('ayuda', array('inline' => false));
 ?>
 
-        <section id="optionsHelp">
-            <a href="/ayuda/como_comprar" >¿Cómo comprar?</a>
-            <a href="/ayuda/envios">Envíos</a>
-            <a href="/ayuda/metodos_de_pago" class="active">Métodos de pago</a>
-            <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
-            <a href="/ayuda/faq" >Preguntas frecuentes</a>
-        </section>
           <div id="headhelp">
+            <?php echo $this->element('navbar-ayuda'); ?>
             <div class="wrapper">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h1>Métodos<br>de pago</h1>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="animated slideInRight delay2 leaves-pad">
                             <div class="box w-leaves">                        
                                 <h3>Comprá en Châtelet con tu método preferido</h3>
@@ -36,15 +30,18 @@
             </div>
         </section>
 
-        <section id="referncia">
+        <section id="desarrollo">
             <div class="wrapper">
-                <h3>Comprá en Châtelet con tu método preferido</h3>
-                <ul>
-                    <li>* Pagando con las tarjetas de crédito habilitadas tu pedido será reservado por un periodo de 24 hs y quedaremos a la espera de la confirmación de la operación por parte de mercado pago.</li>
-                    <li>** Abonando en RapiPago, Pago Fácil o Bapro, el pedido será reservado por un periodo de 24/48 hs. Transcurrido ese tiempo, la reserva caducará y tu pedido será cancelado. Cuánto antes realices el pago, antes podrás recibirlo en tu domicilio!</li>
-                    <!--li>***El pago se acredita en el momento por lo que tu pedido será despachado en 24 hs. En todos los casos CHATELET te mantendrá informado sobre el estado del pedido y el tiempo de acreditación del pago dependerá del sistema que seleccione el cliente.</li>
-                    <li>*** Las prendas no tienen cambio.</li>
-                    <li>*** Los envíos por compra online tienen una demora de 7 a 10 días hábiles.</li-->
-                </ul>
+                <div class="col-sm-6">
+                    <h3>Comprá en Châtelet con tu método preferido</h3>
+                    <ul>
+                        <li>* Pagando con las tarjetas de crédito habilitadas tu pedido será reservado por un periodo de 24 hs y quedaremos a la espera de la confirmación de la operación por parte de mercado pago.</li>
+                        <li>** Abonando en RapiPago, Pago Fácil o Bapro, el pedido será reservado por un periodo de 24/48 hs. Transcurrido ese tiempo, la reserva caducará y tu pedido será cancelado. Cuánto antes realices el pago, antes podrás recibirlo en tu domicilio!</li>
+                        <!--li>***El pago se acredita en el momento por lo que tu pedido será despachado en 24 hs. En todos los casos CHATELET te mantendrá informado sobre el estado del pedido y el tiempo de acreditación del pago dependerá del sistema que seleccione el cliente.</li>
+                        <li>*** Las prendas no tienen cambio.</li>
+                        <li>*** Los envíos por compra online tienen una demora de 7 a 10 días hábiles.</li-->
+                    </ul>
+                </div>
+                <div class="col-sm-6"></div>
             </div>
         </section>

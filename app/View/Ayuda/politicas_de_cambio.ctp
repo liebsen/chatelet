@@ -2,20 +2,14 @@
 	$this->Html->css('ayuda', array('inline' => false));
 ?>
 
-       <section id="optionsHelp">
-            <a href="/ayuda/como_comprar" >¿Cómo comprar?</a>
-            <a href="/ayuda/envios">Envíos</a>
-            <a href="/ayuda/metodos_de_pago">Métodos de pago</a>
-            <a href="/ayuda/politicas_de_cambio" class="active">Cambios y devoluciones</a>
-            <a href="/ayuda/faq">Preguntas frecuentes</a>
-        </section>
         <div id="headhelp">
+            <?php echo $this->element('navbar-ayuda'); ?>
             <div class="wrapper">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h1>Cambios y<br>devoluciones</h1>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="animated slideInRight delay2 leaves-pad">
                             <div class="box w-leaves">
                                 <h3>Garantía de confianza</h3>

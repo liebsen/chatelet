@@ -1,19 +1,13 @@
 <?php $this->Html->script('ayuda', array('inline' => false)); ?>
 
-         <section id="optionsHelp">
-            <a href="/ayuda/como_comprar" >¿Cómo comprar?</a>
-            <a href="/ayuda/envios" class="active">Envíos</a>
-            <a href="/ayuda/metodos_de_pago" >Métodos de pago</a>
-            <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
-            <a href="/ayuda/faq" >Preguntas frecuentes</a>
-        </section>
         <div id="headhelp">
+            <?php echo $this->element('navbar-ayuda'); ?>
             <div class="wrapper">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h1>Consultar<br>envíos</h1>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="animated slideInRight delay2 leaves-pad">
                             <div class="box w-leaves">
                                 <h3>¿Tenés alguna consulta o sugerencia?</h3>
@@ -22,7 +16,7 @@
                                 <h3>Seguimiento de paquetes</h3>
                                  <?php echo $this->Form->create() ?>
                                  <form>
-                                    <div class="d-flex justify-content-center align-items-center gap-1 mb-2">
+                                    <div class="d-flex justify-content-center align-items-center gap-1">
                                         <input type="text" class="form-control mb-0 guia" name="data[guia]" placeholder="Nº de pieza" required>
                                         <input type="submit" class="btn btn-success consultar" id="consult" value="Consultar">
                                     </div>
