@@ -2152,6 +2152,12 @@ span.out{
   box-shadow: 0 -3px 10px -5px rgba(0, 0, 0, 1);*/
 }
 
+.ribbon.bottom-left.small {
+  top: 0.25rem;
+  right: 0.25rem;
+}
+
+
 /*.ribbon.bottom-left span:after {
   top: -5px;  
   border-left: 3px solid transparent;

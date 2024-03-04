@@ -73,7 +73,7 @@ $(document).ready(function() {
 
 	/* carrito item viewer */
 	$('.carrito-item-row').on('click', function(e) {
-		var donts = ['glyphicon glyphicon-remove', 'giftchecks']	
+		var donts = ['glyphicon glyphicon-remove', 'giftchecks', 'label-text text-muted']	
 		if (!donts.includes(e.target.className)) {
 			$('html, body').addClass('disable-scroll')
 			currentCarritoIndex = [...document.querySelectorAll('.carrito-item-row')].indexOf(this)
@@ -197,8 +197,6 @@ $(document).ready(function() {
 	});
 
 	$(document).on('click', '.trash', e => {
-		e.preventDefault()
-		e.stopPropagation()
 		if (confirm('Estás seguro que que querés borrar este producto del carrito?')) {
 			const target = $(e.target).closest('.trash')
 		  $.get(target.attr('href'), res => {
@@ -232,7 +230,6 @@ $(document).ready(function() {
 	$(document).on('click', '.giftchecks',function(e) {
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 		var target_id = parseInt($(e.target).attr('data-id'))
-		console.log(target_id)
 		if(!carrito.gifts) {
 			carrito.gifts = []
 		}

@@ -79,7 +79,7 @@
 							)
 						);
 						echo '</div>';
-						echo '<div class="help" title="Modificar este item del carrito"><div><span class="glyphicon glyphicon-edit"></span> <span class="font-system"> Modificar</span></div></div>';
+						//echo '<div class="help" title="Modificar este item del carrito"><div><span class="glyphicon glyphicon-edit"></span> <span class="font-system"> Modificar</span></div></div>';
 						echo '<div class="carrito-item-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
 						echo "<div class='cart-img'>";
@@ -109,7 +109,9 @@
 							echo '<p class="color">Talle: <span class="talle">'. $product['size'] .'</span></p>';
 						}
 						echo '<p class="color">Cantidad: <span class="talle">'. $product['count'] .'</span></p>';
-
+						echo '<label class="form-group mt-4">
+							  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted">Es para regalo</span><br><br>
+							</label>';
 						/*if(!empty($product['mp_discount']) || !empty($product['bank_discount'])) {
 							echo '<div class="d-flex gap-05 mb-05">';
 							if(!empty($product['mp_discount'])) {
@@ -130,9 +132,6 @@
 						echo strlen(@$product['payment_text']) ? 'con ' . @$product['payment_text'] : '';
 						echo '</div>';
 						echo '<div class="carrito-hide-element">
-							<label class="form-group mt-4">
-							  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted">Es para regalo</span><br><br>
-							</label>						
 							<div class="form-inline">
 							  <div class="form-group">
 							    <div class="input-group carrito-selector mt-4">
