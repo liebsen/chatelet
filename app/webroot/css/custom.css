@@ -222,10 +222,16 @@ label input[type=checkbox]:disabled + .label-text:before {
 .box {
   border-radius: 1rem;
   background-color: rgba(255,255,255,0.5);
-  min-height: 30rem;
+  min-height: 24rem;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .box.img-bg {
+  min-height: 30rem;
   background-color: white;
   background-position: center;
   background-repeat: no-repeat;
