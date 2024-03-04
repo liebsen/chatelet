@@ -198,15 +198,15 @@ class AppHelper extends Helper {
     //$str.='<div class="legends-spacer"></div>';
     // discounts
 
+
+
+    $str.='<div class="legends-container"><div class="legends' . ($noprice ? ' legends-left' : '') . '">';
     if($bank_price && $text != 'Transferencia') {
       $str.= "<div class='price-list'><span class='text-theme text-bold product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format($bank_price)." </span><span class='text-sm'>Transferencia</span> </div>";
     }
     if($mp_price && $text != 'Mercado Pago'){
       $str.= "<div class='price-list'><span class='text-theme text-bold product-badge'>-".@$item['mp_discount']."%</span> <span class='price_strong'> $ " .\price_format($mp_price)." </span><span class='text-sm'>Mercado Pago</span> </div>";
     }
-
-    $str.='<div class="legends-container"><div class="legends' . ($noprice ? ' legends-left' : '') . '">';
-
     // dues
     for ($i=0; $i<count($legends); $i++) {
       $legend = $legends[$i];

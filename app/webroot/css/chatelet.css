@@ -70,11 +70,6 @@ html, body {
 	transform: scale(1.25);
 }
 
-.leaves-pad {
-	padding-top: 2rem;
-	padding-bottom: 5rem;
-}
-
 .transform-origin-left {
 	transform-origin: left;
 }

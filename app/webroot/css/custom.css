@@ -224,24 +224,12 @@ label input[type=checkbox]:disabled + .label-text:before {
   background-color: rgba(255,255,255,0.5);
 }
 
-.box.w-leaves {
-  /* background-image: url(../images/clipart/47040.svg); */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;  
-  background-image: url(../images/clipart/47b.png);
-  background-position: -100% 40%;
+.box.img-bg {
+  background-color: white;
+  min-height: 20rem;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: 110%;
-}
-
-.box.w-leaves2 {
-  /* background-image: url(../images/clipart/47040.svg); */
-  background-image: url(../images/clipart/holly-leaf-decorative-border-free-svg-file-SvgHeart.Com.png);
-  background-position: 110% 90%;
-  background-repeat: no-repeat;
-  background-size: 11rem;
+  background-size: 90%;
 }
 
 .slider-full {
@@ -1221,7 +1209,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 @media(min-width: 769px){
   #headhelp {
-    padding: 65px 0;
+    padding: 5rem 0;
   }
   #optionsHelp a.active {
     border-bottom: 2px solid #333;
@@ -1235,8 +1223,8 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   }
   #optionsHelp.top-fixed { 
     top: 4rem; 
-    background-color: #fff9;
     z-index: 100;
+    background: linear-gradient(hsla(0,0%,100%,0),hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0));
   }
 }
 
@@ -1377,8 +1365,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 @media (max-width: 991px) {
-	.navbar-header { float: none; }
-	.navbar > .container-fluid .navbar-brand { display: block; float: none; margin-bottom: 30px; margin-left: auto !important; margin-right: auto !important; }
 
 	#menuShop { display: none !important; }
 
@@ -1449,6 +1435,9 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 @media (max-width: 767px) {
+    .navbar-header { float: none; }
+  .navbar > .container-fluid .navbar-brand { display: block; float: none; margin-bottom: 30px; margin-left: auto !important; margin-right: auto !important; }
+
   .carrito-count {
     flex-direction: column;
   }

@@ -5,15 +5,15 @@
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-4">
-                        <h1>Consultar<br>envíos</h1>
+                        <h1>Envíos y <br>seguimiento</h1>
                     </div>
                     <div class="col-md-8">
-                        <div class="animated slideInRight delay leaves-pad">
-                            <div class="box w-leaves">
+                        <div class="animated slideInRight delay">
+                            <div class="box">
                                 <h3>¿Tenés alguna consulta o sugerencia?</h3>
-                                <p>Los datos son extraídos de OCA. También se puede consultar el estado del envío comunicándose con el centro de atención al cliente de OCA: 0800-999-7700</p>
+                                <p>Los datos son extraídos de OCA. También se puede consultar el estado del envío comunicándose con el centro de atención al cliente de OCA: 0800-999-7700</p><br>
 
-                                <h3>Seguimiento de paquetes</h3>
+                                <h4>Seguimiento de paquetes</h4>
                                  <?php echo $this->Form->create() ?>
                                  <form>
                                     <div class="d-flex justify-content-center align-items-center gap-1">
@@ -35,18 +35,27 @@
                 <div class="row">
                     <div class="col-md-6 boxs">
                         <div class="boxs-reframe">
-                            <h3>Tiempos de entrega</h3>
-                            <p><strong>Los pedidos serán despachados entre 2 y 3 días hábiles. <!-- <?= $data['carrito_takeaway_text'] ?> --></strong></p>
-                            <h3>Periodos especiales</h3>
-                            <p><strong>Durante acciones especiales como Hot Sale, Cybermonday, Black Friday y promociones en el sitio web los tiempos de procesamiento, envío y entrega pueden verse afectados.</strong></p>
+                            <h3>Envío por OCA</h3>
+                            <p>Los envíos se realizan a través de OCA en un plazo de entre 7 y 10 días hábiles (dependiendo de la región). Se puede hacer el seguimiento del mismo mediante un link que se envía al mail o podes seguir el estado del paquete ingresando en <a href="https://www.oca.com.ar/Busquedas/Envios" target="_blank">la página de búsqueda de envíos de OCA</a> ingresando el número de seguimiento que se te envió por mail.</p>
+
+                            <p>En caso de no encontrarse a la hora de la visita se dejara un aviso, y se
+realizara una segunda visita. Si nuevamente no hay nadie en el domicilio, el
+paquete volverá a nuestra oficina por falta de recepción y el cliente deberá
+abonar nuevamente el envío.</p>
+
+                            <h3>Envío por moto mensajería SpeedMoto</h3>
+                            <p>La mensajería retirará tu pedido y lo entregará de lunes a viernes en la franja horaria de 15hs a 21hs. Nosotros te informaremos por WhatsApp el día anterior a recibir el paquete para que estes atento y nos confirmes que te encontrarás en tu domicilio el día de la entrega. La demora de entrega puede ser de 5 a 7 días hábiles.
+</p>
+
+<p>En caso de no encontrarse a la hora de la visita, la entrega será reprogramada para el día siguiente, teniendo el cliente que abonar nuevamente el envío.</p>
+
+                            <h3>Retiro en Sucursal</h3>
+                            <p>Los pedidos tardan en llegar a la sucursal elegida entre 7 y 10 días hábiles. Una vez que llegue al local, nos comunicaremos con vos por mail para avisarte que ya podés ir a retirar tu compra. Recordá que deberás acercarte al local con tu DNI y el número de pedido y contas con 15 días para ir a retirarlo.</p>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h3 class="text-left">Envío por OCA</h3>
-                        <p class="text-left">Los envíos se realizan a través de OCA en un plazo de entre 7 y 10 días hábiles (dependiendo de la región). Se puede hacer el seguimiento del mismo mediante un link que se envía al mail.</p>
-                        <p class="text-left">En caso de no encontrarse a la hora de la visita se dejara un aviso, y se realizara una segunda visita. Si nuevamente no hay nadie en el domicilio, el paquete volverá a nuestra     oficina por falta de recepción y el cliente deberá abonar nuevamente el envío.</p>
-                        <h3 class="text-left">Retiro en Sucursal</h3>
-                        <p class="text-left">Los pedidos tardan en llegar a la sucursal elegida entre 10 y 15 días hábiles. Una vez que llegue al local, nos comunicaremos con vos por mail para avisarte que ya podés ir a retirar tu compra. Recordá que deberás acercarte al local con tu DNI y el número de pedido y contas con 15 días para ir a retirarlo.</p>
+                        <h3 class="text-left">Periodos especiales</h3>
+                        <p class="text-left">Durante acciones especiales como Hot Sale, Cybermonday, Black Friday y promociones en el sitio web los tiempos de procesamiento, envío y entrega pueden verse afectados.</p>
                     </div>
                 </div>
             </div>

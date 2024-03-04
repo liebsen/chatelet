@@ -10,11 +10,8 @@
                         <h1>¿Cómo<br>comprar?</h1>
                     </div>
                     <div class="col-md-8">
-                        <div class="animated slideInRight delay leaves-pad">
-                            <div class="box w-leaves">
-                                <h3>¿Tenés alguna consulta o sugerencia?</h3>
-                                <p>Para comprar un producto de nuestro catálogo, primero debes tener una cuenta registrada en nuestro sitio. Si todavía no estás registrado/a <a href="#" id="register" data-toggle="modal" data-target="#particular-modal">hace click aquí</a>.</p>
-                            </div>
+                        <div class="animated slideInRight delay">
+                            <div class="box img-bg" style="background-image: url('/img/como-comprar.jpeg')"></div>
                         </div>
                     </div>
                 </div>
@@ -23,15 +20,10 @@
 
         <section id="desarrollo">
             <div class="wrapper">
-                <div class="help-img">
-                    <?php echo $this->Html->image('como-comprar.jpeg', array( 'class' => 'img-responsive step margin-auto rounded' )); ?><br><br>
-                </div>
-
-                <div class="wrapper">
-                    <div class="col-sm-6">
-                        <h3>Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h3>
-                            <ol class="ordered-list">
-                                <li>Elegí tu prenda
+                <div class="col-sm-6">
+                    <h3>Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h3>
+                        <ol class="ordered-list">
+                            <li>Elegí tu prenda
 Podés encontrarla navegando por las categorías de nuestro shop o utilizando el buscador.
 Una vez que hayas encontrado el producto que deseas, cliqueá para ingresar y conocer todos sus detalles.</li>
 <li>Si querés comprarlo, elegí color y talle, y hacé clic en “Agregar al carrito”. Por más que la opción de color sea una sola, igual tenes que seleccionarla, de otro modo no podrás agregarlo. Aguardá unos segundos y el sistema te dirá si efectivamente hay stock de dicho artículo.</li>
