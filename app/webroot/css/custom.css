@@ -219,15 +219,24 @@ label input[type=checkbox]:disabled + .label-text:before {
   justify-content: center;
 }
 
+.box-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+}
 .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;  
   border-radius: 1rem;
   background-color: rgba(255,255,255,0.5);
   min-height: 24rem;
   margin: auto;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
 }
 
 .box.img-bg {
@@ -1431,9 +1440,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#formulario input[type="submit"] { font-size: 16px; height: 60px; }
 
 	#headhelp h1 { margin-bottom: 20px; }
-	#headhelp .box { padding: 90px 20px 0; border-radius: 1rem; }
-	#headhelp .box.box2 { padding-bottom: 20px; }
-
+	#headhelp .box { padding: 3rem; border-radius: 1rem; }
 	#desarrollo .boxs:first-child { margin-bottom: 30px; }
 	#desarrollo .boxs:last-child { background-size: 130px; }
 

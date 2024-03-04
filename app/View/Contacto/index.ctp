@@ -8,7 +8,7 @@
           <h1>Contactate<br>con nosotros</h1>
         </div>
         <div class="col-md-8">
-          <div class="animated slideInRight delay">                      
+          <div class="animated slideInRight delay box-cont">                      
             <div class="box">
               <h3>¿Tenés alguna consulta o sugerencia?</h3>
               <p>Completá el siguiente formulario y hacenos llegar tus inquietudes o recomendaciones que creas pertinentes.</p>

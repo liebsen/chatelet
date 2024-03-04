@@ -9,7 +9,7 @@
                         <h1>Preguntas<br>frecuentes</h1>
                     </div>
                     <div class="col-md-8">
-                        <div class="animated slideInRight delay">
+                        <div class="animated slideInRight delay box-cont">
                             <div class="box">
                                 <h3>Lo que tenés que saber antes de comprar</h3>
                                 <p>Si tenes alguna consulta no dudes en contactarte con nosotros o recurrir a las preguntas frecuentes que se encuentran a continuación:</p>

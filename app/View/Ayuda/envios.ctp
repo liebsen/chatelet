@@ -8,7 +8,7 @@
                         <h1>Envíos y <br>seguimiento</h1>
                     </div>
                     <div class="col-md-8">
-                        <div class="animated slideInRight delay">
+                        <div class="animated slideInRight delay box-cont">
                             <div class="box">
                                 <h3>¿Tenés alguna consulta o sugerencia?</h3>
                                 <p>Los datos son extraídos de OCA. También se puede consultar el estado del envío comunicándose con el centro de atención al cliente de OCA: 0800-999-7700</p><br>

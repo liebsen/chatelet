@@ -10,7 +10,7 @@
                         <h1>Formas<br>de pago</h1>
                     </div>
                     <div class="col-md-8">
-                        <div class="animated slideInRight delay">
+                        <div class="animated slideInRight delay box-cont">
                             <div class="box">                        
                                 <h3>Comprá en Châtelet con tu método preferido</h3>
                                 <p>Podés pagar desde tu casa a través de mercado pago o transferencia bancaria. Si tu elección es realizarlo con tarjeta de crédito (*) (<strong>VISA, MasterCard, Argencard, American Express, Tarjeta Naranja, Cabal, Tarjeta Shopping e Italcred</strong>) mercado pago solicitará los datos necesarios y podrá enviarte una confirmación para que puedas validarla por cuestiones de seguridad.</p>

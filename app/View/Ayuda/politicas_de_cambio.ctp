@@ -10,7 +10,7 @@
                         <h1>Cambios y<br>devoluciones</h1>
                     </div>
                     <div class="col-md-8">
-                        <div class="animated slideInRight delay">
+                        <div class="animated slideInRight delay box-cont">
                             <div class="box">
                                 <h3>Garantía de confianza</h3>
                                 <p>En el caso de que no te encuentres conforme con el producto, siempre vas a poder cambiarlo por cualquier otro de igual valor o varios productos que equivalgan o superen el valor del saldo a favor. La diferencia la abonaras al momento del cambio.</p>

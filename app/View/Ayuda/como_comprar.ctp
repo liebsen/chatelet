@@ -10,7 +10,7 @@
                         <h1>¿Cómo<br>comprar?</h1>
                     </div>
                     <div class="col-md-8">
-                        <div class="animated slideInRight delay">
+                        <div class="animated slideInRight delay box-cont">
                             <div class="box img-bg" style="background-image: url('/img/como-comprar.jpeg')"></div>
                         </div>
                     </div>
