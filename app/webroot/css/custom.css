@@ -428,6 +428,12 @@ label input[type=checkbox]:disabled + .label-text:before {
   overflow-x: hidden;
   border-radius: 0;
 }
+
+.menuLayer.layer-fixed {
+  position: fixed!important;
+  z-index: 1000!important;
+  top: 5.5rem!important;
+}
 .menuLayer .wrapper {
   padding: 40px 0;
 }
@@ -1373,10 +1379,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#myModal2 .content .table h1 { font-size: 30px; }
 	#myModal2 .content .table p { font-size: 18px; }
 	#myModal2 .content .table tr td { font-size: 16px; }
-}
-#menuShop {   
-  /*position: fixed!important;
-  top: 8rem!important; */
 }
 
 @media (max-width: 991px) {

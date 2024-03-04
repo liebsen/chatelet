@@ -58,6 +58,10 @@ html, body {
 	position: relative!important;
 }
 
+.position-fixed {
+	position: fixed!important;
+}
+
 .is-hidden {
 	display: none!important;
 }

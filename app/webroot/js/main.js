@@ -243,6 +243,10 @@ $(function () {
   $('ul.nav a').hover(function () {
     if( $(this).attr('class') == 'viewSubMenu' ) {
       if (!$('.menuLayer').is(':visible').length) {
+        $('#menuShop').removeClass('position-fixed')  
+        if($('.navbar-chatelet').hasClass('top-fixed')){
+          $('#menuShop').addClass('layer-fixed')  
+        }
         $('#menuShop').fadeIn();
       }
     } else {
