@@ -440,6 +440,10 @@ select.form-control{
 	text-shadow: -1px -1px 1px #fff6, 1px 1px 1px #3333;
 }
 
+.text-link {
+	color: blue;
+}
+
 .left {
 	float: left;
 }
