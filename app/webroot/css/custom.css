@@ -226,7 +226,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .box.img-bg {
   background-color: white;
-  min-height: 20rem;
+  min-height: 30rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 90%;
