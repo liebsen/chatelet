@@ -5,7 +5,7 @@
             <div class="wrapper">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">
-                        <div class="animated fadeIn delay1">
+                        <div class="animated fadeIn delay25">
                             <h1>Envíos y <br>seguimiento</h1>
                         </div>
                     </div>
