@@ -522,7 +522,7 @@ select.form-control{
 .text-link {
 	color: purple;
   border-color: transparent;
-  border-bottom: 3px solid transparent;
+  border-bottom: 2px solid transparent;
   border-width: 0%;
   transition: all 2s ease-in;
   transition-delay: 1s;
@@ -761,6 +761,7 @@ select.form-control{
 }
 .ordered-list li{
 	margin-bottom: 1rem;
+  text-align: left;
 }
 .card-subtitle {
 	color: #666;
