@@ -118,13 +118,13 @@ function pideStock(obj){
 	  var stock_v  	= '<i style="color:gray;">Consultando ... </i>';
 
 		if(!color_code){
-			onSuccessAlert(`<i class="fa fa-check"></i> Talle ${size_number}`,`Elegí un color para este producto`)
+			onWarningAlert(`<i class="fa fa-check"></i> Talle ${size_number}`,`Elegí un color para este producto`)
 			stock_cont.html(no_color);
 			return false;
 		}
 
 		if(!size_number){
-			onSuccessAlert(`<i class="fa fa-check"></i> Color ${color_alias}`,`Ahora elegí un talle para tu prenda`)
+			onWarningAlert(`<i class="fa fa-check"></i> Color ${color_alias}`,`Ahora elegí un talle para tu prenda`)
 			return false;
 		}
 
@@ -138,7 +138,7 @@ function pideStock(obj){
 	  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
 				if(data != 0){
 				  //stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
-				  onWarningAlert('<i class="fa fa-check"></i> Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
+				  onWarningSuccess('<i class="fa fa-check"></i> Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
 					stock_cont.html(stock);
 					setTimeout(() => {
 						$(test).find('a').animate({opacity: 1});
@@ -214,14 +214,14 @@ $(document).ready(function() {
 	/*if(itemData) {
 		if(itemData.mp_discount || itemData.bank_discount) {
 			if(parseInt(itemData.mp_discount)) 	{
-				onSuccessAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un ' + itemData.mp_discount + '% de descuento si comprás por mercadopago')		
+				onWarningAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un ' + itemData.mp_discount + '% de descuento si comprás por mercadopago')		
 			}
 			if(parseInt(itemData.bank_discount))	{
-				onSuccessAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un '  + itemData.bank_discount + '% de descuento si comprás por transferencia')		
+				onWarningAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un '  + itemData.bank_discount + '% de descuento si comprás por transferencia')		
 			}
 		} else {
 			if(parseInt(itemData.discount_label_show)) {
-				onSuccessAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un ' + itemData.discount_label_show + '% de descuento. Aprovechá nuestras ofertas!')
+				onWarningAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un ' + itemData.discount_label_show + '% de descuento. Aprovechá nuestras ofertas!')
 			}
 		}
 	}*/

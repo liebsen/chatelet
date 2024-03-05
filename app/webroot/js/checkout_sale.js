@@ -46,7 +46,7 @@ var updateCart = (carrito) => {
 
 	if (bank.enable && bank.discount_enable && bank.discount && carrito_config.payment_method !== 'bank') {
 		setTimeout(() => {
-  		onSuccessAlert('<i class="fa fa-code-fork"></i> Pagá con Transferencia', `Y obtené un ${bank.discount}% de descuento en tu compra`);		
+  		onWarningAlert('<i class="fa fa-code-fork"></i> Pagá con Transferencia', `Y obtené un ${bank.discount}% de descuento en tu compra`);		
   	}, 2000)
 	}
 }

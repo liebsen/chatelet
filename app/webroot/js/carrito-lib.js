@@ -45,7 +45,7 @@ var updateCart = (carrito) => {
 
   if (bank.enable && bank.discount_enable && bank.discount) {
     setTimeout(() => {
-      onSuccessAlert('Pagá con CBU/Alias', `Y obtené un ${bank.discount}% de descuento en tu compra`);    
+      onWarningAlert('Pagá con CBU/Alias', `Y obtené un ${bank.discount}% de descuento en tu compra`);    
     }, 2000)
   }
 }

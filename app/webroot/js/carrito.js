@@ -128,7 +128,7 @@ $(document).ready(function() {
 		let location = $(this).attr('link-to')||$(this).prop('link-to')
 
 		if(!c){
-			onSuccessAlert('<i class="fa fa-warning"></i> Carrito vacío','No tienes productos en el carrito', 5000)
+			onWarningAlert('<i class="fa fa-warning"></i> Carrito vacío','No tienes productos en el carrito', 5000)
 			return false;
 		}
 
@@ -286,9 +286,9 @@ $(document).ready(function() {
 			const takeaway = $('.takeaway-options li.selected')
 			if(cargo === 'shipment' && !takeaway.length || freeShipping) {
 				$('#calulate_shipping').submit()	
-				onSuccessAlert('<i class="fa fa-calculator"></i> Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
+				onWarningAlert('<i class="fa fa-calculator"></i> Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
 			} else {
-				onSuccessAlert('<i class="fa fa-car"></i> Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000)
+				onWarningAlert('<i class="fa fa-car"></i> Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000)
 			}
 		}, 1000)
 	}
