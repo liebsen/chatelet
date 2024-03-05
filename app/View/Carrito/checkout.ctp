@@ -54,7 +54,7 @@
 						          <label class="d-inline">
 						          	<span class="h4">Cliente</span><br>
 						          	<p class="mt-2 text-muted"><?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?> (DNI <?= $userData['User']['dni'] ?>)</p>
-			                  <div class="row d-flex justify-content-center mt-3 gap-05">
+			                  <div class="row d-flex justify-content-start p-1 mt-2 gap-05">
 			                    <div data-toggle="modal" data-target="#particular-modal" class="col-xs-12 col-md-6 card-link">
 			                      <i class="fa fa-user-o fa-lg mr-1"></i>
 			                       Modificar datos
@@ -104,7 +104,7 @@
                     			<?= $data['carrito_takeaway_text'] ?>
                     		</p>
                     	</label>
-		                  <div class="row d-flex justify-content-center mt-3">
+		                  <div class="row d-flex justify-content-start p-3 mt-2">
 		                    <a href="/carrito#f:.shipment-options.shipping" class="card-link">
 		                      <i class="fa fa-truck fa-lg mr-1"></i>
 		                       Solicitar envío
@@ -136,7 +136,7 @@
 						          </span>
 						        </div>
 						      </div>
-									<div class="row card-row flex-row justify-content-center mt-3 gap-05">
+									<div class="row card-row flex-row justify-content-start p-3 mt-2 gap-05">
 								  	<a href="/carrito#f:.beneficios-exclusivos" class="card-link coupon-actions-block hide">
 								  		<i class="fa fa-tag fa-lg mr-1"></i>
 								  		Ingresar cupón

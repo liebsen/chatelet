@@ -647,6 +647,7 @@ class CarritoController extends AppController
 	public function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 
+		$this->autoRender = false;
 		$total=0;
 		$total_wo_discount = 0;
 		// VAR - Validate
@@ -665,7 +666,7 @@ class CarritoController extends AppController
 		$user['floor'] = (!empty($user['floor']))?$user['floor']:'';
 		$user['depto'] = (!empty($user['depto']))?$user['depto']:'';
 		$user['coupon'] = (!empty($user['coupon']))?strtoupper($user['coupon']):'';
-		$user['regalo'] = (isset($user['regalo']) && $user['regalo']?1:0);
+		//$user['regalo'] = (isset($user['regalo']) && $user['regalo']?1:0);
 		$user['dues'] = (isset($user['payment_dues']) && $user['payment_dues']?intval($user['payment_dues']):1);
 
 		$map = $this->Setting->findById('bank_enable');
@@ -703,7 +704,8 @@ class CarritoController extends AppController
 		//Register Sale
 		$this->Sale->save($sale_object);
 		$sale_id = $this->Sale->id;
-		$gift_ids = !empty($user->gifts) ? implode($user->gifts) : [];
+		$gift_ids = !empty($user['gifts']) ? explode(",",$user['gifts']) : [];
+
 		//Mercadopago
 		foreach ($carro as $producto) {
 			$unit_price = $producto['price'];
@@ -723,6 +725,7 @@ class CarritoController extends AppController
 			$desc = '';
 			$separator = ' -|- ';
 			$values = array(
+				'REGALO'	=> in_array($producto['id'], $gift_ids) ? 'SÍ': 'NO',
 				'PEDIDO' 	=> $sale_id,
 				'CODIGO'	=> $producto['article'],
 				'PRODUCTO'  => $producto['name'],
@@ -735,7 +738,6 @@ class CarritoController extends AppController
 				'EMAIL'		=> $user['email'],
 				'TELEFONO'	=> $user['telephone'],
 				'DNI'	=> $user['dni'],
-				'REGALO'	=> @$gift_ids[$producto['id']] ? 'SÍ': 'NO',
 				'PROV'		=> $user['provincia'],
 				'LOC'		=> $user['localidad'],
 				'CALLE'		=> $user['street'],
@@ -916,7 +918,7 @@ class CarritoController extends AppController
 			'provincia'	=> $user['provincia'],
 			'telefono'	=> $user['telephone'],
 			'email'		=> $user['email'],
-			'regalo'		=> $user['regalo'],
+			'regalo'		=> count($gift_ids) ? "SÍ" : "NO",
 			'package_id'=> @$delivery_data['itemsData']['package']['id'] ?: 1,
 			'value' 	=> $total, // @$delivery_data['itemsData']['price'],
 			'zip_codes' => $zipCodes,
@@ -983,13 +985,13 @@ class CarritoController extends AppController
 		if(empty(Configure::read('MP_IN_SANDBOX_MODE'))) {
 			//Production
 			$mp->sandbox_mode(FALSE);
-			error_log('entering mp production mode');
+			//error_log('entering mp production mode');
 			return $this->redirect($preference['response']['init_point']);
 		}else{
 			//Sandbox
 			$mp->sandbox_mode(TRUE);
-			error_log('entering mp sandbox mode');
-			error_log($preference['response']['sandbox_init_point']);
+			//error_log('entering mp sandbox mode');
+			//error_log($preference['response']['sandbox_init_point']);
 			return $this->redirect($preference['response']['sandbox_init_point']);
 		}
 	}

@@ -46,7 +46,7 @@ var updateCart = (carrito) => {
 
 	if (bank.enable && bank.discount_enable && bank.discount && carrito_config.payment_method !== 'bank') {
 		setTimeout(() => {
-  		onWarningAlert('<i class="fa fa-code-fork"></i> Pagá con Transferencia', `Y obtené un ${bank.discount}% de descuento en tu compra`);		
+  		onWarningAlert('Pagá con Transferencia', `Y obtené un ${bank.discount}% de descuento en tu compra`);		
   	}, 2000)
 	}
 }
@@ -129,10 +129,18 @@ $(function(){
 		// mostrar leyenda solicitando la elección correcta de cuotas.
 		// Asegurate de seleccionar {cuotas} cuotas.
 		const submit = $('.checkout-btn')
+		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 		submit.prop('disabled', true)
 		submit.addClass('disabled')
 		submit.text('Por favor espere...')
 		$('.checkoutform-container').removeClass('hide')
+
+		if(carrito.gifts && carrito.gifts.length){
+			console.log('clear gifts')
+			carrito.gifts = []
+		}
+
+		localStorage.setItem('carrito', JSON.stringify(carrito))
 
 		//localStorage.removeItem('carrito')
 		fbq('track', 'InitiateCheckout')

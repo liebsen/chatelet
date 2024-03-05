@@ -25,14 +25,14 @@ class UsersController extends AppController {
             if ($this->Auth->login()) {
                 $this->Session->setFlash(
                     'Bienvenido a Châtelet', 
-                    'default', 
+                    '', 
                     array('class' => 'hidden notice')
                 );
                 return $this->redirect($this->referer());
             }
             $this->Session->setFlash(
                 'Por favor verifique su email y contraseña e intente nuevamente',
-                'default',
+                '',
                 array('class' => 'hidden error')
             );
     //CakeLog::write('error', 'login redirect ' . $this->referer());

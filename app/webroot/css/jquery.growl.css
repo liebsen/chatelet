@@ -61,16 +61,16 @@
   .growl.growl-large {
     padding: 1.5rem 1.75rem;}
   .growl.growl-default {
-    color: #333;
+    color: #e10d74;
     background: #FFF; }
   .growl.growl-error {
     color: #FFF;
-    background: #7D0A0A; }
+    background: #e10d74; }
   .growl.growl-notice {
     color: #FFF;
-    background: #7D0A0A; }
+    background: #e10d74; }
   .growl.growl-warning {
-    color: #333;
+    color: #e10d74;
     background: #FFF; }
   .growl .growl-close {
     cursor: pointer;
