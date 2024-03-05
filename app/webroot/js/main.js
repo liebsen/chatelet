@@ -369,6 +369,9 @@ $(function () {
       var tops = document.querySelectorAll('.top-fixable')
       var navbar = document.querySelector('.navbar-chatelet')
       if (scroll > 300) {
+        if (document.getElementById('carousel-banners')) {
+          document.getElementById('carousel-banners').classList.add('invisible')
+        }
         if(document.querySelector('.float-tl')) {
           document.querySelector('.float-tl').classList.add('float-top-left')
         }
@@ -415,6 +418,9 @@ $(function () {
           })
         }*/
       } else {
+        if (document.getElementById('carousel-banners')) {
+          document.getElementById('carousel-banners').classList.remove('invisible')
+        }
         if(document.querySelector('.float-tl')) {
           document.querySelector('.float-tl').classList.remove('float-top-left')
         }

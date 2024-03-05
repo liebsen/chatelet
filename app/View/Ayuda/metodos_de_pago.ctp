@@ -5,17 +5,15 @@
           <div id="headhelp">
             <?php echo $this->element('navbar-ayuda'); ?>
             <div class="wrapper">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h1>Formas<br>de pago</h1>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-xs-12 col-md-4">
+                        <div class="animated fadeIn delay1">
+                            <h1>Formas<br>de pago</h1>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="animated slideInRight delay box-cont">
-                            <div class="box">                        
-                                <h3>Comprá en Châtelet con tu método preferido</h3>
-                                <p>Podés pagar desde tu casa a través de mercado pago o transferencia bancaria. Si tu elección es realizarlo con tarjeta de crédito (*) (<strong>VISA, MasterCard, Argencard, American Express, Tarjeta Naranja, Cabal, Tarjeta Shopping e Italcred</strong>) mercado pago solicitará los datos necesarios y podrá enviarte una confirmación para que puedas validarla por cuestiones de seguridad.</p>
-                                <p>Pagos a través de RapiPago o Pago Fácil o Bapro (**), mercado pago solicitará datos básicos para poder emitir la boleta correspondiente y que la puedas imprimir y abonar en cualquier centro de pago autorizado.</p>
-                            </div>
+                    <div class="col-xs-12 col-md-8">
+                        <div class="animated scaleIn delay box-cont">
+                            <div class="box img-bg" style="background-image: url('/img/pago.jpg')"></div>
                         </div>
                     </div>
                 </div>
@@ -32,7 +30,7 @@
 
         <section id="desarrollo">
             <div class="wrapper">
-                <div class="col-sm-6">
+                <div class="col-xs-12 col-sm-6">
                     <h3>Comprá en Châtelet con tu método preferido</h3>
                     <ul>
                         <li class="mb-2">* Podés pagar a través de la plataforma de pago MercadoPago. Si tu elección es realizarlo con tarjeta de crédito o débito (VISA, MASTERCARD, AMERICAN EXPRESS, TARJETA NARANJA, CABAL, ETC) MercadoPago solicitará los datos necesarios y podrá enviarte una confirmación para que puedas validarla por cuestiones de seguridad.</li>
@@ -43,6 +41,6 @@
                         <li>*** Los envíos por compra online tienen una demora de 7 a 10 días hábiles.</li-->
                     </ul>
                 </div>
-                <div class="col-sm-6"></div>
+                <div class="col-xs-12 col-sm-6"></div>
             </div>
         </section>

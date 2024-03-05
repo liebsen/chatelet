@@ -90,86 +90,6 @@ label input[type=checkbox]:disabled + .label-text:before {
   }
 }
 
-/* say hello to my little dwarfs - Hello */
-
-.m-0 {
-  margin: 0!important;
-}
-
-.mt-0 {
-  margin-top: 0!important;
-}
-
-.mt-1 {
-  margin-top: 0.25rem!important;
-}
-.mt-2 {
-  margin-top: 0.5rem!important;
-}
-.mt-3 {
-  margin-top: 0.75rem!important;
-}
-.mt-4 {
-  margin-top: 1rem!important;
-}
-.mt-8 {
-  margin-top: 1.5rem!important;
-}
-.mb-4 {
-  margin-bottom: 1rem!important;
-}
-.mb-5 {
-  margin-bottom: 1.25rem!important;
-}
-.ml-2 {
-  margin-left: 0.5rem!important;
-}
-.p-1 {
-  padding: 0.25rem!important;
-}
-.p-2 {
-  padding: 0.5rem!important;
-}
-.p-3 {
-  padding: 0.75rem!important;
-}
-.p-4 {
-  padding: 1rem!important;
-}
-.p-5 {
-  padding: 1.5rem!important;
-}
-.pt-0 {
-  padding-top: 0!important;
-}
-
-.pr-3 {
-  padding-right: 0.75rem!important;
-}
-.pl-3 {
-  padding-left: 0.75rem!important;
-}
-
-.pt-3 {
-  padding-top: 0.75rem!important;
-}
-
-.mb-0 {
-  margin-bottom: 0!important;
-}
-
-.text-uppercase {
-  text-transform: uppercase;
-}
-
-.is-absolute {
-  position: absolute;
-}
-
-.is-relative {
-  position: relative;
-}
-
 .carousel-video {
   object-fit: cover;
   width: 100%;
@@ -1219,7 +1139,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headhelp { /*background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover;*/ position: relative;  overflow-x: hidden;}
 #headhelp h1 { color: #363633; font-size: 40px; font-weight: 600; margin-top: 50px; margin-left: 2rem; }
 #headhelp h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
-#headhelp .box { border: 2px solid #6666; padding: 4rem 5rem 1rem; }
+#headhelp .box { border: 2px solid #6666; padding: 4rem; }
 #headhelp .box h3 { font-size: 2.5rem; font-weight: 500; margin-bottom: 2rem; margin-top: 0;}
 #headhelp .box p { font-size: 15px; line-height: 1.5; /*margin-bottom: 45px;*/ }
 #headhelp .box p a { color: #363633; font-weight: 600; }
@@ -1231,8 +1151,11 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   font-weight: 800;
 }
 @media(min-width: 769px){
+  #desarrollo { 
+    padding: 5rem; 
+  }
   #headhelp {
-    padding: 5rem 0;
+    padding: 5rem;
   }
   #optionsHelp a.active {
     border-bottom: 2px solid #333;
@@ -1268,21 +1191,21 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headhelp .box2 h3 { background: url(../images/oca.png) no-repeat 25px #51177d; color: #FFF; font-size: 16px; padding: 15px 25px; text-align: right; }
 #headhelp .box2 input[type="text"] { background: transparent; border: 2px solid #51177d; font-size: 16px; padding: 15px 11px; text-align: center; width: 48%; min-height: 55px;}
 #headhelp .box2 input[type="submit"] { background: #51177d; border: none; color: #FFF; float: right; font-size: 16px; height: 60px; width: 48%; }
-#desarrollo { overflow: hidden; padding: 50px 0; }
-#desarrollo .boxs { font-size: 1rem; }
-#desarrollo .boxs .boxs-reframe {
+#desarrollo { overflow: hidden;  }
+#desarrollo .boxes { font-size: 1rem; }
+#desarrollo .boxes .boxes-reframe {
   padding: 2rem 2.25rem;
   border-radius: 1rem;
   background-color: transparent;
   border: 2px solid #6663;
   background-color: rgba(255,255,255,0.5);
 }
-#desarrollo .boxs:first-child { 
+#desarrollo .boxes:first-child { 
   background: url(../images/box4.png) no-repeat 2rem center; 
   background-size: 180px; 
   padding-left: 15rem; 
 }
-#desarrollo .boxs:last-child { 
+#desarrollo .boxes:last-child { 
   background: url(../images/box5.png) no-repeat 2rem center; 
   background-size: 180px; 
   padding-left: 15rem; 
@@ -1302,9 +1225,8 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 @media (max-width: 1599px) {
-	.wrapper { padding: 0 1rem; overflow: hidden; }
-	.map .col-md-4 { padding: 200px 0 200px 50px; }
-
+	.wrapper { /*padding: 0 1rem;*/ overflow: hidden; }
+	/*.map .col-md-4 { padding: 200px 0 200px 50px; }*/s
 	#headhelp .box { padding: 4rem;  border-radius: 1rem;  }
 }
 
@@ -1370,9 +1292,9 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headhelp .box2 h3 { background-size: 100px; font-size: 1rem; }
 	#headhelp .box2 input[type="submit"] { height: 54px; }
 	#desarrollo { font-size: 16px; }
-	#desarrollo .boxs { font-size: 1rem; }
-	#desarrollo .boxs:first-child { background-size: 100px; padding-left: 11rem; }
-	#desarrollo .boxs:last-child { background-size: 150px; padding-left: 170px; }
+	#desarrollo .boxes { font-size: 1rem; }
+	#desarrollo .boxes:first-child { background-size: 100px; padding-left: 11rem; }
+	#desarrollo .boxes:last-child { background-size: 150px; padding-left: 170px; }
   #desarrollo a.bt { 
     padding: 10px 50px; 
   }
@@ -1445,16 +1367,15 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 	#headhelp h1 { margin-bottom: 20px; }
 	#headhelp .box { padding: 3rem; border-radius: 1rem; }
-	#desarrollo .boxs:first-child { margin-bottom: 30px; }
-	#desarrollo .boxs:last-child { background-size: 130px; }
+	#desarrollo .boxes:first-child { margin-bottom: 30px; }
+	#desarrollo .boxes:last-child { background-size: 130px; }
 
 	#myModal2 .content .table { overflow: hidden; overflow-x: scroll; }
 }
 
 @media (max-width: 767px) {
-    .navbar-header { float: none; }
+  .navbar-header { float: none; }
   .navbar > .container-fluid .navbar-brand { display: block; float: none; margin-bottom: 30px; margin-left: auto !important; margin-right: auto !important; }
-
   .carrito-count {
     flex-direction: column;
   }
@@ -1464,6 +1385,9 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   }
   #productOptions .product-list a img { 
       object-fit: contain;
+  }
+  #headhelp .row {
+    flex-direction: column;
   }
   #today .rectangle {
     height:300px;
@@ -1527,10 +1451,11 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#optionsHelp a { padding: 30px 0; width: 100%; border-bottom: 2px solid #f6f6f5;}
   /* #optionsHelp a:nth-child(even) { background-color: #f6f6f5; } */
 	#referncia ul { column-count: 1; }
+  #headhelp .row { padding: 1rem; }
 	#headhelp .box2 h3 { background-position: center 20px; padding-top: 50px; }
 	#headhelp .box2 input[type="text"] { margin-bottom: 20px; }
 	#headhelp .box2 input[type="text"], #headhelp .box2 input[type="submit"] { float: none; width: 100%; }
-	#desarrollo .boxs { background-position: center top !important;  padding: 130px 20px 20px 20px !important; }
+	#desarrollo .boxes { background-position: center top !important;  padding: 130px 20px 20px 20px !important; }
 	#referncia .bx { border-right: none; border-bottom: 1px solid #f6f6f5; padding: 15px 0; width: 100%; }
 
 	#myModal2 .content { padding: 70px 20px 20px; }
@@ -2657,7 +2582,7 @@ span.count.is-empty {
   .is-mobile-resume .price {
     font-size: 1rem;
   }
-  #desarrollo .boxs:first-child { padding-left: 150px; }
+  #desarrollo .boxes:first-child { padding-left: 150px; }
   /*#detalle .caract label.btn .color-option {
     height: 15rem;
   }*/

@@ -3,26 +3,15 @@
         <div id="headhelp">
             <?php echo $this->element('navbar-ayuda'); ?>
             <div class="wrapper">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h1>Envíos y <br>seguimiento</h1>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-xs-12 col-md-4">
+                        <div class="animated fadeIn delay1">
+                            <h1>Envíos y <br>seguimiento</h1>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="animated slideInRight delay box-cont">
-                            <div class="box">
-                                <h3>¿Tenés alguna consulta o sugerencia?</h3>
-                                <p>Los datos son extraídos de OCA. También se puede consultar el estado del envío comunicándose con el centro de atención al cliente de OCA: 0800-999-7700</p><br>
-
-                                <h4>Seguimiento de paquetes</h4>
-                                 <?php echo $this->Form->create() ?>
-                                 <form>
-                                    <div class="d-flex justify-content-center align-items-center gap-1">
-                                        <input type="text" class="form-control mb-0 guia" name="data[guia]" placeholder="Nº de pieza" required>
-                                        <input type="submit" class="btn btn-success consultar" id="consult" value="Consultar">
-                                    </div>
-                                </form>
-                                <?php echo $this->Form->end(); ?>
-                            </div>
+                    <div class="col-xs-12 col-md-8">
+                        <div class="animated scaleIn delay box-cont">
+                            <div class="box img-bg" style="background-image: url('/img/envio.jpg')"></div>
                         </div>                        
                     </div>
                 </div>
@@ -33,8 +22,8 @@
         <section id="desarrollo">
             <div class="wrapper">
                 <div class="row">
-                    <div class="col-md-6 boxs">
-                        <div class="boxs-reframe">
+                    <div class="col-xs-12 col-md-6 boxes">
+                        <div class="boxes-reframe">
                             <h3>Envío por OCA</h3>
                             <p>Los envíos se realizan a través de OCA en un plazo de entre 7 y 10 días hábiles (dependiendo de la región). Se puede hacer el seguimiento del mismo mediante un link que se envía al mail o podes seguir el estado del paquete ingresando en <a href="https://www.oca.com.ar/Busquedas/Envios" target="_blank">la página de búsqueda de envíos de OCA</a> ingresando el número de seguimiento que se te envió por mail.</p>
 
@@ -53,7 +42,7 @@ abonar nuevamente el envío.</p>
                             <p>Los pedidos tardan en llegar a la sucursal elegida entre 7 y 10 días hábiles. Una vez que llegue al local, nos comunicaremos con vos por mail para avisarte que ya podés ir a retirar tu compra. Recordá que deberás acercarte al local con tu DNI y el número de pedido y contas con 15 días para ir a retirarlo.</p>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-xs-12 col-md-6">
                         <h3 class="text-left">Periodos especiales</h3>
                         <p class="text-left">Durante acciones especiales como Hot Sale, Cybermonday, Black Friday y promociones en el sitio web los tiempos de procesamiento, envío y entrega pueden verse afectados.</p>
                     </div>
@@ -90,8 +79,8 @@ abonar nuevamente el envío.</p>
         <section id="desarrollo">
             <div class="wrapper">
                 <div class="row">
-                    <div class="col-md-6 boxs">
-                        <div class="boxs-reframe">
+                    <div class="col-xs-12 col-md-6 boxes">
+                        <div class="boxes-reframe">
                             <h3>Algunos problemas frecuentes</h3>
                             <p>La respuesta 'Número Inexistente' puede darse si la estampilla no está cargada en el sistema de OCA pero el paquete está enviado.</p>
                             <p>Si el estado del envio es 'En sucursal de destino', podés llamar e ir a buscar el paquete vos mismo. De todas maneras, podés esperar a recibirlo en la dirección de entrega.</p>

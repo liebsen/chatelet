@@ -5,12 +5,14 @@
         <div id="headhelp">
             <?php echo $this->element('navbar-ayuda'); ?>
             <div class="wrapper">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h1>¿Cómo<br>comprar?</h1>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-xs-12 col-md-4">
+                        <div class="animated fadeIn delay1">
+                            <h1>¿Cómo<br>comprar?</h1>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="animated slideInRight delay box-cont">
+                    <div class="col-xs-12 col-md-8">
+                        <div class="animated scaleIn delay box-cont">
                             <div class="box img-bg" style="background-image: url('/img/como-comprar.jpeg')"></div>
                         </div>
                     </div>
@@ -20,7 +22,7 @@
 
         <section id="desarrollo">
             <div class="wrapper">
-                <div class="col-sm-6">
+                <div class="col-xs-12 col-md-6">
                     <h3>Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h3>
                         <ol class="ordered-list">
                             <li>Elegí tu prenda
@@ -35,7 +37,7 @@ Una vez que hayas encontrado el producto que deseas, cliqueá para ingresar y co
 <li>Te mantendremos informado del estado de tu pedido por mail o WhatsApp.</li>
 </ol><br><br>                    
                 </div>
-                <div class="col-sm-6">
+                <div class="col-xs-12 col-md-6">
                 </div>
             </div>
         </section>

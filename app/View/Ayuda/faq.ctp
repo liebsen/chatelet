@@ -4,12 +4,14 @@
        <div id="headhelp">
             <?php echo $this->element('navbar-ayuda'); ?>
             <div class="wrapper">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h1>Preguntas<br>frecuentes</h1>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-xs-12 col-md-4">
+                        <div class="animated fadeIn delay1">
+                            <h1>Preguntas<br>frecuentes</h1>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="animated slideInRight delay box-cont">
+                    <div class="col-xs-12 col-md-8">
+                        <div class="animated scaleIn delay box-cont">
                             <div class="box">
                                 <h3>Lo que tenés que saber antes de comprar</h3>
                                 <p>Si tenes alguna consulta no dudes en contactarte con nosotros o recurrir a las preguntas frecuentes que se encuentran a continuación:</p>
