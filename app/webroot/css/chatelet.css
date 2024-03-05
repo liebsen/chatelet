@@ -520,7 +520,18 @@ select.form-control{
 }
 
 .text-link {
-	color: blue;
+	color: purple;
+  border-color: transparent;
+  border-bottom: 3px solid transparent;
+  border-width: 0%;
+  transition: all 2s ease-in;
+  transition-delay: 1s;
+}
+
+.text-link:hover {
+  color: magenta;
+  border-color: magenta;
+  border-width: 100%;
 }
 
 .left {

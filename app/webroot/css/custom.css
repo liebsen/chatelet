@@ -1180,7 +1180,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   text-transform: uppercase;
 }
 #optionsHelp a.active { color: #363633;  }
-#desarrollo { /*background: #f6f6f5;*/ font-size: 22px; line-height: 1.4; padding: 60px 0; }
+#desarrollo { /*background: #f6f6f5;*/ font-size: 22px; line-height: 1.4; padding: 1rem; }
 #desarrollo a.bt { /*border: 3px solid #363633;*/ color: #363633; display: inline-block; font-size: 1.5rem; padding: 20px 120px; background-color: #fff3; border-radius: 3px;}
 /* #desarrollo .row { display: flex; align-items: center; } */
 #desarrollo .col-md-6:last-child { text-align: right; }
