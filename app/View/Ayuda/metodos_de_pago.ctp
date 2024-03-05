@@ -22,7 +22,7 @@
 
 
         <section id="desarrollo">
-            <div class="wrapper text-center"> 
+            <div class="wrapper  animated fadeIn delay2 text-center"> 
                 <img src="<?php echo Router::url('/',true).'images/tjtas.png'; ?>"><br>
                 <small>Si tu pago es por medio de una transferencia bancaria, mercado pago te facilitará los datos necesarios.</small>
             </div>

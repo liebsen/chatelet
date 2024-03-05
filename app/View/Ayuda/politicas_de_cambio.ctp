@@ -25,7 +25,7 @@
 
 
         <section id="desarrollo">
-            <div class="wrapper">
+            <div class="wrapper animated fadeIn delay2">
                 <div class="col-xs-12 col-sm-6">
                     <h3>Acercate a nuestros locales</h3>
                     <p>Podés acercarte a realizar el cambio en cualquier local exclusivo de la marca,

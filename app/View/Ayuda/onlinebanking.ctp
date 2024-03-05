@@ -1,5 +1,5 @@
  <div id="headhelp">
-  <div class="wrapper">
+  <div class="wrapper animated fadeIn delay">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xs-12 col-md-6 datos-bancarios">
         <h1 class="m-0">CBU/Alias</h1>
@@ -12,7 +12,7 @@
         <p class="pre-system mt-4"><?= $data['bank_explain_text'] ?><br>Ref. #<?= $data['id'] ?></p><br><br>
       </div>
       <div class="col-xs-12 col-md-6 enviar-comprobante">
-        <div class="animated scaleIn delay box-cont">
+        <div class="animated scaleIn delay2 box-cont">
           <div class="box mt-8">  
             <h3 class="h3"><?= $data['bank_instructions_title'] ?></h3>
             <p class="pre-system font-system"><?= $data['bank_instructions_text'] ?></p>

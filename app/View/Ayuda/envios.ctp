@@ -20,7 +20,7 @@
 
 
         <section id="desarrollo">
-            <div class="wrapper">
+            <div class="wrapper animated fadeIn delay2">
                 <div class="row">
                     <div class="col-xs-12 col-md-6 boxes">
                         <div class="boxes-reframe">

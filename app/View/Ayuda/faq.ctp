@@ -24,7 +24,7 @@
 
 
         <section id="desarrollo">
-            <div class="wrapper">
+            <div class="wrapper animated fadeIn delay2">
                 <div class="col-sm-6">
                     <h3>Cuál es el costo de envío y entrega de mi pedido?</h3>
                     <p>El costo de envío y tiempo de entrega dependerá de la ubicación de cada usuario y del peso del pedido. Se  recomienda consultar la tabla de envío.</p>

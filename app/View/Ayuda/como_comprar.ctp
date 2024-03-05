@@ -21,7 +21,7 @@
         </div>
 
         <section id="desarrollo">
-            <div class="wrapper">
+            <div class="wrapper animated fadeIn delay2">
                 <h3 class="p-3">Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h3>
                 <div class="col-xs-12 col-md-6">
                     <ol class="ordered-list">
