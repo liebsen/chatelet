@@ -1,5 +1,5 @@
 
-  <section id="optionsHelp" class="top-fixable desktop">
+  <section id="optionsHelp" class="top-fixable desktop animated slideInDown delay25">
       <a href="/ayuda/como_comprar">¿Cómo comprar?</a>
       <a href="/ayuda/envios">Envíos</a>
       <a href="/ayuda/metodos_de_pago">Formas de pago</a>
@@ -15,6 +15,11 @@
   </section>
   <script>
     $(function () {
-      $("#optionsHelp > a[href='<?php echo $this->request->here() ?>']").addClass('active')
+      document.querySelectorAll("#optionsHelp a").forEach((e) => {
+        e.classList.remove('active')
+      })
+      document.querySelectorAll("#optionsHelp a[href='<?php echo $this->request->here() ?>']").forEach((e) => {
+        e.classList.add('active')
+      })
     })
   </script>     

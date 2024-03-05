@@ -1123,7 +1123,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headcontacto .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; margin-top: 0; }
 #headcontacto .box p { font-size: 16px; line-height: 1.5; }
 #formulario { background: url(../images/arrow-down.gif) no-repeat center top; padding: 80px 0; background-color: white;}
-#formulario .wrapper { /*background: url(../images/formbg.jpg) no-repeat left center;*/ background-size: contain; }
+#formulario .wrapper { /*background: url(../images/formbg.jpg) no-repeat left center;*/ background-size: contain; padding: 1rem; }
 #formulario input[type="text"], #formulario input[type="email"], #formulario textarea { background: transparent; border: none; border-bottom: 1px solid #464444; font-size: 16px; padding: 22px 0; width: 100%; }
 #formulario h3 { font-size: 22px; margin: 80px 0 70px; }
 #formulario label { color: #aeaeae; font-size: 22px; display: inline-block; }
@@ -1150,6 +1150,11 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   font-size: 1.5rem; 
   font-weight: 800;
 }
+#optionsHelp a.active {
+  background-color: #f2f2f2;
+  transition: background 1s ease-out;
+  min-height: 1.75rem;
+}
 @media(min-width: 769px){
   #desarrollo { 
     padding: 5rem; 
@@ -1159,7 +1164,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   }
   #optionsHelp a.active {
     border-bottom: 2px solid #333;
-    min-height: 1.75rem;
   }
   #optionsHelp {
     position: absolute; 
@@ -1213,7 +1217,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 #desarrollo h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 15px; }
 #desarrollo p { font-size: 15px; margin-bottom: 55px; }
-#referncia { padding: 60px 0; overflow: hidden; }
+#referncia { padding: 1.5rem; overflow: hidden; }
 #referncia h2 { font-size: 18px; font-weight: 600; margin-bottom: 40px; text-align: center; }
 #referncia .bx { border-right: 1px solid #f6f6f5; float: left; font-size: 17px; padding: 0 45px; width: 20%; }
 #referncia .bx h3 { color: #51177d; font-size: 16px; font-weight: 600; margin-bottom: 5px; }
@@ -1446,7 +1450,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   #detalle li { margin-bottom: 0.75rem; }
 	#productOptions a.btBig { margin-bottom: 20px; padding: 30px; }
 
-	/*#headcontacto .box { padding: 20px; }*/
+	#headcontacto { padding: 1rem; }
   #optionsHelp {padding: 0;}
 	#optionsHelp a { padding: 30px 0; width: 100%; border-bottom: 2px solid #f6f6f5;}
   /* #optionsHelp a:nth-child(even) { background-color: #f6f6f5; } */

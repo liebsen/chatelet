@@ -7,7 +7,7 @@
             <div class="wrapper">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">
-                        <div class="animated fadeIn delay25">
+                        <div class="animated fadeIn delay2">
                             <h1>Formas<br>de pago</h1>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
 
 
         <section id="desarrollo">
-            <div class="wrapper  animated fadeIn delay2 text-center"> 
+            <div class="wrapper  animated fadeIn delay25 text-center"> 
                 <img src="<?php echo Router::url('/',true).'images/tjtas.png'; ?>"><br>
                 <small>Si tu pago es por medio de una transferencia bancaria, mercado pago te facilitará los datos necesarios.</small>
             </div>

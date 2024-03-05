@@ -7,7 +7,7 @@
             <div class="wrapper">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">
-                        <div class="animated fadeIn delay25">
+                        <div class="animated fadeIn delay2">
                             <h1>¿Cómo<br>comprar?</h1>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
         </div>
 
         <section id="desarrollo">
-            <div class="wrapper animated fadeIn delay2">
+            <div class="wrapper animated fadeIn delay25">
                 <h3 class="p-3">Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h3>
                 <div class="col-xs-12 col-md-6">
                     <ol class="ordered-list">

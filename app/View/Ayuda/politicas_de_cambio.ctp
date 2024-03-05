@@ -7,7 +7,7 @@
             <div class="wrapper">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">
-                        <div class="animated fadeIn delay25">
+                        <div class="animated fadeIn delay2">
                             <h1>Cambios y<br>devoluciones</h1>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
 
 
         <section id="desarrollo">
-            <div class="wrapper animated fadeIn delay2">
+            <div class="wrapper animated fadeIn delay25">
                 <div class="col-xs-12 col-sm-6">
                     <h3>Acercate a nuestros locales</h3>
                     <p>Podés acercarte a realizar el cambio en cualquier local exclusivo de la marca,
