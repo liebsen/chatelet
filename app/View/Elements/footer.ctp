@@ -18,8 +18,8 @@
 <?php endif ?>
     <footer>
       <div class="wrapper">
-        <div class="row d-flex justify-content-center align-items-start">
-          <div class="col-xs-12 col-sm-12 col-md-3">
+        <div class="options">
+          <div class="p-1">
             <h3>Colección</h3>
             <ul>
             <?php
@@ -47,7 +47,7 @@
           <?php
           if (!empty($lookBook)){ ?>
 
-          <div class="col-xs-12 col-sm-12 col-md-3">
+          <div class="p-1">
             <h3>LookBook</h3>
             <ul>
           <?php foreach ($lookBook as $item) {
@@ -69,7 +69,7 @@
               
           <?php } ?>
 
-          <div class="col-xs-12 col-sm-12 col-md-3">
+          <div class="p-1">
             <h3>Información</h3>
             <ul>
               <li>
@@ -82,7 +82,7 @@
             </ul>
           </div>
 
-          <div class="col-xs-12 col-sm-12 col-md-3">
+          <div class="p-1">
             <!--  <a href="mailto:sueldos@chatelet.com.ar"><h4>Trabaja con nosotros</h4></a>-->
               <h3>Empresa</h3>
               <ul>

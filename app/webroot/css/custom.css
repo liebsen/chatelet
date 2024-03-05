@@ -317,6 +317,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   }
 }
 @media (min-width: 992px) {
+  #desarrollo { padding: 4rem 1rem; }  
   .box.img-bg {
     min-height: 30rem;  
   }
@@ -573,6 +574,22 @@ transition: all 0.2s ease-out;}
 
 footer { background: #f8f8f8; overflow: hidden; padding: 4rem 0 0; }
 footer > .wrapper { padding: 1.5rem; }
+footer .options {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+footer .options > div {
+  min-width: 20rem;
+}
+
+@media(max-width: 660px){
+  footer .options {
+    flex-direction: column;
+  }  
+}
+
 footer h3 { color: #464444; font-size: 18px; text-transform: uppercase; font-weight: 600; margin-bottom: 1.25rem; margin-top: 2rem; }
 footer h3:after { background: black; content: ""; display: block; height: 4px;border-radius: 4px; margin-top: 15px; width: 50px; }
 footer a { color: #464444; font-size: 1rem; font-weight: 200; text-transform: uppercase;  }
@@ -1220,7 +1237,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #desarrollo h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 15px; }
 #desarrollo p { font-size: 15px; margin-bottom: 55px; }
 #referncia { padding: 1.5rem; overflow: hidden; }
-#referncia h2 { font-size: 1.5rem; font-weight: bolder; margin-bottom: 2rem; text-align: center; }
+#referncia h2 { font-size: 1.5rem!important; font-weight: bolder; margin-bottom: 2rem!important; text-align: center; }
 #referncia .bx { border-right: 1px solid #f6f6f5; float: left; font-size: 17px; padding: 0 45px; width: 20%; }
 #referncia .bx h3 { color: #51177d; font-size: 16px; font-weight: 600; margin-bottom: 5px; }
 #referncia .bx p { font-size: 14px; line-height: 1.4; }
@@ -1312,7 +1329,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 @media (max-width: 991px) {
-
 	#menuShop { display: none !important; }
 
 	/* .modal-open .modal { padding: 0 30px !important; } */
@@ -1461,7 +1477,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headhelp .box2 h3 { background-position: center 20px; padding-top: 50px; }
 	#headhelp .box2 input[type="text"] { margin-bottom: 20px; }
 	#headhelp .box2 input[type="text"], #headhelp .box2 input[type="submit"] { float: none; width: 100%; }
-	#desarrollo .boxes { background-position: center top !important;  padding: 130px 20px 20px 20px !important; }
+	#desarrollo .boxes { background-position: center top !important;  padding: 1rem !important; }
 	#referncia .bx { border-right: none; border-bottom: 1px solid #f6f6f5; padding: 15px 0; width: 100%; }
 
 	#myModal2 .content { padding: 70px 20px 20px; }
