@@ -930,7 +930,7 @@ class CarritoController extends AppController
 			'dues'		=> $user['dues']
 		);
 
-		error_log(json_encode($to_save));
+		// error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
 		error_log("total mp: " . $total);
 
