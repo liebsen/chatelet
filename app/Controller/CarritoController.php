@@ -901,7 +901,6 @@ class CarritoController extends AppController
       $this->Sale->delete($sale_id,true);
 			return $this->redirect($this->referer());
 		}
-
 		//Register Extra Info
 		$to_save = array(
 			'id' 		=> $sale_id,
@@ -930,7 +929,8 @@ class CarritoController extends AppController
 			'shipping'		=> $user['shipping'],
 			'dues'		=> $user['dues']
 		);
-		// error_log(json_encode($to_save));
+
+		error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
 		error_log("total mp: " . $total);
 
@@ -939,7 +939,6 @@ class CarritoController extends AppController
 			$this->Session->delete('Carro');
 			return $this->redirect(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' ));
 		}
-
 
 		//MP
 		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
