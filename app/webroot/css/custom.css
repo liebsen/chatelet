@@ -1328,6 +1328,10 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#myModal2 .content .table tr td { font-size: 16px; }
 }
 
+#menuShop {
+  padding-left: 2rem;
+}
+
 @media (max-width: 991px) {
 	#menuShop { display: none !important; }
 
