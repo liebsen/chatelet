@@ -321,10 +321,10 @@ label input[type=checkbox]:disabled + .label-text:before {
   .box.img-bg {
     min-height: 30rem;  
   }
-  .product-image {
+  /*.product-image {
     min-height: 23rem!important;
     max-height: 23rem!important;
-  }
+  }*/
 }
 
 .navbar-nav:not(.navbar-right)>li>a {
