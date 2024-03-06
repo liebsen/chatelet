@@ -133,13 +133,14 @@
                                     <?php if (!$personalInfoShowed): ?>
                                     <div class="col-xs-12">
                                         <ul class="list">
+                                            <li>REGALOS: <?php echo @$sale['local_sale']['regalo'] ?></li>
                                             <?php $details = explode('-|-', $reason);
                                             if (count($details) > 10){$column=6;}
                                              ?>
                                             <?php foreach ($details as $key => $detail): ?>
                                                 <?php $extra = explode(' : ', $detail) ?>
                                                 <?php if (!empty($extra[0]) && !empty($extra[1])): ?>
-                                                    <?php if (in_array(trim(strtoupper($extra[0])), array('PEDIDO','CODIGO','PRODUCTO','TALLE','COLOR','PRECIO_DESCUENTO','PRECIO_LISTA'))) continue; ?>
+                                                    <?php if (in_array(trim(strtoupper($extra[0])), array('PEDIDO','CODIGO','PRODUCTO','TALLE','COLOR','PRECIO_DESCUENTO','PRECIO_LISTA','REGALO'))) continue; ?>
                                                     <li><?php echo $extra[0] ?>: <?php echo $extra[1] ?></li>
                                                 <?php endif ?>
                                             <?php endforeach; $personalInfoShowed=true; ?>
