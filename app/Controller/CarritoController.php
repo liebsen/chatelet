@@ -918,7 +918,7 @@ class CarritoController extends AppController
 			'provincia'	=> $user['provincia'],
 			'telefono'	=> $user['telephone'],
 			'email'		=> $user['email'],
-			'regalo'		=> count($gift_ids) ? "SÍ" : "NO",
+			'regalo'		=> count($gift_ids),
 			'package_id'=> @$delivery_data['itemsData']['package']['id'] ?: 1,
 			'value' 	=> $total, // @$delivery_data['itemsData']['price'],
 			'zip_codes' => $zipCodes,
