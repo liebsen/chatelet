@@ -322,8 +322,8 @@ label input[type=checkbox]:disabled + .label-text:before {
     min-height: 30rem;  
   }
   .product-image {
-    min-height: 25rem!important;
-    max-height: 25rem!important;
+    min-height: 23rem!important;
+    max-height: 23rem!important;
   }
 }
 
@@ -1717,7 +1717,7 @@ span.out{
   position: relative;
   margin-bottom: 1rem;
   text-align: center;
-  min-height: 32rem;
+  min-height: 30rem;
 }
 
 .prod-tags {
