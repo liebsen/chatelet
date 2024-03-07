@@ -1188,10 +1188,9 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   font-size: 1.5rem; 
   font-weight: 800;
 }
-#optionsHelp a.active {
+#optionsHelp.mobile a.active {
   background-color: #f2f2f2;
   transition: background 1s ease-out;
-  min-height: 1.75rem;
 }
 @media(min-width: 769px){
   #desarrollo { 
@@ -1217,6 +1216,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 #optionsHelp a { color: #404040; display: inline-block; font-size: 1rem;
+  min-height: 1.75rem;
   padding: 0 1rem;
   font-weight: 400;
   text-transform: uppercase;
