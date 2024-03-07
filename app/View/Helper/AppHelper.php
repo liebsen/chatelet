@@ -191,7 +191,7 @@ class AppHelper extends Helper {
       if(!empty($old_price) && abs($old_price-$price > 1)) {
         $str.= '<span class="old_price"> $ '.\price_format($old_price) . '</span>';
       }
-      $str.= '<span class="price_strong"> $ ' . \price_format($price) . '</span><br><span class="text-sm">' . (strlen($text) ? "{$text}" : "") . '</span>';
+      $str.= '<span class="price_strong"> $ ' . \price_format($price) . '</span><span class="text-sm">' . (strlen($text) ? "{$text}" : "") . '</span>';
       $str.= '</div>';
     }
   

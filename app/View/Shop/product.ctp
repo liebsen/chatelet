@@ -54,7 +54,7 @@ function updateSrcTo(obj){
 <?php endif ?>
 
 <section id="productOptions">
-    <div class="container-fluid">
+    <div class="wrapper">
         <div class="row">
             <div class="hidden-xs hidden-sm col-sm-3">
                 <nav>
