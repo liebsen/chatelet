@@ -110,8 +110,8 @@
              </div>
         </div>
     <?php endif;?>
-        <div class="p-5">
-            <div class="col-md-5">
+        <div>
+            <div class="col-md-5 product-info-container">
              <?php
                 echo $this->Form->create(null, array(
                     'url' => array(

@@ -903,6 +903,8 @@ align-items: center;}
   object-position: center center;
   transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 
+.product-info-container {padding: 0 2rem!important;}
+
 .product-info {
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;  
