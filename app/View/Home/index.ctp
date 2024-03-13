@@ -22,7 +22,7 @@
                 <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
                     <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
                         <?php if (strpos($value, '.mp4') !== false):?>
-                        <video class="carousel-video" id="carousel-video-<?= $key + 1?>" playsinline loop>
+                        <video class="carousel-video slider-full" playsinline loop>
                             <source src="<?=$value?>" type="video/mp4">
                         </video>
                         <?php else: ?>
@@ -281,17 +281,20 @@ function carousel() {
     $("#carousel-newsletter").carousel();
 }
 
-$(window).on('load', function () {
+/*$(window).on('load', function () {
   var menuLayerTop = 0;
   if (document.getElementById('carousel-banners')) {
     menuLayerTop+= document.getElementById('carousel-banners').clientHeight;
+    console.log(1,menuLayerTop)
   }
   if (document.querySelector('.navbar-chatelet')) {
     menuLayerTop+= document.querySelector('.navbar-chatelet').clientHeight
+    console.log(2,menuLayerTop)
   }  
   document.querySelectorAll('.carousel-video').forEach((e) => {
-    e.style.maxHeight = `calc(100dvh - ${menuLayerTop - 27}px)`;
+    //e.style.maxHeight = `calc(100dvh - ${menuLayerTop - 27}px)`;
+    e.style.height = `calc(100dvh - ${menuLayerTop - 83}px)`;
   })
-})
+})*/
 
 </script>
