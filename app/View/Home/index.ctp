@@ -290,7 +290,7 @@ $(window).on('load', function () {
     menuLayerTop+= document.querySelector('.navbar-chatelet').clientHeight
   }  
   document.querySelectorAll('.carousel-video').forEach((e) => {
-    e.style.maxHeight = `calc(100dvh - ${menuLayerTop - 18}px)`;
+    e.style.maxHeight = `calc(100dvh - ${menuLayerTop - 27}px)`;
   })
 })
 
