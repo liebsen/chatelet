@@ -265,6 +265,7 @@
 
 
 <script>
+/*
 var myIndex = 0;
 //carousel();
 function carousel() {
@@ -279,22 +280,26 @@ function carousel() {
     x[myIndex-1].style.display = "block";
     setTimeout(carousel, 9000);
     $("#carousel-newsletter").carousel();
-}
+}*/
 
-/*$(window).on('load', function () {
-  var menuLayerTop = 0;
-  if (document.getElementById('carousel-banners')) {
-    menuLayerTop+= document.getElementById('carousel-banners').clientHeight;
-    console.log(1,menuLayerTop)
-  }
-  if (document.querySelector('.navbar-chatelet')) {
-    menuLayerTop+= document.querySelector('.navbar-chatelet').clientHeight
-    console.log(2,menuLayerTop)
-  }  
-  document.querySelectorAll('.carousel-video').forEach((e) => {
-    //e.style.maxHeight = `calc(100dvh - ${menuLayerTop - 27}px)`;
-    e.style.height = `calc(100dvh - ${menuLayerTop - 83}px)`;
-  })
-})*/
+$(function () {
+  $('#myModal').on('hidden.bs.modal', function () {
+    var video = document.querySelectorAll(".carousel-video")
+    if(video.length){
+      video[0].play()
+    }
+  });
+
+  $('#carousel').on('slide.bs.carousel', (a) => {
+    // pause all carusel videos
+    document.querySelectorAll(".carousel-video").forEach((e) => {
+      e.pause()
+    })
+    var video = $(a.relatedTarget).find("video")
+    if(video.length) {
+      $(video).get(0).play()
+    }
+  });
+})
 
 </script>

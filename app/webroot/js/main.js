@@ -271,24 +271,7 @@ $(function () {
     }, 10)
   }
 
-  $('#myModal').on('hidden.bs.modal', function () {
-    setTimeout(() => {
-      if(document.getElementById("carousel-video-1")){
-        document.getElementById("carousel-video-1").play()
-      }
-    }, 200)
-  });
 
-  $('#carousel').on('slide.bs.carousel', (a) => {
-    // pause all carusel videos
-    document.querySelectorAll(".carousel-video").forEach((e) => {
-      e.pause()
-    })
-    var video = $(a.relatedTarget).find("video")
-    if(video.length) {
-      $(video).get(0).play()
-    }
-  });
 
   if (window.location.hash.indexOf('listShop') > -1) {
     setTimeout(() => {
