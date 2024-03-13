@@ -279,9 +279,15 @@ $(function () {
     }, 200)
   });
 
-  $('#carousel').on('slide.bs.carousel', function () {
-    // check for videos
-    //console.log('slide event');
+  $('#carousel').on('slide.bs.carousel', (a) => {
+    // pause all carusel videos
+    document.querySelectorAll(".carousel-video").forEach((e) => {
+      e.pause()
+    })
+    var video = $(a.relatedTarget).find("video")
+    if(video.length) {
+      $(video).get(0).play()
+    }
   });
 
   if (window.location.hash.indexOf('listShop') > -1) {

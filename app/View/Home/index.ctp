@@ -8,15 +8,15 @@
 			$images[] 	= Configure::read('uploadUrl').$value;
 	}
 
-  $img_url_one = str_replace(';', '', @$home['img_url_one']);
-  $img_url_two = str_replace(';', '', @$home['img_url_two']);
-  $img_url_three = str_replace(';', '', @$home['img_url_three']);
-  $img_url_four = str_replace(';', '', @$home['img_url_four']);
+    $img_url_one = str_replace(';', '', @$home['img_url_one']);
+    $img_url_two = str_replace(';', '', @$home['img_url_two']);
+    $img_url_three = str_replace(';', '', @$home['img_url_three']);
+    $img_url_four = str_replace(';', '', @$home['img_url_four']);
 ?>
-        <div id="carousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+        <div id="carousel" class="carousel slide" data-interval="8000" data-ride="carousel">
 
           <!-- Wrapper for slides -->
-          <div class="carousel-inner" role="listbox">
+          <div class="carousel-inner group-video" role="listbox">
 
             <?php foreach ($images as $key => $value): ?>
                 <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
@@ -280,4 +280,16 @@ function carousel() {
     setTimeout(carousel, 9000);
     $("#carousel-newsletter").carousel();
 }
+
+$(window).on('load', function () {
+  var menuLayerTop = 0;
+  if (document.getElementById('carousel-banners')) {
+    menuLayerTop+= document.getElementById('carousel-banners').clientHeight;
+  }
+  if (document.querySelector('.navbar-chatelet')) {
+    menuLayerTop+= document.querySelector('.navbar-chatelet').clientHeight
+  }  
+  document.querySelector('.carousel-video').style.maxHeight = `calc(100dvh - ${menuLayerTop}px)`;
+})
+
 </script>

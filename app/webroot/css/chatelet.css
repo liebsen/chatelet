@@ -23,6 +23,11 @@ html, body {
 	overflow-x: hidden;
 }
 
+.carousel-video {
+  object-fit: cover;
+  width: 100%;
+}
+
 #launcher {
 	visibility: hidden;
 }
