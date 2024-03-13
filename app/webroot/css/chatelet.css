@@ -25,6 +25,7 @@ html, body {
 
 .carousel-video {
   object-fit: cover;
+  object-position: center top;
   width: 100%;
 }
 
