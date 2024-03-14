@@ -270,7 +270,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav>li>a {
   color: #404040;
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 500;
   margin: 0;
   padding: 0.75rem 0;
   text-transform: uppercase;
@@ -1170,7 +1170,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #formulario label span.active i { display: block; }
 
 #headhelp { /*background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover;*/ position: relative;  overflow-x: hidden;}
-#headhelp h1 { color: #363633; font-size: 40px; font-weight: 600; /*margin-top: 50px; margin-left: 2rem;*/ }
+#headhelp h1 { color: #363633; font-size: 40px; font-weight: 800; /*margin-top: 50px; margin-left: 2rem;*/ }
 #headhelp h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 #headhelp .box { border: 2px solid #6666; padding: 4rem; }
 #headhelp .box h3 { font-size: 2.5rem; font-weight: 500; margin-bottom: 2rem; margin-top: 0;}
@@ -1210,12 +1210,16 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   }
 }
 
-#optionsHelp a { color: #404040; display: inline-block; font-size: 1rem;
+#optionsHelp a { 
+  color: #404040; 
+  display: inline-block; 
+  font-size: 1rem;
   min-height: 1.75rem;
   padding: 0 1rem;
-  font-weight: 400;
+  font-weight: 500;
   text-transform: uppercase;
 }
+
 #optionsHelp a.active { color: #363633;  }
 #desarrollo { /*background: #f6f6f5;*/ font-size: 22px; line-height: 1.4; padding: 1rem; }
 #desarrollo a.bt { /*border: 3px solid #363633;*/ color: #363633; display: inline-block; font-size: 1.5rem; padding: 20px 120px; background-color: #fff3; border-radius: 3px;}

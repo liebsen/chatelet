@@ -34,7 +34,7 @@
     <?php endif ?>
     <link href="https://fonts.googleapis.com/css?family=<?= @urlencode($font) ?>:<?= @$fontweight ?>" rel="stylesheet">
     <style>
-      body {
+      body, h1, h2, h3, h4, h5, h6 {
         font-family: '<?= $font ?>', Verdana, Arial, Sans-Serif!important;
       }
     </style>
