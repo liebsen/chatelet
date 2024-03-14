@@ -966,7 +966,7 @@ span.validation-password {
 	font-size: 2.25rem;
 	width: 3.5rem;
 	height: 3.5rem;
-	border-radius: 0.75rem;
+	border-radius: 2rem;
 	background-color: #5cb85c;
 	box-shadow: rgba(0, 0, 0, 0.16) 3px 3px 3px;
 	color: white;
@@ -986,7 +986,7 @@ span.validation-password {
 	background-color: #5cb85c;
 	box-shadow: rgba(0, 0, 0, 0.16) -3px 3px 3px;
 	color: white;
-	border-radius: 0.75rem;
+	border-radius: 2rem;
 	position: absolute;
 	right: 0.5rem;
 	bottom: 0;

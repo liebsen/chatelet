@@ -1347,6 +1347,8 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 #menuShop {
   padding-left: 2rem;
+  z-index: 10;
+  position: relative;  
 }
 
 @media (max-width: 991px) {
