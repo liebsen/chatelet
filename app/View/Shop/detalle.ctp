@@ -224,7 +224,7 @@
                     <div class="row footer-producto">
                         <?php //if($loggedIn){ ?>
                             <div class="row carrito-count has-item-counter active" title="Cantidad de este producto">
-                                <div class="col-xs-12 col-md-4 form-inline">
+                                <div class="col-xs-12 col-sm-4 form-inline">
                                   <div class="form-group">
                                     <div class="input-group carrito-selector">
                                         <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
@@ -237,7 +237,7 @@
                                     </div>
                                   </div>
                                 </div>
-                                <div class="col-xs-12 col-md-8">
+                                <div class="col-xs-12 col-sm-8">
                                     <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar al carrito</a>
                                 </div>
                             </div>

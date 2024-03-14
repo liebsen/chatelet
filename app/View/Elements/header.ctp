@@ -193,9 +193,11 @@
   </a>
   <div class="wrapper">
     <div class="row">
-      <!--img  class="pull-left" src="<?php echo Configure::read('uploadUrl').$image_menushop?>"-->
+      <?php if(!empty($image_menushop)): ?>
+      <img class="pull-left" src="<?php echo Configure::read('uploadUrl').$image_menushop?>">
+    <?php endif ?>
       <div class="col-sm-6">
-        <h3>Shop</h3>
+        <!--h3>Shop</h3-->
         <ul>
           <?php
           if (!empty($categories)){
