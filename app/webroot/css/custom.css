@@ -252,11 +252,11 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-brand { 
   background: url(../img/logo.png) no-repeat; 
   background-size: contain;
-  height: 28px; 
+  height: 22px; 
   margin-top: 10px; 
   padding: 0; 
   text-indent: -9999px; 
-  width: 162px; 
+  width: 135px; 
 }
 .navbar-nav { 
   margin-left: 2rem;
@@ -2739,7 +2739,7 @@ span.count.is-empty {
     border-radius: 0.5rem;
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-left: 10px;
   }
   /*#productOptions .product-list a img { 

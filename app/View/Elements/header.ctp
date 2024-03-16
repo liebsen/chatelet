@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-chatelet top-fixable animated fadeIn">
+<nav class="navbar navbar-chatelet top-fixable animated fadeIn delay2">
   <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
