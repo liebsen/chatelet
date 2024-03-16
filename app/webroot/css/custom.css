@@ -1186,10 +1186,10 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 @media(min-width: 769px){
   #desarrollo { 
-    padding: 2rem; 
+    padding: 5rem 2rem; 
   }
   #headhelp {
-    padding: 2rem;
+    padding: 5rem 2rem;
   }
   #optionsHelp a.active {
     border-bottom: 2px solid #333;
