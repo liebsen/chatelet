@@ -6,12 +6,12 @@
             <?php echo $this->element('navbar-ayuda'); ?>
             <div class="wrapper">
                 <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-xs-12 col-sm-4">
+                    <div class="col-xs-12 col-md-4">
                         <div class="animated fadeIn delay2">
                             <h1>Formas<br>de pago</h1>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-8">
+                    <div class="col-xs-12 col-md-8">
                         <div class="animated scaleIn delay box-cont">
                             <div class="box img-bg" style="background-image: url('/img/pago.jpg')">
                             </div>
@@ -31,7 +31,7 @@
 
         <section id="desarrollo">
             <div class="wrapper">
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-md-6">
                     <h3>Comprá en Châtelet con tu método preferido</h3>
                     <ul>
                         <li class="mb-2">* Podés pagar a través de la plataforma de pago MercadoPago. Si tu elección es realizarlo con tarjeta de crédito o débito (VISA, MASTERCARD, AMERICAN EXPRESS, TARJETA NARANJA, CABAL, ETC) MercadoPago solicitará los datos necesarios y podrá enviarte una confirmación para que puedas validarla por cuestiones de seguridad.</li>
@@ -42,6 +42,6 @@
                         <li>*** Los envíos por compra online tienen una demora de 7 a 10 días hábiles.</li-->
                     </ul>
                 </div>
-                <div class="col-xs-12 col-sm-6"></div>
+                <div class="col-xs-12 col-md-6"></div>
             </div>
         </section>

@@ -1270,7 +1270,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	          $data['banner_url'] = $file_real_name1;
 	        }
 
-	        if($file_size){
+	        if($file_size){	
 	          $data['size'] = $file_size;
 	        }
 

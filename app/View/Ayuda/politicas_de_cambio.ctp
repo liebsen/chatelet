@@ -6,12 +6,12 @@
             <?php echo $this->element('navbar-ayuda'); ?>
             <div class="wrapper">
                 <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-xs-12 col-sm-4">
+                    <div class="col-xs-12 col-md-4">
                         <div class="animated fadeIn delay2">
                             <h1>Cambios y<br>devoluciones</h1>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-8">
+                    <div class="col-xs-12 col-md-8">
                         <div class="animated scaleIn delay box-cont">
                             <div class="box">
                                 <h3>Garantía de confianza</h3>
@@ -26,7 +26,7 @@
 
         <section id="desarrollo">
             <div class="wrapper animated fadeIn delay25">
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-md-6">
                     <h3>Acercate a nuestros locales</h3>
                     <p>Podés acercarte a realizar el cambio en cualquier local exclusivo de la marca,
 dentro de los 30 días de recibido el producto en tu domicilio y/o sucursal o,
@@ -39,7 +39,7 @@ de cambio o factura de compra.</p>
 
                 </div>
 
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-md-6">
                     <h3>Cambio online</h3>
                     <p>En caso de optar por un cambio de modalidad online, deberás enviar un mail a <a href="mailto:chateletonline@outlook.com.ar" class="text-link">chateletonline@outlook.com.ar</a> e informar los artículos y talles correctos de lo que queres cambiar. Deberás enviar el producto a nuestro depósito, una vez que nos llegue te enviaremos las prendas solicitadas por el cambio. Este servicio es con costo a cargo del cliente, tanto envío como recepción del mismo.</p>
 

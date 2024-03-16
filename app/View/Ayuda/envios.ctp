@@ -4,12 +4,12 @@
             <?php echo $this->element('navbar-ayuda'); ?>
             <div class="wrapper">
                 <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-xs-12 col-sm-4">
+                    <div class="col-xs-12 col-md-4">
                         <div class="animated fadeIn delay2">
                             <h1>Envíos y seguimiento</h1>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-8">
+                    <div class="col-xs-12 col-md-8">
                         <div class="animated scaleIn delay box-cont">
                             <div class="box img-bg" style="background-image: url('/img/envio.jpg')"></div>
                         </div>                        

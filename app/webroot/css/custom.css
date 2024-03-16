@@ -370,7 +370,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   top: 5.5rem!important;
 }
 .menuLayer .wrapper {
-  padding: 40px 0;
+  padding: 1rem;
 }
 .menuLayer a.close { 
   position: fixed;
@@ -1344,7 +1344,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 #menuShop {
-  padding-left: 2rem;
+  padding: 2rem 1rem;
   z-index: 10;
   position: relative;  
 }
