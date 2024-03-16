@@ -77,10 +77,9 @@
 
 //      echo $this->fetch('script');
     ?>
-
-
   </head>
-  <body>
+  <body class="loading">
+    <div id="page-loader"></div>
   <?php echo $this->element('fontselect'); ?>
   <?php if(!empty($banners)) :?>
   <?php echo $this->element('banners'); ?>

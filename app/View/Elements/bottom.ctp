@@ -13,5 +13,6 @@
       echo $this->Html->script('product', array('inline' => false));
       echo $this->fetch('script');
   	?>
+    <!--/div-->
   </body>
 </html>

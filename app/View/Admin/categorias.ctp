@@ -65,9 +65,9 @@
 			<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>">
 				<td>
 					<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
-            <div class="d-flex justify-content-center align-items-center gap-1">
+            <div class="d-flex justify-content-start align-items-center gap-1">
               <img src="<?=Configure::read('uploadUrl'). $category['Category']['img_url']?>" width="200" />
-						  <?=$category['Category']['name']?>
+						  <span><?=$category['Category']['name']?></span>
             </div>
 					</a>
 				</td>

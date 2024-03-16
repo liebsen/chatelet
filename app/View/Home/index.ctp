@@ -286,6 +286,7 @@ $(function () {
   $('#myModal').on('hidden.bs.modal', function () {
     var video = document.querySelectorAll(".carousel-video")
     if(video.length){
+        console.log('play(1)')
       video[0].play()
     }
   });
@@ -293,10 +294,12 @@ $(function () {
   $('#carousel').on('slide.bs.carousel', (a) => {
     // pause all carusel videos
     document.querySelectorAll(".carousel-video").forEach((e) => {
+        console.log('pause(1)')
       e.pause()
     })
     var video = $(a.relatedTarget).find("video")
     if(video.length) {
+        console.log('play(2)')
       $(video).get(0).play()
     }
   });

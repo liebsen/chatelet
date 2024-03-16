@@ -227,6 +227,7 @@ let apiSearch = (q) => {
 
 $(function () {
   var body = $('body');
+
   body.click((e) => {
     if(!$(e.target).hasClass('action-search') && !$(e.target).parents('.menuLayer').length) {
       $('.menuLayer').hide()
@@ -270,8 +271,6 @@ $(function () {
       $('#myModal').modal({ show: true })
     }, 10)
   }
-
-
 
   if (window.location.hash.indexOf('listShop') > -1) {
     setTimeout(() => {
@@ -429,6 +428,7 @@ $(function () {
     }, 500)
   })
 
+
   /* trigger search from url */
 
   if (window.location.hash) {
@@ -461,4 +461,11 @@ $(function () {
     }
     $.post('/shop/log_error', {message: msg + JSON.stringify(browser), url: url, line: lineNo})
   }
+
+  body.removeClass('loading')
+  $('#page-container').removeClass('loading')
+  $('#page-loader').addClass('animated fadeOut')
+  setTimeout(() => {
+    $('#page-loader').remove()  
+  },500)
 })

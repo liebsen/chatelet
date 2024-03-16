@@ -9,6 +9,16 @@ body {
 	background-color: #efefef;
 }
 
+body.loading {
+  overflow: hidden;
+}
+
+#page-loader {
+  min-width: 100dvw;
+  min-height: 100dvh;
+  background: url(/img/logo.png) no-repeat center center/8rem transparent;
+}
+
 a {
 	color: white;
 }

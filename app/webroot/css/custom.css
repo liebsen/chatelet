@@ -25,7 +25,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none; }
 
-
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 800;
 }
@@ -43,7 +42,6 @@ hr.or:before {
   background-color: #f1f1f1;
   color: #8e8e8e;
 }
-
 
 label {
   cursor: pointer;
@@ -595,7 +593,7 @@ footer .options > div {
   min-width: 20rem;
 }
 
-@media(max-width: 660px){
+@media(max-width: 1023px){
   footer .options {
     flex-direction: column;
   }  
@@ -1188,10 +1186,10 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 @media(min-width: 769px){
   #desarrollo { 
-    padding: 5rem; 
+    padding: 2rem; 
   }
   #headhelp {
-    padding: 5rem;
+    padding: 2rem;
   }
   #optionsHelp a.active {
     border-bottom: 2px solid #333;

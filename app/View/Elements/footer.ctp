@@ -103,10 +103,7 @@
               </a>-->
           </div>
         </div>
-
         <p class="text-center text-footer text-muted mb-4 text-uppercase h6"><span class="is-clickable" title="Châtelet v<?= $version_text ?>">Châtelet</span> <?php echo date('Y'); ?>. Buenos Aires, Argentina. Todos los derechos reservados</p>
       </div>
-
     </footer>
-
     <?php echo $this->Html->script('plugins', array('inline'=>false))?>

@@ -20,9 +20,7 @@
         <meta name="description" content="<?php echo $template['description'] ?>">
         <meta name="author" content="<?php echo $template['author'] ?>">
         <meta name="robots" content="noindex, nofollow">
-
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
-
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
         <link rel="shortcut icon" href="/img/favicon.ico">
@@ -64,9 +62,9 @@
     $body_classes = '';
 
     if ($template['header'] == 'fixed-top') {
-        $body_classes = 'header-fixed-top';
+        $body_classes = 'loading header-fixed-top';
     } else if ($template['header'] == 'fixed-bottom') {
-        $body_classes = 'header-fixed-bottom';
+        $body_classes = 'loading header-fixed-bottom';
     }
 
     if ($template['side_content']) {
@@ -74,6 +72,7 @@
     }
     ?>
     <body<?php if ($body_classes) { echo ' class="' . $body_classes . '"'; } ?>>
+        <div id="page-loader"></div>
         <!-- Page Container -->
         <!-- In the PHP version you can set the following options from the config file -->
         <!-- Add the class .full-width for a full width page -->
