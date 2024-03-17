@@ -285,7 +285,7 @@ window.onblur = () => {
 $(function () {
   $('#myModal').on('hidden.bs.modal', () => {
     focused = true
-    var video = document.querySelectorAll(".carousel-video")
+    var video = $("#carousel .item.active").find("video")
     if(video.length){
       video[0].play()
     }
