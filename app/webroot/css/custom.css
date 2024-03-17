@@ -430,7 +430,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 #carousel .carousel-inner .item { background-position: center top; background-size: cover; }
 #carousel .carousel-control { color: #e44522; bottom: 33px; opacity: 1; top: inherit; width: 120px; z-index: 99; }
 #carousel .carousel-control.left, #carousel .carousel-control.right { background: none; height: 100%; top: 0; }
-#carousel .carousel-control .arrow { background-image: url(../images/sprite.png); background-repeat: no-repeat; display: block; height: 74px; left: 50%; margin-left: -22px; margin-top: -37px; position: absolute; top: 50%; width: 44px; }
+#carousel .carousel-control .arrow { background-image: url(../images/sprite.png); background-repeat: no-repeat; display: block; width: 44px; height: 74px; left: 50%; margin-left: -22px; margin-top: -37px; position: absolute; top: calc(50% - 37px);  }
 #carousel .carousel-control .arrow.arrow-left { background-position: -3px -89px; }
 #carousel .carousel-control .arrow.arrow-right { background-position: -53px -89px; }
 #carousel .carousel-control.left { left: 0%; }
@@ -2739,7 +2739,7 @@ span.count.is-empty {
     border-radius: 0.5rem;
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-    margin-top: 15px;
+    margin-top: 13px;
     margin-left: 10px;
   }
   /*#productOptions .product-list a img { 

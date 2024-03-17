@@ -237,72 +237,69 @@
 
 
 <?php if(!empty($home['display_popup_form_in_last'])):?>
-    <style type="text/css">
+<style type="text/css">
 
-        .news-carousel .item:last-child .in_last form {
-            position: absolute!important;
-            top:0px;
-        }
+  .news-carousel .item:last-child .in_last form {
+    position: absolute!important;
+    top:0px;
+  }
 
-        .news-carousel .item:last-child .in_last form input[type="email"] {
-            margin-top: 217px;
-            margin-left: 36px;
-            border: none!important;
-        }
+  .news-carousel .item:last-child .in_last form input[type="email"] {
+    margin-top: 217px;
+    margin-left: 36px;
+    border: none!important;
+  }
 
-        .news-carousel .item:last-child .in_last form input[type="submit"] {
-            margin-top: 30px;
-            float: left!important;
-            border: none!important;
-            margin-left: 50px;
-            clear: both;
-            color: transparent!important;
-        }
+  .news-carousel .item:last-child .in_last form input[type="submit"] {
+    margin-top: 30px;
+    float: left!important;
+    border: none!important;
+    margin-left: 50px;
+    clear: both;
+    color: transparent!important;
+  }
 
-    </style>
+</style>
 
 <?php endif; ?>
 
-
 <script>
-/*
-var myIndex = 0;
-//carousel();
-function carousel() {
-    //console.log('carousel executing')
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-    }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}
-    x[myIndex-1].style.display = "block";
-    setTimeout(carousel, 9000);
-    $("#carousel-newsletter").carousel();
-}*/
+
+
+var pauseAllVideos = () => {
+  $("video").each((i,video) => {
+    video.pause()
+  });
+}
 
 $(function () {
-  $('#myModal').on('hidden.bs.modal', function () {
+  $('#myModal').on('hidden.bs.modal', () => {
     var video = document.querySelectorAll(".carousel-video")
     if(video.length){
-        console.log('play(1)')
       video[0].play()
     }
   });
 
   $('#carousel').on('slide.bs.carousel', (a) => {
-    // pause all carusel videos
-    document.querySelectorAll(".carousel-video").forEach((e) => {
-        console.log('pause(1)')
-      e.pause()
-    })
+    pauseAllVideos()
     var video = $(a.relatedTarget).find("video")
     if(video.length) {
-        console.log('play(2)')
-      $(video).get(0).play()
-    }
+      setTimeout(() => {
+        $(video).get(0).play()
+      }, 20)
+    }  
   });
 })
+
+window.onfocus = () => {
+  var video = $("#carousel .item.active").find("video")
+  if(video){
+    $(video).get(0).play()
+  }
+};
+
+window.onblur = () => {
+  pauseAllVideos()
+};
 
 </script>
