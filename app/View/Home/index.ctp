@@ -264,7 +264,7 @@
 <?php endif; ?>
 
 <script>
-var focused = true
+var focused = false
 window.onfocus = () => {
   focused = true;
   var video = $("#carousel .item.active").find("video")
@@ -284,6 +284,7 @@ window.onblur = () => {
 
 $(function () {
   $('#myModal').on('hidden.bs.modal', () => {
+    focused = true
     var video = document.querySelectorAll(".carousel-video")
     if(video.length){
       video[0].play()

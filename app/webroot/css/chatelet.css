@@ -190,8 +190,9 @@ html, body {
   flex-direction: column;
   justify-content: center;	
 }
+
 .tap-to-continue {
-	position: absolute;
+	position: fixed;
 	bottom: 1rem;
 	left: 1rem;
 	text-align: center;
@@ -990,8 +991,6 @@ span.validation-password {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 1rem;
-	line-height: 1;
 	height: 3.5rem;
 	background-color: #5cb85c;
 	box-shadow: rgba(0, 0, 0, 0.16) -3px 3px 3px;
@@ -1000,7 +999,7 @@ span.validation-password {
 	position: absolute;
 	right: 0.5rem;
 	bottom: 0;
-	padding: 1.5rem 1rem;
+	padding: 1.5rem;
 	z-index: -1;
 	width: 16rem;
 }

@@ -389,7 +389,6 @@ $(function () {
         $("video").each((i,video) => {
           video.pause()
         });
-
       } else {
         if (document.getElementById('carousel-banners')) {
           document.getElementById('carousel-banners').classList.remove('invisible')
