@@ -264,13 +264,23 @@
 <?php endif; ?>
 
 <script>
+var focused = true
+window.onfocus = () => {
+  focused = true;
+  var video = $("#carousel .item.active").find("video")
+  if(video.length){
+    setTimeout(() => {
+      $(video).get(0).play()
+    }, 20)
+  }
+};
 
-
-var pauseAllVideos = () => {
+window.onblur = () => {
+  focused = false;
   $("video").each((i,video) => {
     video.pause()
-  });
-}
+  });  
+};
 
 $(function () {
   $('#myModal').on('hidden.bs.modal', () => {
@@ -281,25 +291,18 @@ $(function () {
   });
 
   $('#carousel').on('slide.bs.carousel', (a) => {
-    pauseAllVideos()
-    var video = $(a.relatedTarget).find("video")
-    if(video.length) {
-      setTimeout(() => {
-        $(video).get(0).play()
-      }, 20)
-    }  
+    if(focused) {
+      $("video").each((i,video) => {
+        video.pause()
+      });
+      var video = $(a.relatedTarget).find("video")
+      if(video.length) {
+        setTimeout(() => {
+          $(video).get(0).play()
+        }, 20)
+      }
+    }
   });
 })
-
-window.onfocus = () => {
-  var video = $("#carousel .item.active").find("video")
-  if(video){
-    $(video).get(0).play()
-  }
-};
-
-window.onblur = () => {
-  pauseAllVideos()
-};
 
 </script>

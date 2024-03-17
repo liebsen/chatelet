@@ -243,6 +243,9 @@ $(function () {
 
   $('ul.nav a').hover(function () {
     if( $(this).attr('class') == 'viewSubMenu' ) {
+      $("video").each((i,video) => {
+        video.pause()
+      });
       if (!$('.menuLayer').is(':visible').length) {
         $('#menuShop').removeClass('position-fixed')  
         if($('.navbar-chatelet').hasClass('top-fixed')){
@@ -252,6 +255,12 @@ $(function () {
       }
     } else {
       $('#menuShop').fadeOut();
+      var video = $("#carousel .item.active").find("video")
+      if(video.length){
+        setTimeout(() => {
+          $(video).get(0).play()
+        }, 200)
+      }
     }
   })
 
@@ -377,34 +386,10 @@ $(function () {
             }, 10)
           } 
         })
-        /*if (lastscroll > scroll) {
-          // up
-          tops.forEach((e) => {
-            if (e && !e.classList.contains('top-fixed')) {
-              e.classList.remove('fadeOut', 'fadeIn')
-              setTimeout(() => {
-                if (e.classList.contains('navbar-chatelet')) {
-                  document.querySelector('body').style.paddingTop = `${e.clientHeight}px`
-                }
-                e.classList.add('top-fixed', 'fadeIn')
-              }, 10)
-            } 
-          })
-        } else {
-          tops.forEach((e) => {
-            // down
-            if (e && e.classList.contains('top-fixed')) {
-              e.classList.remove('top-fixed', 'fadeIn', 'fadeOut')
-              if (e.classList.contains('navbar-chatelet')) {
-                document.querySelector('body').style.paddingTop = 0
-              } else {
-                setTimeout(() => {
-                  e.classList.add('fadeOut')    
-                }, 10)            
-              }
-            }
-          })
-        }*/
+        $("video").each((i,video) => {
+          video.pause()
+        });
+
       } else {
         if (document.getElementById('carousel-banners')) {
           document.getElementById('carousel-banners').classList.remove('invisible')
@@ -423,6 +408,12 @@ $(function () {
             e.classList.remove('top-fixed')
           }
         })
+        var video = $("#carousel .item.active").find("video")
+        if(video.length){
+          setTimeout(() => {
+            $(video).get(0).play()
+          }, 200)
+        }
       }
       lastscroll = scroll
     }, 500)
