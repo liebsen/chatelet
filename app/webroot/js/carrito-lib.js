@@ -73,7 +73,6 @@ var save_preference = (settings) => {
   }); 
 }
 
-
 var getTotals = () => {
   var payment_method = carrito_config.payment_method
   var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
@@ -103,6 +102,11 @@ var getTotals = () => {
     //console.log('coupon_bonus',carrito.coupon_bonus)
     subtotal-= carrito.coupon_bonus
   }
+  console.log("before",subtotal)
+  if(bank.enable) {
+    subtotal-= subtotal * (parseFloat(bank.discount) / 100)
+  }
+  console.log("after", subtotal)
   if(subtotal < 1) {
     subtotal = 1
   }

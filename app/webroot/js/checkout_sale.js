@@ -102,7 +102,7 @@ var select_payment = (e,item) => {
 		$('.bank-block').addClass('hide')
 	}
 
-  onSuccessAlert('<i class="fa fa-credit-card"></i> ' + (selected === 'bank' ? 'Transferencia' : 'Mercado Pago'), '✓ Método de pago seleccionado');
+  onSuccessAlert('' + (selected === 'bank' ? 'Transferencia' : 'Mercado Pago'), '✓ Método de pago seleccionado');
 
   save_preference({payment_method: selected})
 

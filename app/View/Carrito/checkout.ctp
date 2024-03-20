@@ -290,15 +290,17 @@
 	</form>
 </div>
 <script>
-<?php if(!$loggedIn):?>	
+
 $(function(){
+	$('#<?= $config['payment_method']?>').click()
+	<?php if(!$loggedIn):?>	
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	setTimeout(() => {
 		$('#particular-login').modal('show')
 	}, 1000)
+	<?php endif;?>
 	if(carrito.gifts && carrito.gifts.length) {
 		$('#gifts').val(carrito.gifts.join(','))
 	}
 })
-<?php endif;?>
 </script>
