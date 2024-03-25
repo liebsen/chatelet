@@ -7,6 +7,14 @@ let searchPageSize = 12
 let searchPage = 0
 let focusAnim = 'pulse'
 let clock = 0
+let pageLoaded = () => {   
+  $('body').removeClass('loading')
+  $('#page-container').removeClass('loading')
+  $('#page-loader').addClass('animated fadeOut')
+  setTimeout(() => {
+    $('#page-loader').remove()  
+  },500)
+}
 
 let formatNumber = (float) => {
   if (typeof float === 'string') {
@@ -452,10 +460,7 @@ $(function () {
     $.post('/shop/log_error', {message: msg + JSON.stringify(browser), url: url, line: lineNo})
   }
 
-  body.removeClass('loading')
-  $('#page-container').removeClass('loading')
-  $('#page-loader').addClass('animated fadeOut')
   setTimeout(() => {
-    $('#page-loader').remove()  
-  },500)
+    pageLoaded()
+  }, 100)
 })

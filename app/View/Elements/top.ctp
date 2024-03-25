@@ -79,7 +79,7 @@
     ?>
   </head>
   <body class="loading">
-    <div id="page-loader"></div>
+    <div id="page-loader animated fadeIn"></div>
   <?php echo $this->element('fontselect'); ?>
   <?php if(!empty($banners)) :?>
   <?php echo $this->element('banners'); ?>
