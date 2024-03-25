@@ -1,6 +1,4 @@
-<?php
-	$this->Html->css('ayuda', array('inline' => false));
-?>
+<?php $this->Html->script('ayuda', array('inline' => false)); ?>
        <div id="headhelp">
             <?php echo $this->element('navbar-ayuda'); ?>
             <div class="wrapper">

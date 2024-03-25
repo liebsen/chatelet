@@ -13,7 +13,7 @@
     $img_url_three = str_replace(';', '', @$home['img_url_three']);
     $img_url_four = str_replace(';', '', @$home['img_url_four']);
 ?>
-        <div id="carousel" class="carousel slide" data-interval="8000" data-ride="carousel">
+        <div id="carousel" class="carousel slide" data-interval="10000" data-ride="carousel">
 
           <!-- Wrapper for slides -->
           <div class="carousel-inner group-video" role="listbox">
