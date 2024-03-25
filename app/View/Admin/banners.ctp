@@ -23,7 +23,7 @@
 					</td>
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'banners','edit',$banner['Banner']['id']))?>">
-							<?=$banner['Banner']['title']?>
+							<?=$banner['Banner']['text']?>
 						</a>
 					</td>
 					<td>

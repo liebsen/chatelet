@@ -166,7 +166,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   height: calc(100vh - 8.5rem);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
+  background-position: center top;
 }
 
 .is-bottom {

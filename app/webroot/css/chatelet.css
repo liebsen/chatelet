@@ -295,6 +295,14 @@ html, body {
 .bg-warning-i {
   background-color: #e8ffa8!important;
 }
+.bg-theme {
+  background-color: #FF71CD!important;
+}
+
+.d-block {
+  display: block!important;
+}
+
 .mw-26 {
 	max-width: 26rem;
 }
