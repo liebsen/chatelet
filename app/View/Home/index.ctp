@@ -13,21 +13,28 @@
     $img_url_four = str_replace(';', '', @$home['img_url_four']);
 ?>
 <script>
+
+  var images = ["<?= implode('","',$images)?>"]
+  var assets = []
   async function preloadVideo(src) {
     const res = await fetch(src);
     const blob = await res.blob();
     return URL.createObjectURL(blob);
   }
 
-  <?php foreach ($images as $key => $value): 
-    $type = \endsWith($value, ".mp4") ? "video" : "image"; ?>
-    const asset = document.createElement("<?=$type?>");
-    <?php if($type=="video"): ?>
-      asset.src = await preloadVideo("<?=$value?>");
-    <?php else: ?>
-      asset.src = "<?=$value?>";
-    <?php endif ?>
-  <?php endforeach ?>
+  async function preloadImages(images){
+    for(var i in images){
+      const image = images[i]
+      type = image.endsWith(".mp4") ? "video" : "image"
+      assets[i] = document.createElement(type);
+      if(type=="video"){
+        assets[i].src = await preloadVideo(image)
+      } else {
+        assets[i].src = image;
+      }
+    }    
+  }
+  preloadImages(images)
 </script>
 
         <div id="carousel" class="carousel slide" data-interval="10000" data-ride="carousel">
