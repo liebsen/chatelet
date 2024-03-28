@@ -16,21 +16,31 @@
 
   var images = ["<?= implode('","',$images)?>"]
   var assets = []
-  async function preloadVideo(src) {
-    const res = await fetch(src);
-    const blob = await res.blob();
-    return URL.createObjectURL(blob);
-  }
+  async function preloadVideo(i, asset){
+    var req = new XMLHttpRequest();
+    req.open('GET', asset, true);
+    req.responseType = 'blob';
+    req.onload = function() {
+      if (this.status === 200) {
+        var videoBlob = this.response;
+        var vid = URL.createObjectURL(videoBlob); // IE10+
+        document.getElementById('video'+i).src = vid
+      }
+    }
+    req.onerror = function() {
+      // Error
+    }
 
+    req.send();    
+  }
   async function preloadImages(images){
     for(var i in images){
-      const image = images[i]
-      type = image.endsWith(".mp4") ? "video" : "image"
-      assets[i] = document.createElement(type);
-      if(type=="video"){
-        assets[i].src = await preloadVideo(image)
+      const asset = images[i]
+      if(asset.endsWith(".mp4")){
+        preloadVideo(i,asset)
       } else {
-        assets[i].src = image;
+        assets[i] = document.createElement("image");
+        assets[i].src = asset;
       }
     }    
   }
@@ -44,10 +54,8 @@
                 <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
                     <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
                         <?php if (strpos($value, '.mp4') !== false):?>
-                        <video class="carousel-video slider-full" playsinline loop>
-                          <source src="<?=$value?>" type="video/mp4">
+                        <video id="video<?=$key?>" class="carousel-video slider-full" playsinline loop>
                         </video>
-                        <link rel="preload" as="image" href="<?=$value?>" />
                         <?php else: ?>
                         <div class="slider-full" style="background-image:url(<?php echo $value; ?>)"></div>
                         <?php endif; ?>
