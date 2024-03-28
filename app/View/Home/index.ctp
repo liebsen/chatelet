@@ -7,24 +7,40 @@
 		if(!empty($value))
 			$images[] 	= Configure::read('uploadUrl').$value;
 	}
-
     $img_url_one = str_replace(';', '', @$home['img_url_one']);
     $img_url_two = str_replace(';', '', @$home['img_url_two']);
     $img_url_three = str_replace(';', '', @$home['img_url_three']);
     $img_url_four = str_replace(';', '', @$home['img_url_four']);
 ?>
-        <div id="carousel" class="carousel slide" data-interval="10000" data-ride="carousel">
+<script>
+  async function preloadVideo(src) {
+    const res = await fetch(src);
+    const blob = await res.blob();
+    return URL.createObjectURL(blob);
+  }
 
+  <?php foreach ($images as $key => $value): 
+    $type = \endsWith($value, ".mp4") ? "video" : "image"; ?>
+    const asset = document.createElement("<?=$type?>");
+    <?php if($type=="video"): ?>
+      asset.src = await preloadVideo("<?=$value?>");
+    <?php else: ?>
+      asset.src = "<?=$value?>";
+    <?php endif ?>
+  <?php endforeach ?>
+</script>
+
+        <div id="carousel" class="carousel slide" data-interval="10000" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner group-video" role="listbox">
-
             <?php foreach ($images as $key => $value): ?>
                 <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
                     <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
                         <?php if (strpos($value, '.mp4') !== false):?>
                         <video class="carousel-video slider-full" playsinline loop>
-                            <source src="<?=$value?>" type="video/mp4">
+                          <source src="<?=$value?>" type="video/mp4">
                         </video>
+                        <link rel="preload" as="image" href="<?=$value?>" />
                         <?php else: ?>
                         <div class="slider-full" style="background-image:url(<?php echo $value; ?>)"></div>
                         <?php endif; ?>
@@ -80,18 +96,25 @@
         </section>
 
         <section id="suscribe">
-            <div class="wrapper container is-flex-end">
-                <div class="col-md-6">
-                    <h2 class="h4 mt-0 mb-1 text-uppercase">Newsletter - Estemos <strong>conectad@s</strong></h2>
-                    <p class="text-uppercase">Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
-                </div>
-                <div class="col-md-6">
-                    <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
-                      <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
-                      <input type="submit" id="enviar" value="confirmar">
-                    <?php echo $this->Form->end(); ?>
-                </div>
+          <div class="wrapper container is-flex-end">
+            <div class="col-md-6">
+              <h2 class="h4 mt-0 mb-1 text-uppercase">Newsletter - Estemos <strong>conectad@s</strong></h2>
+              <p class="text-uppercase">Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
             </div>
+              
+            <div class="col-md-6 max-21">
+              <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>     
+              <div class="row">
+                <div class="col-md-6">
+                  <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                </div>
+                <div class="col-md-6 p-0 text-right">
+                  <input type="submit" id="enviar" value="confirmar">
+                </div>
+              </div>
+              <?php echo $this->Form->end(); ?>
+            </div>
+          </div>
         </section>
     <?php
     $popupBG=explode(';', @$home['img_popup_newsletter']);
@@ -182,7 +205,7 @@
         <?php elseif (count($popupBG)==1):?>
 
             <div class="content js-show-modal is-clickable" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('uploadUrl').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
-                <div class="tap-to-continue animated fadeIn delay3" title="Continuar a la tienda">
+                <div class="tap-to-continue animated fadeIn delay5" title="Continuar a la tienda">
                     <i class="fa fa-chevron-right mr-0"></i> 
                     <span class="ml-2">Continuar<span class="d-none d-lg-block d-xl-block"> a la tienda</span></span>
                 </div>
@@ -224,9 +247,9 @@
 
         <div class="social-bottom">
             <span class="text-uppercase"><p class="h4">Seguinos en nuestras redes</p></span>
-            <a href="https://twitter.com/chateletmoda" target="_blank">
-                <i class="fa fa-twitter"></i>
-            </a>
+            <!--a href="https://twitter.com/chateletmoda" target="_blank">
+                <i class="fa fa-twitter-x"></i>
+            </a-->
             <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" target="_blank">
                 <i class="fa fa-facebook"></i>
             </a>

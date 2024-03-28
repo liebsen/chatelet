@@ -12,10 +12,6 @@
   <div class="img-resp" style="background-image:url(<?php echo Configure::read('uploadUrl').$image_bannershop ?>)"></div>
 </div>
 
-<section id="filters">
-    <div class="wrapper"></div>
-</section>
-
 <section id="listShop">
   <div class="wrapper-fluid">
     <div class="row m-0">

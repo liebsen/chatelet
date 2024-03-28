@@ -193,7 +193,7 @@ html, body {
 
 .tap-to-continue {
 	position: fixed;
-	bottom: 1rem;
+  top: calc(100dvh - 4.5rem);
 	left: 1rem;
 	text-align: center;
 	white-space: nowrap;
@@ -267,6 +267,13 @@ html, body {
 	align-items: center;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
+.max-21 {
+  max-width: 21rem;
+}
 .btn {
 	min-height: 2.75rem;
 }
