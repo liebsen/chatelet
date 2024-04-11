@@ -4,11 +4,9 @@ var updateCart = (carrito) => {
   }
   Object.keys(carrito).forEach(e => {
     const h = $('#checkoutform').find(`input[name='${e}']`)
-    //console.log('?',e)
     if (h.length && carrito[e]) {
       h.val(carrito[e])
     }
-    //console.log(e, carrito[e])
     if ($(`.${e}`).length) {
       let value = carrito[e]
       if (typeof value === 'number') {
@@ -51,18 +49,14 @@ var updateCart = (carrito) => {
 }
 
 var save_preference = (settings) => {
-  //console.log('preference',settings)
   $.post('/carrito/preference', $.param(settings))
     .success(function(res) {
       var response = JSON.parse(res)
       if (response.success) {
-        var data = response.data
-        /*data.forEach((e) => {
-          console.log(e.name, e.price)
-        })*/
-        carrito_items = data
+        if(response.data){
+          carrito_items = response.data
+        }
         getTotals()
-        //console.log('preference ok!')
       }
     })
     .fail(function() {
@@ -77,11 +71,12 @@ var getTotals = () => {
   var payment_method = carrito_config.payment_method
   var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
   var subtotal = 0
-  carrito_items.map((e) => {
-    var price = e.price
-    //console.log(price)
-    subtotal+= parseFloat(price)
-  })
+  if(carrito_items){
+    carrito_items.map((e) => {
+      var price = e.price
+      subtotal+= parseFloat(price)
+    })
+  }
 
   $('.subtotal_price').text(formatNumber(subtotal))
   var free_shipping = subtotal >= shipping_price
@@ -96,17 +91,12 @@ var getTotals = () => {
     $('.paid-shipping-block').removeClass('hidden')
   }
   carrito.freeShipping = free_shipping
-  //console.log('free_shipping',free_shipping)
-  //console.log(carrito)
   if(carrito.coupon_bonus){
-    //console.log('coupon_bonus',carrito.coupon_bonus)
     subtotal-= carrito.coupon_bonus
   }
-  console.log("before",subtotal)
   if(bank.enable) {
     subtotal-= subtotal * (parseFloat(bank.discount) / 100)
   }
-  console.log("after", subtotal)
   if(subtotal < 1) {
     subtotal = 1
   }
