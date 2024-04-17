@@ -165,8 +165,8 @@
 							<?php if($freeShipping):?>
 							<div class="summary-item text-right free-shipping animated speed">
 								<div class="price text-success">
-									<span class="text-weight-thin">Envío </span>
-									<span id="delivery_cp"></span> <span>gratuito</span></div>
+									<span class="text-weight-thin">Envío gratuito </span>
+									<span id="delivery_cp"></span></div>
 							</div>
 							<?php else: ?>
 							<div class="summary-item text-right delivery-cost hidden animated speed">
