@@ -223,7 +223,7 @@
                     <?php endif; ?>
                     <div class="row footer-producto">
                         <?php //if($loggedIn){ ?>
-                            <div class="row carrito-count has-item-counter active" title="Cantidad de este producto">
+                            <div class="row carrito-count has-item-counter active w-100" title="Cantidad de este producto">
                                 <div class="col-xs-12 col-md-4 form-inline">
                                   <div class="form-group">
                                     <div class="input-group carrito-selector">

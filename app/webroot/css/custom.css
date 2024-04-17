@@ -124,7 +124,10 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .carrito-count {
+  margin-top: 0.5rem;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   grid-gap: 1rem;
 }
 .footer-producto {
@@ -1045,7 +1048,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #detalle .caract .colors a.grisoscuro { background: #5a5a5a; }
 #detalle .caract .colors a.verde { background: #42604e; }
 #detalle .caract .colors a.azul { background: #294c70; }
-#detalle .caract .add { background: #e10d74; min-height: 46px; min-width: 10rem; color: #FFF; display: block; font-size: 1.25rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center;border-radius: 0.5rem; transition: all 0.5s ease-in;}
+#detalle .caract .add { background: #e10d74; min-height: 2.25rem; min-width: 10rem; color: #FFF; display: block; font-size: 1.1rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center;border-radius: 0.5rem; transition: all 0.5s ease-in;}
 #detalle .caract .add.adding { background-color: #808080; }
 #detalle .caract .social { margin-top: 40px; text-align: center; }
 #detalle .caract .social a { background-image: url(../images/sprite.png); display: inline-block; height: 19px; margin: 0 25px; width: 19px; }
@@ -2410,10 +2413,6 @@ span.count.is-empty {
   margin-left: 0!important;
   margin-right: 0!important;
   border-color: #9add9b!important;
-}
-
-.input-lg {
-  font-size: 1.1rem!important;
 }
 
 .carrito-row {
