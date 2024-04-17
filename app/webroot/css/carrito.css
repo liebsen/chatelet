@@ -96,7 +96,7 @@
 }
 
 .generic-select li:hover {
-	background-color: #bebebe;
+	background-color: #e10d74;
 	background-image: url(../images/chevron_right_white.svg);
 	color: white;
 }

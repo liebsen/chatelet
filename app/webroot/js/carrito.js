@@ -8,16 +8,18 @@ var selectStore = e => {
 	$('.shipping-options li').removeClass('selected secondary')
 	$('.takeaway-options li').addClass('secondary')
 	$('.free-shipping').addClass('hidden')
-	$('.input-cp').removeClass('ok')
-	$('.input-cp').val('')
+	//$('.input-cp').removeClass('ok')
+	//$('.input-cp').val('')
 	$('#cost_container').html('')
 	$(e).addClass('selected')
   $('.delivery-cost').addClass('hidden')
+  cargo = 'takeaway'
+
   var price = parseFloat((total_orig - coupon).toFixed(2))
   format_total = formatNumber(price)
   fxTotal(format_total)
   var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
-  preferences.cargo = 'takeaway'
+  preferences.cargo = cargo
   preferences.total_price = price
   preferences.shipping_price = 0
   preferences.subtotal_price = total_orig
@@ -27,7 +29,6 @@ var selectStore = e => {
   var carrito_takeaway_text = $('.carrito_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
   onSuccessAlert(`Retirás en sucursal ${suc.replace(',','')}`, `Podes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. ${carrito_takeaway_text}`);
-	cargo = 'takeaway'
 }
 var show_cart_item = (index) => {
 	//console.log('show_cart_item')

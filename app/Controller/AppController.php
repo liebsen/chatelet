@@ -150,8 +150,13 @@ class AppController extends Controller
         Configure::write('stock_min', @$a['Setting']['value']);
         Configure::write('list_code', @$b['Setting']['value']);
 
+        $whatsapp_enabled = @$c['Setting']['value'];
+        $path = Router::url(null, false);
+        if(strstr($path, "carrito") || strstr($path, "checkout")) {
+            $whatsapp_enabled = false;
+        }
         $data = [
-            'whatsapp_enabled' => @$c['Setting']['value'],
+            'whatsapp_enabled' => $whatsapp_enabled,
             'whatsapp_text' => @$d['Setting']['value'],
             'whatsapp_phone' => @$e['Setting']['value'],
             'whatsapp_autohide' => @$f['Setting']['value'],

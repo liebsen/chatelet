@@ -1295,6 +1295,9 @@ class CarritoController extends AppController
 		}*/
 		$item = false;
 		$carro = $this->Session->read('Carro');
+
+		if(!$carro)
+			return json_encode([]);
 		$data = array();
 		$i = 0;
 		$removed = 0;
