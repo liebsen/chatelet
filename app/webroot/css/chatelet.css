@@ -243,6 +243,9 @@ html, body {
 	font-size: 5rem;
 }
 
+.badge {
+	border-radius: 0.5rem;
+}
 .d-flex {
 	display: flex;
 }

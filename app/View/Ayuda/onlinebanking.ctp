@@ -5,10 +5,10 @@
         <h1 class="m-0">CBU/Alias</h1>
         <h3 class="h3 mt-2 mw-26"><?= $data['bank_explain_title'] ?></h3>
         <?php if(isset($data['total_price'])): ?>
-        <h3 class="d-block badge bg-black mb-1 p-1">
+        <h3 class="d-block badge bg-black mb-1 p-2">
           <span class="text-white h3">Monto a transferir $<?= number_format($data['total_price'], 2, ',', '.') ?></span>
         </h3>
-        <h3 class="d-block badge bg-theme text-white p-1">
+        <h3 class="d-block badge bg-theme text-white p-2">
           <span class="text-white h3">👉 Referencia #<?= $data['id'] ?></span>
         </h3>
         <?php endif ?>
