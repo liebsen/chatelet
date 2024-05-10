@@ -101,7 +101,7 @@ var getTotals = () => {
     console.log('coupon', carrito.coupon_bonus)
     subtotal-= carrito.coupon_bonus
   }
-  if(bank.enable) {
+  if(bank.enable && payment_method == 'bank') {
     subtotal-= subtotal * (parseFloat(bank.discount) / 100)
   }
   if(subtotal < 1) {
