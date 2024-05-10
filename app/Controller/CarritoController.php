@@ -790,7 +790,7 @@ class CarritoController extends AppController
 	      ]
 	    ]);
 	    if ($coupon) {
-	    	error_log('suming check coupon:'.$coupon);
+	    	error_log('suming check coupon:'.json_encode($coupon));
 				$applicable = \filtercoupon($coupon);
 				if ($applicable->status === 'success') {
 					$discount = (float) $applicable->data['discount'];
