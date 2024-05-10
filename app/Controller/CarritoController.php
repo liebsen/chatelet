@@ -844,13 +844,13 @@ class CarritoController extends AppController
 		}
 
 	  if ($coupon_bonus) {
-	  	//$total-= $coupon_bonus;
-	  	error_log('suming total (coupon bonus): '.$total);
+	  	$total-= $coupon_bonus;
+	  	error_log('suming total (coupon bonus): '.$coupon_bonus);
 	  }
 
 	  if ($bank_bonus) {
-	  	//$total-= $bank_bonus;
-	  	error_log('suming total (bank bonus): '.$total);
+	  	$total-= $bank_bonus;
+	  	error_log('suming total (bank bonus): '.$bank_bonus);
 	  }
 
 		// Add Delivery

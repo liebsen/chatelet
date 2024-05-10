@@ -130,7 +130,7 @@
 							    	<div class="col-xs-12 option-regular">
 						          <label class="d-inline text-theme">
 						          	<span class="h4">Total a pagar</span><br>
-						          	<p class="mt-2 text-bold total-price text-left h3 mb-0">
+						          	<p class="mt-2 text-bold total-price text-left h2 mb-0">
 						          		$ <span class="total_price"></span>
 						          	</p>
 						          </span>

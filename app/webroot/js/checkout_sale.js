@@ -129,18 +129,19 @@ $(function(){
 		// mostrar leyenda solicitando la elección correcta de cuotas.
 		// Asegurate de seleccionar {cuotas} cuotas.
 		const submit = $('.checkout-btn')
-		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+		//var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 		submit.prop('disabled', true)
 		submit.addClass('disabled')
 		submit.text('Por favor espere...')
 		$('.checkoutform-container').removeClass('hide')
 
-		if(carrito.gifts && carrito.gifts.length){
+		/*if(carrito.gifts && carrito.gifts.length){
 			console.log('clear gifts')
 			carrito.gifts = []
-		}
+		}*/
 
-		localStorage.setItem('carrito', JSON.stringify(carrito))
+		localStorage.removeItem('carrito')
+		//localStorage.setItem('carrito', JSON.stringify(carrito))
 
 		//localStorage.removeItem('carrito')
 		fbq('track', 'InitiateCheckout')

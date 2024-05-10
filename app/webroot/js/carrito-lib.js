@@ -81,9 +81,11 @@ var getTotals = () => {
       subtotal+= parseFloat(price)
     })
   }
+  var shipping_price = $('#shipping_price_min').val()
   console.log('subtotal',subtotal)
   $('.subtotal_price').text(formatNumber(subtotal))
   var free_shipping = subtotal >= shipping_price
+  console.log('free_shipping',free_shipping)
   if(free_shipping) {
     $('.paid-shipping-block').addClass('hidden')
     $('.free-shipping-block').removeClass('hidden')

@@ -70,7 +70,7 @@ $(function(){
         format_total = formatNumber(price)
         console.log('total:',total)
         console.log('price:',price)
-        $('#cost').text( total );
+        //$('#cost').text( total );
         fxTotal(total)
         carrito.coupon = coupon
         carrito.coupon_bonus = discounted

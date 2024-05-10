@@ -20,6 +20,7 @@ var selectStore = e => {
   console.log('total_orig(2)',total_orig)
   console.log('coupon(2)',coupon)
   console.log('price',price)
+  $('.cost_total').text('$ ' + formatNumber(total_orig))
   format_total = formatNumber(price)
   fxTotal(format_total)
   preferences.cargo = 'takeaway'
@@ -156,7 +157,7 @@ $(document).ready(function() {
 			var a = $('.input-cp').val();
 			var b = parseInt($('.input-cp').attr('data-valid'));
 			// if((!a || !b || !c || (1>parseFloat($('#cost').text()) && !freeShipping ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
-			
+
 			if(!b || !c){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
 				$('.input-cp').focus();
 				$('.input-cp').removeClass('ok');
