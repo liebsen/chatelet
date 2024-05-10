@@ -107,9 +107,13 @@
   .growl.growl-medium {
     max-width: 280px;
     margin-left: auto;
-    margin-bottom: 0.75rem; }
+    margin-bottom: 0.75rem; 
+    min-width: 20rem;
+  }
   .growl.growl-large {
     max-width: 300px;  
     margin: 0.5rem;
-    margin-bottom: 0.75rem; } 
+    margin-bottom: 0.75rem; 
+    min-width: 20rem;
+  } 
 }

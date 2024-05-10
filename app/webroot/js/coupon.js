@@ -1,7 +1,7 @@
 var coupon = '';
 $(function(){
   $('#calculate_coupon').submit(event => {
-    console.log('calculate_coupon submit!')
+    //console.log('calculate_coupon submit!')
     var url = $('#calculate_coupon').data('url');    
     $('.coupon-info').addClass('hidden')
     $('.coupon-info').removeClass('fadeInRight, fadeOutRight')
@@ -14,7 +14,7 @@ $(function(){
     var c2 = event.target.value
 
     if (!subtotal && carrito.subtotal_price) {
-        console.log('subtotal(2)')
+        //console.log('subtotal(2)')
         subtotal = carrito.subtotal_price
     }
 
@@ -36,11 +36,12 @@ $(function(){
         } else {
           total = subtotal - discount
         }
-        console.log('total:',total)
+        //console.log('total:',total)
         //console.log('total',total)
         //console.log('discount',discount)
         //total = parseFloat(total).toFixed(2)
         discounted = parseFloat(subtotal - total)
+
         discounted_formatted = formatNumber(discounted)
 
         $('.coupon_bonus').text( discounted_formatted )
@@ -67,16 +68,17 @@ $(function(){
         coupon = coupon.toUpperCase()
 
         format_total = formatNumber(price)
-        console.log('format_total:',format_total)
-        $('#cost').text( format_total );
-        fxTotal(format_total)
+        console.log('total:',total)
+        console.log('price:',price)
+        $('#cost').text( total );
+        fxTotal(total)
         carrito.coupon = coupon
         carrito.coupon_bonus = discounted
         carrito.total_price = parseFloat(price.toFixed(2))
 
         save_preference([
-            {'coupon':coupon},
-            {'coupon_total':total},
+          {'coupon':coupon},
+          {'coupon_total':total},
         ])        
       }else{
         $('.coupon-discount').addClass('hidden')

@@ -68,7 +68,7 @@ let strtoFloat = (text) => {
 }
 
 let fxTotal = (total) => {
-  $('.cost_total').text( '$ ' + formatNumber(total) )
+  $('.calc_total').text( '$ ' + formatNumber(total) )
   const block = document.querySelector('.cost_total-container')
   block.classList.remove('fadeIn', 'fadeOut', 'delay')
   block.classList.add('hidden')

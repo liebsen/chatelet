@@ -16,7 +16,7 @@
 						<div class="control-group">
 							<label class="control-label" for="columns-text"><?php echo __('Primer linea'); ?></label>
 							<div class="controls">
-								<input type="text" class="form-control" id="" name="data[line_one]" value="<?php echo $p['Home']['line_one'] ?>">
+								<input type="text" class="form-control" name="data[line_one]" value="<?php echo $p['Home']['line_one'] ?>">
 							</div>
 						</div>
           </div>
@@ -24,7 +24,7 @@
 						<div class="control-group">
 							<label class="control-label" for="columns-text"><?php echo __('Segunda linea'); ?></label>
 							<div class="controls">
-								<input type="text" class="form-control" id="" name="data[line_two]" value="<?php echo $p['Home']['line_two'] ?>">
+								<input type="text" class="form-control" name="data[line_two]" value="<?php echo $p['Home']['line_two'] ?>">
 							</div>
 						</div>
          	</div>
@@ -32,7 +32,7 @@
 						<div class="control-group">
 							<label class="control-label" for="columns-text"><?php echo __('Tercer linea'); ?></label>
 							<div class="controls">
-								<input type="text" class="form-control" id="" name="data[line_three]" value="<?php echo $p['Home']['line_three'] ?>">
+								<input type="text" class="form-control" name="data[line_three]" value="<?php echo $p['Home']['line_three'] ?>">
 							</div>
 						</div>
 		      </div>
@@ -44,7 +44,7 @@
 								<div class="control-group">
 									<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
 									<div class="controls">
-										<input type="text" class="form-control" id="" name="data[module_one]" value="<?php echo $p['Home']['module_one'] ?>">
+										<input type="text" class="form-control" name="data[module_one]" value="<?php echo $p['Home']['module_one'] ?>">
 									</div>
 								</div>
 							</div>
@@ -102,7 +102,7 @@
 								<div class="control-group">
 									<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
 									<div class="controls">
-										<input type="text" class="form-control" id="" name="data[module_two]" value="<?php echo $p['Home']['module_two'] ?>">
+										<input type="text" class="form-control" name="data[module_two]" value="<?php echo $p['Home']['module_two'] ?>">
 									</div>
 								</div>
 		          </div>
@@ -161,7 +161,7 @@
 								<div class="control-group">
 									<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
 									<div class="controls">
-										<input type="text" class="form-control" id="" name="data[module_three]" value="<?php echo $p['Home']['module_three'] ?>">
+										<input type="text" class="form-control" name="data[module_three]" value="<?php echo $p['Home']['module_three'] ?>">
 									</div>
 								</div>
 							</div>
@@ -222,7 +222,7 @@
 								<div class="control-group">
 									<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
 									<div class="controls">
-										<input type="text" class="form-control" id="" name="data[module_four]" value="<?php echo $p['Home']['module_four'] ?>">
+										<input type="text" class="form-control" name="data[module_four]" value="<?php echo $p['Home']['module_four'] ?>">
 									</div>
 								</div>
 							</div>

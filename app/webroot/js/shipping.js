@@ -5,10 +5,17 @@ $(function(){
 		if (cost <= 0) {
 			return setTimeout( `onErrorAlert('No disponible', 'El servicio de logística ${shipping.toUpperCase()} no está disponible en este momento, intente en unos instantes.')` , 200)
 		}
-	  //var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
+
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-		//var subtotal = parseFloat($('#subtotal_compra').val()) || carrito.subtotal_price
+		var coupon = $('.coupon_bonus') ? 
+			$('.coupon_bonus').text().split('.').join('').split(',').join('.') : 
+			carrito.coupon_bonus || 0
+		var subtotal = $('#subtotal_compra') ? 
+			parseFloat($('#subtotal_compra').val()) : 
+			carrito.subtotal_price
+		//var subtotal = carrito.subtotal_price
 		cargo = 'shipment'
+		var shipping_price = carrito.shipping_price
 		$('.shipping-options li').removeClass('selected secondary')
 		$('.takeaway-options li').removeClass('selected secondary')
 		$('.shipping-options li').addClass('secondary')
@@ -16,9 +23,10 @@ $(function(){
 		$('.delivery-cost').addClass('hidden')
 		$('.shipping-cargo').text(shipping)	
 
-	//console.log('subtotal',subtotal)
-		var price = getTotals()
-		//console.log('price(1)',price)
+		var price = subtotal - coupon
+		//console.log(subtotal, coupon)
+		$('.cost_total').text('$ ' + formatNumber(subtotal + cost))
+
 		if (!freeShipping) {
 			price+= cost
 			$('#subtotal_envio').val(cost)
@@ -27,16 +35,14 @@ $(function(){
 			//console.log('cost',cost)
 			$('.cost_delivery').text( formatNumber(cost))
 		}
-		//console.log('price(2)',price)
-		//console.log('selectShipping (subtotal)', subtotal)
-		//console.log('selectShipping (total_price)', price)
-		//console.log('selectShipping (coupon_bonus)', coupon)		
-		carrito.shipping = shipping
-	  carrito.cargo = cargo
-	  carrito.shipping_price = cost
-	  carrito.total_price = price
-	  carrito.subtotal_price = subtotal
-	  localStorage.setItem('carrito', JSON.stringify(carrito))
+
+	  var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
+		preferences.shipping = shipping
+	  preferences.cargo = cargo
+	  preferences.shipping_price = cost
+	  preferences.total_price = price
+	  preferences.subtotal_price = subtotal
+	  localStorage.setItem('carrito', JSON.stringify(preferences))
 
 	  //console.log('price',price)
 		let total = formatNumber(price)
@@ -52,10 +58,12 @@ $(function(){
 		var cp = parseInt(cp_input)
 		var cost = 0
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-		var coupon = parseInt(carrito.coupon_bonus) || 0
-		//console.log('coupon',coupon)
+		var coupon = $('.coupon_bonus') ? 
+			$('.coupon_bonus').text().split('.').join('').split(',').join('.') : 
+			carrito.coupon_bonus || 0
 		var subtotal = parseFloat($('#subtotal_compra').val()) || carrito.subtotal_price
 
+		//console.log(coupon, subtotal)
 		document.querySelector('.shipping-block').classList.add('hidden')
 
 		$('.input-cp').removeClass('ok');				
@@ -77,7 +85,7 @@ $(function(){
 				$('.products-total').removeClass('hidden')
 				//free delivery
 				if (json.freeShipping){  
-					console.log('Envio gratis!')
+					//console.log('Envio gratis!')
 					// $('#subtotal_envio').val( 0 );
 					// $('#free_delivery').text('Envio gratis!');
 				}
@@ -111,6 +119,7 @@ $(function(){
 			} else {
 				$('.input-cp').addClass('wrong');
 				$('#cost').text( parseInt(0) );
+				//console.log(':::',subtotal,coupon)
 				let total = formatNumber(subtotal - coupon)
 				fxTotal(formatNumber(total))
 				setTimeout( "onErrorAlert('Sin cobertura en esta zona', 'El código postal es correcto pero no disponemos de servicio de entrega para tu área.')", 200)

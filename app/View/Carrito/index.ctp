@@ -124,7 +124,7 @@
 							}
 							echo '</div>';
 						}*/
-						echo '<div class="text-right">';
+						echo '<div class="text-right d-flex justify-content-end align-items-center gap-1">';
 						if (!empty($product['old_price'] && abs($product['old_price']-$product['price']) > 1)){
 							echo '<span class="old_price text-grey animated fadeIn delay2">$ '. \price_format($product['old_price']) .'</span>';
 						}					
@@ -165,8 +165,8 @@
 							<?php if($freeShipping):?>
 							<div class="summary-item text-right free-shipping animated speed">
 								<div class="price text-success">
-									<span class="text-weight-thin">Envío gratuito </span>
-									<span id="delivery_cp"></span></div>
+									<span class="text-weight-thin">Envío </span>
+									<span id="delivery_cp"></span> <span>gratuito</span></div>
 							</div>
 							<?php else: ?>
 							<div class="summary-item text-right delivery-cost hidden animated speed">
@@ -178,16 +178,22 @@
 							<div class="summary-item text-right <?= $promosaved ? '' : 'hidden' ?> animated speed">
 								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="">PROMO</span> <span>$ <?= \price_format($promosaved) ?></span><!--span>.00</span--></div>
 							</div>
+							<hr>
+							<div class="summary-item text-right animated speed">
+								<div class="price text-dark">
+									<span class="text-weight-thin">Subtotal </span>
+									<span class="cost_total">$ <?= \price_format($total + $promosaved) ?></span></div>
+							</div>							
 							<div class="summary-item text-right coupon-discount hidden animated speed">
-								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="promo-code"></span> <span class="coupon_bonus">0</span><!--span>.00</span--></div>
+								<div class="price text-success"><span class="text-weight-thin">Cupón </span><span class="promo-code"></span> $ <span class="coupon_bonus">0</span><!--span>.00</span--></div>
 							</div>							
 							<hr>
 							<div class="summary-item text-right">
-								<div class="cost_total-container animated speed fadeIn delay2">
+								<div class="cost_total-container animated speed fadeIn delay3">
 									<!--hr-->
 									<div class="price is-large">
 										<span class="text-weight-thin">Total </span> 
-										<span class="cost_total">$ <?= \price_format($total) ?></span><!--span>.00</span-->
+										<span class="calc_total">$ <?= \price_format($total) ?></span><!--span>.00</span-->
 									</div>
 									<small>Pagando con <?= strtoupper($payment_methods[$config['payment_method']]) ?></small>
 								</div>								
@@ -229,7 +235,7 @@
 				?>
 				</div>
 			</div>
-			<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-1 p-2">
+			<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-1 p-4">
 				<?php if (!isset($carro)): ?>
 					<a href="#" class="btn action-search cart-btn-green">Buscar</a>
 				<?php endif ?>

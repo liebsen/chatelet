@@ -4,6 +4,7 @@ var updateCart = (carrito) => {
   }
   Object.keys(carrito).forEach(e => {
     const h = $('#checkoutform').find(`input[name='${e}']`)
+    //console.log('?',e)
     if (h.length && carrito[e]) {
       h.val(carrito[e])
     }
@@ -53,15 +54,16 @@ var save_preference = (settings) => {
     .success(function(res) {
       var response = JSON.parse(res)
       if (response.success) {
-        if(response.data){
-          carrito_items = response.data
+        var data = response.data
+        if(data){
+          carrito_items = data
         }
         getTotals()
       }
     })
     .fail(function() {
       $.growl.error({
-        title: 'Ocurrio un error al actualizar el carrito',
+        title: 'Ocurrió un error al actualizar el carrito',
         message: 'Por favor, intente nuevamente en unos instantes'
       });
   }); 
@@ -70,18 +72,16 @@ var save_preference = (settings) => {
 var getTotals = () => {
   var payment_method = carrito_config.payment_method
   var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-  var coupon = parseInt(carrito.coupon_bonus) || 0
-  console.log(carrito,coupon)
   var subtotal = 0
   if(carrito_items){
     carrito_items.map((e) => {
       var price = e.price
+      //console.log(price)
       subtotal+= parseFloat(price)
     })
   }
 
   $('.subtotal_price').text(formatNumber(subtotal))
-  //console.log('subtotal',subtotal)
   var free_shipping = subtotal >= shipping_price
   if(free_shipping) {
     $('.paid-shipping-block').addClass('hidden')
@@ -93,25 +93,16 @@ var getTotals = () => {
     $('.free-shipping-block').addClass('hidden')
     $('.paid-shipping-block').removeClass('hidden')
   }
-  //console.log('subtotal(1)',subtotal)
   carrito.freeShipping = free_shipping
   if(carrito.coupon_bonus){
     subtotal-= carrito.coupon_bonus
-    console.log('subtotal(3)',subtotal)
   }
-  //console.log('payment_method',payment_method)
-  if(bank.enable && payment_method == 'bank') {
+  if(bank.enable) {
     subtotal-= subtotal * (parseFloat(bank.discount) / 100)
-    console.log('subtotal(4)',subtotal)
-  }
-  if(coupon) {
-    subtotal-= coupon 
-    //console.log('subtotal(5)',subtotal)
   }
   if(subtotal < 1) {
     subtotal = 1
   }
-  //console.log('total',subtotal)
   $('.total_price').text(formatNumber(subtotal))
   localStorage.setItem('carrito', JSON.stringify(carrito))  
   return subtotal

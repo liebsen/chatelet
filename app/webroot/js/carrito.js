@@ -2,24 +2,27 @@ var currentCarritoIndex = 0
 var cargo = ''
 var itemData = null
 var selectStore = e => {
+	var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
 	var total_orig = parseFloat($('#subtotal_compra').val())
-	var coupon = parseInt(document.querySelector('.coupon_bonus').textContent) || 0
+	//console.log('total_orig',total_orig)
+	//console.log(document.querySelector('.coupon_bonus').innerHTML)
+	var coupon = Number(preferences.coupon_bonus || 0)
 	$('.takeaway-options li').removeClass('selected secondary')
 	$('.shipping-options li').removeClass('selected secondary')
 	$('.takeaway-options li').addClass('secondary')
 	$('.free-shipping').addClass('hidden')
-	//$('.input-cp').removeClass('ok')
-	//$('.input-cp').val('')
+	$('.input-cp').removeClass('ok')
+	$('.input-cp').val('')
 	$('#cost_container').html('')
 	$(e).addClass('selected')
   $('.delivery-cost').addClass('hidden')
-  cargo = 'takeaway'
-
   var price = parseFloat((total_orig - coupon).toFixed(2))
+  console.log('total_orig(2)',total_orig)
+  console.log('coupon(2)',coupon)
+  console.log('price',price)
   format_total = formatNumber(price)
   fxTotal(format_total)
-  var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
-  preferences.cargo = cargo
+  preferences.cargo = 'takeaway'
   preferences.total_price = price
   preferences.shipping_price = 0
   preferences.subtotal_price = total_orig
@@ -29,6 +32,7 @@ var selectStore = e => {
   var carrito_takeaway_text = $('.carrito_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
   onSuccessAlert(`Retirás en sucursal ${suc.replace(',','')}`, `Podes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. ${carrito_takeaway_text}`);
+	cargo = 'takeaway'
 }
 var show_cart_item = (index) => {
 	//console.log('show_cart_item')
@@ -266,15 +270,18 @@ $(document).ready(function() {
 	})
 	
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+
 	if (carrito.cargo === 'takeaway' && carrito.store.length) {
-		$(`.takeaway-options li[store="${carrito.store}"]`).click()
+		setTimeout(() => {
+			$(`.takeaway-options li[store="${carrito.store}"]`).click()
+		}, 6000)
 	}
 
 	if (carrito.coupon && carrito.coupon.length) {
 		$('.input-coupon').val(carrito.coupon)
 		setTimeout(() => {
 			$('.btn-calculate-coupon').click()
-		}, 5000)
+		}, 3000)
 	}
 
 	if(carrito.gifts && carrito.gifts.length) {
