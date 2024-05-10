@@ -70,6 +70,7 @@ var save_preference = (settings) => {
 }
 
 var getTotals = () => {
+  console.log('getTotals')
   var payment_method = carrito_config.payment_method
   var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
   var subtotal = 0
@@ -80,13 +81,15 @@ var getTotals = () => {
       subtotal+= parseFloat(price)
     })
   }
-
+  console.log('subtotal',subtotal)
   $('.subtotal_price').text(formatNumber(subtotal))
   var free_shipping = subtotal >= shipping_price
   if(free_shipping) {
     $('.paid-shipping-block').addClass('hidden')
     $('.free-shipping-block').removeClass('hidden')
   } else {
+    console.log('shipping_price', carrito.shipping_price)
+
     if (carrito.shipping_price) {
       subtotal+= carrito.shipping_price
     }
@@ -95,6 +98,7 @@ var getTotals = () => {
   }
   carrito.freeShipping = free_shipping
   if(carrito.coupon_bonus){
+    console.log('coupon', carrito.coupon_bonus)
     subtotal-= carrito.coupon_bonus
   }
   if(bank.enable) {
@@ -103,6 +107,7 @@ var getTotals = () => {
   if(subtotal < 1) {
     subtotal = 1
   }
+  console.log('total_price',subtotal)
   $('.total_price').text(formatNumber(subtotal))
   localStorage.setItem('carrito', JSON.stringify(carrito))  
   return subtotal
