@@ -156,6 +156,7 @@ $(document).ready(function() {
 			var a = $('.input-cp').val();
 			var b = parseInt($('.input-cp').attr('data-valid'));
 			// if((!a || !b || !c || (1>parseFloat($('#cost').text()) && !freeShipping ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
+			
 			if(!b || !c){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
 				$('.input-cp').focus();
 				$('.input-cp').removeClass('ok');
