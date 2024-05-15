@@ -572,7 +572,7 @@ class CarritoController extends AppController
 		$freeShipping = false;
 		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
 			if (@$shipping_config['Setting']['value'] == 'min_price' || $shipping_price['Setting']['value'] > 1){
-				$freeShipping = intval($price) >= intval($shipping_price['Setting']['value']);
+				$freeShipping = (boolean) intval($price) >= intval($shipping_price['Setting']['value']);
 			}
 			if (!$freeShipping && $zip_code && @$shipping_config['Setting']['value'] == 'zip_code'){
 				$zip_codes = explode(',',$shipping_config['Setting']['extra']);
@@ -581,7 +581,7 @@ class CarritoController extends AppController
 					foreach($zip_codes as $code) {
 						$filter[] = trim($code);
 					}
-					$freeShipping = in_array($zip_code, $filter);
+					$freeShipping = (boolean) in_array($zip_code, $filter);
 				}
 			}
 			// error_log('shipping_value: '.@$shipping_config['Setting']['value']);

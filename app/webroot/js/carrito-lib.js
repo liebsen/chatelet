@@ -81,17 +81,16 @@ var getTotals = () => {
       subtotal+= parseFloat(price)
     })
   }
-  var shipping_price = $('#shipping_price_min').val()
-  console.log('subtotal',subtotal)
+  console.log('shipping_price', carrito.shipping_price)
+  //var shipping_price = $('#shipping_price_min').val()
+  console.log('shipping_price',window.shipping_price)
   $('.subtotal_price').text(formatNumber(subtotal))
-  var free_shipping = subtotal >= shipping_price
-  console.log('free_shipping',free_shipping)
+  var free_shipping = subtotal >= window.shipping_price
+  //console.log('free_shipping',free_shipping)
   if(free_shipping) {
     $('.paid-shipping-block').addClass('hidden')
     $('.free-shipping-block').removeClass('hidden')
   } else {
-    console.log('shipping_price', carrito.shipping_price)
-
     if (carrito.shipping_price) {
       subtotal+= carrito.shipping_price
     }

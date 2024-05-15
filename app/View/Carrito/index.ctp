@@ -10,7 +10,7 @@
 	];
 ?>
 <script>
-	var shipping_price = '<?= @$shipping_price ?>';
+	var shipping_price = '<?= @$shipping_price_min ?>';
 	var carrito_config = <?php echo json_encode($config, JSON_PRETTY_PRINT);?>;
 	var carrito_items = <?php echo json_encode($carro, JSON_PRETTY_PRINT);?>;
 	var bank = {
