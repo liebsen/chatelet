@@ -1309,15 +1309,13 @@ class CarritoController extends AppController
 			}
 			$i++;
 		}
-		// $this->Session->write('Carro', $this->get_computed($aux));
 		if (count($data)) {
-			// filter(2)
 			$this->Session->write('Carro', $this->update($data));
 		} else {
 			$this->Session->delete('Carro');
 		}
-		return json_encode($removed);
-		// return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
+		//return json_encode($removed);
+		return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 	}
 
 	private function notify_user($data, $status){
