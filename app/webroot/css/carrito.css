@@ -1,6 +1,6 @@
 /* #carrito {
 	border: 1px solid grey;
-	border-radius: 3px;
+	border-radius: 0.5rem;
 } */
 
 #heading {
@@ -171,7 +171,7 @@
 	background-color: #f8f8f8;
 	position: relative;
 	display: inline-block;
-	border-radius: 3px;
+	border-radius: 0.5rem;
 	transition: all 0.25s ease;
 }
 
@@ -194,7 +194,7 @@
 	color: white;
 	background-color: #07bc31;
 	padding: 0.75rem 1rem;
-	border-radius: 3px;
+	border-radius: 0.5rem;
 	cursor: pointer;
 	transition: all 0.5s ease-in;
 }
@@ -239,7 +239,7 @@ a.trash {
 .thumb {
 	width: 8rem;
 	float: left;
-	border-radius: 3px;
+	border-radius: 0.5rem;
 }
 
 .color {
@@ -389,7 +389,7 @@ a.pay{
 		background-size: 25%;
 		background-position: top right;
 		background-image: url('/images/free-shipping-bg.jpg');
-		border-radius: 3px;
+		border-radius: 0.5rem;
 	}	
 	.shipping-price-min-text {
 		padding: 2.5rem 1.5rem;
