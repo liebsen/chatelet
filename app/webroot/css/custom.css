@@ -897,7 +897,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #productOptions nav li { border-bottom: 1px solid rgba(194, 194, 194, 0.27); padding: 20px 0; }
 #productOptions nav li a { color: #222; font-size: 1rem; line-height: 1.1; text-transform: uppercase; font-weight: 300; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #productOptions nav li a:hover { color: magenta; }
-#productOptions nav li a.current{ color: magenta!important;font-weight: 800;font-size: 1.15rem;}
+#productOptions nav li a.current{ color: #333!important;font-weight: 800;font-size: 1.15rem;}
 #productOptions a.btBig { border: 2px solid #363633; color: #6e6e6e; display: block; font-size: 40px; font-weight: 600; padding: 240px 0; text-align: center; border-radius: 3px;}
 #productOptions a.btBig span { color: #363633; font-size: 27px; }
 #productOptions .product-list a {  /*background: #efefef;*/ 
@@ -2529,7 +2529,7 @@ span.count.is-empty {
   background-size: cover;
   background-position: center center;
   display: inline-block;
-  border-radius: 3px;
+  border-radius: 0.5rem;
   width: 100%;
   height: 100%;
 }

@@ -85,19 +85,21 @@ var getTotals = () => {
   //var shipping_price = $('#shipping_price_min').val()
   //console.log('shipping_price',window.shipping_price)
   $('.subtotal_price').text(formatNumber(subtotal))
-  var free_shipping = subtotal >= window.shipping_price
+  //var free_shipping = subtotal >= window.shipping_price
   //console.log('free_shipping',free_shipping)
-  if(free_shipping) {
+  if(carrito.freeShipping) {
+    if (carrito.freeShipping) {
+      subtotal+= carrito.shipping_price
+    }
+    console.log('a(1)')
     $('.paid-shipping-block').addClass('hidden')
     $('.free-shipping-block').removeClass('hidden')
   } else {
-    if (carrito.shipping_price) {
-      subtotal+= carrito.shipping_price
-    }
+    console.log('a(2)')
     $('.free-shipping-block').addClass('hidden')
     $('.paid-shipping-block').removeClass('hidden')
   }
-  carrito.freeShipping = free_shipping
+  //carrito.freeShipping = free_shipping
   if(carrito.coupon_bonus){
     //console.log('coupon', carrito.coupon_bonus)
     subtotal-= carrito.coupon_bonus
