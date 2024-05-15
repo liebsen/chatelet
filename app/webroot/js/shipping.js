@@ -2,6 +2,10 @@ $(function(){
 	var subtotal = $('#subtotal_compra').val()
 	selectShipping = function (e, shipping, cost) {
 		// console.log('selectShipping')
+		if(freeShipping) {
+			cost = 0
+		}
+		
 		if (cost <= 0) {
 			return setTimeout( `onErrorAlert('No disponible', 'El servicio de logística ${shipping.toUpperCase()} no está disponible en este momento, intente en unos instantes.')` , 200)
 		}
@@ -24,7 +28,7 @@ $(function(){
 		$('.shipping-cargo').text(shipping)	
 
 		var price = subtotal - coupon
-		//console.log(subtotal, coupon)
+		console.log('cost_total(2)', subtotal, cost)
 		$('.cost_total').text('$ ' + formatNumber(subtotal + cost))
 
 		if (!freeShipping) {

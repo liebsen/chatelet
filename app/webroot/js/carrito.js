@@ -19,7 +19,7 @@ var selectStore = e => {
   var price = parseFloat((total_orig - coupon).toFixed(2))
   //console.log('total_orig(2)',total_orig)
   //console.log('coupon(2)',coupon)
-  //console.log('price',price)
+  console.log('cost_total(1)',total_orig)
   $('.cost_total').text('$ ' + formatNumber(total_orig))
   format_total = formatNumber(price)
   fxTotal(format_total)
