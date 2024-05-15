@@ -272,7 +272,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-1 p-2">
+		<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-1 p-4">
 			<?php
 				echo $this->Html->link('Volver al carrito', array(
 					'controller' => 'carrito',
