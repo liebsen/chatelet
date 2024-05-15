@@ -68,8 +68,8 @@ $(function(){
         coupon = coupon.toUpperCase()
 
         format_total = formatNumber(price)
-        console.log('total:',total)
-        console.log('price:',price)
+        //console.log('total:',total)
+        //console.log('price:',price)
         //$('#cost').text( total );
         fxTotal(total)
         carrito.coupon = coupon
