@@ -1,7 +1,7 @@
 $(function(){
 	var subtotal = $('#subtotal_compra').val()
 	selectShipping = function (e, shipping, cost) {
-		// console.log('selectShipping')
+
 		if (cost <= 0) {
 			return setTimeout( `onErrorAlert('No disponible', 'El servicio de logística ${shipping.toUpperCase()} no está disponible en este momento, intente en unos instantes.')` , 200)
 		}
