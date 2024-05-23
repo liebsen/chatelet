@@ -54,7 +54,7 @@
                 <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
                     <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
                         <?php if (strpos($value, '.mp4') !== false):?>
-                        <video id="video<?=$key?>" class="carousel-video slider-full" controls="true" playsinline loop>
+                        <video id="video<?=$key?>" class="carousel-video slider-full" <?= (strpos( $_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) ? ' controls="true" ' : '' ?> playsinline loop>
                         </video>
                         <?php else: ?>
                         <div class="slider-full" style="background-image:url(<?php echo $value; ?>)"></div>
