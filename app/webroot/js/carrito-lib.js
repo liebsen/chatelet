@@ -88,13 +88,11 @@ var getTotals = () => {
   //var free_shipping = subtotal >= window.shipping_price
   //console.log('free_shipping',free_shipping)
   if(carrito.freeShipping) {
-    if (carrito.freeShipping) {
-      subtotal+= carrito.shipping_price
-    }
     console.log('a(1)')
     $('.paid-shipping-block').addClass('hidden')
     $('.free-shipping-block').removeClass('hidden')
   } else {
+    subtotal+= carrito.shipping_price
     console.log('a(2)')
     $('.free-shipping-block').addClass('hidden')
     $('.paid-shipping-block').removeClass('hidden')
