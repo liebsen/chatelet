@@ -9,6 +9,7 @@
 			<tr>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Beneficio'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Comprando mínimo'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Pagando con'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Activo'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Vigente'); ?></th>
@@ -23,6 +24,9 @@
 					</td>
 					<td>
 						<?=$coupon['Coupon']['discount']?><?=$coupon['Coupon']['coupon_type'] === 'percentage' ? '%': 'ARS'?>
+					</td>
+					<td>
+						<?=(int) $coupon['Coupon']['min_amount'] ? "$" . $coupon['Coupon']['min_amount'] : ""?>
 					</td>
 					<td>
 						<div class="d-flex justify-content-start align-center gap-1">
