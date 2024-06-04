@@ -87,6 +87,15 @@
             </div>
             <small class="text-muted">Seleccioná el método de pago válido para este cupón</small>
           </div>
+          <br />
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Valor mínimo de compra'); ?></label>
+            <div class="controls">
+              <input type="number" class="form-control" id="" name="data[min_amount]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['min_amount'] : ''; ?>" required>
+            </div>
+            <small class="text-muted">El valor mínimo de la compra para que sea efectivo el cupón</small>
+          </div>
+          <br />          
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Fecha desde'); ?></label>
             <div class="controls">

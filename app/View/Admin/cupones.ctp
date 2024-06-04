@@ -39,7 +39,7 @@
 					</td>
 
 					<td>
-						<?=\filtercoupon($coupon, $this->Session->read('Config'))->status !== 'error' ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg muted"></i>'?>
+						<?=\filtercoupon($coupon)->status !== 'error' ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg muted"></i>'?>
 					</td>
 					<td>
 						<div class="btn-group">   

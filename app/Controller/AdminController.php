@@ -86,7 +86,7 @@ class AdminController extends AppController {
 			]
 		]);
 		foreach($map as $item) {
-			if (\filtercoupon($item, $this->Session->read('Config'))->status !== 'error') {
+			if (\filtercoupon($item)->status !== 'error') {
 				$available = true;
 			}
 		}

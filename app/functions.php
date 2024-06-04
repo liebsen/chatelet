@@ -20,16 +20,16 @@ function log2file($path, $data, $mode="a"){
   chmod($path, 0777);
 }
 
-function filtercoupon ($data, $config) {
+function filtercoupon ($data, $config = null, $amount = 0) {
   $payment_method = @$config['payment_method'] ?: 'mercadopago';
   $item = $data['Coupon'];
-
-
   $coupon_type = '';
   $date = date('Y-m-d');
   $week = (string) date('w');
   $time = time();
   $hour = date('H:i:s');
+  $coupon_payment = $item['coupon_payment'] ?: "";
+  $min_amount = $item['min_amount'] ?: 0;
   $coupon_type = isset($item['hour_from']) && isset($item['hour_until']) && $item['hour_from'] !== '00:00:00' && $item['hour_until'] !== '00:00:00' ? 'time' : $coupon_type;
   $coupon_type = isset($item['date_from']) && isset($item['date_until']) && $coupon_type === '' ? 'date' : $coupon_type;
   $coupon_type = isset($item['date_from']) && isset($item['date_until']) && $coupon_type === 'time' ? 'datetime' : $coupon_type;
@@ -120,13 +120,22 @@ function filtercoupon ($data, $config) {
       break;
   }
 
-  if(strpos($item['coupon_payment'], $payment_method) === false) {
+  if($config && strpos($coupon_payment, $payment_method) === false) {
     $payments = explode(',',$item['coupon_payment']);
     $valid_for = implode(' o ', $payments);
+    $valid_for = str_replace('bank', 'transferencia', $valid_for);
     $ret = (object) [
       'status' => 'error',
-      'title' => "Restricción método de pago",
-      'message' => "Esta promo solo es válida pagando con {$valid_for}"
+      'title' => "Restricción de método de pago",
+      'message' => "Esta promo solo es válida pagando con {$valid_for} (coupon_payment: {$coupon_payment}, payment_method: ${$payment_method})"
+    ];
+  }
+
+  if($amount && $min_amount && $min_amount > $amount) {
+    $ret = (object) [
+      'status' => 'error',
+      'title' => "Restricción monto de compra",
+      'message' => "Esta promo solo es válida para compras de $ {$min_amount} o más"
     ];
   }
 

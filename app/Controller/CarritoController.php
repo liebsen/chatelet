@@ -336,6 +336,7 @@ class CarritoController extends AppController
 	}
 
 	public function coupon($cp = null){
+		$data = $this->getItemsData();
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 		$coupon = $this->Coupon->find('first', [
@@ -351,7 +352,7 @@ class CarritoController extends AppController
 				'message' => "No tenemos esa promo disponible ahora"
 			]);
 		}
-		return json_encode(\filtercoupon($coupon, $this->Session->read('Config')));
+		return json_encode(\filtercoupon($coupon, $this->Session->read('Config'), $data['price']));
 	}
 
 	public function deliveryCost($cp, $sale = null, $encode = true){
@@ -791,7 +792,7 @@ class CarritoController extends AppController
 	    ]);
 	    if ($coupon) {
 	    	error_log('suming check coupon:'.json_encode($coupon));
-				$applicable = \filtercoupon($coupon, $this->Session->read('Config'));
+				$applicable = \filtercoupon($coupon, $this->Session->read('Config'), $total_wo_discount);
 				if ($applicable->status === 'success') {
 					$discount = (float) $applicable->data['discount'];
 					if($applicable->data['coupon_type'] === 'percentage') {
