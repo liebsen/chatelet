@@ -28,7 +28,7 @@ $(function(){
 		$('.shipping-cargo').text(shipping)	
 
 		var price = subtotal - coupon
-		console.log('cost_total(2)', subtotal, cost)
+		//console.log('cost_total(2)', subtotal, cost)
 		$('.cost_total').text('$ ' + formatNumber(subtotal + cost))
 
 		if (!freeShipping) {

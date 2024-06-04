@@ -11,7 +11,6 @@ var updateCart = (carrito) => {
     if ($(`.${e}`).length) {
       let value = carrito[e]
       if (typeof value === 'number') {
-        console.log('formatNumber(1)')
         value = formatNumber(value) 
       }
       $(`.${e}`).html(value)
@@ -28,7 +27,6 @@ var updateCart = (carrito) => {
     if (carrito.freeShipping) {
       price = '<span class="text-success text-bold">Gratis</span>'
     } else {
-      console.log('formatNumber(2)')
       price = `$ ${formatNumber(carrito.shipping_price)}`
     }
     $('.shipping_price').html(price)
@@ -83,41 +81,27 @@ var getTotals = () => {
       subtotal+= parseFloat(price)
     })
   }
-  //console.log('shipping_price', carrito.shipping_price)
-  //var shipping_price = $('#shipping_price_min').val()
-  //console.log('shipping_price',window.shipping_price)
-  console.log('formatNumber(3)')
-  console.log('subtotal(1)',subtotal)
   $('.subtotal_price').text(formatNumber(subtotal))
-  console.log('subtotal(2)',subtotal)
-  //var free_shipping = subtotal >= window.shipping_price
-  //console.log('free_shipping',free_shipping)
   if(carrito.freeShipping) {
     $('.paid-shipping-block').addClass('hidden')
     $('.free-shipping-block').removeClass('hidden')
   } else {
-    console.log(carrito)
     if(carrito.shipping_price) {
       subtotal+= carrito.shipping_price
     }
-    console.log('subtotal(3)',subtotal)
     $('.free-shipping-block').addClass('hidden')
     $('.paid-shipping-block').removeClass('hidden')
   }
   //carrito.freeShipping = free_shipping
   if(carrito.coupon_bonus){
-    //console.log('coupon', carrito.coupon_bonus)
     subtotal-= carrito.coupon_bonus
   }
-  console.log('subtotal(4)',subtotal)
   if(bank.enable && payment_method == 'bank') {
     subtotal-= subtotal * (parseFloat(bank.discount) / 100)
   }
   if(subtotal < 1) {
     subtotal = 1
   }
-  //console.log('total_price',subtotal)
-  console.log('formatNumber(4)', subtotal)
   $('.total_price').text(formatNumber(subtotal))
   localStorage.setItem('carrito', JSON.stringify(carrito))  
   return subtotal

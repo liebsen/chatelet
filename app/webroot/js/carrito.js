@@ -273,7 +273,7 @@ $(document).ready(function() {
 	
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 
-	if (carrito.cargo === 'takeaway' && carrito.store.length) {
+	if (carrito.cargo === 'takeaway' && carrito.store.length && !location.hash.includes('shipment-options.shipping')) {
 		setTimeout(() => {
 			$(`.takeaway-options li[store="${carrito.store}"]`).click()
 		}, 6000)
