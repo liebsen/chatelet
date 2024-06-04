@@ -1337,6 +1337,10 @@ mark,
 .text-muted {
   color: #777;
 }
+.text-italic {
+  font-style: italic;
+}
+
 .text-primary {
   color: #337ab7;
 }

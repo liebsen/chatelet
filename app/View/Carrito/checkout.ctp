@@ -3,10 +3,12 @@
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('checkout.css?v=' . Configure::read('DIST_VERSION'), array('inline' => false));
+	echo $this->Html->script('coupon.js?v=' . Configure::read('DIST_VERSION'),array( 'inline' => false ));
 	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('DIST_VERSION'), array('inline' => false));	
 	echo $this->Html->script('checkout_sale.js?v=' . Configure::read('DIST_VERSION'),array('inline' => false));
-	echo $this->element('carrito');
+	//echo $this->element('carrito');
 ?>
+<script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <script>
 	var shipping_price = <?= $shipping_price_min ?>;
 	var carrito_config = <?php echo json_encode($this->Session->read('Config'), JSON_PRETTY_PRINT);?>;
@@ -127,7 +129,11 @@
 						          	</p>
 						          </span>
 						        </div>
-							    	<div class="col-xs-12 option-regular">
+										<div class="col-xs-12 summary-item text-right coupon-discount hidden animated speed">
+											<div class="price text-success"><span class="text-weight-thin">Cupón </span><span class="promo-code"></span> $ <span class="coupon_bonus">0</span><!--span>.00</span--></div>
+										</div>							
+
+							    	<div class="col-xs-12 option-regular cost_total-container">
 						          <label class="d-inline text-theme">
 						          	<span class="h4">Total a pagar</span><br>
 						          	<p class="mt-2 text-bold total-price text-left h2 mb-0">
@@ -136,14 +142,43 @@
 						          </span>
 						        </div>
 						      </div>
-									<div class="row card-row flex-row justify-content-start p-3 mt-2 gap-05">
+
+									<div class="coupon-info alert mt-4 alert-success animated hidden">
+										<h3>
+											<i class="fa fa-tags"></i> 
+											<span class="coupon-info-title"></span>
+										</h3>
+										<p class="coupon-info-info"></p>
+									</div>									
+
+									<!--div class="row card-row flex-row justify-content-start p-3 mt-2 gap-05">
 								  	<a href="/carrito#f:.beneficios-exclusivos" class="card-link coupon-actions-block hide">
 								  		<i class="fa fa-tag fa-lg mr-1"></i>
 								  		Ingresar cupón
 								  	</a>
-								  </div>
+								  </div-->
+							<div class="p-3">
+								<div class="coupon-click d-flex justify-content-start align-items-center gap-1 is-clickable" onclick="$('.calc-coupon').show(); $('.coupon-click').hide();">
+									<div class="png-icon" style="background-image: url(/images/gift-voucher.png)"></div> 
+									<span class="text-italic">Si tenés un cupón de descuento podés aplicarlo haciendo <span class="text-dark is-clickable">click aquí.</span></span>
 								</div>
-							</div>				
+								<div class="calc-coupon d-none">
+									<div class="d-flex justify-content-start align-items-center gap-1">
+										<div class="form-group">
+											<div class="input-group">
+											  <input type="text" name="" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
+											  <div class="input-group-btn">
+											    <button class="btn btn-danger btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Calcular</button>
+											  </div>
+											</div>
+										</div>
+										<span class="muted is-clickable" onclick="$('.calc-coupon').hide(); $('.coupon-click').show();">Cancelar</span>
+									</div>
+								</div>
+							</div>								  
+								</div>
+							</div>	
+
 						</div>
 					</div>
 					<div class="carrito-col">

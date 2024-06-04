@@ -9,6 +9,7 @@
 		'mercadopago' => 'mercado pago',
 	];
 ?>
+<script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <script>
 	var shipping_price = '<?= @$shipping_price_min ?>';
 	var carrito_config = <?php echo json_encode($config, JSON_PRETTY_PRINT);?>;
@@ -229,7 +230,6 @@
 				<?php 
 					if (isset($carro) && !empty($carro)) {
 						echo $this->element('shipping', array('freeShipping' => $freeShipping, 'carrito_takeaway_text' => $carrito_takeaway_text));
-						echo $this->element('coupon', array('total' => $total));
 						// echo $this->element('cart-toolbox', array('freeShipping' => $freeShipping, 'total' => $total));
 					}					
 				?>

@@ -82,9 +82,38 @@ html, body {
 	display: none!important;
 }
 
+.input-rounded{
+	min-height: 2.75rem;
+	font-size: 1rem;	
+	border-radius: 0.5rem;
+	border: 2px solid #dbdbdb;
+	padding: 0.5rem 1.25rem;
+	font-weight: 800;
+}
+
+.d-none {
+	display: none;
+}
+
 .w-100 {
    width: 100%!important;
 }
+
+.text-muted {
+  color: #777;
+}
+.text-italic {
+  font-style: italic;
+}
+
+.png-icon  {
+	background-position: center center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 4rem;
+	height: 3rem;
+}
+
 
 
 /* say hello to my little dwarfs - Hello */
