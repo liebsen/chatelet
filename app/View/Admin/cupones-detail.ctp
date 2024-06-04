@@ -75,7 +75,7 @@
           </div>
         </div> 
         <div class="col-md-6">
-          <h4 class="sub-header">Validez</h4>
+          <h4 class="sub-header">Restricciones</h4>
           <br />
           <div class="control-group">
             <!--input type="hidden" id="coupon_payment" name="data[coupon_payment][]" value="<?= isset($coupon) ? $coupon['Coupon']['coupon_payment'] : '' ?>" /-->
