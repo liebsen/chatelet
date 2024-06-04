@@ -9,6 +9,7 @@
 			<tr>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Beneficio'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Pagando con'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Activo'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Vigente'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -24,10 +25,21 @@
 						<?=$coupon['Coupon']['discount']?><?=$coupon['Coupon']['coupon_type'] === 'percentage' ? '%': 'ARS'?>
 					</td>
 					<td>
-						<?=$coupon['Coupon']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
+						<div class="d-flex justify-content-start align-center gap-1">
+							<span title="Pagando con transferencia">
+								<?=strpos($coupon['Coupon']['coupon_payment'], 'bank') !== false ? '<i class="gi gi-bank fa-lg text-success"></i>' : '<i class="gi gi-bank fa-lg muted"></i>'?>
+							</span>
+							<span title="Pagando con Mercadopago">
+								<?=strpos($coupon['Coupon']['coupon_payment'], 'mercadopago') !== false ? '<i class="gi gi-credit_card fa-lg text-success"></i>' : '<i class="gi gi-credit_card fa-lg muted"></i>'?>
+							</span>
+						</div>
 					</td>
 					<td>
-						<?=\filtercoupon($coupon)->status !== 'error' ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
+						<?=$coupon['Coupon']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg muted"></i>'?>
+					</td>
+
+					<td>
+						<?=\filtercoupon($coupon, $this->Session->read('Config'))->status !== 'error' ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg muted"></i>'?>
 					</td>
 					<td>
 						<div class="btn-group">   

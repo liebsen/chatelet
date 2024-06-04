@@ -1784,6 +1784,11 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	    		if ($this->request->is('post')) {
 	    			$this->autoRender = false;
 	    			$data = $this->request->data;
+
+	    			if(isset($data['coupon_payment'])){
+	    				$data['coupon_payment'] = implode(',',array_filter($data['coupon_payment']));
+	    			}
+
 			      $this->Coupon->save($data);
 	    		} else {
 		    		$hasId = array_key_exists(1, $this->request->pass);

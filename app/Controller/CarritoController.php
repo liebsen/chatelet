@@ -351,7 +351,7 @@ class CarritoController extends AppController
 				'message' => "No tenemos esa promo disponible ahora"
 			]);
 		}
-		return json_encode(\filtercoupon($coupon));
+		return json_encode(\filtercoupon($coupon, $this->Session->read('Config')));
 	}
 
 	public function deliveryCost($cp, $sale = null, $encode = true){
@@ -791,7 +791,7 @@ class CarritoController extends AppController
 	    ]);
 	    if ($coupon) {
 	    	error_log('suming check coupon:'.json_encode($coupon));
-				$applicable = \filtercoupon($coupon);
+				$applicable = \filtercoupon($coupon, $this->Session->read('Config'));
 				if ($applicable->status === 'success') {
 					$discount = (float) $applicable->data['discount'];
 					if($applicable->data['coupon_type'] === 'percentage') {

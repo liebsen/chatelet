@@ -76,6 +76,17 @@
         </div> 
         <div class="col-md-6">
           <h4 class="sub-header">Validez</h4>
+          <br />
+          <div class="control-group">
+            <!--input type="hidden" id="coupon_payment" name="data[coupon_payment][]" value="<?= isset($coupon) ? $coupon['Coupon']['coupon_payment'] : '' ?>" /-->
+            <label class="control-label" for="columns-text"><?php echo __('Pagando con'); ?></label>
+            <div class="controls">
+              <?php $selected = isset($coupon) && $coupon['Coupon']['coupon_payment'] ? $coupon['Coupon']['coupon_payment'] : '';?>
+                <input type="checkbox" class="coupon_payment" name="coupon_payment[]" value="bank" id="coupon_payment_bank" <?= strpos($selected, 'bank') !== false ? ' checked' : '' ?>/> <label for="coupon_payment_bank"> &nbsp;Transferencia</label><br>
+                <input type="checkbox" class="coupon_payment" name="coupon_payment[]" value="mercadopago" id="coupon_payment_mp" <?= strpos($selected, 'mercadopago') !== false ? ' checked' : '' ?>/> <label for="coupon_payment_mp"> &nbsp;Mercadopago</label><br>
+            </div>
+            <small class="text-muted">Seleccioná el método de pago válido para este cupón</small>
+          </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Fecha desde'); ?></label>
             <div class="controls">

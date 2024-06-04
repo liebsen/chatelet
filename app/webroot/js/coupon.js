@@ -1,12 +1,13 @@
 var coupon = '';
 $(function(){
   $('#calculate_coupon').submit(event => {
+    event.preventDefault();
+
     //console.log('calculate_coupon submit!')
     var url = $('#calculate_coupon').data('url');    
     $('.coupon-info').addClass('hidden')
     $('.coupon-info').removeClass('fadeInRight, fadeOutRight')
     // $('.coupon-info').html('')
-    event.preventDefault();
     var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
     var coupon  = $('.input-coupon').val();
     var subtotal = parseFloat($('#subtotal_compra').val())
@@ -14,12 +15,12 @@ $(function(){
     var c2 = event.target.value
 
     if (!subtotal && carrito.subtotal_price) {
-        //console.log('subtotal(2)')
-        subtotal = carrito.subtotal_price
+      //console.log('subtotal(2)')
+      subtotal = carrito.subtotal_price
     }
 
     if (!freeShipping && !delivery_cost && carrito.shipping_price) {
-        delivery_cost = carrito.shipping_price
+      delivery_cost = carrito.shipping_price
     }
 
     $('#free_delivery').text('');
