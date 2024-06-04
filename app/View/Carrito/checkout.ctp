@@ -157,28 +157,27 @@
 								  		Ingresar cupón
 								  	</a>
 								  </div-->
-							<div class="p-3">
-								<div class="coupon-click d-flex justify-content-start align-items-center gap-1 is-clickable" onclick="$('.calc-coupon').show(); $('.coupon-click').hide();">
-									<div class="png-icon" style="background-image: url(/images/gift-voucher.png)"></div> 
-									<span class="text-italic">Si tenés un cupón de descuento podés aplicarlo haciendo <span class="text-dark is-clickable">click aquí.</span></span>
-								</div>
-								<div class="calc-coupon d-none">
-									<div class="d-flex justify-content-start align-items-center gap-1">
-										<div class="form-group">
-											<div class="input-group">
-											  <input type="text" name="" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
-											  <div class="input-group-btn">
-											    <button class="btn btn-danger btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Calcular</button>
-											  </div>
+									<div class="pt-3 min-h-5">
+										<div class="coupon-click d-flex justify-content-start align-items-center gap-1 is-clickable" onclick="$('.calc-coupon').show(); $('.coupon-click').hide();">
+											<div class="png-icon" style="background-image: url(/images/gift-voucher.png)"></div> 
+											<span class="text-italic">Si tenés un cupón de descuento podés aplicarlo haciendo <span class="text-dark is-clickable">click aquí.</span></span>
+										</div>
+										<div class="calc-coupon d-none">
+											<div class="d-flex justify-content-start align-items-center gap-1">
+												<div class="form-group">
+													<div class="input-group">
+													  <input type="text" name="" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
+													  <div class="input-group-btn">
+													    <button class="btn btn-danger btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Calcular</button>
+													  </div>
+													</div>
+												</div>
+												<span class="muted is-clickable" onclick="$('.calc-coupon').hide(); $('.coupon-click').show();">Cancelar</span>
 											</div>
 										</div>
-										<span class="muted is-clickable" onclick="$('.calc-coupon').hide(); $('.coupon-click').show();">Cancelar</span>
-									</div>
+									</div>								  
 								</div>
-							</div>								  
-								</div>
-							</div>	
-
+							</div>
 						</div>
 					</div>
 					<div class="carrito-col">

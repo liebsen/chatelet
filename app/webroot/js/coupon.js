@@ -6,6 +6,10 @@ function submitCoupon() {
   // $('.coupon-info').html('')
   var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
   var coupon  = $('.input-coupon').val();
+  if(!coupon.length) {
+    onWarningAlert('Error','Por favor, ingresá un código de cupón')
+    return false
+  }
   var subtotal = parseFloat($('#subtotal_compra').val())
   var delivery_cost = $('#subtotal_envio').val() || 0
   var c2 = event.target.value
