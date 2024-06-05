@@ -1,5 +1,5 @@
 :root {
-  --box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  --box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px;
   --box-shadow-inset: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   --box-shadow-downwards: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;;
 }
@@ -1702,8 +1702,8 @@ span.out{
   border: 1px solid #363633;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  font-size: 1.25rem;
-  font-weight: 300;
+  font-size: 1rem;
+  font-weight: 800;
   text-decoration: none;    
   transition: all 0.25s ease;
 }
@@ -2168,6 +2168,10 @@ span.out{
   max-width: 18rem;
   margin: auto;
   min-height: 3rem;
+}
+
+.coupon-info {
+  border-radius: 0.5rem;
 }
 
 .coupon-text h3 {
@@ -2740,7 +2744,7 @@ span.count.is-empty {
   }
   .card {
     box-shadow: var(--box-shadow);
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-top: 13px;

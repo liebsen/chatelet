@@ -1,6 +1,6 @@
 function submitCoupon() {
   $('.coupon-info').addClass('hidden')
-  $('.coupon-info').removeClass('fadeInRight, fadeOutRight')
+  $('.coupon-info').removeClass('fadeIn, fadeOutRight')
   // $('.coupon-info').html('')
   var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
   var coupon  = $('.input-coupon').val();
@@ -46,7 +46,7 @@ function submitCoupon() {
       $('.coupon_bonus').text( "$ " + discounted_formatted )
       $('.products-total').removeClass('hidden')
       $('.coupon-discount').removeClass('hidden')
-      $('.coupon-discount').addClass('fadeInRight')
+      $('.coupon-discount').addClass('fadeIn')
       // console.log(parseFloat($('#cost').text()));
       $('.input-coupon').removeClass('wrong');
       $('.input-coupon').addClass('ok');
@@ -54,7 +54,7 @@ function submitCoupon() {
       $('.coupon-info-title').text(json.data.code)
       $('.coupon-info-info').text(json.data.info)
       $('.coupon-info').removeClass('hidden')
-      $('.coupon-info').addClass('fadeInRight')
+      $('.coupon-info').addClass('fadeIn')
       $('.promo-code').text(json.data.code)
       $('.free-shipping').addClass('hidden')
       var price = parseFloat(total) + parseFloat(delivery_cost)
@@ -70,7 +70,7 @@ function submitCoupon() {
       //console.log('total:',total)
       //console.log('price:',price)
       //$('#cost').text( total );
-      console.log('total(10)',total)
+      //console.log('total(10)',total)
       fxTotal(total)
 
       window.coupon_bonus = discounted

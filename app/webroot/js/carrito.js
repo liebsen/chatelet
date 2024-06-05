@@ -277,14 +277,14 @@ $(document).ready(function() {
 	if (carrito.cargo === 'takeaway' && carrito.store.length && !location.hash.includes('shipment-options.shipping')) {
 		setTimeout(() => {
 			$(`.takeaway-options li[store="${carrito.store}"]`).click()
-		}, 6000)
+		}, 2000)
 	}
 
 	if (carrito.coupon && carrito.coupon.length) {
 		$('.input-coupon').val(carrito.coupon)
 		setTimeout(() => {
 			$('.btn-calculate-coupon').click()
-		}, 3000)
+		}, 1000)
 	}
 
 	if(carrito.gifts && carrito.gifts.length) {

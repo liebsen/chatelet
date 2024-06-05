@@ -140,7 +140,7 @@
 						        </div>
 						      </div>
 
-									<div class="coupon-info alert mt-4 alert-success animated hidden">
+									<div class="coupon-info alert mt-4 mb-0 alert-success animated hidden">
 										<h3>
 											<i class="fa fa-tags"></i> 
 											<span class="coupon-info-title"></span>
@@ -234,7 +234,7 @@
 							<div class="is-rounded pt-3">
 						    <h5 class="card-title">
 									<i class="fa fa-user"></i>
-									Ingresá tus datos para finalizar la compra
+									Ingresá tus datos para finalizar tu compra
 						    </h5>
 						    <h6 class="card-subtitle">Asegurate de verificar y actualizar tus datos correctos para que tu compra llegue a tu domicilio antes y mejor.</h6>
 								<input type="hidden" name="shipping" value=""/>
@@ -297,11 +297,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="button-group-fixed-bottom p-2 animated slideInUp delay1">
+		<div class="button-group-fixed-bottom p-4 animated slideInUp delay1">
 			<div class="d-flex justify-content-center align-items-center gap-1 text-center option-regular">
 				<span class="text-theme h3 m-0">Total a pagar <span class="calc_total"></span></span>
 			</div>
-			<div class="d-flex justify-content-center align-items-center gap-1 p-2">
+			<div class="d-flex justify-content-center align-items-center gap-1 pt-3">
 				<?php
 					echo $this->Html->link('Ver carrito', array(
 						'controller' => 'carrito',

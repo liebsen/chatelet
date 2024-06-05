@@ -111,7 +111,7 @@
 							<label for="codigo-postal">Código Postal</label>
 							<input type="text" id="codigo-postal" class="form-control" name="data[User][postal_address]" />
 						</div>
-						<input type="submit" id="enviar-registro" value="Enviar" />
+						<input type="submit" id="enviar-registro" value="Actualizar mis datos" />
 						<?php echo $this->Form->end(); ?>
 					</div>
 					<div class="col-md-2"></div>
