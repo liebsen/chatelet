@@ -297,7 +297,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="button-group-fixed-bottom p-2">
+		<div class="button-group-fixed-bottom p-2 animated slideInUp delay1">
 			<div class="d-flex justify-content-center align-items-center gap-1 text-center">
 				<span class="text-theme h3">A pagar: <span class="calc_total"></span></span>
 			</div>
