@@ -156,10 +156,10 @@
 						<div class="resume-totals animated fadeIn delay2">
 							<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 							<input type="hidden" id="subtotal_envio" value="" />
-							<div class="summary-item text-right">
+							<!--div class="summary-item text-right">
 								<div class="price text-muted">Resumen de tu compra</div>								
 							</div>
-							<hr>
+							<hr-->
 							<div class="summary-item text-right products-total">
 								<div class="price text-dark"><span class="text-weight-thin">Productos </span> $ <?= \price_format($total + $promosaved) ?></div>
 							</div>

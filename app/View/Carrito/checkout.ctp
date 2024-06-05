@@ -91,7 +91,7 @@
 												    </span>
 												  <?php endif ?>
 												  	<br><a href="/carrito#f:.shipment-options.takeaway" class="card-link">
-												    	<i class="fa fa-truck"></i> Retirar en sucursal
+												    	<i class="fa fa-car fa-lg mr-1"></i> Retirar en sucursal
 												    </a>
 							          	</p>
 							          </div>
