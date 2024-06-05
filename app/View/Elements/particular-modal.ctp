@@ -86,7 +86,7 @@
 						</div>
 					</div>
 					<div class="col-md-6 mh-4">
-						<label class="ml-1" for="nacimiento">Fecha de Nacimiento (dd/mm/aaaa) </label>
+						<label class="ml-1" for="nacimiento">Fecha de Nacimiento</label>
 						<div class="form-group">
 							<?php
 								echo '<input type="text" class="datepicker form-control" name="data[User][birthday]" value="'. 

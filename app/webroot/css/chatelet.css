@@ -54,8 +54,6 @@ html, body {
 
 .modal-body{
 	background-color: #f8f8f8;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
 }
 
 .modal-body label {
@@ -387,6 +385,10 @@ html, body {
 	line-height: 1.5;
 }
 
+.form-control {
+	border-radius: 0.5rem!important;	
+}
+
 .form-control:not(select) {
 	border-width: 2px!important;
 	padding: 1.25rem 0.75rem!important;
@@ -699,10 +701,9 @@ select.form-control{
 .modal-dialog {
   margin:0!important;
 }
+
 .modal-content {
   min-height: 100vh;
-	border-radius: 1rem;
-	margin: 2rem auto;
 }
 
 .modal-title {
@@ -716,8 +717,20 @@ select.form-control{
 .modal-header {
 	min-height: 50px;
 	background-color: #e10c76;
-	border-top-left-radius: 1rem;
-	border-top-right-radius: 1rem;
+}
+
+@media(min-width: 768px) {
+	.modal-header {
+		border-top-left-radius: 1rem;
+		border-top-right-radius: 1rem;
+	}
+	.modal-content {
+		border-radius: 1rem;
+	}
+	.modal-body {
+  	border-bottom-left-radius: 1rem;
+  	border-bottom-right-radius: 1rem;
+  }
 }
 
 .modal-header .close {
@@ -862,9 +875,9 @@ select.form-control{
 }
 .card-link {
 	display: inline-block;
-	color: #dd6aa6;
+	color: #e398c1;
 	font-weight: 600;
-	padding: 0.75rem 0.5rem;
+	padding: 0.75rem;
 	border: 2px solid #e398c1;
 	border-radius: 0.5rem;
 	line-height: 1;
@@ -879,8 +892,8 @@ select.form-control{
 	transition: all 0.25s ease;
 }
 .card-link:hover {
-	/*background-color: #e60088; */
-	color: #e398c1;
+	background-color: #e398c1;
+	color: white;
 }
 .card-text {
 	min-height: 2rem;

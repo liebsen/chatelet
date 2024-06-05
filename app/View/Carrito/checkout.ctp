@@ -60,11 +60,11 @@
 			                  <div class="row d-flex justify-content-start p-1 mt-2 gap-05">
 			                    <div data-toggle="modal" data-target="#particular-modal" class="col-xs-12 col-md-6 card-link">
 			                      <i class="fa fa-user-o fa-lg mr-1"></i>
-			                       Modificar datos
+			                       Cambiar datos
 			                    </div>
 			                    <div onclick="$('.checkoutform-container').removeClass('hide');$('input[name=street]').focus()" class="card-link col-xs-12 col-md-6">
 			                      <i class="fa fa-map-marker fa-lg mr-1"></i>
-			                       Modificar dirección
+			                       Cambiar dirección
 			                    </div>
 			                  </div>
 						        	</label>				          
