@@ -1050,7 +1050,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #detalle .caract .colors a.grisoscuro { background: #5a5a5a; }
 #detalle .caract .colors a.verde { background: #42604e; }
 #detalle .caract .colors a.azul { background: #294c70; }
-#detalle .caract .add { background: #e10d74; min-height: 2.25rem; min-width: 10rem; color: #FFF; display: block; font-size: 1.1rem; font-weight: 800;padding: 0.75rem 1rem; text-align: center;border-radius: 0.5rem; transition: all 0.5s ease-in;}
+#detalle .caract .add { background: #e10d74; min-height: 2.25rem; min-width: 10rem; color: #FFF; display: block; font-size: 1.1rem; font-weight: 800;padding: 1rem; text-align: center;border-radius: 0.5rem; transition: all 0.5s ease-in;}
 #detalle .caract .add.adding { background-color: #808080; }
 #detalle .caract .social { margin-top: 40px; text-align: center; }
 #detalle .caract .social a { background-image: url(../images/sprite.png); display: inline-block; height: 19px; margin: 0 25px; width: 19px; }
@@ -1083,7 +1083,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   display: block; 
   color: #404040;
   font-size: 1rem;
-  line-height: 1.25;
+  line-height: 1;
+  padding-top: 0.5rem;
   font-weight: 800;
   white-space: break-spaces;
   /*margin-right: 1rem;
@@ -1100,6 +1101,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   background-size: cover;
   background-color: whitesmoke;
   transition: all 0.15s linear;
+  border-radius: 0.5rem;
   /*background-color: #f8f8f8;
   width: 100%;
   width: 6rem;

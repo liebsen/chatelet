@@ -276,7 +276,9 @@ html, body {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: #f8f8f8;
+	/*background-color: #f8f8f8;*/
+  background: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.7) 50%, hsla(0, 0%, 100%, 0.9) 70%, white);
+  box-shadow: none;	
 }
 .icon-huge .fa {
 	font-size: 5rem;
@@ -428,16 +430,21 @@ select.form-control{
   margin: auto;
 }
 
+.carrito-selector input {
+	border-radius: 0!important;
+	border-color: white;
+	background-color: white;
+}
 .product-count:focus {
 	background-color: #ffcc66;
 }
 
 .input-group-addon.input-lg {
-	background-color: white;
-	border: none;
-  background-color: white;
+	background-color: #e10d74;
+	border-color: #e10d74;
   box-shadow: 2px 2px 0 #6661;
   border-radius: 0.25rem;
+  color: white!important;
 }
 
 .input-group-append {
