@@ -315,7 +315,9 @@ html, body {
 .items-end {
   align-items: flex-end;
 }
-
+.max-25 {
+  max-width: 25rem;
+}
 .max-21 {
   max-width: 21rem;
 }
