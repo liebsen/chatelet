@@ -299,7 +299,7 @@
 			<div class="d-flex justify-content-center align-items-center gap-1 text-center option-regular">
 				<span class="text-theme h3 m-0">Total a pagar <span class="calc_total"></span></span>
 			</div>
-			<div class="d-flex justify-content-center align-items-center gap-1 pt-3">
+			<div class="d-flex justify-content-center align-items-center gap-05 pt-3">
 				<?php
 					echo $this->Html->link('Ver carrito', array(
 						'controller' => 'carrito',
