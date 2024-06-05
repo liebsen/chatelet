@@ -241,7 +241,7 @@
 				<?php endif ?>
 				<a class="btn keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			  <?php if (isset($carro) && !empty($carro)) :?>
-			    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-pink" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Ir a Checkout</a>
+			    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-pink" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
 			  <?php endif ?>
 			</div>
 		</div>

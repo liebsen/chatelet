@@ -69,6 +69,18 @@ var save_preference = (settings) => {
   }); 
 }
 
+var getItems = () => {
+  var subtotal = 0
+  if(carrito_items){
+    carrito_items.map((e) => {
+      var price = e.price
+      //console.log(price)
+      subtotal+= parseFloat(price)
+    })
+  }
+  return subtotal
+}
+
 var getTotals = () => {
   //console.log('getTotals')
   var payment_method = carrito_config.payment_method

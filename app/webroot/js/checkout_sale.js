@@ -89,12 +89,12 @@ var select_payment = (e,item) => {
 	if(!selected) {
 		return false
 	}
-	var subtotal = getTotals()
+	var totals = getTotals()
 	console.log(bank)
 	console.log(selected === 'bank',bank.enable,bank.discount_enable,bank.discount)
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
 		console.log('a(1)')
-		bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
+		bank_bonus = totals.total * (parseFloat(bank.discount) / 100)
 		$('.bank_bonus').text(formatNumber(bank_bonus))
 		$('.bank-block').removeClass('hide')
 		$('.bank-block').addClass('animated fadeIn')

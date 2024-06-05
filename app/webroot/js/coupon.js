@@ -1,3 +1,32 @@
+function resetCoupon() {
+  var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+  $('.calc-coupon').hide(); 
+  $('.coupon-click').show();
+  $('#coupon_name').val('')
+  window.coupon_bonus = 0
+
+  var subtotal = getTotals()
+  var delivery_cost = $('#subtotal_envio').val() || 0
+  var c2 = event.target.value
+
+  if (!subtotal && carrito.subtotal_price) {
+    subtotal = carrito.subtotal_price
+  }
+
+  if (!freeShipping && !delivery_cost && carrito.shipping_price) {
+    delivery_cost = carrito.shipping_price
+  }  
+  console.log('subtotal(2)',subtotal)
+  console.log('delivery_cost(2)',delivery_cost)
+  var price = parseFloat(subtotal)
+  
+  fxTotal(price)
+
+  $('.coupon-discount').addClass('hidden')
+
+  carrito.total_price = parseFloat(price.toFixed(2))
+  localStorage.setItem('carrito', JSON.stringify(carrito))
+}
 function submitCoupon() {
   $('.coupon-info').addClass('hidden')
   $('.coupon-info').removeClass('fadeIn, fadeOutRight')
@@ -8,12 +37,12 @@ function submitCoupon() {
     onWarningAlert('Error','Por favor, ingresá un código de cupón')
     return false
   }
+  var items = getItems()
   var subtotal = getTotals()
   var delivery_cost = $('#subtotal_envio').val() || 0
   var c2 = event.target.value
 
   if (!subtotal && carrito.subtotal_price) {
-    //console.log('subtotal(2)')
     subtotal = carrito.subtotal_price
   }
 
@@ -32,15 +61,11 @@ function submitCoupon() {
       let discounted = 0
       let total = 0
       if (coupon_type === 'percentage') {
-        total = subtotal * (1 - discount / 100)
+        total = items * (1 - discount / 100)
       } else {
-        total = subtotal - discount
+        total = items - discount
       }
-      //console.log('total:',total)
-      //console.log('total',total)
-      //console.log('discount',discount)
-      //total = parseFloat(total).toFixed(2)
-      discounted = parseFloat(subtotal - total)
+      discounted = parseFloat(items - total)
       discounted_formatted = formatNumber(discounted)
 
       $('.coupon_bonus').text( "$ " + discounted_formatted )
@@ -59,31 +84,17 @@ function submitCoupon() {
       $('.free-shipping').addClass('hidden')
       var price = parseFloat(total) + parseFloat(delivery_cost)
       
-      //console.log('subtotal',subtotal)
-      //console.log('delivery_cost',delivery_cost)
-      //console.log('discounted',discounted)
-      //console.log('price',price)
-
       coupon = coupon.toUpperCase()
 
+  console.log('total(1)',total)
+  console.log('delivery_cost(1)',delivery_cost)
       format_total = formatNumber(price)
-      //console.log('total:',total)
-      //console.log('price:',price)
-      //$('#cost').text( total );
-      //console.log('total(10)',total)
-      fxTotal(total)
+      fxTotal(price)
 
       window.coupon_bonus = discounted
-
-      //carrito.coupon = coupon
-      //carrito.coupon_bonus = discounted
       carrito.total_price = parseFloat(price.toFixed(2))
 
       $('#coupon_name').val(coupon)
-      /*save_preference([
-        {'coupon':coupon},
-        {'coupon_total':total},
-      ])*/        
     }else{
       $('.coupon-discount').addClass('hidden')
       //carrito.coupon = ''

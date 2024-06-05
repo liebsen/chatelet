@@ -124,7 +124,7 @@
 						        </div>
 										<div class="col-xs-12 option-regular coupon-discount hidden animated speed">
 						          <label class="d-inline text-theme">
-						          	<span class="h4">Descuento</span><br>
+						          	<span class="h4">Descuento Cupón</span><br>
 						          	<p class="mt-2 text-bold text-left h2 mb-0">
 						          		<span class="coupon_bonus"></span>
 						          	</p>
@@ -162,7 +162,7 @@
 											<div class="d-flex justify-content-center align-items-center gap-1">
 										  	<input type="text" id="coupon_name" name="coupon" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
 									    	<button id="btn-calculate-coupon" class="btn btn-danger btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Calcular</button>
-									    	<span class="muted is-clickable" onclick="$('.calc-coupon').hide(); $('.coupon-click').show();$('#coupon_name').val('')">Cancelar</span>
+									    	<span class="muted is-clickable" onclick="resetCoupon()">Cancelar</span>
 											</div>
 										</div>
 									</div>								  
