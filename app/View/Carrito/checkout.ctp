@@ -178,7 +178,7 @@
 						    	<i class="fa fa-credit-card"></i>
 						    	¿Cómo querés pagar tu compra?
 						    </h5>
-						    <h6 class="card-subtitle">Total $ <span class="total_price"></span>.  Seleccioná un método de pago para realizar esta compra</h6>
+						    <h6 class="card-subtitle">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</h6>
 						    <div class="row card-row payment_method pl-3 pr-3">
 						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
@@ -298,8 +298,8 @@
 			</div>
 		</div>
 		<div class="button-group-fixed-bottom p-2 animated slideInUp delay1">
-			<div class="d-flex justify-content-center align-items-center gap-1 text-center">
-				<span class="text-theme h3">A pagar: <span class="calc_total"></span></span>
+			<div class="d-flex justify-content-center align-items-center gap-1 text-center option-regular">
+				<span class="text-theme h3 m-0">Total a pagar <span class="calc_total"></span></span>
 			</div>
 			<div class="d-flex justify-content-center align-items-center gap-1 p-2">
 				<?php
