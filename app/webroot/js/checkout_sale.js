@@ -90,7 +90,10 @@ var select_payment = (e,item) => {
 		return false
 	}
 	var subtotal = getTotals()
+	console.log(bank)
+	console.log(selected === 'bank',bank.enable,bank.discount_enable,bank.discount)
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
+		console.log('a(1)')
 		bank_bonus = subtotal * (parseFloat(bank.discount) / 100)
 		$('.bank_bonus').text(formatNumber(bank_bonus))
 		$('.bank-block').removeClass('hide')
@@ -98,6 +101,7 @@ var select_payment = (e,item) => {
 		select_radio('payment_dues', 1)
 		$('.payment_dues label').not(':first-child').addClass('hide')
 	} else {
+		console.log('a(2)')
 		$('.payment_dues label').removeClass('hide')
 		$('.bank-block').addClass('hide')
 	}

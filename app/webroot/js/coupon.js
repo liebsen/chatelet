@@ -74,14 +74,16 @@ function submitCoupon() {
       //console.log('price:',price)
       //$('#cost').text( total );
       fxTotal(total)
+
       carrito.coupon = coupon
       carrito.coupon_bonus = discounted
       carrito.total_price = parseFloat(price.toFixed(2))
 
-      save_preference([
+      $('input[name="coupon"]').val(coupon)
+      /*save_preference([
         {'coupon':coupon},
         {'coupon_total':total},
-      ])        
+      ])*/        
     }else{
       $('.coupon-discount').addClass('hidden')
       carrito.coupon = ''

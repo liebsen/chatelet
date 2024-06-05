@@ -184,6 +184,12 @@ html, body {
   margin-bottom: 0!important;
 }
 
+.both{
+	border: 1px solid #ccc;
+	padding-left: 5px;
+	margin: 0;
+}
+
 .text-uppercase {
   text-transform: uppercase;
 }
@@ -343,6 +349,18 @@ html, body {
 }
 .bg-theme {
   background-color: #FF71CD!important;
+}
+
+.border-theme {
+	border: 2px solid #FF71CD;
+	color: #FF71CD;
+	border-radius: 1rem;
+}
+
+.border-dark {
+	border: 2px solid #333;
+	color: #333;
+	border-radius: 1rem;
 }
 
 .d-block {

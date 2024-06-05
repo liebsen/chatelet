@@ -783,7 +783,8 @@ class CarritoController extends AppController
 		// Check coupon
 		$coupon_bonus = 0;
 		$bank_bonus = 0;
-		if (isset($user['coupon']) && $user['coupon'] !== '')  {
+		if (isset($user['coupon']) && $user['	'] !== '') {
+			error_log('checking coupon: '.$user['coupon']);
 	    $coupon = $this->Coupon->find('first', [
 	      'conditions' => [
 	        'code' => $user['coupon'],
@@ -1290,7 +1291,6 @@ class CarritoController extends AppController
 
 	public function remove($id = null) {
 		$this->autoRender = false;
-
 		/*if (isset($product_id) && $this->Session->check('Carro.'. $product_id)) {
 			$this->Session->delete('Carro.'. $product_id);
 		}*/
@@ -1298,7 +1298,7 @@ class CarritoController extends AppController
 		$carro = $this->Session->read('Carro');
 
 		if(!$carro)
-			return json_encode([]);
+			return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 		$data = array();
 		$i = 0;
 		$removed = 0;

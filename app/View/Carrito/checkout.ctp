@@ -113,14 +113,6 @@
 		                    </a>
 		                  </div>
                     </div>
-							    	<div class="col-xs-12 option-regular coupon-block hide">
-						          <label class="d-inline">
-						          	<span class="h4">Descuento <span class="coupon"></span></span><br>
-						          	<p class="mt-2 text-bold text-success h4 mb-0">
-						          		$ <span class="coupon_bonus"></span>
-						          	</p>
-						          </span>
-						        </div>
 							    	<div class="col-xs-12 option-regular bank-block hide">
 						          <label class="d-inline">
 						          	<span class="h4">Descuento pago Transferencia</span><br>
@@ -129,14 +121,18 @@
 						          	</p>
 						          </span>
 						        </div>
-										<div class="col-xs-12 summary-item text-right coupon-discount hidden animated speed">
-											<div class="price text-success"><span class="text-weight-thin">Cupón </span><span class="promo-code"></span> $ <span class="coupon_bonus">0</span><!--span>.00</span--></div>
-										</div>							
-
+										<div class="col-xs-12 option-regular coupon-discount hidden animated speed">
+						          <label class="d-inline text-theme">
+						          	<span class="h4">Descuento</span><br>
+						          	<p class="mt-2 text-bold text-left h2 mb-0">
+						          		$ <span class="coupon_bonus"></span>
+						          	</p>
+						          </span>											
+										</div>
 							    	<div class="col-xs-12 option-regular cost_total-container">
 						          <label class="d-inline text-theme">
 						          	<span class="h4">Total a pagar</span><br>
-						          	<p class="mt-2 text-bold total-price text-left h2 mb-0">
+						          	<p class="mt-2 text-bold text-left h2 mb-0">
 						          		$ <span class="total_price"></span>
 						          	</p>
 						          </span>
@@ -163,16 +159,10 @@
 											<span class="text-italic">Si tenés un cupón de descuento podés aplicarlo haciendo <span class="text-dark is-clickable">click aquí.</span></span>
 										</div>
 										<div class="calc-coupon d-none">
-											<div class="d-flex justify-content-start align-items-center gap-1">
-												<div class="form-group">
-													<div class="input-group">
-													  <input type="text" name="" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
-													  <div class="input-group-btn">
-													    <button class="btn btn-danger btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Calcular</button>
-													  </div>
-													</div>
-												</div>
-												<span class="muted is-clickable" onclick="$('.calc-coupon').hide(); $('.coupon-click').show();">Cancelar</span>
+											<div class="d-flex justify-content-center align-items-center gap-1">
+										  	<input type="text" name="" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
+									    	<button class="btn btn-danger btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Calcular</button>
+									    	<span class="muted is-clickable" onclick="$('.calc-coupon').hide(); $('.coupon-click').show();$('input[name="coupon"]').val('')">Cancelar</span>
 											</div>
 										</div>
 									</div>								  

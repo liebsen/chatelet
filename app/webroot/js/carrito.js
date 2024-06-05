@@ -24,6 +24,7 @@ var selectStore = e => {
   format_total = formatNumber(price)
   fxTotal(format_total)
   preferences.cargo = 'takeaway'
+  console.log('total_price(2)', price)
   preferences.total_price = price
   preferences.shipping_price = 0
   preferences.subtotal_price = total_orig
