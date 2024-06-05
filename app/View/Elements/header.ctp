@@ -115,9 +115,9 @@
             <?php } ?>
           </li><!-- /.Login -->
           <li class="dropdown is-clickable">
-            <a href="#" class="dropdown-toggle gotocart js-activated" data-toggle="dropdown" data-hover="dropdown">
+            <a href="#" class="dropdown-toggle gotocart js-activated<?=count($carro) ? ' text-theme':'' ?>" data-toggle="dropdown" data-hover="dropdown">
               <?php if(count($carro)):?>
-              <span class="count animated scaleIn speed delay2"><?=count($carro)?></span>
+              <span class="count animated scaleIn speed delay1"><?=count($carro)?></span>
               <?php endif ?>
               <span><i class="fa fa-2x fa-shopping-cart"></i></span>
             </a>
