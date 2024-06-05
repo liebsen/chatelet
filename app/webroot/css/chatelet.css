@@ -276,8 +276,10 @@ html, body {
 	left: 0;
 	right: 0;
 	bottom: 0;
+	padding: 1rem;
+	padding-top: 1.5rem;
 	/*background-color: #f8f8f8;*/
-  background: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.7) 50%, hsla(0, 0%, 100%, 0.9) 70%, white);
+  background: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.7) 15%, hsla(0, 0%, 100%, 0.9) 30%, white);
   box-shadow: none;	
 }
 .icon-huge .fa {
@@ -1121,7 +1123,7 @@ span.validation-password {
 
 @media screen and (min-width: 769px) {
 	.navbar-chatelet.top-fixed {
-		background: linear-gradient(white,hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.7) 70%, hsla(0,0%,100%,0));
+		background: linear-gradient(white,hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.7) 85%, hsla(0,0%,100%,0));
 		box-shadow: none;
 	}	
 	.modal-dialog {
