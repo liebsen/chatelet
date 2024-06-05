@@ -139,11 +139,6 @@ $(function(){
 		submit.text('Por favor espere...')
 		$('.checkoutform-container').removeClass('hide')
 
-		/*if(carrito.gifts && carrito.gifts.length){
-			console.log('clear gifts')
-			carrito.gifts = []
-		}*/
-
 		localStorage.removeItem('carrito')
 		//localStorage.setItem('carrito', JSON.stringify(carrito))
 

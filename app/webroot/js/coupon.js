@@ -8,7 +8,7 @@ function submitCoupon() {
     onWarningAlert('Error','Por favor, ingresá un código de cupón')
     return false
   }
-  var subtotal = parseFloat($('#subtotal_compra').val())
+  var subtotal = getTotals()
   var delivery_cost = $('#subtotal_envio').val() || 0
   var c2 = event.target.value
 

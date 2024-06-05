@@ -196,7 +196,7 @@
 										<span class="text-weight-thin">Total </span> 
 										<span class="calc_total">$ <?= \price_format($total) ?></span><!--span>.00</span-->
 									</div>
-									<small>Pagando con <?= strtoupper($payment_methods[$config['payment_method']]) ?></small>
+									<span class="text-theme">Pagando con <?= strtolower($payment_methods[$config['payment_method']]) ?></span>
 								</div>								
 							</div>
 							<div class="form-inline gift-area hide">
@@ -241,7 +241,7 @@
 				<?php endif ?>
 				<a class="btn keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			  <?php if (isset($carro) && !empty($carro)) :?>
-			    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-pink" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
+			    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-pink" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Ir a Checkout</a>
 			  <?php endif ?>
 			</div>
 		</div>

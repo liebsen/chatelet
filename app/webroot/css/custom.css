@@ -33,6 +33,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 hr {
   text-align: center;
+  border-color: #d5d5d5;
 }
 
 hr.or:before {
@@ -2390,11 +2391,6 @@ span.count.is-empty {
   line-height: 1.25;
 }
 
-.is-rounded hr {
-  border-color: #dbcec3;
-  border-bottom: 1px solid white;
-}
-
 .is-rounded h3 {
   margin-bottom: 0;
   font-size: 1.25rem;
@@ -2404,12 +2400,6 @@ span.count.is-empty {
   padding-bottom: 1rem;  
   margin-bottom: 1rem;
 }
-
-.is-rounded hr {
-  border-top: none;
-  border-bottom: 1px solid #f7cae0;
-}
-
 
 /* carrito items */
 
