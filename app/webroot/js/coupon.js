@@ -79,7 +79,7 @@ function submitCoupon() {
       //carrito.coupon_bonus = discounted
       carrito.total_price = parseFloat(price.toFixed(2))
 
-      $('input[name="coupon"]').val(coupon)
+      $('#coupon_name').val(coupon)
       /*save_preference([
         {'coupon':coupon},
         {'coupon_total':total},
