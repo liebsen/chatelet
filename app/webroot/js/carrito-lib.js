@@ -95,11 +95,10 @@ var getTotals = () => {
   }
   console.log('subtotal(2)',subtotal)
   //carrito.freeShipping = free_shipping
-  /*if(carrito.coupon_bonus){
-    
-    subtotal-= carrito.coupon_bonus
+  if(window.coupon_bonus){ 
+    subtotal-= window.coupon_bonus
     console.log('- coupon_bonus',subtotal)
-  }*/
+  }
   if(bank.enable && bank.discount && payment_method == 'bank') {
     subtotal-= subtotal * (parseFloat(bank.discount) / 100)
     console.log('- bank',subtotal)
@@ -108,7 +107,7 @@ var getTotals = () => {
     subtotal = 1
   }
   console.log('total_price(1)', subtotal)
-  $('.total_price').text(formatNumber(subtotal))
+  $('.calc_total').text("$ " + formatNumber(subtotal))
   localStorage.setItem('carrito', JSON.stringify(carrito))  
   return subtotal
 }

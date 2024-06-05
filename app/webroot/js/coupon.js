@@ -1,6 +1,4 @@
-var coupon = '';
 function submitCoupon() {
-  console.log('calculate_coupon(1)')
   $('.coupon-info').addClass('hidden')
   $('.coupon-info').removeClass('fadeInRight, fadeOutRight')
   // $('.coupon-info').html('')
@@ -24,9 +22,9 @@ function submitCoupon() {
   }
 
   $('#free_delivery').text('');
-  $('.btn-calculate-shipping').button('loading')
+  $('.btn-calculate-coupon').button('loading')
   $.post('/carrito/coupon', { coupon: coupon }, function(json, textStatus) {
-    $('.btn-calculate-shipping').button('reset')
+    $('.btn-calculate-coupon').button('reset')
     console.log('calculate_coupon(2)')
     if( json.status == 'success' ) {
       let coupon_type = json.data.coupon_type
@@ -43,10 +41,9 @@ function submitCoupon() {
       //console.log('discount',discount)
       //total = parseFloat(total).toFixed(2)
       discounted = parseFloat(subtotal - total)
-
       discounted_formatted = formatNumber(discounted)
 
-      $('.coupon_bonus').text( discounted_formatted )
+      $('.coupon_bonus').text( "$ " + discounted_formatted )
       $('.products-total').removeClass('hidden')
       $('.coupon-discount').removeClass('hidden')
       $('.coupon-discount').addClass('fadeInRight')
@@ -73,10 +70,13 @@ function submitCoupon() {
       //console.log('total:',total)
       //console.log('price:',price)
       //$('#cost').text( total );
+      console.log('total(10)',total)
       fxTotal(total)
 
-      carrito.coupon = coupon
-      carrito.coupon_bonus = discounted
+      window.coupon_bonus = discounted
+
+      //carrito.coupon = coupon
+      //carrito.coupon_bonus = discounted
       carrito.total_price = parseFloat(price.toFixed(2))
 
       $('input[name="coupon"]').val(coupon)
@@ -86,8 +86,8 @@ function submitCoupon() {
       ])*/        
     }else{
       $('.coupon-discount').addClass('hidden')
-      carrito.coupon = ''
-      carrito.coupon_bonus = 0
+      //carrito.coupon = ''
+      //carrito.coupon_bonus = 0
 
       // fxTotal(formatNumber(subtotal))
       $('.input-coupon').removeClass('ok');
