@@ -51,7 +51,7 @@ function submitCoupon() {
       $('.input-coupon').removeClass('wrong');
       $('.input-coupon').addClass('ok');
       onSuccessAlert(`${json.data.code.toUpperCase()}`, json.data.info);
-      $('.coupon-info-title').text(json.data.code)
+      //$('.coupon-info-title').text(json.data.code)
       $('.coupon-info-info').text(json.data.info)
       $('.coupon-info').removeClass('hidden')
       $('.coupon-info').addClass('fadeIn')

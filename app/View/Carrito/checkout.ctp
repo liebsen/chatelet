@@ -141,11 +141,10 @@
 						      </div>
 
 									<div class="coupon-info alert mt-4 mb-0 alert-success animated hidden">
-										<h3>
-											<i class="fa fa-tags"></i> 
-											<span class="coupon-info-title"></span>
-										</h3>
-										<p class="coupon-info-info"></p>
+										<p>
+											<i class="fa fa-tags"></i>
+											<span class="coupon-info-info"></span>
+										</p>
 									</div>									
 
 									<!--div class="row card-row flex-row justify-content-start p-3 mt-2 gap-05">
