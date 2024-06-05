@@ -57,12 +57,12 @@
 						          <label class="d-inline">
 						          	<span class="h4">Cliente</span><br>
 						          	<p class="mt-2 text-muted"><?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?> (DNI <?= $userData['User']['dni'] ?>)</p>
-			                  <div class="row d-flex justify-content-start p-1 mt-2 gap-05">
-			                    <div data-toggle="modal" data-target="#particular-modal" class="col-xs-12 col-md-6 card-link">
+			                  <div class="d-flex justify-content-start mt-2 gap-05">
+			                    <div data-toggle="modal" data-target="#particular-modal" class="card-link">
 			                      <i class="fa fa-user-o fa-lg mr-1"></i>
 			                       Cambiar datos
 			                    </div>
-			                    <div onclick="$('.checkoutform-container').removeClass('hide');$('input[name=street]').focus()" class="card-link col-xs-12 col-md-6">
+			                    <div onclick="$('.checkoutform-container').removeClass('hide');$('input[name=street]').focus()" class="card-link">
 			                      <i class="fa fa-map-marker fa-lg mr-1"></i>
 			                       Cambiar dirección
 			                    </div>
@@ -107,7 +107,7 @@
                     			<?= $data['carrito_takeaway_text'] ?>
                     		</p>
                     	</label>
-		                  <div class="row d-flex justify-content-start p-3 mt-2">
+		                  <div class="d-flex justify-content-start mt-2">
 		                    <a href="/carrito#f:.shipment-options.shipping" class="card-link">
 		                      <i class="fa fa-truck fa-lg mr-1"></i>
 		                       Solicitar envío
@@ -299,7 +299,7 @@
 		</div>
 		<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-1 p-4">
 			<?php
-				echo $this->Html->link('Volver al carrito', array(
+				echo $this->Html->link('Ver carrito', array(
 					'controller' => 'carrito',
 					'action' => 'index'
 				), array(

@@ -895,6 +895,11 @@ select.form-control{
 	background-color: #e398c1;
 	color: white;
 }
+@media(max-width: 550px) {
+	.card-link i {
+		display: none;
+	}
+}
 .card-text {
 	min-height: 2rem;
 	line-height: 1.25;
