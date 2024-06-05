@@ -1,3 +1,8 @@
+function showCouponInput() {
+  $('.calc-coupon').show(); 
+  $('.coupon-click').hide(); 
+  $('.input-coupon').focus();
+}
 function resetCoupon() {
   var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
   $('.calc-coupon').hide(); 
@@ -16,8 +21,8 @@ function resetCoupon() {
   if (!freeShipping && !delivery_cost && carrito.shipping_price) {
     delivery_cost = carrito.shipping_price
   }  
-  console.log('subtotal(2)',subtotal)
-  console.log('delivery_cost(2)',delivery_cost)
+  //console.log('subtotal(2)',subtotal)
+  //console.log('delivery_cost(2)',delivery_cost)
   var price = parseFloat(subtotal)
   
   fxTotal(price)
@@ -54,7 +59,7 @@ function submitCoupon() {
   $('.btn-calculate-coupon').button('loading')
   $.post('/carrito/coupon', { coupon: coupon }, function(json, textStatus) {
     $('.btn-calculate-coupon').button('reset')
-    console.log('calculate_coupon(2)')
+    //console.log('calculate_coupon(2)')
     if( json.status == 'success' ) {
       let coupon_type = json.data.coupon_type
       let discount = parseFloat(json.data.discount)
@@ -72,7 +77,7 @@ function submitCoupon() {
       $('.products-total').removeClass('hidden')
       $('.coupon-discount').removeClass('hidden')
       $('.coupon-discount').addClass('fadeIn')
-      // console.log(parseFloat($('#cost').text()));
+      // //console.log(parseFloat($('#cost').text()));
       $('.input-coupon').removeClass('wrong');
       $('.input-coupon').addClass('ok');
       onSuccessAlert(`${json.data.code.toUpperCase()}`, json.data.info);
@@ -86,15 +91,17 @@ function submitCoupon() {
       
       coupon = coupon.toUpperCase()
 
-  console.log('total(1)',total)
-  console.log('delivery_cost(1)',delivery_cost)
+      //console.log('total(1)',total)
+      //console.log('delivery_cost(1)',delivery_cost)
       format_total = formatNumber(price)
       fxTotal(price)
 
       window.coupon_bonus = discounted
       carrito.total_price = parseFloat(price.toFixed(2))
 
-      $('#coupon_name').val(coupon)
+      $('#coupon_name').val("")
+      $('.calc-coupon').hide(); 
+      $('.coupon-click').show(); 
     }else{
       $('.coupon-discount').addClass('hidden')
       //carrito.coupon = ''

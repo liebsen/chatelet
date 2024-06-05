@@ -128,7 +128,13 @@
 						          	<p class="mt-2 text-bold text-left h2 mb-0">
 						          		<span class="coupon_bonus"></span>
 						          	</p>
-						          </span>											
+						          </label>
+											<div class="coupon-info alert mt-4 mb-0 alert-success animated hidden">
+												<p>
+													<i class="fa fa-tags"></i>
+													<span class="coupon-info-info"></span>
+												</p>
+											</div>
 										</div>
 							    	<div class="col-xs-12 option-regular cost_total-container">
 						          <label class="d-inline text-theme">
@@ -140,13 +146,6 @@
 						        </div>
 						      </div>
 
-									<div class="coupon-info alert mt-4 mb-0 alert-success animated hidden">
-										<p>
-											<i class="fa fa-tags"></i>
-											<span class="coupon-info-info"></span>
-										</p>
-									</div>									
-
 									<!--div class="row card-row flex-row justify-content-start p-3 mt-2 gap-05">
 								  	<a href="/carrito#f:.beneficios-exclusivos" class="card-link coupon-actions-block hide">
 								  		<i class="fa fa-tag fa-lg mr-1"></i>
@@ -154,7 +153,7 @@
 								  	</a>
 								  </div-->
 									<div class="pt-3 min-h-5">
-										<div class="coupon-click d-flex justify-content-start align-items-center gap-1 is-clickable p-4" onclick="$('.calc-coupon').show(); $('.coupon-click').hide(); $('.input-coupon').focus();">
+										<div class="coupon-click d-flex justify-content-start align-items-center gap-1 is-clickable p-4" onclick="showCouponInput()">
 											<div class="png-icon" style="background-image: url(/images/gift-voucher.png)"></div> 
 											<span class="text-italic">Si tenés un cupón de descuento podés aplicarlo haciendo <span class="text-dark is-clickable">click aquí.</span></span>
 										</div>
