@@ -14,7 +14,7 @@
 			</i>
 		</p>
 		<form class="w-100" id="calulate_shipping" data-url="<?php echo $this->Html->url(array('action'=>'deliveryCost')) ?>">
-			<div  class="d-flex justify-content-center align-items-center gap-1">
+			<div  class="d-flex justify-content-center align-items-center gap-05">
 		  	<input type="text" name="" placeholder="Tu código postal" value="" class="form-control input-cp input-lg both input-rounded" title="Ingresá tu código postal" data-valid="0" />
 	    	<button class="btn btn-danger btn-input-lg btn-calculate-shipping" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Cotizá el envío a domicilio de tu compra" type="submit">Calcular</button>
 			</div>

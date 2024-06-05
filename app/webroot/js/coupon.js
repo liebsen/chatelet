@@ -98,7 +98,7 @@ function submitCoupon() {
 
       window.coupon_bonus = discounted
       carrito.total_price = parseFloat(price.toFixed(2))
-
+      $('input[name="coupon"]').val(coupon)
       $('#coupon_name').val("")
       $('.calc-coupon').hide(); 
       $('.coupon-click').show(); 
