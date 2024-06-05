@@ -297,20 +297,25 @@
 				</div>
 			</div>
 		</div>
-		<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-1 p-4">
-			<?php
-				echo $this->Html->link('Ver carrito', array(
-					'controller' => 'carrito',
-					'action' => 'index'
-				), array(
-					'class' => 'btn cart-btn-green',
-					'escape' => false
-				));
-			?>			
-			<button type="button" id="submitcheckoutbutton" class="btn cart-btn-green checkout-btn btn-pink">
-				Finalizar compra
-			</button>
-			<input type="submit" id="submitform" class="hidden-force" />
+		<div class="button-group-fixed-bottom p-2">
+			<div class="d-flex justify-content-center align-items-center gap-1 text-center">
+				<span class="text-theme h3">A pagar: <span class="calc_total"></span></span>
+			</div>
+			<div class="d-flex justify-content-center align-items-center gap-1 p-2">
+				<?php
+					echo $this->Html->link('Ver carrito', array(
+						'controller' => 'carrito',
+						'action' => 'index'
+					), array(
+						'class' => 'btn cart-btn-green',
+						'escape' => false
+					));
+				?>			
+				<button type="button" id="submitcheckoutbutton" class="btn cart-btn-green checkout-btn btn-pink">
+					Finalizar compra
+				</button>
+				<input type="submit" id="submitform" class="hidden-force" />
+			</div>
 		</div>
 	</form>
 </div>
