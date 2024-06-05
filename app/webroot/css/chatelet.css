@@ -356,13 +356,13 @@ html, body {
 .border-theme {
 	border: 2px solid #FF71CD;
 	color: #FF71CD;
-	border-radius: 1rem;
+	border-radius: 0.75rem;
 }
 
 .border-dark {
 	border: 2px solid #333;
 	color: #333;
-	border-radius: 1rem;
+	border-radius: 0.75rem;
 }
 
 .d-block {
