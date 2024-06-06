@@ -320,13 +320,15 @@
 <script>
 
 $(function(){
-	$('#<?= @$config['payment_method']?>').click()
 	<?php if(!$loggedIn):?>	
-	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	setTimeout(() => {
 		$('#particular-login').modal('show')
 	}, 1000)
 	<?php endif;?>
+	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+	setTimeout(() => {
+		$('#<?= @$config['payment_method']?>').click()
+	}, 100)
 	if(carrito.gifts && carrito.gifts.length) {
 		$('#gifts').val(carrito.gifts.join(','))
 	}

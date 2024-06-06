@@ -466,6 +466,7 @@ select.form-control{
 
 #main {
 	padding-bottom: 2rem;
+	width: auto;
 }
 
 .logo {

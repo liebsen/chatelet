@@ -599,6 +599,10 @@ footer .options > div {
 }
 
 @media(max-width: 1023px){
+  .carrito-col {
+    flex-direction: column;
+  }
+  
   footer .options {
     flex-direction: column;
   }  
@@ -2600,10 +2604,6 @@ span.count.is-empty {
   body {
     background-color: white;
   }
-  .carrito-col {
-    flex-direction: column;
-  }
-
   .mobile {
     display: block;
   }
