@@ -267,6 +267,9 @@ $(document).ready(function() {
 	})
 
 	$(document).on('click', '.btn-change-count',function(e) {
+		if($(e.target).hasClass('disable')) {
+			return false
+		}
 		var json = $('.has-item-counter.active .carrito-data').data('json')
 		var item = JSON.parse(JSON.stringify(json))
 		var count = $('.has-item-counter.active .product-count').val();
@@ -279,7 +282,7 @@ $(document).ready(function() {
 			alias: item.alias,
 		}
 		
-		addCart(data, e.target, 'Modificando...')
+		addCart(data, e.target, 'Actualizando...')
 	})
 	
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}

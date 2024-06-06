@@ -1106,7 +1106,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 
 @media(min-width: 767px) {
   #detalle .caract label.btn .color-option {
-    min-height: 10rem;
+    min-height: 11rem;
   }
 }
 #detalle .caract.posnum-2 label.btn .color-option {

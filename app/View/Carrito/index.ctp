@@ -164,7 +164,7 @@
 							    </div>
 							  </div>
 							</div>
-							<span class="ch-btn-success btn-change-count disable">Cambiar</span>
+							<span class="ch-btn-success btn-change-count disable is-clickable">Cambiar</span>
 						</div>';
 						echo '</div>';
 						echo '</div>';
