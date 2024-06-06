@@ -34,6 +34,10 @@ a.volver .fa {
 	margin-top: 1rem;
 }
 
+.calc_total {
+	font-weight: 1000;
+}
+
 .option-regular {
 	padding: 1rem 0;
 	padding-bottom: 1rem;
@@ -50,6 +54,10 @@ a.volver .fa {
 	cursor: pointer;
 	opacity: 1;
 	transition: all 0.25s ease-in;
+}
+
+.option-rounded .h4 {
+	font-weight: 600;
 }
 
 .option-rounded.is-secondary:not(.is-selected) {

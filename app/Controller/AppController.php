@@ -102,10 +102,10 @@ class AppController extends Controller
         
         $this->set('categories', $categories);
 
-        $basicfont = 'DM Sans';
+        $basicfont = Configure::read('font');
         $font = $basicfont;
         // 'Fira Sans Condensed', 'Sniglet','Roboto Condensed', 'Archivo Narrow'
-        $fontweight = '300,400,500,600,700,800';
+        $fontweight = Configure::read('fontweight');
         $version_file = __DIR__ . '/../version';
         $version_count = 1111;
         if(file_exists($version_file)) {

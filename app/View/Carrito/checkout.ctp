@@ -73,7 +73,7 @@
 							    	<div class="col-xs-12 option-regular">
 						          <label class="d-inline">
 						          	<span class="h4">Subtotal productos</span><br>
-						          	<p class="mt-2 text-bold h4 mb-0">
+						          	<p class="mt-2 h3 text-muted mb-0">
 						          		$ <span class="subtotal_price"></span>
                     		</p>
                     	</label>
