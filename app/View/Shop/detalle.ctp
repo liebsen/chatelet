@@ -175,13 +175,13 @@
                 <?php if (!$isGiftCard): ?>
                     <!--h2>Color</h2-->
                     <div class="article-tools animated fadeIn">
-                        <div class="field">
+                        <div class="field p-2">
                            <div class="row animated fadeIn" data-toggle="buttons">
                                 <?php  
                                     foreach ($colors as $i => $color) {
                                         $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
                                         $style = (empty($color['images']))?'oldSelectColor':'';
-                                        echo '<div class="col-sm-4 col-md-3"><label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
+                                        echo '<div class="col-sm-4 col-md-3 p-1"><label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
                                         
                                         echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
                                         if (!empty($color['images'])) {

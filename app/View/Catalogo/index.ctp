@@ -119,10 +119,10 @@
                                       }
                                 ?>
                                 <div class="article-tools animated fadeIn">
-                                  <div class="field">
+                                  <div class="field p-2">
                                     <div class="row" data-toggle="buttons">
                                         <?php  foreach ($colors as $color) {
-                                                    echo '<div class="col-sm-4 col-md-3"><label class="btn" style ="    border-radius: 100px;">';
+                                                    echo '<div class="col-sm-4 col-md-3 p-1"><label class="btn" style ="    border-radius: 100px;">';
                                                     echo "<small>".$color['alias']."</small>";
                                                     echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
                                                     echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
