@@ -1846,6 +1846,7 @@ span.out{
   font-weight: 800;
   width: 100%;
   background-color: #f6f6f5;
+  min-height: 4rem;
   transition: all 0.25s ease-out;
 }
 
@@ -1864,12 +1865,12 @@ span.out{
 .search-bar {
   height: 0.5rem;
   width: 0%;
-  background-color: #363633;
+  background-color: #e10c76;
   transition: all 1s ease-in-out;
   border-radius: 0.5rem;
 }
 .search-info {
-  color: #363633;
+  color: #e10c76;
   font-size: 1rem;
   font-weight: 600;
   padding-top: 0.5rem;
@@ -1917,7 +1918,8 @@ span.out{
 }
 
 .legends-container {
-  display: contents;
+  display: flex;
+  padding-top: 0.5rem;
 }
 
 .legends {
@@ -1928,10 +1930,12 @@ span.out{
   background-color: white;
   text-align: center;
   border-radius: 0.5rem;
+
 }
 
-.legends.legends-left {
-  text-align: left;
+.legends:not(.legends-left) {
+  max-width: 15rem;
+  margin: auto;
 }
 
 .price_strong {
