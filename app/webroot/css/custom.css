@@ -1062,7 +1062,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #detalle .caract h2 {margin-bottom: 10px}
 #detalle .caract label.btn {
   box-shadow: none;
-  max-width: 6rem;
+  min-width: 8rem;
   border-radius: 0!important;
   color: #666;
   text-align: center;
@@ -1094,7 +1094,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   border: none;
   box-shadow: none;
   opacity: 1;
-  height: 9rem;
+  height: 12rem;
   margin-bottom: 0.25rem;
   background-repeat: no-repeat;
   background-position: center center;
