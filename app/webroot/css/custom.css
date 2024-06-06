@@ -939,7 +939,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 
 .product-image {
   background-color: #e2e2e2;
-  display: inline-block;
+  /*display: inline-block;*/
   width: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -1089,7 +1089,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   border: none;
   box-shadow: none;
   opacity: 1;
-  min-height: 15rem;
+  min-height: 18rem;
   margin-bottom: 0.25rem;
   background-repeat: no-repeat;
   background-position: center center;
@@ -1106,7 +1106,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 
 @media(min-width: 767px) {
   #detalle .caract label.btn .color-option {
-    min-height: 11rem;
+    min-height: 12rem;
   }
 }
 #detalle .caract.posnum-2 label.btn .color-option {
@@ -1170,7 +1170,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headcontacto .box p { font-size: 16px; line-height: 1.5; }
 #formulario { background: url(../images/arrow-down.gif) no-repeat center top; padding: 80px 0; background-color: white;}
 #formulario .wrapper { /*background: url(../images/formbg.jpg) no-repeat left center;*/ background-size: contain; padding: 1rem; }
-#formulario input[type="text"], #formulario input[type="email"], #formulario textarea { background: transparent; border: none; border-bottom: 1px solid #464444; font-size: 16px; padding: 22px 0; width: 100%; }
+#formulario input[type="text"], #formulario input[type="email"], #formulario textarea { background: transparent; border: none; border-bottom: 1px solid #464444; font-size: 1rem; padding: 1rem 0; width: 100%; }
 #formulario h3 { font-size: 22px; margin: 80px 0 70px; }
 #formulario label { color: #aeaeae; font-size: 22px; display: inline-block; }
 #formulario label.mr { margin-right: 100px; }
@@ -1279,7 +1279,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 @media (max-width: 1599px) {
-	.wrapper { /*padding: 0 1rem;*/ overflow: hidden; }
+	.wrapper { /*padding: 0 1rem; overflow: hidden;*/ }
 	/*.map .col-md-4 { padding: 200px 0 200px 50px; }*/s
 	#headhelp .box { padding: 4rem;  border-radius: 1rem;  }
 }
@@ -1747,9 +1747,9 @@ span.out{
 
 .add-no-stock {
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-align: center;
-  min-height: 40rem;
+  /*min-height: 40rem;*/
 }
 
 .prod-tags {
