@@ -488,7 +488,7 @@ select.form-control{
 
 .dropdown-menu {
 	font-size: 1rem;
-	top: 5.5rem;
+	top: 4.5rem;
 	padding: 1rem;
 }
 
@@ -960,6 +960,9 @@ select.form-control{
 	font-weight: 800!important;
 }
 
+.text-high {
+	font-size: 1rem;
+}
 
 .registro-heading {
 	color: #e10c76;

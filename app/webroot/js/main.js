@@ -189,13 +189,17 @@ let apiSearch = (q) => {
           item.legends.forEach((e) => {
             strLegends+= `<span class="text-legend">`
             if(e.discount) {
-              strLegends+= ` <span class="badge badge-outline-danger">-${e.discount}%</span> `
+              strLegends+= ` <span class="text-theme text-bold text-high">-${e.discount}%</span> `
             }
             if(e.text) {
-              strLegends+= ` <span class="text-dark">${e.text}</span> `
+              if(!isNaN(e.text.split(' ')[0])) {
+                strLegends+= `<span class="text-theme text-bold text-high">${e.text.split(' ')[0]}</span> ${e.text.split(' ').slice(1).join(' ')}`
+              } else {
+                strLegends+= ` <span class="text-theme text-muted">${e.text}</span> `
+              }
             }
             if(e.price) {
-              strLegends+= ` <span class="text-success text-price">$ ${e.price}</span> `
+              strLegends+= ` <span class="text-dark text-bold text-price text-high">$ ${formatNumber(e.price)}</span> `
             }
             strLegends+= `</span>`
           })
@@ -339,10 +343,18 @@ $(function () {
     }
   })
 
+  $('.close-search').click(e => {
+    $('.input-search').val("")
+    $('.close-search').css({opacity: "0"})
+  })
+
   $('.input-search').keyup(e => {
     let q = $('.input-search').val().trim()
+        
+    $('.close-search').css({opacity: q.length?"100":"0"})
 
     if (q.length < 3) {
+      $('.search-results').empty()
       return false
     }
 
