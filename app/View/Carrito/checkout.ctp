@@ -317,11 +317,6 @@
 		</div>
 	</form>
 </div>
-
-<pre>
-	config:
-<?php var_dump(@$config)?>
-</pre>
 <script>
 
 $(function(){
@@ -331,11 +326,9 @@ $(function(){
 	}, 1000)
 	<?php endif;?>
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-	<?php if(isset($config['payment_method'])):?>
 	setTimeout(() => {
-		$('#<?= @$config['payment_method']?>').click()
+		$('#<?= @$config['payment_method'] ?: 'mercadopago'?>').click()
 	}, 100)
-	<?php endif ?>
 	if(carrito.gifts && carrito.gifts.length) {
 		$('#gifts').val(carrito.gifts.join(','))
 	}
