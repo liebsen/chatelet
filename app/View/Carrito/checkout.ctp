@@ -320,7 +320,7 @@
 <script>
 
 $(function(){
-	$('#<?= $config['payment_method']?>').click()
+	$('#<?= @$config['payment_method']?>').click()
 	<?php if(!$loggedIn):?>	
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	setTimeout(() => {
