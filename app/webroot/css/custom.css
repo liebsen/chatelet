@@ -830,6 +830,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   /* color: #444; */
 }
 .price-list {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   font-size: 1rem;
   font-weight: 500;
   color: black;
@@ -1926,10 +1928,11 @@ span.out{
   display: inline-block;
   /*border-top: 1px solid #ddd;*/
   padding: 0.5rem 0.75rem;
-  margin-top: 0.25rem;
+  padding-bottom: 0.5rem;
   background-color: white;
   text-align: center;
   border-radius: 0.5rem;
+  min-height: 1.5rem;
 
 }
 
@@ -1959,7 +1962,6 @@ span.out{
   color: #666!important;
   line-height: 1.25;
   font-size: 0.75rem;
-  min-height: 1.5rem;
 }
 
 .text-legend.full-w {
