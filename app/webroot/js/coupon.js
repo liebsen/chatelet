@@ -8,6 +8,8 @@ function resetCoupon() {
   $('.calc-coupon').hide(); 
   $('.coupon-click').show();
   $('#coupon_name').val('')
+
+  if(!window.coupon_bonus) return false
   window.coupon_bonus = 0
 
   var subtotal = getTotals()
@@ -32,6 +34,7 @@ function resetCoupon() {
   carrito.total_price = parseFloat(price.toFixed(2))
   localStorage.setItem('carrito', JSON.stringify(carrito))
 }
+
 function submitCoupon() {
   $('.coupon-info').addClass('hidden')
   $('.coupon-info').removeClass('fadeIn, fadeOutRight')

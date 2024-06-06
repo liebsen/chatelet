@@ -118,7 +118,7 @@ var getTotals = () => {
   if(subtotal < 1) {
     subtotal = 1
   }
-  //console.log('total_price(1)', subtotal)
+  console.log('total_price(1)', subtotal)
   $('.calc_total').text("$ " + formatNumber(subtotal))
   localStorage.setItem('carrito', JSON.stringify(carrito))  
   return subtotal

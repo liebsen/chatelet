@@ -23,11 +23,11 @@ class UsersController extends AppController {
     public function login() {
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
-                $this->Session->setFlash(
+                /*$this->Session->setFlash(
                     'Bienvenido a Châtelet', 
                     '', 
                     array('class' => 'hidden notice')
-                );
+                );*/
                 return $this->redirect($this->referer());
             }
             $this->Session->setFlash(
@@ -56,11 +56,11 @@ class UsersController extends AppController {
         $saved = $this->User->save($this->request->data);
         if (!empty($saved)) {
             $this->Auth->login();     
-            $this->Session->setFlash(
+            /*$this->Session->setFlash(
                     'Bienvenido a Châtelet', 
                     'default', 
                     array('class' => 'hidden notice')
-                );
+                );*/
             die(json_encode(array('success' => true)));
         } else {
             $errors = $this->User->validationErrors;

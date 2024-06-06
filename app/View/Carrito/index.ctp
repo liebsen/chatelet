@@ -253,7 +253,7 @@
 				?>
 				</div>
 			</div>
-			<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-05 animated slideInUp delay1">
+			<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-05 animated slideInUp delay2">
 				<?php if (!isset($carro)): ?>
 					<a href="#" class="btn action-search cart-btn-green">Buscar</a>
 				<?php endif ?>

@@ -68,9 +68,11 @@ let strtoFloat = (text) => {
 }
 
 let fxTotal = (total) => {
+  console.log('fxTotal(a)')
   if($('.calc_total').text().replace("$ ", "") == total) {
     return false
   }
+  console.log('fxTotal(b)')
   $('.calc_total').text( '$ ' + formatNumber(total) )
   const block = document.querySelector('.cost_total-container')
   block.classList.remove('fadeIn', 'fadeOut', 'delay')
