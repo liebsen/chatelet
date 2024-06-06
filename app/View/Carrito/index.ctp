@@ -25,7 +25,7 @@
 
 <div class="fullhd-layer remove-item-layer">
   <span class="close is-clickable" onclick="layerClose()">
-    <i class="gi gi-remove_2"></i>
+    <i class="fa fa-close"></i>
   </span>
   <div class="row">
     <div class="col-xs-12 text-center">
@@ -171,7 +171,7 @@
 						// echo '<hr>';
 						$row += 1;
 					} ?>
-						<div class="resume-totals animated fadeIn delay2">
+						<div class="resume-totals p-4 animated fadeIn delay2">
 							<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 							<input type="hidden" id="subtotal_envio" value="" />
 							<!--div class="summary-item text-right">

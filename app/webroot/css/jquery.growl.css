@@ -6,29 +6,29 @@
   z-index: 50000;
   position: fixed; }
   #growls.default {
-    top: 10px;
-    right: 10px;
+    top: 0.5rem;
+    right: 0.5rem;
     min-width: calc(100vw - 1.75rem); }
   #growls.tl {
-    top: 10px;
-    left: 10px; }
+    top: 0.5rem;
+    left: 0.5rem; }
   #growls.tr {
-    top: 10px;
-    right: 10px; }
+    top: 0.5rem;
+    right: 0.5rem; }
   #growls.bl {
-    bottom: 10px;
-    left: 10px; }
+    bottom: 0.5rem;
+    left: 0.5rem; }
   #growls.br {
-    bottom: 10px;
-    right: 10px; }
+    bottom: 0.5rem;
+    right: 0.5rem; }
   #growls.tc {
-    top: 10px;
-    right: 10px;
-    left: 10px; }
+    top: 0.5rem;
+    right: 0.5rem;
+    left: 0.5rem; }
   #growls.bc {
-    bottom: 10px;
-    right: 10px;
-    left: 10px; }
+    bottom: 0.5rem;
+    right: 0.5rem;
+    left: 0.5rem; }
   #growls.tc .growl, #growls.bc .growl {
     margin-left: auto;
     margin-right: auto; }
@@ -38,8 +38,8 @@
   filter: alpha(opacity=99);
   position: relative;
   border-radius: 0.5rem;
-  margin-bottom: 10px;
-  margin-left: 5px;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
   scale: 1;
   box-shadow: var(--box-shadow);
   /*box-shadow: 1px 1px 5px 0 rgba(26, 26, 67, .05), 39px 62.5px 125px -25px rgba(50, 50, 93, .2), 23.4px 37.5px 75px -37.5px rgba(0, 0, 0, .4);*/
@@ -96,8 +96,8 @@
 
 @media screen and (min-width: 769px) {
   #growls.default {
-    top: 10px;
-    right: 10px; 
+    top: 0.5rem;
+    right: 0.5rem; 
     min-width: auto;
   }
   .growl.growl-small {

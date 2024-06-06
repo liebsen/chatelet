@@ -180,8 +180,9 @@ class CarritoController extends AppController
 
 	public function index()
 	{
-
-		$this->update();
+		$carro = $this->update();
+		$this->Session->write('Carro', $carro);
+		//$this->update();
 		//$this->Session->write('Carro', $carro);
 		$data = $this->getItemsData();
 		$shipping_price = $this->Setting->findById('shipping_price_min');
