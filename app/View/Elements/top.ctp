@@ -59,7 +59,7 @@
       echo $this->Html->css('jquery.growl.css?v=' . Configure::read('DIST_VERSION'));
       echo $this->Html->css('chatelet.css?v=' . Configure::read('DIST_VERSION'));
       echo $this->Html->css('custom.css?v=' . Configure::read('DIST_VERSION'));
-      echo $this->Html->css('animate.css?v=' . Configure::read('DIST_VERSION')');
+      echo $this->Html->css('animate.css?v=' . Configure::read('DIST_VERSION'));
 
       echo $this->fetch('meta');
       echo $this->fetch('css');
