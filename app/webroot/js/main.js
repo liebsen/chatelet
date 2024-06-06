@@ -236,6 +236,21 @@ let apiSearch = (q) => {
   })    
 }
 
+function layerShow (layer) {
+  const selectr = $(`.${layer}-layer`)
+  if (selectr.hasClass('active')) {
+    selectr.removeClass('active')
+  } else {
+    selectr.addClass('active')
+  }  
+  return false
+}
+
+function layerClose() {
+  $('body').css('overflow-y', 'auto')
+  $('.fullhd-layer').removeClass('active')
+}
+
 $(function () {
   var body = $('body');
 

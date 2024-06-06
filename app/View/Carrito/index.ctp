@@ -21,6 +21,23 @@
 	}
 </script>
 
+<!-- bank layer -->
+
+<div class="fullhd-layer remove-item-layer">
+  <span class="close is-clickable" onclick="layerClose()">
+    <i class="gi gi-remove_2"></i>
+  </span>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h1 class="h1">¿Estás seguro de eliminar<br><span class="prod_name text-theme"></span><br> del carrito?</h1>
+      <div class="form-group">
+      	<button type="button" class="btn btn-light" onclick="layerClose('remove-item')">Cancelar</button>
+        <button type="button" class="btn btn-danger" onclick="removeItem()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="main" class="container">
 	<div class="row">
 		<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
@@ -67,8 +84,9 @@
             ));
 
 						echo '<div class="carrito-item-row is-clickable" product_row>';
-						echo '<div class="carrito-remove animated fadeIn delay2" title="Eliminar del carrito">';
-						echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
+						echo '<div onclick="askremoveItem(this, \''.$product['name'].'\')" class="carrito-remove animated fadeIn delay2" title="Eliminar del carrito">';
+						echo '<span class="glyphicon glyphicon-remove"></span>';
+						/*echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
 							array(
 								'controller' => 'carrito',
 								'action' => 'remove',
@@ -78,7 +96,7 @@
 								'class' => 'trash',
 								'escape' => false
 							)
-						);
+						);*/
 						echo '</div>';
 						//echo '<div class="help" title="Modificar este item del carrito"><div><span class="glyphicon glyphicon-edit"></span> <span class="font-system"> Modificar</span></div></div>';
 						echo '<div class="carrito-item-col cart-img-col">';

@@ -1,6 +1,47 @@
 var currentCarritoIndex = 0
 var cargo = ''
 var itemData = null
+var removeElement = null
+var askremoveItem = (e, name) => {
+	removeElement = e
+	$('.prod_name').text(name)
+	layerShow('remove-item')
+}
+
+var removeItem = (e) => {
+	if(!removeElement) return
+	const block = $(removeElement).parent()
+	const json = $(block).find('.carrito-data').data('json')
+	block.addClass('flash infinite')
+	let item = JSON.parse(JSON.stringify(json))
+	$.get(`/carrito/remove/${item.id}`).then((res) => {
+		/* @Analytics: removeFromCart */
+		fbq('track', 'RemoveFromCart')
+		gtag('event', 'remove_from_cart', {
+		  "items": [
+		    {
+		      "id": item.id,
+		      "name": item.article,
+		      // "list_name": "Results",
+		      "brand": item.name,
+		      // "category": "Apparel/T-Shirts",
+		      "variant": item.alias,
+		      "list_position": 1,
+		      "quantity": 1,
+		      "price": item.discount
+		    }
+		  ]
+		})
+
+		block.removeClass('flash infinite')
+		block.addClass('fadeOut')
+		setTimeout(() => {
+			location.href = '/carrito'
+			//block.remove()
+		}, 500)
+	})
+}
+
 var selectStore = e => {
 	var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
 	var total_orig = parseFloat($('#subtotal_compra').val())
@@ -203,37 +244,6 @@ $(document).ready(function() {
 		localStorage.setItem('carrito', JSON.stringify(preferences))
 		window.location.href = location;
 	});
-
-	$(document).on('click', '.trash', e => {
-		if (confirm('Estás seguro que que querés borrar este producto del carrito?')) {
-			const target = $(e.target).closest('.trash')
-		  $.get(target.attr('href'), res => {
-
-		  	let item = JSON.parse(res)
-				/* @Analytics: removeFromCart */
-				fbq('track', 'RemoveFromCart')
-				gtag('event', 'remove_from_cart', {
-				  "items": [
-				    {
-				      "id": item.id,
-				      "name": item.article,
-				      // "list_name": "Results",
-				      "brand": item.name,
-				      // "category": "Apparel/T-Shirts",
-				      "variant": item.alias,
-				      "list_position": 1,
-				      "quantity": 1,
-				      "price": item.discount
-				    }
-				  ]
-				})
-
-				setTimeout(() => {
-					location.href = '/carrito'
-				}, 1000)
-			})
-		}
-	})
 
 	$(document).on('click', '.giftchecks',function(e) {
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}

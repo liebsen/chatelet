@@ -66,6 +66,7 @@ function showLayer (e, layer, sale_id) {
   }  
   return false
 }
+
 function editLogistic (e, sale_id, logistic_id) {
   e.preventDefault()
   e.stopPropagation()

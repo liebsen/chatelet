@@ -55,7 +55,7 @@ function addCart(data, button, text) {
         var reload = function() {
         	window.location.href = '/carrito'
         };
-        setTimeout(reload, 3000);
+        setTimeout(reload, 1000);
         $('.growl-close').click(reload);
 				/*
 				dataLayer.push({
