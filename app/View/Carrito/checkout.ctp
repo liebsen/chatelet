@@ -84,7 +84,7 @@
 												<div class="paid-shipping-block<?= $freeShipping ? ' hidden' : '' ?>">
 							          	<span class="h4">Costo de envío</span><br>
 							          	<p class="mt-2 text-muted">
-							          		<span class="shipping_price text-bold h4 mb-0"></span>
+							          		<span class="shipping_price text-bold h3 text-muted mb-0"></span>
 													<?php if($loggedIn): ?>
 												    <br><br><span> Entrega <span class="shipping text-uppercase"></span> en 
 												    	<?= $userData['User']['street'] ?: $userData['User']['address'] ?> <?= $userData['User']['street_n'] ?: '' ?>, <?= $userData['User']['city'] ?> <?= $userData['User']['province'] ?> (<?= $this->Session->read('cp') ?>) 

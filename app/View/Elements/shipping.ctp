@@ -4,9 +4,9 @@
 	<h5 class="card-title"><i class="fa fa-truck"></i> ¿Cómo querés recibir tu compra?</h5>
 	<div class="shipment-options shipping">
 		<?php if(!$freeShipping): ?>
-		<h4 id="heading" class="cargo-title">Envío a Domicilio</h4>
+		<h4 id="heading" class="cargo-title">1. Envío a Domicilio</h4>
 		<?php else: ?>
-		<h4 class="cargo-title">1. Envío gratuito<span></span></h4>
+		<h4 class="cargo-title">Envío gratuito<span></span></h4>
 		<?php endif ?>		
 		<p class="p">
 			<i>
