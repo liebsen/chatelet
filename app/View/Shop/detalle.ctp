@@ -176,27 +176,28 @@
                     <!--h2>Color</h2-->
                     <div class="article-tools animated fadeIn">
                         <div class="field">
-                           <div class="btn-group inline-block div_color_products animated fadeIn" data-toggle="buttons">
-                                <?php  foreach ($colors as $i => $color) {
-                                            $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
-                                            $style = (empty($color['images']))?'oldSelectColor':'';
-                                            echo '<label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
-                                            
-                                            echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
-                                            if (!empty($color['images'])) {
-                                                $image = explode(';', $color['images']);
-                                                foreach ($image as $kk => $vv) {
-                                                    if (!empty($vv)) {
-                                                        $image[0] = $vv;
-                                                        break;
-                                                    }
+                           <div class="row animated fadeIn" data-toggle="buttons">
+                                <?php  
+                                    foreach ($colors as $i => $color) {
+                                        $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
+                                        $style = (empty($color['images']))?'oldSelectColor':'';
+                                        echo '<div class="col-sm-4 col-md-3"><label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
+                                        
+                                        echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
+                                        if (!empty($color['images'])) {
+                                            $image = explode(';', $color['images']);
+                                            foreach ($image as $kk => $vv) {
+                                                if (!empty($vv)) {
+                                                    $image[0] = $vv;
+                                                    break;
                                                 }
-                                                echo '<div class="color-option" style="background-image: url('.Configure::read('uploadUrl').$image[0].')"></div>';
-                                            } else {
-                                                echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
                                             }
-                                            echo "<small>".$color['alias']."</small>";
-                                        echo '</label>';
+                                            echo '<div class="color-option" style="background-image: url('.Configure::read('uploadUrl').$image[0].')"></div>';
+                                        } else {
+                                            echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
+                                        }
+                                        echo "<small>".$color['alias']."</small>";
+                                        echo '</label></div>';
                                     }
                                 ?>
                             </div>

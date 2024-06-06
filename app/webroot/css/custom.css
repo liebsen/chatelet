@@ -1062,7 +1062,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #detalle .caract h2 {margin-bottom: 10px}
 #detalle .caract label.btn {
   box-shadow: none;
-  min-width: 8rem;
+  width: 100%;
   border-radius: 0!important;
   color: #666;
   text-align: center;
@@ -1094,7 +1094,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   border: none;
   box-shadow: none;
   opacity: 1;
-  height: 12rem;
+  min-height: 12rem;
   margin-bottom: 0.25rem;
   background-repeat: no-repeat;
   background-position: center center;
@@ -1109,6 +1109,11 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   border-radius: 0.5rem;*/
 }
 
+@media(min-width: 550px) {
+  #detalle .caract label.btn .color-option {
+    min-height: 10rem;
+  }
+}
 #detalle .caract.posnum-2 label.btn .color-option {
   background-position: top center;
 }
@@ -1119,8 +1124,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 
 #detalle .caract label.btn.active .color-option {
   opacity: 1;
-  border: solid 3px #CA779A;
-  box-shadow: 0 0 1rem rgba(0,0,0,0.5);
+  border: solid 3px #e10d74;
+  /*box-shadow: 0 0 1rem rgba(0,0,0,0.5);*/
 }
 
 /* #detalle .caract label.btn:first-child .color-option {
@@ -1128,11 +1133,11 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 } */
 
 #detalle .caract .color-block {display: none}
-.btn-group.inline-block.div_color_products {
+/*.btn-group.inline-block.div_color_products {
   display: flex;
   justify-content: center;
   grid-gap: 0.5rem;
-  /*margin-bottom: 1rem;
+  margin-bottom: 1rem;
   padding: 0;
    border: 2px solid #CA779A;
   background-color: white;
@@ -1140,9 +1145,9 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   box-shadow: 0 0 2rem #0009; 
   border-radius: 0.5rem;
   width: 100%;
-  */
+  
   flex-wrap: wrap;
-}
+}*/
 
 ul#ul-moreviews li img {width: 40%}
 ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
@@ -1723,6 +1728,7 @@ span.out{
   align-items: flex-end;
   /* padding: 1rem; */
   transition: all 0.5s ease-in-out;
+  border-radius: 0.5rem;
   border: 3px solid transparent;
 }
 
@@ -1921,6 +1927,7 @@ span.out{
   margin-top: 0.25rem;
   background-color: white;
   text-align: center;
+  border-radius: 0.5rem;
 }
 
 .legends.legends-left {
@@ -1939,15 +1946,16 @@ span.out{
   font-weight: 400!important;
 }
 
-.text-sm.mp {
-}
-
 .text-legend {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 0.25rem;
   width: 100%;
   color: #666!important;
   line-height: 1.25;
   font-size: 0.75rem;
+  min-height: 1.5rem;
 }
 
 .text-legend .badge {

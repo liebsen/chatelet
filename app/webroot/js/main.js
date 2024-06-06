@@ -189,7 +189,7 @@ let apiSearch = (q) => {
           item.legends.forEach((e) => {
             strLegends+= `<span class="text-legend">`
             if(e.discount) {
-              strLegends+= ` <span class="badge badge-success">-${e.discount}%</span> `
+              strLegends+= ` <span class="badge badge-outline-danger">-${e.discount}%</span> `
             }
             if(e.text) {
               strLegends+= ` <span class="text-dark">${e.text}</span> `

@@ -112,7 +112,11 @@ html, body {
 	height: 4rem;
 }
 
-
+.badge-outline-danger {
+	background-color: white;
+	outline: 2px solid #e10d74;
+	color: #e10d74;
+}
 
 /* say hello to my little dwarfs - Hello */
 
@@ -170,27 +174,23 @@ html, body {
 .pl-3 {
   padding-left: 0.75rem!important;
 }
-
 .pt-2 {
 	padding-top: 0.5rem!important;
 }
 .pt-3 {
   padding-top: 0.75rem!important;
 }
-
 .min-h-5 {
 	min-height: 5rem;
 }
 .mb-0 {
   margin-bottom: 0!important;
 }
-
 .both{
 	border: 1px solid #ccc;
 	padding-left: 5px;
 	margin: 0;
 }
-
 .text-uppercase {
   text-transform: uppercase;
 }
