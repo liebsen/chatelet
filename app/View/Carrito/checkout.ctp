@@ -31,7 +31,7 @@
 	<hr>
 	<span>¡Muchas gracias!</span>
 </div>
-<div id="main" class="container">
+<div id="main" class="container animated fadeIn delay1">
 	<form role="form" method="post" id="checkoutform" autocomplete="off" action="<?php echo $this->Html->url(array(
 				'controller' => 'carrito',
 				'action' => 'sale'

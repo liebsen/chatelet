@@ -4,7 +4,6 @@ var updateCart = (carrito) => {
   }
   Object.keys(carrito).forEach(e => {
     const h = $('#checkoutform').find(`input[name='${e}']`)
-    //console.log('?',e)
     if (h.length && carrito[e]) {
       h.val(carrito[e])
     }
@@ -73,9 +72,7 @@ var getItems = () => {
   var subtotal = 0
   if(carrito_items){
     carrito_items.map((e) => {
-      var price = e.price
-      //console.log(price)
-      subtotal+= parseFloat(price)
+      subtotal+= parseFloat(e.price)
     })
   }
   return subtotal
@@ -85,15 +82,7 @@ var getTotals = () => {
   //console.log('getTotals')
   var payment_method = carrito_config.payment_method
   var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-  var subtotal = 0
-  if(carrito_items){
-    carrito_items.map((e) => {
-      var price = e.price
-      //console.log(price)
-      subtotal+= parseFloat(price)
-    })
-  }
-  //console.log('subtotal(1)',subtotal)
+  var subtotal = getItems()
   $('.subtotal_price').text(formatNumber(subtotal))
   if(carrito.freeShipping) {
     $('.paid-shipping-block').addClass('hidden')
@@ -105,20 +94,16 @@ var getTotals = () => {
     $('.free-shipping-block').addClass('hidden')
     $('.paid-shipping-block').removeClass('hidden')
   }
-  //console.log('subtotal(2)',subtotal)
-  //carrito.freeShipping = free_shipping
   if(window.coupon_bonus){ 
     subtotal-= window.coupon_bonus
-    //console.log('- coupon_bonus',subtotal)
   }
   if(bank.enable && bank.discount && payment_method == 'bank') {
     subtotal-= subtotal * (parseFloat(bank.discount) / 100)
-    //console.log('- bank',subtotal)
   }
   if(subtotal < 1) {
     subtotal = 1
   }
-  console.log('total_price(1)', subtotal)
+  //console.log('total_price(1)', subtotal)
   $('.calc_total').text("$ " + formatNumber(subtotal))
   localStorage.setItem('carrito', JSON.stringify(carrito))  
   return subtotal
@@ -130,18 +115,5 @@ var select_radio = (name, value) => {
   e.prop("checked",true)
   $(`.${name} .option-rounded`).removeClass('is-selected')
   e.parent().addClass('is-selected')
-  //console.log('save(1)')
-  //save_preference({ [name]: value })
 }
-
-
-$(function () {
-  /*$('#regalo').on('click', (e) => {
-    if($(e.target).is(':checked')) {
-      onErrorAlert('<i class="fa fa-gift"></i> Es para regalo', 'Prepararemos tu pedido con cuidado para que sea una entrega especial')
-    }
-  })*/
-})
-
-
 

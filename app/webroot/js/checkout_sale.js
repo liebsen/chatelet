@@ -6,7 +6,6 @@ var updateCart = (carrito) => {
 
 	Object.keys(carrito).forEach(e => {
 		const h = $('#checkoutform').find(`input[name='${e}']`)
-		//console.log('?',e)
 		if (h.length && carrito[e]) {
 			h.val(carrito[e])
 		}
@@ -67,10 +66,9 @@ var select_dues = (e,item) => {
 	var interest = $(e).data('interest')
 
   onSuccessAlert(`${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
-  //console.log('save(2)')
   save_preference([
-  	{'payment_method':'mercadopago'},
-  	{'payment_dues':dues_selected}
+  	{'payment_method': 'mercadopago'},
+  	{'payment_dues': dues_selected}
   ])
 
 	$('.payment_dues .option-rounded').removeClass('is-selected is-secondary')
@@ -90,10 +88,7 @@ var select_payment = (e,item) => {
 		return false
 	}
 	var totals = getTotals()
-	console.log(bank)
-	console.log(selected === 'bank',bank.enable,bank.discount_enable,bank.discount)
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
-		console.log('a(1)')
 		bank_bonus = totals.total * (parseFloat(bank.discount) / 100)
 		$('.bank_bonus').text(formatNumber(bank_bonus))
 		$('.bank-block').removeClass('hide')
@@ -101,7 +96,6 @@ var select_payment = (e,item) => {
 		select_radio('payment_dues', 1)
 		$('.payment_dues label').not(':first-child').addClass('hide')
 	} else {
-		console.log('a(2)')
 		$('.payment_dues label').removeClass('hide')
 		$('.bank-block').addClass('hide')
 	}
