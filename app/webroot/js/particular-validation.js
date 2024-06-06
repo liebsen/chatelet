@@ -29,7 +29,7 @@ $(document).ready(function() {
                         message: 'Contraseña es requerido'
                     },
                     stringLength: {
-                        min: 6,
+                        min: 4,
                         max: 20,
                         message: 'El campo contraseña debe tener como mínimo 6 caracteres y 20 como máximo'
                     }

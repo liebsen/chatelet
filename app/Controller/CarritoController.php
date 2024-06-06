@@ -1102,7 +1102,6 @@ class CarritoController extends AppController
 			}
 
 			$config = $this->Session->read('Config');
-			error_log($config);
 			$cur = @$config['add_basket']?: 0;
 			$cur++;
 			@$config['add_basket'] = $cur;
