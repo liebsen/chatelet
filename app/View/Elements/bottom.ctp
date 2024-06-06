@@ -9,8 +9,8 @@
   <!--End of Zopim Live Chat Script-->
 
   	<?php
-      echo $this->Html->script('chatelet', array('inline' => false));
-      echo $this->Html->script('product', array('inline' => false));
+      echo $this->Html->script('chatelet.js?v=' . Configure::read('DIST_VERSION'), array('inline' => false));
+      echo $this->Html->script('product.js?v=' . Configure::read('DIST_VERSION'), array('inline' => false));
       echo $this->fetch('script');
   	?>
     <!--/div-->

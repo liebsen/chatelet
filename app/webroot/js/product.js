@@ -181,15 +181,21 @@ $(document).ready(function() {
 		}
 		if (!isGiftCard){
 			var product_name = $('#product_id').next().text()
-			// console.log(data.color, data.color_code, data.size)
+			//console.log(data.color, data.color_code, data.size)
 			if ((!data.color && !data.color_code) || !data.size) {
 				document.querySelector('.article-tools').classList.remove('fadeIn', 'flash')
 				setTimeout(() => {
 					document.querySelector('.article-tools').classList.add('flash')
 				}, 10)
+				if(!data.size){
+					return $.growl.notice({
+						title: '<i class="fa fa-magic"></i> Personalizá tu compra!',
+						message: 'Seleccioná un talle, hay ' + $('#size option').length + ' talles para ' + product_name,
+					});
+				}
 				return $.growl.notice({
 					title: '<i class="fa fa-magic"></i> Personalizá tu compra!',
-					message: 'Elegí entre ' + $('.color-option').length + ' colores y ' + $('#size option').length + ' talles para ' + product_name,
+					message: 'Elegí entre ' + $('.color-option').length + ' colores para ' + product_name,
 				});
 			}
 

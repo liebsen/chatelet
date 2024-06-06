@@ -848,22 +848,22 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 
 #listShop a .hover {
   border: 0px solid #363633;
-   color: #363633;
-    font-size: 22px;
- font-weight: 500;
+  color: #363633;
+  font-size: 22px;
+  font-weight: 500;
   line-height: 1.1;
-   height: 100%;
-    left: 0%;
- opacity: 0;
+  height: 100%;
+  left: 0%;
+  opacity: 0;
   position: absolute;
   text-align: center;
   top: 0%;
   width: 100%;
   transition: all .3s ease-in-out;
-   -moz-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
-     -webkit-transition: all .3s ease-in-out;
-      -o-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
   background: black;
   color: white;
   text-transform: uppercase;
@@ -902,18 +902,9 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #productOptions a.btBig { border: 2px solid #363633; color: #6e6e6e; display: block; font-size: 40px; font-weight: 600; padding: 240px 0; text-align: center; border-radius: 0.5rem;}
 #productOptions a.btBig span { color: #363633; font-size: 27px; }
 #productOptions .product-list a {  /*background: #efefef;*/ 
-  /* display: inline-table;*/ width: 100%; 
+  width: 100%; 
   background-color: transparent; margin-bottom: 10px; overflow: hidden; position: relative;height: auto; }
 #productOptions .product-list a img { 
-  /*min-height: 20rem;
-  max-height: 20rem;
-  min-width: 14rem;
-  max-height: 18rem;
-  min-height: 18rem;
-  display: inline-block;
-  width: 100%;
-  min-width: 100%;
-  max-height: 20rem;*/
   margin: auto;
   object-fit: cover;
   object-position: center center;
@@ -2001,12 +1992,14 @@ span.out{
 
 .p-select select {
   background-color: transparent;
-  padding: 0.5rem;
+  padding: 1rem 1.25rem;
   padding-right: 2rem;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  border-radius: 0.75rem;
+  min-height: 3rem;
+  font-size: 1.25rem;
+  color: #e10d74;
   font-weight: 800;
-  border: 2px solid white;
+  border: 2px solid #e10d74;
   appearance:none;
 }
 
