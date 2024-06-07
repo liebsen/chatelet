@@ -127,7 +127,7 @@ function filtercoupon ($data, $config = null, $amount = 0) {
     $ret = (object) [
       'status' => 'error',
       'title' => "Restricción de método de pago",
-      'message' => "Esta promo solo es válida pagando con {$valid_for} (coupon_payment: {$coupon_payment}, payment_method: $ {$payment_method})"
+      'message' => "Esta promo solo es válida pagando con {$valid_for} (coupon_payment: {$coupon_payment}, payment_method: {$payment_method})"
     ];
   }
 
