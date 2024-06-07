@@ -26,6 +26,7 @@ $path = __DIR__ .'/../version';
 $version_count = (float) file_get_contents($path);
 $version = (float) $version_count / 1000;
 
+
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 Configure::write('mUrl','');
@@ -143,3 +144,9 @@ Configure::write('S3.secret','3QQqVNx8juxN+N5xyxcFLafojLX3TjGeaQypZZtt');
 //cache for https://s3.amazonaws.com/chatelet/'); 
 
 @include_once 'env.php';
+
+// autoupdate version if coding
+if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+	require __DIR__ . '/../../version.php';	
+}
+

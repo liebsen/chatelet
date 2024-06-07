@@ -25,6 +25,10 @@ a.volver .fa {
 	flex-direction: column;	
 }
 
+.payment-dues {
+	opacity: 0;
+}
+
 .card-row .fa {
 	min-width: 1rem;
 	text-align: center;

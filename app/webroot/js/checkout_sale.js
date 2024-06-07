@@ -88,6 +88,34 @@ var select_payment = (e,item) => {
 		return false
 	}
 	var totals = getTotals()
+
+	switch(selected){
+		case 'bank':
+			console.log('dues', document.querySelector('.payment-dues'))
+		if(document.querySelector('.payment-dues').classList.contains('scaleIn')){
+			document.querySelector('.payment-dues').classList.remove('scaleIn')
+			document.querySelector('.payment-dues').classList.add('scaleOut')
+		}
+		document.querySelectorAll('.payment-dues .option-rounded').forEach((e,i) => {
+			console.log(e,i)
+			if(i) {
+				e.classList.add('hide')
+			}
+		})
+		break;
+
+		case 'mercadopago':
+
+		if(document.querySelector('.payment-dues').classList.contains('scaleOut')){
+			document.querySelector('.payment-dues').classList.remove('scaleOut')
+			document.querySelector('.payment-dues').classList.add('scaleIn')
+		}
+
+		document.querySelectorAll('.payment-dues .option-rounded').forEach((e) => e.classList.remove('hide'))
+
+		break;
+	}
+
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
 		bank_bonus = totals.total * (parseFloat(bank.discount) / 100)
 		$('.bank_bonus').text(formatNumber(bank_bonus))

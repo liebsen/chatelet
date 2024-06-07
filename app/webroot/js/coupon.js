@@ -3,6 +3,7 @@ function showCouponInput() {
   $('.coupon-click').hide(); 
   $('.input-coupon').focus();
 }
+
 function resetCoupon() {
   var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
   $('.calc-coupon').hide(); 
@@ -39,12 +40,13 @@ function submitCoupon() {
   $('.coupon-info').addClass('hidden')
   $('.coupon-info').removeClass('fadeIn, fadeOutRight')
   // $('.coupon-info').html('')
-  var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
   var coupon  = $('.input-coupon').val();
   if(!coupon.length) {
     onWarningAlert('Error','Por favor, ingresá un código de cupón')
     return false
   }
+
+  var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
   var items = getItems()
   var subtotal = getTotals()
   var delivery_cost = $('#subtotal_envio').val() || 0
@@ -114,8 +116,8 @@ function submitCoupon() {
       $('.input-coupon').removeClass('ok');
       $('.input-coupon').addClass('wrong');
       $('#cost').text( '0' );
-      format_total = formatNumber(parseFloat(subtotal) + parseFloat(delivery_cost))            
-      fxTotal(formatNumber(format_total), true)
+      //format_total = formatNumber(parseFloat(subtotal) + parseFloat(delivery_cost))            
+      //fxTotal(formatNumber(format_total), true)
       timeout = setTimeout( `onErrorAlert('${json.title}', '${json.message}')` , 200);
     }
     localStorage.setItem('carrito', JSON.stringify(carrito))

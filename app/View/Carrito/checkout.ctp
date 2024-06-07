@@ -194,14 +194,14 @@
 						  </div>
 						</div>
 					<?php if(count($legends)): ?>
-						<div class="card mt-4-d">
+						<div class="payment-dues card mt-4-d animated scaleIn">
 						  <div class="card-body">
 						    <h5 class="card-title">
 						    	<i class="fa fa-calendar-o"></i>
 						    	¿Querés financiar tu compra?
 						    </h5>
 						    <h6 class="card-subtitle">Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</h6>
-						    <div class="row card-row payment_dues pl-3 pr-3">
+						    <div class="row card-row pl-3 pr-3">
 					        <label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(event,this)">
 					          <input type="radio" class="" id="dues_1" name="payment_dues" value="1" required checked />
 				          	<span class="h4"> 1 cuota</span><br>
