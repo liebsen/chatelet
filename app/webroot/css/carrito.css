@@ -96,17 +96,15 @@
 }
 
 .generic-select li:hover {
-	background-color: #bebebe;
-	background-image: url(../images/chevron_right_white.svg);
-	color: white;
+	background-position: right 0.5rem center;
 }
 
 .generic-select li.selected {
-	background-color: #e2007221;
-	/*border-color: #e10d74;*/
-	border-color: #07BC31;
+	/*background-color: #e2007221;
+	border-color: #e10d74;*/
+	border-color: #666;
 	background-image: url(../images/check.png);
-	color: #e10d74;
+	color: #333;
 }
 
 .generic-select li.secondary:not(.selected) {
