@@ -457,11 +457,10 @@ select.form-control{
 }
 
 .input-group-addon.input-lg {
-	background-color: #e10d74;
-	border-color: #e10d74;
-  box-shadow: 2px 2px 0 #6661;
-  border-radius: 0.25rem;
-  color: white!important;
+	background-color: white;
+	border: 2px solid #e10d74;
+  border-radius: 0.5rem;
+  color: #e10d74!important;
 }
 
 .input-group-append {
