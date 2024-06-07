@@ -337,8 +337,9 @@ html, body {
   background-color: #fff;
   border-color: #e10d74;
 }
+
 .btn.btn-outline-danger:hover {
-  background-color: #e10d7466;
+  background-color: #e10d74;
 }
 
 .is-transparent {
@@ -939,10 +940,10 @@ select.form-control{
 	text-align: center;
 	font-size: 1rem;
 	line-height: 1.5;
-	padding: 0.75rem 1.5rem;
+	padding: 1rem 2rem;
 	font-weight: 600;
 	color: white;
-	border: none;
+	border-color: transparent;
 	background-color: #bebebe;
 	/*min-width: 20rem;*/
 	min-height: 46px;
