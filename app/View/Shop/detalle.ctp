@@ -239,7 +239,7 @@
                                   </div>
                                 </div>
                                 <div class="col-xs-12 col-md-8">
-                                    <a href="#" id="agregar-carro" class="add agregar-carro" >Agregar al carrito--</a>
+                                    <a href="#" id="agregar-carro" class="add agregar-carro">Agregar al carrito</a>
                                 </div>
                             </div>
                             

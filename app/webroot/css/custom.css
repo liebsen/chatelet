@@ -1051,7 +1051,20 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #detalle .caract .colors a.grisoscuro { background: #5a5a5a; }
 #detalle .caract .colors a.verde { background: #42604e; }
 #detalle .caract .colors a.azul { background: #294c70; }
-#detalle .caract .add { background: #e10d74; min-height: 2.25rem; min-width: 10rem; color: #FFF; display: block; font-size: 1.1rem; font-weight: 600;padding: 1rem; text-align: center;border-radius: 0.5rem; transition: all 0.5s ease-in;}
+#detalle .caract .add { 
+  background: white; 
+  border: 2px solid #e10d74; 
+  color: #e10d74; 
+  min-height: 2.25rem; 
+  min-width: 10rem; 
+  display: block; 
+  font-size: 1rem; 
+  font-weight: 600;
+  padding: 1rem; 
+  text-align: center;
+  border-radius: 0.5rem; 
+  transition: all 0.5s ease-in;
+}
 #detalle .caract .add.adding { background-color: #808080; }
 #detalle .caract .social { margin-top: 40px; text-align: center; }
 #detalle .caract .social a { background-image: url(../images/sprite.png); display: inline-block; height: 19px; margin: 0 25px; width: 19px; }
@@ -1116,13 +1129,19 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   }
 }
 
-@media(min-width: 550px) and (max-width: 1023px) {
+@media(min-width: 550px) and (max-width: 767px) {
   #detalle .caract label.btn .color-option {
-    min-height: 18rem;
+    min-height: 22rem;
   }
 }
 
-@media(min-width: 1024px) {
+@media(min-width: 768px) and (max-width: 889px) {
+  #detalle .caract label.btn .color-option {
+    min-height: 20rem;
+  }
+}
+
+@media(min-width: 990px) {
   #detalle .caract label.btn .color-option {
     min-height: 12rem;
   }
