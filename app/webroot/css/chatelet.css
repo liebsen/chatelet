@@ -923,7 +923,7 @@ select.form-control{
 	transition: all 0.25s ease;
 }
 .card-link:hover {
-	background-color: #e398c1;
+	background-color: #e10d74;
 	color: white;
 }
 @media(max-width: 550px) {
