@@ -1095,7 +1095,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   border: none;
   box-shadow: none;
   opacity: 1;
-  min-height: 12rem;
+  min-height: 24rem;
   margin-bottom: 0.25rem;
   background-repeat: no-repeat;
   background-position: center center;
@@ -1110,11 +1110,24 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   border-radius: 0.5rem;*/
 }
 
-@media(min-width: 767px) {
+@media(min-width: 400px) and (max-width: 549px) {
+  #detalle .caract label.btn .color-option {
+    min-height: 13rem;
+  }
+}
+
+@media(min-width: 550px) and (max-width: 1023px) {
+  #detalle .caract label.btn .color-option {
+    min-height: 18rem;
+  }
+}
+
+@media(min-width: 1024px) {
   #detalle .caract label.btn .color-option {
     min-height: 12rem;
   }
 }
+
 #detalle .caract.posnum-2 label.btn .color-option {
   background-position: top center;
 }
