@@ -1756,10 +1756,12 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	    $this->loadModel('Coupon');
     	switch ($action) {
 	    	case 'add':
-	    	    if ($this->request->is('POST')){
-			        $this->autoRender = false;
-			        $this->Coupon->save($this->request->data);
-			        return $this->redirect(array('action'=>'cupones'));
+    	    if ($this->request->is('POST')){
+		        $this->autoRender = false;
+		        $this->request->data['coupon_payment'] = implode(",",$this->request->data['coupon_payment']);
+		        $this->request->data['min_amount'] = $this->request->data['min_amount']?: 0;
+		        $this->Coupon->save($this->request->data);
+		        return $this->redirect(array('action'=>'cupones'));
     			} else {
     				$this->loadModel('Coupon');
 				    $cats = $this->Coupon->find('all');
