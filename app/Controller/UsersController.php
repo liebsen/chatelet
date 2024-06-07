@@ -93,8 +93,8 @@ class UsersController extends AppController {
                     $this->sendEmail($email_data,'Recuperar contraseña Châtelet', 'confirm_email');
 
                     $this->Session->setFlash(
-                        'BIEN! Verifique su casilla de correo' , 
-                        'default', 
+                        'BIEN!' , 
+                        'Verifique su casilla de correo', 
                         array('class' => 'hidden notice')
                      );
                     return $this->redirect($this->referer());

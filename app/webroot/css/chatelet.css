@@ -190,6 +190,7 @@ html, body {
 	border: 1px solid #ccc;
 	padding-left: 5px;
 	margin: 0;
+	font-weight: 800;
 }
 .text-uppercase {
   text-transform: uppercase;

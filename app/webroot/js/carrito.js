@@ -2,13 +2,13 @@ var currentCarritoIndex = 0
 var cargo = ''
 var itemData = null
 var removeElement = null
-var askremoveCartItem = (e, name) => {
+var askremoveCart = (e, name) => {
 	removeElement = e
 	$('.prod_name').text(name)
 	layerShow('remove-item')
 }
 
-var removeCartItem = (e) => {
+var removeCart = (e) => {
 	if(!removeElement) return
 	const block = $(removeElement).parent()
 	const json = $(block).find('.carrito-data').data('json')

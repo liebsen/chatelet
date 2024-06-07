@@ -52,11 +52,15 @@ function addCart(data, button, text) {
           title: 'Agregado al carrito',
           message: 'Podés seguir agregando más productos o finalizar esta compra en la sección carrito'
         });
+
         var reload = function() {
         	window.location.href = '/carrito'
         };
+
         setTimeout(reload, 1000);
+        
         $('.growl-close').click(reload);
+
 				/*
 				dataLayer.push({
 				  'event': 'addToCart',

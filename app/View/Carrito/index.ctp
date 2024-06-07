@@ -32,7 +32,7 @@
       <h1 class="h1">¿Seguro deseas eliminar<br><span class="prod_name text-theme"></span><br> del carrito?</h1>
       <div class="form-group">
       	<button type="button" class="btn btn-light" onclick="layerClose('remove-item')">Cancelar</button>
-        <button type="button" id="carrito-remove-btn" class="btn btn-outline-danger" onclick="removeCartItem()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
+        <button type="button" id="carrito-remove-btn" class="btn btn-outline-danger" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
       </div>
     </div>
   </div>
@@ -84,7 +84,7 @@
             ));
 
 						echo '<div class="carrito-item-row is-clickable" product_row>';
-						echo '<div onclick="askremoveCartItem(this, \''.$product['name'].'\')" class="carrito-remove animated fadeIn delay2" title="Eliminar del carrito">';
+						echo '<div onclick="askremoveCart(this, \''.$product['name'].'\')" class="carrito-remove animated fadeIn delay2" title="Eliminar del carrito">';
 						echo '<span class="glyphicon glyphicon-remove"></span>';
 						/*echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
 							array(
