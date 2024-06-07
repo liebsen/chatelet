@@ -54,7 +54,7 @@
       echo $this->Html->css('font-awesome.min');
       echo $this->Html->css('bootstrap-select');
       // echo $this->Html->css('bootstrap.min');
-      echo $this->Html->css('bootstrap.css?' . Configure::read('APP_VERSION'));
+      echo $this->Html->css('bootstrap.css?v=' . Configure::read('APP_VERSION'));
       echo $this->Html->css('bootstrapValidator.min');
 
       echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION'));
@@ -74,7 +74,7 @@
       echo $this->Html->script('bootstrapValidator.min');
       echo $this->Html->script('wow.min');
       echo $this->Html->script('plugins');
-      echo $this->Html->script('main.js?' . Configure::read('APP_VERSION'));
+      echo $this->Html->script('main.js?v=' . Configure::read('APP_VERSION'));
 
 //      echo $this->fetch('script');
     ?>
