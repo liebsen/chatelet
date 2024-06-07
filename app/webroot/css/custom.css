@@ -1065,7 +1065,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   border-radius: 0.5rem; 
   transition: all 0.5s ease-in;
 }
-#detalle .caract .add.adding { background-color: #808080; }
+#detalle .caract .add.adding { color: #888; border-color: #888; background-color: #f8f8f8; }
 #detalle .caract .social { margin-top: 40px; text-align: center; }
 #detalle .caract .social a { background-image: url(../images/sprite.png); display: inline-block; height: 19px; margin: 0 25px; width: 19px; }
 #detalle .caract .social a.fb { background-position: -92px -40px; }
