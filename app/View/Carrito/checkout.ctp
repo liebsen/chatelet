@@ -115,9 +115,9 @@
 		                  </div>
                     </div>
 							    	<div class="col-xs-12 option-regular bank-block hide">
-						          <label class="d-inline">
+						          <label class="d-inline text-theme">
 						          	<span class="h4">Descuento pago Transferencia</span><br>
-						          	<p class="mt-2 text-bold text-success h4 mb-0">
+						          	<p class="mt-2 text-bold text-success h2 mb-0">
 						          		$ <span class="bank_bonus"></span>
 						          	</p>
 						          </span>
