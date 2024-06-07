@@ -1848,7 +1848,7 @@ span.out{
   font-weight: 800;
   width: 100%;
   background-color: #f6f6f5;
-  min-height: 4rem;
+  min-height: 3.75rem;
   transition: all 0.25s ease-out;
 }
 
@@ -2207,8 +2207,8 @@ span.out{
   top: 0;
   right: 0;
   opacity: 0;
-  width: 4rem;
-  height: 4rem;
+  width: 3.75rem;
+  height: 3.75rem;
   transition: opacity 0.5s ease-in-out;
 }
 

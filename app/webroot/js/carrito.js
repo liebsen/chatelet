@@ -2,18 +2,19 @@ var currentCarritoIndex = 0
 var cargo = ''
 var itemData = null
 var removeElement = null
-var askremoveItem = (e, name) => {
+var askremoveCartItem = (e, name) => {
 	removeElement = e
 	$('.prod_name').text(name)
 	layerShow('remove-item')
 }
 
-var removeItem = (e) => {
+var removeCartItem = (e) => {
 	if(!removeElement) return
 	const block = $(removeElement).parent()
 	const json = $(block).find('.carrito-data').data('json')
 	block.addClass('flash infinite')
 	let item = JSON.parse(JSON.stringify(json))
+	$('#carrito-remove-btn').button('loading')
 	$.get(`/carrito/remove/${item.id}`).then((res) => {
 		/* @Analytics: removeFromCart */
 		fbq('track', 'RemoveFromCart')
@@ -36,6 +37,7 @@ var removeItem = (e) => {
 		block.removeClass('flash infinite')
 		block.addClass('fadeOut')
 		setTimeout(() => {
+			$('#carrito-remove-btn').button('reset')
 			location.href = '/carrito'
 			//block.remove()
 		}, 500)
