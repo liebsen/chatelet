@@ -71,8 +71,8 @@ var select_dues = (e,item) => {
   	{'payment_dues': dues_selected}
   ])
 
-	$('.payment_dues .option-rounded').removeClass('is-selected is-secondary')
-	$('.payment_dues .option-rounded').addClass('is-secondary')
+	$('.payment-dues .option-rounded').removeClass('is-selected is-secondary')
+	$('.payment-dues .option-rounded').addClass('is-secondary')
 	$(item).addClass('is-selected')
 	prevent_default = false
 }
