@@ -103,8 +103,9 @@
 
 .generic-select li.selected {
 	background-color: #e2007221;
-	border-color: #e10d74;
-	background-image: url(../images/check-pink.png);
+	/*border-color: #e10d74;*/
+	border-color: #07BC31;
+	background-image: url(../images/check.png);
 	color: #e10d74;
 }
 

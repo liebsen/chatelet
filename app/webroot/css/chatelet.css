@@ -940,7 +940,7 @@ select.form-control{
 	text-align: center;
 	font-size: 1rem;
 	line-height: 1.5;
-	padding: 1rem 2rem;
+	padding: 0.75rem 1.75rem;
 	font-weight: 600;
 	color: white;
 	border-color: transparent;
