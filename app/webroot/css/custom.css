@@ -315,6 +315,10 @@ label input[type=checkbox]:disabled + .label-text:before {
   }
 }
 @media (min-width: 992px) {
+  .carrito-row {
+    display: flex;
+    flex-direction: row;
+  }  
   #desarrollo { padding: 4rem 1rem; }  
   .box.img-bg {
     min-height: 30rem;  
@@ -2702,18 +2706,14 @@ span.count.is-empty {
   .search-results .is-background-cover {
     /* min-height: 20rem; */
   }
-  .carrito-row {
-    display: flex;
-    flex-direction: row;
-  }
   .carrito-col {
     flex: 1;    
   }
   /*.carrito-col:last-child {
     max-width: 20rem;
   }*/
-  .carrito-items {
-    padding-right: 1rem;
+  .carrito-col {
+    padding: 1rem;
   }
   .carrito-items .price {
     margin: 0;
