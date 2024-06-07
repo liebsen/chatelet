@@ -1,5 +1,5 @@
-<?php echo $this->Html->script('shipping.js?v=' . Configure::read('DIST_VERSION'),array( 'inline' => false )) ?>
-<?php echo $this->Html->css('oca_front.css?v=' . Configure::read('DIST_VERSION'),array( 'inline' => false )) ?>
+<?php echo $this->Html->script('shipping.js?v=' . Configure::read('APP_VERSION'),array( 'inline' => false )) ?>
+<?php echo $this->Html->css('oca_front.css?v=' . Configure::read('APP_VERSION'),array( 'inline' => false )) ?>
 <div class="is-rounded como-queres-recibir-tu-compra">
 	<h5 class="card-title"><i class="fa fa-truck"></i> ¿Cómo querés recibir tu compra?</h5>
 	<div class="shipment-options shipping">

@@ -457,7 +457,7 @@ class ShopController extends AppController {
 		$this->set('category_id',$category_id);
     $this->set('name_categories',$name_categories);
 		$this->set('category', $category);
-		$this->set('product', $product['Product']);
+		$this->set('product', @$product['Product']);
 		$this->set('properties', $properties);
 		$this->set('isGiftCard', $isGiftCard);
 		if ($isGiftCard && !empty($product['Product']['img_url'])) {

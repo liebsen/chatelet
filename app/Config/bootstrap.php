@@ -32,8 +32,8 @@ Cache::config('default', array('engine' => 'File'));
 Configure::write('mUrl','');
 Configure::write('font', 'DM Sans');
 Configure::write('fontweight', '300,400,500,600,700,800');
-error_log("version: " . $version);
 Configure::write('DIST_VERSION', $version);
+Configure::write('APP_VERSION', $version);
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.
@@ -144,7 +144,7 @@ Configure::write('S3.secret','3QQqVNx8juxN+N5xyxcFLafojLX3TjGeaQypZZtt');
 //Configure::write('uploadUrl','https://d3baxuoyqsgua.cloudfront.net/'); 
 //cache for https://s3.amazonaws.com/chatelet/'); 
 
-@include_once 'env.php';
+//@include_once 'env.php';
 
 // autoupdate version if coding
 if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
