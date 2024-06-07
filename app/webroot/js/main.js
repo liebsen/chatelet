@@ -199,7 +199,7 @@ let apiSearch = (q) => {
               }
             }
             if(e.price) {
-              strLegends+= ` <span class="text-dark text-bold text-price text-high">$ ${formatNumber(e.price)}</span> `
+              strLegends+= ` <span class="text-dark text-bold text-price text-high text-nowrap">$ ${formatNumber(e.price)}</span> `
             }
             strLegends+= `</span>`
           })
