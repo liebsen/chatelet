@@ -1997,7 +1997,7 @@ span.out{
   background-repeat: no-repeat;
   background-position: right center;
   background-image: url(../images/chevron_right_pink.svg);
-  border-radius: 0.25rem;
+  border-radius: 0.75rem;
 }
 
 .p-select select {

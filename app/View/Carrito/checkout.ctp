@@ -96,7 +96,7 @@
 							          	</p>
 							          </div>
 						        	</label>
-						        	<p class="mt-2 text-muted">El monto mínimo para obtener beneficio <b>envío gratis</b> es de $ <?= $shipping_price ?></p>
+						        	<p class="mt-2 text-muted">El monto mínimo para obtener beneficio <b>envío gratis</b> es de $ <?= number_format($shipping_price, 2, ',', '.') ?></p>
 						        </div>  
 							    	<div class="col-xs-12 option-regular cargo-takeaway hide">
 						          <label class="d-inline">

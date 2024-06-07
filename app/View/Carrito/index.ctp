@@ -264,34 +264,33 @@
 			</div>
 		</div>
 	</div>
-					
-	<?php if (isset($carro) && !empty($carro)) :?>
-	<div id="carritoItem" class="menuLayer is-fullheight has-item-counter animated">
-	  <a class="close float-tr">
-	    <span></span>
-	    <span></span>
-	  </a>
-	  <div class="carousel carousel-carrito" id="carousel">
-	  	<div class="carousel-inner">
-				<div class="carrito-item">
-					<div class="carrito-item-block"></div>
-				</div>
-			</div>
-			<a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
-        <span class="arrow arrow-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
-        <span class="arrow arrow-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-	  </div>
-	</div>
-	<input type="hidden" id="shipping_price_min" value="<?= $shipping_price_min ?>">
-	<input type="hidden" id="total" value="<?= $total ?>">
-	<?php endif;?>
 </div>
-
+	
+<?php if (isset($carro) && !empty($carro)) :?>
+<div id="carritoItem" class="menuLayer is-fullheight has-item-counter animated">
+  <a class="close float-tr">
+    <span></span>
+    <span></span>
+  </a>
+  <div class="carousel carousel-carrito" id="carousel">
+  	<div class="carousel-inner">
+			<div class="carrito-item">
+				<div class="carrito-item-block"></div>
+			</div>
+		</div>
+		<a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+      <span class="arrow arrow-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+      <span class="arrow arrow-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+<input type="hidden" id="shipping_price_min" value="<?= $shipping_price_min ?>">
+<input type="hidden" id="total" value="<?= $total ?>">
+<?php endif;?>
 <script>
 	$(function(){
 	<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>

@@ -6,7 +6,7 @@
         <h3 class="h3 mt-2 mw-26"><?= $data['bank_explain_title'] ?></h3>
         <?php if(isset($data['total_price'])): ?>
         <h3 class="d-block border-dark mb-1 p-4 max-25">
-          <span class="text-dark h3">Monto a transferir $<?= number_format($data['total_price'], 2, ',', '.') ?></span>
+          <span class="text-dark h3">Monto a transferir $ <?= number_format($data['total_price'], 2, ',', '.') ?></span>
         </h3>
         <h3 class="d-block border-theme text-white p-4 max-25">
           <span class="text-theme h3">👉 Referencia #<?= $data['id'] ?></span>
