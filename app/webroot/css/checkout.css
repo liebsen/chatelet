@@ -68,11 +68,10 @@ a.volver .fa {
 	/*border-color: #3c763d;
 	color: #3c763d;
 	background-color: #dff0d8;*/
-	border-color: #e10d74;
-	color: #e10d74;
-	background-color: #e2007221;	
+	border-color: #555;
+	color: #333;
+	background-color: #6661;	
 }
-
 
 .option-rounded:hover {
 	opacity: 1!important;
