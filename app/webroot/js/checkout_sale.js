@@ -91,7 +91,6 @@ var select_payment = (e,item) => {
 
 	switch(selected){
 		case 'bank':
-			console.log('dues', document.querySelector('.payment-dues'))
 		if(document.querySelector('.payment-dues').classList.contains('scaleIn')){
 			document.querySelector('.payment-dues').classList.remove('scaleIn')
 			document.querySelector('.payment-dues').classList.add('scaleOut')
