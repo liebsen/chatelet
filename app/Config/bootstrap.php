@@ -32,6 +32,7 @@ Cache::config('default', array('engine' => 'File'));
 Configure::write('mUrl','');
 Configure::write('font', 'DM Sans');
 Configure::write('fontweight', '300,400,500,600,700,800');
+error_log("version: " . $version);
 Configure::write('DIST_VERSION', $version);
 
 /**
