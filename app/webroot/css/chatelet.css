@@ -276,8 +276,8 @@ html, body {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	padding: 1rem;
-	padding-top: 1.5rem;
+	padding: 0.75rem;
+	padding-top: 1.25rem;
 	/*background-color: #f8f8f8;*/
   background: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.7) 15%, hsla(0, 0%, 100%, 0.9) 30%, white);
   box-shadow: none;	
