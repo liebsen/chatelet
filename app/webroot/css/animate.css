@@ -55,8 +55,8 @@
 }
 
 .animated.slow {
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
+  -webkit-animation-duration: 10s;
+  animation-duration: 10s;
 }
 
 .animated.hinge {
