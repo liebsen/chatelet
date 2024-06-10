@@ -39,7 +39,7 @@
             echo $this->Html->css('plugins');
             echo $this->Html->css('main');
             //echo $this->Html->css('font-awesome.min');
-            echo $this->Html->css('animate?v=' . Configure::read('APP_VERSION'));
+            echo $this->Html->css('animate.css?v=' . Configure::read('APP_VERSION'));
 
             if ($template['theme']) {
                 echo $this->Html->css('themes/'.$template['theme']);
