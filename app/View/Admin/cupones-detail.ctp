@@ -1,6 +1,7 @@
 <?php
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('cupones-detail', array('inline' => false));
+  echo $this->Html->script('jquery.growl', array('inline' => false));
   // echo $this->Html->css('cupones-detail', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
   ?>
@@ -147,10 +148,9 @@
             </div>
             <small class="text-muted">Seleccioná los días de la semana en que el cupón debería estar disponible.</small>
           </div>
-          <br />          
-        </div>             
+        </div>        
       </div>
-      <br />               
+
       <div class="form-actions">
         <a href="/admin/cupones" class="btn btn-info"><i class="icon-repeat"></i> Atrás</a>
         <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="icon-ok"></i> Guardar</button>
@@ -158,3 +158,17 @@
     </form>
   </div>
 </div>
+<hr>
+<?php if(!empty($products)):?>
+<div class="row">
+  <div class="col-xs-12">
+    <h3 class="text-bold">Categorías y productos relacionados</h3>
+    <p>Establece qué categorías o productos estarán vinculadas a este cupón.
+    <div class="control-group">
+      <?php foreach($products as $product):?>
+      <span class="label is-clickable <?php echo $product['Product']['enabled'] ? 'is-enabled': '' ?>" onclick="toggleOption(this, 'product')" data-coupon="<?php echo $coupon['Coupon']['id'] ?>" data-json='<?php echo json_encode($product['Product']) ?>'><?php echo $product['Product']['name']?></span>
+      <?php endforeach ?>
+    </div>
+  </div>
+</div>
+<?php endif ?>

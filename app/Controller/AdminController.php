@@ -1696,45 +1696,81 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			);
 		$this->set('h1', $h1);
 
-	    $this->loadModel('Store');
-    	switch ($action) {
-	    	case 'add':
-	    	    if ($this->request->is('POST')){
-			        $this->autoRender = false;
-			        $this->Store->save($this->request->data);
-			        return $this->redirect(array('action'=>'sucursales'));
-    			} else {
-    				$this->loadModel('Store');
-				    $cats = $this->Store->find('all');
-					$this->set('cats', $cats);
-					$this->set('sel', true);
-	    			return $this->render('sucursales-detail');
-	    		}
-	    		break;
-	    	case 'delete':
-		    	if ($this->request->is('post')) {
-		    		$this->autoRender = false;
+    $this->loadModel('Store');
+  	switch ($action) {
+    	case 'add':
+    	    if ($this->request->is('POST')){
+		        $this->autoRender = false;
+		        $this->Store->save($this->request->data);
+		        return $this->redirect(array('action'=>'sucursales'));
+  			} else {
+  				$this->loadModel('Store');
+			    $cats = $this->Store->find('all');
+				$this->set('cats', $cats);
+				$this->set('sel', true);
+    			return $this->render('sucursales-detail');
+    		}
+    		break;
+    	case 'delete':
+	    	if ($this->request->is('post')) {
+	    		$this->autoRender = false;
 
-		    		$this->Store->delete($this->request->data['id']);
-		    	}
-	    		break;
-	    	case 'edit':
-	    		if ($this->request->is('post')) {
-	    			$this->autoRender = false;
-	    			$data = $this->request->data;
-			        $this->Store->save($data);
-	    		} else {
-		    		$hasId = array_key_exists(1, $this->request->pass);
-		    		if (!$hasId) break;
-		    		$store = $this->Store->find('first', array('conditions' => array('id' => $this->request->pass[1])));
-		    		$this->set('store', $store);
-		    		return $this->render('sucursales-detail');
-	    		}
-	    		break;
-	    }
-	    $stores = $this->Store->find('all');
-	    $this->set('stores', $stores);
+	    		$this->Store->delete($this->request->data['id']);
+	    	}
+    		break;
+    	case 'edit':
+    		if ($this->request->is('post')) {
+    			$this->autoRender = false;
+    			$data = $this->request->data;
+		        $this->Store->save($data);
+    		} else {
+	    		$hasId = array_key_exists(1, $this->request->pass);
+	    		if (!$hasId) break;
+	    		$store = $this->Store->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    		$this->set('store', $store);
+	    		return $this->render('sucursales-detail');
+    		}
+    		break;
+    }
+    $stores = $this->Store->find('all');
+    $this->set('stores', $stores);
 		return $this->render('sucursales');
+	}
+
+	public function coupon_add() {
+		$this->autoRender = false;
+    if ($this->request->is('POST')) {
+    	$this->loadModel('CouponItem');
+    	$data = $this->request->data;
+    	$ids = $this->CouponItem->find('all', [
+    		'conditions' => [
+    			'product_id' => $data['id']
+    		], 
+    		'fields' => ['id']
+    	]);
+    	$this->CouponItem->delete($ids);
+      $result = $this->CouponItem->save([
+      	'product_id' => $data['id'],
+      	'coupon_id' => $data['coupon'],
+      ]);
+      return json_encode(['success' => true, 'data' => $result['CouponItem']]);
+    }
+	}
+
+	public function coupon_remove() {
+		$this->autoRender = false;
+    if ($this->request->is('POST')) {
+    	$this->loadModel('CouponItem');
+    	$data = $this->request->data;
+    	$ids = $this->CouponItem->find('all', [
+    		'conditions' => [
+    			'product_id' => $data['id']
+    		], 
+    		'fields' => ['id']
+    	]);
+    	$this->CouponItem->delete($ids);
+      return json_encode(['success' => true]);
+    }
 	}
 
 	var $weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
@@ -1755,6 +1791,8 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			);
 
     $this->loadModel('Coupon');
+    $this->loadModel('CouponItem');
+    $this->loadModel('Product');
 
   	switch ($action) {
     	case 'add':
@@ -1767,8 +1805,8 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
   			} else {
   				$this->loadModel('Coupon');
 			    $cats = $this->Coupon->find('all');
-				$this->set('cats', $cats);
-				$this->set('sel', true);
+					$this->set('cats', $cats);
+					$this->set('sel', true);
 					$h1 = array(
 						'name' => 'Nuevo Cupón',
 						'icon' => 'gi gi-tags'
@@ -1799,12 +1837,25 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$coupon = $this->Coupon->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+
+					$products = $this->Product->find('all', array('fields' => array('id', 'name')));
+					$coupon_items = $this->CouponItem->find('all', array('conditions' => array('coupon_id', $coupon->id), 'fields' => array('product_id')));
+					$coupon_items = array_map(function($e) {
+						return $e['CouponItem']['product_id'];
+					},$coupon_items);
+					if(!empty($products)) {
+						foreach($products as &$product) {
+							$product['Product']['enabled'] = in_array($product['Product']['id'], $coupon_items);
+						}
+					}
+
 	    		$this->set('coupon', $coupon);
+	    		$this->set('products', $products);
 	    		$this->set('weekdays', $weekdays);
 					$h1 = array(
 						'name' => $coupon['Coupon']['code'],
 						'icon' => 'gi gi-tags'
-						);
+					);
 					$this->set('h1', $h1);	    		
 	    		return $this->render('cupones-detail');
     		}
@@ -2281,6 +2332,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
       return json_encode(['status' => 'success', 'data' => $result['LogisticsPrices']]);
     }
 	}
+
 	public function remove_logistic_price() {
 		$this->autoRender = false;
 		$this->loadModel('LogisticsPrices');

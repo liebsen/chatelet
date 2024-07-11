@@ -254,6 +254,10 @@ body {
     width: 100%!important;
 }
 
+.is-enabled {
+    background-color: green!important;
+    color: white!important;
+}
 .bg-info-i {
   background-color: #d9edf7!important;
 }
@@ -670,7 +674,7 @@ body {
 
 .block-content {
     margin: 0;
-    padding: 1rem;
+    padding: 1.5rem;
     border: 2px solid #eee;
     border-top: none;
 }

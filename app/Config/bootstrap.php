@@ -147,7 +147,7 @@ Configure::write('S3.secret','3QQqVNx8juxN+N5xyxcFLafojLX3TjGeaQypZZtt');
 //@include_once 'env.php';
 
 // autoupdate version if coding
-if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+/*if($_SERVER["HTTP_X_REQUESTED_WITH"]!="XMLHttpRequest" && $_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 	require __DIR__ . '/../../version.php';	
-}
+}*/
 
