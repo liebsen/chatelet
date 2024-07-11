@@ -24,10 +24,10 @@ function toggleOption(e, i){
 	  	console.log(result.success)
 	    if (result.success) {
 	    	console.log('ok')
-	      $.growl.notice({
+	      /*$.growl.notice({
 	        title: 'Exito',
 	        message: 'Se actualizó el cupón exitosamente'
-	      });
+	      });*/
 	      $(e).removeClass('is-enabled')
 	      if(ep == 'add'){
 	        $(e).addClass('is-enabled')  

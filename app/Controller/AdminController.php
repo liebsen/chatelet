@@ -1744,10 +1744,14 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     	$data = $this->request->data;
     	$ids = $this->CouponItem->find('all', [
     		'conditions' => [
-    			'product_id' => $data['id']
+    			'coupon_id' => $data['coupon'],
+    			'product_id' => $data['id'],
     		], 
     		'fields' => ['id']
     	]);
+			$ids = array_map(function($e) {
+				return $e['CouponItem']['id'];
+			},$ids);    	
     	$this->CouponItem->delete($ids);
       $result = $this->CouponItem->save([
       	'product_id' => $data['id'],
@@ -1764,10 +1768,14 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     	$data = $this->request->data;
     	$ids = $this->CouponItem->find('all', [
     		'conditions' => [
-    			'product_id' => $data['id']
+    			'coupon_id' => $data['coupon'],
+    			'product_id' => $data['id'],
     		], 
     		'fields' => ['id']
     	]);
+			$ids = array_map(function($e) {
+				return $e['CouponItem']['id'];
+			},$ids);    	
     	$this->CouponItem->delete($ids);
       return json_encode(['success' => true]);
     }
