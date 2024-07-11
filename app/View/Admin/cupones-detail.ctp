@@ -3,7 +3,6 @@
   echo $this->Html->script('cupones-detail', array('inline' => false));
   // echo $this->Html->css('cupones-detail', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
-  $weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
   ?>
 <?php echo $this->element('admin-menu');?>
 <div class="block block-themed">
@@ -26,7 +25,7 @@
         <div class="col-md-6">
           <h4 class="sub-header">Información Principal</h4>
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Visible'); ?></label>
             <div class="controls text-center switch-scale">
               <?php
                 $enabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '1') || !isset($coupon) ? 'checked' : '';
@@ -55,7 +54,7 @@
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Tipo de cupón'); ?></label>
-            <div class="controls">
+            <div class="controls text-center switch-scale">
               <?php
                 $percentage = (isset($coupon) && $coupon['Coupon']['coupon_type'] == 'percentage') || !isset($coupon) ? 'checked' : '';
                 $nominal = (isset($coupon) && $coupon['Coupon']['coupon_type'] == 'nominal') ? 'checked' : '';
@@ -75,7 +74,7 @@
           </div>
         </div> 
         <div class="col-md-6">
-          <h4 class="sub-header">Restricciones</h4>
+          <h4 class="sub-header">Condiciones</h4>
           <br />
           <div class="control-group">
             <!--input type="hidden" id="coupon_payment" name="data[coupon_payment][]" value="<?= isset($coupon) ? $coupon['Coupon']['coupon_payment'] : '' ?>" /-->

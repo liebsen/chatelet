@@ -1737,6 +1737,8 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		return $this->render('sucursales');
 	}
 
+	var $weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+
 	public function cupones($action = null) {
 		$navs = array(
 			'Lista' => array(
@@ -1751,69 +1753,73 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 				)
 
 			);
+
+    $this->loadModel('Coupon');
+
+  	switch ($action) {
+    	case 'add':
+  	    if ($this->request->is('POST')){
+	        $this->autoRender = false;
+	        $this->request->data['coupon_payment'] = implode(",",$this->request->data['coupon_payment']);
+	        $this->request->data['min_amount'] = $this->request->data['min_amount']?: 0;
+	        $this->Coupon->save($this->request->data);
+	        return $this->redirect(array('action'=>'cupones'));
+  			} else {
+  				$this->loadModel('Coupon');
+			    $cats = $this->Coupon->find('all');
+				$this->set('cats', $cats);
+				$this->set('sel', true);
+					$h1 = array(
+						'name' => 'Nuevo Cupón',
+						'icon' => 'gi gi-tags'
+						);
+					$this->set('h1', $h1);	
+					$this->set('weekdays', $weekdays);
+    			return $this->render('cupones-detail');
+    		}
+    		break;
+    	case 'delete':
+	    	if ($this->request->is('post')) {
+	    		$this->autoRender = false;
+
+	    		$this->Coupon->delete($this->request->data['id']);
+	    	}
+    		break;
+    	case 'edit':
+    		if ($this->request->is('post')) {
+    			$this->autoRender = false;
+    			$data = $this->request->data;
+
+    			if(isset($data['coupon_payment'])){
+    				$data['coupon_payment'] = implode(',',array_filter($data['coupon_payment']));
+    			}
+
+		      $this->Coupon->save($data);
+    		} else {
+	    		$hasId = array_key_exists(1, $this->request->pass);
+	    		if (!$hasId) break;
+	    		$coupon = $this->Coupon->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    		$this->set('coupon', $coupon);
+	    		$this->set('weekdays', $weekdays);
+					$h1 = array(
+						'name' => $coupon['Coupon']['code'],
+						'icon' => 'gi gi-tags'
+						);
+					$this->set('h1', $h1);	    		
+	    		return $this->render('cupones-detail');
+    		}
+    		break;
+    }
+    $coupons = $this->Coupon->find('all');
+    $this->set('coupons', $coupons);
+
+		$h1 = array(
+			'name' => 'Cupones',
+			'icon' => 'gi gi-tags'
+			);
+		$this->set('h1', $h1);	 
 		$this->set('navs', $navs);
-
-	    $this->loadModel('Coupon');
-    	switch ($action) {
-	    	case 'add':
-    	    if ($this->request->is('POST')){
-		        $this->autoRender = false;
-		        $this->request->data['coupon_payment'] = implode(",",$this->request->data['coupon_payment']);
-		        $this->request->data['min_amount'] = $this->request->data['min_amount']?: 0;
-		        $this->Coupon->save($this->request->data);
-		        return $this->redirect(array('action'=>'cupones'));
-    			} else {
-    				$this->loadModel('Coupon');
-				    $cats = $this->Coupon->find('all');
-					$this->set('cats', $cats);
-					$this->set('sel', true);
-						$h1 = array(
-							'name' => 'Nuevo Cupón',
-							'icon' => 'gi gi-tags'
-							);
-						$this->set('h1', $h1);						
-	    			return $this->render('cupones-detail');
-	    		}
-	    		break;
-	    	case 'delete':
-		    	if ($this->request->is('post')) {
-		    		$this->autoRender = false;
-
-		    		$this->Coupon->delete($this->request->data['id']);
-		    	}
-	    		break;
-	    	case 'edit':
-	    		if ($this->request->is('post')) {
-	    			$this->autoRender = false;
-	    			$data = $this->request->data;
-
-	    			if(isset($data['coupon_payment'])){
-	    				$data['coupon_payment'] = implode(',',array_filter($data['coupon_payment']));
-	    			}
-
-			      $this->Coupon->save($data);
-	    		} else {
-		    		$hasId = array_key_exists(1, $this->request->pass);
-		    		if (!$hasId) break;
-		    		$coupon = $this->Coupon->find('first', array('conditions' => array('id' => $this->request->pass[1])));
-		    		$this->set('coupon', $coupon);
-						$h1 = array(
-							'name' => $coupon['Coupon']['code'],
-							'icon' => 'gi gi-tags'
-							);
-						$this->set('h1', $h1);		    		
-		    		return $this->render('cupones-detail');
-	    		}
-	    		break;
-	    }
-	    $coupons = $this->Coupon->find('all');
-	    $this->set('coupons', $coupons);
-
-			$h1 = array(
-				'name' => 'Cupones',
-				'icon' => 'gi gi-tags'
-				);
-			$this->set('h1', $h1);	    
+   
 		return $this->render('cupones');
 	}
 

@@ -670,7 +670,7 @@ body {
 
 .block-content {
     margin: 0;
-    padding: 15px;
+    padding: 1rem;
     border: 2px solid #eee;
     border-top: none;
 }
@@ -2683,6 +2683,8 @@ label {
 .input-group {
     margin-top: 1px;
     margin-bottom: 1px;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
     -webkit-transition: none;
     -moz-transition: none;
     -o-transition: none;
@@ -2880,7 +2882,6 @@ textarea.form-control {
 
 .table.table-bordered {
     border: 2px solid #2980b9;
-    border-top: none;
 }
 
 .table.table-bordered thead > tr > th,
@@ -3399,7 +3400,8 @@ a:focus {
 }
 
 /* Remove Radius */
-.list-group-item,
+
+/*.list-group-item,
 .pager li > a,
 .pager li > span,
 .nav-tabs > li > a,
@@ -3431,10 +3433,10 @@ a:focus {
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     border-radius: 0 !important;
-}
+}*/
 
 /* Remove Box Shadow */
-.popover,
+/*.popover,
 .pagination,
 .dropdown-menu,
 .thumbnails-borderless a.thumbnail,
@@ -3449,7 +3451,7 @@ a.thumbnail-borderless,
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
     box-shadow: none !important;
-}
+}*/
 
 /*
 =================================================================
@@ -4105,8 +4107,10 @@ div.cloudzoom-black:nth-child(3) {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: scale(1);
-    padding: 0.75rem 1rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
+    background-color: #f8f8f8;
+    border-radius: 1rem;
 }
 
 .switch-scale > label {

@@ -874,7 +874,7 @@ select.form-control{
 	display: flex;
 	align-items: center;	
 	font-size: 1.5rem;
-	line-height: 1.25;
+	line-height: 1;
   margin-bottom: 1.5rem;
   margin-top: 0.5rem;
   padding-bottom: 1rem;
