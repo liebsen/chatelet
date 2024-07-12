@@ -161,31 +161,32 @@
 <?php if(!empty($products)):?>
 <hr>
 <h3 class="text-bold">Categorías y productos relacionados</h3>
+<p>Establece qué categorías ó productos estarán vinculadas a este cupón.</p>
 <div class="row" style="min-height: 40rem;">
   <div class="col-xs-6">
-    <h3 class="text-bold">Categorías</h3>
-    <p>Establece qué categorías estarán vinculadas a este cupón.
     <div class="control-group">
       <label class="control-label" for="products-filter">Categorías</label>
       <div class="controls">
         <input type="text" id="categories-filter" class="form-control" placeholder="Buscar"/>
       </div>
+      <div style="padding: 0.25rem;">
       <?php foreach($categories as $category):?>
       <span class="label category-item is-clickable <?php echo $category['Category']['enabled'] ? 'is-enabled': 'hidden' ?>" onclick="toggleOption(this, 'category')" data-coupon="<?php echo $coupon['Coupon']['id'] ?>" data-json='<?php echo json_encode($category['Category']) ?>'><?php echo $category['Category']['name']?></span>
       <?php endforeach ?>
+      </div>
     </div>
   </div>
   <div class="col-xs-6">
-    <h3 class="text-bold">Productos</h3>
-    <p>Establece qué productos estarán vinculadas a este cupón.
     <div class="control-group">
       <label class="control-label" for="products-filter">Productos</label>
       <div class="controls">
         <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
       </div>
+      <div style="padding: 0.25rem;">
       <?php foreach($products as $product):?>
       <span class="label product-item is-clickable <?php echo $product['Product']['enabled'] ? 'is-enabled': 'hidden' ?>" onclick="toggleOption(this, 'product')" data-coupon="<?php echo $coupon['Coupon']['id'] ?>" data-json='<?php echo json_encode($product['Product']) ?>'><?php echo $product['Product']['name']?></span>
       <?php endforeach ?>
+      </div>
     </div>
   </div>
 </div>
