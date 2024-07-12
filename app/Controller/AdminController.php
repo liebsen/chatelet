@@ -1745,7 +1745,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     	$ids = $this->CouponItem->find('all', [
     		'conditions' => [
     			'coupon_id' => $data['coupon'],
-    			'product_id' => $data['id'],
+    			$data['type'] . '_id' => $data['id'],
     		], 
     		'fields' => ['id']
     	]);
@@ -1754,7 +1754,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			},$ids);    	
     	$this->CouponItem->delete($ids);
       $result = $this->CouponItem->save([
-      	'product_id' => $data['id'],
+      	$data['type'] . '_id' => $data['id'],
       	'coupon_id' => $data['coupon'],
       ]);
       return json_encode(['success' => true, 'data' => $result['CouponItem']]);
@@ -1769,7 +1769,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     	$ids = $this->CouponItem->find('all', [
     		'conditions' => [
     			'coupon_id' => $data['coupon'],
-    			'product_id' => $data['id'],
+    			$data['type'] . '_id' => $data['id'],
     		], 
     		'fields' => ['id']
     	]);
@@ -1801,6 +1801,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     $this->loadModel('Coupon');
     $this->loadModel('CouponItem');
     $this->loadModel('Product');
+    $this->loadModel('Category');
 
   	switch ($action) {
     	case 'add':
@@ -1846,20 +1847,37 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	    		if (!$hasId) break;
 	    		$coupon = $this->Coupon->find('first', array('conditions' => array('id' => $this->request->pass[1])));
 
+					$coupon_items = $this->CouponItem->find('all', array('conditions' => array('coupon_id', $coupon->id), 'fields' => array('product_id', 'category_id')));
+
+	    		// categories
+					$categories = $this->Category->find('all', array('fields' => array('id', 'name')));
+					$coupon_categories = array_filter(array_map(function($e) {
+						return $e['CouponItem']['category_id'];
+					},$coupon_items));
+
+					if(!empty($categories)) {
+						foreach($categories as &$category) {
+							$category['Category']['enabled'] = in_array($category['Category']['id'], $coupon_categories);
+						}
+					}
+
+	    		// products
 					$products = $this->Product->find('all', array('fields' => array('id', 'name')));
 					$coupon_items = $this->CouponItem->find('all', array('conditions' => array('coupon_id', $coupon->id), 'fields' => array('product_id')));
-					$coupon_items = array_map(function($e) {
+					$coupon_products = array_filter(array_map(function($e) {
 						return $e['CouponItem']['product_id'];
-					},$coupon_items);
+					},$coupon_items));
 					if(!empty($products)) {
 						foreach($products as &$product) {
-							$product['Product']['enabled'] = in_array($product['Product']['id'], $coupon_items);
+							$product['Product']['enabled'] = in_array($product['Product']['id'], $coupon_products);
 						}
 					}
 
 	    		$this->set('coupon', $coupon);
 	    		$this->set('products', $products);
+	    		$this->set('categories', $categories);
 	    		$this->set('weekdays', $weekdays);
+
 					$h1 = array(
 						'name' => $coupon['Coupon']['code'],
 						'icon' => 'gi gi-tags'

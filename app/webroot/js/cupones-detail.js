@@ -1,4 +1,36 @@
 $(document).ready(function() {
+
+	let clock = 0
+	$('#products-filter').keyup(function(e){
+		clearTimeout(clock)
+		const value = $(e.target).val().toUpperCase()
+		clock = setTimeout(() => {
+			$('.product-item').each((j,i) => {
+				if(!$(i).hasClass('is-enabled')){
+					if($(i).text().toUpperCase().includes(value)) {
+						$(i).removeClass('hidden')
+					} else {
+						$(i).addClass('hidden')
+					}
+				}
+			})
+		}, 500)
+	})
+	$('#categories-filter').keyup(function(e){
+		clearTimeout(clock)
+		const value = $(e.target).val().toUpperCase()
+		clock = setTimeout(() => {
+			$('.category-item').each((j,i) => {
+				if(!$(i).hasClass('is-enabled')){
+					if($(i).text().toUpperCase().includes(value)) {
+						$(i).removeClass('hidden')
+					} else {
+						$(i).addClass('hidden')
+					}
+				}
+			})
+		}, 500)
+	})	
 	$('.datepicker').datepicker({
 		format: 'yyyy-mm-dd'
 	})
@@ -11,17 +43,14 @@ $(document).ready(function() {
 	})
 });
 
-function toggleOption(e, i){
+function toggleOption(e, type){
 	let data = JSON.parse(e.getAttribute('data-json'))
 	let ep = $(e).hasClass('is-enabled') ? 'remove' : 'add'
-	data.type = i
+	data.type = type
 	data.coupon = e.getAttribute('data-coupon')
 	$.post('/admin/coupon_' + ep, $.param(data))
 	  .success(function(res) {
 	  	let result = JSON.parse(res)
-	  	console.log(result)
-	  	console.log(typeof result)
-	  	console.log(result.success)
 	    if (result.success) {
 	    	console.log('ok')
 	      /*$.growl.notice({
