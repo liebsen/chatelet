@@ -75,6 +75,7 @@ let fxTotal = (total) => {
   const block = document.querySelector('.cost_total-container')
   block.classList.remove('fadeIn', 'fadeOut', 'delay')
   block.classList.add('hidden')
+  
   setTimeout(() => {
     block.classList.remove('hidden')
     block.classList.add('delay', 'fadeIn')
