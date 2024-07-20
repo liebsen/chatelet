@@ -88,6 +88,7 @@ class AdminController extends AppController {
 		foreach($map as $item) {
 			if (\filtercoupon($item)->status !== 'error') {
 				$available = true;
+				break;
 			}
 		}
 		return $available;

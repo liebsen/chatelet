@@ -62,12 +62,14 @@ function submitCoupon() {
 
   $('#free_delivery').text('');
   $('.btn-calculate-coupon').button('loading')
-  $.post('/carrito/coupon', { coupon: coupon }, function(json, textStatus) {
+  $.post('/carrito/coupon', { coupon: coupon }, function(res, textStatus) {
     $('.btn-calculate-coupon').button('reset')
-    //console.log('calculate_coupon(2)')
-    if( json.status == 'success' ) {
-      let coupon_type = json.data.coupon_type
-      let discount = parseFloat(json.data.discount)
+    
+    if( res.status == 'success' ) {
+
+      console.log(res)
+      let coupon_type = res.data.coupon_type
+      let discount = parseFloat(res.data.discount)
       let discounted = 0
       let total = 0
       if (coupon_type === 'percentage') {
@@ -85,12 +87,12 @@ function submitCoupon() {
       // //console.log(parseFloat($('#cost').text()));
       $('.input-coupon').removeClass('wrong');
       $('.input-coupon').addClass('ok');
-      onSuccessAlert(`${json.data.code.toUpperCase()}`, json.data.info);
-      //$('.coupon-info-title').text(json.data.code)
-      $('.coupon-info-info').html(`<span class="text-success text-bold">${json.data.code}</span> - ${json.data.info}`)
+      onSuccessAlert(`${res.data.code.toUpperCase()}`, res.data.info);
+      //$('.coupon-info-title').text(res.data.code)
+      $('.coupon-info-info').html(`<span class="text-success text-bold">${res.data.code}</span> - ${res.data.info}`)
       $('.coupon-info').removeClass('hidden')
       $('.coupon-info').addClass('fadeIn')
-      $('.promo-code').text(json.data.code)
+      $('.promo-code').text(res.data.code)
       $('.free-shipping').addClass('hidden')
       var price = parseFloat(total) + parseFloat(delivery_cost)
       
@@ -106,7 +108,7 @@ function submitCoupon() {
       $('input[name="coupon"]').val(coupon)
       $('#coupon_name').val("")
       $('.calc-coupon').hide(); 
-      $('.coupon-click').show(); 
+      $('.coupon-click').show();      
     }else{
       $('.coupon-discount').addClass('hidden')
       //carrito.coupon = ''
@@ -118,13 +120,13 @@ function submitCoupon() {
       $('#cost').text( '0' );
       //format_total = formatNumber(parseFloat(subtotal) + parseFloat(delivery_cost))            
       //fxTotal(formatNumber(format_total), true)
-      timeout = setTimeout( `onErrorAlert('${json.title}', '${json.message}')` , 200);
+      timeout = setTimeout( `onErrorAlert('${res.title}', '${res.message}')` , 200);
     }
     localStorage.setItem('carrito', JSON.stringify(carrito))
 
     // document.querySelector('processed-coupon-data').classList.remove('hidden')
     // document.querySelector('processed-coupon-data').classList.add('fadeIn')
-    $('.input-coupon').attr( 'data-valid' , parseInt(json.valid) );
+    $('.input-coupon').attr( 'data-valid' , parseInt(res.valid) );
   })
 
   return false

@@ -20,10 +20,12 @@ function log2file($path, $data, $mode="a"){
   chmod($path, 0777);
 }
 
-function filtercoupon ($data, $config = null, $amount = 0) {
+function filtercoupon ($data, $config = null, $coupon_ids = null, $amount = 0) {
   $payment_method = @$config['payment_method'] ?: 'mercadopago';
   $item = $data['Coupon'];
   $coupon_type = '';
+  $coupon_ids = [];
+  $config = ["prods","cats"];
   $date = date('Y-m-d');
   $week = (string) date('w');
   $time = time();
@@ -36,6 +38,15 @@ function filtercoupon ($data, $config = null, $amount = 0) {
   $inTime = strtotime($item['hour_from']) <= strtotime($hour) && strtotime($item['hour_until']) >= strtotime($hour);
   $inDate = strtotime($item['date_from']) <= strtotime($date) && strtotime($item['date_until']) >= strtotime($date);
   $inDateTime = $inTime && $inDate;
+
+  if(!empty($coupon_ids)){
+    $config['prods'] = array_values(array_map(function($e) {
+      return $e['CouponItem']['product_id'];
+    },$coupon_ids));
+    $config['cats'] = array_values(array_map(function($e) {
+      return $e['CouponItem']['category_id'];
+    },$coupon_ids));
+  }
 
   if (strlen($coupon_type) && strpos($item['weekdays'], $week) === false) {
     $valid = [];
@@ -64,7 +75,8 @@ function filtercoupon ($data, $config = null, $amount = 0) {
 
   $ret = (object) [
     'status' => 'error',
-    'message' => 'No coupon type'
+    'message' => 'No coupon type',
+    'config' => $config,
   ];
   
   switch ($coupon_type) {
@@ -77,7 +89,7 @@ function filtercoupon ($data, $config = null, $amount = 0) {
       } else {
         $ret = (object) [
           'status' => 'error',
-          'title' => "Restricción horaria",
+          'title' => "No es válido ahora",
           'message' => "Esta promo solo es válida para horario {$item['hour_from']} / {$item['hour_until']}"
         ];
       }
@@ -92,7 +104,7 @@ function filtercoupon ($data, $config = null, $amount = 0) {
         $date_until = date('j M Y', strtotime($item['date_until']));
         $ret = (object) [
           'status' => 'error',
-          'title' => "Restricción fecha",
+          'title' => "No es válido ahora",
           'message' => "Esta promo solo es válida para periodo {$date_from} al {$date_until}"
         ];
       }
@@ -106,7 +118,7 @@ function filtercoupon ($data, $config = null, $amount = 0) {
       } else {
         $ret = (object) [
           'status' => 'error',
-          'title' => "Restricción fecha",
+          'title' => "No es válido ahora",
           'message' => "Esta promo solo es válida para fecha {$item['date_from']} {$item['hour_from']} / {$item['date_until']} {$item['hour_until']}"
         ];
       }

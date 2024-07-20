@@ -282,10 +282,11 @@ class CarritoController extends AppController
 		$data = array('count' => 0, 'price' => 0);
 		$items = $this->Session->read('Carro');
 
+
 		if ($items) {
 			foreach ($items as $key => $item) {
-				$data['count'] ++;
-				$data['price'] += $item['price'];
+				$data['count']++;
+				$data['price']+= $item['price'];
 			}
 			$package = $this->Package->find('first',array('conditions' => array( 'Package.amount_min <=' => $data['count'] , 'Package.amount_max >=' => $data['count'] )));
 			if(!empty($package)){
@@ -337,7 +338,8 @@ class CarritoController extends AppController
 	}
 
 	public function coupon($cp = null){
-		$data = $this->getItemsData();
+		//$data = $this->getItemsData();
+		$items = $this->Session->read('Carro');
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 		$coupon = $this->Coupon->find('first', [
@@ -346,6 +348,7 @@ class CarritoController extends AppController
 				'enabled' => 1
 			]
 		]);
+
 		if (!$coupon) {
 			return json_encode((object) [
 				'status' => 'error',
@@ -353,7 +356,47 @@ class CarritoController extends AppController
 				'message' => "No tenemos esa promo disponible ahora"
 			]);
 		}
-		return json_encode(\filtercoupon($coupon, $this->Session->read('Config'), $data['price']));
+
+	  // look for coupon configuration
+	  $this->loadModel('CouponItem');
+	  $coupon_ids = $this->CouponItem->find('all', [
+	    'conditions' => [
+	      'coupon_id' => $coupon['Coupon']['id'],
+	    ], 
+	    'fields' => ['id', 'category_id', 'product_id']
+	  ]);
+
+		$coupon_bonus = 0;
+		$coupon_parsed = \filtercoupon($coupon, $this->Session->read('Config'), $coupon_ids, $data['price']);
+		$updated = [];
+		if($coupon_parsed->status === 'success') {
+			foreach($items as $item) {
+				error_log(json_encode($item));
+				// check coupon			
+				if (
+					(!count($coupon_data->config['cats']) && !count($coupon_data->config['prods'])) ||
+					in_array($item['category_id'],$coupon_data->config['cats']) || 
+					in_array($item['id'],$coupon_data->config['prods'])
+				) {
+					$discount = (float) $coupon_data->data['discount'];
+					if($coupon_data->data['coupon_type'] === 'percentage') {
+						$coupon_bonus+= round($unit_price * ($discount / 100), 2);
+						$updated[$item['id']] = (object) [
+							'old_price' => $item['price'],
+							'price' => round($item['price'] * (1 - $discount / 100), 2)
+						];
+					} else {
+						$coupon_bonus+= $discount;
+						$updated[$item['id']] = (object) [
+							'old_price' => $item['price'],
+							'price' => round($item['price'] - $coupon_bonus)
+						];
+					}
+				}
+			}
+		}
+		$coupon_parsed->updated = $updated;
+		return json_encode($coupon_parsed);
 	}
 
 	public function deliveryCost($cp, $sale = null, $encode = true){
@@ -708,22 +751,70 @@ class CarritoController extends AppController
 		$sale_id = $this->Sale->id;
 		$gift_ids = !empty($user['gifts']) ? explode(",",$user['gifts']) : [];
 
-		//Mercadopago
+		// check item prices, promos and coupons
+
+		// Check coupon
+		$coupon_bonus = 0;
+		$bank_bonus = 0;
+		$coupon_parsed = null;
+
+		if (!empty($user['coupon'])) {
+			error_log('checking coupon: '.$user['coupon']);
+	    $coupon = $this->Coupon->find('first', [
+	      'conditions' => [
+	        'code' => $user['coupon'],
+	        'enabled' => 1,
+	      ]
+	    ]);  
+	    if ($coupon) {
+	    	$data = $this->getItemsData();
+			  // look for coupon configuration
+			  $this->loadModel('CouponItem');
+			  $coupon_ids = $this->CouponItem->find('all', [
+			    'conditions' => [
+			      'coupon_id' => $coupon['Coupon']['id'],
+			    ], 
+			    'fields' => ['id', 'category_id', 'product_id']
+			  ]);
+	    	error_log('suming check coupon:'.json_encode($coupon));
+				$coupon_parsed = \filtercoupon($coupon, $this->Session->read('Config'), $coupon_ids, $data['price']);
+			}
+		}
+
 		foreach ($carro as $producto) {
 			$unit_price = $producto['price'];
+			// check coupon			
+			if (
+				$coupon_parsed && 
+				$coupon_data->status === 'success' && (
+					(!count($coupon_parsed->config['cats']) && !count($coupon_parsed->config['prods'])) ||
+					in_array($producto['category_id'],$coupon_parsed->config['cats']) || 
+					in_array($producto['id'],$coupon_parsed->config['prods'])
+				)
+			) {
+				$discount = (float) $applicable->data['discount'];
+				if($coupon_parsed->data['coupon_type'] === 'percentage') {
+					$coupon_bonus+= round($unit_price * ($discount / 100), 2);
+					$unit_price = round($unit_price * (1 - $discount / 100), 2);
+				} else {
+					$coupon_bonus+= $discount;
+					$unit_price-= $coupon_bonus;
+				}
+			} else {
 
-			if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
-        $unit_price = @$producto['discount'];
-      }
+				if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
+	        $unit_price = @$producto['discount'];
+	      }
 
-			if($user['payment_method'] === 'mercadopago' && !empty($producto['mp_discount']) && !empty((float)(@$producto['mp_discount']))) {
-        $unit_price = @ceil(round($unit_price * (1 - (float) $producto['mp_discount'] / 100)));
-      }
+				if($user['payment_method'] === 'mercadopago' && !empty($producto['mp_discount']) && !empty((float)(@$producto['mp_discount']))) {
+	        $unit_price = @ceil(round($unit_price * (1 - (float) $producto['mp_discount'] / 100)));
+	      }
 
-			if($user['payment_method'] === 'bank' && !empty($producto['bank_discount']) && !empty((float)(@$producto['bank_discount']))) {
-        $unit_price = @ceil(round($unit_price * (1 - (float) $producto['bank_discount'] / 100)));
-      }
-
+				if($user['payment_method'] === 'bank' && !empty($producto['bank_discount']) && !empty((float)(@$producto['bank_discount']))) {
+	        $unit_price = @ceil(round($unit_price * (1 - (float) $producto['bank_discount'] / 100)));
+	      }				
+			}
+			
 			$desc = '';
 			$separator = ' -|- ';
 			$values = array(
@@ -781,45 +872,7 @@ class CarritoController extends AppController
 		
 		$total_wo_discount = (int) $total;
 		error_log('suming total (wo_discount): '.$total);
-		// Check coupon
-		$coupon_bonus = 0;
-		$bank_bonus = 0;
-		if (isset($user['coupon']) && $user['	'] !== '') {
-			error_log('checking coupon: '.$user['coupon']);
-	    $coupon = $this->Coupon->find('first', [
-	      'conditions' => [
-	        'code' => $user['coupon'],
-	        'enabled' => 1
-	      ]
-	    ]);
-	    if ($coupon) {
-	    	error_log('suming check coupon:'.json_encode($coupon));
-				$applicable = \filtercoupon($coupon, $this->Session->read('Config'), $total_wo_discount);
-				if ($applicable->status === 'success') {
-					$discount = (float) $applicable->data['discount'];
-					if($applicable->data['coupon_type'] === 'percentage') {
-						$coupon_bonus = round($total_wo_discount * ($discount / 100), 2);
-						foreach($items as $k => $item) {
-							$item_price = round($item['unit_price'] * (1 - $discount / 100), 2);
-							$items[$k]['unit_price'] = $item_price;
-							if ($product_ids[$k]) {
-								$product_ids[$k]['precio_vendido'] = $item_price;
-							}
-						}
-					} else {
-						$coupon_bonus = $discount;
-						foreach($items as $k => $item) {
-							$item_price = $item['unit_price']-= round($discount / count($items), 2);
-							$items[$k]['unit_price'] = $item_price;
-							if ($product_ids[$k]) {
-								$product_ids[$k]['precio_vendido'] = $item_price;
-							}
-						}
-					}
-				}
-		  }
-		  //error_log('minus (coupon bonus): '.$coupon_bonus);
-	  }
+
 
 	  // Check bank paying method
 	  if ($user['payment_method'] === 'bank') {
@@ -847,7 +900,7 @@ class CarritoController extends AppController
 		}
 
 	  if ($coupon_bonus) {
-	  	$total-= $coupon_bonus;
+	  	// $total-= $coupon_bonus;
 	  	error_log('suming total (coupon bonus): '.$coupon_bonus);
 	  }
 
@@ -1105,10 +1158,7 @@ class CarritoController extends AppController
 			$cur = @$config['add_basket']?: 0;
 			$cur++;
 			@$config['add_basket'] = $cur;
-			error_log('---config: '. count($config));
-
 			$carro = $this->update($filter);
-			error_log('---carro: '.count($carro));
 			$this->Session->write('Carro', $carro);
 			$this->Session->write('Config', $config);
 

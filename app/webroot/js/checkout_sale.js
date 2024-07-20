@@ -65,11 +65,11 @@ var select_dues = (e,item) => {
 
 	var interest = $(e).data('interest')
 
-  onSuccessAlert(`${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
-  save_preference([
-  	{'payment_method': 'mercadopago'},
-  	{'payment_dues': dues_selected}
-  ])
+	onSuccessAlert(`${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
+	save_preference([
+		{'payment_method': 'mercadopago'},
+		{'payment_dues': dues_selected}
+	])
 
 	$('.payment-dues .option-rounded').removeClass('is-selected is-secondary')
 	$('.payment-dues .option-rounded').addClass('is-secondary')
