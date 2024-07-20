@@ -3081,6 +3081,8 @@ table.dataTable thead .sorting:before {
     border-style: solid;
     margin-top: 1px;
     margin-bottom: 1px;
+    line-height: 1;
+    border-radius: 0.5rem;
 }
 
 .btn:hover,

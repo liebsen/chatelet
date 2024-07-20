@@ -160,13 +160,13 @@
 </div>
 <hr>
 <div class="related-empty<?=empty($categories_count) && empty($products_count) ? '' : ' d-none' ?>">
-  <button class="btn btn-large btn-success"><i class="fa fa-cog mr-2"></i> Configurar este cupón</button>
+  <button class="btn btn-lg btn-success"><i class="fa fa-cog mr-2"></i> Configurar <?=$coupon['Coupon']['code'] ?></button>
   <hr>
   <p class="text-small">Si configuras este cupón solo estará disponible para las cateogrías y/o productos que elijas.</p>
 </div>
 <div class="related-panel<?=empty($categories_count) && empty($products_count) ? ' d-none' : '' ?>">
-  <h3 class="text-bold">Categorías y productos relacionados</h3>
-  <p>Establece qué categorías ó productos estarán vinculadas a este cupón.</p>
+  <h3 class="text-bold">Configurar <?=$coupon['Coupon']['code'] ?></h3>
+  <p>Establece qué categorías y/o productos estarán vinculadas a este cupón.</p>
   <div class="row" style="min-height: 40rem;">
     <div class="col-xs-6">
       <div class="control-group">
