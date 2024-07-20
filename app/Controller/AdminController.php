@@ -1877,6 +1877,8 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	    		$this->set('coupon', $coupon);
 	    		$this->set('products', $products);
 	    		$this->set('categories', $categories);
+	    		$this->set('products_count', count($coupon_products));
+	    		$this->set('categories_count', count($coupon_categories));
 	    		$this->set('weekdays', $weekdays);
 
 					$h1 = array(

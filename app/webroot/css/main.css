@@ -270,7 +270,23 @@ body {
 .bg-warning-i {
   background-color: #e8ffa8!important;
 }
-
+.mr-1 {
+    margin-right: 0.25rem;
+}
+.mr-2 {
+    margin-right: 0.5rem;
+}
+.related-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 20rem;
+    width: 100%;
+}
+.d-none {
+    display: none;
+}
 .affix {
     top: 0;
     left: 0;

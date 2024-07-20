@@ -34,6 +34,10 @@ $(document).ready(function() {
 	$('.datepicker').datepicker({
 		format: 'yyyy-mm-dd'
 	})
+	$('.related-empty').click(function(a) {
+		$('.related-empty').hide()
+		$('.related-panel').show()
+	})
 	$('.weekdays').click(function(a) {
 		let weekdays = ''
 		$('.weekdays').each(function(e, i) {

@@ -199,6 +199,10 @@ label input[type=checkbox]:disabled + .label-text:before {
   text-align: center;
 }
 
+.w-max-content {
+  width: max-content!important;
+}
+
 .text-white {
   color: white!important;
 }

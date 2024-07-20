@@ -165,6 +165,9 @@ html, body {
 .p-5 {
   padding: 1.5rem!important;
 }
+.p-6 {
+  padding: 2rem!important;
+}
 .pt-0 {
   padding-top: 0!important;
 }
@@ -179,6 +182,9 @@ html, body {
 }
 .pt-3 {
   padding-top: 0.75rem!important;
+}
+.ps-4 {
+	padding: 0.75rem 1.75rem;
 }
 .min-h-5 {
 	min-height: 5rem;
@@ -324,6 +330,10 @@ html, body {
 .max-25 {
   max-width: 25rem;
 }
+
+.min-25 {
+  min-width: 25rem;
+}
 .max-21 {
   max-width: 21rem;
 }
@@ -355,6 +365,11 @@ html, body {
 	font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
 }
 
+.font-pre {
+	font-family: monospace;
+	font-size: 16px;
+}
+
 .pre-system {
 	white-space: break-spaces;
 	line-height: 1.25;
@@ -381,8 +396,17 @@ html, body {
 	border-radius: 0.75rem;
 }
 
+.bg-white {
+	background-color: white;
+}
 .border-dark {
 	border: 2px solid #333;
+	color: #333;
+	border-radius: 0.75rem;
+}
+
+.border-light {
+	border: 2px solid #6666;
 	color: #333;
 	border-radius: 0.75rem;
 }
@@ -947,7 +971,7 @@ select.form-control{
 	background-color: #bebebe;
 	/*min-width: 20rem;*/
 	min-height: 46px;
-	border-radius: 0.5rem;
+	border-radius: 0.75rem;
 	transition: all 0.25s ease;
 }
 .cart-btn-green.shrink {
