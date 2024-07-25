@@ -1891,6 +1891,41 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     		break;
     }
     $coupons = $this->Coupon->find('all');
+    $this->loadModel('CouponItem');
+  	$coupon_items = $this->CouponItem->query('SELECT ci.coupon_id,ci.category_id,ci.product_id,p.name product,c.name category 
+  		FROM coupon_items ci 
+  		LEFT JOIN categories c ON c.id = ci.category_id
+  		LEFT JOIN products p ON p.id = ci.product_id');
+
+    foreach($coupons as &$coupon){
+    	$filtered = array_values(array_map(function($e) use ($coupon){
+    		return $coupon['Coupon']['id'] == $e['ci']['coupon_id'] ? [
+    			"product_id" => $e['ci']["product_id"], 
+    			"category_id" => $e['ci']["category_id"], 
+    			"category" => $e["c"]["category"], 
+    			"product" => $e["p"]["product"]
+    		] : false;
+    	}, $coupon_items));
+    	$cats = [];
+    	$prods = [];
+    	foreach($filtered as $item){
+    		if($item['category_id']){
+					$cats[]= [
+						"id" => $item['category_id'],
+						"name" => $item['category']
+					];
+				}
+				if($item['product_id']){
+					$prods[]= [
+						"id" => $item['product_id'],
+						"name" => $item['product']
+					];
+				}
+			}
+			$coupon['cats'] = $cats;
+			$coupon['prods'] = $prods;
+    }
+
     $this->set('coupons', $coupons);
 
 		$h1 = array(

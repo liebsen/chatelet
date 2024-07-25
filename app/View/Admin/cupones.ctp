@@ -10,6 +10,8 @@
 				<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Beneficio'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Comprando mínimo'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Categorías'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Productos'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Pagando con'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Activo'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Vigente'); ?></th>
@@ -27,6 +29,16 @@
 					</td>
 					<td>
 						<?=(int) $coupon['Coupon']['min_amount'] ? "$" . $coupon['Coupon']['min_amount'] : ""?>
+					</td>
+					<td>
+						<?php foreach($coupon['cats'] as $cat):?>
+							<span class="badge"><?= $cat["name"] ?></span>
+						<?php endforeach ?>
+					</td>
+					<td>
+						<?php foreach($coupon['prods'] as $prod):?>
+							<span class="badge"><?= $prod["name"] ?></span>
+						<?php endforeach ?>
 					</td>
 					<td>
 						<div class="d-flex justify-content-start align-center gap-1">
@@ -51,7 +63,7 @@
 							href="<?=$this->Html->url(array('action'=>'cupones','edit',$coupon['Coupon']['id']))?>" 
 							data-toggle="tooltip" 
 							title="" 
-							class="btn btn-xs btn-success" 
+							class="btn btn-sm btn-success" 
 							data-original-title="Editar">
 							<i class="gi gi-pencil"></i>
 						</a>             
@@ -59,7 +71,7 @@
 						href="#" 
 						data-toggle="tooltip" 
 						title="" 
-						class="btn btn-xs btn-danger deletebutton" 
+						class="btn btn-sm btn-danger deletebutton" 
 						data-original-title="Eliminar" 
 						data-id="<?=$coupon['Coupon']['id']?>" 
 						data-url-back="<?=$this->Html->url(array('action'=>'cupones'))?>" 
