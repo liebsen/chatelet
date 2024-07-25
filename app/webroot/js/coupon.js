@@ -67,18 +67,12 @@ function submitCoupon() {
     
     if( res.status == 'success' ) {
 
-      console.log(res)
       let coupon_type = res.data.coupon_type
       let discount = parseFloat(res.data.discount)
       let discounted = 0
       let total = 0
-      if (coupon_type === 'percentage') {
-        total = items * (1 - discount / 100)
-      } else {
-        total = items - discount
-      }
-      discounted = parseFloat(items - total)
-      discounted_formatted = formatNumber(discounted)
+
+      discounted_formatted = formatNumber(res.data.bonus)
 
       $('.coupon_bonus').text( "$ " + discounted_formatted )
       $('.products-total').removeClass('hidden')
@@ -94,7 +88,7 @@ function submitCoupon() {
       $('.coupon-info').addClass('fadeIn')
       $('.promo-code').text(res.data.code)
       $('.free-shipping').addClass('hidden')
-      var price = parseFloat(total) + parseFloat(delivery_cost)
+      var price = parseFloat(res.data.total) + parseFloat(delivery_cost)
       
       coupon = coupon.toUpperCase()
 

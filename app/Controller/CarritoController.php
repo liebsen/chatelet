@@ -338,7 +338,6 @@ class CarritoController extends AppController
 	}
 
 	public function coupon($cp = null){
-		//$data = $this->getItemsData();
 		$items = $this->Session->read('Carro');
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
@@ -348,7 +347,6 @@ class CarritoController extends AppController
 				'enabled' => 1
 			]
 		]);
-
 		if (!$coupon) {
 			return json_encode((object) [
 				'status' => 'error',
@@ -356,46 +354,71 @@ class CarritoController extends AppController
 				'message' => "No tenemos esa promo disponible ahora"
 			]);
 		}
-
 	  // look for coupon configuration
 	  $this->loadModel('CouponItem');
-	  $coupon_ids = $this->CouponItem->find('all', [
+	  $coupon_ids = $this->CouponItem->find('all'	, [
 	    'conditions' => [
 	      'coupon_id' => $coupon['Coupon']['id'],
 	    ], 
 	    'fields' => ['id', 'category_id', 'product_id']
 	  ]);
 
+		$cats = [];
+		$prods = [];
+	  if(!empty($coupon_ids)){
+	    $prods = array_values(array_map(function($e) {
+	      return $e['CouponItem']['product_id'];
+	    },$coupon_ids));
+	    $cats = array_values(array_map(function($e) {
+	      return $e['CouponItem']['category_id'];
+	    },$coupon_ids));
+	  }
+
 		$coupon_bonus = 0;
-		$coupon_parsed = \filtercoupon($coupon, $this->Session->read('Config'), $coupon_ids, $data['price']);
+		$total = 0;
+		$coupon_parsed = \filtercoupon($coupon, $this->Session->read('Config'), $data['price']);
 		$updated = [];
 		if($coupon_parsed->status === 'success') {
 			foreach($items as $item) {
-				error_log(json_encode($item));
-				// check coupon			
+				$price = $item["price"];
 				if (
-					(!count($coupon_data->config['cats']) && !count($coupon_data->config['prods'])) ||
-					in_array($item['category_id'],$coupon_data->config['cats']) || 
-					in_array($item['id'],$coupon_data->config['prods'])
+					(!count($cats) && !count($prods)) ||
+					in_array($item['category_id'],$cats) || 
+					in_array($item['id'],$prods)
 				) {
-					$discount = (float) $coupon_data->data['discount'];
-					if($coupon_data->data['coupon_type'] === 'percentage') {
-						$coupon_bonus+= round($unit_price * ($discount / 100), 2);
-						$updated[$item['id']] = (object) [
-							'old_price' => $item['price'],
-							'price' => round($item['price'] * (1 - $discount / 100), 2)
-						];
+					$discount = (float) $coupon_parsed->data['discount'];
+					if($coupon_parsed->data['coupon_type'] === 'percentage') {
+						$coupon_bonus+= round($price * ($discount / 100), 2);
+						$price = round($price * (1 - $discount / 100), 2);
 					} else {
 						$coupon_bonus+= $discount;
-						$updated[$item['id']] = (object) [
-							'old_price' => $item['price'],
-							'price' => round($item['price'] - $coupon_bonus)
-						];
+						$price-= $price;
 					}
+					error_log("name:: ".$item["name"]);
+					error_log("price:: ".$price);
+
+					$updated[$item['id']] = (object) [
+						'old_price' => $item['price'],
+						'price' => $price
+					];
 				}
+				
+				$total+= $price;
 			}
 		}
-		$coupon_parsed->updated = $updated;
+
+		$coupon_parsed->data["updated"] = $updated;
+		$coupon_parsed->data["total"] = $total;
+		$coupon_parsed->data["bonus"] = $coupon_bonus;
+		
+		//$coupon_parsed->bonus = $data["price"] - $total;
+		if(count($coupon_ids) && !count($updated)){
+			return json_encode((object) [
+        'status' => 'error',
+        'title' => "No es válido para tus productos",
+        'message' => "El cupón existe pero no contempla los productos de tu carrito"
+       ]); 
+		}
 		return json_encode($coupon_parsed);
 	}
 
@@ -757,7 +780,8 @@ class CarritoController extends AppController
 		$coupon_bonus = 0;
 		$bank_bonus = 0;
 		$coupon_parsed = null;
-
+		$cats = [];
+		$prods = [];
 		if (!empty($user['coupon'])) {
 			error_log('checking coupon: '.$user['coupon']);
 	    $coupon = $this->Coupon->find('first', [
@@ -767,7 +791,6 @@ class CarritoController extends AppController
 	      ]
 	    ]);  
 	    if ($coupon) {
-	    	$data = $this->getItemsData();
 			  // look for coupon configuration
 			  $this->loadModel('CouponItem');
 			  $coupon_ids = $this->CouponItem->find('all', [
@@ -776,8 +799,17 @@ class CarritoController extends AppController
 			    ], 
 			    'fields' => ['id', 'category_id', 'product_id']
 			  ]);
+
+			  if(!empty($coupon_ids)){
+			    $prods = array_values(array_map(function($e) {
+			      return $e['CouponItem']['product_id'];
+			    },$coupon_ids));
+			    $cats = array_values(array_map(function($e) {
+			      return $e['CouponItem']['category_id'];
+			    },$coupon_ids));
+			  }			  
 	    	error_log('suming check coupon:'.json_encode($coupon));
-				$coupon_parsed = \filtercoupon($coupon, $this->Session->read('Config'), $coupon_ids, $data['price']);
+				$coupon_parsed = \filtercoupon($coupon, $this->Session->read('Config'), $data['price']);
 			}
 		}
 
@@ -786,22 +818,22 @@ class CarritoController extends AppController
 			// check coupon			
 			if (
 				$coupon_parsed && 
-				$coupon_data->status === 'success' && (
-					(!count($coupon_parsed->config['cats']) && !count($coupon_parsed->config['prods'])) ||
-					in_array($producto['category_id'],$coupon_parsed->config['cats']) || 
-					in_array($producto['id'],$coupon_parsed->config['prods'])
+				$coupon_parsed->status === 'success' && (
+					(!count($cats) && !count($prods)) ||
+					in_array($producto['category_id'],$cats) || 
+					in_array($producto['id'],$prods)
 				)
 			) {
-				$discount = (float) $applicable->data['discount'];
+				$discount = (float) $coupon_parsed->data['discount'];
 				if($coupon_parsed->data['coupon_type'] === 'percentage') {
 					$coupon_bonus+= round($unit_price * ($discount / 100), 2);
 					$unit_price = round($unit_price * (1 - $discount / 100), 2);
 				} else {
 					$coupon_bonus+= $discount;
-					$unit_price-= $coupon_bonus;
+					$unit_price-= $discount;
 				}
 			} else {
-
+				error_log("proderr::". $producto["name"]);
 				if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
 	        $unit_price = @$producto['discount'];
 	      }
@@ -814,7 +846,7 @@ class CarritoController extends AppController
 	        $unit_price = @ceil(round($unit_price * (1 - (float) $producto['bank_discount'] / 100)));
 	      }				
 			}
-			
+
 			$desc = '';
 			$separator = ' -|- ';
 			$values = array(
@@ -869,10 +901,9 @@ class CarritoController extends AppController
 				'description' => $desc
 			);
 		}
-		
+
 		$total_wo_discount = (int) $total;
 		error_log('suming total (wo_discount): '.$total);
-
 
 	  // Check bank paying method
 	  if ($user['payment_method'] === 'bank') {

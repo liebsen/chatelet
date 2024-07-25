@@ -20,7 +20,7 @@ function log2file($path, $data, $mode="a"){
   chmod($path, 0777);
 }
 
-function filtercoupon ($data, $config = null, $coupon_ids = null, $amount = 0) {
+function filtercoupon ($data, $config = null, $amount = 0) {
   $payment_method = @$config['payment_method'] ?: 'mercadopago';
   $item = $data['Coupon'];
   $coupon_type = '';
@@ -38,15 +38,6 @@ function filtercoupon ($data, $config = null, $coupon_ids = null, $amount = 0) {
   $inTime = strtotime($item['hour_from']) <= strtotime($hour) && strtotime($item['hour_until']) >= strtotime($hour);
   $inDate = strtotime($item['date_from']) <= strtotime($date) && strtotime($item['date_until']) >= strtotime($date);
   $inDateTime = $inTime && $inDate;
-
-  if(!empty($coupon_ids)){
-    $config['prods'] = array_values(array_map(function($e) {
-      return $e['CouponItem']['product_id'];
-    },$coupon_ids));
-    $config['cats'] = array_values(array_map(function($e) {
-      return $e['CouponItem']['category_id'];
-    },$coupon_ids));
-  }
 
   if (strlen($coupon_type) && strpos($item['weekdays'], $week) === false) {
     $valid = [];
@@ -76,7 +67,6 @@ function filtercoupon ($data, $config = null, $coupon_ids = null, $amount = 0) {
   $ret = (object) [
     'status' => 'error',
     'message' => 'No coupon type',
-    'config' => $config,
   ];
   
   switch ($coupon_type) {
