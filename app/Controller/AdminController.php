@@ -1782,9 +1782,10 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     }
 	}
 
-	var $weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
 	public function cupones($action = null) {
+		$weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-tags',

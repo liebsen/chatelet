@@ -339,8 +339,10 @@ class CarritoController extends AppController
 
 	public function coupon($cp = null){
 		$items = $this->Session->read('Carro');
+		$config = $this->Session->read('Config');
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
+
 		$coupon = $this->Coupon->find('first', [
 			'conditions' => [
 				'code' => $this->request->data['coupon'],
@@ -376,7 +378,7 @@ class CarritoController extends AppController
 
 		$coupon_bonus = 0;
 		$total = 0;
-		$coupon_parsed = \filtercoupon($coupon, $this->Session->read('Config'), $data['price']);
+		$coupon_parsed = \filtercoupon($coupon, $config, $data['price']);
 		$updated = [];
 		if($coupon_parsed->status === 'success') {
 			foreach($items as $item) {
@@ -405,20 +407,21 @@ class CarritoController extends AppController
 				
 				$total+= $price;
 			}
+
+			if(count($coupon_ids) && !count($updated)){
+				return json_encode((object) [
+	        'status' => 'error',
+	        'title' => "No aplica a los productos de tu carrito",
+	        'message' => "El cupón existe pero no contempla los productos que elegiste"
+	       ]); 
+			}			
 		}
 
 		$coupon_parsed->data["updated"] = $updated;
 		$coupon_parsed->data["total"] = $total;
 		$coupon_parsed->data["bonus"] = $coupon_bonus;
 		
-		//$coupon_parsed->bonus = $data["price"] - $total;
-		if(count($coupon_ids) && !count($updated)){
-			return json_encode((object) [
-        'status' => 'error',
-        'title' => "No es válido para tus productos",
-        'message' => "El cupón existe pero no contempla los productos de tu carrito"
-       ]); 
-		}
+
 		return json_encode($coupon_parsed);
 	}
 
