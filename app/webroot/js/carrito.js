@@ -62,13 +62,14 @@ var selectStore = e => {
   var price = parseFloat((total_orig - coupon).toFixed(2))
   //console.log('total_orig(2)',total_orig)
   //console.log('coupon(2)',coupon)
-  console.log('cost_total(1)',total_orig)
+  //console.log('cost_total(1)',total_orig)
   $('.cost_total').text('$ ' + formatNumber(total_orig))
   format_total = formatNumber(price)
   fxTotal(format_total)
   preferences.cargo = 'takeaway'
-  console.log('total_price(2)', price)
+  //console.log('total_price(2)', price)
   preferences.total_price = price
+  console.log('shipping_price(2)', 0)
   preferences.shipping_price = 0
   preferences.subtotal_price = total_orig
   preferences.store = $(e).attr('store')

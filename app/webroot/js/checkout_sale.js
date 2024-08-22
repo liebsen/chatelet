@@ -78,6 +78,7 @@ var select_dues = (e,item) => {
 }
 
 var select_payment = (e,item) => {
+	console.log('select_payment', item)
 	e.preventDefault()
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var selected = $(item).find('input').val()
@@ -96,7 +97,6 @@ var select_payment = (e,item) => {
 			document.querySelector('.payment-dues').classList.add('scaleOut')
 		}
 		document.querySelectorAll('.payment-dues .option-rounded').forEach((e,i) => {
-			console.log(e,i)
 			if(i) {
 				e.classList.add('hide')
 			}

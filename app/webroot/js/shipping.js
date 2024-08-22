@@ -6,10 +6,6 @@ $(function(){
 			return setTimeout( `onErrorAlert('No disponible', 'El servicio de logística ${shipping.toUpperCase()} no está disponible en este momento, intente en unos instantes.')` , 200)
 		}
 
-		if(freeShipping) {
-			cost = 0
-		}
-
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 		var coupon = $('.coupon_bonus') ? 
 			$('.coupon_bonus').text().split('.').join('').split(',').join('.') : 
@@ -31,7 +27,7 @@ $(function(){
 		//console.log('cost_total(2)', subtotal, cost)
 		$('.cost_total').text('$ ' + formatNumber(subtotal + cost))
 
-		if (!freeShipping) {
+		if (price < shipping_price) {
 			price+= cost
 			$('#subtotal_envio').val(cost)
 			$('.delivery-cost').removeClass('hidden')
@@ -43,6 +39,7 @@ $(function(){
 	  var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
 		preferences.shipping = shipping
 	  preferences.cargo = cargo
+	  console.log('shipping_price(1)', cost)
 	  preferences.shipping_price = cost
 	  preferences.total_price = price
 	  preferences.subtotal_price = subtotal

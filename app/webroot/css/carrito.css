@@ -36,6 +36,9 @@
 	text-align: center;
 	min-width: 10rem;
 	max-width: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .link { 
@@ -268,7 +271,7 @@ a.trash {
 	text-align: left;
 	font-size: 1.25rem;
 	margin-top: 0.25rem;
-	margin-bottom: 0.75rem;
+	margin-bottom: 0.5rem;
 }
 
 a.pink {

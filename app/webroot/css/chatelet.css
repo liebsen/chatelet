@@ -473,8 +473,11 @@ select.form-control{
 
 .carrito-selector input {
 	border-radius: 0!important;
-	border-color: white;
-	background-color: white;
+	border-color: transparent;
+	background-color: transparent;
+	color: #e10d74;
+	font-size: 1.25rem;
+	font-weight: bold;
 }
 .product-count:focus {
 	background-color: #ffcc66;

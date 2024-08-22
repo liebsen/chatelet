@@ -37,6 +37,7 @@ function resetCoupon() {
 }
 
 function submitCoupon() {
+  console.log('submitCoupon')
   $('.coupon-info').addClass('hidden')
   $('.coupon-info').removeClass('fadeIn, fadeOutRight')
   // $('.coupon-info').html('')
@@ -49,15 +50,11 @@ function submitCoupon() {
   var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
   var items = getItems()
   var subtotal = getTotals()
-  var delivery_cost = $('#subtotal_envio').val() || 0
+  var delivery_cost = carrito.shipping_price
   var c2 = event.target.value
 
   if (!subtotal && carrito.subtotal_price) {
     subtotal = carrito.subtotal_price
-  }
-
-  if (!freeShipping && !delivery_cost && carrito.shipping_price) {
-    delivery_cost = carrito.shipping_price
   }
 
   $('#free_delivery').text('');
@@ -71,6 +68,14 @@ function submitCoupon() {
       let discount = parseFloat(res.data.discount)
       let discounted = 0
       let total = 0
+      var price = parseFloat(res.data.total)
+      let free_shipping = true
+
+      if(price < shipping_price){
+        free_shipping = false
+        price+=parseFloat(delivery_cost)
+      }
+  console.log('delivery_cost',delivery_cost)
 
       discounted_formatted = formatNumber(res.data.bonus)
 
@@ -88,7 +93,6 @@ function submitCoupon() {
       $('.coupon-info').addClass('fadeIn')
       $('.promo-code').text(res.data.code)
       $('.free-shipping').addClass('hidden')
-      var price = parseFloat(res.data.total) + parseFloat(delivery_cost)
       
       coupon = coupon.toUpperCase()
 
@@ -102,7 +106,25 @@ function submitCoupon() {
       $('input[name="coupon"]').val(coupon)
       $('#coupon_name').val("")
       $('.calc-coupon').hide(); 
-      $('.coupon-click').show();      
+      $('.coupon-click').show();
+      console.log('submitCoupon(1)',carrito)
+      if (carrito.cargo === 'shipment') {
+        console.log('submitCoupon(2)')
+        if (free_shipping) {
+          $('.paid-shipping-block').addClass('hidden')
+          $('.free-shipping-block').removeClass('hidden')
+          price = '<span class="text-success text-bold">Gratis</span>'
+        } else {
+          $('.free-shipping-block').addClass('hidden')
+          $('.paid-shipping-block').removeClass('hidden')
+          console.log('submitCoupon(4)')
+          price = `$ ${formatNumber(delivery_cost)}`
+        }
+        $('.shipping_price').html(price)
+
+        $('.shipping-block').removeClass('hide')
+        $('.shipping-block').addClass('animated fadeIn')
+      }
     }else{
       $('.coupon-discount').addClass('hidden')
       //carrito.coupon = ''

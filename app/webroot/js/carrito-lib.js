@@ -1,4 +1,5 @@
 var updateCart = (carrito) => {
+  console.log('updateCart', carrito)
   if(!carrito) {
     carrito = JSON.parse(localStorage.getItem('carrito')) || {}
   }
@@ -79,7 +80,7 @@ var getItems = () => {
 }
 
 var getTotals = () => {
-  //console.log('getTotals')
+  console.log('getTotals')
   var payment_method = carrito_config.payment_method
   var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
   var subtotal = getItems()
