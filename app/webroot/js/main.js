@@ -370,7 +370,7 @@ $(function () {
     }, 500)        
   })
 
-  if (document.querySelector('.whatsapp-text')) {
+  if (document.querySelector('.whatsapp-text') && document.querySelector('.autohide')) {
     var segs = parseInt(Array.from(document.querySelector('.autohide').classList).filter(e => e.indexOf('segs-') > -1)[0].replace('segs-','')) || 30
     setTimeout(() => {
       document.querySelector('.autohide > .whatsapp-text').classList.add('animated','chatOut')
