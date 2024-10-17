@@ -28,7 +28,10 @@
                         echo '<h3></h3>';  
                             echo '<ul>';      
                                 echo '<li> '. $store['address'] .'</li>';
-                                echo '<li> Tel. '. $store['phone'].'</li>';
+                                echo '<li>'. $store['phone'].'</li>';
+                            if($store['whatsapp']){
+                                echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" target="_blank">'. $store['whatsapp'].'</a></li>';
+                            }
                             echo '</ul>';
                 } ?> 
                 

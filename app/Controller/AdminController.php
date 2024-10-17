@@ -629,6 +629,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 		die(json_encode($data));
 	}
+
 	public function getTicket($sale_id = null){
 		$this->autoRender = false;
 		$data = [
