@@ -64,17 +64,20 @@
       }).then((res) => {
         row1.attributes['data-order'].value = ordernum
         //row2.attributes['data-order'].value = order1
-        document.querySelector('.draggable-saved').classList.remove('chatOut')
-        document.querySelector('.draggable-saved').classList.add('chatIn')
         clearSelection()
-        setTimeout(() => {
-          document.querySelector('.draggable-saved').classList.remove('chatIn')
-          document.querySelector('.draggable-saved').classList.add('chatOut')
-        }, 3000)
+        showDone()
       })
     })
   }  
 
+  function showDone(){
+    document.querySelector('.draggable-saved').classList.remove('chatOut')
+    document.querySelector('.draggable-saved').classList.add('chatIn')
+    setTimeout(() => {
+      document.querySelector('.draggable-saved').classList.remove('chatIn')
+      document.querySelector('.draggable-saved').classList.add('chatOut')
+    }, 5000)
+  }
   function clearSelection(){ 
     if (window.getSelection) {
       window.getSelection().removeAllRanges();

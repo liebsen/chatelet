@@ -344,7 +344,10 @@ class ShopController extends AppController {
 		$setting 	= $this->Setting->findById('page_video');
 		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('page_video',$page_video);
-		$categories = $this->Category->find('all',array('order'=>array( 'Category.ordernum ASC' )));
+		$categories = $this->Category->find('all',array(
+			'conditions'=>array('visible' => 1),
+			'order'=>array( 'Category.ordernum ASC' )
+		));
 		$this->set('categories', $categories);
     $this->set('category_id', $category_id);
 
@@ -354,7 +357,10 @@ class ShopController extends AppController {
 
 			//$products = $this->Product->findAllByCategoryId($category_id,['order' => ['Product.ordernum ASC']]);
 			$products = $this->Product->find('all',[
-				'conditions' => ['category_id' => $category_id ],
+				'conditions' => [
+					'category_id' => $category_id,
+					'visible' => 1,
+				],
 				'order' => ['Product.ordernum ASC']
 			]);
 
@@ -430,6 +436,7 @@ class ShopController extends AppController {
 				'recursive' => -1,
 				'conditions' => array(
 					'category_id' => $category_id,
+					'visible' => 1,
 					'id <>' => $product_id,
 					'stock_total > ' => 0
 				),
@@ -503,6 +510,7 @@ class ShopController extends AppController {
 				'recursive' => -1,
 				'conditions' => array(
 					'category_id' => $category_id,
+					'visible' => 1,
 					'id <>' => $product_id,
 					'stock_total > ' => 0
 				),
@@ -541,8 +549,9 @@ class ShopController extends AppController {
 				'or' => [
 					'Product.name LIKE' => "%$q%",
 					'Product.desc LIKE' => "%$q%",
-					'Product.promo' => "$q"
+					'Product.promo' => "$q",
 				],
+				'visible' => 1,
 				'stock_total > ' => 0
 			],
 			'order' => ['Product.promo DESC'],

@@ -6,12 +6,22 @@ echo $this->Html->css('draggable-table', array('inline' => false));
 echo $this->Html->script('draggable-table', array('inline' => false));
 echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));
 echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));
+echo $this->element('admin-menu');
 ?>
-<?php echo $this->element('admin-menu'); ?>
+
+<div class="form-actions">
+    <button class="enableselection btn btn-success btn-adjust" type="button">Activar</button>
+    <button class="disableselection btn btn-warning btn-adjust" type="button">Desactivar</button>
+    <button class="removeselection btn btn-danger btn-adjust" type="button">Eliminar</button>
+</div>
+
+<p class="collapse alert alert-success result-message">...</p>
+
 <div class="block-section table-responsive">
 	<table id="example-datatables" class="table table-bordered table-hover draggable-table" data-url="/admin/ordernum/product">
 		<thead>
 			<tr>
+				<th class="text-center hidden-phone"></th>
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>
 				<th class="text-center hidden-phone"><?php echo __('Descripción'); ?></th>
 				<!--th class="text-center hidden-phone"><?php echo __('Promo'); ?></th-->
@@ -24,7 +34,10 @@ echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' 
 		</thead>
 		<tbody>
 			<?php foreach ($prods as $key => $product): ?>        
-				<tr data-id="<?= $product['Product']['id'] ?>" data-order="<?= $product['Product']['ordernum'] ?>">
+				<tr data-id="<?= $product['Product']['id'] ?>" data-order="<?= $product['Product']['ordernum'] ?>" class="<?= $product['Product']['visible'] == '1' ? '' : 'bg-danger'?>">
+					<td align="center">
+						<input type="checkbox" name="checks" value="<?= $product['Product']['id']?>" />
+					</td>
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'productos','edit',$product['Product']['id']))?>">
 							<?=$product['Product']['name']?>

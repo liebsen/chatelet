@@ -33,14 +33,16 @@
     align-items: center;
     z-index: 1079;
     opacity: 0;
-    font-size: 2rem;
-    width: 3.75rem;
-    height: 3.75rem;
+    font-size: 1.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 100%;
-    background-color: #5cb85c;
+    background-color: white;
     transform: translate3d(15rem, 0, 0);
     text-align: center;
-    color: white;
+    color: #5cb85c;
+    border: 1px solid #5cb85c;
+    box-shadow: 0 0 5px #5cb85c;
     right: 1rem;
     bottom: 1rem;
 }

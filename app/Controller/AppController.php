@@ -98,7 +98,10 @@ class AppController extends Controller
 
         $this->set('menus', $menus);
         $this->set('banners', $banners);
-        $categories = $this->Category->find('all',array('order'=>array( 'Category.ordernum ASC' )));
+        $categories = $this->Category->find('all',array(
+            'conditions'=>array('visible' => 1),
+            'order'=>array( 'Category.ordernum ASC' )
+        ));
         
         $this->set('categories', $categories);
 

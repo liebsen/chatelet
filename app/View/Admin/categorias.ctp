@@ -1,4 +1,4 @@
-<?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
+<?php // echo $this->Html->script('admin-delete', array('inline' => false)); ?>
 <?php echo $this->element('admin-menu'); ?>
 <?php echo $this->Html->css('draggable-table', array('inline' => false));?>
 <?php echo $this->Html->script('draggable-table', array('inline' => false));?>
@@ -45,6 +45,14 @@
   </div>
 </div>
 
+<div class="form-actions">
+    <button class="enableselection btn btn-success btn-adjust" type="button">Activar</button>
+    <button class="disableselection btn btn-warning btn-adjust" type="button">Desactivar</button>
+    <button class="removeselection btn btn-danger btn-adjust" type="button">Eliminar</button>
+</div>
+
+<p class="collapse alert alert-success result-message">...</p>
+
 <!-- end discount-layer -->
 <!-- start template -->
 
@@ -52,6 +60,8 @@
 	<table id="categorias-datatables" class="table table-bordered table-hover table-condensed draggable-table" data-url="/admin/ordernum/category">
 		<thead>
 			<tr>
+				<th class="text-center hidden-phone"></th>
+
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
 				<th class="hidden-phone hidden-tablet"><?php echo __('Ancho'); ?></th> 
 				<th class="hidden-phone hidden-tablet"><?php echo __('Posición'); ?></th> 
@@ -62,7 +72,10 @@
 		</thead>
 		<tbody>
 			<?php foreach ($cats as $key => $category): ?>
-			<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>">
+			<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>"  class="<?= $category['Category']['visible'] == '1' ? '' : 'bg-danger'?>">
+					<td align="center">
+						<input type="checkbox" name="checks" value="<?= $category['Category']['id']?>" />
+					</td>				
 				<td>
 					<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
             <div class="d-flex justify-content-start align-items-center gap-1">
@@ -103,13 +116,13 @@
 					?>     
 				</td>
 				<td>
-					<div class="btn-group">
+					<div class="btn-group d-flex flex-nowrap">
 						<a 
 							href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>"
 							data-toggle="tooltip" 
 							title="" 
 							target="_blank"
-							class="btn btn-sm btn-info" 
+							class="btn btn-xs btn-info" 
 							data-original-title="Editar">
 							<i class="fa fa-eye"></i>
 						</a> 
@@ -117,20 +130,20 @@
 							href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>" 
 							data-toggle="tooltip" 
 							title="" 
-							class="btn btn-sm btn-success" 
+							class="btn btn-xs btn-success" 
 							data-original-title="Editar">
 							<i class="gi gi-pencil"></i>
 						</a>
 						<a 
 							href="#"
 							title="Establecer descuento por transferencia"
-							class="btn btn-sm btn-warning" 
+							class="btn btn-xs btn-warning" 
 							onclick="showLayer(event,'discount','bank',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
 							<i class="gi gi-bank"></i>
 						</a>
 						<a 
 							href="#"
-							class="btn btn-sm btn-warning" 
+							class="btn btn-xs btn-warning" 
 							title="Establecer descuento por mercadopago"
 							onclick="showLayer(event,'discount','mp',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
 							<i class="gi gi-credit_card"></i>
@@ -139,7 +152,7 @@
 							href="#" 
 							data-toggle="tooltip" 
 							title="" 
-							class="btn btn-sm btn-danger deletebutton" 
+							class="btn btn-xs btn-danger deletebutton" 
 							data-original-title="Eliminar" 
 							data-id="<?=$category['Category']['id']?>" 
 							data-url-back="<?=$this->Html->url(array('action'=>'categorias'))?>" 

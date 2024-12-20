@@ -3524,11 +3524,23 @@ a.thumbnail-borderless,
 .form-actions {
     text-align: right;
     position: fixed;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    grid-gap: 0.5rem;
     bottom: 0;
-    right: 3.5rem;
+    right: 0;
+    padding: 1rem;
+    padding-right: 3rem;
+    padding-bottom: 0.5rem;
     z-index: 99;
-    min-height: 5rem;
     min-width: 100vw;
+    background: rgb(240,240,240);
+    background: linear-gradient(180deg, rgba(240,240,240,0) 0%, rgba(240,240,240,1) 5%, rgba(240,240,240,1) 100%);
+}
+
+.form-actions .btn{
+    font-size: 1rem;
 }
 
 /* .controls {

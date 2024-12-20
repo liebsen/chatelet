@@ -135,6 +135,17 @@
           </div>
           <br />
           <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Visible'); ?></label>
+            <div class="controls">
+              <select class="form-control" name="visible">
+                <option value="1"<?= $prod['Product']['visible'] ? ' selected' : '' ?>>Sí</option>
+                <option value="0"<?= !$prod['Product']['visible'] ? ' selected' : '' ?>>No</option>
+              </select>
+            </div>
+          </div>
+          <br />
+
+          <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
               <input type="number" name="data[ordernum]" value="<?= @$cat['Category']['ordernum']?>">

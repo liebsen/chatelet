@@ -2282,6 +2282,115 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	  $this->render('searches');
 	}
 
+	public function batch_productos($action = null) {
+	  $this->autoRender = false;
+		$this->loadModel('Product');
+
+		$data = $this->request->data;
+
+		if(isset($data['id'])){
+			$ids = explode(',',$data['id']);
+			foreach($ids as $id){
+				if($action == 'remove') {
+					$this->Product->delete($id);	
+				}
+
+				if($action == 'disable') {
+					$this->Product->save([
+						'id' => $id,
+						'visible' => 0
+					]);	
+				}
+
+				if($action == 'enable') {
+					$this->Product->save([
+						'id' => $id,
+						'visible' => 1
+					]);	
+				}
+			}
+
+			$text = '';
+			$count = count($ids);
+			if($action == 'remove') {
+				$text = $count > 1 ? 'eliminaron' : 'eliminó';
+			}
+			if($action == 'disable') {
+				$text = $count > 1 ? 'desactivaron' : 'desactivó';
+			}
+			if($action == 'enable') {
+				$text = $count > 1 ? 'activaron' : 'activó';
+			}
+			$s = $count > 1 ? 's': '';
+
+			return json_encode([
+				'status' => 'success', 
+				'message' => "Se {$text} {$count} producto{$s}",
+				'id' => $data['id'],
+			]);			
+		}
+		
+		return json_encode([
+			'status' => 'error', 
+			'message' => 'No hay suficientes parámetros'
+		]);
+	}
+
+
+	public function batch_categorias($action = null) {
+	  $this->autoRender = false;
+		$this->loadModel('Category');
+
+		$data = $this->request->data;
+
+		if(isset($data['id'])){
+			$ids = explode(',',$data['id']);
+			foreach($ids as $id){
+				if($action == 'remove') {
+					$this->Category->delete($id);	
+				}
+
+				if($action == 'disable') {
+					$this->Category->save([
+						'id' => $id,
+						'visible' => 0
+					]);	
+				}
+
+				if($action == 'enable') {
+					$this->Category->save([
+						'id' => $id,
+						'visible' => 1
+					]);	
+				}
+			}
+
+			$text = '';
+			$count = count($ids);
+			if($action == 'remove') {
+				$text = $count > 1 ? 'eliminaron' : 'eliminó';
+			}
+			if($action == 'disable') {
+				$text = $count > 1 ? 'desactivaron' : 'desactivó';
+			}
+			if($action == 'enable') {
+				$text = $count > 1 ? 'activaron' : 'activó';
+			}
+			$s = $count > 1 ? 's': '';
+
+			return json_encode([
+				'status' => 'success', 
+				'message' => "Se {$text} {$count} categoría{$s}",
+				'id' => $data['id'],
+			]);			
+		}
+		
+		return json_encode([
+			'status' => 'error', 
+			'message' => 'No hay suficientes parámetros'
+		]);
+	}	
+
 	public function logistica($action = null) {
 		$navs = array(
 			'Lista' => array(
@@ -2528,8 +2637,6 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	    $this->set('users', $users);
 		return $this->render('usuarios');
 	}
-
-
 
 	public function refresh_colors() {
 		$this->RequestHandler->respondAs('application/json');
