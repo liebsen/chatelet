@@ -23,7 +23,7 @@ echo $this->element('admin-menu');
 	<table id="example-datatables" class="table table-bordered table-hover draggable-table" data-url="/admin/ordernum/product">
 		<thead>
 			<tr>
-				<th class="text-center hidden-phone"></th>
+				<th class="text-center hidden-phone"><input type="checkbox" name="checksAll" /></th>
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>
 				<th class="text-center hidden-phone"><?php echo __('Descripción'); ?></th>
 				<!--th class="text-center hidden-phone"><?php echo __('Promo'); ?></th-->

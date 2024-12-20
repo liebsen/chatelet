@@ -63,8 +63,7 @@ echo $this->Html->script('admin-listchecks.js?v=' . Configure::read('APP_VERSION
 	<table id="categorias-datatables" class="table table-bordered table-hover table-condensed draggable-table" data-url="/admin/ordernum/category">
 		<thead>
 			<tr>
-				<th class="text-center hidden-phone"></th>
-
+				<th class="text-center hidden-phone"><input type="checkbox" name="checksAll" /></th>
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
 				<th class="hidden-phone hidden-tablet"><?php echo __('Ancho'); ?></th> 
 				<th class="hidden-phone hidden-tablet"><?php echo __('Posición'); ?></th> 
