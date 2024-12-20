@@ -83,10 +83,11 @@ $(document).ready(function() {
   $("input:checkbox[name=checksAll]").click(function(e){
     const checked = $(this).is(':checked')
     $("input:checkbox[name=checks]").map(function(){
-      $(this).prop('checked', checked)
+      $(this).click(); 
+      //$(this).prop('checked', checked)
     })
   })
-  
+
   $("input:checkbox[name=checks]").click(function(e){
     const el = $(e.target)
     const id = el.val()
