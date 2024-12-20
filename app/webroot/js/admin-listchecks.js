@@ -65,6 +65,7 @@ $('#example-datatables').on('draw.dt', function() {
     } else {
       $(this).parents('tr').removeClass('bg-danger')
     }
+    $(this).prop('checked', false)
   })
 });
 
