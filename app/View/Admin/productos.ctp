@@ -2,6 +2,7 @@
 echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false));
 echo $this->Html->script('image_prodshop', array('inline' => false)); 
 echo $this->Html->script('admin-delete', array('inline' => false)); 
+echo $this->Html->script('admin-listchecks.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->Html->css('draggable-table', array('inline' => false));
 echo $this->Html->script('draggable-table', array('inline' => false));
 echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));
@@ -9,7 +10,8 @@ echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' 
 echo $this->element('admin-menu');
 ?>
 
-<div class="form-actions">
+<div class="form-actions" data-url="/admin/batch_productos/">
+    <span class="selection-count"></span>	
     <button class="enableselection btn btn-success btn-adjust" type="button">Activar</button>
     <button class="disableselection btn btn-warning btn-adjust" type="button">Desactivar</button>
     <button class="removeselection btn btn-danger btn-adjust" type="button">Eliminar</button>

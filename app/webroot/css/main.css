@@ -3521,6 +3521,10 @@ a.thumbnail-borderless,
     outline: 0 !important;
 }
 
+.selection-count {
+    color: #f8f8f8;
+}
+
 .form-actions {
     text-align: right;
     position: fixed;
@@ -3531,12 +3535,9 @@ a.thumbnail-borderless,
     bottom: 0;
     right: 0;
     padding: 1rem;
-    padding-right: 3rem;
-    padding-bottom: 0.5rem;
     z-index: 99;
     min-width: 100vw;
-    background: rgb(240,240,240);
-    background: linear-gradient(180deg, rgba(240,240,240,0) 0%, rgba(240,240,240,1) 5%, rgba(240,240,240,1) 100%);
+    background: #595959;
 }
 
 .form-actions .btn{
@@ -3560,9 +3561,6 @@ a.thumbnail-borderless,
 /* Landscape tablet and up */
 @media (min-width: 992px) {
 
-    .form-actions {
-        right: 2.5rem;
-    }
     /* Hide Side Content */
     .hide-side-content #page-sidebar {
         display: none !important;
