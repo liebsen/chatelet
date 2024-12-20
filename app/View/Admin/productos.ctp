@@ -2,7 +2,7 @@
 echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false));
 echo $this->Html->script('image_prodshop', array('inline' => false)); 
 echo $this->Html->script('admin-delete', array('inline' => false)); 
-echo $this->Html->script('admin-listchecks.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->Html->css('draggable-table', array('inline' => false));
 echo $this->Html->script('draggable-table', array('inline' => false));
 echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));

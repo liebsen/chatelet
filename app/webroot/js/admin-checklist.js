@@ -44,6 +44,7 @@ function batch(action){
 
 function unselectAll(){
   $("input:checkbox[name=checks]:checked").prop('checked', false)
+  $("input:checkbox[name=checksAll]").prop('checked', false)
   checkIds = []
   updateMessage()
 }
