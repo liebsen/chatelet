@@ -60,7 +60,7 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 <!-- start template -->
 
 <div class="block-section">
-	<table id="categorias-datatables" class="table table-bordered table-hover table-condensed draggable-table" data-url="/admin/ordernum/category">
+	<table id="categorias-datatables" class="table table-bordered table-condensed draggable-table" data-url="/admin/ordernum/category">
 		<thead>
 			<tr>
 				<th class="text-center hidden-phone"><input type="checkbox" name="checksAll" /></th>

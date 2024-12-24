@@ -20,7 +20,7 @@ echo $this->element('admin-menu');
 <p class="collapse alert alert-success result-message">...</p>
 
 <div class="block-section table-responsive">
-	<table id="example-datatables" class="table table-bordered table-hover draggable-table" data-url="/admin/ordernum/product">
+	<table id="example-datatables" class="table table-bordered draggable-table" data-url="/admin/ordernum/product">
 		<thead>
 			<tr>
 				<th class="text-center hidden-phone"><input type="checkbox" name="checksAll" /></th>

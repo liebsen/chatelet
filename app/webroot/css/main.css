@@ -3540,8 +3540,12 @@ a.thumbnail-borderless,
     background: #595959;
 }
 
+
+.bg-selected {
+    background-color: #fcf8e3!important;
+}
 .form-actions .btn{
-    font-size: 1rem;
+    font-size: 1.25rem;
 }
 
 /* .controls {

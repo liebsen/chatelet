@@ -1238,7 +1238,6 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
 	    		$this->loadModel('Product');
-
 	    		$this->Product->deleteall(array('Product.category_id' => $this->request->data['id']));
 	    		$this->Category->delete($this->request->data['id']);
 	    	}
@@ -1246,9 +1245,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
     	case 'edit':
     		if ($this->request->is('post')) {
     			$this->autoRender = false;
-
     			$data = $this->request->data;
-
 	        $file_real_name = null;
 	        if(!empty($this->request->params['form']['image']['name'])){
             $file_real_name = $this->save_file($this->request->params['form']['image']);

@@ -14,6 +14,7 @@ function batch(action){
     success: function(data, textStatus, xhr) {
       for(const i of checkIds){
         const tr = $(`tr[data-id=${i}]`)
+        tr.removeClass('bg-selected')
         if(action == 'remove') {
           tr.remove()
         }
@@ -44,6 +45,7 @@ function batch(action){
 
 function unselectAll(){
   $("input:checkbox[name=checks]:checked").prop('checked', false)
+  $("input:checkbox[name=checks]:checked").removeClass('bg-selected')
   $("input:checkbox[name=checksAll]").prop('checked', false)
   checkIds = []
   updateMessage()
@@ -61,10 +63,9 @@ function updateMessage(){
 $('#example-datatables').on('draw.dt', function() {
   $("input:checkbox[name=checks]:checked").map(function(){
     const id = $(this).val()
+    $(this).parents('tr').removeClass('bg-selected', 'bg-danger')
     if(disabledIds.includes(id)){
       $(this).parents('tr').addClass('bg-danger')
-    } else {
-      $(this).parents('tr').removeClass('bg-danger')
     }
     $(this).prop('checked', false)
   })
@@ -84,17 +85,17 @@ $(document).ready(function() {
   $("input:checkbox[name=checksAll]").click(function(e){
     const checked = $(this).is(':checked')
     $("input:checkbox[name=checks]").map(function(){
-      $(this).click(); 
-      //$(this).prop('checked', checked)
+      $(this).click()
     })
   })
 
   $("input:checkbox[name=checks]").click(function(e){
-    const el = $(e.target)
-    const id = el.val()
-    
+    const $e = $(e.target)
+    const id = $e.val()
     checkIds = checkIds.filter((e) => e != id)
-    if(el.is(":checked")){
+    $e.parents('tr').removeClass('bg-selected')
+    if($e.is(":checked")){
+      $e.parents('tr').addClass('bg-selected')
       checkIds.push(id)
     }
     updateMessage()
