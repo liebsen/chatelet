@@ -44,32 +44,43 @@ function batch(action){
 }
 
 function unselectAll(){
-  $("input:checkbox[name=checks]:checked").prop('checked', false)
-  $("input:checkbox[name=checks]:checked").removeClass('bg-selected')
+  for(const i of checkIds){
+    const tr = $(`tr[data-id=${i}]`)
+    const check = tr.find('input[name="checks"]')
+    tr.removeClass('bg-selected')
+    check.prop('checked', false)
+  }
   $("input:checkbox[name=checksAll]").prop('checked', false)
   checkIds = []
   updateMessage()
 }
 
+$('#example-datatables').on('draw.dt', function() {
+  for(const i of disabledIds){
+    const tr = $(`tr[data-id=${i}]`)
+    const check = tr.find('input[name="checks"]')    
+    tr.removeClass('bg-selected')
+    tr.addClass('bg-danger')
+    check.prop('checked', false)
+  }
+  for(const i of enabledIds){
+    const tr = $(`tr[data-id=${i}]`)
+    const check = tr.find('input[name="checks"]')    
+    tr.removeClass('bg-selected bg-danger')
+    check.prop('checked', false)    
+  }
+  disabledIds = []
+  enabledIds = []
+})
+
 function updateMessage(){
   let message = ''
   if(checkIds.length) {
-  const s = checkIds.length > 1 ? 's' : ''
-  message = `Hay ${checkIds.length} elemento${s} seleccionado${s} <a href="javascript:void(0)" onclick="unselectAll()"> Borrar</a> `
+    const s = checkIds.length > 1 ? 's' : ''
+    message = `Hay ${checkIds.length} elemento${s} seleccionado${s} <a href="javascript:void(0)" onclick="unselectAll()"> Borrar</a> `
   }
   $('.selection-count').html(message)
 }
-
-$('#example-datatables').on('draw.dt', function() {
-  $("input:checkbox[name=checks]:checked").map(function(){
-    const id = $(this).val()
-    $(this).parents('tr').removeClass('bg-selected', 'bg-danger')
-    if(disabledIds.includes(id)){
-      $(this).parents('tr').addClass('bg-danger')
-    }
-    $(this).prop('checked', false)
-  })
-});
 
 function done(){
   document.querySelector('.draggable-saved').classList.remove('chatOut')
