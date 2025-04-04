@@ -14,10 +14,12 @@ class EmailConfig {
             // 'password' => 'Fran4850',
             // 'password' => 'A@spOWo9fS',
             //'password' => 'clryubbbmjeljkpp',
-            'password' => 'arwheujigsnivwqm',
+            'password' => 'rkvskpfrnixfadyh',
             'charset' => 'utf-8',
             'tls' => true
+          //'log' => true
             // 'ssl' => true
             //'headerCharset' => 'utf-8',
       );
 }
+
