@@ -34,6 +34,7 @@ Configure::write('font', 'DM Sans');
 Configure::write('fontweight', '300,400,500,600,700,800');
 Configure::write('DIST_VERSION', $version);
 Configure::write('APP_VERSION', $version);
+Configure::write('GA_CODE', 'G-MXN4MLM15S');
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.
