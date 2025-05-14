@@ -80,7 +80,6 @@ var getItems = () => {
 }
 
 var getTotals = () => {
-  console.log('getTotals')
   var payment_method = carrito_config.payment_method
   var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
   var subtotal = getItems()
@@ -109,7 +108,6 @@ var getTotals = () => {
   localStorage.setItem('carrito', JSON.stringify(carrito))  
   return subtotal
 }
-
 
 var select_radio = (name, value) => {
   const e = $(`input[name=${name}][value=${value}]`)

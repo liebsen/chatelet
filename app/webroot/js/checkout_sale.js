@@ -95,6 +95,9 @@ var select_payment = (e,item) => {
 		if(document.querySelector('.payment-dues').classList.contains('scaleIn')){
 			document.querySelector('.payment-dues').classList.remove('scaleIn')
 			document.querySelector('.payment-dues').classList.add('scaleOut')
+			setTimeout(() => {
+				document.querySelector('.payment-dues').classList.add('hide-element')
+			}, 500)
 		}
 		document.querySelectorAll('.payment-dues .option-rounded').forEach((e,i) => {
 			if(i) {
@@ -106,7 +109,7 @@ var select_payment = (e,item) => {
 		case 'mercadopago':
 
 		if(document.querySelector('.payment-dues').classList.contains('scaleOut')){
-			document.querySelector('.payment-dues').classList.remove('scaleOut')
+			document.querySelector('.payment-dues').classList.remove('scaleOut', 'hide-element')
 			document.querySelector('.payment-dues').classList.add('scaleIn')
 		}
 
