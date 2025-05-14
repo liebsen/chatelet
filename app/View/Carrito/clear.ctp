@@ -46,9 +46,7 @@
 </div>
 <!-- Google Code for Venta Online Conversion Page -->
 <script type="text/javascript">
-<?php if(!$failed):?>
 	localStorage.removeItem('carrito')
-<? endif ?>
 
 	fbq('track', 'Purchase', {value: <?php echo $sale_data['total'] ?>, currency: 'ARS'});
 	gtag('event', 'purchase', {
@@ -60,7 +58,7 @@
 	  "shipping": 0,
 	  "items": <?php echo json_encode($productos, JSON_PRETTY_PRINT);?>
 	})
-	
+
 	/* dataLayer.push({
 	  'ecommerce': {
 	    'purchase': {
