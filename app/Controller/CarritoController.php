@@ -1477,12 +1477,14 @@ el pago.</p>
 			$this->notify_user($this->Session->read('sale_data'), 'success');
 			$this->Session->delete('Carro');
 			$this->Session->delete('sale_data');
-			error_log('success');
+			return $this->render('clear');
+			//error_log('success');
 		}else{
 			error_log('no sale data');
 			$this->Session->delete('Carro');
 			$this->Session->delete('sale_data');
-			return $this->redirect(array('controller' => 'home', 'action' => 'index'));
+			return $this->render('clear_no');
+			//return $this->redirect(array('controller' => 'home', 'action' => 'index'));
 		}
 	}
 }
