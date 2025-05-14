@@ -48,8 +48,6 @@
 <script type="text/javascript">
 <?php if(!$failed):?>
 	localStorage.removeItem('carrito')
-<? endif ?>
-
 	fbq('track', 'Purchase', {value: <?php echo $sale_data['total'] ?>, currency: 'ARS'});
 	gtag('event', 'purchase', {
 	  "transaction_id": '<?php echo $sale_data['sale_id'] ?>',
@@ -60,6 +58,8 @@
 	  "shipping": 0,
 	  "items": <?php echo json_encode($productos, JSON_PRETTY_PRINT);?>
 	})
+	<? endif ?>
+
 	/* dataLayer.push({
 	  'ecommerce': {
 	    'purchase': {
