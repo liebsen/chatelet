@@ -377,10 +377,15 @@ class CarritoController extends AppController
 	  }
 
 		$coupon_bonus = 0;
+		$partial_bonus = 0;
 		$total = 0;
 		$coupon_parsed = \filtercoupon($coupon, $config, $data['price']);
 		$updated = [];
 		if($coupon_parsed->status === 'success') {
+
+			$discount = (float) $coupon_parsed->data['discount'];
+			$partial_bonus = $discount;
+
 			foreach($items as $item) {
 				$price = $item["price"];
 				if (
@@ -388,16 +393,43 @@ class CarritoController extends AppController
 					in_array($item['category_id'],$cats) || 
 					in_array($item['id'],$prods)
 				) {
-					$discount = (float) $coupon_parsed->data['discount'];
 					if($coupon_parsed->data['coupon_type'] === 'percentage') {
 						$coupon_bonus+= round($price * ($discount / 100), 2);
 						$price = round($price * (1 - $discount / 100), 2);
-					} else {
-						$coupon_bonus+= $discount;
-						$price-= $price;
+					} else if($coupon_parsed->data['coupon_type'] === 'nominal'){
+
+						CakeLog::write('error', var_export([
+							"key" => "bonus(1)",
+							"partial_bonus" => $partial_bonus,
+							"coupon_bonus" => $coupon_bonus
+						], true));
+
+						if($partial_bonus >= $price) 	{
+
+							$partial_bonus-= $price;
+							$coupon_bonus+= $price;
+
+							CakeLog::write('error', var_export([
+								"key" => "bonus(2)",
+								"partial_bonus" => $partial_bonus,
+"coupon_bonus" => $coupon_bonus
+							], true));
+
+							$price = 0;	
+
+						} else {
+
+							$partial_bonus = $price - $partial_bonus;
+							$coupon_bonus+= $partial_bonus;							
+							
+							CakeLog::write('error', var_export([
+								"key" => "bonus(3)",
+								"partial_bonus" => $partial_bonus,
+								"coupon_bonus" => $coupon_bonus
+							], true));
+							$price-= $partial_bonus;	
+						}
 					}
-					error_log("name:: ".$item["name"]);
-					error_log("price:: ".$price);
 
 					$updated[$item['id']] = (object) [
 						'old_price' => $item['price'],
@@ -415,6 +447,10 @@ class CarritoController extends AppController
 	        'message' => "El cupón existe pero no contempla los productos que elegiste"
 	       ]); 
 			}			
+		}
+
+		if($coupon_bonus > $discount) {
+			$coupon_bonus = $discount;
 		}
 
 		$coupon_parsed->data["updated"] = $updated;

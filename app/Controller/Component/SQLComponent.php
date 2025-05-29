@@ -244,8 +244,8 @@ class SQLComponent extends Component {
 			$results[] = $row;
 		}
 		unset($stmt);
+		CakeLog::write('error', var_export($results, true));
 		return $results;
-			CakeLog::write('error', var_export($results, true));
 	}
 
 	public function product($id = null) {

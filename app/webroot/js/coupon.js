@@ -59,7 +59,7 @@ function submitCoupon() {
 
   $('#free_delivery').text('');
   $('.btn-calculate-coupon').button('loading')
-  $.post('/carrito/coupon', { coupon: coupon }, function(res, textStatus) {
+  $.post('/carrito/coupon', { coupon: coupon.trim() }, function(res, textStatus) {
     $('.btn-calculate-coupon').button('reset')
     
     if( res.status == 'success' ) {
@@ -75,7 +75,6 @@ function submitCoupon() {
         free_shipping = false
         price+=parseFloat(delivery_cost)
       }
-  console.log('delivery_cost',delivery_cost)
 
       discounted_formatted = formatNumber(res.data.bonus)
 
@@ -83,11 +82,11 @@ function submitCoupon() {
       $('.products-total').removeClass('hidden')
       $('.coupon-discount').removeClass('hidden')
       $('.coupon-discount').addClass('fadeIn')
-      // //console.log(parseFloat($('#cost').text()));
       $('.input-coupon').removeClass('wrong');
       $('.input-coupon').addClass('ok');
+
       onSuccessAlert(`${res.data.code.toUpperCase()}`, res.data.info);
-      //$('.coupon-info-title').text(res.data.code)
+
       $('.coupon-info-info').html(`<span class="text-success text-bold">${res.data.code}</span> - ${res.data.info}`)
       $('.coupon-info').removeClass('hidden')
       $('.coupon-info').addClass('fadeIn')
@@ -95,21 +94,19 @@ function submitCoupon() {
       $('.free-shipping').addClass('hidden')
       
       coupon = coupon.toUpperCase()
-
-      //console.log('total(1)',total)
-      //console.log('delivery_cost(1)',delivery_cost)
       format_total = formatNumber(price)
-      fxTotal(price)
 
+      fxTotal(price)
       window.coupon_bonus = discounted
+
       carrito.total_price = parseFloat(price.toFixed(2))
+
       $('input[name="coupon"]').val(coupon)
       $('#coupon_name').val("")
       $('.calc-coupon').hide(); 
       $('.coupon-click').show();
-      console.log('submitCoupon(1)',carrito)
+
       if (carrito.cargo === 'shipment') {
-        console.log('submitCoupon(2)')
         if (free_shipping) {
           $('.paid-shipping-block').addClass('hidden')
           $('.free-shipping-block').removeClass('hidden')
@@ -117,7 +114,6 @@ function submitCoupon() {
         } else {
           $('.free-shipping-block').addClass('hidden')
           $('.paid-shipping-block').removeClass('hidden')
-          console.log('submitCoupon(4)')
           price = `$ ${formatNumber(delivery_cost)}`
         }
         $('.shipping_price').html(price)
@@ -127,21 +123,12 @@ function submitCoupon() {
       }
     }else{
       $('.coupon-discount').addClass('hidden')
-      //carrito.coupon = ''
-      //carrito.coupon_bonus = 0
-
-      // fxTotal(formatNumber(subtotal))
       $('.input-coupon').removeClass('ok');
       $('.input-coupon').addClass('wrong');
       $('#cost').text( '0' );
-      //format_total = formatNumber(parseFloat(subtotal) + parseFloat(delivery_cost))            
-      //fxTotal(formatNumber(format_total), true)
       timeout = setTimeout( `onErrorAlert('${res.title}', '${res.message}')` , 200);
     }
     localStorage.setItem('carrito', JSON.stringify(carrito))
-
-    // document.querySelector('processed-coupon-data').classList.remove('hidden')
-    // document.querySelector('processed-coupon-data').classList.add('fadeIn')
     $('.input-coupon').attr( 'data-valid' , parseInt(res.valid) );
   })
 
