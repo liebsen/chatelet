@@ -387,7 +387,13 @@ class CarritoController extends AppController
 			$partial_bonus = $discount;
 
 			foreach($items as $item) {
-				$price = $item["price"];
+				$price = (float) $item["price"];
+				$total+= $price;
+
+				if($partial_bonus < 0) {
+					$partial_bonus = 0;
+				}
+				
 				if (
 					(!count($cats) && !count($prods)) ||
 					in_array($item['category_id'],$cats) || 
@@ -396,38 +402,19 @@ class CarritoController extends AppController
 					if($coupon_parsed->data['coupon_type'] === 'percentage') {
 						$coupon_bonus+= round($price * ($discount / 100), 2);
 						$price = round($price * (1 - $discount / 100), 2);
-					} else if($coupon_parsed->data['coupon_type'] === 'nominal'){
+					} 
 
-						CakeLog::write('error', var_export([
-							"key" => "bonus(1)",
-							"partial_bonus" => $partial_bonus,
-							"coupon_bonus" => $coupon_bonus
-						], true));
-
-						if($partial_bonus >= $price) 	{
-
-							$partial_bonus-= $price;
-							$coupon_bonus+= $price;
-
-							CakeLog::write('error', var_export([
-								"key" => "bonus(2)",
-								"partial_bonus" => $partial_bonus,
-"coupon_bonus" => $coupon_bonus
-							], true));
-
-							$price = 0;	
-
-						} else {
-
-							$partial_bonus = $price - $partial_bonus;
-							$coupon_bonus+= $partial_bonus;							
-							
-							CakeLog::write('error', var_export([
-								"key" => "bonus(3)",
-								"partial_bonus" => $partial_bonus,
-								"coupon_bonus" => $coupon_bonus
-							], true));
-							$price-= $partial_bonus;	
+					if($coupon_parsed->data['coupon_type'] === 'nominal'){
+						if($partial_bonus) {
+							if($partial_bonus >= $price) 	{
+								$partial_bonus-= $price;
+								$coupon_bonus+= $price;
+								$price = 0;	
+							} else {
+								$price = round($price - $partial_bonus,2);
+								$coupon_bonus+= $price;
+								$partial_bonus-= $price;
+							}
 						}
 					}
 
@@ -436,8 +423,6 @@ class CarritoController extends AppController
 						'price' => $price
 					];
 				}
-				
-				$total+= $price;
 			}
 
 			if(count($coupon_ids) && !count($updated)){
@@ -447,6 +432,19 @@ class CarritoController extends AppController
 	        'message' => "El cupón existe pero no contempla los productos que elegiste"
 	       ]); 
 			}			
+		}
+
+		if($total && $discount){
+			if($coupon_parsed->data['coupon_type'] === 'percentage') {
+				$total = round($total * (1 - $discount / 100), 2);
+			}
+			if($coupon_parsed->data['coupon_type'] === 'nominal') {
+				$total-= $discount;
+			}
+			if($total < 0) {
+				$total = 0;
+			}
+			$total = round($total,2);
 		}
 
 		if($coupon_bonus > $discount) {
@@ -852,8 +850,16 @@ class CarritoController extends AppController
 			}
 		}
 
+		$discount = (float) $coupon_parsed->data['discount'];
+		$partial_bonus = $discount;
+
 		foreach ($carro as $producto) {
 			$unit_price = $producto['price'];
+
+			if($partial_bonus < 0) {
+				$partial_bonus = 0;
+			}
+
 			// check coupon			
 			if (
 				$coupon_parsed && 
@@ -863,13 +869,22 @@ class CarritoController extends AppController
 					in_array($producto['id'],$prods)
 				)
 			) {
-				$discount = (float) $coupon_parsed->data['discount'];
 				if($coupon_parsed->data['coupon_type'] === 'percentage') {
 					$coupon_bonus+= round($unit_price * ($discount / 100), 2);
 					$unit_price = round($unit_price * (1 - $discount / 100), 2);
-				} else {
-					$coupon_bonus+= $discount;
-					$unit_price-= $discount;
+				} 
+				if($coupon_parsed->data['coupon_type'] === 'nominal') {
+					if($partial_bonus) {
+						if($partial_bonus >= $unit_price) 	{
+							$partial_bonus-= $unit_price;
+							$coupon_bonus+= $unit_price;
+							$unit_price = 0;	
+						} else {
+							$unit_price = round($unit_price - $partial_bonus,2);
+							$coupon_bonus+= $unit_price;
+							$partial_bonus-= $unit_price;
+						}
+					}
 				}
 			} else {
 				error_log("proderr::". $producto["name"]);
