@@ -205,14 +205,14 @@
 					        <label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(event,this)">
 					          <input type="radio" class="" id="dues_1" name="payment_dues" value="1" required checked />
 				          	<span class="h4"> 1 cuota</span><br>
-				          	<p class="mt-2 text-small">1 cuota de <span class="total_price"></span></p>
+				          	<p class="mt-2 text-small">1 cuota de <span class="total_price calc_total"></span></p>
 				          </label>						    	
 						    <?php foreach($legends as $legend): ?>
 						    	<?php if($total >= @$legend['Legend']['min_sale']):?>
 						    	<label for="dues_<?= @$legend['Legend']['dues'] ?>" class="col-xs-12 is-clickable option-rounded is-secondary<?= @$config['payment_method'] !== 'bank' ? '' : ' hide' ?>"  data-interest="<?= @$legend['Legend']['interest'] ?>" onclick="select_dues(event,this)">
 						    		<input type="radio" id="dues_<?= @$legend['Legend']['dues'] ?>" name="payment_dues" value="<?= @$legend['Legend']['dues'] ?>" required/>
 					          	<span class="h4"> <?= @$legend['Legend']['dues'] ?> cuotas</span><br>
-					          	<p class="mt-2 text-small"><?= 
+					          	<p class="mt-2 text-small calc-dues" data-dues="<?= @$legend['Legend']['dues'] ?>" data-interest="<?= @$legend['Legend']['interest'] ?>"><?= 
 								str_replace([
                     '{cuotas}','{interes}','{monto}'
                 ], [

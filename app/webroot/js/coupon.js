@@ -97,6 +97,7 @@ function submitCoupon() {
       format_total = formatNumber(price)
 
       fxTotal(price)
+      calcDues(price)
       window.coupon_bonus = discounted
 
       carrito.total_price = parseFloat(price.toFixed(2))

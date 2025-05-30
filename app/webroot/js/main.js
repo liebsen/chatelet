@@ -67,6 +67,15 @@ let strtoFloat = (text) => {
   return parseFloat(parseFloat(text.replace('.', '').replace('$', '')).toFixed(2))
 }
 
+let calcDues = (total) => {
+  $('.calc-dues').each(function(e){
+    const dues = Number($(this).data('dues'))
+    const interest = Number($(this).data('interest')) || 0
+    const monto = total * (1 + interest / 100)
+    $(this).text(dues + ' cuotas de ' + formatNumber(monto / dues))
+  })
+}
+
 let fxTotal = (total) => {
   if($('.calc_total').text().replace("$ ", "") == total) {
     return false

@@ -78,7 +78,6 @@ var select_dues = (e,item) => {
 }
 
 var select_payment = (e,item) => {
-	console.log('select_payment', item)
 	e.preventDefault()
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var selected = $(item).find('input').val()
