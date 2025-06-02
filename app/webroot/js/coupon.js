@@ -37,7 +37,6 @@ function resetCoupon() {
 }
 
 function submitCoupon() {
-  console.log('submitCoupon')
   $('.coupon-info').addClass('hidden')
   $('.coupon-info').removeClass('fadeIn, fadeOutRight')
   // $('.coupon-info').html('')
@@ -65,10 +64,10 @@ function submitCoupon() {
     if( res.status == 'success' ) {
 
       let coupon_type = res.data.coupon_type
+      var price = parseFloat(res.data.total)      
       let discount = parseFloat(res.data.discount)
       let discounted = 0
       let total = 0
-      var price = parseFloat(res.data.total)
       let free_shipping = true
 
       if(price < shipping_price){

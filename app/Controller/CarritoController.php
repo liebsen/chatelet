@@ -447,13 +447,9 @@ class CarritoController extends AppController
 			$total = round($total,2);
 		}
 
-		if($coupon_bonus > $discount) {
-			$coupon_bonus = $discount;
-		}
-
 		$coupon_parsed->data["updated"] = $updated;
 		$coupon_parsed->data["total"] = $total;
-		$coupon_parsed->data["bonus"] = $coupon_bonus;
+		$coupon_parsed->data["bonus"] = $discount;
 		
 
 		return json_encode($coupon_parsed);
