@@ -39,7 +39,6 @@ function resetCoupon() {
 function submitCoupon() {
   $('.coupon-info').addClass('hidden')
   $('.coupon-info').removeClass('fadeIn, fadeOutRight')
-  // $('.coupon-info').html('')
   var coupon  = $('.input-coupon').val();
   if(!coupon.length) {
     onWarningAlert('Error','Por favor, ingresá un código de cupón')

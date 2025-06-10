@@ -179,8 +179,6 @@
                              </table>
                         </div>
                     </td>
-
-
                     <td class="col-xs-1 text-center">
                         <strong>$<?= @$sale['collection']['transaction_amount'] ?: @$sale['local_sale']['value'] ?> </strong><br>
                         <small>(<?= count(@$sale['collection']['sale_products']) ?> items)</small>
@@ -206,7 +204,7 @@
                         <div id="shipping_title_<?= $sale['local_sale']['id'] ?>" class="text-success text-center">
                             <img class="shipping-logo" src="<?= @$logistics_images[$sale['local_sale']['shipping']] ?>">
                         </div>
-                        <!-- <?= strtoupper(@$sale['local_sale']['shipping']) ?> --> <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>
+                        <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="fa fa-gift text-success"' : '' ?>
                         <?php endif ?>
                     <?php endif ?>                    
                     </td>

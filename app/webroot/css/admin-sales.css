@@ -32,17 +32,8 @@
 
 @media print {
   @page {
-    /* size: A4;  DIN A4 standard, Europe */
     margin:0;
   }
-  /* html, body {
-    width: 210mm;
-    height: 282mm;
-    font-size: 11px;
-    background: #FFF;
-    overflow:visible;
-  } */
-
   .hide-print,
   .dataTables_filter,
   #page-sidebar,
@@ -66,43 +57,4 @@
     width: auto;
     color: #333!important;
   }
-  #example-datatables2 > tbody > tr > td:nth-child(5),
-  #example-datatables2 > thead > tr > th:nth-child(5) {
-    display: none;
-  }  
 }
-
-/*
-table.print-friendly tr td, table.print-friendly tr th {
-    page-break-inside: avoid;
-}
-
-@media print {
-  .hide-print,
-  .dataTables_filter,
-  #page-sidebar,
-  #pre-page-content,
-  #primary-nav {
-    display: none;
-  }
-  #page-content {
-    margin: 0;
-  }
-  #example-datatables2_wrapper .row:nth-child(odd) {
-    display: none;
-  }
-  #example-datatables2 td:nth-child(2) {
-    display: none;
-  }
-  #example-datatables2 td:nth-child(3){
-    display: block!important;
-  }
-  #example-datatables2 td:nth-child(4) {
-    display: none;
-    height: auto!important
-  }
-  #example-datatables2 td:nth-child(5) {
-    display: none;
-  }
-}
-*/
