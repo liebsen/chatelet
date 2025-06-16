@@ -37,9 +37,8 @@
     text-align: center;
     font-size: 1rem;
     position: inherit;
-    padding: 1rem;
     display: flex;
-    line-height: 1;
+    line-height: 1.25;
     justify-content: center;
     align-items: center;
     min-height: 64px;
@@ -48,7 +47,6 @@
 
   @media screen and (max-width:500px){
     #carousel-banners .banner-caption {
-      padding: 0.5rem;
       font-size: 0.9rem;
     }
   }

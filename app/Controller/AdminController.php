@@ -1006,7 +1006,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$this->autoRender = false;
 		$response = null;
 		if (!empty($this->request->data['file']['name'])) {
-			$response = $this->save_file( $this->request->data['file']);
+			$response = $this->save_file($this->request->data['file']);
 		} else {
 			die('fail');
 		}
@@ -1035,7 +1035,54 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$this->loadModel('Home');
 
 		if ($this->request->is('post')) {
-        $data = $this->request->data;
+      $data = $this->request->data;
+      $imgs = array_filter(explode(";",$data['img_url']));
+      $media = [];
+      foreach($imgs as $img) {
+      	$parts = explode('-', $img);
+      	if(count($parts) < 2) {
+	      	$fname = __DIR__ . '/../webroot' . Configure::read('uploadUrl') . $img;
+	      	if(file_exists($fname)) {
+						$img_data = getimagesize();
+			    	$media[] = implode('-', [($img_data[0] > $img_data[1] ? 'desktop' : 'mobile'), $img]);
+			    } 
+			  } else {
+			    $media[] = $img;
+			  }
+	    }
+
+	    if(count($media)) {
+	    	//$media = array_filter($media);
+	    	$data['img_url'] = ';' . implode(";", $media);
+	    	error_log(json_encode($media));
+	    }
+
+	    // img_popup_newsletter
+      $imgs = array_filter(explode(";",$data['img_popup_newsletter']));
+      $media = [];
+      foreach($imgs as $img) {
+      	$parts = explode('-', $img);
+      	if(count($parts) < 2) {
+	      	$fname = __DIR__ . '/../webroot' . Configure::read('uploadUrl') . $img;
+	      	if(file_exists($fname)) {
+						$img_data = getimagesize();
+			    	$media[] = implode('-', [($img_data[0] > $img_data[1] ? 'desktop' : 'mobile'), $img]);
+			    } 
+			  } else {
+			    $media[] = $img;
+			  }
+	    }
+
+	    if(count($media)) {
+	    	//$media = array_filter($media);
+	    	$data['img_popup_newsletter'] = ';' . implode(";", $media);
+	    	//error_log(json_encode($media));
+	    }
+
+	    
+	    //$img_url_media = implode(";",$media);
+      //error_log(json_encode($media));
+
     	if(empty($data['url_mod_one'])) {
     		$data['url_mod_one']=null;
     	}    	

@@ -39,7 +39,7 @@
 	        </br>  
 			    <div class="row">
 						<div class="col-md-12"></br> </br>  </br> </br> 
-						  <div class="col-md-4">
+						  <div class="col-md-3">
 						    <label class="control-label" for="columns-text"><?php echo __('Modulo I'); ?></label>
 								<div class="control-group">
 									<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
@@ -48,19 +48,19 @@
 									</div>
 								</div>
 							</div>
-              <div class="col-md-4">
+              <div class="col-md-5">
               	<br />
 								<div class="control-group">
 									<label class="control-label" for="columns-text">Subir Archivo: <span class="counter_one">0</span>%</label>
 									<div class="controls">
-										<input type="file" id="upload_one" data-input="[name='data[img_url_one]']" data-count=".counter_one" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+										<input type="file" class="form-control" id="upload_one" data-input="[name='data[img_url_one]']" data-count=".counter_one" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 										<input type="hidden" name="data[img_url_one]" value="<?php echo $p['Home']['img_url_one'] ?>" />
 									</div>
 								</div>
 						    <div class="control-group">
 									<div class="controls">
 										<script id="image_thumb_one" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
-											<span style="margin-top:10px;margin-bottom:10px;">	
+											<span class="image-item">	
 												<img src="{{image_one}}" width="100"/> 
 												<a href="#" class="delete_image_one" data-input="[name='data[img_url_one]']" data-file="{{file_one}}">X</a>
 											</span>
@@ -97,7 +97,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							</br>
-						  <div class="col-md-4">
+						  <div class="col-md-3">
 						  	<label class="control-label" for="columns-text"><?php echo __('Modulo II'); ?></label>
 								<div class="control-group">
 									<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
@@ -106,12 +106,12 @@
 									</div>
 								</div>
 		          </div>
-						  <div class="col-md-4">
+						  <div class="col-md-5">
 			        	<br />
 								<div class="control-group">
 									<label class="control-label" for="columns-text">Subir Archivo: <span class="counter_two">0</span>%</label>
 									<div class="controls">
-										<input type="file" id="upload_two" data-input="[name='data[img_url_two]']" data-count=".counter_two" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+										<input type="file" class="form-control" id="upload_two" data-input="[name='data[img_url_two]']" data-count=".counter_two" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 										<input type="hidden" name="data[img_url_two]" value="<?php echo $p['Home']['img_url_two'] ?>" />
 									</div>
 								</div>
@@ -119,7 +119,7 @@
 							  <div class="control-group">
 									<div class="controls">
 										<script id="image_thumb_two" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
-											<span style="margin-top:10px;margin-bottom:10px;">	
+											<span class="image-item">	
 												<img src="{{image_two}}" width="100"/> 
 												<a href="#" class="delete_image_two" data-input="[name='data[img_url_two]']" data-file="{{file_two}}">X</a>
 											</span>
@@ -156,7 +156,7 @@
 					</br>  
 					<div class="row">
 						<div class="col-md-12"></br> 
-						  <div class="col-md-4">
+						  <div class="col-md-3">
 						  	<label class="control-label" for="columns-text"><?php echo __('Modulo III'); ?></label>
 								<div class="control-group">
 									<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
@@ -165,19 +165,19 @@
 									</div>
 								</div>
 							</div>
-	            <div class="col-md-4">
+	            <div class="col-md-5">
 	             	<br />
 								<div class="control-group">
 									<label class="control-label" for="columns-text">Subir Archivo: <span class="counter_three">0</span>%</label>
 									<div class="controls">
-										<input type="file" id="upload_three" data-input="[name='data[img_url_three]']" data-count=".counter_three" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+										<input type="file" class="form-control" id="upload_three" data-input="[name='data[img_url_three]']" data-count=".counter_three" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 										<input type="hidden" name="data[img_url_three]" value="<?php echo $p['Home']['img_url_three'] ?>" />
 									</div>
 								</div>
 						    <div class="control-group">
 									<div class="controls">
 										<script id="image_thumb_three" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
-											<span style="margin-top:10px;margin-bottom:10px;">	
+											<span class="image-item">	
 												<img src="{{image_three}}" width="100"/> 
 												<a href="#" class="delete_image_three" data-input="[name='data[img_url_three]']" data-file="{{file_three}}">X</a>
 											</span>
@@ -217,7 +217,7 @@
 							</br>  
 							</br> 
 							</br> 
-					    <div class="col-md-4">
+					    <div class="col-md-3">
 				        <label class="control-label" for="columns-text"><?php echo __('Modulo IV'); ?></label>
 								<div class="control-group">
 									<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
@@ -226,19 +226,19 @@
 									</div>
 								</div>
 							</div>
-              <div class="col-md-4">
+              <div class="col-md-5">
               	<br />
 								<div class="control-group">
 									<label class="control-label" for="columns-text">Subir Archivo: <span class="counter_four">0</span>%</label>
 									<div class="controls">
-										<input type="file" id="upload_four" data-input="[name='data[img_url_four]']" data-count=".counter_four" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+										<input type="file" class="form-control" id="upload_four" data-input="[name='data[img_url_four]']" data-count=".counter_four" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 										<input type="hidden" name="data[img_url_four]" value="<?php echo $p['Home']['img_url_four'] ?>" />
 									</div>
 								</div>
 						    <div class="control-group">
 									<div class="controls">
 										<script id="image_thumb_four" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
-											<span style="margin-top:10px;margin-bottom:10px;">	
+											<span class="image-item">	
 												<img src="{{image_four}}" width="100"/> 
 												<a href="#" class="delete_image_four" data-input="[name='data[img_url_four]']" data-file="{{file_four}}">X</a>
 											</span>
@@ -275,16 +275,18 @@
 					<div class="control-group">
 						<label class="control-label" for="columns-text">Subir Archivo: <span class="counter">0</span>%</label>
 						<div class="controls">
-							<input type="file" id="upload" data-input="[name='data[img_url]']" data-count=".counter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+							<input type="file" class="form-control" id="upload" data-input="[name='data[img_url]']" data-count=".counter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 							<input type="hidden" name="data[img_url]" value="<?php echo $p['Home']['img_url'] ?>" />
 						</div>
 					</div>
 					<br />
 					<div class="control-group">
-						<label class="control-label" for="columns-text">Slider (jpg|jpeg|mp4)</label>
+						<label class="control-label" for="columns-text">Slider</label>
+						<span>Puedes usar jpg,jpeg y mp4. Usa resolución retrato para mobile, paisaje para escritorio.</span>
 						<div class="controls">
 							<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
-								<li style="margin-top:10px;margin-bottom:10px;">
+								<li class="image-item">
+									<i class="fa fa-2x fa-{{orientation}} min-w-4"></i>
 									{{#if video}}
 									<video src="{{image}}" width="100"/> 
 									{{else}}
@@ -328,7 +330,7 @@
 						<div class="control-group">
 							<label class="control-label" for="columns-text">Subir Archivo: <span class="counter_newsletter">0</span>%</label>
 							<div class="controls">
-								<input type="file" id="HomeImgPopupNewsletter" data-input="[name='data[img_popup_newsletter]']" data-count=".counter_newsletter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+								<input type="file" class="form-control" id="HomeImgPopupNewsletter" data-input="[name='data[img_popup_newsletter]']" data-count=".counter_newsletter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 								Tamaño recomendado 990x546
 								<input type="hidden" name="data[img_popup_newsletter]" value="<?php echo $p['Home']['img_popup_newsletter'] ?>" />
 							</div>
@@ -336,7 +338,8 @@
 						 <div class="control-group">
 							<div class="controls">
 								<script id="image_thumb_newsletter" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
-									<span style="margin-top:10px;margin-bottom:10px;">	
+									<span class="image-item">	
+										<i class="fa fa-2x fa-{{orientation}} min-w-4"></i>
 										<img src="{{image_newsletter}}" width="100"/> 
 										<a href="#" class="delete_image_newsletter" data-input="[name='data[img_popup_newsletter]']" data-file="{{file_newsletter}}">X</a>
 									</span>

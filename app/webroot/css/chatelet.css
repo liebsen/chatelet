@@ -186,6 +186,9 @@ html, body {
 .ps-4 {
 	padding: 0.75rem 1.75rem;
 }
+.min-w-4 {
+	min-width: 4rem;
+}
 .min-h-5 {
 	min-height: 5rem;
 }

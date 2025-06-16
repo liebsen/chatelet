@@ -241,7 +241,7 @@ class AppController extends Controller
         $filepath = '';
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $key = uniqid() . '.' . $ext;
-        $dest = __DIR__ . '/../webroot/files/uploads/' . $key;
+        $dest = __DIR__ . '/../webroot' . Configure::read('uploadUrl') . $key;
         $url = "";
 
         if(copy($file['tmp_name'],$dest)){

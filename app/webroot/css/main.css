@@ -1673,6 +1673,37 @@ li.plan-featured h1 {
     padding: 10px;
     background-color: #e1e1e1;
 }
+.min-w-4 {
+    min-width: 4rem;
+}
+#images {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #b1dffc;
+    border-radius: 1rem;
+}
+#images_newsletter {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #fcbc4c;
+    border-radius: 1rem;    
+}
+
+.image-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.image-item img, .image-item video {
+    border-radius: 0.5rem;
+}
 
 .inbox-list .inbox-search {
     display: block;
@@ -2705,9 +2736,6 @@ label {
     margin-bottom: 1px;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
     transition: none;
     text-shadow: none;
 }
@@ -2821,6 +2849,7 @@ label {
 }
 
 input[type="text"].form-control,
+input[type="file"].form-control,
 input[type="password"].form-control,
 input[type="email"].form-control,
 textarea.form-control {

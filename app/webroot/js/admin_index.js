@@ -22,10 +22,12 @@ $(function(){
 			if(image){
 				var source   	= $("#image_thumb").html();
 				var template 	= Handlebars.compile(source);
+				var parts = image.split('-').reverse() 
 				var context 	= {
-					image: base_url+image, 
-					file: image,
-					video: image.includes('.mp4')
+					image: base_url+parts[0], 
+					file: parts[0],
+					video: parts[0].includes('.mp4'),
+					orientation: parts[1] || ''
 				}
 				var html    	= template(context);
 
@@ -41,7 +43,13 @@ $(function(){
 		var images 	= input.val().split(';');
 		var file 	= me.data('file');
 		images 		= $.grep(images,function(n){ return(n) }); // Clean Empty Values
-		images.remove(file);
+		images = images.map((e) => {
+			if(e.includes(file)) {
+				return false
+			}
+			return e
+		}).filter((e) => e)
+		//images.remove(file);
 		input.val( images.join(';') );
 		$(this).closest('li').remove();
 	});
@@ -515,7 +523,8 @@ $(function(){
 			if(image_newsletter){ 
 				var source   	= $("#image_thumb_newsletter").html();
 				var template 	= Handlebars.compile(source);
-				var context 	= {image_newsletter: base_url+image_newsletter , file_newsletter: image_newsletter }
+				var parts = image_newsletter.split('-').reverse() 
+				var context 	= {image_newsletter: base_url+parts[0] , file_newsletter: parts[0], orientation: parts[1] || '' }
 				var html    	= template(context);
 
 				ul.append(html);
@@ -529,8 +538,17 @@ $(function(){
 		var input 	= $(me.data('input'));
 		var images_newsletter 	= input.val().split(';');
 		var file_newsletter	= me.data('file');
+		console.log('file_newsletter',file_newsletter)
 		images_newsletter	= $.grep(images_newsletter,function(n){ return(n) }); // Clean Empty Values
-		images_newsletter.remove(file_newsletter);
+		images_newsletter = images_newsletter.map((e) => {
+			console.log(e, file_newsletter)
+			if(e.includes(file_newsletter)) {
+				return false
+			}
+			return e
+		}).filter((e) => e)
+		console.log('images_newsletter(2)',images_newsletter)
+		//images_newsletter.remove(file_newsletter);
 		input.val( images_newsletter.join(';') );
 		$(this).closest('span').remove();
 	});
