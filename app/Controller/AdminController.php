@@ -1001,6 +1001,52 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$this->redirect(array( 'action' => 'whatsapp' ));
 	}
 
+	public function save_file_orientation()
+	{
+		$this->autoRender = false;
+		$response = ["status" => "success"];
+		$data = $this->request->data;
+
+
+		$this->loadModel('Home');
+		$p = $this->Home->find('first');
+		$field = $p['Home'][$data['origin']];
+
+		$parts = array_filter(explode(';',$field));
+		$arr = [];
+		foreach($parts as $part) {
+			if(strpos($part, $data['file']) != false) {
+				$parts2 = explode('-',$part);
+				$orientation = $parts2[0] == 'mobile' ? 'desktop' : 'mobile';
+				$response['orientation'] = $orientation;
+				$arr[] = $orientation .'-'. $parts2[1];
+			} else {
+				$arr[] = $part;
+			}
+		}
+
+		
+		$save = [];
+		$save['id'] = 1;
+		$save[$data['origin']] = ';' . implode(';', $arr);
+
+		error_log(json_encode($save));
+
+		$this->Home->save($save);
+
+		error_log(json_encode($field));
+
+/*		if (!empty($this->request->data['file']['name'])) {
+			$response = $this->save_file($this->request->data['file']);
+		} else {
+			die('fail');
+		}
+		if(empty($response)){
+			$response = 'fail';
+		}*/
+		die(json_encode($response));
+	}
+
 	public function save_file_admin()
 	{
 		$this->autoRender = false;
@@ -1036,6 +1082,8 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 		if ($this->request->is('post')) {
       $data = $this->request->data;
+
+      // img_url: define image orientation
       $imgs = array_filter(explode(";",$data['img_url']));
       $media = [];
       foreach($imgs as $img) {
@@ -1044,7 +1092,11 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	      	$fname = __DIR__ . '/../webroot' . Configure::read('uploadUrl') . $img;
 	      	if(file_exists($fname)) {
 						$img_data = getimagesize();
-			    	$media[] = implode('-', [($img_data[0] > $img_data[1] ? 'desktop' : 'mobile'), $img]);
+						$orientation = $img_data[0] > $img_data[1] ? 'desktop' : 'mobile';
+						error_log(json_encode($img_data));
+						error_log('fname: '. $fname);
+						error_log('orientation: '. $orientation);
+			    	$media[] = implode('-', [$orientation, $img]);
 			    } 
 			  } else {
 			    $media[] = $img;
@@ -1057,7 +1109,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	    	error_log(json_encode($media));
 	    }
 
-	    // img_popup_newsletter
+	    // img_popup_newsletter: define image orientation
       $imgs = array_filter(explode(";",$data['img_popup_newsletter']));
       $media = [];
       foreach($imgs as $img) {

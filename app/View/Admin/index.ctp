@@ -286,7 +286,7 @@
 						<div class="controls">
 							<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
 								<li class="image-item">
-									<i class="fa fa-2x fa-{{orientation}} min-w-4"></i>
+									<i class="fa fa-2x fa-{{orientation}} min-w-4 is-clickable edit-orientation" data-file="{{file}}" data-origin="img_url"></i>
 									{{#if video}}
 									<video src="{{image}}" width="100"/> 
 									{{else}}
@@ -339,7 +339,7 @@
 							<div class="controls">
 								<script id="image_thumb_newsletter" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
 									<span class="image-item">	
-										<i class="fa fa-2x fa-{{orientation}} min-w-4"></i>
+										<i class="fa fa-2x fa-{{orientation}} min-w-4 is-clickable edit-orientation" data-file="{{file_newsletter}}" data-origin="img_popup_newsletter"></i>
 										<img src="{{image_newsletter}}" width="100"/> 
 										<a href="#" class="delete_image_newsletter" data-input="[name='data[img_popup_newsletter]']" data-file="{{file_newsletter}}">X</a>
 									</span>

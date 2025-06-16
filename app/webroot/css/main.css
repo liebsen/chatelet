@@ -1676,6 +1676,8 @@ li.plan-featured h1 {
 .min-w-4 {
     min-width: 4rem;
 }
+
+
 #images {
     margin: 0;
     padding: 0;
@@ -1704,6 +1706,16 @@ li.plan-featured h1 {
 .image-item img, .image-item video {
     border-radius: 0.5rem;
 }
+
+.image-item .fa-mobile {
+    font-size: 5rem!important;
+    color: #01c801!important;
+}
+.image-item .fa-desktop {
+    font-size: 3rem;
+    color: #4cb9fc;
+}
+
 
 .inbox-list .inbox-search {
     display: block;

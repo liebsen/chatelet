@@ -16,6 +16,9 @@
 
   var images = ["<?= implode('","',$images)?>"]
   var assets = []
+
+  images = responsiveImages(images)
+
   async function preloadVideo(i, asset){
     var req = new XMLHttpRequest();
     req.open('GET', asset, true);
@@ -33,10 +36,24 @@
 
     req.send();    
   }
-  
-  async function preloadImages(images){
+    
+  function responsiveImages(images){
+    var orientation = document.documentElement.clientWidth > document.documentElement.clientHeight ? 
+      'desktop' : 
+      'mobile'
+    var items = []
     for(var i in images){
-      const asset = images[i].replaceAll("mobile-", "").replaceAll("desktop-", "")
+      const asset = images[i]
+      if(asset.includes(orientation)) {
+        items.push(asset.replaceAll("mobile-", "").replaceAll("desktop-", ""))
+      }
+    }
+    return items    
+  } 
+
+  async function preloadImages(assets){
+    for(var i in assets){
+      const asset = assets[i]
       if(asset.endsWith(".mp4")){
         preloadVideo(i,asset)
       } else {
@@ -55,8 +72,9 @@
       <?php foreach ($images as $key => $value): ?>
           <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
               <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
+                  <?php $classname = strpos($value, 'desktop') ? 'desktop' : 'mobile';  ?>
                   <?php if (strpos($value, '.mp4') !== false):?>
-                  <video id="video<?=$key?>" class="carousel-video slider-full" <?= (strpos( $_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) ? ' controls="true" ' : '' ?> playsinline loop>
+                  <video id="video<?=$key?>" class="carousel-video slider-full <?=$classname?>" <?= (strpos( $_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) ? ' controls="true" ' : '' ?> playsinline loop>
                   </video>
                   <?php else: ?>
                   <div class="slider-full" style="background-image:url(<?php echo str_replace(["desktop-", "mobile-"], "", $value); ?>)"></div>
@@ -135,6 +153,7 @@
   </section>
 <?php
 $popupBG=explode(';', @$home['img_popup_newsletter']);
+
 if(empty($popupBG[0])){
     $aux = array();
     foreach($popupBG as $key=>$value){
