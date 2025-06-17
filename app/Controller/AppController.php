@@ -182,46 +182,37 @@ class AppController extends Controller
             } */
         }
         
-        //$this->loadModel('Home');
-        //$p = $this->Home->find('first');
-        //$this->set('p', $p);
+        $this->loadModel('Home');
+        $p = $this->Home->find('first');
+        /*$mobile = (
+            strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') || 
+            strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')
+        );
+
+        $images = array_filter(explode(';',$p['img_url']));
+        foreach($images as $i => $image){
+            if($mobile){
+                if(strstr($image, 'desktop') != false) {
+                    unset($images[$i]);
+                }
+            } else {
+                if(strstr($image, 'mobile') != false) {
+                    unset($images[$i]);
+                }
+            }
+        }*/
+
+        $this->set('p', $p);
 
         $setting    = $this->Setting->findById('show_shop');
         $show_shop  = (!empty($setting['Setting']['value'])) ? 1 : 0;
         $this->set('show_shop',$show_shop);
-        $this->set('home',false);
-        //$this->set('home',strtolower($this->request->params['controller'])==='home');
+        $this->set('home',strtolower($this->request->params['controller'])==='home');
         $setting_menu    = $this->Setting->findById('image_menushop');
         $image_menushop = (!empty($setting_menu['Setting']['value'])) ? $setting_menu['Setting']['value'] : '';
         $this->set('image_menushop',$image_menushop);
         $version_short = number_format($version_count / 10000, 2);
         $this->set('version_text', str_replace('.0', '', $version_short) . ' ' . $version_date);
-    }
-
-    public function get_homes(){
-        $this->loadModel('Home');
-        $home = $this->Home->find('first')['Home'];
-
-        $images     = array();
-        $images_aux = array_filter(explode(';', @$home['img_url']));
-        foreach ($images_aux as $key => $value) {
-            if(!empty($value)){
-                $images[] = Configure::read('uploadUrl').$value;
-            }
-        }
-
-        $img_popup_newsletter     = array();
-        $img_popup_newsletter_aux = array_filter(explode(';', @$home['img_popup_newsletter']));
-        foreach ($img_popup_newsletter_aux as $key => $value) {
-            if(!empty($value)){
-                $img_popup_newsletter[] = Configure::read('uploadUrl').$value;
-            }
-        }
-
-        $home['images'] = $images;
-        $home['img_popup_newsletter'] = $img_popup_newsletter;
-
-        return die(json_decode($home));
     }
 
     public function sendEmail($data, $subject, $template) {

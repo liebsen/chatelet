@@ -231,6 +231,10 @@ html, body {
 
 .js-show-modal {
 	position: relative;
+	background-position-x: center;
+	background-repeat: no-repeat; 
+	background: url(images/livebox-bg.jpg);
+	background-size: cover;	
 }
 
 .notfound {
@@ -238,6 +242,7 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: center;	
+  padding: 3rem;
 }
 
 .tap-to-continue {

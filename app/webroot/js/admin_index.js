@@ -9,7 +9,6 @@ Array.prototype.remove = function() {
     }
     return this;
 };
-
 //General Functions
 $(function(){
 //Images
@@ -235,7 +234,7 @@ $(function(){
 		}
 	});
   
-	drawImagesOne( $("[name='data[img_url_one]']").val().split(';') );
+	//drawImagesOne( $("[name='data[img_url_one]']").val().split(';') );
 
 
 
@@ -327,7 +326,7 @@ $(function(){
 		}
 	});
   
-	drawImagesTwo( $("[name='data[img_url_two]']").val().split(';') );
+	//drawImagesTwo( $("[name='data[img_url_two]']").val().split(';') );
   
 
 /*Images Modulo Tres*/
@@ -418,7 +417,7 @@ $(function(){
 		}
 	});
   
-	drawImagesThree( $("[name='data[img_url_three]']").val().split(';') );
+	//drawImagesThree( $("[name='data[img_url_three]']").val().split(';') );
 
 /*Images Module Cuatro*/
 	$("#category_mod_four").on('change', function(event){
@@ -548,9 +547,9 @@ $(function(){
 			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
-	drawImagesFour( $("[name='data[img_url_four]']").val().split(';') );
+	//drawImagesFour( $("[name='data[img_url_four]']").val().split(';') );
 
-	CKEDITOR.replace('HomeTextPopupNewsletter');
+	//CKEDITOR.replace('HomeTextPopupNewsletter');
 
 	var drawImagesNewsletter = function(images_newsletter){
 		var base_url 	= $("#image_thumb_newsletter").data('url');

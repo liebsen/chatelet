@@ -1,8 +1,23 @@
+<?php
+
+	echo $this->Session->flash();
+	$images 	= array();
+	$images_aux = explode(';', @$home['img_url']);
+	foreach ($images_aux as $key => $value) {
+		if(!empty($value))
+			$images[] 	= Configure::read('uploadUrl').$value;
+	}
+    $img_url_one = str_replace(';', '', @$home['img_url_one']);
+    $img_url_two = str_replace(';', '', @$home['img_url_two']);
+    $img_url_three = str_replace(';', '', @$home['img_url_three']);
+    $img_url_four = str_replace(';', '', @$home['img_url_four']);
+?>
 <script>
-  var images = []
+
+  var images = ["<?= implode('","',$images)?>"]
   var assets = []
 
-  //images = responsiveImages(images)
+  images = responsiveImages(images)
 
   async function preloadVideo(i, asset){
     var req = new XMLHttpRequest();
@@ -20,29 +35,6 @@
     }
 
     req.send();    
-  }
-
-  function fetchHomes(){
-     $.ajax({
-        type: "GET",
-        url: baseUrl + '/get_homes/',
-        processData: false,
-        contentType: false,
-        cache: false,
-        success: function(stock){
-
-          // filter data by orientation
-
-            if (stock=='empty'){
-                $(item).prepend($html);
-            }else{
-                console.log(product_id + ' in stock')
-            }
-            $(item).find('.verifying-stock').remove();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-        }
-
   }
     
   function responsiveImages(images){
@@ -72,7 +64,6 @@
   }
 
   preloadImages(images)
-  fetchHomes()
 </script>
 
   <div id="carousel" class="carousel slide" data-interval="10000" data-ride="carousel">
@@ -160,47 +151,16 @@
       </div>
     </div>
   </section>
+
+  <?php $popupBG = array_filter(explode(';', @$home['img_popup_newsletter'])) ?>
   <div class="modal fade" tabindex="-1" id="myModal" role="dialog" style="background-color: #262427;">
-      <div class="content js-show-modal is-clickable" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('uploadUrl').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
-          <div class="tap-to-continue animated fadeIn delay5" title="Continuar a la tienda">
-              <i class="fa fa-chevron-right mr-0"></i> 
-              <span class="ml-2">Continuar<span class="d-none d-lg-block d-xl-block"> a la tienda</span></span>
-          </div>
-
-          <?php if(!empty($home['display_popup_form_in_last'])):?>
-          <div class="in_last">
-          <?php echo $this->Form->create('Contact'); ?>
-                  <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
-                  <input type="submit" id="enviar" value="ok">
-          <?php echo $this->Form->end(); ?>
-          </div>
-          <?php endif; ?>
-
-          <!--a class="close" data-dismiss="modal">
-              <span></span>
-              <span></span>
-          </a-->
-              <?php $formStyle=(isset($popupBgHeight))?array('style'=>'min-height:'.$popupBgHeight.'px;'):array();?>
-              <?php echo $this->Form->create('Contact', $formStyle); ?>
-          <?php if(empty($home['text_popup_newsletter'])):?>
-              <!--div style="float: left; margin: 45px 0 75px 0; padding: 50px 35px; width: 100%;">
-              <h1>Suscribite a nuestro<br /><span>Newsletter</span></h1>
-              <p style="font-size: 16px;font-weight: 500;margin-bottom: 40px;position:inherit;">Y recibí las últimas novedades</p>
-              </div-->
-          <?php else:?>
-             <?php echo $home['text_popup_newsletter'];?>
-          <?php endif;?>
-          <div class="ft___ml" <?php if(empty($home['display_popup_form'])):?> style="display: none;"<?php endif;?>>
-
-
-                <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
-                <input type="submit" id="enviar" value="ok">
-          </div>
-              <?php echo $this->Form->end(); ?>
+    <div class="content js-show-modal is-clickable" data-dismiss="modal" style="background-image: url(<?= Configure::read('uploadUrl').$popupBG[0] ?>);">
+      <div class="tap-to-continue animated fadeIn delay5" title="Continuar a la tienda">
+        <i class="fa fa-chevron-right mr-0"></i> 
+        <span class="ml-2">Continuar<span class="d-none d-lg-block d-xl-block"> a la tienda</span></span>
       </div>
-  <?php endif;?>
-  </div><!-- /.modal -->
-
+    </div>
+  </div>
 
   <div class="social-bottom">
       <span class="text-uppercase"><p class="h4">Seguinos en nuestras redes</p></span>
@@ -215,72 +175,74 @@
       </a>
   </div>
 
+  <?php if(!empty($home['display_popup_form_in_last'])):?>
+  <style type="text/css">
 
-<style type="text/css">
+    .news-carousel .item:last-child .in_last form {
+      position: absolute!important;
+      top:0px;
+    }
 
-  .news-carousel .item:last-child .in_last form {
-    position: absolute!important;
-    top:0px;
-  }
+    .news-carousel .item:last-child .in_last form input[type="email"] {
+      margin-top: 217px;
+      margin-left: 36px;
+      border: none!important;
+    }
 
-  .news-carousel .item:last-child .in_last form input[type="email"] {
-    margin-top: 217px;
-    margin-left: 36px;
-    border: none!important;
-  }
+    .news-carousel .item:last-child .in_last form input[type="submit"] {
+      margin-top: 30px;
+      float: left!important;
+      border: none!important;
+      margin-left: 50px;
+      clear: both;
+      color: transparent!important;
+    }
 
-  .news-carousel .item:last-child .in_last form input[type="submit"] {
-    margin-top: 30px;
-    float: left!important;
-    border: none!important;
-    margin-left: 50px;
-    clear: both;
-    color: transparent!important;
-  }
+  </style>
 
-</style>
+  <?php endif; ?>
 
-<script>
-var focused = false
-window.onfocus = () => {
-  focused = true;
-  var video = $("#carousel .item.active").find("video")
-  if(video.length){
-    setTimeout(() => {
-      $(video).get(0).play()
-    }, 20)
-  }
-};
-
-window.onblur = () => {
-  focused = false;
-  $("video").each((i,video) => {
-    video.pause()
-  });  
-};
-
-$(function () {
-  $('#myModal').on('hidden.bs.modal', () => {
-    focused = true
+  <script>
+  var focused = false
+  window.onfocus = () => {
+    focused = true;
     var video = $("#carousel .item.active").find("video")
     if(video.length){
-      video[0].play()
+      setTimeout(() => {
+        $(video).get(0).play()
+      }, 20)
     }
-  });
+  };
 
-  $('#carousel').on('slide.bs.carousel', (a) => {
-    if(focused) {
-      $("video").each((i,video) => {
-        video.pause()
-      });
-      var video = $(a.relatedTarget).find("video")
-      if(video.length) {
-        setTimeout(() => {
-          $(video).get(0).play()
-        }, 20)
+  window.onblur = () => {
+    focused = false;
+    $("video").each((i,video) => {
+      video.pause()
+    });  
+  };
+
+  $(function () {
+    $('#myModal').on('hidden.bs.modal', () => {
+      focused = true
+      var video = $("#carousel .item.active").find("video")
+      if(video.length){
+        video[0].play()
       }
-    }
-  });
-})
+    });
+
+    $('#carousel').on('slide.bs.carousel', (a) => {
+      if(focused) {
+        $("video").each((i,video) => {
+          video.pause()
+        });
+        var video = $(a.relatedTarget).find("video")
+        if(video.length) {
+          setTimeout(() => {
+            $(video).get(0).play()
+          }, 20)
+        }
+      }
+    });
+  })
 
 </script>
