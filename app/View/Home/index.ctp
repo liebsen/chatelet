@@ -7,17 +7,17 @@
 		if(!empty($value))
 			$images[] 	= Configure::read('uploadUrl').$value;
 	}
-    $img_url_one = str_replace(';', '', @$home['img_url_one']);
-    $img_url_two = str_replace(';', '', @$home['img_url_two']);
-    $img_url_three = str_replace(';', '', @$home['img_url_three']);
-    $img_url_four = str_replace(';', '', @$home['img_url_four']);
+  $img_url_one = str_replace(';', '', @$home['img_url_one']);
+  $img_url_two = str_replace(';', '', @$home['img_url_two']);
+  $img_url_three = str_replace(';', '', @$home['img_url_three']);
+  $img_url_four = str_replace(';', '', @$home['img_url_four']);
 ?>
 <script>
 
   var images = ["<?= implode('","',$images)?>"]
   var assets = []
 
-  images = responsiveImages(images)
+  //images = responsiveImages(images)
 
   async function preloadVideo(i, asset){
     var req = new XMLHttpRequest();
@@ -153,6 +153,7 @@
   </section>
 
   <?php $popupBG = array_filter(explode(';', @$home['img_popup_newsletter'])) ?>
+
   <div class="modal fade" tabindex="-1" id="myModal" role="dialog" style="background-color: #262427;">
     <div class="content js-show-modal is-clickable" data-dismiss="modal" style="background-image: url(<?= Configure::read('uploadUrl').$popupBG[0] ?>);">
       <div class="tap-to-continue animated fadeIn delay5" title="Continuar a la tienda">

@@ -343,7 +343,7 @@
 								</script>
 								<span id="images_newsletter"></span>
 							</div>
-					    </div>
+					  </div>
 					</div>
 				</div>
 			</div>

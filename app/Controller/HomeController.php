@@ -19,6 +19,42 @@ class HomeController extends AppController {
 	public function index() {
 		
 		$home = $this->Home->find('first');
+    $mobile = (
+        strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') || 
+        strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')
+    );
+
+    $images = array_filter(explode(';',$home['Home']['img_url']));
+    $filtered = [];
+    foreach($images as $image){
+        if($mobile){                
+            if(strstr($image, 'mobile') != false) {
+                $filtered[]= str_replace(['desktop-', 'mobile-'], '', $image);
+            }
+        } else {
+            if(strstr($image, 'desktop') != false) {
+                $filtered[]= str_replace(['desktop-', 'mobile-'], '', $image);
+            }
+        }
+    }
+
+    $home['Home']['img_url'] = implode(';', $filtered);
+    $img_popup_newsletter = array_filter(explode(';',$home['Home']['img_popup_newsletter']));
+    $filtered = [];
+    foreach($img_popup_newsletter as $image){
+        if($mobile){                
+            if(strstr($image, 'mobile') != false) {
+                $filtered[]= str_replace(['desktop-', 'mobile-'], '', $image);
+            }
+        } else {
+            if(strstr($image, 'desktop') != false) {
+                $filtered[]= str_replace(['desktop-', 'mobile-'], '', $image);
+            }
+        }
+    }
+
+    $home['Home']['img_popup_newsletter'] = implode(';', $filtered);
+
 		$this->set('home', $home['Home']);
 
     if (isset($home['Home']['img_popup_newsletter']) && !empty($home['Home']['img_popup_newsletter'])) {
