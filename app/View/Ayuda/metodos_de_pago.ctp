@@ -9,7 +9,7 @@
                             <h1>Formas<br>de pago</h1>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-8">
+                    <div class="col-xs-12 col-md-8 pr-2-d">
                         <div class="animated scaleIn delay box-cont">
                             <div class="box img-bg" style="background-image: url('/img/pago.jpg')">
                             </div>

@@ -9,7 +9,7 @@
             <h1>Contactate<br>con nosotros</h1>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 pr-2-d">
           <div class="animated scaleIn delay box-cont">
             <div class="box">
               <h3>¿Tenés alguna consulta o sugerencia?</h3>
@@ -30,7 +30,7 @@
 
                       <h3>Tipo de consulta:</h3>
                       <label class="mr" for="particular"><span class="active"><i></i></span><input type="radio" name="data[Contact][client_type]" id="particular" value="particular" checked="checked" /> Particular</label>
-                      <label><span><i></i></span><input type="radio" name="data[Contact][client_type]" id="comerciante" value="comerciante" /> Comerciante</label>
+                      <label for="comerciante"><span><i></i></span><input type="radio" name="data[Contact][client_type]" id="comerciante" value="comerciante" /> Comerciante</label>
 
                       <input type="email" name="data[Contact][email]" class="form-input" placeholder="Email" required/>
                  </div>

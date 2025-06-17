@@ -1,30 +1,15 @@
-<?php
-
-	echo $this->Session->flash();
-	$images 	= array();
-	$images_aux = explode(';', @$home['img_url']);
-	foreach ($images_aux as $key => $value) {
-		if(!empty($value))
-			$images[] 	= Configure::read('uploadUrl').$value;
-	}
-    $img_url_one = str_replace(';', '', @$home['img_url_one']);
-    $img_url_two = str_replace(';', '', @$home['img_url_two']);
-    $img_url_three = str_replace(';', '', @$home['img_url_three']);
-    $img_url_four = str_replace(';', '', @$home['img_url_four']);
-?>
 <script>
-
-  var images = ["<?= implode('","',$images)?>"]
+  var images = []
   var assets = []
 
-  images = responsiveImages(images)
+  //images = responsiveImages(images)
 
   async function preloadVideo(i, asset){
     var req = new XMLHttpRequest();
     req.open('GET', asset, true);
     req.responseType = 'blob';
     req.onload = function() {
-      if (this.status === 200) {
+      if (document.getElementById('video'+i) && this.status === 200) {
         var videoBlob = this.response;
         var vid = URL.createObjectURL(videoBlob); // IE10+
         document.getElementById('video'+i).src = vid
@@ -35,6 +20,29 @@
     }
 
     req.send();    
+  }
+
+  function fetchHomes(){
+     $.ajax({
+        type: "GET",
+        url: baseUrl + '/get_homes/',
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function(stock){
+
+          // filter data by orientation
+
+            if (stock=='empty'){
+                $(item).prepend($html);
+            }else{
+                console.log(product_id + ' in stock')
+            }
+            $(item).find('.verifying-stock').remove();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+        }
+
   }
     
   function responsiveImages(images){
@@ -64,6 +72,7 @@
   }
 
   preloadImages(images)
+  fetchHomes()
 </script>
 
   <div id="carousel" class="carousel slide" data-interval="10000" data-ride="carousel">
@@ -151,150 +160,62 @@
       </div>
     </div>
   </section>
-<?php
-$popupBG=explode(';', @$home['img_popup_newsletter']);
+  <div class="modal fade" tabindex="-1" id="myModal" role="dialog" style="background-color: #262427;">
+      <div class="content js-show-modal is-clickable" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('uploadUrl').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
+          <div class="tap-to-continue animated fadeIn delay5" title="Continuar a la tienda">
+              <i class="fa fa-chevron-right mr-0"></i> 
+              <span class="ml-2">Continuar<span class="d-none d-lg-block d-xl-block"> a la tienda</span></span>
+          </div>
 
-if(empty($popupBG[0])){
-    $aux = array();
-    foreach($popupBG as $key=>$value){
-        if(!empty($value)){
-            $aux[] = $value;
-        }
-    }
-    $popupBG = $aux;
-}
-?>
-    <div class="modal fade" tabindex="-1" id="myModal" role="dialog" style="background-color: #262427;">
-
-    <?php if(count($popupBG)>1):?>
-
-        <div class="content js-show-modal" data-dismiss="modal">
-
-            <!--a class="close" data-dismiss="modal">
-                <span></span>
-                <span></span>
-            </a-->
-            <?php echo $this->Form->create('Contact'); ?>
-
-
-            <?php if(empty($home['text_popup_newsletter'])):?>
-                <!--h1>Suscribite a nuestro<br /><span>Newsletter</span></h1>
-                <p>Y recibí las últimas novedades</p-->
-            <?php else:?>
-               <?php echo $home['text_popup_newsletter'];?>
-            <?php endif;?>
-
-            <div class="ft___ml" <?php if(empty($home['display_popup_form'])):?> style="display: none;" <?php endif;?>>
-              <input type="email" name="data[Subscription][email]" required>
-              <input type="submit" id="enviar" value="ok">
-            </div>
-            <?php echo $this->Form->end(); ?>
-
-            <div id="carousel-newsletter" class="carousel slide" data-ride="carousel" <?php if(!empty($home['display_popup_form_in_last'])){ echo " data-wrap='false' "; } ?> >
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner news-carousel" role="listbox">
-                <div class="item active">
-
-                  <img src="<?=Configure::read('uploadUrl').$popupBG[0]?>">
-                     <?php if(!empty($home['display_popup_form_in_last'])):?>
-            <div class="in_last">
-            <?php echo $this->Form->create('Contact'); ?>
-                    <input type="email" name="data[Subscription][email]" required>
-                    <input type="submit" id="enviar" value="ok">
-            <?php echo $this->Form->end(); ?>
-            </div>
-            <?php endif; ?>
-                </div>
-                <div class="item">
-                  <img src="<?=Configure::read('uploadUrl').$popupBG[1]?>">
-
-                 <?php if(!empty($home['display_popup_form_in_last'])):?>
-
-            <div class="in_last">
-            <?php echo $this->Form->create('Contact'); ?>
-                    <input type="email" name="data[Subscription][email]" required>
-                    <input type="submit" id="enviar" value="ok">
-            <?php echo $this->Form->end(); ?>
-            </div>
-            <?php endif; ?>
-
-                </div>
-                <?php if(isset($popupBG[2]) && !empty($popupBG[2])):?>
-                <div class="item">
-
-                  <img src="<?=Configure::read('uploadUrl').$popupBG[2]?>">
-
-                     <?php if(!empty($home['display_popup_form_in_last'])):?>
-            <div class="in_last">
-            <?php echo $this->Form->create('Contact'); ?>
-                    <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
-                    <input type="submit" id="enviar" value="ok">
-            <?php echo $this->Form->end(); ?>
-            </div>
-            <?php endif; ?>
-                </div>
-                <?php endif;?>
-              </div>
-            </div>
-        </div>
-
-    <?php elseif (count($popupBG)==1):?>
-
-        <div class="content js-show-modal is-clickable" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.Configure::read('uploadUrl').$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
-            <div class="tap-to-continue animated fadeIn delay5" title="Continuar a la tienda">
-                <i class="fa fa-chevron-right mr-0"></i> 
-                <span class="ml-2">Continuar<span class="d-none d-lg-block d-xl-block"> a la tienda</span></span>
-            </div>
-
-            <?php if(!empty($home['display_popup_form_in_last'])):?>
-            <div class="in_last">
-            <?php echo $this->Form->create('Contact'); ?>
-                    <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
-                    <input type="submit" id="enviar" value="ok">
-            <?php echo $this->Form->end(); ?>
-            </div>
-            <?php endif; ?>
-
-            <!--a class="close" data-dismiss="modal">
-                <span></span>
-                <span></span>
-            </a-->
-                <?php $formStyle=(isset($popupBgHeight))?array('style'=>'min-height:'.$popupBgHeight.'px;'):array();?>
-                <?php echo $this->Form->create('Contact', $formStyle); ?>
-            <?php if(empty($home['text_popup_newsletter'])):?>
-                <!--div style="float: left; margin: 45px 0 75px 0; padding: 50px 35px; width: 100%;">
-                <h1>Suscribite a nuestro<br /><span>Newsletter</span></h1>
-                <p style="font-size: 16px;font-weight: 500;margin-bottom: 40px;position:inherit;">Y recibí las últimas novedades</p>
-                </div-->
-            <?php else:?>
-               <?php echo $home['text_popup_newsletter'];?>
-            <?php endif;?>
-            <div class="ft___ml" <?php if(empty($home['display_popup_form'])):?> style="display: none;"<?php endif;?>>
-
-
+          <?php if(!empty($home['display_popup_form_in_last'])):?>
+          <div class="in_last">
+          <?php echo $this->Form->create('Contact'); ?>
                   <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
                   <input type="submit" id="enviar" value="ok">
-            </div>
-                <?php echo $this->Form->end(); ?>
-        </div>
-    <?php endif;?>
-    </div><!-- /.modal -->
+          <?php echo $this->Form->end(); ?>
+          </div>
+          <?php endif; ?>
+
+          <!--a class="close" data-dismiss="modal">
+              <span></span>
+              <span></span>
+          </a-->
+              <?php $formStyle=(isset($popupBgHeight))?array('style'=>'min-height:'.$popupBgHeight.'px;'):array();?>
+              <?php echo $this->Form->create('Contact', $formStyle); ?>
+          <?php if(empty($home['text_popup_newsletter'])):?>
+              <!--div style="float: left; margin: 45px 0 75px 0; padding: 50px 35px; width: 100%;">
+              <h1>Suscribite a nuestro<br /><span>Newsletter</span></h1>
+              <p style="font-size: 16px;font-weight: 500;margin-bottom: 40px;position:inherit;">Y recibí las últimas novedades</p>
+              </div-->
+          <?php else:?>
+             <?php echo $home['text_popup_newsletter'];?>
+          <?php endif;?>
+          <div class="ft___ml" <?php if(empty($home['display_popup_form'])):?> style="display: none;"<?php endif;?>>
 
 
-    <div class="social-bottom">
-        <span class="text-uppercase"><p class="h4">Seguinos en nuestras redes</p></span>
-        <!--a href="https://twitter.com/chateletmoda" target="_blank">
-            <i class="fa fa-twitter-x"></i>
-        </a-->
-        <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" target="_blank">
-            <i class="fa fa-facebook"></i>
-        </a>
-        <a href="https://www.instagram.com/chateletmoda/" target="_blank">
-            <i class="fa fa-instagram"></i>
-        </a>
-    </div>
+                <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+                <input type="submit" id="enviar" value="ok">
+          </div>
+              <?php echo $this->Form->end(); ?>
+      </div>
+  <?php endif;?>
+  </div><!-- /.modal -->
 
-<?php if(!empty($home['display_popup_form_in_last'])):?>
+
+  <div class="social-bottom">
+      <span class="text-uppercase"><p class="h4">Seguinos en nuestras redes</p></span>
+      <!--a href="https://twitter.com/chateletmoda" target="_blank">
+          <i class="fa fa-twitter-x"></i>
+      </a-->
+      <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" target="_blank">
+          <i class="fa fa-facebook"></i>
+      </a>
+      <a href="https://www.instagram.com/chateletmoda/" target="_blank">
+          <i class="fa fa-instagram"></i>
+      </a>
+  </div>
+
+
 <style type="text/css">
 
   .news-carousel .item:last-child .in_last form {
@@ -318,8 +239,6 @@ if(empty($popupBG[0])){
   }
 
 </style>
-
-<?php endif; ?>
 
 <script>
 var focused = false

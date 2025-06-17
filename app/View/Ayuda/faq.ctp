@@ -8,7 +8,7 @@
                             <h1>Preguntas<br>frecuentes</h1>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-8">
+                    <div class="col-xs-12 col-md-8 pr-2-d">
                         <div class="animated scaleIn delay box-cont">
                             <div class="box">
                                 <h3>Lo que tenés que saber antes de comprar</h3>

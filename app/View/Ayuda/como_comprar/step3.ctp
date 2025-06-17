@@ -11,7 +11,7 @@
                     <div class="col-md-6">
                         <h1>¿Cómo<br>comprar?</h1>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 pr-2-d">
                         <div class="animated scaleIn delay box-cont">
                             <div class="box">
                                 <h3>¿Tenés alguna consulta o sugerencia?</h3>

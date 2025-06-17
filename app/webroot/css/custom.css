@@ -296,6 +296,9 @@ label input[type=checkbox]:disabled + .label-text:before {
   }
 }
 @media (min-width: 768px) {
+  .pr-2-d {
+    padding-right: 2rem;
+  }
   .navbar-nav { 
     flex-direction: row;
   }
@@ -1222,7 +1225,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #formulario textarea { margin-top: 65px; height: 150px; margin-bottom: 57px; }
 #formulario input[type="submit"] { background: transparent; border: 2px solid #363633; color: #363633; font-size: 1rem; font-weight: 800; height: 60px; width: 100%; border-radius: 0.5rem;}
 #formulario label span { border: 2px solid #868686; border-radius: 50%; cursor: pointer; display: block; float: left; height: 22px; margin-right: 10px; margin-top: -5px; padding: 4px; width: 22px; }
-#formulario label span i { background: #363633; border-radius: 50%; display: none; height: 10px; }
+#formulario label span i { background: #363633; border-radius: 50%; display: none; height: 100%; }
 #formulario label input { display: none; }
 #formulario label span.active i { display: block; }
 
@@ -1565,7 +1568,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#filters .prices label span { height: 15px; width: 15px; }
 	#filters .prices label span i { height: 7px; }
 
-	#formulario label span { height: 20px; width: 20px; padding: 3px; margin-top: -2px; }
+	#formulario label span { height: 20px; width: 20px; margin-top: -2px; }
 	#formulario label span i { height: 8px; }
 
 

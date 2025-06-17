@@ -924,7 +924,7 @@ select.form-control{
 	margin-left: 1rem;
 }
 .ordered-list li{
-	margin-bottom: 1rem;
+	margin-bottom: 2rem;
   text-align: left;
 }
 .card-subtitle {
@@ -1158,6 +1158,7 @@ span.validation-password {
 	bottom: 0;
 	padding: 1.5rem;
 	z-index: -1;
+	line-height: 1;
 	width: 16rem;
 }
 
