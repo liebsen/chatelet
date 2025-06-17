@@ -1182,6 +1182,121 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$this->set('p', $p);
 	}
 
+	public function index_old() {
+	  $this->loadModel('Category');
+		$cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+  	$this->set('cats', $cats);
+
+		$h1 = array(
+		'name' => 'Presentación',
+		'icon' => 'fa fa-eye'
+		);
+		$this->set('h1', $h1);
+		$this->loadModel('Home');
+
+		if ($this->request->is('post')) {
+      $data = $this->request->data;
+
+      // img_url: define image orientation
+      $imgs = array_filter(explode(";",$data['img_url']));
+      $media = [];
+      foreach($imgs as $img) {
+      	$parts = explode('-', $img);
+      	if(count($parts) < 2) {
+	      	$fname = __DIR__ . '/../webroot' . Configure::read('uploadUrl') . $img;
+	      	if(file_exists($fname)) {
+						$img_data = getimagesize();
+						$orientation = $img_data[0] > $img_data[1] ? 'desktop' : 'mobile';
+						error_log(json_encode($img_data));
+						error_log('fname: '. $fname);
+						error_log('orientation: '. $orientation);
+			    	$media[] = implode('-', [$orientation, $img]);
+			    } 
+			  } else {
+			    $media[] = $img;
+			  }
+	    }
+
+	    if(count($media)) {
+	    	//$media = array_filter($media);
+	    	$data['img_url'] = ';' . implode(";", $media);
+	    	error_log(json_encode($media));
+	    }
+
+	    // img_popup_newsletter: define image orientation
+      $imgs = array_filter(explode(";",$data['img_popup_newsletter']));
+      $media = [];
+      foreach($imgs as $img) {
+      	$parts = explode('-', $img);
+      	if(count($parts) < 2) {
+	      	$fname = __DIR__ . '/../webroot' . Configure::read('uploadUrl') . $img;
+	      	if(file_exists($fname)) {
+						$img_data = getimagesize();
+			    	$media[] = implode('-', [($img_data[0] > $img_data[1] ? 'desktop' : 'mobile'), $img]);
+			    } 
+			  } else {
+			    $media[] = $img;
+			  }
+	    }
+
+	    if(count($media)) {
+	    	//$media = array_filter($media);
+	    	$data['img_popup_newsletter'] = ';' . implode(";", $media);
+	    	//error_log(json_encode($media));
+	    }
+
+	    
+	    //$img_url_media = implode(";",$media);
+      //error_log(json_encode($media));
+
+    	if(empty($data['url_mod_one'])) {
+    		$data['url_mod_one']=null;
+    	}    	
+    	if(empty($data['url_mod_two'])) {
+    		$data['url_mod_two']=null;
+    	}
+    	if(empty($data['url_mod_three'])) {
+    		$data['url_mod_three']=null;
+    	}
+    	if(empty($data['url_mod_four'])) {
+    		$data['url_mod_four']=null;
+			}
+		
+    	if ($data['category_mod_one'] == 'url') {
+    		$data['category_mod_one'] = null;
+    	} else {
+    		$data['url_mod_one'] = null;
+    	}
+    	if ($data['category_mod_two'] == 'url') {
+    		$data['category_mod_two'] = null;
+    	} else {
+    		$data['url_mod_two'] = null;
+    	}
+    	if ($data['category_mod_three'] == 'url') {
+    		$data['category_mod_three'] = null;
+    	} else {
+    		$data['url_mod_three'] = null;
+    	}
+    	if ($data['category_mod_four'] == 'url') {
+    		$data['category_mod_four'] = null;
+    	} else {
+    		$data['url_mod_four'] = null;
+    	}
+    	if(!isset($data['display_popup_form'])){
+    		$data['display_popup_form'] = 0;
+    	}
+    	if(!isset($data['display_popup_form_in_last'])){
+    		$data['display_popup_form_in_last'] = 0;
+    	}
+    	
+    	$this->Home->save($data);
+		}
+
+		$p = $this->Home->find('first');
+		$this->set('p', $p);
+	}
+
+
 	public function catalogo($action = null) {
 		$this->loadModel('Setting');
 		$h1 = array(
