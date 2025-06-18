@@ -28,7 +28,7 @@
 										<img src="{{image_newsletter}}"/> 
 									</div>
 									<a href="#" class="delete_image_newsletter" data-input="[name='data[img_popup_newsletter]']" data-file="{{file_newsletter}}"><i class="fa fa-close"></i></a>
-									<i class="fa fa-2x fa-{{orientation}} min-w-4 is-clickable edit-orientation" data-file="{{file_newsletter}}" data-origin="img_popup_newsletter"></i>
+									<i class="fa fa-2x fa-{{orientation}} min-w-4 is-clickable edit-orientation" data-file="{{file_newsletter}}" data-origin="img_popup_newsletter" data-orientation="{{orientation}}"></i>
 								</span>
 							</script>
 							<span id="images_newsletter"></span>
@@ -59,7 +59,7 @@
 										{{/if}}
 									</div>
 									<a href="#" class="delete_image" data-input="[name='data[img_url]']" data-file="{{file}}"><i class="fa fa-close"></i></a>
-									<i class="fa fa-2x fa-{{orientation}} min-w-4 is-clickable edit-orientation" data-file="{{file}}" data-origin="img_url"></i>
+									<i class="fa fa-2x fa-{{orientation}} min-w-4 is-clickable edit-orientation" data-file="{{file}}" data-origin="img_url" data-orientation="{{orientation}}"></i>
 								</li>
 							</script>
 							<ul id="images">

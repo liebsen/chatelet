@@ -40,7 +40,23 @@ $(function(){
 		var me 		= $(this);
 		var file 	= me.data('file');
 		var origin 	= me.data('origin');
-		$.ajax({
+		var orientation = me.data('orientation');
+		var state = orientation.indexOf('mobile') > -1 ? 'desktop' : 'mobile'
+		let parts = $(`input[name="data[${origin}]"]`).val()
+		let parts1 = parts.split(";")
+		let parts2 = parts1.filter((e) => e).map((e) => {
+			if(e.includes(file)) {
+				e = e.replaceAll(orientation, state)
+			}
+			return e
+		})
+
+		$(`input[name="data[${origin}]"]`).val(parts2.join(";"))
+
+		me.data('orientation', state)
+		me.removeClass('fa-mobile', 'fa-desktop')
+		me.addClass('fa-'+state)
+		/*$.ajax({
 			url: '/admin/save_file_orientation',
 			data: {
 				file: file,
@@ -52,24 +68,7 @@ $(function(){
 			me.removeClass('fa-mobile', 'fa-desktop')
 			const data = JSON.parse(res)
 			me.addClass('fa-' + data.orientation)
-			/*if(data == 'fail'){
-				alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
-				return false;
-			}
-            
-            var images_three 	= input.val();
-			images_three 		= images_three.split(';');
-
-			if(images_three.length > 3){
-				alert('Solo se permiten 3 imagenes por modulo');
-				return false;
-			}else{
-				images_three.push(data);
-			    input.val( images_three.join(';') );
-				drawImagesThree(images_three);
-			}*/
-
-	  	});
+	  	});*/
 
 	})
 
