@@ -72,12 +72,11 @@
       <?php foreach ($images as $key => $value): ?>
           <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
               <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
-                  <?php $classname = strpos($value, 'desktop') ? 'desktop' : 'mobile';  ?>
                   <?php if (strpos($value, '.mp4') !== false):?>
-                  <video id="video<?=$key?>" class="carousel-video slider-full <?=$classname?>" <?= (strpos( $_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) ? ' controls="true" ' : '' ?> playsinline loop>
+                  <video id="video<?=$key?>" class="carousel-video slider-full" <?= (strpos( $_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) ? ' controls="true" ' : '' ?> playsinline loop>
                   </video>
                   <?php else: ?>
-                  <div class="slider-full" style="background-image:url(<?php echo str_replace(["desktop-", "mobile-"], "", $value); ?>)"></div>
+                  <div class="slider-full" style="background-image:url(<?=$value ?>)"></div>
                   <?php endif; ?>
               </a>
 
