@@ -500,12 +500,9 @@ $(function () {
     $.post('/shop/log_error', {message: msg + JSON.stringify(browser), url: url, line: lineNo})
   }
 
-  console.log('location', location.pathname)
   const sections = ['','/','/Home']
+
   if(!sections.includes(location.pathname)){
     $('body, html').removeClass('noscroll')
   }
-  /*setTimeout(() => {
-    pageLoaded()
-  }, 100)*/
 })

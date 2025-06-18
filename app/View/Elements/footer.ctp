@@ -9,7 +9,7 @@
         <?php if(!empty($data['whatsapp_text']) && $config['add_basket'] < 1): ?>
         <span class="whatsapp-text font-system">
           <span class="animated scaleIn delay25 pr-3">
-              <?= $data['whatsapp_text'] ?>
+            <?= $data['whatsapp_text'] ?>
           </span>
         </span>
         <?php endif ?>

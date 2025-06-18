@@ -6,12 +6,13 @@
           <a class="navbar-brand"
            href="<?php echo router::url(array('controller' => 'Home', 'action' => 'index')) ?>" >
               Châtelet</a>
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <i class="fa fa-bars fa-d-lg text-chatelet navbar-toggle float-none m-0 collapsed text-chatelet" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"></i>
+          <!--button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
-          </button>
+          </button-->
       </div>
 
        <!-- Collect the nav links, forms, and other content for toggling -->
@@ -62,13 +63,13 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="#" class="action-search"><i class="fa fa-2x fa-search text-light"></i></a>
+            <a href="#" class="action-search"><i class="fa fa-d-lg text-chatelet fa-search text-light"></i></a>
           </li>
 
          <!-- .Login -->
           <li class="dropdown">
              <?php if ($loggedIn) { ?>
-             <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion"><i class="fa fa-2x fa-user-circle"></i>
+             <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion"><i class="fa fa-d-lg text-chatelet fa-user-circle"></i>
              </a>
             <ul class="dropdown-menu">
                <li>
@@ -111,7 +112,7 @@
                 </li>
               </ul>
             <?php } else { ?>
-             <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion"><i class="fa fa-2x fa-user-circle"></i></a>
+             <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion"><i class="fa fa-d-lg text-chatelet fa-user-circle"></i></a>
             <?php } ?>
           </li><!-- /.Login -->
           <li class="dropdown is-clickable">
@@ -119,7 +120,7 @@
               <?php if(count($carro)):?>
               <span class="count animated scaleIn speed delay1"><?=count($carro)?></span>
               <?php endif ?>
-              <span><i class="fa fa-2x fa-shopping-cart"></i></span>
+              <span><i class="fa fa-d-lg text-chatelet fa-shopping-cart"></i></span>
             </a>
             <ul class="dropdown-menu">
               <li>

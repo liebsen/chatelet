@@ -96,6 +96,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .text-grey {
   color: #888;
 }
+
 .is-product-photo {
   position: relative;
   /*background-color: rgba(0,0,0,0.1);
@@ -238,6 +239,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   top:0;
   left: 1rem;
 }
+
 @media(max-width:5000px){
   .discount-flag {
     padding: 10px 20px;
@@ -258,10 +260,11 @@ label input[type=checkbox]:disabled + .label-text:before {
   box-shadow: var(--box-shadow);
   margin: 0; 
   min-height: 0; 
-  padding: 20px; 
+  padding: 1.5rem;
   position: relative; 
   z-index: 3; 
 }
+
 .navbar-brand { 
   background: url(../img/logo.png) no-repeat; 
   background-size: contain;
@@ -294,11 +297,11 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 @media (max-width: 440px) {
-  
   #headshop, #headabrigos {
     display: none!important;
   }
 }
+
 @media (min-width: 768px) {
   .pr-2-d {
     padding-right: 2rem;
@@ -596,10 +599,24 @@ transition: all 0.2s ease-out;}
   top: -1px;
 }
 
+.fa-d-lg {
+  font-size: 1.25rem;
+}
+
+@media(min-width: 920px) {
+  .fa-d-lg {
+    font-size: 1.5rem;
+  }
+}
+
+.float-none {
+  float: none!important;
+}
+
 .fa-messages {
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 2rem;
+  background-size: 1.5rem;
   background-image: url(../images/chat-icon.svg);
 }
 
@@ -1484,7 +1501,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 @media (max-width: 767px) {
-  .navbar-header { float: none; }
+  .navbar-header { float: none; text-align: center; }
   .navbar > .container-fluid .navbar-brand { display: block; float: none; margin-bottom: 30px; margin-left: auto !important; margin-right: auto !important; }
   .carrito-count {
     flex-direction: column;
@@ -1504,9 +1521,9 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
     background-position: top center;
     background-size: cover;
   }
-	.navbar-toggle { float: none; display: block; margin: 0 auto; }
+	/*.navbar-toggle { float: none; display: block; margin: 0 auto; }
 	.navbar-toggle .icon-bar { background: #363633; width: 35px; }
-	.navbar-nav > li { display: block; width: 100%; }
+	.navbar-nav > li { display: block; width: 100%; }*/
 
 	#carousel .carousel-caption { padding-bottom: 50px; padding-top: 50px; }
 	#carousel .carousel-caption h1 { font-size: 20px; }
@@ -2669,6 +2686,9 @@ span.count.is-empty {
 @media screen and (max-width:768px), print {
   body {
     background-color: white;
+  }
+  .navbar {
+    padding-bottom: 0.5rem;
   }
   .mobile {
     display: block;
