@@ -165,10 +165,6 @@ body.login .form-group {
     margin-bottom: 10px;
 }
 
-body.loading {
-    overflow: hidden;
-}
-
 .login-extra-check {
     margin: 5px 0 0;
 }

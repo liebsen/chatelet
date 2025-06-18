@@ -35,14 +35,14 @@
 
   #carousel-banners .banner-caption {
     text-align: center;
-    font-size: 1rem;
+    font-size: 14px;
     position: inherit;
     display: flex;
     line-height: 1.25;
     justify-content: center;
     align-items: center;
     min-height: 64px;
-    font-weight: bolder;
+    font-weight: 500;
   }
 
   @media screen and (max-width:500px){

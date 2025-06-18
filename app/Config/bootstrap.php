@@ -120,6 +120,23 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
+function filterOrientation($list){
+  $images = array_filter(explode(';',$list));
+  $filtered = [];
+  foreach($images as $image){
+    if(Configure::read('mobile')){                
+      if(strstr($image, 'mobile') != false) {
+          $filtered[]= str_replace(['desktop-', 'mobile-'], '', $image);
+      }
+    } else {
+      if(strstr($image, 'desktop') != false) {
+          $filtered[]= str_replace(['desktop-', 'mobile-'], '', $image);
+      }
+    }
+  }
+  return $filtered;
+}
+
 function siteURL() {
   $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || 
     $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
@@ -140,6 +157,11 @@ $uploadLocal = true;
 Configure::write('baseUrl',siteURL()); 
 Configure::write('uploadUrl',$uploadLocal ? '/files/uploads/' : 'https://d3baxuoyqsgua.cloudfront.net/');
 Configure::write('uploadLocal',$uploadLocal); 
+Configure::write('mobile', (
+  strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') || 
+  strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')
+));
+
 Configure::write('S3.accessKey','AKIAJGNWSIAUPGFVLJTQ'); 
 Configure::write('S3.secret','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'); 
 //Configure::write('uploadUrl','https://d3baxuoyqsgua.cloudfront.net/'); 

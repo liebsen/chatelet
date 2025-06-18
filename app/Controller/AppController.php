@@ -181,48 +181,6 @@ class AppController extends Controller
                 $this->redirect('/admin');
             } */
         }
-        
-        $this->loadModel('Home');
-        $p = $this->Home->find('first');
-        $mobile = (
-            strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') || 
-            strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')
-        );
-
-        $images = array_filter(explode(';',$p['Home']['img_url']));
-        $filtered = [];
-        foreach($images as $image){
-            if($mobile){                
-                if(strstr($image, 'mobile') != false) {
-                    $filtered[]= str_replace(['desktop-', 'mobile-'], '', $image);
-                }
-            } else {
-                if(strstr($image, 'desktop') != false) {
-                    $filtered[]= str_replace(['desktop-', 'mobile-'], '', $image);
-                }
-            }
-        }
-
-        $p['Home']['img_url'] = implode(';', $filtered);
-        $img_popup_newsletter = array_filter(explode(';',$p['Home']['img_popup_newsletter']));
-        /*$filtered = [];
-        foreach($img_popup_newsletter as $image){
-            if($mobile){                
-                if(strstr($image, 'mobile') != false) {
-                    $filtered[]= str_replace(['desktop-', 'mobile-'], '', $image);
-                }
-            } else {
-                if(strstr($image, 'desktop') != false) {
-                    $filtered[]= str_replace(['desktop-', 'mobile-'], '', $image);
-                }
-            }
-        }*/
-
-        //$p['Home']['img_popup_newsletter'] = implode(';', $filtered);
-
-
-        error_log(json_encode($p));
-        $this->set('p', $p);
 
         $setting    = $this->Setting->findById('show_shop');
         $show_shop  = (!empty($setting['Setting']['value'])) ? 1 : 0;

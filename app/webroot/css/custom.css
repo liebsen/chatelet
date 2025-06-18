@@ -30,6 +30,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 1000;
 }
 
+.noscroll {
+  overflow: hidden!important;
+}
+
 hr {
   text-align: center;
   border-color: #d5d5d5;

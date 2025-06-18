@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="es">
+<html class="no-js noscroll" lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,9 +79,8 @@
 //      echo $this->fetch('script');
     ?>
   </head>
-  <body class="loading">
-    <div id="page-loader animated fadeIn"></div>
-  <?php echo $this->element('fontselect'); ?>
-  <?php if(!empty($banners)) :?>
-  <?php echo $this->element('banners'); ?>
-  <?php endif ?>
+  <body class="noscroll p-0">
+    <?php echo $this->element('fontselect'); ?>
+    <?php if(!empty($banners)) :?>
+    <?php echo $this->element('banners'); ?>
+    <?php endif ?>
