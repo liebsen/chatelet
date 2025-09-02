@@ -70,7 +70,8 @@ var selectStore = e => {
   preferences.cargo = 'takeaway'
   //console.log('total_price(2)', price)
   preferences.total_price = price
-  console.log('shipping_price(2)', 0)
+  if(log)
+  	console.log('shipping_price(2)', 0)
   preferences.shipping_price = 0
   preferences.subtotal_price = total_orig
   preferences.store = $(e).attr('store')
