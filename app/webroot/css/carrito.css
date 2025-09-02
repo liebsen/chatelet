@@ -21,6 +21,10 @@
 	margin: 0.75rem;
 }
 
+.paying-with {
+	display: none;
+}
+
 .cart-empty {
 	min-height: 30rem;
 	flex-direction: column;

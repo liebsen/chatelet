@@ -64,6 +64,7 @@ var selectStore = e => {
   //console.log('coupon(2)',coupon)
   //console.log('cost_total(1)',total_orig)
   $('.cost_total').text('$ ' + formatNumber(total_orig))
+  $('.calc_total').text('$ ' + formatNumber(total_orig))
   format_total = formatNumber(price)
   fxTotal(format_total)
   preferences.cargo = 'takeaway'
@@ -117,6 +118,13 @@ var show_cart_item = (index) => {
 }
 
 $(document).ready(function() {
+
+	if(carrito_items?.length == 1) {
+		console.log('a(1)--')
+		$('.products-total').hide()
+	} else {
+		$('.products-total').show()
+	}
 	const submit = $('.checkout-btn')
 	submit.prop('disabled', false)
 	submit.removeClass('disabled')

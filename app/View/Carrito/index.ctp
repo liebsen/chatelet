@@ -208,13 +208,13 @@
 							</div>							
 							<hr>
 							<div class="summary-item text-right">
-								<div class="cost_total-container animated speed fadeIn delay3">
+								<div class="cost_total-container animated speed fadeIn delay2">
 									<!--hr-->
 									<div class="price is-large">
 										<span class="text-weight-thin">Total </span> 
 										<span class="calc_total">$ <?= \price_format($total) ?></span><!--span>.00</span-->
 									</div>
-									<span class="text-theme">Pagando con <?= strtolower($payment_methods[$config['payment_method']]) ?></span>
+									<span class="text-theme paying-with">Pagando con <?= strtolower($payment_methods[$config['payment_method']]) ?></span>
 								</div>								
 							</div>
 							<div class="form-inline gift-area hide">

@@ -23,9 +23,11 @@ $(function(){
 		$('.delivery-cost').addClass('hidden')
 		$('.shipping-cargo').text(shipping)	
 
-		var price = subtotal - coupon
+		var price = subtotal + cost - coupon
 		//console.log('cost_total(2)', subtotal, cost)
 		$('.cost_total').text('$ ' + formatNumber(subtotal + cost))
+		console.log('subtotal', subtotal)
+		console.log('cost', cost)
 
 		if (price < shipping_price) {
 			price+= cost
@@ -49,6 +51,7 @@ $(function(){
 		let total = formatNumber(price)
 		let info = $(e).data('info')
 		fxTotal(total)
+		$('.paying-with').delay(1000).fadeIn()
 		onErrorAlert(`Te lo llevamos por ${shipping.toUpperCase()}`, info || `Seleccionaste ${shipping.toUpperCase()} como servicio de entrega`);
 	}
 
