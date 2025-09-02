@@ -118,9 +118,7 @@ var show_cart_item = (index) => {
 }
 
 $(document).ready(function() {
-
 	if(carrito_items?.length == 1) {
-		console.log('a(1)--')
 		$('.products-total').hide()
 	} else {
 		$('.products-total').show()

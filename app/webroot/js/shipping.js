@@ -26,8 +26,10 @@ $(function(){
 		var price = subtotal + cost - coupon
 		//console.log('cost_total(2)', subtotal, cost)
 		$('.cost_total').text('$ ' + formatNumber(subtotal + cost))
-		console.log('subtotal', subtotal)
-		console.log('cost', cost)
+		if(log){
+			console.log('subtotal', subtotal)
+			console.log('cost', cost)
+		}
 
 		if (price < shipping_price) {
 			price+= cost
@@ -41,7 +43,8 @@ $(function(){
 	  var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
 		preferences.shipping = shipping
 	  preferences.cargo = cargo
-	  console.log('shipping_price(1)', cost)
+	  if(log)
+	  	console.log('shipping_price(1)', cost)
 	  preferences.shipping_price = cost
 	  preferences.total_price = price
 	  preferences.subtotal_price = subtotal

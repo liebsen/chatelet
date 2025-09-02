@@ -7,6 +7,7 @@ let searchPageSize = 12
 let searchPage = 0
 let focusAnim = 'pulse'
 let clock = 0
+const log = false
 let pageLoaded = () => {   
   $('body').removeClass('loading')
   $('#page-container').removeClass('loading')
@@ -77,7 +78,8 @@ let calcDues = (total) => {
 }
 
 let fxTotal = (total) => {
-  console.log('fxTotal',total)
+  if(log)
+    console.log('fxTotal',total)
   if($('.calc_total').text().replace("$ ", "") != total) {
     $('.calc_total').text( '$ ' + formatNumber(total) )
 
