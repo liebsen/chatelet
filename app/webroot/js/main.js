@@ -431,7 +431,7 @@ $(function () {
             e.classList.remove('fadeOut', 'fadeIn')
             setTimeout(() => {
               if (e.classList.contains('navbar-chatelet')) {
-                document.querySelector('body').style.paddingTop = `${e.clientHeight}px`
+                //document.querySelector('body').style.paddingTop = `${e.clientHeight}px`
               }
               e.classList.add('top-fixed', 'fadeIn')
             }, 10)

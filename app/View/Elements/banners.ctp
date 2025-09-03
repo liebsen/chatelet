@@ -31,6 +31,7 @@
     /*font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;*/
     background-color: black;
     color: white;
+    min-height: 64px;
   }
 
   #carousel-banners .banner-caption {

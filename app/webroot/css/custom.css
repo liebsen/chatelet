@@ -259,7 +259,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   box-shadow: 0 2px 4px rgba(0,0,0,.2); */
   box-shadow: var(--box-shadow);
   margin: 0; 
-  min-height: 0; 
+  min-height: 102px; 
   padding: 1.5rem;
   position: relative; 
   z-index: 3; 
@@ -1263,6 +1263,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   text-align: center; 
   font-size: 1.5rem; 
   font-weight: 800;
+  min-height: 92px;
 }
 #optionsHelp.mobile a.active {
   background-color: #f2f2f2;
