@@ -434,7 +434,7 @@ $(function () {
                 //document.querySelector('body').style.paddingTop = `${e.clientHeight}px`
               }
               e.classList.add('top-fixed', 'fadeIn')
-            }, 10)
+            }, 200)
           } 
         })
         $("video").each((i,video) => {

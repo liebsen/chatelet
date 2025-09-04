@@ -800,6 +800,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #listShop .category-item {
   border-top: 5px solid white;
   border-right: 5px solid white;
+  display: contents;
 }
 .hidden-force {
   display: none!important;

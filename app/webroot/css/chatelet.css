@@ -1170,7 +1170,8 @@ span.validation-password {
 	line-height: 1;
 	width: 16rem;
 }
-.navbar-contnainer {
+
+.navbar-container {
 	min-height: 102px;
 }
 
@@ -1217,6 +1218,10 @@ span.validation-password {
 	}
 }
 @media screen and (max-width: 768px) {
+	.navbar-container {
+		min-height: 134px;
+	}
+
 	.whatsapp-block .whatsapp-text {
 		display: none;
 	}

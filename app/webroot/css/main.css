@@ -630,6 +630,7 @@ body {
 .block-content .control-group {
     padding-top: 0.75rem;
     padding-bottom: 1.25rem;
+    overflow-x: auto;
 }
 
 .block .block {
@@ -1679,7 +1680,7 @@ li.plan-featured h1 {
     margin: 0;
     padding: 0;
     list-style: none;
-    background-color: #fcbc4c;
+    /*background-color: #fcbc4c;*/
     border-radius: 1rem;
 }
 
@@ -1690,7 +1691,7 @@ li.plan-featured h1 {
     padding: 0;
     list-style: none;
     border-radius: 1rem;    
-    background-color: #b1dffc;
+    /*background-color: #b1dffc;*/
 }
 
 .image-item {
