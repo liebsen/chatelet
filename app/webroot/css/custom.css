@@ -800,7 +800,6 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #listShop .category-item {
   border-top: 5px solid white;
   border-right: 5px solid white;
-  display: contents;
 }
 .hidden-force {
   display: none!important;
@@ -2022,7 +2021,7 @@ span.out{
 
 .text-legend {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   grid-gap: 0.25rem;
   width: 100%;
@@ -2353,6 +2352,9 @@ span.count.is-empty {
 
 /*Mobile Icons NavTop*/
 @media (max-width: 992px) {
+  #listShop .category-item {
+    display: contents;
+  }
   ul#ul-moreviews {
     display: flex;
     overflow-x: auto;
