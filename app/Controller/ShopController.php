@@ -491,6 +491,26 @@ class ShopController extends AppController {
 
 	}
 
+	public function catalog(){
+		$this->layout = false;
+		$data = $this->Product->find('all', array(
+	    'joins' => array(
+        array(
+          'table' => 'categories',
+          'alias' => 'Category',
+          'type' => 'LEFT',
+          'conditions' => array( 'Product.category_id = Category.id' )
+        )
+	    ),
+	  	'fields' => array('Product.id, Product.category_id, Product.cod_chatelet, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.stock_total', 'Category.name AS category'),
+			'conditions' => array( 'Product.visible' => "1" ),
+			'order' => array( 'Product.price ASC' )
+		));
+		
+
+		$this->set('products',$data);
+	}
+
 	public function detalletest($product_id, $category_id) {
 		$product = $this->Product->findById($product_id);
 		$category = $this->Category->findById($category_id);
