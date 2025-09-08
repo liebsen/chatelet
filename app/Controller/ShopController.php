@@ -502,7 +502,7 @@ class ShopController extends AppController {
           'conditions' => array( 'Category.id = Product.category_id' )
         )
 	    ),
-	  	'fields' => array('Product.id, Product.category_id, Product.cod_chatelet, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.stock_total', 'Category.name as category'),
+	  	'fields' => array('Product.id, Product.category_id, Product.article, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.stock_total', 'Category.name as category'),
 			'conditions' => array( 'Product.visible' => "1" ),
 			//'order' => array( 'Product.price ASC' )
 		));

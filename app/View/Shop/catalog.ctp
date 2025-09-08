@@ -2,7 +2,7 @@
 <products>
 	<?php foreach ($products as $key => $product): ?>
     <product>
-        <id><?= $product['Product']['id'] ?></id>
+        <id><?= $product['Product']['article'] ?></id>
         <title><?= $product['Product']['name'] ?></title>
         <description><?= $product['Product']['desc'] ?></description>
         <link>https://chatelet.com.ar/tienda/producto/<?= $product['Product']['id'] ?>/<?= $product['Product']['category_id'] ?></link>
