@@ -9,7 +9,7 @@
         <image_link><?= Configure::read('uploadUrl').$product['Product']['img_url'] ?></image_link>
         <price currency="ARS"><?= $product['Product']['price'] ?></price>
         <availability><?= $product['Product']['stock_total'] ? 'in' : 'out of' ?> stock</availability>
-        <category>Tienda / <?= $product['Product']['category'] ?></category>
+        <category>Tienda / <?= $product['Category']['category'] ?></category>
     </product>
    <?php endforeach ?>
 </products>

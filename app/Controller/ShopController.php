@@ -499,15 +499,14 @@ class ShopController extends AppController {
           'table' => 'categories',
           'alias' => 'Category',
           'type' => 'LEFT',
-          'conditions' => array( 'Product.category_id = Category.id' )
+          'conditions' => array( 'Category.id = Product.category_id' )
         )
 	    ),
-	  	'fields' => array('Product.id, Product.category_id, Product.cod_chatelet, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.stock_total', 'Category.name AS category'),
+	  	'fields' => array('Product.id, Product.category_id, Product.cod_chatelet, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.stock_total', 'Category.name as category'),
 			'conditions' => array( 'Product.visible' => "1" ),
-			'order' => array( 'Product.price ASC' )
+			//'order' => array( 'Product.price ASC' )
 		));
 		
-
 		$this->set('products',$data);
 	}
 
