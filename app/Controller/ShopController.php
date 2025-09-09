@@ -491,9 +491,9 @@ class ShopController extends AppController {
 
 	}
 
-	public function catalog(){
-		header("Content-type: text/xml");		
+	public function catalog_xml(){
 		$this->layout = false;
+		$this->RequestHandler->respondAs("xml");
 		$data = $this->Product->find('all', array(
 	    'joins' => array(
         array(
@@ -509,6 +509,8 @@ class ShopController extends AppController {
 		));
 		
 		$this->set('products',$data);
+
+		//file_put_contents($filename, $content);
 	}
 
 	public function detalletest($product_id, $category_id) {
