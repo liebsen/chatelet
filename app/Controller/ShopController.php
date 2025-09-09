@@ -492,6 +492,7 @@ class ShopController extends AppController {
 	}
 
 	public function catalog(){
+		header("Content-type: text/xml");		
 		$this->layout = false;
 		$data = $this->Product->find('all', array(
 	    'joins' => array(
