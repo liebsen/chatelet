@@ -509,8 +509,6 @@ class ShopController extends AppController {
 		));
 		
 		$this->set('products',$data);
-
-		//file_put_contents($filename, $content);
 	}
 
 	public function detalletest($product_id, $category_id) {
