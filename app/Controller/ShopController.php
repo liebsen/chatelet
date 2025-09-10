@@ -512,6 +512,27 @@ class ShopController extends AppController {
 		$this->set('products',$data);
 	}
 
+	public function catalog_rss(){
+		$this->layout = false;
+		$this->RequestHandler->respondAs("xml");
+
+		$data = $this->Product->find('all', array(
+	    'joins' => array(
+        array(
+          'table' => 'categories',
+          'alias' => 'Category',
+          'type' => 'LEFT',
+          'conditions' => array( 'Category.id = Product.category_id' )
+        )
+	    ),
+	  	'fields' => array('Product.id, Product.category_id, Product.article, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.stock_total', 'Category.name as category'),
+			'conditions' => array( 'Product.visible' => "1" ),
+			//'order' => array( 'Product.price ASC' )
+		));
+		
+		$this->set('products',$data);
+	}	
+
 	public function detalletest($product_id, $category_id) {
 		$product = $this->Product->findById($product_id);
 		$category = $this->Category->findById($category_id);
