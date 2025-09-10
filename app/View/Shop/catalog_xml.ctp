@@ -6,7 +6,7 @@
         <title><?= $product['Product']['name'] ?></title>
         <description><?= $product['Product']['desc'] ?></description>
         <link>https://chatelet.com.ar/tienda/producto/<?= $product['Product']['id'] ?>/<?= $product['Product']['category_id'] ?></link>
-        <image_link><?= Configure::read('uploadUrl').$product['Product']['img_url'] ?></image_link>
+        <image_link><?= Configure::read('uploadUrl').Configure::read('uploadUrl').$product['Product']['img_url'] ?></image_link>
         <price currency="ARS"><?= $product['Product']['price'] ?></price>
         <availability><?= $product['Product']['stock_total'] ? 'in' : 'out of' ?> stock</availability>
         <category>Tienda / <?= $product['Category']['category'] ?></category>

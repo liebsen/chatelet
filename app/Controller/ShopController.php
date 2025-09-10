@@ -494,7 +494,7 @@ class ShopController extends AppController {
 	public function catalog_xml(){
 		$this->layout = false;
 		$this->RequestHandler->respondAs("xml");
-		
+		die(Configure::read('uploadUrl'));
 		$data = $this->Product->find('all', array(
 	    'joins' => array(
         array(
