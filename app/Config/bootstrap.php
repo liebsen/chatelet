@@ -139,14 +139,14 @@ function filterOrientation($list){
   return $filtered;
 }
 
-function siteURL() {
+function baseURL() {
   $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || 
     $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
   $domainName = $_SERVER['HTTP_HOST'];
   return $protocol.$domainName.'/';
 }
 
-function baseURL() {
+function siteURL() {
   $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || 
     $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
   $domainName = $_SERVER['HTTP_HOST'];
@@ -156,7 +156,8 @@ function baseURL() {
 // Configure::write('baseUrl','http://localhost:8040/'); 
 $uploadLocal = true;
 
-Configure::write('baseUrl',siteURL()); 
+Configure::write('baseUrl',baseURL()); 
+Configure::write('siteUrl',siteURL()); 
 Configure::write('uploadUrl',$uploadLocal ? '/files/uploads/' : 'https://d3baxuoyqsgua.cloudfront.net/');
 Configure::write('uploadLocal',$uploadLocal); 
 Configure::write('mobile', preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]));
