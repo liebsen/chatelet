@@ -2,7 +2,7 @@
 <channel>
 <title>Tienda Châtelet</title>
 <link>https://chatelet.com.ar</link>
-<description>An example item from the feed</description>
+<description>Nueva colección, nuevos comienzos.</description>
 <?php foreach ($products as $key => $product): ?>
 <item>
   <g:id><?= $product['Product']['article'] ?></g:id>
