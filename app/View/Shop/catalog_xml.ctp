@@ -2,7 +2,7 @@
 <products>
 	<?php foreach ($products as $key => $product): ?>
     <product>
-        <id><?= $product['Product']['article'] ?></id>
+        <id><?= $product['Product']['id'] ?></id>
         <title><?= $product['Product']['name'] ?></title>
         <description><?= $product['Product']['desc'] ?></description>
         <link>https://chatelet.com.ar/tienda/producto/<?= $product['Product']['id'] ?>/<?= $product['Product']['category_id'] ?></link>
@@ -10,6 +10,8 @@
         <price currency="ARS"><?= $product['Product']['price'] ?></price>
         <availability><?= $product['Product']['stock_total'] ? 'in' : 'out of' ?> stock</availability>
         <category>Tienda / <?= $product['Category']['category'] ?></category>
+        <condition>new</condition>
+        <brand>Tienda Châtelet</brand>
     </product>
    <?php endforeach ?>
 </products>
