@@ -103,8 +103,8 @@ class AppController extends Controller
         $cats_enabled = $this->Product->query('SELECT DISTINCT category_id FROM products WHERE visible = 1');
         $catsids = [];
 
-        foreach($cats_enabled[0]['products'] as $cat_id) {
-            $catsids[]= $cat_id;
+        foreach($cats_enabled as $cat) {
+            $catsids[]= $cat['products']['category_id'];
         }
 
         $categories = $this->Category->find('all',array(
