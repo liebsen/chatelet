@@ -341,7 +341,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 @media (min-width: 768px) {
   .add-no-stock {
-    min-height: 32rem!important;
+    min-height: 33rem!important;
   }
   .product-image {
     min-height: 24rem!important;
