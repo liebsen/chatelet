@@ -7,14 +7,13 @@ class SQLComponent extends Component {
 		//$myServer = "181.164.35.14";
 		$myServer = "181.98.11.110";
 
-		/*$myUser = "UsuarioWebChatelet";
+		$myUser = "UsuarioWebChatelet";
 		$myPass = "UsuWEBChatelet1973!!";
-		$myDB = "WebChatelet";*/
+		$myDB = "WebChatelet";
 
-		$myUser = "sa";
+		/*$myUser = "sa";
 		$myPass = "infinixchatelet2011";
-		$myDB = "Ventas";
-
+		$myDB = "Ventas";*/
 
 		try {
 			$this->conn = new PDO("dblib:host=$myServer;dbname=$myDB", $myUser, $myPass);
