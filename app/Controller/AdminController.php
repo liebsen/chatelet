@@ -1487,6 +1487,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	          $data['size'] = $file_size;
 	        }
 
+	        error_log(json_encode($data));
 	        $this->Category->save($data);
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);

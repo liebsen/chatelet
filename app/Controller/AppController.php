@@ -88,6 +88,7 @@ class AppController extends Controller
         $this->loadModel('Menu');
         $this->loadModel('Banner');
         $this->loadModel('Category');
+        $this->loadModel('Product');
 
         $banners = $this->Banner->find('all', [
           'conditions' => ['enabled' => 1, 'title <>' => ''],
@@ -98,9 +99,17 @@ class AppController extends Controller
 
         $this->set('menus', $menus);
         $this->set('banners', $banners);
+
+        $cats_enabled = $this->Product->query('SELECT DISTINCT category_id FROM products WHERE visible = 1');
+        $catsids = [];
+
+        foreach($cats_enabled[0]['products'] as $cat_id) {
+            $catsids[]= $cat_id;
+        }
+
         $categories = $this->Category->find('all',array(
-            'conditions'=>array('visible' => 1),
-            'order'=>array( 'Category.ordernum ASC' )
+            'conditions'=> array('visible' => 1, 'id IN' => $catsids),
+            'order' => array( 'Category.ordernum ASC' )
         ));
         
         $this->set('categories', $categories);
