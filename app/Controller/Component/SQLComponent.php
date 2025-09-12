@@ -15,6 +15,7 @@ class SQLComponent extends Component {
 		$myPass = "infinixchatelet2011";
 		$myDB = "Ventas";
 
+
 		try {
 			$this->conn = new PDO("dblib:host=$myServer;dbname=$myDB", $myUser, $myPass);
 		} catch (PDOException $e) {
