@@ -1,7 +1,8 @@
 <?php
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
+  echo $this->Html->script('category', array('inline' => false));
+  echo $this->element('admin-menu');
 ?>
-<?php echo $this->element('admin-menu');?>
 <div class="block block-themed">
   <div class="block-title">
     <h4><?php 
@@ -18,11 +19,20 @@
       ?>
       <div class="row-fluid">
         <div class="span6">
-          <h4 class="sub-header">Información Principal</h4>
+          <h4 class="sub-header">Nombre</h4>
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Nombre Principal'); ?></label>
             <div class="controls">
               <input class="form-control" type="text" id="" name="data[name]" value="<?php echo (isset($cat)) ? $cat['Category']['name'] : ''; ?>" required>
+            </div>
+          </div>
+          <br />
+          <div class="control-group">
+            <input type="checkbox" id="alternatename" value="1" <?php echo (isset($cat)) && $cat['Category']['alternate_name'] ? 'checked' : ''; ?>/>
+            <label class="control-label" for="alternatename"><?php echo __('Nombre Alternativo'); ?></label>
+            <a class="d-none" id="alternatename_restore">Cancelar</a>
+            <div class="controls alternate_name_block<?php echo (isset($cat)) && !$cat['Category']['alternate_name'] ? ' d-none' : ''; ?>">
+              <input class="form-control" type="text" id="alternate_name_target" name="data[alternate_name]" value="<?php echo (isset($cat)) ? $cat['Category']['alternate_name'] : ''; ?>">
             </div>
           </div>
           <br />
