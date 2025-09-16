@@ -5,7 +5,7 @@
 <description>Nueva colección, nuevos comienzos.</description>
 <?php foreach ($products as $key => $product): ?>
 <item>
-  <g:id><?= $product['Product']['article'] ?></g:id>
+  <g:id><?= $product['Product']['id'] ?>-<?= $product['Product']['article'] ?></g:id>
   <g:title><?= $product['Product']['name'] ?></g:title>
   <g:description><?= $product['Product']['desc'] ?></g:description>
   <g:link>https://chatelet.com.ar/tienda/producto/<?= $product['Product']['id'] ?>/<?= $product['Product']['category_id'] ?></g:link>
