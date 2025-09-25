@@ -26,7 +26,7 @@ class HomeController extends AppController {
     $filtered = \filterOrientation($home['Home']['img_popup_newsletter']);
     $home['Home']['img_popup_newsletter'] = implode(';', $filtered);
 
-    error_log(json_encode($home));
+    //error_log(json_encode($home));
     
 		$this->set('home', $home['Home']);
 
