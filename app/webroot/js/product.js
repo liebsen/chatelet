@@ -26,6 +26,26 @@ function checkCount(value) {
 function addCart(data, button, text) {
 	$(button).addClass('adding')
 	$(button).text(text || 'Agregando...')
+
+	window.dataLayer = window.dataLayer || []
+	fbq('track', 'AddToCart')
+	/* @Analytics: addToCart */
+	gtag('event', 'add_to_cart', {
+	  "items": [
+	    {
+	      "id": data.id,
+	      "name": $('.product').text(),
+	      // "list_name": "Search Results",
+	      // "brand": "Google",
+	      // "category": "Apparel/T-Shirts",
+	      "variant": data.alias,
+	      "list_position": 1,
+	      "quantity": data.count,
+	      "price": $('.price').text()
+	    }
+	  ]
+	})
+					
 	let str = ''
 	for(var i in data) {
 		str+=`<input type='hidden' name='${i}' value='${data[i]}'>`
