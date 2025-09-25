@@ -34,7 +34,7 @@ function addCart(data, button, text) {
 	$(form).appendTo('body').submit();
 }
 
-function addCart2(data, button, text) {
+function addCartUnsafe(data, button, text) {
 	$(button).addClass('adding')
 	$(button).text(text || 'Agregando...')
 	$.post('/carrito/add', $.param(data))
@@ -171,6 +171,7 @@ function pideStock(obj){
 
 $(document).ready(function() {
 	//Stock
+
 	$('.oldSelectColor,.loadColorImages').click(function(event) {
 		window.lastColorObj = $(this);
 		setTimeout(function(){
@@ -231,6 +232,16 @@ $(document).ready(function() {
 		var position = me.offset();
 		window.open(me.attr('data-image'), 'Talles', 'height=323px, width=642px, resizable=no, status=no, toolbar=no, menubar=no, location=no, top='+ position.top +'px, left=' + position.left +'px');
 	});
+
+
+	/* autoselect if one option */
+	if($('.color-option').length == 1) {
+		$('.color-option').click()
+	}
+
+	if($('#size option').length == 2) {
+		$('#size').prop('selectedIndex', 2);
+	}	
 
 	/*if(itemData) {
 		if(itemData.mp_discount || itemData.bank_discount) {

@@ -1173,13 +1173,10 @@ class CarritoController extends AppController
 
 	public function add() {
 		$this->autoRender = false;
-		CakeLog::write('debug', 'add(0):'.json_encode($this->request->is('post')));
 
 		if ($this->request->is('post')) {
-			CakeLog::write('debug', 'add(ok)');
 			$data = $this->request->data;
 			//$this->RequestHandler->respondAs('application/json');
-			CakeLog::write('debug', 'add(1):'.json_encode($data));
 
 			if(
 				!isset($this->request->data['id']) || 
@@ -1187,7 +1184,6 @@ class CarritoController extends AppController
 			) {
 				return $this->redirect(array('controller' => 'home', 'action' => 'index'));
 			}
-
 
 			$product = $this->Product->findById($this->request->data['id']);
 			$urlCheck = Configure::read('baseUrl')."shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
