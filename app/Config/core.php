@@ -107,10 +107,9 @@
  *
  */
 	Configure::write('Session', array(
-		'defaults' => 'php',
-		//'defaults' => 'cake',
-		//'cookie' => 'chatelet',
-		//'timeout' => 36000
+		'defaults' => 'cake',
+		'cookie' => 'chatelet',
+		'timeout' => 36000
 	));
 
 /**

@@ -160,15 +160,11 @@ Configure::write('baseUrl',baseURL());
 Configure::write('siteUrl',siteURL()); 
 Configure::write('uploadUrl',$uploadLocal ? '/files/uploads/' : 'https://d3baxuoyqsgua.cloudfront.net/');
 Configure::write('uploadLocal',$uploadLocal); 
-Configure::write('mobile', preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]));
-
-/*Configure::write('mobile', (
-  strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') || 
-  strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')
-));*/
+Configure::write('mobile', preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", isset($_SERVER["HTTP_USER_AGENT"]) ? $_SERVER["HTTP_USER_AGENT"] : ''));
 
 Configure::write('S3.accessKey','AKIAJGNWSIAUPGFVLJTQ'); 
 Configure::write('S3.secret','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'); 
+
 //Configure::write('uploadUrl','https://d3baxuoyqsgua.cloudfront.net/'); 
 //cache for https://s3.amazonaws.com/chatelet/'); 
 
