@@ -181,6 +181,9 @@ class CarritoController extends AppController
 	public function index()
 	{
 		$carro = $this->update();
+
+		error_log('carrito');
+		error_log(json_encode($carro));
 		$this->Session->write('Carro', $carro);
 		$data = $this->getItemsData();
 		$shipping_price = $this->Setting->findById('shipping_price_min');
@@ -213,8 +216,6 @@ class CarritoController extends AppController
  		$carrito_takeaway_text = $map['Setting']['extra'];		
 		$this->set('sorted', $this->sort());
 		$this->set('stores', $stores);
-		$this->set('carro', $carro);
-		$this->set('config', $config);
 		$this->set('carrito_takeaway_text', $carrito_takeaway_text);
 		$this->set('freeShipping', $freeShipping);
 	}
@@ -248,7 +249,7 @@ class CarritoController extends AppController
 			die;
 		}
 
-		$config = $this->Session->read('Config');
+		//$config = $this->Session->read('Config');
 		$oca = new Oca();
 		$provincias = $oca->getProvincias();
 		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
@@ -273,7 +274,7 @@ class CarritoController extends AppController
 		$this->set('freeShipping', $freeShipping);
 		$this->set('data',$data);
 		$this->set('total',$total_price);
-		$this->set('config',$config);
+		//$this->set('config',$config);
 		$this->set('userData',$user);
 	}
 
