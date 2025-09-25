@@ -182,8 +182,6 @@ class CarritoController extends AppController
 	{
 		$carro = $this->update();
 		$this->Session->write('Carro', $carro);
-		//$this->update();
-		//$this->Session->write('Carro', $carro);
 		$data = $this->getItemsData();
 		$shipping_price = $this->Setting->findById('shipping_price_min');
 		$total_price = $data['price'];
@@ -215,6 +213,8 @@ class CarritoController extends AppController
  		$carrito_takeaway_text = $map['Setting']['extra'];		
 		$this->set('sorted', $this->sort());
 		$this->set('stores', $stores);
+		$this->set('carro', $carro);
+		$this->set('config', $config);
 		$this->set('carrito_takeaway_text', $carrito_takeaway_text);
 		$this->set('freeShipping', $freeShipping);
 	}
