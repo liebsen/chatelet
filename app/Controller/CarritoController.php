@@ -180,7 +180,7 @@ class CarritoController extends AppController
 
 	public function index()
 	{
-		$carro = $this->update();
+		$carro = $this->updateCart();
 
 		error_log('carrito');
 		error_log(json_encode($carro));
@@ -1150,7 +1150,7 @@ class CarritoController extends AppController
 
 		$this->Session->write('Config', $config);
 		error_log('payment_method:'.$config['payment_method']);
-		$carro = $this->update();
+		$carro = $this->updateCart();
 		$this->Session->write('Carro', $carro);
 
 		return json_encode(array('success' => true, 'data' => array_values($carro)));
@@ -1240,7 +1240,7 @@ class CarritoController extends AppController
 			$cur = @$config['add_basket']?: 0;
 			$cur++;
 			@$config['add_basket'] = $cur;
-			$carro = $this->update($filter);
+			$carro = $this->updateCart($filter);
 			error_log('add');
 			error_log(json_encode($carro));
 			$this->Session->write('Carro', $carro);
@@ -1290,12 +1290,17 @@ class CarritoController extends AppController
 		return $sort;
 	}
 
-	private function update($carro=false) {
+	private function updateCart($carro=false) {
 		$config = $this->Session->read('Config');
 		$payment_method = @$config['payment_method'] ?: 'mercadopago';
 
+		CakeLog::write('debug','cart(1)');
+		CakeLog::write('debug',$carro);
+
 		if (empty($carro)) {
 			$carro = $this->Session->read('Carro');
+			CakeLog::write('debug','cart(2)');
+			CakeLog::write('debug',$carro);
 		}
 
 		$groups = [];
@@ -1450,7 +1455,7 @@ class CarritoController extends AppController
 			$i++;
 		}
 		if (count($data)) {
-			$this->Session->write('Carro', $this->update($data));
+			$this->Session->write('Carro', $this->updateCart($data));
 		} else {
 			$this->Session->delete('Carro');
 		}
