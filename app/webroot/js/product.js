@@ -26,6 +26,17 @@ function checkCount(value) {
 function addCart(data, button, text) {
 	$(button).addClass('adding')
 	$(button).text(text || 'Agregando...')
+	let str = ''
+	for(var i in data) {
+		str+=`<input type='hidden' name='${i}' value='${data[i]}'>`
+	}
+	const form = `<form method='post' action='/carrito/add'>${str}</form>`
+	$(form).appendTo('body').submit();
+}
+
+function addCart2(data, button, text) {
+	$(button).addClass('adding')
+	$(button).text(text || 'Agregando...')
 	$.post('/carrito/add', $.param(data))
 		.success(function(res) {
 			if (res.success) {

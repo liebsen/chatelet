@@ -1,5 +1,5 @@
 <?php
-	Configure::write('debug', 0);
+	Configure::write('debug', 2);
 	Configure::write('Error', array(
 		'handler' => 'ErrorHandler::handleError',
 		'level' => E_ALL & ~E_DEPRECATED,
