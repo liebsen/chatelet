@@ -124,7 +124,6 @@ function filterOrientation($list){
   $images = array_filter(explode(';',$list));
   $filtered = [];
   $mobile = Configure::read('mobile');
-  CakeLog::write('debug', json_encode($mobile));
   foreach($images as $image){
     if($mobile){                
       if(strstr($image, 'mobile') != false) {

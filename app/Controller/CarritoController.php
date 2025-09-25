@@ -1295,12 +1295,12 @@ class CarritoController extends AppController
 		$payment_method = @$config['payment_method'] ?: 'mercadopago';
 
 		CakeLog::write('debug','cart(1)');
-		CakeLog::write('debug',$carro);
+		CakeLog::write('debug',json_encode($carro));
 
 		if (empty($carro)) {
 			$carro = $this->Session->read('Carro');
 			CakeLog::write('debug','cart(2)');
-			CakeLog::write('debug',$carro);
+			CakeLog::write('debug',json_encode($carro));
 		}
 
 		$groups = [];
