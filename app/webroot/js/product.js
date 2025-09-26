@@ -260,7 +260,7 @@ $(document).ready(function() {
 	}
 
 	if($('#size option').length == 2) {
-		$('#size').prop('selectedIndex', 2);
+		$('#size').prop('selectedIndex', 1);
 	}	
 
 	/*if(itemData) {

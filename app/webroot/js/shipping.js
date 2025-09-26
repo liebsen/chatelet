@@ -15,7 +15,7 @@ $(function(){
 			carrito.subtotal_price
 		//var subtotal = carrito.subtotal_price
 		cargo = 'shipment'
-		var shipping_price = carrito.shipping_price
+		var shipping_price = window.shipping_price
 		$('.shipping-options li').removeClass('selected secondary')
 		$('.takeaway-options li').removeClass('selected secondary')
 		$('.shipping-options li').addClass('secondary')
@@ -23,28 +23,20 @@ $(function(){
 		$('.delivery-cost').addClass('hidden')
 		$('.shipping-cargo').text(shipping)	
 
-		var price = subtotal + cost - coupon
-		//console.log('cost_total(2)', subtotal, cost)
-		$('.cost_total').text('$ ' + formatNumber(subtotal + cost))
-		if(log){
-			console.log('subtotal', subtotal)
-			console.log('cost', cost)
-		}
-
+		var price = subtotal - coupon
 		if (price < shipping_price) {
 			price+= cost
 			$('#subtotal_envio').val(cost)
 			$('.delivery-cost').removeClass('hidden')
 			$('.delivery-cost').addClass('fadeIn')
-			//console.log('cost',cost)
 			$('.cost_delivery').text( formatNumber(cost))
 		}
+
+		$('.cost_total').text('$ ' + formatNumber(price))
 
 	  var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
 		preferences.shipping = shipping
 	  preferences.cargo = cargo
-	  if(log)
-	  	console.log('shipping_price(1)', cost)
 	  preferences.shipping_price = cost
 	  preferences.total_price = price
 	  preferences.subtotal_price = subtotal
@@ -83,7 +75,6 @@ $(function(){
 		}
 
 		$('#free_delivery').text('');
-		$('.delivery-cost').addClass('hidden')
 		callStart()
 		$.getJSON( url+'/'+cp , function(json, textStatus) {
 			callEnd()
