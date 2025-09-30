@@ -1052,8 +1052,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$this->autoRender = false;
 		$response = null;
 		error_log('a(0)');
-		error_log($this->request->data);
-		error_log($this->request->data['file']);
+		error_log(json_encode($this->request->data['file']));
 		error_log($this->request->data['file']['name']);
 		error_log(empty($this->request->data['file']['name']));
 		if (!empty($this->request->data['file']['name'])) {
