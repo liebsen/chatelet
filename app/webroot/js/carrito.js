@@ -1,4 +1,4 @@
-var currentCarritoIndex = 0
+var currentCartIndex = 0
 var cargo = ''
 var itemData = null
 var removeElement = null
@@ -135,29 +135,29 @@ $(document).ready(function() {
 		var donts = ['glyphicon glyphicon-remove', 'giftchecks', 'label-text text-muted']	
 		if (!donts.includes(e.target.className)) {
 			$('html, body').addClass('disable-scroll')
-			currentCarritoIndex = [...document.querySelectorAll('.carrito-item-row')].indexOf(this)
-			show_cart_item(currentCarritoIndex)
+			currentCartIndex = [...document.querySelectorAll('.carrito-item-row')].indexOf(this)
+			show_cart_item(currentCartIndex)
 		}
 	})
 
 	$('#carritoItem .carousel-control.left').on('click', function(e) {
     e.preventDefault()
-		if (currentCarritoIndex > 0) {
-			currentCarritoIndex--
+		if (currentCartIndex > 0) {
+			currentCartIndex--
 		} else {
-			currentCarritoIndex = document.querySelectorAll('.carrito-item-row').length
+			currentCartIndex = document.querySelectorAll('.carrito-item-row').length
 		}
-		show_cart_item(currentCarritoIndex)
+		show_cart_item(currentCartIndex)
 	})
 
 	$('#carritoItem .carousel-control.right').on('click', function(e) {
     e.preventDefault()
-		if (currentCarritoIndex < document.querySelectorAll('.carrito-item-row').length) {
-			currentCarritoIndex++
+		if (currentCartIndex < document.querySelectorAll('.carrito-item-row').length) {
+			currentCartIndex++
 		} else {
-			currentCarritoIndex = 0
+			currentCartIndex = 0
 		}
-		show_cart_item(currentCarritoIndex)
+		show_cart_item(currentCartIndex)
 	})
 
 	$('#carritoItem .close').on('click', function(e) {
@@ -187,7 +187,7 @@ $(document).ready(function() {
 		let location = $(this).attr('link-to')||$(this).prop('link-to')
 
 		if(!c){
-			onWarningAlert('<i class="fa fa-warning"></i> Carrito vacío','No tienes productos en el carrito', 5000)
+			onWarningAlert('<i class="fa fa-warning"></i> Cart vacío','No tienes productos en el carrito', 5000)
 			return false;
 		}
 

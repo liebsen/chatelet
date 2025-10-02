@@ -1147,7 +1147,7 @@ return array (
                         'CallerReference' => array(
                             'type' => 'string',
                         ),
-                        'Config' => array(
+                        'cart_totals' => array(
                             'type' => 'object',
                             'properties' => array(
                                 'Comment' => array(
@@ -1405,7 +1405,7 @@ return array (
                         'CallerReference' => array(
                             'type' => 'string',
                         ),
-                        'Config' => array(
+                        'cart_totals' => array(
                             'type' => 'object',
                             'properties' => array(
                                 'Comment' => array(
@@ -1593,7 +1593,7 @@ return array (
                             'CallerReference' => array(
                                 'type' => 'string',
                             ),
-                            'Config' => array(
+                            'cart_totals' => array(
                                 'type' => 'object',
                                 'properties' => array(
                                     'Comment' => array(

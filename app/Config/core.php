@@ -1,4 +1,5 @@
 <?php
+
 	Configure::write('debug', 0);
 	Configure::write('Error', array(
 		'handler' => 'ErrorHandler::handleError',

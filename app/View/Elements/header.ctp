@@ -125,7 +125,7 @@
               <ul class="dropdown-menu">
                 <li>
                   <div class="control-panel">
-                  <?php if ($this->Session->check('Carro')): ?>
+                  <?php if ($this->Session->check('cart')): ?>
                     <p class="title">Tu pedido</p>
                   <?php else: ?>
                     <h3> <i class="fa fa-shopping-cart fa-x2"></i> Tu carrito de compras está vacío.</h3>
@@ -149,7 +149,7 @@
                           }
                       ?>
                     </ol>
-                  <?php if ($this->Session->check('Carro')): ?>
+                  <?php if ($this->Session->check('cart')): ?>
                     <p>
                       Total <span class="right"><?php echo str_replace(',00','',$this->Number->currency($total, 'ARS', array('places' => 2))); ?></span>
                     </p>

@@ -73,8 +73,8 @@ class AppController extends Controller
         $this->Auth->allow();
         $this->set('loggedIn', $this->Auth->loggedIn());
         $this->set('user', $this->Auth->user());
-        $this->set('carro', $this->Session->read('Carro'));
-        $config = $this->Session->read('Config');
+        $this->set('carro', $this->Session->read('cart'));
+        $config = $this->Session->read('cart_totals');
         // ensure certain config entries...
         if(empty($config['add_basket'])){
             $config['add_basket'] = 0;
@@ -240,6 +240,7 @@ class AppController extends Controller
         //));
         $Email->send($message);
     }
+
 
     private function saveFile($file, $thumb = false, $size = 300) {
         /* save file if any */

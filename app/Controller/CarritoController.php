@@ -23,7 +23,7 @@ class CarritoController extends AppController
 			$this->Product->save($product);
 		}
 		die("mmm");
-		$carro = $this->Session->read('Carro');
+		$carro = $this->Session->read('cart');
 		echo "<pre>";
 		print_r($carro);
 		die();
@@ -184,7 +184,7 @@ class CarritoController extends AppController
 		//CakeLog::write('debug', 'updateCart(data)'.json_encode($data));
 		$carro = $this->updateCart();
 		//CakeLog::write('debug', 'carrrrro:'.json_encode($carro));
-		$this->Session->write('Carro', $carro);
+		$this->Session->write('cart', $carro);
 		$shipping_price = $this->Setting->findById('shipping_price_min');
 		$total_price = $data['price'];
 		$freeShipping = $this->isFreeShipping($total_price);
@@ -243,7 +243,7 @@ class CarritoController extends AppController
 
 	public function checkout()
 	{
-		if (!$this->Session->read('Carro')) {
+		if (!$this->Session->read('cart')) {
 			$this->redirect(array( 'action' => 'clear' ));
 			die;
 		}
@@ -278,7 +278,7 @@ class CarritoController extends AppController
 	private function getItemsData()
 	{
 		$data = array('count' => 0, 'price' => 0);
-		$items = $this->Session->read('Carro');
+		$items = $this->Session->read('cart');
 		//CakeLog::write('debug', 'getItemsData:'. json_encode($items));
 		if ($items) {
 			foreach ($items as $key => $item) {
@@ -335,8 +335,8 @@ class CarritoController extends AppController
 	}
 
 	public function coupon($cp = null){
-		$items = $this->Session->read('Carro');
-		$config = $this->Session->read('Config');
+		$items = $this->Session->read('cart');
+		$config = $this->Session->read('cart_totals');
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 
@@ -749,7 +749,7 @@ class CarritoController extends AppController
 		$total=0;
 		$total_wo_discount = 0;
 		// VAR - Validate
-		$carro = $this->Session->read('Carro');
+		$carro = $this->Session->read('cart');
 
 		if(empty($carro)) {
 			header("Location: /");
@@ -839,7 +839,7 @@ class CarritoController extends AppController
 			    },$coupon_ids));
 			  }			  
 	    	error_log('suming check coupon:'.json_encode($coupon));
-				$coupon_parsed = \filtercoupon($coupon, $this->Session->read('Config'), $data['price']);
+				$coupon_parsed = \filtercoupon($coupon, $this->Session->read('cart_totals'), $data['price']);
 			}
 		}
 
@@ -1070,7 +1070,7 @@ class CarritoController extends AppController
 
 		// check if paying method is bank
 		if ($user['payment_method'] === 'bank') {
-			$this->Session->delete('Carro');
+			$this->Session->delete('cart');
 			return $this->redirect(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' ));
 		}
 
@@ -1132,7 +1132,7 @@ class CarritoController extends AppController
 	public function preference(){
 		$this->autoRender = false;
 
-		$config = $this->Session->read('Config');
+		$config = $this->Session->read('cart_totals');
 		$data = $this->request->data;
 
 		// replace session config with post object pairs
@@ -1144,25 +1144,25 @@ class CarritoController extends AppController
       $config['payment_method'] = 'mercadopago';
     }
 
-		$this->Session->write('Config', $config);
+		$this->Session->write('cart_totals', $config);
 		error_log('payment_method:'.$config['payment_method']);
 		//CakeLog::write('debug', 'updateCart(3)');
 		$carro = $this->updateCart();
-		$this->Session->write('Carro', $carro);
+		$this->Session->write('cart', $carro);
 
 		return json_encode(array('success' => true, 'data' => array_values($carro)));
 	}
 
 	public function empty($row = null) {
 		$this->autoRender = false;
-		$this->Session->delete('Carro');
+		$this->Session->delete('cart');
 	}
 
 	public function show($row = null) {
 		$this->autoRender = false;
 		echo '<pre>';
-		var_dump($this->Session->read('Config'));
-		var_dump($this->Session->read('Carro'));
+		var_dump($this->Session->read('cart_totals'));
+		var_dump($this->Session->read('cart'));
 	}
 
 	public function sorted() {
@@ -1208,7 +1208,7 @@ class CarritoController extends AppController
 			// error_log('curl:'.$stock);
 			//$stock=1;
 			if ($product && $stock) {
-				$carro = $this->Session->read('Carro');
+				$carro = $this->Session->read('cart');
 				$product = $product['Product'];
 
 				/* remove all of the kind */
@@ -1238,14 +1238,14 @@ class CarritoController extends AppController
 				// filter(1)
 			}
 
-			$config = $this->Session->read('Config');
+			$config = $this->Session->read('cart_totals');
 			$cur = @$config['add_basket']?: 0;
 			$cur++;
 			@$config['add_basket'] = $cur;
 			//CakeLog::write('debug', 'updateCart(4)');
 			$carro = $this->updateCart($filter);
-			$this->Session->write('Carro', $carro);
-			$this->Session->write('Config', $config);
+			$this->Session->write('cart', $carro);
+			$this->Session->write('cart_totals', $config);
 
 			//return json_encode(array('success' => true));
 		}
@@ -1254,8 +1254,8 @@ class CarritoController extends AppController
 	}
 
 	private function sort() {
-		$carro = $this->Session->read('Carro');
-		$config = $this->Session->read('Config');
+		$carro = $this->Session->read('cart');
+		$config = $this->Session->read('cart_totals');
 		$payment_method = @$config['payment_method'] ?: 'mercadopago';
 		$payment_dues = @$config['payment_dues'] ?: '1';
 		$groups = [];
@@ -1293,14 +1293,14 @@ class CarritoController extends AppController
 	}
 
 	private function updateCart($carro=false) {
-		$config = $this->Session->read('Config');
+		$config = $this->Session->read('cart_totals');
 		$payment_method = @$config['payment_method'] ?: 'mercadopago';
 
 		//CakeLog::write('debug','cart(1)');
 		//CakeLog::write('debug',json_encode($carro));
 
 		if (empty($carro)) {
-			$carro = $this->Session->read('Carro');
+			$carro = $this->Session->read('cart');
 			//CakeLog::write('debug','cart(2)');
 			//CakeLog::write('debug',json_encode($carro));
 		}
@@ -1437,11 +1437,8 @@ class CarritoController extends AppController
 
 	public function remove($id = null) {
 		$this->autoRender = false;
-		/*if (isset($product_id) && $this->Session->check('Carro.'. $product_id)) {
-			$this->Session->delete('Carro.'. $product_id);
-		}*/
 		$item = false;
-		$carro = $this->Session->read('Carro');
+		$carro = $this->Session->read('cart');
 
 		if(!$carro)
 			return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
@@ -1459,9 +1456,9 @@ class CarritoController extends AppController
 		if (count($data)) {
 
 			//CakeLog::write('debug', 'updateCart(1)');
-			$this->Session->write('Carro', $this->updateCart($data));
+			$this->Session->write('cart', $this->updateCart($data));
 		} else {
-			$this->Session->delete('Carro');
+			$this->Session->delete('cart');
 		}
 		//return json_encode($removed);
 		return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
@@ -1508,7 +1505,7 @@ el pago.</p>
 	public function failed() {
 			$data = $this->Session->read('sale_data');
 			error_log('Failed payment: '.json_encode($data));
-			$this->Session->delete('Carro');
+			$this->Session->delete('cart');
 			$this->Session->delete('sale_data');
 			$this->set('sale_data',$data);
 			$this->set('failed', true);
@@ -1534,13 +1531,13 @@ el pago.</p>
 			));
 			$this->set('sale_data',$this->Session->read('sale_data'));
 			$this->notify_user($this->Session->read('sale_data'), 'success');
-			$this->Session->delete('Carro');
+			$this->Session->delete('cart');
 			$this->Session->delete('sale_data');
 			return $this->render('clear');
 			//error_log('success');
 		}else{
 			error_log('no sale data');
-			$this->Session->delete('Carro');
+			$this->Session->delete('cart');
 			$this->Session->delete('sale_data');
 			return $this->render('clear_no');
 			//return $this->redirect(array('controller' => 'home', 'action' => 'index'));

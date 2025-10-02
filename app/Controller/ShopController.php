@@ -476,19 +476,18 @@ class ShopController extends AppController {
 
 	public function add($product) {
 		$product = json_decode($product);
-		$this->Session->write('Carrito.' . $product['name'], $product);
+		//$this->Session->write('cart.' . $product['name'], $product);
 	}
 
 	public function promos(){
 		$promos = $this->Promo->find('all');
 		$this->set('promos',$promos);
 
-        $this->loadModel('Setting');
+    $this->loadModel('Setting');
 		$setting 			 = $this->Setting->findById('catalog_flap');
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
-
 	}
 
 	public function catalog_xml(){
@@ -717,4 +716,27 @@ class ShopController extends AppController {
 		$this->Search->save($search);
 		exit();		
 	}
+
+  public function analytics()
+  {
+    $this->autoRender = false;
+	  $cart = $this->Session->read('cart');
+    if(!empty($cart)) {
+	    $data = $this->request->data;
+	    $this->loadModel('Analytic');
+
+	    $cart_totals = $this->Session->read('cart_totals');
+	    $cart_totals['cart_items'] = count($cart);
+			// save search
+			$analytic = [];
+			$analytic['tag'] = "page_exit";
+			$analytic['user_id'] = $this->Auth->user('id') ?: 0;
+			$analytic['created'] = date('Y-m-d H:i:s');
+			$analytic['cart'] = json_encode($cart);
+			$analytic['cart_totals'] = json_encode($cart_totals);
+			$analytic['page'] = $data['page'] ?? '/';
+			$this->Analytic->save($analytic);
+		}
+		exit();	
+  }	
 }

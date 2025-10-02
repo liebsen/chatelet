@@ -2455,43 +2455,66 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 	  $this->render('menu');
 	}	
 
-	public function searches($action = null) {
+	public function analytics($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Búsquedas' => array(
 				'icon' 		=> 'gi gi-search',
-				'url'		=> Configure::read('mUrl').'/admin/search',
-				'active'	=> '/admin/search'
+				'url'		=> Configure::read('mUrl').'/admin/analytics',
+				'active'	=> '/admin/analytics'
 			),
-			/*'Nuevo Banner' => array(
+			'Carrito' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/search/add',
-				'active'	=> '/admin/search/add'
-			)*/
+				'url'		=> Configure::read('mUrl').'/admin/analytics/cart',
+				'active'	=> '/admin/analytics/cart'
+			)
 		);
 
 		$this->set('navs', $navs);
 		$h1 = array(
-			'name' => 'Búsquedas',
+			'name' => 'Analíticas',
 			'icon' => 'gi gi-search'
 		);
 		$this->set('h1', $h1);
-    $this->loadModel('Search');
-	  $searches = $this->Search->find('all',array(
-	    'joins' => array(
-        array(
-          'table' => 'users',
-          'alias' => 'UserJoin',
-          'type' => 'LEFT',
-          'conditions' => array(
-              'UserJoin.id = Search.user_id'
-          )
-        )
-	    ),
-	    'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Search.*'),
-	  	'order' => array('Search.id DESC'),
-    ));
-		$this->set('searches', $searches);
-	  $this->render('searches');
+
+		if($action == 'cart') {
+	    $this->loadModel('Analytic');
+		  $items = $this->Analytic->find('all',array(
+		    'joins' => array(
+	        array(
+	          'table' => 'users',
+	          'alias' => 'UserJoin',
+	          'type' => 'LEFT',
+	          'conditions' => array(
+	              'UserJoin.id = Analytic.user_id'
+	          )
+	        )
+		    ),
+		    'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Analytic.*'),
+		  	'order' => array('Analytic.id DESC'),
+		  	'limit' => 20,
+	    ));
+			$this->set('view', "analytics");
+		} else {
+	    $this->loadModel('Search');
+		  $items = $this->Search->find('all',array(
+		    'joins' => array(
+	        array(
+	          'table' => 'users',
+	          'alias' => 'UserJoin',
+	          'type' => 'LEFT',
+	          'conditions' => array(
+	              'UserJoin.id = Search.user_id'
+	          )
+	        )
+		    ),
+		    'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Search.*'),
+		  	'order' => array('Search.id DESC'),
+		  	'limit' => 20,
+	    ));
+	    $this->set('view', "searches");
+		}
+		$this->set('items', $items);
+	  $this->render('analytics');
 	}
 
 	public function batch_productos($action = null) {
@@ -2694,7 +2717,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
             ]
           ]);
 
-          $this->set('config', $config);	    		
+          $this->set('cart_totals', $config);	    		
 	    		return $this->render('logistica-detail');
     		}
     		break;

@@ -1665,7 +1665,7 @@ return array (
                         'Name' => array(
                             'type' => 'string',
                         ),
-                        'Config' => array(
+                        'cart_totals' => array(
                             'type' => 'object',
                             'properties' => array(
                                 'Jar' => array(

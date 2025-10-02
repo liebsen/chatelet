@@ -8,6 +8,22 @@ let searchPage = 0
 let focusAnim = 'pulse'
 let clock = 0
 const log = false
+
+let sendBeacon = (tag) => { 
+  const data = {
+    tag,
+    event: 'page_exit',
+    page: window.location.pathname,
+    timestamp: new Date().toISOString()
+  };
+
+  // Convert data to a Blob for sending
+  const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+
+  // Send the beacon
+  navigator.sendBeacon('/shop/analytics', blob);
+}
+
 let pageLoaded = () => {   
   $('body').removeClass('loading')
   $('#page-container').removeClass('loading')
@@ -269,6 +285,38 @@ function layerClose() {
 }
 
 $(function () {
+
+  /* filter beforeunload events */
+  var validNavigation = false;
+
+  // Attach the event keypress to exclude the F5 refresh (includes normal refresh)
+  $(document).bind('keypress', function(e) {
+      if (e.keyCode == 116){
+          validNavigation = true;
+      }
+  });
+
+  // Attach the event click for all links in the page
+  $("a").bind("click", function() {
+      validNavigation = true;
+  });
+
+  // Attach the event submit for all forms in the page
+  $("form").bind("submit", function() {
+    validNavigation = true;
+  });
+
+  // Attach the event click for all inputs in the page
+  $("input[type=submit]").bind("click", function() {
+    validNavigation = true;
+  }); 
+  window.onbeforeunload = function() {                
+    if (!validNavigation) {    
+      sendBeacon()
+    }
+  } 
+
+        
   var body = $('body');
 
   body.click((e) => {
