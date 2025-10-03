@@ -296,6 +296,10 @@ label input[type=checkbox]:disabled + .label-text:before {
   white-space: nowrap; 
 }
 
+.google-fonts {
+  font-family: var(--google-fonts-name)!important;
+}
+
 @media (max-width: 440px) {
   #headshop, #headabrigos {
     display: none!important;
@@ -797,10 +801,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   -webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out; 
 }
-#listShop .category-item {
+/*#listShop .category-item {
   border-top: 5px solid white;
   border-right: 5px solid white;
-}
+}*/
 .hidden-force {
   display: none!important;
 }
@@ -1659,18 +1663,22 @@ div.cloudzoom-black:nth-child(3) {
 }
 
 .carousel-inner > .item {
-    -webkit-transition: none;
-  /*  padding-top: 315px; */
-}
-/*
-.carousel-inner > .item.active {
-  animation-name: fade-in;
+  transition: none;
   animation-delay: 0;
   animation-duration: 0.25s;
   animation-fill-mode: both;
-}*/
+  /*  padding-top: 315px; */
+}
 
-span.out{
+.carousel-inner > .item.left {
+  animation-name: slideOut;
+}
+
+.carousel-inner > .item.active {
+  animation-name: slideIn;
+}
+
+span.out{ 
 	height: 220px;
 	overflow-y: hidden;
 	position: relative;
@@ -1999,7 +2007,6 @@ span.out{
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  font-family: 'DM Sans';
   border-top: 1px solid #efefef;
   padding: 0.5rem 0.75rem;
   padding-bottom: 0.5rem;
