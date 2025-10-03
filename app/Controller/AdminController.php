@@ -1582,6 +1582,15 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$map = $this->Setting->findById('opengraph_height');
 		$data['opengraph_height'] = @$map['Setting']['value'];
 
+		$map = $this->Setting->findById('google_analytics_code');
+		$data['google_analytics_code'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('google_font_name');
+		$data['google_font_name'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('google_font_size');
+		$data['google_font_size'] = @$map['Setting']['value'];
+		$map = $this->Setting->findById('facebook_pixel_id');
+		$data['facebook_pixel_id'] = @$map['Setting']['value'];
+
 		$this->set('data', $data);		
 	}
 
