@@ -40,6 +40,25 @@
 	            <span class="text-muted">Ingresá el texto que desees para tu aplicación.</span>
 	          </div>
 	        </div>
+
+					<br />
+					<br />
+	        <h4 class="sub-header">Reportes de la tienda</h4>
+	        <p>Proporciona el código público del sitio para todos los servicios.</p>
+	        <div class="control-group">
+	          <label class="control-label" for="columns-text"><?php echo __('Google Analytics code'); ?></label>
+	          <div class="controls">
+	            <input type="text" maxlength="100" name="data[google_analytics_code]" class="form-control" value="<?= @$data['google_analytics_code'] ?>"/>
+	          </div>
+	          <span class="text-muted">Ingresa el código de Google Analytics</span>
+	        </div>
+	        <div class="control-group">
+	          <label class="control-label" for="columns-text"><?php echo __('Facebook Pixel ID'); ?></label>
+	          <div class="controls">
+	            <input type="text" maxlength="100" name="data[facebook_pixel_id]" class="form-control" value="<?= @$data['facebook_pixel_id'] ?>"/>
+	          </div>
+	          <span class="text-muted">Ingresa la identificación del pixel.</span>
+	        </div>	 	        
 	      </div>
 	      <div class="col-md-6">
 	      	<h4 class="sub-header">Imagen</h4>
@@ -49,24 +68,22 @@
 							<input type="file" name="data[opengraph][image]" value="" accept="image/*">
 						</div>
 					</div>
-        	<div class="row">
+      		<div class="col">
+		        <div class="control-group">
+		          <label class="control-label" for="columns-text"><?php echo __('Width'); ?></label>
+		          <div class="controls">
+		            <input type="number" maxlength="100" name="data[opengraph_width]" class="form-control" value="<?= @$data['opengraph_width'] ?>"/>
+		          </div>
+		          <span class="text-muted">Ancho de la imagen</span>
+		        </div>
         		<div class="col">
-			        <div class="control-group">
-			          <label class="control-label" for="columns-text"><?php echo __('Width'); ?></label>
-			          <div class="controls">
-			            <input type="number" maxlength="100" name="data[opengraph_width]" class="form-control" value="<?= @$data['opengraph_width'] ?>"/>
-			          </div>
-			          <span class="text-muted">Ancho de la imagen</span>
-			        </div>
-	        		<div class="col">
-			          <label class="control-label" for="columns-text"><?php echo __('Height'); ?></label>
-			          <div class="controls">
-			            <input type="number" maxlength="100" name="data[opengraph_height]" class="form-control" value="<?= @$data['opengraph_height'] ?>"/>
-			          </div>
-			          <span class="text-muted">Alto de la imagen.</span>
-			        </div>
-			      </div>
-	        </div>
+		          <label class="control-label" for="columns-text"><?php echo __('Height'); ?></label>
+		          <div class="controls">
+		            <input type="number" maxlength="100" name="data[opengraph_height]" class="form-control" value="<?= @$data['opengraph_height'] ?>"/>
+		          </div>
+		          <span class="text-muted">Alto de la imagen.</span>
+		        </div>
+		      </div>
 					<br />
 					<!--div class="control-group">						
 						<div class="controls">
@@ -77,6 +94,30 @@
 					<img src="<?= $data['opengraph_image'] ?>" width="200">
 					<button class="btn btn-danger" onclick="window.location.href='<?php echo $this->Html->url(array('action'=>'remove_opengraph_image')) ?>'">x</button>
 				<?php endif; ?>
+
+
+					<br />
+					<br />
+	        <h4 class="sub-header">Fuente de la tienda</h4>
+	        <p>Asigna el nombre de la fuente que desees (los archivos correspondientes se solicitarán a Google Fonts)</p>
+	        <div class="control-group">
+	          <label class="control-label" for="columns-text"><?php echo __('Google Font name'); ?></label>
+	          <div class="controls">
+	            <input type="text" maxlength="100" name="data[google_font_name]" class="form-control" value="<?= @$data['google_font_name'] ?>"/>
+	          </div>
+	          <span class="text-muted">Ingresa el nombre de la fuente, ej:
+	          	<span class="text-muted">DM Sans</span>
+	          </span>
+	        </div>
+	        <div class="control-group">
+	          <label class="control-label" for="columns-text"><?php echo __('Google Font size'); ?></label>
+	          <div class="controls">
+	            <input type="text" maxlength="100" name="data[google_font_size]" class="form-control" value="<?= @$data['google_font_size'] ?>"/>
+	          </div>
+	          <span class="text-muted">Ingresa el tamaño de la fuente, ej: 
+          		<span class="text-muted">300,400,500,600,700,800</span>
+	          </span>
+	        </div>
 				</div>
 			</div>
 	    <br />               

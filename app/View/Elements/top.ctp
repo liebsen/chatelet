@@ -39,14 +39,7 @@
         font-family: '<?= $font ?>', Verdana, Arial, Sans-Serif!important;
       }
     </style>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<?=Configure::read('GA_CODE')?>"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '<?=Configure::read('GA_CODE')?>');
-    </script>
+
 
     <!-- Bootstrap -->
     <?php

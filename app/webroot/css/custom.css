@@ -170,8 +170,8 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .slider-full {
-  min-height: calc(100vh - 8.5rem);
-  height: calc(100vh - 8.5rem);
+  min-height: calc(100vh - 12.5rem);
+  height: calc(100vh - 12.5rem);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
@@ -1654,8 +1654,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
  padding-right: 20%;
 }
 
-
-
 div.cloudzoom-black:nth-child(3) {
     display: none !important;
 }
@@ -1664,7 +1662,13 @@ div.cloudzoom-black:nth-child(3) {
     -webkit-transition: none;
   /*  padding-top: 315px; */
 }
-
+/*
+.carousel-inner > .item.active {
+  animation-name: fade-in;
+  animation-delay: 0;
+  animation-duration: 0.25s;
+  animation-fill-mode: both;
+}*/
 
 span.out{
 	height: 220px;
@@ -1992,8 +1996,11 @@ span.out{
 }
 
 .legends {
-  display: inline-block;
-  /*border-top: 1px solid #ddd;*/
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: 'DM Sans';
+  border-top: 1px solid #efefef;
   padding: 0.5rem 0.75rem;
   padding-bottom: 0.5rem;
   background-color: white;

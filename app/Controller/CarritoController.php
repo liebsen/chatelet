@@ -792,7 +792,7 @@ class CarritoController extends AppController
 			die;
 		}
 
-		$sale_object = array('id' => null,'user_id' => $user['id']);
+		$sale_object = array('id' => null,'user_id' => $user_id);
 		$logistic = $this->Logistic->findByCode($user['shipping']);
 
 		if(isset($logistic['Logistic'])) {
@@ -1018,6 +1018,7 @@ class CarritoController extends AppController
 		
 		$this->Sale->save(array(
 			'id' => $sale_id,
+			//'user_id' => $user['id'],
 			'free_shipping' => $freeShipping,
 			'payment_method' => $user['payment_method'],
 			'deliver_cost' => $delivery_cost,
@@ -1038,6 +1039,7 @@ class CarritoController extends AppController
 		//Register Extra Info
 		$to_save = array(
 			'id' 		=> $sale_id,
+			'user_id' => $user_id,
 			'nroremito'	=> $sale_id,
 			'apellido'	=> $user['surname'],
 			'nombre'	=> $user['name'],
@@ -1517,12 +1519,10 @@ el pago.</p>
 				error_log('failed');
 				return $this->render('clear_no');
 			}
-
 	}
 
 	public function clear() { //success
 		error_log('success payment: '.json_encode($this->Session->read('sale_data')));
-
 		if( $this->Session->check( 'sale_data' ) ){
 			$sale_data = $this->Session->read('sale_data');
 			$this->Sale->save(array(

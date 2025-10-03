@@ -30,11 +30,12 @@ $version = (float) $version_count;
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 Configure::write('mUrl','');
-Configure::write('font', 'DM Sans');
-Configure::write('fontweight', '300,400,500,600,700,800');
+//Configure::write('font', 'DM Sans');
+//Configure::write('fontweight', '300,400,500,600,700,800');
 Configure::write('DIST_VERSION', $version);
 Configure::write('APP_VERSION', $version);
-Configure::write('GA_CODE', 'G-MXN4MLM15S');
+//Configure::write('GA_CODE', 'G-MXN4MLM15S');
+//Configure::write('FB_PIXEL', '578829783660776');
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.

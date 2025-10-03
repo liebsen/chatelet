@@ -120,10 +120,12 @@ class AppController extends Controller
         $fontweight = Configure::read('fontweight');
         $version_file = __DIR__ . '/../version';
         $version_count = 1111;
+
         if(file_exists($version_file)) {
             $version_date = date("\~ \U\A d/m/Y H:i\h", filemtime($version_file));
             $version_count = (int) file_get_contents($version_file);
         }
+
         if ($this->Session->read('font')) {
             $font = $this->Session->read('font');
         }
@@ -145,40 +147,45 @@ class AppController extends Controller
         Configure::write('client_secret', 'hBHd6LiSEaTqgQXI2KSGO5C7uCBSINhW');
 
         $this->loadModel('Setting');
-        $a = $this->Setting->findById('stock_min');
-        $b = $this->Setting->findById('list_code');
-        $c = $this->Setting->findById('whatsapp_enabled');
-        $d = $this->Setting->findById('whatsapp_text');
-        $e = $this->Setting->findById('whatsapp_phone');
-        $f = $this->Setting->findById('whatsapp_autohide');
-        $g = $this->Setting->findById('whatsapp_animated');
-        $h = $this->Setting->findById('opengraph_type');
-        $i = $this->Setting->findById('opengraph_title');
-        $j = $this->Setting->findById('opengraph_text');
-        $k = $this->Setting->findById('opengraph_image');
-        $l = $this->Setting->findById('opengraph_width');
-        $m = $this->Setting->findById('opengraph_height');
 
-        Configure::write('stock_min', @$a['Setting']['value']);
-        Configure::write('list_code', @$b['Setting']['value']);
+        $stock_min = $this->Setting->findById('stock_min');
+        $list_code = $this->Setting->findById('list_code');
+        $whatsapp_enabled = $this->Setting->findById('whatsapp_enabled');
+        $whatsapp_text = $this->Setting->findById('whatsapp_text');
+        $whatsapp_phone = $this->Setting->findById('whatsapp_phone');
+        $whatsapp_autohide = $this->Setting->findById('whatsapp_autohide');
+        $whatsapp_animated = $this->Setting->findById('whatsapp_animated');
+        $opengraph_type = $this->Setting->findById('opengraph_type');
+        $opengraph_title = $this->Setting->findById('opengraph_title');
+        $opengraph_text = $this->Setting->findById('opengraph_text');
+        $opengraph_image = $this->Setting->findById('opengraph_image');
+        $opengraph_width = $this->Setting->findById('opengraph_width');
+        $opengraph_height = $this->Setting->findById('opengraph_height');
+        $google_analytics_code = $this->Setting->findById('google_analytics_code');
+        $facebook_pixel_id = $this->Setting->findById('facebook-pixel-id');
 
-        $whatsapp_enabled = @$c['Setting']['value'];
+        Configure::write('stock_min', @$stock_min['Setting']['value']);
+        Configure::write('list_code', @$list_code['Setting']['value']);
+        Configure::write('google_analytics_code', @$google_analytics_code['Setting']['value']);
+        Configure::write('facebook_pixel_id', @$facebook_pixel_id['Setting']['value']);
+
+        $whatsapp_enabled = @$whatsapp_enabled['Setting']['value'];
         $path = Router::url(null, false);
         if(strstr($path, "carrito") || strstr($path, "checkout")) {
             $whatsapp_enabled = false;
         }
         $data = [
             'whatsapp_enabled' => $whatsapp_enabled,
-            'whatsapp_text' => @$d['Setting']['value'],
-            'whatsapp_phone' => @$e['Setting']['value'],
-            'whatsapp_autohide' => @$f['Setting']['value'],
-            'whatsapp_animated' => @$g['Setting']['value'],
-            'opengraph_type' => @$h['Setting']['value'] ?: 'website',
-            'opengraph_title' => @$i['Setting']['value'] ?: 'Aplicación',
-            'opengraph_text' => @$j['Setting']['value'] ?: 'Descripción de mi aplicación',
-            'opengraph_image' => @$k['Setting']['value'] ?: 'https://chatelet.com.ar/images/share-080722.jpg',
-            'opengraph_width' => @$l['Setting']['value'] ?: 500,
-            'opengraph_height' => @$m['Setting']['value'] ?: 500
+            'whatsapp_text' => @$whatsapp_text['Setting']['value'],
+            'whatsapp_phone' => @$whatsapp_phone['Setting']['value'],
+            'whatsapp_autohide' => @$whatsapp_autohide['Setting']['value'],
+            'whatsapp_animated' => @$whatsapp_animated['Setting']['value'],
+            'opengraph_type' => @$opengraph_type['Setting']['value'] ?: 'website',
+            'opengraph_title' => @$opengraph_title['Setting']['value'] ?: 'Aplicación',
+            'opengraph_text' => @$opengraph_text['Setting']['value'] ?: 'Descripción de mi aplicación',
+            'opengraph_image' => @$opengraph_image['Setting']['value'] ?: 'https://chatelet.com.ar/images/share-080722.jpg',
+            'opengraph_width' => @$opengraph_width['Setting']['value'] ?: 500,
+            'opengraph_height' => @$opengraph_height['Setting']['value'] ?: 500
         ];
         
         $this->set('data', $data);

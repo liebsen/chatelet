@@ -98,7 +98,15 @@
                         echo '<a href="#" class="pencil" data-toggle="modal" data-target="'. $modal .'">';
                           echo '<span class="fa fa-pencil"></span>';
                         echo '</a>';
-                        echo $this->Html->link('Cerrar esta sesión', array(
+                        echo $this->Html->link('Mis compras', array(
+                            'controller' => 'users',
+                            'action' => 'mis_compras'
+                          ),
+                          array(
+                            'class' => 'right'
+                          )
+                        );
+                        echo $this->Html->link('Cerrar sesión', array(
                             'controller' => 'users',
                             'action' => 'logout'
                           ),

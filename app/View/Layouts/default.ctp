@@ -1,6 +1,7 @@
 <?php 
 	echo $this->element('top');
-  echo $this->element('fb-pixel');
+  echo $this->element('facebook-pixel-id');
+  echo $this->element('google-analytics-code');
 	echo $this->element('header');
 
 	/* Page Content */
