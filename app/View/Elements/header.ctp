@@ -3,19 +3,13 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand"
-             href="<?php echo router::url(array('controller' => 'Home', 'action' => 'index')) ?>" >
-                Châtelet</a>
-                <i class="fa fa-bars fa-d-lg text-chatelet navbar-toggle float-none m-0 collapsed text-chatelet" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"></i>
-            <!--button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button-->
+          <a class="navbar-brand"
+           href="<?php echo router::url(array('controller' => 'Home', 'action' => 'index')) ?>" >
+              Châtelet</a>
+          <i class="fa fa-bars fa-d-lg text-chatelet navbar-toggle float-none m-0 collapsed text-chatelet" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"></i>
         </div>
 
-         <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <?php foreach($menus as $menu): ?>
@@ -96,19 +90,19 @@
                       <?php
                         $modal = '#particular-modal';
                         echo '<a href="#" class="pencil" data-toggle="modal" data-target="'. $modal .'">';
-                          echo '<span class="fa fa-pencil"></span>';
+                        echo '<span class="fa fa-pencil"></span>';
                         echo '</a>';
-                        echo $this->Html->link('Mis compras', array(
+                        echo $this->Html->link('Cerrar sesión', array(
                             'controller' => 'users',
-                            'action' => 'mis_compras'
+                            'action' => 'logout'
                           ),
                           array(
                             'class' => 'right'
                           )
                         );
-                        echo $this->Html->link('Cerrar sesión', array(
+                        echo $this->Html->link('Mis compras', array(
                             'controller' => 'users',
-                            'action' => 'logout'
+                            'action' => 'mis_compras'
                           ),
                           array(
                             'class' => 'right'

@@ -1127,6 +1127,17 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   z-index: 99;
   transform: scale(1.1);
 }
+#detalle .caract label.active:before {
+  content: "\f058";
+  font-family: FontAwesome;
+  font-size: 1.25rem;
+  color: green;
+  position: absolute;
+  top: -0.25rem;
+  background-color: #efefef;
+  left: 0;
+  right: 0;
+}
 #detalle .caract label.btn small {
   display: block; 
   color: #404040;
@@ -2252,6 +2263,10 @@ span.out{
 
 .ribbon.bottom-left.large {
   transform: scale(1.6) translateY(-0.75rem) translateX(0.75rem);  
+}
+
+.article-tools {
+  padding: 0.25rem;
 }
 
 .article-related-title {

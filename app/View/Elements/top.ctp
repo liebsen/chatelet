@@ -36,10 +36,10 @@
     <link href="https://fonts.googleapis.com/css?family=<?= @urlencode($font) ?>:<?= @$fontweight ?>" rel="stylesheet">
     <style>
       :root {
-        --google-fonts-name: <?= $font ?>;
+        --google-fonts-name: <?=@$data['google_font_name'] ?>;
       }
       body, h1, h2, h3, h4, h5, h6 {
-        font-family: '<?= $font ?>', Verdana, Arial, Sans-Serif!important;
+        font-family: '<?=@$data['google_font_name'] ?>', Verdana, Arial, Sans-Serif!important;
       }
     </style>
 

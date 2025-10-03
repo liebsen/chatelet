@@ -43,6 +43,11 @@ class UsersController extends AppController {
 
     public function logout() {
         $this->Session->destroy();
+        $this->Session->setFlash(
+            'Gracias por comprar con Châtelet', 
+            'default', 
+            array('class' => 'hidden notice')
+        );        
         return $this->redirect($this->Auth->logout());
     }
 

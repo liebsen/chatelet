@@ -33,6 +33,8 @@ class AppHelper extends Helper {
 
   var $helpers = array('Html', 'Number');  // include the HTML helper
   var $title_exclude = ['Giftcard'];
+
+
   function cat_title($name){
     $reps = [
       ' ,',
@@ -220,7 +222,7 @@ class AppHelper extends Helper {
       }
       
       if($calc_price >= $min_sale) {        
-        $str.= '<span class="text-legend google-fonts">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
+        $str.= '<span class="text-legend">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
           '<span class="text-theme text-bold text-high">' . $legend['Legend']['dues'] . '</span>',
           $legend['Legend']['interest'],
           '<span class="price_strong"> $ ' . \price_format($price_with_interest/$legend['Legend']['dues']) . '</span>'

@@ -58,6 +58,55 @@ class AppController extends Controller
         )
     );
 
+    private $setting_tags = [
+      'stock_min',
+      'list_code',
+      'whatsapp_enabled',
+      'whatsapp_text',
+      'whatsapp_phone',
+      'whatsapp_autohide',
+      'whatsapp_animated',
+      'opengraph_type',
+      'opengraph_title',
+      'opengraph_text',
+      'opengraph_image',
+      'opengraph_width',
+      'opengraph_height',
+      'google_analytics_code',
+      'google_font_name',
+      'google_font_size',
+      'facebook_pixel_id',
+      'mercadopago_client_id',
+      'mercadopago_client_secret',
+    ];
+
+    private function load_settings(){
+        $this->loadModel('Setting');
+        $tags = [];        
+        $settings = $this->Setting->find('all');
+        $data = [];
+        $path = Router::url(null, false);
+
+        foreach($settings as $setting) {
+            $id = $setting['Setting']['id'];
+            $value = $setting['Setting']['value'];
+            $data[$id] = $value;
+
+            if(!in_array($id, $this->setting_tags)) {
+                continue;
+            }
+
+            if($setting  == 'whatsapp_enabled' &&(strstr($path, "carrito") || strstr($path, "checkout"))) {
+                continue;
+            }
+
+            //CakeLog::write('debug', $id.':'. $value);
+            Configure::write($id, $value);
+        }
+
+        return $data;
+    }
+
     private function site_visits(){
         $this->loadModel('Setting');
         $site_visits = $this->Setting->findById('site_visits');
@@ -114,10 +163,7 @@ class AppController extends Controller
         
         $this->set('categories', $categories);
 
-        $basicfont = Configure::read('font');
-        $font = $basicfont;
         // 'Fira Sans Condensed', 'Sniglet','Roboto Condensed', 'Archivo Narrow'
-        $fontweight = Configure::read('fontweight');
         $version_file = __DIR__ . '/../version';
         $version_count = 1111;
 
@@ -126,68 +172,22 @@ class AppController extends Controller
             $version_count = (int) file_get_contents($version_file);
         }
 
-        if ($this->Session->read('font')) {
-            $font = $this->Session->read('font');
-        }
-
         if (isset($_REQUEST['font'])) {
-            $font = urldecode($_REQUEST['font']);
             $this->Session->write('font',urldecode($_REQUEST['font']));
         }
 
         if (isset($_REQUEST['exitfont'])) {
-            $font = $basicfont;
             $this->Session->delete('font');
         }
-
-        $this->set('font', $font);
-        $this->set('fontweight', $fontweight);
 
         Configure::write('client_id', '6773841105361656');
         Configure::write('client_secret', 'hBHd6LiSEaTqgQXI2KSGO5C7uCBSINhW');
 
         $this->loadModel('Setting');
 
-        $stock_min = $this->Setting->findById('stock_min');
-        $list_code = $this->Setting->findById('list_code');
-        $whatsapp_enabled = $this->Setting->findById('whatsapp_enabled');
-        $whatsapp_text = $this->Setting->findById('whatsapp_text');
-        $whatsapp_phone = $this->Setting->findById('whatsapp_phone');
-        $whatsapp_autohide = $this->Setting->findById('whatsapp_autohide');
-        $whatsapp_animated = $this->Setting->findById('whatsapp_animated');
-        $opengraph_type = $this->Setting->findById('opengraph_type');
-        $opengraph_title = $this->Setting->findById('opengraph_title');
-        $opengraph_text = $this->Setting->findById('opengraph_text');
-        $opengraph_image = $this->Setting->findById('opengraph_image');
-        $opengraph_width = $this->Setting->findById('opengraph_width');
-        $opengraph_height = $this->Setting->findById('opengraph_height');
-        $google_analytics_code = $this->Setting->findById('google_analytics_code');
-        $facebook_pixel_id = $this->Setting->findById('facebook-pixel-id');
+        $data = $this->load_settings();        
+        CakeLog::write('debug', 'settings:'. json_encode($data));
 
-        Configure::write('stock_min', @$stock_min['Setting']['value']);
-        Configure::write('list_code', @$list_code['Setting']['value']);
-        Configure::write('google_analytics_code', @$google_analytics_code['Setting']['value']);
-        Configure::write('facebook_pixel_id', @$facebook_pixel_id['Setting']['value']);
-
-        $whatsapp_enabled = @$whatsapp_enabled['Setting']['value'];
-        $path = Router::url(null, false);
-        if(strstr($path, "carrito") || strstr($path, "checkout")) {
-            $whatsapp_enabled = false;
-        }
-        $data = [
-            'whatsapp_enabled' => $whatsapp_enabled,
-            'whatsapp_text' => @$whatsapp_text['Setting']['value'],
-            'whatsapp_phone' => @$whatsapp_phone['Setting']['value'],
-            'whatsapp_autohide' => @$whatsapp_autohide['Setting']['value'],
-            'whatsapp_animated' => @$whatsapp_animated['Setting']['value'],
-            'opengraph_type' => @$opengraph_type['Setting']['value'] ?: 'website',
-            'opengraph_title' => @$opengraph_title['Setting']['value'] ?: 'Aplicación',
-            'opengraph_text' => @$opengraph_text['Setting']['value'] ?: 'Descripción de mi aplicación',
-            'opengraph_image' => @$opengraph_image['Setting']['value'] ?: 'https://chatelet.com.ar/images/share-080722.jpg',
-            'opengraph_width' => @$opengraph_width['Setting']['value'] ?: 500,
-            'opengraph_height' => @$opengraph_height['Setting']['value'] ?: 500
-        ];
-        
         $this->set('data', $data);
 
         if(!empty($this->Auth->user('role')) && $this->Auth->user('role') == 'admin'){

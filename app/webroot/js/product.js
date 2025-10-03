@@ -173,6 +173,8 @@ function pideStock(obj){
 	  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
 				if(data != 0){
 				  //stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
+				  $('.growl').remove()
+
 				  onWarningAlert('<i class="fa fa-check"></i> Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
 					stock_cont.html(stock);
 					setTimeout(() => {
@@ -255,8 +257,8 @@ $(document).ready(function() {
 
 
 	/* autoselect if one option */
-	if($('.color-option').length == 1) {
-		$('.color-option').click()
+	if($('.color-option').length > 0) {
+		$('.color-option').first().click()
 	}
 
 	if($('#size option').length == 2) {

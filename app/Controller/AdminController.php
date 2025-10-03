@@ -155,7 +155,7 @@ class AdminController extends AppController {
 //		pr($details);
 
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
-		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
+		$mp = new MP(Configure::read('mercadopago_client_id'), Configure::read('mercadopago_client_secret'));
 		$filters = array(
       "range" => "date_created",
       "begin_date" => "2020-10-31T00:00:00Z",
@@ -207,6 +207,7 @@ class AdminController extends AppController {
 		$order_nro = @strtoupper($logistic['code']).$sale['id'];
 		$sale['def_orden_retiro'] = $order_nro;
 		$sale['def_orden_tracking'] = $order_nro;
+		CakeLog::write('debug', 'sale(5)'.json_encode($sale));			
 		$t = @$this->Sale->save($sale);
 		$sale['raw_xml'] = 'default';
 		return $sale;		
@@ -401,6 +402,7 @@ class AdminController extends AppController {
 		$oca_result = $oca->ingresoORNuevo($nrocuenta, $idoperativa, $usr, $psw, $sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
 		$sale['def_orden_retiro'] = @$oca_result['retiro'];
 		$sale['def_orden_tracking'] = @$oca_result['tracking'];
+		CakeLog::write('debug', 'sale(6)'.json_encode($sale));			
 		$t = @$this->Sale->save($sale);
 		$sale['raw_xml'] = @$oca_result['rawXML'];
 		return $sale;		
@@ -508,6 +510,7 @@ class AdminController extends AppController {
 			$nroEnvio = @$response->bultos[0]->numeroDeEnvio;
 	    $sale['def_orden_retiro'] = $nroEnvio;
 	    $sale['def_orden_tracking'] = $nroEnvio;
+	    CakeLog::write('debug', 'sale(6)'.json_encode($sale));			
 	    $t = @$this->Sale->save($sale);
 		}
 
@@ -540,6 +543,7 @@ class AdminController extends AppController {
 			$save = ['id' => $sale_id];
 			$save['logistic_id'] = (integer) $data['logistic_id'];
 			$save['shipping'] = $logistic['Logistics']['code'];
+			CakeLog::write('debug', 'sale(7)'.json_encode($sale));			
 			$t = $this->Sale->save($save);
 		}
 		die(json_encode($json));
@@ -551,10 +555,12 @@ class AdminController extends AppController {
 		$sale = $this->Sale->findById($sale_id);
 		$sale = $sale['Sale'];
 		$orden = "{$sale['shipping']}$sale_id";
-		$this->Sale->save([
+		$sale_object = [
 			'id' => $sale_id,
 			'def_orden_retiro' => $orden
-		]);
+		];
+		CakeLog::write('debug', 'sale(8)'.json_encode($sale_object));
+		$this->Sale->save($sale_object);
 		$data = [
 			'status' => 'success',
 			'message' => 'Notificación enviada',
@@ -601,7 +607,6 @@ class AdminController extends AppController {
 		if(!$this->isAuthorized()) {
 			die(json_encode(['status' => "error", 'message' => "Unauthorized"]));
 		}
-
 
 		$sale = $this->Sale->findById($sale_id);
 		$data = [
@@ -776,7 +781,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			return json_decode(file_get_contents(__DIR__ . '/dummy/mpsales.json'), true);
 		}
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
-		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
+		$mp = new MP(Configure::read('mercadopago_client_id'), Configure::read('mercadopago_client_secret'));
 		$limit = isset($_GET['extended']) ? 500 : 10;
 		$filters = array(
       "range" => "date_created",
@@ -1528,7 +1533,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			);
 		$this->set('h1', $h1);
 
-		$data = [];
+		/*$data = [];
 		$map = $this->Setting->findById('whatsapp_enabled');
 		$data['whatsapp_enabled'] = $map['Setting']['value'];
 		$map = $this->Setting->findById('whatsapp_phone');
@@ -1538,14 +1543,27 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 		$map = $this->Setting->findById('whatsapp_autohide');
 		$data['whatsapp_autohide'] = $map['Setting']['value'];
 		$map = $this->Setting->findById('whatsapp_animated');
-		$data['whatsapp_animated'] = $map['Setting']['value'];
+		$data['whatsapp_animated'] = $map['Setting']['value'];*/
 
 		$items = $this->Promo->find('all');
-		$this->set('data', $data);		
 		$this->set('items',$items);
 	}
 
 	public function application(){
+		$navs = array(
+			'Textos' => array(
+				'icon' 		=> 'gi gi-text',
+				'url'		=> Configure::read('mUrl').'/admin/application/basic',
+				'active'	=> '/admin/application/basic'
+			),
+			'Imagen' => array(
+				'icon' 		=> 'gi gi-image',
+				'url'		=> Configure::read('mUrl').'/admin/application/image',
+				'active'	=> '/admin/application/image'
+			)
+		);
+
+		$this->set('navs', $navs);		
 	  $this->loadModel('Setting');
 		if($this->request->is('post')){
 			$data = $this->request->data;
@@ -1567,31 +1585,6 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			);
 
 		$this->set('h1', $h1);
-
-		$data = [];
-		$map = $this->Setting->findById('opengraph_title');
-		$data['opengraph_title'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('opengraph_text');
-		$data['opengraph_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('opengraph_image');
-		$data['opengraph_image'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('opengraph_type');
-		$data['opengraph_type'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('opengraph_width');
-		$data['opengraph_width'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('opengraph_height');
-		$data['opengraph_height'] = @$map['Setting']['value'];
-
-		$map = $this->Setting->findById('google_analytics_code');
-		$data['google_analytics_code'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('google_font_name');
-		$data['google_font_name'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('google_font_size');
-		$data['google_font_size'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('facebook_pixel_id');
-		$data['facebook_pixel_id'] = @$map['Setting']['value'];
-
-		$this->set('data', $data);		
 	}
 
 	public function promos(){
@@ -3029,30 +3022,6 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
       	$this->Setting->save(['id' => $id, 'value' => $value]);
       }
 		}
-
-		$data = [];
-		$map = $this->Setting->findById('bank_enable');
-		$data['bank_enable'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_explain_title');
-		$data['bank_explain_title'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_explain_text');
-		$data['bank_explain_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_instructions_title');
-		$data['bank_instructions_title'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_instructions_text');
-		$data['bank_instructions_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_total_text');
-		$data['bank_total_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_whatsapp');
-		$data['bank_whatsapp'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount_enable');
-		$data['bank_discount_enable'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount');
-		$data['bank_discount'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount_text');
-		$data['bank_discount_text'] = @$map['Setting']['value'];
-
-		$this->set('data', $data);
 	}	
 
   public function subscriptions($action = null) {

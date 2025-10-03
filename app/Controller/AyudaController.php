@@ -40,10 +40,6 @@ class AyudaController extends AppController {
 	}
 
 	public function envios() {
-		$map = $this->Setting->findById('carrito_takeaway_text');
-		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
-		$this->set('data', $data);
-
 		if ($this->request->is('post')) {
 			$data = $this->request->data;
 
@@ -65,29 +61,7 @@ class AyudaController extends AppController {
 			$price+= $sale['Sale']['deliver_cost'];
 		} */
 
-		$data = [];
-		$data['id'] = $id;
-		$map = $this->Setting->findById('display_text_shipping_min_price');
-		$data['display_text_shipping_min_price'] = $map['Setting']['value'];
-		$map = $this->Setting->findById('text_shipping_min_price');
-		$data['text_shipping_min_price'] = $map['Setting']['value'];
-		$map = $this->Setting->findById('carrito_takeaway_text');
-		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
-		$map = $this->Setting->findById('bank_explain_text');
-		$data['bank_explain_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_instructions_text');
-		$data['bank_instructions_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_explain_title');
-		$data['bank_explain_title'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_instructions_title');
-		$data['bank_instructions_title'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_total_text');
-		$data['bank_total_text'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_whatsapp');
-		$data['bank_whatsapp'] = @$map['Setting']['value'];
-		$data['total_price'] = @$price;
-
-		$this->set('data', $data);
+		$this->set('invoice_id', $id);
 		// return $this->render('onlinebanking');
 	}
 

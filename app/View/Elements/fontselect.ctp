@@ -1,9 +1,9 @@
 <?php 
 
-if($this->Session->read('font') || isset($_REQUEST['font'])): 
+$font = Configure::read('google-font-name');
 
+if($font || isset($_REQUEST['font'])): 
     $selected = $this->Session->read('font') ? : urldecode($_REQUEST['font']);
-
     $fonts = ['Fredoka One', 'Montserrat','Archivo Narrow','Roboto Condensed','Poppins','Sniglet','Open Sans', 'Lato', 'Oswald', 'Source Sans Pro', 'Raleway', 'PT Sans', 'Merriweather', 'Noto Sans', 'Nunito', 'Concert One', 'Prompt', 'Work Sans', 'Krona One', 'Syne', 'DM Sans', 'Harmond', 'Magilio', 'Harmony', 'Resist Sans', 'Rock Salt', 'Sacramento', 'Reenie Beanie'];
 ?>
     <div class="font-select">

@@ -800,6 +800,7 @@ class CarritoController extends AppController
 		}
 
 		//Register Sale
+		CakeLog::write('debug', 'sale(1)'.json_encode($sale_object));
 		$this->Sale->save($sale_object);
 		$sale_id = $this->Sale->id;
 		$gift_ids = !empty($user['gifts']) ? explode(",",$user['gifts']) : [];
@@ -1016,14 +1017,17 @@ class CarritoController extends AppController
 		$shipping_type_value = @$shipping_config['Setting']['value'];
 		$zipCodes = @$shipping_config['Setting']['extra'];
 		
-		$this->Sale->save(array(
+		$sale_object = array(
 			'id' => $sale_id,
 			//'user_id' => $user['id'],
 			'free_shipping' => $freeShipping,
 			'payment_method' => $user['payment_method'],
 			'deliver_cost' => $delivery_cost,
 			'shipping_type' => $shipping_type_value
-		));
+		);
+		CakeLog::write('debug', 'sale(2)'.json_encode($sale_object));
+
+		$this->Sale->save($sale_object);
 
 		//Re - Registar Sale Products
 		$sale['Sale']['id'] = $sale_id;
@@ -1066,6 +1070,7 @@ class CarritoController extends AppController
 			'dues'		=> $user['dues']
 		);
 
+CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		// error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
 		error_log("total mp: " . $total);
@@ -1077,7 +1082,7 @@ class CarritoController extends AppController
 		}
 
 		//MP
-		$mp = new MP(Configure::read('client_id'), Configure::read('client_secret'));
+		$mp = new MP(Configure::read('mercadopago_client_id'), Configure::read('mercadopago_client_secret'));
 		$success_url = Router::url(array('controller' => 'carrito', 'action' => 'clear'), true);
 		$failure_url = Router::url(array('controller' => 'carrito', 'action' => 'failed'), true);
 
@@ -1262,12 +1267,11 @@ class CarritoController extends AppController
 		$payment_dues = @$config['payment_dues'] ?: '1';
 		$groups = [];
 		$sort = [];
-		error_log($payment_method);
 
 		if (!empty(@$carro)) {
 			foreach($carro as $key => $item) {
 				$criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
-
+				CakeLog::write('debug', 'citeria:'. $criteria);
 				if (!isset($groups[$criteria])) {
 					$groups[$criteria] = 0;
 				}
@@ -1525,10 +1529,12 @@ el pago.</p>
 		error_log('success payment: '.json_encode($this->Session->read('sale_data')));
 		if( $this->Session->check( 'sale_data' ) ){
 			$sale_data = $this->Session->read('sale_data');
-			$this->Sale->save(array(
+			$sale_object = array(
 				'id' 		=> $sale_data['sale_id'],
 				'completed' => 1
-			));
+			);
+			CakeLog::write('debug', 'sale(4)'.json_encode($to_save));			
+			$this->Sale->save($sale_object);
 			$this->set('sale_data',$this->Session->read('sale_data'));
 			$this->notify_user($this->Session->read('sale_data'), 'success');
 			$this->Session->delete('cart');
