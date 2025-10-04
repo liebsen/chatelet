@@ -197,7 +197,7 @@
 						<div class="payment-dues card mt-4-d animated scaleIn">
 						  <div class="card-body">
 						    <h5 class="card-title">
-						    	<i class="fa fa-calendar-o"></i>
+						    	<!--i class="fa fa-calendar-o"></i-->
 						    	¿Querés financiar tu compra?
 						    </h5>
 						    <h6 class="card-subtitle">Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</h6>

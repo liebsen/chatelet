@@ -27,7 +27,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   /*font-family: "DM Sans", Verdana, Arial, Sans-Serif!important;*/
-  font-weight: 1000;
+  font-weight: 700;
 }
 
 .noscroll {
@@ -662,7 +662,7 @@ footer .options > div {
   }  
 }
 
-footer h3 { color: #464444; font-size: 1.25rem; text-transform: uppercase; font-weight: 1000; margin-bottom: 1.25rem; margin-top: 2rem; }
+footer h3 { color: #464444; font-size: 1.25rem; text-transform: uppercase; font-weight: 700; margin-bottom: 1.25rem; margin-top: 2rem; }
 footer h3:after { background: black; content: ""; display: block; height: 4px;border-radius: 4px; margin-top: 15px; width: 50px; }
 footer a { color: #464444; font-size: 1rem; font-weight: 200; text-transform: uppercase;  }
 footer a:hover { color: #363633; }
@@ -956,10 +956,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 
 #productOptions { padding: 1.25rem; }
 #productOptions nav li { border-bottom: 1px solid rgba(194, 194, 194, 0.27); padding: 20px 0; }
-#productOptions nav li a { color: #222; font-size: 1rem; line-height: 1.1; text-transform: uppercase; font-weight: 500; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
+#productOptions nav li a { color: #222; font-size: 1rem; line-height: 1.1; text-transform: uppercase; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #productOptions nav li a:hover { color: #e10d74; }
-#productOptions nav li a.current{ color: #e10d74!important;font-weight: 1000;}
-#productOptions a.btBig { border: 2px solid #363633; color: #6e6e6e; display: block; font-size: 40px; font-weight: 600; padding: 240px 0; text-align: center; border-radius: 0.5rem;}
+#productOptions nav li a.current{ color: #e10d74!important;font-weight: 700;}
+#productOptions a.btBig { border: 2px solid #363633; color: #6e6e6e; display: block; font-size: 40px; padding: 240px 0; text-align: center; border-radius: 0.5rem;}
 #productOptions a.btBig span { color: #363633; font-size: 27px; }
 #productOptions .product-list a {  /*background: #efefef;*/ 
   width: 100%; 
@@ -1067,12 +1067,12 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #detalle li a { display: inline-block; overflow: hidden; }
 #detalle li a img { float: left; max-height: 10rem; border-radius: 0.5rem;}
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/
-#detalle h1 { color: #404040; font-size: 30px; font-weight: 1000; margin-bottom: 5px; margin-top: 10px; }
+#detalle h1 { color: #404040; font-size: 30px; font-weight: 700; margin-bottom: 5px; margin-top: 10px; }
 #detalle > p { font-size: 1rem; font-weight: 600; margin-bottom: 20px; }
 #detalle .price {
   color: #363633;
   font-size: 1.5rem;
-  font-weight: 1000;
+  font-weight: 700;
   margin-top: 1rem;
   padding: 0.25 1rem;
 }
@@ -1271,17 +1271,17 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #formulario label.mr { margin-right: 100px; }
 #formulario input[type="email"] { margin-top: 70px; }
 #formulario textarea { margin-top: 65px; height: 150px; margin-bottom: 57px; }
-#formulario input[type="submit"] { background: transparent; border: 2px solid #363633; color: #363633; font-size: 1rem; font-weight: 1000; height: 60px; width: 100%; border-radius: 0.5rem;}
+#formulario input[type="submit"] { background: transparent; border: 2px solid #363633; color: #363633; font-size: 1rem; font-weight: 700; height: 60px; width: 100%; border-radius: 0.5rem;}
 #formulario label span { border: 2px solid #868686; border-radius: 50%; cursor: pointer; display: block; float: left; height: 22px; margin-right: 10px; margin-top: -5px; padding: 4px; width: 22px; }
 #formulario label span i { background: #363633; border-radius: 50%; display: none; height: 100%; }
 #formulario label input { display: none; }
 #formulario label span.active i { display: block; }
 
 #headhelp { /*background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover;*/ position: relative;  overflow-x: hidden;}
-#headhelp h1 { color: #363633; font-size: 40px; font-weight: 1000; /*margin-top: 50px; margin-left: 2rem;*/ }
+#headhelp h1 { color: #363633; font-size: 40px; font-weight: 700; /*margin-top: 50px; margin-left: 2rem;*/ }
 #headhelp h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 #headhelp .box { border: 2px solid #6666; padding: 4rem; }
-#headhelp .box h3 { font-size: 2.5rem; font-weight: 1000; margin-bottom: 2rem; margin-top: 0;}
+#headhelp .box h3 { font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem; margin-top: 0;}
 #headhelp .box p { font-size: 15px; line-height: 1.5; /*margin-bottom: 45px;*/ }
 #headhelp .box p a { color: #363633; font-weight: 600; }
 #optionsHelp {     
@@ -2046,7 +2046,7 @@ span.out{
 
 .price_strong {
   color: black;
-  font-weight: 1000;
+  font-weight: 700;
   font-size: 1rem;
   white-space: nowrap;
 }
@@ -2177,7 +2177,7 @@ span.out{
 
 .ribbon.small span {
   font-size: 0.85rem;
-  font-weight: 1000;
+  font-weight: 700;
 }
 
 .ribbon.left {

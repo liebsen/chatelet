@@ -128,8 +128,8 @@
 							echo '<p class="color">Talle: <span class="talle">'. $product['size'] .'</span></p>';
 						}
 						echo '<p class="color">Cantidad: <span class="talle">'. $product['count'] .'</span></p>';
-						echo '<label class="form-group mt-1">
-							  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted">Es para regalo</span><br><br>
+						echo '<label class="form-group mt-3">
+							  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-small">Es para regalo</span><br><br>
 							</label>';
 						/*if(!empty($product['mp_discount']) || !empty($product['bank_discount'])) {
 							echo '<div class="d-flex gap-05 mb-05">';

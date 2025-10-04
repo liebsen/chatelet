@@ -3145,7 +3145,7 @@ table.dataTable thead .sorting:before {
     line-height: 1;
     border-radius: 0.5rem;
     padding: 1rem 1.5rem;
-    font-weight: 1000;
+    font-weight: 700;
 }
 
 .btn:hover,

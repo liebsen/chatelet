@@ -18,9 +18,10 @@
 }
 
 .cargo-title {
+	color: #666;
 	margin:0.5rem 0;
   margin-top: 1rem;
-	font-weight: 800;
+	font-weight: 600;
 	line-height: 1;
 	font-size: 1.25rem;
 }

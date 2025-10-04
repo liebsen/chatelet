@@ -65,7 +65,7 @@ var select_dues = (e,item) => {
 
 	var interest = $(e).data('interest')
 
-	onSuccessAlert(`${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
+	onSuccessAlert(`Seleccionaste ${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
 	save_preference([
 		{'payment_method': 'mercadopago'},
 		{'payment_dues': dues_selected}
@@ -129,7 +129,7 @@ var select_payment = (e,item) => {
 		$('.bank-block').addClass('hide')
 	}
 
-  onSuccessAlert('' + (selected === 'bank' ? 'Transferencia' : 'Mercado Pago'), '✓ Método de pago seleccionado');
+  onSuccessAlert('Seleccionaste pagar con ' + (selected === 'bank' ? 'Transferencia' : 'Mercado Pago'), '✓ Método de pago seleccionado');
 
   save_preference({payment_method: selected})
 

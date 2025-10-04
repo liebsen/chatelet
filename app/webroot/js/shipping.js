@@ -104,7 +104,7 @@ $(function(){
 				setTimeout(() => {
 					$('.input-cp').removeClass('wrong');
 					$('.input-cp').addClass('ok');
-					onSuccessAlert(cp, '✓ Código Postal válido');
+					onSuccessAlert('Seleccionaste cp ' + cp, '✓ Código Postal válido');
 					document.querySelector('.shipping-block').classList.remove('hidden')	
 					if (carrito.cargo === 'shipment' && carrito.shipping) {
 						$(`.shipping-options li[shipping="${carrito.shipping}"]`).click()

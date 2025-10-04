@@ -71,8 +71,6 @@ var selectStore = e => {
   preferences.cargo = 'takeaway'
   //console.log('total_price(2)', price)
   preferences.total_price = price
-  if(log)
-  	console.log('shipping_price(2)', 0)
   preferences.shipping_price = 0
   preferences.subtotal_price = total_orig
   preferences.store = $(e).attr('store')
@@ -80,7 +78,7 @@ var selectStore = e => {
   localStorage.setItem('carrito', JSON.stringify(preferences))
   var carrito_takeaway_text = $('.carrito_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
-  onSuccessAlert(`Retirás en sucursal ${suc.replace(',','')}`, `Podes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. ${carrito_takeaway_text}`);
+  onSuccessAlert(`Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}`, `Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. ${carrito_takeaway_text}`);
 	cargo = 'takeaway'
 }
 var show_cart_item = (index) => {
@@ -321,9 +319,9 @@ $(document).ready(function() {
 			const takeaway = $('.takeaway-options li.selected')
 			if(cargo === 'shipment' && !takeaway.length || freeShipping) {
 				$('#calulate_shipping').submit()	
-				onWarningAlert('<i class="fa fa-calculator"></i> Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
+				onWarningAlert('<i class="fa fa-stopwatch"></i> Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
 			} else {
-				onWarningAlert('<i class="fa fa-car"></i> Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000)
+				onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000)
 			}
 		}, 1000)
 	}

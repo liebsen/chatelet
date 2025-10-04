@@ -5,6 +5,7 @@
 
 #heading {
 	color: #666; /* #e10d74; */
+	font-weight: 600;
 	/*font-style: italic;
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
@@ -159,10 +160,11 @@
 	width: 22px;
 }
 
+.talle {
+	font-weight: 600;
+}
 
-.talle,
 .price {
-	/* color: black; */
 	font-weight: 1000;
 }
 
