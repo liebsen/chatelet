@@ -487,21 +487,22 @@ select.form-control{
 }
 
 .carrito-selector input {
-	border-radius: 0!important;
+	/*border-radius: 0!important;
 	border-color: transparent;
-	background-color: transparent;
+	background-color: transparent;*/
 	color: #e10d74;
 	font-size: 1.25rem;
-	font-weight: bold;
+	font-weight: 1000;
 }
 .product-count:focus {
 	background-color: #ffcc66;
 }
 
 .input-group-addon.input-lg {
-	background-color: white;
+	/*background-color: white;
 	border: 2px solid #e10d74;
-  border-radius: 0.5rem;
+  border-radius: 0.5rem;*/
+  border: none;
   color: #e10d74!important;
 }
 
@@ -710,6 +711,10 @@ select.form-control{
 }
 
 #control-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
 	padding: 0 10px;
 }
 
@@ -1181,7 +1186,7 @@ span.validation-password {
 @media screen and (min-width: 992px) {
   .box {
     /*transform: scale(1) perspective(1024px) rotateY(-10deg) rotateX(3deg) rotate(3deg) translateY(0rem) translateX(-2rem);*/
-    box-shadow: 2px 1px 5px 0 rgba(26, 26, 67, .05), 10px 37.5px 42px -25px rgba(50, 50, 93, .2), 23.4px 37.5px 75px -37.5px rgba(0, 0, 0, .4);
+    box-shadow: 2px 1px 5px 0 rgba(26, 26, 67, .05), 10px 37.5px 42px -25px rgba(50, 50, 93, .2), 23.4px 37.5px 75px -37.5px rgba(0, 0, 0, .8);
   }
 }
 

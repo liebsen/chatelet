@@ -163,7 +163,7 @@
 .talle,
 .price {
 	/* color: black; */
-	font-weight: bold;
+	font-weight: 1000;
 }
 
 .price.is-large {

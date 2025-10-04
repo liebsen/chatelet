@@ -1049,14 +1049,14 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 /*#detalle ul { margin-top: 100px; }*/
 #detalle li { overflow: hidden; text-align: right; margin-bottom: 1.5rem;}
 #detalle li a { display: inline-block; overflow: hidden; }
-#detalle li a img { float: left; max-height: 10rem;}
+#detalle li a img { float: left; max-height: 10rem; border-radius: 0.5rem;}
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/
 #detalle h1 { color: #404040; font-size: 30px; font-weight: 1000; margin-bottom: 5px; margin-top: 10px; }
 #detalle > p { font-size: 1rem; font-weight: 600; margin-bottom: 20px; }
 #detalle .price {
   color: #363633;
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 1000;
   margin-top: 1rem;
   padding: 0.25 1rem;
 }
@@ -1074,7 +1074,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #detalle .caract .size { margin-bottom: 25px; }
 #detalle .caract .size a { color: #404040; display: inline-block; font-size: 16px; margin-right: 20px; }
 #detalle .caract .size a.active { color: #363633; }
-#detalle .caract a.table { background: url(../images/sizes.png) no-repeat right center; color: #363633; font-size: 16px; font-weight: 600; padding-right: 45px;padding-top: 5px }
+#detalle .caract a.table { background: url(../images/sizes.png) no-repeat right center; color: #363633; font-size: 16px; font-weight: 600; padding-right: 45px;padding-top: 10px }
 #detalle .caract h4 { /*border-top: 2px solid #c2c2c2;*/ font-size: 22px; font-weight: 500; margin-top: 30px; padding-top: 20px; }
 #detalle .caract .colors { float: right; margin-top: -19px; }
 #detalle .caract .colors a { border-radius: 50%; display: inline-block; height: 20px; margin-right: 20px; width: 20px; }
@@ -1123,20 +1123,21 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   min-width: 7rem;*/
   transition: all 0.25s ease-out;
 }
+#detalle .caract label > input {
+  display: none;
+}
 #detalle .caract label.active {
   z-index: 99;
-  transform: scale(1.1);
+  filter: brightness(1.15);
 }
 #detalle .caract label.active:before {
   content: "\f058";
   font-family: FontAwesome;
   font-size: 1.25rem;
-  color: green;
+  color: #14c408;
   position: absolute;
-  top: -0.25rem;
-  background-color: #efefef;
-  left: 0;
-  right: 0;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 #detalle .caract label.btn small {
   display: block; 
@@ -1160,12 +1161,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   background-size: cover;
   background-color: whitesmoke;
   transition: all 0.15s linear;
-  border-radius: 0.5rem;
-  /*background-color: #f8f8f8;
-  width: 100%;
-  width: 6rem;
-  border: solid 3px transparent;
-  border-radius: 0.5rem;*/
+  border-radius: 0.75rem;
 }
 
 @media(min-width: 400px) and (max-width: 549px) {
@@ -1202,7 +1198,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 
 #detalle .caract label.btn.active .color-option {
   opacity: 1;
-  border: solid 3px #e10d74;
+  outline: solid 4px #e10d74;
   /*box-shadow: 0 0 1rem rgba(0,0,0,0.5);*/
 }
 
@@ -1259,17 +1255,17 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #formulario label.mr { margin-right: 100px; }
 #formulario input[type="email"] { margin-top: 70px; }
 #formulario textarea { margin-top: 65px; height: 150px; margin-bottom: 57px; }
-#formulario input[type="submit"] { background: transparent; border: 2px solid #363633; color: #363633; font-size: 1rem; font-weight: 800; height: 60px; width: 100%; border-radius: 0.5rem;}
+#formulario input[type="submit"] { background: transparent; border: 2px solid #363633; color: #363633; font-size: 1rem; font-weight: 1000; height: 60px; width: 100%; border-radius: 0.5rem;}
 #formulario label span { border: 2px solid #868686; border-radius: 50%; cursor: pointer; display: block; float: left; height: 22px; margin-right: 10px; margin-top: -5px; padding: 4px; width: 22px; }
 #formulario label span i { background: #363633; border-radius: 50%; display: none; height: 100%; }
 #formulario label input { display: none; }
 #formulario label span.active i { display: block; }
 
 #headhelp { /*background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover;*/ position: relative;  overflow-x: hidden;}
-#headhelp h1 { color: #363633; font-size: 40px; font-weight: 800; /*margin-top: 50px; margin-left: 2rem;*/ }
+#headhelp h1 { color: #363633; font-size: 40px; font-weight: 1000; /*margin-top: 50px; margin-left: 2rem;*/ }
 #headhelp h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 #headhelp .box { border: 2px solid #6666; padding: 4rem; }
-#headhelp .box h3 { font-size: 2.5rem; font-weight: 500; margin-bottom: 2rem; margin-top: 0;}
+#headhelp .box h3 { font-size: 2.5rem; font-weight: 1000; margin-bottom: 2rem; margin-top: 0;}
 #headhelp .box p { font-size: 15px; line-height: 1.5; /*margin-bottom: 45px;*/ }
 #headhelp .box p a { color: #363633; font-weight: 600; }
 #optionsHelp {     
@@ -1932,7 +1928,7 @@ span.out{
 
 .input-search {
   padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   border: 2px solid #e10c76;
   font-size: 1.5rem;
   font-weight: 800;
@@ -2034,7 +2030,7 @@ span.out{
 
 .price_strong {
   color: black;
-  font-weight: bolder;
+  font-weight: 1000;
   font-size: 1rem;
   white-space: nowrap;
 }
@@ -2049,6 +2045,7 @@ span.out{
   justify-content: center;
   align-items: center;
   grid-gap: 0.25rem;
+  white-space: nowrap;
   width: 100%;
   color: #666!important;
   line-height: 1.25;
@@ -2199,7 +2196,7 @@ span.out{
 
 .ribbon.small span {
   font-size: 0.85rem;
-  font-weight: 800;
+  font-weight: 1000;
 }
 
 .ribbon.left {
@@ -2364,12 +2361,12 @@ span.count {
   text-align: center;
   font-size: 0.8rem;
   color: white;
-  background-color: #e10d74;
+  background-color: #14c408;
   width: 1.5rem;
   height: 1.5rem;
   margin: 0 auto;
   border-radius: 100%;
-  line-height: 1.5;
+  line-height: 1.65;
   font-weight: 800;
   border: 3px solid white;
 }
@@ -2386,6 +2383,9 @@ span.count.is-empty {
   }
   ul#ul-moreviews {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     overflow-x: auto;
   }
   ul#ul-moreviews li {

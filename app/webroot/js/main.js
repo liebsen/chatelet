@@ -214,7 +214,7 @@ let apiSearch = (q) => {
         if(item.legends.length){
           strLegends+= `<span class="legends-container mb-2"><span class="legends w-100">`
           item.legends.forEach((e) => {
-            strLegends+= `<span class="text-legend google-fonts">`
+            strLegends+= `<span class="text-legend">`
             if(e.discount) {
               strLegends+= ` <span class="text-theme text-bold text-high">-${e.discount}%</span> `
             }

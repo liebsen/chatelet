@@ -417,7 +417,7 @@ class ShopController extends AppController {
     ]);
 
 		$category = $this->Category->findById($category_id);
-		$name_categories = $category['Category']['name'];
+		$name_categories = @$category['Category']['name'];
 		$isGiftCard=false;
         if (strpos(strtolower($name_categories),'gift')!==FALSE){
         	$isGiftCard=true;

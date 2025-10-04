@@ -175,12 +175,13 @@ function pideStock(obj){
 				  //stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
 				  $('.growl').remove()
 
-				  onWarningAlert('<i class="fa fa-check"></i> Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
+				  onErrorAlert('<i class="fa fa-check"></i> Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
 					stock_cont.html(stock);
 					setTimeout(() => {
 						$(test).find('a').animate({opacity: 1});
 					}, 1000)
 				}else{
+					onWarningAlert('<i class="fa fa-warning"></i> Producto no disponible', 'Lamentablemente este producto ya no se encuentra disponible')
 					stock_cont.html( stock_0 );
 				}
 				window.stock = data;

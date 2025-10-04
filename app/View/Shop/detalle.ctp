@@ -1,8 +1,8 @@
 <?php
     echo $this->Html->script('jquery', array('inline' => false));
     //echo $this->Html->script('ga', array('inline' => false));
-    echo $this->Html->script('cloudzoom', array('inline' => false));
-    echo $this->Html->css('cloudzoom', array('inline' => false));
+    //echo $this->Html->script('cloudzoom', array('inline' => false));
+    //echo $this->Html->css('cloudzoom', array('inline' => false));
     echo $this->Html->script('jquery.growl', array('inline' => false));
     echo $this->Html->script('detalle', array('inline' => false));
     $images  = array();
@@ -39,12 +39,12 @@
     <div class="wrapper">
       <div class="row">
       <?php if(!empty($colorImages)):?>
-        <div class="col-md-2">
+        <div class="col-md-2 animated slideInLeft delay1">
             <ul id="ul-moreviews">
                 <?php if (!empty($colorImages[0]['images'] )): $ppp=0; ?>
                 <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
                    <?php if(!empty($value)): $ppp++;?>
-                   <li class="dontResize"><a href="javacript:void(0)"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
+                   <li class="dontResize"><a href="#"><img class="demo w3-opacity w3-hover-opacity-off img-responsive"
                     onclick="currentDiv(<?=$ppp;?>)" title="ck_image_<?=$ppp?>"  id="img_01" src="<?=Configure::read('uploadUrl').'thumb_'.$value?>"></a></li>
                     <?php endif;?>
                 <?php endforeach ?>
@@ -278,7 +278,7 @@
                 </a>
             </div>
 
-            <div class="col-md-9 product-list posnum-<?= $category['Category']['posnum'] ?>">
+            <div class="col-md-9 product-list posnum-<?=@$category['Category']['posnum'] ?>">
                 <div class="row">
                     <?php
                     foreach($all_but_me as $alt_product):
@@ -331,7 +331,7 @@
                     </div>
                     <?php }else{ ?>
 
-                      <div data-id="<?=$alt_product['id']?>" class="col-sm-12 col-md-4 col-lg-3 p-1 add-no-stock">
+                      <div data-id="<?=$alt_product['id']?>" class="col-sm-12 col-md-4 col-lg-3 add-no-stock">
                         <a href="<?php echo $url ?>">
                             <div class="ribbon-container">
 <?php 
