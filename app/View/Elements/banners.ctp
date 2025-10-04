@@ -28,7 +28,6 @@
 
 <style>
   #carousel-banners {
-    /*font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;*/
     background-color: black;
     color: white;
     min-height: 64px;
@@ -36,6 +35,7 @@
 
   #carousel-banners .banner-caption {
     text-align: center;
+    color: white;
     font-size: 14px;
     position: inherit;
     display: flex;

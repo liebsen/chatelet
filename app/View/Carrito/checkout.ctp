@@ -1,7 +1,7 @@
 <?php 
 	echo $this->Session->flash();
-  echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
-  echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
+	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
+	echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 	echo $this->Html->script('coupon.js?v=' . Configure::read('APP_VERSION'),array( 'inline' => false ));
 	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
@@ -45,7 +45,7 @@
 							<div class="card">
 							  <div class="card-body">
 							    <h5 class="card-title">
-							    	<i class="fa fa-pencil"></i>
+							    	<!--i class="fa fa-edit"></i-->
 							    	Resumen de tu compra
 							    </h5>
 							    <h6 class="card-subtitle">
@@ -173,7 +173,7 @@
 						<div class="card">
 						  <div class="card-body">
 						    <h5 class="card-title">
-						    	<i class="fa fa-credit-card"></i>
+						    	<!--i class="fa fa-credit-card"></i-->
 						    	¿Cómo querés pagar tu compra?
 						    </h5>
 						    <h6 class="card-subtitle">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</h6>
@@ -231,10 +231,10 @@
 						<div class="mt-4-d checkoutform-container">
 							<div class="is-rounded pt-3">
 						    <h5 class="card-title">
-									<i class="fa fa-user"></i>
+									<!--i class="fa fa-user"></i-->
 									Ingresá tus datos para finalizar tu compra
 						    </h5>
-						    <h6 class="card-subtitle">Asegurate de verificar y actualizar tus datos correctos para que tu compra llegue a tu domicilio antes y mejor.</h6>
+						    <h6 class="card-subtitle">Asegurate de verificar y actualizar tus datos correctos para que tu compra llegue a tu domicilio antes y mejor. <?php if(!$loggedIn):?><a href="#" data-toggle="modal" data-target="#particular-login">Iniciar sesión</a><?php endif ?></h6>
 								<input type="hidden" name="shipping" value=""/>
 								<input type="hidden" name="coupon" value=""/>
 								<input type="hidden" name="cargo" value=""/>

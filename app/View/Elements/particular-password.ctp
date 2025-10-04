@@ -9,19 +9,17 @@
 				</h3>
 			</div>
 			<div class="modal-body">
-				 <?php 
-                    echo $this->Form->create(null, array('url' => array('controller' => 'users', 'action' => 'forgot_password'))); 
-                  ?>
-                    <p class="title">Ingresá tu correo</p>
-                    <input type="email" id="login-email" class="form-control"  name="data[User][email]" placeholder="Email" />
-                    <input type="submit" id="login" value="Enviar" />
-                    <span id="forgot-password" >
-                    Recibirás un correo electrónico con tu nueva contraseña
-                    </span>
-
-                  <?php echo $this->Form->end(); ?>
-          
-                  
+				<?php echo $this->Form->create(null, array('url' => array('controller' => 'users', 'action' => 'forgot_password'))); ?>
+        <p class="title mb-1">Ingresá tu correo</p>
+        <input type="email" id="login-email" class="form-control"  name="data[User][email]" placeholder="Email" />
+        <input type="submit" id="login" value="Enviar" />
+        <span id="forgot-password" class="text-muted d-block">
+        Recibirás un correo electrónico con tu nueva contraseña
+        </span>
+        <div class="modal-buttons">                
+          <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Iniciar sesión</a>
+        </div>
+      	<?php echo $this->Form->end(); ?>          
 			</div>
 		</div>
 	</div>

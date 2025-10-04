@@ -1706,7 +1706,7 @@ li.plan-featured h1 {
     align-items: center;
     min-height: 150px;
     background-color: #888;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
 }
 
 .image-item img, .image-item video {

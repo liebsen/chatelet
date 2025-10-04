@@ -16,20 +16,16 @@
 				</h3>
 			</div>
 			<div class="modal-body">
-				 <?php echo $this->Form->create(false, array('url' => array('controller' => 'users', 'action' => 'login'))); ?>                  
-                    <p class="title mb-1">Ingresá tu email y contraseña para continuar.</p>
-                    <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" />
-                    <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Password" />
-                    <input type="submit" id="login" form="" value="Ingresar" />                   
-                    <a href="#" id="forgot-password" class="open-Modal" 
-                      data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvide mi contraseña</a>
-
-                  <?php echo $this->Form->end(); ?>
- 
-                  <p class="register-container">
-                    <a href="#" id="register" class="open-Modal" 
-                      data-toggle="modal" data-dismiss="modal"  data-target="#particular-modal">Registrarse</a>
-                  </p>
+				<?php echo $this->Form->create(false, array('url' => array('controller' => 'users', 'action' => 'login'))); ?>                  
+        <p class="title mb-1">Ingresá tu email y contraseña para continuar.</p>
+        <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" />
+        <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Password" />
+        <input type="submit" id="login" form="" value="Ingresar" /> 
+        <div class="modal-buttons">                
+          <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé mi contraseña</a>
+          <a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Registrarse</a>
+        </div>
+        <?php echo $this->Form->end(); ?>
 			</div>
 		</div>
 	</div>

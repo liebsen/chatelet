@@ -20,11 +20,11 @@ body.loading {
 }
 
 a {
-	color: white;
+	color: #e10c76;
 }
 
 a:hover {
-	color: white;
+	color: #e10c22;
 }
 
 html, body {
@@ -47,13 +47,17 @@ html, body {
 	overflow-y: auto;
 }
 
-.modal-content {
-  box-shadow: var(--box-shadow);
-  border-radius: 1rem;
+.modal-buttons {
+	padding: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
 }
 
-.modal-body{
-	background-color: #f8f8f8;
+.modal-content {
+  box-shadow: none!important;
+  border-radius: 0.25rem;
 }
 
 .modal-body label {
@@ -408,7 +412,7 @@ html, body {
 .border-theme {
 	border: 2px solid #FF71CD;
 	color: #FF71CD;
-	border-radius: 0.75rem;
+	border-radius: 0.5rem;
 }
 
 .bg-white {
@@ -417,13 +421,13 @@ html, body {
 .border-dark {
 	border: 2px solid #333;
 	color: #333;
-	border-radius: 0.75rem;
+	border-radius: 0.5rem;
 }
 
 .border-light {
 	border: 2px solid #6666;
 	color: #333;
-	border-radius: 0.75rem;
+	border-radius: 0.5rem;
 }
 
 .d-block {
@@ -603,6 +607,7 @@ select.form-control{
 #login {
 	display: inline-block;
 	padding: 0.75rem 1rem;
+	min-height: 50px;
 	background-color: #e10c76;
 	color: white;
 	/*font-style: italic;*/
@@ -610,12 +615,12 @@ select.form-control{
 	width: 100%;
 	text-align: center;
 	border-radius: 0.5rem;
-	font-size: 1.25rem;
+	font-size: 1rem;
 	font-weight: 800;
 	border: 0;
 }
 
-#forgot-password {
+/*#forgot-password {
 	display: inline-block;
 	color: #e10c76;
 	text-align: center;
@@ -640,7 +645,7 @@ select.form-control{
 	margin-top: 5px;
 	color: black;
 	font-size: 1rem;
-}
+}*/
 
 #items {
 	height: 100px;
@@ -783,29 +788,25 @@ select.form-control{
 }
 
 .modal-title {
-	color: white;
 	font-size: 1rem;
-	/*font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
-	font-style: italic;
-	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
 
 .modal-header {
 	min-height: 50px;
-	background-color: #e10c76;
+	color: #e10c76;
 }
 
 @media(min-width: 768px) {
 	.modal-header {
-		border-top-left-radius: 1rem;
-		border-top-right-radius: 1rem;
+		border-top-left-radius: 0.25rem;
+		border-top-right-radius: 0.25rem;
 	}
 	.modal-content {
-		border-radius: 1rem;
+		border-radius: 0.25rem;
 	}
 	.modal-body {
-  	border-bottom-left-radius: 1rem;
-  	border-bottom-right-radius: 1rem;
+  	border-bottom-left-radius: 0.25rem;
+  	border-bottom-right-radius: 0.25rem;
   }
 }
 
@@ -848,16 +849,24 @@ select.form-control{
 	z-index: 9999;
 }
 
+.modal-backdrop {
+	background-color: #f8f8f8;
+}
+
+.modal-backdrop.in {
+	opacity: 0.9;
+}
 #enviar-registro {
 	width: 100%;
 	background-color: #e10c76;
 	color: white;
+	min-height: 50px;
 	/*font-size: 24px;*/
 	text-align: center;
 	border: 0;
 	border-radius: 0.5rem;
 	font-size: 1rem;
-	font-weight: 800;
+	font-weight: 1000;
 	padding: 0.75rem 1rem;
 	margin-top: 10px;
 	/*font-style: italic;*/
@@ -988,13 +997,13 @@ select.form-control{
 	font-size: 1rem;
 	line-height: 1.5;
 	padding: 0.75rem 1.75rem;
-	font-weight: 600;
+	font-weight: 1000;
 	color: white;
 	border-color: transparent;
 	background-color: #bebebe;
 	/*min-width: 20rem;*/
 	min-height: 46px;
-	border-radius: 0.75rem;
+	border-radius: 0.5rem;
 	transition: all 0.25s ease;
 }
 .cart-btn-green.shrink {

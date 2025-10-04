@@ -1161,7 +1161,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   background-size: cover;
   background-color: whitesmoke;
   transition: all 0.15s linear;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
 }
 
 @media(min-width: 400px) and (max-width: 549px) {
@@ -2085,7 +2085,7 @@ span.out{
   background-repeat: no-repeat;
   background-position: right center;
   background-image: url(../images/chevron_right_pink.svg);
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
 }
 
 .p-select select {
@@ -2701,10 +2701,14 @@ span.count.is-empty {
 }
 
 .mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-4 {
   margin-bottom: 1rem;
 }
 
-.mb-2 {
+.mb-8 {
   margin-bottom: 2rem;
 }
 
@@ -2820,7 +2824,7 @@ span.count.is-empty {
   .carrito-item-row {
     background-color: white!important;
     margin-bottom: 0.75rem;    
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     padding: 1rem;
     box-shadow: var(--box-shadow);
     padding-left: 0;
@@ -2852,7 +2856,7 @@ span.count.is-empty {
   }
   .card {
     box-shadow: var(--box-shadow);
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-top: 13px;

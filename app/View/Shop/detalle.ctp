@@ -125,7 +125,7 @@
             ?>
             <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
                 <h1><?php echo $product['name'];?></h1>
-                <p class="text-muted mb-1"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
+                <p class="text-muted mb-4"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
                 <?php  
                 
                 $orig_price = @$product['price'];
@@ -165,7 +165,7 @@
 
                 echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)) . ' <span class="text-sm">' . (strlen($text) ? 'con ' . strtoupper($text) : '') . '</span></span>';
                 ?>
-                 <div class="mt-1 mb-1 tags-start">
+                 <div class="mt-1 mb-4 tags-start">
                     <?= $this->App->show_prices_dues($legends, $product, true) ?>
                  </div>
                 <div class="caract">

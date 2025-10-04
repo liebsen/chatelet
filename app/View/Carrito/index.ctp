@@ -236,7 +236,7 @@
 					<?php else: ?>
 					<div class="container cart-empty text-center">
 						<div class="icon-huge mt-4">
-							<i class="fa fa-warning text-danger"></i>
+							<i class="fa fa-shopping-cart fa-x2 text-muted"></i>
 						</div>
 						<h3 class="h3 text-center">Tu carrito de compras está vacío</h3>
 						<div>Para comprar agrega un producto. Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></div>
