@@ -37,7 +37,9 @@
 				<span>Costo de envío:</span> <span class="figure">$<span id="cost_delivery">0</span>.00</span> <span id="free_delivery"></span>
 			</span>
 		</div-->
-		<hr class="or">
+		<div class="divider-with-text">
+		  <span>O</span>
+		</div>		
 	</div>
 	
 	<div class="shipment-options takeaway">

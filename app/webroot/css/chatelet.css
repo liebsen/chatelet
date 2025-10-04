@@ -206,7 +206,7 @@ html, body {
 	border: 1px solid #ccc;
 	padding-left: 5px;
 	margin: 0;
-	font-weight: 800;
+	font-weight: 500;
 }
 .text-uppercase {
   text-transform: uppercase;
@@ -355,7 +355,7 @@ html, body {
 .btn {
 	min-height: 2.75rem;
 	font-size: 1rem;
-	font-weight: 600;
+	font-weight: 1000;
 }
 
 .btn.btn-outline-danger {

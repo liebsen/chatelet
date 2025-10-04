@@ -30,7 +30,7 @@
                                 echo '<li> '. $store['address'] .'</li>';
                                 echo '<li>'. $store['phone'].'</li>';
                             if($store['whatsapp']){
-                                echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" target="_blank">'. $store['whatsapp'].'</a></li>';
+                                echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" class="text-white" target="_blank">'. $store['whatsapp'].'</a></li>';
                             }
                             echo '</ul>';
                 } ?> 

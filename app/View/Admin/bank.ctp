@@ -55,7 +55,6 @@
           </div>
         </div>
         <div class="col-md-6">
-                     
           <h4 class="sub-header">Información bancaria</h4>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Datos bancarios'); ?></label>

@@ -33,7 +33,7 @@
     <meta property="og:description" content="<?= @$data['opengraph_text'] ?>" />
     <meta property="og:image" itemprop="image primaryImageOfPage" content="<?= baseUrl() . @$data['opengraph_image'] ?>" />
     <?php endif ?>
-    <link href="https://fonts.googleapis.com/css?family=<?= @urlencode($font) ?>:<?= @$fontweight ?>" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$data['google_font_name']) ?>:<?= @$data['google_font_size'] ?>" rel="stylesheet">
     <style>
       :root {
         --google-fonts-name: <?=@$data['google_font_name'] ?>;

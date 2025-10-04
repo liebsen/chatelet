@@ -39,15 +39,6 @@ hr {
   border-color: #d5d5d5;
 }
 
-hr.or:before {
-  content: 'O bien';
-  position: relative;
-  top: -0.5rem;
-  padding: 0 1rem;  
-  background-color: #f1f1f1;
-  color: #8e8e8e;
-}
-
 label {
   cursor: pointer;
   color: #383A3F;
@@ -91,6 +82,27 @@ label input[type=checkbox]:disabled + .label-text:before {
   100% {
     transform: scale(1);
   }
+}
+
+.divider-with-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.divider-with-text::before,
+.divider-with-text::after {
+  content: '';
+  flex-grow: 1;
+  background: #ccc;
+  height: 1px;
+  margin: 0 10px;
+}
+
+.divider-with-text span {
+  padding: 0 10px;
+  background-color: #fff; /* Match background for "cutout" effect */
 }
 
 .text-grey {
@@ -206,6 +218,10 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .w-max-content {
   width: max-content!important;
+}
+
+.text-whatsapp {
+  color: #25d366;
 }
 
 .text-white {
