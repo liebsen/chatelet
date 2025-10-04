@@ -13,7 +13,7 @@
         <p class="title mb-1">Ingresá tu correo</p>
         <input type="email" id="login-email" class="form-control"  name="data[User][email]" placeholder="Email" />
         <input type="submit" id="login" value="Enviar" />
-        <span id="forgot-password" class="text-muted d-block">
+        <span id="forgot-password" class="text-muted text-small d-block mt-1">
         Recibirás un correo electrónico con tu nueva contraseña
         </span>
         <div class="modal-buttons">                

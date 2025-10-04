@@ -1271,7 +1271,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		if (!empty(@$carro)) {
 			foreach($carro as $key => $item) {
 				$criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
-				CakeLog::write('debug', 'citeria:'. $criteria);
+				//CakeLog::write('debug', 'citeria:'. $criteria);
 				if (!isset($groups[$criteria])) {
 					$groups[$criteria] = 0;
 				}

@@ -507,6 +507,7 @@ select.form-control{
 	border: 2px solid #e10d74;
   border-radius: 0.5rem;*/
   border: none;
+  background: transparent;
   color: #e10d74!important;
 }
 
@@ -785,10 +786,11 @@ select.form-control{
 
 .modal-content {
   min-height: 100vh;
+  border: 2px solid rgba(0, 0, 0, .2);
 }
 
 .modal-title {
-	font-size: 1rem;
+	font-size: 1.25rem;
 }
 
 .modal-header {

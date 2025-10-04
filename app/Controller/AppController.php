@@ -180,13 +180,12 @@ class AppController extends Controller
             $this->Session->delete('font');
         }
 
-        Configure::write('client_id', '6773841105361656');
-        Configure::write('client_secret', 'hBHd6LiSEaTqgQXI2KSGO5C7uCBSINhW');
+        //Configure::write('client_id', '6773841105361656');
+        //Configure::write('client_secret', 'hBHd6LiSEaTqgQXI2KSGO5C7uCBSINhW');
 
         $this->loadModel('Setting');
 
         $data = $this->load_settings();        
-        CakeLog::write('debug', 'settings:'. json_encode($data));
 
         $this->set('data', $data);
 

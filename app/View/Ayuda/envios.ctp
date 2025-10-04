@@ -35,7 +35,7 @@ abonar nuevamente el envío.</p>
                             <h3>Envío por moto mensajería SpeedMoto</h3>
                             <p>La mensajería retirará tu pedido y lo entregará de lunes a viernes en la franja horaria de 15hs a 21hs. Nosotros te informaremos por WhatsApp el día anterior a recibir el paquete para que estes atento y nos confirmes que te encontrarás en tu domicilio el día de la entrega. La demora de entrega puede ser de 5 a 7 días hábiles. En caso de no encontrarse a la hora de la visita, la entrega será reprogramada para el día siguiente, teniendo el cliente que abonar nuevamente el envío.</p>
 
-                            <h3>Retiro en Sucursal</h3>
+                            <h3>Retiro en sucursal</h3>
                             <p>Los pedidos tardan en llegar a la sucursal elegida entre 7 y 10 días hábiles. Una vez que llegue al local, nos comunicaremos con vos por mail para avisarte que ya podés ir a retirar tu compra. Recordá que deberás acercarte al local con tu DNI y el número de pedido y contas con 15 días para ir a retirarlo.</p>                        
                         </div>
                     </div>
