@@ -251,16 +251,6 @@ class CarritoController extends AppController
 		$oca = new Oca();
 		$provincias = $oca->getProvincias();
 		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
-		$data = [];
-		$map = $this->Setting->findById('carrito_takeaway_text');
-		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
-		$map = $this->Setting->findById('bank_enable');
-		$data['bank_enable'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount_enable');
-		$data['bank_discount_enable'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount');
-		$data['bank_discount'] = @$map['Setting']['value'];
-
 		$items = $this->getItemsData();
 		$map = $this->Setting->findById('shipping_price_min');
 		$shipping_price = @$map['Setting']['value'];
@@ -270,7 +260,6 @@ class CarritoController extends AppController
 		$this->set('shipping_price',$shipping_price);
 		$this->set('provincias',$provincias);
 		$this->set('freeShipping', $freeShipping);
-		$this->set('data',$data);
 		$this->set('total',$total_price);
 		$this->set('userData',$user);
 	}
@@ -306,7 +295,7 @@ class CarritoController extends AppController
 		}
 	}
 
-	public function getCartData($id)
+	/*public function getCartData($id)
 	{
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
@@ -323,7 +312,7 @@ class CarritoController extends AppController
 			'discount'=> @$bank_discount
 		];
 		return json_encode($response);
-	}
+	}*/
 
 	public function takeawayStores($cp = null){
 		$this->RequestHandler->respondAs('application/json');

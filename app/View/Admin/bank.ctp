@@ -31,8 +31,8 @@
               <div class="control-group">
                 <div class="controls text-center switch-scale">
                   <?php
-                    $enabled = @$data['bank_discount_enable'] == 1 ? 'checked' : '';
-                    $disabled = @$data['bank_discount_enable'] == 0 ? 'checked' : '';
+                    $enabled = $data['bank_discount_enable'] == 1 ? 'checked' : '';
+                    $disabled = $data['bank_discount_enable'] == 0 ? 'checked' : '';
                   ?>
                   <label for="enabled_11">Sí</label>
                   <input type="radio" class="form-control" id="enabled_11" name="data[bank_discount_enable]" value="1" <?php echo $enabled; ?> /> &nbsp;

@@ -1526,24 +1526,14 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 					'image' => $file,
 				));
 			}
+			$data = parent::load_settings();
+     	$this->set('data', $data);
 		}
 		$h1 = array(
 			'name' => 'Compra por WhatsApp',
 			'icon' => 'gi gi-display'
 			);
 		$this->set('h1', $h1);
-
-		/*$data = [];
-		$map = $this->Setting->findById('whatsapp_enabled');
-		$data['whatsapp_enabled'] = $map['Setting']['value'];
-		$map = $this->Setting->findById('whatsapp_phone');
-		$data['whatsapp_phone'] = $map['Setting']['value'];
-		$map = $this->Setting->findById('whatsapp_text');
-		$data['whatsapp_text'] = $map['Setting']['value'];
-		$map = $this->Setting->findById('whatsapp_autohide');
-		$data['whatsapp_autohide'] = $map['Setting']['value'];
-		$map = $this->Setting->findById('whatsapp_animated');
-		$data['whatsapp_animated'] = $map['Setting']['value'];*/
 
 		$items = $this->Promo->find('all');
 		$this->set('items',$items);
@@ -1578,6 +1568,9 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 				$file = $this->save_file( $og['image'] );
 				$this->Setting->save(['id' => 'opengraph_image', 'value' => Configure::read('uploadUrl') . $file]);
 			}
+
+     	$data = parent::load_settings();
+     	$this->set('data', $data);			
 		}
 		$h1 = array(
 			'name' => 'Aplicación',
@@ -1628,7 +1621,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 			));
 
 
-            $image_bannershop = $this->Setting->save(array(
+      $image_bannershop = $this->Setting->save(array(
 				'id' => 'image_bannershop',
 				'value' =>$data['image_bannershop']
 			));
@@ -1641,7 +1634,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
 
 
 
-            $this->Setting->save(array(
+      $this->Setting->save(array(
 				'id' => 'image_prodshop',
 				'value' => $data['image_prodshop']
 			));
@@ -2698,6 +2691,8 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
                 'value' => $value
               ]);
             }
+			     	$data = parent::load_settings();
+			     	$this->set('data', $data);            
           }		      
     		} else {
     			$this->loadModel('LogisticsPrices');
@@ -3021,7 +3016,10 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
       foreach($this->request->data as $id => $value) {
       	$this->Setting->save(['id' => $id, 'value' => $value]);
       }
+     	$data = parent::load_settings();
+     	$this->set('data', $data);
 		}
+		return $this->render('bank');
 	}	
 
   public function subscriptions($action = null) {

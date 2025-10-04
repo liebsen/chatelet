@@ -80,7 +80,7 @@ class AppController extends Controller
       'mercadopago_client_secret',
     ];
 
-    private function load_settings(){
+    public function load_settings(){
         $this->loadModel('Setting');
         $tags = [];        
         $settings = $this->Setting->find('all');
@@ -100,9 +100,9 @@ class AppController extends Controller
                 continue;
             }
 
-            //CakeLog::write('debug', $id.':'. $value);
             Configure::write($id, $value);
         }
+            CakeLog::write('debug', 'bank_enable(1):'. $data['bank_enable']);
 
         return $data;
     }
@@ -119,6 +119,7 @@ class AppController extends Controller
     }
 
     public function beforeFilter() {
+        CakeLog::write('debug', 'beforeFilter executed for ' . $this->name . 'Controller::' . $this->action);
         $this->Auth->allow();
         $this->set('loggedIn', $this->Auth->loggedIn());
         $this->set('user', $this->Auth->user());
@@ -186,6 +187,8 @@ class AppController extends Controller
         $this->loadModel('Setting');
 
         $data = $this->load_settings();        
+
+        CakeLog::write('debug', 'bank_enable(2):'. $data['bank_enable']);
 
         $this->set('data', $data);
 
