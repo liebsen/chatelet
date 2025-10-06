@@ -1219,6 +1219,8 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 			    curl_close($ch);
 			}
 
+			
+			$filter = [];
 			error_log('stock:'.$stock);
 			// error_log('curl:'.$stock);
 			//$stock=1;
@@ -1228,7 +1230,6 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 
 				/* remove all of the kind */
 				$criteria = $this->request->data['id'].$this->request->data['size'].$this->request->data['color'].$this->request->data['alias'];
-				$filter = [];
 
 				if (!empty($carro)) {
 					foreach($carro as $key => $item) {
