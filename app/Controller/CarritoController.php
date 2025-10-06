@@ -335,10 +335,11 @@ class CarritoController extends AppController
 				'enabled' => 1
 			]
 		]);
+
 		if (!$coupon) {
 			return json_encode((object) [
 				'status' => 'error',
-				'title' => "Promo desconocida",
+				'title' => "Promo desconocida: " . $this->request->data['coupon'],
 				'message' => "No tenemos esa promo disponible ahora"
 			]);
 		}

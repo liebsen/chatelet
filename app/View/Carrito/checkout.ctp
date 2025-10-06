@@ -202,25 +202,25 @@
 						    </h5>
 						    <h6 class="card-subtitle">Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</h6>
 						    <div class="row card-row pl-3 pr-3">
-					        <label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(event,this)">
+					        <!--label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(event,this)">
 					          <input type="radio" class="" id="dues_1" name="payment_dues" value="1" required checked />
 				          	<span class="h4"> 1 cuota</span><br>
 				          	<p class="mt-2 text-small">1 cuota de <span class="total_price calc_total"></span></p>
-				          </label>						    	
+				          </label-->
 						    <?php foreach($legends as $legend): ?>
 						    	<?php if($total >= @$legend['Legend']['min_sale']):?>
 						    	<label for="dues_<?= @$legend['Legend']['dues'] ?>" class="col-xs-12 is-clickable option-rounded is-secondary<?= @$config['payment_method'] !== 'bank' ? '' : ' hide' ?>"  data-interest="<?= @$legend['Legend']['interest'] ?>" onclick="select_dues(event,this)">
 						    		<input type="radio" id="dues_<?= @$legend['Legend']['dues'] ?>" name="payment_dues" value="<?= @$legend['Legend']['dues'] ?>" required/>
-					          	<span class="h4"> <?= @$legend['Legend']['dues'] ?> cuotas</span><br>
+					          	<span class="h4"> <?= @$legend['Legend']['dues'] ?> cuota<?= @$legend['Legend']['dues'] > 1 ? 's' : '' ?></span><br>
 					          	<p class="mt-2 text-small calc-dues" data-dues="<?= @$legend['Legend']['dues'] ?>" data-interest="<?= @$legend['Legend']['interest'] ?>"><?= 
 								str_replace([
-                    '{cuotas}','{interes}','{monto}'
-                ], [
-                    $legend['Legend']['dues'],
-                    $legend['Legend']['interest'],
-                    '$ ' . \price_format(ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']))
-                ],
-                $legend['Legend']['title']) ?></p>
+				                    '{cuotas}','{interes}','{monto}'
+				                ], [
+				                    $legend['Legend']['dues'],
+				                    $legend['Legend']['interest'],
+				                    '$ ' . \price_format(ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']))
+				                ],
+				                $legend['Legend']['title']) ?></p>
 				        	</label>
 				        <?php endif ?>
 			        <?php endforeach ?>

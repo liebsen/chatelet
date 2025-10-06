@@ -120,11 +120,10 @@
 						echo '</div>';
 						echo '<div class="carrito-item-col carrito-data" data-json=\''.json_encode($product).'\'>';
 						echo '<span class="name is-carrito">'. $product['name'] . '</span>';
-
-						if (!empty($product['alias'])){
+						if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 							echo '<p class="color">Color: <span class="talle" color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></p>';
 						}
-						if (!empty($product['size'])){
+						if (!empty($product['size']) && $product['size'] != 'undefined'){
 							echo '<p class="color">Talle: <span class="talle">'. $product['size'] .'</span></p>';
 						}
 						echo '<p class="color">Cantidad: <span class="talle">'. $product['count'] .'</span></p>';

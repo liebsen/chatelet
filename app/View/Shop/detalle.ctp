@@ -4,7 +4,7 @@
     //echo $this->Html->script('cloudzoom', array('inline' => false));
     //echo $this->Html->css('cloudzoom', array('inline' => false));
     echo $this->Html->script('jquery.growl', array('inline' => false));
-    echo $this->Html->script('detalle', array('inline' => false));
+    echo $this->Html->script('detalle.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
     $images  = array();
     $images_aux = explode(';', $product['gallery']);
     foreach ($images_aux as $key => $value) {

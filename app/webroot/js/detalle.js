@@ -28,7 +28,7 @@ function showDivs(n) {
 
 }
 //$(".mySlides").elevateZoom();
-    //CloudZoom.quickStart();
+//CloudZoom.quickStart();
 
 $(function(){
   $("label.loadColorImages").on('click', function(e){
