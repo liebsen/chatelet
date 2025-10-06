@@ -213,11 +213,12 @@ $(document).ready(function() {
 		var data = {
 			count: parseInt($('.product-count').val()),
 			id: $(e.target).closest('form').find("#product_id").text().trim(),
-			color: $(e.target).closest('form').find("input[name='color']:checked").val(),
-			color_code: $(e.target).closest("form").find('input[name="color"]:checked').attr('code'),
-			size: $(e.target).closest('form').find("#size option:selected").val(),
-			alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias'),
+			color: $(e.target).closest('form').find("input[name='color']:checked").val() || '',
+			color_code: $(e.target).closest("form").find('input[name="color"]:checked').attr('code') || '',
+			size: $(e.target).closest('form').find("#size option:selected").val() || '',
+			alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias') || '',
 		}
+		console.log('data', data)
 		if (!isGiftCard){
 			var product_name = $('#product_id').next().text()
 			//console.log(data.color, data.color_code, data.size)
