@@ -176,16 +176,6 @@ class AppHelper extends Helper {
         $text = 'Mercado Pago';
       }
     }
-      
-      /*echo '<pre>';
-      var_dump("name:".$item['name']);
-      var_dump("mp_discount:".$item['mp_discount']);
-      var_dump("text:".$text);
-      var_dump("price:".$price);
-      var_dump("mp_price:".$mp_price);
-      var_dump("bank_price:".$bank_price);
-      var_dump("calc_price:".$calc_price);
-      die();*/
 
     // price
     if(!$noprice) {
@@ -196,41 +186,48 @@ class AppHelper extends Helper {
       $str.= '<span class="price_strong"> $ ' . \price_format($price) . '</span><span class="text-sm">' . (strlen($text) ? "{$text}" : "") . '</span>';
       $str.= '</div>';
     }
-  
-    //$str.='<div class="legends-spacer"></div>';
-    // discounts
+    
+    $dues_options = [];
+      // dues
+    for ($i=0; $i<count($legends); $i++) {
+      $legend = $legends[$i];
+      if($legend['Legend']['dues'] > 1) {
+        $interest = (float) $legend['Legend']['interest'];
+        $min_sale = (float) $legend['Legend']['min_sale'];
+        $calc_price = !empty($item['mp_discount']) && $item['mp_discount'] ? $mp_price : $orig_price;
+        $price_with_interest = $calc_price;
 
+        if(!empty($interest)){
+          $price_with_interest = round($calc_price * (1 + $interest / 100));
+        }
+        
+        if($calc_price >= $min_sale && $legend['Legend']['dues'] > 1) {        
+          $dues_options[]= '<span class="text-legend">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
+            '<span class="text-theme text-bold text-high">' . $legend['Legend']['dues'] . '</span>',
+            $legend['Legend']['interest'],
+            '<span class="price_strong"> $ ' . \price_format($price_with_interest/$legend['Legend']['dues']) . '</span>'
+          ],
+          $legend['Legend']['title']) . '</span>';
+        }
+      }
+    }
 
-
-    $str.='<div class="legends-container"><div class="legends' . ($noprice ? ' legends-left' : '') . '">';
+    $str.='<div class="legends-container">';
+    if(count($dues_options)) {
+      $str.= '<div class="legends' . ($noprice ? ' legends-left' : '') . '">';
+    }
     if($bank_price && $text != 'Transferencia') {
       $str.= "<div class='price-list'><span class='text-theme text-bold product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format($bank_price)." </span><span class='text-sm'>Transferencia</span> </div>";
     }
     if($mp_price && $text != 'Mercado Pago'){
       $str.= "<div class='price-list'><span class='text-theme text-bold product-badge'>-".@$item['mp_discount']."%</span> <span class='price_strong'> $ " .\price_format($mp_price)." </span><span class='text-sm'>Mercado Pago</span> </div>";
     }
-    // dues
-    for ($i=0; $i<count($legends); $i++) {
-      $legend = $legends[$i];
-      $interest = (float) $legend['Legend']['interest'];
-      $min_sale = (float) $legend['Legend']['min_sale'];
-      $calc_price = !empty($item['mp_discount']) && $item['mp_discount'] ? $mp_price : $orig_price;
-      $price_with_interest = $calc_price;
 
-      if(!empty($interest)){
-        $price_with_interest = round($calc_price * (1 + $interest / 100));
-      }
-      
-      if($calc_price >= $min_sale) {        
-        $str.= '<span class="text-legend">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
-          '<span class="text-theme text-bold text-high">' . $legend['Legend']['dues'] . '</span>',
-          $legend['Legend']['interest'],
-          '<span class="price_strong"> $ ' . \price_format($price_with_interest/$legend['Legend']['dues']) . '</span>'
-        ],
-        $legend['Legend']['title']) . '</span>';
-      }
+    $str.= implode('', $dues_options);
+    if(count($dues_options)) {
+      $str.= '</div>';
     }
-    $str.= '</div></div>';
+    $str.= '</div>';
     return $str;
   }
 }

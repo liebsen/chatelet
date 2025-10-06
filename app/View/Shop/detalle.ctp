@@ -1,5 +1,6 @@
 <?php
     echo $this->Html->script('jquery', array('inline' => false));
+    echo $this->Html->script('product.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
     //echo $this->Html->script('ga', array('inline' => false));
     //echo $this->Html->script('cloudzoom', array('inline' => false));
     //echo $this->Html->css('cloudzoom', array('inline' => false));

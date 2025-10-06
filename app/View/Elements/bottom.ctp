@@ -10,7 +10,6 @@
 
   	<?php
       echo $this->Html->script('chatelet.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-      echo $this->Html->script('product.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
       echo $this->fetch('script');
   	?>
     <!--/div-->

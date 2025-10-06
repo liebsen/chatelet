@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$('#flashMessage').each(function(i, flash) {
+		console.log('flash',flash)
 		flash = $(flash);
-		console.log(flash)
 		if (flash.hasClass('error')) {
 			$.growl.error({
 				title: flash.text(),
@@ -18,7 +18,7 @@ $(document).ready(function() {
 
 		if (flash.hasClass('warning')) {
 			$.growl.warning({
-				message: flash.text()		,
+				message: flash.text(),
 				text: ''		
 			});
 		}

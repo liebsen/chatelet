@@ -434,7 +434,7 @@ $(function () {
     var segs = parseInt(Array.from(document.querySelector('.autohide').classList).filter(e => e.indexOf('segs-') > -1)[0].replace('segs-','')) || 30
     setTimeout(() => {
       document.querySelector('.autohide > .whatsapp-text').classList.add('animated','chatOut')
-    }, segs * 1000)
+    }, (segs + 3) * 1000)
   }
 
   var menuLayerTop = 0;
