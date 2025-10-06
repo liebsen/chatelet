@@ -260,7 +260,7 @@
 </section>
 
 
-<section id="productOptions">
+<section id="productOptions" class="animated fadeIn">
     <div class="wrapper">
         <div class="row">
             <div class="col-md-3">

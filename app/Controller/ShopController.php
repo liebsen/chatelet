@@ -404,6 +404,21 @@ class ShopController extends AppController {
     $this->render('product');
 	}
 
+  public function mis_compras()
+  {
+      $this->loadModel('Sale');
+      $user_id = $this->Auth->user('id');
+      $sales = $this->Sale->find('all',[
+          'conditions' => [
+              'user_id' => $user_id,
+          ],
+          'order' => ['Sale.id DESC'],
+          'limit' => 20,
+      ]);
+
+      $this->set('sales', $sales);
+  }
+
   public function detalle($product_id, $category_id) {
 		$product = $this->Product->findById($product_id);
 		$this->loadModel('Legend');

@@ -99,14 +99,14 @@
                             'class' => 'right'
                           )
                         );
-                        echo $this->Html->link('Mis compras', array(
-                            'controller' => 'users',
+                        /*echo $this->Html->link('Mis compras', array(
+                            'controller' => 'shop',
                             'action' => 'mis_compras'
                           ),
                           array(
                             'class' => 'right'
                           )
-                        );
+                        );*/
                       ?>
                     </div>
                       </div>

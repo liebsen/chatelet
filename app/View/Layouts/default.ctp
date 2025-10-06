@@ -16,4 +16,3 @@
 	// echo $this->element('mayorista-modal');
 	echo $this->element('footer');
 	echo $this->element('bottom');
-  // echo $this->element('particular-modal');

@@ -19,7 +19,7 @@
         <div class="modal-buttons">                
           <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Iniciar sesión</a>
         </div>
-      	<?php echo $this->Form->end(); ?>          
+      	<?php echo $this->Form->end(); ?>       
 			</div>
 		</div>
 	</div>

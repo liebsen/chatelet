@@ -159,13 +159,13 @@ function pideStock(obj){
 		}
 
 		if(!size_number){
-			onWarningAlert(`<i class="fa fa-check"></i> Color ${color_alias}`,`Ahora elegí un talle para tu prenda`)
+			onWarningAlert(`<i class="fa fa-check"></i> Color ${color_alias}`,`Elegí un talle para tu prenda`)
 			return false;
 		}
 
 		window.stock = 0;
 		if(url && article && color_code && size_number){
-			onWarningAlert('<i class="fa fa-server"></i> Un momento','Consultando stock ...')
+			onWarningAlert('<i class="fa fa-server"></i> Consultando stock','Un momento por favor...')
 			var test = document.querySelector('.footer-producto');
       $(test).find('a').animate({opacity: 0.25});
       stock_cont.html(stock_v);

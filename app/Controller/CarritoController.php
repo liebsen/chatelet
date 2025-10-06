@@ -744,7 +744,25 @@ class CarritoController extends AppController
 			header("Location: /");
 			return false;
 		}
+		
 		$user_id = $this->Auth->user('id');
+
+		if(!$user_id){
+			$user_object = [
+				'email' => $user['email'],
+				'name' => $user['name'],
+				'surname' => $user['surname'],
+				'dni' => $user['dni'],
+				'telephone' => $user['telephone'],
+				'province' => $user['province'],
+				'city' => $user['city'],
+				'street' => $user['street'],
+				'floor' => $user['floor'],
+			];
+			$this->User->save($user_object);
+			$user_id = $this->User->id;
+		}
+
 		$product_ids = array();
 		$items = array();
 		$user = $this->request->data;

@@ -53,7 +53,7 @@ function updateSrcTo(obj){
 </div>
 <?php endif ?>
 
-<section id="productOptions">
+<section id="productOptions" class="animated fadeIn">
     <div class="wrapper">
         <div class="row">
             <div class="hidden-xs hidden-sm col-sm-3">

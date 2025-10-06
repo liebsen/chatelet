@@ -63,46 +63,46 @@ class UsersController extends AppController {
                 'user_id' => null,
             ],
             'order' => ['Sale.id DESC'],
-            'limit' => 20,
+            'limit' => 1000,
         ]);
 
         //$this->set('sales', $sales);
 
         $result = [];
+        $ok = 0;
+        $fail = 0;
         foreach($sales as $sale) {
 
             //$query = "select id, name from users where surname = 'Ziehl' and name like '%Cristina%'"
             $user = $this->User->find('first',[
                 'conditions' => [
-                    'User.name like' => '%'.$sale['Sale']['nombre'].'%',
-                    'User.surname like' => '%'.$sale['Sale']['apellido'].'%',
+                    'User.email' => $sale['Sale']['email'],
                 ]
             ]);
-            CakeLog::write('debug','check: '.$sale['Sale']['nombre'].' '.$sale['Sale']['apellido']);
+
+            if(!$user) {
+                $user = $this->User->find('first',[
+                    'conditions' => [
+                        'User.name like' => '%'.$sale['Sale']['nombre'].'%',
+                        'User.surname like' => '%'.$sale['Sale']['apellido'].'%',
+                    ]
+                ]);
+            }
+
+            //CakeLog::write('debug','check: '.$sale['Sale']['nombre'].' '.$sale['Sale']['apellido']);
 
             if($user) {
-                CakeLog::write('debug','user[OK]: '.$user['User']['id']);
+                $ok++;
+                //CakeLog::write('debug','user[OK]: '.$user['User']['id']);
             } else {
-                CakeLog::write('debug','user[FAIL]');
+                $fail++;
+                //CakeLog::write('debug','user[FAIL]');
             }
         }
 
-        //CakeLog::write('debug','sales: '.count($sales));
+        CakeLog::write('debug','ok: '.$ok);
+        CakeLog::write('debug','fail: '.$fail);
 
-    }
-
-    public function mis_compras()
-    {
-        $this->autoRender = false;
-        $this->loadModel('Sale');
-        $user_id = $this->Auth->user('id');
-        $sales = $this->Sale->find('all',[
-            'conditions' => [
-                'user_id' => $user_id,
-            ],
-            'order' => ['Sale.id DESC'],
-            'limit' => 20,
-        ]);
     }
 
     public function register()

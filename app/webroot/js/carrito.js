@@ -60,10 +60,6 @@ var selectStore = e => {
 	$(e).addClass('selected')
   $('.delivery-cost').addClass('hidden')
   var price = parseFloat((total_orig - coupon).toFixed(2))
-  //console.log('total_orig(2)',total_orig)
-  //console.log('coupon(2)',coupon)
-  //console.log('cost_total(1)',total_orig)
-  console.log('cost_total(1)',total_orig)
   $('.cost_total').text('$ ' + formatNumber(total_orig))
   $('.calc_total').text('$ ' + formatNumber(total_orig))
   format_total = formatNumber(price)
@@ -130,7 +126,11 @@ $(document).ready(function() {
 
 	/* carrito item viewer */
 	$('.carrito-item-row').on('click', function(e) {
-		var donts = ['glyphicon glyphicon-remove', 'giftchecks', 'label-text text-muted']	
+		var donts = [
+			'glyphicon glyphicon-remove', 
+			'giftchecks', 
+			'label-text text-muted text-small',
+		]	
 		if (!donts.includes(e.target.className)) {
 			$('html, body').addClass('disable-scroll')
 			currentCartIndex = [...document.querySelectorAll('.carrito-item-row')].indexOf(this)
