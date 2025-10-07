@@ -1,25 +1,24 @@
 $(document).ready(function() {
 	$('#flashMessage').each(function(i, flash) {
-		console.log('flash',flash)
 		flash = $(flash);
 		if (flash.hasClass('error')) {
 			$.growl.error({
-				title: flash.text(),
-				text: ''
+				title: '',
+				message: flash.text()
 			});
 		}
 
 		if (flash.hasClass('notice')) {
 			$.growl.notice({
-				title: flash.text(),
-				text: ''
+				title: '',
+				message: flash.text(),
 			});
 		}
 
 		if (flash.hasClass('warning')) {
 			$.growl.warning({
-				message: flash.text(),
-				text: ''		
+				title: '',
+				message: flash.text()		
 			});
 		}
 

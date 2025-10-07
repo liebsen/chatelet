@@ -407,13 +407,14 @@ class ShopController extends AppController {
   public function mis_compras()
   {
       $this->loadModel('Sale');
+
       $user_id = $this->Auth->user('id');
       $sales = $this->Sale->find('all',[
-          'conditions' => [
-              'user_id' => $user_id,
-          ],
-          'order' => ['Sale.id DESC'],
-          'limit' => 20,
+        'conditions' => [
+          'user_id' => $user_id,
+        ],     
+        'order' => ['Sale.id DESC'],
+        'limit' => 500,
       ]);
 
       $this->set('sales', $sales);

@@ -63,7 +63,11 @@
            <!-- .Login -->
             <li class="dropdown">
                <?php if ($loggedIn) { ?>
-               <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion"><i class="fa fa-d-lg text-chatelet fa-user-circle"></i>
+               <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
+                <!--span class="count animated scaleIn speed delay1">
+                  <i class="fa fa-check text-white fa-xs"></i>
+                </span-->
+                <i class="fa fa-d-lg text-green fa-user-circle"></i>
                </a>
               <ul class="dropdown-menu">
                  <li>
@@ -74,23 +78,33 @@
                         <div id="user-name"><?php echo $user['name'] . " " . $user['surname']; ?></div>
                         <div id="user-email"><?php echo $user['email']; ?></div>
                       </div>
-                      <ul id="control-sections" class="list-unstyled">
-                        <li class="hide">
+                      <!--ul id="control-sections" class="list-unstyled">
+                        <li class="">
                           <span class="fa fa-tag"></span> <a href="#">Historial de Compras</a>
                         </li>
-                        <li class="hide">
+                        <li class="">
                           <span class="fa fa-heart"></span> <a href="#">Mis favoritos</a>
                         </li>
-                        <li class="hide">
+                        <li class="">
                           <span class="fa fa-comment"></span> <a href="#">Mis consultas</a>
                         </li>
-                      </ul>
+                      </ul-->
                     </div>
                     <div id="control-footer">
                       <a href="#" class="pencil" data-toggle="modal" data-target="#particular-modal">
                         <span class="fa fa-pencil"></span>
                       </a>
                       <?php
+
+                        echo $this->Html->link('Mis compras', array(
+                            'controller' => 'shop',
+                            'action' => 'mis_compras'
+                          ),
+                          array(
+                            'class' => 'right'
+                          )
+                        );
+                                              
                         echo $this->Html->link('Cerrar sesión', array(
                             'controller' => 'users',
                             'action' => 'logout'
@@ -99,14 +113,7 @@
                             'class' => 'right'
                           )
                         );
-                        /*echo $this->Html->link('Mis compras', array(
-                            'controller' => 'shop',
-                            'action' => 'mis_compras'
-                          ),
-                          array(
-                            'class' => 'right'
-                          )
-                        );*/
+
                       ?>
                     </div>
                       </div>
@@ -121,7 +128,7 @@
                 <?php if(count($carro)):?>
                 <span class="count animated scaleIn speed delay1"><?=count($carro)?></span>
                 <?php endif ?>
-                <span><i class="fa fa-d-lg text-chatelet fa-shopping-cart"></i></span>
+                <span><i class="fa fa-d-lg fa-shopping-cart <?= count($carro) ? 'text-green' : 'text-chatelet' ?>"></i></span>
               </a>
               <ul class="dropdown-menu">
                 <li>

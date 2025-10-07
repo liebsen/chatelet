@@ -79,14 +79,14 @@ var selectStore = e => {
 }
 var show_cart_item = (index) => {
 	//console.log('show_cart_item')
-	var target = document.querySelectorAll('.carrito-item-row')[index]
+	var target = document.querySelectorAll('.ch-row')[index]
 	if (target) {
 		if (!index) {
 			$('#carritoItem .carousel-control.left').addClass('is-hidden')
 		} else {
 			$('#carritoItem .carousel-control.left').removeClass('is-hidden')
 		}
-		if (index >= document.querySelectorAll('.carrito-item-row').length-1) {
+		if (index >= document.querySelectorAll('.ch-row').length-1) {
 			$('#carritoItem .carousel-control.right').addClass('is-hidden')
 		} else {
 			$('#carritoItem .carousel-control.right').removeClass('is-hidden')
@@ -103,7 +103,7 @@ var show_cart_item = (index) => {
 			}
 		}).then(() => {
 			$('#carritoItem').removeClass('scaleOut')
-			$('.carrito-item-block').html($(target).html())
+			$('.ch-block').html($(target).html())
 			$('html, body').addClass('disable-scroll')
 			if (!$('#carritoItem').hasClass('active')) {
 				$('#carritoItem').addClass('active')
@@ -125,7 +125,7 @@ $(document).ready(function() {
 	submit.text('Siguiente')
 
 	/* carrito item viewer */
-	$('.carrito-item-row').on('click', function(e) {
+	$('.ch-row').on('click', function(e) {
 		var donts = [
 			'glyphicon glyphicon-remove', 
 			'giftchecks', 
@@ -133,7 +133,7 @@ $(document).ready(function() {
 		]	
 		if (!donts.includes(e.target.className)) {
 			$('html, body').addClass('disable-scroll')
-			currentCartIndex = [...document.querySelectorAll('.carrito-item-row')].indexOf(this)
+			currentCartIndex = [...document.querySelectorAll('.ch-row')].indexOf(this)
 			show_cart_item(currentCartIndex)
 		}
 	})
@@ -143,14 +143,14 @@ $(document).ready(function() {
 		if (currentCartIndex > 0) {
 			currentCartIndex--
 		} else {
-			currentCartIndex = document.querySelectorAll('.carrito-item-row').length
+			currentCartIndex = document.querySelectorAll('.ch-row').length
 		}
 		show_cart_item(currentCartIndex)
 	})
 
 	$('#carritoItem .carousel-control.right').on('click', function(e) {
     e.preventDefault()
-		if (currentCartIndex < document.querySelectorAll('.carrito-item-row').length) {
+		if (currentCartIndex < document.querySelectorAll('.ch-row').length) {
 			currentCartIndex++
 		} else {
 			currentCartIndex = 0

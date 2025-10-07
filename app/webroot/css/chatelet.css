@@ -720,8 +720,9 @@ select.form-control{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 0.5rem;
+	gap: 1rem;
 	padding: 0 10px;
+	min-height: 3rem;
 }
 
 .control-panel {
@@ -813,7 +814,7 @@ select.form-control{
 }
 
 .modal-header .close {
-	color: white;
+	color: #e10c76;
 	opacity: 0.9;
 }
 
@@ -829,6 +830,10 @@ select.form-control{
  	z-index: 99;
 	top: 0.5rem !important;
 	left: 0.5rem !important;
+}
+
+.text-green {
+	color: #14c408;
 }
 
 .text-shadow {

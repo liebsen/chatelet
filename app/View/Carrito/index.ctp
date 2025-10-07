@@ -58,7 +58,7 @@
 			?>
 			<div class="carrito-row">
 				<div class="carrito-col">
-					<div class="carrito-items">
+					<div class="ch-flex">
 					<?php if (!isset($carro)) $carro = array();
 				  $row = 0;
 					$subtotal = 0;
@@ -83,7 +83,7 @@
               strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
             ));
 
-						echo '<div class="carrito-item-row is-clickable" product_row>';
+						echo '<div class="ch-row is-clickable" product_row>';
 						echo '<div onclick="askremoveCart(this, \''.$product['name'].'\')" class="carrito-remove animated fadeIn delay2" title="Eliminar del carrito">';
 						echo '<span class="glyphicon glyphicon-remove"></span>';
 						/*echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
@@ -99,7 +99,7 @@
 						);*/
 						echo '</div>';
 						//echo '<div class="help" title="Modificar este item del carrito"><div><span class="glyphicon glyphicon-edit"></span> <span class="font-system"> Modificar</span></div></div>';
-						echo '<div class="carrito-item-col cart-img-col">';
+						echo '<div class="ch-col cart-img-col">';
 						//echo "<div class='clearfix'></div>";
 						echo "<div class='cart-img'>";
 						if (!empty($product['number_ribbon'])) {
@@ -114,11 +114,11 @@
 						}
             echo '<a href="' . $item_url . '">';
 						// echo '<img src="'.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
-						echo '<div class="carrito-item-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
+						echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 						echo '</a>';
 						echo '</div>';
 						echo '</div>';
-						echo '<div class="carrito-item-col carrito-data" data-json=\''.json_encode($product).'\'>';
+						echo '<div class="ch-col carrito-data" data-json=\''.json_encode($product).'\'>';
 						echo '<span class="name is-carrito">'. $product['name'] . '</span>';
 						if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 							echo '<p class="color">Color: <span class="talle" color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></p>';
@@ -274,7 +274,7 @@
   <div class="carousel carousel-carrito" id="carousel">
   	<div class="carousel-inner">
 			<div class="carrito-item">
-				<div class="carrito-item-block"></div>
+				<div class="ch-block"></div>
 			</div>
 		</div>
 		<a class="left carousel-control" href="#carousel" role="button" data-slide="prev">

@@ -745,35 +745,50 @@ class CarritoController extends AppController
 			header("Location: /");
 			return false;
 		}
-		
+
 		$user_id = $this->Auth->user('id');
-
-		if(!$user_id){
-			$user_object = [
-				'email' => $user['email'],
-				'name' => $user['name'],
-				'surname' => $user['surname'],
-				'dni' => $user['dni'],
-				'telephone' => $user['telephone'],
-				'province' => $user['province'],
-				'city' => $user['city'],
-				'street' => $user['street'],
-				'floor' => $user['floor'],
-			];
-			$this->User->save($user_object);
-			$user_id = $this->User->id;
-		}
-
 		$product_ids = array();
 		$items = array();
 		$user = $this->request->data;
 		$user['id'] = $this->Auth->user('id');
 		$user['telephone'] = @preg_replace("/[^0-9]/","",$user['telephone']);
-		$user['floor'] = (!empty($user['floor']))?$user['floor']:'';
-		$user['depto'] = (!empty($user['depto']))?$user['depto']:'';
-		$user['coupon'] = (!empty($user['coupon']))?strtoupper($user['coupon']):'';
+		$user['email'] = (!empty($user['email']))?trim($user['email']):'';
+		$user['floor'] = (!empty($user['floor']))?trim($user['floor']):'';
+		$user['depto'] = (!empty($user['depto']))?trim($user['depto']):'';
+		$user['coupon'] = (!empty($user['coupon']))?strtoupper(trim($user['coupon'])):'';
 		//$user['regalo'] = (isset($user['regalo']) && $user['regalo']?1:0);
 		$user['dues'] = (isset($user['payment_dues']) && $user['payment_dues']?intval($user['payment_dues']):1);
+
+		if(!isset($user_id)){
+			$check_user_id = 0;
+			$check_user = $this->User->find('first', [
+				'conditions' => [
+					'email' => $user['email']
+				]
+			]);
+
+			if($check_user) { // user found assing id
+				CakeLog::write('debug', '(sale) found user by email:' . $check_user['User']['id']);
+				$check_user_id = $check_user['User']['id'];
+			} else { // user not found create and assing id
+				CakeLog::write('debug', '(sale) creating new user:' . $user['email']);
+				$user_object = [
+					'email' => $user['email'],
+					'name' => $user['name'],
+					'surname' => $user['surname'],
+					'dni' => $user['dni'],
+					'telephone' => $user['telephone'],
+					'province' => $user['province'],
+					'city' => $user['city'],
+					'street' => $user['street'],
+					'floor' => $user['floor'],
+				];
+				$this->User->save($user_object);
+				$check_user_id = $this->User->id;
+			}
+			$user_id = $check_user_id;
+		}
+
 
 		$map = $this->Setting->findById('bank_enable');
 		$bank_enable = @$map['Setting']['value'];
@@ -852,7 +867,10 @@ class CarritoController extends AppController
 			}
 		}
 
-		$discount = (float) $coupon_parsed->data['discount'];
+		$discount = $coupon_parsed ? 
+			(float) $coupon_parsed->data['discount'] : 
+			0;
+
 		$partial_bonus = $discount;
 
 		foreach ($carro as $producto) {

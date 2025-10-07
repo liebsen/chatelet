@@ -23,11 +23,11 @@ class UsersController extends AppController {
     public function login() {
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
-                /*$this->Session->setFlash(
+                $this->Session->setFlash(
                     'Bienvenido a Châtelet', 
-                    '', 
+                    'default', 
                     array('class' => 'hidden notice')
-                );*/
+                );
                 return $this->redirect($this->referer());
             }
             $this->Session->setFlash(
@@ -80,19 +80,21 @@ class UsersController extends AppController {
                 ]
             ]);
 
-            if(!$user) {
+            /*if(!$user) {
                 $user = $this->User->find('first',[
                     'conditions' => [
                         'User.name like' => '%'.$sale['Sale']['nombre'].'%',
                         'User.surname like' => '%'.$sale['Sale']['apellido'].'%',
                     ]
                 ]);
-            }
+            }*/
 
-            //CakeLog::write('debug','check: '.$sale['Sale']['nombre'].' '.$sale['Sale']['apellido']);
+            CakeLog::write('debug','check: '.$sale['Sale']['nombre'].' '.$sale['Sale']['apellido']);
 
             if($user) {
                 $ok++;
+                $sale['Sale']['user_id'] = $user['User']['id'];
+                $this->User->save($sale['Sale']);
                 //CakeLog::write('debug','user[OK]: '.$user['User']['id']);
             } else {
                 $fail++;

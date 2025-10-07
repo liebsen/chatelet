@@ -1,5 +1,29 @@
 <?php
 
+function timeAgo($timestamp) {
+    $current_time = time();
+    $diff = $current_time - $timestamp;
+
+    if ($diff < 60) {
+        return $diff == 1 ? "1 segundo" : $diff . " segundos";
+    } elseif ($diff < 3600) {
+        $minutes = round($diff / 60);
+        return $minutes == 1 ? "1 minuto" : $minutes . " minutos";
+    } elseif ($diff < 86400) {
+        $hours = round($diff / 3600);
+        return $hours == 1 ? "1 hora" : $hours . " horas";
+    } elseif ($diff < 2592000) { // 30 days
+        $days = round($diff / 86400);
+        return $days == 1 ? "1 día" : $days . " días";
+    } elseif ($diff < 31536000) { // 365 days
+        $months = round($diff / 2592000);
+        return $months == 1 ? "1 mes" : $months . " meses";
+    } else {
+        $years = round($diff / 31536000);
+        return $years == 1 ? "1 año" : $years . " años";
+    }
+}
+
 function startsWith($haystack, $needle) {
   $length = strlen($needle);
   return substr($haystack, 0, $length) === $needle;

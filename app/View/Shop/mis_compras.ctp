@@ -6,14 +6,14 @@
       <div class="row">
         <div class="col-md-4">
           <div class="animated fadeIn delay2">
-            <h1>Proximamente...</h1>
+            <h1>Mis compras</h1>
           </div>
         </div>
         <div class="col-md-8 pr-2-d">
           <div class="animated scaleIn delay box-cont">
             <div class="box">
-              <h3>¿Tenés alguna consulta o sugerencia?</h3>
-              <p>Aquí podrás próximamente acceder a tus compras realizadas en esta tienda.</p>
+              <h3>Aquí encontrarás las compras realizadas a tu cuenta</h3>
+              <p>Aquí encontrarás las compras realizadas a tu cuenta en Chatelet y podrás gestionar a través de la tienda servicios post-venta.</p>
             </div>
           </div>
         </div>
@@ -23,47 +23,51 @@
 
   <section id="formulario">
     <div class="wrapper">
-      <div class="carrito-items">
+      <div class="ch-flex"> 
         <?php foreach($sales as $sale):?>
-        <div class="carrito-item-row is-clickable">
-          <div class="carrito-item-col cart-img-col">
-            <div class="cart-img">
-              <div class="ribbon bottom-left small"><span>50% OFF</span></div>
-              <a href="/tienda/producto/8813/221/remera-conica-belen">
-                <div class="carrito-item-image" style="background-image: url(/files/uploads/68910cd05656b.jpg)"></div>
-                </a>
-              </div>
-            </div>
-            <div class="carrito-item-col carrito-data">
-              <span class="name is-carrito">REMERA CONICA BELEN</span>
-              <p class="color">Color: <span class="talle" color-code="02">Negro</span></p>
-              <p class="color">Talle: <span class="talle">02</span></p>
-              <p class="color">Cantidad: <span class="talle">1</span></p>
-              <label class="form-group mt-3">
-                <input class="giftchecks" type="checkbox" id="giftcheck_8813" data-id="8813">
-                <span class="label-text text-muted text-small">Es para regalo</span>
-                <br><br>
-              </label>
-              <div class="text-right d-flex justify-content-end align-items-center gap-1">
-                <span class="old_price text-grey animated fadeIn delay2">$ 39.000</span>
-                <span class="price animated fadeIn delay">$ 19.500</span>
-              </div>
-              <div class="carrito-hide-element">
-                <div class="form-inline">
-                  <div class="form-group">
-                    <div class="input-group mt-4">
-                      <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
-                       <span class="fa fa-minus"></span>
-                      </div>
-                      <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="1" original-value="1">
-                      <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
-                       <span class="fa fa-plus"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <span class="ch-btn-success btn-change-count disable is-clickable">Reclamar</span>
-              </div>
+        <div class="ch-row is-clickable">
+          <div class="ch-col p-5 gap-1">
+            <!--span class="name">REMERA CONICA BELEN</span-->
+            <p>Fecha: 
+              <span class="text-muted"><?= $sale['Sale']['created'] ?></span>
+              <span class="text-muted">(<?= \timeAgo(strtotime($sale['Sale']['created'])) ?>)</span>
+            </p><br>
+            <p>Costo de Envío: 
+            <?php if(empty($sale['Sale']['delivery_cost'])):?>
+              <span class="text-success">gratis</span>
+            <?php else: ?>
+            <span class="text-muted"><?= \price_format($sale['Sale']['delivery_cost']) ?></span>
+            <?php endif; ?>
+            </p>
+            <p>Método de pago: <span class="text-muted"><?= $sale['Sale']['payment_method']; ?></span></p>
+            
+            <?php if($sale['Sale']['cargo'] == 'takeaway'):?>
+              <p>Método de Envío: <span class="text-muted">Takeaway</span></p>
+              <p>
+                Retira en sucursal: 
+                <span class="text-muted"><?= implode(", ", [
+                  $sale['Sale']['store_address'], 
+                  $sale['Sale']['store']
+                ]) ?></span>
+              </p>
+            <?php else: ?>
+              <p>Método de Envío: <span class="text-muted">Entrega a domicilio</span></p>
+              <p>Entrega en: 
+                <span class="text-muted"><?= implode(" ", [
+                  $sale['Sale']['calle'],
+                  $sale['Sale']['nro'],
+                  $sale['Sale']['piso'],
+                  $sale['Sale']['depto']
+                ]) ?></span>
+                <span class="text-muted"><?= implode(", ",[
+                  $sale['Sale']['localidad'], 
+                  $sale['Sale']['provincia']
+                ]) ?> (<?= $sale['Sale']['cp'] ?>) </span>
+              </p>
+            <?php endif; ?>
+            </p>
+            <div class="text-right d-flex justify-content-end align-items-center gap-1">
+              <span class="price animated fadeIn delay">$ <?= \price_format($sale['Sale']['value']) ?></span>
             </div>
           </div>
         </div>

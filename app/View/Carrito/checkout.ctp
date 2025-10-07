@@ -41,7 +41,7 @@
 			<div id="carrito">
 				<div class="carrito-row">
 					<div class="carrito-col">
-						<div class="carrito-items">
+						<div class="ch-flex">
 							<div class="card">
 							  <div class="card-body">
 							    <h5 class="card-title">
@@ -209,8 +209,8 @@
 				          </label-->
 						    <?php foreach($legends as $legend): ?>
 						    	<?php if($total >= @$legend['Legend']['min_sale']):?>
-						    	<label for="dues_<?= @$legend['Legend']['dues'] ?>" class="col-xs-12 is-clickable option-rounded is-secondary<?= @$config['payment_method'] !== 'bank' ? '' : ' hide' ?>"  data-interest="<?= @$legend['Legend']['interest'] ?>" onclick="select_dues(event,this)">
-						    	<input type="radio" id="dues_<?= @$legend['Legend']['dues'] ?>" name="payment_dues" value="<?= @$legend['Legend']['dues'] ?>" required/>
+						    	<label for="dues_<?= @$legend['Legend']['dues'] ?>" class="col-xs-12 is-clickable option-rounded <?= $legend['Legend']['dues'] == 1 ? 'is-selected' : 'is-secondary' ?><?= @$config['payment_method'] !== 'bank' ? '' : ' hide' ?>"  data-interest="<?= @$legend['Legend']['interest'] ?>" onclick="select_dues(event,this)">
+						    	<input type="radio" id="dues_<?= @$legend['Legend']['dues'] ?>" name="payment_dues" value="<?= @$legend['Legend']['dues'] ?>" required <?= $legend['Legend']['dues'] == 1 ? 'checked' : '' ?>/>
 					          	<span class="h4"> <?= @$legend['Legend']['dues'] ?> cuota<?= @$legend['Legend']['dues'] > 1 ? 's' : '' ?></span><br>
 					          	<p class="mt-2 text-small calc-dues" data-dues="<?= @$legend['Legend']['dues'] ?>" data-interest="<?= @$legend['Legend']['interest'] ?>"><?= 
 								str_replace([
