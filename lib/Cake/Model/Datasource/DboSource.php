@@ -530,6 +530,9 @@ class DboSource extends DataSource {
  */
 	public function query() {
 		$args = func_get_args();
+		/*echo '<pre>';
+		print_r($args);*/
+
 		$fields = null;
 		$order = null;
 		$limit = null;

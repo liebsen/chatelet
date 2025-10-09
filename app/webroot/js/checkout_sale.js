@@ -65,7 +65,7 @@ var select_dues = (e,item) => {
 
 	var interest = $(e).data('interest')
 
-	onSuccessAlert(`Seleccionaste ${dues_selected} cuotas`, '✓ Cantidad de cuotas seleccionado');
+	onSuccessAlert(`Seleccionaste ${dues_selected} cuota${dues_selected > 1 ? 's' : ''}`, '✓ Cantidad de cuotas seleccionado');
 	save_preference([
 		{'payment_method': 'mercadopago'},
 		{'payment_dues': dues_selected}

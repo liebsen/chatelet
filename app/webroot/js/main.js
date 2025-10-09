@@ -214,21 +214,23 @@ let apiSearch = (q) => {
         if(item.legends.length){
           strLegends+= `<span class="legends-container mb-8"><span class="legends w-100">`
           item.legends.forEach((e) => {
-            strLegends+= `<span class="text-legend">`
-            if(e.discount) {
-              strLegends+= ` <span class="text-theme text-bold text-high">-${e.discount}%</span> `
-            }
-            if(e.text) {
-              if(!isNaN(e.text.split(' ')[0])) {
-                strLegends+= `<span class="text-theme text-bold text-high">${e.text.split(' ')[0]}</span> ${e.text.split(' ').slice(1).join(' ')}`
-              } else {
-                strLegends+= ` <span class="text-theme text-muted">${e.text}</span> `
+            if(!e.text.includes('1')) {
+              strLegends+= `<span class="text-legend">`
+              if(e.discount) {
+                strLegends+= ` <span class="text-theme text-bold text-high">-${e.discount}%</span> `
               }
+              if(e.text) {
+                if(!isNaN(e.text.split(' ')[0])) {
+                  strLegends+= `<span class="text-theme text-bold text-high">${e.text.split(' ')[0]}</span> ${e.text.split(' ').slice(1).join(' ')}`
+                } else {
+                  strLegends+= ` <span class="text-theme text-muted">${e.text}</span> `
+                }
+              }
+              if(e.price) {
+                strLegends+= ` <span class="text-dark text-bold text-price text-high text-nowrap">$ ${formatNumber(e.price)}</span> `
+              }
+              strLegends+= `</span>`
             }
-            if(e.price) {
-              strLegends+= ` <span class="text-dark text-bold text-price text-high text-nowrap">$ ${formatNumber(e.price)}</span> `
-            }
-            strLegends+= `</span>`
           })
         }
         str += '<div class="col-sm-6 col-md-3 search-item animate fadeIn">' +
@@ -250,10 +252,12 @@ let apiSearch = (q) => {
           $('.search-results').append(str)
         }
         setTimeout(() => {
-          var w = ($('.search-item').length / data.query[0].count) * 100
-          $('.search-bar').css({'width': `${w}%`})
-          if (parseInt(data.query[0].count) > $('.search-item').length) {
-            $('.search-more').html('<a href="javascript:loadMoreSearch(' + (searchPage + 1) + ')">Mostrar más resultados</a>')
+          if(data.query[0]) {
+            var w = ($('.search-item').length / data.query[0].count) * 100
+            $('.search-bar').css({'width': `${w}%`})
+            if (parseInt(data.query[0].count) > $('.search-item').length) {
+              $('.search-more').html('<a href="javascript:loadMoreSearch(' + (searchPage + 1) + ')">Mostrar más resultados</a>')
+            }
           }
         }, 500)
       }
@@ -464,7 +468,7 @@ $(function () {
       var scroll = $(window).scrollTop()
       var tops = document.querySelectorAll('.top-fixable')
       var navbar = document.querySelector('.navbar-chatelet')
-      if (scroll > 300) {
+      if (scroll > 100) {
         if (document.getElementById('carousel-banners')) {
           document.getElementById('carousel-banners').classList.add('invisible')
         }
@@ -523,7 +527,7 @@ $(function () {
   if (window.location.hash) {
     const queryCode = 'q'
     const focusCode = 'f'
-    if(window.location.pathname === '/' && window.location.hash.indexOf(`${queryCode}:`) > -1) {
+    if (window.location.pathname === '/' && window.location.hash.indexOf(`${queryCode}:`) > -1) {
       var q = window.location.hash.replace(`#${queryCode}:`, '')
       if (q) {
         localStorage.setItem('lastsearch', q)
@@ -539,7 +543,9 @@ $(function () {
   }
 
   window.onerror = function (msg, url, lineNo, columnNo, error) {
-    onErrorAlert(`${msg}:${lineNo}`);
+    if (window.location.hostname != 'chatelet.com.ar') {
+      onErrorAlert(`${msg}:${lineNo}`);
+    }
     var browser = {
       appCodeName: navigator.appCodeName,
       appName: navigator.appName,

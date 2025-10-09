@@ -72,51 +72,33 @@
               <ul class="dropdown-menu">
                  <li>
                    <div id="login-panel">
-                    <div class="control-panel">
-                      <p class="title">Panel de Usuario</p>
-                      <div id="user-data">
-                        <div id="user-name"><?php echo $user['name'] . " " . $user['surname']; ?></div>
-                        <div id="user-email"><?php echo $user['email']; ?></div>
-                      </div>
-                      <!--ul id="control-sections" class="list-unstyled">
-                        <li class="">
-                          <span class="fa fa-tag"></span> <a href="#">Historial de Compras</a>
-                        </li>
-                        <li class="">
-                          <span class="fa fa-heart"></span> <a href="#">Mis favoritos</a>
-                        </li>
-                        <li class="">
-                          <span class="fa fa-comment"></span> <a href="#">Mis consultas</a>
-                        </li>
-                      </ul-->
-                    </div>
-                    <div id="control-footer">
-                      <a href="#" class="pencil" data-toggle="modal" data-target="#particular-modal">
-                        <span class="fa fa-pencil"></span>
-                      </a>
-                      <?php
+                      <div class="control-panel">
+                        <p class="title">Panel de Usuario</p>
 
-                        echo $this->Html->link('Mis compras', array(
-                            'controller' => 'shop',
-                            'action' => 'mis_compras'
-                          ),
-                          array(
-                            'class' => 'right'
-                          )
-                        );
-                                              
-                        echo $this->Html->link('Cerrar sesión', array(
-                            'controller' => 'users',
-                            'action' => 'logout'
-                          ),
-                          array(
-                            'class' => 'right'
-                          )
-                        );
+                        <div id="user-data">
+                          <div id="user-name"><?php echo $user['name'] . " " . $user['surname']; ?>                       <a href="#" class="pencil" data-toggle="modal" data-target="#particular-modal">
+                          <span class="fa fa-pencil"></span>
+                        </a>     </div>
+                          <div id="user-email"><?php echo $user['email']; ?></div>
 
-                      ?>
-                    </div>
+                        </div>
+                        <!--ul id="control-sections" class="list-unstyled">
+                          <li class="">
+                            <span class="fa fa-tag"></span> <a href="#">Historial de Compras</a>
+                          </li>
+                          <li class="">
+                            <span class="fa fa-heart"></span> <a href="#">Mis favoritos</a>
+                          </li>
+                          <li class="">
+                            <span class="fa fa-comment"></span> <a href="#">Mis consultas</a>
+                          </li>
+                        </ul-->
                       </div>
+                      <div id="control-footer">
+                        <a href="/shop/mis_compras" class="btn cart-btn-green">Mis compras</a>
+                        <a href="/users/logout" class="btn cart-btn-green">Cerrar sesión</a>
+                      </div>
+                    </div>
                   </li>
                 </ul>
               <?php } else { ?>

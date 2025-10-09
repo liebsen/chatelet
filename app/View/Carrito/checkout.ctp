@@ -280,7 +280,7 @@
 									<div class="form-group">
 										<label for="direccion">Calle y Número</label>
 										<input style="width:75%;float:left;" type="text" class="form-control" placeholder="Riobamba" id="calle" name="street" value="<?= @$userData['User']['street'] ?>" required>
-										<input style="margin-left:1%;width:24%;float:left;" min="0" class="form-control" placeholder="1234" name="street_n" type="number" value="<?= @$userData['User']['street_n'] ?>" required/>
+										<input style="margin-left:1%;width:24%;float:left;" min="0" class="form-control" placeholder="1234" name="street_n" type="number" value="<?= @$userData['User']['street_n'] ?>"/>
 									</div>
 									<span class="clearfix"></span>
 									<div class="form-group">

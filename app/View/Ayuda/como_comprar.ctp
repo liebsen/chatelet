@@ -5,11 +5,11 @@
             <div class="wrapper">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">
-                        <div class="animated fadeIn delay2">
+                        <div class="animated fadeIn delay">
                             <h1>¿Cómo<br>comprar?</h1>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-8 pr-2-d">
+                    <div class="col-xs-12 col-md-8">
                         <div class="animated scaleIn delay box-cont">
                             <div class="box img-bg" style="background-image: url('/img/como-comprar.jpeg')"></div>
                         </div>
@@ -19,7 +19,7 @@
         </div>
 
         <section id="desarrollo">
-            <div class="wrapper animated fadeIn delay25">
+            <div class="wrapper animated fadeIn delay">
                 <h3 class="p-3">Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h3>
                 <div class="col-xs-12 col-md-6">
                     <ol class="ordered-list">

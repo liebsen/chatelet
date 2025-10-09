@@ -15,21 +15,12 @@ class ShopController extends AppController {
 
 	public function beforeFilter() {
   	parent::beforeFilter();
-  	$this->loadModel('Setting');
-    $setting = $this->Setting->findById('image_prodshop');
-		$image_prodshop = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
-		$this->set('image_prodshop',$image_prodshop);
-    $setting = $this->Setting->findById('image_bannershop');
-		$image_bannershop = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
-		$this->set('image_bannershop',$image_bannershop);
     $this->loadModel('LookBook');
 		$lookbook = $this->LookBook->find('all');
 		$this->set('lookBook', $lookbook);
-    unset($setting);
   	$setting 			= $this->Setting->findById('catalog_first_line');
 		$catalog_first_line = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_first_line',$catalog_first_line);
-		unset($setting);
 	}
 
 	public function index() {
@@ -406,18 +397,40 @@ class ShopController extends AppController {
 
   public function mis_compras()
   {
-      $this->loadModel('Sale');
+    $this->loadModel('Sale');
+    $this->loadModel('SaleProduct');
 
-      $user_id = $this->Auth->user('id');
-      $sales = $this->Sale->find('all',[
+    $user_id = $this->Auth->user('id');
+    $sales = $this->Sale->find('all',[
+      'conditions' => [
+        'user_id' => $user_id,
+      ],     
+      'order' => ['Sale.id DESC'],
+      'limit' => 10,
+    ]);
+
+    foreach($sales as $i => $sale) {
+    	$items = $this->SaleProduct->find('all',[
+		    'joins' => [
+	        [
+	          'table' => 'products',
+	          'alias' => 'Product',
+	          'type' => 'LEFT',
+	          'conditions' => [ 'Product.id = SaleProduct.product_id' ]
+	        ]
+		    ],
+		  	'fields' => ['Product.img_url, Product.article, SaleProduct.*'],
         'conditions' => [
-          'user_id' => $user_id,
+          'sale_id' => $sale['Sale']['id'],
         ],     
-        'order' => ['Sale.id DESC'],
-        'limit' => 500,
+        'order' => ['SaleProduct.id DESC'],
+        'limit' => 1000,
       ]);
 
-      $this->set('sales', $sales);
+      $sales[$i]['Products'] = $items;
+    }
+
+    $this->set('sales', $sales);
   }
 
   public function detalle($product_id, $category_id) {
@@ -600,7 +613,7 @@ class ShopController extends AppController {
 		$q = $this->request->data['q'];
 		$p = $this->request->data['p'] ? intval($this->request->data['p']) : 0;
 		$s = $this->request->data['s'] ? intval($this->request->data['s']) : 10;
-		$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
+		//$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
 		$data = $this->Product->find('all',[
 			'conditions' => [
 				'or' => [
@@ -717,7 +730,7 @@ class ShopController extends AppController {
 
 		echo json_encode([
 			'results' => $results,
-			'query' => $query
+			//'query' => $query
 		]);
 
 		// save search

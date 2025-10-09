@@ -5,11 +5,11 @@
     <div class="wrapper">
       <div class="row">
         <div class="col-md-4">
-          <div class="animated fadeIn delay2">
+          <div class="animated fadeIn delay">
             <h1>Contactate<br>con nosotros</h1>
           </div>
         </div>
-        <div class="col-md-8 pr-2-d">
+        <div class="col-md-8">
           <div class="animated scaleIn delay box-cont">
             <div class="box">
               <h3>¿Tenés alguna consulta o sugerencia?</h3>

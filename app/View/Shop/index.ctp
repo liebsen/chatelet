@@ -7,9 +7,10 @@
   }
 
 </style>
+
 <div id="headshop">
   <!--h1 class="name_shop">Shop</h1-->
-  <div class="img-resp" style="background-image:url(<?php echo Configure::read('uploadUrl').$image_bannershop ?>)"></div>
+  <div class="img-resp" style="background-image:url(<?php echo Configure::read('uploadUrl').@$data['image_bannershop'] ?>)"></div>
 </div>
 
 <section id="listShop">
@@ -18,9 +19,9 @@
       <div class="col-xs-12">
         <div class="row">
           <?php foreach($categories as $category): ?>
-          <div class="category-item p-0 col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
+          <div class="category-item p-0 col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>" style="background-image: url('<?php echo Configure::read('uploadUrl').$category['Category']['img_url']?>')">
             <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
-              <div class="d-flex justify-content-start align-items-center cat-image p-3 w-100" style="background: #eaeaea url('<?php echo Configure::read('uploadUrl').$category['Category']['img_url']?>') center center/cover no-repeat;">          
+              <div class="d-flex justify-content-start align-items-center cat-image p-3 w-100">          
                 <span class="p-1 text-catalog text-uppercase">
                   <?php echo $this->App->cat_title(strlen($category['Category']['alternate_toggle']) ? 
                     $category['Category']['alternate_name'] :

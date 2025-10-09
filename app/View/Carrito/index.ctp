@@ -84,7 +84,7 @@
             ));
 
 						echo '<div class="ch-row is-clickable" product_row>';
-						echo '<div onclick="askremoveCart(this, \''.$product['name'].'\')" class="carrito-remove animated fadeIn delay2" title="Eliminar del carrito">';
+						echo '<div onclick="askremoveCart(this, \''.$product['name'].'\')" class="carrito-remove animated fadeIn delay" title="Eliminar del carrito">';
 						echo '<span class="glyphicon glyphicon-remove"></span>';
 						/*echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
 							array(
@@ -144,7 +144,7 @@
 						}*/
 						echo '<div class="text-right d-flex justify-content-end align-items-center gap-1">';
 						if (!empty($product['old_price'] && abs($product['old_price']-$product['price']) > 1)){
-							echo '<span class="old_price text-grey animated fadeIn delay2">$ '. \price_format($product['old_price']) .'</span>';
+							echo '<span class="old_price text-grey animated fadeIn delay">$ '. \price_format($product['old_price']) .'</span>';
 						}					
 						echo '<span class="price animated fadeIn delay">$ '. \price_format($product['price']) .'</span>';
 						echo strlen(@$product['payment_text']) ? 'con ' . @$product['payment_text'] : '';
@@ -170,7 +170,7 @@
 						// echo '<hr>';
 						$row += 1;
 					} ?>
-						<div class="resume-totals p-4 animated fadeIn delay2">
+						<div class="resume-totals p-4 animated fadeIn delay">
 							<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 							<input type="hidden" id="subtotal_envio" value="" />
 							<!--div class="summary-item text-right">

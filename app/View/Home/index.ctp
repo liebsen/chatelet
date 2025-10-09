@@ -111,9 +111,9 @@
         <div class="col-xs-12">
           <div class="row">
             <?php foreach($categories as $category): ?>
-            <div class="category-item p-0 col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
+            <div class="category-item p-0 col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>" style="background-image: url('<?php echo Configure::read('uploadUrl').$category['Category']['img_url']?>')">
               <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
-                <div class="d-flex justify-content-start align-items-center cat-image p-3 w-100" style="background: #eaeaea url('<?php echo Configure::read('uploadUrl').$category['Category']['img_url']?>') center center/cover no-repeat;">  
+                <div class="d-flex justify-content-start align-items-center cat-image p-3 w-100">  
                     <span class="p-1 text-catalog text-uppercase">
                       <?php echo 
                         $this->App->cat_title(
@@ -158,7 +158,7 @@
 
   <div class="modal fade p-0" tabindex="-1" id="myModal" role="dialog" style="background-color: #262427;">
     <div class="content js-show-modal is-clickable" data-dismiss="modal" style="background-image: url(<?= Configure::read('uploadUrl').$popupBG[0] ?>);">
-      <div class="tap-to-continue animated fadeIn delay2" title="Continuar a la tienda">
+      <div class="tap-to-continue animated fadeIn delay" title="Continuar a la tienda">
         <i class="fa fa-chevron-right mr-0"></i> 
         <span class="ml-2">Continuar<span class="d-none d-lg-block d-xl-block"> a la tienda</span></span>
       </div>

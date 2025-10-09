@@ -189,21 +189,14 @@ class AppController extends Controller
 
         $this->set('data', $data);
 
-        if(!empty($this->Auth->user('role')) && $this->Auth->user('role') == 'admin'){
+        /* if(!empty($this->Auth->user('role')) && $this->Auth->user('role') == 'admin'){
             $site_visits = $this->site_visits();
             $this->set('site_visits',$site_visits);
-            /* if ($this->request->params['controller']!='admin') {
+            if ($this->request->params['controller']!='admin') {
                 $this->redirect('/admin');
-            } */
-        }
+            } 
+        }*/
 
-        $setting    = $this->Setting->findById('show_shop');
-        $show_shop  = (!empty($setting['Setting']['value'])) ? 1 : 0;
-        $this->set('show_shop',$show_shop);
-        $this->set('home',strtolower($this->request->params['controller'])==='home');
-        $setting_menu    = $this->Setting->findById('image_menushop');
-        $image_menushop = (!empty($setting_menu['Setting']['value'])) ? $setting_menu['Setting']['value'] : '';
-        $this->set('image_menushop',$image_menushop);
         $version_short = number_format($version_count / 10000, 2);
         $this->set('version_text', str_replace('.0', '', $version_short) . ' ' . $version_date);
     }

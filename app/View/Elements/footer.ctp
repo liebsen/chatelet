@@ -8,7 +8,7 @@
         <i class="fa fa-whatsapp"></i>
         <?php if(!empty($data['whatsapp_text'])): ?>
         <span class="whatsapp-text">
-          <span class="animated scaleIn delay25 pr-3">
+          <span class="animated scaleIn delay pr-3">
             <?= $data['whatsapp_text'] ?>
           </span>
         </span>
@@ -103,7 +103,7 @@
               </a>-->
           </div>
         </div>
-        <p class="text-center text-footer text-muted mb-4 text-uppercase h6"><span class="is-clickable" title="Châtelet v<?= $version_text ?>">Châtelet</span> <?php echo date('Y'); ?>. Buenos Aires, Argentina. Todos los derechos reservados</p>
+        <p class="text-center text-footer text-muted mb-4 text-uppercase"><span class="is-clickable" title="Châtelet v<?= $version_text ?>">Châtelet</span> <?php echo date('Y'); ?>. Buenos Aires, Argentina. Todos los derechos reservados</p>
       </div>
     </footer>
     <?php echo $this->Html->script('plugins', array('inline'=>false))?>

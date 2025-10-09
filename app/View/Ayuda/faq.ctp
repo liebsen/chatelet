@@ -4,11 +4,11 @@
             <div class="wrapper">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">
-                        <div class="animated fadeIn delay2">
+                        <div class="animated fadeIn delay">
                             <h1>Preguntas<br>frecuentes</h1>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-8 pr-2-d">
+                    <div class="col-xs-12 col-md-8">
                         <div class="animated scaleIn delay box-cont">
                             <div class="box">
                                 <h3>Lo que tenés que saber antes de comprar</h3>
@@ -22,7 +22,7 @@
 
 
         <section id="desarrollo">
-            <div class="wrapper animated fadeIn delay25">
+            <div class="wrapper animated fadeIn delay">
                 <div class="col-sm-6">
                     <h3>Cuál es el costo de envío y entrega de mi pedido?</h3>
                     <p>El costo de envío y tiempo de entrega dependerá de la ubicación de cada usuario y del peso del pedido. Se  recomienda consultar la tabla de envío.</p>

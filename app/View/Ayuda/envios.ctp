@@ -5,11 +5,11 @@
             <div class="wrapper">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">
-                        <div class="animated fadeIn delay2">
+                        <div class="animated fadeIn delay">
                             <h1>Envíos y<br>seguimiento</h1>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-8 pr-2-d">
+                    <div class="col-xs-12 col-md-8">
                         <div class="animated scaleIn delay box-cont">
                             <div class="box img-bg" style="background-image: url('/img/envio.jpg')"></div>
                         </div>                        
@@ -20,7 +20,7 @@
 
 
         <section id="desarrollo">
-            <div class="wrapper animated fadeIn delay25">
+            <div class="wrapper animated fadeIn delay">
                 <div class="row">
                     <div class="col-xs-12 col-md-6 boxes">
                         <div class="boxes-reframe">

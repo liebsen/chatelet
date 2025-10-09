@@ -15,7 +15,7 @@
         <p class="pre-system font-pre border-light bg-white w-max-content min-25 p-6 mt-4"><?= $data['bank_explain_text'] ?></p>
       </div>
       <div class="col-xs-12 col-md-6 enviar-comprobante">
-        <div class="animated scaleIn delay25 box-cont">
+        <div class="animated scaleIn delay box-cont">
           <div class="box mt-8">  
             <h3 class="h3"><?= $data['bank_instructions_title'] ?></h3>
             <p class="pre-system font-system"><?= $data['bank_instructions_text'] ?></p>
