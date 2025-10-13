@@ -97,6 +97,7 @@ $(function(){
 						rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')">${price}</div></li>`
 					}
 				})
+				console.log('sale',json.sale)
 				rates+= `</ul>`
 				document.querySelector('.shipping-block .slot').innerHTML = rates
 				$('#delivery_cp').html( `<span class="shipping-cargo text-uppercase"></span>` );
@@ -104,7 +105,7 @@ $(function(){
 				setTimeout(() => {
 					$('.input-cp').removeClass('wrong');
 					$('.input-cp').addClass('ok');
-					onSuccessAlert('Seleccionaste cp ' + cp, '✓ Código Postal válido');
+					onSuccessAlert(`Como querés recibir tu compra`,'Seleccionaste cp ' + cp);
 					document.querySelector('.shipping-block').classList.remove('hidden')	
 					if (carrito.cargo === 'shipment' && carrito.shipping) {
 						$(`.shipping-options li[shipping="${carrito.shipping}"]`).click()

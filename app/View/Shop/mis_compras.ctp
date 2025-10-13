@@ -40,8 +40,8 @@
 
   <section id="formulario">
     <div class="wrapper">
-      <div class="is-flex-center w-100 p-4">
-        <h1 class="card-title"><i class="fa fa-shopping-cart mr-1"></i> Mis compras</h1>
+      <div class="is-flex-center gap-1 w-100 p-4">
+        <h1 class="card-title mb-0"><i class="fa fa-shopping-cart mr-1"></i> Mis compras</h1>
         <span class="btn btn-success cart-btn-green btn-filter-calendar"><i class="fa fa-calendar mr-1"></i> <span class="capitalize">Último mes</span></span>
       </div>
       <div class="ch-flex"> 
@@ -116,7 +116,11 @@
               <span class="text-link"><i class="fa fa-edit mr-1"></i> Ver detalles</span>
             </p>
             <div class="text-right d-flex justify-content-end align-items-center gap-1">
-              <span class="price animated fadeIn delay">$ <?= \price_format($sale['Sale']['value']) ?></span>
+              <span class="price animated fadeIn delay">$ <?= \price_format($sale['Sale']['value']) ?> 
+              <?php if($sale['Sale']['dues'] > 1):?>
+                <span class="text-muted text-small">en <?= $sale['Sale']['dues'] ?> cuotas</span>
+              <?php endif ?>
+              </span>
             </div>
           </div>
         </div>

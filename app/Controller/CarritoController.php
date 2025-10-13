@@ -480,7 +480,6 @@ class CarritoController extends AppController
 
 		if(!empty($data)){
 			if ($code) {
-
 				// necesitamos cotizacion de una empresa
 				$code = strtolower($code);
 				$logistic = $this->Logistic->find('first',[
@@ -732,6 +731,7 @@ class CarritoController extends AppController
 		return $price;
 	}
 
+
 	public function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 
@@ -749,21 +749,21 @@ class CarritoController extends AppController
 		$user_id = $this->Auth->user('id');
 		$product_ids = array();
 		$items = array();
-		$user = $this->request->data;
-		$user['id'] = $this->Auth->user('id');
-		$user['telephone'] = @preg_replace("/[^0-9]/","",$user['telephone']);
-		$user['email'] = (!empty($user['email']))?trim($user['email']):'';
-		$user['floor'] = (!empty($user['floor']))?trim($user['floor']):'';
-		$user['depto'] = (!empty($user['depto']))?trim($user['depto']):'';
-		$user['coupon'] = (!empty($user['coupon']))?strtoupper(trim($user['coupon'])):'';
-		//$user['regalo'] = (isset($user['regalo']) && $user['regalo']?1:0);
-		$user['dues'] = (isset($user['payment_dues']) && $user['payment_dues']?intval($user['payment_dues']):1);
+		$sale = $this->request->data;
+		$sale['id'] = $this->Auth->user('id');
+		$sale['telephone'] = @preg_replace("/[^0-9]/","",$sale['telephone']);
+		$sale['email'] = (!empty($sale['email']))?trim($sale['email']):'';
+		$sale['floor'] = (!empty($sale['floor']))?trim($sale['floor']):'';
+		$sale['depto'] = (!empty($sale['depto']))?trim($sale['depto']):'';
+		$sale['coupon'] = (!empty($sale['coupon']))?strtoupper(trim($sale['coupon'])):'';
+		//$sale['regalo'] = (isset($sale['regalo']) && $sale['regalo']?1:0);
+		$sale['dues'] = (isset($sale['payment_dues']) && $sale['payment_dues']?intval($sale['payment_dues']):1);
 
 		if(!isset($user_id)){
 			$check_user_id = 0;
 			$check_user = $this->User->find('first', [
 				'conditions' => [
-					'email' => $user['email']
+					'email' => $sale['email']
 				]
 			]);
 
@@ -771,17 +771,17 @@ class CarritoController extends AppController
 				CakeLog::write('debug', '(sale) found user by email:' . $check_user['User']['id']);
 				$check_user_id = $check_user['User']['id'];
 			} else { // user not found create and assing id
-				CakeLog::write('debug', '(sale) creating new user:' . $user['email']);
+				CakeLog::write('debug', '(sale) creating new user:' . $sale['email']);
 				$user_object = [
-					'email' => $user['email'],
-					'name' => $user['name'],
-					'surname' => $user['surname'],
-					'dni' => $user['dni'],
-					'telephone' => $user['telephone'],
-					'province' => $user['province'],
-					'city' => $user['city'],
-					'street' => $user['street'],
-					'floor' => $user['floor'],
+					'email' => $sale['email'],
+					'name' => $sale['name'],
+					'surname' => $sale['surname'],
+					'dni' => $sale['dni'],
+					'telephone' => $sale['telephone'],
+					'province' => $sale['province'],
+					'city' => $sale['city'],
+					'street' => $sale['street'],
+					'floor' => $sale['floor'],
 				];
 				$this->User->save($user_object);
 				$check_user_id = $this->User->id;
@@ -797,26 +797,26 @@ class CarritoController extends AppController
 		$map = $this->Setting->findById('bank_discount');
 		$bank_discount = @$map['Setting']['value'];
 
-		error_log('payment method: ' . $user['payment_method']);
+		error_log('payment method: ' . $sale['payment_method']);
 
 		// check if payment method is bank and bank payment is not available
-		if (!empty($user['payment_method']) && $user['payment_method'] === 'bank' && !$bank_enable) {
+		if (!empty($sale['payment_method']) && $sale['payment_method'] === 'bank' && !$bank_enable) {
 			$this->Session->setFlash('No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias.','default',array('class' => 'hidden error'));
 			error_log('checkout error: bank not available');
 			$this->redirect(array( 'controller' => 'carrito', 'action' => 'checkout' ));
 			die;
 		}
 
-		if(!$this->request->is('post') || $user['cargo'] === 'shipment' && empty($user['postal_address']) || empty($user['street_n']) || empty($user['street']) || empty($user['localidad']) || empty($user['provincia']) || empty($user['name']) || empty($user['surname']) || empty($user['email']) || empty($user['telephone'])){
+		if(!$this->request->is('post') || $sale['cargo'] === 'shipment' && empty($sale['postal_address']) || empty($sale['street_n']) || empty($sale['street']) || empty($sale['localidad']) || empty($sale['provincia']) || empty($sale['name']) || empty($sale['surname']) || empty($sale['email']) || empty($sale['telephone'])){
 			$this->Session->setFlash('Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.','default',array('class' => 'hidden error'));
 			error_log('checkout error');
-			error_log(json_encode($user));
+			error_log(json_encode($sale));
 			$this->redirect(array( 'action' => 'clear' ));
 			die;
 		}
 
 		$sale_object = array('id' => null,'user_id' => $user_id);
-		$logistic = $this->Logistic->findByCode($user['shipping']);
+		$logistic = $this->Logistic->findByCode($sale['shipping']);
 
 		if(isset($logistic['Logistic'])) {
 			$sale_object['logistic_id'] = $logistic['Logistic']['id'];
@@ -826,7 +826,7 @@ class CarritoController extends AppController
 		CakeLog::write('debug', 'sale(1)'.json_encode($sale_object));
 		$this->Sale->save($sale_object);
 		$sale_id = $this->Sale->id;
-		$gift_ids = !empty($user['gifts']) ? explode(",",$user['gifts']) : [];
+		$gift_ids = !empty($sale['gifts']) ? explode(",",$sale['gifts']) : [];
 
 		// check item prices, promos and coupons
 
@@ -836,11 +836,11 @@ class CarritoController extends AppController
 		$coupon_parsed = null;
 		$cats = [];
 		$prods = [];
-		if (!empty($user['coupon'])) {
-			error_log('checking coupon: '.$user['coupon']);
+		if (!empty($sale['coupon'])) {
+			error_log('checking coupon: '.$sale['coupon']);
 	    $coupon = $this->Coupon->find('first', [
 	      'conditions' => [
-	        'code' => $user['coupon'],
+	        'code' => $sale['coupon'],
 	        'enabled' => 1,
 	      ]
 	    ]);  
@@ -912,11 +912,11 @@ class CarritoController extends AppController
 	        $unit_price = @$producto['discount'];
 	      }
 
-				if($user['payment_method'] === 'mercadopago' && !empty($producto['mp_discount']) && !empty((float)(@$producto['mp_discount']))) {
+				if($sale['payment_method'] === 'mercadopago' && !empty($producto['mp_discount']) && !empty((float)(@$producto['mp_discount']))) {
 	        $unit_price = @ceil(round($unit_price * (1 - (float) $producto['mp_discount'] / 100)));
 	      }
 
-				if($user['payment_method'] === 'bank' && !empty($producto['bank_discount']) && !empty((float)(@$producto['bank_discount']))) {
+				if($sale['payment_method'] === 'bank' && !empty($producto['bank_discount']) && !empty((float)(@$producto['bank_discount']))) {
 	        $unit_price = @ceil(round($unit_price * (1 - (float) $producto['bank_discount'] / 100)));
 	      }				
 			}
@@ -932,24 +932,24 @@ class CarritoController extends AppController
 				'TALLE'  	=> $producto['size'],
 				'PRECIO_LISTA'  	=> $producto['price'],
 				'PRECIO_DESCUENTO'  => $unit_price,
-				'NOMBRE' 	=> $user['name'],
-				'APPELLIDO'	=> $user['surname'],
-				'EMAIL'		=> $user['email'],
-				'TELEFONO'	=> $user['telephone'],
-				'DNI'	=> $user['dni'],
-				'PROV'		=> $user['provincia'],
-				'LOC'		=> $user['localidad'],
-				'CALLE'		=> $user['street'],
-				'NRO'		=> $user['street_n'],
-				'PISO'		=> $user['floor'],
-				'DPTO'		=> $user['depto'],
-				'COD_POST'	=> $user['postal_address'],
-				'CARGO'	=> $user['cargo'],
-				'CUPON'	=> $user['coupon'],
-				'STORE'	=> $user['store'],
-				'STORE_ADDR'	=> $user['store_address'],
-				'SHIPPING'	=> $user['shipping'],
-				'CUOTAS'	=> $user['dues']
+				'NOMBRE' 	=> $sale['name'],
+				'APPELLIDO'	=> $sale['surname'],
+				'EMAIL'		=> $sale['email'],
+				'TELEFONO'	=> $sale['telephone'],
+				'DNI'	=> $sale['dni'],
+				'PROV'		=> $sale['provincia'],
+				'LOC'		=> $sale['localidad'],
+				'CALLE'		=> $sale['street'],
+				'NRO'		=> $sale['street_n'],
+				'PISO'		=> $sale['floor'],
+				'DPTO'		=> $sale['depto'],
+				'COD_POST'	=> $sale['postal_address'],
+				'CARGO'	=> $sale['cargo'],
+				'CUPON'	=> $sale['coupon'],
+				'STORE'	=> $sale['store'],
+				'STORE_ADDR'	=> $sale['store_address'],
+				'SHIPPING'	=> $sale['shipping'],
+				'CUOTAS'	=> $sale['dues']
 			);
 
 			foreach ($values as $key => $value) {
@@ -980,7 +980,7 @@ class CarritoController extends AppController
 		error_log('suming total (wo_discount): '.$total);
 
 	  // Check bank paying method
-	  if ($user['payment_method'] === 'bank') {
+	  if ($sale['payment_method'] === 'bank') {
 	  	if($bank_discount_enable && $bank_discount) {
 	  		//error_log('suming applying bank');
 	  		$bank_bonus = round($total_wo_discount * ($bank_discount / 100), 2);
@@ -988,8 +988,8 @@ class CarritoController extends AppController
 	  	}
 	  }
 
-		if($user['dues'] > 1) {
-			$legend = $this->Legend->findByDues($user['dues']);
+		if($sale['dues'] > 1) {
+			$legend = $this->Legend->findByDues($sale['dues']);
 			if($legend && $legend['Legend']['interest']) {
 				$interest = (float) $legend['Legend']['interest'];
 				$total*= ($interest / 100) + 1;
@@ -1016,14 +1016,14 @@ class CarritoController extends AppController
 
 		// Add Delivery
 		$delivery_cost = 0;
-		$freeShipping = $this->isFreeShipping($total, $user['postal_address']);
-		$delivery_data = $this->deliveryCost(null, $user, false);
+		$freeShipping = $this->isFreeShipping($total, $sale['postal_address']);
+		$delivery_data = $this->deliveryCost(null, $sale, false);
 		$delivery_cost = (integer) $delivery_data['rates'][0]['price'];
 		if ($freeShipping) { 
-     	error_log('without delivery bc price is :'.$total.', cp:'. @$user['postal_address'] .'  and date = '.gmdate('Y-m-d'));
+     	error_log('without delivery bc price is :'.$total.', cp:'. @$sale['postal_address'] .'  and date = '.gmdate('Y-m-d'));
 			// $delivery_cost=0;
 		} else {
-			if ($user['cargo'] === 'shipment') {
+			if ($sale['cargo'] === 'shipment') {
 				/* if (isset($delivery_data['rates'][0]['price'])) {
 				} */
 				error_log('suming delivery to price: '.$delivery_cost);
@@ -1045,9 +1045,9 @@ class CarritoController extends AppController
 		
 		$sale_object = array(
 			'id' => $sale_id,
-			//'user_id' => $user['id'],
+			//'user_id' => $sale['id'],
 			'free_shipping' => $freeShipping,
-			'payment_method' => $user['payment_method'],
+			'payment_method' => $sale['payment_method'],
 			'deliver_cost' => $delivery_cost,
 			'shipping_type' => $shipping_type_value
 		);
@@ -1071,29 +1071,29 @@ class CarritoController extends AppController
 			'id' 		=> $sale_id,
 			'user_id' => $user_id,
 			'nroremito'	=> $sale_id,
-			'apellido'	=> $user['surname'],
-			'nombre'	=> $user['name'],
-			'dni'	=> $user['dni'],
-			'calle'		=> $user['street'],
-			'nro'		=> $user['street_n'],
-			'piso'		=> $user['floor'],
-			'depto'		=> $user['depto'],
-			'cp'		=> $user['postal_address'],
-			'localidad'	=> $user['localidad'],
-			'provincia'	=> $user['provincia'],
-			'telefono'	=> $user['telephone'],
-			'email'		=> $user['email'],
+			'apellido'	=> $sale['surname'],
+			'nombre'	=> $sale['name'],
+			'dni'	=> $sale['dni'],
+			'calle'		=> $sale['street'],
+			'nro'		=> $sale['street_n'],
+			'piso'		=> $sale['floor'],
+			'depto'		=> $sale['depto'],
+			'cp'		=> $sale['postal_address'],
+			'localidad'	=> $sale['localidad'],
+			'provincia'	=> $sale['provincia'],
+			'telefono'	=> $sale['telephone'],
+			'email'		=> $sale['email'],
 			'regalo'		=> count($gift_ids),
 			'package_id'=> @$delivery_data['itemsData']['package']['id'] ?: 1,
 			'value' 	=> $total, // @$delivery_data['itemsData']['price'],
 			'zip_codes' => $zipCodes,
-			'cargo'		=> $user['cargo'],
-			'coupon'	=> $user['coupon'],
-			'metodo_pago'	=> $user['payment_method'],
-			'store'		=> $user['store'],
-			'store_address'		=> $user['store_address'],
-			'shipping'		=> $user['shipping'],
-			'dues'		=> $user['dues']
+			'cargo'		=> $sale['cargo'],
+			'coupon'	=> $sale['coupon'],
+			'metodo_pago'	=> $sale['payment_method'],
+			'store'		=> $sale['store'],
+			'store_address'		=> $sale['store_address'],
+			'shipping'		=> $sale['shipping'],
+			'dues'		=> $sale['dues']
 		);
 
 CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
@@ -1102,7 +1102,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		error_log("total mp: " . $total);
 
 		// check if paying method is bank
-		if ($user['payment_method'] === 'bank') {
+		if ($sale['payment_method'] === 'bank') {
 			$this->Session->delete('cart');
 			return $this->redirect(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' ));
 		}
@@ -1115,9 +1115,9 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		$preference_data = array(
 	    'items' => $items,
 	    'payer' => array(
-	    	'name' => $user['name'],
-	    	'surname' => $user['surname'],
-	    	'email' => $user['email']
+	    	'name' => $sale['name'],
+	    	'surname' => $sale['surname'],
+	    	'email' => $sale['email']
     	),
 	    'back_urls' => array(
 	    	'success' => $success_url,
@@ -1125,7 +1125,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 	    	'pending' => $failure_url
     	),
     	'payment_methods' => array(
-    		'installments' => $user['dues']
+    		'installments' => $sale['dues']
     	)
 		);
 
@@ -1138,7 +1138,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		$preference = $mp->create_preference($preference_data);
 		//Save Data
 		$sale_data = array(
-			'user' 		=> $user,
+			'sale' 		=> $sale,
 			'items' 	=> $items,
 			'sale_id' 	=> $sale_id,
 			'preference'=> $preference,

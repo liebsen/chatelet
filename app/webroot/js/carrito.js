@@ -74,7 +74,7 @@ var selectStore = e => {
   localStorage.setItem('carrito', JSON.stringify(preferences))
   var carrito_takeaway_text = $('.carrito_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
-  onSuccessAlert(`Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}`, `Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. ${carrito_takeaway_text}`);
+  onSuccessAlert(`Como querés recibir tu compra`, `Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}. Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. ${carrito_takeaway_text}`);
 	cargo = 'takeaway'
 }
 var show_cart_item = (index) => {
