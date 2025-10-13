@@ -2362,9 +2362,9 @@ span.count.is-empty {
 
 /*Mobile Icons NavTop*/
 @media (max-width: 992px) {
-  #listShop .category-item {
+  /*#listShop .category-item {
     display: contents;
-  }
+  }*/
   ul#ul-moreviews {
     display: flex;
     align-items: center;
