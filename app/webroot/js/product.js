@@ -218,7 +218,6 @@ $(document).ready(function() {
 			size: $(e.target).closest('form').find("#size option:selected").val() || '',
 			alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias') || '',
 		}
-		console.log('data', data)
 		if (!isGiftCard){
 			var product_name = $('#product_id').next().text()
 			//console.log(data.color, data.color_code, data.size)

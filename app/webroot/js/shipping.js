@@ -97,7 +97,6 @@ $(function(){
 						rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')">${price}</div></li>`
 					}
 				})
-				console.log('sale',json.sale)
 				rates+= `</ul>`
 				document.querySelector('.shipping-block .slot').innerHTML = rates
 				$('#delivery_cp').html( `<span class="shipping-cargo text-uppercase"></span>` );

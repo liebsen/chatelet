@@ -29,8 +29,8 @@
         <div class="col-md-8">
           <div class="animated scaleIn delay box-cont">
             <div class="box">
-              <h3>Aquí encontrarás las compras realizadas a tu cuenta</h3>
-              <p>Aquí encontrarás las compras realizadas a tu cuenta en Chatelet y podrás gestionar a través de la tienda servicios post-venta.</p>
+              <h3>Tu historial de compras</h3>
+              <p>Aquí encontrarás las compras realizadas a tu cuenta en Chatelet</p>
             </div>
           </div>
         </div>

@@ -252,7 +252,7 @@ let apiSearch = (q) => {
           $('.search-results').append(str)
         }
         setTimeout(() => {
-          if(data.query[0]) {
+          if(data && data.query && data.query[0]) {
             var w = ($('.search-item').length / data.query[0].count) * 100
             $('.search-bar').css({'width': `${w}%`})
             if (parseInt(data.query[0].count) > $('.search-item').length) {
