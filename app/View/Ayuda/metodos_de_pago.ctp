@@ -30,15 +30,17 @@
         <section id="desarrollo">
             <div class="wrapper">
                 <div class="col-xs-12 col-md-6">
-                    <h3>Comprá en Châtelet con tu método preferido</h3>
-                    <ul>
-                        <li class="mb-8">* Podés pagar a través de la plataforma de pago MercadoPago. Si tu elección es realizarlo con tarjeta de crédito o débito (VISA, MASTERCARD, AMERICAN EXPRESS, TARJETA NARANJA, CABAL, ETC) MercadoPago solicitará los datos necesarios y podrá enviarte una confirmación para que puedas validarla por cuestiones de seguridad.</li>
-                        <li class="mb-8">** Transferencia bancaria: Al finalizar el pedido en pantalla te aparecerán los datos bancarios e importe final para que puedas transferir. Recordá siempre enviarnos el comprobante por WhatsApp al 11-5504-2428</li>
-                        <li>*** Pagos a través de RapiPago, Pago Fácil o Bapro: MercadoPago solicitará datos básicos para poder emitir la boleta correspondiente y que la puedas imprimir y abonar en cualquier centro de pago autorizado.</li>
-                        <!--li>***El pago se acredita en el momento por lo que tu pedido será despachado en 24 hs. En todos los casos CHATELET te mantendrá informado sobre el estado del pedido y el tiempo de acreditación del pago dependerá del sistema que seleccione el cliente.</li>
-                        <li>*** Las prendas no tienen cambio.</li>
-                        <li>*** Los envíos por compra online tienen una demora de 7 a 10 días hábiles.</li-->
-                    </ul>
+                    <div class="is-flex-center flex-column gap-1 ">
+                        <h3>Comprá en Châtelet con tu método preferido</h3>
+                        <ul>
+                            <li class="mb-8">* Podés pagar a través de la plataforma de pago MercadoPago. Si tu elección es realizarlo con tarjeta de crédito o débito (VISA, MASTERCARD, AMERICAN EXPRESS, TARJETA NARANJA, CABAL, ETC) MercadoPago solicitará los datos necesarios y podrá enviarte una confirmación para que puedas validarla por cuestiones de seguridad.</li>
+                            <li class="mb-8">** Transferencia bancaria: Al finalizar el pedido en pantalla te aparecerán los datos bancarios e importe final para que puedas transferir. Recordá siempre enviarnos el comprobante por WhatsApp al 11-5504-2428</li>
+                            <li>*** Pagos a través de RapiPago, Pago Fácil o Bapro: MercadoPago solicitará datos básicos para poder emitir la boleta correspondiente y que la puedas imprimir y abonar en cualquier centro de pago autorizado.</li>
+                            <!--li>***El pago se acredita en el momento por lo que tu pedido será despachado en 24 hs. En todos los casos CHATELET te mantendrá informado sobre el estado del pedido y el tiempo de acreditación del pago dependerá del sistema que seleccione el cliente.</li>
+                            <li>*** Las prendas no tienen cambio.</li>
+                            <li>*** Los envíos por compra online tienen una demora de 7 a 10 días hábiles.</li-->
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-xs-12 col-md-6"></div>
             </div>

@@ -502,14 +502,16 @@ $(function () {
         if(document.querySelector('.float-tr')) {
           document.querySelector('.float-tr').classList.remove('float-top-right')
         }
-        tops.forEach((e) => {
-          if (e && e.classList.contains('top-fixed')) {
-            if (e.classList.contains('navbar-chatelet')) {
-              document.querySelector('body').style.paddingTop = 0
+        setTimeout(() => {
+          tops.forEach((e) => {
+            if (e && e.classList.contains('top-fixed')) {
+              if (e.classList.contains('navbar-chatelet')) {
+                document.querySelector('body').style.paddingTop = 0
+              }
+              e.classList.remove('top-fixed')
             }
-            e.classList.remove('top-fixed')
-          }
-        })
+          })
+        }, 200)
         var video = $("#carousel .item.active").find("video")
         if(video.length){
           setTimeout(() => {

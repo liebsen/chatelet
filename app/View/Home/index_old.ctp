@@ -15,7 +15,7 @@
 
 ?>
 
-        <div id="carousel" class="carousel slide animated fadeIn speed delay2" data-interval="3000" data-ride="carousel">
+        <div id="carousel" class="carousel slide animated animated fadeIn speed delay2" data-interval="3000" data-ride="carousel">
 
           <!-- Wrapper for slides -->
           <div class="carousel-inner " role="listbox">

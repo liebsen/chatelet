@@ -857,6 +857,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   align-items: center;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .flex-1 {
   flex: 1;
 }
@@ -1459,7 +1463,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#headcontacto .box h3 { font-size: 2rem; }
 	#headcontacto .box p { font-size: 1rem; }*/
 
-	#headhelp h1 { font-size: 40px; }
+	#headhelp h1 { font-size: 44px; font-weight: 800; }
 	/*#headhelp .box { padding: 4rem; border-radius: 1rem;}
 	#headhelp .box p { font-size: 1rem;  }
 	#headhelp .box h3 { font-size: 2rem; }*/
