@@ -185,8 +185,8 @@
   </a>
   <div class="wrapper">
     <div class="row">
-      <?php if(!empty($image_menushop)): ?>
-      <img class="pull-left" src="<?php echo Configure::read('uploadUrl').$image_menushop?>">
+      <?php if(!empty($data['image_menushop'])): ?>
+      <img class="pull-left" src="<?php echo Configure::read('uploadUrl').$data['image_menushop']?>">
       <?php endif ?>
       <div class="col-sm-6">
         <!--h3>Shop</h3-->
