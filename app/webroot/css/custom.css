@@ -1297,7 +1297,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #formulario label input { display: none; }
 #formulario label span.active i { display: block; }
 
-#headhelp { background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover; padding: 65px 0; }
+#headhelp { position: relative; background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover; padding: 65px 0; }
 #headhelp h1 { color: #f50081; font-size: 60px; font-weight: 600; }
 #headhelp h1:after { background: #f50081; content: ""; display: block; margin-top: 50px; height: 6px; border-radius: 6px; width: 75px; }
 #headhelp .box { border: 3px solid #f50081; padding: 120px 100px 85px; }
