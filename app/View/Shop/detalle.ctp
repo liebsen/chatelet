@@ -160,11 +160,13 @@
                   }
                 }
 
-                if(!empty($old_price) && abs($price-$old_price) > 1) {
-                    echo "Antes "."<span style='color:gray;text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'>$ ".\price_format(ceil($old_price)). "</span> ahora ";
+                echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)) . '</span>';
+                        if(!empty($old_price) && abs($price-$old_price) > 1) {
+                    echo "<span class='text-muted'> <span style='text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'> $ ".\price_format(ceil($old_price)). "</span></span>";
                 }
 
-                echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)) . ' <span class="text-sm">' . (strlen($text) ? 'con ' . strtoupper($text) : '') . '</span></span>';
+                echo ' <span class="text-sm">' . (strlen($text) ? 'con ' . strtoupper($text) : '') . '</span>';
+
                 ?>
                  <div class="mt-1 mb-4 tags-start">
                     <?= $this->App->show_prices_dues($legends, $product, true) ?>

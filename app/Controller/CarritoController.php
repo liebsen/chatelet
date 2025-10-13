@@ -750,6 +750,8 @@ class CarritoController extends AppController
 		$product_ids = array();
 		$items = array();
 		$sale = $this->request->data;
+
+		CakeLog::write('debug', 'sale:'. json_encode($sale));
 		$sale['id'] = $this->Auth->user('id');
 		$sale['telephone'] = @preg_replace("/[^0-9]/","",$sale['telephone']);
 		$sale['email'] = (!empty($sale['email']))?trim($sale['email']):'';
