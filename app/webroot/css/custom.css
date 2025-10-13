@@ -833,6 +833,9 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 
 .category-item {
   background-color: #f8f8f8;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
 }
 .category-item:nth-of-type(odd) {
   background-color: #e2e2e2;
