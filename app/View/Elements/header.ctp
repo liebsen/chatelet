@@ -28,7 +28,7 @@
               ?>
             </li>
             <?php endif ?>
-            <?php if( !empty($show_shop) ): ?>
+            <?php if( !empty($data['show_shop']) ): ?>
               <li>
                 <a href="/Shop" class="viewSubMenu">Shop</a>
               </li>
