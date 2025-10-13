@@ -47,7 +47,7 @@ $(function(){
 		let info = $(e).data('info')
 		fxTotal(total)
 		$('.paying-with').delay(1000).fadeIn()
-		onErrorAlert(`Te lo llevamos por ${shipping.toUpperCase()}`, info || `Seleccionaste ${shipping.toUpperCase()} como servicio de entrega`);
+		onErrorAlert(`Como querés recibir tu compra`, `Te lo llevamos por ${shipping.toUpperCase()}`);
 	}
 
 	$('#calulate_shipping').submit(e => {
@@ -105,7 +105,7 @@ $(function(){
 				setTimeout(() => {
 					$('.input-cp').removeClass('wrong');
 					$('.input-cp').addClass('ok');
-					onSuccessAlert(`Como querés recibir tu compra`,'Seleccionaste cp ' + cp);
+					onSuccessAlert(`Como querés recibir tu compra`,'Ingresaste código postal ' + cp);
 					document.querySelector('.shipping-block').classList.remove('hidden')	
 					if (carrito.cargo === 'shipment' && carrito.shipping) {
 						$(`.shipping-options li[shipping="${carrito.shipping}"]`).click()
