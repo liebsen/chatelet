@@ -181,6 +181,9 @@ html, body {
 .pr-3 {
   padding-right: 0.75rem!important;
 }
+.pr-4 {
+  padding-right: 1rem!important;
+}
 .pl-3 {
   padding-left: 0.75rem!important;
 }

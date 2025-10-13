@@ -1,20 +1,22 @@
  <div id="headhelp">
   <div class="wrapper animated fadeIn delay1">
     <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-xs-12 col-md-6 datos-bancarios">
-        <h1 class="m-0">CBU/Alias</h1>
-        <h3 class="h3 mt-4 mw-26"><?= $data['bank_explain_title'] ?></h3>
-        <?php if(isset($data['total_price'])): ?>
-        <h3 class="d-block border-dark text-center mt-1 ps-4 max-25">
-          <span class="text-dark h3">A transferir $ <?= number_format($data['total_price'], 2, ',', '.') ?></span>
-        </h3>
-        <a class="btn cart-btn-green border-success bg-white d-block max-25 mt-4" href="https://wa.me/<?= $data['bank_whatsapp'] ?>?text=Hola te escribo de la web de Chatelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
-          <span class="text-white h3">👉 Referencia #<?= $invoice_id ?></span>
-        </a>
-        <?php endif ?>
-        <p class="pre-system font-pre border-light bg-white w-max-content min-25 p-6 mt-4"><?= $data['bank_explain_text'] ?></p>
+      <div class="col-xs-12 col-md-4">
+        <div class="datos-bancarios pr-4">
+          <h1 class="m-0">CBU/Alias</h1>
+          <h3 class="h3 mt-4 mw-26"><?= $data['bank_explain_title'] ?></h3>
+          <?php if(isset($data['total_price'])): ?>
+          <h3 class="d-block border-dark text-center mt-1 ps-4 max-25">
+            <span class="text-dark h3">A transferir $ <?= number_format($data['total_price'], 2, ',', '.') ?></span>
+          </h3>
+          <a class="btn cart-btn-green border-success bg-white d-block max-25 mt-4" href="https://wa.me/<?= $data['bank_whatsapp'] ?>?text=Hola te escribo de la web de Chatelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
+            <span class="text-white h3">👉 Referencia #<?= $invoice_id ?></span>
+          </a>
+          <?php endif ?>
+          <p class="pre-system font-pre border-light bg-info w-max-content p-4 mt-4"><?= $data['bank_explain_text'] ?></p>
+        </div>
       </div>
-      <div class="col-xs-12 col-md-6 enviar-comprobante">
+      <div class="col-xs-12 col-md-8 enviar-comprobante">
         <div class="animated scaleIn delay box-cont">
           <div class="box mt-8">  
             <h3 class="h3"><?= $data['bank_instructions_title'] ?></h3>
