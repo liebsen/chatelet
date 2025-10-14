@@ -18,26 +18,22 @@
         
 
         <section id="location">
-                <div class="col-md-12">
-                    
-                
-                <?php   foreach($stores as $store) {
-                    $store = $store['Store'];
+          <div class="col-md-12">
+            <?php foreach($stores as $store) {
+                $store = $store['Store'];
 
-                        echo '<h4>'. $store['name'] .'</h4>';
-                        echo '<h3></h3>';  
-                            echo '<ul>';      
-                                echo '<li> '. $store['address'] .'</li>';
-                                echo '<li>'. $store['phone'].'</li>';
-                            if($store['whatsapp']){
-                                echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" class="text-white" target="_blank">'. $store['whatsapp'].'</a></li>';
-                            }
-                            echo '</ul>';
-                } ?> 
-                
-
-                </div>
-         </section>
+                    echo '<h4>'. $store['name'] .'</h4>';
+                    echo '<h3></h3>';  
+                        echo '<ul>';      
+                            echo '<li> '. $store['address'] .'</li>';
+                            echo '<li><a href="tel:'. $store['phone'].'">'. $store['phone'].'</a></li>';
+                        if($store['whatsapp']){
+                            echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" class="text-white" target="_blank">'. $store['whatsapp'].'</a></li>';
+                        }
+                        echo '</ul>';
+            } ?>
+          </div>
+        </section>
        
         <section id="suscribe">
             <div class="wrapper container is-flex-end">

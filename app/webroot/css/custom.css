@@ -1,6 +1,7 @@
 :root {
   /*--box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px;*/
   --box-shadow: rgba(0, 0, 0, 0.15) 0 0 4px;
+  --box-dropshadow: 0 -5px 15px rgba(0, 0, 0, 0.15);
   --box-shadow-inset: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   --box-shadow-downwards: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;;
 }
@@ -322,10 +323,6 @@ label input[type=checkbox]:disabled + .label-text:before {
   padding: 0.75rem 0;
   text-transform: uppercase;
   transition: all .3s ease-in-out; 
-  -moz-transition: all .3s ease-in-out; 
-  -ms-transition: all .3s ease-in-out; 
-  -webkit-transition: all .3s ease-in-out; 
-  -o-transition: all .3s ease-in-out; 
   white-space: nowrap; 
 }
 
@@ -2803,6 +2800,9 @@ span.count.is-empty {
   .carrito-col {
     padding: 1rem;
   }
+  .carrito-col .card {
+    padding: 1rem;
+  }
   .ch-flex .price {
     margin: 0;
     text-align: right;
@@ -2810,9 +2810,9 @@ span.count.is-empty {
   .ch-row {
     background-color: white!important;
     margin-bottom: 0.75rem;    
-    border-radius: 0.5rem;
-    padding: 1rem;
-    box-shadow: var(--box-shadow);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: var(--box-dropshadow);
     padding-left: 0;
   }
   .is-flex-end {
@@ -2822,8 +2822,8 @@ span.count.is-empty {
     margin: 1rem 0;
     margin-top: 0;
     padding: 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: var(--box-shadow);
+    border-radius: 1.5rem;
+    box-shadow: var(--box-dropshadow);
     /* box-shadow: var(--box-shadow); */
   }
   #productOptions .product-list .row {
@@ -2841,8 +2841,8 @@ span.count.is-empty {
     background-position: -90% 55%;
   }
   .card {
-    box-shadow: var(--box-shadow);
-    border-radius: 0.5rem;
+    box-shadow: var(--box-dropshadow);
+    border-radius: 1.5rem;
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-top: 13px;
