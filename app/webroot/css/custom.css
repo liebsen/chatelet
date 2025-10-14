@@ -2809,8 +2809,8 @@ span.count.is-empty {
   }
   .ch-row {
     background-color: white!important;
-    margin-bottom: 0.75rem;    
-    border-radius: 1.5rem;
+    margin: 1rem 0;    
+    border-radius: 1rem;
     padding: 1.5rem;
     box-shadow: var(--box-dropshadow);
     padding-left: 0;

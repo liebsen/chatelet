@@ -114,11 +114,11 @@ var show_cart_item = (index) => {
 }
 
 $(document).ready(function() {
-	if(carrito_items?.length == 1) {
+	/*if(carrito_items?.length == 1) {
 		$('.products-total').hide()
 	} else {
 		$('.products-total').show()
-	}
+	}*/
 	const submit = $('.checkout-btn')
 	submit.prop('disabled', false)
 	submit.removeClass('disabled')

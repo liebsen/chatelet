@@ -177,9 +177,11 @@
 								<div class="price text-muted">Resumen de tu compra</div>								
 							</div>
 							<hr-->
+						<?php if($total + $promosaved != $total): ?>
 							<div class="summary-item text-right products-total">
 								<div class="price text-dark"><span class="text-weight-thin">Productos </span> $ <?= \price_format($total + $promosaved) ?></div>
 							</div>
+						<?php endif ?>
 							<?php if($freeShipping):?>
 							<div class="summary-item text-right free-shipping animated speed">
 								<div class="price text-success">
