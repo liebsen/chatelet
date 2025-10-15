@@ -52,14 +52,13 @@ class AyudaController extends AppController {
 		}
 	}
 
-
 	public function onlinebanking($id) {
 		$sale = $this->Sale->findById($id);
 		$price = $sale['Sale']['value'];
 
-		if (isset($sale['Sale']['deliver_cost']) && empty($sale['Sale']['free_shipping'])) {
+		/*if (isset($sale['Sale']['deliver_cost']) && empty($sale['Sale']['free_shipping'])) {
 			$price+= $sale['Sale']['deliver_cost'];
-		}
+		}*/
 
 		$this->set('price', $price);
 		$this->set('invoice_id', $id);
