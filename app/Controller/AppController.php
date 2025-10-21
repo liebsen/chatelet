@@ -219,8 +219,8 @@ class AppController extends Controller
         $Email->viewVars(array(
             'data' => $data
         ));
-        $Email->send();
 
+        $Email->send();
     }
 
     public function sendMail($message, $subject, $to)

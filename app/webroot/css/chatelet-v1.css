@@ -33,17 +33,10 @@ html, body {
 	overflow-x: hidden;
 }
 
-.carousel-video {
-  object-fit: cover;
-  object-position: center top;
-  width: 100%;
-}
-
 .wrong{
 	border-color: #E10D74;
   color: #E10D74;
 }
-
 .ok {
 	border-color: #07BC31;
   color: #07BC31;
@@ -66,6 +59,11 @@ html, body {
 	font-size: 1.25rem;
 }
 
+.carousel-video {
+  object-fit: cover;
+  object-position: center top;
+  width: 100%;
+}
 
 #launcher {
 	visibility: hidden;
