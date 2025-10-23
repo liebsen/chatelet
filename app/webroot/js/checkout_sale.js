@@ -81,6 +81,8 @@ var select_payment = (e,item) => {
 	e.preventDefault()
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 	var selected = $(item).find('input').val()
+	const payment_dues = document.querySelector('.payment-dues')
+
 	carrito_config.payment_method = selected
 	$(item).find('input').prop('checked', true)
 	var bank_bonus = 0
@@ -88,33 +90,34 @@ var select_payment = (e,item) => {
 		return false
 	}
 	var totals = getTotals()
+	if(payment_dues) {
+		switch(selected){
+			case 'bank':
+				if(payment_dues.classList.contains('scaleIn')){
+					payment_dues.classList.remove('scaleIn')
+					payment_dues.classList.add('scaleOut')
+					setTimeout(() => {
+						payment_dues.classList.add('hide-element')
+					}, 500)
+				}
+				document.querySelectorAll('.payment-dues .option-rounded').forEach((e,i) => {
+					if(i) {
+						e.classList.add('hide')
+					}
+				})
+			break;
 
-	switch(selected){
-		case 'bank':
-		if(document.querySelector('.payment-dues').classList.contains('scaleIn')){
-			document.querySelector('.payment-dues').classList.remove('scaleIn')
-			document.querySelector('.payment-dues').classList.add('scaleOut')
-			setTimeout(() => {
-				document.querySelector('.payment-dues').classList.add('hide-element')
-			}, 500)
-		}
-		document.querySelectorAll('.payment-dues .option-rounded').forEach((e,i) => {
-			if(i) {
-				e.classList.add('hide')
+			case 'mercadopago':
+
+			if(payment_dues.classList.contains('scaleOut')){
+				payment_dues.classList.remove('scaleOut', 'hide-element')
+				payment_dues.classList.add('scaleIn')
 			}
-		})
-		break;
 
-		case 'mercadopago':
+			document.querySelectorAll('.payment-dues .option-rounded').forEach((e) => e.classList.remove('hide'))
 
-		if(document.querySelector('.payment-dues').classList.contains('scaleOut')){
-			document.querySelector('.payment-dues').classList.remove('scaleOut', 'hide-element')
-			document.querySelector('.payment-dues').classList.add('scaleIn')
+			break;
 		}
-
-		document.querySelectorAll('.payment-dues .option-rounded').forEach((e) => e.classList.remove('hide'))
-
-		break;
 	}
 
 	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {

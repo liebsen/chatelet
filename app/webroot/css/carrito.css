@@ -79,8 +79,7 @@
 
 .generic-select li {
 	padding: 0.75rem 1.25rem;
-	border: 2px solid #bebebe99;
-	border-radius: 0.5rem;
+	border: 1px solid #bebebe99;
 	line-height: 1.25;
 	font-weight: 400;
 	background-color: white;
@@ -109,9 +108,9 @@
 
 .generic-select li.selected {
 	background-color: white;
-	border-color: #07BC31;
+	border-color: #e10c76;
 	background-image: url(../images/check.png);
-	color: #07BC31;
+	color: #e10c76;
 }
 
 .generic-select li.secondary:not(.selected) {

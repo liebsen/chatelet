@@ -7,7 +7,7 @@
             Châtelet</a>
       </div>
       <div class="navbar-right text-center p-3">
-        <strong><?= $short_header ?></strong>
+        <i><?= $short_header ?></i>
       </div>
     </div>
   </nav>

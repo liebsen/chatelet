@@ -34,6 +34,17 @@ class AppHelper extends Helper {
   var $helpers = array('Html', 'Number');  // include the HTML helper
   var $title_exclude = ['Giftcard'];
 
+  function show_legends($legends){
+    $one_due = false;
+    foreach($legends as $item) {
+      if($item['Legend']['dues'] == 1) {
+        $one_due = true;
+        break;
+      }
+    }
+
+    return (count($legends) == 1 && $one_due);
+  }
 
   function cat_title($name){
     $reps = [
