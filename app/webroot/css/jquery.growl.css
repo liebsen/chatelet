@@ -6,6 +6,7 @@
   z-index: 50000;
   position: fixed; }
   #growls.default {
+    background-color: transparent;
     top: 0.5rem;
     right: 0.5rem;
     min-width: calc(100vw - 1.75rem); }

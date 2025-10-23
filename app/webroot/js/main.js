@@ -233,7 +233,7 @@ let apiSearch = (q) => {
             }
           })
         }
-        str += '<div class="col-sm-6 col-md-3 search-item animate fadeIn">' +
+        str += '<div class="col-sm-12 col-md-2 col-lg-2 search-item">' +
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 
             '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.number_ribbon ? '<div class="ribbon small bottom-left sp2"><span>' + item.number_ribbon + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
             '<h2 class="text-center">'+`<span>${item.name}</span>`+'</h2>' + 
@@ -354,7 +354,7 @@ $(function () {
       if(video.length){
         setTimeout(() => {
           $(video).get(0).play()
-        }, 200)
+        }, 50)
       }
     }
   })
@@ -486,7 +486,7 @@ $(function () {
                 //document.querySelector('body').style.paddingTop = `${e.clientHeight}px`
               }
               e.classList.add('top-fixed', 'fadeIn')
-            }, 200)
+            }, 1000)
           } 
         })
         $("video").each((i,video) => {

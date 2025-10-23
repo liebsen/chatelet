@@ -13,6 +13,11 @@ body.loading {
   overflow: hidden;
 }
 
+body > section,
+body > div {
+	background-color: #fff;
+}
+
 #page-loader {
   min-width: 100dvw;
   min-height: 100dvh;
@@ -184,6 +189,9 @@ html, body {
 .pr-4 {
   padding-right: 1rem!important;
 }
+.pl-0 {
+  padding-left: 0!important;
+}
 .pl-3 {
   padding-left: 0.75rem!important;
 }
@@ -198,6 +206,9 @@ html, body {
 }
 .min-w-4 {
 	min-width: 4rem;
+}
+.min-w-6 {
+	min-width: 6rem;
 }
 .min-h-5 {
 	min-height: 5rem;
@@ -302,9 +313,9 @@ html, body {
 	right: 0;
 	bottom: 0;
 	padding: 0.75rem;
-	padding-top: 1.25rem;
-	/*background-color: #f8f8f8;*/
-  background: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.7) 15%, hsla(0, 0%, 100%, 0.9) 30%, white);
+	padding-top: 1rem;
+	background-color: white;
+  /*background: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.7) 15%, hsla(0, 0%, 100%, 0.9) 30%, white);*/
   box-shadow: none;	
 }
 .icon-huge .fa {
@@ -460,17 +471,15 @@ html, body {
 	line-height: 1.5;
 }
 
-.form-control {
+/*.form-control {
 	border-radius: 0.5rem!important;	
-}
+}*/
 
 .form-control:not(select) {
-	border-width: 2px!important;
 	padding: 1.25rem 0.75rem!important;
 }
 
 select.form-control{
-	border-width: 2px!important;
 	min-height: 2.75rem;
 }
 
@@ -496,16 +505,23 @@ select.form-control{
 .carrito-selector {
   max-width: 9rem;
   margin: auto;
+  padding: 0.5rem 0;
+  border: 1px solid #dbdbdb;  
 }
 
 .carrito-selector input {
 	/*border-radius: 0!important;
 	border-color: transparent;
-	background-color: transparent;*/
-	color: #e10d74;
-	font-size: 1.25rem;
+	background-color: transparent;
+	color: #e10d74;*/
+	background-color: transparent;
+	border: none;
+	border-left: 1px solid #dbdbdb;
+	border-right: 1px solid #dbdbdb;
+	font-size: 1rem;
 	font-weight: 700;
 }
+
 .product-count:focus {
 	background-color: #ffcc66;
 }
@@ -516,7 +532,7 @@ select.form-control{
   border-radius: 0.5rem;*/
   border: none;
   background: transparent;
-  color: #e10d74!important;
+  /*color: #e10d74!important;*/
 }
 
 .input-group-append {
@@ -714,11 +730,11 @@ select.form-control{
   border-width: 100%;
 }
 
-.left {
+.float-left {
 	float: left;
 }
 
-.right {
+.float-right {
 	float: right;
 }
 
@@ -775,11 +791,6 @@ select.form-control{
 	background-size: contain;
 	margin-right: 10px;
 	margin-bottom: 5px;
-}
-
-#menuSearch {
-	background-color: #f7ecf1;
-	padding-top: 1rem;
 }
 
 #menuSearch .wrapper {
@@ -946,7 +957,7 @@ select.form-control{
 .card-title {
 	display: flex;
 	align-items: center;	
-	font-size: 1.75rem;
+	font-size: 1.5rem;
 	line-height: 1.25;
   margin-bottom: 1.5rem;
   margin-top: 0.5rem;
@@ -1218,10 +1229,10 @@ span.validation-password {
 }
 
 @media screen and (min-width: 769px) {
-	.navbar-chatelet.top-fixed {
+	/*.navbar-chatelet.top-fixed {
 		background: linear-gradient(white,hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.7) 70%, hsla(0,0%,100%,0));
 		box-shadow: none;
-	}	
+	}*/
 	.modal-dialog {
 		margin: auto!important;
 		min-height: 100vh;
@@ -1237,9 +1248,6 @@ span.validation-password {
 	}
 	.cloudzoom img {
 	  height: 40rem;
-	}
-	.card-body {
-	  padding: 1.5rem;
 	}
 }
 

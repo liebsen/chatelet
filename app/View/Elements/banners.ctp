@@ -1,4 +1,4 @@
-<div id="carousel-banners" class="carousel slide animated animated slideIn" data-interval="10000" data-ride="carousel">
+<div id="carousel-banners" class="carousel" data-interval="10000" data-ride="carousel">
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
   <?php foreach ($banners as $key => $banner): ?>
@@ -44,6 +44,10 @@
     align-items: center;
     min-height: 64px;
     font-weight: 500;
+  }
+
+  #carousel-banners .item.active {
+    animation: fadeIn 500ms ease-in;
   }
 
   @media screen and (max-width:500px){

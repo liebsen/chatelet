@@ -71,6 +71,7 @@
 					$subtotal = 0;
 					$total = 0;
 					$promosaved = 0;
+
 					foreach ($sorted as $product) {
 						$total+= $product['price'];
 						if (!isset($product['color'])) $product['color'] = '';
@@ -91,8 +92,31 @@
 
 						//echo '<div class="ch-row is-clickable" product_row>';
 						echo '<tr class="carrito-data" data-json=\''.json_encode($product).'\' product_row>';
-						echo '<td class="pl-0">';
-						echo "<div class='is-flex-center gap-1'><div class='cart-img'>";
+						echo '<td>';
+						echo '</td>';
+
+
+							//echo '<div onclick="askremoveCart(this, \''.$product['name'].'\')" class="carrito-remove animated fadeIn delay" title="Eliminar del carrito">';
+								//echo '<span class="glyphicon glyphicon-remove"></span>';
+
+						/*echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
+							array(
+								'controller' => 'carrito',
+								'action' => 'remove',
+								$product['id']
+							),
+							array (
+								'class' => 'trash',
+								'escape' => false
+							)
+						);*/
+						//echo '</div>';
+						//echo '<div class="help" title="Modificar este item del carrito"><div><span class="glyphicon glyphicon-edit"></span> <span class="font-system"> Modificar</span></div></div>';
+						//echo '<div class="ch-col cart-img-col">';
+						//echo "<div class='clearfix'></div>";
+
+
+						echo "<div class='is-flex-center'><div class='cart-img'>";
 						if (!empty($product['number_ribbon'])) {
 							echo '<div class="ribbon bottom-left small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
 						}
@@ -108,10 +132,10 @@
 						echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 						echo '</a>';
 					echo '</div>';
-					echo '<div class="is-flex-center flex-column min-w-6">';
+					echo '<div class="is-flex-center flex-column">';
 					echo '<span class="name is-carrito">'. $product['name'] . '</span>';
 						if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
-							echo '<span class="text-small">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
+							echo '<p class="color">Color: <span class="talle" color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></p>';
 						}
 					echo '<label class="form-group mt-3">
 						  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-small">Es para regalo</span><br><br>
@@ -121,44 +145,47 @@
 					echo '</td>';
 					echo '<td>';
 						if (!empty($product['size']) && $product['size'] != 'undefined'){
-							echo '<span class="talle">'. $product['size'] .'</span>';
+							echo '<p class="color">Talle: <span class="talle">'. $product['size'] .'</span></p>';
 						}
 					echo '</td>';
 					echo '<td>';
-					echo '<div class="form-inline">
+					eccho '							<div class="form-inline">
 							  <div class="form-group">
 							    <div class="input-group carrito-selector mt-4">
 							      <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
-							       	<span>&ndash;</span>
+							       	<span class="fa fa-minus"></span>
 							      </div>
 							      <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="' . $product['count'] . '" original-value="' . $product['count'] . '" />
 							      <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
-							      	<span>+</span>
+							      	<span class="fa fa-plus"></span>
 							      </div>
 							    </div>
 							  </div>
 							</div>';
 						echo '</td>';			
+						//echo '<p class="color">Cantidad: <span class="talle">'. $product['count'] .'</span></p>';
+						/*if(!empty($product['mp_discount']) || !empty($product['bank_discount'])) {
+							echo '<div class="d-flex gap-05 mb-05">';
+							if(!empty($product['mp_discount'])) {
+								echo '<span class="badge badge-success"><i class="fa fa-credit-card"></i> '. 
+									$product['mp_discount'] .'%</span>';
+							}
+							if(!empty($product['bank_discount'])) {
+								echo '<span class="badge badge-success"><i class="fa fa-bank"></i> '. 
+									$product['bank_discount'] .'%</span>';
+							}
+							echo '</div>';
+						}*/
+						//echo '<div class="text-right d-flex justify-content-end align-items-center gap-1">';
 						echo '<td>';	
-
-
 						if (!empty($product['old_price'] && abs($product['old_price']-$product['price']) > 1)){
-							echo '<span class="old_price text-grey">$ '. \price_format($product['old_price']) .'</span><br>';
+							echo '<span class="old_price text-grey animated fadeIn delay">$ '. \price_format($product['old_price']) .'</span>';
 						}					
-						echo '<span>$ '. \price_format($product['price']) .'</span>';
+						echo '<span class="price animated fadeIn delay">$ '. \price_format($product['price']) .'</span>';
 						echo strlen(@$product['payment_text']) ? 'con ' . @$product['payment_text'] : '';
 						echo '</td>';
 						
-						$row += 1;
-
-						echo '<td>
-										<button class="btn btn-white" onclick="askremoveCart(this, \''.$product['name'].'\')">
-											<i class="fa fa-trash-o"></i>
-										</button>
-									</td>';
-						echo '</tr>';
-
-						echo '<div class="carrito-hide-element">
+						/*echo '<div class="carrito-hide-element">
 							<div class="form-inline">
 							  <div class="form-group">
 							    <div class="input-group carrito-selector mt-4">
@@ -173,10 +200,23 @@
 							  </div>
 							</div>
 							<span class="ch-btn-success btn-change-count disable is-clickable">Cambiar</span>
-						</div>';
+						</div>';*/
+
+						//echo '</div>';
+						// echo '<hr>';
+						$row += 1;
+
+						echo '<td>
+										<button class="btn btn-white" onclick="askremoveCart(this, \''.$product['name'].'\')">
+											<i class="fa fa-trash-o"></i>
+										</button>
+									</td>';
+						echo '</tr>';
+
+
 
 					} ?>
-						</table>
+				</table>
 						<div class="resume-totals p-4 animated fadeIn delay">
 							<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 							<input type="hidden" id="subtotal_envio" value="" />
@@ -225,7 +265,7 @@
 									<span class="text-theme paying-with">Pagando con <?= strtolower($payment_methods[$config['payment_method']]) ?></span>
 								</div>								
 							</div>
-							<!--div class="form-inline gift-area hide">
+							<div class="form-inline gift-area hide">
 								<h3 class="mt-1">Es para regalo</h3>
 							  <div class="form-group">
 							    <div class="input-group mt-4">
@@ -238,8 +278,9 @@
 							       </div>
 							    </div>
 							  </div>
-							</div-->							
+							</div>							
 						</div>
+					</div>
 					<?php else: ?>
 					<div class="container cart-empty text-center">
 						<div class="icon-huge mt-4">

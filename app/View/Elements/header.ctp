@@ -188,7 +188,7 @@
       <?php if(!empty($data['image_menushop'])): ?>
       <img class="pull-left" src="<?php echo Configure::read('uploadUrl').$data['image_menushop']?>">
       <?php endif ?>
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <!--h3>Shop</h3-->
         <ul>
           <?php
@@ -225,9 +225,9 @@
   </a>
   <div class="wrapper pt-2">
     <div class="row">
-      <div class="col-sm-12 m-0 box-search-container">
+      <div class="col-sm-12 is-flex-center m-0 box-search-container">
         <!--h3>Buscar</h3-->
-        <div class="box-search top-fixable animate">
+        <div class="box-search">
           <input type="text" class="form-input input-search" placeholder="Buscar...">
           <button class="close-search btn is-transparent animate is-clickable"><i class="fa fa-close text-muted"></i></button>
 <svg class="spinner-search" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
