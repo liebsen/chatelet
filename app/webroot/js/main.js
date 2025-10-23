@@ -565,3 +565,11 @@ $(function () {
     $('body, html').removeClass('noscroll')
   }
 })
+
+$.ajaxSetup({
+  cache:false,
+  dataType: "json",
+  xhrFields: {
+    withCredentials: true
+  },
+});

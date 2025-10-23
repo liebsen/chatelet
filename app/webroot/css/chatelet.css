@@ -364,6 +364,9 @@ html, body {
 .max-25 {
   max-width: 25rem;
 }
+.max-30 {
+  max-width: 30rem;
+}
 
 .min-25 {
   min-width: 25rem;
@@ -391,7 +394,7 @@ html, body {
 	background-color: transparent;
 }
 
-.btn:not(.btn-link):not(.btn-light):hover {
+.btn:not(.bg-transparent):not(.btn-link):not(.btn-light):hover {
 	color:white!important;
 }
 

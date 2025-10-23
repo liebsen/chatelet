@@ -1283,10 +1283,10 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 			$this->Session->write('cart', $carro);
 			$this->Session->write('cart_totals', $config);
 
-			//return json_encode(array('success' => true));
+			return json_encode(array('success' => true));
 		}
-		return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
-		//return json_encode(array('success' => false));
+		//return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
+		return json_encode(array('success' => false));
 	}
 
 	private function sort() {

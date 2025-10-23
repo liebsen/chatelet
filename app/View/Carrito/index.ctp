@@ -86,7 +86,11 @@
 							echo '<span class="text-small">Talle: <span>'. $product['size'] .'</span></span>';
 						}
 
-					echo '<span>$ '. \price_format($product['price']) .'</span>';
+					echo '<span class="text-nowrap">$ '. \price_format($product['price']) .'</span>';					
+					if (!empty($product['old_price'] && abs($product['old_price']-$product['price']) > 1)){
+						echo '<br><span class="old_price text-grey text-small">$ '. \price_format($product['old_price']) .'</span>';
+					}					
+
 					echo '<div class="form-inline">
 					  <div class="form-group">
 					    <div class="input-group carrito-selector mt-4">
@@ -160,7 +164,7 @@
 						echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 						echo '</a>';
 					echo '</div>';
-					echo '<div class="is-flex-center flex-column min-w-6">';
+					echo '<div class="d-flex justify-content-start align-center flex-column min-w-6">';
 					echo '<span class="name is-carrito">'. $product['name'] . '</span>';
 						if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 							echo '<span class="text-small">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
@@ -173,13 +177,13 @@
 					echo '</td>';
 					echo '<td>';
 						if (!empty($product['size']) && $product['size'] != 'undefined'){
-							echo '<span class="talle">'. $product['size'] .'</span>';
+							echo '<span>'. $product['size'] .'</span>';
 						}
 					echo '</td>';
 					echo '<td>';
 					echo '<div class="form-inline">
 							  <div class="form-group">
-							    <div class="input-group carrito-selector mt-4">
+							    <div class="input-group carrito-selector">
 							      <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
 							       	<span>&ndash;</span>
 							      </div>
@@ -194,17 +198,18 @@
 						echo '<td>';	
 
 
+						echo '<span class="text-nowrap">$ '. \price_format($product['price']) .'</span>';
 						if (!empty($product['old_price'] && abs($product['old_price']-$product['price']) > 1)){
-							echo '<span class="old_price text-grey">$ '. \price_format($product['old_price']) .'</span><br>';
+							echo '<br><span class="old_price text-grey text-small">$ '. \price_format($product['old_price']) .'</span>';
 						}					
-						echo '<span>$ '. \price_format($product['price']) .'</span>';
+
 						echo strlen(@$product['payment_text']) ? 'con ' . @$product['payment_text'] : '';
 						echo '</td>';
 						
 						$row += 1;
 
 						echo '<td>
-										<button class="btn btn-white" onclick="askremoveCart(this, \''.$product['name'].'\')">
+										<button class="btn bg-transparent" onclick="askremoveCart(this, \''.$product['name'].'\')">
 											<i class="fa fa-trash-o"></i>
 										</button>
 									</td>';
@@ -303,7 +308,7 @@
 					<br><br>
 					<?php endif;?>
 				</div>
-				<div class="carrito-col">
+				<div class="carrito-col max-30">
 				<?php 
 					if (isset($carro) && !empty($carro)) {
 						echo $this->element('shipping', array('freeShipping' => $freeShipping, 'carrito_takeaway_text' => $carrito_takeaway_text));

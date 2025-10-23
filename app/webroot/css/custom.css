@@ -172,6 +172,10 @@ label input[type=checkbox]:disabled + .label-text:before {
   background-color: whitesmoke;
 }
 
+.bg-transparent {
+  background-color: transparent!important;
+}
+
 .box-cont {
   display: flex;
   flex-direction: column;
@@ -881,12 +885,13 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   justify-content: center;
   align-content: center;
   align-items: center;
-  font-size: 0.75rem;
   font-weight: 800;
+  font-size: 1rem;
   color: #333;
   text-shadow: 1px 1px 1px #ccc;
-  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
   min-height: 1.5rem;
+  line-height: 1;
 }
 
 .text-catalog {
@@ -2095,7 +2100,6 @@ span.out{
 
 .text-sm {
   font-size: 0.75rem;
-  font-weight: 400!important;
 }
 
 .text-legend {
@@ -2240,8 +2244,8 @@ span.out{
 }
 
 .ribbon.bottom-left.small {
-  top: 0.25rem;
-  right: 0.25rem;
+  top: -0.75rem;
+  right: -0.75rem;
 }
 
 .ribbon.large {

@@ -42,7 +42,7 @@
 				<div class="carrito-row">
 					<div class="carrito-col">
 						<div class="ch-flex">
-							<div class="card">
+							<div class="card bg-transparent">
 							  <div class="card-body">
 							    <h5 class="card-title">
 							    	<!--i class="fa fa-edit"></i-->
@@ -169,7 +169,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="carrito-col">
+					<div class="carrito-col max-30">
 						<div class="card">
 						  <div class="card-body">
 						    <h5 class="card-title">
