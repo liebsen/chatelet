@@ -28,7 +28,7 @@
           </div>
           <br />
           <div class="control-group">
-            <input type="checkbox" id="alternatename" name="data[alternate_toggle]" value="1" <?php echo (isset($cat)) && $cat['Category']['alternate_toggle'] ? 'checked' : ''; ?>/>
+            <input type="checkbox" id="alternatename" name="data[alternate_toggle]" value="1" <?php echo (isset($cat)) && $cat['Category']['alternate_toggle'] == 1 ? 'checked' : ''; ?>/>
             <label class="control-label" for="alternatename"><?php echo __('Nombre Alternativo'); ?></label>
             <a class="d-none" id="alternatename_restore">Cancelar</a>
             <div class="controls alternate_name_block<?php echo (isset($cat)) && !$cat['Category']['alternate_toggle'] ? ' d-none' : ''; ?>">
