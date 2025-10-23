@@ -416,7 +416,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   background-image: url(../img/ic_lupa.svg);
 }*/
 .menuLayer {
-  position: fixed;
+  position: absolute;
   z-index: 12;
   background: #FFF;
   /* border-bottom: 2px solid #efb0d2; */
@@ -922,7 +922,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 800;
   color: black;
   display: flex;
   flex-wrap: wrap;
@@ -1815,18 +1815,18 @@ span.out{
 }
 
 .search-results h2 {
-    font-size: 1rem;
+    font-size: 0.75rem;
     margin-bottom: 0.25rem;
     color: black;
     font-weight: 900;
 }
 .search-results h3 {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 800;
 }
 
 .search-results h1 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -1980,10 +1980,6 @@ span.out{
   margin-bottom: 0.75rem;
 }
 
-.spinner-search.searching {
-    opacity: 1;
-}
-
 .mySlides {
   min-height: 40.75rem;
   max-height: 40.75rem;
@@ -1992,7 +1988,6 @@ span.out{
 
 .input-search {
   padding: 0.75rem 1.5rem;
-  border-radius: 0.25rem;
   border: 2px solid #e10c76;
   font-size: 1.5rem;
   font-weight: 800;
@@ -2002,12 +1997,18 @@ span.out{
   transition: all 0.25s ease-out;
 }
 
+.input-search.searching {
+  background-color: #ccc!important;
+}
+
+
 .input-search:focus {
   background-color: white;
 }
 
 .search-bar-container {
-  display: inline-block;
+  display: none;
+  /*display: inline-block;*/
   height: 0.5rem;
   width: 100%;
   margin: 0.25rem 1.5rem;
@@ -2245,8 +2246,8 @@ span.out{
 }
 
 .ribbon.bottom-left.small {
-  top: -0.75rem;
-  right: -0.75rem;
+  top: 0.25rem;
+  right: 0.25rem;
 }
 
 .ribbon.large {

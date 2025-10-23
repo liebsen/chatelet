@@ -243,7 +243,7 @@ let apiSearch = (q) => {
       })
 
       if (str === '') {
-        $('.search-results').html('<h1>No hay resultados para esta búsqueda</h1>')
+        $('.search-results').html('<h1>No hay resultados para <i>'+ q +'</i></h1>')
         $('.search-bar').css({'width': `0%`})
       } else {
         if (!searchPage) {
@@ -268,7 +268,7 @@ let apiSearch = (q) => {
     }
   }).then(() => {
     setTimeout(() => {
-      document.querySelector('.spinner-search').classList.remove('searching')
+      document.querySelector('.input-search').classList.remove('searching')
     }, 100)
   })    
 }
@@ -427,7 +427,7 @@ $(function () {
     
     searchPage = 0
     window.scrollTo(0,0)
-    document.querySelector('.spinner-search').classList.add('searching')
+    document.querySelector('.input-search').classList.add('searching')
     searchInt = setTimeout(() => {
       localStorage.setItem('lastsearch', q)
       apiSearch(q)
