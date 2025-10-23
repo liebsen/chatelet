@@ -885,7 +885,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   font-weight: 800;
   color: #333;
   text-shadow: 1px 1px 1px #ccc;
-  margin: auto;
+  margin-top: 0.5rem;
   min-height: 1.5rem;
 }
 
@@ -1096,7 +1096,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 /*#detalle ul { margin-top: 100px; }*/
 #detalle li { overflow: hidden; text-align: right; margin-bottom: 1.5rem;}
 #detalle li a { display: inline-block; overflow: hidden; }
-#detalle li a img { float: left; max-height: 10rem; border-radius: 0.5rem;}
+#detalle li a img { float: left; max-height: 10rem; /*border-radius: 0.5rem;*/}
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/
 #detalle h1 { color: #404040; font-size: 30px; font-weight: 700; margin-bottom: 5px; margin-top: 10px; }
 #detalle > p { font-size: 1rem; font-weight: 600; margin-bottom: 20px; }

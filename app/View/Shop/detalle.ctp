@@ -184,7 +184,7 @@
                                     foreach ($colors as $i => $color) {
                                         $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
                                         $style = (empty($color['images']))?'oldSelectColor':'';
-                                        echo '<div class="col-sm-4 col-lg-3 p-1"><label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
+                                        echo '<div class="col-sm-4 col-lg-3 p-0"><label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
                                         
                                         echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
                                         if (!empty($color['images'])) {
@@ -232,11 +232,11 @@
                                   <div class="form-group">
                                     <div class="input-group carrito-selector">
                                         <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
-                                            <span class="fa fa-minus"></span>
+                                            <span>&ndash;</span>
                                         </div>                                    
                                       <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="1">
                                       <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
-                                       <span class="fa fa-plus"></span>
+                                       <span>+</span>
                                        </div>
                                     </div>
                                   </div>

@@ -74,19 +74,19 @@ var selectStore = e => {
   localStorage.setItem('carrito', JSON.stringify(preferences))
   var carrito_takeaway_text = $('.carrito_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
-  onSuccessAlert(`Como querés recibir tu compra`, `Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}. <br><br>Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. <br><br> ${carrito_takeaway_text}`);
+  onSuccessAlert(`Como querés recibir tu compra`, `Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}. Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. <br><br> ${carrito_takeaway_text}`);
 	cargo = 'takeaway'
 }
 var show_cart_item = (index) => {
 	//console.log('show_cart_item')
-	var target = document.querySelectorAll('.ch-row')[index]
+	var target = document.querySelectorAll('.cart-row')[index]
 	if (target) {
 		if (!index) {
 			$('#carritoItem .carousel-control.left').addClass('is-hidden')
 		} else {
 			$('#carritoItem .carousel-control.left').removeClass('is-hidden')
 		}
-		if (index >= document.querySelectorAll('.ch-row').length-1) {
+		if (index >= document.querySelectorAll('.cart-row').length-1) {
 			$('#carritoItem .carousel-control.right').addClass('is-hidden')
 		} else {
 			$('#carritoItem .carousel-control.right').removeClass('is-hidden')
@@ -125,7 +125,8 @@ $(document).ready(function() {
 	submit.text('Siguiente')
 
 	/* carrito item viewer */
-	$('.ch-row').on('click', function(e) {
+	$('.cart-edit').on('click', function(e) {
+		//if(window.screen.width > 768) return false;
 		var donts = [
 			'glyphicon glyphicon-remove', 
 			'giftchecks', 
@@ -133,7 +134,7 @@ $(document).ready(function() {
 		]	
 		if (!donts.includes(e.target.className)) {
 			$('html, body').addClass('disable-scroll')
-			currentCartIndex = [...document.querySelectorAll('.ch-row')].indexOf(this)
+			currentCartIndex = [...document.querySelectorAll('.cart-row')].indexOf(this)
 			show_cart_item(currentCartIndex)
 		}
 	})
@@ -143,14 +144,14 @@ $(document).ready(function() {
 		if (currentCartIndex > 0) {
 			currentCartIndex--
 		} else {
-			currentCartIndex = document.querySelectorAll('.ch-row').length
+			currentCartIndex = document.querySelectorAll('.cart-row').length
 		}
 		show_cart_item(currentCartIndex)
 	})
 
 	$('#carritoItem .carousel-control.right').on('click', function(e) {
     e.preventDefault()
-		if (currentCartIndex < document.querySelectorAll('.ch-row').length) {
+		if (currentCartIndex < document.querySelectorAll('.cart-row').length) {
 			currentCartIndex++
 		} else {
 			currentCartIndex = 0
@@ -280,6 +281,7 @@ $(document).ready(function() {
 			return false
 		}
 		var json = $('.has-item-counter.active .carrito-data').data('json')
+		console.log('json', json)
 		var item = JSON.parse(JSON.stringify(json))
 		var count = $('.has-item-counter.active .product-count').val();
 		var data = {

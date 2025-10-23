@@ -516,10 +516,11 @@ select.form-control{
 	color: #e10d74;*/
 	background-color: transparent;
 	border: none;
+	height: 40px;
 	border-left: 1px solid #dbdbdb;
 	border-right: 1px solid #dbdbdb;
-	font-size: 1rem;
-	font-weight: 700;
+	font-size: 0.75rem;
+	font-weight: 600;
 }
 
 .product-count:focus {
@@ -530,6 +531,7 @@ select.form-control{
 	/*background-color: white;
 	border: 2px solid #e10d74;
   border-radius: 0.5rem;*/
+  height: 40px;
   border: none;
   background: transparent;
   /*color: #e10d74!important;*/
@@ -554,6 +556,8 @@ select.form-control{
 	padding-bottom: 2rem;
 	background: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
 	width: auto;
+	position: relative;
+  z-index: 3;	
 }
 
 .logo {
@@ -1020,12 +1024,13 @@ select.form-control{
 	min-height: 2rem;
 	line-height: 1.25;
 }
+
 .cart-btn-green {
 	display: inline-block;
 	text-align: center;
 	font-size: 1rem;
 	line-height: 1.5;
-	padding: 0.75rem 1.75rem;
+	padding: 0.75rem 1.25rem;
 	font-weight: 700;
 	color: white;
 	border-color: transparent;
