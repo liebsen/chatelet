@@ -14,5 +14,7 @@
   echo $this->element('particular-modal');
   echo $this->element('particular-email');
 	// echo $this->element('mayorista-modal');
-	echo $this->element('footer');
+	if(empty($short_header)) {
+		echo $this->element('footer');
+	}
 	echo $this->element('bottom');
