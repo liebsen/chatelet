@@ -38,7 +38,6 @@
   opacity: 0.99;
   filter: alpha(opacity=99);
   position: relative;
-  border-radius: 0.25rem;
   margin-bottom: 0.5rem;
   margin-left: 0.5rem;
   scale: 1;
@@ -90,13 +89,13 @@
     font-size: 1.2rem;
     font-weight: bold;
     line-height: 1.25rem;
-    border-bottom: 1px solid #3333;
-    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
     margin-bottom: 1rem;
   }
   .growl.growl-notice .growl-title,
   .growl.growl-error .growl-title {
-    border-color: #fff3!important;
+    border-color: #fff;
   }
   .growl .growl-message {
     font-size: 1rem;

@@ -9,10 +9,8 @@
 			<?php else: ?>
 			<h4 class="cargo-title">Envío gratuito<span></span></h4>
 			<?php endif ?>		
-			<p class="p">
-				<i>
-					<small>Para envíos a domicilio ingresá tu código postal</small>
-				</i>
+			<p>
+				<span>Para envíos a domicilio ingresá tu código postal</span>
 			</p>
 			<form class="w-100" id="calulate_shipping" data-url="<?php echo $this->Html->url(array('action'=>'deliveryCost')) ?>">
 				<div  class="d-flex justify-content-center align-items-center gap-05">
@@ -24,10 +22,8 @@
 			<div class="form-group shipping-block hidden">
 				<div>
 					<h4 class="cargo-title">2. Seleccione tipo de envío</h4>
-					<p class="p">
-						<i>
-							<small>Elegí la empresa de tu confianza para realizar este envío</small>
-						</i>
+					<p>
+						<span>Elegí la empresa de tu confianza para realizar este envío</span>
 					</p>
 				</div>
 				<div class="slot">
@@ -45,10 +41,8 @@
 		
 		<div class="shipment-options takeaway">
 			<h4 class="cargo-title">Retiro en sucursal</h4>
-			<p class="p">
-				<i>
-					<small>Elegí esta opción para evitar cargos de envío. <span class="carrito_takeaway_text"><?= $carrito_takeaway_text ?></span></small>
-				</i>
+			<p>
+					<span>Elegí esta opción para evitar cargos de envío. <span class="carrito_takeaway_text"><?= $carrito_takeaway_text ?></span></span>
 			</p>		
 
 			<ul class="generic-select takeaway-options animated fadeIn">
