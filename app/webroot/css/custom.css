@@ -686,9 +686,9 @@ footer .options > div {
   }  
 }
 
-footer h3 { color: #e10d74; font-size: 1.25rem; text-transform: uppercase; font-weight: 700; margin-bottom: 1.25rem; margin-top: 2rem; }
+footer h3 { color: #333; font-size: 1.25rem; text-transform: uppercase; font-weight: 700; margin-bottom: 1.25rem; margin-top: 2rem; }
 footer h3:after { background: #e10d74; content: ""; display: block; height: 2px;border-radius: 0; margin-top: 15px; width: 50px; }
-footer a { color: #e10d74; font-size: 1rem; font-weight: 200; text-transform: uppercase;  }
+footer a { color: #333; font-size: 1rem; font-weight: 200; text-transform: uppercase;  }
 footer a:hover { color: #363633; }
 footer ul li { margin-bottom: 15px; }
 /* footer .col-md-3:first-child ul { column-count: 2; } */
@@ -1646,7 +1646,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 	#headcontacto { padding: 1rem; }
   #optionsHelp {padding: 0;}
-	#optionsHelp a { padding: 30px 0; width: 100%; border-bottom: 2px solid #f6f6f5;}
+	#optionsHelp a { padding: 30px 0; width: 100%; /* border-bottom: 2px solid #f6f6f5;*/}
   /* #optionsHelp a:nth-child(even) { background-color: #f6f6f5; } */
 	#referncia ul { column-count: 1; }
   #headhelp .row { padding: 1rem; }

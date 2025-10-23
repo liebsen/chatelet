@@ -14,7 +14,7 @@ body.loading {
 }
 
 body > section,
-body > div:not([class*="modal"]) {
+body > div:not([class*="modal"]):not(.whatsapp-block) {
 	background-color: #fff;
 }
 
@@ -62,7 +62,7 @@ html, body {
 
 .modal-content {
   box-shadow: none!important;
-  border-radius: 0.25rem;
+  min-height: 100dvh;
 }
 
 .modal-body label {
