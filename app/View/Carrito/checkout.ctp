@@ -1,4 +1,5 @@
 <?php 
+	$this->set('short_header', 'Checkout');
 	echo $this->Session->flash();
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('bootstrap-datepicker', array('inline' => false));

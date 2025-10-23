@@ -544,7 +544,7 @@ $(function () {
     }
   }
 
-  window.onerror = function (msg, url, lineNo, columnNo, error) {
+  /*window.onerror = function (msg, url, lineNo, columnNo, error) {
     if (window.location.hostname != 'chatelet.com.ar') {
       onErrorAlert(`${msg}:${lineNo}`);
     }
@@ -557,7 +557,7 @@ $(function () {
       userAgent: navigator.userAgent
     }
     $.post('/shop/log_error', {message: msg + JSON.stringify(browser), url: url, line: lineNo})
-  }
+  }*/
 
   const sections = ['','/','/Home']
 
@@ -566,10 +566,3 @@ $(function () {
   }
 })
 
-$.ajaxSetup({
-  cache:false,
-  dataType: "json",
-  xhrFields: {
-    withCredentials: true
-  },
-});

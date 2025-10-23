@@ -60,12 +60,21 @@
       echo $this->Html->script('jquery.growl');
       echo $this->Html->script('bootstrap-select.min');
       echo $this->Html->script('bootstrapValidator.min');
-      echo $this->Html->script('wow.min');
-      echo $this->Html->script('plugins');
+      //echo $this->Html->script('wow.min');
+      //echo $this->Html->script('plugins');
       echo $this->Html->script('main.js?v=' . Configure::read('APP_VERSION'));
     ?>
+    <script>
+      $.ajaxSetup({
+        cache:false,
+        dataType: "json",
+        xhrFields: {
+          withCredentials: true
+        },
+      });
+    </script>
   </head>
   <body class="noscroll p-0" style="background-color: #262427">
-    <?php if(!empty($banners)) :?>
+    <?php if(!empty($banners) && empty($short_header)) :?>
       <?php echo $this->element('banners'); ?>
     <?php endif ?>

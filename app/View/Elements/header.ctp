@@ -118,7 +118,7 @@
                   <?php if ($this->Session->check('cart')): ?>
                     <p class="title">Tu pedido</p>
                   <?php else: ?>
-                    <h3> <i class="fa fa-shopping-cart fa-x2"></i> Tu carrito de compras está vacío.</h3>
+                    <h3> <i class="fa fa-shopping-cart fa-x2"></i> Tu carrito está vacío.</h3>
                     <p class="notification text-muted">Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></p>
                   <?php endif ?>
                     <ol id="items">
@@ -180,15 +180,15 @@
 
 <div id="menuShop" class="menuLayer">
   <a class="close position-relative">
-      <span></span>
-      <span></span>
+    <span></span>
+    <span></span>
   </a>
   <div class="wrapper">
     <div class="row">
       <?php if(!empty($data['image_menushop'])): ?>
       <img class="pull-left" src="<?php echo Configure::read('uploadUrl').$data['image_menushop']?>">
       <?php endif ?>
-      <div class="col-sm-12">
+      <div class="">
         <!--h3>Shop</h3-->
         <ul>
           <?php

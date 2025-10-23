@@ -52,9 +52,8 @@ var updateCart = (carrito) => {
 var save_preference = (settings) => {
   $.post('/carrito/preference', $.param(settings))
     .success(function(res) {
-      var response = JSON.parse(res)
-      if (response.success) {
-        var data = response.data
+      if (res.success) {
+        var data = res.data
         if(data){
           carrito_items = data
         }

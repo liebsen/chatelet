@@ -1,4 +1,5 @@
 <?php
+	$this->set('short_header', 'Carrito');
 	echo $this->Session->flash();
 	echo $this->Html->css('carrito.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
@@ -91,11 +92,11 @@
 					echo '<div class="form-inline">
 					  <div class="form-group">
 					    <div class="input-group carrito-selector mt-2">
-					      <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
+					      <div class="input-group-addon input-lg is-clickable product-remove">
 					       	<span>&ndash;</span>
 					      </div>
 					      <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="' . $product['count'] . '" original-value="' . $product['count'] . '" />
-					      <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
+					      <div class="input-group-addon input-lg is-clickable product-add" onclick="addCount()">
 					      	<span>+</span>
 					      </div>
 					    </div>
@@ -109,15 +110,15 @@
 					echo '</div>';				
 					} ?>
 					</div>
-
-					<table class="table desktop">
-						<tr>
-							<th>ART.</th>
-							<th>Talle</th>
-							<th>Cant.</th>
-							<th>Precio</th>
-							<th>Borrar</th>
-						</tr>
+					<div class="desktop">
+						<table class="table w-100">
+							<tr>
+								<th>ART.</th>
+								<th>Talle</th>
+								<th>Cant.</th>
+								<th>Precio</th>
+								<th>Borrar</th>
+							</tr>
 					<?php if (!isset($carro)) $carro = array();
 				  $row = 0;
 					$subtotal = 0;
@@ -181,11 +182,11 @@
 					echo '<div class="form-inline">
 							  <div class="form-group">
 							    <div class="input-group carrito-selector">
-							      <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
+							      <div class="input-group-addon input-lg is-clickable product-remove">
 							       	<span>&ndash;</span>
 							      </div>
 							      <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="' . $product['count'] . '" original-value="' . $product['count'] . '" />
-							      <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
+							      <div class="input-group-addon input-lg is-clickable product-add">
 							      	<span>+</span>
 							      </div>
 							    </div>
@@ -230,7 +231,8 @@
 						</div>';
 
 					} ?>
-						</table>
+							</table>
+						</div>
 						<div class="resume-totals p-4 animated fadeIn delay">
 							<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 							<input type="hidden" id="subtotal_envio" value="" />
@@ -299,8 +301,8 @@
 						<!--div class="icon-huge mt-4">
 							<i class="fa fa-shopping-cart fa-x2 text-muted"></i>
 						</div-->
-						<h3 class="h3 text-center">Tu carrito de compras está vacío</h3>
-						<div>Para comprar agrega un producto. Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></div>
+						<h3 class="h3 text-center">Tu carrito está vacío</h3>
+						<div>Para comprar agrega un producto.<br> Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></div>
 					</div>
 					<br><br>
 					<?php endif;?>
@@ -316,7 +318,7 @@
 			</div>
 			<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-05 animated slideInUp delay2">
 				<?php if (!isset($carro)): ?>
-					<a href="#" class="btn action-search cart-btn-green">Buscar</a>
+					<!--a href="#" class="btn action-search cart-btn-green">Buscar</a-->
 				<?php endif ?>
 				<a class="btn keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			  <?php if (isset($carro) && !empty($carro)) :?>
