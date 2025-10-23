@@ -1208,7 +1208,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 
 	public function add() {
 		$this->autoRender = false;
-
+		$this->RequestHandler->respondAs('application/json');
 		if ($this->request->is('post')) {
 			$data = $this->request->data;
 			//$this->RequestHandler->respondAs('application/json');
@@ -1472,6 +1472,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 
 	public function remove($id = null) {
 		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
 		$item = false;
 		$carro = $this->Session->read('cart');
 
@@ -1489,14 +1490,13 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 			$i++;
 		}
 		if (count($data)) {
-
 			//CakeLog::write('debug', 'updateCart(1)');
 			$this->Session->write('cart', $this->updateCart($data));
 		} else {
 			$this->Session->delete('cart');
 		}
-		//return json_encode($removed);
-		return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
+		return json_encode($removed);
+		//return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 	}
 
 	private function notify_user($data, $status){

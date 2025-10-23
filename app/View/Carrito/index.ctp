@@ -58,7 +58,7 @@
 			?>
 			<div class="carrito-row">
 				<div class="carrito-col">
-					<div class="mobile">
+					<div class="mobile p-3">
 					<?php foreach ($sorted as $product) {
 						echo "<div class='d-flex justify-content-start align-center gap-1 cart-row'>";
 						echo "<div class='cart-img'>";
@@ -86,14 +86,11 @@
 							echo '<span class="text-small">Talle: <span>'. $product['size'] .'</span></span>';
 						}
 
-					echo '<span class="text-nowrap">$ '. \price_format($product['price']) .'</span>';					
-					if (!empty($product['old_price'] && abs($product['old_price']-$product['price']) > 1)){
-						echo '<br><span class="old_price text-grey text-small">$ '. \price_format($product['old_price']) .'</span>';
-					}					
+					echo '<span class="text-nowrap mt-2">$ '. \price_format($product['price']) .'</span>';					
 
 					echo '<div class="form-inline">
 					  <div class="form-group">
-					    <div class="input-group carrito-selector mt-4">
+					    <div class="input-group carrito-selector mt-2">
 					      <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
 					       	<span>&ndash;</span>
 					      </div>
@@ -209,7 +206,7 @@
 						$row += 1;
 
 						echo '<td>
-										<button class="btn bg-transparent" onclick="askremoveCart(this, \''.$product['name'].'\')">
+										<button class="btn bg-transparent" onclick="askremoveCart(this)">
 											<i class="fa fa-trash-o"></i>
 										</button>
 									</td>';
@@ -299,9 +296,9 @@
 						</div>
 					<?php else: ?>
 					<div class="container cart-empty text-center">
-						<div class="icon-huge mt-4">
+						<!--div class="icon-huge mt-4">
 							<i class="fa fa-shopping-cart fa-x2 text-muted"></i>
-						</div>
+						</div-->
 						<h3 class="h3 text-center">Tu carrito de compras está vacío</h3>
 						<div>Para comprar agrega un producto. Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></div>
 					</div>
