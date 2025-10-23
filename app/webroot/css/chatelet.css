@@ -626,7 +626,7 @@ select.form-control{
 	font-weight: 800;
 } */
 
-#login-email,
+/*#login-email,
 #login-password {
 	padding: 6px 12px;
 	border-radius: 0.5rem;
@@ -635,12 +635,11 @@ select.form-control{
 	background-color: #dbd9da;
 	border: 0;
 	width: 100%;
-}
+}*/
 
 #login {
 	display: inline-block;
 	padding: 0.75rem 1rem;
-	min-height: 50px;
 	background-color: #e10c76;
 	color: white;
 	/*font-style: italic;*/
@@ -813,7 +812,7 @@ select.form-control{
   margin:0!important;
 }
 
-.modal-content {
+/*.modal-content {
   min-height: 100vh;
   border: 2px solid rgba(0, 0, 0, .2);
 }
@@ -840,6 +839,7 @@ select.form-control{
   	border-bottom-right-radius: 0.25rem;
   }
 }
+*/
 
 .modal-header .close {
 	color: #e10c76;
@@ -997,10 +997,11 @@ select.form-control{
 }
 .card-link {
 	display: inline-block;
+	text-decoration: underline;
 	color: #e10d74;
 	font-weight: 600;
 	padding: 0.75rem;
-	border: 2px solid #e10d74;
+	border: none;
 	border-radius: 0.5rem;
 	line-height: 1.5;
 	font-size: 1rem;

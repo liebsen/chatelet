@@ -246,7 +246,7 @@
 			    	<input type="submit" id="enviar-registro" value="Actualizar mis datos" />
             <div class="modal-buttons">                  
               <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé mi contraseña</a>
-              <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Iniciar sesión</a>
+              <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Inicia sesión para continuar</a>
             </div>			    	
 			    </div>
 				</div>
