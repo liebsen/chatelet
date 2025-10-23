@@ -60,8 +60,7 @@
 	background-position: left center;
 	text-align: right;
 	padding-right: 4rem;
-	min-height: 45px;
-	border-radius: 0.25rem;
+	min-height: 46px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;	
@@ -109,8 +108,9 @@
 .generic-select li.selected {
 	background-color: white;
 	border-color: #e10c76;
-	background-image: url(../images/check.png);
+	background-image: url(../images/check-pink.png);
 	color: #e10c76;
+	font-weight: 500;
 }
 
 .generic-select li.secondary:not(.selected) {
