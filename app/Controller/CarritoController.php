@@ -1317,6 +1317,8 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 						$sort[$criteria]['promo_enabled'] = $item['promo_enabled'];
 					}
 				}
+				$sort[$criteria]['item_price'] = $item['price'];
+				$sort[$criteria]['item_old_price'] = $item['old_price'];
 			}
 		}
 

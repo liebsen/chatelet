@@ -61,7 +61,8 @@
 				<div class="carrito-col">
 					<div class="mobile p-3">
 					<?php foreach ($sorted as $product) {
-						echo "<div class='d-flex justify-content-start align-center gap-1 cart-row'>";
+						echo "<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data' data-json='".json_encode($product)."' product_row>";
+
 						echo "<div class='cart-img'>";
 						if (!empty($product['number_ribbon'])) {
 							echo '<div class="ribbon bottom-left small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
@@ -87,16 +88,16 @@
 							echo '<span class="text-small">Talle: <span>'. $product['size'] .'</span></span>';
 						}
 
-					echo '<span class="text-nowrap mt-2">$ '. \price_format($product['price']) .'</span>';					
+					echo '<span class="text-nowrap mt-2">$ '. \price_format($product['item_price']) .'</span>';					
 
 					echo '<div class="form-inline">
 					  <div class="form-group">
 					    <div class="input-group carrito-selector mt-2">
-					      <div class="input-group-addon input-lg is-clickable product-remove">
+					      <div class="input-group-addon input-lg is-clickable btn-change-count">
 					       	<span>&ndash;</span>
 					      </div>
 					      <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="' . $product['count'] . '" original-value="' . $product['count'] . '" />
-					      <div class="input-group-addon input-lg is-clickable product-add" onclick="addCount()">
+					      <div class="input-group-addon input-lg is-clickable btn-change-count">
 					      	<span>+</span>
 					      </div>
 					    </div>
@@ -107,7 +108,10 @@
 						</label>';
 
 					echo '</div>';
-					echo '</div>';				
+					echo '<button class="btn close bg-transparent" onclick="askremoveCart(this)">
+									<i class="fa fa-trash-o"></i>
+								</button>';					
+					echo '</div>';		
 					} ?>
 					</div>
 					<div class="desktop">
@@ -182,25 +186,25 @@
 					echo '</td>';
 					echo '<td>';
 					echo '<div class="form-inline">
-							  <div class="form-group">
-							    <div class="input-group carrito-selector">
-							      <div class="input-group-addon input-lg is-clickable product-remove">
-							       	<span>&ndash;</span>
-							      </div>
-							      <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="' . $product['count'] . '" original-value="' . $product['count'] . '" />
-							      <div class="input-group-addon input-lg is-clickable product-add">
-							      	<span>+</span>
-							      </div>
-							    </div>
-							  </div>
-							</div>';
+								  <div class="form-group">
+								    <div class="input-group carrito-selector">
+								      <div class="input-group-addon input-lg is-clickable btn-change-count">
+								       	<span>&ndash;</span>
+								      </div>
+								      <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="' . $product['count'] . '" original-value="' . $product['count'] . '" />
+								      <div class="input-group-addon input-lg is-clickable btn-change-count">
+								      	<span>+</span>
+								      </div>
+								    </div>
+								  </div>
+								</div>';
 						echo '</td>';			
 						echo '<td>';	
 
 
-						echo '<span class="text-nowrap">$ '. \price_format($product['price']) .'</span>';
-						if (!empty($product['old_price'] && abs($product['old_price']-$product['price']) > 1)){
-							echo '<br><span class="old_price text-grey text-small">$ '. \price_format($product['old_price']) .'</span>';
+						echo '<span class="text-nowrap">$ '. \price_format($product['item_price']) .'</span>';
+						if (!empty($product['item_old_price'] && abs($product['item_old_price']-$product['item_price']) > 1)){
+							echo '<br><span class="old_price text-grey text-small">$ '. \price_format($product['item_old_price']) .'</span>';
 						}					
 
 						echo strlen(@$product['payment_text']) ? 'con ' . @$product['payment_text'] : '';
@@ -215,7 +219,7 @@
 									</td>';
 						echo '</tr>';
 
-						echo '<div class="carrito-hide-element">
+						/*echo '<div class="carrito-hide-element">
 							<div class="form-inline">
 							  <div class="form-group">
 							    <div class="input-group carrito-selector mt-4">
@@ -230,7 +234,7 @@
 							  </div>
 							</div>
 							<span class="ch-btn-success btn-change-count disable is-clickable">Cambiar</span>
-						</div>';
+						</div>';*/
 
 					} ?>
 							</table>

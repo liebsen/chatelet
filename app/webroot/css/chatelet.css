@@ -492,7 +492,6 @@ html, body {
 .border-theme {
 	border: 2px solid #FF71CD;
 	color: #FF71CD;
-	border-radius: 0.5rem;
 }
 
 .bg-white {
@@ -501,13 +500,11 @@ html, body {
 .border-dark {
 	border: 2px solid #333;
 	color: #333;
-	border-radius: 0.5rem;
 }
 
 .border-light {
 	border: 2px solid #6666;
 	color: #333;
-	border-radius: 0.5rem;
 }
 
 .d-block {
@@ -1092,9 +1089,9 @@ select.form-control{
 .cart-btn-green {
 	display: inline-block;
 	text-align: center;
-	font-size: 1rem;
+	font-size: 0.85rem;
 	line-height: 1.5;
-	padding: 0.75rem 1.25rem;
+	padding: 0.75rem 1rem;
 	font-weight: 700;
 	color: white;
 	border-color: transparent;
