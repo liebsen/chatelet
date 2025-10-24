@@ -381,7 +381,6 @@ $(document).ready(function() {
 	})
 
 	$(document).on('click', '.btn-change-count',function(e) {
-
 		let count = $(this).parent().find('input').first().val()
 		var json = $(this).parents('.carrito-data').data('json')
 		var item = JSON.parse(JSON.stringify(json))
@@ -427,9 +426,14 @@ $(document).ready(function() {
 		$('.gift-area').removeClass('hidden')
 		$('.gift-count').val(carrito.gifts.length)
 	}
+
 	if (lastcp && $('#subtotal_compra').val()) {
-		$('.input-cp').val(lastcp)
 		setTimeout(() => {
+			$('label[for="shipment"]').click()
+			//$('.shipment-block').show()
+			$('.input-cp').val(lastcp)
+			$('.btn-calculate-shipping').click()
+
 			const takeaway = $('.takeaway-options li.selected')
 			if(cargo === 'shipment' && !takeaway.length || freeShipping) {
 				$('#calulate_shipping').submit()	
