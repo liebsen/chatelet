@@ -67,6 +67,27 @@ html, body {
 	background-size: 30px;  
 }
 
+.input-cp-container.wrong input{
+	border-color: #E10D74;
+  color: #E10D74;
+}
+
+.input-cp-container.ok input {
+	border-color: #07BC31;
+  color: #07BC31;
+}
+
+.input-cp-container.ok:before {
+	content: "\f00c";
+	color: #07BC31;
+	position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.75rem;
+  font-family: 'FontAwesome';
+  z-index: 10;
+}
+
 .input-group-btn .btn {
 	min-width: 5rem;
 }

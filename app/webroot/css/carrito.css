@@ -106,9 +106,9 @@
 	content: "\f054";
 	color: #999;
 	position: absolute;
-  top: 13px;
+  top: 1rem;
   right: 1rem;
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-family: 'FontAwesome';
 }
 
@@ -118,9 +118,9 @@
 
 .generic-select li.selected {
 	background-color: white;
-	border-color: #e10c76;
+	border-color: #07BC31;
 	/*background-image: url(../images/check-pink.png);*/
-	color: #e10c76;
+	color: #07BC31;
 	font-weight: 500;
 }
 
@@ -128,9 +128,9 @@
 	content: "\f00c";
 	color: #07BC31;
 	position: absolute;
-  top: 13px;
+  top: 1rem;
   right: 1rem;
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-family: 'FontAwesome';
 }
 
