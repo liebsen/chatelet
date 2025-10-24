@@ -78,7 +78,7 @@
 						echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 						echo '</a>';
 					echo '</div>';
-					echo '<div class="d-flex justify-content-start align-center flex-column min-w-6">';
+					echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
 					echo '<h6 class="is-carrito mb-1">'. $product['name'] . '</h6>';
 						if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 							echo '<span class="text-small">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
@@ -146,7 +146,7 @@
 						//echo '<div class="ch-row is-clickable" product_row>';
 						echo '<tr class="carrito-data" data-json=\''.json_encode($product).'\' product_row>';
 						echo '<td class="pl-0">';
-						echo "<div class='is-flex-center gap-1'><div class='cart-img'>";
+						echo "<div class='d-flex justify-content-start align-items-center gap-1'><div class='cart-img'>";
 						if (!empty($product['number_ribbon'])) {
 							echo '<div class="ribbon bottom-left small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
 						}
@@ -162,8 +162,8 @@
 						echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 						echo '</a>';
 					echo '</div>';
-					echo '<div class="d-flex justify-space-between align-items-center flex-column min-h-12">';
-					echo '<div class="d-flex justify-content-start align-center flex-column min-w-6">';
+					echo '<div class="d-flex justify-space-between align-items-center flex-column min-h-12 min-w-7">';
+					echo '<div class="d-flex justify-content-start align-center flex-column">';
 					echo '<span class="name is-carrito">'. $product['name'] . '</span>';
 						if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 							echo '<span class="text-small">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';

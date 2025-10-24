@@ -20,6 +20,7 @@ body > div:not([class*="modal"]):not(.whatsapp-block) {
 
 ::placeholder {
 	transition: opacity 0.5s ease-in-out;
+	transition-delay: 1s;
 }
 
 input:focus::placeholder {
@@ -219,8 +220,8 @@ html, body {
 .min-w-4 {
 	min-width: 4rem;
 }
-.min-w-6 {
-	min-width: 6rem;
+.min-w-7 {
+	min-width: 7rem;
 }
 .min-h-5 {
 	min-height: 5rem;
@@ -575,7 +576,7 @@ select.form-control{
 }
 
 #main {
-	padding-bottom: 2rem;
+	padding-bottom: 8rem;
 	background: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
 	width: auto;
 	position: relative;

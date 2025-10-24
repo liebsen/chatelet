@@ -84,7 +84,7 @@
 						          	<span class="h4 text-success free-shipping-block<?= $freeShipping ? '' : ' hidden' ?>">Envío gratis</span>
 												<div class="paid-shipping-block<?= $freeShipping ? ' hidden' : '' ?>">
 							          	<span class="h4">Costo de envío</span><br>
-							          	<p class="mt-2 text-muted">
+							          	<p class="mt-2">
 							          		<span class="shipping_price text-bold h3 text-muted mb-0"></span>
 													<?php if($loggedIn): ?>
 												    <br><br><span> Entrega <span class="shipping text-uppercase"></span> en 
@@ -102,7 +102,7 @@
 							    	<div class="col-xs-12 option-regular cargo-takeaway hide">
 						          <div class="d-inline">
 						          	<span class="h4">Retiro en sucursal</span><br>
-						          	<p class="mt-2 text-muted"> Elegiste retirarlo en 
+						          	<p class="mt-2"> Elegiste retirarlo en 
 						          		<span class="text-bold store_address"></span>
                     			<span class="text-bold store"></span>. 
                     			<?= $data['carrito_takeaway_text'] ?>
@@ -178,7 +178,7 @@
 						    	¿Cómo querés pagar tu compra?
 						    </h5>
 						    <h6 class="card-subtitle">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</h6>
-						    <div class="row card-row payment_method pl-3 pr-3">
+						    <div class="row card-row gap-05 payment_method pl-3 pr-3">
 						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
 					          	<span class="h4">Mercado Pago</span><br>
@@ -202,7 +202,7 @@
 						    	¿Querés financiar tu compra?
 						    </h5>
 						    <h6 class="card-subtitle">Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</h6>
-						    <div class="row card-row pl-3 pr-3">
+						    <div class="row card-row gap-05 pl-3 pr-3">
 					        <!--label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(event,this)">
 					          <input type="radio" class="" id="dues_1" name="payment_dues" value="1" required checked />
 				          	<span class="h4"> 1 cuota</span><br>
