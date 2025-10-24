@@ -70,7 +70,7 @@
 					<div class="col-sm-6">
 						<!--label class="ml-1" for="password">Contraseña</label-->
 						<div class="form-group">
-							<input type="password" placeholder="Contraseña (debes crear una)" title="Contraseña" class="form-control" name="data[User][password]" autocomplete="current-password" />
+							<input type="password" placeholder="Contraseña" title="Contraseña" class="form-control" name="data[User][password]" autocomplete="current-password" />
 						</div>
 						<span class="validation-password"></span>
 					</div>

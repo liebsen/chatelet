@@ -304,7 +304,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   min-height: 102px; 
   padding: 1.5rem;
   position: relative; 
-  z-index: 3; 
+  z-index: 10; 
 }
 
 .navbar-brand { 
@@ -901,9 +901,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   bottom: 0;
   font-style: italic;*/
   text-align: left;
-  text-shadow: 0 0 3px #3339,0 0 8px #3336;
-  font-size: 1.5rem;
-  font-weight: 600; 
+  text-shadow: 0 0 2px #333,0 0 10px #666;
+  font-size: 1.25rem;
+  font-weight: 500; 
+  line-height: 1;
   color: white;
   word-spacing: 9999px;
 }

@@ -306,6 +306,10 @@ html, body {
 	align-items: center;
 }
 
+.align-items-end {
+	align-items: flex-end;
+}
+
 .js-show-modal {
 	position: relative;
 	background-position-x: center;
@@ -627,6 +631,15 @@ select.form-control{
 
 .form-control-feedback {
 	top: 5px !important;
+	font-size: 0.75rem;
+}
+
+.has-success .form-control {
+	border-color: #07BC31;
+}
+
+.has-success .form-control-feedback {
+	color: #07BC31;
 }
 
 .top-fixed {
@@ -997,6 +1010,7 @@ select.form-control{
 #mayorista-modal .bootstrap-select {
 	margin-bottom: 0;
 }
+
 
 .card {
   position: relative;

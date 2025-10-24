@@ -168,6 +168,7 @@ $(document).ready(function() {
 
             $.post(url, data)
                 .success(function(response) {
+                    console.log('register', response)
                     if (!response.success) {
                         if(response.errors!=undefined){
                             if(response.errors.email!=undefined){
@@ -186,12 +187,12 @@ $(document).ready(function() {
                             message: 'Por favor verifica los datos introducidos e intenta de nuevo'
                         });
                         return false;
-                    }else{
+                    } else {
 
-                    me[0].reset();
-                    me.parents('#particular-modal').modal('hide');
-                    location.reload();
-                   }
+                        me[0].reset();
+                        me.parents('#particular-modal').modal('hide');
+                        location.reload();
+                    }
                 })
                 .fail(function() {
                     $.growl.error({

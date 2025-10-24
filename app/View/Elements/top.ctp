@@ -61,7 +61,7 @@
       echo $this->Html->script('bootstrap-select.min');
       echo $this->Html->script('bootstrapValidator.min');
       //echo $this->Html->script('wow.min');
-      //echo $this->Html->script('plugins');
+      echo $this->Html->script('plugins');
       echo $this->Html->script('main.js?v=' . Configure::read('APP_VERSION'));
     ?>
     <script>
