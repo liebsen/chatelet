@@ -22,8 +22,8 @@
         <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Password" />
         <input type="submit" id="login" form="" value="Ingresar" /> 
         <div class="modal-buttons">                
-          <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password" class="text-link">Olvidé mi contraseña</a>
-          <a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal" class="text-link">Crear cuenta</a>
+          <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé mi contraseña</a>
+          <a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Crear cuenta</a>
         </div>
         <?php echo $this->Form->end(); ?>
 			</div>

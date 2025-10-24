@@ -52,118 +52,117 @@
 				?>
 				<div class="row">
 					<div class="col-md-6">
-						<label class="ml-1" for="email">Email</label>
+						<!--label class="ml-1" for="email">Email</label-->
 						<div class="form-group">
 							<?php
-								echo '<input type="email" class="form-control " name="data[User][email]" value="'. $user['email'] .'" />';
+								echo '<input type="email" class="form-control" placeholder="Email" name="data[User][email]" value="'. $user['email'] .'" />';
 							?>
 						</div>
 						<span class="validation-email"></span>
 					</div>
 					<div class="col-md-6">
-						<label class="ml-1" for="password">Contraseña</label>
+						<!--label class="ml-1" for="password">Contraseña</label-->
 						<div class="form-group">
-							<input type="password" class="form-control" name="data[User][password]" autocomplete="current-password" />
+							<input type="password" placeholder="********" class="form-control" name="data[User][password]" autocomplete="current-password" />
 						</div>
 						<span class="validation-password"></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
-						<label class="ml-1" for="nombre">Nombre</label>
+						<!--label class="ml-1" for="nombre">Nombre</label-->
 						<div class="form-group">
 							<?php
-								echo '<input type="text" class="form-control" name="data[User][name]" value="'. $user['name'] .'" />';
+								echo '<input type="text" class="form-control" placeholder="Nombre" name="data[User][name]" value="'. $user['name'] .'" />';
 							?>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label class="ml-1" for="apellido">Apellido</label>
+						<!--label class="ml-1" for="apellido">Apellido</label-->
 						<div class="form-group">
 							<?php
-								echo '<input type="text" class="form-control" name="data[User][surname]" value="'. $user['surname'] .'" />';
+								echo '<input type="text" class="form-control" placeholder="Apellido" name="data[User][surname]" value="'. $user['surname'] .'" />';
 							?>
 						</div>
 					</div>
-					<div class="col-md-6 mh-4">
-						<label class="ml-1" for="nacimiento">Fecha de Nacimiento</label>
+				</div>
+				<div class="row">					
+					<div class="col-md-6">
 						<div class="form-group">
 							<?php
-								echo '<input type="text" class="datepicker form-control" name="data[User][birthday]" value="'. 
+								echo '<input type="text" class="datepicker form-control" placeholder="Fecha de Nacimiento" name="data[User][birthday]" value="'. 
 										$this->Time->format($user['birthday'], '%d/%m/%Y')
 									.'" />';
 							?>
 						</div>
 					</div>
-					<div class="col-md-6">
-			
-						<label class="ml-1" for="sexo">Sexo</label>
+					<div class="col-md-6">			
 						<?php
 							$male = $female = '';
 							if ($user['gender'] == 'M') $male = 'selected';
 							else if ($user['gender'] == 'F') $female = 'selected';
 							echo '<div class="form-group">';
 								echo '<select class="selectpicker form-control" name="data[User][gender]">';
-									echo '<option value="">No especificado</option>';
+									echo '<option value="">Selecione sexo</option>';
 									echo '<option value="M" '.$male.'>Masculino</option>';
 									echo '<option value="F" '.$female.'>Femenino</option>';
 								echo '</select>';
 							echo '</div>';
 						?>
 					</div>
+				</div>
+				<div class="row">					
 					<div class="col-md-6">
-						<label class="ml-1" for="dni">DNI</label>
 						<div class="form-group">
 							<?php
-								echo '<input type="text" class="form-control" name="data[User][dni]" value="'. $user['dni'] .'" />';
+								echo '<input type="text" class="form-control" placeholder="DNI." name="data[User][dni]" value="'. $user['dni'] .'" />';
 							?>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label class="ml-1" for="tel">Teléfono</label>
 						<div class="form-group">
 							<?php
-								echo '<input type="tel" class="form-control" name="data[User][telephone]" value="'. $user['telephone'] .'" />';
+								echo '<input type="tel" class="form-control" placeholder="Teléfono" name="data[User][telephone]" value="'. $user['telephone'] .'" />';
 							?>
 						</div>
 					</div>
+				</div>
+				<div class="row">					
 					<div class="col-md-6">
-						<label class="ml-1" for="direccion">Calle</label>
 						<div class="form-group d-flex">
-							<input style="" type="text" class="form-control" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
+							<input style="" type="text" class="form-control" placeholder="Calle" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label class="ml-1" for="direccion">Número</label>
 						<div class="form-group d-flex">
-							<input min="0" class="form-control" placeholder="1234" name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
+							<input min="0" class="form-control" placeholder="Nro." name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
 						</div>
 					</div>					
-
+				</div>
+				<div class="row">
 					<div class="col-md-6">
-						<label class="ml-1" for="another-tel">Otro teléfono</label>
 						<div class="form-group">
 							<?php
-								echo '<input type="tel" class="form-control" name="data[User][another_telephone]" value="'. $user['another_telephone'] .'" />';
+								echo '<input type="tel" class="form-control" placeholder="Teléfono Alt." name="data[User][another_telephone]" value="'. $user['another_telephone'] .'" />';
 							?>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label class="ml-1" for="floor">Piso</label>
-						<div class="form-group d-flex">
-							<input style="" min="0" id="floor" class="form-control" placeholder="1,2,3..." name="data[User][floor]" type="number" value="<?= $user['floor'] ?>"/>
+						<div class="form-group">
+							<input style="" min="0" id="floor" class="form-control" placeholder="Piso" name="data[User][floor]" type="number" value="<?= $user['floor'] ?>"/>
 						</div>
 					</div>
+				</div>
+				<div class="row">					
 					<div class="col-md-6">
-						<label class="ml-1" for="floor">Departamento</label>
-						<div class="form-group d-flex">
-							<input class="form-control" placeholder="A,B,C..." name="data[User][depto]" type="text" value="<?= $user['depto'] ?>"/>
+						<div class="form-group">
+							<input class="form-control" placeholder="Departamento" name="data[User][depto]" type="text" value="<?= $user['depto'] ?>"/>
 						</div>
 					</div>
 
 					<div class="col-md-6">
 					
-						<label class="ml-1" for="provincia">Provincia</label>
+						<!--label class="ml-1" for="provincia">Provincia</label-->
 						<div class="form-group">
 							<select id="provincia" class="selectpicker form-control" name="data[User][province]">
 								<?php
@@ -201,29 +200,34 @@
 							</select>
 						</div>
 					</div>
+				</div>
+				<div class="row">					
 					<div class="col-md-6">
 				
-						<label class="ml-1" for="ciudad">Ciudad</label>
+						<!--label class="ml-1" for="ciudad">Ciudad</label-->
 						<div class="form-group">
 							<?php
-								echo '<input type="text" id="ciudad" class="form-control" name="data[User][city]" value="'. $user['city'] .'" />';
+								echo '<input type="text" id="ciudad" class="form-control" placeholder="Localidad" name="data[User][city]" value="'. $user['city'] .'" />';
 							?>
 						</div>
 					</div>
 					<div class="col-md-6">
 					
-						<label class="ml-1" for="barrio">Barrio</label>
+						<!--label class="ml-1" for="barrio">Barrio</label-->
 						<div class="form-group">
 							<?php
-								 echo '<input type="text" id="barrio" class="form-control" name="data[User][neighborhood]" value="'. $user['neighborhood'] .'" />';
+								 echo '<input type="text" id="barrio" class="form-control" placeholder="Barrio" name="data[User][neighborhood]" value="'. $user['neighborhood'] .'" />';
 							?>
 						</div>
 					</div>
+
+				</div>
+				<div class="row">					
 					<div class="col-md-6">
-						<label class="ml-1" for="codigo-postal">Código Postal</label>
+						<!--label class="ml-1" for="codigo-postal">Código Postal</label-->
 						<div class="form-group">
 							<?php
-								echo '<input type="text" id="codigo-postal" class="form-control" name="data[User][postal_address]" value="'. $user['postal_address'] .'" />';
+								echo '<input type="text" id="codigo-postal" placeholder="Código Postal" class="form-control" name="data[User][postal_address]" value="'. $user['postal_address'] .'" />';
 							?>
 						</div>
 					</div>

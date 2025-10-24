@@ -56,7 +56,7 @@ label {
   color: #383A3F;
   display: block;
   margin-top: 0.5rem;
-  margin-bottom: 0.25rem;
+  font-weight: 500;
   font-size: 1em;
 }
 label input[type=checkbox] + .label-text:hover:before {
@@ -122,7 +122,8 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .text-small {
-  font-size: 0.75rem !important;
+  font-size: 0.75rem!important;
+  font-weight: 500!important;
 }
 
 .is-product-photo {

@@ -32,7 +32,7 @@ class UsersController extends AppController {
             }
             $this->Session->setFlash(
                 'Por favor verifique su email y contraseña e intente nuevamente',
-                '',
+                'default',
                 array('class' => 'hidden error')
             );
     //CakeLog::write('error', 'login redirect ' . $this->referer());

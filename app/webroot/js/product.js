@@ -59,7 +59,6 @@ function addCart(data, button, text) {
 	$(button).text(text || 'Agregando...')
 	$.post('/carrito/add', $.param(data))
 		.success(function(res) {
-			console.log('res', res)
 			if (res.success) {
 				window.dataLayer = window.dataLayer || []
 				fbq('track', 'AddToCart')
@@ -130,7 +129,7 @@ function addCart(data, button, text) {
 		})
 		.fail(function() {
       $.growl.error({
-        title: 'Ocurrio un error al agregar el producto al carrito',
+        title: 'Ocurrió un error al agregar el producto al carrito',
         message: 'Por favor, intente nuevamente'
       });
 		});	

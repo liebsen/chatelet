@@ -162,12 +162,14 @@
 						echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 						echo '</a>';
 					echo '</div>';
+					echo '<div class="d-flex justify-space-between align-items-center flex-column min-h-12">';
 					echo '<div class="d-flex justify-content-start align-center flex-column min-w-6">';
 					echo '<span class="name is-carrito">'. $product['name'] . '</span>';
 						if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 							echo '<span class="text-small">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
 						}
-					echo '<label class="form-group mt-3">
+					echo '</div>';
+					echo '<label class="form-group">
 						  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-small">Es para regalo</span><br><br>
 						</label>';
 
@@ -307,7 +309,7 @@
 					<br><br>
 					<?php endif;?>
 				</div>
-				<div class="carrito-col max-30">
+				<div class="carrito-col max-30 m-auto">
 				<?php 
 					if (isset($carro) && !empty($carro)) {
 						echo $this->element('shipping', array('freeShipping' => $freeShipping, 'carrito_takeaway_text' => $carrito_takeaway_text));

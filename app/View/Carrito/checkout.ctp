@@ -170,7 +170,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="carrito-col max-30">
+					<div class="carrito-col max-30 m-auto">
 						<div class="card">
 						  <div class="card-body">
 						    <h5 class="card-title">

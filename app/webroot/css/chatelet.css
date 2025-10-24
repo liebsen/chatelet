@@ -18,6 +18,14 @@ body > div:not([class*="modal"]):not(.whatsapp-block) {
 	background-color: #fff;
 }
 
+::placeholder {
+	transition: opacity 0.5s ease-in-out;
+}
+
+input:focus::placeholder {
+  opacity: 0;
+}
+
 #page-loader {
   min-width: 100dvw;
   min-height: 100dvh;
@@ -53,7 +61,7 @@ html, body {
 }
 
 .modal-buttons {
-	padding: 0.5rem;
+	padding: 0.5rem 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -65,13 +73,13 @@ html, body {
   min-height: 100dvh;
 }
 
-.modal-body label {
+/*.modal-body label {
 	color: #383A3F;
 }
 
 .modal-body input {
 	border: 1px solid #bebebe;
-}
+}*/
 
 .disable-scroll {
   overflow: hidden;
@@ -128,6 +136,10 @@ html, body {
 }
 
 /* say hello to my little dwarfs - Hello */
+
+.m-auto {
+	margin: auto;
+}
 
 .m-0 {
   margin: 0!important;
@@ -213,6 +225,10 @@ html, body {
 .min-h-5 {
 	min-height: 5rem;
 }
+.min-h-12 {
+	min-height: 12rem;
+}
+
 .mb-0 {
   margin-bottom: 0!important;
 }
@@ -479,7 +495,7 @@ html, body {
 	border-radius: 0.5rem!important;	
 }*/
 
-.form-control:not(select) {
+.form-control {
 	padding: 0 20px;
 	height: 46px;
 	border-radius: 0;
@@ -933,6 +949,7 @@ select.form-control{
 #mayorista-modal .dropdown-toggle.selectpicker {
 	display: inline-block;
 	padding: 5px 10px;
+	border-radius: 0;
 	/*height: 25px;*/
 	/*	width: 190px !important; */
 }
@@ -1001,10 +1018,9 @@ select.form-control{
 	display: inline-block;
 	text-decoration: underline;
 	color: #e10d74;
-	font-weight: 600;
-	padding: 0.75rem;
+	font-weight: 500;
+	padding: 0.75rem 1rem;
 	border: none;
-	border-radius: 0.5rem;
 	line-height: 1.5;
 	font-size: 1rem;
 	margin-top: 0.5rem;

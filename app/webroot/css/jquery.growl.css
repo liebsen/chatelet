@@ -89,8 +89,6 @@
     font-size: 1.2rem;
     font-weight: bold;
     line-height: 1.25rem;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 0.5rem;
     margin-bottom: 1rem;
   }
   .growl.growl-notice .growl-title,
