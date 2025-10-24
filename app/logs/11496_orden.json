@@ -27,7 +27,7 @@
         }
     },
     "remitente": {
-        "nombreCompleto": "Chatelet",
+        "nombreCompleto": "Châtelet",
         "email": "chateletonline@outlook.com.ar",
         "documentoTipo": "DNI",
         "documentoNumero": "35881327",
@@ -52,7 +52,7 @@
             ]
         }
     ],
-    "productoAEntregar": "Compra en Chatelet",
+    "productoAEntregar": "Compra en Châtelet",
     "bultos": [
         {
             "anchoCm": 24,
@@ -65,7 +65,7 @@
             "referencias": [
                 {
                     "meta": "Detalle",
-                    "contenido": "Compra en Chatelet"
+                    "contenido": "Compra en Châtelet"
                 },
                 {
                     "meta": "C\u00f3d. Cliente",

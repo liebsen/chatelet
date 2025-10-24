@@ -27,10 +27,10 @@
           </div>
         </div>
         <div class="col-md-8">
-          <div class="animated scaleIn delay box-cont">
+          <div class="animated fadeIn delay box-cont">
             <div class="box">
               <h3>Tu historial de compras</h3>
-              <p>Aquí encontrarás las compras realizadas a tu cuenta en Chatelet</p>
+              <p>Aquí encontrarás las compras realizadas a tu cuenta en <i>Châtelet</i></p>
             </div>
           </div>
         </div>

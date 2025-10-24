@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <div class="animated scaleIn delay box-cont">
+                        <div class="animated fadeIn delay box-cont">
                             <div class="box">
                                 <h3>Garantía de confianza</h3>
                                 <p>En el caso de que no te encuentres conforme con el producto, siempre vas a poder cambiarlo por cualquier otro de igual valor o varios productos que equivalgan o superen el valor del saldo a favor. La diferencia la abonaras al momento del cambio.</p>

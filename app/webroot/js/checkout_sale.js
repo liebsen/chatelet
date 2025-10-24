@@ -77,75 +77,82 @@ var select_dues = (e,item) => {
 	prevent_default = false
 }
 
-var select_payment = (e,item) => {
-	e.preventDefault()
-	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-	var selected = $(item).find('input').val()
-	const payment_dues = document.querySelector('.payment-dues')
-
-	carrito_config.payment_method = selected
-	$(item).find('input').prop('checked', true)
-	var bank_bonus = 0
-	if(!selected) {
-		return false
-	}
-	var totals = getTotals()
-	if(payment_dues) {
-		switch(selected){
-			case 'bank':
-				if(payment_dues.classList.contains('scaleIn')){
-					payment_dues.classList.remove('scaleIn')
-					payment_dues.classList.add('scaleOut')
-					setTimeout(() => {
-						payment_dues.classList.add('hide-element')
-					}, 500)
-				}
-				document.querySelectorAll('.payment-dues .option-rounded').forEach((e,i) => {
-					if(i) {
-						e.classList.add('hide')
-					}
-				})
-			break;
-
-			case 'mercadopago':
-
-			if(payment_dues.classList.contains('scaleOut')){
-				payment_dues.classList.remove('scaleOut', 'hide-element')
-				payment_dues.classList.add('scaleIn')
-			}
-
-			document.querySelectorAll('.payment-dues .option-rounded').forEach((e) => e.classList.remove('hide'))
-
-			break;
-		}
-	}
-
-	if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
-		bank_bonus = totals.total * (parseFloat(bank.discount) / 100)
-		$('.bank_bonus').text(formatNumber(bank_bonus))
-		$('.bank-block').removeClass('hide')
-		$('.bank-block').addClass('animated fadeIn')
-		select_radio('payment_dues', 1)
-		$('.payment_dues label').not(':first-child').addClass('hide')
-	} else {
-		$('.payment_dues label').removeClass('hide')
-		$('.bank-block').addClass('hide')
-	}
-
-  onSuccessAlert(`Como querés pagar`,'Seleccionaste pagar con ' + (selected === 'bank' ? 'Transferencia' : 'Mercado Pago'));
-
-  save_preference({payment_method: selected})
-
-	$('.payment_method .option-rounded').removeClass('is-selected is-secondary')
-	$('.payment_method .option-rounded').addClass('is-secondary')
-	$(item).addClass('is-selected')
-}
 
 $(function(){
 	$(`.cargo-${carrito.cargo}`).removeClass('hide')
 	$(`.cargo-${carrito.cargo}`).addClass('animated fadeIn')
 
 	updateCart()
+
+	
+	$('.select-payment-option').click(e => {
+		const target = $(e.target).hasClass('select-payment-option') ? 
+			$(e.target) : 
+			$(e.target).parents('.select-payment-option')
+
+		e.preventDefault()
+		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+		var selected = target.find('input').val()
+		const payment_dues = document.querySelector('.payment-dues')
+
+		carrito_config.payment_method = selected
+		target.find('input').prop('checked', true)
+		var bank_bonus = 0
+		if(!selected) {
+			return false
+		}
+		var totals = getTotals()
+		if(payment_dues) {
+			switch(selected){
+				case 'bank':
+					if(payment_dues.classList.contains('scaleIn')){
+						payment_dues.classList.remove('scaleIn')
+						payment_dues.classList.add('scaleOut')
+						setTimeout(() => {
+							payment_dues.classList.add('hide-element')
+						}, 500)
+					}
+					document.querySelectorAll('.payment-dues .option-rounded').forEach((e,i) => {
+						if(i) {
+							e.classList.add('hide')
+						}
+					})
+				break;
+
+				case 'mercadopago':
+
+				if(payment_dues.classList.contains('scaleOut')){
+					payment_dues.classList.remove('scaleOut', 'hide-element')
+					payment_dues.classList.add('scaleIn')
+				}
+
+				document.querySelectorAll('.payment-dues .option-rounded').forEach((e) => e.classList.remove('hide'))
+
+				break;
+			}
+		}
+
+		if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
+			bank_bonus = totals.total * (parseFloat(bank.discount) / 100)
+			$('.bank_bonus').text(formatNumber(bank_bonus))
+			$('.bank-block').removeClass('hide')
+			$('.bank-block').addClass('animated fadeIn')
+			select_radio('payment_dues', 1)
+			$('.payment_dues label').not(':first-child').addClass('hide')
+		} else {
+			$('.payment_dues label').removeClass('hide')
+			$('.bank-block').addClass('hide')
+		}
+
+	  onSuccessAlert(`Como querés pagar`,'Seleccionaste pagar con ' + (selected === 'bank' ? 'Transferencia' : 'Mercado Pago'));
+
+	  save_preference({payment_method: selected})
+
+		$('.payment_method .option-rounded').removeClass('is-selected is-secondary')
+		$('.payment_method .option-rounded').addClass('is-secondary')
+		target.addClass('is-selected')
+	})
+
 	$('#submitcheckoutbutton').click(e => {
 		if(dues_selected && dues_selected > 1){ // show legend
 			$('#dues_message').addClass('show')

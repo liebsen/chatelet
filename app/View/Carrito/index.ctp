@@ -309,7 +309,7 @@
 					<br><br>
 					<?php endif;?>
 				</div>
-				<div class="carrito-col min-max-30 m-auto">
+				<div class="carrito-col min-max-30 m-w-auto">
 				<?php 
 					if (isset($carro) && !empty($carro)) {
 						echo $this->element('shipping', array('freeShipping' => $freeShipping, 'carrito_takeaway_text' => $carrito_takeaway_text));
@@ -324,7 +324,7 @@
 				<?php endif ?>
 				<a class="btn keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
 			  <?php if (isset($carro) && !empty($carro)) :?>
-			    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-outline-danger" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
+			    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-outline-danger" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Finalizar compra</a>
 			  <?php endif ?>
 			</div>
 		</div>

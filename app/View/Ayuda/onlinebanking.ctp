@@ -9,7 +9,7 @@
           <h3 class="d-block border-dark text-center mt-1 ps-4 max-25">
             <span class="text-dark h3">A transferir $ <?= number_format($price, 2, ',', '.') ?></span>
           </h3>
-          <a class="btn cart-btn-green border-success bg-white d-block max-25 mt-4" href="https://wa.me/<?= $data['bank_whatsapp'] ?>?text=Hola te escribo de la web de Chatelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
+          <a class="btn cart-btn-green border-success bg-white d-block max-25 mt-4" href="https://wa.me/<?= $data['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
             <span class="text-white h3">👉 Referencia #<?= $invoice_id ?></span>
           </a>
           <?php endif ?>
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="col-xs-12 col-md-8 enviar-comprobante">
-        <div class="animated scaleIn delay box-cont">
+        <div class="animated fadeIn delay box-cont">
           <div class="box mt-8">  
             <h3 class="h3"><?= $data['bank_instructions_title'] ?></h3>
             <p class="pre-system font-system"><?= $data['bank_instructions_text'] ?></p>
@@ -29,7 +29,7 @@
               </div-->
               <?php if(isset($data['bank_whatsapp'])): ?>
               <div class="col-xs-12 mt-4 text-center">
-                <a class="btn cart-btn-green shrink mt-3" href="https://wa.me/<?= $data['bank_whatsapp'] ?>?text=Hola te escribo de la web de Chatelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
+                <a class="btn cart-btn-green shrink mt-3" href="https://wa.me/<?= $data['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
                   Enviar por WhatsApp
                 </a>
               </div>

@@ -451,7 +451,7 @@ class AdminController extends AppController {
 	      ]
 	    ],
 	    'remitente' => [
-	      'nombreCompleto' => 'Chatelet',
+	      'nombreCompleto' => 'Châtelet',
 	      'email' => 'chateletonline@outlook.com.ar',
 	      'documentoTipo' => 'DNI',
 	      'documentoNumero' => '35881327',
@@ -476,7 +476,7 @@ class AdminController extends AppController {
           ]
         ]
 	    ],
-	    'productoAEntregar' => 'Compra en Chatelet',
+	    'productoAEntregar' => 'Compra en Châtelet',
 	    'bultos' => [
         [
 				'anchoCm' => (float) $package['width'],
@@ -489,7 +489,7 @@ class AdminController extends AppController {
         'referencias' => [
             [
               'meta' => 'Detalle',
-              'contenido' => 'Compra en Chatelet'
+              'contenido' => 'Compra en Châtelet'
             ],
             [
               'meta' => 'Cód. Cliente',
@@ -635,7 +635,7 @@ class AdminController extends AppController {
 			];
 		}
 		$message = '<p>Hola '.ucfirst($sale['Sale']['nombre']).', ¡recibimos tu pago!<br>
-Te confirmamos el pago por tu compra en Chatelet.</p>
+Te confirmamos el pago por tu compra en Châtelet.</p>
 <p>Tu número de pedido es: #' . $sale['Sale']['id'] . '. Tu compra será procesada dentro de las 72hs de haberse acreditado el pago. Si elegiste envío por correo Oca, Andreani o SpeedMoto te llegará un segundo email con el número de seguimiento para que puedas ver el estado del mismo. Si elegiste retiro por sucursal te avisaremos por este medio cuando el pedido se encuentre listo para retirar!</p><br>
 <p>¡Muchas gracias!</p><br>
 <a href="https://www.chatelet.com.ar">CHATELET</a>';

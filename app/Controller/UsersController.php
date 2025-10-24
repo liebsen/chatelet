@@ -110,7 +110,6 @@ class UsersController extends AppController {
     public function register()
     {
         $this->autoRender = false;
-        $this->RequestHandler->respondAs('application/json');
         if (!$this->request->is('post')) {
             return json_encode(array('success' => false));
         }
@@ -122,10 +121,17 @@ class UsersController extends AppController {
                 'default', 
                 array('class' => 'hidden notice')
             );
-            die(json_encode(array('success' => true)));
+            //die(json_encode(array('success' => true)));
+            return $this->redirect($this->referer());
         } else {
             $errors = $this->User->validationErrors;
-            die(json_encode(array('success' => false, 'errors' => $errors)));
+            $this->Session->setFlash(
+                'Hubo en error al intentar crear la cuenta. Por faavor intente nuevamente en unos instantes.',
+                'default',
+                array('class' => 'hidden error')
+            );            
+            //die(json_encode(array('success' => false, 'errors' => $errors)));
+            return $this->redirect(array('controller' => 'home', 'action' => 'index'));
         }
         
     }

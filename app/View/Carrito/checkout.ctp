@@ -170,7 +170,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="carrito-col min-max-30 m-auto">
+					<div class="carrito-col min-max-30 m-w-auto">
 						<div class="card">
 						  <div class="card-body">
 						    <h5 class="card-title">
@@ -179,13 +179,13 @@
 						    </h5>
 						    <h6 class="card-subtitle">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</h6>
 						    <div class="row card-row gap-05 payment_method pl-3 pr-3">
-						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
+						    	<label for="mercadopago" class="col-xs-12 is-clickable select-payment-option option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
 					          	<span class="h4">Mercado Pago</span><br>
 					          	<p class="mt-2 text-small">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
 				        	</label>				          
 					      <?php if($data['bank_enable']): ?>
-					        <label for="bank" class="col-xs-12 is-clickable option-rounded<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
+					        <label for="bank" class="col-xs-12 is-clickable select-payment-option option-rounded<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>">
 					          <input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
 				          	<span class="h4">Transferencia</span><br>
 				          	<p class="mt-2 text-small">Pagá a través de transferencia bancaria con tu home banking</p>

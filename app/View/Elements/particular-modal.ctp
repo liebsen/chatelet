@@ -34,12 +34,19 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3 class="modal-title" id="modal-title">
 					<?php
-						if ($loggedIn) echo 'Mi Cuenta';
-						else echo 'Registro de Usuario';
+						if ($loggedIn) echo 'Tus datos en Châtelet';
+						else echo 'Crea tu cuenta en Châtelet';
 					?>
 				</h3>
+
 			</div>
 			<div class="modal-body">
+				<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
+					<p>
+						Crea hoy tu cuenta en <i>Châtelet</i> y accede a mas beneficios, seguimiento personalizado de tus compras y servicio postventa. Gracias por confiar en <i>Châtelet</i>.
+					</p>
+					<!--img src="/images/Xo46p1yulnzMHLEBmnsllkEBp.jpg" width="100" /-->
+				</div>				
 				<?php 
 					echo $this->Form->create(null, array(
 							'url' => array('controller' => 'users', 'action' => 'register'),
@@ -51,7 +58,7 @@
 					}
 				?>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-sm-6">
 						<!--label class="ml-1" for="email">Email</label-->
 						<div class="form-group">
 							<?php
@@ -60,34 +67,36 @@
 						</div>
 						<span class="validation-email"></span>
 					</div>
-					<div class="col-md-6">
+					<div class="col-sm-6">
 						<!--label class="ml-1" for="password">Contraseña</label-->
 						<div class="form-group">
-							<input type="password" placeholder="********" class="form-control" name="data[User][password]" autocomplete="current-password" />
+							<input type="password" placeholder="Contraseña (debes crear una)" class="form-control" name="data[User][password]" autocomplete="current-password" />
 						</div>
 						<span class="validation-password"></span>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-sm-6">
 						<!--label class="ml-1" for="nombre">Nombre</label-->
 						<div class="form-group">
 							<?php
-								echo '<input type="text" class="form-control" placeholder="Nombre" name="data[User][name]" value="'. $user['name'] .'" />';
+								echo '<input type="text" class="form-control" placeholder="Nombres" name="data[User][name]" value="'. $user['name'] .'" />';
 							?>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-sm-6">
 						<!--label class="ml-1" for="apellido">Apellido</label-->
 						<div class="form-group">
 							<?php
-								echo '<input type="text" class="form-control" placeholder="Apellido" name="data[User][surname]" value="'. $user['surname'] .'" />';
+								echo '<input type="text" class="form-control" placeholder="Apellidos" name="data[User][surname]" value="'. $user['surname'] .'" />';
 							?>
 						</div>
 					</div>
 				</div>
+
+			<?php if($loggedIn):?>
 				<div class="row">					
-					<div class="col-md-6">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<?php
 								echo '<input type="text" class="datepicker form-control" placeholder="Fecha de Nacimiento" name="data[User][birthday]" value="'. 
@@ -96,7 +105,7 @@
 							?>
 						</div>
 					</div>
-					<div class="col-md-6">			
+					<div class="col-sm-6">			
 						<?php
 							$male = $female = '';
 							if ($user['gender'] == 'M') $male = 'selected';
@@ -112,14 +121,14 @@
 					</div>
 				</div>
 				<div class="row">					
-					<div class="col-md-6">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<?php
-								echo '<input type="text" class="form-control" placeholder="DNI." name="data[User][dni]" value="'. $user['dni'] .'" />';
+								echo '<input type="text" class="form-control" placeholder="DNI" name="data[User][dni]" value="'. $user['dni'] .'" />';
 							?>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<?php
 								echo '<input type="tel" class="form-control" placeholder="Teléfono" name="data[User][telephone]" value="'. $user['telephone'] .'" />';
@@ -127,40 +136,41 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">					
-					<div class="col-md-6">
-						<div class="form-group d-flex">
-							<input style="" type="text" class="form-control" placeholder="Calle" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group d-flex">
-							<input min="0" class="form-control" placeholder="Nro." name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
-						</div>
-					</div>					
-				</div>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<?php
 								echo '<input type="tel" class="form-control" placeholder="Teléfono Alt." name="data[User][another_telephone]" value="'. $user['another_telephone'] .'" />';
 							?>
 						</div>
+					</div>				
+					<div class="col-sm-6">
+						<div class="form-group d-flex">
+							<input style="" type="text" class="form-control" placeholder="Calle" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
+						</div>
 					</div>
-					<div class="col-md-6">
+				
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group d-flex">
+							<input min="0" class="form-control" placeholder="Nro." name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
+						</div>
+					</div>	
+					<div class="col-sm-6">
 						<div class="form-group">
 							<input style="" min="0" id="floor" class="form-control" placeholder="Piso" name="data[User][floor]" type="number" value="<?= $user['floor'] ?>"/>
 						</div>
 					</div>
 				</div>
 				<div class="row">					
-					<div class="col-md-6">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<input class="form-control" placeholder="Departamento" name="data[User][depto]" type="text" value="<?= $user['depto'] ?>"/>
 						</div>
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-sm-6">
 					
 						<!--label class="ml-1" for="provincia">Provincia</label-->
 						<div class="form-group">
@@ -202,7 +212,7 @@
 					</div>
 				</div>
 				<div class="row">					
-					<div class="col-md-6">
+					<div class="col-sm-6">
 				
 						<!--label class="ml-1" for="ciudad">Ciudad</label-->
 						<div class="form-group">
@@ -211,7 +221,7 @@
 							?>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-sm-6">
 					
 						<!--label class="ml-1" for="barrio">Barrio</label-->
 						<div class="form-group">
@@ -220,10 +230,11 @@
 							?>
 						</div>
 					</div>
-
 				</div>
+
+			<?php endif ?>
 				<div class="row">					
-					<div class="col-md-6">
+					<div class="col-sm-6">
 						<!--label class="ml-1" for="codigo-postal">Código Postal</label-->
 						<div class="form-group">
 							<?php
@@ -231,7 +242,7 @@
 							?>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-sm-6">
 						<label>Newsletter</label>
 						<div class="form-group justify-content-center align-items-center p-3">
 							<?php
@@ -247,10 +258,10 @@
 
 				<div class="row">
 					<div class="col-md-12">
-			    	<input type="submit" id="enviar-registro" value="Actualizar mis datos" />
+			    	<input type="submit" id="enviar-registro" value="<?= !$loggedIn ? 'Crear cuenta en Châtelet' : 'Actualizar mis datos' ?>" />
             <div class="modal-buttons">                  
+              <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Inicia sesión</a>
               <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé mi contraseña</a>
-              <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Inicia sesión para continuar</a>
             </div>			    	
 			    </div>
 				</div>
@@ -259,7 +270,13 @@
 		</div>
 	</div>
 </div>
-				
+
+
+<style>
+	.col-sm-6:not(:first-child) {
+		padding-left: 0!important;
+	}
+</style>
 			
 		
 	
