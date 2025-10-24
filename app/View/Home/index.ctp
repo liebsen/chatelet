@@ -132,20 +132,20 @@
   </section>
 
   <section id="suscribe">
-    <div class="wrapper container is-flex-end">
+    <div class="wrapper container">
       <div class="col-md-6">
         <h2 class="h4 mt-0 mb-4 text-uppercase">Newsletter - Estemos <strong>conectad@s</strong></h2>
         <p class="text-muted">Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
       </div>
         
-      <div class="col-md-6 max-21">
+      <div class="col-md-6">
         <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>     
-        <div class="is-flex justify-content-center align-items-center gap-05">
+        <div class="is-flex justify-content-center align-items-center min-h-8">
           <div class="form-group">
             <input class="form-control" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
           </div>
           <div class="form-group">
-            <input type="submit" class="btn" id="enviar" value="confirmar">
+            <input type="submit" class="btn" id="enviar" value="Suscribirme">
           </div>
         </div>
         <?php echo $this->Form->end(); ?>
