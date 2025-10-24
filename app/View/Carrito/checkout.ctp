@@ -300,7 +300,7 @@
 		</div>
 		<div class="button-group-fixed-bottom animated slideInUp delay2">
 			<div class="d-flex justify-content-center align-items-center gap-1 text-center option-regular">
-				<span class="text-theme h3 m-0">Total a pagar <span class="calc_total"></span></span>
+				<span class="text-theme h4 m-0">Total a pagar <span class="calc_total"></span></span>
 			</div>
 			<div class="d-flex justify-content-center align-items-center gap-05 pt-3">
 				<?php
@@ -313,7 +313,7 @@
 					));
 				?>			
 				<button type="button" id="submitcheckoutbutton" class="btn cart-btn-green checkout-btn btn-pink">
-					Finalizar compra
+					Comprar
 				</button>
 				<input type="submit" id="submitform" class="hidden-force" />
 			</div>
