@@ -78,12 +78,13 @@
 
 .generic-select li {
 	position: relative;
-	padding: 0.75rem 1.25rem;
-	border: 1px solid #bebebe99;
+	font-size: 0.9rem;
+	padding: 0.75rem 1rem;
+	border: 1px solid white;
 	line-height: 1.25;
 	font-weight: 400;
 	background-color: white;
-	color: #aeaeae;
+	color: #777;
 	cursor: pointer;
 	/*background-image: url(../images/chevron_right_gray.svg);
 	background-position: right 0.75rem center;

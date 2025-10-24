@@ -166,7 +166,7 @@
 						echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 						echo '</a>';
 					echo '</div>';
-					echo '<div class="d-flex justify-space-between align-items-center flex-column min-h-12 min-w-7">';
+					echo '<div class="d-flex justify-space-between align-items-start flex-column min-h-12 min-w-7">';
 					echo '<div class="d-flex justify-content-start align-center flex-column">';
 					echo '<span class="name is-carrito">'. $product['name'] . '</span>';
 						if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){

@@ -84,7 +84,6 @@ $(function(){
 
 	updateCart()
 
-	
 	$('.select-payment-option').click(e => {
 		const target = $(e.target).hasClass('select-payment-option') ? 
 			$(e.target) : 

@@ -882,8 +882,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 .name {
   display: flex;
   justify-content: center;
-  align-content: center;
-  align-items: center;
+  align-content: flex-start;
+  align-items: flex-start;
   font-weight: 800;
   font-size: 1rem;
   color: #333;

@@ -174,10 +174,9 @@
 						<div class="card">
 						  <div class="card-body">
 						    <h5 class="card-title">
-						    	<!--i class="fa fa-credit-card"></i-->
 						    	¿Cómo querés pagar tu compra?
 						    </h5>
-						    <h6 class="card-subtitle">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</h6>
+						    <span class="">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</span>
 						    <div class="row card-row gap-05 payment_method pl-3 pr-3">
 						    	<label for="mercadopago" class="col-xs-12 is-clickable select-payment-option option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>

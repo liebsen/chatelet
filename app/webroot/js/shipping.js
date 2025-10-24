@@ -1,7 +1,6 @@
 $(function(){
 	var subtotal = $('#subtotal_compra').val()
 	selectShipping = function (e, shipping, cost) {
-
 		if (cost <= 0) {
 			return setTimeout( `onErrorAlert('No disponible', 'El servicio de logística ${shipping.toUpperCase()} no está disponible en este momento, intente en unos instantes.')` , 200)
 		}
@@ -49,6 +48,23 @@ $(function(){
 		$('.paying-with').delay(1000).fadeIn()
 		onErrorAlert(`Como querés recibir tu compra`, `Te lo llevamos por ${shipping.toUpperCase()}`);
 	}
+
+	$('.select-cargo-option').click(e => {
+		const target = $(e.target).hasClass('select-cargo-option') ? 
+			$(e.target) : 
+			$(e.target).parents('.select-cargo-option')
+
+		var selected = target.find('input').val()
+
+		$('.cargo-blocks').hide()
+		$(`.${selected}-block`).show()
+
+		$('.shipment-options .option-rounded').removeClass('is-selected is-secondary')
+		$('.shipment-options .option-rounded').addClass('is-secondary')
+		target.addClass('is-selected')
+
+	});
+
 
 	$('#calulate_shipping').submit(e => {
 		var url = $('#calulate_shipping').data('url')
