@@ -157,7 +157,7 @@ var selectStore = e => {
 	$('.shipping-options li').removeClass('selected secondary')
 	$('.takeaway-options li').addClass('secondary')
 	$('.free-shipping').addClass('hidden')
-	$('.input-cp').removeClass('ok')
+	$('.input-cp-container').removeClass('ok')
 	$('.input-cp').val('')
 	$('#cost_container').html('')
 	$(e).addClass('selected')
@@ -315,8 +315,8 @@ $(document).ready(function() {
 
 			if(!b || !c){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
 				$('.input-cp').focus();
-				$('.input-cp').removeClass('ok');
-				$('.input-cp').addClass('wrong');
+				$('.input-cp-container').removeClass('ok');
+				$('.input-cp-container').addClass('wrong');
 				onErrorAlert('¿Cómo querés recibir tu compra?', 'Por favor ingresá tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
 				return false;
 			}

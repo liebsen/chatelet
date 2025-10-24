@@ -14,7 +14,7 @@ body.loading {
 }
 
 body > section,
-body > div:not([class*="modal"]):not(.whatsapp-block) {
+body > div:not([class*="modal"]):not(.whatsapp-block):not(.social-bottom) {
 	background-color: #fff;
 }
 
@@ -233,7 +233,9 @@ html, body {
 .mb-0 {
   margin-bottom: 0!important;
 }
+
 .both{
+	position: relative;
 	border: 1px solid #ccc;
 	padding-left: 5px;
 	margin: 0;
@@ -381,8 +383,9 @@ html, body {
 .max-25 {
   max-width: 25rem;
 }
-.max-30 {
-  max-width: 30rem;
+.min-max-30 {
+  min-width: 25rem;
+  max-width: 25rem;
 }
 
 .min-25 {
@@ -539,7 +542,7 @@ select.form-control{
 	color: #e10d74;*/
 	background-color: transparent;
 	border: none;
-	height: 40px;
+	height: 36px;
 	border-left: 1px solid #dbdbdb;
 	border-right: 1px solid #dbdbdb;
 	font-size: 0.75rem;
@@ -554,7 +557,7 @@ select.form-control{
 	/*background-color: white;
 	border: 2px solid #e10d74;
   border-radius: 0.5rem;*/
-  height: 40px;
+  height: 36px;
   border: none;
   background: transparent;
   /*color: #e10d74!important;*/

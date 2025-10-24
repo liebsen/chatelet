@@ -309,7 +309,7 @@
 					<br><br>
 					<?php endif;?>
 				</div>
-				<div class="carrito-col max-30 m-auto">
+				<div class="carrito-col min-max-30 m-auto">
 				<?php 
 					if (isset($carro) && !empty($carro)) {
 						echo $this->element('shipping', array('freeShipping' => $freeShipping, 'carrito_takeaway_text' => $carrito_takeaway_text));

@@ -1,16 +1,23 @@
 
-
-.wrong{
+.input-cp-container.wrong input{
 	border-color: #E10D74;
   color: #E10D74;
 }
-.ok {
+
+.input-cp-container.ok input {
 	border-color: #07BC31;
   color: #07BC31;
-	background-image: url(../images/check.png);
-	background-position: right 0.5rem center;
-	background-repeat: no-repeat;
-	background-size: 30px;  
+}
+
+.input-cp-container.ok:before {
+	content: "\f00c";
+	color: #07BC31;
+	position: absolute;
+  top: 13px;
+  right: 1rem;
+  font-size: 1rem;
+  font-family: 'FontAwesome';
+  z-index: 10;
 }
 
 .input-group-btn .btn {

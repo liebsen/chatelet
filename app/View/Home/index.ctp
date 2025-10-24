@@ -135,17 +135,17 @@
     <div class="wrapper container is-flex-end">
       <div class="col-md-6">
         <h2 class="h4 mt-0 mb-4 text-uppercase">Newsletter - Estemos <strong>conectad@s</strong></h2>
-        <p class="text-uppercase text-muted">Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
+        <p class="text-muted">Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
       </div>
         
       <div class="col-md-6 max-21">
         <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>     
-        <div class="row">
-          <div class="col-md-6">
-            <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+        <div class="is-flex justify-content-center align-items-center gap-05">
+          <div class="form-group">
+            <input class="form-control" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
           </div>
-          <div class="col-md-6 p-0 text-right">
-            <input type="submit" id="enviar" value="confirmar">
+          <div class="form-group">
+            <input type="submit" class="btn" id="enviar" value="confirmar">
           </div>
         </div>
         <?php echo $this->Form->end(); ?>

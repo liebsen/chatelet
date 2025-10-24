@@ -178,7 +178,7 @@
                 <?php if (!$isGiftCard): ?>
                     <!--h2>Color</h2-->
                     <div class="article-tools animated fadeIn">
-                        <div class="field p-2">
+                        <div class="field p-3">
                            <div class="row animated fadeIn" data-toggle="buttons">
                                 <?php  
                                     foreach ($colors as $i => $color) {

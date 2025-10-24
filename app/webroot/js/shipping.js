@@ -102,8 +102,8 @@ $(function(){
 				$('#delivery_cp').html( `<span class="shipping-cargo text-uppercase"></span>` );
 				localStorage.setItem('lastcp', cp)	
 				setTimeout(() => {
-					$('.input-cp').removeClass('wrong');
-					$('.input-cp').addClass('ok');
+					$('.input-cp-container').removeClass('wrong');
+					$('.input-cp-container').addClass('ok');
 					onSuccessAlert(`Como querés recibir tu compra`,'Ingresaste código postal ' + cp);
 					document.querySelector('.shipping-block').classList.remove('hidden')	
 					if (carrito.cargo === 'shipment' && carrito.shipping) {
@@ -115,7 +115,7 @@ $(function(){
 					}
 				}, 750)
 			} else {
-				$('.input-cp').addClass('wrong');
+				$('.input-cp-container').addClass('wrong');
 				$('#cost').text( parseInt(0) );
 				//console.log(':::',subtotal,coupon)
 				let total = formatNumber(subtotal - coupon)
