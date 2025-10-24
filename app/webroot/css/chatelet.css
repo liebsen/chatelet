@@ -13,6 +13,20 @@ body.loading {
   overflow: hidden;
 }
 
+body > section,
+body > div:not([class*="modal"]):not(.whatsapp-block):not(.social-bottom) {
+	background-color: #fff;
+}
+
+::placeholder {
+	transition: opacity 0.5s ease-in-out;
+	transition-delay: 1s;
+}
+
+input:focus::placeholder {
+  opacity: 0;
+}
+
 #page-loader {
   min-width: 100dvw;
   min-height: 100dvh;
@@ -76,25 +90,25 @@ html, body {
 }
 
 .modal-buttons {
-	padding: 0.5rem;
+	padding: 1rem 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 1rem;
+	gap: 2rem;
 }
 
 .modal-content {
   box-shadow: none!important;
-  border-radius: 0.25rem;
+  min-height: 100dvh;
 }
 
-.modal-body label {
+/*.modal-body label {
 	color: #383A3F;
 }
 
 .modal-body input {
 	border: 1px solid #bebebe;
-}
+}*/
 
 .disable-scroll {
   overflow: hidden;
@@ -151,6 +165,15 @@ html, body {
 }
 
 /* say hello to my little dwarfs - Hello */
+
+.m-w-auto {
+	margin-left: auto;
+  margin-right: auto;
+}
+
+.m-auto {
+	margin: auto;
+}
 
 .m-0 {
   margin: 0!important;
@@ -212,6 +235,9 @@ html, body {
 .pr-4 {
   padding-right: 1rem!important;
 }
+.pl-0 {
+  padding-left: 0!important;
+}
 .pl-3 {
   padding-left: 0.75rem!important;
 }
@@ -227,13 +253,26 @@ html, body {
 .min-w-4 {
 	min-width: 4rem;
 }
+.min-w-7 {
+	min-width: 7rem;
+}
 .min-h-5 {
 	min-height: 5rem;
 }
+.min-h-8 {
+	min-height: 8rem;
+}
+
+.min-h-12 {
+	min-height: 12rem;
+}
+
 .mb-0 {
   margin-bottom: 0!important;
 }
+
 .both{
+	position: relative;
 	border: 1px solid #ccc;
 	padding-left: 5px;
 	margin: 0;
@@ -330,9 +369,9 @@ html, body {
 	right: 0;
 	bottom: 0;
 	padding: 0.75rem;
-	padding-top: 1.25rem;
-	/*background-color: #f8f8f8;*/
-  background: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.7) 15%, hsla(0, 0%, 100%, 0.9) 30%, white);
+	padding-top: 1rem;
+	background-color: #f8f8f8;
+  /*background: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.7) 15%, hsla(0, 0%, 100%, 0.9) 30%, white);*/
   box-shadow: none;	
 }
 .icon-huge .fa {
@@ -381,6 +420,10 @@ html, body {
 .max-25 {
   max-width: 25rem;
 }
+.min-max-30 {
+  min-width: 25rem;
+  max-width: 25rem;
+}
 
 .min-25 {
   min-width: 25rem;
@@ -392,6 +435,7 @@ html, body {
 	min-height: 2.75rem;
 	font-size: 1rem;
 	font-weight: 700;
+	border-radius: 0;
 }
 
 .btn.btn-outline-danger {
@@ -408,7 +452,7 @@ html, body {
 	background-color: transparent;
 }
 
-.btn:not(.btn-link):not(.btn-light):hover {
+.btn:not(.bg-transparent):not(.btn-link):not(.btn-light):hover {
 	color:white!important;
 }
 
@@ -488,22 +532,22 @@ html, body {
 	line-height: 1.5;
 }
 
-.form-control {
+/*.form-control {
 	border-radius: 0.5rem!important;	
-}
+}*/
 
-.form-control:not(select) {
-	border-width: 2px!important;
-	padding: 1.25rem 0.75rem!important;
+.form-control {
+	padding: 0 20px;
+	height: 46px;
+	border-radius: 0;
 }
 
 select.form-control{
-	border-width: 2px!important;
 	min-height: 2.75rem;
 }
 
 .form-control:focus {
-	border-color: #07BC31!important;
+	border-color: #e10c76!important;
 }
 
 .d-inline {
@@ -524,16 +568,24 @@ select.form-control{
 .carrito-selector {
   max-width: 9rem;
   margin: auto;
+  padding: 0.5rem 0;
+  border: 1px solid #dbdbdb;  
 }
 
 .carrito-selector input {
 	/*border-radius: 0!important;
 	border-color: transparent;
-	background-color: transparent;*/
-	color: #e10d74;
-	font-size: 1.25rem;
-	font-weight: 700;
+	background-color: transparent;
+	color: #e10d74;*/
+	background-color: transparent;
+	border: none;
+	height: 36px;
+	border-left: 1px solid #dbdbdb;
+	border-right: 1px solid #dbdbdb;
+	font-size: 0.75rem;
+	font-weight: 600;
 }
+
 .product-count:focus {
 	background-color: #ffcc66;
 }
@@ -542,9 +594,10 @@ select.form-control{
 	/*background-color: white;
 	border: 2px solid #e10d74;
   border-radius: 0.5rem;*/
+  height: 36px;
   border: none;
   background: transparent;
-  color: #e10d74!important;
+  /*color: #e10d74!important;*/
 }
 
 .input-group-append {
@@ -563,9 +616,11 @@ select.form-control{
 }
 
 #main {
-	padding-bottom: 2rem;
+	padding-bottom: 8rem;
 	background: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
 	width: auto;
+	position: relative;
+  z-index: 3;	
 }
 
 .logo {
@@ -631,7 +686,7 @@ select.form-control{
 	font-weight: 800;
 } */
 
-#login-email,
+/*#login-email,
 #login-password {
 	padding: 6px 12px;
 	border-radius: 0.5rem;
@@ -640,19 +695,17 @@ select.form-control{
 	background-color: #dbd9da;
 	border: 0;
 	width: 100%;
-}
+}*/
 
 #login {
 	display: inline-block;
 	padding: 0.75rem 1rem;
-	min-height: 50px;
 	background-color: #e10c76;
 	color: white;
 	/*font-style: italic;*/
 	/*font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 	width: 100%;
 	text-align: center;
-	border-radius: 0.5rem;
 	font-size: 1rem;
 	font-weight: 800;
 	border: 0;
@@ -730,7 +783,7 @@ select.form-control{
 .text-link {
 	color: purple;
   border-color: transparent;
-  border-bottom: 2px solid transparent;
+  border-bottom: 1px solid transparent;
   border-width: 0%;
   transition: all 2s ease-in;
   transition-delay: 1s;
@@ -742,11 +795,11 @@ select.form-control{
   border-width: 100%;
 }
 
-.left {
+.float-left {
 	float: left;
 }
 
-.right {
+.float-right {
 	float: right;
 }
 
@@ -805,11 +858,6 @@ select.form-control{
 	margin-bottom: 5px;
 }
 
-#menuSearch {
-	background-color: #f7ecf1;
-	padding-top: 1rem;
-}
-
 #menuSearch .wrapper {
 	max-width: 70rem;
 }
@@ -823,13 +871,13 @@ select.form-control{
   margin:0!important;
 }
 
-.modal-content {
-  min-height: 100vh;
-  border: 2px solid rgba(0, 0, 0, .2);
+.modal-title {
+	font-size: 1.15rem;
 }
 
-.modal-title {
-	font-size: 1.25rem;
+/*.modal-content {
+  min-height: 100vh;
+  border: 2px solid rgba(0, 0, 0, .2);
 }
 
 .modal-header {
@@ -850,10 +898,12 @@ select.form-control{
   	border-bottom-right-radius: 0.25rem;
   }
 }
+*/
 
 .modal-header .close {
 	color: #e10c76;
-	opacity: 0.9;
+	font-size: 1.5rem;
+  margin-right: 0.25rem;
 }
 
 .float-top-right {
@@ -895,7 +945,7 @@ select.form-control{
 }
 
 .modal-backdrop {
-	background-color: #f8f8f8;
+	background-color: #e10d74;
 }
 
 .modal-backdrop.in {
@@ -941,6 +991,7 @@ select.form-control{
 #mayorista-modal .dropdown-toggle.selectpicker {
 	display: inline-block;
 	padding: 5px 10px;
+	border-radius: 0;
 	/*height: 25px;*/
 	/*	width: 190px !important; */
 }
@@ -974,7 +1025,7 @@ select.form-control{
 .card-title {
 	display: flex;
 	align-items: center;	
-	font-size: 1.75rem;
+	font-size: 1.5rem;
 	line-height: 1.25;
   margin-bottom: 1.5rem;
   margin-top: 0.5rem;
@@ -1007,11 +1058,11 @@ select.form-control{
 }
 .card-link {
 	display: inline-block;
+	text-decoration: underline;
 	color: #e10d74;
-	font-weight: 600;
-	padding: 0.75rem;
-	border: 2px solid #e10d74;
-	border-radius: 0.5rem;
+	font-weight: 500;
+	padding: 0.75rem 1rem;
+	border: none;
 	line-height: 1.5;
 	font-size: 1rem;
 	margin-top: 0.5rem;
@@ -1037,19 +1088,19 @@ select.form-control{
 	min-height: 2rem;
 	line-height: 1.25;
 }
+
 .cart-btn-green {
 	display: inline-block;
 	text-align: center;
 	font-size: 1rem;
 	line-height: 1.5;
-	padding: 0.75rem 1.75rem;
+	padding: 0.75rem 1.25rem;
 	font-weight: 700;
 	color: white;
 	border-color: transparent;
 	background-color: #bebebe;
 	/*min-width: 20rem;*/
 	min-height: 46px;
-	border-radius: 0.5rem;
 	transition: all 0.25s ease;
 }
 .cart-btn-green.shrink {
@@ -1223,11 +1274,11 @@ span.validation-password {
 	background-color: #5cb85c;
 	box-shadow: rgba(0, 0, 0, 0.16) -3px 3px 3px;
 	color: white;
-	border-radius: 1.5rem;
+	border-radius: 3rem;
 	position: absolute;
   right: -0.25rem;
-  bottom: -1.25rem;
-  padding: 1.25rem;
+  bottom: -0.666rem;
+  padding: 1rem 1.5rem;
 	z-index: -1;
 	line-height: 1;
 	width: 16rem;
@@ -1246,10 +1297,10 @@ span.validation-password {
 }
 
 @media screen and (min-width: 769px) {
-	.navbar-chatelet.top-fixed {
+	/*.navbar-chatelet.top-fixed {
 		background: linear-gradient(white,hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.7) 70%, hsla(0,0%,100%,0));
 		box-shadow: none;
-	}	
+	}*/
 	.modal-dialog {
 		margin: auto!important;
 		min-height: 100vh;
@@ -1259,15 +1310,13 @@ span.validation-password {
 	}
 	.modal-content {
 	  min-height: auto;
+	  min-width: 600px;
 	}
 	.modal-body {
 		padding: 1.75rem;
 	}
 	.cloudzoom img {
 	  height: 40rem;
-	}
-	.card-body {
-	  padding: 1.5rem;
 	}
 }
 
@@ -1284,7 +1333,19 @@ span.validation-password {
 	.navbar-container {
 		min-height: 134px;
 	}
-
+	.modal-dialog {
+		width: calc(100dvw - 14px);
+	}
+	.modal-buttons {
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.modal-buttons > a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 46px;
+	}
 	/*.whatsapp-block .whatsapp-text {
 		display: none;
 	}*/

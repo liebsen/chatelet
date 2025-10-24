@@ -94,8 +94,7 @@ let calcDues = (total) => {
 }
 
 let fxTotal = (total) => {
-  if(log)
-    console.log('fxTotal',total)
+  //console.log('fxTotal',total)
   if($('.calc_total').text().replace("$ ", "") != total) {
     $('.calc_total').text( '$ ' + formatNumber(total) )
 
@@ -233,7 +232,7 @@ let apiSearch = (q) => {
             }
           })
         }
-        str += '<div class="col-sm-6 col-md-3 search-item animate fadeIn">' +
+        str += '<div class="col-sm-12 col-md-2 col-lg-2 search-item">' +
           '<a href="/tienda/producto/'+ item.id+'/'+item.category_id+'/'+item.slug+'">' + 
             '<div class="is-background-cover is-background-search" style="background-image: url('+item.img_url+')">' + (item.promo.length ? '<div class="ribbon sp3"><span>' + item.promo + '</span></div>' : '') + (item.number_ribbon ? '<div class="ribbon small bottom-left sp2"><span>' + item.number_ribbon + '% OFF</span></div>' : '') + '<p class="search-desc">'+item.desc+'</p></div>' + 
             '<h2 class="text-center">'+`<span>${item.name}</span>`+'</h2>' + 
@@ -243,7 +242,7 @@ let apiSearch = (q) => {
       })
 
       if (str === '') {
-        $('.search-results').html('<h1>No hay resultados para esta búsqueda</h1>')
+        $('.search-results').html('<h1>No hay resultados para <i>'+ q +'</i></h1>')
         $('.search-bar').css({'width': `0%`})
       } else {
         if (!searchPage) {
@@ -268,7 +267,7 @@ let apiSearch = (q) => {
     }
   }).then(() => {
     setTimeout(() => {
-      document.querySelector('.spinner-search').classList.remove('searching')
+      document.querySelector('.input-search').classList.remove('searching')
     }, 100)
   })    
 }
@@ -354,7 +353,7 @@ $(function () {
       if(video.length){
         setTimeout(() => {
           $(video).get(0).play()
-        }, 200)
+        }, 50)
       }
     }
   })
@@ -427,7 +426,7 @@ $(function () {
     
     searchPage = 0
     window.scrollTo(0,0)
-    document.querySelector('.spinner-search').classList.add('searching')
+    document.querySelector('.input-search').classList.add('searching')
     searchInt = setTimeout(() => {
       localStorage.setItem('lastsearch', q)
       apiSearch(q)
@@ -486,7 +485,7 @@ $(function () {
                 //document.querySelector('body').style.paddingTop = `${e.clientHeight}px`
               }
               e.classList.add('top-fixed', 'fadeIn')
-            }, 200)
+            }, 1000)
           } 
         })
         $("video").each((i,video) => {
@@ -544,7 +543,7 @@ $(function () {
     }
   }
 
-  window.onerror = function (msg, url, lineNo, columnNo, error) {
+  /*window.onerror = function (msg, url, lineNo, columnNo, error) {
     if (window.location.hostname != 'chatelet.com.ar') {
       onErrorAlert(`${msg}:${lineNo}`);
     }
@@ -557,7 +556,7 @@ $(function () {
       userAgent: navigator.userAgent
     }
     $.post('/shop/log_error', {message: msg + JSON.stringify(browser), url: url, line: lineNo})
-  }
+  }*/
 
   const sections = ['','/','/Home']
 
@@ -565,3 +564,4 @@ $(function () {
     $('body, html').removeClass('noscroll')
   }
 })
+

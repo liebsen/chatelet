@@ -65,12 +65,11 @@
 
   preloadImages(images)
 </script>
-
-  <div id="carousel" class="carousel slide" data-interval="10000" data-ride="carousel">
+  <div id="carousel" class="carousel slide" data-type="slider" data-interval="10000" data-ride="carousel">
     <!-- Wrapper for slides -->
     <div class="carousel-inner group-video" role="listbox">
       <?php foreach ($images as $key => $value): ?>
-          <div class="item animated <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
+          <div class="item animated fadeIn <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
               <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
                   <?php if (strpos($value, '.mp4') !== false):?>
                   <video id="video<?=$key?>" class="carousel-video slider-full" <?= (strpos( $_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) ? ' controls="true" ' : '' ?> playsinline loop>
@@ -133,20 +132,20 @@
   </section>
 
   <section id="suscribe">
-    <div class="wrapper container is-flex-end">
+    <div class="wrapper container">
       <div class="col-md-6">
         <h2 class="h4 mt-0 mb-4 text-uppercase">Newsletter - Estemos <strong>conectad@s</strong></h2>
-        <p class="text-uppercase text-muted">Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
+        <p class="text-muted">Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
       </div>
         
-      <div class="col-md-6 max-21">
+      <div class="col-md-6">
         <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>     
-        <div class="row">
-          <div class="col-md-6">
-            <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+        <div class="is-flex justify-content-center align-items-center min-h-8">
+          <div class="form-group">
+            <input class="form-control" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
           </div>
-          <div class="col-md-6 p-0 text-right">
-            <input type="submit" id="enviar" value="confirmar">
+          <div class="form-group">
+            <input type="submit" class="btn" id="enviar" value="Suscribirme">
           </div>
         </div>
         <?php echo $this->Form->end(); ?>

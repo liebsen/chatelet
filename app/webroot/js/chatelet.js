@@ -3,21 +3,21 @@ $(document).ready(function() {
 		flash = $(flash);
 		if (flash.hasClass('error')) {
 			$.growl.error({
-				title: '',
+				title: 'Error',
 				message: flash.text()
 			});
 		}
 
 		if (flash.hasClass('notice')) {
 			$.growl.notice({
-				title: '',
+				title: 'Información',
 				message: flash.text(),
 			});
 		}
 
 		if (flash.hasClass('warning')) {
 			$.growl.warning({
-				title: '',
+				title: 'Importante',
 				message: flash.text()		
 			});
 		}

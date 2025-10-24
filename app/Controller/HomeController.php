@@ -79,7 +79,7 @@ class HomeController extends AppController {
           $saved = $this->Subscription->save($toSave);
           if(!empty($saved)){
              $this->Session->setFlash(
-                  'Gracias por unirte a las novedades', 
+                  "Gracias por suscribirte a nuestro Newsletter. Recuerda chequear {$data['Subscription']['email']} para acceder a nuestras últimas novedades", 
                   'default', 
                   array('class' => 'hidden notice')
               );	

@@ -10,7 +10,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <div class="animated scaleIn delay box-cont">
+                        <div class="animated fadeIn delay box-cont">
                             <div class="box img-bg" style="background-image: url('/img/pago.jpg')">
                             </div>
                         </div>

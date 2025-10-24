@@ -2,10 +2,113 @@ var currentCartIndex = 0
 var cargo = ''
 var itemData = null
 var removeElement = null
-var askremoveCart = (e, name) => {
-	removeElement = e
-	$('.prod_name').text(name)
-	layerShow('remove-item')
+
+function addToCart(data) {
+	$.post('/carrito/add', $.param(data))
+		.success(function(res) {
+			console.log('res', res)
+			if (res.success) {
+				window.dataLayer = window.dataLayer || []
+				fbq('track', 'AddToCart')
+				/* @Analytics: addToCart */
+				gtag('event', 'add_to_cart', {
+				  "items": [
+				    {
+				      "id": data.id,
+				      "name": $('.product').text(),
+				      // "list_name": "Search Results",
+				      // "brand": "Google",
+				      // "category": "Apparel/T-Shirts",
+				      "variant": data.alias,
+				      "list_position": 1,
+				      "quantity": data.count,
+				      "price": $('.price').text()
+				    }
+				  ]
+				})
+
+        $.growl.error({
+          title: 'Agregado al carrito',
+          message: 'Podés seguir agregando más productos o finalizar esta compra en la sección carrito'
+        });
+
+        var reload = function() {
+        	window.location.href = '/carrito'
+        };
+
+        setTimeout(reload, 1000);
+        
+        $('.growl-close').click(reload);
+
+				dataLayer.push({
+				  'event': 'addToCart',
+				  'ecommerce': {
+				    'currencyCode': 'ARS',
+				    'add': {         
+				      'products': [{
+				        'name': $('.product').text(),
+				        'id': data.id,
+				        'price': $('.price').text(),
+				        'brand': 'Google',
+				        'category': 'Apparel',
+				        'variant': data.alias,
+				        'quantity': 1
+				       }]
+				    }
+				  },
+					'eventCallback': function() {
+	          $.growl.notice({
+	            title: 'Producto agregado al carrito',
+	            message: 'Podés seguir agregando más productos o ir a la sección Pagar'
+	          });
+	          var reload = function() {
+	          	window.location.href = '/carrito'
+	          };
+	          setTimeout(reload, 3000);
+	          $('.growl-close').click(reload);
+     			}
+				})
+			} else {
+        $.growl.error({
+          title: 'Ocurrió un error al agregar el producto al carrito',
+          message: 'Por favor, intentá nuevamente en unos instantes'
+        });
+			}
+		})
+		.fail(function() {
+      $.growl.error({
+        title: 'Ocurrio un error al agregar el producto al carrito',
+        message: 'Por favor, intente nuevamente'
+      });
+		});	
+}
+
+var askremoveCart = (e) => {
+	const item = $(e).parents('.carrito-data').data('json')
+	let userInput = confirm(`Deseas eliminar ${item.name} del carrito?`);
+	if(userInput){
+		$.get(`/carrito/remove/${item.id}`).then((res) => {
+			/* @Analytics: removeFromCart */
+			fbq('track', 'RemoveFromCart')
+			gtag('event', 'remove_from_cart', {
+			  "items": [
+			    {
+			      "id": item.id,
+			      "name": item.article,
+			      // "list_name": "Results",
+			      "brand": item.name,
+			      // "category": "Apparel/T-Shirts",
+			      "variant": item.alias,
+			      "list_position": 1,
+			      "quantity": 1,
+			      "price": item.discount
+			    }
+			  ]
+			})
+			console.log('refersh')
+			window.location.href = window.location.href
+		})
+	}
 }
 
 var removeCart = (e) => {
@@ -54,7 +157,7 @@ var selectStore = e => {
 	$('.shipping-options li').removeClass('selected secondary')
 	$('.takeaway-options li').addClass('secondary')
 	$('.free-shipping').addClass('hidden')
-	$('.input-cp').removeClass('ok')
+	$('.input-cp-container').removeClass('ok')
 	$('.input-cp').val('')
 	$('#cost_container').html('')
 	$(e).addClass('selected')
@@ -74,19 +177,19 @@ var selectStore = e => {
   localStorage.setItem('carrito', JSON.stringify(preferences))
   var carrito_takeaway_text = $('.carrito_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
-  onSuccessAlert(`Como querés recibir tu compra`, `Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}. <br><br>Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. <br><br> ${carrito_takeaway_text}`);
+  onSuccessAlert(`Como querés recibir tu compra`, `Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}. Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. <br><br> ${carrito_takeaway_text}`);
 	cargo = 'takeaway'
 }
 var show_cart_item = (index) => {
 	//console.log('show_cart_item')
-	var target = document.querySelectorAll('.ch-row')[index]
+	var target = document.querySelectorAll('.cart-row')[index]
 	if (target) {
 		if (!index) {
 			$('#carritoItem .carousel-control.left').addClass('is-hidden')
 		} else {
 			$('#carritoItem .carousel-control.left').removeClass('is-hidden')
 		}
-		if (index >= document.querySelectorAll('.ch-row').length-1) {
+		if (index >= document.querySelectorAll('.cart-row').length-1) {
 			$('#carritoItem .carousel-control.right').addClass('is-hidden')
 		} else {
 			$('#carritoItem .carousel-control.right').removeClass('is-hidden')
@@ -125,7 +228,8 @@ $(document).ready(function() {
 	submit.text('Siguiente')
 
 	/* carrito item viewer */
-	$('.ch-row').on('click', function(e) {
+	$('.cart-edit').on('click', function(e) {
+		//if(window.screen.width > 768) return false;
 		var donts = [
 			'glyphicon glyphicon-remove', 
 			'giftchecks', 
@@ -133,7 +237,7 @@ $(document).ready(function() {
 		]	
 		if (!donts.includes(e.target.className)) {
 			$('html, body').addClass('disable-scroll')
-			currentCartIndex = [...document.querySelectorAll('.ch-row')].indexOf(this)
+			currentCartIndex = [...document.querySelectorAll('.cart-row')].indexOf(this)
 			show_cart_item(currentCartIndex)
 		}
 	})
@@ -143,14 +247,14 @@ $(document).ready(function() {
 		if (currentCartIndex > 0) {
 			currentCartIndex--
 		} else {
-			currentCartIndex = document.querySelectorAll('.ch-row').length
+			currentCartIndex = document.querySelectorAll('.cart-row').length
 		}
 		show_cart_item(currentCartIndex)
 	})
 
 	$('#carritoItem .carousel-control.right').on('click', function(e) {
     e.preventDefault()
-		if (currentCartIndex < document.querySelectorAll('.ch-row').length) {
+		if (currentCartIndex < document.querySelectorAll('.cart-row').length) {
 			currentCartIndex++
 		} else {
 			currentCartIndex = 0
@@ -211,8 +315,8 @@ $(document).ready(function() {
 
 			if(!b || !c){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
 				$('.input-cp').focus();
-				$('.input-cp').removeClass('ok');
-				$('.input-cp').addClass('wrong');
+				$('.input-cp-container').removeClass('ok');
+				$('.input-cp-container').addClass('wrong');
 				onErrorAlert('¿Cómo querés recibir tu compra?', 'Por favor ingresá tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
 				return false;
 			}
@@ -275,11 +379,17 @@ $(document).ready(function() {
 		localStorage.setItem('carrito', JSON.stringify(carrito))  
 	})
 
+	$(document).on('click', '.product-add',function(e) {
+		const val = $(this).parent().find('input').first().val()
+		console.log(val)
+	})
+
 	$(document).on('click', '.btn-change-count',function(e) {
 		if($(e.target).hasClass('disable')) {
 			return false
 		}
 		var json = $('.has-item-counter.active .carrito-data').data('json')
+		console.log('json', json)
 		var item = JSON.parse(JSON.stringify(json))
 		var count = $('.has-item-counter.active .product-count').val();
 		var data = {

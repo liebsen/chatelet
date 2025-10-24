@@ -1,4 +1,5 @@
 <?php 
+	$this->set('short_header', 'Checkout');
 	echo $this->Session->flash();
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
@@ -42,7 +43,7 @@
 				<div class="carrito-row">
 					<div class="carrito-col">
 						<div class="ch-flex">
-							<div class="card">
+							<div class="card bg-transparent">
 							  <div class="card-body">
 							    <h5 class="card-title">
 							    	<!--i class="fa fa-edit"></i-->
@@ -54,7 +55,7 @@
 							    <div class="row card-row">
 							    	<?php if($loggedIn): ?>
 							    	<div class="col-xs-12 is-clickable option-regular">
-						          <label class="d-inline">
+						          <div class="d-inline">
 						          	<span class="h4">Cliente</span><br>
 						          	<p class="mt-2 text-muted"><?= $userData['User']['name'] ?> <?= $userData['User']['surname'] ?> (DNI <?= $userData['User']['dni'] ?>)</p>
 			                  <div class="d-flex justify-content-start mt-2 gap-05">
@@ -67,23 +68,23 @@
 			                       Cambiar dirección
 			                    </div>
 			                  </div>
-						        	</label>				          
+						        	</div>				          
 						        </div>
 						      	<?php endif ?>
 							    	<div class="col-xs-12 option-regular">
-						          <label class="d-inline">
+						          <div class="d-inline">
 						          	<span class="h4">Subtotal productos</span><br>
 						          	<p class="mt-2 h3 text-muted mb-0">
 						          		$ <span class="subtotal_price"></span>
                     		</p>
-                    	</label>
+                    	</div>
                     </div>						        
 							    	<div class="col-xs-12 option-regular shipping-block hide">
-						          <label class="d-inline">
+						          <div class="d-inline">
 						          	<span class="h4 text-success free-shipping-block<?= $freeShipping ? '' : ' hidden' ?>">Envío gratis</span>
 												<div class="paid-shipping-block<?= $freeShipping ? ' hidden' : '' ?>">
 							          	<span class="h4">Costo de envío</span><br>
-							          	<p class="mt-2 text-muted">
+							          	<p class="mt-2">
 							          		<span class="shipping_price text-bold h3 text-muted mb-0"></span>
 													<?php if($loggedIn): ?>
 												    <br><br><span> Entrega <span class="shipping text-uppercase"></span> en 
@@ -95,18 +96,18 @@
 												    </a>
 							          	</p>
 							          </div>
-						        	</label>
+						        	</div>
 						        	<p class="mt-2 text-muted">El monto mínimo para obtener beneficio <b>envío gratis</b> es de $ <?= number_format($shipping_price, 2, ',', '.') ?></p>
 						        </div>  
 							    	<div class="col-xs-12 option-regular cargo-takeaway hide">
-						          <label class="d-inline">
+						          <div class="d-inline">
 						          	<span class="h4">Retiro en sucursal</span><br>
-						          	<p class="mt-2 text-muted"> Elegiste retirarlo en 
+						          	<p class="mt-2"> Elegiste retirarlo en 
 						          		<span class="text-bold store_address"></span>
                     			<span class="text-bold store"></span>. 
                     			<?= $data['carrito_takeaway_text'] ?>
                     		</p>
-                    	</label>
+                    	</div>
 		                  <div class="d-flex justify-content-start mt-2">
 		                    <a href="/carrito#f:.shipment-options.shipping" class="card-link">
 		                      <i class="fa fa-truck fa-lg mr-1"></i>
@@ -159,7 +160,7 @@
 										</div>
 										<div class="calc-coupon d-none">
 											<div class="d-flex justify-content-center align-items-center gap-05">
-										  	<input type="text" id="coupon_name" name="coupon" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both input-rounded" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
+										  	<input type="text" id="coupon_name" name="coupon" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
 									    	<button id="btn-calculate-coupon" class="btn btn-outline-danger btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Calcular</button>
 									    	<span class="muted is-clickable text-muted" onclick="resetCoupon()">Cancelar</span>
 											</div>
@@ -169,7 +170,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="carrito-col">
+					<div class="carrito-col min-max-30 m-w-auto">
 						<div class="card">
 						  <div class="card-body">
 						    <h5 class="card-title">
@@ -177,23 +178,23 @@
 						    	¿Cómo querés pagar tu compra?
 						    </h5>
 						    <h6 class="card-subtitle">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</h6>
-						    <div class="row card-row payment_method pl-3 pr-3">
-						    	<label for="mercadopago" class="col-xs-12 is-clickable option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
+						    <div class="row card-row gap-05 payment_method pl-3 pr-3">
+						    	<label for="mercadopago" class="col-xs-12 is-clickable select-payment-option option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
-					          	<span class="h4">con Mercado Pago</span><br>
+					          	<span class="h4">Mercado Pago</span><br>
 					          	<p class="mt-2 text-small">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
 				        	</label>				          
 					      <?php if($data['bank_enable']): ?>
-					        <label for="bank" class="col-xs-12 is-clickable option-rounded<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>" onclick="select_payment(event,this)">
+					        <label for="bank" class="col-xs-12 is-clickable select-payment-option option-rounded<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>">
 					          <input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
-				          	<span class="h4">con Transferencia</span><br>
+				          	<span class="h4">Transferencia</span><br>
 				          	<p class="mt-2 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
 				          </label>
 					       <?php endif ?>
 				        </div>
 						  </div>
 						</div>
-					<?php if(count($legends)): ?>
+					<?php if(count($legends) && $this->App->show_legends($legends)): ?>
 						<div class="payment-dues card mt-4-d animated scaleIn">
 						  <div class="card-body">
 						    <h5 class="card-title">
@@ -201,7 +202,7 @@
 						    	¿Querés financiar tu compra?
 						    </h5>
 						    <h6 class="card-subtitle">Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</h6>
-						    <div class="row card-row pl-3 pr-3">
+						    <div class="row card-row gap-05 pl-3 pr-3">
 					        <!--label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(event,this)">
 					          <input type="radio" class="" id="dues_1" name="payment_dues" value="1" required checked />
 				          	<span class="h4"> 1 cuota</span><br>
@@ -222,8 +223,8 @@
 				                ],
 				                $legend['Legend']['title']) ?></p>
 				        	</label>
-				        <?php endif ?>
-			        <?php endforeach ?>
+				        	<?php endif ?>
+			        	<?php endforeach ?>
 				        </div>
 						  </div>
 						</div>						

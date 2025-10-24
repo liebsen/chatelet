@@ -140,7 +140,7 @@ class AppController extends Controller
         $this->loadModel('Product');
 
         $banners = $this->Banner->find('all', [
-          'conditions' => ['enabled' => 1, 'title <>' => ''],
+          'conditions' => ['enabled' => 1, 'text <>' => ''],
           'order' => ['Banner.ordernum ASC']
         ]);
 
@@ -278,6 +278,7 @@ class AppController extends Controller
         if(Configure::read('uploadLocal')) {
             return $this->saveFile($file,$withThumb,$size);
         }
+        
         $type = $file['type'];
         $tmp_name = $file['tmp_name'];
         $terms = explode('/', $type);

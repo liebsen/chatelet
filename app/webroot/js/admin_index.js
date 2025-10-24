@@ -574,16 +574,13 @@ $(function(){
 		var input 	= $(me.data('input'));
 		var images_newsletter 	= input.val().split(';');
 		var file_newsletter	= me.data('file');
-		console.log('file_newsletter',file_newsletter)
 		images_newsletter	= $.grep(images_newsletter,function(n){ return(n) }); // Clean Empty Values
 		images_newsletter = images_newsletter.map((e) => {
-			console.log(e, file_newsletter)
 			if(e.includes(file_newsletter)) {
 				return false
 			}
 			return e
 		}).filter((e) => e)
-		console.log('images_newsletter(2)',images_newsletter)
 		//images_newsletter.remove(file_newsletter);
 		input.val( images_newsletter.join(';') );
 		$(this).closest('span').remove();

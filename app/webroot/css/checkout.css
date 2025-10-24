@@ -14,10 +14,6 @@ a.volver .fa {
 	margin-right: 0.5rem;
 }
 
-.text-small {
-	font-size: 0.9rem!important;
-}
-
 .card-row {
 	display: flex;
 	padding-left: 1rem;
@@ -81,8 +77,8 @@ a.volver .fa {
 	/*border-color: #3c763d;
 	color: #3c763d;
 	background-color: #dff0d8;*/
-	border-color: #07BC31;
-	color: #07BC31;
+	border-color: #e10c76;
+	color: #e10c76;
 	background-color: white;	
 }
 
@@ -92,7 +88,8 @@ a.volver .fa {
 
 .option-rounded input[type=radio]{
 	position: relative;
-	top: -1px;
+	transform: scale(1.2);
+	accent-color: #e10c76;
 	margin-right: 0.5rem;
 }
 
@@ -110,7 +107,7 @@ input[disabled] {
 	width: 100%;
 	font-size: 1.25rem;
 	font-weight: 800;
-	background-color: #07bc31;
+	background-color: #e10c76;
 	padding: 0.75rem 1rem;
 	color: white;
 	border-radius: 0px;

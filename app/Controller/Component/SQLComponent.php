@@ -7,9 +7,9 @@ class SQLComponent extends Component {
 		//$myServer = "181.164.35.14";
 		$myServer = "181.98.11.110";
 
-		/*$myUser = "UsuarioWebChatelet";
-		$myPass = "UsuWEBChatelet1973!!";
-		$myDB = "WebChatelet";*/
+		/*$myUser = "UsuarioWebChâtelet";
+		$myPass = "UsuWEBChâtelet1973!!";
+		$myDB = "WebChâtelet";*/
 
 		$myUser = "sa";
 		$myPass = "infinixchatelet2011";

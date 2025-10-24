@@ -60,8 +60,7 @@
 	background-position: left center;
 	text-align: right;
 	padding-right: 4rem;
-	min-height: 45px;
-	border-radius: 0.25rem;
+	min-height: 46px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;	
@@ -78,18 +77,18 @@
 }
 
 .generic-select li {
+	position: relative;
 	padding: 0.75rem 1.25rem;
-	border: 2px solid #bebebe99;
-	border-radius: 0.5rem;
+	border: 1px solid #bebebe99;
 	line-height: 1.25;
 	font-weight: 400;
 	background-color: white;
 	color: #aeaeae;
 	cursor: pointer;
-	background-image: url(../images/chevron_right_gray.svg);
+	/*background-image: url(../images/chevron_right_gray.svg);
 	background-position: right 0.75rem center;
 	background-repeat: no-repeat;
-	background-size: 30px;
+	background-size: 30px;*/
 	margin-bottom: 0.5rem;
 	transition: all 0.25s ease;
 	min-height: 46px;
@@ -103,15 +102,36 @@
 	transition: all 0.25s ease-in;
 }
 
+.generic-select li:not(.selected):before {
+	content: "\f054";
+	color: #999;
+	position: absolute;
+  top: 13px;
+  right: 1rem;
+  font-size: 1rem;
+  font-family: 'FontAwesome';
+}
+
 .generic-select li:hover {
 	background-position: right 0.5rem center;
 }
 
 .generic-select li.selected {
 	background-color: white;
-	border-color: #07BC31;
-	background-image: url(../images/check.png);
+	border-color: #e10c76;
+	/*background-image: url(../images/check-pink.png);*/
+	color: #e10c76;
+	font-weight: 500;
+}
+
+.generic-select li.selected:before {
+	content: "\f00c";
 	color: #07BC31;
+	position: absolute;
+  top: 13px;
+  right: 1rem;
+  font-size: 1rem;
+  font-family: 'FontAwesome';
 }
 
 .generic-select li.secondary:not(.selected) {
@@ -151,7 +171,7 @@
 .table>tbody>tr>td {
 	color: #696969;
 	vertical-align: middle;
-	padding: 10px 20px;
+	padding: 1rem;
 }
 
 .color-block {
@@ -173,7 +193,7 @@
 }
 
 .cart-img {
-	height: 10rem;
+	height: 12rem;
 	width: 8rem;
 	background-color: #f8f8f8;
 	position: relative;
@@ -270,14 +290,6 @@ a.trash {
 	color: white;
 	font-size: 1rem;
 	font-weight: 700;
-}
-.name.is-carrito {
-	display: block;
-	font-weight: 900;
-	text-align: left;
-	font-size: 1.25rem;
-	margin-top: 0.25rem;
-	margin-bottom: 0.5rem;
 }
 
 a.pink {

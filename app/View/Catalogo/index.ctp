@@ -119,7 +119,7 @@
                                       }
                                 ?>
                                 <div class="article-tools animated fadeIn">
-                                  <div class="field p-2">
+                                  <div class="field p-3">
                                     <div class="row" data-toggle="buttons">
                                         <?php  foreach ($colors as $color) {
                                                     echo '<div class="col-sm-4 col-md-3 p-1"><label class="btn" style ="    border-radius: 100px;">';

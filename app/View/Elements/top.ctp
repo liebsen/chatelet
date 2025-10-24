@@ -18,7 +18,7 @@
     <meta property="og:description" content="<?= ucwords(strtolower($product['name'])) ?>">
     <meta property="og:url" content="<?= $this->Html->url(['controller' => 'shop', 'action' => 'detalle', $product['id'], $product['category_id'], strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))], true) ?>">
     <meta property="og:image" content="<?= baseUrl() . Configure::read('uploadUrl') . $product['img_url'] ?>">
-    <meta property="product:brand" content="Chatelet">
+    <meta property="product:brand" content="Châtelet">
     <meta property="product:availability" content="<?= intval($product['stock_total']) ? 'in stock' : 'out of stock' ?>">
     <meta property="product:condition" content="new">
     <meta property="product:price:amount" content="<?= $product['price'] ?>">
@@ -31,7 +31,7 @@
     <meta property="og:url" content="<?= siteUrl() ?>" />
     <meta property="og:title" content="<?= @$data['opengraph_title'] ?>" />
     <meta property="og:description" content="<?= @$data['opengraph_text'] ?>" />
-    <meta property="og:image" itemprop="image primaryImageOfPage" content="<?= baseUrl() . @$data['opengraph_image'] ?>" />
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="<?= siteUrl() . @$data['opengraph_image'] ?>" />
     <?php endif ?>
     <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$data['google_font_name']) ?>:<?= @$data['google_font_size'] ?>" rel="stylesheet">
     <style>
@@ -42,22 +42,16 @@
         font-family: '<?=@$data['google_font_name'] ?>', Verdana, Arial, Sans-Serif!important;
       }
     </style>
-
-
     <!-- Bootstrap -->
     <?php
-
       echo $this->Html->css('font-awesome.min');
       echo $this->Html->css('bootstrap-select');
-      // echo $this->Html->css('bootstrap.min');
       echo $this->Html->css('bootstrap.css?v=' . Configure::read('APP_VERSION'));
       echo $this->Html->css('bootstrapValidator.min');
-
       echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION'));
       echo $this->Html->css('chatelet.css?v=' . Configure::read('APP_VERSION'));
       echo $this->Html->css('custom.css?v=' . Configure::read('APP_VERSION'));
       echo $this->Html->css('animate.css?v=' . Configure::read('APP_VERSION'));
-
       echo $this->fetch('meta');
       echo $this->fetch('css');
       echo $this->Html->script('jquery-1.11.1.min');
@@ -66,15 +60,21 @@
       echo $this->Html->script('jquery.growl');
       echo $this->Html->script('bootstrap-select.min');
       echo $this->Html->script('bootstrapValidator.min');
-      echo $this->Html->script('wow.min');
-      echo $this->Html->script('plugins');
+      //echo $this->Html->script('wow.min');
+      //echo $this->Html->script('plugins');
       echo $this->Html->script('main.js?v=' . Configure::read('APP_VERSION'));
-
-//      echo $this->fetch('script');
     ?>
+    <script>
+      $.ajaxSetup({
+        cache:false,
+        dataType: "json",
+        xhrFields: {
+          withCredentials: true
+        },
+      });
+    </script>
   </head>
-  <body class="noscroll p-0">
-    <?php echo $this->element('fontselect'); ?>
-    <?php if(!empty($banners)) :?>
-    <?php echo $this->element('banners'); ?>
+  <body class="noscroll p-0" style="background-color: #262427">
+    <?php if(!empty($banners) && empty($short_header)) :?>
+      <?php echo $this->element('banners'); ?>
     <?php endif ?>

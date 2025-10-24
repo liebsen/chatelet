@@ -7,8 +7,15 @@
 				<h3 class="modal-title" id="modal-title">
 					<?php  echo 'Recuperar Contraseña'; ?>
 				</h3>
+				
 			</div>
 			<div class="modal-body">
+				<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
+					<p>
+						Recupera fácilmente el acceso a tu cuenta ingresando el correo con el que creaste tu cuenta en Chatelet. Te enviaremos instrucciones a ese correo.
+					</p>
+					<!--img src="/images/GmqOqj9lbwgZX3wzUkdSbD3pk.jpg" width="100" /-->
+				</div>					
 				<?php echo $this->Form->create(null, array('url' => array('controller' => 'users', 'action' => 'forgot_password'))); ?>
         <p class="title mb-1">Ingresá tu correo</p>
         <input type="email" id="login-email" class="form-control"  name="data[User][email]" placeholder="Email" />
@@ -17,6 +24,7 @@
         Recibirás un correo electrónico con tu nueva contraseña
         </span>
         <div class="modal-buttons">                
+					<a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Crear nueva cuenta</a>
           <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Iniciar sesión</a>
         </div>
       	<?php echo $this->Form->end(); ?>       

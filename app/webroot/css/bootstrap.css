@@ -3031,7 +3031,7 @@ select[multiple].input-lg {
       -ms-user-select: none;
           user-select: none;
   background-image: none;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   border-radius: 0.5rem;
 }
 .btn:focus,

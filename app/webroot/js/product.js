@@ -23,7 +23,7 @@ function checkCount(value) {
 	}
 }
 
-function addCart(data, button, text) {
+function addCart2(data, button, text) {
 	$(button).addClass('adding')
 	$(button).text(text || 'Agregando...')
 
@@ -54,7 +54,7 @@ function addCart(data, button, text) {
 	$(form).appendTo('body').submit();
 }
 
-function addCartUnsafe(data, button, text) {
+function addCart(data, button, text) {
 	$(button).addClass('adding')
 	$(button).text(text || 'Agregando...')
 	$.post('/carrito/add', $.param(data))
@@ -92,7 +92,6 @@ function addCartUnsafe(data, button, text) {
         
         $('.growl-close').click(reload);
 
-				/*
 				dataLayer.push({
 				  'event': 'addToCart',
 				  'ecommerce': {
@@ -120,7 +119,7 @@ function addCartUnsafe(data, button, text) {
 	          setTimeout(reload, 3000);
 	          $('.growl-close').click(reload);
      			}
-				}) */
+				})
 			} else {
         $.growl.error({
           title: 'Ocurrió un error al agregar el producto al carrito',
@@ -130,7 +129,7 @@ function addCartUnsafe(data, button, text) {
 		})
 		.fail(function() {
       $.growl.error({
-        title: 'Ocurrio un error al agregar el producto al carrito',
+        title: 'Ocurrió un error al agregar el producto al carrito',
         message: 'Por favor, intente nuevamente'
       });
 		});	

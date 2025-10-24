@@ -3,7 +3,8 @@
 	Configure::write('debug', 0);
 	Configure::write('Error', array(
 		'handler' => 'ErrorHandler::handleError',
-		'level' => E_ALL & ~E_DEPRECATED,
+		//'level' => E_ALL & ~E_DEPRECATED,
+		'level' => E_ERROR | E_WARNING,
 		'trace' => true
 	));
 

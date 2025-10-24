@@ -12,18 +12,23 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3 class="modal-title" id="modal-title">
-					<?php  echo 'Iniciar Sesión'; ?>
-				</h3>
+					<?php  echo 'Inicia sesión para continuar'; ?>
+				</h3>			
 			</div>
 			<div class="modal-body">
+				<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
+					<p>
+						Inicia sesión en Chatelet con tus credenciales. Ingresá tu email y contraseña para continuar. Si no tienes una cuenta presiona Crear cuenta.
+					</p>
+					<!--img src="/images/v8WrVxzTlKt7ZEEgkSt2shf41.jpg" width="100" /-->
+				</div>					
 				<?php echo $this->Form->create(false, array('url' => array('controller' => 'users', 'action' => 'login'))); ?>                  
-        <p class="title mb-1">Ingresá tu email y contraseña para continuar.</p>
         <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" />
-        <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Password" />
-        <input type="submit" id="login" form="" value="Ingresar" /> 
+        <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" />
+        <input type="submit" id="login" form="" value="Iniciar sesión" /> 
         <div class="modal-buttons">                
+          <a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Crear nueva cuenta</a>
           <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé mi contraseña</a>
-          <a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Registrarse</a>
         </div>
         <?php echo $this->Form->end(); ?>
 			</div>
