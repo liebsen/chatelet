@@ -112,7 +112,8 @@ html, body {
 	position: relative;
 	font-size: 0.9rem;
 	padding: 0.75rem 1rem;
-	border: 1px solid white;
+	border: 1px solid #ccc;
+	border-bottom-width: 2px;
 	line-height: 1.25;
 	font-weight: 400;
 	background-color: white;
@@ -1401,12 +1402,13 @@ a.table:hover {
 }
 
 span.user {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 12px;
-    color: #e398c1;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 12px;
+  color: #e398c1;
 }
+
 .navbar-nav>li>a.user { 
 	display: inherit !important;
 	margin: 0;
