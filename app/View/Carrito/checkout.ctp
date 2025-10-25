@@ -179,29 +179,33 @@
 						    <span class="">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</span>
 						    <div class="row card-row gap-05 payment_method pl-3 pr-3">
 						    	<label for="mercadopago" class="col-xs-12 is-clickable select-payment-option option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
-						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
-					          	<span class="h5">Mercado Pago</span><br>
-					          	<p class="mt-2 text-small">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
-					          	<div class="dues-block d-none">
-											<?php if(count($legends) && $this->App->show_legends($legends)): ?>
-												<div class="payment-dues">
-											    <p class="text-small">¿Querés financiar tu compra? Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</p>
-											    <ul class="generic-select">
-											    <?php foreach($legends as $legend): ?>
-											    	<?php if($total >= @$legend['Legend']['min_sale']):?>
-											    		<li data-json='<?= @json_encode($legend['Legend']) ?>' class="dues-select-option <?= $legend['Legend']['dues'] == 1 ? 'selected' : 'secondary' ?>"><span class="text-uppercase">
-											    			<?= @$legend['Legend']['dues'] ?> cuota<?= @$legend['Legend']['dues'] > 1 ? 's' : '' ?> de <?='$ ' . \price_format(ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']))?></span></li>
-									        	<?php endif ?>
-								        	<?php endforeach ?>
-									        </ul>
-												</div>						
-											<?php endif ?>					          		
-					          	</div>
+						    		<div class="d-flex justify-content-start align-items-center gap-05">
+						    			<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
+					          	<span class="h5">Mercado Pago</span>
+					          </div>
+				          	<p class="mt-2 text-small">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
+				          	<div class="dues-block d-none">
+										<?php if(count($legends) && $this->App->show_legends($legends)): ?>
+											<div class="payment-dues">
+										    <p class="text-small">¿Querés financiar tu compra? Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</p>
+										    <ul class="generic-select">
+										    <?php foreach($legends as $legend): ?>
+										    	<?php if($total >= @$legend['Legend']['min_sale']):?>
+										    		<li data-json='<?= @json_encode($legend['Legend']) ?>' class="dues-select-option <?= $legend['Legend']['dues'] == 1 ? 'selected' : 'secondary' ?>"><span class="text-uppercase">
+										    			<?= @$legend['Legend']['dues'] ?> cuota<?= @$legend['Legend']['dues'] > 1 ? 's' : '' ?> de <?='$ ' . \price_format(ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']))?></span></li>
+								        	<?php endif ?>
+							        	<?php endforeach ?>
+								        </ul>
+											</div>						
+										<?php endif ?>					          		
+				          	</div>
 				        	</label>				          
 					      <?php if($data['bank_enable']): ?>
 					        <label for="bank" class="col-xs-12 is-clickable select-payment-option option-rounded<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>">
-					          <input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
-				          	<span class="h5">Transferencia</span><br>
+					        	<div class="d-flex justify-content-start align-items-center gap-05">
+						          <input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
+					          	<span class="h5">Transferencia</span>
+					          </div>
 				          	<p class="mt-2 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
 				          </label>
 					       <?php endif ?>

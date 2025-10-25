@@ -101,7 +101,6 @@ html, body {
 	font-size: 1.25rem;
 }
 
-
 .generic-select {
 	width: 100%;
 	margin: 0.75rem 0;
@@ -440,11 +439,12 @@ html, body {
 	padding: 1rem 0;
 	padding-bottom: 1rem;
 	line-height: 1.25;
-	border-bottom: 1px solid #efefef;
+	/*border-bottom: 1px solid #efefef;*/
 }
 
 .option-rounded {
 	padding: 1rem;
+	padding-top: 0.5rem;
 	border-radius: 0.5rem;
 	line-height: 1.25;
 	margin-top: 0.25rem;
@@ -458,9 +458,9 @@ html, body {
 	font-weight: 600;
 }
 
-.option-rounded.is-secondary:not(.is-selected) {
+/*.option-rounded.is-secondary:not(.is-selected) {
 	opacity: 0.5;
-}
+}*/
 
 .option-rounded.is-selected {
 	/*border-color: #3c763d;
@@ -477,7 +477,9 @@ html, body {
 
 .option-rounded input[type=radio]{
 	position: relative;
-	transform: scale(1.2);
+  top: -2px;
+  left: 2px;
+	transform: scale(1.5);
 	accent-color: #e10c76;
 	margin-right: 0.5rem;
 }
@@ -1253,7 +1255,7 @@ select.form-control{
 	padding: 0.75rem 1rem;
 	border: none;
 	line-height: 1.5;
-	font-size: 1rem;
+	font-size: 0.75rem;
 	margin-top: 0.5rem;
 	white-space: nowrap;
 	/*width: 100%;

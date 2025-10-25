@@ -7,8 +7,10 @@
 		<span class="">Selecciona un método de entrega para tu compra. Actualmente contamos con <?= count($stores) ?> puntos de entrega.</span>
 		<div class="row card-row gap-05 shipment-options shipping pl-3 pr-3">
 	  	<label for="shipment" class="col-xs-12 is-clickable select-cargo-option option-rounded">
-	  		<input type="radio" id="shipment" name="cargo" value="shipment" required />
-      	<span class="h5"><?= $freeShipping ? 'Envío gratuito' : 'Envío a domicilio' ?></span><br>
+	  		<div class="d-flex justify-content-start align-items-center gap-05">
+		  		<input type="radio" id="shipment" name="cargo" value="shipment" required />
+	      	<span class="h5"><?= $freeShipping ? 'Envío gratuito' : 'Envío a domicilio' ?></span><br>
+	      </div>
       	<p class="mt-2 text-small">Para envíos a domicilio ingresá tu código postal</p>
 			  <div class="cargo-blocks shipment-block animated d-none">
 				  <div class="d-flex justify-content-center align-items-start flex-column gap-1">
@@ -33,8 +35,10 @@
 	  	</label>
 
 	  	<label for="takeaway" class="col-xs-12 is-clickable select-cargo-option option-rounded shipment-options takeaway">
-	  		<input type="radio" id="takeaway" name="cargo" value="takeaway" required />
-      	<span class="h5">Retiro en sucursal</span><br>
+	  		<div class="d-flex justify-content-start align-items-center gap-05">
+		  		<input type="radio" id="takeaway" name="cargo" value="takeaway" required />
+	      	<span class="h5">Retiro en sucursal</span>
+	      </div>
       	<p class="mt-2 text-small"><span>Elegí esta opción para evitar cargos de envío. <span class="carrito_takeaway_text"><?= $carrito_takeaway_text ?></span></span></p>
 			  <div class="cargo-blocks takeaway-block animated d-none">
 					<ul class="generic-select takeaway-options">
