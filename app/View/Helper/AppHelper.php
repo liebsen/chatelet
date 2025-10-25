@@ -43,7 +43,8 @@ class AppHelper extends Helper {
       }
     }
 
-    return (count($legends) == 1 && $one_due);
+    //CakeLog::write('debug', 'count:'.count($legends) . '/'. $one_due);
+    return !(count($legends) == 1 && $one_due);
   }
 
   function cat_title($name){

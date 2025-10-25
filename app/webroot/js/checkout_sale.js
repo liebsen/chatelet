@@ -50,11 +50,17 @@ var updateCart = (carrito) => {
 	}
 }
 
-var select_dues = (e,item) => {
+//var select_dues = (e,item) => {
+$('.dues-select-option').click((e) => {
+	const target = $(e.target).hasClass('dues-select-option') ? 
+		$(e.target) : 
+		$(e.target).parents('.dues-select-option')
 	e.preventDefault()
+	e.stopPropagation()
+	var json = target.data('json')
 	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
-	dues_selected = $(item).find('input').val()
-	$(item).find('input').prop('checked', true) // force since preventdefault
+	dues_selected = json.dues
+	//$(item).find('input').prop('checked', true) // force since preventdefault
 
 	if(!dues_selected) {
 		return false
@@ -63,19 +69,19 @@ var select_dues = (e,item) => {
 		select_radio('payment_method', 'mercadopago')
 	}
 
-	var interest = $(e).data('interest')
+	var interest = json.interest
 
 	onSuccessAlert(`Como querés pagar`,`Seleccionaste ${dues_selected} cuota${dues_selected > 1 ? 's' : ''}`);
 	save_preference([
-		{'payment_method': 'mercadopago'},
-		{'payment_dues': dues_selected}
+		{ 'payment_method': 'mercadopago'},
+		{ 'payment_dues': dues_selected }
 	])
 
-	$('.payment-dues .option-rounded').removeClass('is-selected is-secondary')
-	$('.payment-dues .option-rounded').addClass('is-secondary')
-	$(item).addClass('is-selected')
+	$('.dues-select-option').removeClass('selected secondary')
+	$('.dues-select-option').addClass('secondary')
+	target.addClass('selected')
 	prevent_default = false
-}
+})
 
 
 $(function(){
@@ -90,16 +96,19 @@ $(function(){
 			$(e.target).parents('.select-payment-option')
 
 		e.preventDefault()
+		e.stopPropagation()
 		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
 		var selected = target.find('input').val()
 		const payment_dues = document.querySelector('.payment-dues')
-
+		$('.dues-block').hide()
 		carrito_config.payment_method = selected
 		target.find('input').prop('checked', true)
 		var bank_bonus = 0
+
 		if(!selected) {
 			return false
 		}
+
 		var totals = getTotals()
 		if(payment_dues) {
 			switch(selected){
@@ -124,7 +133,7 @@ $(function(){
 					payment_dues.classList.remove('scaleOut', 'hide-element')
 					payment_dues.classList.add('scaleIn')
 				}
-
+				$('.dues-block').show()
 				document.querySelectorAll('.payment-dues .option-rounded').forEach((e) => e.classList.remove('hide'))
 
 				break;

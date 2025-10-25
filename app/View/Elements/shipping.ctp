@@ -22,7 +22,7 @@
 						</form>
 						<div class="form-group shipping-block hidden">
 							<div>
-								<span class="h5">Seleccione tipo de envío</span><br>
+								<!--span class="h5">Seleccione tipo de envío</span><br-->
 								<span class="text-small">Elegí la empresa de tu confianza para realizar este envío</span>
 							</div>
 							<div class="slot">

@@ -30,7 +30,7 @@
 		<button type="button" onclick="$('#submitform').click()" class="btn cart-btn-green" href="" class="mp-link">Entendido, continuar a MercadoPago</button>
 	</div>
 	<hr>
-	<span>¡Muchas gracias!</span>
+	<span class="text-small">❤️ ¡Muchas gracias!</span>
 </div>
 <div id="main" class="container animated fadeIn delay1">
 	<form role="form" method="post" id="checkoutform" autocomplete="off" onkeydown="return event.key != 'Enter';" action="<?php echo $this->Html->url(array(
@@ -180,54 +180,35 @@
 						    <div class="row card-row gap-05 payment_method pl-3 pr-3">
 						    	<label for="mercadopago" class="col-xs-12 is-clickable select-payment-option option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
 						    		<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
-					          	<span class="h4">Mercado Pago</span><br>
+					          	<span class="h5">Mercado Pago</span><br>
 					          	<p class="mt-2 text-small">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
+					          	<div class="dues-block d-none">
+											<?php if(count($legends) && $this->App->show_legends($legends)): ?>
+												<div class="payment-dues">
+											    <p class="text-small">¿Querés financiar tu compra? Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</p>
+											    <ul class="generic-select">
+											    <?php foreach($legends as $legend): ?>
+											    	<?php if($total >= @$legend['Legend']['min_sale']):?>
+											    		<li data-json='<?= @json_encode($legend['Legend']) ?>' class="dues-select-option <?= $legend['Legend']['dues'] == 1 ? 'selected' : 'secondary' ?>"><span class="text-uppercase">
+											    			<?= @$legend['Legend']['dues'] ?> cuota<?= @$legend['Legend']['dues'] > 1 ? 's' : '' ?> de <?='$ ' . \price_format(ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']))?></span></li>
+									        	<?php endif ?>
+								        	<?php endforeach ?>
+									        </ul>
+												</div>						
+											<?php endif ?>					          		
+					          	</div>
 				        	</label>				          
 					      <?php if($data['bank_enable']): ?>
 					        <label for="bank" class="col-xs-12 is-clickable select-payment-option option-rounded<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>">
 					          <input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
-				          	<span class="h4">Transferencia</span><br>
+				          	<span class="h5">Transferencia</span><br>
 				          	<p class="mt-2 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
 				          </label>
 					       <?php endif ?>
 				        </div>
 						  </div>
 						</div>
-					<?php if(count($legends) && $this->App->show_legends($legends)): ?>
-						<div class="payment-dues card mt-4-d animated scaleIn">
-						  <div class="card-body">
-						    <h5 class="card-title">
-						    	<!--i class="fa fa-calendar-o"></i-->
-						    	¿Querés financiar tu compra?
-						    </h5>
-						    <h6 class="card-subtitle">Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</h6>
-						    <div class="row card-row gap-05 pl-3 pr-3">
-					        <!--label for="dues_1" class="col-xs-12 is-clickable option-rounded is-selected" onclick="select_dues(event,this)">
-					          <input type="radio" class="" id="dues_1" name="payment_dues" value="1" required checked />
-				          	<span class="h4"> 1 cuota</span><br>
-				          	<p class="mt-2 text-small">1 cuota de <span class="total_price calc_total"></span></p>
-				          </label-->
-						    <?php foreach($legends as $legend): ?>
-						    	<?php if($total >= @$legend['Legend']['min_sale']):?>
-						    	<label for="dues_<?= @$legend['Legend']['dues'] ?>" class="col-xs-12 is-clickable option-rounded <?= $legend['Legend']['dues'] == 1 ? 'is-selected' : 'is-secondary' ?><?= @$config['payment_method'] !== 'bank' ? '' : ' hide' ?>"  data-interest="<?= @$legend['Legend']['interest'] ?>" onclick="select_dues(event,this)">
-						    	<input type="radio" id="dues_<?= @$legend['Legend']['dues'] ?>" name="payment_dues" value="<?= @$legend['Legend']['dues'] ?>" <?= $legend['Legend']['dues'] == 1 ? 'checked' : '' ?>/>
-					          	<span class="h4"> <?= @$legend['Legend']['dues'] ?> cuota<?= @$legend['Legend']['dues'] > 1 ? 's' : '' ?></span><br>
-					          	<p class="mt-2 text-small calc-dues" data-dues="<?= @$legend['Legend']['dues'] ?>" data-interest="<?= @$legend['Legend']['interest'] ?>"><?= 
-								str_replace([
-				                    '{cuotas}','{interes}','{monto}'
-				                ], [
-				                    $legend['Legend']['dues'],
-				                    $legend['Legend']['interest'],
-				                    '$ ' . \price_format(ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']))
-				                ],
-				                $legend['Legend']['title']) ?></p>
-				        	</label>
-				        	<?php endif ?>
-			        	<?php endforeach ?>
-				        </div>
-						  </div>
-						</div>						
-					<?php endif ?>
+
 						<div class="mt-4-d checkoutform-container">
 							<div class="card pt-3">
 								<div class="card-body">

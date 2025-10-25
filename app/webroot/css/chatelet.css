@@ -102,6 +102,97 @@ html, body {
 }
 
 
+.generic-select {
+	width: 100%;
+	margin: 0.75rem 0;
+	margin-bottom: 0;
+}
+
+.generic-select li {
+	position: relative;
+	font-size: 0.9rem;
+	padding: 0.75rem 1rem;
+	border: 1px solid white;
+	line-height: 1.25;
+	font-weight: 400;
+	background-color: white;
+	color: #777;
+	cursor: pointer;
+	/*background-image: url(../images/chevron_right_gray.svg);
+	background-position: right 0.75rem center;
+	background-repeat: no-repeat;
+	background-size: 30px;*/
+	margin-bottom: 0.25rem;
+	transition: all 0.25s ease;
+	min-height: 46px;
+  opacity: 0;
+  /*flex: 1;*/
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-delay: 0.2s;	
+	opacity: 1;
+	transition: all 0.25s ease-in;
+}
+
+.generic-select li:not(.selected):before {
+	content: "\f054";
+	color: #999;
+	position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.75rem;
+  font-family: 'FontAwesome';
+}
+
+.generic-select li:hover {
+	background-position: right 0.5rem center;
+}
+
+.generic-select li.selected {
+	background-color: white;
+	border-color: #07BC31;
+	/*background-image: url(../images/check-pink.png);*/
+	color: #07BC31;
+	font-weight: 500;
+}
+
+.generic-select li.selected:before {
+	content: "\f00c";
+	color: #07BC31;
+	position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.75rem;
+  font-family: 'FontAwesome';
+}
+
+.generic-select li.secondary:not(.selected) {
+	opacity: 0.5;
+}
+
+.generic-select li:hover {
+	opacity: 1!important;
+}
+
+.generic-select li:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.generic-select li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.generic-select li:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.generic-select li:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+
+
 #launcher {
 	visibility: hidden;
 }
@@ -1277,6 +1368,7 @@ a.pay{
 	background-color: whitesmoke;
 	color: #333;
 	font-size: 1.5rem;
+	width: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -1296,6 +1388,10 @@ a.pay{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;	
+}
+
+.mp-link {
+	background-color: #e398c1;
 }
 
 /*Rodolfo*/
