@@ -283,7 +283,7 @@
 			</div>
 		</div>
 		<div class="button-group-fixed-bottom animated slideInUp delay2">
-			<div class="d-flex justify-content-center align-items-center gap-1 text-center option-regular">
+			<div class="d-flex justify-content-center align-items-center gap-1 text-center option-regular pb-0">
 				<span class="text-theme h4 m-0">Total a pagar <span class="calc_total"></span></span>
 			</div>
 			<div class="d-flex justify-content-center align-items-center gap-05 pt-3">
