@@ -26,22 +26,24 @@ function checkCount(value) {
 function addCart2(data, button, text) {
 	$(button).addClass('adding')
 	$(button).text(text || 'Agregando...')
-
+	const price = $('.price').text()
+	const name = $('.product').text()
 	window.dataLayer = window.dataLayer || []
-	fbq('track', 'AddToCart')
+	//fbq('track', 'AddToCart')
+	fbq('track', 'AddToCart', {contents: [{id: data.id, quantity: data.count}], value: price, currency: 'ARS'});
 	/* @Analytics: addToCart */
 	gtag('event', 'add_to_cart', {
 	  "items": [
 	    {
 	      "id": data.id,
-	      "name": $('.product').text(),
+	      "name": name,
 	      // "list_name": "Search Results",
 	      // "brand": "Google",
 	      // "category": "Apparel/T-Shirts",
 	      "variant": data.alias,
 	      "list_position": 1,
 	      "quantity": data.count,
-	      "price": $('.price').text()
+	      "price": price
 	    }
 	  ]
 	})

@@ -162,6 +162,7 @@ $(function(){
 	})
 
 	$('#submitcheckoutbutton').click(e => {
+		fbq('track', 'AddPaymentInfo', { value: carrito.total_price, currency: 'ARS' });
 		if(dues_selected && dues_selected > 1){ // show legend
 			$('#dues_message').addClass('show')
 			$('.dues-message-dues').text(dues_selected)
