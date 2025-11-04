@@ -1,12 +1,12 @@
 <div class="navbar-container">
-  <nav class="navbar navbar-chatelet top-fixable animated">
+  <nav class="navbar navbar-chatelet">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <a class="navbar-brand"
            href="<?php echo router::url(array('controller' => 'Home', 'action' => 'index')) ?>" >
               Châtelet</a>
-          <i class="fa fa-bars fa-d-lg text-chatelet navbar-toggle float-none m-0 collapsed text-chatelet" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"></i>
+          <i class="fa fa-bars text-chatelet navbar-toggle float-none m-0 collapsed text-chatelet" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"></i>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,7 +57,9 @@
 
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="#" class="action-search"><i class="fa fa-d-lg text-chatelet fa-search text-light"></i></a>
+              <a href="#">
+                <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="fa text-chatelet fa-search text-light"></i>
+              </a>
             </li>
 
            <!-- .Login -->
@@ -67,7 +69,7 @@
                 <!--span class="count animated scaleIn speed delay1">
                   <i class="fa fa-check text-white fa-xs"></i>
                 </span-->
-                <i class="fa fa-d-lg text-green fa-user-circle"></i>
+                <i class="fa text-green fa-user-circle"></i>
                </a>
               <ul class="dropdown-menu">
                  <li>
@@ -102,7 +104,7 @@
                   </li>
                 </ul>
               <?php } else { ?>
-               <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion"><i class="fa fa-d-lg text-chatelet fa-user-circle"></i></a>
+               <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion"><i class="fa text-chatelet fa-user-circle"></i></a>
               <?php } ?>
             </li><!-- /.Login -->
             <li class="dropdown is-clickable">
@@ -110,7 +112,7 @@
                 <?php if(count($carro)):?>
                 <span class="count animated scaleIn speed delay1"><?=count($carro)?></span>
                 <?php endif ?>
-                <span><i class="fa fa-d-lg fa-shopping-cart <?= count($carro) ? 'text-green' : 'text-chatelet' ?>"></i></span>
+                <span><i class="fa fa-shopping-cart <?= count($carro) ? 'text-green' : 'text-chatelet' ?>"></i></span>
               </a>
               <ul class="dropdown-menu">
                 <li>
@@ -178,11 +180,15 @@
   </nav>
 </div>
 
+<nav class="sidebar sidebar-search">
+  <h6>Buscar en la tienda</h6>
+  <form name="search" action="/shop/buscar">
+    <input class="form-control search-input" name="q" placeholder="Buscar...">
+    <button class="btn" type="submit">Buscar</button>
+  </form>
+</nav>
+
 <div id="menuShop" class="menuLayer">
-  <a class="close position-relative">
-    <span></span>
-    <span></span>
-  </a>
   <div class="wrapper">
     <div class="row">
       <?php if(!empty($data['image_menushop'])): ?>
@@ -232,10 +238,10 @@
       </div>
     </div>
   </nav>  
-  <a class="close position-relative">
+  <!--a class="close position-relative">
     <span></span>
     <span></span>
-  </a>
+  </a-->
   <div class="wrapper">
     <div class="row">
       <div class="col-sm-12 is-flex-center m-0">

@@ -4,9 +4,10 @@
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-	echo $this->Html->script('coupon.js?v=' . Configure::read('APP_VERSION'),array( 'inline' => false ));
+	echo $this->Html->script('shipping.js?v=' . Configure::read('APP_VERSION'),array( 'inline' => false ));
 	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
-	echo $this->Html->script('checkout_sale.js?v=' . Configure::read('APP_VERSION'),array('inline' => false));
+	echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
+	echo $this->Html->script('pago.js?v=' . Configure::read('APP_VERSION'),array('inline' => false));
 	//echo $this->element('carrito');
 ?>
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>

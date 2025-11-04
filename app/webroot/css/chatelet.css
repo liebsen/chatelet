@@ -27,6 +27,24 @@ input:focus::placeholder {
   opacity: 0;
 }
 
+nav.sidebar-expanded {
+  right: 0!important;
+}
+
+nav.sidebar {
+  position: fixed;
+  z-index: 90;
+  top: 0px;
+  right: -300px;
+  bottom: 0;
+  width: 300px;
+  height: 100%;
+  background: white;
+  color: white;
+  padding: 1rem;
+  transition: all 0.25s ease-in-out;
+}
+
 #page-loader {
   min-width: 100dvw;
   min-height: 100dvh;
@@ -619,29 +637,30 @@ html, body {
   max-width: 21rem;
 }
 .btn {
+	text-transform: uppercase;
 	min-height: 2.75rem;
-	font-size: 1rem;
+	font-size: 0.85rem;
 	font-weight: 700;
-	border-radius: 0;
+	border-radius: 5px;
 }
 
 .btn.btn-outline-danger {
-	color: #e10d74;
-  background-color: #fff;
-  border-color: #e10d74;
+	color: white;
+  background-color: black;
+  border-color: black;
 }
 
 .btn.btn-outline-danger:hover {
-  background-color: #e10d74;
+  background-color: #333;
 }
 
 .is-transparent {
 	background-color: transparent;
 }
 
-.btn:not(.bg-transparent):not(.btn-link):not(.btn-light):hover {
+/*.btn:not(.bg-transparent):not(.btn-link):not(.btn-light):hover {
 	color:white!important;
-}
+}*/
 
 .font-system {
 	font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
@@ -721,9 +740,9 @@ html, body {
 }*/
 
 .form-control {
-	padding: 0 20px;
+	padding: 0 16px;
 	height: 46px;
-	border-radius: 0;
+	border-radius: 5px;
 }
 
 select.form-control{
@@ -1290,13 +1309,14 @@ select.form-control{
 	line-height: 1.5;
 	padding: 0.75rem 1rem;
 	font-weight: 700;
-	color: white;
-	border-color: transparent;
-	background-color: #bebebe;
+	color: black;
+	border-color: black;
+	background-color: white;
 	/*min-width: 20rem;*/
 	min-height: 46px;
 	transition: all 0.25s ease;
 }
+
 .cart-btn-green.shrink {
 	min-width: inherit;
 }
@@ -1310,7 +1330,7 @@ select.form-control{
 }
 
 .cart-btn-green:hover {
-	background-color: #e60088;
+	background-color: #f8f8f8;
 }
 
 .center-text {

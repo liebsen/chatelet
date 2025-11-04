@@ -21,6 +21,10 @@
 
 require_once __DIR__ . '/../functions.php';
 
+if($_GET['mode'] == 'dev') {
+    require_once __DIR__ . '/../../version.php';
+}
+
 App::uses('Controller', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 
@@ -96,7 +100,7 @@ class AppController extends Controller
                 continue;
             }
 
-            if($setting  == 'whatsapp_enabled' &&(strstr($path, "carrito") || strstr($path, "checkout"))) {
+            if($setting  == 'whatsapp_enabled' &&(strstr($path, "carrito") || strstr($path, "envio") || strstr($path, "pago"))) {
                 continue;
             }
 
@@ -118,6 +122,9 @@ class AppController extends Controller
     }
 
     public function beforeFilter() {
+
+
+
         //CakeLog::write('debug', 'beforeFilter executed for ' . $this->name . 'Controller::' . $this->action);
         $this->Auth->allow();
         $this->set('loggedIn', $this->Auth->loggedIn());

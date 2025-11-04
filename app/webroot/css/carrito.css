@@ -19,7 +19,11 @@
 }
 
 .summary-item {
-	margin: 0.75rem;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	grid-gap: 0-5rem;
 }
 
 .paying-with {

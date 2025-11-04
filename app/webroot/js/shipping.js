@@ -46,7 +46,7 @@ $(function(){
 		let info = $(e).data('info')
 		fxTotal(total)
 		$('.paying-with').delay(1000).fadeIn()
-		onErrorAlert(`Como querés recibir tu compra`, `Te lo llevamos por ${shipping.toUpperCase()}`);
+		onErrorAlert(`Como querés recibir tu compra`, `Te lo llevamos por ${shipping.toUpperCase()}`, 0, true);
 	}
 
 	$('.select-cargo-option').click(e => {
@@ -62,9 +62,7 @@ $(function(){
 		$('.shipment-options .option-rounded').removeClass('is-selected is-secondary')
 		$('.shipment-options .option-rounded').addClass('is-secondary')
 		target.addClass('is-selected')
-
 	});
-
 
 	$('#calulate_shipping').submit(e => {
 		var url = $('#calulate_shipping').data('url')
@@ -120,7 +118,7 @@ $(function(){
 				setTimeout(() => {
 					$('.input-cp-container').removeClass('wrong');
 					$('.input-cp-container').addClass('ok');
-					onSuccessAlert(`Como querés recibir tu compra`,'Ingresaste código postal ' + cp);
+					onSuccessAlert(`Como querés recibir tu compra`,'Ingresaste código postal ' + cp, 0, true);
 					document.querySelector('.shipping-block').classList.remove('hidden')	
 					if (carrito.cargo === 'shipment' && carrito.shipping) {
 						$(`.shipping-options li[shipping="${carrito.shipping}"]`).click()

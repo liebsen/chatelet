@@ -395,6 +395,9 @@ class ShopController extends AppController {
     $this->render('product');
 	}
 
+  public function login(){
+  }
+
   public function mis_compras()
   {
     $this->loadModel('Sale');
@@ -588,16 +591,71 @@ class ShopController extends AppController {
 			)
 		);
 
-        $this->set('details',$details);
+    $this->set('details',$details);
 		$this->set('category_id',$category_id);
-        $this->set('name_categories',$name_categories);
+    $this->set('name_categories',$name_categories);
 		$this->set('category', $category);
 		$this->set('product', $product['Product']);
 		$this->set('properties', $properties);
 		$this->set('all_but_me', $all_but_me);
 	}
 
-	public function search(){
+	public function buscar(){
+		$this->loadModel('Product');
+		$this->loadModel('Search');
+		$this->loadModel('Legend');
+
+		// legends
+		$legends_map = $this->Legend->find('all', [
+			'conditions' => ['enabled' => 1],
+			'order' => ['Legend.dues ASC']
+		]);
+
+		$q = $this->request->query['q'];
+		$p = $this->request->query['p'] ? intval($this->request->data['p']) : 0;
+		$s = $this->request->query['s'] ? intval($this->request->data['s']) : 10;
+		//$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
+		$results = $this->Product->find('all',[
+			'conditions' => [
+				'or' => [
+					'Product.name LIKE' => "%$q%",
+					'Product.desc LIKE' => "%$q%",
+					'Product.promo' => "$q",
+				],
+				'visible' => 1,
+				'stock_total > ' => 0
+			],
+			'order' => ['Product.promo DESC'],
+			'limit' => $s,
+			'offset' => $s * $p
+		]);
+
+		foreach ($results as &$item) {
+			if (isset($item['Product']['discount']) && $item['Product']['discount']) {
+				$item['Product']['old_price'] = $item['Product']['price'];
+				$item['Product']['price'] = $item['Product']['discount'];
+			}
+			$item['Product']['stock'] = 0;
+			if(!empty($item['Product']['article'])){
+				$item['Product']['stock'] = 1;
+			}
+		}
+
+		$this->set('results', $results);
+
+		// save search
+		/* $search = [];
+		$search['name'] = $q;
+		$search['user_id'] = $this->Auth->user('id') ?: 0;
+		$search['created'] = date('Y-m-d H:i:s');
+		$search['referer'] = $_SERVER['HTTP_REFERER'];
+		$search['page'] = $p+1;
+		$search['results'] = count($results); 
+
+		$this->Search->save($search); */
+	}
+
+	public function api_search(){
 		$this->autoRender = false;
 
 		$this->loadModel('Product');

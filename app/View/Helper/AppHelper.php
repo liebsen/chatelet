@@ -224,10 +224,7 @@ class AppHelper extends Helper {
       }
     }
 
-    $str.='<div class="legends-container">';
-    if(count($dues_options)) {
-      $str.= '<div class="legends' . ($noprice ? ' legends-left' : '') . '">';
-    }
+    $str.='<div class="legends-container"><span class="legends w-100">';
     if($bank_price && $text != 'Transferencia') {
       $str.= "<div class='price-list'><span class='text-theme text-bold product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format($bank_price)." </span><span class='text-sm'>Transferencia</span> </div>";
     }
@@ -236,10 +233,7 @@ class AppHelper extends Helper {
     }
 
     $str.= implode('', $dues_options);
-    if(count($dues_options)) {
-      $str.= '</div>';
-    }
-    $str.= '</div>';
+    $str.= '</span></div>';
     return $str;
   }
 }

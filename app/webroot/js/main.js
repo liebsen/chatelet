@@ -36,7 +36,7 @@ function addCart(data, button, text) {
           ]
         })
 
-        $.growl.error({
+        /*$.growl.error({
           title: 'Agregado al carrito',
           message: 'Podés seguir agregando más productos o finalizar esta compra en la sección carrito'
         });
@@ -48,7 +48,8 @@ function addCart(data, button, text) {
         setTimeout(reload, 1000);
         
         $('.growl-close').click(reload);
-
+        */
+        var timeout = 0
         dataLayer.push({
           'event': 'addToCart',
           'ecommerce': {
@@ -66,15 +67,18 @@ function addCart(data, button, text) {
             }
           },
           'eventCallback': function() {
-            $.growl.notice({
-              title: 'Producto agregado al carrito',
-              message: 'Podés seguir agregando más productos o ir a la sección Pagar'
-            });
-            var reload = function() {
-              window.location.href = '/carrito'
-            };
-            setTimeout(reload, 3000);
-            $('.growl-close').click(reload);
+            clearInterval(timeout)
+            timeout = setTimeout(function(){
+              $.growl.notice({
+                title: '(1)Producto agregado al carrito',
+                message: 'Podés seguir agregando más productos o ir a la sección Pagar'
+              });
+              var reload = function() {
+                window.location.href = '/carrito'
+              };
+              setTimeout(reload, 3000);
+              $('.growl-close').click(reload);
+            }, 300)
           }
         })
       } else {
@@ -221,7 +225,37 @@ let findSize = (str) => {
   return size
 }
 
-onErrorAlert = function(title, text, duration){
+
+var alerts = {}
+var interval = 0
+
+groupAlerts = function(title, text) {
+  if(!alerts[title]) {
+    alerts[title] = []
+  }
+  alerts[title].push(text)
+  clearInterval(interval)
+  interval = setTimeout(function(){
+    for(var title in alerts) {
+      const item = alerts[title]
+      const messages = item.map(function(e) { 
+        return `<li>${e}</li>`;
+      })
+      $.growl.error({
+        title: title || 'Error',
+        message: '<ul>' + messages.join('') + '</ul>' || '',
+        queue: true,
+        duration: 15000
+      });      
+    }
+    alerts = []
+  }, 5000)
+}
+
+onErrorAlert = function(title, text, duration, group){
+  if(group) {
+    return groupAlerts(title, text)
+  }    
   $.growl.error({
     title: title || 'Error',
     message: text && text !== 'undefined' ? text : '',
@@ -230,7 +264,10 @@ onErrorAlert = function(title, text, duration){
   });
 }
 
-onSuccessAlert = function(title, text, duration){
+onSuccessAlert = function(title, text, duration, group){
+  if(group) {
+    return groupAlerts(title, text)
+  }  
   $.growl.notice({
     title: title || 'OK',
     message: text && text !== 'undefined' ? text : '',
@@ -239,7 +276,10 @@ onSuccessAlert = function(title, text, duration){
   });
 }
 
-onWarningAlert = function(title, text, duration){
+onWarningAlert = function(title, text, duration, group){
+  if(group) {
+    return groupAlerts(title, text)
+  }
   // $('#growls').remove();
   $.growl.warning({
     title: title || 'OK',
@@ -283,7 +323,7 @@ callEnd = function(){
 let apiSearch = (q) => {    
   $.ajax({
     type: "POST",
-    url: "/shop/search/",
+    url: "/shop/api_search/",
     data: JSON.stringify({q: q, p: searchPage, s: searchPageSize}),
     contentType: "application/json; charset=utf-8",
     dataType: "json",
@@ -377,14 +417,14 @@ $(function () {
 
   // Attach the event keypress to exclude the F5 refresh (includes normal refresh)
   $(document).bind('keypress', function(e) {
-      if (e.keyCode == 116){
-          validNavigation = true;
-      }
+    if (e.keyCode == 116){
+      validNavigation = true;
+    }
   });
 
   // Attach the event click for all links in the page
   $("a").bind("click", function() {
-      validNavigation = true;
+    validNavigation = true;
   });
 
   // Attach the event submit for all forms in the page
@@ -395,14 +435,14 @@ $(function () {
   // Attach the event click for all inputs in the page
   $("input[type=submit]").bind("click", function() {
     validNavigation = true;
-  }); 
+  });
+
   window.onbeforeunload = function() {                
     if (!validNavigation) {    
       sendBeacon()
     }
   } 
-
-        
+  
   var body = $('body');
 
   body.click((e) => {
@@ -425,9 +465,7 @@ $(function () {
       });
       if (!$('.menuLayer').is(':visible').length) {
         $('#menuShop').removeClass('position-fixed')  
-        if($('.navbar-chatelet').hasClass('top-fixed')){
-          $('#menuShop').addClass('layer-fixed')  
-        }
+        $('#menuShop').addClass('layer-fixed')  
         $('#menuShop').fadeIn();
       }
     } else {
@@ -464,27 +502,18 @@ $(function () {
     }, 5000)
   }
 
-  $('.action-search').click((e) => {
-    if($('.navbar-collapse')){
-      $('.navbar-collapse').removeClass('in');
+  $('[data-toggle="sidebar"]').click((e) => {
+    const target = $(e.target).data('target')
+    const focus = $(e.target).data('focus')
+    if($(target).length) {
+      if($(target).hasClass('sidebar-expanded')) {
+        $(target).removeClass('sidebar-expanded')
+      } else {
+        $(target).addClass('sidebar-expanded')
+      }
     }
-    e.stopPropagation()
-    $('.menuLayer').hide()
-    if ($('#menuSearch').is(':visible')) {
-      $('#menuSearch').fadeOut();
-    } else {
-      $('#menuSearch').fadeIn();
-      setTimeout(() => {
-        if($('.input-search').is(':visible')) {
-          $('.input-search').focus()            
-        }
-        if (localStorage.getItem('lastsearch')) {
-          $('.input-search').val(localStorage.getItem('lastsearch'))
-          if(!$('.search-item').length){
-            $('.input-search').keyup()
-          }
-        }
-      }, 500)
+    if($(focus).length) {
+      $(focus).focus()
     }
   })
 
@@ -548,54 +577,29 @@ $(function () {
     }
     clock = setTimeout(() => {
       var scroll = $(window).scrollTop()
-      var tops = document.querySelectorAll('.top-fixable')
-      var navbar = document.querySelector('.navbar-chatelet')
+      const navbar = document.querySelector('.navbar-chatelet')
+      const banners = document.getElementById('carousel-banners')
+      const video = $("#carousel .item.active").find("video")
       if (scroll > 100) {
-        if (document.getElementById('carousel-banners')) {
-          document.getElementById('carousel-banners').classList.add('invisible')
+        if (banners) {
+          banners.classList.add('invisible')
         }
-        if(document.querySelector('.float-tl')) {
-          document.querySelector('.float-tl').classList.add('float-top-left')
+        if(navbar) {
+          navbar.classList.add('top-fixed')
         }
-        if(document.querySelector('.float-tr')) {
-          document.querySelector('.float-tr').classList.add('float-top-right')
+        if(video?.length) {
+          $("video").each((i,video) => {
+            video.pause()
+          });
         }
-        tops.forEach((e) => {
-          if (e && !e.classList.contains('top-fixed')) {
-            e.classList.remove('fadeOut', 'fadeIn')
-            setTimeout(() => {
-              if (e.classList.contains('navbar-chatelet')) {
-                //document.querySelector('body').style.paddingTop = `${e.clientHeight}px`
-              }
-              e.classList.add('top-fixed', 'fadeIn')
-            }, 100)
-          } 
-        })
-        $("video").each((i,video) => {
-          video.pause()
-        });
       } else {
-        if (document.getElementById('carousel-banners')) {
-          document.getElementById('carousel-banners').classList.remove('invisible')
+        if (banners) {
+          banners.classList.remove('invisible')
         }
-        if(document.querySelector('.float-tl')) {
-          document.querySelector('.float-tl').classList.remove('float-top-left')
+        if(navbar) {
+          navbar.classList.remove('top-fixed')
         }
-        if(document.querySelector('.float-tr')) {
-          document.querySelector('.float-tr').classList.remove('float-top-right')
-        }
-        setTimeout(() => {
-          tops.forEach((e) => {
-            if (e && e.classList.contains('top-fixed')) {
-              if (e.classList.contains('navbar-chatelet')) {
-                document.querySelector('body').style.paddingTop = 0
-              }
-              e.classList.remove('top-fixed')
-            }
-          })
-        }, 200)
-        var video = $("#carousel .item.active").find("video")
-        if(video.length){
+        if(video?.length){
           setTimeout(() => {
             $(video).get(0).play()
           }, 200)

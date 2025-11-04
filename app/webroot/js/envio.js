@@ -27,10 +27,10 @@ function addToCart(data) {
 				  ]
 				})
 
-        $.growl.error({
+        /*$.growl.error({
           title: 'Agregado al carrito',
           message: 'Podés seguir agregando más productos o finalizar esta compra en la sección carrito'
-        });
+        });*/
 
         var reload = function() {
         	window.location.href = '/carrito'
@@ -58,7 +58,7 @@ function addToCart(data) {
 				  },
 					'eventCallback': function() {
 	          $.growl.notice({
-	            title: 'Producto agregado al carrito',
+	            title: '(1)Producto agregado al carrito',
 	            message: 'Podés seguir agregando más productos o ir a la sección Pagar'
 	          });
 	          var reload = function() {
@@ -297,14 +297,14 @@ $(document).ready(function() {
 		if (cargo === 'shipment') {
 			const shipping_cargo = $('.shipping-options li.selected')
 			if (!shipping_cargo.length) {
-				onErrorAlert('¿Cómo querés recibir tu compra?', 'Por favor seleccioná un tipo de envío para tu compra, también podés elegir Retiro en Sucursal para evitar cargos de envío');	
+				onErrorAlert('¿Cómo querés recibir tu compra?', 'Por favor seleccioná un tipo de envío para tu compra, también podés elegir Retiro en Sucursal para evitar cargos de envío', 0, true);
 				location.hash = 'f:.como-queres-recibir-tu-compra'
 				return false;
 			} else {
 				if (shipping_cargo.attr('shipping')) {
 					shipping = shipping_cargo.attr('shipping')
 				} else {
-					onErrorAlert('¿Cómo querés recibir tu compra?','Por favor introducí tu código postal, también podés elegir Retiro en Sucursal para evitar cargos de envío');
+					onErrorAlert('¿Cómo querés recibir tu compra?','Por favor introducí tu código postal, también podés elegir Retiro en Sucursal para evitar cargos de envío', 0, true);
 					location.hash = 'f:.como-queres-recibir-tu-compra'
 					return false;
 				}
@@ -318,13 +318,13 @@ $(document).ready(function() {
 				$('.input-cp').focus();
 				$('.input-cp-container').removeClass('ok');
 				$('.input-cp-container').addClass('wrong');
-				onErrorAlert('¿Cómo querés recibir tu compra?', 'Por favor ingresá tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
+				onErrorAlert('¿Cómo querés recibir tu compra?', 'Por favor ingresá tu código postal, la opción  Retiro en Sucursal evita cargos de envío', 0, true);
 				return false;
 			}
 		} else if(cargo === 'takeaway') {
 			const takeaway = $('.takeaway-options li.selected')
 			if (!takeaway.length) {
-				onErrorAlert('<i class="fa fa-map-marker"></i> Seleccioná sucursal', 'Por favor seleccioná una sucursal para retirar tu compra');	
+				onErrorAlert('<i class="fa fa-map-marker"></i> Seleccioná sucursal', 'Por favor seleccioná una sucursal para retirar tu compra', 0, true);	
 				return false;
 			} else {
 				if (takeaway.attr('store')) {
@@ -339,7 +339,7 @@ $(document).ready(function() {
 			if (freeShipping) {
 				cargo = 'shipment'
 			} else {
-				onErrorAlert('¿Cómo querés recibir tu compra?','Por favor introducí tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
+				onErrorAlert('¿Cómo querés recibir tu compra?','Por favor introducí tu código postal, la opción  Retiro en Sucursal evita cargos de envío', 0, true);
 				return false
 			}
 		}
@@ -427,6 +427,8 @@ $(document).ready(function() {
 		$('.gift-count').val(carrito.gifts.length)
 	}
 
+	const lastcp = localStorage.getItem('lastcp')	
+
 	if (lastcp && $('#subtotal_compra').val()) {
 		setTimeout(() => {
 			$('label[for="shipment"]').click()
@@ -436,10 +438,10 @@ $(document).ready(function() {
 
 			const takeaway = $('.takeaway-options li.selected')
 			if(cargo === 'shipment' && !takeaway.length || freeShipping) {
-				$('#calulate_shipping').submit()	
-				onWarningAlert('<i class="fa fa-stopwatch"></i> Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000)
+				// $('#calulate_shipping').submit()	
+				// onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000, true)
 			} else {
-				onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000)
+				onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000, true)
 			}
 		}, 1000)
 	}

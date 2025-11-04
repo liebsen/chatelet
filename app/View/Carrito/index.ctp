@@ -1,9 +1,8 @@
 <?php
-	$this->set('short_header', 'Carrito');
+	// $this->set('short_header', 'Carrito');
 	echo $this->Session->flash();
 	echo $this->Html->css('carrito.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-	echo $this->Html->script('carrito.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 	echo $this->element('checkout-modal');
 	$payment_methods = [
 		'bank' => 'transferencia',
@@ -39,7 +38,7 @@
   </div>
 </div>
 
-<div id="main" class="container animated fadeIn delay1">
+<div id="main" class="container">
 	<div class="row">
 		<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
 		<!--div class="col-md-12 shipping-price-min-alert animated fadeIn">
@@ -55,7 +54,7 @@
 			<?php if (isset($carro) && !empty($carro)) :?>			
 			<?php
 				echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
-				echo '<input type="hidden" id="checkout" value="'. $this->Html->url(array('controller' => 'carrito', 'action' => 'checkout')) .'" />'
+				echo '<input type="hidden" id="checkout" value="'. $this->Html->url(array('controller' => 'carrito', 'action' => 'envio')) .'" />'
 			?>
 			<div class="carrito-row">
 				<div class="carrito-col">
@@ -239,69 +238,7 @@
 					} ?>
 							</table>
 						</div>
-						<div class="resume-totals p-4 animated fadeIn delay">
-							<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
-							<input type="hidden" id="subtotal_envio" value="" />
-							<!--div class="summary-item text-right">
-								<div class="price text-muted">Resumen de tu compra</div>								
-							</div>
-							<hr-->
-						<?php if($total + $promosaved != $total): ?>
-							<div class="summary-item text-right products-total">
-								<div class="price text-dark"><span class="text-weight-thin">Productos </span> $ <?= \price_format($total + $promosaved) ?></div>
-							</div>
-						<?php endif ?>
-							<?php if($freeShipping):?>
-							<div class="summary-item text-right free-shipping animated speed">
-								<div class="price text-success">
-									<span class="text-weight-thin">Envío </span>
-									<span id="delivery_cp"></span> <span>gratuito</span></div>
-							</div>
-							<?php else: ?>
-							<div class="summary-item text-right delivery-cost hidden animated speed">
-								<div class="price text-dark">
-									<span class="text-weight-thin">Envía </span>
-									<span id="delivery_cp"></span> $ <span class="cost_delivery">0</span></div>
-							</div>
-							<?php endif ?>
-							<div class="summary-item text-right <?= $promosaved ? '' : 'hidden' ?> animated speed">
-								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="">PROMO</span> <span>$ <?= \price_format($promosaved) ?></span><!--span>.00</span--></div>
-							</div>
-							<hr>
-							<div class="summary-item text-right animated speed">
-								<div class="price text-dark">
-									<span class="text-weight-thin">Subtotal </span>
-									<span class="cost_total">$ <?= \price_format($total + $promosaved) ?></span></div>
-							</div>							
-							<div class="summary-item text-right coupon-discount hidden animated speed">
-								<div class="price text-success"><span class="text-weight-thin">Cupón </span><span class="promo-code"></span> $ <span class="coupon_bonus">0</span><!--span>.00</span--></div>
-							</div>							
-							<hr>
-							<div class="summary-item text-right">
-								<div class="cost_total-container animated speed fadeIn delay2">
-									<!--hr-->
-									<div class="price is-large">
-										<span class="text-weight-thin">Total </span> 
-										<span class="calc_total">$ <?= \price_format($total) ?></span><!--span>.00</span-->
-									</div>
-									<span class="text-theme paying-with">Pagando con <?= strtolower($payment_methods[$config['payment_method']]) ?></span>
-								</div>								
-							</div>
-							<!--div class="form-inline gift-area hide">
-								<h3 class="mt-1">Es para regalo</h3>
-							  <div class="form-group">
-							    <div class="input-group mt-4">
-							      <div class="input-group-addon input-lg is-clickable">
-							       <span class="fa fa-minus"></span>
-							      </div>
-							      <input type="text" name="giftcount" size="2" class="form-control gift-count input-lg text-center" placeholder="Cantidad" value="0" original-value="0">
-							      <div class="input-group-addon input-lg is-clickable">
-							       <span class="fa fa-plus"></span>
-							       </div>
-							    </div>
-							  </div>
-							</div-->							
-						</div>
+
 					<?php else: ?>
 					<div class="container cart-empty text-center">
 						<!--div class="icon-huge mt-4">
@@ -313,30 +250,40 @@
 					<br><br>
 					<?php endif;?>
 				</div>
-				<div class="carrito-col min-max-30 m-w-auto">
-				<?php 
-					if (isset($carro) && !empty($carro)) {
-						echo $this->element('shipping', array('freeShipping' => $freeShipping, 'carrito_takeaway_text' => $carrito_takeaway_text));
-						// echo $this->element('cart-toolbox', array('freeShipping' => $freeShipping, 'total' => $total));
-					}					
-				?>
+				<div class="carrito-col min-max-30 m-w-auto gap-1">
+					<!-- fill coupon -->
+					<div class="card">
+						<?php echo $this->element('coupon'); ?>
+					</div>								  
+					<!-- end fill coupon -->
+
+					<div class="card">
+						<?php echo $this->element('resume', [
+							'total' => $total, 
+							'promosaved' => $promosaved, 
+							'total' => $total, 
+							'payment_methods' => $payment_methods, 
+							'config' => $config, 
+						]); ?>
+					</div>
+
+					<div class="d-flex flex-column justify-content-center align-items-center gap-05 p-4">
+					  <?php if (isset($carro) && !empty($carro)) :?>
+					    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-outline-danger w-100" link-to="<?=Router::url('/carrito/envio',true)?>" id="siguiente">Finalizar compra</a>
+					  <?php endif ?>
+
+						<a class="btn keep-buying cart-btn-green w-100" href="/tienda">Seguir comprando</a>
+					</div>
+
 				</div>
 			</div>
-			<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-05 animated slideInUp delay2">
-				<?php if (!isset($carro)): ?>
-					<!--a href="#" class="btn action-search cart-btn-green">Buscar</a-->
-				<?php endif ?>
-				<a class="btn keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
-			  <?php if (isset($carro) && !empty($carro)) :?>
-			    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-outline-danger" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Finalizar compra</a>
-			  <?php endif ?>
-			</div>
+
 		</div>
 	</div>
 </div>
 	
 <?php if (isset($carro) && !empty($carro)) :?>
-<div id="carritoItem" class="menuLayer is-fullheight has-item-counter animated">
+<!--div id="carritoItem" class="menuLayer is-fullheight has-item-counter animated">
   <a class="close float-tr">
     <span></span>
     <span></span>
@@ -356,7 +303,7 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-</div>
+</div-->
 <input type="hidden" id="shipping_price_min" value="<?= $shipping_price_min ?>">
 <input type="hidden" id="total" value="<?= $total ?>">
 <?php endif;?>

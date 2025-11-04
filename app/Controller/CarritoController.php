@@ -241,7 +241,7 @@ class CarritoController extends AppController
 		return json_encode($response);
 	}
 
-	public function checkout()
+	public function pago()
 	{
 		if (!$this->Session->read('cart')) {
 			$this->redirect(array( 'action' => 'clear' ));
