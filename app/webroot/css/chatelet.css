@@ -40,8 +40,11 @@ nav.sidebar {
   width: 300px;
   height: 100%;
   background: white;
-  color: white;
   padding: 1rem;
+  border: 2px solid black;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
   transition: all 0.25s ease-in-out;
 }
 
@@ -584,7 +587,8 @@ html, body {
 }
 
 .badge {
-	border-radius: 0.5rem;
+	border-radius: 0.25rem;
+	font-weight: 400;
 }
 
 .d-flex {
@@ -741,7 +745,7 @@ html, body {
 
 .form-control {
 	padding: 0 16px;
-	height: 46px;
+	height: 44px;
 	border-radius: 5px;
 }
 

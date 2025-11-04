@@ -1,3 +1,148 @@
+
+function addToCart(data) {
+  $.post('/carrito/add', $.param(data))
+    .success(function(res) {
+      console.log('res', res)
+      if (res.success) {
+        window.dataLayer = window.dataLayer || []
+        fbq('track', 'AddToCart')
+        /* @Analytics: addToCart */
+        gtag('event', 'add_to_cart', {
+          "items": [
+            {
+              "id": data.id,
+              "name": $('.product').text(),
+              // "list_name": "Search Results",
+              // "brand": "Google",
+              // "category": "Apparel/T-Shirts",
+              "variant": data.alias,
+              "list_position": 1,
+              "quantity": data.count,
+              "price": $('.price').text()
+            }
+          ]
+        })
+
+        /*$.growl.error({
+          title: 'Agregado al carrito',
+          message: 'Podés seguir agregando más productos o finalizar esta compra en la sección carrito'
+        });*/
+
+        var reload = function() {
+          window.location.href = '/carrito'
+        };
+
+        setTimeout(reload, 1000);
+        
+        $('.growl-close').click(reload);
+
+        dataLayer.push({
+          'event': 'addToCart',
+          'ecommerce': {
+            'currencyCode': 'ARS',
+            'add': {         
+              'products': [{
+                'name': $('.product').text(),
+                'id': data.id,
+                'price': $('.price').text(),
+                'brand': 'Google',
+                'category': 'Apparel',
+                'variant': data.alias,
+                'quantity': 1
+               }]
+            }
+          },
+          'eventCallback': function() {
+            $.growl.notice({
+              title: '(1)Producto agregado al carrito',
+              message: 'Podés seguir agregando más productos o ir a la sección Pagar'
+            });
+            var reload = function() {
+              window.location.href = '/carrito'
+            };
+            setTimeout(reload, 3000);
+            $('.growl-close').click(reload);
+          }
+        })
+      } else {
+        $.growl.error({
+          title: 'Ocurrió un error al agregar el producto al carrito',
+          message: 'Por favor, intentá nuevamente en unos instantes'
+        });
+      }
+    })
+    .fail(function() {
+      $.growl.error({
+        title: 'Ocurrio un error al agregar el producto al carrito',
+        message: 'Por favor, intente nuevamente'
+      });
+    }); 
+}
+
+var askremoveCart = (e) => {
+  const item = $(e).parents('.carrito-data').data('json')
+  let userInput = confirm(`Deseas eliminar ${item.name} del carrito?`);
+  if(userInput){
+    $.get(`/carrito/remove/${item.id}`).then((res) => {
+      /* @Analytics: removeFromCart */
+      fbq('track', 'RemoveFromCart')
+      gtag('event', 'remove_from_cart', {
+        "items": [
+          {
+            "id": item.id,
+            "name": item.article,
+            // "list_name": "Results",
+            "brand": item.name,
+            // "category": "Apparel/T-Shirts",
+            "variant": item.alias,
+            "list_position": 1,
+            "quantity": 1,
+            "price": item.discount
+          }
+        ]
+      })
+      console.log('refersh')
+      window.location.href = window.location.href
+    })
+  }
+}
+
+var removeCart = (e) => {
+  if(!removeElement) return
+  const block = $(removeElement).parent()
+  const json = $(block).find('.carrito-data').data('json')
+  block.addClass('flash infinite')
+  let item = JSON.parse(JSON.stringify(json))
+  $('#carrito-remove-btn').button('loading')
+  $.get(`/carrito/remove/${item.id}`).then((res) => {
+    /* @Analytics: removeFromCart */
+    fbq('track', 'RemoveFromCart')
+    gtag('event', 'remove_from_cart', {
+      "items": [
+        {
+          "id": item.id,
+          "name": item.article,
+          // "list_name": "Results",
+          "brand": item.name,
+          // "category": "Apparel/T-Shirts",
+          "variant": item.alias,
+          "list_position": 1,
+          "quantity": 1,
+          "price": item.discount
+        }
+      ]
+    })
+
+    block.removeClass('flash infinite')
+    block.addClass('fadeOut')
+    setTimeout(() => {
+      $('#carrito-remove-btn').button('reset')
+      location.href = '/carrito'
+      //block.remove()
+    }, 500)
+  })
+}
+
 var updateCart = (carrito) => {
   console.log('updateCart', carrito)
   if(!carrito) {

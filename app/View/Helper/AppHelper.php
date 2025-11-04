@@ -224,16 +224,22 @@ class AppHelper extends Helper {
       }
     }
 
-    $str.='<div class="legends-container"><span class="legends w-100">';
+    $str2 = '';
+    $str2.='<div class="legends-container"><span class="legends w-100">';
     if($bank_price && $text != 'Transferencia') {
-      $str.= "<div class='price-list'><span class='text-theme text-bold product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format($bank_price)." </span><span class='text-sm'>Transferencia</span> </div>";
+      $str2.= "<div class='price-list'><span class='text-theme text-bold product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format($bank_price)." </span><span class='badge text-sm'>Transferencia</span> </div>";
     }
     if($mp_price && $text != 'Mercado Pago'){
-      $str.= "<div class='price-list'><span class='text-theme text-bold product-badge'>-".@$item['mp_discount']."%</span> <span class='price_strong'> $ " .\price_format($mp_price)." </span><span class='text-sm'>Mercado Pago</span> </div>";
+      $str2.= "<div class='price-list'><span class='text-theme text-bold product-badge'>-".@$item['mp_discount']."%</span> <span class='price_strong'> $ " .\price_format($mp_price)." </span><span class='badge text-sm'>Mercado Pago</span> </div>";
     }
 
-    $str.= implode('', $dues_options);
-    $str.= '</span></div>';
+    $str2.= implode('', $dues_options);
+    $str2.= '</span></div>';
+    if($str2 == '<div class="legends-container"><span class="legends w-100"></span></div>') {
+      $str2 = '';
+    }
+    $str.= $str2;
+
     return $str;
   }
 }

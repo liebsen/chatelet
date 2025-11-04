@@ -300,16 +300,13 @@ label input[type=checkbox]:disabled + .label-text:before {
   background: #FFF; 
   border: 0; 
   border-radius: 0; 
-  /*border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,.2); */
   box-shadow: var(--box-shadow);
   margin: 0; 
   padding: 1.5rem;
   position: relative; 
+  transition: all 100ms ease-in!important;
   z-index: 10; 
 }
-
 
 .navbar-brand { 
   background: url(../img/logo.png) no-repeat; 
@@ -1014,7 +1011,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #productOptions nav li a { color: #222; font-size: 1rem; line-height: 1.1; text-transform: uppercase; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #productOptions nav li a:hover { color: #e10d74; }
 #productOptions nav li a.current{ color: #e10d74!important;font-weight: 700;}
-#productOptions a.btBig { border: 2px solid #363633; color: #6e6e6e; display: block; font-size: 40px; padding: 240px 0; text-align: center; border-radius: 0.5rem;}
+#productOptions a.btBig { border: 2px solid #363633; color: #6e6e6e; display: block; font-size: 40px; padding: 240px 0; text-align: center; }
 #productOptions a.btBig span { color: #363633; font-size: 27px; }
 #productOptions .product-list a {  /*background: #efefef;*/ 
   width: 100%; 
@@ -1301,7 +1298,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 #myModal2 .content { background: url(../images/tablebg.png) no-repeat center center; background-size: cover; margin: 50px auto; overflow: hidden; padding: 50px; position: relative; width: 900px; }
 #myModal2 .content .table { background: #ece9ea; padding: 50px 20px; }
-#myModal2 .content .table h1 { font-size: 26px; font-weight: 600; margin-bottom: 5px; }
+#myModal2 .content .table h1 { font-size: 26px; font-weight: 1000; margin-bottom: 5px; }
 #myModal2 .content .table p { font-size: 16px; font-weight: 500; margin-bottom: 80px; }
 #myModal2 .content .table tr td { border-top-color: #aeaeae; border-top-width: 2px; font-size: 14px; font-weight: 500; padding-bottom: 18px; padding-top: 18px; text-align: center; }
 #myModal2 .content .table tr:first-child td { border-top: none; }
@@ -1309,12 +1306,12 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 .map { display: flex; overflow: hidden; background-color: #efefef;}
 .map .col-md-4 { background: url(../images/mapbg.png) no-repeat center center; background-size: cover; display: flex; justify-content: flex-start; align-items: center; padding-left: 5rem;}
-.map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 600; }
+.map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 1000; }
 .map .col-md-4 h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 
 #headcontacto { background: url(../images/videobg.png) no-repeat center center; background-size: cover; padding: 65px 0; }
 #headcontacto .wrapper { /*background: url(../images/contactohead.png) no-repeat center center;*/ background-size: contain; }
-#headcontacto h1 { color: #363633; font-size: 40px; font-weight: 600; margin-top: 70px; margin-left: 30px; }
+#headcontacto h1 { color: #363633; font-size: 40px; font-weight: 1000; margin-top: 70px; margin-left: 30px; }
 #headcontacto h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 /*#headcontacto .box { border: 2px solid #6666; }
 #headcontacto .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; margin-top: 0; }
