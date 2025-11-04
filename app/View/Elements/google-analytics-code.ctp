@@ -6,7 +6,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', '<?= @$data['google_analytics_code'] ?>';
+  gtag('config', '<?= @$data['google_analytics_code'] ?>');
 </script>
 <!-- End Google Analytics -->
 
