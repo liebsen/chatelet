@@ -9,9 +9,9 @@ let focusAnim = 'pulse'
 let clock = 0
 const log = false
 
-function addCart(data, button, text) {
+function addCart(data, button, label, redirect) {
   $(button).addClass('adding')
-  $(button).text(text || 'Agregando...')
+  $(button).text(label || 'Agregando...')
   $.post('/carrito/add', $.param(data))
     .success(function(res) {
       if (res.success) {
@@ -70,11 +70,11 @@ function addCart(data, button, text) {
             clearInterval(timeout)
             timeout = setTimeout(function(){
               $.growl.notice({
-                title: '(1)Producto agregado al carrito',
+                title: 'Producto agregado al carrito',
                 message: 'Podés seguir agregando más productos o ir a la sección Pagar'
               });
               var reload = function() {
-                window.location.href = '/carrito'
+                window.location.href = redirect || '/carrito'
               };
               setTimeout(reload, 3000);
               $('.growl-close').click(reload);
@@ -407,7 +407,7 @@ function layerShow (layer) {
 
 function layerClose() {
   $('body').css('overflow-y', 'auto')
-  $('.fullhd-layer').removeClass('active')
+  $('.layer').removeClass('active')
 }
 
 $(function () {
@@ -446,8 +446,8 @@ $(function () {
   var body = $('body');
 
   body.click((e) => {
-    /*if(!$(e.target).hasClass('action-search') && !$(e.target).parents('.menuLayer').length) {
-      $('.menuLayer').hide()
+    /*if(!$(e.target).hasClass('action-search') && !$(e.target).parents('.bubble').length) {
+      $('.bubble').hide()
     }*/
     if($(e.target).data('toggle') == "sidebar") return false;
     if($('nav.sidebar-expanded').length) {
@@ -462,14 +462,14 @@ $(function () {
     $(this).parent().find('input').attr('checked', 'checked');
   })
 
-  $('ul.nav a').hover(function () {
+  /*$('ul.nav a').hover(function () {
     if( $(this).attr('class') == 'viewSubMenu' ) {
       $("video").each((i,video) => {
         video.pause()
       });
-      if (!$('.menuLayer').is(':visible').length) {
+      if (!$('.bubble').is(':visible').length) {
         $('#menuShop').removeClass('position-fixed')  
-        $('#menuShop').addClass('layer-fixed')  
+        $('#menuShop').addClass('fixed')  
         $('#menuShop').fadeIn();
       }
     } else {
@@ -481,10 +481,10 @@ $(function () {
         }, 50)
       }
     }
-  })
+  })*/
 
-  $('.menuLayer a.close').click(function () {
-    $('.menuLayer').fadeOut();
+  $('.bubble a.close').click(function () {
+    $('.bubble').fadeOut();
     if (!$('.navbar-toggle').hasClass('collapsed')) {
       $('.navbar-toggle').addClass('collapsed')
     }
@@ -494,7 +494,12 @@ $(function () {
     //window.scrollTo(0,0)
   })
 
-  if(window.location.hash.indexOf('listShop') === -1 && document.querySelector("#myModal")!=null && $('.js-show-modal') && $('.js-show-modal').length){
+  if(
+    window.location.hash.indexOf('listShop') === -1 && 
+    document.querySelector("#myModal")!=null && 
+    $('.js-show-modal') && 
+    $('.js-show-modal').length
+  ){
     setTimeout(function () {
       $('#myModal').modal({ show: true })
     }, 10)
@@ -506,6 +511,8 @@ $(function () {
     }, 5000)
   }
 
+
+  /* generic clic handlers */
   $('[data-toggle="sidebar"]').click((e) => {
     const target = $(e.target).data('target')
     const focus = $(e.target).data('focus')
@@ -518,6 +525,31 @@ $(function () {
     }
     if($(focus).length) {
       $(focus).focus()
+    }
+  })
+
+  $('[data-toggle="mouseenter"]').hover((e) => {
+    const show = $(e.target).data('show')
+    // stop all media
+    $("video").each((i,e) => {
+      e.pause()
+    });
+    if($(show).length) {
+      $(show).fadeIn()
+    }
+  })
+
+  $('[data-toggle="mouseleave"]').mouseleave((e) => {
+    const hide = $(e.target).data('hide')
+    if($(hide).length) {
+      $(hide).fadeOut()
+    }
+    // resume media
+    var video = $("#carousel .item.active").find("video")
+    if(video.length){
+      setTimeout(() => {
+        $(video).get(0).play()
+      }, 50)
     }
   })
 
@@ -549,20 +581,21 @@ $(function () {
     }, 500)        
   })
 
-  if (document.querySelector('.whatsapp-text') && document.querySelector('.autohide')) {
-    var segs = parseInt(Array.from(document.querySelector('.autohide').classList).filter(e => e.indexOf('segs-') > -1)[0].replace('segs-','')) || 30
+  if (document.querySelector('.whatsapp-text.autohide')) {
+    var segs = parseInt(Array.from(document.querySelector('.whatsapp-text.autohide').classList).filter(e => e.indexOf('segs-') > -1)[0].replace('segs-','')) || 30
     setTimeout(() => {
-      document.querySelector('.autohide > .whatsapp-text').classList.add('animated','chatOut')
+      document.querySelector('.whatsapp-text.autohide').classList.remove('chatIn')
+      document.querySelector('.whatsapp-text.autohide').classList.add('chatOut')
     }, (segs + 3) * 1000)
   }
 
-  var menuLayerTop = 0;
+  var bubbleTop = 0;
   /*if (document.getElementById('carousel-banners')) {
     const height = document.getElementById('carousel-banners').clientHeight
-    menuLayerTop+= height;
+    bubbleTop+= height;
   }*/
-  document.querySelectorAll('.menuLayer:not(.is-fullheight)').forEach(e => {
-    e.style.top = `${menuLayerTop}px`;
+  document.querySelectorAll('.bubble:not(.is-fullheight)').forEach(e => {
+    e.style.top = `${bubbleTop}px`;
   })
   // Toggle Side content
   /*body.toggleClass('hide-side-content');*/

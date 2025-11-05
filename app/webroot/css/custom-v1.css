@@ -408,7 +408,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav>li>a.action-search {
   background-image: url(../img/ic_lupa.svg);
 }*/
-.menuLayer {
+.bubble {
   z-index: 12;
   background: #FFF;
   /* border-bottom: 2px solid #efb0d2; */
@@ -422,15 +422,15 @@ label input[type=checkbox]:disabled + .label-text:before {
   border-radius: 0;
 }
 
-.menuLayer.layer-fixed {
+.bubble.layer-fixed {
   position: fixed!important;
   z-index: 1000!important;
   top: 5.5rem!important;
 }
-.menuLayer .wrapper {
+.bubble .wrapper {
   padding: 1rem;
 }
-.menuLayer a.close { 
+.bubble a.close { 
   position: fixed;
   z-index: 100;
   display: block; 
@@ -441,7 +441,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   top: 1rem;
   transition: all 0.25s ease-out;
 }
-.menuLayer a.close span { 
+.bubble a.close span { 
   background: #363633;
   display: block;
   height: 4px;
@@ -452,17 +452,17 @@ label input[type=checkbox]:disabled + .label-text:before {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.menuLayer a.close span:last-child {
+.bubble a.close span:last-child {
   margin-top: -4px;
   -ms-transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
-.menuLayer img { margin-right: 50px; }
-.menuLayer h3 { color: #363633; font-size: 1rem; font-weight: 600; text-transform: uppercase; margin-bottom: 30px; }
-.menuLayer ul { column-count: 3; column-gap: 40px; font-size: 1rem; }
-.menuLayer ul li { margin-bottom: 0.75rem; }
-.menuLayer ul li a {
+.bubble img { margin-right: 50px; }
+.bubble h3 { color: #363633; font-size: 1rem; font-weight: 600; text-transform: uppercase; margin-bottom: 30px; }
+.bubble ul { column-count: 3; column-gap: 40px; font-size: 1rem; }
+.bubble ul li { margin-bottom: 0.75rem; }
+.bubble ul li a {
   color: #363633;
   text-transform: uppercase;
   font-size: 1rem;
@@ -2724,7 +2724,7 @@ span.count.is-empty {
   .text-small {
     font-size: 0.75rem !important;
   }
-  /*.cart-btn-green {
+  /*.btn-chatelet {
     min-width: 100%!important;
   }*/
   .is-mobile-resume .field {

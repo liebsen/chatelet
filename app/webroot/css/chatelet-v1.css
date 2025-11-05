@@ -392,13 +392,13 @@ html, body {
 	font-weight: 700;
 }
 
-.btn.btn-outline-danger {
+.btn.btn-chatelet-dark {
 	color: #e10d74;
   background-color: #fff;
   border-color: #e10d74;
 }
 
-.btn.btn-outline-danger:hover {
+.btn.btn-chatelet-dark:hover {
   background-color: #e10d74;
 }
 
@@ -1035,7 +1035,7 @@ select.form-control{
 	min-height: 2rem;
 	line-height: 1.25;
 }
-.cart-btn-green {
+.btn-chatelet {
 	display: inline-block;
 	text-align: center;
 	font-size: 1rem;
@@ -1050,19 +1050,19 @@ select.form-control{
 	border-radius: 0.5rem;
 	transition: all 0.25s ease;
 }
-.cart-btn-green.shrink {
+.btn-chatelet.shrink {
 	min-width: inherit;
 }
 
-.cart-btn-green.ready {
+.btn-chatelet.ready {
 	background-color: #e60088;
 }
 
-.cart-btn-green.disabled {
+.btn-chatelet.disabled {
 	background-color: #bebebe;
 }
 
-.cart-btn-green:hover {
+.btn-chatelet:hover {
 	background-color: #e60088;
 }
 

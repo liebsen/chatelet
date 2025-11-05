@@ -42,7 +42,7 @@
     <div class="wrapper">
       <div class="is-flex-center gap-1 w-100 p-4">
         <h1 class="card-title mb-0"><i class="fa fa-shopping-cart mr-1"></i> Mis compras</h1>
-        <span class="btn btn-success cart-btn-green btn-filter-calendar"><i class="fa fa-calendar mr-1"></i> <span class="capitalize">Último mes</span></span>
+        <span class="btn btn-success btn-chatelet btn-filter-calendar"><i class="fa fa-calendar mr-1"></i> <span class="capitalize">Último mes</span></span>
       </div>
       <div class="ch-flex"> 
         <?php foreach($sales as $sale):?>

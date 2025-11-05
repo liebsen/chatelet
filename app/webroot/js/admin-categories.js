@@ -4,7 +4,7 @@ var discount_mode = ''
 
 function layerClose() {
   $('body').css('overflow-y', 'auto')
-  $('.fullhd-layer').removeClass('active')
+  $('.layer').removeClass('active')
 }
 
 function showLayer (e, layer, mode, category_id, category_name) {

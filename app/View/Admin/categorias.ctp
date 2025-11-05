@@ -9,7 +9,7 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 ?>
 
 <!-- discount-layer -->
-<div class="fullhd-layer discount-layer">
+<div class="layer discount-layer">
   <span class="close is-clickable" onclick="layerClose()">
       <i class="gi gi-remove_2"></i>
   </span>

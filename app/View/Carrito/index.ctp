@@ -23,7 +23,7 @@
 
 <!-- bank layer -->
 
-<div class="fullhd-layer remove-item-layer">
+<div class="layer remove-item-layer">
   <span class="close is-clickable" onclick="layerClose()">
     <i class="fa fa-close"></i>
   </span>
@@ -32,7 +32,7 @@
       <h1 class="h1">¿Seguro deseas eliminar<br><span class="prod_name text-theme"></span><br> del carrito?</h1>
       <div class="form-group">
       	<button type="button" class="btn btn-light" onclick="layerClose('remove-item')">Cancelar</button>
-        <button type="button" id="carrito-remove-btn" class="btn btn-outline-danger" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
+        <button type="button" id="carrito-remove-btn" class="btn btn-chatelet-dark" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
       </div>
     </div>
   </div>
@@ -60,7 +60,7 @@
 				<div class="carrito-col">
 					<div class="mobile p-3">
 					<?php foreach ($sorted as $product) {
-						echo "<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data' data-json='".json_encode($product)."' product_row>";
+						echo "<div class='d-flex justify-content-start align-center gap-05 cart-row carrito-data' data-json='".json_encode($product)."' product_row>";
 
 						echo "<div class='cart-img'>";
 						if (!empty($product['number_ribbon'])) {
@@ -250,13 +250,12 @@
 					<br><br>
 					<?php endif;?>
 				</div>
-				<div class="carrito-col min-max-30 m-w-auto gap-1">
+				<div class="carrito-col min-max-22 m-w-auto gap-1">
 					<!-- fill coupon -->
 					<div class="card">
 						<?php echo $this->element('coupon'); ?>
 					</div>								  
 					<!-- end fill coupon -->
-
 					<div class="card">
 						<?php echo $this->element('resume', [
 							'total' => $total, 
@@ -266,24 +265,21 @@
 							'config' => $config, 
 						]); ?>
 					</div>
-
-					<div class="d-flex flex-column justify-content-center align-items-center gap-05 p-4">
+					<div class="d-flex flex-column justify-content-center align-items-center gap-05 p-3">
 					  <?php if (isset($carro) && !empty($carro)) :?>
-					    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-outline-danger w-100" link-to="<?=Router::url('/carrito/envio',true)?>" id="siguiente">Finalizar compra</a>
+					    <a href="javascript:void(0)" class="btn btn-chatelet dark cart-go-button btn-chatelet-dark w-100" link-to="<?=Router::url('/carrito/envio',true)?>" id="siguiente">Finalizar compra</a>
 					  <?php endif ?>
 
-						<a class="btn keep-buying cart-btn-green w-100" href="/tienda">Seguir comprando</a>
+						<a class="btn keep-buying btn-chatelet w-100" href="/tienda">Seguir comprando</a>
 					</div>
-
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
 	
 <?php if (isset($carro) && !empty($carro)) :?>
-<!--div id="carritoItem" class="menuLayer is-fullheight has-item-counter animated">
+<!--div id="carritoItem" class="bubble is-fullheight has-item-counter animated">
   <a class="close float-tr">
     <span></span>
     <span></span>

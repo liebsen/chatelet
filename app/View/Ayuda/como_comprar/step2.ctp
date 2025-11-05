@@ -39,7 +39,7 @@
                         'action' => 'como_comprar',
                          3
                         ), array(
-                        'class' => 'btn cart-btn-green'
+                        'class' => 'btn btn-chatelet'
                         ));
                     ?>
                     </div>

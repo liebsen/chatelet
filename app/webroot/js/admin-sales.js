@@ -94,7 +94,7 @@ function editLogistic (e, sale_id, logistic_id) {
 
 function layerClose() {
   $('body').css('overflow-y', 'auto')
-  $('.fullhd-layer').removeClass('active')
+  $('.layer').removeClass('active')
 }
 
 function logisticUpdate () {

@@ -54,7 +54,7 @@ function addToCart(data) {
           },
           'eventCallback': function() {
             $.growl.notice({
-              title: '(1)Producto agregado al carrito',
+              title: 'Producto agregado al carrito',
               message: 'Podés seguir agregando más productos o ir a la sección Pagar'
             });
             var reload = function() {

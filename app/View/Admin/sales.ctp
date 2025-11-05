@@ -5,7 +5,7 @@
 
 <!-- bank layer -->
 
-<div class="fullhd-layer bank-layer">
+<div class="layer bank-layer">
     <span class="close is-clickable" onclick="layerClose()">
         <i class="gi gi-remove_2"></i>
     </span>
@@ -31,7 +31,7 @@
 
 <!-- ticket layer -->
 
-<div class="fullhd-layer ticket-layer">
+<div class="layer ticket-layer">
     <span class="close is-clickable" onclick="layerClose()">
         <i class="gi gi-remove_2"></i>
     </span>
@@ -49,7 +49,7 @@
 
 <!-- logistic layer -->
 
-<div class="fullhd-layer logistic-layer">
+<div class="layer logistic-layer">
     <span class="close is-clickable" onclick="layerClose()">
         <i class="gi gi-remove_2"></i>
     </span>

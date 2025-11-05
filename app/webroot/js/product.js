@@ -89,7 +89,7 @@ function pideStock(obj){
 		if(url && article && color_code && size_number){
 			onWarningAlert('Consultando stock','Un momento por favor...')
 			var test = document.querySelector('.footer-producto');
-      $(test).find('a').animate({opacity: 0.25});
+      $(test).find('a').animate({opacity: 0.5});
       stock_cont.html(stock_v);
 
 	  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
@@ -129,8 +129,9 @@ $(document).ready(function() {
 		pideStock(event.target)
 	});
 
-	$(".add.agregar-carro").click(function(e) {
+	$(".agregar-carro").click(function(e) {
 		e.preventDefault()
+		const target = $(e.target)
 		//this = e.target;
 		var data = {
 			count: parseInt($('.product-count').val()),
@@ -168,7 +169,7 @@ $(document).ready(function() {
 			}
 		}
 
-		addCart(data, e.target)
+		addCart(data, e.target, 'Agregando al carrito ...', redirect)
 		return false;
 	});
 

@@ -28,7 +28,7 @@
 	<h4>Asegurate de seleccionar <span class="dues-message-dues"></span> cuotas en MercadoPago</h4>
 	<hr>
 	<div>
-		<button type="button" onclick="$('#submitform').click()" class="btn cart-btn-green" href="" class="mp-link">Entendido, continuar a MercadoPago</button>
+		<button type="button" onclick="$('#submitform').click()" class="btn btn-chatelet" href="" class="mp-link">Entendido, continuar a MercadoPago</button>
 	</div>
 	<hr>
 	<span class="text-small">❤️ ¡Muchas gracias!</span>
@@ -162,7 +162,7 @@
 										<div class="calc-coupon d-none">
 											<div class="d-flex justify-content-center align-items-center gap-05">
 										  	<input type="text" id="coupon_name" name="coupon" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
-									    	<button id="btn-calculate-coupon" class="btn btn-outline-danger btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Calcular</button>
+									    	<button id="btn-calculate-coupon" class="btn btn-chatelet-dark btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Calcular</button>
 									    	<span class="muted is-clickable text-muted" onclick="resetCoupon()">Cancelar</span>
 											</div>
 										</div>
@@ -171,7 +171,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="carrito-col min-max-30 m-w-auto">
+					<div class="carrito-col min-max-22 m-w-auto">
 						<div class="card">
 						  <div class="card-body">
 						    <h5 class="card-title">
@@ -293,11 +293,11 @@
 						'controller' => 'carrito',
 						'action' => 'index'
 					), array(
-						'class' => 'btn cart-btn-green',
+						'class' => 'btn btn-chatelet',
 						'escape' => false
 					));
 				?>			
-				<button type="button" id="submitcheckoutbutton" class="btn cart-btn-green checkout-btn btn-pink">
+				<button type="button" id="submitcheckoutbutton" class="btn btn-chatelet checkout-btn btn-pink">
 					Comprar
 				</button>
 				<input type="submit" id="submitform" class="hidden-force" />

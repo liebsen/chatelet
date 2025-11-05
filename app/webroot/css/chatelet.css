@@ -5,16 +5,12 @@
 	src: url('../fonts/BauerBodni Blk BT Black.ttf');
 }*/
 
-body {
-	/*background-color: #efefef;*/
-}
-
 body.loading {
   overflow: hidden;
 }
 
 body > section,
-body > div:not([class*="modal"]):not(.whatsapp-block):not(.social-bottom) {
+body > div:not([class*="modal"]):not(.whatsapp-block):not(.social-bottom):not(.whatsapp-text) {
 	background-color: #fff;
 }
 
@@ -629,9 +625,9 @@ html, body {
 .max-25 {
   max-width: 25rem;
 }
-.min-max-30 {
-  min-width: 25rem;
-  max-width: 25rem;
+.min-max-22 {
+  min-width: 22rem;
+  max-width: 22rem;
 }
 
 .min-25 {
@@ -648,15 +644,6 @@ html, body {
 	border-radius: 5px;
 }
 
-.btn.btn-outline-danger {
-	color: white;
-  background-color: black;
-  border-color: black;
-}
-
-.btn.btn-outline-danger:hover {
-  background-color: #333;
-}
 
 .is-transparent {
 	background-color: transparent;
@@ -992,6 +979,7 @@ select.form-control{
 }
 
 .text-footer {
+	font-size: 0.75rem;
 	font-weight: 500;
 	text-shadow: -1px -1px 1px #fff6, 1px 1px 1px #3333;
 }
@@ -1306,11 +1294,11 @@ select.form-control{
 	line-height: 1.25;
 }
 
-.cart-btn-green {
+.btn-chatelet {
 	display: inline-block;
 	text-align: center;
 	font-size: 0.85rem;
-	line-height: 1.5;
+	line-height: 1.75;
 	padding: 0.75rem 1rem;
 	font-weight: 700;
 	color: black;
@@ -1321,19 +1309,29 @@ select.form-control{
 	transition: all 0.25s ease;
 }
 
-.cart-btn-green.shrink {
+.btn-chatelet.dark {
+	color: white;
+  background-color: black;
+  border-color: black;
+}
+
+.btn-chatelet.dark:hover {
+  background-color: #333;
+}
+
+.btn-chatelet.shrink {
 	min-width: inherit;
 }
 
-.cart-btn-green.ready {
+.btn-chatelet.ready {
 	background-color: #e60088;
 }
 
-.cart-btn-green.disabled {
+.btn-chatelet.disabled {
 	background-color: #bebebe;
 }
 
-.cart-btn-green:hover {
+.btn-chatelet:hover {
 	background-color: #f8f8f8;
 }
 
@@ -1465,7 +1463,7 @@ span.validation-password {
 	position: fixed;
 	opacity: 0;
 	z-index: 1060;
-	bottom: 2rem;
+	bottom: 1rem;
 	right: 0.75rem;
 	display: flex;
 	flex-direction: column;
@@ -1492,20 +1490,21 @@ span.validation-password {
 }
 
 .whatsapp-text {
+	position: fixed;
+	left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-color: #5cb85c;
 	box-shadow: rgba(0, 0, 0, 0.16) -3px 3px 3px;
 	color: white;
-	border-radius: 3rem;
-	position: absolute;
-  right: -0.25rem;
-  bottom: -0.666rem;
-  padding: 1rem 1.5rem;
-	z-index: -1;
+	z-index: 90;
 	line-height: 1;
-	width: 16rem;
+	width: 100%;
+	min-height: 3rem;
 }
 
 .navbar-container {

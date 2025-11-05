@@ -27,7 +27,7 @@
 	<h4>Asegurate de seleccionar <span class="dues-message-dues"></span> cuotas en MercadoPago</h4>
 	<hr>
 	<div>
-		<button type="button" onclick="$('#submitform').click()" class="btn cart-btn-green" href="" class="mp-link">Entendido, continuar a MercadoPago</button>
+		<button type="button" onclick="$('#submitform').click()" class="btn btn-chatelet" href="" class="mp-link">Entendido, continuar a MercadoPago</button>
 	</div>
 	<hr>
 	<span class="text-small">❤️ ¡Muchas gracias!</span>
@@ -157,7 +157,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="carrito-col min-max-30 m-w-auto">
+					<div class="carrito-col min-max-22 m-w-auto">
 						<div class="card">
 						  <div class="card-body">
 						    <h5 class="card-title">
@@ -279,11 +279,11 @@
 						'controller' => 'carrito',
 						'action' => 'index'
 					), array(
-						'class' => 'btn cart-btn-green',
+						'class' => 'btn btn-chatelet',
 						'escape' => false
 					));
 				?>			
-				<button type="button" id="submitcheckoutbutton" class="btn cart-btn-green checkout-btn btn-pink">
+				<button type="button" id="submitcheckoutbutton" class="btn btn-chatelet checkout-btn btn-pink">
 					Comprar
 				</button>
 				<input type="submit" id="submitform" class="hidden-force" />

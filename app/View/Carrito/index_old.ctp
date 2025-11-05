@@ -23,7 +23,7 @@
 
 <!-- bank layer -->
 
-<div class="fullhd-layer remove-item-layer">
+<div class="layer remove-item-layer">
   <span class="close is-clickable" onclick="layerClose()">
     <i class="fa fa-close"></i>
   </span>
@@ -32,7 +32,7 @@
       <h1 class="h1">¿Seguro deseas eliminar<br><span class="prod_name text-theme"></span><br> del carrito?</h1>
       <div class="form-group">
       	<button type="button" class="btn btn-light" onclick="layerClose('remove-item')">Cancelar</button>
-        <button type="button" id="carrito-remove-btn" class="btn btn-outline-danger" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
+        <button type="button" id="carrito-remove-btn" class="btn btn-chatelet-dark" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
       </div>
     </div>
   </div>
@@ -303,11 +303,11 @@
 			</div>
 			<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-05 animated slideInUp delay2">
 				<?php if (!isset($carro)): ?>
-					<a href="#" class="btn action-search cart-btn-green">Buscar</a>
+					<a href="#" class="btn action-search btn-chatelet">Buscar</a>
 				<?php endif ?>
-				<a class="btn keep-buying cart-btn-green" href="/tienda">Seguir comprando</a>
+				<a class="btn keep-buying btn-chatelet" href="/tienda">Seguir comprando</a>
 			  <?php if (isset($carro) && !empty($carro)) :?>
-			    <a href="javascript:void(0)" class="btn cart-btn-green cart-go-button btn-outline-danger" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
+			    <a href="javascript:void(0)" class="btn btn-chatelet cart-go-button btn-chatelet-dark" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
 			  <?php endif ?>
 			</div>
 		</div>
@@ -315,7 +315,7 @@
 </div>
 	
 <?php if (isset($carro) && !empty($carro)) :?>
-<div id="carritoItem" class="menuLayer is-fullheight has-item-counter animated">
+<div id="carritoItem" class="bubble is-fullheight has-item-counter animated">
   <a class="close">
     <span></span>
     <span></span>

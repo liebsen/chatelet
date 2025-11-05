@@ -25,7 +25,12 @@ $(document).ready(function() {
 		flash.remove();
 	});
 
-	$('.gotocart').click(() => {
+	$(document).on('click', '.gotoaccount', () => {
+		location.href = '/shop/cuenta'
+	})
+
+	$(document).on('click', '.gotocart', () => {
+		console.log('click gotocart')
 		location.href = '/carrito'
 	})
 	

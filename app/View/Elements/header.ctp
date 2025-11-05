@@ -30,7 +30,7 @@
             <?php endif ?>
             <?php if( !empty($data['show_shop']) ): ?>
               <li>
-                <a href="/Shop" class="viewSubMenu">Shop</a>
+                <a href="/Shop" data-toggle="mouseenter" data-show=".shop-options">Shop</a>
               </li>
             <?php endif ?>
             <!--li>
@@ -64,47 +64,48 @@
 
            <!-- .Login -->
             <li class="dropdown">
-               <?php if ($loggedIn) { ?>
-               <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
+              <?php if ($loggedIn) { ?>
+              <a href="#" class="dropdown-toggle js-activated gotoaccount" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
                 <!--span class="count animated scaleIn speed delay1">
                   <i class="fa fa-check text-white fa-xs"></i>
                 </span-->
                 <i class="fa text-green fa-user-circle"></i>
-               </a>
+              </a>
               <ul class="dropdown-menu">
-                 <li>
-                   <div id="login-panel">
-                      <div class="control-panel">
-                        <p class="title">Panel de Usuario</p>
-
-                        <div id="user-data">
-                          <div id="user-name"><?php echo $user['name'] . " " . $user['surname']; ?>                       <a href="#" class="pencil" data-toggle="modal" data-target="#particular-modal">
-                          <span class="fa fa-pencil"></span>
-                        </a>     </div>
-                          <div id="user-email"><?php echo $user['email']; ?></div>
-
+                <li>
+                 <div id="login-panel">
+                    <div class="control-panel">
+                      <p class="title">Panel de Usuario</p>
+                      <div id="user-data">
+                        <div id="user-name">
+                          <?php echo $user['name'] . " " . $user['surname']; ?>
+                          <a href="/shop/cuenta" class="pencil">
+                            <span class="fa fa-pencil"></span>
+                          </a>
                         </div>
-                        <!--ul id="control-sections" class="list-unstyled">
-                          <li class="">
-                            <span class="fa fa-tag"></span> <a href="#">Historial de Compras</a>
-                          </li>
-                          <li class="">
-                            <span class="fa fa-heart"></span> <a href="#">Mis favoritos</a>
-                          </li>
-                          <li class="">
-                            <span class="fa fa-comment"></span> <a href="#">Mis consultas</a>
-                          </li>
-                        </ul-->
+                        <div id="user-email"><?php echo $user['email']; ?></div>
                       </div>
-                      <div id="control-footer">
-                        <a href="/shop/mis_compras" class="btn cart-btn-green">Mis compras</a>
-                        <a href="/users/logout" class="btn cart-btn-green">Cerrar sesión</a>
-                      </div>
+                      <!--ul id="control-sections" class="list-unstyled">
+                        <li class="">
+                          <span class="fa fa-tag"></span> <a href="#">Historial de Compras</a>
+                        </li>
+                        <li class="">
+                          <span class="fa fa-heart"></span> <a href="#">Mis favoritos</a>
+                        </li>
+                        <li class="">
+                          <span class="fa fa-comment"></span> <a href="#">Mis consultas</a>
+                        </li>
+                      </ul-->
                     </div>
-                  </li>
-                </ul>
+                    <div id="control-footer">
+                      <a href="/shop/mis_compras" class="btn btn-chatelet">Mis compras</a>
+                      <a href="/users/logout" class="btn btn-chatelet">Cerrar sesión</a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
               <?php } else { ?>
-               <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion"><i class="fa text-chatelet fa-user-circle"></i></a>
+              <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion"><i class="fa text-chatelet fa-user-circle"></i></a>
               <?php } ?>
             </li><!-- /.Login -->
             <li class="dropdown is-clickable">
@@ -188,8 +189,8 @@
   </form>
 </nav>
 
-<div id="menuShop" class="menuLayer">
-  <div class="wrapper">
+<div class="bubble shop-options">
+  <div class="wrapper" data-toggle="mouseleave" data-hide=".shop-options">
     <div class="row">
       <?php if(!empty($data['image_menushop'])): ?>
       <img class="pull-left" src="<?php echo Configure::read('uploadUrl').$data['image_menushop']?>">
@@ -220,58 +221,6 @@
           ?>
         </ul>
       </div>
-    </div>
-  </div>
-</div>
-
-<div id="menuSearch" class="menuLayer">
-  <nav class="navbar navbar-chatelet">
-    <div class="container-fluid pt-1">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <a class="navbar-brand"
-         href="<?php echo router::url(array('controller' => 'Home', 'action' => 'index')) ?>" >
-            Châtelet</a>
-      </div>
-      <div class="navbar-right text-center p-4">
-        <i>Buscar</i>
-      </div>
-    </div>
-  </nav>  
-  <!--a class="close position-relative">
-    <span></span>
-    <span></span>
-  </a-->
-  <div class="wrapper">
-    <div class="row">
-      <div class="col-sm-12 is-flex-center m-0">
-        <!--h3>Buscar</h3-->
-        <div class="box-search">
-          <input type="text" class="form-input input-search" placeholder="Buscar...">
-          <button class="close-search btn is-transparent animate is-clickable"><i class="fa fa-close text-muted"></i></button>
-<!--svg class="spinner-search" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-<rect class="spinner__rect" x="0" y="0" width="100" height="100" fill="none"></rect>
-<circle class="spinner__circle" cx="50" cy="50" r="40" stroke="#f41c80" fill="none" stroke-width="8" stroke-linecap="round">
-</circle>
-</svg-->
-          <div class="search-bar-container">
-            <div class="search-bar"></div>
-          </div>
-        </div>
-        <!--p class="search-info"></p-->
-      </div>
-    </div>
-    <div class="row display-flex is-justify-center search-results">
-      <div class="content p-5">
-        <h1>¿Qué estás buscando?</h1>
-        <p class="results-text text-muted"> Podés buscar por tipo de prenda, color, material ej: "remera", "pantalón", "malla", "jersey", "lino", "algodón", ... ¡Usa tu creatividad!</p>
-      </div>
-    </div>
-    <div class="row display-flex is-justify-center search-buttons gap-05">
-      <div>
-        <a href="javascript:$('.menuLayer').fadeOut();">Cerrar</a>
-      </div>
-      <div class="search-more"></div>
     </div>
   </div>
 </div>
