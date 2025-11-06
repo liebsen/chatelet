@@ -7,6 +7,7 @@ let searchPageSize = 12
 let searchPage = 0
 let focusAnim = 'pulse'
 let clock = 0
+let fakeshown = 0 
 const log = false
 
 function addCart(data, button, label, redirect) {
@@ -625,31 +626,37 @@ $(function () {
     if(clock) {
       clearInterval(clock)
     }
+
     clock = setTimeout(() => {
       var scroll = $(window).scrollTop()
       const video = $("#carousel .item.active").find("video")
           $('.navbar-chatelet').removeClass('fadeIn')
-
-      $('.navbar-chatelet').removeClass('fadeIn')
       void document.querySelector('.navbar-chatelet').offsetWidth;
       if (scroll > 100) {
-        $('#carousel-banners').addClass('invisible')
-        $('.navbar-chatelet').addClass('top-fixed')
-        $('.navbar-chatelet').addClass('fadeIn')
-        if(video?.length) {
-          $("video").each((i,video) => {
-            video.pause()
-          });
+        if (!fakeshown && lastscroll < scroll) {
+          $('.navbar-chatelet').removeClass('fadeIn')
+          $('#carousel-banners').addClass('invisible')
+          $('.navbar-chatelet').addClass('top-fixed')
+          $('.navbar-chatelet').addClass('fadeIn')
+          if(video?.length) {
+            $("video").each((i,video) => {
+              video.pause()
+            });
+          }
+          fakeshown = 1
         }
       } else {
-        $('#carousel-banners').removeClass('invisible')
-        $('.navbar-chatelet').removeClass('top-fixed')
-
-        $('.navbar-chatelet').addClass('fadeIn')
-        if(video?.length){
-          setTimeout(() => {
-            $(video).get(0).play()
-          }, 200)
+        if (lastscroll > scroll) {
+          $('.navbar-chatelet').removeClass('fadeIn')
+          $('#carousel-banners').removeClass('invisible')
+          $('.navbar-chatelet').removeClass('top-fixed')
+          $('.navbar-chatelet').addClass('fadeIn')
+          if(video?.length){
+            setTimeout(() => {
+              $(video).get(0).play()
+            }, 200)
+          }
+          fakeshown = false
         }
       }
       lastscroll = scroll

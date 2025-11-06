@@ -5,7 +5,13 @@
   --box-shadow-downwards: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;;
 }
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0;  font-size: 15px; vertical-align: baseline; }
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 
+  margin: 0; 
+  padding: 0; 
+  border: 0;  
+  font-size: 100%; 
+  vertical-align: baseline; 
+}
 
 html { line-height: 1; }
 
@@ -40,6 +46,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.05rem;
+  margin-bottom: 0.75rem;
 }
 
 .noscroll {
@@ -719,7 +726,7 @@ footer h3:after { background: #e10d74; content: ""; display: block; height: 2px;
 footer a, footer span { 
   color: #888; 
   font-size: 0.85rem; 
-  font-weight: 500; 
+  font-weight: 300; 
   text-transform: uppercase;  
 }
 footer a:hover { color: #363633; }
@@ -932,16 +939,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 }
 
 .text-catalog {
-  /*display: block;
-  position: absolute;
-  z-index: 10;
-  top: auto;
-  bottom: 0;
-  font-style: italic;*/
-  text-shadow: 0 0 2px #333,0 0 10px #666;
-  font-size: 1.25rem;
-  font-weight: 1000; 
-  letter-spacing: -0.04rem;
+  text-shadow: 0 0 2px #3336,0 0 10px #6666;
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: -0.03rem;
   line-height: 1;
   color: white;
   word-spacing: 9999px;
@@ -1133,13 +1134,27 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 }
 #productOptions .product-list a:hover .hover { opacity: 1; }
 
-#detalle { /*background: url(../images/detallebg.jpg) no-repeat center center; background-size: cover;*/ padding-top: 50px;    padding-bottom: 50px; }
+#detalle { 
+  background: url(../images/detallebg.jpg) no-repeat center center; 
+  background-size: cover;
+  padding-top: 50px;    
+  padding-bottom: 50px; 
+}
 /*#detalle ul { margin-top: 100px; }*/
 #detalle li { overflow: hidden; text-align: right; margin-bottom: 1.5rem;}
 #detalle li a { display: inline-block; overflow: hidden; }
 #detalle li a img { float: left; max-height: 10rem; /*border-radius: 0.5rem;*/}
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/
-#detalle h1 { color: #404040; font-size: 30px; font-weight: 700; margin-bottom: 5px; margin-top: 10px; }
+#detalle h1 { 
+  font-size: 1.5rem; 
+}
+#detalle h2 { 
+  font-size: 1.25rem; 
+}
+#detalle h3 { 
+  font-size: 1rem; 
+}
+
 #detalle > p { font-size: 1rem; font-weight: 600; margin-bottom: 20px; }
 #detalle .price {
   color: #363633;

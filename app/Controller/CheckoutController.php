@@ -9,9 +9,25 @@ $dotenv->load();
 
 use AlejoASotelo\Andreani;
 
-class CarritoController extends AppController
+class CheckoutController extends AppController
 {
-	public $uses = array('Product', 'ProductProperty', 'Store', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook', 'Coupon', 'Logistic', 'Setting', 'Legend');
+	public $uses = array(
+		'Product', 
+		'ProductProperty', 
+		'Store', 
+		'Sale',
+		'Package',
+		'User',
+		'SaleProduct',
+		'Catalogo',
+		'Category',
+		'LookBook',
+		'Coupon',
+		'Logistic',
+		'Setting',
+		'Legend'
+	);
+	
 	public $components = array('RequestHandler');
 
 	public function beforeFilter()

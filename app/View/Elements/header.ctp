@@ -252,11 +252,15 @@
     } ?>
     </div>
     <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-      <a href="/carrito" class="btn btn-chatelet dark w-100">Ir al carrito</a>
+      <a href="/checkout" class="btn btn-chatelet dark w-100">Comprar ahora</a>
+      <a href="/carrito" class="btn btn-chatelet w-100">Ir al carrito</a>
       <a href="/tienda" class="btn keep-buying btn-chatelet w-100">Seguir comprando</a>
     </div>  
     <?php else: ?>
       <p>Tu carrito de compras está vacío</p>
+      <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
+        <a href="/tienda" class="btn keep-buying btn-chatelet w-100">Seguir comprando</a>
+      </div>        
     <?php endif ?>
   </div>
 </nav>

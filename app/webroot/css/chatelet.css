@@ -413,11 +413,12 @@ html, body {
 .min-h-8 {
 	min-height: 8rem;
 }
-
 .min-h-12 {
 	min-height: 12rem;
 }
-
+.min-h-100 {
+  min-height: calc(100dvh - 103px);
+}
 .mb-0 {
   margin-bottom: 0!important;
 }

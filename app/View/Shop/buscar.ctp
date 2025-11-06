@@ -12,20 +12,6 @@
       </div>
     </form>
     <div class="row">
-      <div class="col-md-3">
-      <?php
-          $slug =  str_replace(' ','-',strtolower($category['Category']['name']));
-            if (strpos($slug, 'trajes')!==false){
-              $slug = 'trajes-de-bano';
-            }
-
-      ?>
-          <a href="<?php echo router::url(array('controller' => 'tienda', 'action' => 'productos',
-                           $slug)) ?>" class="btBig">
-            volver <br>
-             al  <span>SHOP</span>
-          </a>
-      </div>
 
       <div class="col-md-9 product-list posnum-<?=@$category['Category']['posnum'] ?>">
           <div class="row">
@@ -114,6 +100,21 @@ $number_ribbon = (int) @$product['bank_discount'];
            <?php }endforeach; ?>
         </div>
       </div>
+      <div class="col-md-3">
+      <?php
+          $slug =  str_replace(' ','-',strtolower($category['Category']['name']));
+            if (strpos($slug, 'trajes')!==false){
+              $slug = 'trajes-de-bano';
+            }
+
+      ?>
+          <a href="<?php echo router::url(array('controller' => 'tienda', 'action' => 'productos',
+                           $slug)) ?>" class="btBig">
+            volver <br>
+             al  <span>SHOP</span>
+          </a>
+      </div>
+
     </div>
   </div>
 </section>
