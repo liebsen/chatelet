@@ -65,11 +65,11 @@
            <!-- .Login -->
             <li class="dropdown">
               <?php if ($loggedIn) { ?>
-              <a href="#" class="dropdown-toggle js-activated gotoaccount" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
+              <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
                 <!--span class="count animated scaleIn speed delay1">
                   <i class="fa fa-check text-white fa-xs"></i>
                 </span-->
-                <i class="fa text-green fa-user-circle"></i>
+                <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-green fa-user"></i>
               </a>
               <ul class="dropdown-menu">
                 <li>
@@ -79,7 +79,7 @@
                       <div id="user-data">
                         <div id="user-name">
                           <?php echo $user['name'] . " " . $user['surname']; ?>
-                          <a href="/shop/cuenta" class="pencil">
+                          <a data-toggle="sidebar" data-target=".sidebar-account" class="pencil">
                             <span class="fa fa-pencil"></span>
                           </a>
                         </div>
@@ -105,15 +105,15 @@
                 </li>
               </ul>
               <?php } else { ?>
-              <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion"><i class="fa text-chatelet fa-user-circle"></i></a>
+              <a href="/shop/login" class="dropdown-toggle" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion"><i class="fa text-chatelet fa-user"></i></a>
               <?php } ?>
             </li><!-- /.Login -->
             <li class="dropdown is-clickable">
-              <a href="#" class="dropdown-toggle gotocart js-activated<?=count($carro) ? ' text-theme':'' ?>" data-toggle="dropdown" data-hover="dropdown">
+              <a href="#" data-toggle="sidebar" data-target=".sidebar-cart" class="dropdown-toggle js-activated<?=count($carro) ? ' text-theme':'' ?>" data-toggle="dropdown" data-hover="dropdown">
                 <?php if(count($carro)):?>
-                <span class="count animated scaleIn speed delay1"><?=count($carro)?></span>
+                <span data-toggle="sidebar" data-target=".sidebar-cart" class="count animated scaleIn speed delay1"><?=count($carro)?></span>
                 <?php endif ?>
-                <span><i class="fa fa-shopping-cart <?= count($carro) ? 'text-green' : 'text-chatelet' ?>"></i></span>
+                <span data-toggle="sidebar" data-target=".sidebar-cart"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-cart <?= count($carro) ? 'text-green' : 'text-chatelet' ?>"></i></span>
               </a>
               <ul class="dropdown-menu">
                 <li>
@@ -181,6 +181,8 @@
   </nav>
 </div>
 
+<div class="sidebar-backdrop"></div>
+
 <nav class="sidebar sidebar-search">
   <h6>Buscar en la tienda</h6>
   <form name="search" action="/shop/buscar">
@@ -189,7 +191,55 @@
   </form>
 </nav>
 
-<div class="bubble shop-options">
+<nav class="sidebar sidebar-account">
+  <h6>Buscar en la tienda</h6>
+  <form name="search" action="/shop/buscar">
+    <input class="form-control search-input" name="q" placeholder="Buscar...">
+    <button class="btn" type="submit">Buscar</button>
+  </form>
+</nav>
+
+<nav class="sidebar sidebar-cart">
+  <h6 class="text-bolder text-uppercase">Carrito</h6>
+  <div class="content pt-4">
+  <?php foreach($carro as $i => $product) {
+    echo "<div class='d-flex justify-content-start align-center gap-05 cart-row carrito-data' data-json='".json_encode($product)."'>";
+    echo "<div class='cart-img'>";
+    if (!empty($product['number_ribbon'])) {
+      echo '<div class="ribbon bottom-left small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
+    }
+    if (empty($product['price'])) {
+      $promosaved+= (float) $product['old_price'];
+    }
+    if ($product['promo'] !== '') {             
+      $disable = !isset($product['promo_enabled']) ? ' disable' : '';
+      echo "<div class='ribbon".$disable."'><span>" . $product['promo'] . "</span></div>";
+    }
+    echo '<a href="' . $item_url . '">';
+    // echo '<img src="'.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
+    echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
+    echo '</a>';
+  echo '</div>';
+  echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
+  echo '<h6 class="is-carrito mb-1">'. $product['name'] . '</h6>';
+    if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
+      echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
+    }
+    if (!empty($product['size']) && $product['size'] != 'undefined'){
+      echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
+    }
+
+  echo '<span class="text-nowrap mt-2">$ '. \price_format($product['price']) .'</span>';
+  echo '</div>';
+  echo '<button class="btn close bg-transparent" onclick="askremoveCart(this)">
+          <i class="fa fa-trash-o"></i>
+        </button>';         
+  echo '</div>';    
+  } ?>
+  </div>
+</nav>
+
+<div class="burst shop-options">
   <div class="wrapper" data-toggle="mouseleave" data-hide=".shop-options">
     <div class="row">
       <?php if(!empty($data['image_menushop'])): ?>

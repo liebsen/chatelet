@@ -79,33 +79,7 @@ function addToCart(data) {
     }); 
 }
 
-var askremoveCart = (e) => {
-  const item = $(e).parents('.carrito-data').data('json')
-  let userInput = confirm(`Deseas eliminar ${item.name} del carrito?`);
-  if(userInput){
-    $.get(`/carrito/remove/${item.id}`).then((res) => {
-      /* @Analytics: removeFromCart */
-      fbq('track', 'RemoveFromCart')
-      gtag('event', 'remove_from_cart', {
-        "items": [
-          {
-            "id": item.id,
-            "name": item.article,
-            // "list_name": "Results",
-            "brand": item.name,
-            // "category": "Apparel/T-Shirts",
-            "variant": item.alias,
-            "list_position": 1,
-            "quantity": 1,
-            "price": item.discount
-          }
-        ]
-      })
-      console.log('refersh')
-      window.location.href = window.location.href
-    })
-  }
-}
+
 
 var removeCart = (e) => {
   if(!removeElement) return

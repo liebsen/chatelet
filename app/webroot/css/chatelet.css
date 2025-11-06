@@ -27,6 +27,18 @@ nav.sidebar-expanded {
   right: 0!important;
 }
 
+.sidebar-backdrop {
+	display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: black!important;
+  opacity: 0.75;
+}
+
 nav.sidebar {
   position: fixed;
   z-index: 90;
@@ -36,11 +48,7 @@ nav.sidebar {
   width: 300px;
   height: 100%;
   background: white;
-  padding: 1rem;
-  border: 2px solid black;
-  border-right: none;
-  border-top: none;
-  border-bottom: none;
+  padding: 1.5rem;
   transition: all 0.25s ease-in-out;
 }
 
@@ -229,6 +237,7 @@ html, body {
 .modal-content {
   box-shadow: none!important;
   min-height: 100dvh;
+  border-radius: 5px;
 }
 
 /*.modal-body label {
@@ -370,11 +379,20 @@ html, body {
 .pl-3 {
   padding-left: 0.75rem!important;
 }
+.pl-4 {
+  padding-left: 1rem!important;
+}
+.pl-8 {
+  padding-left: 2rem!important;
+}
 .pt-2 {
 	padding-top: 0.5rem!important;
 }
 .pt-3 {
   padding-top: 0.75rem!important;
+}
+.pt-4 {
+  padding-top: 1rem!important;
 }
 .pb-0 {
   padding-bottom: 0!important;
@@ -409,9 +427,6 @@ html, body {
 	padding-left: 5px;
 	margin: 0;
 	font-weight: 500;
-}
-.text-uppercase {
-  text-transform: uppercase;
 }
 
 .is-absolute {
@@ -663,7 +678,8 @@ html, body {
 }
 
 .text-chatelet {
-	color: #e10d74;
+	color: #666;
+	/* color: #e10d74; */
 }
 
 .pre-system {
@@ -908,9 +924,12 @@ select.form-control{
 	/*font-style: italic;*/
 	/*font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 	width: 100%;
+	text-transform: uppercase;
+	border-radius: 5px;
 	text-align: center;
-	font-size: 1rem;
+	font-size: 0.85rem;
 	font-weight: 800;
+	min-height: 46px;
 	border: 0;
 }
 
@@ -1105,7 +1124,7 @@ select.form-control{
 */
 
 .modal-header .close {
-	color: #e10c76;
+	color: #888;
 	font-size: 1.5rem;
   margin-right: 0.25rem;
 }
@@ -1149,28 +1168,25 @@ select.form-control{
 }
 
 .modal-backdrop {
-	background-color: #e10d74;
+	background-color: #333;
 }
 
 .modal-backdrop.in {
 	opacity: 0.9;
 }
-#enviar-registro {
+
+/* #enviar-registro {
 	width: 100%;
-	background-color: #e10c76;
+	background-color: black;
 	color: white;
-	min-height: 50px;
-	/*font-size: 24px;*/
+	min-height: 44px;
 	text-align: center;
 	border: 0;
-	border-radius: 0.5rem;
-	font-size: 1rem;
+	border-radius: 5px;
 	font-weight: 700;
 	padding: 0.75rem 1rem;
 	margin-top: 10px;
-	/*font-style: italic;*/
-	/*font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
-}
+}*/
 
 .form-group {
 	margin-bottom: 0;
@@ -1306,6 +1322,7 @@ select.form-control{
 	background-color: white;
 	/*min-width: 20rem;*/
 	min-height: 46px;
+	max-height: 46px;
 	transition: all 0.25s ease;
 }
 
@@ -1341,6 +1358,10 @@ select.form-control{
 
 .text-bold {
 	font-weight: 800!important;
+}
+
+.text-bolder {
+	font-weight: 1000!important;
 }
 
 .text-high {
@@ -1464,7 +1485,7 @@ span.validation-password {
 	opacity: 0;
 	z-index: 1060;
 	bottom: 1rem;
-	right: 0.75rem;
+	right: 0.85rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -1520,6 +1541,11 @@ span.validation-password {
 }
 
 @media screen and (min-width: 769px) {
+	.min-max-22 {
+	  min-width: 26rem;
+	  max-width: 26rem;
+	}
+
 	/*.navbar-chatelet.top-fixed {
 		background: linear-gradient(white,hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.7) 70%, hsla(0,0%,100%,0));
 		box-shadow: none;
@@ -1547,14 +1573,15 @@ span.validation-password {
 	#opts .mod-item { min-height: 220px;} 
 }
 
-@media screen and (max-width: 512px) {
-	.tap-to-continue > span {
-		display: none;
+/*@media screen and (max-width: 512px) {
+	.whatsapp-block {
+		bottom: 0;
 	}
-}
+}*/
+
 @media screen and (max-width: 768px) {
 	.navbar-container {
-		min-height: 134px;
+		min-height: 128px;
 	}
 	.modal-dialog {
 		width: calc(100dvw - 14px);

@@ -364,7 +364,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   }
 }
 @media (min-width: 992px) {
-  .carrito-row {
+  .flex-row {
     display: flex;
     flex-direction: row;
   }  
@@ -668,7 +668,7 @@ footer .options > div {
 }
 
 @media(max-width: 1023px){
-  .carrito-col {
+  .flex-col {
     flex-direction: column;
   }
   
@@ -2514,13 +2514,13 @@ span.count.is-empty {
   border-color: #9add9b!important;
 }
 
-.carrito-row {
+.flex-row {
   padding-top: 1rem;
   max-width: 60rem;
   margin: auto; 
 }
 
-.carrito-col {
+.flex-col {
   display: flex;
   flex-direction: column;
 }
@@ -2721,7 +2721,7 @@ span.count.is-empty {
   .desktop {
     display: none;
   }
-  .text-small {
+  .text-sm {
     font-size: 0.75rem !important;
   }
   /*.btn-chatelet {
@@ -2792,16 +2792,16 @@ span.count.is-empty {
   .search-results .is-background-cover {
     /* min-height: 20rem; */
   }
-  .carrito-col {
+  .flex-col {
     flex: 1;    
   }
-  /*.carrito-col:last-child {
+  /*.flex-col:last-child {
     max-width: 20rem;
   }*/
-  .carrito-col {
+  .flex-col {
     padding: 1rem;
   }
-  .carrito-col .card {
+  .flex-col .card {
     padding: 1rem;
   }
   .ch-flex .price {

@@ -162,7 +162,7 @@
 <div class="related-empty<?=empty($categories_count) && empty($products_count) ? '' : ' d-none' ?>">
   <button class="btn btn-lg btn-success"><i class="fa fa-cog mr-2"></i> Configurar <?=$coupon['Coupon']['code'] ?></button>
   <hr>
-  <p class="text-small">Si configuras este cupón solo estará disponible para las cateogrías y/o productos que elijas.</p>
+  <p class="text-sm">Si configuras este cupón solo estará disponible para las cateogrías y/o productos que elijas.</p>
 </div>
 <div class="related-panel<?=empty($categories_count) && empty($products_count) ? ' d-none' : '' ?>">
   <h3 class="text-bold">Configurar <?=$coupon['Coupon']['code'] ?></h3>

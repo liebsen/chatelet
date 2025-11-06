@@ -32,7 +32,7 @@
       <h1 class="h1">¿Seguro deseas eliminar<br><span class="prod_name text-theme"></span><br> del carrito?</h1>
       <div class="form-group">
       	<button type="button" class="btn btn-light" onclick="layerClose('remove-item')">Cancelar</button>
-        <button type="button" id="carrito-remove-btn" class="btn btn-chatelet-dark" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
+        <button type="button" id="carrito-remove-btn" class="btn btn-chatelet dark" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
       </div>
     </div>
   </div>
@@ -56,8 +56,8 @@
 				echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
 				echo '<input type="hidden" id="checkout" value="'. $this->Html->url(array('controller' => 'carrito', 'action' => 'checkout')) .'" />'
 			?>
-			<div class="carrito-row">
-				<div class="carrito-col">
+			<div class="flex-row">
+				<div class="flex-col">
 					<table class="table">
 						<tr>
 							<th>ART.</th>
@@ -138,7 +138,7 @@
 							echo '<p class="color">Color: <span class="talle" color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></p>';
 						}
 					echo '<label class="form-group mt-3">
-						  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-small">Es para regalo</span><br><br>
+						  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-sm">Es para regalo</span><br><br>
 						</label>';
 
 					echo '</div>';
@@ -292,7 +292,7 @@
 					<br><br>
 					<?php endif;?>
 				</div>
-				<div class="carrito-col">
+				<div class="flex-col">
 				<?php 
 					if (isset($carro) && !empty($carro)) {
 						echo $this->element('shipping', array('freeShipping' => $freeShipping, 'carrito_takeaway_text' => $carrito_takeaway_text));
@@ -307,7 +307,7 @@
 				<?php endif ?>
 				<a class="btn keep-buying btn-chatelet" href="/tienda">Seguir comprando</a>
 			  <?php if (isset($carro) && !empty($carro)) :?>
-			    <a href="javascript:void(0)" class="btn btn-chatelet cart-go-button btn-chatelet-dark" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
+			    <a href="javascript:void(0)" class="btn btn-chatelet cart-go-button dark" link-to="<?=Router::url('/carrito/checkout',true)?>" id="siguiente">Siguiente</a>
 			  <?php endif ?>
 			</div>
 		</div>
@@ -315,7 +315,7 @@
 </div>
 	
 <?php if (isset($carro) && !empty($carro)) :?>
-<div id="carritoItem" class="bubble is-fullheight has-item-counter animated">
+<div id="carritoItem" class="burst is-fullheight has-item-counter animated">
   <a class="close">
     <span></span>
     <span></span>

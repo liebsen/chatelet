@@ -31,7 +31,7 @@
 		<button type="button" onclick="$('#submitform').click()" class="btn btn-chatelet" href="" class="mp-link">Entendido, continuar a MercadoPago</button>
 	</div>
 	<hr>
-	<span class="text-small">❤️ ¡Muchas gracias!</span>
+	<span class="text-sm">❤️ ¡Muchas gracias!</span>
 </div>
 <div id="main" class="container animated fadeIn delay1">
 	<form role="form" method="post" id="checkoutform" autocomplete="off" onkeydown="return event.key != 'Enter';" action="<?php echo $this->Html->url(array(
@@ -41,8 +41,8 @@
 
 		<div class="row">
 			<div id="carrito">
-				<div class="carrito-row">
-					<div class="carrito-col">
+				<div class="flex-row">
+					<div class="flex-col">
 						<div class="ch-flex">
 							<div class="card bg-transparent">
 							  <div class="card-body">
@@ -162,7 +162,7 @@
 										<div class="calc-coupon d-none">
 											<div class="d-flex justify-content-center align-items-center gap-05">
 										  	<input type="text" id="coupon_name" name="coupon" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
-									    	<button id="btn-calculate-coupon" class="btn btn-chatelet-dark btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Calcular</button>
+									    	<button id="btn-calculate-coupon" class="btn btn-chatelet dark btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Calcular</button>
 									    	<span class="muted is-clickable text-muted" onclick="resetCoupon()">Cancelar</span>
 											</div>
 										</div>
@@ -171,7 +171,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="carrito-col min-max-22 m-w-auto">
+					<div class="flex-col min-max-22 m-w-auto">
 						<div class="card">
 						  <div class="card-body">
 						    <h5 class="card-title">
@@ -184,11 +184,11 @@
 						    			<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
 					          	<span class="h5">Mercado Pago</span>
 					          </div>
-				          	<p class="mt-2 text-small">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
+				          	<p class="mt-2 text-sm">Pagá con débito, crédito o rapipago a través de Mercadopago</p>
 				          	<div class="dues-block d-none">
 										<?php if(count($legends) && $this->App->show_legends($legends)): ?>
 											<div class="payment-dues">
-										    <p class="text-small">¿Querés financiar tu compra? Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</p>
+										    <p class="text-sm">¿Querés financiar tu compra? Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</p>
 										    <ul class="generic-select">
 										    <?php foreach($legends as $legend): ?>
 										    	<?php if($total >= @$legend['Legend']['min_sale']):?>
@@ -207,7 +207,7 @@
 						          <input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
 					          	<span class="h5">Transferencia</span>
 					          </div>
-				          	<p class="mt-2 text-small">Pagá a través de transferencia bancaria con tu home banking</p>
+				          	<p class="mt-2 text-sm">Pagá a través de transferencia bancaria con tu home banking</p>
 				          </label>
 					       <?php endif ?>
 				        </div>

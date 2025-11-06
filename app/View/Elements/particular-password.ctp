@@ -20,13 +20,13 @@
         <p class="title mb-1">Ingresá tu correo</p>
         <input type="email" id="login-email" class="form-control"  name="data[User][email]" placeholder="Email" />
         <input type="submit" id="login" value="Enviar" />
-        <span id="forgot-password" class="text-muted text-small d-block mt-1">
+        <span id="forgot-password" class="text-muted text-sm d-block mt-1">
         Recibirás un correo electrónico con tu nueva contraseña
         </span>
-        <div class="modal-buttons">                
+        <!--div class="modal-buttons">                
 					<a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Crear nueva cuenta</a>
           <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Iniciar sesión</a>
-        </div>
+        </div-->
       	<?php echo $this->Form->end(); ?>       
 			</div>
 		</div>

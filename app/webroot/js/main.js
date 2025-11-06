@@ -96,6 +96,34 @@ function addCart(data, button, label, redirect) {
     }); 
 }
 
+var askremoveCart = (e) => {
+  const item = $(e).parents('.carrito-data').data('json')
+  let userInput = confirm(`¿Querés borrar el producto ${item.name} del carrito?`);
+  if(userInput){
+    $.get(`/carrito/remove/${item.id}`).then((res) => {
+      /* @Analytics: removeFromCart */
+      fbq('track', 'RemoveFromCart')
+      gtag('event', 'remove_from_cart', {
+        "items": [
+          {
+            "id": item.id,
+            "name": item.article,
+            // "list_name": "Results",
+            "brand": item.name,
+            // "category": "Apparel/T-Shirts",
+            "variant": item.alias,
+            "list_position": 1,
+            "quantity": 1,
+            "price": item.discount
+          }
+        ]
+      })
+      console.log('refersh')
+      window.location.href = window.location.href
+    })
+  }
+}
+
 let sendBeacon = (tag) => { 
   const data = {
     tag,
@@ -443,17 +471,19 @@ $(function () {
     }
   } 
   
-  var body = $('body');
-
-  body.click((e) => {
-    /*if(!$(e.target).hasClass('action-search') && !$(e.target).parents('.bubble').length) {
-      $('.bubble').hide()
+  $('body').click((e) => {
+    /*if(!$(e.target).hasClass('action-search') && !$(e.target).parents('.burst').length) {
+      $('.burst').hide()
     }*/
-    if($(e.target).data('toggle') == "sidebar") return false;
-    if($('nav.sidebar-expanded').length) {
-      $('nav.sidebar-expanded').removeClass('sidebar-expanded')
-    }
   })  
+
+  $('.sidebar-backdrop').click((e) => {
+    if($('nav.sidebar-expanded').length) {
+      $('.sidebar').removeClass('sidebar-expanded')
+      $('.sidebar-backdrop').fadeOut()
+    }
+  })
+
 
   $('#filters .prices label span, #formulario label span').click(function () {
     $('#filters .prices label span, #formulario label span').removeClass('active');
@@ -462,29 +492,12 @@ $(function () {
     $(this).parent().find('input').attr('checked', 'checked');
   })
 
-  /*$('ul.nav a').hover(function () {
-    if( $(this).attr('class') == 'viewSubMenu' ) {
-      $("video").each((i,video) => {
-        video.pause()
-      });
-      if (!$('.bubble').is(':visible').length) {
-        $('#menuShop').removeClass('position-fixed')  
-        $('#menuShop').addClass('fixed')  
-        $('#menuShop').fadeIn();
-      }
-    } else {
-      $('#menuShop').fadeOut();
-      var video = $("#carousel .item.active").find("video")
-      if(video.length){
-        setTimeout(() => {
-          $(video).get(0).play()
-        }, 50)
-      }
-    }
-  })*/
+  $('.action-search').click(function () {
+    location.href = '/shop/buscar'
+  })
 
-  $('.bubble a.close').click(function () {
-    $('.bubble').fadeOut();
+  $('.burst a.close').click(function () {
+    $('.burst').fadeOut();
     if (!$('.navbar-toggle').hasClass('collapsed')) {
       $('.navbar-toggle').addClass('collapsed')
     }
@@ -511,24 +524,24 @@ $(function () {
     }, 5000)
   }
 
-
   /* generic clic handlers */
   $('[data-toggle="sidebar"]').click((e) => {
     const target = $(e.target).data('target')
     const focus = $(e.target).data('focus')
     if($(target).length) {
-      if($(target).hasClass('sidebar-expanded')) {
-        $(target).removeClass('sidebar-expanded')
-      } else {
+      if(!$(target).hasClass('sidebar-expanded')) {
         $(target).addClass('sidebar-expanded')
+        $('.sidebar-backdrop').fadeIn()
+        if($(focus).length) {
+          setTimeout(() => {
+            $(focus).focus()
+          }, 500)
+        }
       }
-    }
-    if($(focus).length) {
-      $(focus).focus()
     }
   })
 
-  $('[data-toggle="mouseenter"]').hover((e) => {
+  $('[data-toggle="mouseenter"]').mouseenter((e) => {
     const show = $(e.target).data('show')
     // stop all media
     $("video").each((i,e) => {
@@ -589,13 +602,13 @@ $(function () {
     }, (segs + 3) * 1000)
   }
 
-  var bubbleTop = 0;
+  var burstTop = 0;
   /*if (document.getElementById('carousel-banners')) {
     const height = document.getElementById('carousel-banners').clientHeight
-    bubbleTop+= height;
+    burstTop+= height;
   }*/
-  document.querySelectorAll('.bubble:not(.is-fullheight)').forEach(e => {
-    e.style.top = `${bubbleTop}px`;
+  document.querySelectorAll('.burst:not(.is-fullheight)').forEach(e => {
+    e.style.top = `${burstTop}px`;
   })
   // Toggle Side content
   /*body.toggleClass('hide-side-content');*/
@@ -657,7 +670,6 @@ $(function () {
       if (q) {
         localStorage.setItem('lastsearch', q)
         $('#myModal').remove()
-        $('.action-search').click()
         $('.input-search').val(q)
         $('.input-search').keyup()
       }

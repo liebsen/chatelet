@@ -392,13 +392,13 @@ html, body {
 	font-weight: 700;
 }
 
-.btn.btn-chatelet-dark {
+.btn.btn-chatelet.dark {
 	color: #e10d74;
   background-color: #fff;
   border-color: #e10d74;
 }
 
-.btn.btn-chatelet-dark:hover {
+.btn.btn-chatelet.dark:hover {
   background-color: #e10d74;
 }
 

@@ -91,7 +91,7 @@ $(document).ready(function() {
 		var donts = [
 			'glyphicon glyphicon-remove', 
 			'giftchecks', 
-			'label-text text-muted text-small',
+			'label-text text-muted text-sm',
 		]	
 		if (!donts.includes(e.target.className)) {
 			$('html, body').addClass('disable-scroll')
@@ -284,7 +284,9 @@ $(document).ready(function() {
 		$('.gift-count').val(carrito.gifts.length)
 	}
 
-	const lastcp = localStorage.getItem('lastcp')	
+	if(!lastcp) {
+		var lastcp = localStorage.getItem('lastcp')
+	}
 
 	if (lastcp && $('#subtotal_compra').val()) {
 		setTimeout(() => {

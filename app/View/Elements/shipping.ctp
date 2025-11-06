@@ -11,7 +11,7 @@
 		  		<input type="radio" id="shipment" name="cargo" value="shipment" required />
 	      	<span class="h5"><?= $freeShipping ? 'Envío gratuito' : 'Envío a domicilio' ?></span><br>
 	      </div>
-      	<p class="mt-2 text-small">Para envíos a domicilio ingresá tu código postal</p>
+      	<p class="mt-2 text-sm">Para envíos a domicilio ingresá tu código postal</p>
 			  <div class="cargo-blocks shipment-block animated d-none">
 				  <div class="d-flex justify-content-center align-items-start flex-column gap-1">
 						<form class="w-100" id="calulate_shipping" data-url="<?php echo $this->Html->url(array('action'=>'deliveryCost')) ?>">
@@ -19,13 +19,13 @@
 						  	<div class="position-relative input-cp-container">
 						  		<input type="text" name="" placeholder="Tu código postal" value="" class="form-control input-cp both" title="Ingresá tu código postal" data-valid="0" />
 						  	</div>
-					    	<button class="btn btn-chatelet-dark btn-input-lg btn-calculate-shipping" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Cotizá el envío a domicilio de tu compra" type="submit">Calcular</button>
+					    	<button class="btn btn-chatelet dark btn-input-lg btn-calculate-shipping" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Cotizá el envío a domicilio de tu compra" type="submit">Calcular</button>
 							</div>
 						</form>
 						<div class="form-group shipping-block hidden">
 							<div>
 								<!--span class="h5">Seleccione tipo de envío</span><br-->
-								<span class="text-small">Elegí la empresa de tu confianza para realizar este envío</span>
+								<span class="text-sm">Elegí la empresa de tu confianza para realizar este envío</span>
 							</div>
 							<div class="slot">
 							</div>
@@ -39,7 +39,7 @@
 		  		<input type="radio" id="takeaway" name="cargo" value="takeaway" required />
 	      	<span class="h5">Retiro en sucursal</span>
 	      </div>
-      	<p class="mt-2 text-small"><span>Elegí esta opción para evitar cargos de envío. <span class="carrito_takeaway_text"><?= $carrito_takeaway_text ?></span></span></p>
+      	<p class="mt-2 text-sm"><span>Elegí esta opción para evitar cargos de envío. <span class="carrito_takeaway_text"><?= $carrito_takeaway_text ?></span></span></p>
 			  <div class="cargo-blocks takeaway-block animated d-none">
 					<ul class="generic-select takeaway-options">
 						<?php foreach ($stores as $store):?>

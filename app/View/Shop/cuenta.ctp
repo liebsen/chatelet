@@ -28,16 +28,9 @@
 	}
 ?>
 <div class="wrapper">
-	<div class="container animated fadeIn">
-		<div class="content">
+	<div class="container flex-row animated fadeIn">
+		<div class="flex-col">
 			<div class="d-flex flex-column justify-content-start align-items-center gap-1 content">
-				<br>
-				<h1>
-					<?php
-						if ($loggedIn) echo 'Tus datos en Châtelet';
-						else echo 'Crea tu cuenta en Châtelet';
-					?>
-				</h1>
 				<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
 					<p>
 						Crea hoy tu cuenta en <i>Châtelet</i> y accede a mas beneficios, seguimiento personalizado de tus compras y servicio postventa. Gracias por confiar en <i>Châtelet</i>.
@@ -235,17 +228,24 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-12">
-			    	<input type="submit" id="enviar-registro" value="<?= !$loggedIn ? 'Crear cuenta en Châtelet' : 'Actualizar mis datos' ?>" />
-	          <div class="modal-buttons">                  
-	            <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Inicia sesión</a>
-	            <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé mi contraseña</a>
-	          </div>			    	
-			    </div>
-				</div>
-				<?php echo $this->Form->end(); ?>
 			</div>
+		</div>
+		<div class="flex-col min-max-22">
+			<div class="card">
+				<div class="d-flex flex-column justify-content-center align-items-start gap-05">
+					<h1>
+						<?php
+							if ($loggedIn) echo 'Tus datos en Châtelet';
+							else echo 'Crea tu cuenta en Châtelet';
+						?>
+					</h1>
+
+		    	<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registro" value="<?= !$loggedIn ? 'Crear cuenta en Châtelet' : 'Actualizar mis datos' ?>" />
+          <a href="#" class="btn btn-chatelet w-100" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Inicia sesión</a>
+          <a href="#" class="btn btn-chatelet w-100" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé mi contraseña</a>
+		    </div>
+			</div>
+			<?php echo $this->Form->end(); ?>			
 		</div>
 	</div>
 </div>

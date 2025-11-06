@@ -130,6 +130,7 @@ class AppController extends Controller
         $this->set('loggedIn', $this->Auth->loggedIn());
         $this->set('user', $this->Auth->user());
         $this->set('carro', $this->Session->read('cart'));
+        
         $config = $this->Session->read('cart_totals');
         // ensure certain config entries...
         if(empty($config['add_basket'])){

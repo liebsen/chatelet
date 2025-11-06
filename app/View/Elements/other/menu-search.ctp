@@ -1,5 +1,5 @@
 
-<div id="menuSearch" class="bubble">
+<div id="menuSearch" class="burst">
   <div class="wrapper">
     <div class="row">
       <div class="col-sm-12 is-flex-center m-0">
@@ -27,7 +27,7 @@
     </div>
     <div class="row display-flex is-justify-center search-buttons gap-05">
       <div>
-        <a href="javascript:$('.bubble').fadeOut();">Cerrar</a>
+        <a href="javascript:$('.burst').fadeOut();">Cerrar</a>
       </div>
       <div class="search-more"></div>
     </div>

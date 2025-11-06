@@ -32,7 +32,7 @@
       <h1 class="h1">¿Seguro deseas eliminar<br><span class="prod_name text-theme"></span><br> del carrito?</h1>
       <div class="form-group">
       	<button type="button" class="btn btn-light" onclick="layerClose('remove-item')">Cancelar</button>
-        <button type="button" id="carrito-remove-btn" class="btn btn-chatelet-dark" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
+        <button type="button" id="carrito-remove-btn" class="btn btn-chatelet dark" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
       </div>
     </div>
   </div>
@@ -40,6 +40,15 @@
 
 <div id="main" class="container">
 	<div class="row">
+		<div class="flex-row">
+			<div class="flex-col flex-col justify-content-end pb-0">
+				<h6>Carrito</h6>
+			</div>
+			<div class="flex-col min-max-22 flex-col justify-content-end pl-8 pb-0">
+				<span><span class="text-sm text-bold">¿Necesitas ayuda?</span><span class="text-sm"> Consultá nuestras <a class="text-sm text-link" href="/ayuda/como_comprar">preguntas frequentes</a></span></span>
+			</div>
+		</div>
+
 		<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
 		<!--div class="col-md-12 shipping-price-min-alert animated fadeIn">
 			<div class="shipping-price-min-text">
@@ -55,9 +64,9 @@
 			<?php
 				echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
 				echo '<input type="hidden" id="checkout" value="'. $this->Html->url(array('controller' => 'carrito', 'action' => 'envio')) .'" />'
-			?>
-			<div class="carrito-row">
-				<div class="carrito-col">
+			?>			
+			<div class="flex-row">
+				<div class="flex-col">
 					<div class="mobile p-3">
 					<?php foreach ($sorted as $product) {
 						echo "<div class='d-flex justify-content-start align-center gap-05 cart-row carrito-data' data-json='".json_encode($product)."' product_row>";
@@ -81,10 +90,10 @@
 					echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
 					echo '<h6 class="is-carrito mb-1">'. $product['name'] . '</h6>';
 						if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
-							echo '<span class="text-small">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
+							echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
 						}
 						if (!empty($product['size']) && $product['size'] != 'undefined'){
-							echo '<span class="text-small">Talle: <span>'. $product['size'] .'</span></span>';
+							echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
 						}
 
 					echo '<span class="text-nowrap mt-2">$ '. \price_format($product['item_price']) .'</span>';					
@@ -103,7 +112,7 @@
 					  </div>
 					</div>';					
 					echo '<label class="form-group mt-3">
-						  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-small">Es para regalo</span><br><br>
+						  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-sm">Es para regalo</span><br><br>
 						</label>';
 
 					echo '</div>';
@@ -169,11 +178,11 @@
 					echo '<div class="d-flex justify-content-start align-center flex-column">';
 					echo '<span class="name is-carrito">'. $product['name'] . '</span>';
 						if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
-							echo '<span class="text-small">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
+							echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
 						}
 					echo '</div>';
 					echo '<label class="form-group">
-						  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-small">Es para regalo</span><br><br>
+						  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-sm">Es para regalo</span><br><br>
 						</label>';
 
 					echo '</div>';
@@ -203,7 +212,7 @@
 
 						echo '<span class="text-nowrap">$ '. \price_format($product['item_price']) .'</span>';
 						if (!empty($product['item_old_price'] && abs($product['item_old_price']-$product['item_price']) > 1)){
-							echo '<br><span class="old_price text-grey text-small">$ '. \price_format($product['item_old_price']) .'</span>';
+							echo '<br><span class="old_price text-grey text-sm">$ '. \price_format($product['item_old_price']) .'</span>';
 						}					
 
 						echo strlen(@$product['payment_text']) ? 'con ' . @$product['payment_text'] : '';
@@ -238,7 +247,26 @@
 					} ?>
 							</table>
 						</div>
-
+	        	<div class="d-flex justify-content-center align-items-center gap-1 bg-light min-h-5 p-3 desktop">
+	            <div class="col-md-4">
+	            	<span class="text-sm text-uppercase">ENVÍOS A TODO EL PAÍS</span><br>
+	              <span class="text-sm">
+	                Los envíos por compra online tienen una demora de 7 a 10 días hábiles
+	              </span>
+	            </div>
+	            <div class="col-md-4">
+	            	<span class="text-sm text-uppercase">CAMBIOS Y DEVOLUCIONES</span><br>
+	              <span class="text-sm">
+	                Los cambios se realizan dentro de los 30 días de efectuada la compra
+	              </span>
+	            </div>
+	            <div class="col-md-4">
+	            	<span class="text-sm text-uppercase">CALIDAD GARANTIZADA</span><br>
+	              <span class="text-sm">
+	                Las prendas deben estar sin uso y con la etiqueta de código de barras correspondiente adherida
+	              </span>
+	            </div>
+	        	</div>
 					<?php else: ?>
 					<div class="container cart-empty text-center">
 						<!--div class="icon-huge mt-4">
@@ -250,7 +278,7 @@
 					<br><br>
 					<?php endif;?>
 				</div>
-				<div class="carrito-col min-max-22 m-w-auto gap-1">
+				<div class="flex-col min-max-22 m-w-auto gap-1">
 					<!-- fill coupon -->
 					<div class="card">
 						<?php echo $this->element('coupon'); ?>
@@ -265,9 +293,9 @@
 							'config' => $config, 
 						]); ?>
 					</div>
-					<div class="d-flex flex-column justify-content-center align-items-center gap-05 p-3">
+					<div class="d-flex flex-column justify-content-center align-items-center gap-05">
 					  <?php if (isset($carro) && !empty($carro)) :?>
-					    <a href="javascript:void(0)" class="btn btn-chatelet dark cart-go-button btn-chatelet-dark w-100" link-to="<?=Router::url('/carrito/envio',true)?>" id="siguiente">Finalizar compra</a>
+					    <a href="javascript:void(0)" class="btn btn-chatelet dark cart-go-button w-100" link-to="<?=Router::url('/carrito/envio',true)?>" id="siguiente">Finalizar compra</a>
 					  <?php endif ?>
 
 						<a class="btn keep-buying btn-chatelet w-100" href="/tienda">Seguir comprando</a>
@@ -279,7 +307,7 @@
 </div>
 	
 <?php if (isset($carro) && !empty($carro)) :?>
-<!--div id="carritoItem" class="bubble is-fullheight has-item-counter animated">
+<!--div id="carritoItem" class="burst is-fullheight has-item-counter animated">
   <a class="close float-tr">
     <span></span>
     <span></span>
