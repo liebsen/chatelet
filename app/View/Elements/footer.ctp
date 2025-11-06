@@ -13,11 +13,13 @@
     !empty($data['whatsapp_text']) && 
     strstr($_SERVER['REQUEST_URI'], "/carrito") == false
   ): ?>
-    <div class="whatsapp-text animated chatIn delay2 <?= !empty($data['whatsapp_autohide']) ? " autohide segs-{$data['whatsapp_autohide']}" : '' ?>">
-      <span class="animated scaleIn delay pr-3">
-        <?= $data['whatsapp_text'] ?>
-      </span>
-    </div>
+    <a href="https://wa.me/<?= $data['whatsapp_phone'] ?>?text=Hola, tengo una consulta" class="d-block" target="_blank" title="Contactanos por WhatsApp">
+      <div class="whatsapp-text animated chatIn delay2 <?= !empty($data['whatsapp_autohide']) ? " autohide segs-{$data['whatsapp_autohide']}" : '' ?>">
+        <span class="animated scaleIn delay pr-3">
+          <?= $data['whatsapp_text'] ?>
+        </span>
+      </div>
+    </a>
   <?php endif ?>
     <footer>
       <div class="wrapper">

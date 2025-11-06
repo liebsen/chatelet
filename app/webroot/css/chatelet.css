@@ -232,6 +232,7 @@ html, body {
 	align-items: center;
 	justify-content: center;
 	gap: 2rem;
+	width: 100%;
 }
 
 .modal-content {
@@ -637,9 +638,11 @@ html, body {
 .items-end {
   align-items: flex-end;
 }
+
 .max-25 {
   max-width: 25rem;
 }
+
 .min-max-22 {
   min-width: 22rem;
   max-width: 22rem;
@@ -648,17 +651,19 @@ html, body {
 .min-25 {
   min-width: 25rem;
 }
+
 .max-21 {
   max-width: 21rem;
 }
+
 .btn {
 	text-transform: uppercase;
-	min-height: 2.75rem;
+	min-height: 44px;
+	line-height: 1.75;
 	font-size: 0.85rem;
 	font-weight: 700;
 	border-radius: 5px;
 }
-
 
 .is-transparent {
 	background-color: transparent;
@@ -1308,6 +1313,14 @@ select.form-control{
 .card-text {
 	min-height: 2rem;
 	line-height: 1.25;
+}
+
+.btn-close {
+	border: none;
+	background-color: transparent;
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
 }
 
 .btn-chatelet {

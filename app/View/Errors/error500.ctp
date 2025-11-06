@@ -1,7 +1,7 @@
 <div class="notfound">
   <div class="container">
-    <h1 class="h1">Se produjo un error</h1>
-    <p>Algo falló, por favor vuelva a intentarlo en unos instantes</p>
+    <h1 class="h1">Algo sucedió</h1>
+    <p>La página que solicitas no está disponible ahora, por favor vuelva a intentarlo en unos instantes</p>
   </div>
   <hr>
   <div class="container">

@@ -1,5 +1,7 @@
 <?php
+
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
+
 class UsersController extends AppController {
   public $uses = array('User','Category','LookBook');
   public $components = array("RequestHandler");
@@ -26,16 +28,19 @@ class UsersController extends AppController {
           'default', 
           array('class' => 'hidden notice')
         );
-        return $this->redirect($this->referer());
+        //return $this->redirect($this->referer());
+        return $this->redirect(array('controller' => 'shop', 'action' => 'cuenta'));
       }
+
       $this->Session->setFlash(
         'Por favor verifique su email y contraseña e intente nuevamente',
         'default',
         array('class' => 'hidden error')
       );
-      //CakeLog::write('error', 'login redirect ' . $this->referer());
+      CakeLog::write('debug', 'login redirect ' . $this->referer());
       return $this->redirect($this->referer());
     }
+    CakeLog::write('debug', 'home redirect ' . $this->referer());
     return $this->redirect(array('controller' => 'home', 'action' => 'index'));
   }
 
@@ -48,7 +53,6 @@ class UsersController extends AppController {
     );        
     return $this->redirect($this->Auth->logout());
   }
-
 
   public function fix_user_ids(){
     $this->autoRender = false;
@@ -100,7 +104,6 @@ class UsersController extends AppController {
 
     CakeLog::write('debug','ok: '.$ok);
     CakeLog::write('debug','fail: '.$fail);
-
   }
 
   public function register(){
@@ -135,42 +138,42 @@ class UsersController extends AppController {
   public function forgot_password(){
     if ($this->request->is('post')) {
       $email_user = $this->request->data['User']['email'];
-     
       if(!empty($email_user)){
-      $user_data = $this->User->find('first', array('recursive' => -1, 
-        'conditions' => array('User.email' => $email_user)));
-     
-      if(!empty($user_data)){   
-        $pass1 = substr($user_data['User']['password'], -6);
-        //$passwordHasher = new SimplePasswordHasher();
-        $pass = $pass1;//$passwordHasher->hash($pass1);
-                                                                                                
-        $this->User->save(array('User'=>array('id' => $user_data['User']['id'],
-          'password' => $pass)), false);
+        $user_data = $this->User->find('first', array('recursive' => -1, 
+          'conditions' => array('User.email' => $email_user)));
+       
+        if(!empty($user_data)){   
+          $pass1 = substr($user_data['User']['password'], -6);
+          //$passwordHasher = new SimplePasswordHasher();
+          $pass = $pass1;//$passwordHasher->hash($pass1);
+                                                                                                  
+          $this->User->save(array('User'=>array('id' => $user_data['User']['id'],
+            'password' => $pass)), false);
 
-        $email_data = array('id_user' => $user_data['User']['id'] ,
-          'receiver_email' => $user_data['User']['email'],
-          'name' =>  $user_data['User']['name'],
-          'password' => $pass1);
-         
-        $this->sendEmail($email_data,'Recuperar contraseña Châtelet', 'confirm_email');
+          $email_data = array('id_user' => $user_data['User']['id'] ,
+            'receiver_email' => $user_data['User']['email'],
+            'name' =>  $user_data['User']['name'],
+            'password' => $pass1);
+           
+          $this->sendEmail($email_data,'Recuperar contraseña Châtelet', 'confirm_email');
 
-        $this->Session->setFlash(
-          'BIEN!' , 
-          'Verifique su casilla de correo', 
-          array('class' => 'hidden notice')
-        );
-        return $this->redirect($this->referer());
-      } else {
-        $this->Session->setFlash(
-          'Error',
-          'default',
-          array('class' => 'hidden error')
-        );
-        return $this->redirect($this->referer());
+          $this->Session->setFlash(
+            'BIEN!' , 
+            'Verifique su casilla de correo', 
+            array('class' => 'hidden notice')
+          );
+          return $this->redirect($this->referer());
+        } else {
+          $this->Session->setFlash(
+            'Error',
+            'default',
+            array('class' => 'hidden error')
+          );
+          return $this->redirect($this->referer());
+        }
+
+        return $this->redirect(array('controller' => 'home', 'action' => 'index'));
       }
-
-      return $this->redirect(array('controller' => 'home', 'action' => 'index'));
     }
   }
 }

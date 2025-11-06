@@ -1,5 +1,5 @@
-
 <?php
+	echo $this->Session->flash();
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('formValidation.min', array('inline' => false));
   echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
@@ -9,12 +9,11 @@
 <section id="detalle">
   <div class="wrapper d-flex flex-column justify-content-center align-items-center gap-1">
 		<div class="header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			<h3 class="modal-title" id="modal-title">
 				<?php  echo 'Inicia sesión para continuar'; ?>
 			</h3>			
 		</div>
-		<div class="">
+		<div class="min-max-22">
 			<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
 				<p>
 					Inicia sesión en Chatelet con tus credenciales. Ingresá tu email y contraseña para continuar. Si no tienes una cuenta presiona Crear cuenta.
@@ -26,7 +25,7 @@
       <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" />
       <input type="submit" id="login" form="" value="Iniciar sesión" /> 
       <div class="modal-buttons">                
-        <a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Crear nueva cuenta</a>
+        <a href="/shop/registro">Crear nueva cuenta</a>
         <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé mi contraseña</a>
       </div>
       <?php echo $this->Form->end(); ?>

@@ -535,7 +535,7 @@ $(function () {
         if($(focus).length) {
           setTimeout(() => {
             $(focus).focus()
-          }, 500)
+          }, 1000)
         }
       }
     }
@@ -627,28 +627,25 @@ $(function () {
     }
     clock = setTimeout(() => {
       var scroll = $(window).scrollTop()
-      const navbar = document.querySelector('.navbar-chatelet')
-      const banners = document.getElementById('carousel-banners')
       const video = $("#carousel .item.active").find("video")
+          $('.navbar-chatelet').removeClass('fadeIn')
+
+      $('.navbar-chatelet').removeClass('fadeIn')
+      void document.querySelector('.navbar-chatelet').offsetWidth;
       if (scroll > 100) {
-        if (banners) {
-          banners.classList.add('invisible')
-        }
-        if(navbar) {
-          navbar.classList.add('top-fixed')
-        }
+        $('#carousel-banners').addClass('invisible')
+        $('.navbar-chatelet').addClass('top-fixed')
+        $('.navbar-chatelet').addClass('fadeIn')
         if(video?.length) {
           $("video").each((i,video) => {
             video.pause()
           });
         }
       } else {
-        if (banners) {
-          banners.classList.remove('invisible')
-        }
-        if(navbar) {
-          navbar.classList.remove('top-fixed')
-        }
+        $('#carousel-banners').removeClass('invisible')
+        $('.navbar-chatelet').removeClass('top-fixed')
+
+        $('.navbar-chatelet').addClass('fadeIn')
         if(video?.length){
           setTimeout(() => {
             $(video).get(0).play()

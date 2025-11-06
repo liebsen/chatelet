@@ -590,9 +590,10 @@ background-repeat: no-repeat;}
     bottom: 50%;
 }
 
-
-
-#location { background: #464545; overflow: hidden; }
+#location { 
+  background: #464545 url(../images/arrow-down-dark.png) no-repeat center top;
+  overflow: hidden; 
+}
 #location .col-md-4 { background: url(../images/ico3.png) no-repeat center center #efb0d2; min-height: 260px; }
 #location .col-md-12 { padding-left: 150px; padding-right: 150px; padding-top: 60px; padding-bottom: 60px; }
 #location .col-md-12 h3 { border-bottom: 2px solid #efb0d2; color: #FFF; font-size: 18px; font-weight: 500; margin-bottom: 20px; padding-bottom: 20px;display: block;width: 100%;}
@@ -602,7 +603,19 @@ background-repeat: no-repeat;}
 #location .col-md-12 ul li a { padding-left: 3.5rem; position: relative; left: -3.5rem; }
 #location .col-md-12 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; transform: scale(0.9);}
 #location .col-md-12 ul li:nth-child(2):before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -12px; width: 35px; transform: scale(0.75);}
-#location .col-md-12 ul li:nth-child(3):before { content: "\f232"; font: normal normal normal 18px / 1 FontAwesome; color: #25d366; font-size: 2rem; display: block; float: left; height: 45px; margin-right: 11px; margin-left: 5px; margin-top: -8px; width: 35px;}
+#location .col-md-12 ul li:nth-child(3):before { 
+  content: "\f232"; 
+  font: normal normal normal 18px / 1 FontAwesome; 
+  color: #25d366; 
+  font-size: 2rem; 
+  display: block; 
+  position: relative;
+  top: -3px;
+  left: -2px;
+  float: left; 
+  height: 45px; 
+  width: 35px;
+}
 #location .col-md-4.search { background: #FFF; padding-top: 75px; }
 #location .col-md-4.search input { background: url(../images/lupa.png) 35px center no-repeat transparent; border: 2px solid #363633; color: #363633; font-size: 16px; font-weight: 500; margin-bottom: 30px; padding: 10px 20px 10px 70px; width: 100%; }
 #location .col-md-4.search p { font-size: 16px; font-weight: 500; line-height: 1.4; }
@@ -1317,7 +1330,11 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #myModal2 .content .table tr:first-child td { border-top: none; }
 #myModal2 .content .table tr td:first-child { color: #363633; text-align: left; }
 
-.map { display: flex; overflow: hidden; background-color: #efefef;}
+.map { 
+  display: flex; 
+  overflow: hidden; 
+  background-color: #e7e7e7;
+}
 .map .col-md-4 { background: url(../images/mapbg.png) no-repeat center center; background-size: cover; display: flex; justify-content: flex-start; align-items: center; padding-left: 5rem;}
 .map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 1000; }
 .map .col-md-4 h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
@@ -1336,7 +1353,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 /*#headcontacto .box { border: 2px solid #6666; }
 #headcontacto .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; margin-top: 0; }
 #headcontacto .box p { font-size: 16px; line-height: 1.5; }*/
-#formulario { background: url(../images/arrow-down.gif) no-repeat center top; padding: 80px 0; background-color: white;}
+#formulario { background: url(../images/arrow-down.png) no-repeat center top; padding: 80px 0; background-color: white;}
 #formulario .wrapper { /*background: url(../images/formbg.jpg) no-repeat left center;*/ background-size: contain; /*padding: 1rem;*/ }
 #formulario input[type="text"], #formulario input[type="email"], #formulario textarea { background: transparent; border: none; border-bottom: 1px solid #464444; font-size: 1rem; padding: 1rem 0; width: 100%; }
 #formulario h3 { font-size: 22px; margin: 80px 0 70px; }
@@ -1427,7 +1444,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 #optionsHelp a.active { color: #363633;  }
 #desarrollo { 
-  background: white url(../images/arrow-down.gif) no-repeat center top; 
+  background: white url(../images/arrow-down.png) no-repeat center top; 
   /* linear-gradient(to bottom, #fff 0%, #f8f8f8 100%),  */
   padding: 1rem; 
   padding-top: 5rem; 

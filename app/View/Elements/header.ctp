@@ -1,5 +1,5 @@
 <div class="navbar-container">
-  <nav class="navbar navbar-chatelet">
+  <nav class="navbar navbar-chatelet animated">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -57,7 +57,7 @@
 
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="#">
+              <a href="#" title="Buscar en la tienda">
                 <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="fa text-chatelet fa-search text-light"></i>
               </a>
             </li>
@@ -105,7 +105,9 @@
                 </li>
               </ul>
               <?php } else { ?>
-              <a href="/shop/login" class="dropdown-toggle" data-toggle="modal" data-target="#particular-login" data-toggle="dropdown" id="iniciar-sesion"><i class="fa text-chatelet fa-user"></i></a>
+              <a href="/shop/cuenta" class="dropdown-toggle" title="Inicia sesión">
+                <i class="fa text-chatelet fa-user"></i>
+              </a>
               <?php } ?>
             </li><!-- /.Login -->
             <li class="dropdown is-clickable">
@@ -113,7 +115,7 @@
                 <?php if(count($carro)):?>
                 <span data-toggle="sidebar" data-target=".sidebar-cart" class="count animated scaleIn speed delay1"><?=count($carro)?></span>
                 <?php endif ?>
-                <span data-toggle="sidebar" data-target=".sidebar-cart"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-cart <?= count($carro) ? 'text-green' : 'text-chatelet' ?>"></i></span>
+                <span data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-cart <?= count($carro) ? 'text-green' : 'text-chatelet' ?>"></i></span>
               </a>
               <ul class="dropdown-menu">
                 <li>
@@ -184,24 +186,29 @@
 <div class="sidebar-backdrop"></div>
 
 <nav class="sidebar sidebar-search">
-  <h6>Buscar en la tienda</h6>
-  <form name="search" action="/shop/buscar">
-    <input class="form-control search-input" name="q" placeholder="Buscar...">
-    <button class="btn" type="submit">Buscar</button>
-  </form>
+  <button type="button" class="btn-close" data-dismiss="modal" aria-hidden="true">
+    <i class="fa fa-times"></i>
+  </button>
+  <h6 class="text-bolder text-uppercase">Buscar</h6>
+  <div class="content pt-4">  
+    <form name="search" action="/shop/buscar">
+      <input class="form-control search-input" name="q" placeholder="Buscar...">
+      <button class="btn" type="submit">Buscar</button>
+    </form>
+  </div>
 </nav>
 
 <nav class="sidebar sidebar-account">
-  <h6>Buscar en la tienda</h6>
-  <form name="search" action="/shop/buscar">
-    <input class="form-control search-input" name="q" placeholder="Buscar...">
-    <button class="btn" type="submit">Buscar</button>
-  </form>
+  <h6 class="text-bolder text-uppercase">Accediste como</h6>
+  <div class="content pt-4">    
+    <h6> ...</h6>
+  </div>
 </nav>
 
 <nav class="sidebar sidebar-cart">
   <h6 class="text-bolder text-uppercase">Carrito</h6>
   <div class="content pt-4">
+  <?php if (isset($carro) && !empty($carro)) :?>
   <?php foreach($carro as $i => $product) {
     echo "<div class='d-flex justify-content-start align-center gap-05 cart-row carrito-data' data-json='".json_encode($product)."'>";
     echo "<div class='cart-img'>";
@@ -237,6 +244,13 @@
   echo '</div>';    
   } ?>
   </div>
+  <div class="d-flex flex-column justify-content-center align-items-center gap-05">
+    <a href="/carrito" class="btn btn-chatelet dark w-100">Ir al carrito</a>
+    <a href="/tienda" class="btn keep-buying btn-chatelet w-100">Seguir comprando</a>
+  </div>  
+  <?php else: ?>
+    <p>Tu carrito de compras está vacío</p>
+  <?php endif ?>
 </nav>
 
 <div class="burst shop-options">

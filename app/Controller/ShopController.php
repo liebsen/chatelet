@@ -395,8 +395,6 @@ class ShopController extends AppController {
     $this->render('product');
 	}
 
-  public function login(){
-  }
 
   public function mis_compras()
   {
@@ -600,9 +598,11 @@ class ShopController extends AppController {
 		$this->set('all_but_me', $all_but_me);
 	}
 
-	public function cuenta(){
-	}
-	
+	public function registro() {}
+	public function cuenta() {}
+	public function recuperar_acceso() {}
+	public function login() {}
+
 	public function buscar(){
 		$this->loadModel('Product');
 		$this->loadModel('Search');
@@ -644,6 +644,7 @@ class ShopController extends AppController {
 			}
 		}
 
+		$this->set('q', $q);
 		$this->set('results', $results);
 
 		// save search

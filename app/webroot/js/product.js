@@ -169,7 +169,7 @@ $(document).ready(function() {
 			}
 		}
 
-		addCart(data, e.target, 'Agregando al carrito ...', redirect)
+		addCart(data, e.target, 'Agregando al carrito ...', target.hasClass('buy') ? '/checkout' : '/carrito')
 		return false;
 	});
 

@@ -294,10 +294,9 @@
 						]); ?>
 					</div>
 					<div class="d-flex flex-column justify-content-center align-items-center gap-05">
-					  <?php if (isset($carro) && !empty($carro)) :?>
-					    <a href="javascript:void(0)" class="btn btn-chatelet dark cart-go-button w-100" link-to="<?=Router::url('/carrito/envio',true)?>" id="siguiente">Finalizar compra</a>
-					  <?php endif ?>
-
+				  <?php if (isset($carro) && !empty($carro)) :?>
+				    <a href="/checkout" class="btn btn-chatelet dark w-100">Finalizar compra</a>
+				  <?php endif ?>
 						<a class="btn keep-buying btn-chatelet w-100" href="/tienda">Seguir comprando</a>
 					</div>
 				</div>
