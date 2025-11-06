@@ -1,6 +1,5 @@
 :root {
-  /*--box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px;*/
-  --box-shadow: rgba(0, 0, 0, 0.15) 0 0 4px;
+  --box-shadow: rgba(0, 0, 0, 0.2) 0 0 6px;
   --box-dropshadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
   --box-shadow-inset: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   --box-shadow-downwards: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;;
@@ -1405,7 +1404,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 @media(min-width: 769px){
 
-  .product-info-container {padding: 0; padding-right: 3rem;}
+  .product-info-container {padding: 0; padding-right: 2rem;}
 
   #formulario .wrapper {
     padding: 1rem;
@@ -2616,21 +2615,6 @@ span.count.is-empty {
   margin-left: 0!important;
   margin-right: 0!important;
   border-color: #9add9b!important;
-}
-
-/*.flex-row {
-  padding-top: 1rem;
-}*/
-
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-col .card {
-  border-radius: 0;
-  background-color: #f8f8f8;
 }
 
 .ch-row {

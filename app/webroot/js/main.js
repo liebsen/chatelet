@@ -477,7 +477,7 @@ $(function () {
     }*/
   })  
 
-  $('.sidebar-backdrop').click((e) => {
+  $('.sidebar-backdrop, .btn-close-sidebar').click((e) => {
     if($('nav.sidebar-expanded').length) {
       $('.sidebar').removeClass('sidebar-expanded')
       $('.sidebar-backdrop').fadeOut()

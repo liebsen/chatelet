@@ -171,7 +171,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="flex-col min-max-22 m-w-auto">
+					<div class="flex-col max-22 m-w-auto">
 						<div class="card">
 						  <div class="card-body">
 						    <h5 class="card-title">

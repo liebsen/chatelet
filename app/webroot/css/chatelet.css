@@ -48,7 +48,7 @@ nav.sidebar {
   width: 300px;
   height: 100%;
   background: white;
-  padding: 1.5rem;
+  padding: 1rem;
   transition: all 0.25s ease-in-out;
 }
 
@@ -613,6 +613,19 @@ html, body {
 
 .flex-row {
 	flex-direction: row!important;
+	padding: 1rem;
+	grid-gap: 1rem;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+}
+
+.flex-col .card {
+  border-radius: 0;
+  background-color: #f8f8f8;
 }
 
 .justify-space-between {
@@ -639,21 +652,8 @@ html, body {
   align-items: flex-end;
 }
 
-.max-25 {
-  max-width: 25rem;
-}
-
-.min-max-22 {
-  min-width: 22rem;
-  max-width: 22rem;
-}
-
 .min-25 {
   min-width: 25rem;
-}
-
-.max-21 {
-  max-width: 21rem;
 }
 
 .btn {
@@ -785,6 +785,7 @@ select.form-control{
   margin: auto;
   padding: 0.5rem 0;
   border: 1px solid #dbdbdb;  
+	border-radius: 5px;
 }
 
 .carrito-selector input {
@@ -1327,15 +1328,15 @@ select.form-control{
 	display: inline-block;
 	text-align: center;
 	font-size: 0.85rem;
-	line-height: 1.75;
+	line-height: 1.5;
 	padding: 0.75rem 1rem;
 	font-weight: 700;
 	color: black;
 	border-color: black;
 	background-color: white;
 	/*min-width: 20rem;*/
-	min-height: 46px;
-	max-height: 46px;
+	min-height: 44px;
+	max-height: 44px;
 	transition: all 0.25s ease;
 }
 
@@ -1554,9 +1555,12 @@ span.validation-password {
 }
 
 @media screen and (min-width: 769px) {
-	.min-max-22 {
-	  min-width: 26rem;
-	  max-width: 26rem;
+	.max-25 {
+	  max-width: 25rem;
+	}
+
+	.max-22 {
+	  max-width: 22rem;
 	}
 
 	/*.navbar-chatelet.top-fixed {

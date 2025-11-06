@@ -40,11 +40,11 @@
 
 <div id="main" class="container">
 	<div class="row">
-		<div class="flex-row">
+		<div class="flex-row pb-0">
 			<div class="flex-col flex-col justify-content-end pb-0">
 				<h6>Carrito</h6>
 			</div>
-			<div class="flex-col min-max-22 flex-col justify-content-end pl-8 pb-0">
+			<div class="flex-col flex-col justify-content-end pl-8 max-22 pb-0">
 				<span><span class="text-sm text-bold">¿Necesitas ayuda?</span><span class="text-sm"> Consultá nuestras <a class="text-sm text-link" href="/ayuda/como_comprar">preguntas frequentes</a></span></span>
 			</div>
 		</div>
@@ -267,39 +267,41 @@
 	              </span>
 	            </div>
 	        	</div>
+	        </div>
+					<div class="flex-col gap-1 max-22">
+						<!-- fill coupon -->
+						<div class="card">
+							<?php echo $this->element('coupon'); ?>
+						</div>								  
+						<!-- end fill coupon -->
+						<div class="card">
+							<?php echo $this->element('resume', [
+								'total' => $total, 
+								'promosaved' => $promosaved, 
+								'total' => $total, 
+								'payment_methods' => $payment_methods, 
+								'config' => $config, 
+							]); ?>
+						</div>
+						<div class="d-flex flex-column justify-content-center align-items-center gap-05">
+					  <?php if (isset($carro) && !empty($carro)) :?>
+					    <a href="/checkout" class="btn btn-chatelet dark w-100">Finalizar compra</a>
+					  <?php endif ?>
+							<a class="btn keep-buying btn-chatelet w-100" href="/tienda">Seguir comprando</a>
+						</div>
+					</div>
 					<?php else: ?>
 					<div class="container cart-empty text-center">
 						<!--div class="icon-huge mt-4">
 							<i class="fa fa-shopping-cart fa-x2 text-muted"></i>
 						</div-->
 						<h3 class="h3 text-center">Tu carrito está vacío</h3>
-						<div>Para comprar agrega un producto.<br> Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></div>
+						<div>Para comprar agrega un producto.<br> Obtén más información <a href="/ayuda/como_comprar" class="text-link">acerca de como comprar</a></div>
 					</div>
 					<br><br>
 					<?php endif;?>
 				</div>
-				<div class="flex-col min-max-22 m-w-auto gap-1">
-					<!-- fill coupon -->
-					<div class="card">
-						<?php echo $this->element('coupon'); ?>
-					</div>								  
-					<!-- end fill coupon -->
-					<div class="card">
-						<?php echo $this->element('resume', [
-							'total' => $total, 
-							'promosaved' => $promosaved, 
-							'total' => $total, 
-							'payment_methods' => $payment_methods, 
-							'config' => $config, 
-						]); ?>
-					</div>
-					<div class="d-flex flex-column justify-content-center align-items-center gap-05">
-				  <?php if (isset($carro) && !empty($carro)) :?>
-				    <a href="/checkout" class="btn btn-chatelet dark w-100">Finalizar compra</a>
-				  <?php endif ?>
-						<a class="btn keep-buying btn-chatelet w-100" href="/tienda">Seguir comprando</a>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -332,9 +334,9 @@
 <?php endif;?>
 <script>
 	$(function(){
-	<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
+	<?php if(!empty($carro) && !empty($text_shipping_min_price) && !$freeShipping): ?>
 			setTimeout(() => {
-				onWarningAlert('<i class="fa fa-magic"></i> Más beneficios','<?= $text_shipping_min_price ?>', 15000)
+				onWarningAlert('Más beneficios','<?= $text_shipping_min_price ?>', 15000)
 			}, 15000)		
 	<?php endif ?>
 		var gifts = carrito.gifts || []

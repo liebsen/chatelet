@@ -230,7 +230,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex-col min-max-22">
+		<div class="flex-col max-22">
 			<div class="card">
 				<div class="d-flex flex-column justify-content-center align-items-start gap-05">
 					<h1>

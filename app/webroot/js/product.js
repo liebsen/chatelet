@@ -96,8 +96,7 @@ function pideStock(obj){
 				if(data != 0){
 				  //stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
 				  $('.growl').remove()
-
-				  onErrorAlert('<i class="fa fa-check"></i> Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
+				  onErrorAlert('Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
 					stock_cont.html(stock);
 					setTimeout(() => {
 						$(test).find('a').animate({opacity: 1});

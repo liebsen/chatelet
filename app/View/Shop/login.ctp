@@ -13,7 +13,7 @@
 				<?php  echo 'Inicia sesión para continuar'; ?>
 			</h3>			
 		</div>
-		<div class="min-max-22">
+		<div class="max-22">
 			<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
 				<p>
 					Inicia sesión en Chatelet con tus credenciales. Ingresá tu email y contraseña para continuar. Si no tienes una cuenta presiona Crear cuenta.

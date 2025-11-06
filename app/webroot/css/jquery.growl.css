@@ -7,8 +7,8 @@
   position: fixed; }
   #growls.default {
     background-color: transparent;
-    top: 0.5rem;
-    right: 0.5rem;
+    bottom: 2.75rem;
+    left: 0.5rem;
     min-width: calc(100vw - 1.75rem); }
   #growls.tl {
     top: 0.5rem;
@@ -40,18 +40,20 @@
   position: relative;
   margin-bottom: 0.5rem;
   margin-left: 0.5rem;
-  scale: 1;
-  box-shadow: var(--box-shadow);
+  left: 0;
+  border-radius: 5px;
+  border: 1px solid #999;
+  box-shadow: 2px 2px 0 #6661;
   /*box-shadow: 1px 1px 5px 0 rgba(26, 26, 67, .05), 39px 62.5px 125px -25px rgba(50, 50, 93, .2), 23.4px 37.5px 75px -37.5px rgba(0, 0, 0, .4);*/
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out; }
   .growl.growl-incoming {
-    scale: 0.01;
+    left: -20rem;
     opacity: 0;
     filter: alpha(opacity=0); }
   .growl.growl-outgoing {
-    scale: 0.1;
+    left: -20rem;
     opacity: 0;
     filter: alpha(opacity=0); }
   .growl.growl-small {
@@ -72,7 +74,7 @@
     background: #666; }
   .growl.growl-warning {
     color: #666;
-    background: #FFF; }
+    background: lightgoldenrodyellow; }
   .growl .growl-close {
     cursor: pointer;
     position: absolute;
@@ -101,24 +103,22 @@
 
 @media screen and (min-width: 769px) {
   #growls.default {
-    top: 0.5rem;
-    right: 0.5rem; 
     min-width: auto;
   }
   .growl.growl-small {
     max-width: 200px;
     margin: 0.5rem;
-    margin-bottom: 0.75rem; }
+    margin-top: 0.75rem; }
   .growl.growl-medium {
     max-width: 500px;
     margin-left: auto;
-    margin-bottom: 0.75rem; 
+    margin-top: 0.75rem; 
     min-width: 500px;
   }
   .growl.growl-large {
     max-width: 500px;  
     margin: 0.5rem;
-    margin-bottom: 0.75rem; 
+    margin-top: 0.75rem; 
     min-width: 500px;
   } 
 }

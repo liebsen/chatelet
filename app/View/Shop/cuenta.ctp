@@ -12,7 +12,7 @@
 				<?php endif ?>
 			</h3>			
 		</div>
-		<div class="min-max-22">
+		<div class="max-22">
 			<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
 			<?php if($loggedIn): ?>
 				<p>Iniciaste sesión como <?php echo $user['email']; ?></p>
