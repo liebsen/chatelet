@@ -78,6 +78,41 @@ html, body {
   width: 100%;
 }
 
+
+.layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;  
+  width: 100vw;
+  height: 100vh;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content:  center;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+  padding: 2rem;
+  transition: all 0.25s ease;
+}
+
+.layer .close {
+  position: absolute;
+  z-index: 10;
+  width: 4rem;
+  height: 4rem;
+  top: 2rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: red;
+}
+
+.layer.active {
+  pointer-events: inherit;
+  opacity: 1;
+}
+
+
 .wrong{
 	border-color: #E10D74;
   color: #E10D74;
@@ -1005,8 +1040,8 @@ select.form-control{
 }
 
 .text-footer {
-	font-size: 0.75rem;
-	font-weight: 500;
+	font-size: 0.6rem;
+	font-weight: 300;
 	text-shadow: -1px -1px 1px #fff6, 1px 1px 1px #3333;
 }
 
@@ -1521,7 +1556,24 @@ span.validation-password {
 	color: white;
 }
 
-.whatsapp-block > a.chat > .fa{
+.whatsapp-block > a.whatsapp > .fa {
+	animation-name: whatsappSplash;
+	animation-fill-mode: both;
+	animation-delay: 8s;
+	animation-duration: 1s;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes whatsappSplash {
+  0% {
+    outline: 7px solid lightgreen;
+  }
+  100% {
+    outline: 7px solid transparent;
+  }
+}
+
+.whatsapp-block > a.chat > .fa {
 	background-color: #363633;
 }
 
@@ -1534,9 +1586,10 @@ span.validation-password {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #5cb85c;
+	/* background-color: #5cb85c; */
+	background-color: lightgreen;
 	box-shadow: rgba(0, 0, 0, 0.16) -3px 3px 3px;
-	color: white;
+	color: darkolivegreen;
 	z-index: 90;
 	line-height: 1;
 	width: 100%;
