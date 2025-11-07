@@ -75,34 +75,34 @@ function pideStock(obj){
 	  var stock_v  	= '<i style="color:gray;">Consultando ... </i>';
 
 		if(!color_code){
-			onWarningAlert(`Talle seleccionado`,`Seleccionaste talle ${size_number}, ahora elegí un color para este producto`)
+			// onWarningAlert(`Talle seleccionado`,`Seleccionaste talle ${size_number}, ahora elegí un color para este producto`)
 			stock_cont.html(no_color);
 			return false;
 		}
 
 		if(!size_number){
-			onWarningAlert(`Color seleccionado`,`Seleccionaste color ${color_alias}, ahora elegí un talle para tu prenda`)
+			// onWarningAlert(`Color seleccionado`,`Seleccionaste color ${color_alias}, ahora elegí un talle para tu prenda`)
 			return false;
 		}
 
 		window.stock = 0;
 		if(url && article && color_code && size_number){
-			onWarningAlert('Consultando stock','Un momento por favor...')
+			// onWarningAlert('Consultando stock','Un momento por favor...')
 			var test = document.querySelector('.footer-producto');
       $(test).find('a').animate({opacity: 0.5});
       stock_cont.html(stock_v);
 
 	  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
 				if(data != 0){
-				  //stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
-				  $('.growl').remove()
-				  onErrorAlert('Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
+				  // stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
+				  // $('.growl').remove()
+				  // onErrorAlert('Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
 					stock_cont.html(stock);
 					setTimeout(() => {
 						$(test).find('a').animate({opacity: 1});
 					}, 1000)
 				}else{
-					onWarningAlert('<i class="fa fa-warning"></i> Producto no disponible', 'Lamentablemente este producto ya no se encuentra disponible')
+					onWarningAlert('Producto no disponible', 'Lamentablemente este producto ya no se encuentra disponible')
 					stock_cont.html( stock_0 );
 				}
 				window.stock = data;
@@ -150,13 +150,13 @@ $(document).ready(function() {
 				}, 10)
 				if(!data.size){
 					return $.growl.notice({
-						title: '<i class="fa fa-magic"></i> Personalizá tu compra!',
-						message: 'Seleccioná un talle, hay ' + $('#size option').length + ' talles para ' + product_name,
+						title: '¡Personalizá tu compra!',
+						message: 'Seleccioná uno de los ' + $('#size option').length + ' talles disponibles para ' + product_name,
 					});
 				}
 				return $.growl.notice({
-					title: '<i class="fa fa-magic"></i> Personalizá tu compra!',
-					message: 'Elegí entre ' + $('.color-option').length + ' colores para ' + product_name,
+					title: '¡Personalizá tu compra!',
+					message: 'Seleccioná uno de los ' + $('.color-option').length + ' colores disponibles para ' + product_name,
 				});
 			}
 

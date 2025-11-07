@@ -28,27 +28,37 @@ class CheckoutController extends AppController
 		'Legend'
 	);
 	
+	public $checkout_steps = array(
+		array(
+			'url' => '/checkout',
+			'label' => 'Registro'
+		),
+		array(
+			'url' => '/checkout/envio',
+			'label' => 'Envío'
+		),
+		array(
+			'url' => '/checkout/pago',
+			'label' => 'Pago'
+		),
+		array(
+			'url' => '/checkout/finalizar',
+			'label' => 'Confirmación'
+		),
+	);
+
 	public $components = array('RequestHandler');
 
 	public function beforeFilter()
 	{
   	parent::beforeFilter();
-		$catalog_flap_map = $this->Setting->findById('catalog_flap');
-		$catalog_flap = (!empty($catalog_flap_map['Setting']['value'])) ? $catalog_flap_map['Setting']['value'] : '';
-		$this->set('catalog_flap',$catalog_flap);
-    $catalog_first_line_map = $this->Setting->findById('catalog_first_line');
-		$catalog_first_line = (!empty($catalog_first_line_map['Setting']['value'])) ? $catalog_first_line_map['Setting']['value'] : '';
-		$this->set('catalog_first_line',$catalog_first_line);
-		$lookbook = $this->LookBook->find('all');
-    $shipping_price_min_map = $this->Setting->findById('shipping_price_min');
-		$shipping_price_min = (!empty($shipping_price_min_map['Setting']['value'])) ? $shipping_price_min_map['Setting']['value'] : '';
-		$legends = $this->Legend->find('all', [
-			'conditions' => ['enabled' => 1],
-			'order' => ['Legend.dues ASC']
-		]);
-		$this->set('legends', $legends);
+    $mapper = $this->Setting->findById('shipping_price_min');
+		$shipping_price_min = $mapper['Setting']['value'] ?? '';
 		$this->set('shipping_price_min',$shipping_price_min);
-		$this->set('lookBook', $lookbook);
+		var_dump();
+		$index = array_search($this->request->here, array_column($this->checkout_steps, 'url'));
+		$this->set('checkout_index', $index);
+		$this->set('checkout_steps', $this->checkout_steps);
 	}
 
 	public function index()
@@ -92,6 +102,7 @@ class CheckoutController extends AppController
 		$this->set('freeShipping', $freeShipping);
 	}
 
+	public function envio() {}
 	private function parseTemplate ($str, $data) {
 		$html = $str;
     foreach ($data as $key => $value) {

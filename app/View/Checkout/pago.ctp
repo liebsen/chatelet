@@ -3,7 +3,7 @@
 	echo $this->Session->flash();
 	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 	echo $this->Html->script('pago.js?v=' . Configure::read('APP_VERSION'),array('inline' => false));
-	//echo $this->element('carrito');
+echo $this->element('checkout-steps');	
 ?>
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <script>

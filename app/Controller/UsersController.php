@@ -21,6 +21,7 @@ class UsersController extends AppController {
 	}
 
   public function login() {
+    $redirect = $this->request->data['redirect'];
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
         $this->Session->setFlash(
@@ -28,8 +29,8 @@ class UsersController extends AppController {
           'default', 
           array('class' => 'hidden notice')
         );
-        //return $this->redirect($this->referer());
-        return $this->redirect(array('controller' => 'shop', 'action' => 'cuenta'));
+        return $this->redirect($redirect ?? $this->referer());
+        // return $this->redirect(array('controller' => 'shop', 'action' => 'cuenta'));
       }
 
       $this->Session->setFlash(
@@ -37,10 +38,8 @@ class UsersController extends AppController {
         'default',
         array('class' => 'hidden error')
       );
-      CakeLog::write('debug', 'login redirect ' . $this->referer());
       return $this->redirect($this->referer());
     }
-    CakeLog::write('debug', 'home redirect ' . $this->referer());
     return $this->redirect(array('controller' => 'home', 'action' => 'index'));
   }
 

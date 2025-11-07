@@ -184,7 +184,7 @@ html, body {
 	background-size: 30px;*/
 	margin-bottom: 0.25rem;
 	transition: all 0.25s ease;
-	min-height: 46px;
+	min-height: 50px;
   opacity: 0;
   /*flex: 1;*/
   animation-name: fadeIn;
@@ -451,8 +451,14 @@ html, body {
 .min-h-12 {
 	min-height: 12rem;
 }
+.min-h-24 {
+	min-height: 24rem;
+}
 .min-h-100 {
   min-height: calc(100dvh - 103px);
+}
+.min-h-101 {
+  min-height: calc(100dvh - 167px);
 }
 .mb-0 {
   margin-bottom: 0!important;
@@ -659,9 +665,9 @@ html, body {
   padding: 0 !important;
 }
 
-.flex-col .card {
-  border-radius: 0;
-  background-color: #f8f8f8;
+.card-variant {
+	border-radius: 0!important;
+  background-color: #f8f8f8!important;
 }
 
 .justify-space-between {
@@ -680,6 +686,10 @@ html, body {
   justify-content: flex-end;
 }
 
+.justify-content-around {
+  justify-content: space-around!important;
+}
+
 .items-center {
 	align-items: center;
 }
@@ -688,17 +698,18 @@ html, body {
   align-items: flex-end;
 }
 
-.min-25 {
-  min-width: 25rem;
-}
-
 .btn {
 	text-transform: uppercase;
-	min-height: 44px;
-	line-height: 1.75;
-	font-size: 0.85rem;
-	font-weight: 700;
+	min-height: 50px;
+	line-height: 2.5;
+	font-size: 0.9rem;
+	font-weight: 600;
 	border-radius: 5px;
+	transition: all 200ms ease-in-out;
+}
+
+.btn:hover {
+	opacity: 0.9;
 }
 
 .is-transparent {
@@ -789,8 +800,9 @@ html, body {
 
 .form-control {
 	padding: 0 16px;
-	height: 44px;
+	height: 50px;
 	border-radius: 5px;
+	font-size: 1rem;
 }
 
 select.form-control{
@@ -808,14 +820,15 @@ select.form-control{
 .mh-4 {
 	max-height: 4rem;
 }
-
-.gap-1 {
-	grid-gap: 1rem;
-}
 .gap-05 {
 	grid-gap: 0.5rem;
 }
-
+.gap-1 {
+	grid-gap: 1rem;
+}
+.gap-6 {
+	grid-gap: 6rem;
+}
 .carrito-selector {
   max-width: 9rem;
   margin: auto;
@@ -961,18 +974,15 @@ select.form-control{
 
 #login {
 	display: inline-block;
-	padding: 0.75rem 1rem;
-	background-color: #e10c76;
+	background-color: #363633;
 	color: white;
-	/*font-style: italic;*/
-	/*font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 	width: 100%;
 	text-transform: uppercase;
 	border-radius: 5px;
 	text-align: center;
 	font-size: 0.85rem;
 	font-weight: 800;
-	min-height: 46px;
+	min-height: 50px;
 	border: 0;
 }
 
@@ -1222,7 +1232,7 @@ select.form-control{
 	width: 100%;
 	background-color: black;
 	color: white;
-	min-height: 44px;
+	min-height: 50px;
 	text-align: center;
 	border: 0;
 	border-radius: 5px;
@@ -1281,11 +1291,10 @@ select.form-control{
   border-radius: 0.75rem;
 }
 .card-body {
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
+  /*flex: 1 1 auto;*/
   padding: 1rem;
 }
+
 .card-title {
 	display: flex;
 	align-items: center;	
@@ -1357,24 +1366,15 @@ select.form-control{
 	border: none;
 	background-color: transparent;
 	position: absolute;
-	right: 1rem;
-	top: 1rem;
+	color: #888;
+	right: 0.75rem;
+  top: 0.75rem;
 }
 
 .btn-chatelet {
-	display: inline-block;
-	text-align: center;
-	font-size: 0.85rem;
-	line-height: 1.5;
-	padding: 0.75rem 1rem;
-	font-weight: 700;
 	color: black;
-	border-color: black;
+	border-color: #999;
 	background-color: white;
-	/*min-width: 20rem;*/
-	min-height: 44px;
-	max-height: 44px;
-	transition: all 0.25s ease;
 }
 
 .btn-chatelet.dark {
@@ -1426,7 +1426,7 @@ select.form-control{
 }
 
 .btn-input-lg {
-	min-height: 46px;
+	min-height: 50px;
 }
 
 .btn-pink {
@@ -1600,7 +1600,7 @@ span.validation-password {
 	min-height: 102px;
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 992px) {	
   .box {
   	padding: 4rem!important;
     /*transform: scale(1) perspective(1024px) rotateY(-10deg) rotateX(3deg) rotate(3deg) translateY(0rem) translateX(-2rem);*/
@@ -1611,6 +1611,10 @@ span.validation-password {
 @media screen and (min-width: 769px) {
 	.max-25 {
 	  max-width: 25rem;
+	}
+
+	.min-25 {
+	  min-width: 25rem;
 	}
 
 	.max-22 {
@@ -1665,7 +1669,7 @@ span.validation-password {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		min-height: 46px;
+		min-height: 50px;
 	}
 	/*.whatsapp-block .whatsapp-text {
 		display: none;

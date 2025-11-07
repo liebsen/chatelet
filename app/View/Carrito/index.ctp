@@ -1,5 +1,4 @@
 <?php
-	// $this->set('short_header', 'Carrito');
 	echo $this->Session->flash();
 	echo $this->Html->css('carrito.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
@@ -57,7 +56,7 @@
 		</div-->
 		<?php endif ?>
 	</div>
-	<div class="row">
+	<div class="row animated fadeIn delay">
 		<div id="carrito">
 			<!--h3 id="heading" style="margin:10px 0px">Carrito de compras</h3-->
 			<?php if (isset($carro) && !empty($carro)) :?>			
@@ -270,11 +269,11 @@
 	        </div>
 					<div class="flex-col gap-1 max-22">
 						<!-- fill coupon -->
-						<div class="card">
+						<div class="card card-variant">
 							<?php echo $this->element('coupon'); ?>
 						</div>								  
 						<!-- end fill coupon -->
-						<div class="card">
+						<div class="card card-variant">
 							<?php echo $this->element('resume', [
 								'total' => $total, 
 								'promosaved' => $promosaved, 
@@ -293,7 +292,7 @@
 					<?php else: ?>
 					<div class="container cart-empty text-center">
 						<!--div class="icon-huge mt-4">
-							<i class="fa fa-shopping-cart fa-x2 text-muted"></i>
+							<i class="fa fa-shopping-bag fa-x2 text-muted"></i>
 						</div-->
 						<h3 class="h3 text-center">Tu carrito está vacío</h3>
 						<div>Para comprar agrega un producto.<br> Obtén más información <a href="/ayuda/como_comprar" class="text-link">acerca de como comprar</a></div>

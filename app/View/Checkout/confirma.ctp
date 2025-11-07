@@ -1,4 +1,7 @@
-<?php echo $this->Session->flash(); ?>
+<?php 
+	echo $this->Session->flash(); 
+	echo $this->element('checkout-steps');
+?>
 <section id="detalle">
   <div class="wrapper d-flex flex-column justify-content-center align-items-center gap-1">
 		<div class="header">

@@ -601,7 +601,11 @@ class ShopController extends AppController {
 	public function registro() {}
 	public function cuenta() {}
 	public function recuperar_acceso() {}
-	public function login() {}
+	public function login() {
+		if($this->Auth->user('id')) {
+			$this->redirect(array('controller' => 'shop', 'action' => 'cuenta'));
+		}
+	}
 
 	public function buscar(){
 		$this->loadModel('Product');
@@ -629,8 +633,8 @@ class ShopController extends AppController {
 				'stock_total > ' => 0
 			],
 			'order' => ['Product.promo DESC'],
-			'limit' => $s,
-			'offset' => $s * $p
+			// 'limit' => $s,
+			// 'offset' => $s * $p
 		]);
 
 		foreach ($results as &$item) {

@@ -11,7 +11,10 @@
   <?php endif ?>
   <?php if(
     !empty($data['whatsapp_text']) && 
-    strstr($_SERVER['REQUEST_URI'], "/carrito") == false
+    (
+      strstr($_SERVER['REQUEST_URI'], "/tienda") != false ||
+      strstr($_SERVER['REQUEST_URI'], "/ayuda") != false
+    )
   ): ?>
     <a href="https://wa.me/<?= $data['whatsapp_phone'] ?>?text=Hola, tengo una consulta" class="d-block" target="_blank" title="Contactanos por WhatsApp">
       <div class="whatsapp-text animated chatIn delay2 <?= !empty($data['whatsapp_autohide']) ? " autohide segs-{$data['whatsapp_autohide']}" : '' ?>">

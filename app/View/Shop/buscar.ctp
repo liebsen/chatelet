@@ -2,17 +2,39 @@
 <section id="productOptions" class="animated fadeIn">
   <div class="wrapper">
     <form name="search">
-      <div class="is-flex justify-content-center align-items-center gap-05 min-h-8">
-        <div class="form-group">
-          <input class="form-control m-0" type="text" name="q" placeholder="Buscar en Chatelet..." value="<?= $q ?>" autofocus required>
+      <div class="is-flex-center flex-column gap-05 min-h-8">
+        <div class="is-flex justify-content-center align-items-center gap-05">
+          <div class="form-group">
+            <input class="form-control m-0" type="text" name="q" placeholder="Buscar en Chatelet..." value="<?= $q ?>" autofocus required>
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btn" id="enviar" value="Buscar">
+          </div>
         </div>
-        <div class="form-group">
-          <input type="submit" class="btn" id="enviar" value="Buscar">
-        </div>
+        <span class="text-sm">
+        <?php if (count($results)) : ?>
+          Se hallaron <?php echo count($results) ?> productos.
+        <?php else : ?>
+          No se hallaron productos para <b><?php echo $q ?></b>
+        <?php endif ?>
+        </span>
       </div>
     </form>
     <div class="row">
+      <div class="col-md-3 desktop">
+      <?php
+          $slug =  str_replace(' ','-',strtolower($category['Category']['name']));
+            if (strpos($slug, 'trajes')!==false){
+              $slug = 'trajes-de-bano';
+            }
 
+      ?>
+          <a href="<?php echo router::url(array('controller' => 'tienda', 'action' => 'productos',
+                           $slug)) ?>" class="btBig">
+            volver <br>
+             al  <span>SHOP</span>
+          </a>
+      </div>
       <div class="col-md-9 product-list posnum-<?=@$category['Category']['posnum'] ?>">
           <div class="row">
               <?php
@@ -100,20 +122,7 @@ $number_ribbon = (int) @$product['bank_discount'];
            <?php }endforeach; ?>
         </div>
       </div>
-      <div class="col-md-3">
-      <?php
-          $slug =  str_replace(' ','-',strtolower($category['Category']['name']));
-            if (strpos($slug, 'trajes')!==false){
-              $slug = 'trajes-de-bano';
-            }
 
-      ?>
-          <a href="<?php echo router::url(array('controller' => 'tienda', 'action' => 'productos',
-                           $slug)) ?>" class="btBig">
-            volver <br>
-             al  <span>SHOP</span>
-          </a>
-      </div>
 
     </div>
   </div>

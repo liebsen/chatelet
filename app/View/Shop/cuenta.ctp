@@ -1,24 +1,31 @@
-<?php echo $this->Session->flash(); ?>
-<section id="detalle">
-  <div class="wrapper d-flex flex-column justify-content-center align-items-center gap-1">
-		<div class="header">
-			<h3 class="modal-title" id="modal-title">
-				<?php if ($loggedIn) : ?>
-					Hola, <?php echo $user['name']; ?>
-				<?php else : ?>
-					Inicia sesión o crea una cuenta
-				<?php endif ?>
-			</h3>
-		</div>
-		<div class="max-22">
-			<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
+<?php 
+$this->set('short_header', 'Cuenta');
+echo $this->Session->flash(); 
+?>
+<section id="detalle" class="is-flex-center min-h-100 animated fadeIn">
+  <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1">
+		<h2>
 			<?php if ($loggedIn) : ?>
-				<p>Iniciaste sesión como <?php echo $user['email']; ?></p>
-				<a href="/shop/mis_compras" class="btn btn-chatelet">Mis compras</a>
-				<a href="/users/logout" class="btn btn-chatelet">Cerrar sesión</a>
+				Hola, <?php echo $user['name']; ?>
 			<?php else : ?>
-				<p>Inicia sesión o crea una cuenta. ¿Qué deseas hacer?</p>
+				No tienes sesión activa
 			<?php endif ?>
+		</h2>
+	<?php if ($loggedIn) : ?>
+		<p>Iniciaste sesión como <?php echo $user['email']; ?></p>		
+	<?php else : ?>	
+		<p>No tienes una sesión activa. ¿Qué deseas hacer?</p>	
+	<?php endif ?>
+		<div class="max-22 w-100">
+			<div class="is-flex-center flex-column gap-05 mb-4 w-100">
+			<?php if ($loggedIn) : ?>
+				<a href="/shop/mis_compras" class="btn btn-chatelet w-100">Mis compras</a>
+				<a href="/users/logout" class="btn btn-chatelet w-100">Cerrar sesión</a>
+			<?php else : ?>
+				<a href="/shop/login" class="btn btn-chatelet w-100">Iniciar sesión</a>
+				<a href="/shop/registro" class="btn btn-chatelet w-100">Crear mi cuenta</a>
+			<?php endif ?>
+				<a href="/shop" class="btn btn-chatelet w-100">Seguir comprando</a>
 			</div>
 		</div>
 	</div>

@@ -7,17 +7,15 @@
 	echo $this->Html->script('shipping.js?v=' . Configure::read('APP_VERSION'),array( 'inline' => false ));
 	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 	echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
-	echo $this->Html->script('pago.js?v=' . Configure::read('APP_VERSION'),array('inline' => false));
-	//echo $this->element('carrito');
+	echo $this->element('checkout-steps');
 ?>
-
-<div class="wrapper">
-	<div class="container animated fadeIn">
-		<div class="content">
-			<div class="d-flex flex-column justify-content-start align-items-center gap-1 content">
-				<br>
-				<h1>Tus datos</h1>
-			</div>
+<section id="detalle" class="is-flex-center min-h-100">
+  <div class="wrapper d-flex flex-column justify-content-center align-items-center gap-1">
+		<!--div class="header">
+			<h1>Método de envío</h1>			
+		</div-->
+		<div class="max-22 p-3 animated fadeIn delay">
+			<?php echo $this->element('shipping') ?>
 		</div>
 	</div>
 </div>

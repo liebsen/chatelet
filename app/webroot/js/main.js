@@ -630,14 +630,14 @@ $(function () {
     clock = setTimeout(() => {
       var scroll = $(window).scrollTop()
       const video = $("#carousel .item.active").find("video")
-          $('.navbar-chatelet').removeClass('fadeIn')
+      $('.navbar-chatelet:not(.short)').removeClass('fadeIn')
       void document.querySelector('.navbar-chatelet').offsetWidth;
       if (scroll > 100) {
         if (!fakeshown && lastscroll < scroll) {
-          $('.navbar-chatelet').removeClass('fadeIn')
+          $('.navbar-chatelet:not(.short)').removeClass('fadeIn')
           $('#carousel-banners').addClass('invisible')
-          $('.navbar-chatelet').addClass('top-fixed')
-          $('.navbar-chatelet').addClass('fadeIn')
+          $('.navbar-chatelet:not(.short)').addClass('top-fixed')
+          $('.navbar-chatelet:not(.short)').addClass('fadeIn')
           if(video?.length) {
             $("video").each((i,video) => {
               video.pause()
@@ -647,10 +647,10 @@ $(function () {
         }
       } else {
         if (lastscroll > scroll) {
-          $('.navbar-chatelet').removeClass('fadeIn')
+          $('.navbar-chatelet:not(.short)').removeClass('fadeIn')
           $('#carousel-banners').removeClass('invisible')
-          $('.navbar-chatelet').removeClass('top-fixed')
-          $('.navbar-chatelet').addClass('fadeIn')
+          $('.navbar-chatelet:not(.short)').removeClass('top-fixed')
+          $('.navbar-chatelet:not(.short)').addClass('fadeIn')
           if(video?.length){
             setTimeout(() => {
               $(video).get(0).play()

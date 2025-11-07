@@ -33,6 +33,14 @@ class AppHelper extends Helper {
 
   var $helpers = array('Html', 'Number');  // include the HTML helper
   var $title_exclude = ['Giftcard'];
+  var $payment_methods = [
+    'bank' => "Transferencia",
+    'mercadopago' => "Mercado Pago"
+  ];
+
+  function payment_method($tag){
+    return $this->payment_methods[$tag] ?? 'Desconocido';
+  }
 
   function show_legends($legends){
     $one_due = false;
@@ -215,7 +223,7 @@ class AppHelper extends Helper {
         
         if($calc_price >= $min_sale && $legend['Legend']['dues'] > 1) {        
           $dues_options[]= '<span class="text-legend">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
-            '<span class="text-theme text-bold text-high">' . $legend['Legend']['dues'] . '</span>',
+            '<span class="text-theme text-bolder text-high">' . $legend['Legend']['dues'] . '</span>',
             $legend['Legend']['interest'],
             '<span class="price_strong"> $ ' . \price_format($price_with_interest/$legend['Legend']['dues']) . '</span>'
           ],

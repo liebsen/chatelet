@@ -2,7 +2,7 @@
   --box-shadow: rgba(0, 0, 0, 0.2) 0 0 6px;
   --box-dropshadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
   --box-shadow-inset: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  --box-shadow-downwards: rgba(0, 0, 0, 0.1) 0px 4px 8px -1px, rgba(0, 0, 0, 0.06) 0px 2px 6px -1px;
+  --box-shadow-downwards: rgba(0, 0, 0, 0.025) 0px 4px 8px -1px, rgba(0, 0, 0, 0.025) 0px 2px 3px -1px;
 }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 
@@ -17,7 +17,10 @@ html { line-height: 1; }
 
 ol, ul { list-style: none; }
 
-p { margin-bottom: 10px; }
+p { 
+  margin-bottom: 10px; 
+  font-weight: 300;
+}
 
 pre, code {
   color: #545454;
@@ -43,12 +46,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: 1000;
+  font-weight: 600;
   line-height: 1;
   letter-spacing: -0.01rem;
   margin-bottom: 0.75rem;
 }
-
 .noscroll {
   overflow: hidden!important;
 }
@@ -269,7 +271,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   text-align: center;
 }
 
-.wrapper { margin: 0 auto; max-width: 1440px; }
+.wrapper { margin: 0 auto; /* max-width: 1440px; */}
 .link { color: #363633; font-weight: 300; }
 .link:hover { color: #363633; font-weight: 300; text-decoration: underline; }
 .discount-flag {
@@ -355,9 +357,18 @@ label input[type=checkbox]:disabled + .label-text:before {
   font-size: 0.85rem;
 }
 
-/*.navbar-chatelet.top-fixed .fa {
+.navbar-chatelet.top-fixed span.count {
+  height: 1.25rem;
+  width: 1.25rem;
+  line-height: 1.75;
+  font-size: 0.75rem;
+  top: 0.75rem;
+  border-width: 0;
+}
+
+.navbar-chatelet.top-fixed .fa {
   font-size: 1rem;
-}*/
+}
 
 .google-fonts {
   font-family: var(--google-fonts-name)!important;
@@ -443,7 +454,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .burst.fixed {
   position: fixed!important;
-  z-index: 1000!important;
+  z-index: 9!important;
 }
 
 .burst .wrapper {
@@ -501,7 +512,6 @@ label input[type=checkbox]:disabled + .label-text:before {
   line-height: 1.35;
   font-weight: 300;
 }
-
 
 .carousel-inner > .item > a > img{
   max-width: 100%;
@@ -937,7 +947,6 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   font-weight: 300;
   font-size: 1rem;
   color: #333;
-  text-shadow: 1px 1px 1px #ccc;
   margin-bottom: 0.75rem;
   min-height: 1.5rem;
   line-height: 1;
@@ -1145,7 +1154,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #productOptions .product-list a:hover .hover { opacity: 1; }
 
 #detalle { 
-  background: url(../images/detallebg.jpg) no-repeat center center; 
+  background: url(../images/videobg.png) no-repeat center center; 
   background-size: cover;
   padding-top: 50px;    
   padding-bottom: 50px; 
@@ -1371,7 +1380,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   font-weight: 1000; 
   margin-top: 70px; 
   margin-left: 30px; 
-  letter-spacing: -0.15rem;
+  letter-spacing: -0.05rem;
 }
 #headcontacto h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 /*#headcontacto .box { border: 2px solid #6666; }
@@ -1683,6 +1692,9 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
     margin-right: auto !important; 
   }
 
+.flex-column-sm {
+  flex-direction: column!important;
+}
   .box.img-bg {
     background-size: 90%;
   }
@@ -2303,7 +2315,7 @@ span.out{
   overflow: hidden;
   text-align: right;
   cursor: pointer;
-  animation-name: fadeIn;
+  animation-name: scaleIn;
   animation-duration: 1s;
   animation-delay: 3s;
   animation-fill-mode: both;
@@ -2471,7 +2483,7 @@ span.count {
   position: absolute;
   z-index: 9;
   top: 0.5rem;
-  left: 1.75rem;
+  left: 2.25rem;
   text-align: center;
   font-size: 0.75rem;
   color: white;
@@ -2904,7 +2916,7 @@ span.count.is-empty {
 
 @media screen and (min-width:769px), print {
   .slider-full {
-    min-height: calc(100vh - 11rem);
+    min-height: calc(100vh - 10rem);
   }
 
   .w-mobile {

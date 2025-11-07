@@ -82,24 +82,24 @@
     top: 0;
     right: 0;
     bottom: 0;
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 1.25rem;
     font-weight: normal;
     opacity: 0;
   }
   .growl .growl-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    line-height: 1.25rem;
-    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
   }
   .growl.growl-notice .growl-title,
   .growl.growl-error .growl-title {
     border-color: #fff;
   }
   .growl .growl-message {
-    font-size: 1rem;
-    line-height: 1.25rem; }
+    font-size: 0.8rem;
+    line-height: 1.2; }
 
 @media screen and (min-width: 769px) {
   #growls.default {

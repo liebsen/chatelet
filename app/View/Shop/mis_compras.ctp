@@ -41,7 +41,7 @@
   <section id="formulario">
     <div class="wrapper">
       <div class="is-flex-center gap-1 w-100 p-4">
-        <h1 class="card-title mb-0"><i class="fa fa-shopping-cart mr-1"></i> Mis compras</h1>
+        <h1 class="card-title mb-0"><i class="fa fa-shopping-bag mr-1"></i> Mis compras</h1>
         <span class="btn btn-success btn-chatelet btn-filter-calendar"><i class="fa fa-calendar mr-1"></i> <span class="capitalize">Último mes</span></span>
       </div>
       <div class="ch-flex"> 
@@ -68,8 +68,7 @@
             <span class="text-muted"><?= \price_format($sale['Sale']['delivery_cost']) ?></span>
             <?php endif; ?>
             </p>
-            <p>Método de pago: <span class="text-muted"><?= $sale['Sale']['payment_method']; ?></span></p>
-            
+            <p>Método de pago: <span class="text-muted"><?php echo $this->App->payment_method($sale['Sale']['payment_method']); ?></span></p>
             <?php if($sale['Sale']['cargo'] == 'takeaway'):?>
               <p>Método de Envío: <span class="text-muted">Takeaway</span></p>
               <p>
