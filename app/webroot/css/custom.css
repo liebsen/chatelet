@@ -2,7 +2,7 @@
   --box-shadow: rgba(0, 0, 0, 0.2) 0 0 6px;
   --box-dropshadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
   --box-shadow-inset: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  --box-shadow-downwards: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;;
+  --box-shadow-downwards: rgba(0, 0, 0, 0.1) 0px 4px 8px -1px, rgba(0, 0, 0, 0.06) 0px 2px 6px -1px;
 }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 
@@ -45,7 +45,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 1000;
   line-height: 1;
-  letter-spacing: -0.025rem;
+  letter-spacing: -0.01rem;
   margin-bottom: 0.75rem;
 }
 
@@ -297,7 +297,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   background: #FFF; 
   border: 0; 
   border-radius: 0; 
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-downwards);
   margin: 0; 
   padding: 1.5rem;
   position: relative; 
@@ -1392,9 +1392,9 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #formulario label span.active i { display: block; }
 
 #headhelp { position: relative; background: url(../images/ayudabg.jpg) no-repeat center center; background-size: cover; /*padding: 65px 0;*/ }
-#headhelp h1 { color: #f50081; font-size: 40px; font-weight: 1000; }
+#headhelp h1 { /*color: #f50081; */ font-size: 40px; font-weight: 1000; }
 #headhelp h1:after { 
-  background: #f50081; 
+  background: #363633; 
   content: ""; 
   display: block; 
   margin-top: 20px; 
@@ -1457,8 +1457,8 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   color: #404040; 
   display: inline-block; 
   font-size: 1rem;
-  min-height: 2rem;
-  padding: 0 1rem;
+  min-height: 2.25rem;
+  padding: 0 1.5rem;
   font-weight: 300;
   text-transform: uppercase;
   border-bottom: 2px solid #ccc;
@@ -1466,7 +1466,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 #optionsHelp a:hover, #optionsHelp a.active { 
-  border-color: #e10d74;  
+  border-color: #363633;  
 }
 
 #desarrollo { 
@@ -2214,10 +2214,12 @@ span.out{
 
 .text-sm {
   font-size: 0.75rem;
+  font-weight: 300;
 }
 
 .text-link {
   text-decoration: underline;
+  font-weight: 300;
 }
 
 .text-legend {
@@ -2473,7 +2475,7 @@ span.count {
   text-align: center;
   font-size: 0.75rem;
   color: white;
-  background-color: #14c408;
+  background-color: lightgreen;
   width: 1.5rem;
   height: 1.5rem;
   margin: 0 auto;

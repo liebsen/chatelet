@@ -20,6 +20,12 @@
         </span>
       </div>
     </a>
+    <style>
+    .whatsapp-block > a.whatsapp > .fa {
+      animation-delay: <?= $data['whatsapp_autohide'] + 5 ?>s;
+    }
+ 
+    </style>
   <?php endif ?>
     <footer>
       <div class="wrapper">

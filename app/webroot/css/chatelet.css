@@ -719,7 +719,7 @@ html, body {
 }
 
 .text-chatelet {
-	color: #666;
+	color: lightgrey; /* #666;*/
 	/* color: #e10d74; */
 }
 
@@ -821,6 +821,7 @@ select.form-control{
   margin: auto;
   padding: 0.5rem 0;
   border: 1px solid #dbdbdb;  
+  background-color: white;
 	border-radius: 5px;
 }
 
@@ -1186,7 +1187,7 @@ select.form-control{
 }
 
 .text-green {
-	color: #14c408;
+	color: lightgreen; /*#14c408;*/
 }
 
 .text-shadow {
@@ -1559,7 +1560,6 @@ span.validation-password {
 .whatsapp-block > a.whatsapp > .fa {
 	animation-name: whatsappSplash;
 	animation-fill-mode: both;
-	animation-delay: 8s;
 	animation-duration: 1s;
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
