@@ -30,7 +30,7 @@
   #carousel-banners {
     background-color: black;
     color: white;
-    min-height: 64px;
+    min-height: 50px;
   }
 
   #carousel-banners .banner-caption {
@@ -42,7 +42,7 @@
     line-height: 1.25;
     justify-content: center;
     align-items: center;
-    min-height: 64px;
+    min-height: 50px;
     font-weight: 800;
   }
 

@@ -16,7 +16,7 @@
     position: relative;
     font-size: 14px;
     color: #ccc;
-    font-weight: bold;
+    font-weight: 300;
 	}
 	.wizard-progress .wizard-step:not(:last-child):before {
 		content: "";
@@ -51,10 +51,12 @@
 	}
 	.wizard-progress .wizard-step.current {
 		color: #333;
+		font-weight: bold;
 	}	
 	.wizard-progress .wizard-step.complete .wizard-node {
 		border-color: #333;
-		color: #333;
+		color: white;
+		background-color: #333;
 	}
 	.wizard-progress .wizard-step.current .wizard-node {
 		border-color: #333;

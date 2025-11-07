@@ -63,10 +63,8 @@ class CheckoutController extends AppController
 
 	public function index()
 	{
-		$data = $this->getItemsData();
-		//CakeLog::write('debug', 'updateCart(data)'.json_encode($data));
+		/*$data = $this->getItemsData();
 		$carro = $this->updateCart();
-		//CakeLog::write('debug', 'carrrrro:'.json_encode($carro));
 		$this->Session->write('cart', $carro);
 		$shipping_price = $this->Setting->findById('shipping_price_min');
 		$total_price = $data['price'];
@@ -99,10 +97,16 @@ class CheckoutController extends AppController
 		$this->set('sorted', $this->sort());
 		$this->set('stores', $stores);
 		$this->set('carrito_takeaway_text', $carrito_takeaway_text);
-		$this->set('freeShipping', $freeShipping);
+		$this->set('freeShipping', $freeShipping);*/
 	}
 
-	public function envio() {}
+	public function envio() {
+		$stores = $this->Store->find('all', [
+			'conditions' => ['takeaway' => 1]
+		]);
+
+		$this->set('stores', $stores);
+	}
 	private function parseTemplate ($str, $data) {
 		$html = $str;
     foreach ($data as $key => $value) {
