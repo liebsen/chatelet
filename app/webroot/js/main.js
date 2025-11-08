@@ -526,21 +526,6 @@ $(function () {
   }
 
   /* generic clic handlers */
-  $('[data-toggle="sidebar"]').click((e) => {
-    const target = $(e.target).data('target')
-    const focus = $(e.target).data('focus')
-    if($(target).length) {
-      if(!$(target).hasClass('sidebar-expanded')) {
-        $(target).addClass('sidebar-expanded')
-        $('.sidebar-backdrop').fadeIn()
-        if($(focus).length) {
-          setTimeout(() => {
-            $(focus).focus()
-          }, 1000)
-        }
-      }
-    }
-  })
 
   $('[data-toggle="mouseenter"]').mouseenter((e) => {
     const show = $(e.target).data('show')

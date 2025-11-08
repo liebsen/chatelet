@@ -7,9 +7,10 @@
 	echo $this->Html->script('shipping.js?v=' . Configure::read('APP_VERSION'),array( 'inline' => false ));
 	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 	echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
-	echo $this->element('checkout-steps');
+
 ?>
-<section id="detalle" class="is-flex-center min-h-100">
+<section id="detalle" class="is-flex-center flex-column min-h-101">
+	<?php echo $this->element('checkout-steps') ?>
   <div class="wrapper d-flex flex-column justify-content-center align-items-center gap-1">
 		<!--div class="header">
 			<h1>Método de envío</h1>			

@@ -1,6 +1,6 @@
 <style>
 	.wizard-container {
-		position: absolute;
+		max-width: 40rem;
 	}
 	.wizard-progress {
 	  display: table;
@@ -63,13 +63,15 @@
 		color: #333;
 	}
 </style>
-<div class="wizard-container bg-transparent p-3">
-	<div class="wizard-progress is-flex-center justify-content-around w-100">
-	<?php foreach($checkout_steps as $i => $step) : ?>
-		<div class="wizard-step <?= $i < $checkout_index ? 'complete' : '' ?> <?= $i == $checkout_index ? 'current' : '' ?>">
-			<?php echo $step['label'] ?>
-			<a href="<?= $i < $checkout_index ? $step['url'] : '#' ?>" class="wizard-node"><?php echo $i + 1 ?></a>
+<div class="is-flex-center is-absolute top-0 bg-transparent p-5 animated fadeIn delay2">
+	<div class="wizard-container">
+		<div class="wizard-progress is-flex-center justify-content-around w-100">
+		<?php foreach($checkout_steps as $i => $step) : ?>
+			<div class="wizard-step <?= $i < $checkout_index ? 'complete' : '' ?> <?= $i == $checkout_index ? 'current' : '' ?>">
+				<?php echo $step['label'] ?>
+				<a href="<?= $i < $checkout_index ? $step['url'] : '#' ?>" class="wizard-node"><?php echo $i + 1 ?></a>
+			</div>
+		<?php endforeach ?>
 		</div>
-	<?php endforeach ?>
 	</div>
 </div>

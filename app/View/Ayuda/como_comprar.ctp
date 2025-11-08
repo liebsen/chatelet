@@ -22,7 +22,7 @@
             <div class="wrapper animated fadeIn delay">
                 <h1 class="p-3 mb-4">Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h1>
                 <div class="col-xs-12 col-md-6">
-                    <ol class="ordered-list">
+                    <ol class="ordered-list p-0">
                         <li>Elegí tu prenda
 Podés encontrarla navegando por las categorías de nuestro shop o utilizando el buscador.
 Una vez que hayas encontrado el producto que deseas, cliqueá para ingresar y conocer todos sus detalles.</li>
@@ -32,7 +32,7 @@ Una vez que hayas encontrado el producto que deseas, cliqueá para ingresar y co
                     </ol>                   
                 </div>
                 <div class="col-xs-12 col-md-6">
-                    <ol start="5" class="ordered-list">
+                    <ol start="5" class="ordered-list p-0">
 <li>Para continuar no es necesario estar registrado, de igual forma si ya tenés una cuenta podes ingresar pero si no tenes cuenta cerrá el recuadro desde la cruz del margen superior derecho.</li>
 <li>Seguí los pasos, indicando como queres abonar tu compra, completa tus datos personales y hace click en “Finalizar compra”</li>
 <li>Serás redirigido a la plataforma de MercadoPago o, si elegiste transferencia bancaria, te aparecerán los datos bancarios en pantalla, ¡y listo!</li>

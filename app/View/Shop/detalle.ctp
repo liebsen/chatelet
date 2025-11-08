@@ -1,10 +1,10 @@
 <?php
 echo $this->Html->script('jquery', array('inline' => false));
 echo $this->Html->script('product.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-//echo $this->Html->script('ga', array('inline' => false));
-//echo $this->Html->script('cloudzoom', array('inline' => false));
-//echo $this->Html->css('cloudzoom', array('inline' => false));
-echo $this->Html->script('jquery.growl', array('inline' => false));
+// echo $this->Html->script('ga', array('inline' => false));
+// echo $this->Html->script('cloudzoom', array('inline' => false));
+// echo $this->Html->css('cloudzoom', array('inline' => false));
+// echo $this->Html->script('jquery.growl', array('inline' => false));
 echo $this->Html->script('detalle.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 $images  = array();
 $images_aux = explode(';', $product['gallery']);
@@ -176,74 +176,76 @@ foreach ($properties as $property) {
         <?php endif;?>
         <?php if (!$isGiftCard): ?>
             <!--h2>Color</h2-->
-            <div class="article-tools animated fadeIn">
-                <div class="field p-3">
-                   <div class="row animated fadeIn" data-toggle="buttons">
-                        <?php  
-                            foreach ($colors as $i => $color) {
-                                $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
-                                $style = (empty($color['images']))?'oldSelectColor':'';
-                                echo '<div class="col-sm-4 col-lg-3 p-1"><label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
-                                
-                                echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
-                                if (!empty($color['images'])) {
-                                    $image = explode(';', $color['images']);
-                                    foreach ($image as $kk => $vv) {
-                                        if (!empty($vv)) {
-                                            $image[0] = $vv;
-                                            break;
-                                        }
-                                    }
-                                    echo '<div class="color-option" style="background-image: url('.Configure::read('uploadUrl').$image[0].')"></div>';
-                                } else {
-                                    echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
-                                }
-                                echo "<small>".$color['alias']."</small>";
-                                echo '</label></div>';
-                            }
-                        ?>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="p-select">
-                        <select id="size" name="size">
-                            <option value="">Talle</option>
-                            <?php
-                                foreach ($sizes as $size) {
-                                    echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
-                                }
-                            ?>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="marginTop">
-              <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
-            </div>
-            <p>
-              <span style="color:#F50081;"> Stock:</span> <span id="stock_container"><i> (Elegí color y talle) </i></span>
-            </p>
-            <?php endif; ?>
-            <div class="d-flex flex-column justify-content-center align-items-center footer-producto gap-05">
-              <div class="row carrito-count has-item-counter active w-100" title="Cantidad de este producto">
-                <div class="col-xs-12 form-inline p-0">
-                  <div class="form-group">
-                    <div class="input-group carrito-selector">
-                        <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
-                            <span>&ndash;</span>
-                        </div>                                    
-                      <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="1">
-                      <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
-                       <span>+</span>
-                       </div>
+            <div class="animated fadeIn delay1">
+              <div class="article-tools">
+                  <div class="field p-3">
+                     <div class="color-options d-flex justify-content-around align-items-center gap-05" data-toggle="buttons">
+                          <?php  
+                              foreach ($colors as $i => $color) {
+                                  $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
+                                  $style = (empty($color['images']))?'oldSelectColor':'';
+                                  echo '<label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
+                                  
+                                  echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
+                                  if (!empty($color['images'])) {
+                                      $image = explode(';', $color['images']);
+                                      foreach ($image as $kk => $vv) {
+                                          if (!empty($vv)) {
+                                              $image[0] = $vv;
+                                              break;
+                                          }
+                                      }
+                                      echo '<div class="color-option" style="background-image: url('.Configure::read('uploadUrl').$image[0].')"></div>';
+                                  } else {
+                                      echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
+                                  }
+                                  echo "<small>".$color['alias']."</small>";
+                                  echo '</label>';
+                              }
+                          ?>
+                      </div>
+                  </div>
+                  <div class="field">
+                      <div class="p-select">
+                          <select id="size" name="size">
+                              <option value="">Talle</option>
+                              <?php
+                                  foreach ($sizes as $size) {
+                                      echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
+                                  }
+                              ?>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="marginTop">
+                <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
+              </div>
+              <p>
+                <span style="color:#F50081;"> Stock:</span> <span id="stock_container"><i> (Elegí color y talle) </i></span>
+              </p>
+              <?php endif; ?>
+              <div class="d-flex flex-column justify-content-center align-items-center footer-producto gap-05">
+                <div class="row carrito-count has-item-counter active w-100" title="Cantidad de este producto">
+                  <div class="col-xs-12 form-inline p-0">
+                    <div class="form-group">
+                      <div class="input-group carrito-selector">
+                          <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
+                              <span>&ndash;</span>
+                          </div>                                    
+                        <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="1">
+                        <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
+                         <span>+</span>
+                         </div>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
+                  <a href="#" id="agregar-carro" class="btn btn-chatelet dark buy agregar-carro w-100">Comprar ahora</a>
+                  <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro w-100">Agregar al carrito</a>
+                </div>                        
               </div>
-              <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-                <a href="#" id="agregar-carro" class="btn btn-chatelet dark buy agregar-carro w-100">Comprar ahora</a>
-                <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro w-100">Agregar al carrito</a>
-              </div>                        
             </div>
           </div>
         </div>

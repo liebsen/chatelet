@@ -34,15 +34,9 @@
     <meta property="og:image" itemprop="image primaryImageOfPage" content="<?= siteUrl() . @$data['opengraph_image'] ?>" />
     <?php endif ?>
     <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$data['google_font_name']) ?>:<?= @$data['google_font_size'] ?>" rel="stylesheet">
-    <style>
-      :root {
-        --google-fonts-name: <?=@$data['google_font_name'] ?>;
-      }
-      body, h1, h2, h3, h4, h5, h6 {
-        font-family: '<?=@$data['google_font_name'] ?>', Verdana, Arial, Sans-Serif!important;
-      }
-    </style>
-    <!-- Bootstrap -->
+
+    <?php echo $this->element('css_root') ?>
+
     <?php
       echo $this->Html->css('font-awesome.min');
       echo $this->Html->css('bootstrap-select');
@@ -52,8 +46,6 @@
       echo $this->Html->css('chatelet.css?v=' . Configure::read('APP_VERSION'));
       echo $this->Html->css('custom.css?v=' . Configure::read('APP_VERSION'));
       echo $this->Html->css('animate.css?v=' . Configure::read('APP_VERSION'));
-      echo $this->fetch('meta');
-      echo $this->fetch('css');
       echo $this->Html->script('jquery-1.11.1.min');
       echo $this->Html->script('vendor/modernizr-2.8.3.min.js');
       echo $this->Html->script('bootstrap');
@@ -63,6 +55,9 @@
       //echo $this->Html->script('wow.min');
       echo $this->Html->script('plugins');
       echo $this->Html->script('main.js?v=' . Configure::read('APP_VERSION'));
+      // echo $this->fetch('meta');
+      // echo $this->fetch('css');
+
     ?>
     <script>
       $.ajaxSetup({

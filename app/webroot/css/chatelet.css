@@ -1,10 +1,5 @@
 /* Base color: #e10c76 */
 
-/*@font-face {
-	font-family: 'BauerBodni Blk BT Black';
-	src: url('../fonts/BauerBodni Blk BT Black.ttf');
-}*/
-
 body.loading {
   overflow: hidden;
 }
@@ -43,9 +38,9 @@ nav.sidebar {
   position: fixed;
   z-index: 90;
   top: 0px;
-  right: -300px;
+  right: -320px;
   bottom: 0;
-  width: 300px;
+  width: 320px;
   height: 100%;
   background: white;
   padding: 1rem;
@@ -60,10 +55,11 @@ nav.sidebar {
 
 a {
 	color: #e10c76;
+	font-weight: 300;
 }
 
 a:hover {
-	color: #e10c22;
+	color: #e10c76;
 }
 
 html, body {
@@ -455,10 +451,10 @@ html, body {
 	min-height: 24rem;
 }
 .min-h-100 {
-  min-height: calc(100dvh - 103px);
+  min-height: calc(100dvh - 152px);
 }
 .min-h-101 {
-  min-height: calc(100dvh - 153px);
+  min-height: calc(100dvh - 102px);
 }
 .mb-0 {
   margin-bottom: 0!important;
@@ -474,6 +470,10 @@ html, body {
 
 .is-absolute {
   position: absolute;
+}
+
+.top-0 {
+	top: 0;
 }
 
 .is-relative {
@@ -931,9 +931,9 @@ select.form-control{
 	padding: 0.5rem;
 }
 
-#bs-example-navbar-collapse-1 > .navbar-nav > li > a {
+/* #bs-example-navbar-collapse-1 > .navbar-nav > li > a {
 	line-height: 30px;	
-}
+}*/
 
 .dropdown-menu ol {
 	color: #b4b4b4;
@@ -1367,8 +1367,8 @@ select.form-control{
 	background-color: transparent;
 	position: absolute;
 	color: #888;
-	right: 0.75rem;
-  top: 0.75rem;
+	right: 1rem;
+  top: 1.25rem;
 }
 
 .btn-chatelet {

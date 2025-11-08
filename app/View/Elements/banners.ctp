@@ -36,14 +36,14 @@
   #carousel-banners .banner-caption {
     text-align: center;
     color: white;
-    font-size: 1rem;
+    font-size: 0.9rem;
     position: inherit;
     display: flex;
     line-height: 1.25;
     justify-content: center;
     align-items: center;
     min-height: 50px;
-    font-weight: 800;
+    font-weight: 500;
   }
 
   #carousel-banners .item.active {

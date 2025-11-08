@@ -32,7 +32,7 @@
                 <div class="container">
                     <h2 class="h2">Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h2>
                     <br><br>
-                    <ol class="ordered-list">
+                    <ol class="ordered-list p-0">
                         <li>Elegí tu prenda
 Podés encontrarla navegando por las categorías de nuestro shop o utilizando el buscador.
 Una vez que hayas encontrado el producto que deseas, cliqueá para ingresar y conocer todos sus detalles.</li>
