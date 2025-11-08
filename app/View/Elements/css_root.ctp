@@ -67,6 +67,9 @@
       }
 
       @media screen and (min-width:769px), print {
+        .mobile {
+          display: none!important;
+        }
         .desktop {
           display: block;
         }        

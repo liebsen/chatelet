@@ -1,15 +1,15 @@
 <?php
 	echo $this->Session->flash();
 ?>
-  <div id="headcontacto">
-    <div class="wrapper">
+  <section id="headcontacto">
+    <div class="wrapper container">
       <div class="row">
         <div class="col-md-4">
           <div class="animated fadeIn delay">
             <h1>Contactate<br>con nosotros</h1>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 p-0">
           <div class="animated fadeIn delay box-cont">
             <div class="box">
               <h3>¿Tenés alguna consulta o sugerencia?</h3>
@@ -19,10 +19,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <section id="formulario">
-    <div class="wrapper">
+    <div class="wrapper container">
       <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
       <div class="row">
         <div class="col-sm-6">
