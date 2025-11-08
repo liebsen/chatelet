@@ -402,10 +402,6 @@ html, body {
   background-color: #e10d74;
 }
 
-.is-transparent {
-	background-color: transparent;
-}
-
 .btn:not(.btn-link):not(.btn-light):hover {
 	color:white!important;
 }

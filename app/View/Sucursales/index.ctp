@@ -115,5 +115,23 @@ function initialize(address) {
 #location .col-md-8 ul li:last-child:before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
   #location .col-md-8 { padding-left: 75px; padding-right: 75px; }
   #location .col-md-4.search p { font-size: 1rem; }
+@media (max-width: 767px) {
+
+  #location { padding-bottom: 30px; }
+
+  #location .col-md-8 { padding-left: 15px; padding-right: 15px; }
+  #location .col-md-8 ul li { float: none; margin-bottom: 30px; width: 100%; font-size: 18px; }
+  #location .col-md-8 h3, #location .col-md-8 h4 { font-size: 18px; }
+
+    #location .col-md-12 {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    #location .col-md-12 ul li {
+        width: 100%;
+        padding-bottom: 25px;
+    }
+
+}
 
 </style>

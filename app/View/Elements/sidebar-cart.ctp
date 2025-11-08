@@ -1,8 +1,8 @@
 
 
 <nav class="sidebar sidebar-cart">
-  <button type="button" class="btn-close btn-close-sidebar">
-    <i class="fa fa-times"></i>
+  <button type="button" class="corner-pin btn-close-sidebar">
+    <i class="ico-times" role="img" aria-label="Cerrar"></i>
   </button>  
   <h6 class="text-bolder text-uppercase">Carrito</h6>
   <div class="d-flex flex-column justify-content-center align-items-center gap-05">

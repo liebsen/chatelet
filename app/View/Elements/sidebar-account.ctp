@@ -1,6 +1,6 @@
 <nav class="sidebar sidebar-account">
-  <button type="button" class="btn-close btn-close-sidebar">
-    <i class="fa fa-times"></i>
+  <button type="button" class="corner-pin btn-close-sidebar">
+    <i class="ico-times" role="img" aria-label="Cerrar"></i>
   </button>
 <?php if ($loggedIn) : ?>
   <h6 class="text-bolder text-uppercase">Hola, <?php echo $user['name'] ?></h6>

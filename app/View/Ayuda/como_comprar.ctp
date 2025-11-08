@@ -2,7 +2,7 @@
     
         <div id="headhelp">
             <?php echo $this->element('navbar-ayuda'); ?>
-            <div class="wrapper">
+            <div class="wrapper container">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">
                         <div class="animated fadeIn delay">
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <section id="desarrollo">
+        <section id="desarrollo" class="bg-arrow">
             <div class="wrapper animated fadeIn delay">
                 <h1 class="p-3 mb-4">Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h1>
                 <div class="col-xs-12 col-md-6">

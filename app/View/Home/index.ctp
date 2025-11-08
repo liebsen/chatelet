@@ -1,16 +1,7 @@
 <?php
 
 echo $this->Session->flash();
-$images 	= array();
-$images_aux = explode(';', @$home['img_url']);
-foreach ($images_aux as $key => $value) {
-	if(!empty($value))
-		$images[] 	= Configure::read('uploadUrl').$value;
-}
-$img_url_one = str_replace(';', '', @$home['img_url_one']);
-$img_url_two = str_replace(';', '', @$home['img_url_two']);
-$img_url_three = str_replace(';', '', @$home['img_url_three']);
-$img_url_four = str_replace(';', '', @$home['img_url_four']);
+
 ?>
 <div class="wrapper content animated fadeIn2 delay">
   <div id="carousel" class="carousel slide" data-type="slider" data-interval="10000" data-ride="carousel">
@@ -21,7 +12,7 @@ $img_url_four = str_replace(';', '', @$home['img_url_four']);
     <?php echo $this->element('shop_list') ?>
   </section>
 
-  <section id="suscribe">
+  <section id="suscribe" class="animated"> <!-- fadeIn slow delay2 -->
     <?php echo $this->element('subscribe-box') ?>
   </section>
 

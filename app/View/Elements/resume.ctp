@@ -28,6 +28,13 @@
 				<span class="">Total </span> 
 				<span class="calc_total">$ <?= \price_format($total) ?></span><!--span>.00</span-->
 			</div>
-			<span class="text-theme paying-with">Pagando con <?= strtolower($payment_methods[$config['payment_method']]) ?></span>
+			<div class="summary-item">
+				<span class="text-theme">Pagando con <?= strtolower($payment_methods[$config['payment_method']]) ?></span>
+			</div>
+		<?php if(!empty($text_shipping_min_price)) :?>
+			<div class="summary-item">
+				<span class="text-theme"><?php echo $text_shipping_min_price ?></span>
+			</div>
+		<?php endif ?>
 		</div>
 	</div>

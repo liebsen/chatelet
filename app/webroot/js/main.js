@@ -616,6 +616,9 @@ $(function () {
       var scroll = $(window).scrollTop()
       const video = $("#carousel .item.active").find("video")
       $('.navbar-chatelet:not(.short)').removeClass('fadeIn')
+      if($('.shop-options').is(':visible')) {
+        $('.shop-options').hide()
+      }
       void document.querySelector('.navbar-chatelet').offsetWidth;
       if (scroll > 100) {
         if (!fakeshown && lastscroll < scroll) {

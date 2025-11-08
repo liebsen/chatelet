@@ -74,6 +74,9 @@ html, body {
   width: 100%;
 }
 
+.is-transparent {
+	opacity: 0;
+}
 
 .layer {
   position: fixed;
@@ -616,6 +619,16 @@ html, body {
 .tap-to-continue > .fa:before {
 	font-size: 1.25rem;
 }
+
+/* special icons */
+
+[class^="ico-"], [class*=" ico-"] {
+  font: normal 1em/1 Arial, sans-serif;
+  display: inline-block;
+}
+
+.ico-times::before { content: "\2715"; }
+.ico-check::before { content: "\2714"; }
 
 .icon-huge {
 	display: flex;
@@ -1354,12 +1367,12 @@ select.form-control{
 	line-height: 1.25;
 }
 
-.btn-close {
+.corner-pin {
 	border: none;
 	background-color: transparent;
 	position: absolute;
 	color: #888;
-	right: 1rem;
+	right: 1.25rem;
   top: 1.25rem;
 }
 

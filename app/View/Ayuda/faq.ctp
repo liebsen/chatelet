@@ -21,7 +21,7 @@
         </div>
 
 
-        <section id="desarrollo">
+        <section id="desarrollo" class="bg-arrow">
             <div class="wrapper animated fadeIn delay">
                 <div class="col-sm-6">
                     <h3>Cuál es el costo de envío y entrega de mi pedido?</h3>

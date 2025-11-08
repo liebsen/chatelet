@@ -24,7 +24,7 @@
         </div>
 
 
-        <section id="desarrollo">
+        <section id="desarrollo" class="bg-arrow">
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-6 col-sm-8">

@@ -8,8 +8,6 @@
 <script type="text/javascript">
 	
 	$(function () {
-
-		console.log('length', $('[data-toggle="sidebar"]').length)
 	  $(document).on('click', '[data-toggle="sidebar"]', (e) => {
 	    const target = $(e.target).data('target')
 	    const focus = $(e.target).data('focus')

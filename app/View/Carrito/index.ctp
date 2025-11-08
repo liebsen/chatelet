@@ -24,7 +24,7 @@
 
 <div class="layer remove-item-layer">
   <span class="close is-clickable" onclick="layerClose()">
-    <i class="fa fa-close"></i>
+    <i class="ico-times" role="img" aria-label="Cerrar"></i>
   </span>
   <div class="row">
     <div class="col-xs-12 text-center">

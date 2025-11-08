@@ -1,14 +1,20 @@
-
-  <div class="wrapper container is-flex-end animated fadeIn slow delay5">
-    <div class="col-md-6">
-      <h2 class="h2 mt-0 mb-4">Estemos <strong>conectad@s</strong></h2>
-      <p>Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
-    </div>
-    <div class="col-md-6">
+  <div class="wrapper container">
+    <span class="corner-pin">
+      <i class="ico-times" role="img" aria-label="Cerrar"></i>
+    </span>
+    <div class="is-flex-center flex-column gap-1">
+      <span>
+        <h2>Estemos <strong>conectad@s</strong></h2>
+        <p>Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
+      </span>
+      <span>
       <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
-        <input class="p-1" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
-        <input type="submit" id="enviar" value="ok">
+        <div class="is-flex-center gap-05">
+          <input class="form-control" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+          <input type="submit" class="btn btn-chatelet dark" id="enviar" value="Confirmar">
+        </div>
       <?php echo $this->Form->end(); ?>
+      </span>
     </div>
   </div>
 
@@ -19,13 +25,11 @@
       bottom: 0;
       background: #e6e6e6; 
       color: #333; 
-      font-size: 0.75rem;
-      font-weight: 400; 
+      font-weight: 300; 
       overflow: hidden; 
-      padding: 2.5rem 0; 
+      padding: 1rem; 
     }
-  #suscribe .col-md-6:last-child:before { display: none; }
-
+    #suscribe .col-md-6:last-child:before { display: none; }
     #suscribe .col-md-6:first-child { padding-top: 0.5rem; padding-bottom: 0.5rem; }
     #suscribe .h3 { margin-top: 0; }
     #suscribe strong { font-weight: 900; }
