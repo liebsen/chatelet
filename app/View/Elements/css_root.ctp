@@ -60,7 +60,7 @@
 
       @media screen and (max-width:768px), print {
         .mobile {
-          display: block;
+          display: inline-block;
         }
         .desktop {
           display: none!important;
@@ -72,7 +72,7 @@
           display: none!important;
         }
         .desktop {
-          display: block;
+          display: inline-block;
         }        
       }
     </style>

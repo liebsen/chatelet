@@ -25,10 +25,12 @@
     <div class="wrapper container">
       <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-md-6">
           <input type="text" name="data[Contact][name]" class="form-control" placeholder="Nombre y Apellido" required />
 
           <input type="email" class="form-control" name="data[Contact][email]" class="form-control" placeholder="Email" required/>
+          <input type="text" name="data[Contact][telephone]" class="form-control" placeholder="Telefono" required />
+          
           <div class="p-2">
             <h3>Tipo de consulta:</h3>
             <label for="particular">
@@ -41,8 +43,7 @@
             </label>
           </div>
         </div>
-        <div class="col-sm-6">
-          <input type="text" name="data[Contact][telephone]" class="form-control" placeholder="Telefono" required />
+        <div class="col-md-6">
           <textarea name="data[Contact][message]" class="form-control" placeholder="Mensaje" rows="10" required></textarea>
           <input type="submit" id="contactar" class="btn btn-chatelet dark" value="Enviar Consulta" />
         </div>

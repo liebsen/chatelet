@@ -356,10 +356,10 @@ body.top-fixed .navbar-chatelet .fa {
   .add-no-stock {
     min-height: 35rem!important;
   }
-  .product-image {
+  /*.product-image {
     min-height: 28rem!important;
     max-height: 28rem!important;
-  }
+  }*/
   .box.img-bg {
     min-height: 22rem;
   }
@@ -576,16 +576,14 @@ footer .bottom a.fb { background-position: 10px -286px; }
 footer .bottom a.tt { background-position: -40px -286px; }
 footer .bottom a.ig { background-position: -101px -286px; } */
 
-
 .modal a.close { display: block; height: 35px; opacity: 1; position: absolute; right: 20px; top: 10px; width: 35px; z-index: 1;}
 .modal a.close span { background: #363633; display: block; height: 4px; margin-top: 25px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
 .modal a.close span:last-child { margin-top: -3px; -ms-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); transform: rotate(-45deg); }
 #myModal .content {
-  background-image: url(../images/livebox-bg.jpg);
+  background-color: #333;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  /* margin: 50px auto;*/
   overflow: hidden;
   position: relative;
   width: 100vw;
@@ -903,9 +901,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  /*background-size: 100%;*/
+  /*background-size: 100%;
   min-height: 35rem;
-  max-height: 35rem;
+  max-height: 35rem;*/
+  aspect-ratio: 0.6;
   /*border-radius: 0.5rem;*/
   transition: all .3s ease-in-out; 
   -moz-transition: all .3s ease-in-out; 
@@ -1072,9 +1071,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   border: none;
   box-shadow: none;
   opacity: 1;
-  aspect-ratio: 1;
-  min-height: 6rem;
-  min-width: 6rem;
+  aspect-ratio: 0.6;
   margin-bottom: 0.25rem;
   background-repeat: no-repeat;
   background-position: center center;
@@ -1202,6 +1199,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   position: relative; 
   background: url(../images/ayudabg.jpg) no-repeat center center; 
   background-size: cover; 
@@ -1272,13 +1270,13 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   padding: 0 1.5rem;
   font-weight: 300;
   text-transform: uppercase;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 1px solid #ccc;
   transition: all 300ms linear;
 }
 
-#optionsHelp a:hover, #optionsHelp a.active { 
+/*#optionsHelp a:hover, #optionsHelp a.active { 
   border-color: #363633;  
-}
+}*/
 
 .bg-arrow {
   background: white url(../images/arrow-down.png) no-repeat center top; 
@@ -2178,13 +2176,12 @@ span.out{
   transform: scale(1.6) translateY(-0.75rem) translateX(0.75rem);  
 }
 
-.article-tools {
+/*.article-tools {
   padding: 0.25rem;
-}
+}*/
 
 .article-related-title {
   text-align:center;
-  
   font-weight: 800;
   margin:10px auto 20px;
   color: #404040;
@@ -2693,7 +2690,7 @@ span.count.is-empty {
 
 @media screen and (min-width:769px), print {
   .slider-full {
-    min-height: calc(100vh - 152px);
+    min-height: calc(100vh - 151px);
   }
   .w-mobile {
     max-width: 25rem;
