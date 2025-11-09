@@ -34,7 +34,7 @@
       <input type="submit" id="login" form="" value="Iniciar sesión" /> 
       <div class="modal-buttons">                
         <a href="/shop/registro">Crear nueva cuenta</a>
-        <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé mi contraseña</a>
+        <a href="/shop/recuperar_acceso">Olvidé mi contraseña</a>
       </div>
       <?php echo $this->Form->end(); ?>
 		</div>

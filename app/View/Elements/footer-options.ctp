@@ -1,6 +1,6 @@
         <div class="options">
           <div class="p-1">
-            <h3>Colección</h3>
+            <h5 class="text-uppercase">Colección</h5>
             <ul>
             <?php
             if (!empty($categories)){
@@ -28,7 +28,7 @@
           if (!empty($lookBook)){ ?>
 
           <div class="p-1">
-            <h3>LookBook</h3>
+            <h5 class="text-uppercase">LookBook</h5>
             <ul>
           <?php foreach ($lookBook as $item) {
               $item = $item['LookBook'];
@@ -50,7 +50,7 @@
           <?php } ?>
 
           <div class="p-1">
-            <h3>Información</h3>
+            <h5 class="text-uppercase">Información</h5>
             <ul>
               <li>
               <?php echo $this->Html->link('Sucursales', array('controller' => 'sucursales', 'action' => 'index'));?>
@@ -64,7 +64,7 @@
 
           <div class="p-1">
             <!--  <a href="mailto:sueldos@chatelet.com.ar"><h4>Trabaja con nosotros</h4></a>-->
-              <h3>Empresa</h3>
+              <h5 class="text-uppercase">Empresa</h5>
               <ul>
                   <li>
                       <a href="#" data-toggle="modal" data-target="#particular-email">

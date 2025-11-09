@@ -39,6 +39,7 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 							)
 						)); ?> 
 						<input type="hidden" name="redirect" value="/checkout/envio" />
+						<input type="hidden" name="ajax" value="1" />
 			      <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" />
 			      <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" />
 			      <input type="submit" class="btn btn-chatelet dark w-100" value="Iniciar sesión" /> 
@@ -60,6 +61,8 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 								'action' => 'register'
 							)
 						)); ?>
+						<input type="hidden" name="ajax" value="1" />
+						<input type="hidden" name="invite" value="1" />
 						<input type="hidden" name="redirect" value="/checkout/envio" />    
 			      <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" />
 			      <!--input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" /-->
@@ -77,21 +80,31 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 
 	$(document).ready(function() {
 	    $('#login_form, #register_form').on('submit', function(event) {
-	        event.preventDefault(); // Prevent default form submission
-
-	        var formData = $(this).serialize(); // Get form data
-
+	        event.preventDefault();
+	        var formData = $(this).serialize();
+	        var btnSubmit = $(this).find('[type="submit"]');
+	        btnSubmit.prop('disabled', true)
 	        $.ajax({
-	            url: $(this).attr('action'), // Get action URL from the form
+	            url: $(this).attr('action'),
 	            type: 'POST',
 	            data: formData,
-	            dataType: 'html', // Or 'json' if your controller returns JSON
-	            success: function(response) {
-	                $('#responseContainer').html(response); // Update a div with the response
+	            success: function(res) {
+	            	if(res.success) {
+	            		onSuccessAlert('Success', res.message)
+	                $('#responseContainer').html(res.message);
+	                setTimeout(() => {
+	                	location.href = formData.redirect
+	                }, 3000)
+	            	} else {
+	            		onWarningAlert('Error', res.errors)
+	            		$('#responseContainer').html(res.errors);
+	            	}
+	            	btnSubmit.prop('disabled', false)
 	            },
 	            error: function(xhr, status, error) {
-	                console.error("AJAX Error: " + status + " - " + error);
-	                // Handle errors
+                console.error("AJAX Error: " + status + " - " + error);
+                btnSubmit.prop('disabled', false)
+                // Handle errors
 	            }
 	        });
 	    });

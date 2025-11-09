@@ -22,6 +22,7 @@ class UsersController extends AppController {
 
   public function login() {
     $redirect = $this->request->data['redirect'];
+    $ajax = $this->request->data['ajax'];
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
         $this->Session->setFlash(
@@ -29,8 +30,23 @@ class UsersController extends AppController {
           'default', 
           array('class' => 'hidden notice')
         );
+
+        if(!empty($ajax)) {
+          die(json_encode(array(
+            'success' => true, 
+            'message' => 'Bienvenido a Chatelet'
+          )));
+        }
+
         return $this->redirect($redirect ?? $this->referer());
         // return $this->redirect(array('controller' => 'shop', 'action' => 'cuenta'));
+      }
+
+      if(!empty($ajax)) {
+        die(json_encode(array(
+          'success' => false, 
+          'errors' => 'Por favor verifique su email y contraseña e intente nuevamente'
+        )));
       }
 
       $this->Session->setFlash(
@@ -46,7 +62,7 @@ class UsersController extends AppController {
   public function logout() {
     $this->Session->destroy();
     $this->Session->setFlash(
-      'Gracias por comprar con Châtelet', 
+      'Tu sesión ha terminado. Gracias por comprar con Châtelet', 
       'default', 
       array('class' => 'hidden notice')
     );        
@@ -107,11 +123,21 @@ class UsersController extends AppController {
 
   public function register(){
     $this->autoRender = false;
+
     if (!$this->request->is('post')) {
       //return json_encode(array('success' => false));
       return $this->redirect(array('controller' => 'home', 'action' => 'index'));
     }
-    $saved = $this->User->save($this->request->data);
+
+    $invite = $this->request->data['invite'];
+    $ajax = $this->request->data['ajax'];
+    $saved = $this->User->save(
+      $this->request->data, 
+      array(
+        'validate' => !empty($invite)
+      )
+    );
+
     //CakeLog::write('debug', 'saved:'. json_encode($saved));
     if (!empty($saved)) {
       $this->Auth->login();     
@@ -120,16 +146,28 @@ class UsersController extends AppController {
         'default', 
         array('class' => 'hidden notice')
       );
-      //die(json_encode(array('success' => true)));
+      if(!empty($ajax)) {
+        die(json_encode(array(
+          'success' => true,
+          'message' => 'Tu nueva cuenta ha sido creada'
+        )));
+      }
       return $this->redirect($this->referer());
     } else {
       $errors = $this->User->validationErrors;
+
+      CakeLog::write('debug', 'errors:'.json_encode($errors));
       $this->Session->setFlash(
         'Hubo en error al intentar crear la cuenta. Por favor intente nuevamente en unos instantes.',
         'default',
         array('class' => 'hidden error')
       );            
-      //die(json_encode(array('success' => false, 'errors' => $errors)));
+      if(!empty($ajax)) {
+        die(json_encode(array(
+          'success' => false,
+          'errors' => 'Hubo en error al intentar crear la cuenta. Por favor intente nuevamente en unos instantes'
+        )));
+      }
       return $this->redirect(array('controller' => 'home', 'action' => 'index'));
     }
   }
@@ -138,21 +176,32 @@ class UsersController extends AppController {
     if ($this->request->is('post')) {
       $email_user = $this->request->data['User']['email'];
       if(!empty($email_user)){
-        $user_data = $this->User->find('first', array('recursive' => -1, 
-          'conditions' => array('User.email' => $email_user)));
+        $user_data = $this->User->find('first', array(
+          'recursive' => -1, 
+          'conditions' => array('User.email' => $email_user)
+        ));
        
         if(!empty($user_data)){   
-          $pass1 = substr($user_data['User']['password'], -6);
-          //$passwordHasher = new SimplePasswordHasher();
-          $pass = $pass1;//$passwordHasher->hash($pass1);
-                                                                                                  
-          $this->User->save(array('User'=>array('id' => $user_data['User']['id'],
-            'password' => $pass)), false);
+          $pass1 = $this->random_password();
+          CakeLog::write('debug', 'password:'.$pass1);
 
-          $email_data = array('id_user' => $user_data['User']['id'] ,
+          $passwordHasher = new SimplePasswordHasher();
+          $pass = $passwordHasher->hash($pass1);
+          CakeLog::write('debug', 'hash:'.$pass);
+                                                                                                  
+          $this->User->save(array(
+            'User'=>array(
+              'id' => $user_data['User']['id'],
+              'password' => $pass
+            )
+          ), false);
+
+          $email_data = array(
+            'id_user' => $user_data['User']['id'] ,
             'receiver_email' => $user_data['User']['email'],
             'name' =>  $user_data['User']['name'],
-            'password' => $pass1);
+            'password' => $pass1
+          );
            
           $this->sendEmail($email_data,'Recuperar contraseña Châtelet', 'confirm_email');
 

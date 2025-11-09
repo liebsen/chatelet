@@ -16,33 +16,27 @@
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
-<head>
-
-</head>
-<table id="main" cellpadding="0" cellspacing="0" color="##FFF;" width="600" align="center">
-            <tr >
-                <td class="header">
-                    <table style="width:100%;" id="header" cellpadding="0" cellspacing="0" align="center">
-                        <tr style="text-align:center;">
-                            
-                        </tr>
-                    </table>
-                </td>
+  <head>
+  </head>
+  <body>
+    <table id="main" cellpadding="0" cellspacing="0" color="##FFF;" width="600" align="center" style="width:100%;" >
+      <tr>
+        <td class="header">
+          <table id="header" cellpadding="0" cellspacing="0" align="center" style="width:100%;" >
+            <tr style="text-align:center;">
+              <?php echo $this->html->image(Router::url('/',true)."images/logo.jpg"); ?>
             </tr>
-            <?php echo $this->fetch('content'); ?>
-            <tr>
-                <td>
-                    <table style="margin-top:5%;" id="copy" cellpadding="0" cellspacing="0" align="center">
-                        <tr>
-                            <td style="padding:15px!important;text-align: center;font-weight: bold;" width="600" height="48">
-                                <table cellpadding="0" cellspacing="0">
-                                  
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-</body>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><?php echo $this->fetch('content'); ?></td>
+      </tr>
+      <tr>
+        <td>
+          &copy; <?php echo date('Y',time()); ?> &copy; Châtelet <p>Todos los derechos reservados.</p>
+        </td>
+      </tr>
+    </table>
+  </body>
 </html>

@@ -20,28 +20,11 @@
 	}
 </script>
 
-<!-- bank layer -->
-
-<div class="layer remove-item-layer">
-  <span class="close is-clickable" onclick="layerClose()">
-    <i class="ico-times" role="img" aria-label="Cerrar"></i>
-  </span>
-  <div class="row">
-    <div class="col-xs-12 text-center">
-      <h1 class="h1">¿Seguro deseas eliminar<br><span class="prod_name text-theme"></span><br> del carrito?</h1>
-      <div class="form-group">
-      	<button type="button" class="btn btn-light" onclick="layerClose('remove-item')">Cancelar</button>
-        <button type="button" id="carrito-remove-btn" class="btn btn-chatelet dark" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="main" class="container">
+<div id="main" class="container animated fadeIn delay">
 	<div class="row">
 		<div class="flex-row pb-0">
 			<div class="flex-col flex-col justify-content-end pb-0">
-				<h6>Carrito</h6>
+				<h5>Carrito</h5>
 			</div>
 			<div class="flex-col flex-col justify-content-end pl-8 max-22 pb-0">
 				<span><span class="text-sm text-bold">¿Necesitas ayuda?</span><span class="text-sm"> Consultá nuestras <a class="text-sm text-link" href="/ayuda/faq">preguntas frequentes</a></span></span>
@@ -56,7 +39,7 @@
 		</div-->
 		<?php endif ?>
 	</div>
-	<div class="row animated fadeIn delay">
+	<div class="row">
 		<div id="carrito">
 			<!--h3 id="heading" style="margin:10px 0px">Carrito de compras</h3-->
 			<?php if (isset($carro) && !empty($carro)) :?>			
@@ -87,7 +70,7 @@
 						echo '</a>';
 					echo '</div>';
 					echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
-					echo '<h6 class="is-carrito mb-1">'. $product['name'] . '</h6>';
+					echo '<h5 class="is-carrito mb-1">'. $product['name'] . '</h5>';
 						if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 							echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
 						}
@@ -173,7 +156,7 @@
 						echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 						echo '</a>';
 					echo '</div>';
-					echo '<div class="d-flex justify-space-between align-items-start flex-column min-h-12 min-w-7">';
+					echo '<div class="d-flex justify-space-between align-items-start flex-column min-w-7">';
 					echo '<div class="d-flex justify-content-start align-center flex-column">';
 					echo '<span class="name is-carrito">'. $product['name'] . '</span>';
 						if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){

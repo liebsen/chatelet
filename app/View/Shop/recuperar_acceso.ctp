@@ -2,7 +2,7 @@
 $this->set('short_header', 'Cuenta');
 echo $this->Session->flash();
 ?>
-<section id="detalle" class="is-flex-center min-h-100">
+<section id="detalle" class="is-flex-center min-h-101">
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1">
 		<h2>
 			<?php  echo 'Recuperar Contraseña'; ?>
@@ -10,10 +10,11 @@ echo $this->Session->flash();
 		<p>
 			Recupera fácilmente el acceso a tu cuenta ingresando el correo con el que creaste tu cuenta en Chatelet.<br> Te enviaremos instrucciones a ese correo.
 		</p>
-		<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
-			<!--img src="/images/GmqOqj9lbwgZX3wzUkdSbD3pk.jpg" width="100" /-->
-		</div>					
-		<?php echo $this->Form->create(null, array('url' => array('controller' => 'users', 'action' => 'forgot_password'))); ?>
+		<?php echo $this->Form->create(null, array('url' => array(
+			'class' => 'w-100',
+			'controller' => 'users', 
+			'action' => 'forgot_password'
+		))); ?>
     <p class="title mb-1">Ingresá tu correo</p>
     <input type="email" id="login-email" class="form-control"  name="data[User][email]" placeholder="Email" />
     <input type="submit" id="login" value="Enviar" />

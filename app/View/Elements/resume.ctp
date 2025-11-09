@@ -1,5 +1,5 @@
 	<div class="d-flex flex-column justify-content-center align-items-start gap-1">
-		<h6>Resumen de tu compra</h6>
+		<h5>Resumen de tu compra</h5>
 		<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 		<input type="hidden" id="subtotal_envio" value="" />
 		<div class="w-100">
