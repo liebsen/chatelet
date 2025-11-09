@@ -12,7 +12,7 @@ echo $this->Session->flash();
     <?php echo $this->element('shop_list') ?>
   </section>
 
-  <section id="suscribe" class="animated"> <!-- fadeIn slow delay2 -->
+  <section id="suscribe" class="animated fadeIn delay2"> <!-- fadeIn slow delay2 -->
     <?php echo $this->element('subscribe-box') ?>
   </section>
 

@@ -1,7 +1,7 @@
 <?php $this->Html->script('ayuda', array('inline' => false)); ?>
        <div id="headhelp">
             <?php echo $this->element('navbar-ayuda'); ?>
-            <div class="wrapper container animated slideInDown delay">
+            <div class="wrapper container animated fadeIn">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">
                         <div class="animated fadeIn delay">

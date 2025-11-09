@@ -32,7 +32,7 @@
 	<hr>
 	<span class="text-sm">❤️ ¡Muchas gracias!</span>
 </div>
-<div id="main" class="container animated fadeIn delay1">
+<div id="main" class="container animated fadeIn1">
 	<form role="form" method="post" id="checkoutform" autocomplete="off" onkeydown="return event.key != 'Enter';" action="<?php echo $this->Html->url(array(
 				'controller' => 'carrito',
 				'action' => 'sale'

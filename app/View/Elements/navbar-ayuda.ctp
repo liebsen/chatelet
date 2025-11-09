@@ -1,5 +1,5 @@
 
-  <section id="optionsHelp" class="desktop animated slideInDown delay">
+  <section id="optionsHelp" class="desktop animated fadeIn delay">
       <a href="/ayuda/como_comprar">¿Cómo comprar?</a>
       <a href="/ayuda/envios">Envíos</a>
       <a href="/ayuda/metodos_de_pago">Formas de pago</a>

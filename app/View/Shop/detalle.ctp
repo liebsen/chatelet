@@ -178,13 +178,13 @@ foreach ($properties as $property) {
             <!--h2>Color</h2-->
             <div class="animated fadeIn delay1">
               <div class="article-tools">
-                  <div class="field p-3 overflow-x-auto">
-                     <div class="color-options d-flex justify-content-around align-items-center gap-05" data-toggle="buttons">
+                  <div class="field overflow-x-auto">
+                     <div class="color-options d-flex justify-content-start align-items-start gap-05" data-toggle="buttons">
                           <?php  
                               foreach ($colors as $i => $color) {
                                   $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
                                   $style = (empty($color['images']))?'oldSelectColor':'';
-                                  echo '<label class="btn '.$loadColorImages.' '.$style.'" style ="border-radius: 100px;" data-images="'.@$color['images'].'">';
+                                  echo '<label class="btn '.$loadColorImages.' '.$style.'" data-images="'.@$color['images'].'">';
                                   
                                   echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
                                   if (!empty($color['images'])) {

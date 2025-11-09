@@ -11,7 +11,8 @@
         margin: 0; 
         padding: 0; 
         border: 0;  
-        font-size: 100%; 
+        font-size: 100%;
+        font-weight: 300;
         vertical-align: baseline; 
       }
 

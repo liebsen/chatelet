@@ -9,7 +9,7 @@
     <div class="content pt-4">
     <?php if (isset($carro) && !empty($carro)) :?>
     <?php foreach($carro as $i => $product) {
-      echo "<div class='d-flex justify-content-start align-center gap-05 cart-row carrito-data' data-json='".json_encode($product)."'>";
+      echo "<div class='d-flex justify-content-start align-center gap-05 cart-row carrito-data position-relative' data-json='".json_encode($product)."'>";
       echo "<div class='cart-img'>";
       if (!empty($product['number_ribbon'])) {
         echo '<div class="ribbon bottom-left small"><span>'.$product['number_ribbon'].'% OFF</span></div>';

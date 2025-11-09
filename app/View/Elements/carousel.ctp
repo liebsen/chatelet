@@ -23,16 +23,6 @@ $img_url_four = str_replace(';', '', @$home['img_url_four']);
         <div class="slider-full" style="background-image:url(<?=$value ?>)"></div>
         <?php endif; ?>
       </a>
-
-      <div class="carousel-caption">
-        <h1> <?php echo $home['line_one']; ?></h1>
-       <?php if(!empty($home['line_two'])){
-        echo '<span>'.$home['line_two'].'</span>';
-        } ?>
-        <p><?php echo $home['line_three']; ?></p>
-
-        <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">Visitar</a>
-      </div>
     </div>
   <?php endforeach ?>
   </div>

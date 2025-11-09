@@ -901,7 +901,7 @@ select.form-control{
 }
 
 #main {
-	padding-bottom: 8rem;
+	/*padding-bottom: 8rem;*/
 	background: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
 	width: auto;
 	position: relative;

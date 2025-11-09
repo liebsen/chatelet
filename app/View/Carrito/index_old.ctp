@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<div id="main" class="container animated fadeIn delay1">
+<div id="main" class="container animated fadeIn1">
 	<div class="row">
 		<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
 		<!--div class="col-md-12 shipping-price-min-alert animated fadeIn">
