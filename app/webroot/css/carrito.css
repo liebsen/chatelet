@@ -14,21 +14,6 @@
   text-transform: capitalize !important;
 }
 
-.resume-totals {
-	margin-top: 1rem;
-}
-
-.summary-item {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	grid-gap: 0-5rem;
-}
-
-.paying-with {
-	display: none;
-}
 
 .cart-empty {
 	min-height: 30rem;
@@ -78,7 +63,6 @@
 
 .table>tbody>tr>td {
 	color: #696969;
-	vertical-align: middle;
 	padding: 1rem;
 }
 

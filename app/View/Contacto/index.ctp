@@ -2,7 +2,7 @@
 	echo $this->Session->flash();
 ?>
   <section id="headcontacto">
-    <div class="wrapper container">
+    <div class="wrapper container animated slideInDown delay">
       <div class="row">
         <div class="col-md-4">
           <div class="animated fadeIn delay">
@@ -21,21 +21,30 @@
     </div>
   </section>
 
-  <section id="formulario">
+  <section id="detalle" class="bg-white">
     <div class="wrapper container">
       <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
       <div class="row">
         <div class="col-sm-6">
-          <input type="text" name="data[Contact][name]" class="form-input" placeholder="Nombre y Apellido" required />
-          <h3>Tipo de consulta:</h3>
-          <label class="mr" for="particular"><span class="active"><i></i></span><input type="radio" name="data[Contact][client_type]" id="particular" value="particular" checked="checked" /> Particular</label>
-          <label for="comerciante"><span><i></i></span><input type="radio" name="data[Contact][client_type]" id="comerciante" value="comerciante" /> Comerciante</label>
-          <input type="email" name="data[Contact][email]" class="form-input" placeholder="Email" required/>
+          <input type="text" name="data[Contact][name]" class="form-control" placeholder="Nombre y Apellido" required />
+
+          <input type="email" class="form-control" name="data[Contact][email]" class="form-control" placeholder="Email" required/>
+          <div class="p-2">
+            <h3>Tipo de consulta:</h3>
+            <label for="particular">
+              <span class="active"><i></i></span>
+              <input type="radio" name="data[Contact][client_type]" id="particular" value="particular" checked="checked" /> Particular
+            </label>
+            <label for="comerciante">
+              <span><i></i></span>
+              <input type="radio" name="data[Contact][client_type]" id="comerciante" value="comerciante" /> Comerciante
+            </label>
+          </div>
         </div>
         <div class="col-sm-6">
-          <input type="text" name="data[Contact][telephone]" class="form-input" placeholder="Telefono" required />
-          <textarea class="mensaje" name="data[Contact][message]" class="form-input" placeholder="Mensaje" rows="10" required></textarea>
-          <input type="submit" id="contactar" class="big-pink-btn" value="Enviar Consulta" />
+          <input type="text" name="data[Contact][telephone]" class="form-control" placeholder="Telefono" required />
+          <textarea name="data[Contact][message]" class="form-control" placeholder="Mensaje" rows="10" required></textarea>
+          <input type="submit" id="contactar" class="btn btn-chatelet dark" value="Enviar Consulta" />
         </div>
       </div>
       <?php echo $this->Form->end(); ?>

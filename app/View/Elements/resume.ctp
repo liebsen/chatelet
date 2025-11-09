@@ -28,13 +28,38 @@
 				<span class="">Total </span> 
 				<span class="calc_total">$ <?= \price_format($total) ?></span><!--span>.00</span-->
 			</div>
+			<hr>
 			<div class="summary-item">
-				<span class="text-theme">Pagando con <?= strtolower($payment_methods[$config['payment_method']]) ?></span>
+				<span class="text-sm text-theme">Pagando con <?= strtolower($payment_methods[$config['payment_method']]) ?></span>
 			</div>
 		<?php if(!empty($text_shipping_min_price)) :?>
 			<div class="summary-item">
-				<span class="text-theme"><?php echo $text_shipping_min_price ?></span>
+				<span class="text-sm text-success"><?php echo $text_shipping_min_price ?></span>
+			</div>
+		<?php endif ?>
+		<?php if(!empty($freeShipping)) :?>
+			<div class="summary-item">
+				<span class="text-sm text-success">Envío GRATIS</span>
 			</div>
 		<?php endif ?>
 		</div>
 	</div>
+
+	<style>
+		.resume-totals {
+			margin-top: 1rem;
+		}
+
+		.summary-item {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			grid-gap: 0-5rem;
+		}
+
+		.paying-with {
+			display: none;
+		}
+
+	</style>

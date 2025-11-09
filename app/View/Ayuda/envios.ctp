@@ -2,7 +2,7 @@
 
         <div id="headhelp">
             <?php echo $this->element('navbar-ayuda'); ?>
-            <div class="wrapper container">
+            <div class="wrapper container animated slideInDown delay">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">
                         <div class="animated fadeIn delay">

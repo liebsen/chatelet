@@ -68,7 +68,7 @@
 				<div class="flex-col">
 					<div class="mobile p-3">
 					<?php foreach ($sorted as $product) {
-						echo "<div class='d-flex justify-content-start align-center gap-05 cart-row carrito-data' data-json='".json_encode($product)."' product_row>";
+						echo "<div class='d-flex justify-content-start align-center gap-05 cart-row carrito-data position-relative' data-json='".json_encode($product)."' product_row>";
 
 						echo "<div class='cart-img'>";
 						if (!empty($product['number_ribbon'])) {
@@ -115,7 +115,7 @@
 						</label>';
 
 					echo '</div>';
-					echo '<button class="btn close bg-transparent" onclick="askremoveCart(this)">
+					echo '<button class="btn corner-pin bg-transparent" onclick="askremoveCart(this)">
 									<i class="fa fa-trash-o"></i>
 								</button>';					
 					echo '</div>';		
@@ -246,25 +246,25 @@
 					} ?>
 							</table>
 						</div>
-	        	<div class="d-flex justify-content-center align-items-center gap-1 bg-light min-h-5 p-3 desktop">
-	            <div class="col-md-4">
+	        	<div class="d-flex justify-content-center align-items-center p-5 gap-1 bg-light min-h-5 p-3 desktop">
+	            <span>
 	            	<span class="text-sm text-uppercase">ENVÍOS A TODO EL PAÍS</span><br>
 	              <span class="text-sm">
 	                Los envíos por compra online tienen una demora de 7 a 10 días hábiles
 	              </span>
-	            </div>
-	            <div class="col-md-4">
+	            </span>
+	            <span>
 	            	<span class="text-sm text-uppercase">CAMBIOS Y DEVOLUCIONES</span><br>
 	              <span class="text-sm">
 	                Los cambios se realizan dentro de los 30 días de efectuada la compra
 	              </span>
-	            </div>
-	            <div class="col-md-4">
+	            </span>
+	            <span>
 	            	<span class="text-sm text-uppercase">CALIDAD GARANTIZADA</span><br>
 	              <span class="text-sm">
 	                Las prendas deben estar sin uso y con la etiqueta de código de barras correspondiente adherida
 	              </span>
-	            </div>
+	            </span>
 	        	</div>
 	        </div>
 					<div class="flex-col gap-1 max-22">
@@ -300,7 +300,6 @@
 					<br><br>
 					<?php endif;?>
 				</div>
-
 			</div>
 		</div>
 	</div>

@@ -1,6 +1,5 @@
-
-<section id="productOptions" class="animated fadeIn">
-  <div class="wrapper">
+<section id="productOptions">
+  <div class="wrapper animated fadeIn delay">
     <form name="search">
       <div class="is-flex-center flex-column gap-05 min-h-8">
         <div class="is-flex justify-content-center align-items-center gap-05">
@@ -8,14 +7,18 @@
             <input class="form-control m-0" type="text" name="q" placeholder="Buscar en Chatelet..." value="<?= $q ?>" autofocus required>
           </div>
           <div class="form-group">
-            <input type="submit" class="btn" id="enviar" value="Buscar">
+            <input type="submit" class="btn btn-chatelet dark" id="enviar" value="Buscar">
           </div>
         </div>
         <span class="text-sm">
         <?php if (count($results)) : ?>
-          Se hallaron <?php echo count($results) ?> productos.
+          Se hallaron <?php echo count($results) ?> productos para <b><?php echo $q ?>.
         <?php else : ?>
+          <?php if ( !empty($q) ) : ?>
           No se hallaron productos para <b><?php echo $q ?></b>
+        <?php else : ?>
+          Ingresa una palabra clave para iniciar la búsqueda, <i>ej: blusa, saco, pantalón, etc... </i>
+        <?php endif ?>
         <?php endif ?>
         </span>
       </div>

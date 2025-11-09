@@ -4,13 +4,13 @@ echo $this->Html->script('product.js?v=' . Configure::read('APP_VERSION'), array
 // echo $this->Html->script('ga', array('inline' => false));
 // echo $this->Html->script('cloudzoom', array('inline' => false));
 // echo $this->Html->css('cloudzoom', array('inline' => false));
-// echo $this->Html->script('jquery.growl', array('inline' => false));
+echo $this->Html->script('jquery.growl', array('inline' => false));
 echo $this->Html->script('detalle.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 $images  = array();
 $images_aux = explode(';', $product['gallery']);
 foreach ($images_aux as $key => $value) {
   if(!empty($value))
-      $images[]   = Configure::read('uploadUrl').$value;
+    $images[] = Configure::read('uploadUrl').$value;
 }
 echo $this->Session->flash();
 $colorImages = array();
@@ -37,10 +37,10 @@ foreach ($properties as $property) {
   window.isGiftCard = <?=(int)$isGiftCard?>;
 </script>
 <section id="detalle">
-  <div class="wrapper">
+  <div class="wrapper animated fadeIn delay">
     <div class="row">
     <?php if(!empty($colorImages)):?>
-      <div class="col-md-2 animated slideInLeft delay1">
+      <div class="col-md-2">
         <ul id="ul-moreviews">
         <?php if (!empty($colorImages[0]['images'] )): $ppp=0; ?>
         <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
@@ -178,7 +178,7 @@ foreach ($properties as $property) {
             <!--h2>Color</h2-->
             <div class="animated fadeIn delay1">
               <div class="article-tools">
-                  <div class="field p-3">
+                  <div class="field p-3 overflow-x-auto">
                      <div class="color-options d-flex justify-content-around align-items-center gap-05" data-toggle="buttons">
                           <?php  
                               foreach ($colors as $i => $color) {
@@ -253,7 +253,6 @@ foreach ($properties as $property) {
     </div>
   </div>
 </section>
-
 
 <section id="productOptions" class="animated fadeIn">
     <div class="wrapper">

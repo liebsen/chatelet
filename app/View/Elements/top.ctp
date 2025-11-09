@@ -69,7 +69,7 @@
       });
     </script>
   </head>
-  <body class="noscroll p-0" style="background-color: #262427">
+  <body class="noscroll p-0">
     <?php if(!empty($banners) && empty($short_header)) :?>
       <?php echo $this->element('banners'); ?>
     <?php endif ?>

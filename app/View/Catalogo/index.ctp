@@ -120,7 +120,7 @@
                                 ?>
                                 <div class="animated fadeIn delay2">
                                   <div class="article-tools">
-                                    <div class="field p-3">
+                                    <div class="field p-3 overflow-x-auto">
                                       <div class="row" data-toggle="buttons">
                                           <?php  foreach ($colors as $color) {
                                                       echo '<div class="col-sm-4 col-md-3 p-1"><label class="btn" style ="    border-radius: 100px;">';

@@ -208,7 +208,9 @@ class CarritoController extends AppController
 
 		if (@$shipping_config['Setting']['value'] == 'min_price') {
 			$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['value'])) ? $this->parseTemplate($mapper['Setting']['value'], $vars) : '';
-			$this->set('text_shipping_min_price',$text_shipping_min_price);
+			if($vars['resto_min_envio_gratis'] > 0) {
+				$this->set('text_shipping_min_price',$text_shipping_min_price);
+			}
 		}
 
 		$map = $this->Setting->findById('carrito_takeaway_text');

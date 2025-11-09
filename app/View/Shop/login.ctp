@@ -7,7 +7,7 @@
   echo $this->Html->script('particular-validation', array('inline' => false));
 ?>
 <section id="detalle" class="is-flex-center min-h-100">
-  <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1">
+  <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 animated fadeIn delay">
 		<h2>
 			<?php echo 'Inicia sesión para continuar'; ?>
 		</h2>			

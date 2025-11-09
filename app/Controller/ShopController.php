@@ -622,29 +622,32 @@ class ShopController extends AppController {
 		$p = $this->request->query['p'] ? intval($this->request->data['p']) : 0;
 		$s = $this->request->query['s'] ? intval($this->request->data['s']) : 10;
 		//$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
-		$results = $this->Product->find('all',[
-			'conditions' => [
-				'or' => [
-					'Product.name LIKE' => "%$q%",
-					'Product.desc LIKE' => "%$q%",
-					'Product.promo' => "$q",
-				],
-				'visible' => 1,
-				'stock_total > ' => 0
-			],
-			'order' => ['Product.promo DESC'],
-			// 'limit' => $s,
-			// 'offset' => $s * $p
-		]);
 
-		foreach ($results as &$item) {
-			if (isset($item['Product']['discount']) && $item['Product']['discount']) {
-				$item['Product']['old_price'] = $item['Product']['price'];
-				$item['Product']['price'] = $item['Product']['discount'];
-			}
-			$item['Product']['stock'] = 0;
-			if(!empty($item['Product']['article'])){
-				$item['Product']['stock'] = 1;
+		if(!empty($q) && strlen($q) > 2) {
+			$results = $this->Product->find('all',[
+				'conditions' => [
+					'or' => [
+						'Product.name LIKE' => "%$q%",
+						'Product.desc LIKE' => "%$q%",
+						'Product.promo' => "$q",
+					],
+					'visible' => 1,
+					'stock_total > ' => 0
+				],
+				'order' => ['Product.promo DESC'],
+				// 'limit' => $s,
+				// 'offset' => $s * $p
+			]);
+
+			foreach ($results as &$item) {
+				if (isset($item['Product']['discount']) && $item['Product']['discount']) {
+					$item['Product']['old_price'] = $item['Product']['price'];
+					$item['Product']['price'] = $item['Product']['discount'];
+				}
+				$item['Product']['stock'] = 0;
+				if(!empty($item['Product']['article'])){
+					$item['Product']['stock'] = 1;
+				}
 			}
 		}
 

@@ -459,6 +459,9 @@ html, body {
 .min-h-101 {
   min-height: calc(100dvh - 102px);
 }
+.max-20 {
+	max-width: 20rem;
+}
 .mb-0 {
   margin-bottom: 0!important;
 }
@@ -623,7 +626,7 @@ html, body {
 /* special icons */
 
 [class^="ico-"], [class*=" ico-"] {
-  font: normal 1em/1 Arial, sans-serif;
+  font: normal 1.5em/1 Arial, sans-serif;
   display: inline-block;
 }
 
@@ -773,7 +776,7 @@ html, body {
 }
 
 .bg-white {
-	background-color: white;
+	background: white!important;
 }
 .border-dark {
 	border: 2px solid #333;
@@ -816,6 +819,9 @@ html, body {
 	height: 50px;
 	border-radius: 5px;
 	font-size: 1rem;
+}
+textarea.form-control{
+	padding: 1.25rem 1rem;
 }
 
 select.form-control{
@@ -1371,11 +1377,14 @@ select.form-control{
 	border: none;
 	background-color: transparent;
 	position: absolute;
-	color: #888;
+	color: #aaa;
 	right: 1.25rem;
   top: 1.25rem;
 }
 
+.overflow-x-auto {
+	overflow-x: auto;
+}
 .btn-chatelet {
 	color: black;
 	border-color: #999;

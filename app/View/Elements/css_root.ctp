@@ -38,7 +38,7 @@
 
       table { border-collapse: collapse; border-spacing: 0; }
 
-      caption, th, td { text-align: left; font-weight: normal; vertical-align: middle; }
+      caption, th, td { text-align: left; font-weight: normal; vertical-align: middle!important; font-weight: 300; }
 
       q, blockquote { quotes: none; }
       q:before, q:after, blockquote:before, blockquote:after { content: ""; content: none; }
@@ -62,7 +62,7 @@
           display: block;
         }
         .desktop {
-          display: none;
+          display: none!important;
         }
       }
 

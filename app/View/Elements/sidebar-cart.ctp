@@ -37,7 +37,7 @@
 
     echo '<span class="text-nowrap mt-2">$ '. \price_format($product['price']) .'</span>';
     echo '</div>';
-    echo '<button class="btn close bg-transparent" onclick="askremoveCart(this)">
+    echo '<button class="btn corner-pin bg-transparent" onclick="askremoveCart(this)">
             <i class="fa fa-trash-o"></i>
           </button>';         
     echo '</div>';    
