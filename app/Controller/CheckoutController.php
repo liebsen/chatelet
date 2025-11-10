@@ -55,7 +55,6 @@ class CheckoutController extends AppController
     $mapper = $this->Setting->findById('shipping_price_min');
 		$shipping_price_min = $mapper['Setting']['value'] ?? '';
 		$this->set('shipping_price_min',$shipping_price_min);
-		var_dump();
 		$index = array_search($this->request->here, array_column($this->checkout_steps, 'url'));
 		$this->set('checkout_index', $index);
 		$this->set('checkout_steps', $this->checkout_steps);
