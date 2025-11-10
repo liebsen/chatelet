@@ -70,6 +70,19 @@
     </script>
   </head>
   <body class="noscroll p-0">
+    <?php if($_SERVER['SERVER_NAME'] !== 'chatelet.com.ar') :?>
+      <div class="dev-note p-3 text-center bg-danger">
+        <span>Tienda para pruebas. Esta <b>no es la tienda oficial</b> de Chatelet</span>
+      </div>
+      <style>
+        .dev-note {
+          position: fixed;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
+      </style>
+    <?php endif ?>
     <?php if(!empty($banners) && empty($short_header)) :?>
       <?php echo $this->element('banners'); ?>
     <?php endif ?>

@@ -5,7 +5,7 @@ body.loading {
 }
 
 body > section,
-body > div:not([class*="modal"]):not(.whatsapp-block):not(.social-bottom):not(.whatsapp-text) {
+body > div:not([class*="modal"]):not(.whatsapp-block):not(.social-bottom):not(.whatsapp-text):not(.dev-note) {
 	background-color: #fff;
 }
 
