@@ -210,8 +210,8 @@ class AppController extends Controller
   }
 
   public function sendEmail($data, $subject, $template) {
-    if (empty($data['receiver_email'])){
-        return true;
+    if ($_SERVER['SERVER_NAME'] !== 'chatelet.com.ar' || empty($data['receiver_email'])){
+      return true;
     }
 
     $Email = new CakeEmail();
@@ -232,6 +232,10 @@ class AppController extends Controller
   }
 
   public function sendMail($message, $subject, $to){
+    if ($_SERVER['SERVER_NAME'] !== 'chatelet.com.ar' || empty($to)){
+      return true;
+    }
+
     $Email = new CakeEmail();
     $Email->from(array(
         'info@chatelet.com' => 'Châtelet'
@@ -246,7 +250,6 @@ class AppController extends Controller
     //));
     $Email->send($message);
   }
-
 
   private function saveFile($file, $thumb = false, $size = 300) {
     /* save file if any */

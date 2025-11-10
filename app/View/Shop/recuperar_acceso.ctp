@@ -10,11 +10,13 @@ echo $this->Session->flash();
 		<p>
 			Recupera fácilmente el acceso a tu cuenta ingresando el correo con el que creaste tu cuenta en Chatelet.<br> Te enviaremos instrucciones a ese correo.
 		</p>
-		<?php echo $this->Form->create(null, array('url' => array(
-			'class' => 'w-100',
-			'controller' => 'users', 
-			'action' => 'forgot_password'
-		))); ?>
+		<?php echo $this->Form->create('ForgotPass', array(
+			'class' => 'w-auto',
+			'url' => array(
+				'controller' => 'users', 
+				'action' => 'forgot_password'
+			)
+		)); ?>
     <p class="title mb-1">Ingresá tu correo</p>
     <input type="email" id="login-email" class="form-control"  name="data[User][email]" placeholder="Email" />
     <input type="submit" id="login" value="Enviar" />

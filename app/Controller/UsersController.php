@@ -128,13 +128,23 @@ class UsersController extends AppController {
       //return json_encode(array('success' => false));
       return $this->redirect(array('controller' => 'home', 'action' => 'index'));
     }
+    $data = $this->request->data;
 
     $invite = $this->request->data['invite'];
     $ajax = $this->request->data['ajax'];
+    $validate = empty($invite);
+
+    if(!empty($invite)) {
+      $data['User']['password'] = $this->random_password();
+    }
+
+    CakeLog::write('debug', 'validate:'.$validate);
+    CakeLog::write('debug', 'data:'.json_encode($data));
+    
     $saved = $this->User->save(
-      $this->request->data, 
+      $data, 
       array(
-        'validate' => !empty($invite)
+        'validate' => $validate
       )
     );
 
@@ -180,15 +190,12 @@ class UsersController extends AppController {
           'recursive' => -1, 
           'conditions' => array('User.email' => $email_user)
         ));
-       
-        if(!empty($user_data)){   
+
+        if(!empty($user_data)){
           $pass1 = $this->random_password();
-          // CakeLog::write('debug', 'id:'.$user_data['User']['id']);
-          // CakeLog::write('debug', 'email:'.$email_user);
-          // CakeLog::write('debug', 'password:'.$pass1);
           // $passwordHasher = new SimplePasswordHasher();
           // $pass = $passwordHasher->hash($pass1);
-          // CakeLog::write('debug', 'hash:'.$pass);
+          CakeLog::write('debug', 'hash:'.$pass1);
                                                                                                   
           $this->User->save(array(
             'User'=>array(
@@ -196,7 +203,6 @@ class UsersController extends AppController {
               'password' => $pass1
             )
           ), false);
-          // die($pass1);
 
           $email_data = array(
             'id_user' => $user_data['User']['id'] ,
@@ -204,7 +210,7 @@ class UsersController extends AppController {
             'name' =>  $user_data['User']['name'],
             'password' => $pass1
           );
-           
+          
           $this->sendEmail($email_data,'Recuperar contraseña Châtelet', 'confirm_email');
 
           $this->Session->setFlash(
@@ -215,7 +221,7 @@ class UsersController extends AppController {
           return $this->redirect($this->referer());
         } else {
           $this->Session->setFlash(
-            'Error',
+            'La cuenta no existe',
             'default',
             array('class' => 'hidden error')
           );

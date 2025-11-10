@@ -47,13 +47,35 @@ class ShopController extends AppController {
 		die();
 	}
 
-	public function test_email($email) {
+	public function test_email_html($id) {
 		$this->autoRender = false;
-		if (!empty($email)) {
-			$this->sendMail('hello','🌸 Test via en Châtelet',$email);
+		if (!empty($id)) {
+      $user_data = $this->User->find('first', array(
+        'recursive' => -1, 
+        'conditions' => array('User.id' => $id)
+      ));
+
+      if ($user_data) {
+	      $email_data = array(
+	        'id_user' => $user_data['User']['id'] ,
+	        'receiver_email' => $user_data['User']['email'],
+	        'name' =>  $user_data['User']['name'],
+	      );			
+				$this->sendMail($email_data,'🌸 Test via en Châtelet (HTML)', 'test');
+			} else {
+				die('User not found')
+			}
 		}
 		die();
 	}
+
+	public function test_email($email) {
+		$this->autoRender = false;
+		if (!empty($email)) {
+			$this->sendEmail('hello','🌸 Test via en Châtelet',$email);
+		}
+		die();
+	}	
 
 	public function test_andreani() {
 		$this->autoRender = false;
