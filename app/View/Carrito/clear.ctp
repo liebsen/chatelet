@@ -46,7 +46,7 @@
 </div>
 <!-- Google Code for Venta Online Conversion Page -->
 <script type="text/javascript">
-	localStorage.removeItem('carrito')
+	localStorage.removeItem('cart')
 	fbq('track', 'Purchase', {value: <?php echo $sale_data['total'] ?>, currency: 'ARS'});
 	gtag('event', 'purchase', {
 	  "transaction_id": '<?php echo $sale_data['sale_id'] ?>',

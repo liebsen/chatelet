@@ -4,7 +4,7 @@
         --box-dropshadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
         --box-shadow-inset: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         --box-shadow-downwards: rgba(0, 0, 0, 0.025) 0px 4px 8px -1px, rgba(0, 0, 0, 0.025) 0px 2px 3px -1px;
-        --google-fonts-name: <?=@$data['google_font_name'] ?>;
+        --google-fonts-name: <?=@$settings['google_font_name'] ?>;
       }
 
       html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 
@@ -17,7 +17,7 @@
       }
 
       html, body { 
-        font-family: '<?=@$data['google_font_name'] ?>', Verdana, Arial, Sans-Serif!important;
+        font-family: '<?=@$settings['google_font_name'] ?>', Verdana, Arial, Sans-Serif!important;
         line-height: 1;
         font-size: 100%!important; 
       }

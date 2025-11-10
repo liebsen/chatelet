@@ -1,16 +1,16 @@
 var dues_selected = ''
-var updateCart = (carrito) => {
-	if(!carrito) {
-		carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+var updateCart = (cart) => {
+	if(!cart) {
+		cart = JSON.parse(localStorage.getItem('cart')) || {}
 	}
 
-	Object.keys(carrito).forEach(e => {
+	Object.keys(cart).forEach(e => {
 		const h = $('#checkoutform').find(`input[name='${e}']`)
-		if (h.length && carrito[e]) {
-			h.val(carrito[e])
+		if (h.length && cart[e]) {
+			h.val(cart[e])
 		}
 		if ($(`.${e}`).length) {
-			let value = carrito[e]
+			let value = cart[e]
 			if (typeof value === 'number') {
 				value = formatNumber(value)	
 			}
@@ -18,24 +18,24 @@ var updateCart = (carrito) => {
 		}
 	})
 
-	if (carrito.cargo === 'takeaway') {
+	if (cart.cargo === 'takeaway') {
 		$('.cargo-takeaway').removeClass('hide')
 		$('.cargo-takeaway').addClass('animated fadeIn')
 	}
 
-	if (carrito.cargo === 'shipment') {
+	if (cart.cargo === 'shipment') {
 		var price = ''
-		if (carrito.freeShipping) {
+		if (cart.freeShipping) {
 			price = '<span class="text-success text-bold">Gratis</span>'
 		} else {
-			price = `$ ${formatNumber(carrito.shipping_price)}`
+			price = `$ ${formatNumber(cart.shipping_price)}`
 		}
 		$('.shipping_price').html(price)
 		$('.shipping-block').removeClass('hide')
 		$('.shipping-block').addClass('animated fadeIn')
 	}
 
-	if(!carrito.coupon) {
+	if(!cart.coupon) {
 		$('.coupon-actions-block').removeClass('hide')
 		$('.coupon-actions-block').addClass('animated fadeIn')
 	} else {
@@ -43,7 +43,7 @@ var updateCart = (carrito) => {
 		$('.coupon-block').addClass('animated fadeIn')
 	}
 
-	if (bank.enable && bank.discount_enable && bank.discount && carrito_config.payment_method !== 'bank') {
+	if (bank.enable && bank.discount_enable && bank.discount && cart_totals.payment_method !== 'bank') {
 		setTimeout(() => {
   		onWarningAlert('Pagá con Transferencia', `Y obtené un ${bank.discount}% de descuento en tu compra`);		
   	}, 2000)
@@ -58,7 +58,7 @@ $('.dues-select-option').click((e) => {
 	e.preventDefault()
 	e.stopPropagation()
 	var json = target.data('json')
-	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+	var cart = JSON.parse(localStorage.getItem('cart')) || {}
 	dues_selected = json.dues
 	//$(item).find('input').prop('checked', true) // force since preventdefault
 
@@ -85,8 +85,8 @@ $('.dues-select-option').click((e) => {
 
 
 $(function(){
-	$(`.cargo-${carrito.cargo}`).removeClass('hide')
-	$(`.cargo-${carrito.cargo}`).addClass('animated fadeIn')
+	$(`.cargo-${cart.cargo}`).removeClass('hide')
+	$(`.cargo-${cart.cargo}`).addClass('animated fadeIn')
 
 	updateCart()
 
@@ -97,11 +97,11 @@ $(function(){
 
 		e.preventDefault()
 		e.stopPropagation()
-		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+		var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		var selected = target.find('input').val()
 		const payment_dues = document.querySelector('.payment-dues')
 		$('.dues-block').hide()
-		carrito_config.payment_method = selected
+		cart_totals.payment_method = selected
 		target.find('input').prop('checked', true)
 		var bank_bonus = 0
 
@@ -162,7 +162,7 @@ $(function(){
 	})
 
 	$('#submitcheckoutbutton').click(e => {
-		fbq('track', 'AddPaymentInfo', { value: carrito.total_price, currency: 'ARS' });
+		fbq('track', 'AddPaymentInfo', { value: cart.total_price, currency: 'ARS' });
 		if(dues_selected && dues_selected > 1){ // show legend
 			$('#dues_message').addClass('show')
 			$('.dues-message-dues').text(dues_selected)
@@ -175,20 +175,20 @@ $(function(){
 		// mostrar leyenda solicitando la elección correcta de cuotas.
 		// Asegurate de seleccionar {cuotas} cuotas.
 		const submit = $('.checkout-btn')
-		//var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+		//var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		submit.prop('disabled', true)
 		submit.addClass('disabled')
 		submit.text('Por favor espere...')
 		$('.checkoutform-container').removeClass('hide')
 
-		localStorage.removeItem('carrito')
-		//localStorage.setItem('carrito', JSON.stringify(carrito))
+		localStorage.removeItem('cart')
+		//localStorage.setItem('cart', JSON.stringify(cart))
 
-		//localStorage.removeItem('carrito')
+		//localStorage.removeItem('cart')
 		fbq('track', 'InitiateCheckout')
 		let items = []
-		if(carrito_items && carrito_items.length) {
-			carrito_items.forEach(e => {
+		if(cart_items && cart_items.length) {
+			cart_items.forEach(e => {
 				items.push({
 	        'name': e.article,
 	        'id': e.id,

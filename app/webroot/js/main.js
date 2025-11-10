@@ -1,4 +1,4 @@
-var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+var carrito = JSON.parse(localStorage.getItem('cart')) || {}
 var lastcp = localStorage.getItem('lastcp') || 0
 var lastscroll = 0
 //new WOW().init();

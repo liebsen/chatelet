@@ -52,9 +52,6 @@ class CheckoutController extends AppController
 	public function beforeFilter()
 	{
   	parent::beforeFilter();
-    $mapper = $this->Setting->findById('shipping_price_min');
-		$shipping_price_min = $mapper['Setting']['value'] ?? '';
-		$this->set('shipping_price_min',$shipping_price_min);
 		$index = array_search($this->request->here, array_column($this->checkout_steps, 'url'));
 		$this->set('checkout_index', $index);
 		$this->set('checkout_steps', $this->checkout_steps);
@@ -63,8 +60,8 @@ class CheckoutController extends AppController
 	public function index()
 	{
 		/*$data = $this->getItemsData();
-		$carro = $this->updateCart();
-		$this->Session->write('cart', $carro);
+		$cart = $this->updateCart();
+		$this->Session->write('cart', $cart);
 		$shipping_price = $this->Setting->findById('shipping_price_min');
 		$total_price = $data['price'];
 		$freeShipping = $this->isFreeShipping($total_price);
@@ -212,7 +209,7 @@ class CheckoutController extends AppController
 
 	public function coupon($cp = null){
 		$items = $this->Session->read('cart');
-		$config = $this->Session->read('cart_totals');
+		$cart_totals = $this->Session->read('cart_totals');
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 
@@ -253,7 +250,7 @@ class CheckoutController extends AppController
 		$coupon_bonus = 0;
 		$partial_bonus = 0;
 		$total = 0;
-		$coupon_parsed = \filtercoupon($coupon, $config, $data['price']);
+		$coupon_parsed = \filtercoupon($coupon, $cart_totals, $data['price']);
 		$updated = [];
 		if($coupon_parsed->status === 'success') {
 
@@ -626,9 +623,9 @@ class CheckoutController extends AppController
 		$total=0;
 		$total_wo_discount = 0;
 		// VAR - Validate
-		$carro = $this->Session->read('cart');
+		$cart = $this->Session->read('cart');
 
-		if(empty($carro)) {
+		if(empty($cart)) {
 			header("Location: /");
 			return false;
 		}
@@ -762,7 +759,7 @@ class CheckoutController extends AppController
 
 		$partial_bonus = $discount;
 
-		foreach ($carro as $producto) {
+		foreach ($cart as $producto) {
 			$unit_price = $producto['price'];
 
 			if($partial_bonus < 0) {
@@ -1054,25 +1051,25 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 	public function preference(){
 		$this->autoRender = false;
 
-		$config = $this->Session->read('cart_totals');
+		$cart_totals = $this->Session->read('cart_totals');
 		$data = $this->request->data;
 
 		// replace session config with post object pairs
 		foreach($data as $key => $item) {
-			$config[$key] = $item;
+			$cart_totals[$key] = $item;
 		}
 
-    if(empty($config['payment_method'])){
-      $config['payment_method'] = 'mercadopago';
+    if(empty($cart_totals['payment_method'])){
+      $cart_totals['payment_method'] = 'mercadopago';
     }
 
-		$this->Session->write('cart_totals', $config);
-		error_log('payment_method:'.$config['payment_method']);
+		$this->Session->write('cart_totals', $cart_totals);
+		error_log('payment_method:'.$cart_totals['payment_method']);
 		//CakeLog::write('debug', 'updateCart(3)');
-		$carro = $this->updateCart();
-		$this->Session->write('cart', $carro);
+		$cart = $this->updateCart();
+		$this->Session->write('cart', $cart);
 
-		return json_encode(array('success' => true, 'data' => array_values($carro)));
+		return json_encode(array('success' => true, 'data' => array_values($cart)));
 	}
 
 	public function empty($row = null) {
@@ -1132,14 +1129,14 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 			// error_log('curl:'.$stock);
 			//$stock=1;
 			if ($product && $stock) {
-				$carro = $this->Session->read('cart');
+				$cart = $this->Session->read('cart');
 				$product = $product['Product'];
 
 				/* remove all of the kind */
 				$criteria = $this->request->data['id'].$this->request->data['size'].$this->request->data['color'].$this->request->data['alias'];
 
-				if (!empty($carro)) {
-					foreach($carro as $key => $item) {
+				if (!empty($cart)) {
+					foreach($cart as $key => $item) {
 						if($criteria != $item['id'].$item['size'].$item['color'].$item['alias']) {
 							$filter[]= $item;
 						}
@@ -1154,21 +1151,21 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 				for ($i=0; $i < $this->request->data['count']; $i++) {
 					$filter[] = $product;
 				}
-				// $carro = array_fill(count($carro), $this->request->data['count'], $product);
+				// $cart = array_fill(count($cart), $this->request->data['count'], $product);
 				// error_log('[carrito] '.json_encode($filter));
 				// error_log('[carrito] '.json_encode($this->filter($filter)));
 
 				// filter(1)
 			}
 
-			$config = $this->Session->read('cart_totals');
-			$cur = @$config['add_basket']?: 0;
+			$cart_totals = $this->Session->read('cart_totals');
+			$cur = @$cart_totals['add_basket']?: 0;
 			$cur++;
-			@$config['add_basket'] = $cur;
+			@$cart_totals['add_basket'] = $cur;
 			//CakeLog::write('debug', 'updateCart(4)');
-			$carro = $this->updateCart($filter);
-			$this->Session->write('cart', $carro);
-			$this->Session->write('cart_totals', $config);
+			$cart = $this->updateCart($filter);
+			$this->Session->write('cart', $cart);
+			$this->Session->write('cart_totals', $cart_totals);
 
 			return json_encode(array('success' => true));
 		}
@@ -1177,15 +1174,15 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 	}
 
 	private function sort() {
-		$carro = $this->Session->read('cart');
-		$config = $this->Session->read('cart_totals');
-		$payment_method = @$config['payment_method'] ?: 'mercadopago';
-		$payment_dues = @$config['payment_dues'] ?: '1';
+		$cart = $this->Session->read('cart');
+		$cart_totals = $this->Session->read('cart_totals');
+		$payment_method = @$cart_totals['payment_method'] ?: 'mercadopago';
+		$payment_dues = @$cart_totals['payment_dues'] ?: '1';
 		$groups = [];
 		$sort = [];
 
-		if (!empty(@$carro)) {
-			foreach($carro as $key => $item) {
+		if (!empty(@$cart)) {
+			foreach($cart as $key => $item) {
 				$criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
 				//CakeLog::write('debug', 'citeria:'. $criteria);
 				if (!isset($groups[$criteria])) {
@@ -1216,17 +1213,17 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		return $sort;
 	}
 
-	private function updateCart($carro=false) {
-		$config = $this->Session->read('cart_totals');
-		$payment_method = @$config['payment_method'] ?: 'mercadopago';
+	private function updateCart($cart=false) {
+		$cart_totals = $this->Session->read('cart_totals');
+		$payment_method = @$cart_totals['payment_method'] ?: 'mercadopago';
 
 		//CakeLog::write('debug','cart(1)');
-		//CakeLog::write('debug',json_encode($carro));
+		//CakeLog::write('debug',json_encode($cart));
 
-		if (empty($carro)) {
-			$carro = $this->Session->read('cart');
+		if (empty($cart)) {
+			$cart = $this->Session->read('cart');
 			//CakeLog::write('debug','cart(2)');
-			//CakeLog::write('debug',json_encode($carro));
+			//CakeLog::write('debug',json_encode($cart));
 		}
 
 		$groups = [];
@@ -1241,13 +1238,13 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		// $counted = [];
 		/*count prods */
 
-		if (!empty($carro)) {
+		if (!empty($cart)) {
 			/* apply basic prices and fill promos data */
-			foreach($carro as $key => $item) {
+			foreach($cart as $key => $item) {
 				$prod = $this->Product->findById($item['id']);
 
 				if(empty($prod)) {
-					unset($carro[$key]);
+					unset($cart[$key]);
 					continue;
 				}
 
@@ -1261,13 +1258,13 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 
 	  		if ($prop) {
 	  			$arrImages = array_values(array_filter(explode(';', $prop[0]['ProductProperty']['images'])));
-	  			$carro[$key]['alias_image'] = $arrImages[0];
+	  			$cart[$key]['alias_image'] = $arrImages[0];
 	  		}
 
 				if (!empty($prod['discount']) && (float) @$prod['discount'] > 0) {
-					$carro[$key]['old_price'] = $price;
+					$cart[$key]['old_price'] = $price;
 					$price = $prod['discount'];
-	        $carro[$key]['price'] = $price;
+	        $cart[$key]['price'] = $price;
 	      }
 
 	      if (
@@ -1275,8 +1272,8 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 	      	!empty($prod['mp_discount']) && 
 	      	(float) @$prod['mp_discount'] > 0
 	      ) {
-					$carro[$key]['old_price'] = $price;
-	        $carro[$key]['price'] = ceil(round($price * (1 - (float) $prod['mp_discount'] / 100)));
+					$cart[$key]['old_price'] = $price;
+	        $cart[$key]['price'] = ceil(round($price * (1 - (float) $prod['mp_discount'] / 100)));
 	      }
 
 	      if (
@@ -1284,8 +1281,8 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 	      	(float) @$prod['bank_discount'] > 0 && 
 	      	$payment_method === 'bank'	      	
 	      ) {
-					$carro[$key]['old_price'] = $price;
-	        $carro[$key]['price'] = ceil(round($price * (1 - (float) $prod['bank_discount'] / 100)));
+					$cart[$key]['old_price'] = $price;
+	        $cart[$key]['price'] = ceil(round($price * (1 - (float) $prod['bank_discount'] / 100)));
 	      } else {
 	      	if (
 	      		$payment_method === 'bank' && 
@@ -1293,8 +1290,8 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 	      		$bank_discount_enable
 	      	) {
 	      		$p = ceil(round($price * (1 - (float) $bank_discount / 100)));
-						$carro[$key]['old_price'] = $price;
-		        $carro[$key]['price'] = $p;
+						$cart[$key]['old_price'] = $price;
+		        $cart[$key]['price'] = $p;
 		      }
 	      }
 
@@ -1312,17 +1309,17 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 	        $number_ribbon = $prod['bank_discount'];
 	        //$bank_price = \price_format(ceil(round($price * (1 - (float) $prod['bank_discount'] / 100))));
 	      }
-	      $carro[$key]['number_ribbon'] = $number_ribbon;
-	      $carro[$key]['uid'] = $key;			
+	      $cart[$key]['number_ribbon'] = $number_ribbon;
+	      $cart[$key]['uid'] = $key;			
 				if (!isset($groups[$prod['promo']])) {
 					$groups[$prod['promo']] = [];
 				}
-				$groups[$prod['promo']][] = $carro[$key];
+				$groups[$prod['promo']][] = $cart[$key];
 			}
 			// $groups[$item['promo']]++;
 
 			// appy promo qunatities
-			foreach($carro as $key => $item) {
+			foreach($cart as $key => $item) {
 				$promo = $item['promo'];
 				if (!empty($promo)) {
 					$parts = explode('x', $promo);
@@ -1339,12 +1336,12 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 						}
 						$frees = array_slice($groups[$promo], count($groups[$promo]) - $offset, $offset);
 						foreach ($frees as $j => $free) {
-							foreach ($carro as $k => $i) {
+							foreach ($cart as $k => $i) {
 								if($i['uid'] === $free['uid']) {
 									$refs_ids[] = $free['uid'];
-									$carro[$k]['old_price'] = $i['price'];
-									$carro[$k]['price'] = 0;
-									$carro[$k]['promo_enabled'] = 1;
+									$cart[$k]['old_price'] = $i['price'];
+									$cart[$k]['price'] = 0;
+									$cart[$k]['promo_enabled'] = 1;
 									$groups[$promo] = array_filter($groups[$promo], function($item) use ($refs_ids) {
 										return !in_array($item['uid'], $refs_ids);
 									});
@@ -1356,21 +1353,21 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 			}
 		}
 
-		return $carro;
+		return $cart;
 	}
 
 	public function remove($id = null) {
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');
 		$item = false;
-		$carro = $this->Session->read('cart');
+		$cart = $this->Session->read('cart');
 
-		if(!$carro)
+		if(!$cart)
 			return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 		$data = array();
 		$i = 0;
 		$removed = 0;
-		foreach ($carro as $key => $item) {
+		foreach ($cart as $key => $item) {
 			if ($item['id'] !== $id) {
 				$data[$i] = $item;
 			} else {

@@ -4,8 +4,8 @@
   </button>  
   <h5 class="text-uppercase">Carrito</h5>
   <div class="sidebar-top d-flex flex-column justify-content-start align-items-start gap-05 content pt-4">
-  <?php if (isset($carro) && !empty($carro)) :?>
-  <?php foreach($carro as $i => $product) {
+  <?php if (isset($cart) && !empty($cart)) :?>
+  <?php foreach($cart as $i => $product) {
     echo "<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative' data-json='".json_encode($product)."'>";
     echo "<div class='cart-img'>";
     if (!empty($product['number_ribbon'])) {

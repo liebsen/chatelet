@@ -6,7 +6,7 @@ $this->set('short_header_text', '← Volver al carrito - ');
 $this->set('short_header_link', '/carrito');
 
 echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('carrito-lib.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
+echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 ?>
 <section id="detalle" class="is-flex-center has-checkout-steps min-h-101">
@@ -20,9 +20,9 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 			<?php if ($loggedIn) : ?>
 				<div class="card">
 					<div class="card-body">
-						<h2>Hola <?php echo $user['name']; ?></h2>
+						<h2>Hola <?php echo $user['name'] ?? 'Invitada'; ?></h2>
 						<p>Confirma tu identidad para continuar</p>
-						<a href="/checkout/envio" class="btn btn-chatelet dark w-100">Continuar como como <?php echo $user['name']; ?> <?php echo $user['surname']; ?> </a>
+						<a href="/checkout/envio" class="btn btn-chatelet dark w-100">Continuar como como <?php echo $user['name'] ?? 'Invitada'; ?> <?php echo $user['surname']; ?> </a>
 						<!--script>
 							setTimeout(function(){
 								location.href = '/checkout/envio'

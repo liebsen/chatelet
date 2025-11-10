@@ -53,11 +53,11 @@
             <?php } ?>
           </li><!-- /.Login -->
           <li class="dropdown is-clickable">
-            <a href="#" data-toggle="sidebar" data-target=".sidebar-cart" class="dropdown-toggle js-activated<?=count($carro) ? ' text-theme':'' ?>" data-toggle="dropdown" data-hover="dropdown">
-              <?php if(count($carro)):?>
-              <span data-toggle="sidebar" data-target=".sidebar-cart" class="count animated scaleIn speed delay1"><?=count($carro)?></span>
+            <a href="#" data-toggle="sidebar" data-target=".sidebar-cart" class="dropdown-toggle js-activated<?=count($cart) ? ' text-theme':'' ?>" data-toggle="dropdown" data-hover="dropdown">
+              <?php if(count($cart)):?>
+              <span data-toggle="sidebar" data-target=".sidebar-cart" class="count animated scaleIn speed delay1"><?=count($cart)?></span>
               <?php endif ?>
-              <span data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= count($carro) ? 'text-green' : 'text-chatelet' ?>"></i></span>
+              <span data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= count($cart) ? 'text-green' : 'text-chatelet' ?>"></i></span>
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -71,8 +71,8 @@
                   <ol id="items">
                     <?php
                       $total = 0;
-                      if (!isset($carro)) $carro = array();
-                      foreach($carro as $producto) {
+                      if (!isset($cart)) $cart = array();
+                      foreach($cart as $producto) {
 
                           /* if(!empty($producto['discount']) && (float)$producto['discount']>0){
                             $producto['price'] = $producto['discount'];

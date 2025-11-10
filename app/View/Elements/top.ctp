@@ -27,13 +27,13 @@
     <meta property="product:item_group_id" content="<?= $product['category_id'] ?>">
     <meta property="product:google_product_category" content="<?= $product['category_id'] ?>">
     <?php else: ?>
-    <meta property="og:type" content="<?= @$data['opengraph_type'] ?>" />
+    <meta property="og:type" content="<?= @$settings['opengraph_type'] ?>" />
     <meta property="og:url" content="<?= siteUrl() ?>" />
-    <meta property="og:title" content="<?= @$data['opengraph_title'] ?>" />
-    <meta property="og:description" content="<?= @$data['opengraph_text'] ?>" />
-    <meta property="og:image" itemprop="image primaryImageOfPage" content="<?= siteUrl() . @$data['opengraph_image'] ?>" />
+    <meta property="og:title" content="<?= @$settings['opengraph_title'] ?>" />
+    <meta property="og:description" content="<?= @$settings['opengraph_text'] ?>" />
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="<?= siteUrl() . @$settings['opengraph_image'] ?>" />
     <?php endif ?>
-    <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$data['google_font_name']) ?>:<?= @$data['google_font_size'] ?>" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$settings['google_font_name']) ?>:<?= @$settings['google_font_size'] ?>" rel="stylesheet">
 
     <?php echo $this->element('css_root') ?>
 

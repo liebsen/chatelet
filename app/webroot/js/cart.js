@@ -79,8 +79,6 @@ function addToCart(data) {
     }); 
 }
 
-
-
 var removeCart = (e) => {
   if(!removeElement) return
   const block = $(removeElement).parent()
@@ -120,7 +118,7 @@ var removeCart = (e) => {
 var updateCart = (carrito) => {
   console.log('updateCart', carrito)
   if(!carrito) {
-    carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+    carrito = JSON.parse(localStorage.getItem('cart')) || {}
   }
   Object.keys(carrito).forEach(e => {
     const h = $('#checkoutform').find(`input[name='${e}']`)
@@ -174,7 +172,7 @@ var save_preference = (settings) => {
       if (res.success) {
         var data = res.data
         if(data){
-          carrito_items = data
+          cart_items = data
         }
         getTotals()
       }
@@ -189,8 +187,8 @@ var save_preference = (settings) => {
 
 var getItems = () => {
   var subtotal = 0
-  if(carrito_items){
-    carrito_items.map((e) => {
+  if(cart_items){
+    cart_items.map((e) => {
       subtotal+= parseFloat(e.price)
     })
   }
@@ -198,8 +196,8 @@ var getItems = () => {
 }
 
 var getTotals = () => {
-  var payment_method = carrito_config.payment_method
-  var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+  var payment_method = cart_totals.payment_method
+  var carrito = JSON.parse(localStorage.getItem('cart')) || {}
   var subtotal = getItems()
   $('.subtotal_price').text(formatNumber(subtotal))
   if(carrito.freeShipping) {
@@ -223,7 +221,7 @@ var getTotals = () => {
   }
   //console.log('total_price(1)', subtotal)
   $('.calc_total').text("$ " + formatNumber(subtotal))
-  localStorage.setItem('carrito', JSON.stringify(carrito))  
+  localStorage.setItem('cart', JSON.stringify(carrito))  
   return subtotal
 }
 
@@ -234,3 +232,33 @@ var select_radio = (name, value) => {
   e.parent().addClass('is-selected')
 }
 
+
+$(document).ready(function() {
+
+  $(document).on('click', '.btn-change-count',function(e) {
+    let count = $(this).parent().find('input').first().val()
+    var json = $(this).parents('.carrito-data').data('json')
+    var item = JSON.parse(JSON.stringify(json))
+    
+    if($(e.target).hasClass('disable') || count == 0) {
+      return false
+    }
+
+    if($(this).is(':first-child')) {
+      count--
+    } else {
+      count++
+    }
+
+    var data = {
+      count: parseInt(count),
+      id: item.id,
+      color: item.color,
+      color_code: item.color_code,
+      size: item.size,
+      alias: item.alias,
+    }
+    
+    addCart(data)
+  })
+})

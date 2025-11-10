@@ -1,3 +1,48 @@
+.shipping-options .shipping-logo {
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: left center;
+	text-align: right;
+	padding-right: 4rem;
+	min-height: 46px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;	
+}
+
+.shipping-options li {
+	padding: 0!important;
+}
+.nav-dark {
+	border: none;
+}
+
+.nav-dark li {
+	background-color: #e7e7e7;
+	color: #333;
+	padding: 0.2rem 2.5rem;
+	float: left;
+}
+
+.nav-dark li a {
+	color: #888;
+	background-color: #e7e7e7;
+	border: 2px solid #333;
+	max-width: 10rem;
+	text-align: center;
+	border: none!important;
+	font-weight: 1000;
+	line-height: 1;
+	letter-spacing: 0.05rem;
+	border-radius: 0!important;
+}
+.nav-dark li.active {
+	background-color: #333;
+}
+.nav-dark li.active a {
+	background-color: #333!important;
+	color: white!important;
+}
 
 .has-checkout-steps {
 	padding-top: 5.5rem!important;

@@ -1,7 +1,7 @@
 <?php
 	echo $this->Session->flash();
 	echo $this->Html->css('carrito.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-	echo $this->Html->script('carrito-lib.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+	echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 	echo $this->Html->script('carrito.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 	echo $this->element('checkout-modal');
 	$payment_methods = [
@@ -12,8 +12,8 @@
 <script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <script>
 	var shipping_price = '<?= @$shipping_price_min ?>';
-	var carrito_config = <?php echo json_encode($config, JSON_PRETTY_PRINT);?>;
-	var carrito_items = <?php echo json_encode($carro, JSON_PRETTY_PRINT);?>;
+	var cart_totals = <?php echo json_encode($config, JSON_PRETTY_PRINT);?>;
+	var cart_items = <?php echo json_encode($carro, JSON_PRETTY_PRINT);?>;
 	var bank = {
 		enable: <?= isset($data['bank_enable']) ? $data['bank_enable'] : 0 ?>,
 		discount_enable: <?= isset($data['bank_discount_enable']) ? $data['bank_discount_enable'] : 0 ?>,
@@ -347,7 +347,7 @@
 			}, 15000)		
 	<?php endif ?>
 		var gifts = carrito.gifts || []
-		$(carrito_items).each((i,e) => {
+		$(cart_items).each((i,e) => {
 			$('#giftcheck_' + e.id).attr('checked', gifts.includes(parseInt(e.id)))
 		})
 	})

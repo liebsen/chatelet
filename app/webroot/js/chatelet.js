@@ -1,4 +1,4 @@
-var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+var carrito = JSON.parse(localStorage.getItem('cart')) || {}
 var lastcp = localStorage.getItem('lastcp') || 0
 var lastscroll = 0
 //new WOW().init();
@@ -213,18 +213,8 @@ let calcDues = (total) => {
 }
 
 let fxTotal = (total) => {
-  //console.log('fxTotal',total)
   if($('.calc_total').text().replace("$ ", "") != total) {
     $('.calc_total').text( '$ ' + formatNumber(total) )
-
-    const block = document.querySelector('.cost_total-container')
-    block.classList.remove('fadeIn', 'fadeOut', 'delay')
-    block.classList.add('hidden')
-    
-    setTimeout(() => {
-      block.classList.remove('hidden')
-      block.classList.add('delay', 'fadeIn')
-    }, 100)
   }
 }
 

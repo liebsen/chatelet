@@ -62,6 +62,8 @@ class AppController extends Controller
     )
   );
 
+  public $settings = [];
+
   private $setting_tags = [
     'stock_min',
     'list_code',
@@ -122,30 +124,33 @@ class AppController extends Controller
   }
 
   public function beforeFilter() {
-
-
+    $this->loadModel('Menu');
+    $this->loadModel('Banner');
+    $this->loadModel('Category');
+    $this->loadModel('Product');
+    $this->loadModel('Setting');
 
     //CakeLog::write('debug', 'beforeFilter executed for ' . $this->name . 'Controller::' . $this->action);
     $this->Auth->allow();
     $this->set('loggedIn', $this->Auth->loggedIn());
     $this->set('user', $this->Auth->user());
-    $this->set('carro', $this->Session->read('cart'));
     
-    $config = $this->Session->read('cart_totals');
+    $cart_totals = $this->Session->read('cart_totals');
     // ensure certain config entries...
-    if(empty($config['add_basket'])){
-        $config['add_basket'] = 0;
+    if(empty($cart_totals['add_basket'])){
+      $cart_totals['add_basket'] = 0;
     }
     
-    if(empty($config['payment_method'])){
-        $config['payment_method'] = 'mercadopago';
+    if(empty($cart_totals['payment_method'])){
+      $cart_totals['payment_method'] = 'mercadopago';
     }
 
-    $this->set('config', $config);
-    $this->loadModel('Menu');
-    $this->loadModel('Banner');
-    $this->loadModel('Category');
-    $this->loadModel('Product');
+    $this->set('cart', $this->Session->read('cart'));
+    $this->set('cart_totals', $cart_totals);
+    
+    $mapper = $this->Setting->findById('shipping_price_min');
+    $shipping_price_min = $mapper['Setting']['value'] ?? '';
+    $this->set('shipping_price_min',$shipping_price_min);
 
     $banners = $this->Banner->find('all', [
       'conditions' => ['enabled' => 1, 'text <>' => ''],
@@ -161,12 +166,12 @@ class AppController extends Controller
     $catsids = [];
 
     foreach($cats_enabled as $cat) {
-        $catsids[]= $cat['products']['category_id'];
+      $catsids[]= $cat['products']['category_id'];
     }
 
     $categories = $this->Category->find('all',array(
-        'conditions'=> array('visible' => 1, 'id IN' => $catsids),
-        'order' => array( 'Category.ordernum ASC' )
+      'conditions'=> array('visible' => 1, 'id IN' => $catsids),
+      'order' => array( 'Category.ordernum ASC' )
     ));
     
     $this->set('categories', $categories);
@@ -176,26 +181,24 @@ class AppController extends Controller
     $version_count = 1111;
 
     if(file_exists($version_file)) {
-        $version_date = date("\~ \U\A d/m/Y H:i\h", filemtime($version_file));
-        $version_count = (int) file_get_contents($version_file);
+      $version_date = date("d/m/Y H:i\h", filemtime($version_file));
+      $version_count = (int) file_get_contents($version_file);
     }
 
     if (isset($_REQUEST['font'])) {
-        $this->Session->write('font',urldecode($_REQUEST['font']));
+      $this->Session->write('font',urldecode($_REQUEST['font']));
     }
 
     if (isset($_REQUEST['exitfont'])) {
-        $this->Session->delete('font');
+      $this->Session->delete('font');
     }
 
     //Configure::write('client_id', '6773841105361656');
     //Configure::write('client_secret', 'hBHd6LiSEaTqgQXI2KSGO5C7uCBSINhW');
 
-    $this->loadModel('Setting');
-
-    $data = $this->load_settings();        
-
-    $this->set('data', $data);
+    $settings = $this->load_settings();
+    $this->settings = $settings;
+    $this->set('settings', $settings);
 
     /* if(!empty($this->Auth->user('role')) && $this->Auth->user('role') == 'admin'){
         $site_visits = $this->site_visits();

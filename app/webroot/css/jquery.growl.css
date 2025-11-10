@@ -108,17 +108,17 @@
   .growl.growl-small {
     max-width: 200px;
     margin: 0.5rem;
-    margin-top: 0.75rem; }
+    margin-top: 0.25rem; }
   .growl.growl-medium {
     max-width: 500px;
     margin-left: auto;
-    margin-top: 0.75rem; 
+    margin-top: 0.25rem; 
     min-width: 500px;
   }
   .growl.growl-large {
     max-width: 500px;  
     margin: 0.5rem;
-    margin-top: 0.75rem; 
+    margin-top: 0.25rem; 
     min-width: 500px;
   } 
 }

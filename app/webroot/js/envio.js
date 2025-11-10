@@ -3,9 +3,8 @@ var cargo = ''
 var itemData = null
 var removeElement = null
 
-
 var selectStore = e => {
-	var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
+	var preferences = JSON.parse(localStorage.getItem('cart')) || {}
 	var total_orig = parseFloat($('#subtotal_compra').val())
 	//console.log('total_orig',total_orig)
 	//console.log(document.querySelector('.coupon_bonus').innerHTML)
@@ -20,10 +19,10 @@ var selectStore = e => {
 	$(e).addClass('selected')
   $('.delivery-cost').addClass('hidden')
   var price = parseFloat((total_orig - coupon).toFixed(2))
-  $('.cost_total').text('$ ' + formatNumber(total_orig))
-  $('.calc_total').text('$ ' + formatNumber(total_orig))
+  // $('.cost_total').text('$ ' + formatNumber(total_orig))
+  // $('.calc_total').text('$ ' + formatNumber(total_orig))
   format_total = formatNumber(price)
-  fxTotal(format_total)
+  // fxTotal(format_total)
   preferences.cargo = 'takeaway'
   //console.log('total_price(2)', price)
   preferences.total_price = price
@@ -31,51 +30,15 @@ var selectStore = e => {
   preferences.subtotal_price = total_orig
   preferences.store = $(e).attr('store')
   preferences.store_address = $(e).attr('store_address')
-  localStorage.setItem('carrito', JSON.stringify(preferences))
+  localStorage.setItem('cart', JSON.stringify(preferences))
   var carrito_takeaway_text = $('.carrito_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
   onSuccessAlert(`Como querés recibir tu compra`, `Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}. Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. <br><br> ${carrito_takeaway_text}`);
 	cargo = 'takeaway'
 }
-var show_cart_item = (index) => {
-	//console.log('show_cart_item')
-	var target = document.querySelectorAll('.cart-row')[index]
-	if (target) {
-		if (!index) {
-			$('#carritoItem .carousel-control.left').addClass('is-hidden')
-		} else {
-			$('#carritoItem .carousel-control.left').removeClass('is-hidden')
-		}
-		if (index >= document.querySelectorAll('.cart-row').length-1) {
-			$('#carritoItem .carousel-control.right').addClass('is-hidden')
-		} else {
-			$('#carritoItem .carousel-control.right').removeClass('is-hidden')
-		}
-		return new Promise((resolve, reject) => {
-			if ($('#carritoItem').hasClass('active')) {
-				$('#carritoItem').removeClass('scaleIn')
-				$('#carritoItem').addClass('scaleOut')
-				setTimeout(() => {
-					resolve()
-				}, 100)
-			} else {
-				resolve()
-			}
-		}).then(() => {
-			$('#carritoItem').removeClass('scaleOut')
-			$('.ch-block').html($(target).html())
-			$('html, body').addClass('disable-scroll')
-			if (!$('#carritoItem').hasClass('active')) {
-				$('#carritoItem').addClass('active')
-			}
-			$('#carritoItem').addClass('scaleIn')
-		})
-	}
-}
-
 
 $(document).ready(function() {
-	/*if(carrito_items?.length == 1) {
+	/*if(cart_items?.length == 1) {
 		$('.products-total').hide()
 	} else {
 		$('.products-total').show()
@@ -85,62 +48,10 @@ $(document).ready(function() {
 	submit.removeClass('disabled')
 	submit.text('Siguiente')
 
-	/* carrito item viewer */
-	$('.cart-edit').on('click', function(e) {
-		//if(window.screen.width > 768) return false;
-		var donts = [
-			'glyphicon glyphicon-remove', 
-			'giftchecks', 
-			'label-text text-muted text-sm',
-		]	
-		if (!donts.includes(e.target.className)) {
-			$('html, body').addClass('disable-scroll')
-			currentCartIndex = [...document.querySelectorAll('.cart-row')].indexOf(this)
-			show_cart_item(currentCartIndex)
-		}
-	})
-
-	$('#carritoItem .carousel-control.left').on('click', function(e) {
-    e.preventDefault()
-		if (currentCartIndex > 0) {
-			currentCartIndex--
-		} else {
-			currentCartIndex = document.querySelectorAll('.cart-row').length
-		}
-		show_cart_item(currentCartIndex)
-	})
-
-	$('#carritoItem .carousel-control.right').on('click', function(e) {
-    e.preventDefault()
-		if (currentCartIndex < document.querySelectorAll('.cart-row').length) {
-			currentCartIndex++
-		} else {
-			currentCartIndex = 0
-		}
-		show_cart_item(currentCartIndex)
-	})
-
-	$('#carritoItem .close').on('click', function(e) {
-		$('html, body').removeClass('disable-scroll')
-		$('#carritoItem').removeClass('active')
-		$('#carritoItem').removeClass('scaleIn')
-	})
-
-	$('#checkout-modal').on('click', 'a', function() {
-		var a = $(this);
-		$(window).scrollTop(0);
-		a.parents('#checkout-modal').modal('hide');
-		if (a.hasClass('login')) {
-			setTimeout(function() {
-				$('#iniciar-sesion').click();
-			}, 200);
-		}
-	});
-
 	$('.cart-go-button').click(function(event){
 		event.preventDefault();
 		var c = $('[product_row]').length;
-		var preferences = JSON.parse(localStorage.getItem('carrito')) || {}
+		var preferences = JSON.parse(localStorage.getItem('cart')) || {}
 		let shipping = ''
 		let store = ''
 		let store_address = ''
@@ -212,12 +123,12 @@ $(document).ready(function() {
 		preferences.store = store
 		preferences.store_address = store_address
 		preferences.regalo = $('#regalo').is(':checked') ? 1 : 0
-		localStorage.setItem('carrito', JSON.stringify(preferences))
+		localStorage.setItem('cart', JSON.stringify(preferences))
 		window.location.href = location;
 	});
 
 	$(document).on('click', '.giftchecks',function(e) {
-		var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+		var carrito = JSON.parse(localStorage.getItem('cart')) || {}
 		var target_id = parseInt($(e.target).attr('data-id'))
 		if(!carrito.gifts) {
 			carrito.gifts = []
@@ -234,37 +145,10 @@ $(document).ready(function() {
 		} else {
 			$('.gift-area').addClass('hidden')
 		}
-		localStorage.setItem('carrito', JSON.stringify(carrito))  
-	})
-
-	$(document).on('click', '.btn-change-count',function(e) {
-		let count = $(this).parent().find('input').first().val()
-		var json = $(this).parents('.carrito-data').data('json')
-		var item = JSON.parse(JSON.stringify(json))
-		
-		if($(e.target).hasClass('disable') || count == 0) {
-			return false
-		}
-
-		if($(this).is(':first-child')) {
-			count--
-		} else {
-			count++
-		}
-
-		var data = {
-			count: parseInt(count),
-			id: item.id,
-			color: item.color,
-			color_code: item.color_code,
-			size: item.size,
-			alias: item.alias,
-		}
-		
-		addCart(data)
+		localStorage.setItem('cart', JSON.stringify(carrito))  
 	})
 	
-	var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+	var carrito = JSON.parse(localStorage.getItem('cart')) || {}
 
 	if (carrito.cargo === 'takeaway' && carrito.store.length && !location.hash.includes('shipment-options.shipping')) {
 		setTimeout(() => {
@@ -300,7 +184,7 @@ $(document).ready(function() {
 				// $('#calulate_shipping').submit()	
 				// onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000, true)
 			} else {
-				onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000, true)
+				// onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000, true)
 			}
 		}, 1000)
 	}

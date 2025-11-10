@@ -5,7 +5,7 @@ function showCouponInput() {
 }
 
 function resetCoupon() {
-  var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+  var cart = JSON.parse(localStorage.getItem('cart')) || {}
   $('.calc-coupon').hide(); 
   $('.coupon-click').show();
   $('#coupon_name').val('')
@@ -17,12 +17,12 @@ function resetCoupon() {
   var delivery_cost = $('#subtotal_envio').val() || 0
   var c2 = event.target.value
 
-  if (!subtotal && carrito.subtotal_price) {
-    subtotal = carrito.subtotal_price
+  if (!subtotal && cart.subtotal_price) {
+    subtotal = cart.subtotal_price
   }
 
-  if (!freeShipping && !delivery_cost && carrito.shipping_price) {
-    delivery_cost = carrito.shipping_price
+  if (!freeShipping && !delivery_cost && cart.shipping_price) {
+    delivery_cost = cart.shipping_price
   }  
   //console.log('subtotal(2)',subtotal)
   //console.log('delivery_cost(2)',delivery_cost)
@@ -32,8 +32,8 @@ function resetCoupon() {
 
   $('.coupon-discount').addClass('hidden')
 
-  carrito.total_price = parseFloat(price.toFixed(2))
-  localStorage.setItem('carrito', JSON.stringify(carrito))
+  cart.total_price = parseFloat(price.toFixed(2))
+  localStorage.setItem('cart', JSON.stringify(cart))
 }
 
 function submitCoupon() {
@@ -45,19 +45,19 @@ function submitCoupon() {
     return false
   }
 
-  var carrito = JSON.parse(localStorage.getItem('carrito')) || {}
+  var cart = JSON.parse(localStorage.getItem('cart')) || {}
   var items = getItems()
   var subtotal = getTotals()
-  var delivery_cost = carrito.shipping_price
+  var delivery_cost = cart.shipping_price
   var c2 = event.target.value
 
-  if (!subtotal && carrito.subtotal_price) {
-    subtotal = carrito.subtotal_price
+  if (!subtotal && cart.subtotal_price) {
+    subtotal = cart.subtotal_price
   }
 
   $('#free_delivery').text('');
   $('.btn-calculate-coupon').button('loading')
-  $.post('/carrito/coupon', { coupon: coupon.trim() }, function(res, textStatus) {
+  $.post('/cart/coupon', { coupon: coupon.trim() }, function(res, textStatus) {
     $('.btn-calculate-coupon').button('reset')
     
     if( res.status == 'success' ) {
@@ -77,17 +77,17 @@ function submitCoupon() {
       discounted_formatted = formatNumber(res.data.bonus)
 
       $('.coupon_bonus').text( "$ " + discounted_formatted )
-      $('.products-total').removeClass('hidden')
-      $('.coupon-discount').removeClass('hidden')
-      $('.coupon-discount').addClass('fadeIn')
+      //  $('.products-total').removeClass('hidden')
+      // $('.coupon-discount').removeClass('hidden')
+      // $('.coupon-discount').addClass('fadeIn')
       $('.input-coupon').removeClass('wrong');
       $('.input-coupon').addClass('ok');
 
       onSuccessAlert(`${res.data.code.toUpperCase()}`, res.data.info);
 
       $('.coupon-info-info').html(`<span class="text-success text-bold">${res.data.code}</span> - ${res.data.info}`)
-      $('.coupon-info').removeClass('hidden')
-      $('.coupon-info').addClass('fadeIn')
+      // $('.coupon-info').removeClass('hidden')
+      // $('.coupon-info').addClass('fadeIn')
       $('.promo-code').text(res.data.code)
       $('.free-shipping').addClass('hidden')
       
@@ -98,14 +98,14 @@ function submitCoupon() {
       calcDues(price)
       window.coupon_bonus = discounted
 
-      carrito.total_price = parseFloat(price.toFixed(2))
+      cart.total_price = parseFloat(price.toFixed(2))
 
       $('input[name="coupon"]').val(coupon)
       $('#coupon_name').val("")
-      $('.calc-coupon').hide(); 
-      $('.coupon-click').show();
+      // $('.calc-coupon').hide(); 
+      // $('.coupon-click').show();
 
-      if (carrito.cargo === 'shipment') {
+      if (cart.cargo === 'shipment') {
         if (free_shipping) {
           $('.paid-shipping-block').addClass('hidden')
           $('.free-shipping-block').removeClass('hidden')
@@ -117,17 +117,17 @@ function submitCoupon() {
         }
         $('.shipping_price').html(price)
 
-        $('.shipping-block').removeClass('hide')
-        $('.shipping-block').addClass('animated fadeIn')
+        // $('.shipping-block').removeClass('hide')
+        // $('.shipping-block').addClass('animated fadeIn')
       }
     }else{
-      $('.coupon-discount').addClass('hidden')
+      // $('.coupon-discount').addClass('hidden')
       $('.input-coupon').removeClass('ok');
       $('.input-coupon').addClass('wrong');
       $('#cost').text( '0' );
       timeout = setTimeout( `onErrorAlert('${res.title}', '${res.message}')` , 200);
     }
-    localStorage.setItem('carrito', JSON.stringify(carrito))
+    localStorage.setItem('cart', JSON.stringify(cart))
     $('.input-coupon').attr( 'data-valid' , parseInt(res.valid) );
   })
 

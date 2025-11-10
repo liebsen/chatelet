@@ -3,6 +3,7 @@
 	border-radius: 0.5rem;
 } */
 
+
 #heading {
 	color: #666; /* #e10d74; */
 	font-weight: 600;
@@ -35,21 +36,7 @@
 	color: #f10c76;
 }
 
-.shipping-options .shipping-logo {
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: left center;
-	text-align: right;
-	padding-right: 4rem;
-	min-height: 46px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;	
-}
 
-.shipping-options li {
-	padding: 0!important;
-}
 
 .table thead {
 	background-color: #e10c76;

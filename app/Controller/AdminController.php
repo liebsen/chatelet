@@ -2909,6 +2909,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			if ($this->Auth->login()) {
 				return $this->redirect(array('controller' => 'admin', 'action' => 'index'));
 			} else {
+	      $this->Session->setFlash(
+          'Error al registrar, por favor revise email y contraseña',
+          'default',
+          array('class' => 'hidden error')
+	      );
 				return $this->redirect(array('controller' => 'admin', 'action' => 'login'));
 			}
 		}

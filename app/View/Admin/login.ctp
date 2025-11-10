@@ -1,5 +1,6 @@
-<?php
-	$this->layout = '';
+<?php 
+$this->layout = ''; 
+echo $this->Session->flash();
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -44,6 +45,7 @@
 
         <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
         <link rel="stylesheet" href="../css/themes.css">
+        <link rel="stylesheet" href="../css/jquery-growl.css">
         <!-- END Stylesheets -->
 
         <!-- Modernizr (browser feature detection library) & Respond.js (Enable responsive CSS code on browsers that don't support it, eg IE8) -->
@@ -135,7 +137,8 @@
 
         <!-- Jquery plugins and custom javascript code -->
         <script src="../js/plugins.js"></script>
-        <script src="../js/main.js"></script>
+        <script src="../js/jquery.growl.js"></script>
+        <script src="../js/chatelet.js"></script>
 
         <!-- Javascript code only for this page -->
         <script>

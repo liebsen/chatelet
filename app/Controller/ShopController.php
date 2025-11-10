@@ -20,6 +20,8 @@ class ShopController extends AppController {
 		$this->set('lookBook', $lookbook);
   	$setting 			= $this->Setting->findById('catalog_first_line');
 		$catalog_first_line = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$this->set('cart', $this->Session->read('cart'));
+		$this->set('cart_totals', $this->Session->read('cart_totals'));		
 		$this->set('catalog_first_line',$catalog_first_line);
 	}
 
@@ -57,13 +59,13 @@ class ShopController extends AppController {
 
       if ($user_data) {
 	      $email_data = array(
-	        'id_user' => $user_data['User']['id'] ,
+	        'id_user' => $user_data['User']['id'],
 	        'receiver_email' => $user_data['User']['email'],
 	        'name' =>  $user_data['User']['name'],
 	      );			
 				$this->sendMail($email_data,'🌸 Test via en Châtelet (HTML)', 'test');
 			} else {
-				die('User not found')
+				die('User not found');
 			}
 		}
 		die();
