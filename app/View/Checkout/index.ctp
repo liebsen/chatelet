@@ -1,8 +1,14 @@
 <?php 
-$this->set('short_header', 'Checkout');
+
 echo $this->Session->flash();
+
+$this->meta('title', 'Checkout');
+$this->set('short_header', 'Checkout');
+$this->set('short_header_text', 'Volver al carrito'); 
+$this->set('short_header_link', '/carrito');
+
 echo $this->Html->script('carrito-lib.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
-echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
+echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 
 ?>
 <section id="detalle" class="is-flex-center min-h-101">

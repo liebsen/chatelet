@@ -7,6 +7,9 @@
             Châtelet</a>
       </div>
       <div class="navbar-right text-center p-4">
+        <?php if ($short_header_link) :?>
+          <a href="<?php echo $short_header_link ?>"><?php echo $short_header_text ?? 'Carrito' ?></a>
+        <?php endif ?>
         <i><?= $short_header ?></i>
       </div>
     </div>

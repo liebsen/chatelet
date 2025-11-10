@@ -20,8 +20,6 @@
 	  $('[data-toggle="sidebar"]').click((e) => {
 	    const target = $(e.target).data('target')
 	    const focus = $(e.target).data('focus')
-	    console.log('sidebar click', {target, focus})
-
 	    if($(target).length) {
 	      if(!$(target).hasClass('sidebar-expanded')) {
 	        $(target).addClass('sidebar-expanded')

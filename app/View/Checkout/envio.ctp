@@ -1,6 +1,10 @@
 <?php 
-	$this->set('short_header', 'Checkout');
 	echo $this->Session->flash();
+
+	$this->set('short_header', 'Checkout');
+	$this->set('short_header_text', 'Volver al carrito'); 
+	$this->set('short_header_link', '/carrito');
+
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
@@ -15,6 +19,7 @@
 		<!--div class="header">
 			<h1>Método de envío</h1>			
 		</div-->
+		<div class="container p-3 animated fadeIn delay">
 		<div class="max-22 p-3 animated fadeIn delay">
 			<?php echo $this->element('shipping') ?>
 		</div>
