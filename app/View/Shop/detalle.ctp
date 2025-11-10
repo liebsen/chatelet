@@ -42,7 +42,7 @@ foreach ($properties as $property) {
     <?php if(!empty($colorImages)):?>
       <div class="col-md-2">
         <ul id="ul-moreviews">
-        <?php if (!empty($colorImages[0]['images'] )): $ppp=0; ?>
+        <?php if (!empty($colorImages[0]['images']) && count($colorImages[0]['images']) > 1): $ppp=0; ?>
         <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
         <?php if(!empty($value)): $ppp++;?>
           <li class="dontResize"><a href="#"><img class="demo w3-opacity w3-hover-opacity-off img-responsive"
@@ -180,7 +180,7 @@ foreach ($properties as $property) {
               <div class="article-tools">
                   <div class="field overflow-x-auto">
                      <div class="color-options d-flex justify-content-start align-items-start gap-05" data-toggle="buttons">
-                          <?php  
+                          <?php
                               foreach ($colors as $i => $color) {
                                   $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
                                   $style = (empty($color['images']))?'oldSelectColor':'';
@@ -197,7 +197,7 @@ foreach ($properties as $property) {
                                       }
                                       echo '<div class="color-option" style="background-image: url('.Configure::read('uploadUrl').$image[0].')"></div>';
                                   } else {
-                                      echo '<div class="color-block" style="padding: 10px; border-radius: 100px;background-color: '. $color['variable'] .';"></div>';
+                                      echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
                                   }
                                   echo "<small>".$color['alias']."</small>";
                                   echo '</label>';
