@@ -56,7 +56,7 @@
       echo $this->Html->script('plugins');
       echo $this->Html->script('main.js?v=' . Configure::read('APP_VERSION'));
       // echo $this->fetch('meta');
-      // echo $this->fetch('css');
+      echo $this->fetch('css');
 
     ?>
     <script>

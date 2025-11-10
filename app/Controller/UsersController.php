@@ -183,18 +183,20 @@ class UsersController extends AppController {
        
         if(!empty($user_data)){   
           $pass1 = $this->random_password();
-          CakeLog::write('debug', 'password:'.$pass1);
-
-          $passwordHasher = new SimplePasswordHasher();
-          $pass = $passwordHasher->hash($pass1);
-          CakeLog::write('debug', 'hash:'.$pass);
+          // CakeLog::write('debug', 'id:'.$user_data['User']['id']);
+          // CakeLog::write('debug', 'email:'.$email_user);
+          // CakeLog::write('debug', 'password:'.$pass1);
+          // $passwordHasher = new SimplePasswordHasher();
+          // $pass = $passwordHasher->hash($pass1);
+          // CakeLog::write('debug', 'hash:'.$pass);
                                                                                                   
           $this->User->save(array(
             'User'=>array(
               'id' => $user_data['User']['id'],
-              'password' => $pass
+              'password' => $pass1
             )
           ), false);
+          // die($pass1);
 
           $email_data = array(
             'id_user' => $user_data['User']['id'] ,

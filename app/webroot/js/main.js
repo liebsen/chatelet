@@ -478,14 +478,6 @@ $(function () {
     }*/
   })  
 
-  $('.sidebar-backdrop, .btn-close-sidebar').click((e) => {
-    if($('nav.sidebar-expanded').length) {
-      $('.sidebar').removeClass('sidebar-expanded')
-      $('.sidebar-backdrop').fadeOut()
-    }
-  })
-
-
   $('#filters .prices label span, #formulario label span').click(function () {
     $('#filters .prices label span, #formulario label span').removeClass('active');
     $(this).addClass('active')
@@ -526,6 +518,21 @@ $(function () {
   }
 
   /* generic clic handlers */
+
+  $('[data-toggle="click"]').click((e) => {
+    const show = $(e.target).data('show')
+    const hide = $(e.target).data('hide')
+    const remove = $(e.target).data('remove')
+    if($(show).length) {
+      $(show).fadeIn()
+    }
+    if($(hide).length) {
+      $(hide).fadeOut()
+    }
+    if($(remove).length) {
+      $(remove).remove()
+    }
+  })
 
   $('[data-toggle="mouseenter"]').mouseenter((e) => {
     const show = $(e.target).data('show')

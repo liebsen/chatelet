@@ -1,3 +1,17 @@
+
+<div class="is-flex-center is-absolute top-0 bg-transparent p-5 animated slideInDown delay1">
+	<div class="wizard-container">
+		<div class="wizard-progress is-flex-center justify-content-around w-100">
+		<?php foreach($checkout_steps as $i => $step) : ?>
+			<div class="wizard-step <?= $i < $checkout_index ? 'complete' : '' ?> <?= $i == $checkout_index ? 'current' : '' ?>">
+				<?php echo $step['label'] ?>
+				<a href="<?= $i < $checkout_index ? $step['url'] : '#' ?>" class="wizard-node"><?php echo $i + 1 ?></a>
+			</div>
+		<?php endforeach ?>
+		</div>
+	</div>
+</div>
+
 <style>
 	.wizard-container {
 		max-width: 40rem;
@@ -63,15 +77,3 @@
 		color: #333;
 	}
 </style>
-<div class="is-flex-center is-absolute top-0 bg-transparent p-5 animated fadeIn delay2">
-	<div class="wizard-container">
-		<div class="wizard-progress is-flex-center justify-content-around w-100">
-		<?php foreach($checkout_steps as $i => $step) : ?>
-			<div class="wizard-step <?= $i < $checkout_index ? 'complete' : '' ?> <?= $i == $checkout_index ? 'current' : '' ?>">
-				<?php echo $step['label'] ?>
-				<a href="<?= $i < $checkout_index ? $step['url'] : '#' ?>" class="wizard-node"><?php echo $i + 1 ?></a>
-			</div>
-		<?php endforeach ?>
-		</div>
-	</div>
-</div>

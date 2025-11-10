@@ -22,6 +22,10 @@ nav.sidebar-expanded {
   right: 0!important;
 }
 
+.section {
+	padding: 1rem 0;
+}
+
 .sidebar-backdrop {
 	display: none;
   position: fixed;

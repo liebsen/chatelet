@@ -1,9 +1,6 @@
-<?php
-
-echo $this->Session->flash();
-
-?>
+<?php echo $this->Session->flash() ?>
 <div class="wrapper content">
+
   <div id="carousel" class="carousel slide animated fadeIn delay" data-type="slider" data-interval="10000" data-ride="carousel">
     <?php echo $this->element('carousel') ?>
   </div>
@@ -12,12 +9,11 @@ echo $this->Session->flash();
     <?php echo $this->element('shop_list') ?>
   </section>
 
-  <section id="suscribe" class="animated fadeIn delay2"> <!-- fadeIn slow delay2 -->
+  <section id="suscribe" class="subscribe-box animated fadeIn delay2"> <!-- fadeIn slow delay2 -->
     <?php echo $this->element('subscribe-box') ?>
   </section>
 
   <?php echo $this->element('img_popup_newsletter') ?>
-
   <?php echo $this->element('follow_us') ?>
 
 </div>

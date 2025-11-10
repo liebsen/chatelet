@@ -8,7 +8,16 @@
 <script type="text/javascript">
 	
 	$(function () {
-	  $(document).on('click', '[data-toggle="sidebar"]', (e) => {
+
+	  $('.sidebar-backdrop, .btn-close-sidebar').click((e) => {
+	    if($('nav.sidebar-expanded').length) {
+	      $('.sidebar').removeClass('sidebar-expanded')
+	      $('.sidebar-backdrop').fadeOut()
+	    }
+	  })
+
+	  // $(document).on('click', '[data-toggle="sidebar"]', (e) => {
+	  $('[data-toggle="sidebar"]').click((e) => {
 	    const target = $(e.target).data('target')
 	    const focus = $(e.target).data('focus')
 	    console.log('sidebar click', {target, focus})

@@ -600,6 +600,8 @@ class ShopController extends AppController {
 
 	public function registro() {}
 	public function cuenta() {}
+	public function politica() {}
+	public function terminos() {}
 	public function recuperar_acceso() {}
 	public function login() {
 		if($this->Auth->user('id')) {

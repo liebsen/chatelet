@@ -1,7 +1,7 @@
 <?php
+    echo $this->Session->flash();
     echo $this->Html->css('sucursales', array('inline' => false));
     echo $this->Html->script('sucursales', array('inline' => false));
-    echo $this->Session->flash();
 ?>
 
   <section class="map">

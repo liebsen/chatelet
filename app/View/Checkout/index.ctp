@@ -12,13 +12,13 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 			<h1>Registro</h1>			
 		</div-->
 		<div class="container p-3 animated fadeIn delay">
-			<div class="is-flex flex-column-sm justify-content-center align-items-center gap-1 mb-4">
+			<div class="is-flex flex-column-sm justify-content-center align-items-center gap-1">
 			<?php if ($loggedIn) : ?>
-				<div class="card p-3">
+				<div class="card">
 					<div class="card-body">
 						<h2>Hola <?php echo $user['name']; ?></h2>
-						<p>Te estamos redirigiendo al siguiente paso...</p>
-						<a href="/checkout/envio" class="btn btn-chatelet dark w-100">Continuar como como <?php echo $user['name']; ?> </a>
+						<p>Confirma tu identidad para continuar</p>
+						<a href="/checkout/envio" class="btn btn-chatelet dark w-100">Continuar como como <?php echo $user['name']; ?> <?php echo $user['surname']; ?> </a>
 						<!--script>
 							setTimeout(function(){
 								location.href = '/checkout/envio'
@@ -81,8 +81,9 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 	$(document).ready(function() {
 	    $('#login_form, #register_form').on('submit', function(event) {
 	        event.preventDefault();
-	        var formData = $(this).serialize();
-	        var btnSubmit = $(this).find('[type="submit"]');
+	        const formData = $(this).serialize();
+	        const btnSubmit = $(this).find('[type="submit"]');
+	        const redirect = $(this).find('[name="redirect"]').val();
 	        btnSubmit.prop('disabled', true)
 	        $.ajax({
 	            url: $(this).attr('action'),
@@ -93,10 +94,10 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 	            		onSuccessAlert('Success', res.message)
 	                $('#responseContainer').html(res.message);
 	                setTimeout(() => {
-	                	location.href = formData.redirect
+	                	location.href = redirect || location.href
 	                }, 3000)
 	            	} else {
-	            		onWarningAlert('Error', res.errors)
+	            		onWarningAlert('Error al registrar usuario', res.errors)
 	            		$('#responseContainer').html(res.errors);
 	            	}
 	            	btnSubmit.prop('disabled', false)

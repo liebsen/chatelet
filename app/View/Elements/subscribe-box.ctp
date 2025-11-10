@@ -1,6 +1,6 @@
   <div class="wrapper container w-100">
-    <span class="corner-pin">
-      <i class="ico-times" role="img" aria-label="Cerrar"></i>
+    <span class="corner-pin is-clickable">
+      <i class="ico-times" data-toggle="click" data-remove=".subscribe-box" role="img" aria-label="Cerrar"></i>
     </span>
     <div class="is-flex-center flex-column gap-1">
       <span>
