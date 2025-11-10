@@ -2,8 +2,8 @@
   <button type="button" class="corner-pin btn-close-sidebar">
     <i class="ico-times" role="img" aria-label="Cerrar"></i>
   </button>  
-  <h6 class="text-bolder text-uppercase">Carrito</h6>
-  <div class="sidebar-cart-top d-flex flex-column justify-content-start align-items-start gap-05 content pt-4">
+  <h5 class="text-uppercase">Carrito</h5>
+  <div class="sidebar-top d-flex flex-column justify-content-start align-items-start gap-05 content pt-4">
   <?php if (isset($carro) && !empty($carro)) :?>
   <?php foreach($carro as $i => $product) {
     echo "<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative' data-json='".json_encode($product)."'>";
@@ -40,11 +40,11 @@
   echo '</div>';    
   } ?>
   </div>
-  <div class="sidebar-cart-bottom">
+  <div class="sidebar-bottom">
     <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-      <a href="/checkout" class="btn btn-chatelet dark w-100">Comprar ahora</a>
+      <a href="/checkout" class="btn btn-chatelet dark w-100">Comprar</a>
       <a href="/carrito" class="btn btn-chatelet w-100">Ir al carrito</a>
-      <a href="/tienda" class="btn keep-buying btn-text w-100">Seguir comprando</a>
+      <a href="/tienda" class="btn keep-buying w-100">Seguir comprando</a>
     </div>  
     <?php else: ?>
       <p>Tu carrito de compras está vacío</p>
@@ -55,22 +55,3 @@
   </div>
 </nav>
 
-<style>
-  .sidebar-cart {
-    position: relative;
-  }
-
-  .sidebar-cart-top {
-    overflow-x: auto;
-    max-height: calc(100dvh - 16rem);
-  }
-
-  .sidebar-cart-bottom {
-    background-color: #fff;
-    padding: 1rem;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-</style>

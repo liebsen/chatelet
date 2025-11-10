@@ -1,4 +1,4 @@
-  <div class="container-fluid animated fadeIn delay">
+  <div class="container-fluid<?php echo in_array(Router::url(), array('/', '/home')) ? ' animated fadeIn delay' : '' ?>">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <a class="navbar-brand"

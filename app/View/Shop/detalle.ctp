@@ -242,7 +242,7 @@ foreach ($properties as $property) {
                   </div>
                 </div>
                 <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-                  <a href="#" id="agregar-carro" class="btn btn-chatelet dark buy agregar-carro w-100">Comprar ahora</a>
+                  <a href="#" id="agregar-carro" class="btn btn-chatelet dark buy agregar-carro w-100">Comprar</a>
                   <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro w-100">Agregar al carrito</a>
                 </div>                        
               </div>

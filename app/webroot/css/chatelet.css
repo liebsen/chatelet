@@ -51,6 +51,20 @@ nav.sidebar {
   transition: all 0.25s ease-in-out;
 }
 
+.sidebar-top {
+  overflow-x: auto;
+  max-height: calc(100dvh - 16rem);
+}
+
+.sidebar-bottom {
+  background-color: #fff;
+  padding: 1rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 #page-loader {
   min-width: 100dvw;
   min-height: 100dvh;
@@ -735,6 +749,10 @@ html, body {
 
 .btn:hover {
 	opacity: 0.9;
+}
+
+a.btn {
+	color: #333;
 }
 
 .is-transparent {

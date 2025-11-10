@@ -1,4 +1,4 @@
-<div id="carousel-banners" class="carousel animated fadeIn delay" data-interval="10000" data-ride="carousel">
+<div id="carousel-banners" class="carousel<?php echo in_array(Router::url(), array('/', '/home')) ? ' animated fadeIn delay' : '' ?>" data-interval="10000" data-ride="carousel">
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
   <?php foreach ($banners as $key => $banner): ?>
