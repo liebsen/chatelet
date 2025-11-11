@@ -21,6 +21,7 @@
   <style>
     #suscribe { 
       position: fixed;
+      z-index: 20;
       left: 0;
       bottom: 0;
       background: #e6e6e6; 

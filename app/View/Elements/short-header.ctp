@@ -8,9 +8,11 @@
       </div>
       <div class="navbar-right text-center p-4">
         <?php if ($short_header_link) :?>
-          <a href="<?php echo $short_header_link ?>"><?php echo $short_header_text ?? 'Carrito' ?></a>
+          <a href="<?php echo $short_header_link ?>" class="pr-2">
+            <i class="text-sm"><?php echo $short_header_text ?? 'Carrito' ?></i>
+          </a>
         <?php endif ?>
-        <i><?= $short_header ?></i>
+        <span><?= $short_header ?></span>
       </div>
     </div>
   </nav>

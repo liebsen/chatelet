@@ -2,7 +2,7 @@
 echo $this->Session->flash();
 
 $this->set('short_header', 'Checkout');
-$this->set('short_header_text', '← Volver al carrito - '); 
+$this->set('short_header_text', '← Volver al carrito'); 
 $this->set('short_header_link', '/carrito');
 
 echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));

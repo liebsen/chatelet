@@ -1,10 +1,13 @@
 <?php
-	echo $this->Session->flash();
-  echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
-  echo $this->Html->script('formValidation.min', array('inline' => false));
-  echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
-  echo $this->Html->script('bootstrapValidator', array('inline' => false)); 
-  echo $this->Html->script('particular-validation', array('inline' => false));
+echo $this->Session->flash();
+$this->set('short_header', 'Iniciar sesión');
+$this->set('short_header_text', '← Volver a la tienda');
+$this->set('short_header_link', '/shop');
+echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
+echo $this->Html->script('formValidation.min', array('inline' => false));
+echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
+echo $this->Html->script('bootstrapValidator', array('inline' => false)); 
+echo $this->Html->script('particular-validation', array('inline' => false));
 ?>
 <section id="detalle" class="is-flex-center min-h-100">
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 animated fadeIn delay">

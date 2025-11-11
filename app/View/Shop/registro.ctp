@@ -1,31 +1,36 @@
 <?php
-	echo $this->Html->script('formValidation.min', array('inline' => false));
-	echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
-	echo $this->Html->script('bootstrapValidator', array('inline' => false));
-	echo $this->Html->script('particular-validation', array('inline' => false));
-	
-	if (!$loggedIn) {
-		$user = array(
-			'email' => '',
-			'name' => '',
-			'surname' => '',
-			'birthday' => '',
-			'gender' => '',
-			'dni' => '',
-			'newsletter' => '',
-			'telephone' => '',
-			'another_telephone' => '',
-			'address' => '',
-			'street' => '',
-			'street_n' => '',
-			'floor' => '',
-			'depto' => '',
-			'province' => '',
-			'city' => '',
-			'neighborhood' => '',
-			'postal_address' => ''
-		);
-	}
+
+echo $this->Html->script('formValidation.min', array('inline' => false));
+echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
+echo $this->Html->script('bootstrapValidator', array('inline' => false));
+echo $this->Html->script('particular-validation', array('inline' => false));
+
+$this->set('short_header', 'Crear cuenta');
+$this->set('short_header_text', '← Volver al Iniciar sesión');
+$this->set('short_header_link', '/shop/login');
+
+if (!$loggedIn) {
+	$user = array(
+		'email' => '',
+		'name' => '',
+		'surname' => '',
+		'birthday' => '',
+		'gender' => '',
+		'dni' => '',
+		'newsletter' => '',
+		'telephone' => '',
+		'another_telephone' => '',
+		'address' => '',
+		'street' => '',
+		'street_n' => '',
+		'floor' => '',
+		'depto' => '',
+		'province' => '',
+		'city' => '',
+		'neighborhood' => '',
+		'postal_address' => ''
+	);
+}
 ?>
 <section id="detalle" class="is-flex-center flex-column min-h-100">
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1">

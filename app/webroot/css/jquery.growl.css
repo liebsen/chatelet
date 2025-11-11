@@ -45,61 +45,61 @@
   border: 1px solid #999;
   box-shadow: 2px 2px 0 #6661;
   /*box-shadow: 1px 1px 5px 0 rgba(26, 26, 67, .05), 39px 62.5px 125px -25px rgba(50, 50, 93, .2), 23.4px 37.5px 75px -37.5px rgba(0, 0, 0, .4);*/
-  -webkit-transition: all 0.4s ease-in-out;
-  -moz-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out; }
-  .growl.growl-incoming {
-    left: -20rem;
-    opacity: 0;
-    filter: alpha(opacity=0); }
-  .growl.growl-outgoing {
-    left: -20rem;
-    opacity: 0;
-    filter: alpha(opacity=0); }
-  .growl.growl-small {
-    padding: 1rem;}
-  .growl.growl-medium {
-    padding: 1.5rem;}
-  .growl.growl-large {
-    padding: 1.75rem;}
-  .growl.growl-default {
-    padding: 1.5rem;
-    color: #666;
-    background: #FFF; }
-  .growl.growl-error {
-    color: #FFF;
-    background: #666; }
-  .growl.growl-notice {
-    color: #FFF;
-    background: #666; }
-  .growl.growl-warning {
-    color: #666;
-    background: lightgoldenrodyellow; }
-  .growl .growl-close {
-    cursor: pointer;
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    font-size: 0.8rem;
-    line-height: 1.25rem;
-    font-weight: normal;
-    opacity: 0;
-  }
-  .growl .growl-title {
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-  }
-  .growl.growl-notice .growl-title,
-  .growl.growl-error .growl-title {
-    border-color: #fff;
-  }
-  .growl .growl-message {
-    font-size: 0.8rem;
-    line-height: 1.2; }
+  transition: all 0.4s ease-in-out; 
+}
+.growl.growl-incoming {
+  left: -20rem;
+  opacity: 0;
+  filter: alpha(opacity=0); }
+.growl.growl-outgoing {
+  left: -20rem;
+  opacity: 0;
+  filter: alpha(opacity=0); }
+.growl.growl-small {
+  padding: 1rem;}
+.growl.growl-medium {
+  padding: 1.5rem;}
+.growl.growl-large {
+  padding: 1.75rem;}
+.growl.growl-default {
+  padding: 1.5rem;
+  color: #888;
+  background-color: white; }
+.growl.growl-error {
+  color: #fff;
+  background-color: lightgoldenrodyellow; }
+.growl.growl-notice {
+  color: #888;
+  background-color: white; }
+.growl.growl-warning {
+  color: #888;
+  background-color: lightgoldenrodyellow; }
+.growl .growl-close {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 0.8rem;
+  line-height: 1.25rem;
+  font-weight: normal;
+  opacity: 0;
+}
+.growl .growl-title {
+  font-size: 1rem;
+  font-weight: 1000;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.growl.growl-notice .growl-title,
+.growl.growl-error .growl-title {
+  border-color: #e7e7e7;
+}
+.growl .growl-message {
+  font-size: 0.9rem;
+  line-height: 1.2; 
+}
 
 @media screen and (min-width: 769px) {
   #growls.default {

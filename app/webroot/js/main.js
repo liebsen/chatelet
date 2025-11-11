@@ -8,6 +8,7 @@ let searchPage = 0
 let focusAnim = 'pulse'
 let clock = 0
 let fakeshown = 0 
+let growlTimeout = 15000
 const log = false
 
 function addCart(data, button, label, redirect) {
@@ -274,7 +275,7 @@ groupAlerts = function(title, text) {
         title: title || 'Error',
         message: '<ul>' + messages.join('') + '</ul>' || '',
         queue: true,
-        duration: 15000
+        duration: growlTimeout
       });      
     }
     alerts = []
@@ -289,7 +290,7 @@ onErrorAlert = function(title, text, duration, group){
     title: title || 'Error',
     message: text && text !== 'undefined' ? text : '',
     queue: true,
-    duration: duration || 15000
+    duration: duration || growlTimeout
   });
 }
 
@@ -301,7 +302,7 @@ onSuccessAlert = function(title, text, duration, group){
     title: title || 'OK',
     message: text && text !== 'undefined' ? text : '',
     queue: true,
-    duration: duration || 15000
+    duration: duration || growlTimeout
   });
 }
 
@@ -314,7 +315,7 @@ onWarningAlert = function(title, text, duration, group){
     title: title || 'OK',
     message: text && text !== 'undefined' ? text : '',
     queue: true,
-    duration: duration || 15000
+    duration: duration || growlTimeout
   })
 }
 
