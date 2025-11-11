@@ -5,8 +5,8 @@ echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline'
 echo $this->Html->script('bootstrapValidator', array('inline' => false));
 echo $this->Html->script('particular-validation', array('inline' => false));
 
-$this->set('short_header', 'Crear cuenta');
-$this->set('short_header_text', '← Volver al Iniciar sesión');
+$this->set('short_header', 'Crear mi cuenta');
+$this->set('short_header_text', '← Volver a Iniciar sesión');
 $this->set('short_header_link', '/shop/login');
 
 if (!$loggedIn) {
@@ -46,7 +46,8 @@ if (!$loggedIn) {
 					<?php 
 						echo $this->Form->create(null, array(
 								'url' => array('controller' => 'users', 'action' => 'register'),
-								'id' => 'particularForm'
+								'id' => 'particularForm',
+								'class' => 'w-100'
 							)
 						);
 						if ($loggedIn) {
@@ -237,25 +238,23 @@ if (!$loggedIn) {
 				</div>
 			</div>
 			<div class="flex-col max-22">
-				<div class="card">
-					<div class="d-flex flex-column justify-content-center align-items-start gap-05">
-						<h3>
-							<?php
-								if ($loggedIn) echo 'Tus datos en Châtelet';
-								else echo 'Crea tu cuenta en Châtelet';
-							?>
-						</h3>
-						<p>
-							Crea hoy tu cuenta en <i>Châtelet</i> y accede a mas beneficios.
-						</p>
+				<div class="d-flex flex-column justify-content-center align-items-start gap-05">
+					<h3>
+						<?php
+							if ($loggedIn) echo 'Tus datos en Châtelet';
+							else echo 'Crea tu cuenta en Châtelet';
+						?>
+					</h3>
+					<p>
+						Crea hoy tu cuenta en <i>Châtelet</i> y accede a mas beneficios.
+					</p>
 
-			    	<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registro" value="<?= !$loggedIn ? 'Crear cuenta en Châtelet' : 'Actualizar mis datos' ?>" />
-			    	<div class="modal-buttons"> 
-		          <a href="/shop/login">Inicia sesión</a>
-		          <a href="/shop/recuperar_acceso">Olvidé mi contraseña</a>
-		        </div>
-			    </div>
-				</div>
+		    	<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registro" value="<?= !$loggedIn ? 'Crear cuenta en Châtelet' : 'Actualizar mis datos' ?>" />
+		    	<div class="modal-buttons"> 
+	          <a href="/shop/login">Inicia sesión</a>
+	          <a href="/shop/recuperar_acceso">Olvidé mi contraseña</a>
+	        </div>
+		    </div>
 				<?php echo $this->Form->end(); ?>			
 			</div>
 		</div>

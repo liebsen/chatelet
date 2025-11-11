@@ -14,7 +14,7 @@ echo $this->Session->flash();
 		</p>
 		<?php echo $this->Form->create('ForgotPass', array(
 			'id' => 'password_form',
-			'class' => 'w-auto',
+			'class' => 'w-100 max-22',
 			'url' => array(
 				'controller' => 'users', 
 				'action' => 'forgot_password'

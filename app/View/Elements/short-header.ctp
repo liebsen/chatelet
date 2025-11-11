@@ -6,13 +6,13 @@
          href="<?php echo router::url(array('controller' => 'Home', 'action' => 'index')) ?>" >
             Châtelet</a>
       </div>
-      <div class="navbar-right text-center p-4">
+      <div class="is-flex-center gap-1 navbar-right text-center p-4">
         <?php if ($short_header_link) :?>
-          <a href="<?php echo $short_header_link ?>" class="pr-2">
-            <i class="text-sm"><?php echo $short_header_text ?? 'Carrito' ?></i>
+          <a href="<?php echo $short_header_link ?>">
+            <span class="text-sm"><?php echo $short_header_text ?? 'Carrito' ?></span>
           </a>
         <?php endif ?>
-        <span><?= $short_header ?></span>
+        <i class="text-muted"><?= $short_header ?></i>
       </div>
     </div>
   </nav>

@@ -367,7 +367,10 @@ body.top-fixed .navbar-chatelet .fa {
   }
   .navbar-nav { 
     flex-direction: row;
-    padding-top: 0.25rem;
+  }
+  .navbar-collapse.collapse {
+    position: relative;
+    top: 5px;
   }
   .navbar-nav.navbar-right>li>a {
     background-size: 50px;
@@ -2753,7 +2756,7 @@ span.count.is-empty {
     background-position: -90% 55%;
   }
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-    margin-top: 13px;
+    margin-top: 15px;
     margin-left: 10px;
   }
   /*#productOptions .product-list a img { 

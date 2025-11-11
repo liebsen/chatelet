@@ -11,13 +11,13 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 ?>
 <section id="detalle" class="is-flex-center min-h-100">
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 animated fadeIn delay">
-		<h2>
+		<h2 class="text-uppercase">
 			<?php echo 'Inicia sesión para continuar'; ?>
 		</h2>			
 		<p>
 			Inicia sesión en Chatelet con tus credenciales. Ingresá tu email y contraseña para continuar.<br> Si no tienes una cuenta presiona <b>Crear nueva cuenta</b>.
 		</p>
-		<div class="max-22">
+		<div class="max-22 w-100">
 			<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
 				<!--img src="/images/v8WrVxzTlKt7ZEEgkSt2shf41.jpg" width="100" /-->
 			</div>					
