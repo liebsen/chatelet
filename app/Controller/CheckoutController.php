@@ -52,6 +52,7 @@ class CheckoutController extends AppController
 	public function beforeFilter()
 	{
   	parent::beforeFilter();
+  	$this->set('sorted', $this->sort());
 		$index = array_search($this->request->here, array_column($this->checkout_steps, 'url'));
 		$this->set('checkout_index', $index);
 		$this->set('checkout_steps', $this->checkout_steps);
@@ -90,10 +91,10 @@ class CheckoutController extends AppController
 
 		$map = $this->Setting->findById('carrito_takeaway_text');
  		$carrito_takeaway_text = $map['Setting']['extra'];		
-		$this->set('sorted', $this->sort());
-		$this->set('stores', $stores);
 		$this->set('carrito_takeaway_text', $carrito_takeaway_text);
 		$this->set('freeShipping', $freeShipping);*/
+
+		// $this->set('stores', $stores);
 	}
 
 	public function envio() {

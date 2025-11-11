@@ -50,13 +50,13 @@
     border: 1px solid #ccc;
     background-color: #fff;
     color: #ccc;
-    border-radius: 36px;
-    height: 36px;
-    width: 36px;
+    border-radius: 32px;
+    height: 32px;
+    width: 32px;
     position: absolute;
-    top: 20px;
+    top: 22px;
     left: 50%;
-    padding-top: 8px;
+    padding-top: 6px;
     line-height: 1.3;
     margin-left: -18px;
     font-weight: 800;

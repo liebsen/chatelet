@@ -216,9 +216,7 @@
 					<?php echo $this->element('coupon'); ?>
 				</div>								  
 				<!-- end fill coupon -->
-				<div class="card card-variant">
-					<?php echo $this->element('resume'); ?>
-				</div>
+				<?php echo $this->element('resume'); ?>
 				<div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
 			  <?php if (isset($cart) && !empty($cart)) :?>
 			    <a href="/checkout" class="btn btn-chatelet dark w-100">Finalizar compra</a>

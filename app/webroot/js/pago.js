@@ -1,4 +1,6 @@
 var dues_selected = ''
+var cart = JSON.parse(localStorage.getItem('cart')) || {}
+
 var updateCart = (cart) => {
 	if(!cart) {
 		cart = JSON.parse(localStorage.getItem('cart')) || {}

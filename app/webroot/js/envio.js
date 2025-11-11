@@ -44,22 +44,21 @@ $(document).ready(function() {
 	} else {
 		$('.products-total').show()
 	}*/
-	const submit = $('.checkout-btn')
-	submit.prop('disabled', false)
-	submit.removeClass('disabled')
-	submit.text('Siguiente')
+	// const submit = $('.checkout-btn')
+	// submit.prop('disabled', false)
+	// submit.removeClass('disabled')
+	// submit.text('Siguiente')
 
-	$('.cart-go-button').click(function(event){
+	$('.btn-pagos').click(function(event){
 		event.preventDefault();
-		var c = $('[product_row]').length;
 		var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		let shipping = ''
 		let store = ''
 		let store_address = ''
-		let location = $(this).attr('link-to')||$(this).prop('link-to')
+		let location = $(this).prop('href')
 
-		if(!c){
-			onWarningAlert('<i class="fa fa-warning"></i> Cart vacío','No tienes productos en el carrito', 5000)
+		if(!cart_items.length){
+			onWarningAlert('Tu carrito está vacío','No tienes productos en el carrito', 5000)
 			return false;
 		}
 
@@ -67,14 +66,14 @@ $(document).ready(function() {
 			const shipping_cargo = $('.shipping-options li.selected')
 			if (!shipping_cargo.length) {
 				onErrorAlert('¿Cómo querés recibir tu compra?', 'Por favor seleccioná un tipo de envío para tu compra, también podés elegir Retiro en Sucursal para evitar cargos de envío', 0, true);
-				location.hash = 'f:.como-queres-recibir-tu-compra'
+				// location.hash = 'f:.como-queres-recibir-tu-compra'
 				return false;
 			} else {
 				if (shipping_cargo.attr('shipping')) {
 					shipping = shipping_cargo.attr('shipping')
 				} else {
 					onErrorAlert('¿Cómo querés recibir tu compra?','Por favor introducí tu código postal, también podés elegir Retiro en Sucursal para evitar cargos de envío', 0, true);
-					location.hash = 'f:.como-queres-recibir-tu-compra'
+					// location.hash = 'f:.como-queres-recibir-tu-compra'
 					return false;
 				}
 			}
@@ -83,7 +82,7 @@ $(document).ready(function() {
 			var b = parseInt($('.input-cp').attr('data-valid'));
 			// if((!a || !b || !c || (1>parseFloat($('#cost').text()) && !freeShipping ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
 
-			if(!b || !c){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
+			if(!b){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
 				$('.input-cp').focus();
 				$('.input-cp-container').removeClass('ok');
 				$('.input-cp-container').addClass('wrong');
@@ -93,7 +92,7 @@ $(document).ready(function() {
 		} else if(cargo === 'takeaway') {
 			const takeaway = $('.takeaway-options li.selected')
 			if (!takeaway.length) {
-				onErrorAlert('<i class="fa fa-map-marker"></i> Seleccioná sucursal', 'Por favor seleccioná una sucursal para retirar tu compra', 0, true);	
+				onErrorAlert('Seleccioná sucursal', 'Por favor seleccioná una sucursal para retirar tu compra', 0, true);	
 				return false;
 			} else {
 				if (takeaway.attr('store')) {

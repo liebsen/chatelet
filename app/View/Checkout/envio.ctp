@@ -61,9 +61,13 @@ echo $this->element('checkout-params');
 			</div>
 		</div>
 		<div class="flex-col gap-1 max-22">
-			<div class="card card-variant">
-				<?php echo $this->element('resume') ?>
-			</div>
+			<?php echo $this->element('resume') ?>
+			<div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
+		  <?php if (isset($cart) && !empty($cart)) :?>
+		    <a href="<?=Router::url('/checkout/pago',true)?>" class="btn btn-chatelet btn-pagos dark w-100">Continuar compra</a>
+		  <?php endif ?>
+				<a class="btn keep-buying btn-chatelet w-100" href="/tienda">Seguir comprando</a>
+			</div>			
 		</div>
 	</div>
 </div>

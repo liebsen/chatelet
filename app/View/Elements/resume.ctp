@@ -1,5 +1,39 @@
 	<div class="d-flex flex-column justify-content-center align-items-start gap-05">
-		<h5>Resumen de tu compra</h5>
+		<h4 class="text-uppercase">Resumen</h4>
+		<div class="">
+		<?php foreach ($sorted as $product) {
+			echo "<div class='d-flex justify-content-start align-center gap-05 cart-row carrito-data position-relative' data-json='".json_encode($product)."' product_row>";
+
+			echo "<div class='cart-img'>";
+			if (!empty($product['number_ribbon'])) {
+				echo '<div class="ribbon bottom-left small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
+			}
+			if (empty($product['price'])) {
+				$promosaved+= (float) $product['old_price'];
+			}
+			if ($product['promo'] !== '') {							
+				$disable = !isset($product['promo_enabled']) ? ' disable' : '';
+				echo "<div class='ribbon".$disable."'><span>" . $product['promo'] . "</span></div>";
+			}
+      echo '<a href="' . $item_url . '">';
+			// echo '<img src="'.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
+			echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
+			echo '</a>';
+		echo '</div>';
+		echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
+		echo '<h5 class="is-carrito mb-1">'. $product['name'] . '</h5>';
+			if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
+				echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
+			}
+			if (!empty($product['size']) && $product['size'] != 'undefined'){
+				echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
+			}
+
+		echo '<span class="text-nowrap mt-2">$ '. \price_format($product['item_price']) .'</span>';	
+		echo '</div>';
+		echo '</div>';		
+		} ?>
+		</div>		
 		<!--pre><?php var_dump($cart_totals); ?></pre-->
 		<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 		<input type="hidden" id="subtotal_envio" value="" />
