@@ -294,11 +294,11 @@ label input[type=checkbox]:disabled + .label-text:before {
   font-size: 1.25rem;
 }
 
-body:not(.top-fixed) .navbar-chatelet {
+body:not(.top-fixed) .navbar-chatelet:not(.short) {
   min-height: 102px; 
 }
 
-body.top-fixed .navbar-chatelet {
+body.top-fixed .navbar-chatelet:not(.short) {
   position: fixed!important;
   width: 100%;
   left: 0;
@@ -320,10 +320,10 @@ body.top-fixed .navbar-chatelet span.count {
   border-width: 0;
 }*/
 
-body.top-fixed  .navbar-chatelet .navbar-brand img {
+body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   width: 100px;
 }
-body.top-fixed .navbar-nav.navbar-right {
+body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
   top: -0.5rem;
 }
 

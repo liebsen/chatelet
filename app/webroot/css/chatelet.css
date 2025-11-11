@@ -129,21 +129,6 @@ html, body {
   opacity: 1;
 }
 
-
-.wrong{
-	border-color: #E10D74;
-  color: #E10D74;
-}
-
-.ok {
-	border-color: #07BC31;
-  color: #07BC31;
-	background-image: url(../images/check.png);
-	background-position: right 0.5rem center;
-	background-repeat: no-repeat;
-	background-size: 30px;  
-}
-
 .input-cp-container.wrong input{
 	border-color: #E10D74;
   color: #E10D74;
@@ -160,7 +145,18 @@ html, body {
 	position: absolute;
   top: 1rem;
   right: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
+  font-family: 'FontAwesome';
+  z-index: 10;
+}
+
+.input-cp-container.wrong:before {
+	content: "\f00d";
+	color: #E10D74;
+	position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.8rem;
   font-family: 'FontAwesome';
   z-index: 10;
 }
@@ -201,7 +197,7 @@ html, body {
 	background-size: 30px;*/
 	margin-bottom: 0.25rem;
 	transition: all 0.25s ease;
-	min-height: 50px;
+	min-height: 44px;
   opacity: 0;
   /*flex: 1;*/
   animation-name: fadeIn;
@@ -218,7 +214,7 @@ html, body {
 	position: absolute;
   top: 1rem;
   right: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-family: 'FontAwesome';
 }
 
@@ -240,7 +236,7 @@ html, body {
 	position: absolute;
   top: 1rem;
   right: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-family: 'FontAwesome';
 }
 

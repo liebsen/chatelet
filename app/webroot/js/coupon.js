@@ -57,39 +57,26 @@ function submitCoupon() {
 
   $('#free_delivery').text('');
   $('.btn-calculate-coupon').button('loading')
-  $.post('/cart/coupon', { coupon: coupon.trim() }, function(res, textStatus) {
+  $.post('/carrito/coupon', { coupon: coupon.trim() }, function(res, textStatus) {
     $('.btn-calculate-coupon').button('reset')
-    
     if( res.status == 'success' ) {
-
+      console.log(res)
       let coupon_type = res.data.coupon_type
       var price = parseFloat(res.data.total)      
       let discount = parseFloat(res.data.discount)
       let discounted = 0
       let total = 0
-      let free_shipping = true
-
-      if(price < shipping_price){
-        free_shipping = false
-        price+=parseFloat(delivery_cost)
-      }
 
       discounted_formatted = formatNumber(res.data.bonus)
 
       $('.coupon_bonus').text( "$ " + discounted_formatted )
-      //  $('.products-total').removeClass('hidden')
-      // $('.coupon-discount').removeClass('hidden')
-      // $('.coupon-discount').addClass('fadeIn')
       $('.input-coupon').removeClass('wrong');
       $('.input-coupon').addClass('ok');
 
       onSuccessAlert(`${res.data.code.toUpperCase()}`, res.data.info);
 
       $('.coupon-info-info').html(`<span class="text-success text-bold">${res.data.code}</span> - ${res.data.info}`)
-      // $('.coupon-info').removeClass('hidden')
-      // $('.coupon-info').addClass('fadeIn')
       $('.promo-code').text(res.data.code)
-      $('.free-shipping').addClass('hidden')
       
       coupon = coupon.toUpperCase()
       format_total = formatNumber(price)
@@ -101,25 +88,9 @@ function submitCoupon() {
       cart.total_price = parseFloat(price.toFixed(2))
 
       $('input[name="coupon"]').val(coupon)
-      $('#coupon_name').val("")
+      // $('#coupon_name').val("")
       // $('.calc-coupon').hide(); 
       // $('.coupon-click').show();
-
-      if (cart.cargo === 'shipment') {
-        if (free_shipping) {
-          $('.paid-shipping-block').addClass('hidden')
-          $('.free-shipping-block').removeClass('hidden')
-          price = '<span class="text-success text-bold">Gratis</span>'
-        } else {
-          $('.free-shipping-block').addClass('hidden')
-          $('.paid-shipping-block').removeClass('hidden')
-          price = `$ ${formatNumber(delivery_cost)}`
-        }
-        $('.shipping_price').html(price)
-
-        // $('.shipping-block').removeClass('hide')
-        // $('.shipping-block').addClass('animated fadeIn')
-      }
     }else{
       // $('.coupon-discount').addClass('hidden')
       $('.input-coupon').removeClass('ok');

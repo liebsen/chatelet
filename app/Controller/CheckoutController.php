@@ -100,7 +100,6 @@ class CheckoutController extends AppController
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);
-
 		$this->set('stores', $stores);
 	}
 	private function parseTemplate ($str, $data) {

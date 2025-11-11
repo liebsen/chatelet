@@ -74,13 +74,13 @@ function addCart(data, button, label, redirect) {
             clearInterval(timeout)
             timeout = setTimeout(function(){
               $.growl.notice({
-                title: 'Producto agregado al carrito',
-                message: 'Podés seguir agregando más productos o ir a la sección Pagar'
+                title: 'Redirigiendo al carrito ...',
+                message: 'Carrito de compras actualizado'
               });
               var reload = function() {
                 window.location.href = redirect || '/carrito'
               };
-              setTimeout(reload, 3000);
+              setTimeout(reload, 1000);
               $('.growl-close').click(reload);
             }, 300)
           }
@@ -315,31 +315,6 @@ let loadMoreSearch = (p) => {
   searchPage = p
   $('.search-more a').text('Cargando...')
   apiSearch(localStorage.getItem('lastsearch'))
-}
-
-callStart = function(){
-  setTimeout(() => {
-    $('.btn-calculate-shipping').button('loading')
-    $('#cost_container').removeClass('text-muted', 'text-success');
-    $('#cost_container').addClass('hide');
-    // $('#loading').removeClass('hide');
-  }, 10)
-}
-
-callEnd = function(){
-  cargo = 'shipment'
-  $('.btn-calculate-shipping').button('reset')
-  $('.shipping-loading').removeClass('animated fadeOut');
-  $('#cost_container').removeClass('animated fadeIn');
-  setTimeout(() => {
-    $('.shipping-loading').addClass('animated fadeOut');    
-    $('#cost_container').addClass('animated fadeIn');
-  }, 10)
-  setTimeout(() => {
-    $('#cost_container').removeClass('hide');
-    $('.shipping-loading').addClass('hide');
-    $('#cost_container').addClass('text-success');
-  }, 500)
 }
 
 let apiSearch = (q) => {    

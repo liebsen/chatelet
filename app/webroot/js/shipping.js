@@ -86,18 +86,13 @@ $(function(){
 		}
 
 		$('#free_delivery').text('');
-		callStart()
+		$('.btn-calculate-shipping').prop('disabled', true)
+		$('.btn-calculate-shipping').button('loading')
 		$.getJSON( url+'/'+cp , function(json, textStatus) {
-			callEnd()
+			$('.btn-calculate-shipping').button('reset')
+			$('.btn-calculate-shipping').prop('disabled', false)
 			window.freeShipping = json.freeShipping
 			if( json.rates.length ){
-				$('.products-total').removeClass('hidden')
-				//free delivery
-				if (json.freeShipping){  
-					//console.log('Envio gratis!')
-					// $('#subtotal_envio').val( 0 );
-					// $('#free_delivery').text('Envio gratis!');
-				}
 				var rates = `<ul class="generic-select shipping-options">`
 				json.rates.forEach(rate => {
 					if (!isNaN(rate.price)) {
@@ -110,7 +105,7 @@ $(function(){
 				})
 				rates+= `</ul>`
 				document.querySelector('.shipping-block .slot').innerHTML = rates
-				$('#delivery_cp').html( `<span class="shipping-cargo text-uppercase"></span>` );
+				// $('#delivery_cp').html( `<span class="shipping-cargo text-uppercase"></span>` );
 				localStorage.setItem('lastcp', cp)	
 				setTimeout(() => {
 					$('.input-cp-container').removeClass('wrong');
@@ -126,11 +121,12 @@ $(function(){
 					}
 				}, 750)
 			} else {
+				$('.input-cp-container').removeClass('ok');
 				$('.input-cp-container').addClass('wrong');
-				$('#cost').text( parseInt(0) );
+				// $('#cost').text( parseInt(0) );
 				//console.log(':::',subtotal,coupon)
-				let total = formatNumber(subtotal - coupon)
-				fxTotal(formatNumber(total))
+				// let total = formatNumber(subtotal - coupon)
+				// fxTotal(formatNumber(total))
 				setTimeout( "onErrorAlert('Sin cobertura en esta zona', 'El código postal es correcto pero no disponemos de servicio de entrega para tu área.')", 200)
 			}
 			$('.input-cp').attr( 'data-valid' , json.rates.length );

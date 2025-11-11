@@ -57,8 +57,9 @@
     top: 20px;
     left: 50%;
     padding-top: 8px;
+    line-height: 1.3;
     margin-left: -18px;
-    font-weight: 600;
+    font-weight: 800;
 	}
 	.wizard-progress .wizard-step.complete {
 		color: #333;

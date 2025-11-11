@@ -15,13 +15,15 @@
 }
 .nav-dark {
 	border: none;
+	display: flex;
+  justify-content: center;
+  align-items: center;	
 }
 
 .nav-dark li {
 	background-color: #e7e7e7;
 	color: #333;
-	padding: 0.2rem 2.5rem;
-	float: left;
+	flex: 1;
 }
 
 .nav-dark li a {
@@ -31,10 +33,12 @@
 	max-width: 10rem;
 	text-align: center;
 	border: none!important;
-	font-weight: 1000;
+	font-weight: 800;
 	line-height: 1;
+	padding: 1rem;
 	letter-spacing: 0.05rem;
 	border-radius: 0!important;
+	margin: auto;
 }
 .nav-dark li.active {
 	background-color: #333;

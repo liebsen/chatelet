@@ -173,7 +173,7 @@ class CarritoController extends AppController
 		//CakeLog::write('debug', 'updateCart(data)'.json_encode($items_data));
 
 		$cart = $this->updateCart();
-		CakeLog::write('debug', 'updateCart(2)');
+		// CakeLog::write('debug', 'updateCart(2)');
 		// $this->Session->write('cart', $cart);
 
 		$shipping_price = $this->Setting->findById('shipping_price_min');
@@ -354,13 +354,13 @@ class CarritoController extends AppController
 		$coupon_bonus = 0;
 		$partial_bonus = 0;
 		$total = 0;
+		$coupon_code = null;
 		$coupon_parsed = \filtercoupon($coupon, $cart_totals, $data['price']);
 		$updated = [];
 		if($coupon_parsed->status === 'success') {
-
+			$coupon_code = $coupon['Coupon']['code'];
 			$discount = (float) $coupon_parsed->data['discount'];
 			$partial_bonus = $discount;
-
 			foreach($cart as $item) {
 				$price = (float) $item["price"];
 				$total+= $price;
@@ -408,6 +408,7 @@ class CarritoController extends AppController
 	       ]); 
 			}			
 		}
+		CakeLog::write('debug', 'total(1):'.$total);
 
 		if($total && $discount){
 			if($coupon_parsed->data['coupon_type'] === 'percentage') {
@@ -422,12 +423,19 @@ class CarritoController extends AppController
 			$total = round($total,2);
 		}
 
+		CakeLog::write('debug', 'total(2):'.$total);
+
 		$coupon_parsed->data["updated"] = $updated;
 		$coupon_parsed->data["total"] = $total;
 		$coupon_parsed->data["bonus"] = $discount;
-
+		CakeLog::write('debug', 'coupon_bonus:'. $coupon_bonus);
 		$cart_totals = $this->Session->read('cart_totals');
-		$cart_totals['coupon_benefits'] = $total;
+		$cart_totals['coupon_benefits'] = $coupon_bonus;
+
+		if($coupon_code) {
+			$cart_totals['coupon'] = $coupon_code;
+		}
+
 		$this->Session->write('cart_totals', $cart_totals);		
 		
 		return json_encode($coupon_parsed);
@@ -1170,8 +1178,8 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		$this->Session->write('cart_totals', $cart_totals);
 
 		$cart = $this->updateCart();
-		CakeLog::write('debug', 'updateCart(3)');
-		//$this->Session->write('cart', $cart);
+		// CakeLog::write('debug', 'updateCart(3)');
+		// $this->Session->write('cart', $cart);
 
 		return json_encode(array('success' => true, 'data' => array_values($cart)));
 	}
@@ -1266,7 +1274,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 			$this->Session->write('cart_totals', $cart_totals);
 
 			$cart = $this->updateCart($filter);
-			CakeLog::write('debug', 'updateCart(4)');
+			// CakeLog::write('debug', 'updateCart(4)');
 			// $this->Session->write('cart', $cart);
 
 			return json_encode(array('success' => true));
@@ -1487,7 +1495,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 			$i++;
 		}
 		if (count($data)) {
-			CakeLog::write('debug', 'updateCart(1)');
+			// CakeLog::write('debug', 'updateCart(1)');
 			$this->updateCart($data);
 		} else {
 			$this->Session->delete('cart');

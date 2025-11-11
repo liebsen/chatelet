@@ -4,17 +4,17 @@ var itemData = null
 var removeElement = null
 
 var selectStore = e => {
-	var preferences = JSON.parse(localStorage.getItem('cart')) || {}
+	var cart = JSON.parse(localStorage.getItem('cart')) || {}
 	var total_orig = parseFloat($('#subtotal_compra').val())
 	//console.log('total_orig',total_orig)
 	//console.log(document.querySelector('.coupon_bonus').innerHTML)
-	var coupon = Number(preferences.coupon_bonus || 0)
+	var coupon = Number(cart.coupon_bonus || 0)
 	$('.takeaway-options li').removeClass('selected secondary')
 	$('.shipping-options li').removeClass('selected secondary')
 	$('.takeaway-options li').addClass('secondary')
 	$('.free-shipping').addClass('hidden')
 	$('.input-cp-container').removeClass('ok')
-	$('.input-cp').val('')
+	// $('.input-cp').val('')
 	$('#cost_container').html('')
 	$(e).addClass('selected')
   $('.delivery-cost').addClass('hidden')
@@ -23,17 +23,18 @@ var selectStore = e => {
   // $('.calc_total').text('$ ' + formatNumber(total_orig))
   format_total = formatNumber(price)
   // fxTotal(format_total)
-  preferences.cargo = 'takeaway'
+  cart.cargo = 'takeaway'
   //console.log('total_price(2)', price)
-  preferences.total_price = price
-  preferences.shipping_price = 0
-  preferences.subtotal_price = total_orig
-  preferences.store = $(e).attr('store')
-  preferences.store_address = $(e).attr('store_address')
-  localStorage.setItem('cart', JSON.stringify(preferences))
+  cart.total_price = price
+  cart.shipping_price = 0
+  cart.subtotal_price = total_orig
+  cart.store = $(e).attr('store')
+  cart.store_address = $(e).attr('store_address')
+  localStorage.setItem('cart', JSON.stringify(cart))
   var carrito_takeaway_text = $('.carrito_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
   onSuccessAlert(`Como querés recibir tu compra`, `Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}. Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. <br><br> ${carrito_takeaway_text}`);
+  $('a[href="#retiro"]').click()
 	cargo = 'takeaway'
 }
 
@@ -51,7 +52,7 @@ $(document).ready(function() {
 	$('.cart-go-button').click(function(event){
 		event.preventDefault();
 		var c = $('[product_row]').length;
-		var preferences = JSON.parse(localStorage.getItem('cart')) || {}
+		var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		let shipping = ''
 		let store = ''
 		let store_address = ''
@@ -117,13 +118,13 @@ $(document).ready(function() {
 		submit.addClass('disabled')
 		submit.text('Por favor espere...')
 
-		preferences.freeShipping = freeShipping
-		//preferences.shipping = shipping
-		preferences.cargo = cargo
-		preferences.store = store
-		preferences.store_address = store_address
-		preferences.regalo = $('#regalo').is(':checked') ? 1 : 0
-		localStorage.setItem('cart', JSON.stringify(preferences))
+		cart.freeShipping = freeShipping
+		//cart.shipping = shipping
+		cart.cargo = cargo
+		cart.store = store
+		cart.store_address = store_address
+		cart.regalo = $('#regalo').is(':checked') ? 1 : 0
+		localStorage.setItem('cart', JSON.stringify(cart))
 		window.location.href = location;
 	});
 
