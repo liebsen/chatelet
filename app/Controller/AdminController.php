@@ -3031,6 +3031,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 		if ($this->request->is('post')) {
       foreach($this->request->data as $id => $value) {
+      	CakeLog::write('debug', 'data:'. json_encode(['id' => $id, 'value' => $value]));
       	$this->Setting->save(['id' => $id, 'value' => $value]);
       }
      	$data = parent::load_settings();
