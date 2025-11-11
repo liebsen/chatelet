@@ -9,7 +9,8 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 ?>
-<section id="main" class="is-flex-center has-checkout-steps min-h-101">
+<!--section id="main" class="is-flex-center has-checkout-steps min-h-101"-->
+<section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
   <div class="wrapper d-flex flex-column justify-content-center align-items-center gap-1">
 		<!--div class="header">
@@ -18,7 +19,7 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 		<div class="container p-3 animated fadeIn delay">
 			<div class="is-flex flex-column-sm justify-content-center align-items-center gap-1">
 			<?php if ($loggedIn) : ?>
-				<div class="card">
+				<div class="card p-4">
 					<div class="card-body">
 						<h2>Hola <?php echo $user['name'] ?? 'Invitada'; ?></h2>
 						<p>Confirma tu identidad para continuar</p>
@@ -78,7 +79,7 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 			</div>
 		</div>
 	</div>
-</div>
+</section>
 
 <script type="text/javascript">
 

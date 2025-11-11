@@ -2712,10 +2712,10 @@ span.count.is-empty {
   }
   /*.flex-col:last-child {
     max-width: 20rem;
-  }*/
+  }
   .flex-col {
     padding: 1rem;
-  }
+  }*/
   .flex-col .card {
     padding: 1rem;
   }

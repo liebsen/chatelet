@@ -446,6 +446,13 @@ html, body {
 .pb-0 {
   padding-bottom: 0!important;
 }
+.pb-1 {
+  padding-bottom: 0.25rem!important;
+}
+.pb-4 {
+  padding-bottom: 1rem!important;
+}
+
 .ps-4 {
 	padding: 0.75rem 1.75rem;
 }
@@ -686,7 +693,7 @@ html, body {
 
 .flex-row {
 	flex-direction: row!important;
-	padding: 1rem;
+	/* padding: 1rem; */
 	grid-gap: 1rem;
 }
 
@@ -926,7 +933,6 @@ select.form-control{
 #main {
 	/*padding-bottom: 8rem;*/
 	background: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
-	width: auto;
 	position: relative;
   z-index: 3;	
 }

@@ -13,9 +13,9 @@
 </div>
 
 <style>
-	.wizard-container {
+	/*.wizard-container {
 		max-width: 40rem;
-	}
+	}*/
 	.wizard-progress {
 	  display: table;
 	  width: 100%;

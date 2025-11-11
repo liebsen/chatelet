@@ -23,7 +23,6 @@
 				</span>
 			</div>
 		<?php endif ?>	
-			<hr>					
 			<div class="summary-item">
 				<span class="text-weight-bold">Total </span> 
 				<span class="calc_total text-weight-bold">$ <?= \price_format($cart_totals['total_products'] - $cart_totals['coupon_benefits'] + $cart_totals['delivery_cost']) ?></span><!--span>.00</span-->

@@ -77,6 +77,7 @@
       <style>
         .dev-note {
           position: fixed;
+          z-index: 10;
           left: 0;
           right: 0;
           bottom: 0;

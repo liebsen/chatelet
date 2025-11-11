@@ -13,12 +13,10 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->element('checkout-params');
 ?>
-<section id="main" class="d-flex flex-column justify-content-start align-items-center has-checkout-steps min-h-101">
+<section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
-	<div class="row w-100">
-		<?php echo $this->element('title-faq', array('title' => "Método de entrega")) ?>
-	</div>
-	<div class="flex-row w-100">
+	<?php echo $this->element('title-faq', array('title' => "Método de entrega")) ?>
+	<div class="flex-row">
 		<div class="flex-col">
 			<ul class="nav nav-tabs nav-dark">
 			   <li class="active"><a href="#envio" data-toggle="tab">Envío a domicilio</a></li>

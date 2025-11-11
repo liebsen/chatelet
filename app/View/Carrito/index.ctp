@@ -10,17 +10,15 @@
 	];
 ?>
 
-<div id="main" class="container animated fadeIn delay">
-	<div class="row">
-		<?php echo $this->element('title-faq', array('title' => "Carrito")) ?>
-		<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
-		<!--div class="col-md-12 shipping-price-min-alert animated fadeIn">
-			<div class="shipping-price-min-text">
-				<span><?= $text_shipping_min_price ?></span>
-			</div>		
-		</div-->
-		<?php endif ?>
-	</div>
+<section id="main" class="container animated fadeIn delay">
+	<?php echo $this->element('title-faq', array('title' => "Carrito")) ?>
+	<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
+	<!--div class="col-md-12 shipping-price-min-alert animated fadeIn">
+		<div class="shipping-price-min-text">
+			<span><?= $text_shipping_min_price ?></span>
+		</div>		
+	</div-->
+	<?php endif ?>
 	<div class="flex-row">
 		<!--h3 id="heading" style="margin:10px 0px">Carrito de compras</h3-->
 		<?php if (isset($cart) && !empty($cart)) :?>			
@@ -221,7 +219,7 @@
 				<div class="card card-variant">
 					<?php echo $this->element('resume'); ?>
 				</div>
-				<div class="d-flex flex-column justify-content-center align-items-center gap-05">
+				<div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
 			  <?php if (isset($cart) && !empty($cart)) :?>
 			    <a href="/checkout" class="btn btn-chatelet dark w-100">Finalizar compra</a>
 			  <?php endif ?>
@@ -240,7 +238,7 @@
 			<?php endif;?>
 		</div>
 	</div>
-</div>
+</section>
 	
 <?php if (isset($cart) && !empty($cart)) :?>
 <!--div id="carritoItem" class="burst is-fullheight has-item-counter animated">
