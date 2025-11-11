@@ -73,7 +73,7 @@ $('.dues-select-option').click((e) => {
 
 	var interest = json.interest
 
-	onSuccessAlert(`Como querés pagar`,`Seleccionaste ${dues_selected} cuota${dues_selected > 1 ? 's' : ''}`);
+	// onSuccessAlert(`Como querés pagar`,`Seleccionaste ${dues_selected} cuota${dues_selected > 1 ? 's' : ''}`);
 	save_preference([
 		{ 'payment_method': 'mercadopago'},
 		{ 'payment_dues': dues_selected }
@@ -154,7 +154,7 @@ $(function(){
 			$('.bank-block').addClass('hide')
 		}
 
-	  onSuccessAlert(`Como querés pagar`,'Seleccionaste pagar con ' + (selected === 'bank' ? 'Transferencia' : 'Mercado Pago'));
+	  // onSuccessAlert(`Como querés pagar`,'Seleccionaste pagar con ' + (selected === 'bank' ? 'Transferencia' : 'Mercado Pago'));
 
 	  save_preference({payment_method: selected})
 
