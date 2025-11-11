@@ -49,8 +49,8 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 			      <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" required />
 			      <input type="submit" class="btn btn-chatelet dark w-100" value="Iniciar sesión" /> 
 			      <div class="modal-buttons">                
-			        <!--a href="/shop/registro">Crear nueva cuenta</a-->
-			        <a href="/shop/recuperar_acceso">Olvidé mi contraseña</a>
+			        <!--a href="/shop/registro">Crear mi cuenta</a-->
+			        <a href="/shop/recuperar_acceso">Olvidé la contraseña</a>
 			      </div>
 			      <?php echo $this->Form->end(); ?>
 					</div>

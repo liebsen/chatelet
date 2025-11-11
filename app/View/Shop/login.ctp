@@ -15,7 +15,7 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 			<?php echo 'Inicia sesión para continuar'; ?>
 		</h2>			
 		<p>
-			Inicia sesión en Chatelet con tus credenciales. Ingresá tu email y contraseña para continuar.<br> Si no tienes una cuenta presiona <b>Crear nueva cuenta</b>.
+			Inicia sesión en Chatelet con tus credenciales. Ingresá tu email y contraseña para continuar.<br> Si no tienes una cuenta presiona <b>Crear mi cuenta</b>.
 		</p>
 		<div class="max-22 w-100">
 			<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
@@ -36,8 +36,8 @@ echo $this->Html->script('particular-validation', array('inline' => false));
       </label-->
       <input type="submit" id="login" form="" value="Iniciar sesión" /> 
       <div class="modal-buttons">                
-        <a href="/shop/registro">Crear nueva cuenta</a>
-        <a href="/shop/recuperar_acceso">Olvidé mi contraseña</a>
+        <a href="/shop/registro">Crear mi cuenta</a>
+        <a href="/shop/recuperar_acceso">Olvidé la contraseña</a>
       </div>
       <?php echo $this->Form->end(); ?>
 		</div>

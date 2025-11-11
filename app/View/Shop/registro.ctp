@@ -252,7 +252,7 @@ if (!$loggedIn) {
 		    	<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registro" value="<?= !$loggedIn ? 'Crear cuenta en Châtelet' : 'Actualizar mis datos' ?>" />
 		    	<div class="modal-buttons"> 
 	          <a href="/shop/login">Inicia sesión</a>
-	          <a href="/shop/recuperar_acceso">Olvidé mi contraseña</a>
+	          <a href="/shop/recuperar_acceso">Olvidé la contraseña</a>
 	        </div>
 		    </div>
 				<?php echo $this->Form->end(); ?>			

@@ -28,7 +28,7 @@ echo $this->Session->flash();
     Recibirás un correo electrónico con tu nueva contraseña
     </span>
     <!--div class="modal-buttons">                
-			<a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Crear nueva cuenta</a>
+			<a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Crear mi cuenta</a>
       <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Iniciar sesión</a>
     </div-->
   	<?php echo $this->Form->end(); ?>       

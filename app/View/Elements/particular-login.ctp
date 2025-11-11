@@ -27,8 +27,8 @@
         <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" />
         <input type="submit" id="login" form="" value="Iniciar sesión" /> 
         <!--div class="modal-buttons">                
-          <a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Crear nueva cuenta</a>
-          <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé mi contraseña</a>
+          <a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Crear mi cuenta</a>
+          <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé la contraseña</a>
         </div-->
         <?php echo $this->Form->end(); ?>
 			</div>

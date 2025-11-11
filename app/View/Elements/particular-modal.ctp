@@ -261,7 +261,7 @@
 			    	<input type="submit" id="enviar-registro" value="<?= !$loggedIn ? 'Crear cuenta en Châtelet' : 'Actualizar mis datos' ?>" />
             <div class="modal-buttons">                  
               <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Inicia sesión</a>
-              <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé mi contraseña</a>
+              <a href="#" id="forgot-password" data-toggle="modal" data-dismiss="modal"  data-target="#particular-password">Olvidé la contraseña</a>
             </div>			    	
 			    </div>
 				</div>
