@@ -61,7 +61,7 @@ echo $this->element('checkout-params');
 						<?php endif ?>					          		
 	        	</div>
 	      	</label>				          
-	      <?php if($data['bank_enable']): ?>
+	      <?php if($settings['bank_enable']): ?>
 	        <label for="bank" class="col-xs-12 is-clickable select-payment-option option-rounded<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>">
 	        	<div class="d-flex justify-content-start align-items-center gap-05">
 		          <input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
