@@ -10,7 +10,7 @@ echo $this->Session->flash();
 			<?php echo 'Recuperar Contraseña'; ?>
 		</h2>
 		<p>
-			Recupera fácilmente el acceso a tu cuenta ingresando el correo con el que creaste tu cuenta en Chatelet.<br> Te enviaremos instrucciones a ese correo.
+			Recupera fácilmente el acceso a tu cuenta ingresando el correo con el que creaste tu cuenta en Châtelet.<br> Te enviaremos instrucciones a ese correo.
 		</p>
 		<?php echo $this->Form->create('ForgotPass', array(
 			'id' => 'password_form',

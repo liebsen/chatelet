@@ -638,7 +638,7 @@ class AdminController extends AppController {
 Te confirmamos el pago por tu compra en Châtelet.</p>
 <p>Tu número de pedido es: #' . $sale['Sale']['id'] . '. Tu compra será procesada dentro de las 72hs de haberse acreditado el pago. Si elegiste envío por correo Oca, Andreani o SpeedMoto te llegará un segundo email con el número de seguimiento para que puedas ver el estado del mismo. Si elegiste retiro por sucursal te avisaremos por este medio cuando el pedido se encuentre listo para retirar!</p><br>
 <p>¡Muchas gracias!</p><br>
-<a href="https://www.chatelet.com.ar">CHATELET</a>';
+<a href="https://www.chatelet.com.ar">CHÂTELET</a>';
 		error_log('[email] notifying user bank ok '.$sale['Sale']['email']);
 		$this->sendMail($message,'🌸 Confirmación de pago de la orden #' . $sale['Sale']['id'],$sale['Sale']['email']);
 

@@ -35,7 +35,7 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 				<div class="card max-25 min-h-24">
 					<div class="card-body p-5">
 						<h4 class="text-uppercase text-center">Ya soy clienta</h4>
-						<p>Ingresa con tu cuenta Chatelet, si no recordás la clave presiona Olvidé contraseña.</p>
+						<p>Ingresa con tu cuenta Châtelet, si no recordás la clave presiona Olvidé contraseña.</p>
 						<?php echo $this->Form->create(false, array(
 							'id' => 'login_form',
 							'url' => array(

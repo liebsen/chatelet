@@ -12,7 +12,7 @@
 			<div class="modal-body">
 				<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
 					<p>
-						Recupera fácilmente el acceso a tu cuenta ingresando el correo con el que creaste tu cuenta en Chatelet. Te enviaremos instrucciones a ese correo.
+						Recupera fácilmente el acceso a tu cuenta ingresando el correo con el que creaste tu cuenta en Châtelet. Te enviaremos instrucciones a ese correo.
 					</p>
 					<!--img src="/images/GmqOqj9lbwgZX3wzUkdSbD3pk.jpg" width="100" /-->
 				</div>					

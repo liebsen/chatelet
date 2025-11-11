@@ -34,7 +34,7 @@ class UsersController extends AppController {
         if(!empty($ajax)) {
           die(json_encode(array(
             'success' => true, 
-            'message' => 'Bienvenido a Chatelet'
+            'message' => 'Bienvenido a Châtelet'
           )));
         }
 

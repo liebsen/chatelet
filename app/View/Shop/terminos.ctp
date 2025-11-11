@@ -2,7 +2,7 @@
 	<div class="wrapper container">
 		<h2>T&eacute;rminos &amp; condiciones</h2>
 		<h4>NOTIFICACI&Oacute;N EN POL&Iacute;TICA DE ENV&Iacute;OS</h4>
-		<p>De acuerdo con lo establecido en el DNU por las autoridades nacionales y en l&iacute;nea con las recomendaciones para resguardar la salud p&uacute;blica y de nuestro equipo, informamos que las oficinas comerciales, locales y dep&oacute;sitos y centro de distribuci&oacute;n de Chatelet se encontrar&aacute;n cerrados hasta tanto se regularice la situaci&oacute;n.</p>
+		<p>De acuerdo con lo establecido en el DNU por las autoridades nacionales y en l&iacute;nea con las recomendaciones para resguardar la salud p&uacute;blica y de nuestro equipo, informamos que las oficinas comerciales, locales y dep&oacute;sitos y centro de distribuci&oacute;n de Châtelet se encontrar&aacute;n cerrados hasta tanto se regularice la situaci&oacute;n.</p>
 
 		<div class="section">
 			<h5>Tienda Online:</h5>
@@ -26,9 +26,9 @@
 
 			<p>Resultar&aacute;n aplicables los T&eacute;rminos y Condiciones la legislaci&oacute;n de la Rep&uacute;blica Argentina para todos los efectos jur&iacute;dicos que se produzcan.</p>
 
-			<p>Cualquier persona f&iacute;sica o jur&iacute;dica que desee contratar los servicios de RODAMA S.A. (en adelante, &ldquo;CHATELET&rdquo;) debe registrarse en EL SITIO y se lo denominar&aacute; de aqu&iacute; en adelante &quot;USUARIO&quot;.</p>
+			<p>Cualquier persona f&iacute;sica o jur&iacute;dica que desee contratar los servicios de RODAMA S.A. (en adelante, &ldquo;CHÂTELET&rdquo;) debe registrarse en EL SITIO y se lo denominar&aacute; de aqu&iacute; en adelante &quot;USUARIO&quot;.</p>
 
-			<p>El USUARIO debe leer, entender y aceptar todas las condiciones establecidas en los T&eacute;rminos y Condiciones de LA EMPRESA, previo a su registraci&oacute;n como miembro de CHATELET. Qui&eacute;n haga uso del sitio acepta las condiciones del servicio quedando sujeta a ellas.</p>
+			<p>El USUARIO debe leer, entender y aceptar todas las condiciones establecidas en los T&eacute;rminos y Condiciones de LA EMPRESA, previo a su registraci&oacute;n como miembro de CHÂTELET. Qui&eacute;n haga uso del sitio acepta las condiciones del servicio quedando sujeta a ellas.</p>
 
 			<p>CUALQUIER PERSONA QUE NO ACEPTE ESTOS T&Eacute;RMINOS Y CONDICIONES GENERALES, LOS CUALES TIENEN UN CAR&Aacute;CTER OBLIGATORIO Y VINCULANTE, DEBER&Aacute; ABSTENERSE DE UTILIZAR EL SITIO Y/O LOS SERVICIOS.</p>
 		</div>
@@ -36,23 +36,23 @@
 		<div class="section">
 			<h5>01. Modificaci&oacute;n de los T&eacute;rminos y Condiciones</h5>
 
-			<p>Los T&eacute;rminos y Condiciones podr&aacute;n ser sustituidos o sufrir modificaciones en cualquier momento y a exclusivo criterio de CHATELET y no se requerir&aacute; a los Usuarios su consentimiento. Para las transacciones en curso que hayan comenzado con anterioridad a dichas modificaciones, subsistir&aacute;n las condiciones vigentes al momento de su concertaci&oacute;n, a menos que las nuevas modificaciones introducidas fueran m&aacute;s convenientes para el Usuario.</p>
+			<p>Los T&eacute;rminos y Condiciones podr&aacute;n ser sustituidos o sufrir modificaciones en cualquier momento y a exclusivo criterio de CHÂTELET y no se requerir&aacute; a los Usuarios su consentimiento. Para las transacciones en curso que hayan comenzado con anterioridad a dichas modificaciones, subsistir&aacute;n las condiciones vigentes al momento de su concertaci&oacute;n, a menos que las nuevas modificaciones introducidas fueran m&aacute;s convenientes para el Usuario.</p>
 
-			<p>CHATELET pondr&aacute; un aviso en el Website alertando a los Usuarios sobre estos cambios, durante un tiempo razonable. Sin perjuicio de lo anterior, los Usuarios son responsables de leer estos T&eacute;rminos y Condiciones cada vez que ingresen al Website para ver si han sufrido modificaciones.</p>
+			<p>CHÂTELET pondr&aacute; un aviso en el Website alertando a los Usuarios sobre estos cambios, durante un tiempo razonable. Sin perjuicio de lo anterior, los Usuarios son responsables de leer estos T&eacute;rminos y Condiciones cada vez que ingresen al Website para ver si han sufrido modificaciones.</p>
 		</div>
 
 		<div class="section">
 			<h5>02. Interrupci&oacute;n del Servicio &ndash; Exclusi&oacute;n de responsabilidad</h5>
 
-			<p>CHATELET se reserva el derecho de interrumpir, suspender o modificar en cualquier momento los servicios ofrecidos en el presente Website, ya sea en forma permanente o transitoria. No se requerir&aacute; la conformidad de los Usuarios, ni ser&aacute; necesario aviso previo alguno.</p>
+			<p>CHÂTELET se reserva el derecho de interrumpir, suspender o modificar en cualquier momento los servicios ofrecidos en el presente Website, ya sea en forma permanente o transitoria. No se requerir&aacute; la conformidad de los Usuarios, ni ser&aacute; necesario aviso previo alguno.</p>
 
-			<p>Asimismo, CHATELET no garantiza el acceso o uso permanente del Website, ya que &eacute;ste podr&iacute;a interrumpirse por cuestiones t&eacute;cnicas ajenas a CHATELET.</p>
+			<p>Asimismo, CHÂTELET no garantiza el acceso o uso permanente del Website, ya que &eacute;ste podr&iacute;a interrumpirse por cuestiones t&eacute;cnicas ajenas a CHÂTELET.</p>
 
-			<p>No obstante lo mencionado anteriormente, si la suspensi&oacute;n o interrupci&oacute;n mencionada no obedeciere a razones de fuerza mayor o caso fortuito, CHATELET se compromete a cumplir las prestaciones que estuvieran pendientes al momento de la suspensi&oacute;n o interrupci&oacute;n.</p>
+			<p>No obstante lo mencionado anteriormente, si la suspensi&oacute;n o interrupci&oacute;n mencionada no obedeciere a razones de fuerza mayor o caso fortuito, CHÂTELET se compromete a cumplir las prestaciones que estuvieran pendientes al momento de la suspensi&oacute;n o interrupci&oacute;n.</p>
 
-			<p>CHATELET no garantiza que el Website se encuentre libre de virus, gusanos o cualquier otro elemento que pueda llegar a da&ntilde;ar o alterar el normal funcionamiento de un ordenador. Es responsabilidad y obligaci&oacute;n exclusiva del Usuario contar con las herramientas adecuadas para detectar, desinfectar y/o prevenir cualquier tipo de elementos y/o posibles da&ntilde;os de esta naturaleza.</p>
+			<p>CHÂTELET no garantiza que el Website se encuentre libre de virus, gusanos o cualquier otro elemento que pueda llegar a da&ntilde;ar o alterar el normal funcionamiento de un ordenador. Es responsabilidad y obligaci&oacute;n exclusiva del Usuario contar con las herramientas adecuadas para detectar, desinfectar y/o prevenir cualquier tipo de elementos y/o posibles da&ntilde;os de esta naturaleza.</p>
 
-			<p>CHATELET no se responsabiliza por cualquier da&ntilde;o que pueda producirse en los equipos inform&aacute;ticos de los Usuarios o de terceros como consecuencia de la navegaci&oacute;n del presente Website.</p>
+			<p>CHÂTELET no se responsabiliza por cualquier da&ntilde;o que pueda producirse en los equipos inform&aacute;ticos de los Usuarios o de terceros como consecuencia de la navegaci&oacute;n del presente Website.</p>
 		</div>
 
 		<div class="section">
@@ -60,13 +60,13 @@
 
 			<p>La registraci&oacute;n de los Usuarios se realiza ingresando al Website, y no tiene costo alguno.</p>
 
-			<p>Es obligatorio completar el formulario en todos los campos con datos v&aacute;lidos y verdaderos, de manera exacta y precisa. Para un correcto funcionamiento del sistema, es necesario que los Usuarios mantengan sus datos actualizados. CHATELET podr&aacute; proceder a verificar la identidad del Usuario y/o de los datos consignados por &eacute;ste.</p>
+			<p>Es obligatorio completar el formulario en todos los campos con datos v&aacute;lidos y verdaderos, de manera exacta y precisa. Para un correcto funcionamiento del sistema, es necesario que los Usuarios mantengan sus datos actualizados. CHÂTELET podr&aacute; proceder a verificar la identidad del Usuario y/o de los datos consignados por &eacute;ste.</p>
 
-			<p>CHATELET no se responsabiliza por la veracidad o certeza de los datos provistos por los Usuarios. Asimismo, CHATELET se reserva el derecho de suspender temporal o definitivamente a los Usuarios en caso de incumplimiento de los T&eacute;rminos y Condiciones, como as&iacute; tambi&eacute;n de rechazar solicitudes.</p>
+			<p>CHÂTELET no se responsabiliza por la veracidad o certeza de los datos provistos por los Usuarios. Asimismo, CHÂTELET se reserva el derecho de suspender temporal o definitivamente a los Usuarios en caso de incumplimiento de los T&eacute;rminos y Condiciones, como as&iacute; tambi&eacute;n de rechazar solicitudes.</p>
 
-			<p>Los USUARIOS acceder&aacute;n a su Cuenta Personal (la &ldquo;Cuenta&rdquo;) mediante un nombre de Usuario y una clave personal que deber&aacute;n escoger. En caso de que estos datos sean olvidados por el Usuario, CHATELET cuenta con un servicio de ayuda para recuperarlos. Para esto se deber&aacute; hacer &ldquo;click&rdquo; en la opci&oacute;n correspondiente e ingresar el e-mail que se proporcion&oacute; al momento de la registraci&oacute;n. Al finalizar, el sistema le enviar&aacute; de manera confidencial a esa cuenta su nombre de Usuario y la clave personal.</p>
+			<p>Los USUARIOS acceder&aacute;n a su Cuenta Personal (la &ldquo;Cuenta&rdquo;) mediante un nombre de Usuario y una clave personal que deber&aacute;n escoger. En caso de que estos datos sean olvidados por el Usuario, CHÂTELET cuenta con un servicio de ayuda para recuperarlos. Para esto se deber&aacute; hacer &ldquo;click&rdquo; en la opci&oacute;n correspondiente e ingresar el e-mail que se proporcion&oacute; al momento de la registraci&oacute;n. Al finalizar, el sistema le enviar&aacute; de manera confidencial a esa cuenta su nombre de Usuario y la clave personal.</p>
 
-			<p>As&iacute; como CHATELET se compromete a mantener la confidencialidad de los datos aportados por los Usuarios para su registro, los Usuarios se comprometen a mantener la confidencialidad de su nombre y clave de acceso. De conformidad con lo expresado en el p&aacute;rrafo anterior, los Usuarios son responsables del uso que se haga de su clave y deber&aacute;n tener presente que si otras personas tienen o pueden tener en el futuro acceso a la cuenta de e-mail consignada como propia en el formulario de registraci&oacute;n, &eacute;stas tambi&eacute;n podr&iacute;an solicitar su clave de acceso y nombre de Usuario. Es obligaci&oacute;n exclusiva del Usuario tomar las medidas pertinentes para que esto no suceda. El Usuario se compromete a notificar inmediatamente y de manera fehaciente a CHATELET cualquier uso no autorizado de su Cuenta de Usuario, y a mantenerlo indemne en el caso de que se esto produzca alg&uacute;n da&ntilde;o a la Empresa o a terceros.</p>
+			<p>As&iacute; como CHÂTELET se compromete a mantener la confidencialidad de los datos aportados por los Usuarios para su registro, los Usuarios se comprometen a mantener la confidencialidad de su nombre y clave de acceso. De conformidad con lo expresado en el p&aacute;rrafo anterior, los Usuarios son responsables del uso que se haga de su clave y deber&aacute;n tener presente que si otras personas tienen o pueden tener en el futuro acceso a la cuenta de e-mail consignada como propia en el formulario de registraci&oacute;n, &eacute;stas tambi&eacute;n podr&iacute;an solicitar su clave de acceso y nombre de Usuario. Es obligaci&oacute;n exclusiva del Usuario tomar las medidas pertinentes para que esto no suceda. El Usuario se compromete a notificar inmediatamente y de manera fehaciente a CHÂTELET cualquier uso no autorizado de su Cuenta de Usuario, y a mantenerlo indemne en el caso de que se esto produzca alg&uacute;n da&ntilde;o a la Empresa o a terceros.</p>
 			</div>
 
 			<div class="section">
@@ -84,7 +84,7 @@
 			<div class="section">
 			<h5>06. Sugerencias y comentarios</h5>
 
-			<p>Todas las sugerencias y comentarios que realice el Usuario podr&aacute;n ser tenidas en cuenta, implementadas o adaptadas por CHATELET sin que ello genere derecho alguno a favor de tal Usuario.</p>
+			<p>Todas las sugerencias y comentarios que realice el Usuario podr&aacute;n ser tenidas en cuenta, implementadas o adaptadas por CHÂTELET sin que ello genere derecho alguno a favor de tal Usuario.</p>
 		</div>
 
 		<div class="section">
@@ -96,7 +96,7 @@
 
 			<p>Se hace saber a los Usuarios que utilizando las opciones de su navegador podr&aacute;n limitar o restringir seg&uacute;n su voluntad el alojamiento de estas &ldquo;cookies&rdquo;, aunque es desaconsejable restringirlas totalmente.</p>
 
-			<p>El sistema podr&aacute; recoger informaci&oacute;n sobre sus preferencias e intereses. En el caso de que esto ocurra, la informaci&oacute;n ser&aacute; utilizada exclusivamente con fines estad&iacute;sticos para mejorar los servicios que se prestan en el Website. CHATELET aplicar&aacute;, en la mayor medida en que sea posible, procedimientos de disociaci&oacute;n de la informaci&oacute;n de modo que los titulares de los datos sean inidentificables.</p>
+			<p>El sistema podr&aacute; recoger informaci&oacute;n sobre sus preferencias e intereses. En el caso de que esto ocurra, la informaci&oacute;n ser&aacute; utilizada exclusivamente con fines estad&iacute;sticos para mejorar los servicios que se prestan en el Website. CHÂTELET aplicar&aacute;, en la mayor medida en que sea posible, procedimientos de disociaci&oacute;n de la informaci&oacute;n de modo que los titulares de los datos sean inidentificables.</p>
 		</div>
 
 		<div class="section">
@@ -104,25 +104,25 @@
 
 			<p>Antes de comprar, el Usuario deber&aacute; tener en cuenta que los productos seleccionados pueden no encontrarse en stock. Toda compra se encuentra sujeta a disponibilidad. www.chatelet.com.ar solamente opera v&iacute;a Internet. Por este motivo, puede ocurrir que, por m&aacute;s que sea posible ordenar la compra del producto en el Website, no haya existencias de &eacute;ste, por una cuesti&oacute;n de movimiento diario en los locales de las firmas que proveen los productos a www.chatelet.com.ar</p>
 
-			<p>Del mismo modo, el precio de los productos que ofrecemos en el Website, puede no coincidir con el de los distintos locales o proveedores que abastecen a CHATELET</p>
+			<p>Del mismo modo, el precio de los productos que ofrecemos en el Website, puede no coincidir con el de los distintos locales o proveedores que abastecen a CHÂTELET</p>
 		</div>
 
 		<div class="section">
 			<h5>09. Opciones del Usuario ante productos agotados o demorados</h5>
 
-			<p>En concordancia con el punto anterior, en caso de que el o los productos seleccionados se encontraren agotados o demorados, CHATELET se comunicar&aacute; con el Usuario y lo invitar&aacute; a que elija una de las siguientes opciones:</p>
+			<p>En concordancia con el punto anterior, en caso de que el o los productos seleccionados se encontraren agotados o demorados, CHÂTELET se comunicar&aacute; con el Usuario y lo invitar&aacute; a que elija una de las siguientes opciones:</p>
 
 			<ol>
 				<li>Continuar esperando la entrega del producto elegido (en caso de demora);</li>
 				<li>Cancelaci&oacute;n de la compra y devoluci&oacute;n del importe por el medio de pago original;</li>
-				<li>Optar por un producto alternativo que le ofrezca CHATELET para el caso particular;</li>
+				<li>Optar por un producto alternativo que le ofrezca CHÂTELET para el caso particular;</li>
 			</ol>
 
 			<p>Cuando el Usuario opte por cancelar la compra, se devolver&aacute; el importe abonado seg&uacute;n el medio de pago que se haya elegido oportunamente. En caso de que se haya pagado en d&oacute;lares estadounidenses, se devolver&aacute; el importe al tipo de cambio del d&iacute;a de la cancelaci&oacute;n.</p>
 
-			<p>En el caso de que el Usuario opte por el producto alternativo que le ofrece CHATELET &eacute;ste deber&aacute; contener caracter&iacute;sticas iguales o superiores. En ning&uacute;n caso se le pedir&aacute; al Usuario que abone sumas suplementarias o que se haga cargo de las diferencias, salvo que el producto alternativo ofrecido por CHATELET y escogido por el Usuario sea de caracter&iacute;sticas ampliamente superiores y costosas al solicitado originalmente por el Usuario.</p>
+			<p>En el caso de que el Usuario opte por el producto alternativo que le ofrece CHÂTELET &eacute;ste deber&aacute; contener caracter&iacute;sticas iguales o superiores. En ning&uacute;n caso se le pedir&aacute; al Usuario que abone sumas suplementarias o que se haga cargo de las diferencias, salvo que el producto alternativo ofrecido por CHÂTELET y escogido por el Usuario sea de caracter&iacute;sticas ampliamente superiores y costosas al solicitado originalmente por el Usuario.</p>
 
-			<p>IMPORTANTE: para las situaciones contempladas en este apartado, el Usuario tendr&aacute; un plazo de diez d&iacute;as para elegir una de las opciones mencionadas. En caso de que el Usuario guarde silencio al respecto, CHATELET podr&aacute; presumir que ha optado por la cancelaci&oacute;n de la compra, y proceder&aacute; a la devoluci&oacute;n del importe abonado, ya sea por el medio de pago original.</p>
+			<p>IMPORTANTE: para las situaciones contempladas en este apartado, el Usuario tendr&aacute; un plazo de diez d&iacute;as para elegir una de las opciones mencionadas. En caso de que el Usuario guarde silencio al respecto, CHÂTELET podr&aacute; presumir que ha optado por la cancelaci&oacute;n de la compra, y proceder&aacute; a la devoluci&oacute;n del importe abonado, ya sea por el medio de pago original.</p>
 			</div>
 
 			<div class="section">
@@ -148,7 +148,7 @@
 			<div class="section">
 			<h5>13. Garant&iacute;a de los productos</h5>
 
-			<p>La venta de los productos se realiza por cuenta y orden de CHATELET. La garant&iacute;a de los productos que se adquieren a trav&eacute;s de CHATELET es responsabilidad de CHATELET.Una vez transcurrido el plazo establecido en el segundo p&aacute;rrafo del punto 14 de estos T&eacute;rminos y Condiciones Generales, cualquier reclamo deber&aacute; ser dirigido contra CHATELET.</p>
+			<p>La venta de los productos se realiza por cuenta y orden de CHÂTELET. La garant&iacute;a de los productos que se adquieren a trav&eacute;s de CHÂTELET es responsabilidad de CHÂTELET.Una vez transcurrido el plazo establecido en el segundo p&aacute;rrafo del punto 14 de estos T&eacute;rminos y Condiciones Generales, cualquier reclamo deber&aacute; ser dirigido contra CHÂTELET.</p>
 
 			<p>&nbsp;</p>
 			</div>
@@ -156,9 +156,9 @@
 			<div class="section">
 			<h5>14. Derecho de arrepentimiento. Devoluci&oacute;n de los productos</h5>
 
-			<p>El Usuario tendr&aacute; derecho a devolver los productos adquiridos en el Website durante el plazo de cinco d&iacute;as corridos, contados a partir de la entrega del pedido, sin responsabilidad alguna. Para esto deber&aacute; notificar de manera fehaciente a CHATELET dentro del plazo se&ntilde;alado, y poner a su disposici&oacute;n el o los productos adquiridos. Los productos deber&aacute;n estar en el mismo estado en que fueron recibidos, sin haber sido utilizados, y con el embalaje original. CHATELET devolver&aacute; al Usuario todos los importes recibidos. Los gastos de devoluci&oacute;n correr&aacute;n por cuenta de CHATELET</p>
+			<p>El Usuario tendr&aacute; derecho a devolver los productos adquiridos en el Website durante el plazo de cinco d&iacute;as corridos, contados a partir de la entrega del pedido, sin responsabilidad alguna. Para esto deber&aacute; notificar de manera fehaciente a CHÂTELET dentro del plazo se&ntilde;alado, y poner a su disposici&oacute;n el o los productos adquiridos. Los productos deber&aacute;n estar en el mismo estado en que fueron recibidos, sin haber sido utilizados, y con el embalaje original. CHÂTELET devolver&aacute; al Usuario todos los importes recibidos. Los gastos de devoluci&oacute;n correr&aacute;n por cuenta de CHÂTELET</p>
 
-			<p>Asimismo, si el o los productos presentaren alg&uacute;n defecto de fabricaci&oacute;n, hubieren sufrido roturas o deterioros en tr&aacute;nsito, o fueren despachados equivocadamente, el Usuario deber&aacute; comunicarse con el Centro de Atenci&oacute;n al Cliente dentro del plazo mencionado en el p&aacute;rrafo anterior, para que CHATELET proceda, seg&uacute;n corresponda, a gestionar el re-despacho de la compra, o pasar a retirar la orden.</p>
+			<p>Asimismo, si el o los productos presentaren alg&uacute;n defecto de fabricaci&oacute;n, hubieren sufrido roturas o deterioros en tr&aacute;nsito, o fueren despachados equivocadamente, el Usuario deber&aacute; comunicarse con el Centro de Atenci&oacute;n al Cliente dentro del plazo mencionado en el p&aacute;rrafo anterior, para que CHÂTELET proceda, seg&uacute;n corresponda, a gestionar el re-despacho de la compra, o pasar a retirar la orden.</p>
 
 			<p>Los productos no deben haber sido utilizados, y deben encontrarse en las mismas condiciones en que fueron recibidos, con sus embalajes y etiquetas. Por ejemplo, y a mero t&iacute;tulo ilustrativo, si el producto se encuentra en un envoltorio (&ldquo;bl&iacute;ster&rdquo;) pl&aacute;stico, &eacute;ste debe ser abierto prolija y cuidadosamente, pues de lo contrario no podr&aacute; realizarse el cambio.</p>
 
@@ -176,7 +176,7 @@
 			<div class="section">
 			<h5>6. Medios de pago</h5>
 
-			<p>Los pagos podr&aacute;n realizarse con tarjeta. CHATELET podr&aacute; habilitar otras opciones, para facilitar las compras de sus clientes.</p>
+			<p>Los pagos podr&aacute;n realizarse con tarjeta. CHÂTELET podr&aacute; habilitar otras opciones, para facilitar las compras de sus clientes.</p>
 
 			<p>Tambi&eacute;n se puede pagar por medio de tarjeta de cr&eacute;dito en cuotas, seg&uacute;n se indique en el Website. Todos los medios de pago est&aacute;n sujetos a que el importe sea debidamente acreditado y/o verificado.</p>
 		</div>
@@ -224,7 +224,7 @@
 
 			<p>El Usuario ser&aacute; claramente informado de los costos de entrega antes de realizar la compra. Estos costos son calculados en funci&oacute;n del peso total y/o el volumen total del env&iacute;o, y tambi&eacute;n dependen de la zona del domicilio de entrega.</p>
 
-			<p>Los costos de env&iacute;o ser&aacute;n discriminados como &iacute;tem separado dentro de la factura. CHATELET est&aacute; siempre trabajando para mejorar la calidad y el costo de entrega para sus clientes. Por este motivo, dichos costos y las pol&iacute;ticas de env&iacute;o se hallan sujetos a cambio sin previo aviso.</p>
+			<p>Los costos de env&iacute;o ser&aacute;n discriminados como &iacute;tem separado dentro de la factura. CHÂTELET est&aacute; siempre trabajando para mejorar la calidad y el costo de entrega para sus clientes. Por este motivo, dichos costos y las pol&iacute;ticas de env&iacute;o se hallan sujetos a cambio sin previo aviso.</p>
 		</div>
 
 		<div class="section">

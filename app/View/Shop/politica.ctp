@@ -7,7 +7,7 @@
 
 		<p>Al registrarte, ingresaste en www.chatelet.com.ar algunos datos personales. Tu informaci&oacute;n personal se procesa y almacena en servidores que cumplen con altos est&aacute;ndares internacionales de seguridad.</p>
 
-		<p>Chatelet (Rodama S.A) est&aacute; inscripto en el &ldquo;Programa de protecci&oacute;n de bases de datos personales&rdquo; coordinado por el Ministerio de Justicia de la Rep&uacute;blica Argentina, lo que demuestra y garantiza nuestro compromiso por brindarte la m&aacute;xima calidad en el manejo y protecci&oacute;n de tus datos personales.</p>
+		<p>Châtelet (Rodama S.A) est&aacute; inscripto en el &ldquo;Programa de protecci&oacute;n de bases de datos personales&rdquo; coordinado por el Ministerio de Justicia de la Rep&uacute;blica Argentina, lo que demuestra y garantiza nuestro compromiso por brindarte la m&aacute;xima calidad en el manejo y protecci&oacute;n de tus datos personales.</p>
 		</div>
 
 		<div class="section">

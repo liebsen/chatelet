@@ -1507,7 +1507,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 	private function notify_user($data, $status){
 		if ($status=='success'){
 
-$message = '<p>¡Hola <strong>'.ucfirst($data['user']['name']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHATELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
+$message = '<p>¡Hola <strong>'.ucfirst($data['user']['name']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHÂTELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
 
 <p>Te enviaremos el pedido cuando recibamos la confirmación de la
 venta por parte del medio de pago elegido.</p>
@@ -1519,11 +1519,11 @@ el pago.</p>
 
 <p>¡Muchas gracias!</p>
 
-<br/><a href="https://www.chatelet.com.ar">CHATELET</a>';
+<br/><a href="https://www.chatelet.com.ar">CHÂTELET</a>';
 
 		}else{
 
-$message = '<p>¡Hola <strong>'.ucfirst($data['user']['name']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHATELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
+$message = '<p>¡Hola <strong>'.ucfirst($data['user']['name']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHÂTELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
 
 <p>Te enviaremos el pedido cuando recibamos la confirmación de la
 venta por parte del medio de pago elegido.</p>
@@ -1535,11 +1535,11 @@ el pago.</p>
 
 <p>¡Muchas gracias!</p>
 
-<br/><a href="https://www.chatelet.com.ar">CHATELET</a>';
+<br/><a href="https://www.chatelet.com.ar">CHÂTELET</a>';
 
 		}
 		error_log('[email] notifying user '.$data['user']['email']);
-		$this->sendMail($message,'🌸 Gracias por comprar en CHATELET',$data['user']['email']);
+		$this->sendMail($message,'🌸 Gracias por comprar en CHÂTELET',$data['user']['email']);
 	}
 
 	public function failed() {

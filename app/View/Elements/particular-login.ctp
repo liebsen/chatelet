@@ -18,7 +18,7 @@
 			<div class="modal-body">
 				<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
 					<p>
-						Inicia sesión en Chatelet con tus credenciales. Ingresá tu email y contraseña para continuar. Si no tienes una cuenta presiona Crear cuenta.
+						Inicia sesión en Châtelet con tus credenciales. Ingresá tu email y contraseña para continuar. Si no tienes una cuenta presiona Crear cuenta.
 					</p>
 					<!--img src="/images/v8WrVxzTlKt7ZEEgkSt2shf41.jpg" width="100" /-->
 				</div>					
