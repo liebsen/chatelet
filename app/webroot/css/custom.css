@@ -123,7 +123,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .bg-light {
-  background-color: whitesmoke;
+  background-color: #f8f8f8;
 }
 
 .bg-transparent {

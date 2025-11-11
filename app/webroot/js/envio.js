@@ -13,7 +13,7 @@ var selectStore = e => {
 	$('.shipping-options li').removeClass('selected secondary')
 	$('.takeaway-options li').addClass('secondary')
 	$('.free-shipping').addClass('hidden')
-	$('.input-cp-container').removeClass('ok')
+	// $('.input-cp-container').removeClass('ok')
 	// $('.input-cp').val('')
 	$('#cost_container').html('')
 	$(e).addClass('selected')
@@ -177,6 +177,7 @@ $(document).ready(function() {
 		setTimeout(() => {
 			$('label[for="shipment"]').click()
 			//$('.shipment-block').show()
+			console.log('lastcp', lastcp)
 			$('.input-cp').val(lastcp)
 			$('.btn-calculate-shipping').click()
 

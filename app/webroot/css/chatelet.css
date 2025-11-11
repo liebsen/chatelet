@@ -1308,22 +1308,17 @@ select.form-control{
 	margin-bottom: 0;
 }
 
-
 .card {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border-radius: 0.75rem;
+  border: 1px solid #f8f8f8;
 }
+
 .card-body {
   /*flex: 1 1 auto;*/
   padding: 1rem;
