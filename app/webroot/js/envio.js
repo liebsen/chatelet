@@ -39,6 +39,8 @@ var selectStore = e => {
 }
 
 $(document).ready(function() {
+
+	localStorage.setItem('continue_shopping_url', window.location.pathname)
 	/*if(cart_items?.length == 1) {
 		$('.products-total').hide()
 	} else {

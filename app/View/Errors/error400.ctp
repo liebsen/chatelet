@@ -6,7 +6,7 @@
     </div>
     <hr>
     <div class="container">
-      <a href="/shop" class="btn btn-chatelet">Seguir comprando</a>
+      <a href="/shop" class="btn btn-chatelet btn-continue-shopping">Seguir comprando</a>
       <a href="/" class="btn btn-link">Volver a inicio</a>
       <a href="/contacto" class="btn btn-link">Contactar al administrador</a>
     </div>

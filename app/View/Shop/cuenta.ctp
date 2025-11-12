@@ -25,7 +25,7 @@ echo $this->Session->flash();
 				<a href="/shop/login" class="btn btn-chatelet w-100">Iniciar sesión</a>
 				<a href="/shop/registro" class="btn btn-chatelet w-100">Crear mi cuenta</a>
 			<?php endif ?>
-				<a href="/shop" class="btn btn-chatelet w-100">Seguir comprando</a>
+				<a href="/shop" class="btn btn-chatelet btn-continue-shopping w-100">Seguir comprando</a>
 			</div>
 		</div>
 	</div>

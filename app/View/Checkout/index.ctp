@@ -7,7 +7,7 @@ $this->set('short_header_link', '/carrito');
 
 echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
-echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+// echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 ?>
 <!--section id="main" class="is-flex-center has-checkout-steps min-h-101"-->
 <section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
@@ -47,10 +47,9 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 						<input type="hidden" name="ajax" value="1" />
 			      <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" required />
 			      <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" required />
-			      <input type="submit" class="btn btn-chatelet dark w-100" value="Iniciar sesión" /> 
-			      <div class="modal-buttons">                
-			        <!--a href="/shop/registro">Crear mi cuenta</a-->
-			        <a href="/shop/recuperar_acceso">Olvidé la contraseña</a>
+						<div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">			      
+			      	<input type="submit" class="btn btn-chatelet dark w-100" value="Iniciar sesión" />
+			        <a class="btn btn-chatelet w-100" href="/shop/recuperar_acceso">Olvidé la contraseña</a>
 			      </div>
 			      <?php echo $this->Form->end(); ?>
 					</div>
@@ -71,7 +70,9 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 						<input type="hidden" name="redirect" value="/checkout/envio" />    
 			      <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" required />
 			      <!--input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" /-->
-			      <input type="submit" class="btn btn-chatelet dark w-100" value="Continuar como invitada" />
+			      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
+			      	<input type="submit" class="btn btn-chatelet dark w-100" value="Continuar como invitada" />
+			      	<input type="submit" class="btn btn-chatelet w-100" value="Registrar mi cuenta" />
 			      <?php echo $this->Form->end(); ?>
 					</div>
 				</div>
@@ -82,8 +83,8 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 </section>
 
 <script type="text/javascript">
-
 	$(document).ready(function() {
+			localStorage.setItem('continue_shopping_url', window.location.pathname)
 	    $('#login_form, #register_form').on('submit', function(event) {
 	        event.preventDefault();
 	        const formData = $(this).serialize();

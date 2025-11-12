@@ -30,13 +30,13 @@ $(function(){
 
 		$('.cost_total').text('$ ' + formatNumber(price))
 
-	  var preferences = JSON.parse(localStorage.getItem('cart')) || {}
-		preferences.shipping = shipping
-	  preferences.cargo = cargo
-	  preferences.shipping_price = cost
-	  preferences.total_price = price
-	  preferences.subtotal_price = subtotal
-	  localStorage.setItem('cart', JSON.stringify(preferences))
+	  var cart = JSON.parse(localStorage.getItem('cart')) || {}
+		cart.shipping = shipping
+	  cart.cargo = cargo
+	  cart.shipping_price = cost
+	  cart.total_price = price
+	  cart.subtotal_price = subtotal
+	  localStorage.setItem('cart', JSON.stringify(cart))
 
 	  //console.log('price',price)
 		let total = formatNumber(price)

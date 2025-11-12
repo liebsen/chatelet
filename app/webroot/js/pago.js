@@ -87,6 +87,9 @@ $('.dues-select-option').click((e) => {
 
 
 $(function(){
+
+	localStorage.setItem('continue_shopping_url', window.location.pathname)
+
 	$(`.cargo-${cart.cargo}`).removeClass('hide')
 	$(`.cargo-${cart.cargo}`).addClass('animated fadeIn')
 
@@ -184,6 +187,7 @@ $(function(){
 		$('.checkoutform-container').removeClass('hide')
 
 		localStorage.removeItem('cart')
+		localStorage.removeItem('continue_shopping_url')
 		//localStorage.setItem('cart', JSON.stringify(cart))
 
 		//localStorage.removeItem('cart')

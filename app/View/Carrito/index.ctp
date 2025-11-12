@@ -221,7 +221,7 @@
 			  <?php if (isset($cart) && !empty($cart)) :?>
 			    <a href="/checkout" class="btn btn-chatelet dark w-100">Finalizar compra</a>
 			  <?php endif ?>
-					<a class="btn keep-buying btn-chatelet w-100" href="/tienda">Seguir comprando</a>
+					<a class="btn btn-continue-shopping btn-chatelet w-100" href="/tienda">Seguir comprando</a>
 				</div>
 			</div>
 			<?php else: ?>

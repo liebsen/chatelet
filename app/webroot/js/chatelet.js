@@ -10,9 +10,6 @@ let clock = 0
 let fakeshown = 0 
 const log = false
 
-
-
-
 function addCart(data, button, label, redirect) {
   $(button).addClass('adding')
   $(button).text(label || 'Agregando...')
@@ -459,6 +456,15 @@ $(document).ready(function() {
     $(this).parent().find('input').attr('checked', 'checked');
   })
 
+  $('.btn-continue-shopping').click(function (e) {
+    e.preventDefault()
+    e.stopPropagation()
+    let href = $(e.target).prop('href')
+    if(localStorage.getItem('continue-shopping-url') && localStorage.getItem('continue-shopping-url') != 'undefined') {
+      href = localStorage.getItem('continue-shopping-url')
+    }
+    location.href = href 
+  })
   $('.action-search').click(function () {
     location.href = '/shop/buscar'
   })

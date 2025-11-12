@@ -73,13 +73,13 @@ echo $this->element('checkout-params');
 	      </div>
 		  </div>
 			<div class="flex-col gap-1 max-22">
-				<?php echo $this->element('resume') ?>
+				<?php echo $this->element('resume', array('show_list' => true)) ?>
 				<div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
 			  <?php if (isset($cart) && !empty($cart)) :?>
 			  	<button type="button" id="submitcheckoutbutton" class="btn btn-chatelet dark btn-continue w-100">Continuar</button>
 			  	<input type="submit" id="submitform" class="hidden-force" />
 			  <?php endif ?>
-					<a class="btn keep-buying btn-chatelet w-100" href="/tienda">Seguir comprando</a>
+					<a class="btn btn-continue-shopping btn-chatelet w-100" href="/tienda">Seguir comprando</a>
 				</div>			
 			</div>
 		</div>
