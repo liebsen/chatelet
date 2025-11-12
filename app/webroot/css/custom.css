@@ -877,9 +877,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 
 .product-info {
-  border-bottom-left-radius: 0.75rem;
-  border-bottom-right-radius: 0.75rem; 
-  border: 1px solid #f8f8f8; 
+  background-color: #f8f8f8;
+  padding-bottom: 1rem;
 }
 
 .product-info .name {
@@ -2045,8 +2044,9 @@ span.out{
   white-space: nowrap;
   width: 100%;
   color: #666!important;
-  line-height: 1.25;
+  line-height: 1;
   font-size: 0.75rem;
+  min-height: 29px;
 }
 
 .text-legend .price_strong {
