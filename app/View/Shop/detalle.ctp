@@ -167,7 +167,7 @@ foreach ($properties as $property) {
         echo ' <span class="text-sm">' . (strlen($text) ? 'con ' . strtoupper($text) : '') . '</span>';
 
         ?>
-         <div class="mt-1 mb-4 tags-start">
+         <div class="d-contents tags-start mt-1 mb-4">
             <?= $this->App->show_prices_dues($legends, $product, true) ?>
          </div>
         <div class="caract">
@@ -199,7 +199,7 @@ foreach ($properties as $property) {
                                   } else {
                                       echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
                                   }
-                                  echo "<small>".$color['alias']."</small>";
+                                  echo "<small class='text-bolder'>".$color['alias']."</small>";
                                   echo '</label>';
                               }
                           ?>
@@ -222,7 +222,7 @@ foreach ($properties as $property) {
                 <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
               </div>
               <p>
-                <span style="color:#F50081;"> Stock:</span> <span id="stock_container"><i> (Elegí color y talle) </i></span>
+                <span style="color:#F50081;"> Stock:</span> <span id="stock_container"><span class="text-sm text-muted"> (Elegí color y talle) </span></span>
               </p>
               <?php endif; ?>
               <div class="d-flex flex-column justify-content-center align-items-center footer-producto gap-05">

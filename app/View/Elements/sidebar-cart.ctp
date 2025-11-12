@@ -40,7 +40,7 @@
         </span>
       <?php endif ?>
       <?php if (!empty($product['size']) && $product['size'] != 'undefined') : ?>
-        <span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>
+        <span class="text-sm">Talle: <span><?php echo $product['size'] ?></span></span>
       <?php endif ?>
         <span class="text-nowrap mt-2">$ <?php echo \price_format($product['price']) ?></span>
       </div>
