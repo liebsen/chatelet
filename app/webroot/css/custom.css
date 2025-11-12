@@ -1213,7 +1213,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   min-height: calc(100dvh - 265px);
   /*padding: 65px 0;*/ 
 }
-#headhelp h1 { /*color: #f50081; */ font-size: 40px; margin: 0; font-weight: 1000; }
+#headhelp h1 { /*color: #f50081; */ font-size: 40px; margin: 0; letter-spacing: -0.1rem; font-weight: 1000; }
 #headhelp h1:after { 
   background: #363633; 
   content: ""; 
@@ -1226,7 +1226,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #headhelp .box { 
   padding: 120px 100px 85px; 
 }
-#headhelp .box h3 { font-size: 28px; font-weight: 700; margin-bottom: 30px; }
+#headhelp .box h3 { font-size: 28px; font-weight: 800; letter-spacing: -0.05rem; margin-bottom: 30px; }
 #headhelp .box p { font-size: 16px; line-height: 1.4; margin-bottom: 45px; }
 #headhelp .box p a { color: #f50081; font-weight: 600; }
 
@@ -1271,14 +1271,20 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 }
 
 #optionsHelp a { 
-  color: #404040; 
+  /* color: #404040; */
+  color: #777;
   display: inline-block; 
   min-height: 2rem;
   padding: 0 1.5rem;
   font-weight: 300;
   text-transform: uppercase;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #777;
   transition: all 300ms linear;
+}
+
+#optionsHelp a.active {
+  color: #404040;
+  border-color: #404040;
 }
 
 /*#optionsHelp a:hover, #optionsHelp a.active { 
@@ -1310,7 +1316,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   padding: 2rem 2.25rem;
   border-radius: 1rem;
   background-color: transparent;
-  border: 2px solid #6663;
+  border: 1px solid #6663;
   background-color: rgba(255,255,255,0.5);
 }
 #desarrollo .boxes:first-child { 
