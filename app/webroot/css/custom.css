@@ -377,18 +377,22 @@ body.top-fixed .navbar-chatelet .fa {
     top: 3px;
   }
 
-  .navbar-nav.navbar-right>li>a {
+  .navbar-nav.navbar-right > li > a {
     background-size: 50px;
     background-position: center;
     background-repeat: no-repeat;  
     color: #404040;  
     height: 50px;
     padding: 0;
-    width: 40px;
+    width: 50px;
     font-size: 0.75rem;
     padding-top: 1.25rem;
     text-align: center;
     background-color: transparent;
+  }
+
+  body.top-fixed .navbar-nav.navbar-right > li > a {
+    width: 40px;
   }
   .navbar-nav.navbar-right {
     position: relative;
@@ -549,7 +553,7 @@ footer h3 {
   margin-top: 2rem; 
 }
 footer h3:after { background: #e10d74; content: ""; display: block; height: 2px;border-radius: 0; margin-top: 15px; width: 50px; }
-footer a, footer span { 
+footer .options a, footer .options span { 
   color: #888; 
   font-weight: 300; 
   text-transform: uppercase;  
@@ -557,10 +561,6 @@ footer a, footer span {
 footer a:hover { color: #363633; }
 footer ul li { margin-bottom: 5px;  }
 
-footer .footer-signature {
-  padding: 1.25rem;
-  padding-bottom: 4rem;
-}
 /* footer .col-md-3:first-child ul { column-count: 2; } */
 /*footer .col-md-3 h4 { color: #363633; font-size: 16px; font-weight: 600; margin-bottom: 25px; }
 footer .col-md-3 h4 + a { color: #363633; display: inline-block; font-size: 15px; line-height: 17px; padding-top: 10px; }
@@ -1335,7 +1335,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #referncia { padding: 1.5rem; overflow: hidden; }
 #referncia h2 { font-size: 1.5rem!important; font-weight: bolder; margin-bottom: 2rem!important; text-align: center; }
 #referncia .bx { border-right: 1px solid #f6f6f5; float: left; font-size: 17px; padding: 0 45px; width: 20%; }
-#referncia .bx h3 { color: #51177d; font-weight: 500; margin-bottom: 5px; }
+#referncia .bx h3 { color: #51177d; font-size: 100%; font-weight: 500; margin-bottom: 5px; }
 #referncia .bx p { font-size: 14px; line-height: 1.4; }
 #referncia ul { column-count: 2; column-gap: 20px; }
 #referncia ul li { border-bottom: 2px solid #f6f6f5; font-size: 14px; line-height: 1.5; padding: 30px 0; }
