@@ -6,7 +6,7 @@
   <div class="sidebar-top d-flex flex-column justify-content-start align-items-start gap-05 content pt-4">
   <?php if (isset($cart) && !empty($cart)) :?>
   <?php foreach($cart as $i => $product) {
-    echo "<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative' data-json='".json_encode($product)."'>";
+    echo "<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative w-100' data-json='".json_encode($product)."'>";
     echo "<div class='cart-img'>";
     if (!empty($product['number_ribbon'])) {
       echo '<div class="ribbon bottom-left small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
@@ -34,7 +34,7 @@
 
   echo '<span class="text-nowrap mt-2">$ '. \price_format($product['price']) .'</span>';
   echo '</div>';
-  echo '<button class="btn corner-pin bg-transparent" onclick="askremoveCart(this)">
+  echo '<button class="corner-pin bg-transparent" onclick="askremoveCart(this)">
           <i class="fa fa-trash-o"></i>
         </button>';         
   echo '</div>';    

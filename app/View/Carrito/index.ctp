@@ -75,7 +75,7 @@
 				</label>';
 
 			echo '</div>';
-			echo '<button class="btn corner-pin bg-transparent" onclick="askremoveCart(this)">
+			echo '<button class="corner-pin bg-transparent" onclick="askremoveCart(this)">
 							<i class="fa fa-trash-o"></i>
 						</button>';					
 			echo '</div>';		
