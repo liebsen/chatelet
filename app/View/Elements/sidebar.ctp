@@ -35,3 +35,44 @@
 	})
 
 </script>
+
+<style type="text/css">
+
+.sidebar-backdrop {
+	display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: black!important;
+  opacity: 0.75;
+}
+
+nav.sidebar {
+  position: fixed;
+  z-index: 90;
+  top: 0px;
+  right: -320px;
+  bottom: 0;
+  width: 320px;
+  height: 100%;
+  background: white;
+  padding: 1rem;
+  transition: all 0.25s ease-in-out;
+}
+
+.sidebar-top {
+  overflow-x: auto;
+  width: 100%;
+  /*max-height: calc(100dvh - 17rem);*/
+}
+
+.sidebar-bottom {
+  background-color: #fff;
+  width: 100%;
+  flex: 1;
+}
+	
+</style>

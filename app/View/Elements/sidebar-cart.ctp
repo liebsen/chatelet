@@ -1,4 +1,4 @@
-<nav class="sidebar sidebar-cart">
+<nav class="sidebar sidebar-cart d-flex flex-column justify-content-center align-items-center gap-05">
   <button type="button" class="corner-pin btn-close-sidebar">
     <i class="ico-times" role="img" aria-label="Cerrar"></i>
   </button>  
@@ -34,7 +34,7 @@
         </a>
       </div>
       <div class="d-flex justify-content-start align-center flex-column min-w-7">
-        <h6 class="is-carrito mb-1"><?php echo $product['name'] ?></h6>
+        <h6 class="is-carrito mb-1" style="max-width: 6rem"><?php echo $product['name'] ?></h6>
       <?php if (!empty($product['color_code']) && $product['color_code'] != 'undefined') : ?>
         <span class="text-sm">Color: <span color-code="<?php echo $product['color_code'] ?>"><?php echo $product['alias'] ?></span>
         </span>
