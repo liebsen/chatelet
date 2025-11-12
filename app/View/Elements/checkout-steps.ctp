@@ -17,6 +17,8 @@
 
 	.wizard-brand {
 		display: none;
+		position: relative;
+    top: -0.5rem;		
 	}
 	
 	body.top-fixed .wizard-brand {

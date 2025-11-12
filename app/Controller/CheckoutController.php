@@ -43,7 +43,7 @@ class CheckoutController extends AppController
 		),
 		array(
 			'url' => '/checkout/finalizar',
-			'label' => 'Confirmación'
+			'label' => 'Confirma'
 		),
 	);
 
