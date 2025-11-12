@@ -57,7 +57,7 @@
               <?php if(count($cart)):?>
               <span data-toggle="sidebar" data-target=".sidebar-cart" class="count animated scaleIn speed delay1"><?=count($cart)?></span>
               <?php endif ?>
-              <span data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= count($cart) ? 'text-green' : 'text-chatelet' ?>"></i></span>
+              <span data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= count($cart) ? 'text-green' : 'text-chatelet' ?>" style="font-size: 1.1rem;"></i></span>
             </a>
             <ul class="dropdown-menu">
               <li>

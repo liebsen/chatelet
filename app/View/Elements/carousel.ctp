@@ -26,7 +26,11 @@ $img_url_four = str_replace(';', '', @$home['img_url_four']);
     </div>
   <?php endforeach ?>
   </div>
-
+    <ol class="carousel-indicators">
+      <?php foreach ($images as $key => $value): ?>
+        <li data-target="#myCarousel" data-slide-to="<?= $key ?>" class="<?= $key == 0 ? 'active' : '' ?>"></li>
+      <?php endforeach ?>
+    </ol>
   <!-- Controls -->
   <a class="left carousel-control is-transparent" href="#carousel" role="button" data-slide="prev">
       <span class="arrow arrow-left" aria-hidden="true"></span>

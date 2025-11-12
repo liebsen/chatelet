@@ -372,6 +372,10 @@ body.top-fixed .navbar-chatelet .fa {
     position: relative;
     top: 5px;
   }
+  body.top-fixed .navbar-collapse.collapse {
+    top: 3px;
+  }
+
   .navbar-nav.navbar-right>li>a {
     background-size: 50px;
     background-position: center;
@@ -379,7 +383,7 @@ body.top-fixed .navbar-chatelet .fa {
     color: #404040;  
     height: 50px;
     padding: 0;
-    width: 60px;
+    width: 40px;
     font-size: 0.75rem;
     padding-top: 1.25rem;
     text-align: center;
@@ -2272,7 +2276,7 @@ span.count {
   position: absolute;
   z-index: 9;
   top: 0.5rem;
-  left: 2.25rem;
+  left: 1.25rem;
   text-align: center;
   font-size: 0.75rem;
   color: white;

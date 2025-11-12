@@ -19,11 +19,11 @@
   <div class="sidebar-bottom">
     <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
     <?php if ($loggedIn) : ?>
-      <a href="/shop/cuenta" class="btn btn-chatelet w-100">Mi cuenta</a>
+      <a href="/shop/cuenta" class="btn btn-chatelet dark w-100">Mi cuenta</a>
       <a href="/shop/mis_compras" class="btn btn-chatelet w-100">Mis compras</a>
       <a href="/users/logout" class="btn w-100">Cerrar sesión</a>
     <?php else : ?>
-      <a href="/shop/login" class="btn btn-chatelet w-100">Iniciar sesión</a>
+      <a href="/shop/login" class="btn btn-chatelet dark w-100">Iniciar sesión</a>
       <a href="/shop/registro" class="btn btn-chatelet w-100">Crear cuenta</a>
     <?php endif ?>
     </div>
