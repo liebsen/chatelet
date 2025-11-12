@@ -49,15 +49,14 @@
 			echo '</div>';
 			echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
 			echo '<h5 class="is-carrito mb-1">'. $product['name'] . '</h5>';
-				if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
-					echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
-				}
-				if (!empty($product['size']) && $product['size'] != 'undefined'){
-					echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
-				}
+			if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
+				echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
+			}
+			if (!empty($product['size']) && $product['size'] != 'undefined'){
+				echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
+			}
 
-			echo '<span class="text-nowrap mt-2">$ '. \price_format($product['item_price']) .'</span>';					
-
+			echo '<span class="text-nowrap mt-2">$ '. \price_format($product['item_price']) .'</span>';				
 			echo '<div class="form-inline">
 			  <div class="form-group">
 			    <div class="input-group carrito-selector mt-2">
@@ -137,9 +136,14 @@
 			echo '<div class="d-flex justify-space-between align-items-start flex-column min-w-7">';
 			echo '<div class="d-flex justify-content-start align-center flex-column">';
 			echo '<span class="name is-carrito">'. $product['name'] . '</span>';
-				if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
-					echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
-				}
+
+			if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
+				echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
+			}
+			if (!empty($product['size']) && $product['size'] != 'undefined'){
+				echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
+			}
+
 			echo '</div>';
 			echo '<label class="form-group">
 				  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-sm">Es para regalo</span><br><br>
