@@ -1417,7 +1417,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 .shop-options {
   padding: 2rem 1rem;
-  z-index: 10;
+  z-index: 9;
   position: relative;  
 }
 

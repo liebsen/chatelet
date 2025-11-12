@@ -51,7 +51,7 @@ echo $this->Session->flash();
 	            data: formData,
 	            success: function(res) {
 	            	if(res.success) {
-	            		onSuccessAlert('El acceso se actualizó', res.message)
+	            		onSuccessAlert('Datos de acceso actualizados', res.message)
 	                /* $('#responseContainer').html(res.message);
 	                setTimeout(() => {
 	                	location.href = redirect || location.href

@@ -228,6 +228,14 @@ class UsersController extends AppController {
           );
           return $this->redirect($this->referer());
         } else {
+          
+          if(!empty($ajax)) {
+            die(json_encode(array(
+              'success' => false, 
+              'errors' => "La cuenta <b>{$email_user}</b> no existe"
+            )));
+          }
+
           $this->Session->setFlash(
             'La cuenta no existe',
             'default',

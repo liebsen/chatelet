@@ -66,14 +66,14 @@
   color: #888;
   background-color: white; }
 .growl.growl-error {
-  color: #fff;
-  background-color: lightgoldenrodyellow; }
+  color: #a94442;
+  background-color: white; }
 .growl.growl-notice {
   color: #888;
   background-color: white; }
 .growl.growl-warning {
   color: #888;
-  background-color: lightgoldenrodyellow; }
+  background-color: white; }
 .growl .growl-close {
   cursor: pointer;
   position: absolute;
@@ -81,15 +81,15 @@
   top: 0;
   right: 0;
   bottom: 0;
-  font-size: 0.8rem;
-  line-height: 1.25rem;
+  font-size: 1rem;
+  line-height: 1;
   font-weight: normal;
   opacity: 0;
 }
 .growl .growl-title {
   font-size: 1rem;
   font-weight: 1000;
-  line-height: 1.2;
+  line-height: 1;
   margin-bottom: 0.5rem;
 }
 .growl.growl-notice .growl-title,
@@ -97,8 +97,8 @@
   border-color: #e7e7e7;
 }
 .growl .growl-message {
-  font-size: 0.9rem;
-  line-height: 1.2; 
+  font-size: 1rem;
+  line-height: 1; 
 }
 
 @media screen and (min-width: 769px) {
