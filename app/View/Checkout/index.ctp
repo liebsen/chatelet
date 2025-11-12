@@ -32,7 +32,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 					</div>
 				</div>
 			<?php else : ?>
-				<div class="card max-25 min-h-25">
+				<div class="card max-25">
 					<div class="card-body p-5">
 						<h4 class="text-uppercase text-center">Ya soy clienta</h4>
 						<p>Ingresa con tu cuenta Châtelet, si no recordás la clave presiona Olvidé contraseña.</p>
@@ -54,7 +54,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 			      <?php echo $this->Form->end(); ?>
 					</div>
 				</div>
-				<div class="card max-25 bg-light min-h-25">
+				<div class="card max-25 bg-light">
 					<div class="card-body p-5">
 						<h4 class="text-uppercase text-center">Soy nueva</h4>
 						<p>Ingresá tu email para continuar con tu compra, lo usaremos para notificarte de la compra.</p>

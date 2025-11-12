@@ -471,9 +471,6 @@ html, body {
 .min-h-12 {
 	min-height: 12rem;
 }
-.min-h-25 {
-	min-height: 25rem;
-}
 .min-h-100 {
   min-height: calc(100dvh - 150px);
 }
@@ -1326,7 +1323,6 @@ select.form-control{
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid #e7e7e7;
 }
 
 .card-body {
