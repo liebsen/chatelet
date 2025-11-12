@@ -41,15 +41,19 @@
   } ?>
   </div>
   <div class="sidebar-bottom">
+    <div class="d-flex justify-content-between align-items-center gap-05">
+      <span class="text-weight-bold">Total </span> 
+      <span class="calc_total text-weight-bold">$ <?= \price_format($cart_totals['total_products'] - $cart_totals['coupon_benefits'] + $cart_totals['delivery_cost']) ?></span><!--span>.00</span-->
+    </div>    
     <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
       <a href="/checkout" class="btn btn-chatelet dark w-100">Comprar</a>
       <a href="/carrito" class="btn btn-chatelet w-100">Ir al carrito</a>
-      <a href="/tienda" class="btn btn-continue-shopping w-100">Seguir comprando</a>
+      <a href="/tienda" class="btn btn-chatelet btn-continue-shopping w-100">Seguir comprando</a>
     </div>  
     <?php else: ?>
       <p>Tu carrito de compras está vacío</p>
       <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-        <a href="/tienda" class="btn btn-continue-shopping btn-chatelet w-100">Seguir comprando</a>
+        <a href="/tienda" class="btn btn-chatelet btn-continue-shopping w-100">Seguir comprando</a>
       </div>        
     <?php endif ?>
   </div>
