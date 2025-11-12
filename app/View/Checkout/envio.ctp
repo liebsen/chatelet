@@ -62,13 +62,13 @@ echo $this->element('checkout-params');
 				</div>
 			</div>
 			<hr>
-			<div class="row">
+			<div class="row is-flex-center">
 				<div class="col-md-6">
 					<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando estos <a href="/shop/terminos"> Términos y Condiciones</a>
 					</span>
 				</div>
 				<div class="col-md-6">
-		    	<a href="<?=Router::url('/checkout/pago',true)?>" class="btn btn-chatelet btn-pagos dark w-100">Continuar compra</a>
+		    	<a href="<?=Router::url('/checkout/pago',true)?>" class="btn btn-chatelet btn-pagos dark w-100">Continuar</a>
 					<!--a class="btn btn-continue-shopping btn-chatelet w-100" href="/tienda">Seguir comprando</a-->
 				</div>
 			</div>

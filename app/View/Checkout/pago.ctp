@@ -72,7 +72,7 @@ echo $this->element('checkout-params');
 	       <?php endif ?>
 	      </div>
 				<hr>
-				<div class="row">
+				<div class="row is-flex-center">
 					<div class="col-md-6">
 						<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando estos <a href="/shop/terminos"> Términos y Condiciones</a>
 						</span>
