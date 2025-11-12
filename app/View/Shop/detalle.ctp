@@ -21,7 +21,10 @@ foreach ($properties as $property) {
     case 'color':
       if (!empty($property['ProductProperty']['images'])) {
           $arrImages = explode(';', $property['ProductProperty']['images']);
-          $colorImages[] = array('alias'=>$property['ProductProperty']['alias'], 'images'=>$arrImages);
+          $colorImages[] = array(
+            'alias' => $property['ProductProperty']['alias'], 
+            'images' => $arrImages
+          );
       }
       array_push($colors, $property['ProductProperty']);
       break;
@@ -42,7 +45,7 @@ foreach ($properties as $property) {
     <?php if(!empty($colorImages)):?>
       <div class="col-md-2">
         <ul id="ul-moreviews">
-        <?php if (!empty($colorImages[0]['images']) && count($colorImages[0]['images']) > 1): $ppp=0; ?>
+        <?php if (!empty($colorImages[0]['images']) && count(array_filter($colorImages[0]['images'])) > 1): $ppp=0; ?>
         <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
         <?php if(!empty($value)): $ppp++;?>
           <li class="dontResize"><a href="#"><img class="demo w3-opacity w3-hover-opacity-off img-responsive"
