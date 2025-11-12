@@ -463,6 +463,7 @@ $(document).ready(function() {
     if(localStorage.getItem('continue_shopping_url') && localStorage.getItem('continue-shopping-url') != 'undefined') {
       href = localStorage.getItem('continue_shopping_url')
     }
+    localStorage.removeItem('continue_shopping_url')
     location.href = href 
   })
   $('.action-search').click(function () {

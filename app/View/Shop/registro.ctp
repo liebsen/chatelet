@@ -1,9 +1,11 @@
 <?php
 
 
-echo '<pre>';
+/*echo '<pre>';
 var_dump($user);
 die();
+*/
+
 echo $this->Html->script('formValidation.min', array('inline' => false));
 echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
 echo $this->Html->script('bootstrapValidator', array('inline' => false));
@@ -42,13 +44,12 @@ if (!$loggedIn) {
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1">
 		<div class="flex-row animated fadeIn">
 			<div class="flex-col">
-				<div class="d-flex flex-column justify-content-start align-items-center gap-1 content">
-					<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
+						<h5 class="text-uppercase">Crear mi cuenta</h5>
 						<p>
 							Ingresa tus datos personales para crear una cuenta.
 						</p>
-						<!--img src="/images/Xo46p1yulnzMHLEBmnsllkEBp.jpg" width="100" /-->
-					</div>				
+
+				<div class="d-flex flex-column justify-content-start align-items-center gap-1 content">
 					<?php 
 						echo $this->Form->create(null, array(
 								'url' => array('controller' => 'users', 'action' => 'register'),
@@ -250,11 +251,11 @@ if (!$loggedIn) {
 						</span>
 					</div>
 					<div class="col-md-6">
-			    	<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registro" value="<?= !$loggedIn ? 'Crear cuenta en Châtelet' : 'Actualizar mis datos' ?>" />
+			    	<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registro" value="<?= !$loggedIn ? 'Crear mi cuenta' : 'Actualizar' ?>" />
 					</div>
 				</div>
 			</div>
-			<div class="flex-col max-22">
+			<div class="flex-col max-22 desktop">
 				<div class="d-flex flex-column justify-content-center align-items-start gap-05">
 					<h3>
 						<?php
