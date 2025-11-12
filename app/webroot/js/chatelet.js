@@ -460,8 +460,8 @@ $(document).ready(function() {
     e.preventDefault()
     e.stopPropagation()
     let href = $(e.target).prop('href')
-    if(localStorage.getItem('continue-shopping-url') && localStorage.getItem('continue-shopping-url') != 'undefined') {
-      href = localStorage.getItem('continue-shopping-url')
+    if(localStorage.getItem('continue_shopping_url') && localStorage.getItem('continue-shopping-url') != 'undefined') {
+      href = localStorage.getItem('continue_shopping_url')
     }
     location.href = href 
   })
