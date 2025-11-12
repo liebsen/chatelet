@@ -43,6 +43,8 @@ echo $this->element('checkout-params');
 							</div>
 							<div class="slot">
 							</div>
+							<hr>
+							<?php echo $this->element('shipping-person') ?>
 						</div>
 					</div> 
 			  </div>
@@ -59,15 +61,21 @@ echo $this->element('checkout-params');
 					</div>
 				</div>
 			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-6">
+					<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando estos <a href="/shop/terminos"> Términos y Condiciones</a>
+					</span>
+				</div>
+				<div class="col-md-6">
+		    	<a href="<?=Router::url('/checkout/pago',true)?>" class="btn btn-chatelet btn-pagos dark w-100">Continuar compra</a>
+					<!--a class="btn btn-continue-shopping btn-chatelet w-100" href="/tienda">Seguir comprando</a-->
+				</div>
+			</div>
+			<hr>					
 		</div>
 		<div class="flex-col gap-1 max-22">
 			<?php echo $this->element('resume', array('show_list' => true)) ?>
-			<div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
-		  <?php if (isset($cart) && !empty($cart)) :?>
-		    <a href="<?=Router::url('/checkout/pago',true)?>" class="btn btn-chatelet btn-pagos dark w-100">Continuar compra</a>
-		  <?php endif ?>
-				<a class="btn btn-continue-shopping btn-chatelet w-100" href="/tienda">Seguir comprando</a>
-			</div>			
 		</div>
 	</div>
 </div>

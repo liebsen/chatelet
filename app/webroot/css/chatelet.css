@@ -498,6 +498,7 @@ html, body {
 
 .top-0 {
 	top: 0;
+	left: 0;
 }
 
 .is-relative {
@@ -850,7 +851,9 @@ a.btn {
 	height: 50px;
 	border-radius: 5px;
 	font-size: 1rem;
+	border-bottom-width: 3px;
 }
+
 textarea.form-control{
 	padding: 1.25rem 1rem;
 }
@@ -860,7 +863,7 @@ select.form-control{
 }
 
 .form-control:focus {
-	border-color: #e10c76!important;
+	border-color: #888!important;
 }
 
 .d-inline {

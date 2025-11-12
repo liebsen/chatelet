@@ -130,6 +130,16 @@ class UsersController extends AppController {
     }
     $data = $this->request->data;
 
+    if(empty($data['email'])) {
+      if(!empty($ajax)) {
+        die(json_encode(array(
+          'success' => false,
+          'message' => 'No se recibió el email'
+        )));
+      }
+      return $this->redirect($this->referer());
+    }
+    
     $invite = $this->request->data['invite'];
     $ajax = $this->request->data['ajax'];
     $validate = empty($invite);

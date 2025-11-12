@@ -264,7 +264,7 @@
     </a>
   </div>
 </div-->
-<input type="hidden" id="shipping_price_min" value="<?= $shipping_price_min ?>">
+<input type="hidden" id="shipping_price_min" value="<?= $settings['shipping_price_min'] ?>">
 <input type="hidden" id="total" value="<?= $total ?>">
 <?php endif;?>
 <script>

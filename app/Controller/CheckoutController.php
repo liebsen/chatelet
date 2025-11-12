@@ -56,6 +56,8 @@ class CheckoutController extends AppController
 		$index = array_search($this->request->here, array_column($this->checkout_steps, 'url'));
 		$this->set('checkout_index', $index);
 		$this->set('checkout_steps', $this->checkout_steps);
+		$freeShipping = $this->isFreeShipping($total_price);
+		$this->set('freeShipping', $freeShipping);		
 	}
 
 	public function index()
@@ -101,6 +103,9 @@ class CheckoutController extends AppController
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);
+		$oca = new Oca();
+		$provincias = $oca->getProvincias();
+		$this->set('provincias',$provincias);		
 		$this->set('stores', $stores);
 	}
 	private function parseTemplate ($str, $data) {
@@ -132,20 +137,8 @@ class CheckoutController extends AppController
 			die;
 		}
 
-		$oca = new Oca();
-		$provincias = $oca->getProvincias();
-		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
-		$items = $this->getItemsData();
-		$map = $this->Setting->findById('shipping_price_min');
-		$shipping_price = @$map['Setting']['value'];
-		$total_price = $items['price'];
-		$freeShipping = $this->isFreeShipping($total_price);
-	
-		$this->set('shipping_price',$shipping_price);
-		$this->set('provincias',$provincias);
-		$this->set('freeShipping', $freeShipping);
-		$this->set('total',$total_price);
-		$this->set('userData',$user);
+		// $user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
+		// $this->set('userData',$user);
 	}
 
 	private function getItemsData()

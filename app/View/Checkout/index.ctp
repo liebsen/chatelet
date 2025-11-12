@@ -16,13 +16,13 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 		<!--div class="header">
 			<h1>Registro</h1>			
 		</div-->
-		<div class="container p-3 animated fadeIn delay">
+		<div class="animated fadeIn delay">
 			<div class="is-flex flex-column-sm justify-content-center align-items-start gap-1">
 			<?php if ($loggedIn) : ?>
-				<div class="card p-4">
+				<div class="card p-4 p-md-5 max-25">
 					<div class="card-body">
 						<h2>Hola <?php echo $user['name'] ?? 'Invitada'; ?></h2>
-						<p>Confirma tu identidad para continuar</p>
+						<p>Confirma tu identidad para continuar. Ahora estás conectada como <b><?php echo $user['email']; ?></p>
 						<a href="/checkout/envio" class="btn btn-chatelet dark w-100">Continuar como como <?php echo $user['name'] ?? 'Invitada'; ?> <?php echo $user['surname']; ?> </a>
 						<!--script>
 							setTimeout(function(){

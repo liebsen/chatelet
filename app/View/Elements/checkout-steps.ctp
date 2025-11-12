@@ -1,24 +1,42 @@
-
-<div class="is-flex-center is-absolute top-0 bg-transparent p-5 animated slideInDown delay1">
-	<div class="wizard-container">
-		<div class="wizard-progress is-flex-center justify-content-around w-100">
-		<?php foreach($checkout_steps as $i => $step) : ?>
-			<div class="wizard-step <?= $i < $checkout_index ? 'complete' : '' ?> <?= $i == $checkout_index ? 'current' : '' ?>">
-				<?php echo $step['label'] ?>
-				<a href="<?= $i < $checkout_index ? $step['url'] : '#' ?>" class="wizard-node"><?php echo $i + 1 ?></a>
-			</div>
-		<?php endforeach ?>
+<div class="wizard-container d-flex flex-column justify-content-center align-items-center is-absolute top-0 animated slideInDown delay1">
+	<span class="navbar-brand wizard-brand"></span>
+	<div class="wizard-progress is-flex-center justify-content-around w-100">
+	<?php foreach($checkout_steps as $i => $step) : ?>
+		<div class="wizard-step <?= $i < $checkout_index ? 'complete' : '' ?> <?= $i == $checkout_index ? 'current' : '' ?>">
+			<?php echo $step['label'] ?>
+			<a href="<?= $i < $checkout_index ? $step['url'] : '#' ?>" class="wizard-node"><?php echo $i + 1 ?></a>
 		</div>
+	<?php endforeach ?>
 	</div>
 </div>
 
 <style>
-	/*.wizard-container {
-		max-width: 40rem;
-	}*/
+	.wizard-container {
+		padding: 1.5rem;
+	}
+
+	.wizard-brand {
+		display: none;
+	}
+	
+	body.top-fixed .wizard-brand {
+		display: block;
+	}
+
+	body.top-fixed .wizard-container {
+		position: fixed;
+		background-color: white;
+		padding: 0.5rem;
+		z-index: 9;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+
 	.wizard-progress {
 	  display: table;
 	  width: 100%;
+	  min-height: 4rem;
 	  table-layout: fixed;
 	  position: relative;		
 	}
