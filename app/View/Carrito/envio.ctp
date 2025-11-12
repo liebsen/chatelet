@@ -161,7 +161,7 @@
 										<div class="calc-coupon d-none">
 											<div class="d-flex justify-content-center align-items-center gap-05">
 										  	<input type="text" id="coupon_name" name="coupon" placeholder="Tu cupón" value="" class="form-control input-coupon input-lg both" title="Ingresá el código de tu cupón" data-valid="0" autocomplete="off" />
-									    	<button id="btn-calculate-coupon" class="btn btn-chatelet dark btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Calcular</button>
+									    	<button id="btn-calculate-coupon" class="btn btn-chatelet dark btn-input-lg btn-calculate-coupon" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Aplicá este cupón a tu compra" type="button" onclick="submitCoupon()">Aplicar</button>
 									    	<span class="muted is-clickable text-muted" onclick="resetCoupon()">Cancelar</span>
 											</div>
 										</div>

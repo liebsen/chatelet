@@ -34,7 +34,7 @@ echo $this->element('checkout-params');
 						  	<div class="position-relative input-cp-container">
 						  		<input type="text" name="" placeholder="Tu código postal" value="<?php echo $cart_totals['coupon'] ?>" class="form-control input-cp both" title="Ingresá tu código postal" data-valid="0" />
 						  	</div>
-					    	<button class="btn btn-chatelet dark btn-input-lg btn-calculate-shipping" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Cotizá el envío a domicilio de tu compra" type="submit">Calcular</button>
+					    	<button class="btn btn-chatelet dark btn-input-lg btn-calculate-shipping" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Cotizá el envío a domicilio de tu compra" type="submit">Aplicar</button>
 							</div>
 						</form>
 						<div class="form-group shipping-block hidden">

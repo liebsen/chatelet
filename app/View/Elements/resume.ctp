@@ -1,5 +1,5 @@
 	<div class="d-flex flex-column justify-content-center align-items-start gap-05">
-		<h4 class="text-uppercase">Resumen</h4>
+		<h5 class="text-uppercase">Resumen</h5>
 		<?php if(!empty($show_list)) : ?>
 		<div class="">
 		<?php foreach ($sorted as $product) {
