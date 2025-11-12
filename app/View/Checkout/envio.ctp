@@ -28,10 +28,10 @@ echo $this->element('checkout-params');
 
 			<div class="tab-content">
 			  <div class="tab-pane active" id="envio">
+			  	<p class="mt-2 text-sm text-muted">
+			  		<span>Ingresá tu código postal</span>
+			  	</p>
 				  <div class="d-flex flex-column justify-content-center align-items-start gap-1 cargo-blocks shipment-block">
-						<div>
-							<span class="text-sm">Ingresá tu código postal</span>
-						</div>				  	
 						<form class="w-100" id="calulate_shipping" data-url="<?php echo $this->Html->url(array('action'=>'deliveryCost')) ?>">
 							<div class="d-flex justify-content-start align-items-center gap-05">
 						  	<div class="position-relative input-cp-container">
@@ -41,9 +41,7 @@ echo $this->element('checkout-params');
 							</div>
 						</form>
 						<div class="form-group shipping-block hidden">
-							<div>
-								<span class="text-sm">Elegí la empresa de tu confianza para realizar este envío</span>
-							</div>
+							<span class="d-block text-muted">Elegí la empresa de tu confianza para realizar este envío</span>
 							<div class="slot">
 							</div>
 							<hr>
@@ -52,8 +50,11 @@ echo $this->element('checkout-params');
 					</div> 
 			  </div>
 			  <div class="tab-pane" id="retiro">
-			  	<p class="mt-2 text-sm"><span>Elegí esta opción para evitar cargos de envío. <span class="carrito_takeaway_text"><?= $settings['carrito_takeaway_text'] ?></span></span></p>
+			  	<p class="mt-2 text-sm text-muted">
+			  		<span>Elegí esta opción para evitar cargos de envío</span>
+			  	</p>
 				  <div class="cargo-blocks takeaway-block">
+						<span class="d-block text-muted">Elegí la sucursal para pasar a retirar tu compra</span>	
 						<ul class="generic-select takeaway-options">
 							<?php foreach ($stores as $store):?>
 								<li store="<?php echo $store['Store']['name'];?>"
@@ -97,13 +98,6 @@ echo $this->element('checkout-params');
 <script type="text/javascript">
 
 function initMap(cart) {
-	// console.log('store_address', cart.store_address)
-	// console.log('cart', cart)
-	console.log('lat/lng', cart.store_lat, cart.store_lng)
-  // var geoCoder = new google.maps.Geocoder(cart.store_address)
-  // var request = {address:cart.store_address};       
-  // geoCoder.geocode(request, function(result, status){
-
 	$('.store').text(cart.store)
 	$('.store-address').text(cart.store_address)
 
@@ -116,8 +110,6 @@ function initMap(cart) {
 
   var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
   var marker = new google.maps.Marker({position:latlng,map:map,title:cart.store + ' ' + cart.store_address});
-
-  // })
 }
 
 </script>
