@@ -4,7 +4,7 @@
       <div class="is-flex-center flex-column gap-05 min-h-8">
         <div class="is-flex justify-content-center align-items-center gap-05">
           <div class="form-group">
-            <input class="form-control m-0" type="text" name="q" placeholder="Buscar en Châtelet..." value="<?= $q ?>" autofocus required>
+            <input class="form-control m-0" type="text" name="q" placeholder="Buscar en Châtelet..." value="<?= $q ?>" required>
           </div>
           <div class="form-group">
             <input type="submit" class="btn btn-chatelet dark" id="enviar" value="Buscar">

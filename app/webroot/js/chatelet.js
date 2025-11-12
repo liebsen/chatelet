@@ -223,7 +223,7 @@ let focusEl = (text) => {
       $(text).removeClass(`animated ${focusAnim}`)
       $(text).addClass(`animated ${focusAnim}`)
       $(text).find('input').first().focus()
-    }, 2000)
+    }, 500)
   }
 }
 

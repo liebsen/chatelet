@@ -39,7 +39,7 @@ foreach ($properties as $property) {
   var colorImages = <?=json_encode($colorImages, JSON_PRETTY_PRINT)?>;
   window.isGiftCard = <?=(int)$isGiftCard?>;
 </script>
-<section id="detalle">
+<section id="main">
   <div class="wrapper animated fadeIn delay">
     <div class="row">
     <?php if(!empty($colorImages)):?>
