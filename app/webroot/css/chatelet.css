@@ -1376,6 +1376,7 @@ select.form-control{
 }
 .btn-chatelet {
 	color: black;
+	font-weight: 500;
 	border-color: #999;
 	background-color: white;
 }
@@ -1384,6 +1385,12 @@ select.form-control{
 	color: white;
   background-color: black;
   border-color: black;
+}
+
+.btn-chatelet.light {
+	color: #888;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 .btn-chatelet.dark:hover {

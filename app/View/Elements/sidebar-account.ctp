@@ -6,7 +6,7 @@
   <?php if ($loggedIn) : ?>
     <h5 class="text-bolder text-uppercase">Hola, <?php echo $user['name'] ?></h5>
   <?php else : ?>
-    <h5 class="text-bolder text-uppercase">Sin sesión activa</h5>
+    <h5 class="text-bolder text-uppercase text-bolder text-muted">Sin sesión activa</h5>
   <?php endif ?>
     <!--div class="content pt-4">    
     <?php if ($loggedIn) : ?>    
@@ -21,7 +21,7 @@
     <?php if ($loggedIn) : ?>
       <a href="/shop/cuenta" class="btn btn-chatelet dark w-100">Mi cuenta</a>
       <a href="/shop/mis_compras" class="btn btn-chatelet w-100">Mis compras</a>
-      <a href="/users/logout" class="btn w-100">Cerrar sesión</a>
+      <a href="/users/logout" class="btn btn-chatelet light w-100">Cerrar sesión</a>
     <?php else : ?>
       <a href="/shop/login" class="btn btn-chatelet dark w-100">Iniciar sesión</a>
       <a href="/shop/registro" class="btn btn-chatelet w-100">Crear cuenta</a>
