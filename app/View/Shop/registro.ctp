@@ -1,5 +1,9 @@
 <?php
 
+
+echo '<pre>';
+var_dump($user);
+die();
 echo $this->Html->script('formValidation.min', array('inline' => false));
 echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
 echo $this->Html->script('bootstrapValidator', array('inline' => false));
@@ -237,6 +241,17 @@ if (!$loggedIn) {
 							</div>
 						</div>
 					</div>
+					<?php echo $this->Form->end(); ?>
+				</div>
+				<hr>
+				<div class="row is-flex-center">
+					<div class="col-md-6">
+						<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando estos <a href="/shop/terminos"> Términos y Condiciones</a>
+						</span>
+					</div>
+					<div class="col-md-6">
+			    	<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registro" value="<?= !$loggedIn ? 'Crear cuenta en Châtelet' : 'Actualizar mis datos' ?>" />
+					</div>
 				</div>
 			</div>
 			<div class="flex-col max-22">
@@ -250,13 +265,7 @@ if (!$loggedIn) {
 					<p>
 						Crea hoy tu cuenta en <i>Châtelet</i> y accede a mas beneficios.
 					</p>
-		      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4 w-100">
-		    		<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registro" value="<?= !$loggedIn ? 'Crear cuenta en Châtelet' : 'Actualizar mis datos' ?>" />
-	          <a class="btn btn-chatelet w-100" href="/shop/login">Inicia sesión</a>
-	          <a class="btn btn-chatelet w-100" href="/shop/recuperar_acceso">Olvidé la contraseña</a>
-	        </div>
-		    </div>
-				<?php echo $this->Form->end(); ?>			
+				</div>	
 			</div>
 		</div>
 	</div>

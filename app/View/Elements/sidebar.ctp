@@ -67,12 +67,12 @@ nav.sidebar {
   overflow-x: auto;
   width: 100%;
   /*max-height: calc(100dvh - 17rem);*/
+  flex: 1;
 }
 
 .sidebar-bottom {
   background-color: #fff;
   width: 100%;
-  flex: 1;
 }
 	
 </style>

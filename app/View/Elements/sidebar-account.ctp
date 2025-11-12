@@ -1,20 +1,20 @@
-<nav class="sidebar sidebar-account">
+<nav class="sidebar sidebar-account d-flex flex-column justify-content-center align-items-start gap-05">
   <button type="button" class="corner-pin btn-close-sidebar">
     <i class="ico-times" role="img" aria-label="Cerrar"></i>
   </button>
-  <div class="sidebar-top">
+  <div class="sidebar-top d-flex flex-column justify-content-center align-items-center gap-05 content pt-4">
   <?php if ($loggedIn) : ?>
     <h5 class="text-bolder text-uppercase">Hola, <?php echo $user['name'] ?></h5>
   <?php else : ?>
     <h5 class="text-bolder text-uppercase">Sin sesión activa</h5>
   <?php endif ?>
-    <div class="content pt-4">    
+    <!--div class="content pt-4">    
     <?php if ($loggedIn) : ?>    
       <p>Tu sesión está activa y accediste como <?php echo $user['email'] ?></p>
     <?php else : ?>
       <p>No tenés una sesión activa. ¿Qué deseas hacer?</p>
     <?php endif ?>
-    </div>
+    </div-->
   </div>
   <div class="sidebar-bottom">
     <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">

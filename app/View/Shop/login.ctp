@@ -37,7 +37,8 @@ echo $this->Html->script('particular-validation', array('inline' => false));
       	<span class="label-text text-muted"><span class="text-sm text-link">Recordarme en este dispositivo</span></span>
       </label-->
       <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
-      	<input type="submit" id="login" form="" value="Iniciar sesión" /> 
+      	<input type="submit" id="login" form="" value="Iniciar sesión" />
+      	<hr> 
         <a class="btn btn-chatelet w-100" href="/shop/registro">Crear mi cuenta</a>
         <a class="btn btn-chatelet w-100" href="/shop/recuperar_acceso">Olvidé la contraseña</a>
       </div>

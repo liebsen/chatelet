@@ -1,5 +1,5 @@
-<nav class="sidebar sidebar-search">
-  <form name="search" action="/shop/buscar">
+<form name="search" action="/shop/buscar">
+  <nav class="sidebar sidebar-search  d-flex flex-column justify-content-center align-items-start gap-05">
     <button type="button" class="corner-pin btn-close-sidebar">
       <i class="ico-times" role="img" aria-label="Cerrar"></i>
     </button>
@@ -14,5 +14,5 @@
         <button class="btn btn-chatelet dark w-100" type="submit">Buscar</button>
       </div>
     </div>
-  </form>
-</nav>
+  </nav>
+</form>

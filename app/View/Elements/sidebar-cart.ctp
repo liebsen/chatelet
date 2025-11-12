@@ -2,9 +2,9 @@
   <button type="button" class="corner-pin btn-close-sidebar">
     <i class="ico-times" role="img" aria-label="Cerrar"></i>
   </button>  
-  <h5 class="text-uppercase">Carrito</h5>
-  <div class="sidebar-top d-flex flex-column justify-content-start align-items-start gap-05 content pt-4">
+  <div class="sidebar-top d-flex flex-column justify-content-center align-items-center gap-05 content pt-4">
   <?php if (isset($cart) && !empty($cart)) :?>
+    <h5 class="text-uppercase">Carrito</h5>
   <?php foreach($cart as $i => $product) :?>
     <div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative w-100' data-json='<?php echo json_encode($product) ?>'>
       <div class='cart-img'>
@@ -49,8 +49,12 @@
       </button>
     </div>   
   <?php endforeach ?>
+  <?php else : ?>
+    <h5 class="text-uppercase">Tu carrito está vacío</h5>
+  <?php endif ?>
   </div>
   <div class="sidebar-bottom">
+    <?php if (isset($cart) && !empty($cart)) :?>    
     <div class="d-flex justify-content-between align-items-center gap-05">
       <span class="text-weight-bold">Total </span> 
       <span class="calc_total text-weight-bold">$ <?= \price_format($cart_totals['total_products'] - $cart_totals['coupon_benefits'] + $cart_totals['delivery_cost']) ?></span><!--span>.00</span-->
@@ -63,7 +67,7 @@
       <a href="/tienda" class="btn btn-chatelet btn-continue-shopping w-100">Seguir comprando</a>
     </div>  
     <?php else: ?>
-      <p>Tu carrito de compras está vacío</p>
+      <!--p>Tu carrito de compras está vacío</p-->
       <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
         <a href="/tienda" class="btn btn-chatelet btn-continue-shopping w-100">Seguir comprando</a>
       </div>        
