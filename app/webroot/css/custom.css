@@ -1,7 +1,7 @@
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.01rem;
+  letter-spacing: -0.05rem;
   margin-bottom: 0.75rem;
 }
 .noscroll {
@@ -980,9 +980,11 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 /*#detalle .col-md-3 li a.active, #detalle .col-md-3 li a:hover { background: #FFF; }*/
 #detalle h1 { 
   font-size: 1.5rem; 
+  letter-spacing: -0.1rem;
 }
 #detalle h2 { 
   font-size: 1.25rem; 
+  letter-spacing: -0.1rem;
 }
 #detalle h3 { 
    
@@ -1180,7 +1182,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   font-weight: 1000; 
   margin-top: 70px; 
   margin-left: 30px; 
-  letter-spacing: -0.05rem;
+  letter-spacing: -0.1rem;
 }
 #headcontacto h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 /*#headcontacto .box { border: 2px solid #6666; }
@@ -1271,13 +1273,13 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 #optionsHelp a { 
   /* color: #404040; */
-  color: #777;
+  color: #888;
   display: inline-block; 
   min-height: 2rem;
   padding: 0 1.5rem;
   font-weight: 300;
   text-transform: uppercase;
-  border-bottom: 1px solid #777;
+  border-bottom: 1px solid #f8f8f8;
   transition: all 300ms linear;
 }
 
@@ -1441,7 +1443,9 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 	.navbar-nav { margin: 0; text-align: center; }
 	.navbar-nav > li { float: none; display: inline-block; }
-  .navbar-nav > li > a {   }
+  .navbar-nav > li > a {  
+    font-size: 0.75rem;
+  }
 	.navbar-nav>li>a .badge { left: 5px; position: absolute; top: 5px; }
 
 	#carousel .carousel-caption { left: 15%; width: 70%; }
@@ -1490,7 +1494,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   .navbar > .container-fluid .navbar-brand { 
     display: block; 
     float: none; 
-    min-height: 50px;
+    min-height: 30px;
     margin-left: auto !important; 
     margin-right: auto !important; 
   }
@@ -1566,7 +1570,12 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 
 	#headcontacto { padding: 1rem; }
   #optionsHelp {padding: 0;}
-	#optionsHelp a { padding: 30px 0; width: 100%; /* border-bottom: 2px solid #f6f6f5;*/}
+	#optionsHelp a { 
+    padding: 30px 0; 
+    width: 100%; 
+    background: white;
+    /* border-bottom: 2px solid #f6f6f5;*/
+  }
   /* #optionsHelp a:nth-child(even) { background-color: #f6f6f5; } */
 	#referncia ul { column-count: 1; }
   #headhelp .row { padding: 1rem; }

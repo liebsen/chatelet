@@ -23,7 +23,7 @@
               echo '<h3></h3>';  
                   echo '<ul>';      
                       echo '<li> '. $store['address'] .'</li>';
-                      echo '<li><a href="tel:'. $store['phone'].'">'. $store['phone'].'</a></li>';
+                      echo '<li><a class="text-white" href="tel:'. $store['phone'].'">'. $store['phone'].'</a></li>';
                   if($store['whatsapp']){
                       echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" class="text-white" target="_blank">'. $store['whatsapp'].'</a></li>';
                   }
@@ -86,7 +86,7 @@ function initialize(address) {
   #location .col-md-12 ul li { color: #FFF; float: left; min-height: 63px; /*font-size: 18px;*/ font-weight: 300; width: 33%;    padding-bottom: 45px; }
   #location .col-md-12 ul li a { padding-left: 3.5rem; position: relative; left: -3.5rem; }
   #location .col-md-12 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; transform: scale(0.9);}
-  #location .col-md-12 ul li:nth-child(2):before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -12px; width: 35px; transform: scale(0.75);}
+  #location .col-md-12 ul li:nth-child(2):before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -9px; width: 35px; transform: scale(0.75);}
   #location .col-md-12 ul li:nth-child(3):before { 
     content: "\f232"; 
     font: normal normal normal 18px / 1 FontAwesome; 
@@ -95,10 +95,10 @@ function initialize(address) {
     display: block; 
     position: relative;
     top: -3px;
-    left: -2px;
+    left: 3px;
     float: left; 
     height: 45px; 
-    width: 35px;
+    width: 49px;
   }
   #location .col-md-4.search { background: #FFF; padding-top: 75px; }
   #location .col-md-4.search input { background: url(../images/lupa.png) 35px center no-repeat transparent; border: 2px solid #363633; color: #363633; font-size: 16px; font-weight: 500; margin-bottom: 30px; padding: 10px 20px 10px 70px; width: 100%; }
