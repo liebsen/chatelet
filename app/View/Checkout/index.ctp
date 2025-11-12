@@ -17,7 +17,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 			<h1>Registro</h1>			
 		</div-->
 		<div class="container p-3 animated fadeIn delay">
-			<div class="is-flex flex-column-sm justify-content-center align-items-center gap-1">
+			<div class="is-flex flex-column-sm justify-content-center align-items-start gap-1">
 			<?php if ($loggedIn) : ?>
 				<div class="card p-4">
 					<div class="card-body">
@@ -33,7 +33,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 				</div>
 			<?php else : ?>
 				<div class="card max-25">
-					<div class="card-body p-5">
+					<div class="card-body p-md-5">
 						<h4 class="text-uppercase text-center">Ya soy clienta</h4>
 						<p>Ingresa con tu cuenta Châtelet, si no recordás la clave presiona Olvidé contraseña.</p>
 						<?php echo $this->Form->create(false, array(
@@ -47,6 +47,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 						<input type="hidden" name="ajax" value="1" />
 			      <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" required />
 			      <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" required />
+			      <hr>
 						<div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">			      
 			      	<input type="submit" class="btn btn-chatelet dark w-100" value="Iniciar sesión" />
 			        <a class="btn btn-chatelet w-100" href="/shop/recuperar_acceso">Olvidé la contraseña</a>
@@ -54,8 +55,8 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 			      <?php echo $this->Form->end(); ?>
 					</div>
 				</div>
-				<div class="card max-25 bg-light">
-					<div class="card-body p-5">
+				<div class="card max-25 bg-light-desktop">
+					<div class="card-body p-md-5">
 						<h4 class="text-uppercase text-center">Soy nueva</h4>
 						<p>Ingresá tu email para continuar con tu compra, lo usaremos para notificarte de la compra.</p>
 						<?php echo $this->Form->create(false, array(
@@ -70,6 +71,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 						<input type="hidden" name="redirect" value="/checkout/envio" />    
 			      <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" required />
 			      <!--input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" /-->
+			      <hr>
 			      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
 			      	<input type="submit" class="btn btn-chatelet dark w-100" value="Continuar como invitada" />
 			      	<input type="submit" class="btn btn-chatelet w-100" value="Registrar mi cuenta" />

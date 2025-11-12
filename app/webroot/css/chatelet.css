@@ -1645,8 +1645,16 @@ span.validation-password {
     box-shadow: 0 0 20px 0 rgba(26, 26, 67, .25);
   }
 }
-
+.p-md-5 {
+	padding: 0;
+}
 @media screen and (min-width: 769px) {
+  .bg-light-desktop {
+    background-color: whitesmoke;
+  }
+	.p-md-5 {
+		padding: 1.5rem!important;
+	}
 	.max-25 {
 	  max-width: 25rem;
 	}

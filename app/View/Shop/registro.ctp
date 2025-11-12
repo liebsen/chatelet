@@ -250,11 +250,10 @@ if (!$loggedIn) {
 					<p>
 						Crea hoy tu cuenta en <i>Châtelet</i> y accede a mas beneficios.
 					</p>
-
-		    	<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registro" value="<?= !$loggedIn ? 'Crear cuenta en Châtelet' : 'Actualizar mis datos' ?>" />
-		    	<div class="modal-buttons"> 
-	          <a href="/shop/login">Inicia sesión</a>
-	          <a href="/shop/recuperar_acceso">Olvidé la contraseña</a>
+		      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4 w-100">
+		    		<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registro" value="<?= !$loggedIn ? 'Crear cuenta en Châtelet' : 'Actualizar mis datos' ?>" />
+	          <a class="btn btn-chatelet w-100" href="/shop/login">Inicia sesión</a>
+	          <a class="btn btn-chatelet w-100" href="/shop/recuperar_acceso">Olvidé la contraseña</a>
 	        </div>
 		    </div>
 				<?php echo $this->Form->end(); ?>			

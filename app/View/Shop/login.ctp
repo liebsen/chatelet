@@ -36,10 +36,10 @@ echo $this->Html->script('particular-validation', array('inline' => false));
       	<input type="checkbox" name="rememberme" />
       	<span class="label-text text-muted"><span class="text-sm text-link">Recordarme en este dispositivo</span></span>
       </label-->
-      <input type="submit" id="login" form="" value="Iniciar sesión" /> 
-      <div class="modal-buttons">                
-        <a href="/shop/registro">Crear mi cuenta</a>
-        <a href="/shop/recuperar_acceso">Olvidé la contraseña</a>
+      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
+      	<input type="submit" id="login" form="" value="Iniciar sesión" /> 
+        <a class="btn btn-chatelet w-100" href="/shop/registro">Crear mi cuenta</a>
+        <a class="btn btn-chatelet w-100" href="/shop/recuperar_acceso">Olvidé la contraseña</a>
       </div>
       <?php echo $this->Form->end(); ?>
 		</div>
