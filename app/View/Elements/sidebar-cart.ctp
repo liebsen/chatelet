@@ -5,40 +5,50 @@
   <h5 class="text-uppercase">Carrito</h5>
   <div class="sidebar-top d-flex flex-column justify-content-start align-items-start gap-05 content pt-4">
   <?php if (isset($cart) && !empty($cart)) :?>
-  <?php foreach($cart as $i => $product) {
-    echo "<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative w-100' data-json='".json_encode($product)."'>";
-    echo "<div class='cart-img'>";
-    if (!empty($product['number_ribbon'])) {
-      echo '<div class="ribbon bottom-left small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
-    }
-    if (empty($product['price'])) {
-      $promosaved+= (float) $product['old_price'];
-    }
-    if ($product['promo'] !== '') {             
-      $disable = !isset($product['promo_enabled']) ? ' disable' : '';
-      echo "<div class='ribbon".$disable."'><span>" . $product['promo'] . "</span></div>";
-    }
-    echo '<a href="' . $item_url . '">';
-    // echo '<img src="'.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
-    echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
-    echo '</a>';
-  echo '</div>';
-  echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
-  echo '<h6 class="is-carrito mb-1">'. $product['name'] . '</h6>';
-    if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
-      echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
-    }
-    if (!empty($product['size']) && $product['size'] != 'undefined'){
-      echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
-    }
+  <?php foreach($cart as $i => $product) :?>
+    <div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative w-100' data-json='<?php echo json_encode($product) ?>'>
+      <div class='cart-img'>
+      <?php if (!empty($product['number_ribbon'])) :?>
+        <div class="ribbon bottom-left small">
+          <span><?php echo $product['number_ribbon'] ?>% OFF</span>
+        </div>
+      <?php endif ?>
 
-  echo '<span class="text-nowrap mt-2">$ '. \price_format($product['price']) .'</span>';
-  echo '</div>';
-  echo '<button class="corner-pin bg-transparent" onclick="askremoveCart(this)">
-          <i class="fa fa-trash-o"></i>
-        </button>';         
-  echo '</div>';    
-  } ?>
+      <?php if (empty($product['price'])) :?>
+        <?php $promosaved+= (float) $product['old_price']; ?>
+      <?php endif ?>
+
+      <?php if ($product['promo'] !== '') :?>
+        <div class="ribbon<?php echo !isset($product['promo_enabled']) ? ' disable' : '' ?>">
+          <span><?php echo $product['promo'] ?></span>
+        </div>
+      <?php endif ?>
+        <a href="<?php echo $this->Html->url(array(
+          'controller' => 'shop',
+          'action' => 'detalle',
+          $product['id'],
+          $product['category_id'],
+          strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
+        )) ?>">
+          <div class="ch-image" style="background-image: url('<?php echo Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url']) ?>')"></div>
+        </a>
+      </div>
+      <div class="d-flex justify-content-start align-center flex-column min-w-7">
+        <h6 class="is-carrito mb-1"><?php echo $product['name'] ?></h6>
+      <?php if (!empty($product['color_code']) && $product['color_code'] != 'undefined') : ?>
+        <span class="text-sm">Color: <span color-code="<?php echo $product['color_code'] ?>"><?php echo $product['alias'] ?></span>
+        </span>
+      <?php endif ?>
+      <?php if (!empty($product['size']) && $product['size'] != 'undefined') : ?>
+        <span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>
+      <?php endif ?>
+        <span class="text-nowrap mt-2">$ <?php echo \price_format($product['price']) ?></span>
+      </div>
+      <button class="corner-pin bg-transparent" onclick="askremoveCart(this)">
+        <i class="fa fa-trash-o"></i>
+      </button>
+    </div>   
+  <?php endforeach ?>
   </div>
   <div class="sidebar-bottom">
     <div class="d-flex justify-content-between align-items-center gap-05">

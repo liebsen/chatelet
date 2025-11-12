@@ -16,7 +16,13 @@
 				$disable = !isset($product['promo_enabled']) ? ' disable' : '';
 				echo "<div class='ribbon".$disable."'><span>" . $product['promo'] . "</span></div>";
 			}
-      echo '<a href="' . $item_url . '">';
+      echo '<a href="' . $this->Html->url(array(
+          'controller' => 'shop',
+          'action' => 'detalle',
+          $product['id'],
+          $product['category_id'],
+          strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
+        )) . '">';
 			// echo '<img src="'.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
 			echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 			echo '</a>';
