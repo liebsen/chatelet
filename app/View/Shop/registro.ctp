@@ -6,8 +6,10 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 echo $this->Html->script('particular-validation', array('inline' => false));
 
 $this->set('short_header', 'Crear mi cuenta');
-$this->set('short_header_text', '← Volver a Iniciar sesión');
-$this->set('short_header_link', '/shop/login');
+$this->set('short_header_text', '← Volver a la tienda');
+$this->set('short_header_link', '/shop');
+$this->set('short_header_classname', 'btn_continue_shopping');
+
 
 if (!$loggedIn) {
 	$user = array(

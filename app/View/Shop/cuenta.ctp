@@ -1,14 +1,19 @@
 <?php 
 $this->set('short_header', 'Cuenta');
+$this->set('short_header_text', '← Volver a la tienda');
+$this->set('short_header_link', '/shop');
+$this->set('short_header_classname', 'btn_continue_shopping');
+
+
 echo $this->Session->flash(); 
 ?>
 <section id="detalle" class="is-flex-center min-h-100 animated fadeIn">
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 animated fadeIn delay">
-		<h2>
+		<h2 class="text-uppercase">
 			<?php if ($loggedIn) : ?>
 				Hola, <?php echo $user['name']; ?>
 			<?php else : ?>
-				No tienes sesión activa
+				No estás registrado
 			<?php endif ?>
 		</h2>
 	<?php if ($loggedIn) : ?>

@@ -3,6 +3,8 @@ echo $this->Session->flash();
 $this->set('short_header', 'Iniciar sesión');
 $this->set('short_header_text', '← Volver a la tienda');
 $this->set('short_header_link', '/shop');
+$this->set('short_header_classname', 'btn_continue_shopping');
+
 echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->script('formValidation.min', array('inline' => false));
 echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
