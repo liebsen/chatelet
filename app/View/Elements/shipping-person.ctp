@@ -1,4 +1,11 @@
-  <h5 class="text-uppercase">
+<?php
+
+echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
+echo $this->Html->script('bootstrapValidator', array('inline' => false));
+echo $this->Html->script('shipping-validation', array('inline' => false));
+
+?>
+<h5 class="text-uppercase">
 		<!--i class="fa fa-user"></i-->
 		Envío a domicilio
   </h5>

@@ -29,11 +29,14 @@ var selectStore = e => {
   cart.shipping_price = 0
   cart.subtotal_price = total_orig
   cart.store = $(e).attr('store')
-  cart.store_address = $(e).attr('store_address')
+  cart.store_lat = $(e).attr('store-lat')
+  cart.store_lng = $(e).attr('store-lng')
+  cart.store_address = $(e).attr('store-address')
   localStorage.setItem('cart', JSON.stringify(cart))
-  var carrito_takeaway_text = $('.carrito_takeaway_text').text()
+  var cart_takeaway_text = $('.cart_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
-  onSuccessAlert(`Como querés recibir tu compra`, `Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}. Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. <br><br> ${carrito_takeaway_text}`);
+  initMap(cart)
+  // onSuccessAlert(`Como querés recibir tu compra`, `Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}. Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. <br><br> ${cart_takeaway_text}`);
   $('a[href="#retiro"]').click()
 	cargo = 'takeaway'
 }
@@ -60,7 +63,7 @@ $(document).ready(function() {
 		let location = $(this).prop('href')
 
 		if(!cart_items.length){
-			onWarningAlert('Tu carrito está vacío','No tienes productos en el carrito', 5000)
+			onWarningAlert('Tu cart está vacío','No tienes productos en el cart', 5000)
 			return false;
 		}
 
@@ -130,44 +133,44 @@ $(document).ready(function() {
 	});
 
 	$(document).on('click', '.giftchecks',function(e) {
-		var carrito = JSON.parse(localStorage.getItem('cart')) || {}
+		var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		var target_id = parseInt($(e.target).attr('data-id'))
-		if(!carrito.gifts) {
-			carrito.gifts = []
+		if(!cart.gifts) {
+			cart.gifts = []
 		}
 
-		carrito.gifts = carrito.gifts.filter((id) => id != target_id)
+		cart.gifts = cart.gifts.filter((id) => id != target_id)
 		if($(e.target).is(':checked')){
-			carrito.gifts.push(target_id)
+			cart.gifts.push(target_id)
 		}
 
-		if(carrito.gifts.length) {
+		if(cart.gifts.length) {
 			$('.gift-area').removeClass('hidden')
-			$('.gift-count').val(carrito.gifts.length)
+			$('.gift-count').val(cart.gifts.length)
 		} else {
 			$('.gift-area').addClass('hidden')
 		}
-		localStorage.setItem('cart', JSON.stringify(carrito))  
+		localStorage.setItem('cart', JSON.stringify(cart))  
 	})
 	
-	var carrito = JSON.parse(localStorage.getItem('cart')) || {}
+	var cart = JSON.parse(localStorage.getItem('cart')) || {}
 
-	if (carrito.cargo === 'takeaway' && carrito.store.length && !location.hash.includes('shipment-options.shipping')) {
+	if (cart.cargo === 'takeaway' && cart.store?.length && !location.hash.includes('shipment-options.shipping')) {
 		setTimeout(() => {
-			$(`.takeaway-options li[store="${carrito.store}"]`).click()
+			$(`.takeaway-options li[store="${cart.store}"]`).click()
 		}, 2000)
 	}
 
-	if (carrito.coupon && carrito.coupon.length) {
-		$('.input-coupon').val(carrito.coupon)
+	if (cart.coupon && cart.coupon.length) {
+		$('.input-coupon').val(cart.coupon)
 		setTimeout(() => {
 			$('.btn-calculate-coupon').click()
 		}, 1000)
 	}
 
-	if(carrito.gifts && carrito.gifts.length) {
+	if(cart.gifts && cart.gifts.length) {
 		$('.gift-area').removeClass('hidden')
-		$('.gift-count').val(carrito.gifts.length)
+		$('.gift-count').val(cart.gifts.length)
 	}
 
 	if(!lastcp) {

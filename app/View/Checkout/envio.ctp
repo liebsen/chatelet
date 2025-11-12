@@ -1,4 +1,5 @@
 <?php 
+
 echo $this->Session->flash();
 
 $this->set('short_header', 'Checkout');
@@ -12,7 +13,9 @@ echo $this->Html->script('shipping.js?v=' . Configure::read('APP_VERSION'),array
 echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->element('checkout-params');
+
 ?>
+
 <section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 	<?php echo $this->element('title-faq', array('title' => "Método de entrega")) ?>
@@ -25,7 +28,7 @@ echo $this->element('checkout-params');
 
 			<div class="tab-content">
 			  <div class="tab-pane active" id="envio">
-				  <div class="cargo-blocks shipment-block">
+				  <div class="d-flex flex-column justify-content-center align-items-start gap-1 cargo-blocks shipment-block">
 						<div>
 							<span class="text-sm">Ingresá tu código postal</span>
 						</div>				  	
@@ -54,10 +57,19 @@ echo $this->element('checkout-params');
 						<ul class="generic-select takeaway-options">
 							<?php foreach ($stores as $store):?>
 								<li store="<?php echo $store['Store']['name'];?>"
-									store-address="<?php echo $store['Store']['address'];?>"
+									store-address="<?php echo $store['Store']['address'];?>" 
+									store-lat="<?php echo $store['Store']['lat'];?>" 
+									store-lng="<?php echo $store['Store']['lng'];?>" 
 									onclick="selectStore(this)"><span class="text-uppercase"><?php echo $store['Store']['name'];?></span>, <span><?php echo $store['Store']['address'];?></span></li>
 							<?php endforeach;?>
 						</ul>
+					</div>
+					<div class="d-flex flex-column justify-content-center align-items-start gap-05">
+						<div id="map_canvas"></div>
+						<span class="text-sm text-muted">
+							<span><?php echo $settings['carrito_takeaway_text'] ?></span><br>
+							Seleccionaste retirar en <span class="store"></span> ubicado en <span class="store-address"></span>
+						</span>
 					</div>
 				</div>
 			</div>
@@ -79,3 +91,40 @@ echo $this->element('checkout-params');
 		</div>
 	</div>
 </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&sensor=true&language=es"></script>
+
+<script type="text/javascript">
+
+function initMap(cart) {
+	// console.log('store_address', cart.store_address)
+	// console.log('cart', cart)
+	console.log('lat/lng', cart.store_lat, cart.store_lng)
+  // var geoCoder = new google.maps.Geocoder(cart.store_address)
+  // var request = {address:cart.store_address};       
+  // geoCoder.geocode(request, function(result, status){
+
+	$('.store').text(cart.store)
+	$('.store-address').text(cart.store_address)
+
+  var latlng = new google.maps.LatLng(cart.store_lat, cart.store_lng);  
+  var myOptions = {
+    zoom: 15,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  var marker = new google.maps.Marker({position:latlng,map:map,title:cart.store + ' ' + cart.store_address});
+
+  // })
+}
+
+</script>
+
+<style>
+	#map_canvas {
+		min-height: 400px;
+		width: 100%;
+	}
+</style>
