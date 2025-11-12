@@ -2564,7 +2564,6 @@ span.count.is-empty {
 .cart-img {
   width: 6rem;
   aspect-ratio: 0.6;
-  background-color: #f8f8f8;
   position: relative;
   display: inline-block;
   transition: all 0.25s ease;

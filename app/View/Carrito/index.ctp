@@ -29,7 +29,7 @@
 		<div class="flex-col">
 			<div class="mobile p-3">
 			<?php foreach ($sorted as $product) {
-				echo "<div class='d-flex justify-content-start align-center gap-05 cart-row carrito-data position-relative' data-json='".json_encode($product)."' product_row>";
+				echo "<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative' data-json='".json_encode($product)."' product_row>";
 
 				echo "<div class='cart-img'>";
 				if (!empty($product['number_ribbon'])) {

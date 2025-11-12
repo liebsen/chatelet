@@ -53,7 +53,7 @@ nav.sidebar {
 
 .sidebar-top {
   overflow-x: auto;
-  max-height: calc(100dvh - 16rem);
+  max-height: calc(100dvh - 17rem);
 }
 
 .sidebar-bottom {
