@@ -3,8 +3,8 @@
 echo $this->Session->flash();
 
 $this->set('short_header', 'Checkout');
-$this->set('short_header_text', '← Volver a registro');
-$this->set('short_header_link', '/checkout');
+$this->set('short_header_text', '← Volver al carrito'); 
+$this->set('short_header_link', '/carrito');
 
 echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->css('bootstrap-datepicker', array('inline' => false));

@@ -991,10 +991,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 }
 #detalle h2 { 
   font-size: 1.25rem; 
-  letter-spacing: -0.1rem;
 }
-#detalle h3 { 
-   
+#detalle h3 {    
 }
 
 #detalle > p {  font-weight: 600; margin-bottom: 20px; }
