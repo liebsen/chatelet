@@ -874,7 +874,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #productOptions a.btBig span { color: #363633; font-size: 27px; }
 #productOptions .product-list a {  /*background: #efefef;*/ 
   width: 100%; 
-  background-color: transparent; margin-bottom: 10px; overflow: hidden; position: relative;height: auto; }
+  background-color: transparent; overflow: hidden; position: relative;height: auto; }
 #productOptions .product-list a img { 
   margin: auto;
   object-fit: cover;
@@ -884,6 +884,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 .product-info {
   /* background-color: #f8f8f8; */
   padding-bottom: 0.25rem;
+  min-height: 7rem;
 }
 
 .product-info .name {
@@ -1842,10 +1843,8 @@ span.out{
 
 .add-no-stock {
   position: relative;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  /*padding-left: 0.25rem;
+  padding-right: 0.25rem;*/
   /*min-height: 40rem;*/
 }
 
