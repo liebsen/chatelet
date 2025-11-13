@@ -27,7 +27,7 @@
 	        if($(focus).length) {
 	          setTimeout(() => {
 	            $(focus).focus()
-	          }, 1000)
+	          }, 200)
 	        }
 	      }
 	    }

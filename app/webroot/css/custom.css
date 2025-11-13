@@ -763,13 +763,11 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 
 .name {
   display: flex;
-  justify-content: center;
-  align-content: flex-start;
-  align-items: flex-start;
-  font-weight: 600;  
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 800;  
   color: #333;
   margin-bottom: 0.75rem;
-  min-height: 1.5rem;
   line-height: 1;
 }
 
@@ -2050,7 +2048,7 @@ span.out{
 .price_strong {
   color: black;
   font-weight: 1000;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   line-height: 1;
   white-space: nowrap;
 }

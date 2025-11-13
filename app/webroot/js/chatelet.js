@@ -407,14 +407,8 @@ function layerClose() {
 
 
 $(document).ready(function() {
-
-
-
   /* filter beforeunload events */
   var validNavigation = false;
-
-
-
   // Attach the event keypress to exclude the F5 refresh (includes normal refresh)
   $(document).bind('keypress', function(e) {
     if (e.keyCode == 116){
