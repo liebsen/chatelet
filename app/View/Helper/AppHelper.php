@@ -42,17 +42,26 @@ class AppHelper extends Helper {
     return $this->payment_methods[$tag] ?? 'Desconocido';
   }
 
-  function show_legends($legends){
+  function filter_legends($legends,$total) {
     $one_due = false;
+
+    $items = []; 
     foreach($legends as $item) {
+      if($total >= $item['Legend']['min_sale']) {
+        array_push($items, $item);
+      }
+
       if($item['Legend']['dues'] == 1) {
         $one_due = true;
-        break;
       }
     }
 
     //CakeLog::write('debug', 'count:'.count($legends) . '/'. $one_due);
-    return !(count($legends) == 1 && $one_due);
+    if (!(count($items) == 1 && $one_due)) {
+      return $items;
+    }
+
+    return [];
   }
 
   function cat_title($name){
