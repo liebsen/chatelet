@@ -55,7 +55,7 @@ foreach ($properties as $property) {
         <?php endif;?>
         </ul>
       </div>
-      <div class="col-md-5 p-0">
+      <div class="col-md-5">
         <div class="is-product-photo"><?php 
           $number_ribbon = 0;
           if (isset($product['discount_label_show'])){
@@ -113,7 +113,7 @@ foreach ($properties as $property) {
          </div>
       </div>
   <?php endif;?>
-      <div class="col-md-5 product-info-container">
+      <div class="col-md-5 product-info-container max-22">
        <?php
           echo $this->Form->create(null, array(
               'url' => array(
