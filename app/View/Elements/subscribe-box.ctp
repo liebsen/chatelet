@@ -1,9 +1,9 @@
   <section class="subscribe-box d-none">
-    <div class="wrapper container w-100">
+    <div class="w-100">
       <span class="corner-pin is-clickable">
         <i class="ico-times" data-toggle="click" data-remove=".subscribe-box" role="img" aria-label="Cerrar"></i>
       </span>
-      <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-1 max-25 m-auto">
+      <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
           <h4 class="text-uppercase">Estemos <strong>conectad@s</strong></h4>
           <p>Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
@@ -56,7 +56,12 @@
       font-weight: 300;
       overflow: hidden;
       padding: 1.5rem 1rem;
-      min-width: 30rem;
+    }
+
+    @media(min-width: 768px) {
+      .subscribe-box { 
+        min-width: 30rem;
+      }
     }
 
     .suscribe-unrelease {
@@ -65,7 +70,7 @@
       z-index: 99;
       left: 0;
       bottom: 0;
-      padding: 0.75rem 1rem;
+      padding: 0.5rem 1rem;
       color: #888;
     }
 

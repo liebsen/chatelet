@@ -66,12 +66,13 @@
 				<span class="text-weight-bold">Total </span> 
 				<span class="calc_total text-weight-bold">$ <?= \price_format($cart_totals['total_products'] - $cart_totals['coupon_benefits'] + $cart_totals['delivery_cost']) ?></span><!--span>.00</span-->
 			</div>
+			<hr class="mt-1">
+
 			<!--hr>
 			<div class="summary-item">
 				<span class="text-sm text-theme">Pagando con <?= strtolower($payment_methods[$config['payment_method']]) ?></span>
 			</div-->
 		<?php if(!empty($text_shipping_min_price) || !empty($freeShipping)) :?>
-			<hr>
 		<?php endif ?>
 		<?php if(!empty($text_shipping_min_price)) :?>
 			<div class="summary-item">

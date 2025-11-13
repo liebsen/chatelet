@@ -71,8 +71,8 @@
   </head>
   <body class="noscroll p-0">
     <?php if($_SERVER['SERVER_NAME'] !== 'chatelet.com.ar') :?>
-      <div class="dev-note p-3 text-center bg-danger">
-        <span class="corner-pin is-clickable" style="top: 0.65rem!important" onclick="$('.dev-note').remove()">
+      <div class="dev-note is-flex-center p-3 text-center bg-danger">
+        <span class="corner-pin is-clickable" style="top: 0.5rem!important" onclick="$('.dev-note').remove()">
           <i class="ico-times"></i>
         </span>
         <span class="text-sm text-dark">Esta <b>no es la tienda oficial</b> de Châtelet</span>

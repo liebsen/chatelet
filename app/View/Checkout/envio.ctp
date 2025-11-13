@@ -9,7 +9,7 @@ $this->set('short_header_link', '/checkout');
 echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('shipping.js?v=' . Configure::read('APP_VERSION'),array( 'inline' => false ));
+// echo $this->Html->script('shipping.js?v=' . Configure::read('APP_VERSION'),array( 'inline' => false ));
 echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->element('checkout-params');
@@ -74,7 +74,7 @@ echo $this->element('checkout-params');
 				</div>
 			</div>
 			<hr>
-			<div class="row is-flex-center">
+			<div class="checkout-continue row is-flex-center d-none">
 				<div class="col-md-6">
 					<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando estos <a href="/shop/terminos"> Términos y Condiciones</a>
 					</span>

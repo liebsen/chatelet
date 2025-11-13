@@ -43,6 +43,7 @@ $(function(){
 		let info = $(e).data('info')
 		fxTotal(total)
 		$('.paying-with').delay(1000).fadeIn()
+		$('.checkout-continue').fadeIn()
 		// onErrorAlert(`Como querés recibir tu compra`, `Te lo llevamos por ${shipping.toUpperCase()}`, 0, true);
 	}
 

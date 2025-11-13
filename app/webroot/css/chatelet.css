@@ -177,6 +177,7 @@ html, body {
   right: 1rem;
   font-size: 0.8rem;
   font-family: 'FontAwesome';
+  opacity: 0.5;
 }
 
 .generic-select li:hover {
