@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    //var modal = $('#particularForm');
-    //var form = $('#particularForm');
+    //var modal = $('#registro_form');
+    //var form = $('#registro_form');
 
-    $('#particularForm').bootstrapValidator({
+    $('#registro_form').bootstrapValidator({
         message: 'Nos un valor válido para este campo',
         framework: 'bootstrap',
         excluded: ':disabled',
@@ -115,16 +115,16 @@ $(document).ready(function() {
         }
     }).on('change', '[name="data[User][birthday]"]', function(e) {
         //$("#birthday").val($(this).datepicker('getFormattedDate'));
-            //$('#particularForm').bootstrapValidator('options.fields.data[User][birthday]');
+            //$('#registro_form').bootstrapValidator('options.fields.data[User][birthday]');
         if($("#birthday").val()!=''){
-            $("#particularForm").data('bootstrapValidator').updateStatus('data[User][birthday]', 'VALID').validateField("data[User][birthday]");
-            $("#particularForm").bootstrapValidator('disableSubmitButtons', false);
+            $("#registro_form").data('bootstrapValidator').updateStatus('data[User][birthday]', 'VALID').validateField("data[User][birthday]");
+            $("#registro_form").bootstrapValidator('disableSubmitButtons', false);
         }
-        //$(this).closest('#particularForm').bootstrapValidator('revalidateField', $(this).prop('name'), true);
+        //$(this).closest('#registro_form').bootstrapValidator('revalidateField', $(this).prop('name'), true);
     }).on('success.form.bv', function(e) {
             // Prevent form submission
             e.preventDefault();
-            $("#particularForm").bootstrapValidator('disableSubmitButtons', false);
+            $("#registro_form").bootstrapValidator('disableSubmitButtons', false);
             // Get the form instance
             var $form = $(e.target);
 
@@ -154,14 +154,14 @@ $(document).ready(function() {
                 }else{
 
                 me[0].reset();
-                me.parents('#particularForm').modal('hide');
+                me.parents('#registro_form').modal('hide');
                 location.reload();
                }
             }, 'json');
         });
 
-    $('#particularForm').submit(function(e) {
-        if($("#particularForm").data('bootstrapValidator').isValid()){
+    $('#registro_form').submit(function(e) {
+        if($("#registro_form").data('bootstrapValidator').isValid()){
             var me = $(this),
             data = me.serialize(),
             url = me.attr('action');
@@ -190,7 +190,7 @@ $(document).ready(function() {
                     } else {
 
                         me[0].reset();
-                        me.parents('#particularForm').modal('hide');
+                        me.parents('#registro_form').modal('hide');
                         location.reload();
                     }
                 })
@@ -206,5 +206,5 @@ $(document).ready(function() {
         }
         
     });
-    $("#particularForm").bootstrapValidator('validate');
+    $("#registro_form").bootstrapValidator('validate');
 });

@@ -11,16 +11,9 @@
 ?>
 
 <section id="main" class="container animated fadeIn delay">
-	<?php if (!empty($cart)) : ?>
+<?php if (!empty($cart)) : ?>
 	<?php echo $this->element('title-faq', array('title' => "Carrito")) ?>
-	<?php endif ?>
-	<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
-	<!--div class="col-md-12 shipping-price-min-alert animated fadeIn">
-		<div class="shipping-price-min-text">
-			<span><?= $text_shipping_min_price ?></span>
-		</div>		
-	</div-->
-	<?php endif ?>
+<?php endif ?>
 	<div class="flex-row">
 		<!--h3 id="heading" style="margin:10px 0px">Carrito de compras</h3-->
 		<?php if (!empty($cart)) :?>			
@@ -214,7 +207,21 @@
 					</table>
 				</div>
 
+				<hr>
+				<div class="checkout-continue row is-flex-center">
+					<div class="col-md-6">
+						<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando estos <a href="/shop/terminos"> Términos y Condiciones</a>
+						</span>
+					</div>
+					<div class="col-md-6 is-flex-center flex-column gap-05">
+			    	<a href="/checkout" class="btn btn-chatelet dark w-100">Finalizar Compra</a>
+						<a href="/shop" class="btn btn-continue-shopping btn-chatelet w-100">Seguir comprando</a>
+					</div>
+				</div>
+				<hr>
+
 				<?php echo $this->element('shop-disclaimer') ?>
+
       </div>
 			<div class="flex-col gap-1 max-22">
 				<!-- fill coupon -->
@@ -223,12 +230,6 @@
 				</div>								  
 				<!-- end fill coupon -->
 				<?php echo $this->element('resume'); ?>
-				<div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
-			  <?php if (isset($cart) && !empty($cart)) :?>
-			    <a href="/checkout" class="btn btn-chatelet dark w-100">Finalizar compra</a>
-			  <?php endif ?>
-					<a class="btn btn-continue-shopping btn-chatelet w-100" href="/tienda">Seguir comprando</a>
-				</div>
 			</div>
 			<?php else: ?>
 			<div class="container cart-empty text-center">

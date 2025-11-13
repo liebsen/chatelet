@@ -56,7 +56,7 @@ if (!$loggedIn) {
 					<?php 
 						echo $this->Form->create(null, array(
 								'url' => array('controller' => 'users', 'action' => 'register'),
-								'id' => 'particularForm',
+								'id' => 'registro_form',
 								'class' => 'w-100'
 							)
 						);
@@ -66,7 +66,7 @@ if (!$loggedIn) {
 					?>
 					<div class="row">
 						<div class="col-md-6 pr-0-d">
-							<label class="ml-1" for="email">Email</label>
+							<label for="email">Email</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="email" class="form-control" placeholder="Email" title="Email" name="data[User][email]" value="'. $user['email'] .'" />';
@@ -75,14 +75,14 @@ if (!$loggedIn) {
 							<span class="validation-email"></span>
 						</div>
 						<div class="col-md-6">
-							<label class="ml-1" for="password">Contraseña</label>
+							<label for="password">Contraseña</label>
 							<div class="form-group">
 								<input type="password" placeholder="Contraseña" title="Contraseña" class="form-control" name="data[User][password]" autocomplete="current-password" />
 							</div>
 							<span class="validation-password"></span>
 						</div>
 						<div class="col-md-6 pr-0-d">
-							<label class="ml-1" for="nombre">Nombre</label>
+							<label for="nombre">Nombre</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" class="form-control" placeholder="Nombre" title="Nombre" name="data[User][name]" value="'. $user['name'] .'" />';
@@ -90,7 +90,7 @@ if (!$loggedIn) {
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label class="ml-1" for="apellido">Apellido</label>
+							<label for="apellido">Apellido</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" class="form-control" placeholder="Apellidos" title="Apellidos" name="data[User][surname]" value="'. $user['surname'] .'" />';
@@ -99,18 +99,18 @@ if (!$loggedIn) {
 						</div>
 				<?php if($loggedIn):?>
 						<div class="col-md-6 pr-0-d">
+							<label for="FechaNac">Tu fecha de nacimiento</label>
 							<div class="form-group">
-								<label class="ml-1" for="ciudad">Tu fecha de nacimiento</label>
 								<?php
-									echo '<input type="text" class="datepicker form-control" placeholder="Fecha de Nacimiento" title="Fecha de Nacimiento" name="data[User][birthday]" value="'. 
+									echo '<input type="text" class="datepicker form-control" id="FechaNac" placeholder="Fecha de Nacimiento" title="Fecha de Nacimiento" name="data[User][birthday]" value="'. 
 											$this->Time->format($user['birthday'], '%d/%m/%Y')
 										.'" />';
 								?>
 							</div>
 						</div>
 						<div class="col-md-6">								
+							<label for="Sexo">Tu género</label>
 							<div class="form-group">
-								<label class="ml-1" for="Sexo">Tu género</label>			
 								<select class="selectpicker form-control" id="Sexo" title="Sexo" name="data[User][gender]">
 									<option value="">Selecione sexo</option>
 									<option value="M"<?php echo $user['gender'] == 'M' ? ' selected' : '' ?>>Masculino</option>
@@ -119,57 +119,57 @@ if (!$loggedIn) {
 							</div>
 						</div>
 						<div class="col-md-6 pr-0-d">
+							<label for="DNI">DNI</label>
 							<div class="form-group">
-								<label class="ml-1" for="DNI">DNI</label>
 								<?php
 									echo '<input type="text" class="form-control" id="DNI" title="DNI" placeholder="DNI" name="data[User][dni]" value="'. $user['dni'] .'" />';
 								?>
 							</div>
 						</div>
 						<div class="col-md-6">
+							<label for="Telefono">Teléfono</label>			
 							<div class="form-group">
-								<label class="ml-1" for="Telefono">Teléfono</label>			
 								<?php
 									echo '<input type="tel" class="form-control" id="Telefono" title="Telefono" placeholder="Teléfono" name="data[User][telephone]" value="'. $user['telephone'] .'" />';
 								?>
 							</div>
 						</div>
 						<div class="col-md-6 pr-0-d">
+							<label for="TelefonoAlt">Teléfono Alt.</label>
 							<div class="form-group">
-								<label class="ml-1" for="TelefonoAlt">Teléfono Alt.</label>
 								<?php
 									echo '<input type="tel" class="form-control" id="TelefonoAlt" placeholder="Teléfono Alt." title="Teléfono Alt." name="data[User][another_telephone]" value="'. $user['another_telephone'] .'" />';
 								?>
 							</div>
 						</div>				
 						<div class="col-md-6">
+							<label for="Calle">Calle</label>
 							<div class="form-group">
-								<label class="ml-1" for="Calle">Calle</label>
 								<input style="" type="text" class="form-control" id="Calle" placeholder="Calle" title="Calle" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
 							</div>
 						</div>
 						<div class="col-md-6 pr-0-d">
+							<label for="Nro">Nro.</label>
 							<div class="form-group">
-								<label class="ml-1" for="Nro">Nro.</label>
 								<input min="0" class="form-control" placeholder="Nro." id="Nro" title="Nro." name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
 							</div>
 						</div>	
 						<div class="col-md-6">
+							<label for="Piso">Piso</label>
 							<div class="form-group">
-								<label class="ml-1" for="Piso">Piso</label>
 								<input style="" min="0" id="floor" class="form-control" id="Piso" title="Piso" placeholder="Piso" name="data[User][floor]" type="number" value="<?= $user['floor'] ?>"/>
 							</div>
 						</div>
 						<div class="col-md-6 pr-0-d">
+							<label for="Depto">Depto.</label>
 							<div class="form-group">
-								<label class="ml-1" for="Depto">Depto.</label>
 								<input class="form-control" placeholder="Departamento" id="Depto" title="Departamento" name="data[User][depto]" type="text" value="<?= $user['depto'] ?>"/>
 							</div>
 						</div>
 
 						<div class="col-md-6">
+							<label for="Provincia">Provincia</label>
 							<div class="form-group">
-								<label class="ml-1" for="Provincia">Provincia</label>
 								<select id="provincia" class="selectpicker form-control" id="Provincia" title="Provincia" name="data[User][province]">
 									<?php
 										if (empty($user['province'])) {
@@ -207,7 +207,7 @@ if (!$loggedIn) {
 							</div>
 						</div>
 						<div class="col-md-6 pr-0-d">
-							<label class="ml-1" for="ciudad">Ciudad</label>
+							<label for="ciudad">Ciudad</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" id="ciudad" class="form-control" placeholder="Localidad" title="Localidad" name="data[User][city]" value="'. $user['city'] .'" />';
@@ -215,7 +215,7 @@ if (!$loggedIn) {
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label class="ml-1" for="barrio">Barrio</label>
+							<label for="barrio">Barrio</label>
 							<div class="form-group">
 								<?php
 									 echo '<input type="text" id="barrio" class="form-control" placeholder="Barrio" title="Barrio" name="data[User][neighborhood]" value="'. $user['neighborhood'] .'" />';
@@ -224,7 +224,7 @@ if (!$loggedIn) {
 						</div>
 				<?php endif ?>
 						<div class="col-md-6 pr-0-d">
-							<label class="ml-1" for="codigo-postal">Código Postal</label>
+							<label for="codigo-postal">Código Postal</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" id="codigo-postal" placeholder="Código Postal" title="Código Postal" class="form-control" name="data[User][postal_address]" value="'. $user['postal_address'] .'" />';

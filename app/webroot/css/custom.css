@@ -14,11 +14,13 @@ hr {
 
 label {
   cursor: pointer;
-  color: #383A3F;
+  color: #777;
   display: block;
   margin-top: 0.5rem;
-  font-weight: 300;
-  font-size: 1em;
+  margin-left: 0.5rem;
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-transform: uppercase;
 }
 label input[type=checkbox] + .label-text:hover:before {
   color: #e10d74;
