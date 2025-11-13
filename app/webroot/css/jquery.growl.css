@@ -7,29 +7,29 @@
   position: fixed; }
   #growls.default {
     background-color: transparent;
-    bottom: 0.5rem;
-    left: 0.5rem;
+    bottom: 0.25rem;
+    left: 0.25rem;
     min-width: calc(100vw - 1.75rem); }
   #growls.tl {
-    top: 0.5rem;
-    left: 0.5rem; }
+    top: 0.25rem;
+    left: 0.25rem; }
   #growls.tr {
-    top: 0.5rem;
-    right: 0.5rem; }
+    top: 0.25rem;
+    right: 0.25rem; }
   #growls.bl {
-    bottom: 0.5rem;
-    left: 0.5rem; }
+    bottom: 0.25rem;
+    left: 0.25rem; }
   #growls.br {
-    bottom: 0.5rem;
-    right: 0.5rem; }
+    bottom: 0.25rem;
+    right: 0.25rem; }
   #growls.tc {
-    top: 0.5rem;
-    right: 0.5rem;
-    left: 0.5rem; }
+    top: 0.25rem;
+    right: 0.25rem;
+    left: 0.25rem; }
   #growls.bc {
-    bottom: 0.5rem;
-    right: 0.5rem;
-    left: 0.5rem; }
+    bottom: 0.25rem;
+    right: 0.25rem;
+    left: 0.25rem; }
   #growls.tc .growl, #growls.bc .growl {
     margin-left: auto;
     margin-right: auto; }

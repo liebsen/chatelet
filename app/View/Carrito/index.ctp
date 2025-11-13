@@ -48,7 +48,7 @@
 				echo '</a>';
 			echo '</div>';
 			echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
-			echo '<h5 class="is-carrito mb-1">'. $product['name'] . '</h5>';
+			echo '<h5 class="mt-0 mb-1">'. $product['name'] . '</h5>';
 			if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 				echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
 			}
@@ -70,7 +70,7 @@
 			    </div>
 			  </div>
 			</div>';					
-			echo '<label class="form-group mt-3">
+			echo '<label class="form-group mt-1">
 				  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-sm">Es para regalo</span><br><br>
 				</label>';
 
@@ -135,7 +135,7 @@
 			echo '</div>';
 			echo '<div class="d-flex justify-space-between align-items-start flex-column min-w-7">';
 			echo '<div class="d-flex justify-content-start align-center flex-column">';
-			echo '<span class="name is-carrito">'. $product['name'] . '</span>';
+			echo '<span class="mt-0">'. $product['name'] . '</span>';
 
 			if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 				echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';

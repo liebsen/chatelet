@@ -28,7 +28,7 @@
 			echo '</a>';
 		echo '</div>';
 		echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
-		echo '<h5 class="is-carrito mb-1">'. $product['name'] . '</h5>';
+		echo '<h5 class="mt-0 mb-1">'. $product['name'] . '</h5>';
 			if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 				echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
 			}

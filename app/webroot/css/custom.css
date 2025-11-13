@@ -2707,9 +2707,9 @@ span.count.is-empty {
   .old_price {
     
   }
-  .card {
+  /*.card {
     border-bottom: 1px solid #e2e2e2;
-  }
+  }*/
 }
 
 /*@media screen and (min-width:660px){

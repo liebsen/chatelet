@@ -665,7 +665,6 @@ html, body {
 
 .card-variant {
 	border-radius: 0!important;
-  background-color: #f8f8f8!important;
 }
 
 .justify-space-between {
@@ -898,7 +897,7 @@ select.form-control{
 #main {
 	/*padding-bottom: 8rem;
 	background: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);*/
-	padding-bottom: 6rem;
+	padding-bottom: 2rem;
 	position: relative;
   z-index: 3;	
 }
@@ -1617,8 +1616,9 @@ span.validation-password {
 	padding: 0;
 }
 @media screen and (min-width: 769px) {
-
-
+	.card-variant {
+	  background-color: #f8f8f8!important;
+	}
   .bg-light-desktop {
     background-color: whitesmoke;
   }
@@ -1628,11 +1628,9 @@ span.validation-password {
 	.max-25 {
 	  max-width: 25rem;
 	}
-
 	.min-25 {
 	  min-width: 25rem;
 	}
-
 	.max-22 {
 	  max-width: 22rem;
 	}
