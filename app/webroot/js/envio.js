@@ -193,7 +193,7 @@ $(document).ready(function() {
 		return false
 	})
 
-	$('.btn-pagos').click(function(event){
+	$('#envio_form').submit(function(event){
 		event.preventDefault();
 		var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		let shipping = ''

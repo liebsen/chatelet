@@ -10,6 +10,7 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 echo $this->Html->script('pago.js?v=' . Configure::read('APP_VERSION'),array('inline' => false));
 echo $this->element('checkout-params');
+
 ?>
 <div id="dues_message" class="container">
 	<h3>Vamos a redirigirte a la pasarela de pagos<h3>
@@ -52,10 +53,10 @@ echo $this->element('checkout-params');
 						    <p class="text-sm">¿Querés financiar tu compra? Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</p>
 						    <ul class="generic-select">
 						    <?php foreach($legends as $legend): ?>
-						    	<?php if($total >= @$legend['Legend']['min_sale']):?>
+						    	<?php // if($total >= @$legend['Legend']['min_sale']):?>
 						    		<li data-json='<?= @json_encode($legend['Legend']) ?>' class="dues-select-option <?= $legend['Legend']['dues'] == 1 ? 'selected' : 'secondary' ?>"><span class="text-uppercase">
 						    			<?= @$legend['Legend']['dues'] ?> cuota<?= @$legend['Legend']['dues'] > 1 ? 's' : '' ?> de <?='$ ' . \price_format(ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']))?></span></li>
-				        	<?php endif ?>
+				        	<?php // endif ?>
 			        	<?php endforeach ?>
 				        </ul>
 							</div>						

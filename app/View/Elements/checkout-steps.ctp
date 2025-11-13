@@ -1,9 +1,30 @@
+<?php $segs = 5 ?>
+<?php if(empty($cart)) :?>
+
+<div class="container">
+	<span>Tu carrito está vacío. <a class="cart-empty-redirect" href="/shop">Te redireccionaremos automáticamente a la tienda</a> en <span class="segs"><?php echo $segs ?></span></span>
+	<script type="text/javascript">
+		let segs = <?php echo $segs ?>;
+		let interval = 0;
+		interval = setInterval(() => {
+			$('.segs').text(segs)
+			segs--
+			if(segs == 0) {
+				clearInterval(interval)
+				$('.cart-empty-redirect').click()
+			}
+		}, 1000)
+	</script>
+</div>
+
+<?php else : ?>
+
 <div class="wizard-container d-flex flex-column justify-content-center align-items-center is-absolute top-0 animated slideInDown delay1">
 	<span class="navbar-brand wizard-brand"></span>
 	<div class="wizard-progress is-flex-center justify-content-around w-100">
 	<?php foreach($checkout_steps as $i => $step) : ?>
 		<div class="wizard-step <?= $i < $checkout_index ? 'complete' : '' ?> <?= $i == $checkout_index ? 'current' : '' ?>">
-			<?php echo $step['label'] ?>
+			<span class="wizard-label"><?php echo $step['label'] ?></span>
 			<a href="<?= $i < $checkout_index ? $step['url'] : '#' ?>" class="wizard-node"><?php echo $i + 1 ?></a>
 		</div>
 	<?php endforeach ?>
@@ -52,6 +73,10 @@
     color: #ccc;
     font-weight: 300;
 	}
+	.wizard-label {
+		position: relative;
+		left: -2px;
+	}
 	.wizard-progress .wizard-step:not(:last-child):before {
 		content: "";
     display: block;
@@ -98,3 +123,5 @@
 		color: #333;
 	}
 </style>
+
+<?php endif ?>

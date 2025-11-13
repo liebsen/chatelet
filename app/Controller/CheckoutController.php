@@ -146,10 +146,12 @@ class CheckoutController extends AppController
 
 	public function pago()
 	{
-		if (!$this->Session->read('cart')) {
-			$this->redirect(array( 'action' => 'clear' ));
-			die;
-		}
+    $legends = $this->Legend->find('all', [
+      'conditions' => ['enabled' => 1],
+      'order' => ['Legend.ordernum ASC']
+    ]);
+
+    $this->set('legends', $legends);
 
 		// $user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
 		// $this->set('userData',$user);
@@ -622,7 +624,6 @@ class CheckoutController extends AppController
 		return $price;
 	}
 
-
 	public function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 
@@ -633,7 +634,8 @@ class CheckoutController extends AppController
 		$cart = $this->Session->read('cart');
 
 		if(empty($cart)) {
-			header("Location: /");
+			// header("Location: /");
+			$this->redirect(array( 'action' => 'clear' ));
 			return false;
 		}
 
