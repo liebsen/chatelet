@@ -29,7 +29,7 @@
         <section id="desarrollo">
             <div class="wrapper">
                 <div class="col-xs-12 col-md-6">
-                    <div class="is-flex-center flex-column gap-1 ">
+                    <div class="d-flex flex-column justify-content-center align-items-start gap-1 ">
                         <h3>Comprá en Châtelet con tu método preferido</h3>
                         <ul>
                             <li class="mb-8">* Podés pagar a través de la plataforma de pago MercadoPago. Si tu elección es realizarlo con tarjeta de crédito o débito (VISA, MASTERCARD, AMERICAN EXPRESS, TARJETA NARANJA, CABAL, ETC) MercadoPago solicitará los datos necesarios y podrá enviarte una confirmación para que puedas validarla por cuestiones de seguridad.</li>

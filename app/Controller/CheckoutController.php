@@ -105,6 +105,8 @@ class CheckoutController extends AppController
 		]);
 		$oca = new Oca();
 		$provincias = $oca->getProvincias();
+		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
+		$this->set('userData',$user);		
 		$this->set('provincias',$provincias);		
 		$this->set('stores', $stores);
 	}

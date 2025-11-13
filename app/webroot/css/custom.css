@@ -1,7 +1,6 @@
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.05rem;
   margin-bottom: 0.75rem;
 }
 .noscroll {
@@ -528,12 +527,18 @@ body.top-fixed .navbar-chatelet .fa {
 }
 
 footer { background: white; overflow: hidden; padding: 5rem 0 0; }
-footer > .wrapper { padding: 1rem; }
+footer > .wrapper { 
+  padding: 1rem; 
+}
 footer .options {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 4rem;
+}
+
+footer .options h5 {
+  font-size: 1.2rem;
 }
 
 footer .options > div {
@@ -1305,7 +1310,10 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   padding: 1rem; 
   padding-top: 5rem; 
 }
-#desarrollo h1 { font-size: 2rem; }
+#desarrollo h1 { 
+  font-size: 2rem; 
+  letter-spacing: -0.05rem;
+}
 #desarrollo a.bt { /*border: 3px solid #363633;*/ color: #363633; display: inline-block; font-size: 1.5rem; padding: 20px 120px; background-color: #fff3; border-radius: 0.5rem;}
 /* #desarrollo .row { display: flex; align-items: center; } 
 #desarrollo .col-md-6:last-child { text-align: right; }*/
@@ -1336,7 +1344,12 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   padding-left: 15rem; 
   text-align: left; 
 }
-#desarrollo h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 15px; }
+#desarrollo h3 { 
+  font-size: 1.5rem; 
+  font-weight: 800; 
+  margin-bottom: 15px; 
+  letter-spacing: -0.05rem;
+}
 #desarrollo p { font-size: 15px; margin-bottom: 55px; }
 #referncia { padding: 1.5rem; overflow: hidden; }
 #referncia h2 { font-size: 1.5rem!important; font-weight: bolder; margin-bottom: 2rem!important; text-align: center; }
