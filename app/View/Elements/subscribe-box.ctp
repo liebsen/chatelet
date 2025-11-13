@@ -1,7 +1,7 @@
   <section class="subscribe-box d-none">
     <div class="w-100">
       <span class="corner-pin is-clickable">
-        <i class="ico-times" data-toggle="click" data-remove=".subscribe-box" role="img" aria-label="Cerrar"></i>
+        <i class="ico-times" data-toggle="click" data-hide=".subscribe-box" role="img" aria-label="Cerrar"></i>
       </span>
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
@@ -18,14 +18,14 @@
         <?php echo $this->Form->end(); ?>
         </span>
         <span class="subscribe-message text-danger"></span>      
-        <span class="is-clickable text-muted text-link" onclick="suscribe_release()" data-toggle="click" data-remove=".subscribe-box">No, gracias</span>
+        <span class="is-clickable text-muted text-link" onclick="suscribe_release()" data-toggle="click" data-hide=".subscribe-box">No, gracias</span>
       </div>    
       <div class="subscribe-success max-25 m-auto d-none">
         <span class="subscribe-text text-center">
           <h4 class="text-uppercase">¡Ya estamos <strong>conectad@s</strong>!</h4>
           <p>A partir de ahora ya formas parte de nuestra comunidad y te enviaremos información exclusiva de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
           <div class="is-flex-center gap-1">
-            <a class="text-link" data-toggle="click" data-remove=".subscribe-box">Cerrar esta ventana</a>
+            <a class="text-link" data-toggle="click" data-hide=".subscribe-box">Cerrar esta ventana</a>
             <!--a href="/Shop" class="text-link btn-continue-shopping">Ir al Shop</a-->
             <a class="text-link" onclick="subscribe_retry()">Volver a subscribirme</a>
           </div>
@@ -77,7 +77,6 @@
   </style>
 
   <script type="text/javascript">
-
     function suscribe_release(){
       localStorage.setItem('subscription_release', 1);
       setTimeout(() => {
@@ -92,12 +91,10 @@
 
     function subscribe_retry(){
       $('.subscribe-success,.subscribe-error,.suscribe-unrelease').hide()
-      $('.subscribe-form,.subscribe-box').show()
+      $('.subscribe-box,.subscribe-form').show()
     }
 
     $(document).ready(function() {
-
-
       if(!localStorage.getItem('subscription_release') || localStorage.getItem('subscription_release') == 'undefined') {
         console.log('subscription_show')
         setTimeout(() => {
