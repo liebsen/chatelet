@@ -70,14 +70,14 @@ $(document).ready(function() {
 		if (cargo === 'shipment') {
 			const shipping_cargo = $('.shipping-options li.selected')
 			if (!shipping_cargo.length) {
-				onErrorAlert('¿Cómo querés recibir tu compra?', 'Por favor seleccioná un tipo de envío para tu compra, también podés elegir Retiro en Sucursal para evitar cargos de envío', 0, true);
+				onErrorAlert('Método de entrega', 'Por favor seleccioná un tipo de envío para tu compra, también podés elegir Retiro en Sucursal para evitar cargos de envío', 0, true);
 				// location.hash = 'f:.como-queres-recibir-tu-compra'
 				return false;
 			} else {
 				if (shipping_cargo.attr('shipping')) {
 					shipping = shipping_cargo.attr('shipping')
 				} else {
-					onErrorAlert('¿Cómo querés recibir tu compra?','Por favor introducí tu código postal, también podés elegir Retiro en Sucursal para evitar cargos de envío', 0, true);
+					onErrorAlert('Método de entrega','Por favor introducí tu código postal, también podés elegir Retiro en Sucursal para evitar cargos de envío', 0, true);
 					// location.hash = 'f:.como-queres-recibir-tu-compra'
 					return false;
 				}
@@ -91,7 +91,7 @@ $(document).ready(function() {
 				$('.input-cp').focus();
 				$('.input-cp-container').removeClass('ok');
 				$('.input-cp-container').addClass('wrong');
-				onErrorAlert('¿Cómo querés recibir tu compra?', 'Por favor ingresá tu código postal, la opción  Retiro en Sucursal evita cargos de envío', 0, true);
+				onErrorAlert('Método de entrega', 'Por favor ingresá tu código postal, la opción  Retiro en Sucursal evita cargos de envío', 0, true);
 				return false;
 			}
 		} else if(cargo === 'takeaway') {
@@ -104,7 +104,7 @@ $(document).ready(function() {
 					store = takeaway.attr('store')
 					store_address = takeaway.attr('store-address')
 				} else {
-					onErrorAlert('¿Cómo querés recibir tu compra?','Por favor indicá tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
+					onErrorAlert('Método de entrega','Por favor indicá tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
 					return false;
 				}
 			}
@@ -112,7 +112,7 @@ $(document).ready(function() {
 			if (freeShipping) {
 				cargo = 'shipment'
 			} else {
-				onErrorAlert('¿Cómo querés recibir tu compra?','Por favor introducí tu código postal, la opción  Retiro en Sucursal evita cargos de envío', 0, true);
+				onErrorAlert('Método de entrega','Por favor introducí tu código postal, la opción  Retiro en Sucursal evita cargos de envío', 0, true);
 				return false
 			}
 		}

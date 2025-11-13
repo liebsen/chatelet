@@ -1,7 +1,6 @@
 	<div class="d-flex flex-column justify-content-center align-items-start gap-05">
 		<h5 class="text-uppercase">Resumen</h5>
 		<?php if(!empty($show_list)) : ?>
-		<div class="">
 		<?php foreach ($sorted as $product) {
 			echo "<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative' data-json='".json_encode($product)."' product_row>";
 
@@ -28,7 +27,7 @@
 			echo '</a>';
 		echo '</div>';
 		echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
-		echo '<h5 class="mt-0 mb-1">'. $product['name'] . '</h5>';
+		echo '<h5 class="mt-0 mb-1 text-weight-thin">'. $product['name'] . '</h5>';
 			if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 				echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
 			}
@@ -40,7 +39,6 @@
 		echo '</div>';
 		echo '</div>';		
 		} ?>
-		</div>	
 		<?php endif ?>	
 		<!--pre><?php var_dump($cart_totals); ?></pre-->
 		<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
