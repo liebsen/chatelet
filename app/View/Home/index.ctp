@@ -9,10 +9,7 @@
     <?php echo $this->element('shop_list') ?>
   </section>
 
-  <section id="suscribe" class="subscribe-box animated fadeIn delay2"> <!-- fadeIn slow delay2 -->
-    <?php echo $this->element('subscribe-box') ?>
-  </section>
-
+  <?php echo $this->element('subscribe-box') ?>
   <?php echo $this->element('img_popup_newsletter') ?>
   <?php echo $this->element('follow_us') ?>
 

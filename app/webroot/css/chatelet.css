@@ -33,12 +33,12 @@ nav.sidebar-expanded {
 }
 
 a {
-	color: #e10c76;
+	color: #888;
 	font-weight: 300;
 }
 
 a:hover {
-	color: #e10c76;
+	color: #888;
 }
 
 html, body {

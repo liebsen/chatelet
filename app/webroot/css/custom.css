@@ -535,7 +535,8 @@ footer .options {
 }
 
 footer .options h5 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  color: #888;
 }
 
 footer .options > div {
@@ -558,7 +559,7 @@ footer h3 {
   margin-bottom: 1.25rem; 
   margin-top: 2rem; 
 }
-footer h3:after { background: #e10d74; content: ""; display: block; height: 2px;border-radius: 0; margin-top: 15px; width: 50px; }
+footer h5:after { background: #e7e7e7; content: ""; display: block; height: 3px;border-radius: 0; margin-top: 13px; width: 50px; border-radius: 5px }
 footer .options a, footer .options span { 
   color: #888; 
   font-weight: 300; 

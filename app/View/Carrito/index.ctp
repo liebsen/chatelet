@@ -241,7 +241,9 @@
 		</div>
 	</div>
 </section>
-	
+
+<?php echo $this->element('subscribe-box') ?>
+
 <?php if (isset($cart) && !empty($cart)) :?>
 <!--div id="carritoItem" class="burst is-fullheight has-item-counter animated">
   <a class="close float-tr">
