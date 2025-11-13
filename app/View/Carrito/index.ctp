@@ -272,9 +272,9 @@
 <script>
 	$(function(){
 	<?php if(!empty($cart) && !empty($text_shipping_min_price) && !$freeShipping): ?>
-			setTimeout(() => {
+			/*setTimeout(() => {
 				onWarningAlert('Más beneficios','<?= $text_shipping_min_price ?>', 15000)
-			}, 15000)		
+			}, 15000)		*/
 	<?php endif ?>
 		var gifts = carrito.gifts || []
 		$(cart_items).each((i,e) => {
