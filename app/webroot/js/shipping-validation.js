@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    //var modal = $('#particular-modal');
+    //var modal = $('#envio_form');
     //var form = $('#particularForm');
 
-    $('#shipping').bootstrapValidator({
+    $('#envio_form').bootstrapValidator({
         message: 'Nos un valor válido para este campo',
         framework: 'bootstrap',
         excluded: ':disabled',
@@ -116,16 +116,16 @@ $(document).ready(function() {
         }
     }).on('change', '[name="data[User][birthday]"]', function(e) {
         //$("#birthday").val($(this).datepicker('getFormattedDate'));
-            //$('#particular-modal').bootstrapValidator('options.fields.data[User][birthday]');
+            //$('#envio_form').bootstrapValidator('options.fields.data[User][birthday]');
         if($("#birthday").val()!=''){
-            $("#particular-modal").data('bootstrapValidator').updateStatus('data[User][birthday]', 'VALID').validateField("data[User][birthday]");
-            $("#particular-modal").bootstrapValidator('disableSubmitButtons', false);
+            $("#envio_form").data('bootstrapValidator').updateStatus('data[User][birthday]', 'VALID').validateField("data[User][birthday]");
+            $("#envio_form").bootstrapValidator('disableSubmitButtons', false);
         }
-        //$(this).closest('#particular-modal').bootstrapValidator('revalidateField', $(this).prop('name'), true);
+        //$(this).closest('#envio_form').bootstrapValidator('revalidateField', $(this).prop('name'), true);
     }).on('success.form.bv', function(e) {
             // Prevent form submission
             e.preventDefault();
-            $("#particular-modal").bootstrapValidator('disableSubmitButtons', false);
+            $("#envio_form").bootstrapValidator('disableSubmitButtons', false);
             // Get the form instance
             var $form = $(e.target);
 
@@ -155,14 +155,14 @@ $(document).ready(function() {
                 }else{
 
                 me[0].reset();
-                me.parents('#particular-modal').modal('hide');
+                me.parents('#envio_form').modal('hide');
                 location.reload();
                }
             }, 'json');
         });
 
     $('#particularForm').submit(function(e) {
-        if($("#particular-modal").data('bootstrapValidator').isValid()){
+        if($("#envio_form").data('bootstrapValidator').isValid()){
             var me = $(this),
             data = me.serialize(),
             url = me.attr('action');
@@ -191,7 +191,7 @@ $(document).ready(function() {
                     } else {
 
                         me[0].reset();
-                        me.parents('#particular-modal').modal('hide');
+                        me.parents('#envio_form').modal('hide');
                         location.reload();
                     }
                 })

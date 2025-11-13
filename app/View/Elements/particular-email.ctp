@@ -9,8 +9,7 @@
 				</h3>
 			</div>
 			<div class="modal-body">
-					<span style="ali">Envianos tu CV a <b>sueldos@chatelet.com.ar</b></span>
-	                  
+				<span style="ali">Envianos tu CV a <b>sueldos@chatelet.com.ar</b></span>
 			</div>
 		</div>
 	</div>

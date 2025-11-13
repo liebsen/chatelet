@@ -99,7 +99,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 	            data: formData,
 	            success: function(res) {
 	            	if(res.success) {
-	            		onSuccessAlert('Success', res.message)
+	            		onSuccessAlert('Sesión iniciada', res.message)
 	                $('#responseContainer').html(res.message);
 	                setTimeout(() => {
 	                	location.href = redirect || location.href

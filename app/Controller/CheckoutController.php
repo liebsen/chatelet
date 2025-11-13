@@ -100,6 +100,18 @@ class CheckoutController extends AppController
 	}
 
 	public function envio() {
+		if ($this->request->is('post')) {
+			$data = $this->request->data;
+			CakeLog::write('debug', 'envio data:'.json_encode($data));
+
+      die(json_encode(array(
+        'success' => true, 
+        'message' => 'Test'
+      )));
+
+			return false;
+		}
+
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);

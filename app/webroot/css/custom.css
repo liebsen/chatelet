@@ -2309,8 +2309,8 @@ span.count {
   opacity: 0;
   position: absolute;
   z-index: 9;
-  top: 0.5rem;
-  left: 1.25rem;
+  top: 0.25rem;
+  right: 0;
   text-align: center;
   font-size: 0.75rem;
   color: white;

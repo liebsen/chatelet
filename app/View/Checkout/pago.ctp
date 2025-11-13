@@ -27,7 +27,7 @@ echo $this->element('checkout-params');
 	<?php echo $this->element('title-faq', array('title' => "Información de pago")) ?>
 
 	<form role="form" method="post" id="checkoutform" autocomplete="off" onkeydown="return event.key != 'Enter';" action="<?php echo $this->Html->url(array(
-				'controller' => 'carrito',
+				'controller' => 'checkout',
 				'action' => 'sale'
 			)) ?>">
 
@@ -39,7 +39,7 @@ echo $this->element('checkout-params');
 				<!--div>
 		    	<span class="text-sm">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</span>
 		    </div-->
-		    <div class="row card-row gap-05 payment_method pl-3 pr-3">
+		    <div class="row card-row payment_method pl-3 pr-3">
 		    	<label for="mercadopago" class="col-xs-12 is-clickable select-payment-option option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
 		    		<div class="d-flex justify-content-start align-items-center gap-05">
 		    			<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>

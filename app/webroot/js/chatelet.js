@@ -101,7 +101,7 @@ var askremoveCart = (e) => {
   const item = $(e).parents('.carrito-data').data('json')
   let userInput = confirm(`¿Querés borrar el producto ${item.name} del carrito?`);
   if(userInput){
-    $.get(`/carrito/remove/${item.id}`).then((res) => {
+    $.post(`/carrito/remove/${item.uid}`, {}).then((res) => {
       /* @Analytics: removeFromCart */
       fbq('track', 'RemoveFromCart')
       gtag('event', 'remove_from_cart', {
@@ -119,7 +119,6 @@ var askremoveCart = (e) => {
           }
         ]
       })
-      console.log('refersh')
       window.location.href = window.location.href
     })
   }

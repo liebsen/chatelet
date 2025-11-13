@@ -12,13 +12,23 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 // echo $this->Html->script('shipping.js?v=' . Configure::read('APP_VERSION'),array( 'inline' => false ));
 echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
+echo $this->Html->script('bootstrapValidator', array('inline' => false));
+echo $this->Html->script('shipping-validation', array('inline' => false));
 echo $this->element('checkout-params');
-
 ?>
 
 <section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 	<?php echo $this->element('title-faq', array('title' => "Método de entrega")) ?>
+	<?php echo $this->Form->create('envio_form', array(
+		'id' => 'envio_form',
+		'url' => array(
+			'controller' => 'checkout', 
+			'action' => 'envio'
+		)
+	)); ?>
+	<input type="hidden" name="redirect" value="/checkout/pago" />
 	<div class="flex-row">
 		<div class="flex-col">
 			<ul class="nav nav-tabs nav-dark">
@@ -80,7 +90,7 @@ echo $this->element('checkout-params');
 					</span>
 				</div>
 				<div class="col-md-6">
-		    	<a href="<?=Router::url('/checkout/pago',true)?>" class="btn btn-chatelet btn-pagos dark w-100">Continuar</a>
+		    	<input type="submit" class="btn btn-chatelet dark w-100" value="Continuar" />
 					<!--a class="btn btn-continue-shopping btn-chatelet w-100" href="/tienda">Seguir comprando</a-->
 				</div>
 			</div>
@@ -90,26 +100,60 @@ echo $this->element('checkout-params');
 			<?php echo $this->element('resume', array('show_list' => true)) ?>
 		</div>
 	</div>
+	<?php echo $this->Form->end(); ?>	
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&sensor=true&language=es"></script>
 
 <script type="text/javascript">
 
-function initMap(cart) {
-	$('.store').text(cart.store)
-	$('.store-address').text(cart.store_address)
+	function initMap(cart) {
+		$('.store').text(cart.store)
+		$('.store-address').text(cart.store_address)
 
-  var latlng = new google.maps.LatLng(cart.store_lat, cart.store_lng);  
-  var myOptions = {
-    zoom: 15,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
+	  var latlng = new google.maps.LatLng(cart.store_lat, cart.store_lng);  
+	  var myOptions = {
+	    zoom: 15,
+	    center: latlng,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	  };
 
-  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  var marker = new google.maps.Marker({position:latlng,map:map,title:cart.store + ' ' + cart.store_address});
-}
+	  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	  var marker = new google.maps.Marker({position:latlng,map:map,title:cart.store + ' ' + cart.store_address});
+	}
+
+	$(document).ready(function() {
+    $('#envio_form').on('submit', function(event) {
+        event.preventDefault();
+        const formData = $(this).serialize();
+        const btnSubmit = $(this).find('[type="submit"]');
+        const redirect = $(this).find('[name="redirect"]').val();
+        btnSubmit.prop('disabled', true)
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: formData,
+            success: function(res) {
+            	if(res.success) {
+            		// onSuccessAlert('Success', res.message)
+                $('#responseContainer').html(res.message);
+                setTimeout(() => {
+                	location.href = redirect || location.href
+                }, 3000)
+            	} else {
+            		onWarningAlert('Error al registrar usuario', res.errors)
+            		$('#responseContainer').html(res.errors);
+            	}
+            	btnSubmit.prop('disabled', false)
+            },
+            error: function(xhr, status, error) {
+              console.error("AJAX Error: " + status + " - " + error);
+              btnSubmit.prop('disabled', false)
+              // Handle errors
+            }
+        });
+    });
+  })
 
 </script>
 

@@ -86,6 +86,18 @@ function pideStock(obj){
 $(document).ready(function() {
 	//Stock
 
+
+	$('.color-options .btn').click(function(event) {
+		console.log('color listen')
+		pideStock(this)
+	});
+
+	$('.size-options .btn').click(function(event) {
+		console.log('size listen')
+		pideStock(this)
+	});
+
+
 	$(".agregar-carro").click(function(e) {
 		e.preventDefault()
 		const target = $(e.target)
@@ -139,22 +151,14 @@ $(document).ready(function() {
 
 	/* autoselect if one option */
 	if($('.color-option').length > 0) {
+		console.log('color first trigger click')
 		$('.color-option').first().click()
 	}
 
 	if($('.size-option').length > 0) {
+		console.log('size first trigger click')
 		$('.size-option').first().click()
 	}	
-
-	$('.color-options .btn').click(function(event) {
-		console.log('color click')
-		pideStock(this)
-	});
-
-	$('.size-options .btn').click(function(event) {
-		console.log('size click')
-		pideStock(this)
-	});
 
 
 	/*if(itemData) {

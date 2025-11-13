@@ -24,14 +24,19 @@ function showDivs(n) {
      dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
   }
   x[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " w3-opacity-off";
+  if(dots[slideIndex-1]) {
+    dots[slideIndex-1].className += " w3-opacity-off";
+  }
 }
 //$(".mySlides").elevateZoom();
 //CloudZoom.quickStart();
 
 $(function(){
   $("label.loadColorImages").on('click', function(e){
-    var images = $(this).data('images').split(';');
+    var images = []
+    if ($(this).data('images')) {
+      images = $(this).data('images').split(';');
+    }
     var moreviews = '';
     var surround = '';
     var p =0;

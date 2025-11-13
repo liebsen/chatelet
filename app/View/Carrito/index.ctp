@@ -11,7 +11,9 @@
 ?>
 
 <section id="main" class="container animated fadeIn delay">
+	<?php if (!empty($cart)) : ?>
 	<?php echo $this->element('title-faq', array('title' => "Carrito")) ?>
+	<?php endif ?>
 	<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
 	<!--div class="col-md-12 shipping-price-min-alert animated fadeIn">
 		<div class="shipping-price-min-text">
@@ -21,7 +23,7 @@
 	<?php endif ?>
 	<div class="flex-row">
 		<!--h3 id="heading" style="margin:10px 0px">Carrito de compras</h3-->
-		<?php if (isset($cart) && !empty($cart)) :?>			
+		<?php if (!empty($cart)) :?>			
 		<?php
 			echo '<input type="hidden" id="loggedIn" value="'. (string) $loggedIn .'" />';
 			echo '<input type="hidden" id="checkout" value="'. $this->Html->url(array('controller' => 'carrito', 'action' => 'envio')) .'" />'
@@ -117,7 +119,7 @@
 				//echo '<div class="ch-row is-clickable" product_row>';
 				echo '<tr class="carrito-data" data-json=\''.json_encode($product).'\' product_row>';
 				echo '<td class="pl-0">';
-				echo "<div class='d-flex justify-content-start align-items-center gap-1'><div class='cart-img'>";
+				echo "<div class='d-flex justify-content-start align-items-start gap-1'><div class='cart-img'>";
 				if (!empty($product['number_ribbon'])) {
 					echo '<div class="ribbon small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
 				}

@@ -26,7 +26,7 @@ class UsersController extends AppController {
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
         $this->Session->setFlash(
-          'Bienvenido a Châtelet', 
+          "Bienvenido {$this->Auth->user('name')} a Châtelet", 
           'default', 
           array('class' => 'hidden notice')
         );
@@ -34,7 +34,7 @@ class UsersController extends AppController {
         if(!empty($ajax)) {
           die(json_encode(array(
             'success' => true, 
-            'message' => 'Bienvenido a Châtelet'
+            'message' => "Bienvenido {$this->Auth->user('name')} a Châtelet"
           )));
         }
 
