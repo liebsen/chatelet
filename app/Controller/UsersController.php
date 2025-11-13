@@ -144,12 +144,13 @@ class UsersController extends AppController {
     $ajax = $this->request->data['ajax'];
     $validate = empty($invite);
 
-    if(!empty($invite)) {
+    if(!empty($invite) && empty($data['User']['password'])) {
+      CakeLog::write('debug', 'New password generated');
       $data['User']['password'] = $this->random_password();
     }
 
-    CakeLog::write('debug', 'validate:'.$validate);
-    CakeLog::write('debug', 'data:'.json_encode($data));
+    // CakeLog::write('debug', 'validate:'.$validate);
+    // CakeLog::write('debug', 'new user data:'.json_encode($data));
     
     $saved = $this->User->save(
       $data, 

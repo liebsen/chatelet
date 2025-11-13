@@ -4,21 +4,9 @@ class AyudaController extends AppController {
 	public $components = array("OCA");
 
 	public function beforeFilter() {
-    	parent::beforeFilter();
-    	$this->loadModel('Setting');
-		$setting 			 = $this->Setting->findById('catalog_flap');
-		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
-		$this->set('catalog_flap',$catalog_flap);
-		unset($setting);
-
-	  	
-    	$setting 			= $this->Setting->findById('catalog_first_line');
-		$catalog_first_line = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
-		$this->set('catalog_first_line',$catalog_first_line);
-		unset($setting);
-
-		$lookbook = $this->LookBook->find('all');
-		$this->set('lookBook', $lookbook);
+    parent::beforeFilter();
+		// $lookbook = $this->LookBook->find('all');
+		// $this->set('lookBook', $lookbook);
 	}
 	
 

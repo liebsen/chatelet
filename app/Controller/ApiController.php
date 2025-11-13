@@ -22,33 +22,28 @@ class ApiController extends AppController {
 		return json_encode($stores);
 	}
 
-
 	//get , http://www.chatelet.com.ar/api/subscriptions
-    public function subscriptions(){
-          
+  public function subscriptions(){
     $this->loadModel('Subscriptions'); 
     $result = array();
     if (!empty($this->request->is('get'))) {
-        $Subscriptions = $this->Subscriptions->find('all',array('order'=>array('Subscriptions.id DESC')));
-  
-        if(!empty($Subscriptions)){  
+      $Subscriptions = $this->Subscriptions->find('all',array('order'=>array('Subscriptions.id DESC')));
 
-         foreach($Subscriptions as &$item){
-            
-          
-               
-                $result[] = $item['Subscriptions']; 
-            
-         }
-          header('200, SUBSCRIPTIONS_UNSUCCESSFUL');
-          return(json_encode($result));   
-         }else {
-
-         header('409, SUBSCRIPTIONS_UNSUCCESSFUL');
-          die(json_encode(array("detail"=>"Subscriptions queried unsuccessfully",
-                                "code"=>"SUBSCRIPTIONS_UNSUCCESSFUL")));  
+      if(!empty($Subscriptions)){  
+        foreach($Subscriptions as &$item){
+          $result[] = $item['Subscriptions'];
         }
-     }
+
+        header('200, SUBSCRIPTIONS_UNSUCCESSFUL');
+        return(json_encode($result));   
+      } else {
+        header('409, SUBSCRIPTIONS_UNSUCCESSFUL');
+        die(json_encode(array(
+          "detail"=>"Subscriptions queried unsuccessfully",
+          "code"=>"SUBSCRIPTIONS_UNSUCCESSFUL"
+        )));  
+      }
     }
+  }
 }
 ?>
