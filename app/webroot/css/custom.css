@@ -798,7 +798,6 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   display: flex;
   flex-wrap: nowrap;
   grid-gap: 0.5rem;
-  justify-content: center;
   align-items: center;  
   flex-direction: row;
 }
@@ -2069,7 +2068,6 @@ span.out{
 
 .text-legend {
   display: flex;
-  justify-content: center;
   align-items: center;
   grid-gap: 0.25rem;
   white-space: nowrap;
