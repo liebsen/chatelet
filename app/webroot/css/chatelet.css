@@ -812,6 +812,7 @@ a.btn {
 	height: 50px;
 	border-radius: 5px;
 	font-size: 1rem;
+	border-bottom-width: 2px;
 }
 
 textarea.form-control{
@@ -1616,6 +1617,12 @@ span.validation-password {
 	padding: 0;
 }
 @media screen and (min-width: 769px) {
+  .pr-2-d {
+    padding: 1rem;
+  }	
+	.pr-0-d {
+	  padding-right: 0!important;
+	}  
 	.card-variant {
 	  background-color: #f8f8f8!important;
 	}

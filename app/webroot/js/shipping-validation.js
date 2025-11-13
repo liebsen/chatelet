@@ -2,7 +2,7 @@ $(document).ready(function() {
     //var modal = $('#particular-modal');
     //var form = $('#particularForm');
 
-    $('#particular-modal').bootstrapValidator({
+    $('#shipping').bootstrapValidator({
         message: 'Nos un valor válido para este campo',
         framework: 'bootstrap',
         excluded: ':disabled',
@@ -55,7 +55,14 @@ $(document).ready(function() {
                         message: 'El campo cumpleaños es requerido y no puede estar vacio'
                     }
                 }
-            }
+            },
+            'data[User][dni]': {
+                validators: {
+                    notEmpty: {
+                        message: 'El campo dni es requerido y no puede estar vacio'
+                    }
+                }
+            },
             /*'data[User][gender]': {
                 validators: {
                     notEmpty: {
@@ -63,13 +70,7 @@ $(document).ready(function() {
                     }
                 }
             },*/
-            /*'data[User][dni]': {
-                validators: {
-                    notEmpty: {
-                        message: 'El campo dni es requerido y no puede estar vacio'
-                    }
-                }
-            },
+            /*
             'data[User][telephone]': {
                 validators: {
                     notEmpty: {

@@ -366,9 +366,6 @@ body.top-fixed .navbar-chatelet .fa {
   .box.img-bg {
     min-height: 22rem;
   }
-  .pr-2-d {
-    padding: 1rem;
-  }
   .navbar-nav { 
     flex-direction: row;
   }

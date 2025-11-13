@@ -25,7 +25,6 @@ echo $this->element('checkout-params');
 			   <li class="active"><a href="#envio" data-toggle="tab">Envío a domicilio</a></li>
 			   <li><a href="#retiro" data-toggle="tab">Retiro en local GRATIS</a></li>
 			</ul>
-
 			<div class="tab-content">
 			  <div class="tab-pane active" id="envio">
 			  	<p class="mt-2 text-sm text-muted">
