@@ -5,7 +5,7 @@
       </span>
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
-          <h4 class="text-uppercase">Estemos <strong>conectad@s</strong></h4>
+          <h4 class="text-uppercase">Estemos <strong>conectadas</strong></h4>
           <p>Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
         </span>
         <span>
@@ -22,7 +22,7 @@
       </div>    
       <div class="subscribe-success max-25 m-auto d-none">
         <span class="subscribe-text text-center">
-          <h4 class="text-uppercase">¡Ya estamos <strong>conectad@s</strong>!</h4>
+          <h4 class="text-uppercase">¡Ya estamos <strong>conectadas</strong>!</h4>
           <p>A partir de ahora ya formas parte de nuestra comunidad y te enviaremos información exclusiva de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
           <div class="is-flex-center gap-1">
             <a class="text-link" data-toggle="click" data-hide=".subscribe-box">Cerrar esta ventana</a>
@@ -43,7 +43,7 @@
     </div>
   </section>
   
-  <div class="suscribe-unrelease is-clickable d-none" onclick="suscribe_unrelease()" title="Estemos conectad@s"><i class="fa fa-envelope-o text-muted"></i></div>
+  <div class="suscribe-unrelease is-clickable d-none" onclick="suscribe_unrelease()" title="Estemos conectadas"><i class="fa fa-envelope-o text-muted"></i></div>
   <style>
     .subscribe-box { 
       position: fixed;
@@ -61,6 +61,7 @@
     @media(min-width: 768px) {
       .subscribe-box { 
         min-width: 30rem;
+        right: auto;
       }
     }
 

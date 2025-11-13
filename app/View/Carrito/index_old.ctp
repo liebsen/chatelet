@@ -80,7 +80,7 @@
 		          $number_disc = (int)@$product['discount_label_show'];
 		        }
 
-		        // $discount_flag = (@$product['category_id']!='134' && !empty($number_disc))?'<div class="ribbon bottom-left small"><span>'.$number_disc.'% OFF</span></div>':'';
+		        // $discount_flag = (@$product['category_id']!='134' && !empty($number_disc))?'<div class="ribbon small"><span>'.$number_disc.'% OFF</span></div>':'';
 
 						$item_url = $this->Html->url(array(
               'controller' => 'shop',
@@ -118,7 +118,7 @@
 
 						echo "<div class='is-flex-center'><div class='cart-img'>";
 						if (!empty($product['number_ribbon'])) {
-							echo '<div class="ribbon bottom-left small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
+							echo '<div class="ribbon small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
 						}
 						if (empty($product['price'])) {
 							$promosaved+= (float) $product['old_price'];

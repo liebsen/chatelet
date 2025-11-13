@@ -75,7 +75,7 @@
                <div class="col-sm-6 col-md-4 col-lg-3 p-1">
                   <a href="<?php echo $url ?>" >
                       <?php if (!empty(intval($product['discount_label_show']))) :?>
-                          <div class="ribbon bottom-left small"><span><?= $product['discount_label_show'] ?>% OFF</span></div>
+                          <div class="ribbon small"><span><?= $product['discount_label_show'] ?>% OFF</span></div>
                       <?php endif ?>
                       <?php if ($product['promo'] !== '') :?>
                           <div class="ribbon"><span><?= $product['promo'] ?></span></div>

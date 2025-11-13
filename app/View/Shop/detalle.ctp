@@ -312,7 +312,7 @@ foreach ($properties as $property) {
                      <div class="col-sm-6 col-md-4 col-lg-3 p-1">
                         <a href="<?php echo $url ?>" >
                             <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
-                                <div class="ribbon bottom-left small"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
+                                <div class="ribbon small"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
                             <?php endif ?>
                             <?php if ($alt_product['promo'] !== '') :?>
                                 <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>

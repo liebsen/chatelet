@@ -9,7 +9,7 @@
     <div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative w-100' data-json='<?php echo json_encode($product) ?>'>
       <div class='cart-img'>
       <?php if (!empty($product['number_ribbon'])) :?>
-        <div class="ribbon bottom-left small">
+        <div class="ribbon small">
           <span><?php echo $product['number_ribbon'] ?>% OFF</span>
         </div>
       <?php endif ?>
