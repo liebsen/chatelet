@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    //var modal = $('#particular-modal');
+    //var modal = $('#particularForm');
     //var form = $('#particularForm');
 
-    $('#particular-modal').bootstrapValidator({
+    $('#particularForm').bootstrapValidator({
         message: 'Nos un valor válido para este campo',
         framework: 'bootstrap',
         excluded: ':disabled',
@@ -115,16 +115,16 @@ $(document).ready(function() {
         }
     }).on('change', '[name="data[User][birthday]"]', function(e) {
         //$("#birthday").val($(this).datepicker('getFormattedDate'));
-            //$('#particular-modal').bootstrapValidator('options.fields.data[User][birthday]');
+            //$('#particularForm').bootstrapValidator('options.fields.data[User][birthday]');
         if($("#birthday").val()!=''){
-            $("#particular-modal").data('bootstrapValidator').updateStatus('data[User][birthday]', 'VALID').validateField("data[User][birthday]");
-            $("#particular-modal").bootstrapValidator('disableSubmitButtons', false);
+            $("#particularForm").data('bootstrapValidator').updateStatus('data[User][birthday]', 'VALID').validateField("data[User][birthday]");
+            $("#particularForm").bootstrapValidator('disableSubmitButtons', false);
         }
-        //$(this).closest('#particular-modal').bootstrapValidator('revalidateField', $(this).prop('name'), true);
+        //$(this).closest('#particularForm').bootstrapValidator('revalidateField', $(this).prop('name'), true);
     }).on('success.form.bv', function(e) {
             // Prevent form submission
             e.preventDefault();
-            $("#particular-modal").bootstrapValidator('disableSubmitButtons', false);
+            $("#particularForm").bootstrapValidator('disableSubmitButtons', false);
             // Get the form instance
             var $form = $(e.target);
 
@@ -154,14 +154,14 @@ $(document).ready(function() {
                 }else{
 
                 me[0].reset();
-                me.parents('#particular-modal').modal('hide');
+                me.parents('#particularForm').modal('hide');
                 location.reload();
                }
             }, 'json');
         });
 
     $('#particularForm').submit(function(e) {
-        if($("#particular-modal").data('bootstrapValidator').isValid()){
+        if($("#particularForm").data('bootstrapValidator').isValid()){
             var me = $(this),
             data = me.serialize(),
             url = me.attr('action');
@@ -190,7 +190,7 @@ $(document).ready(function() {
                     } else {
 
                         me[0].reset();
-                        me.parents('#particular-modal').modal('hide');
+                        me.parents('#particularForm').modal('hide');
                         location.reload();
                     }
                 })
@@ -206,81 +206,5 @@ $(document).ready(function() {
         }
         
     });
-    /*if(document.querySelector("#CatalogForgotPasswordForm")!=null){
-        $('#CatalogForgotPasswordForm').bootstrapValidator({
-            message: 'This value is not valid',
-            framework: 'bootstrap',
-            excluded: ':disabled',
-            submitButtons: 'input[type="submit"]',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                'data[User][email]': {
-                    validators: {
-                        notEmpty: {
-                            message: 'El campo email es requerido y no puede estar vacio'
-                        },
-                        emailAddress: {
-                            message: 'No se ingreso una direccion de email valida'
-                        }
-                    }
-                }
-            }
-        });
-    }*/
-    if(document.querySelector("#CatalogForgotPasswordForm")!=null){
-        $("#CatalogForgotPasswordForm").submit(function(e) {
-            if($("#CatalogForgotPasswordForm").find('#login-email').val()==''){
-                return false;
-            }
-        });
-    }
-    if(document.querySelector("#HomeForgotPasswordForm")!=null){
-        $("#HomeForgotPasswordForm").submit(function(e) {
-            if($("#HomeForgotPasswordForm").find('#login-email').val()==''){
-                return false;
-            }
-        });
-    }
-    if(document.querySelector("#ProductForgotPasswordForm")!=null){
-        $("#ProductForgotPasswordForm").submit(function(e) {
-            if($("#ProductForgotPasswordForm").find('#login-email').val()==''){
-                return false;
-            }
-        });
-    }
-    if(document.querySelector("#StoreForgotPasswordForm")!=null){
-        $("#StoreForgotPasswordForm").submit(function(e) {
-            if($("#StoreForgotPasswordForm").find('#login-email').val()==''){
-                return false;
-            }
-        });
-    }
-    $("#login").on('click', function(event){
-        event.preventDefault();
-        if(document.querySelector("#ProductLoginForm")!=null){
-            $("#ProductLoginForm").submit();
-        }
-        if(document.querySelector("#HomeLoginForm")!=null){
-            $("#HomeLoginForm").submit();
-        }
-        if(document.querySelector("#CatalogLoginForm")!=null){
-            $("#CatalogLoginForm").submit();
-        }
-        if(document.querySelector("#StoreLoginForm")!=null){
-            $("#StoreLoginForm").submit();
-        }
-        if(document.querySelector("#ContactLoginForm")!=null){
-            $("#ContactLoginForm").submit();
-        }
-        if(document.querySelector("#CategoryLoginForm")!=null){
-            $("#CategoryLoginForm").submit();
-        }
-        if(document.querySelector("#loginForm")!=null){
-            $("#loginForm").submit();
-        }
-    });
+    $("#particularForm").bootstrapValidator('validate');
 });

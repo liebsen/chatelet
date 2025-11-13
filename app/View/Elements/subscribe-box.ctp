@@ -97,13 +97,11 @@
 
     $(document).ready(function() {
       if(!localStorage.getItem('subscription_release') || localStorage.getItem('subscription_release') == 'undefined') {
-        console.log('subscription_show')
         setTimeout(() => {
           $('.subscribe-box').fadeIn('slow')
         }, 5000)
       } else {
         setTimeout(() => {
-          console.log('subscription_release')
           $('.suscribe-unrelease').fadeIn('slow')
         }, 5000)        
       }

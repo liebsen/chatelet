@@ -11,11 +11,9 @@ echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline'
 echo $this->Html->script('bootstrapValidator', array('inline' => false));
 echo $this->Html->script('particular-validation', array('inline' => false));
 
-$this->set('short_header', 'Crear mi cuenta');
-$this->set('short_header_text', '← Volver a la tienda');
-$this->set('short_header_link', '/shop');
-$this->set('short_header_classname', 'btn_continue_shopping');
-
+$this->set('short_header', $loggedIn ? 'Editar mi cuenta' : 'Crear mi cuenta');
+$this->set('short_header_text', '← Volver a mi cuenta');
+$this->set('short_header_link', '/shop/cuenta');
 
 if (!$loggedIn) {
 	$user = array(
@@ -44,11 +42,16 @@ if (!$loggedIn) {
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1">
 		<div class="flex-row animated fadeIn">
 			<div class="flex-col">
-						<h5 class="text-uppercase">Crear mi cuenta</h5>
-						<p>
-							Ingresa tus datos personales para crear una cuenta.
-						</p>
-
+				<h5 class="text-uppercase">
+				<?php if ($loggedIn) : ?>
+					Editar mi cuenta
+				<?php else :?>
+					Crear mi cuenta
+				<?php endif ?>
+				</h5>
+				<p>
+					Ingresa tus datos personales para crear una cuenta.
+				</p>
 				<div class="d-flex flex-column justify-content-start align-items-center gap-1 content">
 					<?php 
 						echo $this->Form->create(null, array(
@@ -62,8 +65,8 @@ if (!$loggedIn) {
 						}
 					?>
 					<div class="row">
-						<div class="col-md-4 col-sm-6">
-							<!--label class="ml-1" for="email">Email</label-->
+						<div class="col-md-6 pr-0-d">
+							<label class="ml-1" for="email">Email</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="email" class="form-control" placeholder="Email" title="Email" name="data[User][email]" value="'. $user['email'] .'" />';
@@ -71,33 +74,33 @@ if (!$loggedIn) {
 							</div>
 							<span class="validation-email"></span>
 						</div>
-						<div class="col-md-4 col-sm-6">
-							<!--label class="ml-1" for="password">Contraseña</label-->
+						<div class="col-md-6">
+							<label class="ml-1" for="password">Contraseña</label>
 							<div class="form-group">
 								<input type="password" placeholder="Contraseña" title="Contraseña" class="form-control" name="data[User][password]" autocomplete="current-password" />
 							</div>
 							<span class="validation-password"></span>
 						</div>
-						<div class="col-md-4 col-sm-6">
-							<!--label class="ml-1" for="nombre">Nombre</label-->
+						<div class="col-md-6 pr-0-d">
+							<label class="ml-1" for="nombre">Nombre</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" class="form-control" placeholder="Nombre" title="Nombre" name="data[User][name]" value="'. $user['name'] .'" />';
 								?>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6">
-							<!--label class="ml-1" for="apellido">Apellido</label-->
+						<div class="col-md-6">
+							<label class="ml-1" for="apellido">Apellido</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" class="form-control" placeholder="Apellidos" title="Apellidos" name="data[User][surname]" value="'. $user['surname'] .'" />';
 								?>
 							</div>
 						</div>
-
 				<?php if($loggedIn):?>
-						<div class="col-md-4 col-sm-6">
+						<div class="col-md-6 pr-0-d">
 							<div class="form-group">
+								<label class="ml-1" for="ciudad">Tu fecha de nacimiento</label>
 								<?php
 									echo '<input type="text" class="datepicker form-control" placeholder="Fecha de Nacimiento" title="Fecha de Nacimiento" name="data[User][birthday]" value="'. 
 											$this->Time->format($user['birthday'], '%d/%m/%Y')
@@ -105,67 +108,69 @@ if (!$loggedIn) {
 								?>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6">			
-							<?php
-								$male = $female = '';
-								if ($user['gender'] == 'M') $male = 'selected';
-								else if ($user['gender'] == 'F') $female = 'selected';
-								echo '<div class="form-group">';
-									echo '<select class="selectpicker form-control" title="Sexo" name="data[User][gender]">';
-										echo '<option value="">Selecione sexo</option>';
-										echo '<option value="M" '.$male.'>Masculino</option>';
-										echo '<option value="F" '.$female.'>Femenino</option>';
-									echo '</select>';
-								echo '</div>';
-							?>
-						</div>
-						<div class="col-md-4 col-sm-6">
+						<div class="col-md-6">								
 							<div class="form-group">
+								<label class="ml-1" for="Sexo">Tu género</label>			
+								<select class="selectpicker form-control" id="Sexo" title="Sexo" name="data[User][gender]">
+									<option value="">Selecione sexo</option>
+									<option value="M"<?php echo $user['gender'] == 'M' ? ' selected' : '' ?>>Masculino</option>
+									<option value="F"<?php echo $user['gender'] == 'F' ? ' selected' : '' ?>>Femenino</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6 pr-0-d">
+							<div class="form-group">
+								<label class="ml-1" for="DNI">DNI</label>
 								<?php
-									echo '<input type="text" class="form-control" title="DNI" placeholder="DNI" name="data[User][dni]" value="'. $user['dni'] .'" />';
+									echo '<input type="text" class="form-control" id="DNI" title="DNI" placeholder="DNI" name="data[User][dni]" value="'. $user['dni'] .'" />';
 								?>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6">
+						<div class="col-md-6">
 							<div class="form-group">
+								<label class="ml-1" for="Telefono">Teléfono</label>			
 								<?php
-									echo '<input type="tel" class="form-control" title="Telefono" placeholder="Teléfono" name="data[User][telephone]" value="'. $user['telephone'] .'" />';
+									echo '<input type="tel" class="form-control" id="Telefono" title="Telefono" placeholder="Teléfono" name="data[User][telephone]" value="'. $user['telephone'] .'" />';
 								?>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6">
+						<div class="col-md-6 pr-0-d">
 							<div class="form-group">
+								<label class="ml-1" for="TelefonoAlt">Teléfono Alt.</label>
 								<?php
-									echo '<input type="tel" class="form-control" placeholder="Teléfono Alt." title="Teléfono Alt." name="data[User][another_telephone]" value="'. $user['another_telephone'] .'" />';
+									echo '<input type="tel" class="form-control" id="TelefonoAlt" placeholder="Teléfono Alt." title="Teléfono Alt." name="data[User][another_telephone]" value="'. $user['another_telephone'] .'" />';
 								?>
 							</div>
 						</div>				
-						<div class="col-md-4 col-sm-6">
-							<div class="form-group d-flex">
-								<input style="" type="text" class="form-control" placeholder="Calle" title="Calle" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="ml-1" for="Calle">Calle</label>
+								<input style="" type="text" class="form-control" id="Calle" placeholder="Calle" title="Calle" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6">
-							<div class="form-group d-flex">
-								<input min="0" class="form-control" placeholder="Nro." title="Nro." name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
+						<div class="col-md-6 pr-0-d">
+							<div class="form-group">
+								<label class="ml-1" for="Nro">Nro.</label>
+								<input min="0" class="form-control" placeholder="Nro." id="Nro" title="Nro." name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
 							</div>
 						</div>	
-						<div class="col-md-4 col-sm-6">
+						<div class="col-md-6">
 							<div class="form-group">
-								<input style="" min="0" id="floor" class="form-control" title="Piso" placeholder="Piso" name="data[User][floor]" type="number" value="<?= $user['floor'] ?>"/>
+								<label class="ml-1" for="Piso">Piso</label>
+								<input style="" min="0" id="floor" class="form-control" id="Piso" title="Piso" placeholder="Piso" name="data[User][floor]" type="number" value="<?= $user['floor'] ?>"/>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6">
+						<div class="col-md-6 pr-0-d">
 							<div class="form-group">
-								<input class="form-control" placeholder="Departamento" title="Departamento" name="data[User][depto]" type="text" value="<?= $user['depto'] ?>"/>
+								<label class="ml-1" for="Depto">Depto.</label>
+								<input class="form-control" placeholder="Departamento" id="Depto" title="Departamento" name="data[User][depto]" type="text" value="<?= $user['depto'] ?>"/>
 							</div>
 						</div>
 
-						<div class="col-md-4 col-sm-6">
-						
-							<!--label class="ml-1" for="provincia">Provincia</label-->
+						<div class="col-md-6">
 							<div class="form-group">
-								<select id="provincia" class="selectpicker form-control" title="Provincia" name="data[User][province]">
+								<label class="ml-1" for="Provincia">Provincia</label>
+								<select id="provincia" class="selectpicker form-control" id="Provincia" title="Provincia" name="data[User][province]">
 									<?php
 										if (empty($user['province'])) {
 											echo '<option value="">Seleccionar provincia</option>';
@@ -201,35 +206,32 @@ if (!$loggedIn) {
 								</select>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6">
-					
-							<!--label class="ml-1" for="ciudad">Ciudad</label-->
+						<div class="col-md-6 pr-0-d">
+							<label class="ml-1" for="ciudad">Ciudad</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" id="ciudad" class="form-control" placeholder="Localidad" title="Localidad" name="data[User][city]" value="'. $user['city'] .'" />';
 								?>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6">
-						
-							<!--label class="ml-1" for="barrio">Barrio</label-->
+						<div class="col-md-6">
+							<label class="ml-1" for="barrio">Barrio</label>
 							<div class="form-group">
 								<?php
 									 echo '<input type="text" id="barrio" class="form-control" placeholder="Barrio" title="Barrio" name="data[User][neighborhood]" value="'. $user['neighborhood'] .'" />';
 								?>
 							</div>
 						</div>
-
 				<?php endif ?>
-						<div class="col-md-4 col-sm-6">
-							<!--label class="ml-1" for="codigo-postal">Código Postal</label-->
+						<div class="col-md-6 pr-0-d">
+							<label class="ml-1" for="codigo-postal">Código Postal</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" id="codigo-postal" placeholder="Código Postal" title="Código Postal" class="form-control" name="data[User][postal_address]" value="'. $user['postal_address'] .'" />';
 								?>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6">
+						<div class="col-md-6">
 							<label>Newsletter</label>
 							<div class="form-group justify-content-center align-items-center p-3">
 								<?php
@@ -258,13 +260,18 @@ if (!$loggedIn) {
 			<div class="flex-col max-22 desktop">
 				<div class="d-flex flex-column justify-content-center align-items-start gap-05">
 					<h3>
-						<?php
-							if ($loggedIn) echo 'Tus datos en Châtelet';
-							else echo 'Crea tu cuenta en Châtelet';
-						?>
+						<?php if ($loggedIn) : ?>
+							Tus datos en Châtelet
+						<?php else :?>
+							Crea tu cuenta en Châtelet
+						<?php endif ?>
 					</h3>
 					<p>
-						Crea hoy tu cuenta en <i>Châtelet</i> y accede a mas beneficios.
+						<?php if ($loggedIn) : ?>
+							Tu cuenta fue registrada en <?php echo $user['created'] ?>
+						<?php else :?>
+							Crea hoy tu cuenta en <i>Châtelet</i> y accede a mas beneficios.
+						<?php endif ?>
 					</p>
 				</div>	
 			</div>
