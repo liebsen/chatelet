@@ -180,8 +180,8 @@ foreach ($properties as $property) {
         <?php if (!$isGiftCard): ?>
             <!--h2>Color</h2-->
             <div class="animated fadeIn delay1">
-              <div class="article-tools">
-                  <div class="field overflow-x-auto">
+              <div class="article-tools pt-4">
+                  <div class="overflow-x-auto">
                      <div class="color-options d-flex justify-content-start align-items-start gap-1" data-toggle="buttons">
                           <?php
                               $show_names_only = true;
