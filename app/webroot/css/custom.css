@@ -1932,8 +1932,8 @@ span.out{
 }
 
 .mySlides {
-  min-height: 40.75rem;
-  max-height: 40.75rem;
+  /*min-height: 40.75rem;
+  max-height: 40.75rem;*/
   margin: auto;  
 }
 

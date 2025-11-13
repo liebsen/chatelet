@@ -74,16 +74,15 @@ foreach ($properties as $property) {
           <?php if ($product['promo'] !== '') :?>
               <div class="ribbon large"><span><?= $product['promo'] ?></span></div>
           <?php endif ?>
-           <?php if (!empty($colorImages[0]['images'] )): ?>
-
+          <?php if (!empty($colorImages[0]['images'] )): ?>
           <?php foreach ($colorImages[0]['images'] as $k => $v) : ?>
-              <?php if(!empty($v)): ?>
-              <div id="surround">
-                  <img class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?=Configure::read('uploadUrl').$v?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
-              </div>
-              <?php endif;?>
-            <?php endforeach ?>
-              <?php endif;?>
+            <?php if(!empty($v)): ?>
+            <div id="surround">
+              <img class="mySlides cloudzoom img-responsive" id="mySlides zoom1" style="" src="<?=Configure::read('uploadUrl').$v?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
+            </div>
+            <?php endif;?>
+          <?php endforeach ?>
+          <?php endif;?>
         </div>
       </div>
     <?php else:?>

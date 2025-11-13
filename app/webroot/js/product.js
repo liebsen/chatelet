@@ -1,6 +1,6 @@
 var max_count = 5
 var itemData = itemData || {}	
-
+var timeout = 0
 function addCount() {
 	var value = parseInt($('.has-item-counter.active .product-count').val()) + 1
 	if (value > max_count) max_count = 5
@@ -23,41 +23,10 @@ function checkCount(value) {
 	}
 }
 
-function addCart2(data, button, text) {
-	$(button).addClass('adding')
-	$(button).text(text || 'Agregando...')
-	const price = $('.price').text()
-	const name = $('.product').text()
-	window.dataLayer = window.dataLayer || []
-	//fbq('track', 'AddToCart')
-	fbq('track', 'AddToCart', {contents: [{id: data.id, quantity: data.count}], value: price, currency: 'ARS'});
-	/* @Analytics: addToCart */
-	gtag('event', 'add_to_cart', {
-	  "items": [
-	    {
-	      "id": data.id,
-	      "name": name,
-	      // "list_name": "Search Results",
-	      // "brand": "Google",
-	      // "category": "Apparel/T-Shirts",
-	      "variant": data.alias,
-	      "list_position": 1,
-	      "quantity": data.count,
-	      "price": price
-	    }
-	  ]
-	})
-					
-	let str = ''
-	for(var i in data) {
-		str+=`<input type='hidden' name='${i}' value='${data[i]}'>`
-	}
-	const form = `<form method='post' action='/carrito/add'>${str}</form>`
-	$(form).appendTo('body').submit();
-}
-
 function pideStock(obj){
-		// console.log('changed');
+	clearTimeout(timeout)
+	timeout = setTimeout(() => {
+		console.log('pideStock');
 		$(".add.agregar-carro").text('Agregar al carrito')
 
 		var url 		= $(obj).closest("form").data('url');
@@ -71,14 +40,16 @@ function pideStock(obj){
 		var missing 	= '<i> (Elegí color y talle) </i>';
 		var no_color	= '<i> (Elegí color) <i>';
 	  var stock_v  	= '<i style="color:gray;">Consultando ... </i>';
-
+	  console.log({color_code, size_number})
 		if(!color_code){
 			// onWarningAlert(`Talle seleccionado`,`Seleccionaste talle ${size_number}, ahora elegí un color para este producto`)
+			console.log('a(1)')
 			stock_cont.html(no_color);
 			return false;
 		}
 
 		if(!size_number){
+			console.log('a(2)')
 			// onWarningAlert(`Color seleccionado`,`Seleccionaste color ${color_alias}, ahora elegí un talle para tu prenda`)
 			return false;
 		}
@@ -108,25 +79,12 @@ function pideStock(obj){
 		}else{
 			stock_cont.html(missing);
 		}
+	}, 500)
 }
 
 
 $(document).ready(function() {
 	//Stock
-
-	let interval = 0 
-	console.log('color options', $('.color-options .btn').length)
-	$('.color-options .btn').click(function(event) {
-		console.log('color click')
-		interval = setTimeout(function(){
-			pideStock(this)
-		},500)
-	});
-
-	$('.size-options .btn').click(function(event) {
-		console.log('size click')
-		pideStock(this)
-	});
 
 	$(".agregar-carro").click(function(e) {
 		e.preventDefault()
@@ -187,6 +145,17 @@ $(document).ready(function() {
 	if($('.size-option').length > 0) {
 		$('.size-option').first().click()
 	}	
+
+	$('.color-options .btn').click(function(event) {
+		console.log('color click')
+		pideStock(this)
+	});
+
+	$('.size-options .btn').click(function(event) {
+		console.log('size click')
+		pideStock(this)
+	});
+
 
 	/*if(itemData) {
 		if(itemData.mp_discount || itemData.bank_discount) {
