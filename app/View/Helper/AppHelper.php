@@ -199,7 +199,7 @@ class AppHelper extends Helper {
 
     // price
     if(!$noprice) {
-      $str = '<div class="price-list justify-content-'.($noprice ? 'start' : 'center').'">';
+      $str = '<div class="price-list justify-content-start">';
       if(!empty($old_price) && abs($old_price-$price > 1)) {
         //$str.= '<span class="old_price"> $ '.\price_format($old_price) . '</span>';
       }
@@ -222,7 +222,7 @@ class AppHelper extends Helper {
         }
         
         if($calc_price >= $min_sale && $legend['Legend']['dues'] > 1) {        
-          $dues_options[]= '<span class="text-legend justify-content-'.($noprice ? 'start' : 'center').'">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
+          $dues_options[]= '<span class="text-legend justify-content-start">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
             '<span class="text-sm">' . $legend['Legend']['dues'] . '</span>',
             $legend['Legend']['interest'],
             '<span class="price_strong"> $ ' . \price_format($price_with_interest/$legend['Legend']['dues']) . '</span>'
@@ -235,10 +235,10 @@ class AppHelper extends Helper {
     $str2 = '';
     $str2.='<div class="legends-container"><span class="legends w-100">';
     if($bank_price && $text != 'Transferencia') {
-      $str2.= "<div class='price-list justify-content-".($noprice ? 'start' : 'center')."'><span class='text-theme text-bold product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format($bank_price)." </span><span class='text-sm'>Transferencia</span> </div>";
+      $str2.= "<div class='price-list justify-content-start'><span class='text-theme text-bold product-badge'>-".@$item['bank_discount']."%</span> <span class='price_strong'> $ " .\price_format($bank_price)." </span><span class='text-sm'>Transferencia</span> </div>";
     }
     if($mp_price && $text != 'Mercado Pago'){
-      $str2.= "<div class='price-list justify-content-".($noprice ? 'start' : 'center')."'><span class='text-theme text-bold product-badge'>-".@$item['mp_discount']."%</span> <span class='price_strong'> $ " .\price_format($mp_price)." </span><span class='text-sm'>Mercado Pago</span> </div>";
+      $str2.= "<div class='price-list justify-content-start'><span class='text-theme text-bold product-badge'>-".@$item['mp_discount']."%</span> <span class='price_strong'> $ " .\price_format($mp_price)." </span><span class='text-sm'>Mercado Pago</span> </div>";
     }
 
     $str2.= implode('', $dues_options);

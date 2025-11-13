@@ -354,7 +354,7 @@ body.top-fixed .navbar-chatelet .fa {
 
 @media (min-width: 768px) {
   .add-no-stock {
-    min-height: 35rem!important;
+    min-height: 30rem!important;
   }
 
   .box-cont  {
@@ -793,8 +793,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   /* color: #444; */
 }
 .price-list {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  /*padding-top: 0.25rem;
+  padding-bottom: 0.25rem;*/
   color: black;
   display: flex;
   flex-wrap: nowrap;
@@ -892,10 +892,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   padding-top: 0.5rem;
 }
 
-.product-info .price-list {
+/*.product-info .price-list {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-}
+}*/
 
 .product-badge {
   min-width: 2.25rem;
@@ -2078,7 +2078,6 @@ span.out{
   color: #666!important;
   line-height: 1;
   font-size: 0.75rem;
-  min-height: 29px;
 }
 
 .text-legend .price_strong {
