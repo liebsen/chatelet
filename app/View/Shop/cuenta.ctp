@@ -7,7 +7,7 @@ $this->set('short_header_classname', 'btn_continue_shopping');
 
 echo $this->Session->flash(); 
 ?>
-<section id="detalle" class="is-flex-center min-h-100 animated fadeIn">
+<section id="detalle" class="is-flex-center min-h-101 animated fadeIn">
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 animated fadeIn delay">
 		<h2 class="text-uppercase">
 			<?php if ($loggedIn) : ?>

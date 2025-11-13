@@ -11,7 +11,7 @@ echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline'
 echo $this->Html->script('bootstrapValidator', array('inline' => false)); 
 echo $this->Html->script('particular-validation', array('inline' => false));
 ?>
-<section id="detalle" class="is-flex-center min-h-100">
+<section id="detalle" class="is-flex-center min-h-101">
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 animated fadeIn delay">
 		<h2 class="text-uppercase">
 			<?php echo 'Inicia sesión para continuar'; ?>
