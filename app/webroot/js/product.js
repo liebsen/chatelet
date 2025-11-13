@@ -56,8 +56,6 @@ function addCart2(data, button, text) {
 	$(form).appendTo('body').submit();
 }
 
-
-
 function pideStock(obj){
 		// console.log('changed');
 		$(".add.agregar-carro").text('Agregar al carrito')
@@ -66,7 +64,7 @@ function pideStock(obj){
 		var article 	= $(obj).closest("form").data('article');
 		var color_code 	= $(obj).closest("form").find('input[name="color"]:checked').attr('code');
 		var color_alias 	= $(obj).closest("form").find('input[name="color"]:checked').attr('alias');
-		var size_number	= $(obj).closest("form").find('#size option:selected').val();
+		var size_number	= $(obj).closest("form").find('input[name="size"]:checked').val();
 		var stock_cont	= $(obj).closest("form").find('#stock_container');
 		var stock    	= '<i style="color:green;font-weight:600;">Disponible <i>';
 		var stock_0 	= '<i style="color:red;font-weight:600;">No Disponible</i>';
@@ -116,16 +114,18 @@ function pideStock(obj){
 $(document).ready(function() {
 	//Stock
 
-	$('.oldSelectColor,.loadColorImages').click(function(event) {
-		window.lastColorObj = $(this);
-		setTimeout(function(){
-			// console.log('codeColor: ',$(window.lastColorObj).parent().find('input[name="color"]:checked').attr('code'));
-			pideStock(window.lastColorObj)
+	let interval = 0 
+	console.log('color options', $('.color-options .btn').length)
+	$('.color-options .btn').click(function(event) {
+		console.log('color click')
+		interval = setTimeout(function(){
+			pideStock(this)
 		},500)
 	});
 
-	$('input[name="color"],#size').change(function(event) {
-		pideStock(event.target)
+	$('.size-options .btn').click(function(event) {
+		console.log('size click')
+		pideStock(this)
 	});
 
 	$(".agregar-carro").click(function(e) {
@@ -137,7 +137,7 @@ $(document).ready(function() {
 			id: $(e.target).closest('form').find("#product_id").text().trim(),
 			color: $(e.target).closest('form').find("input[name='color']:checked").val() || '',
 			color_code: $(e.target).closest("form").find('input[name="color"]:checked').attr('code') || '',
-			size: $(e.target).closest('form').find("#size option:selected").val() || '',
+			size: $(e.target).closest("form").find('input[name="size"]:checked').val() || '',
 			alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias') || '',
 		}
 		if (!isGiftCard){
@@ -151,12 +151,12 @@ $(document).ready(function() {
 				if(!data.size){
 					return $.growl.notice({
 						title: '¡Personalizá tu compra!',
-						message: 'Seleccioná uno de los ' + $('#size option').length + ' talles disponibles para ' + product_name,
+						message: 'Seleccioná uno de los ' + ($('.size-options').length + 1) + ' talles disponibles para ' + product_name,
 					});
 				}
 				return $.growl.notice({
 					title: '¡Personalizá tu compra!',
-					message: 'Seleccioná uno de los ' + $('.color-option').length + ' colores disponibles para ' + product_name,
+					message: 'Seleccioná uno de los ' + ($('.color-options').length + 1) + ' colores disponibles para ' + product_name,
 				});
 			}
 
@@ -184,8 +184,8 @@ $(document).ready(function() {
 		$('.color-option').first().click()
 	}
 
-	if($('#size option').length == 2) {
-		$('#size').prop('selectedIndex', 1);
+	if($('.size-option').length > 0) {
+		$('.size-option').first().click()
 	}	
 
 	/*if(itemData) {

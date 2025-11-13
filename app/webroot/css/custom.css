@@ -1061,13 +1061,13 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #main .caract label.btn {
   box-shadow: none;
   padding: 0;
-  width: 100%;
-  max-width: 6rem;
   border-radius: 0!important;
-  color: #333;
+  color: #888;
   text-align: center;
   position: relative;
   transition: all 0.25s ease-out;
+  max-height: 15px;
+  display: contents;
   /*color: black;
   flex: 0 0 33%;
   padding-left: 0;
@@ -1082,7 +1082,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 }
 
 #main .caract label.btn .color-option {
-  border: none;
+  /*border: none;
   box-shadow: none;
   opacity: 1;
   aspect-ratio: 0.6;
@@ -1094,7 +1094,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   background-color: whitesmoke;
   transition: all 0.15s linear;
   outline: solid 1px #f8f8f8;
-  /*border-radius: 0.5rem;*/
+  border-radius: 0.5rem;*/
 }
 /*#main .caract label.active:before {
   content: "\f058";
@@ -1114,7 +1114,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   padding-top: 0.5rem;
   font-weight: 800;
   white-space: break-spaces;
-} */
+} 
 
 
 #main .caract.posnum-2 label.btn .color-option {
@@ -1125,9 +1125,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   background-position: bottom center;
 }
 
-#main .caract label.btn.active .color-option {
-  opacity: 1;
-  outline: solid 1px #e10d74;
+*/
+
+#main .caract label.btn.active {
+  color: #333;
   /*box-shadow: 0 0 1rem rgba(0,0,0,0.5);*/
 }
 
@@ -2106,10 +2107,6 @@ span.out{
   color: #e10d74;
 }
 .cost_total {
-}
-
-.color-options  label {
-  /* max-width: 33%; */
 }
 
 .p-select {

@@ -182,15 +182,15 @@ foreach ($properties as $property) {
             <div class="animated fadeIn delay1">
               <div class="article-tools">
                   <div class="field overflow-x-auto">
-                     <div class="color-options d-flex justify-content-start align-items-start gap-05" data-toggle="buttons">
+                     <div class="color-options d-flex justify-content-start align-items-start gap-1" data-toggle="buttons">
                           <?php
+                              $show_names_only = true;
                               foreach ($colors as $i => $color) {
                                   $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
                                   $style = (empty($color['images']))?'oldSelectColor':'';
-                                  echo '<label class="btn '.$loadColorImages.' '.$style.'" data-images="'.@$color['images'].'">';
-                                  
+                                  echo '<label class="btn '.$loadColorImages.' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
                                   echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
-                                  if (!empty($color['images'])) {
+                                  if (!empty($color['images']) && empty($show_names_only)) {
                                       $image = explode(';', $color['images']);
                                       foreach ($image as $kk => $vv) {
                                           if (!empty($vv)) {
@@ -200,15 +200,27 @@ foreach ($properties as $property) {
                                       }
                                       echo '<div class="color-option" style="background-image: url('.Configure::read('uploadUrl').$image[0].')"></div>';
                                   } else {
-                                      echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
+                                    // echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
                                   }
-                                  echo "<small class='text-bolder'>".$color['alias']."</small>";
+                                  echo "<small class='color-option text-bolder'>".$color['alias']."</small>";
                                   echo '</label>';
                               }
                           ?>
                       </div>
                   </div>
-                  <div class="field">
+                  <div class="size-options d-flex justify-content-start align-items-start gap-1" data-toggle="buttons">
+                    <!--option value="">Talle</option-->
+                    <?php
+                        foreach ($sizes as $size) {
+                          echo '<label class="btn '.$loadColorImages.' '.($i == 0 ? 'active' : '').'">';
+                                  echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
+                                  echo "<small class='size-option text-bolder'>".ucfirst($size['variable'])."</small>";
+                                  echo '</label>';
+                            // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
+                        }
+                    ?>                    
+                  </div>
+                  <!--div class="field">
                       <div class="p-select">
                           <select id="size" name="size">
                               <option value="">Talle</option>
@@ -219,7 +231,7 @@ foreach ($properties as $property) {
                               ?>
                           </select>
                       </div>
-                  </div>
+                  </div-->
               </div>
               <div class="marginTop">
                 <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
