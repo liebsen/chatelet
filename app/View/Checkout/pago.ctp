@@ -35,8 +35,8 @@ $filter_legends = $this->App->filter_legends($legends, $total);
 			)) ?>">
 
 		<div class="flex-row pt-4">
-			<div class="flex-col">
-				<span>¿Cómo querés pagar tu compra? Seleccioná un método de pago para realizar esta compra</span>
+			<div class="flex-col gap-05">
+				<span class="text-muted">¿Cómo querés pagar tu compra? Seleccioná un método de pago para realizar esta compra</span>
 				<!--div>
 		    	<span class="text-sm">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</span>
 		    </div-->
