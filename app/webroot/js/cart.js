@@ -228,7 +228,7 @@ var getTotals = () => {
 var select_radio = (name, value) => {
   const e = $(`input[name=${name}][value=${value}]`)
   e.prop("checked",true)
-  $(`.${name} .option-rounded`).removeClass('is-selected')
+  $(`.${name} .bronco-select`).removeClass('is-selected')
   e.parent().addClass('is-selected')
 }
 

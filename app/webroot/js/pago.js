@@ -99,9 +99,8 @@ $(function(){
 		const target = $(e.target).hasClass('select-payment-option') ? 
 			$(e.target) : 
 			$(e.target).parents('.select-payment-option')
-
-		e.preventDefault()
-		e.stopPropagation()
+		// e.preventDefault()
+		// e.stopPropagation()
 		var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		var selected = target.find('input').val()
 		const payment_dues = document.querySelector('.payment-dues')
@@ -125,7 +124,7 @@ $(function(){
 							payment_dues.classList.add('hide-element')
 						}, 500)
 					}
-					document.querySelectorAll('.payment-dues .option-rounded').forEach((e,i) => {
+					document.querySelectorAll('.payment-dues .bronco-select').forEach((e,i) => {
 						if(i) {
 							e.classList.add('hide')
 						}
@@ -139,7 +138,7 @@ $(function(){
 					payment_dues.classList.add('scaleIn')
 				}
 				$('.dues-block').show()
-				document.querySelectorAll('.payment-dues .option-rounded').forEach((e) => e.classList.remove('hide'))
+				document.querySelectorAll('.payment-dues .bronco-select').forEach((e) => e.classList.remove('hide'))
 
 				break;
 			}
@@ -161,8 +160,8 @@ $(function(){
 
 	  save_preference({payment_method: selected})
 
-		$('.payment_method .option-rounded').removeClass('is-selected is-secondary')
-		$('.payment_method .option-rounded').addClass('is-secondary')
+		$('.payment_method .bronco-select').removeClass('is-selected is-secondary')
+		$('.payment_method .bronco-select').addClass('is-secondary')
 		target.addClass('is-selected')
 	})
 

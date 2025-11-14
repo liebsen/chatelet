@@ -50,7 +50,7 @@
 			if (!empty($product['size']) && $product['size'] != 'undefined'){
 				echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
 			}
-
+			
 			echo '<span class="text-nowrap mt-2">$ '. \price_format($product['item_price']) .'</span>';				
 			echo '<div class="form-inline">
 			  <div class="form-group">

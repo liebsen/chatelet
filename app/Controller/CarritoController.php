@@ -172,6 +172,7 @@ class CarritoController extends AppController
 		$items_data = $this->getItemsData();
 		//CakeLog::write('debug', 'updateCart(data)'.json_encode($items_data));
 
+		CakeLog::write('debug', 'updateCart(3):');
 		$cart = $this->updateCart();
 		// CakeLog::write('debug', 'updateCart(2)');
 		// $this->Session->write('cart', $cart);
@@ -435,6 +436,8 @@ class CarritoController extends AppController
 		if($coupon_code) {
 			$cart_totals['coupon'] = $coupon_code;
 		}
+
+		CakeLog::write('debug', 'cart_totals(2):'. json_encode($cart_totals));
 
 		$this->Session->write('cart_totals', $cart_totals);		
 		
@@ -1175,8 +1178,11 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
       $cart_totals['payment_method'] = 'mercadopago';
     }
 
-		$this->Session->write('cart_totals', $cart_totals);
+		// CakeLog::write('debug', 'cart_totals(3):'. json_encode($cart_totals));
 
+		// $this->Session->write('cart_totals', $cart_totals);
+
+		CakeLog::write('debug', 'updateCart(4):');
 		$cart = $this->updateCart();
 		// CakeLog::write('debug', 'updateCart(3)');
 		// $this->Session->write('cart', $cart);
@@ -1271,8 +1277,10 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 			$cur = @$cart_totals['add_basket']?: 0;
 			$cur++;			
 			@$cart_totals['add_basket'] = $cur;
-			$this->Session->write('cart_totals', $cart_totals);
-
+			
+			// CakeLog::write('debug', 'cart_totals(4):'. json_encode($cart_totals));
+			// $this->Session->write('cart_totals', $cart_totals);
+			CakeLog::write('debug', 'updateCart(1):'. json_encode($filter));
 			$cart = $this->updateCart($filter);
 			// CakeLog::write('debug', 'updateCart(4)');
 			// $this->Session->write('cart', $cart);
@@ -1465,8 +1473,10 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		}
 
 		$cart_totals = $this->Session->read('cart_totals');
-		CakeLog::write('debug', 'products_total:'. $total);
 		$cart_totals['total_products'] = $total;
+		
+		CakeLog::write('debug', 'cart_totals(1):'. json_encode($cart_totals));
+		CakeLog::write('debug', 'cart(1):'. json_encode($cart));
 
 		$this->Session->write('cart_totals', $cart_totals);
 		$this->Session->write('cart', $cart);
@@ -1498,6 +1508,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 
 		if (count($update)) {
 			// CakeLog::write('debug', 'updateCart(1)');
+			CakeLog::write('debug', 'updateCart(2):'. json_encode($update));
 			$this->updateCart($update);
 		} else {
 			$this->Session->delete('cart');

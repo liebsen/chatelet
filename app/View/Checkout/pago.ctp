@@ -5,7 +5,6 @@ $this->set('short_header', 'Checkout');
 $this->set('short_header_text', '← Volver al carrito'); 
 $this->set('short_header_link', '/carrito');
 
-
 echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 echo $this->Html->script('pago.js?v=' . Configure::read('APP_VERSION'),array('inline' => false));
@@ -41,12 +40,14 @@ $filter_legends = $this->App->filter_legends($legends, $total);
 		    	<span class="text-sm">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</span>
 		    </div-->
 		    <div class="d-flex justify-content-start align-items-center gap-05 card-row payment_method w-100">
-		    	<label for="mercadopago" class="is-clickable w-100 select-payment-option option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
-		    		<div class="d-flex justify-content-start align-items-center gap-05 w-100">
+		    	<label for="mercadopago" class="is-clickable w-100 select-payment-option bronco-select<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
+		    		<div class="d-flex justify-content-start align-items-center gap-1 w-100">
 		    			<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
-	          	<span class="h5 mb-1">Mercado Pago</span>
+	        		<div class="d-flex flex-column justify-content-center align-items-start gap-05">
+		          	<h4 class="mb-0 mt-2">Mercado Pago</h4>
+		          	<span class="text-sm">Pagá con débito, crédito o rapipago a través de Mercadopago</span>
+		         	</div>
 	          </div>
-	        	<span class="mt-2 text-sm">Pagá con débito, crédito o rapipago a través de Mercadopago</span>
 	        	<div class="dues-block d-none">
 						<?php if(count($filter_legends)) : ?>
 							<div class="payment-dues">
@@ -64,12 +65,14 @@ $filter_legends = $this->App->filter_legends($legends, $total);
 	        	</div>
 	      	</label>				          
 	      <?php if($settings['bank_enable']): ?>
-	        <label for="bank" class="is-clickable w-100 select-payment-option option-rounded<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>">
-	        	<div class="d-flex justify-content-start align-items-center gap-05">
-		          <input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
-	          	<span class="h5 mb-1">Transferencia</span>
+	        <label for="bank" class="is-clickable w-100 select-payment-option bronco-select<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>">
+	        	<div class="d-flex  justify-content-start align-items-center gap-1">
+	          	<input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
+	        		<div class="d-flex flex-column justify-content-center align-items-start gap-05">
+	          		<h4 class="mb-0 mt-2">Transferencia</h4>
+		          	<span class="text-sm">Pagá a través de transferencia bancaria con tu home banking</span>
+	          	</div>
 	          </div>
-	        	<span class="mt-2 text-sm">Pagá a través de transferencia bancaria con tu home banking</span>
 	        </label>
 	       <?php endif ?>
 	      </div>

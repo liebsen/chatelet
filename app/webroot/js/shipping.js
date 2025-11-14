@@ -57,8 +57,8 @@ $(function(){
 		$('.cargo-blocks').hide()
 		$(`.${selected}-block`).show()
 
-		$('.shipment-options .option-rounded').removeClass('is-selected is-secondary')
-		$('.shipment-options .option-rounded').addClass('is-secondary')
+		$('.shipment-options .bronco-select').removeClass('is-selected is-secondary')
+		$('.shipment-options .bronco-select').addClass('is-secondary')
 		target.addClass('is-selected')
 	});
 

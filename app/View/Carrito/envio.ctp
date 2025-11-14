@@ -178,7 +178,7 @@
 						    </h5>
 						    <span class="">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</span>
 						    <div class="row card-row gap-05 payment_method pl-3 pr-3">
-						    	<label for="mercadopago" class="col-xs-12 is-clickable select-payment-option option-rounded<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
+						    	<label for="mercadopago" class="col-xs-12 is-clickable select-payment-option bronco-select<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
 						    		<div class="d-flex justify-content-start align-items-center gap-05">
 						    			<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
 					          	<span class="h5">Mercado Pago</span>
@@ -201,7 +201,7 @@
 				          	</div>
 				        	</label>				          
 					      <?php if($data['bank_enable']): ?>
-					        <label for="bank" class="col-xs-12 is-clickable select-payment-option option-rounded<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>">
+					        <label for="bank" class="col-xs-12 is-clickable select-payment-option bronco-select<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>">
 					        	<div class="d-flex justify-content-start align-items-center gap-05">
 						          <input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
 					          	<span class="h5">Transferencia</span>

@@ -511,7 +511,7 @@ html, body {
 	/*border-bottom: 1px solid #efefef;*/
 }
 
-.option-rounded {
+.bronco-select {
 	padding: 0.75rem 1.5rem 1.1rem 1.5rem;
 	margin: 0;
 	border: 3px solid #e7e7e7;
@@ -522,15 +522,12 @@ html, body {
 	transition: all 0.25s ease-in;
 }
 
-.option-rounded .h4 {
-	font-weight: 1000;
-}
 
-/*.option-rounded.is-secondary:not(.is-selected) {
+/*.bronco-select.is-secondary:not(.is-selected) {
 	opacity: 0.5;
 }*/
 
-.option-rounded.is-selected {
+.bronco-select.is-selected {
 	/*border-color: #3c763d;
 	color: #3c763d;
 	background-color: #dff0d8;*/
@@ -539,12 +536,12 @@ html, body {
 	background-color: white;	
 }
 
-.option-rounded:hover {
+.bronco-select:hover {
 	opacity: 1!important;
 }
 
-.option-rounded input[type=radio]{
-	transform: scale(1.5);
+.bronco-select input[type=radio]{
+	transform: scale(2);
 	accent-color: #333;
 	margin-right: 0.5rem;
 }

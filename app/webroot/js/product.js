@@ -89,12 +89,10 @@ $(document).ready(function() {
 
 
 	$('.color-options .btn').click(function(event) {
-		console.log('color listen')
 		pideStock(this)
 	});
 
 	$('.size-options .btn').click(function(event) {
-		console.log('size listen')
 		pideStock(this)
 	});
 
@@ -152,12 +150,10 @@ $(document).ready(function() {
 
 	/* autoselect if one option */
 	if($('.color-option').length > 0) {
-		console.log('color first trigger click')
 		$('.color-option').first().click()
 	}
 
 	if($('.size-option').length > 0) {
-		console.log('size first trigger click')
 		$('.size-option').first().click()
 	}	
 

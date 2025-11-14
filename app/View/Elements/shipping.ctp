@@ -32,7 +32,7 @@
 </div>
 <!--span class="">Selecciona un método de entrega para tu compra. Actualmente contamos con <?= count($stores) ?> puntos de entrega.</span>
 <div class="row card-row gap-05 shipment-options shipping pl-3 pr-3">
-	<label for="shipment" class="col-xs-12 is-clickable select-cargo-option option-rounded">
+	<label for="shipment" class="col-xs-12 is-clickable select-cargo-option bronco-select">
 		<div class="d-flex justify-content-start align-items-center gap-05">
   		<input type="radio" id="shipment" name="cargo" value="shipment" required />
     	<span class="h5"><?= $freeShipping ? 'Envío gratuito' : 'Envío a domicilio' ?></span><br>
@@ -59,7 +59,7 @@
 		</div>      	
 	</label>
 
-	<label for="takeaway" class="col-xs-12 is-clickable select-cargo-option option-rounded shipment-options takeaway">
+	<label for="takeaway" class="col-xs-12 is-clickable select-cargo-option bronco-select shipment-options takeaway">
 		<div class="d-flex justify-content-start align-items-center gap-05">
   		<input type="radio" id="takeaway" name="cargo" value="takeaway" required />
     	<span class="h5">Retiro en sucursal</span>
