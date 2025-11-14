@@ -208,6 +208,6 @@ $(document).ready(function() {
         
     });
 
-        $("#envio_form").bootstrapValidator('validate');
+    $("#envio_form").bootstrapValidator('validate');
 
 });

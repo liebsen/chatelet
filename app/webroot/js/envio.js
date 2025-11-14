@@ -320,7 +320,6 @@ $(document).ready(function() {
 		setTimeout(() => {
 			$('label[for="shipment"]').click()
 			//$('.shipment-block').show()
-			console.log('lastcp', lastcp)
 			$('.input-cp').val(lastcp)
 			$('.btn-calculate-shipping').click()
 

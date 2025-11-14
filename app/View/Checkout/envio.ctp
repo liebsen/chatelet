@@ -21,14 +21,7 @@ echo $this->element('checkout-params');
 <section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 	<?php echo $this->element('title-faq', array('title' => "Método de entrega")) ?>
-	<?php echo $this->Form->create('envio_form', array(
-		'id' => 'envio_form',
-		'url' => array(
-			'controller' => 'checkout', 
-			'action' => 'envio'
-		)
-	)); ?>
-	<input type="hidden" name="redirect" value="/checkout/pago" />
+
 	<div class="flex-row">
 		<div class="flex-col">
 			<ul class="nav nav-tabs nav-dark">
@@ -54,6 +47,14 @@ echo $this->element('checkout-params');
 							<div class="slot">
 							</div>
 							<hr>
+							<?php echo $this->Form->create('envio_form', array(
+								'id' => 'envio_form',
+								'url' => array(
+									'controller' => 'checkout', 
+									'action' => 'envio'
+								)
+							)); ?>
+							<input type="hidden" name="redirect" value="/checkout/pago" />								
 							<?php echo $this->element('shipping-person') ?>
 						</div>
 					</div> 
@@ -100,6 +101,7 @@ echo $this->element('checkout-params');
 			<?php echo $this->element('resume', array('show_list' => true)) ?>
 		</div>
 	</div>
+
 	<?php echo $this->Form->end(); ?>	
 </div>
 
