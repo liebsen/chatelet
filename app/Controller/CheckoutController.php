@@ -102,6 +102,11 @@ class CheckoutController extends AppController
 	public function envio() {
 		if ($this->request->is('post')) {
 			$data = $this->request->data;
+
+			foreach($data as $key => $value) {
+
+			}
+			$this->Session->write('envio', $data);
 			CakeLog::write('debug', 'envio data:'.json_encode($data));
 
       die(json_encode(array(

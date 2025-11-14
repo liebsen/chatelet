@@ -268,7 +268,7 @@ $(document).ready(function() {
 		cart.store_address = store_address
 		cart.regalo = $('#regalo').is(':checked') ? 1 : 0
 		localStorage.setItem('cart', JSON.stringify(cart))
-		window.location.href = location;
+		window.location.href = '/checkout/pago';
 	});
 
 	$(document).on('click', '.giftchecks',function(e) {
