@@ -5,6 +5,7 @@ $this->set('short_header_text', '← Volver a la tienda');
 $this->set('short_header_link', '/shop');
 $this->set('short_header_classname', 'btn_continue_shopping');
 
+echo $this->Html->css('bootstrapValidator.min');
 echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->script('formValidation.min', array('inline' => false));
 echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
@@ -36,8 +37,8 @@ echo $this->Html->script('particular-validation', array('inline' => false));
       	<input type="checkbox" name="rememberme" />
       	<span class="label-text text-muted"><span class="text-sm text-link">Recordarme en este dispositivo</span></span>
       </label-->
-      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
-      	<input type="submit" id="login" form="" value="Iniciar sesión" />
+      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4 w-100">
+      	<input type="submit" class="btn btn-chatelet dark w-100" value="Iniciar sesión" />
       	<hr> 
         <a class="btn btn-chatelet light w-100" href="/shop/registro">Crear mi cuenta</a>
         <a class="btn btn-chatelet light w-100" href="/shop/recuperar_acceso">Olvidé la contraseña</a>

@@ -55,7 +55,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="#" title="Buscar en la tienda">
+            <a href="#" class="is-unlifted" title="Buscar en la tienda">
               <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="fa text-chatelet fa-search text-light"></i>
             </a>
           </li>
@@ -63,11 +63,11 @@
          <!-- .Login -->
           <li class="dropdown">
             <?php if ($loggedIn) { ?>
-            <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
+            <a href="#" class="dropdown-toggle js-activated is-unlifted" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
               <!--span class="count animated scaleIn speed delay1">
                 <i class="fa fa-check text-white fa-xs"></i>
               </span-->
-              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-green fa-user"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-green fa-user-o"></i>
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -103,8 +103,8 @@
               </li>
             </ul>
             <?php } else { ?>
-            <a href="#" class="dropdown-toggle" title="Inicia sesión">
-              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-chatelet fa-user"></i>
+            <a href="#" class="dropdown-toggle is-unlifted" title="Inicia sesión">
+              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-chatelet fa-user-o"></i>
             </a>
             <?php } ?>
           </li><!-- /.Login -->

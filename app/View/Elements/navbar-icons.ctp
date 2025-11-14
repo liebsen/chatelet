@@ -1,6 +1,6 @@
           <li>
             <a href="#" title="Buscar en la tienda">
-              <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="fa text-chatelet fa-search text-light"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="fa text-chatelet fa-search text-light is-unlifted"></i>
             </a>
           </li>
 
@@ -11,7 +11,7 @@
               <!--span class="count animated scaleIn speed delay1">
                 <i class="fa fa-check text-white fa-xs"></i>
               </span-->
-              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-green fa-user"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-green fa-user-o is-unlifted"></i>
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -48,7 +48,7 @@
             </ul>
             <?php } else { ?>
             <a href="#" class="dropdown-toggle" title="Inicia sesión">
-              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-chatelet fa-user"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-chatelet fa-user-o is-unlifted"></i>
             </a>
             <?php } ?>
           </li><!-- /.Login -->

@@ -26,7 +26,6 @@ function checkCount(value) {
 function pideStock(obj){
 	clearTimeout(timeout)
 	timeout = setTimeout(() => {
-		console.log('pideStock');
 		$(".add.agregar-carro").text('Agregar al carrito')
 
 		var url 		= $(obj).closest("form").data('url');
@@ -35,12 +34,14 @@ function pideStock(obj){
 		var color_alias 	= $(obj).closest("form").find('input[name="color"]:checked').attr('alias');
 		var size_number	= $(obj).closest("form").find('input[name="size"]:checked').val();
 		var stock_cont	= $(obj).closest("form").find('#stock_container');
-		var stock    	= '<i style="color:green;font-weight:600;">Disponible <i>';
-		var stock_0 	= '<i style="color:red;font-weight:600;">No Disponible</i>';
-		var missing 	= '<i> (Elegí color y talle) </i>';
-		var no_color	= '<i> (Elegí color) <i>';
-	  var stock_v  	= '<i style="color:gray;">Consultando ... </i>';
-	  console.log({color_code, size_number})
+		var stock    	= '<span class="text-success text-bolder">Disponible <span>';
+		var stock_0 	= '<span class="text-danger text-bolder">No Disponible</span>';
+		var missing 	= '<span class="text-warning"> (Elegí color y talle) </span>';
+		var no_color	= '<span class="text-warning"> (Elegí color) <span>';
+		var no_size	= '<span class="text-warning"> (Elegí talle) <span>';
+	  var stock_v  	= '<span class="text-muted">Consultando ... </span>';
+	  // console.log({color_code, size_number})
+
 		if(!color_code){
 			// onWarningAlert(`Talle seleccionado`,`Seleccionaste talle ${size_number}, ahora elegí un color para este producto`)
 			console.log('a(1)')
@@ -49,8 +50,8 @@ function pideStock(obj){
 		}
 
 		if(!size_number){
-			console.log('a(2)')
 			// onWarningAlert(`Color seleccionado`,`Seleccionaste color ${color_alias}, ahora elegí un talle para tu prenda`)
+			stock_cont.html(no_size);
 			return false;
 		}
 
@@ -71,7 +72,7 @@ function pideStock(obj){
 						$(test).find('a').animate({opacity: 1});
 					}, 1000)
 				}else{
-					onWarningAlert('Producto no disponible', 'Lamentablemente este producto ya no se encuentra disponible')
+					// onWarningAlert('Producto no disponible', 'Lamentablemente este producto ya no se encuentra disponible')
 					stock_cont.html( stock_0 );
 				}
 				window.stock = data;

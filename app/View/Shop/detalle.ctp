@@ -128,6 +128,7 @@ foreach ($properties as $property) {
         <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
         <h1 class="mt-2"><?php echo $product['name'];?></h1>
         <p class="text-muted mb-4"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
+        <div class="d-flex justify-content-start align-items-center gap-05">
         <?php  
         
         $orig_price = @$product['price'];
@@ -169,9 +170,10 @@ foreach ($properties as $property) {
         echo ' <span class="text-sm">' . (strlen($text) ? 'con ' . strtoupper($text) : '') . '</span>';
 
         ?>
-         <div class="d-contents tags-start mt-1 mb-4">
-            <?= $this->App->show_prices_dues($legends, $product, true) ?>
-         </div>
+        </div>
+        <div class="d-contents tags-start mt-1 mb-4">
+          <?= $this->App->show_prices_dues($legends, $product, true) ?>
+        </div>
         <div class="caract">
         <?php if(!empty($product['desc'])):?>
             <p><?php echo $product['desc']; ?></p>
@@ -236,7 +238,10 @@ foreach ($properties as $property) {
                 <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
               </div>
               <p>
-                <span style="color:#F50081;"> Stock:</span> <span id="stock_container"><span class="text-sm text-muted"> (Elegí color y talle) </span></span>
+                <span class="text-chatelet"> Stock:</span> 
+                <span id="stock_container">
+                  <span class="text-sm text-muted"> (Elegí color y talle) </span>
+                </span>
               </p>
               <?php endif; ?>
               <div class="d-flex flex-column justify-content-center align-items-center footer-producto gap-05">

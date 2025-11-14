@@ -654,6 +654,7 @@ $(document).ready(function() {
 
 	$('#flashMessage').each(function(i, flash) {
 		flash = $(flash);
+    // console.log({flash})
 		if (flash.hasClass('error')) {
 			$.growl.error({
 				title: 'Error',
@@ -663,7 +664,7 @@ $(document).ready(function() {
 
 		if (flash.hasClass('notice')) {
 			$.growl.notice({
-				title: 'Información',
+				title: 'Tarea exitosa',
 				message: flash.text(),
 			});
 		}

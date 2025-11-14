@@ -57,6 +57,11 @@ html, body {
 	opacity: 0;
 }
 
+.is-unlifted {
+	position: relative;
+	top: 2px;
+}
+
 .layer {
   position: fixed;
   top: 0;
@@ -499,7 +504,6 @@ html, body {
 	background-size: cover;	
 }
 
-
 .option-regular {
 	padding: 1rem 0;
 	padding-bottom: 1rem;
@@ -731,7 +735,7 @@ a.btn {
 }
 
 .text-chatelet {
-	color: lightgrey; /* #666;*/
+	color: #888; /* #666;*/
 	/* color: #e10d74; */
 }
 
@@ -802,8 +806,7 @@ a.btn {
 .form-control {
 	padding: 0 16px;
 	height: 50px;
-	border-radius: 5px;
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 	border-bottom-width: 2px;
 }
 

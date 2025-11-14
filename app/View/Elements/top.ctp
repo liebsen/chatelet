@@ -41,7 +41,7 @@
       echo $this->Html->css('font-awesome.min');
       echo $this->Html->css('bootstrap-select');
       echo $this->Html->css('bootstrap.css?v=' . Configure::read('APP_VERSION'));
-      echo $this->Html->css('bootstrapValidator.min');
+      // echo $this->Html->css('bootstrapValidator.min');
       echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION'));
       echo $this->Html->css('chatelet.css?v=' . Configure::read('APP_VERSION'));
       echo $this->Html->css('custom.css?v=' . Configure::read('APP_VERSION'));
