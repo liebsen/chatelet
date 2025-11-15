@@ -298,8 +298,13 @@ html, body {
 }
 
 .text-muted {
-  color: #777;
+  color: #888;
 }
+
+.text-light {
+	color: #e7e7e7;
+}
+
 .text-italic {
   font-style: italic;
 }

@@ -1243,17 +1243,7 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 .box h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; margin-top: 0;}
 .box p { font-size: 15px; line-height: 1.5; /*margin-bottom: 45px;*/ }
 .box p a { color: #363633; font-weight: 600; }
-#optionsHelp {     
-  padding: 0.75rem 0;
-  padding-bottom: 2rem;
-  text-align: center; 
-  font-weight: 800;
-  min-height: 92px;
-}
-#optionsHelp.mobile a.active {
-  background-color: #f2f2f2;
-  transition: background 1s ease-out;
-}
+
 .product-info-container {padding: 2rem;}
 
 @media(min-width: 769px){
@@ -1267,35 +1257,8 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   #headhelp {
     padding: 6rem 1rem 0.75rem 1rem;
   }
-  #optionsHelp {
-    position: absolute; 
-    left:0; 
-    right: 0; 
-    top: 0;
-  }
-  #optionsHelp.top-fixed { 
-    top: 4rem; 
-    z-index: 100;
-    background: linear-gradient(hsla(0,0%,100%,0),hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0));
-  }
 }
 
-#optionsHelp a { 
-  /* color: #404040; */
-  color: #808080;
-  display: inline-block; 
-  min-height: 2rem;
-  padding: 0 1.5rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  border-bottom: 1px solid #999;
-  transition: all 300ms linear;
-}
-
-#optionsHelp a.active {
-  color: #404040;
-  border-color: #404040;
-}
 
 /*#optionsHelp a:hover, #optionsHelp a.active { 
   border-color: #363633;  
@@ -1515,14 +1478,12 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
     margin-left: auto !important; 
     margin-right: auto !important; 
   }
-
-.flex-column-sm {
-  flex-direction: column!important;
-}
+  .flex-column-sm {
+    flex-direction: column!important;
+  }
   .box.img-bg {
     background-size: 90%;
   }
-
   .carrito-count {
     flex-direction: column;
   }
@@ -1586,14 +1547,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#productOptions a.btBig { margin-bottom: 20px; padding: 30px; }
 
 	#headcontacto { padding: 1rem; }
-  #optionsHelp {padding: 0;}
-	#optionsHelp a { 
-    padding: 30px 0; 
-    width: 100%; 
-    background: white;
-    border-color: #f8f8f8;
-    /* border-bottom: 2px solid #f6f6f5;*/
-  }
   #headhelp .box {
     padding: 2rem;
   }
