@@ -50,7 +50,7 @@
 			if (!empty($product['size']) && $product['size'] != 'undefined'){
 				echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
 			}
-			
+
 			echo '<span class="text-nowrap mt-2">$ '. \price_format($product['item_price']) .'</span>';				
 			echo '<div class="form-inline">
 			  <div class="form-group">
@@ -214,7 +214,7 @@
 						</span>
 					</div>
 					<div class="col-md-6 is-flex-center flex-column gap-05">
-			    	<a href="/checkout" class="btn btn-chatelet dark w-100">Finalizar Compra</a>
+			    	<a href="/checkout<?php echo $loggedIn ? '/envio' : '' ?>" class="btn btn-chatelet dark w-100">Finalizar Compra</a>
 						<a href="/shop" class="btn btn-continue-shopping btn-chatelet w-100">Seguir comprando</a>
 					</div>
 				</div>
