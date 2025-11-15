@@ -75,7 +75,7 @@ $('.dues-select-option').click((e) => {
 
 	// onSuccessAlert(`Como querés pagar`,`Seleccionaste ${dues_selected} cuota${dues_selected > 1 ? 's' : ''}`);
 	save_preference([
-		{ 'payment_method': 'mercadopago'},
+		// { 'payment_method': 'mercadopago'},
 		{ 'payment_dues': dues_selected }
 	])
 

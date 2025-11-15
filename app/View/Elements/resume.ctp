@@ -62,10 +62,10 @@
 				</span>
 			</div>
 		<?php endif ?>	
-		<pre><?php var_dump($cart_totals); ?></pre>
+		<!--pre><?php var_dump($cart_totals); ?></pre-->
 			<div class="summary-item">
 				<span class="text-weight-bold">Total </span> 
-				<span class="calc_total text-weight-bold">$ <?= \price_format($cart_totals['total_products'] - $cart_totals['coupon_benefits'] + $cart_totals['delivery_cost']) ?></span><!--span>.00</span-->
+				<span class="calc_total text-weight-bold">$ <?= \price_format($cart_totals['grand_total']) ?></span><!--span>.00</span-->
 			</div>
 			<hr class="mt-1">
 
@@ -80,7 +80,7 @@
 				<span class="text-sm text-success"><?php echo $text_shipping_min_price ?></span>
 			</div>
 		<?php endif ?>
-		<?php if(!empty($freeShipping)) :?>
+		<?php if(!empty($cart_totals['free_shipping'])) :?>
 			<div class="summary-item">
 				<span class="text-sm text-success">Envío <b>GRATIS</b></span>
 			</div>

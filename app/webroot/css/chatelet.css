@@ -178,8 +178,8 @@ html, body {
 	content: "\f054";
 	color: #999;
 	position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.9rem;
+  right: 0.9rem;
   font-size: 0.8rem;
   font-family: 'FontAwesome';
   opacity: 0.5;
@@ -201,8 +201,8 @@ html, body {
 	content: "\f00c";
 	color: #07BC31;
 	position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.9rem;
+  right: 0.9rem;
   font-size: 0.8rem;
   font-family: 'FontAwesome';
 }

@@ -177,15 +177,14 @@ class CarritoController extends AppController
 		// CakeLog::write('debug', 'updateCart(2)');
 		// $this->Session->write('cart', $cart);
 
-		$shipping_price = $this->Setting->findById('shipping_price_min');
-		$total_price = $items_data['price'];
-		$freeShipping = $this->isFreeShipping($total_price);
+		// $shipping_price = $this->Setting->findById('shipping_price_min');
+		// $total_price = $items_data['price'];
 		error_log('freeshipping unit price: '.intval($total_price));
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);
-		$mapper = $this->Setting->findById('shipping_price_min');
-		$shipping_price_min = $this->settings['shipping_price_min'] ?? '';
+		// $mapper = $this->Setting->findById('shipping_price_min');
+		// $shipping_price_min = $this->settings['shipping_price_min'] ?? '';
 		$this->set('shipping_price_min',$shipping_price_min);
 		$vars = [
 			'precio_min_envio_gratis' => str_replace(',00','',number_format($this->settings['shipping_price_min'], 0, ',', '.')),
@@ -201,12 +200,12 @@ class CarritoController extends AppController
 			}
 		}
 
-		$map = $this->Setting->findById('carrito_takeaway_text');
- 		$carrito_takeaway_text = $map['Setting']['extra'];		
+		// $map = $this->Setting->findById('carrito_takeaway_text');
+ 		// $carrito_takeaway_text = $map['Setting']['extra'];		
 		$this->set('sorted', $this->sort());
 		$this->set('stores', $stores);
-		$this->set('carrito_takeaway_text', $carrito_takeaway_text);
-		$this->set('freeShipping', $freeShipping);
+		// $this->set('carrito_takeaway_text', $carrito_takeaway_text);
+		// $this->set('freeShipping', $freeShipping);
 	}
 
 	private function parseTemplate ($str, $data) {
@@ -241,16 +240,12 @@ class CarritoController extends AppController
 		$oca = new Oca();
 		$provincias = $oca->getProvincias();
 		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
-		$items = $this->getItemsData();
-		$map = $this->Setting->findById('shipping_price_min');
-		$shipping_price = @$map['Setting']['value'];
-		$total_price = $items['price'];
-		$freeShipping = $this->isFreeShipping($total_price);
+		// $items = $this->getItemsData();
+		// $map = $this->Setting->findById('shipping_price_min');
+		// $freeShipping = $this->isFreeShipping($total_price);
 	
-		$this->set('shipping_price',$shipping_price);
 		$this->set('provincias',$provincias);
-		$this->set('freeShipping', $freeShipping);
-		$this->set('total',$total_price);
+		// $this->set('freeShipping', $freeShipping);
 		$this->set('userData',$user);
 	}
 
@@ -1168,7 +1163,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 
 		$cart_totals = $this->Session->read('cart_totals');
 		$data = $this->request->data;
-		CakeLog::write('debug', 'request:'.json_encode($data));
+		CakeLog::write('debug', 'preference:'.json_encode($data));
 		// replace session config with post object pairs
 		foreach($data as $key => $item) {
 			$cart_totals[$key] = $item;
@@ -1474,7 +1469,14 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 
 		$cart_totals = $this->Session->read('cart_totals');
 		$cart_totals['total_products'] = $total;
-		
+		$grand_total = $cart_totals['total_products'] - 
+			$cart_totals['coupon_benefits'] + 
+			$cart_totals['delivery_cost'];
+
+		$freeShipping = $this->isFreeShipping($grand_total);
+		$cart_totals['free_shipping'] = $freeShipping;
+		$cart_totals['grand_total'] = $grand_total;
+
 		CakeLog::write('debug', 'cart_totals(1):'. json_encode($cart_totals));
 		CakeLog::write('debug', 'cart(1):'. json_encode($cart));
 

@@ -113,7 +113,7 @@ foreach ($properties as $property) {
          </div>
       </div>
   <?php endif;?>
-      <div class="col-md-5 product-info-container max-22">
+      <div class="col-md-5 product-info-container max-25">
        <?php
           echo $this->Form->create(null, array(
               'url' => array(
@@ -164,7 +164,7 @@ foreach ($properties as $property) {
 
         echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)) . '</span>';
                 if(!empty($old_price) && abs($price-$old_price) > 1) {
-            echo "<span class='text-muted'> <span style='text-decoration: line-through;' id='price' data-price='". ceil($old_price) ."'> $ ".\price_format(ceil($old_price)). "</span></span>";
+            echo "<span class='old_price' id='price' data-price='". ceil($old_price) ."'> $ ".\price_format(ceil($old_price)). "</span>";
         }
 
         echo ' <span class="text-sm">' . (strlen($text) ? 'con ' . strtoupper($text) : '') . '</span>';
