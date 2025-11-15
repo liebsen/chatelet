@@ -1,7 +1,7 @@
   <section class="subscribe-box d-none">
     <div class="w-100">
       <span class="corner-pin is-clickable">
-        <i class="ico-times" data-toggle="click" data-hide=".subscribe-box" role="img" aria-label="Cerrar"></i>
+        <i class="ico-times" onclick="suscribe_release()" data-toggle="click" data-hide=".subscribe-box" role="img" aria-label="Cerrar"></i>
       </span>
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">

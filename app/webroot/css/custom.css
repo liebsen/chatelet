@@ -255,13 +255,13 @@ label input[type=checkbox]:disabled + .label-text:before {
   border: 0; 
   border-radius: 0; 
   /*box-shadow: var(--box-shadow-downwards);*/
-  border-bottom: 2px solid #f8f8f8;
   margin: 0; 
   padding: 1.5rem;
   position: relative; 
   /*transition: all 100ms ease-in!important;*/
   transition: none!important;
-  z-index: 10; 
+  z-index: 10;
+  border-bottom: 2px solid #f8f8f8;
 }
 
 .navbar-brand { 
@@ -308,6 +308,7 @@ body.top-fixed .navbar-chatelet:not(.short) {
   top: 0;
   right: 0;
   padding: 0.5rem;
+  border-bottom: none!important;
 }
 
 /*body.top-fixed .navbar-chatelet .navbar-nav > li > a {
@@ -1294,7 +1295,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 #optionsHelp a.active {
   color: #404040;
   border-color: #404040;
-  font-weight: 1000;
 }
 
 /*#optionsHelp a:hover, #optionsHelp a.active { 
