@@ -19,7 +19,7 @@ $(document).ready(function() {
                         message: 'El campo email es requerido y no puede estar vacio'
                     },
                     emailAddress: {
-                        message: 'No se ingreso una direccion de email valida'
+                        message: 'No ingresaste una dirección de email válida'
                     }
                 }
             },

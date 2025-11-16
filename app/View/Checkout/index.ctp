@@ -21,9 +21,12 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 			<?php if ($loggedIn) : ?>
 				<div class="card p-4 p-md-5 max-25">
 					<div class="card-body">
-						<h2>Hola <?php echo $user['name'] ?? 'Invitada'; ?></h2>
-						<p>Confirma tu identidad para continuar. Ahora estás conectada como <b><?php echo $user['email']; ?></p>
-						<a href="/checkout/envio" class="btn btn-chatelet dark w-100">Continuar como como <?php echo $user['name'] ?? 'Invitada'; ?> <?php echo $user['surname']; ?> </a>
+						<div class="d-flex flex-column justify-content-start align-items-center gap-05">
+							<h2 class="text-bolder">Hola, <?php echo $user['name'] ?? 'Invitada'; ?>!</h2>
+							<p>Confirma tu identidad para continuar con tu compra de $ <?php echo \price_format($cart_totals['grand_total']) ?>.</p>
+							<a href="/checkout/envio" class="btn btn-chatelet dark w-100">Continuar como como <?php echo $user['name'] ?? 'Invitada'; ?> <?php echo $user['surname']; ?> </a>
+							<span class="text-sm text-muted"><b>Al finalizar el proceso</b> revisa tu cuenta en <b><?php echo $user['email']; ?></b></span>
+						</div>
 						<!--script>
 							setTimeout(function(){
 								location.href = '/checkout/envio'

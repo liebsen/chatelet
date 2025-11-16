@@ -101,17 +101,29 @@ class CheckoutController extends AppController
 
 	public function envio() {
 		if ($this->request->is('post')) {
-			$data = $this->request->data;
+			$shipping = $this->request->data;
 
-			foreach($data as $key => $value) {
-
+			if(empty($shipping)) {
+				die("Shipping not recieved");
 			}
-			$this->Session->write('envio', $data);
-			CakeLog::write('debug', 'envio data:'.json_encode($data));
+
+			$customer = $shipping['customer'];
+
+			if(empty($customer)) {
+				die("Customer not recieved");
+			}
+
+			unset($shipping['customer']);
+
+			$this->Session->write('customer', $customer);
+			$this->Session->write('shipping', $shipping);
+
+			CakeLog::write('debug', 'envio customer:'.json_encode($customer));
+			CakeLog::write('debug', 'envio shipping:'.json_encode($shipping));
 
       die(json_encode(array(
         'success' => true, 
-        'message' => 'Test'
+        'message' => 'OK, pasemos a pago'
       )));
 
 			return false;
@@ -637,6 +649,7 @@ class CheckoutController extends AppController
 		$total_wo_discount = 0;
 		// VAR - Validate
 		$cart = $this->Session->read('cart');
+		$cart_totals = $this->Session->read('cart_totals');
 
 		if(empty($cart)) {
 			// header("Location: /");
@@ -647,14 +660,22 @@ class CheckoutController extends AppController
 		$user_id = $this->Auth->user('id');
 		$product_ids = array();
 		$items = array();
+		$customer = $this->Session->read('customer');
+
+		if(empty($customer)) {
+
+			die("Customer data not recieved");
+		}
+
+
 		$sale = $this->request->data;
 
 		CakeLog::write('debug', 'sale:'. json_encode($sale));
 		$sale['id'] = $this->Auth->user('id');
-		$sale['telephone'] = @preg_replace("/[^0-9]/","",$sale['telephone']);
-		$sale['email'] = (!empty($sale['email']))?trim($sale['email']):'';
-		$sale['floor'] = (!empty($sale['floor']))?trim($sale['floor']):'';
-		$sale['depto'] = (!empty($sale['depto']))?trim($sale['depto']):'';
+		$sale['telephone'] = @preg_replace("/[^0-9]/","",$customer['telephone']);
+		$sale['email'] = (!empty($customer['email']))?trim($customer['email']):'';
+		$sale['floor'] = (!empty($customer['floor']))?trim($customer['floor']):'';
+		$sale['depto'] = (!empty($customer['depto']))?trim($customer['depto']):'';
 		$sale['coupon'] = (!empty($sale['coupon']))?strtoupper(trim($sale['coupon'])):'';
 		//$sale['regalo'] = (isset($sale['regalo']) && $sale['regalo']?1:0);
 		$sale['dues'] = (isset($sale['payment_dues']) && $sale['payment_dues']?intval($sale['payment_dues']):1);

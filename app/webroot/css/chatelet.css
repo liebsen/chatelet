@@ -825,7 +825,7 @@ select.form-control{
 }
 
 .form-control:focus {
-	border-color: #888!important;
+	border-color: #0e98ff!important;
 }
 
 .d-inline {
@@ -835,15 +835,19 @@ select.form-control{
 .mh-4 {
 	max-height: 4rem;
 }
+
 .gap-05 {
 	grid-gap: 0.5rem;
 }
+
 .gap-1 {
 	grid-gap: 1rem;
 }
+
 .gap-6 {
 	grid-gap: 6rem;
 }
+
 .carrito-selector {
   max-width: 9rem;
   margin: auto;
