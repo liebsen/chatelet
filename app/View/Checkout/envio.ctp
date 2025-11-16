@@ -37,7 +37,7 @@ echo $this->element('checkout-params');
 						<form class="w-100" id="calulate_shipping" data-url="<?php echo $this->Html->url(array('action'=>'deliveryCost')) ?>">
 							<div class="d-flex justify-content-start align-items-center gap-05 w-100">
 						  	<div class="position-relative input-cp-container flex-1">
-						  		<input type="text" name="" placeholder="Tu código postal" value="<?php echo $cart_totals['coupon'] ?>" class="form-control input-cp both" title="Ingresá tu código postal" data-valid="0" />
+						  		<input type="text" name="" placeholder="Tu código postal" class="form-control input-cp both" title="Ingresá tu código postal" data-valid="0" />
 						  	</div>
 					    	<button class="btn btn-chatelet dark btn-input-lg btn-calculate-shipping" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Cotizá el envío a domicilio de tu compra" type="submit">Aplicar</button>
 							</div>
@@ -108,7 +108,6 @@ echo $this->element('checkout-params');
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&sensor=true&language=es"></script>
 
 <script type="text/javascript">
-
 	function initMap(cart) {
 		$('.store').text(cart.store)
 		$('.store-address').text(cart.store_address)
@@ -125,42 +124,41 @@ echo $this->element('checkout-params');
 	}
 
 	$(document).ready(function() {
-	    $('#envio_form').on('submit', function(event) {
-	        event.preventDefault();
-	        const formData = $(this).serialize();
-	        const btnSubmit = $(this).find('[type="submit"]');
-	        const redirect = $(this).find('[name="redirect"]').val();
-	        btnSubmit.prop('disabled', true)
-	        $.ajax({
-	            url: $(this).attr('action'),
-	            type: 'POST',
-	            data: formData,
-	            success: function(res) {
-	            	if(res.success) {
-	            		// onSuccessAlert('Success', res.message)
-	                $('#responseContainer').html(res.message);
-	                setTimeout(() => {
-	                	location.href = redirect || location.href
-	                }, 3000)
-	            	} else {
-	            		onWarningAlert('Error al registrar usuario', res.errors)
-	            		$('#responseContainer').html(res.errors);
-	            	}
-	            	btnSubmit.prop('disabled', false)
-	            },
-	            error: function(xhr, status, error) {
-	              console.error("AJAX Error: " + status + " - " + error);
-	              btnSubmit.prop('disabled', false)
-	              // Handle errors
-	            }
-	        });
-	    });
-  	})
+    $('#envio_form').on('submit', function(event) {
+      event.preventDefault();
+      const formData = $(this).serialize();
+      const btnSubmit = $(this).find('[type="submit"]');
+      const redirect = $(this).find('[name="redirect"]').val();
+      btnSubmit.prop('disabled', true)
+      $.ajax({
+        url: $(this).attr('action'),
+        type: 'POST',
+        data: formData,
+        success: function(res) {
+        	if(res.success) {
+        		// onSuccessAlert('Success', res.message)
+            $('#responseContainer').html(res.message);
+            setTimeout(() => {
+            	location.href = redirect || location.href
+            }, 3000)
+        	} else {
+        		onWarningAlert('Error al registrar usuario', res.errors)
+        		$('#responseContainer').html(res.errors);
+        	}
+        	btnSubmit.prop('disabled', false)
+        },
+        error: function(xhr, status, error) {
+          console.error("AJAX Error: " + status + " - " + error);
+          btnSubmit.prop('disabled', false)
+          // Handle errors
+        }
+      });
+    });
+	})
 
 </script>
 
 <style>
-
 	#map_canvas {
 		min-height: 400px;
 		width: 100%;

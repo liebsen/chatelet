@@ -1478,7 +1478,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		$cart_totals['grand_total'] = $grand_total;
 
 		CakeLog::write('debug', 'cart_totals(1):'. json_encode($cart_totals));
-		CakeLog::write('debug', 'cart(1):'. json_encode($cart));
+		// CakeLog::write('debug', 'cart(1):'. json_encode($cart));
 
 		$this->Session->write('cart_totals', $cart_totals);
 		$this->Session->write('cart', $cart);

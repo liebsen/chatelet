@@ -1,7 +1,4 @@
-var currentCartIndex = 0
 var cargo = ''
-var itemData = null
-var removeElement = null
 
 selectShipping = function (e, shipping, cost) {
 	if (cost <= 0) {
@@ -93,30 +90,6 @@ selectStore = function(e) {
 $(document).ready(function() {
 	localStorage.setItem('continue_shopping_url', window.location.pathname)
 
-	/*if(cart_items?.length == 1) {
-		$('.products-total').hide()
-	} else {
-		$('.products-total').show()
-	}*/
-	// const submit = $('.btn-pagos')
-	// submit.prop('disabled', false)
-	// submit.removeClass('disabled')
-	// submit.text('Siguiente')
-
-	$('.select-cargo-option').click(e => {
-		const target = $(e.target).hasClass('select-cargo-option') ? 
-			$(e.target) : 
-			$(e.target).parents('.select-cargo-option')
-
-		var selected = target.find('input').val()
-
-		$('.cargo-blocks').hide()
-		$(`.${selected}-block`).show()
-
-		$('.shipment-options .bronco-select').removeClass('is-selected is-secondary')
-		$('.shipment-options .bronco-select').addClass('is-secondary')
-		target.addClass('is-selected')
-	});
 
 	$('#calulate_shipping').submit(e => {
 		var url = $('#calulate_shipping').data('url')
@@ -129,8 +102,6 @@ $(document).ready(function() {
 			$('.coupon_bonus').text().split('.').join('').split(',').join('.') : 
 			cart.coupon_bonus || 0
 		var subtotal = parseFloat($('#subtotal_compra').val()) || cart.subtotal_price
-
-		console.log('calculate_shipping', {cp, coupon, subtotal});
 
 		//console.log(coupon, subtotal)
 		document.querySelector('.shipping-block').classList.add('hidden')
@@ -178,17 +149,10 @@ $(document).ready(function() {
 							$(`.shipping-options li:first-child`).click()
 						}
 					}
-					
-					setTimeout(() => {
-						console.log('done(1)')
-						$('.has-checkout-steps').addClass('done')
-					}, 1500)
 				}, 750)
 			} else {
 				$('.input-cp-container').removeClass('ok');
 				$('.input-cp-container').addClass('wrong');
-				console.log('done(2)')
-				$('.has-checkout-steps').addClass('done')
 				// $('#cost').text( parseInt(0) );
 				//console.log(':::',subtotal,coupon)
 				// let total = formatNumber(subtotal - coupon)
@@ -200,10 +164,17 @@ $(document).ready(function() {
 		})
 		return false
 	})
-
-	$('#envio_form').submit(function(event){
+		
+	/* $('#envio_form').submit(function(event){
 		console.log('envio_form', 'submit');
 		event.preventDefault();
+
+
+		const submit = $('input[type="submit"]')
+		submit.prop('disabled', true)
+		submit.addClass('disabled')
+		submit.text('Por favor espere...')
+
 		var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		let shipping = ''
 		let store = ''
@@ -267,11 +238,6 @@ $(document).ready(function() {
 			}
 		}
 
-		const submit = $('.cart-go-button')
-		submit.prop('disabled', true)
-		submit.addClass('disabled')
-		submit.text('Por favor espere...')
-
 		cart.freeShipping = freeShipping
 		//cart.shipping = shipping
 		cart.cargo = cargo
@@ -302,20 +268,13 @@ $(document).ready(function() {
 		}
 		localStorage.setItem('cart', JSON.stringify(cart))  
 	})
-	
+	*/
 	var cart = JSON.parse(localStorage.getItem('cart')) || {}
 
 	if (cart.cargo === 'takeaway' && cart.store?.length && !location.hash.includes('shipment-options.shipping')) {
 		setTimeout(() => {
 			$(`.takeaway-options li[store="${cart.store}"]`).click()
 		}, 2000)
-	}
-
-	if (cart.coupon && cart.coupon.length) {
-		$('.input-coupon').val(cart.coupon)
-		setTimeout(() => {
-			$('.btn-calculate-coupon').click()
-		}, 1000)
 	}
 
 	if(cart.gifts && cart.gifts.length) {
@@ -341,6 +300,6 @@ $(document).ready(function() {
 			} else {
 				// onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000, true)
 			}
-		}, 1000)
+		}, 100)
 	}
 })

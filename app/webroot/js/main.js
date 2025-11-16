@@ -212,18 +212,16 @@ let calcDues = (total) => {
 
 let fxTotal = (total) => {
   //console.log('fxTotal',total)
-  if($('.calc_total').text().replace("$ ", "") != total) {
-    $('.calc_total').text( '$ ' + formatNumber(total) )
+  $('.calc_total').text( '$ ' + formatNumber(total) )
 
-    const block = document.querySelector('.cost_total-container')
-    block.classList.remove('fadeIn', 'fadeOut', 'delay')
-    block.classList.add('hidden')
-    
-    setTimeout(() => {
-      block.classList.remove('hidden')
-      block.classList.add('delay', 'fadeIn')
-    }, 100)
-  }
+  const block = document.querySelector('.cost_total-container')
+  block.classList.remove('fadeIn', 'fadeOut', 'delay')
+  block.classList.add('hidden')
+  
+  setTimeout(() => {
+    block.classList.remove('hidden')
+    block.classList.add('delay', 'fadeIn')
+  }, 100)
 }
 
 let focusEl = (text) => { 

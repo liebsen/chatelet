@@ -100,17 +100,25 @@ class CheckoutController extends AppController
 	}
 
 	public function envio() {
+		CakeLog::write('debug', 'a(1)');
 		if ($this->request->is('post')) {
+			CakeLog::write('debug', 'a(2)');
 			$shipping = $this->request->data;
 
 			if(empty($shipping)) {
-				die("Shipping not recieved");
+	      die(json_encode(array(
+	        'success' => false, 
+	        'message' => 'Shipping not recieved'
+	      )));
 			}
 
 			$customer = $shipping['customer'];
 
 			if(empty($customer)) {
-				die("Customer not recieved");
+	      die(json_encode(array(
+	        'success' => false, 
+	        'message' => 'Customer not recieved'
+	      )));
 			}
 
 			unset($shipping['customer']);
@@ -129,6 +137,7 @@ class CheckoutController extends AppController
 			return false;
 		}
 
+		CakeLog::write('debug', 'a(3)');
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);

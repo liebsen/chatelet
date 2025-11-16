@@ -200,9 +200,11 @@ let strtoFloat = (text) => {
 }
 
 let calcDues = (total) => {
-  $('.calc-dues').each(function(e){
-    const dues = Number($(this).data('dues'))
-    const interest = Number($(this).data('interest')) || 0
+  $('.dues-select-option').each(function(e){
+    const option = $(e).data('json')
+    console.log('dues-select-option:data', option)
+    const dues = Number(option.dues)
+    const interest = Number(option.interest) || 0
     const monto = total * (1 + interest / 100)
     $(this).text(dues + ' cuotas de ' + formatNumber(monto / dues))
   })

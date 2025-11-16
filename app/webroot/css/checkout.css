@@ -11,6 +11,8 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;	
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
 	width: 100%;
 }
 
