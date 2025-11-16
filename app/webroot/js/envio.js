@@ -91,7 +91,6 @@ selectStore = function(e) {
 }
 
 $(document).ready(function() {
-
 	localStorage.setItem('continue_shopping_url', window.location.pathname)
 
 	/*if(cart_items?.length == 1) {
@@ -130,6 +129,8 @@ $(document).ready(function() {
 			$('.coupon_bonus').text().split('.').join('').split(',').join('.') : 
 			cart.coupon_bonus || 0
 		var subtotal = parseFloat($('#subtotal_compra').val()) || cart.subtotal_price
+
+		console.log('calculate_shipping', {cp, coupon, subtotal});
 
 		//console.log(coupon, subtotal)
 		document.querySelector('.shipping-block').classList.add('hidden')
@@ -177,10 +178,17 @@ $(document).ready(function() {
 							$(`.shipping-options li:first-child`).click()
 						}
 					}
+					
+					setTimeout(() => {
+						console.log('done(1)')
+						$('.has-checkout-steps').addClass('done')
+					}, 1500)
 				}, 750)
 			} else {
 				$('.input-cp-container').removeClass('ok');
 				$('.input-cp-container').addClass('wrong');
+				console.log('done(2)')
+				$('.has-checkout-steps').addClass('done')
 				// $('#cost').text( parseInt(0) );
 				//console.log(':::',subtotal,coupon)
 				// let total = formatNumber(subtotal - coupon)
@@ -194,6 +202,7 @@ $(document).ready(function() {
 	})
 
 	$('#envio_form').submit(function(event){
+		console.log('envio_form', 'submit');
 		event.preventDefault();
 		var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		let shipping = ''
@@ -230,6 +239,8 @@ $(document).ready(function() {
 				$('.input-cp').focus();
 				$('.input-cp-container').removeClass('ok');
 				$('.input-cp-container').addClass('wrong');
+				console.log('done(3)')
+				$('.has-checkout-steps').addClass('done')
 				onErrorAlert('Método de entrega', 'Por favor ingresá tu código postal, la opción  Retiro en Sucursal evita cargos de envío', 0, true);
 				return false;
 			}

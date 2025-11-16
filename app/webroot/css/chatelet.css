@@ -109,9 +109,8 @@ html, body {
 	content: "\f00c";
 	color: #07BC31;
 	position: absolute;
-  top: 1rem;
+  top: 0.8rem;
   right: 1rem;
-  font-size: 0.8rem;
   font-family: 'FontAwesome';
   z-index: 10;
 }
@@ -120,9 +119,8 @@ html, body {
 	content: "\f00d";
 	color: #E10D74;
 	position: absolute;
-  top: 1rem;
+  top: 0.8rem;
   right: 1rem;
-  font-size: 0.8rem;
   font-family: 'FontAwesome';
   z-index: 10;
 }
@@ -148,14 +146,15 @@ html, body {
 
 .generic-select li {
 	position: relative;
-	font-size: 0.9rem;
 	padding: 0.75rem 1rem;
-	border: 1px solid #ccc;
+	border: 1px solid #999;
 	border-bottom-width: 2px;
-	line-height: 1.25;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 	font-weight: 400;
 	background-color: white;
-	color: #777;
+	color: #999;
 	cursor: pointer;
 	/*background-image: url(../images/chevron_right_gray.svg);
 	background-position: right 0.75rem center;
@@ -163,7 +162,7 @@ html, body {
 	background-size: 30px;*/
 	margin-bottom: 0.25rem;
 	transition: all 0.25s ease;
-	min-height: 44px;
+	min-height: 50px;
   opacity: 0;
   /*flex: 1;*/
   animation-name: fadeIn;
@@ -178,9 +177,8 @@ html, body {
 	content: "\f054";
 	color: #999;
 	position: absolute;
-  top: 0.9rem;
-  right: 0.9rem;
-  font-size: 0.8rem;
+  top: 0.8rem;
+  right: 1rem;
   font-family: 'FontAwesome';
   opacity: 0.5;
 }
@@ -193,17 +191,19 @@ html, body {
 	background-color: white;
 	border-color: #07BC31;
 	/*background-image: url(../images/check-pink.png);*/
+}
+
+.generic-select li.selected span {
 	color: #07BC31;
-	font-weight: 500;
+	font-weight: 1000;
 }
 
 .generic-select li.selected:before {
 	content: "\f00c";
 	color: #07BC31;
 	position: absolute;
-  top: 0.9rem;
-  right: 0.9rem;
-  font-size: 0.8rem;
+  top: 0.8rem;
+  right: 1rem;
   font-family: 'FontAwesome';
 }
 
@@ -661,6 +661,10 @@ html, body {
   padding: 0 !important;
 }
 
+.flex-col h5 {
+  font-size: 110%;
+}
+
 .card-variant {
 	border-radius: 0!important;
 }
@@ -808,7 +812,6 @@ a.btn {
 .form-control {
 	padding: 0 16px;
 	height: 50px;
-	font-size: 0.9rem;
 	border-bottom-width: 2px;
 }
 

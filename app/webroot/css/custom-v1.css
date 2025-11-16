@@ -2525,6 +2525,10 @@ span.count.is-empty {
   flex-direction: column;
 }
 
+.flex-col h5 {
+  font-size: 110%;
+}
+
 .ch-row {
   display: flex;
   justify-content: center;

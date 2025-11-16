@@ -122,6 +122,29 @@
 		border-color: #333;
 		color: #333;
 	}
+
+	/* manages loading states  */
+
+	.has-checkout-steps .tab-content:after {
+		content: "...";
+		position: block;
+		background-color: white;
+		width: 100%;
+		height: 100%;
+	}
+
+	.has-checkout-steps.done .tab-content:after {
+		display: none;
+	}
+
+	.has-checkout-steps .checkout-continue  {
+		display: none;
+	}
+
+	.has-checkout-steps.done .checkout-continue {
+		display: block;
+	}
+
 </style>
 
 <?php endif ?>

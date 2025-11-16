@@ -1,13 +1,17 @@
 .shipping-options .shipping-logo {
+	position: absolute;
+	left: 0;
+	right: 0;	
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: left center;
 	text-align: right;
 	padding-right: 4rem;
-	min-height: 46px;
+	min-height: 49px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;	
+	width: 100%;
 }
 
 .shipping-options li {
@@ -21,24 +25,30 @@
 }
 
 .nav-dark li {
-	background-color: #e7e7e7;
-	color: #333;
+	background-color: #f8f8f8;
 	flex: 1;
 }
 
 .nav-dark li a {
-	color: #888;
-	background-color: #e7e7e7;
-	border: 2px solid #333;
-	max-width: 10rem;
-	text-align: center;
+	/*max-width: 10rem;*/
+	color: #999;
 	border: none!important;
-	font-weight: 800;
-	line-height: 1;
 	padding: 1rem;
 	border-radius: 0!important;
 	margin: auto;
 }
+
+.nav-dark li a span {
+	margin: auto;
+	max-width: 10rem;
+	display: block;
+	font-size: 110%;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 800;
+	line-height: 1;	
+}
+
 .nav-dark li.active {
 	background-color: #333;
 }

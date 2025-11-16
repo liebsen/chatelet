@@ -25,8 +25,8 @@ echo $this->element('checkout-params');
 	<div class="flex-row">
 		<div class="flex-col">
 			<ul class="nav nav-tabs nav-dark">
-			   <li class="active"><a href="#envio" data-toggle="tab">Envío a domicilio</a></li>
-			   <li><a href="#retiro" data-toggle="tab">Retiro en local GRATIS</a></li>
+			  <li class="active"><a href="#envio" data-toggle="tab"><span>Envío a domicilio</span></a></li>
+			  <li><a href="#retiro" data-toggle="tab"><span>Retiro en local GRATIS</span></a></li>
 			</ul>
 			<div class="tab-content">
 			  <div class="tab-pane active" id="envio">
@@ -125,41 +125,42 @@ echo $this->element('checkout-params');
 	}
 
 	$(document).ready(function() {
-    $('#envio_form').on('submit', function(event) {
-        event.preventDefault();
-        const formData = $(this).serialize();
-        const btnSubmit = $(this).find('[type="submit"]');
-        const redirect = $(this).find('[name="redirect"]').val();
-        btnSubmit.prop('disabled', true)
-        $.ajax({
-            url: $(this).attr('action'),
-            type: 'POST',
-            data: formData,
-            success: function(res) {
-            	if(res.success) {
-            		// onSuccessAlert('Success', res.message)
-                $('#responseContainer').html(res.message);
-                setTimeout(() => {
-                	location.href = redirect || location.href
-                }, 3000)
-            	} else {
-            		onWarningAlert('Error al registrar usuario', res.errors)
-            		$('#responseContainer').html(res.errors);
-            	}
-            	btnSubmit.prop('disabled', false)
-            },
-            error: function(xhr, status, error) {
-              console.error("AJAX Error: " + status + " - " + error);
-              btnSubmit.prop('disabled', false)
-              // Handle errors
-            }
-        });
-    });
-  })
+	    $('#envio_form').on('submit', function(event) {
+	        event.preventDefault();
+	        const formData = $(this).serialize();
+	        const btnSubmit = $(this).find('[type="submit"]');
+	        const redirect = $(this).find('[name="redirect"]').val();
+	        btnSubmit.prop('disabled', true)
+	        $.ajax({
+	            url: $(this).attr('action'),
+	            type: 'POST',
+	            data: formData,
+	            success: function(res) {
+	            	if(res.success) {
+	            		// onSuccessAlert('Success', res.message)
+	                $('#responseContainer').html(res.message);
+	                setTimeout(() => {
+	                	location.href = redirect || location.href
+	                }, 3000)
+	            	} else {
+	            		onWarningAlert('Error al registrar usuario', res.errors)
+	            		$('#responseContainer').html(res.errors);
+	            	}
+	            	btnSubmit.prop('disabled', false)
+	            },
+	            error: function(xhr, status, error) {
+	              console.error("AJAX Error: " + status + " - " + error);
+	              btnSubmit.prop('disabled', false)
+	              // Handle errors
+	            }
+	        });
+	    });
+  	})
 
 </script>
 
 <style>
+
 	#map_canvas {
 		min-height: 400px;
 		width: 100%;
