@@ -42,7 +42,7 @@ echo $this->element('checkout-params');
 					    	<button class="btn btn-chatelet dark btn-input-lg btn-calculate-shipping" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Cotizá el envío a domicilio de tu compra" type="submit">Aplicar</button>
 							</div>
 						</form>
-						<div class="form-group shipping-block w-100 hidden">
+						<div class="form-group shipping-block mt-2 w-100 hidden">
 							<span class="d-block text-muted">Elegí la empresa de tu confianza para realizar este envío</span>
 							<div class="slot">
 							</div>

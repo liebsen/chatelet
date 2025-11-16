@@ -1,8 +1,8 @@
 	<h5 class="text-uppercase">
-		<i class="fa fa-user"></i>
+		<i class="fa fa-user-o"></i>
 		Envío a domicilio
   </h5>
-  <span class="text-sm">Asegurate de verificar y actualizar tus datos correctos para que tu compra llegue a tu domicilio antes y mejor</span>
+  <span class="">Asegurate de verificar y actualizar tus datos correctos para que tu compra llegue a tu domicilio antes y mejor</span>
 	<input type="hidden" name="shipping" value=""/>
 	<input type="hidden" name="coupon" value=""/>
 	<input type="hidden" name="cargo" value=""/>
