@@ -5,23 +5,21 @@ selectShipping = function (e, shipping, cost) {
 		return setTimeout( `onErrorAlert('No disponible', 'El servicio de logística ${shipping.toUpperCase()} no está disponible en este momento, intente en unos instantes.')` , 200)
 	}
 
-	var cart = JSON.parse(localStorage.getItem('cart')) || {}
-	var coupon = $('.coupon_bonus') ? 
-		$('.coupon_bonus').text().split('.').join('').split(',').join('.') : 
-		cart.coupon_bonus || 0
-	var subtotal = cart_totals.total_products
+	// var cart = JSON.parse(localStorage.getItem('cart')) || {}
+	var coupon = cart_totals.coupon_benefits || 0
+	var subtotal = cart_totals.total_products || 0
 	//var subtotal = cart.subtotal_price
 	cargo = 'shipment'
-	var shipping_price = window.shipping_price
+	const shipping_price = parseInt(settings.shipping_price_min)
 	$('.shipping-options li').removeClass('selected secondary')
 	$('.takeaway-options li').removeClass('selected secondary')
 	$('.shipping-options li').addClass('secondary')
 	$(e).addClass('selected')
 	$('.delivery-cost').addClass('hidden')
-	$('.shipping-cargo').text(shipping)	
-
+	$('.shipping-cargo').text(shipping.toUpperCase())	
 	var price = subtotal - coupon
 	if (price < shipping_price) {
+		console.log('A(1)')
 		price+= cost
 		$('#subtotal_envio').val(cost)
 		$('.delivery-cost').removeClass('hidden')
@@ -29,15 +27,17 @@ selectShipping = function (e, shipping, cost) {
 		$('.cost_delivery').text( formatNumber(cost))
 	}
 
+	console.log({subtotal, coupon, price, cost, shipping_price})
+
 	$('.cost_total').text('$ ' + formatNumber(price))
 
-  var cart = JSON.parse(localStorage.getItem('cart')) || {}
+  /* var cart = JSON.parse(localStorage.getItem('cart')) || {}
 	cart.shipping = shipping
   cart.cargo = cargo
   cart.shipping_price = cost
   cart.total_price = price
   cart.subtotal_price = subtotal
-  localStorage.setItem('cart', JSON.stringify(cart))
+  localStorage.setItem('cart', JSON.stringify(cart)) */
 
   //console.log('price',price)
 	let total = formatNumber(price)
@@ -68,7 +68,7 @@ selectStore = function(e) {
   // $('.calc_total').text('$ ' + formatNumber(total_orig))
   format_total = formatNumber(price)
   // fxTotal(format_total)
-  cart.cargo = 'takeaway'
+  /* cart.cargo = 'takeaway'
   //console.log('total_price(2)', price)
   cart.total_price = price
   cart.shipping_price = 0
@@ -77,7 +77,8 @@ selectStore = function(e) {
   cart.store_lat = $(e).attr('store-lat')
   cart.store_lng = $(e).attr('store-lng')
   cart.store_address = $(e).attr('store-address')
-  localStorage.setItem('cart', JSON.stringify(cart))
+  localStorage.setItem('cart', JSON.stringify(cart)) */
+  
   var cart_takeaway_text = $('.cart_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
   initMap(cart)
@@ -128,7 +129,7 @@ $(document).ready(function() {
 					if (!isNaN(rate.price)) {
 						var price = '<span class="text-success text-bold">Gratis</span>'
 						if (!json.freeShipping) {
-							price = `<span class="text-uppercase">$${parseInt(rate.price)}</span>`
+							price = `<span class="text-uppercase">$ ${parseInt(rate.price)}</span>`
 						}
 						rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')">${price}</div></li>`
 					}

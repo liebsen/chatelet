@@ -115,56 +115,6 @@ var removeCart = (e) => {
   })
 }
 
-var updateCart = (carrito) => {
-  console.log('updateCart', carrito)
-  if(!carrito) {
-    carrito = JSON.parse(localStorage.getItem('cart')) || {}
-  }
-  Object.keys(carrito).forEach(e => {
-    const h = $('#checkoutform').find(`input[name='${e}']`)
-    if (h.length && carrito[e]) {
-      h.val(carrito[e])
-    }
-    if ($(`.${e}`).length) {
-      let value = carrito[e]
-      if (typeof value === 'number') {
-        value = formatNumber(value) 
-      }
-      $(`.${e}`).html(value)
-    }
-  })
-
-  if (carrito.cargo === 'takeaway') {
-    $('.cargo-takeaway').removeClass('hide')
-    $('.cargo-takeaway').addClass('animated fadeIn')
-  }
-
-  if (carrito.cargo === 'shipment') {
-    var price = ''
-    if (carrito.freeShipping) {
-      price = '<span class="text-success text-bold">Gratis</span>'
-    } else {
-      price = `$ ${formatNumber(carrito.shipping_price)}`
-    }
-    $('.shipping_price').html(price)
-    $('.shipping-block').removeClass('hide')
-    $('.shipping-block').addClass('animated fadeIn')
-  }
-
-  if(!carrito.coupon) {
-    $('.coupon-actions-block').removeClass('hide')
-    $('.coupon-actions-block').addClass('animated fadeIn')
-  } else {
-    $('.coupon-block').removeClass('hide')
-    $('.coupon-block').addClass('animated fadeIn')
-  }
-
-  if (bank.enable && bank.discount_enable && bank.discount) {
-    setTimeout(() => {
-      onWarningAlert('Pagá con CBU/Alias', `Y obtené un ${bank.discount}% de descuento en tu compra`);    
-    }, 2000)
-  }
-}
 
 var save_preference = (settings) => {
   $.post('/carrito/preference', $.param(settings))
@@ -196,32 +146,37 @@ var getItems = () => {
 }
 
 var getTotals = () => {
-  var payment_method = cart_totals.payment_method
-  var carrito = JSON.parse(localStorage.getItem('cart')) || {}
+  var payment_method = 
   var subtotal = getItems()
+
+  // var carrito = JSON.parse(localStorage.getItem('cart')) || {}
   $('.subtotal_price').text(formatNumber(subtotal))
-  if(carrito.freeShipping) {
+  
+  if(freeShipping) {
     $('.paid-shipping-block').addClass('hidden')
     $('.free-shipping-block').removeClass('hidden')
   } else {
-    if(carrito.shipping_price) {
-      subtotal+= carrito.shipping_price
+    if(cart_totals.delivery_cost) {
+      subtotal+= cart_totals.delivery_cost
     }
     $('.free-shipping-block').addClass('hidden')
     $('.paid-shipping-block').removeClass('hidden')
   }
-  if(window.coupon_bonus){ 
-    subtotal-= window.coupon_bonus
+
+  if(cart_totals.coupon_benefits){ 
+    subtotal-= cart_totals.coupon_benefits
   }
-  if(bank.enable && bank.discount && payment_method == 'bank') {
-    subtotal-= subtotal * (parseFloat(bank.discount) / 100)
+
+  if(settings.bank_enable && settings.bank_discount && cart_totals.payment_method == 'bank') {
+    subtotal-= subtotal * (parseFloat(settings.bank_discount) / 100)
   }
+
   if(subtotal < 1) {
     subtotal = 1
   }
   //console.log('total_price(1)', subtotal)
   $('.calc_total').text("$ " + formatNumber(subtotal))
-  localStorage.setItem('cart', JSON.stringify(carrito))  
+  // localStorage.setItem('cart', JSON.stringify(carrito))  
   return subtotal
 }
 

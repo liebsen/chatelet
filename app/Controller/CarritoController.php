@@ -353,6 +353,7 @@ class CarritoController extends AppController
 		$coupon_code = null;
 		$coupon_parsed = \filtercoupon($coupon, $cart_totals, $data['price']);
 		$updated = [];
+
 		if($coupon_parsed->status === 'success') {
 			$coupon_code = $coupon['Coupon']['code'];
 			$discount = (float) $coupon_parsed->data['discount'];
@@ -419,9 +420,8 @@ class CarritoController extends AppController
 			$total = round($total,2);
 		}
 
-		CakeLog::write('debug', 'total(2):'.$total);
-
-		CakeLog::write('debug', 'coupon_bonus:'. $coupon_bonus);
+		// CakeLog::write('debug', 'total(2):'.$total);
+		// CakeLog::write('debug', 'coupon_bonus:'. $coupon_bonus);
 		$cart_totals = $this->Session->read('cart_totals');
 		$cart_totals['coupon_benefits'] = $coupon_bonus;
 
@@ -433,6 +433,8 @@ class CarritoController extends AppController
 		if($coupon_code) {
 			$cart_totals['coupon'] = $coupon_code;
 		}
+
+		$cart_totals['grand_total'] = $total;
 
 		CakeLog::write('debug', 'cart_totals(2):'. json_encode($cart_totals));
 
@@ -1471,6 +1473,8 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 
 		$cart_totals = $this->Session->read('cart_totals');
 		$cart_totals['total_products'] = $total;
+		$cart_totals['delivery_cost'] = $cart_totals['delivery_cost'] ?? 0;
+		$cart_totals['coupon_benefits'] = $cart_totals['coupon_benefits'] ?? 0;
 		$grand_total = $cart_totals['total_products'] - 
 			$cart_totals['coupon_benefits'] + 
 			$cart_totals['delivery_cost'];

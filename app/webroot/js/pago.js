@@ -1,56 +1,6 @@
 var dues_selected = ''
 var cart = JSON.parse(localStorage.getItem('cart')) || {}
 
-var updateCart = (cart) => {
-	if(!cart) {
-		cart = JSON.parse(localStorage.getItem('cart')) || {}
-	}
-
-	Object.keys(cart).forEach(e => {
-		const h = $('#checkoutform').find(`input[name='${e}']`)
-		if (h.length && cart[e]) {
-			h.val(cart[e])
-		}
-		if ($(`.${e}`).length) {
-			let value = cart[e]
-			if (typeof value === 'number') {
-				value = formatNumber(value)	
-			}
-			$(`.${e}`).html(value)
-		}
-	})
-
-	if (cart.cargo === 'takeaway') {
-		$('.cargo-takeaway').removeClass('hide')
-		$('.cargo-takeaway').addClass('animated fadeIn')
-	}
-
-	if (cart.cargo === 'shipment') {
-		var price = ''
-		if (cart.freeShipping) {
-			price = '<span class="text-success text-bold">Gratis</span>'
-		} else {
-			price = `$ ${formatNumber(cart.shipping_price)}`
-		}
-		$('.shipping_price').html(price)
-		$('.shipping-block').removeClass('hide')
-		$('.shipping-block').addClass('animated fadeIn')
-	}
-
-	if(!cart.coupon) {
-		$('.coupon-actions-block').removeClass('hide')
-		$('.coupon-actions-block').addClass('animated fadeIn')
-	} else {
-		$('.coupon-block').removeClass('hide')
-		$('.coupon-block').addClass('animated fadeIn')
-	}
-
-	if (bank.enable && bank.discount_enable && bank.discount && cart_totals.payment_method !== 'bank') {
-		setTimeout(() => {
-  		onWarningAlert('Pagá con Transferencia', `Y obtené un ${bank.discount}% de descuento en tu compra`);		
-  	}, 2000)
-	}
-}
 
 //var select_dues = (e,item) => {
 $('.dues-select-option').click((e) => {
@@ -92,8 +42,6 @@ $(function(){
 
 	$(`.cargo-${cart.cargo}`).removeClass('hide')
 	$(`.cargo-${cart.cargo}`).addClass('animated fadeIn')
-
-	updateCart()
 
 	$('.select-payment-option').click(e => {
 		const target = $(e.target).hasClass('select-payment-option') ? 
@@ -144,8 +92,13 @@ $(function(){
 			}
 		}
 
-		if (selected === 'bank' && bank.enable && bank.discount_enable && bank.discount) {
-			bank_bonus = totals.total * (parseFloat(bank.discount) / 100)
+		if (
+			selected === 'bank' && 
+			settings.bank_enable && 
+			settings.bank_discount_enable && 
+			settings.bank_discount
+		) {
+			bank_bonus = totals.total * (parseFloat(settings.bank_discount) / 100)
 			$('.bank_bonus').text(formatNumber(bank_bonus))
 			$('.bank-block').removeClass('hide')
 			$('.bank-block').addClass('animated fadeIn')

@@ -35,7 +35,7 @@
 				echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
 			}
 
-		echo '<span class="text-nowrap mt-2">$ '. \price_format($product['item_price']) .'</span>';	
+		echo '<span class="text-nowrap mt-2">'. \price_format($product['item_price']) .'</span>';	
 		echo '</div>';
 		echo '</div>';		
 		} ?>
@@ -57,9 +57,13 @@
 			<div class="summary-item coupon-discount<?php echo empty($cart_totals['coupon_benefits']) ? ' hidden' : '' ?>">
 				<span class="text-weight-thin text-success">Cupón </span>
 				<span class="text-success">
-					<span class="promo-code text-sm"></span> <span class="coupon_bonus"><?= \price_format($cart_totals['coupon_benefits']) ?></span>
+					<span class="promo-code text-sm"><?php echo $cart_totals['coupon'] ?></span> <span class="coupon_bonus"><?= \price_format($cart_totals['coupon_benefits']) ?></span>
 				</span>
 			</div>
+			<div class="summary-item text-right delivery-cost<?php echo empty($cart_totals['delivery_cost']) ? ' hidden' : '' ?>">
+				<span class="text-weight-thin text-success">Envía <span class="shipping-cargo"></span></span>
+				<span id="delivery_cp"></span> <span>$ <span class="cost_delivery">0</span></span>
+			</div>			
 		<!--pre><?php var_dump($cart_totals); ?></pre-->
 			<div class="summary-item cost_total-container">
 				<span class="text-weight-bold">Total </span> 

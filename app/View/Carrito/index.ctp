@@ -10,7 +10,7 @@
 	];
 ?>
 
-<section id="main" class="container animated fadeIn delay">
+<section id="main" class=" animated fadeIn delay min-h-101<?php echo empty($cart) ? ' bg-light' : ' container' ?>">
 <?php if (!empty($cart)) : ?>
 	<?php echo $this->element('title-faq', array('title' => "Carrito")) ?>
 <?php endif ?>
@@ -55,7 +55,7 @@
 											<span><?php echo $product['size'] ?></span>
 										</span>
 									<?php endif ?>
-									<span class="text-nowrap mt-2">$ <?php echo \price_format($product['item_price']) ?></span>
+									<span class="text-nowrap mt-2"><?php echo \price_format($product['item_price']) ?></span>
 								</div>
 								<div class="form-inline">
 								  <div class="form-group">
@@ -175,7 +175,7 @@
 				echo '<td>';	
 
 
-				echo '<span class="text-nowrap">$ '. \price_format($product['item_price']) .'</span>';
+				echo '<span class="text-nowrap">'. \price_format($product['item_price']) .'</span>';
 				if (!empty($product['item_old_price'] && abs($product['item_old_price']-$product['item_price']) > 1)){
 					echo '<br><span class="old_price text-grey text-sm">'.\price_format($product['item_old_price']) .'</span>';
 				}					
