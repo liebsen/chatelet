@@ -19,7 +19,6 @@ selectShipping = function (e, shipping, cost) {
 	$('.shipping-cargo').text(shipping.toUpperCase())	
 	var price = subtotal - coupon
 	if (price < shipping_price) {
-		console.log('A(1)')
 		price+= cost
 		$('#subtotal_envio').val(cost)
 		$('.delivery-cost').removeClass('hidden')
@@ -45,6 +44,9 @@ selectShipping = function (e, shipping, cost) {
 	fxTotal(total)
 	$('.paying-with').delay(1000).fadeIn()
 	$('.checkout-continue').fadeIn()
+
+	localStorage.setItem('shipping_method', 'delivery')
+	localStorage.setItem('delivery_select', shipping)
 	// onErrorAlert(`Como querés recibir tu compra`, `Te lo llevamos por ${shipping.toUpperCase()}`, 0, true);
 }
 
@@ -78,11 +80,21 @@ selectStore = function(e) {
   cart.store_lng = $(e).attr('store-lng')
   cart.store_address = $(e).attr('store-address')
   localStorage.setItem('cart', JSON.stringify(cart)) */
-  
+  	
+  const storeProps = ['store', 'store-address', 'store-lat', 'store-lng']
+  let store = {}
+  storeProps.forEach((i,j) => {
+  	store[i] = $(e).attr(i)
+  })
+
+  localStorage.setItem('shipping_method', 'takeaway')
+  localStorage.setItem('takeaway_selected', JSON.stringify(store))
+
   var cart_takeaway_text = $('.cart_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
   initMap(cart)
   // onSuccessAlert(`Como querés recibir tu compra`, `Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}. Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. <br><br> ${cart_takeaway_text}`);
+  console.log('click(7)')
   $('a[href="#retiro"]').click()
   $('.checkout-continue').fadeIn()
 	cargo = 'takeaway'
@@ -90,7 +102,6 @@ selectStore = function(e) {
 
 $(document).ready(function() {
 	localStorage.setItem('continue_shopping_url', window.location.pathname)
-
 
 	$('#calulate_shipping').submit(e => {
 		var url = $('#calulate_shipping').data('url')
@@ -143,10 +154,12 @@ $(document).ready(function() {
 					$('.input-status').addClass('ok');
 					// onSuccessAlert(`Como querés recibir tu compra`,'Ingresaste código postal ' + cp, 0, true);
 					document.querySelector('.shipping-block').classList.remove('hidden')	
-					if (cart.cargo === 'shipment' && cart.shipping) {
-						$(`.shipping-options li[shipping="${cart.shipping}"]`).click()
+					if (localStorage.getItem('shipping_method') === 'delivery' && localStorage.getItem('delivery_select')) {
+						console.log('click(1)')
+						$(`.shipping-options li[shipping="${localStorage.getItem('delivery_select')}"]`).click()
 					} else {
 						if (json.rates.length === 1) {
+							console.log('click(2)')
 							$(`.shipping-options li:first-child`).click()
 						}
 					}
@@ -272,11 +285,9 @@ $(document).ready(function() {
 	*/
 	var cart = JSON.parse(localStorage.getItem('cart')) || {}
 
-	if (cart.cargo === 'takeaway' && cart.store?.length && !location.hash.includes('shipment-options.shipping')) {
-		setTimeout(() => {
-			$(`.takeaway-options li[store="${cart.store}"]`).click()
-		}, 2000)
-	}
+	var shipping_method = getStorage('shipping_method')
+	var takeaway_selected = getStorage('takeaway_selected', {})
+
 
 	if(cart.gifts && cart.gifts.length) {
 		$('.gift-area').removeClass('hidden')
@@ -287,20 +298,31 @@ $(document).ready(function() {
 		var lastcp = localStorage.getItem('lastcp')
 	}
 
-	if (lastcp && $('#subtotal_compra').val()) {
+	if (shipping_method === 'takeaway' && Object.keys(takeaway_selected)?.length && !location.hash.includes('shipment-options.shipping')) {
 		setTimeout(() => {
-			$('label[for="shipment"]').click()
+			$('a[href="#retiro"]').click()
+			$('.has-checkout-steps').addClass('done')
+			// $('label[for="shipment"]').click()
+			$(`.takeaway-options li[store="${takeaway_selected.store}"]`).click()
+		}, 100)
+	}
+
+	if (shipping_method === 'delivery' && lastcp && $('#subtotal_compra').val()) {
+		setTimeout(() => {
+			console.log('click(4)')
+			$('a[href="#envio"]').click()
 			//$('.shipment-block').show()
 			$('.input-cp').val(lastcp)
+			console.log('click(5)')
 			$('.btn-calculate-shipping').click()
 
-			const takeaway = $('.takeaway-options li.selected')
-			if(cargo === 'shipment' && !takeaway.length || freeShipping) {
+			// const takeaway = $('.takeaway-options li.selected')
+			// if(cargo === 'shipment' && !takeaway.length || freeShipping) {
 				// $('#calulate_shipping').submit()	
 				// onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000, true)
-			} else {
+			// } else {
 				// onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000, true)
-			}
+			// }
 		}, 100)
 	}
 })

@@ -13,7 +13,7 @@ $(document).ready(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            'data[User][email]': {
+            'customer[email]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo email es requerido y no puede estar vacio'
@@ -23,7 +23,7 @@ $(document).ready(function() {
                     }
                 }
             },
-            'data[User][password]': {
+            'customer[password]': {
                 validators: {
                     notEmpty: {
                         message: 'Contraseña es requerido'
@@ -35,90 +35,89 @@ $(document).ready(function() {
                     }
                 }
             },
-            'data[User][name]': {
+            'customer[name]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo nombre es requerido y no puede estar vacio'
                     }
                 }
             },
-            'data[User][surname]': {
+            'customer[surname]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo apellido es requerido y no puede estar vacio'
                     }
                 }
             },
-            'data[User][birthday]': {
+            'customer[birthday]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo cumpleaños es requerido y no puede estar vacio'
                     }
                 }
             },
-            'data[User][dni]': {
+            'customer[dni]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo dni es requerido y no puede estar vacio'
                     }
                 }
             },
-            /*'data[User][gender]': {
+            /*'customer[gender]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo genero es requerido y no puede estar vacio'
                     }
                 }
             },*/
-            /*
-            'data[User][telephone]': {
+            'customer[telephone]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo telefono es requerido y no puede estar vacio'
                     }
                 }
             },
-            'data[User][address]': {
+            'customer[address]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo direccion es requerido y no puede estar vacio'
                     }
                 }
             },
-            'data[User][province]': {
+            'customer[province]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo provincia es requerido y no puede estar vacio'
                     }
                 }
             },
-            'data[User][city]': {
+            'customer[city]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo ciudad es requerido y no puede estar vacio'
                     }
                 }
             },
-            'data[User][neighborhood]': {
+            'customer[neighborhood]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo barrio es requerido y no puede estar vacio'
                     }
                 }
             },
-            'data[User][postal_address]': {
+            'customer[postal_address]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo codigo postal es requerido y no puede estar vacio'
                     }
                 }
-            }*/
+            }
         }
-    }).on('change', '[name="data[User][birthday]"]', function(e) {
+    }).on('change', '[name="customer[birthday]"]', function(e) {
         //$("#birthday").val($(this).datepicker('getFormattedDate'));
-            //$('#envio_form').bootstrapValidator('options.fields.data[User][birthday]');
+            //$('#envio_form').bootstrapValidator('options.fields.customer[birthday]');
         if($("#birthday").val()!=''){
-            $("#envio_form").data('bootstrapValidator').updateStatus('data[User][birthday]', 'VALID').validateField("data[User][birthday]");
+            $("#envio_form").data('bootstrapValidator').updateStatus('customer[birthday]', 'VALID').validateField("customer[birthday]");
             $("#envio_form").bootstrapValidator('disableSubmitButtons', false);
         }
         //$(this).closest('#envio_form').bootstrapValidator('revalidateField', $(this).prop('name'), true);

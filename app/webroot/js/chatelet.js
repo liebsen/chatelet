@@ -10,6 +10,20 @@ let clock = 0
 let fakeshown = 0 
 const log = false
 
+function getStorage(key, def) {
+  if(localStorage[key] && localStorage[key] != 'undefined') {
+    console.log('a(1)',key, localStorage[key])
+    let res = localStorage[key]
+    try {
+      res = JSON.parse(localStorage[key])
+    } catch(e) {
+      // console.log('error', e)
+    }
+    return res
+  }
+  return def ?? ''
+}
+
 function addCart(data, button, label, redirect) {
   $(button).addClass('adding')
   $(button).text(label || 'Agregando...')

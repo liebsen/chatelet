@@ -1024,6 +1024,7 @@ class CheckoutController extends AppController
 		);
 
 CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
+CakeLog::write('debug', 'settings(1)'.json_encode($settings));
 		// error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
 		error_log("total mp: " . $total);

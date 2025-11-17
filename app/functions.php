@@ -1,5 +1,6 @@
 <?php
 
+
 function timeAgo($timestamp) {
     $current_time = time();
     $diff = $current_time - $timestamp;

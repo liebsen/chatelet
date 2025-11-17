@@ -6,15 +6,10 @@ $this->set('short_header', 'Checkout');
 $this->set('short_header_text', '← Volver al carrito'); 
 $this->set('short_header_link', '/carrito');
 
-echo $this->Html->css('bootstrapValidator.min');
-echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
-echo $this->Html->script('bootstrapValidator', array('inline' => false));
-echo $this->Html->script('shipping-validation', array('inline' => false));
 echo $this->element('checkout-params');
 ?>
 

@@ -36,7 +36,7 @@ function addToCart(data) {
         
         $('.growl-close').click(reload);
 
-        dataLayer.push({
+        /* dataLayer.push({
           'event': 'addToCart',
           'ecommerce': {
             'currencyCode': 'ARS',
@@ -63,7 +63,8 @@ function addToCart(data) {
             setTimeout(reload, 3000);
             $('.growl-close').click(reload);
           }
-        })
+        }) */
+        
       } else {
         $.growl.error({
           title: 'Ocurrió un error al agregar el producto al carrito',
@@ -146,7 +147,7 @@ var getItems = () => {
 }
 
 var getTotals = () => {
-  var payment_method = 
+  var payment_method = cart_totals.payment_method
   var subtotal = getItems()
 
   // var carrito = JSON.parse(localStorage.getItem('cart')) || {}
