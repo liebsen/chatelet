@@ -23,58 +23,64 @@
 		?>			
 		<div class="flex-col">
 			<div class="mobile p-3">
-			<?php foreach ($sorted as $product) {
-				echo "<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative' data-json='".json_encode($product)."' product_row>";
-
-				echo "<div class='cart-img'>";
-				if (!empty($product['number_ribbon'])) {
-					echo '<div class="ribbon small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
-				}
-				if (empty($product['price'])) {
-					$promosaved+= (float) $product['old_price'];
-				}
-				if ($product['promo'] !== '') {							
-					$disable = !isset($product['promo_enabled']) ? ' disable' : '';
-					echo "<div class='ribbon".$disable."'><span>" . $product['promo'] . "</span></div>";
-				}
-        echo '<a href="' . $item_url . '">';
-				// echo '<img src="'.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
-				echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
-				echo '</a>';
-			echo '</div>';
-			echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
-			echo '<h5 class="mt-0 mb-1 text-weight-thin">'. $product['name'] . '</h5>';
-			if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
-				echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
-			}
-			if (!empty($product['size']) && $product['size'] != 'undefined'){
-				echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
-			}
-
-			echo '<span class="text-nowrap mt-2">$ '. \price_format($product['item_price']) .'</span>';				
-			echo '<div class="form-inline">
-			  <div class="form-group">
-			    <div class="input-group carrito-selector mt-2">
-			      <div class="input-group-addon input-lg is-clickable btn-change-count">
-			       	<span>&ndash;</span>
-			      </div>
-			      <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="' . $product['count'] . '" original-value="' . $product['count'] . '" />
-			      <div class="input-group-addon input-lg is-clickable btn-change-count">
-			      	<span>+</span>
-			      </div>
-			    </div>
-			  </div>
-			</div>';					
-			echo '<label class="form-group mt-1">
-				  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-sm">Es para regalo</span><br><br>
-				</label>';
-
-			echo '</div>';
-			echo '<button class="corner-pin bg-transparent" onclick="askremoveCart(this)">
-							<i class="fa fa-trash-o"></i>
-						</button>';					
-			echo '</div>';		
-			} ?>
+				<div class="d-flex flex-column justify-content-start align-center gap-05 w-100">
+				<?php foreach ($sorted as $product) : ?>
+					<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative' data-json='<?php echo json_encode($product) ?>' product_row>
+						<div class='cart-img'>
+						<?php if (!empty($product['number_ribbon'])) : ?>
+							<div class="ribbon small"><span><?php echo $product['number_ribbon'] ?>% OFF</span></div>
+						<?php endif ?>
+						<?php if (empty($product['price'])) : ?>
+							<?php $promosaved+= (float) $product['old_price'] ?>
+						<?php endif ?>
+						<?php if ($product['promo'] !== '') : ?>
+							<?php $disable = !isset($product['promo_enabled']) ? ' disable' : '' ?>
+							<div class='ribbon".$disable."'><span><?php echo $product['promo'] ?></span></div>
+						<?php endif ?>
+			        <a href="<?php echo $item_url ?>">
+								<div class="ch-image" style="background-image: url('<?php echo Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url']) ?>')"></div>
+							</a>
+						</div>
+						<div class="d-flex justify-content-start align-center flex-column">
+							<div class="d-flex justify-content-between align-center min-w-7 gap-1">
+								<div class="d-flex justify-content-center align-center flex-column max-20">
+									<h5 class="mt-0 mb-2 text-weight-thin lh-1"><?php echo $product['name'] ?></h5>
+									<?php if (!empty($product['color_code']) && $product['color_code'] != 'undefined') : ?>
+										<span class="text-sm">Color: 
+											<span color-code="<?php echo $product['color_code'] ?>"><?php echo $product['alias'] ?></span>
+										</span>
+									<?php endif ?>
+									<?php if (!empty($product['size']) && $product['size'] != 'undefined') : ?>
+										<span class="text-sm">Talle: 
+											<span><?php echo $product['size'] ?></span>
+										</span>
+									<?php endif ?>
+									<span class="text-nowrap mt-2">$ <?php echo \price_format($product['item_price']) ?></span>
+								</div>
+								<div class="form-inline">
+								  <div class="form-group">
+								    <div class="input-group carrito-selector mt-2">
+								      <div class="input-group-addon input-lg is-clickable btn-change-count">
+								       	<span>&ndash;</span>
+								      </div>
+								      <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="<?php echo $product['count'] ?>" original-value="<?php echo $product['count'] ?>" />
+								      <div class="input-group-addon input-lg is-clickable btn-change-count">
+								      	<span>+</span>
+								      </div>
+								    </div>
+								  </div>
+									<label class="form-group mt-1 pl-0">
+										<input class="giftchecks" type="checkbox" id="giftcheck_<?php echo $product['id'] ?>" data-id="<?php echo $product['id'] ?>"><span class="label-text text-muted text-sm">Para regalo</span><br><br>
+										</label>
+									</div>
+								</div>
+							</div>
+							<button class="corner-pin bg-transparent" onclick="askremoveCart(this)">
+								<i class="fa fa-trash-o"></i>
+							</button>
+						</div>
+					<?php endforeach ?>
+				</div>
 			</div>
 			<div class="desktop">
 				<table class="table w-100">
@@ -130,7 +136,7 @@
 			echo '</div>';
 			echo '<div class="d-flex justify-space-between align-items-start flex-column min-w-7">';
 			echo '<div class="d-flex justify-content-start align-center flex-column">';
-			echo '<span class="mt-0">'. $product['name'] . '</span>';
+			echo '<span class="mt-0 mb-2 lh-1">'. $product['name'] . '</span>';
 
 			if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 				echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
@@ -140,8 +146,8 @@
 			}
 
 			echo '</div>';
-			echo '<label class="form-group">
-				  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-sm">Es para regalo</span><br><br>
+			echo '<label class="form-group ml-0">
+				  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-sm">Para regalo</span><br><br>
 				</label>';
 
 			echo '</div>';
@@ -171,7 +177,7 @@
 
 				echo '<span class="text-nowrap">$ '. \price_format($product['item_price']) .'</span>';
 				if (!empty($product['item_old_price'] && abs($product['item_old_price']-$product['item_price']) > 1)){
-					echo '<br><span class="old_price text-grey text-sm">$ '. \price_format($product['item_old_price']) .'</span>';
+					echo '<br><span class="old_price text-grey text-sm">'.\price_format($product['item_old_price']) .'</span>';
 				}					
 
 				echo strlen(@$product['payment_text']) ? 'con ' . @$product['payment_text'] : '';

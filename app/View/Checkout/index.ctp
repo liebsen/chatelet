@@ -23,7 +23,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 					<div class="card-body">
 						<div class="d-flex flex-column justify-content-start align-items-center gap-05">
 							<h2 class="text-bolder">Hola, <?php echo $user['name'] ?? 'Invitada'; ?>!</h2>
-							<p>Confirma tu identidad para continuar con tu compra de $ <?php echo \price_format($cart_totals['grand_total']) ?>.</p>
+							<p>Confirma tu identidad para continuar con tu compra de <?php echo \price_format($cart_totals['grand_total']) ?>.</p>
 							<a href="/checkout/envio" class="btn btn-chatelet dark w-100">Continuar como como <?php echo $user['name'] ?? 'Invitada'; ?> <?php echo $user['surname']; ?> </a>
 							<span class="text-sm text-muted"><b>Al finalizar el proceso</b> revisa tu cuenta en <b><?php echo $user['email']; ?></b></span>
 						</div>

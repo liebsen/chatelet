@@ -47,23 +47,23 @@
 		<?php if (!empty($cart_totals['discount'])) : ?>
 			<div class="summary-item">
 				<span class="text-weight-thin">Descuento </span>
-				<span>$ <?= \price_format($cart_totals['discount']) ?></span><!--span>.00</span-->
+				<span><?= \price_format($cart_totals['discount']) ?></span><!--span>.00</span-->
 			</div>
 		<?php endif ?>
 			<div class="summary-item">
 				<span class="text-weight-thin">Subtotal </span>
-				<span class="cost_total">$ <?= \price_format($cart_totals['total_products']) ?></span>
+				<span class="cost_total"><?= \price_format($cart_totals['total_products']) ?></span>
 			</div>
 			<div class="summary-item coupon-discount<?php echo empty($cart_totals['coupon_benefits']) ? ' hidden' : '' ?>">
 				<span class="text-weight-thin text-success">Cupón </span>
 				<span class="text-success">
-					<span class="promo-code text-sm"></span> $ <?= \price_format($cart_totals['coupon_benefits']) ?>
+					<span class="promo-code text-sm"></span> <span class="coupon_bonus"><?= \price_format($cart_totals['coupon_benefits']) ?></span>
 				</span>
 			</div>
 		<!--pre><?php var_dump($cart_totals); ?></pre-->
 			<div class="summary-item cost_total-container">
 				<span class="text-weight-bold">Total </span> 
-				<span class="calc_total text-weight-bold">$ <?= \price_format($cart_totals['grand_total']) ?></span><!--span>.00</span-->
+				<span class="calc_total text-weight-bold"><?= \price_format($cart_totals['grand_total']) ?></span><!--span>.00</span-->
 			</div>
 			<hr class="mt-1">
 

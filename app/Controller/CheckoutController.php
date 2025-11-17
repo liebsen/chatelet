@@ -255,7 +255,7 @@ class CheckoutController extends AppController
 		if (!$coupon) {
 			return json_encode((object) [
 				'status' => 'error',
-				'title' => "Promo desconocida: " . $this->request->data['coupon'],
+				'title' => $this->request->data['coupon'],
 				'message' => "No tenemos esa promo disponible ahora"
 			]);
 		}

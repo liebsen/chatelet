@@ -323,8 +323,8 @@ class CarritoController extends AppController
 		if (!$coupon) {
 			return json_encode((object) [
 				'status' => 'error',
-				'title' => "Promo desconocida: " . $this->request->data['coupon'],
-				'message' => "No tenemos esa promo disponible ahora"
+				'title' => strtoupper($this->request->data['coupon']),
+				'message' => "No tenemos esa promo disponible"
 			]);
 		}
 	  // look for coupon configuration
@@ -421,12 +421,14 @@ class CarritoController extends AppController
 
 		CakeLog::write('debug', 'total(2):'.$total);
 
-		$coupon_parsed->data["updated"] = $updated;
-		$coupon_parsed->data["total"] = $total;
-		$coupon_parsed->data["bonus"] = $discount;
 		CakeLog::write('debug', 'coupon_bonus:'. $coupon_bonus);
 		$cart_totals = $this->Session->read('cart_totals');
 		$cart_totals['coupon_benefits'] = $coupon_bonus;
+
+		$coupon_parsed->data["updated"] = $updated;
+		$coupon_parsed->data["total"] = $total;
+		$coupon_parsed->data["bonus"] = $discount;
+		$coupon_parsed->data["coupon_benefits"] = $coupon_bonus;
 
 		if($coupon_code) {
 			$cart_totals['coupon'] = $coupon_code;
@@ -1514,6 +1516,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 			$this->updateCart($update);
 		} else {
 			$this->Session->delete('cart');
+			$this->Session->delete('cart_totals');
 		}
 		return json_encode($removed);
 		//return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));

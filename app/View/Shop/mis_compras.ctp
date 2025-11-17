@@ -114,7 +114,7 @@
               <span class="text-link"><i class="fa fa-edit mr-1"></i> Ver detalles</span>
             </p>
             <div class="text-right d-flex justify-content-end align-items-center gap-1">
-              <span class="price animated fadeIn delay">$ <?= \price_format($sale['Sale']['value']) ?> 
+              <span class="price animated fadeIn delay"><?= \price_format($sale['Sale']['value']) ?> 
               <?php if($sale['Sale']['dues'] > 1):?>
                 <span class="text-muted text-sm">en <?= $sale['Sale']['dues'] ?> cuotas</span>
               <?php endif ?>

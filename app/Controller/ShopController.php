@@ -787,17 +787,17 @@ class ShopController extends AppController {
 
       if(!empty(@$row['mp_discount'])) {
         $number_ribbon = $row['mp_discount'];
-        $mp_price = \price_format(ceil(round($price * (1 - (float) $row['mp_discount'] / 100))));
+        $mp_price = \price_format(ceil(round($price * (1 - (float) $row['mp_discount'] / 100))), true);
       }
 
       if(!empty(@$row['bank_discount'])) {
         $number_ribbon = $row['bank_discount'];
-        $bank_price = \price_format(ceil(round($price * (1 - (float) $row['bank_discount'] / 100))));
+        $bank_price = \price_format(ceil(round($price * (1 - (float) $row['bank_discount'] / 100))), true);
       }
 
 			$result = [
 				'id' => $row['id'],
-				'price' => \price_format($price),
+				'price' => \price_format($price, true),
 				'category_id' => $row['category_id'],
 				'name' => $row['name'],
 				'desc' => $row['desc'],
@@ -811,13 +811,13 @@ class ShopController extends AppController {
 			];
 
 			if(!empty($mp_price)){
-				$result['mp_price'] = \price_format($mp_price);
+				$result['mp_price'] = \price_format($mp_price, true);
 			}
 			if(!empty($bank_price)){
-				$result['bank_price'] = \price_format($bank_price);
+				$result['bank_price'] = \price_format($bank_price, true);
 			}
 			if(!empty($old_price)){
-				$result['old_price'] = \price_format($old_price);
+				$result['old_price'] = \price_format($old_price, true);
 			}
 
 			$results[]= $result;

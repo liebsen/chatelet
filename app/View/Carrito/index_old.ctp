@@ -181,7 +181,7 @@
 						if (!empty($product['old_price'] && abs($product['old_price']-$product['price']) > 1)){
 							echo '<span class="old_price text-grey animated fadeIn delay">$ '. \price_format($product['old_price']) .'</span>';
 						}					
-						echo '<span class="price animated fadeIn delay">$ '. \price_format($product['price']) .'</span>';
+						echo '<span class="price animated fadeIn delay">'. \price_format($product['price']) .'</span>';
 						echo strlen(@$product['payment_text']) ? 'con ' . @$product['payment_text'] : '';
 						echo '</td>';
 						
@@ -226,7 +226,7 @@
 							<hr-->
 						<?php if($total + $promosaved != $total): ?>
 							<div class="summary-item text-right products-total">
-								<div class="price text-dark"><span class="text-weight-thin">Productos </span> $ <?= \price_format($total + $promosaved) ?></div>
+								<div class="price text-dark"><span class="text-weight-thin">Productos </span> <?= \price_format($total + $promosaved) ?></div>
 							</div>
 						<?php endif ?>
 							<?php if($freeShipping):?>

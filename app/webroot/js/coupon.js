@@ -67,11 +67,11 @@ function submitCoupon() {
       let discounted = 0
       let total = 0
 
-      discounted_formatted = formatNumber(res.data.bonus)
+      discounted_formatted = formatNumber(res.data.coupon_benefits)
 
       $('.coupon_bonus').text( "$ " + discounted_formatted )
-      $('.input-coupon').removeClass('wrong');
-      $('.input-coupon').addClass('ok');
+      $('.input-coupon-status').removeClass('wrong');
+      $('.input-coupon-status').addClass('ok');
 
       onSuccessAlert(`${res.data.code.toUpperCase()}`, res.data.info);
 
@@ -88,13 +88,14 @@ function submitCoupon() {
       cart.total_price = parseFloat(price.toFixed(2))
 
       $('input[name="coupon"]').val(coupon)
+      $('.coupon-discount').removeClass('hidden')
       // $('#coupon_name').val("")
       // $('.calc-coupon').hide(); 
       // $('.coupon-click').show();
     }else{
       // $('.coupon-discount').addClass('hidden')
-      $('.input-coupon').removeClass('ok');
-      $('.input-coupon').addClass('wrong');
+      $('.input-coupon-status').removeClass('ok');
+      $('.input-coupon-status').addClass('wrong');
       $('#cost').text( '0' );
       timeout = setTimeout( `onErrorAlert('${res.title}', '${res.message}')` , 200);
     }

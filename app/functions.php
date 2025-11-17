@@ -168,9 +168,9 @@ function filtercoupon ($data, $config = null, $amount = 0) {
   return $ret;
 }
 
-function price_format($num) {
+function price_format($num, $unsigned = 0) {
   $num = number_format((float) ceil($num), 2, ',', '.');
-  return str_replace(',00','', $num);
+  return ($unsigned ? '' : '$ ') . str_replace(',00','', $num);
 }
 
 function title_fontsize($str) {

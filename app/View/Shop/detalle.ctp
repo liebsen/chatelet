@@ -162,9 +162,9 @@ foreach ($properties as $property) {
           }
         }
 
-        echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>$ ".\price_format(ceil($price)) . '</span>';
+        echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>".\price_format(ceil($price)) . '</span>';
                 if(!empty($old_price) && abs($price-$old_price) > 1) {
-            echo "<span class='old_price' id='price' data-price='". ceil($old_price) ."'> $ ".\price_format(ceil($old_price)). "</span>";
+            echo "<span class='old_price' id='price' data-price='". ceil($old_price) ."'>".\price_format(ceil($old_price)). "</span>";
         }
 
         echo ' <span class="text-sm">' . strtoupper($text) . '</span>';

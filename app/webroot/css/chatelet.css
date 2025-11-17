@@ -366,6 +366,12 @@ html, body {
 .mb-5 {
   margin-bottom: 1.25rem!important;
 }
+.ml-0 {
+  margin-left: 0!important;
+}
+.ml-1 {
+  margin-left: 0.25rem!important;
+}
 .ml-2 {
   margin-left: 0.5rem!important;
 }
@@ -459,6 +465,16 @@ html, body {
 }
 .mb-0 {
   margin-bottom: 0!important;
+}
+.mb-1 {
+  margin-bottom: 0.25rem!important;
+}
+.mb-2 {
+  margin-bottom: 0.5rem!important;
+}
+
+.lh-1 {
+	line-height: 1;
 }
 
 .both{
