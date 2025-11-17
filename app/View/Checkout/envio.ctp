@@ -36,7 +36,7 @@ echo $this->element('checkout-params');
 				  <div class="d-flex flex-column justify-content-center align-items-start gap-1 cargo-blocks shipment-block">
 						<form class="w-100" id="calulate_shipping" data-url="<?php echo $this->Html->url(array('action'=>'deliveryCost')) ?>">
 							<div class="d-flex justify-content-start align-items-center gap-05 w-100">
-						  	<div class="position-relative input-cp-container flex-1">
+						  	<div class="position-relative input-status flex-1">
 						  		<input type="text" name="" placeholder="Tu código postal" class="form-control input-cp both" title="Ingresá tu código postal" data-valid="0" />
 						  	</div>
 					    	<button class="btn btn-chatelet dark btn-input-lg btn-calculate-shipping" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Cotizá el envío a domicilio de tu compra" type="submit">Aplicar</button>
@@ -87,7 +87,7 @@ echo $this->element('checkout-params');
 			<hr>
 			<div class="checkout-continue row is-flex-center d-none">
 				<div class="col-md-6">
-					<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando estos <a href="/shop/terminos"> Términos y Condiciones</a>
+					<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos"> Términos y Condiciones</a>
 					</span>
 				</div>
 				<div class="col-md-6">

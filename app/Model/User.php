@@ -12,6 +12,7 @@ class User extends AppModel {
 		if (empty($this->data[$this->alias]['id']) && isset($this->data[$this->alias]['email'])) {
 			$user = $this->findByEmail($this->data[$this->alias]['email']);
 			if (!empty($user)) {
+				throw new Exception("El email ya existe", 1);
 				return false;
 			}
 		}

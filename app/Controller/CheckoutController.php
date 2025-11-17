@@ -100,9 +100,7 @@ class CheckoutController extends AppController
 	}
 
 	public function envio() {
-		CakeLog::write('debug', 'a(1)');
 		if ($this->request->is('post')) {
-			CakeLog::write('debug', 'a(2)');
 			$shipping = $this->request->data;
 
 			if(empty($shipping)) {
@@ -137,7 +135,6 @@ class CheckoutController extends AppController
 			return false;
 		}
 
-		CakeLog::write('debug', 'a(3)');
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);

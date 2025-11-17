@@ -23,6 +23,8 @@ class UsersController extends AppController {
   public function login() {
     $redirect = $this->request->data['redirect'];
     $ajax = $this->request->data['ajax'];
+
+    CakeLog::write('debug', 'login:'.json_encode($this->request->data));
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
         $this->Session->setFlash(
@@ -124,14 +126,19 @@ class UsersController extends AppController {
   public function register(){
     $this->autoRender = false;
 
+
+
     if (!$this->request->is('post')) {
       //return json_encode(array('success' => false));
       return $this->redirect(array('controller' => 'home', 'action' => 'index'));
     }
 
     $data = $this->request->data;
+    $invite = $data['invite'];
+    $ajax = $data['ajax'];
+    $validate = empty($invite);
 
-    if(empty($data['email'])) {
+    if(empty($data['User']['email'])) {
       if(!empty($ajax)) {
         die(json_encode(array(
           'success' => false,
@@ -142,39 +149,50 @@ class UsersController extends AppController {
       return $this->redirect($this->referer());
     }
     
-    $invite = $this->request->data['invite'];
-    $ajax = $this->request->data['ajax'];
-    $validate = empty($invite);
 
     if(!empty($invite) && empty($data['User']['password'])) {
-      CakeLog::write('debug', 'New password generated');
-      $data['User']['password'] = $this->random_password();
+      $random_password = $this->random_password();
+      CakeLog::write('debug', 'New password generated:'.$random_password);
+      $data['User']['password'] = $random_password;
+      $this->request->data['User']['password'] = $random_password;
     }
+
+    CakeLog::write('debug', 'register:'.json_encode($this->request->data));
 
     // CakeLog::write('debug', 'validate:'.$validate);
     // CakeLog::write('debug', 'new user data:'.json_encode($data));
-    
-    $saved = $this->User->save(
-      $data, 
-      array(
-        'validate' => $validate
-      )
-    );
+    try {
+      $saved = $this->User->save(
+        $data, 
+        array(
+          'validate' => $validate
+        )
+      );
+    } catch (Exception $e) {
+      die(json_encode(array(
+        'success' => false,
+        'errors' => $e->getMessage()
+      )));      
+    }
 
-    //CakeLog::write('debug', 'saved:'. json_encode($saved));
     if (!empty($saved)) {
-      $this->Auth->login();     
+      $logged = $this->Auth->login();     
+
+      CakeLog::write('debug', 'logged:'.$logged);
+
       $this->Session->setFlash(
         'Bienvenida a Châtelet', 
         'default', 
         array('class' => 'hidden notice')
       );
+
       if(!empty($ajax)) {
         die(json_encode(array(
           'success' => true,
           'message' => 'Tu nueva cuenta ha sido creada'
         )));
       }
+
       return $this->redirect($this->referer());
     } else {
       $errors = $this->User->validationErrors;

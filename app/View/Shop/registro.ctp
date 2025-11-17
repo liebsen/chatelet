@@ -249,7 +249,7 @@ if (!$loggedIn) {
 				<hr>
 				<div class="row is-flex-center">
 					<div class="col-md-6">
-						<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando estos <a href="/shop/terminos"> Términos y Condiciones</a>
+						<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos"> Términos y Condiciones</a>
 						</span>
 					</div>
 					<div class="col-md-6">

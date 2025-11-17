@@ -99,17 +99,17 @@ html, body {
   opacity: 1;
 }
 
-.input-cp-container.wrong input{
+.input-status.wrong input{
 	border-color: #E10D74;
   color: #E10D74;
 }
 
-.input-cp-container.ok input {
+.input-status.ok input {
 	border-color: #07BC31;
   color: #07BC31;
 }
 
-.input-cp-container.ok:before {
+.input-status.ok:before {
 	content: "\f00c";
 	color: #07BC31;
 	position: absolute;
@@ -119,7 +119,7 @@ html, body {
   z-index: 10;
 }
 
-.input-cp-container.wrong:before {
+.input-status.wrong:before {
 	content: "\f00d";
 	color: #E10D74;
 	position: absolute;

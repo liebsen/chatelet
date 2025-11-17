@@ -72,7 +72,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 						<input type="hidden" name="ajax" value="1" />
 						<input type="hidden" name="invite" value="1" />
 						<input type="hidden" name="redirect" value="/checkout/envio" />    
-			      <input type="email" id="login-email" class="form-control" name="email" placeholder="Email" required />
+			      <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" required />
 			      <!--input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" /-->
 			      <hr>
 			      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
@@ -103,13 +103,15 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 	            success: function(res) {
 	            	if(res.success) {
 	            		onSuccessAlert('Sesión iniciada', res.message)
-	                $('#responseContainer').html(res.message);
+	                // $('#responseContainer').html(res.message);
 	                setTimeout(() => {
-	                	location.href = redirect || location.href
-	                }, 3000)
+	                	const red = redirect || location.href
+	                	console.log('redirect', red)
+	                	location.href = red
+	                }, 5000)
 	            	} else {
 	            		onWarningAlert('Error al registrar usuario', res.errors)
-	            		$('#responseContainer').html(res.errors);
+	            		// $('#responseContainer').html(res.errors);
 	            	}
 	            	btnSubmit.prop('disabled', false)
 	            },

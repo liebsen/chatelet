@@ -148,7 +148,7 @@
                   </p>
                   <p class="bottom" title="Ir al carrito">
                     <?php
-                      echo $this->Html->link('<span class="fa fa-pencil"></span>', array(
+                      echo $this->Html->link('<span class="fa fa-shopping-bag"></span>', array(
                         'controller' => 'carrito',
                         'action' => 'index'
                         ),
@@ -160,7 +160,7 @@
                     ?>
                     <span class="right">
                       <?php
-                        echo $this->Html->link('Pagar', array(
+                        echo $this->Html->link('Carrito', array(
                             'controller' => 'carrito',
                             'action' => 'index'
                           ), array(

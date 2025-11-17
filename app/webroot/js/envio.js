@@ -58,7 +58,7 @@ selectStore = function(e) {
 	$('.shipping-options li').removeClass('selected secondary')
 	$('.takeaway-options li').addClass('secondary')
 	$('.free-shipping').addClass('hidden')
-	// $('.input-cp-container').removeClass('ok')
+	// $('.input-status').removeClass('ok')
 	// $('.input-cp').val('')
 	$('#cost_container').html('')
 	$(e).addClass('selected')
@@ -138,8 +138,8 @@ $(document).ready(function() {
 				// $('#delivery_cp').html( `<span class="shipping-cargo text-uppercase"></span>` );
 				localStorage.setItem('lastcp', cp)	
 				setTimeout(() => {
-					$('.input-cp-container').removeClass('wrong');
-					$('.input-cp-container').addClass('ok');
+					$('.input-status').removeClass('wrong');
+					$('.input-status').addClass('ok');
 					// onSuccessAlert(`Como querés recibir tu compra`,'Ingresaste código postal ' + cp, 0, true);
 					document.querySelector('.shipping-block').classList.remove('hidden')	
 					if (cart.cargo === 'shipment' && cart.shipping) {
@@ -151,8 +151,8 @@ $(document).ready(function() {
 					}
 				}, 750)
 			} else {
-				$('.input-cp-container').removeClass('ok');
-				$('.input-cp-container').addClass('wrong');
+				$('.input-status').removeClass('ok');
+				$('.input-status').addClass('wrong');
 				// $('#cost').text( parseInt(0) );
 				//console.log(':::',subtotal,coupon)
 				// let total = formatNumber(subtotal - coupon)
@@ -208,8 +208,8 @@ $(document).ready(function() {
 
 			if(!b){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
 				$('.input-cp').focus();
-				$('.input-cp-container').removeClass('ok');
-				$('.input-cp-container').addClass('wrong');
+				$('.input-status').removeClass('ok');
+				$('.input-status').addClass('wrong');
 				console.log('done(3)')
 				$('.has-checkout-steps').addClass('done')
 				onErrorAlert('Método de entrega', 'Por favor ingresá tu código postal, la opción  Retiro en Sucursal evita cargos de envío', 0, true);
