@@ -348,6 +348,8 @@ body.top-fixed .navbar-chatelet .fa {
 }
 
 @media (min-width: 992px) {
+  .product-info-container {padding: 0 1rem;}
+
   .flex-row {
     display: flex;
     flex-direction: row;
@@ -900,8 +902,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 }*/
 
 .product-badge {
-  min-width: 2.25rem;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   line-height: 1;
   display: inline-block;
   text-align: left;
@@ -1081,7 +1082,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   filter: brightness(1.15);
 }
 
-#main .caract label.btn .color-option {
+#main .caract label.btn .color-option,
+#main .caract label.btn .size-option {
+  border-bottom: 2px solid;
+  font-size: 100%!important;
   /*border: none;
   box-shadow: none;
   opacity: 1;
@@ -1247,7 +1251,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 .product-info-container {padding: 2rem;}
 
 @media(min-width: 769px){
-  .product-info-container {padding: 0 1rem;}
   /*#formulario .wrapper {
     padding: 1rem;
   }*/

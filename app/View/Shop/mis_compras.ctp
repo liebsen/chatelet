@@ -3,33 +3,19 @@
   echo $this->Html->script('mis_compras.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 ?>
 
-  <style type="text/css">
-    .compra-item  {
-      font-family: monospace;
-      padding: 1.5rem;
-      color: #666;
-      border-radius: 0.5rem;
-      line-height: 1.5;
-    }
-    .ch-image {
-      min-height: 10rem;
-      background-size: contain!important;
-      border-radius: 0.5rem;
-    }
-  </style>
-
-  <div id="headcontacto">
-    <div class="wrapper">
-      <div class="row">
-        <div class="col-md-4">
+  <div id="headhelp">
+    <?php echo $this->element('navbar-ayuda'); ?>
+    <div class="wrapper container animated fadeIn w-100">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-xs-12 col-md-4">
           <div class="animated fadeIn delay">
             <h1>Mis compras</h1>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-xs-12 col-md-8">
           <div class="animated fadeIn delay box-cont">
             <div class="box">
-              <h3>Tu historial de compras</h3>
+              <h3>Revisa tu historial de compras</h3>
               <p>Aquí encontrarás las compras realizadas a tu cuenta en <i>Châtelet</i></p>
             </div>
           </div>
@@ -40,11 +26,24 @@
 
   <section id="formulario">
     <div class="wrapper">
-      <div class="is-flex-center gap-1 w-100 p-4">
+      <div class="d-flex justify-content-between align-items-center gap-1 w-100 p-4">
         <h1 class="card-title mb-0"><i class="fa fa-shopping-bag mr-1"></i> Mis compras</h1>
-        <span class="btn btn-success btn-chatelet btn-filter-calendar"><i class="fa fa-calendar mr-1"></i> <span class="capitalize">Último mes</span></span>
+      <?php if(empty($sales) == false) : ?>
+        <div class="form-group">
+          <select class="form-control btn-filter-calendar" name="filter[Type]">
+            <option value="month" selected>Último mes</option>
+            <option value="year">Último año</option>
+            <option value="start">Siempre</option>
+          </select>
+        </div>
+      <?php endif ?>
+        <!--span class="btn btn-chatelet dark btn-filter-calendar capitalize">
+          <i class="fa fa-calendar mr-1"></i> Último mes</span-->
       </div>
       <div class="ch-flex"> 
+        <?php if(empty($sales)) : ?>
+          <p class="is-flex-center p-5 text-muted min-h-12">No registras compras hasta ahora. &nbsp;<a href="/Shop" class="text-link">Hacer mi primera compra</a></p>
+        <?php endif ?>
         <?php foreach($sales as $sale):?>
         <div class="ch-row is-clickable" onclick="$(this).find('.compra-item').toggle()">
           <div class="ch-col p-6 gap-1">
@@ -131,3 +130,19 @@
   <section id="suscribe">
     <?php $this->element('subscribe-box') ?>
   </section>
+
+
+  <style type="text/css">
+    .compra-item  {
+      font-family: monospace;
+      padding: 1.5rem;
+      color: #666;
+      border-radius: 0.5rem;
+      line-height: 1.5;
+    }
+    .ch-image {
+      min-height: 10rem;
+      background-size: contain!important;
+      border-radius: 0.5rem;
+    }
+  </style>  

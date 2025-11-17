@@ -10,6 +10,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <title>Châtelet</title>
     <meta name="description" content="">
+    <link rel="manifest" href="/manifest.json" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="facebook-domain-verification" content="mz62jgu2bv7lu4new0t9pno88ekmxx" />
     <?php if(isset($product) && isset($product['name'])):?>

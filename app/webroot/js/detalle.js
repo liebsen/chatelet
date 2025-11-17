@@ -23,7 +23,9 @@ function showDivs(n) {
   for (i = 0; i < dots.length; i++) {
      dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
   }
-  x[slideIndex-1].style.display = "block";
+  if(x[slideIndex-1]) {
+    x[slideIndex-1].style.display = "block";
+  }
   if(dots[slideIndex-1]) {
     dots[slideIndex-1].className += " w3-opacity-off";
   }
@@ -44,7 +46,7 @@ $(function(){
       if(images[i]!=""){
         p++;
         moreviews += '<li class="dontResize"><a href="#"><img class="demo w3-opacity w3-hover-opacity-off img-responsive" onclick="currentDiv('+p+')" title="key__'+p+'"  id="img_01" src="/files/uploads/thumb_'+images[i]+'" ></a></li>';
-        surround += '<img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="/files/uploads/'+images[i]+'" data-cloudzoom=\'zoomSizeMode:"image",autoInside: 600\'/>';
+        surround += '<img class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="/files/uploads/'+images[i]+'" data-cloudzoom=\'zoomSizeMode:"image",autoInside: 600\'/>';
       }
     }
     $("#ul-moreviews").html(moreviews);

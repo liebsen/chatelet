@@ -657,7 +657,7 @@ html, body {
 .flex-row {
 	flex-direction: row!important;
 	/* padding: 1rem; */
-	grid-gap: 1rem;
+	grid-gap: 2rem;
 }
 
 .flex-col {
@@ -708,8 +708,8 @@ html, body {
 
 .btn {
 	text-transform: uppercase;
-	min-height: 50px;
-	line-height: 2.75;
+	height: 50px;
+	line-height: 2.82;
 	font-size: 0.8rem;
 	font-weight: 400;
 	border-radius: 5px;
@@ -817,6 +817,7 @@ a.btn {
 .form-control {
 	padding: 0 16px;
 	height: 50px;
+	font-size: 0.8rem;
 	border-bottom-width: 2px;
 }
 
@@ -853,12 +854,16 @@ select.form-control{
 }
 
 .carrito-selector {
-  max-width: 9rem;
+	display: flex;
   margin: auto;
   padding: 0.5rem 0;
   border: 1px solid #dbdbdb;  
   background-color: white;
 	border-radius: 5px;
+}
+
+.carrito-selector .input-group-addon {
+	flex: 1;
 }
 
 .carrito-selector input {
@@ -872,6 +877,7 @@ select.form-control{
 	border-left: 1px solid #dbdbdb;
 	border-right: 1px solid #dbdbdb;
 	font-size: 0.75rem;
+	max-width: 3rem;
 	font-weight: 600;
 }
 
@@ -1706,7 +1712,7 @@ span.validation-password {
 		display: none;
 	}*/
 	.marginTop {
-  	margin-top: 1rem;
+  	margin-top: 2rem;
 	}
 	#detalle .caract .marginTop a.table {
     background: url(../images/sizes.png) no-repeat right center;

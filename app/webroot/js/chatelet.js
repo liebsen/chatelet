@@ -16,6 +16,7 @@ function addCart(data, button, label, redirect) {
   $.post('/carrito/add', $.param(data))
     .success(function(res) {
       if (res.success) {
+        $(button).text(label || 'Agregado. Espere...')
         const price = $('.price').text()
         const name = $('.product').text()        
         window.dataLayer = window.dataLayer || []
@@ -37,6 +38,10 @@ function addCart(data, button, label, redirect) {
           ]
         })
 
+        setTimeout(() => {
+          window.location.href = redirect || '/carrito'
+        }, 3000)
+
         /*$.growl.error({
           title: 'Agregado al carrito',
           message: 'Podés seguir agregando más productos o finalizar esta compra en la sección carrito'
@@ -50,8 +55,9 @@ function addCart(data, button, label, redirect) {
         
         $('.growl-close').click(reload);
         */
-        var timeout = 0
-        dataLayer.push({
+
+
+        /* dataLayer.push({
           'event': 'addToCart',
           'ecommerce': {
             'currencyCode': 'ARS',
@@ -68,20 +74,8 @@ function addCart(data, button, label, redirect) {
             }
           },
           'eventCallback': function() {
-            clearInterval(timeout)
-            timeout = setTimeout(function(){
-              $.growl.notice({
-                title: 'Redirigiendo al carrito ...',
-                message: 'Carrito de compras actualizado'
-              });
-              var reload = function() {
-                window.location.href = redirect || '/carrito'
-              };
-              setTimeout(reload, 1000);
-              $('.growl-close').click(reload);
-            }, 300)
           }
-        })
+        }) */
       } else {
         $.growl.error({
           title: 'Ocurrió un error al agregar el producto al carrito',

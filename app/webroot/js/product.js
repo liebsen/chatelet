@@ -23,7 +23,19 @@ function checkCount(value) {
 	}
 }
 
+function show_stock(){
+	setTimeout(() => {
+		const block = document.querySelector('.stock-block');
+		$(block).removeClass('fadeIn')
+		$(block).removeClass('fadeOut')
+		$(block).addClass('fadeIn')
+	}, 500)				
+}
+
 function pideStock(obj){
+	const block = document.querySelector('.stock-block');
+	$(block).removeClass('fadeIn','fadeOut')
+	$(block).addClass('fadeOut')
 	clearTimeout(timeout)
 	timeout = setTimeout(() => {
 		$(".add.agregar-carro").text('Agregar al carrito')
@@ -44,22 +56,21 @@ function pideStock(obj){
 
 		if(!color_code){
 			// onWarningAlert(`Talle seleccionado`,`Seleccionaste talle ${size_number}, ahora elegí un color para este producto`)
-			console.log('a(1)')
 			stock_cont.html(no_color);
+			show_stock()
 			return false;
 		}
 
 		if(!size_number){
 			// onWarningAlert(`Color seleccionado`,`Seleccionaste color ${color_alias}, ahora elegí un talle para tu prenda`)
 			stock_cont.html(no_size);
+			show_stock()
 			return false;
 		}
 
 		window.stock = 0;
 		if(url && article && color_code && size_number){
 			// onWarningAlert('Consultando stock','Un momento por favor...')
-			var test = document.querySelector('.footer-producto');
-      $(test).find('a').animate({opacity: 0.5});
       stock_cont.html(stock_v);
 
 	  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
@@ -68,21 +79,20 @@ function pideStock(obj){
 				  // $('.growl').remove()
 				  // onErrorAlert('Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
 					stock_cont.html(stock);
-					setTimeout(() => {
-						$(test).find('a').animate({opacity: 1});
-					}, 1000)
 				}else{
 					// onWarningAlert('Producto no disponible', 'Lamentablemente este producto ya no se encuentra disponible')
 					stock_cont.html( stock_0 );
 				}
+
+				show_stock()	
 				window.stock = data;
 			});
 		}else{
 			stock_cont.html(missing);
+			show_stock()		
 		}
 	}, 500)
 }
-
 
 $(document).ready(function() {
 	//Stock
@@ -137,7 +147,11 @@ $(document).ready(function() {
 			}
 		}
 
-		addCart(data, e.target, 'Agregando al carrito ...', target.hasClass('buy') ? '/checkout' : '/carrito')
+		const redirect = target.hasClass('buy') ? 
+			'/checkout' : 
+			'/carrito' 
+
+		addCart(data, e.target, 'Agregando al carrito ...', redirect)
 		return false;
 	});
 
@@ -149,11 +163,11 @@ $(document).ready(function() {
 
 
 	/* autoselect if one option */
-	if($('.color-option').length > 0) {
+	if($('.color-option').length == 1) {
 		$('.color-option').first().click()
 	}
 
-	if($('.size-option').length > 0) {
+	if($('.size-option').length == 1) {
 		$('.size-option').first().click()
 	}	
 

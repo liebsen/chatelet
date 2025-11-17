@@ -126,7 +126,7 @@ foreach ($properties as $property) {
           ));
       ?>
         <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
-        <h1 class="mt-2"><?php echo $product['name'];?></h1>
+        <h1><?php echo $product['name'];?></h1>
         <p class="text-muted mb-4"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
         <div class="d-flex justify-content-start align-items-center gap-05">
         <?php  
@@ -167,7 +167,7 @@ foreach ($properties as $property) {
             echo "<span class='old_price' id='price' data-price='". ceil($old_price) ."'> $ ".\price_format(ceil($old_price)). "</span>";
         }
 
-        echo ' <span class="text-sm">' . (strlen($text) ? 'con ' . strtoupper($text) : '') . '</span>';
+        echo ' <span class="text-sm">' . strtoupper($text) . '</span>';
 
         ?>
         </div>
@@ -209,40 +209,28 @@ foreach ($properties as $property) {
                           ?>
                       </div>
                   </div>
-                  <div class="size-options d-flex justify-content-start align-items-start gap-1" data-toggle="buttons">
+                  <div class="size-options d-flex justify-content-start align-items-start gap-1 pt-2" data-toggle="buttons">
                     <!--option value="">Talle</option-->
                     <?php
                         foreach ($sizes as $size) {
-                          echo '<label class="btn '.$loadColorImages.' '.($i == 0 ? 'active' : '').'">';
-                                  echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
-                                  echo "<small class='size-option text-bolder'>".ucfirst($size['variable'])."</small>";
-                                  echo '</label>';
+                          echo '<label class="btn">';
+                          echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
+                          echo "<small class='size-option text-bolder'>".ucfirst($size['variable'])."</small>";
+                          echo '</label>';
                             // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
                         }
                     ?>                    
                   </div>
-                  <!--div class="field">
-                      <div class="p-select">
-                          <select id="size" name="size">
-                              <option value="">Talle</option>
-                              <?php
-                                  foreach ($sizes as $size) {
-                                      echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
-                                  }
-                              ?>
-                          </select>
-                      </div>
-                  </div-->
               </div>
-              <div class="marginTop">
-                <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
-              </div>
-              <p>
-                <span class="text-chatelet"> Stock:</span> 
+              <p class="marginTop stock-block animated fadeIn">
+                <!--span class="text-chatelet"> Stock:</span-->
                 <span id="stock_container">
-                  <span class="text-sm text-muted"> (Elegí color y talle) </span>
+                  <span class="text-warning">(Elegí color y talle)</span>
                 </span>
               </p>
+              <div>
+                <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
+              </div>
               <?php endif; ?>
               <div class="d-flex flex-column justify-content-center align-items-center footer-producto gap-05">
                 <div class="row carrito-count has-item-counter active w-100" title="Cantidad de este producto">

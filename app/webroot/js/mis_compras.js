@@ -32,31 +32,12 @@ $(document).ready(function() {
 	}
 
 	let clock = 0
-	$('.btn-filter-calendar').on('click', function(e) {
+
+	$('.btn-filter-calendar').on('change', function(e) {
 		clearTimeout(clock)
 		clock = setTimeout(() => {
-			let t = $(e.target)
-			if(!t.hasClass('btn-filter-calendar')){
-				t = $(t).parents('.btn-filter-calendar')
-			}
-			let cls = 'btn-success'
-			let period = 'month'
-			let label = 'último mes'
-			if(t.hasClass('btn-success')) {
-				cls = 'btn-info'
-				period = 'year'
-				label = 'último año'
-			}
-			if(t.hasClass('btn-info')) {
-				cls = 'btn-warning'
-				period = 'start'
-				label = 'siempre'
-			}
-			t.removeClass('btn-info btn-warning btn-success')
-			t.addClass(cls)
-			t.find('span:first').text(label)
-			mis_compras(period)
-		}, 200)
+			mis_compras($(this).val())
+		}, 100)
 	})
 
 	mis_compras('month',1)

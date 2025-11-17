@@ -189,7 +189,7 @@ class UsersController extends AppController {
       if(!empty($ajax)) {
         die(json_encode(array(
           'success' => true,
-          'message' => 'Tu nueva cuenta ha sido creada'
+          'message' => 'Ahora estás comprando como invitada'
         )));
       }
 

@@ -1,0 +1,25 @@
+{
+  "short_name": "Chatelet",
+  "name": "Nueva colección, nuevos comienzos",
+  "display": "fullscreen",
+  "theme_color": "#e10d74",
+  "background_color": "#ffffff",
+  "start_url": "/?launcher=true",
+  "icons": [
+    {
+      "src": "/images/logo-48px.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/images/logo-96px.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/images/logo-192px.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}
