@@ -709,8 +709,19 @@ $(document).ready(function() {
 	
 	//$('.selectpicker').selectpicker();
 
-	$('#registro-modal a[data-toggle="modal"]').click(function() {
+	$('.btn-logout').click(function(e) {
+    if(localStorage.getItem('cart') && localStorage.getItem('cart') != 'undefined') {}
+    const prompt = prompt('Tenes un carrito activo con productos. ¿Estas segura de cerrar la sesión? ')
+    if (prompt) {
+      e.preventDefault()
+      return location.href = '/users/logout'
+    } 
+    return true
+  })
+
+  
+  /*$('#registro-modal a[data-toggle="modal"]').click(function() {
 		$(this).parents('#registro-modal').modal('hide');
 		return true;
-	});
+	});*/
 });

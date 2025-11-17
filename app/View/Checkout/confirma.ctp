@@ -19,7 +19,7 @@
 				<p><?php echo $user['email']; ?></p>
 				<?php echo $this->element('resume', array('show_list' => true)); ?>
 				<a href="/shop/mis_compras" class="btn btn-chatelet">Mis compras</a>
-				<a href="/users/logout" class="btn btn-chatelet">Cerrar sesión</a>
+				<a href="/users/logout" class="btn btn-chatelet btn-logout">Cerrar sesión</a>
 			<?php else: ?>
 				<p>Inicia sesión o crea una cuenta. ¿Qué deseas hacer?</p>
 			<?php endif ?>

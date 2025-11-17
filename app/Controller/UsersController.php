@@ -128,6 +128,7 @@ class UsersController extends AppController {
       //return json_encode(array('success' => false));
       return $this->redirect(array('controller' => 'home', 'action' => 'index'));
     }
+
     $data = $this->request->data;
 
     if(empty($data['email'])) {
@@ -137,6 +138,7 @@ class UsersController extends AppController {
           'message' => 'No se recibió el email'
         )));
       }
+      
       return $this->redirect($this->referer());
     }
     

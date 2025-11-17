@@ -21,7 +21,7 @@
     </div>
   </section>
 
-  <section id="detalle" class="bg-white">
+  <section id="desarrollo" class="bg-arrow">
     <div class="wrapper container">
       <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
       <div class="row">

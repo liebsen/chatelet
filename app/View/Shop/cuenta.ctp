@@ -26,7 +26,7 @@ echo $this->Session->flash();
 			<?php if ($loggedIn) : ?>
 				<a href="/shop/mis_compras" class="btn btn-chatelet dark w-100">Mis compras</a>
 				<a href="/shop/registro" class="btn btn-chatelet w-100">Editar mi cuenta</a>
-				<a href="/users/logout" class="btn btn-chatelet w-100">Cerrar sesión</a>
+				<a href="/users/logout" class="btn btn-chatelet btn-logout w-100">Cerrar sesión</a>
 			<?php else : ?>
 				<a href="/shop/login" class="btn btn-chatelet dark w-100">Iniciar sesión</a>
 				<a href="/shop/registro" class="btn btn-chatelet w-100">Crear mi cuenta</a>

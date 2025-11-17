@@ -97,7 +97,7 @@
                   </div>
                   <div id="control-footer">
                     <a href="/shop/mis_compras" class="btn btn-chatelet">Mis compras</a>
-                    <a href="/users/logout" class="btn btn-chatelet">Cerrar sesión</a>
+                    <a href="/users/logout" class="btn btn-chatelet btn-logout">Cerrar sesión</a>
                   </div>
                 </div>
               </li>

@@ -36,7 +36,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 				</div>
 			<?php else : ?>
 				<div class="card max-25">
-					<div class="card-body p-md-5">
+					<div class="card-body p-md-5 is-bordered">
 						<h4 class="text-uppercase text-center">Ya soy clienta</h4>
 						<p>Ingresa con tu cuenta Châtelet, si no recordás la clave presiona Olvidé contraseña.</p>
 						<?php echo $this->Form->create(false, array(
@@ -72,7 +72,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 						<input type="hidden" name="ajax" value="1" />
 						<input type="hidden" name="invite" value="1" />
 						<input type="hidden" name="redirect" value="/checkout/envio" />    
-			      <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" required />
+			      <input type="email" id="login-email" class="form-control" name="email" placeholder="Email" required />
 			      <!--input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" /-->
 			      <hr>
 			      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">

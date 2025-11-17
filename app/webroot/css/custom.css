@@ -665,7 +665,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #lookbook p { font-size: 16px; margin-bottom: 20px; }
 #lookbook p a { color: #464444; display: inline-block; margin: 0 12px; }
 #lookbook p a.active { color: #363633; }
-#lookbook li { border-bottom: 2px solid #c2c2c2; margin-bottom: 45px; padding-bottom: 45px; }
+#lookbook li { border-bottom: 2px solid #c2c2c2; line-height: 1.25; margin-bottom: 45px; padding-bottom: 45px; }
 #lookbook li.lc { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 #lookbook .social { float: right; margin-top: 5px; }
 #lookbook .social a { background-image: url(../images/sprite.png); display: inline-block; height: 19px; margin-left: 40px; width: 19px; }
@@ -1015,12 +1015,12 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #detalle .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
 #main .caract { color: #404040; /* margin-top: 25px; */ }
 #main .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
-#main .caract p { /*border-bottom: 2px solid #c2c2c2;*/ }
+#main .caract p { /*border-bottom: 2px solid #c2c2c2;*/ line-height: 1.25; }
 #main .caract .size { margin-bottom: 25px; }
 #main .caract .size a { color: #404040; display: inline-block; font-size: 16px; margin-right: 20px; }
 #main .caract .size a.active { color: #363633; }
 #main .caract a.table { background: url(../images/sizes.png) no-repeat right center; color: #363633; font-size: 0.75rem; background-size: 1.5rem; font-weight: 600; padding-right: 45px;padding-top: 3px }
-#main .caract h4 { /*border-top: 2px solid #c2c2c2;*/ font-size: 22px; font-weight: 500; margin-top: 30px; padding-top: 20px; }
+#main .caract h4 { /*border-top: 2px solid #c2c2c2;*/ font-size: 22px; line-height: 1.25; font-weight: 500; margin-top: 30px; padding-top: 20px; }
 #main .caract .colors { float: right; margin-top: -19px; }
 #main .caract .colors a { border-radius: 50%; display: inline-block; height: 20px; margin-right: 20px; width: 20px; }
 #main .caract .colors a.celeste { background: #71afd7; }
