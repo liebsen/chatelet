@@ -1,6 +1,6 @@
 $(document).ready(function() {
     //var modal = $('#envio_form');
-    //var form = $('#envio_form');
+    var form = $('#envio_form');
 
     $('#envio_form').bootstrapValidator({
         message: 'No es un valor válido para este campo',
@@ -23,7 +23,7 @@ $(document).ready(function() {
                     }
                 }
             },
-            'customer[password]': {
+            /*'customer[password]': {
                 validators: {
                     notEmpty: {
                         message: 'Contraseña es requerido'
@@ -34,7 +34,7 @@ $(document).ready(function() {
                         message: 'El campo contraseña debe tener como mínimo 6 caracteres y 20 como máximo'
                     }
                 }
-            },
+            },*/
             'customer[name]': {
                 validators: {
                     notEmpty: {
@@ -49,13 +49,13 @@ $(document).ready(function() {
                     }
                 }
             },
-            'customer[birthday]': {
+            /*'customer[birthday]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo cumpleaños es requerido y no puede estar vacio'
                     }
                 }
-            },
+            },*/
             'customer[dni]': {
                 validators: {
                     notEmpty: {
@@ -77,43 +77,43 @@ $(document).ready(function() {
                     }
                 }
             },
-            'customer[address]': {
-                validators: {
-                    notEmpty: {
-                        message: 'El campo direccion es requerido y no puede estar vacio'
-                    }
-                }
-            },
-            'customer[province]': {
+            'customer[provincia]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo provincia es requerido y no puede estar vacio'
                     }
                 }
             },
-            'customer[city]': {
+            'customer[localidad]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo ciudad es requerido y no puede estar vacio'
                     }
                 }
             },
-            'customer[neighborhood]': {
+            'customer[street]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo barrio es requerido y no puede estar vacio'
                     }
                 }
             },
-            'customer[postal_address]': {
+            'customer[street_n]': {
+                validators: {
+                    notEmpty: {
+                        message: 'El campo barrio es requerido y no puede estar vacio'
+                    }
+                }
+            },
+            /*'customer[postal_address]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo codigo postal es requerido y no puede estar vacio'
                     }
                 }
-            }
+            }*/
         }
-    }).on('change', '[name="customer[birthday]"]', function(e) {
+    })/*.on('change', '[name="customer[birthday]"]', function(e) {
         //$("#birthday").val($(this).datepicker('getFormattedDate'));
             //$('#envio_form').bootstrapValidator('options.fields.customer[birthday]');
         if($("#birthday").val()!=''){
@@ -158,7 +158,7 @@ $(document).ready(function() {
                 location.reload();
                }
             }, 'json');
-        });
+        });*/
 
     $('#envio_form').submit(function(e) {
         if($("#envio_form").data('bootstrapValidator').isValid()){

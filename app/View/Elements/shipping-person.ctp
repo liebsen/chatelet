@@ -30,19 +30,19 @@ echo $this->Html->script('shipping-validation', array('inline' => false));
 				<input type="text" class="form-control" placeholder="Apellidos" title="Apellidos" id="apellido" name="customer[surname]" value="<?= (!empty($userData['User']['surname']))?$userData['User']['surname']:''; ?>" required>
 			</div>
 		</div>
-		<div class="col-md-12">
-			<label for="dni">Email</label>
+		<div class="col-md-6 pr-0-d">
+			<label for="dni">DNI</label>
 			<div class="form-group">
 				<input type="number" class="form-control" placeholder="DNI" title="DNI" id="dni" name="customer[dni]" value="<?= (!empty($userData['User']['dni']))? str_replace('.', '', $userData['User']['dni']):''; ?>" required>
 			</div>
 		</div>
-		<div class="col-md-12">
+		<!--div class="col-md-12">
 			<label for="email">Email</label>
 			<div class="form-group">
 				<input type="email" class="form-control" placeholder="Email" title="Email" id="email" name="customer[email]" value="<?= (!empty($userData['User']['email']))?$userData['User']['email']:''; ?>" required>
 			</div>
-		</div>
-		<div class="col-md-12">
+		</div-->
+		<div class="col-md-6">
 			<label for="Telefono">Teléfono</label>
 			<div class="form-group">
 				<input type="tel" class="form-control" id="Telefono" placeholder="Teléfono" title="Teléfono" id="telefono" name="customer[telephone]" value="<?= (!empty($userData['User']['telephone']))?$userData['User']['telephone']:''; ?>" required>
