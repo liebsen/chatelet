@@ -22,18 +22,21 @@ echo $this->Html->script('shipping-validation', array('inline' => false));
 			<label for="nombre">Nombre</label>
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Nombre" title="Nombre" id="nombre" name="customer[name]" value="<?= (!empty($userData['User']['name']))?$userData['User']['name']:''; ?>" required>
+				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<label for="apellido">Apellido</label>
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Apellidos" title="Apellidos" id="apellido" name="customer[surname]" value="<?= (!empty($userData['User']['surname']))?$userData['User']['surname']:''; ?>" required>
+				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="col-md-6 pr-0-d">
 			<label for="dni">DNI</label>
 			<div class="form-group">
 				<input type="number" class="form-control" placeholder="DNI" title="DNI" id="dni" name="customer[dni]" value="<?= (!empty($userData['User']['dni']))? str_replace('.', '', $userData['User']['dni']):''; ?>" required>
+				<span class="help-block"></span>
 			</div>
 		</div>
 		<!--div class="col-md-12">

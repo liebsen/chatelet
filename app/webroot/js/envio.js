@@ -173,6 +173,7 @@ $(document).ready(function() {
 				// fxTotal(formatNumber(total))
 				setTimeout( "onErrorAlert('Sin cobertura en esta zona', 'El código postal es correcto pero no disponemos de servicio de entrega para tu área.')", 200)
 			}
+			$('.has-checkout-steps').addClass('done')
 			$('.input-cp').attr( 'data-valid' , json.rates.length );
 			$('.btn-calculate-shipping').button('reset')
 		})
@@ -284,10 +285,8 @@ $(document).ready(function() {
 	})
 	*/
 	var cart = JSON.parse(localStorage.getItem('cart')) || {}
-
 	var shipping_method = getStorage('shipping_method')
 	var takeaway_selected = getStorage('takeaway_selected', {})
-
 
 	if(cart.gifts && cart.gifts.length) {
 		$('.gift-area').removeClass('hidden')
@@ -309,11 +308,9 @@ $(document).ready(function() {
 
 	if (shipping_method === 'delivery' && lastcp && $('#subtotal_compra').val()) {
 		setTimeout(() => {
-			console.log('click(4)')
 			$('a[href="#envio"]').click()
 			//$('.shipment-block').show()
 			$('.input-cp').val(lastcp)
-			console.log('click(5)')
 			$('.btn-calculate-shipping').click()
 
 			// const takeaway = $('.takeaway-options li.selected')
@@ -324,5 +321,7 @@ $(document).ready(function() {
 				// onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000, true)
 			// }
 		}, 100)
+	} else {
+		$('.has-checkout-steps').addClass('done')
 	}
 })

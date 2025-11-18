@@ -112,6 +112,7 @@ html, body {
 .bv-form .help-block {
   position: absolute;
   top: -27px;
+  right: 0;
   background-color: white;
   z-index: 9;
 }
@@ -172,7 +173,7 @@ html, body {
 	background-position: right 0.75rem center;
 	background-repeat: no-repeat;
 	background-size: 30px;*/
-	margin-bottom: 0.25rem;
+	margin-bottom: 0.5rem;
 	transition: all 0.25s ease;
 	min-height: 50px;
   opacity: 0;
@@ -1662,10 +1663,12 @@ span.validation-password {
 	.max-22 {
 	  max-width: 22rem;
 	}
-
 	.min-25 {
 	  min-width: 25rem;
-	}  
+	}
+	.pr-0-d {
+	  padding-right: 0!important;
+	}
 }
 .p-md-5 {
 	padding: 0;
@@ -1674,9 +1677,6 @@ span.validation-password {
   .pr-2-d {
     padding: 1rem;
   }	
-	.pr-0-d {
-	  padding-right: 0!important;
-	}  
 	.card-variant {
 	  background-color: #f8f8f8!important;
 	}
