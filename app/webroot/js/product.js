@@ -38,7 +38,7 @@ function pideStock(obj){
 	$(block).addClass('fadeOut')
 	clearTimeout(timeout)
 	timeout = setTimeout(() => {
-		$(".add.agregar-carro").text('Agregar al carrito')
+		// $(".add.agregar-carro").text('Agregar al carrito')
 
 		var url 		= $(obj).closest("form").data('url');
 		var article 	= $(obj).closest("form").data('article');
@@ -46,8 +46,8 @@ function pideStock(obj){
 		var color_alias 	= $(obj).closest("form").find('input[name="color"]:checked').attr('alias');
 		var size_number	= $(obj).closest("form").find('input[name="size"]:checked').val();
 		var stock_cont	= $(obj).closest("form").find('#stock_container');
-		var stock    	= '<span class="text-success text-bolder">Disponible <span>';
-		var stock_0 	= '<span class="text-danger text-bolder">No Disponible</span>';
+		var stock    	= '<span class="text-success">Disponible <span>';
+		var stock_0 	= '<span class="text-danger">No Disponible</span>';
 		var missing 	= '<span class="text-warning"> (Elegí color y talle) </span>';
 		var no_color	= '<span class="text-warning"> (Elegí color) <span>';
 		var no_size	= '<span class="text-warning"> (Elegí talle) <span>';
@@ -106,18 +106,17 @@ $(document).ready(function() {
 		pideStock(this)
 	});
 
-
 	$(".agregar-carro").click(function(e) {
 		e.preventDefault()
 		const target = $(e.target)
 		//this = e.target;
 		var data = {
 			count: parseInt($('.product-count').val()),
-			id: $(e.target).closest('form').find("#product_id").text().trim(),
-			color: $(e.target).closest('form').find("input[name='color']:checked").val() || '',
-			color_code: $(e.target).closest("form").find('input[name="color"]:checked').attr('code') || '',
-			size: $(e.target).closest("form").find('input[name="size"]:checked').val() || '',
-			alias: $(e.target).closest('form').find("input[name='color']:checked").attr('alias') || '',
+			id: target.closest('form').find("#product_id").text().trim(),
+			color: target.closest('form').find("input[name='color']:checked").val() || '',
+			color_code: target.closest("form").find('input[name="color"]:checked').attr('code') || '',
+			size: target.closest("form").find('input[name="size"]:checked').val() || '',
+			alias: target.closest('form').find("input[name='color']:checked").attr('alias') || '',
 		}
 		if (!isGiftCard){
 			var product_name = $('#product_id').next().text()
@@ -147,11 +146,29 @@ $(document).ready(function() {
 			}
 		}
 
-		const redirect = target.hasClass('buy') ? 
-			'/checkout' : 
-			'/carrito' 
+	  target.addClass('adding')
+	  target.text(target.hasClass('buy') ? 
+	  	'Procesando tu compra... ' : 
+	  	'Agregando al carrito ...'
+	  )		
 
-		addCart(data, e.target, 'Agregando al carrito ...', redirect)
+		addToCart(data).then(() => {
+			target.removeClass('adding')
+			let redirect = target.hasClass('buy') ? 
+				'/checkout' : 
+				'/carrito' 
+      setTimeout(() => {
+				target.prop('disabled', false)
+			  target.text(target.hasClass('buy') ? 
+			  	'Comprar' : 
+			  	'Agregar al carrito'
+			  )
+        window.location.href = redirect
+      }, 2000)
+		}).catch((e) => {
+			alert(e)
+		})
+
 		return false;
 	});
 
@@ -160,7 +177,6 @@ $(document).ready(function() {
 		var position = me.offset();
 		window.open(me.attr('data-image'), 'Talles', 'height=323px, width=642px, resizable=no, status=no, toolbar=no, menubar=no, location=no, top='+ position.top +'px, left=' + position.left +'px');
 	});
-
 
 	/* autoselect if one option */
 	if($('.color-option').length == 1) {

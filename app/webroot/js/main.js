@@ -11,7 +11,7 @@ let fakeshown = 0
 let growlTimeout = 15000
 const log = false
 
-function addCart(data, button, label, redirect) {
+function addToCart(data, button, label, redirect) {
   $(button).addClass('adding')
   $(button).text(label || 'Agregando...')
   $.post('/carrito/add', $.param(data))

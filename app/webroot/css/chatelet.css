@@ -873,6 +873,10 @@ select.form-control{
 	grid-gap: 1rem;
 }
 
+.gap-15 {
+	grid-gap: 1.5rem;
+}
+
 .gap-6 {
 	grid-gap: 6rem;
 }
@@ -881,6 +885,7 @@ select.form-control{
 	display: flex;
   margin: auto;
   padding: 0.5rem 0;
+  max-width: 10.25rem;
   border: 1px solid #dbdbdb;  
   background-color: white;
 	border-radius: 5px;

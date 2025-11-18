@@ -1,5 +1,11 @@
-<?php echo $this->Html->css('clear',array('inline' => false)) ?>
 <?php 
+
+$this->set('short_header', 'Checkout');
+$this->set('short_header_text', '← Volver a la tienda'); 
+$this->set('short_header_link', '/shop');
+
+echo $this->Html->css('clear',array('inline' => false));
+
 	$productos = [];
 	foreach ($sale_data['products'] as $item) {
 		$description = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['description'])));
@@ -33,17 +39,22 @@
 		]);
 	}
 ?>
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12 text-center"><br /><br /><br />
-			<h1 class="heading">Gracias por tu compra!</h1>
-			<p>Tu n&uacute;mero de pedido es: <span class="pink"><?php echo $sale_data['sale_id'] ?></span></p>
+
+<section id="main" class="is-flex-center fadeIn delay min-h-101 bg-light">
+	<div class="container cart-empty text-center">
+		<!--div class="icon-huge mt-4">
+			<i class="fa fa-shopping-bag fa-x2 text-muted"></i>
+		</div-->
+		<h3 class="h3 text-center">¡Gracias por tu compra!</h3>
+		<div>
+			<p>Tu número de pedido es: <span class="pink"><?php echo $sale_data['sale_id'] ?></span></p>
 			<p>Se te ha enviado un email con este n&uacute;mero a <span class="pink"><?php echo $sale_data['user']['email'] ?></span></p>
 			<br />
-			<a href="<?php echo $this->Html->url(array('controller'=>'shop','action'=>'index')) ?>" class="link">Continuar</a><br /><br /><br />
+			<a href="<?php echo $this->Html->url(array('controller'=>'shop','action'=>'index')) ?>" class="link">Continuar</a>
 		</div>
 	</div>
-</div>
+</section>
+
 <!-- Google Code for Venta Online Conversion Page -->
 <script type="text/javascript">
 	localStorage.removeItem('cart')

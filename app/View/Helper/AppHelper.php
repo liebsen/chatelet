@@ -210,9 +210,9 @@ class AppHelper extends Helper {
     if(!$noprice) {
       $str = '<div class="price-list justify-content-start">';
       if(!empty($old_price) && abs($old_price-$price > 1)) {
-        //$str.= '<span class="old_price"> $ '.\price_format($old_price) . '</span>';
+        //$str.= '<span class="old_price">'.\price_format($old_price) . '</span>';
       }
-      $str.= '<span class="price_strong">' . \price_format($price) . '</span><span class="text-sm">' . (strlen($text) ? "{$text}" : "") . '</span>';
+      $str.= '<span class="price_strong">'.\price_format($price).'</span><span class="text-sm">' . (strlen($text) ? "{$text}" : "") . '</span>';
       $str.= '</div>';
     }
     
@@ -234,7 +234,7 @@ class AppHelper extends Helper {
           $dues_options[]= '<span class="text-legend justify-content-start">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
             '<span class="text-sm">' . $legend['Legend']['dues'] . '</span>',
             $legend['Legend']['interest'],
-            '<span class="price_strong"> $ ' . \price_format($price_with_interest/$legend['Legend']['dues']) . '</span>'
+            '<span class="price_strong">' . \price_format($price_with_interest/$legend['Legend']['dues']) . '</span>'
           ],
           $legend['Legend']['title']) . '</span>';
         }

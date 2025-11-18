@@ -12,7 +12,6 @@ const log = false
 
 function getStorage(key, def) {
   if(localStorage[key] && localStorage[key] != 'undefined') {
-    console.log('a(1)',key, localStorage[key])
     let res = localStorage[key]
     try {
       res = JSON.parse(localStorage[key])
@@ -24,39 +23,32 @@ function getStorage(key, def) {
   return def ?? ''
 }
 
-function addCart(data, button, label, redirect) {
-  $(button).addClass('adding')
-  $(button).text(label || 'Agregando...')
+/*
+
+function addToCart(data) {
   $.post('/carrito/add', $.param(data))
     .success(function(res) {
+      console.log('res', res)
       if (res.success) {
-        $(button).text(label || 'Agregado. Espere...')
-        const price = $('.price').text()
-        const name = $('.product').text()        
         window.dataLayer = window.dataLayer || []
-        fbq('track', 'AddToCart', {contents: [{id: data.id, quantity: data.count}], value: price, currency: 'ARS'});
-        /* @Analytics: addToCart */
+        fbq('track', 'AddToCart')
         gtag('event', 'add_to_cart', {
           "items": [
             {
               "id": data.id,
-              "name": name,
+              "name": $('.product').text(),
               // "list_name": "Search Results",
               // "brand": "Google",
               // "category": "Apparel/T-Shirts",
               "variant": data.alias,
               "list_position": 1,
               "quantity": data.count,
-              "price": price
+              "price": $('.price').text()
             }
           ]
         })
 
-        setTimeout(() => {
-          window.location.href = redirect || '/carrito'
-        }, 3000)
-
-        /*$.growl.error({
+        $.growl.error({
           title: 'Agregado al carrito',
           message: 'Podés seguir agregando más productos o finalizar esta compra en la sección carrito'
         });
@@ -68,10 +60,8 @@ function addCart(data, button, label, redirect) {
         setTimeout(reload, 1000);
         
         $('.growl-close').click(reload);
-        */
 
-
-        /* dataLayer.push({
+        dataLayer.push({
           'event': 'addToCart',
           'ecommerce': {
             'currencyCode': 'ARS',
@@ -88,8 +78,18 @@ function addCart(data, button, label, redirect) {
             }
           },
           'eventCallback': function() {
+            $.growl.notice({
+              title: 'Producto agregado al carrito',
+              message: 'Podés seguir agregando más productos o ir a la sección Pagar'
+            });
+            var reload = function() {
+              window.location.href = '/carrito'
+            };
+            setTimeout(reload, 3000);
+            $('.growl-close').click(reload);
           }
-        }) */
+        })
+        
       } else {
         $.growl.error({
           title: 'Ocurrió un error al agregar el producto al carrito',
@@ -99,10 +99,55 @@ function addCart(data, button, label, redirect) {
     })
     .fail(function() {
       $.growl.error({
-        title: 'Ocurrió un error al agregar el producto al carrito',
+        title: 'Ocurrio un error al agregar el producto al carrito',
         message: 'Por favor, intente nuevamente'
       });
     }); 
+} */
+
+function addToCart(data, redirect) {
+  console.log({data,redirect})
+  return new Promise((resolve, reject) => {
+    return $.post('/carrito/add', $.param(data))
+      .success(function(res) {
+        if (res.success) {
+          const price = $('.price').text()
+          const name = $('.product').text()        
+          window.dataLayer = window.dataLayer || []
+          fbq('track', 'AddToCart', {contents: [{id: data.id, quantity: data.count}], value: price, currency: 'ARS'});
+          /* @Analytics: addToCart */
+          gtag('event', 'add_to_cart', {
+            "items": [
+              {
+                "id": data.id,
+                "name": name,
+                // "list_name": "Search Results",
+                // "brand": "Google",
+                // "category": "Apparel/T-Shirts",
+                "variant": data.alias,
+                "list_position": 1,
+                "quantity": data.count,
+                "price": price
+              }
+            ]
+          })
+          resolve()
+        } else {
+          reject()
+          $.growl.error({
+            title: 'Ocurrió un error al agregar el producto al carrito',
+            message: 'Por favor, intentá nuevamente en unos instantes'
+          });
+        }
+      })
+      .fail(function() {
+        reject()
+        $.growl.error({
+          title: 'Ocurrió un error al agregar el producto al carrito',
+          message: 'Por favor, intente nuevamente'
+        });
+      }); 
+  })
 }
 
 var askremoveCart = (e) => {

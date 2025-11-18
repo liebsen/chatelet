@@ -183,14 +183,14 @@ foreach ($properties as $property) {
             <div class="animated fadeIn delay1">
               <div class="article-tools pt-4">
                   <div class="overflow-x-auto">
-                     <div class="color-options d-flex justify-content-start align-items-start gap-1" data-toggle="buttons">
+                     <div class="color-options d-flex justify-content-start align-items-start gap-15" data-toggle="buttons">
                           <?php
                               $show_names_only = true;
                               foreach ($colors as $i => $color) {
                                   $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
                                   $style = (empty($color['images']))?'oldSelectColor':'';
                                   echo '<label class="btn '.$loadColorImages.' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
-                                  echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] .'">';
+                                  echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] . '"' . ($i == 0 ? ' checked' : '') . '>';
                                   if (!empty($color['images']) && empty($show_names_only)) {
                                       $image = explode(';', $color['images']);
                                       foreach ($image as $kk => $vv) {
@@ -212,7 +212,7 @@ foreach ($properties as $property) {
                   <div class="size-options d-flex justify-content-start align-items-start gap-1 pt-2" data-toggle="buttons">
                     <!--option value="">Talle</option-->
                     <?php
-                        foreach ($sizes as $size) {
+                        foreach ($sizes as $i => $size) {
                           echo '<label class="btn">';
                           echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
                           echo "<small class='size-option text-bolder'>".ucfirst($size['variable'])."</small>";
@@ -251,6 +251,7 @@ foreach ($properties as $property) {
                 <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
                   <a href="#" id="agregar-carro" class="btn btn-chatelet dark buy agregar-carro w-100">Comprar</a>
                   <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro w-100">Agregar al carrito</a>
+                  <!--a href="/carrito" class="btn btn-chatelet light w-100">Ir al carrito</a-->
                 </div>                        
               </div>
             </div>

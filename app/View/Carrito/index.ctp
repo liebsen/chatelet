@@ -37,7 +37,13 @@
 							<?php $disable = !isset($product['promo_enabled']) ? ' disable' : '' ?>
 							<div class='ribbon".$disable."'><span><?php echo $product['promo'] ?></span></div>
 						<?php endif ?>
-			        <a href="<?php echo $item_url ?>">
+			        <a href="<?php echo $this->Html->url(array(
+			          'controller' => 'shop',
+			          'action' => 'detalle',
+			          $product['id'],
+			          $product['category_id'],
+			          strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
+			        )) ?>">
 								<div class="ch-image" style="background-image: url('<?php echo Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url']) ?>')"></div>
 							</a>
 						</div>
