@@ -1,4 +1,4 @@
-<section id="detalle">
+<section id="help">
   <div class="content notfound">
     <div class="container">
       <h1 class="h1">Algo sucedió</h1>

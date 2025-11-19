@@ -1,7 +1,7 @@
-<section id="detalle">
+<section id="help">
   <div class="notfound">
     <div class="container">
-      <h1 class="h1">No encontramos lo que buscas</h1>
+      <h3 class="text-uppercase">Contenido no disponible</h3>
       <p>No pudimos encontrar el recurso que buscás, si pensás que es un error contactate con nosotros</p>
     </div>
     <hr>

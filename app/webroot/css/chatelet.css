@@ -595,7 +595,7 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: center;	
-  padding: 3rem;
+  padding: 1rem;
 }
 
 .tap-to-continue {

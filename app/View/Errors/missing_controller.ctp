@@ -1,4 +1,4 @@
-<section id="detalle">
+<section id="help">
   <div class="notfound">
     <div class="container">
       <h1 class="h1">404 No encontrado</h1>
