@@ -94,7 +94,7 @@ selectStore = function(e) {
   const suc = e.textContent.split(' ')[0]
   initMap(cart)
   // onSuccessAlert(`Como querés recibir tu compra`, `Seleccionaste la opción retirar en sucursal ${suc.replace(',','')}. Puedes pasar a retirar tu producto por nuestra sucursal en ${e.textContent}. <br><br> ${cart_takeaway_text}`);
-  console.log('click(7)')
+  // console.log('click(7)')
   $('a[href="#retiro"]').click()
   $('.checkout-continue').fadeIn()
 	cargo = 'takeaway'

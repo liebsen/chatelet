@@ -31,6 +31,7 @@
     background-color: black;
     color: white;
     min-height: 50px;
+    z-index: 10;
   }
 
   #carousel-banners .banner-caption {

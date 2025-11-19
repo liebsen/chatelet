@@ -28,7 +28,7 @@
           <?php endif ?>
           <?php if( !empty($settings['show_shop']) ): ?>
             <li>
-              <a href="/Shop" data-toggle="mouseenter" data-show=".shop-options">Shop</a>
+              <a href="/Shop" data-toggle="mouseenter" data-target=".shop-options" data-animation="slideInDown">Shop</a>
             </li>
           <?php endif ?>
           <!--li>

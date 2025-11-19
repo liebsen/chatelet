@@ -475,8 +475,21 @@ body.top-fixed .navbar-chatelet .fa {
 }
 
 .shop-options {
-  background: #f1f1f1;
   box-shadow: var(--box-shadow-downwards);
+  padding: 2rem 1rem;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  transform: translateY(-100rem);
+  /*
+  display: none;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  border-radius: 0;
+  */
 }
 
 .shop-options.fixed {
@@ -1405,12 +1418,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
 	#myModal2 .content .table h1 { font-size: 30px; }
 	#myModal2 .content .table p { font-size: 18px; }
 	#myModal2 .content .table tr td { font-size: 16px; }
-}
-
-.shop-options {
-  padding: 2rem 1rem;
-  z-index: 9;
-  position: relative;  
 }
 
 @media (max-width: 991px) {

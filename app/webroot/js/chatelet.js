@@ -1,6 +1,8 @@
 var carrito = JSON.parse(localStorage.getItem('cart')) || {}
 var lastcp = localStorage.getItem('lastcp') || 0
 var lastscroll = 0
+var alerts = {}
+var interval = 0
 //new WOW().init();
 let searchInt = 0
 let searchPageSize = 12
@@ -8,6 +10,7 @@ let searchPage = 0
 let focusAnim = 'pulse'
 let clock = 0
 let fakeshown = 0 
+var toggleInterval = 0
 const log = false
 
 function getStorage(key, def) {
@@ -106,7 +109,6 @@ function addToCart(data) {
 } */
 
 function addToCart(data, redirect) {
-  console.log({data,redirect})
   return new Promise((resolve, reject) => {
     return $.post('/carrito/add', $.param(data))
       .success(function(res) {
@@ -155,8 +157,13 @@ var askremoveCart = (e) => {
   let userInput = confirm(`¿Querés borrar el producto ${item.name} del carrito?`);
   if(userInput){
     $.post(`/carrito/remove/${item.uid}`, {}).then((res) => {
-      /* @Analytics: removeFromCart */
-      fbq('track', 'RemoveFromCart')
+      fbq('trackCustom', 'RemoveFromCart', {
+        content_ids: [item.id],
+        content_name: item.article,
+        content_type: 'product',
+        value: item.discount,
+        currency: 'ARS'
+      })
       gtag('event', 'remove_from_cart', {
         "items": [
           {
@@ -297,10 +304,6 @@ let findSize = (str) => {
   }
   return size
 }
-
-
-var alerts = {}
-var interval = 0
 
 groupAlerts = function(title, text) {
   if(!alerts[title]) {
@@ -564,28 +567,47 @@ $(document).ready(function() {
   })
 
   $('[data-toggle="mouseenter"]').mouseenter((e) => {
-    const show = $(e.target).data('show')
-    // stop all media
-    $("video").each((i,e) => {
-      e.pause()
-    });
-    if($(show).length) {
-      $(show).fadeIn()
-    }
+    clearInterval(toggleInterval)
+    toggleInterval = setTimeout(() => {
+      const target = $($(e.target).data('target'))
+      const animation = $(e.target).data('animation')
+      // stop all media
+      $("video").each((i,e) => {
+        e.pause()
+      });
+      if(target.length) {
+        if(!target.data('started')) {
+          target.data('started', target.prop('class'))
+        }
+        target.removeClass()
+        target.addClass(target.data('started'))
+        target.addClass(animation ?? 'fadeIn')
+      }
+    }, 200)
   })
 
   $('[data-toggle="mouseleave"]').mouseleave((e) => {
-    const hide = $(e.target).data('hide')
-    if($(hide).length) {
-      $(hide).fadeOut()
-    }
-    // resume media
-    var video = $("#carousel .item.active").find("video")
-    if(video.length){
-      setTimeout(() => {
-        $(video).get(0).play()
-      }, 50)
-    }
+    clearInterval(toggleInterval)
+    toggleInterval = setTimeout(() => {
+      const target = $($(e.target).data('target'))
+      const animation = $(e.target).data('animation')
+
+      if(target.length) {
+        if(!target.data('started')) {
+          target.data('started', target.prop('class'))
+        }
+        target.removeClass()
+        target.addClass(target.data('started'))
+        target.addClass(animation ?? 'fadeOut')
+      }
+      // resume media
+      var video = $("#carousel .item.active").find("video")
+      if(video.length){
+        setTimeout(() => {
+          $(video).get(0).play()
+        }, 50)
+      }
+    }, 200)
   })
 
   $('.close-search').click(e => {

@@ -1,5 +1,5 @@
 
-var removeCart = (e) => {
+/*var removeCart = (e) => {
   if(!removeElement) return
   const block = $(removeElement).parent()
   const json = $(block).find('.carrito-data').data('json')
@@ -7,7 +7,6 @@ var removeCart = (e) => {
   let item = JSON.parse(JSON.stringify(json))
   $('#carrito-remove-btn').button('loading')
   $.get(`/carrito/remove/${item.id}`).then((res) => {
-    /* @Analytics: removeFromCart */
     fbq('track', 'RemoveFromCart')
     gtag('event', 'remove_from_cart', {
       "items": [
@@ -33,7 +32,7 @@ var removeCart = (e) => {
       //block.remove()
     }, 500)
   })
-}
+}*/
 
 
 var save_preference = (settings) => {

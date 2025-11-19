@@ -100,6 +100,11 @@ class CheckoutController extends AppController
 	}
 
 	public function envio() {
+
+		if(empty($this->Session->read('cart'))) {
+			$this->redirect(array( 'controller' => 'carrito', 'action' => 'index' ));
+		}
+
 		if ($this->request->is('post')) {
 			$shipping = $this->request->data;
 
@@ -146,8 +151,11 @@ class CheckoutController extends AppController
 		$this->set('stores', $stores);
 	}
 
-	public function pago()
-	{
+	public function pago() {
+		if(empty($this->Session->read('cart'))) {
+			$this->redirect(array( 'controller' => 'carrito', 'action' => 'index' ));
+		}
+		
 		if ($this->request->is('post')) {
 			$shipping = $this->request->data;
 

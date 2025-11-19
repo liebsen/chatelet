@@ -1,6 +1,6 @@
-<div class="burst shop-options">
-  <div class="wrapper" data-toggle="mouseleave" data-hide=".shop-options">
-    <div class="row">
+<div class="animated shop-options">
+  <div class="wrapper">
+    <div class="row" data-toggle="mouseleave" data-target=".shop-options" data-animation="slideOutUp">
       <?php if(!empty($settings['image_menushop'])): ?>
       <img class="pull-left" src="<?php echo Configure::read('uploadUrl').$settings['image_menushop']?>">
       <?php endif ?>
