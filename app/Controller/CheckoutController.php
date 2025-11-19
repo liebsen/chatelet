@@ -145,6 +145,55 @@ class CheckoutController extends AppController
 		$this->set('provincias',$provincias);		
 		$this->set('stores', $stores);
 	}
+
+	public function pago()
+	{
+		if ($this->request->is('post')) {
+			$shipping = $this->request->data;
+
+			if(empty($shipping)) {
+	      die(json_encode(array(
+	        'success' => false, 
+	        'message' => 'Shipping not recieved'
+	      )));
+			}
+
+			$customer = $shipping['customer'];
+
+			if(empty($customer)) {
+	      die(json_encode(array(
+	        'success' => false, 
+	        'message' => 'Customer not recieved'
+	      )));
+			}
+
+			unset($shipping['customer']);
+
+			$this->Session->write('customer', $customer);
+			$this->Session->write('shipping', $shipping);
+
+			CakeLog::write('debug', 'envio customer:'.json_encode($customer));
+			CakeLog::write('debug', 'envio shipping:'.json_encode($shipping));
+
+      die(json_encode(array(
+        'success' => true, 
+        'message' => 'OK, pasemos a pago'
+      )));
+
+			return false;
+		}
+				
+    $legends = $this->Legend->find('all', [
+      'conditions' => ['enabled' => 1],
+      'order' => ['Legend.ordernum ASC']
+    ]);
+
+    $this->set('legends', $legends);
+
+		// $user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
+		// $this->set('userData',$user);
+	}
+
 	private function parseTemplate ($str, $data) {
 		$html = $str;
     foreach ($data as $key => $value) {
@@ -167,18 +216,6 @@ class CheckoutController extends AppController
 		return json_encode($response);
 	}
 
-	public function pago()
-	{
-    $legends = $this->Legend->find('all', [
-      'conditions' => ['enabled' => 1],
-      'order' => ['Legend.ordernum ASC']
-    ]);
-
-    $this->set('legends', $legends);
-
-		// $user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
-		// $this->set('userData',$user);
-	}
 
 	private function getItemsData()
 	{

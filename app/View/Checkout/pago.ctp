@@ -30,7 +30,7 @@ $filter_legends = $this->App->filter_legends($legends, $total);
 
 	<form role="form" method="post" id="checkoutform" autocomplete="off" onkeydown="return event.key != 'Enter';" action="<?php echo $this->Html->url(array(
 				'controller' => 'checkout',
-				'action' => 'sale'
+				'action' => 'pago'
 			)) ?>">
 
 		<div class="flex-row pt-4">
@@ -40,9 +40,9 @@ $filter_legends = $this->App->filter_legends($legends, $total);
 		    	<span class="text-sm">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</span>
 		    </div-->
 		    <div class="d-flex justify-content-start align-items-center gap-05 card-row payment_method w-100">
-		    	<label for="mercadopago" class="is-clickable w-100 select-payment-option bronco-select<?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
+		    	<label for="mercadopago" class="is-clickable w-100 select-payment-option bronco-select<?= !@$cart_totals['payment_method'] || @$cart_totals['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
 		    		<div class="d-flex justify-content-start align-items-center gap-1 w-100">
-		    			<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$config['payment_method'] || @$config['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
+		    			<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$cart_totals['payment_method'] || @$cart_totals['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>
 	        		<div class="d-flex flex-column justify-content-center align-items-start gap-05">
 		          	<h4 class="mb-0 mt-2">Mercado Pago</h4>
 		          	<span class="text-sm">Pagá con débito, crédito o rapipago a través de Mercadopago</span>
@@ -65,9 +65,9 @@ $filter_legends = $this->App->filter_legends($legends, $total);
 	        	</div>
 	      	</label>				          
 	      <?php if($settings['bank_enable']): ?>
-	        <label for="bank" class="is-clickable w-100 select-payment-option bronco-select<?= @$config['payment_method'] === 'bank' ? ' is-selected': '' ?>">
+	        <label for="bank" class="is-clickable w-100 select-payment-option bronco-select<?= @$cart_totals['payment_method'] === 'bank' ? ' is-selected': '' ?>">
 	        	<div class="d-flex  justify-content-start align-items-center gap-1">
-	          	<input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$config['payment_method'] === 'bank' ?  'checked': '' ?>/>
+	          	<input type="radio" class="" id="bank" name="payment_method" value="bank" required  <?= @$cart_totals['payment_method'] === 'bank' ?  'checked': '' ?>/>
 	        		<div class="d-flex flex-column justify-content-center align-items-start gap-05">
 	          		<h4 class="mb-0 mt-2">Transferencia</h4>
 		          	<span class="text-sm">Pagá a través de transferencia bancaria con tu home banking</span>
@@ -106,7 +106,7 @@ $(function(){
 	<?php endif;?>
 	var carrito = JSON.parse(localStorage.getItem('cart')) || {}
 	setTimeout(() => {
-		$('#<?= @$config['payment_method'] ?: 'mercadopago'?>').click()
+		$('#<?= @$cart_totals['payment_method'] ?: 'mercadopago'?>').click()
 	}, 100)
 	if(carrito.gifts && carrito.gifts.length) {
 		$('#gifts').val(carrito.gifts.join(','))

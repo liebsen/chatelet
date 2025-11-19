@@ -103,6 +103,29 @@ selectStore = function(e) {
 $(document).ready(function() {
 	localStorage.setItem('continue_shopping_url', window.location.pathname)
 
+	/* metrics start */
+	fbq('track', 'InitiateCheckout')
+	let items = []
+	if(cart_items && cart_items.length) {
+		cart_items.forEach(e => {
+			items.push({
+        'name': e.article,
+        'id': e.id,
+        'price': e.discount,
+        'brand': e.name,
+        'category': e.name,
+        'variant': e.alias,
+        'quantity': 1
+			})
+		})
+		gtag('event', 'begin_checkout', {
+		  "items": items,
+		  "coupon": ""
+		})
+	}
+
+	/* metrics end */
+	
 	$('#calulate_shipping').submit(e => {
 		var url = $('#calulate_shipping').data('url')
 		//var total_orig = $('#subtotal_compra').val()

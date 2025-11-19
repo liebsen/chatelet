@@ -51,6 +51,7 @@ echo $this->element('checkout-params');
 							)); ?>
 							<input type="hidden" name="redirect" value="/checkout/pago" />								
 							<?php echo $this->element('shipping-person') ?>
+							<?php echo $this->Form->end(); ?>	
 						</div>
 					</div> 
 			  </div>
@@ -97,7 +98,6 @@ echo $this->element('checkout-params');
 		</div>
 	</div>
 
-	<?php echo $this->Form->end(); ?>	
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&sensor=true&language=es"></script>

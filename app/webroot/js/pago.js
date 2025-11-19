@@ -35,7 +35,6 @@ $('.dues-select-option').click((e) => {
 	prevent_default = false
 })
 
-
 $(function(){
 
 	localStorage.setItem('continue_shopping_url', window.location.pathname)
@@ -141,26 +140,6 @@ $(function(){
 		localStorage.removeItem('cart')
 		localStorage.removeItem('continue_shopping_url')
 		//localStorage.setItem('cart', JSON.stringify(cart))
-
 		//localStorage.removeItem('cart')
-		fbq('track', 'InitiateCheckout')
-		let items = []
-		if(cart_items && cart_items.length) {
-			cart_items.forEach(e => {
-				items.push({
-	        'name': e.article,
-	        'id': e.id,
-	        'price': e.discount,
-	        'brand': e.name,
-	        'category': e.name,
-	        'variant': e.alias,
-	        'quantity': 1
-				})
-			})
-			gtag('event', 'begin_checkout', {
-			  "items": items,
-			  "coupon": ""
-			})
-		}
 	})
 });
