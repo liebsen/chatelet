@@ -437,7 +437,7 @@ class CarritoController extends AppController
 		$coupon_parsed->data["updated"] = $updated;
 		$coupon_parsed->data["total"] = $total;
 		$coupon_parsed->data["bonus"] = $discount;
-		
+		$coupon_parsed->data["coupon_benefits"] = $coupon_bonus;		
 
 		return json_encode($coupon_parsed);
 	}

@@ -65,6 +65,7 @@ function submitCoupon() {
       let coupon_type = res.data.coupon_type
       var price = parseFloat(res.data.total)      
       let discount = parseFloat(res.data.discount)
+      let benefits = parseFloat(res.data.coupon_benefits)
       let discounted = 0
       let total = 0
       let free_shipping = true
@@ -74,9 +75,7 @@ function submitCoupon() {
         price+=parseFloat(delivery_cost)
       }
 
-      discounted_formatted = formatNumber(res.data.bonus)
-
-      $('.coupon_bonus').text( "$ " + discounted_formatted )
+      $('.coupon_bonus').text('$ ' + formatNumber(benefits))
       $('.products-total').removeClass('hidden')
       $('.coupon-discount').removeClass('hidden')
       $('.coupon-discount').addClass('fadeIn')
