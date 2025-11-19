@@ -98,6 +98,7 @@ function submitCoupon() {
       calcDues(price)
       window.coupon_bonus = discounted
 
+
       carrito.total_price = parseFloat(price.toFixed(2))
 
       $('input[name="coupon"]').val(coupon)
