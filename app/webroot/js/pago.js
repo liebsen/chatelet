@@ -50,7 +50,7 @@ $(function(){
 		// e.stopPropagation()
 		var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		var selected = target.find('input').val()
-		const payment_dues = document.querySelector('.payment-dues')
+		const payment_dues = document.querySelector('.select-payment-option')
 		$('.dues-block').hide()
 		cart_totals.payment_method = selected
 		target.find('input').prop('checked', true)
@@ -71,7 +71,7 @@ $(function(){
 							payment_dues.classList.add('hide-element')
 						}, 500)
 					}
-					document.querySelectorAll('.payment-dues .bronco-select').forEach((e,i) => {
+					document.querySelectorAll('.select-payment-option .bronco-select').forEach((e,i) => {
 						if(i) {
 							e.classList.add('hide')
 						}
@@ -85,7 +85,7 @@ $(function(){
 					payment_dues.classList.add('scaleIn')
 				}
 				$('.dues-block').show()
-				document.querySelectorAll('.payment-dues .bronco-select').forEach((e) => e.classList.remove('hide'))
+				document.querySelectorAll('.select-payment-option .bronco-select').forEach((e) => e.classList.remove('hide'))
 
 				break;
 			}
