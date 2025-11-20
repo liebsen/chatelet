@@ -26,20 +26,16 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 <section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 	<?php echo $this->element('title-faq', array('title' => "Información de pago")) ?>
-
 	<?php echo $this->Form->create('pago_form', array(
 		'id' => 'pago_form',
 		'url' => array(
 			'controller' => 'checkout', 
 			'action' => 'pago'
 		)
-	)); ?>		
-
-	<form role="form" method="post" id="checkoutform" autocomplete="off" onkeydown="return event.key != 'Enter';" action="<?php echo $this->Html->url(array(
-				'controller' => 'checkout',
-				'action' => 'pago'
-			)) ?>">
-
+	)); ?>
+		<input type="hidden" name="ajax" value="1" />
+		<input type="hidden" name="redirect" value="/checkout/confirma" />	
+		<input type="hidden" name="payment_dues" value="1" />	
 		<div class="flex-row pt-4">
 			<div class="flex-col gap-05">
 				<span class="text-muted">¿Cómo querés pagar tu compra? Seleccioná un método de pago para realizar esta compra</span>
@@ -107,7 +103,38 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 </section>
 
 <script type="text/javascript">
-$(function(){
+
+$(document).ready(function() {
+  $('#pago_form').on('submit', function(event) {
+    event.preventDefault();
+    const formData = $(this).serialize();
+    const btnSubmit = $(this).find('[type="submit"]');
+    const redirect = $(this).find('[name="redirect"]').val();
+    btnSubmit.prop('disabled', true)
+    $.ajax({
+      url: $(this).attr('action'),
+      type: 'POST',
+      data: formData,
+      success: function(res) {
+      	if(res.success) {
+      		// onSuccessAlert('Success', res.message)
+          // $('#responseContainer').html(res.message);
+          setTimeout(() => {
+          	location.href = redirect || location.href
+          }, 100)
+      	} else {
+      		onWarningAlert('Error al enviar datos', res.errors)
+      		// $('#responseContainer').html(res.errors);
+      	}
+      	btnSubmit.prop('disabled', false)
+      },
+      error: function(xhr, status, error) {
+        console.error("Error al enviar datos: " + status + " - " + error);
+        btnSubmit.prop('disabled', false)
+        // Handle errors
+      }
+    });
+  });
 	setTimeout(() => {
 		const payment_method = localStorage.getItem('payment_method')  || 'mercadopago'
 		$('#'+payment_method).click()

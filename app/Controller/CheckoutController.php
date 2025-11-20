@@ -42,7 +42,7 @@ class CheckoutController extends AppController
 			'label' => 'Pago'
 		),
 		array(
-			'url' => '/checkout/finalizar',
+			'url' => '/checkout/confirma',
 			'label' => 'Confirma'
 		),
 	);
@@ -165,31 +165,32 @@ class CheckoutController extends AppController
 		}
 		
 		if ($this->request->is('post')) {
-			$shipping = $this->request->data;
+			$data = $this->request->data;
 
-			if(empty($shipping)) {
+			if(empty($data)) {
 	      die(json_encode(array(
 	        'success' => false, 
-	        'message' => 'Shipping not recieved'
+	        'message' => 'Data not recieved'
 	      )));
 			}
 
-			$customer = $shipping['customer'];
+			$payment_method = $data['payment_method'];
+			$payment_dues = $data['payment_dues'];
 
-			if(empty($customer)) {
+			if(empty($payment_method)) {
 	      die(json_encode(array(
 	        'success' => false, 
-	        'message' => 'Customer not recieved'
+	        'message' => 'Payment method not recieved'
 	      )));
 			}
 
-			unset($shipping['customer']);
+			$cart_totals = $this->Session->read('cart_totals');
+			$cart_totals['payment_method'] = $payment_method;
+			$cart_totals['payment_dues'] = $payment_dues;
 
-			$this->Session->write('customer', $customer);
-			$this->Session->write('shipping', $shipping);
+			$this->Session->write('cart_totals', $cart_totals);
 
-			CakeLog::write('debug', 'envio customer:'.json_encode($customer));
-			CakeLog::write('debug', 'envio shipping:'.json_encode($shipping));
+			CakeLog::write('debug', 'pago cart_totals:'.json_encode($cart_totals));
 
       die(json_encode(array(
         'success' => true, 
@@ -208,6 +209,44 @@ class CheckoutController extends AppController
 
 		// $user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
 		// $this->set('userData',$user);
+	}
+
+	public function confirma() {
+		if(empty($this->Session->read('cart'))) {
+			$this->redirect(array( 'controller' => 'carrito', 'action' => 'index' ));
+		}
+		
+		if ($this->request->is('post')) {
+			// check integrity
+			if(empty($this->Session->read('payment_method'))) {
+	      die(json_encode(array(
+	        'success' => false, 
+	        'message' => 'No se recibió método de pago'
+	      )));
+			}
+
+			if(empty($this->Session->read('customer'))) {
+	      die(json_encode(array(
+	        'success' => false, 
+	        'message' => 'No se recibió datos de persona de entrega'
+	      )));
+			}
+
+			// here we start the sale
+			$data = $this->request->data;
+
+			$sell = $this->sale();
+
+			if(empty($data)) {
+	      die(json_encode(array(
+	        'success' => false, 
+	        'message' => 'Data not recieved'
+	      )));
+			}
+
+			return false;
+		}
+				
 	}
 
 	public function getLocalidadProvincia($id)
@@ -694,30 +733,32 @@ class CheckoutController extends AppController
 
 	public function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
-
 		$this->autoRender = false;
 		$total=0;
 		$total_wo_discount = 0;
 		// VAR - Validate
 		$cart = $this->Session->read('cart');
 		$cart_totals = $this->Session->read('cart_totals');
-
-		if(empty($cart)) {
-			// header("Location: /");
-			$this->redirect(array( 'action' => 'clear' ));
-			return false;
-		}
-
 		$user_id = $this->Auth->user('id');
 		$product_ids = array();
 		$items = array();
 		$customer = $this->Session->read('customer');
+		$payment_method = $this->Session->read('payment_method');
+		$payment_method = $this->Session->read('payment_dues');
 
-		if(empty($customer)) {
-
-			die("Customer data not recieved");
+		// lets check some shit
+		if(empty($cart) || empty($cart_totals)) {
+			// header("Location: /");
+			$this->Session->setFlash('Tu carrito está vacío','default',array('class' => 'hidden error'));
+			error_log('warning: cart empty');
+			$this->redirect(array( 'action' => 'clear' ));
 		}
 
+		if(empty($customer)) {
+			$this->Session->setFlash('Tu carrito está vacío','default',array('class' => 'hidden error'));
+			error_log('warning: cart empty');
+			$this->redirect(array( 'action' => 'clear' ));
+		}
 
 		$sale = $this->request->data;
 

@@ -23,11 +23,11 @@ $('.dues-select-option').click((e) => {
 	var interest = json.interest
 
 	// onSuccessAlert(`Como querés pagar`,`Seleccionaste ${dues_selected} cuota${dues_selected > 1 ? 's' : ''}`);
-	save_preference([
+	// save_preference([
 		// { 'payment_method': 'mercadopago'},
-		{ 'payment_dues': dues_selected }
-	])
-
+		// { 'payment_dues': dues_selected }
+	// ])
+	$('input[name="payment_dues"]').val(dues_selected)
 	$('.dues-select-option').removeClass('selected secondary')
 	$('.dues-select-option').addClass('secondary')
 	target.addClass('selected')
@@ -121,7 +121,7 @@ $(function(){
 	})
 
 	$('#submitcheckoutbutton').click(e => {
-		fbq('track', 'AddPaymentInfo', { value: cart.total_price, currency: 'ARS' });
+		fbq('track', 'AddPaymentInfo', { value: cart_totals.grand_total, currency: 'ARS' });
 		if(dues_selected && dues_selected > 1){ // show legend
 			$('#dues_message').addClass('show')
 			$('.dues-message-dues').text(dues_selected)
@@ -130,7 +130,7 @@ $(function(){
 		}
 	})
 
-	$('#checkoutform').submit(form => {
+	/*$('#checkoutform').submit(form => {
 		// mostrar leyenda solicitando la elección correcta de cuotas.
 		// Asegurate de seleccionar {cuotas} cuotas.
 		const submit = $('.checkout-btn')
@@ -144,5 +144,5 @@ $(function(){
 		localStorage.removeItem('continue_shopping_url')
 		//localStorage.setItem('cart', JSON.stringify(cart))
 		//localStorage.removeItem('cart')
-	})
+	})*/
 });
