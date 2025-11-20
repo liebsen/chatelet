@@ -58,6 +58,16 @@ class AppHelper extends Helper {
 
     //CakeLog::write('debug', 'count:'.count($legends) . '/'. $one_due);
     if (!(count($items) == 1 && $one_due)) {
+
+      function compareScores($a, $b) {
+        if ($a['Legend']['dues'] == $b['Legend']['dues']) {
+            return 0;
+        }
+        return ($a['Legend']['dues'] < $b['Legend']['dues']) ? -1 : 1;
+      }
+
+      usort($items, 'compareScores');
+
       return $items;
     }
 
