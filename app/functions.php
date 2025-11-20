@@ -185,8 +185,8 @@ function shipping_text($settings) {
     'total' => str_replace(',00','',number_format($cart_totals['grand_total'], 0, ',', '.'))
   ];
 
-  CakeLog::write('debug', 'vars:'. json_encode($vars));
-  CakeLog::write('debug', 'settings:'. json_encode($settings));
+  // CakeLog::write('debug', 'vars:'. json_encode($vars));
+  // CakeLog::write('debug', 'settings:'. json_encode($settings));
   if ($settings['shipping_type'] == 'min_price') {
     $text_shipping_min_price = ($settings['display_text_shipping_min_price'] && $settings['text_shipping_min_price']) ? \parseTemplate($settings['text_shipping_min_price'], $vars) : '';
     //$this->set('text_shipping_min_price',$text_shipping_min_price);

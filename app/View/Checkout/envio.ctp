@@ -11,14 +11,22 @@ echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->element('checkout-params');
+
 ?>
 
 <section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 	<?php echo $this->element('title-faq', array('title' => "Método de entrega")) ?>
-
 	<div class="flex-row">
+			<?php echo $this->Form->create('envio_form', array(
+				'id' => 'envio_form',
+				'url' => array(
+					'controller' => 'checkout', 
+					'action' => 'envio'
+				)
+			)); ?>		
 		<div class="flex-col">
+
 			<ul class="nav nav-tabs nav-dark">
 			  <li class="active"><a href="#envio" data-toggle="tab"><span>Envío a domicilio</span></a></li>
 			  <li><a href="#retiro" data-toggle="tab"><span>Retiro en local GRATIS</span></a></li>
@@ -42,16 +50,9 @@ echo $this->element('checkout-params');
 							<div class="slot">
 							</div>
 							<hr>
-							<?php echo $this->Form->create('envio_form', array(
-								'id' => 'envio_form',
-								'url' => array(
-									'controller' => 'checkout', 
-									'action' => 'envio'
-								)
-							)); ?>
+
 							<input type="hidden" name="redirect" value="/checkout/pago" />								
 							<?php echo $this->element('shipping-person') ?>
-							<?php echo $this->Form->end(); ?>	
 						</div>
 					</div> 
 			  </div>
@@ -91,13 +92,13 @@ echo $this->element('checkout-params');
 					<!--a class="btn btn-continue-shopping btn-chatelet w-100" href="/tienda">Seguir comprando</a-->
 				</div>
 			</div>
+			<?php echo $this->Form->end(); ?>	
 			<hr>					
 		</div>
 		<div class="flex-col gap-1 max-22">
 			<?php echo $this->element('resume', array('show_list' => true)) ?>
 		</div>
 	</div>
-
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&language=es"></script>
@@ -108,7 +109,6 @@ echo $this->element('checkout-params');
 		const store_lng = $(option).attr('store-lng')
 		const store_lat = $(option).attr('store-lat')
 		const store_address = $(option).attr('store-address')
-		console.log('initMap', {option})
 
 		$('.store').text(store)
 		$('.store-address').text(store_address)
@@ -142,18 +142,18 @@ echo $this->element('checkout-params');
         success: function(res) {
         	if(res.success) {
         		// onSuccessAlert('Success', res.message)
-            $('#responseContainer').html(res.message);
+            // $('#responseContainer').html(res.message);
             setTimeout(() => {
             	location.href = redirect || location.href
-            }, 3000)
+            }, 100)
         	} else {
-        		onWarningAlert('Error al registrar usuario', res.errors)
-        		$('#responseContainer').html(res.errors);
+        		onWarningAlert('Error al enviar datos', res.errors)
+        		// $('#responseContainer').html(res.errors);
         	}
         	btnSubmit.prop('disabled', false)
         },
         error: function(xhr, status, error) {
-          console.error("AJAX Error: " + status + " - " + error);
+          console.error("Error al enviar datos: " + status + " - " + error);
           btnSubmit.prop('disabled', false)
           // Handle errors
         }

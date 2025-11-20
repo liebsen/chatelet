@@ -142,7 +142,7 @@
 	}
 
 	.has-checkout-steps.done .checkout-continue {
-		display: block;
+		display: flex;
 	}
 
 </style>
