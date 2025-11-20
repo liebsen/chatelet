@@ -569,36 +569,36 @@ $(document).ready(function() {
   $('[data-toggle="mouseenter"]').mouseenter((e) => {
     clearInterval(toggleInterval)
     toggleInterval = setTimeout(() => {
-      const target = $($(e.target).data('target'))
+      const t = $($(e.target).data('target'))
       const animation = $(e.target).data('animation')
       // stop all media
       $("video").each((i,e) => {
         e.pause()
       });
-      if(target.length) {
-        if(!target.data('started')) {
-          target.data('started', target.prop('class'))
+      if(t.length) {
+        if(!t.data('started')) {
+          t.data('started', t.prop('class'))
         }
-        target.removeClass()
-        target.addClass(target.data('started'))
-        target.addClass(animation ?? 'fadeIn')
+        t.removeClass()
+        t.addClass(t.data('started'))
+        t.addClass(animation ?? 'fadeIn')
       }
     }, 200)
+
   })
 
   $('[data-toggle="mouseleave"]').mouseleave((e) => {
     clearInterval(toggleInterval)
     toggleInterval = setTimeout(() => {
-      const target = $($(e.target).data('target'))
+      const t = $($(e.target).data('target'))
       const animation = $(e.target).data('animation')
-
-      if(target.length) {
-        if(!target.data('started')) {
-          target.data('started', target.prop('class'))
+      if(t.length) {
+        if(!t.data('started')) {
+          t.data('started', t.prop('class'))
         }
-        target.removeClass()
-        target.addClass(target.data('started'))
-        target.addClass(animation ?? 'fadeOut')
+        t.removeClass()
+        t.addClass(t.data('started'))
+        t.addClass(animation ?? 'fadeOut')
       }
       // resume media
       var video = $("#carousel .item.active").find("video")
@@ -655,9 +655,7 @@ $(document).ready(function() {
       var scroll = $(window).scrollTop()
       const video = $("#carousel .item.active").find("video")
       $('.navbar-chatelet:not(.short)').removeClass('fadeIn')
-      if($('.shop-options').is(':visible')) {
-        $('.shop-options').hide()
-      }
+      $('.shop-options').removeClass('slideInDown')
       void document.querySelector('.navbar-chatelet').offsetWidth;
       if (scroll > 100) {
         if (!fakeshown && lastscroll < scroll) {

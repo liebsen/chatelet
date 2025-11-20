@@ -1,13 +1,36 @@
 <?php
-echo $this->Html->script('jquery', array('inline' => false));
-echo $this->Html->script('product.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-// echo $this->Html->script('ga', array('inline' => false));
-// echo $this->Html->script('cloudzoom', array('inline' => false));
-// echo $this->Html->css('cloudzoom', array('inline' => false));
-echo $this->Html->script('jquery.growl', array('inline' => false));
-echo $this->Html->script('detalle.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+
+$cloudzoom = false;
+$cloudzoomdata = 'zoomSizeMode:"zoom", lensWidth: 100, lensHeight: 100, zoomWidth:300, zoomHeight: 300, autoInside: 600';
 $images  = array();
 $images_aux = explode(';', $product['gallery']);
+
+// echo $this->Html->script('jquery', array('inline' => false));
+// echo $this->Html->script('ga', array('inline' => false));
+
+echo $this->Html->script('product.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+echo $this->Html->script('detalle.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+
+if($cloudzoom) {
+  echo $this->Html->script('wow.min');
+  echo $this->Html->script('cloudzoom.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+  echo $this->Html->css('cloudzoom.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+}
+
+/*
+galleryFade:!0,
+galleryHoverDelay:200,
+permaZoom:!1,
+zoomWidth:0,
+zoomHeight:0,
+lensWidth:0,
+lensHeight:0,
+hoverIntentDelay:0,
+autoInside:0,
+disableOnScreenWidth:0,
+touchStartDelay:0,
+*/
+
 foreach ($images_aux as $key => $value) {
   if(!empty($value))
     $images[] = Configure::read('uploadUrl').$value;
@@ -78,7 +101,7 @@ foreach ($properties as $property) {
           <?php foreach ($colorImages[0]['images'] as $k => $v) : ?>
             <?php if(!empty($v)): ?>
             <div id="surround">
-              <img class="mySlides cloudzoom img-responsive" id="mySlides zoom1" style="" src="<?=Configure::read('uploadUrl').$v?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
+              <img class="mySlides cloudzoom img-responsive" id="mySlides zoom1" style="" src="<?=Configure::read('uploadUrl').$v?>" data-cloudzoom='<?php echo $cloudzoom ? $cloudzoomdata : '' ?>'/>
             </div>
             <?php endif;?>
           <?php endforeach ?>
@@ -101,12 +124,12 @@ foreach ($properties as $property) {
       <div class="col-md-5 col-sm-7"  >
          <div id="surround">
          <?php if (!empty($img_url)): ?>
-            <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?php echo Configure::read('uploadUrl').$img_url ?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
+            <img class="mySlides cloudzoom img-responsive"  id="mySlides zoom1" src="<?php echo Configure::read('uploadUrl').$img_url ?>" data-cloudzoom='<?php echo $cloudzoomdata ?>'/>
         <?php elseif (!empty($images)): ?>
 
         <?php foreach ($images as $k => $v) : ?>
             <?php if (!empty($v)): ?>
-             <img  class="mySlides cloudzoom img-responsive"  id="mySlides zoom1"   style="" src="<?php echo $v ?>" data-cloudzoom='zoomSizeMode:"zoom",autoInside: 600'/>
+             <img class="mySlides cloudzoom img-responsive"  id="mySlides zoom1" src="<?php echo $v ?>" data-cloudzoom='<?php echo $cloudzoomdata ?>'/>
             <?php endif ?>
           <?php endforeach ?>
         <?php endif; ?>
@@ -263,112 +286,114 @@ foreach ($properties as $property) {
 </section>
 
 <section id="productOptions" class="animated fadeIn">
-    <div class="wrapper">
-        <div class="row">
-            <div class="col-md-3">
-            <?php
-                $slug =  str_replace(' ','-',strtolower($category['Category']['name']));
-                  if (strpos($slug, 'trajes')!==false){
-                    $slug = 'trajes-de-bano';
-                  }
+  <div class="wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+        <?php
+            $slug =  str_replace(' ','-',strtolower($category['Category']['name']));
+              if (strpos($slug, 'trajes')!==false){
+                $slug = 'trajes-de-bano';
+              }
 
-            ?>
-                <a href="<?php echo router::url(array('controller' => 'tienda', 'action' => 'productos',
-                                 $slug)) ?>" class="btBig">
-                  volver <br>
-                   al  <span>SHOP</span>
-                </a>
-            </div>
-
-            <div class="col-md-9 product-list posnum-<?=@$category['Category']['posnum'] ?>">
-                <div class="row">
-                    <?php
-                    foreach($all_but_me as $alt_product):
-                        $alt_product = $alt_product['Product'];
-                        $stock = (!empty($alt_product['stock_total']))?(int)$alt_product['stock_total']:0;
-                        $alt_product_name =$alt_product['name'];
-
-                        $url = $this->Html->url(array(
-                                'controller' => 'shop',
-                                'action' => 'detalle',
-                                $alt_product['id'],
-                                $alt_product['category_id'],
-                                strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $alt_product['name']))),
-
-                            )
-                        );
-
-                $number_ribbon = 0;
-				if (isset($alt_product['discount_label_show'])){
-					$number_ribbon = (int)@$alt_product['discount_label_show'];
-				}
-                if (isset($alt_product['mp_discount']) && $alt_product['mp_discount'] > $number_ribbon){
-                  $number_ribbon = (int) @$alt_product['mp_discount'];
-                }
-                if (isset($alt_product['bank_discount']) && $alt_product['bank_discount'] > $number_ribbon){
-                  $number_ribbon = (int) @$alt_product['bank_discount'];
-                }
-
-				$discount_flag = (@$alt_product['category_id']!='134' && !empty($number_ribbon))?'<div class="discount-flag">'.$number_ribbon.'% OFF</div>':'';
-                $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
-
-
-                    if(!$stock){ ?>
-                     <div class="col-sm-6 col-md-4 col-lg-3 p-1">
-                        <a href="<?php echo $url ?>" >
-                            <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
-                                <div class="ribbon small"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
-                            <?php endif ?>
-                            <?php if ($alt_product['promo'] !== '') :?>
-                                <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
-                            <?php endif ?>
-                            <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
-                            <div class="product-image" style="background-image: url('<?php echo Configure::read('uploadUrl') . $alt_product['img_url'] ?>')" alt=""></div>
-                            <div class="product-info">
-                                <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
-                                <div class="name" origin="3"><?= $alt_product_name ?></div>
-                                <div class="price-list"><?= \price_format(ceil($alt_product['price'])) ?></div>
-                            </div>
-                        </a>
-                    </div>
-                    <?php }else{ ?>
-
-                      <div data-id="<?=$alt_product['id']?>" class="col-sm-12 col-md-4 col-lg-3 add-no-stock">
-                        <a href="<?php echo $url ?>">
-                            <div class="ribbon-container">
-<?php 
-    $number_ribbon = 0;
-    
-    if (isset($alt_product['discount_label_show'])){
-      $number_ribbon = (int) @$alt_product['discount_label_show'];
-    }
-    if (isset($alt_product['mp_discount']) && $alt_product['mp_discount'] > $number_ribbon){
-      $number_ribbon = (int) @$alt_product['mp_discount'];
-    }
-    if (isset($alt_product['bank_discount']) && $alt_product['bank_discount'] > $number_ribbon){
-      $number_ribbon = (int) @$alt_product['bank_discount'];
-    }
-?><?php 
-                            if (!empty($number_ribbon)) :?>
-                                <div class="ribbon top-left small sp1"><span><?= $number_ribbon ?>% OFF</span></div>
-                            <?php endif ?>
-                            <?php if ($alt_product['promo'] !== '') :?>
-                                <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
-                            <?php endif ?>
-                            <div class="product-image posnum-<?= $category['Category']['posnum'] ?>" style="background-image: url('<?php echo Configure::read('uploadUrl') . $alt_product['img_url'] ?>')" alt=""></div>
-                            </div>
-                            <div class="product-info">
-                                <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
-                                <div class="name" origin="4"><?= $alt_product_name ?></div>
-                                <?= $this->App->show_prices_dues($legends, $alt_product) ?>
-                            </div>
-                        </a>
-                    </div>
-                   <?php }endforeach; ?>
-                </div>
-            </div>
+        ?>
+            <a href="<?php echo router::url(array('controller' => 'tienda', 'action' => 'productos',
+                             $slug)) ?>" class="btBig">
+              volver <br>
+               al  <span>SHOP</span>
+            </a>
         </div>
+
+        <div class="col-md-9 product-list posnum-<?=@$category['Category']['posnum'] ?>">
+          <div class="row">
+              <?php
+              foreach($all_but_me as $alt_product):
+                  $alt_product = $alt_product['Product'];
+                  $stock = (!empty($alt_product['stock_total']))?(int)$alt_product['stock_total']:0;
+                  $alt_product_name =$alt_product['name'];
+
+                  $url = $this->Html->url(array(
+                          'controller' => 'shop',
+                          'action' => 'detalle',
+                          $alt_product['id'],
+                          $alt_product['category_id'],
+                          strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $alt_product['name']))),
+
+                      )
+                  );
+
+          $number_ribbon = 0;
+	if (isset($alt_product['discount_label_show'])){
+		$number_ribbon = (int)@$alt_product['discount_label_show'];
+	}
+          if (isset($alt_product['mp_discount']) && $alt_product['mp_discount'] > $number_ribbon){
+            $number_ribbon = (int) @$alt_product['mp_discount'];
+          }
+          if (isset($alt_product['bank_discount']) && $alt_product['bank_discount'] > $number_ribbon){
+            $number_ribbon = (int) @$alt_product['bank_discount'];
+          }
+
+	$discount_flag = (@$alt_product['category_id']!='134' && !empty($number_ribbon))?'<div class="discount-flag">'.$number_ribbon.'% OFF</div>':'';
+          $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
+
+
+              if(!$stock){ ?>
+               <div class="col-sm-6 col-md-4 col-lg-3 p-1">
+                  <a href="<?php echo $url ?>" >
+                      <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
+                          <div class="ribbon small"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
+                      <?php endif ?>
+                      <?php if ($alt_product['promo'] !== '') :?>
+                          <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
+                      <?php endif ?>
+                      <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
+                      <div class="product-image" style="background-image: url('<?php echo Configure::read('uploadUrl') . $alt_product['img_url'] ?>')" alt=""></div>
+                      <div class="product-info">
+                          <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
+                          <div class="name" origin="3"><?= $alt_product_name ?></div>
+                          <div class="price-list"><?= \price_format(ceil($alt_product['price'])) ?></div>
+                      </div>
+                  </a>
+              </div>
+              <?php }else{ ?>
+
+                <div data-id="<?=$alt_product['id']?>" class="col-sm-12 col-md-4 col-lg-3 add-no-stock">
+                  <a href="<?php echo $url ?>">
+                      <div class="ribbon-container">
+<?php 
+$number_ribbon = 0;
+
+if (isset($alt_product['discount_label_show'])){
+$number_ribbon = (int) @$alt_product['discount_label_show'];
+}
+if (isset($alt_product['mp_discount']) && $alt_product['mp_discount'] > $number_ribbon){
+$number_ribbon = (int) @$alt_product['mp_discount'];
+}
+if (isset($alt_product['bank_discount']) && $alt_product['bank_discount'] > $number_ribbon){
+$number_ribbon = (int) @$alt_product['bank_discount'];
+}
+?><?php 
+                      if (!empty($number_ribbon)) :?>
+                          <div class="ribbon top-left small sp1"><span><?= $number_ribbon ?>% OFF</span></div>
+                      <?php endif ?>
+                      <?php if ($alt_product['promo'] !== '') :?>
+                          <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
+                      <?php endif ?>
+                      <div class="product-image posnum-<?= $category['Category']['posnum'] ?>" style="background-image: url('<?php echo Configure::read('uploadUrl') . $alt_product['img_url'] ?>')" alt=""></div>
+                      </div>
+                      <div class="product-info">
+                          <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
+                          <div class="name" origin="4"><?= $alt_product_name ?></div>
+                          <?= $this->App->show_prices_dues($legends, $alt_product) ?>
+                      </div>
+                  </a>
+              </div>
+             <?php }endforeach; ?>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <div class="modal fade" tabindex="-1" id="myModal2" role="dialog">
