@@ -875,7 +875,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #infoShop .bx3 { background-image: url(../images/box3.png); }
 
 #productOptions { /* padding: 1.25rem; */ }
-#productOptions nav li { border-bottom: 1px solid rgba(194, 194, 194, 0.27); padding: 20px 0; }
+#productOptions nav li { border-bottom: 1px solid rgba(194, 194, 194, 0.27); padding: 1rem; }
 #productOptions nav li a { 
   color: #222; 
   

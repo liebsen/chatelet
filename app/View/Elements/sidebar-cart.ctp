@@ -6,7 +6,7 @@
   <?php if (!empty($cart)) :?>
     <h5 class="text-bolder text-uppercase">Carrito</h5>
   <?php foreach($cart as $i => $product) :?>
-    <div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative w-100' data-json='<?php echo json_encode($product) ?>'>
+    <div class='d-flex justify-content-start align-center gap-1 carrito-data position-relative w-100' data-json='<?php echo json_encode($product) ?>'>
       <div class='cart-img'>
       <?php if (!empty($product['number_ribbon'])) :?>
         <div class="ribbon small">

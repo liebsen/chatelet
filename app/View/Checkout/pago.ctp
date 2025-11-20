@@ -10,8 +10,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 echo $this->Html->script('pago.js?v=' . Configure::read('APP_VERSION'),array('inline' => false));
 echo $this->element('checkout-params');
 
-$filter_legends = $this->App->filter_legends($legends, $total);
-
+$filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total']);
 ?>
 <div id="dues_message" class="container">
 	<h3>Vamos a redirigirte a la pasarela de pagos<h3>
@@ -27,6 +26,14 @@ $filter_legends = $this->App->filter_legends($legends, $total);
 <section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 	<?php echo $this->element('title-faq', array('title' => "Información de pago")) ?>
+
+	<?php echo $this->Form->create('pago_form', array(
+		'id' => 'pago_form',
+		'url' => array(
+			'controller' => 'checkout', 
+			'action' => 'pago'
+		)
+	)); ?>		
 
 	<form role="form" method="post" id="checkoutform" autocomplete="off" onkeydown="return event.key != 'Enter';" action="<?php echo $this->Html->url(array(
 				'controller' => 'checkout',
@@ -48,22 +55,24 @@ $filter_legends = $this->App->filter_legends($legends, $total);
 		          	<span class="text-sm">Pagá con débito, crédito o rapipago a través de Mercadopago</span>
 		         	</div>
 	          </div>
-	        	<div class="dues-block d-none">
-						<?php if(count($filter_legends)) : ?>
-							<div class="payment-dues">
-						    <span class="text-sm">¿Querés financiar tu compra? Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</span>
-						    <ul class="generic-select">
-						    <?php foreach($filter_legends as $legend): ?>
-						    	<?php if($total >= @$legend['Legend']['min_sale']):?>
-						    		<li data-json='<?= @json_encode($legend['Legend']) ?>' class="dues-select-option <?= $legend['Legend']['dues'] == 1 ? 'selected' : 'secondary' ?>"><span class="text-uppercase">
-						    			<?= @$legend['Legend']['dues'] ?> cuota<?= @$legend['Legend']['dues'] > 1 ? 's' : '' ?> de <?=\price_format(ceil($total * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']))?></span></li>
-				        	<?php endif ?>
-			        	<?php endforeach ?>
-				        </ul>
-							</div>						
-						<?php endif ?>					          		
-	        	</div>
-	      	</label>				          
+	      	</label>
+        	<div class="dues-block d-none">
+					<?php if(count($filter_legends)) : ?>
+						<div class="payment-dues">
+					    <span class="text-sm">¿Querés financiar tu compra? Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</span>
+					    <ul class="generic-select">
+					    <?php foreach($filter_legends as $legend): ?>
+				    		<li 
+				    			data-json='<?= @json_encode($legend['Legend']) ?>' 
+				    			class="dues-select-option <?= $legend['Legend']['dues'] == 1 ? 'selected' : 'secondary' ?>"
+				    		>
+				    			<span class="text-uppercase"><?= @$legend['Legend']['dues'] ?> cuota<?= @$legend['Legend']['dues'] > 1 ? 's' : '' ?> de <?=\price_format(ceil($cart_totals['grand_total'] * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']))?></span>
+				    		</li>
+		        	<?php endforeach ?>
+			        </ul>
+						</div>						
+					<?php endif ?>					          		
+        	</div>
 	      <?php if($settings['bank_enable']): ?>
 	        <label for="bank" class="is-clickable w-100 select-payment-option bronco-select<?= @$cart_totals['payment_method'] === 'bank' ? ' is-selected': '' ?>">
 	        	<div class="d-flex  justify-content-start align-items-center gap-1">
@@ -96,17 +105,11 @@ $filter_legends = $this->App->filter_legends($legends, $total);
 	</form>
 </section>
 
-<script>
-
+<script type="text/javascript">
 $(function(){
-	<?php if(!$loggedIn):?>	
 	setTimeout(() => {
-		$('#particular-login').modal('show')
-	}, 1000)
-	<?php endif;?>
-	var carrito = JSON.parse(localStorage.getItem('cart')) || {}
-	setTimeout(() => {
-		$('#<?= @$cart_totals['payment_method'] ?: 'mercadopago'?>').click()
+		const payment_method = localStorage.getItem('payment_method')  || 'mercadopago'
+		$('#'+payment_method).click()
 	}, 100)
 	if(carrito.gifts && carrito.gifts.length) {
 		$('#gifts').val(carrito.gifts.join(','))

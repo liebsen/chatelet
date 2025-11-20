@@ -1,6 +1,5 @@
 var dues_selected = ''
-var cart = JSON.parse(localStorage.getItem('cart')) || {}
-
+// var cart = JSON.parse(localStorage.getItem('cart')) || {}
 
 //var select_dues = (e,item) => {
 $('.dues-select-option').click((e) => {
@@ -10,7 +9,7 @@ $('.dues-select-option').click((e) => {
 	e.preventDefault()
 	e.stopPropagation()
 	var json = target.data('json')
-	var cart = JSON.parse(localStorage.getItem('cart')) || {}
+	// var cart = JSON.parse(localStorage.getItem('cart')) || {}
 	dues_selected = json.dues
 	//$(item).find('input').prop('checked', true) // force since preventdefault
 
@@ -36,23 +35,26 @@ $('.dues-select-option').click((e) => {
 })
 
 $(function(){
-
 	localStorage.setItem('continue_shopping_url', window.location.pathname)
-
-	$(`.cargo-${cart.cargo}`).removeClass('hide')
-	$(`.cargo-${cart.cargo}`).addClass('animated fadeIn')
+	const payment_method = localStorage.getItem('payment_method') || 'mercadopago'
 
 	$('.select-payment-option').click(e => {
 		const target = $(e.target).hasClass('select-payment-option') ? 
 			$(e.target) : 
 			$(e.target).parents('.select-payment-option')
+
 		// e.preventDefault()
 		// e.stopPropagation()
-		var cart = JSON.parse(localStorage.getItem('cart')) || {}
+		// var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		var selected = target.find('input').val()
+
 		const payment_dues = document.querySelector('.select-payment-option')
+
+		// console.log('select-payment-option', selected)
+		// console.log('payment_dues', payment_dues)
+
 		$('.dues-block').hide()
-		cart_totals.payment_method = selected
+		// cart_totals.payment_method = selected
 		target.find('input').prop('checked', true)
 		var bank_bonus = 0
 
@@ -62,8 +64,10 @@ $(function(){
 
 		var totals = getTotals()
 		if(payment_dues) {
+			// console.log('a(1)')
 			switch(selected){
 				case 'bank':
+					// console.log('a(2)')
 					if(payment_dues.classList.contains('scaleIn')){
 						payment_dues.classList.remove('scaleIn')
 						payment_dues.classList.add('scaleOut')
@@ -79,7 +83,7 @@ $(function(){
 				break;
 
 				case 'mercadopago':
-
+					// console.log('a(3)')
 				if(payment_dues.classList.contains('scaleOut')){
 					payment_dues.classList.remove('scaleOut', 'hide-element')
 					payment_dues.classList.add('scaleIn')
@@ -107,10 +111,9 @@ $(function(){
 			$('.payment_dues label').removeClass('hide')
 			$('.bank-block').addClass('hide')
 		}
-
+		localStorage.setItem('payment_method', selected)
 	  // onSuccessAlert(`Como querés pagar`,'Seleccionaste pagar con ' + (selected === 'bank' ? 'Transferencia' : 'Mercado Pago'));
-
-	  save_preference({payment_method: selected})
+	  // save_preference({payment_method: selected})
 
 		$('.payment_method .bronco-select').removeClass('is-selected is-secondary')
 		$('.payment_method .bronco-select').addClass('is-secondary')
@@ -137,7 +140,7 @@ $(function(){
 		submit.text('Por favor espere...')
 		$('.checkoutform-container').removeClass('hide')
 
-		localStorage.removeItem('cart')
+		// localStorage.removeItem('cart')
 		localStorage.removeItem('continue_shopping_url')
 		//localStorage.setItem('cart', JSON.stringify(cart))
 		//localStorage.removeItem('cart')

@@ -26,7 +26,6 @@ echo $this->element('checkout-params');
 				)
 			)); ?>		
 		<div class="flex-col">
-
 			<ul class="nav nav-tabs nav-dark">
 			  <li class="active"><a href="#envio" data-toggle="tab"><span>Envío a domicilio</span></a></li>
 			  <li><a href="#retiro" data-toggle="tab"><span>Retiro en local GRATIS</span></a></li>

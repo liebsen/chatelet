@@ -1,9 +1,12 @@
-	<div class="d-flex flex-column justify-content-center align-items-start gap-05">
+<?php $max_visible = 2; $i = 0; ?>	
+<div class="d-flex flex-column justify-content-center align-items-start gap-05">
 		<h5 class="text-uppercase">Resumen</h5>
-		<?php if(!empty($show_list)) : ?>
+		<?php if(!empty($show_list)) :  ?>
+		<div class="cart-list d-flex flex-column justify-content-start align-center gap-1 w-100">
 		<?php foreach ($sorted as $product) {
-			echo "<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative' data-json='".json_encode($product)."' product_row>";
-
+			$hidden = $i > $max_visible;
+			$cls = $hidden ? ' cart-hidden hidden' : '';
+			echo "<div class='d-flex justify-content-start align-center gap-1 carrito-data position-relative". $cls ."' data-json='".json_encode($product)."' product_row>";
 			echo "<div class='cart-img'>";
 			if (!empty($product['number_ribbon'])) {
 				echo '<div class="ribbon small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
@@ -16,29 +19,35 @@
 				echo "<div class='ribbon".$disable."'><span>" . $product['promo'] . "</span></div>";
 			}
       echo '<a href="' . $this->Html->url(array(
-          'controller' => 'shop',
-          'action' => 'detalle',
-          $product['id'],
-          $product['category_id'],
-          strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
-        )) . '">';
+        'controller' => 'shop',
+        'action' => 'detalle',
+        $product['id'],
+        $product['category_id'],
+        strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
+      )) . '">';
 			// echo '<img src="'.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
 			echo '<div class="ch-image" style="background-image: url('.Configure::read('uploadUrl').($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 			echo '</a>';
-		echo '</div>';
-		echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
-		echo '<h5 class="mt-0 mb-1 text-weight-thin">'. $product['name'] . '</h5>';
-			if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
-				echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
-			}
-			if (!empty($product['size']) && $product['size'] != 'undefined'){
-				echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
-			}
+			echo '</div>';
+			echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';
+			echo '<h5 class="mt-0 mb-1 text-weight-thin">'. $product['name'] . '</h5>';
+				if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
+					echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
+				}
+				if (!empty($product['size']) && $product['size'] != 'undefined'){
+					echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
+				}
 
-		echo '<span class="text-nowrap mt-2">'. \price_format($product['item_price']) .'</span>';	
-		echo '</div>';
-		echo '</div>';		
-		} ?>
+			echo '<span class="text-nowrap mt-2">'. \price_format($product['item_price']) .'</span>';	
+			echo '</div>';
+			echo '</div>';	
+				if($hidden && count($sorted) === $i + 1) {
+					echo '<button class="btn btn-chatelet btn-list-showall">Mostrar todos ('.count($sorted).')</button>';
+				}
+				$i++;
+	
+			} ?>
+		</div>
 		<?php endif ?>	
 		<!--pre><?php var_dump($cart_totals); ?></pre-->
 		<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
@@ -99,3 +108,18 @@
 		}
 
 	</style>
+
+	<script type="text/javascript">
+		$(function(){
+			$('.btn-list-showall').click(function(e){
+				e.preventDefault()
+				if($(this).text() != 'Esconder') {
+					$('.cart-hidden').removeClass('hidden')
+					$('.btn-list-showall').text('Esconder')
+				} else {
+					$('.cart-hidden').addClass('hidden')
+					$(this).text('Mostrar todo')
+				}
+			})
+		})
+	</script>

@@ -1155,7 +1155,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 
 		// $this->Session->write('cart_totals', $cart_totals);
 
-		CakeLog::write('debug', 'updateCart(4):');
+		// CakeLog::write('debug', 'updateCart(4):');
 		$cart = $this->updateCart();
 		// CakeLog::write('debug', 'updateCart(3)');
 		// $this->Session->write('cart', $cart);
