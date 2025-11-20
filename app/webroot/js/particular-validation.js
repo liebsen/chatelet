@@ -153,58 +153,11 @@ $(document).ready(function() {
                     return false;
                 }else{
 
-                me[0].reset();
-                me.parents('#registro_form').modal('hide');
-                location.reload();
+                // me[0].reset();
+                // me.parents('#registro_form').modal('hide');
+                // location.reload();
                }
             }, 'json');
         });
 
-    $('#registro_form').submit(function(e) {
-        if($("#registro_form").data('bootstrapValidator').isValid()){
-            var me = $(this),
-            data = me.serialize(),
-            url = me.attr('action');
-
-            $.post(url, data)
-                .success(function(response) {
-                    console.log('register', response)
-                    if (!response.success) {
-                        if(response.errors!=undefined){
-                            if(response.errors.email!=undefined){
-                                $(".validation-email").html(response.errors.email[0]);
-                                $("#email").parent().removeClass('has-success');
-                                $("#email").parent().addClass('has-error');
-                            }
-                            if(response.errors.password!=undefined){
-                                $(".validation-password").html(response.errors.password[0]);
-                                $("#password").parent().removeClass('has-success');
-                                $("#password").parent().addClass('has-error');
-                            }
-                        }
-                        $.growl.error({
-                            title: 'Error al registrar usuario',
-                            message: 'Por favor verifica los datos introducidos e intenta de nuevo'
-                        });
-                        return false;
-                    } else {
-
-                        me[0].reset();
-                        me.parents('#registro_form').modal('hide');
-                        location.reload();
-                    }
-                })
-                .fail(function() {
-                    $.growl.error({
-                        title: 'Error al registrar usuario',
-                        message: 'Por favor verifica los datos introducidos e intenta de nuevo'
-                    });
-                });
-
-            e.preventDefault();
-            return false;
-        }
-        
-    });
-    $("#registro_form").bootstrapValidator('validate');
 });

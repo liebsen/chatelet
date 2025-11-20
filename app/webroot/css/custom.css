@@ -2080,6 +2080,9 @@ span.out{
   background-image: url(../images/chevron_right_pink.svg);
   border-radius: 0.5rem;
 }
+select {
+  background-color: white;
+}
 
 .p-select select {
   background-color: transparent;

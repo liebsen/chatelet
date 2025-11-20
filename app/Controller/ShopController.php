@@ -622,7 +622,12 @@ class ShopController extends AppController {
 		$this->set('all_but_me', $all_but_me);
 	}
 
-	public function registro() {}
+	public function registro() {
+		$this->loadModel('User');
+		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
+		$this->set('userData',$user['User']);	
+	}
+
 	public function cuenta() {}
 	public function politica() {}
 	public function terminos() {}

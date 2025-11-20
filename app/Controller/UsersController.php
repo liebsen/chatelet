@@ -126,14 +126,18 @@ class UsersController extends AppController {
   public function register(){
     $this->autoRender = false;
 
-
-
     if (!$this->request->is('post')) {
       //return json_encode(array('success' => false));
       return $this->redirect(array('controller' => 'home', 'action' => 'index'));
     }
 
     $data = $this->request->data;
+
+    if($this->Auth->user('id')) {
+      $data['User']['id'] = $this->Auth->user('id');
+      $this->request->data['User']['id'] = $this->Auth->user('id');
+    }
+    
     $invite = $data['invite'];
     $ajax = $data['ajax'];
     $validate = empty($invite);
@@ -149,7 +153,6 @@ class UsersController extends AppController {
       return $this->redirect($this->referer());
     }
     
-
     if(!empty($invite) && empty($data['User']['password'])) {
       $random_password = $this->random_password();
       CakeLog::write('debug', 'New password generated:'.$random_password);
@@ -157,7 +160,7 @@ class UsersController extends AppController {
       $this->request->data['User']['password'] = $random_password;
     }
 
-    CakeLog::write('debug', 'register:'.json_encode($this->request->data));
+    CakeLog::write('debug', 'register:'.json_encode($data));
 
     // CakeLog::write('debug', 'validate:'.$validate);
     // CakeLog::write('debug', 'new user data:'.json_encode($data));
@@ -189,7 +192,7 @@ class UsersController extends AppController {
       if(!empty($ajax)) {
         die(json_encode(array(
           'success' => true,
-          'message' => 'Ahora estás comprando como invitada'
+          'message' => 'Tus datos fueron actualizados'
         )));
       }
 
