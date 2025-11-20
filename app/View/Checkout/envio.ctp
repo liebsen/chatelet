@@ -90,7 +90,7 @@ echo $this->element('checkout-params');
 			<?php echo $this->Form->end(); ?>	
 			<hr>					
 		</div>
-		<div class="flex-col gap-1 max-22">
+		<div class="flex-col gap-1 dw-22">
 			<?php echo $this->element('resume', array('show_list' => true)) ?>
 		</div>
 	</div>

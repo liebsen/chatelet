@@ -8,7 +8,7 @@ echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->css('bootstrapValidator.min');
 echo $this->Html->css('bootstrap-datepicker');
 
-$this->set('short_header', $loggedIn ? 'Editar mi cuenta' : 'Crear mi cuenta');
+$this->set('short_header', $loggedIn ? 'Actualizar mi cuenta' : 'Crear mi cuenta');
 $this->set('short_header_text', '← Volver a mi cuenta');
 $this->set('short_header_link', '/shop/cuenta');
 
@@ -53,7 +53,7 @@ if (!$loggedIn) {
 				<input type="hidden" name="ajax" value="1" />
 				<h5 class="text-uppercase">
 				<?php if ($loggedIn) : ?>
-					Editar mi cuenta
+					Actualizar mi cuenta
 				<?php else :?>
 					Crear mi cuenta
 				<?php endif ?>

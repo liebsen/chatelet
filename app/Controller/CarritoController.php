@@ -1449,6 +1449,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		$cart_totals['total_products'] = $total;
 		$cart_totals['delivery_cost'] = $cart_totals['delivery_cost'] ?? 0;
 		$cart_totals['coupon_benefits'] = $cart_totals['coupon_benefits'] ?? 0;
+
 		$grand_total = $cart_totals['total_products'] - 
 			$cart_totals['coupon_benefits'] + 
 			$cart_totals['delivery_cost'];

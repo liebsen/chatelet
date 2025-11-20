@@ -48,7 +48,7 @@
 
 	body.top-fixed .wizard-container {
 		position: fixed;
-		background-color: white;
+		background: linear-gradient(hsla(0,0%,100%,1),hsla(0,0%,100%,1) 50%, hsla(0,0%,100%,1) 90%, hsla(0,0%,100%,0.1));
 		padding: 0.5rem;
 		z-index: 9;
 		top: 0;

@@ -98,7 +98,7 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 				</div>
 				<hr>					
 		  </div>
-			<div class="flex-col gap-1 max-22">
+			<div class="flex-col gap-1 dw-22">
 				<?php echo $this->element('resume', array('show_list' => true)) ?>
 			</div>
 		</div>
