@@ -17,7 +17,8 @@ function showLayer (e, layer, mode, category_id, category_name) {
   $('.category_name').text('')
 
   var mode_str = mode == 'bank' ? ' Transferencia' : 'Mercado Pago'
-  var title = `Descuento pagando con ${mode_str} para ${category_name}`
+  // var title = `Descuento pagando con ${mode_str} para ${category_name}`
+  var title = `${mode_str} en ${category_name}`
   $('.discount_mode').text(title)
   if (selectr.hasClass('active')) {
     selectr.removeClass('active')

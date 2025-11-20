@@ -22,19 +22,19 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
         </h1>
         <h3>Establecer productos de <span class="category_name"></span> con descuento por pago por transferencia </h3>
         <div class="form-group">
-          <input class="form-input" type="number" id="discount" value=""/>
+          <input class="form-control" type="number" id="discount" value=""/>
           <label for="mark_all">
             Descuento (%)
           </label>
         </div>                  
         <!--div class="form-group">
-          <input class="form-input" type="checkbox" id="expression" value="1" checked/>
+          <input class="form-control" type="checkbox" id="expression" value="1" checked/>
           <label for="existent_only">
             Solo las que ya tienen descuento
           </label>
         </div-->
         <div class="form-group">
-          <input class="form-input" type="checkbox" id="existent_only" value="1" checked/>
+          <input class="form-control" type="checkbox" id="existent_only" value="1" checked/>
           <label for="existent_only">
             Solo las que ya tienen descuento
           </label>

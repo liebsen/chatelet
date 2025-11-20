@@ -14,7 +14,7 @@
             <form id="update_logistic">
                 <h3>Marcar como completada venta <span class="sale_id"></span></h3>
                 <div class="form-group">
-                    <input class="form-input" type="checkbox" id="generate_ticket_from_bank" value="1" checked/>
+                    <input class="form-control" type="checkbox" id="generate_ticket_from_bank" value="1" checked/>
                   <label for="generate_ticket_from_bank">
                     Generar ticket
                   </label>
