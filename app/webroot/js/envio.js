@@ -65,11 +65,11 @@ selectStore = function(e) {
 	$('#cost_container').html('')
 	$(e).addClass('selected')
   $('.delivery-cost').addClass('hidden')
-  var price = parseFloat((total_orig - coupon).toFixed(2))
+  var grand_total = cart_totals.grand_total 
   // $('.cost_total').text('$ ' + formatNumber(total_orig))
   // $('.calc_total').text('$ ' + formatNumber(total_orig))
-  format_total = formatNumber(price)
-  // fxTotal(format_total)
+  format_total = formatNumber(grand_total)
+  fxTotal(format_total)
   /* cart.cargo = 'takeaway'
   //console.log('total_price(2)', price)
   cart.total_price = price
