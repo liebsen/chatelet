@@ -613,6 +613,7 @@ $(function () {
     body.toggleClass('hide-side-content');
   });
 
+  /* 
   $(window).scroll(function(e) {
     if(clock) {
       clearInterval(clock)
@@ -625,7 +626,7 @@ $(function () {
       if($('.shop-options').is(':visible')) {
         $('.shop-options').hide()
       }
-      void document.querySelector('.navbar-chatelet').offsetWidth;
+      // void document.querySelector('.navbar-chatelet').offsetWidth;
       if (scroll > 100) {
         if (!fakeshown && lastscroll < scroll) {
           // $('#carousel-banners').addClass('invisible')
@@ -654,7 +655,8 @@ $(function () {
       lastscroll = scroll
     }, 500)
   })
-
+  */
+  
 
   /* trigger search from url */
 

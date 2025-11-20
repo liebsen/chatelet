@@ -169,36 +169,18 @@ class CarritoController extends AppController
 
 	public function index()
 	{
-		$items_data = $this->getItemsData();
+		// $items_data = $this->getItemsData();
 		//CakeLog::write('debug', 'updateCart(data)'.json_encode($items_data));
-
-		CakeLog::write('debug', 'updateCart(3):');
-		$cart = $this->updateCart();
+		// CakeLog::write('debug', 'updateCart(3):');
+		// $cart = $this->updateCart();
 		// CakeLog::write('debug', 'updateCart(2)');
 		// $this->Session->write('cart', $cart);
-
 		// $shipping_price = $this->Setting->findById('shipping_price_min');
 		// $total_price = $items_data['price'];
-		error_log('freeshipping unit price: '.intval($total_price));
+		// error_log('freeshipping unit price: '.intval($total_price));
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);
-		// $mapper = $this->Setting->findById('shipping_price_min');
-		// $shipping_price_min = $this->settings['shipping_price_min'] ?? '';
-		$this->set('shipping_price_min',$shipping_price_min);
-		$vars = [
-			'precio_min_envio_gratis' => str_replace(',00','',number_format($this->settings['shipping_price_min'], 0, ',', '.')),
-			'resto_min_envio_gratis' => str_replace(',00','',number_format($shipping_price_min - (integer) $items_data['price'], 0, ',', '.')),
-			'total' => str_replace(',00','',number_format($items_data['price'], 0, ',', '.'))
-		];
-
-		if (@$this->settings['shipping_type'] == 'min_price') {
-			$text_shipping_min_price = ($this->settings['display_text_shipping_min_price'] && !empty($this->settings['text_shipping_min_price'])) ? $this->parseTemplate($this->settings['text_shipping_min_price'], $vars) : '';
-
-			if($vars['resto_min_envio_gratis'] > 0) {
-				$this->set('text_shipping_min_price',$text_shipping_min_price);
-			}
-		}
 
 		// $map = $this->Setting->findById('carrito_takeaway_text');
  		// $carrito_takeaway_text = $map['Setting']['extra'];		
