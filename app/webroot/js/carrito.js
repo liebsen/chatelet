@@ -17,7 +17,7 @@ var removeCart = (e) => {
 	$('#carrito-remove-btn').button('loading')
 	$.get(`/carrito/remove/${item.id}`).then((res) => {
 		/* @Analytics: removeFromCart */
-		fbq('track', 'RemoveFromCart', {contents: [{id: data.id, quantity: data.count}], value: price, currency: 'ARS'});
+		fbq('track', 'RemoveFromCart', {contents: [{id: item.id, quantity: item.count}], value: item.price, currency: 'ARS'});
 		gtag('event', 'remove_from_cart', {
 		  "items": [
 		    {
@@ -29,7 +29,7 @@ var removeCart = (e) => {
 		      "variant": item.alias,
 		      "list_position": 1,
 		      "quantity": 1,
-		      "price": item.discount
+		      "price": item.price
 		    }
 		  ]
 		})
