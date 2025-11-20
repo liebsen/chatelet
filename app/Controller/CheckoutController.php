@@ -232,10 +232,14 @@ class CheckoutController extends AppController
 	      )));
 			}
 
+	    $settings = $this->load_settings();
+
 			// here we start the sale
 			$data = $this->request->data;
+			CakeLog::write('debug', 'settings(1):'. json_encode($settings));
 
-			$sell = $this->sale();
+
+			// $sell = $this->sale();
 
 			if(empty($data)) {
 	      die(json_encode(array(

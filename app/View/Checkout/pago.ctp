@@ -42,7 +42,7 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 				<!--div>
 		    	<span class="text-sm">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</span>
 		    </div-->
-		    <div class="d-flex justify-content-start align-items-center gap-05 card-row payment_method w-100">
+		    <div class="d-flex justify-content-start align-items-center card-row payment_method w-100">
 		    	<label for="mercadopago" class="is-clickable w-100 select-payment-option bronco-select<?= !@$cart_totals['payment_method'] || @$cart_totals['payment_method'] === 'mercadopago' ? ' is-selected': '' ?>">
 		    		<div class="d-flex justify-content-start align-items-center gap-1 w-100">
 		    			<input type="radio" id="mercadopago" name="payment_method" value="mercadopago" required <?= !@$cart_totals['payment_method'] || @$cart_totals['payment_method'] === 'mercadopago' ?  'checked': '' ?>/>

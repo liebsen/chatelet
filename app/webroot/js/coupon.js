@@ -60,7 +60,6 @@ function submitCoupon() {
   $.post('/carrito/coupon', { coupon: coupon.trim() }, function(res, textStatus) {
     $('.btn-calculate-coupon').button('reset')
     if( res.status == 'success' ) {
-      console.log(res)
       let coupon_type = res.data.coupon_type
       var price = parseFloat(res.data.total)      
       let discount = parseFloat(res.data.discount)
