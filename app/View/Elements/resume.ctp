@@ -61,7 +61,7 @@
 		<?php endif ?>
 			<div class="summary-item">
 				<span class="text-weight-thin">Subtotal </span>
-				<span class="cost_total"><?= \price_format($cart_totals['total_products']) ?></span>
+				<span><?= \price_format($cart_totals['total_products']) ?></span>
 			</div>
 			<div class="summary-item coupon-discount<?php echo empty($cart_totals['coupon_benefits']) ? ' hidden' : '' ?>">
 				<span class="text-weight-thin text-success">Cupón </span>

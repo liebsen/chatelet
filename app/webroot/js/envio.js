@@ -17,9 +17,9 @@ selectShipping = function (e, shipping, cost) {
 	$(e).addClass('selected')
 	$('.delivery-cost').addClass('hidden')
 	$('.shipping-cargo').text(shipping.toUpperCase())	
-	var price = subtotal - coupon
-	if (price < shipping_price) {
-		price+= cost
+	var grand_total = cart_totals.grand_total 
+	if (grand_total < shipping_price) {
+		grand_total+= cost
 		$('#subtotal_envio').val(cost)
 		$('.delivery-cost').removeClass('hidden')
 		$('.delivery-cost').addClass('fadeIn')
@@ -28,7 +28,7 @@ selectShipping = function (e, shipping, cost) {
 
 	// console.log({subtotal, coupon, price, cost, shipping_price})
 
-	$('.cost_total').text('$ ' + formatNumber(price))
+	$('.cost_total').text('$ ' + formatNumber(grand_total))
 
   /* var cart = JSON.parse(localStorage.getItem('cart')) || {}
 	cart.shipping = shipping
@@ -38,9 +38,9 @@ selectShipping = function (e, shipping, cost) {
   cart.subtotal_price = subtotal
   localStorage.setItem('cart', JSON.stringify(cart)) */
 
-  //console.log('price',price)
-	let total = formatNumber(price)
+	let total = formatNumber(grand_total)
 	let info = $(e).data('info')
+
 	fxTotal(total)
 	$('.paying-with').delay(1000).fadeIn()
 	$('.checkout-continue').fadeIn()
@@ -179,7 +179,6 @@ $(document).ready(function() {
 					// onSuccessAlert(`Como querés recibir tu compra`,'Ingresaste código postal ' + cp, 0, true);
 					document.querySelector('.shipping-block').classList.remove('hidden')	
 					if (localStorage.getItem('shipping_method') === 'delivery' && localStorage.getItem('delivery_select')) {
-						console.log('click(1)')
 						$(`.shipping-options li[shipping="${localStorage.getItem('delivery_select')}"]`).click()
 					} else {
 						if (json.rates.length === 1) {
