@@ -36,21 +36,17 @@ echo $this->element('checkout-params');
 			  		<span>Ingresá tu código postal</span>
 			  	</p>
 				  <div class="d-flex flex-column justify-content-center align-items-start gap-1 cargo-blocks shipment-block">
-						<form class="w-100" id="calulate_shipping" data-url="<?php echo $this->Html->url(array('action'=>'deliveryCost')) ?>">
-							<div class="d-flex justify-content-start align-items-center gap-05 w-100">
-						  	<div class="position-relative input-status flex-1">
-						  		<input type="text" name="" placeholder="Tu código postal" class="form-control input-cp both" title="Ingresá tu código postal" data-valid="0" />
-						  	</div>
-					    	<button class="btn btn-chatelet dark btn-input-lg btn-calculate-shipping" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>" title="Cotizá el envío a domicilio de tu compra" type="submit">Aplicar</button>
-							</div>
-						</form>
+						<div class="d-flex justify-content-start align-items-center gap-05 w-100">
+					  	<div class="position-relative input-status flex-1">
+					  		<input type="text" name="" placeholder="Tu código postal" class="form-control input-cp both" title="Ingresá tu código postal" data-valid="0" />
+					  	</div>
+				    	<button class="btn btn-chatelet dark btn-input-lg btn-calculate-shipping" data-loading-text="Espere..." title="Cotizá el envío a domicilio de tu compra">Aplicar</button>
+						</div>
 						<div class="form-group shipping-block mt-2 w-100 hidden">
 							<span class="d-block text-muted">Elegí la empresa de tu confianza para realizar este envío</span>
 							<div class="slot">
 							</div>
 							<hr>
-
-							<input type="hidden" name="redirect" value="/checkout/pago" />								
 							<?php echo $this->element('shipping-person') ?>
 						</div>
 					</div> 

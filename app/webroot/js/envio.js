@@ -26,7 +26,7 @@ selectShipping = function (e, shipping, cost) {
 		$('.cost_delivery').text( formatNumber(cost))
 	}
 
-	console.log({subtotal, coupon, price, cost, shipping_price})
+	// console.log({subtotal, coupon, price, cost, shipping_price})
 
 	$('.cost_total').text('$ ' + formatNumber(price))
 
@@ -126,8 +126,11 @@ $(document).ready(function() {
 
 	/* metrics end */
 	
-	$('#calulate_shipping').submit(e => {
-		var url = $('#calulate_shipping').data('url')
+	$('.btn-calculate-shipping').click(e => {
+		$('.btn-calculate-shipping').prop('disabled', true)
+		$('.btn-calculate-shipping').button('loading')
+
+		var url = $(this).data('url')
 		//var total_orig = $('#subtotal_compra').val()
 		var cp_input = $('.input-cp').val().trim()
 		var cp = parseInt(cp_input)
@@ -151,9 +154,7 @@ $(document).ready(function() {
 		}
 
 		$('#free_delivery').text('');
-		$('.btn-calculate-shipping').prop('disabled', true)
-		$('.btn-calculate-shipping').button('loading')
-		$.getJSON( url+'/'+cp , function(json, textStatus) {
+		$.getJSON( '/checkout/deliveryCost/'+cp , function(json, textStatus) {
 			$('.btn-calculate-shipping').button('reset')
 			$('.btn-calculate-shipping').prop('disabled', false)
 			window.freeShipping = json.freeShipping
