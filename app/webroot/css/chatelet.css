@@ -200,19 +200,19 @@ html, body {
 }
 
 .generic-select li.selected {
-	background-color: white;
-	border-color: #07BC31;
+	background-color: #333;
+	border-color: #111;
 	/*background-image: url(../images/check-pink.png);*/
 }
 
 .generic-select li.selected span {
-	color: #07BC31;
+	color: white;
 	font-weight: 1000;
 }
 
 .generic-select li.selected:before {
 	content: "\f00c";
-	color: #07BC31;
+	color: white;
 	position: absolute;
   top: 0.8rem;
   right: 1rem;
