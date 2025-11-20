@@ -70,7 +70,8 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 				    		</li>
 		        	<?php endforeach ?>
 			        </ul>
-						</div>						
+						</div>
+						<hr>
 					<?php endif ?>					          		
         	</div>
 	      <?php if($settings['bank_enable']): ?>
