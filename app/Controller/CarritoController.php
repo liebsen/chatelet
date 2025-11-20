@@ -208,14 +208,6 @@ class CarritoController extends AppController
 		// $this->set('freeShipping', $freeShipping);
 	}
 
-	private function parseTemplate ($str, $data) {
-		$html = $str;
-    foreach ($data as $key => $value) {
-      $html = str_replace(["{{" . $key . "}}", "{{ " . $key . " }}"], $value, $html);
-    }		
-		return $html;
-	}
-
 	public function getLocalidadProvincia($id)
 	{
 		$this->RequestHandler->respondAs('application/json');

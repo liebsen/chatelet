@@ -70,21 +70,13 @@
 				<span class="calc_total text-weight-bold"><?= \price_format($cart_totals['grand_total']) ?></span><!--span>.00</span-->
 			</div>
 			<hr class="mt-1">
-
-			<!--hr>
-			<div class="summary-item">
-				<span class="text-sm text-theme">Pagando con <?= strtolower($payment_methods[$config['payment_method']]) ?></span>
-			</div-->
-		<?php if(!empty($text_shipping_min_price) || !empty($freeShipping)) :?>
-		<?php endif ?>
-		<?php if(!empty($text_shipping_min_price)) :?>
-			<div class="summary-item">
-				<span class="text-sm text-success"><?php echo $text_shipping_min_price ?></span>
-			</div>
-		<?php endif ?>
 		<?php if(!empty($cart_totals['free_shipping'])) :?>
 			<div class="summary-item">
 				<span class="text-sm text-success">Envío <b>GRATIS</b></span>
+			</div>
+		<?php else : ?>
+			<div class="summary-item">
+				<span class="text-sm text-success"><?php echo \shipping_text($settings) ?></span>
 			</div>
 		<?php endif ?>
 		</div>

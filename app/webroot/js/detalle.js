@@ -30,8 +30,10 @@ function showDivs(n) {
     dots[slideIndex-1].className += " w3-opacity-off";
   }
 }
-//$(".mySlides").elevateZoom();
-CloudZoom.quickStart();
+
+/* old zooming tools -- useless without hd images */
+// $(".mySlides").elevateZoom();
+// CloudZoom.quickStart();
 
 $(function(){
   $("label.loadColorImages").on('click', function(e){

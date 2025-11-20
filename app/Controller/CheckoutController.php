@@ -99,6 +99,14 @@ class CheckoutController extends AppController
 		// $this->set('stores', $stores);
 	}
 
+	private function parseTemplate ($str, $data) {
+		$html = $str;
+    foreach ($data as $key => $value) {
+      $html = str_replace(["{{" . $key . "}}", "{{ " . $key . " }}"], $value, $html);
+    }		
+		return $html;
+	}
+
 	public function envio() {
 
 		if(empty($this->Session->read('cart'))) {
@@ -200,14 +208,6 @@ class CheckoutController extends AppController
 
 		// $user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
 		// $this->set('userData',$user);
-	}
-
-	private function parseTemplate ($str, $data) {
-		$html = $str;
-    foreach ($data as $key => $value) {
-      $html = str_replace(["{{" . $key . "}}", "{{ " . $key . " }}"], $value, $html);
-    }		
-		return $html;
 	}
 
 	public function getLocalidadProvincia($id)

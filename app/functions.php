@@ -169,6 +169,32 @@ function filtercoupon ($data, $config = null, $amount = 0) {
   return $ret;
 }
 
+function parseTemplate ($str, $data) {
+  $html = $str;
+  foreach ($data as $key => $value) {
+    $html = str_replace(["{{" . $key . "}}", "{{ " . $key . " }}"], $value, $html);
+  }   
+  return $html;
+}
+
+function shipping_text($settings) {
+
+  $vars = [
+    'precio_min_envio_gratis' => str_replace(',00','',number_format($settings['shipping_price_min'], 0, ',', '.')),
+    'resto_min_envio_gratis' => str_replace(',00','',number_format($settings['shipping_price_min'] - (integer) $cart_totals['grand_total'], 0, ',', '.')),
+    'total' => str_replace(',00','',number_format($cart_totals['grand_total'], 0, ',', '.'))
+  ];
+
+  CakeLog::write('debug', 'vars:'. json_encode($vars));
+  CakeLog::write('debug', 'settings:'. json_encode($settings));
+  if ($settings['shipping_type'] == 'min_price') {
+    $text_shipping_min_price = ($settings['display_text_shipping_min_price'] && $settings['text_shipping_min_price']) ? \parseTemplate($settings['text_shipping_min_price'], $vars) : '';
+    //$this->set('text_shipping_min_price',$text_shipping_min_price);
+  }
+
+  return $text_shipping_min_price;
+}
+
 function price_format($num, $unsigned = 0) {
   $num = number_format((float) ceil($num), 2, ',', '.');
   return ($unsigned ? '' : '$ ') . str_replace(',00','', $num);
