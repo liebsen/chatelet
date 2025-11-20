@@ -18,13 +18,15 @@ echo $this->element('checkout-params');
 	<?php echo $this->element('checkout-steps') ?>
 	<?php echo $this->element('title-faq', array('title' => "Método de entrega")) ?>
 	<div class="flex-row">
-			<?php echo $this->Form->create('envio_form', array(
-				'id' => 'envio_form',
-				'url' => array(
-					'controller' => 'checkout', 
-					'action' => 'envio'
-				)
-			)); ?>		
+		<?php echo $this->Form->create('envio_form', array(
+			'id' => 'envio_form',
+			'url' => array(
+				'controller' => 'checkout', 
+				'action' => 'envio'
+			)
+		)); ?>		
+		<input type="hidden" name="ajax" value="1" />
+		<input type="hidden" name="redirect" value="/checkout/pago" />
 		<div class="flex-col">
 			<ul class="nav nav-tabs nav-dark">
 			  <li class="active"><a href="#envio" data-toggle="tab"><span>Envío a domicilio</span></a></li>
