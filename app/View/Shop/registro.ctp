@@ -5,11 +5,13 @@
 var_dump($user);
 die();
 */
-echo $this->Html->css('bootstrapValidator.min');
 echo $this->Html->script('formValidation.min', array('inline' => false));
 echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
 echo $this->Html->script('bootstrapValidator', array('inline' => false));
 echo $this->Html->script('particular-validation', array('inline' => false));
+echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
+echo $this->Html->css('bootstrapValidator.min');
+echo $this->Html->css('bootstrap-datepicker');
 
 $this->set('short_header', $loggedIn ? 'Editar mi cuenta' : 'Crear mi cuenta');
 $this->set('short_header_text', '← Volver a mi cuenta');

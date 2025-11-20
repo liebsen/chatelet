@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    //var modal = $('#registro_form');
-    //var form = $('#registro_form');
+    var modal = $('#registro_form');
+    var form = $('#registro_form');
 
     $('#registro_form').bootstrapValidator({
         message: 'No es un valor válido para este campo',
@@ -49,21 +49,21 @@ $(document).ready(function() {
                     }
                 }
             },
-            'data[User][birthday]': {
+            /*'data[User][birthday]': {
                 validators: {
                     notEmpty: {
-                        message: 'El campo cumpleaños es requerido y no puede estar vacio'
+                        message: 'Este campo es requerido y no puede estar vacio'
                     }
                 }
             }
-            /*'data[User][gender]': {
+            'data[User][gender]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo genero es requerido y no puede estar vacio'
                     }
                 }
-            },*/
-            /*'data[User][dni]': {
+            },
+            data[User][dni]': {
                 validators: {
                     notEmpty: {
                         message: 'El campo dni es requerido y no puede estar vacio'
