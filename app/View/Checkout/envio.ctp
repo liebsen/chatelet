@@ -103,11 +103,17 @@ echo $this->element('checkout-params');
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&language=es"></script>
 
 <script type="text/javascript">
-	function initMap(cart) {
-		$('.store').text(cart.store)
-		$('.store-address').text(cart.store_address)
+	function initMap(option) {
+		const store = $(option).attr('store')
+		const store_lng = $(option).attr('store-lng')
+		const store_lat = $(option).attr('store-lat')
+		const store_address = $(option).attr('store-address')
+		console.log('initMap', {option})
 
-	  var latlng = new google.maps.LatLng(cart.store_lat, cart.store_lng);  
+		$('.store').text(store)
+		$('.store-address').text(store_address)
+
+	  var latlng = new google.maps.LatLng(store_lat, store_lng);  
 	  var myOptions = {
 	    zoom: 15,
 	    center: latlng,
@@ -115,7 +121,11 @@ echo $this->element('checkout-params');
 	  };
 
 	  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-	  var marker = new google.maps.Marker({position:latlng,map:map,title:cart.store + ' ' + cart.store_address});
+	  var marker = new google.maps.Marker({
+	  	position:latlng, 
+	  	map:map,
+	  	title:store + ' ' + store_address
+	  });
 	}
 
 	$(document).ready(function() {
