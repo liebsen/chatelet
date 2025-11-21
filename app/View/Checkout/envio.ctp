@@ -33,7 +33,7 @@ echo $this->element('checkout-params');
 		<input type="hidden" name="store" value=""/>
 		<input type="hidden" name="store_address" value=""/>
 		<input type="hidden" name="postal_address" value="<?= $this->Session->read('cp') ?>"/>
-		<div class="flex-col">
+		<div class="flex-col w-100">
 			<ul class="nav nav-tabs nav-dark">
 			  <li class="active"><a href="#envio" data-toggle="tab"><span>Envío a domicilio</span></a></li>
 			  <li><a href="#retiro" data-toggle="tab"><span>Retiro en local GRATIS</span></a></li>

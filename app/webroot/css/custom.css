@@ -349,11 +349,6 @@ body.top-fixed .navbar-chatelet .fa {
 
 @media (min-width: 992px) {
   .product-info-container {padding: 0 1rem;}
-
-  .flex-row {
-    display: flex;
-    flex-direction: row;
-  }  
   #desarrollo { padding: 4rem 1rem; }  
 }
 
@@ -560,16 +555,6 @@ footer .options h5 {
 
 footer .options > div {
   min-width: 20rem;
-}
-
-@media(max-width: 1023px){
-  .flex-col {
-    flex-direction: column;
-  }
-  
-  footer .options {
-    flex-direction: column;
-  }  
 }
 
 footer h3 { 
@@ -2715,18 +2700,12 @@ span.count.is-empty {
   .search-results .is-background-cover {
     /* min-height: 20rem; */
   }
-  .flex-col {
-    flex: 1;    
-  }
   /*.flex-col:last-child {
     max-width: 20rem;
   }
   .flex-col {
     padding: 1rem;
   }*/
-  .flex-col .card {
-    padding: 1rem;
-  }
   .ch-flex .price {
     margin: 0;
     text-align: right;

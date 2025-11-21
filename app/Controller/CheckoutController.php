@@ -77,29 +77,33 @@ class CheckoutController extends AppController
 		}
 
 		if ($this->request->is('post')) {
-			$envio = $this->request->data;
+			$data = $this->request->data;
 			$cart_totals = $this->Session->read('cart_totals');
 
-			if(empty($envio)) {
+			if(empty($data)) {
 	      die(json_encode(array(
 	        'success' => false, 
 	        'errors' => 'No se recibió datos de envío'
 	      )));
 			}
 
-			$customer = $envio['customer'];
+			$customer = $data['customer'];
 
-			if($envio['cargo'] == 'shipment' && empty($envio['customer'])) {
+			if($data['cargo'] == 'shipment' && empty($data['customer'])) {
 	      die(json_encode(array(
 	        'success' => false, 
 	        'errors' => 'No se recibió datos de persona'
 	      )));
 			}
 
-			if($envio['cargo'] == 'shipment' && empty($cart_totals['free_shipping'])) {
-				$delivery_data = $this->deliveryCost(null, $envio, false);
-				$cart_totals['delivery_cost'] = (integer) $delivery_data['rates'][0]['price'];
-				// $cart_totals['delivery_cost'] = $this->deliveryCost($envio['postal_address'], $envio);
+			if($data['cargo'] == 'shipment' && empty($cart_totals['free_shipping'])) {
+				$delivery_data = json_decode($this->deliveryCost($cart_totals['postal_address'], $cart_totals));
+				if(!empty($delivery_data->rates[0]->price)) {
+					$cart_totals['delivery_cost'] = (integer) $delivery_data->rates[0]->price;
+				} else {
+					CakeLog::write('debug', 'envio(err) No se obtuvo cotizacion de envio. delivery_data:'.json_encode($delivery_data, JSON_PRETTY_PRINT));
+				}
+				// $cart_totals['delivery_cost'] = $this->deliveryCost($data['postal_address'], $envio);
 			}
 
 			$partials = array(
@@ -111,7 +115,7 @@ class CheckoutController extends AppController
 			);
 
 			foreach($partials as $part) {
-				$cart_totals[$part] = $envio[$part];
+				$cart_totals[$part] = $data[$part];
 			}
 
 			// CakeLog::write('debug', 'updateTotals(2)'.json_encode($cart_totals));
@@ -231,7 +235,7 @@ class CheckoutController extends AppController
 			CakeLog::write('debug', '-.-.-.-.-.-.-.-.-.-.- sale -.-.-.-.-.-.-.-.-.-');
 			$sale = $this->sale();
 			// here we start the sale
-			CakeLog::write('debug', 'data(10):'. json_encode($data));
+			// CakeLog::write('debug', 'data(10):'. json_encode($data));
 
 			die(json_encode(array(
 				'success' => true,
@@ -442,7 +446,7 @@ class CheckoutController extends AppController
 		return json_encode($coupon_parsed);
 	}
 
-	public function deliveryCost($cp, $sale = null, $encode = true){
+	public function deliveryCost($cp, $sale = null){
 
 		if ($sale['cargo'] === 'takeaway') {
 			$json['rates'][] = 0;
@@ -646,13 +650,8 @@ class CheckoutController extends AppController
 			}
 		}
 
-		if($encode){
-			return json_encode($json);
-		} else {
-			return $json;	
-		}		
+		return json_encode($json);
 	}
-
 
 	public function andreani_cotiza () {
 		$this->autoRender = false;
@@ -736,17 +735,19 @@ class CheckoutController extends AppController
 			// $this->redirect(array( 'action' => 'clear' ));
 		}
 
-		$sale = $this->request->data;
+		$data = $this->request->data;
 
 
-		$sale['id'] = $this->Auth->user('id');
+		/*$sale['id'] = $this->Auth->user('id');
 		$sale['telephone'] = @preg_replace("/[^0-9]/","",$customer['telephone']);
 		$sale['email'] = (!empty($customer['email']))?trim($customer['email']):'';
 		$sale['floor'] = (!empty($customer['floor']))?trim($customer['floor']):'';
 		$sale['depto'] = (!empty($customer['depto']))?trim($customer['depto']):'';
 		$sale['coupon'] = (!empty($sale['coupon']))?strtoupper(trim($sale['coupon'])):'';
 		//$sale['regalo'] = (isset($sale['regalo']) && $sale['regalo']?1:0);
-		$sale['dues'] = (isset($sale['payment_dues']) && $sale['payment_dues']?intval($sale['payment_dues']):1);
+		$sale['dues'] = (isset($sale['payment_dues']) && $sale['payment_dues']?intval($sale['payment_dues']):1);*/
+
+
 
 		CakeLog::write('debug', 'sale:'. json_encode($sale, JSON_PRETTY_PRINT));
 		CakeLog::write('debug', 'sale (cart_totals):'. json_encode($cart_totals, JSON_PRETTY_PRINT));
@@ -766,25 +767,28 @@ class CheckoutController extends AppController
 			} else { // user not found create and assing id
 				CakeLog::write('debug', '(sale) creating new user:' . $sale['email']);
 				$user_object = [
-					'email' => $sale['email'],
-					'name' => $sale['name'],
-					'surname' => $sale['surname'],
-					'dni' => $sale['dni'],
-					'telephone' => $sale['telephone'],
-					'province' => $sale['province'],
-					'city' => $sale['city'],
-					'street' => $sale['street'],
-					'floor' => $sale['floor'],
+					'email' => $customer['email'],
+					'name' => $customer['name'],
+					'surname' => $customer['surname'],
+					'dni' => $customer['dni'],
+					'telephone' => $customer['telephone'],
+					'province' => $customer['province'],
+					'city' => $customer['city'],
+					'street' => $customer['street'],
+					'floor' => $customer['floor'],
 				];
 				$this->User->save($user_object);
-				$check_user_id = $this->User->id;
+				$user_id = $this->User->id;
 			}
-			$user_id = $check_user_id;
 		}
 
 		// error_log('payment method: ' . $sale['payment_method']);
 		// check if payment method is bank and bank payment is not available
-		if (!empty($sale['payment_method']) && $sale['payment_method'] === 'bank' && empty($settings['bank_enable'])) {
+		if (
+			!empty($sale['payment_method']) && 
+			$sale['payment_method'] === 'bank' && 
+			empty($settings['bank_enable'])
+		) {
 			$this->Session->setFlash('No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias.','default',array('class' => 'hidden error'));
 			// error_log('checkout error: bank not available');
 			// $this->redirect(array( 'controller' => 'carrito', 'action' => 'checkout' ));
@@ -792,49 +796,70 @@ class CheckoutController extends AppController
 			return array(
 				'success' => false,
 				'errors' => "No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias",
-				'redirect' => $this->Url->build(array( 'controller' => 'checkout', 'action' => 'confirma' )),
+				'redirect' => $this->Url->build(array( 
+					'controller' => 'checkout', 
+					'action' => 'confirma' 
+				)),
 			);
 		}
 
-		if(!$this->request->is('post') || $sale['cargo'] === 'shipment' && empty($sale['postal_address']) || empty($sale['street_n']) || empty($sale['street']) || empty($sale['localidad']) || empty($sale['provincia']) || empty($sale['name']) || empty($sale['surname']) || empty($sale['email']) || empty($sale['telephone'])){
-			$this->Session->setFlash('Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.','default',array('class' => 'hidden error'));
+		if(!$this->request->is('post') || (
+				$cart_totals['cargo'] === 'shipment' && 
+				empty($customer['postal_address']) || 
+				empty($customer['street_n']) || 
+				empty($customer['street']) || 
+				empty($customer['localidad']) || 
+				empty($customer['provincia']) || 
+				empty($customer['name']) || 
+				empty($customer['surname']) || 
+				empty($customer['email']) || 
+				empty($customer['telephone'])
+			)
+		){
+			
+			$this->Session->setFlash('Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo','default',array('class' => 'hidden error'));
 			// error_log('checkout error');
 			// error_log(json_encode($sale));
 			// $this->redirect(array( 'action' => 'clear' ));
 			CakeLog::write('debug', 'No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias');
 			return array(
 				'success' => false,
-				'errors' => "No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias",
+				'errors' => "Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo. Disculpe las molestias",
 				'redirect' => $this->Url->build(array( 'action' => 'clear' )),
 			);
 		}
 
-		$sale_object = array('id' => null,'user_id' => $user_id);
-		$logistic = $this->Logistic->findByCode($sale['shipping']);
+		$sale_object = array(
+			'id' => null,
+			'user_id' => $user_id
+		);
+		
+		$logistic = $this->Logistic->findByCode($cart_totals['shipping']);
 
 		if(isset($logistic['Logistic'])) {
 			$sale_object['logistic_id'] = $logistic['Logistic']['id'];
 		}
 
 		//Register Sale
-		CakeLog::write('debug', 'sale(1)'.json_encode($sale_object));
+		CakeLog::write('debug', 'sale(save):'.json_encode($sale_object));
 		$this->Sale->save($sale_object);
 		$sale_id = $this->Sale->id;
-		$gift_ids = !empty($sale['gifts']) ? explode(",",$sale['gifts']) : [];
+		$gift_ids = !empty($data['gifts']) ? explode(",",$data['gifts']) : [];
 
 		// check item prices, promos and coupons
-
 		// Check coupon
+
 		$coupon_bonus = 0;
 		$bank_bonus = 0;
 		$coupon_parsed = null;
 		$cats = [];
 		$prods = [];
-		if (!empty($sale['coupon'])) {
-			error_log('checking coupon: '.$sale['coupon']);
+
+		if (!empty($cart_totals['coupon'])) {
+			error_log('checking coupon: '.$cart_totals['coupon']);
 	    $coupon = $this->Coupon->find('first', [
 	      'conditions' => [
-	        'code' => $sale['coupon'],
+	        'code' => $cart_totals['coupon'],
 	        'enabled' => 1,
 	      ]
 	    ]);  
@@ -926,24 +951,24 @@ class CheckoutController extends AppController
 				'TALLE'  	=> $producto['size'],
 				'PRECIO_LISTA'  	=> $producto['price'],
 				'PRECIO_DESCUENTO'  => $unit_price,
-				'NOMBRE' 	=> $sale['name'],
-				'APPELLIDO'	=> $sale['surname'],
-				'EMAIL'		=> $sale['email'],
-				'TELEFONO'	=> $sale['telephone'],
-				'DNI'	=> $sale['dni'],
-				'PROV'		=> $sale['provincia'],
-				'LOC'		=> $sale['localidad'],
-				'CALLE'		=> $sale['street'],
-				'NRO'		=> $sale['street_n'],
-				'PISO'		=> $sale['floor'],
-				'DPTO'		=> $sale['depto'],
-				'COD_POST'	=> $sale['postal_address'],
-				'CARGO'	=> $sale['cargo'],
-				'CUPON'	=> $sale['coupon'],
-				'STORE'	=> $sale['store'],
-				'STORE_ADDR'	=> $sale['store_address'],
-				'SHIPPING'	=> $sale['shipping'],
-				'CUOTAS'	=> $sale['dues']
+				'NOMBRE' 	=> $customer['name'],
+				'APPELLIDO'	=> $customer['surname'],
+				'EMAIL'		=> $customer['email'],
+				'TELEFONO'	=> $customer['telephone'],
+				'DNI'	=> $customer['dni'],
+				'PROV'		=> $customer['provincia'],
+				'LOC'		=> $customer['localidad'],
+				'CALLE'		=> $customer['street'],
+				'NRO'		=> $customer['street_n'],
+				'PISO'		=> $customer['floor'],
+				'DPTO'		=> $customer['depto'],
+				'COD_POST'	=> $cart_totals['postal_address'],
+				'CARGO'	=> $cart_totals['cargo'],
+				'CUPON'	=> $cart_totals['coupon'],
+				'STORE'	=> $cart_totals['store'],
+				'STORE_ADDR'	=> $cart_totals['store_address'],
+				'SHIPPING'	=> $cart_totals['shipping'],
+				'CUOTAS'	=> $cart_totals['payment_dues']
 			);
 
 			foreach ($values as $key => $value) {
@@ -974,7 +999,7 @@ class CheckoutController extends AppController
 		error_log('suming total (wo_discount): '.$total);
 
 	  // Check bank paying method
-	  if ($sale['payment_method'] === 'bank') {
+	  if ($cart_totals['payment_method'] === 'bank') {
 	  	if($settings['bank_discount_enable'] && $settings['bank_discount']) {
 	  		//error_log('suming applying bank');
 	  		$bank_bonus = round($total_wo_discount * ($settings['bank_discount'] / 100), 2);
@@ -982,8 +1007,8 @@ class CheckoutController extends AppController
 	  	}
 	  }
 
-		if($sale['dues'] > 1) {
-			$legend = $this->Legend->findByDues($sale['dues']);
+		if($cart_totals['payment_dues'] > 1) {
+			$legend = $this->Legend->findByDues($cart_totals['payment_dues']);
 			if($legend && $legend['Legend']['interest']) {
 				$interest = (float) $legend['Legend']['interest'];
 				$total*= ($interest / 100) + 1;
@@ -1010,14 +1035,14 @@ class CheckoutController extends AppController
 
 		// Add Delivery
 		$delivery_cost = 0;
-		$freeShipping = $this->Cart->isFreeShipping($total, $sale['postal_address']);
-		$delivery_data = $this->deliveryCost(null, $sale, false);
+		$freeShipping = $this->Cart->isFreeShipping($total, $cart_totals['postal_address']);
+		$delivery_data = json_encode($this->deliveryCost(null, $cart_totals));
 		$delivery_cost = (integer) $delivery_data['rates'][0]['price'];
 		if ($freeShipping) { 
-     	error_log('without delivery bc price is :'.$total.', cp:'. @$sale['postal_address'] .'  and date = '.gmdate('Y-m-d'));
+     	error_log('without delivery bc price is :'.$total.', cp:'. @$cart_totals['postal_address'] .'  and date = '.gmdate('Y-m-d'));
 			// $delivery_cost=0;
 		} else {
-			if ($sale['cargo'] === 'shipment') {
+			if ($cart_totals['cargo'] === 'shipment') {
 				/* if (isset($delivery_data['rates'][0]['price'])) {
 				} */
 				error_log('suming delivery to price: '.$delivery_cost);
@@ -1041,7 +1066,7 @@ class CheckoutController extends AppController
 			'id' => $sale_id,
 			//'user_id' => $sale['id'],
 			'free_shipping' => $freeShipping,
-			'payment_method' => $sale['payment_method'],
+			'payment_method' => $cart_totals['payment_method'],
 			'deliver_cost' => $delivery_cost,
 			'shipping_type' => $shipping_type_value
 		);
@@ -1050,44 +1075,55 @@ class CheckoutController extends AppController
 		$this->Sale->save($sale_object);
 
 		//Re - Registar Sale Products
-		$sale['Sale']['id'] = $sale_id;
+		// $sale['Sale']['id'] = $sale_id;
+
 		if (!$this->SaleProduct->saveMany($product_ids)) {
       $this->Session->setFlash(
           'Error al procesar la compra, por favor intente nuevamente',
           'default',
           array('class' => 'hidden error')
       );
+
+      CakeLog::write('debug', 'sale(err): Error al procesar la compra, por favor intente nuevamente');
+
       $this->Sale->delete($sale_id,true);
-			return $this->redirect($this->referer());
+
+      return array(
+      	'success' => false,
+      	'errors' => 'Error al procesar la compra, por favor intente nuevamente'
+      );
+
+      $this->Sale->delete($sale_id,true);
+			// return $this->redirect($this->referer());
 		}
 		//Register Extra Info
 		$to_save = array(
 			'id' 		=> $sale_id,
 			'user_id' => $user_id,
 			'nroremito'	=> $sale_id,
-			'apellido'	=> $sale['surname'],
-			'nombre'	=> $sale['name'],
-			'dni'	=> $sale['dni'],
-			'calle'		=> $sale['street'],
-			'nro'		=> $sale['street_n'],
-			'piso'		=> $sale['floor'],
-			'depto'		=> $sale['depto'],
-			'cp'		=> $sale['postal_address'],
-			'localidad'	=> $sale['localidad'],
-			'provincia'	=> $sale['provincia'],
-			'telefono'	=> $sale['telephone'],
-			'email'		=> $sale['email'],
+			'apellido'	=> $customer['surname'],
+			'nombre'	=> $customer['name'],
+			'dni'	=> $customer['dni'],
+			'calle'		=> $customer['street'],
+			'nro'		=> $customer['street_n'],
+			'piso'		=> $customer['floor'],
+			'depto'		=> $customer['depto'],
+			'cp'		=> $customer['postal_address'],
+			'localidad'	=> $customer['localidad'],
+			'provincia'	=> $customer['provincia'],
+			'telefono'	=> $customer['telephone'],
+			'email'		=> $customer['email'],
 			'regalo'		=> count($gift_ids),
 			'package_id'=> @$delivery_data['itemsData']['package']['id'] ?: 1,
 			'value' 	=> $total, // @$delivery_data['itemsData']['price'],
 			'zip_codes' => $zipCodes,
-			'cargo'		=> $sale['cargo'],
-			'coupon'	=> $sale['coupon'],
-			'metodo_pago'	=> $sale['payment_method'],
-			'store'		=> $sale['store'],
-			'store_address'		=> $sale['store_address'],
-			'shipping'		=> $sale['shipping'],
-			'dues'		=> $sale['dues']
+			'cargo'		=> $cart_totals['cargo'],
+			'coupon'	=> $cart_totals['coupon'],
+			'metodo_pago'	=> $cart_totals['payment_method'],
+			'store'		=> $cart_totals['store'],
+			'store_address'		=> $cart_totals['store_address'],
+			'shipping'		=> $cart_totals['shipping'],
+			'dues'		=> $cart_totals['dues']
 		);
 
 		CakeLog::write('debug', 'sale(to_save)'.json_encode($to_save));
@@ -1118,9 +1154,9 @@ class CheckoutController extends AppController
 			'external_reference' => $sale_id,
 	    'items' => $items,
 	    'payer' => array(
-	    	'name' => $sale['name'],
-	    	'surname' => $sale['surname'],
-	    	'email' => $sale['email']
+	    	'name' => $customer['name'],
+	    	'surname' => $customer['surname'],
+	    	'email' => $customer['email']
     	),
 	    'back_urls' => array(
 	    	'success' => $success_url,
@@ -1128,7 +1164,7 @@ class CheckoutController extends AppController
 	    	'pending' => $failure_url
     	),
     	'payment_methods' => array(
-    		'installments' => $sale['dues']
+    		'installments' => $cart_totals['payment_dues']
     	)
 		);
 
@@ -1152,11 +1188,12 @@ class CheckoutController extends AppController
 			'items' 	=> $items,
 			'sale_id' 	=> $sale_id,
 			'preference'=> $preference,
-			'products'=>$product_ids,
-			'total'=>$total
+			'products' => $product_ids,
+			'total' => $total
 		);
 
 		$this->Session->write('sale_data',$sale_data);
+		$redirect = "";
 
 		// $redirect = "/shop/mis_compras/{$sale_id}";
 		//Setting
@@ -1174,6 +1211,12 @@ class CheckoutController extends AppController
 			$redirect = $preference['response']['sandbox_init_point'];
 			// return $this->redirect($preference['response']['sandbox_init_point']);
 		}
+
+		return array(
+			'success' => true,
+			'message' => 'Se creó con éxito la preferencia',
+			'redirect' => $redirect
+		);
 	}
 
 	public function preference(){
@@ -1194,172 +1237,11 @@ class CheckoutController extends AppController
 		$this->Session->write('cart_totals', $cart_totals);
 		error_log('payment_method:'.$cart_totals['payment_method']);
 		//CakeLog::write('debug', 'updateTotals(3)');
-CakeLog::write('debug', 'updateTotals(4)');		
-		$this->updateTotals($cart_totals);
+		CakeLog::write('debug', 'updateTotals(4)');		
+		$this->Cart->update(null, $cart_totals);
 		// $this->Session->write('cart', $cart);
 
 		return json_encode(array('success' => true, 'data' => array_values($cart)));
-	}
-
-	private function updateTotals($cart, $cart_totals) {
-		$settings = $this->load_settings();
-		// $cart_totals = $this->Session->read('cart_totals');
-		$payment_method = @$cart_totals['payment_method'] ?? 'mercadopago';
-
-		//CakeLog::write('debug',json_encode($cart));
-
-		if (empty($cart)) {
-			$cart = $this->Session->read('cart');
-			//CakeLog::write('debug','cart(2)');
-			//CakeLog::write('debug',json_encode($cart));
-		}
-
-		if(empty($cart_totals)) {
-			$cart_totals = $this->Session->read('cart_totals');
-		} else {
-			$cart_totals = array_unique(array_merge($this->Session->read('cart_totals'), $cart_totals));
-		}
-
-		$groups = [];
-		$counts = [];
-		$map = $this->Setting->findById('bank_enable');
-		$settings['bank_enable'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount_enable');
-		$settings['bank_discount_enable'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount');
-		$settings['bank_discount'] = @$map['Setting']['value'];
-
-		// $counted = [];
-		/*count prods */
-
-		if (!empty($cart)) {
-			/* apply basic prices and fill promos data */
-			foreach($cart as $key => $item) {
-				$prod = $this->Product->findById($item['id']);
-
-				if(empty($prod)) {
-					unset($cart[$key]);
-					continue;
-				}
-
-				$prod = $prod['Product'];
-				$price = $prod['price'];
-
-	      $prop = $this->ProductProperty->find('all', array('conditions' => array(
-	  			'product_id' => $prod['id'],
-	  			'alias' => $item['alias']
-	  		)));
-
-	  		if ($prop) {
-	  			$arrImages = array_values(array_filter(explode(';', $prop[0]['ProductProperty']['images'])));
-	  			$cart[$key]['alias_image'] = $arrImages[0];
-	  		}
-
-				if (!empty($prod['discount']) && (float) @$prod['discount'] > 0) {
-					$cart[$key]['old_price'] = $price;
-					$price = $prod['discount'];
-	        $cart[$key]['price'] = $price;
-	      }
-
-	      if (
-	      	$payment_method === 'mercadopago' && 
-	      	!empty($prod['mp_discount']) && 
-	      	(float) @$prod['mp_discount'] > 0
-	      ) {
-					$cart[$key]['old_price'] = $price;
-	        $cart[$key]['price'] = ceil(round($price * (1 - (float) $prod['mp_discount'] / 100)));
-	      }
-
-	      if (
-	      	!empty($prod['bank_discount']) && 
-	      	(float) @$prod['bank_discount'] > 0 && 
-	      	$payment_method === 'bank'	      	
-	      ) {
-					$cart[$key]['old_price'] = $price;
-	        $cart[$key]['price'] = ceil(round($price * (1 - (float) $prod['bank_discount'] / 100)));
-	      } else {
-	      	if (
-	      		$payment_method === 'bank' && 
-	      		$settings['bank_enable'] && 
-	      		$settings['bank_discount_enable']
-	      	) {
-	      		$p = ceil(round($price * (1 - (float) $settings['bank_discount'] / 100)));
-						$cart[$key]['old_price'] = $price;
-		        $cart[$key]['price'] = $p;
-		      }
-	      }
-
-				$number_ribbon = 0;
-	      if(!empty(@$prod['discount_label_show'])) {
-	        $number_ribbon = $prod['discount_label_show'];
-	      }
-
-	      if(!empty(@$prod['mp_discount'])) {
-	        $number_ribbon = $prod['mp_discount'];
-	        //$mp_price = \price_format(ceil(round($price * (1 - (float) $prod['mp_discount'] / 100))));
-	      }
-
-	      if(!empty(@$prod['bank_discount'])) {
-	        $number_ribbon = $prod['bank_discount'];
-	        //$bank_price = \price_format(ceil(round($price * (1 - (float) $prod['bank_discount'] / 100))));
-	      }
-	      $cart[$key]['number_ribbon'] = $number_ribbon;
-	      $cart[$key]['uid'] = $key;			
-				if (!isset($groups[$prod['promo']])) {
-					$groups[$prod['promo']] = [];
-				}
-				$groups[$prod['promo']][] = $cart[$key];
-			}
-			// $groups[$item['promo']]++;
-
-			// appy promo qunatities
-			foreach($cart as $key => $item) {
-				$promo = $item['promo'];
-				if (!empty($promo)) {
-					$parts = explode('x', $promo);
-					$promo_key = intval($parts[0]);
-					$promo_val = intval($parts[1]);
-					if (count($groups[$promo]) >= $promo_key) {
-						$sorted = array_column($groups[$promo], 'price');
-						array_multisort($sorted, SORT_DESC, $groups[$promo]);
-						$offset = $promo_key - $promo_val;
-						$refs = array_slice($groups[$promo], 0, $promo_val);
-						$refs_ids = [];
-						foreach ($refs as $ref) {
-							$refs_ids[] = $ref['uid'];
-						}
-						$frees = array_slice($groups[$promo], count($groups[$promo]) - $offset, $offset);
-						foreach ($frees as $j => $free) {
-							foreach ($cart as $k => $i) {
-								if($i['uid'] === $free['uid']) {
-									$refs_ids[] = $free['uid'];
-									$cart[$k]['old_price'] = $i['price'];
-									$cart[$k]['price'] = 0;
-									$cart[$k]['promo_enabled'] = 1;
-									$groups[$promo] = array_filter($groups[$promo], function($item) use ($refs_ids) {
-										return !in_array($item['uid'], $refs_ids);
-									});
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		CakeLog::write('debug','- - - - - - - - - - - - - - - - - - - - - - - - -');
-		CakeLog::write('debug','cart:'.json_encode($cart, JSON_PRETTY_PRINT));
-		CakeLog::write('debug','- - - - - - - - - - - - - - - - - - - - - - - - -');
-		CakeLog::write('debug','cart_totals:'.json_encode($cart_totals, JSON_PRETTY_PRINT));
-		CakeLog::write('debug','- - - - - - - - - - - - - - - - - - - - - - - - -');
-
-		// CakeLog::write('debug','updateTotals cart:'.json_encode($cart, JSON_PRETTY_PRINT));
-		// CakeLog::write('debug','updateTotals cart_totals:'.json_encode($cart_totals, JSON_PRETTY_PRINT));
-
-		$this->Session->write('cart', $cart);
-		$this->Session->write('cart_totals', $cart_totals);
-
-		return $cart;
 	}
 
 	private function notify_user($data, $status){

@@ -675,7 +675,6 @@ html, body {
 
 .flex-row {
 	flex-direction: row!important;
-	/* padding: 1rem; */
 	grid-gap: 2rem;
 }
 
@@ -683,6 +682,7 @@ html, body {
   display: flex;
   flex-direction: column;
   padding: 0 !important;
+  grid-gap: 1rem;
 }
 
 .flex-col h5 {
@@ -1651,6 +1651,10 @@ span.validation-password {
 }
 
 @media screen and (min-width: 992px) {	
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }  	
   .box {
   	padding: 4rem!important;
     /*transform: scale(1) perspective(1024px) rotateY(-10deg) rotateX(3deg) rotate(3deg) translateY(0rem) translateX(-2rem);*/
@@ -1677,6 +1681,12 @@ span.validation-password {
 	padding: 0;
 }
 @media screen and (min-width: 769px) {
+  .flex-col {
+    flex: 1;    
+  }
+  .flex-col .card {
+    padding: 1rem;
+  }  
   .pr-2-d {
     padding: 1rem;
   }	
@@ -1767,4 +1777,15 @@ span.validation-password {
 	.whatsapp-block {
 		display: none;
 	}
+}
+
+
+@media(max-width: 1023px){
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  footer .options {
+    flex-direction: column;
+  }  
 }
