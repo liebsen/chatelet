@@ -10,6 +10,7 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+echo $this->Html->script('shipping-validation.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->element('checkout-params');
 
 ?>
@@ -17,7 +18,7 @@ echo $this->element('checkout-params');
 <section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 	<?php echo $this->element('title-faq', array('title' => "Método de entrega")) ?>
-	<div class="flex-row">
+	<div class="flex-row w-100">
 		<?php echo $this->Form->create('envio_form', array(
 			'id' => 'envio_form',
 			'url' => array(
@@ -27,6 +28,11 @@ echo $this->element('checkout-params');
 		)); ?>		
 		<input type="hidden" name="ajax" value="1" />
 		<input type="hidden" name="redirect" value="/checkout/pago" />
+		<input type="hidden" name="shipping" value=""/>
+		<input type="hidden" name="cargo" value=""/>
+		<input type="hidden" name="store" value=""/>
+		<input type="hidden" name="store_address" value=""/>
+		<input type="hidden" name="postal_address" value="<?= $this->Session->read('cp') ?>"/>
 		<div class="flex-col">
 			<ul class="nav nav-tabs nav-dark">
 			  <li class="active"><a href="#envio" data-toggle="tab"><span>Envío a domicilio</span></a></li>
@@ -97,6 +103,7 @@ echo $this->element('checkout-params');
 		</div>
 	</div>
 </div>
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&language=es"></script>
 

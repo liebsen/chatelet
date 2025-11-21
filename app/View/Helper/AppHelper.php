@@ -90,6 +90,9 @@ class AppHelper extends Helper {
     return str_replace($reps, ' ', $name);
   }
 
+
+
+
   /**
   * @param string $query, This is the search query you will pass from the view
   */

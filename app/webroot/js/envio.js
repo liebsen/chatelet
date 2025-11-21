@@ -44,8 +44,9 @@ selectShipping = function (e, shipping, cost) {
 	fxTotal(total)
 	$('.paying-with').delay(1000).fadeIn()
 	$('.checkout-continue').fadeIn()
-
-	localStorage.setItem('shipping_method', 'delivery')
+	$('input[name="shipping"]').val(shipping)
+	$('input[name="cargo"]').val(cargo)
+	localStorage.setItem('cargo', 'delivery')
 	localStorage.setItem('delivery_select', shipping)
 	// onErrorAlert(`Como querés recibir tu compra`, `Te lo llevamos por ${shipping.toUpperCase()}`, 0, true);
 }
@@ -87,8 +88,8 @@ selectStore = function(e) {
   	store[i] = $(e).attr(i)
   })
 
-  localStorage.setItem('shipping_method', 'takeaway')
-  localStorage.setItem('takeaway_selected', JSON.stringify(store))
+  localStorage.setItem('cargo', 'takeaway')
+  localStorage.setItem('takeaway_store', JSON.stringify(store))
 
   var cart_takeaway_text = $('.cart_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
@@ -98,6 +99,9 @@ selectStore = function(e) {
   $('a[href="#retiro"]').click()
   $('.checkout-continue').fadeIn()
 	cargo = 'takeaway'
+  $('input[name="cargo"]').val(cargo)
+  $('input[name="store"]').val($(e).attr('store'))
+  $('input[name="store_address"]').val($(e).attr('store-address'))
 }
 
 $(document).ready(function() {
@@ -178,7 +182,7 @@ $(document).ready(function() {
 					$('.input-status').addClass('ok');
 					// onSuccessAlert(`Como querés recibir tu compra`,'Ingresaste código postal ' + cp, 0, true);
 					document.querySelector('.shipping-block').classList.remove('hidden')	
-					if (localStorage.getItem('shipping_method') === 'delivery' && localStorage.getItem('delivery_select')) {
+					if (localStorage.getItem('cargo') === 'delivery' && localStorage.getItem('delivery_select')) {
 						$(`.shipping-options li[shipping="${localStorage.getItem('delivery_select')}"]`).click()
 					} else {
 						if (json.rates.length === 1) {
@@ -203,88 +207,7 @@ $(document).ready(function() {
 		return false
 	})
 		
-	/* $('#envio_form').submit(function(event){
-		console.log('envio_form', 'submit');
-		event.preventDefault();
-
-
-		const submit = $('input[type="submit"]')
-		submit.prop('disabled', true)
-		submit.addClass('disabled')
-		submit.text('Por favor espere...')
-
-		var cart = JSON.parse(localStorage.getItem('cart')) || {}
-		let shipping = ''
-		let store = ''
-		let store_address = ''
-		let location = $(this).prop('href')
-
-		if(!cart_items.length){
-			onWarningAlert('Tu cart está vacío','No tienes productos en el cart', 5000)
-			return false;
-		}
-
-		if (cargo === 'shipment') {
-			const shipping_cargo = $('.shipping-options li.selected')
-			if (!shipping_cargo.length) {
-				onErrorAlert('Método de entrega', 'Por favor seleccioná un tipo de envío para tu compra, también podés elegir Retiro en Sucursal para evitar cargos de envío', 0, true);
-				// location.hash = 'f:.como-queres-recibir-tu-compra'
-				return false;
-			} else {
-				if (shipping_cargo.attr('shipping')) {
-					shipping = shipping_cargo.attr('shipping')
-				} else {
-					onErrorAlert('Método de entrega','Por favor introducí tu código postal, también podés elegir Retiro en Sucursal para evitar cargos de envío', 0, true);
-					// location.hash = 'f:.como-queres-recibir-tu-compra'
-					return false;
-				}
-			}
-
-			var a = $('.input-cp').val();
-			var b = parseInt($('.input-cp').attr('data-valid'));
-			// if((!a || !b || !c || (1>parseFloat($('#cost').text()) && !freeShipping ))){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
-
-			if(!b){ // && isDateBeforeToday(new Date(2019, 11, 4)) )) {
-				$('.input-cp').focus();
-				$('.input-status').removeClass('ok');
-				$('.input-status').addClass('wrong');
-				console.log('done(3)')
-				$('.has-checkout-steps').addClass('done')
-				onErrorAlert('Método de entrega', 'Por favor ingresá tu código postal, la opción  Retiro en Sucursal evita cargos de envío', 0, true);
-				return false;
-			}
-		} else if(cargo === 'takeaway') {
-			const takeaway = $('.takeaway-options li.selected')
-			if (!takeaway.length) {
-				onErrorAlert('Seleccioná sucursal', 'Por favor seleccioná una sucursal para retirar tu compra', 0, true);	
-				return false;
-			} else {
-				if (takeaway.attr('store')) {
-					store = takeaway.attr('store')
-					store_address = takeaway.attr('store-address')
-				} else {
-					onErrorAlert('Método de entrega','Por favor indicá tu código postal, la opción  Retiro en Sucursal evita cargos de envío');
-					return false;
-				}
-			}
-		} else {
-			if (freeShipping) {
-				cargo = 'shipment'
-			} else {
-				onErrorAlert('Método de entrega','Por favor introducí tu código postal, la opción  Retiro en Sucursal evita cargos de envío', 0, true);
-				return false
-			}
-		}
-
-		cart.freeShipping = freeShipping
-		//cart.shipping = shipping
-		cart.cargo = cargo
-		cart.store = store
-		cart.store_address = store_address
-		cart.regalo = $('#regalo').is(':checked') ? 1 : 0
-		localStorage.setItem('cart', JSON.stringify(cart))
-		window.location.href = '/checkout/pago';
-	});
+/*
 
 	$(document).on('click', '.giftchecks',function(e) {
 		var cart = JSON.parse(localStorage.getItem('cart')) || {}
@@ -307,29 +230,20 @@ $(document).ready(function() {
 		localStorage.setItem('cart', JSON.stringify(cart))  
 	})
 	*/
-	var cart = JSON.parse(localStorage.getItem('cart')) || {}
-	var shipping_method = getStorage('shipping_method')
-	var takeaway_selected = getStorage('takeaway_selected', {})
 
-	if(cart.gifts && cart.gifts.length) {
-		$('.gift-area').removeClass('hidden')
-		$('.gift-count').val(cart.gifts.length)
-	}
+	var lastcp = localStorage.getItem('lastcp') || ''
+	var takeaway_store = JSON.parse(localStorage.getItem('takeaway_store')) || []
 
-	if(!lastcp) {
-		var lastcp = localStorage.getItem('lastcp')
-	}
-
-	if (shipping_method === 'takeaway' && Object.keys(takeaway_selected)?.length && !location.hash.includes('shipment-options.shipping')) {
+	if (localStorage.getItem('cargo') === 'takeaway' && Object.keys(takeaway_store)?.length && !location.hash.includes('shipment-options.shipping')) {
 		setTimeout(() => {
 			$('a[href="#retiro"]').click()
 			$('.has-checkout-steps').addClass('done')
 			// $('label[for="shipment"]').click()
-			$(`.takeaway-options li[store="${takeaway_selected.store}"]`).click()
+			$(`.takeaway-options li[store="${takeaway_store.store}"]`).click()
 		}, 100)
 	}
 
-	if (shipping_method === 'delivery' && lastcp && $('#subtotal_compra').val()) {
+	if (localStorage.getItem('cargo') === 'delivery' && lastcp && $('#subtotal_compra').val()) {
 		setTimeout(() => {
 			$('a[href="#envio"]').click()
 			//$('.shipment-block').show()

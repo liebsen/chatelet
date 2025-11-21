@@ -109,13 +109,6 @@ html, body {
   color: #07BC31;
 }
 
-.bv-form .help-block {
-  position: absolute;
-  top: -27px;
-  right: 0;
-  z-index: 9;
-}
-
 .input-status.ok:before {
 	content: "\f00c";
 	color: #07BC31;

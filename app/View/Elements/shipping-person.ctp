@@ -3,20 +3,12 @@ echo $this->Html->css('bootstrapValidator.min');
 echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
 echo $this->Html->script('bootstrapValidator', array('inline' => false));
-echo $this->Html->script('shipping-validation', array('inline' => false));
 ?>
 	<h5 class="text-uppercase">
 		<i class="fa fa-user-o"></i>
 		Envío a domicilio
   </h5>
   <span class="">Asegurate de verificar y actualizar tus datos correctos para que tu compra llegue a tu domicilio antes y mejor</span>
-	<input type="hidden" name="shipping" value=""/>
-	<input type="hidden" name="coupon" value=""/>
-	<input type="hidden" name="cargo" value=""/>
-	<input type="hidden" name="store" value=""/>
-	<input type="hidden" name="postal_address" value="<?= $this->Session->read('cp') ?>"/>
-	<input type="hidden" name="store_address" value=""/>
-	<input type="hidden" name="gifts" value=""/>
 	<div class="row">
 		<div class="col-md-6 pr-0-d">
 			<label for="nombre">Nombre</label>

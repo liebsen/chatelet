@@ -235,7 +235,7 @@
 				<?php echo $this->element('shop-disclaimer') ?>
 
       </div>
-			<div class="flex-col gap-1 max-22">
+			<div class="flex-col gap-1 dw-22">
 				<!-- fill coupon -->
 				<div class="card card-variant">
 					<?php echo $this->element('coupon'); ?>

@@ -47,57 +47,21 @@ class CheckoutController extends AppController
 		),
 	);
 
-	public $components = array('RequestHandler');
+	public $components = array('Cart', 'RequestHandler');
 
 	public function beforeFilter()
 	{
   	parent::beforeFilter();
-  	$this->set('sorted', $this->sort());
+  	$this->set('sorted', $this->Cart->sort());
 		$index = array_search($this->request->here, array_column($this->checkout_steps, 'url'));
 		$this->set('checkout_index', $index);
 		$this->set('checkout_steps', $this->checkout_steps);
-		$freeShipping = $this->isFreeShipping($total_price);
+		$freeShipping = $this->Cart->isFreeShipping($total_price);
 		$this->set('freeShipping', $freeShipping);		
 	}
 
 	public function index()
-	{
-		/*$data = $this->getItemsData();
-		$cart = $this->updateCart();
-		$this->Session->write('cart', $cart);
-		$shipping_price = $this->Setting->findById('shipping_price_min');
-		$total_price = $data['price'];
-		$freeShipping = $this->isFreeShipping($total_price);
-		error_log('freeshipping unit price: '.intval($total_price));
-		$stores = $this->Store->find('all', [
-			'conditions' => ['takeaway' => 1]
-		]);
-		$mapper = $this->Setting->findById('shipping_price_min');
-		$shipping_price_min = (!empty($mapper['Setting']['value'])) ? $mapper['Setting']['value'] : '';
-		$this->set('shipping_price_min',$shipping_price_min);
-		$vars = [
-			'precio_min_envio_gratis' => str_replace(',00','',number_format($shipping_price_min, 0, ',', '.')),
-			'resto_min_envio_gratis' => str_replace(',00','',number_format($shipping_price_min - (integer) $data['price'], 0, ',', '.')),
-			'total' => str_replace(',00','',number_format($data['price'], 0, ',', '.'))
-		];
-
-    $mapper = $this->Setting->findById('display_text_shipping_min_price');
-    $display_text_shipping_min_price = $mapper['Setting']['value'];
-    $mapper = $this->Setting->findById('text_shipping_min_price');
-		$shipping_config = $this->Setting->findById('shipping_type');
-
-		if (@$shipping_config['Setting']['value'] == 'min_price') {
-			$text_shipping_min_price = ($display_text_shipping_min_price && !empty($mapper['Setting']['value'])) ? $this->parseTemplate($mapper['Setting']['value'], $vars) : '';
-			$this->set('text_shipping_min_price',$text_shipping_min_price);
-		}
-
-		$map = $this->Setting->findById('carrito_takeaway_text');
- 		$carrito_takeaway_text = $map['Setting']['extra'];		
-		$this->set('carrito_takeaway_text', $carrito_takeaway_text);
-		$this->set('freeShipping', $freeShipping);*/
-
-		// $this->set('stores', $stores);
-	}
+	{ }
 
 	private function parseTemplate ($str, $data) {
 		$html = $str;
@@ -109,36 +73,44 @@ class CheckoutController extends AppController
 
 	public function envio() {
 
-		if(empty($this->Session->read('cart'))) {
+		if(empty($this->Session->read('cart_totals'))) {
 			$this->redirect(array( 'controller' => 'carrito', 'action' => 'index' ));
 		}
 
 		if ($this->request->is('post')) {
-			$shipping = $this->request->data;
+			$envio = $this->request->data;
+			$cart_totals = $this->Session->read('cart_totals');
 
-			if(empty($shipping)) {
+			if(empty($envio)) {
 	      die(json_encode(array(
 	        'success' => false, 
-	        'message' => 'Shipping not recieved'
+	        'errors' => 'No se recibió datos de envío'
 	      )));
 			}
 
-			$customer = $shipping['customer'];
+			$customer = $envio['customer'];
 
-			if(empty($customer)) {
+			if(empty($envio['customer'])) {
 	      die(json_encode(array(
 	        'success' => false, 
-	        'message' => 'Customer not recieved'
+	        'errors' => 'No se recibió datos de persona'
 	      )));
 			}
 
-			unset($shipping['customer']);
+			$partials = array(
+				'shipping', 
+				'cargo',
+				'store', 
+				'store_address', 
+				'customer'
+			);
 
-			$this->Session->write('customer', $customer);
-			$this->Session->write('shipping', $shipping);
+			foreach($partials as $part) {
+				$cart_totals[$part] = $envio[$part];
+			}
 
-			CakeLog::write('debug', 'envio customer:'.json_encode($customer));
-			CakeLog::write('debug', 'envio shipping:'.json_encode($shipping));
+			// CakeLog::write('debug', 'updateTotals(2)'.json_encode($cart_totals));
+			$this->Cart->update(null, $cart_totals);
 
       die(json_encode(array(
         'success' => true, 
@@ -165,32 +137,33 @@ class CheckoutController extends AppController
 		}
 		
 		if ($this->request->is('post')) {
-			$data = $this->request->data;
+			$pago = $this->request->data;
 
-			if(empty($data)) {
+			if(empty($pago)) {
 	      die(json_encode(array(
 	        'success' => false, 
 	        'message' => 'Data not recieved'
 	      )));
 			}
 
-			$payment_method = $data['payment_method'];
-			$payment_dues = $data['payment_dues'];
-
-			if(empty($payment_method)) {
+			if(empty($pago['payment_method'])) {
 	      die(json_encode(array(
 	        'success' => false, 
 	        'message' => 'Payment method not recieved'
 	      )));
 			}
 
-			$cart_totals = $this->Session->read('cart_totals');
-			$cart_totals['payment_method'] = $payment_method;
-			$cart_totals['payment_dues'] = $payment_dues;
+			$partials = array(
+				'payment_method', 
+				'payment_dues',
+			);
 
-			$this->Session->write('cart_totals', $cart_totals);
+			foreach($partials as $part) {
+				$cart_totals[$part] = $pago[$part];
+			}
 
-			CakeLog::write('debug', 'pago cart_totals:'.json_encode($cart_totals));
+			// CakeLog::write('debug', 'updateTotals(2)'.json_encode($cart_totals));
+			$this->Cart->update(null, $cart_totals);
 
       die(json_encode(array(
         'success' => true, 
@@ -212,20 +185,21 @@ class CheckoutController extends AppController
 	}
 
 	public function confirma() {
+		$cart_totals = $this->Session->read('cart_totals');
 		if(empty($this->Session->read('cart'))) {
 			$this->redirect(array( 'controller' => 'carrito', 'action' => 'index' ));
 		}
 		
 		if ($this->request->is('post')) {
 			// check integrity
-			if(empty($this->Session->read('payment_method'))) {
+			if(empty($cart_totals['payment_method'])) {
 	      die(json_encode(array(
 	        'success' => false, 
 	        'message' => 'No se recibió método de pago'
 	      )));
 			}
 
-			if(empty($this->Session->read('customer'))) {
+			if(empty($cart_totals['shipping']['customer'])) {
 	      die(json_encode(array(
 	        'success' => false, 
 	        'message' => 'No se recibió datos de persona de entrega'
@@ -438,11 +412,18 @@ class CheckoutController extends AppController
 			$total = round($total,2);
 		}
 
-		$coupon_parsed->data["updated"] = $updated;
-		$coupon_parsed->data["total"] = $total;
-		$coupon_parsed->data["bonus"] = $discount;
-		
+		$coupon_update = array(
+			'updated' => $updated,
+			'total' => $total,
+			'bonus' => $bonus,
+			'coupon_bonus' => $coupon_bonus,
+		);
 
+		/* $coupon_parsed->data["updated"] = $updated;
+		$coupon_parsed->data["total"] = $total;
+		$coupon_parsed->data["bonus"] = $discount; */
+		
+		$coupon_parsed->data = array_unique(array_merge($coupon_parsed->data,$coupon_update));
 		return json_encode($coupon_parsed);
 	}
 
@@ -475,7 +456,7 @@ class CheckoutController extends AppController
 		if(!empty($data['discount']) && !empty((float)(@$data['discount']))) {
       $unit_price = @$data['discount'];
     }
-		$freeShipping = $this->isFreeShipping($unit_price, $cp);
+		$freeShipping = $this->Cart->isFreeShipping($unit_price, $cp);
 		$json = array(
 			'freeShipping' => $freeShipping,
 			'rates' => [],
@@ -657,29 +638,6 @@ class CheckoutController extends AppController
 		}		
 	}
 
-	public function isFreeShipping ($price, $zip_code = 0) {
-		$shipping_config = $this->Setting->findById('shipping_type');
-		$shipping_price = $this->Setting->findById('shipping_price_min');
-		$freeShipping = false;
-		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
-			if (@$shipping_config['Setting']['value'] == 'min_price' || $shipping_price['Setting']['value'] > 1){
-				$freeShipping = intval($price) >= intval($shipping_price['Setting']['value']);
-			}
-			if (!$freeShipping && $zip_code && @$shipping_config['Setting']['value'] == 'zip_code'){
-				$zip_codes = explode(',',$shipping_config['Setting']['extra']);
-				if (count($zip_codes)) {
-					$filter = [];
-					foreach($zip_codes as $code) {
-						$filter[] = trim($code);
-					}
-					$freeShipping = in_array($zip_code, $filter);
-				}
-			}
-			// error_log('shipping_value: '.@$shipping_config['Setting']['value']);
-		}		
-		return $freeShipping;
-		// return intval($price) >= intval($shipping_price['Setting']['value']);
-	}
 
 	public function andreani_cotiza () {
 		$this->autoRender = false;
@@ -746,9 +704,9 @@ class CheckoutController extends AppController
 		$user_id = $this->Auth->user('id');
 		$product_ids = array();
 		$items = array();
-		$customer = $this->Session->read('customer');
-		$payment_method = $this->Session->read('payment_method');
-		$payment_method = $this->Session->read('payment_dues');
+		$customer = $cart_totals['shipping']['customer'];
+		$payment_method = $cart_totals['payment_method'] ?? 'mercadopago';
+		$payment_dues = $cart_totals['payment_dues'] ?? 1;
 
 		// lets check some shit
 		if(empty($cart) || empty($cart_totals)) {
@@ -1033,7 +991,7 @@ class CheckoutController extends AppController
 
 		// Add Delivery
 		$delivery_cost = 0;
-		$freeShipping = $this->isFreeShipping($total, $sale['postal_address']);
+		$freeShipping = $this->Cart->isFreeShipping($total, $sale['postal_address']);
 		$delivery_data = $this->deliveryCost(null, $sale, false);
 		$delivery_cost = (integer) $delivery_data['rates'][0]['price'];
 		if ($freeShipping) { 
@@ -1182,7 +1140,7 @@ CakeLog::write('debug', 'settings(1)'.json_encode($settings));
 
 	public function preference(){
 		$this->autoRender = false;
-
+		CakeLog::write('debug', 'preference(3) -- should not be called -- ');
 		$cart_totals = $this->Session->read('cart_totals');
 		$data = $this->request->data;
 
@@ -1197,165 +1155,31 @@ CakeLog::write('debug', 'settings(1)'.json_encode($settings));
 
 		$this->Session->write('cart_totals', $cart_totals);
 		error_log('payment_method:'.$cart_totals['payment_method']);
-		//CakeLog::write('debug', 'updateCart(3)');
-		$cart = $this->updateCart();
-		$this->Session->write('cart', $cart);
+		//CakeLog::write('debug', 'updateTotals(3)');
+CakeLog::write('debug', 'updateTotals(4)');		
+		$this->updateTotals($cart_totals);
+		// $this->Session->write('cart', $cart);
 
 		return json_encode(array('success' => true, 'data' => array_values($cart)));
 	}
 
-	public function empty($row = null) {
-		$this->autoRender = false;
-		$this->Session->delete('cart');
-	}
+	private function updateTotals($cart, $cart_totals) {
 
-	public function show($row = null) {
-		$this->autoRender = false;
-		echo '<pre>';
-		var_dump($this->Session->read('cart_totals'));
-		var_dump($this->Session->read('cart'));
-	}
+		// $cart_totals = $this->Session->read('cart_totals');
+		$payment_method = @$cart_totals['payment_method'] ?? 'mercadopago';
 
-	public function sorted() {
-		$this->autoRender = false;
-		echo '<pre>';
-		var_dump($this->sort());
-	}
-
-	public function add() {
-		$this->autoRender = false;
-		$this->RequestHandler->respondAs('application/json');
-		if ($this->request->is('post')) {
-			$data = $this->request->data;
-			//$this->RequestHandler->respondAs('application/json');
-
-			if(
-				!isset($this->request->data['id']) || 
-				!isset($this->request->data['count'])
-			) {
-				return $this->redirect(array('controller' => 'home', 'action' => 'index'));
-			}
-
-			$product = $this->Product->findById($this->request->data['id']);
-			$urlCheck = Configure::read('baseUrl')."shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
-
-			if (empty($this->request->data['size']) && empty($this->request->data['color_code'])){
-				//$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article'];
-				error_log('fake stock');
-				$stock=1;
-			} else {
-				error_log($urlCheck);
-				$ch = curl_init();
-			    curl_setopt($ch, CURLOPT_URL, $urlCheck);
-			    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-			    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-			    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
-			    $stock = (string)curl_exec($ch);
-			    curl_close($ch);
-			}
-
-			
-			$filter = [];
-			error_log('stock:'.$stock);
-			// error_log('curl:'.$stock);
-			//$stock=1;
-			if ($product && $stock) {
-				$cart = $this->Session->read('cart');
-				$product = $product['Product'];
-
-				/* remove all of the kind */
-				$criteria = $this->request->data['id'].$this->request->data['size'].$this->request->data['color'].$this->request->data['alias'];
-
-				if (!empty($cart)) {
-					foreach($cart as $key => $item) {
-						if($criteria != $item['id'].$item['size'].$item['color'].$item['alias']) {
-							$filter[]= $item;
-						}
-					}
-				}
-
-				$product['color'] = @$this->request->data['color'];
-				$product['size'] = @$this->request->data['size'];
-				$product['alias'] = @$this->request->data['alias'];
-				$product['color_code'] = @$this->request->data['color_code'];
-
-				for ($i=0; $i < $this->request->data['count']; $i++) {
-					$filter[] = $product;
-				}
-				// $cart = array_fill(count($cart), $this->request->data['count'], $product);
-				// error_log('[carrito] '.json_encode($filter));
-				// error_log('[carrito] '.json_encode($this->filter($filter)));
-
-				// filter(1)
-			}
-
-			$cart_totals = $this->Session->read('cart_totals');
-			$cur = @$cart_totals['add_basket']?: 0;
-			$cur++;
-			@$cart_totals['add_basket'] = $cur;
-			//CakeLog::write('debug', 'updateCart(4)');
-			$cart = $this->updateCart($filter);
-			$this->Session->write('cart', $cart);
-			$this->Session->write('cart_totals', $cart_totals);
-
-			return json_encode(array('success' => true));
-		}
-		//return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
-		return json_encode(array('success' => false));
-	}
-
-	private function sort() {
-		$cart = $this->Session->read('cart');
-		$cart_totals = $this->Session->read('cart_totals');
-		$payment_method = @$cart_totals['payment_method'] ?: 'mercadopago';
-		$payment_dues = @$cart_totals['payment_dues'] ?: '1';
-		$groups = [];
-		$sort = [];
-
-		if (!empty(@$cart)) {
-			foreach($cart as $key => $item) {
-				$criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
-				//CakeLog::write('debug', 'citeria:'. $criteria);
-				if (!isset($groups[$criteria])) {
-					$groups[$criteria] = 0;
-				}
-
-				$groups[$criteria]++;
-				if ($groups[$criteria] === 1) {
-					$item['count'] = 1;
-					$sort[$criteria] = (array) $item;
-				} else {
-					$sort[$criteria]['count'] = $groups[$criteria];
-					$sort[$criteria]['price']+= $item['price'];
-					$sort[$criteria]['old_price']+= $item['old_price'];
-					if (!empty($item['promo_enabled'])) {
-						$sort[$criteria]['promo_enabled'] = $item['promo_enabled'];
-					}
-				}
-				$sort[$criteria]['item_price'] = $item['price'];
-				$sort[$criteria]['item_old_price'] = $item['old_price'];
-			}
-		}
-
-		/* if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-			file_put_contents(__DIR__.'/../logs/carrito_sort.json', json_encode($sort, JSON_PRETTY_PRINT));
-		}*/
-
-		return $sort;
-	}
-
-	private function updateCart($cart=false) {
-		$cart_totals = $this->Session->read('cart_totals');
-		$payment_method = @$cart_totals['payment_method'] ?: 'mercadopago';
-
-		//CakeLog::write('debug','cart(1)');
 		//CakeLog::write('debug',json_encode($cart));
 
 		if (empty($cart)) {
 			$cart = $this->Session->read('cart');
 			//CakeLog::write('debug','cart(2)');
 			//CakeLog::write('debug',json_encode($cart));
+		}
+
+		if(empty($cart_totals)) {
+			$cart_totals = $this->Session->read('cart_totals');
+		} else {
+			$cart_totals = array_unique(array_merge($this->Session->read('cart_totals'), $cart_totals));
 		}
 
 		$groups = [];
@@ -1485,36 +1309,19 @@ CakeLog::write('debug', 'settings(1)'.json_encode($settings));
 			}
 		}
 
+		CakeLog::write('debug','- - - - - - - - - - - - - - - - - - - - - - - - -');
+		CakeLog::write('debug','cart:'.json_encode($cart, JSON_PRETTY_PRINT));
+		CakeLog::write('debug','- - - - - - - - - - - - - - - - - - - - - - - - -');
+		CakeLog::write('debug','cart_totals:'.json_encode($cart_totals, JSON_PRETTY_PRINT));
+		CakeLog::write('debug','- - - - - - - - - - - - - - - - - - - - - - - - -');
+
+		// CakeLog::write('debug','updateTotals cart:'.json_encode($cart, JSON_PRETTY_PRINT));
+		// CakeLog::write('debug','updateTotals cart_totals:'.json_encode($cart_totals, JSON_PRETTY_PRINT));
+
+		$this->Session->write('cart', $cart);
+		$this->Session->write('cart_totals', $cart_totals);
+
 		return $cart;
-	}
-
-	public function remove($id = null) {
-		$this->autoRender = false;
-		$this->RequestHandler->respondAs('application/json');
-		$item = false;
-		$cart = $this->Session->read('cart');
-
-		if(!$cart)
-			return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
-		$data = array();
-		$i = 0;
-		$removed = 0;
-		foreach ($cart as $key => $item) {
-			if ($item['id'] !== $id) {
-				$data[$i] = $item;
-			} else {
-				$removed = 1;
-			}
-			$i++;
-		}
-		if (count($data)) {
-			//CakeLog::write('debug', 'updateCart(1)');
-			$this->Session->write('cart', $this->updateCart($data));
-		} else {
-			$this->Session->delete('cart');
-		}
-		return json_encode($removed);
-		//return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 	}
 
 	private function notify_user($data, $status){

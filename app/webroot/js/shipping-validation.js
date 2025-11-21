@@ -12,6 +12,9 @@ $(document).ready(function() {
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },
+        submitHandler: function(validator, form, btnSubmit){
+            return false;
+        },
         fields: {
             'customer[email]': {
                 validators: {
@@ -160,7 +163,7 @@ $(document).ready(function() {
             }, 'json');
         });*/
 
-    $('#envio_form').submit(function(e) {
+    /* $('#envio_form').submit(function(e) {
         if($("#envio_form").data('bootstrapValidator').isValid()){
             var me = $(this),
             data = me.serialize(),
@@ -168,7 +171,6 @@ $(document).ready(function() {
 
             $.post(url, data)
                 .success(function(response) {
-                    console.log('register', response)
                     if (!response.success) {
                         if(response.errors!=undefined){
                             if(response.errors.email!=undefined){
@@ -205,8 +207,7 @@ $(document).ready(function() {
             return false;
         }
         
-    });
+    }); */ 
 
-    $("#envio_form").bootstrapValidator('validate');
-
+    // $("#envio_form").bootstrapValidator('validate');
 });
