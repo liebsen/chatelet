@@ -72,7 +72,6 @@ class CheckoutController extends AppController
 	}
 
 	public function envio() {
-
 		if(empty($this->Session->read('cart_totals'))) {
 			$this->redirect(array( 'controller' => 'carrito', 'action' => 'index' ));
 		}
@@ -90,11 +89,17 @@ class CheckoutController extends AppController
 
 			$customer = $envio['customer'];
 
-			if(empty($envio['customer'])) {
+			if($envio['cargo'] == 'shipment' && empty($envio['customer'])) {
 	      die(json_encode(array(
 	        'success' => false, 
 	        'errors' => 'No se recibió datos de persona'
 	      )));
+			}
+
+			if($envio['cargo'] == 'shipment' && empty($cart_totals['free_shipping'])) {
+				$delivery_data = $this->deliveryCost(null, $envio, false);
+				$cart_totals['delivery_cost'] = (integer) $delivery_data['rates'][0]['price'];
+				// $cart_totals['delivery_cost'] = $this->deliveryCost($envio['postal_address'], $envio);
 			}
 
 			$partials = array(
@@ -133,7 +138,12 @@ class CheckoutController extends AppController
 
 	public function pago() {
 		if(empty($this->Session->read('cart'))) {
-			$this->redirect(array( 'controller' => 'carrito', 'action' => 'index' ));
+      die(json_encode(array(
+        'success' => false, 
+        'errors' => 'Método de pago no recibido',
+        'redirect' => $this->Url->build(array( 'controller' => 'carrito', 'action' => 'index' ))
+      )));			
+			// $this->redirect(array( 'controller' => 'carrito', 'action' => 'index' ));
 		}
 		
 		if ($this->request->is('post')) {
@@ -142,14 +152,14 @@ class CheckoutController extends AppController
 			if(empty($pago)) {
 	      die(json_encode(array(
 	        'success' => false, 
-	        'message' => 'Data not recieved'
+	        'errors' => 'Datos de pago no recibidos'
 	      )));
 			}
 
 			if(empty($pago['payment_method'])) {
 	      die(json_encode(array(
 	        'success' => false, 
-	        'message' => 'Payment method not recieved'
+	        'errors' => 'Método de pago no recibido'
 	      )));
 			}
 
@@ -157,6 +167,8 @@ class CheckoutController extends AppController
 				'payment_method', 
 				'payment_dues',
 			);
+
+			$cart_totals = $this->Session->read('cart_totals');
 
 			foreach($partials as $part) {
 				$cart_totals[$part] = $pago[$part];
@@ -199,32 +211,35 @@ class CheckoutController extends AppController
 	      )));
 			}
 
-			if(empty($cart_totals['shipping']['customer'])) {
+			if($cart_totals['cargo'] == 'shipment' && empty($cart_totals['customer'])) {
 	      die(json_encode(array(
 	        'success' => false, 
-	        'message' => 'No se recibió datos de persona de entrega'
+	        'errors' => 'No se recibió datos de persona de entrega'
 	      )));
 			}
 
-	    $settings = $this->load_settings();
-
-			// here we start the sale
 			$data = $this->request->data;
-			CakeLog::write('debug', 'settings(1):'. json_encode($settings));
+	    // $settings = $this->load_settings();
 
-
-			// $sell = $this->sale();
-
-			if(empty($data)) {
+			if(empty($data['confirm'])) {
 	      die(json_encode(array(
 	        'success' => false, 
-	        'message' => 'Data not recieved'
+	        'errors' => 'No se recibieron datos de confirmacion'
 	      )));
 			}
 
-			return false;
+			CakeLog::write('debug', '-.-.-.-.-.-.-.-.-.-.- sale -.-.-.-.-.-.-.-.-.-');
+			$sale = $this->sale();
+			// here we start the sale
+			CakeLog::write('debug', 'data(10):'. json_encode($data));
+
+			die(json_encode(array(
+				'success' => true,
+				'message' => 'La compra se realizó con éxito',
+				'redirect' => 'r3direct',
+				'sale' => $sale
+			)));
 		}
-				
 	}
 
 	public function getLocalidadProvincia($id)
@@ -278,16 +293,16 @@ class CheckoutController extends AppController
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 		$map = $this->Setting->findById('bank_enable');
-		$bank_enable = @$map['Setting']['value'];
+		$settings['bank_enable'] = @$map['Setting']['value'];
 		$map = $this->Setting->findById('bank_discount_enable');
-		$bank_discount_enable = @$map['Setting']['value'];
+		$settings['bank_discount_enable'] = @$map['Setting']['value'];
 		$map = $this->Setting->findById('bank_discount');
-		$bank_discount = @$map['Setting']['value'];
+		$settings['bank_discount'] = @$map['Setting']['value'];
 
 		$response = (object) [
-			'enable' => @$bank_enable,
-			'discount_enable'=> @$bank_discount_enable,
-			'discount'=> @$bank_discount
+			'enable' => @$settings['bank_enable'],
+			'discount_enable'=> @$settings['bank_discount_enable'],
+			'discount'=> @$settings['bank_discount']
 		];
 		return json_encode($response);
 	}*/
@@ -695,6 +710,7 @@ class CheckoutController extends AppController
 
 	public function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
+		$settings = $this->load_settings();
 		$this->autoRender = false;
 		$total=0;
 		$total_wo_discount = 0;
@@ -704,7 +720,7 @@ class CheckoutController extends AppController
 		$user_id = $this->Auth->user('id');
 		$product_ids = array();
 		$items = array();
-		$customer = $cart_totals['shipping']['customer'];
+		$customer = $cart_totals['customer'];
 		$payment_method = $cart_totals['payment_method'] ?? 'mercadopago';
 		$payment_dues = $cart_totals['payment_dues'] ?? 1;
 
@@ -712,19 +728,17 @@ class CheckoutController extends AppController
 		if(empty($cart) || empty($cart_totals)) {
 			// header("Location: /");
 			$this->Session->setFlash('Tu carrito está vacío','default',array('class' => 'hidden error'));
-			error_log('warning: cart empty');
-			$this->redirect(array( 'action' => 'clear' ));
-		}
-
-		if(empty($customer)) {
-			$this->Session->setFlash('Tu carrito está vacío','default',array('class' => 'hidden error'));
-			error_log('warning: cart empty');
-			$this->redirect(array( 'action' => 'clear' ));
+			CakeLog::write('debug', 'cart empty');
+			return array(
+				'success' => false,
+				'errors' => "Tu carrito está vacío"
+			);
+			// $this->redirect(array( 'action' => 'clear' ));
 		}
 
 		$sale = $this->request->data;
 
-		CakeLog::write('debug', 'sale:'. json_encode($sale));
+
 		$sale['id'] = $this->Auth->user('id');
 		$sale['telephone'] = @preg_replace("/[^0-9]/","",$customer['telephone']);
 		$sale['email'] = (!empty($customer['email']))?trim($customer['email']):'';
@@ -733,6 +747,10 @@ class CheckoutController extends AppController
 		$sale['coupon'] = (!empty($sale['coupon']))?strtoupper(trim($sale['coupon'])):'';
 		//$sale['regalo'] = (isset($sale['regalo']) && $sale['regalo']?1:0);
 		$sale['dues'] = (isset($sale['payment_dues']) && $sale['payment_dues']?intval($sale['payment_dues']):1);
+
+		CakeLog::write('debug', 'sale:'. json_encode($sale, JSON_PRETTY_PRINT));
+		CakeLog::write('debug', 'sale (cart_totals):'. json_encode($cart_totals, JSON_PRETTY_PRINT));
+		return false; // - - - - - - remove - - - - - - -
 
 		if(!isset($user_id)){
 			$check_user_id = 0;
@@ -764,30 +782,31 @@ class CheckoutController extends AppController
 			$user_id = $check_user_id;
 		}
 
-
-		$map = $this->Setting->findById('bank_enable');
-		$bank_enable = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount_enable');
-		$bank_discount_enable = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount');
-		$bank_discount = @$map['Setting']['value'];
-
-		error_log('payment method: ' . $sale['payment_method']);
-
+		// error_log('payment method: ' . $sale['payment_method']);
 		// check if payment method is bank and bank payment is not available
-		if (!empty($sale['payment_method']) && $sale['payment_method'] === 'bank' && !$bank_enable) {
+		if (!empty($sale['payment_method']) && $sale['payment_method'] === 'bank' && empty($settings['bank_enable'])) {
 			$this->Session->setFlash('No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias.','default',array('class' => 'hidden error'));
-			error_log('checkout error: bank not available');
-			$this->redirect(array( 'controller' => 'carrito', 'action' => 'checkout' ));
-			die;
+			// error_log('checkout error: bank not available');
+			// $this->redirect(array( 'controller' => 'carrito', 'action' => 'checkout' ));
+			CakeLog::write('debug', 'No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias');
+			return array(
+				'success' => false,
+				'errors' => "No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias",
+				'redirect' => $this->Url->build(array( 'controller' => 'checkout', 'action' => 'confirma' )),
+			);
 		}
 
 		if(!$this->request->is('post') || $sale['cargo'] === 'shipment' && empty($sale['postal_address']) || empty($sale['street_n']) || empty($sale['street']) || empty($sale['localidad']) || empty($sale['provincia']) || empty($sale['name']) || empty($sale['surname']) || empty($sale['email']) || empty($sale['telephone'])){
 			$this->Session->setFlash('Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo.','default',array('class' => 'hidden error'));
-			error_log('checkout error');
-			error_log(json_encode($sale));
-			$this->redirect(array( 'action' => 'clear' ));
-			die;
+			// error_log('checkout error');
+			// error_log(json_encode($sale));
+			// $this->redirect(array( 'action' => 'clear' ));
+			CakeLog::write('debug', 'No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias');
+			return array(
+				'success' => false,
+				'errors' => "No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias",
+				'redirect' => $this->Url->build(array( 'action' => 'clear' )),
+			);
 		}
 
 		$sale_object = array('id' => null,'user_id' => $user_id);
@@ -956,9 +975,9 @@ class CheckoutController extends AppController
 
 	  // Check bank paying method
 	  if ($sale['payment_method'] === 'bank') {
-	  	if($bank_discount_enable && $bank_discount) {
+	  	if($settings['bank_discount_enable'] && $settings['bank_discount']) {
 	  		//error_log('suming applying bank');
-	  		$bank_bonus = round($total_wo_discount * ($bank_discount / 100), 2);
+	  		$bank_bonus = round($total_wo_discount * ($settings['bank_discount'] / 100), 2);
 	  		error_log('bank bonus: '.$bank_bonus);
 	  	}
 	  }
@@ -1071,16 +1090,23 @@ class CheckoutController extends AppController
 			'dues'		=> $sale['dues']
 		);
 
-CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
-CakeLog::write('debug', 'settings(1)'.json_encode($settings));
+		CakeLog::write('debug', 'sale(to_save)'.json_encode($to_save));
+		// CakeLog::write('debug', 'settings(1)'.json_encode($settings));
 		// error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
 		error_log("total mp: " . $total);
 
 		// check if paying method is bank
 		if ($sale['payment_method'] === 'bank') {
-			$this->Session->delete('cart');
-			return $this->redirect(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' ));
+			CakeLog::write('debug', 'destroy(1)');
+			$this->Cart->destroy();
+
+			CakeLog::write('debug', '(cbu) ok - Cuando uses el cbu se iniciará la compra');
+			return array(
+				'success' => true,
+				'message' => "Cuando uses el cbu se iniciará la compra",
+				'redirect' => $this->Url->build(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' )),
+			);
 		}
 
 		//MP
@@ -1089,6 +1115,7 @@ CakeLog::write('debug', 'settings(1)'.json_encode($settings));
 		$failure_url = Router::url(array('controller' => 'carrito', 'action' => 'failed'), true);
 
 		$preference_data = array(
+			'external_reference' => $sale_id,
 	    'items' => $items,
 	    'payer' => array(
 	    	'name' => $sale['name'],
@@ -1111,6 +1138,13 @@ CakeLog::write('debug', 'settings(1)'.json_encode($settings));
 			die("no payments yet");
 		}*/
 
+		CakeLog::write('debug', '(mp) preference_data:'.json_encode($preference_data));
+		return array(
+			'success' => true,
+			'message' => "Cue",
+			'redirect' => 'none',
+		);
+
 		$preference = $mp->create_preference($preference_data);
 		//Save Data
 		$sale_data = array(
@@ -1121,20 +1155,24 @@ CakeLog::write('debug', 'settings(1)'.json_encode($settings));
 			'products'=>$product_ids,
 			'total'=>$total
 		);
+
 		$this->Session->write('sale_data',$sale_data);
 
+		// $redirect = "/shop/mis_compras/{$sale_id}";
 		//Setting
 		if(empty(Configure::read('MP_IN_SANDBOX_MODE'))) {
 			//Production
 			$mp->sandbox_mode(FALSE);
+			$redirect = $preference['response']['sandbox_init'];
 			//error_log('entering mp production mode');
-			return $this->redirect($preference['response']['init_point']);
+			// return $this->redirect($preference['response']['init_point']);
 		}else{
 			//Sandbox
 			$mp->sandbox_mode(TRUE);
 			//error_log('entering mp sandbox mode');
 			//error_log($preference['response']['sandbox_init_point']);
-			return $this->redirect($preference['response']['sandbox_init_point']);
+			$redirect = $preference['response']['sandbox_init_point'];
+			// return $this->redirect($preference['response']['sandbox_init_point']);
 		}
 	}
 
@@ -1164,7 +1202,7 @@ CakeLog::write('debug', 'updateTotals(4)');
 	}
 
 	private function updateTotals($cart, $cart_totals) {
-
+		$settings = $this->load_settings();
 		// $cart_totals = $this->Session->read('cart_totals');
 		$payment_method = @$cart_totals['payment_method'] ?? 'mercadopago';
 
@@ -1185,11 +1223,11 @@ CakeLog::write('debug', 'updateTotals(4)');
 		$groups = [];
 		$counts = [];
 		$map = $this->Setting->findById('bank_enable');
-		$bank_enable = @$map['Setting']['value'];
+		$settings['bank_enable'] = @$map['Setting']['value'];
 		$map = $this->Setting->findById('bank_discount_enable');
-		$bank_discount_enable = @$map['Setting']['value'];
+		$settings['bank_discount_enable'] = @$map['Setting']['value'];
 		$map = $this->Setting->findById('bank_discount');
-		$bank_discount = @$map['Setting']['value'];
+		$settings['bank_discount'] = @$map['Setting']['value'];
 
 		// $counted = [];
 		/*count prods */
@@ -1242,10 +1280,10 @@ CakeLog::write('debug', 'updateTotals(4)');
 	      } else {
 	      	if (
 	      		$payment_method === 'bank' && 
-	      		$bank_enable && 
-	      		$bank_discount_enable
+	      		$settings['bank_enable'] && 
+	      		$settings['bank_discount_enable']
 	      	) {
-	      		$p = ceil(round($price * (1 - (float) $bank_discount / 100)));
+	      		$p = ceil(round($price * (1 - (float) $settings['bank_discount'] / 100)));
 						$cart[$key]['old_price'] = $price;
 		        $cart[$key]['price'] = $p;
 		      }
@@ -1364,23 +1402,27 @@ el pago.</p>
 
 	public function failed() {
 			$data = $this->Session->read('sale_data');
-			error_log('Failed payment: '.json_encode($data));
+			// error_log('Failed payment: '.json_encode($data));
+			CakeLog::write('debug', 'Failed payment');
 			$this->Session->delete('cart');
 			$this->Session->delete('sale_data');
 			$this->set('sale_data',$data);
 			$this->set('failed', true);
 			if (!empty($_GET['collection_status']) && $_GET['collection_status']=='pending'){
-				error_log('pending');
+				// error_log('pending');
+				CakeLog::write('debug', 'Failed payment: pending');
 				$this->notify_user($data, 'pending');
 				return $this->render('clear');
 			}else{
-				error_log('failed');
+				CakeLog::write('debug', 'Failed payment: failed');
+				// error_log('failed');
 				return $this->render('clear_no');
 			}
 	}
 
 	public function clear() { //success
-		error_log('success payment: '.json_encode($this->Session->read('sale_data')));
+		// error_log('success payment: '.json_encode($this->Session->read('sale_data')));
+		CakeLog::write('debug', 'Success payment:'.json_encode($this->Session->read('sale_data')));
 		if( $this->Session->check( 'sale_data' ) ){
 			$sale_data = $this->Session->read('sale_data');
 			$sale_object = array(

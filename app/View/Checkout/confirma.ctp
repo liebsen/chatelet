@@ -27,6 +27,7 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 								'action' => 'confirma'
 							)
 						)); ?>
+						<input type="hidden" name="confirm" value="1" />							
 						<div class="d-flex flex-column justify-content-start align-items-center gap-05">
 							<input type="submit" class="btn btn-chatelet btn-confirm dark w-100" value="Confirmar compra" />
 							<span class="text-sm text-muted"><b>Al finalizar el proceso</b> revisa tu cuenta en <b><?php echo $user['email']; ?></b></span>
@@ -61,19 +62,31 @@ $(document).ready(function() {
       success: function(res) {
       	if(res.success) {
       		// onSuccessAlert('Success', res.message)
+      		$.growl.notice({
+      			title: 'OK',
+      			message: res.message,
+      		})      		
           // $('#responseContainer').html(res.message);
           setTimeout(() => {
           	console.log({redirect})
           	// location.href = redirect || location.href
           }, 100)
       	} else {
-      		onWarningAlert('Error al enviar datos', res.errors)
+      		$.growl.error({
+      			title: 'Error al enviar datos (2)',
+      			message: res.errors,
+      		})      		
+      		// onWarningAlert('Error al enviar datos', res.errors)
       		// $('#responseContainer').html(res.errors);
       	}
       	btnSubmit.prop('disabled', false)
       },
       error: function(xhr, status, error) {
-        console.error("Error al enviar datos: " + status + " - " + error);
+      		$.growl.error({
+      			title: 'Error al enviar datos (2)',
+      			message: error,
+      		})      	
+        // console.error("Error al enviar datos: " + status + " - " + error);
         btnSubmit.prop('disabled', false)
         // Handle errors
       }

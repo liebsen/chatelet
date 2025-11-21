@@ -1240,9 +1240,6 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		return json_encode(array('success' => false));
 	}
 
-
-
-
 	public function remove($uid) {
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');
@@ -1256,9 +1253,7 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		$update = array();
 		$removed = 0;
 		foreach ($cart as $key => $item) {
-			if (
-				$item['uid'] != $uid
-			) {
+			if ($item['uid'] != $uid) {
 				array_push($update, $item);
 			} else {
 				$removed++;
@@ -1270,9 +1265,9 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 			// CakeLog::write('debug', 'updateCart(2):'. json_encode($update));
 			$this->Cart->update($update);
 		} else {
-			$this->Session->delete('cart');
-			$this->Session->delete('cart_totals');
+			$this->Cart->destroy();
 		}
+
 		return json_encode($removed);
 		//return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 	}

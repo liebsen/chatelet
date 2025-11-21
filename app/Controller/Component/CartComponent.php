@@ -161,13 +161,18 @@ class CartComponent extends Component {
     $cart_totals['free_shipping'] = $this->isFreeShipping($grand_total);
     $cart_totals['grand_total'] = $grand_total;
 
-    CakeLog::write('debug', 'cart_totals(1):'. json_encode($cart_totals));
+    CakeLog::write('debug', 'cart_totals(1):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
     // CakeLog::write('debug', 'cart(1):'. json_encode($cart));
 
     $this->controller->Session->write('cart_totals', $cart_totals);
     $this->controller->Session->write('cart', $cart);
 
     return $cart;
+  }
+
+  public function destroy() {
+		$this->controller->Session->delete('cart');
+		$this->controller->Session->delete('cart_totals');
   }
 
 	public function sort() {
