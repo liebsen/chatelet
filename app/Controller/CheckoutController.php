@@ -856,7 +856,8 @@ class CheckoutController extends AppController
 		$prods = [];
 
 		if (!empty($cart_totals['coupon'])) {
-			error_log('checking coupon: '.$cart_totals['coupon']);
+			// error_log('checking coupon: '.$cart_totals['coupon']);
+			CakeLog::write('debug', 'sale(coupon):'.$cart_totals['coupon']);
 	    $coupon = $this->Coupon->find('first', [
 	      'conditions' => [
 	        'code' => $cart_totals['coupon'],
@@ -881,7 +882,8 @@ class CheckoutController extends AppController
 			      return $e['CouponItem']['category_id'];
 			    },$coupon_ids));
 			  }			  
-	    	error_log('suming check coupon:'.json_encode($coupon));
+	    	//error_log('suming check coupon:'.json_encode($coupon));
+	    	CakeLog::write('debug', 'sale(coupon):'.json_encode($coupon));
 				$coupon_parsed = \filtercoupon($coupon, $this->Session->read('cart_totals'), $data['price']);
 			}
 		}
@@ -926,7 +928,8 @@ class CheckoutController extends AppController
 					}
 				}
 			} else {
-				error_log("proderr::". $producto["name"]);
+				//error_log("proderr::". $producto["name"]);
+				CakeLog::write('debug', 'sale(proderr):'.$producto["name"]);
 				if(!empty($producto['discount']) && !empty((float)(@$producto['discount']))) {
 	        $unit_price = @$producto['discount'];
 	      }
@@ -996,14 +999,16 @@ class CheckoutController extends AppController
 		}
 
 		$total_wo_discount = (int) $total;
-		error_log('suming total (wo_discount): '.$total);
+		// error_log('suming total (wo_discount): '.$total);
+		CakeLog::write('debug', 'sale(wo_discount):'.$total);
 
 	  // Check bank paying method
 	  if ($cart_totals['payment_method'] === 'bank') {
 	  	if($settings['bank_discount_enable'] && $settings['bank_discount']) {
 	  		//error_log('suming applying bank');
 	  		$bank_bonus = round($total_wo_discount * ($settings['bank_discount'] / 100), 2);
-	  		error_log('bank bonus: '.$bank_bonus);
+	  		// error_log('bank bonus: '.$bank_bonus);
+	  		CakeLog::write('debug', 'sale(bank):'.$bank_bonus);
 	  	}
 	  }
 
@@ -1012,7 +1017,8 @@ class CheckoutController extends AppController
 			if($legend && $legend['Legend']['interest']) {
 				$interest = (float) $legend['Legend']['interest'];
 				$total*= ($interest / 100) + 1;
-				error_log('suming total (dues interest): '.$total);
+				// error_log('suming total (dues interest): '.$total);
+				CakeLog::write('debug', 'sale(dues):'.$total);
 				foreach($items as $k => $item) {
 					$item_price = round($item['unit_price'] * (1 + $interest / 100), 2);
 					$items[$k]['unit_price'] = $item_price;
@@ -1025,30 +1031,35 @@ class CheckoutController extends AppController
 
 	  if ($coupon_bonus) {
 	  	// $total-= $coupon_bonus;
-	  	error_log('suming total (coupon bonus): '.$coupon_bonus);
+	  	CakeLog::write('debug', 'sale(coupon):'.$coupon_bonus);
+	  	// error_log('suming total (coupon bonus): '.$coupon_bonus);
 	  }
 
 	  if ($bank_bonus) {
 	  	$total-= $bank_bonus;
-	  	error_log('suming total (bank bonus): '.$bank_bonus);
+	  	CakeLog::write('debug', 'sale(bank):'.$bank_bonus);
+	  	// error_log('suming total (bank bonus): '.$bank_bonus);
 	  }
 
 		// Add Delivery
 		$delivery_cost = 0;
 		$freeShipping = $this->Cart->isFreeShipping($total, $cart_totals['postal_address']);
-		$delivery_data = json_encode($this->deliveryCost(null, $cart_totals));
-		$delivery_cost = (integer) $delivery_data['rates'][0]['price'];
+		$delivery_data = json_decode($this->deliveryCost(null, $cart_totals));
+		$delivery_cost = (integer) $delivery_data->rates[0]->price;
 		if ($freeShipping) { 
-     	error_log('without delivery bc price is :'.$total.', cp:'. @$cart_totals['postal_address'] .'  and date = '.gmdate('Y-m-d'));
+			CakeLog::write('debug', 'sale(free):'.'without delivery bc price is :'.$total.', cp:'. @$cart_totals['postal_address'] .'  and date = '.gmdate('Y-m-d'));
+     	// error_log('without delivery bc price is :'.$total.', cp:'. @$cart_totals['postal_address'] .'  and date = '.gmdate('Y-m-d'));
 			// $delivery_cost=0;
 		} else {
 			if ($cart_totals['cargo'] === 'shipment') {
 				/* if (isset($delivery_data['rates'][0]['price'])) {
 				} */
-				error_log('suming delivery to price: '.$delivery_cost);
+				CakeLog::write('debug', 'sale(delivery): '.$delivery_cost);
+				// error_log('suming delivery to price: '.$delivery_cost);
 				$total += $delivery_cost;
 			}
-			error_log('suming total: '.$total);
+			CakeLog::write('debug', 'sale(total): '.$total);
+			// error_log('suming total: '.$total);
 			$items[] = array(
 				'title' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
 				'description' => 'PEDIDO: '.$sale_id.' - COSTO DE ENVIO',
@@ -1070,7 +1081,8 @@ class CheckoutController extends AppController
 			'deliver_cost' => $delivery_cost,
 			'shipping_type' => $shipping_type_value
 		);
-		CakeLog::write('debug', 'sale(2)'.json_encode($sale_object));
+
+		CakeLog::write('debug', 'sale(object)'.json_encode($sale_object));
 
 		$this->Sale->save($sale_object);
 
@@ -1130,11 +1142,12 @@ class CheckoutController extends AppController
 		// CakeLog::write('debug', 'settings(1)'.json_encode($settings));
 		// error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
-		error_log("total mp: " . $total);
+		// error_log("total mp: " . $total);
+		CakeLog::write('debug', 'sale(mp): '.$total);
 
 		// check if paying method is bank
 		if ($sale['payment_method'] === 'bank') {
-			CakeLog::write('debug', 'destroy(1)');
+			CakeLog::write('debug', 'destroy session(1)');
 			$this->Cart->destroy();
 
 			CakeLog::write('debug', '(cbu) ok - Cuando uses el cbu se iniciará la compra');
@@ -1174,7 +1187,7 @@ class CheckoutController extends AppController
 			die("no payments yet");
 		}*/
 
-		CakeLog::write('debug', '(mp) preference_data:'.json_encode($preference_data));
+		CakeLog::write('debug', 'sale(mp preference):'.json_encode($preference_data));
 		return array(
 			'success' => true,
 			'message' => "Cue",
