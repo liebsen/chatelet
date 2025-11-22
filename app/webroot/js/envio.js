@@ -6,10 +6,9 @@ selectShipping = function (e, shipping, cost) {
 	}
 
 	// var cart = JSON.parse(localStorage.getItem('cart')) || {}
-	var coupon = cart_totals.coupon_benefits || 0
-	var subtotal = cart_totals.total_products || 0
+	var coupon_benefits = cart_totals.coupon_benefits || 0
+	var total_products = cart_totals.total_products || 0
 	var grand_total = cart_totals.grand_total || 0
-	var products_total = cart_totals.products_total || 0
 	//var subtotal = cart.subtotal_price
 	cargo = 'shipment'
 	const shipping_price = parseInt(settings.shipping_price_min)
@@ -22,8 +21,7 @@ selectShipping = function (e, shipping, cost) {
 
 	var total = 0
 	if (grand_total < shipping_price) {
-		products_total+= cost
-		total =  products_total - coupon_benefits + cost
+		total =  total_products - coupon_benefits + cost
 		$('#subtotal_envio').val(cost)
 		$('.delivery-cost').removeClass('hidden')
 		$('.delivery-cost').addClass('fadeIn')
@@ -47,10 +45,16 @@ selectShipping = function (e, shipping, cost) {
 
 	console.log({total})
 	fxTotal(total)
+
+		var cp_input = $('.input-cp').val().trim()
+		var cp = parseInt(cp_input)
+
+
 	$('.paying-with').delay(1000).fadeIn()
 	$('.checkout-continue').fadeIn()
 	$('input[name="shipping"]').val(shipping)
 	$('input[name="cargo"]').val(cargo)
+	$('input[name="postal_address"]').val(cp)
 	localStorage.setItem('cargo', 'delivery')
 	localStorage.setItem('delivery_select', shipping)
 	// onErrorAlert(`Como querés recibir tu compra`, `Te lo llevamos por ${shipping.toUpperCase()}`, 0, true);
@@ -108,6 +112,7 @@ selectStore = function(e) {
   $('input[name="cargo"]').val(cargo)
   $('input[name="store"]').val($(e).attr('store'))
   $('input[name="store_address"]').val($(e).attr('store-address'))
+  $('input[name="postal_address"]').val("")
 }
 
 $(document).ready(function() {

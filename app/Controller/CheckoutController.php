@@ -97,15 +97,19 @@ class CheckoutController extends AppController
 			}
 
 			$delivery_cost = 0;
-			// CakeLog::write('debug', 'envio(data):'.json_encode($data));	
-			// CakeLog::write('debug', 'envio(cart_totals):'.json_encode($cart_totals));	
+			CakeLog::write('debug', 'envio(data):'.json_encode($data));	
+			CakeLog::write('debug', 'envio(cart_totals):'.json_encode($cart_totals));	
 
 			if($data['cargo'] == 'shipment' && empty($cart_totals['free_shipping'])) {
-				$delivery_data = json_decode($this->deliveryCost($data['postal_address'], $cart_totals));
-				// CakeLog::write('debug', 'envio(json):'.json_encode($delivery_data));	
-				// CakeLog::write('debug', 'envio(price)(1):'.$delivery_data->rates[0]->price);
+				$delivery_data = json_decode($this->deliveryCost(
+					$data['postal_address'], 
+					$data['shipping'],
+					$cart_totals
+				));
+				CakeLog::write('debug', 'envio(json):'.json_encode($delivery_data));	
+				CakeLog::write('debug', 'envio(price)(1):'.$delivery_data->rates[0]->price);
 				$delivery_cost = (float) $delivery_data->rates[0]->price;
-				// CakeLog::write('debug', 'envio(deliverycost)(1):'.$delivery_cost);
+				CakeLog::write('debug', 'envio(deliverycost)(1):'.$delivery_cost);
 				if(!empty($delivery_cost)) {
 					$cart_totals['delivery_cost'] = $delivery_cost;
 				} else {
@@ -458,17 +462,16 @@ class CheckoutController extends AppController
 		return json_encode($coupon_parsed);
 	}
 
-	public function deliveryCost($cp, $sale = null){
+	public function deliveryCost($cp, $code = null, $sale = null){
 		if ($sale['cargo'] === 'takeaway') {
 			$json['rates'][] = 0;
 			return $json;
 		}
 
 		$cp = $cp ?? @$sale['postal_address'];
-
-		// CakeLog::write('debug','deliveryCost(cp):'.$cp);
-
-		$code = @$sale['shipping'];
+		$code = $code ?? @$sale['shipping'];
+		CakeLog::write('debug','deliveryCost(cp):'.$cp);
+		CakeLog::write('debug','deliveryCost(code):'.$code);
 
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
@@ -1063,8 +1066,6 @@ class CheckoutController extends AppController
 		// Add Delivery
 		$delivery_cost = 0;
 		$freeShipping = $this->Cart->isFreeShipping($total, $cart_totals['postal_address']);
-		$delivery_data = json_decode($this->deliveryCost(null, $cart_totals));
-		$delivery_cost = (float) $delivery_data->rates[0]->price;
 
 		if ($freeShipping) { 
 			// CakeLog::write('debug', 'sale(free):'.'without delivery bc price is :'.$total.', cp:'. @$cart_totals['postal_address'] .'  and date = '.gmdate('Y-m-d'));
@@ -1076,6 +1077,14 @@ class CheckoutController extends AppController
 				} */
 				// CakeLog::write('debug', 'sale(delivery): '.$delivery_cost);
 				// error_log('suming delivery to price: '.$delivery_cost);
+
+				$delivery_data = json_decode($this->deliveryCost(
+					$cart_totals['postal_address'], 
+					$cart_totals['shipping'], 
+					$cart_totals
+				));
+				$delivery_cost = (float) $delivery_data->rates[0]->price;
+
 				$total += $delivery_cost;
 			}
 			// CakeLog::write('debug', 'sale(total): '.$total);
