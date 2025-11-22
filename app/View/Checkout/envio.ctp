@@ -32,8 +32,8 @@ echo $this->element('checkout-params');
 		<input type="hidden" name="cargo" value=""/>
 		<input type="hidden" name="store" value=""/>
 		<input type="hidden" name="store_address" value=""/>
-		<input type="hidden" name="postal_address" value="<?= $this->Session->read('cp') ?>"/>
-		<div class="flex-col w-100">
+		<input type="hidden" name="postal_address" value="<?= $cart_totals['postal_address'] ?>"/>
+		<div class="flex-col">
 			<ul class="nav nav-tabs nav-dark">
 			  <li class="active"><a href="#envio" data-toggle="tab"><span>Envío a domicilio</span></a></li>
 			  <li><a href="#retiro" data-toggle="tab"><span>Retiro en local GRATIS</span></a></li>
@@ -98,7 +98,7 @@ echo $this->element('checkout-params');
 			<?php echo $this->Form->end(); ?>	
 			<hr>					
 		</div>
-		<div class="flex-col gap-1 dw-22">
+		<div class="flex-col">
 			<?php echo $this->element('resume', array('show_list' => true)) ?>
 		</div>
 	</div>

@@ -150,9 +150,9 @@ class CartComponent extends Component {
       }
     }
 
-    $cart_totals['total_products'] = $total;
-    $cart_totals['delivery_cost'] = $cart_totals['delivery_cost'] ?? 0;
-    $cart_totals['coupon_benefits'] = $cart_totals['coupon_benefits'] ?? 0;
+    $cart_totals['total_products'] = (float) $total;
+    $cart_totals['delivery_cost'] = (float) $cart_totals['delivery_cost'] ?? 0;
+    $cart_totals['coupon_benefits'] = (float) $cart_totals['coupon_benefits'] ?? 0;
 
     $grand_total = $cart_totals['total_products'] - 
       $cart_totals['coupon_benefits'] + 
@@ -161,7 +161,7 @@ class CartComponent extends Component {
     $cart_totals['free_shipping'] = $this->isFreeShipping($grand_total);
     $cart_totals['grand_total'] = $grand_total;
 
-    CakeLog::write('debug', 'cart_totals(1):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
+    // CakeLog::write('debug', 'cart_totals(1):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
     // CakeLog::write('debug', 'cart(1):'. json_encode($cart));
 
     $this->controller->Session->write('cart_totals', $cart_totals);

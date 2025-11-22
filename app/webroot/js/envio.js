@@ -8,6 +8,8 @@ selectShipping = function (e, shipping, cost) {
 	// var cart = JSON.parse(localStorage.getItem('cart')) || {}
 	var coupon = cart_totals.coupon_benefits || 0
 	var subtotal = cart_totals.total_products || 0
+	var grand_total = cart_totals.grand_total || 0
+	var products_total = cart_totals.products_total || 0
 	//var subtotal = cart.subtotal_price
 	cargo = 'shipment'
 	const shipping_price = parseInt(settings.shipping_price_min)
@@ -17,9 +19,11 @@ selectShipping = function (e, shipping, cost) {
 	$(e).addClass('selected')
 	$('.delivery-cost').addClass('hidden')
 	$('.shipping-cargo').text(shipping.toUpperCase())	
-	var grand_total = cart_totals.grand_total 
+
+	var total = 0
 	if (grand_total < shipping_price) {
-		grand_total+= cost
+		products_total+= cost
+		total =  products_total - coupon_benefits + cost
 		$('#subtotal_envio').val(cost)
 		$('.delivery-cost').removeClass('hidden')
 		$('.delivery-cost').addClass('fadeIn')
@@ -28,7 +32,7 @@ selectShipping = function (e, shipping, cost) {
 
 	// console.log({subtotal, coupon, price, cost, shipping_price})
 
-	$('.cost_total').text('$ ' + formatNumber(grand_total))
+	$('.cost_total').text('$ ' + formatNumber(total))
 
   /* var cart = JSON.parse(localStorage.getItem('cart')) || {}
 	cart.shipping = shipping
@@ -38,9 +42,10 @@ selectShipping = function (e, shipping, cost) {
   cart.subtotal_price = subtotal
   localStorage.setItem('cart', JSON.stringify(cart)) */
 
-	let total = formatNumber(grand_total)
+	total = formatNumber(total)
 	let info = $(e).data('info')
 
+	console.log({total})
 	fxTotal(total)
 	$('.paying-with').delay(1000).fadeIn()
 	$('.checkout-continue').fadeIn()
@@ -70,6 +75,7 @@ selectStore = function(e) {
   // $('.cost_total').text('$ ' + formatNumber(total_orig))
   // $('.calc_total').text('$ ' + formatNumber(total_orig))
   format_total = formatNumber(grand_total)
+  console.log({total})
   fxTotal(format_total)
   /* cart.cargo = 'takeaway'
   //console.log('total_price(2)', price)
@@ -151,7 +157,6 @@ $(document).ready(function() {
 		$('.input-cp').removeClass('ok');				
 		$('.delivery-cost').addClass('hidden')
 		// $('.takeaway-options li').removeClass('selected')
-
 		if(cp_input == '' || cp < 1000 || cp > 9999) {
 			onErrorAlert('Código postal inválido', `Por favor ingresá un código postal válido`);
 			return false
@@ -190,7 +195,7 @@ $(document).ready(function() {
 							$(`.shipping-options li:first-child`).click()
 						}
 					}
-				}, 750)
+				}, 100)
 			} else {
 				$('.input-status').removeClass('ok');
 				$('.input-status').addClass('wrong');
