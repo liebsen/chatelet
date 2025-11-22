@@ -4,6 +4,7 @@ echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
 echo $this->Html->script('bootstrapValidator', array('inline' => false));
 ?>
+	<input type="hidden" name="customer[email]" value="<?= @$userData['User']['email'] ?>" />
 	<h5 class="text-uppercase">
 		<i class="fa fa-user-o"></i>
 		Envío a domicilio
@@ -75,13 +76,25 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 		<div class="col-md-6 pr-0-d">
 			<label for="direccion">Piso</label>
 			<div class="form-group">
-				<input min="0" class="form-control" placeholder="Piso" title="Piso" name="customer[floor]" type="number" value="<?=(!empty($userData['User']['floor']))?$userData['User']['floor']:''; ?>"/>
+				<input min="0" class="form-control" placeholder="Piso" title="Piso" name="customer[floor]" type="number" value="<?=$userData['User']['floor']??'' ?>"/>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<label for="Depto">Depto</label>
 			<div class="form-group">
-				<input title="Depto" class="form-control" id="Depto" placeholder="Depto" name="customer[depto]" type="text" value="<?= (!empty($userData['User']['depto']))?$userData['User']['depto']:''; ?>"/>
+				<input title="Depto" class="form-control" id="Depto" placeholder="Depto" name="customer[depto]" type="text" value="<?= $userData['User']['depto'] ?? ''; ?>"/>
 			</div>
 		</div>
+		<div class="col-md-6">
+			<label for="Depto">Código postal</label>
+			<div class="form-group">
+				<input title="Depto" class="form-control" id="postal_address" placeholder="1430" name="customer[postal_address]" type="text" value="<?= $userData['User']['postal_address'] ?? '' ?>"/>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<label for="Depto">Obs.</label>
+			<div class="form-group">
+				<textarea title="Depto" class="form-control" id="obs" placeholder="obs" name="customer[obs]"></textarea>
+			</div>
+		</div>		
 	</div>

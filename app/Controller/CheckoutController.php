@@ -7,6 +7,8 @@ require __DIR__ . '/../Vendor/andreani/vendor/autoload.php';
 $dotenv = new Dotenv\Dotenv(__DIR__ . '/../Vendor/andreani/');
 $dotenv->load();
 
+
+// use Cake\Routing\Router;
 use AlejoASotelo\Andreani;
 
 class CheckoutController extends AppController
@@ -25,7 +27,8 @@ class CheckoutController extends AppController
 		'Coupon',
 		'Logistic',
 		'Setting',
-		'Legend'
+		'Legend',
+		'Router'
 	);
 	
 	public $checkout_steps = array(
@@ -97,8 +100,8 @@ class CheckoutController extends AppController
 			}
 
 			$delivery_cost = 0;
-			CakeLog::write('debug', 'envio(data):'.json_encode($data));	
-			CakeLog::write('debug', 'envio(cart_totals):'.json_encode($cart_totals));	
+			// CakeLog::write('debug', 'envio(data):'.json_encode($data));	
+			// CakeLog::write('debug', 'envio(cart_totals):'.json_encode($cart_totals));	
 
 			if($data['cargo'] == 'shipment' && empty($cart_totals['free_shipping'])) {
 				$delivery_data = json_decode($this->deliveryCost(
@@ -106,10 +109,11 @@ class CheckoutController extends AppController
 					$data['shipping'],
 					$cart_totals
 				));
-				CakeLog::write('debug', 'envio(json):'.json_encode($delivery_data));	
-				CakeLog::write('debug', 'envio(price)(1):'.$delivery_data->rates[0]->price);
+				
+				// CakeLog::write('debug', 'envio(json):'.json_encode($delivery_data));	
+				// CakeLog::write('debug', 'envio(price)(1):'.$delivery_data->rates[0]->price);
 				$delivery_cost = (float) $delivery_data->rates[0]->price;
-				CakeLog::write('debug', 'envio(deliverycost)(1):'.$delivery_cost);
+				// CakeLog::write('debug', 'envio(deliverycost)(1):'.$delivery_cost);
 				if(!empty($delivery_cost)) {
 					$cart_totals['delivery_cost'] = $delivery_cost;
 				} else {
@@ -134,7 +138,7 @@ class CheckoutController extends AppController
 				$cart_totals[$part] = $data[$part];
 			}
 
-			// CakeLog::write('debug', 'updateTotals(2)'.json_encode($cart_totals));
+			CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
 			$this->Cart->update(null, $cart_totals);
 
       die(json_encode(array(
@@ -148,6 +152,7 @@ class CheckoutController extends AppController
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);
+
 		$oca = new Oca();
 		$provincias = $oca->getProvincias();
 		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
@@ -161,7 +166,7 @@ class CheckoutController extends AppController
       die(json_encode(array(
         'success' => false, 
         'errors' => 'Método de pago no recibido',
-        'redirect' => $this->Url->build(array( 'controller' => 'carrito', 'action' => 'index' ))
+        'redirect' => Router::url(array( 'controller' => 'carrito', 'action' => 'index' ))
       )));			
 			// $this->redirect(array( 'controller' => 'carrito', 'action' => 'index' ));
 		}
@@ -251,7 +256,7 @@ class CheckoutController extends AppController
 			// CakeLog::write('debug', '-.-.-.-.-.-.-.-.-.-.- sale -.-.-.-.-.-.-.-.-.-');
 			$sale = $this->sale();
 			// here we start the sale
-			// CakeLog::write('debug', 'data(10):'. json_encode($data));
+			CakeLog::write('debug', 'confirma(sale):'. json_encode($sale));
 
 			die(json_encode(array(
 				'success' => true,
@@ -478,7 +483,7 @@ class CheckoutController extends AppController
 		$this->loadModel('LogisticsPrices');
 		//Codigo Postal
 		$this->Session->write('cp', $cp);
-		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.11') {
+		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') {
 			$dummy = '{"freeShipping":false,"rates":[{"title":"Oca","code":"oca","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/628eb1ba29efd.svg","info":"Env\u00edos a todo el pa\u00eds","price":987,"centros":[],"valid":true},{"title":"Speed Moto","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/6292a6f2d79b7.jpg","code":"speedmoto","info":"10 a\u00f1os brindando confianza a nuestros clientes","price":"700.00","centros":[],"valid":true}],"itemsData":{"count":1,"price":1994.99,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}';
 			return json_encode(json_decode($dummy));
 		}
@@ -729,7 +734,7 @@ class CheckoutController extends AppController
 		return $price;
 	}
 
-	public function sale() {
+	private function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		$settings = $this->load_settings();
 		$this->autoRender = false;
@@ -749,7 +754,7 @@ class CheckoutController extends AppController
 		if(empty($cart) || empty($cart_totals)) {
 			// header("Location: /");
 			$this->Session->setFlash('Tu carrito está vacío','default',array('class' => 'hidden error'));
-			// CakeLog::write('debug', 'cart empty');
+			CakeLog::write('debug', 'sale(err): cart empty');
 			return array(
 				'success' => false,
 				'errors' => "Tu carrito está vacío"
@@ -771,24 +776,27 @@ class CheckoutController extends AppController
 
 
 
-		// CakeLog::write('debug', 'sale:'. json_encode($sale, JSON_PRETTY_PRINT));
-		// CakeLog::write('debug', 'sale (cart_totals):'. json_encode($cart_totals, JSON_PRETTY_PRINT));
-		return false; // - - - - - - remove - - - - - - -
+		CakeLog::write('debug', 'sale(data):'. json_encode($data, JSON_PRETTY_PRINT));
+		CakeLog::write('debug', 'sale(cart_totals):'. json_encode($cart_totals, JSON_PRETTY_PRINT));
+		// return false; // - - - - - - remove - - - - - - -
 
 		if(!isset($user_id)){
-			$check_user_id = 0;
-			$check_user = $this->User->find('first', [
-				'conditions' => [
-					'email' => $sale['email']
-				]
-			]);
+			$check_user = false;
 
-			if($check_user) { // user found assing id
+			if(!empty($customer['email'])) {
+				$check_user = $this->User->find('first', [
+					'conditions' => [
+						'email' => $customer['email']
+					]
+				]);				
+			}
+
+			if($check_user) { // match user by email
 				// CakeLog::write('debug', '(sale) found user by email:' . $check_user['User']['id']);
-				$check_user_id = $check_user['User']['id'];
+				$user_id = $check_user['User']['id'];
+				CakeLog::write('debug', 'sale(user): captured'. $user_id);
 			} else { // user not found create and assing id
-				// CakeLog::write('debug', '(sale) creating new user:' . $sale['email']);
-				$user_object = [
+				$user_object = array(
 					'email' => $customer['email'],
 					'name' => $customer['name'],
 					'surname' => $customer['surname'],
@@ -798,9 +806,10 @@ class CheckoutController extends AppController
 					'city' => $customer['city'],
 					'street' => $customer['street'],
 					'floor' => $customer['floor'],
-				];
+				);
 				$this->User->save($user_object);
 				$user_id = $this->User->id;
+				CakeLog::write('debug', 'sale(user): created'. $user_id);
 			}
 		}
 
@@ -815,10 +824,11 @@ class CheckoutController extends AppController
 			// error_log('checkout error: bank not available');
 			// $this->redirect(array( 'controller' => 'carrito', 'action' => 'checkout' ));
 			// CakeLog::write('debug', 'No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias');
+			CakeLog::write('debug', 'sale(err): No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias');
 			return array(
 				'success' => false,
 				'errors' => "No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias",
-				'redirect' => $this->Url->build(array( 
+				'redirect' => Router::url(array( 
 					'controller' => 'checkout', 
 					'action' => 'confirma' 
 				)),
@@ -844,10 +854,11 @@ class CheckoutController extends AppController
 			// error_log(json_encode($sale));
 			// $this->redirect(array( 'action' => 'clear' ));
 			// CakeLog::write('debug', 'No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias');
+			CakeLog::write('debug', 'sale(err): Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo');			
 			return array(
 				'success' => false,
 				'errors' => "Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo. Disculpe las molestias",
-				'redirect' => $this->Url->build(array( 'action' => 'clear' )),
+				'redirect' => Router::url(array( 'action' => 'clear' )),
 			);
 		}
 
@@ -879,7 +890,7 @@ class CheckoutController extends AppController
 
 		if (!empty($cart_totals['coupon'])) {
 			// error_log('checking coupon: '.$cart_totals['coupon']);
-			// CakeLog::write('debug', 'sale(coupon):'.$cart_totals['coupon']);
+			CakeLog::write('debug', 'sale(coupon):'.$cart_totals['coupon']);
 	    $coupon = $this->Coupon->find('first', [
 	      'conditions' => [
 	        'code' => $cart_totals['coupon'],
@@ -1022,7 +1033,7 @@ class CheckoutController extends AppController
 
 		$total_wo_discount = (int) $total;
 		// error_log('suming total (wo_discount): '.$total);
-		// CakeLog::write('debug', 'sale(wo_discount):'.$total);
+		CakeLog::write('debug', 'sale(wo_discount):'.$total);
 
 	  // Check bank paying method
 	  if ($cart_totals['payment_method'] === 'bank') {
@@ -1040,7 +1051,7 @@ class CheckoutController extends AppController
 				$interest = (float) $legend['Legend']['interest'];
 				$total*= ($interest / 100) + 1;
 				// error_log('suming total (dues interest): '.$total);
-				// CakeLog::write('debug', 'sale(dues):'.$total);
+				CakeLog::write('debug', 'sale(dues):'.$total);
 				foreach($items as $k => $item) {
 					$item_price = round($item['unit_price'] * (1 + $interest / 100), 2);
 					$items[$k]['unit_price'] = $item_price;
@@ -1053,13 +1064,13 @@ class CheckoutController extends AppController
 
 	  if ($coupon_bonus) {
 	  	// $total-= $coupon_bonus;
-	  	// CakeLog::write('debug', 'sale(coupon):'.$coupon_bonus);
+	  	CakeLog::write('debug', 'sale(coupon):'.$coupon_bonus);
 	  	// error_log('suming total (coupon bonus): '.$coupon_bonus);
 	  }
 
 	  if ($bank_bonus) {
 	  	$total-= $bank_bonus;
-	  	// CakeLog::write('debug', 'sale(bank):'.$bank_bonus);
+	  	CakeLog::write('debug', 'sale(bank):'.$bank_bonus);
 	  	// error_log('suming total (bank bonus): '.$bank_bonus);
 	  }
 
@@ -1068,14 +1079,13 @@ class CheckoutController extends AppController
 		$freeShipping = $this->Cart->isFreeShipping($total, $cart_totals['postal_address']);
 
 		if ($freeShipping) { 
-			// CakeLog::write('debug', 'sale(free):'.'without delivery bc price is :'.$total.', cp:'. @$cart_totals['postal_address'] .'  and date = '.gmdate('Y-m-d'));
+			CakeLog::write('debug', 'sale(freeshipping):'.'without delivery bc price is :'.$total.', cp:'. @$cart_totals['postal_address'] .'  and date = '.gmdate('Y-m-d'));
      	// error_log('without delivery bc price is :'.$total.', cp:'. @$cart_totals['postal_address'] .'  and date = '.gmdate('Y-m-d'));
 			// $delivery_cost=0;
 		} else {
 			if ($cart_totals['cargo'] === 'shipment') {
 				/* if (isset($delivery_data['rates'][0]['price'])) {
 				} */
-				// CakeLog::write('debug', 'sale(delivery): '.$delivery_cost);
 				// error_log('suming delivery to price: '.$delivery_cost);
 
 				$delivery_data = json_decode($this->deliveryCost(
@@ -1083,7 +1093,10 @@ class CheckoutController extends AppController
 					$cart_totals['shipping'], 
 					$cart_totals
 				));
+
+				CakeLog::write('debug', 'sale(delivery_Data): '.json_encode($delivery_data));
 				$delivery_cost = (float) $delivery_data->rates[0]->price;
+				CakeLog::write('debug', 'sale(deliverycost): '.$delivery_cost);
 
 				$total += $delivery_cost;
 			}
@@ -1111,18 +1124,20 @@ class CheckoutController extends AppController
 			'shipping_type' => $shipping_type_value
 		);
 
-		// CakeLog::write('debug', 'sale(object)'.json_encode($sale_object));
+		CakeLog::write('debug', 'sale(object)'.json_encode($sale_object, JSON_PRETTY_PRINT));
 
 		$this->Sale->save($sale_object);
-
+		CakeLog::write('debug', 'sale(100)');
 		//Re - Registar Sale Products
 		// $sale['Sale']['id'] = $sale_id;
 
 		if (!$this->SaleProduct->saveMany($product_ids)) {
+
+			CakeLog::write('debug', 'sale(101)');
       $this->Session->setFlash(
-          'Error al procesar la compra, por favor intente nuevamente',
-          'default',
-          array('class' => 'hidden error')
+        'Error al procesar la compra, por favor intente nuevamente',
+        'default',
+        array('class' => 'hidden error')
       );
 
       CakeLog::write('debug', 'sale(err): Error al procesar la compra, por favor intente nuevamente');
@@ -1137,6 +1152,7 @@ class CheckoutController extends AppController
       $this->Sale->delete($sale_id,true);
 			// return $this->redirect($this->referer());
 		}
+		CakeLog::write('debug', 'sale(102)');
 		//Register Extra Info
 		$to_save = array(
 			'id' 		=> $sale_id,
@@ -1155,7 +1171,7 @@ class CheckoutController extends AppController
 			'telefono'	=> $customer['telephone'],
 			'email'		=> $customer['email'],
 			'regalo'		=> count($gift_ids),
-			'package_id'=> @$delivery_data['itemsData']['package']['id'] ?: 1,
+			'package_id'=> @$delivery_data->itemsData->package->id ?? 1,
 			'value' 	=> $total, // @$delivery_data['itemsData']['price'],
 			'zip_codes' => $zipCodes,
 			'cargo'		=> $cart_totals['cargo'],
@@ -1167,30 +1183,33 @@ class CheckoutController extends AppController
 			'dues'		=> $cart_totals['dues']
 		);
 
-		// CakeLog::write('debug', 'sale(to_save)'.json_encode($to_save));
-		// CakeLog::write('debug', 'settings(1)'.json_encode($settings));
+		CakeLog::write('debug', 'sale(to_save)'.json_encode($to_save));
+		CakeLog::write('debug', 'settings(1)'.json_encode($settings));
 		// error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
 		// error_log("total mp: " . $total);
 		// CakeLog::write('debug', 'sale(mp): '.$total);
+		CakeLog::write('debug', 'sale(103)');
 
 		// check if paying method is bank
 		if ($sale['payment_method'] === 'bank') {
 			// CakeLog::write('debug', 'destroy session(1)');
 			$this->Cart->destroy();
 
-			// CakeLog::write('debug', '(cbu) ok - Cuando uses el cbu se iniciará la compra');
+			CakeLog::write('debug', '(cbu) ok - Cuando uses el cbu se iniciará la compra');
 			return array(
 				'success' => true,
 				'message' => "Cuando uses el cbu se iniciará la compra",
-				'redirect' => $this->Url->build(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' )),
+				'redirect' => Router::url(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' )),
 			);
 		}
 
 		//MP
-		$mp = new MP(Configure::read('mercadopago_client_id'), Configure::read('mercadopago_client_secret'));
-		$success_url = Router::url(array('controller' => 'carrito', 'action' => 'clear'), true);
-		$failure_url = Router::url(array('controller' => 'carrito', 'action' => 'failed'), true);
+		// $mp = new MP(Configure::read('mercadopago_client_id'), Configure::read('mercadopago_client_secret'));
+		
+		$mp = new MP($settings['mercadopago_client_id'], $settings['mercadopago_client_secret']);
+		$success_url = Router::url(array('controller' => 'checkout', 'action' => 'success'), true);
+		$failure_url = Router::url(array('controller' => 'checkout', 'action' => 'error'), true);
 
 		$preference_data = array(
 			'external_reference' => $sale_id,
@@ -1209,14 +1228,10 @@ class CheckoutController extends AppController
     		'installments' => $cart_totals['payment_dues']
     	)
 		);
+		CakeLog::write('debug', 'sale(104)');
 
-		/*if(!empty(Configure::read('MP_IN_SANDBOX_MODE'))) {
-			echo '<pre>';
-			var_dump($preference_data);
-			die("no payments yet");
-		}*/
+		CakeLog::write('debug', 'sale(preference):'.json_encode($preference_data));
 
-		// CakeLog::write('debug', 'sale(mp preference):'.json_encode($preference_data));
 		return array(
 			'success' => true,
 			'message' => "Cue",
@@ -1259,31 +1274,6 @@ class CheckoutController extends AppController
 			'message' => 'Se creó con éxito la preferencia',
 			'redirect' => $redirect
 		);
-	}
-
-	public function preference(){
-		$this->autoRender = false;
-		// CakeLog::write('debug', 'preference(3) -- should not be called -- ');
-		$cart_totals = $this->Session->read('cart_totals');
-		$data = $this->request->data;
-
-		// replace session config with post object pairs
-		foreach($data as $key => $item) {
-			$cart_totals[$key] = $item;
-		}
-
-    if(empty($cart_totals['payment_method'])){
-      $cart_totals['payment_method'] = 'mercadopago';
-    }
-
-		$this->Session->write('cart_totals', $cart_totals);
-		error_log('payment_method:'.$cart_totals['payment_method']);
-		//CakeLog::write('debug', 'updateTotals(3)');
-		// CakeLog::write('debug', 'updateTotals(4)');		
-		$this->Cart->update(null, $cart_totals);
-		// $this->Session->write('cart', $cart);
-
-		return json_encode(array('success' => true, 'data' => array_values($cart)));
 	}
 
 	private function notify_user($data, $status){

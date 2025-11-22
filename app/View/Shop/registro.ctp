@@ -62,7 +62,6 @@ if (!$loggedIn) {
 					Ingresa tus datos personales para crear una cuenta.
 				</p>
 				<div class="d-flex flex-column justify-content-start align-items-center gap-1 content">
-
 					<div class="row w-100">
 						<div class="col-md-6">
 							<label for="email">Email</label>
@@ -73,11 +72,6 @@ if (!$loggedIn) {
 							</div>
 							<span class="validation-email"></span>
 						</div>
-
-
-
-
-
 						<div class="col-md-6">
 							<label for="nombre">Nombre</label>
 							<div class="form-group">
@@ -296,7 +290,6 @@ if (!$loggedIn) {
             var me = $(this),
             data = me.serialize(),
             url = me.attr('action');
-
             $.post(url, data)
                 .success(function(response) {
                     console.log('register', response)
@@ -339,6 +332,6 @@ if (!$loggedIn) {
         }
       }, 100)
     });
-    $("#registro_form").bootstrapValidator('validate');		
+    // $("#registro_form").bootstrapValidator('validate');		
 	})
 </script>

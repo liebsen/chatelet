@@ -49,14 +49,13 @@
 			} ?>
 		</div>
 		<?php endif ?>	
-		<!--pre><?php var_dump($cart_totals); ?></pre-->
 		<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 		<input type="hidden" id="subtotal_envio" value="" />
 		<div class="w-100">
 		<?php if (!empty($cart_totals['discount'])) : ?>
 			<div class="summary-item">
 				<span class="text-weight-thin">Descuento </span>
-				<span><?= \price_format($cart_totals['discount']) ?></span><!--span>.00</span-->
+				<span><?= \price_format($cart_totals['discount']) ?></span>
 			</div>
 		<?php endif ?>
 			<div class="summary-item">
@@ -73,10 +72,9 @@
 				<span class="text-weight-thin text-success">Envía <span class="shipping-cargo"><?php echo $cart_totals['shipping'] ?></span></span>
 				<span id="delivery_cp"></span> <span>$ <span class="cost_delivery"><?php echo $cart_totals['delivery_cost'] ?></span></span>
 			</div>			
-		<!--pre><?php var_dump($cart_totals); ?></pre-->
 			<div class="summary-item cost_total-container">
 				<span class="text-weight-bold">Total </span> 
-				<span class="calc_total text-weight-bold"><?= \price_format($cart_totals['grand_total']) ?></span><!--span>.00</span-->
+				<span class="calc_total text-weight-bold"><?= \price_format($cart_totals['grand_total']) ?></span>
 			</div>
 			<hr class="mt-1">
 		<?php if(!empty($cart_totals['free_shipping'])) :?>
