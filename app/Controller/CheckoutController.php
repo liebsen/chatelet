@@ -966,11 +966,11 @@ class CheckoutController extends AppController
 	        $unit_price = @$producto['discount'];
 	      }
 
-				if($sale['payment_method'] === 'mercadopago' && !empty($producto['mp_discount']) && !empty((float)(@$producto['mp_discount']))) {
+				if($cart_totals['payment_method'] === 'mercadopago' && !empty($producto['mp_discount']) && !empty((float)(@$producto['mp_discount']))) {
 	        $unit_price = @ceil(round($unit_price * (1 - (float) $producto['mp_discount'] / 100)));
 	      }
 
-				if($sale['payment_method'] === 'bank' && !empty($producto['bank_discount']) && !empty((float)(@$producto['bank_discount']))) {
+				if($cart_totals['payment_method'] === 'bank' && !empty($producto['bank_discount']) && !empty((float)(@$producto['bank_discount']))) {
 	        $unit_price = @ceil(round($unit_price * (1 - (float) $producto['bank_discount'] / 100)));
 	      }				
 			}
@@ -1259,7 +1259,7 @@ class CheckoutController extends AppController
 
 		return array(
 			'success' => true,
-			'message' => 'Se creó con éxito la preferencia',
+			'message' => 'Se creó con éxito la preferencia, espere un momento... ',
 			'redirect' => $redirect
 		);
 	}
