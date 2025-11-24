@@ -14,18 +14,18 @@
         </li>
         <li class="text-center">
           <a href="#payments">
-            Pagos
+            Mercado pago
           </a>
         </li>
         <li class="text-center">
           <a href="#analytics">
-            Reportes
+            Analíticas
           </a>
         </li>
         <li class="text-center">
-            <a href="#google-fonts">
-                 Fuente
-            </a>
+          <a href="#google-fonts">
+            Fuente
+          </a>
         </li>
       </ul>
       <div class="tab-content p-7">
@@ -46,7 +46,7 @@
 			            <label for="enabled_0">Artículo</label>
 			            <input type="radio" class="form-control" id="enabled_0" name="data[opengraph_type]" value="article" <?php echo $disabled; ?> />
 			          </div>
-			          <span class="text-muted">Indica si debe mostrarse como artículo o como sitio web.</span>
+			          <span class="text-muted">Indica si se debe trabajar con entorno real o de pruebas</span>
 			        </div>
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
@@ -148,10 +148,10 @@
         </div>
 
         <div class="tab-pane" id="payments">
-	        <h4 class="sub-header">Datos de Mercado pago</h4>
+	        <!--h4 class="sub-header">Mercado pago</h4-->
 	        <p>Proporciona el client_secret y client_id proporcionado por Mercado pago.</p>
 	        <div class="control-group">
-	          <label class="control-label" for="columns-text"><?php echo __('Modo producción'); ?></label>
+	          <label class="control-label" for="columns-text"><?php echo __('Modo de operación'); ?></label>
 	          <div class="controls text-center switch-scale">
 	            <?php
 	              $enabled = @$settings['mercadopago_sandbox_on'] == 'on' ? 'checked' : '';

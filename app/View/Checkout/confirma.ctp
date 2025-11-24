@@ -65,7 +65,7 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 	      		})      		
 	          setTimeout(() => {
 	          	console.log({redirect: res.redirect})
-	          	// location.href = redirect || location.href
+	          	location.href = res.redirect || '/checkout/error'
 	          }, 3000)
 	      	} else {
 	      		$.growl.error({

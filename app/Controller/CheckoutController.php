@@ -229,10 +229,8 @@ class CheckoutController extends AppController
 			$this->autoRender = false;
 
 			$response = array(
-				'success' => true,
-				'message' => 'La compra se realizó con éxito',
-				'redirect' => '',
-				'sale' => $sale
+				'success' => false,
+				'errors' => 'No se puedo procesar tu compra'
 			);
 
 			// check integrity
@@ -264,8 +262,7 @@ class CheckoutController extends AppController
 			$sale = $this->sale();
 			// here we start the sale
 			CakeLog::write('debug', 'confirma(sale):'. json_encode($sale));
-
-			return json_encode($response);
+			return json_encode($sale);
 		}
 	}
 
@@ -1129,13 +1126,10 @@ class CheckoutController extends AppController
 		CakeLog::write('debug', 'sale(object)'.json_encode($sale_object, JSON_PRETTY_PRINT));
 
 		$this->Sale->save($sale_object);
-		CakeLog::write('debug', 'sale(100)');
 		//Re - Registar Sale Products
 		// $sale['Sale']['id'] = $sale_id;
 
 		if (!$this->SaleProduct->saveMany($product_ids)) {
-
-			CakeLog::write('debug', 'sale(101)');
       $this->Session->setFlash(
         'Error al procesar la compra, por favor intente nuevamente',
         'default',
@@ -1154,7 +1148,6 @@ class CheckoutController extends AppController
       $this->Sale->delete($sale_id,true);
 			// return $this->redirect($this->referer());
 		}
-		CakeLog::write('debug', 'sale(102)');
 		//Register Extra Info
 		$to_save = array(
 			'id' 		=> $sale_id,
@@ -1191,7 +1184,6 @@ class CheckoutController extends AppController
 		$this->Sale->save($to_save);
 		// error_log("total mp: " . $total);
 		// CakeLog::write('debug', 'sale(mp): '.$total);
-		CakeLog::write('debug', 'sale(103)');
 
 		// check if paying method is bank
 		if ($sale['payment_method'] === 'bank') {
@@ -1227,19 +1219,10 @@ class CheckoutController extends AppController
 	    	'pending' => $failure_url
     	),
     	'payment_methods' => array(
-    		'installments' => $cart_totals['payment_dues']
+    		'installments' => (int) $cart_totals['payment_dues']
     	)
 		);
-		CakeLog::write('debug', 'sale(104)');
-
 		CakeLog::write('debug', 'sale(preference):'.json_encode($preference_data));
-
-		return array(
-			'success' => true,
-			'message' => "Cue",
-			'redirect' => 'none',
-		);
-
 		$preference = $mp->create_preference($preference_data);
 		//Save Data
 		$sale_data = array(
@@ -1256,7 +1239,8 @@ class CheckoutController extends AppController
 
 		// $redirect = "/shop/mis_compras/{$sale_id}";
 		//Setting
-		if(empty(Configure::read('MP_IN_SANDBOX_MODE'))) {
+		// if(empty(Configure::read('MP_IN_SANDBOX_MODE'))) {
+		if($settings['mercadopago_sanbox_on'] == 'off') {
 			//Production
 			$mp->sandbox_mode(FALSE);
 			$redirect = $preference['response']['sandbox_init'];
@@ -1270,6 +1254,8 @@ class CheckoutController extends AppController
 			$redirect = $preference['response']['sandbox_init_point'];
 			// return $this->redirect($preference['response']['sandbox_init_point']);
 		}
+
+		CakeLog::write('debug', 'sale(redirect):'.json_encode($redirect));
 
 		return array(
 			'success' => true,
