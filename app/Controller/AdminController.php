@@ -1552,27 +1552,16 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function application(){
-		$navs = array(
-			'Textos' => array(
-				'icon' 		=> 'gi gi-text',
-				'url'		=> Configure::read('mUrl').'/admin/application/basic',
-				'active'	=> '/admin/application/basic'
-			),
-			'Imagen' => array(
-				'icon' 		=> 'gi gi-image',
-				'url'		=> Configure::read('mUrl').'/admin/application/image',
-				'active'	=> '/admin/application/image'
-			)
-		);
-
-		$this->set('navs', $navs);		
-	  $this->loadModel('Setting');
 		if($this->request->is('post')){
+
+			$this->RequestHandler->respondAs('application/json');
+			$this->autoRender = false;
+
 			$data = $this->request->data;
 			$og = $data['opengraph'];
 			unset($data['opengraph']);
-
       foreach($data as $id => $value) {
+      	CakeLog::write('debug', 'save:'. json_encode(['id' => $id, 'value' => $value]));
         $this->Setting->save(['id' => $id, 'value' => $value]);
       }
 
@@ -1581,15 +1570,37 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				$this->Setting->save(['id' => 'opengraph_image', 'value' => Configure::read('uploadUrl') . $file]);
 			}
 
-     	$data = parent::load_settings();
-     	$this->set('data', $data);			
-		}
-		$h1 = array(
+			$response = array(
+				'success' => true,
+				'message' => 'Se actualizó la Aplicación'
+			);
+
+			return json_encode($response);
+		} else {
+
+			$navs = array(
+				'Textos' => array(
+					'icon' 		=> 'gi gi-text',
+					'url'		=> Configure::read('mUrl').'/admin/application/basic',
+					'active'	=> '/admin/application/basic'
+				),
+				'Imagen' => array(
+					'icon' 		=> 'gi gi-image',
+					'url'		=> Configure::read('mUrl').'/admin/application/image',
+					'active'	=> '/admin/application/image'
+				)
+			);
+		  			
+			$h1 = array(
 			'name' => 'Aplicación',
 			'icon' => 'fa fa-cog'
 			);
 
-		$this->set('h1', $h1);
+			$this->set('navs', $navs);		
+		  $this->loadModel('Setting');
+			$this->set('h1', $h1);
+     	$this->set('data', $this->load_settings());			
+		}
 	}
 
 	public function promos(){
