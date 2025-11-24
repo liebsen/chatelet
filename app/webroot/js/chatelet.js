@@ -661,7 +661,9 @@ $(document).ready(function() {
       const video = $("#carousel .item.active").find("video")
       $('.navbar-chatelet:not(.short)').removeClass('fadeIn')
       $('.shop-options').removeClass('slideInDown')
-      void document.querySelector('.navbar-chatelet').offsetWidth;
+      if(document.querySelector('.navbar-chatelet')) {
+        void document.querySelector('.navbar-chatelet').offsetWidth;
+      }
       if (scroll > 100) {
         if (!fakeshown && lastscroll < scroll) {
           // $('#carousel-banners').addClass('invisible')

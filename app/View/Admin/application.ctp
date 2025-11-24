@@ -1,6 +1,9 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
+<?php echo $this->Html->script('jquery.growl.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
 <?php echo $this->Html->script('application-form.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
+<?php echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION')) ?>
+
 	<form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
     <div class="custom-tabs block-themed">
       <ul class="nav nav-tabs" id="myTab" role="tablist">

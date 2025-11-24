@@ -80,24 +80,32 @@ class CheckoutController extends AppController
 		}
 
 		if ($this->request->is('post')) {
+			$this->RequestHandler->respondAs('application/json');
+			$this->autoRender = false;
+
 			$data = $this->request->data;
 			$cart_totals = $this->Session->read('cart_totals');
 
 			if(empty($data)) {
-	      die(json_encode(array(
+	      return json_encode(array(
 	        'success' => false, 
 	        'errors' => 'No se recibió datos de envío'
-	      )));
+	      ));
 			}
 
 			$customer = $data['customer'];
 
 			if($data['cargo'] == 'shipment' && empty($data['customer'])) {
-	      die(json_encode(array(
+	      return json_encode(array(
 	        'success' => false, 
 	        'errors' => 'No se recibió datos de persona'
-	      )));
+	      ));
 			}
+      
+      $response = array(
+        'success' => true, 
+        'message' => 'OK, pasemos a pago'
+      );
 
 			$delivery_cost = 0;
 			// CakeLog::write('debug', 'envio(data):'.json_encode($data));	
@@ -141,12 +149,7 @@ class CheckoutController extends AppController
 			CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
 			$this->Cart->update(null, $cart_totals);
 
-      die(json_encode(array(
-        'success' => true, 
-        'message' => 'OK, pasemos a pago'
-      )));
-
-			return false;
+      return json_encode($response);
 		}
 
 		$stores = $this->Store->find('all', [
@@ -162,30 +165,29 @@ class CheckoutController extends AppController
 	}
 
 	public function pago() {
-		if(empty($this->Session->read('cart'))) {
-      die(json_encode(array(
-        'success' => false, 
-        'errors' => 'Método de pago no recibido',
-        'redirect' => Router::url(array( 'controller' => 'carrito', 'action' => 'index' ))
-      )));			
-			// $this->redirect(array( 'controller' => 'carrito', 'action' => 'index' ));
-		}
 		
 		if ($this->request->is('post')) {
+			$this->RequestHandler->respondAs('application/json');
+			$this->autoRender = false;
+
 			$pago = $this->request->data;
+			$response = array(
+				'success' => true,
+				'message' => 'OK, pasemos a pago'
+			);
 
 			if(empty($pago)) {
-	      die(json_encode(array(
-	        'success' => false, 
-	        'errors' => 'Datos de pago no recibidos'
-	      )));
+				return json_encode(array(
+					'success' => false,
+					'errors' => 'Datos de pago no recibidos'
+				));
 			}
 
 			if(empty($pago['payment_method'])) {
-	      die(json_encode(array(
-	        'success' => false, 
-	        'errors' => 'Método de pago no recibido'
-	      )));
+				return json_encode(array(
+					'success' => false,
+					'errors' => 'Método de pago no recibido'
+				));
 			}
 
 			$partials = array(
@@ -202,12 +204,7 @@ class CheckoutController extends AppController
 			// CakeLog::write('debug', 'updateTotals(2)'.json_encode($cart_totals));
 			$this->Cart->update(null, $cart_totals);
 
-      die(json_encode(array(
-        'success' => true, 
-        'message' => 'OK, pasemos a pago'
-      )));
-
-			return false;
+			return json_encode($response);
 		}
 				
     $legends = $this->Legend->find('all', [
@@ -228,29 +225,39 @@ class CheckoutController extends AppController
 		}
 		
 		if ($this->request->is('post')) {
+			$this->RequestHandler->respondAs('application/json');
+			$this->autoRender = false;
+
+			$response = array(
+				'success' => true,
+				'message' => 'La compra se realizó con éxito',
+				'redirect' => '',
+				'sale' => $sale
+			);
+
 			// check integrity
 			if(empty($cart_totals['payment_method'])) {
-	      die(json_encode(array(
-	        'success' => false, 
-	        'message' => 'No se recibió método de pago'
-	      )));
+				return json_encode(array(
+					'success' => false,
+					'errors' => 'No se recibió método de pago'
+				));
 			}
 
 			if($cart_totals['cargo'] == 'shipment' && empty($cart_totals['customer'])) {
-	      die(json_encode(array(
+	      return json_encode(array(
 	        'success' => false, 
 	        'errors' => 'No se recibió datos de persona de entrega'
-	      )));
+	      ));
 			}
 
 			$data = $this->request->data;
 	    // $settings = $this->load_settings();
 
 			if(empty($data['confirm'])) {
-	      die(json_encode(array(
+	      return json_encode(array(
 	        'success' => false, 
 	        'errors' => 'No se recibieron datos de confirmacion'
-	      )));
+	      ));
 			}
 
 			// CakeLog::write('debug', '-.-.-.-.-.-.-.-.-.-.- sale -.-.-.-.-.-.-.-.-.-');
@@ -258,12 +265,7 @@ class CheckoutController extends AppController
 			// here we start the sale
 			CakeLog::write('debug', 'confirma(sale):'. json_encode($sale));
 
-			die(json_encode(array(
-				'success' => true,
-				'message' => 'La compra se realizó con éxito',
-				'redirect' => 'r3direct',
-				'sale' => $sale
-			)));
+			return json_encode($response);
 		}
 	}
 
