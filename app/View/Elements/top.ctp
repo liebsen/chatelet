@@ -75,7 +75,7 @@
         <span class="corner-pin is-clickable" style="top: 0.5rem!important" onclick="$('.dev-note').remove()">
           <i class="ico-times"></i>
         </span>
-        <span class="text-sm text-dark">Esta <b>no es la tienda oficial</b> de Châtelet</span>
+        <span class="text-sm text-dark">Esta <b>no es la tienda</b> oficial de <b>Châtelet</b></span>
       </div>
       <style>
         .dev-note {

@@ -17,11 +17,8 @@
   <style type="text/css">
 
 #optionsHelp {     
-  padding: 0.75rem 0;
-  padding-bottom: 2rem;
   text-align: center; 
   font-weight: 800;
-  min-height: 92px;
   overflow-x: auto;
   width: 100%;
 }
@@ -31,10 +28,8 @@
 }
 
 #optionsHelp.mobile {
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #e7e7e7;
+  width: 100%;  
 }
 
 #optionsHelp.mobile a {
@@ -43,12 +38,14 @@
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
-  padding: 0 1rem;
+  border:none;
+  padding: 1rem;
 }
 
 #optionsHelp.mobile a.active {
-  background-color: #e7e7e7;
-  border-color: #e7e7e7;
+  background-color: white;
+  /*border-color: #e7e7e7;*/
+  color: #333;
   transition: background 1s ease-out;
 }
 
@@ -60,7 +57,7 @@
   padding: 0 1.5rem;
   font-weight: 300;
   text-transform: uppercase;
-  border-bottom: 1px solid #b0b0b0;
+  border-bottom: 1px solid #e7e7e7;
   transition: all 100ms linear;
 }
 
@@ -76,6 +73,7 @@
     left:0; 
     right: 0; 
     top: 0;
+    padding: 1rem;
   }
   #optionsHelp.top-fixed { 
     top: 4rem; 
@@ -85,13 +83,9 @@
 }
 
 @media (max-width: 768px) {
-  #optionsHelp {padding: 0;}
+  /* #optionsHelp {padding: 0;}*/
   #optionsHelp a { 
-    padding: 30px 10px;
-    min-height: 92px; 
-    width: 100%; 
-    background: white;
-    border-color: #f8f8f8;
+    padding: 0!important;
     /* border-bottom: 2px solid #f6f6f5;*/
   }
 }
