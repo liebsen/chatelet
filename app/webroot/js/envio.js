@@ -57,6 +57,7 @@ selectShipping = function (e, shipping, cost) {
 	$('input[name="postal_address"]').val(cp)
 	localStorage.setItem('cargo', 'delivery')
 	localStorage.setItem('delivery_select', shipping)
+
 	// onErrorAlert(`Como querés recibir tu compra`, `Te lo llevamos por ${shipping.toUpperCase()}`, 0, true);
 }
 
@@ -109,6 +110,7 @@ selectStore = function(e) {
   $('a[href="#retiro"]').click()
   $('.checkout-continue').fadeIn()
 	cargo = 'takeaway'
+	$('input[name="shipping"]').val("")
   $('input[name="cargo"]').val(cargo)
   $('input[name="store"]').val($(e).attr('store'))
   $('input[name="store_address"]').val($(e).attr('store-address'))

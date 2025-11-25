@@ -255,7 +255,7 @@ if (!$loggedIn) {
 				</div>
 				<?php echo $this->Form->end(); ?>
 			</div>
-			<div class="flex-col dw-22 desktop">
+			<div class="flex-col desktop">
 				<div class="card">
 					<div class="d-flex flex-column justify-content-center align-items-start gap-05">
 						<h3>

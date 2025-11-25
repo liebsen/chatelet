@@ -438,9 +438,11 @@ html, body {
 .pb-4 {
   padding-bottom: 1rem!important;
 }
-
 .ps-4 {
 	padding: 0.75rem 1.75rem;
+}
+.p-md-5 {
+	padding: 0;
 }
 .min-w-4 {
 	min-width: 4rem;
@@ -1660,9 +1662,8 @@ span.validation-password {
     /*transform: scale(1) perspective(1024px) rotateY(-10deg) rotateX(3deg) rotate(3deg) translateY(0rem) translateX(-2rem);*/
     box-shadow: 0 0 20px 0 rgba(26, 26, 67, .25);
   }
-  .dw-22 {
-  	min-width: 22rem;
-  	max-width: 22rem;
+  .flex-col:last-child {
+  	min-width: 35%;
   }
 	.max-25 {
 	  max-width: 25rem;
@@ -1677,13 +1678,7 @@ span.validation-password {
 	  padding-right: 0!important;
 	}
 }
-.p-md-5 {
-	padding: 0;
-}
 @media screen and (min-width: 769px) {
-  .flex-col {
-    flex: 1;    
-  }
   .flex-col .card {
     padding: 1rem;
   }  
