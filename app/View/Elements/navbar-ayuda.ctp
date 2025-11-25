@@ -82,14 +82,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  /* #optionsHelp {padding: 0;}*/
-  #optionsHelp a { 
-    padding: 0!important;
-    /* border-bottom: 2px solid #f6f6f5;*/
-  }
-}
-
 
   </style>
 
