@@ -48,8 +48,9 @@
 
 	body.top-fixed .wizard-container {
 		position: fixed;
-		background: linear-gradient(hsla(0,0%,100%,1),hsla(0,0%,100%,1) 50%, hsla(0,0%,100%,1) 95%, hsla(0,0%,100%,0));
-		padding: 0.5rem;
+		/* background: linear-gradient(hsla(0,0%,100%,1),hsla(0,0%,100%,1) 50%, hsla(0,0%,100%,1) 95%, hsla(0,0%,100%,0)); */
+		background-color: white;
+		padding: 0.75rem;
 		z-index: 9;
 		top: 0;
 		left: 0;
@@ -82,9 +83,9 @@
     display: block;
     position: absolute;
     left: 50%;
-    top: 40px;
+    top: 41px;
     background-color: #ccc;
-    height: 3px;
+    height: 1px;
     width: 100%;
   }
   .wizard-progress .wizard-step.complete:before {

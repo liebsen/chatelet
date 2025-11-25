@@ -58,10 +58,12 @@
 				<span><?= \price_format($cart_totals['discount']) ?></span>
 			</div>
 		<?php endif ?>
+		<?php if ($cart_totals['total_products'] != $cart_totals['grand_total']) :?>
 			<div class="summary-item">
 				<span class="text-weight-thin">Subtotal </span>
 				<span><?= \price_format($cart_totals['total_products']) ?></span>
 			</div>
+		<?php endif ?>
 			<div class="summary-item coupon-discount<?php echo empty($cart_totals['coupon_benefits']) ? ' hidden' : '' ?>">
 				<span class="text-weight-thin text-success">Cupón </span>
 				<span class="text-success">
@@ -76,7 +78,7 @@
 				<span class="text-weight-bold">Total </span> 
 				<span class="calc_total text-weight-bold"><?= \price_format($cart_totals['grand_total']) ?></span>
 			</div>
-			<hr class="mt-1">
+			<hr class="mt-1 mb-2">
 		<?php if(!empty($cart_totals['free_shipping'])) :?>
 			<div class="summary-item">
 				<span class="text-sm text-success">Envío <b>GRATIS</b></span>
