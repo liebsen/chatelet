@@ -19,7 +19,7 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 				<div class="card-body">
 					<div class="d-flex flex-column justify-content-center align-items-center text-center gap-05">
 						<h2 class="text-bolder">Confirma tu compra</h2>
-						<p>Todo listo <?php echo $user['name'] ?? 'Invitada'; ?>! Solo falta confirmar. <br>Tu compra es de <?php echo \price_format($cart_totals['grand_total']) ?></p>
+						<p>¡Todo listo <?php echo $user['name'] ?? 'Invitada'; ?>! Solo falta confirmar. <br>Tu compra es de <?php echo \price_format($cart_totals['grand_total']) ?></p>
 						<?php echo $this->Form->create('confirma_form', array(
 							'id' => 'confirma_form',
 							'url' => array(

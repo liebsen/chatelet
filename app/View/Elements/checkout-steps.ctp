@@ -48,7 +48,7 @@
 
 	body.top-fixed .wizard-container {
 		position: fixed;
-		background: linear-gradient(hsla(0,0%,100%,1),hsla(0,0%,100%,1) 50%, hsla(0,0%,100%,1) 90%, hsla(0,0%,100%,0.1));
+		background: linear-gradient(hsla(0,0%,100%,1),hsla(0,0%,100%,1) 50%, hsla(0,0%,100%,1) 95%, hsla(0,0%,100%,0));
 		padding: 0.5rem;
 		z-index: 9;
 		top: 0;
@@ -82,41 +82,44 @@
     display: block;
     position: absolute;
     left: 50%;
-    top: 37px;
+    top: 40px;
     background-color: #ccc;
-    height: 2px;
+    height: 3px;
     width: 100%;
   }
   .wizard-progress .wizard-step.complete:before {
-  	background-color: #333;
+  	background-color: #999;
   }
 	.wizard-progress .wizard-node {
 		display: inline-block;
     border: 1px solid #ccc;
     background-color: #fff;
     color: #ccc;
-    border-radius: 32px;
-    height: 32px;
-    width: 32px;
+    border-radius: 40px;
+    height: 40px;
+    width: 40px;
     position: absolute;
     top: 22px;
     left: 50%;
-    padding-top: 6px;
-    line-height: 1.3;
-    margin-left: -18px;
-    font-weight: 800;
+    padding-top: 13px;
+    line-height: 1;
+    margin-left: -21px;
+    font-weight: 1000;
 	}
 	.wizard-progress .wizard-step.complete {
-		color: #333;
+		color: #999;
 	}
 	.wizard-progress .wizard-step.current {
 		color: #333;
 		font-weight: bold;
 	}	
+	.wizard-progress .wizard-step.complete .wizard-label {
+		color: #999;
+	}
 	.wizard-progress .wizard-step.complete .wizard-node {
-		border-color: #333;
+		border-color: #999;
 		color: white;
-		background-color: #333;
+		background-color: #999;
 	}
 	.wizard-progress .wizard-step.current .wizard-node {
 		border-color: #333;
