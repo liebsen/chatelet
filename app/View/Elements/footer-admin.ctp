@@ -12,7 +12,9 @@
     <!-- Footer -->
     <footer>
         <div class="pull-left">
-            <span id="year-copy"></span> &copy; <strong><a href="https://chatelet.com.ar" target="_blank"><?php echo $template['name'] . ' ' . $template['version']; ?></a></strong>
+            <a href="https://chatelet.com.ar" target="_blank">
+                <span id="year-copy"></span> &copy; <strong><?php echo $template['name'] . ' ' . $template['version']; ?></strong>
+            </a>
         </div>
     </footer>
     <!-- END Footer -->

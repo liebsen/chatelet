@@ -177,9 +177,16 @@ function parseTemplate ($str, $data) {
   return $html;
 }
 
+function version_readable($version) {  
+  $a = str_split((string) $version);
+  $a = array_merge(array_slice($a, 0, 1), array("."), array_slice($a, 1));
+  $a = array_merge(array_slice($a, 0, 4), array("."), array_slice($a, 4));
+  return implode("", $a);
+}
+
 function shipping_text($settings, $cart_totals) {  
   $text_shipping_min_price = '';
-  
+
   if ($settings['shipping_type'] == 'min_price') {
     $params = [
       'precio_min_envio_gratis' => str_replace(',00','',number_format($settings['shipping_price_min'], 0, ',', '.')),

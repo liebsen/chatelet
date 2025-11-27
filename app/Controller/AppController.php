@@ -181,16 +181,8 @@ class AppController extends Controller
     $version_count = 1111;
 
     if(file_exists($version_file)) {
-      $version_date = date("d/m/Y H:i\h", filemtime($version_file));
+      $version_date = date("d/m/Y H:i", filemtime($version_file));
       $version_count = (int) file_get_contents($version_file);
-    }
-
-    if (isset($_REQUEST['font'])) {
-      $this->Session->write('font',urldecode($_REQUEST['font']));
-    }
-
-    if (isset($_REQUEST['exitfont'])) {
-      $this->Session->delete('font');
     }
 
     //Configure::write('client_id', '6773841105361656');
@@ -208,8 +200,7 @@ class AppController extends Controller
         } 
     }*/
 
-    $version_short = number_format($version_count / 10000, 2);
-    $this->set('version_text', str_replace('.0', '', $version_short) . ' ' . $version_date);
+    $this->set('version_text', \version_readable($version_count) . ' (' . $version_date . ')');
   }
 
   public function sendEmail($data, $subject, $template) {
