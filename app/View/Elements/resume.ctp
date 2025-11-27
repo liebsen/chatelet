@@ -85,7 +85,7 @@
 			</div>
 		<?php else : ?>
 			<div class="summary-item">
-				<span class="text-sm text-success"><?php echo \shipping_text($settings) ?></span>
+				<span class="text-sm text-success"><?php echo \shipping_text($settings, $cart_totals) ?></span>
 			</div>
 		<?php endif ?>
 		</div>

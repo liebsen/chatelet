@@ -177,19 +177,19 @@ function parseTemplate ($str, $data) {
   return $html;
 }
 
-function shipping_text($settings) {
-
-  $vars = [
-    'precio_min_envio_gratis' => str_replace(',00','',number_format($settings['shipping_price_min'], 0, ',', '.')),
-    'resto_min_envio_gratis' => str_replace(',00','',number_format($settings['shipping_price_min'] - (integer) $cart_totals['grand_total'], 0, ',', '.')),
-    'total' => str_replace(',00','',number_format($cart_totals['grand_total'], 0, ',', '.'))
-  ];
-
-  // CakeLog::write('debug', 'vars:'. json_encode($vars));
-  // CakeLog::write('debug', 'settings:'. json_encode($settings));
+function shipping_text($settings, $cart_totals) {  
+  $text_shipping_min_price = '';
+  
   if ($settings['shipping_type'] == 'min_price') {
-    $text_shipping_min_price = ($settings['display_text_shipping_min_price'] && $settings['text_shipping_min_price']) ? \parseTemplate($settings['text_shipping_min_price'], $vars) : '';
-    //$this->set('text_shipping_min_price',$text_shipping_min_price);
+    $params = [
+      'precio_min_envio_gratis' => str_replace(',00','',number_format($settings['shipping_price_min'], 0, ',', '.')),
+      'resto_min_envio_gratis' => str_replace(',00','',number_format($settings['shipping_price_min'] - (integer) $cart_totals['grand_total'], 0, ',', '.')),
+      'total' => str_replace(',00','',number_format($cart_totals['grand_total'], 0, ',', '.'))
+    ];
+
+    $text_shipping_min_price = ($settings['display_text_shipping_min_price'] && $settings['text_shipping_min_price']) ? 
+      \parseTemplate($settings['text_shipping_min_price'], $params) : 
+      '';
   }
 
   return $text_shipping_min_price;
