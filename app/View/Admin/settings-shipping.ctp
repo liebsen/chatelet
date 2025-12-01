@@ -18,15 +18,15 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Tipo de envío'); ?></label>
             <div class="controls">
-            <p>
+            <div class="d-flex flex-start gap-1">
               <input class="form-control" type="radio" name="data[value]" id="default" value="default" <?php if (!empty($setting['Setting']['value'] == 'default')){ echo "checked=checked"; } ?> /> <label  class="is-clickable" for="default">Envío normal</label>
-            </p>
-            <p>
+            </div>
+            <div class="d-flex flex-start gap-1">
               <input class="form-control" type="radio" name="data[value]" id="min_price" value="min_price" <?php if (!empty($setting['Setting']['value'] == 'min_price')){ echo "checked=checked"; } ?> /> <label  class="is-clickable" for="min_price">Envío gratuito para compra mínima [<b><?php echo $price['Setting']['value']; ?></b> pesos]</label>
-            </p>
-            <p>
+            </div>
+            <div class="d-flex flex-start gap-1">
               <input class="form-control" type="radio" name="data[value]" id="zip_code" value="zip_code" <?php if (!empty($setting['Setting']['value'] == 'zip_code')){ echo "checked=checked"; } ?> /> <label  class="is-clickable" for="zip_code">Envío gratuito para código postal. Monto mínimo permanece activo si el valor es mayor a cero. [<b><?=$amount?></b> códigos postales]</label>
-            </p>
+            </div>
           </div>
           <br />     
           <div class="dummy-block<?php echo $setting['Setting']['value'] == 'default' ? ' dummy-block-hidden' : '' ?>">

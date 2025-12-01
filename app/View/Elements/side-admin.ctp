@@ -81,7 +81,7 @@
                                     $link_class = ' class="'. $menu_link . $active . $update . '"';
                             ?>
                             <li<?php echo $li_active; ?>>
-                                <a href="<?php echo $url; ?>"<?php echo $link_class; ?>><?php echo $icon . $link['name']; ?></a>
+                                <a href="<?php echo $url; ?>"<?php echo $link_class; ?>><?php echo $icon ?> <span><?php echo $link['name']; ?></span></a>
                                 <?php if (isset($link['sub']) && $link['sub']) { ?>
                                     <ul>
                                         <?php foreach ($link['sub'] as $sub_link) {

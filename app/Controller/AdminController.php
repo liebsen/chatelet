@@ -2776,7 +2776,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 		$h1 = array(
 			'name' => 'Envíos',
-			'icon' => 'gi gi-car'
+			'icon' => 'fa fa-motorcycle'
 			);
 		$this->set('h1', $h1);
 
