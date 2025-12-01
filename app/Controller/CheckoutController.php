@@ -458,6 +458,10 @@ class CheckoutController extends AppController
 			'coupon_bonus' => $coupon_bonus,
 		);
 
+		if($coupon_parsed->paying_with) {
+			$coupon_update['paying_with'] = $coupon_parsed->paying_with;
+		}
+
 		/* $coupon_parsed->data["updated"] = $updated;
 		$coupon_parsed->data["total"] = $total;
 		$coupon_parsed->data["bonus"] = $discount; */

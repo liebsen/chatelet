@@ -151,11 +151,12 @@ function filtercoupon ($data, $config = null, $amount = 0) {
     $payments = explode(',',$item['coupon_payment']);
     $valid_for = implode(' o ', $payments);
     $valid_for = str_replace('bank', 'transferencia', $valid_for);
-    $ret = (object) [
+    $ret->paying_with = $valid_for;
+    /* $ret = (object) [
       'status' => 'error',
       'title' => "Restricción de método de pago",
       'message' => "Esta promo solo es válida pagando con {$valid_for}"
-    ];
+    ]; */
   }
 
   if($amount && $min_amount && $min_amount > $amount) {

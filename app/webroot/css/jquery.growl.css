@@ -40,7 +40,7 @@
   position: relative;
   margin-bottom: 0.5rem;
   margin-left: 0.5rem;
-  left: 0;
+  bottom: 0;
   border-radius: 5px;
   border: 1px solid #999;
   box-shadow: 2px 2px 0 #6661;
@@ -48,11 +48,11 @@
   transition: all 0.4s ease-in-out; 
 }
 .growl.growl-incoming {
-  left: -20rem;
+  bottom: -100rem;
   opacity: 0;
   filter: alpha(opacity=0); }
 .growl.growl-outgoing {
-  left: -20rem;
+  bottom: -100rem;
   opacity: 0;
   filter: alpha(opacity=0); }
 .growl.growl-small {

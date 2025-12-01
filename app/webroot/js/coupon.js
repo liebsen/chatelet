@@ -71,10 +71,11 @@ function submitCoupon() {
       $('.coupon_bonus').text( "$ " + discounted_formatted )
       $('.input-coupon-status').removeClass('wrong');
       $('.input-coupon-status').addClass('ok');
+      const paying_with = res.paying_with ? ` Pagando con ${res.paying_with}` : ''
 
-      onSuccessAlert(`${res.data.code.toUpperCase()}`, res.data.info);
+      onSuccessAlert(`${res.data.code.toUpperCase()}`, res.data.info + paying_with.toUpperCase());
 
-      $('.coupon-info-info').html(`<span class="text-success text-bold">${res.data.code}</span> - ${res.data.info}`)
+      $('.coupon-info-info').html(`<span class="text-success text-bold">${res.data.code}</span> - ${res.data.info} ${paying_with.toUpperCase()}`)
       $('.promo-code').text(res.data.code)
       
       coupon = coupon.toUpperCase()
@@ -98,7 +99,7 @@ function submitCoupon() {
       $('#cost').text( '0' );
       timeout = setTimeout( `onErrorAlert('${res.title}', '${res.message}')` , 200);
     }
-    localStorage.setItem('cart', JSON.stringify(cart))
+    // localStorage.setItem('cart', JSON.stringify(cart))
     $('.input-coupon').attr( 'data-valid' , parseInt(res.valid) );
   })
 
