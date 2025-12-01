@@ -846,8 +846,7 @@ class ShopController extends AppController {
 		exit();		
 	}
 
-  public function analytics()
-  {
+  public function analytics(){
     $this->autoRender = false;
 	  $cart = $this->Session->read('cart');
     if(!empty($cart)) {

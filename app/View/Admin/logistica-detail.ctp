@@ -81,7 +81,7 @@
             <h4 class="sub-header"><?php echo __('Prioridad de oferta'); ?></h4>
             <div class="alert alert-primary">
               <div class="control-group">
-                <label class="control-label" for="columns-text"><?php echo __('Envíos gratuitos'); ?></label>
+                <label class="control-label" for="columns-text"><?php echo __('Envío gratuito'); ?></label>
                 <div class="controls text-center switch-scale">
                   <?php
                     $enabled = (isset($logistic) && $logistic['Logistic']['free_shipping'] == 1 || !isset($logistic)) ? 'checked' : '';

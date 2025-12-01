@@ -2476,7 +2476,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	public function analytics($action = null) {
 		$navs = array(
 			'Búsquedas' => array(
-				'icon' 		=> 'gi gi-search',
+				'icon' 		=> 'gi gi-charts',
 				'url'		=> Configure::read('mUrl').'/admin/analytics',
 				'active'	=> '/admin/analytics'
 			),
@@ -2490,7 +2490,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->set('navs', $navs);
 		$h1 = array(
 			'name' => 'Analíticas',
-			'icon' => 'gi gi-search'
+			'icon' => 'gi gi-stats'
 		);
 		$this->set('h1', $h1);
 
@@ -3062,7 +3062,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->set('navs', $navs);
 
 		$h1 = array(
-			'name' => 'Newsletter',
+			'name' => 'Suscrpciones',
 			'icon' => 'gi gi-envelope'
 			);
 		$this->set('h1', $h1);
@@ -3086,6 +3086,43 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $this->set('subscriptions', $subscriptions);
 		return $this->render('subscriptions');
 	}
+
+
+  public function newsletters($action = null) {
+		$navs = array(
+			'Lista' => array(
+				'icon' 		=> 'gi gi-wifi',
+				'url'		=> Configure::read('mUrl').'/admin/newsletters',
+				'active'	=> '/admin/newsletters'
+			)
+		);
+		$this->set('navs', $navs);
+
+		$h1 = array(
+			'name' => 'Newsletters',
+			'icon' => 'gi gi-wifi'
+			);
+		$this->set('h1', $h1);
+
+		$this->loadModel('Newsletter');
+		// $this->loadModel('NewsletterUser');
+
+
+  	if ($action == 'delete' && $this->request->is('post')) {
+  		$this->autoRender = false;
+  		$this->Newsletter->delete($this->request->data['id']);
+  	}
+
+  	$config = array(
+    	'order'=> array( 'Newsletter.id DESC' )
+    );
+
+    $newsletters = $this->Newsletter->find('all',$config);
+
+    $this->set('newsletters', $newsletters);
+		return $this->render('newsletters');
+	}
+
 
 	public function onlyUploadImageColor()
 	{

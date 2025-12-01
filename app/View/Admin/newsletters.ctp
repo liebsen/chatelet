@@ -1,6 +1,6 @@
 <?php 
 	echo $this->element('admin-menu');
-	echo $this->Html->script('admin-delete', array('inline' => false));
+	echo $this->Html->script('admin-delete', array('inline' => false));	
 ?>
 <div class="row hide-print toolnav-right">
   <div class="col-xs-12 text-right p-2">
@@ -19,7 +19,7 @@
 		</div>
 
     <?php if(!isset($_GET['extended'])) :?>
-    <a href="/admin/subscriptions?extended=1">
+    <a href="/admin/newsletters?extended=1">
       <button class="btn btn-success" type="button">Ver todas</button>
     </a>
     <?php endif ?>
@@ -29,15 +29,19 @@
 	<table id="example-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Email'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Título'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($subscriptions as $key => $subscription): ?>        
+			<?php foreach ($newsletters as $key => $newsletter): ?>        
 				<tr>
 					<td>
-						<?=$subscription['Subscription']['email']?>
+						<?=$newsletter['Newsletter']['email_title']?>
+					</td>
+					<td>
+						<?=$newsletter['Newsletter']['status']??'waiting'?>
 					</td>
 					<td>            
 						<a 
@@ -46,9 +50,9 @@
 							title="" 
 							class="btn btn-xs btn-danger deletebutton" 
 							data-original-title="Eliminar" 
-							data-id="<?=$subscription['Subscription']['id']?>" 
-							data-url-back="<?=$this->Html->url(array('action'=>'subscriptions'))?>" 
-							data-delurl="<?=$this->Html->url(array('action'=>'subscriptions', 'delete'))?>" 
+							data-id="<?=$newsletter['Newsletter']['id']?>" 
+							data-url-back="<?=$this->Html->url(array('action'=>'newsletters'))?>" 
+							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'delete'))?>" 
 							data-msg="<?=__('¿Eliminar Newsletter?')?>"                   
 							>
 							<i class="gi gi-remove"></i>

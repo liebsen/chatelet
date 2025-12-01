@@ -33,7 +33,7 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
             Solo las que ya tienen descuento
           </label>
         </div-->
-        <div class="form-group">
+        <div class="form-group d-flex flex-start gap-1">
           <input class="form-control" type="checkbox" id="existent_only" value="1" checked/>
           <label for="existent_only">
             Solo las que ya tienen descuento
@@ -122,7 +122,7 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 						<a 
 							href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>"
 							data-toggle="tooltip" 
-							title="" 
+							title="Ver en la tienda (Nuevo tab)" 
 							target="_blank"
 							class="btn btn-xs btn-info" 
 							data-original-title="Editar">
@@ -131,7 +131,7 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 						<a 
 							href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>" 
 							data-toggle="tooltip" 
-							title="" 
+							title="Editar" 
 							class="btn btn-xs btn-success" 
 							data-original-title="Editar">
 							<i class="gi gi-pencil"></i>

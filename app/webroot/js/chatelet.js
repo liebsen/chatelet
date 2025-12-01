@@ -467,7 +467,6 @@ function layerClose() {
 }
 
 
-
 $(document).ready(function() {
   /* filter beforeunload events */
   var validNavigation = false;
@@ -494,7 +493,7 @@ $(document).ready(function() {
   });
 
   window.onbeforeunload = function() {                
-    if (!validNavigation) {    
+    if (!validNavigation && !location.pathname.includes('admin/')) {    
       sendBeacon()
     }
   } 

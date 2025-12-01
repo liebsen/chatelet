@@ -45,7 +45,7 @@
 						<?=$store['Store']['local']?>
 					</td>
 					<td>
-						<?=$store['Store']['lat'] . ' - '  .$store['Store']['lng']?>
+						<?=$store['Store']['lat'] . '/'  .$store['Store']['lng']?>
 					</td>
 					<td>
 						<div class="btn-group">   
