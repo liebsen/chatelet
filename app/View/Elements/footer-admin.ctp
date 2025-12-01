@@ -142,7 +142,6 @@
     echo $this->Html->script('jquery-1.11.0.min');
     echo $this->Html->script('bootstrap.min');
     echo $this->Html->script('plugins');
-    // echo $this->Html->script('chatelet');
-
+    echo $this->Html->script('main');
     echo $this->fetch('script');
 ?>

@@ -88,7 +88,7 @@
                 <!-- div#row -->
                 <div class="row">
                     <!-- Sidebar Toggle Buttons (Desktop & Tablet) -->
-                    <div class="col-sm-4">
+                    <div class="col-sm-12">
                         <ul class="navbar-nav-custom pull-left">
                             <!-- Desktop Button (Visible only on desktop resolutions) -->
                             <li class="">

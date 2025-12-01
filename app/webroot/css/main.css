@@ -3716,6 +3716,9 @@ a.thumbnail-borderless,
 /* Mobile up to landscape tablet */
 @media (max-width: 991px) {
 
+    .mini-profile {
+        display: none;
+    }
     #login-container {
         padding: 205px 0 10px 0;
     }
