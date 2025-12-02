@@ -47,7 +47,7 @@ $(function(){
 		// e.stopPropagation()
 		// var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		var selected = target.find('input').val()
-
+		cart_totals.payment_method = selected
 		const payment_dues = document.querySelector('.select-payment-option')
 
 		// console.log('select-payment-option', selected)

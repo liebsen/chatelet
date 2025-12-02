@@ -58,7 +58,12 @@ var getItems = () => {
   var subtotal = 0
   if(cart_items){
     cart_items.map((e) => {
-      subtotal+= parseFloat(e.price)
+      if(cart_totals.payment_method == 'bank' && e.bank_discount) {
+        const price = Math.ceil(Math.round(e.price * (1 - parseFloat(e.bank_discount) / 100)))
+        subtotal+= price
+      } else {
+        subtotal+= parseFloat(e.price)
+      }
     })
   }
   return subtotal
