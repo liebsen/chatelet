@@ -1132,7 +1132,7 @@ Te confirmamos el pago por tu compra en Chatelet.</p>
       	if(count($parts) < 2) {
 	      	$fname = __DIR__ . '/../webroot' . Configure::read('uploadUrl') . $img;
 	      	if(file_exists($fname)) {
-						$img_data = getimagesize();
+						$img_data = getimagesize($fname);
 			    	$media[] = implode('-', [($img_data[0] > $img_data[1] ? 'desktop' : 'mobile'), $img]);
 			    } 
 			  } else {
