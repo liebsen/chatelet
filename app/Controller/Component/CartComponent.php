@@ -21,7 +21,7 @@ class CartComponent extends Component {
       $cart_totals = $this->controller->Session->read('cart_totals');
     }
 
-	  $payment_method = @$cart_totals['payment_method'] ?: 'mercadopago';
+	  $payment_method = @$cart_totals['payment_method'] ?: 'bank';
     $groups = [];
     $counts = [];
     $total = 0;
@@ -178,7 +178,7 @@ class CartComponent extends Component {
 	public function sort() {
 		$cart = $this->controller->Session->read('cart');
 		$cart_totals = $this->controller->Session->read('cart_totals');
-		$payment_method = @$cart_totals['payment_method'] ?: 'mercadopago';
+		$payment_method = @$cart_totals['payment_method'] ?: 'bank';
 		$payment_dues = @$cart_totals['payment_dues'] ?: '1';
 		$groups = [];
 		$sort = [];

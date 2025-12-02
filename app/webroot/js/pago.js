@@ -36,7 +36,7 @@ $('.dues-select-option').click((e) => {
 
 $(function(){
 	localStorage.setItem('continue_shopping_url', window.location.pathname)
-	const payment_method = localStorage.getItem('payment_method') || 'mercadopago'
+	const payment_method = localStorage.getItem('payment_method') || 'bank'
 
 	$('.select-payment-option').click(e => {
 		const target = $(e.target).hasClass('select-payment-option') ? 

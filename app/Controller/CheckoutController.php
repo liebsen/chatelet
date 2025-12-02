@@ -750,7 +750,7 @@ class CheckoutController extends AppController
 		$product_ids = array();
 		$items = array();
 		$customer = $cart_totals['customer'];
-		$payment_method = $cart_totals['payment_method'] ?? 'mercadopago';
+		$payment_method = $cart_totals['payment_method'] ?? 'bank';
 		$payment_dues = $cart_totals['payment_dues'] ?? 1;
 
 		// lets check some shit

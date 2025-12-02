@@ -149,7 +149,7 @@ $(document).ready(function() {
     });
   });
 	setTimeout(() => {
-		const payment_method = localStorage.getItem('payment_method')  || 'mercadopago'
+		const payment_method = localStorage.getItem('payment_method')  || 'bank'
 		$('#'+payment_method).click()
 	}, 100)
 	if(carrito.gifts && carrito.gifts.length) {

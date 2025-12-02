@@ -46,7 +46,7 @@ function log2file($path, $data, $mode="a"){
 }
 
 function filtercoupon ($data, $config = null, $amount = 0) {
-  $payment_method = @$config['payment_method'] ?: 'mercadopago';
+  $payment_method = @$config['payment_method'] ?: 'bank';
   $item = $data['Coupon'];
   $coupon_type = '';
   $coupon_ids = [];

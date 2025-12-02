@@ -242,7 +242,7 @@
 				<?php echo $this->element('resume'); ?>
 			</div>
 			<?php else: ?>
-			<div class="container cart-empty text-center">
+			<div class="container cart-empty text-center text-muted">
 				<!--div class="icon-huge mt-4">
 					<i class="fa fa-shopping-bag fa-x2 text-muted"></i>
 				</div-->
