@@ -45,11 +45,17 @@ echo $this->Session->flash();
 
         <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
         <link rel="stylesheet" href="../css/themes.css">
-        <link rel="stylesheet" href="../css/jquery-growl.css">
+        <link rel="stylesheet" href="../css/jquery.growl.css">
         <!-- END Stylesheets -->
 
         <!-- Modernizr (browser feature detection library) & Respond.js (Enable responsive CSS code on browsers that don't support it, eg IE8) -->
         <script src="../js/vendor/modernizr-2.7.1-respond-1.4.2.min.js"></script>
+
+        <style type="text/css">
+            body {
+                background-color: #494949!important;
+            }
+        </style>
     </head>
 
     <!--

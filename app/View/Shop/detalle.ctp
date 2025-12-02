@@ -323,23 +323,23 @@ foreach ($properties as $property) {
                   );
 
           $number_ribbon = 0;
-	if (isset($alt_product['discount_label_show'])){
-		$number_ribbon = (int)@$alt_product['discount_label_show'];
-	}
+        	if (isset($alt_product['discount_label_show'])){
+        		$number_ribbon = (int)@$alt_product['discount_label_show'];
+        	}
           if (isset($alt_product['mp_discount']) && $alt_product['mp_discount'] > $number_ribbon){
             $number_ribbon = (int) @$alt_product['mp_discount'];
           }
           if (isset($alt_product['bank_discount']) && $alt_product['bank_discount'] > $number_ribbon){
             $number_ribbon = (int) @$alt_product['bank_discount'];
           }
-
-	$discount_flag = (@$alt_product['category_id']!='134' && !empty($number_ribbon))?'<div class="discount-flag">'.$number_ribbon.'% OFF</div>':'';
+          $discount_flag = (@$alt_product['category_id']!='134' && !empty($number_ribbon))?'<div class="discount-flag">'.$number_ribbon.'% OFF</div>':'';
           $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
 
 
               if(!$stock){ ?>
                <div class="col-sm-6 col-md-4 col-lg-3 p-1">
-                  <a href="<?php echo $url ?>" >
+                  <a href="<?php echo $url ?>">
+                      <div class="ribbon small"><span>Agotado</span></div>
                       <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
                           <div class="ribbon small"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
                       <?php endif ?>

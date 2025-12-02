@@ -3,11 +3,11 @@
 ?>
 <?php echo $this->element('admin-menu');?>
 <div class="block block-themed">
-  <div class="block-title">
+  <!--div class="block-title">
     <h4><?php 
       echo (isset($item)) ? __('Editar Menu') : __('Agregar Menu');
     ?></h4>
-  </div>
+  </div-->
 
   <div class="block-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">

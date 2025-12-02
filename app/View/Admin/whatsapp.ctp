@@ -1,10 +1,6 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 
-<div class="block block-themed">
-	<div class="block-title">
-		<h4><?php echo __('Compra por WhatsApp') ?></h4>
-	</div>
-
+<div class="block">
 	<div class="block-content">
 		<form action="" method="post" class="form-inline" enctype="multipart/form-data">
 			<div class="row">

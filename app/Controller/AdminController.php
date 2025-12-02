@@ -1082,8 +1082,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     if ('admin' === $this->Auth->user('role')) return true;  // User is admin, allow
     return false;                                // User isn't admin, deny
 	}
-
+	
 	public function index() {
+		$this->redirect('presentacion');
+	}
+
+	public function presentacion() {
 	  $this->loadModel('Category');
 		$cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
   	$this->set('cats', $cats);
