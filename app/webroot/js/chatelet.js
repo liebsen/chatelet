@@ -514,6 +514,9 @@ $(document).ready(function() {
   $('.btn-continue-shopping').click(function (e) {
     e.preventDefault()
     e.stopPropagation()
+    location.href = '/shop'
+    return
+    
     let href = $(e.target).prop('href')
     if(localStorage.getItem('continue_shopping_url') && localStorage.getItem('continue-shopping-url') != 'undefined') {
       href = localStorage.getItem('continue_shopping_url')
@@ -521,6 +524,7 @@ $(document).ready(function() {
     localStorage.removeItem('continue_shopping_url')
     location.href = href 
   })
+
   $('.action-search').click(function () {
     location.href = '/shop/buscar'
   })
