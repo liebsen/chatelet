@@ -66,7 +66,7 @@ foreach ($properties as $property) {
   <div class="wrapper animated fadeIn delay">
     <div class="row">
     <?php if(!empty($colorImages)):?>
-      <div class="col-md-2">
+      <div class="col-md-2 p-0">
         <ul id="ul-moreviews">
         <?php if (!empty($colorImages[0]['images']) && count(array_filter($colorImages[0]['images'])) > 1): $ppp=0; ?>
         <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
@@ -78,7 +78,7 @@ foreach ($properties as $property) {
         <?php endif;?>
         </ul>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-5 p-0">
         <div class="is-product-photo"><?php 
           $number_ribbon = 0;
           if (isset($product['discount_label_show'])){
@@ -136,7 +136,7 @@ foreach ($properties as $property) {
          </div>
       </div>
   <?php endif;?>
-      <div class="col-md-5 product-info-container max-25">
+      <div class="col-md-5 product-info-container">
        <?php
           echo $this->Form->create(null, array(
               'url' => array(

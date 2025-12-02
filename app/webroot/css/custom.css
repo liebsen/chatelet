@@ -1065,16 +1065,27 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 }
 
 .color-options .btn {
-  min-height: 18rem;
+  min-height: 25rem;
   padding: 0;
 }
 
 #main .caract label > input {
   display: none;
 }
+
 #main .caract label.active {
   z-index: 99;
   filter: brightness(1.15);
+}
+
+#main .caract label.active:before {
+  content: "\f058";
+  font-family: FontAwesome;
+  font-size: 1.25rem;
+  color: #14c408;
+  position: absolute;
+  top: -0.75rem;
+  right: 0.25rem;
 }
 
 #main .caract label.btn .color-option,
@@ -1085,9 +1096,18 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 
 #main .caract label.btn .color-option.color-img {
   margin: auto;
-  min-height: 15rem;
+  min-height: 22rem;
   background-position: center;
   background-size: cover;
+}
+
+@media(min-width: 991px) {
+  #main .caract label.btn .color-option.color-img {
+    min-height: 18rem;
+  }
+  .color-options .btn {
+    min-height: 21rem;
+  }  
 }
 
 #main .caract label.btn.active {
@@ -1099,7 +1119,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #main .caract .color-block { display: none }
 
 ul#ul-moreviews li img {width: 40%}
-ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
+ul#ul-moreviews li.dontResize img {
+  width: 9rem; 
+  margin-left: auto;
+}
 
 
 #myModal2 .content { background: url(../images/tablebg.png) no-repeat center center; background-size: cover; margin: 50px auto; overflow: hidden; padding: 50px; position: relative; width: 900px; }
@@ -1138,24 +1161,6 @@ ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
   letter-spacing: -0.1rem;
 }
 #headcontacto h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
-/*#headcontacto .box { border: 2px solid #6666; }
-#headcontacto .box h3 { font-size: 27px; font-weight: 500; margin-bottom: 30px; margin-top: 0; }
-#headcontacto .box p { font-size: 16px; line-height: 1.5; }*/
-
-/* #formulario { background: url(../images/arrow-down.png) no-repeat center top; padding: 80px 0; background-color: white;}
-#formulario .wrapper { background: url(../images/formbg.jpg) no-repeat left center; background-size: contain; }
-#formulario input[type="text"], #formulario input[type="email"], #formulario textarea { background: transparent; border: none; border-bottom: 1px solid #464444;  padding: 1rem 0; width: 100%; }
-#formulario h3 { font-size: 22px; margin: 80px 0 70px; }
-#formulario label { color: #aeaeae; font-size: 22px; display: inline-block; }
-#formulario label.mr { margin-right: 100px; }
-#formulario input[type="email"] { margin-top: 70px; }
-#formulario textarea { margin-top: 65px; height: 150px; margin-bottom: 57px; }
-#formulario input[type="submit"] { background: transparent; border: 2px solid #363633; color: #363633;  font-weight: 700; height: 60px; width: 100%; border-radius: 0.5rem;}
-#formulario label span { border: 2px solid #868686; border-radius: 50%; cursor: pointer; display: block; float: left; height: 22px; margin-right: 10px; margin-top: -5px; padding: 4px; width: 22px; }
-#formulario label span i { background: #363633; border-radius: 50%; display: none; height: 100%; }
-#formulario label input { display: none; }
-#formulario label span.active i { display: block; }
-*/
 #headhelp {
   display: flex;
   justify-content: center;
@@ -2235,8 +2240,8 @@ span.count.is-empty {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
     overflow-x: auto;
+    margin: 0;
   }
   ul#ul-moreviews li {
       float: left;
