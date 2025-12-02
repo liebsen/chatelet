@@ -122,10 +122,18 @@ class UsersController extends AppController {
                 'default', 
                 array('class' => 'hidden notice')
             );
-            die(json_encode(array('success' => true)));
+            return $this->redirect($this->referer());
+            // die(json_encode(array('success' => true)));
         } else {
             $errors = $this->User->validationErrors;
-            die(json_encode(array('success' => false, 'errors' => $errors)));
+            $this->Session->setFlash(
+                'Error:'. json_encode($errors), 
+                'default', 
+                array('class' => 'hidden notice')
+            );
+
+            return $this->redirect($this->referer());
+            // die(json_encode(array('success' => false, 'errors' => $errors)));
         }
         
     }
@@ -139,16 +147,14 @@ class UsersController extends AppController {
                             'conditions' => array('User.email' => $email_user)));
                
                 if(!empty($user_data)){   
-                    $pass1 = substr($user_data['User']['password'], -6);
-                    //$passwordHasher = new SimplePasswordHasher();
-                    $pass = $pass1;//$passwordHasher->hash($pass1);
+                    $pass = $this->random_password();
                                                                                                             
                     $this->User->save(array('User'=>array('id' => $user_data['User']['id'],'password' => $pass)), false);
       
                     $email_data = array('id_user' => $user_data['User']['id'] ,
                                         'receiver_email' => $user_data['User']['email'],
                                         'name' =>  $user_data['User']['name'],
-                                        'password' => $pass1);
+                                        'password' => $pass);
                      
                     $this->sendEmail($email_data,'Recuperar contraseña Châtelet', 'confirm_email');
 
