@@ -64,10 +64,8 @@ $(function(){
 
 		var totals = getTotals()
 		if(payment_dues) {
-			// console.log('a(1)')
 			switch(selected){
 				case 'bank':
-					// console.log('a(2)')
 					if(payment_dues.classList.contains('scaleIn')){
 						payment_dues.classList.remove('scaleIn')
 						payment_dues.classList.add('scaleOut')
@@ -83,13 +81,13 @@ $(function(){
 				break;
 
 				case 'mercadopago':
-					// console.log('a(3)')
-				if(payment_dues.classList.contains('scaleOut')){
-					payment_dues.classList.remove('scaleOut', 'hide-element')
-					payment_dues.classList.add('scaleIn')
-				}
-				$('.dues-block').show()
-				document.querySelectorAll('.select-payment-option .bronco-select').forEach((e) => e.classList.remove('hide'))
+
+					if(payment_dues.classList.contains('scaleOut')){
+						payment_dues.classList.remove('scaleOut', 'hide-element')
+						payment_dues.classList.add('scaleIn')
+					}
+					$('.dues-block').show()
+					document.querySelectorAll('.select-payment-option .bronco-select').forEach((e) => e.classList.remove('hide'))
 
 				break;
 			}

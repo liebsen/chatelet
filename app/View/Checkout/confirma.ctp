@@ -19,7 +19,13 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 				<div class="card-body">
 					<div class="d-flex flex-column justify-content-center align-items-center text-center gap-05">
 						<h2 class="text-bolder">Confirma tu compra</h2>
-						<p>¡Todo listo <?php echo $user['name'] ?? 'Invitada'; ?>! Solo falta confirmar. <br>Tu compra es de <?php echo \price_format($cart_totals['grand_total']) ?></p>
+						<p>Todo listo, tu compra es de <span class="price text-sm"><?php echo \price_format($cart_totals['grand_total']) ?></span> y al confirmar
+						<?php if($cart_totals['payment_method'] == 'bank') :?>
+						  verás en pantalla los datos bancarios para realizar el pago 
+						<?php else : ?> 
+							te redireccionaremos a Mercado Pago. 
+						<?php endif ?>
+						</p>
 						<?php echo $this->Form->create('confirma_form', array(
 							'id' => 'confirma_form',
 							'url' => array(
@@ -30,7 +36,7 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 						<input type="hidden" name="confirm" value="1" />							
 						<div class="d-flex flex-column justify-content-start align-items-center gap-05">
 							<input type="submit" class="btn btn-chatelet btn-confirm dark w-100" value="Confirmar compra" />
-							<span class="text-sm text-muted"><b>Al finalizar tu compra</b> revisá tu cuenta <b><?php echo $user['email']; ?></b></span>
+							<span class="text-sm text-muted"><b>Al finalizar tu compra</b> revisá tu casilla <b><?php echo $user['email']; ?></b></span>
 						</div>
 						<?php echo $this->Form->end(); ?>	
 					</div>
