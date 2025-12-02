@@ -44,7 +44,7 @@ if(!empty($home['display_popup_form_in_last'])):?>
 
 <script>
 
-  var images = ["<?= implode('","',$images)?>"]
+  var images = ["<?=@implode('","',$images)?>"]
   var assets = []
 
   //images = responsiveImages(images)

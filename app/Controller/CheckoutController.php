@@ -819,8 +819,8 @@ class CheckoutController extends AppController
 		// error_log('payment method: ' . $sale['payment_method']);
 		// check if payment method is bank and bank payment is not available
 		if (
-			!empty($sale['payment_method']) && 
-			$sale['payment_method'] === 'bank' && 
+			!empty($cart_totals['payment_method']) && 
+			$cart_totals['payment_method'] === 'bank' && 
 			empty($settings['bank_enable'])
 		) {
 			$this->Session->setFlash('No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias.','default',array('class' => 'hidden error'));
@@ -1190,14 +1190,14 @@ class CheckoutController extends AppController
 		// CakeLog::write('debug', 'sale(mp): '.$total);
 
 		// check if paying method is bank
-		if ($sale['payment_method'] === 'bank') {
+		if ($cart_totals['payment_method'] === 'bank') {
 			// CakeLog::write('debug', 'destroy session(1)');
 			$this->Cart->destroy();
 
-			CakeLog::write('debug', '(cbu) ok - Cuando uses el cbu se iniciará la compra');
+			CakeLog::write('debug', '(cbu) ok - Realiza la transferencia para terminar la compra');
 			return array(
 				'success' => true,
-				'message' => "Cuando uses el cbu se iniciará la compra",
+				'message' => "Realiza la transferencia para terminar la compra",
 				'redirect' => Router::url(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' )),
 			);
 		}
@@ -1230,7 +1230,7 @@ class CheckoutController extends AppController
 		$preference = $mp->create_preference($preference_data);
 		//Save Data
 		$sale_data = array(
-			'sale' 		=> $sale,
+			'sale' 		=> $cart_totals,
 			'items' 	=> $items,
 			'sale_id' 	=> $sale_id,
 			'preference'=> $preference,

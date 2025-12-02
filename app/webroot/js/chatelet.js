@@ -745,7 +745,7 @@ $(document).ready(function() {
 
 		if (flash.hasClass('notice')) {
 			$.growl.notice({
-				title: 'Tarea exitosa',
+				title: 'Información',
 				message: flash.text(),
 			});
 		}

@@ -4,32 +4,32 @@
       <div class="col-xs-12 col-md-4">
         <div class="datos-bancarios pr-4">
           <h1 class="m-0">CBU/Alias</h1>
-          <h3 class="h3 mt-4 mw-26"><?= $data['bank_explain_title'] ?></h3>
+          <h3 class="h3 mt-4 mw-26"><?= $settings['bank_explain_title'] ?></h3>
           <?php if(isset($price)): ?>
           <h3 class="d-block border-dark text-center mt-1 ps-4 max-25">
             <span class="text-dark h3">A transferir $ <?= number_format($price, 2, ',', '.') ?></span>
           </h3>
-          <a class="btn btn-chatelet border-success bg-white d-block max-25 mt-4" href="https://wa.me/<?= $data['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
-            <span class="text-white h3">👉 Referencia #<?= $invoice_id ?></span>
+          <a class="btn btn-chatelet border-success bg-white d-block max-25 mt-4" href="https://wa.me/<?= $settings['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
+            <span class="">👉 Referencia #<?= $invoice_id ?></span>
           </a>
           <?php endif ?>
-          <p class="pre-system font-pre border-light bg-info w-max-content p-4 mt-4"><?= $data['bank_explain_text'] ?></p>
+          <p class="pre-system font-pre border-light bg-info w-max-content p-4 mt-4"><?= $settings['bank_explain_text'] ?></p>
         </div>
       </div>
       <div class="col-xs-12 col-md-8 enviar-comprobante">
         <div class="animated fadeIn delay box-cont">
           <div class="box mt-8">  
-            <h3 class="h3"><?= $data['bank_instructions_title'] ?></h3>
-            <p class="pre-system font-system"><?= $data['bank_instructions_text'] ?></p>
+            <h3 class="h3"><?= $settings['bank_instructions_title'] ?></h3>
+            <p class="pre-system font-system"><?= $settings['bank_instructions_text'] ?></p>
             <div class="row mb-5">
               <!--div class="col-md-6 mt-3 text-center">
-                <a class="btn btn-chatelet shrink" href="https://wa.me/?text=<?= urlencode($data['bank_explain_title']) ?><?= urlencode($data['bank_explain_text']) ?><?= urlencode($data['bank_instructions_title']) ?><?= urlencode($data['bank_instructions_text']) ?><?= urlencode($data['bank_instructions_text']) ?><?= urlencode($data['bank_total_text']) ?>" title="Enviar por WhatsApp" target="_blank">
+                <a class="btn btn-chatelet shrink" href="https://wa.me/?text=<?= urlencode($settings['bank_explain_title']) ?><?= urlencode($settings['bank_explain_text']) ?><?= urlencode($settings['bank_instructions_title']) ?><?= urlencode($settings['bank_instructions_text']) ?><?= urlencode($settings['bank_instructions_text']) ?><?= urlencode($settings['bank_total_text']) ?>" title="Enviar por WhatsApp" target="_blank">
                   Compartir este texto
                 </a>
               </div-->
-              <?php if(isset($data['bank_whatsapp'])): ?>
+              <?php if(isset($settings['bank_whatsapp'])): ?>
               <div class="col-xs-12 mt-4 text-center">
-                <a class="btn btn-chatelet shrink mt-3" href="https://wa.me/<?= $data['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
+                <a class="btn btn-chatelet shrink mt-3" href="https://wa.me/<?= $settings['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
                   Enviar por WhatsApp
                 </a>
               </div>
