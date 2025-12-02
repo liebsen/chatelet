@@ -127,7 +127,7 @@ class UsersController extends AppController {
         } else {
             $errors = $this->User->validationErrors;
             $this->Session->setFlash(
-                'Error:'. json_encode($errors), 
+                'Error:'. implode('<br>',$errors), 
                 'default', 
                 array('class' => 'hidden notice')
             );

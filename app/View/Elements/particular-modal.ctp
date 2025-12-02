@@ -55,7 +55,7 @@
 						<label class="ml-1" for="email">Email</label>
 						<div class="form-group">
 							<?php
-								echo '<input type="email" class="form-control " name="data[User][email]" value="'. $user['email'] .'" />';
+								echo '<input type="email" class="form-control " name="data[User][email]" value="'. $user['email'] .'" required />';
 							?>
 						</div>
 						<span class="validation-email"></span>
@@ -63,7 +63,7 @@
 					<div class="col-md-6">
 						<label class="ml-1" for="password">Contraseña</label>
 						<div class="form-group">
-							<input type="password" class="form-control" name="data[User][password]" autocomplete="current-password" />
+							<input type="password" class="form-control" name="data[User][password]" autocomplete="current-password" required />
 						</div>
 						<span class="validation-password"></span>
 					</div>
@@ -73,7 +73,7 @@
 						<label class="ml-1" for="nombre">Nombre</label>
 						<div class="form-group">
 							<?php
-								echo '<input type="text" class="form-control" name="data[User][name]" value="'. $user['name'] .'" />';
+								echo '<input type="text" class="form-control" name="data[User][name]" value="'. $user['name'] .'" required />';
 							?>
 						</div>
 					</div>
@@ -81,7 +81,7 @@
 						<label class="ml-1" for="apellido">Apellido</label>
 						<div class="form-group">
 							<?php
-								echo '<input type="text" class="form-control" name="data[User][surname]" value="'. $user['surname'] .'" />';
+								echo '<input type="text" class="form-control" name="data[User][surname]" value="'. $user['surname'] .'" required />';
 							?>
 						</div>
 					</div>
@@ -96,7 +96,6 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-			
 						<label class="ml-1" for="sexo">Sexo</label>
 						<?php
 							$male = $female = '';
@@ -130,13 +129,13 @@
 					<div class="col-md-6">
 						<label class="ml-1" for="direccion">Calle</label>
 						<div class="form-group d-flex">
-							<input style="" type="text" class="form-control" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" required />
+							<input style="" type="text" class="form-control" name="data[User][street]" value="<?= $user['street'] ?>" placeholder="Riobamba" />
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label class="ml-1" for="direccion">Número</label>
 						<div class="form-group d-flex">
-							<input min="0" class="form-control" placeholder="1234" name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" required/>
+							<input min="0" class="form-control" placeholder="1234" name="data[User][street_n]" type="number" value="<?= $user['street_n'] ?>" />
 						</div>
 					</div>					
 

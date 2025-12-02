@@ -17,7 +17,7 @@ class User extends AppModel {
     	}
 
         // Hash password
-        if (isset($this->data[$this->alias]['password'])) {
+        if (!empty($this->data[$this->alias]['password'])) {
             $passwordHasher = new SimplePasswordHasher();
             $this->data[$this->alias]['password'] = $passwordHasher->hash(
                 $this->data[$this->alias]['password']
@@ -25,7 +25,7 @@ class User extends AppModel {
         }
 
         // Transform birthday to datetime format
-        if (isset($this->data[$this->alias]['birthday'])) {
+        if (!empty($this->data[$this->alias]['birthday'])) {
         	$date = explode('/', $this->data[$this->alias]['birthday']);
         	$date = implode('-', array($date[2], $date[1], $date[0]));
         	$this->data[$this->alias]['birthday'] = $date;
