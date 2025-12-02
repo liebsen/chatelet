@@ -202,7 +202,7 @@ class AppController extends Controller
     }
 
     public function sendEmail($data, $subject, $template) {
-        if (empty($data['receiver_email'])){
+        if (empty($data['receiver_email']) || $_SERVER['REMOTE_ADDR'] == '127.0.0.1'){
             return true;
         }
 
