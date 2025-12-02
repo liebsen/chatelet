@@ -40,7 +40,7 @@
 							href="<?=$this->Html->url(array('action'=>'menu','edit',$menu['Menu']['id']))?>" 
 							data-toggle="tooltip" 
 							title="" 
-							class="btn btn-xs btn-success" 
+							class="btn btn-success" 
 							data-original-title="Editar">
 							<i class="gi gi-pencil"></i>
 						</a>             
@@ -48,7 +48,7 @@
 						href="#" 
 						data-toggle="tooltip" 
 						title="" 
-						class="btn btn-xs btn-danger deletebutton" 
+						class="btn btn-danger deletebutton" 
 						data-original-title="Eliminar" 
 						data-id="<?=$menu['Menu']['id']?>" 
 						data-url-back="<?=$this->Html->url(array('action'=>'menu'))?>" 

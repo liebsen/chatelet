@@ -3,7 +3,7 @@
   echo $this->Html->css('logistica-detail', array('inline' => false));
 ?>
 <?php echo $this->element('admin-menu');?>
-<div class="block block-themed">
+<div class="block">
   <div class="block-title">
     <h4>
     <?php
@@ -152,7 +152,7 @@
 
 <?php if(isset($logistic_prices) && $logistic['Logistic']['local_prices']) :?>
 
-<div class="block block-themed">
+<div class="block">
   <div class="block-title">
     <h4>
     <?php

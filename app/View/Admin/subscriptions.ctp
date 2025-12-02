@@ -44,7 +44,7 @@
 							href="#" 
 							data-toggle="tooltip" 
 							title="" 
-							class="btn btn-xs btn-danger deletebutton" 
+							class="btn btn-danger deletebutton" 
 							data-original-title="Eliminar" 
 							data-id="<?=$subscription['Subscription']['id']?>" 
 							data-url-back="<?=$this->Html->url(array('action'=>'subscriptions'))?>" 

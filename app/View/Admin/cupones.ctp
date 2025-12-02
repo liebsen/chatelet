@@ -41,7 +41,7 @@
 						<?php endforeach ?>
 					</td>
 					<td>
-						<div class="d-flex justify-content-start align-center gap-1">
+						<div class="d-flex justify-content-center align-center gap-1">
 							<span title="Pagando con transferencia">
 								<?=strpos($coupon['Coupon']['coupon_payment'], 'bank') !== false ? '<i class="gi gi-bank fa-lg text-success"></i>' : '<i class="gi gi-bank fa-lg muted"></i>'?>
 							</span>
@@ -50,14 +50,14 @@
 							</span>
 						</div>
 					</td>
-					<td>
+					<td align="center">
 						<?=$coupon['Coupon']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg muted"></i>'?>
 					</td>
 
-					<td>
+					<td align="center">
 						<?=\filtercoupon($coupon)->status !== 'error' ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg muted"></i>'?>
 					</td>
-					<td>
+					<td align="center">
 						<div class="btn-group">   
 							<a 
 							href="<?=$this->Html->url(array('action'=>'cupones','edit',$coupon['Coupon']['id']))?>" 

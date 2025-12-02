@@ -9,7 +9,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="control-group">
-						<label class="control-label" for="columns-text">Pantalla inicial <span class="counter_newsletter">0</span>%</label>
+						<h3 class="" for="columns-text">Pantalla inicial <span class="counter_newsletter hide"></span></h3>
 						<div class="controls">
 							<input type="file" class="form-control" id="HomeImgPopupNewsletter" data-input="[name='data[img_popup_newsletter]']" data-count=".counter_newsletter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 							Imagen. Tamaño recomendado 1920x1080 o 720x1600
@@ -36,7 +36,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="control-group">
-						<label class="control-label" for="columns-text">Slider <span class="counter">0</span>%</label>
+						<h3 class="" for="columns-text">Slider <span class="counter hide"></span></h3>
 						<div class="controls">
 							<input type="file" class="form-control" id="upload" data-input="[name='data[img_url]']" data-count=".counter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>Imagen y video. Tamaño recomendado 1920x1080 o 720x1600
 							<input type="hidden" name="data[img_url]" value="<?php echo $p['Home']['img_url'] ?>" />

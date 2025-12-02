@@ -3,7 +3,7 @@
   echo $this->Html->script('category', array('inline' => false));
   echo $this->element('admin-menu');
 ?>
-<div class="block block-themed">
+<div class="block">
   <div class="block-title">
     <h4><?php 
       echo (isset($cat)) ? __('Editar Categoria') : __('Agregar Categoria');

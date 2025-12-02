@@ -3,7 +3,7 @@
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
 ?>
 
-<div class="block block-themed">
+<div class="block">
   <div class="block-title">
     <h4>CBU/Alias y Descuentos</h4>
   </div>

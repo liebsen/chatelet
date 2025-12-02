@@ -8,6 +8,7 @@
   z-index: 10;
   cursor: grabbing;
   opacity: 1;
+  background-color: whitesmoke;
 }
 .draggable-table thead th {
   height: 25px;
@@ -27,22 +28,22 @@
 }
 
 .draggable-saved {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1079;
-    opacity: 0;
-    font-size: 1.25rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 100%;
-    background-color: white;
-    transform: translate3d(15rem, 0, 0);
-    text-align: center;
-    color: #5cb85c;
-    border: 1px solid #5cb85c;
-    box-shadow: 0 0 5px #5cb85c;
-    right: 1rem;
-    bottom: 1rem;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1079;
+  opacity: 0;
+  font-size: 1.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  background-color: white;
+  transform: translate3d(15rem, 0, 0);
+  text-align: center;
+  color: #5cb85c;
+  border: 1px solid #5cb85c;
+  box-shadow: 0 0 5px #5cb85c;
+  right: 1rem;
+  bottom: 1rem;
 }

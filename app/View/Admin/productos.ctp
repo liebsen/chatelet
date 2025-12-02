@@ -76,7 +76,7 @@ echo $this->element('admin-menu');
 							href="<?=$this->Html->url(array('action'=>'productos','edit',$product['Product']['id']))?>" 
 							data-toggle="tooltip" 
 							title="" 
-							class="btn btn-xs btn-success" 
+							class="btn btn-success" 
 							data-original-title="Editar">
 							<i class="gi gi-pencil"></i>
 						</a>             
@@ -84,7 +84,7 @@ echo $this->element('admin-menu');
 						href="#" 
 						data-toggle="tooltip" 
 						title="" 
-						class="btn btn-xs btn-danger deletebutton" 
+						class="btn btn-danger deletebutton" 
 						data-original-title="Eliminar" 
 						data-id="<?=$product['Product']['id']?>" 
 						data-url-back="<?=$this->Html->url(array('action'=>'productos'))?>" 
@@ -101,7 +101,7 @@ echo $this->element('admin-menu');
 	</table>
 </div>
 
-<div class="block block-themed">
+<div class="block">
 	<div class="block-title">
 		<h4>Shop - Opciones</h4>
 	</div>

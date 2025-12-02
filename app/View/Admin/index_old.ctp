@@ -2,7 +2,7 @@
 <?php echo $this->Html->script('admin_index',array('inline'=>false)) ?>
 <?php $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));?>
 
-<div class="block block-themed">
+<div class="block">
 	<div class="block-title">
 		<h4><?php echo __('Presentación') ?></h4>
 	</div>

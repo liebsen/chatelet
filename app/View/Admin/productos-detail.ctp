@@ -11,7 +11,7 @@
   echo $this->Html->script('colorpicker', array('inline' => false));
 ?>
 <?php echo $this->element('admin-menu');?>
-<div class="block block-themed">
+<div class="block">
   <div class="block-title">
     <h4>
     <?php
@@ -200,7 +200,7 @@
                              '<select class="code_sel" name="props['. $index .'][code]">'.$options.'</select>'.
                              '<span class="alias_cont"><input type="text" name="props['. $index .'][alias]" value="'.$prop['ProductProperty']['alias'].'" class="changed variable" required placeholder="AA, 02, etc..."/></span>'.
                               '<div class="right">'.
-                                '<a class="btn btn-xs btn-danger remove-item" data-count="'.$index.'">Borrar</a>'.
+                                '<a class="btn btn-danger remove-item" data-count="'.$index.'">Borrar</a>'.
                               '</div>'.
                               '<input type="file" class="upload_color_image" id="ColorImage'.$alias.'" name="color_image" data-alias="'.$alias.'" data-url="'.Router::url('/admin/uploadImageColor').'" data-count="'.$index.'">'.
                               '<progress id="progress'.$alias.'" hidden></progress>'.
@@ -233,7 +233,7 @@
                              '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'" />'.
                              '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
                           '<div class="right">'.
-                            '<a class="btn btn-xs btn-danger remove-item" data-count="'.$index.'">Borrar</a>'.
+                            '<a class="btn btn-danger remove-item" data-count="'.$index.'">Borrar</a>'.
                           '</div>'.
                         '</li>';
                       }

@@ -1,5 +1,5 @@
 <?php echo $this->element('admin-menu');?>
-<div class="block block-themed">
+<div class="block">
   <div class="block-title">
     <h4><?php 
       echo (isset($item)) ? __('Editar Financiación') : __('Agregar Financiación');

@@ -2,7 +2,7 @@
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
 ?>
 <?php echo $this->element('admin-menu');?>
-<div class="block block-themed">
+<div class="block">
   <!--div class="block-title">
     <h4><?php 
       echo (isset($item)) ? __('Editar Menu') : __('Agregar Menu');
@@ -75,9 +75,9 @@
         </div>
         <div class="col-md-6">
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Abrir enlace en otra pestaña'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Comportamiento del click'); ?></label>
             <div class="controls">
-              <input type="checkbox" name="data[target_blank]" class="form-control"<?= isset($item) ? ($item['Menu']['target_blank'] === 'on' ? ' checked' : '') : '' ?>>
+              <input type="checkbox" name="data[target_blank]" id="target_blank" class="form-control"<?= isset($item) ? ($item['Menu']['target_blank'] === 'on' ? ' checked' : '') : '' ?>> <label for="target_blank" class="text-muted"> Abrir enlace en otra pestaña</label>
             </div>
           </div>          
           <br />       

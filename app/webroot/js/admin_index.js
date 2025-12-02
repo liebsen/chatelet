@@ -594,6 +594,7 @@ $(function(){
 		var counter_newsletter = $(me.data('count'));
 		var input 	= $(me.data('input'));
 		
+		counter_newsletter.removeClass('hide')
 		var valid_types = {
 			'image/jpeg': true,
 			'image/jpg': true,

@@ -2,7 +2,7 @@
   echo $this->Html->css('sucursales-detail', array('inline' => false));
 ?>
 <?php echo $this->element('admin-menu');?>
-<div class="block block-themed">
+<div class="block">
   <div class="block-title">
     <h4>
     Envios

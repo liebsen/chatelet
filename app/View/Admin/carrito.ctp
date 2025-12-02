@@ -2,7 +2,7 @@
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
 ?>
-<div class="block block-themed">
+<div class="block">
   <div class="block-title">
     <h4>Configuración de carrito</h4>
   </div>

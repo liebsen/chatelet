@@ -48,7 +48,7 @@
 							href="<?=$this->Html->url(array('action'=>'legends','edit',$legend['Legend']['id']))?>" 
 							data-toggle="tooltip" 
 							title="" 
-							class="btn btn-xs btn-success" 
+							class="btn btn-success" 
 							data-original-title="Editar">
 							<i class="gi gi-pencil"></i>
 						</a>             
@@ -56,7 +56,7 @@
 						href="#" 
 						data-toggle="tooltip" 
 						title="" 
-						class="btn btn-xs btn-danger deletebutton" 
+						class="btn btn-danger deletebutton" 
 						data-original-title="Eliminar" 
 						data-id="<?=$legend['Legend']['id']?>" 
 						data-url-back="<?=$this->Html->url(array('action'=>'legends'))?>" 

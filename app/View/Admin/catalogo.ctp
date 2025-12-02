@@ -1,5 +1,5 @@
 <?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
-<div class="block block-themed">
+<div class="block">
   <div class="block-title">
     <h4><?php echo __('Catálogo') ?></h4>
   </div>

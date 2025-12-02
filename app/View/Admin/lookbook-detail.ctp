@@ -4,7 +4,7 @@
   echo $this->Html->script('lookbook-detail', array('inline' => false));
 ?>
 <?php echo $this->element('admin-menu');?>
-<div class="block block-themed">
+<div class="block">
   <div class="block-title">
     <h4>
     <?php
@@ -50,7 +50,7 @@
                           '</div>'.
                           '<select class="code_sel" name="props[0][id]">'.$options.'</select>'.
                           '<div class="right">'.
-                            '<a class="btn btn-xs btn-danger remove-item">Borrar</a>'.
+                            '<a class="btn btn-danger remove-item">Borrar</a>'.
                           '</div>'.
                         '</li>';
                 ?>

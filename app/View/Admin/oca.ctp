@@ -36,7 +36,7 @@
                 		<?php echo $package['Package']['depth'].'cm.' ?>
                 	</td>
                 	<td class="text-center col-xs-1">
-                		<button class="btn btn-xs btn-danger" onClick="window.location.href='<?php echo $this->Html->url(array('action' => 'delete_package',$package['Package']['id'] )) ?>'">X</button>
+                		<button class="btn btn-danger" onClick="window.location.href='<?php echo $this->Html->url(array('action' => 'delete_package',$package['Package']['id'] )) ?>'">X</button>
                 	</td>
                 </tr>
                 <?php endforeach ?>
