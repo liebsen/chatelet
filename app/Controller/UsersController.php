@@ -161,7 +161,7 @@ class UsersController extends AppController {
                    
                 }else{
                     $this->Session->setFlash(
-                        'Error',
+                        'No existe esta cuenta, intenta creando una nueva.',
                         'default',
                         array('class' => 'hidden error')
                     );
