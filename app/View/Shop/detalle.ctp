@@ -205,45 +205,45 @@ foreach ($properties as $property) {
             <!--h2>Color</h2-->
             <div class="animated fadeIn delay1">
               <div class="article-tools pt-4">
-                  <div class="overflow-x-auto">
-                     <div class="color-options d-flex justify-content-start align-items-start gap-15" data-toggle="buttons">
-                          <?php
-                              $show_names_only = true;
-                              foreach ($colors as $i => $color) {
-                                  $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
-                                  $style = (empty($color['images']))?'oldSelectColor':'';
-                                  echo '<label class="btn '.$loadColorImages.' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
-                                  echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] . '"' . ($i == 0 ? ' checked' : '') . '>';
-                                  if (!empty($color['images']) && empty($show_names_only)) {
-                                      $image = explode(';', $color['images']);
-                                      foreach ($image as $kk => $vv) {
-                                          if (!empty($vv)) {
-                                              $image[0] = $vv;
-                                              break;
-                                          }
-                                      }
-                                      echo '<div class="color-option" style="background-image: url('.Configure::read('uploadUrl').$image[0].')"></div>';
-                                  } else {
-                                    // echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
+                <!--div class="color-options d-flex justify-content-start align-items-start gap-15" data-toggle="buttons"-->
+                <div class="color-options row" data-toggle="buttons">
+                  <?php
+                      $show_names_only = false;
+                      foreach ($colors as $i => $color) {
+                          $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
+                          $style = (empty($color['images']))?'oldSelectColor':'';
+                          echo '<label class="col-sm-6 col-md-4 btn '.$loadColorImages.' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
+                          echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] . '"' . ($i == 0 ? ' checked' : '') . '>';
+                          if (!empty($color['images']) && empty($show_names_only)) {
+                              $image = explode(';', $color['images']);
+                              foreach ($image as $kk => $vv) {
+                                  if (!empty($vv)) {
+                                      $image[0] = $vv;
+                                      break;
                                   }
-                                  echo "<small class='color-option text-bolder'>".$color['alias']."</small>";
-                                  echo '</label>';
                               }
-                          ?>
-                      </div>
-                  </div>
-                  <div class="size-options d-flex justify-content-start align-items-start gap-1 pt-2" data-toggle="buttons">
-                    <!--option value="">Talle</option-->
-                    <?php
-                        foreach ($sizes as $i => $size) {
-                          echo '<label class="btn">';
-                          echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
-                          echo "<small class='size-option text-bolder'>".ucfirst($size['variable'])."</small>";
+                              echo '<div class="color-option color-img" style="background-image: url('.Configure::read('uploadUrl').$image[0].')"></div>';
+                          } else {
+                            // echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
+                          }
+                          echo "<small class='color-option text-bolder'>".$color['alias']."</small>";
                           echo '</label>';
-                            // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
-                        }
-                    ?>                    
-                  </div>
+                      }
+                  ?>
+                </div>
+                <div class="size-options row" data-toggle="buttons">
+                <!--div class="size-options d-flex justify-content-start align-items-start gap-1 pt-2" data-toggle="buttons"-->
+                  <!--option value="">Talle</option-->
+                  <?php
+                      foreach ($sizes as $i => $size) {
+                        echo '<label class="btn">';
+                        echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
+                        echo "<small class='size-option text-bolder'>".ucfirst($size['variable'])."</small>";
+                        echo '</label>';
+                          // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
+                      }
+                  ?>                    
+                </div>
               </div>
               <p class="marginTop stock-block animated fadeIn">
                 <!--span class="text-chatelet"> Stock:</span-->

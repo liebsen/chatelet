@@ -1059,19 +1059,16 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #main .caract h2 {margin-bottom: 10px}
 #main .caract label.btn {
   box-shadow: none;
-  padding: 0;
+  margin: 0;
   border-radius: 0!important;
   color: #888;
-  text-align: center;
-  position: relative;
-  transition: all 0.25s ease-out;
-  max-height: 15px;
-  display: contents;
-  /*color: black;
-  flex: 0 0 33%;
-  padding-left: 0;
-  padding-right: 0;*/
 }
+
+.color-options .btn {
+  min-height: 18rem;
+  padding: 0;
+}
+
 #main .caract label > input {
   display: none;
 }
@@ -1084,76 +1081,22 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #main .caract label.btn .size-option {
   border-bottom: 2px solid;
   font-size: 100%!important;
-  /*border: none;
-  box-shadow: none;
-  opacity: 1;
-  aspect-ratio: 0.6;
-  width: 6rem;
-  margin-bottom: 0.25rem;
-  background-repeat: no-repeat;
-  background-position: center center;
+}
+
+#main .caract label.btn .color-option.color-img {
+  margin: auto;
+  min-height: 15rem;
+  background-position: center;
   background-size: cover;
-  background-color: whitesmoke;
-  transition: all 0.15s linear;
-  outline: solid 1px #f8f8f8;
-  border-radius: 0.5rem;*/
 }
-/*#main .caract label.active:before {
-  content: "\f058";
-  font-family: FontAwesome;
-  font-size: 1.5rem;
-  color: #14c408;
-  position: absolute;
-  top: -0.25rem;
-  right: 0.5rem;
-}
-
-#main .caract label.btn small {
-  display: block; 
-  color: #404040;
-  font-size: 0.75rem;
-  line-height: 1;
-  padding-top: 0.5rem;
-  font-weight: 800;
-  white-space: break-spaces;
-} 
-
-
-#main .caract.posnum-2 label.btn .color-option {
-  background-position: top center;
-}
-
-#main .caract.posnum-3 label.btn .color-option {
-  background-position: bottom center;
-}
-
-*/
 
 #main .caract label.btn.active {
   color: #333;
   /*box-shadow: 0 0 1rem rgba(0,0,0,0.5);*/
 }
 
-/* #main .caract label.btn:first-child .color-option {
-  box-shadow: var(--box-shadow);
-} */
 
-#main .caract .color-block {display: none}
-/*.btn-group.inline-block.div_color_products {
-  display: flex;
-  justify-content: center;
-  grid-gap: 0.5rem;
-  margin-bottom: 1rem;
-  padding: 0;
-   border: 2px solid #CA779A;
-  background-color: white;
-  box-shadow: 2px 2px 0 #6661;  
-  box-shadow: 0 0 2rem #0009; 
-  border-radius: 0.5rem;
-  width: 100%;
-  
-  flex-wrap: wrap;
-}*/
+#main .caract .color-block { display: none }
 
 ul#ul-moreviews li img {width: 40%}
 ul#ul-moreviews li.dontResize img {width: 100%; height: auto;}
