@@ -206,13 +206,13 @@ foreach ($properties as $property) {
             <div class="animated fadeIn delay1">
               <div class="article-tools pt-4">
                 <!--div class="color-options d-flex justify-content-start align-items-start gap-15" data-toggle="buttons"-->
-                <div class="color-options row" data-toggle="buttons">
+                <div class="color-options d-flex justify-content-center align-items-center w-100" data-toggle="buttons">
                   <?php
                       $show_names_only = false;
                       foreach ($colors as $i => $color) {
                           $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
                           $style = (empty($color['images']))?'oldSelectColor':'';
-                          echo '<label class="col-sm-6 col-md-4 btn '.$loadColorImages.' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
+                          echo '<label class="btn '.$loadColorImages.' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
                           echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] . '"' . ($i == 0 ? ' checked' : '') . '>';
                           if (!empty($color['images']) && empty($show_names_only)) {
                               $image = explode(';', $color['images']);
