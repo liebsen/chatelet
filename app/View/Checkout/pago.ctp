@@ -108,25 +108,26 @@ $(document).ready(function() {
   $('#pago_form').on('submit', function(event) {
     event.preventDefault();
     const formData = $(this).serialize();
+    const gifts = localStorage.gifts ? JSON.parse(localStorage.gifts) : false 
     const btnSubmit = $(this).find('[type="submit"]');
     const redirect = $(this).find('[name="redirect"]').val();
     btnSubmit.prop('disabled', true)
     $.ajax({
       url: $(this).attr('action'),
       type: 'POST',
-      data: formData,
+      data: {
+      	...formData,
+      	gifts: gifts
+      },
       success: function(res) {
       	if(res.success) {
       		$.growl.notice({
       			title: 'OK',
       			message: res.message,
       		})
-
-      		// onSuccessAlert('Success', res.message)
-          // $('#responseContainer').html(res.message);
           setTimeout(() => {
           	location.href = redirect || location.href
-          }, 100)
+          }, 1000)
       	} else {
       		$.growl.error({
       			title: 'Error al enviar datos',
@@ -137,14 +138,12 @@ $(document).ready(function() {
       	btnSubmit.prop('disabled', false)
       },
       error: function(xhr, status, error) {
-      		$.growl.error({
-      			title: 'Error al enviar datos (2)',
-      			message: error,
-      		})
-
+    		$.growl.error({
+    			title: 'Error al enviar datos (2)',
+    			message: error,
+    		})
         // console.error("Error al enviar datos: " + status + " - " + error);
         btnSubmit.prop('disabled', false)
-        // Handle errors
       }
     });
   });

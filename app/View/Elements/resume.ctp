@@ -52,18 +52,14 @@
 		<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 		<input type="hidden" id="subtotal_envio" value="" />
 		<div class="w-100">
-		<?php if (!empty($cart_totals['discount'])) : ?>
-			<div class="summary-item">
+			<div class="summary-item <?php echo empty($cart_totals['discount']) ? 'hidden' : '' ?>">
 				<span class="text-weight-thin">Descuento </span>
 				<span><?= \price_format($cart_totals['discount']) ?></span>
 			</div>
-		<?php endif ?>
-		<?php if ($cart_totals['total_products'] != $cart_totals['grand_total']) :?>
-			<div class="summary-item">
+			<div class="summary-item products-total <?php echo empty($cart_totals['delivery_cost']) && empty($cart_totals['coupon_benefits']) ? 'hidden' : '' ?>">
 				<span class="text-weight-thin">Subtotal </span>
 				<span><?= \price_format($cart_totals['total_products']) ?></span>
 			</div>
-		<?php endif ?>
 			<div class="summary-item coupon-discount<?php echo empty($cart_totals['coupon_benefits']) ? ' hidden' : '' ?>">
 				<span class="text-weight-thin text-success">Cupón </span>
 				<span class="text-success">

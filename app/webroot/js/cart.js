@@ -1,59 +1,3 @@
-
-/*var removeCart = (e) => {
-  if(!removeElement) return
-  const block = $(removeElement).parent()
-  const json = $(block).find('.carrito-data').data('json')
-  block.addClass('flash infinite')
-  let item = JSON.parse(JSON.stringify(json))
-  $('#carrito-remove-btn').button('loading')
-  $.get(`/carrito/remove/${item.id}`).then((res) => {
-    fbq('track', 'RemoveFromCart')
-    gtag('event', 'remove_from_cart', {
-      "items": [
-        {
-          "id": item.id,
-          "name": item.article,
-          // "list_name": "Results",
-          "brand": item.name,
-          // "category": "Apparel/T-Shirts",
-          "variant": item.alias,
-          "list_position": 1,
-          "quantity": 1,
-          "price": item.discount
-        }
-      ]
-    })
-
-    block.removeClass('flash infinite')
-    block.addClass('fadeOut')
-    setTimeout(() => {
-      $('#carrito-remove-btn').button('reset')
-      location.href = '/carrito'
-      //block.remove()
-    }, 500)
-  })
-}*/
-
-
-var save_preference = (settings) => {
-  $.post('/carrito/preference', $.param(settings))
-    .success(function(res) {
-      if (res.success) {
-        var data = res.data
-        if(data){
-          cart_items = data
-        }
-        getTotals()
-      }
-    })
-    .fail(function() {
-      $.growl.error({
-        title: 'Ocurrió un error al actualizar el carrito',
-        message: 'Por favor, intente nuevamente en unos instantes'
-      });
-  }); 
-}
-
 var getItems = () => {
   var subtotal = 0
   if(cart_items){
@@ -113,6 +57,19 @@ var select_radio = (name, value) => {
 
 
 $(document).ready(function() {
+
+  $(document).on('click', '.giftchecks',function(e) {
+    var gifts = localStorage.gifts ? JSON.parse(localStorage.gifts) : []
+    var target_id = parseInt($(e.target).attr('data-id'))
+    
+    gifts = gifts.filter((id) => id != target_id)
+
+    if($(e.target).is(':checked')){
+      gifts.push(target_id)
+    }
+
+    localStorage.setItem('gifts', JSON.stringify(gifts))  
+  })
 
   $(document).on('click', '.btn-change-count',function(e) {
     let count = $(this).parent().find('input').first().val()

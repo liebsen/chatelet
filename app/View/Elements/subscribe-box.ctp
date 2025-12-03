@@ -6,7 +6,7 @@
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
           <h4 class="text-uppercase">Estemos <strong>conectadas</strong></h4>
-          <p>Enterate de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
+          <p class="text-muted">Enterate de nuestras novedades, descuentos<br>y beneficios exlusivos solo para clientas</p>
         </span>
         <span>
         <?php echo $this->Form->create('Contact', array('class' => 'contacto', 'url' => array('controller' => 'contacto', 'action' => 'index'))); ?>

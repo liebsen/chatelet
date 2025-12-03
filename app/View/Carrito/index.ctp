@@ -285,12 +285,12 @@
 <script>
 	$(function(){
 	<?php if(!empty($cart) && !empty($text_shipping_min_price) && !$freeShipping): ?>
-			/*setTimeout(() => {
-				onWarningAlert('Más beneficios','<?= $text_shipping_min_price ?>', 15000)
-			}, 15000)		*/
+		setTimeout(() => {
+			onWarningAlert('Más beneficios','<?= $text_shipping_min_price ?>', 15000)
+		}, 15000)
 	<?php endif ?>
-		var gifts = carrito.gifts || []
-		$(cart_items).each((i,e) => {
+		var gifts = localStorage.gifts ? JSON.parse(localStorage.gifts) : []
+		$(gifts).each((i,e) => {
 			$('#giftcheck_' + e.id).attr('checked', gifts.includes(parseInt(e.id)))
 		})
 	})

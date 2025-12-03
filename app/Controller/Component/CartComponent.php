@@ -8,7 +8,6 @@ class CartComponent extends Component {
     parent::initialize($controller);
   }
 
-
   public function update($cart=false, $cart_totals=false) {
   
     //CakeLog::write('debug','cart(1)');
@@ -105,15 +104,19 @@ class CartComponent extends Component {
           $number_ribbon = $prod['bank_discount'];
           //$bank_price = \price_format(ceil(round($price * (1 - (float) $prod['bank_discount'] / 100))));
         }
+
         $cart[$key]['number_ribbon'] = $number_ribbon;
         $cart[$key]['uid'] = $key;      
+
         if (!isset($groups[$prod['promo']])) {
           $groups[$prod['promo']] = [];
         }
+
         $groups[$prod['promo']][] = $cart[$key];
 
         $total+= $price;
       }
+      
       // $groups[$item['promo']]++;
       // appy promo qunatities
       foreach($cart as $key => $item) {
