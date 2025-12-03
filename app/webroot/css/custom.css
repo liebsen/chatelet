@@ -1766,6 +1766,11 @@ span.out{
   justify-content: flex-start!important;
 }
 
+.tags-start .text-legend,
+.tags-start .price_strong {
+  font-size: 1rem;
+}
+
 .search-item {
   /*opacity: 0;*/
   margin-bottom: 1rem;
