@@ -22,7 +22,7 @@
 			echo '<input type="hidden" id="checkout" value="'. $this->Html->url(array('controller' => 'carrito', 'action' => 'envio')) .'" />'
 		?>			
 		<div class="flex-col">
-			<div class="mobile p-3">
+			<div class="mobile">
 				<div class="d-flex flex-column justify-content-start align-center gap-05 w-100">
 				<?php foreach ($sorted as $product) : ?>
 					<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative' data-json='<?php echo json_encode($product) ?>' product_row>
@@ -79,11 +79,11 @@
 										<input class="giftchecks" type="checkbox" id="giftcheck_<?php echo $product['id'] ?>" data-id="<?php echo $product['id'] ?>"><span class="label-text text-muted text-sm">Para regalo</span><br><br>
 										</label>
 									</div>
+									<button class="btn bg-transparent m-0" onclick="askremoveCart(this)">
+										<i class="fa fa-trash-o"></i>
+									</button>
 								</div>
 							</div>
-							<button class="corner-pin bg-transparent" onclick="askremoveCart(this)">
-								<i class="fa fa-trash-o"></i>
-							</button>
 						</div>
 					<?php endforeach ?>
 				</div>
