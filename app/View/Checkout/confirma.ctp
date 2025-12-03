@@ -91,12 +91,5 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 	      }
 	    });
 	  });
-		setTimeout(() => {
-			const payment_method = localStorage.getItem('payment_method')  || 'bank'
-			$('#'+payment_method).click()
-		}, 100)
-		if(carrito.gifts && carrito.gifts.length) {
-			$('#gifts').val(carrito.gifts.join(','))
-		}
 	})
 </script>

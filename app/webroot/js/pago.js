@@ -9,9 +9,7 @@ $('.dues-select-option').click((e) => {
 	e.preventDefault()
 	e.stopPropagation()
 	var json = target.data('json')
-	// var cart = JSON.parse(localStorage.getItem('cart')) || {}
 	dues_selected = json.dues
-	//$(item).find('input').prop('checked', true) // force since preventdefault
 
 	if(!dues_selected) {
 		return false
@@ -22,11 +20,6 @@ $('.dues-select-option').click((e) => {
 
 	var interest = json.interest
 
-	// onSuccessAlert(`Como querés pagar`,`Seleccionaste ${dues_selected} cuota${dues_selected > 1 ? 's' : ''}`);
-	// save_preference([
-		// { 'payment_method': 'mercadopago'},
-		// { 'payment_dues': dues_selected }
-	// ])
 	$('input[name="payment_dues"]').val(dues_selected)
 	$('.dues-select-option').removeClass('selected secondary')
 	$('.dues-select-option').addClass('secondary')
@@ -43,18 +36,12 @@ $(function(){
 			$(e.target) : 
 			$(e.target).parents('.select-payment-option')
 
-		// e.preventDefault()
-		// e.stopPropagation()
-		// var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		var selected = target.find('input').val()
 		cart_totals.payment_method = selected
 		const payment_dues = document.querySelector('.select-payment-option')
 
-		// console.log('select-payment-option', selected)
-		// console.log('payment_dues', payment_dues)
-
 		$('.dues-block').hide()
-		// cart_totals.payment_method = selected
+
 		target.find('input').prop('checked', true)
 		var bank_bonus = 0
 
@@ -110,8 +97,6 @@ $(function(){
 			$('.bank-block').addClass('hide')
 		}
 		localStorage.setItem('payment_method', selected)
-	  // onSuccessAlert(`Como querés pagar`,'Seleccionaste pagar con ' + (selected === 'bank' ? 'Transferencia' : 'Mercado Pago'));
-	  // save_preference({payment_method: selected})
 
 		$('.payment_method .bronco-select').removeClass('is-selected is-secondary')
 		$('.payment_method .bronco-select').addClass('is-secondary')
@@ -127,20 +112,4 @@ $(function(){
 			$('#submitform').click()
 		}
 	})
-
-	/*$('#checkoutform').submit(form => {
-		// mostrar leyenda solicitando la elección correcta de cuotas.
-		// Asegurate de seleccionar {cuotas} cuotas.
-		const submit = $('.checkout-btn')
-		//var cart = JSON.parse(localStorage.getItem('cart')) || {}
-		submit.prop('disabled', true)
-		submit.addClass('disabled')
-		submit.text('Por favor espere...')
-		$('.checkoutform-container').removeClass('hide')
-
-		// localStorage.removeItem('cart')
-		localStorage.removeItem('continue_shopping_url')
-		//localStorage.setItem('cart', JSON.stringify(cart))
-		//localStorage.removeItem('cart')
-	})*/
-});
+})

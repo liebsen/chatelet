@@ -112,22 +112,20 @@ $(document).ready(function() {
     const btnSubmit = $(this).find('[type="submit"]');
     const redirect = $(this).find('[name="redirect"]').val();
     btnSubmit.prop('disabled', true)
+    formData.gifts = gifts
     $.ajax({
       url: $(this).attr('action'),
       type: 'POST',
-      data: {
-      	...formData,
-      	gifts: gifts
-      },
+      data: formData,
       success: function(res) {
       	if(res.success) {
-      		$.growl.notice({
+      		/*$.growl.notice({
       			title: 'OK',
       			message: res.message,
-      		})
+      		})*/
           setTimeout(() => {
           	location.href = redirect || location.href
-          }, 1000)
+          }, 100)
       	} else {
       		$.growl.error({
       			title: 'Error al enviar datos',
