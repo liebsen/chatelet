@@ -229,7 +229,8 @@ class AdminController extends AppController {
 		$this->SQL = $this->Components->load('SQL');
 		$prod_parts = explode('.', $prod_cod);
 		$products = $this->SQL->productsByLisCod($prod_parts[0], $lis_cod);
-		 // CakeLog::write('error', $full_now.' '.$full_end);
+		CakeLog::write('debug', 'get_product: '.json_encode($products));
+		// CakeLog::write('error', $full_now.' '.$full_end);
 		if (!empty($prod_parts[1])) {
 			$color_id = substr($prod_parts[1], -2);
 			$this->loadModel('Color');

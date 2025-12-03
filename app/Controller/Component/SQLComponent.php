@@ -6,14 +6,13 @@ class SQLComponent extends Component {
 	public function __construct() {
 		//$myServer = "181.164.35.14";
 		$myServer = "181.98.11.110";
-
-		/*$myUser = "UsuarioWebChâtelet";
+		$myUser = "UsuarioWebChâtelet";
 		$myPass = "UsuWEBChâtelet1973!!";
-		$myDB = "WebChâtelet";*/
+		$myDB = "WebChâtelet";
 
-		$myUser = "sa";
+		/*$myUser = "sa";
 		$myPass = "infinixchatelet2011";
-		$myDB = "Ventas";
+		$myDB = "Ventas";*/
 
 		try {
 			$this->conn = new PDO("dblib:host=$myServer;dbname=$myDB", $myUser, $myPass);
@@ -225,11 +224,12 @@ class SQLComponent extends Component {
 
 		$stmt = $this->conn->prepare("
 			SELECT a.ArtCod AS codArticulo,
-				   a.ArtNom AS descripcion,
-				   c.descripcion AS colorPrenda,
-				   al.LisCod AS listaPrecio,
-				   al.Precio
-
+				a.ArtNom AS descripcion,
+				c.descripcion AS colorPrenda,
+				al.LisCod AS listaPrecio,
+				al.DescripcionWeb AS DescripcionWeb,
+				al.ValidaddoWeb AS ValidaddoWeb,
+				al.Precio
 			FROM   Art a INNER JOIN
 				   ArtLis al ON a.ArtCod = al.ArtCod INNER JOIN
 				   Color c ON RIGHT(a.ArtCod, 2) = c.Codigo
