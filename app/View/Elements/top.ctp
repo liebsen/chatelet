@@ -55,7 +55,6 @@
       echo $this->Html->script('bootstrapValidator.min');
       echo $this->Html->script('plugins');
       echo $this->Html->script('chatelet.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-      // echo $this->Html->script('main.js?v=' . Configure::read('APP_VERSION'));
       echo $this->fetch('meta');
       echo $this->fetch('css');
     ?>

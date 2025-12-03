@@ -4,9 +4,9 @@
 ?>
 
 <div class="block">
-  <div class="block-title">
+  <!--div class="block-title">
     <h4>CBU/Alias y Descuentos</h4>
-  </div>
+  </div-->
   <div class="block-content">
     <form action="" method="post" class="form-inline">
       <div class="row">

@@ -169,25 +169,12 @@ class CarritoController extends AppController
 
 	public function index()
 	{
-		// $items_data = $this->getItemsData();
-		//CakeLog::write('debug', 'updateCart(data)'.json_encode($items_data));
-		// CakeLog::write('debug', 'updateCart(3):');
-		// $cart = $this->updateCart();
-		// CakeLog::write('debug', 'updateCart(2)');
-		// $this->Session->write('cart', $cart);
-		// $shipping_price = $this->Setting->findById('shipping_price_min');
-		// $total_price = $items_data['price'];
-		// error_log('freeshipping unit price: '.intval($total_price));
 		$stores = $this->Store->find('all', [
 			'conditions' => ['takeaway' => 1]
 		]);
 
-		// $map = $this->Setting->findById('carrito_takeaway_text');
- 		// $carrito_takeaway_text = $map['Setting']['extra'];		
 		$this->set('sorted', $this->Cart->sort());
 		$this->set('stores', $stores);
-		// $this->set('carrito_takeaway_text', $carrito_takeaway_text);
-		// $this->set('freeShipping', $freeShipping);
 	}
 
 	public function getLocalidadProvincia($id)

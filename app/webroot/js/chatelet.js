@@ -1,4 +1,5 @@
-var carrito = JSON.parse(localStorage.getItem('cart')) || {}
+const log = false
+
 var lastcp = localStorage.getItem('lastcp') || 0
 var lastscroll = 0
 var alerts = {}
@@ -11,7 +12,6 @@ let focusAnim = 'pulse'
 let clock = 0
 let fakeshown = 0 
 var toggleInterval = 0
-const log = false
 
 function getStorage(key, def) {
   if(localStorage[key] && localStorage[key] != 'undefined') {
@@ -25,88 +25,6 @@ function getStorage(key, def) {
   }
   return def ?? ''
 }
-
-/*
-
-function addToCart(data) {
-  $.post('/carrito/add', $.param(data))
-    .success(function(res) {
-      console.log('res', res)
-      if (res.success) {
-        window.dataLayer = window.dataLayer || []
-        fbq('track', 'AddToCart')
-        gtag('event', 'add_to_cart', {
-          "items": [
-            {
-              "id": data.id,
-              "name": $('.product').text(),
-              // "list_name": "Search Results",
-              // "brand": "Google",
-              // "category": "Apparel/T-Shirts",
-              "variant": data.alias,
-              "list_position": 1,
-              "quantity": data.count,
-              "price": $('.price').text()
-            }
-          ]
-        })
-
-        $.growl.error({
-          title: 'Agregado al carrito',
-          message: 'Podés seguir agregando más productos o finalizar esta compra en la sección carrito'
-        });
-
-        var reload = function() {
-          window.location.href = '/carrito'
-        };
-
-        setTimeout(reload, 1000);
-        
-        $('.growl-close').click(reload);
-
-        dataLayer.push({
-          'event': 'addToCart',
-          'ecommerce': {
-            'currencyCode': 'ARS',
-            'add': {         
-              'products': [{
-                'name': $('.product').text(),
-                'id': data.id,
-                'price': $('.price').text(),
-                'brand': 'Google',
-                'category': 'Apparel',
-                'variant': data.alias,
-                'quantity': 1
-               }]
-            }
-          },
-          'eventCallback': function() {
-            $.growl.notice({
-              title: 'Producto agregado al carrito',
-              message: 'Podés seguir agregando más productos o ir a la sección Pagar'
-            });
-            var reload = function() {
-              window.location.href = '/carrito'
-            };
-            setTimeout(reload, 3000);
-            $('.growl-close').click(reload);
-          }
-        })
-        
-      } else {
-        $.growl.error({
-          title: 'Ocurrió un error al agregar el producto al carrito',
-          message: 'Por favor, intentá nuevamente en unos instantes'
-        });
-      }
-    })
-    .fail(function() {
-      $.growl.error({
-        title: 'Ocurrio un error al agregar el producto al carrito',
-        message: 'Por favor, intente nuevamente'
-      });
-    }); 
-} */
 
 function addToCart(data, redirect) {
   return new Promise((resolve, reject) => {

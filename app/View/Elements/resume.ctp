@@ -67,7 +67,7 @@
 				</span>
 			</div>
 			<div class="summary-item text-right delivery-cost<?php echo empty($cart_totals['delivery_cost']) ? ' hidden' : '' ?>">
-				<span class="text-weight-thin text-success">Envía <span class="shipping-cargo"><?php echo $cart_totals['shipping'] ?></span></span>
+				<span class="text-weight-thin text-success">Envía <span class="shipping-cargo price text-sm"><?php echo $cart_totals['shipping'] ?></span></span>
 				<span id="delivery_cp"></span> <span>$ <span class="cost_delivery"><?php echo $cart_totals['delivery_cost'] ?></span></span>
 			</div>			
 			<div class="summary-item cost_total-container">

@@ -2920,12 +2920,32 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function login() {
+		$this->loadModel('User');
 		if ($this->request->is('post')) {
+			// check if exists 
+			$data = $this->request->data;
+			$email = $data['User']['email'];
+			$user = $this->User->find('first', array('conditions' => array('email' => trim($email))));
+
+			if (empty($user)) {
+	      $this->Session->setFlash(
+          'La cuenta no existe',
+          'default',
+          array('class' => 'hidden error')
+	      );
+				return $this->redirect(array('controller' => 'admin', 'action' => 'login'));
+			}
+
 			if ($this->Auth->login()) {
+	      $this->Session->setFlash(
+          'Bienvenida ' . $user['User']['name'],
+          'default',
+          array('class' => 'hidden notice')
+	      );
 				return $this->redirect(array('controller' => 'admin', 'action' => 'index'));
 			} else {
 	      $this->Session->setFlash(
-          'Error al registrar, por favor revise email y contraseña',
+          'La contraseña es inválida',
           'default',
           array('class' => 'hidden error')
 	      );

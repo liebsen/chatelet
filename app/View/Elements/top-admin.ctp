@@ -38,6 +38,7 @@
             echo $this->Html->css('bootstrap');
             echo $this->Html->css('plugins');
             echo $this->Html->css('main');
+            echo $this->Html->css('jquery.growl');
             //echo $this->Html->css('font-awesome.min');
             echo $this->Html->css('animate.css?v=' . Configure::read('APP_VERSION'));
 
@@ -72,18 +73,12 @@
     }
     ?>
     <body<?php if ($body_classes) { echo ' class="' . $body_classes . '"'; } ?>>
+
+            <?php echo $this->Session->flash() ?>
+
+
         <div id="page-loader"></div>
-        <!-- Page Container -->
-        <!-- In the PHP version you can set the following options from the config file -->
-        <!-- Add the class .full-width for a full width page -->
         <div id="page-container"<?php if ($template['page'] == 'full-width') { echo ' class="full-width"'; } ?>>
-            <!-- Header -->
-            <!-- In the PHP version you can set the following options from the config file -->
-            <!-- Add the class .navbar-fixed-top or .navbar-fixed-bottom for a fixed header on top or bottom respectively -->
-            <!-- If you add the class .navbar-fixed-top remember to add the class .header-fixed-top to <body> element! -->
-            <!-- If you add the class .navbar-fixed-bottom remember to add the class .header-fixed-bottom to <body> element! -->
-            <!-- <header class="navbar navbar-inverse navbar-fixed-top"> -->
-            <!-- <header class="navbar navbar-inverse navbar-fixed-bottom"> -->
             <header class="navbar navbar-inverse<?php if ($template['header'] == 'fixed-top') { echo ' navbar-fixed-top'; } else if ($template['header'] == 'fixed-bottom') { echo ' navbar-fixed-bottom'; } ?>">
                 <!-- div#row -->
                 <div class="row">
