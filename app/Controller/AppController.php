@@ -209,7 +209,7 @@ class AppController extends Controller
     }
 
     $email = new CakeEmail();
-    $email->transport('Debug');
+    // $email->transport('Debug');
     $email->from(array(
         'info@chatelet.com' => 'Châtelet'
     ));
@@ -223,7 +223,7 @@ class AppController extends Controller
       'data' => $data
     ));
 
-    $email->send();
+    return $email->send();
   }
 
   public function sendEmailMessage($message, $subject, $to){
@@ -243,7 +243,7 @@ class AppController extends Controller
     //$email->viewVars(array(
     //    'data' => $data
     //));
-    $email->send($message);
+    return $email->send($message);
   }
 
   private function saveFile($file, $thumb = false, $size = 300) {
