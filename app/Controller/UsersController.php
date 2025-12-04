@@ -142,12 +142,17 @@ class UsersController extends AppController {
     $ajax = $data['ajax'];
     $validate = empty($invite);
 
+    if(!empty($ajax)) {
+      $this->RequestHandler->respondAs('application/json');
+      $this->autoRender = false;
+    }
+
     if(empty($data['User']['email'])) {
       if(!empty($ajax)) {
-        die(json_encode(array(
+        return json_encode(array(
           'success' => false,
           'message' => 'No se recibió el email'
-        )));
+        ));
       }
       
       return $this->redirect($this->referer());
@@ -172,10 +177,10 @@ class UsersController extends AppController {
         )
       );
     } catch (Exception $e) {
-      die(json_encode(array(
+      return json_encode(array(
         'success' => false,
         'errors' => $e->getMessage()
-      )));      
+      ));      
     }
 
     if (!empty($saved)) {
@@ -190,28 +195,34 @@ class UsersController extends AppController {
       );
 
       if(!empty($ajax)) {
-        die(json_encode(array(
+        return json_encode(array(
           'success' => true,
           'message' => 'Tus datos fueron actualizados'
-        )));
+        ));
       }
 
       return $this->redirect($this->referer());
     } else {
       $errors = $this->User->validationErrors;
+      $texterr = "<br><br>";
+      foreach($errors as $source => $error) {
+        $texterr.= "$error[0] <br>";
+      }
 
-      CakeLog::write('debug', 'errors:'.json_encode($errors));
+      // CakeLog::write('debug', 'errors:'.json_encode($errors));
       $this->Session->setFlash(
-        'Hubo en error al intentar crear la cuenta. Por favor intente nuevamente en unos instantes.',
+        'Hubo en error al intentar crear la cuenta. ' . $texterr,
         'default',
         array('class' => 'hidden error')
       );            
       if(!empty($ajax)) {
-        die(json_encode(array(
+        return json_encode(array(
           'success' => false,
-          'errors' => 'Hubo en error al intentar crear la cuenta. Por favor intente nuevamente en unos instantes'
-        )));
+          'errors' => $errors,
+          'message' => 'Hubo en error al intentar crear la cuenta. ' . $texterr,
+        ));
       }
+
       return $this->redirect(array('controller' => 'home', 'action' => 'index'));
     }
   }
@@ -248,7 +259,7 @@ class UsersController extends AppController {
 
           $sent = $this->sendEmail($email_data,'Recuperar contraseña Châtelet', 'confirm_email');
 
-          if(!empty($ajax)) {
+          if(!empty($ajax)) {            
             die(json_encode(array(
               'success' => $sent, 
               'message' => "Revisa tu correo <b>{$email_user}</b> para continuar con el proceso",

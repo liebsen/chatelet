@@ -712,8 +712,8 @@ $(document).ready(function() {
 
 	$('.btn-logout').click(function(e) {
     if(localStorage.getItem('cart') && localStorage.getItem('cart') != 'undefined') {}
-    const prompt = prompt('Tenes un carrito activo con productos. ¿Estas segura de cerrar la sesión? ')
-    if (prompt) {
+    const agree = prompt('Tenes un carrito activo con productos. ¿Estas segura de cerrar la sesión? ')
+    if (agree) {
       e.preventDefault()
       return location.href = '/users/logout'
     } 
