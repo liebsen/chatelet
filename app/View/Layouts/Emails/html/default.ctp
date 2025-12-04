@@ -17,24 +17,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
   <head>
+    <style>
+      body {
+        font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
+      }
+    </style>
   </head>
   <body>
-    <table id="main" cellpadding="0" cellspacing="0" color="##FFF;" width="600" align="center" style="width:100%;" >
+    <table id="main" cellpadding="0" cellspacing="0" color="##FFF;" width="600" align="center" style="width:100%; height: 120px" >
       <tr>
         <td class="header">
           <table id="header" cellpadding="0" cellspacing="0" align="center" style="width:100%;" >
-            <tr style="text-align:center;">
-              <?php echo $this->html->image(Router::url('/',true)."images/logo.jpg", ['width' => '200px']); ?>
+            <tr>
+              <td align="center">
+                <?php echo $this->html->image(Router::url('/',true)."images/logo.jpg", ['width' => '200px']); ?>
+              </td>
             </tr>
           </table>
         </td>
       </tr>
-      <tr style="text-align:center;">
-        <td><?php echo $this->fetch('content'); ?></td>
+      <tr>
+        <td align="center"><?php echo $this->fetch('content'); ?></td>
       </tr>
       <tr style="text-align:center;">
-        <td>
-          &copy; <?php echo date('Y',time()); ?> &copy; Châtelet <p>Todos los derechos reservados.</p>
+        <td align="center">
+          &copy; <?php echo date('Y',time()); ?> Châtelet <p>Todos los derechos reservados.</p>
         </td>
       </tr>
     </table>
