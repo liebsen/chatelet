@@ -204,7 +204,7 @@ class AppController extends Controller
   }
 
   public function sendEmail($data, $subject, $template) {
-    if ($_SERVER['SERVER_NAME'] !== 'chatelet.com.ar' || empty($data['receiver_email'])){
+    if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($data['receiver_email'])){
       return true;
     }
 
@@ -226,7 +226,7 @@ class AppController extends Controller
   }
 
   public function sendMail($message, $subject, $to){
-    if ($_SERVER['SERVER_NAME'] !== 'chatelet.com.ar' || empty($to)){
+    if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($to)){
       return true;
     }
 
