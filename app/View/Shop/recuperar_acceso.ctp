@@ -46,7 +46,7 @@ echo $this->Session->flash();
 	        const formData = $(this).serialize();
 	        const btnSubmit = $(this).find('[type="submit"]');
 	        const redirect = $(this).find('[name="redirect"]').val();
-	        btnSubmit.val('Espere...')
+	        btnSubmit.val('Comprobando...')
 	        btnSubmit.prop('disabled', true)
 	        $.ajax({
 	            url: $(this).attr('action'),

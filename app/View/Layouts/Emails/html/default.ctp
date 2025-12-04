@@ -24,10 +24,10 @@
     </style>
   </head>
   <body>
-    <table id="main" cellpadding="0" cellspacing="0" color="##FFF;" width="600" align="center" style="width:100%; height: 120px" >
-      <tr>
+    <table id="main" cellpadding="0" cellspacing="0" width="600" align="center" style="backgound-color: #f8f8f8; width:100%; height: 120px" >
+      <tr style="backgound-color: #ffffff">
         <td class="header">
-          <table id="header" cellpadding="0" cellspacing="0" align="center" style="width:100%;" >
+          <table id="header" cellpadding="0" cellspacing="0" align="center" style="width:100%;">
             <tr>
               <td align="center">
                 <?php echo $this->html->image(Router::url('/',true)."images/logo.jpg", ['width' => '200px']); ?>
@@ -36,12 +36,12 @@
           </table>
         </td>
       </tr>
-      <tr>
+      <tr style="padding-top: 32px">
         <td align="center"><?php echo $this->fetch('content'); ?></td>
       </tr>
-      <tr style="text-align:center;">
+      <tr style="text-align:center; padding-top: 24px;">
         <td align="center">
-          &copy; <?php echo date('Y',time()); ?> Châtelet <p>Todos los derechos reservados.</p>
+          &copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados </p>
         </td>
       </tr>
     </table>

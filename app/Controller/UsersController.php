@@ -265,7 +265,7 @@ class UsersController extends AppController {
           if(!empty($ajax)) {            
             return json_encode(array(
               'success' => true, 
-              'message' => "Revisa tu correo <b>{$email_user}</b> para continuar con el proceso",
+              'message' => "Acabamos de enviarle un mensaje de correo electrónico",
               'errors' => "Hubo un error al intentar recuperar tu cuenta"
             ));
           }
