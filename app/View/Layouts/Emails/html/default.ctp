@@ -24,15 +24,15 @@
         <td class="header">
           <table id="header" cellpadding="0" cellspacing="0" align="center" style="width:100%;" >
             <tr style="text-align:center;">
-              <?php echo $this->html->image(Router::url('/',true)."images/logo.jpg"); ?>
+              <?php echo $this->html->image(Router::url('/',true)."images/logo.jpg", ['width' => '200px']); ?>
             </tr>
           </table>
         </td>
       </tr>
-      <tr>
+      <tr style="text-align:center;">
         <td><?php echo $this->fetch('content'); ?></td>
       </tr>
-      <tr>
+      <tr style="text-align:center;">
         <td>
           &copy; <?php echo date('Y',time()); ?> &copy; Châtelet <p>Todos los derechos reservados.</p>
         </td>
