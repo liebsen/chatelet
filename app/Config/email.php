@@ -8,13 +8,11 @@ class EmailConfig {
     // 'port' => 465,
     'port' => 587,
     'timeout' => 30,
-    // 'username' => 'chateletfacebook@gmail.com',
-    'username' => 'overlemonsoft@gmail.com',
-    // 'password' => 'rkvskpfrnixfadyh',
-    'password' => 'haywwjlrvjdznrrg',
+    'username' => 'chateletfacebook@gmail.com',
+    'password' => 'rkvskpfrnixfadyh',
     'charset' => 'utf-8',
     'tls' => true
-    //'log' => true
+    // 'log' => true
     // 'ssl' => true
     //'headerCharset' => 'utf-8',
   );
