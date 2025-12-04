@@ -549,7 +549,7 @@ footer .options {
 }
 
 footer .options h5 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #888;
 }
 
@@ -567,6 +567,7 @@ footer h5:after { background: #e7e7e7; content: ""; display: block; height: 3px;
 footer .options a, footer .options span { 
   color: #888; 
   font-weight: 300; 
+  font-size: 0.9rem;
   text-transform: uppercase;  
 }
 footer a:hover { color: #363633; }

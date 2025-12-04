@@ -24,13 +24,8 @@
   <section id="desarrollo" class="bg-arrow">
     <div class="wrapper container">
       <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
-      <div class="row">
-        <div class="col-md-6">
-          <input type="text" name="data[Contact][name]" class="form-control" placeholder="Nombre y Apellido" required />
-
-          <input type="email" class="form-control" name="data[Contact][email]" class="form-control" placeholder="Email" required/>
-          <input type="text" name="data[Contact][telephone]" class="form-control" placeholder="Telefono" required />
-          
+      <div class="flex-row">
+        <div class="flex-col">
           <div class="p-2">
             <h3>Tipo de consulta:</h3>
             <label for="particular">
@@ -42,9 +37,35 @@
               <input type="radio" name="data[Contact][client_type]" id="comerciante" value="comerciante" /> Comerciante
             </label>
           </div>
+          <div class="form-group">
+            <input type="text" name="data[Contact][name]" class="form-control" placeholder="Nombre y Apellido" required />
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" name="data[Contact][email]" class="form-control" placeholder="Email" required/>
+          </div>
+          <div class="form-group">
+            <input type="text" name="data[Contact][telephone]" class="form-control" placeholder="Telefono" required />
+          </div>
+          <div class="form-group">
+            <textarea name="data[Contact][message]" class="form-control" placeholder="Mensaje" rows="4" required></textarea>
+          </div>
+        </div>
+        <div class="flex-col desktop">
+          <div class="card flex-card">
+            <div class="d-flex flex-column justify-content-center align-items-start gap-05">
+              <h3>Contacta con Chatelet</h3>
+              <p>Te responderemos en cuanto nos sea posible.</p>
+            </div>
+          </div>
+        </div>  
+      </div>
+      <hr>
+      <div class="row is-flex-center d-none">
+        <div class="col-md-6">
+          <span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos"> Términos y Condiciones</a>
+          </span>
         </div>
         <div class="col-md-6">
-          <textarea name="data[Contact][message]" class="form-control" placeholder="Mensaje" rows="10" required></textarea>
           <input type="submit" id="contactar" class="btn btn-chatelet dark" value="Enviar Consulta" />
         </div>
       </div>
@@ -77,7 +98,7 @@
 				</p>
 				<input type="email" name="data[Contact][email]" class="form-control" placeholder="Email" required/>
 				<input type="tel" name="data[Contact][telephone]" class="form-control" placeholder="Telefono" required />
-				<textarea class="mensaje" name="data[Contact][message]" class="form-control" placeholder="Mensaje" rows="10" required></textarea>
+				<textarea class="mensaje" name="data[Contact][message]" class="form-control" placeholder="Mensaje" rows="6" required></textarea>
 				<input type="submit" id="contactar" class="big-pink-btn" value="Enviar Consulta" />
 			<?php echo $this->Form->end(); ?>
 		</div>

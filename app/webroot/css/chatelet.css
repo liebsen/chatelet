@@ -684,7 +684,7 @@ html, body {
   display: flex;
   flex-direction: column;
   padding: 0 !important;
-  grid-gap: 1rem;
+  /* grid-gap: 1rem; */
 }
 
 .flex-col h5 {
