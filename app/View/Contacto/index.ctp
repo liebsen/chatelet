@@ -26,17 +26,7 @@
       <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
       <div class="flex-row">
         <div class="flex-col">
-          <div class="p-2">
-            <h3>Tipo de consulta:</h3>
-            <label for="particular">
-              <span class="active"><i></i></span>
-              <input type="radio" name="data[Contact][client_type]" id="particular" value="particular" checked="checked" /> Particular
-            </label>
-            <label for="comerciante">
-              <span><i></i></span>
-              <input type="radio" name="data[Contact][client_type]" id="comerciante" value="comerciante" /> Comerciante
-            </label>
-          </div>
+
           <div class="form-group">
             <input type="text" name="data[Contact][name]" class="form-control" placeholder="Nombre y Apellido" required />
           </div>
@@ -46,15 +36,26 @@
           <div class="form-group">
             <input type="text" name="data[Contact][telephone]" class="form-control" placeholder="Telefono" required />
           </div>
+          <div class="p-2">
+            <h6>Tipo de consulta</h6>
+            <label for="particular">
+              <span class="active"><i></i></span>
+              <input type="radio" name="data[Contact][client_type]" id="particular" value="particular" checked="checked" /> Particular
+            </label>
+            <label for="comerciante">
+              <span><i></i></span>
+              <input type="radio" name="data[Contact][client_type]" id="comerciante" value="comerciante" /> Comerciante
+            </label>
+          </div>          
           <div class="form-group">
-            <textarea name="data[Contact][message]" class="form-control" placeholder="Mensaje" rows="4" required></textarea>
+            <textarea name="data[Contact][message]" class="form-control" placeholder="Escribe tu consulta aquí.." rows="4" required></textarea>
           </div>
         </div>
         <div class="flex-col desktop">
-          <div class="card flex-card">
-            <div class="d-flex flex-column justify-content-center align-items-start gap-05">
+          <div class="card">
+            <div class="card-body is-bordered">
               <h3>Contacta con Chatelet</h3>
-              <p>Te responderemos en cuanto nos sea posible.</p>
+              <p>Elige que tipo de consulta deseas realizar, rellena tus datos y escribe tu consulta, te responderemos en cuanto nos sea posible.</p>
             </div>
           </div>
         </div>  

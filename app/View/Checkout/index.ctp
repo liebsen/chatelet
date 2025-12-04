@@ -77,7 +77,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 			      <hr>
 			      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
 			      	<input type="submit" class="btn btn-chatelet dark w-100" value="Continuar como invitada" />
-			      	<input type="submit" class="btn btn-chatelet w-100" value="Registrar mi cuenta" />
+			      	<input type="button" class="btn btn-chatelet btn-register w-100" value="Registrar mi cuenta" />
 			      <?php echo $this->Form->end(); ?>
 					</div>
 				</div>
@@ -90,6 +90,11 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 <script type="text/javascript">
 	$(document).ready(function() {
 			localStorage.setItem('continue_shopping_url', window.location.pathname)
+
+	    $('.btn-register').on('click', function(event) {
+	    	location.href = `/shop/registro?redirect=${location.pathname}`
+	    })
+
 	    $('#login_form, #register_form').on('submit', function(event) {
 	        event.preventDefault();
 	        const formData = $(this).serialize();

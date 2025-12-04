@@ -256,8 +256,8 @@ if (!$loggedIn) {
 				<?php echo $this->Form->end(); ?>
 			</div>
 			<div class="flex-col desktop">
-				<div class="card">
-					<div class="d-flex flex-column justify-content-center align-items-start gap-05">
+				<div class="card bg-transparent">
+					<div class="card-body">
 						<h3>
 							<?php if ($loggedIn) : ?>
 								Tus datos en Châtelet
@@ -272,7 +272,7 @@ if (!$loggedIn) {
 								Crea hoy tu cuenta en <i>Châtelet</i> y accede a mas beneficios.
 							<?php endif ?>
 						</p>
-					</div>	
+					</div>
 				</div>
 			</div>
 		</div>

@@ -147,7 +147,7 @@ $(document).ready(function() {
 
 	  target.addClass('adding')
 	  target.text(target.hasClass('buy') ? 
-	  	'Procesando tu compra... ' : 
+	  	'Preparando tu compra... ' : 
 	  	'Agregando al carrito ...'
 	  )		
 
