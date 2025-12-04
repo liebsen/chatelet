@@ -32,8 +32,13 @@ class User extends AppModel {
     	$this->data[$this->alias]['birthday'] = $date;
     }
 
-    $this->data[$this->alias]['name'] = trim($this->data[$this->alias]['name']);
-    $this->data[$this->alias]['email'] = trim($this->data[$this->alias]['email']);
+    if(isset($this->data[$this->alias]['name'])) {
+    	$this->data[$this->alias]['name'] = trim($this->data[$this->alias]['name']);
+    }
+
+    if(isset($this->data[$this->alias]['email'])) {
+	    $this->data[$this->alias]['email'] = trim($this->data[$this->alias]['email']);  	
+    }
 
     return true;
   }

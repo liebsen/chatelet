@@ -247,12 +247,10 @@ class UsersController extends AppController {
           // $passwordHasher = new SimplePasswordHasher();
           // $pass = $passwordHasher->hash($pass1);
           CakeLog::write('debug', 'hash:'.$pass1);
-                                                                                                  
+
           $this->User->save(array(
-            'User'=>array(
-              'id' => $user_data['User']['id'],
-              'password' => $pass1
-            )
+            'id' => $user_data['User']['id'],
+            'password' => $pass1
           ), false);
 
           $email_data = array(
@@ -271,11 +269,13 @@ class UsersController extends AppController {
               'errors' => "Hubo un error al intentar recuperar tu cuenta"
             ));
           }
+
           $this->Session->setFlash(
             'BIEN!' , 
             'Verifique su casilla de correo', 
             array('class' => 'hidden notice')
           );
+
           return $this->redirect($this->referer());
         } else {
           
@@ -291,7 +291,7 @@ class UsersController extends AppController {
             'default',
             array('class' => 'hidden error')
           );
-          
+
           return $this->redirect($this->referer());
         }
 
