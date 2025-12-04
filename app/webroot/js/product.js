@@ -118,32 +118,31 @@ $(document).ready(function() {
 			size: target.closest("form").find('input[name="size"]:checked').val() || '',
 			alias: target.closest('form').find("input[name='color']:checked").attr('alias') || '',
 		}
-		if (!isGiftCard){
-			var product_name = $('#product_id').next().text()
-			//console.log(data.color, data.color_code, data.size)
-			if ((!data.color && !data.color_code) || !data.size) {
-				document.querySelector('.article-tools').classList.remove('fadeIn', 'flash')
-				setTimeout(() => {
-					document.querySelector('.article-tools').classList.add('flash')
-				}, 10)
-				if(!data.size){
-					return $.growl.notice({
-						title: '¡Personalizá tu compra!',
-						message: 'Seleccioná uno de los ' + ($('.size-options').length + 1) + ' talles disponibles para ' + product_name,
-					});
-				}
+		var product_name = $('#product_id').next().text()
+		//console.log(data.color, data.color_code, data.size)
+		if ((!data.color && !data.color_code) || !data.size) {
+			if(!data.size){
+
+				$('.size-options').removeClass('flash').addClass('flash')
 				return $.growl.notice({
 					title: '¡Personalizá tu compra!',
-					message: 'Seleccioná uno de los ' + ($('.color-options').length + 1) + ' colores disponibles para ' + product_name,
+					message: 'Seleccioná uno de los ' + ($('.size-options').length + 1) + ' talles disponibles para ' + product_name,
 				});
 			}
 
-			if ( !window.stock || window.stock == 0 ) {
-				return $.growl.error({
-					title: ''+product_name,
-					message: 'No Disponible'
-				});
-			}
+			$('.color-options').removeClass('flash').addClass('flash')
+
+			return $.growl.notice({
+				title: '¡Personalizá tu compra!',
+				message: 'Seleccioná uno de los ' + ($('.color-options').length + 1) + ' colores disponibles para ' + product_name,
+			});
+		}
+
+		if ( !window.stock || window.stock == 0 ) {
+			return $.growl.error({
+				title: ''+product_name,
+				message: 'No Disponible'
+			});
 		}
 
 	  target.addClass('adding')

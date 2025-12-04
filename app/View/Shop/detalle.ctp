@@ -231,7 +231,7 @@ foreach ($properties as $property) {
                       }
                   ?>
                 </div>
-                <div class="size-options row" data-toggle="buttons">
+                <div class="size-options animated row" data-toggle="buttons">
                 <!--div class="size-options d-flex justify-content-start align-items-start gap-1 pt-2" data-toggle="buttons"-->
                   <!--option value="">Talle</option-->
                   <?php

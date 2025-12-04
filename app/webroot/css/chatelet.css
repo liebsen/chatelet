@@ -1662,6 +1662,9 @@ span.validation-password {
     /*transform: scale(1) perspective(1024px) rotateY(-10deg) rotateX(3deg) rotate(3deg) translateY(0rem) translateX(-2rem);*/
     box-shadow: 0 0 20px 0 rgba(26, 26, 67, .25);
   }
+  .flex-col:first-child {
+  	min-width: 65%;
+  }
   .flex-col:last-child {
   	min-width: 35%;
   }

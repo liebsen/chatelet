@@ -1118,7 +1118,6 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   /*box-shadow: 0 0 1rem rgba(0,0,0,0.5);*/
 }
 
-
 #main .caract .color-block { display: none }
 
 ul#ul-moreviews li img {width: 40%}
@@ -1126,7 +1125,6 @@ ul#ul-moreviews li.dontResize img {
   width: 9rem; 
   margin-left: auto;
 }
-
 
 #myModal2 .content { background: url(../images/tablebg.png) no-repeat center center; background-size: cover; margin: 50px auto; overflow: hidden; padding: 50px; position: relative; width: 900px; }
 #myModal2 .content .table { background: #ece9ea; padding: 50px 20px; }
