@@ -641,7 +641,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 <p>¡Muchas gracias!</p><br>
 <a href="https://www.chatelet.com.ar">CHÂTELET</a>';
 		error_log('[email] notifying user bank ok '.$sale['Sale']['email']);
-		$this->sendMail($message,'🌸 Confirmación de pago de la orden #' . $sale['Sale']['id'],$sale['Sale']['email']);
+		$this->sendEmailMessage($message,'🌸 Confirmación de pago de la orden #' . $sale['Sale']['id'],$sale['Sale']['email']);
 
 		die(json_encode($data));
 	}
@@ -722,7 +722,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 					$data['status'] = 'success';
 					$data['message'] = 'Notificación enviada';
-					$this->sendMail($message,'🌸 Compra Realizada en Châtelet', $emailTo);
+					$this->sendEmailMessage($message,'🌸 Compra Realizada en Châtelet', $emailTo);
 					$this->Sale->save(['def_mail_sent' => 1]);
 				} else {
 					error_log('[email] ignored bc was sent before');

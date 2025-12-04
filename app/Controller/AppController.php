@@ -208,41 +208,42 @@ class AppController extends Controller
       return true;
     }
 
-    $Email = new CakeEmail();
-    $Email->from(array(
+    $email = new CakeEmail();
+    $email->transport('Debug');
+    $email->from(array(
         'info@chatelet.com' => 'Châtelet'
     ));
     //pr($data);die;
-    $Email->to($data['receiver_email']);
-    $Email->subject($subject);
-    $Email->template($template, 'default');
-    $Email->emailFormat('html');
-    $Email->config('default');
-    $Email->viewVars(array(
+    $email->to($data['receiver_email']);
+    $email->subject($subject);
+    $email->template($template, 'default');
+    $email->emailFormat('html');
+    $email->config('default');
+    $email->viewVars(array(
       'data' => $data
     ));
 
-    $Email->send();
+    $email->send();
   }
 
-  public function sendMail($message, $subject, $to){
+  public function sendEmailMessage($message, $subject, $to){
     if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($to)){
       return true;
     }
 
-    $Email = new CakeEmail();
-    $Email->from(array(
+    $email = new CakeEmail();
+    $email->from(array(
         'info@chatelet.com' => 'Châtelet'
     )); 
-    $Email->to($to);
-    $Email->subject($subject);
-    //$Email->template($template, 'default');
-    $Email->emailFormat('html');
-    $Email->config('default');
-    //$Email->viewVars(array(
+    $email->to($to);
+    $email->subject($subject);
+    //$email->template($template, 'default');
+    $email->emailFormat('html');
+    $email->config('default');
+    //$email->viewVars(array(
     //    'data' => $data
     //));
-    $Email->send($message);
+    $email->send($message);
   }
 
   private function saveFile($file, $thumb = false, $size = 300) {

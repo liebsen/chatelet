@@ -63,7 +63,7 @@ class ShopController extends AppController {
 	        'receiver_email' => $user_data['User']['email'],
 	        'name' =>  $user_data['User']['name'],
 	      );			
-				$this->sendMail($email_data,'🌸 Test via en Châtelet (HTML)', 'test');
+				$this->sendEmailMessage($email_data,'🌸 Test via en Châtelet (HTML)', 'test');
 			} else {
 				die('User not found');
 			}

@@ -230,7 +230,12 @@ class UsersController extends AppController {
   public function forgot_password(){
     if ($this->request->is('post')) {
       $email_user = trim($this->request->data['User']['email']) ?? '';
-      $ajax = $this->request->data['ajax'] ?? '';
+      $ajax = $this->request->data['ajax'];
+
+      if(!empty($ajax)) {
+        $this->RequestHandler->respondAs('application/json');
+        $this->autoRender = false;        
+      }
       if(!empty($email_user)){
         $user_data = $this->User->find('first', array(
           'recursive' => -1, 
@@ -260,11 +265,11 @@ class UsersController extends AppController {
           $sent = $this->sendEmail($email_data,'Recuperar contraseña Châtelet', 'confirm_email');
 
           if(!empty($ajax)) {            
-            die(json_encode(array(
+            return json_encode(array(
               'success' => $sent, 
               'message' => "Revisa tu correo <b>{$email_user}</b> para continuar con el proceso",
               'errors' => "Hubo un error al intentar recuperar tu cuenta"
-            )));
+            ));
           }
           $this->Session->setFlash(
             'BIEN!' , 
@@ -275,10 +280,10 @@ class UsersController extends AppController {
         } else {
           
           if(!empty($ajax)) {
-            die(json_encode(array(
+            return json_encode(array(
               'success' => false, 
               'errors' => "La cuenta <b>{$email_user}</b> no existe"
-            )));
+            ));
           }
 
           $this->Session->setFlash(
@@ -286,6 +291,7 @@ class UsersController extends AppController {
             'default',
             array('class' => 'hidden error')
           );
+          
           return $this->redirect($this->referer());
         }
 

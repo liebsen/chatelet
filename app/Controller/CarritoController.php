@@ -103,7 +103,7 @@ class CarritoController extends AppController
 		
 		die();
 
-		// $this->sendMail('hello','Test via en Châtelet','overlemonsoft@gmail.com');
+		// $this->sendEmailMessage('hello','Test via en Châtelet','overlemonsoft@gmail.com');
 		$curl = new Curl();
 		$token = $curl->post('https://api.ar.treggo.co/1/token', [
 			"email" => "overlemonsoft@gmail.com",
@@ -837,7 +837,7 @@ el pago.</p>
 
 		}
 		error_log('[email] notifying user '.$data['user']['email']);
-		$this->sendMail($message,'🌸 Gracias por comprar en CHÂTELET',$data['user']['email']);
+		$this->sendEmailMessage($message,'🌸 Gracias por comprar en CHÂTELET',$data['user']['email']);
 	}
 
 	public function failed() {

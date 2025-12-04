@@ -73,7 +73,7 @@ class ContactoController extends AppController {
 				$subject = '🌸 Contacto Châtelet - NO RESPONDER';
 				$to = 'chateletonline@chatelet.com.ar';
 				
-				$this->sendMail($message, $subject, $to);
+				$this->sendEmailMessage($message, $subject, $to);
 
 				if(!empty($ajax)) {
 					die(json_encode(array(

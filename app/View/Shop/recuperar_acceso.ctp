@@ -25,7 +25,7 @@ echo $this->Session->flash();
 	    <input type="hidden" name="ajax" value="1" />
 	    <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" />
 	    <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
-		    <input type="submit" id="login" value="Enviar" />
+		    <input type="submit" id="login" value="Recuperar acceso" />
 		    <span id="forgot-password" class="text-muted text-sm d-block mt-1">
 	  		  Recibirás un correo electrónico con tu nueva contraseña
 	    	</span>
@@ -46,6 +46,7 @@ echo $this->Session->flash();
 	        const formData = $(this).serialize();
 	        const btnSubmit = $(this).find('[type="submit"]');
 	        const redirect = $(this).find('[name="redirect"]').val();
+	        btnSubmit.val('Espere...')
 	        btnSubmit.prop('disabled', true)
 	        $.ajax({
 	            url: $(this).attr('action'),
@@ -54,15 +55,19 @@ echo $this->Session->flash();
 	            success: function(res) {
 	            	if(res.success) {
 	            		onSuccessAlert('Datos de acceso actualizados', res.message)
-	                /* $('#responseContainer').html(res.message);
+	            		btnSubmit.prop('disabled', false)
+	            		btnSubmit.val('Recuperar acceso')
 	                setTimeout(() => {
-	                	location.href = redirect || location.href
-	                }, 3000)*/
+	                	if(redirect) {
+	                		location.href = redirect
+	                	}
+	                }, 1000)
 	            	} else {
 	            		onWarningAlert('Error al registrar usuario', res.errors)
 	            		$('#responseContainer').html(res.errors);
 	            	}
 	            	btnSubmit.prop('disabled', false)
+	            	btnSubmit.val('Recuperar acceso')
 	            },
 	            error: function(xhr, status, error) {
                 console.error("AJAX Error: " + status + " - " + error);
