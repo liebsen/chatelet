@@ -838,31 +838,46 @@ class CheckoutController extends AppController
 			);
 		}
 
-		if(!$this->request->is('post') || (
-				$cart_totals['cargo'] === 'shipment' && 
-				empty($customer['postal_address']) || 
-				empty($customer['street_n']) || 
-				empty($customer['street']) || 
-				empty($customer['localidad']) || 
-				empty($customer['provincia']) || 
-				empty($customer['name']) || 
-				empty($customer['surname']) || 
-				empty($customer['email']) || 
-				empty($customer['telephone'])
-			)
-		){
+		$missing_data = false;
+		if(!$this->request->is('post')) {
+			if ($cart_totals['cargo'] === 'shipment') {
+				if (
+					empty($customer['postal_address']) || 
+					empty($customer['street_n']) || 
+					empty($customer['street']) || 
+					empty($customer['localidad']) || 
+					empty($customer['provincia']) || 
+					empty($customer['name']) || 
+					empty($customer['surname']) || 
+					empty($customer['email']) || 
+					empty($customer['telephone'])
+				) {
+					$missing_data = true;
+				}
+			}
+
+			if ($cart_totals['cargo'] === 'takeaway') {
+				if (
+					empty($customer['store']) || 
+					empty($customer['store_address'])
+				) {
+					$missing_data = true;
+				}
+			}
 			
-			$this->Session->setFlash('Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo','default',array('class' => 'hidden error'));
-			// error_log('checkout error');
-			// error_log(json_encode($sale));
-			// $this->redirect(array( 'action' => 'clear' ));
-			// CakeLog::write('debug', 'No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias');
-			CakeLog::write('debug', 'sale(err): Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo');			
-			return array(
-				'success' => false,
-				'errors' => "Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo. Disculpe las molestias",
-				'redirect' => Router::url(array( 'action' => 'clear' )),
-			);
+			if($missing_data) {
+				$this->Session->setFlash('Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo','default',array('class' => 'hidden error'));
+				// error_log('checkout error');
+				// error_log(json_encode($sale));
+				// $this->redirect(array( 'action' => 'clear' ));
+				// CakeLog::write('debug', 'No es posible pagar esta compra con CBU/Alias. Intente con otro método de pago. Disculpe las molestias');
+				CakeLog::write('debug', 'sale(err): Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo');			
+				return array(
+					'success' => false,
+					'errors' => "Es posible que el pago aún no se haya hecho efectivo, quizas tome mas tiempo. Disculpe las molestias",
+					'redirect' => Router::url(array( 'action' => 'clear' )),
+				);
+			}
 		}
 
 		$sale_object = array(
