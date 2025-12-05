@@ -285,7 +285,7 @@ foreach ($properties as $property) {
   </div>
 </section>
 
-<section id="productOptions" class="animated fadeIn">
+<section id="productOptions" class="animated fadeIn delay2">
   <div class="wrapper">
     <div class="container">
       <div class="row">

@@ -775,6 +775,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   align-items: center;
   font-weight: 800;  
   color: #333;
+  font-size: 0.9rem;
   margin-bottom: 0.75rem;
   line-height: 1;
 }
@@ -1068,6 +1069,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   box-shadow: none;
   margin: 0;
   border-radius: 0!important;
+  line-height: 1.5;
   color: #888;
 }
 
@@ -1078,7 +1080,12 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 .color-options .btn {
   min-height: 25rem;
   flex: 1;
+  width: 6rem;
   padding: 0;
+}
+
+.size-options {
+  padding-top: 1rem;
 }
 
 #main .caract label > input {
@@ -1119,7 +1126,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
     min-height: 18rem;
   }
   .color-options .btn {
-    min-height: 21rem;
+    min-height: 20rem;
   }  
 }
 
