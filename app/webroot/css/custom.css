@@ -1071,6 +1071,10 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   color: #888;
 }
 
+.color-options {
+  overflow-x: auto;
+}
+
 .color-options .btn {
   min-height: 25rem;
   flex: 1;
@@ -1105,6 +1109,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 #main .caract label.btn .color-option.color-img {
   margin: auto;
   min-height: 22rem;
+  min-width: 6rem;
   background-position: center;
   background-size: cover;
 }

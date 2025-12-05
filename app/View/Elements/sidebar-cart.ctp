@@ -2,7 +2,7 @@
   <button type="button" class="corner-pin btn-close-sidebar">
     <i class="ico-times" role="img" aria-label="Cerrar"></i>
   </button>
-  <div class="sidebar-top d-flex flex-column justify-content-<?php echo !empty($cart) ? 'start' : 'center' ?> align-items-center gap-05 content">
+  <div class="sidebar-top d-flex flex-column justify-content-<?php echo !empty($cart) ? 'start' : 'center' ?> align-items-<?php echo !empty($cart) ? 'start' : 'center' ?> gap-05 content">
   <?php if (!empty($cart)) :?>
     <h5 class="text-bolder text-uppercase">Carrito</h5>
   <?php foreach($cart as $i => $product) :?>
