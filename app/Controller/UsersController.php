@@ -23,8 +23,26 @@ class UsersController extends AppController {
   public function login() {
     $redirect = $this->request->data['redirect'];
     $ajax = $this->request->data['ajax'];
-
+    $email_user = trim($this->request->data['User']['email']) ?? '';
     CakeLog::write('debug', 'login:'.json_encode($this->request->data));
+
+    if(!empty($ajax)) {
+      $this->RequestHandler->respondAs('application/json');
+      $this->autoRender = false;        
+    }
+
+    $user_data = $this->User->find('first', array(
+      'recursive' => -1, 
+      'conditions' => array('User.email' => $email_user)
+    ));
+
+    if(empty($user_data)){
+      return json_encode(array(
+        'success' => false, 
+        'errors' => 'Tu email no está registrado en nuestra tienda'
+      ));
+    }
+
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
         $this->Session->setFlash(
@@ -45,10 +63,10 @@ class UsersController extends AppController {
       }
 
       if(!empty($ajax)) {
-        die(json_encode(array(
+        return json_encode(array(
           'success' => false, 
-          'errors' => 'Por favor verifique su email y contraseña e intente nuevamente'
-        )));
+          'errors' => 'Por favor verifica tu contraseña'
+        ));
       }
 
       $this->Session->setFlash(

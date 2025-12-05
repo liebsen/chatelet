@@ -4,7 +4,7 @@
         <a class="navbar-brand"
          href="<?php echo router::url(array('controller' => 'Home', 'action' => 'index')) ?>" >
             Châtelet</a>
-        <i class="fa fa-bars navbar-toggle float-none m-0 collapsed text-light" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"></i>
+        <i class="fa fa-bars navbar-toggle float-none m-0 collapsed text-dark" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"></i>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,7 +56,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="#" class="is-unlifted" title="Buscar en la tienda">
-              <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="fa text-light fa-search text-light"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="fa text-dark fa-search text-dark"></i>
             </a>
           </li>
 
@@ -104,7 +104,7 @@
             </ul>
             <?php } else { ?>
             <a href="#" class="dropdown-toggle is-unlifted" title="Inicia sesión">
-              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-light fa-user-o"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-dark fa-user-o"></i>
             </a>
             <?php } ?>
           </li><!-- /.Login -->
@@ -113,7 +113,7 @@
               <?php if(count($cart)):?>
               <span data-toggle="sidebar" data-target=".sidebar-cart" class="count animated scaleIn speed delay1"><?=count($cart)?></span>
               <?php endif ?>
-              <span data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= count($cart) ? 'text-green' : 'text-light' ?>"></i></span>
+              <span data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= count($cart) ? 'text-green' : 'text-dark' ?>"></i></span>
             </a>
             <ul class="dropdown-menu">
               <li>

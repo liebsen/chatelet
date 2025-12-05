@@ -23,6 +23,7 @@ echo $this->Session->flash();
 			)); ?>
 	    <p class="title mb-1">Ingresá tu correo</p>
 	    <input type="hidden" name="ajax" value="1" />
+	    <input type="hidden" name="redirect" value="<?= $_GET['redirect'] ?? '' ?>" />
 	    <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" />
 	    <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
 		    <input type="submit" id="login" value="Recuperar acceso" />
@@ -61,7 +62,7 @@ echo $this->Session->flash();
 	                	if(redirect) {
 	                		location.href = redirect
 	                	}
-	                }, 1000)
+	                }, 3000)
 	            	} else {
 	            		onWarningAlert('Error al registrar usuario', res.errors)
 	            		$('#responseContainer').html(res.errors);
