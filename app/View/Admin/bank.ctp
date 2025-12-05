@@ -15,8 +15,8 @@
           <div class="control-group">
             <div class="controls text-center switch-scale">
               <?php
-                $enabled = $data['bank_enable'] == 1 ? 'checked' : '';
-                $disabled = $data['bank_enable'] == 0 ? 'checked' : '';
+                $enabled = $settings['bank_enable'] == 1 ? 'checked' : '';
+                $disabled = $settings['bank_enable'] == 0 ? 'checked' : '';
               ?>
               <label for="enabled_1">Sí</label>
               <input type="radio" class="form-control" id="enabled_1" name="data[bank_enable]" value="1" <?php echo $enabled; ?> /> &nbsp;
@@ -32,8 +32,8 @@
               <div class="control-group">
                 <div class="controls text-center switch-scale">
                   <?php
-                    $enabled = $data['bank_discount_enable'] == 1 ? 'checked' : '';
-                    $disabled = $data['bank_discount_enable'] == 0 ? 'checked' : '';
+                    $enabled = $settings['bank_discount_enable'] == 1 ? 'checked' : '';
+                    $disabled = $settings['bank_discount_enable'] == 0 ? 'checked' : '';
                   ?>
                   <label for="enabled_11">Sí</label>
                   <input type="radio" class="form-control" id="enabled_11" name="data[bank_discount_enable]" value="1" <?php echo $enabled; ?> /> &nbsp;
@@ -47,7 +47,7 @@
               <div class="control-group">
                 <label class="control-label" for="columns-text"><?php echo __('Descuento (%)'); ?></label>
                 <div class="controls">
-                  <input type="number" max="100" min="0" size="4" name="bank_discount" class="form-control" value="<?= @$data['bank_discount'] ?>" <?= $disabled ? 'disabled': '' ?>/>
+                  <input type="number" max="100" min="0" size="4" name="bank_discount" class="form-control" value="<?= @$settings['bank_discount'] ?>" <?= $disabled ? 'disabled': '' ?>/>
                 </div>
                 <span class="text-muted">Porcentaje de descuento para pagos con CBU/Alias. (Ej: 10%, 20%, etc)</span>              
               </div>
@@ -59,42 +59,42 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Datos bancarios'); ?></label>
             <div class="controls">
-              <input name="bank_explain_title" class="form-control w-100" value="<?= @$data['bank_explain_title'] ?>"/>
+              <input name="bank_explain_title" class="form-control w-100" value="<?= @$settings['bank_explain_title'] ?>"/>
             </div>
             <span class="text-muted">Título antes de mostrar los datos bancarios. (Ej: Datos para completar tu compra)</span>              
           </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Desarrolla Datos bancarios'); ?></label>
             <div class="controls">
-              <textarea name="bank_explain_text" class="form-control w-100"><?= @$data['bank_explain_text'] ?></textarea>
+              <textarea name="bank_explain_text" class="form-control w-100"><?= @$settings['bank_explain_text'] ?></textarea>
             </div>
             <span class="text-muted">Indica los datos de cuenta bancaria para que los clientes puedan pagar via trasnferencia. Ej: CBU, Alias, etc... </span>
           </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Instrucciones de la operación'); ?></label>
             <div class="controls">
-              <input name="bank_instructions_title" class="form-control w-100" value="<?= @$data['bank_instructions_title'] ?>"/>
+              <input name="bank_instructions_title" class="form-control w-100" value="<?= @$settings['bank_instructions_title'] ?>"/>
             </div>
             <span class="text-muted">Título antes de mostrar los datos bancarios. (Ej: Datos para completar tu compra)</span>              
           </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('WhatsApp para enviar comprobante'); ?></label>
             <div class="controls">
-              <input type="number" name="bank_whatsapp" class="form-control w-100" value="<?= @$data['bank_whatsapp'] ?>"/>
+              <input type="number" name="bank_whatsapp" class="form-control w-100" value="<?= @$settings['bank_whatsapp'] ?>"/>
             </div>
             <span class="text-muted">Poné tu número de WhatsApp para que te puedan enviar el comprobante. (Ej: 541147022997)</span>            
           </div> 
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Desarrolla Instrucciones de la operación'); ?></label>
             <div class="controls">
-              <textarea name="bank_instructions_text" class="form-control w-100"><?= @$data['bank_instructions_text'] ?></textarea>
+              <textarea name="bank_instructions_text" class="form-control w-100"><?= @$settings['bank_instructions_text'] ?></textarea>
             </div>
             <span class="text-muted">Indica las instrucciones complementarias para enviar los comprobantes. Ej: enviar comprobante por whatsapp al siguiente número...</span>
           </div>
           <!--div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Monto total de la operación'); ?></label>
             <div class="controls">
-              <input name="bank_total_text" class="form-control w-100" value="<?= @$data['bank_total_text'] ?>"/>
+              <input name="bank_total_text" class="form-control w-100" value="<?= @$settings['bank_total_text'] ?>"/>
             </div>
             <span class="text-muted">Texto que que se muestra antes de informar sobre el monto total de la operación. (Ej: Monto a transferir para esta operación)</span>             
           </div-->  

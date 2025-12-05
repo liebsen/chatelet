@@ -6,7 +6,7 @@
 				<h4 class="modal-title" id="modal-title">Mi Cuenta // <span class="grey">Registro de Usuario</span></h4>
 			</div>
 			<div class="modal-body center-text">
-				<h1 class="registro-heading">Bienvenido a Châtelet</h1>
+				<h1 class="registro-heading">Bienvenida a Châtelet</h1>
 				<p>Para registrarse en nuestro sistema, indique acontinuación su clase de usuario:</p>
 				<div class="row">
 					<div class="col-md-1"></div>

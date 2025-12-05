@@ -54,7 +54,7 @@ class ContactoController extends AppController {
 					if(!empty($ajax)) {
 						die(json_encode(array(
 							'success' => true, 
-							'message' => 'Bienvenido a Châtelet'
+							'message' => 'Bienvenida a Châtelet'
 						)));
 					}
 

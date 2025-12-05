@@ -1,12 +1,16 @@
-var getItems = () => {
+var getItems = (payment_method) => {
   var subtotal = 0
+  payment_method = payment_method || cart_totals.payment_method
+  console.log('getItems(payment_method)',payment_method)
   if(cart_items){
     cart_items.map((e) => {
-      if(cart_totals.payment_method == 'bank' && e.bank_discount) {
-        const price = Math.ceil(Math.round(e.price * (1 - parseFloat(e.bank_discount) / 100)))
+      if(payment_method == 'bank' && e.bank_discount) {
+        const price = Math.ceil(Math.round(e.old_price * (1 - parseFloat(e.bank_discount) / 100)))
+        console.log('price(1)', price)
         subtotal+= price
       } else {
-        subtotal+= parseFloat(e.price)
+        console.log('price(2)', e.old_price)
+        subtotal+= parseFloat(e.old_price)
       }
     })
   }
@@ -14,13 +18,12 @@ var getItems = () => {
 }
 
 var getTotals = () => {
-  var payment_method = cart_totals.payment_method
-  var subtotal = getItems()
+  var payment_method = cart_totals.payment_method || 'bank'
+  var subtotal = getItems(payment_method)
 
-  // var carrito = JSON.parse(localStorage.getItem('cart')) || {}
-  $('.subtotal_price').text(formatNumber(subtotal))
+  $('.subtotal_price').text("$ " + formatNumber(subtotal))
   
-  if(freeShipping) {
+  if(cart_totals.free_shipping) {
     $('.paid-shipping-block').addClass('hidden')
     $('.free-shipping-block').removeClass('hidden')
   } else {
@@ -35,14 +38,20 @@ var getTotals = () => {
     subtotal-= cart_totals.coupon_benefits
   }
 
-  if(settings.bank_enable && settings.bank_discount && cart_totals.payment_method == 'bank') {
+  if(
+    payment_method == 'bank' && 
+    settings.bank_enable && 
+    settings.bank_discount_enable && 
+    settings.bank_discount
+  ) {
     subtotal-= subtotal * (parseFloat(settings.bank_discount) / 100)
   }
 
   if(subtotal < 1) {
     subtotal = 1
   }
-  //console.log('total_price(1)', subtotal)
+
+  // console.log('getTotals(2)', subtotal)
   $('.calc_total').text("$ " + formatNumber(subtotal))
   // localStorage.setItem('cart', JSON.stringify(carrito))  
   return subtotal

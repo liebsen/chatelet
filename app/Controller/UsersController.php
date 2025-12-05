@@ -54,7 +54,7 @@ class UsersController extends AppController {
         if(!empty($ajax)) {
           die(json_encode(array(
             'success' => true, 
-            'message' => "Bienvenido {$this->Auth->user('name')} a Châtelet"
+            'message' => "Bienvenida {$this->Auth->user('name')} a Châtelet"
           )));
         }
 

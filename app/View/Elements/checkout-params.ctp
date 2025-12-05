@@ -13,7 +13,7 @@
 
 	foreach($settings as $key => $item) {
 	  if (!in_array($key, $private)) {
-	    $filtered[$key] = $item;
+	    $filtered[$key] = is_numeric($item) ? (float) $item : $item;
 	  }
 	}
 ?>

@@ -58,7 +58,7 @@
 			</div>
 			<div class="summary-item products-total <?php echo empty($cart_totals['delivery_cost']) && empty($cart_totals['coupon_benefits']) ? 'hidden' : '' ?>">
 				<span class="text-weight-thin">Subtotal </span>
-				<span><?= \price_format($cart_totals['total_products']) ?></span>
+				<span class="subtotal_price"><?= \price_format($cart_totals['total_products']) ?></span>
 			</div>
 			<div class="summary-item coupon-discount<?php echo empty($cart_totals['coupon_benefits']) ? ' hidden' : '' ?>">
 				<span class="text-weight-thin text-success">Cupón </span>

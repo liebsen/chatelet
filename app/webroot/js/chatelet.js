@@ -195,6 +195,7 @@ let calcDues = (total) => {
 
 let fxTotal = (total) => {
   if($('.calc_total').text().replace("$ ", "") != total) {
+    console.log('fxTotal', total)
     $('.calc_total').text( '$ ' + formatNumber(total) )
   }
 }
