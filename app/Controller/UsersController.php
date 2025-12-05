@@ -143,8 +143,9 @@ class UsersController extends AppController {
 
   public function register(){
     $this->autoRender = false;
+    $logged = $this->Auth->login();     
 
-    if (!$this->request->is('post')) {
+    if ($logged || !$this->request->is('post')) {
       //return json_encode(array('success' => false));
       return $this->redirect(array('controller' => 'home', 'action' => 'index'));
     }
@@ -190,9 +191,7 @@ class UsersController extends AppController {
     try {
       $saved = $this->User->save(
         $data, 
-        array(
-          'validate' => $validate
-        )
+        array('validate' => $validate)
       );
     } catch (Exception $e) {
       return json_encode(array(
@@ -202,9 +201,17 @@ class UsersController extends AppController {
     }
 
     if (!empty($saved)) {
-      $logged = $this->Auth->login();     
 
-      CakeLog::write('debug', 'logged:'.$logged);
+      CakeLog::write('debug', 'saved:'.$saved);
+
+      $email_data = array(
+        'id_user' => $data['User']['id'] ,
+        'receiver_email' => $data['User']['email'],
+        'name' =>  $data['User']['name'],
+        'password' => $data['User']['password']
+      );
+
+      $sent = $this->sendEmail($email_data,'Bienvenida a Châtelet', 'confirm_email');
 
       $this->Session->setFlash(
         'Bienvenida a Châtelet', 
@@ -232,7 +239,8 @@ class UsersController extends AppController {
         'Hubo en error al intentar crear la cuenta. ' . $texterr,
         'default',
         array('class' => 'hidden error')
-      );            
+      );
+
       if(!empty($ajax)) {
         return json_encode(array(
           'success' => false,
@@ -254,6 +262,7 @@ class UsersController extends AppController {
         $this->RequestHandler->respondAs('application/json');
         $this->autoRender = false;        
       }
+
       if(!empty($email_user)){
         $user_data = $this->User->find('first', array(
           'recursive' => -1, 

@@ -695,7 +695,7 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   /* height: 220px; padding-top: 90px;*/ 
   text-align: center; 
   min-height: 10rem;
-  background-color: #ebebeb;
+  background-color: #888;
 }
 /*#headabrigos { background: url(../images/headabrigo.jpg) no-repeat center center; }*/
 .header-offset { transform: translateY(-1rem);  }
