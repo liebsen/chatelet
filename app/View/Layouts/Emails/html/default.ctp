@@ -47,7 +47,12 @@
         </td>
       </tr>
       <tr>
-        <td style="padding: 8px"><small>&copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados</small></td>
+        <td align="center" style="padding: 8px; color: #e7e7e7">
+          <small>Seguinos en nuestras redes: <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" target="_blank">Facebook</a> | <a href="https://www.instagram.com/chateletmoda/" target="_blank">Instagram</a></small>
+        </td>
+      </tr>
+      <tr>
+        <td align="center" style="padding: 8px; color: #e7e7e7"><small>&copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados</small></td>
       </tr>
     </table>
   </body>
