@@ -43,6 +43,7 @@ class CartComponent extends Component {
 
         $prod = $prod['Product'];
         $price = $prod['price'];
+        $prod['old_price'] = $price;
 
         $prop = $this->controller->ProductProperty->find('all', array('conditions' => array(
           'product_id' => $prod['id'],
