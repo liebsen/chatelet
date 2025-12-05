@@ -1078,9 +1078,9 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 }
 
 .color-options .btn {
-  min-height: 25rem;
+  min-height: 20rem;
   flex: 1;
-  width: 6rem;
+  min-width: 8rem;
   padding: 0;
 }
 
@@ -1103,8 +1103,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
   font-size: 1.25rem;
   color: #14c408;
   position: absolute;
-  top: -0.75rem;
-  right: 0.25rem;
+  top: 0;
+  right: 0.15rem;
 }
 
 #main .caract label.btn .color-option,
@@ -1115,8 +1115,8 @@ footer .bottom a.ig { background-position: -101px -286px; } */
 
 #main .caract label.btn .color-option.color-img {
   margin: auto;
-  min-height: 22rem;
-  min-width: 6rem;
+  min-height: 18rem;
+  min-width: 8rem;
   background-position: center;
   background-size: cover;
 }
