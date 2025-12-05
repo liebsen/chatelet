@@ -32,7 +32,48 @@
         <div class="tab-pane active" id="social">
         	<div class="row">
         		<div class="col-md-6">
-			        <h4 class="sub-header">Datos básicos en redes sociales</h4>
+			        <h4 class="sub-header">Presencia en redes sociales</h4>
+			        <p>Incluye la URL entera correspondiente a cada red social</p>
+			        <div class="control-group">
+			          <label class="control-label" for="facebook_on">
+					        <input type="checkbox" id="facebook_on" name="data[facebook_on]" <?= @!empty($settings['facebook_on'] && $settings['facebook_on'] == 'on') ? ' checked' : '' ?>>
+			          	<i class="fa fa-facebook"></i><?php echo __('Facebook'); ?></label>
+			          <div class="controls">
+			            <input type="text" maxlength="100" name="data[facebook_url]" class="form-control" value="<?= @$settings['facebook_url'] ?>"/>
+			          </div>
+			          <span class="text-muted">Ingresá la URL de tu perfil de Facebook</span>
+			        </div>
+			        <div class="control-group">
+			          <label class="control-label" for="instagram_on">
+					        <input type="checkbox" id="instagram_on" name="data[instagram_on]" <?= @!empty($settings['instagram_on'] && $settings['instagram_on'] == 'on') ? ' checked' : '' ?>>
+			          	<i class="fa fa-instagram"></i> <?php echo __('Instagram'); ?></label>
+			          <div class="controls">
+			            <input type="text" maxlength="100" name="data[instagram_url]" class="form-control" value="<?= @$settings['instagram_url'] ?>"/>
+			          </div>
+			          <span class="text-muted">Ingresá la URL de tu perfil de Instagram</span>
+			        </div>
+			        <div class="control-group">
+			          <label class="control-label" for="x_on">
+					        <input type="checkbox" id="x_on" name="data[x_on]" <?= @!empty($settings['x_on'] && $settings['x_on'] == 'on') ? ' checked' : '' ?>>
+			          	<i class="fa fa-twitter-x"></i> <?php echo __('Instagram'); ?></label>
+			          <div class="controls">
+			            <input type="text" maxlength="100" name="data[x_url]" class="form-control" value="<?= @$settings['x_url'] ?>"/>
+			          </div>
+			          <span class="text-muted"> Ingresá la URL de tu perfil de X</span>
+			        </div>
+			        <div class="control-group">
+			          <label class="control-label" for="youtube_on">
+					        <input type="checkbox" id="youtube_on" name="data[youtube_on]" <?= @!empty($settings['youtube_on'] && $settings['youtube_on'] == 'on') ? ' checked' : '' ?>>
+			          	<i class="fa fa-youtube"></i> <?php echo __('Youtube'); ?></label>
+			          <div class="controls">
+			            <input type="text" maxlength="100" name="data[youtube_url]" class="form-control" value="<?= @$settings['youtube_url'] ?>"/>
+			          </div>
+			          <span class="text-muted"> Ingresá la URL de tu perfil de Youtube</span>
+			        </div>			        
+
+						</div>
+	      		<div class="col-md-6">
+			        <h4 class="sub-header">Compartir contenido</h4>
 			        <p>Estos datos se visualizarán al momento de compartir la aplicación con el estandar opengraph de huella de sitios web y aplicaciones. Este estandar es utilizado por la mayoría de los sistemas de mensajería instantánea.</p>
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Tipo'); ?></label>
@@ -61,11 +102,9 @@
 			            <textarea name="data[opengraph_text]" class="form-control w-100"><?= @$settings['opengraph_text'] ?></textarea>
 			            <span class="text-muted">Ingresá el texto que desees para tu aplicación.</span>
 			          </div>
-			        </div>                    
-
-						</div>
-	      		<div class="col-md-6">
-			        <h4 class="sub-header">Imagen de redes sociales</h4>
+			        </div>
+							<hr>	      			
+			        <h4 class="sub-header">Imagen principal</h4>
 			        <p>Resolución recomendada 500x500px</p>
 
 							<div class="control-group">
