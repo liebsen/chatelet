@@ -62,7 +62,7 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 				    			data-json='<?= @json_encode($legend['Legend']) ?>' 
 				    			class="dues-select-option <?= $legend['Legend']['dues'] == 1 ? 'selected' : 'secondary' ?>"
 				    		>
-				    			<span class="text-uppercase"><?= @$legend['Legend']['dues'] ?> cuota<?= @$legend['Legend']['dues'] > 1 ? 's' : '' ?> de <?=\price_format(ceil($cart_totals['grand_total'] * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']))?></span>
+				    			<span class="text-uppercase"><?= @$legend['Legend']['dues'] ?> cuota<?= @$legend['Legend']['dues'] > 1 ? 's' : '' ?> de <span class="due-option-price"><?=\price_format(ceil($cart_totals['grand_total'] * (((float) $legend['Legend']['interest'] / 100) + 1 ) / (int) $legend['Legend']['dues']))?></span></span>
 				    		</li>
 		        	<?php endforeach ?>
 			        </ul>

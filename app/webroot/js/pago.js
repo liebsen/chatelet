@@ -13,7 +13,8 @@ $('.dues-select-option').click((e) => {
 
 	if(!dues_selected) {
 		return false
-	}	
+	}
+
 	if(!$('#mercadopago').is(':checked') && dues_selected > 1) {
 		select_radio('payment_method', 'mercadopago')
 	}
@@ -37,8 +38,9 @@ $(function(){
 			$(e.target).parents('.select-payment-option')
 
 		var selected = target.find('input').val()
-		cart_totals.payment_method = selected
 		const payment_dues = document.querySelector('.select-payment-option')
+
+		cart_totals.payment_method = selected
 
 		$('.dues-block').hide()
 
@@ -49,7 +51,7 @@ $(function(){
 			return false
 		}
 
-		var totals = getTotals()
+		var total = getTotals()
 		if(payment_dues) {
 			switch(selected){
 				case 'bank':
@@ -73,6 +75,12 @@ $(function(){
 						payment_dues.classList.remove('scaleOut', 'hide-element')
 						payment_dues.classList.add('scaleIn')
 					}
+
+					$('.dues-select-option').each(function(){
+						const data = $(this).data('json')
+						$(this).find('.due-option-price').text("$ " + formatNumber(total / data.dues))
+					})
+					
 					$('.dues-block').show()
 					document.querySelectorAll('.select-payment-option .bronco-select').forEach((e) => e.classList.remove('hide'))
 
@@ -86,7 +94,7 @@ $(function(){
 			settings.bank_discount_enable && 
 			settings.bank_discount
 		) {
-			bank_bonus = totals.total * (parseFloat(settings.bank_discount) / 100)
+			bank_bonus = total * (parseFloat(settings.bank_discount) / 100)
 			$('.bank_bonus').text(formatNumber(bank_bonus))
 			$('.bank-block').removeClass('hide')
 			$('.bank-block').addClass('animated fadeIn')
@@ -96,6 +104,7 @@ $(function(){
 			$('.payment_dues label').removeClass('hide')
 			$('.bank-block').addClass('hide')
 		}
+
 		localStorage.setItem('payment_method', selected)
 
 		$('.payment_method .bronco-select').removeClass('is-selected is-secondary')
