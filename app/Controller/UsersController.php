@@ -211,7 +211,7 @@ class UsersController extends AppController {
         'password' => $data['User']['password']
       );
 
-      $sent = $this->sendEmail($email_data,'Bienvenida a Châtelet', 'confirm_email');
+      $sent = $this->sendEmail($email_data, 'Bienvenida a Châtelet', 'welcome_email');
 
       $this->Session->setFlash(
         'Bienvenida a Châtelet', 
