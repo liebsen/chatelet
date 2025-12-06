@@ -1,3 +1,4 @@
+<?php $socials = getSocials() ?>
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
 <?php echo $this->Html->script('jquery.growl.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
@@ -34,43 +35,19 @@
         		<div class="col-md-6">
 			        <h4 class="sub-header">Presencia en redes sociales</h4>
 			        <p>Incluye la URL entera correspondiente a cada red social</p>
+			      <?php foreach($socials as $item): ?>
 			        <div class="control-group">
-			          <label class="control-label" for="facebook_on">
-					        <input type="checkbox" id="facebook_on" name="data[facebook_on]" <?= @!empty($settings['facebook_on'] && $settings['facebook_on'] == 'on') ? ' checked' : '' ?>>
-			          	<i class="fa fa-facebook"></i><?php echo __('Facebook'); ?></label>
+			          <label class="control-label d-flex justify-content-start align-items-center gap-05" for="<?php echo $item ?>_on">
+			          	<i class="fa fa-lg fa-<?php echo $item ?>"></i>
+					        <input type="checkbox" id="<?php echo $item ?>_on" name="data[<?php echo $item ?>_on]" <?php echo $settings[$item.'_on'] == 'on' ? ' checked' : '' ?>>
+			          	<?php echo __($item); ?>
+			          </label>
 			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[facebook_url]" class="form-control" value="<?= @$settings['facebook_url'] ?>"/>
+			            <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control" value="<?php echo @$settings[$item.'_url'] ?>"/>
 			          </div>
-			          <span class="text-muted">Ingresá la URL de tu perfil de Facebook</span>
+			          <span class="text-muted">Ingresá la URL de tu perfil de <?php echo __($item); ?></span>
 			        </div>
-			        <div class="control-group">
-			          <label class="control-label" for="instagram_on">
-					        <input type="checkbox" id="instagram_on" name="data[instagram_on]" <?= @!empty($settings['instagram_on'] && $settings['instagram_on'] == 'on') ? ' checked' : '' ?>>
-			          	<i class="fa fa-instagram"></i> <?php echo __('Instagram'); ?></label>
-			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[instagram_url]" class="form-control" value="<?= @$settings['instagram_url'] ?>"/>
-			          </div>
-			          <span class="text-muted">Ingresá la URL de tu perfil de Instagram</span>
-			        </div>
-			        <div class="control-group">
-			          <label class="control-label" for="x-twitter_on">
-					        <input type="checkbox" id="x-twitter_on" name="data[x-twitter_on]" <?= @!empty($settings['x-twitter_on'] && $settings['x-twitter_on'] == 'on') ? ' checked' : '' ?>>
-			          	<i class="fa fa-twitter"></i> <?php echo __('X-twitter'); ?></label>
-			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[x-twitter_url]" class="form-control" value="<?= @$settings['x-twitter_url'] ?>"/>
-			          </div>
-			          <span class="text-muted"> Ingresá la URL de tu perfil de X</span>
-			        </div>
-			        <div class="control-group">
-			          <label class="control-label" for="youtube_on">
-					        <input type="checkbox" id="youtube_on" name="data[youtube_on]" <?= @!empty($settings['youtube_on'] && $settings['youtube_on'] == 'on') ? ' checked' : '' ?>>
-			          	<i class="fa fa-youtube"></i> <?php echo __('Youtube'); ?></label>
-			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[youtube_url]" class="form-control" value="<?= @$settings['youtube_url'] ?>"/>
-			          </div>
-			          <span class="text-muted"> Ingresá la URL de tu perfil de Youtube</span>
-			        </div>			        
-
+			      <?php endforeach ?>
 						</div>
 	      		<div class="col-md-6">
 			        <h4 class="sub-header">Compartir contenido</h4>
@@ -82,24 +59,28 @@
 			              $enabled = @$settings['opengraph_type'] == 'website' ? 'checked' : '';
 			              $disabled = @$settings['opengraph_type'] == 'article' ? 'checked' : '';
 			            ?>
+			            <span>
+			            <input type="radio" class="form-control" id="enabled_1" name="data[opengraph_type]" value="website" <?php echo $enabled; ?> /> 
 			            <label for="enabled_1">Website</label>
-			            <input type="radio" class="form-control" id="enabled_1" name="data[opengraph_type]" value="website" <?php echo $enabled; ?> /> &nbsp;
-			            <label for="enabled_0">Artículo</label>
+			          </span>
+			          <span>
 			            <input type="radio" class="form-control" id="enabled_0" name="data[opengraph_type]" value="article" <?php echo $disabled; ?> />
+			            <label for="enabled_0">Artículo</label>
+			           </span>
 			          </div>
 			          <span class="text-muted">Indica si se debe trabajar con entorno real o de pruebas</span>
 			        </div>
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
 			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[opengraph_title]" class="form-control" value="<?= @$settings['opengraph_title'] ?>"/>
+			            <input type="text" maxlength="100" name="data[opengraph_title]" class="form-control" value="<?php echo @$settings['opengraph_title'] ?>"/>
 			          </div>
 			          <span class="text-muted">Ingresá el título que desees para tu aplicación.</span>
 			        </div>
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Descripción'); ?></label>
 			          <div class="controls">
-			            <textarea name="data[opengraph_text]" class="form-control w-100"><?= @$settings['opengraph_text'] ?></textarea>
+			            <textarea name="data[opengraph_text]" class="form-control w-100"><?php echo @$settings['opengraph_text'] ?></textarea>
 			            <span class="text-muted">Ingresá el texto que desees para tu aplicación.</span>
 			          </div>
 			        </div>
@@ -117,14 +98,14 @@
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Width'); ?></label>
 			          <div class="controls">
-			            <input type="number" maxlength="100" name="data[opengraph_width]" class="form-control" value="<?= @$settings['opengraph_width'] ?>"/>
+			            <input type="number" maxlength="100" name="data[opengraph_width]" class="form-control" value="<?php echo @$settings['opengraph_width'] ?>"/>
 			          </div>
 			          <span class="text-muted">Ancho de la imagen</span>
 			        </div>
 	        		<div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Height'); ?></label>
 			          <div class="controls">
-			            <input type="number" maxlength="100" name="data[opengraph_height]" class="form-control" value="<?= @$settings['opengraph_height'] ?>"/>
+			            <input type="number" maxlength="100" name="data[opengraph_height]" class="form-control" value="<?php echo @$settings['opengraph_height'] ?>"/>
 			          </div>
 			          <span class="text-muted">Alto de la imagen.</span>
 			        </div>
@@ -135,7 +116,7 @@
 								</div>
 							</div-->
 						<?php if($settings['opengraph_image']): ?>
-							<img src="<?= $settings['opengraph_image'] ?>" width="200">
+							<img src="<?php echo $settings['opengraph_image'] ?>" width="200">
 							<button class="btn btn-danger" onclick="window.location.href='<?php echo $this->Html->url(array('action'=>'remove_opengraph_image')) ?>'">x</button>
 						<?php endif; ?> 			        
 			      </div>
@@ -149,14 +130,14 @@
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Google Analytics code'); ?></label>
 	          <div class="controls">
-	            <input type="text" maxlength="100" name="data[google_analytics_code]" class="form-control" value="<?= @$settings['google_analytics_code'] ?>"/>
+	            <input type="text" maxlength="100" name="data[google_analytics_code]" class="form-control" value="<?php echo @$settings['google_analytics_code'] ?>"/>
 	          </div>
 	          <span class="text-muted">Ingresa el código de Google Analytics</span>
 	        </div>
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Facebook Pixel ID'); ?></label>
 	          <div class="controls">
-	            <input type="text" maxlength="100" name="data[facebook_pixel_id]" class="form-control" value="<?= @$settings['facebook_pixel_id'] ?>"/>
+	            <input type="text" maxlength="100" name="data[facebook_pixel_id]" class="form-control" value="<?php echo @$settings['facebook_pixel_id'] ?>"/>
 	          </div>
 	          <span class="text-muted">Ingresa la identificación del pixel.</span>
 	        </div>	 
@@ -169,7 +150,7 @@
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Google Font name'); ?></label>
 	          <div class="controls">
-	            <input type="text" maxlength="100" name="data[google_font_name]" class="form-control" value="<?= @$settings['google_font_name'] ?>"/>
+	            <input type="text" maxlength="100" name="data[google_font_name]" class="form-control" value="<?php echo @$settings['google_font_name'] ?>"/>
 	          </div>
 	          <span class="text-muted">Ingresa el nombre de la fuente, ej:
 	          	<span class="text-muted">DM Sans</span>
@@ -178,7 +159,7 @@
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Google Font size'); ?></label>
 	          <div class="controls">
-	            <input type="text" maxlength="100" name="data[google_font_size]" class="form-control" value="<?= @$settings['google_font_size'] ?>"/>
+	            <input type="text" maxlength="100" name="data[google_font_size]" class="form-control" value="<?php echo @$settings['google_font_size'] ?>"/>
 	          </div>
 	          <span class="text-muted">Ingresa el tamaño de la fuente, ej: 
           		<span class="text-muted">300,400,500,600,700,800</span>
@@ -190,16 +171,20 @@
 	        <!--h4 class="sub-header">Mercado pago</h4-->
 	        <p>Proporciona el client_secret y client_id proporcionado por Mercado pago.</p>
 	        <div class="control-group">
-	          <label class="control-label" for="columns-text"><?php echo __('Modo de operación'); ?></label>
+	          <label class="control-label" for="columns-text"><?php echo __('Modo Pruebas'); ?></label>
 	          <div class="controls text-center switch-scale">
 	            <?php
 	              $enabled = @$settings['mercadopago_sandbox_on'] == 'on' ? 'checked' : '';
 	              $disabled = @$settings['mercadopago_sandbox_on'] == 'off' ? 'checked' : '';
 	            ?>
-	            <label for="mercadopago_sandbox_on_1">Pruebas</label>
-	            <input type="radio" class="form-control" id="mercadopago_sandbox_on_1" name="data[mercadopago_sandbox_on]" value="on" <?php echo $enabled; ?> /> &nbsp;
-	            <label for="mercadopago_sandbox_on_0">Producción</label>
+	            <span>
 	            <input type="radio" class="form-control" id="mercadopago_sandbox_on_0" name="data[mercadopago_sandbox_on]" value="off" <?php echo $disabled; ?> />
+	            <label for="mercadopago_sandbox_on_0">No (Producción)</label>
+	          </span>
+	          <span>
+	            <input type="radio" class="form-control" id="mercadopago_sandbox_on_1" name="data[mercadopago_sandbox_on]" value="on" <?php echo $enabled; ?> /> 
+	            <label for="mercadopago_sandbox_on_1">Sí (Staging)</label>
+	          </span>
 	          </div>
 	          <span class="text-muted">Indica si debe mostrarse como artículo o como sitio web.</span>
 	        </div>
@@ -207,20 +192,20 @@
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Client ID'); ?></label>
 	          <div class="controls">
-	            <input type="text" maxlength="100" name="data[mercadopago_client_id]" class="form-control" value="<?= @$settings['mercadopago_client_id'] ?>"/>
+	            <input type="text" maxlength="100" name="data[mercadopago_client_id]" class="form-control" value="<?php echo @$settings['mercadopago_client_id'] ?>"/>
 	          </div>
 	          <span class="text-muted">Ingresa el código de Google Analytics</span>
 	        </div>
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Client secret'); ?></label>
 	          <div class="controls">
-	            <input type="text" maxlength="100" name="data[mercadopago_client_secret]" class="form-control" value="<?= @$settings['mercadopago_client_secret'] ?>"/>
+	            <input type="text" maxlength="100" name="data[mercadopago_client_secret]" class="form-control" value="<?php echo @$settings['mercadopago_client_secret'] ?>"/>
 	          </div>
 	          <span class="text-muted">Ingresa la identificación del pixel.</span>
 	        </div>
 	        <hr>
 	        <!--label for="mercadopago_sandbox_on" class="d-flex justify-content-start justify-content-center gap-05">
-		        <input type="checkbox" id="mercadopago_sandbox_on" name="data[mercadopago_sandbox_on]" <?= @!empty($settings['mercadopago_sandbox_on'] && $settings['mercadopago_sandbox_on'] == 'on') ? ' checked' : '' ?>>
+		        <input type="checkbox" id="mercadopago_sandbox_on" name="data[mercadopago_sandbox_on]" <?php echo @!empty($settings['mercadopago_sandbox_on'] && $settings['mercadopago_sandbox_on'] == 'on') ? ' checked' : '' ?>>
 		        <span>Modo pruebas</span>
 		      </label-->
         </div>

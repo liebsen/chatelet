@@ -1,5 +1,8 @@
 <?php
 
+function getSocials(){
+  return ['facebook','instagram','x-twitter', 'youtube'];
+}
 
 function timeAgo($timestamp) {
     $current_time = time();

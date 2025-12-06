@@ -30,10 +30,14 @@
                   $enabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 1 || !isset($logistic)) ? 'checked' : '';
                   $disabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 0) ? 'checked' : '';
                 ?>
-                <label for="enabled_1">Sí</label>
-                <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp;
-                <label for="enabled_0">No</label>
-                <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
+                <span>
+                  <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> 
+                  <label for="enabled_1">Sí</label>
+                </span>
+                <span>
+                  <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
+                  <label for="enabled_0">No</label>
+                </span>
               </div>
               <small class="text-muted">Indica el estado de esta logística. En caso de inactivo el cliente no podrá utilizar esta opción.</small>
             </div>
@@ -87,10 +91,14 @@
                     $enabled = (isset($logistic) && $logistic['Logistic']['free_shipping'] == 1 || !isset($logistic)) ? 'checked' : '';
                     $disabled = (isset($logistic) && $logistic['Logistic']['free_shipping'] == 0) ? 'checked' : '';
                   ?>
+                  <span>
+                  <input type="radio" class="form-control" id="free_shipping_1" name="data[free_shipping]" value="1" <?php echo $enabled; ?> /> 
                   <label for="free_shipping_1">Disponible</label>
-                  <input type="radio" class="form-control" id="free_shipping_1" name="data[free_shipping]" value="1" <?php echo $enabled; ?> /> &nbsp;
-                  <label for="free_shipping_0">No Disponible</label>
+                </span>
+                <span>
                   <input type="radio" class="form-control" id="free_shipping_0" name="data[free_shipping]" value="0" <?php echo $disabled; ?> />
+                  <label for="free_shipping_0">No Disponible</label>
+                </span>
                 </div>
                 <small class="text-muted">Indica si esta logística estará disponible para los envíos gratuitos. Si está activo significa que esta logística tendrá prioridad para los envíos gratuitos. <span class="alert-link">Establezca <i>Disponible</i> para que las clientas puedan seleccionar <i><?= @$logistic['Logistic']['title'] ?></i> para sus envíos gratuitos.</span></small>
                 <?php if($enabled && @$logistic['Logistic']['local_prices']): ?>
@@ -108,10 +116,14 @@
                   $enabled = (isset($logistic) && $logistic['Logistic']['local_prices'] == 1 || !isset($logistic)) ? 'checked' : '';
                   $disabled = (isset($logistic) && $logistic['Logistic']['local_prices'] == 0) ? 'checked' : '';
                 ?>
+                <span>
+                <input type="radio" class="form-control" id="enabled_1" name="data[local_prices]" value="1" <?php echo $enabled; ?> /> 
                 <label for="enabled_1">Local</label>
-                <input type="radio" class="form-control" id="enabled_1" name="data[local_prices]" value="1" <?php echo $enabled; ?> /> &nbsp;
-                <label for="enabled_0">Nacional</label>
+              </span>
+              <span>
                 <input type="radio" class="form-control" id="enabled_0" name="data[local_prices]" value="0" <?php echo $disabled; ?> />
+                <label for="enabled_0">Nacional</label>
+              </span>
               </div>
               <small class="text-muted">Indica si la logística utiliza una configuración de tarifas (Local) o no (Nacional). Las logísticas nacionales estan integradas a la tienda mediante sus correspondientes apis. Seleccione <strong>Alcance Local</strong> para agregar tarifas.</small>
             </div>
@@ -218,11 +230,15 @@
         <input type="hidden" name="logistic_id" value="<?= $logistic['Logistic']['id'] ?>">
         <div class="control-group">
           <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
-          <div class="controls">
-            <label for="enabled_1">Sí</label>
-            <input type="radio" id="enabled_1" name="enabled" value="1" /> &nbsp;
-            <label for="enabled_0">No</label>
-            <input type="radio" id="enabled_0" name="enabled" value="0" />
+          <div class="controls text-center switch-scale">
+            <span>
+              <input type="radio" id="enabled_1" name="enabled" value="1" /> 
+              <label for="enabled_1">Sí</label>
+            </span>
+            <span>
+              <input type="radio" id="enabled_0" name="enabled" value="0" />
+              <label for="enabled_0">No</label>
+            </span>
           </div>
         </div>
         <div class="form-group">

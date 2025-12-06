@@ -25,8 +25,14 @@
                 $enabled = (isset($item) && $item['Menu']['enabled']) || !isset($item) ? 'checked' : '';
                 $disabled = (isset($item) && !$item['Menu']['enabled']) ? 'checked' : '';
               ?>
-              <label for="enabled_1">Activo</label> <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> &nbsp; 
-              <label for="enabled_0">Inactivo</label> <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
+              <span>
+                <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> 
+                <label for="enabled_1">Activo</label>
+              </span>
+              <span>
+                <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
+                <label for="enabled_0">Inactivo</label>
+              </span>
             </div>
             <!--small class="text-muted">Estado principal de este Menu</small-->
           </div>          

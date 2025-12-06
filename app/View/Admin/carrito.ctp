@@ -14,16 +14,19 @@
           <h4 class="sub-header">Información Principal</h4>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Mostrar texto en carrito cuando no se alcance el precio de envío gratis'); ?></label>
-
             <div class="controls text-center switch-scale">
               <?php
                 $enabled = $data['display_text_shipping_min_price'] == 1 ? 'checked' : '';
                 $disabled = $data['display_text_shipping_min_price'] == 0 ? 'checked' : '';
               ?>
-              <label for="enabled_1">Sí</label>
-              <input type="radio" class="form-control" id="enabled_1" name="data[display_text_shipping_min_price]" value="1" <?php echo $enabled; ?> /> &nbsp;
-              <label for="enabled_0">No</label>
-              <input type="radio" class="form-control" id="enabled_0" name="data[display_text_shipping_min_price]" value="0" <?php echo $disabled; ?> />
+              <span>
+                <input type="radio" class="form-control" id="enabled_1" name="data[display_text_shipping_min_price]" value="1" <?php echo $enabled; ?> />
+                <label for="enabled_1">Sí</label>
+              </span>
+              <span>
+                <input type="radio" class="form-control" id="enabled_0" name="data[display_text_shipping_min_price]" value="0" <?php echo $disabled; ?> />
+                <label for="enabled_0">No</label>
+              </span>
             </div>
             <span class="text-muted">Indica si debe mostrarse un mensaje para alentar al cliente a obtener un envío gratis agregando más productos a su carrito.</span>
           </div>            

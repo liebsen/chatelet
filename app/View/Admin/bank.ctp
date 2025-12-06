@@ -18,10 +18,14 @@
                 $enabled = $settings['bank_enable'] == 1 ? 'checked' : '';
                 $disabled = $settings['bank_enable'] == 0 ? 'checked' : '';
               ?>
-              <label for="enabled_1">Sí</label>
-              <input type="radio" class="form-control" id="enabled_1" name="data[bank_enable]" value="1" <?php echo $enabled; ?> /> &nbsp;
-              <label for="enabled_0">No</label>
-              <input type="radio" class="form-control" id="enabled_0" name="data[bank_enable]" value="0" <?php echo $disabled; ?> />
+              <span>
+                <input type="radio" class="form-control" id="enabled_1" name="data[bank_enable]" value="1" <?php echo $enabled; ?> /> 
+                <label for="enabled_1">Sí</label>
+              </span>
+              <span>
+                <input type="radio" class="form-control" id="enabled_0" name="data[bank_enable]" value="0" <?php echo $disabled; ?> />
+                <label for="enabled_0">No</label>
+              </span>
             </div>
             <span class="text-muted">Indica si están habilitados los pagos CBU/Alias desde la tienda.</span>
           </div>
@@ -35,10 +39,14 @@
                     $enabled = $settings['bank_discount_enable'] == 1 ? 'checked' : '';
                     $disabled = $settings['bank_discount_enable'] == 0 ? 'checked' : '';
                   ?>
+                  <span>
+                  <input type="radio" class="form-control" id="enabled_11" name="data[bank_discount_enable]" value="1" <?php echo $enabled; ?> /> 
                   <label for="enabled_11">Sí</label>
-                  <input type="radio" class="form-control" id="enabled_11" name="data[bank_discount_enable]" value="1" <?php echo $enabled; ?> /> &nbsp;
-                  <label for="enabled_10">No</label>
+                  </span>
+                  <span>
                   <input type="radio" class="form-control" id="enabled_10" name="data[bank_discount_enable]" value="0" <?php echo $disabled; ?> />
+                  <label for="enabled_10">No</label>
+                  </span>
                 </div>
                 <span class="text-muted">Indica si existe descuento por los pagos CBU/Alias desde la tienda.</span>
               </div>

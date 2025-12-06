@@ -2,6 +2,11 @@
     display: inline;
 }
 
+.show-inactive {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 .left-door, .right-door {
     width: 50%;
     height: 100%;
@@ -4067,6 +4072,7 @@ div.cloudzoom-black:nth-child(3) {
     font-size: 1.5rem;
     background-color: #f8f8f8;
     border-radius: 1rem;
+    grid-gap: 1.5rem;
 }
 
 .switch-scale > label {

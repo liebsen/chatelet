@@ -62,6 +62,7 @@ class AppController extends Controller
     )
   );
 
+
   public $settings = [];
 
   private $setting_tags = [
