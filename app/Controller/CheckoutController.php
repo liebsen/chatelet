@@ -1197,8 +1197,8 @@ class CheckoutController extends AppController
 			'dues'		=> $cart_totals['dues']
 		);
 
-		CakeLog::write('debug', 'sale(to_save)'.json_encode($to_save));
-		CakeLog::write('debug', 'settings(1)'.json_encode($settings));
+		// CakeLog::write('debug', 'sale(to_save)'.json_encode($to_save));
+		// CakeLog::write('debug', 'settings(1)'.json_encode($settings));
 		// error_log(json_encode($to_save));
 		$this->Sale->save($to_save);
 		// error_log("total mp: " . $total);
