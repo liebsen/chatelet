@@ -53,11 +53,11 @@
 			          <span class="text-muted">Ingresá la URL de tu perfil de Instagram</span>
 			        </div>
 			        <div class="control-group">
-			          <label class="control-label" for="x_on">
-					        <input type="checkbox" id="x_on" name="data[x_on]" <?= @!empty($settings['x_on'] && $settings['x_on'] == 'on') ? ' checked' : '' ?>>
-			          	<i class="fa fa-twitter-x"></i> <?php echo __('Instagram'); ?></label>
+			          <label class="control-label" for="x-twitter_on">
+					        <input type="checkbox" id="x-twitter_on" name="data[x-twitter_on]" <?= @!empty($settings['x-twitter_on'] && $settings['x-twitter_on'] == 'on') ? ' checked' : '' ?>>
+			          	<i class="fa fa-twitter"></i> <?php echo __('X-twitter'); ?></label>
 			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[x_url]" class="form-control" value="<?= @$settings['x_url'] ?>"/>
+			            <input type="text" maxlength="100" name="data[x-twitter_url]" class="form-control" value="<?= @$settings['x-twitter_url'] ?>"/>
 			          </div>
 			          <span class="text-muted"> Ingresá la URL de tu perfil de X</span>
 			        </div>
