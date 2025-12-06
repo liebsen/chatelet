@@ -7,7 +7,7 @@
   <div class="block-title">
     <h4>
     <?php
-      echo (isset($logistic)) ? __('Editar Logística') : __('Agregar Logística');
+      echo (isset($logistic)) ? __('Editar ' . $logistic['Logistic']['code']) : __('Agregar Logística');
     ?>
     </h4>
   </div>
@@ -32,11 +32,11 @@
                 ?>
                 <span>
                   <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> 
-                  <label for="enabled_1">Sí</label>
+                  <label for="enabled_1">Activo</label>
                 </span>
                 <span>
                   <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
-                  <label for="enabled_0">No</label>
+                  <label for="enabled_0">Inactivo</label>
                 </span>
               </div>
               <small class="text-muted">Indica el estado de esta logística. En caso de inactivo el cliente no podrá utilizar esta opción.</small>
@@ -93,11 +93,11 @@
                   ?>
                   <span>
                   <input type="radio" class="form-control" id="free_shipping_1" name="data[free_shipping]" value="1" <?php echo $enabled; ?> /> 
-                  <label for="free_shipping_1">Disponible</label>
+                  <label for="free_shipping_1">Activo</label>
                 </span>
                 <span>
                   <input type="radio" class="form-control" id="free_shipping_0" name="data[free_shipping]" value="0" <?php echo $disabled; ?> />
-                  <label for="free_shipping_0">No Disponible</label>
+                  <label for="free_shipping_0">Inactivo</label>
                 </span>
                 </div>
                 <small class="text-muted">Indica si esta logística estará disponible para los envíos gratuitos. Si está activo significa que esta logística tendrá prioridad para los envíos gratuitos. <span class="alert-link">Establezca <i>Disponible</i> para que las clientas puedan seleccionar <i><?= @$logistic['Logistic']['title'] ?></i> para sus envíos gratuitos.</span></small>
