@@ -195,19 +195,14 @@ class AppController extends Controller
     $this->settings = $settings;
     $this->set('settings', $settings);
 
-    if(empty($settings['upload-url'])) {
-      $settings['upload-url'] = '/files/uploads/'; 
-      $settings_update = true;
-    }
+    $keys = ["upload-url", "upload-local", "site-url"];
 
-    if(empty($settings['site-url'])) {
-      $settings['site-url'] = \site_url(); 
-      $settings_update = true;
-    }
-
-    if($settings_update) {
-      $settings->update();
-    }
+    foreach($keys as $key)
+      if(empty($settings[$key]))
+        $this->Setting->save(array(
+          'id' => $key,
+          'value' => call_user_func(str_replace("-", "_", $key))
+        ));
 
     /* if(!empty($this->Auth->user('role')) && $this->Auth->user('role') == 'admin'){
         $site_visits = $this->site_visits();
@@ -276,7 +271,7 @@ class AppController extends Controller
 
     if(copy($file['tmp_name'],$dest)){
       $filepath = $settings['upload-url'] . $key;
-      if(!empty(Configure::read('uploadLocal'))){
+      if(!empty($settings['upload-local'])){
         $filepath = $key;
       }
     }
@@ -300,7 +295,7 @@ class AppController extends Controller
         return false;
     }
 
-    if(Configure::read('uploadLocal')) {
+    if($settings['upload-local']) {
         return $this->saveFile($file,$withThumb,$size);
     }
     

@@ -1606,7 +1606,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$this->set('navs', $navs);		
 		  $this->loadModel('Setting');
 			$this->set('h1', $h1);
-     	$this->set('data', $this->load_settings());			
+     	// $this->set('data', $this->load_settings());			
 		}
 	}
 
@@ -2721,8 +2721,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
                 'value' => $value
               ]);
             }
-			     	$data = parent::load_settings();
+			     	/* $data = parent::load_settings();
 			     	$this->set('data', $data);            
+			     	 */
           }		      
     		} else {
     			$this->loadModel('LogisticsPrices');
@@ -3072,8 +3073,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       	CakeLog::write('debug', 'data:'. json_encode(['id' => $id, 'value' => $value]));
       	$this->Setting->save(['id' => $id, 'value' => $value]);
       }
-     	$data = parent::load_settings();
-     	$this->set('data', $data);
+     	/* $data = parent::load_settings();
+     	$this->set('data', $data); */
 		}
 		return $this->render('bank');
 	}	

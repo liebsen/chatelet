@@ -124,7 +124,7 @@ CakeLog::config('error', array(
 function filterOrientation($list){
   $images = array_filter(explode(';',$list));
   $filtered = [];
-  $mobile = Configure::read('mobile');
+  $mobile = \device_mobile();
   foreach($images as $image){
     if($mobile){                
       if(strstr($image, 'mobile') != false) {

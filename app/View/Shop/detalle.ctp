@@ -66,7 +66,7 @@ foreach ($properties as $property) {
   <div class="wrapper animated fadeIn delay">
     <div class="row">
     <?php if(!empty($colorImages)):?>
-      <div class="col-md-2 p-0">
+      <div class="col-md-2 p-0 animated fadeIn delay2">
         <ul id="ul-moreviews">
         <?php if (!empty($colorImages[0]['images']) && count(array_filter($colorImages[0]['images'])) > 1): $ppp=0; ?>
         <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
@@ -109,7 +109,7 @@ foreach ($properties as $property) {
         </div>
       </div>
     <?php else:?>
-      <div class="col-md-2 col-sm-5">
+      <div class="col-md-2 col-sm-5 animated fadeIn delay2">
         <ul id="ul-moreviews">
           <?php if (!empty($images)): $pkey=0;?>
           <?php foreach ($images as $key => $value) : ?>
@@ -208,13 +208,14 @@ foreach ($properties as $property) {
                 <!--div class="color-options d-flex justify-content-start align-items-start gap-15" data-toggle="buttons"-->
                 <div class="color-options d-flex justify-content-start align-items-center w-100" data-toggle="buttons">
                   <?php
-                      $show_names_only = false;
+                      $show_names_only = count($colors) < 2;
                       foreach ($colors as $i => $color) {
                           $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
+                          $single = $show_names_only?'single':'';
                           $style = (empty($color['images']))?'oldSelectColor':'';
-                          echo '<label class="btn '.$loadColorImages.' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
+                          echo '<label class="btn '.$loadColorImages.' '.$single. ' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
                           echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] . '"' . ($i == 0 ? ' checked' : '') . '>';
-                          if (!empty($color['images']) && empty($show_names_only)) {
+                          if (!empty($color['images']) && !$show_names_only) {
                               $image = explode(';', $color['images']);
                               foreach ($image as $kk => $vv) {
                                   if (!empty($vv)) {

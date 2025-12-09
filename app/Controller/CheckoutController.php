@@ -730,7 +730,7 @@ class CheckoutController extends AppController
 
 	private function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
-		$settings = $this->load_settings();
+		// $settings = $this->load_settings();
 		$this->autoRender = false;
 		$total=0;
 		$total_wo_discount = 0;

@@ -7,6 +7,23 @@ function site_url() {
   return $protocol.$domainName;
 }
 
+function device_mobile(){
+  if(empty($_SERVER["HTTP_USER_AGENT"])) {
+    return false;
+  }
+
+  return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", isset($_SERVER["HTTP_USER_AGENT"]) ? $_SERVER["HTTP_USER_AGENT"] : '') || !empty($_GET['mobile']);
+}
+
+
+function upload_local() {
+  return 1;
+}
+
+function upload_url() {
+  return '/files/uploads/';
+}
+
 function get_socials(){
   return ['facebook','instagram','x-twitter', 'youtube'];
 }
