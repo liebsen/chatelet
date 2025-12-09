@@ -68,7 +68,7 @@
                   <div class="controls">
                     <input type="text" maxlength="16" class="form-control" id="" name="data[code]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['code'] : ''; ?>" <?= isset($coupon) ? 'disabled' : 'required' ?>>
                   </div>
-                   <small class="text-danger">El código es el título del cupón para el cliente. Este valor solo puede editarse una vez.</small>
+                   <small class="text-muted">El código es el título del cupón para el cliente. Este valor solo puede editarse una vez.</small>
                 </div>
                 <br />
                 <div class="control-group">
@@ -102,17 +102,13 @@
                 <div class="control-group">
                   <label class="control-label" for="columns-text"><?php echo __('Valor de descuento'); ?></label>
                   <div class="controls">
-                    <input type="number" class="form-control" id="" name="data[discount]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['discount'] : ''; ?>" required>
+                    <input type="number" title="El valor de descuento para porcentual en general es entre 10 y 40" class="form-control" id="" name="data[discount]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['discount'] : ''; ?>" required>
                   </div>
                   <small class="text-muted">El valor de descuento será variable de acuerdo al monto si es Porcentual ó fijo si es Nominal.<br>Moneda actual: ARS</small>
                 </div>
               </div>
             </div>
           </div> 
-
-
-
-
 
           <div class="tab-pane" id="condiciones">
             <div class="row">
@@ -198,9 +194,7 @@
               </div>        
             </div>
           </div>
-
           <div class="tab-pane" id="avanzado">
-
             <div class="related-empty<?=empty($categories_count) && empty($products_count) ? '' : ' d-none' ?>">
               <button class="btn btn-lg btn-success"><i class="fa fa-cog mr-2"></i> Configurar <?=$coupon['Coupon']['code'] ?></button>
               <hr>

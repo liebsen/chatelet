@@ -3112,15 +3112,20 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		return $this->render('subscriptions');
 	}
 
-
   public function newsletters($action = null) {
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-wifi',
 				'url'		=> Configure::read('mUrl').'/admin/newsletters',
 				'active'	=> '/admin/newsletters'
-			)
+			),
+			'Tareas' => array(
+				'icon' 		=> 'gi gi-toolbox',
+				'url'		=> Configure::read('mUrl').'/admin/tasks',
+				'active'	=> '/admin/tasks'
+			)			
 		);
+		
 		$this->set('navs', $navs);
 
 		$h1 = array(
