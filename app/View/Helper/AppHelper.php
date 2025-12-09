@@ -120,6 +120,7 @@ class AppHelper extends Helper {
     $content= '<div class="ribbon-container">';
     $content.= $discount_flag . $promo_ribbon;
 
+
     /*if (empty($item['with_thumb'])){
       $content.= '<img class="img-responsive contain-xs"  src="'. $settings['upload-url'] . $item['img_url'] .'" />';
     }else{
