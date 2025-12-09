@@ -88,7 +88,7 @@
 									<?php foreach ($items as $key => $item): ?>
 									<li>
 										<br />
-										<img src="<?php echo Configure::read('uploadUrl') . $item['Promo']['image'] ?>" width="200">
+										<img src="<?php echo $settings['upload-url'] . $item['Promo']['image'] ?>" width="200">
 										<button class="btn btn-danger" onclick="window.location.href='<?php echo $this->Html->url(array('action'=>'remove_whatsapp',$item['Promo']['id'])) ?>'">x</button>
 										<br />
 									</li>

@@ -34,7 +34,7 @@
 					<td>          
 						<?php
 							if(!empty($banner['Banner']['img_url'])){
-								echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('uploadUrl') . $banner['Banner']['img_url'] ."''>LINK</a>";
+								echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload-url'] . $banner['Banner']['img_url'] ."''>LINK</a>";
 							}
 						?>     
 					</td> 

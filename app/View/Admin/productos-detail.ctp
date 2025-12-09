@@ -177,7 +177,7 @@
                       $images = '';
                       foreach($imagesArr as $img){
                         if(!empty($img)){
-                          $images = $images . '<li><img src="'.Configure::read('uploadUrl').'thumb_'.$img.'" width="100px"><a href="#" class="delete_image_color" data-alias="'.$alias.'" data-file="'.$img.'" data-url="'.Router::url('/admin/deleteImageColor').'" data-id="'.$prop['ProductProperty']['id'].'">X</a></li>';
+                          $images = $images . '<li><img src="'.$settings['upload-url'].'thumb_'.$img.'" width="100px"><a href="#" class="delete_image_color" data-alias="'.$alias.'" data-file="'.$img.'" data-url="'.Router::url('/admin/deleteImageColor').'" data-id="'.$prop['ProductProperty']['id'].'">X</a></li>';
                         }
                       }
                       $options = '';

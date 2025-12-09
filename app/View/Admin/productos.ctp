@@ -57,7 +57,7 @@ echo $this->element('admin-menu');
 					</td-->
 					<td>          
 						<?php
-							echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('uploadUrl') . $product['Product']['img_url'] ."''>LINK</a>";
+							echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload-url'] . $product['Product']['img_url'] ."''>LINK</a>";
 						?>     
 					</td>
 					<td>
@@ -170,14 +170,14 @@ echo $this->element('admin-menu');
 							<label class="control-label" for="columns-text">Imagen: <span class="counter">0</span>%</label>
 							<div class="controls">                          
 								<input type="file" id="upload" data-input="[name='image_bannershop']" data-count=".counter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
-						    <input type="hidden" name="image_bannershop" value="<?php echo (!empty( @$image_bannershop )) ? @$image_bannershop : null ; ?>" /> <?php echo (!empty( @$image_bannershop )) ? "<a target='_new' class='badge badge-inverse' href='". Configure::read('uploadUrl').@$image_bannershop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
+						    <input type="hidden" name="image_bannershop" value="<?php echo (!empty( @$image_bannershop )) ? @$image_bannershop : null ; ?>" /> <?php echo (!empty( @$image_bannershop )) ? "<a target='_new' class='badge badge-inverse' href='". $settings['upload-url'].@$image_bannershop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
 							</div>
 						</div>
 						<br />
 						<div class="control-group">
 							<label class="control-label" for="columns-text"></label>
 							<div class="controls">
-								<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
+								<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $settings['upload-url'] ?>">
 									<span style="margin-top:10px;margin-bottom:10px;">	
 										<img src="{{image}}" width="100"/> 
 										<a href="#" class="delete_image" data-input="[name='image_bannershop']" data-file="{{file}}">X</a>
@@ -202,14 +202,14 @@ echo $this->element('admin-menu');
 						<label class="control-label" for="columns-text">Imagen: <span class="counter_two">0</span>%</label>
 						<div class="controls">
 							<input type="file" id="uploadkari" data-input="[name='image_menushop']" data-count=".counter_two" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
-					    <input type="hidden" name="image_menushop" value="<?php echo (!empty( @$image_menushop )) ? @$image_menushop : null ; ?>" /> <?php echo (!empty( @$image_menushop )) ? "<a target='_new' class='badge badge-inverse' href='". Configure::read('uploadUrl').@$image_menushop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
+					    <input type="hidden" name="image_menushop" value="<?php echo (!empty( @$image_menushop )) ? @$image_menushop : null ; ?>" /> <?php echo (!empty( @$image_menushop )) ? "<a target='_new' class='badge badge-inverse' href='". $settings['upload-url'].@$image_menushop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
 						</div>
 					</div>
 					<br />
 					<div class="control-group">
 						<label class="control-label" for="columns-text"></label>
 						<div class="controls">
-							<script id="image_thumb_two" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
+							<script id="image_thumb_two" type="text/x-handlebars-template" data-url="<?php echo $settings['upload-url'] ?>">
 								<span style="margin-top:10px;margin-bottom:10px;">	
 									<img src="{{image_two}}" width="100"/> 
 									<a href="#" class="delete_image_two" data-input="[name='image_menushop']" data-file="{{file_two}}">X</a>
@@ -234,14 +234,14 @@ echo $this->element('admin-menu');
 						<label class="control-label" for="columns-text">Imagen: <span class="counter_one">0</span>%</label>
 						<div class="controls">
 							<input type="file" id="upload_one" data-input="[name='image_prodshop']" data-count=".counter_one" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
-					    <input type="hidden" name="image_prodshop" value="<?php echo (!empty( @$image_prodshop )) ? @$image_prodshop : null ; ?>" /> <?php echo (!empty( @$image_prodshop )) ? "<a target='_new' class='badge badge-inverse' href='". Configure::read('uploadUrl').@$image_prodshop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
+					    <input type="hidden" name="image_prodshop" value="<?php echo (!empty( @$image_prodshop )) ? @$image_prodshop : null ; ?>" /> <?php echo (!empty( @$image_prodshop )) ? "<a target='_new' class='badge badge-inverse' href='". $settings['upload-url'].@$image_prodshop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
 						</div>
 					</div>
 					<br />
 					<div class="control-group">
 						<label class="control-label" for="columns-text"></label>
 						<div class="controls">
-							<script id="image_thumb_one" type="text/x-handlebars-template" data-url="<?php echo Configure::read('uploadUrl') ?>">
+							<script id="image_thumb_one" type="text/x-handlebars-template" data-url="<?php echo $settings['upload-url'] ?>">
 								<span style="margin-top:10px;margin-bottom:10px;">	
 									<img src="{{image_one}}" width="100"/> 
 									<a href="#" class="delete_image_one" data-input="[name='image_prodshop']" data-file="{{file_one}}">X</a>

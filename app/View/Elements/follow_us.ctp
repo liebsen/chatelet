@@ -1,6 +1,6 @@
 <?php
 
-$socials = getSocials();
+$socials = \get_socials();
 $str = '';
 
 foreach($socials as $icon) if(!empty($settings[$icon.'_on']))

@@ -125,6 +125,10 @@ class AppController extends Controller
   }
 
   public function beforeFilter() {
+
+    $version_file = __DIR__ . '/../version';
+    $version_count = 1111;
+
     $this->loadModel('Menu');
     $this->loadModel('Banner');
     $this->loadModel('Category');
@@ -177,9 +181,6 @@ class AppController extends Controller
     
     $this->set('categories', $categories);
 
-    // 'Fira Sans Condensed', 'Sniglet','Roboto Condensed', 'Archivo Narrow'
-    $version_file = __DIR__ . '/../version';
-    $version_count = 1111;
 
     if(file_exists($version_file)) {
       $version_date = date("d/m/Y H:i", filemtime($version_file));
@@ -190,8 +191,23 @@ class AppController extends Controller
     //Configure::write('client_secret', 'hBHd6LiSEaTqgQXI2KSGO5C7uCBSINhW');
 
     $settings = $this->load_settings();
+    $settings_update = false;
     $this->settings = $settings;
     $this->set('settings', $settings);
+
+    if(empty($settings['upload-url'])) {
+      $settings['upload-url'] = '/files/uploads/'; 
+      $settings_update = true;
+    }
+
+    if(empty($settings['site-url'])) {
+      $settings['site-url'] = \site_url(); 
+      $settings_update = true;
+    }
+
+    if($settings_update) {
+      $settings->update();
+    }
 
     /* if(!empty($this->Auth->user('role')) && $this->Auth->user('role') == 'admin'){
         $site_visits = $this->site_visits();
@@ -201,7 +217,10 @@ class AppController extends Controller
         } 
     }*/
 
-    $this->set('version_text', \version_readable($version_count) . ' (' . $version_date . ')');
+    $this->set(
+      'version_text', 
+      \version_readable($version_count) . ' (' . $version_date . ')'
+    );
   }
 
   public function sendEmail($data, $subject, $template) {
@@ -252,11 +271,11 @@ class AppController extends Controller
     $filepath = '';
     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
     $key = uniqid() . '.' . $ext;
-    $dest = __DIR__ . '/../webroot' . Configure::read('uploadUrl') . $key;
+    $dest = __DIR__ . '/../webroot' . $settings['upload-url'] . $key;
     $url = "";
 
     if(copy($file['tmp_name'],$dest)){
-      $filepath = Configure::read('uploadUrl') . $key;
+      $filepath = $settings['upload-url'] . $key;
       if(!empty(Configure::read('uploadLocal'))){
         $filepath = $key;
       }

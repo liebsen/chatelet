@@ -56,7 +56,7 @@
                             data-img="<?=$img?>">
 
                               <img id="img_padding" style="cursor:pointer;" onclick="javascript:window.location.href='<?php echo $url  ?>';"
-                               src="<?php echo Configure::read('uploadUrl').$value['LookBook']['img_url'] ?>" >
+                               src="<?php echo $settings['upload-url'].$value['LookBook']['img_url'] ?>" >
 
 
                           </div>
@@ -86,7 +86,7 @@
                       <li class="lc" style="border-bottom: 2px solid #c2c2c2;margin-bottom: 45px;padding-bottom: 45px;">
                         <div class="row">
                           <div class="col-sm-3">
-                            <img class="img-responsive" src="<?php echo Configure::read('uploadUrl').$v['Product']['img_url'] ?>" >
+                            <img class="img-responsive" src="<?php echo $settings['upload-url'].$v['Product']['img_url'] ?>" >
                           </div>
                           <div class="col-sm-9">
                               <span class="hidden" id="product_id"><?php echo $v['Product']['id']; ?></span>
@@ -172,7 +172,7 @@
         </a>
   <?php if (!empty($talle_img)): ?>
     <div align="center" class="centered">
-        <img style="max-width:100%;" src="<?=Configure::read('uploadUrl')?><?=$talle_img?>" border="0" />
+        <img style="max-width:100%;" src="<?=$settings['upload-url']?><?=$talle_img?>" border="0" />
     </div>
   <?php else: ?>
         <div class="table">

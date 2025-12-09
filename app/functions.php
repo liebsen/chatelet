@@ -1,10 +1,17 @@
 <?php
 
-function getSocials(){
+function site_url() {
+  $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || 
+    $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+  $domainName = $_SERVER['HTTP_HOST'];
+  return $protocol.$domainName;
+}
+
+function get_socials(){
   return ['facebook','instagram','x-twitter', 'youtube'];
 }
 
-function timeAgo($timestamp) {
+function readable_time_ago($timestamp) {
     $current_time = time();
     $diff = $current_time - $timestamp;
 
@@ -28,12 +35,12 @@ function timeAgo($timestamp) {
     }
 }
 
-function startsWith($haystack, $needle) {
+function starts_with($haystack, $needle) {
   $length = strlen($needle);
   return substr($haystack, 0, $length) === $needle;
 }
 
-function endsWith($haystack, $needle) {
+function ends_with($haystack, $needle) {
   $length = strlen($needle);
   if(!$length) {
     return true;
@@ -173,7 +180,7 @@ function filtercoupon ($data, $config = null, $amount = 0) {
   return $ret;
 }
 
-function parseTemplate ($str, $data) {
+function parse_template($str, $data) {
   $html = $str;
   foreach ($data as $key => $value) {
     $html = str_replace(["{{" . $key . "}}", "{{ " . $key . " }}"], $value, $html);
@@ -199,7 +206,7 @@ function shipping_text($settings, $cart_totals) {
     ];
 
     $text_shipping_min_price = ($settings['display_text_shipping_min_price'] && $settings['text_shipping_min_price']) ? 
-      \parseTemplate($settings['text_shipping_min_price'], $params) : 
+      \parse_template($settings['text_shipping_min_price'], $params) : 
       '';
   }
 

@@ -702,10 +702,10 @@ class CarritoController extends AppController
 			}
 
 			$product = $this->Product->findById($this->request->data['id']);
-			$urlCheck = Configure::read('baseUrl')."shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
+			$urlCheck = $settings['site-url']."/shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
 
 			if (empty($this->request->data['size']) && empty($this->request->data['color_code'])){
-				//$urlCheck=Configure::read('baseUrl')."shop/stock/".$product['Product']['article'];
+				//$urlCheck=$settings['site-url']."/shop/stock/".$product['Product']['article'];
 				$stock=1;
 			} else {
 				$ch = curl_init();

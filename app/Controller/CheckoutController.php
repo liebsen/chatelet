@@ -63,16 +63,7 @@ class CheckoutController extends AppController
 		$this->set('freeShipping', $freeShipping);		
 	}
 
-	public function index()
-	{ }
-
-	private function parseTemplate ($str, $data) {
-		$html = $str;
-    foreach ($data as $key => $value) {
-      $html = str_replace(["{{" . $key . "}}", "{{ " . $key . " }}"], $value, $html);
-    }		
-		return $html;
-	}
+	public function index() { }
 
 	public function envio() {
 		if(empty($this->Session->read('cart_totals'))) {

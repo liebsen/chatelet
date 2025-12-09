@@ -15,6 +15,9 @@ class AdminController extends AppController {
 
 	public function beforeFilter() {
     	parent::beforeFilter();
+    	// $settings = parent::load_settings();
+     	// $this->set('settings', $settings);
+
     	$this->Auth->deny();
     	$this->Auth->allow('login','test','update_products');
     	// Template variables
@@ -579,7 +582,7 @@ class AdminController extends AppController {
 			'cargo' => "{$sale['cargo']}",
 			'width' => 400,
 			'height' => 300,
-			'url' => Configure::read('baseUrl') . "admin/tickets/{$orden}"
+			'url' => $settings['site-url'] . "/admin/tickets/{$orden}"
 		];
 		die(json_encode($data));		
 	}
@@ -678,7 +681,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					// $user = $this->User->findById($sale['user_id']);
 					$mapper = $this->Logistic->findById($sale['logistic_id']);
 					$logistic = [
-						// 'tracking_url' => Configure::read('baseUrl') . 'envios/',
+						// 'tracking_url' => $settings['site-url'] . '/envios/',
 						'width' => 400,
 						'height' => 300
 					];
@@ -740,13 +743,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					if (!is_null($response) && isset($response->pdf)) {
 						$dest = __DIR__ . '/../webroot/files/andreani/' . $sale['def_orden_tracking'] . '.pdf';
 					  file_put_contents($dest, $response->pdf);
-					  $url = Configure::read('baseUrl') . 'files/andreani/' . $sale['def_orden_tracking'] . '.pdf';
+					  $url = $settings['site-url'] . '/files/andreani/' . $sale['def_orden_tracking'] . '.pdf';
 					}
 				} else if ($sale['shipping'] == 'oca') { 
 					$url = "http://www5.oca.com.ar/OcaEPakNet/Views/Impresiones/Etiquetas.aspx?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
 				} else {
-					$url = Configure::read('baseUrl') . "admin/tickets/{$sale['def_orden_retiro']}";
+					$url = $settings['site-url'] . "/admin/tickets/{$sale['def_orden_retiro']}";
 				}
+
 				$data['url'] = $url;
 				$data['shipping'] = $sale['shipping'];
 				$data['cargo'] = $sale['cargo'];
@@ -1109,7 +1113,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       foreach($imgs as $img) {
       	$parts = explode('-', $img);
       	if(count($parts) < 2) {
-	      	$fname = __DIR__ . '/../webroot' . Configure::read('uploadUrl') . $img;
+	      	$fname = __DIR__ . '/../webroot' . $settings['upload-url'] . $img;
 	      	if(file_exists($fname)) {
 						$img_data = getimagesize($fname);
 						$orientation = $img_data[0] > $img_data[1] ? 'desktop' : 'mobile';
@@ -1135,7 +1139,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       foreach($imgs as $img) {
       	$parts = explode('-', $img);
       	if(count($parts) < 2) {
-	      	$fname = __DIR__ . '/../webroot' . Configure::read('uploadUrl') . $img;
+	      	$fname = __DIR__ . '/../webroot' . $settings['upload-url'] . $img;
 	      	if(file_exists($fname)) {
 						$img_data = getimagesize();
 			    	$media[] = implode('-', [($img_data[0] > $img_data[1] ? 'desktop' : 'mobile'), $img]);
@@ -1223,7 +1227,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       foreach($imgs as $img) {
       	$parts = explode('-', $img);
       	if(count($parts) < 2) {
-	      	$fname = __DIR__ . '/../webroot' . Configure::read('uploadUrl') . $img;
+	      	$fname = __DIR__ . '/../webroot' . $settings['upload-url'] . $img;
 	      	if(file_exists($fname)) {
 						$img_data = getimagesize($fname);
 						$orientation = $img_data[0] > $img_data[1] ? 'desktop' : 'mobile';
@@ -1249,7 +1253,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       foreach($imgs as $img) {
       	$parts = explode('-', $img);
       	if(count($parts) < 2) {
-	      	$fname = __DIR__ . '/../webroot' . Configure::read('uploadUrl') . $img;
+	      	$fname = __DIR__ . '/../webroot' . $settings['upload-url'] . $img;
 	      	if(file_exists($fname)) {
 						$img_data = getimagesize($fname);
 			    	$media[] = implode('-', [($img_data[0] > $img_data[1] ? 'desktop' : 'mobile'), $img]);
@@ -1543,8 +1547,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					'image' => $file,
 				));
 			}
-			$data = parent::load_settings();
-     	$this->set('data', $data);
 		}
 		$h1 = array(
 			'name' => 'Compra por WhatsApp',
@@ -1572,7 +1574,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 			if(!empty($og['image']['name'])){
 				$file = $this->save_file( $og['image'] );
-				$this->Setting->save(['id' => 'opengraph_image', 'value' => Configure::read('uploadUrl') . $file]);
+				$this->Setting->save(['id' => 'opengraph_image', 'value' => $settings['upload-url'] . $file]);
 			}
 
 			$response = array(

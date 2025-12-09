@@ -50,7 +50,7 @@
             <!--span class="name">REMERA CONICA BELEN</span-->
             <p>Fecha: 
               <span class="text-muted timestamp"><?= $sale['Sale']['created'] ?></span>
-              <span class="text-muted">(<?= \timeAgo(strtotime($sale['Sale']['created'])) ?>)</span>
+              <span class="text-muted">(<?= \readable_time_ago(strtotime($sale['Sale']['created'])) ?>)</span>
             </p>
             <p>Productos: <?= count($sale['Products']) ?></p>
             <p>Estado: 
@@ -106,7 +106,7 @@
                       }
                       return false;
                     })) ?></div>
-                    <div class="ch-image flex-1" style="background-image: url('<?=Configure::read('uploadUrl').$item['Product']['img_url']?>');"></div>
+                    <div class="ch-image flex-1" style="background-image: url('<?=$settings['upload-url'].$item['Product']['img_url']?>');"></div>
                   </div><hr>
                 <?php endforeach ?>
               </div>

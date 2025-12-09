@@ -139,34 +139,14 @@ function filterOrientation($list){
   return $filtered;
 }
 
-function baseURL() {
-  $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || 
-    $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-  $domainName = $_SERVER['HTTP_HOST'];
-  return $protocol.$domainName.'/';
-}
-
-function siteURL() {
-  $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || 
-    $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-  $domainName = $_SERVER['HTTP_HOST'];
-  return $protocol.$domainName;
-}
-
-// Configure::write('baseUrl','http://localhost:8040/'); 
 $uploadLocal = true;
 
-Configure::write('baseUrl',baseURL()); 
-Configure::write('siteUrl',siteURL()); 
 Configure::write('uploadUrl',$uploadLocal ? '/files/uploads/' : 'https://d3baxuoyqsgua.cloudfront.net/');
 Configure::write('uploadLocal',$uploadLocal); 
 Configure::write('mobile', preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", isset($_SERVER["HTTP_USER_AGENT"]) ? $_SERVER["HTTP_USER_AGENT"] : '') || !empty($_GET['mobile']));
 
 Configure::write('S3.accessKey','AKIAJGNWSIAUPGFVLJTQ'); 
 Configure::write('S3.secret','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'); 
-
-//Configure::write('uploadUrl','https://d3baxuoyqsgua.cloudfront.net/'); 
-//cache for https://s3.amazonaws.com/chatelet/'); 
 
 //@include_once 'env.php';
 

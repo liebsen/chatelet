@@ -2,7 +2,7 @@
 	<?php foreach ($promos as $key => $promo): ?>
 		<div class="row">
 			<div class="col-xs-12 text-center">
-				<img class="img-responsive promo-image" src="<?php echo Configure::read('uploadUrl').$promo['Promo']['image'] ?>" onError="this.onerror=null;this.src='<?php echo Configure::read('uploadUrl').'img/promo_placeholder.png' ?>';" >
+				<img class="img-responsive promo-image" src="<?php echo $settings['upload-url'].$promo['Promo']['image'] ?>" onError="this.onerror=null;this.src='<?php echo $settings['upload-url'].'img/promo_placeholder.png' ?>';" >
 				<br />
 			</div>
 		</div>

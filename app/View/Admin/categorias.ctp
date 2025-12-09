@@ -81,7 +81,7 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 				<td>
 					<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
             <div class="d-flex justify-content-start align-items-center gap-1">
-              <img src="<?=Configure::read('uploadUrl'). $category['Category']['img_url']?>" height="100" />
+              <img src="<?=$settings['upload-url']. $category['Category']['img_url']?>" height="100" />
 						  <span><?=$category['Category']['name']?></span>
             </div>
 					</a>
@@ -106,14 +106,14 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 				<td>          
 					<?php
 						if(!empty($category['Category']['img_url'])){
-							echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('uploadUrl') . $category['Category']['img_url'] ."''>LINK</a>";
+							echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload-url'] . $category['Category']['img_url'] ."''>LINK</a>";
 						}
 					?>     
 				</td> 
 				<td>          
 					<?php
 						if(!empty($category['Category']['size'])){
-							echo "<a target='_new' class='badge badge-inverse' href='". Configure::read('uploadUrl') . $category['Category']['size'] ."''>LINK</a>";
+							echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload-url'] . $category['Category']['size'] ."''>LINK</a>";
 						}
 					?>     
 				</td>
