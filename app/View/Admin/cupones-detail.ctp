@@ -96,10 +96,10 @@
                       <input type="radio"  class="form-control" id="type_1" name="data[coupon_type]" value="nominal" <?php echo $nominal; ?> />
                       <label for="type_1">Nominal</label>
                     </span>
-                    <span>
+                    <!--span>
                       <input type="radio" class="form-control" id="type_1" name="data[coupon_type]" value="freeshipping" <?php echo $freeshipping; ?> />
                       <label for="type_1">Envío Gratis</label>
-                    </span>
+                    </span-->
                   </div>
                   <small class="text-muted">El tipo de cupón puede ser porcentual en que usaremos un valor de 0-100, o nominal indicando el monto a beneficiar expresado en peso argentino ARS.</small>
                 </div>

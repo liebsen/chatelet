@@ -13,6 +13,8 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
+$socials = \parsed_socials();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
@@ -27,12 +29,12 @@
     </style>
   </head>
   <body>
-    <table class="cha-main" cellpadding="0" cellspacing="0" width="600" align="center" style="backgound-color: #f8f8f8; width:100%;" >
+    <table cellpadding="0" cellspacing="0" width="600" align="center" style="backgound-color: #f8f8f8; width:100%;" >
       <tr>
         <td>
-          <table cellpadding="0" cellspacing="0" style="width: 100%;backgound-color: #ffffff; padding: 16px;height: 120px;">
+          <table cellpadding="0" cellspacing="0" style="width: 100%; padding: 16px;height: 120px;">
             <tr>
-              <td align="center"><?php echo $this->html->image(Router::url('/',true)."images/logo.jpg", ['width' => '200px']); ?></td>
+              <td align="center"><?php echo $this->html->image(Router::url('/',true)."images/logo-black.png", ['width' => '200px']); ?></td>
             </tr>
           </table>
         </td>
@@ -46,11 +48,16 @@
           </table>
         </td>
       </tr>
+      <?php if(count($socials)): ?>
       <tr>
         <td align="center" style="padding: 8px; color: #e7e7e7">
-          <small>Seguinos en nuestras redes: <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" target="_blank">Facebook</a> | <a href="https://www.instagram.com/chateletmoda/" target="_blank">Instagram</a></small>
+          <small>Seguinos en nuestras redes: 
+          <?php foreach($socials as $social) : ?>
+            | <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" target="_blank"><?php echo ucfirst($social) ?></a>
+          <?php endforeach ?>
         </td>
       </tr>
+      <?php endif ?>
       <tr>
         <td align="center" style="padding: 8px; color: #e7e7e7"><small>&copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados</small></td>
       </tr>

@@ -219,9 +219,13 @@ class AppController extends Controller
   }
 
   public function sendEmail($data, $subject, $template) {
-    if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($data['receiver_email'])){
-      return true;
-    }
+    
+    CakeLog::write('debug', 'sendEmail:'.json_encode(array(
+      //'data' => $data,
+      'subject' => $subject,
+      'template' => $template,
+      'remote_addr' => $_SERVER['REMOTE_ADDR'],
+    )));
 
     $email = new CakeEmail();
     // $email->transport('Debug');
@@ -237,6 +241,11 @@ class AppController extends Controller
     $email->viewVars(array(
       'data' => $data
     ));
+
+    if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($data['receiver_email'])){
+      // CakeLog::write('debug', 'email:'. json_encode($email->message('html')));
+      return true;
+    }
 
     return $email->send();
   }

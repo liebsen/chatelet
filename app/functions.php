@@ -28,6 +28,16 @@ function get_socials(){
   return ['facebook','instagram','x-twitter', 'youtube'];
 }
 
+function parsed_socials(){
+  $socials = [];
+  
+  foreach(\get_socials() as $social) {
+    if(!empty($settings[$social])) {
+      $socials[$social] = $settings[$social];
+    }
+  }
+  return $socials;
+}
 function readable_time_ago($timestamp) {
     $current_time = time();
     $diff = $current_time - $timestamp;

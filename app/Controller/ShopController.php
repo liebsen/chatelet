@@ -849,12 +849,27 @@ class ShopController extends AppController {
   public function analytics(){
     $this->autoRender = false;
 	  $cart = $this->Session->read('cart');
+
     if(!empty($cart)) {
 	    $data = $this->request->data;
 	    $this->loadModel('Analytic');
 
 	    $cart_totals = $this->Session->read('cart_totals');
 	    $cart_totals['cart_items'] = count($cart);
+
+      $email_data = array(
+        'receiver_email' => $this->Auth->user('email'),
+        'id_user' => $this->Auth->user('id'),
+        'name' =>  $this->Auth->user('name'),
+        'grand_total' => \price_format($cart_totals['grand_total']),
+        'checkout_link' => Router::url('/checkout'),
+        'cart_totals' => $cart_totals,
+        'cart' => $cart
+      );
+
+      // CakeLog::write('debug', 'email_data:'. json_encode($email_data));
+			$this->sendEmail($email_data, 'Completá tu compra', 'purchase_unfinished');
+
 			// save search
 			$analytic = [];
 			$analytic['tag'] = "page_exit";
