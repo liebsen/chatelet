@@ -51,6 +51,26 @@ $(function () {
   });
   // Toggle Side content
   /*body.toggleClass('hide-side-content');*/
+
+  var timeout = 0
+  $('#filter-menu').keyup(function(){ 
+    clearTimeout(timeout)
+    const value = $(this).val().toLowerCase()
+    if(value.length < 2) {
+      $('#primary-nav ul li').removeClass('d-none')
+      return false
+    }
+    timeout = setTimeout(() => {      
+      $('#primary-nav li').each((e,element) => {
+        const title = $(element).find('span').text().toLowerCase()
+        if(title.includes(value)) {
+          $(element).removeClass('d-none')
+        } else {
+          $(element).addClass('d-none')
+        }
+      })
+    }, 100)
+  })
   $('#toggle-side-content').click(function(){ 
     if($('body').hasClass('hide-side-content')){
       $('#page-sidebar.collapse').collapse('hide');

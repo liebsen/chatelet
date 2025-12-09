@@ -22,7 +22,8 @@
         <!-- Mini Profile -->
         <div class="mini-profile">
             <a href="/" target="_blank">
-            <?php echo $this->Html->image('logo.jpg', array('class' => 'img-responsive')); ?>
+                <?php echo $this->Html->image('logo.jpg', array('class' => 'img-responsive')); ?>
+                <small><?php echo $template['version']; ?></small>
             </a>
         </div>
         <!-- END Mini Profile -->
@@ -38,6 +39,9 @@
                 <div class="tab-pane active" id="side-tab-menu">
                     <!-- Primary Navigation -->
                     <nav id="primary-nav">
+                        <div class="form-group">
+                            <input type="text" id="filter-menu" class="form-control" placeholder="Buscar.." autofocus />
+                        </div>
                         <?php if ($primary_nav) { ?>
                         <ul> 
                             <?php foreach ($primary_nav as $key => $link) {
