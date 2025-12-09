@@ -81,18 +81,22 @@ foreach ($properties as $property) {
       <div class="col-md-5 p-0">
         <div class="is-product-photo"><?php 
           $number_ribbon = 0;
+          $ribbon_style = '';
           if (isset($product['discount_label_show'])){
               $number_ribbon = (int)@$product['discount_label_show'];
           }
           if (isset($product['mp_discount']) && $product['mp_discount'] > $number_ribbon){
             $number_ribbon = (int) @$product['mp_discount'];
           }
+          if(!empty($product['ribbon_color'])) {
+            $ribbon_style = ' style="background-color: {$product[ribbon_color]}"';
+          }          
           if (isset($product['bank_discount']) && $product['bank_discount'] > $number_ribbon){
             $number_ribbon = (int) @$product['bank_discount'];
           } ?>
 
           <?php if ($number_ribbon) :?>
-              <div class="ribbon large top-left small"><span><?= $number_ribbon ?>% OFF</span></div>
+              <div class="ribbon large top-left small"<?php echo $ribbon_style ?>><span><?= $number_ribbon ?>% OFF</span></div>
           <?php endif ?>
           <?php if ($product['promo'] !== '') :?>
               <div class="ribbon large"><span><?= $product['promo'] ?></span></div>

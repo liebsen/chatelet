@@ -126,7 +126,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Color de burbuja de descuento'); ?></label>
             <div class="controls">
-              <input class="form-control" type="color" id="" name="bubble_color" value="<?php echo (isset($prod)) ? $prod['Product']['bubble_color'] : ''; ?>" required>
+              <input class="form-control" type="color" id="" name="ribbon_color" value="<?php echo (isset($prod)) ? $prod['Product']['ribbon_color'] : ''; ?>" required>
             </div>
           </div>
           <br />

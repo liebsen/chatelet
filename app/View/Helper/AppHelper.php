@@ -100,7 +100,11 @@ class AppHelper extends Helper {
     $str = '';
     $stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
     $number_ribbon = 0;
-    
+    $ribbon_style = '';
+
+    if(!empty($product['ribbon_color'])) {
+      $ribbon_style = ' style="background-color: {$product[ribbon_color]}"';
+    }
     if (isset($item['discount_label_show'])){
       $number_ribbon = (int) @$item['discount_label_show'];
     }
@@ -111,7 +115,7 @@ class AppHelper extends Helper {
       $number_ribbon = (int) @$item['bank_discount'];
     }
 
-    $discount_flag = (@$item['category_id']!='134' && !empty($number_ribbon))?'<div class="ribbon top-left small"><span>'.$number_ribbon.'% OFF</span></div>':'';
+    $discount_flag = (@$item['category_id']!='134' && !empty($number_ribbon))?'<div class="ribbon top-left small"'.$ribbon_style.'><span>'.$number_ribbon.'% OFF</span></div>':'';
     $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
     $content= '<div class="ribbon-container">';
     $content.= $discount_flag . $promo_ribbon;
