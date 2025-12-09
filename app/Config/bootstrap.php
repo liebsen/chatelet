@@ -138,7 +138,7 @@ function filterOrientation($list){
   }
   return $filtered;
 }
-
+/*
 $uploadLocal = true;
 
 Configure::write('uploadUrl',$uploadLocal ? '/files/uploads/' : 'https://d3baxuoyqsgua.cloudfront.net/');
@@ -147,6 +147,8 @@ Configure::write('mobile', preg_match("/(android|avantgo|blackberry|bolt|boost|c
 
 Configure::write('S3.accessKey','AKIAJGNWSIAUPGFVLJTQ'); 
 Configure::write('S3.secret','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'); 
+*/
+
 
 //@include_once 'env.php';
 
