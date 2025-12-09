@@ -110,11 +110,13 @@ Configure::write('Dispatcher.filters', array(
  * Configures default file logging options
  */
 App::uses('CakeLog', 'Log');
+
 CakeLog::config('debug', array(
 	'engine' => 'File',
 	'types' => array('notice', 'info', 'debug'),
 	'file' => 'debug',
 ));
+
 CakeLog::config('error', array(
 	'engine' => 'File',
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
@@ -138,6 +140,7 @@ function filterOrientation($list){
   }
   return $filtered;
 }
+
 /*
 $uploadLocal = true;
 
@@ -148,8 +151,6 @@ Configure::write('mobile', preg_match("/(android|avantgo|blackberry|bolt|boost|c
 Configure::write('S3.accessKey','AKIAJGNWSIAUPGFVLJTQ'); 
 Configure::write('S3.secret','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'); 
 */
-
-
 
 //@include_once 'env.php';
 

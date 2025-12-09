@@ -1,4 +1,4 @@
-  <section class="subscribe-box d-none">
+  <section class="subscribe-box animated d-none">
     <div class="w-100">
       <span class="corner-pin is-clickable">
         <i class="ico-times" onclick="suscribe_release()" data-toggle="click" data-hide=".subscribe-box" role="img" aria-label="Cerrar"></i>
@@ -96,14 +96,18 @@
     }
 
     $(document).ready(function() {
-      if(!localStorage.getItem('subscription_release') || localStorage.getItem('subscription_release') == 'undefined') {
+      const subscription_release = localStorage.subscription_release || 'undefined'
+      if(!subscription_release || subscription_release == 'undefined') {
         setTimeout(() => {
-          $('.subscribe-box').fadeIn('slow')
-        }, 5000)
+          console.log('subscribe wobble')
+          $('.subscribe-box').removeClass('d-none')
+          $('.subscribe-box').addClass('wobble slow')
+        }, 2000)
       } else {
         setTimeout(() => {
+          console.log('subscribe unrelease fadeIn')
           $('.suscribe-unrelease').fadeIn('slow')
-        }, 5000)        
+        }, 2000)        
       }
 
       $('.contacto').on('submit', function(event) {

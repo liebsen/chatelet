@@ -59,3 +59,5 @@
     </div>
   </div>
 </section>
+
+<?php echo $this->element('subscribe-box') ?>
