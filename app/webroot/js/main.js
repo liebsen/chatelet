@@ -6,6 +6,25 @@ let fakeshown = 0
 let growlTimeout = 15000
 const log = false
 
+function slugify(input) {
+    if (!input)
+        return '';
+
+    // make lower case and trim
+    var slug = input.toLowerCase().trim();
+
+    // remove accents from charaters
+    slug = slug.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+
+    // replace invalid chars with spaces
+    slug = slug.replace(/[^a-z0-9\s-]/g, ' ').trim();
+
+    // replace multiple spaces or hyphens with a single hyphen
+    slug = slug.replace(/[\s-]+/g, '-');
+
+    return slug;
+}
+
 function layerShow (layer) {
   const selectr = $(`.${layer}-layer`)
   if (selectr.hasClass('active')) {
@@ -55,14 +74,14 @@ $(function () {
   var timeout = 0
   $('#filter-menu').keyup(function(){ 
     clearTimeout(timeout)
-    const value = $(this).val().toLowerCase()
+    const value = slugify($(this).val())
     if(value.length < 2) {
       $('#primary-nav ul li').removeClass('d-none')
       return false
     }
     timeout = setTimeout(() => {      
       $('#primary-nav li').each((e,element) => {
-        const title = $(element).find('span').text().toLowerCase()
+        const title = slugify($(element).find('span').text())
         if(title.includes(value)) {
           $(element).removeClass('d-none')
         } else {
