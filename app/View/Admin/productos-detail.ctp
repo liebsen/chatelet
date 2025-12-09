@@ -47,7 +47,7 @@
              <?php if(!empty($list_code)){ ?>  
               <input type="number" name="list_code" id="lis_cod" value="<?php echo @$list_code ?>"/>
              <?php }else{ ?>
-              <input type="text" id="lis_cod" />
+              <input type="text" class="form-control" id="lis_cod" />
              <?php } ?>
             </div>
           </div>
@@ -59,7 +59,7 @@
              <?php if(!empty($list_code)){ ?>  
               <input type="number" name="list_code_desc" id="lis_cod2" value="<?php echo @$list_code_desc ?>"/>
              <?php }else{ ?>
-              <input type="text" id="lis_cod2" />
+              <input type="text" class="form-control" id="lis_cod2" />
              <?php } ?>
             </div>
           </div>
@@ -67,7 +67,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Código de producto'); ?></label>
             <div class="controls">
-              <input type="text" id="prod_cod" value="<?php echo (isset($prod)) ? $prod['Product']['cod_chatelet'] : ''; ?>">
+              <input type="text" class="form-control" id="prod_cod" value="<?php echo (isset($prod)) ? $prod['Product']['cod_chatelet'] : ''; ?>">
               <button type="button" id="buscar" class="btn btn-sm btn-default" data-url="<?php echo $this->Html->url(array('controller' => 'admin', 'action' => 'get_product')) ?>">Buscar</button>
             </div>
           </div>
@@ -76,14 +76,14 @@
             <label class="control-label" for="columns-text"><?php echo __('Mostrar Descuento? (0 o vacio para ignorar)'); ?></label>
             <small>Este descuento no se mostrará actualizado hasta ejecutar el boton "Sincronizar Descuentos"</small>
             <div class="controls">
-              <input type="text" id="" name="discount_label" value="<?php echo (isset($prod)) ? $prod['Product']['discount_label'] : ''; ?>">
+              <input type="text" class="form-control" id="" name="discount_label" value="<?php echo (isset($prod)) ? $prod['Product']['discount_label'] : ''; ?>">
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="name" value="<?php echo (isset($prod)) ? $prod['Product']['name'] : ''; ?>" required>
+              <input type="text" class="form-control" id="" name="name" value="<?php echo (isset($prod)) ? $prod['Product']['name'] : ''; ?>" required>
             </div>
           </div>
           <br />
@@ -91,21 +91,21 @@
             <label class="control-label" for="columns-text"><?php echo __('Descripción'); ?></label>
             <div class="controls">
               <textarea name="desc" rows=5><?php echo (isset($prod)) ? $prod['Product']['desc'] : ''; ?></textarea>
-              <!--input type="text" id="" name="desc" value="<?php echo (isset($prod)) ? $prod['Product']['desc'] : ''; ?>" -->
+              <!--input type="text" class="form-control" id="" name="desc" value="<?php echo (isset($prod)) ? $prod['Product']['desc'] : ''; ?>" -->
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Precio actual'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="price" value="<?php echo (isset($prod)) ? $prod['Product']['price'] : ''; ?>" required>
+              <input type="text" class="form-control" id="" name="price" value="<?php echo (isset($prod)) ? $prod['Product']['price'] : ''; ?>" required>
             </div>
           </div>
            <br/>
             <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Precio descuento'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="discount" value="<?php echo (isset($prod)) ? $prod['Product']['discount'] : ''; ?>" required>
+              <input type="text" class="form-control" id="" name="discount" value="<?php echo (isset($prod)) ? $prod['Product']['discount'] : ''; ?>" required>
             </div>
           </div>
           <br/>
@@ -155,7 +155,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
-              <input type="number" name="data[ordernum]" value="<?= @$cat['Category']['ordernum']?>">
+              <input type="number" class="form-control" name="data[ordernum]" value="<?= @$cat['Category']['ordernum']?>">
             </div>
             <small class="text-muted">Seleccioná el orden de prioridad este producto</small>
           </div>
@@ -163,7 +163,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Número de artículo'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="article" value="<?php echo (isset($prod)) ? $prod['Product']['article'] : ''; ?>" required>
+              <input type="text" class="form-control" id="" name="article" value="<?php echo (isset($prod)) ? $prod['Product']['article'] : ''; ?>" required>
             </div>
           </div>
           

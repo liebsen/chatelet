@@ -37,10 +37,10 @@
         <?php
             echo $this->Html->css('bootstrap');
             echo $this->Html->css('plugins');
-            echo $this->Html->css('main');
-            echo $this->Html->css('jquery.growl');
-            //echo $this->Html->css('font-awesome.min');
+            echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION'));
+            echo $this->Html->css('main.css?v=' . Configure::read('APP_VERSION'));
             echo $this->Html->css('animate.css?v=' . Configure::read('APP_VERSION'));
+            //echo $this->Html->css('font-awesome.min');
 
             if ($template['theme']) {
                 echo $this->Html->css('themes/'.$template['theme']);
