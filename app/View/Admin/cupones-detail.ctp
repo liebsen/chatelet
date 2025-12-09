@@ -86,15 +86,20 @@
                     <?php
                       $percentage = (isset($coupon) && $coupon['Coupon']['coupon_type'] == 'percentage') || !isset($coupon) ? 'checked' : '';
                       $nominal = (isset($coupon) && $coupon['Coupon']['coupon_type'] == 'nominal') ? 'checked' : '';
+                      $freeshipping = (isset($coupon) && $coupon['Coupon']['coupon_type'] == 'freeshipping') ? 'checked' : '';
                     ?>
                     <span>
-                    <input type="radio"  class="form-control" id="type_0" name="data[coupon_type]" value="percentage" <?php echo $percentage; ?> /> 
-                    <label for="type_0">Porcentual</label>
-                  </span>
-                  <span>
-                    <input type="radio"  class="form-control" id="type_1" name="data[coupon_type]" value="nominal" <?php echo $nominal; ?> />
-                    <label for="type_1">Nominal</label>
-                  </span>
+                      <input type="radio"  class="form-control" id="type_0" name="data[coupon_type]" value="percentage" <?php echo $percentage; ?> /> 
+                      <label for="type_0">Porcentual</label>
+                    </span>
+                    <span>
+                      <input type="radio"  class="form-control" id="type_1" name="data[coupon_type]" value="nominal" <?php echo $nominal; ?> />
+                      <label for="type_1">Nominal</label>
+                    </span>
+                    <span>
+                      <input type="radio" class="form-control" id="type_1" name="data[coupon_type]" value="freeshipping" <?php echo $freeshipping; ?> />
+                      <label for="type_1">Envío Gratis</label>
+                    </span>
                   </div>
                   <small class="text-muted">El tipo de cupón puede ser porcentual en que usaremos un valor de 0-100, o nominal indicando el monto a beneficiar expresado en peso argentino ARS.</small>
                 </div>

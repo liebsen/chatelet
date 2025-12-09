@@ -48,7 +48,6 @@
             
             echo $this->Html->css('themes');
             echo $this->fetch('css');
-
             echo $this->Html->script('vendor/modernizr-2.7.1-respond-1.4.2.min.js');
         ?>
         <script>
