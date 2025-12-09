@@ -97,6 +97,7 @@
 
     $(document).ready(function() {
       const subscription_release = localStorage.subscription_release || 'undefined'
+      
       if(!subscription_release || subscription_release == 'undefined') {
         setTimeout(() => {
           console.log('subscribe wobble')
