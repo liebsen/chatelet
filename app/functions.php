@@ -29,6 +29,8 @@ function get_socials(){
 }
 
 function parsed_socials(){
+  global $settings;
+  
   $socials = [];
   
   foreach(\get_socials() as $social) {

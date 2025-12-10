@@ -20,7 +20,11 @@ class NewsletterShell extends AppShell {
         )
        ),
       'fields' => array('Newsletter.*, User.name, User.surname, User.email'),
-         'conditions' => array( 'Newsletter.status' => "recieved" ),
+         'conditions' => array( 
+            'Newsletter.status' => "waiting", 
+            'Newsletter.enabled' => 1
+            // 'Newsletter.exec_now' => 1 
+         ),
          //'order' => array( 'Product.price ASC' )
       ));
 
@@ -68,9 +72,24 @@ class NewsletterShell extends AppShell {
 
     if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($data['receiver_email'])){
       // CakeLog::write('debug', 'email:'. json_encode($email->message('html')));
+      $this->Newsletter->save(array(
+         'id' => $data['Newsletter']['id'],
+         'status' => 'sent'
+      ));      
       return true;
     }
 
-    return $email->send();
+    $sent = $email->send();
+
+    if($sent) {
+      $this->Newsletter->save(array(
+         'id' => $data['Newsletter']['id'],
+         'status' => 'sent'
+      ));
+    }
+
+    return 1;
+    
+    // return array('sent' => $sent);
   }   
 }

@@ -50,7 +50,7 @@ $socials = \parsed_socials();
       </tr>
       <?php if(count($socials)): ?>
       <tr>
-        <td align="center" style="padding: 8px; color: #e7e7e7">
+        <td align="center" style="padding: 8px; color: #888888">
           <small>Seguinos en nuestras redes: 
           <?php foreach($socials as $social) : ?>
             | <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" target="_blank"><?php echo ucfirst($social) ?></a>
@@ -59,7 +59,7 @@ $socials = \parsed_socials();
       </tr>
       <?php endif ?>
       <tr>
-        <td align="center" style="padding: 8px; color: #e7e7e7"><small>&copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados</small></td>
+        <td align="center" style="padding: 8px; color: #888888"><small>&copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados</small></td>
       </tr>
     </table>
   </body>
