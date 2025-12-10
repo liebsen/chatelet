@@ -77,12 +77,13 @@ function submitCoupon() {
       format_total = formatNumber(price)
 
       fxTotal(price)
-      calcDues(price)
+      // calcDues(price)
       window.coupon_bonus = discounted
 
       cart_totals.total_products = parseFloat(price.toFixed(2))
 
       $('input[name="coupon"]').val(coupon)
+      $('.products-total').removeClass('hidden')
       $('.coupon-discount').removeClass('hidden')
     }else{
       $('.input-coupon-status').removeClass('ok');

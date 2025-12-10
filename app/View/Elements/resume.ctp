@@ -1,4 +1,9 @@
-<?php $max_visible = 2; $i = 0; ?>	
+<?php 
+$max_visible = 2; 
+$i = 0; 
+$payment_method = $cart_totals['payment_method'] ?? 'bank';
+$read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_method;
+?>	
 <div class="d-flex flex-column justify-content-center align-items-start gap-05">
 	<h5 class="text-uppercase">Resumen</h5>
 	<?php if(!empty($show_list)) :  ?>
@@ -6,7 +11,7 @@
 		<?php foreach ($sorted as $product) {
 			$hidden = $i > $max_visible;
 			$cls = $hidden ? ' cart-hidden hidden' : '';
-			echo "<div class='d-flex justify-content-start align-center gap-1 carrito-data position-relative". $cls ."' data-json='".json_encode($product)."' product_row>";
+			echo "<div class='d-flex justify-content-start align-center gap-1 carrito-data position-relative ".$cls."' data-json='".json_encode($product)."' product_row>";
 			echo "<div class='cart-img'>";
 			if (!empty($product['number_ribbon'])) {
 				echo '<div class="ribbon small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
@@ -38,7 +43,7 @@
 					echo '<span class="text-sm">Talle: <span>'. $product['size'] .'</span></span>';
 				}
 
-			echo '<span class="text-nowrap mt-2">'. \price_format($product['item_price']) .'</span>';	
+			echo '<span class="text-nowrap mt-2 price-'.$product['id'].'">'. \price_format($product['item_price']) .'</span>';	
 			echo '</div>';
 			echo '</div>';	
 				if($hidden && count($sorted) === $i + 1) {
@@ -52,6 +57,7 @@
 		<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 		<input type="hidden" id="subtotal_envio" value="" />
 		<div class="w-100">
+			<hr>
 			<div class="summary-item <?php echo empty($cart_totals['discount']) ? 'hidden' : '' ?>">
 				<span class="text-weight-thin">Descuento </span>
 				<span><?= \price_format($cart_totals['discount']) ?></span>
@@ -69,12 +75,17 @@
 			<div class="summary-item text-right delivery-cost<?php echo empty($cart_totals['delivery_cost']) ? ' hidden' : '' ?>">
 				<span class="text-weight-thin text-success">Envía <span class="shipping-cargo price text-sm"><?php echo $cart_totals['shipping'] ?></span></span>
 				<span id="delivery_cp"></span> <span>$ <span class="cost_delivery"><?php echo $cart_totals['delivery_cost'] ?></span></span>
-			</div>			
+			</div>
 			<div class="summary-item cost_total-container">
 				<span class="text-weight-bold">Total </span> 
 				<span class="calc_total text-weight-bold"><?= \price_format($cart_totals['grand_total']) ?></span>
 			</div>
 			<hr class="mt-1 mb-2">
+		<?php if(Router::url() != '/checkout/pago'): ?>
+			<div class="summary-item">
+				<span class="text-sm text-muted">Pagando con <b><?php echo $read_payment_method ?></b></span>
+			</div>
+		<?php endif ?>
 		<?php if(!empty($cart_totals['free_shipping'])) :?>
 			<div class="summary-item">
 				<span class="text-sm text-success">Envío <b>GRATIS</b></span>

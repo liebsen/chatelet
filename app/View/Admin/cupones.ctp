@@ -55,7 +55,7 @@
 					</td>
 
 					<td align="center">
-						<?=\filtercoupon($coupon)->status !== 'error' ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg muted"></i>'?>
+						<?=\parse_coupon($coupon)->status !== 'error' ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg muted"></i>'?>
 					</td>
 					<td align="center">
 						<div class="btn-group">   

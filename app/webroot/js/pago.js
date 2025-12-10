@@ -1,6 +1,6 @@
 var dues_selected = ''
 // var cart = JSON.parse(localStorage.getItem('cart')) || {}
-
+var requesting_coupon = false
 //var select_dues = (e,item) => {
 $('.dues-select-option').click((e) => {
 	const target = $(e.target).hasClass('dues-select-option') ? 
@@ -32,11 +32,12 @@ $(function(){
 	localStorage.setItem('continue_shopping_url', window.location.pathname)
 	const payment_method = localStorage.getItem('payment_method') || 'bank'
 
-	$('.select-payment-option').click(e => {
+	$('.select-payment-option').click((e) => {
 		const target = $(e.target).hasClass('select-payment-option') ? 
 			$(e.target) : 
 			$(e.target).parents('.select-payment-option')
 
+		var total = 0
 		var selected = target.find('input').val()
 		const payment_dues = document.querySelector('.select-payment-option')
 
@@ -47,11 +48,46 @@ $(function(){
 		target.find('input').prop('checked', true)
 		var bank_bonus = 0
 
-		if(!selected) {
+		if(!selected || requesting_coupon) {
 			return false
 		}
 
-		var total = getTotals()
+		if(cart_totals.coupon) {
+			requesting_coupon = true
+		  $.post('/carrito/coupon', { 
+		  	coupon: cart_totals.coupon,
+		  	payment_method: selected,
+		  }, function(res, textStatus) {
+		    if( res.status == 'success' ) {
+		      let coupon_type = res.data.coupon_type
+		      let discount = parseFloat(res.data.discount)
+		      let discounted = 0
+		      total = parseFloat(res.data.total)      
+		      let products = parseFloat(res.data.products)      
+
+		      discounted_formatted = formatNumber(res.data.coupon_benefits)
+
+		      $('.coupon_bonus').text( "$ " + formatNumber(discounted_formatted))
+		      $('.subtotal_price').text( "$ " + formatNumber(products))
+		      format_total = formatNumber(total)
+		      fxTotal(total)
+		      // calcDues(price)
+
+		      /* $(res.data.updated).each(function(i,e) {
+		      	$('.price-'+Object.keys(e)[0]).text("$ " + formatNumber(Object.values(e)[0].price))
+		      }) */
+
+		      window.coupon_bonus = discounted
+
+		      //cart_totals.total_products = parseFloat(total.toFixed(2))
+		    }
+		    requesting_coupon = false
+		  })
+		} else {
+			console.log('total', total)
+			total = getTotals()	
+		}
+		
 		if(payment_dues) {
 			switch(selected){
 				case 'bank':

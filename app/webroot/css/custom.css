@@ -2025,9 +2025,6 @@ span.out{
   font-weight: 700;
 }
 
-.cost_total-container {
-  padding: 0.25rem 0;  
-}
 .cost_total-container .price {
   color: #e10d74;
 }
@@ -2071,6 +2068,7 @@ select {
 
 .ribbon {
   position: absolute;
+  z-index: 10;
   left: 0.25rem; 
   bottom: 0.25rem;
   overflow: hidden;

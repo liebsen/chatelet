@@ -1,6 +1,6 @@
 <?php 
 	echo $this->element('admin-menu');
-	echo $this->Html->script('admin-delete', array('inline' => false));	
+	echo $this->Html->script('admin-delete', array('inline' => false));
 ?>
 <div class="row hide-print toolnav-right">
   <div class="col-xs-12 text-right p-2">

@@ -10,8 +10,8 @@ class CartComponent extends Component {
 
   public function update($cart=false, $cart_totals=false) {
   
-    CakeLog::write('debug', 'cart_totals(param):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
-    CakeLog::write('debug', 'cart(param):'. json_encode($cart));
+    // CakeLog::write('debug', 'cart_totals(param):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
+    // CakeLog::write('debug', 'cart(param):'. json_encode($cart));
 
     if (empty($cart)) {
       $cart = $this->controller->Session->read('cart');
@@ -21,10 +21,10 @@ class CartComponent extends Component {
       $cart_totals = $this->controller->Session->read('cart_totals');
     }
 
-    CakeLog::write('debug', 'cart_totals(start):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
-    CakeLog::write('debug', 'cart(start):'. json_encode($cart));
+    // CakeLog::write('debug', 'cart_totals(start):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
+    // CakeLog::write('debug', 'cart(start):'. json_encode($cart));
 
-	  $payment_method = @$cart_totals['payment_method'] ?: 'bank';
+	  $payment_method = $cart_totals['payment_method'] ?: 'bank';
     $groups = [];
     $counts = [];
     $total = 0;
@@ -168,9 +168,10 @@ class CartComponent extends Component {
 
     $cart_totals['free_shipping'] = $this->isFreeShipping($grand_total);
     $cart_totals['grand_total'] = $grand_total;
+    $cart_totals['payment_method'] = $payment_method;
 
-    CakeLog::write('debug', 'cart_totals(end):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
-    CakeLog::write('debug', 'cart(end):'. json_encode($cart));
+    // CakeLog::write('debug', 'cart_totals(end):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
+    // CakeLog::write('debug', 'cart(end):'. json_encode($cart));
 
     $this->controller->Session->write('cart_totals', $cart_totals);
     $this->controller->Session->write('cart', $cart);
@@ -194,6 +195,7 @@ class CartComponent extends Component {
 		if (!empty(@$cart)) {
 			foreach($cart as $key => $item) {
 				$criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
+        $price = $item['price'];
 				//CakeLog::write('debug', 'citeria:'. $criteria);
 				if (!isset($groups[$criteria])) {
 					$groups[$criteria] = 0;
@@ -205,13 +207,13 @@ class CartComponent extends Component {
 					$sort[$criteria] = (array) $item;
 				} else {
 					$sort[$criteria]['count'] = $groups[$criteria];
-					$sort[$criteria]['price']+= $item['price'];
+					$sort[$criteria]['price']+= $price;
 					$sort[$criteria]['old_price']+= $item['old_price'];
 					if (!empty($item['promo_enabled'])) {
 						$sort[$criteria]['promo_enabled'] = $item['promo_enabled'];
 					}
 				}
-				$sort[$criteria]['item_price'] = $item['price'];
+				$sort[$criteria]['item_price'] = $price;
 				$sort[$criteria]['item_old_price'] = $item['old_price'];
 			}
 		}

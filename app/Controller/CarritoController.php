@@ -268,15 +268,21 @@ class CarritoController extends AppController
 		return json_encode($stores);
 	}
 
-	public function coupon($cp = null){
+	public function coupon($code=null){
+		$code = $code ?? $this->request->data['coupon'];
 		$cart = $this->Session->read('cart');
 		$cart_totals = $this->Session->read('cart_totals');
+		$payment_method = $cart_totals['payment_method'] ?? 'bank';
+		$payment_method = $this->request->data['payment_method'] ?? $payment_method;
+
+		$cart_totals['payment_method'] = $payment_method;
+
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 
 		$coupon = $this->Coupon->find('first', [
 			'conditions' => [
-				'code' => $this->request->data['coupon'],
+				'code' => $code,
 				'enabled' => 1
 			]
 		]);
@@ -284,10 +290,11 @@ class CarritoController extends AppController
 		if (!$coupon) {
 			return json_encode((object) [
 				'status' => 'error',
-				'title' => strtoupper($this->request->data['coupon']),
+				'title' => strtoupper($code),
 				'message' => "No tenemos esa promo disponible"
 			]);
 		}
+
 	  // look for coupon configuration
 	  $this->loadModel('CouponItem');
 	  $coupon_ids = $this->CouponItem->find('all'	, [
@@ -312,16 +319,28 @@ class CarritoController extends AppController
 		$partial_bonus = 0;
 		$total = 0;
 		$coupon_code = null;
-		$coupon_parsed = \filtercoupon($coupon, $cart_totals, $data['price']);
+		$coupon_parsed = \parse_coupon($coupon, $cart_totals);
 		$updated = [];
-
+		$products_total = 0;
 		if($coupon_parsed->status === 'success') {
 			$coupon_code = $coupon['Coupon']['code'];
 			$discount = (float) $coupon_parsed->data['discount'];
 			$partial_bonus = $discount;
 			foreach($cart as $item) {
-				$price = (float) $item["price"];
-				$total+= $price;
+				$price = (float) $item["old_price"];
+				CakeLog::write('debug', 'price(1):'.$price);
+
+				if($payment_method === 'mercadopago' && !empty($item['mp_discount']) && !empty((float)(@$item['mp_discount']))) {
+	        $price = @ceil(round($price * (1 - (float) $item['mp_discount'] / 100)));
+	        CakeLog::write('debug', 'price(2):'.$price);
+	      }
+
+				if($payment_method === 'bank' && !empty($item['bank_discount']) && !empty((float)(@$item['bank_discount']))) {
+	        $price = @ceil(round($price * (1 - (float) $item['bank_discount'] / 100)));
+	        CakeLog::write('debug', 'price(3):'.$price);
+	      }
+
+	      $products_total+= $price;
 
 				if($partial_bonus < 0) {
 					$partial_bonus = 0;
@@ -335,6 +354,7 @@ class CarritoController extends AppController
 					if($coupon_parsed->data['coupon_type'] === 'percentage') {
 						$coupon_bonus+= round($price * ($discount / 100), 2);
 						$price = round($price * (1 - $discount / 100), 2);
+						CakeLog::write('debug', 'price(4):'.$price);
 					} 
 
 					if($coupon_parsed->data['coupon_type'] === 'nominal'){
@@ -350,6 +370,8 @@ class CarritoController extends AppController
 							}
 						}
 					}
+					
+					$total+= $price;
 
 					$updated[$item['id']] = (object) [
 						'old_price' => $item['price'],
@@ -366,9 +388,10 @@ class CarritoController extends AppController
 	       ]); 
 			}			
 		}
+
 		CakeLog::write('debug', 'total(1):'.$total);
 
-		if($total && $discount){
+		/*if($total && $discount){
 			if($coupon_parsed->data['coupon_type'] === 'percentage') {
 				$total = round($total * (1 - $discount / 100), 2);
 			}
@@ -379,15 +402,16 @@ class CarritoController extends AppController
 				$total = 0;
 			}
 			$total = round($total,2);
-		}
+		}*/
 
-		// CakeLog::write('debug', 'total(2):'.$total);
+		CakeLog::write('debug', 'total(2):'.$total);
+
 		// CakeLog::write('debug', 'coupon_bonus:'. $coupon_bonus);
-		$cart_totals = $this->Session->read('cart_totals');
 		$cart_totals['coupon_benefits'] = $coupon_bonus;
 
 		$coupon_parsed->data["updated"] = $updated;
 		$coupon_parsed->data["total"] = $total;
+		$coupon_parsed->data["products"] = $products_total;
 		$coupon_parsed->data["bonus"] = $discount;
 		$coupon_parsed->data["coupon_benefits"] = $coupon_bonus;
 
@@ -397,8 +421,7 @@ class CarritoController extends AppController
 
 		$cart_totals['grand_total'] = $total;
 
-		CakeLog::write('debug', 'cart_totals(2):'. json_encode($cart_totals));
-
+		//CakeLog::write('debug', 'cart_totals(2):'. json_encode($cart_totals));
 		$this->Session->write('cart_totals', $cart_totals);		
 		
 		return json_encode($coupon_parsed);
@@ -675,10 +698,14 @@ class CarritoController extends AppController
 	}
 
 	public function show($row = null) {
+
 		$this->autoRender = false;
 		echo '<pre>';
+		echo "cart_totals:\n----------------------\n";
 		var_dump($this->Session->read('cart_totals'));
+		echo "cart:\n-------------\n";
 		var_dump($this->Session->read('cart'));
+		echo '</pre>';
 	}
 
 	public function sorted() {
@@ -710,10 +737,10 @@ class CarritoController extends AppController
 
 			if (empty($this->request->data['size']) && empty($this->request->data['color_code'])){
 				//$urlCheck=$settings['site-url']."/shop/stock/".$product['Product']['article'];
-				CakeLog::write('debug', 'b(1)');
+				// CakeLog::write('debug', 'b(1)');
 				$stock=1;
 			} else {
-				CakeLog::write('debug', 'urlCheck:'.$urlCheck);
+				// CakeLog::write('debug', 'urlCheck:'.$urlCheck);
 				$ch = curl_init();
 		    curl_setopt($ch, CURLOPT_URL, $urlCheck);
 		    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -727,11 +754,10 @@ class CarritoController extends AppController
 			$filter = [];
 			// error_log('stock:'.$stock);
 			// error_log('curl:'.$stock);
-			CakeLog::write('debug', 'stock:'.$stock);
-			CakeLog::write('debug', 'product:'.json_encode($product));
+			// CakeLog::write('debug', 'stock:'.$stock);
+			// CakeLog::write('debug', 'product:'.json_encode($product));
 			// $stock=1;
 			if ($product && $stock) {
-				CakeLog::write('debug', 'a(1)');
 				$product = $product['Product'];
 
 				/* remove all of the kind */
@@ -751,7 +777,6 @@ class CarritoController extends AppController
 				$product['color_code'] = @$this->request->data['color_code'];
 
 				for ($i=0; $i < $this->request->data['count']; $i++) {
-					CakeLog::write('debug', 'a(2)');
 					$filter[] = $product;
 				}
 
@@ -771,7 +796,7 @@ class CarritoController extends AppController
 			
 			// CakeLog::write('debug', 'cart_totals(4):'. json_encode($cart_totals));
 			// $this->Session->write('cart_totals', $cart_totals);
-			CakeLog::write('debug', 'updateCart(1):'. json_encode($filter));
+			// CakeLog::write('debug', 'updateCart(1):'. json_encode($filter));
 			
 			$cart = $this->Cart->update($filter);
 			

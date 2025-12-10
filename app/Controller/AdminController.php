@@ -93,13 +93,13 @@ class AdminController extends AppController {
 	private function couponsAvailable(){
 		$this->loadModel('Coupon');
 		$available = false;
-		$map = $this->Coupon->find('all', [
+		$coupons = $this->Coupon->find('all', [
 			'conditions' => [
 				'enabled' => 1
 			]
 		]);
-		foreach($map as $item) {
-			if (\filtercoupon($item)->status !== 'error') {
+		foreach($coupons as $coupon) {
+			if (\parse_coupon($coupon, $this->Session->read('cart_totals'))->status !== 'error') {
 				$available = true;
 				break;
 			}
@@ -3122,10 +3122,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'url'		=> $this->settings['site_url'].'/admin/newsletters',
 				'active'	=> '/admin/newsletters'
 			),
-			'Tareas' => array(
+			'Nuevo' => array(
 				'icon' 		=> 'gi gi-toolbox',
-				'url'		=> $this->settings['site_url'].'/admin/tasks',
-				'active'	=> '/admin/tasks'
+				'url'		=> $this->settings['site_url'].'/admin/newsletters/add',
+				'active'	=> '/admin/newsletters/add'
 			)			
 		);
 		
@@ -3140,17 +3140,67 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->loadModel('Newsletter');
 		// $this->loadModel('NewsletterUser');
 
-
   	if ($action == 'delete' && $this->request->is('post')) {
   		$this->autoRender = false;
   		$this->Newsletter->delete($this->request->data['id']);
   	}
 
-  	$config = array(
-    	'order'=> array( 'Newsletter.id DESC' )
-    );
+  	switch ($action) {
+    	case 'add':
+    		if ($this->request->is('POST')){
+	        $this->Newsletter->save($this->request->data);
+	        return $this->redirect(array('action'=>'newsletters'));
+  			} else {
+			    $cats = $this->Newsletter->find('all');
+					$h1 = array(
+						'name' => 'Nuevo Newsletter',
+						'icon' => 'gi gi-wifi'
+						);
+					$this->set('h1', $h1);	
+					$this->set('weekdays', $weekdays);
+    			return $this->render('newsletter-detail');
+    		}  				
+    		break;
+    	case 'delete':
+	    	if ($this->request->is('post')) {
+	    		$this->autoRender = false;
+	    		$this->Newsletter->delete($this->request->data['id']);
+	    	}    	
+    		break;
+    	case 'edit':
+				$h1 = array(
+					'name' => $coupon['Coupon']['code'],
+					'icon' => 'gi gi-wifi'
+				);
+				$this->set('h1', $h1);	    		
+    		return $this->render('newsletter-detail');
 
-    $newsletters = $this->Newsletter->find('all',$config);
+    		break;
+    }
+
+    $newsletters = $this->Newsletter->find('all', array(
+     'joins' => array(
+      array(
+        'table' => 'newsletter_users',
+        'alias' => 'NewsletterUser',
+        'type' => 'LEFT',
+        'conditions' => array( 'NewsletterUser.newsletter_id = Newsletter.id' )
+      ),
+      array(
+        'table' => 'users',
+        'alias' => 'User',
+        'type' => 'LEFT',
+        'conditions' => array( 'NewsletterUser.user_id = User.id' )
+      )
+     ),
+    'fields' => array('Newsletter.*, User.name, User.surname, User.email'),
+       'conditions' => array( 
+          // 'Newsletter.status' => "waiting", 
+          'Newsletter.enabled' => 1
+          // 'Newsletter.exec_now' => 1 
+       ),
+       'order' => array( 'Newsletter.id DESC' )
+    ));
 
     $this->set('newsletters', $newsletters);
 		return $this->render('newsletters');

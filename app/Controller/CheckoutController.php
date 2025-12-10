@@ -331,136 +331,6 @@ class CheckoutController extends AppController
 		return json_encode($stores);
 	}
 
-	public function coupon($cp = null){
-		$items = $this->Session->read('cart');
-		$cart_totals = $this->Session->read('cart_totals');
-		$this->RequestHandler->respondAs('application/json');
-		$this->autoRender = false;
-
-		$coupon = $this->Coupon->find('first', [
-			'conditions' => [
-				'code' => $this->request->data['coupon'],
-				'enabled' => 1
-			]
-		]);
-
-		if (!$coupon) {
-			return json_encode((object) [
-				'status' => 'error',
-				'title' => $this->request->data['coupon'],
-				'message' => "No tenemos esa promo disponible ahora"
-			]);
-		}
-	  // look for coupon configuration
-	  $this->loadModel('CouponItem');
-	  $coupon_ids = $this->CouponItem->find('all'	, [
-	    'conditions' => [
-	      'coupon_id' => $coupon['Coupon']['id'],
-	    ], 
-	    'fields' => ['id', 'category_id', 'product_id']
-	  ]);
-
-		$cats = [];
-		$prods = [];
-	  if(!empty($coupon_ids)){
-	    $prods = array_values(array_map(function($e) {
-	      return $e['CouponItem']['product_id'];
-	    },$coupon_ids));
-	    $cats = array_values(array_map(function($e) {
-	      return $e['CouponItem']['category_id'];
-	    },$coupon_ids));
-	  }
-
-		$coupon_bonus = 0;
-		$partial_bonus = 0;
-		$total = 0;
-		$coupon_parsed = \filtercoupon($coupon, $cart_totals, $data['price']);
-		$updated = [];
-		if($coupon_parsed->status === 'success') {
-
-			$discount = (float) $coupon_parsed->data['discount'];
-			$partial_bonus = $discount;
-
-			foreach($items as $item) {
-				$price = (float) $item["price"];
-				$total+= $price;
-
-				if($partial_bonus < 0) {
-					$partial_bonus = 0;
-				}
-				
-				if (
-					(!count($cats) && !count($prods)) ||
-					in_array($item['category_id'],$cats) || 
-					in_array($item['id'],$prods)
-				) {
-					if($coupon_parsed->data['coupon_type'] === 'percentage') {
-						$coupon_bonus+= round($price * ($discount / 100), 2);
-						$price = round($price * (1 - $discount / 100), 2);
-					} 
-
-					if($coupon_parsed->data['coupon_type'] === 'nominal'){
-						if($partial_bonus) {
-							if($partial_bonus >= $price) 	{
-								$partial_bonus-= $price;
-								$coupon_bonus+= $price;
-								$price = 0;	
-							} else {
-								$price = round($price - $partial_bonus,2);
-								$coupon_bonus+= $price;
-								$partial_bonus-= $price;
-							}
-						}
-					}
-
-					$updated[$item['id']] = (object) [
-						'old_price' => $item['price'],
-						'price' => $price
-					];
-				}
-			}
-
-			if(count($coupon_ids) && !count($updated)){
-				return json_encode((object) [
-	        'status' => 'error',
-	        'title' => "No aplica a los productos de tu carrito",
-	        'message' => "El cupón existe pero no contempla los productos que elegiste"
-	       ]); 
-			}			
-		}
-
-		if($total && $discount){
-			if($coupon_parsed->data['coupon_type'] === 'percentage') {
-				$total = round($total * (1 - $discount / 100), 2);
-			}
-			if($coupon_parsed->data['coupon_type'] === 'nominal') {
-				$total-= $discount;
-			}
-			if($total < 0) {
-				$total = 0;
-			}
-			$total = round($total,2);
-		}
-
-		$coupon_update = array(
-			'updated' => $updated,
-			'total' => $total,
-			'bonus' => $bonus,
-			'coupon_bonus' => $coupon_bonus,
-		);
-
-		if($coupon_parsed->paying_with) {
-			$coupon_update['paying_with'] = $coupon_parsed->paying_with;
-		}
-
-		/* $coupon_parsed->data["updated"] = $updated;
-		$coupon_parsed->data["total"] = $total;
-		$coupon_parsed->data["bonus"] = $discount; */
-		
-		$coupon_parsed->data = array_unique(array_merge($coupon_parsed->data,$coupon_update));
-		return json_encode($coupon_parsed);
-	}
-
 	public function deliveryCost($cp, $code = null, $sale = null){
 		if ($sale['cargo'] === 'takeaway') {
 			$json['rates'][] = 0;
@@ -926,7 +796,7 @@ class CheckoutController extends AppController
 			  }			  
 	    	//error_log('suming check coupon:'.json_encode($coupon));
 	    	// CakeLog::write('debug', 'sale(coupon):'.json_encode($coupon));
-				$coupon_parsed = \filtercoupon($coupon, $this->Session->read('cart_totals'), $data['price']);
+				$coupon_parsed = \parse_coupon($coupon, $cart_totals);
 			}
 		}
 

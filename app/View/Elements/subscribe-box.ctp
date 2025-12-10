@@ -100,13 +100,11 @@
       
       if(!subscription_release || subscription_release == 'undefined') {
         setTimeout(() => {
-          console.log('subscribe wobble')
           $('.subscribe-box').removeClass('d-none')
-          $('.subscribe-box').addClass('wobble slow')
+          $('.subscribe-box').addClass('slideInLeft')
         }, 2000)
       } else {
         setTimeout(() => {
-          console.log('subscribe unrelease fadeIn')
           $('.suscribe-unrelease').fadeIn('slow')
         }, 2000)        
       }

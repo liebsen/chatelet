@@ -182,7 +182,7 @@
 
 
 				echo '<span class="text-nowrap">'. \price_format($product['item_price']) .'</span>';
-				if (!empty($product['item_old_price'] && abs($product['item_old_price']-$product['item_price']) > 1)){
+				if (!empty($product['item_old_price'] && abs($product['item_old_price']-$product['item_price']) > 0)){
 					echo '<br><span class="old_price text-grey text-sm">'.\price_format($product['item_old_price']) .'</span>';
 				}					
 

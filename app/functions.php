@@ -84,12 +84,13 @@ function log2file($path, $data, $mode="a"){
   chmod($path, 0777);
 }
 
-function filtercoupon ($data, $config = null, $amount = 0) {
-  $payment_method = @$config['payment_method'] ?: 'bank';
-  $item = $data['Coupon'];
+function parse_coupon($coupon, $cart_totals) {
+  CakeLog::write('debug', 'payment_method:'.$cart_totals['payment_method']);
+  $payment_method = $cart_totals['payment_method'] ?? 'bank';
+  $amount = $cart_totals['grand_total'] || 0;
+  $item = $coupon['Coupon'];
   $coupon_type = '';
   $coupon_ids = [];
-  $config = ["prods","cats"];
   $date = date('Y-m-d');
   $week = (string) date('w');
   $time = time();
@@ -186,7 +187,7 @@ function filtercoupon ($data, $config = null, $amount = 0) {
       break;
   }
 
-  if($config && strpos($coupon_payment, $payment_method) === false) {
+  if($cart_totals && strpos($coupon_payment, $payment_method) === false) {
     $payments = explode(',',$item['coupon_payment']);
     $valid_for = implode(' o ', $payments);
     $valid_for = str_replace('bank', 'transferencia', $valid_for);
