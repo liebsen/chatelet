@@ -5,7 +5,7 @@ class AdminMenu extends AppModel {
 	public function afterFind($results, $primary = false) {
 		foreach ($results as $i => &$result) {
 			$result = $result['AdminMenu'];
-			$result['url'] = Configure::read('mUrl').'/admin/'.$result['url'];
+			$result['url'] = $settings['site_url'].'/admin/'.$result['url'];
 		}
 
 		return $results;

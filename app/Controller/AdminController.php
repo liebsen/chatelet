@@ -1424,12 +1424,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-picture',
-				'url'		=> Configure::read('mUrl').'/admin/categorias',
+				'url'		=> $this->settings['site_url'].'/admin/categorias',
 				'active'	=> '/admin/categorias'
 			),
 			'Nueva Categoria' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/categorias/add',
+				'url'		=> $this->settings['site_url'].'/admin/categorias/add',
 				'active'	=> '/admin/categorias/add'
 			)
 		);
@@ -1588,12 +1588,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$navs = array(
 				'Textos' => array(
 					'icon' 		=> 'gi gi-text',
-					'url'		=> Configure::read('mUrl').'/admin/application/basic',
+					'url'		=> $this->settings['site_url'].'/admin/application/basic',
 					'active'	=> '/admin/application/basic'
 				),
 				'Imagen' => array(
 					'icon' 		=> 'gi gi-image',
-					'url'		=> Configure::read('mUrl').'/admin/application/image',
+					'url'		=> $this->settings['site_url'].'/admin/application/image',
 					'active'	=> '/admin/application/image'
 				)
 			);
@@ -1780,12 +1780,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-shirt',
-				'url'		=> Configure::read('mUrl').'/admin/productos',
+				'url'		=> $this->settings['site_url'].'/admin/productos',
 				'active'	=> '/admin/productos'
 				),
 			'Nuevo Producto' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/productos/add',
+				'url'		=> $this->settings['site_url'].'/admin/productos/add',
 				'active'	=> '/admin/productos/add'
 				)
 
@@ -1917,12 +1917,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'fa fa-map-marker',
-				'url'		=> Configure::read('mUrl').'/admin/sucursales',
+				'url'		=> $this->settings['site_url'].'/admin/sucursales',
 				'active'	=> '/admin/sucursales'
 				),
 			'Nueva Sucursal' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/sucursales/add',
+				'url'		=> $this->settings['site_url'].'/admin/sucursales/add',
 				'active'	=> '/admin/sucursales/add'
 				)
 
@@ -2027,12 +2027,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-tags',
-				'url'		=> Configure::read('mUrl').'/admin/cupones',
+				'url'		=> $this->settings['site_url'].'/admin/cupones',
 				'active'	=> '/admin/cupones'
 				),
 			'Nuevo Cupón' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/cupones/add',
+				'url'		=> $this->settings['site_url'].'/admin/cupones/add',
 				'active'	=> '/admin/cupones/add'
 				)
 
@@ -2181,12 +2181,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-list',
-				'url'		=> Configure::read('mUrl').'/admin/admin_menu',
+				'url'		=> $this->settings['site_url'].'/admin/admin_menu',
 				'active'	=> '/admin/admin_menu'
 			),
 			'Nuevo Menú de Administrador' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/admin_menu/add',
+				'url'		=> $this->settings['site_url'].'/admin/admin_menu/add',
 				'active'	=> '/admin/admin_menu/add'
 			)
 		);
@@ -2246,12 +2246,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'fa fa-shirtsinbulk',
-				'url'		=> Configure::read('mUrl').'/admin/banners',
+				'url'		=> $this->settings['site_url'].'/admin/banners',
 				'active'	=> '/admin/banners'
 			),
 			'Nuevo Banner' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/banners/add',
+				'url'		=> $this->settings['site_url'].'/admin/banners/add',
 				'active'	=> '/admin/banners/add'
 			)
 		);
@@ -2326,12 +2326,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'fa fa-credit-card',
-				'url'		=> Configure::read('mUrl').'/admin/legends',
+				'url'		=> $this->settings['site_url'].'/admin/legends',
 				'active'	=> '/admin/legends'
 			),
 			'Nueva Financiación' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/legends/add',
+				'url'		=> $this->settings['site_url'].'/admin/legends/add',
 				'active'	=> '/admin/legends/add'
 			)
 		);
@@ -2383,12 +2383,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'fa fa-ellipsis-v',
-				'url'		=> Configure::read('mUrl').'/admin/menu',
+				'url'		=> $this->settings['site_url'].'/admin/menu',
 				'active'	=> '/admin/menu'
 			),
 			'Nuevo Menú' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/menu/add',
+				'url'		=> $this->settings['site_url'].'/admin/menu/add',
 				'active'	=> '/admin/menu/add'
 			)
 		);
@@ -2484,12 +2484,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Búsquedas' => array(
 				'icon' 		=> 'gi gi-charts',
-				'url'		=> Configure::read('mUrl').'/admin/analytics',
+				'url'		=> $this->settings['site_url'].'/admin/analytics',
 				'active'	=> '/admin/analytics'
 			),
 			'Carrito' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/analytics/cart',
+				'url'		=> $this->settings['site_url'].'/admin/analytics/cart',
 				'active'	=> '/admin/analytics/cart'
 			)
 		);
@@ -2655,12 +2655,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-cargo',
-				'url'		=> Configure::read('mUrl').'/admin/logistica',
+				'url'		=> $this->settings['site_url'].'/admin/logistica',
 				'active'	=> '/admin/logistica'
 				),
 			'Nueva Logística' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/logistica/add',
+				'url'		=> $this->settings['site_url'].'/admin/logistica/add',
 				'active'	=> '/admin/logistica/add'
 				)
 			);
@@ -2821,7 +2821,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-envelope',
-				'url'		=> Configure::read('mUrl').'/admin/contacto',
+				'url'		=> $this->settings['site_url'].'/admin/contacto',
 				'active'	=> '/admin/contacto'
 			)
 		);
@@ -2848,12 +2848,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-user',
-				'url'		=> Configure::read('mUrl').'/admin/usuarios',
+				'url'		=> $this->settings['site_url'].'/admin/usuarios',
 				'active'	=> '/admin/usuarios'
 				),
 			'Nuevo Usuario' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/usuarios/add',
+				'url'		=> $this->settings['site_url'].'/admin/usuarios/add',
 				'active'	=> '/admin/usuarios/add'
 				)
 
@@ -2966,12 +2966,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-justify',
-				'url'		=> Configure::read('mUrl').'/admin/lookbook',
+				'url'		=> $this->settings['site_url'].'/admin/lookbook',
 				'active'	=> '/admin/lookbook'
 			),
 			'Nuevo Look Book' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> Configure::read('mUrl').'/admin/lookbook/add',
+				'url'		=> $this->settings['site_url'].'/admin/lookbook/add',
 				'active'	=> '/admin/lookbook/add'
 			)
 		);
@@ -3083,7 +3083,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-envelope',
-				'url'		=> Configure::read('mUrl').'/admin/subscriptions',
+				'url'		=> $this->settings['site_url'].'/admin/subscriptions',
 				'active'	=> '/admin/newsletter'
 			)
 		);
@@ -3119,12 +3119,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lista' => array(
 				'icon' 		=> 'gi gi-wifi',
-				'url'		=> Configure::read('mUrl').'/admin/newsletters',
+				'url'		=> $this->settings['site_url'].'/admin/newsletters',
 				'active'	=> '/admin/newsletters'
 			),
 			'Tareas' => array(
 				'icon' 		=> 'gi gi-toolbox',
-				'url'		=> Configure::read('mUrl').'/admin/tasks',
+				'url'		=> $this->settings['site_url'].'/admin/tasks',
 				'active'	=> '/admin/tasks'
 			)			
 		);

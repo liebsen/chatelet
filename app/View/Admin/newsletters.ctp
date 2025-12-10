@@ -38,7 +38,7 @@
 			<?php foreach ($newsletters as $key => $newsletter): ?>        
 				<tr>
 					<td>
-						<?=$newsletter['Newsletter']['email_title']?>
+						<?=$newsletter['Newsletter']['title']?>
 					</td>
 					<td>
 						<?=$newsletter['Newsletter']['status']??'waiting'?>
