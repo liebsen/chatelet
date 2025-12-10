@@ -17,7 +17,7 @@
 				<tr>
 					<td>          
 						<?php
-							echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload-url'] . $lookbook['LookBooks']['img_url'] ."''>LINK</a>";
+							echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $lookbook['LookBooks']['img_url'] ."''>LINK</a>";
 						?>     
 					</td>
 					<td>

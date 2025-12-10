@@ -10,7 +10,8 @@ class CartComponent extends Component {
 
   public function update($cart=false, $cart_totals=false) {
   
-    //CakeLog::write('debug','cart(1)');
+    CakeLog::write('debug', 'cart_totals(param):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
+    CakeLog::write('debug', 'cart(param):'. json_encode($cart));
 
     if (empty($cart)) {
       $cart = $this->controller->Session->read('cart');
@@ -19,6 +20,9 @@ class CartComponent extends Component {
     if (empty($cart_totals)) {
       $cart_totals = $this->controller->Session->read('cart_totals');
     }
+
+    CakeLog::write('debug', 'cart_totals(start):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
+    CakeLog::write('debug', 'cart(start):'. json_encode($cart));
 
 	  $payment_method = @$cart_totals['payment_method'] ?: 'bank';
     $groups = [];
@@ -165,8 +169,8 @@ class CartComponent extends Component {
     $cart_totals['free_shipping'] = $this->isFreeShipping($grand_total);
     $cart_totals['grand_total'] = $grand_total;
 
-    // CakeLog::write('debug', 'cart_totals(1):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
-    // CakeLog::write('debug', 'cart(1):'. json_encode($cart));
+    CakeLog::write('debug', 'cart_totals(end):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
+    CakeLog::write('debug', 'cart(end):'. json_encode($cart));
 
     $this->controller->Session->write('cart_totals', $cart_totals);
     $this->controller->Session->write('cart', $cart);

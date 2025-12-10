@@ -33,8 +33,14 @@ function addToCart(data, redirect) {
         if (res.success) {
           const price = $('.price').text()
           const name = $('.product').text()        
-          window.dataLayer = window.dataLayer || []
-          fbq('track', 'AddToCart', {contents: [{id: data.id, quantity: data.count}], value: price, currency: 'ARS'});
+          fbq('track', 'AddToCart', {
+            contents: [{
+              id: data.id, 
+              quantity: data.count
+            }], 
+            value: price, 
+            currency: 'ARS'
+          });
           /* @Analytics: addToCart */
           gtag('event', 'add_to_cart', {
             "items": [
@@ -56,7 +62,7 @@ function addToCart(data, redirect) {
           reject()
           $.growl.error({
             title: 'Ocurrió un error al agregar el producto al carrito',
-            message: 'Por favor, intentá nuevamente en unos instantes'
+            message: res.message || 'Por favor, intentá nuevamente en unos instantes'
           });
         }
       })
@@ -64,7 +70,7 @@ function addToCart(data, redirect) {
         reject()
         $.growl.error({
           title: 'Ocurrió un error al agregar el producto al carrito',
-          message: 'Por favor, intente nuevamente'
+          message: res.message || 'Por favor, intente nuevamente'
         });
       }); 
   })

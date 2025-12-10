@@ -60,7 +60,7 @@
             <label class="control-label" for=""><?=__('Seleccione una imagen de banner para esta categoría')?></label>
             <?php if(!empty($cat['Category']['banner_url'])):?>
               <hr>
-              <img src="<?php echo $settings['upload-url'].$cat['Category']['banner_url']?>" width="300">
+              <img src="<?php echo $settings['upload_url'].$cat['Category']['banner_url']?>" width="300">
             <?php endif ?>
             <div class="controls">
               <input  class="form-control" type="file" class="attached" name="banner">
@@ -72,7 +72,7 @@
             <label class="control-label" for=""><?=__('Seleccione una imagen de listado para esta categoría')?></label>
             <?php if(!empty($cat['Category']['img_url'])):?>
               <hr>
-              <img src="<?php echo $settings['upload-url'].$cat['Category']['img_url']?>" width="300">
+              <img src="<?php echo $settings['upload_url'].$cat['Category']['img_url']?>" width="300">
             <?php endif ?>
             <div class="controls">
               <input  class="form-control" type="file" class="attached" name="image">
@@ -95,7 +95,7 @@
             <label class="control-label" for=""><?=__('Seleccione una imagen de Talles')?></label>
             <?php if(!empty($cat['Category']['size'])):?>
               <hr>
-              <img src="<?php echo $settings['upload-url'].$cat['Category']['size']?>" width="300">
+              <img src="<?php echo $settings['upload_url'].$cat['Category']['size']?>" width="300">
             <?php endif ?>
             <div class="controls">
               <input  class="form-control" type="file" class="attached" name="size">

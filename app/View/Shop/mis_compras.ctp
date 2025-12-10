@@ -106,7 +106,7 @@
                       }
                       return false;
                     })) ?></div>
-                    <div class="ch-image flex-1" style="background-image: url('<?=$settings['upload-url'].$item['Product']['img_url']?>');"></div>
+                    <div class="ch-image flex-1" style="background-image: url('<?=$settings['upload_url'].$item['Product']['img_url']?>');"></div>
                   </div><hr>
                 <?php endforeach ?>
               </div>

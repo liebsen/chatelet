@@ -30,7 +30,7 @@
           $product['category_id'],
           strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
         )) ?>">
-          <div class="ch-image" style="background-image: url('<?php echo $settings['upload-url'].($product['alias_image'] ?: $product['img_url']) ?>')"></div>
+          <div class="ch-image" style="background-image: url('<?php echo $settings['upload_url'].($product['alias_image'] ?: $product['img_url']) ?>')"></div>
         </a>
       </div>
       <div class="d-flex justify-content-start align-center flex-column min-w-7">

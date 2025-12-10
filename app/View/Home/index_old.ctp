@@ -5,7 +5,7 @@
 	$images_aux = explode(';', @$home['img_url']);
 	foreach ($images_aux as $key => $value) {
 		if(!empty($value))
-			$images[] 	= $settings['upload-url'].$value;
+			$images[] 	= $settings['upload_url'].$value;
 	}
 
   $img_url_one = str_replace(';', '', @$home['img_url_one']);
@@ -62,8 +62,8 @@
                     }
                 }
 
-								echo '<div class="rectangle img-responsive" style="background-image: url('.$settings['upload-url'].$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>';
-								// echo '<img class="visible-xs hidden-sm hidden-md hidden-lg" style="width:100%;" src="'.$settings['upload-url'].$img_url_one.'" />'.'<h1>'.$home['module_one'].'</h1>';
+								echo '<div class="rectangle img-responsive" style="background-image: url('.$settings['upload_url'].$img_url_one.');">'.'<h1>'.$home['module_one'].'</h1>'.'</div>';
+								// echo '<img class="visible-xs hidden-sm hidden-md hidden-lg" style="width:100%;" src="'.$settings['upload_url'].$img_url_one.'" />'.'<h1>'.$home['module_one'].'</h1>';
 								echo '</a>';
             ?>
         <?php endif;?>
@@ -79,8 +79,8 @@
                             echo '<a href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                         }
                     }
-                    //echo $home['module_two'].'<img  class="mod" src='.$settings['upload-url'].$img_url_two.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
-                    echo $home['module_two'].'<div class="mod-item img-responsive" style=background-image:url('.$settings['upload-url'].$img_url_two.')></div>'.'</a>';
+                    //echo $home['module_two'].'<img  class="mod" src='.$settings['upload_url'].$img_url_two.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
+                    echo $home['module_two'].'<div class="mod-item img-responsive" style=background-image:url('.$settings['upload_url'].$img_url_two.')></div>'.'</a>';
                 ?>
             </div>
 
@@ -95,8 +95,8 @@
                         echo '<a class="margin" href='.router::url(array('controller' => 'shop', 'action' => 'index')).'>' ;
                     }
                  }
-                //echo $home['module_three'].'<img  class="mod" src='.$settings['upload-url'].$img_url_three.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
-                echo $home['module_three'].'<div class="mod-item img-responsive" style=background-image:url('.$settings['upload-url'].$img_url_three.')></div>'.'</a>';
+                //echo $home['module_three'].'<img  class="mod" src='.$settings['upload_url'].$img_url_three.'  style="padding-left: 0px;padding-right: 0px;"  img-responsive>'.'</a>';
+                echo $home['module_three'].'<div class="mod-item img-responsive" style=background-image:url('.$settings['upload_url'].$img_url_three.')></div>'.'</a>';
             ?>
             </div>
         </section>
@@ -113,8 +113,8 @@
             }
         }
 
-        echo '<div class="rectangle img-responsive" style="background-image: url('.$settings['upload-url'].$img_url_four.');">'.'<h1>'.$home['module_four'].'</h1>'.'</div>';
-        // echo '<img class="visible-xs hidden-sm hidden-md hidden-lg" style="width:100%;" src="'.$settings['upload-url'].$img_url_four.'" />';
+        echo '<div class="rectangle img-responsive" style="background-image: url('.$settings['upload_url'].$img_url_four.');">'.'<h1>'.$home['module_four'].'</h1>'.'</div>';
+        // echo '<img class="visible-xs hidden-sm hidden-md hidden-lg" style="width:100%;" src="'.$settings['upload_url'].$img_url_four.'" />';
 
 						echo '</a>';
         ?>
@@ -166,7 +166,7 @@
                   <div class="carousel-inner news-carousel" role="listbox">
                     <div class="item active">
 
-                      <img src="<?=$settings['upload-url'].$popupBG[0]?>">
+                      <img src="<?=$settings['upload_url'].$popupBG[0]?>">
                          <?php if(!empty($home['display_popup_form_in_last'])):?>
                 <div class="in_last">
                 <?php echo $this->Form->create('Contact'); ?>
@@ -177,7 +177,7 @@
                 <?php endif; ?>
                     </div>
                     <div class="item">
-                      <img src="<?=$settings['upload-url'].$popupBG[1]?>">
+                      <img src="<?=$settings['upload_url'].$popupBG[1]?>">
 
                      <?php if(!empty($home['display_popup_form_in_last'])):?>
 
@@ -193,7 +193,7 @@
                     <?php if(isset($popupBG[2]) && !empty($popupBG[2])):?>
                     <div class="item">
 
-                      <img src="<?=$settings['upload-url'].$popupBG[2]?>">
+                      <img src="<?=$settings['upload_url'].$popupBG[2]?>">
 
                          <?php if(!empty($home['display_popup_form_in_last'])):?>
                 <div class="in_last">
@@ -211,7 +211,7 @@
 
         <?php elseif (count($popupBG)==1):?>
 
-            <div class="content js-show-modal is-clickable animated fadeIn delay3" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.$settings['upload-url'].$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
+            <div class="content js-show-modal is-clickable animated fadeIn delay3" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.$settings['upload_url'].$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
                 <div class="tap-to-continue animated fadeIn delay3">
                     <i class="fa fa-hand-o-right mr-2"></i> 
                     <span class="ml-2">Continuar con la tienda</span>

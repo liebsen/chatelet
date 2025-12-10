@@ -195,13 +195,13 @@ class AppController extends Controller
     $this->settings = $settings;
     $this->set('settings', $settings);
 
-    $keys = ["upload-url", "upload-local", "site-url"];
+    $keys = ["upload_url", "upload_local", "site_url"];
 
     foreach($keys as $key)
       if(empty($settings[$key]))
         $this->Setting->save(array(
           'id' => $key,
-          'value' => call_user_func(str_replace("-", "_", $key))
+          'value' => call_user_func($key)
         ));
 
     /* if(!empty($this->Auth->user('role')) && $this->Auth->user('role') == 'admin'){
@@ -275,11 +275,11 @@ class AppController extends Controller
     $filepath = '';
     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
     $key = uniqid() . '.' . $ext;
-    $dest = __DIR__ . '/../webroot' . $settings['upload-url'] . $key;
+    $dest = __DIR__ . '/../webroot' . $settings['upload_url'] . $key;
     $url = "";
 
     if(copy($file['tmp_name'],$dest)){
-      $filepath = $settings['upload-url'] . $key;
+      $filepath = $settings['upload_url'] . $key;
       if(!empty($settings['upload-local'])){
         $filepath = $key;
       }

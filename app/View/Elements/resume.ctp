@@ -25,8 +25,8 @@
         $product['category_id'],
         strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))
       )) . '">';
-			// echo '<img src="'.$settings['upload-url'].($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
-			echo '<div class="ch-image" style="background-image: url('.$settings['upload-url'].($product['alias_image'] ?: $product['img_url'] ).')"></div>';
+			// echo '<img src="'.$settings['upload_url'].($product['alias_image'] ?: $product['img_url'] ).'" class="thumb" style="display:block;" />';
+			echo '<div class="ch-image" style="background-image: url('.$settings['upload_url'].($product['alias_image'] ?: $product['img_url'] ).')"></div>';
 			echo '</a>';
 			echo '</div>';
 			echo '<div class="d-flex justify-content-start align-center flex-column min-w-7">';

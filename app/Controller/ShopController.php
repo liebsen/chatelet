@@ -821,7 +821,7 @@ class ShopController extends AppController {
 				'bank_discount' => $row['bank_discount'],
 				'number_ribbon' => intval($number_ribbon),
 				'slug' => str_replace(' ','-',strtolower($row['desc'])),
-				'img_url' => $settings['upload-url'] . $row['img_url']
+				'img_url' => $settings['upload_url'] . $row['img_url']
 			];
 
 			if(!empty($mp_price)){

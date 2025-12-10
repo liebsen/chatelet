@@ -582,7 +582,7 @@ class AdminController extends AppController {
 			'cargo' => "{$sale['cargo']}",
 			'width' => 400,
 			'height' => 300,
-			'url' => $settings['site-url'] . "/admin/tickets/{$orden}"
+			'url' => $settings['site_url'] . "/admin/tickets/{$orden}"
 		];
 		die(json_encode($data));		
 	}
@@ -681,7 +681,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					// $user = $this->User->findById($sale['user_id']);
 					$mapper = $this->Logistic->findById($sale['logistic_id']);
 					$logistic = [
-						// 'tracking_url' => $settings['site-url'] . '/envios/',
+						// 'tracking_url' => $settings['site_url'] . '/envios/',
 						'width' => 400,
 						'height' => 300
 					];
@@ -743,12 +743,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					if (!is_null($response) && isset($response->pdf)) {
 						$dest = __DIR__ . '/../webroot/files/andreani/' . $sale['def_orden_tracking'] . '.pdf';
 					  file_put_contents($dest, $response->pdf);
-					  $url = $settings['site-url'] . '/files/andreani/' . $sale['def_orden_tracking'] . '.pdf';
+					  $url = $settings['site_url'] . '/files/andreani/' . $sale['def_orden_tracking'] . '.pdf';
 					}
 				} else if ($sale['shipping'] == 'oca') { 
 					$url = "http://www5.oca.com.ar/OcaEPakNet/Views/Impresiones/Etiquetas.aspx?IdOrdenRetiro={$sale['def_orden_retiro']}&CUIT=30-71119953-1";
 				} else {
-					$url = $settings['site-url'] . "/admin/tickets/{$sale['def_orden_retiro']}";
+					$url = $settings['site_url'] . "/admin/tickets/{$sale['def_orden_retiro']}";
 				}
 
 				$data['url'] = $url;
@@ -1113,7 +1113,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       foreach($imgs as $img) {
       	$parts = explode('-', $img);
       	if(count($parts) < 2) {
-	      	$fname = __DIR__ . '/../webroot' . $settings['upload-url'] . $img;
+	      	$fname = __DIR__ . '/../webroot' . $settings['upload_url'] . $img;
 	      	if(file_exists($fname)) {
 						$img_data = getimagesize($fname);
 						$orientation = $img_data[0] > $img_data[1] ? 'desktop' : 'mobile';
@@ -1139,7 +1139,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       foreach($imgs as $img) {
       	$parts = explode('-', $img);
       	if(count($parts) < 2) {
-	      	$fname = __DIR__ . '/../webroot' . $settings['upload-url'] . $img;
+	      	$fname = __DIR__ . '/../webroot' . $settings['upload_url'] . $img;
 	      	if(file_exists($fname)) {
 						$img_data = getimagesize();
 			    	$media[] = implode('-', [($img_data[0] > $img_data[1] ? 'desktop' : 'mobile'), $img]);
@@ -1227,7 +1227,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       foreach($imgs as $img) {
       	$parts = explode('-', $img);
       	if(count($parts) < 2) {
-	      	$fname = __DIR__ . '/../webroot' . $settings['upload-url'] . $img;
+	      	$fname = __DIR__ . '/../webroot' . $settings['upload_url'] . $img;
 	      	if(file_exists($fname)) {
 						$img_data = getimagesize($fname);
 						$orientation = $img_data[0] > $img_data[1] ? 'desktop' : 'mobile';
@@ -1253,7 +1253,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       foreach($imgs as $img) {
       	$parts = explode('-', $img);
       	if(count($parts) < 2) {
-	      	$fname = __DIR__ . '/../webroot' . $settings['upload-url'] . $img;
+	      	$fname = __DIR__ . '/../webroot' . $settings['upload_url'] . $img;
 	      	if(file_exists($fname)) {
 						$img_data = getimagesize($fname);
 			    	$media[] = implode('-', [($img_data[0] > $img_data[1] ? 'desktop' : 'mobile'), $img]);
@@ -1574,7 +1574,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 			if(!empty($og['image']['name'])){
 				$file = $this->save_file( $og['image'] );
-				$this->Setting->save(['id' => 'opengraph_image', 'value' => $settings['upload-url'] . $file]);
+				$this->Setting->save(['id' => 'opengraph_image', 'value' => $settings['upload_url'] . $file]);
 			}
 
 			$response = array(

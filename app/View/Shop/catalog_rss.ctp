@@ -9,7 +9,7 @@
   <g:title><?= $product['Product']['name'] ?></g:title>
   <g:description><?= $product['Product']['desc'] ?></g:description>
   <g:link>https://chatelet.com.ar/tienda/producto/<?= $product['Product']['id'] ?>/<?= $product['Product']['category_id'] ?></g:link>
-  <g:image_link><?= Configure::read('siteUrl').$settings['upload-url'].$product['Product']['img_url'] ?></g:image_link>
+  <g:image_link><?= Configure::read('siteUrl').$settings['upload_url'].$product['Product']['img_url'] ?></g:image_link>
   <g:price><?= $product['Product']['price'] ?> ARS</g:price>
   <g:availability><?= $product['Product']['stock_total'] ? 'in' : 'out of' ?> stock</g:availability>
   <g:google_product_category>Tienda / <?= $product['Category']['category'] ?></g:google_product_category>

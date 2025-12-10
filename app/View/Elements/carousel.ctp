@@ -4,7 +4,7 @@ $images   = array();
 $images_aux = explode(';', @$home['img_url']);
 foreach ($images_aux as $key => $value) {
   if(!empty($value))
-    $images[]   = $settings['upload-url'].$value;
+    $images[]   = $settings['upload_url'].$value;
 }
 $img_url_one = str_replace(';', '', @$home['img_url_one']);
 $img_url_two = str_replace(';', '', @$home['img_url_two']);

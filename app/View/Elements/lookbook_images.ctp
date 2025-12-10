@@ -14,7 +14,7 @@
 		<div class="control-group">
 			<label class="control-label" for="columns-text"></label>
 			<div class="controls">
-				<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $settings['upload-url']?>">
+				<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url']?>">
 					<span style="margin-top:10px;margin-bottom:10px;">	
 						<img src="{{image}}" width="100"/> 
 						<a href="#" class="delete_image" data-input="[name='img_url']" data-file="{{file}}">X</a>

@@ -94,15 +94,34 @@ function pideStock(obj){
 	}, 500)
 }
 
+function updatePrefs(obj){
+		let radio = $(obj).find('input[type="radio"]')
+		let type = $(obj).find('input[type="radio"]').prop('name')
+		let name = 'size'
+		let value = radio.val()
+		if(type=='color') {
+			name = 'color'
+			value = radio.attr('code')
+		}
+		if(name && value && itemData.id) {
+			let prod_settings = localStorage.prod_settings && localStorage.prod_settings != 'undefined' ? 
+				JSON.parse(localStorage.prod_settings) : 
+				{}
+			prod_settings[itemData.id] = { ...prod_settings[itemData.id], [name]:value }
+			localStorage.prod_settings = JSON.stringify(prod_settings)
+		}
+}
+
 $(document).ready(function() {
 	//Stock
 
-
 	$('.color-options .btn').click(function(event) {
+		updatePrefs(this)
 		pideStock(this)
 	});
 
 	$('.size-options .btn').click(function(event) {
+		updatePrefs(this)
 		pideStock(this)
 	});
 
@@ -186,19 +205,16 @@ $(document).ready(function() {
 		$('.size-option').first().click()
 	}	
 
+	let prod_settings = localStorage.prod_settings && localStorage.prod_settings != 'undefined' ? 
+		JSON.parse(localStorage.prod_settings) : 
+		{}
 
-	/*if(itemData) {
-		if(itemData.mp_discount || itemData.bank_discount) {
-			if(parseInt(itemData.mp_discount)) 	{
-				onWarningAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un ' + itemData.mp_discount + '% de descuento si comprás por mercadopago')		
-			}
-			if(parseInt(itemData.bank_discount))	{
-				onWarningAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un '  + itemData.bank_discount + '% de descuento si comprás por transferencia')		
-			}
-		} else {
-			if(parseInt(itemData.discount_label_show)) {
-				onWarningAlert('<i class="fa fa-calculator"></i> ' + itemData.name + ' ' + itemData.discount_label_show + '%OFF','Podés comprar hoy '+itemData.name+' con un ' + itemData.discount_label_show + '% de descuento. Aprovechá nuestras ofertas!')
-			}
+	if(prod_settings[itemData.id]) {
+		if(prod_settings[itemData.id].color) {
+			$(`input[code="${prod_settings[itemData.id].color}"]`).click()
 		}
-	}*/
+		if(prod_settings[itemData.id].size) {
+			$(`input[value="${prod_settings[itemData.id].size}"]`).click()
+		}
+	}
 });

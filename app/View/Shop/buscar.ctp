@@ -87,7 +87,7 @@
                             <div class="ribbon"><span><?= $product['promo'] ?></span></div>
                         <?php endif ?>
                         <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
-                        <div class="product-image" style="background-image: url('<?php echo $settings['upload-url'] . $product['img_url'] ?>')" alt=""></div>
+                        <div class="product-image" style="background-image: url('<?php echo $settings['upload_url'] . $product['img_url'] ?>')" alt=""></div>
                         <div class="product-info">
                             <!--h3 class="article-related-title"><?php echo $product['name'] ?></h3-->
                             <div class="name" origin="3"><?= $product_name ?></div>
@@ -122,7 +122,7 @@
                       <?php if ($product['promo'] !== '') :?>
                           <div class="ribbon"><span><?= $product['promo'] ?></span></div>
                       <?php endif ?>
-                      <div class="product-image posnum-<?= $category['Category']['posnum'] ?>" style="background-image: url('<?php echo $settings['upload-url'] . $product['img_url'] ?>')" alt=""></div>
+                      <div class="product-image posnum-<?= $category['Category']['posnum'] ?>" style="background-image: url('<?php echo $settings['upload_url'] . $product['img_url'] ?>')" alt=""></div>
                       </div>
                       <div class="product-info">
                           <!--h3 class="article-related-title"><?php echo $product['name'] ?></h3-->

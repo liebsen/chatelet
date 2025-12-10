@@ -18,7 +18,7 @@
     <meta property="og:title" content="<?= ucwords(strtolower($product['name'])) ?>">
     <meta property="og:description" content="<?= ucwords(strtolower($product['name'])) ?>">
     <meta property="og:url" content="<?= $this->Html->url(['controller' => 'shop', 'action' => 'detalle', $product['id'], $product['category_id'], strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))], true) ?>">
-    <meta property="og:image" content="<?= $settings['site-url'] . $settings['upload-url'] . $product['img_url'] ?>">
+    <meta property="og:image" content="<?= $settings['site_url'] . $settings['upload_url'] . $product['img_url'] ?>">
     <meta property="product:brand" content="Châtelet">
     <meta property="product:availability" content="<?= intval($product['stock_total']) ? 'in stock' : 'out of stock' ?>">
     <meta property="product:condition" content="new">
@@ -29,10 +29,10 @@
     <meta property="product:google_product_category" content="<?= $product['category_id'] ?>">
     <?php else: ?>
     <meta property="og:type" content="<?= @$settings['opengraph_type'] ?>" />
-    <meta property="og:url" content="<?= $settings['site-url'] ?>" />
+    <meta property="og:url" content="<?= $settings['site_url'] ?>" />
     <meta property="og:title" content="<?= @$settings['opengraph_title'] ?>" />
     <meta property="og:description" content="<?= @$settings['opengraph_text'] ?>" />
-    <meta property="og:image" itemprop="image primaryImageOfPage" content="<?= $settings['site-url'] . @$settings['opengraph_image'] ?>" />
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="<?= $settings['site_url'] . @$settings['opengraph_image'] ?>" />
     <?php endif ?>
     <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$settings['google_font_name']) ?>:<?= @$settings['google_font_size'] ?>" rel="stylesheet">
 

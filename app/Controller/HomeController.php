@@ -32,7 +32,7 @@ class HomeController extends AppController {
         }
         $popupBG = $aux;
       }
-      @list($ancho, $alto, $tipo, $atributos) = getimagesize($settings['upload-url'].$popupBG[0]);
+      @list($ancho, $alto, $tipo, $atributos) = getimagesize($settings['upload_url'].$popupBG[0]);
       if ($ancho<=990) {
         $this->set('popupBgWidth', $ancho);
         $this->set('popupBgHeight', $alto);
@@ -101,7 +101,7 @@ class HomeController extends AppController {
         }
         $popupBG = $aux;
       }
-      @list($ancho, $alto, $tipo, $atributos) = getimagesize($settings['upload-url'].$popupBG[0]);
+      @list($ancho, $alto, $tipo, $atributos) = getimagesize($settings['upload_url'].$popupBG[0]);
       if ($ancho<=990) {
         $this->set('popupBgWidth', $ancho);
         $this->set('popupBgHeight', $alto);

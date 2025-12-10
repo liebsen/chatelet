@@ -18,7 +18,7 @@
 					</div>	
 					 <div class="control-group w-100">
 						<div class="controls w-100">
-							<script id="image_thumb_newsletter" type="text/x-handlebars-template" data-url="<?php echo $settings['upload-url'] ?>">
+							<script id="image_thumb_newsletter" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
 								<span class="image-item">	
 									<div class="media-container">
 										<img src="{{image_newsletter}}"/> 
@@ -45,7 +45,7 @@
 					<br />
 					<div class="control-group">
 						<div class="controls">
-							<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $settings['upload-url'] ?>">
+							<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
 								<li class="image-item">
 									<div class="media-container">
 										{{#if video}}

@@ -698,16 +698,22 @@ class CarritoController extends AppController
 				!isset($this->request->data['id']) || 
 				!isset($this->request->data['count'])
 			) {
-				return $this->redirect(array('controller' => 'home', 'action' => 'index'));
+				return json_encode(array(
+					'success' => false,
+					'message' => "No se recibieron datos",
+					'redirect' => Route::url('/home')
+				));
 			}
 
 			$product = $this->Product->findById($this->request->data['id']);
-			$urlCheck = $settings['site-url']."/shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
+			$urlCheck = $this->settings['site_url']."/shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
 
 			if (empty($this->request->data['size']) && empty($this->request->data['color_code'])){
 				//$urlCheck=$settings['site-url']."/shop/stock/".$product['Product']['article'];
+				CakeLog::write('debug', 'b(1)');
 				$stock=1;
 			} else {
+				CakeLog::write('debug', 'urlCheck:'.$urlCheck);
 				$ch = curl_init();
 		    curl_setopt($ch, CURLOPT_URL, $urlCheck);
 		    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -721,9 +727,11 @@ class CarritoController extends AppController
 			$filter = [];
 			// error_log('stock:'.$stock);
 			// error_log('curl:'.$stock);
+			CakeLog::write('debug', 'stock:'.$stock);
+			CakeLog::write('debug', 'product:'.json_encode($product));
 			// $stock=1;
 			if ($product && $stock) {
-				$cart = $this->Session->read('cart');
+				CakeLog::write('debug', 'a(1)');
 				$product = $product['Product'];
 
 				/* remove all of the kind */
@@ -743,13 +751,17 @@ class CarritoController extends AppController
 				$product['color_code'] = @$this->request->data['color_code'];
 
 				for ($i=0; $i < $this->request->data['count']; $i++) {
+					CakeLog::write('debug', 'a(2)');
 					$filter[] = $product;
 				}
+
 				// $cart = array_fill(count($cart), $this->request->data['count'], $product);
 				// error_log('[carrito] '.json_encode($filter));
 				// error_log('[carrito] '.json_encode($this->filter($filter)));
 
 				// filter(1)
+			} else {
+				return json_encode(array('success' => false));
 			}
 
 			$cart_totals = $this->Session->read('cart_totals');
@@ -759,8 +771,10 @@ class CarritoController extends AppController
 			
 			// CakeLog::write('debug', 'cart_totals(4):'. json_encode($cart_totals));
 			// $this->Session->write('cart_totals', $cart_totals);
-			// CakeLog::write('debug', 'updateCart(1):'. json_encode($filter));
+			CakeLog::write('debug', 'updateCart(1):'. json_encode($filter));
+			
 			$cart = $this->Cart->update($filter);
+			
 			// CakeLog::write('debug', 'updateCart(4)');
 			// $this->Session->write('cart', $cart);
 

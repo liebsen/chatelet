@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="row" data-toggle="mouseleave" data-target=".shop-options" data-animation="slideOutUp">
       <?php if(!empty($settings['image_menushop'])): ?>
-      <img class="pull-left" src="<?php echo $settings['upload-url'].$settings['image_menushop']?>">
+      <img class="pull-left" src="<?php echo $settings['upload_url'].$settings['image_menushop']?>">
       <?php endif ?>
       <div class="">
         <!--h3>Shop</h3-->
