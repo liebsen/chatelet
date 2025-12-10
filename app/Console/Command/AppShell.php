@@ -28,8 +28,8 @@ App::uses('Shell', 'Console');
 class AppShell extends Shell {
 
    public function main() {
-      echo "HelloShell";
-      //Your functionality here...
+   		$this->load('Campaign');
+   		$stack = $this->Campaign->find('all');
+   		var_dump('stack', $stack);
    }
-   
 }
