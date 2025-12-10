@@ -17,15 +17,18 @@ case $service_id in
      4)
           echo -e "Que email quiere probar (Stage)?"
           read email
-          wget https://test.chatelet.com.ar/shop/test_email/$email;;
+          wget https://test.chatelet.com.ar/shop/test_email/$email
+          ;;
      5)
           echo -e "¿Cuántas líneas?"
           read lines
-          tail -f -n $lines /var/www/chatelet/app/tmp/logs/debug.log;;
+          tail -f -n $lines /var/www/chatelet/app/tmp/logs/debug.log
+          ;;
      6)
           echo -e "¿Cuántas líneas?"
           read lines
-          tail -f -n $lines /var/www/chatelet/app/tmp/logs/error.log;;
+          tail -f -n $lines /var/www/chatelet/app/tmp/logs/error.log
+          ;;
      7)
           cd /var/www/chatelet; git pull
           ;;

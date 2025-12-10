@@ -49,7 +49,7 @@ class ShopController extends AppController {
 		die();
 	}
 
-	public function test_email_html($id) {
+	public function test_email_text($id) {
 		$this->autoRender = false;
 		if (!empty($id)) {
       $user_data = $this->User->find('first', array(
@@ -73,10 +73,19 @@ class ShopController extends AppController {
 
 	public function test_email($email) {
 		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
+		$sent = false;
+
 		if (!empty($email)) {
-			$this->sendEmail('hello','🌸 Test via en Châtelet',$email);
+      $email_data = array(
+        'id_user' => 1,
+        'receiver_email' => $email,
+        'name' =>  'Prueba',
+      );
+			$sent = $this->sendEmail($email_data, 'Hemos recibido tu solicitud', 'test_email');
 		}
-		die();
+
+		return json_encode(array('sent' => $sent));
 	}	
 
 	public function test_andreani() {
@@ -873,7 +882,7 @@ class ShopController extends AppController {
 
 				if($sent) {
 					$cart_totals['checkout_recovery_sent'] = 1;
-					$this->Session->write('cart_totals', $cart_totals)
+					$this->Session->write('cart_totals', $cart_totals);
 				}
 			}
 
