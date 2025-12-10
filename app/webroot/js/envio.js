@@ -116,7 +116,7 @@ $(document).ready(function() {
 		var coupon = $('.coupon_bonus') ? 
 			$('.coupon_bonus').text().split('.').join('').split(',').join('.') : 
 			cart.coupon_bonus || 0
-		var subtotal = parseFloat($('#subtotal_compra').val()) || cart.subtotal_price
+		var subtotal = cart_totals.total_products || 0
 
 		//console.log(coupon, subtotal)
 		document.querySelector('.shipping-block').classList.add('hidden')

@@ -3,7 +3,7 @@ const log = false
 var lastcp = localStorage.getItem('lastcp') || 0
 var lastscroll = 0
 var alerts = {}
-var interval = 0
+var interval2 = 0
 //new WOW().init();
 let searchInt = 0
 let searchPageSize = 12
@@ -234,8 +234,8 @@ groupAlerts = function(title, text) {
     alerts[title] = []
   }
   alerts[title].push(text)
-  clearInterval(interval)
-  interval = setTimeout(function(){
+  clearInterval(interval2)
+  interval2 = setTimeout(function(){
     for(var title in alerts) {
       const item = alerts[title]
       const messages = item.map(function(e) { 

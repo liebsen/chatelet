@@ -18,7 +18,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 		</div-->
 		<div class="animated fadeIn delay">
 			<div class="is-flex flex-column-sm justify-content-center align-items-start gap-1">
-			<?php if ($loggedIn) : ?>
+			<?php if ($loggedIn && !empty($cart)): ?>
 				<div class="card p-4 p-md-5 max-25">
 					<div class="card-body">
 						<div class="d-flex flex-column justify-content-start align-items-center gap-05">
