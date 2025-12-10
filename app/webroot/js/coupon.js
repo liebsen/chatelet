@@ -14,18 +14,15 @@ function resetCoupon() {
   window.coupon_bonus = 0
 
   var subtotal = getTotals()
-  var delivery_cost = $('#subtotal_envio').val() || 0
-  var c2 = event.target.value
+  var delivery_cost = 0
 
   if (!subtotal && cart.subtotal_price) {
     subtotal = cart.subtotal_price
   }
 
-  if (!freeShipping && !delivery_cost && cart.shipping_price) {
-    delivery_cost = cart.shipping_price
+  if (!freeShipping && cart_totals.delivery_cost) {
+    delivery_cost = cart_totals.delivery_cost
   }  
-  //console.log('subtotal(2)',subtotal)
-  //console.log('delivery_cost(2)',delivery_cost)
   var price = parseFloat(subtotal)
   
   fxTotal(price)
@@ -45,14 +42,12 @@ function submitCoupon() {
     return false
   }
 
-  var cart = JSON.parse(localStorage.getItem('cart')) || {}
   var items = getItems()
   var subtotal = getTotals()
-  var delivery_cost = cart.shipping_price
-  var c2 = event.target.value
+  var delivery_cost = cart_totals.delivery_cost || 0
 
-  if (!subtotal && cart.subtotal_price) {
-    subtotal = cart.subtotal_price
+  if (!subtotal && cart_totals.total_products) {
+    subtotal = cart_totals.total_products
   }
 
   $('#free_delivery').text('');
@@ -85,21 +80,16 @@ function submitCoupon() {
       calcDues(price)
       window.coupon_bonus = discounted
 
-      cart.total_price = parseFloat(price.toFixed(2))
+      cart_totals.total_products = parseFloat(price.toFixed(2))
 
       $('input[name="coupon"]').val(coupon)
       $('.coupon-discount').removeClass('hidden')
-      // $('#coupon_name').val("")
-      // $('.calc-coupon').hide(); 
-      // $('.coupon-click').show();
     }else{
-      // $('.coupon-discount').addClass('hidden')
       $('.input-coupon-status').removeClass('ok');
       $('.input-coupon-status').addClass('wrong');
       $('#cost').text( '0' );
       timeout = setTimeout( `onErrorAlert('${res.title}', '${res.message}')` , 200);
     }
-    // localStorage.setItem('cart', JSON.stringify(cart))
     $('.input-coupon').attr( 'data-valid' , parseInt(res.valid) );
   })
 

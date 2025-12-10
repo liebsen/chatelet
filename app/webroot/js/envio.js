@@ -45,9 +45,6 @@ selectShipping = function (e, shipping, cost) {
 }
 
 selectStore = function(e) {
-	var cart = JSON.parse(localStorage.getItem('cart')) || {}
-	var total_orig = parseFloat($('#subtotal_compra').val())
-	var coupon = Number(cart.coupon_bonus || 0)
 	$('.takeaway-options li').removeClass('selected secondary')
 	$('.shipping-options li').removeClass('selected secondary')
 	$('.takeaway-options li').addClass('secondary')
@@ -116,7 +113,6 @@ $(document).ready(function() {
 		var cp_input = $('.input-cp').val().trim()
 		var cp = parseInt(cp_input)
 		var cost = 0
-		var cart = JSON.parse(localStorage.getItem('cart')) || {}
 		var coupon = $('.coupon_bonus') ? 
 			$('.coupon_bonus').text().split('.').join('').split(',').join('.') : 
 			cart.coupon_bonus || 0
@@ -151,18 +147,16 @@ $(document).ready(function() {
 				})
 				rates+= `</ul>`
 				document.querySelector('.shipping-block .slot').innerHTML = rates
-				// $('#delivery_cp').html( `<span class="shipping-cargo text-uppercase"></span>` );
-				localStorage.setItem('lastcp', cp)	
+				localStorage.lastcp = cp	
 				setTimeout(() => {
 					$('.input-status').removeClass('wrong');
 					$('.input-status').addClass('ok');
 					// onSuccessAlert(`Como querés recibir tu compra`,'Ingresaste código postal ' + cp, 0, true);
 					document.querySelector('.shipping-block').classList.remove('hidden')	
-					if (localStorage.getItem('cargo') === 'delivery' && localStorage.getItem('delivery_select')) {
-						$(`.shipping-options li[shipping="${localStorage.getItem('delivery_select')}"]`).click()
+					if (localStorage.cargo === 'delivery' && localStorage.delivery_select) {
+						$(`.shipping-options li[shipping="${localStorage.delivery_select}"]`).click()
 					} else {
 						if (json.rates.length === 1) {
-							console.log('click(2)')
 							$(`.shipping-options li:first-child`).click()
 						}
 					}
@@ -170,10 +164,6 @@ $(document).ready(function() {
 			} else {
 				$('.input-status').removeClass('ok');
 				$('.input-status').addClass('wrong');
-				// $('#cost').text( parseInt(0) );
-				//console.log(':::',subtotal,coupon)
-				// let total = formatNumber(subtotal - coupon)
-				// fxTotal(formatNumber(total))
 				setTimeout( "onErrorAlert('Sin cobertura en esta zona', 'El código postal es correcto pero no disponemos de servicio de entrega para tu área.')", 200)
 			}
 			$('.has-checkout-steps').addClass('done')
