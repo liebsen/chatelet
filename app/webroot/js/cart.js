@@ -1,7 +1,7 @@
 var getItems = (payment_method) => {
   var subtotal = 0
   payment_method = payment_method || cart_totals.payment_method
-  console.log('getItems(payment_method)',payment_method)
+  // console.log('getItems(payment_method)',payment_method)
   if(cart_items){
     cart_items.map((e) => {
       if(payment_method == 'bank' && e.bank_discount) {
@@ -70,9 +70,7 @@ var select_radio = (name, value) => {
   e.parent().addClass('is-selected')
 }
 
-
 $(document).ready(function() {
-
   $(document).on('click', '.giftchecks',function(e) {
     var gifts = localStorage.gifts ? JSON.parse(localStorage.gifts) : []
     var target_id = parseInt($(e.target).attr('data-id'))

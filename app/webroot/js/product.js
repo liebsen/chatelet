@@ -129,6 +129,7 @@ $(document).ready(function() {
 		e.preventDefault()
 		const target = $(e.target)
 		//this = e.target;
+		const gift = $('.prod-article').text().toLowerCase().includes('gift')
 		var data = {
 			count: parseInt($('.product-count').val()),
 			id: target.closest('form').find("#product_id").text().trim(),
@@ -139,29 +140,30 @@ $(document).ready(function() {
 		}
 		var product_name = $('#product_id').next().text()
 		//console.log(data.color, data.color_code, data.size)
-		if ((!data.color && !data.color_code) || !data.size) {
-			if(!data.size){
+		if(!gift){
+			if ((!data.color && !data.color_code) || !data.size) {
+				if(!data.size){
+					$('.size-options').removeClass('flash').addClass('flash')
+					return $.growl.notice({
+						title: '¡Personalizá tu compra!',
+						message: 'Seleccioná uno de los ' + ($('.size-options').length + 1) + ' talles disponibles para ' + product_name,
+					});
+				}
 
-				$('.size-options').removeClass('flash').addClass('flash')
+				$('.color-options').removeClass('flash').addClass('flash')
+
 				return $.growl.notice({
 					title: '¡Personalizá tu compra!',
-					message: 'Seleccioná uno de los ' + ($('.size-options').length + 1) + ' talles disponibles para ' + product_name,
+					message: 'Seleccioná uno de los ' + ($('.color-options').length + 1) + ' colores disponibles para ' + product_name,
 				});
 			}
 
-			$('.color-options').removeClass('flash').addClass('flash')
-
-			return $.growl.notice({
-				title: '¡Personalizá tu compra!',
-				message: 'Seleccioná uno de los ' + ($('.color-options').length + 1) + ' colores disponibles para ' + product_name,
-			});
-		}
-
-		if ( !window.stock || window.stock == 0 ) {
-			return $.growl.error({
-				title: ''+product_name,
-				message: 'No Disponible'
-			});
+			if ( !window.stock || window.stock == 0 ) {
+				return $.growl.error({
+					title: ''+product_name,
+					message: 'No Disponible'
+				});
+			}
 		}
 
 	  target.addClass('adding')

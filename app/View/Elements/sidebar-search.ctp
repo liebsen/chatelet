@@ -5,8 +5,11 @@
     </button>
     <div class="sidebar-top">
       <h5 class="text-uppercase">Buscar</h5>
-      <div class="content pt-4">  
-        <input class="form-control search-input" name="q" placeholder="Buscar...">
+      <div class="content pt-4">
+        <div class="form-group">
+          <input class="form-control search-input" name="q" placeholder="Buscar...">
+          <p class="animated fadeIn slow"><span class="text-muted">Busca en todo nuestro catálogo. Ej: malla, blusa, pantalon, saco, etc</span></p>
+        </div>
       </div>
     </div>
     <div class="sidebar-bottom">

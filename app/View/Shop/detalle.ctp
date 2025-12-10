@@ -154,7 +154,7 @@ foreach ($properties as $property) {
       ?>
         <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
         <h1><?php echo $product['name'];?></h1>
-        <p class="text-muted mb-4"><?php echo $name_categories; ?> Art. <span><?php echo $product['article']; ?></span></p>
+        <p class="text-muted mb-4"><?php echo $name_categories; ?> Art. <span class="prod-article"><?php echo $product['article']; ?></span></p>
         <div class="d-flex justify-content-start align-items-center gap-05">
         <?php  
         
@@ -500,4 +500,3 @@ $(function(){
     */
 })
 </script>
-<form action="/chatelet-new/users/login" id="ProductLoginForm" method="post"></form>

@@ -3,7 +3,6 @@
 	border-radius: 0.5rem;
 } */
 
-
 #heading {
 	color: #666; /* #e10d74; */
 	font-weight: 600;
@@ -15,9 +14,8 @@
   text-transform: capitalize !important;
 }
 
-
 .cart-empty {
-	min-height: 30rem;
+	min-height: calc(100dvh - 200px);
 	flex-direction: column;
 	display: flex;
 	justify-content: center;
@@ -27,7 +25,6 @@
 	margin: 0.5rem 0 1.25rem;
 }
 
-
 .link { 
 	color: #e10c76;
 }
@@ -35,8 +32,6 @@
 .link:hover { 
 	color: #f10c76;
 }
-
-
 
 .table thead {
 	background-color: #e10c76;
