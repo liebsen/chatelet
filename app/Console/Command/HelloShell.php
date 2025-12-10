@@ -1,9 +1,8 @@
 <?php
 
-
 class HelloShell extends AppShell {
    public function main() {
-      var_dump("HelloShell");
+      echo "HelloShell";
       //Your functionality here...
    }
 }

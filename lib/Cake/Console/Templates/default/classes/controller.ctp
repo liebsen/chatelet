@@ -44,8 +44,7 @@ class <?php echo $controllerName; ?>Controller extends <?php echo $plugin; ?>App
  *
  * @var mixed
  */
-	
-	// public $scaffold;
+	public $scaffold;
 
 <?php else:
 

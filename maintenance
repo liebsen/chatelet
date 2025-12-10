@@ -1,4 +1,4 @@
-echo -e Choose option "\\n1 debug (Stage)\\n2 errors (Stage)\\n3 git pull (Stage)\\n4 email test (Stage)\\n5 debug (Prod)\\n6 errors (Prod)\\n7 git pull (Prod)\\n8 email test (Prod)"
+echo -e Choose option "\\n1. debug (Stage)\\n2. errors (Stage)\\n3. git pull (Stage)\\n4. email test (Stage)\\n5. clean cache (Stage)\\n6. debug (Prod)\\n7. errors (Prod)\\n8. git pull (Prod)\\n9. email test (Prod)\\n10. clean cache (Prod)"
 read service_id
 case $service_id in
      1)
@@ -20,23 +20,31 @@ case $service_id in
           wget https://test.chatelet.com.ar/shop/test_email/$email
           ;;
      5)
-          echo -e "¿Cuántas líneas?"
-          read lines
-          tail -f -n $lines /var/www/chatelet/app/tmp/logs/debug.log
+          echo -e "Que limpiar cache (Stage)?"
+          wget https://test.chatelet.com.ar/shop/clear_cache
           ;;
      6)
           echo -e "¿Cuántas líneas?"
           read lines
-          tail -f -n $lines /var/www/chatelet/app/tmp/logs/error.log
+          tail -f -n $lines /var/www/chatelet/app/tmp/logs/debug.log
           ;;
      7)
-          cd /var/www/chatelet; git pull
+          echo -e "¿Cuántas líneas?"
+          read lines
+          tail -f -n $lines /var/www/chatelet/app/tmp/logs/error.log
           ;;
      8)
+          cd /var/www/chatelet; git pull
+          ;;
+     9)
           echo -e "Que email quiere probar(Prod)?"
           read email
           wget https://chatelet.com.ar/shop/test_email/$email
           ;;
+     5)
+          echo -e "Que limpiar cache (Prod)?"
+          wget https://chatelet.com.ar/shop/clear_cache
+          ;;
 esac
 
-printf "ok\n"
+printf "success\n"

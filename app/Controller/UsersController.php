@@ -201,8 +201,7 @@ class UsersController extends AppController {
     }
 
     if (!empty($saved)) {
-
-      CakeLog::write('debug', 'saved:'.$saved);
+      CakeLog::write('debug', 'saved:'.json_encode($saved));
 
       $email_data = array(
         'id_user' => $data['User']['id'] ,

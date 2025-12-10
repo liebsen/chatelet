@@ -27,4 +27,9 @@ App::uses('Shell', 'Console');
  */
 class AppShell extends Shell {
 
+   public function main() {
+      echo "HelloShell";
+      //Your functionality here...
+   }
+   
 }
