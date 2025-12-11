@@ -587,11 +587,18 @@ $(document).ready(function() {
     clock = setTimeout(() => {
       var scroll = $(window).scrollTop()
       const video = $("#carousel .item.active").find("video")
+      const menu = $('.navbar-chatelet .navbar-collapse').hasClass('in')
       $('.navbar-chatelet:not(.short)').removeClass('fadeIn')
       $('.shop-options').removeClass('slideInDown')
+
       if(document.querySelector('.navbar-chatelet')) {
         void document.querySelector('.navbar-chatelet').offsetWidth;
       }
+
+      if(menu) {
+        return false 
+      }
+      
       if (scroll > 100) {
         if (!fakeshown && lastscroll < scroll) {
           // $('#carousel-banners').addClass('invisible')

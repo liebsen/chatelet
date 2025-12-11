@@ -301,7 +301,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 body:not(.top-fixed) .navbar-chatelet:not(.short) {
-  min-height: 102px; 
+  min-height: 114px; 
 }
 
 body.top-fixed .navbar-chatelet:not(.short) {
