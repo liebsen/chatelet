@@ -1,4 +1,4 @@
-
+<?php if($_SERVER['SERVER_NAME'] !== 'chatelet.com.ar'): ?>
   <!--Start of Zopim Live Chat Script-->
   <script type="text/javascript">
   window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
@@ -8,6 +8,7 @@
   type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
   </script>
   <!--End of Zopim Live Chat Script-->
+<?php endif ?>
 
   <?php
     echo $this->fetch('script');

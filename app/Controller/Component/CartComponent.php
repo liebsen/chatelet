@@ -10,7 +10,7 @@ class CartComponent extends Component {
 
   public function add($item) {
     if (empty($cart)) {
-      $cart = $this->controller->Session->read('cart');
+      $cart = $this->controller->Session->read('cart') ?? [];
     }
 
     $cart = array_merge($cart,$item);
