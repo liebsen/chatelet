@@ -81,7 +81,7 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 			</div>
 			<hr class="mt-1 mb-2">
 		<?php if(Router::url() != '/checkout/pago'): ?>
-			<div class="summary-item">
+			<div class="summary-item mb-2">
 				<span class="text-sm text-muted">Pagando con <b><?php echo $read_payment_method ?></b></span>
 			</div>
 		<?php endif ?>

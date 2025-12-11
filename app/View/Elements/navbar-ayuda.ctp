@@ -49,10 +49,10 @@
 }
 
 #optionsHelp a { 
-  /* color: #404040; */
+  font-size: 0.9rem;
   color: #808080;
   display: inline-block; 
-  min-height: 2rem;
+  min-height: 2.25rem;
   padding: 0 1.5rem;
   font-weight: 300;
   text-transform: uppercase;

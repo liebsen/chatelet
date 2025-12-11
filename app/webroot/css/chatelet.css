@@ -1649,7 +1649,7 @@ span.validation-password {
 }
 
 .navbar-container {
-	min-height: 83px;
+	min-height: 84px;
 }
 
 @media screen and (min-width: 992px) {	
@@ -1659,7 +1659,7 @@ span.validation-password {
   }  	
   .box {
   	padding: 4rem!important;
-    /*transform: scale(1) perspective(1024px) rotateY(-10deg) rotateX(3deg) rotate(3deg) translateY(0rem) translateX(-2rem);*/
+    transform: scale(1) perspective(1024px) rotateY(-5deg) rotateX(2deg) rotate(2deg) translateY(0rem) translateX(-2rem);
     box-shadow: 0 0 20px 0 rgba(26, 26, 67, .25);
   }
   .flex-col:first-child {
