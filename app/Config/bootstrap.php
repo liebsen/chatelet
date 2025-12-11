@@ -109,6 +109,8 @@ Configure::write('Dispatcher.filters', array(
 /**
  * Configures default file logging options
  */
+
+/* 
 App::uses('CakeLog', 'Log');
 CakeLog::config('debug', array(
 	'engine' => 'File',
@@ -120,6 +122,7 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+*/
 
 function filterOrientation($list){
   $images = array_filter(explode(';',$list));
