@@ -169,8 +169,6 @@ $(document).ready(function() {
             $.post(url, data)
                 .success(function(response) {
                     // response = JSON.parse(response);
-                    console.log({response})
-                    console.log('success', response.success)
                     if (!response.success) {
                         if(response.errors!=undefined){
                             if(response.errors.email!=undefined){
