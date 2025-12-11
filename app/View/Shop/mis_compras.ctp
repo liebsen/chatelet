@@ -31,7 +31,8 @@
       <?php if(empty($sales) == false) : ?>
         <div class="form-group">
           <select class="form-control btn-filter-calendar" name="filter[Type]">
-            <option value="month" selected>Último mes</option>
+            <option value="day" selected>Hoy</option>
+            <option value="month">Último mes</option>
             <option value="year">Último año</option>
             <option value="start">Siempre</option>
           </select>
@@ -45,7 +46,7 @@
           <p class="is-flex-center p-5 text-muted min-h-12">No registras compras hasta ahora. &nbsp;<a href="/Shop" class="text-link">Hacer mi primera compra</a></p>
         <?php endif ?>
         <?php foreach($sales as $sale):?>
-        <div class="col-xs-12 is-clickable" onclick="$(this).find('.area-secondary').toggle()">
+        <div class="col-xs-12 col-md-6 col-lg-4 is-clickable" onclick="$(this).find('.area-secondary').toggle()">
           <div class="card p-3 gap-1">
             <div class="card-body card-area is-bordered">
               <!--span class="name">REMERA CONICA BELEN</span-->
@@ -115,8 +116,8 @@
                 </div>
                 <br>
                 <div class="d-flex justify-content-start align-items-center gap-1">
-                  <span class="text-link"><i class="fa fa-edit mr-1"></i> Ver detalles</span>
-                  <?php if($sale['Sale']['payment_method'] == 'bank'): ?><a class="text-link" href="/ayuda/onlinebanking/<?php echo $sale['Sale']['id'] ?>#f:.datos-bancarios"><i class="fa fa-support mr-1"></i> Ver instrucciones</a><?php endif ?>
+                  <span class="text-link"><i class="fa fa-edit mr-1"></i> Detalles</span>
+                  <?php if($sale['Sale']['payment_method'] == 'bank'): ?><a class="text-link" href="/ayuda/onlinebanking/<?php echo $sale['Sale']['id'] ?>#f:.datos-bancarios"><i class="fa fa-support mr-1"></i> Instrucciones</a><?php endif ?>
                 </div>
               </p>
               <div class="text-right d-flex justify-content-end align-items-center gap-1">

@@ -33,7 +33,6 @@
 }
 
 #optionsHelp.mobile a {
-  font-size: 0.75rem;
   display: flex;
   justify-content: center;
   align-items: center;

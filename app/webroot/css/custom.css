@@ -1213,7 +1213,7 @@ ul#ul-moreviews li.dontResize img {
 #headhelp .box p { font-size: 16px; line-height: 1.4; margin-bottom: 45px; }
 #headhelp .box p a { color: #f50081; font-weight: 600; }
 
-.box { border: 5px solid #ececec; padding: 4rem; }
+.box { border: 5px solid #e7e7e7; padding: 4rem; }
 .box h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; margin-top: 0;}
 .box p { font-size: 15px; line-height: 1.5; /*margin-bottom: 45px;*/ }
 .box p a { color: #363633; font-weight: 600; }
