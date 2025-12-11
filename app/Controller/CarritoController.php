@@ -1562,14 +1562,13 @@ el pago.</p>
 				'id' 		=> $sale_data['sale_id'],
 				'completed' => 1
 			);
-			CakeLog::write('debug', 'sale(4)'.json_encode($to_save));			
+			CakeLog::write('debug', 'sale_data(1)'.json_encode($sale_data));			
 			$this->Sale->save($sale_object);
-			$this->set('sale_data',$this->Session->read('sale_data'));
-			$this->notify_user($this->Session->read('sale_data'), 'success');
+			$this->set('sale_data',$sale_data);
+			$this->notify_user($sale_data, 'success');
 			$this->Session->delete('cart');
 			$this->Session->delete('sale_data');
 			return $this->render('clear');
-			//error_log('success');
 		}else{
 			error_log('no sale data');
 			$this->Session->delete('cart');

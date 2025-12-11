@@ -268,7 +268,7 @@
         <div class="row">
             <div class="col-md-3">
             <?php
-                $slug =  str_replace(' ','-',strtolower($category['Category']['name']));
+                $slug =  str_replace(' ','-',strtolower(@$category['Category']['name']));
                   if (strpos($slug, 'trajes')!==false){
                     $slug = 'trajes-de-bano';
                   }
@@ -356,7 +356,7 @@
                             <?php if ($alt_product['promo'] !== '') :?>
                                 <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
                             <?php endif ?>
-                            <div class="product-image posnum-<?= $category['Category']['posnum'] ?>" style="background-image: url('<?php echo Configure::read('uploadUrl') . $alt_product['img_url'] ?>')" alt=""></div>
+                            <div class="product-image posnum-<?= @$category['Category']['posnum'] ?>" style="background-image: url('<?php echo Configure::read('uploadUrl') . $alt_product['img_url'] ?>')" alt=""></div>
                             </div>
                             <div class="product-info">
                                 <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
@@ -379,13 +379,13 @@
             <span></span>
         </a>
 
-        <?php if (empty($category['Category']['size'])): ?>
+        <?php if (empty(@$category['Category']['size'])): ?>
         <div class="table">
             <img src="/talles.jpg" style="max-width: 100%;max-height:100%;height:auto:width:100%" />    
             </div>
         <?php else: ?>
             <div align="center" class="centered">
-                <img src="<?=Configure::read('uploadUrl')?><?=$category['Category']['size']?>" style="max-width:100%" border="0" />
+                <img src="<?=Configure::read('uploadUrl')?><?=@$category['Category']['size']?>" style="max-width:100%" border="0" />
             </div>
         <?php endif; ?>
 
@@ -424,7 +424,7 @@ gtag('event', 'view_item', {
       'name': '<?php echo $product['article'];?>',
       "list_name": "Product detail",
       'brand': '<?php echo $product['name'];?>',
-      'category': '<?php echo $category['Category']['name'];?>',
+      'category': '<?php echo @$category['Category']['name'];?>',
       "list_position": 1,
       "quantity": 1,
       'price': '<?php echo $product['discount'];?>'
