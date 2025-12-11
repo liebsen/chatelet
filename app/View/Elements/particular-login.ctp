@@ -4,12 +4,12 @@
   echo $this->Html->script('formValidation.min', array('inline' => false));
   echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
   echo $this->Html->script('bootstrapValidator', array('inline' => false)); 
-  echo $this->Html->script('particular-validation', array('inline' => false));
+  echo $this->Html->script('particular-validation.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 ?>
 <div class="modal fade" id="particular-login" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header	">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3 class="modal-title" id="modal-title">
 					<?php  echo 'Iniciar Sesión'; ?>

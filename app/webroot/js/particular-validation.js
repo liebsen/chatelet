@@ -147,7 +147,7 @@ $(document).ready(function() {
                         }
                     }
                     $.growl.error({
-                        title: 'Error al registrar usuario',
+                        title: 'Error al registrar usuario(1)',
                         message: 'Por favor verifica los datos introducidos e intenta de nuevo'
                     });
                     return false;
@@ -161,14 +161,16 @@ $(document).ready(function() {
         });
 
     $('#particularForm').submit(function(e) {
-        if($("#particular-modal").data('bootstrapValidator').isValid()){
+        // if($("#particular-modal").data('bootstrapValidator').isValid()){
+
             var me = $(this),
             data = me.serialize(),
             url = me.attr('action');
-
             $.post(url, data)
                 .success(function(response) {
-                    response = JSON.parse(response);
+                    // response = JSON.parse(response);
+                    console.log({response})
+                    console.log('success', response.success)
                     if (!response.success) {
                         if(response.errors!=undefined){
                             if(response.errors.email!=undefined){
@@ -182,9 +184,14 @@ $(document).ready(function() {
                                 $("#password").parent().addClass('has-error');
                             }
                         }
+
+                        let str = ''
+                        for(var i in response.errors) {
+                            str+= response.errors[i]
+                        }
                         $.growl.error({
                             title: 'Error al registrar usuario',
-                            message: 'Por favor verifica los datos introducidos e intenta de nuevo'
+                            message: str, 
                         });
                         return false;
                     }else{
@@ -203,7 +210,7 @@ $(document).ready(function() {
 
             e.preventDefault();
             return false;
-        }
+        // }
         
     });
     /*if(document.querySelector("#CatalogForgotPasswordForm")!=null){

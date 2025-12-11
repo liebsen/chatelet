@@ -122,8 +122,8 @@ class UsersController extends AppController {
                 'default', 
                 array('class' => 'hidden notice')
             );
-            return $this->redirect($this->referer());
-            // die(json_encode(array('success' => true)));
+            // return $this->redirect($this->referer());
+            return json_encode(array('success' => true));
         } else {
             $errors = $this->User->validationErrors;
             $this->Session->setFlash(
@@ -132,8 +132,8 @@ class UsersController extends AppController {
                 array('class' => 'hidden notice')
             );
 
-            return $this->redirect($this->referer());
-            // die(json_encode(array('success' => false, 'errors' => $errors)));
+            // return $this->redirect($this->referer());
+            return json_encode(array('success' => false, 'errors' => $errors));
         }
         
     }
