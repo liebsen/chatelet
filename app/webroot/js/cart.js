@@ -68,18 +68,6 @@ var select_radio = (name, value) => {
 }
 
 $(document).ready(function() {
-  $(document).on('click', '.giftchecks',function(e) {
-    var gifts = localStorage.gifts ? JSON.parse(localStorage.gifts) : []
-    var target_id = parseInt($(e.target).attr('data-id'))
-    
-    gifts = gifts.filter((id) => id != target_id)
-
-    if($(e.target).is(':checked')){
-      gifts.push(target_id)
-    }
-
-    localStorage.setItem('gifts', JSON.stringify(gifts))  
-  })
 
   $(document).on('click', '.btn-change-count',function(e) {
     let count = $(this).parent().find('input').first().val()
@@ -110,11 +98,24 @@ $(document).ready(function() {
     })
   })
 
+  $(document).on('click', '.giftchecks',function(e) {
+    var gifts = localStorage.gifts ? JSON.parse(localStorage.gifts) : []
+    var target_id = parseInt($(e.target).attr('data-id'))
+    
+    gifts = gifts.filter((id) => id != target_id)
+
+    if($(e.target).is(':checked')){
+      gifts.push(target_id)
+    }
+
+    localStorage.setItem('gifts', JSON.stringify(gifts))  
+  })
+
   const gifts = localStorage.gifts && localStorage.gifts != 'undefined' ? 
     JSON.parse(localStorage.gifts) : 
     []
 
   for(var i in gifts) {
-    $(`#giftcheck_${gifts[i]}`).attr('checked', true)
+    $(`.gift-${gifts[i]}`).prop('checked', true)
   }
 })

@@ -22,12 +22,15 @@ label {
   font-size: 0.8rem;
   text-transform: uppercase;
 }
+
 label input[type=checkbox] + .label-text:hover:before {
   color: #e10d74;
 }
+
 label input[type=checkbox] {
   display: none;
 }
+
 label input[type=checkbox] + .label-text:before {
   content: "";
   color: #dddfe6;
@@ -37,11 +40,13 @@ label input[type=checkbox] + .label-text:before {
   display: inline-block;
   margin-right: 5px;
 }
+
 label input[type=checkbox]:checked + .label-text:before {
   content: "";
   color: #e10d74;
   animation: tick 150ms ease-in;
 }
+
 label input[type=checkbox]:disabled + .label-text:before {
   content: "";
   color: #dddfe6;

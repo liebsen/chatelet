@@ -76,7 +76,7 @@
 								    </div>
 								  </div>
 									<label class="form-group mt-1 pl-0">
-										<input class="giftchecks" type="checkbox" id="giftcheck_<?php echo $product['id'] ?>" data-id="<?php echo $product['id'] ?>"><span class="label-text text-muted text-sm">Para regalo</span><br><br>
+										<input class="giftchecks gift-<?php echo $product['id'] ?>" type="checkbox" data-id="<?php echo $product['id'] ?>"><span class="label-text text-muted text-sm">Para regalo</span><br><br>
 										</label>
 									</div>
 									<button class="btn bg-transparent m-0" onclick="askremoveCart(this)">
@@ -153,7 +153,7 @@
 
 			echo '</div>';
 			echo '<label class="form-group ml-0">
-				  <input class="giftchecks" type="checkbox" id="giftcheck_' . $product['id'] .  '" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-sm">Para regalo</span><br><br>
+				  <input class="giftchecks gift-' . $product['id'] .  '" type="checkbox" data-id="' . $product['id'] .  '"><span class="label-text text-muted text-sm">Para regalo</span><br><br>
 				</label>';
 
 			echo '</div>';
@@ -289,9 +289,5 @@
 			onWarningAlert('Más beneficios','<?= $text_shipping_min_price ?>', 15000)
 		}, 15000)
 	<?php endif ?>
-		var gifts = localStorage.gifts ? JSON.parse(localStorage.gifts) : []
-		$(gifts).each((i,e) => {
-			$('#giftcheck_' + e.id).attr('checked', gifts.includes(parseInt(e.id)))
-		})
 	})
 </script>
