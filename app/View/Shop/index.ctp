@@ -8,10 +8,12 @@
 
 </style>
 
+<?php if(!empty($data['image_bannershop'])): ?>
 <div id="headshop">
   <!--h1 class="name_shop">Shop</h1-->
   <div class="img-resp" style="background-image:url(<?php echo $settings['upload_url'].@$data['image_bannershop'] ?>)"></div>
 </div>
+<?php endif ?>
 
 <section id="listShop">
   <div class="wrapper-fluid">
