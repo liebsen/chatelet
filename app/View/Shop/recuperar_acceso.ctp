@@ -32,7 +32,7 @@ echo $this->Session->flash();
 	    <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
 		    <input type="submit" id="login" value="Recuperar acceso" />
 		    <span id="forgot-password" class="text-muted text-sm d-block mt-1">
-	  		  <i class="fa fa-info mr-1"></i> Recibirás un correo electrónico con tu nueva contraseña
+	  		  <i class="fa fa-info-circle mr-1"></i> Recibirás un correo electrónico con tu nueva contraseña
 	    	</span>
 	    </div>
 	    <!--div class="modal-buttons">                

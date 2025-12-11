@@ -82,7 +82,7 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 			<hr class="mt-1 mb-2">
 		<?php if(Router::url() != '/checkout/pago'): ?>
 			<div class="summary-item mb-2">
-				<span class="text-sm text-muted">Pagando con <b><?php echo $read_payment_method ?></b></span>
+				<span class="text-sm text-muted"><i class="fa fa-info-circle mr-1"></i> Pagando con <b><?php echo $read_payment_method ?></b></span>
 			</div>
 		<?php endif ?>
 		<?php if(!empty($cart_totals['free_shipping'])) :?>

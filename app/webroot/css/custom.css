@@ -1236,15 +1236,15 @@ ul#ul-moreviews li.dontResize img {
 	.shop-options { display: none !important; }
 	#myModal .content { width: 100%; }
 	#myModal .content form {
-        margin-bottom: 75px;
-        width: 100%;
-        position: relative;
-    }
+    margin-bottom: 75px;
+    width: 100%;
+    position: relative;
+  }
 
 	.navbar-nav { margin: 0; text-align: center; }
 	.navbar-nav > li { float: none; display: inline-block; }
   .navbar-nav > li > a {  
-    font-size: 0.75rem;
+    font-size: 0.9rem;
   }
 	.navbar-nav>li>a .badge { left: 5px; position: absolute; top: 5px; }
 
