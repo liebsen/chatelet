@@ -85,7 +85,7 @@ function log2file($path, $data, $mode="a"){
 }
 
 function parse_coupon($coupon, $cart_totals) {
-  CakeLog::write('debug', 'payment_method:'.$cart_totals['payment_method']);
+  // CakeLog::write('debug', 'payment_method:'.$cart_totals['payment_method']);
   $payment_method = $cart_totals['payment_method'] ?? 'bank';
   $amount = $cart_totals['grand_total'] || 0;
   $item = $coupon['Coupon'];

@@ -5,7 +5,7 @@ $this->set('short_header_link', '/shop');
 $this->set('short_header_classname', 'btn_continue_shopping');
 echo $this->Session->flash();
 ?>
-<section id="detalle" class="is-flex-center min-h-101 animated fadeIn">
+<section id="detalle" class="is-flex-center min-h-101">
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 animated fadeIn delay">
   	<div class="d-flex justify-content-center align-items-center gap-1">
   		<img src="/images/isologo.png" width="60"/> 

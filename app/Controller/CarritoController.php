@@ -796,9 +796,9 @@ class CarritoController extends AppController
 			
 			// CakeLog::write('debug', 'cart_totals(4):'. json_encode($cart_totals));
 			// $this->Session->write('cart_totals', $cart_totals);
-			// CakeLog::write('debug', 'updateCart(1):'. json_encode($filter));
+			CakeLog::write('debug', 'add(filter):'. json_encode($filter));
 			
-			$cart = $this->Cart->update($filter);
+			$cart = $this->Cart->add($filter);
 			
 			// CakeLog::write('debug', 'updateCart(4)');
 			// $this->Session->write('cart', $cart);

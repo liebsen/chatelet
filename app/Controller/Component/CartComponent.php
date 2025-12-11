@@ -8,6 +8,15 @@ class CartComponent extends Component {
     parent::initialize($controller);
   }
 
+  public function add($item) {
+    if (empty($cart)) {
+      $cart = $this->controller->Session->read('cart');
+    }
+
+    $cart = array_merge($cart,$item);
+    $this->update($cart);
+  }
+
   public function update($cart=false, $cart_totals=false) {
   
     // CakeLog::write('debug', 'cart_totals(param):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
