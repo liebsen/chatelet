@@ -816,6 +816,7 @@ body {
 /* Mini Sidebar Profile */
 .mini-profile {
     padding: 1.75rem 3rem;
+    padding-bottom: 0.75rem;
     background: white;
     text-align: center;
     border-radius: 1rem;
@@ -3946,7 +3947,7 @@ only screen and (-moz-min-device-pixel-ratio: 1.5),
 only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min-device-pixel-ratio: 1.5) {
 
-    body { background-image: url('../img/template/bg@2x.png'); }
+    body { /* background-image: url('../img/template/bg@2x.png'); */ background-color:#e7e7e7; }
 
     .table thead .sorting { background-image: url('../img/jquery.datatables/sort_both@2x.png'); }
     .table thead .sorting_asc { background-image: url('../img/jquery.datatables/sort_asc@2x.png'); }

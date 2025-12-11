@@ -268,9 +268,9 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .navbar-brand { 
-  background: url(../img/logo.png) no-repeat; 
+  background: url(../images/logo.png) no-repeat; 
   background-size: contain;
-  width: 110px;
+  width: 118px;
   height: auto;
   margin-top: 10px; 
   padding: 0; 
