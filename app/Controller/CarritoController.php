@@ -1140,13 +1140,18 @@ CakeLog::write('debug', 'sale(3)'.json_encode($to_save));
 		$preference = $mp->create_preference($preference_data);
 		//Save Data
 		$sale_data = array(
-			'sale' 		=> $sale,
-			'items' 	=> $items,
+			// 'sale' 		=> $sale,
+			// 'items' 	=> $items,
+			'user' => array(
+				'name' => $sale['name'],
+				'email' => $sale['email'],
+			),
 			'sale_id' 	=> $sale_id,
-			'preference'=> $preference,
+			// 'preference'=> $preference,
 			'products'=>$product_ids,
 			'total'=>$total
 		);
+
 		$this->Session->write('sale_data',$sale_data);
 
 		//Setting

@@ -13,7 +13,6 @@
 <!-- Google Code for Venta Online Conversion Page -->
 <script type="text/javascript">
 /* <![CDATA[ */
-console.log('sale_data', <?php echo json_encode($sale_data); ?>);
 var google_conversion_id = 853044157;
 var google_conversion_language = "en";
 var google_conversion_format = "3";
