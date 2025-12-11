@@ -1,18 +1,22 @@
 $(document).ready(function() {
 	var mis_compras = (period, assureContent) => {
-		let days = 30
-		
+		let days = 1
+		let size = 0 
+
+		if(period == 'month') {
+			days = 30
+		}
+
 		if(period == 'year') {
 			days = 365
 		}
 
-		let size = 0 
-		$('.ch-row').each((i,row) => {
+		$('.history-items').each((i,row) => {
 			const ts = $(row).find('.timestamp').text()
-			const then = new Date(ts)
-			let next = new Date()
-			next.setDate(then.getDate()-days);
-			const diff = new Date(then.toDateString()) > new Date(next);
+			const date = new Date(ts)
+			let then = new Date()
+			then.setDate(then.getDate() - days);
+			const diff = new Date(date.toDateString()) > new Date(then);
 			if(diff || period == 'start') {
 				size++
 				$(row).show()
@@ -21,12 +25,12 @@ $(document).ready(function() {
 			}
 		})
 
-		if($('.ch-row').length && assureContent && size == 0) {
+		if($('.history-items').length && assureContent && size == 0) {
 			return $('.btn-filter-calendar').click()
 		}
 
 		setTimeout(() => {
-			const len = $('.ch-row:visible').length
+			const len = $('.history-items:visible').length
 			$('.btn-filter-calendar span:first').append(` (${len})`)			
 		}, 100)
 	}
@@ -40,5 +44,5 @@ $(document).ready(function() {
 		}, 100)
 	})
 
-	mis_compras('month',1)
+	mis_compras('day',1)
 })

@@ -46,12 +46,12 @@
           <p class="is-flex-center p-5 text-muted min-h-12">No registras compras hasta ahora. &nbsp;<a href="/Shop" class="text-link">Hacer mi primera compra</a></p>
         <?php endif ?>
         <?php foreach($sales as $sale):?>
-        <div class="col-xs-12 col-md-6 col-lg-4 is-clickable" onclick="$(this).find('.area-secondary').toggle()">
+        <div class="history-items col-xs-12 col-lg-6 is-clickable" onclick="$(this).find('.area-secondary').toggle()">
           <div class="card p-3 gap-1">
             <div class="card-body card-area is-bordered">
               <!--span class="name">REMERA CONICA BELEN</span-->
               <p>Fecha: 
-                <span class="text-muted timestamp"><?= $sale['Sale']['created'] ?></span>
+                <span class="text-muted timestamp"><?= $sale['Sale']['created'] ?></span><br>
                 <span class="text-muted">(hace <?= \readable_time_ago(strtotime($sale['Sale']['created'])) ?>)</span>
               </p>
               <p>Productos: <?= count($sale['Products']) ?></p>
