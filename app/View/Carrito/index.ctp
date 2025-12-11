@@ -47,8 +47,8 @@
 								<div class="ch-image" style="background-image: url('<?php echo $settings['upload_url'].($product['alias_image'] ?: $product['img_url']) ?>')"></div>
 							</a>
 						</div>
-						<div class="d-flex justify-content-start align-center flex-column">
-							<div class="d-flex justify-content-between align-center min-w-7 gap-1">
+						<div class="d-flex justify-content-start align-center flex-column w-100">
+							<div class="d-flex justify-content-between align-center gap-1 w-100">
 								<div class="d-flex justify-content-center align-center flex-column max-20">
 									<h5 class="mt-0 mb-2 text-weight-thin lh-1"><?php echo $product['name'] ?></h5>
 									<?php if (!empty($product['color_code']) && $product['color_code'] != 'undefined') : ?>

@@ -109,4 +109,12 @@ $(document).ready(function() {
       location.href = location.href
     })
   })
+
+  const gifts = localStorage.gifts && localStorage.gifts != 'undefined' ? 
+    JSON.parse(localStorage.gifts) : 
+    []
+
+  for(var i in gifts) {
+    $(`#giftcheck_${gifts[i]}`).attr('checked', true)
+  }
 })
