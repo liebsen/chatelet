@@ -259,7 +259,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   border-radius: 0; 
   /*box-shadow: var(--box-shadow-downwards);*/
   margin: 0; 
-  padding: 1.5rem;
+  padding: 1rem;
   position: relative; 
   /*transition: all 100ms ease-in!important;*/
   transition: none!important;
@@ -300,9 +300,9 @@ label input[type=checkbox]:disabled + .label-text:before {
   font-size: 1.25rem;
 }
 
-body:not(.top-fixed) .navbar-chatelet:not(.short) {
-  min-height: 114px; 
-}
+/* body:not(.top-fixed) .navbar-chatelet:not(.short) {
+  min-height: 102px; 
+} */
 
 body.top-fixed .navbar-chatelet:not(.short) {
   position: fixed!important;
