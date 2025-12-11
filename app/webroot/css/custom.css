@@ -362,9 +362,6 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
     background-color: transparent;
   }
 
-  body.top-fixed .navbar-nav.navbar-right > li > a {
-    width: 40px;
-  }
   .navbar-nav.navbar-right {
     position: relative;
     white-space: nowrap;

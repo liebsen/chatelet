@@ -52,18 +52,15 @@ if (!$loggedIn) {
 				?>
 				<input type="hidden" name="redirect" value="<?= $_GET['redirect'] ?? '' ?>" />
 				<input type="hidden" name="ajax" value="1" />
-				<div class="p-4">
+			  	<div class="d-flex justify-content-center align-items-center gap-1">
+			  		<img src="/images/isologo.png" width="60"/> 
 					<h5 class="text-uppercase">
-					<?php if ($loggedIn) : ?>
-						Actualizar mi cuenta
-					<?php else :?>
-						Crear mi cuenta
-					<?php endif ?>
-					</h5>
-					<p>
-						Ingresa tus datos personales para crear una cuenta.
-					</p>
+						<?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Crear mi cuenta' ?>
+					</h5>			
 				</div>
+				<p>
+					Ingresa tus datos personales para crear una cuenta.
+				</p>
 				<div class="d-flex flex-column justify-content-start align-items-center gap-1 content">
 					<div class="row cols-fix w-100">
 						<div class="col-md-6">

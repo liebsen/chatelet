@@ -27,7 +27,12 @@
   <section id="formulario">
     <div class="wrapper">
       <div class="d-flex justify-content-between align-items-center gap-1 w-100 p-4">
-        <h1 class="card-title mb-0"><i class="fa fa-shopping-bag mr-1"></i> Mis compras</h1>
+        <div class="d-flex justify-content-center align-items-center gap-1">
+          <img src="/images/isologo.png" width="60"/> 
+          <h3 class="card-title mb-0">
+            <i class="fa fa-shopping-bag mr-1"></i> Mis compras
+          </h3>
+        </div>
       <?php if(empty($sales) == false) : ?>
         <div class="form-group">
           <select class="form-control btn-filter-calendar" name="filter[Type]">
