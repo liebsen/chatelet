@@ -602,6 +602,7 @@ class CheckoutController extends AppController
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		// $settings = $this->load_settings();
 		$this->autoRender = false;
+		$settings = $this->settings;
 		$total=0;
 		$total_wo_discount = 0;
 		// VAR - Validate
@@ -679,6 +680,8 @@ class CheckoutController extends AppController
 
 		// error_log('payment method: ' . $sale['payment_method']);
 		// check if payment method is bank and bank payment is not available
+				CakeLog::write('debug', 'sale(settings):'. json_encode($settings));
+
 		if (
 			!empty($cart_totals['payment_method']) && 
 			$cart_totals['payment_method'] === 'bank' && 

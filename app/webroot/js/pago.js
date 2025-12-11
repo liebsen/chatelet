@@ -73,9 +73,9 @@ $(function(){
 		      fxTotal(total)
 		      // calcDues(price)
 
-		      /* $(res.data.updated).each(function(i,e) {
+		      $(res.data.updated).each(function(i,e) {
 		      	$('.price-'+Object.keys(e)[0]).text("$ " + formatNumber(Object.values(e)[0].price))
-		      }) */
+		      })
 
 		      window.coupon_bonus = discounted
 
@@ -84,8 +84,8 @@ $(function(){
 		    requesting_coupon = false
 		  })
 		} else {
-			console.log('total', total)
 			total = getTotals()	
+			console.log('total', total)
 		}
 		
 		if(payment_dues) {
