@@ -29,8 +29,11 @@
               </div-->
               <?php if(isset($settings['bank_whatsapp'])): ?>
               <div class="col-xs-12 mt-4 text-center">
-                <a class="btn btn-chatelet shrink mt-3" href="https://wa.me/<?= $settings['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
+                <a class="btn btn-chatelet bg-success-i" href="https://wa.me/<?= $settings['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
                   Enviar por WhatsApp
+                </a>
+                <a class="btn btn-chatelet" href="/shop/mis_compras">
+                  Ir a mis compras
                 </a>
               </div>
               <?php endif ?>

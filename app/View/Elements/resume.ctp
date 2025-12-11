@@ -57,7 +57,6 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 		<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 		<input type="hidden" id="subtotal_envio" value="" />
 		<div class="w-100">
-			<hr>
 			<div class="summary-item <?php echo empty($cart_totals['discount']) ? 'hidden' : '' ?>">
 				<span class="text-weight-thin">Descuento </span>
 				<span><?= \price_format($cart_totals['discount']) ?></span>

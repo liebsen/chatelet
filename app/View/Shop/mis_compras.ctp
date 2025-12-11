@@ -40,85 +40,87 @@
         <!--span class="btn btn-chatelet dark btn-filter-calendar capitalize">
           <i class="fa fa-calendar mr-1"></i> Último mes</span-->
       </div>
-      <div class="ch-flex"> 
+      <div class="row"> 
         <?php if(empty($sales)) : ?>
           <p class="is-flex-center p-5 text-muted min-h-12">No registras compras hasta ahora. &nbsp;<a href="/Shop" class="text-link">Hacer mi primera compra</a></p>
         <?php endif ?>
         <?php foreach($sales as $sale):?>
-        <div class="ch-row is-clickable" onclick="$(this).find('.compra-item').toggle()">
-          <div class="ch-col p-6 gap-1">
-            <!--span class="name">REMERA CONICA BELEN</span-->
-            <p>Fecha: 
-              <span class="text-muted timestamp"><?= $sale['Sale']['created'] ?></span>
-              <span class="text-muted">(<?= \readable_time_ago(strtotime($sale['Sale']['created'])) ?>)</span>
-            </p>
-            <p>Productos: <?= count($sale['Products']) ?></p>
-            <p>Estado: 
-              <?php if(empty($sale['Sale']['def_mail_sent'])):?>
-                <span class="text-success">Procesando</span>
+        <div class="col-xs-12 is-clickable" onclick="$(this).find('.compra-item').toggle()">
+          <div class="card bordered p-3 gap-1">
+            <div class="card-body">
+              <!--span class="name">REMERA CONICA BELEN</span-->
+              <p>Fecha: 
+                <span class="text-muted timestamp"><?= $sale['Sale']['created'] ?></span>
+                <span class="text-muted">(<?= \readable_time_ago(strtotime($sale['Sale']['created'])) ?>)</span>
+              </p>
+              <p>Productos: <?= count($sale['Products']) ?></p>
+              <p>Estado: 
+                <?php if(empty($sale['Sale']['def_mail_sent'])):?>
+                  <span class="text-success">Procesando</span>
+                <?php else: ?>
+                  Asignado a <span class="text-muted"><?= $sale['Sale']['def_orden_tracking'] ?></span>
+                <?php endif; ?>
+              </p>
+              <p>Costo de Envío: 
+              <?php if(empty($sale['Sale']['delivery_cost'])):?>
+                <span class="text-success">gratis</span>
               <?php else: ?>
-                Asignado a <span class="text-muted"><?= $sale['Sale']['def_orden_tracking'] ?></span>
+              <span class="text-muted"><?= \price_format($sale['Sale']['delivery_cost']) ?></span>
               <?php endif; ?>
-            </p>
-            <p>Costo de Envío: 
-            <?php if(empty($sale['Sale']['delivery_cost'])):?>
-              <span class="text-success">gratis</span>
-            <?php else: ?>
-            <span class="text-muted"><?= \price_format($sale['Sale']['delivery_cost']) ?></span>
-            <?php endif; ?>
-            </p>
-            <p>Método de pago: <span class="text-muted"><?php echo $this->App->payment_method($sale['Sale']['payment_method']); ?></span></p>
-            <?php if($sale['Sale']['cargo'] == 'takeaway'):?>
-              <p>Método de Envío: <span class="text-muted">Takeaway</span></p>
-              <p>
-                Retira en sucursal: 
-                <span class="text-muted"><?= implode(", ", [
-                  $sale['Sale']['store_address'], 
-                  $sale['Sale']['store']
-                ]) ?></span>
               </p>
-            <?php else: ?>
-              <p>Método de Envío: <span class="text-muted">Entrega a domicilio</span></p>
-              <p>Entrega en: 
-                <span class="text-muted"><?= implode(" ", [
-                  @$sale['Sale']['calle'],
-                  @$sale['Sale']['nro'],
-                  @$sale['Sale']['piso'],
-                  @$sale['Sale']['depto']
-                ]) ?></span>
-                <span class="text-muted"><?= implode(", ",[
-                  @$sale['Sale']['localidad'], 
-                  @$sale['Sale']['provincia']
-                ]) ?> (<?= $sale['Sale']['cp'] ?>) </span>
+              <p>Método de pago: <span class="text-muted"><?php echo $this->App->payment_method($sale['Sale']['payment_method']); ?></span></p>
+              <?php if($sale['Sale']['cargo'] == 'takeaway'):?>
+                <p>Método de Envío: <span class="text-muted">Takeaway</span></p>
+                <p>
+                  Retira en sucursal: 
+                  <span class="text-muted"><?= implode(", ", [
+                    $sale['Sale']['store_address'], 
+                    $sale['Sale']['store']
+                  ]) ?></span>
+                </p>
+              <?php else: ?>
+                <p>Método de Envío: <span class="text-muted">Entrega a domicilio</span></p>
+                <p>Entrega en: 
+                  <span class="text-muted"><?= implode(" ", [
+                    @$sale['Sale']['calle'],
+                    @$sale['Sale']['nro'],
+                    @$sale['Sale']['piso'],
+                    @$sale['Sale']['depto']
+                  ]) ?></span>
+                  <span class="text-muted"><?= implode(", ",[
+                    @$sale['Sale']['localidad'], 
+                    @$sale['Sale']['provincia']
+                  ]) ?> (<?= $sale['Sale']['cp'] ?>) </span>
+                </p>
+              <?php endif; ?>
+                <div class="compra-item bg-light" style="display: none;">
+                  <?php foreach(@$sale['Products'] as $item): ?>
+                    <div class="is-flex-center">
+                      <div class="flex-1"><?= implode('<br>', array_filter(explode('-|-', $item['SaleProduct']['description']), function($item) {
+                        if(strpos($item, 'PRODUCTO') !== false || 
+                          strpos($item, 'TALLE') !== false || 
+                          strpos($item, 'REGALO') !== false || 
+                          strpos($item, 'COLOR') !== false || 
+                          strpos($item, 'CODIGO') !== false ||
+                          strpos($item, 'PRECIO_LISTA') !== false) {
+                          return strval($item);
+                        }
+                        return false;
+                      })) ?></div>
+                      <div class="ch-image flex-1" style="background-image: url('<?=$settings['upload_url'].$item['Product']['img_url']?>');"></div>
+                    </div><hr>
+                  <?php endforeach ?>
+                </div>
+                <br>
+                <span class="text-link"><i class="fa fa-edit mr-1"></i> Ver detalles</span>
               </p>
-            <?php endif; ?>
-              <div class="compra-item bg-light" style="display: none;">
-                <?php foreach(@$sale['Products'] as $item): ?>
-                  <div class="is-flex-center">
-                    <div class="flex-1"><?= implode('<br>', array_filter(explode('-|-', $item['SaleProduct']['description']), function($item) {
-                      if(strpos($item, 'PRODUCTO') !== false || 
-                        strpos($item, 'TALLE') !== false || 
-                        strpos($item, 'REGALO') !== false || 
-                        strpos($item, 'COLOR') !== false || 
-                        strpos($item, 'CODIGO') !== false ||
-                        strpos($item, 'PRECIO_LISTA') !== false) {
-                        return strval($item);
-                      }
-                      return false;
-                    })) ?></div>
-                    <div class="ch-image flex-1" style="background-image: url('<?=$settings['upload_url'].$item['Product']['img_url']?>');"></div>
-                  </div><hr>
-                <?php endforeach ?>
+              <div class="text-right d-flex justify-content-end align-items-center gap-1">
+                <span class="price animated fadeIn delay"><?= \price_format($sale['Sale']['value']) ?> 
+                <?php if($sale['Sale']['dues'] > 1):?>
+                  <span class="text-muted text-sm">en <?= $sale['Sale']['dues'] ?> cuotas</span>
+                <?php endif ?>
+                </span>
               </div>
-              <br>
-              <span class="text-link"><i class="fa fa-edit mr-1"></i> Ver detalles</span>
-            </p>
-            <div class="text-right d-flex justify-content-end align-items-center gap-1">
-              <span class="price animated fadeIn delay"><?= \price_format($sale['Sale']['value']) ?> 
-              <?php if($sale['Sale']['dues'] > 1):?>
-                <span class="text-muted text-sm">en <?= $sale['Sale']['dues'] ?> cuotas</span>
-              <?php endif ?>
-              </span>
             </div>
           </div>
         </div>
@@ -142,6 +144,7 @@
     }
     .ch-image {
       min-height: 10rem;
+      aspect-ratio: inherit!important;
       background-size: contain!important;
       border-radius: 0.5rem;
     }
