@@ -305,6 +305,10 @@ html, body {
    width: 100%!important;
 }
 
+.w-auto {
+	width: auto;
+}
+
 .text-muted {
   color: #888;
 }
@@ -468,6 +472,9 @@ html, body {
 .max-20 {
 	max-width: 20rem;
 }
+.max-40 {
+	max-width: 40rem;
+}
 .mb-0 {
   margin-bottom: 0!important;
 }
@@ -515,6 +522,15 @@ html, body {
 	display: flex;
 } 
 
+@media(max-width: 786px) {
+	.flex-md-column {
+		flex-direction: column;
+	}
+}
+
+.flex-md-column {
+
+}
 .align-items-center {
 	align-items: center;
 }

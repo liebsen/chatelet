@@ -86,7 +86,7 @@ function initialize(address) {
   #location .col-md-12 ul li { color: #FFF; float: left; min-height: 63px; /*font-size: 18px;*/ font-weight: 300; width: 33%;    padding-bottom: 45px; }
   #location .col-md-12 ul li a { padding-left: 3.5rem; position: relative; left: -3.5rem; }
   #location .col-md-12 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; transform: scale(0.9);}
-  #location .col-md-12 ul li:nth-child(2):before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -9px; width: 35px; transform: scale(0.75);}
+  #location .col-md-12 ul li:nth-child(2):before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -12px; width: 35px; transform: scale(0.75);}
   #location .col-md-12 ul li:nth-child(3):before { 
     content: "\f232"; 
     font: normal normal normal 18px / 1 FontAwesome; 
@@ -94,8 +94,8 @@ function initialize(address) {
     font-size: 2rem; 
     display: block; 
     position: relative;
-    top: -3px;
-    left: 3px;
+    top: -5px;
+    left: 4px;
     float: left; 
     height: 45px; 
     width: 49px;

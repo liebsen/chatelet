@@ -1093,12 +1093,6 @@ ul#ul-moreviews li.dontResize img {
 .box p { font-size: 15px; line-height: 1.5; /*margin-bottom: 45px;*/ }
 .box p a { color: #363633; font-weight: 600; }
 
-.product-info-container { 
-  padding: 1rem;
-  padding-left: 28px;
-  padding-right: 28px;
-}
-
 @media(min-width: 769px){
   #desarrollo { 
     padding: 5rem 2rem; 

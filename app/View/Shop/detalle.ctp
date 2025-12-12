@@ -64,223 +64,225 @@ foreach ($properties as $property) {
 </script>
 <section id="main">
   <div class="wrapper animated fadeIn delay">
-    <div class="row">
-    <?php if(!empty($colorImages)):?>
-      <div class="col-md-2 p-0 animated fadeIn delay2">
-        <ul id="ul-moreviews">
-        <?php if (!empty($colorImages[0]['images']) && count(array_filter($colorImages[0]['images'])) > 1): $ppp=0; ?>
-        <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
-        <?php if(!empty($value)): $ppp++;?>
-          <li class="dontResize"><a href="#"><img class="demo w3-opacity w3-hover-opacity-off img-responsive"
-            onclick="currentDiv(<?=$ppp;?>)" title="ck_image_<?=$ppp?>"  id="img_01" src="<?=$settings['upload_url'].'thumb_'.$value?>"></a></li>
-        <?php endif;?>
-        <?php endforeach ?>
-        <?php endif;?>
-        </ul>
-      </div>
-      <div class="col-md-5 p-0">
-        <div class="is-product-photo"><?php 
-          $number_ribbon = 0;
-          $ribbon_style = '';
-          if (isset($product['discount_label_show'])){
-              $number_ribbon = (int)@$product['discount_label_show'];
-          }
-          if (isset($product['mp_discount']) && $product['mp_discount'] > $number_ribbon){
-            $number_ribbon = (int) @$product['mp_discount'];
-          }
-          if(!empty($product['ribbon_color'])) {
-            $ribbon_style = ' style="background-color: {$product[ribbon_color]}"';
-          }          
-          if (isset($product['bank_discount']) && $product['bank_discount'] > $number_ribbon){
-            $number_ribbon = (int) @$product['bank_discount'];
-          } ?>
-
-          <?php if ($number_ribbon) :?>
-              <div class="ribbon large top-left small"<?php echo $ribbon_style ?>><span><?= $number_ribbon ?>% OFF</span></div>
-          <?php endif ?>
-          <?php if ($product['promo'] !== '') :?>
-              <div class="ribbon large"><span><?= $product['promo'] ?></span></div>
-          <?php endif ?>
-          <?php if (!empty($colorImages[0]['images'] )): ?>
-          <?php foreach ($colorImages[0]['images'] as $k => $v) : ?>
-            <?php if(!empty($v)): ?>
-            <div id="surround">
-              <img class="mySlides cloudzoom img-responsive" id="mySlides zoom1" style="" src="<?=$settings['upload_url'].$v?>" data-cloudzoom='<?php echo $cloudzoom ? $cloudzoomdata : '' ?>'/>
-            </div>
+    <div class="container">
+      <div class="row">
+      <?php if(!empty($colorImages)):?>
+        <div class="col-md-6 p-0 d-flex flex-md-column justify-content-end align-items-center">
+          <div class="p-0 animated fadeIn delay2">
+            <ul id="ul-moreviews">
+            <?php if (!empty($colorImages[0]['images']) && count(array_filter($colorImages[0]['images'])) > 1): $ppp=0; ?>
+            <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
+            <?php if(!empty($value)): $ppp++;?>
+              <li class="dontResize"><a href="#"><img class="demo w3-opacity w3-hover-opacity-off img-responsive"
+                onclick="currentDiv(<?=$ppp;?>)" title="ck_image_<?=$ppp?>"  id="img_01" src="<?=$settings['upload_url'].'thumb_'.$value?>"></a></li>
             <?php endif;?>
-          <?php endforeach ?>
-          <?php endif;?>
-        </div>
-      </div>
-    <?php else:?>
-      <div class="col-md-2 col-sm-5 animated fadeIn delay2">
-        <ul id="ul-moreviews">
-          <?php if (!empty($images)): $pkey=0;?>
-          <?php foreach ($images as $key => $value) : ?>
-           <?php if (!empty($value)): $pkey++;?>
-             <li><a href="javacript:void(0)"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
-              onclick="currentDiv(<?php $key = $key + 1; echo $pkey ?>)"  id="img_01" title="image<?=$pkey?>" style="" src="<?php echo $value ?> " ></a></li>
-           <?php endif ?>
-          <?php endforeach ?>
-           <?php endif ?>
-        </ul>
-      </div>
-      <div class="col-md-5 col-sm-7"  >
-         <div id="surround">
-         <?php if (!empty($img_url)): ?>
-            <img class="mySlides cloudzoom img-responsive"  id="mySlides zoom1" src="<?php echo $settings['upload_url'].$img_url ?>" data-cloudzoom='<?php echo $cloudzoomdata ?>'/>
-        <?php elseif (!empty($images)): ?>
+            <?php endforeach ?>
+            <?php endif;?>
+            </ul>
+          </div>        
+          <div class="is-product-photo"><?php 
+            $number_ribbon = 0;
+            $ribbon_style = '';
+            if (isset($product['discount_label_show'])){
+                $number_ribbon = (int)@$product['discount_label_show'];
+            }
+            if (isset($product['mp_discount']) && $product['mp_discount'] > $number_ribbon){
+              $number_ribbon = (int) @$product['mp_discount'];
+            }
+            if(!empty($product['ribbon_color'])) {
+              $ribbon_style = ' style="background-color: {$product[ribbon_color]}"';
+            }          
+            if (isset($product['bank_discount']) && $product['bank_discount'] > $number_ribbon){
+              $number_ribbon = (int) @$product['bank_discount'];
+            } ?>
 
-        <?php foreach ($images as $k => $v) : ?>
-            <?php if (!empty($v)): ?>
-             <img class="mySlides cloudzoom img-responsive"  id="mySlides zoom1" src="<?php echo $v ?>" data-cloudzoom='<?php echo $cloudzoomdata ?>'/>
+            <?php if ($number_ribbon) :?>
+                <div class="ribbon large top-left small"<?php echo $ribbon_style ?>><span><?= $number_ribbon ?>% OFF</span></div>
             <?php endif ?>
-          <?php endforeach ?>
-        <?php endif; ?>
-         </div>
-      </div>
-  <?php endif;?>
-      <div class="col-md-5 product-info-container">
-       <?php
-          echo $this->Form->create(null, array(
-              'url' => array(
-                  'controller' => 'carrito',
-                  'action' => 'add'
-              ),
-              'id' => 'productForm',
-              'data-url' => Router::url(array( 'action' => 'stock' )),
-              'data-article' => $product['article']
-          ));
-      ?>
-        <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
-        <h1><?php echo $product['name'];?></h1>
-        <p class="text-muted mb-4"><?php echo $name_categories; ?> Art. <span class="prod-article"><?php echo $product['article']; ?></span></p>
-        <div class="d-flex justify-content-start align-items-center gap-05">
-        <?php  
-        
-        $orig_price = @$product['price'];
-        $price = @$product['price'];
-        $old_price = @$product['old_price'];
+            <?php if ($product['promo'] !== '') :?>
+                <div class="ribbon large"><span><?= $product['promo'] ?></span></div>
+            <?php endif ?>
+            <?php if (!empty($colorImages[0]['images'] )): ?>
+            <?php foreach ($colorImages[0]['images'] as $k => $v) : ?>
+              <?php if(!empty($v)): ?>
+              <div id="surround">
+                <img class="mySlides cloudzoom img-responsive" id="mySlides zoom1" style="" src="<?=$settings['upload_url'].$v?>" data-cloudzoom='<?php echo $cloudzoom ? $cloudzoomdata : '' ?>'/>
+              </div>
+              <?php endif;?>
+            <?php endforeach ?>
+            <?php endif;?>
+          </div>
+        </div>
+      <?php else:?>
+        <div class="col-md-6 d-flex justify-content-end align-items-center">
+          <div class="animated fadeIn delay2">
+            <ul id="ul-moreviews">
+              <?php if (!empty($images)): $pkey=0;?>
+              <?php foreach ($images as $key => $value) : ?>
+               <?php if (!empty($value)): $pkey++;?>
+                 <li><a href="javacript:void(0)"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
+                  onclick="currentDiv(<?php $key = $key + 1; echo $pkey ?>)"  id="img_01" title="image<?=$pkey?>" style="" src="<?php echo $value ?> " ></a></li>
+               <?php endif ?>
+              <?php endforeach ?>
+               <?php endif ?>
+            </ul>
+          </div>
+           <div id="surround">
+           <?php if (!empty($img_url)): ?>
+              <img class="mySlides cloudzoom img-responsive"  id="mySlides zoom1" src="<?php echo $settings['upload_url'].$img_url ?>" data-cloudzoom='<?php echo $cloudzoomdata ?>'/>
+          <?php elseif (!empty($images)): ?>
 
-        if(!empty(@$product['discount']) && abs(@$product['discount']-@$product['price']) > 0) {
-            $old_price = @$price;
-            $price = @$product['discount'];
-        }
-
-        $bank_price = 0;
-        $mp_price = 0;
-        $text = '';
-
-        if(@$product['bank_discount']){
-          $bank_price = ceil(round($orig_price * (1 - (float) @$product['bank_discount'] / 100)));
-          if($bank_price < $price) {
-            $old_price = $orig_price;
-            $price = $bank_price;
-            $text = 'transferencia';
-          }
-        }
-
-        if(@$product['mp_discount']){
-          $mp_price = ceil(round($orig_price * (1 - (float) @$product['mp_discount'] / 100)));
-          if($mp_price < $price) {
-            $old_price = $orig_price;
-            $price = $mp_price;
-            $text = 'mercadopago';
-          }
-        }
-
-        echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>".\price_format(ceil($price)) . '</span>';
-                if(!empty($old_price) && abs($price-$old_price) > 1) {
-            echo "<span class='old_price' id='price' data-price='". ceil($old_price) ."'>".\price_format(ceil($old_price)). "</span>";
-        }
-
-        echo ' <span class="text-sm">' . strtoupper($text) . '</span>';
-
+          <?php foreach ($images as $k => $v) : ?>
+              <?php if (!empty($v)): ?>
+               <img class="mySlides cloudzoom img-responsive"  id="mySlides zoom1" src="<?php echo $v ?>" data-cloudzoom='<?php echo $cloudzoomdata ?>'/>
+              <?php endif ?>
+            <?php endforeach ?>
+          <?php endif; ?>
+           </div>
+        </div>
+    <?php endif;?>
+        <div class="col-md-6 max-40">
+         <?php
+            echo $this->Form->create(null, array(
+                'url' => array(
+                    'controller' => 'carrito',
+                    'action' => 'add'
+                ),
+                'id' => 'productForm',
+                'data-url' => Router::url(array( 'action' => 'stock' )),
+                'data-article' => $product['article']
+            ));
         ?>
-        </div>
-        <div class="d-contents tags-start mt-1 mb-4">
-          <?= $this->App->show_prices_dues($legends, $product, true) ?>
-        </div>
-        <div class="caract">
-        <?php if(!empty($product['desc'])):?>
-            <p><?php echo $product['desc']; ?></p>
-        <?php endif;?>
-        <?php if (!$isGiftCard): ?>
-            <!--h2>Color</h2-->
-            <div class="animated fadeIn delay1">
-              <div class="article-tools pt-4">
-                <!--div class="color-options d-flex justify-content-start align-items-start gap-15" data-toggle="buttons"-->
-                <div class="color-options d-flex justify-content-start align-items-center w-100" data-toggle="buttons">
-                  <?php
-                      $show_names_only = count($colors) < 2;
-                      foreach ($colors as $i => $color) {
-                          $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
-                          $single = $show_names_only?'single':'';
-                          $style = (empty($color['images']))?'oldSelectColor':'';
-                          echo '<label class="btn '.$loadColorImages.' '.$single. ' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
-                          echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] . '"' . ($i == 0 ? ' checked' : '') . '>';
-                          if (!empty($color['images']) && !$show_names_only) {
-                              $image = explode(';', $color['images']);
-                              foreach ($image as $kk => $vv) {
-                                  if (!empty($vv)) {
-                                      $image[0] = $vv;
-                                      break;
-                                  }
-                              }
-                              echo '<div class="color-option color-img" style="background-image: url('.$settings['upload_url'].$image[0].')"></div>';
-                          } else {
-                            // echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
-                          }
-                          echo "<small class='color-option text-bolder'>".$color['alias']."</small>";
+          <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
+          <h1><?php echo $product['name'];?></h1>
+          <p class="text-muted mb-4"><?php echo $name_categories; ?> Art. <span class="prod-article"><?php echo $product['article']; ?></span></p>
+          <div class="d-flex justify-content-start align-items-center gap-05">
+          <?php  
+          
+          $orig_price = @$product['price'];
+          $price = @$product['price'];
+          $old_price = @$product['old_price'];
+
+          if(!empty(@$product['discount']) && abs(@$product['discount']-@$product['price']) > 0) {
+              $old_price = @$price;
+              $price = @$product['discount'];
+          }
+
+          $bank_price = 0;
+          $mp_price = 0;
+          $text = '';
+
+          if(@$product['bank_discount']){
+            $bank_price = ceil(round($orig_price * (1 - (float) @$product['bank_discount'] / 100)));
+            if($bank_price < $price) {
+              $old_price = $orig_price;
+              $price = $bank_price;
+              $text = 'transferencia';
+            }
+          }
+
+          if(@$product['mp_discount']){
+            $mp_price = ceil(round($orig_price * (1 - (float) @$product['mp_discount'] / 100)));
+            if($mp_price < $price) {
+              $old_price = $orig_price;
+              $price = $mp_price;
+              $text = 'mercadopago';
+            }
+          }
+
+          echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>".\price_format(ceil($price)) . '</span>';
+                  if(!empty($old_price) && abs($price-$old_price) > 1) {
+              echo "<span class='old_price' id='price' data-price='". ceil($old_price) ."'>".\price_format(ceil($old_price)). "</span>";
+          }
+
+          echo ' <span class="text-sm">' . strtoupper($text) . '</span>';
+
+          ?>
+          </div>
+          <div class="d-contents tags-start mt-1 mb-4">
+            <?= $this->App->show_prices_dues($legends, $product, true) ?>
+          </div>
+          <div class="caract">
+          <?php if(!empty($product['desc'])):?>
+              <p><?php echo $product['desc']; ?></p>
+          <?php endif;?>
+          <?php if (!$isGiftCard): ?>
+              <!--h2>Color</h2-->
+              <div class="animated fadeIn delay1">
+                <div class="article-tools pt-4">
+                  <!--div class="color-options d-flex justify-content-start align-items-start gap-15" data-toggle="buttons"-->
+                  <div class="color-options d-flex justify-content-start align-items-center w-100" data-toggle="buttons">
+                    <?php
+                        $show_names_only = count($colors) < 2;
+                        foreach ($colors as $i => $color) {
+                            $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
+                            $single = $show_names_only?'single':'';
+                            $style = (empty($color['images']))?'oldSelectColor':'';
+                            echo '<label class="btn '.$loadColorImages.' '.$single. ' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
+                            echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] . '"' . ($i == 0 ? ' checked' : '') . '>';
+                            if (!empty($color['images']) && !$show_names_only) {
+                                $image = explode(';', $color['images']);
+                                foreach ($image as $kk => $vv) {
+                                    if (!empty($vv)) {
+                                        $image[0] = $vv;
+                                        break;
+                                    }
+                                }
+                                echo '<div class="color-option color-img" style="background-image: url('.$settings['upload_url'].$image[0].')"></div>';
+                            } else {
+                              // echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
+                            }
+                            echo "<small class='color-option text-bolder'>".$color['alias']."</small>";
+                            echo '</label>';
+                        }
+                    ?>
+                  </div>
+                  <div class="size-options animated row" data-toggle="buttons">
+                  <!--div class="size-options d-flex justify-content-start align-items-start gap-1 pt-2" data-toggle="buttons"-->
+                    <!--option value="">Talle</option-->
+                    <?php
+                        foreach ($sizes as $i => $size) {
+                          echo '<label class="btn">';
+                          echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
+                          echo "<small class='size-option text-bolder'>".ucfirst($size['variable'])."</small>";
                           echo '</label>';
-                      }
-                  ?>
+                            // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
+                        }
+                    ?>                    
+                  </div>
                 </div>
-                <div class="size-options animated row" data-toggle="buttons">
-                <!--div class="size-options d-flex justify-content-start align-items-start gap-1 pt-2" data-toggle="buttons"-->
-                  <!--option value="">Talle</option-->
-                  <?php
-                      foreach ($sizes as $i => $size) {
-                        echo '<label class="btn">';
-                        echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
-                        echo "<small class='size-option text-bolder'>".ucfirst($size['variable'])."</small>";
-                        echo '</label>';
-                          // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
-                      }
-                  ?>                    
+                <p class="marginTop stock-block animated fadeIn">
+                  <!--span class="text-chatelet"> Stock:</span-->
+                  <span id="stock_container">
+                    <span class="text-warning">(Elegí color y talle)</span>
+                  </span>
+                </p>
+                <div>
+                  <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
                 </div>
-              </div>
-              <p class="marginTop stock-block animated fadeIn">
-                <!--span class="text-chatelet"> Stock:</span-->
-                <span id="stock_container">
-                  <span class="text-warning">(Elegí color y talle)</span>
-                </span>
-              </p>
-              <div>
-                <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
-              </div>
-              <?php endif; ?>
-              <div class="d-flex flex-column justify-content-center align-items-center footer-producto gap-05">
-                <div class="row carrito-count has-item-counter active w-100" title="Cantidad de este producto">
-                  <div class="col-xs-12 form-inline p-0">
-                    <div class="form-group">
-                      <div class="input-group carrito-selector">
-                          <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
-                              <span>&ndash;</span>
-                          </div>                                    
-                        <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="1">
-                        <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
-                         <span>+</span>
-                         </div>
+                <?php endif; ?>
+                <div class="d-flex flex-column justify-content-center align-items-center footer-producto gap-05">
+                  <div class="row carrito-count has-item-counter active w-100" title="Cantidad de este producto">
+                    <div class="col-xs-12 form-inline p-0">
+                      <div class="form-group">
+                        <div class="input-group carrito-selector">
+                            <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
+                                <span>&ndash;</span>
+                            </div>                                    
+                          <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="1">
+                          <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
+                           <span>+</span>
+                           </div>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
+                    <a href="#" id="agregar-carro" class="btn btn-chatelet dark buy agregar-carro w-100">Comprar</a>
+                    <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro w-100">Agregar al carrito</a>
+                    <!--a href="/carrito" class="btn btn-chatelet light w-100">Ir al carrito</a-->
+                  </div>                        
                 </div>
-                <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-                  <a href="#" id="agregar-carro" class="btn btn-chatelet dark buy agregar-carro w-100">Comprar</a>
-                  <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro w-100">Agregar al carrito</a>
-                  <!--a href="/carrito" class="btn btn-chatelet light w-100">Ir al carrito</a-->
-                </div>                        
               </div>
             </div>
           </div>
