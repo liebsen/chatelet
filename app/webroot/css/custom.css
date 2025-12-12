@@ -446,7 +446,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
   top: 10.25rem!important;
 }
 
-.shop-options img { margin-right: 50px; }
+.shop-options img { margin-right: 50px; max-height: 10rem; }
 .shop-options h3 { color: #363633; font-weight: 1000; text-transform: uppercase; margin-bottom: 30px; }
 .shop-options ul { column-count: 3; column-gap: 40px; }
 .shop-options ul li { margin-bottom: 0.5rem; }
@@ -1869,12 +1869,12 @@ select {
 }
 
 .ribbon.left span {
-  background: #5CB85C!important;
+  background: #5CB85C;
 }
 
 .ribbon.bottom-left span,
 .ribbon.top-left span {
-  background: #e10d74!important;
+  background: #e10d74;
 }
 
 .ribbon.bottom-left.small {

@@ -124,7 +124,7 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 							data-toggle="tooltip" 
 							title="Ver en la tienda (Nuevo tab)" 
 							target="_blank"
-							class="btn btn-info" 
+							class="btn btn-sm btn-info" 
 							data-original-title="Editar">
 							<i class="fa fa-eye"></i>
 						</a> 
@@ -132,20 +132,20 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 							href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>" 
 							data-toggle="tooltip" 
 							title="Editar" 
-							class="btn btn-success" 
+							class="btn btn-sm btn-success" 
 							data-original-title="Editar">
 							<i class="gi gi-pencil"></i>
 						</a>
 						<a 
 							href="#"
 							title="Establecer descuento por transferencia"
-							class="btn btn-warning" 
+							class="btn btn-sm btn-warning" 
 							onclick="showLayer(event,'discount','bank',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
 							<i class="gi gi-bank"></i>
 						</a>
 						<a 
 							href="#"
-							class="btn btn-warning" 
+							class="btn btn-sm btn-warning" 
 							title="Establecer descuento por mercadopago"
 							onclick="showLayer(event,'discount','mp',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
 							<i class="gi gi-credit_card"></i>
@@ -154,7 +154,7 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 							href="#" 
 							data-toggle="tooltip" 
 							title="" 
-							class="btn btn-danger deletebutton" 
+							class="btn btn-sm btn-danger deletebutton" 
 							data-original-title="Eliminar" 
 							data-id="<?=$category['Category']['id']?>" 
 							data-url-back="<?=$this->Html->url(array('action'=>'categorias'))?>" 

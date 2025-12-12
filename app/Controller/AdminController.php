@@ -1513,7 +1513,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	          $data['size'] = $file_size;
 	        }
 
-	        error_log(json_encode($data));
+	        // update products
+	        if(!empty($data['ribbon_color'])) {
+	        	$products = $this->Product->find('all', array('conditions' => array('category_id' => $data['id'])));
+	        	foreach($products as $product) {
+	        		$this->Product->save(array(
+	        			'id' => $product['Product']['id'],
+	        			'ribbon_color' => $data['ribbon_color']
+	        		));
+	        	}
+	        }
+
 	        $this->Category->save($data);
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);

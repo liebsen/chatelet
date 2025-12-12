@@ -66,7 +66,7 @@
             }
 
             if(!empty($product['ribbon_color'])) {
-              $ribbon_style = ' style="background-color: {$product[ribbon_color]}"';
+              $ribbon_style = ' style="background-color:'.$product[ribbon_color].'"';
             }
 
             if (isset($product['bank_discount']) && $product['bank_discount'] > $number_ribbon){
@@ -107,7 +107,7 @@
   $number_ribbon = (int) @$product['discount_label_show'];
   }
   if(!empty($product['ribbon_color'])) {
-  $ribbon_style = ' style="background-color: {$product[ribbon_color]}"';
+  $ribbon_style = ' style="background-color:'.$product[ribbon_color].'"';
   }    
   if (isset($product['mp_discount']) && $product['mp_discount'] > $number_ribbon){
   $number_ribbon = (int) @$product['mp_discount'];
@@ -117,7 +117,7 @@
   }
   ?><?php 
                       if (!empty($number_ribbon)) :?>
-                          <div class="ribbon top-left small sp1"<?php echo $ribbon_style ?>><span><?= $number_ribbon ?>% OFF</span></div>
+                          <div class="ribbon top-left small sp1"><span<?php echo $ribbon_style ?>><?= $number_ribbon ?>% OFF</span></div>
                       <?php endif ?>
                       <?php if ($product['promo'] !== '') :?>
                           <div class="ribbon"><span><?= $product['promo'] ?></span></div>
