@@ -284,12 +284,12 @@ class ShopController extends AppController {
 		$stock = 0;
 		$list_code = Configure::read('list_code');
 		if(!empty($article) && !empty($color_code) && !empty($size_number) ){
-			CakeLog::write('debug','article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code);
+			// CakeLog::write('debug','article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code);
 	    $stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code);
 		} elseif (!empty($article)) {
 			$stock = 1;
 		}
-		CakeLog::write('debug','stock: '.$stock);
+		// CakeLog::write('debug','stock: '.$stock);
 		return (string)$stock;
 	}
 
@@ -344,7 +344,7 @@ class ShopController extends AppController {
 
 		if (!empty($category_id)) {
 			$mapper = $this->Category->findById($category_id);
-      $category = $mapper['Category'];
+      $category = @$mapper['Category'];
 
 			//$products = $this->Product->findAllByCategoryId($category_id,['order' => ['Product.ordernum ASC']]);
 			$products = $this->Product->find('all',[
