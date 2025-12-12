@@ -69,9 +69,9 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Color Burbuja'); ?></label>
             <div class="controls">
-              <input class="form-control" type="color" name="data[ribbon_color]" value="<?= !empty($cat) ? $cat['Category']['ribbon_color'] : '' ?>">
+              <input class="form-control" type="color" id="ribbon_color" name="data[ribbon_color]" value="<?= !empty($cat) ? $cat['Category']['ribbon_color'] : '' ?>">
             </div>
-            <small class="text-muted">Seleccioná el orden de prioridad para esta categoría</small>
+            <small class="text-muted">Seleccioná color de burbuja para esta categoría. <span class="text-info is-clickable" onclick="$('#ribbon_color').val('')">Resetear</span></small>
           </div>
 
           <div class="control-group">

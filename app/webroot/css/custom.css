@@ -970,7 +970,7 @@ footer ul li { margin-bottom: 5px;  }
 #main .caract label.active:before {
   content: "\f058";
   font-family: FontAwesome;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #14c408;
   position: absolute;
   top: 0;
@@ -1815,8 +1815,8 @@ select {
 .ribbon {
   position: absolute;
   z-index: 10;
-  left: 0.25rem; 
-  bottom: 0.25rem;
+  right: 0.25rem; 
+  top: 0.25rem;
   overflow: hidden;
   text-align: right;
   cursor: pointer;

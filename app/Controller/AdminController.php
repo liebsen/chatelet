@@ -1513,9 +1513,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	          $data['size'] = $file_size;
 	        }
 
+        	$data['ribbon_color'] = $data['ribbon_color'] == '#000000' ? 
+        		NULL : 
+        		$data['ribbon_color'];
+
+
 	        // update products
 	        if(!empty($data['ribbon_color'])) {
 	        	$products = $this->Product->find('all', array('conditions' => array('category_id' => $data['id'])));
+	        	CakeLog::write('debug', 'color:'.$ribbon_color);
 	        	foreach($products as $product) {
 	        		$this->Product->save(array(
 	        			'id' => $product['Product']['id'],
