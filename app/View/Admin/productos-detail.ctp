@@ -135,8 +135,8 @@
             <div class="controls">
               <select class="form-control" name="promo">
                 <option value="">No</option>
-                <option value="2x1"<?= $prod['Product']['promo'] === '2x1' ? ' selected' : '' ?>>2x1</option>
-                <option value="3x2"<?= $prod['Product']['promo'] === '3x2' ? ' selected' : '' ?>>3x2</option>
+                <option value="2x1"<?= @$prod['Product']['promo'] === '2x1' ? ' selected' : '' ?>>2x1</option>
+                <option value="3x2"<?= @$prod['Product']['promo'] === '3x2' ? ' selected' : '' ?>>3x2</option>
               </select>
             </div>
           </div>
@@ -145,13 +145,12 @@
             <label class="control-label" for="columns-text"><?php echo __('Visible'); ?></label>
             <div class="controls">
               <select class="form-control" name="visible">
-                <option value="1"<?= $prod['Product']['visible'] ? ' selected' : '' ?>>Sí</option>
-                <option value="0"<?= !$prod['Product']['visible'] ? ' selected' : '' ?>>No</option>
+                <option value="1"<?= @$prod['Product']['visible'] ? ' selected' : '' ?>>Sí</option>
+                <option value="0"<?= @$prod['Product']['visible'] ? '' : ' selected' ?>>No</option>
               </select>
             </div>
           </div>
           <br />
-
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">

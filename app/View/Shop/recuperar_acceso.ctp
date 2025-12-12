@@ -7,7 +7,7 @@ echo $this->Session->flash();
 <section id="detalle" class="is-flex-center min-h-101">
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 animated fadeIn delay">
   	<div class="d-flex justify-content-center align-items-center gap-1">
-  		<img src="/images/isologo.png" width="60"/> 
+  		<img src="/images/isologo.png" width="30"/> 
 
 			<h2 class="text-uppercase">
 				<?php echo 'Recuperar Contraseña'; ?>

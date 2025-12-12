@@ -28,7 +28,7 @@
     <div class="wrapper">
       <div class="d-flex justify-content-between align-items-center gap-1 w-100 p-4">
         <div class="d-flex justify-content-center align-items-center gap-1">
-          <img src="/images/isologo.png" width="60"/> 
+          <img src="/images/isologo.png" width="30"/> 
           <h3 class="card-title mb-0">
             <i class="fa fa-shopping-bag mr-1"></i> Mis compras
           </h3>

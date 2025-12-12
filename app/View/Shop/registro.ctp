@@ -53,7 +53,7 @@ if (!$loggedIn) {
 				<input type="hidden" name="redirect" value="<?= $_GET['redirect'] ?? '' ?>" />
 				<input type="hidden" name="ajax" value="1" />
 			  	<div class="d-flex justify-content-start align-items-center gap-1">
-			  		<img src="/images/isologo.png" width="60"/> 
+			  		<img src="/images/isologo.png" width="30"/> 
 					<h5 class="text-uppercase">
 						<?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Crear mi cuenta' ?>
 					</h5>			
