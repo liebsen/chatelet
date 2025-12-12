@@ -1565,8 +1565,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			}
 		}
 		$h1 = array(
-			'name' => 'Compra por WhatsApp',
-			'icon' => 'gi gi-display'
+			'name' => 'WhatsApp',
+			'icon' => 'fa fa-whatsapp'
 			);
 		$this->set('h1', $h1);
 

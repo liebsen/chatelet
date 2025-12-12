@@ -862,7 +862,7 @@ body {
 }
 
 .mini-profile > a > img {
-    max-height: 2rem;
+    max-height: 1.5rem;
 }
 
 /* Sidebar Tabs */
@@ -2218,6 +2218,10 @@ a.text-black:focus {
     text-align: center !important;
 }
 
+.text-muted {
+    color: #ccc!important;
+}
+
 /* Labels & Badges */
 .label, .badge {
     font-size: 12px;
@@ -2577,6 +2581,8 @@ header.navbar .navbar-brand {
     margin-top: 0;
     line-height: 1;
     margin-right: 0.25rem;
+    position: relative;
+    top: 2px;
 }
 
 .nav-pills > li > a,

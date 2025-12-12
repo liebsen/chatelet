@@ -73,8 +73,7 @@
     ?>
     <body<?php if ($body_classes) { echo ' class="' . $body_classes . '"'; } ?>>
 
-            <?php echo $this->Session->flash() ?>
-
+        <?php echo $this->Session->flash() ?>
 
         <div id="page-loader"></div>
         <div id="page-container"<?php if ($template['page'] == 'full-width') { echo ' class="full-width"'; } ?>>
@@ -83,29 +82,40 @@
                 <div class="row">
                     <!-- Sidebar Toggle Buttons (Desktop & Tablet) -->
                     <div class="col-sm-12">
-                        <ul class="navbar-nav-custom pull-left">
+                        <ul class="navbar-nav-custom pull-left w-100">
                             <!-- Desktop Button (Visible only on desktop resolutions) -->
                             <li class="">
                                 <a href="javascript:void(0)" id="toggle-side-content" class="collapsed" data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar">
-                                    <i class="fa fa-bars"></i>
+                                    <i class="fa fa-bars"></i> Menú
                                 </a>
                             </li>
                             <!-- END Desktop Button -->
 
                             <!-- Divider -->
                             <li class="divider-vertical"></li>
+
                             <li class="dropdown dropdown-theme-options pull-right">
                                 <a href="<?=$this->Html->url(array('controller'=>'admin','action'=>'logout'))?>" class="dropdown-toggle">
                                     <i class="gi gi-exit"></i> 
                                     Salir
                                 </a>
                             </li>
-                            <!--li class="dropdown dropdown-theme-options pull-right">
+
+                            <li class="dropdown dropdown-theme-options">
                                 <a href="/" target="_blank">
                                     <i class="gi gi-home"></i> 
                                     Tienda
                                 </a>
-                            </li-->
+                            </li>
+
+                            <?php if (!empty($h1)): ?>
+                            <li class="dropdown dropdown-theme-options">
+                                <a href="" class="text-muted">
+                                    <i class="<?php echo $h1['icon'] ?>"></i> <?php echo $h1['name']; ?>
+                                </a>
+                            </li>
+                            <?php endif ?>
+
                         </ul>
                     </div>
                     <!-- END Sidebar Toggle Buttons -->
