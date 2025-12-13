@@ -1,36 +1,64 @@
 var dues_selected = ''
-// var cart = JSON.parse(localStorage.getItem('cart')) || {}
 var requesting_coupon = false
-//var select_dues = (e,item) => {
-$('.dues-select-option').click((e) => {
-	const target = $(e.target).hasClass('dues-select-option') ? 
-		$(e.target) : 
-		$(e.target).parents('.dues-select-option')
-	e.preventDefault()
-	e.stopPropagation()
-	var json = target.data('json')
-	dues_selected = json.dues
 
-	if(!dues_selected) {
-		return false
-	}
+function updateTotals(res) {
+  total = parseFloat(res.cart_totals.grand_total)      
+  discounted_formatted = formatNumber(res.cart_totals.coupon_benefits)
 
-	if(!$('#mercadopago').is(':checked') && dues_selected > 1) {
-		select_radio('payment_method', 'mercadopago')
-	}
+  $('.coupon_bonus').text( "$ " + formatNumber(discounted_formatted))
+  $('.subtotal_price').text( "$ " + formatNumber(res.cart_totals.total_products))
 
-	var interest = json.interest
+  fxTotal(total)
 
-	$('input[name="payment_dues"]').val(dues_selected)
-	$('.dues-select-option').removeClass('selected secondary')
-	$('.dues-select-option').addClass('secondary')
-	target.addClass('selected')
-	prevent_default = false
-})
+  $(res.cart).each(function(i,e) {
+  	$('.price-'+e.id).text("$ " + formatNumber(parseFloat(e.price)))
+  })
+}
 
 $(function(){
-	localStorage.setItem('continue_shopping_url', window.location.pathname)
-	const payment_method = localStorage.getItem('payment_method') || 'bank'
+	const payment_method = localStorage.payment_method && localStorage.payment_method != 'undefined' ? 
+		localStorage.payment_method :
+		'bank'
+
+	localStorage.continue_shopping_url = window.location.pathname
+
+	/* click handlers */
+
+	$('#submitcheckoutbutton').click(e => {
+		fbq('track', 'AddPaymentInfo', { value: cart_totals.grand_total, currency: 'ARS' });
+		if(dues_selected && dues_selected > 1){ // show legend
+			$('#dues_message').addClass('show')
+			$('.dues-message-dues').text(dues_selected)
+		} else {
+			$('#submitform').click()
+		}
+	})
+
+	$('.dues-select-option').click((e) => {
+		const target = $(e.target).hasClass('dues-select-option') ? 
+			$(e.target) : 
+			$(e.target).parents('.dues-select-option')
+
+		e.preventDefault()
+		e.stopPropagation()
+
+		var json = target.data('json')
+		dues_selected = json.dues
+
+		if(!dues_selected) {
+			return false
+		}
+
+		if(!$('#mercadopago').is(':checked') && dues_selected > 1) {
+			select_radio('payment_method', 'mercadopago')
+		}
+
+		$('input[name="payment_dues"]').val(dues_selected)
+		$('.dues-select-option').removeClass('selected secondary')
+		$('.dues-select-option').addClass('secondary')
+
+		target.addClass('selected')
+	})
 
 	$('.select-payment-option').click((e) => {
 		const target = $(e.target).hasClass('select-payment-option') ? 
@@ -52,109 +80,76 @@ $(function(){
 			return false
 		}
 
-		if(cart_totals.coupon) {
-			requesting_coupon = true
-		  $.post('/carrito/coupon', { 
-		  	coupon: cart_totals.coupon,
-		  	payment_method: selected,
-		  }, function(res, textStatus) {
-		    if( res.status == 'success' ) {
-		      let coupon_type = res.data.coupon_type
-		      let discount = parseFloat(res.data.discount)
-		      let discounted = 0
-		      total = parseFloat(res.data.total)      
-		      let products = parseFloat(res.data.products)      
+		requesting_coupon = true
 
-		      discounted_formatted = formatNumber(res.data.coupon_benefits)
+	  $.post('/checkout/payment_method', { 
+	  	coupon: cart_totals.coupon,
+	  	payment_method: selected,
+	  }, function(res, textStatus) {
+	    if( res.status == 'success' ) {
+	    	updateTotals(res)
+				total = getTotals()	
+				if(payment_dues) {
+					switch(selected){
+						case 'bank':
+							if(payment_dues.classList.contains('scaleIn')){
+								payment_dues.classList.remove('scaleIn')
+								payment_dues.classList.add('scaleOut')
+								setTimeout(() => {
+									payment_dues.classList.add('hide-element')
+								}, 500)
+							}
+							document.querySelectorAll('.select-payment-option .bronco-select').forEach((e,i) => {
+								if(i) {
+									e.classList.add('hide')
+								}
+							})
+						break;
 
-		      $('.coupon_bonus').text( "$ " + formatNumber(discounted_formatted))
-		      $('.subtotal_price').text( "$ " + formatNumber(products))
-		      format_total = formatNumber(total)
-		      fxTotal(total)
-		      // calcDues(price)
+						case 'mercadopago':
 
-		      $(res.data.updated).each(function(i,e) {
-		      	$('.price-'+Object.keys(e)[0]).text("$ " + formatNumber(Object.values(e)[0].price))
-		      })
+							if(payment_dues.classList.contains('scaleOut')){
+								payment_dues.classList.remove('scaleOut', 'hide-element')
+								payment_dues.classList.add('scaleIn')
+							}
 
-		      window.coupon_bonus = discounted
+							$('.dues-select-option').each(function(){
+								const data = $(this).data('json')
+								$(this).find('.due-option-price').text("$ " + formatNumber(total / data.dues))
+							})
+							
+							$('.dues-block').show()
+							document.querySelectorAll('.select-payment-option .bronco-select').forEach((e) => e.classList.remove('hide'))
 
-		      //cart_totals.total_products = parseFloat(total.toFixed(2))
-		    }
-		    requesting_coupon = false
-		  })
-		} else {
-			total = getTotals()	
-			console.log('total', total)
-		}
+						break;
+					}
+				}
+
+				if (
+					selected === 'bank' && 
+					settings.bank_enable && 
+					settings.bank_discount_enable && 
+					settings.bank_discount
+				) {
+					bank_bonus = total * (parseFloat(settings.bank_discount) / 100)
+					$('.bank_bonus').text(formatNumber(bank_bonus))
+					$('.bank-block').removeClass('hide')
+					$('.bank-block').addClass('animated fadeIn')
+					select_radio('payment_dues', 1)
+					$('.payment_dues label').not(':first-child').addClass('hide')
+				} else {
+					$('.payment_dues label').removeClass('hide')
+					$('.bank-block').addClass('hide')
+				}
+	      //cart_totals.total_products = parseFloat(total.toFixed(2))
+	    }
+	    requesting_coupon = false
+	  })
 		
-		if(payment_dues) {
-			switch(selected){
-				case 'bank':
-					if(payment_dues.classList.contains('scaleIn')){
-						payment_dues.classList.remove('scaleIn')
-						payment_dues.classList.add('scaleOut')
-						setTimeout(() => {
-							payment_dues.classList.add('hide-element')
-						}, 500)
-					}
-					document.querySelectorAll('.select-payment-option .bronco-select').forEach((e,i) => {
-						if(i) {
-							e.classList.add('hide')
-						}
-					})
-				break;
-
-				case 'mercadopago':
-
-					if(payment_dues.classList.contains('scaleOut')){
-						payment_dues.classList.remove('scaleOut', 'hide-element')
-						payment_dues.classList.add('scaleIn')
-					}
-
-					$('.dues-select-option').each(function(){
-						const data = $(this).data('json')
-						$(this).find('.due-option-price').text("$ " + formatNumber(total / data.dues))
-					})
-					
-					$('.dues-block').show()
-					document.querySelectorAll('.select-payment-option .bronco-select').forEach((e) => e.classList.remove('hide'))
-
-				break;
-			}
-		}
-
-		if (
-			selected === 'bank' && 
-			settings.bank_enable && 
-			settings.bank_discount_enable && 
-			settings.bank_discount
-		) {
-			bank_bonus = total * (parseFloat(settings.bank_discount) / 100)
-			$('.bank_bonus').text(formatNumber(bank_bonus))
-			$('.bank-block').removeClass('hide')
-			$('.bank-block').addClass('animated fadeIn')
-			select_radio('payment_dues', 1)
-			$('.payment_dues label').not(':first-child').addClass('hide')
-		} else {
-			$('.payment_dues label').removeClass('hide')
-			$('.bank-block').addClass('hide')
-		}
-
-		localStorage.setItem('payment_method', selected)
+		localStorage.payment_method = selected
 
 		$('.payment_method .bronco-select').removeClass('is-selected is-secondary')
 		$('.payment_method .bronco-select').addClass('is-secondary')
 		target.addClass('is-selected')
-	})
-
-	$('#submitcheckoutbutton').click(e => {
-		fbq('track', 'AddPaymentInfo', { value: cart_totals.grand_total, currency: 'ARS' });
-		if(dues_selected && dues_selected > 1){ // show legend
-			$('#dues_message').addClass('show')
-			$('.dues-message-dues').text(dues_selected)
-		} else {
-			$('#submitform').click()
-		}
 	})
 })

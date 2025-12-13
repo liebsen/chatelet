@@ -18,7 +18,6 @@ class CartComponent extends Component {
   }
 
   public function update($cart=false, $cart_totals=false) {
-  
     // CakeLog::write('debug', 'cart_totals(param):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
     // CakeLog::write('debug', 'cart(param):'. json_encode($cart));
 
@@ -185,7 +184,10 @@ class CartComponent extends Component {
     $this->controller->Session->write('cart_totals', $cart_totals);
     $this->controller->Session->write('cart', $cart);
 
-    return $cart;
+    return [
+      'cart' => $cart, 
+      'cart_totals' => $cart_totals
+    ];
   }
 
   public function destroy() {

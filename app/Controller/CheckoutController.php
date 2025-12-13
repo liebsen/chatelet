@@ -137,7 +137,7 @@ class CheckoutController extends AppController
 				$cart_totals[$part] = $data[$part];
 			}
 
-			CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
+			// CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
 			$this->Cart->update(null, $cart_totals);
 
       return json_encode($response);
@@ -207,6 +207,22 @@ class CheckoutController extends AppController
 
 		// $user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));
 		// $this->set('userData',$user);
+	}
+
+	public function payment_method($code=null){
+		$this->RequestHandler->respondAs('application/json');
+		$this->autoRender = false;
+
+		$cart_totals = $this->Session->read('cart_totals');
+		$payment_method = $cart_totals['payment_method'] ?? 'bank';
+		$payment_method = $this->request->data['payment_method'] ?? $payment_method;
+		$cart_totals['payment_method'] = $payment_method;
+
+		$cart = $this->Cart->update(null, $cart_totals);
+		CakeLog::write('debug','cart(3):'.json_encode($cart));
+		$cart['status'] = 'success';
+
+		return json_encode($cart);
 	}
 
 	public function confirma() {

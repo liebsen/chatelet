@@ -269,16 +269,15 @@ class CarritoController extends AppController
 	}
 
 	public function coupon($code=null){
+		$this->RequestHandler->respondAs('application/json');
+		$this->autoRender = false;
+
 		$code = $code ?? $this->request->data['coupon'];
 		$cart = $this->Session->read('cart');
 		$cart_totals = $this->Session->read('cart_totals');
 		$payment_method = $cart_totals['payment_method'] ?? 'bank';
 		$payment_method = $this->request->data['payment_method'] ?? $payment_method;
-
 		$cart_totals['payment_method'] = $payment_method;
-
-		$this->RequestHandler->respondAs('application/json');
-		$this->autoRender = false;
 
 		$coupon = $this->Coupon->find('first', [
 			'conditions' => [
@@ -407,7 +406,6 @@ class CarritoController extends AppController
 		CakeLog::write('debug', 'total(2):'.$total);
 
 		// CakeLog::write('debug', 'coupon_bonus:'. $coupon_bonus);
-		$cart_totals['coupon_benefits'] = $coupon_bonus;
 
 		$coupon_parsed->data["updated"] = $updated;
 		$coupon_parsed->data["total"] = $total;
@@ -417,6 +415,7 @@ class CarritoController extends AppController
 
 		if($coupon_code) {
 			$cart_totals['coupon'] = $coupon_code;
+			$cart_totals['coupon_benefits'] = $coupon_bonus;
 		}
 
 		$cart_totals['grand_total'] = $total;
