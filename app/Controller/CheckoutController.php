@@ -63,7 +63,7 @@ class CheckoutController extends AppController
 		$this->set('freeShipping', $freeShipping);		
 	}
 
-	public function index() { }
+	public function index() {}
 
 	public function envio() {
 		if(empty($this->Session->read('cart_totals'))) {
@@ -86,37 +86,53 @@ class CheckoutController extends AppController
 
 			$customer = $data['customer'];
 
-			if($data['cargo'] == 'shipment' && empty($data['customer'])) {
-	      return json_encode(array(
-	        'success' => false, 
-	        'errors' => 'No se recibió datos de persona'
-	      ));
+			if($data['cargo'] == 'shipment') { 
+				if(empty($data['customer']))
+		      return json_encode(array(
+		        'success' => false, 
+		        'errors' => 'No se recibió datos de persona'
+		      ));
+				if(empty($data['shipping']))
+		      return json_encode(array(
+		        'success' => false, 
+		        'errors' => 'No se recibió datos del carrier'
+		      ));
+
+		    $data['store'] = null;
+		    $data['store_address'] = null;
 			}
       
+      if($data['cargo'] == 'takeaway') { 
+				if(empty($data['store']) || empty($data['store_address']))
+		      return json_encode(array(
+		        'success' => false, 
+		        'errors' => 'No se recibió datos de store'
+		      ));
+
+		   	$data['shipping'] = null;
+		   	$data['delivery_cost'] = 0;
+      }
+
       $response = array(
         'success' => true, 
         'message' => 'OK, pasemos a pago'
       );
 
 			$delivery_cost = 0;
-			// CakeLog::write('debug', 'envio(data):'.json_encode($data));	
-			// CakeLog::write('debug', 'envio(cart_totals):'.json_encode($cart_totals));	
+			// CakeLog::write('debug', 'envio(data):'.json_encode($data, JSON_PRETTY_PRINT));	
+			// CakeLog::write('debug', 'envio(cart_totals):'.json_encode($cart_totals, JSON_PRETTY_PRINT));	
 
 			if($data['cargo'] == 'shipment' && empty($cart_totals['free_shipping'])) {
 				$delivery_data = json_decode($this->deliveryCost(
 					$data['postal_address'], 
-					$data['shipping'],
-					$cart_totals
+					$data['shipping']
 				));
 				
-				// CakeLog::write('debug', 'envio(json):'.json_encode($delivery_data));	
-				// CakeLog::write('debug', 'envio(price)(1):'.$delivery_data->rates[0]->price);
-				$delivery_cost = (float) $delivery_data->rates[0]->price;
-				// CakeLog::write('debug', 'envio(deliverycost)(1):'.$delivery_cost);
-				if(!empty($delivery_cost)) {
-					$cart_totals['delivery_cost'] = $delivery_cost;
-				} else {
-					// CakeLog::write('debug', 'envio(err) No se obtuvo cotizacion de envio. delivery_data:'.json_encode($delivery_data, JSON_PRETTY_PRINT));
+				// CakeLog::write('debug', 'envio(3)');
+				// CakeLog::write('debug', 'envio(delivery_data):'.json_encode($delivery_data));	
+				if(!empty($delivery_data->rates[0]->price)) {
+					// CakeLog::write('debug', 'envio(4)');
+					$delivery_cost = (float) $delivery_data->rates[0]->price;
 				}
 			}
 
@@ -132,12 +148,10 @@ class CheckoutController extends AppController
 				'store_address', 
 				'customer'
 			);
-
 			foreach($partials as $part) {
 				$cart_totals[$part] = $data[$part];
 			}
-
-			// CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
+			CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
 			$this->Cart->update(null, $cart_totals);
 
       return json_encode($response);
@@ -156,25 +170,24 @@ class CheckoutController extends AppController
 	}
 
 	public function pago() {
-		
 		if ($this->request->is('post')) {
 			$this->RequestHandler->respondAs('application/json');
 			$this->autoRender = false;
 
-			$pago = $this->request->data;
+			$data = $this->request->data;
 			$response = array(
 				'success' => true,
 				'message' => 'OK, pasemos a pago'
 			);
 
-			if(empty($pago)) {
+			if(empty($data)) {
 				return json_encode(array(
 					'success' => false,
 					'errors' => 'Datos de pago no recibidos'
 				));
 			}
 
-			if(empty($pago['payment_method'])) {
+			if(empty($data['payment_method'])) {
 				return json_encode(array(
 					'success' => false,
 					'errors' => 'Método de pago no recibido'
@@ -189,7 +202,7 @@ class CheckoutController extends AppController
 			$cart_totals = $this->Session->read('cart_totals');
 
 			foreach($partials as $part) {
-				$cart_totals[$part] = $pago[$part];
+				$cart_totals[$part] = $data[$part];
 			}
 
 			// CakeLog::write('debug', 'updateTotals(2)'.json_encode($cart_totals));
@@ -219,7 +232,7 @@ class CheckoutController extends AppController
 		$cart_totals['payment_method'] = $payment_method;
 
 		$cart = $this->Cart->update(null, $cart_totals);
-		CakeLog::write('debug','cart(3):'.json_encode($cart));
+		// CakeLog::write('debug','cart(3):'.json_encode($cart));
 		$cart['status'] = 'success';
 
 		return json_encode($cart);
@@ -347,14 +360,7 @@ class CheckoutController extends AppController
 		return json_encode($stores);
 	}
 
-	public function deliveryCost($cp, $code = null, $sale = null){
-		if ($sale['cargo'] === 'takeaway') {
-			$json['rates'][] = 0;
-			return $json;
-		}
-
-		$cp = $cp ?? @$sale['postal_address'];
-		$code = $code ?? @$sale['shipping'];
+	public function deliveryCost($cp, $code = null){
 		CakeLog::write('debug','deliveryCost(cp):'.$cp);
 		CakeLog::write('debug','deliveryCost(code):'.$code);
 
@@ -364,8 +370,7 @@ class CheckoutController extends AppController
 		//Codigo Postal
 		$this->Session->write('cp', $cp);
 		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') {
-			$dummy = '{"freeShipping":false,"rates":[{"title":"Oca","code":"oca","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/628eb1ba29efd.svg","info":"Env\u00edos a todo el pa\u00eds","price":987,"centros":[],"valid":true},{"title":"Speed Moto","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/6292a6f2d79b7.jpg","code":"speedmoto","info":"10 a\u00f1os brindando confianza a nuestros clientes","price":"700.00","centros":[],"valid":true}],"itemsData":{"count":1,"price":1994.99,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}';
-			return json_encode(json_decode($dummy));
+			return json_encode(json_decode('{"freeShipping":false,"rates":[{"title":"Oca","code":"oca","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/628eb1ba29efd.svg","info":"Env\u00edos a todo el pa\u00eds","price":987,"centros":[],"valid":true},{"title":"Speed Moto","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/6292a6f2d79b7.jpg","code":"speedmoto","info":"10 a\u00f1os brindando confianza a nuestros clientes","price":"700.00","centros":[],"valid":true}],"itemsData":{"count":1,"price":1994.99,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}'));
 		}
 
 		$shipping_price = $this->Setting->findById('shipping_price_min');
@@ -988,8 +993,7 @@ class CheckoutController extends AppController
 
 				$delivery_data = json_decode($this->deliveryCost(
 					$cart_totals['postal_address'], 
-					$cart_totals['shipping'], 
-					$cart_totals
+					$cart_totals['shipping']
 				));
 
 				CakeLog::write('debug', 'sale(delivery_Data): '.json_encode($delivery_data));

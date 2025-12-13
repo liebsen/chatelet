@@ -425,7 +425,7 @@ class CarritoController extends AppController
 		
 		return json_encode($coupon_parsed);
 	}
-
+	/*
 	public function deliveryCost($cp, $sale = null, $encode = true){
 
 		if ($sale['cargo'] === 'takeaway') {
@@ -636,6 +636,8 @@ class CarritoController extends AppController
 			return $json;	
 		}		
 	}
+
+	*/
 
 	public function andreani_cotiza () {
 		$this->autoRender = false;
