@@ -19,17 +19,9 @@ $socials = \parsed_socials();
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
   <head>
-    <style>
-      body {
-        font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
-        font-size: 16px;
-        font-color: #333;
-        background-color: #f8f8f8;
-      }
-    </style>
   </head>
-  <body>
-    <table cellpadding="0" cellspacing="0" width="600" align="center" style="backgound-color: #f8f8f8; width:100%;" >
+  <body style="font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;font-size: 16px;font-color: #333;background-color: #f8f8f8; width:100%;">
+    <table cellpadding="0" cellspacing="0" width="600" align="center">
       <tr>
         <td>
           <table cellpadding="0" cellspacing="0" style="width: 100%; padding: 16px;height: 120px;">
@@ -41,7 +33,7 @@ $socials = \parsed_socials();
       </tr>
       <tr>
         <td align="center">
-          <table cellpadding="0" cellspacing="0" align="center" style="backgound-color: #ffffff; border-radius: 16px;height: 120px;width:auto; padding: 16px; box-shadow: 0 0 10px rgba(0,0,0,0.1)">
+          <table cellpadding="0" cellspacing="0" align="center" style="background-color: #ffffff; border-radius: 16px;height: 120px;width:auto; padding: 16px; box-shadow: 0 0 10px rgba(0,0,0,0.1)">
             <tr>
               <td align="center"><?php echo $this->fetch('content'); ?></td>
             </tr>
