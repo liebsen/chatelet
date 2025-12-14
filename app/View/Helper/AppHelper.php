@@ -265,7 +265,7 @@ class AppHelper extends Helper {
         
         if($calc_price >= $min_sale && $legend['Legend']['dues'] > 1) {        
           $dues_options[]= '<span class="text-legend justify-content-start">' . @str_replace(['{cuotas}','{interes}','{monto}'], [
-            '<span class="text-muted">' . $legend['Legend']['dues'] . '</span>',
+            '<span>' . $legend['Legend']['dues'] . '</span>',
             $legend['Legend']['interest'],
             '<span class="price_strong">' . \price_format($price_with_interest/$legend['Legend']['dues']) . '</span>'
           ],
