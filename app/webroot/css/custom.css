@@ -494,7 +494,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
 
 footer { background: white; overflow: hidden; padding: 5rem 0 0; }
 footer > .wrapper { 
-  padding: 1rem; 
+  padding: 0.75rem; 
 }
 footer .options {
   display: flex;

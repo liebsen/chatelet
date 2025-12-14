@@ -140,7 +140,7 @@ $(document).ready(function() {
 					if (!isNaN(rate.price)) {
 						var price = '<span class="text-success text-bold">Gratis</span>'
 						if (!json.freeShipping) {
-							price = `<span class="text-uppercase">$ ${parseInt(rate.price)}</span>`
+							price = `<span class="text-uppercase">$ ${formatNumber(parseInt(rate.price))}</span>`
 						}
 						rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')">${price}</div></li>`
 					}

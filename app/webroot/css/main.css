@@ -193,7 +193,7 @@ body {
 }
 
 #page-sidebar {
-    width: 201px;
+    /* width: 201px; */
     display: block;
     position: absolute;
     left: 0;

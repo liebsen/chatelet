@@ -789,7 +789,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	private function getMPSales(){
-		if ($_SERVER['REMOTE_ADDR'] == '127.0.0.11') {
+		if (in_array($_SERVER['REMOTE_ADDR'], $this->localips)) {
 			return json_decode(file_get_contents(__DIR__ . '/dummy/mpsales.json'), true);
 		}
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
@@ -3086,6 +3086,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       	CakeLog::write('debug', 'data:'. json_encode(['id' => $id, 'value' => $value]));
       	$this->Setting->save(['id' => $id, 'value' => $value]);
       }
+      return $this->redirect(array('action'=>'bank'));
+
      	/* $data = parent::load_settings();
      	$this->set('data', $data); */
 		}

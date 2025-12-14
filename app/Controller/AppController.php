@@ -64,6 +64,11 @@ class AppController extends Controller
 
 
   public $settings = [];
+  public $localips = [
+    '127.0.0.1', 
+    '192.168.2.102', 
+    '192.168.2.105'
+  ];
 
   private $setting_tags = [
     'stock_min',
@@ -242,7 +247,10 @@ class AppController extends Controller
       'data' => $data
     ));
 
-    if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($data['receiver_email'])){
+    if (
+      in_array($_SERVER['REMOTE_ADDR'], $this->localips) ||
+      empty($data['receiver_email']))
+    {
       // CakeLog::write('debug', 'email:'. json_encode($email->message('html')));
       return true;
     }
@@ -251,7 +259,7 @@ class AppController extends Controller
   }
 
   public function sendEmailMessage($message, $subject, $to){
-    if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($to)){
+    if (in_array($_SERVER['REMOTE_ADDR'], $this->localips) || empty($to)){
       return true;
     }
 

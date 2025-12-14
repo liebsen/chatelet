@@ -310,7 +310,10 @@ class ShopController extends AppController {
 
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
 		$this->autoRender = false;
-		if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1') {
+		CakeLog::write('debug', 'localip:'.json_encode($this->localips));
+		CakeLog::write('debug', 'ip:'.json_encode($_SERVER['REMOTE_ADDR']));
+		CakeLog::write('debug', 'local:'.json_encode(in_array($_SERVER['REMOTE_ADDR'], $this->localips)));
+		if (in_array($_SERVER['REMOTE_ADDR'], $this->localips)) {
 			return 1;
 		}
 		$this->SQL = $this->Components->load('SQL');

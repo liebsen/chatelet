@@ -13,6 +13,7 @@ let clock = 0
 let fakeshown = 0 
 var toggleInterval = 0
 
+
 function getStorage(key, def) {
   if(localStorage[key] && localStorage[key] != 'undefined') {
     let res = localStorage[key]
