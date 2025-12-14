@@ -88,7 +88,7 @@ $(function(){
 	  }, function(res, textStatus) {
 	    if( res.status == 'success' ) {
 	    	updateTotals(res)
-				total = getTotals()	
+				//total = getTotals()	
 				if(payment_dues) {
 					switch(selected){
 						case 'bank':
@@ -115,7 +115,7 @@ $(function(){
 
 							$('.dues-select-option').each(function(){
 								const data = $(this).data('json')
-								$(this).find('.due-option-price').text("$ " + formatNumber(total / data.dues))
+								$(this).find('.due-option-price').text("$ " + formatNumber(res.cart_totals.grand_total / data.dues))
 							})
 							
 							$('.dues-block').show()

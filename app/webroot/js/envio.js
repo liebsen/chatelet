@@ -15,9 +15,11 @@ selectShipping = function (e, shipping, cost) {
 	$(e).addClass('selected')
 	$('.delivery-cost').addClass('hidden')
 	$('.shipping-cargo').text(shipping.toUpperCase())	
+	
+	total = total_products - coupon_benefits
 
 	if (grand_total < shipping_price) {
-		total =  total_products - coupon_benefits + cost
+		total += cost
 		$('#subtotal_envio').val(cost)
 		$('.products-total').removeClass('hidden')
 		$('.delivery-cost').removeClass('hidden')

@@ -41,20 +41,20 @@ var getTotals = () => {
     subtotal-= cart_totals.coupon_benefits
   }
 
-  if(
+  /*if(
     payment_method == 'bank' && 
     settings.bank_enable && 
     settings.bank_discount_enable && 
     settings.bank_discount
   ) {
     subtotal-= subtotal * (parseFloat(settings.bank_discount) / 100)
-  }
+  }*/
 
   if(subtotal < 1) {
     subtotal = 1
   }
 
-  // console.log('getTotals(2)', subtotal)
+  console.log('getTotals(2)', subtotal)
   $('.calc_total').text("$ " + formatNumber(subtotal))
   // localStorage.setItem('cart', JSON.stringify(carrito))  
   return subtotal
