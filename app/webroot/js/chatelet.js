@@ -192,7 +192,7 @@ let strtoFloat = (text) => {
 let calcDues = (total) => {
   $('.dues-select-option').each(function(e){
     const option = $(e).data('json')
-    console.log('dues-select-option:data', option)
+    // console.log('dues-select-option:data', option)
     const dues = Number(option.dues)
     const interest = Number(option.interest) || 0
     const monto = total * (1 + interest / 100)
@@ -202,7 +202,7 @@ let calcDues = (total) => {
 
 let fxTotal = (total) => {
   if($('.calc_total').text().replace("$ ", "") != total) {
-    console.log('fxTotal', total)
+    // console.log('fxTotal', total)
     $('.calc_total').text( '$ ' + formatNumber(total) )
   }
 }

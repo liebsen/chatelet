@@ -76,8 +76,6 @@ $(document).ready(function() {
     
     count = parseInt(count)
 
-    console.log({count})
-
     if($(e.target).hasClass('disable') || count == 0) {
       return false
     }
@@ -87,9 +85,6 @@ $(document).ready(function() {
     } else {
       count++
     }
-
-    console.log({count})
-
 
     var data = {
       count: parseInt(count),
