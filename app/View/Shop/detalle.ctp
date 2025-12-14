@@ -179,6 +179,15 @@ foreach ($properties as $property) {
               $price = $bank_price;
               $text = 'transferencia';
             }
+          } else {
+            if(!empty($settings['bank_enable']) && !empty($settings['bank_discount_enable']) && !empty($settings['bank_discount'])) {
+              $bank_price2 = round($orig_price * (1 - (float) @$settings['bank_discount'] / 100));
+              if($bank_price2 < $price) {
+                $old_price = $orig_price;
+                $price = $bank_price2;
+                $text = 'transferencia';
+              }
+            }            
           }
 
           if(@$product['mp_discount']){
@@ -187,15 +196,6 @@ foreach ($properties as $property) {
               $old_price = $orig_price;
               $price = $mp_price;
               $text = 'mercadopago';
-            }
-          }
-
-          if($text == '' && !empty($settings['bank_enable']) && !empty($settings['bank_discount'])) {
-            $bank_price2 = round($orig_price * (1 - (float) @$settings['bank_discount'] / 100));
-            if($bank_price2 < $price) {
-              $old_price = $orig_price;
-              $price = $bank_price2;
-              $text = 'transferencia';
             }
           }
 

@@ -111,7 +111,7 @@ class AppHelper extends Helper {
       $number_ribbon = (int) @$item['bank_discount'];
     }
 
-    if(!$number_ribbon && !empty($settings['bank_enable']) && !empty($settings['bank_discount']))  {
+    if(!$number_ribbon && !empty($settings['bank_enable']) && !empty($settings['bank_discount_enable']) && !empty($settings['bank_discount']))  {
       $number_ribbon = $settings['bank_discount'];
     }
 
@@ -214,6 +214,16 @@ class AppHelper extends Helper {
         $price = $bank_price;
         $text = 'Transferencia';
       }
+    } else {
+      if(!empty($settings['bank_enable']) && !empty($settings['bank_discount_enable']) && !empty($settings['bank_discount'])) {
+        $bank_price2 = round($orig_price * (1 - (float) @$settings['bank_discount'] / 100));
+        if($bank_price2 < $price) {
+          $discount = $settings['bank_discount'];
+          $old_price = $orig_price;
+          $price = $bank_price2;
+          $text = 'Transferencia';
+        }
+      }      
     }
 
     if(!empty(@$item['mp_discount']) && $item['mp_discount']){
@@ -226,15 +236,7 @@ class AppHelper extends Helper {
       }
     }
 
-    if($text == '' && !empty($settings['bank_enable']) && !empty($settings['bank_discount']) && !empty($settings['bank_discount'])) {
-      $bank_price2 = round($orig_price * (1 - (float) @$settings['bank_discount'] / 100));
-      if($bank_price2 < $price) {
-        $discount = $settings['bank_discount'];
-        $old_price = $orig_price;
-        $price = $bank_price2;
-        $text = 'Transferencia';
-      }
-    }
+
 
     // price
     if(!$noprice) {
