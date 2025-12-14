@@ -55,7 +55,7 @@ class CheckoutController extends AppController
 	public function beforeFilter()
 	{
   	parent::beforeFilter();
-  	$this->set('sorted', $this->Cart->sort());
+  	$this->set('sorted', $this->Cart->sorted());
 		$index = array_search($this->request->here, array_column($this->checkout_steps, 'url'));
 		$this->set('checkout_index', $index);
 		$this->set('checkout_steps', $this->checkout_steps);
@@ -152,7 +152,7 @@ class CheckoutController extends AppController
 			}
 
 			// CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
-			$this->Cart->update(null, $cart_totals);
+			$this->Cart->update($this->settings,null, $cart_totals);
 
       return json_encode($response);
 		}
@@ -206,7 +206,7 @@ class CheckoutController extends AppController
 			}
 
 			// CakeLog::write('debug', 'updateTotals(2)'.json_encode($cart_totals));
-			$this->Cart->update(null, $cart_totals);
+			$this->Cart->update($this->settings, null, $cart_totals);
 
 			return json_encode($response);
 		}
@@ -231,7 +231,7 @@ class CheckoutController extends AppController
 		$payment_method = $this->request->data['payment_method'] ?? $payment_method;
 		$cart_totals['payment_method'] = $payment_method;
 
-		$cart = $this->Cart->update(null, $cart_totals);
+		$cart = $this->Cart->update($this->settings, null, $cart_totals);
 		// CakeLog::write('debug','cart(3):'.json_encode($cart));
 		$cart['status'] = 'success';
 
@@ -331,25 +331,6 @@ class CheckoutController extends AppController
 			return 0;
 		}
 	}
-
-	/*public function getCartData($id)
-	{
-		$this->RequestHandler->respondAs('application/json');
-		$this->autoRender = false;
-		$map = $this->Setting->findById('bank_enable');
-		$settings['bank_enable'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount_enable');
-		$settings['bank_discount_enable'] = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount');
-		$settings['bank_discount'] = @$map['Setting']['value'];
-
-		$response = (object) [
-			'enable' => @$settings['bank_enable'],
-			'discount_enable'=> @$settings['bank_discount_enable'],
-			'discount'=> @$settings['bank_discount']
-		];
-		return json_encode($response);
-	}*/
 
 	public function takeawayStores($cp = null){
 		$this->RequestHandler->respondAs('application/json');

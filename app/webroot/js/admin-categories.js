@@ -33,6 +33,7 @@ function showLayer (e, layer, mode, category_id, category_name) {
 
 function categoryDiscount(){
   var button = $(`#discount_btn`)
+  const category = $('.category_name').text()
   button.addClass('btn-disabled')
   button.text('Solicitando...')
   $.post('/admin/categoryDiscount', { 
@@ -44,7 +45,7 @@ function categoryDiscount(){
     let data = JSON.parse(res)
     if(data.status==='success'){
       button.text('Actualizar')
-      alert(`Se actualizó correctamente ${data.conds}`)
+      alert(`Se actualizó correctamente ${category}`)
       layerClose()
     } else {
       const message = data.message.replace(/\s+/g, ' ').trim()

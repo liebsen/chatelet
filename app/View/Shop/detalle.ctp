@@ -190,6 +190,15 @@ foreach ($properties as $property) {
             }
           }
 
+          if($text == '' && !empty($settings['bank_enable']) && !empty($settings['bank_discount'])) {
+            $bank_price2 = round($orig_price * (1 - (float) @$settings['bank_discount'] / 100));
+            if($bank_price2 < $price) {
+              $old_price = $orig_price;
+              $price = $bank_price2;
+              $text = 'transferencia';
+            }
+          }
+
           echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>".\price_format(ceil($price)) . '</span>';
                   if(!empty($old_price) && abs($price-$old_price) > 1) {
               echo "<span class='old_price' id='price' data-price='". ceil($old_price) ."'>".\price_format(ceil($old_price)). "</span>";
@@ -200,7 +209,7 @@ foreach ($properties as $property) {
           ?>
           </div>
           <div class="d-contents tags-start mt-1 mb-4">
-            <?= $this->App->show_prices_dues($legends, $product, true) ?>
+            <?= $this->App->show_prices_dues($legends, $settings, $product, true) ?>
           </div>
           <div class="caract">
           <?php if(!empty($product['desc'])):?>
@@ -391,7 +400,7 @@ $number_ribbon = (int) @$alt_product['bank_discount'];
                       <div class="product-info">
                           <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                           <div class="name" origin="4"><?= $alt_product_name ?></div>
-                          <?= $this->App->show_prices_dues($legends, $alt_product) ?>
+                          <?= $this->App->show_prices_dues($legends, $settings, $alt_product) ?>
                       </div>
                   </a>
               </div>

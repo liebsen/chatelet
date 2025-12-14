@@ -52,19 +52,15 @@ class AdminController extends AppController {
 		$menu = $this->AdminMenu->find('all',['order' => ['AdminMenu.ordernum ASC']]);
 
 		$data = [];
-		$map = $this->Setting->findById('bank_enable');
-		$bank_enable = @$map['Setting']['value'];
-		$map = $this->Setting->findById('whatsapp_enabled');
-		$whatsapp_enabled = @$map['Setting']['value'];
 		$coupon_enable = self::couponsAvailable();
 		$banners_enable = self::bannersAvailable();
 
 		foreach($menu as $i => $v) {
 			if($v['url']==='/admin/whatsapp'){
-				$menu[$i]['update'] = !empty($whatsapp_enabled);
+				$menu[$i]['update'] = !empty($this->settings['$whatsapp_enabled']);
 			}
 			if($v['url']==='/admin/cupones'){
-				$menu[$i]['update'] = !empty($coupon_enable);
+				$menu[$i]['update'] = !empty($this->settings['coupon_enable']);
 			}
 			if($v['url']==='/admin/bank'){
 				$menu[$i]['update'] = !empty($bank_enable);
@@ -74,15 +70,9 @@ class AdminController extends AppController {
 			}
 		}
 
-
-    $setting    = $this->Setting->findById('show_shop');
-    $show_shop  = (!empty($setting['Setting']['value'])) ? 1 : 0;
-    $this->set('show_shop',$show_shop);
+    $this->set('show_shop',$this->settings['show_shop']);
     $this->set('home',strtolower($this->request->params['controller'])==='home');
-    $setting_menu    = $this->Setting->findById('image_menushop');
-    $image_menushop = (!empty($setting_menu['Setting']['value'])) ? $setting_menu['Setting']['value'] : '';
-    $this->set('image_menushop',$image_menushop);
-        		
+    $this->set('image_menushop',$this->settings['image_menushop']);        		
 		$this->set('primary_nav', $menu);
 		$this->Auth->loginAction = array('controller' => 'admin', 'action' => 'login');
 		$this->Auth->logoutRedirect = array('controller' => 'admin', 'action' => 'login');
@@ -607,7 +597,7 @@ class AdminController extends AppController {
 
 		die(json_encode([
 			'status' => "success", 
-			"conds" => $conds,
+			// "conds" => $conds,
 		]));	
 	}
 

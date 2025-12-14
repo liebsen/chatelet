@@ -39,7 +39,7 @@
                 <div class="tab-pane active" id="side-tab-menu">
                     <!-- Primary Navigation -->
                     <nav id="primary-nav">
-                        <div class="form-group">
+                        <div class="form-group p-2">
                             <input type="text" id="filter-menu" class="form-control" placeholder="Buscar.." autofocus />
                         </div>
                         <?php if ($primary_nav) { ?>

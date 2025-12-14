@@ -173,7 +173,7 @@ class CarritoController extends AppController
 			'conditions' => ['takeaway' => 1]
 		]);
 
-		$this->set('sorted', $this->Cart->sort());
+		$this->set('sorted', $this->Cart->sorted());
 		$this->set('stores', $stores);
 	}
 
@@ -239,25 +239,6 @@ class CarritoController extends AppController
 			return 0;
 		}
 	}
-
-	/*public function getCartData($id)
-	{
-		$this->RequestHandler->respondAs('application/json');
-		$this->autoRender = false;
-		$map = $this->Setting->findById('bank_enable');
-		$bank_enable = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount_enable');
-		$bank_discount_enable = @$map['Setting']['value'];
-		$map = $this->Setting->findById('bank_discount');
-		$bank_discount = @$map['Setting']['value'];
-
-		$response = (object) [
-			'enable' => @$bank_enable,
-			'discount_enable'=> @$bank_discount_enable,
-			'discount'=> @$bank_discount
-		];
-		return json_encode($response);
-	}*/
 
 	public function takeawayStores($cp = null){
 		$this->RequestHandler->respondAs('application/json');
@@ -712,7 +693,7 @@ class CarritoController extends AppController
 	public function sorted() {
 		$this->autoRender = false;
 		echo '<pre>';
-		var_dump($this->Cart->sort());
+		var_dump($this->Cart->sorted());
 	}
 
 	public function add() {
@@ -765,7 +746,7 @@ class CarritoController extends AppController
 				$criteria = $this->request->data['id'].$this->request->data['size'].$this->request->data['color'].$this->request->data['alias'];
 
 				if (!empty($cart)) {
-					foreach($cart as $key => $item) {
+					foreach($cart as $item) {
 						if($criteria != $item['id'].$item['size'].$item['color'].$item['alias']) {
 							$filter[]= $item;
 						}
@@ -797,9 +778,9 @@ class CarritoController extends AppController
 			
 			// CakeLog::write('debug', 'cart_totals(4):'. json_encode($cart_totals));
 			// $this->Session->write('cart_totals', $cart_totals);
-			CakeLog::write('debug', 'add(filter):'. json_encode($filter));
+			// CakeLog::write('debug', 'add(filter):'. json_encode($filter));
 			
-			$cart = $this->Cart->add($filter);
+			$cart = $this->Cart->add($this->settings, $filter);
 			
 			// CakeLog::write('debug', 'updateCart(4)');
 			// $this->Session->write('cart', $cart);
@@ -822,18 +803,22 @@ class CarritoController extends AppController
 
 		$update = array();
 		$removed = 0;
-		foreach ($cart as $key => $item) {
-			if ($item['uid'] != $uid) {
+		$sorted = $this->Cart->sorted();
+		$j = 0;
+
+		foreach ($sorted as $key => $item) {
+			if ($j != $uid) {
 				array_push($update, $item);
 			} else {
 				$removed++;
 			}
+			$j++;
 		}
 
 		if (count($update)) {
 			// CakeLog::write('debug', 'updateCart(1)');
 			// CakeLog::write('debug', 'updateCart(2):'. json_encode($update));
-			$this->Cart->update($update);
+			$this->Cart->update($this->settings, $update);
 		} else {
 			$this->Cart->destroy();
 		}

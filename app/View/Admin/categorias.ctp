@@ -34,7 +34,7 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
           </label>
         </div-->
         <div class="form-group d-flex flex-start gap-1">
-          <input class="form-control" type="checkbox" id="existent_only" value="1" checked/>
+          <input type="checkbox" id="existent_only" value="1" checked/>
           <label for="existent_only">
             Solo las que ya tienen descuento
           </label>

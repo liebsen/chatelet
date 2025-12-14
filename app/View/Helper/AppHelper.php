@@ -44,8 +44,8 @@ class AppHelper extends Helper {
 
   function filter_legends($legends,$total) {
     $one_due = false;
+    $items = [];
 
-    $items = []; 
     foreach($legends as $item) {
       if($total >= $item['Legend']['min_sale']) {
         array_push($items, $item);
@@ -58,7 +58,6 @@ class AppHelper extends Helper {
 
     //CakeLog::write('debug', 'count:'.count($legends) . '/'. $one_due);
     if (!(count($items) == 1 && $one_due)) {
-
       function compareScores($a, $b) {
         if ($a['Legend']['dues'] == $b['Legend']['dues']) {
             return 0;
@@ -90,13 +89,10 @@ class AppHelper extends Helper {
     return str_replace($reps, ' ', $name);
   }
 
-
-
-
   /**
   * @param string $query, This is the search query you will pass from the view
   */
-  function tile($item, $isProduct = false, $legends, $numpos = 3) {
+  function tile($item, $settings, $isProduct = false, $legends, $numpos = 3) {
     $str = '';
     $stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
     $number_ribbon = 0;
@@ -115,23 +111,28 @@ class AppHelper extends Helper {
       $number_ribbon = (int) @$item['bank_discount'];
     }
 
+    if(!$number_ribbon && !empty($settings['bank_enable']) && !empty($settings['bank_discount']))  {
+      $number_ribbon = $settings['bank_discount'];
+    }
+
     $discount_flag = (@$item['category_id']!='134' && !empty($number_ribbon))?'<div class="ribbon top-left small"><span'.$ribbon_style.'>'.$number_ribbon.'% OFF</span></div>':'';
     $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
     $content= '<div class="ribbon-container">';
     $content.= $discount_flag . $promo_ribbon;
-
 
     /*if (empty($item['with_thumb'])){
       $content.= '<img class="img-responsive contain-xs"  src="'. $settings['upload_url'] . $item['img_url'] .'" />';
     }else{
       $content.= '<img class="img-responsive contain-xs"  src="'. $settings['upload_url'] . 'thumb_'.$item['img_url'] .'" url-copy="'.$settings['upload_url'] . $item['img_url'].'" onError=updateSrcTo(this) />';
     }*/
+
     $content.= '<div class="product-image numpos-'.$numpos.'" style="background-image: url(\''. $settings['upload_url'] . $item['img_url'] .'\')"></div>';
     $content.= '</div>';
 
     if ($isProduct){
-       $content.='<span class="hide">'. '<small>'. $item['desc'] .'</small>'. '</span>';
+      $content.='<span class="hide">'. '<small>'. $item['desc'] .'</small>'. '</span>';
     }
+
     $url = array(
       'controller' => 'tienda',
       intval($item['id'])
@@ -140,7 +141,6 @@ class AppHelper extends Helper {
     if (!empty($item['category_id'])) {
       $url[] = ($item['category_id']);
       $url[] = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['name'])));
-
     }
 
     if ($isProduct) {
@@ -151,7 +151,7 @@ class AppHelper extends Helper {
 
     $item_name = $item['name'];
     $priceStr = '';
-    $priceStr.= self::show_prices_dues($legends, $item);
+    $priceStr.= self::show_prices_dues($legends, $settings, $item);
 
     if(!$stock && $isProduct){
       $content.= '<div class="desc-cont">'.
@@ -197,7 +197,7 @@ class AppHelper extends Helper {
     return $str;
   }
 
-  function show_prices_dues($legends, $item, $noprice = false){
+  function show_prices_dues($legends, $settings, $item, $noprice = false){
     $orig_price = (float) @$item['price'];
     $price = (float) @$item['price'];
     $old_price = (float) @$item['old_price'];
@@ -209,6 +209,7 @@ class AppHelper extends Helper {
     if(!empty(@$item['bank_discount']) && $item['bank_discount']) {
       $bank_price = round($orig_price * (1 - (float) @$item['bank_discount'] / 100));
       if($bank_price < $price) {
+        $discount = $item['bank_discount'];
         $old_price = $orig_price;
         $price = $bank_price;
         $text = 'Transferencia';
@@ -218,9 +219,20 @@ class AppHelper extends Helper {
     if(!empty(@$item['mp_discount']) && $item['mp_discount']){
       $mp_price = round($orig_price * (1 - (float) @$item['mp_discount'] / 100));
       if($mp_price < $price) {
+        $discount = $item['mp_discount'];
         $old_price = $orig_price;
         $price = $mp_price;
         $text = 'Mercado Pago';
+      }
+    }
+
+    if($text == '' && !empty($settings['bank_enable']) && !empty($settings['bank_discount']) && !empty($settings['bank_discount'])) {
+      $bank_price2 = round($orig_price * (1 - (float) @$settings['bank_discount'] / 100));
+      if($bank_price2 < $price) {
+        $discount = $settings['bank_discount'];
+        $old_price = $orig_price;
+        $price = $bank_price2;
+        $text = 'Transferencia';
       }
     }
 
@@ -263,10 +275,10 @@ class AppHelper extends Helper {
     $str2 = '';
     $str2.='<div class="legends-container"><span class="legends w-100">';
     if($bank_price && $text != 'Transferencia') {
-      $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($bank_price)." </span><span class='text-theme text-bold product-badge'>-".@$item['bank_discount']."%</span> <span class='text-muted'>Transferencia</span> </div>";
+      $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($bank_price)." </span><span class='text-theme text-bold product-badge'>-".@$discount."%</span> <span class='text-muted'>Transferencia</span> </div>";
     }
     if($mp_price && $text != 'Mercado Pago'){
-      $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($mp_price)." </span> <span class='text-theme text-bold product-badge'>-".@$item['mp_discount']."%</span> <span class='text-sm'>Mercado Pago</span> </div>";
+      $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($mp_price)." </span> <span class='text-theme text-bold product-badge'>-".@$discount."%</span> <span class='text-sm'>Mercado Pago</span> </div>";
     }
 
     $str2.= implode('', $dues_options);

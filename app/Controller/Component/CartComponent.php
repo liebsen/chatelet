@@ -8,16 +8,16 @@ class CartComponent extends Component {
     parent::initialize($controller);
   }
 
-  public function add($item) {
-    if (empty($cart)) {
-      $cart = $this->controller->Session->read('cart') ?? [];
-    }
-
-    $cart = array_merge($cart,$item);
-    $this->update($cart);
+  public function add($settings, $items) {
+    $cart = $this->controller->Session->read('cart') ?? [];
+    $ids = array_column($items, 'id');
+    $cart = array_filter($cart, function($e) use ($ids) {
+      return !in_array($e['id'], $ids);
+    });
+    $this->update($settings, array_merge($cart,$items));
   }
 
-  public function update($cart=false, $cart_totals=false) {
+  public function update($settings, $cart=false, $cart_totals=false) {
     // CakeLog::write('debug', 'update(cart_totals):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
     // CakeLog::write('debug', 'cart(param):'. json_encode($cart));
 
@@ -36,9 +36,6 @@ class CartComponent extends Component {
     $groups = [];
     $counts = [];
     $total = 0;
-    $bank_enable = $this->settings['bank_enable'];
-    $bank_discount_enable = $this->settings['bank_discount_enable'];
-    $bank_discount = $this->settings['bank_discount'];
 
     // $counted = [];
     /*count prods */
@@ -92,13 +89,16 @@ class CartComponent extends Component {
           $price = ceil(round($price * (1 - (float) $prod['bank_discount'] / 100)));
           $cart[$key]['price'] = $price;
         } else {
+          // CakeLog::write('debug', 'payment_method:'.$payment_method);
+          // CakeLog::write('debug', 'bank_enable:'.$settings['bank_enable']);
           if (
             $payment_method === 'bank' && 
-            $bank_enable && 
-            $bank_discount_enable
+            !empty($settings['bank_enable']) && 
+            !empty($settings['bank_discount_enable']) && 
+            !empty($settings['bank_discount'])
           ) {
             $cart[$key]['old_price'] = $price;
-            $price = ceil(round($price * (1 - (float) $bank_discount / 100)));
+            $price = ceil(round($price * (1 - (float) $settings['bank_discount'] / 100)));
             $cart[$key]['price'] = $price;
           }
         }
@@ -195,7 +195,7 @@ class CartComponent extends Component {
 		$this->controller->Session->delete('cart_totals');
   }
 
-	public function sort() {
+	public function sorted() {
 		$cart = $this->controller->Session->read('cart');
 		$cart_totals = $this->controller->Session->read('cart_totals');
 		$payment_method = @$cart_totals['payment_method'] ?: 'bank';
@@ -235,7 +235,6 @@ class CartComponent extends Component {
 
 		return $sort;
 	}
-
 
 	public function isFreeShipping ($price, $zip_code = 0) {
 		$shipping_config = $this->controller->Setting->findById('shipping_type');

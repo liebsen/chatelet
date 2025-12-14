@@ -74,6 +74,10 @@ $(document).ready(function() {
     var json = $(this).parents('.carrito-data').data('json')
     var item = JSON.parse(JSON.stringify(json))
     
+    count = parseInt(count)
+
+    console.log({count})
+
     if($(e.target).hasClass('disable') || count == 0) {
       return false
     }
@@ -83,6 +87,9 @@ $(document).ready(function() {
     } else {
       count++
     }
+
+    console.log({count})
+
 
     var data = {
       count: parseInt(count),
