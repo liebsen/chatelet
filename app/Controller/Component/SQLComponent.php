@@ -303,7 +303,7 @@ class SQLComponent extends Component {
 
 	/**
 	 * @param string $article ex. V7113
-	 * @return array $name
+	 * @return array $row
 	 */
 	public function product_name_by_article($article)
 	{
@@ -312,8 +312,8 @@ class SQLComponent extends Component {
 		if (!$response) {
 		    CakeLog::write('error', 'product_name_by_article ' . var_export($stmt->errorInfo(), true));
 		}
-		$name = $stmt->fetch();
-		//CakeLog::write('error', 'product_name_by_article ' . var_export($row, true));
-		return $name;
+		$row = $stmt->fetch();
+		CakeLog::write('debug', 'product_name_by_article: ' . var_export($row, true));
+		return $row;
 	}
 }
