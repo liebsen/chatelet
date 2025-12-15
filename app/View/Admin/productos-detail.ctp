@@ -253,8 +253,8 @@
           <br />
         </div>
         <div class="col-md-6">
+          <h4 class="sub-header"><?php echo __('Categoría'); ?></h4>
           <div class="control-group">
-            <h4 class="sub-header"><?php echo __('Categoría'); ?></h4>
             <div class="controls">
               <?php echo $this->element('treeview');?>
             </div>

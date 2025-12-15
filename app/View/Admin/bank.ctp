@@ -48,6 +48,24 @@
               </div>
               <span class="text-muted">Indica si existe descuento por los pagos CBU/Alias desde la tienda.</span>
             </div>
+            <h4 class="sub-header">Envío gratis con pagos CBU/Alias</h4>
+            <div class="control-group">
+              <div class="controls text-center switch-scale">
+                <?php
+                  $enabled = $settings['bank_free_shipping'] == 1 ? 'checked' : '';
+                  $disabled = $settings['bank_free_shipping'] == 0 ? 'checked' : '';
+                ?>
+                <span>
+                <input type="radio" class="form-control" id="enabled_11" name="data[bank_free_shipping]" value="1" <?php echo $enabled; ?> /> 
+                <label for="enabled_11">Sí</label>
+                </span>
+                <span>
+                <input type="radio" class="form-control" id="enabled_10" name="data[bank_free_shipping]" value="0" <?php echo $disabled; ?> />
+                <label for="enabled_10">No</label>
+                </span>
+              </div>
+              <span class="text-muted">Indica si las compras realizadas a através de Alias/CBU gozarán de envío gratuito para las compras con envío a domicilio.</span>
+            </div>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Descuento (%)'); ?></label>
               <div class="controls">
