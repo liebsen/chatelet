@@ -1110,10 +1110,14 @@ class CheckoutController extends AppController
 		$preference = $mp->create_preference($preference_data);
 		//Save Data
 		$sale_data = array(
-			'sale' 		=> $cart_totals,
-			'items' 	=> $items,
+			'user' => array(
+				'name' => $customer['name'],
+				'email' => $customer['email']
+			),
+			'sale' => $cart_totals,
+			//'items' 	=> $items,
 			'sale_id' 	=> $sale_id,
-			'preference'=> $preference,
+			//'preference'=> $preference,
 			'products' => $product_ids,
 			'total' => $total
 		);
