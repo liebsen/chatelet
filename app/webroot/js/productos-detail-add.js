@@ -165,7 +165,7 @@ $(document).ready(function() {
 		url = [url, product_code, lis_code, lis_code2].join('/');
 		searching = true;
 		me.text('Buscando...').addClass('btn-info');
-
+		console.log('url', url)
 		$.ajax(url)
 			.success(function(res) {
 				if ($.isArray(res.results) && !res.results.length) {
@@ -175,7 +175,7 @@ $(document).ready(function() {
 				}
 				var product = res.results[0];
 				var color = res.colors.Color;
-
+				console.log('product', product)
 				$('input[name="name"]').val(product.nombre);
         $('input[name="desc"]').val(product.descripcion);
         var entero = product.codArticulo;
