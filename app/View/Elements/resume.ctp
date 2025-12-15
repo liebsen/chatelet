@@ -71,7 +71,7 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 					<span class="promo-code text-sm"><?php echo $cart_totals['coupon'] ?></span> <span class="coupon_bonus"><?= \price_format($cart_totals['coupon_benefits']) ?></span>
 				</span>
 			</div>
-			<div class="summary-item text-right delivery-cost<?php echo empty($cart_totals['delivery_cost']) ? ' hidden' : '' ?>">
+			<div class="summary-item text-right delivery-cost<?php echo $cart_totals['cargo'] != 'shipment' ? ' hidden' : '' ?>">
 				<span class="text-weight-thin text-success">Envía <span class="shipping-cargo price text-sm"><?php echo $cart_totals['shipping'] ?></span></span>
 				<span id="delivery_cp"></span> <span class="cost_delivery"><?php echo empty($cart_totals['delivery_cost']) ? 'Gratis' : \price_format($cart_totals['delivery_cost']) ?></span>
 			</div>
@@ -84,7 +84,6 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 			<div class="summary-item mb-2">
 				<span class="text-sm text-muted"><i class="fa fa-info-circle mr-1"></i> Pagando con <b><?php echo $read_payment_method ?></b></span>
 			</div>
-		<?php endif ?>
 		<?php if(!empty($cart_totals['free_shipping'])) :?>
 			<div class="summary-item">
 				<span class="text-sm text-success">Envío <b>GRATIS</b></span>
@@ -93,6 +92,7 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 			<div class="summary-item">
 				<span class="text-sm text-success"><?php echo \shipping_text($settings, $cart_totals) ?></span>
 			</div>
+		<?php endif ?>
 		<?php endif ?>
 		</div>
 	</div>

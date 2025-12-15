@@ -18,8 +18,12 @@ selectShipping = function (e, shipping, cost) {
 	
 	total = total_products - coupon_benefits
 
-	if (grand_total < shipping_price) {
+	console.log('cart_totals',JSON.stringify(cart_totals))
+	console.log('free_shipping(state)',(!cart_totals.free_shipping))
+	if (grand_total < shipping_price && !cart_totals.free_shipping) {
 		total += cost
+		console.log({cost})
+		console.log({total})
 		$('#subtotal_envio').val(cost)
 		$('.products-total').removeClass('hidden')
 		$('.delivery-cost').removeClass('hidden')
@@ -139,13 +143,12 @@ $(document).ready(function() {
 		$.getJSON( '/checkout/deliveryCost/'+cp , function(json, textStatus) {
 			$('.btn-calculate-shipping').button('reset')
 			$('.btn-calculate-shipping').prop('disabled', false)
-			cart_totals.free_shipping = json.freeShipping
 			if( json.rates.length ){
 				var rates = `<ul class="generic-select shipping-options">`
 				json.rates.forEach(rate => {
 					if (!isNaN(rate.price)) {
 						var price = '<span class="text-success text-bold">Gratis</span>'
-						if (!json.freeShipping) {
+						if (!cart_totals.free_shipping) {
 							price = `<span class="text-uppercase">$ ${formatNumber(parseInt(rate.price))}</span>`
 						}
 						rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')">${price}</div></li>`
@@ -166,7 +169,7 @@ $(document).ready(function() {
 							$(`.shipping-options li:first-child`).click()
 						}
 					}
-				}, 100)
+				}, 500)
 			} else {
 				$('.input-status').removeClass('ok');
 				$('.input-status').addClass('wrong');
