@@ -223,6 +223,9 @@ class AdminController extends AppController {
 		$prod_parts = explode('.', $prod_cod);
 		$products = $this->SQL->productsByLisCod($prod_parts[0], $lis_cod);
 		$color = array();
+		CakeLog::write('debug', 'prod_cod: '.json_encode($prod_cod));
+		CakeLog::write('debug', 'lis_cod: '.json_encode($lis_cod));
+		CakeLog::write('debug', 'lis_cod2: '.json_encode($lis_cod2));
 		CakeLog::write('debug', 'get_product: '.json_encode($products));
 		// CakeLog::write('error', $full_now.' '.$full_end);
 		if (!empty($prod_parts[1])) {

@@ -246,7 +246,7 @@ class SQLComponent extends Component {
 			unset($row['4']);
 			foreach ($row as &$r) {
 				$r = utf8_encode($r);
-		    }
+		  }
 			$results[] = $row;
 		}
 		unset($stmt);
