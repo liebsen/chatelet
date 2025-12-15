@@ -3047,17 +3047,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       foreach($this->request->data as $id => $value) {
       	$this->Setting->save(['id' => $id, 'value' => $value]);
       }
+
+      return $this->redirect(array('action'=>'carrito'));
 		}
-
-		$data = [];
-		$map = $this->Setting->findById('display_text_shipping_min_price');
-		$data['display_text_shipping_min_price'] = $map['Setting']['value'];
-		$map = $this->Setting->findById('text_shipping_min_price');
-		$data['text_shipping_min_price'] = $map['Setting']['value'];
-		$map = $this->Setting->findById('carrito_takeaway_text');
-		$data['carrito_takeaway_text'] = $map['Setting']['extra'];
-
-		$this->set('data', $data);
 	}
 
 	public function bank() {

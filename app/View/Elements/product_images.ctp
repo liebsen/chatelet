@@ -1,6 +1,6 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('product_images',array('inline'=>false)) ?>
-<?php echo $this->Html->css('product_images',array('inline'=>false)) ?>
+<?php // echo $this->Html->css('product_images',array('inline'=>false)) ?>
 <div class="row">
 	<div class="col-xs-12">
 		<h4>Imagenes Extra</h4>
