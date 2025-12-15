@@ -228,8 +228,8 @@ class SQLComponent extends Component {
 				a.ArtNom AS descripcion,
 				c.descripcion AS colorPrenda,
 				al.LisCod AS listaPrecio,
-				al.DescripcionWeb AS DescripcionWeb,
-				al.ValidaddoWeb AS ValidaddoWeb,
+				-- al.DescripcionWeb AS DescripcionWeb,
+				-- al.ValidaddoWeb AS ValidaddoWeb,
 				al.Precio
 			FROM   Art a INNER JOIN
 				   ArtLis al ON a.ArtCod = al.ArtCod INNER JOIN
