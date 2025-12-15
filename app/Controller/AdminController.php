@@ -790,7 +790,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	private function getMPSales(){
-		if (in_array($_SERVER['REMOTE_ADDR'], $this->localips)) {
+		if ($this->settings['env_staging']) {
 			return json_decode(file_get_contents(__DIR__ . '/dummy/mpsales.json'), true);
 		}
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');

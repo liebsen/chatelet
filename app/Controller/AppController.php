@@ -94,9 +94,12 @@ class AppController extends Controller
 
   public function load_settings(){
     $this->loadModel('Setting');
+
     $tags = [];        
     $settings = $this->Setting->find('all');
-    $data = [];
+    $data = [
+      'env_staging' => $_SERVER['SERVER_NAME'] !== 'chatelet.com.ar'
+    ];
     $path = Router::url(null, false);
 
     foreach($settings as $setting) {
@@ -113,7 +116,6 @@ class AppController extends Controller
           continue;
       }
     }
-
     return $data;
   }
 
@@ -247,7 +249,7 @@ class AppController extends Controller
     ));
 
     if (
-      in_array($_SERVER['REMOTE_ADDR'], $this->localips) ||
+      $this->settings['env_staging'] ||
       empty($data['receiver_email']))
     {
       // CakeLog::write('debug', 'email:'. json_encode($email->message('html')));
@@ -258,7 +260,7 @@ class AppController extends Controller
   }
 
   public function sendEmailMessage($message, $subject, $to){
-    if (in_array($_SERVER['REMOTE_ADDR'], $this->localips) || empty($to)){
+    if ($this->settings['env_staging'] || empty($to)){
       return true;
     }
 

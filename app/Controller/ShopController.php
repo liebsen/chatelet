@@ -310,7 +310,7 @@ class ShopController extends AppController {
 
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
 		$this->autoRender = false;
-		if (in_array($_SERVER['REMOTE_ADDR'], $this->localips)) {
+		if ($this->settings['env_staging']) {
 			return 1;
 		}
 		$this->SQL = $this->Components->load('SQL');
