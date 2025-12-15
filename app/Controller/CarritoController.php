@@ -690,6 +690,13 @@ class CarritoController extends AppController
 		echo '</pre>';
 	}
 
+	public function settings($row = null) {
+		$this->autoRender = false;
+		echo '<pre>';
+		var_dump($this->settings);
+		echo '</pre>';
+	}
+
 	public function sorted() {
 		$this->autoRender = false;
 		echo '<pre>';
@@ -780,7 +787,7 @@ class CarritoController extends AppController
 			// $this->Session->write('cart_totals', $cart_totals);
 			// CakeLog::write('debug', 'add(filter):'. json_encode($filter));
 			
-			$cart = $this->Cart->add($this->settings, $filter);
+			$cart = $this->Cart->add($filter);
 			
 			// CakeLog::write('debug', 'updateCart(4)');
 			// $this->Session->write('cart', $cart);
@@ -818,7 +825,7 @@ class CarritoController extends AppController
 		if (count($update)) {
 			// CakeLog::write('debug', 'updateCart(1)');
 			// CakeLog::write('debug', 'updateCart(2):'. json_encode($update));
-			$this->Cart->update($this->settings, $update);
+			$this->Cart->update($update);
 		} else {
 			$this->Cart->destroy();
 		}

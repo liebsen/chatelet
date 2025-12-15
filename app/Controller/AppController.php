@@ -102,6 +102,7 @@ class AppController extends Controller
     foreach($settings as $setting) {
       $id = $setting['Setting']['id'];
       $value = $setting['Setting']['value'];
+      $extra = $setting['Setting']['extra'];
       $data[$id] = $value;
 
       if(!in_array($id, $this->setting_tags)) {
@@ -113,6 +114,10 @@ class AppController extends Controller
       }
 
       Configure::write($id, $value);
+
+      if(!empty($extra)) {
+        Configure::write($id.'_extra', $extra);
+      }
     }
 
     return $data;

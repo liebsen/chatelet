@@ -38,12 +38,12 @@
                   $disabled = $settings['bank_discount_enable'] == 0 ? 'checked' : '';
                 ?>
                 <span>
-                <input type="radio" class="form-control" id="enabled_11" name="data[bank_discount_enable]" value="1" <?php echo $enabled; ?> /> 
-                <label for="enabled_11">Sí</label>
+                <input type="radio" class="form-control" id="free_11" name="data[bank_discount_enable]" value="1" <?php echo $enabled; ?> /> 
+                <label for="free_11">Sí</label>
                 </span>
                 <span>
-                <input type="radio" class="form-control" id="enabled_10" name="data[bank_discount_enable]" value="0" <?php echo $disabled; ?> />
-                <label for="enabled_10">No</label>
+                <input type="radio" class="form-control" id="free_10" name="data[bank_discount_enable]" value="0" <?php echo $disabled; ?> />
+                <label for="free_10">No</label>
                 </span>
               </div>
               <span class="text-muted">Indica si existe descuento por los pagos CBU/Alias desde la tienda.</span>

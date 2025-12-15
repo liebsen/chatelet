@@ -152,7 +152,7 @@ class CheckoutController extends AppController
 			}
 
 			// CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
-			$this->Cart->update($this->settings,null, $cart_totals);
+			$this->Cart->update(null, $cart_totals);
 
       return json_encode($response);
 		}
@@ -206,7 +206,7 @@ class CheckoutController extends AppController
 			}
 
 			// CakeLog::write('debug', 'updateTotals(2)'.json_encode($cart_totals));
-			$this->Cart->update($this->settings, null, $cart_totals);
+			$this->Cart->update(null, $cart_totals);
 
 			return json_encode($response);
 		}
@@ -231,7 +231,7 @@ class CheckoutController extends AppController
 		$payment_method = $this->request->data['payment_method'] ?? $payment_method;
 		$cart_totals['payment_method'] = $payment_method;
 
-		$cart = $this->Cart->update($this->settings, null, $cart_totals);
+		$cart = $this->Cart->update(null, $cart_totals);
 		// CakeLog::write('debug','cart(3):'.json_encode($cart));
 		$cart['status'] = 'success';
 

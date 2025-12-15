@@ -8,16 +8,18 @@ class CartComponent extends Component {
     parent::initialize($controller);
   }
 
-  public function add($settings, $items) {
+  public function add($items) {
     $cart = $this->controller->Session->read('cart') ?? [];
     $ids = array_column($items, 'id');
     $cart = array_filter($cart, function($e) use ($ids) {
       return !in_array($e['id'], $ids);
     });
-    $this->update($settings, array_merge($cart,$items));
+    $this->update(array_merge($cart,$items));
   }
 
-  public function update($settings, $cart=false, $cart_totals=false) {
+  public function update($cart=false, $cart_totals=false) {
+    $settings = $this->controller->settings;
+
     // CakeLog::write('debug', 'update(cart_totals):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
     // CakeLog::write('debug', 'cart(param):'. json_encode($cart));
 
@@ -166,15 +168,22 @@ class CartComponent extends Component {
       }
     }
 
+    $delivery_cost = $cart_totals['delivery_cost'] ?? 0;
+    $free_shipping = $this->isFreeShipping($grand_total);
+
+    if($free_shipping) {
+      $delivery_cost = 0;
+    }
+
+    $cart_totals['free_shipping'] = $free_shipping;
     $cart_totals['total_products'] = (float) $total;
-    $cart_totals['delivery_cost'] = (float) $cart_totals['delivery_cost'] ?? 0;
+    $cart_totals['delivery_cost'] = (float) $delivery_cost;
     $cart_totals['coupon_benefits'] = (float) $cart_totals['coupon_benefits'] ?? 0;
 
     $grand_total = $cart_totals['total_products'] - 
       $cart_totals['coupon_benefits'] + 
       $cart_totals['delivery_cost'];
 
-    $cart_totals['free_shipping'] = $this->isFreeShipping($grand_total);
     $cart_totals['grand_total'] = $grand_total;
     $cart_totals['payment_method'] = $payment_method;
 
@@ -237,15 +246,26 @@ class CartComponent extends Component {
 	}
 
 	public function isFreeShipping ($price, $zip_code = 0) {
-		$shipping_config = $this->controller->Setting->findById('shipping_type');
-		$shipping_price = $this->controller->Setting->findById('shipping_price_min');
+    $cart_totals = $this->controller->Session->read('cart_totals');
+    $settings = $this->controller->settings;
+
+		$shipping_type = $settings['shipping_type'];
+    $shipping_type_extra = $settings['shipping_type_extra'];
+		$shipping_price_min = $settings['shipping_price_min'];
+    $bank_free_shipping = $settings['bank_free_shipping'];
+
+    if($bank_free_shipping && $cart_totals['payment_method'] == 'bank') {
+      return true;
+    }
+
 		$freeShipping = false;
-		if (!empty($shipping_config) && !empty($shipping_config['Setting']['value'])) {
-			if (@$shipping_config['Setting']['value'] == 'min_price' || $shipping_price['Setting']['value'] > 1){
-				$freeShipping = intval($price) >= intval($shipping_price['Setting']['value']);
+
+		if (!empty($shipping_type)) {
+			if (@$shipping_type == 'min_price' || $shipping_price_min > 1){
+				$freeShipping = intval($price) >= intval($shipping_price_min);
 			}
-			if (!$freeShipping && $zip_code && @$shipping_config['Setting']['value'] == 'zip_code'){
-				$zip_codes = explode(',',$shipping_config['Setting']['extra']);
+			if (!$freeShipping && $zip_code && @$shipping_type == 'zip_code'){
+				$zip_codes = explode(',',$shipping_type_extra);
 				if (count($zip_codes)) {
 					$filter = [];
 					foreach($zip_codes as $code) {
@@ -255,7 +275,7 @@ class CartComponent extends Component {
 				}
 			}
 			// error_log('shipping_value: '.@$shipping_config['Setting']['value']);
-		}		
+		}
 		return $freeShipping;
 		// return intval($price) >= intval($shipping_price['Setting']['value']);
 	}  
