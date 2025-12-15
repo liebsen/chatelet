@@ -29,10 +29,10 @@ class SQLComponent extends Component {
 		$precio = array();
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
 		$stmt->execute();
+        	CakeLog::write('debug', 'query: '."EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
 
         while ($row = $stmt->fetch()) {
-        	CakeLog::write('debug', 'query: '."EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
-        	CakeLog::write('debug', json_encode($row));
+        	CakeLog::write('debug', 'pa_datos_articulo:' .json_encode($row));
 			if( !empty( $row['codigo'] ) && strpos($row['codigo'], '.0000') && !empty($row['precio1']) ){
             	$precio['precio'] = $row['precio1'];
                 $precio['discount'] = $row['precio2'];
@@ -228,8 +228,6 @@ class SQLComponent extends Component {
 				a.ArtNom AS descripcion,
 				c.descripcion AS colorPrenda,
 				al.LisCod AS listaPrecio,
-				-- al.DescripcionWeb AS DescripcionWeb,
-				-- al.ValidaddoWeb AS ValidaddoWeb,
 				al.Precio
 			FROM   Art a INNER JOIN
 				   ArtLis al ON a.ArtCod = al.ArtCod INNER JOIN
@@ -238,7 +236,9 @@ class SQLComponent extends Component {
 		");
 		$stmt->execute();
 		$results = array();
+		
 		while ($row = $stmt->fetch()) {
+			CakeLog::write('debug', 'productsByLisCod(row):'.json_encode($row));
 			unset($row['0']);
 			unset($row['1']);
 			unset($row['2']);
@@ -250,7 +250,7 @@ class SQLComponent extends Component {
 			$results[] = $row;
 		}
 		unset($stmt);
-		//CakeLog::write('error', var_export($results, true));
+		CakeLog::write('debug', 'productsByLisCod(results):'.json_encode($results));
 		return $results;
 	}
 
