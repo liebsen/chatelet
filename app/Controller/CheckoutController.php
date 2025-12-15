@@ -346,8 +346,8 @@ class CheckoutController extends AppController
 	}
 
 	public function deliveryCost($cp, $code = null, $total = 0, $payment_method = 'bank'){
-		CakeLog::write('debug','deliveryCost(cp):'.$cp);
-		CakeLog::write('debug','deliveryCost(code):'.$code);
+		// CakeLog::write('debug','deliveryCost(cp):'.$cp);
+		// CakeLog::write('debug','deliveryCost(code):'.$code);
 
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
@@ -365,9 +365,9 @@ class CheckoutController extends AppController
 		$cp2 = substr($cp, 0, 2) . '**';
 		//Data
 		$data = $this->getItemsData();
-		CakeLog::write('debug','isFreeShipping(1)');
+		// CakeLog::write('debug','isFreeShipping(1)');
 		$freeShipping = $this->Cart->isFreeShipping($total, $payment_method, $cp);
-		CakeLog::write('debug','deliveryCost(free_shipping):'.json_encode($freeShipping));
+		// CakeLog::write('debug','deliveryCost(free_shipping):'.json_encode($freeShipping));
 
 		$unit_price = $data['price'];
 		if(!empty($data['discount']) && !empty((float)(@$data['discount']))) {

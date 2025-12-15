@@ -241,12 +241,9 @@ class AdminController extends AppController {
 		foreach ($products as &$product) {
 			$details = $this->SQL->product_price_by_list($prod_cod,$lis_cod,$lis_cod2);
 			$details_name = $this->SQL->product_name_by_article($prod_cod);
-	    CakeLog::write('debug', 'details_name:'.json_encode($details_name));
+	    CakeLog::write('debug', 'details:'.json_encode($details));
 	    if(!empty($details_name)){
         $product['nombre'] = $details_name['nombre'];
-        if(!empty($details_name['descripcion'])) {
-        	$product['descripcion'] = $details_name['descripcion'];
-        }
       } else {
       	$product['nombre'] = $product['descripcion'] ;
       }

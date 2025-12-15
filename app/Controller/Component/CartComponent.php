@@ -190,7 +190,6 @@ class CartComponent extends Component {
           $payment_method
         ));
 
-
         $delivery_cost = (float) $delivery_data->rates[0]->price;
 
         // CakeLog::write('debug', 'update(delivery_data): '.json_encode($delivery_data));
