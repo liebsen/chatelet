@@ -8,6 +8,15 @@ function updateTotals(res) {
   $('.coupon_bonus').text( "$ " + formatNumber(discounted_formatted))
   $('.subtotal_price').text( "$ " + formatNumber(res.cart_totals.total_products))
 
+  if(res.cart_totals.free_shipping) {
+  	$('.cost_delivery').text("Gratis")
+  } else {
+	  if(res.cart_totals.delivery_cost) {
+	  	$('.delivery-cost').removeClass('hidden')
+	  	$('.cost_delivery').text("$" + formatNumber(res.cart_totals.delivery_cost))
+	  }
+  }
+
   fxTotal(total)
 
   $(res.cart).each(function(i,e) {

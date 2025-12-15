@@ -1,7 +1,7 @@
 selectShipping = function (e, shipping, cost) {
-	if (cost <= 0) {
+	/* if (cost <= 0) {
 		return setTimeout( `onErrorAlert('No disponible', 'El servicio de logística ${shipping.toUpperCase()} no está disponible en este momento, intente en unos instantes.')` , 200)
-	}
+	} */
 
 	var total = 0
 	var coupon_benefits = cart_totals.coupon_benefits || 0
@@ -24,7 +24,11 @@ selectShipping = function (e, shipping, cost) {
 		$('.products-total').removeClass('hidden')
 		$('.delivery-cost').removeClass('hidden')
 		$('.delivery-cost').addClass('fadeIn')
-		$('.cost_delivery').text( formatNumber(cost))
+		if(cost) {
+			$('.cost_delivery').text( formatNumber(cost))
+		} else {
+			$('.cost_delivery').text('Gratis')
+		}
 	}
 
 	$('.cost_total').text('$ ' + formatNumber(total))
@@ -135,7 +139,7 @@ $(document).ready(function() {
 		$.getJSON( '/checkout/deliveryCost/'+cp , function(json, textStatus) {
 			$('.btn-calculate-shipping').button('reset')
 			$('.btn-calculate-shipping').prop('disabled', false)
-			window.freeShipping = json.freeShipping
+			cart_totals.free_shipping = json.freeShipping
 			if( json.rates.length ){
 				var rates = `<ul class="generic-select shipping-options">`
 				json.rates.forEach(rate => {

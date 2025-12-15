@@ -35,6 +35,8 @@ class CartComponent extends Component {
     // CakeLog::write('debug', 'cart(start):'. json_encode($cart));
 
 	  $payment_method = $cart_totals['payment_method'] ?: 'bank';
+    // CakeLog::write('debug', 'update(payment_method):'. json_encode($payment_method));
+
     $groups = [];
     $counts = [];
     $total = 0;
@@ -169,10 +171,32 @@ class CartComponent extends Component {
     }
 
     $delivery_cost = $cart_totals['delivery_cost'] ?? 0;
-    $free_shipping = $this->isFreeShipping($grand_total);
+    // CakeLog::write('debug','isFreeShipping(4)');
+    $free_shipping = $this->isFreeShipping(
+      $grand_total, 
+      $payment_method,
+      $cart_totals['postal_address']
+    );
+    // CakeLog::write('debug', 'update(free_shipping):'. json_encode($free_shipping,JSON_PRETTY_PRINT));
 
-    if($free_shipping) {
+    if(!empty($free_shipping)) {
       $delivery_cost = 0;
+    } else {
+      if($cart_totals['cargo'] == 'shipment' && !empty($cart_totals['shipping'])) {
+        $delivery_data = json_decode($this->controller->deliveryCost(
+          $cart_totals['postal_address'], 
+          $cart_totals['shipping'],
+          $cart_totals['grand_total'],
+          $payment_method
+        ));
+
+
+        $delivery_cost = (float) $delivery_data->rates[0]->price;
+
+        // CakeLog::write('debug', 'update(delivery_data): '.json_encode($delivery_data));
+        // CakeLog::write('debug', 'update(delivery_cost): '.json_encode($delivery_cost));
+
+      }
     }
 
     $cart_totals['free_shipping'] = $free_shipping;
@@ -245,8 +269,7 @@ class CartComponent extends Component {
 		return $sort;
 	}
 
-	public function isFreeShipping ($price, $zip_code = 0) {
-    $cart_totals = $this->controller->Session->read('cart_totals');
+	public function isFreeShipping($price, $payment_method = 'bank', $zip_code = 0) {
     $settings = $this->controller->settings;
 
 		$shipping_type = $settings['shipping_type'];
@@ -254,7 +277,13 @@ class CartComponent extends Component {
 		$shipping_price_min = $settings['shipping_price_min'];
     $bank_free_shipping = $settings['bank_free_shipping'];
 
-    if($bank_free_shipping && $cart_totals['payment_method'] == 'bank') {
+    // CakeLog::write('debug', 'shipping_type:'.json_encode($shipping_type));
+    // CakeLog::write('debug', 'shipping_type_extra:'.json_encode($shipping_type_extra));
+    // CakeLog::write('debug', 'shipping_price_min:'.json_encode($shipping_price_min));
+    // CakeLog::write('debug', 'bank_free_shipping:'.json_encode($bank_free_shipping));
+    // CakeLog::write('debug', 'payment_method(2):'.json_encode($payment_method));
+
+    if(!empty($bank_free_shipping) && $payment_method == 'bank') {
       return true;
     }
 

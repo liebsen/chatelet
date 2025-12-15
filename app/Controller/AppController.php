@@ -65,7 +65,7 @@ class AppController extends Controller
 
   public $settings = [];
   public $localips = [
-    '127.0.0.1', 
+    '127.0.0.11', 
     '192.168.2.102', 
     '192.168.2.105'
   ];
@@ -102,21 +102,15 @@ class AppController extends Controller
     foreach($settings as $setting) {
       $id = $setting['Setting']['id'];
       $value = $setting['Setting']['value'];
-      $extra = $setting['Setting']['extra'];
+      // $extra = $setting['Setting']['extra'];
       $data[$id] = $value;
 
       if(!in_array($id, $this->setting_tags)) {
-          continue;
+        continue;
       }
 
       if($setting  == 'whatsapp_enabled' &&(strstr($path, "carrito") || strstr($path, "envio") || strstr($path, "pago"))) {
           continue;
-      }
-
-      Configure::write($id, $value);
-
-      if(!empty($extra)) {
-        Configure::write($id.'_extra', $extra);
       }
     }
 

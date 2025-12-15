@@ -11,32 +11,32 @@
 
   <div class="block-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
-    <input type="hidden" name="data[id]" value="shipping_type" />
       <div class="row">
         <div class="col-md-8">
           <h4 class="sub-header">Configuración de Envíos</h4> 
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Tipo de envío'); ?></label>
             <div class="controls">
-            <div class="d-flex flex-start gap-1">
-              <input class="form-control" type="radio" name="data[value]" id="default" value="default" <?php if (!empty($setting['Setting']['value'] == 'default')){ echo "checked=checked"; } ?> /> <label  class="is-clickable" for="default">Envío normal</label>
-            </div>
-            <div class="d-flex flex-start gap-1">
-              <input class="form-control" type="radio" name="data[value]" id="min_price" value="min_price" <?php if (!empty($setting['Setting']['value'] == 'min_price')){ echo "checked=checked"; } ?> /> <label  class="is-clickable" for="min_price">Envío gratuito para compra mínima [<b><?php echo $price['Setting']['value']; ?></b> pesos]</label>
-            </div>
-            <div class="d-flex flex-start gap-1">
-              <input class="form-control" type="radio" name="data[value]" id="zip_code" value="zip_code" <?php if (!empty($setting['Setting']['value'] == 'zip_code')){ echo "checked=checked"; } ?> /> <label  class="is-clickable" for="zip_code">Envío gratuito para código postal. Monto mínimo permanece activo si el valor es mayor a cero. [<b><?=$amount?></b> códigos postales]</label>
+              <div class="d-flex flex-start gap-1">
+                <input class="form-control" type="radio" name="data[shipping_type]" id="default" value="default" <?php if (!empty($settings['shipping_type'] == 'default')){ echo "checked=checked"; } ?> /> <label class="is-clickable" for="default">Envío normal</label>
+              </div>
+              <div class="d-flex flex-start gap-1">
+                <input class="form-control" type="radio" name="data[shipping_type]" id="min_price" value="min_price" <?php if (!empty($settings['shipping_type'] == 'min_price')){ echo "checked=checked"; } ?> /> <label class="is-clickable" for="min_price">Envío gratuito para compra mínima [<b><?php echo $settings['shipping_price_min']; ?></b> pesos]</label>
+              </div>
+              <div class="d-flex flex-start gap-1">
+                <input class="form-control" type="radio" name="data[shipping_type]" id="zip_code" value="zip_code" <?php if (!empty($settings['shipping_type'] == 'zip_code')){ echo "checked=checked"; } ?> /> <label  class="is-clickable" for="zip_code">Envío gratuito para código postal. Monto mínimo permanece activo si el valor es mayor a cero. [<b><?=count(explode(',',$settings['shipping_zips'])) ?></b> códigos postales]</label>
+              </div>
             </div>
           </div>
           <br />     
-          <div class="dummy-block<?php echo $setting['Setting']['value'] == 'default' ? ' dummy-block-hidden' : '' ?>">
-            <small>Ingrese el monto mínimo. <span class="dummy-sub-block<?php echo $setting['Setting']['value'] != 'zip_code' ? ' dummy-block-hidden' : '' ?>">Ingrese valor cero para deshabilitar monto mínimo. </span></small> 
+          <div class="show-panel<?php echo $settings['shipping_type'] == 'default' ? ' show-inactive' : '' ?>">
+            <small>Ingrese el monto mínimo. <span class="dummy-sub-block<?php echo $settings['shipping_type'] != 'zip_code' ? ' show-inactive' : '' ?>">Ingrese valor cero para deshabilitar monto mínimo. </span></small> 
             <br />
-            <input class="form-control" type="number" name="shipping_price_min" value="<?php echo $price['Setting']['value']; ?>"/>
+            <input class="form-control" type="number" name="data[shipping_price_min]" value="<?php echo $settings['shipping_price_min']; ?>"/>
             <br /> 
-            <div class="dummy-sub-block<?php echo $setting['Setting']['value'] != 'zip_code' ? ' dummy-block-hidden' : '' ?>">
+            <div class="show-panel<?php echo $settings['shipping_type'] != 'zip_code' ? ' show-inactive' : '' ?>">
               <small>Ingrese los codigos postales separados por coma (,) - [Actualmente <strong><?=$amount?></strong> códigos]</small><br />
-              <textarea class="form-control" rows="4" name="data[zip_code]"><?php echo $setting['Setting']['extra']; ?></textarea>
+              <textarea class="form-control" rows="4" name="data[shipping_zips]"><?php echo $settings['shipping_zips']; ?></textarea>
             </div>
           </div>
           <br />
@@ -48,29 +48,3 @@
     </form>
   </div>
 </div>
-<style>
-  .dummy-block {
-    display: block;
-  }
-  .dummy-block-hidden {
-    display: none;
-  }
-</style>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('input[name="data[value]"]').forEach(e => {
-      var b = document.querySelector('.dummy-block')
-      var c = document.querySelector('.dummy-sub-block')
-      e.addEventListener('change', (a) => {
-        b.classList.remove('dummy-block-hidden')
-        c.classList.add('dummy-block-hidden')
-        if (a.target.value === 'default') {
-          b.classList.add('dummy-block-hidden')
-        }
-        if (a.target.value === 'zip_code') {
-          c.classList.remove('dummy-block-hidden')
-        }
-      })
-    })
-  })
-</script>

@@ -59,8 +59,8 @@ class CheckoutController extends AppController
 		$index = array_search($this->request->here, array_column($this->checkout_steps, 'url'));
 		$this->set('checkout_index', $index);
 		$this->set('checkout_steps', $this->checkout_steps);
-		$freeShipping = $this->Cart->isFreeShipping($total_price);
-		$this->set('freeShipping', $freeShipping);		
+		// $freeShipping = $this->Cart->isFreeShipping($total_price);
+		// $this->set('freeShipping', $freeShipping);		
 	}
 
 	public function index() {}
@@ -125,7 +125,9 @@ class CheckoutController extends AppController
 			if($data['cargo'] == 'shipment' && empty($cart_totals['free_shipping'])) {
 				$delivery_data = json_decode($this->deliveryCost(
 					$data['postal_address'], 
-					$data['shipping']
+					$data['shipping'],
+					$cart_totals['grand_total'],
+					$cart_totals['payment_method']
 				));
 				
 				// CakeLog::write('debug', 'envio(3)');
@@ -229,10 +231,12 @@ class CheckoutController extends AppController
 		$cart_totals = $this->Session->read('cart_totals');
 		$payment_method = $cart_totals['payment_method'] ?? 'bank';
 		$payment_method = $this->request->data['payment_method'] ?? $payment_method;
+		CakeLog::write('debug','payment_method(1):'.json_encode($payment_method), JSON_PRETTY_PRINT);
+
 		$cart_totals['payment_method'] = $payment_method;
 
 		$cart = $this->Cart->update(null, $cart_totals);
-		// CakeLog::write('debug','cart(3):'.json_encode($cart));
+		CakeLog::write('debug','cart(3):'.json_encode($cart), JSON_PRETTY_PRINT);
 		$cart['status'] = 'success';
 
 		return json_encode($cart);
@@ -341,29 +345,36 @@ class CheckoutController extends AppController
 		return json_encode($stores);
 	}
 
-	public function deliveryCost($cp, $code = null){
-		// CakeLog::write('debug','deliveryCost(cp):'.$cp);
-		// CakeLog::write('debug','deliveryCost(code):'.$code);
+	public function deliveryCost($cp, $code = null, $total = 0, $payment_method = 'bank'){
+		CakeLog::write('debug','deliveryCost(cp):'.$cp);
+		CakeLog::write('debug','deliveryCost(code):'.$code);
 
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 		$this->loadModel('LogisticsPrices');
 		//Codigo Postal
 		$this->Session->write('cp', $cp);
+
+		$cart_totals = $this->Session->read('cart_totals') ?? [];
+
 		if (in_array($_SERVER['REMOTE_ADDR'], $this->localips)) {
 			return json_encode(json_decode('{"freeShipping":false,"rates":[{"title":"Oca","code":"oca","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/628eb1ba29efd.svg","info":"Env\u00edos a todo el pa\u00eds","price":987,"centros":[],"valid":true},{"title":"Speed Moto","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/6292a6f2d79b7.jpg","code":"speedmoto","info":"10 a\u00f1os brindando confianza a nuestros clientes","price":"700.00","centros":[],"valid":true}],"itemsData":{"count":1,"price":1994.99,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}'));
 		}
 
-		$shipping_price = $this->Setting->findById('shipping_price_min');
 		$cp1 = substr($cp, 0, 3) . '*';
 		$cp2 = substr($cp, 0, 2) . '**';
 		//Data
 		$data = $this->getItemsData();
+		CakeLog::write('debug','isFreeShipping(1)');
+		$freeShipping = $this->Cart->isFreeShipping($total, $payment_method, $cp);
+		CakeLog::write('debug','deliveryCost(free_shipping):'.json_encode($freeShipping));
+
 		$unit_price = $data['price'];
 		if(!empty($data['discount']) && !empty((float)(@$data['discount']))) {
       $unit_price = @$data['discount'];
     }
-		$freeShipping = $this->Cart->isFreeShipping($unit_price, $cp);
+    //CakeLog::write('debug','isFreeShipping(2)');
+		//$freeShipping = $this->Cart->isFreeShipping($unit_price, $cp);
 		$json = array(
 			'freeShipping' => $freeShipping,
 			'rates' => [],
@@ -381,11 +392,10 @@ class CheckoutController extends AppController
 						'code' => $code
 					]
 				])['Logistic'];
-
 				if ($logistic['local_prices']) {
 					// CakeLog::write('debug', 'deliveryCost(code)(1)');
 					// buscamos las tarifas
-					$locals = $this->LogisticsPrices->find('first', [
+					$item = $this->LogisticsPrices->find('first', [
 						'conditions' => [
 							'logistic_id' => $logistic['id'],
 							'enabled' => true,
@@ -396,13 +406,14 @@ class CheckoutController extends AppController
 	            ]
 						]
 					])['LogisticsPrices'];
-					$item = $locals;
           $row = [
             'title' => $logistic['title'],
             'image' => $logistic['image'],
             'info' => implode('. ', array_filter([$logistic['info'], $item['info']])),
             'code' => (float) $logistic['code'],
-            'price' => $item['price'],
+            'price' => $free_shipping ? 
+            	0 : 
+            	$item['price'],
             'centros' => [],
             'valid' =>  true
           ];
@@ -414,7 +425,9 @@ class CheckoutController extends AppController
 				      'code' => $logistic['code'],
 				      'image' => $logistic['image'],
 				      'info' => $logistic['info'],
-							'price' => (float) $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+	            'price' => $free_shipping ? 
+	            	0 : 
+	            	(float) $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
 							'centros' => [],
 							'valid' =>  true
 						];
@@ -448,7 +461,9 @@ class CheckoutController extends AppController
 						      'code' => $item['code'],
 						      'image' => $item['image'],
 						      'info' => $item['info'],
-									'price' => $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+									'price' => $free_shipping ? 
+										0 : 
+										$this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
 									'centros' => [],
 									'valid' =>  true
 								];
@@ -477,7 +492,9 @@ class CheckoutController extends AppController
 	            'image' => $parent['image'],
 	            'code' => $parent['code'],
 	            'info' => implode('. ', array_filter([$parent['info'], $item['info']])),
-	            'price' => $item['price'],
+	            'price' => $free_shipping ? 
+	            	0 : 
+	            	$item['price'],
 	            'centros' => [],
 	            'valid' =>  true
 	          ];
@@ -504,7 +521,9 @@ class CheckoutController extends AppController
 	              'code' => $item['code'],
 	              'image' => $item['image'],
 	              'info' => $item['info'],
-	              'price' => $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+	              'price' => $free_shipping ? 
+	              	0 : 
+	              	$this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
 	              'centros' => [],
 	              'valid' =>  true
 	            ];
@@ -532,7 +551,9 @@ class CheckoutController extends AppController
 	            'image' => $parent['image'],
 	            'code' => $parent['code'],
 	            'info' => implode('. ', array_filter([$parent['info'], $item['info']])),
-	            'price' => (float) $item['price'],
+	            'price' => $free_shipping ? 
+	            	0 : 
+	            	(float) $item['price'],
 	            'centros' => [],
 	            'valid' =>  true
 	          ];
@@ -960,7 +981,12 @@ class CheckoutController extends AppController
 
 		// Add Delivery
 		$delivery_cost = 0;
-		$freeShipping = $this->Cart->isFreeShipping($total, $cart_totals['postal_address']);
+		CakeLog::write('debug','isFreeShipping(3)');
+		$freeShipping = $this->Cart->isFreeShipping(
+			$total, 
+			$cart_totals['payment_method'],
+			$cart_totals['postal_address']
+		);
 
 		if ($freeShipping) { 
 			CakeLog::write('debug', 'sale(freeshipping):'.'without delivery bc price is :'.$total.', cp:'. @$cart_totals['postal_address'] .'  and date = '.gmdate('Y-m-d'));
@@ -974,7 +1000,9 @@ class CheckoutController extends AppController
 
 				$delivery_data = json_decode($this->deliveryCost(
 					$cart_totals['postal_address'], 
-					$cart_totals['shipping']
+					$cart_totals['shipping'],
+					$cart_totals['grand_total'],
+					$cart_totals['payment_method']
 				));
 
 				CakeLog::write('debug', 'sale(delivery_Data): '.json_encode($delivery_data));
@@ -994,17 +1022,13 @@ class CheckoutController extends AppController
 			);
 		}
 
-		$shipping_config = $this->Setting->findById('shipping_type');
-		$shipping_type_value = @$shipping_config['Setting']['value'];
-		$zipCodes = @$shipping_config['Setting']['extra'];
-		
 		$sale_object = array(
 			'id' => $sale_id,
 			//'user_id' => $sale['id'],
 			'free_shipping' => $freeShipping,
 			'payment_method' => $cart_totals['payment_method'],
 			'deliver_cost' => $delivery_cost,
-			'shipping_type' => $shipping_type_value
+			'shipping_type' => $this->settings['shipping_type']
 		);
 
 		CakeLog::write('debug', 'sale(object)'.json_encode($sale_object, JSON_PRETTY_PRINT));
@@ -1020,7 +1044,7 @@ class CheckoutController extends AppController
         array('class' => 'hidden error')
       );
 
-      CakeLog::write('debug', 'sale(err): Error al procesar la compra, por favor intente nuevamente');
+      // CakeLog::write('debug', 'sale(err): Error al procesar la compra, por favor intente nuevamente');
 
       $this->Sale->delete($sale_id,true);
 
@@ -1052,7 +1076,7 @@ class CheckoutController extends AppController
 			'regalo'		=> count($gift_ids),
 			'package_id'=> @$delivery_data->itemsData->package->id ?? 1,
 			'value' 	=> $total, // @$delivery_data['itemsData']['price'],
-			'zip_codes' => $zipCodes,
+			'zip_codes' => $this->settings['shipping_zips'],
 			'cargo'		=> $cart_totals['cargo'],
 			'coupon'	=> $cart_totals['coupon'],
 			'metodo_pago'	=> $cart_totals['payment_method'],

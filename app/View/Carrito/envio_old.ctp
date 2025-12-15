@@ -9,7 +9,6 @@
 	echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 	//echo $this->element('cart');
 ?>
-<script>window.freeShipping = <?=(int)@$freeShipping?>;</script>
 <script>
 	var coupon_bonus = 0;
 	var shipping_price = <?= $shipping_price_min ?>;
