@@ -164,14 +164,13 @@ $(document).ready(function() {
 					return alert('No se encontró el producto buscado');
 				}
 
-				console.log('product',product)
 				var product = res.results[0];
 
 				var color = res.colors.Color;
 
 				$('input[name="name"]').val(product.nombre);
                 
-                $('input[name="desc"]').val(product.descripcion);
+                $('textarea[name="desc"]').val(product.descripcion);
 
                 var entero = product.codArticulo;
                 questionText = entero.replace(/[0-9]/g,'');
