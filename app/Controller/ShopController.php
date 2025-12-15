@@ -875,7 +875,7 @@ class ShopController extends AppController {
 	        'id_user' => $this->Auth->user('id'),
 	        'name' =>  $this->Auth->user('name'),
 	        'grand_total' => \price_format($cart_totals['grand_total']),
-	        'checkout_link' => Router::url('/checkout'),
+	        'checkout_link' => Router::url('/checkout', true),
 	        'cart_totals' => $cart_totals,
 	        'cart' => $cart
 	      );

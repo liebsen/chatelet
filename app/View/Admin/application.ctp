@@ -47,6 +47,7 @@
 			          </div>
 			          <span class="text-muted">Ingresá la URL de tu perfil de <?php echo __($item); ?></span>
 			        </div>
+			      	<br>
 			      <?php endforeach ?>
 						</div>
 	      		<div class="col-md-6">
