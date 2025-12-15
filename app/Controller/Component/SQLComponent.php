@@ -33,6 +33,7 @@ class SQLComponent extends Component {
 
     while ($row = $stmt->fetch()) {
       CakeLog::write('debug', 'pa_datos_articulo:' .json_encode($row));
+      $item = $row;
 			if( 
 				!empty( $row['codigo'] ) && 
 				strpos($row['codigo'], '.0000') && 
