@@ -45,7 +45,7 @@
             <?php echo __('Código de lista de precios'); ?></label>
             <div class="controls">  
              <?php if(!empty($list_code)){ ?>  
-              <input type="number" name="list_code" id="lis_cod" value="<?php echo @$list_code ?>"/>
+              <input type="number" class="form-control" name="list_code" id="lis_cod" value="<?php echo @$list_code ?>"/>
              <?php }else{ ?>
               <input type="text" class="form-control" id="lis_cod" />
              <?php } ?>
@@ -57,7 +57,7 @@
             <?php echo __('Código de lista de precios con Descuento'); ?></label>
             <div class="controls">  
              <?php if(!empty($list_code)){ ?>  
-              <input type="number" name="list_code_desc" id="lis_cod2" value="<?php echo @$list_code_desc ?>"/>
+              <input type="number" class="form-control" name="list_code_desc" id="lis_cod2" value="<?php echo @$list_code_desc ?>"/>
              <?php }else{ ?>
               <input type="text" class="form-control" id="lis_cod2" />
              <?php } ?>
@@ -204,7 +204,7 @@
                              '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'"/>'.
                              '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
                              '<select class="code_sel" name="props['. $index .'][code]">'.$options.'</select>'.
-                             '<span class="alias_cont"><input type="text" name="props['. $index .'][alias]" value="'.$prop['ProductProperty']['alias'].'" class="changed variable" required placeholder="AA, 02, etc..."/></span>'.
+                             '<span class="alias_cont"><input type="text" name="props['. $index .'][alias]" value="'.$prop['ProductProperty']['alias'].'" class="form-control changed variable" required placeholder="AA, 02, etc..."/></span>'.
                               '<div class="right">'.
                                 '<a class="btn btn-danger remove-item" data-count="'.$index.'">Borrar</a>'.
                               '</div>'.
@@ -234,7 +234,7 @@
                       $product_id = $prop['ProductProperty']['product_id'];
                       if ($type == 'size') {
                         echo '<li class="list-group-item">'.
-                             '<input type="text" name="props['. $index .'][variable]" value="'. $variable .'" var required />'.
+                             '<input type="text" class="form-control" name="props['. $index .'][variable]" value="'. $variable .'" var required />'.
                              '<input type="hidden" name="props['. $index .'][id]" value="'. $id .'" />'.
                              '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'" />'.
                              '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
