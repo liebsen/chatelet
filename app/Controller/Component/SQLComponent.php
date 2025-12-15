@@ -26,22 +26,25 @@ class SQLComponent extends Component {
 	}
 	public function product_price_by_list($article,$list_code,$list_code_desc)
 	{
-		$precio = array();
+		$item = array();
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
 		$stmt->execute();
-        	CakeLog::write('debug', 'query: '."EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
+    CakeLog::write('debug', 'query: '."EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
 
-        while ($row = $stmt->fetch()) {
-        	CakeLog::write('debug', 'pa_datos_articulo:' .json_encode($row));
-			if( !empty( $row['codigo'] ) && strpos($row['codigo'], '.0000') && !empty($row['precio1']) ){
-            	$precio['precio'] = $row['precio1'];
-                $precio['discount'] = $row['precio2'];
+    while ($row = $stmt->fetch()) {
+      CakeLog::write('debug', 'pa_datos_articulo:' .json_encode($row));
+			if( 
+				!empty( $row['codigo'] ) && 
+				strpos($row['codigo'], '.0000') && 
+				!empty($row['precio1']
+			)){
+        $item['precio'] = $row['precio1'];
+        $item['discount'] = $row['precio2'];
 			}
 
-
-				return $precio;
-
+			return $item;
 		}
+
 		return false;
 	}
 
@@ -310,7 +313,7 @@ class SQLComponent extends Component {
 		$stmt = $this->conn->prepare("EXEC sp_nombreArticulo '$article';");
 		$response = $stmt->execute();
 		if (!$response) {
-		    CakeLog::write('error', 'product_name_by_article ' . var_export($stmt->errorInfo(), true));
+		  CakeLog::write('error', 'product_name_by_article ' . var_export($stmt->errorInfo(), true));
 		}
 		$row = $stmt->fetch();
 		CakeLog::write('debug', 'product_name_by_article: ' . var_export($row, true));
