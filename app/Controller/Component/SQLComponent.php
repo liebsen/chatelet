@@ -90,6 +90,8 @@ class SQLComponent extends Component {
 		$stmt->execute();
 
 		while ($row = $stmt->fetch()) {
+
+			CakeLog::write('debug', 'stock data:'.json_encode($row));
 			if(!empty($row['codigo'])){
 				$params = explode('.', $row['codigo']);
 				if(!empty($params[1]) && ($params[1] != '0000') && $params[1] == ($size_number.$color_code)){
