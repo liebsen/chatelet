@@ -163,6 +163,8 @@ $(document).ready(function() {
 					me.text('Buscar').removeClass('btn-info');
 					return alert('No se encontró el producto buscado');
 				}
+
+				console.log('product',product)
 				var product = res.results[0];
 
 				var color = res.colors.Color;
