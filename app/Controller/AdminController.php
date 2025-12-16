@@ -794,7 +794,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			return json_decode(file_get_contents(__DIR__ . '/dummy/mpsales.json'), true);
 		}
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
-		$mp = new MP(Configure::read('mercadopago_client_id'), Configure::read('mercadopago_client_secret'));
+		$mp = new MP($this->settings['mercadopago_client_id'], $this->settings['mercadopago_client_secret']);
 		$limit = isset($_GET['extended']) ? 500 : 10;
 		$filters = array(
       "range" => "date_created",

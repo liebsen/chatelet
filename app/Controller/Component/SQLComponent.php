@@ -2,6 +2,12 @@
 App::uses('Component', 'Controller');
 class SQLComponent extends Component {
 	private $conn;
+  public $controller; // To store a reference to the Controller
+
+  public function initialize(Controller $controller) {
+    $this->controller = $controller;
+    parent::initialize($controller);
+  }
 
 	public function __construct() {
 		//$myServer = "181.164.35.14";
@@ -22,7 +28,7 @@ class SQLComponent extends Component {
 		}
 	}
 	public function __destruct() {
-    	if($this->conn) $this->conn = null;
+    if($this->conn) $this->conn = null;
 	}
 	public function product_price_by_list($article,$list_code,$list_code_desc)
 	{
@@ -50,7 +56,7 @@ class SQLComponent extends Component {
 	}
 
 	public function product_exists($article,$list_code){
-		$minimo = Configure::read('stock_min');
+		$minimo = $this->controller->settings['stock_min'];
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo @cod_articulo='$article', @cod_lista='$list_code', @minimo='$minimo';");
 		$stmt->execute();
 
@@ -67,7 +73,7 @@ class SQLComponent extends Component {
 	}
 
 	public function product_exists_general($article,$list_code){
-		$minimo = Configure::read('stock_min');
+		$minimo = $this->controller->settings['stock_min'];
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo @cod_articulo='$article', @cod_lista='$list_code', @minimo='$minimo';");
 		$stmt->execute();
 
@@ -85,13 +91,14 @@ class SQLComponent extends Component {
 
 	//EXAMPLE: I5005/03/02/173
 	public function product_stock($article,$size_number,$color_code,$list_code){
-		$minimo = Configure::read('stock_min');
+		$minimo = $this->controller->settings['stock_min'];
+		CakeLog::write('debug', 'product_stock(min):'.json_encode($minimo));
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo @cod_articulo='$article', @cod_lista='$list_code', @minimo='$minimo';");
 		$stmt->execute();
 
 		while ($row = $stmt->fetch()) {
 
-			CakeLog::write('debug', 'stock data:'.json_encode($row));
+			CakeLog::write('debug', 'product_stock(row):'.json_encode($row));
 			if(!empty($row['codigo'])){
 				$params = explode('.', $row['codigo']);
 				if(!empty($params[1]) && ($params[1] != '0000') && $params[1] == ($size_number.$color_code)){
