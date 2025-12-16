@@ -264,7 +264,7 @@ class AdminController extends AppController {
 	public function check_article($article = null){
 		$this->autoRender = false;
 		$this->SQL = $this->Components->load('SQL');
-		$list_code = Configure::read('list_code');
+		$list_code = $this->settings['list_code'];
 		$exists = $this->SQL->product_exists($article,$list_code);
 		if($exists){
 			return 'ok';

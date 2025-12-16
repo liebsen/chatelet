@@ -332,8 +332,7 @@ class ShopController extends AppController {
 		$this->loadModel('Product');
 		$product = $this->Product->findById($product_id);
 		$stock = 0;
-		$list_code = Configure::read('list_code');
-
+		$list_code = $this->settings['list_code'];
 		if(!empty($product['Product']['article'])){
 			CakeLog::write('debug','checking SQL '.$product_id.' / '.$product['Product']['article'].' / list_code: '.$list_code);
 			$stock = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
