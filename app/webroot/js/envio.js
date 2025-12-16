@@ -26,7 +26,7 @@ selectShipping = function (e, shipping, cost) {
 		$('.delivery-cost').removeClass('hidden')
 		$('.delivery-cost').addClass('fadeIn')
 		if(cost) {
-			$('.cost_delivery').text( formatNumber(cost))
+			$('.cost_delivery').text( "$ " + formatNumber(cost))
 		} else {
 			$('.cost_delivery').text('Gratis')
 		}
