@@ -548,6 +548,6 @@ class CartComponent extends Component {
     }
 
     // CakeLog::write('debug', 'deliveryCost(json):'.json_encode($json));
-    return $json;
+    return json_encode($json);
   }
 }
