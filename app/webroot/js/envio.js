@@ -64,7 +64,7 @@ selectStore = function(e) {
   $('.map-block').removeClass('hidden')
 
   const store = $(e).attr('store')
-  const store_address = $(e).attr('store_address')
+  const store_address = $(e).attr('store-address')
 
   var grand_total = cart_totals.grand_total 
   format_total = formatNumber(grand_total)

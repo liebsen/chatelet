@@ -451,6 +451,9 @@ html, body {
 .min-w-4 {
 	min-width: 4rem;
 }
+.min-w-5 {
+	min-width: 5rem;
+}
 .min-w-7 {
 	min-width: 7rem;
 }
@@ -1415,6 +1418,9 @@ select.form-control{
 	color: white;
 }
 @media(max-width: 550px) {
+	.carrito-selector {
+		transform: scale(0.75);
+	}
 	.card-link i {
 		display: none;
 	}

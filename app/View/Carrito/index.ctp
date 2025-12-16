@@ -48,8 +48,8 @@
 							</a>
 						</div>
 						<div class="d-flex justify-content-start align-center flex-column w-100">
-							<div class="d-flex justify-content-between align-center gap-1 w-100">
-								<div class="d-flex justify-content-center align-center flex-column max-20">
+							<div class="d-flex justify-content-between align-center gap-05 w-100">
+								<div class="d-flex justify-content-center align-center flex-column max-20 min-w-5">
 									<h5 class="mt-0 mb-2 text-weight-thin lh-1"><?php echo $product['name'] ?></h5>
 									<?php if (!empty($product['color_code']) && $product['color_code'] != 'undefined') : ?>
 										<span class="text-sm">Color: 
