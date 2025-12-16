@@ -174,7 +174,7 @@ class CheckoutController extends AppController
 	public function deliveryCost($cp, $code = null, $total = 0, $payment_method = 'bank'){
     $this->RequestHandler->respondAs('application/json');
     $this->autoRender = false;
-		return json_encode($this->Cart->deliveryCost($cp, $code, $total, $payment_method));
+		return $this->Cart->deliveryCost($cp, $code, $total, $payment_method);
 	}
 
 	public function pago() {
