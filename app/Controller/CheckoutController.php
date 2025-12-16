@@ -333,16 +333,6 @@ class CheckoutController extends AppController
 		return false;
 	} */
 
-	private function checkOcaCP($cp){
-		$oca = new Oca();
-		$centers = $oca->getCentrosImposicionPorCP( $cp );
-		if( !empty($centers) ){
-			return $centers;
-		}else{
-			return 0;
-		}
-	}
-
 	public function takeawayStores($cp = null){
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;

@@ -592,11 +592,19 @@ class CartComponent extends Component {
     }
 
     //CP Check
-    $centros = $this->checkOcaCP($cp);
+    // $centros = $this->checkOcaCP($cp);
     //Price
     $price = !empty($response[0]['Precio']) ? (int) $response[0]['Precio'] : 0;
     // CakeLog::write('debug', 'price(2)'.$price.':'.gettype($price));
     return $price;
   }
-
+  private function checkOcaCP($cp){
+    $oca = new Oca();
+    $centers = $oca->getCentrosImposicionPorCP( $cp );
+    if( !empty($centers) ){
+      return $centers;
+    }else{
+      return 0;
+    }
+  }
 }
