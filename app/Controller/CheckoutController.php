@@ -21,6 +21,8 @@ class CheckoutController extends AppController
 		'Package',
 		'User',
 		'SaleProduct',
+		'Logistic',
+		'LogisticsPrices',
 		'Catalogo',
 		'Category',
 		'LookBook',
@@ -361,50 +363,7 @@ class CheckoutController extends AppController
 		var_dump($result);
 	}
 	
-	private function calculate_shipping_andreani ($data, $cp, $price) {
-		$ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), getenv('ANDREANI_CONTRATO'), getenv('ANDREANI_DEBUG'));
-		$package = $data['package'];
-		$bultos = [
-	    [
-        'volumen' => (float) $package['width'] * (float) $package['height'] * (float) $package['depth'],
-        'anchoCm' => (float) $package['width'],
-        'largoCm' => (float) $package['height'],
-        'altoCm' => (float) $package['depth'],
-        'kilos' => (float) $package['weight'] / 1000,
-        'valorDeclarado' => (integer) $price // $1200
-	    ]
-		];
-		$cp = (integer) $cp;
-		$response = $ws->cotizarEnvio($cp, getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
-		return isset($response->tarifaConIva) ? $response->tarifaConIva->total : null;
-	} 
 
-	private function calculate_shipping_oca ($data, $cp, $price) {
-		if(!empty($data)){
-			$oca = new Oca();
-			//$PesoTotal, $VolumenTotal, $CodigoPostalOrigen, $CodigoPostalDestino, $CantidadPaquetes, $ValorDeclarado, $Cuit, $Operativa
-			$response = $oca->tarifarEnvioCorporativo(
-				$data['weight'] ,
-				$data['volume'] ,
-				1708 ,
-				$cp ,
-				1 ,
-				intval($price) ,
-				'30-71119953-1',
-				271263
-				//96637
-			);
-		} else {
-			$response = array();
-		}
-
-		//CP Check
-		$centros = $this->checkOcaCP($cp);
-		//Price
-		$price = !empty($response[0]['Precio']) ? (int) $response[0]['Precio'] : 0;
-		// CakeLog::write('debug', 'price(2)'.$price.':'.gettype($price));
-		return $price;
-	}
 
 	private function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');

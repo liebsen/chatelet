@@ -331,7 +331,7 @@ class CartComponent extends Component {
 
   public function deliveryCost($cp, $code = null, $total = 0, $payment_method = 'bank'){
     CakeLog::write('debug','deliveryCost(cp):'.$cp);
-    // CakeLog::write('debug','deliveryCost(code):'.$code);
+    CakeLog::write('debug','deliveryCost(code):'.$code);
 
     // $this->loadModel('LogisticsPrices');
     //Codigo Postal
@@ -366,7 +366,7 @@ class CartComponent extends Component {
     );
 
     if(!empty($data)){
-      if ($code) {
+      if (!empty($code)) {
         // CakeLog::write('debug', 'deliveryCost(code):'.$code);
         // necesitamos cotizacion de una empresa
         $code = strtolower($code);
@@ -403,6 +403,7 @@ class CartComponent extends Component {
           ];
           $json['rates'][] = $row;
         } else {
+          CakeLog::write('debug', 'deliveryCost(a)');
           if (method_exists($this, "calculate_shipping_{$code}")) {
             $row = [
               'title' => $logistic['title'],
@@ -422,6 +423,7 @@ class CartComponent extends Component {
         // CakeLog::write('debug', 'deliveryCost(local_prices)');
         // buscamos todas las opciones disponibles
         // buscamos prioridad en envíos gratutios si lo hubiera.
+
         if ($free_shipping) {
           $local_prices_ids = [];
           $logistics = $this->controller->Logistic->find('all', [
@@ -430,7 +432,7 @@ class CartComponent extends Component {
               'free_shipping' => true
             ]
           ]);
-
+                        
           // get quotes for free shipping
           foreach($logistics as $logistic) {
             if($logistic['Logistic']['local_prices']) {
@@ -470,7 +472,7 @@ class CartComponent extends Component {
 
           foreach($local_prices as $logistic_price) {
             $item = $logistic_price['LogisticsPrices'];
-            $parent = $this->Logistic->findById($item['logistic_id'])['Logistic'];
+            $parent = $this->controller->Logistic->findById($item['logistic_id'])['Logistic'];
             $row = [
               'title' => $parent['title'],
               'image' => $parent['image'],
@@ -529,7 +531,7 @@ class CartComponent extends Component {
 
           foreach($locals as $logistic_price) {
             $item = $logistic_price['LogisticsPrices'];
-            $parent = $this->Logistic->findById($item['logistic_id'])['Logistic'];
+            $parent = $this->controller->Logistic->findById($item['logistic_id'])['Logistic'];
             $row = [
               'title' => $parent['title'],
               'image' => $parent['image'],
@@ -547,7 +549,54 @@ class CartComponent extends Component {
       }
     }
 
-    // CakeLog::write('debug', 'deliveryCost(json):'.json_encode($json));
+    CakeLog::write('debug', 'deliveryCost(json):'.json_encode($json));
     return json_encode($json);
   }
+
+  private function calculate_shipping_andreani ($data, $cp, $price) {
+    $ws = new Andreani(getenv('ANDREANI_USUARIO'), getenv('ANDREANI_CLAVE'), getenv('ANDREANI_CONTRATO'), getenv('ANDREANI_DEBUG'));
+    $package = $data['package'];
+    $bultos = [
+      [
+        'volumen' => (float) $package['width'] * (float) $package['height'] * (float) $package['depth'],
+        'anchoCm' => (float) $package['width'],
+        'largoCm' => (float) $package['height'],
+        'altoCm' => (float) $package['depth'],
+        'kilos' => (float) $package['weight'] / 1000,
+        'valorDeclarado' => (integer) $price // $1200
+      ]
+    ];
+    $cp = (integer) $cp;
+    $response = $ws->cotizarEnvio($cp, getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
+    return isset($response->tarifaConIva) ? $response->tarifaConIva->total : null;
+  } 
+
+  private function calculate_shipping_oca ($data, $cp, $price) {
+    CakeLog::write('debug', 'calculate_shipping_oca(1)');
+    if(!empty($data)){
+      $oca = new Oca();
+      //$PesoTotal, $VolumenTotal, $CodigoPostalOrigen, $CodigoPostalDestino, $CantidadPaquetes, $ValorDeclarado, $Cuit, $Operativa
+      $response = $oca->tarifarEnvioCorporativo(
+        $data['weight'] ,
+        $data['volume'] ,
+        1708 ,
+        $cp ,
+        1 ,
+        intval($price) ,
+        '30-71119953-1',
+        271263
+        //96637
+      );
+    } else {
+      $response = array();
+    }
+
+    //CP Check
+    $centros = $this->checkOcaCP($cp);
+    //Price
+    $price = !empty($response[0]['Precio']) ? (int) $response[0]['Precio'] : 0;
+    // CakeLog::write('debug', 'price(2)'.$price.':'.gettype($price));
+    return $price;
+  }
+
 }
