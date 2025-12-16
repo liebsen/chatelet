@@ -76,7 +76,7 @@ echo $this->element('checkout-params');
 								<?php endforeach;?>
 							</ul>
 						</div>
-						<div class="d-flex flex-column justify-content-center align-items-start gap-05">
+						<div class="map-block d-flex flex-column justify-content-center align-items-start gap-05 hidden">
 							<div id="map_canvas"></div>
 							<span class="text-muted">
 								<span><?php echo $settings['carrito_takeaway_text'] ?></span><br>
@@ -108,30 +108,6 @@ echo $this->element('checkout-params');
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&language=es"></script>
 
 <script type="text/javascript">
-	function initMap(option) {
-		const store = $(option).attr('store')
-		const store_lng = $(option).attr('store-lng')
-		const store_lat = $(option).attr('store-lat')
-		const store_address = $(option).attr('store-address')
-
-		$('.store').text(store)
-		$('.store-address').text(store_address)
-
-	  var latlng = new google.maps.LatLng(store_lat, store_lng);  
-	  var myOptions = {
-	    zoom: 15,
-	    center: latlng,
-	    mapTypeId: google.maps.MapTypeId.ROADMAP
-	  };
-
-	  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-	  var marker = new google.maps.Marker({
-	  	position:latlng, 
-	  	map:map,
-	  	title:store + ' ' + store_address
-	  });
-	}
-
 	$(document).ready(function() {
     $('#envio_form').on('submit', function(event) {
       event.preventDefault();

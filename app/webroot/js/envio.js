@@ -61,6 +61,11 @@ selectStore = function(e) {
 	$('.takeaway-text').removeClass('hidden')
 	$(e).addClass('selected')
   $('.delivery-cost').addClass('hidden')
+  $('.map-block').removeClass('hidden')
+
+  const store = $(e).attr('store')
+  const store_address = $(e).attr('store_address')
+
   var grand_total = cart_totals.grand_total 
   format_total = formatNumber(grand_total)
   fxTotal(format_total)
@@ -72,25 +77,48 @@ selectStore = function(e) {
   	'store-lng'
   ]
 
-  let store = {}
+  let storeJSON = {}
   storeProps.forEach((i,j) => {
-  	store[i] = $(e).attr(i)
+  	storeJSON[i] = $(e).attr(i)
   })
 
-  localStorage.setItem('cargo', 'takeaway')
-  localStorage.setItem('takeaway_store', JSON.stringify(store))
+  localStorage.cargo = 'takeaway'
+  localStorage.takeaway_store = JSON.stringify(storeJSON)
 
   var cart_takeaway_text = $('.cart_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
   initMap(e)
-
-  $('a[href="#retiro"]').click()
+  $('.takeaway-indicate').text([store_address,store].join(', '))
   $('.checkout-continue').fadeIn()
 	$('input[name="shipping"]').val("")
   $('input[name="cargo"]').val('takeaway')
-  $('input[name="store"]').val($(e).attr('store'))
-  $('input[name="store_address"]').val($(e).attr('store-address'))
+  $('input[name="store"]').val(store)
+  $('input[name="store_address"]').val(store_address)
   $('input[name="postal_address"]').val("")
+}
+
+initMap = function(option) {
+	const store = $(option).attr('store')
+	const store_lng = $(option).attr('store-lng')
+	const store_lat = $(option).attr('store-lat')
+	const store_address = $(option).attr('store-address')
+
+	$('.store').text(store)
+	$('.store-address').text(store_address)
+
+  var latlng = new google.maps.LatLng(store_lat, store_lng);  
+  var myOptions = {
+    zoom: 15,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  var marker = new google.maps.Marker({
+  	position:latlng, 
+  	map:map,
+  	title:store + ' ' + store_address
+  });
 }
 
 $(document).ready(function() {
@@ -187,7 +215,11 @@ $(document).ready(function() {
 		return false
 	})
 
-	var takeaway_store = JSON.parse(localStorage.getItem('takeaway_store')) || []
+	$(document).on('click', 'a[href="#retiro"]', function(e){
+		$('.map-block').addClass('hidden')
+	})
+
+	const takeaway_store = JSON.parse(localStorage.takeaway_store) || []
 
 	if (localStorage.getItem('cargo') === 'takeaway' && Object.keys(takeaway_store)?.length && !location.hash.includes('shipment-options.shipping')) {
 		setTimeout(() => {
