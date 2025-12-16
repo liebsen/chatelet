@@ -1682,7 +1682,7 @@ span.validation-password {
   	min-width: 65%;
   }
   .flex-col:last-child {
-  	min-width: 35%;
+  	min-width: 32%;
   }
 	.max-25 {
 	  max-width: 25rem;

@@ -89,7 +89,7 @@
     width: 100%;
   }
   .wizard-progress .wizard-step.complete:before {
-  	background-color: #999;
+  	background-color: #e7e7e7;
   }
 	.wizard-progress .wizard-node {
 		display: inline-block;
@@ -108,23 +108,23 @@
     font-weight: 1000;
 	}
 	.wizard-progress .wizard-step.complete {
-		color: #999;
+		color: #e7e7e7;
 	}
 	.wizard-progress .wizard-step.current {
-		color: #333;
+		color: #404040;
 		font-weight: bold;
 	}	
 	.wizard-progress .wizard-step.complete .wizard-label {
-		color: #999;
+		color: #e7e7e7;
 	}
 	.wizard-progress .wizard-step.complete .wizard-node {
-		border-color: #999;
+		border-color: #e7e7e7;
 		color: white;
-		background-color: #999;
+		background-color: #e7e7e7;
 	}
 	.wizard-progress .wizard-step.current .wizard-node {
-		border-color: #333;
-		color: #333;
+		border-color: #404040;
+		color: #404040;
 	}
 
 	/* manages loading states  */

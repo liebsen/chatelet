@@ -85,9 +85,11 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 				<span class="text-sm text-muted"><i class="fa fa-info-circle mr-1"></i> Pagando con <b><?php echo $read_payment_method ?></b></span>
 			</div>
 		<?php if(!empty($cart_totals['free_shipping'])) :?>
+		<?php if(!empty($cart_totals['delivery_cost'])): ?>
 			<div class="summary-item">
 				<span class="text-sm text-success">Envío <b>GRATIS</b></span>
 			</div>
+		<?php endif ?>
 		<?php else : ?>
 			<div class="summary-item">
 				<span class="text-sm text-success"><?php echo \shipping_text($settings, $cart_totals) ?></span>
