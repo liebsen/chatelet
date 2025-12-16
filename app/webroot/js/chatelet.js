@@ -67,11 +67,12 @@ function addToCart(data, redirect) {
           });
         }
       })
-      .fail(function() {
+      .fail(function(error) {
         reject()
+        console.log('error',error)
         $.growl.error({
           title: 'Ocurrió un error al agregar el producto al carrito',
-          message: res.message || 'Por favor, intente nuevamente'
+          message: 'Por favor, intente nuevamente'
         });
       }); 
   })

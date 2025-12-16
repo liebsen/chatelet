@@ -184,7 +184,7 @@ class CartComponent extends Component {
       $delivery_cost = 0;
     } else {
       if($cart_totals['cargo'] == 'shipment' && !empty($cart_totals['shipping'])) {
-        $delivery_data = json_decode($this->controller->deliveryCost(
+        $delivery_data = json_decode($this->deliveryCost(
           $cart_totals['postal_address'], 
           $cart_totals['shipping'],
           $cart_totals['grand_total'],
@@ -307,5 +307,245 @@ class CartComponent extends Component {
 		}
 		return $freeShipping;
 		// return intval($price) >= intval($shipping_price['Setting']['value']);
-	}  
+	}
+
+  public function getItemsData(){
+    $items_data = array('count' => 0, 'price' => 0);
+    $items = $this->controller->Session->read('cart');
+    //CakeLog::write('debug', 'getItemsData:'. json_encode($items));
+    if ($items) {
+      foreach ($items as $key => $item) {
+        $items_data['count']++;
+        $items_data['price']+= $item['price'];
+      }
+      $package = $this->controller->Package->find('first',array('conditions' => array( 'Package.amount_min <=' => $items_data['count'] , 'Package.amount_max >=' => $items_data['count'] )));
+      if(!empty($package)){
+        $items_data['package']= $package['Package'];
+        $items_data['weight'] = $package['Package']['weight']/1000;
+        $items_data['volume'] = ($package['Package']['width']/100)*($package['Package']['height']/100)*($package['Package']['depth']/100);
+        return $items_data;
+      }
+    }
+    return false;
+  }
+
+  public function deliveryCost($cp, $code = null, $total = 0, $payment_method = 'bank'){
+    // CakeLog::write('debug','deliveryCost(cp):'.$cp);
+    // CakeLog::write('debug','deliveryCost(code):'.$code);
+
+    // $this->loadModel('LogisticsPrices');
+    //Codigo Postal
+    $this->controller->Session->write('cp', $cp);
+
+    $cart_totals = $this->controller->Session->read('cart_totals') ?? [];
+
+    if ($this->controller->settings['env_staging']) {
+      return json_encode(json_decode('{"freeShipping":false,"rates":[{"title":"Oca","code":"oca","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/628eb1ba29efd.svg","info":"Env\u00edos a todo el pa\u00eds","price":987,"centros":[],"valid":true},{"title":"Speed Moto","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/6292a6f2d79b7.jpg","code":"speedmoto","info":"10 a\u00f1os brindando confianza a nuestros clientes","price":"700.00","centros":[],"valid":true}],"itemsData":{"count":1,"price":1994.99,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}'));
+    }
+
+    $cp1 = substr($cp, 0, 3) . '*';
+    $cp2 = substr($cp, 0, 2) . '**';
+    //Data
+    $data = $this->getItemsData();
+    // CakeLog::write('debug','isFreeShipping(1)');
+    $freeShipping = $this->isFreeShipping($total, $payment_method, $cp);
+    // CakeLog::write('debug','deliveryCost(free_shipping):'.json_encode($freeShipping));
+
+    $unit_price = $data['price'];
+    if(!empty($data['discount']) && !empty((float)(@$data['discount']))) {
+      $unit_price = @$data['discount'];
+    }
+    //CakeLog::write('debug','isFreeShipping(2)');
+    //$freeShipping = $this->Cart->isFreeShipping($unit_price, $cp);
+    $json = array(
+      'freeShipping' => $freeShipping,
+      'rates' => [],
+      'itemsData' => $data
+    );
+
+    if(!empty($data)){
+      if ($code) {
+        // CakeLog::write('debug', 'deliveryCost(code):'.$code);
+        // necesitamos cotizacion de una empresa
+        $code = strtolower($code);
+        $logistic = $this->controller->Logistic->find('first',[
+          'conditions' => [
+            'enabled' => true,
+            'code' => $code
+          ]
+        ])['Logistic'];
+        if ($logistic['local_prices']) {
+          // CakeLog::write('debug', 'deliveryCost(code)(1)');
+          // buscamos las tarifas
+          $item = $this->controller->LogisticsPrices->find('first', [
+            'conditions' => [
+              'logistic_id' => $logistic['id'],
+              'enabled' => true,
+              'OR' => [
+                ['zips LIKE' => "%{$cp1}%"],
+                ['zips LIKE' => "%{$cp2}%"],
+                ['zips LIKE' => "%{$cp}%"]
+              ]
+            ]
+          ])['LogisticsPrices'];
+          $row = [
+            'title' => $logistic['title'],
+            'image' => $logistic['image'],
+            'info' => implode('. ', array_filter([$logistic['info'], $item['info']])),
+            'code' => (float) $logistic['code'],
+            'price' => $free_shipping ? 
+              0 : 
+              $item['price'],
+            'centros' => [],
+            'valid' =>  true
+          ];
+          $json['rates'][] = $row;
+        } else {
+          if (method_exists($this, "calculate_shipping_{$code}")) {
+            $row = [
+              'title' => $logistic['title'],
+              'code' => $logistic['code'],
+              'image' => $logistic['image'],
+              'info' => $logistic['info'],
+              'price' => $free_shipping ? 
+                0 : 
+                (float) $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+              'centros' => [],
+              'valid' =>  true
+            ];
+            $json['rates'][] = $row;
+          }
+        }
+      } else {
+        // CakeLog::write('debug', 'deliveryCost(local_prices)');
+        // buscamos todas las opciones disponibles
+        // buscamos prioridad en envíos gratutios si lo hubiera.
+        if ($freeShipping) {
+          $local_prices_ids = [];
+          $logistics = $this->controller->Logistic->find('all', [
+            'conditions' => [
+              'enabled' => true,
+              'free_shipping' => true
+            ]
+          ]);
+
+          // get quotes for free shipping
+          foreach($logistics as $logistic) {
+            if($logistic['Logistic']['local_prices']) {
+              $local_prices_ids[] = $logistic['Logistic']['id'];              
+            } else {
+              $item = $logistic['Logistic'];
+              $code = $item['code'];
+              $row = [];
+              if (method_exists($this, "calculate_shipping_{$code}")) {
+                $row = [
+                  'title' => $item['title'],
+                  'code' => $item['code'],
+                  'image' => $item['image'],
+                  'info' => $item['info'],
+                  'price' => $free_shipping ? 
+                    0 : 
+                    $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+                  'centros' => [],
+                  'valid' =>  true
+                ];
+              }
+              $json['rates'][] = $row;
+            }
+          } 
+
+          $local_prices = $this->controller->LogisticsPrices->find('all', [
+            'conditions' => [
+              'logistic_id' => $local_prices_ids,
+              'enabled' => true,
+              'OR' => [
+                ['zips LIKE' => "%{$cp1}%"],
+                ['zips LIKE' => "%{$cp2}%"],
+                ['zips LIKE' => "%{$cp}%"]
+              ]
+            ]
+          ]);
+
+          foreach($local_prices as $logistic_price) {
+            $item = $logistic_price['LogisticsPrices'];
+            $parent = $this->Logistic->findById($item['logistic_id'])['Logistic'];
+            $row = [
+              'title' => $parent['title'],
+              'image' => $parent['image'],
+              'code' => $parent['code'],
+              'info' => implode('. ', array_filter([$parent['info'], $item['info']])),
+              'price' => $free_shipping ? 
+                0 : 
+                $item['price'],
+              'centros' => [],
+              'valid' =>  true
+            ];
+            $json['rates'][] = $row;
+          }
+        }
+
+        if(empty($json['rates'])) {
+          // buscamos logísticas de alcance nacional
+          $logistics = $this->controller->Logistic->find('all',[
+            'conditions' => [
+              'enabled' => true,
+              'local_prices' => false
+            ]
+          ]);
+
+          foreach($logistics as $logistic) {
+            $item = $logistic['Logistic'];
+            $code = $item['code'];
+            $row = [];
+            if (method_exists($this, "calculate_shipping_{$code}")) {
+              $row = [
+                'title' => $item['title'],
+                'code' => $item['code'],
+                'image' => $item['image'],
+                'info' => $item['info'],
+                'price' => $free_shipping ? 
+                  0 : 
+                  $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+                'centros' => [],
+                'valid' =>  true
+              ];
+            }
+            $json['rates'][] = $row;
+          }
+
+          // buscamos logísticas de alcance local
+          $locals = $this->controller->LogisticsPrices->find('all', [
+            'conditions' => [
+              'enabled' => true,
+              'OR' => [
+                ['zips LIKE' => "%{$cp1}%"],
+                ['zips LIKE' => "%{$cp2}%"],
+                ['zips LIKE' => "%{$cp}%"]
+              ]
+            ]
+          ]);
+
+          foreach($locals as $logistic_price) {
+            $item = $logistic_price['LogisticsPrices'];
+            $parent = $this->Logistic->findById($item['logistic_id'])['Logistic'];
+            $row = [
+              'title' => $parent['title'],
+              'image' => $parent['image'],
+              'code' => $parent['code'],
+              'info' => implode('. ', array_filter([$parent['info'], $item['info']])),
+              'price' => $free_shipping ? 
+                0 : 
+                (float) $item['price'],
+              'centros' => [],
+              'valid' =>  true
+            ];
+            $json['rates'][] = $row;
+          }
+        }
+      }
+    }
+
+    // CakeLog::write('debug', 'deliveryCost(json):'.json_encode($json));
+    return $json;
+  }
 }

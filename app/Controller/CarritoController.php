@@ -210,25 +210,7 @@ class CarritoController extends AppController
 		$this->set('userData',$user);
 	}
 
-	private function getItemsData(){
-		$items_data = array('count' => 0, 'price' => 0);
-		$items = $this->Session->read('cart');
-		//CakeLog::write('debug', 'getItemsData:'. json_encode($items));
-		if ($items) {
-			foreach ($items as $key => $item) {
-				$items_data['count']++;
-				$items_data['price']+= $item['price'];
-			}
-			$package = $this->Package->find('first',array('conditions' => array( 'Package.amount_min <=' => $items_data['count'] , 'Package.amount_max >=' => $items_data['count'] )));
-			if(!empty($package)){
-				$items_data['package']= $package['Package'];
-				$items_data['weight'] = $package['Package']['weight']/1000;
-				$items_data['volume'] = ($package['Package']['width']/100)*($package['Package']['height']/100)*($package['Package']['depth']/100);
-				return $items_data;
-			}
-		}
-		return false;
-	}
+
 
 	private function checkOcaCP($cp){
 		$oca = new Oca();
@@ -409,7 +391,7 @@ class CarritoController extends AppController
 
 	public function andreani_cotiza () {
 		$this->autoRender = false;
-		$items_data = $this->getItemsData();
+		$items_data = $this->Cart->getItemsData();
 		$cp = '1400';
 		$result = $this->calculate_shipping_andreani($items_data, $cp, $data['price']);
 		echo '<pre>';

@@ -5,7 +5,6 @@ function showCouponInput() {
 }
 
 function resetCoupon() {
-  var cart = JSON.parse(localStorage.getItem('cart')) || {}
   $('.calc-coupon').hide(); 
   $('.coupon-click').show();
   $('#coupon_name').val('')
@@ -16,21 +15,15 @@ function resetCoupon() {
   var subtotal = getTotals()
   var delivery_cost = 0
 
-  if (!subtotal && cart.subtotal_price) {
-    subtotal = cart.subtotal_price
-  }
-
   if (!freeShipping && cart_totals.delivery_cost) {
     delivery_cost = cart_totals.delivery_cost
   }  
   var price = parseFloat(subtotal)
-  
+  console.log('fxTotal(2)', price)
+
   fxTotal(price)
 
   $('.coupon-discount').addClass('hidden')
-
-  cart.total_price = parseFloat(price.toFixed(2))
-  localStorage.setItem('cart', JSON.stringify(cart))
 }
 
 function submitCoupon() {
