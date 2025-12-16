@@ -4,10 +4,6 @@ $cloudzoom = false;
 $cloudzoomdata = 'zoomSizeMode:"zoom", lensWidth: 100, lensHeight: 100, zoomWidth:300, zoomHeight: 300, autoInside: 600';
 $images  = array();
 $images_aux = explode(';', $product['gallery']);
-
-// echo $this->Html->script('jquery', array('inline' => false));
-// echo $this->Html->script('ga', array('inline' => false));
-
 echo $this->Html->script('product.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->Html->script('detalle.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 
@@ -229,7 +225,8 @@ foreach ($properties as $property) {
                             $style = (empty($color['images']))?'oldSelectColor':'';
                             echo '<label class="btn '.$loadColorImages.' '.$single. ' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
                             echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] . '"' . ($i == 0 ? ' checked' : '') . '>';
-                            if (!empty($color['images']) && !$show_names_only) {
+                            //if (!empty($color['images']) && !$show_names_only) {
+                            if (!$show_names_only) {
                                 $image = explode(';', $color['images']);
                                 foreach ($image as $kk => $vv) {
                                     if (!empty($vv)) {
@@ -237,7 +234,7 @@ foreach ($properties as $property) {
                                         break;
                                     }
                                 }
-                                echo '<div class="color-option color-img" style="background-image: url('.$settings['upload_url'].$image[0].')"></div>';
+                                echo '<div class="color-option color-img" style="background-image: url('.$settings['upload_url'].(strlen($image[0])?$image[0]:'default.jpg').')"></div>';
                             } else {
                               // echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
                             }

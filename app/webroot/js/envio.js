@@ -65,7 +65,8 @@ selectStore = function(e) {
 
   const store = $(e).attr('store')
   const store_address = $(e).attr('store-address')
-
+  console.log('store',store)
+  console.log('store_address',store_address)
   var grand_total = cart_totals.grand_total 
   format_total = formatNumber(grand_total)
   fxTotal(format_total)

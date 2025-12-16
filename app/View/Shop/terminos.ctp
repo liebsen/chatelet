@@ -150,7 +150,6 @@
 
 			<p>La venta de los productos se realiza por cuenta y orden de CHÂTELET. La garant&iacute;a de los productos que se adquieren a trav&eacute;s de CHÂTELET es responsabilidad de CHÂTELET.Una vez transcurrido el plazo establecido en el segundo p&aacute;rrafo del punto 14 de estos T&eacute;rminos y Condiciones Generales, cualquier reclamo deber&aacute; ser dirigido contra CHÂTELET.</p>
 
-			<p>&nbsp;</p>
 			</div>
 
 			<div class="section">
@@ -232,7 +231,6 @@
 
 			<p>Los productos ser&aacute;n entregados de lunes a viernes, entre las 9:00 y las 18:00 horas, con excepci&oacute;n de los feriados nacionales. Los Usuarios no podr&aacute;n elegir ni el horario ni el d&iacute;a en que se entregar&aacute;n el o los productos adquiridos, por lo que se recomienda seleccionar su domicilio laboral como punto de entrega para mayor seguridad. De todos modos, podr&aacute;n hacerse sugerencias en el campo de observaciones al momento de realizar la compra, las que quedar&aacute;n supeditadas al circuito de la empresa que tenga a su cargo el env&iacute;o de los productos.</p>
 
-			<p>&nbsp;</p>
 		</div>
 
 		<div class="section">
