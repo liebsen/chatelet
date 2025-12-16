@@ -98,6 +98,8 @@ class AppHelper extends Helper {
     $number_ribbon = 0;
     $ribbon_style = '';
 
+    $settings = $this->controller->settings;
+
     if(!empty($item['ribbon_color'])) {
       $ribbon_style = ' style="background-color:'.$item['ribbon_color'].'"';
     }
