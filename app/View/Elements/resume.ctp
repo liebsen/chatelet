@@ -74,7 +74,7 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 			</div>
 			<div class="summary-item text-right delivery-cost<?php echo $cart_totals['cargo'] != 'shipment' ? ' hidden' : '' ?>">
 				<span class="text-weight-thin text-success">Envía <span class="shipping-cargo price text-sm"><?php echo $cart_totals['shipping'] ?></span></span>
-				<span id="delivery_cp"></span> <span class="cost_delivery"><?php echo empty($cart_totals['delivery_cost']) ? 'Gratis' : \price_format($cart_totals['delivery_cost']) ?></span>
+				<span id="delivery_cp"></span> <span class="cost_delivery text-success"><?php echo empty($cart_totals['delivery_cost']) ? 'Gratis' : \price_format($cart_totals['delivery_cost']) ?></span>
 			</div>
 			<div class="summary-item text-right takeaway-text<?php echo $cart_totals['cargo'] != 'takeaway' ? ' hidden' : '' ?>">
 				<span class="text-weight-thin text-success">Retira </span>

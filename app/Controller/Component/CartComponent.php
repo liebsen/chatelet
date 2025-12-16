@@ -287,25 +287,25 @@ class CartComponent extends Component {
       return true;
     }
 
-		$freeShipping = false;
+		$free_shipping = false;
 
 		if (!empty($shipping_type)) {
 			if (@$shipping_type == 'min_price' || $shipping_price_min > 1){
-				$freeShipping = intval($price) >= intval($shipping_price_min);
+				$free_shipping = intval($price) >= intval($shipping_price_min);
 			}
-			if (!$freeShipping && $zip_code && @$shipping_type == 'zip_code'){
+			if (!$free_shipping && $zip_code && @$shipping_type == 'zip_code'){
 				$zip_codes = explode(',',$shipping_type_extra);
 				if (count($zip_codes)) {
 					$filter = [];
 					foreach($zip_codes as $code) {
 						$filter[] = trim($code);
 					}
-					$freeShipping = in_array($zip_code, $filter);
+					$free_shipping = in_array($zip_code, $filter);
 				}
 			}
 			// error_log('shipping_value: '.@$shipping_config['Setting']['value']);
 		}
-		return $freeShipping;
+		return $free_shipping;
 		// return intval($price) >= intval($shipping_price['Setting']['value']);
 	}
 
@@ -330,7 +330,7 @@ class CartComponent extends Component {
   }
 
   public function deliveryCost($cp, $code = null, $total = 0, $payment_method = 'bank'){
-    // CakeLog::write('debug','deliveryCost(cp):'.$cp);
+    CakeLog::write('debug','deliveryCost(cp):'.$cp);
     // CakeLog::write('debug','deliveryCost(code):'.$code);
 
     // $this->loadModel('LogisticsPrices');
@@ -338,7 +338,7 @@ class CartComponent extends Component {
     $this->controller->Session->write('cp', $cp);
 
     $cart_totals = $this->controller->Session->read('cart_totals') ?? [];
-    $fake_enabled = true;
+    $fake_enabled = false;
 
     if ($fake_enabled && $this->controller->settings['env_staging']) {
       return json_encode(json_decode('{"freeShipping":false,"rates":[{"title":"Oca","code":"oca","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/628eb1ba29efd.svg","info":"Env\u00edos a todo el pa\u00eds","price":987,"centros":[],"valid":true},{"title":"Speed Moto","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/6292a6f2d79b7.jpg","code":"speedmoto","info":"10 a\u00f1os brindando confianza a nuestros clientes","price":"700.00","centros":[],"valid":true}],"itemsData":{"count":1,"price":1994.99,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}'));
@@ -349,17 +349,18 @@ class CartComponent extends Component {
     //Data
     $data = $this->getItemsData();
     // CakeLog::write('debug','isFreeShipping(1)');
-    $freeShipping = $this->isFreeShipping($total, $payment_method, $cp);
-    // CakeLog::write('debug','deliveryCost(free_shipping):'.json_encode($freeShipping));
+    $free_shipping = $this->isFreeShipping($total, $payment_method, $cp);
+    error_log("free_shipping:".json_encode($free_shipping));
+    // CakeLog::write('debug','deliveryCost(free_shipping):'.json_encode($free_shipping));
 
     $unit_price = $data['price'];
     if(!empty($data['discount']) && !empty((float)(@$data['discount']))) {
       $unit_price = @$data['discount'];
     }
     //CakeLog::write('debug','isFreeShipping(2)');
-    //$freeShipping = $this->Cart->isFreeShipping($unit_price, $cp);
+    //$free_shipping = $this->Cart->isFreeShipping($unit_price, $cp);
     $json = array(
-      'freeShipping' => $freeShipping,
+      'freeShipping' => $free_shipping,
       'rates' => [],
       'itemsData' => $data
     );
@@ -421,7 +422,7 @@ class CartComponent extends Component {
         // CakeLog::write('debug', 'deliveryCost(local_prices)');
         // buscamos todas las opciones disponibles
         // buscamos prioridad en envíos gratutios si lo hubiera.
-        if ($freeShipping) {
+        if ($free_shipping) {
           $local_prices_ids = [];
           $logistics = $this->controller->Logistic->find('all', [
             'conditions' => [

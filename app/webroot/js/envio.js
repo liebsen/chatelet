@@ -1,8 +1,4 @@
 selectShipping = function (e, shipping, cost) {
-	/* if (cost <= 0) {
-		return setTimeout( `onErrorAlert('No disponible', 'El servicio de logística ${shipping.toUpperCase()} no está disponible en este momento, intente en unos instantes.')` , 200)
-	} */
-
 	var total = 0
 	var coupon_benefits = cart_totals.coupon_benefits || 0
 	var total_products = cart_totals.total_products || 0
@@ -19,7 +15,10 @@ selectShipping = function (e, shipping, cost) {
 	total = total_products - coupon_benefits
 
 	// console.log('cart_totals',JSON.stringify(cart_totals))
-	if (grand_total < shipping_price && !cart_totals.free_shipping) {
+	console.log('grand_total',grand_total)
+	console.log('shipping_price',shipping_price)
+	console.log('cart_totals.free_shipping',cart_totals.free_shipping)
+	if (!cart_totals.free_shipping) {
 		total += cost
 		$('#subtotal_envio').val(cost)
 		$('.products-total').removeClass('hidden')
@@ -33,6 +32,7 @@ selectShipping = function (e, shipping, cost) {
 	}
 
 	$('.takeaway-text').addClass('hidden')
+	$('.delivery-cost').removeClass('hidden')
 	$('.cost_total').text('$ ' + formatNumber(total))
 
 	total = formatNumber(total)
@@ -178,12 +178,13 @@ $(document).ready(function() {
 			if( json.rates.length ){
 				var rates = `<ul class="generic-select shipping-options">`
 				json.rates.forEach(rate => {
+					console.log('price', rate.price)
 					if (!isNaN(rate.price)) {
-						var price = '<span class="text-success text-bold">Gratis</span>'
+						var price_html = '<span class="text-success text-bold">Gratis</span>'
 						if (!cart_totals.free_shipping) {
-							price = `<span class="text-uppercase">$ ${formatNumber(parseInt(rate.price))}</span>`
+							price_html = `<span class="text-uppercase">$ ${formatNumber(parseInt(rate.price))}</span>`
 						}
-						rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')">${price}</div></li>`
+						rates+= `<li shipping="${rate.code}" data-info="${rate.info}" onclick="selectShipping(this, '${rate.code}',${parseInt(rate.price)})"><div class="shipping-logo" style="background-image: url('${rate.image}')">${price_html}</div></li>`
 					}
 				})
 				rates+= `</ul>`
@@ -223,7 +224,7 @@ $(document).ready(function() {
 		if(!cp.val() || cp.val() == '') {
 			if(localStorage.lastcp) {
 				cp.val(localStorage.lastcp)	
-				$('.btn-calculate-shipping').click()
+				// $('.btn-calculate-shipping').click()
 			}
 		}
 	})
