@@ -65,8 +65,6 @@ selectStore = function(e) {
 
   const store = $(e).attr('store')
   const store_address = $(e).attr('store-address')
-  console.log('store',store)
-  console.log('store_address',store_address)
   var grand_total = cart_totals.grand_total 
   format_total = formatNumber(grand_total)
   fxTotal(format_total)
@@ -220,6 +218,16 @@ $(document).ready(function() {
 		$('.map-block').addClass('hidden')
 	})
 
+	$(document).on('click', 'a[href="#envio"]', function(e){
+		const cp = $('.input-cp')
+		if(!cp.val() || cp.val() == '') {
+			if(localStorage.lastcp) {
+				cp.val(localStorage.lastcp)	
+				$('.btn-calculate-shipping').click()
+			}
+		}
+	})
+
 	const takeaway_store = JSON.parse(localStorage.takeaway_store) || []
 
 	if (localStorage.getItem('cargo') === 'takeaway' && Object.keys(takeaway_store)?.length && !location.hash.includes('shipment-options.shipping')) {
@@ -231,11 +239,11 @@ $(document).ready(function() {
 		}, 100)
 	}
 
-	if (localStorage.getItem('cargo') === 'delivery' && localStorage.getItem('lastcp')) {
+	if (localStorage.cargo === 'delivery' && localStorage.lastcp) {
 		setTimeout(() => {
 			$('a[href="#envio"]').click()
 			//$('.shipment-block').show()
-			$('.input-cp').val(localStorage.getItem('lastcp'))
+			$('.input-cp').val(localStorage.lastcp)
 			$('.btn-calculate-shipping').click()
 			$('.has-checkout-steps').addClass('done')
 			// const takeaway = $('.takeaway-options li.selected')
