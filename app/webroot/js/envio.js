@@ -14,10 +14,6 @@ selectShipping = function (e, shipping, cost) {
 	
 	total = total_products - coupon_benefits
 
-	// console.log('cart_totals',JSON.stringify(cart_totals))
-	console.log('grand_total',grand_total)
-	console.log('shipping_price',shipping_price)
-	console.log('cart_totals.free_shipping',cart_totals.free_shipping)
 	if (!cart_totals.free_shipping) {
 		total += cost
 		$('#subtotal_envio').val(cost)
