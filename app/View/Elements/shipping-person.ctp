@@ -94,7 +94,7 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 		<div class="col-md-6">
 			<label for="Depto">Obs.</label>
 			<div class="form-group">
-				<textarea title="Depto" class="form-control" id="obs" placeholder="obs" name="customer[obs]"></textarea>
+				<textarea title="Depto" class="form-control" id="obs" placeholder="obs" name="customer[obs]"><?php echo $cart_totals['customer']['obs'] ?></textarea>
 			</div>
 		</div>		
 	</div>

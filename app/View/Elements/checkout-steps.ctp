@@ -19,7 +19,7 @@
 
 <?php else : ?>
 
-<div class="wizard-container d-flex flex-column justify-content-center align-items-center is-absolute top-0 animated slideInDown slow delay2">
+<div class="wizard-container d-flex flex-column justify-content-center align-items-center is-absolute top-0 animated slideInDown delay2">
 	<span class="navbar-brand wizard-brand"></span>
 	<div class="wizard-progress is-flex-center justify-content-around w-100">
 	<?php foreach($checkout_steps as $i => $step) : ?>
@@ -89,7 +89,7 @@
     width: 100%;
   }
   .wizard-progress .wizard-step.complete:before {
-  	background-color: #e7e7e7;
+  	background-color: #ccc;
   }
 	.wizard-progress .wizard-node {
 		display: inline-block;
@@ -108,23 +108,34 @@
     font-weight: 1000;
 	}
 	.wizard-progress .wizard-step.complete {
-		color: #e7e7e7;
+		color: #ccc;
 	}
 	.wizard-progress .wizard-step.current {
 		color: #404040;
 		font-weight: bold;
 	}	
+
+	.wizard-progress .wizard-step.current .wizard-label {
+		top: -6px;
+		font-size: 1rem;
+	}
 	.wizard-progress .wizard-step.complete .wizard-label {
-		color: #e7e7e7;
+		color: #ccc;
 	}
 	.wizard-progress .wizard-step.complete .wizard-node {
-		border-color: #e7e7e7;
+		border-color: #ccc;
 		color: white;
-		background-color: #e7e7e7;
+		background-color: #ccc;
 	}
 	.wizard-progress .wizard-step.current .wizard-node {
 		border-color: #404040;
 		color: #404040;
+    font-size: 1.5rem;
+    padding-top: 12px;
+    width: 50px;
+    height: 50px;
+    top: 17px;
+    left: 48%;
 	}
 
 	/* manages loading states  */
