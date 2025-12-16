@@ -23,23 +23,9 @@ function checkCount(value) {
 	}
 }
 
-function show_stock(){
-	setTimeout(() => {
-		const block = document.querySelector('.stock-block');
-		$(block).removeClass('fadeIn')
-		$(block).removeClass('fadeOut')
-		$(block).addClass('fadeIn')
-	}, 500)				
-}
-
 function pideStock(obj){
-	const block = document.querySelector('.stock-block');
-	$(block).removeClass('fadeIn','fadeOut')
-	$(block).addClass('fadeOut')
 	clearTimeout(timeout)
 	timeout = setTimeout(() => {
-		// $(".add.agregar-carro").text('Agregar al carrito')
-
 		var url 		= $(obj).closest("form").data('url');
 		var article 	= $(obj).closest("form").data('article');
 		var color_code 	= $(obj).closest("form").find('input[name="color"]:checked').attr('code');
@@ -57,14 +43,14 @@ function pideStock(obj){
 		if(!color_code){
 			// onWarningAlert(`Talle seleccionado`,`Seleccionaste talle ${size_number}, ahora elegí un color para este producto`)
 			stock_cont.html(no_color);
-			show_stock()
+			//show_stock()
 			return false;
 		}
 
 		if(!size_number){
 			// onWarningAlert(`Color seleccionado`,`Seleccionaste color ${color_alias}, ahora elegí un talle para tu prenda`)
 			stock_cont.html(no_size);
-			show_stock()
+			//show_stock()
 			return false;
 		}
 
@@ -74,24 +60,26 @@ function pideStock(obj){
       stock_cont.html(stock_v);
 
 	  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
-				if(data != 0){
-				  // stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
-				  // $('.growl').remove()
-				  // onErrorAlert('Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
-					stock_cont.html(stock);
-				}else{
-					// onWarningAlert('Producto no disponible', 'Lamentablemente este producto ya no se encuentra disponible')
-					stock_cont.html( stock_0 );
-				}
+	  		setTimeout(() => {
+					if(data != 0){
+					  // stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
+					  // $('.growl').remove()
+					  // onErrorAlert('Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
+						stock_cont.html(stock);
+					}else{
+						// onWarningAlert('Producto no disponible', 'Lamentablemente este producto ya no se encuentra disponible')
+						stock_cont.html( stock_0 );
+					}
 
-				show_stock()	
-				window.stock = data;
+					//show_stock()	
+					window.stock = data;
+				}, 1000)
 			});
 		}else{
 			stock_cont.html(missing);
-			show_stock()		
+			//show_stock()		
 		}
-	}, 500)
+	}, 100)
 }
 
 function updatePrefs(obj){

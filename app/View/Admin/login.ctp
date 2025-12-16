@@ -106,6 +106,7 @@ echo $this->Session->flash();
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-asterisk fa-fw"></i></span>
                                         <input type="password" id="login-password" name="data[User][password]" class="form-control" placeholder="Password..">
+
                                     </div>
                                 </div>
                             </div>

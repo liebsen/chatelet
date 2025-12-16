@@ -34,9 +34,15 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 				)
 			)); ?>
 			<input type="hidden" name="redirect" value="/"/>                
-      <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" />
-      <input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" />
+			<div class="form-group">
+      	<input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" />
+      </div>
+      <div class="form-group position-relative">
+      	<input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" />
+				<i class="form-input-icon fa fa-eye-slash is-clickable"></i>
+			</div>
       <!--label class="form-group p-1">
+
       	<input type="checkbox" name="rememberme" />
       	<span class="label-text text-muted"><span class="text-sm text-link">Recordarme en este dispositivo</span></span>
       </label-->
@@ -53,17 +59,18 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 	
 <script type="text/javascript">
 
-/*
-$("#login-email").keyup(function () {
-        var myemail = $(this).val();
-        $(".modal-body #email").val( myemail );
-    });
+	$(document).ready(function() {
+	  $('.form-input-icon').click(function(event) {
+	  	if($('input[name="data[User][password]"]').prop('type') == 'password') {
+	  		$(this).removeClass('fa-eye-slash')
+	  		$(this).addClass('fa-eye')
+		  	$('input[name="data[User][password]"]').prop('type', 'text')
+	  	} else {
+	  		$(this).removeClass('fa-eye')
+	  		$(this).addClass('fa-eye-slash')
+	  		$('input[name="data[User][password]"]').prop('type', 'password')
+	  	}
+	  })
+	})
 
-$("#login-password").keyup(function () {
-        var mypass = $(this).val();
-        $(".modal-body #password").val( mypass );
- });
-*/
 </script>			
-		
-	

@@ -637,6 +637,7 @@ class CheckoutController extends AppController
 				'NRO'		=> $customer['street_n'],
 				'PISO'		=> $customer['floor'],
 				'DPTO'		=> $customer['depto'],
+				'OBS'	=> $customer['obs'],
 				'COD_POST'	=> $cart_totals['postal_address'],
 				'CARGO'	=> $cart_totals['cargo'],
 				'CUPON'	=> $cart_totals['coupon'],
