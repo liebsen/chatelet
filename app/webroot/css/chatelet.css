@@ -1419,7 +1419,7 @@ select.form-control{
 }
 @media(max-width: 550px) {
 	.carrito-selector {
-		transform: scale(0.75);
+		transform: scale(0.5);
 	}
 	.card-link i {
 		display: none;

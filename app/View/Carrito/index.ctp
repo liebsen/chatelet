@@ -47,10 +47,10 @@
 								<div class="ch-image" style="background-image: url('<?php echo $settings['upload_url'].($product['alias_image'] ?: $product['img_url']) ?>')"></div>
 							</a>
 						</div>
-						<div class="d-flex justify-content-start align-center flex-column w-100">
-							<div class="d-flex justify-content-between align-center gap-05 w-100">
-								<div class="d-flex justify-content-center align-center flex-column max-20 min-w-5">
-									<h5 class="mt-0 mb-2 text-weight-thin lh-1"><?php echo $product['name'] ?></h5>
+						<div class="d-flex justify-content-start align-items-center flex-column w-100">
+							<div class="d-flex justify-content-around align-items-center w-100">
+								<div class="d-flex justify-content-center align-center flex-column max-20 min-w-5 flex-1">
+									<h6 class="mt-0 mb-2 text-weight-thin lh-1"><?php echo $product['name'] ?></h6>
 									<?php if (!empty($product['color_code']) && $product['color_code'] != 'undefined') : ?>
 										<span class="text-sm">Color: 
 											<span color-code="<?php echo $product['color_code'] ?>"><?php echo $product['alias'] ?></span>
@@ -79,7 +79,7 @@
 										<input class="giftchecks gift-<?php echo $product['id'] ?>" type="checkbox" data-id="<?php echo $product['id'] ?>"><span class="label-text text-muted text-sm">Para regalo</span><br><br>
 										</label>
 									</div>
-									<button class="btn bg-transparent m-0" onclick="askremoveCart(this)">
+									<button class="btn bg-transparent m-0 p-0" onclick="askremoveCart(this)">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</div>
