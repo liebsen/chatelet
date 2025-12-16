@@ -265,7 +265,8 @@ class AdminController extends AppController {
 		$this->autoRender = false;
 		$this->SQL = $this->Components->load('SQL');
 		$list_code = $this->settings['list_code'];
-		$exists = $this->SQL->product_exists($article,$list_code);
+		$stock_min = $this->settings['stock_min'];
+		$exists = $this->SQL->product_exists($article,$list_code,$stock_min);
 		if($exists){
 			return 'ok';
 		}else{

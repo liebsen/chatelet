@@ -316,9 +316,10 @@ class ShopController extends AppController {
 		$this->SQL = $this->Components->load('SQL');
 		$stock = 0;
 		$list_code = $this->settings['list_code'];
+		$stock_min = $this->settings['stock_min'];
 		if(!empty($article) && !empty($color_code) && !empty($size_number) ){
 			CakeLog::write('debug','article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code);
-	    $stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code);
+	    $stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code,$stock_min);
 		} elseif (!empty($article)) {
 			$stock = 1;
 		}
@@ -333,9 +334,10 @@ class ShopController extends AppController {
 		$product = $this->Product->findById($product_id);
 		$stock = 0;
 		$list_code = $this->settings['list_code'];
+		$stock_min = $this->settings['stock_min'];
 		if(!empty($product['Product']['article'])){
 			CakeLog::write('debug','checking SQL '.$product_id.' / '.$product['Product']['article'].' / list_code: '.$list_code);
-			$stock = $this->SQL->product_exists_general($product['Product']['article'],$list_code);
+			$stock = $this->SQL->product_exists_general($product['Product']['article'],$list_code, $stock_min);
 		}
 		CakeLog::write('debug','checking stock '.$product_id.': '.(int)$stock);
 		if (empty($stock)) {
