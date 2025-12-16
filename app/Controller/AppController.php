@@ -204,7 +204,7 @@ class AppController extends Controller
     $keys = ["upload_url", "upload_local", "site_url"];
 
     foreach($keys as $key)
-      if(empty($settings[$key]))
+      if(empty($this->settings[$key]))
         $this->Setting->save(array(
           'id' => $key,
           'value' => call_user_func($key)
@@ -284,12 +284,12 @@ class AppController extends Controller
     $filepath = '';
     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
     $key = uniqid() . '.' . $ext;
-    $dest = __DIR__ . '/../webroot' . $settings['upload_url'] . $key;
+    $dest = __DIR__ . '/../webroot' . $this->settings['upload_url'] . $key;
     $url = "";
 
     if(copy($file['tmp_name'],$dest)){
-      $filepath = $settings['upload_url'] . $key;
-      if(!empty($settings['upload-local'])){
+      $filepath = $this->settings['upload_url'] . $key;
+      if(!empty($this->settings['upload_local'])){
         $filepath = $key;
       }
     }
@@ -300,7 +300,7 @@ class AppController extends Controller
       //Creamos thumbnail
       $this->ResizeImage->thumbnail($file['tmp_name'], $thumb_new_name, $size);
       if(!copy($file['tmp_name'],$dest)){
-          error_log('Error al generar thumbnail',$dest);
+        CakeLog::write('error','Error al generar thumbnail:'.$dest);
       }
     }
 
@@ -308,12 +308,11 @@ class AppController extends Controller
   }
 
   protected function save_file($file, $withThumb = false, $size=300) {
-
     if (empty($file['name'])) {
         return false;
     }
 
-    if($settings['upload-local']) {
+    if($this->settings['upload_local']) {
         return $this->saveFile($file,$withThumb,$size);
     }
     
