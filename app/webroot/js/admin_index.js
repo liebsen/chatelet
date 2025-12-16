@@ -26,7 +26,7 @@ $(function(){
 					image: base_url+parts[0], 
 					file: parts[0],
 					video: parts[0].includes('.mp4'),
-					orientation: parts[1] || ''
+					orientation: parts[1] || 'mobile'
 				}
 				var html    	= template(context);
 
@@ -560,7 +560,11 @@ $(function(){
 				var source   	= $("#image_thumb_newsletter").html();
 				var template 	= Handlebars.compile(source);
 				var parts = image_newsletter.split('-').reverse() 
-				var context 	= {image_newsletter: base_url+parts[0] , file_newsletter: parts[0], orientation: parts[1] || '' }
+				var context 	= {
+					image_newsletter: base_url+parts[0], 
+					file_newsletter: parts[0], 
+					orientation: parts[1] || 'mobile' 
+				}
 				var html    	= template(context);
 
 				ul.append(html);

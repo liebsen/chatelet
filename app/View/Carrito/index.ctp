@@ -180,9 +180,8 @@
 				echo '</td>';			
 				echo '<td>';	
 
-
 				echo '<span class="text-nowrap">'. \price_format($product['item_price']) .'</span>';
-				if (!empty($product['item_old_price'] && abs($product['item_old_price']-$product['item_price']) > 0)){
+				if (!empty($product['item_old_price'] && $product['item_old_price'] != $product['item_price'])) {
 					echo '<br><span class="old_price text-grey text-sm">'.\price_format($product['item_old_price']) .'</span>';
 				}					
 

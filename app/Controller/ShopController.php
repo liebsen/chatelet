@@ -310,9 +310,9 @@ class ShopController extends AppController {
 
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
 		$this->autoRender = false;
-		/* if ($this->settings['env_staging']) {
+		if ($this->settings['env_staging']) {
 			return 1;
-		} */
+		}
 		$this->SQL = $this->Components->load('SQL');
 		$stock = 0;
 		$list_code = $this->settings['list_code'];
