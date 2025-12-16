@@ -97,9 +97,6 @@ class AppHelper extends Helper {
     $stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
     $number_ribbon = 0;
     $ribbon_style = '';
-
-    $settings = $this->controller->settings;
-
     if(!empty($item['ribbon_color'])) {
       $ribbon_style = ' style="background-color:'.$item['ribbon_color'].'"';
     }
