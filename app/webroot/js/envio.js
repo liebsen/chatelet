@@ -225,7 +225,9 @@ $(document).ready(function() {
 		}
 	})
 
-	const takeaway_store = JSON.parse(localStorage.takeaway_store) || []
+	const takeaway_store = localStorage.takeaway_store && localStorage.takeaway_store != 'undefined' ? 
+		JSON.parse(localStorage.takeaway_store) || 
+		[]
 
 	if (localStorage.getItem('cargo') === 'takeaway' && Object.keys(takeaway_store)?.length && !location.hash.includes('shipment-options.shipping')) {
 		setTimeout(() => {
