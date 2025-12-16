@@ -18,9 +18,10 @@ class CartComponent extends Component {
   }
 
   public function update($cart=false, $cart_totals=false) {
+
     $settings = $this->controller->settings;
 
-    // CakeLog::write('debug', 'update(cart_totals):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
+    CakeLog::write('debug', 'update(cart_totals):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
     // CakeLog::write('debug', 'cart(param):'. json_encode($cart));
 
     if (empty($cart)) {

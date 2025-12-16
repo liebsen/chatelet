@@ -78,7 +78,7 @@ echo $this->element('checkout-params');
 						</div>
 						<div class="d-flex flex-column justify-content-center align-items-start gap-05">
 							<div id="map_canvas"></div>
-							<span class="text-sm text-muted">
+							<span class="text-muted">
 								<span><?php echo $settings['carrito_takeaway_text'] ?></span><br>
 								Seleccionaste retirar en <span class="store"></span> ubicado en <span class="store-address"></span>
 							</span>

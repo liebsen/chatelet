@@ -18,12 +18,9 @@ selectShipping = function (e, shipping, cost) {
 	
 	total = total_products - coupon_benefits
 
-	console.log('cart_totals',JSON.stringify(cart_totals))
-	console.log('free_shipping(state)',(!cart_totals.free_shipping))
+	// console.log('cart_totals',JSON.stringify(cart_totals))
 	if (grand_total < shipping_price && !cart_totals.free_shipping) {
 		total += cost
-		console.log({cost})
-		console.log({total})
 		$('#subtotal_envio').val(cost)
 		$('.products-total').removeClass('hidden')
 		$('.delivery-cost').removeClass('hidden')
@@ -35,6 +32,7 @@ selectShipping = function (e, shipping, cost) {
 		}
 	}
 
+	$('.takeaway-text').addClass('hidden')
 	$('.cost_total').text('$ ' + formatNumber(total))
 
 	total = formatNumber(total)
@@ -60,13 +58,20 @@ selectStore = function(e) {
 	$('.takeaway-options li').addClass('secondary')
 	$('.free-shipping').addClass('hidden')
 	$('#cost_container').html('')
+	$('.takeaway-text').removeClass('hidden')
 	$(e).addClass('selected')
   $('.delivery-cost').addClass('hidden')
   var grand_total = cart_totals.grand_total 
   format_total = formatNumber(grand_total)
   fxTotal(format_total)
   	
-  const storeProps = ['store', 'store-address', 'store-lat', 'store-lng']
+  const storeProps = [
+  	'store', 
+  	'store-address', 
+  	'store-lat', 
+  	'store-lng'
+  ]
+
   let store = {}
   storeProps.forEach((i,j) => {
   	store[i] = $(e).attr(i)

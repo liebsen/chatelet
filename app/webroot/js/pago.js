@@ -8,6 +8,10 @@ function updateTotals(res) {
   $('.coupon_bonus').text( "$ " + formatNumber(discounted_formatted))
   $('.subtotal_price').text( "$ " + formatNumber(res.cart_totals.total_products))
 
+  console.log('free_shipping',res.cart_totals.free_shipping)
+  console.log('payment_method',res.cart_totals.payment_method)
+  console.log('delivery_cost',res.cart_totals.delivery_cost)
+
   if(res.cart_totals.free_shipping) {
   	$('.cost_delivery').html("<span class='text-success'>Gratis</span>")
   } else {
@@ -91,7 +95,7 @@ $(function(){
 
 		requesting_coupon = true
 
-	  $.post('/checkout/payment_method', { 
+	  $.post('/checkout/payWith', { 
 	  	coupon: cart_totals.coupon,
 	  	payment_method: selected,
 	  }, function(res, textStatus) {
