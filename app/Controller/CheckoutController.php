@@ -884,20 +884,14 @@ class CheckoutController extends AppController
 
 		// $redirect = "/shop/mis_compras/{$sale_id}";
 		//Setting
-		// if(empty(Configure::read('MP_IN_SANDBOX_MODE'))) {
 		if($settings['mercadopago_sanbox_on'] == 'on') {
 			//Production
 			$mp->sandbox_mode(FALSE);
-			$redirect = $preference['response']['sandbox_init'];
-			//error_log('entering mp production mode');
-			// return $this->redirect($preference['response']['init_point']);
+			$redirect = $preference['response']['init_point'];
 		}else{
 			//Sandbox
 			$mp->sandbox_mode(TRUE);
-			//error_log('entering mp sandbox mode');
-			//error_log($preference['response']['sandbox_init_point']);
 			$redirect = $preference['response']['sandbox_init_point'];
-			// return $this->redirect($preference['response']['sandbox_init_point']);
 		}
 
 		CakeLog::write('debug', 'sale(redirect):'.json_encode($redirect));
