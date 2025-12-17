@@ -41,7 +41,7 @@
           </li>
         </ul>
         <div class="tab-content p-7">
-          <div class="tab-pane active" id="main">
+          <div class="tab-pane pane-main active">
             <div class="row">
               <div class="col-md-6">
                 <h4 class="sub-header">Información Principal</h4>
@@ -115,7 +115,7 @@
             </div>
           </div> 
 
-          <div class="tab-pane" id="condiciones">
+          <div class="tab-pane pane-condiciones">
             <div class="row">
               <div class="col-md-6">
                 <h4 class="sub-header">Condiciones</h4>
@@ -199,7 +199,7 @@
               </div>        
             </div>
           </div>
-          <div class="tab-pane" id="avanzado">
+          <div class="tab-pane pane-avanzado">
             <div class="related-empty<?=empty($categories_count) && empty($products_count) ? '' : ' d-none' ?>">
               <button class="btn btn-lg btn-success"><i class="fa fa-cog mr-2"></i> Configurar <?=$coupon['Coupon']['code'] ?></button>
               <hr>

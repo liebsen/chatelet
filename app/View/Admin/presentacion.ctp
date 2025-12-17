@@ -21,7 +21,7 @@
 	        </li>
 	      </ul>
 	      <div class="tab-content">
-	        <div class="tab-pane active" id="splash">
+	        <div class="tab-pane pane-splash active">
 		        <!--h4 class="sub-header">Pantalla inicial <span class="counter_newsletter hide"></span></h4-->
 		        <p>Una pantalla forzada al inicio. Splash es la primera imagen que se verá en la pantalla mientras esté cargando la home.</p>
 						<div class="control-group w-100 bg-dark">
@@ -46,7 +46,7 @@
 							</div>
 						</div>
 	        </div>
-	        <div class="tab-pane" id="slider">
+	        <div class="tab-pane pane-slider">
 		        <!--h4 class="sub-header">Slider <span class="counter hide"></span></h4-->
 		        <p>Es el carrusel principal de la home que se ve al cerrar el splash</p>
 						<div class="control-group w-100 bg-dark">

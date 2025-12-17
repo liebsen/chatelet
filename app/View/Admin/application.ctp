@@ -30,7 +30,7 @@
         </li>
       </ul>
       <div class="tab-content p-7">
-        <div class="tab-pane active" id="social">
+        <div class="tab-pane pane-social active">
         	<div class="row">
         		<div class="col-md-6">
 			        <h4 class="sub-header">Presencia en redes sociales</h4>
@@ -125,7 +125,7 @@
 				</div>
 
 
-				<div class="tab-pane" id="analytics">
+				<div class="tab-pane pane-analytics">
 	        <h4 class="sub-header">Reportes de la tienda</h4>
 	        <p>Proporciona el código público del sitio para todos los servicios.</p>
 	        <div class="control-group">
@@ -145,7 +145,7 @@
     		</div>
 
 
-        <div class="tab-pane" id="google-fonts">
+        <div class="tab-pane pane-google-fonts">
 	        <h4 class="sub-header">Fuente de la tienda</h4>
 	        <p>Asigna el nombre de la fuente que desees (los archivos correspondientes se solicitarán a Google Fonts)</p>
 	        <div class="control-group">
@@ -168,7 +168,7 @@
 	        </div>
         </div>
 
-        <div class="tab-pane" id="payments">
+        <div class="tab-pane pane-payments">
 	        <!--h4 class="sub-header">Mercado pago</h4-->
 	        <p>Proporciona el client_secret y client_id proporcionado por Mercado pago.</p>
 	        <div class="control-group">
