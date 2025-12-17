@@ -8,6 +8,7 @@ class SalesShell extends AppShell {
   public $uses = array(
     'Setting', 
     'User', 
+    'Product', 
     'Sale', 
     'SaleProduct'
   );
@@ -24,13 +25,24 @@ class SalesShell extends AppShell {
     $response = array();
 
     foreach($sales as $i => $sale) {
-      $sale['Sale']['items'] = $this->SaleProduct->find('all', array('conditions' => array(
-        'sale_id' => $sale['Sale']['id']
-      )));
+      $sale['Sale']['items'] = $this->SaleProduct->find('all',array(
+        'joins' => array(
+          array(
+            'table' => 'products',
+            'alias' => 'Product',
+            'type' => 'LEFT',
+            'conditions' => array( 'Product.id = SaleProduct.product_id' )
+          )
+        ),
+        'fields' => array('Product.id, Product.category_id, Product.article, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.stock_total'),
+        'conditions' => array( 
+          'SaleProduct.sale_id' => $sale['Sale']['id'],
+          'Product.visible' => "1" 
+        )
+      ));
+
       $response[$i] = $this->sendEmail($sale);
     }
-
-    CakeLog::write('debug', 'unfinished sales:'.count($sales));
 
     return json_encode(array(
       'reponse' => $response,
