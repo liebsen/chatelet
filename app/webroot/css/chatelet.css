@@ -470,7 +470,7 @@ html, body {
   min-height: calc(100dvh - 150px);
 }
 .min-h-101 {
-  min-height: calc(100dvh - 105px);
+  min-height: calc(100dvh - 90px);
 }
 .max-20 {
 	max-width: 20rem;

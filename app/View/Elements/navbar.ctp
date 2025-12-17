@@ -77,8 +77,8 @@
                     <div id="user-data">
                       <div id="user-name">
                         <?php echo $user['name'] . " " . $user['surname']; ?>
-                        <a data-toggle="sidebar" data-target=".sidebar-account" class="pencil">
-                          <span class="fa fa-pencil"></span>
+                        <a href="#" class="pencil">
+                          <span data-toggle="sidebar" data-target=".sidebar-account" class="fa fa-pencil"></span>
                         </a>
                       </div>
                       <div id="user-email"><?php echo $user['email']; ?></div>
