@@ -11,6 +11,12 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
   </h5>
   <span class="">Asegurate de verificar y actualizar tus datos correctos para que tu compra llegue a tu domicilio antes y mejor</span>
 	<div class="row">
+		<div class="col-md-12">
+			<label for="email">Email</label>
+			<div class="form-group">
+				<input type="email" class="form-control" placeholder="Email" title="Email" id="email" name="customer[email]" value="<?= (!empty($userData['User']['email']))?$userData['User']['email']:''; ?>" required>
+			</div>
+		</div>		
 		<div class="col-md-6 pr-0-d">
 			<label for="nombre">Nombre</label>
 			<div class="form-group">
@@ -32,12 +38,6 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 				<span class="help-block"></span>
 			</div>
 		</div>
-		<!--div class="col-md-12">
-			<label for="email">Email</label>
-			<div class="form-group">
-				<input type="email" class="form-control" placeholder="Email" title="Email" id="email" name="customer[email]" value="<?= (!empty($userData['User']['email']))?$userData['User']['email']:''; ?>" required>
-			</div>
-		</div-->
 		<div class="col-md-6">
 			<label for="Telefono">Teléfono</label>
 			<div class="form-group">

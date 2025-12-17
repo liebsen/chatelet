@@ -665,7 +665,19 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$nro = 1;
 		}
 
-		if (empty($sale) || empty($sale['Sale']['package_id']) || empty($sale['Sale']['value']) || empty($sale['Sale']['email']) || empty($sale['Sale']['telefono']) || empty($sale['Sale']['provincia']) || empty($sale['Sale']['localidad']) || empty($sale['Sale']['cp']) || empty($sale['Sale']['calle']) || empty($sale['Sale']['nombre']) || empty($sale['Sale']['apellido'])) {
+		if (
+			empty($sale) || 
+			empty($sale['Sale']['package_id']) || 
+			empty($sale['Sale']['value']) || 
+			empty($sale['Sale']['email']) || 
+			empty($sale['Sale']['telefono']) || 
+			empty($sale['Sale']['provincia']) || 
+			empty($sale['Sale']['localidad']) || 
+			empty($sale['Sale']['cp']) || 
+			empty($sale['Sale']['calle']) || 
+			empty($sale['Sale']['nombre']) || 
+			empty($sale['Sale']['apellido'])
+		) {
 			// die('Venta no encontrada o incompleta.');
 			$data['message'] = 'Venta incompleta';
 		} else {
