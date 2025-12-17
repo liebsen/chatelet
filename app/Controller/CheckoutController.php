@@ -866,20 +866,6 @@ class CheckoutController extends AppController
 		CakeLog::write('debug', 'sale(preference):'.json_encode($preference_data));
 		$preference = $mp->create_preference($preference_data);
 		//Save Data
-		$sale_data = array(
-			'user' => array(
-				'name' => $customer['name'],
-				'email' => $customer['email']
-			),
-			'sale' => $cart_totals,
-			//'items' 	=> $items,
-			'sale_id' 	=> $sale_id,
-			//'preference'=> $preference,
-			'products' => $product_ids,
-			'total' => $total
-		);
-
-		$this->Session->write('sale_data',$sale_data);
 		$redirect = "";
 
 		// $redirect = "/shop/mis_compras/{$sale_id}";
@@ -903,10 +889,10 @@ class CheckoutController extends AppController
 		);
 	}
 
-	private function notify_user($data, $status){
+	private function notify_user($sale, $status){
 		if ($status=='success'){
 
-$message = '<p>¡Hola <strong>'.ucfirst($data['user']['name']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHÂTELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
+$message = '<p>¡Hola <strong>'.ucfirst($sale['nombre']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHÂTELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$sale['id'].'</strong>.</p>
 
 <p>Te enviaremos el pedido cuando recibamos la confirmación de la
 venta por parte del medio de pago elegido.</p>
@@ -922,7 +908,7 @@ el pago.</p>
 
 		}else{
 
-$message = '<p>¡Hola <strong>'.ucfirst($data['user']['name']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHÂTELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
+$message = '<p>¡Hola <strong>'.ucfirst($sale['nombre']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHÂTELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$sale['id'].'</strong>.</p>
 
 <p>Te enviaremos el pedido cuando recibamos la confirmación de la
 venta por parte del medio de pago elegido.</p>
@@ -937,53 +923,60 @@ el pago.</p>
 <br/><a href="https://www.chatelet.com.ar">CHÂTELET</a>';
 
 		}
-		error_log('[email] notifying user '.$data['user']['email']);
-		$this->sendEmailMessage($message,'🌸 Gracias por comprar en CHÂTELET',$data['user']['email']);
+		error_log('[email] notifying user '.$sale['email']);
+		$this->sendEmailMessage($message,'🌸 Gracias por comprar en CHÂTELET',$sale['email']);
 	}
 
 	public function failed() {
-			$data = $this->Session->read('sale_data');
-			// error_log('Failed payment: '.json_encode($data));
-			// CakeLog::write('debug', 'Failed payment');
-			$this->Session->delete('cart');
-			$this->Session->delete('sale_data');
-			$this->set('sale_data',$data);
-			$this->set('failed', true);
-			if (!empty($_GET['collection_status']) && $_GET['collection_status']=='pending'){
-				// error_log('pending');
-				// CakeLog::write('debug', 'Failed payment: pending');
-				$this->notify_user($data, 'pending');
-				return $this->render('clear');
-			}else{
-				// CakeLog::write('debug', 'Failed payment: failed');
-				// error_log('failed');
-				return $this->render('clear_no');
-			}
+		$sale_id = $this->request->query['external_reference'] ?? 0;
+		$collection_status = $this->request->query['collection_status'] ?? 0;
+
+		CakeLog::write('debug', 'Failed payment');
+		$sale = $this->Sale->findById($sale_id);
+		$this->set('sale',$sale);
+		$this->set('failed', true);
+		$this->Session->delete('cart');
+		$this->Session->delete('cart_totals');
+
+		if (!empty($collection_status) && $collection_status=='pending'){
+			$this->notify_user($sale, 'pending');
+			return $this->render('clear');
+		} else {
+			// CakeLog::write('debug', 'Failed payment: failed');
+			// error_log('failed');
+			return $this->render('clear_no');
+		}
 	}
 
 	public function clear() { //success
-		// error_log('success payment: '.json_encode($this->Session->read('sale_data')));
-		// CakeLog::write('debug', 'Success payment:'.json_encode($this->Session->read('sale_data')));
-		if( $this->Session->check( 'sale_data' ) ){
-			$sale_data = $this->Session->read('sale_data');
-			$sale_object = array(
-				'id' 		=> $sale_data['sale_id'],
+		$sale_id = $this->request->query['external_reference'] ?? 0;
+		if(!empty($sale_id)){
+			$sale = $this->Sale->findById($sale_id);
+			$sale_items = $this->SaleProduct->find('all', array('conditions' => array(
+				'sale_id' => $sale_id
+			)))
+
+			CakeLog::write('debug', 'Success payment:'.json_encode($sale));
+			// CakeLog::write('debug', 'sale(4)'.json_encode($to_save));	
+
+			$this->Sale->save(array(
+				'id' 		=> $sale_id,
 				'completed' => 1
-			);
-			// CakeLog::write('debug', 'sale(4)'.json_encode($to_save));			
-			$this->Sale->save($sale_object);
-			$this->set('sale_data',$this->Session->read('sale_data'));
-			$this->notify_user($this->Session->read('sale_data'), 'success');
+			));
+
+			$this->set('sale', $sale);
+			$this->set('sale_items', $sale_items);
+			$this->notify_user($sale, 'success');
 			$this->Session->delete('cart');
-			$this->Session->delete('sale_data');
+			$this->Session->delete('cart_totals');
+
 			return $this->render('clear');
-			//error_log('success');
-		}else{
-			error_log('no sale data');
+		} else {
+			CakeLog::write('debug', 'Error payment: no sale data');
 			$this->Session->delete('cart');
-			$this->Session->delete('sale_data');
+			$this->Session->delete('cart_totals');
+
 			return $this->render('clear_no');
-			//return $this->redirect(array('controller' => 'home', 'action' => 'index'));
 		}
 	}
 }
