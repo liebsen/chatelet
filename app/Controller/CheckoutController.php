@@ -884,7 +884,7 @@ class CheckoutController extends AppController
 
 		// $redirect = "/shop/mis_compras/{$sale_id}";
 		//Setting
-		if($settings['mercadopago_sanbox_on'] == 'on') {
+		if($settings['mercadopago_sandbox_on'] == 'off') {
 			//Production
 			$mp->sandbox_mode(FALSE);
 			$redirect = $preference['response']['init_point'];
