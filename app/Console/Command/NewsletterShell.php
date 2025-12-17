@@ -4,47 +4,46 @@ class NewsletterShell extends AppShell {
    public $uses = array('User', 'Newsletter','NewsletterUser', 'CakeEmail');
    public function main() {
 
-      $data = $this->Newsletter->find('all', array(
-       'joins' => array(
-        array(
-          'table' => 'newsletter_users',
-          'alias' => 'NewsletterUser',
-          'type' => 'LEFT',
-          'conditions' => array( 'NewsletterUser.newsletter_id = Newsletter.id' )
-        ),
-        array(
-          'table' => 'users',
-          'alias' => 'User',
-          'type' => 'LEFT',
-          'conditions' => array( 'NewsletterUser.user_id = User.id' )
-        )
+    $data = $this->Newsletter->find('all', array(
+     'joins' => array(
+      array(
+        'table' => 'newsletter_users',
+        'alias' => 'NewsletterUser',
+        'type' => 'LEFT',
+        'conditions' => array( 'NewsletterUser.newsletter_id = Newsletter.id' )
+      ),
+      array(
+        'table' => 'users',
+        'alias' => 'User',
+        'type' => 'LEFT',
+        'conditions' => array( 'NewsletterUser.user_id = User.id' )
+      )
+     ),
+    'fields' => array('Newsletter.*, User.name, User.surname, User.email'),
+       'conditions' => array( 
+          'Newsletter.status' => "waiting", 
+          'Newsletter.enabled' => 1
+          // 'Newsletter.exec_now' => 1 
        ),
-      'fields' => array('Newsletter.*, User.name, User.surname, User.email'),
-         'conditions' => array( 
-            'Newsletter.status' => "waiting", 
-            'Newsletter.enabled' => 1
-            // 'Newsletter.exec_now' => 1 
-         ),
-         //'order' => array( 'Product.price ASC' )
-      ));
+       //'order' => array( 'Product.price ASC' )
+    ));
 
+    /* $email_data = array(
+      'id_user' => 1,
+      'receiver_email' => $email,
+      'name' =>  'Prueba',
+    ); */
 
-      /* $email_data = array(
-        'id_user' => 1,
-        'receiver_email' => $email,
-        'name' =>  'Prueba',
-      ); */
+    $reponse = array();
 
-      $reponse = array();
+    foreach($data as $i => $newsletter) {
+      $reponse[$i] = $this->sendEmail($newsletter);
+    }
 
-      foreach($data as $i => $newsletter) {
-         $reponse[$i] = $this->sendEmail($newsletter);
-      }
-
-      return json_encode(array(
-         'reponse' => $response
-      ));
-   }
+    return json_encode(array(
+      'reponse' => $response
+    ));
+  }
 
   public function sendEmail($data) {
     

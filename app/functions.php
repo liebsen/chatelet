@@ -25,21 +25,26 @@ function upload_url() {
 }
 
 function get_socials(){
-  return ['facebook','instagram','x-twitter', 'youtube'];
+  return [
+    'facebook',
+    'instagram',
+    'x-twitter', 
+    'youtube'
+  ];
 }
 
-function parsed_socials(){
-  global $settings;
-  
+function parsed_socials($settings){
   $socials = [];
   
   foreach(\get_socials() as $social) {
-    if(!empty($settings[$social])) {
-      $socials[$social] = $settings[$social];
+    if($settings[$social.'_on'] == 'on') {
+      $socials[$social] = $settings[$social.'_url'];
     }
   }
+
   return $socials;
 }
+
 function readable_time_ago($timestamp) {
     $current_time = time();
     $diff = $current_time - $timestamp;

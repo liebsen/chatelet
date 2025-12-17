@@ -100,9 +100,16 @@ CakePlugin::loadAll();
  *
  * ));
  */
+
 Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',
 	'CacheDispatcher'
+));
+
+Configure::write('Exception.skipLog', array(
+  'MissingActionException', 
+  'NotFoundException', 
+  'MissingControllerException'
 ));
 
 /**

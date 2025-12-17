@@ -859,11 +859,9 @@ class ShopController extends AppController {
   public function analytics(){
     $this->autoRender = false;
 	  $cart = $this->Session->read('cart');
-
     if(!empty($cart)) {
 	    $data = $this->request->data;
 	    $this->loadModel('Analytic');
-
 	    $cart_totals = $this->Session->read('cart_totals');
 	    $cart_totals['cart_items'] = count($cart);
 
@@ -877,7 +875,8 @@ class ShopController extends AppController {
 	        'cart_totals' => $cart_totals,
 	        'cart' => $cart
 	      );
-
+	      
+	    	// CakeLog::write('debug', "purchase_unfinished:".json_encode($email_data));
 	      // CakeLog::write('debug', 'email_data:'. json_encode($email_data));
 				$sent = $this->sendEmail($email_data, 'Completá tu compra', 'purchase_unfinished');
 
@@ -886,18 +885,20 @@ class ShopController extends AppController {
 					$this->Session->write('cart_totals', $cart_totals);
 				}
 			}
-
-			// save search
-			$analytic = [];
-			$analytic['tag'] = "page_exit";
-			$analytic['user_id'] = $this->Auth->user('id') ?: 0;
-			$analytic['created'] = date('Y-m-d H:i:s');
-			$analytic['cart'] = json_encode($cart);
-			$analytic['cart_totals'] = json_encode($cart_totals);
-			$analytic['page'] = $data['page'] ?? '/';
-
-			$this->Analytic->save($analytic);
 		}
+
+		// save search
+		$analytic = [];
+		$analytic['tag'] = "page_exit";
+		$analytic['user_id'] = $this->Auth->user('id') ?: 0;
+		$analytic['created'] = date('Y-m-d H:i:s');
+		$analytic['cart'] = json_encode($cart);
+		$analytic['cart_totals'] = json_encode($cart_totals);
+		$analytic['page'] = $data['page'] ?? '/';
+
+		CakeLog::write('debug', "analytics:".json_encode($analytic));
+
+		$this->Analytic->save($analytic);		
 		exit();	
   }	
 }
