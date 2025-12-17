@@ -11,7 +11,32 @@ Array.prototype.remove = function() {
 };
 //General Functions
 $(function(){
-//Images
+
+	/* $('.display_form').on('submit', function(e){
+		$.growl.notice({
+			title: 'OK',
+			message: 'Tu presentación se actualizó',
+		});	
+
+		$.ajax({
+			url: '',
+			data: {
+				file: file,
+				origin: origin,
+			},
+			type: 'POST',
+		})
+		.success(function(res) {
+			me.removeClass('fa-mobile', 'fa-desktop')
+			const data = JSON.parse(res)
+			me.addClass('fa-' + data.orientation)
+	  	});
+		e.preventDefault()
+		return false
+	})*/
+
+
+	//Images
 	var drawImages = function(images){
 		var base_url 	= $("#image_thumb").data('url');
 		var ul 			= $('#images');
@@ -41,12 +66,17 @@ $(function(){
 		var file 	= me.data('file');
 		var origin 	= me.data('origin');
 		var orientation = me.data('orientation');
-		var state = orientation.indexOf('mobile') > -1 ? 'desktop' : 'mobile'
+		var state = orientation.indexOf('mobile') > -1 ? 
+			'desktop' : 
+			'mobile'
 		let parts = $(`input[name="data[${origin}]"]`).val()
 		let parts1 = parts.split(";")
 		let parts2 = parts1.filter((e) => e).map((e) => {
 			if(e.includes(file)) {
 				e = e.replaceAll(orientation, state)
+			}
+			if(!e.includes('desktop-') && !e.includes('mobile-')) {
+				e = 'mobile-' + e
 			}
 			return e
 		})
@@ -131,7 +161,7 @@ $(function(){
 
 				var images 	= input.val();
 				images 		= images.split(';');
-				images.push(data);
+				images.push('mobile-' + data);
 				input.val( images.join(';') );
 				drawImages(images);
 		  	});
@@ -216,8 +246,8 @@ $(function(){
                 
                 var images_one 	= input.val();
 				images_one 		= images_one.split(';');
-				if(images_one.length > 3){
-					alert('Solo se permiten 3 imagenes por modulo');
+				if(images_one.length > 8){
+					alert('Solo se permiten 8 imágenes por modulo');
 					return false;
 				}else{
 					images_one.push(data);
@@ -308,8 +338,8 @@ $(function(){
                 var images_two 	= input.val();
 				images_two 		= images_two.split(';');
 
-				if(images_two.length > 3){
-					alert('Solo se permiten 3 imagenes por modulo');
+				if(images_two.length > 8){
+					alert('Solo se permiten 8 imágenes por modulo');
 					return false;
 				}else{
 					images_two.push(data);
@@ -399,8 +429,8 @@ $(function(){
                 var images_three 	= input.val();
 				images_three 		= images_three.split(';');
 
-				if(images_three.length > 3){
-					alert('Solo se permiten 3 imagenes por modulo');
+				if(images_three.length > 8){
+					alert('Solo se permiten 8 imágenes por modulo');
 					return false;
 				}else{
 					images_three.push(data);
@@ -530,8 +560,8 @@ $(function(){
                 var images_four 	= input.val();
 				images_four 		= images_four.split(';');
 
-				if(images_four.length > 3){
-					alert('Solo se permiten 3 imagenes por modulo');
+				if(images_four.length > 8){
+					alert('Solo se permiten 8 imágenes por modulo');
 					return false;
 				}else{
 					images_four.push(data);
@@ -565,8 +595,7 @@ $(function(){
 					file_newsletter: parts[0], 
 					orientation: parts[1] || 'mobile' 
 				}
-				var html    	= template(context);
-
+				var html = template(context);
 				ul.append(html);
 			}
 		});
@@ -603,6 +632,7 @@ $(function(){
 			'image/jpeg': true,
 			'image/jpg': true,
 		};
+
 		fd.append('data[file]', this.files[0]);
 
 		if (valid_types[this.files[0].type]) {
@@ -632,11 +662,11 @@ $(function(){
                 var images_newsletter 	= input.val();
 				images_newsletter 		= images_newsletter.split(';');
 
-				if(images_newsletter.length > 3){
-					alert('Solo se permiten 3 imagenes por modulo');
+				if(images_newsletter.length > 8){
+					alert('Solo se permiten 8 imágenes por modulo');
 					return false;
 				}else{
-					images_newsletter.push(data);
+					images_newsletter.push('mobile-' + data);
 				    input.val(images_newsletter.join(';'));
 					drawImagesNewsletter(images_newsletter);
 				}
@@ -648,6 +678,16 @@ $(function(){
 			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
-	drawImagesNewsletter( $("[name='data[img_popup_newsletter]']").val().split(';') );
+
+	var img_popup_newsletter = $("[name='data[img_popup_newsletter]']").val().split(';')
+
+	img_popup_newsletter = img_popup_newsletter.map((e) => {
+		if(e.includes('desktop-') && !e.includes('mobile-')) {
+			e = 'mobile-' + e
+		}
+		return e
+	})
+
+	drawImagesNewsletter( img_popup_newsletter );
 
 });

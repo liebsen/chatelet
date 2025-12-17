@@ -4,7 +4,7 @@
 
 <div class="block">
 	<div class="block-content">
-		<form action="" method="post" class="form-inline" enctype="multipart/form-data">
+		<form action="" method="post" class="form-inline display_form" enctype="multipart/form-data">
 			<input type="hidden" name="data[id]" value="1" />
 			<div class="row">
 				<div class="col-md-12">
@@ -69,7 +69,7 @@
 			<div class="form-actions">
 				<input type="hidden" name="id" value="1">
 				<button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="icon-repeat"></i> Restaurar</button>
-				<button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="icon-ok"></i> Guardar</button>
+				<button type="submit" class="btn btn-success animated fast" title="Pulsa aquí para actualizar este formulario"><i class="icon-ok"></i> Guardar</button>
 			</div>
 		</form>
 	</div>

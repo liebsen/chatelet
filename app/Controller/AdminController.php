@@ -1069,16 +1069,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	public function save_file_admin()
 	{
 		$this->autoRender = false;
-		$response = null;
-		if (!empty($this->request->data['file']['name'])) {
-			$response = $this->save_file($this->request->data['file']);
-		} else {
-			die('fail');
+		// $this->RequestHandler->respondAs('application/json');
+		$data = $this->request->data;
+		$response = "fail";
+		if (!empty($data['file']['name'])) {
+			$response = (string) $this->save_file($data['file']);
 		}
-		if(empty($response)){
-			$response = 'fail';
-		}
-		die($response);
+		return $response;
 	}
 
 	public function isAuthorized() {
