@@ -353,8 +353,6 @@ class CheckoutController extends AppController
 		var_dump($result);
 	}
 	
-
-
 	private function sale() {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		// $settings = $this->load_settings();
@@ -887,7 +885,7 @@ class CheckoutController extends AppController
 		// $redirect = "/shop/mis_compras/{$sale_id}";
 		//Setting
 		// if(empty(Configure::read('MP_IN_SANDBOX_MODE'))) {
-		if($settings['mercadopago_sanbox_on'] == 'off') {
+		if($settings['mercadopago_sanbox_on'] == 'on') {
 			//Production
 			$mp->sandbox_mode(FALSE);
 			$redirect = $preference['response']['sandbox_init'];
