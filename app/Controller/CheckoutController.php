@@ -843,8 +843,8 @@ class CheckoutController extends AppController
 		// $mp = new MP(Configure::read('mercadopago_client_id'), Configure::read('mercadopago_client_secret'));
 		
 		$mp = new MP($settings['mercadopago_client_id'], $settings['mercadopago_client_secret']);
-		$success_url = Router::url(array('controller' => 'checkout', 'action' => 'success'), true);
-		$failure_url = Router::url(array('controller' => 'checkout', 'action' => 'error'), true);
+		$success_url = Router::url(array('controller' => 'checkout', 'action' => 'clear'), true);
+		$failure_url = Router::url(array('controller' => 'checkout', 'action' => 'failed'), true);
 
 		$preference_data = array(
 			'external_reference' => $sale_id,
@@ -961,7 +961,7 @@ el pago.</p>
 			}
 	}
 
-	public function success() { //success
+	public function clear() { //success
 		// error_log('success payment: '.json_encode($this->Session->read('sale_data')));
 		// CakeLog::write('debug', 'Success payment:'.json_encode($this->Session->read('sale_data')));
 		if( $this->Session->check( 'sale_data' ) ){
