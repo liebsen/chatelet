@@ -806,7 +806,7 @@ class CheckoutController extends AppController
 			'provincia'	=> $customer['provincia'],
 			'telefono'	=> $customer['telephone'],
 			'email'		=> $customer['email'],
-			'regalo'		=> count($gift_ids),
+			'obs'		=> $customer['obs'],
 			'package_id'=> @$delivery_data->itemsData->package->id ?? 1,
 			'value' 	=> $total, // @$delivery_data['itemsData']['price'],
 			'zip_codes' => $this->settings['shipping_zips'],

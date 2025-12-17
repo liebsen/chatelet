@@ -446,7 +446,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
   top: 10.25rem!important;
 }
 
-.shop-options img { margin-right: 50px; max-height: 10rem; }
+.shop-options img { margin-right: 2rem; max-width: 3.5rem; }
 .shop-options h3 { color: #363633; font-weight: 1000; text-transform: uppercase; margin-bottom: 30px; }
 .shop-options ul { column-count: 3; column-gap: 40px; }
 .shop-options ul li { margin-bottom: 0.5rem; }

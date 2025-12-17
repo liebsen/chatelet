@@ -170,26 +170,7 @@
 
         <div class="tab-pane pane-payments">
 	        <!--h4 class="sub-header">Mercado pago</h4-->
-	        <p>Proporciona el client_secret y client_id proporcionado por Mercado pago.</p>
-	        <div class="control-group">
-	          <label class="control-label" for="columns-text"><?php echo __('Modo Pruebas'); ?></label>
-	          <div class="controls text-center switch-scale">
-	            <?php
-	              $enabled = @$settings['mercadopago_sandbox_on'] == 'on' ? 'checked' : '';
-	              $disabled = @$settings['mercadopago_sandbox_on'] == 'off' ? 'checked' : '';
-	            ?>
-	            <span>
-	            <input type="radio" class="form-control" id="mercadopago_sandbox_on_0" name="data[mercadopago_sandbox_on]" value="off" <?php echo $disabled; ?> />
-	            <label for="mercadopago_sandbox_on_0">No (Producción)</label>
-	          </span>
-	          <span>
-	            <input type="radio" class="form-control" id="mercadopago_sandbox_on_1" name="data[mercadopago_sandbox_on]" value="on" <?php echo $enabled; ?> /> 
-	            <label for="mercadopago_sandbox_on_1">Sí (Staging)</label>
-	          </span>
-	          </div>
-	          <span class="text-muted">Indica si debe mostrarse como artículo o como sitio web.</span>
-	        </div>
-					<hr>	        
+	        <p>Proporciona los siguientes datos provistos por Mercado Pago. Establece modo de operación.</p>
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Client ID'); ?></label>
 	          <div class="controls">
@@ -205,6 +186,26 @@
 	          <span class="text-muted">Ingresa la identificación del pixel.</span>
 	        </div>
 	        <hr>
+
+	        <div class="control-group">
+	          <label class="control-label" for="columns-text"><?php echo __('Modo de operación'); ?></label>
+	          <div class="controls text-center switch-scale">
+	            <?php
+	              $enabled = @$settings['mercadopago_sandbox_on'] == 'on' ? 'checked' : '';
+	              $disabled = @$settings['mercadopago_sandbox_on'] == 'off' ? 'checked' : '';
+	            ?>
+	            <span>
+	            <input type="radio" class="form-control" id="mercadopago_sandbox_on_0" name="data[mercadopago_sandbox_on]" value="off" <?php echo $disabled; ?> />
+	            <label for="mercadopago_sandbox_on_0">Entorno real (Producción)</label>
+	          </span>
+	          <span>
+	            <input type="radio" class="form-control" id="mercadopago_sandbox_on_1" name="data[mercadopago_sandbox_on]" value="on" <?php echo $enabled; ?> /> 
+	            <label for="mercadopago_sandbox_on_1">Entorno pruebas</label>
+	          </span>
+	          </div>
+	          <span class="text-muted">Indica si debe mostrarse como artículo o como sitio web.</span>
+	        </div>
+
 	        <!--label for="mercadopago_sandbox_on" class="d-flex justify-content-start justify-content-center gap-05">
 		        <input type="checkbox" id="mercadopago_sandbox_on" name="data[mercadopago_sandbox_on]" <?php echo @!empty($settings['mercadopago_sandbox_on'] && $settings['mercadopago_sandbox_on'] == 'on') ? ' checked' : '' ?>>
 		        <span>Modo pruebas</span>

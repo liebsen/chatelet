@@ -36,7 +36,7 @@
           margin-bottom: 0;
         }
         .text-orden-retiro {
-          font-size: 1.5rem;
+          font-size: 1.25rem;
           font-weight: 800;
         }
         @media print {
@@ -86,6 +86,15 @@
                   <br>
                 </td>
               </tr>
+            <?php if(strlen($ticket['obs'])): ?>
+              <tr>
+                <td><h6><?php echo __('Observaciones'); ?></h6></td>
+                <td>
+                  <h6><?= $ticket['obs'] ?></h6>
+                  <br>
+                </td>
+              </tr>
+            <?php endif ?>
               <!--tr class="bg-light">
                 <td><h6><?php echo __('Peso'); ?></h6></td>
                 <td><?= $package['weight'] / 1000 ?>kg</td>
@@ -97,8 +106,8 @@
             </table>
             <?php $address = $ticket['calle'].' '.$ticket['nro'].', '.$ticket['localidad'].' '.$ticket['cp']. ', Argentina'; ?>
 
-            <img width="200" height="200" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=1&markers=color:blue|<?= urlencode($address) ?>&zoom=10&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">
-            <img width="200" height="200" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=1&markers=color:blue|<?= urlencode($address) ?>&zoom=16&size=300x300&maptype=roadmap&key=AIzaSyCQu35UZPyvcpbjfgr6EYyebBdgI-kR4X8" alt="<?= $address ?>">            
+            <img width="200" height="200" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=1&markers=color:blue|<?= urlencode($address) ?>&zoom=10&size=300x300&maptype=roadmap&key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o" alt="<?= $address ?>">
+            <img width="200" height="200" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= urlencode($address) ?>&scale=1&markers=color:blue|<?= urlencode($address) ?>&zoom=16&size=300x300&maptype=roadmap&key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o" alt="<?= $address ?>">            
             <br />
             <h6>Gracias por su compra.</h6>            
             <div class="form-actions">
