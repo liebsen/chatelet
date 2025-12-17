@@ -11,7 +11,24 @@ use AlejoASotelo\Andreani;
 
 class CarritoController extends AppController
 {
-	public $uses = array('Product', 'ProductProperty', 'Store', 'Sale','Package','User','SaleProduct','Catalogo','Category','LookBook', 'Coupon', 'Logistic', 'Setting', 'Legend');
+	public $uses = array(
+		'Product', 
+		'ProductProperty', 
+		'Store', 
+		'Sale',
+		'Package',
+		'User',
+		'SaleProduct',
+		'Catalogo',
+		'Category',
+		'LookBook', 
+		'Coupon', 
+		'Logistic', 
+		'LogisticsPrices', 
+		'Setting', 
+		'Legend'
+	);
+	
 	public $components = array('Cart', 'RequestHandler');
 
 	public function test() {
