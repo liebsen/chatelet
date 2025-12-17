@@ -83,18 +83,15 @@ class SQLComponent extends Component {
 
 	//EXAMPLE: I5005/03/02/173
 	public function product_stock($article,$size_number,$color_code,$list_code,$stock_min){
-		CakeLog::write('debug', 'product_stock');
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo @cod_articulo='$article', @cod_lista='$list_code', @minimo='$stock_min';");
 		$stmt->execute();
 
 		while ($row = $stmt->fetch()) {
-
-			CakeLog::write('debug', 'product_stock(row):'.json_encode($row));
+			// CakeLog::write('debug', 'product_stock(row):'.json_encode($row));
 			if(!empty($row['codigo'])){
 				$params = explode('.', $row['codigo']);
 				if(!empty($params[1]) && ($params[1] != '0000') && $params[1] == ($size_number.$color_code)){
-					CakeLog::write('debug', 'product_stock(row)'.json_encode($row));
-
+					// CakeLog::write('debug', 'product_stock(row)'.json_encode($row));
 					return $row['stock'];
 				}
 			}
