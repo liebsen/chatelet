@@ -961,7 +961,7 @@ el pago.</p>
 			}
 	}
 
-	public function clear() { //success
+	public function success() { //success
 		// error_log('success payment: '.json_encode($this->Session->read('sale_data')));
 		// CakeLog::write('debug', 'Success payment:'.json_encode($this->Session->read('sale_data')));
 		if( $this->Session->check( 'sale_data' ) ){
