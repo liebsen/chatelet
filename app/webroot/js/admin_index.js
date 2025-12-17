@@ -11,8 +11,7 @@ Array.prototype.remove = function() {
 };
 //General Functions
 $(function(){
-
-	/* $('.display_form').on('submit', function(e){
+	/* $('#display_form').on('submit', function(e){
 		$.growl.notice({
 			title: 'OK',
 			message: 'Tu presentación se actualizó',
@@ -33,31 +32,32 @@ $(function(){
 	  	});
 		e.preventDefault()
 		return false
-	})*/
-
+	}) */
 
 	//Images
 	var drawImages = function(images){
 		var base_url 	= $("#image_thumb").data('url');
 		var ul 			= $('#images');
+		ul.removeClass('fadeIn fadeOut').addClass('fadeOut')
+		setTimeout(() => {
+			ul.empty();
+			$.each(images,function(index,image){
+				if(image){
+					var source   	= $("#image_thumb").html();
+					var template 	= Handlebars.compile(source);
+					var parts = image.split('-').reverse() 
+					var context 	= {
+						image: base_url+parts[0], 
+						file: parts[0],
+						video: parts[0].includes('.mp4'),
+						orientation: parts[1] || 'mobile'
+					}
+					var html    	= template(context);
 
-		ul.empty();
-		$.each(images,function(index,image){
-			if(image){
-				var source   	= $("#image_thumb").html();
-				var template 	= Handlebars.compile(source);
-				var parts = image.split('-').reverse() 
-				var context 	= {
-					image: base_url+parts[0], 
-					file: parts[0],
-					video: parts[0].includes('.mp4'),
-					orientation: parts[1] || 'mobile'
+					ul.append(html);
 				}
-				var html    	= template(context);
-
-				ul.append(html);
-			}
-		});
+			});
+		}, 1000);
 	}
 
 	$(document).on('click','.edit-orientation',function(event){
@@ -583,22 +583,24 @@ $(function(){
 	var drawImagesNewsletter = function(images_newsletter){
 		var base_url 	= $("#image_thumb_newsletter").data('url');
 		var ul 			= $('#images_newsletter');
-
-		ul.empty();
-		$.each(images_newsletter,function(index,image_newsletter){
-			if(image_newsletter){ 
-				var source   	= $("#image_thumb_newsletter").html();
-				var template 	= Handlebars.compile(source);
-				var parts = image_newsletter.split('-').reverse() 
-				var context 	= {
-					image_newsletter: base_url+parts[0], 
-					file_newsletter: parts[0], 
-					orientation: parts[1] || 'mobile' 
+		ul.removeClass('fadeIn fadeOut').addClass('fadeOut')
+		setTimeout(() => {
+			ul.empty();
+			$.each(images_newsletter,function(index,image_newsletter){
+				if(image_newsletter){ 
+					var source   	= $("#image_thumb_newsletter").html();
+					var template 	= Handlebars.compile(source);
+					var parts = image_newsletter.split('-').reverse() 
+					var context 	= {
+						image_newsletter: base_url+parts[0], 
+						file_newsletter: parts[0], 
+						orientation: parts[1] || 'mobile' 
+					}
+					var html = template(context);
+					ul.append(html);
 				}
-				var html = template(context);
-				ul.append(html);
-			}
-		});
+			});
+		}, 1000)
 	}
 
 	$(document).on('click','.delete_image_newsletter',function(event){

@@ -1,6 +1,6 @@
 <?php
-	echo $this->element('top-admin');
-	echo $this->element('side-admin');
+	echo $this->element('admin-navbar');
+	echo $this->element('admin-sidebar');
 ?>
 	<!-- Pre Page Content -->
 	<!--div id="pre-page-content">
@@ -18,6 +18,6 @@
 	</div>
 	<!-- END Page Content -->
 <?php
-	echo $this->element('footer-admin');
-	echo $this->element('bottom-admin');
+	echo $this->element('admin-footer');
+	echo $this->element('admin-bottom');
 ?>
