@@ -245,7 +245,8 @@ class AppController extends Controller
     $email->emailFormat('html');
     $email->config('default');
     $email->viewVars(array(
-      'data' => $data
+      'data' => $data,
+      'socials' => \parsed_socials($this->settings)
     ));
 
     if (

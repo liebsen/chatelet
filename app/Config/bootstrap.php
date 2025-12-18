@@ -100,6 +100,7 @@ CakePlugin::loadAll();
  *
  * ));
  */
+
 Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',
 	'CacheDispatcher'

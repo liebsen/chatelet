@@ -13,8 +13,6 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
-$socials = \parsed_socials();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
@@ -33,20 +31,21 @@ $socials = \parsed_socials();
       </tr>
       <tr>
         <td align="center">
-          <table cellpadding="0" cellspacing="0" align="center" style="background-color: #ffffff; border-radius: 16px;height: 120px;width:auto; padding: 16px; box-shadow: 0 0 10px rgba(0,0,0,0.1)">
+          <table cellpadding="0" cellspacing="0" align="center" style="background-color: #ffffff; border-radius: 16px;height: 120px;width:auto; padding: 24px 16px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
             <tr>
               <td align="center"><?php echo $this->fetch('content'); ?></td>
             </tr>
           </table>
         </td>
       </tr>
-      <?php if(count($socials)): ?>
+      <?php if(count(@$socials)): ?>
       <tr>
         <td align="center" style="padding: 8px; color: #888888">
           <small>Seguinos en nuestras redes: 
-          <?php foreach($socials as $social) : ?>
-            | <a href="https://www.facebook.com/pages/Ch%C3%A2telet/114842935213442" target="_blank"><?php echo ucfirst($social) ?></a>
+          <?php foreach($socials as $social => $url) : ?>
+            <a href="<?php echo $url ?>" target="_blank"><?php echo ucfirst($social) ?></a>
           <?php endforeach ?>
+          </small>
         </td>
       </tr>
       <?php endif ?>

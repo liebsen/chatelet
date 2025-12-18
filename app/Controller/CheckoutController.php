@@ -394,8 +394,6 @@ class CheckoutController extends AppController
 		//$sale['regalo'] = (isset($sale['regalo']) && $sale['regalo']?1:0);
 		$sale['dues'] = (isset($sale['payment_dues']) && $sale['payment_dues']?intval($sale['payment_dues']):1);*/
 
-
-
 		CakeLog::write('debug', 'sale(data):'. json_encode($data, JSON_PRETTY_PRINT));
 		CakeLog::write('debug', 'sale(cart_totals):'. json_encode($cart_totals, JSON_PRETTY_PRINT));
 		// return false; // - - - - - - remove - - - - - - -

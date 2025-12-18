@@ -133,7 +133,6 @@
                                     <?php if (!$personalInfoShowed): ?>
                                     <div class="col-xs-12">
                                         <ul class="list">
-                                            <li>REGALOS: <?php echo @$sale['local_sale']['regalo'] ?></li>
                                             <?php $details = explode('-|-', $reason);
                                             if (count($details) > 10){$column=6;}
                                              ?>

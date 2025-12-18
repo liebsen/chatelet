@@ -36,25 +36,25 @@
           <div class="form-group">
             <input type="text" name="data[Contact][telephone]" class="form-control" placeholder="Telefono" required />
           </div>
-          <div class="p-2">
+          <div class="p-5">
             <h6>Tipo de consulta</h6>
-            <label for="particular">
-              <span class="active"><i></i></span>
-              <input type="radio" name="data[Contact][client_type]" id="particular" value="particular" checked="checked" /> Particular
-            </label>
-            <label for="comerciante">
-              <span><i></i></span>
-              <input type="radio" name="data[Contact][client_type]" id="comerciante" value="comerciante" /> Comerciante
-            </label>
+            <div class="form-group d-flex justify-content-start align-items-center">
+              <input type="radio" name="data[Contact][client_type]" id="particular" value="particular" checked="checked" />
+              <label for="particular">Particular</label>
+            </div>
+            <div class="form-group d-flex justify-content-start align-items-center">
+              <input type="radio" name="data[Contact][client_type]" id="comerciante" value="comerciante" />
+              <label for="comerciante">Comerciante</label>
+            </div>
           </div>          
           <div class="form-group">
             <textarea name="data[Contact][message]" class="form-control" placeholder="Escribe tu consulta aquí.." rows="4" required></textarea>
           </div>
         </div>
         <div class="flex-col desktop">
-          <div class="card">
+          <div class="card p-0">
             <div class="card-body is-bordered">
-              <h3>Contacta con Chatelet</h3>
+              <h3>Contacta con Châtelet</h3>
               <p>Elige que tipo de consulta deseas realizar, rellena tus datos y escribe tu consulta, te responderemos en cuanto nos sea posible.</p>
             </div>
           </div>
