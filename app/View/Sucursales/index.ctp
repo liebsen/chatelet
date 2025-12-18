@@ -6,7 +6,9 @@
 
   <section class="map">
     <div class="col-md-4">
-      <h1>Nuestras<br>sucursales</h1>
+      <div class="animated fadeIn slow">
+        <h1>Nuestras<br>sucursales</h1>
+      </div>
     </div>
 
     <div class="col-md-8 p-0">
