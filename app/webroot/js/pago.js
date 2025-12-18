@@ -12,7 +12,7 @@ function updateTotals(res) {
   } else {
 	  if(res.cart_totals.delivery_cost) {
 	  	$('.delivery-cost').removeClass('hidden')
-	  	$('.cost_delivery').text("$" + formatNumber(res.cart_totals.delivery_cost))
+	  	$('.cost_delivery').text("$ " + formatNumber(res.cart_totals.delivery_cost))
 	  }
   }
 
