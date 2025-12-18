@@ -105,6 +105,12 @@ Configure::write('Dispatcher.filters', array(
 	'CacheDispatcher'
 ));
 
+Configure::write('Exception.skipLog', array(
+  'MissingActionException', 
+  'NotFoundException', 
+  'MissingControllerException'
+));
+
 /**
  * Configures default file logging options
  */
