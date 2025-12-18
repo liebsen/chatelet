@@ -17,7 +17,6 @@ selectShipping = function (e, shipping, cost) {
 	if (!cart_totals.free_shipping) {
 		total += cost
 		$('#subtotal_envio').val(cost)
-		$('.products-total').removeClass('hidden')
 		$('.delivery-cost').removeClass('hidden')
 		$('.delivery-cost').addClass('fadeIn')
 		if(cost) {
@@ -35,7 +34,8 @@ selectShipping = function (e, shipping, cost) {
 	let info = $(e).data('info')
 
 	fxTotal(total)
-
+	handleSubtotal(total)
+	
 	var cp_input = $('.input-cp').val().trim()
 	var cp = parseInt(cp_input)
 
@@ -85,6 +85,8 @@ selectStore = function(e) {
   var cart_takeaway_text = $('.cart_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
   initMap(e)
+
+  handleSubtotal(format_total)
   $('.takeaway-indicate').text([store_address,store].join(', '))
   $('.checkout-continue').fadeIn()
 	$('input[name="shipping"]').val("")

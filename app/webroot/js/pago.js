@@ -21,7 +21,10 @@ function updateTotals(res) {
   $(res.cart).each(function(i,e) {
   	$('.price-'+e.id).text("$ " + formatNumber(parseFloat(e.price)))
   })
+
+  return total
 }
+
 
 $(function(){
 	const payment_method = localStorage.payment_method && localStorage.payment_method != 'undefined' ? 
@@ -95,7 +98,7 @@ $(function(){
 	  	payment_method: selected,
 	  }, function(res, textStatus) {
 	    if( res.status == 'success' ) {
-	    	updateTotals(res)
+	    	var total = updateTotals(res)
 				//total = getTotals()	
 				if(payment_dues) {
 					switch(selected){
@@ -150,7 +153,7 @@ $(function(){
 					$('.bank-block').addClass('hide')
 				}
 
-				$('.products-total').fadeIn()
+				subtotalState()
 	      //cart_totals.total_products = parseFloat(total.toFixed(2))
 	    }
 	    requesting_coupon = false
