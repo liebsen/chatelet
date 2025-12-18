@@ -62,7 +62,7 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 				<span class="text-weight-thin">Descuento </span>
 				<span><?= \price_format($cart_totals['discount']) ?></span>
 			</div>
-			<div class="summary-item products-total <?php echo empty($cart_totals['delivery_cost']) && empty($cart_totals['coupon_benefits']) ? 'hidden' : '' ?>">
+			<div class="summary-item products-total <?php echo (empty($cart_totals['delivery_cost']) && empty($cart_totals['coupon_benefits'])) || $cart_totals['grand_total'] == $cart_totals['total_products'] || $cart_totals['cargo'] == 'takeaway' ? 'hidden' : '' ?>">
 				<span class="text-weight-thin">Subtotal </span>
 				<span class="subtotal_price"><?= \price_format($cart_totals['total_products']) ?></span>
 			</div>

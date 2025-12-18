@@ -54,10 +54,18 @@ var getTotals = () => {
     subtotal = 1
   }
 
-  console.log('getTotals(2)', subtotal)
+  // console.log('getTotals(2)', subtotal)
   $('.calc_total').text("$ " + formatNumber(subtotal))
   // localStorage.setItem('cart', JSON.stringify(carrito))  
   return subtotal
+}
+
+var handleSubtotal = (total) => {
+  if($('.subtotal_price').text().replace("$","").trim() != total) {
+    $('.products-total').removeClass('hidden')
+  } else {
+    $('.products-total').addClass('hidden')
+  }
 }
 
 var select_radio = (name, value) => {
