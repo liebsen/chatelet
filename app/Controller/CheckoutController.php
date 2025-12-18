@@ -740,7 +740,7 @@ class CheckoutController extends AppController
 				));
 
 				CakeLog::write('debug', 'sale(delivery_Data): '.json_encode($delivery_data));
-				$delivery_cost = (float) $delivery_data->rates[0]->price;
+				$delivery_cost = (float) $delivery_data->rates[0]->old_price;
 				CakeLog::write('debug', 'sale(deliverycost): '.$delivery_cost);
 
 				$total += $delivery_cost;
