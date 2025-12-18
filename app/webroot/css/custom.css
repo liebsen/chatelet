@@ -798,7 +798,7 @@ footer ul li { margin-bottom: 5px;  }
 #productOptions nav li a.current{ 
   color: #e10d74!important;
 }
-#productOptions a.btBig { border: 2px solid #363633; color: #6e6e6e; display: block; font-size: 40px; padding: 240px 0; text-align: center; }
+#productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; }
 #productOptions a.btBig span { color: #363633; font-size: 27px; }
 #productOptions .product-list a {  /*background: #efefef;*/ 
   width: 100%; 

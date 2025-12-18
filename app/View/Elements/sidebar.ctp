@@ -71,6 +71,11 @@ nav.sidebar {
 }
 
 .sidebar-bottom {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: space-around;
+	gap: 0.5rem;
   background-color: #fff;
   width: 100%;
 }
