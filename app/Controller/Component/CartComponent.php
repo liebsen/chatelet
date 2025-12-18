@@ -305,6 +305,8 @@ class CartComponent extends Component {
 			}
 			// error_log('shipping_value: '.@$shipping_config['Setting']['value']);
 		}
+    CakeLog::write('debug', 'free_shipping(2):'.json_encode($free_shipping));
+
 		return $free_shipping;
 		// return intval($price) >= intval($shipping_price['Setting']['value']);
 	}
