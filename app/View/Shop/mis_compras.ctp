@@ -9,14 +9,14 @@
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col-xs-12 col-md-4">
           <div class="animated fadeIn delay">
-            <h1>Mis compras</h1>
+            <h1>Mis<br>compras</h1>
           </div>
         </div>
         <div class="col-xs-12 col-md-8">
           <div class="animated fadeIn delay box-cont">
             <div class="box">
-              <h3>Revisa tu historial de compras</h3>
-              <p>Aquí encontrarás las compras realizadas a tu cuenta en <i>Châtelet</i></p>
+              <h3>Tus compras en Châtelet</h3>
+              <p>Revisa tu historial de compras. Aquí encontrarás las compras realizadas a tu cuenta en <i>Châtelet</i>. <a href="/contacto">Mensajeanos</a> si tienes dudas o inconvenientes.</p>
             </div>
           </div>
         </div>
@@ -27,12 +27,9 @@
   <section id="formulario">
     <div class="wrapper">
       <div class="d-flex justify-content-between align-items-center gap-1 w-100 p-4">
-        <div class="d-flex justify-content-center align-items-center gap-1">
-          <img src="/images/isologo.png" width="30"/> 
-          <h3 class="card-title mb-0">
-            <i class="fa fa-shopping-bag mr-1"></i> Mis compras
-          </h3>
-        </div>
+        <h3 class="card-title mb-0">
+          <i class="fa fa-shopping-bag mr-1"></i> Mis compras
+        </h3>
       <?php if(empty($sales) == false) : ?>
         <div class="form-group">
           <select class="form-control btn-filter-calendar" name="filter[Type]">

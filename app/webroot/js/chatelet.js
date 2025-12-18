@@ -430,6 +430,19 @@ $(document).ready(function() {
     }*/
   })  
 
+  $('.form-pass-icon').click(function(event) {
+    const target = $(this).data('target')
+    if($(target).prop('type') == 'password') {
+      $(this).removeClass('fa-eye-slash')
+      $(this).addClass('fa-eye')
+      $(target).prop('type', 'text')
+    } else {
+      $(this).removeClass('fa-eye')
+      $(this).addClass('fa-eye-slash')
+      $(target).prop('type', 'password')
+    }
+  })
+
   $('#filters .prices label span, #formulario label span').click(function () {
     $('#filters .prices label span, #formulario label span').removeClass('active');
     $(this).addClass('active')

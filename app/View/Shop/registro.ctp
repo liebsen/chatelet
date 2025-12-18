@@ -227,8 +227,9 @@ if (!$loggedIn) {
 					<?php else : ?>
 						<div class="col-md-6">
 							<label for="password">Contraseña</label>
-							<div class="form-group">
-								<input type="password" placeholder="********" class="form-control" name="data[User][password]" autocomplete="current-password" />
+							<div class="form-group position-relative">
+								<input type="password" placeholder="********" class="form-control" id="password" name="data[User][password]" autocomplete="current-password" />
+								<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#password"></i>
 							</div>
 							<span class="validation-password"></span>
 						</div>
