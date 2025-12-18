@@ -28,7 +28,9 @@ echo $this->Session->flash();
 	    <p class="title mb-1">Ingresá tu correo</p>
 	    <input type="hidden" name="ajax" value="1" />
 	    <input type="hidden" name="redirect" value="<?= $_GET['redirect'] ?? '' ?>" />
-	    <input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" />
+	    <div class="form-group">
+	    	<input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" required />
+	    </div>
 	    <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
 		    <input type="submit" id="login" value="Recuperar acceso" />
 		    <span id="forgot-password" class="text-muted text-sm d-block mt-1">
