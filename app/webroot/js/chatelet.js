@@ -434,10 +434,10 @@ $(document).ready(function() {
     const target = $(this).data('target')
     if($(target).prop('type') == 'password') {
       $(this).removeClass('fa-eye-slash')
-      $(this).addClass('fa-eye')
+      $(this).addClass('fa-eye active')
       $(target).prop('type', 'text')
     } else {
-      $(this).removeClass('fa-eye')
+      $(this).removeClass('fa-eye active')
       $(this).addClass('fa-eye-slash')
       $(target).prop('type', 'password')
     }

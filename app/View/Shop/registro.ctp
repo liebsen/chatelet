@@ -1,9 +1,9 @@
 <?php
 
 echo $this->Html->script('formValidation.min', array('inline' => false));
-echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
-echo $this->Html->script('bootstrapValidator', array('inline' => false));
-echo $this->Html->script('particular-validation', array('inline' => false));
+// echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
+// echo $this->Html->script('bootstrapValidator', array('inline' => false));
+// echo $this->Html->script('particular-validation', array('inline' => false));
 echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->css('bootstrapValidator.min');
 echo $this->Html->css('bootstrap-datepicker');
@@ -52,35 +52,36 @@ if (!$loggedIn) {
 				?>
 				<input type="hidden" name="redirect" value="<?= $_GET['redirect'] ?? '' ?>" />
 				<input type="hidden" name="ajax" value="1" />
-			  	<div class="d-flex justify-content-start align-items-center gap-1">
-			  		<img src="/images/isologo.png" width="30"/> 
-					<h5 class="text-uppercase">
-						<?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Crear mi cuenta' ?>
-					</h5>			
-				</div>
-				<p>
-					Ingresa tus datos personales para crear una cuenta.
-				</p>
 				<div class="d-flex flex-column justify-content-start align-items-center gap-1 content">
+				  	<div class="d-flex justify-content-start align-items-center gap-1">
+				  		<img src="/images/isologo.png" width="30"/> 
+						<h5 class="text-uppercase">
+							<?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Crear mi cuenta' ?>
+						</h5>			
+					</div>
+					<p>
+						Ingresa tus datos personales para crear una cuenta.
+					</p>
 					<div class="row cols-fix w-100">
 						<div class="col-md-6">
 							<label for="email">Email</label>
 							<div class="form-group">
 								<?php
-									echo '<input type="email" class="form-control" placeholder="patrodriguez@gmail.com" title="Email" name="data[User][email]" value="'. $userData['email'] .'" />';
+									echo '<input type="email" class="form-control" placeholder="patriciarodriguez@gmail.com" title="Email" name="data[User][email]" value="'. $userData['email'] .'" required />';
 								?>
 							</div>
 							<span class="validation-email"></span>
 						</div>
 						<div class="col-md-6">
 							<label>Newsletter</label>
-							<div class="form-group justify-content-center align-items-center p-3">
+							<div class="form-group d-flex justify-content-start align-items-center gap-05 p-3">
 								<?php
 									$subscribed = $unsubscribed = '';
-									if ($userData['newsletter'] == '1') $subscribed = 'checked="checked"';
-									else if ($userData['newsletter'] == '0') $unsubscribed = 'checked="checked"';
-									echo '<label class="d-inline" for="si">Sí</label> <input type="radio" id="si" name="data[User][newsletter]" value="1" '.$subscribed.' /> - '; 
-									echo '<label class="d-inline" for="no">No</label> <input type="radio" id="no" name="data[User][newsletter]" value="0" '.$unsubscribed.' />';
+									if ($userData['newsletter'] == '1') $subscribed = 'checked';
+									else if ($userData['newsletter'] == '0') $unsubscribed = 'checked';
+									if($subscribed=='') $subscribed = 'checked';
+ 									echo '<label for="si"><input type="radio" id="si" name="data[User][newsletter]" value="1" '.$subscribed.' />Sí</label> '; 
+									echo '<label for="no"><input type="radio" id="no" name="data[User][newsletter]" value="0" '.$unsubscribed.' />No</label>';
 								?>
 							</div>
 						</div>
@@ -88,7 +89,7 @@ if (!$loggedIn) {
 							<label for="nombre">Nombre</label>
 							<div class="form-group">
 								<?php
-									echo '<input type="text" class="form-control" placeholder="Patricia" title="Nombre" name="data[User][name]" value="'. $userData['name'] .'" />';
+									echo '<input type="text" class="form-control" placeholder="Patricia" title="Nombre" name="data[User][name]" value="'. $userData['name'] .'" required />';
 								?>
 							</div>
 						</div>
@@ -96,7 +97,7 @@ if (!$loggedIn) {
 							<label for="apellido">Apellido</label>
 							<div class="form-group">
 								<?php
-									echo '<input type="text" class="form-control" placeholder="Rodríguez" title="Apellidos" name="data[User][surname]" value="'. $userData['surname'] .'" />';
+									echo '<input type="text" class="form-control" placeholder="Rodríguez" title="Apellidos" name="data[User][surname]" value="'. $userData['surname'] .'" required />';
 								?>
 							</div>
 						</div>
@@ -107,14 +108,14 @@ if (!$loggedIn) {
 								<?php
 									echo '<input type="text" class="datepicker form-control" id="birthday" placeholder="10/10/1980" title="Fecha de Nacimiento" name="data[User][birthday]" value="'. 
 											$this->Time->format($userData['birthday'], '%d/%m/%Y')
-										.'" />';
+										.'" required />';
 								?>
 							</div>
 						</div>
 						<div class="col-md-6">								
 							<label for="Sexo">Tu género</label>
 							<div class="form-group">
-								<select class="selectpicker form-control" id="Sexo" title="Sexo" name="data[User][gender]">
+								<select class="selectpicker form-control" id="Sexo" title="Sexo" name="data[User][gender]" required>
 									<option value="">Selecione sexo</option>
 									<option value="M"<?php echo $userData['gender'] == 'M' ? ' selected' : '' ?>>Masculino</option>
 									<option value="F"<?php echo $userData['gender'] == 'F' ? ' selected' : '' ?>>Femenino</option>
@@ -125,17 +126,18 @@ if (!$loggedIn) {
 							<label for="DNI">DNI</label>
 							<div class="form-group">
 								<?php
-									echo '<input type="text" class="form-control" id="DNI" title="DNI" placeholder="25222555" name="data[User][dni]" value="'. $userData['dni'] .'" />';
+									echo '<input type="text" class="form-control" id="DNI" title="DNI" placeholder="25222555" name="data[User][dni]" value="'. $userData['dni'] .'" required />';
 								?>
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="Telefono">Teléfono</label>			
+							<label for="codigo-postal">Código Postal</label>
 							<div class="form-group">
 								<?php
-									echo '<input type="tel" class="form-control" id="Telefono" title="Telefono" placeholder="011 4703 8888" name="data[User][telephone]" value="'. $userData['telephone'] .'" />';
+									echo '<input type="text" id="codigo-postal" placeholder="1430" class="form-control" name="data[User][postal_address]" value="'. $userData['postal_address'] .'" />';
 								?>
 							</div>
+
 						</div>
 						<div class="col-md-6">
 							<label for="TelefonoAlt">Teléfono Alt.</label>
@@ -148,13 +150,13 @@ if (!$loggedIn) {
 						<div class="col-md-6">
 							<label for="Calle">Calle</label>
 							<div class="form-group">
-								<input style="" type="text" class="form-control" id="Calle" title="Calle" name="data[User][street]" value="<?= $userData['street'] ?>" placeholder="San Martín" required />
+								<input style="" type="text" class="form-control" id="Calle" title="Calle" name="data[User][street]" value="<?= $userData['street'] ?>" placeholder="San Martín" />
 							</div>
 						</div>
 						<div class="col-md-6">
 							<label for="Nro">Nro.</label>
 							<div class="form-group">
-								<input min="0" class="form-control" placeholder="Nro." id="Nro" title="5500" name="data[User][street_n]" type="number" value="<?= $userData['street_n'] ?>" required/>
+								<input min="0" class="form-control" placeholder="Nro." id="Nro" title="5500" name="data[User][street_n]" type="number" value="<?= $userData['street_n'] ?>"/>
 							</div>
 						</div>	
 						<div class="col-md-6">
@@ -235,14 +237,13 @@ if (!$loggedIn) {
 						</div>
 				<?php endif ?>
 						<div class="col-md-6">
-							<label for="codigo-postal">Código Postal</label>
+							<label for="Telefono">Teléfono</label>			
 							<div class="form-group">
 								<?php
-									echo '<input type="text" id="codigo-postal" placeholder="1430" class="form-control" name="data[User][postal_address]" value="'. $userData['postal_address'] .'" />';
+									echo '<input type="tel" class="form-control" id="Telefono" title="Telefono" placeholder="011 4703 8888" name="data[User][telephone]" value="'. $userData['telephone'] .'" required />';
 								?>
 							</div>
 						</div>
-
 					</div>
 				</div>
 				<hr>

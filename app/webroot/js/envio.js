@@ -127,6 +127,8 @@ $(document).ready(function() {
     const btnSubmit = $(this).find('[type="submit"]');
     const redirect = $(this).find('[name="redirect"]').val();
 
+    console.log(btnSubmit)
+    return false
     /* ok proceed */
     btnSubmit.prop('disabled', true)
     $.ajax({
