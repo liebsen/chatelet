@@ -858,9 +858,8 @@ class ShopController extends AppController {
 
   public function analytics(){
     $this->autoRender = false;
-
     $this->loadModel('Analytic');
-    
+    $data = $this->request->data;
 		// save search
 		$analytic = [];
 		$analytic['tag'] = "page_exit";
@@ -870,7 +869,7 @@ class ShopController extends AppController {
 		$analytic['cart_totals'] = json_encode($this->Session->read('cart_totals'));
 		$analytic['page'] = $data['page'] ?? '/';
 
-		CakeLog::write('debug', "analytics:".json_encode($analytic));
+		CakeLog::write('debug', "analytics:".json_encode($data));
 
 		$this->Analytic->save($analytic);		
 		exit();	
