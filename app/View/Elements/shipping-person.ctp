@@ -4,6 +4,13 @@ echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
 echo $this->Html->script('bootstrapValidator', array('inline' => false));
 ?>
+<pre>
+<?php 
+
+var_dump($userData);
+?>
+
+</pre>
 	<input type="hidden" name="customer[email]" value="<?= @$userData['User']['email'] ?>" />
 	<h5 class="text-uppercase">
 		<i class="fa fa-user-o"></i>
