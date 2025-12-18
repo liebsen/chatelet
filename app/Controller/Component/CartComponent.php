@@ -273,12 +273,12 @@ class CartComponent extends Component {
     $settings = $this->controller->settings;
 
 		$shipping_type = $settings['shipping_type'];
-    $shipping_type_extra = $settings['shipping_type_extra'];
+    $shipping_zips = $settings['shipping_zips'];
 		$shipping_price_min = $settings['shipping_price_min'];
     $bank_free_shipping = $settings['bank_free_shipping'];
 
-    // CakeLog::write('debug', 'shipping_type:'.json_encode($shipping_type));
-    // CakeLog::write('debug', 'shipping_type_extra:'.json_encode($shipping_type_extra));
+    CakeLog::write('debug', 'shipping_type:'.json_encode($shipping_type));
+    // CakeLog::write('debug', 'shipping_zips:'.json_encode($shipping_zips));
     // CakeLog::write('debug', 'shipping_price_min:'.json_encode($shipping_price_min));
     // CakeLog::write('debug', 'bank_free_shipping:'.json_encode($bank_free_shipping));
     // CakeLog::write('debug', 'payment_method(2):'.json_encode($payment_method));
@@ -294,7 +294,7 @@ class CartComponent extends Component {
 				$free_shipping = intval($price) >= intval($shipping_price_min);
 			}
 			if (!$free_shipping && $zip_code && @$shipping_type == 'zip_code'){
-				$zip_codes = explode(',',$shipping_type_extra);
+				$zip_codes = explode(',',$shipping_zips);
 				if (count($zip_codes)) {
 					$filter = [];
 					foreach($zip_codes as $code) {
