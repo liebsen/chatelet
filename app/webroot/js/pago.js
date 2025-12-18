@@ -149,6 +149,8 @@ $(function(){
 					$('.payment_dues label').removeClass('hide')
 					$('.bank-block').addClass('hide')
 				}
+
+				$('.products-total').fadeIn()
 	      //cart_totals.total_products = parseFloat(total.toFixed(2))
 	    }
 	    requesting_coupon = false

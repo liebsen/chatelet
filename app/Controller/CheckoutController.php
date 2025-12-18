@@ -176,9 +176,12 @@ class CheckoutController extends AppController
 		$this->set('stores', $stores);
 	}
 
-	public function deliveryCost($cp, $code = null, $total = 0, $payment_method = 'bank'){
+	public function deliveryCost($cp, $code = null){
     $this->RequestHandler->respondAs('application/json');
     $this->autoRender = false;
+    $cart_totals = $this->Session->read('cart_totals');
+    $total = $cart_totals['grand_total'];
+    $payment_method = $cart_totals['payment_method'];
 		return $this->Cart->deliveryCost($cp, $code, $total, $payment_method);
 	}
 
