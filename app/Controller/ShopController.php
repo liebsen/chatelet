@@ -696,7 +696,7 @@ class ShopController extends AppController {
 		$this->set('results', $results);
 
 		// save search
-		/* $search = [];
+		$search = [];
 		$search['name'] = $q;
 		$search['user_id'] = $this->Auth->user('id') ?: 0;
 		$search['created'] = date('Y-m-d H:i:s');
@@ -704,7 +704,7 @@ class ShopController extends AppController {
 		$search['page'] = $p+1;
 		$search['results'] = count($results); 
 
-		$this->Search->save($search); */
+		$this->Search->save($search);
 	}
 
 	public function api_search(){

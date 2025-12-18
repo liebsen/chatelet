@@ -124,10 +124,10 @@ $(document).ready(function() {
   $('#envio_form').on('submit', function(event) {
     event.preventDefault();
     const formData = $(this).serialize();
+    // const formSerialized = $(this).serializeArray();
     const btnSubmit = $(this).find('[type="submit"]');
     const redirect = $(this).find('[name="redirect"]').val();
 
-    /* ok proceed */
     btnSubmit.prop('disabled', true)
     $.ajax({
       url: $(this).attr('action'),
