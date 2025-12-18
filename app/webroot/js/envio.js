@@ -207,7 +207,6 @@ $(document).ready(function() {
 			if( json.rates.length ){
 				var rates = `<ul class="generic-select shipping-options">`
 				json.rates.forEach(rate => {
-					console.log('price', rate.price)
 					if (!isNaN(rate.price)) {
 						var price_html = '<span class="text-success text-bold">Gratis</span>'
 						if (!cart_totals.free_shipping) {
