@@ -859,6 +859,8 @@ class ShopController extends AppController {
   public function analytics(){
     $this->autoRender = false;
 
+    $this->loadModel('Analytic');
+    
 		// save search
 		$analytic = [];
 		$analytic['tag'] = "page_exit";
