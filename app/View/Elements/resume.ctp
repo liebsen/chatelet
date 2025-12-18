@@ -110,12 +110,13 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 		.resume-totals {
 			margin-top: 1rem;
 		}
+		
 		.summary-item {
 			width: 100%;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			grid-gap: 0-5rem;
+			min-height: 1.5rem;
 		}
 
 		.paying-with {
