@@ -70,7 +70,7 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 		<div class="col-md-6">
 			<label for="Nro">Nro.</label>
 			<div class="form-group">
-				<input min="0" class="form-control" placeholder="Nro." id="Nro" title="Nro." name="customer[street_n]" type="number" value="<?= @$userData['User']['street_n'] ?>"/>
+				<input min="0" class="form-control" placeholder="Nro." id="Nro" title="Nro." name="customer[street_n]" type="number" value="<?= @$userData['User']['street_n'] ?>" required />
 			</div>
 		</div>
 		<div class="col-md-6 pr-0-d">
@@ -88,13 +88,13 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 		<div class="col-md-6">
 			<label for="Depto">Código postal</label>
 			<div class="form-group">
-				<input title="Depto" class="form-control" id="postal_address" placeholder="1430" name="customer[postal_address]" type="text" value="<?= $userData['User']['postal_address'] ?? '' ?>"/>
+				<input title="Código postal" class="form-control" id="postal_address" placeholder="1430" name="customer[postal_address]" type="text" value="<?= $userData['User']['postal_address'] ?? '' ?>" required/>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<label for="Depto">Obs.</label>
 			<div class="form-group">
-				<textarea title="Depto" class="form-control" id="obs" placeholder="obs" name="customer[obs]"><?php echo $cart_totals['customer']['obs'] ?></textarea>
+				<textarea title="Observaciones" class="form-control" id="obs" placeholder="obs" name="customer[obs]"><?php echo $cart_totals['customer']['obs'] ?></textarea>
 			</div>
 		</div>		
 	</div>

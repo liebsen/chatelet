@@ -10,9 +10,8 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
 echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('shipping-validation.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+// echo $this->Html->script('shipping-validation.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->element('checkout-params');
-
 ?>
 
 <section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
@@ -104,19 +103,4 @@ echo $this->element('checkout-params');
 	</div>
 </div>
 
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&language=es"></script>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-
-	})
-
-</script>
-
-<style>
-	#map_canvas {
-		min-height: 400px;
-		width: 100%;
-	}
-</style>
