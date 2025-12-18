@@ -29,10 +29,10 @@ class SQLComponent extends Component {
 		$item = array();
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
 		$stmt->execute();
-    CakeLog::write('debug', 'query: '."EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
+    // CakeLog::write('debug', 'query: '."EXEC pa_datos_articulo '$article','$list_code','$list_code_desc';");
 
     while ($row = $stmt->fetch()) {
-      CakeLog::write('debug', 'pa_datos_articulo:' .json_encode($row));
+      // CakeLog::write('debug', 'pa_datos_articulo:' .json_encode($row));
       $item = $row;
 			if( 
 				!empty( $row['codigo'] ) && 
@@ -316,7 +316,7 @@ class SQLComponent extends Component {
 		  CakeLog::write('error', 'product_name_by_article ' . var_export($stmt->errorInfo(), true));
 		}
 		$row = $stmt->fetch();
-		CakeLog::write('debug', 'product_name_by_article: ' . var_export($row, true));
+		// CakeLog::write('debug', 'product_name_by_article: ' . var_export($row, true));
 		return $row;
 	}
 }
