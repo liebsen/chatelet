@@ -61,8 +61,10 @@ selectStore = function(e) {
 
   const store = $(e).attr('store')
   const store_address = $(e).attr('store-address')
-  var grand_total = cart_totals.grand_total 
-  format_total = formatNumber(grand_total)
+  const total_products = cart_totals.total_products 
+  const coupon_benefits = cart_totals.coupon_benefits || 0 
+  format_total = formatNumber(total_products - coupon_benefits)
+  
   fxTotal(format_total)
   	
   const storeProps = [

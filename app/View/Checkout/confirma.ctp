@@ -66,7 +66,7 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 	      success: function(res) {
 	      	if(res.success) {
 	      		$.growl.notice({
-	      			title: 'OK',
+	      			title: 'Todo correcto!',
 	      			message: res.message,
 	      		})      		
 	          setTimeout(() => {
