@@ -253,6 +253,8 @@ $(document).ready(function() {
 		const cp = $('.input-cp')
 		const validateForm = $("#envio_form").bootstrapValidator('validate');
 		const validForm = $("#envio_form").data('bootstrapValidator').isValid();
+		console.log('validateForm',validateForm)
+		console.log('validForm',validForm)
 		if(!validForm) {
 			$('input[type="submit"]').prop('disabled', true);
 		}
