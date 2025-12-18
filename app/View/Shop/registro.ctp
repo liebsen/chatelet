@@ -289,64 +289,63 @@ if (!$loggedIn) {
 </style>
 <script type="text/javascript">
 	$(function(){
-		var timeout = 0
+	var timeout = 0
     $('#registro_form').submit(function(e) {
+    	console.log('submit!')
     	e.preventDefault();
     	clearTimeout(timeout)
     	timeout = setTimeout(() => {
-        if($("#registro_form").data('bootstrapValidator').isValid()){
-            var me = $(this),
-            data = me.serialize(),
-            url = me.attr('action');
-            $.post(url, data)
-                .success(function(response) {
-                    if (!response.success) {
-                        if(response.errors!=undefined){
-                            if(response.errors.email!=undefined){
-                                $(".validation-email").html(response.errors.email[0]);
-                                $("#email").parent().removeClass('has-success');
-                                $("#email").parent().addClass('has-error');
-                            }
-                            if(response.errors.password!=undefined){
-                                $(".validation-password").html(response.errors.password[0]);
-                                $("#password").parent().removeClass('has-success');
-                                $("#password").parent().addClass('has-error');
-                            }
+        var me = $(this),
+        data = me.serialize(),
+        url = me.attr('action');
+        $.post(url, data)
+            .success(function(response) {
+                if (!response.success) {
+                    if(response.errors!=undefined){
+                        if(response.errors.email!=undefined){
+                            $(".validation-email").html(response.errors.email[0]);
+                            $("#email").parent().removeClass('has-success');
+                            $("#email").parent().addClass('has-error');
                         }
-                        $.growl.error({
-                            title: 'Error al registrar usuario',
-                            message: response.message
-                        });
-
-                        $('input[type="submit"]').prop('disabled',false)
-                        return false;
-                    } else {
-                        $.growl.notice({
-                            title: 'OK',
-                            message: 'Tus datos se han actualizado'
-                        });
-
-                        const redirect = $('input[name="redirect"]').val()
-                        if(redirect) {
-                        	setTimeout(() => {
-                        		location.href = redirect
-                        	}, 1000)
+                        if(response.errors.password!=undefined){
+                            $(".validation-password").html(response.errors.password[0]);
+                            $("#password").parent().removeClass('has-success');
+                            $("#password").parent().addClass('has-error');
                         }
-                        // me[0].reset();
-                        // me.parents('#registro_form').modal('hide');
-                        // location.reload();
                     }
-                })
-                .fail(function() {
                     $.growl.error({
-                        title: 'Error al registrar usuario(2)',
-                        message: 'Por favor verifica los datos introducidos e intenta de nuevo'
+                        title: 'Error al registrar usuario',
+                        message: response.message
                     });
-                });
 
-            return false;
-        }
+                    $('input[type="submit"]').prop('disabled',false)
+                    return false;
+                } else {
+                    $.growl.notice({
+                        title: 'OK',
+                        message: 'Tus datos se han actualizado'
+                    });
+
+                    const redirect = $('input[name="redirect"]').val()
+                    if(redirect) {
+                    	setTimeout(() => {
+                    		location.href = redirect
+                    	}, 1000)
+                    }
+                    // me[0].reset();
+                    // me.parents('#registro_form').modal('hide');
+                    // location.reload();
+                }
+            })
+            .fail(function() {
+                $.growl.error({
+                    title: 'Error al registrar usuario(2)',
+                    message: 'Por favor verifica los datos introducidos e intenta de nuevo'
+                });
+            });
+
       }, 100)
+      return false;
     });
     // $("#registro_form").bootstrapValidator('validate');		
 	})
