@@ -874,6 +874,10 @@ a.btn {
 	color: #888;
 }
 
+.form-pass-icon.active {
+	color: #333!important;
+}
+
 textarea.form-control{
 	padding: 1.25rem 1rem;
 }
