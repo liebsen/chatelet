@@ -39,7 +39,7 @@ echo $this->Html->script('particular-validation', array('inline' => false));
       </div>
       <div class="form-group position-relative">
       	<input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" />
-				<i class="form-input-icon fa fa-eye-slash is-clickable"></i>
+				<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#login-password"></i>
 			</div>
       <!--label class="form-group p-1">
 
@@ -56,21 +56,3 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 		</div>
 	</div>
 </section>
-	
-<script type="text/javascript">
-
-	$(document).ready(function() {
-	  $('.form-input-icon').click(function(event) {
-	  	if($('input[name="data[User][password]"]').prop('type') == 'password') {
-	  		$(this).removeClass('fa-eye-slash')
-	  		$(this).addClass('fa-eye')
-		  	$('input[name="data[User][password]"]').prop('type', 'text')
-	  	} else {
-	  		$(this).removeClass('fa-eye')
-	  		$(this).addClass('fa-eye-slash')
-	  		$('input[name="data[User][password]"]').prop('type', 'password')
-	  	}
-	  })
-	})
-
-</script>			
