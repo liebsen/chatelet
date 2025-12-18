@@ -865,6 +865,7 @@ a.btn {
 	line-height: 2.5;
 	font-size: 0.9rem;
 	border-bottom-width: 2px;
+	box-shadow: 0 0 30px rgba(40, 40, 40, 0.05);
 }
 
 .form-pass-icon {

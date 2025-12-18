@@ -397,7 +397,8 @@ class CartComponent extends Component {
             'code' => (float) $logistic['code'],
             'price' => $free_shipping ? 
               0 : 
-              $item['price'],
+              (float) $item['price'],
+            'old_price' => (float) $item['price'],
             'centros' => [],
             'valid' =>  true
           ];
@@ -405,6 +406,7 @@ class CartComponent extends Component {
         } else {
           CakeLog::write('debug', 'deliveryCost(a)');
           if (method_exists($this, "calculate_shipping_{$code}")) {
+            $calc_price = $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price);
             $row = [
               'title' => $logistic['title'],
               'code' => $logistic['code'],
@@ -412,7 +414,8 @@ class CartComponent extends Component {
               'info' => $logistic['info'],
               'price' => $free_shipping ? 
                 0 : 
-                (float) $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+                (float) $calc_price,
+              'old_price' => (float) $calc_price,
               'centros' => [],
               'valid' =>  true
             ];
@@ -442,6 +445,7 @@ class CartComponent extends Component {
               $code = $item['code'];
               $row = [];
               if (method_exists($this, "calculate_shipping_{$code}")) {
+                $calc_price = $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price);
                 $row = [
                   'title' => $item['title'],
                   'code' => $item['code'],
@@ -449,7 +453,8 @@ class CartComponent extends Component {
                   'info' => $item['info'],
                   'price' => $free_shipping ? 
                     0 : 
-                    $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+                    (float) $calc_price,
+                  'old_price' => (float) $calc_price,
                   'centros' => [],
                   'valid' =>  true
                 ];
@@ -480,7 +485,8 @@ class CartComponent extends Component {
               'info' => implode('. ', array_filter([$parent['info'], $item['info']])),
               'price' => $free_shipping ? 
                 0 : 
-                $item['price'],
+                (float) $item['price'],
+              'old_price' => (float) $item['price'],
               'centros' => [],
               'valid' =>  true
             ];
@@ -502,6 +508,7 @@ class CartComponent extends Component {
             $code = $item['code'];
             $row = [];
             if (method_exists($this, "calculate_shipping_{$code}")) {
+              $calc_price = $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price);
               $row = [
                 'title' => $item['title'],
                 'code' => $item['code'],
@@ -509,7 +516,8 @@ class CartComponent extends Component {
                 'info' => $item['info'],
                 'price' => $free_shipping ? 
                   0 : 
-                  $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price),
+                  (float) $calc_price,
+                'old_price' => (float) $calc_price,
                 'centros' => [],
                 'valid' =>  true
               ];
@@ -540,6 +548,7 @@ class CartComponent extends Component {
               'price' => $free_shipping ? 
                 0 : 
                 (float) $item['price'],
+              'old_price' => (float) $item['price'],
               'centros' => [],
               'valid' =>  true
             ];
