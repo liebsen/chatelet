@@ -278,10 +278,10 @@ class CartComponent extends Component {
     $bank_free_shipping = $settings['bank_free_shipping'];
 
     CakeLog::write('debug', 'shipping_type:'.json_encode($shipping_type));
-    // CakeLog::write('debug', 'shipping_zips:'.json_encode($shipping_zips));
-    // CakeLog::write('debug', 'shipping_price_min:'.json_encode($shipping_price_min));
-    // CakeLog::write('debug', 'bank_free_shipping:'.json_encode($bank_free_shipping));
-    // CakeLog::write('debug', 'payment_method(2):'.json_encode($payment_method));
+    CakeLog::write('debug', 'shipping_zips:'.json_encode($shipping_zips));
+    CakeLog::write('debug', 'shipping_price_min:'.json_encode($shipping_price_min));
+    CakeLog::write('debug', 'bank_free_shipping:'.json_encode($bank_free_shipping));
+    CakeLog::write('debug', 'payment_method(2):'.json_encode($payment_method));
 
     if(!empty($bank_free_shipping) && $payment_method == 'bank') {
       return true;
