@@ -156,6 +156,7 @@ class CheckoutController extends AppController
 			}
 
 			// CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
+			
 			$this->Cart->update(null, $cart_totals);
 
       return json_encode($response);
@@ -165,6 +166,8 @@ class CheckoutController extends AppController
 			'conditions' => ['takeaway' => 1]
 		]);
 
+		CakeLog::write('debug', 'envio(user_id)'.json_encode($this->Auth->user('id')));
+		
 		$oca = new Oca();
 		$provincias = $oca->getProvincias();
 		$user = $this->User->find('first',array('recursive' => -1,'conditions'=>array('User.id' => $this->Auth->user('id'))));

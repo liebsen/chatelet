@@ -143,7 +143,6 @@ class UsersController extends AppController {
 
   public function register(){
     $this->autoRender = false;
-    $logged = $this->Auth->login();     
 
     if ($logged || !$this->request->is('post')) {
       //return json_encode(array('success' => false));
@@ -202,6 +201,13 @@ class UsersController extends AppController {
 
     if (!empty($saved)) {
       CakeLog::write('debug', 'saved:'.json_encode($saved));
+
+      $logged = $this->Auth->login();     
+
+      if(!$logged) {
+        CakeLog::write('debug', 'could not login :'.json_encode($logged));
+        return $this->redirect($this->referer());
+      }
 
       $email_data = array(
         'id_user' => $data['User']['id'] ,
