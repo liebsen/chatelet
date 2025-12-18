@@ -866,8 +866,8 @@ class ShopController extends AppController {
 		$analytic['tag'] = "page_exit";
 		$analytic['user_id'] = $this->Auth->user('id') ?: 0;
 		$analytic['created'] = date('Y-m-d H:i:s');
-		$analytic['cart'] = json_encode($cart);
-		$analytic['cart_totals'] = json_encode($cart_totals);
+		$analytic['cart'] = json_encode($this->Session->read('cart'));
+		$analytic['cart_totals'] = json_encode($this->Session->read('cart_totals'));
 		$analytic['page'] = $data['page'] ?? '/';
 
 		CakeLog::write('debug', "analytics:".json_encode($analytic));
