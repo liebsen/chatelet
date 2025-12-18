@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+#cd "$(dirname "$0")"
+
 echo -e Choose option "\\n1. debug (Stage)\\n2. errors (Stage)\\n3. git pull (Stage)\\n4. email test (Stage)\\n5. clean cache (Stage)\\n6. debug (Prod)\\n7. errors (Prod)\\n8. git pull (Prod)\\n9. email test (Prod)\\n10. clean cache (Prod)"
 read service_id
 case $service_id in

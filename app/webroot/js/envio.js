@@ -252,6 +252,11 @@ $(document).ready(function() {
 	$(document).on('click', 'a[href="#envio"]', function(e){
 		const cp = $('.input-cp')
 		const validateForm = $("#envio_form").bootstrapValidator('validate');
+		const validForm = $("#envio_form").data('bootstrapValidator').isValid();
+		if(!validForm) {
+			$('input[type="submit"]').prop('disabled', true);
+		}
+		
 		if(!cp.val() || cp.val() == '') {
 			if(localStorage.lastcp) {
 				cp.val(localStorage.lastcp)	
