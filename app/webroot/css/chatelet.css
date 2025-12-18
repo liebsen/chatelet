@@ -32,6 +32,11 @@ nav.sidebar-expanded {
   background: url(/images/logo.png) no-repeat center center/8rem transparent;
 }
 
+#map_canvas {
+	min-height: 400px;
+	width: 100%;
+}
+
 a {
 	color: #888;
 	font-weight: 300;
