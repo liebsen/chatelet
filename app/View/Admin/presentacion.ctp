@@ -11,12 +11,12 @@
 	      <ul class="nav nav-tabs" id="myTab" role="tablist">
 	        <li class="active text-center">
 	          <a href="#splash">
-	            Primera pantalla
+	            Primera pantalla <span class="counter hide"></span>
 	          </a>
 	        </li>
 	        <li class="text-center">
 	          <a href="#slider">
-	            Carrusel
+	            Carrusel <span class="counter_newsletter hide"></span>
 	          </a>
 	        </li>
 	      </ul>
@@ -47,8 +47,8 @@
 						</div>
 	        </div>
 	        <div class="tab-pane pane-slider">
-		        <!--h4 class="sub-header">Slider <span class="counter hide"></span></h4-->
-		        <p>Es el carrusel principal de la home que se ve al cerrar el splash</p>
+		        <!--h4 class="sub-header">Slider </h4-->
+		        <p>Es el carrusel principal de la home que se ve al cerrar el splash. </p>
 						<div class="control-group w-100 bg-dark" style="min-height: 233px;">
 							<div class="controls w-100">
 								<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">

@@ -129,23 +129,6 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
-function filterOrientation($list){
-  $images = array_filter(explode(';',$list));
-  $filtered = [];
-  $mobile = \device_mobile();
-  foreach($images as $image){
-    if($mobile){                
-      if(strstr($image, 'mobile') != false) {
-          $filtered[]= str_replace(['desktop-', 'mobile-'], '', $image);
-      }
-    } else {
-      if(strstr($image, 'desktop') != false) {
-          $filtered[]= str_replace(['desktop-', 'mobile-'], '', $image);
-      }
-    }
-  }
-  return $filtered;
-}
 
 /*
 $uploadLocal = true;

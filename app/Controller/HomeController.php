@@ -11,10 +11,10 @@ class HomeController extends AppController {
 		
 		$home = $this->Home->find('first');
 
-    $filtered = \filterOrientation($home['Home']['img_url']);
+    $filtered = \filter_orientation($home['Home']['img_url'], $this->settings['upload_url']);
     $home['Home']['img_url'] = implode(';', $filtered);
 
-    $filtered = \filterOrientation($home['Home']['img_popup_newsletter']);
+    $filtered = \filter_orientation($home['Home']['img_popup_newsletter'], $this->settings['upload_url']);
     $home['Home']['img_popup_newsletter'] = implode(';', $filtered);
 
     //error_log(json_encode($home));
