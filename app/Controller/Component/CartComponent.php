@@ -560,7 +560,7 @@ class CartComponent extends Component {
       }
     }
 
-    CakeLog::write('debug', 'deliveryCost(json):'.json_encode($json));
+    // CakeLog::write('debug', 'deliveryCost(json):'.json_encode($json));
     return json_encode($json);
   }
 
@@ -583,7 +583,7 @@ class CartComponent extends Component {
   } 
 
   private function calculate_shipping_oca ($data, $cp, $price) {
-    CakeLog::write('debug', 'calculate_shipping_oca(1)');
+    // CakeLog::write('debug', 'calculate_shipping_oca(1)');
     if(!empty($data)){
       $oca = new Oca();
       //$PesoTotal, $VolumenTotal, $CodigoPostalOrigen, $CodigoPostalDestino, $CantidadPaquetes, $ValorDeclarado, $Cuit, $Operativa
