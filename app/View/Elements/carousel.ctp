@@ -14,7 +14,7 @@ $img_url_four = str_replace(';', '', @$home['img_url_four']);
 ?><!-- Wrapper for slides -->
   <div class="carousel-inner group-video" role="listbox">
   <?php foreach ($images as $key => $value): ?>
-    <div class="item animated fadeIn <?php echo (!$key) ? 'active' : is_null('') ; ?>"  >
+    <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>">
     <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
         <?php if (strpos($value, '.mp4') !== false):?>
         <video id="video<?=$key?>" class="carousel-video slider-full" <?= (strpos( $_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) ? ' controls="true" ' : '' ?> playsinline loop>
