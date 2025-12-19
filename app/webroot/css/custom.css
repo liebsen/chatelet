@@ -2012,6 +2012,9 @@ span.count.is-empty {
   /*#listShop .category-item {
     display: contents;
   }*/
+  ul#ul-moreviews li.dontResize {
+    min-width: auto!important;
+  }
   ul#ul-moreviews {
     display: flex;
     align-items: center;

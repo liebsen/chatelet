@@ -153,7 +153,7 @@ $(function(){
 					$('.bank-block').addClass('hide')
 				}
 
-				subtotalState()
+				handleSubtotal(total)
 	      //cart_totals.total_products = parseFloat(total.toFixed(2))
 	    }
 	    requesting_coupon = false
