@@ -193,8 +193,8 @@ class CartComponent extends Component {
 
         $delivery_cost = (float) $delivery_data->rates[0]->price;
 
-        // CakeLog::write('debug', 'update(delivery_data): '.json_encode($delivery_data));
-        // CakeLog::write('debug', 'update(delivery_cost): '.json_encode($delivery_cost));
+        CakeLog::write('debug', 'update(delivery_data): '.json_encode($delivery_data));
+        CakeLog::write('debug', 'update(delivery_cost): '.json_encode($delivery_cost));
 
       }
     }
@@ -360,7 +360,7 @@ class CartComponent extends Component {
       $unit_price = @$data['discount'];
     }
     //CakeLog::write('debug','isFreeShipping(2)');
-    //$free_shipping = $this->Cart->isFreeShipping($unit_price, $cp);
+    $free_shipping = $this->isFreeShipping($unit_price, $cp);
     $json = array(
       'freeShipping' => $free_shipping,
       'rates' => [],

@@ -7,15 +7,8 @@ function updateTotals(res) {
 
   $('.coupon_bonus').text( "$ " + formatNumber(discounted_formatted))
   $('.subtotal_price').text( "$ " + formatNumber(res.cart_totals.total_products))
-  if(res.cart_totals.free_shipping) {
-  	$('.cost_delivery').html("<span class='text-success'>Gratis</span>")
-  } else {
-	  if(res.cart_totals.delivery_cost) {
-	  	$('.delivery-cost').removeClass('hidden')
-	  	$('.cost_delivery').text("$ " + formatNumber(res.cart_totals.delivery_cost))
-	  }
-  }
 
+  handleDelivery(res.cart_totals)
   fxTotal(total)
 
   $(res.cart).each(function(i,e) {
@@ -24,7 +17,6 @@ function updateTotals(res) {
 
   return total
 }
-
 
 $(function(){
 	const payment_method = localStorage.payment_method && localStorage.payment_method != 'undefined' ? 
@@ -154,6 +146,7 @@ $(function(){
 				}
 
 				handleSubtotal(total)
+				handleDelivery(res.cart_totals)
 	      //cart_totals.total_products = parseFloat(total.toFixed(2))
 	    }
 	    requesting_coupon = false

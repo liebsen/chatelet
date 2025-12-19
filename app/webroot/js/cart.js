@@ -60,6 +60,19 @@ var getTotals = () => {
   return subtotal
 }
 
+var handleDelivery = (totals) => {
+  if(totals.free_shipping) {
+    $('.cost_delivery').html("<span class='text-success'>Gratis</span>")
+  } else {
+    $('.delivery-cost').removeClass('hidden')
+    if(totals.delivery_cost) {
+      $('.cost_delivery').text("$ " + formatNumber(totals.delivery_cost))
+    } else {
+      $('.cost_delivery').html("<span class='text-success'>Gratis</span>")
+    }
+  }
+}
+
 var handleSubtotal = (total) => {
   if($('.subtotal_price').text().replace("$","").trim() != total) {
     $('.products-total').removeClass('hidden')
