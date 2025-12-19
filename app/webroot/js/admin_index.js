@@ -57,6 +57,7 @@ $(function(){
 					ul.append(html);
 				}
 			});
+			ul.removeClass('fadeOut').addClass('fadeIn')
 		}, 1000);
 	}
 
@@ -600,6 +601,7 @@ $(function(){
 					ul.append(html);
 				}
 			});
+			ul.removeClass('fadeOut').addClass('fadeIn')
 		}, 1000)
 	}
 

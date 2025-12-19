@@ -1,6 +1,6 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
-<?php echo $this->Html->script('admin_index',array('inline'=>false)) ?>
+<?php echo $this->Html->script('admin_index.js?v=' . Configure::read('APP_VERSION'), array('inline'=>false)) ?>
 <?php // $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));?>
 
 <div class="block">
@@ -24,7 +24,7 @@
 	        <div class="tab-pane pane-splash active">
 		        <!--h4 class="sub-header">Pantalla inicial <span class="counter_newsletter hide"></span></h4-->
 		        <p>Una pantalla forzada al inicio. Splash es la primera imagen que se verá en la pantalla mientras esté cargando la home.</p>
-						<div class="control-group w-100 bg-dark">
+						<div class="control-group w-100 bg-dark" style="min-height: 233px;">
 							<div class="controls w-100">
 								<script id="image_thumb_newsletter" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
 									<span class="image-item">	
@@ -49,7 +49,7 @@
 	        <div class="tab-pane pane-slider">
 		        <!--h4 class="sub-header">Slider <span class="counter hide"></span></h4-->
 		        <p>Es el carrusel principal de la home que se ve al cerrar el splash</p>
-						<div class="control-group w-100 bg-dark">
+						<div class="control-group w-100 bg-dark" style="min-height: 233px;">
 							<div class="controls w-100">
 								<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
 									<li class="image-item">
