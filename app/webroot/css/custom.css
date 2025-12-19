@@ -1007,7 +1007,7 @@ footer ul li { margin-bottom: 5px;  }
 
 .color-options .btn:not(.single) {
   flex: 1;
-  min-height: 20rem;
+  min-height: 17rem;
   max-width: 10rem;
 }
 
