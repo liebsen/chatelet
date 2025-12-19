@@ -32,12 +32,12 @@ function pideStock(obj){
 		var color_alias 	= $(obj).closest("form").find('input[name="color"]:checked').attr('alias');
 		var size_number	= $(obj).closest("form").find('input[name="size"]:checked').val();
 		var stock_cont	= $(obj).closest("form").find('#stock_container');
-		var stock    	= '<span class="text-success">Disponible <span>';
-		var stock_0 	= '<span class="text-danger">No Disponible</span>';
-		var missing 	= '<span class="text-warning"> (Elegí color y talle) </span>';
-		var no_color	= '<span class="text-warning"> (Elegí color) <span>';
-		var no_size	= '<span class="text-warning"> (Elegí talle) <span>';
-	  var stock_v  	= '<span class="text-muted">Consultando ... </span>';
+		var stock    	= '<span class="text-success text-bold">Disponible<span>';
+		var stock_0 	= '<span class="text-danger text-bold">No Disponible</span>';
+		var missing 	= '<span class="text-warning">(Elegí color y talle)</span>';
+		var no_color	= '<span class="text-warning">(Elegí color)<span>';
+		var no_size	= '<span class="text-warning">(Elegí talle)<span>';
+	  var stock_v  	= '<span class="text-muted">Consultando ...</span>';
 	  // console.log({color_code, size_number})
 
 		if(!color_code){
