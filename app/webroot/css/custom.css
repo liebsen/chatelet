@@ -995,7 +995,7 @@ footer ul li { margin-bottom: 5px;  }
 
 #main .caract label.btn .color-option.color-img {
   margin: auto;
-  min-height: 18rem;
+  min-height: 15rem;
   min-width: 8rem;
   background-position: center;
   background-size: cover;
@@ -1013,7 +1013,7 @@ footer ul li { margin-bottom: 5px;  }
 
 @media(min-width: 991px) {
   #main .caract label.btn .color-option.color-img {
-    min-height: 18rem;
+    min-height: 15rem;
   }
 }
 
@@ -1025,7 +1025,7 @@ footer ul li { margin-bottom: 5px;  }
 
 ul#ul-moreviews li img {width: 40%}
 ul#ul-moreviews li.dontResize img {
-  width: 12rem; 
+  width: 11rem; 
   margin-left: auto;
 }
 
