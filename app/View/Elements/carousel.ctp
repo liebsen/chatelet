@@ -96,7 +96,7 @@ foreach ($images_aux as $key => $value) {
     if(video.length){
       setTimeout(() => {
         $(video).get(0).play()
-      }, 20)
+      }, 300)
     }
   };
 
@@ -110,20 +110,20 @@ foreach ($images_aux as $key => $value) {
   preloadImages(images)
 
 
-    $(function () {
-      $('#carousel').on('slide.bs.carousel', (a) => {
-        if(focused) {
-          $("video").each((i,video) => {
-            video.pause()
-          });
-          var video = $(a.relatedTarget).find("video")
-          if(video.length) {
-            setTimeout(() => {
-              $(video).get(0).play()
-            }, 50)
-          }
+  $(function () {
+    $('#carousel').on('slide.bs.carousel', (a) => {
+      if(focused) {
+        $("video").each((i,video) => {
+          video.pause()
+        });
+        var video = $(a.relatedTarget).find("video")
+        if(video.length) {
+          setTimeout(() => {
+            $(video).get(0).play()
+          }, 300)
         }
-      });
-    })
+      }
+    });
+  })
 
-  </script>
+</script>
