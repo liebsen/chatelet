@@ -43,11 +43,9 @@ foreach ($images_aux as $key => $value) {
   var images = ["<?=@implode('","',$images)?>"]
   var assets = []
 
-  //images = responsiveImages(images)
-
   async function preloadVideo(i, asset){
     var req = new XMLHttpRequest();
-    console.log('loading:', asset)
+    // console.log('loading:', asset)
     req.open('GET', asset, true);
     req.responseType = 'blob';
     req.onload = function() {
@@ -108,15 +106,12 @@ foreach ($images_aux as $key => $value) {
     });  
   };
 
-  preloadImages(images)
-
-
   $(function () {
     $('#carousel').on('slide.bs.carousel', (a) => {
       if(focused) {
-        /* $("video").each((i,video) => {
+        $("video").each((i,video) => {
           video.pause()
-        });*/
+        });
         var video = $(a.relatedTarget).find("video")
         if(video.length) {
           setTimeout(() => {
@@ -126,5 +121,7 @@ foreach ($images_aux as $key => $value) {
       }
     });
   })
+
+  preloadImages(images)
 
 </script>
