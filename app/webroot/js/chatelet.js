@@ -518,10 +518,6 @@ $(document).ready(function() {
     toggleInterval = setTimeout(() => {
       const t = $($(e.target).data('target'))
       const animation = $(e.target).data('animation')
-      // stop all media
-      $("video").each((i,e) => {
-        e.pause()
-      });
       if(t.length) {
         if(!t.data('started')) {
           t.data('started', t.prop('class'))
@@ -531,7 +527,6 @@ $(document).ready(function() {
         t.addClass(animation ?? 'fadeIn')
       }
     }, 200)
-
   })
 
   $('[data-toggle="mouseleave"]').mouseleave((e) => {
@@ -546,13 +541,6 @@ $(document).ready(function() {
         t.removeClass()
         t.addClass(t.data('started'))
         t.addClass(animation ?? 'fadeOut')
-      }
-      // resume media
-      var video = $("#carousel .item.active").find("video")
-      if(video.length){
-        setTimeout(() => {
-          $(video).get(0).play()
-        }, 50)
       }
     }, 200)
   })
@@ -618,11 +606,6 @@ $(document).ready(function() {
           // $('#carousel-banners').addClass('invisible')
           $('body').addClass('top-fixed')
           $('.navbar-chatelet:not(.short)').addClass('fadeIn')
-          if(video?.length) {
-            $("video").each((i,video) => {
-              video.pause()
-            });
-          }
           fakeshown = 1
         }
       } else {
@@ -630,11 +613,6 @@ $(document).ready(function() {
           // $('#carousel-banners').removeClass('invisible')
           $('body').removeClass('top-fixed')
           $('.navbar-chatelet:not(.short)').addClass('fadeIn')
-          if(video?.length){
-            setTimeout(() => {
-              $(video).get(0).play()
-            }, 200)
-          }
           fakeshown = false
         }
       }
