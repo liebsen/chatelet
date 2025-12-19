@@ -186,7 +186,7 @@ class ShopController extends AppController {
 					//echo "article_id: ".$article_id;
 					$existArticle = $this->Product->findByArticle($article_id);
 					if (!empty($existArticle)){
-						CakeLog::write('debug',"exists article_id: ".json_encode($article_id));
+						// CakeLog::write('debug',"exists article_id: ".json_encode($article_id));
 						if ($row['cod_articulo'] === $article_id.'.0000'){
 
 							$toUpdate = array(
@@ -196,7 +196,7 @@ class ShopController extends AppController {
 							// update article name
 							if ($replaceNames){
 								$details_name = $this->SQL->product_name_by_article($article_id);
-								CakeLog::write('debug',"Detail name: ".json_encode($details_name));
+								// CakeLog::write('debug',"Detail name: ".json_encode($details_name));
 							}
 
 							// update article stock
@@ -231,7 +231,7 @@ class ShopController extends AppController {
 						$record['article_id'] = $article_id;
 						$record['cod_articulo'] = $row['cod_articulo'];
 						$record['stock'] = (int)$row['cantidad'];
-						CakeLog::write('debug',"Saving: ".json_encode($record));
+						// CakeLog::write('debug',"Saving: ".json_encode($record));
 						$success = $this->StockCount->save($record);
 						if (!$success){
 							echo "\r\nFailed to save";
@@ -318,12 +318,12 @@ class ShopController extends AppController {
 		$list_code = $this->settings['list_code'];
 		$stock_min = $this->settings['stock_min'];
 		if(!empty($article) && !empty($color_code) && !empty($size_number) ){
-			CakeLog::write('debug','article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code);
+			// CakeLog::write('debug','article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code);
 	    $stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code,$stock_min);
 		} elseif (!empty($article)) {
 			$stock = 1;
 		}
-		CakeLog::write('debug','stock: '.$stock);
+		CakeLog::write('debug','stock: article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code . ':' . $stock);
 		return (string)$stock;
 	}
 
@@ -600,16 +600,13 @@ class ShopController extends AppController {
 		$product = $this->Product->findById($product_id);
 		$category = $this->Category->findById($category_id);
 		$name_categories = $category['Category']['name'];
-
 		$properties = $this->ProductProperty->findAllByProductId($product_id);
-
-
 		$details = $this->SQL->product_name_by_article($product['Product']['article']);
 		if(!empty($details)){
         foreach ($details as $key => $value) {
         	$details = $value;
         }
-        }
+    }
 
 		$all_but_me = $this->Product->find('all', array(
 				'recursive' => -1,
@@ -662,6 +659,7 @@ class ShopController extends AppController {
 		$q = $this->request->query['q'];
 		$p = $this->request->query['p'] ? intval($this->request->data['p']) : 0;
 		$s = $this->request->query['s'] ? intval($this->request->data['s']) : 10;
+		CakeLog::write('debug', 'search: "'.$q.'"');
 		//$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
 
 		if(!empty($q) && strlen($q) > 2) {
