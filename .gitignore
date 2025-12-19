@@ -1,10 +1,9 @@
 # User specific & automatically generated files #
 #################################################
 .phpintel
-app/webroot/files/uploads/*
 /app/Config/database.php
 /app/tmp
-/app/webroot/files/uploads/
+/app/webroot/files
 /lib/Cake/Console/Templates/skel/tmp/
 /plugins
 /vendors
