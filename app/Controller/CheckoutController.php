@@ -121,7 +121,7 @@ class CheckoutController extends AppController
       );
 
 			$delivery_cost = 0;
-			// CakeLog::write('debug', 'envio(data):'.json_encode($data, JSON_PRETTY_PRINT));	
+			CakeLog::write('debug', 'envio(data):'.json_encode($data, JSON_PRETTY_PRINT));	
 			// CakeLog::write('debug', 'envio(cart_totals):'.json_encode($cart_totals, JSON_PRETTY_PRINT));	
 
 			if($data['cargo'] == 'shipment' && empty($cart_totals['free_shipping'])) {
@@ -221,7 +221,8 @@ class CheckoutController extends AppController
 				$cart_totals[$part] = $data[$part];
 			}
 
-			// CakeLog::write('debug', 'updateTotals(2)'.json_encode($cart_totals));
+			CakeLog::write('debug', 'pago(data)'.json_encode($data));
+			CakeLog::write('debug', 'pago(cart_totals)'.json_encode($cart_totals));
 			$this->Cart->update(null, $cart_totals);
 
 			return json_encode($response);
