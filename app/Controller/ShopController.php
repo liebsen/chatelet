@@ -661,15 +661,32 @@ class ShopController extends AppController {
 		$s = $this->request->query['s'] ? intval($this->request->data['s']) : 10;
 		CakeLog::write('debug', 'search: "'.$q.'"');
 		//$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
+		$ors = array();
+		$q = trim($q);
+		$parts = explode(' ',$q);
 
+		foreach($parts as $part) {
+			$part = trim($part);
+			if(substr($part, -1) == 's' && strlen($part) > 3) {
+				array_push($ors, array('Product.name LIKE' => "%".substr($part, 0, -1)."%"));
+				array_push($ors, array('Product.desc LIKE' => "%".substr($part, 0, -1)."%"));
+				array_push($ors, array('Product.promo LIKE' => "%".substr($part, 0, -1)."%"));
+			}
+			if(substr($part, -2) == 'es' && strlen($part) > 3) {
+				array_push($ors, array('Product.name LIKE' => "%".substr($part, 0, -2)."%"));
+				array_push($ors, array('Product.desc LIKE' => "%".substr($part, 0, -2)."%"));
+				array_push($ors, array('Product.promo LIKE' => "%".substr($part, 0, -2)."%"));
+			}
+			array_push($ors, array('Product.name LIKE' => "%$part%"));
+			array_push($ors, array('Product.desc LIKE' => "%$part%"));
+			array_push($ors, array('Product.promo LIKE' => "%$part%"));			
+		}
+
+		// CakeLog::write('debug', 'ors: "'.json_encode($ors, JSON_PRETTY_PRINT));
 		if(!empty($q) && strlen($q) > 2) {
 			$results = $this->Product->find('all',[
 				'conditions' => [
-					'or' => [
-						'Product.name LIKE' => "%$q%",
-						'Product.desc LIKE' => "%$q%",
-						'Product.promo' => "$q",
-					],
+					'or' => $ors,
 					'visible' => 1,
 					'stock_total > ' => 0
 				],
