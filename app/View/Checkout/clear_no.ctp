@@ -18,3 +18,6 @@ $this->set('short_header_link', '/carrito');
 	</div>
 </section>
 
+<script type="text/javascript">
+	localStorage.removeItem('gifts')
+</script>

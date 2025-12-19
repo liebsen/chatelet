@@ -11,7 +11,7 @@ class ShopController extends AppController {
 	public $uses = array('Product', 'ProductProperty','Promo','Catalogo','Category','LookBook');
 	public $helpers = array('Number', 'App');
 	// public $components = array('SQL', 'RequestHandler');
-	public $components = array('SQL','RequestHandler');
+	public $components = array('RequestHandler');
 
 	public function beforeFilter() {
   	parent::beforeFilter();
@@ -174,7 +174,7 @@ class ShopController extends AppController {
 
 	public function die_general_stock(){
 			$this->autoRender = false;
-			//$this->SQL = $this->Components->load('SQL');
+			$this->SQL = $this->Components->load('SQL');
 			$this->loadModel('StockCount');
 			$this->loadModel('Product');
 			$all_stock = $this->SQL->general_stock();
@@ -311,9 +311,9 @@ class ShopController extends AppController {
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
 		$this->autoRender = false;
 		if ($this->settings['env_staging']) {
-			// return 1;
+			return 1;
 		}
-		// $this->SQL = $this->Components->load('SQL');
+		$this->SQL = $this->Components->load('SQL');
 		$stock = 0;
 		$list_code = $this->settings['list_code'];
 		$stock_min = $this->settings['stock_min'];
@@ -329,7 +329,7 @@ class ShopController extends AppController {
 
 	public function check_stock($product_id){
 		$this->autoRender = false;
-		// $this->SQL = $this->Components->load('SQL');
+		$this->SQL = $this->Components->load('SQL');
 		$this->loadModel('Product');
 		$product = $this->Product->findById($product_id);
 		$stock = 0;

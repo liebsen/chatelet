@@ -55,14 +55,25 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 	$(document).ready(function() {
 	  $('#confirma_form').on('submit', function(event) {
 	    event.preventDefault();
-	    const formData = $(this).serialize();
+	    // const formData = $(this).serialize();
+	    const formData = $(this).serializeArray();
 	    const btnSubmit = $(this).find('[type="submit"]');
 	    const redirect = $(this).find('[name="redirect"]').val();
+	    let formObject = {} 
+
+	    formData.map(function(e) {
+	    	formObject[e.name] = e.value
+	    })
+
+	    formObject.gifts = localStorage.gifts && localStorage.gifts != 'undefined' ? 
+	    	JSON.parse(localStorage.gifts) : 
+	    		[]
+
 	    btnSubmit.prop('disabled', true)
 	    $.ajax({
 	      url: $(this).attr('action'),
 	      type: 'POST',
-	      data: formData,
+	      data: formObject,
 	      success: function(res) {
 	      	if(res.success) {
 	      		$.growl.notice({
@@ -79,7 +90,7 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 	      			message: res.errors,
 	      		})      		
 	      	}
-	      	btnSubmit.prop('disabled', false)
+	      	// btnSubmit.prop('disabled', false)
 	      },
 	      error: function(xhr, status, error) {
 	    		$.growl.error({

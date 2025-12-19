@@ -137,14 +137,14 @@
                           $total += $producto['price'];
                           $color = empty($producto['price'])?'text-success':'text-grey';
                           echo '<li class="'.$color.'">';
-                            echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. str_replace(',00','',$this->Number->currency($producto['price'], '$ ', array('places' => 2))) . '</strong>';
+                            echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. \price_format($producto['price']) . '</strong>';
                           echo '</li>';
                         }
                     ?>
                   </ol>
                 <?php if ($this->Session->check('cart')): ?>
                   <p>
-                    Total <span class="right"><?php echo str_replace(',00','',$this->Number->currency($total, '$ ', array('places' => 2))); ?></span>
+                    Total <span class="right"><?php echo \price_format($total) ?></span>
                   </p>
                   <p class="bottom" title="Ir al carrito">
                     <?php

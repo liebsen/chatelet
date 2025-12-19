@@ -264,11 +264,19 @@ class CheckoutController extends AppController
 		if ($this->request->is('post')) {
 			$this->RequestHandler->respondAs('application/json');
 			$this->autoRender = false;
-
+			$data = $this->request->data;
+			CakeLog::write('debug', 'confirma(data):'. json_encode($data));
 			$response = array(
 				'success' => false,
 				'errors' => 'No se puedo procesar tu compra'
 			);
+
+			if(empty($data['confirm'])) {
+	      return json_encode(array(
+	        'success' => false, 
+	        'errors' => 'No se recibieron datos de confirmacion'
+	      ));
+			}
 
 			// check integrity
 			if(empty($cart_totals['payment_method'])) {
@@ -285,26 +293,15 @@ class CheckoutController extends AppController
 	      ));
 			}
 
-			$data = $this->request->data;
-	    // $settings = $this->load_settings();
-
-			if(empty($data['confirm'])) {
-	      return json_encode(array(
-	        'success' => false, 
-	        'errors' => 'No se recibieron datos de confirmacion'
-	      ));
-			}
-
 			// CakeLog::write('debug', '-.-.-.-.-.-.-.-.-.-.- sale -.-.-.-.-.-.-.-.-.-');
-			$sale = $this->sale();
+			$sale = $this->sale($data);
 			// here we start the sale
 			CakeLog::write('debug', 'confirma(sale):'. json_encode($sale));
 			return json_encode($sale);
 		}
 	}
 
-	public function getLocalidadProvincia($id)
-	{
+	public function getLocalidadProvincia($id){
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 
@@ -359,7 +356,7 @@ class CheckoutController extends AppController
 		var_dump($result);
 	}
 	
-	private function sale() {
+	private function sale($data) {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
 		// $settings = $this->load_settings();
 		$this->autoRender = false;
@@ -388,8 +385,7 @@ class CheckoutController extends AppController
 			// $this->redirect(array( 'action' => 'clear' ));
 		}
 
-		$data = $this->request->data;
-
+		// $data = $this->request->data;
 
 		/*$sale['id'] = $this->Auth->user('id');
 		$sale['telephone'] = @preg_replace("/[^0-9]/","",$customer['telephone']);
@@ -401,7 +397,7 @@ class CheckoutController extends AppController
 		$sale['dues'] = (isset($sale['payment_dues']) && $sale['payment_dues']?intval($sale['payment_dues']):1);*/
 
 		CakeLog::write('debug', 'sale(data):'. json_encode($data, JSON_PRETTY_PRINT));
-		CakeLog::write('debug', 'sale(cart_totals):'. json_encode($cart_totals, JSON_PRETTY_PRINT));
+		// CakeLog::write('debug', 'sale(cart_totals):'. json_encode($cart_totals, JSON_PRETTY_PRINT));
 		// return false; // - - - - - - remove - - - - - - -
 
 		if(!isset($user_id)){
@@ -439,7 +435,7 @@ class CheckoutController extends AppController
 
 		// error_log('payment method: ' . $sale['payment_method']);
 		// check if payment method is bank and bank payment is not available
-				CakeLog::write('debug', 'sale(settings):'. json_encode($settings));
+		// CakeLog::write('debug', 'sale(settings):'. json_encode($settings));
 
 		if (
 			!empty($cart_totals['payment_method']) && 
@@ -518,8 +514,10 @@ class CheckoutController extends AppController
 		// CakeLog::write('debug', 'sale(save):'.json_encode($sale_object));
 		$this->Sale->save($sale_object);
 		$sale_id = $this->Sale->id;
-		$gift_ids = !empty($data['gifts']) ? explode(",",$data['gifts']) : [];
 
+		// CakeLog::write('debug', 'sale(gifts):'. $data['gifts']);
+		$gift_ids = !empty($data['gifts']) ? $data['gifts'] : [];
+		
 		// check item prices, promos and coupons
 		// Check coupon
 
@@ -620,12 +618,12 @@ class CheckoutController extends AppController
 			$desc = '';
 			$separator = ' -|- ';
 			$values = array(
-				'REGALO'	=> in_array($producto['id'], $gift_ids) ? 'SÍ': 'NO',
 				'PEDIDO' 	=> $sale_id,
 				'CODIGO'	=> $producto['article'],
 				'PRODUCTO'  => $producto['name'],
 				'COLOR'  	=> $producto['color'].' '.$producto['alias'],
 				'TALLE'  	=> $producto['size'],
+				'REGALO'	=> in_array($producto['id'], $gift_ids) ? 'SÍ': 'NO',
 				'PRECIO_LISTA'  	=> $producto['price'],
 				'PRECIO_DESCUENTO'  => $unit_price,
 				'NOMBRE' 	=> $customer['name'],
