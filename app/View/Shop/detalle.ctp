@@ -63,7 +63,7 @@ foreach ($properties as $property) {
     <div class="container">
       <div class="row">
       <?php if(!empty($colorImages)):?>
-        <div class="col-md-6 p-0 d-flex flex-md-column justify-content-end align-items-center bg-grey">
+        <div class="col-md-6 p-0 d-flex flex-md-column justify-content-end align-items-start bg-grey">
           <div class="p-0 animated fadeIn delay2">
             <ul id="ul-moreviews">
             <?php if (!empty($colorImages[0]['images']) && count(array_filter($colorImages[0]['images'])) > 1): $ppp=0; ?>
@@ -286,7 +286,9 @@ foreach ($properties as $property) {
                   <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
                     <a href="#" id="agregar-carro" class="btn btn-chatelet dark buy agregar-carro w-100">Comprar</a>
                     <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro w-100">Agregar al carrito</a>
-                    <!--a href="/carrito" class="btn btn-chatelet light w-100">Ir al carrito</a-->
+                    <?php if(!empty($cart)):?>
+                    <a href="/carrito" class="btn btn-chatelet light w-100">Ir al carrito</a>
+                    <?php endif ?>
                   </div>                        
                 </div>
               </div>

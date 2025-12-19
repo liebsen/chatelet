@@ -224,9 +224,11 @@
 						<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos"> Términos y Condiciones</a>
 						</span>
 					</div>
-					<div class="col-md-6 is-flex-center flex-column gap-05">
-			    	<a href="/checkout<?php echo $loggedIn ? '/envio' : '' ?>" class="btn btn-chatelet dark w-100">Finalizar Compra</a>
-						<a href="/shop" class="btn btn-continue-shopping btn-chatelet w-100">Seguir comprando</a>
+					<div class="col-md-6">
+						<div class="d-flex flex-column justify-content-center align-items-center gap-05">
+				    	<a href="/checkout<?php echo $loggedIn ? '/envio' : '' ?>" class="btn btn-chatelet dark w-100">Finalizar Compra</a>
+							<a href="/shop" class="btn btn-continue-shopping btn-chatelet w-100">Seguir comprando</a>
+						</div>
 					</div>
 				</div>
 				<hr>
