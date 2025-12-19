@@ -1,0 +1,4 @@
+cd /var/www/chatelet
+git add .
+git commit -m "autocommit"
+git push
