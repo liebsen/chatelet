@@ -65,7 +65,7 @@ foreach ($properties as $property) {
       <?php if(!empty($colorImages)):?>
         <div class="col-md-6 p-0 d-flex flex-md-column justify-content-end align-items-start bg-grey">
           <div class="p-0 animated fadeIn delay2">
-            <ul id="ul-moreviews">
+            <ul id="ul-moreviews" class="m-0">
             <?php if (!empty($colorImages[0]['images']) && count(array_filter($colorImages[0]['images'])) > 1): $ppp=0; ?>
             <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
             <?php if(!empty($value)): $ppp++;?>
