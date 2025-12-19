@@ -258,7 +258,7 @@ foreach ($properties as $property) {
                   </div>
                 </div>
                 <p class="marginTop stock-block">
-                  <!--span class="text-chatelet"> Stock:</span-->
+                  <span class="text-chatelet">Stock:</span>
                   <span id="stock_container">
                     <span class="text-warning">(Elegí color y talle)</span>
                   </span>
