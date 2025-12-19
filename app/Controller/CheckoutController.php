@@ -246,11 +246,12 @@ class CheckoutController extends AppController
 		$cart_totals = $this->Session->read('cart_totals');
 		$payment_method = $cart_totals['payment_method'] ?? 'bank';
 		$payment_method = $this->request->data['payment_method'] ?? $payment_method;
-		// CakeLog::write('debug','payment_method(1):'.json_encode($payment_method), JSON_PRETTY_PRINT);
+		
+		CakeLog::write('debug','payment_method(1):'.json_encode($payment_method), JSON_PRETTY_PRINT);
 
 		$cart_totals['payment_method'] = $payment_method;		
 		$cart = $this->Cart->update(null, $cart_totals);
-		// CakeLog::write('debug','cart(3):'.json_encode($cart), JSON_PRETTY_PRINT);
+		CakeLog::write('debug','cart(3):'.json_encode($cart), JSON_PRETTY_PRINT);
 		$cart['status'] = 'success';
 
 		return json_encode($cart);
