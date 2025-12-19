@@ -1028,7 +1028,7 @@ ul#ul-moreviews li.dontResize {
   min-width: 8rem;
 }
 ul#ul-moreviews li.dontResize img {
-  width: 100%; 
+  width: 8rem; 
   margin-left: auto;
 }
 
