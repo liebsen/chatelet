@@ -7,7 +7,7 @@ foreach ($images_aux as $key => $value) {
     $images[] = $value;
 }
 
-?><!-- Wrapper for slides -->
+?>
   <div class="carousel-inner group-video" role="listbox">
   <?php foreach ($images as $key => $value): ?>
     <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>">
@@ -47,6 +47,7 @@ foreach ($images_aux as $key => $value) {
 
   async function preloadVideo(i, asset){
     var req = new XMLHttpRequest();
+    console.log('loading:', asset)
     req.open('GET', asset, true);
     req.responseType = 'blob';
     req.onload = function() {
@@ -113,9 +114,9 @@ foreach ($images_aux as $key => $value) {
   $(function () {
     $('#carousel').on('slide.bs.carousel', (a) => {
       if(focused) {
-        $("video").each((i,video) => {
+        /* $("video").each((i,video) => {
           video.pause()
-        });
+        });*/
         var video = $(a.relatedTarget).find("video")
         if(video.length) {
           setTimeout(() => {
