@@ -126,7 +126,7 @@ $(function(){
 		var fd 		= new FormData();
 		var me 		= $(this);
 		var url 	= me.data('url');
-		var counter = $(me.data('count'));
+		var progress = $(me.data('progress'));
 		var input 	= $(me.data('input'));
 		
 		var valid_types = {
@@ -134,9 +134,11 @@ $(function(){
 			'image/jpg': true,
 			'video/mp4': true,
 		};
+
 		fd.append('data[file]', this.files[0]);
 
 		if (valid_types[this.files[0].type]) {
+			progress.removeClass('hide')
 			$.ajax({
 				url: url,
 				data: fd,
@@ -148,7 +150,13 @@ $(function(){
 				    //Upload progress
 				    xhr.upload.addEventListener("progress", function(evt){
 				    	if (evt.lengthComputable) {
-				    		counter.html( parseInt(evt.loaded / evt.total * 100) );
+				    		const int = parseInt(evt.loaded / evt.total * 100)
+				    		//counter.html();
+				    		$(progress).val(int)
+				    		$(progress).text(int+'%')
+				    		if(int > 99) {
+				    			progress.addClass('hide')
+				    		}
 					    }
 					}, false);
 				    return xhr;
@@ -628,10 +636,10 @@ $(function(){
 		var fd 		= new FormData();
 		var me 		= $(this);
 		var url 	= me.data('url');
-		var counter_newsletter = $(me.data('count'));
+		var progress = $(me.data('progress'));
 		var input 	= $(me.data('input'));
 		
-		counter_newsletter.removeClass('hide')
+		progress.removeClass('hide')
 		var valid_types = {
 			'image/jpeg': true,
 			'image/jpg': true,
@@ -651,7 +659,13 @@ $(function(){
 				    //Upload progress
 				    xhr.upload.addEventListener("progress", function(evt){
 				    	if (evt.lengthComputable) {
-				    		counter_newsletter.html( parseInt(evt.loaded / evt.total * 100) );
+				    		const int = parseInt(evt.loaded / evt.total * 100)
+				    		//counter.html();
+				    		$(progress).val(int)
+				    		$(progress).text(int+'%')
+				    		if(int > 99) {
+				    			progress.addClass('hide')
+				    		}
 					    }
 					}, false);
 				    return xhr;

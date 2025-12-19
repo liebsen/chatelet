@@ -309,12 +309,13 @@ class AppController extends Controller
   }
 
   protected function save_file($file, $withThumb = false, $size=300) {
+
     if (empty($file['name'])) {
-        return false;
+      return false;
     }
 
     if($this->settings['upload_local']) {
-        return $this->saveFile($file,$withThumb,$size);
+      return $this->saveFile($file,$withThumb,$size);
     }
     
     $type = $file['type'];

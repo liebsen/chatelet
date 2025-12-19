@@ -11,12 +11,12 @@
 	      <ul class="nav nav-tabs" id="myTab" role="tablist">
 	        <li class="active text-center">
 	          <a href="#splash">
-	            Primera pantalla <span class="counter hide"></span>
+	            Primera pantalla
 	          </a>
 	        </li>
 	        <li class="text-center">
 	          <a href="#slider">
-	            Carrusel <span class="counter_newsletter hide"></span>
+	            Carrusel
 	          </a>
 	        </li>
 	      </ul>
@@ -38,9 +38,10 @@
 								<span id="images_newsletter" class="animated slow fadeIn w-100"></span>
 							</div>
 					  </div>
+					  <progress class="progress_newsletter hide w-100" value="50" max="100">0%</progress>
 						<div class="control-group">
 							<div class="controls">
-								<input type="file" class="form-control" id="HomeImgPopupNewsletter" data-input="[name='data[img_popup_newsletter]']" data-count=".counter_newsletter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+								<input type="file" class="form-control" id="HomeImgPopupNewsletter" data-input="[name='data[img_popup_newsletter]']" data-progress=".progress_newsletter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 								Imagen. Tamaño recomendado 1920x1080 o 720x1600
 								<input type="hidden" name="data[img_popup_newsletter]" value="<?php echo $p['Home']['img_popup_newsletter'] ?>" />
 							</div>
@@ -67,9 +68,11 @@
 								<ul id="images" class="animated fadeIn w-100"></ul>
 							</div>
 						</div>
-						<div class="control-group">
+					  <span class="counter hide"></span>
+							<progress class="progress_slider hide w-100" value="50" max="100">0%</progress>
+							<div class="control-group">
 							<div class="controls">
-								<input type="file" class="form-control" id="upload" data-input="[name='data[img_url]']" data-count=".counter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>Imagen y video. Tamaño recomendado 1920x1080 o 720x1600
+								<input type="file" class="form-control" id="upload" data-input="[name='data[img_url]']" data-progress=".progress_slider" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>Imagen y video. Tamaño recomendado 1920x1080 o 720x1600
 								<input type="hidden" name="data[img_url]" value="<?php echo $p['Home']['img_url'] ?>" />
 							</div>
 						</div>		        
