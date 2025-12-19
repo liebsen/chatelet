@@ -1,4 +1,14 @@
-<?php echo $this->Session->flash() ?>
+<?php 
+
+echo $this->Session->flash();
+
+$images   = array();
+$images_aux = explode(';', @$home['img_url']);
+foreach ($images_aux as $key => $value) {
+  if(!empty($value))
+    $images[]   = Configure::read('uploadUrl').$value;
+}
+?>
 <div class="wrapper content">
 
   <div id="carousel" class="carousel slide animated fadeIn delay" data-type="slider" data-interval="10000" data-ride="carousel">
