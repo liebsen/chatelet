@@ -4,12 +4,8 @@ $images   = array();
 $images_aux = explode(';', @$home['img_url']);
 foreach ($images_aux as $key => $value) {
   if(!empty($value))
-    $images[]   = $settings['upload_url'].$value;
+    $images[] = $value;
 }
-$img_url_one = str_replace(';', '', @$home['img_url_one']);
-$img_url_two = str_replace(';', '', @$home['img_url_two']);
-$img_url_three = str_replace(';', '', @$home['img_url_three']);
-$img_url_four = str_replace(';', '', @$home['img_url_four']);
 
 ?><!-- Wrapper for slides -->
   <div class="carousel-inner group-video" role="listbox">
@@ -41,7 +37,78 @@ $img_url_four = str_replace(';', '', @$home['img_url_four']);
       <span class="sr-only">Next</span>
   </a>
 
-  <script>
+
+<script>
+
+  var images = ["<?=@implode('","',$images)?>"]
+  var assets = []
+
+  //images = responsiveImages(images)
+
+  async function preloadVideo(i, asset){
+    var req = new XMLHttpRequest();
+    req.open('GET', asset, true);
+    req.responseType = 'blob';
+    req.onload = function() {
+      if (document.getElementById('video'+i) && this.status === 200) {
+        var videoBlob = this.response;
+        var vid = URL.createObjectURL(videoBlob); // IE10+
+        document.getElementById('video'+i).src = vid
+      }
+    }
+    req.onerror = function() {
+      // Error
+    }
+
+    req.send();    
+  }
+    
+  function responsiveImages(images){
+    var orientation = document.documentElement.clientWidth > document.documentElement.clientHeight ? 
+      'desktop' : 
+      'mobile'
+    var items = []
+    for(var i in images){
+      const asset = images[i]
+      if(asset.includes(orientation)) {
+        items.push(asset.replaceAll("mobile-", "").replaceAll("desktop-", ""))
+      }
+    }
+    return items    
+  } 
+
+  async function preloadImages(assets){
+    for(var i in assets){
+      const asset = assets[i]
+      if(asset.endsWith(".mp4")){
+        preloadVideo(i,asset)
+      } else {
+        assets[i] = document.createElement("image");
+        assets[i].src = asset;
+      }
+    }    
+  }
+
+  var focused = false
+  window.onfocus = () => {
+    focused = true;
+    var video = $("#carousel .item.active").find("video")
+    if(video.length){
+      setTimeout(() => {
+        $(video).get(0).play()
+      }, 20)
+    }
+  };
+
+  window.onblur = () => {
+    focused = false;
+    $("video").each((i,video) => {
+      video.pause()
+    });  
+  };
+
+  preloadImages(images)
+
 
     $(function () {
       $('#carousel').on('slide.bs.carousel', (a) => {
@@ -53,7 +120,7 @@ $img_url_four = str_replace(';', '', @$home['img_url_four']);
           if(video.length) {
             setTimeout(() => {
               $(video).get(0).play()
-            }, 20)
+            }, 50)
           }
         }
       });

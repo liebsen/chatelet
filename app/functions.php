@@ -1,5 +1,23 @@
 <?php
 
+function filter_orientation($list, $upload_url=""){
+  $images = array_filter(explode(';',$list));
+  $filtered = [];
+  $mobile = \device_mobile();
+  foreach($images as $image){
+    if($mobile){                
+      if(strstr($image, 'mobile') != false) {
+          $filtered[]= $upload_url . str_replace(['desktop-', 'mobile-'], '', $image);
+      }
+    } else {
+      if(strstr($image, 'desktop') != false) {
+          $filtered[]= $upload_url . str_replace(['desktop-', 'mobile-'], '', $image);
+      }
+    }
+  }
+  return $filtered;
+}
+
 function site_url() {
   $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || 
     $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
