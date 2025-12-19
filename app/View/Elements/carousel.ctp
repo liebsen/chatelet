@@ -114,9 +114,9 @@ foreach ($images_aux as $key => $value) {
   $(function () {
     $('#carousel').on('slide.bs.carousel', (a) => {
       if(focused) {
-        $("video").each((i,video) => {
+        /* $("video").each((i,video) => {
           video.pause()
-        });
+        });*/
         var video = $(a.relatedTarget).find("video")
         if(video.length) {
           setTimeout(() => {
