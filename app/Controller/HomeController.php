@@ -1,55 +1,22 @@
 <?php
 class HomeController extends AppController {
+
 	public function beforeFilter() {
     parent::beforeFilter();
-    // $this->loadModel('LookBook'); 
-    // $lookbook = $this->LookBook->find('all');
-		// $this->set('lookBook', $lookbook);
 	}
 	
-	public function index() {
-		
+	public function index() {		
 		$home = $this->Home->find('first');
-
     $filtered = \filter_orientation($home['Home']['img_url'], $this->settings['upload_url']);
     $home['Home']['img_url'] = implode(';', $filtered);
-
     $filtered = \filter_orientation($home['Home']['img_popup_newsletter'], $this->settings['upload_url']);
     $home['Home']['img_popup_newsletter'] = implode(';', $filtered);
-
-    //error_log(json_encode($home));
-    
-		$this->set('home', $home['Home']);
-
-    if (isset($home['Home']['img_popup_newsletter']) && !empty($home['Home']['img_popup_newsletter'])) {
-      $popupBG=explode(';', $home['Home']['img_popup_newsletter']);
-      if (empty($popupBG[0])) {
-        $aux = array();
-        foreach ($popupBG as $key => $value) {
-          if (!empty($value)) {
-            $aux[] = $value;
-          }
-        }
-        $popupBG = $aux;
-      }
-      @list($ancho, $alto, $tipo, $atributos) = getimagesize($settings['upload_url'].$popupBG[0]);
-      if ($ancho<=990) {
-        $this->set('popupBgWidth', $ancho);
-        $this->set('popupBgHeight', $alto);
-      }
-    }
-
-		$this->loadModel('Setting');
-		$setting 	= $this->Setting->findById('page_video');
-		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
-		$this->set('page_video',$page_video);
-		$this->loadModel('Category');
-    $this->loadModel('Store');
-		$stores = $this->Store->find('all');
-		$this->set('stores', $stores);
-		$this->loadModel('Subscription');
     $data = $this->request->data;
 
+		$this->set('home', $home['Home']);
+    $this->loadModel('Store');
+		$this->set('stores', $this->Store->find('all'));
+		
 		if ($this->request->is('post')) {
       if(!empty($data['Subscription']['email'])){
 
@@ -67,6 +34,7 @@ class HomeController extends AppController {
             array('class' => 'hidden error')
           );
         } else {
+          $this->loadModel('Subscription');
           $saved = $this->Subscription->save($toSave);
           if(!empty($saved)){
              $this->Session->setFlash(
