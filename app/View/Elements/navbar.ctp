@@ -120,10 +120,6 @@
                 <div class="control-panel">
                 <?php if ($this->Session->check('cart')): ?>
                   <p class="title">Tu pedido</p>
-                <?php else: ?>
-                  <h3 class="text-muted">Tu carrito está vacío.</h3>
-                  <p class="notification text-muted">Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></p>
-                <?php endif ?>
                   <ol id="items">
                     <?php
                       $total = 0;
@@ -137,14 +133,13 @@
                           $total += $producto['price'];
                           $color = empty($producto['price'])?'text-success':'text-grey';
                           echo '<li class="'.$color.'">';
-                            echo '<span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. \price_format($producto['price']) . '</strong>';
+                            echo '<a href="/carrito"><span class="ellipsis">'. $producto['name'] .'</span> - <strong>'. \price_format($producto['price']) . '</strong></a>';
                           echo '</li>';
                         }
                     ?>
                   </ol>
-                <?php if ($this->Session->check('cart')): ?>
                   <p>
-                    Total <span class="right"><?php echo \price_format($total) ?></span>
+                    <a class="text-theme" href="/carrito">Total <span class="right text-bold"><?php echo \price_format($total) ?></span></a>
                   </p>
                   <p class="bottom" title="Ir al carrito">
                     <?php
@@ -170,7 +165,10 @@
                       ?>
                     </span>
                   </p>
-                  <?php endif ?>
+                <?php else: ?>
+                  <h3 class="text-muted">Tu carrito está vacío.</h3>
+                  <p class="notification text-muted">Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></p>
+                <?php endif ?>
                 </div>
               </li>
             </ul>

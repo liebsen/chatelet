@@ -200,9 +200,9 @@ let calcDues = (total) => {
   })
 }
 
-let fxTotal = (total) => {
+let handleTotals = (total) => {
   if($('.calc_total').text().replace("$ ", "") != total) {
-    // console.log('fxTotal', total)
+    // console.log('handleTotals', total)
     $('.calc_total').text( '$ ' + formatNumber(total) )
   }
 }

@@ -33,7 +33,7 @@ selectShipping = function (e, shipping, cost) {
 	total = formatNumber(total)
 	let info = $(e).data('info')
 
-	fxTotal(total)
+	handleTotals(total)
 	handleSubtotal(total)
 	
 	var cp_input = $('.input-cp').val().trim()
@@ -65,7 +65,7 @@ selectStore = function(e) {
   const coupon_benefits = cart_totals.coupon_benefits || 0 
   format_total = formatNumber(total_products - coupon_benefits)
   
-  fxTotal(format_total)
+  handleTotals(format_total)
   	
   const storeProps = [
   	'store', 

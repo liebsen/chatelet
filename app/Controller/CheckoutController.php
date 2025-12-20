@@ -57,6 +57,12 @@ class CheckoutController extends AppController
 	public function beforeFilter()
 	{
   	parent::beforeFilter();
+
+  	if($this->Cart->expired()) {
+  		$this->Cart->destroy();
+  		return $this->redirect(array( 'controller' => 'shop', 'action' => 'cart_expired' ));
+  	}
+
   	$this->set('sorted', $this->Cart->sorted());
 		$index = array_search($this->request->here, array_column($this->checkout_steps, 'url'));
 		$this->set('checkout_index', $index);
@@ -246,12 +252,12 @@ class CheckoutController extends AppController
 		$cart_totals = $this->Session->read('cart_totals');
 		$payment_method = $cart_totals['payment_method'] ?? 'bank';
 		$payment_method = $this->request->data['payment_method'] ?? $payment_method;
-		
+    CakeLog::write('debug', '--------------------------------------');		
 		CakeLog::write('debug','payment_method(1):'.json_encode($payment_method), JSON_PRETTY_PRINT);
 
 		$cart_totals['payment_method'] = $payment_method;		
 		$cart = $this->Cart->update(null, $cart_totals);
-		CakeLog::write('debug','cart(3):'.json_encode($cart), JSON_PRETTY_PRINT);
+		// CakeLog::write('debug','cart(3):'.json_encode($cart), JSON_PRETTY_PRINT);
 		$cart['status'] = 'success';
 
 		return json_encode($cart);

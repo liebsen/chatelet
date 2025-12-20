@@ -71,6 +71,8 @@ class ShopController extends AppController {
 		die();
 	}
 
+	public function cart_expired() {}	
+
 	public function test_email($email) {
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');

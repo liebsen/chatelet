@@ -534,11 +534,11 @@ html, body {
 	.flex-md-column {
 		flex-direction: column;
 	}
+	.flex-md-column > .btn {
+		width: 100%;
+	}
 }
 
-.flex-md-column {
-
-}
 .align-items-center {
 	align-items: center;
 }
@@ -615,7 +615,8 @@ html, body {
   min-height: 20rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;	
+  justify-content: center;
+  align-items: start;	
   padding: 1rem;
 }
 

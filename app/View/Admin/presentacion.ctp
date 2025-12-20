@@ -35,7 +35,7 @@
 										<i class="fa fa-2x fa-{{orientation}} min-w-4 is-clickable edit-orientation" data-file="{{file_newsletter}}" data-origin="img_popup_newsletter" data-orientation="{{orientation}}"></i>
 									</span>
 								</script>
-								<span id="images_newsletter" class="animated slow fadeIn w-100"></span>
+								<span id="images_newsletter" class="animated fadeIn w-100"></span>
 							</div>
 					  </div>
 					  <progress class="progress_newsletter hide w-100" value="50" max="100">0%</progress>

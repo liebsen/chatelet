@@ -172,9 +172,10 @@ class CartComponent extends Component {
     }
 
     $delivery_cost = $cart_totals['delivery_cost'] ?? 0;
-    // CakeLog::write('debug','isFreeShipping(4)');
+    CakeLog::write('debug','isFreeShipping(b):'.json_encode(array($cart_totals['grand_total'], $payment_method, $cart_totals['postal_address'])));
+
     $free_shipping = $this->isFreeShipping(
-      $grand_total, 
+      $cart_totals['grand_total'], 
       $payment_method,
       $cart_totals['postal_address']
     );
@@ -193,9 +194,8 @@ class CartComponent extends Component {
 
         $delivery_cost = (float) $delivery_data->rates[0]->price;
 
-        CakeLog::write('debug', 'update(delivery_data): '.json_encode($delivery_data));
-        CakeLog::write('debug', 'update(delivery_cost): '.json_encode($delivery_cost));
-
+        // CakeLog::write('debug', 'update(delivery_data): '.json_encode($delivery_data));
+        // CakeLog::write('debug', 'update(delivery_cost): '.json_encode($delivery_cost));
       }
     }
 
@@ -210,10 +210,9 @@ class CartComponent extends Component {
 
     $cart_totals['grand_total'] = $grand_total;
     $cart_totals['payment_method'] = $payment_method;
-
+    $cart_totals['updated'] = date('Y-m-d H:i');
     // CakeLog::write('debug', 'update(cart_totals):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
     // CakeLog::write('debug', 'update(cart):'. json_encode($cart,JSON_PRETTY_PRINT));
-
     $this->controller->Session->write('cart_totals', $cart_totals);
     $this->controller->Session->write('cart', $cart);
 
@@ -228,7 +227,18 @@ class CartComponent extends Component {
 		$this->controller->Session->delete('cart_totals');
   }
 
-	public function sorted() {
+	public function expired() {
+    $min = $this->controller->settings['carrito_life_hours'] || 12;
+    $cart_totals = $this->controller->Session->read('cart_totals');
+    $t1 = strtotime( date('Y-m-d H:i') );
+    $t2 = strtotime( $cart_totals['updated'] );
+    $diff = $t1 - $t2;
+    $hours = $diff / ( 60 * 60 );    
+    // CakeLog::write('debug', 'expired(hours):'. json_encode($hours,JSON_PRETTY_PRINT));
+    return $hours > $min;
+  }
+
+  public function sorted() {
 		$cart = $this->controller->Session->read('cart');
 		$cart_totals = $this->controller->Session->read('cart_totals');
 		$payment_method = @$cart_totals['payment_method'] ?: 'bank';
@@ -281,9 +291,12 @@ class CartComponent extends Component {
     // CakeLog::write('debug', 'shipping_zips:'.json_encode($shipping_zips));
     // CakeLog::write('debug', 'shipping_price_min:'.json_encode($shipping_price_min));
     // CakeLog::write('debug', 'bank_free_shipping:'.json_encode($bank_free_shipping));
-    // CakeLog::write('debug', 'payment_method(2):'.json_encode($payment_method));
+    CakeLog::write('debug', 'price(2):'.json_encode($price));
+    CakeLog::write('debug', 'payment_method(2):'.json_encode($payment_method));
+    CakeLog::write('debug', 'zip_code(2):'.json_encode($zip_code));
 
     if(!empty($bank_free_shipping) && $payment_method == 'bank') {
+      CakeLog::write('debug', 'bank_free_shipping(1)');
       return true;
     }
 
@@ -341,26 +354,27 @@ class CartComponent extends Component {
 
     $cart_totals = $this->controller->Session->read('cart_totals') ?? [];
     $fake_enabled = false;
-
+    CakeLog::write('debug','deliveryCost(1)*');
     if ($fake_enabled && $this->controller->settings['env_staging']) {
       return json_encode(json_decode('{"freeShipping":false,"rates":[{"title":"Oca","code":"oca","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/628eb1ba29efd.svg","info":"Env\u00edos a todo el pa\u00eds","price":987,"centros":[],"valid":true},{"title":"Speed Moto","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/6292a6f2d79b7.jpg","code":"speedmoto","info":"10 a\u00f1os brindando confianza a nuestros clientes","price":"700.00","centros":[],"valid":true}],"itemsData":{"count":1,"price":1994.99,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}'));
     }
-
+    CakeLog::write('debug','deliveryCost(2)*');
     $cp1 = substr($cp, 0, 3) . '*';
     $cp2 = substr($cp, 0, 2) . '**';
     //Data
     $data = $this->getItemsData();
-    // CakeLog::write('debug','isFreeShipping(1)');
-    $free_shipping = $this->isFreeShipping($total, $payment_method, $cp);
-    error_log("free_shipping:".json_encode($free_shipping));
-    // CakeLog::write('debug','deliveryCost(free_shipping):'.json_encode($free_shipping));
-
     $unit_price = $data['price'];
     if(!empty($data['discount']) && !empty((float)(@$data['discount']))) {
       $unit_price = @$data['discount'];
     }
-    //CakeLog::write('debug','isFreeShipping(2)');
-    $free_shipping = $this->isFreeShipping($unit_price, $cp);
+
+    CakeLog::write('debug','isFreeShipping(a):'.json_encode(array($cart_totals['grand_total'], $payment_method, $cp)));
+
+    $free_shipping = $this->isFreeShipping($cart_totals['grand_total'], $payment_method, $cp);
+
+    // CakeLog::write('debug','deliveryCost(free_shipping):'.json_encode($free_shipping));
+    //error_log("free_shipping:".json_encode($free_shipping));
+
     $json = array(
       'freeShipping' => $free_shipping,
       'rates' => [],

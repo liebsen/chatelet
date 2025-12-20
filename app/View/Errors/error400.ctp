@@ -5,7 +5,7 @@
       <p>No pudimos encontrar el recurso que buscás, si pensás que es un error contactate con nosotros</p>
     </div>
     <hr>
-    <div class="container">
+    <div class="container d-flex flex-md-column justify-content-center align-items-center gap-05  w-100">
       <a href="/shop" class="btn btn-chatelet btn-continue-shopping">Seguir comprando</a>
       <a href="/" class="btn btn-link">Volver a inicio</a>
       <a href="/contacto" class="btn btn-link">Contactar al administrador</a>
