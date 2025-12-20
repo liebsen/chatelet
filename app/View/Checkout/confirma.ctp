@@ -77,7 +77,7 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 	      success: function(res) {
 	      	if(res.success) {
 	      		$.growl.notice({
-	      			title: 'Todo correcto!',
+	      			title: 'Tu compra fue procesada',
 	      			message: res.message,
 	      		})      		
 	          setTimeout(() => {

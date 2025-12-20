@@ -851,7 +851,7 @@ class CheckoutController extends AppController
 			CakeLog::write('debug', '(cbu) ok - Realiza la transferencia para terminar la compra');
 			return array(
 				'success' => true,
-				'message' => "Realiza la transferencia para terminar la compra",
+				'message' => "Espera mientras te redirigimos...",
 				'redirect' => Router::url(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' )),
 			);
 		}
@@ -915,7 +915,7 @@ class CheckoutController extends AppController
 
 		return array(
 			'success' => true,
-			'message' => 'Se creó con éxito la preferencia, espere un momento... ',
+			'message' => 'Espera mientras te redirigimos...',
 			'redirect' => $redirect
 		);
 	}
