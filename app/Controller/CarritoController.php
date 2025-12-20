@@ -177,6 +177,12 @@ class CarritoController extends AppController
 	public function beforeFilter()
 	{
   	parent::beforeFilter();
+
+  	if($this->Cart->expired()) {
+  		$this->Cart->destroy();
+  		return $this->redirect(array( 'controller' => 'shop', 'action' => 'cart_expired' ));
+  	}
+
 		/* $legends = $this->Legend->find('all', [
 			'conditions' => ['enabled' => 1],
 			'order' => ['Legend.dues ASC']

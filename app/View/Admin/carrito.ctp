@@ -28,14 +28,14 @@
                 <label for="enabled_0">No</label>
               </span>
             </div>
-            <span class="text-muted">Indica si debe mostrarse un mensaje para alentar al cliente a obtener un envío gratis agregando más productos a su carrito.</span>
+            <span class="text-theme">Indica si debe mostrarse un mensaje para alentar al cliente a obtener un envío gratis agregando más productos a su carrito.</span>
           </div>            
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Carrito envío gratis'); ?></label>
             <div class="controls">
               <textarea name="text_shipping_min_price" class="form-control w-100"><?= @$settings['text_shipping_min_price'] ?></textarea>
             </div>
-            <span class="text-muted">texto que se muestra en el carrito cuando el usuario no alcanza el mínimo de compra para envío gratis. Podés usar variables como <br>
+            <span class="text-theme">texto que se muestra en el carrito cuando el usuario no alcanza el mínimo de compra para envío gratis. Podés usar variables como <br>
 <strong>{{precio_min_envio_gratis}}</strong> Monto de compra para envío gratis <br>
 <strong>{{resto_min_envio_gratis}}</strong> Monto que falta para alcanzar el mínimo de envío gratos <br>
 <strong>{{total}}</strong> Total del carrito. </span>
@@ -45,10 +45,15 @@
             <div class="controls">
               <textarea name="carrito_takeaway_text" class="form-control w-100"><?= @$settings['carrito_takeaway_text'] ?></textarea>
             </div>
-            <span class="text-muted">texto que se muestra en el carrito cuando el usuario selecciona método de entrega takeaway.</span>
+            <span class="text-theme">texto que se muestra en el carrito cuando el usuario selecciona método de entrega takeaway.</span>
           </div>  
         </div> 
-        <div class="col-md-6"></div>
+        <div class="col-md-6">
+          <h4 class="sub-header">Duración (horas)</h4>
+          <span class="text-theme">La tienda revisa cuando el carrito fue actualizado por última vez, así podemos evitar procesar información desactualizada. Establece las horas de vida que cada carrito tendrá.</span>
+
+          <input type="text" name="carrito_life_hours" class="form-control w-100" value="<?= @$settings['carrito_life_hours'] ?>" />
+        </div>
       </div>
       <br />               
       <div class="form-actions">

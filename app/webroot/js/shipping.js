@@ -41,7 +41,7 @@ $(function(){
 	  //console.log('price',price)
 		let total = formatNumber(price)
 		let info = $(e).data('info')
-		fxTotal(total)
+		handleTotals(total)
 		$('.paying-with').delay(1000).fadeIn()
 		$('.checkout-continue').fadeIn()
 		// onErrorAlert(`Como querés recibir tu compra`, `Te lo llevamos por ${shipping.toUpperCase()}`, 0, true);
@@ -126,7 +126,7 @@ $(function(){
 				// $('#cost').text( parseInt(0) );
 				//console.log(':::',subtotal,coupon)
 				// let total = formatNumber(subtotal - coupon)
-				// fxTotal(formatNumber(total))
+				// handleTotals(formatNumber(total))
 				setTimeout( "onErrorAlert('Sin cobertura en esta zona', 'El código postal es correcto pero no disponemos de servicio de entrega para tu área.')", 200)
 			}
 			$('.input-cp').attr( 'data-valid' , json.rates.length );

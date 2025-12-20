@@ -8,8 +8,8 @@ function updateTotals(res) {
   $('.coupon_bonus').text( "$ " + formatNumber(discounted_formatted))
   $('.subtotal_price').text( "$ " + formatNumber(res.cart_totals.total_products))
 
-  handleDelivery(res.cart_totals)
-  fxTotal(total)
+  handleShippingTotals(res)
+  handleTotals(total)
 
   $(res.cart).each(function(i,e) {
   	$('.price-'+e.id).text("$ " + formatNumber(parseFloat(e.price)))
@@ -146,7 +146,7 @@ $(function(){
 				}
 
 				handleSubtotal(total)
-				handleDelivery(res.cart_totals)
+				handleShippingTotals(res.cart_totals)
 	      //cart_totals.total_products = parseFloat(total.toFixed(2))
 	    }
 	    requesting_coupon = false

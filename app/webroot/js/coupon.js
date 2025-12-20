@@ -19,9 +19,9 @@ function resetCoupon() {
     delivery_cost = cart_totals.delivery_cost
   }  
   var price = parseFloat(subtotal)
-  console.log('fxTotal(2)', price)
+  console.log('handleTotals(2)', price)
 
-  fxTotal(price)
+  handleTotals(price)
 
   $('.coupon-discount').addClass('hidden')
 }
@@ -69,7 +69,7 @@ function submitCoupon() {
       coupon = coupon.toUpperCase()
       format_total = formatNumber(price)
 
-      fxTotal(price)
+      handleTotals(price)
       // calcDues(price)
       window.coupon_bonus = discounted
 

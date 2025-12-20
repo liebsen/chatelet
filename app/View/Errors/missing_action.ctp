@@ -5,7 +5,7 @@
       <p>No pudimos encontrar el recurso que buscás, si pensás que es un error contactate con nosotros</p>
     </div>
     <hr>
-    <div class="container">
+    <div class="container d-flex flex-md-column justify-content-center align-items-center gap-05  w-100">
       <a class="btn btn-success btn-lg  action-search"><i class="fa fa-search"></i> Buscar</a>
       <a href="/" class="btn btn-lg btn-link">Volver a inicio</a>
       <a href="/contacto" class="btn btn-lg btn-link">Contactar al administrador</a>

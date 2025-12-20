@@ -561,7 +561,7 @@ body {
     color: #f9f9f9;
 }
 
-#primary-nav li > a:hover {
+#primary-nav li:not(.active) > a:hover {
     color: #fff;
     background: #999;
 }
