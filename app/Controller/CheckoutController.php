@@ -660,13 +660,18 @@ class CheckoutController extends AppController
 			}
 
 			$items[] = array(
-				'title' => $desc,
-				'description' => $desc,
+				'title' => $producto['name'],
+				'description' => $producto['desc'],
 				'quantity' => 1,
 				'currency_id' => 'ARS',
-				'unit_price' => (int) $unit_price
+				'unit_price' => (int) ceil($unit_price)
 			);
-			$total+= (float) $unit_price;
+
+			$total+= ceil($unit_price);
+
+			CakeLog::write('debug', 'sale(unit_price):'.$unit_price);
+			CakeLog::write('debug', 'sale(total):'.$total);
+
 			$product_ids[] = array(
 				'product_id' => $producto['id'],
 				'color' => $producto['color'],
@@ -681,6 +686,8 @@ class CheckoutController extends AppController
 
 		$total_wo_discount = (int) $total;
 		// error_log('suming total (wo_discount): '.$total);
+		CakeLog::write('debug', 'sale(items):'.json_encode($items, JSON_PRETTY_PRINT
+		));
 		CakeLog::write('debug', 'sale(wo_discount):'.$total);
 
 	  // Check bank paying method
@@ -752,7 +759,7 @@ class CheckoutController extends AppController
 				$delivery_cost = (float) $delivery_data->rates[0]->old_price;
 				CakeLog::write('debug', 'sale(deliverycost): '.$delivery_cost);
 
-				$total += $delivery_cost;
+				$total+= $delivery_cost;
 			}
 			// CakeLog::write('debug', 'sale(total): '.$total);
 			// error_log('suming total: '.$total);
