@@ -461,15 +461,11 @@ class AdminController extends AppController {
 
 	private function add_order_oca ($sale) {
 		$oca = new Oca();
-		$this->loadModel('Setting');
 		$nrocuenta = $this->Setting->findById('oca_nro_cuenta');
-		$nrocuenta = @$nrocuenta['Setting']['value'];
-		$idoperativa = $this->Setting->findById('oca_id_operativa');
-		$idoperativa = @$idoperativa['Setting']['value'];
-		$usr = $this->Setting->findById('oca_usr');
-		$usr = @$usr['Setting']['value'];
-		$psw = $this->Setting->findById('oca_psw');
-		$psw = @$psw['Setting']['value'];
+		$nrocuenta = $this->settings['oca_nro_cuenta'];
+		$idoperativa = $this->settings['idoperativa'];
+		$usr = $this->settings['oca_usr'];
+		$psw = $this->settings['oca_psw'];
 
 		//$sale = $sale['Sale'];
 		$package = $this->Package->findById($sale['package_id']);
@@ -714,7 +710,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	public function getTicket($sale_id = null){
 		$this->autoRender = false;
 		$data = [
-			'status' => 'danger',
+			'status' => 'error',
 			'message' => 'Error'
 		];
 		error_log('[ticket] generating for sale ' . $sale_id);
@@ -749,6 +745,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			}
 
 			$sale = $this->setOrdenRetiro($sale);
+			CakeLog::write('debug', 'getTicket(sale):'.json_encode($sale));
 			$data['shipping'] = @strtolower($sale['shipping']);
 			if (!empty($sale['def_orden_retiro'])) {
 				if (!empty($sale['def_orden_tracking']) && $send_email) {
@@ -1545,35 +1542,23 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$this->Catalog->save($data);
 		}
 
-		$setting 	= $this->Setting->findById('page_video');
-		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$page_video = (!empty($this->settings['page_video'])) ? $this->settings['page_video'] : '';
 		$this->set('page_video',$page_video);
-		unset($setting);
 
-		$setting 	= $this->Setting->findById('catalog_first_line');
-		$catalog_first_line = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$catalog_first_line = (!empty($this->settings['catalog_first_line'])) ? $this->settings['catalog_first_line'] : '';
 		$this->set('catalog_first_line',$catalog_first_line);
 
-		unset($setting);
-
-		$setting 	= $this->Setting->findById('catalog_second_line');
-    	$catalog_second_line = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+    $catalog_second_line = (!empty($this->settings['catalog_second_line'])) ? $this->settings['catalog_second_line'] : '';
 		$this->set('catalog_second_line',$catalog_second_line);
-		unset($setting);
 
-		$setting 	= $this->Setting->findById('catalog_text');
-		$catalog_text = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$catalog_text = (!empty($this->settings['catalog_text'])) ? $this->settings['catalog_text'] : '';
 		$this->set('catalog_text',$catalog_text);
-		unset($setting);
 
-		$setting 	= $this->Setting->findById('catalog_flap');
-		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$catalog_flap = (!empty($this->settings['catalog_flap'])) ? $this->settings['catalog_flap'] : '';
 		$this->set('catalog_flap',$catalog_flap);
-		unset($setting);
 
 		$p = $this->Catalog->find('first');
 		$this->set('p', $p);
-
 	}
 
 	public function categorias($action = null) {
@@ -1927,25 +1912,16 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function productos($action = null) {
-		$this->loadModel('Setting');
 		$this->loadModel('Category');
 		$this->SQL = $this->Components->load('SQL');
 
-		$a = $this->Setting->findById('stock_min');
-		$b = $this->Setting->findById('list_code');
-		$c = $this->Setting->findById('show_shop');
-		$d = $this->Setting->findById('image_bannershop');
-		$e = $this->Setting->findById('image_menushop');
-		$f = $this->Setting->findById('image_prodshop');
-		$g = $this->Setting->findById('list_code_desc');
-
-		$this->set('stock_min',@$a['Setting']['value']);
-		$this->set('list_code',@$b['Setting']['value']);
-		$this->set('show_shop',@$c['Setting']['value']);
-    $this->set('image_bannershop',@$d['Setting']['value']);
-    $this->set('image_menushop',@$e['Setting']['value']);
-    $this->set('image_prodshop',@$f['Setting']['value']);
-    $this->set('list_code_desc',@$g['Setting']['value']);
+		$this->set('stock_min',$this->settings['stock_min']);
+		$this->set('list_code',$this->settings['list_code']);
+		$this->set('show_shop',$this->settings['show_shop']);
+    $this->set('image_bannershop',$this->settings['image_bannershop']);
+    $this->set('image_menushop',$this->settings['image_menushop']);
+    $this->set('image_prodshop',$this->settings['image_prodshop']);
+    $this->set('list_code_desc',$this->settings['list_code_desc']);
 
         //create table discount_lists (id int unsigned auto_increment primary key, item_index int unsigned, category_id int(10) unsigned not null, list_code varchar(30) not null,updated_at date);
     
