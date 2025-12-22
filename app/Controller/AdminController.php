@@ -474,7 +474,8 @@ class AdminController extends AppController {
 		$oca_result = $oca->ingresoORNuevo($nrocuenta, $idoperativa, $usr, $psw, $sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
 		$sale['def_orden_retiro'] = @$oca_result['retiro'];
 		$sale['def_orden_tracking'] = @$oca_result['tracking'];
-		CakeLog::write('debug', 'sale(6)'.json_encode($sale));			
+		CakeLog::write('debug', 'add_order_oca(sale)'.json_encode($sale));			
+		CakeLog::write('debug', 'add_order_oca(oca_result)'.json_encode($oca_result));			
 		$t = @$this->Sale->save($sale);
 		$sale['raw_xml'] = @$oca_result['rawXML'];
 		return $sale;		
@@ -1473,7 +1474,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->set('p', $p);
 	}
 
-
 	public function catalogo($action = null) {
 		$this->loadModel('Setting');
 		$h1 = array(
@@ -1497,48 +1497,48 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$data = $this->request->data;
 			$old = $this->Catalog->find('first');
 			$old = $old['Catalog'];
-            $pictures = array();
-            $pictures_tmp = $this->request->params['form']['pictures'];
-            //var_dump($pictures_temp);
-            $count_max_pictures = count($pictures_tmp['name']);
+      $pictures = array();
+      $pictures_tmp = $this->request->params['form']['pictures'];
+      //var_dump($pictures_temp);
+      $count_max_pictures = count($pictures_tmp['name']);
 
-            if(isset($data['page_video'])) {
-            	$this->Setting->save(array( 'id' => 'page_video' , 'value' => $data['page_video'] ));
-            }
+      if(isset($data['page_video'])) {
+      	$this->Setting->save(array( 'id' => 'page_video' , 'value' => $data['page_video'] ));
+      }
 
-            if(isset($data['catalog_first_line']) && isset($data['catalog_second_line'])) {
-            	$this->Setting->save(array( 'id' => 'catalog_first_line' , 'value' => $data['catalog_first_line'] ));
-            	$this->Setting->save(array( 'id' => 'catalog_second_line' , 'value' => $data['catalog_second_line'] ));
-            }
+      if(isset($data['catalog_first_line']) && isset($data['catalog_second_line'])) {
+      	$this->Setting->save(array( 'id' => 'catalog_first_line' , 'value' => $data['catalog_first_line'] ));
+      	$this->Setting->save(array( 'id' => 'catalog_second_line' , 'value' => $data['catalog_second_line'] ));
+      }
 
-            if(isset($data['catalog_text'])) {
-               	$this->Setting->save(array( 'id' => 'catalog_text' , 'value' => $data['catalog_text'] ));
-            }
+      if(isset($data['catalog_text'])) {
+         	$this->Setting->save(array( 'id' => 'catalog_text' , 'value' => $data['catalog_text'] ));
+      }
 
-            if(isset($data['catalog_flap'])) {
-               	$this->Setting->save(array( 'id' => 'catalog_flap' , 'value' => $data['catalog_flap'] ));
-            }
+      if(isset($data['catalog_flap'])) {
+         	$this->Setting->save(array( 'id' => 'catalog_flap' , 'value' => $data['catalog_flap'] ));
+      }
 
-            for ($i=0; $i < $count_max_pictures; $i++) {
-            	$current = array(
-            		'name' => $pictures_tmp['name'][$i],
-            		'type' => $pictures_tmp['type'][$i],
-            		'tmp_name' => $pictures_tmp['tmp_name'][$i],
-            		'error' => $pictures_tmp['error'][$i],
-            		'size' => $pictures_tmp['size'][$i]
-        		);
+      for ($i=0; $i < $count_max_pictures; $i++) {
+      	$current = array(
+      		'name' => $pictures_tmp['name'][$i],
+      		'type' => $pictures_tmp['type'][$i],
+      		'tmp_name' => $pictures_tmp['tmp_name'][$i],
+      		'error' => $pictures_tmp['error'][$i],
+      		'size' => $pictures_tmp['size'][$i]
+	  		);
 
-                $file_real_name = $this->save_file($current);
-                if($file_real_name){
-                    $pictures[] = $file_real_name;
-                }
-            }
-            if (empty($old['images'])) $old['images'] = '';
-            if (!empty($old['images'])) {
-            	$data['images'] = $old['images'] .';'. implode(';', $pictures);
-        	} else {
-        		$data['images'] = implode(';', $pictures);
-        	}
+	      $file_real_name = $this->save_file($current);
+	      if($file_real_name){
+	          $pictures[] = $file_real_name;
+	      }
+    	}
+      if (empty($old['images'])) $old['images'] = '';
+      if (!empty($old['images'])) {
+      	$data['images'] = $old['images'] .';'. implode(';', $pictures);
+    	} else {
+    		$data['images'] = implode(';', $pictures);
+    	}
 			$this->Catalog->save($data);
 		}
 
