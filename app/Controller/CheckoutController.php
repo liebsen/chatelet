@@ -828,7 +828,7 @@ class CheckoutController extends AppController
 			'store'		=> $cart_totals['store'],
 			'store_address'		=> $cart_totals['store_address'],
 			'shipping'		=> $cart_totals['shipping'],
-			'dues'		=> $cart_totals['dues']
+			'dues'		=> $cart_totals['dues'] ?? 1
 		);
 
 		// CakeLog::write('debug', 'sale(to_save)'.json_encode($to_save));
