@@ -459,20 +459,39 @@ class AdminController extends AppController {
 		return $response;
 	}
 
+
+	public function preview_oca() {
+		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
+
+		$nrocuenta = stripslashes($this->settings['oca_nro_cuenta']);
+		$idoperativa = $this->settings['oca_id_operativa'];
+		$usr = $this->settings['oca_usr'];
+		$psw = $this->settings['oca_psw'];
+
+		CakeLog::write('debug', 'add_order_oca(nrocuenta)'.$nrocuenta);
+		CakeLog::write('debug', 'add_order_oca(idoperativa)'.$idoperativa);
+		CakeLog::write('debug', 'add_order_oca(usr)'.$usr);
+		CakeLog::write('debug', 'add_order_oca(psw)'.$psw);
+
+		return json_encode(array(
+			'nrocuenta' => $nrocuenta,
+		));
+	}
+
+
 	private function add_order_oca ($sale) {
 		$oca = new Oca();
 		$this->loadModel('Setting');
 		$nrocuenta = stripslashes($this->settings['oca_nro_cuenta']);
 		$idoperativa = $this->settings['oca_id_operativa'];
-		$usr = $this->Setting->findById('oca_usr');
-		$usr = @$usr['Setting']['value'];
-		$psw = $this->Setting->findById('oca_psw');
-		$psw = @$psw['Setting']['value'];		
+		$usr = $this->settings['oca_usr'];
+		$psw = $this->settings['oca_psw'];
 
-		CakeLog::write('debug', 'add_order_oca(nrocuenta)'.json_encode($nrocuenta));
-		CakeLog::write('debug', 'add_order_oca(idoperativa)'.json_encode($idoperativa));
-		CakeLog::write('debug', 'add_order_oca(usr)'.json_encode($usr));
-		CakeLog::write('debug', 'add_order_oca(psw)'.json_encode($psw));
+		CakeLog::write('debug', 'add_order_oca(nrocuenta)'.$nrocuenta);
+		CakeLog::write('debug', 'add_order_oca(idoperativa)'.$idoperativa);
+		CakeLog::write('debug', 'add_order_oca(usr)'.$usr);
+		CakeLog::write('debug', 'add_order_oca(psw)'.$psw);
 		//$sale = $sale['Sale'];
 		$package = $this->Package->findById($sale['package_id']);
 		$package = $package['Package'];
