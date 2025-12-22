@@ -466,34 +466,8 @@ class AdminController extends AppController {
 		$idoperativa = $this->settings['oca_id_operativa'];
 		$usr = $this->settings['oca_usr'];
 		$psw = $this->settings['oca_psw'];
-
-		CakeLog::write('debug', 'add_order_oca(nrocuenta)'.$nrocuenta);
-		CakeLog::write('debug', 'add_order_oca(idoperativa)'.$idoperativa);
-		CakeLog::write('debug', 'add_order_oca(usr)'.$usr);
-		CakeLog::write('debug', 'add_order_oca(psw)'.$psw);
-
-		//$sale = $sale['Sale'];
 		$package = $this->Package->findById($sale['package_id']);
 		$package = $package['Package'];
-
-		CakeLog::write('debug', 'add_order_oca(package)'.json_encode($package));
-				CakeLog::write('debug', 'add_order_oca(id)'.$sale['id']);
-				CakeLog::write('debug', 'add_order_oca(nombre)'.$sale['nombre']);
-				CakeLog::write('debug', 'add_order_oca(apellido)'.$sale['apellido']);
-				CakeLog::write('debug', 'add_order_oca(calle)'.$sale['calle']);
-				CakeLog::write('debug', 'add_order_oca(nro)'.$sale['nro']);
-				CakeLog::write('debug', 'add_order_oca(piso)'.$sale['piso']);
-				CakeLog::write('debug', 'add_order_oca(depto)'.$sale['depto']);
-				CakeLog::write('debug', 'add_order_oca(cp)'.$sale['cp']);
-				CakeLog::write('debug', 'add_order_oca(localidad)'.$sale['localidad']);
-				CakeLog::write('debug', 'add_order_oca(provincia)'.$sale['provincia']);
-				CakeLog::write('debug', 'add_order_oca(telefono)'.$sale['telefono']);
-				CakeLog::write('debug', 'add_order_oca(email)'.$sale['email']);
-				CakeLog::write('debug', 'add_order_oca(value)'.$sale['value']);
-				CakeLog::write('debug', 'add_order_oca(height)'.$package['height']);
-				CakeLog::write('debug', 'add_order_oca(width)'.$package['width']);
-				CakeLog::write('debug', 'add_order_oca(depth)'.$package['depth']);
-				CakeLog::write('debug', 'add_order_oca(calc)'.$package['weight']/1000);
 		$oca_result = $oca->ingresoORNuevo($nrocuenta, $idoperativa, $usr, $psw, $sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
 
 		CakeLog::write('debug', 'add_order_oca(oca_result)'.json_encode($oca_result));			
