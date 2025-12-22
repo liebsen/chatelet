@@ -461,14 +461,18 @@ class AdminController extends AppController {
 
 	private function add_order_oca ($sale) {
 		$oca = new Oca();
+		$this->loadModel('Setting');
 		$nrocuenta = $this->settings['oca_nro_cuenta'];
 		$idoperativa = $this->settings['oca_id_operativa'];
-		$usr = $this->settings['oca_usr'];
-		$psw = $this->settings['oca_psw'];
+		$usr = $this->Setting->findById('oca_usr');
+		$usr = @$usr['Setting']['value'];
+		$psw = $this->Setting->findById('oca_psw');
+		$psw = @$psw['Setting']['value'];		
+
 		CakeLog::write('debug', 'add_order_oca(nrocuenta)'.json_encode($nrocuenta));
 		CakeLog::write('debug', 'add_order_oca(idoperativa)'.json_encode($idoperativa));
-		CakeLog::write('debug', 'add_order_oca(nrocuenta)'.json_encode($oca_usr));
-		CakeLog::write('debug', 'add_order_oca(nrocuenta)'.json_encode($oca_psw));
+		CakeLog::write('debug', 'add_order_oca(usr)'.json_encode($usr));
+		CakeLog::write('debug', 'add_order_oca(psw)'.json_encode($psw));
 		//$sale = $sale['Sale'];
 		$package = $this->Package->findById($sale['package_id']);
 		$package = $package['Package'];
