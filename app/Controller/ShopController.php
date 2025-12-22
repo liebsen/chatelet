@@ -198,7 +198,7 @@ class ShopController extends AppController {
 							// update article name
 							if ($replaceNames){
 								$details_name = $this->SQL->product_name_by_article($article_id);
-								// CakeLog::write('debug',"Detail name: ".json_encode($details_name));
+								CakeLog::write('debug',"die_general_stock(details): ".json_encode($details_name));
 							}
 
 							// update article stock
@@ -207,7 +207,8 @@ class ShopController extends AppController {
 									$this->Product->updateAll(
 										array(
 											'Product.stock_total' => (int)$row['cantidad'],
-											'Product.name' => "'". (string)@$details_name['nombre'] ."'"
+											'Product.name' => "'". (string)@$details_name['nombre'] ."'",
+											//'Product.desc' => "'". (string)@$details_name['Descripcion'] ."'"
 										),
 										array('Product.article' => $article_id)
 									);
@@ -215,13 +216,14 @@ class ShopController extends AppController {
 									$this->Product->updateAll(
 										array(
 											'Product.stock_total' => (int)$row['cantidad'],
+											//'Product.desc' => "'". (string)@$details_name['Descripcion'] ."'"
 											//'Product.name' => "'". (string)@$details_name['nombre'] ."'"
 										),
 										array('Product.article' => $article_id)
 									);
 								}
 								echo "article_id updated: ".$article_id;
-
+								CakeLog::write('debug',"Detail(updated): ".json_encode($article_id));
 						}
 						//
 						$exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
@@ -233,6 +235,7 @@ class ShopController extends AppController {
 						$record['article_id'] = $article_id;
 						$record['cod_articulo'] = $row['cod_articulo'];
 						$record['stock'] = (int)$row['cantidad'];
+						$record['desc'] = (string)$row['Descripcion'];
 						// CakeLog::write('debug',"Saving: ".json_encode($record));
 						$success = $this->StockCount->save($record);
 						if (!$success){
