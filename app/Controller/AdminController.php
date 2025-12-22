@@ -993,7 +993,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					'Sale.completed' => "1",					
 				],*/
 				'and' => [
-					'Sale.created >' => "$stamp"
+					'Sale.created >' => "$stamp",
+					'Sale.value >' => 0,
 				]
 			]
 		]);
