@@ -80,6 +80,69 @@ class AdminController extends AppController {
 		$this->layout = 'admin';
 	}
 
+  public function fix_sliders(){
+    $this->autoRender = false;
+    $this->RequestHandler->respondAs('application/json');
+
+    $this->loadModel('Slider');    
+    $this->loadModel('Home');
+
+    $this->Slider->deleteAll(array('1 = 1'), false);
+
+    $homes = $this->Home->find('all');
+    $count = 0;
+    $saves = array();
+    foreach($homes as $home) {
+    	$img_url = $home['Home']['img_url'];
+    	$img_popup_newsletter = $home['Home']['img_popup_newsletter'];
+    	
+    	if(!empty($img_url)) {
+    		$imgs = array_filter(array_values(explode(';', $img_url)));
+    		foreach($imgs as $i => $img) {
+	    		$parts = explode('-',$img);
+	    		$saves[] = array(
+    				'img_url' => $parts[1],
+    				'device' => $parts[0],
+    				'tag' => 'splash',
+    				'ordernum' => $i,
+    			);
+	    		// CakeLog::write('debug', 'fix_sliders(img):'.json_encode($img, JSON_PRETTY_PRINT));
+	    		CakeLog::write('debug', 'fix_sliders(save):'.json_encode($save, JSON_PRETTY_PRINT));
+    			$count++;
+    		}
+
+    		$this->Slider->saveMany($saves);
+    	}
+
+    	$saves = array();
+    	if(!empty($img_popup_newsletter)) {
+    		$imgs = array_filter(array_values(explode(';', $img_popup_newsletter)));
+    		foreach($imgs as $i => $img) {
+	    		$parts = explode('-',$img);
+	    		$saves[] = array(
+    				'img_url' => $parts[1],
+    				'device' => $parts[0],
+    				'tag' => 'slider',
+    				'ordernum' => $i,
+    			);
+	    		// CakeLog::write('debug', 'fix_sliders(img):'.json_encode($img, JSON_PRETTY_PRINT));
+	    		CakeLog::write('debug', 'fix_sliders(save):'.json_encode($save, JSON_PRETTY_PRINT));
+    			$count++;
+    		}
+
+    		$this->Slider->saveMany($saves);
+
+    	}
+
+    }
+
+
+    return json_encode(array(
+    	'count' => $count
+    ));
+  }
+
+
 	private function couponsAvailable(){
 		$this->loadModel('Coupon');
 		$available = false;
@@ -1212,6 +1275,91 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 		$p = $this->Home->find('first');
 		$this->set('p', $p);
+	}
+
+	public function sliders() {
+	  $this->loadModel('Category');
+		$cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+  	$this->set('cats', $cats);
+
+		$h1 = array(
+		'name' => 'Presentación',
+		'icon' => 'fa fa-eye'
+		);
+		$this->set('h1', $h1);
+		$this->loadModel('Home');
+		$this->loadModel('Slider');
+
+		if ($this->request->is('post')) {
+      $data = $this->request->data;
+
+      // img_url: define image orientation
+      $imgs = array_filter(explode(";",$data['img_url']));
+      $media = [];
+      foreach($imgs as $img) {
+      	$parts = explode('-', $img);
+      	if(count($parts) < 2) {
+	      	$fname = __DIR__ . '/../webroot' . $settings['upload_url'] . $img;
+	      	if(file_exists($fname)) {
+						$img_data = getimagesize($fname);
+						$orientation = $img_data[0] > $img_data[1] ? 'desktop' : 'mobile';
+						error_log(json_encode($img_data));
+						error_log('fname: '. $fname);
+						error_log('orientation: '. $orientation);
+			    	$media[] = implode('-', [$orientation, $img]);
+			    } 
+			  } else {
+			    $media[] = $img;
+			  }
+	    }
+
+	    if(count($media)) {
+	    	//$media = array_filter($media);
+	    	$data['img_url'] = ';' . implode(";", $media);
+	    	error_log(json_encode($media));
+	    }
+
+	    // img_popup_newsletter: define image orientation
+      $imgs = array_filter(explode(";",$data['img_popup_newsletter']));
+      $media = [];
+      foreach($imgs as $img) {
+      	$parts = explode('-', $img);
+      	if(count($parts) < 2) {
+	      	$fname = __DIR__ . '/../webroot' . $settings['upload_url'] . $img;
+	      	if(file_exists($fname)) {
+						$img_data = getimagesize();
+			    	$media[] = implode('-', [($img_data[0] > $img_data[1] ? 'desktop' : 'mobile'), $img]);
+			    } 
+			  } else {
+			    $media[] = $img;
+			  }
+	    }
+
+	    if(count($media)) {
+	    	//$media = array_filter($media);
+	    	$data['img_popup_newsletter'] = ';' . implode(";", $media);
+	    	//error_log(json_encode($media));
+	    }
+
+    	// $this->Home->save($data);
+		}
+
+		$data = $this->Slider->find('all');
+		$sliders = array();
+		$tags = array();
+		foreach($data as $key => $item) {
+			$tag = $item['Slider']['tag'];
+			if(empty($sliders[$tag])){
+				$sliders[$tag] = array();
+			}
+			if(!in_array($tag, $tags)) {
+				array_push($tags, $tag);
+			}
+			array_push($sliders[$tag], $item['Slider']);
+		}
+
+		$this->set('tags', $tags);
+		$this->set('sliders', $sliders);
 	}
 
 	public function index_old() {

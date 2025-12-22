@@ -738,27 +738,22 @@ class CheckoutController extends AppController
 			$cart_totals['postal_address']
 		);
 
+		$delivery_data = json_decode($this->Cart->deliveryCost(
+			$cart_totals['postal_address'], 
+			$cart_totals['shipping'],
+			$cart_totals['grand_total'],
+			$cart_totals['payment_method']
+		));
+
+		$delivery_cost = (float) $delivery_data->rates[0]->old_price;
+		CakeLog::write('debug', 'sale(deliverycost): '.$delivery_cost);
+
+
 		if ($freeShipping) { 
 			CakeLog::write('debug', 'sale(freeshipping):'.'without delivery bc price is :'.$total.', cp:'. @$cart_totals['postal_address'] .'  and date = '.gmdate('Y-m-d'));
-     	// error_log('without delivery bc price is :'.$total.', cp:'. @$cart_totals['postal_address'] .'  and date = '.gmdate('Y-m-d'));
-			// $delivery_cost=0;
 		} else {
 			if ($cart_totals['cargo'] === 'shipment') {
-				/* if (isset($delivery_data['rates'][0]['price'])) {
-				} */
-				// error_log('suming delivery to price: '.$delivery_cost);
-
-				$delivery_data = json_decode($this->Cart->deliveryCost(
-					$cart_totals['postal_address'], 
-					$cart_totals['shipping'],
-					$cart_totals['grand_total'],
-					$cart_totals['payment_method']
-				));
-
-				CakeLog::write('debug', 'sale(delivery_Data): '.json_encode($delivery_data));
-				$delivery_cost = (float) $delivery_data->rates[0]->old_price;
-				CakeLog::write('debug', 'sale(deliverycost): '.$delivery_cost);
-
+				// CakeLog::write('debug', 'sale(delivery_Data): '.json_encode($delivery_data));
 				$total+= $delivery_cost;
 			}
 			// CakeLog::write('debug', 'sale(total): '.$total);

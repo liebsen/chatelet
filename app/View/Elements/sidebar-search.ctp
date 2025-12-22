@@ -7,7 +7,7 @@
       <h5 class="text-uppercase">Buscar</h5>
       <div class="content pt-4">
         <div class="form-group">
-          <input class="form-control search-input" name="q" placeholder="Buscar...">
+          <input class="form-control search-input" name="q" placeholder="Buscar..." required>
           <p class="animated fadeIn slow"><span class="text-muted">Busca en todo nuestro catálogo. Ej: malla, blusa, pantalon, saco, etc</span></p>
         </div>
       </div>
