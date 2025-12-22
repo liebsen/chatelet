@@ -462,7 +462,7 @@ class AdminController extends AppController {
 	private function add_order_oca ($sale) {
 		$oca = new Oca();
 		$this->loadModel('Setting');
-		$nrocuenta = $this->settings['oca_nro_cuenta'];
+		$nrocuenta = stripslashes($this->settings['oca_nro_cuenta']);
 		$idoperativa = $this->settings['oca_id_operativa'];
 		$usr = $this->Setting->findById('oca_usr');
 		$usr = @$usr['Setting']['value'];
@@ -480,8 +480,8 @@ class AdminController extends AppController {
 		$oca_result = $oca->ingresoORNuevo($nrocuenta, $idoperativa, $usr, $psw, $sale['id'],$sale['apellido'],$sale['nombre'],$sale['calle'],$sale['nro'],$sale['piso'],$sale['depto'],$sale['cp'],$sale['localidad'],$sale['provincia'],$sale['telefono'],$sale['email'],$package['height'],$package['width'],$package['depth'],($package['weight']/1000),$sale['value']);
 		$sale['def_orden_retiro'] = @$oca_result['retiro'];
 		$sale['def_orden_tracking'] = @$oca_result['tracking'];
-		CakeLog::write('debug', 'add_order_oca(sale)'.json_encode($sale));			
-		CakeLog::write('debug', 'add_order_oca(oca_result)'.json_encode($oca_result));			
+		//CakeLog::write('debug', 'add_order_oca(sale)'.json_encode($sale));			
+		CakeLog::write('debug', 'add_order_oca(oca_result)'.json_encode($oca_result['rawXML']));			
 		$t = @$this->Sale->save($sale);
 		$sale['raw_xml'] = @$oca_result['rawXML'];
 		return $sale;		
