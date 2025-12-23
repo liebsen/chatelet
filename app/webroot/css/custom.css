@@ -643,7 +643,7 @@ footer ul li { margin-bottom: 5px;  }
 #filters .prices label span { border: 1px solid #000; cursor: pointer; display: inline-block; height: 20px; margin-right: 10px; padding: 3px; width: 20px; }
 #filters .prices label span i { background: #000; display: none; height: 12px; width: 100%; }
 #filters .prices label span.active i { display: block; }
-#listShop { width: calc(100dvw + 10px); overflow: hidden; }
+#listShop { overflow: hidden; }
 #listShop a { /*background: #efefef;*/ display: block; overflow: hidden; position: relative; }
 #listShop a .cat-image {
   height:24rem;
@@ -652,7 +652,6 @@ footer ul li { margin-bottom: 5px;  }
 
 .category-item-container {
   padding: 0.25rem;
-  margin-right: 9px!important;
 }
 
 .category-item-image {
