@@ -69,6 +69,18 @@
           </div>
 
           <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Alineación del texto dentro de la imagen'); ?></label>
+            <div class="controls">
+              <select class="form-control" name="data[alignnum]">
+                <option value="0"<?= empty($cat['Category']['alignnum']) ? ' selected' : '' ?>>Centro</option>
+                <option value="1"<?= @$cat['Category']['alignnum'] == '1' ? ' selected' : '' ?>>Izquierda</option>
+                <option value="2"<?= @$cat['Category']['alignnum'] == '2' ? ' selected' : '' ?>>Derecha</option>
+              </select>              
+            </div>
+            <small class="text-muted">Seleccioná la posición para el texto dentro de las imágenes del shop.</small>
+          </div>
+
+          <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Color Burbuja'); ?></label>
             <div class="controls">
               <input class="form-control" type="color" id="ribbon_color" name="data[ribbon_color]" value="<?= !empty($cat) ? $cat['Category']['ribbon_color'] : '' ?>">
