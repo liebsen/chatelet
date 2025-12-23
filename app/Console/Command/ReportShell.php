@@ -18,17 +18,19 @@ class ReportShell extends AppShell {
   private $items = array();    
 
   public function main() {
+
+    $collection = array();
+
     $sales = $this->Sale->find('all', array(
       'conditions' => array(
         'and' => array(
           'DATE(Sale.created)' => date('Y-m-d'),
-          'Sale.completed' => 1,
+          // 'Sale.completed' => 1,
         ),
       )
     ));
     
-    var_dump("sales count");
-    var_dump(count($sales));
+    echo "sales today:".count($sales)."\n";
 
     foreach($sales as $i => $sale) {
       // print_r($sale);
@@ -48,15 +50,25 @@ class ReportShell extends AppShell {
         )
       ));
 
-      // var_dump("sales items");
-      // var_dump($items);
+      echo "sales prods:".count($items)."\n";
+
       foreach($items as $item) {
-        if(empty($this->items[$item['id']])) {
-          $this->items[$item['id']] = 1;
+        echo $item['Product']['name'] . "\n";
+
+        $pid = $item['SaleProduct']['product_id'];
+        if(empty($collection[$pid])) {
+          $collection[$pid] = array(
+            'name' => $item['Product']['name'],
+            'price' => $item['Product']['price'],
+            'count' => 1
+          );
+        } else {
+          $collection[$pid]['count']++;  
         }
-        $this->items[$item['id']]++;
       }
 
+      print_r($collection);
+      $this->items = $collection;
       $this->total+= (float) $sale['Sale']['value'];
       $sale['Sale']['items'] = $items;
     }
