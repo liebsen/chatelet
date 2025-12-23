@@ -443,12 +443,13 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
   z-index: 9;
   left: 0;
   right: 0;
+  top: 8rem;
   padding: 2rem;
   transform: translateY(-100rem);
 }
 
 body.top-fixed .shop-options {
-  transform: translateY(-5rem) !important;
+  top: 3rem!important;
 }
 
 .shop-options.fixed {
