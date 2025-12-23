@@ -172,12 +172,12 @@ class CartComponent extends Component {
     }
 
     $delivery_cost = $cart_totals['delivery_cost'] ?? 0;
-    CakeLog::write('debug','isFreeShipping(b):'.json_encode(array($cart_totals['total_products'], $payment_method, $cart_totals['postal_address'])));
+    CakeLog::write('debug','isFreeShipping(b):'.json_encode(array($total, $payment_method, $cart_totals['postal_address'])));
 
     $free_shipping = $this->isFreeShipping(
-      $cart_totals['total_products'], 
+      $total, 
       $payment_method,
-      $cart_totals['postal_address']
+      $cart_totals['postal_address'] ?: 0
     );
     // CakeLog::write('debug', 'update(free_shipping):'. json_encode($free_shipping,JSON_PRETTY_PRINT));
 
