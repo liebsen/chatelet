@@ -222,6 +222,7 @@ $(document).ready(function() {
 				rates+= `</ul>`
 				document.querySelector('.shipping-block .slot').innerHTML = rates
 				localStorage.lastcp = cp	
+				$('#postal_address').val(cp)
 				setTimeout(() => {
 					$('.input-status').removeClass('wrong');
 					$('.input-status').addClass('ok');
