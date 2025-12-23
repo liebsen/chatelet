@@ -6,37 +6,35 @@ foreach ($images_aux as $key => $value) {
   if(!empty($value))
     $images[] = $value;
 }
-
 ?>
-  <div class="carousel-inner group-video" role="listbox">
-  <?php foreach ($images as $key => $value): ?>
-    <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>">
-    <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>">
-        <?php if (strpos($value, '.mp4') !== false):?>
-        <video id="video<?=$key?>" class="carousel-video slider-full" <?= (strpos( $_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) ? ' controls="true" ' : '' ?> playsinline loop>
-        </video>
-        <?php else: ?>
-        <div class="slider-full" style="background-image:url(<?=$value ?>)"></div>
-        <?php endif; ?>
-      </a>
-    </div>
-  <?php endforeach ?>
+<div class="carousel-inner group-video" role="listbox">
+<?php foreach ($images as $key => $value): ?>
+  <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>">
+    <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>" class="d-flex">
+      <?php if (strpos($value, '.mp4') !== false):?>
+      <video id="video<?=$key?>" class="carousel-video slider-full" <?= (strpos( $_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) ? ' controls="true" ' : '' ?> playsinline loop>
+      </video>
+      <?php else: ?>
+      <div class="slider-full" style="background-image:url(<?=$value ?>)"></div>
+      <?php endif; ?>
+    </a>
   </div>
-    <ol class="carousel-indicators">
-      <?php foreach ($images as $key => $value): ?>
-        <li data-target="#myCarousel" data-slide-to="<?= $key ?>" class="<?= $key == 0 ? 'active' : '' ?>"></li>
-      <?php endforeach ?>
-    </ol>
-  <!-- Controls -->
-  <a class="left carousel-control is-transparent" href="#carousel" role="button" data-slide="prev">
-      <span class="arrow arrow-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control is-transparent" href="#carousel" role="button" data-slide="next">
-      <span class="arrow arrow-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-  </a>
-
+<?php endforeach ?>
+</div>
+<ol class="carousel-indicators bottom-0">
+  <?php foreach ($images as $key => $value): ?>
+    <li data-target="#myCarousel" data-slide-to="<?= $key ?>" class="<?= $key == 0 ? 'active' : '' ?>"></li>
+  <?php endforeach ?>
+</ol>
+<!-- Controls -->
+<a class="left carousel-control is-transparent" href="#carousel" role="button" data-slide="prev">
+  <span class="arrow arrow-left" aria-hidden="true"></span>
+  <span class="sr-only">Previous</span>
+</a>
+<a class="right carousel-control is-transparent" href="#carousel" role="button" data-slide="next">
+  <span class="arrow arrow-right" aria-hidden="true"></span>
+  <span class="sr-only">Next</span>
+</a>
 
 <script>
 
@@ -108,10 +106,10 @@ foreach ($images_aux as $key => $value) {
 
   $(function () {
     $('#carousel').on('slide.bs.carousel', (a) => {
+      $("video").each((i,video) => {
+        video.pause()
+      });
       if(focused) {
-        $("video").each((i,video) => {
-          video.pause()
-        });
         var video = $(a.relatedTarget).find("video")
         if(video.length) {
           setTimeout(() => {
