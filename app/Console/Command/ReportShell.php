@@ -4,7 +4,7 @@ App::uses('CakeEmail', 'Network/Email');
 
 require __DIR__ . '/../../functions.php';
 
-class SalesShell extends AppShell {
+class ReportShell extends AppShell {
   public $uses = array(
     'Setting', 
     'User', 
@@ -13,19 +13,26 @@ class SalesShell extends AppShell {
     'SaleProduct'
   );
 
+  private $response = array();
+  private $total = 0;
+  private $items = array();    
+
   public function main() {
     $sales = $this->Sale->find('all', array(
-      'conditions' => array( 
-        'Sale.completed' => 0,
-        'Sale.def_reminder_sent' => 0,
-        'DATE(Sale.created)' => date('Y-m-d')
+      'conditions' => array(
+        'and' => array(
+          'DATE(Sale.created)' => date('Y-m-d'),
+          'Sale.completed' => 1,
+        ),
       )
     ));
-
-    $response = array();
+    
+    var_dump("sales count");
+    var_dump(count($sales));
 
     foreach($sales as $i => $sale) {
-      $sale['Sale']['items'] = $this->SaleProduct->find('all',array(
+      // print_r($sale);
+      $items = $this->SaleProduct->find('all',array(
         'joins' => array(
           array(
             'table' => 'products',
@@ -41,16 +48,32 @@ class SalesShell extends AppShell {
         )
       ));
 
-      $response[$i] = $this->sendEmail($sale);
+      // var_dump("sales items");
+      // var_dump($items);
+      foreach($items as $item) {
+        if(empty($this->items[$item['id']])) {
+          $this->items[$item['id']] = 1;
+        }
+        $this->items[$item['id']]++;
+      }
+
+      $this->total+= (float) $sale['Sale']['value'];
+      $sale['Sale']['items'] = $items;
     }
 
-    return json_encode(array(
-      'reponse' => $response,
-      'count' => count($sales)
-    ));
+    $admins = $this->User->find('all', array('conditions' => array(
+      'role' => 'admin'
+    )));
+
+    foreach($admins as $admin) {
+      $this->response[$admin['User']['id']] = $this->sendEmail($admin);
+    }
+
+    var_dump($this->response);
+    return true;
   }
 
-  public function sendEmail($sale) {
+  public function sendEmail($user) {
     $email = new CakeEmail();
     // $email->transport('Debug');
     $email->from(array(
@@ -58,28 +81,29 @@ class SalesShell extends AppShell {
     ));
 
     $settings = $this->load_settings();
-    $sale['Sale']['checkout_link'] = Router::url('/checkout', true);
 
-    $email->to($sale['Sale']['email']);
-    $email->subject('Completá tu compra');
-    $email->template('purchase_unfinished', 'default');
+    echo "sending email to: " . $user['User']['email'];
+
+    $email->to($user['User']['email']);
+    $email->subject('Reporte de venta diario');
+    $email->template('report_daily', 'default');
     $email->emailFormat('html');
     $email->config('default');
     $email->viewVars(array(
-      'data' => $sale['Sale'],
+      'user' => $user['User'],
+      'total' => $this->total,
+      'items' => $this->items,
+      'reports_link' => Router::url('/admin/reportes', true),
       'socials' => \parsed_socials($settings)
     ));
 
     if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($sale['Sale']['email'])){
       CakeLog::write('debug', 'unfinished error: empty email or localhost');
-      $this->Sale->save(array(
-        'id' => $sale['Sale']['id'],
-        'def_reminder_sent' => 1
-      ));      
       return true;
     }
 
-    $sent = $email->send();
+    $sent = false;
+    // $sent = $email->send();
 
     if($sent) {
       $this->Sale->save(array(

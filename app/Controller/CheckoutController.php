@@ -161,6 +161,7 @@ class CheckoutController extends AppController
 				$cart_totals[$part] = $data[$part];
 			}
 
+			$cart_totals['postal_address'] = intval($cart_totals['postal_address']);
 			// CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
 			
 			$this->Cart->update(null, $cart_totals);
