@@ -19,7 +19,6 @@
   <?php echo $this->element('shop_list') ?>
 </section>
 
-
 <section id="infoShop">
   <div class="wrapper">
     <div class="row">
