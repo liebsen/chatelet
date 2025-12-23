@@ -170,8 +170,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .slider-full {
-  min-height: calc(100vh - 12.5rem);
-  height: calc(100vh - 12.5rem);
+  flex: 1;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
@@ -651,19 +650,22 @@ footer ul li { margin-bottom: 5px;  }
   transition: all .3s ease-in-out;
 }
 
-.category-item {
-  background-color: #f8f8f8;
+.category-item-container {
+  padding: 0.25rem;
+  margin-right: 9px!important;
+}
+
+.category-item-image {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
   transition: all 0.5s ease-in;
+  border-collapse: collapse;
+  border: 5px solid white;
 }
 
 .category-item:hover {
   filter: contrast(140%);
-}
-.category-item:nth-of-type(odd) {
-  background-color: #f4f4f4;
 }
 
 .hidden-force {

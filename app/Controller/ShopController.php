@@ -214,7 +214,7 @@ class ShopController extends AppController {
 							$this->Product->updateAll(
 								array(
 									'Product.stock_total' => (int)$row['cantidad'],
-									//'Product.desc' => "'". (string)@$details_name['Descripcion'] ."'"
+									'Product.desc' => "'". (string)@$details_name['Descripcion'] ."'"
 									//'Product.name' => "'". (string)@$details_name['nombre'] ."'"
 								),
 								array('Product.article' => $article_id)
@@ -233,8 +233,8 @@ class ShopController extends AppController {
 					$record['article_id'] = $article_id;
 					$record['cod_articulo'] = $row['cod_articulo'];
 					$record['stock'] = (int)$row['cantidad'];
-					$record['desc'] = (string)$row['Descripcion'];
-					// CakeLog::write('debug',"Saving: ".json_encode($record));
+					//$record['desc'] = (string)$row['Descripcion'];
+					CakeLog::write('debug',"Saving: ".json_encode($record));
 					$success = $this->StockCount->save($record);
 					if (!$success){
 						echo "\r\nFailed to save";
