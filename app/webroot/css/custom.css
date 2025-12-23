@@ -171,6 +171,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .slider-full {
   flex: 1;
+  min-height: calc(100dvh - 155px);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
