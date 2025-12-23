@@ -1,8 +1,14 @@
 <?php 
+
+	$short = !empty($short_header);
+
 	echo $this->element('top');
   echo $this->element('fbp');
   echo $this->element('ga');
-	echo $this->element(!empty($short_header) ? 'short-header' : 'header');
+	echo $this->element($short ? 
+		'short-header' : 
+		'header'
+	);
 
 	/* Page Content */
 	echo $this->fetch('content');
@@ -15,7 +21,8 @@
   // echo $this->element('particular-email');
 	// echo $this->element('mayorista-modal');
 	
-	if(empty($short_header)) {
+	if(!$short) {
 		echo $this->element('footer');
 	}
+
 	echo $this->element('bottom');

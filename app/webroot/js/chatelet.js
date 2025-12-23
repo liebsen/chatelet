@@ -430,6 +430,17 @@ $(document).ready(function() {
     }*/
   })  
 
+  /* scroll progress */
+  const progressPages = [
+    '/shop/buscar',
+    '/tienda/productos'
+  ]
+
+  const scrollable = progressPages.map((e) => location.pathname.includes(e)).filter((e) => e)
+  if(scrollable.length) {
+    $('.navbar-chatelet').addClass('with-progress')
+  }
+
   $('.form-pass-icon').click(function(event) {
     const target = $(this).data('target')
     if($(target).prop('type') == 'password') {
@@ -582,14 +593,24 @@ $(document).ready(function() {
   }
 
   $(window).scroll(function(e) {
+    const progress = $('body.top-fixed .navbar-chatelet.with-progress')
+    if(progress.length) {
+      var perc = parseInt($(window).scrollTop() / ($(document).height() - $('footer').height() - $('.navbar-chatelet').height()) * 100) // remove footer aproxmately
+      perc = perc < 100 ? perc : 100
+      progress.css('background', '#f8f8f8')
+      progress.css('background', 'linear-gradient(90deg,rgba(248, 248, 248, 1) '+perc+'%, rgba(255, 255, 255, 1) 0%)')
+    }
+
     if(clock) {
       clearInterval(clock)
     }
 
     clock = setTimeout(() => {
-      var scroll = $(window).scrollTop()
+      const scrolltop = $(window).scrollTop()
+      const scrollBottom = $(document).height()
       const video = $("#carousel .item.active").find("video")
       const menu = $('.navbar-chatelet .navbar-collapse').hasClass('in')
+
       $('.navbar-chatelet:not(.short)').removeClass('fadeIn')
       $('.shop-options').removeClass('slideInDown')
 
@@ -601,23 +622,21 @@ $(document).ready(function() {
         return false 
       }
       
-      if (scroll > 100) {
-        if (!fakeshown && lastscroll < scroll) {
-          // $('#carousel-banners').addClass('invisible')
+      if (scrolltop > 100) {
+        if (!fakeshown && lastscroll < scrolltop) {
           $('body').addClass('top-fixed')
           $('.navbar-chatelet:not(.short)').addClass('fadeIn')
           fakeshown = 1
-        }
+        }        
       } else {
-        if (fakeshown && lastscroll > scroll) {
-          // $('#carousel-banners').removeClass('invisible')
+        if (fakeshown && lastscroll > scrolltop) {
           $('body').removeClass('top-fixed')
           $('.navbar-chatelet:not(.short)').addClass('fadeIn')
           fakeshown = false
         }
       }
-      lastscroll = scroll
-    }, 500)
+      lastscroll = scrolltop
+    }, 250)
   })
 
 
@@ -693,7 +712,7 @@ $(document).ready(function() {
 	})
 
 	$(document).on('click', '.gotocart', () => {
-		console.log('click gotocart')
+		// console.log('click gotocart')
 		location.href = '/carrito'
 	})
 	
