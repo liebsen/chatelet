@@ -172,10 +172,10 @@ class CartComponent extends Component {
     }
 
     $delivery_cost = $cart_totals['delivery_cost'] ?? 0;
-    CakeLog::write('debug','isFreeShipping(b):'.json_encode(array($cart_totals['grand_total'], $payment_method, $cart_totals['postal_address'])));
+    CakeLog::write('debug','isFreeShipping(b):'.json_encode(array($cart_totals['total_products'], $payment_method, $cart_totals['postal_address'])));
 
     $free_shipping = $this->isFreeShipping(
-      $cart_totals['grand_total'], 
+      $cart_totals['total_products'], 
       $payment_method,
       $cart_totals['postal_address']
     );
@@ -291,6 +291,7 @@ class CartComponent extends Component {
     // CakeLog::write('debug', 'shipping_zips:'.json_encode($shipping_zips));
     // CakeLog::write('debug', 'shipping_price_min:'.json_encode($shipping_price_min));
     // CakeLog::write('debug', 'bank_free_shipping:'.json_encode($bank_free_shipping));
+    
     CakeLog::write('debug', 'price(2):'.json_encode($price));
     CakeLog::write('debug', 'payment_method(2):'.json_encode($payment_method));
     CakeLog::write('debug', 'zip_code(2):'.json_encode($zip_code));
@@ -365,9 +366,9 @@ class CartComponent extends Component {
       $unit_price = @$data['discount'];
     }
 
-    CakeLog::write('debug','isFreeShipping(a):'.json_encode(array($cart_totals['grand_total'], $payment_method, $cp)));
+    CakeLog::write('debug','isFreeShipping(a):'.json_encode(array($cart_totals['total_products'], $payment_method, $cp)));
 
-    $free_shipping = $this->isFreeShipping($cart_totals['grand_total'], $payment_method, $cp);
+    $free_shipping = $this->isFreeShipping($cart_totals['total_products'], $payment_method, $cp);
 
     // CakeLog::write('debug','deliveryCost(free_shipping):'.json_encode($free_shipping));
     //error_log("free_shipping:".json_encode($free_shipping));
@@ -617,7 +618,7 @@ class CartComponent extends Component {
     // $centros = $this->checkOcaCP($cp);
     //Price
     $price = !empty($response[0]['Precio']) ? (int) $response[0]['Precio'] : 0;
-    // CakeLog::write('debug', 'price(2)'.$price.':'.gettype($price));
+    CakeLog::write('debug', 'oca(price)'.$price.':'.gettype($price));
     return $price;
   }
   private function checkOcaCP($cp){
