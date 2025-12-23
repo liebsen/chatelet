@@ -724,6 +724,7 @@ footer ul li { margin-bottom: 5px;  }
   letter-spacing: -0.03rem;
   line-height: 1;
   color: white;
+  width: 100%;
   word-spacing: 9999px;
 }
 
