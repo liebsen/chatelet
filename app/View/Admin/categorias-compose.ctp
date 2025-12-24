@@ -22,7 +22,7 @@ echo $this->Html->script('shop-compose.js?v=' . Configure::read('APP_VERSION'), 
 		padding: 0;
 	}
 	.text-catalog {
-	  text-shadow: 0 0 2px #1116,0 0 10px #6666;
+	  text-shadow: 0 0 2px #111,0 0 10px #666;
 	  font-size: 1.75rem;
 	  font-weight: 300;
 	  letter-spacing: -0.03rem;
