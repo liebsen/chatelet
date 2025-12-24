@@ -94,6 +94,15 @@
                             <!-- Divider -->
                             <li class="divider-vertical"></li>
 
+                            <?php if (!empty($h1)): ?>
+                            <li class="dropdown dropdown-theme-options section-indicator">
+                                <a href="#">
+                                    <i class="<?php echo $h1['icon'] ?>"></i> <?php echo $h1['name']; ?>
+                                </a>
+                            </li>
+                            <?php endif ?>
+
+
                             <li class="dropdown dropdown-theme-options pull-right">
                                 <a href="<?=$this->Html->url(array('controller'=>'admin','action'=>'logout'))?>" class="dropdown-toggle">
                                     <i class="gi gi-exit"></i> 
@@ -108,13 +117,6 @@
                                 </a>
                             </li>
 
-                            <?php if (!empty($h1)): ?>
-                            <li class="dropdown dropdown-theme-options">
-                                <a href="" class="text-muted">
-                                    <i class="<?php echo $h1['icon'] ?>"></i> <?php echo $h1['name']; ?>
-                                </a>
-                            </li>
-                            <?php endif ?>
 
                         </ul>
                     </div>

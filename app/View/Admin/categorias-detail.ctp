@@ -22,7 +22,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Nombre Principal'); ?></label>
             <div class="controls">
-              <input class="form-control" type="text" id="" name="data[name]" value="<?php echo (isset($cat)) ? $cat['Category']['name'] : ''; ?>" required>
+              <input class="form-control w-100" type="text" id="" name="data[name]" value="<?php echo (isset($cat)) ? $cat['Category']['name'] : ''; ?>" required>
             </div>
           </div>
           
@@ -33,7 +33,7 @@
             </div>
             <a class="d-none" id="alternatename_restore">Cancelar</a>
             <div class="controls alternate_name_block<?php echo (isset($cat)) && !$cat['Category']['alternate_toggle'] ? ' d-none' : ''; ?>">
-              <input class="form-control" type="text" id="alternate_name_target" name="data[alternate_name]" value="<?php echo (isset($cat)) ? $cat['Category']['alternate_name'] : ''; ?>">
+              <input class="form-control w-100" type="text" id="alternate_name_target" name="data[alternate_name]" value="<?php echo (isset($cat)) ? $cat['Category']['alternate_name'] : ''; ?>">
             </div>
           </div>
           
@@ -65,7 +65,7 @@
                 <option value="3"<?= @$cat['Category']['posnum'] == '3' ? ' selected' : '' ?>>Abajo</option>
               </select>              
             </div>
-            <small class="text-muted">Seleccioná la posición para las imágenes de los productos. (ej: sombreros, chals: arriba, pantalones, zapatos: abajo, blusa: auto, ... </small>
+            <small class="text-muted">Seleccioná la posición para las imágenes de los productos. Selecciona <b>Arriba</b> para ver rostros, <a>Abajo</a> para ver los zapatos</small>
           </div>
 
           <div class="control-group">
@@ -75,6 +75,12 @@
                 <option value="0"<?= empty($cat['Category']['alignnum']) ? ' selected' : '' ?>>Centro</option>
                 <option value="1"<?= @$cat['Category']['alignnum'] == '1' ? ' selected' : '' ?>>Izquierda</option>
                 <option value="2"<?= @$cat['Category']['alignnum'] == '2' ? ' selected' : '' ?>>Derecha</option>
+                <option value="3"<?= @$cat['Category']['alignnum'] == '3' ? ' selected' : '' ?>>Arriba</option>
+                <option value="4"<?= @$cat['Category']['alignnum'] == '4' ? ' selected' : '' ?>>Abajo</option>
+                <option value="5"<?= @$cat['Category']['alignnum'] == '5' ? ' selected' : '' ?>>Arriba/Izquierda</option>
+                <option value="6"<?= @$cat['Category']['alignnum'] == '6' ? ' selected' : '' ?>>Arriba/Derecha</option>
+                <option value="7"<?= @$cat['Category']['alignnum'] == '7' ? ' selected' : '' ?>>Abajo/Izquierda</option>
+                <option value="8"<?= @$cat['Category']['alignnum'] == '8' ? ' selected' : '' ?>>Abajo/Derecha</option>
               </select>              
             </div>
             <small class="text-muted">Seleccioná la posición para el texto dentro de las imágenes del shop.</small>
@@ -83,7 +89,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Color Burbuja'); ?></label>
             <div class="controls">
-              <input class="form-control" type="color" id="ribbon_color" name="data[ribbon_color]" value="<?= !empty($cat) ? $cat['Category']['ribbon_color'] : '' ?>">
+              <input type="color" id="ribbon_color" name="data[ribbon_color]" value="<?= !empty($cat) ? $cat['Category']['ribbon_color'] : '' ?>">
             </div>
             <small class="text-muted">Seleccioná color de burbuja para esta categoría. <span class="text-info is-clickable" onclick="$('#ribbon_color').val('')">Resetear</span></small>
           </div>
@@ -91,12 +97,32 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
-              <input  class="form-control" type="number" name="data[ordernum]" value="<?= !empty($cat) ? $cat['Category']['ordernum'] : '100' ?>">
+              <input  class="form-control w-100" type="number" name="data[ordernum]" value="<?= !empty($cat) ? $cat['Category']['ordernum'] : '100' ?>">
             </div>
             <small class="text-muted">Seleccioná el orden de prioridad para esta categoría</small>
           </div>
         </div>
         <div class="col-md-6"> 
+          <h4 class="sub-header">Estado</h4>
+          <div class="control-group">
+            <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
+            <div class="controls text-center switch-scale">
+              <?php
+                $enabled = (isset($item) && $item['Category']['visible'] == 1) || !isset($item) ? 'checked' : '';
+                $disabled = (isset($item) && $item['Category']['visible'] == 0) ? 'checked' : '';
+              ?>
+              <span>
+                <input type="radio" class="form-control" id="enabled_1" name="data[visible]" value="1" <?php echo $enabled; ?> /> 
+                <label for="enabled_1">Activo</label>
+              </span>
+              <span>
+                <input type="radio" class="form-control" id="enabled_0" name="data[visible]" value="0" <?php echo $disabled; ?> />
+                <label for="enabled_0">Inactivo</label>
+              </span>
+            </div>
+            <!--small class="text-muted">Estado principal de este Legend</small-->
+          </div>
+          <h4 class="sub-header"><?=__('Imágenes')?></h4>
           <div class="control-group">
             <label class="control-label" for=""><?=__('Seleccione una imagen de banner para esta categoría')?></label>
             <?php if(!empty($cat['Category']['banner_url'])):?>
@@ -104,7 +130,7 @@
               <img src="<?php echo $settings['upload_url'].$cat['Category']['banner_url']?>" width="300">
             <?php endif ?>
             <div class="controls">
-              <input  class="form-control" type="file" class="attached" name="banner">
+              <input class="form-control" type="file" class="attached" name="banner">
             </div>
           </div>
 

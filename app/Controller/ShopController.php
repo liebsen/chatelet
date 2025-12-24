@@ -205,7 +205,7 @@ class ShopController extends AppController {
 							$this->Product->updateAll(
 								array(
 									'Product.stock_total' => (int)$row['cantidad'],
-									'Product.name' => "'". (string)@$details_name['nombre'] ."'",
+									'Product.name' => "'". (string)@$row['nombre'] ."'",
 									//'Product.desc' => "'". (string)@$details_name['Descripcion'] ."'"
 								),
 								array('Product.article' => $article_id)
@@ -214,7 +214,7 @@ class ShopController extends AppController {
 							$this->Product->updateAll(
 								array(
 									'Product.stock_total' => (int)$row['cantidad'],
-									'Product.desc' => "'". (string)@$details_name['Descripcion'] ."'"
+									'Product.desc' => "'". (string)@$row['Descripcion'] ."'"
 									//'Product.name' => "'". (string)@$details_name['nombre'] ."'"
 								),
 								array('Product.article' => $article_id)

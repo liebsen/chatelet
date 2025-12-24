@@ -856,9 +856,13 @@ footer ul li { margin-bottom: 5px;  }
   background-position: bottom center;
 }
 
+.posnum-3 {
+}
+
 #productOptions .product-list.posnum-2 a img {
   object-position: top center;
 }
+
 #productOptions .product-list.posnum-3 a img {
   object-position: bottom center;
 }
@@ -867,6 +871,7 @@ footer ul li { margin-bottom: 5px;  }
   position: relative;
   z-index: 2;
 }
+
 #productOptions .product-list a .hover { 
   border: 2px solid #363633; 
   color: #363633; 

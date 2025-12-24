@@ -15,6 +15,41 @@
       ?>
       <div class="row">
         <div class="col-md-6">
+          <h4 class="sub-header">Información Principal</h4>
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
+            <div class="controls">
+              <textarea class="form-control" name="data[title]"><?php echo (isset($item)) ? $item['Legend']['title'] : ''; ?></textarea>
+              <!--input class="form-control" type="text" id="" name="data[title]" value="<?php echo (isset($item)) ? $item['Legend']['title'] : ''; ?>" required-->
+            </div>
+            <small class="text-muted">Podés usar las variables: {cuotas}, {interes} y {monto}. Ej: {cuotas} cuotas de ${monto}</small>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Cuotas'); ?></label>
+            <div class="controls">
+              <input class="form-control w-100" type="number" id="" name="data[dues]" value="<?php echo (isset($item)) ? $item['Legend']['dues'] : ''; ?>" required>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Interés'); ?></label>
+            <div class="controls">
+              <input class="form-control w-100" type="number" step="any" id="" name="data[interest]" value="<?php echo (isset($item)) ? $item['Legend']['interest'] : ''; ?>" required>
+            </div>
+            <small class="text-muted">Interés de las cuotas expresado en porcentaje. Ej: 10%</small>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Monto mínimo'); ?></label>
+            <div class="controls">
+              <input class="form-control w-100" type="number" step="any" id="" name="data[min_sale]" value="<?php echo (isset($item)) ? $item['Legend']['min_sale'] : ''; ?>" required>
+            </div>
+            <small class="text-muted">Monto mínimo de la compra expresado en valores nominales. Ej: 50.000ARS</small>
+          </div>
+
+          <br />
+        </div>
+        <div class="col-md-6">
+          <h4 class="sub-header">Estado</h4>
           <div class="control-group">
             <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
             <div class="controls text-center switch-scale">
@@ -32,45 +67,11 @@
               </span>
             </div>
             <!--small class="text-muted">Estado principal de este Legend</small-->
-          </div>          
-          <h4 class="sub-header">Información Principal</h4>
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
-            <div class="controls">
-              <textarea class="form-control" name="data[title]"><?php echo (isset($item)) ? $item['Legend']['title'] : ''; ?></textarea>
-              <!--input class="form-control" type="text" id="" name="data[title]" value="<?php echo (isset($item)) ? $item['Legend']['title'] : ''; ?>" required-->
-            </div>
-            <small class="text-muted">Podés usar las variables: {cuotas}, {interes} y {monto}. Ej: {cuotas} cuotas de ${monto}</small>
-          </div>
-
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Cuotas'); ?></label>
-            <div class="controls">
-              <input class="form-control" type="number" id="" name="data[dues]" value="<?php echo (isset($item)) ? $item['Legend']['dues'] : ''; ?>" required>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Interés'); ?></label>
-            <div class="controls">
-              <input class="form-control" type="number" step="any" id="" name="data[interest]" value="<?php echo (isset($item)) ? $item['Legend']['interest'] : ''; ?>" required>
-            </div>
-            <small class="text-muted">Interés de las cuotas expresado en porcentaje. Ej: 10%</small>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Monto mínimo'); ?></label>
-            <div class="controls">
-              <input class="form-control" type="number" step="any" id="" name="data[min_sale]" value="<?php echo (isset($item)) ? $item['Legend']['min_sale'] : ''; ?>" required>
-            </div>
-            <small class="text-muted">Monto mínimo de la compra expresado en valores nominales. Ej: 50.000ARS</small>
-          </div>
-
-          <br />
-        </div>
-        <div class="col-md-6">
+          </div>             
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
-              <input class="form-control" type="number" name="data[ordernum]" value="<?=  !empty($item) ? $item['Legend']['ordernum'] : '100' ?>">
+              <input class="form-control w-100" type="number" name="data[ordernum]" value="<?=  !empty($item) ? $item['Legend']['ordernum'] : '100' ?>">
             </div>
             <small class="text-muted">Seleccioná el orden de prioridad para esta legend</small>
           </div>

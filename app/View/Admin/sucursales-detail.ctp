@@ -21,33 +21,33 @@
         }
       ?>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <h4 class="sub-header">Información Principal</h4>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
             <div class="controls">
-              <input class="form-control" type="text" id="" name="data[name]" value="<?php echo (isset($store)) ? $store['Store']['name'] : ''; ?>" required>
+              <input class="form-control w-100" type="text" id="" name="data[name]" value="<?php echo (isset($store)) ? $store['Store']['name'] : ''; ?>" required>
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Dirección'); ?></label>
             <div class="controls">
-              <input class="form-control" type="text" id="" name="data[address]" value="<?php echo (isset($store)) ? $store['Store']['address'] : ''; ?>" required>
+              <input class="form-control w-100" type="text" id="" name="data[address]" value="<?php echo (isset($store)) ? $store['Store']['address'] : ''; ?>" required>
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Teléfono'); ?></label>
             <div class="controls">
-              <input class="form-control" type="text" id="" name="data[phone]" value="<?php echo (isset($store)) ? $store['Store']['phone'] : ''; ?>" required>
+              <input class="form-control w-100" type="text" id="" name="data[phone]" value="<?php echo (isset($store)) ? $store['Store']['phone'] : ''; ?>" required>
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Whatsapp'); ?></label>
             <div class="controls">
-              <input class="form-control" type="text" id="" name="data[whatsapp]" value="<?php echo (isset($store)) ? $store['Store']['whatsapp'] : ''; ?>" required>
+              <input class="form-control w-100" type="text" id="" name="data[whatsapp]" value="<?php echo (isset($store)) ? $store['Store']['whatsapp'] : ''; ?>" required>
             </div>
           </div>
           <br />
@@ -78,26 +78,26 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Numero de local'); ?></label>
             <div class="controls">
-              <input class="form-control" type="number" id="" name="data[local]" value="<?php echo (isset($store)) ? $store['Store']['local'] : ''; ?>" required>
+              <input class="form-control w-100" type="number" id="" name="data[local]" value="<?php echo (isset($store)) ? $store['Store']['local'] : ''; ?>" required>
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Latitud'); ?></label>
             <div class="controls">
-              <input class="form-control" type="text" id="lat" name="data[lat]" value="<?php echo (isset($store)) ? $store['Store']['lat'] : ''; ?>">
+              <input class="form-control w-100" type="text" id="lat" name="data[lat]" value="<?php echo (isset($store)) ? $store['Store']['lat'] : ''; ?>">
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Latitud'); ?></label>
             <div class="controls">
-              <input class="form-control" type="text" id="lng" name="data[lng]" value="<?php echo (isset($store)) ? $store['Store']['lng'] : ''; ?>">
+              <input class="form-control w-100" type="text" id="lng" name="data[lng]" value="<?php echo (isset($store)) ? $store['Store']['lng'] : ''; ?>">
             </div>
           </div>
           <br />
         </div> 
-        <div class="col-md-8">
+        <div class="col-md-6">
           <h4 class="sub-header">Ubicación</h4>
           <div id="panel" style="display: none;">
             <input class="form-control" id="address" type="text" placeholder="Dirección, Ciudad, País">
