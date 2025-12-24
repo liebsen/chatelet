@@ -89,6 +89,7 @@
   
   function swapRow(row, index) {
     let currIndex = Array.from(tbody.children).indexOf(currRow)
+
     row1 = currIndex > index ? currRow : row
     row2 = currIndex > index ? row : currRow;
        

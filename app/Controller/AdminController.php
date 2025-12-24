@@ -345,19 +345,21 @@ class AdminController extends AppController {
 		* 
 	  */
 
-	public function colsize($tag){
+	public function shop_composer(){
 		$this->autoRender = false;
 		$data = $this->request->data;
-		$name = ucfirst($tag);
-		$this->loadModel($name);
+		$this->loadModel('Category');
 
-		if($this->request->is('post') && !empty($this->{$name})){
+		if($this->request->is('post')){
 			$data = $this->request->data;
 
 			foreach($data['payload'] as $save){
-				$this->{$name}->save([
+
+				CakeLog::write('debug', 'save:'.json_encode($save, JSON_PRETTY_PRINT));
+				$this->Category->save([
 					'id' => $save['id'],
 					'colsize' => $save['colsize'],
+					'ordernum' => $save['ordernum'],
 					'alignnum' => $save['alignnum']
 				]);			
 			}
