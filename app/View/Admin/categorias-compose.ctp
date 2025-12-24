@@ -26,9 +26,8 @@ echo $this->Html->script('shop-compose.js?v=' . Configure::read('APP_VERSION'), 
 	  font-size: 1.75rem;
 	  font-weight: 300;
 	  letter-spacing: -0.03rem;
-	  color: #888;
-	  /*line-height: 1;
-	  word-spacing: 9999px;*/
+	  color: white;
+	  line-height: 1;
 	}	
 	.border-success {
 		outline: 4px solid lightgreen!important;
@@ -81,8 +80,6 @@ echo $this->Html->script('shop-compose.js?v=' . Configure::read('APP_VERSION'), 
 		justify-content: end;
 		align-items: end;
 	}
-
-
 	.category-toolbox {
 		position: absolute;
 		top: 0.5rem;
@@ -92,7 +89,7 @@ echo $this->Html->script('shop-compose.js?v=' . Configure::read('APP_VERSION'), 
 		position: relative;
 		z-index: 1;
 		display: block;
-		filter: brightness(1.25);
+		filter: grayscale(1);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
