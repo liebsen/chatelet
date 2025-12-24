@@ -2773,13 +2773,14 @@ header.navbar .navbar-brand {
 }
 
 /* Forms */
-label,
-.control-label,
+
 .form-control {
-    font-size: 13px;
+    font-size: 14px;
+    height: 40px;
 }
 
-label {
+label,
+.control-label {
     font-weight: normal;
     cursor: pointer;
 }

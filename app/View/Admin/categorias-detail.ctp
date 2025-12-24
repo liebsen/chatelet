@@ -4,11 +4,11 @@
   echo $this->element('admin-menu');
 ?>
 <div class="block">
-  <div class="block-title">
+  <!--div class="block-title">
     <h4><?php 
       echo (isset($cat)) ? __('Editar Categoria') : __('Agregar Categoria');
     ?></h4>
-  </div>
+  </div-->
   <div class="block-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
       <?php
