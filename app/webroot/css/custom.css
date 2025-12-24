@@ -756,7 +756,7 @@ footer ul li { margin-bottom: 5px;  }
 }
 
 .text-catalog {
-  text-shadow: 0 0 2px #1116,0 0 10px #6666;
+  text-shadow: 0 0 2px #111,0 0 10px #666;
   font-size: 1.75rem;
   font-weight: 300;
   line-height: 1;
