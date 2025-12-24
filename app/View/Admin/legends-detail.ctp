@@ -15,24 +15,6 @@
       ?>
       <div class="row">
         <div class="col-md-6">
-          <div class="control-group">
-            <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
-            <div class="controls text-center switch-scale">
-              <?php
-                $enabled = (isset($item) && $item['Legend']['enabled'] == 1) || !isset($item) ? 'checked' : '';
-                $disabled = (isset($item) && $item['Legend']['enabled'] == 0) ? 'checked' : '';
-              ?>
-              <span>
-                <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> 
-                <label for="enabled_1">Activo</label>
-              </span>
-              <span>
-                <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
-                <label for="enabled_0">Inactivo</label>
-              </span>
-            </div>
-            <!--small class="text-muted">Estado principal de este Legend</small-->
-          </div>          
           <h4 class="sub-header">Información Principal</h4>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
@@ -67,6 +49,25 @@
           <br />
         </div>
         <div class="col-md-6">
+          <h4 class="sub-header">Estado</h4>
+          <div class="control-group">
+            <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
+            <div class="controls text-center switch-scale">
+              <?php
+                $enabled = (isset($item) && $item['Legend']['enabled'] == 1) || !isset($item) ? 'checked' : '';
+                $disabled = (isset($item) && $item['Legend']['enabled'] == 0) ? 'checked' : '';
+              ?>
+              <span>
+                <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> 
+                <label for="enabled_1">Activo</label>
+              </span>
+              <span>
+                <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
+                <label for="enabled_0">Inactivo</label>
+              </span>
+            </div>
+            <!--small class="text-muted">Estado principal de este Legend</small-->
+          </div>             
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">

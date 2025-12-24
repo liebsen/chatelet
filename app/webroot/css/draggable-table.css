@@ -7,12 +7,14 @@
   position: absolute;
   z-index: 10;
   cursor: grabbing;
-  opacity: 1;
+  opacity: 0.5;
+  outline: 1px solid #888;
 }
 .draggable-table .draggable-table__drag td {
-  background: yellow;
-  opacity: 0.8;
+  background-color: white;
+  border: 1px solid #888;
 }
+
 .draggable-table thead th {
   height: 25px;
   font-weight: bold;
@@ -23,12 +25,13 @@
 .draggable-table tbody tr {
   cursor: grabbing;
 }
+
 .draggable-table tbody tr.is-dragging {
-  background: #f1c40f;
+  background: yellow;
 }
 
 .draggable-table tbody tr.is-dragging td {
-  color: #f1c40f;
+  color: yellow;
 }
 
 .draggable-saved {

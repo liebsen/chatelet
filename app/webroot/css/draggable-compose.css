@@ -27,10 +27,7 @@
   cursor: grabbing;
 }
 .draggable-table div.is-dragging {
-  background: #f1c40f;
-}
-.draggable-table div.is-dragging span {
-  color: #ffe683;
+  opacity: 0.5;
 }
 
 .draggable-saved {

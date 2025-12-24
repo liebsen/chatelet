@@ -2785,10 +2785,9 @@ label {
     text-shadow: none;
 }
 
-.form-control:not([type="radio"]):not([type="checkbox"]) {
-    width: 100%!important;
-}
-
+/*.form-control:not([type="radio"]):not([type="checkbox"]) {
+    min-width: 4rem;
+}*/
 
 .form-control:focus {
     border-color: #555;
@@ -3041,8 +3040,8 @@ textarea.form-control {
 .dataTables_wrapper > div {
     background-color: #f9f9f9;
     width: 100%;
-    /* border: 1px solid #ddd; */
-    padding: 1rem;
+    /* border: 1px solid #ddd;
+    padding: 1rem; */
     border-top-width: 0;
 }
 
@@ -3063,7 +3062,7 @@ textarea.form-control {
 }
 
 .dataTables_wrapper .row > div {
-    padding: 9px 10px;
+    padding: 0;
 }
 
 .dataTables_length label {

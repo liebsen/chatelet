@@ -23,11 +23,12 @@ echo $this->Html->script('draggable-compose.js?v=' . Configure::read('APP_VERSIO
 	}
 	.category-item-image {
 		display: block;
+		filter: brightness(1.25);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
     transition: all 0.5s ease-in;
-    outline: 4px solid #ccc;
+    outline: 4px solid #bbb;
     border: none;
 }
 </style>

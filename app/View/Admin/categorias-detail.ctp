@@ -22,7 +22,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Nombre Principal'); ?></label>
             <div class="controls">
-              <input class="form-control" type="text" id="" name="data[name]" value="<?php echo (isset($cat)) ? $cat['Category']['name'] : ''; ?>" required>
+              <input class="form-control w-100" type="text" id="" name="data[name]" value="<?php echo (isset($cat)) ? $cat['Category']['name'] : ''; ?>" required>
             </div>
           </div>
           
@@ -33,7 +33,7 @@
             </div>
             <a class="d-none" id="alternatename_restore">Cancelar</a>
             <div class="controls alternate_name_block<?php echo (isset($cat)) && !$cat['Category']['alternate_toggle'] ? ' d-none' : ''; ?>">
-              <input class="form-control" type="text" id="alternate_name_target" name="data[alternate_name]" value="<?php echo (isset($cat)) ? $cat['Category']['alternate_name'] : ''; ?>">
+              <input class="form-control w-100" type="text" id="alternate_name_target" name="data[alternate_name]" value="<?php echo (isset($cat)) ? $cat['Category']['alternate_name'] : ''; ?>">
             </div>
           </div>
           
@@ -89,7 +89,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Color Burbuja'); ?></label>
             <div class="controls">
-              <input class="form-control" type="color" id="ribbon_color" name="data[ribbon_color]" value="<?= !empty($cat) ? $cat['Category']['ribbon_color'] : '' ?>">
+              <input type="color" id="ribbon_color" name="data[ribbon_color]" value="<?= !empty($cat) ? $cat['Category']['ribbon_color'] : '' ?>">
             </div>
             <small class="text-muted">Seleccioná color de burbuja para esta categoría. <span class="text-info is-clickable" onclick="$('#ribbon_color').val('')">Resetear</span></small>
           </div>
@@ -97,12 +97,32 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
-              <input  class="form-control" type="number" name="data[ordernum]" value="<?= !empty($cat) ? $cat['Category']['ordernum'] : '100' ?>">
+              <input  class="form-control w-100" type="number" name="data[ordernum]" value="<?= !empty($cat) ? $cat['Category']['ordernum'] : '100' ?>">
             </div>
             <small class="text-muted">Seleccioná el orden de prioridad para esta categoría</small>
           </div>
         </div>
         <div class="col-md-6"> 
+          <h4 class="sub-header">Estado</h4>
+          <div class="control-group">
+            <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
+            <div class="controls text-center switch-scale">
+              <?php
+                $enabled = (isset($item) && $item['Category']['visible'] == 1) || !isset($item) ? 'checked' : '';
+                $disabled = (isset($item) && $item['Category']['visible'] == 0) ? 'checked' : '';
+              ?>
+              <span>
+                <input type="radio" class="form-control" id="enabled_1" name="data[visible]" value="1" <?php echo $enabled; ?> /> 
+                <label for="enabled_1">Activo</label>
+              </span>
+              <span>
+                <input type="radio" class="form-control" id="enabled_0" name="data[visible]" value="0" <?php echo $disabled; ?> />
+                <label for="enabled_0">Inactivo</label>
+              </span>
+            </div>
+            <!--small class="text-muted">Estado principal de este Legend</small-->
+          </div>
+          <h4 class="sub-header"><?=__('Imágenes')?></h4>
           <div class="control-group">
             <label class="control-label" for=""><?=__('Seleccione una imagen de banner para esta categoría')?></label>
             <?php if(!empty($cat['Category']['banner_url'])):?>
@@ -110,7 +130,7 @@
               <img src="<?php echo $settings['upload_url'].$cat['Category']['banner_url']?>" width="300">
             <?php endif ?>
             <div class="controls">
-              <input  class="form-control" type="file" class="attached" name="banner">
+              <input class="form-control" type="file" class="attached" name="banner">
             </div>
           </div>
 

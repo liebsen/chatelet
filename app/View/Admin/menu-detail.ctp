@@ -18,35 +18,18 @@
       ?>
       <div class="row">
         <div class="col-md-6">
-          <div class="control-group">
-            <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
-            <div class="controls text-center switch-scale">
-              <?php
-                $enabled = (isset($item) && $item['Menu']['enabled']) || !isset($item) ? 'checked' : '';
-                $disabled = (isset($item) && !$item['Menu']['enabled']) ? 'checked' : '';
-              ?>
-              <span>
-                <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> 
-                <label for="enabled_1">Activo</label>
-              </span>
-              <span>
-                <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
-                <label for="enabled_0">Inactivo</label>
-              </span>
-            </div>
-            <!--small class="text-muted">Estado principal de este Menu</small-->
-          </div>          
+   
           <h4 class="sub-header">Información Principal</h4>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
             <div class="controls">
-              <input class="form-control" type="text" id="" name="data[title]" value="<?php echo (isset($item)) ? $item['Menu']['title'] : ''; ?>" required>
+              <input class="form-control w-100" type="text" id="" name="data[title]" value="<?php echo (isset($item)) ? $item['Menu']['title'] : ''; ?>" required>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Enlace'); ?></label>
             <div class="controls">
-              <input class="form-control" type="text" id="" name="data[href]" value="<?php echo (isset($item)) ? $item['Menu']['href'] : ''; ?>">
+              <input class="form-control w-100" type="text" id="" name="data[href]" value="<?php echo (isset($item)) ? $item['Menu']['href'] : ''; ?>">
             </div>
             <small class="text-muted">Indica la URL que el menú debe seguir.</small>
           </div>          
@@ -81,9 +64,27 @@
         </div>
         <div class="col-md-6">
           <div class="control-group">
+            <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
+            <div class="controls text-center switch-scale">
+              <?php
+                $enabled = (isset($item) && $item['Menu']['enabled']) || !isset($item) ? 'checked' : '';
+                $disabled = (isset($item) && !$item['Menu']['enabled']) ? 'checked' : '';
+              ?>
+              <span>
+                <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> 
+                <label for="enabled_1">Activo</label>
+              </span>
+              <span>
+                <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
+                <label for="enabled_0">Inactivo</label>
+              </span>
+            </div>
+            <!--small class="text-muted">Estado principal de este Menu</small-->
+          </div>                 
+          <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Comportamiento del click'); ?></label>
             <div class="controls">
-              <input type="checkbox" name="data[target_blank]" id="target_blank" class="form-control"<?= isset($item) ? ($item['Menu']['target_blank'] === 'on' ? ' checked' : '') : '' ?>> <label for="target_blank" class="text-muted"> Abrir enlace en otra pestaña</label>
+              <input type="checkbox" name="data[target_blank]" id="target_blank" class="form-control"<?= isset($item) ? ($item['Menu']['target_blank'] === 'on' ? ' checked' : '') : '' ?>> <label for="target_blank"> Abrir enlace en otra pestaña</label>
             </div>
           </div>          
           <br />       
@@ -97,7 +98,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
-              <input class="form-control" type="number" name="data[ordernum]" value="<?=  !empty($item) ? $item['Menu']['ordernum'] : '100' ?>">
+              <input class="form-control w-100" type="number" name="data[ordernum]" value="<?=  !empty($item) ? $item['Menu']['ordernum'] : '100' ?>">
             </div>
             <small class="text-muted">Seleccioná el orden de prioridad para esta banner</small>
           </div>
