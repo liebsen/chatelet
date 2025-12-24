@@ -24,6 +24,25 @@
                           $category['Category']['name']
                         ) ?>
                   </span>
+                  <span class="category-toolbox">
+                    <div class="control-group">
+                      <div class="controls">
+                        <select class="form-control select-grid" name="data[colsize]">
+                          <option value="6"<?= empty($category['Category']['colsize']) ? ' selected' : '' ?>>Auto</option>
+                          <!--option value="2"<?= @$category['Category']['colsize'] == '2' ? ' selected' : '' ?>>16.66%</option-->
+                          <option value="20"<?= @$category['Category']['colsize'] == '20' ? ' selected' : '' ?>>20%</option>
+                          <option value="3"<?= @$category['Category']['colsize'] == '3' ? ' selected' : '' ?>>25%</option>
+                          <option value="4"<?= @$category['Category']['colsize'] == '4' ? ' selected' : '' ?>>33%</option>
+                          <option value="40"<?= @$category['Category']['colsize'] == '40' ? ' selected' : '' ?>>40%</option>
+                          <option value="6"<?= @$category['Category']['colsize'] == '6' ? ' selected' : '' ?>>50%</option>
+                          <option value="60"<?= @$category['Category']['colsize'] == '60' ? ' selected' : '' ?>>60%</option>
+                          <option value="77"<?= @$category['Category']['colsize'] == '77' ? ' selected' : '' ?>>70%</option>
+                          <option value="80"<?= @$category['Category']['colsize'] == '80' ? ' selected' : '' ?>>80%</option>
+                          <option value="12"<?= @$category['Category']['colsize'] == '12' ? ' selected' : '' ?>>100%</option>
+                        </select>              
+                      </div>
+                    </div>
+                  </span>
                 </span>
               </span>
             </div>

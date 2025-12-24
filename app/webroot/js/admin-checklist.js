@@ -75,9 +75,11 @@ $('#example-datatables').on('draw.dt', function() {
 
 function updateMessage(){
   let message = ''
+  $('.category-actions').removeClass('chatIn')
   if(checkIds.length) {
+    $('.category-actions').addClass('chatIn')
     const s = checkIds.length > 1 ? 's' : ''
-    message = `Hay ${checkIds.length} elemento${s} seleccionado${s} <a href="javascript:void(0)" onclick="unselectAll()"> Borrar</a> `
+    message = `Hay ${checkIds.length} elemento${s} seleccionado${s} <a href="javascript:void(0)" onclick="unselectAll()"> Borrar selección</a> `
   }
   $('.selection-count').html(message)
 }

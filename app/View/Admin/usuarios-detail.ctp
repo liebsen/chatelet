@@ -190,8 +190,8 @@
       </div>      
       <br />               
       <div class="form-actions">
-        <button type="reset" class="btn btn-danger"><i class="icon-repeat"></i> Reset</button>
-        <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
+        <button type="reset" class="btn btn-danger"><i class="fa fa-close mr-1"></i> Reset</button>
+        <button type="submit" class="btn btn-success"><i class="fa fa-check mr-1"></i> Submit</button>
       </div>
     </form>
   </div>

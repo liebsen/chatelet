@@ -25,7 +25,7 @@
               <input class="form-control w-100" type="text" id="" name="data[name]" value="<?php echo (isset($cat)) ? $cat['Category']['name'] : ''; ?>" required>
             </div>
           </div>
-          
+
           <div class="control-group">
             <div class="d-flex justify-content-center align-items-center gap-1">
               <input type="checkbox" id="alternatename" name="data[alternate_toggle]" value="1" <?php echo (isset($cat)) && $cat['Category']['alternate_toggle'] == 1 ? 'checked' : ''; ?>/>
@@ -163,9 +163,9 @@
       </div>      
                      
       <div class="form-actions">
-        <a href="/admin/categorias" class="btn btn-info"><i class="icon-repeat"></i> Atrás</a>
-        <button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="icon-repeat"></i> Restaurar</button>
-        <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="icon-ok"></i> Guardar</button>
+        <a href="/admin/categorias" class="btn btn-info"><i class="fa fa-close mr-1"></i> Atrás</a>
+        <button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close mr-1"></i> Restaurar</button>
+        <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
       </div>
     </form>
   </div>
