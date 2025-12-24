@@ -357,7 +357,8 @@ class AdminController extends AppController {
 			foreach($data['payload'] as $save){
 				$this->{$name}->save([
 					'id' => $save['id'],
-					'colsize' => $save['colsize']
+					'colsize' => $save['colsize'],
+					'alignnum' => $save['alignnum']
 				]);			
 			}
 		}
@@ -1708,9 +1709,16 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	        $this->Category->save($data);
     		} else {
+	    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));	
+    			$navs[$cat['Category']['name']] = array(
+						'icon' 		=> 'gi gi-circle_plus',
+						'url'		=> $this->settings['site_url'].'/admin/categorias/edit/'.$cat['Category']['id'],
+						'active'	=> '/admin/categorias/edit/'.$cat['Category']['id']
+					);
+
+					$this->set('navs', $navs);
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
-	    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));
 	    		$this->set('cat', $cat);
 	    		return $this->render('categorias-detail');
     		}

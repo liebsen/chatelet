@@ -21,6 +21,15 @@ echo $this->Html->script('shop-compose.js?v=' . Configure::read('APP_VERSION'), 
 	.p-0 {
 		padding: 0;
 	}
+	.text-catalog {
+	  text-shadow: 0 0 2px #1116,0 0 10px #6666;
+	  font-size: 1.75rem;
+	  font-weight: 300;
+	  letter-spacing: -0.03rem;
+	  color: #888;
+	  /*line-height: 1;
+	  word-spacing: 9999px;*/
+	}	
 	.border-success {
 		outline: 4px solid lightgreen!important;
 	}
@@ -32,9 +41,48 @@ echo $this->Html->script('shop-compose.js?v=' . Configure::read('APP_VERSION'), 
 		height: 200px;
 	}
 	.category-image {
+		display: flex;
 		height: 200px;
     transition: all .3s ease-in-out;
 	}
+	.ci-0 {
+		justify-content: center;
+		align-items: center;
+	}
+	.ci-1 {
+		justify-content: start;
+		align-items: center;
+	}
+	.ci-2 {
+		justify-content: end;
+		align-items: center;
+	}
+	.ci-3 {
+		justify-content: center;
+		align-items: start;
+	}
+	.ci-4 {
+		justify-content: center;
+		align-items: end;
+	}
+	.ci-5 {
+		justify-content: start;
+		align-items: start;
+	}
+	.ci-6 {
+		justify-content: end;
+		align-items: start;
+	}
+	.ci-7 {
+		justify-content: start;
+		align-items: end;
+	}
+	.ci-8 {
+		justify-content: end;
+		align-items: end;
+	}
+
+
 	.category-toolbox {
 		position: absolute;
 		top: 0.5rem;

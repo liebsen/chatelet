@@ -59,16 +59,28 @@ $(document).ready(function() {
 		$('.category-item').each((i,e) => {
 			const id = $(e).data('id')
 			const name = $(e).attr('class').split(' ').map((i) => i.includes('col-md-') ? i : '').filter((i) => i)[0]
+			const align = $(e).find('.category-image').attr('class').split(' ').map((i) => i.includes('ci-') ? i : '').filter((i) => i)[0]
 			const colsize = parseInt(name.replace('col-md-',''))
+			const alignnum = parseInt(align.replace('ci-',''))
 			payload.push({
 	      id: id,
+	      alignnum: alignnum,
 	      colsize: colsize
 	    })
 		})
 		$.post('/admin/colsize/category', { payload })
   })
 
-  $('.select-grid').change(e => {
+  $('.update-alignnum').change(e => {
+  	const val = $(e.target).val() || ''
+  	const parent = $(e.target).parents('.category-item').find('.category-image');
+  	parent.removeClass('ci-0 ci-1 ci-2 ci-3 ci-4 ci-5 ci-6 ci-7 ci-8')
+  	parent.addClass('ci-'+val)
+  	integrity_check()
+
+  })
+
+  $('.update-colsize').change(e => {
   	const val = $(e.target).val() || ''
   	const parent = $(e.target).parents('.category-item');
   	for(var i in colsizes_available) {

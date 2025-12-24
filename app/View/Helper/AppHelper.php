@@ -74,6 +74,7 @@ class AppHelper extends Helper {
   }
 
   function cat_title($name){
+    $str = '';
     $reps = [
       ' ,',
       ' , ',
@@ -86,7 +87,9 @@ class AppHelper extends Helper {
       $reps[]= strtolower($val);
       $reps[]= strtoupper($val);
     }
-    return str_replace($reps, ' ', $name);
+    $str = str_replace($reps, ' ', $name);
+    $str = str_replace(' ', '<br>', $str);
+    return $str;
   }
 
   /**
