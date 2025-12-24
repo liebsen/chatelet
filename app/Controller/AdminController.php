@@ -1568,10 +1568,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'url'		=> $this->settings['site_url'].'/admin/categorias',
 				'active'	=> '/admin/categorias'
 			),
-			'Nueva Categoria' => array(
+			'Crear' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> $this->settings['site_url'].'/admin/categorias/add',
 				'active'	=> '/admin/categorias/add'
+			),
+			'Compositor' => array(
+				'icon' 		=> 'gi gi-circle_plus',
+				'url'		=> $this->settings['site_url'].'/admin/categorias/compose',
+				'active'	=> '/admin/categorias/compose'
 			)
 		);
 
@@ -1583,6 +1588,18 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->set('h1', $h1);
     $this->loadModel('Category');
     switch ($action) {
+    	case 'compose': 
+
+			  $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+				$this->set('cats', $cats);
+
+	    	if ($this->request->is('POST')){
+		    	$data = $this->request->data;    		
+	    	}
+
+	    	return $this->render('categorias-compose');
+
+	    break;
     	case 'add':
     	    if ($this->request->is('POST')){
 		        $this->autoRender = false;
@@ -1681,6 +1698,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		}
     		break;
     }
+
+    // default view
 	  $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 		$this->set('cats', $cats);
 	  $this->render('categorias');

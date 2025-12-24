@@ -1,8 +1,8 @@
 (function() {
   "use strict";
   
-  const table = document.querySelector('.table');
-  const tbody = table.querySelector('tbody');
+  const table = document.querySelector('.draggable-table');
+  const tbody = table.querySelector('.category-item-container');
   var currRow = null,
       row1,row2,
       dragElem = null,
@@ -20,10 +20,10 @@
   function bindMouse() {
     document.addEventListener('mousedown', (event) => {
       if(!table.contains(event.target)) return true;      
-      if(event.button != 0) return true;
+      if(event.button != 0) return true;      
       let target = getTargetRow(event.target);
       if(target) {
-        currRow = target;        
+        currRow = target;
         addDraggableRow(target);
         currRow.classList.add('is-dragging');
 
@@ -37,7 +37,6 @@
     
     document.addEventListener('mousemove', (event) => {
       if(!mouseDrag) return;
-      
       let coords = getMouseCoords(event);
       mouseX = coords.x - mouseDownX;
       mouseY = coords.y - mouseDownY;  
@@ -50,14 +49,14 @@
       currRow.classList.remove('is-dragging');
       table.removeChild(dragElem);
       dragElem = null;
-      mouseDrag = false;  
+      mouseDrag = false;
       if(!row1) return;
       //const order1 = row1.attributes['data-order'].value
       //const ordernum = row2.attributes['data-order'].value
       const current = mouseY < 0 ? row1 : row2
       const ordernum = current.rowIndex
       const id = current.attributes['data-id'].value
-      $.post(table.getAttribute('data-url'), {
+      /*$.post(table.getAttribute('data-url'), {
         id: id,
         ordernum: ordernum
       }).then((res) => {
@@ -65,16 +64,16 @@
         //row2.attributes['data-order'].value = order1
         clearSelection()
         showDone()
-      })
+      })*/
     })
   }  
 
   function showDone(){
-    document.querySelector('.draggable-saved').classList.remove('scaleOut')
-    document.querySelector('.draggable-saved').classList.add('scaleIn')
+    document.querySelector('.draggable-saved').classList.remove('chatOut')
+    document.querySelector('.draggable-saved').classList.add('chatIn')
     setTimeout(() => {
-      document.querySelector('.draggable-saved').classList.remove('scaleIn')
-      document.querySelector('.draggable-saved').classList.add('scaleOut')
+      document.querySelector('.draggable-saved').classList.remove('chatIn')
+      document.querySelector('.draggable-saved').classList.add('chatOut')
     }, 5000)
   }
 
@@ -88,10 +87,9 @@
   }
   
   function swapRow(row, index) {
-    let currIndex = Array.from(tbody.children).indexOf(currRow)
+    let currIndex = Array.from(table.children).indexOf(currRow)
     row1 = currIndex > index ? currRow : row
     row2 = currIndex > index ? row : currRow;
-       
     tbody.insertBefore(row1, row2);
   }
     
@@ -99,24 +97,24 @@
     dragElem.style.transform = "translate3d(" + x + "px, " + y + "px, 0)";
     
     let dPos = dragElem.getBoundingClientRect(),
-        currStartY = dPos.y, 
-        currEndY = currStartY + dPos.height,
-        rows = getRows();
+      currStartY = dPos.y, 
+      currEndY = currStartY + dPos.height,
+      rows = getRows();
     for(var i = 0; i < rows.length; i++) {
       let rowElem = rows[i],
           rowSize = rowElem.getBoundingClientRect(),
           rowStartY = rowSize.y, 
-          rowEndY = rowStartY + rowSize.height;
+          rowEndY = rowStartY + rowSize.height
+ 
       if(currRow !== rowElem && isIntersecting(currStartY, currEndY, rowStartY, rowEndY)) {
         if(Math.abs(currStartY - rowStartY) < rowSize.height / 2){
           swapRow(rowElem, i);
         }
       }
-    }    
+    }
   }
   
-  function addDraggableRow(target) { 
-   
+  function addDraggableRow(target) {    
       dragElem = target.cloneNode(true);
       dragElem.classList.add('draggable-table__drag');
       dragElem.style.height = getStyle(target, 'height');
@@ -124,13 +122,11 @@
       for(var i = 0; i < target.children.length; i++) {
         let oldTD = target.children[i],
             newTD = dragElem.children[i];
-
         newTD.style.width = getStyle(oldTD, 'width');
         newTD.style.height = getStyle(oldTD, 'height');
         newTD.style.padding = getStyle(oldTD, 'padding');
         newTD.style.margin = getStyle(oldTD, 'margin');
-      }
-
+      }      
       table.appendChild(dragElem);
       let tPos = target.getBoundingClientRect(),
           dPos = dragElem.getBoundingClientRect();
@@ -143,14 +139,13 @@
   }  
     
   function getRows() {
-    return table.querySelectorAll('tbody tr');
+    return tbody.querySelectorAll('.category-item');
   }    
   
   function getTargetRow(target) {
       let elemName = target.tagName.toLowerCase();
-
-      if(elemName == 'tr') return target;
-      if(elemName == 'td') return target.closest('tr');     
+      if(elemName == 'div') return target;
+      if(elemName == 'span') return target.closest('div');     
   }
   
   function getMouseCoords(event) {

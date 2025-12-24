@@ -3,16 +3,19 @@
   position: relative;
   user-select: none;
 }
+
 .draggable-table .draggable-table__drag {
   position: absolute;
   z-index: 10;
   cursor: grabbing;
   opacity: 1;
 }
-.draggable-table .draggable-table__drag td {
+
+.draggable-table .draggable-table__drag span {
   background: yellow;
   opacity: 0.8;
 }
+
 .draggable-table thead th {
   height: 25px;
   font-weight: bold;
@@ -20,15 +23,14 @@
   padding: 10px;
   user-select: none;
 }
-.draggable-table tbody tr {
+.draggable-table div {
   cursor: grabbing;
 }
-.draggable-table tbody tr.is-dragging {
+.draggable-table div.is-dragging {
   background: #f1c40f;
 }
-
-.draggable-table tbody tr.is-dragging td {
-  color: #f1c40f;
+.draggable-table div.is-dragging span {
+  color: #ffe683;
 }
 
 .draggable-saved {
@@ -38,14 +40,16 @@
   align-items: center;
   z-index: 1079;
   opacity: 0;
-  font-size: 2.5rem;
-  width: 5rem;
-  height: 5rem;
+  font-size: 1.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 100%;
-  background-color: #5cb85c;
+  background-color: white;
+  transform: translate3d(15rem, 0, 0);
   text-align: center;
-  color: white;
-  left: 1rem;
+  color: #5cb85c;
+  border: 1px solid #5cb85c;
+  box-shadow: 0 0 5px #5cb85c;
+  right: 1rem;
   bottom: 1rem;
-  box-shadow: 0 0 6px white;
 }
