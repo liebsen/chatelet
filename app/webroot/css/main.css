@@ -383,6 +383,19 @@ body {
     width: 172px;
 }
 
+.section-indicator {
+    background-color: white;
+}
+
+.section-indicator a {
+    color: #888!important;
+}
+
+@media(min-width: 992px) {
+    .section-indicator {
+        display: none;
+    }
+}
 .theme-colors {
     list-style: none;
     padding: 10px 0 0;
