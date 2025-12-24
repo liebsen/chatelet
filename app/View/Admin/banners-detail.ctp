@@ -29,18 +29,25 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
             <div class="controls">
-              <textarea class="form-control" name="data[text]"><?php echo (isset($item)) ? $item['Banner']['text'] : ''; ?></textarea>
+              <textarea class="form-control w-100" name="data[text]"><?php echo (isset($item)) ? $item['Banner']['text'] : ''; ?></textarea>
             </div>
           </div>          
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Enlace'); ?></label>
             <div class="controls">
-              <input class="form-control" type="text" id="" name="data[href]" value="<?php echo (isset($item)) ? $item['Banner']['href'] : ''; ?>" required>
+              <input class="form-control w-100" type="text" id="" name="data[href]" value="<?php echo (isset($item)) ? $item['Banner']['href'] : ''; ?>" required>
             </div>
           </div>
           <br />
+          <div class="control-group">
+            <label class="control-label" for=""><?=__('Seleccione una imagen de Banner')?></label>
+            <div class="controls">
+              <input class="form-control" type="file" class="attached" name="image">
+            </div>
+          </div>          
         </div>
         <div class="col-md-6">
+          <h4 class="sub-header"><?php echo __('Estado') ?></h4>
           <div class="control-group">
             <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
             <div class="controls text-center switch-scale">
@@ -65,16 +72,9 @@
           </div>          
           <br />       
           <div class="control-group">
-            <label class="control-label" for=""><?=__('Seleccione una imagen de Banner')?></label>
-            <div class="controls">
-              <input class="form-control" type="file" class="attached" name="image">
-            </div>
-          </div>
-          <br /> 
-          <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
-              <input class="form-control" type="number" name="data[ordernum]" value="<?=  !empty($item) ? $item['Banner']['ordernum'] : '100' ?>">
+              <input class="form-control w-100" type="number" name="data[ordernum]" value="<?=  !empty($item) ? $item['Banner']['ordernum'] : '100' ?>">
             </div>
             <small class="text-muted">Seleccioná el orden de prioridad para esta banner</small>
           </div>

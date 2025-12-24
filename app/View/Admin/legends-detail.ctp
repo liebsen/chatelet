@@ -28,20 +28,20 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Cuotas'); ?></label>
             <div class="controls">
-              <input class="form-control" type="number" id="" name="data[dues]" value="<?php echo (isset($item)) ? $item['Legend']['dues'] : ''; ?>" required>
+              <input class="form-control w-100" type="number" id="" name="data[dues]" value="<?php echo (isset($item)) ? $item['Legend']['dues'] : ''; ?>" required>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Interés'); ?></label>
             <div class="controls">
-              <input class="form-control" type="number" step="any" id="" name="data[interest]" value="<?php echo (isset($item)) ? $item['Legend']['interest'] : ''; ?>" required>
+              <input class="form-control w-100" type="number" step="any" id="" name="data[interest]" value="<?php echo (isset($item)) ? $item['Legend']['interest'] : ''; ?>" required>
             </div>
             <small class="text-muted">Interés de las cuotas expresado en porcentaje. Ej: 10%</small>
           </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Monto mínimo'); ?></label>
             <div class="controls">
-              <input class="form-control" type="number" step="any" id="" name="data[min_sale]" value="<?php echo (isset($item)) ? $item['Legend']['min_sale'] : ''; ?>" required>
+              <input class="form-control w-100" type="number" step="any" id="" name="data[min_sale]" value="<?php echo (isset($item)) ? $item['Legend']['min_sale'] : ''; ?>" required>
             </div>
             <small class="text-muted">Monto mínimo de la compra expresado en valores nominales. Ej: 50.000ARS</small>
           </div>
@@ -71,7 +71,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
-              <input class="form-control" type="number" name="data[ordernum]" value="<?=  !empty($item) ? $item['Legend']['ordernum'] : '100' ?>">
+              <input class="form-control w-100" type="number" name="data[ordernum]" value="<?=  !empty($item) ? $item['Legend']['ordernum'] : '100' ?>">
             </div>
             <small class="text-muted">Seleccioná el orden de prioridad para esta legend</small>
           </div>
