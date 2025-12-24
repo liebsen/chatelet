@@ -49,6 +49,8 @@
                 <option value="40"<?= @$cat['Category']['colsize'] == '40' ? ' selected' : '' ?>>40%</option>
                 <option value="6"<?= @$cat['Category']['colsize'] == '6' ? ' selected' : '' ?>>50%</option>
                 <option value="60"<?= @$cat['Category']['colsize'] == '60' ? ' selected' : '' ?>>60%</option>
+                <option value="8"<?= @$cat['Category']['colsize'] == '8' ? ' selected' : '' ?>>66%</option>
+                <option value="9"<?= @$cat['Category']['colsize'] == '9' ? ' selected' : '' ?>>75%</option>
                 <option value="80"<?= @$cat['Category']['colsize'] == '80' ? ' selected' : '' ?>>80%</option>
                 <option value="12"<?= @$cat['Category']['colsize'] == '12' ? ' selected' : '' ?>>100%</option>
               </select>              

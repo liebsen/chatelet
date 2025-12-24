@@ -345,6 +345,24 @@ class AdminController extends AppController {
 		* 
 	  */
 
+	public function colsize($tag){
+		$this->autoRender = false;
+		$data = $this->request->data;
+		$name = ucfirst($tag);
+		$this->loadModel($name);
+
+		if($this->request->is('post') && !empty($this->{$name})){
+			$data = $this->request->data;
+
+			foreach($data['payload'] as $save){
+				$this->{$name}->save([
+					'id' => $save['id'],
+					'colsize' => $save['colsize']
+				]);			
+			}
+		}
+	}
+
 	public function ordernum($tag){
 		$this->autoRender = false;
 		$data = $this->request->data;

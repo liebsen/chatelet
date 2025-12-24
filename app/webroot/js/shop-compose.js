@@ -1,5 +1,5 @@
 
-const indicators_available = {
+const colsizes_available = {
 	'1': 8.33333333,
 	'2': 16.66666667,
 	'3': 25,
@@ -15,38 +15,31 @@ const indicators_available = {
 	'20': 20,
 	'40': 40,
 	'60': 60,
-	'77': 77,
 	'80': 80,
 }
 
 function integrity_check(){
-	var elems = []
+	var items = []
 	var lasttop = 0
+	$('.category-item').each((index,element) => {
+		const top = $(element).offset().top
+		const name = $(element).attr('class').split(' ').map((i) => i.includes('col-md-') ? i : '').filter((i) => i)[0]
+		const colsize = parseInt(name.replace('col-md-',''))
 
-	$('.category-item').each((i,e) => {
-		const top = $(e).offset().top
-		const node = $(e).attr('class').split(' ').map((i) => i.includes('col-md-') ? i : '').filter((i) => i)[0]
-		const indicator = parseInt(node.replace('col-md-',''))
-
-		if(!elems[top]) {
-			elems[top] = []
+		if(!items[top]) {
+			items[top] = []
 		}
 
-		elems[top].push({
-			elem: e,
-			index: i,
-			indicator: indicator
-		})
+		items[top].push({element, index, colsize})
 	})
-
-	for(var i in elems) {
+	var fit = 1
+	for(var i in items) {
 		var sum = 0
-		var fit = 1
-		for(var j in elems[i]){
-			sum+= Math.ceil(indicators_available[elems[i][j].indicator])
+		for(var j in items[i]){
+			sum+= Math.round(colsizes_available[items[i][j].colsize])
 		}
-		for(var j in elems[i]){
-			const item = $($('.category-item').get(elems[i][j].index)).find('.category-item-image')
+		for(var j in items[i]){
+			const item = $($('.category-item').get(items[i][j].index)).find('.category-item-image')
 			if(sum != 100) {
 				fit = 0
 				item.removeClass('border-success')
@@ -56,18 +49,32 @@ function integrity_check(){
 				item.removeClass('border-danger')
 			}
 		}
-		$('input[type="submit"]').prop('disabled', !fit)
 	}
+	$('button[type="submit"]').prop('disabled', !(fit))
 }
 
 $(document).ready(function() {
+  $('.btn-update').click(e => {
+  	var payload = []
+		$('.category-item').each((i,e) => {
+			const id = $(e).data('id')
+			const name = $(e).attr('class').split(' ').map((i) => i.includes('col-md-') ? i : '').filter((i) => i)[0]
+			const colsize = parseInt(name.replace('col-md-',''))
+			payload.push({
+	      id: id,
+	      colsize: colsize
+	    })
+		})
+		$.post('/admin/colsize/category', { payload })
+  })
+
   $('.select-grid').change(e => {
   	const val = $(e.target).val() || ''
-  	console.log('val',val)
   	const parent = $(e.target).parents('.category-item');
-  	parent.removeClass('col-md-3 col-md-4 col-md-6 col-md-12 col-md-20 col-md-40 col-md-60 col-md-80')
+  	for(var i in colsizes_available) {
+  		parent.removeClass('col-md-'+i)
+  	}
   	parent.addClass('col-md-'+val)
-
   	integrity_check()
   })
 })
