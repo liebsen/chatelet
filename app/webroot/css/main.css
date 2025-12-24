@@ -177,7 +177,7 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 14px;
-    /* font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif; */
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
 
 }
 
@@ -2217,6 +2217,10 @@ a.text-black:focus {
     text-align: center !important;
 }
 
+.btn-group {
+    flex-wrap: nowrap;
+    display: flex;
+}
 .text-muted {
     color: #888!important;
 }
