@@ -89,7 +89,6 @@ echo $this->Html->script('shop-compose.js?v=' . Configure::read('APP_VERSION'), 
 		position: relative;
 		z-index: 1;
 		display: block;
-		filter: grayscale(1);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;

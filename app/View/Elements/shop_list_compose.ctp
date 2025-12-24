@@ -27,7 +27,7 @@
                         <option value="7"<?= @$category['Category']['alignnum'] == '7' ? ' selected' : '' ?>>Abajo/Izquierda</option>
                         <option value="8"<?= @$category['Category']['alignnum'] == '8' ? ' selected' : '' ?>>Abajo/Derecha</option>
                       </select>
-                      <select class="form-control update-colsize" name="data[colsize]" style="width: 80px" title="Ancho de columna">
+                      <select class="form-control update-colsize" name="data[colsize]" style="width: 70px" title="Ancho de columna">
                         <option value="6"<?= empty($category['Category']['colsize']) ? ' selected' : '' ?>>Auto</option>
                         <!--option value="2"<?= @$category['Category']['colsize'] == '2' ? ' selected' : '' ?>>16.66%</option-->
                         <option value="20"<?= @$category['Category']['colsize'] == '20' ? ' selected' : '' ?>>20%</option>

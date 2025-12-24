@@ -54,8 +54,11 @@
       //const order1 = row1.attributes['data-order'].value
       //const ordernum = row2.attributes['data-order'].value
       const current = mouseY < 0 ? row1 : row2
-      const ordernum = current.rowIndex
+      //const ordernum = current.rowIndex
       const id = current.attributes['data-id'].value
+      const ordernum = Array.from(tbody.children).indexOf(current)
+      row1.attributes['data-order'].value = ordernum
+      integrity_check()
       /*$.post(table.getAttribute('data-url'), {
         id: id,
         ordernum: ordernum
@@ -68,14 +71,7 @@
     })
   }  
 
-  function showDone(){
-    document.querySelector('.draggable-saved').classList.remove('chatOut')
-    document.querySelector('.draggable-saved').classList.add('chatIn')
-    setTimeout(() => {
-      document.querySelector('.draggable-saved').classList.remove('chatIn')
-      document.querySelector('.draggable-saved').classList.add('chatOut')
-    }, 5000)
-  }
+
 
   function clearSelection(){ 
     if (window.getSelection) {
@@ -87,7 +83,7 @@
   }
   
   function swapRow(row, index) {
-    let currIndex = Array.from(table.children).indexOf(currRow)
+    let currIndex = Array.from(tbody.children).indexOf(currRow)
     row1 = currIndex > index ? currRow : row
     row2 = currIndex > index ? row : currRow;
     tbody.insertBefore(row1, row2);

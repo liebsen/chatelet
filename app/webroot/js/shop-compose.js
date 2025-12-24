@@ -18,6 +18,15 @@ const colsizes_available = {
 	'80': 80,
 }
 
+function showDone(){
+  document.querySelector('.draggable-saved').classList.remove('chatOut')
+  document.querySelector('.draggable-saved').classList.add('chatIn')
+  setTimeout(() => {
+    document.querySelector('.draggable-saved').classList.remove('chatIn')
+    document.querySelector('.draggable-saved').classList.add('chatOut')
+  }, 5000)
+}
+
 function integrity_check(){
 	var items = []
 	var lasttop = 0
@@ -58,17 +67,16 @@ $(document).ready(function() {
   	var payload = []
 		$('.category-item').each((i,e) => {
 			const id = $(e).data('id')
+			const ordernum = i+1
 			const name = $(e).attr('class').split(' ').map((i) => i.includes('col-md-') ? i : '').filter((i) => i)[0]
 			const align = $(e).find('.category-image').attr('class').split(' ').map((i) => i.includes('ci-') ? i : '').filter((i) => i)[0]
 			const colsize = parseInt(name.replace('col-md-',''))
 			const alignnum = parseInt(align.replace('ci-',''))
-			payload.push({
-	      id: id,
-	      alignnum: alignnum,
-	      colsize: colsize
-	    })
+			payload.push({ id, alignnum, ordernum, colsize })
 		})
-		$.post('/admin/colsize/category', { payload })
+		$.post('/admin/shop_composer', { payload }).then(() => {
+			showDone()
+		})
   })
 
   $('.update-alignnum').change(e => {
@@ -77,7 +85,6 @@ $(document).ready(function() {
   	parent.removeClass('ci-0 ci-1 ci-2 ci-3 ci-4 ci-5 ci-6 ci-7 ci-8')
   	parent.addClass('ci-'+val)
   	integrity_check()
-
   })
 
   $('.update-colsize').change(e => {
@@ -89,4 +96,7 @@ $(document).ready(function() {
   	parent.addClass('col-md-'+val)
   	integrity_check()
   })
+  setTimeout(() => {
+  	integrity_check()
+  }, 100)
 })
