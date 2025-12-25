@@ -1,4 +1,3 @@
-
 const colsizes_available = {
 	'1': 8.33333333,
 	'2': 16.66666667,
@@ -18,18 +17,10 @@ const colsizes_available = {
 	'80': 80,
 }
 
-function showDone(){
-  document.querySelector('.draggable-saved').classList.remove('chatOut')
-  document.querySelector('.draggable-saved').classList.add('chatIn')
-  setTimeout(() => {
-    document.querySelector('.draggable-saved').classList.remove('chatIn')
-    document.querySelector('.draggable-saved').classList.add('chatOut')
-  }, 5000)
-}
-
 function integrity_check(){
 	var items = []
 	var lasttop = 0
+	var fit = 1	
 	$('.category-item').each((index,element) => {
 		const top = $(element).offset().top
 		const name = $(element).attr('class').split(' ').map((i) => i.includes('col-md-') ? i : '').filter((i) => i)[0]
@@ -41,7 +32,6 @@ function integrity_check(){
 
 		items[top].push({element, index, colsize})
 	})
-	var fit = 1
 	for(var i in items) {
 		var sum = 0
 		for(var j in items[i]){
@@ -70,12 +60,20 @@ $(document).ready(function() {
 			const ordernum = i+1
 			const name = $(e).attr('class').split(' ').map((i) => i.includes('col-md-') ? i : '').filter((i) => i)[0]
 			const align = $(e).find('.category-image').attr('class').split(' ').map((i) => i.includes('ci-') ? i : '').filter((i) => i)[0]
+			const pos = $(e).find('.category-item-image').attr('class').split(' ').map((i) => i.includes('posnum-') ? i : '').filter((i) => i)[0]
+			const posnum = parseInt(pos.replace('posnum-',''))
 			const colsize = parseInt(name.replace('col-md-',''))
 			const alignnum = parseInt(align.replace('ci-',''))
-			payload.push({ id, alignnum, ordernum, colsize })
+			payload.push({ 
+				id, 
+				posnum,
+				alignnum, 
+				ordernum, 
+				colsize
+			})
 		})
 		$.post('/admin/shop_composer', { payload }).then(() => {
-			showDone()
+			show_done()
 		})
   })
 
@@ -84,6 +82,14 @@ $(document).ready(function() {
   	const parent = $(e.target).parents('.category-item').find('.category-image');
   	parent.removeClass('ci-0 ci-1 ci-2 ci-3 ci-4 ci-5 ci-6 ci-7 ci-8')
   	parent.addClass('ci-'+val)
+  	integrity_check()
+  })
+
+  $('.update-posnum').change(e => {
+  	const val = $(e.target).val() || ''
+  	const parent = $(e.target).parents('.category-item').find('.category-item-image');
+  	parent.removeClass('posnum-0 posnum-1 posnum-2 posnum-3 posnum-4 posnum-5 posnum-6 posnum-7 posnum-8')
+  	parent.addClass('posnum-'+val)
   	integrity_check()
   })
 
@@ -96,6 +102,7 @@ $(document).ready(function() {
   	parent.addClass('col-md-'+val)
   	integrity_check()
   })
+
   setTimeout(() => {
   	integrity_check()
   }, 100)

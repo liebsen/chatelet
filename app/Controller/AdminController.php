@@ -352,16 +352,10 @@ class AdminController extends AppController {
 
 		if($this->request->is('post')){
 			$data = $this->request->data;
-
-			foreach($data['payload'] as $save){
-
-				CakeLog::write('debug', 'save:'.json_encode($save, JSON_PRETTY_PRINT));
-				$this->Category->save([
-					'id' => $save['id'],
-					'colsize' => $save['colsize'],
-					'ordernum' => $save['ordernum'],
-					'alignnum' => $save['alignnum']
-				]);			
+			$payload = $data['payload'];
+			CakeLog::write('debug', 'shop_composer(payload):'.json_encode($payload, JSON_PRETTY_PRINT));
+			if(!empty($payload)) {
+				$this->Category->saveMany($payload);
 			}
 		}
 	}
