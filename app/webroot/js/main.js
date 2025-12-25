@@ -6,6 +6,15 @@ let fakeshown = 0
 let growlTimeout = 15000
 const log = false
 
+function show_done(){
+  document.querySelector('.draggable-saved').classList.remove('scaleOut')
+  document.querySelector('.draggable-saved').classList.add('scaleIn')
+  setTimeout(() => {
+    document.querySelector('.draggable-saved').classList.remove('scaleIn')
+    document.querySelector('.draggable-saved').classList.add('scaleOut')
+  }, 5000)
+}
+
 function slugify(input) {
     if (!input)
         return '';

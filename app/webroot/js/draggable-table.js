@@ -69,15 +69,6 @@
     })
   }  
 
-  function showDone(){
-    document.querySelector('.draggable-saved').classList.remove('scaleOut')
-    document.querySelector('.draggable-saved').classList.add('scaleIn')
-    setTimeout(() => {
-      document.querySelector('.draggable-saved').classList.remove('scaleIn')
-      document.querySelector('.draggable-saved').classList.add('scaleOut')
-    }, 5000)
-  }
-
   function clearSelection(){ 
     if (window.getSelection) {
       window.getSelection().removeAllRanges();

@@ -1,0 +1,141 @@
+.text-catalog {
+  text-shadow: 0 0 2px #111,0 0 10px #666;
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: -0.03rem;
+  color: white;
+  line-height: 1;
+} 
+.border-success {
+  outline: 4px solid lightgreen!important;
+}
+.border-danger {
+  z-index: 2!important;
+  outline: 4px solid red!important;
+}
+.category-item {
+  height: 200px;
+}
+.category-image {
+  display: flex;
+  height: 200px;
+  transition: all .3s ease-in-out;
+}
+.posnum-0 {
+  background-position: center center;
+}
+.posnum-1 {
+  background-position: left center;
+}
+.posnum-2 {
+  background-position: right center;
+}
+.posnum-3 {
+  background-position: center top;
+}
+.posnum-4 {
+  background-position: center bottom;
+}
+.posnum-5 {
+  background-position: left top;
+}
+.posnum-6 {
+  background-position: right top;
+}
+.posnum-7 {
+  background-position: left bottom;
+}
+.posnum-8 {
+  background-position: right bottom;
+}
+.ci-0 {
+  justify-content: center;
+  align-items: center;
+}
+.ci-0 span {
+  text-align: center;
+}
+.ci-1 {
+  justify-content: start;
+  align-items: center;
+}
+.ci-1 span {
+  text-align: left;
+} 
+.ci-2 {
+  justify-content: end;
+  align-items: center;
+}
+.ci-2 span {
+  text-align: right;
+} 
+.ci-3 {
+  justify-content: center;
+  align-items: start;
+}
+.ci-3 span {
+  text-align: center;
+} 
+.ci-4 {
+  justify-content: center;
+  align-items: end;
+}
+.ci-4 span {
+  text-align: center;
+} 
+.ci-5 {
+  justify-content: start;
+  align-items: start;
+}
+.ci-5 span {
+  text-align: left;
+} 
+.ci-6 {
+  justify-content: end;
+  align-items: start;
+}
+.ci-6 span {
+  text-align: right;
+} 
+.ci-7 {
+  justify-content: start;
+  align-items: end;
+}
+.ci-7 span {
+  text-align: left;
+}
+.ci-8 {
+  justify-content: end;
+  align-items: end;
+}
+.ci-8 span {
+  text-align: right;
+} 
+.category-toolbox {
+  opacity: 0;
+  display: flex;
+  transition: opacity 0.25s ease-in;
+}
+.category-image:hover .category-toolbox {
+  opacity: 1;
+}
+.toolbox-tr {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+}
+.toolbox-bl {
+  position: absolute;
+  bottom: 1rem;
+  left: 0.75rem;
+}
+.category-item-image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease-in;
+  outline: 4px solid #bbb;
+  border: none;
+}
