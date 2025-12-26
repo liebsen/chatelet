@@ -38,7 +38,7 @@ function integrity_check(){
 			sum+= Math.round(colsizes_available[items[i][j].colsize])
 		}
 		for(var j in items[i]){
-			const item = $($('.category-item').get(items[i][j].index)).find('.category-item-image')
+			const item = $($('.category-item').get(items[i][j].index)).find('.category-content')
 			if(sum != 100) {
 				fit = 0
 				item.removeClass('border-success')
@@ -53,6 +53,11 @@ function integrity_check(){
 }
 
 $(document).ready(function() {
+
+  $('.btn-toggle-form').click(e => {
+  	$(e.target).parents('.category-content').find('.category-form').toggle()
+  })
+
   $('.btn-update').click(e => {
   	var payload = []
 		$('.category-item').each((i,e) => {
@@ -60,7 +65,7 @@ $(document).ready(function() {
 			const ordernum = i+1
 			const name = $(e).attr('class').split(' ').map((i) => i.includes('col-md-') ? i : '').filter((i) => i)[0]
 			const align = $(e).find('.category-image').attr('class').split(' ').map((i) => i.includes('ci-') ? i : '').filter((i) => i)[0]
-			const pos = $(e).find('.category-item-image').attr('class').split(' ').map((i) => i.includes('posnum-') ? i : '').filter((i) => i)[0]
+			const pos = $(e).find('.category-content').attr('class').split(' ').map((i) => i.includes('posnum-') ? i : '').filter((i) => i)[0]
 			const posnum = parseInt(pos.replace('posnum-',''))
 			const colsize = parseInt(name.replace('col-md-',''))
 			const alignnum = parseInt(align.replace('ci-',''))
@@ -87,7 +92,7 @@ $(document).ready(function() {
 
   $('.update-posnum').change(e => {
   	const val = $(e.target).val() || ''
-  	const parent = $(e.target).parents('.category-item').find('.category-item-image');
+  	const parent = $(e.target).parents('.category-item').find('.category-content');
   	parent.removeClass('posnum-0 posnum-1 posnum-2 posnum-3 posnum-4 posnum-5 posnum-6 posnum-7 posnum-8')
   	parent.addClass('posnum-'+val)
   	integrity_check()

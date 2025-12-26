@@ -4052,6 +4052,11 @@ div.cloudzoom-black:nth-child(3) {
     justify-content: start;
 }
 
+.flex-col-start {
+    align-items: start;
+    justify-content: center;
+}
+
 .flex-nowrap {
     flex-wrap: nowrap!important;
 }
