@@ -3436,6 +3436,10 @@ a.thumbnail-borderless,
     background-color: #555;
 }
 
+.bg-grey {
+    background-color: #888;
+}
+
 .bg-selected {
     background-color: #fcf8e3!important;
 }

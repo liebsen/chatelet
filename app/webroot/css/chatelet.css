@@ -621,6 +621,7 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: start;	
+	text-align: center;
   padding: 1rem;
 }
 

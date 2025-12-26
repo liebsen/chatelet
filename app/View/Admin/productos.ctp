@@ -78,7 +78,7 @@ echo $this->element('admin-menu');
 							title="" 
 							class="btn btn-success" 
 							data-original-title="Editar">
-							<i class="gi gi-pencil"></i>
+							<i class="fa fa-edit"></i>
 						</a>             
 						<a 
 						href="#" 
@@ -91,7 +91,7 @@ echo $this->element('admin-menu');
 						data-delurl="<?=$this->Html->url(array('action'=>'productos', 'delete'))?>" 
 						data-msg="<?=__('¿Eliminar producto?')?>"                   
 						>
-						<i class="gi gi-remove"></i>
+						<i class="fa fa-trash-o"></i>
 					</a>
 				</div> 
 			</td>

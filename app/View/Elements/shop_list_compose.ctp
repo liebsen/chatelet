@@ -17,7 +17,7 @@
                 </span>
                 <span class="category-toolbox">
                   <span class="btn bg-transparent btn-toggle-form p-3">
-                    <i class="fa fa-edit fa-lg text-success"></i>
+                    <i class="fa fa-edit fa-lg"></i>
                   </span>
                 </span>
                 <span class="category-form">

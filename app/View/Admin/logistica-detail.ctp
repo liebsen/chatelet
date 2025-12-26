@@ -212,10 +212,10 @@
           <td>
             <div class="controls">
               <button class="btn btn-success" type="button" onclick="edit_logistic_price(<?php echo $price['LogisticsPrices']['id'] ?>)">
-                <i class="gi gi-pencil"></i>
+                <i class="fa fa-edit"></i>
               </button>
               <button class="btn btn-danger" type="button" data-loading-text="<i class='gi gi-clock'></i>" onclick="remove_logistic_price(<?php echo $price['LogisticsPrices']['id'] ?>, this)">
-                <i class="gi gi-remove"></i>
+                <i class="fa fa-trash-o"></i>
               </button>
             </div>
           </td>

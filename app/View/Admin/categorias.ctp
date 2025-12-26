@@ -113,7 +113,7 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 				</td>
 				<td>
 					<div class="btn-group d-flex flex-nowrap">
-						<a 
+						<!--a 
 							href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>"
 							data-toggle="tooltip" 
 							title="Ver en la tienda (Nuevo tab)" 
@@ -121,19 +121,19 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 							class="btn btn-info" 
 							data-original-title="Editar">
 							<i class="fa fa-eye"></i>
-						</a> 
+						</a--> 
 						<a 
 							href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>" 
 							data-toggle="tooltip" 
 							title="Editar" 
 							class="btn btn-success" 
 							data-original-title="Editar">
-							<i class="gi gi-pencil"></i>
+							<i class="fa fa-edit"></i>
 						</a>
 						<a 
 							href="#"
 							title="Establecer descuento por transferencia"
-							class="btn btn-warning" 
+							class="btn btn-info" 
 							onclick="showLayer(event,'discount','bank',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
 							<i class="gi gi-bank"></i>
 						</a>
@@ -154,7 +154,7 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 							data-url-back="<?=$this->Html->url(array('action'=>'categorias'))?>" 
 							data-delurl="<?=$this->Html->url(array('action'=>'categorias', 'delete'))?>" 
 							data-msg="¿Eliminar categoria? Precación: Se borraran los productos que esten contenidos en esta categoria.">
-							<i class="gi gi-remove"></i>
+							<i class="fa fa-trash-o"></i>
 						</a>
 					</div> 
 				</td>

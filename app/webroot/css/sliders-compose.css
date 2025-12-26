@@ -1,56 +1,23 @@
-
-.draggable-table {
-  position: relative;
-  user-select: none;
+.video-container {
+  width: 100%; /* Or a specific width like 600px */
+  overflow: hidden; /* Hides any part of the video that overflows */
+  position: relative; /* Needed for positioning child elements if any */
 }
 
-.draggable-table .draggable-table__drag {
-  position: absolute;
-  z-index: 10;
-  cursor: grabbing;
-  opacity: 1;
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Scales the video to cover the entire container, potentially cropping the edges */
+
+  /* OR */
+  /* object-fit: contain; /* Scales the video down to fit inside the container without cropping */
 }
 
-.draggable-table .draggable-table__drag span {
-  background: yellow;
-  opacity: 0.8;
-}
-
-.draggable-table thead th {
-  height: 25px;
-  font-weight: bold;
-  text-transform: capitalize;
-  padding: 10px;
-  user-select: none;
-}
-.draggable-table div {
-  cursor: grabbing;
-}
-.draggable-table div.is-dragging {
-  opacity: 0.5;
-}
-
-.draggable-saved {
-  position: fixed;
+.category-item-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1079;
-  opacity: 0;
-  font-size: 2.5rem;
-  width: 5rem;
-  height: 5rem;
-  border-radius: 100%;
-  background-color: #5cb85c;
-  text-align: center;
-  color: white;
-  left: 1rem;
-  bottom: 1rem;
-  box-shadow: 0 0 6px white;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
-
-/* second level  */
-
 .text-catalog {
   text-shadow: 0 0 2px #111,0 0 10px #666;
   font-size: 1.75rem;
@@ -60,22 +27,22 @@
   line-height: 1;
 } 
 .border-success {
-  outline: 4px solid lightgreen!important;
+  border: 4px solid lightgreen!important;
 }
 .border-danger {
   z-index: 2!important;
-  outline: 4px solid red!important;
+  border: 4px solid red!important;
 }
 .category-item {
   display: block;
   position: relative;
-  height: 200px;
-  padding: 2px;
-  margin-bottom: 4px;
 }
 .category-image {
   display: flex;
-  height: 200px;
+  height: 240px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease-in;
   transition: all .3s ease-in-out;
 }
 .category-toolbox {
@@ -86,9 +53,26 @@
   display: flex;
   transition: opacity 0.25s ease-in;
 }
+
 .category-toolbox i {
   color: lightgreen;
 }
+
+.category-content {
+  height: 240px;
+  width: 320px;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+  display: block;
+  border: 4px solid lightgreen;
+}
+
+.category-item.device-mobile .category-content {
+  height: 240px;
+  width: 160px;
+}
+
 .category-content.border-danger .category-toolbox i {
   color: red;
 }
@@ -97,14 +81,13 @@
   opacity: 1;
 }
 .category-form {
-  height: 200px;
+  height: 240px;
   position: absolute;
   z-index: 2;
   padding: 1rem;
   bottom: 0;
   right: 0;
   left: 0;
-  opacity: 0;
   display: none;
   background: rgba(250,250,250,0.9);
 }
@@ -120,18 +103,7 @@
   padding: 0.75rem;
   left: 0;
   bottom: 0;
-}
-.category-content {
-  height: 200px;
-  opacity: 0.9;
-  position: relative;
-  z-index: 1;
-  display: block;
-  background-size: cover;
-  background-repeat: no-repeat;
-  transition: all 0.5s ease-in;
-  outline: 4px solid #bbb;
-  border: none;
+
 }
 .posnum-0 {
   background-position: center center;
@@ -223,4 +195,5 @@
 .ci-8 span {
   text-align: right;
 } 
+
 

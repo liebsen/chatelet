@@ -1290,17 +1290,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->set('p', $p);
 	}
 
-	public function sliders() {
-	  $this->loadModel('Category');
-		$cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
-  	$this->set('cats', $cats);
+	public function home() {
+	  // $this->loadModel('Category');
+		// $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+  	// $this->set('cats', $cats);
 
 		$h1 = array(
-		'name' => 'Presentación',
-		'icon' => 'fa fa-eye'
+			'name' => 'Home',
+			'icon' => 'fa fa-home'
 		);
 		$this->set('h1', $h1);
-		$this->loadModel('Home');
+		// $this->loadModel('Home');
 		$this->loadModel('Slider');
 
 		if ($this->request->is('post')) {
@@ -1357,16 +1357,43 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	// $this->Home->save($data);
 		}
 
-		$data = $this->Slider->find('all');
+		/*$data = $this->Slider->find('all', array('conditions' => array(
+			'SliderType.name IN' => array('slider', 'splash'),
+			// 'enabled' => 1
+		)));*/
+
+	  $data = $this->Slider->find('all',array(
+	  	'conditions' => array(
+	  		'SliderType.name IN' => array('slider', 'splash'),
+	  	),
+	    'joins' => array(
+        array(
+          'table' => 'slider_types',
+          'alias' => 'SliderType',
+          'type' => 'LEFT',
+          'conditions' => array(
+              'SliderType.id = Slider.type_id'
+          )
+        )
+	    ),
+	    'fields' => array('SliderType.name, SliderType.description', 'Slider.*'),
+	  	'order' => array('Slider.id DESC'),
+	  	'limit' => 2000,
+    ));
+
 		$sliders = array();
 		$tags = array();
+
 		foreach($data as $key => $item) {
-			$tag = $item['Slider']['tag'];
+			$tag = $item['SliderType']['name'];
 			if(empty($sliders[$tag])){
 				$sliders[$tag] = array();
 			}
-			if(!in_array($tag, $tags)) {
-				array_push($tags, $tag);
+			if(!in_array($tag, array_column($tags, 'name'))) {
+				array_push($tags, array(
+					'name' => $tag,
+					'description' => $item['SliderType']['description']
+				));
 			}
 			array_push($sliders[$tag], $item['Slider']);
 		}

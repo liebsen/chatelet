@@ -1,6 +1,6 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
-<?php echo $this->Html->script('admin_index.js?v=' . Configure::read('APP_VERSION'), array('inline'=>false)) ?>
+<?php echo $this->Html->script('admin-index.js?v=' . Configure::read('APP_VERSION'), array('inline'=>false)) ?>
 <?php // $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));?>
 
 <div class="block">
