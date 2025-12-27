@@ -39,7 +39,7 @@
 }
 .category-image {
   display: flex;
-  height: 240px;
+  height: 360px;
   background-size: cover;
   background-repeat: no-repeat;
   transition: all 0.5s ease-in;
@@ -59,8 +59,8 @@
 }
 
 .category-content {
-  height: 240px;
-  width: 320px;
+  height: 360px;
+  width: 480px;
   opacity: 0.9;
   position: relative;
   z-index: 1;
@@ -69,8 +69,8 @@
 }
 
 .category-item.device-mobile .category-content {
-  height: 240px;
-  width: 160px;
+  height: 360px;
+  width: 210px;
 }
 
 .category-content.border-danger .category-toolbox i {
@@ -81,7 +81,7 @@
   opacity: 1;
 }
 .category-form {
-  height: 240px;
+  height: 360px;
   position: absolute;
   z-index: 2;
   padding: 1rem;
@@ -103,8 +103,33 @@
   padding: 0.75rem;
   left: 0;
   bottom: 0;
-
 }
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the button precisely */
+    /* Add styling for the button itself (size, color, background, etc.) */
+    font-size: 3rem;
+    width: 8rem;
+    height: 8rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 50%;
+    /*padding: 1rem 1.2rem;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.play-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .posnum-0 {
   background-position: center center;
 }

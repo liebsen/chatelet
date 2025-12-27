@@ -6,12 +6,12 @@ Array.prototype.remove = function() {
         while ((ax = this.indexOf(what)) !== -1) {
             this.splice(ax, 1);
         }
-    }
+    }	
     return this;
 };
 //General Functions
 $(function(){
-	/* $('#display_form').on('submit', function(e){
+	$('#display_form').on('submit', function(e){
 		$.growl.notice({
 			title: 'OK',
 			message: 'Tu presentación se actualizó',
@@ -32,10 +32,10 @@ $(function(){
 	  	});
 		e.preventDefault()
 		return false
-	}) */
+	})
 
 	//Images
-	var drawImages = function(images){
+	var drawImages = function(){
 		var base_url 	= $("#image_thumb").data('url');
 		var ul 			= $('#images');
 		ul.removeClass('fadeIn fadeOut').addClass('fadeOut')
@@ -172,7 +172,7 @@ $(function(){
 				images 		= images.split(';');
 				images.push('mobile-' + data);
 				input.val( images.join(';') );
-				drawImages(images);
+				drawImages();
 		  	});
 			me.val('');
 		} else {
@@ -181,11 +181,11 @@ $(function(){
 		}
 	});
 
-	drawImages( $("[name='data[img_url]']").val().split(';') );
+	drawImages();
 
 	//CKEDITOR.replace('HomeTextPopupNewsletter');
 
-	var drawImagesNewsletter = function(images_newsletter){
+	var drawImagesNewsletter = function(){
 		var base_url 	= $("#image_thumb_newsletter").data('url');
 		var ul 			= $('#images_newsletter');
 		ul.removeClass('fadeIn fadeOut').addClass('fadeOut')
@@ -282,7 +282,7 @@ $(function(){
 				}else{
 					images_newsletter.push('mobile-' + data);
 				    input.val(images_newsletter.join(';'));
-					drawImagesNewsletter(images_newsletter);
+					drawImagesNewsletter();
 				}
 
 		  	});
@@ -302,6 +302,6 @@ $(function(){
 		return e
 	})
 
-	drawImagesNewsletter( img_popup_newsletter );
+	drawImagesNewsletter();
 
 });

@@ -84,10 +84,10 @@ class AdminController extends AppController {
     $this->autoRender = false;
     $this->RequestHandler->respondAs('application/json');
 
-    $this->loadModel('Slider');    
+    $this->loadModel('Slide');    
     $this->loadModel('Home');
 
-    $this->Slider->deleteAll(array('1 = 1'), false);
+    $this->Slide->deleteAll(array('1 = 1'), false);
 
     $homes = $this->Home->find('all');
     $count = 0;
@@ -111,7 +111,7 @@ class AdminController extends AppController {
     			$count++;
     		}
 
-    		$this->Slider->saveMany($saves);
+    		$this->Slide->saveMany($saves);
     	}
 
     	$saves = array();
@@ -130,7 +130,7 @@ class AdminController extends AppController {
     			$count++;
     		}
 
-    		$this->Slider->saveMany($saves);
+    		$this->Slide->saveMany($saves);
 
     	}
 
@@ -1290,10 +1290,24 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->set('p', $p);
 	}
 
-	public function home() {
+	public function home($section) {
 	  // $this->loadModel('Category');
 		// $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
   	// $this->set('cats', $cats);
+
+		$navs = array(
+			'Pantalla inicial' => array(
+				'icon' 		=> 'gi gi-shirt',
+				'url'		=> $this->settings['site_url'].'/admin/home',
+				'active'	=> '/admin/home'
+				),
+			'Carrusel' => array(
+				'icon' 		=> 'gi gi-circle_plus',
+				'url'		=> $this->settings['site_url'].'/admin/home/carrousel',
+				'active'	=> '/admin/home/carrousel'
+				)
+			);
+		$this->set('navs', $navs);
 
 		$h1 = array(
 			'name' => 'Home',
@@ -1301,7 +1315,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		);
 		$this->set('h1', $h1);
 		// $this->loadModel('Home');
-		$this->loadModel('Slider');
+		$this->loadModel('Slide');
 
 		if ($this->request->is('post')) {
       $data = $this->request->data;
@@ -1357,49 +1371,20 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	// $this->Home->save($data);
 		}
 
-		/*$data = $this->Slider->find('all', array('conditions' => array(
-			'SliderType.name IN' => array('slider', 'splash'),
+		/*$data = $this->Slide->find('all', array('conditions' => array(
+			'SlideType.name IN' => array('slider', 'splash'),
 			// 'enabled' => 1
 		)));*/
 
-	  $data = $this->Slider->find('all',array(
+	  $slides = $this->Slide->find('all',array(
 	  	'conditions' => array(
-	  		'SliderType.name IN' => array('slider', 'splash'),
+	  		'Slide.section' => $section ?: 'home',
 	  	),
-	    'joins' => array(
-        array(
-          'table' => 'slider_types',
-          'alias' => 'SliderType',
-          'type' => 'LEFT',
-          'conditions' => array(
-              'SliderType.id = Slider.type_id'
-          )
-        )
-	    ),
-	    'fields' => array('SliderType.name, SliderType.description', 'Slider.*'),
-	  	'order' => array('Slider.id DESC'),
+	  	'order' => array('Slide.id DESC'),
 	  	'limit' => 2000,
     ));
 
-		$sliders = array();
-		$tags = array();
-
-		foreach($data as $key => $item) {
-			$tag = $item['SliderType']['name'];
-			if(empty($sliders[$tag])){
-				$sliders[$tag] = array();
-			}
-			if(!in_array($tag, array_column($tags, 'name'))) {
-				array_push($tags, array(
-					'name' => $tag,
-					'description' => $item['SliderType']['description']
-				));
-			}
-			array_push($sliders[$tag], $item['Slider']);
-		}
-
-		$this->set('tags', $tags);
-		$this->set('sliders', $sliders);
+		$this->set('slides', $slides);
 	}
 
 	public function index_old() {
