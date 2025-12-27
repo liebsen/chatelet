@@ -117,6 +117,7 @@
 .category-form i {
   min-width: 2.75rem;
   text-align: center;
+  color: #333;
 }
 .category-form-content {
   position: absolute;

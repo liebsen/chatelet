@@ -209,7 +209,7 @@ $(document).ready(function() {
 	$(document).on('click','.btn-toggle-form',function(e){
   	$(e.target).parents('.category-item').find('.category-form').toggle()
   })
-  
+
 	$(document).on('click','.delete_image',function(event){
 		event.preventDefault();
 		var me 		= $(this);
@@ -339,3 +339,11 @@ $(document).ready(function() {
   	//video_start()
   }, 100)
 })
+
+Handlebars.registerHelper('if_eq', function(a, b, opts) {
+    if (a == b) { // Use '==' for standard comparison, or '===' for strict comparison
+        return opts.fn(this); // Render the "if" block
+    } else {
+        return opts.inverse(this); // Render the "{{else}}" block
+    }
+});
