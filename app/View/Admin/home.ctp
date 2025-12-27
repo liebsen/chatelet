@@ -20,6 +20,10 @@ echo $this->element('admin-menu');
 			<script id="slider_template" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
 				<span class="category-item device-{{device}}">	
 					<div class="category-content video-container">
+						<div class="d-flex flex-column flex-center text-content position-absolute p-2 w-100">
+							<h3 class="text-center animated {{title_animation}}">{{title}}</h3>
+							<p class="text-center animated {{text_animation}}">{{text}}</p>
+						</div>
 					{{#if video}}
 						<video src="{{img_url}}" controls="true"></video>
 					{{else}}
