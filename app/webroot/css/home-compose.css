@@ -17,7 +17,7 @@
 .film-strip {
   --s: 12px; /* control the size */
   --c: #888;
- 
+
   /*width: calc(20*var(--s));
   aspect-ratio: 1.25;*/
   background: 
@@ -30,16 +30,19 @@
   filter: sepia(1) brightness(0.9) grayscale(.2);
   */
 }
-
 .category-item-container {
   content: "Cargando...";
   height: 320px;
-  background-color: #333;
+  background-color: #999;
   color: white;
   display: flex;
   flex-wrap: nowrap;
   grid-gap: 3rem;
   overflow-x: auto;
+}
+.category-item {
+  display: block;
+  position: relative;
 }
 .text-catalog {
   text-shadow: 0 0 2px #111,0 0 10px #666;
@@ -56,10 +59,7 @@
   z-index: 2!important;
   border-color:red!important;
 }
-.category-item {
-  display: block;
-  position: relative;
-}
+
 .category-image {
   display: flex;
   background-size: cover;

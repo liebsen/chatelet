@@ -60,7 +60,7 @@ echo $this->element('admin-menu');
 		</a>
   </span>
   <span class="category-form">
-    <div class="category-form-content d-flex flex-column flex-start gap-05">
+    <div class="category-form-content d-flex flex-column flex-start gap-05 w-100">
       <span class="form-group d-flex flex-start gap-05 w-100" title="Posición del texto">
         <!--i class="fa fa-text-height"></i-->
         <input type="text" class="form-control" name="data[title]" value="{{title}}" maxlength="20">
