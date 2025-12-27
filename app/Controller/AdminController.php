@@ -1290,21 +1290,21 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->set('p', $p);
 	}
 
-	public function home($section) {
+	public function home($section = 'home') {
 	  // $this->loadModel('Category');
 		// $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
   	// $this->set('cats', $cats);
 
 		$navs = array(
-			'Pantalla inicial' => array(
-				'icon' 		=> 'gi gi-shirt',
+			'Carrusel' => array(
+				'icon' 		=> 'gi gi-image',
 				'url'		=> $this->settings['site_url'].'/admin/home',
 				'active'	=> '/admin/home'
-				),
-			'Carrusel' => array(
-				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/home/carrousel',
-				'active'	=> '/admin/home/carrousel'
+			),
+			'Pantalla inicial' => array(
+				'icon' 		=> 'gi gi-video',
+				'url'		=> $this->settings['site_url'].'/admin/home/splash',
+				'active'	=> '/admin/home/splash'
 				)
 			);
 		$this->set('navs', $navs);
@@ -1378,7 +1378,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	  $slides = $this->Slide->find('all',array(
 	  	'conditions' => array(
-	  		'Slide.section' => $section ?: 'home',
+	  		'Slide.section' => $section,
 	  	),
 	  	'order' => array('Slide.id DESC'),
 	  	'limit' => 2000,

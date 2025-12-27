@@ -9,76 +9,74 @@ echo $this->element('admin-menu');
 ?>
 
 <script type="text/javascript">
-	const slides = <?php echo json_encode($slides) ?>;
+	const slides = <?php echo json_encode($slides, JSON_PRETTY_PRINT) ?>;
 </script>
 
 <div class="block">
 	<div class="block-content">
 		<form action="" id="display_form" method="post" class="form-inline" enctype="multipart/form-data">
 			<input type="hidden" name="data[id]" value="1" />
-			<div id="slider_block" class="bg-grey slider-template draggable-table w-100"></div>
+			<div id="slider_block" class="category-item-container slider-template draggable-table film-strip w-100"></div>
 			<script id="slider_template" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
-				<div class="category-item-container w-100">	
-					<span class="category-item device-{{device}}">	
-						<div class="category-content video-container">
-						{{#if video}}
-							<video src="{{video}}" controls="true"></video>
-						{{else}}
-							<div class="category-image ci-{{alignnum}} p-3 w-100" style="background-image: url('{{image}}')"></div> 
-						{{/if}}
-					</span>
-          <span class="category-toolbox">
-						<a href="#" class="btn bg-transparent p-3">
-							<i class="fa fa-2x fa-{{device}} min-w-4 is-clickable edit-orientation" data-file="{{img_url}}" data-origin="splash" data-orientation="{{device}}"></i>
-						</a>
-            <span class="btn bg-transparent btn-toggle-form p-3">
-              <i class="fa fa-edit fa-lg text-success"></i>
+				<span class="category-item device-{{device}}">	
+					<div class="category-content video-container">
+					{{#if video}}
+						<video src="{{img_url}}" controls="true"></video>
+					{{else}}
+						<div class="category-image ci-{{alignnum}} p-3 w-100" style="background-image: url('{{img_url}}')"></div> 
+					{{/if}}
+				</span>
+        <span class="category-toolbox">
+					<a href="#" class="btn bg-transparent p-3">
+						<i class="fa fa-2x fa-{{device}} min-w-4 is-clickable edit-orientation" data-file="{{img_url}}" data-origin="splash" data-orientation="{{device}}"></i>
+					</a>
+          <span class="btn bg-transparent btn-toggle-form p-3">
+            <i class="fa fa-edit fa-lg text-success"></i>
+          </span>
+					<a href="#" class="btn bg-transparent delete-image p-3" data-input="[name='data[splash]']" data-file="{{img_url}}">
+						<i class="fa fa-close"></i>
+					</a>
+        </span>
+        <span class="category-form">
+          <div class="category-form-content d-flex flex-column flex-start gap-05">
+            <span class="form-group d-flex flex-start gap-05" title="Posición del texto">
+              <i class="fa fa-text-height"></i>
+              <input type="text" class="form-control" name="data[title]" maxlength="20">
             </span>
-						<a href="#" class="btn bg-transparent delete-image p-3" data-input="[name='data[splash]']" data-file="{{img_url}}">
-							<i class="fa fa-close"></i>
-						</a>
-          </span>
-          <span class="category-form">
-            <div class="category-form-content d-flex flex-column flex-start gap-05">
-              <span class="form-group d-flex flex-start gap-05" title="Posición del texto">
-                <i class="fa fa-text-height"></i>
-                <input type="text" class="form-control" name="data[title]" maxlength="20">
-              </span>
-              <span class="form-group d-flex flex-start gap-05" title="Posición del texto">
-                <i class="fa fa-text-height"></i>
-                <input type="text" class="form-control" name="data[description]" maxlength="20">
-              </span>
-              <span class="form-group d-flex flex-start gap-05" title="Posición del texto">
-                <i class="fa fa-text-height"></i>
-                <select class="form-control update-alignnum" name="data[alignnum]">
-                  <option value="0">Centro</option>
-                  <option value="1">Izquierda</option>
-                  <option value="2">Derecha</option>
-                  <option value="3">Arriba</option>
-                  <option value="4">Abajo</option>
-                  <option value="5">Arriba/Izquierda</option>
-                  <option value="6">Arriba/Derecha</option>
-                  <option value="7">Abajo/Izquierda</option>
-                  <option value="8">Abajo/Derecha</option>
-                </select>
-              </span>
-              <span class="form-group d-flex flex-start gap-05" title="Posición de imagen">
-                <i class="fa fa-image"></i>
-                <select class="form-control update-posnum" name="data[posnum]">
-                  <option value="0">Centro</option>
-                  <option value="1">Izquierda</option>
-                  <option value="2">Derecha</option>
-                  <option value="3">Arriba</option>
-                  <option value="4">Abajo</option>
-                  <option value="5">Arriba/Izquierda</option>
-                  <option value="6">Arriba/Derecha</option>
-                  <option value="7">Abajo/Izquierda</option>
-                  <option value="8">Abajo/Derecha</option>
-                </select>
-              </span>
-            </div>
-          </span>
-        </div>	
+            <span class="form-group d-flex flex-start gap-05" title="Posición del texto">
+              <i class="fa fa-text-height"></i>
+              <input type="text" class="form-control" name="data[description]" maxlength="20">
+            </span>
+            <span class="form-group d-flex flex-start gap-05" title="Posición del texto">
+              <i class="fa fa-text-height"></i>
+              <select class="form-control update-alignnum" name="data[alignnum]">
+                <option value="0">Centro</option>
+                <option value="1">Izquierda</option>
+                <option value="2">Derecha</option>
+                <option value="3">Arriba</option>
+                <option value="4">Abajo</option>
+                <option value="5">Arriba/Izquierda</option>
+                <option value="6">Arriba/Derecha</option>
+                <option value="7">Abajo/Izquierda</option>
+                <option value="8">Abajo/Derecha</option>
+              </select>
+            </span>
+            <span class="form-group d-flex flex-start gap-05" title="Posición de imagen">
+              <i class="fa fa-image"></i>
+              <select class="form-control update-posnum" name="data[posnum]">
+                <option value="0">Centro</option>
+                <option value="1">Izquierda</option>
+                <option value="2">Derecha</option>
+                <option value="3">Arriba</option>
+                <option value="4">Abajo</option>
+                <option value="5">Arriba/Izquierda</option>
+                <option value="6">Arriba/Derecha</option>
+                <option value="7">Abajo/Izquierda</option>
+                <option value="8">Abajo/Derecha</option>
+              </select>
+            </span>
+          </div>
+        </span>
 			</script>
 		  <progress class="progress_newsletter hide w-100" value="50" max="100">0%</progress>
 			<div class="control-group">

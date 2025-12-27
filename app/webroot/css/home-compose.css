@@ -6,16 +6,39 @@
 
 .video-container video {
   width: 100%;
-  height: 100%;
+  height: 320px;
   object-fit: cover; /* Scales the video to cover the entire container, potentially cropping the edges */
 
   /* OR */
   /* object-fit: contain; /* Scales the video down to fit inside the container without cropping */
 }
 
+/* HTML: <div class="film-strip"></div> */
+.film-strip {
+  --s: 12px; /* control the size */
+  --c: #888;
+ 
+  /*width: calc(20*var(--s));
+  aspect-ratio: 1.25;*/
+  background: 
+    conic-gradient(at 50% var(--s),var(--c) 75%,#0000 0) 
+    0 0/calc(2*var(--s)) calc(100% - var(--s)) padding-box;
+  border: var(--s) solid var(--c);
+  padding: calc(var(--s)*2) calc(var(--s)*1.5);
+  box-sizing: content-box;
+  /* you can add a filter for an oldish effect 
+  filter: sepia(1) brightness(0.9) grayscale(.2);
+  */
+}
+
 .category-item-container {
+  content: "Cargando...";
+  height: 320px;
+  background-color: #333;
+  color: white;
   display: flex;
   flex-wrap: nowrap;
+  grid-gap: 3rem;
   overflow-x: auto;
 }
 .text-catalog {
@@ -27,11 +50,11 @@
   line-height: 1;
 } 
 .border-success {
-  border: 4px solid lightgreen!important;
+  border-color: lightgreen!important;
 }
 .border-danger {
   z-index: 2!important;
-  border: 4px solid red!important;
+  border-color:red!important;
 }
 .category-item {
   display: block;
@@ -39,9 +62,9 @@
 }
 .category-image {
   display: flex;
-  height: 360px;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 320px;
   transition: all 0.5s ease-in;
   transition: all .3s ease-in-out;
 }
@@ -59,17 +82,14 @@
 }
 
 .category-content {
-  height: 360px;
   width: 480px;
   opacity: 0.9;
   position: relative;
   z-index: 1;
   display: block;
-  border: 4px solid lightgreen;
 }
 
 .category-item.device-mobile .category-content {
-  height: 360px;
   width: 210px;
 }
 

@@ -112,24 +112,28 @@ function integrity_check(){
 //Images
 var drawImages = function(){
 	var base_url 	= $("#slider_template").data('url');
+	// console.log('drawImages(base_url)',base_url)
 	var ul 			= $('#slider_block');
 	ul.removeClass('fadeIn fadeOut').addClass('fadeOut')
 	setTimeout(() => {
 		ul.empty();
-		$.each(images,function(index,image){
-			if(image){
+		$.each(slides, function(index,item){
+			const slide = item.Slide
+			if(slide){
 				var source   	= $("#slider_template").html();
 				var template 	= Handlebars.compile(source);
-				var parts = image.split('-').reverse() 
-				var context 	= {
+				slide.video = slide.img_url.endsWith('.mp4')
+				slide.img_url = base_url + slide.img_url
+				var html = template(slide);
+				ul.append(html);
+
+				/*var parts = slide.split('-').reverse() 
+				var context = {
 					image: base_url+parts[0], 
 					file: parts[0],
 					video: parts[0].includes('.mp4'),
 					orientation: parts[1] || 'mobile'
-				}
-				var html    	= template(context);
-
-				ul.append(html);
+				}*/
 			}
 		});
 		ul.removeClass('fadeOut').addClass('fadeIn')
@@ -202,6 +206,10 @@ $(document).ready(function() {
 
 	})
 
+	$(document).on('click','.btn-toggle-form',function(e){
+  	$(e.target).parents('.category-item').find('.category-form').toggle()
+  })
+  
 	$(document).on('click','.delete_image',function(event){
 		event.preventDefault();
 		var me 		= $(this);
@@ -281,9 +289,7 @@ $(document).ready(function() {
 	});
 
 
-  $('.btn-toggle-form').click(e => {
-  	$(e.target).parents('.category-item').find('.category-form').toggle()
-  })
+  
 
   $('.btn-update').click(e => {
   	var payload = []
