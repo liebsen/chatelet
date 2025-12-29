@@ -47,7 +47,7 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 		<div class="col-md-6 pr-0-d">
 			<label for="Provincia">Provincia</label>
 			<div class="form-group">
-				<select class="form-control" title="Provincia" id="Provincia" name="customer[provincia]" autocomplete="off">
+				<select class="form-control" title="Provincia" id="Provincia" name="customer[provincia]" autocomplete="off" required>
 					<option value="">Seleccione una Provincia</option>
 					<?php foreach ($provincias as $key => $value): ?>
 						<option value="<?php echo $value['provincia']; ?>"<?= isset($userData['User']) && strtoupper($value['provincia']) == strtoupper($userData['User']['province']) ? '  selected' : ''?>><?php echo ucfirst($value['provincia']) ?></option>
