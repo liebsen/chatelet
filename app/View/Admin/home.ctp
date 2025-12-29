@@ -61,14 +61,6 @@ echo $this->element('admin-menu');
   </span>
   <span class="category-form">
     <div class="category-form-content d-flex flex-column flex-start gap-05 w-100">
-      <span class="form-group d-flex flex-start gap-05 w-100" title="Posición del texto">
-        <!--i class="fa fa-text-height"></i-->
-        <input type="text" class="form-control" name="data[title]" value="{{title}}" maxlength="20">
-      </span>
-      <span class="form-group d-flex flex-start gap-05 w-100" title="Posición del texto">
-        <!--i class="fa fa-text-height"></i-->
-        <textarea class="form-control" name="data[text]" maxlength="500" rows="5">{{text}}</textarea>
-      </span>
     {{#if video}}{{else}}
       <span class="form-group d-flex flex-start gap-05 w-100" title="Posición del texto">
         <i class="fa fa-text-height"></i>
@@ -99,6 +91,14 @@ echo $this->element('admin-menu');
         </select>
       </span>
     {{/if}}
+      <span class="form-group d-flex flex-start gap-05 w-100" title="Posición del texto">
+        <!--i class="fa fa-text-height"></i-->
+        <input type="text" class="form-control w-100" name="data[title]" value="{{title}}" maxlength="20">
+      </span>
+      <span class="form-group d-flex flex-start gap-05 w-100" title="Posición del texto">
+        <!--i class="fa fa-text-height"></i-->
+        <textarea class="form-control" name="data[text]" maxlength="500" rows="5">{{text}}</textarea>
+      </span>
     </div>
   </span>
 </script>
