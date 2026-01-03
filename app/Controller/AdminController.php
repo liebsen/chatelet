@@ -3080,6 +3080,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		    		$hasId = array_key_exists(1, $this->request->pass);
 		    		if (!$hasId) break;
 		    		$usuario = $this->User->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    			$navs[$usuario['User']['name']] = array(
+							'icon' 		=> 'gi gi-circle_plus',
+							'url'		=> $this->settings['site_url'].'/admin/usuarios/edit/'.$usuario['User']['id'],
+							'active'	=> '/admin/usuarios/edit/'.$usuario['User']['id']
+						);
+
+		    		$this->set('navs', $navs);
 		    		$this->set('usuario', $usuario);
 		    		return $this->render('usuarios-detail');
 	    		}
