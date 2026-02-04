@@ -1054,6 +1054,14 @@ footer ul li { margin-bottom: 5px;  }
   padding-top: 1rem;
 }
 
+.size-options .btn {
+  padding: 0.15rem 1rem;
+}
+
+.size-options .btn.active:before {
+  right: -0.25rem!important;
+}
+
 #main .caract label > input {
   display: none;
 }

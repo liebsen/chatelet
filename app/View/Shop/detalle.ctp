@@ -49,13 +49,13 @@ foreach ($properties as $property) {
       array_push($colors, $property['ProductProperty']);
       break;
     case 'size':
-      if ($property['ProductProperty']['variable'] == "11") {
-        $property['ProductProperty']['variable'] = "Talle único";
-      }
-
       array_push($sizes, $property['ProductProperty']);
       break;
   }
+}
+
+if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
+  $sizes[0]['variable'] = "Talle único";
 }
 ?>
 <script>
