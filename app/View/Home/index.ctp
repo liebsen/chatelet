@@ -1,8 +1,5 @@
 <?php 
-
 echo $this->Session->flash();
-
-
 ?>
 <div class="wrapper content">
 

@@ -3,13 +3,13 @@
 ?>
 <?php echo $this->element('admin-menu');?>
 <div class="block">
-  <div class="block-title">
+  <!--div class="block-title">
     <h4>
     <?php 
       echo (isset($usuario)) ? __('Editar Usuario') : __('Agregar Usuario');
     ?>
     </h4>
-  </div>
+  </div-->
 
   <div class="block-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
@@ -28,66 +28,75 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Email'); ?></label>
             <div class="controls">
-              <input type="email" id="" name="data[email]" value="<?php echo (isset($usuario)) ? $usuario['User']['email'] : ''; ?>" required>
+              <input type="email" class="form-control w-100" id="" name="data[email]" value="<?php echo (isset($usuario)) ? $usuario['User']['email'] : ''; ?>" required>
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Contraseña'); ?></label>
             <div class="controls">
-              <input type="password" id="" name="data[password]" <?php echo (!isset($usuario)) ? 'checked': '' ?>>
+              <input type="password" class="form-control w-100" id="" name="data[password]" <?php echo (!isset($usuario)) ? 'checked': '' ?>>
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[name]" value="<?php echo (isset($usuario)) ? $usuario['User']['name'] : ''; ?>" required>
+              <input type="text" class="form-control w-100" id="" name="data[name]" value="<?php echo (isset($usuario)) ? $usuario['User']['name'] : ''; ?>" required>
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Apellido'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[surname]" value="<?php echo (isset($usuario)) ? $usuario['User']['surname'] : ''; ?>" required>
+              <input type="text" class="form-control w-100" id="" name="data[surname]" value="<?php echo (isset($usuario)) ? $usuario['User']['surname'] : ''; ?>" required>
             </div>
           </div>
-          <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Fecha de nacimiento'); ?></label>
             <div class="controls">
-              <input type="text" class="input-datepicker" name="data[birthday]" value="<?php echo (isset($usuario)) ? $this->Time->format($usuario['User']['birthday'], '%d/%m/%Y') : ''; ?>" />
+              <input type="text" class="form-control w-100" class="input-datepicker" name="data[birthday]" value="<?php echo (isset($usuario)) ? $this->Time->format($usuario['User']['birthday'], '%d/%m/%Y') : ''; ?>" />
             </div>
           </div>
-          <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Sexo'); ?></label>
-            <div class="controls">
+            <div class="controls text-center switch-scale">
               <?php
                 $masculino = (isset($usuario) && $usuario['User']['gender'] == 'M') ? 'checked' : '';
                 $femenino = (isset($usuario) && $usuario['User']['gender'] == 'F') ? 'checked' : '';
               ?>
-              Masculino <input type="radio" name="data[gender]" value="M" required <?php echo $masculino; ?> /> - 
-              Femenino <input type="radio" name="data[gender]" value="F" required <?php echo $femenino; ?> />
+              <span>
+                <input type="radio" name="data[gender]" id="gender_f" value="F" required <?php echo $femenino; ?> />
+                <label for="gender_f">Femenino</label>
+              </span>
+              <span>
+                <input type="radio" name="data[gender]" id="gender_m" value="M" required <?php echo $masculino; ?> />
+                <label for="gender_m">Masculino</label>
+              </span>
             </div>
           </div>
-          <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('DNI'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[dni]" value="<?php echo (isset($usuario)) ? $usuario['User']['dni'] : ''; ?>" required>
+              <input type="text" class="form-control w-100" id="" name="data[dni]" value="<?php echo (isset($usuario)) ? $usuario['User']['dni'] : ''; ?>" required>
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Newsletter'); ?></label>
-            <div class="controls">
+            <div class="controls text-center switch-scale">
               <?php
                 $news = (isset($usuario) && $usuario['User']['newsletter'] == '1') ? 'checked' : '';
                 $no_news = (isset($usuario) && $usuario['User']['newsletter'] == '0') ? 'checked' : '';
               ?>
-              Si <input type="radio" name="data[newsletter]" value="1" <?php echo $news; ?> /> - 
-              No <input type="radio" name="data[newsletter]" value="0" <?php echo $no_news; ?> />
+              <span>
+                <input type="radio" id="newsletter_1" name="data[newsletter]" value="1" <?php echo $news; ?> />  
+                <label for="newsletter_1">Sí</label>
+              </span>
+              <span>
+                <input type="radio" name="data[newsletter]" id="newsletter_0" value="0" <?php echo $no_news; ?> />
+                <label for="newsletter_0">No</label>
+              </span>
             </div>
           </div>
           <br />
@@ -96,28 +105,28 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Telefono'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[telephone]" value="<?php echo (isset($usuario)) ? $usuario['User']['telephone'] : ''; ?>">
+              <input type="text" class="form-control w-100" id="" name="data[telephone]" value="<?php echo (isset($usuario)) ? $usuario['User']['telephone'] : ''; ?>">
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Otro telefono'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[another_telephone]" value="<?php echo (isset($usuario)) ? $usuario['User']['another_telephone'] : ''; ?>">
+              <input type="text" class="form-control w-100" id="" name="data[another_telephone]" value="<?php echo (isset($usuario)) ? $usuario['User']['another_telephone'] : ''; ?>">
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Dirección'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[address]" value="<?php echo (isset($usuario)) ? $usuario['User']['address'] : ''; ?>">
+              <input type="text" class="form-control w-100" id="" name="data[address]" value="<?php echo (isset($usuario)) ? $usuario['User']['address'] : ''; ?>">
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Provincia'); ?></label>
             <div class="controls">
-                <select id="provincia" class="selectpicker" name="data[province]">
+                <select id="provincia" class="selectpicker form-control w-100" name="data[province]">
                   <?php
                     if (isset($usuario) && !empty($usuario['User']['province'])) {
                       echo '<option value="'. $usuario['User']['province'] .'" selected>'. $usuario['User']['province'] .'</option>';
@@ -156,36 +165,42 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ciudad'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[city]" value="<?php echo (isset($usuario)) ? $usuario['User']['city'] : ''; ?>">
+              <input type="text" class="form-control w-100" id="" name="data[city]" value="<?php echo (isset($usuario)) ? $usuario['User']['city'] : ''; ?>">
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Barrio'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[neighborhood]" value="<?php echo (isset($usuario)) ? $usuario['User']['neighborhood'] : ''; ?>">
+              <input type="text" class="form-control w-100" id="" name="data[neighborhood]" value="<?php echo (isset($usuario)) ? $usuario['User']['neighborhood'] : ''; ?>">
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Código Postal'); ?></label>
             <div class="controls">
-              <input type="text" id="" name="data[postal_address]" value="<?php echo (isset($usuario)) ? $usuario['User']['postal_address'] : ''; ?>">
+              <input type="text" class="form-control w-100" id="" name="data[postal_address]" value="<?php echo (isset($usuario)) ? $usuario['User']['postal_address'] : ''; ?>">
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('¿Es administrador?'); ?></label>
-            <div class="controls">
+              <div class="controls text-center switch-scale">
               <?php
                 $admin = (isset($usuario) && $usuario['User']['role'] == 'admin') ? 'checked' : '';
                 $regular = (isset($usuario) && $usuario['User']['role'] != 'admin') ? 'checked' : '';
               ?>
-              Si <input type="radio" name="data[role]" value="admin" <?php echo $admin ?> /> - 
-              No <input type="radio" name="data[role]" value="" <?php echo $regular ?> />
+                <span>
+                  <input type="radio" name="data[role]" id="admin_1" value="admin" <?php echo $admin ?> /> 
+                  <label for="admin_1">Sí</label>
+                </span>
+                <span>
+                  <input type="radio" name="data[role]" id="admin_0" value="" <?php echo $regular ?> />
+                  <label for="admin_0">No</label>
+                </span>
+              </div>
             </div>
           </div>
-          <br />
         </div>              
       </div>      
       <br />               

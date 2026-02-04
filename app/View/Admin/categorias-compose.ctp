@@ -1,7 +1,6 @@
 <?php
 echo $this->element('admin-menu');
 echo $this->Html->css('draggable-compose.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->css('shop-compose.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->Html->script('draggable-compose.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 echo $this->Html->script('shop-compose.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 ?>

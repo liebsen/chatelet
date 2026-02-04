@@ -64,7 +64,7 @@
 							title="" 
 							class="btn btn-sm btn-success" 
 							data-original-title="Editar">
-							<i class="gi gi-pencil"></i>
+							<i class="fa fa-edit"></i>
 						</a>             
 						<a 
 						href="#" 
@@ -77,7 +77,7 @@
 						data-delurl="<?=$this->Html->url(array('action'=>'cupones', 'delete'))?>" 
 						data-msg="<?=__('¿Eliminar cupon?')?>"                   
 						>
-						<i class="gi gi-remove"></i>
+						<i class="fa fa-trash-o"></i>
 					</a>
 				</div> 
 			</td>

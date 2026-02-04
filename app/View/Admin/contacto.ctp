@@ -50,7 +50,7 @@
 						data-delurl="<?=$this->Html->url(array('action'=>'contacto', 'delete'))?>" 
 						data-msg="<?=__('¿Eliminar mensaje?')?>"                   
 						>
-						<i class="gi gi-remove"></i>
+						<i class="fa fa-trash-o"></i>
 					</a>
 				</div> 
 			</td>

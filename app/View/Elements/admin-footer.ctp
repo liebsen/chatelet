@@ -17,3 +17,23 @@
     echo $this->Html->script('main.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
     echo $this->fetch('script');
 ?>
+
+<?php if($_SERVER['REMOTE_ADDR'] == '127.0.0.1'): ?>
+<script type="text/javascript">
+document.addEventListener('keydown', function(event) {
+    // Check using event.code for the physical key
+    if (event.code === 'Space') {
+        console.log('Space key pressed using event.code!');
+        // Prevent the default action (e.g., scrolling down the page)
+        event.preventDefault(); 
+        location.reload(true)
+    }
+
+    // Check using event.key for the character value
+    if (event.key === ' ') {
+        console.log('Space key pressed using event.key!');
+        location.reload(true)
+    }
+});
+</script>
+<?php endif ?>

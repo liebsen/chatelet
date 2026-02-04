@@ -51,7 +51,7 @@
 							data-delurl="<?=$this->Html->url(array('action'=>'subscriptions', 'delete'))?>" 
 							data-msg="<?=__('¿Eliminar Newsletter?')?>"                   
 							>
-							<i class="gi gi-remove"></i>
+							<i class="fa fa-trash-o"></i>
 						</a>
 				</td>
 			</tr>

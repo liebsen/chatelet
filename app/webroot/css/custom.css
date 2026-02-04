@@ -752,7 +752,7 @@ footer ul li { margin-bottom: 5px;  }
   padding: 0.25rem;
 }
 
-.category-item-image {
+.category-content {
   background-size: cover;
   background-repeat: no-repeat;
   transition: all 0.5s ease-in;
@@ -1052,6 +1052,14 @@ footer ul li { margin-bottom: 5px;  }
 
 .size-options {
   padding-top: 1rem;
+}
+
+.size-options .btn {
+  padding: 0.15rem 1rem;
+}
+
+.size-options .btn.active:before {
+  right: -0.25rem!important;
 }
 
 #main .caract label > input {

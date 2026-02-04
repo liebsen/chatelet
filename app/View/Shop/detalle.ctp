@@ -45,12 +45,17 @@ foreach ($properties as $property) {
             'images' => $arrImages
           );
       }
+
       array_push($colors, $property['ProductProperty']);
       break;
     case 'size':
       array_push($sizes, $property['ProductProperty']);
       break;
   }
+}
+
+if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
+  $sizes[0]['variable'] = "Talle único";
 }
 ?>
 <script>
@@ -352,9 +357,8 @@ foreach ($properties as $property) {
 
 
               if(!$stock){ ?>
-               <div class="col-sm-6 col-md-4 col-lg-3 p-1">
+               <div class="col-sm-12 col-md-4 col-lg-3 add-no-stock">
                   <a href="<?php echo $url ?>">
-                      <div class="ribbon small"><span>Agotado</span></div>
                       <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
                           <div class="ribbon small"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
                       <?php endif ?>
@@ -366,7 +370,9 @@ foreach ($properties as $property) {
                       <div class="product-info">
                           <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                           <div class="name" origin="3"><?= $alt_product_name ?></div>
+                          <?php if($stock): ?>
                           <div class="price-list"><?= \price_format(ceil($alt_product['price'])) ?></div>
+                        <?php endif ?>
                       </div>
                   </a>
               </div>

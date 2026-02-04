@@ -84,10 +84,10 @@ class AdminController extends AppController {
     $this->autoRender = false;
     $this->RequestHandler->respondAs('application/json');
 
-    $this->loadModel('Slider');    
+    $this->loadModel('Slide');    
     $this->loadModel('Home');
 
-    $this->Slider->deleteAll(array('1 = 1'), false);
+    $this->Slide->deleteAll(array('1 = 1'), false);
 
     $homes = $this->Home->find('all');
     $count = 0;
@@ -111,7 +111,7 @@ class AdminController extends AppController {
     			$count++;
     		}
 
-    		$this->Slider->saveMany($saves);
+    		$this->Slide->saveMany($saves);
     	}
 
     	$saves = array();
@@ -130,7 +130,7 @@ class AdminController extends AppController {
     			$count++;
     		}
 
-    		$this->Slider->saveMany($saves);
+    		$this->Slide->saveMany($saves);
 
     	}
 
@@ -1290,18 +1290,32 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->set('p', $p);
 	}
 
-	public function sliders() {
-	  $this->loadModel('Category');
-		$cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
-  	$this->set('cats', $cats);
+	public function home($section = 'home') {
+	  // $this->loadModel('Category');
+		// $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+  	// $this->set('cats', $cats);
+
+		$navs = array(
+			'Carrusel' => array(
+				'icon' 		=> 'gi gi-image',
+				'url'		=> $this->settings['site_url'].'/admin/home',
+				'active'	=> '/admin/home'
+			),
+			'Pantalla inicial' => array(
+				'icon' 		=> 'gi gi-video',
+				'url'		=> $this->settings['site_url'].'/admin/home/splash',
+				'active'	=> '/admin/home/splash'
+				)
+			);
+		$this->set('navs', $navs);
 
 		$h1 = array(
-		'name' => 'Presentación',
-		'icon' => 'fa fa-eye'
+			'name' => 'Home',
+			'icon' => 'fa fa-home'
 		);
 		$this->set('h1', $h1);
-		$this->loadModel('Home');
-		$this->loadModel('Slider');
+		// $this->loadModel('Home');
+		$this->loadModel('Slide');
 
 		if ($this->request->is('post')) {
       $data = $this->request->data;
@@ -1357,22 +1371,20 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	// $this->Home->save($data);
 		}
 
-		$data = $this->Slider->find('all');
-		$sliders = array();
-		$tags = array();
-		foreach($data as $key => $item) {
-			$tag = $item['Slider']['tag'];
-			if(empty($sliders[$tag])){
-				$sliders[$tag] = array();
-			}
-			if(!in_array($tag, $tags)) {
-				array_push($tags, $tag);
-			}
-			array_push($sliders[$tag], $item['Slider']);
-		}
+		/*$data = $this->Slide->find('all', array('conditions' => array(
+			'SlideType.name IN' => array('slider', 'splash'),
+			// 'enabled' => 1
+		)));*/
 
-		$this->set('tags', $tags);
-		$this->set('sliders', $sliders);
+	  $slides = $this->Slide->find('all',array(
+	  	'conditions' => array(
+	  		'Slide.section' => $section,
+	  	),
+	  	'order' => array('Slide.id DESC'),
+	  	'limit' => 2000,
+    ));
+
+		$this->set('slides', $slides);
 	}
 
 	public function index_old() {
@@ -3068,6 +3080,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		    		$hasId = array_key_exists(1, $this->request->pass);
 		    		if (!$hasId) break;
 		    		$usuario = $this->User->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    			$navs[$usuario['User']['name']] = array(
+							'icon' 		=> 'gi gi-circle_plus',
+							'url'		=> $this->settings['site_url'].'/admin/usuarios/edit/'.$usuario['User']['id'],
+							'active'	=> '/admin/usuarios/edit/'.$usuario['User']['id']
+						);
+
+		    		$this->set('navs', $navs);
 		    		$this->set('usuario', $usuario);
 		    		return $this->render('usuarios-detail');
 	    		}

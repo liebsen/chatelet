@@ -3189,6 +3189,14 @@ table.dataTable thead .sorting:before {
     margin-top: -2px;
 }
 
+.position-absolute {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
 /* Popover */
 .popover {
     padding: 0;
@@ -3434,6 +3442,10 @@ a.thumbnail-borderless,
 
 .bg-dark {
     background-color: #555;
+}
+
+.bg-grey {
+    background-color: #888;
 }
 
 .bg-selected {
@@ -4050,6 +4062,11 @@ div.cloudzoom-black:nth-child(3) {
 .flex-start {
     align-items: center;
     justify-content: start;
+}
+
+.flex-col-start {
+    align-items: start;
+    justify-content: center;
 }
 
 .flex-nowrap {

@@ -157,13 +157,13 @@ class AppHelper extends Helper {
 
     if(!$stock && $isProduct){
       $content.= '<div class="desc-cont">'.
-        '<div class="desc-prod">'.
-          '<small>'. $item['desc'] .'</small>'.
-        '</div>'.
-        '<div class="product-info"><div class="name" origin="1">'.$item_name.'</div>'. $priceStr .'</div>
+        // '<div class="desc-prod">'.
+        //   '<small>'. $item['desc'] .'</small>'.
+        // '</div>'.
+        '<div class="product-info"><div class="name" origin="1">'.$item_name.'</div></div>
         </div>
       </div>';
-      $str = '<div class="col-sm-6 col-md-4 col-lg-3 p-1">'.
+      $str = '<div class="col-sm-12 col-md-4 col-lg-3 add-no-stock">'.
         '<img src="'.Router::url('/').'images/agotado3.png" class="out_stock" />'.
         $this->Html->link(
         $content,

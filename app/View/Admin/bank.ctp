@@ -56,12 +56,12 @@
                   $disabled = $settings['bank_free_shipping'] == 0 ? 'checked' : '';
                 ?>
                 <span>
-                <input type="radio" class="form-control" id="enabled_11" name="data[bank_free_shipping]" value="1" <?php echo $enabled; ?> /> 
-                <label for="enabled_11">Sí</label>
+                  <input type="radio" class="form-control" id="enabled_11" name="data[bank_free_shipping]" value="1" <?php echo $enabled; ?> /> 
+                  <label for="enabled_11">Sí</label>
                 </span>
                 <span>
-                <input type="radio" class="form-control" id="enabled_10" name="data[bank_free_shipping]" value="0" <?php echo $disabled; ?> />
-                <label for="enabled_10">No</label>
+                  <input type="radio" class="form-control" id="enabled_10" name="data[bank_free_shipping]" value="0" <?php echo $disabled; ?> />
+                  <label for="enabled_10">No</label>
                 </span>
               </div>
               <span class="text-muted">Indica si las compras realizadas a através de Alias/CBU gozarán de envío gratuito para las compras con envío a domicilio.</span>
