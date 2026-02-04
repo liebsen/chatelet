@@ -26,7 +26,8 @@ class CarritoController extends AppController
 		'Logistic', 
 		'LogisticsPrices', 
 		'Setting', 
-		'Legend'
+		'Legend',
+		'Router'
 	);
 	
 	public $components = array('Cart', 'RequestHandler');

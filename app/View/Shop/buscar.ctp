@@ -78,7 +78,7 @@
 
 
                 if(!$stock){ ?>
-                 <div class="col-sm-6 col-md-4 col-lg-3 p-1">
+                 <div class="col-sm-12 col-md-4 col-lg-3 add-no-stock">
                     <a href="<?php echo $url ?>" >
                         <?php if (!empty(intval($product['discount_label_show']))) :?>
                             <div class="ribbon small"><span><?= $product['discount_label_show'] ?>% OFF</span></div>
