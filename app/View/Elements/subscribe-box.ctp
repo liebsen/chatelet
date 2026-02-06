@@ -6,7 +6,7 @@
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
           <h4 class="text-uppercase">Estemos <strong>conectadas</strong></h4>
-          <p class="text-muted">Enterate de nuestras novedades, descuentos<br>y beneficios exlusivos solo para clientas</p>
+          <p class="text-muted">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
         </span>
         <span>
         <?php echo $this->Form->create('Contact', array('class' => 'contacto', 'url' => array('controller' => 'contacto', 'action' => 'index'))); ?>
@@ -23,7 +23,7 @@
       <div class="subscribe-success max-25 m-auto d-none">
         <span class="subscribe-text text-center">
           <h4 class="text-uppercase">¡Ya estamos <strong>conectadas</strong>!</h4>
-          <p>A partir de ahora ya formas parte de nuestra comunidad y te enviaremos información exclusiva de nuestras novedades, descuentos y beneficios exlusivos solo para clientas</p>
+          <p>A partir de ahora ya formas parte de nuestra comunidad y te enviaremos información exclusiva de nuestras novedades, descuentos y beneficios exclusivos solo para clientas</p>
           <div class="is-flex-center gap-1">
             <a class="text-link" data-toggle="click" data-hide=".subscribe-box">Cerrar esta ventana</a>
             <!--a href="/Shop" class="text-link btn-continue-shopping">Ir al Shop</a-->
