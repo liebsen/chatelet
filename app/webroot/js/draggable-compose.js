@@ -3,6 +3,8 @@
   
   const table = document.querySelector('.draggable-table');
   const tbody = table.querySelector('.category-item-container');
+  var int = 0;
+  var int2 = 0;
   var currRow = null,
       row1,row2,
       dragElem = null,
@@ -58,7 +60,9 @@
       const id = current.attributes['data-id'].value
       const ordernum = Array.from(tbody.children).indexOf(current)
       row1.attributes['data-order'].value = ordernum
-      integrity_check()
+
+      clearTimeout(int)
+      int = setTimeout(integrity_check, 500)
       /*$.post(table.getAttribute('data-url'), {
         id: id,
         ordernum: ordernum
@@ -66,7 +70,7 @@
         row1.attributes['data-order'].value = ordernum
         //row2.attributes['data-order'].value = order1
         clearSelection()
-        showDone()
+        show_done()
       })*/
     })
   }  
@@ -81,10 +85,13 @@
   }
   
   function swapRow(row, index) {
-    let currIndex = Array.from(tbody.children).indexOf(currRow)
-    row1 = currIndex > index ? currRow : row
-    row2 = currIndex > index ? row : currRow;
-    tbody.insertBefore(row1, row2);
+    clearTimeout(int2)
+    int2 = setTimeout(function(){
+      let currIndex = Array.from(tbody.children).indexOf(currRow)
+      row1 = currIndex > index ? currRow : row
+      row2 = currIndex > index ? row : currRow;
+      tbody.insertBefore(row1, row2);
+    }, 250)
   }
     
   function moveRow(x, y) {
@@ -125,7 +132,8 @@
       let tPos = target.getBoundingClientRect(),
           dPos = dragElem.getBoundingClientRect();
       dragElem.style.bottom = ((dPos.y - tPos.y) - tPos.height) + "px";
-      dragElem.style.left = "-1px";    
+      dragElem.style.left = ((dPos.x + tPos.x) - tPos.width) + "px";
+      // dragElem.style.left = "-1px";    
     
       document.dispatchEvent(new MouseEvent('mousemove',
         { view: window, cancelable: true, bubbles: true }

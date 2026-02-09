@@ -11,7 +11,7 @@
   outline: 1px solid #888;
 }
 .draggable-table .draggable-table__drag td {
-  background-color: white;
+  background-color: lightgreen;
   border: 1px solid #888;
 }
 
@@ -27,11 +27,11 @@
 }
 
 .draggable-table tbody tr.is-dragging {
-  background: yellow;
+  background: orange;
 }
 
 .draggable-table tbody tr.is-dragging td {
-  color: yellow;
+  color: orange;
 }
 
 .draggable-saved {
