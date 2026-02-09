@@ -125,6 +125,27 @@ $(document).ready(function() {
 
   $('#envio_form').on('submit', function(event) {
     event.preventDefault();
+    const tab = $('#envio_form .nav-tabs li.active').find('a').attr('href')
+
+
+  	if(tab == '#envio'){
+  		if(!$('.input-cp').val()) {
+  			return onWarningAlert('Importante', 'Por favor ingrese un código postal')
+  		} else {
+  			return onWarningAlert('Importante', 'Por favor indica el código postal presionando APLICAR')
+  		}
+  	}
+
+  	if(tab == '#retiro'){
+  		if(!$('.takeaway-options li.selected').length) {
+  			return onWarningAlert('Importante', 'Por favor selecione un local para retirar el producto')
+  		}
+  	}
+
+    if(!$('input[name="shipping"]').val()) {
+    	return onWarningAlert('Importante', 'Por favor seleccione un método de entrega')
+    }
+    	
     const formData = $(this).serialize();
     // const formSerialized = $(this).serializeArray();
     const btnSubmit = $(this).find('[type="submit"]');

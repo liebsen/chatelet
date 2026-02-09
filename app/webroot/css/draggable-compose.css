@@ -12,8 +12,9 @@
 }
 
 .draggable-table .draggable-table__drag span {
-  background: yellow;
-  opacity: 0.8;
+  background: lightgreen;
+  opacity: 0.5;
+  transition: all 1s linear;
 }
 
 .draggable-table thead th {
@@ -26,8 +27,9 @@
 .draggable-table div {
   cursor: grabbing;
 }
-.draggable-table div.is-dragging {
-  opacity: 0.5;
+
+.draggable-table div.is-dragging span {
+  background-color: orange;
 }
 
 .draggable-saved {
@@ -73,6 +75,7 @@
   padding: 2px;
   margin-bottom: 4px;
 }
+
 .category-image {
   display: flex;
   height: 200px;
