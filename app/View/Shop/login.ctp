@@ -33,12 +33,12 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 					'action' => 'login'
 				)
 			)); ?>
-			<input type="hidden" name="redirect" value="/"/>                
+			<input type="hidden" name="redirect" value="/shop"/>                
 			<div class="form-group">
-      	<input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" />
+      	<input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" required />
       </div>
       <div class="form-group position-relative">
-      	<input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" />
+      	<input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" required />
 				<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#login-password"></i>
 			</div>
       <!--label class="form-group p-1">

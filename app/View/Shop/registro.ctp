@@ -289,64 +289,59 @@ if (!$loggedIn) {
 </style>
 <script type="text/javascript">
 	$(function(){
-	var timeout = 0
-    $('#registro_form').submit(function(e) {
-    	console.log('submit!')
-    	e.preventDefault();
-    	clearTimeout(timeout)
-    	timeout = setTimeout(() => {
-        var me = $(this),
-        data = me.serialize(),
-        url = me.attr('action');
-        $.post(url, data)
-            .success(function(response) {
-                if (!response.success) {
-                    if(response.errors!=undefined){
-                        if(response.errors.email!=undefined){
-                            $(".validation-email").html(response.errors.email[0]);
-                            $("#email").parent().removeClass('has-success');
-                            $("#email").parent().addClass('has-error');
-                        }
-                        if(response.errors.password!=undefined){
-                            $(".validation-password").html(response.errors.password[0]);
-                            $("#password").parent().removeClass('has-success');
-                            $("#password").parent().addClass('has-error');
-                        }
-                    }
-                    $.growl.error({
-                        title: 'Error al registrar usuario',
-                        message: response.message
-                    });
+		var timeout = 0
+	    $('#registro_form').submit(function(e) {
+	    	e.preventDefault();
+	    	clearTimeout(timeout)
+	    	timeout = setTimeout(() => {
+	        var me = $(this),
+	        data = me.serialize(),
+	        url = me.attr('action');
+	        $.post(url, data)
+	            .success(function(response) {
+	                if (!response.success) {
+	                    if(response.errors!=undefined){
+	                        if(response.errors.email!=undefined){
+	                            $(".validation-email").html(response.errors.email[0]);
+	                            $("#email").parent().removeClass('has-success');
+	                            $("#email").parent().addClass('has-error');
+	                        }
+	                        if(response.errors.password!=undefined){
+	                            $(".validation-password").html(response.errors.password[0]);
+	                            $("#password").parent().removeClass('has-success');
+	                            $("#password").parent().addClass('has-error');
+	                        }
+	                    }
 
-                    $('input[type="submit"]').prop('disabled',false)
-                    return false;
-                } else {
-                    $.growl.notice({
-                        title: 'OK',
-                        message: 'Tus datos se han actualizado'
-                    });
+	                    $.growl.error({
+	                        title: 'Error al registrar usuario',
+	                        message: response.message
+	                    });
 
-                    const redirect = $('input[name="redirect"]').val()
-                    if(redirect) {
-                    	setTimeout(() => {
-                    		location.href = redirect
-                    	}, 1000)
-                    }
-                    // me[0].reset();
-                    // me.parents('#registro_form').modal('hide');
-                    // location.reload();
-                }
-            })
-            .fail(function() {
-                $.growl.error({
-                    title: 'Error al registrar usuario(2)',
-                    message: 'Por favor verifica los datos introducidos e intenta de nuevo'
-                });
-            });
+	                    $('input[type="submit"]').prop('disabled',false)
+	                    return false;
+	                } else {
+	                    $.growl.notice({
+	                        title: 'OK',
+	                        message: 'Tu cuenta está lista'
+	                    });
 
-      }, 100)
-      return false;
-    });
-    // $("#registro_form").bootstrapValidator('validate');		
+	                    const redirect = $('input[name="redirect"]').val() || '/shop'
+	                	setTimeout(() => {
+	                		location.href = redirect
+	                	}, 1000)
+	                }
+	            })
+	            .fail(function() {
+	                $.growl.error({
+	                    title: 'Error al registrar usuario(2)',
+	                    message: 'Por favor verifica los datos introducidos e intenta de nuevo'
+	                });
+	            });
+
+	      }, 100)
+	      return false;
+	    });
+	    // $("#registro_form").bootstrapValidator('validate');		
 	})
 </script>
