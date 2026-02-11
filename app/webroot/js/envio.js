@@ -131,8 +131,6 @@ $(document).ready(function() {
   	if(tab == '#envio'){
   		if(!$('.input-cp').val()) {
   			return onWarningAlert('Importante', 'Por favor ingrese un código postal')
-  		} else {
-  			return onWarningAlert('Importante', 'Por favor indica el código postal presionando APLICAR')
   		}
   	}
 
@@ -252,6 +250,8 @@ $(document).ready(function() {
 					if (localStorage.cargo === 'delivery' && localStorage.delivery_select) {
 						$(`.shipping-options li[shipping="${localStorage.delivery_select}"]`).click()
 					} else {
+						$('#postal_address').val(cp)
+						$('input[name="postal_address"]').val(cp)
 						if (json.rates.length === 1) {
 							$(`.shipping-options li:first-child`).click()
 						}
