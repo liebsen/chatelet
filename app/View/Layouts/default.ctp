@@ -4,6 +4,7 @@
 
 	echo $this->element('top');
   echo $this->element('fbp');
+  echo $this->element('mailchimp');
   echo $this->element('ga');
 	echo $this->element($short ? 
 		'short-header' : 
