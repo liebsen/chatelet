@@ -2702,42 +2702,49 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		);
 		$this->set('h1', $h1);
 
-		if($action == 'cart') {
-	    $this->loadModel('Analytic');
-		  $items = $this->Analytic->find('all',array(
-		    'joins' => array(
-	        array(
-	          'table' => 'users',
-	          'alias' => 'UserJoin',
-	          'type' => 'LEFT',
-	          'conditions' => array(
-	              'UserJoin.id = Analytic.user_id'
-	          )
-	        )
-		    ),
-		    'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Analytic.*'),
-		  	'order' => array('Analytic.id DESC'),
-		  	'limit' => 20,
-	    ));
-			$this->set('view', "analytics");
-		} else {
-	    $this->loadModel('Search');
-		  $items = $this->Search->find('all',array(
-		    'joins' => array(
-	        array(
-	          'table' => 'users',
-	          'alias' => 'UserJoin',
-	          'type' => 'LEFT',
-	          'conditions' => array(
-	              'UserJoin.id = Search.user_id'
-	          )
-	        )
-		    ),
-		    'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Search.*'),
-		  	'order' => array('Search.id DESC'),
-		  	'limit' => 20,
-	    ));
-	    $this->set('view', "searches");
+		switch($action) {
+			case 'cart':
+		    $this->loadModel('Analytic');
+			  $items = $this->Analytic->find('all',array(
+			    'joins' => array(
+		        array(
+		          'table' => 'users',
+		          'alias' => 'UserJoin',
+		          'type' => 'LEFT',
+		          'conditions' => array(
+	              'UserJoin.id = Analytic.user_id',
+		          )
+		        )
+			    ),
+          'conditions' => array(
+            'Analytic.user_id > 0',
+          ),
+			    'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Analytic.*'),
+			  	'order' => array('Analytic.id DESC'),
+			  	'limit' => 500,
+		    ));
+				$this->set('view', "analytics");
+				break;
+
+			default: 
+		    $this->loadModel('Search');
+			  $items = $this->Search->find('all',array(
+			    'joins' => array(
+		        array(
+		          'table' => 'users',
+		          'alias' => 'UserJoin',
+		          'type' => 'LEFT',
+		          'conditions' => array(
+		              'UserJoin.id = Search.user_id'
+		          )
+		        )
+			    ),
+			    'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Search.*'),
+			  	'order' => array('Search.id DESC'),
+			  	'limit' => 20,
+		    ));
+		    $this->set('view', "searches");
+		    break;
 		}
 		$this->set('items', $items);
 	  $this->render('analytics');
@@ -3126,6 +3133,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function login() {
+		if($this->isAuthorized()) {
+			return $this->redirect(array('controller' => 'admin', 'action' => 'presentacion'));
+		}
+
 		$this->loadModel('User');
 		if ($this->request->is('post')) {
 			// check if exists 
