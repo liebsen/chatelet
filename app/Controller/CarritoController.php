@@ -565,7 +565,6 @@ class CarritoController extends AppController
 				// $cart = array_fill(count($cart), $this->request->data['count'], $product);
 				// error_log('[carrito] '.json_encode($filter));
 				// error_log('[carrito] '.json_encode($this->filter($filter)));
-
 				// filter(1)
 			} else {
 				return json_encode(array('success' => false));
