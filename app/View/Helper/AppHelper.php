@@ -163,7 +163,7 @@ class AppHelper extends Helper {
         '<div class="product-info"><div class="name" origin="1">'.$item_name.'</div></div>
         </div>
       </div>';
-      $str = '<div class="col-sm-12 col-md-4 col-lg-3 add-no-stock">'.
+      $str = '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">'.
         '<img src="'.Router::url('/').'images/agotado3.png" class="out_stock" />'.
         $this->Html->link(
         $content,
@@ -189,7 +189,7 @@ class AppHelper extends Helper {
       }
       */
 
-      $str = '<div data-id="'.$item["id"].'" class="col-sm-12 col-md-4 col-lg-3 add-no-stock">'. 
+      $str = '<div data-id="'.$item["id"].'" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">'. 
          $this->Html->link(
           $content. '<div class="product-info"><div class="name" origin="2">'.$item_name.'</div>'.$priceStr.'<span style="display:none">'.@$item['article'].'</span></div></div>',
           $url,

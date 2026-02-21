@@ -2640,8 +2640,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	        $file_real_name = null;
 	        if(!empty($this->request->params['form']['image']['name'])){
-							error_log('trying to edit save file');
-	            $file_real_name = $this->save_file($this->request->params['form']['image']);
+						error_log('trying to edit save file');
+            $file_real_name = $this->save_file($this->request->params['form']['image']);
 	        }
 
 	        if($file_real_name){

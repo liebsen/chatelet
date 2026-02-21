@@ -484,9 +484,6 @@ html, body {
 .max-20 {
 	max-width: 20rem;
 }
-.max-40 {
-	max-width: 40rem;
-}
 .mb-0 {
   margin-bottom: 0!important;
 }
@@ -1713,6 +1710,9 @@ span.validation-password {
   .flex-col:last-child {
   	min-width: 32%;
   }
+	.max-40 {
+		max-width: 40rem;
+	}  
 	.max-25 {
 	  max-width: 25rem;
 	}
