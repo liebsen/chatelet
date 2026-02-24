@@ -1,15 +1,86 @@
 <?php
+
+require_once(APP . 'Vendor' . DS . 'mailchimp' . DS . 'mailchimp.php');
+
 App::uses('Component', 'Controller', 'Session');
+
 class MailchimpComponent extends Component {
   public $controller; // To store a reference to the Controller
+  private $mailchimp;
 
   public function initialize(Controller $controller) {
     $this->controller = $controller;
+    $mailchimp = new \MailchimpMarketing\ApiClient();
+    $mailchimp->setConfig([
+      'apiKey' => getenv('MAILCHIMP_API_KEY'),
+      'server' => getenv('MAILCHIMP_SERVER_PREFIX')
+    ]);
+    $this->mailchimp = $mailchimp;
     parent::initialize($controller);
   }
 
-  public function subscribe($user) {
+  public function test() {
+    try {
+      $response = $mailchimp->lists->createList([
+        "name" => "Usuarios",
+        "permission_reminder" => "permission_reminder",
+        "email_type_option" => false,
+        "contact" => [
+          "company" => "Mailchimp",
+          "address1" => "405 N Angier Ave NE",
+          "city" => "Atlanta",
+          "state" => "GA",
+          "zip" => "30308",
+          "country" => "US",
+        ],
+        "campaign_defaults" => [
+          "from_name" => "Gettin' Together",
+          "from_email" => "gettingtogether@example.com",
+          "subject" => "PHP Developer's Meetup",
+          "language" => "EN_US",
+        ],
+      ]);
+      print_r($response);
+      return $response;
+
+    } catch (MailchimpMarketing\ApiException $e) {
+      echo $e->getMessage();
+    }
   }
+
+  public function subscribe($user,$list) {
+    try {
+      if(!$mailchimp->lists->getList($list)) {
+        $mailchimp->lists->createList([
+          "name" => $list,
+          "permission_reminder" => "permission_reminder",
+          "email_type_option" => false,
+          "contact" => [
+              "company" => "WebChatelet",
+              "address1" => "Av. Garay 3001",
+              "city" => "Buenos Aires",
+              "country" => "Argentina",
+          ],
+          "campaign_defaults" => [
+              "from_name" => "Châtelet",
+              "from_email" => "chateletonline@chatelet.com.ar",
+              "subject" => "🌸 Châtelet - NO RESPONDER",
+              "language" => "es",
+          ],
+        ]);
+      } 
+      return $mailchimp->lists->addListMember($list, [
+        "email_address" => $user['email'] || '',
+        "status" => "subscribed",
+        "merge_fields" => [
+          "FNAME" => $user['name'],
+          "LNAME" => $user['surname']
+        ]
+      ]);
+    } catch (MailchimpMarketing\ApiException $e) {
+      echo $e->getMessage();
+    }
+  }  
   
   public function add($items) {
     $cart = $this->controller->Session->read('cart') ?? [];

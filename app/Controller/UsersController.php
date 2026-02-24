@@ -4,8 +4,8 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class UsersController extends AppController {
   public $uses = array('User','Category','LookBook');
-  //public $components = array("Mailchimp", "RequestHandler");
-  public $components = array("RequestHandler");
+  public $components = array("Mailchimp", "RequestHandler");
+  //public $components = array("RequestHandler");
 
 	public function beforeFilter() {
   	parent::beforeFilter();
@@ -142,6 +142,11 @@ class UsersController extends AppController {
     CakeLog::write('debug','fail: '.$fail);
   }
 
+  public function test_mc(){
+    $response = $this->Mailchimp->test();
+    print_r($response);    
+  }
+
   public function register(){
     $this->autoRender = false;
 
@@ -233,7 +238,8 @@ class UsersController extends AppController {
       }
 
       # Finally sync woth mailchimp
-      // $this->Mailchimp->subscribe($data['User']);
+      $list_name = "cuentas-" . date('Y');
+      $this->Mailchimp->subscribe($data['User'], $list_name);
 
       return $this->redirect($this->referer());
     } else {

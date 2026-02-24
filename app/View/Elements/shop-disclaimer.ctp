@@ -1,4 +1,4 @@
-	<div class="d-flex justify-content-center align-items-center p-5 gap-1 bg-light min-h-5 p-3 desktop">
+	<div class="d-flex justify-content-center align-items-start p-5 gap-1 bg-light min-h-5 p-3 desktop">
     <span>
     	<span class="text-sm text-uppercase">ENVÍOS A TODO EL PAÍS</span><br>
       <span class="text-sm">

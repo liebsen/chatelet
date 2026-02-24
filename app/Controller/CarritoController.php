@@ -2,10 +2,7 @@
 
 require_once(APP . 'Vendor' . DS . 'oca.php');
 require_once(APP . 'Vendor' . DS . 'curl.php');
-require __DIR__ . '/../Vendor/andreani/vendor/autoload.php';
-
-$dotenv = new Dotenv\Dotenv(__DIR__ . '/../Vendor/andreani/');
-$dotenv->load();
+require_once(APP . 'Vendor' . DS . 'andreani' . DS . 'andreani.php');
 
 use AlejoASotelo\Andreani;
 
