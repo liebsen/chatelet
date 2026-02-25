@@ -184,6 +184,7 @@ class UsersController extends AppController {
         );
 
         $saved = $this->Subscription->save($toSave);
+        $this->Mailchimp->subscribe($data['Contact'], "c35192bf45");
 
         if(!empty($saved)){
           if(!empty($ajax)) {
@@ -299,9 +300,7 @@ class UsersController extends AppController {
         ));
       }
 
-      # Finally sync woth mailchimp
-      $audience = "ChateletCuentas-" . date('y');
-      $this->Mailchimp->subscribe($data['User'], $audience);
+      $this->Mailchimp->subscribe($data['User'], "d168ae47ee");
 
       return $this->redirect($this->referer());
     } else {
