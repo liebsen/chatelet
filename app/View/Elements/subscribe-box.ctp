@@ -44,7 +44,7 @@
       </div>
       <div class="subscribe-error max-25 m-auto d-none">
         <span class="subscribe-text text-center">
-          <h4 class="text-uppercase">Hubo une error</h4>
+          <h4 class="text-uppercase">Error al suscribir</h4>
           <p>Hubo un error al procesar esta página y no pudimos suscribirte, intenta nuevamente en unos instantes o <a href="/contacto">contactanos</a></p>
           <p class="text-center">
             <a class="text-link" onclick="subscribe_retry()">Subscribirme con otra cuenta</a>

@@ -184,7 +184,7 @@ class UsersController extends AppController {
         );
 
         $saved = $this->Subscription->save($toSave);
-        $this->Mailchimp->subscribe($data['Contact'], "c35192bf45");
+        $this->Mailchimp->subscribe($data['Subscription'], "c35192bf45");
 
         if(!empty($saved)){
           if(!empty($ajax)) {

@@ -51,7 +51,13 @@ class MailchimpComponent extends Component {
 
   public function test() {
     try {
-      $response = $this->mailchimp->lists->getAllLists();
+      $response = $this->mailchimp->ecommerce->stores();
+/*$response = $this->mailchimp->ecommerce->addStore([
+    "id" => "chatelet",
+    "list_id" => "d168ae47ee",
+    "name" => "CHATELET",
+    "currency_code" => "ARS",
+]);*/      
       return $response;
     } catch (MailchimpMarketing\ApiException $e) {
       echo $e->getMessage();
@@ -59,56 +65,35 @@ class MailchimpComponent extends Component {
   }
 
   public function subscribe($user, $audience) {
+    CakeLog::write('debug', 'user:'.json_encode($user));
     if(
       empty($user['surname']) && 
       (!empty($user['name']) || !empty($user['full_name']))
     ) {
-      $nameparts = \nameparts($user['full_name'] ?? $user['name']);
+      $nameparts = \nameparts($user['name'] ?? $user['full_name']);
       $user['name'] = $nameparts['name'];
       $user['surname'] = $nameparts['surname'];
     }
-    return $this->mailchimp->lists->addListMember($audience, [
-      "email_address" => $user['email'],
-      "status" => "subscribed",
-      "merge_fields" => [
-        "FNAME" => $user['name'],
-        "LNAME" => $user['surname']
-      ]
-    ]);
-  }
-  
-  public function cart_add($store, $cart, $items) {
+
     try {
-      $stored = $this->mailchimp->ecommerce->getStore($store);
-      if(!isset($stored['id'])){
-        $data = self::$store;
-        $data['id'] = $store;
-        $stored = $this->mailchimp->ecommerce->addStore($data);        
-      }
-
-      /// $response = $this->mailchimp->ecommerce->getStoreCart("store_id", "cart_id");
-
-
-      if(!$mailchimp->lists->getList($list)) {
-        $mailchimp->lists->createList([
-          "name" => $list,
-          "permission_reminder" => "permission_reminder",
-          "email_type_option" => false,
-          "contact" => self::$contact,
-          "campaign_defaults" => self::$campaign_defaults,
-        ]);
-      } 
-      return $mailchimp->lists->addListMember($list, [
-        "email_address" => $user['email'] || '',
+      $contact = [
+        "email_address" => $user['email'],
         "status" => "subscribed",
         "merge_fields" => [
           "FNAME" => $user['name'],
           "LNAME" => $user['surname']
         ]
-      ]);
+      ];
+      CakeLog::write('debug', 'contact:'.json_encode($contact));
+      return $this->mailchimp->lists->addListMember($audience, $contact);
     } catch (MailchimpMarketing\ApiException $e) {
       echo $e->getMessage();
     }
+  }
+  
+  public function cart_add($store, $cart, $items) {
+
+// chatelet
   }
 
   public function update($cart=false, $cart_totals=false) {
