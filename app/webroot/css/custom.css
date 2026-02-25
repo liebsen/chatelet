@@ -984,7 +984,6 @@ footer ul li { margin-bottom: 5px;  }
 #detalle li a img { float: left; max-height: 10rem; /*border-radius: 0.5rem;*/}
 #detalle h1 { 
   font-size: 1.5rem; 
-  letter-spacing: -0.1rem;
 }
 #detalle h2 { 
   font-size: 1.25rem; 
@@ -1164,7 +1163,6 @@ ul#ul-moreviews li.dontResize img {
   font-weight: 1000; 
   margin-top: 70px; 
   margin-left: 30px; 
-  letter-spacing: -0.1rem;
 }
 #headcontacto h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 #headhelp {
@@ -1178,7 +1176,7 @@ ul#ul-moreviews li.dontResize img {
   min-height: calc(100dvh - 265px);
   /*padding: 65px 0;*/ 
 }
-#headhelp h1 { /*color: #f50081; */ font-size: 2.25rem; margin: 0; letter-spacing: -0.1rem; font-weight: 1000; }
+#headhelp h1 { /*color: #f50081; */ font-size: 2.25rem; margin: 0; font-weight: 1000; }
 #headhelp h1:after { 
   background: #363633; 
   content: ""; 

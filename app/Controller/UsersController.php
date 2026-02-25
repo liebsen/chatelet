@@ -1,4 +1,4 @@
-<?php
+|<?php
 
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
@@ -144,7 +144,69 @@ class UsersController extends AppController {
 
   public function test_mc(){
     $response = $this->Mailchimp->test();
-    print_r($response);    
+    print_r($response);
+    die();
+  }
+
+  public function lists_mc(){
+    $response = $this->Mailchimp->lists();
+    print_r($response);
+    die();
+  }
+
+  public function subscribe(){
+    $this->loadModel('Subscription');
+    if ($this->request->is('post')) {
+      $data = $this->request->data;
+      $ajax = $data['ajax'] ?? 0;
+      $subscriber_email = trim($data['Subscription']['email']) ?? 0;
+      if (!empty($subscriber_email)) {
+        $exists = $this->Subscription->findByEmail($subscriber_email);
+        if ($exists) {
+          if(!empty($ajax)) {
+            die(json_encode(array(
+              'success' => true,
+              'is_already_subscribed' => true, 
+              'message' => 'Este email ya existe en nuestra base de datos. Ingresa otro.'
+            )));
+          }
+
+          $this->Session->setFlash(
+            'El email ya está registrado', 
+            'default', 
+            array('class' => 'hidden notice')
+          );            
+        }
+
+        $toSave = array(
+          'email' => $data['Subscription']['email'],
+          'full_name' => $data['Subscription']['full_name'],
+        );
+
+        $saved = $this->Subscription->save($toSave);
+
+        if(!empty($saved)){
+          if(!empty($ajax)) {
+            die(json_encode(array(
+              'success' => true, 
+              'message' => 'Bienvenida a Châtelet'
+            )));
+          }
+
+          $this->Session->setFlash(
+            'Bien!,email registrado', 
+            'default', 
+            array('class' => 'hidden notice')
+          );  
+        }
+      } else {
+        $this->Session->setFlash(
+           'Por favor intente nuevamente',
+           'default',
+           array('class' => 'hidden error')
+        );
+      }
+    }    
   }
 
   public function register(){
@@ -238,8 +300,8 @@ class UsersController extends AppController {
       }
 
       # Finally sync woth mailchimp
-      $list_name = "cuentas-" . date('Y');
-      $this->Mailchimp->subscribe($data['User'], $list_name);
+      $audience = "ChateletCuentas-" . date('y');
+      $this->Mailchimp->subscribe($data['User'], $audience);
 
       return $this->redirect($this->referer());
     } else {

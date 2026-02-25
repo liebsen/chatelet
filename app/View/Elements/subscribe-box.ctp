@@ -9,11 +9,22 @@
           <p class="text-muted">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
         </span>
         <span>
-        <?php echo $this->Form->create('Contact', array('class' => 'contacto', 'url' => array('controller' => 'contacto', 'action' => 'index'))); ?>
+        <?php echo $this->Form->create('Subscribe', array(
+          'class' => 'contacto', 
+          'url' => array(
+            'controller' => 'users', 
+            'action' => 'subscribe'
+          )
+        )); ?>
           <input type="hidden" name="ajax" value="1" />
-          <div class="is-flex-center gap-05">
-            <input class="form-control m-0" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
-            <input type="submit" class="btn btn-chatelet dark" id="enviar" value="Confirmar">
+          <div class="is-flex-center flex-column gap-05 w-100">
+            <div class="is-flex-center gap-05 w-100">
+              <input class="form-control m-0" type="text" name="data[Subscription][full_name]" placeholder="Ingresá tu nombre" required>
+            </div>
+            <div class="is-flex-center gap-05">
+              <input class="form-control m-0" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
+              <input type="submit" class="btn btn-chatelet dark" id="enviar" value="Confirmar">
+            </div>
           </div>
         <?php echo $this->Form->end(); ?>
         </span>
@@ -34,7 +45,7 @@
       <div class="subscribe-error max-25 m-auto d-none">
         <span class="subscribe-text text-center">
           <h4 class="text-uppercase">Hubo une error</h4>
-          <p>Algo sucedió y no pudimos suscribirte, intenta nuevamente en unos instantes o <a href="/contacto">contactanos</a></p>
+          <p>Hubo un error al procesar esta página y no pudimos suscribirte, intenta nuevamente en unos instantes o <a href="/contacto">contactanos</a></p>
           <p class="text-center">
             <a class="text-link" onclick="subscribe_retry()">Subscribirme con otra cuenta</a>
           </p>

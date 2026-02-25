@@ -10,6 +10,11 @@ class CartComponent extends Component {
 
   public function add($items) {
     $cart = $this->controller->Session->read('cart') ?? [];
+
+    if(!isset($cart['id'])) {
+      $cart['id'] = $this->Auth->user('id') + '-' + date('Ymd-Hi');
+    }
+
     $ids = array_column($items, 'id');
     $cart = array_filter($cart, function($e) use ($ids) {
       return !in_array($e['id'], $ids);

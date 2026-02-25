@@ -530,7 +530,7 @@ class CarritoController extends AppController
 		    curl_close($ch);
 			}
 
-			$filter = [];
+			$items = [];
 			// error_log('stock:'.$stock);
 			// error_log('curl:'.$stock);
 			// CakeLog::write('debug', 'stock:'.$stock);
@@ -545,7 +545,7 @@ class CarritoController extends AppController
 				if (!empty($cart)) {
 					foreach($cart as $item) {
 						if($criteria != $item['id'].$item['size'].$item['color'].$item['alias']) {
-							$filter[]= $item;
+							$items[]= $item;
 						}
 					}
 				}
@@ -556,13 +556,8 @@ class CarritoController extends AppController
 				$product['color_code'] = @$this->request->data['color_code'];
 
 				for ($i=0; $i < $this->request->data['count']; $i++) {
-					$filter[] = $product;
+					$items[] = $product;
 				}
-
-				// $cart = array_fill(count($cart), $this->request->data['count'], $product);
-				// error_log('[carrito] '.json_encode($filter));
-				// error_log('[carrito] '.json_encode($this->filter($filter)));
-				// filter(1)
 			} else {
 				return json_encode(array('success' => false));
 			}
@@ -571,15 +566,10 @@ class CarritoController extends AppController
 			$cur = @$cart_totals['add_basket']?: 0;
 			$cur++;			
 			@$cart_totals['add_basket'] = $cur;
+			$cart = $this->Cart->add($items);
 			
-			// CakeLog::write('debug', 'cart_totals(4):'. json_encode($cart_totals));
-			// $this->Session->write('cart_totals', $cart_totals);
-			// CakeLog::write('debug', 'add(filter):'. json_encode($filter));
-			
-			$cart = $this->Cart->add($filter);
-			
-			// CakeLog::write('debug', 'updateCart(4)');
-			// $this->Session->write('cart', $cart);
+			$store = "ChateletStore-" + date('y') + '-' + date('m');
+			$this->Mailchimp->cart_add($store, $cart, $items);
 
 			return json_encode(array('success' => true));
 		}

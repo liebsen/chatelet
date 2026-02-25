@@ -1,7 +1,7 @@
 <section id="help">
   <div class="content notfound">
     <div class="container">
-      <h1 class="h1">Algo sucedió</h1>
+      <h1 class="h1">Hubo un error al procesar esta página</h1>
       <p>La página que solicitas no está disponible ahora, por favor vuelva a intentarlo en unos instantes</p>
     </div>
     <hr>

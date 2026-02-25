@@ -8,6 +8,27 @@ class MailchimpComponent extends Component {
   public $controller; // To store a reference to the Controller
   private $mailchimp;
 
+  private static $store = [
+    "list_id" => "307ffec4aa",
+    "name" => "CHATELET",
+    "currency_code" => "ARS",
+  ];    
+
+  private static $campaign_defaults = [
+    "from_name" => "CHATELET",
+    "from_email" => "news@chatelet.com.ar",
+    "subject" => "🌸 CHATELET - NO RESPONDER",
+    "language" => "es",
+  ];
+
+  private static $contact = [
+    "company" => "CHATELET",
+    "address1" => "25 De Mayo 202",
+    "city" => "Moron",
+    "state" => "Buenos Aires",
+    "country" => "Argentina",
+  ];
+
   public function initialize(Controller $controller) {
     $this->controller = $controller;
     $mailchimp = new \MailchimpMarketing\ApiClient();
@@ -19,54 +40,62 @@ class MailchimpComponent extends Component {
     parent::initialize($controller);
   }
 
-  public function test() {
+  public function lists() {
     try {
-      $response = $mailchimp->lists->createList([
-        "name" => "Usuarios",
-        "permission_reminder" => "permission_reminder",
-        "email_type_option" => false,
-        "contact" => [
-          "company" => "Mailchimp",
-          "address1" => "405 N Angier Ave NE",
-          "city" => "Atlanta",
-          "state" => "GA",
-          "zip" => "30308",
-          "country" => "US",
-        ],
-        "campaign_defaults" => [
-          "from_name" => "Gettin' Together",
-          "from_email" => "gettingtogether@example.com",
-          "subject" => "PHP Developer's Meetup",
-          "language" => "EN_US",
-        ],
-      ]);
-      print_r($response);
+      $response = $this->mailchimp->lists->getAllLists();
       return $response;
-
     } catch (MailchimpMarketing\ApiException $e) {
       echo $e->getMessage();
     }
   }
 
-  public function subscribe($user,$list) {
+  public function test() {
     try {
+      $response = $this->mailchimp->lists->getAllLists();
+      return $response;
+    } catch (MailchimpMarketing\ApiException $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function subscribe($user, $audience) {
+    if(
+      empty($user['surname']) && 
+      (!empty($user['name']) || !empty($user['full_name']))
+    ) {
+      $nameparts = \nameparts($user['full_name'] ?? $user['name']);
+      $user['name'] = $nameparts['name'];
+      $user['surname'] = $nameparts['surname'];
+    }
+    return $this->mailchimp->lists->addListMember($audience, [
+      "email_address" => $user['email'],
+      "status" => "subscribed",
+      "merge_fields" => [
+        "FNAME" => $user['name'],
+        "LNAME" => $user['surname']
+      ]
+    ]);
+  }
+  
+  public function cart_add($store, $cart, $items) {
+    try {
+      $stored = $this->mailchimp->ecommerce->getStore($store);
+      if(!isset($stored['id'])){
+        $data = self::$store;
+        $data['id'] = $store;
+        $stored = $this->mailchimp->ecommerce->addStore($data);        
+      }
+
+      /// $response = $this->mailchimp->ecommerce->getStoreCart("store_id", "cart_id");
+
+
       if(!$mailchimp->lists->getList($list)) {
         $mailchimp->lists->createList([
           "name" => $list,
           "permission_reminder" => "permission_reminder",
           "email_type_option" => false,
-          "contact" => [
-              "company" => "WebChatelet",
-              "address1" => "Av. Garay 3001",
-              "city" => "Buenos Aires",
-              "country" => "Argentina",
-          ],
-          "campaign_defaults" => [
-              "from_name" => "Châtelet",
-              "from_email" => "chateletonline@chatelet.com.ar",
-              "subject" => "🌸 Châtelet - NO RESPONDER",
-              "language" => "es",
-          ],
+          "contact" => self::$contact,
+          "campaign_defaults" => self::$campaign_defaults,
         ]);
       } 
       return $mailchimp->lists->addListMember($list, [
@@ -80,15 +109,6 @@ class MailchimpComponent extends Component {
     } catch (MailchimpMarketing\ApiException $e) {
       echo $e->getMessage();
     }
-  }  
-  
-  public function add($items) {
-    $cart = $this->controller->Session->read('cart') ?? [];
-    $ids = array_column($items, 'id');
-    $cart = array_filter($cart, function($e) use ($ids) {
-      return !in_array($e['id'], $ids);
-    });
-    $this->update(array_merge($cart,$items));
   }
 
   public function update($cart=false, $cart_totals=false) {

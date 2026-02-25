@@ -1,5 +1,19 @@
 <?php
 
+function nameparts($full_name){
+  $parts = explode(' ', $full_name);
+  $name = "";
+  $surname = "";
+  if(count($parts) > 1) {
+    $surname = array_pop($parts);
+    $name = implode(' ', $parts);
+  }
+  return [
+    "name" => $name,
+    "surname" => $surname,
+  ];
+}
+
 function filter_orientation($list, $upload_url=""){
   $images = array_filter(explode(';',$list));
   $filtered = [];
