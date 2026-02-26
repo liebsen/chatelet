@@ -342,9 +342,8 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
 
 @media (min-width: 768px) {
   .add-no-stock {
-    min-height: 32rem!important;
+    min-height: 27rem!important;
   }
-
   .box-cont  {
     width: 90%;
   }
@@ -1818,8 +1817,8 @@ span.out{
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   text-align: center;
   min-height: 1.5rem;
 }
