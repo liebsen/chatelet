@@ -1778,7 +1778,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$og = $data['opengraph'];
 			unset($data['opengraph']);
       foreach($data as $id => $value) {
-      	CakeLog::write('debug', 'save:'. json_encode(['id' => $id, 'value' => $value]));
+      	// CakeLog::write('debug', 'save:'. json_encode(['id' => $id, 'value' => $value]));
         $this->Setting->save(['id' => $id, 'value' => $value]);
       }
 
