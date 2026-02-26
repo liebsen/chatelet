@@ -1013,7 +1013,7 @@ footer ul li { margin-bottom: 5px;  }
 #detalle .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
 #main .caract { color: #404040; /* margin-top: 25px; */ }
 #main .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
-#main .caract p { /*border-bottom: 2px solid #c2c2c2;*/ line-height: 1.25; }
+#main .caract p { /*border-bottom: 2px solid #c2c2c2;*/ line-height: 1.25; text-transform: uppercase; }
 #main .caract .size { margin-bottom: 25px; }
 #main .caract .size a { color: #404040; display: inline-block; font-size: 16px; margin-right: 20px; }
 #main .caract .size a.active { color: #363633; }
@@ -1816,9 +1816,7 @@ span.out{
 .legends {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
   text-align: center;
-  min-height: 1.5rem;
 }
 
 .price-list .badge {
@@ -1849,13 +1847,12 @@ span.out{
 }
 
 .text-legend {
-  display: flex;
-  align-items: center;
-  grid-gap: 0.25rem;
+  text-align: left;
   white-space: nowrap;
   width: 100%;
   color: #666!important;
   line-height: 1;
+  padding-top: 0.5rem;
   font-size: 0.75rem;
 }
 
