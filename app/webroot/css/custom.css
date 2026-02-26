@@ -821,7 +821,7 @@ footer ul li { margin-bottom: 5px;  }
 }
 
 .price {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 800;
   white-space: nowrap;
 }
@@ -1841,7 +1841,7 @@ span.out{
 }
 
 .text-sm {
-  font-size: 0.75rem;
+  font-size: 0.75rem!important;
   font-weight: 300;
   line-height: 1.25;
   display: inline-block;
