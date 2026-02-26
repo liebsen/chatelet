@@ -663,6 +663,7 @@ class CheckoutController extends AppController
 			}
 
 			$items[] = array(
+				'id' => $producto['id'],
 				'title' => $producto['name'],
 				'description' => $producto['desc'],
 				'quantity' => 1,
@@ -897,6 +898,8 @@ class CheckoutController extends AppController
 		$this->Session->write('sale_data',$sale_data);
 		$redirect = "";
 
+		$this->Mailchimp->order($sale_id, $total, $items);
+		$this->Mailchimp->delete_cart($cart_totals['cart_id']);
 		// $redirect = "/shop/mis_compras/{$sale_id}";
 		//Setting
 		if($settings['mercadopago_sandbox_on'] == 'off') {

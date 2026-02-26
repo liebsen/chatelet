@@ -153,6 +153,12 @@ class UsersController extends AppController {
     die();
   }
 
+  public function stores(){
+    $response = $this->Mailchimp->stores();
+    print_r($response);
+    die();
+  }
+
   public function subscribe(){
     $this->loadModel('Subscription');
     if ($this->request->is('post')) {
