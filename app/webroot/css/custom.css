@@ -93,6 +93,10 @@ label input[type=checkbox]:disabled + .label-text:before {
   color: #888;
 }
 
+.text-lightgrey {
+  color: #c5c5c5;
+}
+
 .is-product-photo {
   position: relative;
 }
@@ -1144,7 +1148,7 @@ ul#ul-moreviews li.dontResize img {
   background-color: #e7e7e7;
 }
 .map .col-md-4 { background: url(../images/mapbg.png) no-repeat center center; background-size: cover; display: flex; justify-content: flex-start; align-items: center; padding-left: 5rem;}
-.map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 1000; letter-spacing:-0.1rem }
+.map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 1000; }
 .map .col-md-4 h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 
 #headcontacto { 

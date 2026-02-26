@@ -1,4 +1,7 @@
-<?php echo $this->Session->flash();?>
+<?php 
+echo $this->Session->flash();
+echo $this->element('subscribe-box');
+?>
 <script>
 function updateSrcTo(obj){
   obj.src = $(obj).attr('url-copy');

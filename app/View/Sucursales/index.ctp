@@ -20,16 +20,20 @@
     <div class="col-md-12">
       <?php foreach($stores as $store) {
           $store = $store['Store'];
-
-              echo '<h4>'. $store['name'] .'</h4>';
-              echo '<h3></h3>';  
-                  echo '<ul>';      
-                      echo '<li> '. $store['address'] .'</li>';
-                      echo '<li><a class="text-white" href="tel:'. $store['phone'].'">'. $store['phone'].'</a></li>';
-                  if($store['whatsapp']){
-                      echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" class="text-white" target="_blank">'. $store['whatsapp'].'</a></li>';
-                  }
-                  echo '</ul>';
+          $phones = explode('/', $store['phone']);
+          $phone_str = '';
+          foreach($phones as $phone) {
+            $phone_str.= '<a class="text-white" href="tel:'.$phone.'">'. $phone.'</a><br>'; 
+          }
+          echo '<h4>'. $store['name'] .'</h4>';
+          echo '<h3></h3>';  
+          echo '<ul>';      
+          echo '<li> '. $store['address'] .'</li>';
+          echo '<li>'.$phone_str.'</li>';
+          if($store['whatsapp']){
+            echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" class="text-white" target="_blank">'. $store['whatsapp'].'</a></li>';
+          }
+          echo '</ul>';
       } ?>
     </div>
   </section>
@@ -86,7 +90,7 @@ function initialize(address) {
   #location .col-md-12 h4 { color: #efb0d2; font-size: 18px; font-weight: 300;display: block;width: 100%; /*margin-bottom: 30px; */}
   #location .col-md-12 ul {display: block;margin: 10px 0;float: left;width: 100%; height: 100%}
   #location .col-md-12 ul li { color: #FFF; float: left; min-height: 63px; /*font-size: 18px;*/ font-weight: 300; width: 33%;    padding-bottom: 45px; }
-  #location .col-md-12 ul li a { padding-left: 3.5rem; position: relative; left: -3.5rem; }
+  #location .col-md-12 ul li a {}
   #location .col-md-12 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; transform: scale(0.9);}
   #location .col-md-12 ul li:nth-child(2):before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -12px; width: 35px; transform: scale(0.75);}
   #location .col-md-12 ul li:nth-child(3):before { 

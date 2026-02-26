@@ -112,10 +112,10 @@
 
     function subscribe_retry(){
       $('.subscribe-success,.subscribe-error,.subscribe-btn').hide()
+      $('.subscribe-box form .form-control').val('')
       setTimeout(function(){
-        $('.subscribe-box form .form-control').val('')
-        $('.subscribe-box').removeClass('slideOutDown')
-        $('.subscribe-box').addClass('delay0 slideInUp')
+        $('.subscribe-box').removeClass('delay3')
+        $('.subscribe-box').fadeIn(1000)
         $('.subscribe-form').show()
       }, 500)
     }
@@ -125,7 +125,7 @@
       
       if(!subscription_release || subscription_release == 'undefined') {
         $('.subscribe-box').removeClass('d-none')
-        $('.subscribe-box').addClass('slideInUp')
+        $('.subscribe-box').addClass('fadeIn')
       } else {
         $('.subscribe-btn').delay(3000).fadeIn('slow')
       }
@@ -138,14 +138,12 @@
 
       $('.corner-pin').on('click', function(e) {
         e.preventDefault()
-        $('.subscribe-box').removeClass('delay3 slideInUp')
-        $('.subscribe-box').addClass('delay0 slideOutDown')
-        $('.subscribe-btn').delay(3000).fadeIn(2000)
+        $('.subscribe-box').fadeOut(1000)
+        $('.subscribe-btn').delay(3000).fadeIn(1000)
       })
 
       $('.subscribe-btn').on('click', function(e) {
         e.preventDefault()
-        localStorage.removeItem('subscription_release');
         subscribe_retry()        
       })
       $('.contacto').on('submit', function(event) {

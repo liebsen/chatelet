@@ -56,7 +56,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="#" class="is-unlifted" title="Buscar en la tienda">
-              <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="fa fa-search text-grey"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="fa fa-search text-lightgrey"></i>
             </a>
           </li>
 
@@ -104,7 +104,7 @@
             </ul>
             <?php } else { ?>
             <a href="#" class="dropdown-toggle is-unlifted" title="Inicia sesión">
-              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-grey fa-user-o"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-lightgrey fa-user-o"></i>
             </a>
             <?php } ?>
           </li><!-- /.Login -->
@@ -113,7 +113,7 @@
               <?php if(count($cart)):?>
               <span data-toggle="sidebar" data-target=".sidebar-cart" class="count animated scaleIn speed delay1"><?=count($cart)?></span>
               <?php endif ?>
-              <span data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= count($cart) ? 'text-green' : 'text-grey' ?>"></i></span>
+              <span data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= count($cart) ? 'text-green' : 'text-lightgrey' ?>"></i></span>
             </a>
             <ul class="dropdown-menu">
               <li>
