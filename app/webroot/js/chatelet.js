@@ -510,18 +510,36 @@ $(document).ready(function() {
   /* generic clic handlers */
 
   $('[data-toggle="click"]').click((e) => {
-    const show = $(e.target).data('show')
-    const hide = $(e.target).data('hide')
-    const remove = $(e.target).data('remove')
-    if($(show).length) {
-      $(show).fadeIn(0)
-    }
-    if($(hide).length) {
-      $(hide).fadeOut(0)
-    }
-    if($(remove).length) {
-      $(remove).remove()
-    }
+    ['show', 'hide', 'remove', 'slide-down'].forEach((tag) => {
+      const target = $(e.target).data(tag)
+      if(target) {
+        switch (tag) {
+          case 'show':
+            $(target).fadeIn(10)
+            break
+          case 'hide':
+            $(target).fadeOut(10)
+            break
+          case 'fade-in':
+            $(target).fadeIn(250)
+            break
+          case 'fade-out':
+            $(target).fadeOut(250)
+            break
+          case 'slide-up':
+            $(target).removeClass('slideOutDown')
+            $(target).addClass('delay0 slideInUp')
+            break
+          case 'slide-down':
+            $(target).removeClass('slideInUp')
+            $(target).addClass('delay0 slideOutDown')
+            break
+          case 'remove':
+            $(target).remove()
+            break
+        }
+      }
+    })
   })
 
   $('[data-toggle="mouseenter"]').mouseenter((e) => {

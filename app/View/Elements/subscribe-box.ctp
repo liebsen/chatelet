@@ -1,7 +1,7 @@
   <section class="subscribe-box animated delay3 d-none">
     <div class="w-100">
       <span class="corner-pin is-clickable">
-        <i class="ico-times" data-toggle="click" data-hide=".subscribe-box" role="img" aria-label="Cerrar"></i>
+        <i class="ico-times" role="img" aria-label="Cerrar"></i>
       </span>
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
@@ -69,12 +69,13 @@
       padding: 1.5rem 1rem;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
+      outline: 2px solid #c5c5c5;
     }
 
     @media(min-width: 768px) {
       .subscribe-box { 
         border-top-left-radius: 0;
-        border-top-right-radius: 0.5rem;
+        border-top-right-radius: 0;
         min-width: 30rem;
         right: auto;
       }
@@ -113,7 +114,9 @@
       $('.subscribe-success,.subscribe-error,.subscribe-btn').hide()
       setTimeout(function(){
         $('.subscribe-box form .form-control').val('')
-        $('.subscribe-box,.subscribe-form').show()
+        $('.subscribe-box').removeClass('slideOutDown')
+        $('.subscribe-box').addClass('delay0 slideInUp')
+        $('.subscribe-form').show()
       }, 500)
     }
 
@@ -122,7 +125,7 @@
       
       if(!subscription_release || subscription_release == 'undefined') {
         $('.subscribe-box').removeClass('d-none')
-        $('.subscribe-box').addClass('slideInLeft')
+        $('.subscribe-box').addClass('slideInUp')
       } else {
         $('.subscribe-btn').delay(3000).fadeIn('slow')
       }
@@ -135,7 +138,9 @@
 
       $('.corner-pin').on('click', function(e) {
         e.preventDefault()
-        $('.subscribe-btn').show()
+        $('.subscribe-box').removeClass('delay3 slideInUp')
+        $('.subscribe-box').addClass('delay0 slideOutDown')
+        $('.subscribe-btn').delay(3000).fadeIn(2000)
       })
 
       $('.subscribe-btn').on('click', function(e) {

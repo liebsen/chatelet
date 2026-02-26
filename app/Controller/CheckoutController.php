@@ -52,7 +52,7 @@ class CheckoutController extends AppController
 		),
 	);
 
-	public $components = array('Cart', 'RequestHandler');
+	public $components = array('Cart', 'Mailchimp', 'RequestHandler');
 
 	public function beforeFilter()
 	{
@@ -165,7 +165,7 @@ class CheckoutController extends AppController
 			// CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
 			
 			$this->Cart->update(null, $cart_totals);
-
+			$this->Mailchimp->update(null, $cart_totals);
       return json_encode($response);
 		}
 
@@ -231,6 +231,7 @@ class CheckoutController extends AppController
 			CakeLog::write('debug', 'pago(data)'.json_encode($data));
 			CakeLog::write('debug', 'pago(cart_totals)'.json_encode($cart_totals));
 			$this->Cart->update(null, $cart_totals);
+			$this->Mailchimp->update(null, $cart_totals);
 
 			return json_encode($response);
 		}
@@ -258,6 +259,7 @@ class CheckoutController extends AppController
 
 		$cart_totals['payment_method'] = $payment_method;		
 		$cart = $this->Cart->update(null, $cart_totals);
+		$this->Mailchimp->update(null, $cart_totals);
 		// CakeLog::write('debug','cart(3):'.json_encode($cart), JSON_PRETTY_PRINT);
 		$cart['status'] = 'success';
 

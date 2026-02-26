@@ -1,5 +1,6 @@
 <?php
 App::uses('Component', 'Controller', 'Session');
+
 class CartComponent extends Component {
   public $controller; // To store a reference to the Controller
 
@@ -10,15 +11,13 @@ class CartComponent extends Component {
 
   public function add($items) {
     $cart = $this->controller->Session->read('cart') ?? [];
-
-    if(!isset($cart['id'])) {
-      $cart['id'] = $this->Auth->user('id') + '-' + date('Ymd-Hi');
-    }
+    $cart['create'] = false;
 
     $ids = array_column($items, 'id');
     $cart = array_filter($cart, function($e) use ($ids) {
       return !in_array($e['id'], $ids);
     });
+
     $this->update(array_merge($cart,$items));
   }
 
@@ -35,6 +34,13 @@ class CartComponent extends Component {
 
     if (empty($cart_totals)) {
       $cart_totals = $this->controller->Session->read('cart_totals');
+    }
+
+    if(!isset($cart_totals['cart_id'])) {
+      CakeLog::write('debug', 'cart(1)');
+      $cart_totals['cart_id'] = $this->controller->Auth->user('id') + '-' + date('ymd-Hi');
+      CakeLog::write('debug', 'cart(2)');
+      // $cart['create'] = true;
     }
 
     // CakeLog::write('debug', 'cart_totals(start):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
@@ -177,7 +183,7 @@ class CartComponent extends Component {
     }
 
     $delivery_cost = $cart_totals['delivery_cost'] ?? 0;
-    CakeLog::write('debug','isFreeShipping(b):'.json_encode(array($total, $payment_method, $cart_totals['postal_address'])));
+    CakeLog::write('debug','isFreeShipping(b):'.json_encode(array('total'=>$total,'payment_method'=>$payment_method,'postal_address'=>$cart_totals['postal_address'])));
 
     $free_shipping = $this->isFreeShipping(
       $total, 
@@ -220,7 +226,6 @@ class CartComponent extends Component {
     // CakeLog::write('debug', 'update(cart):'. json_encode($cart,JSON_PRETTY_PRINT));
     $this->controller->Session->write('cart_totals', $cart_totals);
     $this->controller->Session->write('cart', $cart);
-
     return [
       'cart' => $cart, 
       'cart_totals' => $cart_totals
@@ -297,9 +302,9 @@ class CartComponent extends Component {
     // CakeLog::write('debug', 'shipping_price_min:'.json_encode($shipping_price_min));
     // CakeLog::write('debug', 'bank_free_shipping:'.json_encode($bank_free_shipping));
     
-    CakeLog::write('debug', 'price(2):'.json_encode($price));
-    CakeLog::write('debug', 'payment_method(2):'.json_encode($payment_method));
-    CakeLog::write('debug', 'zip_code(2):'.json_encode($zip_code));
+    CakeLog::write('debug', 'price(3):'.json_encode($price));
+    CakeLog::write('debug', 'payment_method(3):'.json_encode($payment_method));
+    CakeLog::write('debug', 'zip_code(3):'.json_encode($zip_code));
 
     if(!empty($bank_free_shipping) && $payment_method == 'bank') {
       CakeLog::write('debug', 'bank_free_shipping(1)');

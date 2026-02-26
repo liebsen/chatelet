@@ -27,7 +27,7 @@ class CarritoController extends AppController
 		'Router'
 	);
 	
-	public $components = array('Cart', 'RequestHandler');
+	public $components = array('Cart', 'Mailchimp', 'RequestHandler');
 
 	public function test() {
 		echo "<pre>";
@@ -498,8 +498,6 @@ class CarritoController extends AppController
 		$this->RequestHandler->respondAs('application/json');
 		if ($this->request->is('post')) {
 			$data = $this->request->data;
-			//$this->RequestHandler->respondAs('application/json');
-
 			if(
 				!isset($this->request->data['id']) || 
 				!isset($this->request->data['count'])
@@ -532,10 +530,6 @@ class CarritoController extends AppController
 
 			$items = [];
 			// error_log('stock:'.$stock);
-			// error_log('curl:'.$stock);
-			// CakeLog::write('debug', 'stock:'.$stock);
-			// CakeLog::write('debug', 'product:'.json_encode($product));
-			// $stock=1;
 			if ($product && $stock) {
 				$product = $product['Product'];
 
@@ -568,9 +562,6 @@ class CarritoController extends AppController
 			@$cart_totals['add_basket'] = $cur;
 			$cart = $this->Cart->add($items);
 			
-			$store = "ChateletStore-" + date('y') + '-' + date('m');
-			$this->Mailchimp->cart_add($store, $cart, $items);
-
 			return json_encode(array('success' => true));
 		}
 		//return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
@@ -605,8 +596,10 @@ class CarritoController extends AppController
 			// CakeLog::write('debug', 'updateCart(1)');
 			// CakeLog::write('debug', 'updateCart(2):'. json_encode($update));
 			$this->Cart->update($update);
+			$this->Mailchimp->update($update);
 		} else {
 			$this->Cart->destroy();
+			$this->Mailchimp->destroy();
 		}
 
 		return json_encode($removed);
