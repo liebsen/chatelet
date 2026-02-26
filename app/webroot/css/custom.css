@@ -766,7 +766,7 @@ footer ul li { margin-bottom: 5px;  }
 }
 
 .category-item:hover {
-  filter: contrast(140%);
+  filter: contrast(120%);
 }
 
 .hidden-force {
@@ -813,9 +813,9 @@ footer ul li { margin-bottom: 5px;  }
 }
 
 .text-catalog {
-  text-shadow: 0 0 2px #111,0 0 10px #666;
+  text-shadow: 2px 2px 0 #b5b5b5;
   font-size: 1.75rem;
-  font-weight: 300;
+  font-weight: 1000;
   line-height: 1;
   letter-spacing: -0.03rem;
   color: white;
@@ -938,7 +938,7 @@ footer ul li { margin-bottom: 5px;  }
 
 .product-image:hover { 
   /*background-size: 110%;*/
-  filter: contrast(140%);
+  filter: contrast(120%);
 }
 
 #productOptions .product-list.posnum-2 a img {
@@ -972,7 +972,7 @@ footer ul li { margin-bottom: 5px;  }
 #productOptions .product-list a .hover small { color: #252424; font-size: 22px; }
 #productOptions .product-list a .hover small:after { background: #363633; content: ""; display: block; height: 4px;border-radius: 0.5rem; margin: 15px auto 0; width: 50px; }
 #productOptions .product-list a:hover img { 
-  filter: contrast(140%);
+  filter: contrast(120%);
 }
 #productOptions .product-list a:hover .hover { opacity: 1; }
 
@@ -1569,7 +1569,7 @@ span.out{
   font-size: 40px;
   font-weight: 600;
   margin: auto;
-  text-shadow: 0 0 3px #666;
+  text-shadow: 3px 3px 0 #c5c5c5;
 }
 
 .img-resp{
