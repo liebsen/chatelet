@@ -9,20 +9,27 @@
         <ul>
           <?php
           if (!empty($categories)){
-            foreach ($categories as $category) {
-              $category = $category['Category'];
-              $slug =  str_replace(' ','-',strtolower($category['name']));
+            foreach ($categories as $item) {
+              $item = $item['Category'];
+              $slug =  str_replace(' ','-',strtolower($item['name']));
+              $current = '';
+
+              if (@$category['id'] == $item['id']){
+                $current = 'current';
+              }
+
               if (strpos($slug, 'trajes')!==false){
                 $slug = 'trajes-de-bano';
               }
               echo '<li>';
               echo $this->Html->link(
-                  $category['name'],
+                  $item['name'],
                   array(
-                      'controller' => 'tienda',
-                      'action' => 'productos',
-                     $slug
-                  )
+                    'controller' => 'tienda',
+                    'action' => 'productos',
+                    $slug
+                  ),
+                  array('class' => $current)
               );
               echo '</li>';
             }

@@ -463,14 +463,16 @@ body.top-fixed .shop-options {
 .shop-options img { margin-right: 2rem; max-width: 3.5rem; }
 .shop-options h3 { color: #363633; font-weight: 1000; text-transform: uppercase; margin-bottom: 30px; }
 .shop-options ul { column-count: 3; column-gap: 40px; }
-.shop-options ul li { margin-bottom: 0.5rem; }
+.shop-options ul li { margin-bottom: 0.75rem; line-height: 1.25 }
 .shop-options ul li a {
   color: #363633;
   text-transform: uppercase;
-  line-height: 1.35;
   font-weight: 300;
 }
-
+.shop-options ul li a.current {
+  color: #333;
+  font-weight: 1000;
+}
 .social-bottom {
   display: flex;
   justify-content: center;
@@ -534,7 +536,6 @@ footer h3 {
 }
 footer h5:after { background: #e7e7e7; content: ""; display: block; height: 3px;border-radius: 0; margin-top: 13px; width: 50px; border-radius: 5px }
 footer .options a, footer .options span { 
-  color: #888; 
   font-weight: 300; 
   font-size: 0.9rem;
   text-transform: uppercase;  
@@ -656,6 +657,7 @@ footer ul li { margin-bottom: 5px;  }
 #filters .prices label span.active i { display: block; }
 #listShop { overflow: hidden; }
 #listShop a { /*background: #efefef;*/ display: block; overflow: hidden; position: relative; }
+#listShop a:hover { text-decoration:none!important }
 #listShop a .category-image {
   display: flex;
   height:24rem;
@@ -887,18 +889,15 @@ footer ul li { margin-bottom: 5px;  }
 #productOptions { padding: 1.75rem 0; }
 #productOptions nav li { border-bottom: 1px solid rgba(194, 194, 194, 0.27); padding: 1rem; }
 #productOptions nav li a { 
-  color: #222; 
-  
+  color: #888;   
   font-weight: 300;
   line-height: 1.1; 
   text-transform: uppercase; 
   transition: all .3s ease-in-out; 
 }
-#productOptions nav li a:hover { color: #e10d74; }
 #productOptions nav li a.current{ 
-  color: #e10d74!important;
+  color: #333!important;
   font-weight: 1000;
-  font-size: 1.1rem;
 }
 #productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; }
 #productOptions a.btBig span { color: #363633; font-size: 27px; }
@@ -1567,11 +1566,11 @@ span.out{
   right: 2rem;
   z-index: 1;
   color: white;
-  box-shadow: 0 0 5px #3333;
+  text-transform: uppercase;
   font-size: 40px;
   font-weight: 600;
   margin: auto;
-  text-shadow: 0 0 8px #666;
+  text-shadow: 0 0 3px #666;
 }
 
 .img-resp{

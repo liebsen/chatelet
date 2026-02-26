@@ -50,7 +50,7 @@
 
       * { outline: none; }
 
-      a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none!important; }
+      a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none }
 
       /* responsiveness */
 
