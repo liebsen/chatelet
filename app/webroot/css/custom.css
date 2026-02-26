@@ -342,7 +342,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
 
 @media (min-width: 768px) {
   .add-no-stock {
-    min-height: 26rem!important;
+    min-height: 32rem!important;
   }
 
   .box-cont  {
@@ -897,6 +897,8 @@ footer ul li { margin-bottom: 5px;  }
 #productOptions nav li a:hover { color: #e10d74; }
 #productOptions nav li a.current{ 
   color: #e10d74!important;
+  font-weight: 1000;
+  font-size: 1.1rem;
 }
 #productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; }
 #productOptions a.btBig span { color: #363633; font-size: 27px; }
