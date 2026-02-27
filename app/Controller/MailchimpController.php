@@ -1,7 +1,7 @@
 <?php
 
 class MailchimpController extends AppController {
-  public $uses = array('User','Setting');
+  public $uses = array('User','Setting', 'Product');
   public $components = array("Mailchimp", "RequestHandler");
 
   public function beforeFilter() {
@@ -33,5 +33,19 @@ class MailchimpController extends AppController {
     $response = $this->Mailchimp->stores();
 
     return json_encode($response->stores);
+  }
+
+  public function sync_products(){
+    $this->RequestHandler->respondAs('application/json');
+    $this->autoRender = false;
+
+    $products = $this->Product->find('all');
+
+    $response = [];
+    foreach($products as $item) {
+      $response[] = $this->Mailchimp->add_product($item['Product']);
+    }
+
+    return json_encode($response);
   }
 }

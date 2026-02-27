@@ -132,11 +132,25 @@ class MailchimpComponent extends Component {
 
       CakeLog::write('debug', 'cart:'.json_encode($cart));
 
-      return $this->mailchimp->ecommerce->addStoreCart("d168ae47ee", $cart);
+      return $this->mailchimp->ecommerce->addStoreCart("chatelet", $cart);
 
     } catch (MailchimpMarketing\ApiException $e) {
       echo $e->getMessage();
     }
+  }
+
+  public function add_product($item) {
+    try {
+      $response = $this->mailchimp->ecommerce->addStoreProduct("chatelet", [
+        "id" => $item['id'],
+        "title" => $item['name'],
+        "variants" => [["id" => $item['id'], "title" => $item['name']]],
+      ]);
+
+      return $response;
+    } catch (MailchimpMarketing\ApiException $e) {
+      echo $e->getMessage();
+    }    
   }
 
   public function order($order_id, $customer_id, $total, $sale_items) {
@@ -153,7 +167,7 @@ class MailchimpComponent extends Component {
     }
 
     try {
-      return $this->mailchimp->ecommerce->addStoreOrder("d168ae47ee", [
+      return $this->mailchimp->ecommerce->addStoreOrder("chatelet", [
         "id" => $order_id,
         "customer" => ["id" => $customer_id,],
         "currency_code" => "ARS",
