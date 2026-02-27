@@ -254,7 +254,7 @@ class AppController extends Controller
     ));
 
     if (
-      $this->settings['env_staging'] ||
+      $_SERVER['REMOTE_ADDR'] == '127.0.0.1' ||
       empty($data['receiver_email']))
     {
       // CakeLog::write('debug', 'email:'. json_encode($email->message('html')));
