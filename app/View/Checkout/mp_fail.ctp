@@ -1,6 +1,5 @@
 <?php 
 echo $this->Session->flash();
-
 echo $this->Html->css('clear',array('inline' => false));
 
 $this->set('short_header', 'Checkout');

@@ -859,8 +859,8 @@ class CheckoutController extends AppController
 		// $mp = new MP(Configure::read('mercadopago_client_id'), Configure::read('mercadopago_client_secret'));
 		
 		$mp = new MP($settings['mercadopago_client_id'], $settings['mercadopago_client_secret']);
-		$success_url = Router::url(array('controller' => 'checkout', 'action' => 'clear'), true);
-		$failure_url = Router::url(array('controller' => 'checkout', 'action' => 'failed'), true);
+		$success_url = Router::url(array('controller' => 'checkout', 'action' => 'mp_success'), true);
+		$failure_url = Router::url(array('controller' => 'checkout', 'action' => 'mp_fail'), true);
 
 		$preference_data = array(
 			'external_reference' => $sale_id,
@@ -882,7 +882,7 @@ class CheckoutController extends AppController
 		CakeLog::write('debug', 'sale(preference):'.json_encode($preference_data));
 		$preference = $mp->create_preference($preference_data);
 		//Save Data
-		$sale_data = array(
+		/*$sale_data = array(
 			'user' => array(
 				'name' => $customer['name'],
 				'email' => $customer['email']
@@ -895,11 +895,10 @@ class CheckoutController extends AppController
 			'total' => $total
 		);
 
-		$this->Session->write('sale_data',$sale_data);
+		$this->Session->write('sale_data',$sale_data);*/
+
 		$redirect = "";
 
-		$this->Mailchimp->order($sale_id, $total, $items);
-		$this->Mailchimp->delete_cart($cart_totals['cart_id']);
 		// $redirect = "/shop/mis_compras/{$sale_id}";
 		//Setting
 		if($settings['mercadopago_sandbox_on'] == 'off') {
@@ -959,6 +958,108 @@ el pago.</p>
 		$this->sendEmailMessage($message,'🌸 Gracias por comprar en CHÂTELET',$data['user']['email']);
 	}
 
+	public function mp_success() { //success
+		// /checkout/mp_success?status=approved&collection_status=approved&preference_id=161684025-45653d36-57d8-4f70-b166-896d2d8886b5&site_id=MLA&external_reference=16757&collection_id=142159856356&payment_id=142159856356&payment_type=credit_card&processing_mode=aggregator&merchant_order_id=37304657565
+
+		$status = $this->request->query('status') ?? '';
+		$sale_id = $this->request->query('external_reference') ?? 0;
+
+		$this->loadModel('Sale');
+		$this->loadModel('SaleProduct');
+
+		if($status == 'approved') {
+	  	$data = $this->SaleProduct->find('all',[
+		    'joins' => [
+	        [
+	          'table' => 'sales',
+	          'alias' => 'Sale',
+	          'type' => 'LEFT',
+	          'conditions' => [ 'Sale.id = SaleProduct.sale_id' ]
+	        ]
+		    ],
+		  	'fields' => ['Sale.value, Sale.nombre, Sale.apellido, Sale.email, SaleProduct.*'],
+	      'conditions' => [
+	        'SaleProduct.sale_id' => $sale_id,
+	      ],     
+	      'order' => ['SaleProduct.id DESC'],
+	      'limit' => 1000,
+	    ]);
+
+	    if(!empty($data[0])){
+				$sale = $data[0]['Sale'];
+				$sale_items = [];
+				$cart_totals = $this->Session->read('cart_totals');
+
+				foreach($data as $item) {
+					$sale_items[] = $item['SaleProduct'];
+				}
+
+				$sale_object = array(
+					'id' 		=> $sale_id,
+					'completed' => 1
+				);
+
+				// CakeLog::write('debug', 'sale(4)'.json_encode($sale_object));			
+				$this->Sale->save($sale_object);
+				$this->set('sale',$sale);
+				$this->set('sale_items',$sale_items);
+
+				$notify_data = array(
+					'sale_id' => $sale_id,
+					'user' => array(
+						'email' => $sale['email'],
+						'name' => $sale['nombre'],
+						'surname' => $sale['apellido'],
+					)
+				);
+
+				$this->notify_user($notify_data, 'success');
+				$this->Mailchimp->delete_cart($cart_totals['cart_id']);
+				$this->Mailchimp->order($sale_id, $sale['value'], $sale_items);
+				$this->Session->delete('cart');
+				$this->Session->delete('cart_totals');
+
+				return $this->render('mp_success');
+	    }
+		}
+
+		return $this->mp_fail();
+	}
+
+	public function mp_fail() {
+
+		$collection_status  =$this->request->query('collection_status') ?? '';
+		$sale_id  =$this->request->query('external_reference') ?? 0;
+
+		$this->loadModel('Sale');
+
+		if($collection_status == 'pending') {
+
+	  	$data = $this->Sale->find('first',[
+	      'conditions' => [
+	        'Sale.id' => $sale_id,
+	      ],     
+	    ]);
+
+
+	    if(!empty($data)){
+	    	$sale = $data['Sale'];
+				$notify_data = array(
+					'sale_id' => $sale_id,
+					'user' => array(
+						'email' => $sale['email'],
+						'name' => $sale['nombre'],
+						'surname' => $sale['apellido'],
+					)
+				);
+
+				$this->notify_user($notify_data, 'pending');
+			}
+		}
+		
+		return $this->render('mp_fail');
+	}
+
 	public function failed() {
 			$data = $this->Session->read('sale_data');
 			// error_log('Failed payment: '.json_encode($data));
@@ -977,11 +1078,14 @@ el pago.</p>
 				// error_log('failed');
 				return $this->render('clear_no');
 			}
-	}
-
+	}	
 	public function clear() { //success
 		// error_log('success payment: '.json_encode($this->Session->read('sale_data')));
 		// CakeLog::write('debug', 'Success payment:'.json_encode($this->Session->read('sale_data')));
+
+		$this->Mailchimp->order($sale_id, $total, $items);
+		$this->Mailchimp->delete_cart($cart_totals['cart_id']);
+
 		if( $this->Session->check( 'sale_data' ) ){
 			$sale_data = $this->Session->read('sale_data');
 			$sale_object = array(

@@ -101,7 +101,6 @@ class MailchimpComponent extends Component {
   }
   
   public function update($cart=false, $cart_totals=false) {
-
     if (empty($cart)) {
       $cart = $this->controller->Session->read('cart');
     }
@@ -138,37 +137,28 @@ class MailchimpComponent extends Component {
     } catch (MailchimpMarketing\ApiException $e) {
       echo $e->getMessage();
     }
-// chatelet
   }
 
-  public function order($order_id, $customer_id, $total, $items) {
+  public function order($order_id, $customer_id, $total, $sale_items) {
     // $response = $client->ecommerce->setOrder("d168ae47ee", "order_id", [
     $lines = [];
-    foreach($items as $i => $item) {
+    foreach($sale_items as $i => $item) {
       $lines[] = [
         "id" => $i+1,
         "product_id" => $item['id'],
         "product_variant_id" => $item['id'],
         "quantity" => 1,
-        "price" => $item['unit_price'], 
+        "price" => $item['precio_vendido'], 
       ];
     }
 
     try {
-      $response = $this->mailchimp->ecommerce->addStoreOrder("d168ae47ee", [
-          "id" => $order_id,
-          "customer" => ["id" => $customer_id,],
-          "currency_code" => "ARS",
-          "order_total" => $total,
-          "lines" => [
-              [
-                  "id" => "id",
-                  "product_id" => "product_id",
-                  "product_variant_id" => "product_variant_id",
-                  "quantity" => 23739,
-                  "price" => 78420,
-              ],
-          ],
+      return $this->mailchimp->ecommerce->addStoreOrder("d168ae47ee", [
+        "id" => $order_id,
+        "customer" => ["id" => $customer_id,],
+        "currency_code" => "ARS",
+        "order_total" => $total,
+        "lines" => $lines,
       ]);
     } catch (MailchimpMarketing\ApiException $e) {
       echo $e->getMessage();
