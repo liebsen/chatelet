@@ -65,6 +65,15 @@ function get_socials(){
   ];
 }
 
+function get_mc_lists(){
+  return [
+    'contact',
+    'subscription',
+    'store', 
+    'mainlist'
+  ];
+}
+
 function parsed_socials($settings){
   $socials = [];
   
