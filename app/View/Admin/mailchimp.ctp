@@ -2,7 +2,7 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
 <?php echo $this->Html->script('jquery.growl.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
-<?php echo $this->Html->script('application-form.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
+<?php echo $this->Html->script('mailchimp.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
 <?php echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION')) ?>
 
 	<form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
@@ -30,7 +30,8 @@
 			          	<input type="checkbox" id="mailchimp_on" name="data[mailchimp_on]" <?php echo $settings['mailchimp_on'] == 'on' ? ' checked' : '' ?>>
 			          	Activo
 			          </label>
-		          </div>			        
+		          </div>
+		          <hr>	        
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('APP Key'); ?></label>
 			          <div class="controls">
@@ -51,7 +52,13 @@
 
 				<div class="tab-pane pane-lists">
 	        <h4 class="sub-header">Manejo de listas</h4>
-	        <p>Proporciona el código público del sitio para todos los servicios.</p>
+	        <p>Proporciona el código público del sitio para todos los servicios. </p>
+	        <?php if(!empty($settings['mailchimp_appkey'] && !empty($settings['mailchimp_prefix']))):?> 
+	        <p><a href="#" class="mc-action" data-method="stores">Ver Stores</a> <a href="#" class="mc-action" data-method="lists">Ver Audiencias</a></p>
+	        <div class="iframe d-none">
+	        	<iframe id="mailchimp"></iframe>
+	        </div>
+	      	<?php endif ?>
 		      <?php foreach($mc_lists as $item): ?>
 		        <div class="control-group">
 		          <label class="control-label d-flex justify-content-start align-items-center gap-05" for="<?php echo $item ?>_on">
@@ -74,3 +81,15 @@
 	    </div>
 	  </div>
 	</form>
+
+<style type="text/css">		
+	.iframe {
+	  overflow: hidden;
+	  resize: both;
+	}
+	iframe {
+	  height: 100%;
+	  width: 100%;
+	  border: none;
+	}		
+</style>
