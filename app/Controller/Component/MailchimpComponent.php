@@ -251,23 +251,27 @@ class MailchimpComponent extends Component {
     }    
   }
 
-  public function order($store,$order_id, $customer_id, $total, $sale_items) {
+  public function order($store, $order_id, $total, $sale_items) {
     // $response = $client->ecommerce->setOrder("d168ae47ee", "order_id", [
     $lines = [];
+    $user = $this->controller->Auth->user();
+    $j = 1;
     foreach($sale_items as $i => $item) {
       $lines[] = [
-        "id" => $i+1,
-        "product_id" => $item['id'],
-        "product_variant_id" => $item['id'],
+        "id" => (string) $j,
+        "product_id" => (string) $item['id'],
+        "product_variant_id" => (string) $item['id'],
         "quantity" => 1,
-        "price" => $item['precio_vendido'], 
+        "price" => (float) $item['precio_vendido'], 
       ];
+      $j++;
     }
 
+    CakeLog::write('debug', 'lines:'.json_encode($lines));
     try {
       return $this->mailchimp->ecommerce->addStoreOrder($store, [
         "id" => $order_id,
-        "customer" => ["id" => $customer_id,],
+        "customer" => ["id" => $user['id']],
         "currency_code" => "ARS",
         "order_total" => $total,
         "lines" => $lines,
@@ -277,9 +281,23 @@ class MailchimpComponent extends Component {
     }
   }
 
-  public function delete_cart($store,$cart_id) {
+  public function delete_cart($store, $cart_id) {
     try {
-      $response = $this->mailchimp->ecommerce->deleteStoreCart($store, $cart_id);
+      $response = $this->mailchimp->ecommerce->getStoreCarts($store);
+
+      //CakeLog::write('debug', 'reponse:'.json_encode($response));
+      $cart_exists = false;
+
+      foreach($response->carts as $cart_item) {
+        if($cart_item->id == $cart_id) {
+          $cart_exists = true;
+          break;
+        }
+      }
+
+      if($cart_exists) {
+        return $this->mailchimp->ecommerce->deleteStoreCart($store, $cart_id);
+      }
     } catch (MailchimpMarketing\ApiException $e) {
       echo $e->getMessage();
     }

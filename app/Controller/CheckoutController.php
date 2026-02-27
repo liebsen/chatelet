@@ -857,7 +857,21 @@ class CheckoutController extends AppController
 
 		//MP
 		// $mp = new MP(Configure::read('mercadopago_client_id'), Configure::read('mercadopago_client_secret'));
-		
+		// check simulation
+
+		if(!empty($this->request->data['simulate'])) {
+			if(!empty($this->request->data['simulate_success'])) {
+				$redirect = '/checkout/mp_success?status=approved&collection_status=approved&preference_id=161684025-45653d36-57d8-4f70-b166-896d2d8886b5&site_id=MLA&external_reference='.$sale_id.'&collection_id=142159856356&payment_id=142159856356&payment_type=credit_card&processing_mode=aggregator&merchant_order_id=37304657565';
+			} else {
+				$redirect = '/checkout/mp_fail?status=pending&collection_status=pending&preference_id=161684025-45653d36-57d8-4f70-b166-896d2d8886b5&site_id=MLA&external_reference='.$sale_id.'&collection_id=142159856356&payment_id=142159856356&payment_type=credit_card&processing_mode=aggregator&merchant_order_id=37304657565';
+			}
+			return array(
+				'success' => true,
+				'message' => 'Espera mientras te redirigimos...',
+				'redirect' => $redirect
+			);
+		}
+
 		$mp = new MP($settings['mercadopago_client_id'], $settings['mercadopago_client_secret']);
 		$success_url = Router::url(array('controller' => 'checkout', 'action' => 'mp_success'), true);
 		$failure_url = Router::url(array('controller' => 'checkout', 'action' => 'mp_fail'), true);
@@ -991,7 +1005,10 @@ el pago.</p>
 				$cart_totals = $this->Session->read('cart_totals');
 
 				foreach($data as $item) {
-					$sale_items[] = $item['SaleProduct'];
+					$sale_items[] = array(
+						'id' => $item['SaleProduct']['product_id'],
+						'name' => $item['SaleProduct']['name']
+					);
 				}
 
 				$sale_object = array(
@@ -1014,7 +1031,7 @@ el pago.</p>
 				);
 
 				$this->notify_user($notify_data, 'success');
-				$this->Mailchimp->delete_cart($cart_totals['cart_id']);
+				$this->Mailchimp->delete_cart("chatelet", $cart_totals['cart_id']);
 				$this->Mailchimp->order("chatelet", $sale_id, $sale['value'], $sale_items);
 				$this->Session->delete('cart');
 				$this->Session->delete('cart_totals');
