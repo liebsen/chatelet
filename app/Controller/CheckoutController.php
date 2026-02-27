@@ -259,7 +259,7 @@ class CheckoutController extends AppController
 
 		$cart_totals['payment_method'] = $payment_method;		
 		$cart = $this->Cart->update(null, $cart_totals);
-		$this->Mailchimp->cart_update("chatelet",null, $cart_totals);
+		// $this->Mailchimp->cart_update("chatelet",null, $cart_totals);
 		// CakeLog::write('debug','cart(3):'.json_encode($cart), JSON_PRETTY_PRINT);
 		$cart['status'] = 'success';
 

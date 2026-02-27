@@ -99,7 +99,7 @@ class MailchimpComponent extends Component {
       $data = array(
         'domain' => "https://chatelet.com.ar",
         'email_address' => "news@chatelet.com.ar",
-        'is_syncing' => true,
+        'is_syncing' => false,
         'money_format' => "$",
         'primary_locale' => "es",
         'timezone' => "-3",
@@ -194,17 +194,25 @@ class MailchimpComponent extends Component {
         "lines" => $lines,
       ];
 
-      CakeLog::write('debug', 'cart_id:'.$cart_totals['cart_id']);
-      CakeLog::write('debug', 'cart_data:'.json_encode($cart_data));
+      //CakeLog::write('debug', 'cart_id:'.$cart_totals['cart_id']);
+      //CakeLog::write('debug', 'cart_data:'.json_encode($cart_data));
 
       $response = $this->mailchimp->ecommerce->getStoreCarts($store);
 
-      CakeLog::write('debug', 'reponse:'.json_encode($response));
+      //CakeLog::write('debug', 'reponse:'.json_encode($response));
 
       $this->add_customer($store, $user);
 
-      CakeLog::write('debug', 'store:'.json_encode($store));
-      if(!empty($response->carts[$cart['id']])) {
+      $cart_exists = false;
+
+      foreach($response->carts as $cart_item) {
+        if($cart_item->id == $cart_totals['cart_id']) {
+          $cart_exists = true;
+          break;
+        }
+      }
+
+      if($cart_exists) {
         CakeLog::write('debug', 'updateStore:'.json_encode($cart_data));
         return $this->mailchimp->ecommerce->updateStoreCart($store, $cart_totals['cart_id'], $cart_data);
       } else {
