@@ -26,6 +26,12 @@
 			        <h4 class="sub-header">Mailchimp APP Keys</h4>
 			        <p>Aquí podrás darle acceso a la tienda hacia Mailchimp. Estos datos se generan desde la plataforma de <a href="https://us12.admin.mailchimp.com/account/api/">Mailchimp</a>.</p>
 			        <div class="control-group">
+			          <label class="control-label d-flex justify-content-start align-items-center gap-05" for="mailchimp_on">
+			          	<input type="checkbox" id="mailchimp_on" name="data[mailchimp_on]" <?php echo $settings['mailchimp_on'] == 'on' ? ' checked' : '' ?>>
+			          	Activo
+			          </label>
+		          </div>			        
+			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('APP Key'); ?></label>
 			          <div class="controls">
 			            <input type="text" maxlength="100" name="data[mailchimp_appkey]" class="form-control" value="<?php echo @$settings['mailchimp_appkey'] ?>"/>
