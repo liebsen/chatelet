@@ -21,7 +21,7 @@
 
 require_once __DIR__ . '/../functions.php';
 
-if($_GET['mode'] == 'dev') {
+if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
     require_once __DIR__ . '/../../version.php';
 }
 
@@ -219,8 +219,12 @@ class AppController extends Controller
     }*/
 
     $this->set(
-      'version_text', 
-      \version_readable($version_count) . ' (' . $version_date . ')'
+      'version', 
+      array( 
+        'count' => \version_readable($version_count),
+        'date' => $version_date,
+        'text' => \version_readable($version_count) . ' (' . $version_date . ')'
+      )
     );
   }
 

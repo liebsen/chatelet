@@ -23,7 +23,7 @@
         <div class="mini-profile">
             <a href="/" target="_blank">
                 <?php echo $this->Html->image('logo.jpg', array('class' => 'img-responsive')); ?>
-                <small><?php echo $template['version']; ?></small>
+                <small><?=@$version['count'] ?><br><?=@$version['date'] ?></small>
             </a>
         </div>
         <!-- END Mini Profile -->

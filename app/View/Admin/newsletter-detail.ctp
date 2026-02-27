@@ -241,7 +241,7 @@
         </div>
       </div>
       <div class="form-actions">
-        <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-close mr-1"></i> Atrás</a>
+        <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
         <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
       </div>
     </form>

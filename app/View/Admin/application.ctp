@@ -6,7 +6,7 @@
 <?php echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION')) ?>
 
 	<form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
-    <div class="custom-tabs block-themed">
+    <div class="custom-tabs block-tabs block-themed">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="active text-center">
           <a href="#social">
@@ -38,9 +38,9 @@
 			      <?php foreach($socials as $item): ?>
 			        <div class="control-group">
 			          <label class="control-label d-flex justify-content-start align-items-center gap-05" for="<?php echo $item ?>_on">
+			          	<input type="checkbox" id="<?php echo $item ?>_on" name="data[<?php echo $item ?>_on]" <?php echo $settings[$item.'_on'] == 'on' ? ' checked' : '' ?>>
 			          	<i class="fa fa-lg fa-<?php echo $item ?>"></i>
-					        <input type="checkbox" id="<?php echo $item ?>_on" name="data[<?php echo $item ?>_on]" <?php echo $settings[$item.'_on'] == 'on' ? ' checked' : '' ?>>
-			          	<?php echo __($item); ?>
+			          	<?php echo __(ucfirst($item)); ?>
 			          </label>
 			          <div class="controls">
 			            <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control" value="<?php echo @$settings[$item.'_url'] ?>"/>
@@ -219,7 +219,7 @@
      	</div>
 	    <br />      
 	    <div class="form-actions">
-	      <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-close mr-1"></i> Atrás</a>
+	      <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
 	      <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
 	    </div>
 	  </div>

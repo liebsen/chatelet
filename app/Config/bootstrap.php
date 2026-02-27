@@ -129,22 +129,3 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
-
-/*
-$uploadLocal = true;
-
-Configure::write('uploadUrl',$uploadLocal ? '/files/uploads/' : 'https://d3baxuoyqsgua.cloudfront.net/');
-Configure::write('uploadLocal',$uploadLocal); 
-Configure::write('mobile', preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", isset($_SERVER["HTTP_USER_AGENT"]) ? $_SERVER["HTTP_USER_AGENT"] : '') || !empty($_GET['mobile']));
-
-Configure::write('S3.accessKey','AKIAJGNWSIAUPGFVLJTQ'); 
-Configure::write('S3.secret','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'); 
-*/
-
-//@include_once 'env.php';
-
-// autoupdate version if coding
-/*if($_SERVER["HTTP_X_REQUESTED_WITH"]!="XMLHttpRequest" && $_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-	require __DIR__ . '/../../version.php';	
-}*/
-

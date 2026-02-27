@@ -81,7 +81,7 @@
       </div>      
       <br />               
       <div class="form-actions">
-        <a href="/admin/legends" class="btn btn-info"><i class="fa fa-close mr-1"></i> Atrás</a>
+        <a href="/admin/legends" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
         <button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close mr-1"></i> Restaurar</button>
         <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
       </div>

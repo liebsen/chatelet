@@ -47,8 +47,8 @@ $(function(){
     for(var i=0;i<images.length;i++){
       if(images[i]!=""){
         p++;
-        moreviews += '<li class="dontResize"><a href="#"><img class="demo w3-opacity w3-hover-opacity-off img-responsive" onclick="currentDiv('+p+')" title="key__'+p+'"  id="img_01" src="/files/uploads/thumb_'+images[i]+'" ></a></li>';
-        surround += '<img class="mySlides cloudzoom img-responsive" id="mySlides zoom1" style="" src="/files/uploads/'+images[i]+'" data-cloudzoom=\'zoomSizeMode:"image",autoInside: 600\'/>';
+        moreviews += '<li class="dontResize"><a href="#"><img class="demo w3-opacity w3-hover-opacity-off img-responsive" onclick="currentDiv('+p+')" title="key__'+p+'"  id="img_01" src="https://chatelet.com.ar/files/uploads/thumb_'+images[i]+'" ></a></li>';
+        surround += '<img class="mySlides cloudzoom img-responsive" id="mySlides zoom1" style="" src="https://chatelet.com.ar/files/uploads/'+images[i]+'" data-cloudzoom=\'zoomSizeMode:"image",autoInside: 600\'/>';
       }
     }
     $("#ul-moreviews").html(moreviews);
