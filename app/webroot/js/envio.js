@@ -127,11 +127,13 @@ $(document).ready(function() {
     event.preventDefault();
     const tab = $('#envio_form .nav-tabs li.active').find('a').attr('href')
 
-
   	if(tab == '#envio'){
   		if(!$('.input-cp').val()) {
   			return onWarningAlert('Importante', 'Por favor ingrese un código postal')
   		}
+	    if(!$('input[name="shipping"]').val()) {
+	    	return onWarningAlert('Importante', 'Por favor seleccione un método de entrega')
+	    }
   	}
 
   	if(tab == '#retiro'){
@@ -139,10 +141,6 @@ $(document).ready(function() {
   			return onWarningAlert('Importante', 'Por favor selecione un local para retirar el producto')
   		}
   	}
-
-    if(!$('input[name="shipping"]').val()) {
-    	return onWarningAlert('Importante', 'Por favor seleccione un método de entrega')
-    }
     	
     const formData = $(this).serialize();
     // const formSerialized = $(this).serializeArray();
