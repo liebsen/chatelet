@@ -69,8 +69,7 @@ function get_mc_lists(){
   return [
     'contact',
     'subscription',
-    'store', 
-    'mainlist'
+    'store'
   ];
 }
 

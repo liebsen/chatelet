@@ -9,23 +9,29 @@ class MailchimpController extends AppController {
   }
 
   public function test(){
+    $this->RequestHandler->respondAs('application/json');
+    $this->autoRender = false;
+    
     $response = $this->Mailchimp->test();
-    echo '<pre>';
-    var_dump($response);
-    die();
+
+    return json_encode($response->test);
   }
 
   public function lists(){
+    $this->RequestHandler->respondAs('application/json');
+    $this->autoRender = false;
+
     $response = $this->Mailchimp->lists();
-    echo '<pre>';
-    var_dump($response);
-    die();
+
+    return json_encode($response->lists);
   }
 
   public function stores(){
+    $this->RequestHandler->respondAs('application/json');
+    $this->autoRender = false;
+
     $response = $this->Mailchimp->stores();
-    echo '<pre>';
-    print_r($response);
-    die();
+
+    return json_encode($response->stores);
   }
 }

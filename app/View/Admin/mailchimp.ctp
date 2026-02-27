@@ -54,12 +54,6 @@
 				<div class="tab-pane pane-lists">
 	        <h4 class="sub-header">Manejo de listas</h4>
 	        <p>Proporciona el código público del sitio para todos los servicios. </p>
-	        <?php if(!empty($settings['mailchimp_appkey'] && !empty($settings['mailchimp_prefix']))):?> 
-	        <p><a href="#" class="mc-action" data-method="stores">Ver Stores</a> <a href="#" class="mc-action" data-method="lists">Ver Audiencias</a></p>
-	        <div class="iframe d-none">
-	        	<iframe id="mailchimp"></iframe>
-	        </div>
-	      	<?php endif ?>
 		      <?php foreach($mc_lists as $item): ?>
 		        <div class="control-group">
 		          <label class="control-label d-flex justify-content-start align-items-center gap-05" for="<?php echo $item ?>_on">
@@ -67,7 +61,7 @@
 		          	<?php echo __(ucfirst($item)); ?>
 		          </label>
 		          <div class="controls">
-		            <input type="text" maxlength="100" name="data[mc_<?php echo $item ?>]" class="form-control" value="<?php echo @$settings['mc_'.$item] ?>"/>
+		          	<select class="form-control mc-select" name="data[mc_<?php echo $item ?>]" data-selected="<?php echo @$settings['mc_'.$item] ?>" data-type="<?= $item == 'store' ? 'store' : 'list' ?>"><option>...</option></select>
 		          </div>
 		          <span class="text-muted">Ingresá el ID correspondiente para la acción <?php echo __($item); ?></span>
 		        </div>
