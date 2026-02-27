@@ -86,21 +86,14 @@
                             <!-- Desktop Button (Visible only on desktop resolutions) -->
                             <li class="">
                                 <a href="javascript:void(0)" id="toggle-side-content" class="collapsed" data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar">
-                                    <i class="fa fa-bars"></i> Menú
+                                    <i class="fa fa-bars"></i>
                                 </a>
                             </li>
                             <!-- END Desktop Button -->
 
                             <!-- Divider -->
-                            <li class="divider-vertical"></li>
 
-                            <?php if (!empty($h1)): ?>
-                            <li class="dropdown dropdown-theme-options section-indicator">
-                                <a href="#">
-                                    <i class="<?php echo $h1['icon'] ?>"></i> <?php echo $h1['name']; ?>
-                                </a>
-                            </li>
-                            <?php endif ?>
+
 
 
                             <li class="dropdown dropdown-theme-options pull-right">
@@ -116,7 +109,14 @@
                                     Tienda
                                 </a>
                             </li>
-
+                            <?php if (!empty($h1)): ?>
+                            <li class="divider-vertical"></li>                                
+                            <li class="dropdown dropdown-theme-options section-indicator">
+                                <a href="#">
+                                    <i class="<?php echo $h1['icon'] ?>"></i> <?php echo $h1['name']; ?>
+                                </a>
+                            </li>
+                            <?php endif ?>
 
                         </ul>
                     </div>

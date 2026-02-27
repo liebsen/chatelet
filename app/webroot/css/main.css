@@ -203,7 +203,8 @@ body {
 }
 
 #page-content {
-    padding: 20px;
+    /*padding: 20px;*/
+    padding-top: 1rem;
     min-height: 1200px;
     background-color: #f9f9f9;
     position: relative;
@@ -380,11 +381,6 @@ body {
     color: #888!important;
 }
 
-@media(min-width: 992px) {
-    .section-indicator {
-        display: none;
-    }
-}
 .theme-colors {
     list-style: none;
     padding: 10px 0 0;
@@ -777,10 +773,6 @@ body {
     border: 0;
     padding: 20px;
     margin: 0;
-}
-
-.block-tabs.block-themed {
-    border: 2px solid #2980b9;
 }
 
 .block-tabs.block-themed > .nav-tabs {
@@ -2405,6 +2397,7 @@ a.text-black:focus {
 header.navbar {
     margin: 0;
     min-height: 40px;
+    border-radius: 0;
 }
 
 header.navbar .row {
@@ -2923,6 +2916,7 @@ textarea.form-control {
 }
 
 .table thead > tr > th {
+    border-radius: 0;
     border-bottom: none;
 }
 

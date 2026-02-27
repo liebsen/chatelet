@@ -81,7 +81,7 @@ echo $this->Session->flash();
         <!-- Login Container -->
         <div id="login-container" class="display-none">
             <!-- Login Block -->
-            <div class="block-tabs block-themed">
+            <div class="block-tabs">
                 <ul id="login-tabs" class="nav nav-tabs" data-toggle="tabs">
                     <li class="active text-center">
                         <a href="#login-form-tab">

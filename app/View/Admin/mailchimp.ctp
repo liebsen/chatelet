@@ -7,7 +7,7 @@
 <?php echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION')) ?>
 
 	<form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
-    <div class="custom-tabs block-tabs block-themed">
+    <div class="custom-tabs block-tabs">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="active text-center">
           <a href="#keys">

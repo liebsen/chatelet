@@ -7,7 +7,7 @@
 	<div class="block-content">
 		<form action="" id="display_form" method="post" class="form-inline" enctype="multipart/form-data">
 			<input type="hidden" name="data[id]" value="1" />
-	    <div class="custom-tabs block-themed">
+	    <div class="custom-tabs block-tabs">
 	      <ul class="nav nav-tabs" id="myTab" role="tablist">
 	        <li class="active text-center">
 	          <a href="#splash">

@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <div class="span12">
+  <div class="block-tabs span12">
       <ul class="nav nav-tabs">
         <?php foreach ($navs as $key => $nav): ?>        
             <li class="<?= $_SERVER['REQUEST_URI'] === $nav['active'] ? 'active' : '' ?>">

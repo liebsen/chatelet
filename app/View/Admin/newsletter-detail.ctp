@@ -22,7 +22,7 @@
           echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
         }
       ?>
-      <div class="custom-tabs block-themed">
+      <div class="custom-tabs block-tabs">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="active text-center">
             <a href="#main">
