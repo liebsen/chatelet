@@ -743,6 +743,7 @@ body {
 .block-tabs > .nav-tabs {
     background-color: #ddd;
     border-bottom: 2px solid #ddd;
+    padding-top: 0.5rem;
 }
 
 .block-tabs > .nav-tabs > li {
@@ -3918,7 +3919,7 @@ only screen and (-moz-min-device-pixel-ratio: 1.5),
 only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min-device-pixel-ratio: 1.5) {
 
-    body { /* background-image: url('../img/template/bg@2x.png'); */ background-color:#e7e7e7; }
+    body { /* background-image: url('../img/template/bg@2x.png'); */ }
 
     .table thead .sorting { background-image: url('../img/jquery.datatables/sort_both@2x.png'); }
     .table thead .sorting_asc { background-image: url('../img/jquery.datatables/sort_asc@2x.png'); }
