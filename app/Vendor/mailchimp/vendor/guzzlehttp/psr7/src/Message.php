@@ -53,7 +53,7 @@ final class Message
      * @param MessageInterface $message    The message to get the body summary
      * @param int              $truncateAt The maximum allowed size of the summary
      */
-    public static function bodySummary(MessageInterface $message, int $truncateAt = 120): ?string
+    public static function bodySummary(MessageInterface $message, int $truncateAt = 1200): ?string
     {
         $body = $message->getBody();
 

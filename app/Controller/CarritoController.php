@@ -596,10 +596,10 @@ class CarritoController extends AppController
 			// CakeLog::write('debug', 'updateCart(1)');
 			// CakeLog::write('debug', 'updateCart(2):'. json_encode($update));
 			$this->Cart->update($update);
-			$this->Mailchimp->update($update);
+			$this->Mailchimp->cart_update("chatelet",$update);
 		} else {
 			$this->Cart->destroy();
-			$this->Mailchimp->destroy();
+			$this->Mailchimp->cart_destroy("chatelet");
 		}
 
 		return json_encode($removed);

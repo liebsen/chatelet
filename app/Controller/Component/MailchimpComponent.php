@@ -49,10 +49,72 @@ class MailchimpComponent extends Component {
     }
   }
 
+  public function products($store) {
+    try {
+      $response = $this->mailchimp->ecommerce->getAllStoreProducts($store);
+      return $response;
+    } catch (MailchimpMarketing\ApiException $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function customers($store) {
+    try {
+      $response = $this->mailchimp->ecommerce->getAllStoreCustomers($store);
+      return $response;
+    } catch (MailchimpMarketing\ApiException $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function carts($store) {
+    try {
+      $response = $this->mailchimp->ecommerce->getStoreCarts($store);
+      return $response;
+    } catch (MailchimpMarketing\ApiException $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function store($id) {
+    try {
+      $response = $this->mailchimp->ecommerce->getStore($id);
+      return $response;
+    } catch (MailchimpMarketing\ApiException $e) {
+      echo $e->getMessage();
+    }
+  }
+
   public function stores() {
     try {
       $response = $this->mailchimp->ecommerce->stores();
       return $response;
+    } catch (MailchimpMarketing\ApiException $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function sync_store($store) {
+    try {
+      $data = array(
+        'domain' => "https://chatelet.com.ar",
+        'email_address' => "news@chatelet.com.ar",
+        'is_syncing' => true,
+        'money_format' => "$",
+        'primary_locale' => "es",
+        'timezone' => "-3",
+        'phone' => "11 2383 3032",
+        'address' => array(
+          "address1" => "25 De Mayo 202",
+          "city" => "Moron",
+          "province" => "Buenos Aires",
+          "postal_code" => "1017",
+          "country" => "Argentina",
+          "country_code" => "ar",
+        )
+      );
+
+      return $this->mailchimp->ecommerce->updateStore($store, $data);
     } catch (MailchimpMarketing\ApiException $e) {
       echo $e->getMessage();
     }
@@ -100,7 +162,7 @@ class MailchimpComponent extends Component {
     }
   }
   
-  public function update($cart=false, $cart_totals=false) {
+  public function cart_update($store, $cart=false, $cart_totals=false) {
     if (empty($cart)) {
       $cart = $this->controller->Session->read('cart');
     }
@@ -110,50 +172,78 @@ class MailchimpComponent extends Component {
     }
     
     $lines = [];
-
+    $user = $this->controller->Auth->user();
     try {
+      $j=1;
       foreach($cart as $i => $item) {
         $lines[] = [
-          "id" => $i+1,
-          "product_id" => $item['id'],
-          "product_variant_id" => $item['id'],
+          "id" => (string) $j,
+          "product_id" => (string) $item['id'],
+          "product_variant_id" => (string) $item['id'],
           "quantity" => 1,
-          "price" => $item['price'], 
+          "price" => (float) $item['price'], 
         ];
+        $j++;
       }
 
-      $cart = [
-        "id" => $cart_totals["cart_id"],
+      $cart_data = [
+        "id" => (string) $cart_totals["cart_id"],
         "currency_code" => "ARS",
-        "customer" => ["id" => $this->controller->Auth->user('id')],
-        "order_total" => $cart_totals['grand_total'],
+        "customer" => ["id" => (string) $user['id']],
+        "order_total" => (float) $cart_totals['grand_total'],
         "lines" => $lines,
       ];
 
-      CakeLog::write('debug', 'cart:'.json_encode($cart));
+      CakeLog::write('debug', 'cart_id:'.$cart_totals['cart_id']);
+      CakeLog::write('debug', 'cart_data:'.json_encode($cart_data));
 
-      return $this->mailchimp->ecommerce->addStoreCart("chatelet", $cart);
+      $response = $this->mailchimp->ecommerce->getStoreCarts($store);
+
+      CakeLog::write('debug', 'reponse:'.json_encode($response));
+
+      $this->add_customer($store, $user);
+
+      CakeLog::write('debug', 'store:'.json_encode($store));
+      if(!empty($response->carts[$cart['id']])) {
+        CakeLog::write('debug', 'updateStore:'.json_encode($cart_data));
+        return $this->mailchimp->ecommerce->updateStoreCart($store, $cart_totals['cart_id'], $cart_data);
+      } else {
+        CakeLog::write('debug', 'addStore:'.json_encode($cart_data));
+        return $this->mailchimp->ecommerce->addStoreCart($store, $cart_data);  
+      }
 
     } catch (MailchimpMarketing\ApiException $e) {
       echo $e->getMessage();
     }
   }
 
-  public function add_product($item) {
+  public function add_customer($store,$customer) {
     try {
-      $response = $this->mailchimp->ecommerce->addStoreProduct("chatelet", [
+      return $this->mailchimp->ecommerce->setStoreCustomer($store, $customer['id'], [
+        "id" => $customer['id'],
+        "opt_in_status" => true,
+        "email_address" => $customer['email'],
+        "first_name" => $customer['name'],
+        "last_name" => $customer['surname'],
+      ]);    
+    } catch (MailchimpMarketing\ApiException $e) {
+      echo $e->getMessage();
+    }  
+  }
+
+  public function add_product($store,$item) {
+    try {
+      return $this->mailchimp->ecommerce->addStoreProduct($store, [
         "id" => $item['id'],
         "title" => $item['name'],
         "variants" => [["id" => $item['id'], "title" => $item['name']]],
       ]);
-
-      return $response;
     } catch (MailchimpMarketing\ApiException $e) {
       echo $e->getMessage();
     }    
   }
 
-  public function order($order_id, $customer_id, $total, $sale_items) {
+  public function order($store,$order_id, $customer_id, $total, $sale_items) {
     // $response = $client->ecommerce->setOrder("d168ae47ee", "order_id", [
     $lines = [];
     foreach($sale_items as $i => $item) {
@@ -167,7 +257,7 @@ class MailchimpComponent extends Component {
     }
 
     try {
-      return $this->mailchimp->ecommerce->addStoreOrder("chatelet", [
+      return $this->mailchimp->ecommerce->addStoreOrder($store, [
         "id" => $order_id,
         "customer" => ["id" => $customer_id,],
         "currency_code" => "ARS",
@@ -179,9 +269,9 @@ class MailchimpComponent extends Component {
     }
   }
 
-  public function delete_cart($cart_id) {
+  public function delete_cart($store,$cart_id) {
     try {
-      $response = $this->mailchimp->ecommerce->deleteStoreCart("d168ae47ee", $cart_id);
+      $response = $this->mailchimp->ecommerce->deleteStoreCart($store, $cart_id);
     } catch (MailchimpMarketing\ApiException $e) {
       echo $e->getMessage();
     }

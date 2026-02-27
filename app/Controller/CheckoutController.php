@@ -165,7 +165,7 @@ class CheckoutController extends AppController
 			// CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
 			
 			$this->Cart->update(null, $cart_totals);
-			$this->Mailchimp->update(null, $cart_totals);
+			$this->Mailchimp->cart_update("chatelet",null, $cart_totals);
       return json_encode($response);
 		}
 
@@ -231,7 +231,7 @@ class CheckoutController extends AppController
 			CakeLog::write('debug', 'pago(data)'.json_encode($data));
 			CakeLog::write('debug', 'pago(cart_totals)'.json_encode($cart_totals));
 			$this->Cart->update(null, $cart_totals);
-			$this->Mailchimp->update(null, $cart_totals);
+			$this->Mailchimp->cart_update("chatelet",null, $cart_totals);
 
 			return json_encode($response);
 		}
@@ -259,7 +259,7 @@ class CheckoutController extends AppController
 
 		$cart_totals['payment_method'] = $payment_method;		
 		$cart = $this->Cart->update(null, $cart_totals);
-		$this->Mailchimp->update(null, $cart_totals);
+		$this->Mailchimp->cart_update("chatelet",null, $cart_totals);
 		// CakeLog::write('debug','cart(3):'.json_encode($cart), JSON_PRETTY_PRINT);
 		$cart['status'] = 'success';
 
@@ -1015,7 +1015,7 @@ el pago.</p>
 
 				$this->notify_user($notify_data, 'success');
 				$this->Mailchimp->delete_cart($cart_totals['cart_id']);
-				$this->Mailchimp->order($sale_id, $sale['value'], $sale_items);
+				$this->Mailchimp->order("chatelet", $sale_id, $sale['value'], $sale_items);
 				$this->Session->delete('cart');
 				$this->Session->delete('cart_totals');
 
@@ -1083,8 +1083,8 @@ el pago.</p>
 		// error_log('success payment: '.json_encode($this->Session->read('sale_data')));
 		// CakeLog::write('debug', 'Success payment:'.json_encode($this->Session->read('sale_data')));
 
-		$this->Mailchimp->order($sale_id, $total, $items);
-		$this->Mailchimp->delete_cart($cart_totals['cart_id']);
+		$this->Mailchimp->order("chatelet",$sale_id, $total, $items);
+		$this->Mailchimp->delete_cart("chatelet",$cart_totals['cart_id']);
 
 		if( $this->Session->check( 'sale_data' ) ){
 			$sale_data = $this->Session->read('sale_data');

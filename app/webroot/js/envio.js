@@ -140,7 +140,7 @@ $(document).ready(function() {
   		}
   	}
 
-    if(!$('input[name="shipping"]').val()) {
+    if(!$('input[name="cargo"]').val()) {
     	return onWarningAlert('Importante', 'Por favor seleccione un método de entrega')
     }
     	
