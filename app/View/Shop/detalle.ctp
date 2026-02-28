@@ -245,7 +245,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
                       }
                   ?>
                 </div>
-                <div class="size-optionsrow" data-toggle="buttons">
+                <div class="size-options row" data-toggle="buttons">
                 <!--div class="size-options d-flex justify-content-start align-items-start gap-1 pt-2" data-toggle="buttons"-->
                   <!--option value="">Talle</option-->
                   <?php
