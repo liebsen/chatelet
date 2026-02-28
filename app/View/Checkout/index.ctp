@@ -10,14 +10,14 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 // echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 ?>
 <!--section id="main" class="is-flex-center has-checkout-steps min-h-101"-->
-<section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
+<section id="main" class="has-checkout-steps container animation-fadeIn delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 	<?php if(!empty($cart)): ?>
   <div class="wrapper d-flex flex-column justify-content-center align-items-center gap-1">
 		<!--div class="header">
 			<h1>Registro</h1>			
 		</div-->
-		<div class="animated fadeIn delay">
+		<div class="animation-fadeIn delay">
 			<div class="is-flex flex-column-sm justify-content-center align-items-start gap-1">
 			<?php if ($loggedIn): ?>
 				<div class="card p-4 p-md-5 max-25">

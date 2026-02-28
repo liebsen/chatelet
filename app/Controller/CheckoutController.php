@@ -860,11 +860,12 @@ class CheckoutController extends AppController
 		// check simulation
 
 		if(!empty($this->request->data['simulate'])) {
+			$redirect = '/checkout/mp_fail?status=pending&collection_status=pending&preference_id=161684025-45653d36-57d8-4f70-b166-896d2d8886b5&site_id=MLA&external_reference='.$sale_id.'&collection_id=142159856356&payment_id=142159856356&payment_type=credit_card&processing_mode=aggregator&merchant_order_id=37304657565';
+
 			if(!empty($this->request->data['simulate_success'])) {
 				$redirect = '/checkout/mp_success?status=approved&collection_status=approved&preference_id=161684025-45653d36-57d8-4f70-b166-896d2d8886b5&site_id=MLA&external_reference='.$sale_id.'&collection_id=142159856356&payment_id=142159856356&payment_type=credit_card&processing_mode=aggregator&merchant_order_id=37304657565';
-			} else {
-				$redirect = '/checkout/mp_fail?status=pending&collection_status=pending&preference_id=161684025-45653d36-57d8-4f70-b166-896d2d8886b5&site_id=MLA&external_reference='.$sale_id.'&collection_id=142159856356&payment_id=142159856356&payment_type=credit_card&processing_mode=aggregator&merchant_order_id=37304657565';
 			}
+
 			return array(
 				'success' => true,
 				'message' => 'Espera mientras te redirigimos...',

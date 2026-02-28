@@ -15,7 +15,7 @@
 
 ?>
 
-        <div id="carousel" class="carousel slide animated animated fadeIn speed delay2" data-interval="3000" data-ride="carousel">
+        <div id="carousel" class="carousel slideanimated fadeIn speed delay2" data-interval="3000" data-ride="carousel">
 
           <!-- Wrapper for slides -->
           <div class="carousel-inner " role="listbox">
@@ -211,8 +211,8 @@
 
         <?php elseif (count($popupBG)==1):?>
 
-            <div class="content js-show-modal is-clickable animated fadeIn delay3" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.$settings['upload_url'].$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
-                <div class="tap-to-continue animated fadeIn delay3">
+            <div class="content js-show-modal is-clickablefadeIn delay3" data-dismiss="modal" style="<?=(!empty($home['img_popup_newsletter']))?'background-image: url('.$settings['upload_url'].$popupBG[0].');background-position-x: center;background-repeat: no-repeat;':'background: url(images/livebox-bg.jpg);'?><?=(isset($popupBgWidth))?'background-size: cover;':''?>">
+                <div class="tap-to-continuefadeIn delay3">
                     <i class="fa fa-hand-o-right mr-2"></i> 
                     <span class="ml-2">Continuar con la tienda</span>
                 </div>

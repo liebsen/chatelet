@@ -1,5 +1,5 @@
  <div id="headhelp">
-  <div class="wrapper container animated fadeIn w-100">
+  <div class="wrapper container animation-fadeIn w-100">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xs-12 col-md-4">
         <div class="datos-bancarios pr-4">
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="col-xs-12 col-md-8 enviar-comprobante">
-        <div class="animated fadeIn delay box-cont">
+        <div class="box-cont">
           <div class="box mt-8">  
             <h3 class="h3"><?= $settings['bank_instructions_title'] ?></h3>
             <p class="pre-system font-system"><?= $settings['bank_instructions_text'] ?></p>

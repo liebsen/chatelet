@@ -10,7 +10,7 @@
 	];
 ?>
 
-<section id="main" class=" animated fadeIn delay min-h-101<?php echo empty($cart) ? ' bg-light' : ' container' ?>">
+<section id="main" class="min-h-101<?php echo empty($cart) ? ' bg-light' : ' container' ?>">
 <?php if (!empty($cart)) : ?>
 	<?php echo $this->element('title-faq', array('title' => "Carrito")) ?>
 <?php endif ?>

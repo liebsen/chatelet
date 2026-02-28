@@ -1,5 +1,5 @@
 <section id="productOptions">
-  <div class="wrapper animated fadeIn delay">
+  <div class="wrapper">
     <div class="container">
       <form name="search">
         <div class="is-flex-center flex-column gap-05 min-h-8">

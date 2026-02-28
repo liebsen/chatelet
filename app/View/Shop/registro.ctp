@@ -37,7 +37,7 @@ if (!$loggedIn) {
 ?>
 <section id="detalle" class="is-flex-center flex-column min-h-101">
   	<div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1">
-		<div class="flex-row animated fadeIn">
+		<div class="flex-row animation-fadeIn">
 			<div class="flex-col">
 				<?php 
 					echo $this->Form->create(null, array(

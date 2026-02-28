@@ -51,12 +51,12 @@ function updateSrcTo(obj){
 <?php if(!empty($category['banner_url'])): ?>
 <div id="headabrigos">
   <div class="img-resp is-main" style="background-image:url(<?php echo $settings['upload_url'].$category['banner_url'] ?>)">
-    <h1 class="name_shop animated delay3 fadeIn"><?php echo $category['name']; ?></h1>
+    <h1 class="name_shopdelay3 fadeIn"><?php echo $category['name']; ?></h1>
   </div>  
 </div>
 <?php endif ?>
 
-<section id="productOptions" class="animated fadeIn">
+<section id="productOptions">
     <div class="wrapper">
         <div class="row">
             <div class="hidden-xs hidden-sm col-sm-3">

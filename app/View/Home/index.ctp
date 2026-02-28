@@ -3,7 +3,7 @@ echo $this->Session->flash();
 ?>
 <div class="wrapper content">
 
-  <div id="carousel" class="carousel slide animated fadeIn delay" data-type="slider" data-interval="10000" data-ride="carousel">
+  <div id="carousel" class="carousel slide animation-fadeIn delay" data-type="slider" data-interval="10000" data-ride="carousel">
     <?php echo $this->element('carousel') ?>
   </div>
 

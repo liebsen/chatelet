@@ -1,5 +1,5 @@
 
-  <section id="optionsHelp" class="desktop animated fadeIn delay">
+  <section id="optionsHelp" class="desktop animation-fadeIn animation-both delay">
       <a href="/ayuda/como_comprar">¿Cómo comprar?</a>
       <a href="/ayuda/envios">Envíos</a>
       <a href="/ayuda/metodos_de_pago">Formas de pago</a>
@@ -39,6 +39,7 @@
   flex-wrap: nowrap;
   border:none;
   padding: 1rem;
+  margin: 0;
 }
 
 #optionsHelp.mobile a.active {
@@ -50,10 +51,10 @@
 
 #optionsHelp a { 
   font-size: 0.9rem;
-  color: #808080;
+  color: #404040;
   display: inline-block; 
-  min-height: 2.25rem;
-  padding: 0 1.5rem;
+  min-height: 1.5rem;
+  margin: 0 0.5rem;
   font-weight: 300;
   text-transform: uppercase;
   border-bottom: 1px solid #e7e7e7;

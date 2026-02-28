@@ -64,6 +64,7 @@ html, body {
 
 .is-bordered {
 	border: 2px solid #f2f2f2;
+	border-radius: 5px;
 }
 
 .is-unlifted {
@@ -1778,7 +1779,7 @@ span.validation-password {
 
 @media screen and (max-width: 768px) {
 	.navbar-container {
-		min-height: 106px;
+		min-height: 100px;
 	}
 	.modal-dialog {
 		width: calc(100dvw - 14px);

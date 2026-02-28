@@ -1,4 +1,4 @@
-  <div class="container-fluid<?php echo in_array(Router::url(), array('/', '/home')) ? ' animated fadeIn delay' : '' ?>">
+  <div class="container-fluid is-flex-between">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <a class="navbar-brand"
@@ -64,7 +64,7 @@
           <li class="dropdown">
             <?php if ($loggedIn) { ?>
             <a href="#" class="dropdown-toggle js-activated is-unlifted" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
-              <!--span class="count animated scaleIn speed delay1">
+              <!--span class="countscaleIn speed delay1">
                 <i class="fa fa-check text-white fa-xs"></i>
               </span-->
               <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-green fa-user-o"></i>
@@ -110,10 +110,12 @@
           </li><!-- /.Login -->
           <li class="dropdown is-clickable">
             <a href="#" data-toggle="sidebar" data-target=".sidebar-cart" class="dropdown-toggle js-activated<?=count($cart) ? ' text-theme':'' ?>" data-toggle="dropdown" data-hover="dropdown">
-              <?php if(count($cart)):?>
-              <span data-toggle="sidebar" data-target=".sidebar-cart" class="count animated scaleIn speed delay1"><?=count($cart)?></span>
-              <?php endif ?>
-              <span data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= count($cart) ? 'text-green' : 'text-lightgrey' ?>"></i></span>
+              <span class="count-cont" data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito">
+                <?php if(count($cart)):?>
+                <span class="count animation-expandOpen delay1" data-toggle="sidebar" data-target=".sidebar-cart"><?=count($cart)?></span>
+                <?php endif ?>                
+                <i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= count($cart) ? 'text-green' : 'text-lightgrey' ?>"></i>
+              </span>
             </a>
             <ul class="dropdown-menu">
               <li>

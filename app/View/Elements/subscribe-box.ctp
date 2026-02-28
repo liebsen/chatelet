@@ -1,4 +1,4 @@
-  <section class="subscribe-box animated delay3 d-none">
+  <section class="animation-hatch animation-both delay3 subscribe-box d-none">
     <div class="w-100">
       <span class="corner-pin is-clickable">
         <i class="ico-times" role="img" aria-label="Cerrar"></i>
@@ -70,6 +70,7 @@
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
       outline: 2px solid #c5c5c5;
+      animation-fill-mode: both;
     }
 
     @media(min-width: 768px) {
@@ -125,7 +126,7 @@
       
       if(!subscription_release || subscription_release == 'undefined') {
         $('.subscribe-box').removeClass('d-none')
-        $('.subscribe-box').addClass('fadeIn')
+        $('.subscribe-box').addClass('animation-fadeIn')
       } else {
         $('.subscribe-btn').delay(3000).fadeIn('slow')
       }
@@ -138,6 +139,7 @@
 
       $('.corner-pin').on('click', function(e) {
         e.preventDefault()
+        $('.subscribe-box').removeClass('delay3')
         $('.subscribe-box').fadeOut(1000)
         $('.subscribe-btn').delay(3000).fadeIn(1000)
       })

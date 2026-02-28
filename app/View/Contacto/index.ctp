@@ -1,16 +1,15 @@
 <?php
 	echo $this->Session->flash();
 ?>
-  <section id="headcontacto">
-    <div class="wrapper container animated fadeIn w-100">
+  <section id="headhelp">
+    <?php echo $this->element('navbar-ayuda'); ?>
+    <div class="wrapper container animation-fadeIn w-100">
       <div class="row">
         <div class="col-md-4">
-          <div class="animated fadeIn delay">
-            <h1>Contactate<br>con nosotros</h1>
-          </div>
+          <h1>Contactate<br>con nosotros</h1>
         </div>
         <div class="col-md-8 p-0">
-          <div class="animated fadeIn delay box-cont">
+          <div class="box-cont">
             <div class="box">
               <h3>¿Tenés alguna consulta o sugerencia?</h3>
               <p>Completá el siguiente formulario y hacenos llegar tus inquietudes o recomendaciones que creas pertinentes.</p>
@@ -26,7 +25,8 @@
       <?php echo $this->Form->create('Contact', array('class' => 'contacto')); ?>
       <div class="flex-row">
         <div class="flex-col">
-
+          <h1>Contacta con Châtelet</h1>
+          <p>Elige que tipo de consulta deseas realizar, rellena tus datos y escribe tu consulta, te responderemos en cuanto nos sea posible.</p>
           <div class="form-group">
             <input type="text" name="data[Contact][name]" class="form-control" placeholder="Nombre y Apellido" required />
           </div>
@@ -54,8 +54,8 @@
         <div class="flex-col desktop">
           <div class="card p-0">
             <div class="card-body is-bordered">
-              <h3>Contacta con Châtelet</h3>
-              <p>Elige que tipo de consulta deseas realizar, rellena tus datos y escribe tu consulta, te responderemos en cuanto nos sea posible.</p>
+              <h3><i class="gi gi-headset mr-1"></i> Soporte Chatelet</h3>
+              <p>Tus consultas nos ayudan a mejorar para poder brindar una mejor experiencia de compra a todas nuestra comunidad.</p>
             </div>
           </div>
         </div>  

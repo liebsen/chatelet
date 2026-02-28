@@ -39,14 +39,15 @@
     <?php echo $this->element('css_root') ?>
 
     <?php
-      echo $this->Html->css('font-awesome.min');
+      // echo $this->Html->css('font-awesome.min');
       echo $this->Html->css('bootstrap-select');
       echo $this->Html->css('bootstrap.css?v=' . Configure::read('APP_VERSION'));
       // echo $this->Html->css('bootstrapValidator.min');
       echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION'));
       echo $this->Html->css('chatelet.css?v=' . Configure::read('APP_VERSION'));
       echo $this->Html->css('custom.css?v=' . Configure::read('APP_VERSION'));
-      echo $this->Html->css('animate.css?v=' . Configure::read('APP_VERSION'));
+      // echo $this->Html->css('animate.css?v=' . Configure::read('APP_VERSION'));
+      echo $this->Html->css('plugins.css?v=' . Configure::read('APP_VERSION'));
       echo $this->Html->script('jquery-1.11.1.min');
       echo $this->Html->script('vendor/modernizr-2.8.3.min.js');
       echo $this->Html->script('bootstrap');
@@ -69,7 +70,7 @@
     </script>
   </head>
   <body class="noscroll p-0">
-    <?php if($_SERVER['SERVER_NAME'] !== 'chatelet.com.ar') :?>
+    <?php if($settings['env_staging']) : ?>
       <div class="dev-note is-flex-center p-3 text-center bg-danger">
         <span class="corner-pin is-clickable" style="top: 0.5rem!important" onclick="$('.dev-note').remove()">
           <i class="ico-times"></i>

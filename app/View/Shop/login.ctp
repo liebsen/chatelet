@@ -13,9 +13,9 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 echo $this->Html->script('particular-validation', array('inline' => false));
 ?>
 <section id="detalle" class="is-flex-center min-h-101">
-  <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 animated fadeIn delay">
+  <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1">
   	<div class="d-flex justify-content-center align-items-center gap-1">
-  		<img src="/images/isologo.png" width="30"/> 
+  		<i class="gi gi-lock"></i>
 			<h2 class="text-uppercase">
 				<?php echo 'Inicia sesión para continuar'; ?>
 			</h2>			

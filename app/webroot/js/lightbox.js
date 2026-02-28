@@ -178,7 +178,7 @@
       this.changeImage(imageNumber);
     };
 
-    // Hide most UI elements in preparation for the animated resizing of the lightbox.
+    // Hide most UI elements in preparation for theresizing of the lightbox.
     Lightbox.prototype.changeImage = function(imageNumber) {
       var self = this;
 

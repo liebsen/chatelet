@@ -78,14 +78,14 @@
 						          	</p>
 						          </span>
 						        </div>
-										<div class="col-xs-12 option-regular coupon-discount hidden animated speed">
+										<div class="col-xs-12 option-regular coupon-discount hiddenspeed">
 						          <label class="d-inline text-theme">
 						          	<span class="h4">Descuento Cupón</span><br>
 						          	<p class="mt-2 text-bold text-left h2 mb-0">
 						          		<span class="coupon_bonus"></span>
 						          	</p>
 						          </label>
-											<div class="coupon-info alert mt-4 mb-0 alert-success animated hidden">
+											<div class="coupon-info alert mt-4 mb-0 alert-successhidden">
 												<p>
 													<i class="fa fa-tags"></i>
 													<span class="coupon-info-info"></span>

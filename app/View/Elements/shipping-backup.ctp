@@ -38,7 +38,7 @@
     	<span class="h5"><?= $freeShipping ? 'Envío gratuito' : 'Envío a domicilio' ?></span><br>
     </div>
   	<p class="mt-2 text-sm">Para envíos a domicilio ingresá tu código postal</p>
-	  <div class="cargo-blocks shipment-block animated d-none">
+	  <div class="cargo-blocks shipment-blockd-none">
 		  <div class="d-flex justify-content-center align-items-start flex-column gap-1">
 				<form class="w-100" id="calulate_shipping" data-url="<?php echo $this->Html->url(array('action'=>'deliveryCost')) ?>">
 					<div class="d-flex justify-content-center align-items-center gap-05">
@@ -65,7 +65,7 @@
     	<span class="h5">Retiro en sucursal</span>
     </div>
   	<p class="mt-2 text-sm"><span>Elegí esta opción para evitar cargos de envío. <span class="carrito_takeaway_text"><?= $carrito_takeaway_text ?></span></span></p>
-	  <div class="cargo-blocks takeaway-block animated d-none">
+	  <div class="cargo-blocks takeaway-blockd-none">
 			<ul class="generic-select takeaway-options">
 				<?php foreach ($stores as $store):?>
 					<li store="<?php echo $store['Store']['name'];?>"

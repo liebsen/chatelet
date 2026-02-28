@@ -5,15 +5,13 @@
 
   <div id="headhelp">
     <?php echo $this->element('navbar-ayuda'); ?>
-    <div class="wrapper container animated fadeIn w-100">
+    <div class="wrapper container animation-fadeIn w-100">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col-xs-12 col-md-4">
-          <div class="animated fadeIn delay">
-            <h1>Mis<br>compras</h1>
-          </div>
+          <h1>Mis<br>compras</h1>
         </div>
         <div class="col-xs-12 col-md-8">
-          <div class="animated fadeIn delay box-cont">
+          <div class="box-cont">
             <div class="box">
               <h3>Tus compras en Châtelet</h3>
               <p>Revisa tu historial de compras. Aquí encontrarás las compras realizadas a tu cuenta en <i>Châtelet</i>. <a href="/contacto">Mensajeanos</a> si tienes dudas o inconvenientes.</p>
@@ -123,7 +121,7 @@
                 </div>
               </p>
               <div class="text-right d-flex justify-content-end align-items-center gap-1">
-                <span class="price animated fadeIn delay"><?= \price_format($sale['Sale']['value']) ?> 
+                <span class="price animation-fadeIn delay"><?= \price_format($sale['Sale']['value']) ?> 
                 <?php if($sale['Sale']['dues'] > 1):?>
                   <span class="text-muted text-sm">en <?= $sale['Sale']['dues'] ?> cuotas</span>
                 <?php endif ?>

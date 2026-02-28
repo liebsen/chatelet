@@ -182,7 +182,7 @@
                         <strong>$<?= @$sale['collection']['transaction_amount'] ?: @$sale['local_sale']['value'] ?> </strong><br>
                         <small>(<?= count(@$sale['collection']['sale_products']) ?> items)</small>
                     </td>
-                    <td class="col-xs-1 text-center<?= @$sale['local_sale']['cargo'] !== 'takeaway' ? (empty(@$sale['local_sale']['def_orden_retiro']) ? ' bg-danger animated flash slow infinite' : ' bg-success') : '' ?>">
+                    <td class="col-xs-1 text-center<?= @$sale['local_sale']['cargo'] !== 'takeaway' ? (empty(@$sale['local_sale']['def_orden_retiro']) ? ' bg-dangerflash slow infinite' : ' bg-success') : '' ?>">
                     <?php 
                     $defaultCost = 0; ?>
                     <?php if (isset($sale['local_sale']['cargo']) && $sale['local_sale']['cargo'] === 'takeaway'):?>

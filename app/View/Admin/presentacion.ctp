@@ -35,7 +35,7 @@
 										<i class="fa fa-2x fa-{{orientation}} min-w-4 is-clickable edit-orientation" data-file="{{file_newsletter}}" data-origin="img_popup_newsletter" data-orientation="{{orientation}}"></i>
 									</span>
 								</script>
-								<span id="images_newsletter" class="animated fadeIn w-100"></span>
+								<span id="images_newsletter" class="animation-fadeIn w-100"></span>
 							</div>
 					  </div>
 					  <progress class="progress_newsletter hide w-100" value="50" max="100">0%</progress>
@@ -65,7 +65,7 @@
 										<i class="fa fa-2x fa-{{orientation}} min-w-4 is-clickable edit-orientation" data-file="{{file}}" data-origin="img_url" data-orientation="{{orientation}}"></i>
 									</li>
 								</script>
-								<ul id="images" class="animated fadeIn w-100"></ul>
+								<ul id="images" class="animation-fadeIn w-100"></ul>
 							</div>
 						</div>
 					  <span class="counter hide"></span>
@@ -82,7 +82,7 @@
 			<div class="form-actions">
 				<input type="hidden" name="id" value="1">
 				<button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close mr-1"></i> Restaurar</button>
-				<button type="submit" class="btn btn-success animated fast" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+				<button type="submit" class="btn btn-successfast" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
 			</div>
 		</form>
 	</div>

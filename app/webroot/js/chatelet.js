@@ -8,7 +8,7 @@ var interval2 = 0
 let searchInt = 0
 let searchPageSize = 12
 let searchPage = 0
-let focusAnim = 'pulse'
+let focusAnim = 'animation-pulse'
 let clock = 0
 let fakeshown = 0 
 var toggleInterval = 0
@@ -127,7 +127,7 @@ let sendBeacon = (tag) => {
 let pageLoaded = () => {   
   $('body').removeClass('loading')
   $('#page-container').removeClass('loading')
-  $('#page-loader').addClass('animated fadeOut')
+  $('#page-loader').addClass('animation-fadeOut')
   setTimeout(() => {
     $('#page-loader').remove()  
   },500)
@@ -212,8 +212,8 @@ let focusEl = (text) => {
   if (e && !e.hasClass('hide')) {
     e.get(0).scrollIntoView({ behavior: "smooth" });
     setTimeout(() => {
-      $(text).removeClass(`animated ${focusAnim}`)
-      $(text).addClass(`animated ${focusAnim}`)
+      $(text).removeClass(`${focusAnim}`)
+      $(text).addClass(`${focusAnim}`)
       $(text).find('input').first().focus()
     }, 500)
   }
@@ -527,12 +527,12 @@ $(document).ready(function() {
             $(target).fadeOut(250)
             break
           case 'slide-up':
-            $(target).removeClass('slideOutDown')
-            $(target).addClass('delay0 slideInUp')
+            $(target).removeClass('animation-pullDown')
+            $(target).addClass('delay0 animation-pullUp animation-both')
             break
           case 'slide-down':
-            $(target).removeClass('slideInUp')
-            $(target).addClass('delay0 slideOutDown')
+            $(target).removeClass('animation-pullUp')
+            $(target).addClass('delay0 animation-pullDown animation-both')
             break
           case 'remove':
             $(target).remove()
@@ -630,7 +630,7 @@ $(document).ready(function() {
       const menu = $('.navbar-chatelet .navbar-collapse').hasClass('in')
 
       $('.navbar-chatelet:not(.short)').removeClass('fadeIn')
-      $('.shop-options').removeClass('slideInDown')
+      $('.shop-options').removeClass('animation-pullDown')
 
       if(document.querySelector('.navbar-chatelet')) {
         void document.querySelector('.navbar-chatelet').offsetWidth;

@@ -2,15 +2,13 @@
 
   <div id="headhelp">
     <?php echo $this->element('navbar-ayuda'); ?>
-    <div class="wrapper container animated fadeIn w-100">
+    <div class="wrapper container animation-fadeIn w-100">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col-xs-12 col-md-4">
-          <div class="animated fadeIn delay">
-            <h1>¿Cómo<br>comprar?</h1>
-          </div>
+          <h1>¿Cómo<br>comprar?</h1>
         </div>
         <div class="col-xs-12 col-md-8">
-          <div class="animated fadeIn delay box-cont">
+          <div class="box-cont">
             <div class="box img-bg" style="background-image: url('/img/como-comprar.jpeg')"></div>
           </div>
         </div>
@@ -19,7 +17,7 @@
   </div>
 
   <section id="desarrollo" class="bg-arrow">
-      <div class="wrapper animated fadeIn delay">
+      <div class="wrapper">
           <h3 class="p-3 mb-4">Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h3>
           <div class="col-xs-12 col-md-6">
               <ol class="ordered-list p-0">

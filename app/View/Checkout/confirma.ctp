@@ -6,14 +6,14 @@ $this->set('short_header_link', '/checkout/pago');
 
 echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 ?>
-<section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
+<section id="main" class="has-checkout-steps container animation-fadeIn delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 
   <div class="wrapper d-flex flex-column justify-content-center align-items-center gap-1">
 		<!--div class="header">
 			<h1>Registro</h1>			
 		</div-->
-		<div class="animated fadeIn delay">
+		<div class="animation-fadeIn delay">
 			<div class="is-flex flex-column-sm justify-content-center align-items-start gap-1">
 			<div class="card p-4 p-md-5 max-25">
 				<div class="card-body">
@@ -33,24 +33,22 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 								'action' => 'confirma'
 							)
 						)); ?>
-						<input type="hidden" name="confirm" value="1" />							
-						<input type="hidden" name="simulate" value="0" />							
-						<input type="hidden" name="simulate_success" value="0" />							
+						<input type="hidden" name="confirm" value="1" />
+						<?php if($settings['env_staging']):?>
+						<input type="hidden" name="simulate" value="0" />
+						<input type="hidden" name="simulate_success" value="0" />
+						<?php endif ?>
 						<div class="d-flex flex-column justify-content-start align-items-center gap-05">
 							<input type="submit" class="btn btn-chatelet btn-confirm dark w-100" value="Confirmar compra" />
 							<?php if($settings['env_staging']):?>
-								<input type="button" class="btn btn-chatelet simulate-success w-100" value="Simular compra exitosa" />
-								<input type="button" class="btn btn-chatelet simulate-fail w-100" value="Simular compra fallida" />
+								<input type="button" class="btn btn-chatelet simulate-success w-100" value="Simular venta exitosa" />
+								<input type="button" class="btn btn-chatelet simulate-fail w-100" value="Simular venta fallida" />
+								<small>* Solo entorno pruebas</small>
 							<?php endif ?>
 							<span class="text-sm text-muted"><b>Al finalizar tu compra</b> revisá tu casilla <b><?php echo $user['email']; ?></b></span>
 						</div>
 						<?php echo $this->Form->end(); ?>	
 					</div>
-					<!--script>
-						setTimeout(function(){
-							location.href = '/checkout/envio'
-						}, 3000)
-					</script-->
 				</div>
 			</div>
 		</div>
@@ -58,16 +56,24 @@ echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array(
 </section>
 
 <script type="text/javascript">
+
 	$(document).ready(function() {
+
+		<?php if($settings['env_staging']):?>
+
+			/* Payment Simulation */
 	  $('.simulate-success').on('click', function(event) {
 	  	$('input[name="simulate"]').val(1);
 	  	$('input[name="simulate_success"]').val(1);
 	  	$('#confirma_form').trigger('submit');
 	  })
+
 	  $('.simulate-fail').on('click', function(event) {
 	  	$('input[name="simulate"]').val(1);
 	  	$('#confirma_form').trigger('submit');
 	  })
+
+		<?php endif ?>
 
 	  $('#confirma_form').on('submit', function(event) {
 	    event.preventDefault();

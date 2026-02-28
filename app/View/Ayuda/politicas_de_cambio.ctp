@@ -1,15 +1,13 @@
 
         <div id="headhelp">
             <?php echo $this->element('navbar-ayuda'); ?>
-            <div class="wrapper container animated fadeIn w-100">
+            <div class="wrapper container animation-fadeIn w-100">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">
-                        <div class="animated fadeIn delay">
-                            <h1>Cambios y<br>devoluciones</h1>
-                        </div>
+                        <h1>Cambios y<br>devoluciones</h1>
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <div class="animated fadeIn delay box-cont">
+                        <div class="box-cont">
                             <div class="box">
                                 <h3>Garantía de confianza</h3>
                                 <p>En el caso de que no te encuentres conforme con el producto, siempre vas a poder cambiarlo por cualquier otro de igual valor o varios productos que equivalgan o superen el valor del saldo a favor. La diferencia la abonaras al momento del cambio.</p>
@@ -22,7 +20,7 @@
 
 
         <section id="desarrollo" class="bg-arrow">
-            <div class="wrapper animated fadeIn delay">
+            <div class="wrapper">
                 <div class="col-xs-12 col-md-6">
                     <h3>Acercate a nuestros locales</h3>
                     <p>Podés acercarte a realizar el cambio en cualquier local exclusivo de la marca,

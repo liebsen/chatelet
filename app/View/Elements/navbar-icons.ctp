@@ -8,7 +8,7 @@
           <li class="dropdown">
             <?php if ($loggedIn) { ?>
             <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
-              <!--span class="count animated scaleIn speed delay1">
+              <!--span class="countscaleIn speed delay1">
                 <i class="fa fa-check text-white fa-xs"></i>
               </span-->
               <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-green fa-user-o is-unlifted"></i>
@@ -55,7 +55,7 @@
           <li class="dropdown is-clickable">
             <a href="#" data-toggle="sidebar" data-target=".sidebar-cart" class="dropdown-toggle js-activated<?=count($cart) ? ' text-theme':'' ?>" data-toggle="dropdown" data-hover="dropdown">
               <?php if(count($cart)):?>
-              <span data-toggle="sidebar" data-target=".sidebar-cart" class="count animated scaleIn speed delay1"><?=count($cart)?></span>
+              <span data-toggle="sidebar" data-target=".sidebar-cart" class="countscaleIn speed delay1"><?=count($cart)?></span>
               <?php endif ?>
               <span data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= count($cart) ? 'text-green' : 'text-dark' ?>" style="font-size: 1.1rem;"></i></span>
             </a>

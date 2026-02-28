@@ -64,12 +64,12 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
   window.isGiftCard = <?=(int)$isGiftCard?>;
 </script>
 <section id="main">
-  <div class="wrapper animated fadeIn delay">
+  <div class="wrapper">
     <div class="container">
       <div class="row">
       <?php if(!empty($colorImages)):?>
         <div class="col-md-6 p-0 d-flex flex-md-column justify-content-end align-items-start bg-grey">
-          <div class="p-0 animated fadeIn delay2">
+          <div class="p-0">
             <ul id="ul-moreviews" class="m-0">
             <?php if (!empty($colorImages[0]['images']) && count(array_filter($colorImages[0]['images'])) > 1): $ppp=0; ?>
             <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
@@ -116,19 +116,17 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
         </div>
       <?php else:?>
         <div class="col-md-6 d-flex justify-content-end align-items-center">
-          <div class="animated fadeIn delay2">
-            <ul id="ul-moreviews">
-              <?php if (!empty($images)): $pkey=0;?>
-              <?php foreach ($images as $key => $value) : ?>
-               <?php if (!empty($value)): $pkey++;?>
-                 <li><a href="javacript:void(0)"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
-                  onclick="currentDiv(<?php $key = $key + 1; echo $pkey ?>)"  id="img_01" title="image<?=$pkey?>" style="" src="<?php echo $value ?> " ></a></li>
-               <?php endif ?>
-              <?php endforeach ?>
-               <?php endif ?>
-            </ul>
-          </div>
-           <div id="surround">
+          <ul id="ul-moreviews">
+            <?php if (!empty($images)): $pkey=0;?>
+            <?php foreach ($images as $key => $value) : ?>
+             <?php if (!empty($value)): $pkey++;?>
+               <li><a href="javacript:void(0)"><img  class="demo w3-opacity w3-hover-opacity-off img-responsive"
+                onclick="currentDiv(<?php $key = $key + 1; echo $pkey ?>)"  id="img_01" title="image<?=$pkey?>" style="" src="<?php echo $value ?> " ></a></li>
+             <?php endif ?>
+            <?php endforeach ?>
+             <?php endif ?>
+          </ul>
+          <div id="surround">
            <?php if (!empty($img_url)): ?>
               <img class="mySlides cloudzoom img-responsive"  id="mySlides zoom1" src="<?php echo $settings['upload_url'].$img_url ?>" data-cloudzoom='<?php echo $cloudzoomdata ?>'/>
           <?php elseif (!empty($images)): ?>
@@ -139,7 +137,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
               <?php endif ?>
             <?php endforeach ?>
           <?php endif; ?>
-           </div>
+          </div>
         </div>
     <?php endif;?>
         <div class="col-md-6 max-40">
@@ -218,84 +216,82 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
           <?php endif;?>
           <?php if (!$isGiftCard): ?>
               <!--h2>Color</h2-->
-              <div class="animated fadeIn delay1">
-                <div class="article-tools pt-4">
-                  <!--div class="color-options d-flex justify-content-start align-items-start gap-15" data-toggle="buttons"-->
-                  <div class="color-options d-flex justify-content-start align-items-center w-100" data-toggle="buttons">
-                    <?php
-                        $show_names_only = count($colors) < 2;
-                        foreach ($colors as $i => $color) {
-                            $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
-                            $single = $show_names_only?'single':'';
-                            $style = (empty($color['images']))?'oldSelectColor':'';
-                            echo '<label class="btn '.$loadColorImages.' '.$single. ' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
-                            echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] . '"' . ($i == 0 ? ' checked' : '') . '>';
-                            //if (!empty($color['images']) && !$show_names_only) {
-                            if (!$show_names_only) {
-                                $image = explode(';', $color['images']);
-                                foreach ($image as $kk => $vv) {
-                                    if (!empty($vv)) {
-                                        $image[0] = $vv;
-                                        break;
-                                    }
-                                }
-                                echo '<div class="color-option color-img" style="background-image: url('.$settings['upload_url'].(strlen($image[0])?$image[0]:'default.jpg').')"></div>';
-                            } else {
-                              // echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
-                            }
-                            echo "<small class='color-option text-bolder'>".$color['alias']."</small>";
-                            echo '</label>';
-                        }
-                    ?>
-                  </div>
-                  <div class="size-options animated row" data-toggle="buttons">
-                  <!--div class="size-options d-flex justify-content-start align-items-start gap-1 pt-2" data-toggle="buttons"-->
-                    <!--option value="">Talle</option-->
-                    <?php
-                        foreach ($sizes as $i => $size) {
-                          echo '<label class="btn">';
-                          echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
-                          echo "<small class='size-option text-bolder'>".ucfirst($size['variable'])."</small>";
+              <div class="article-tools pt-4">
+                <!--div class="color-options d-flex justify-content-start align-items-start gap-15" data-toggle="buttons"-->
+                <div class="color-options d-flex justify-content-start align-items-center w-100" data-toggle="buttons">
+                  <?php
+                      $show_names_only = count($colors) < 2;
+                      foreach ($colors as $i => $color) {
+                          $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
+                          $single = $show_names_only?'single':'';
+                          $style = (empty($color['images']))?'oldSelectColor':'';
+                          echo '<label class="btn '.$loadColorImages.' '.$single. ' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
+                          echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] . '"' . ($i == 0 ? ' checked' : '') . '>';
+                          //if (!empty($color['images']) && !$show_names_only) {
+                          if (!$show_names_only) {
+                              $image = explode(';', $color['images']);
+                              foreach ($image as $kk => $vv) {
+                                  if (!empty($vv)) {
+                                      $image[0] = $vv;
+                                      break;
+                                  }
+                              }
+                              echo '<div class="color-option color-img" style="background-image: url('.$settings['upload_url'].(strlen($image[0])?$image[0]:'default.jpg').')"></div>';
+                          } else {
+                            // echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
+                          }
+                          echo "<small class='color-option text-bolder'>".$color['alias']."</small>";
                           echo '</label>';
-                            // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
-                        }
-                    ?>                    
-                  </div>
+                      }
+                  ?>
                 </div>
-                <p class="marginTop stock-block">
-                  <span class="text-chatelet">Stock:</span>
-                  <span id="stock_container">
-                    <span class="text-warning">(Elegí color y talle)</span>
-                  </span>
-                </p>
-                <div>
-                  <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
+                <div class="size-optionsrow" data-toggle="buttons">
+                <!--div class="size-options d-flex justify-content-start align-items-start gap-1 pt-2" data-toggle="buttons"-->
+                  <!--option value="">Talle</option-->
+                  <?php
+                      foreach ($sizes as $i => $size) {
+                        echo '<label class="btn">';
+                        echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
+                        echo "<small class='size-option text-bolder'>".ucfirst($size['variable'])."</small>";
+                        echo '</label>';
+                          // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
+                      }
+                  ?>                    
                 </div>
-                <?php endif; ?>
-                <div class="d-flex flex-column justify-content-center align-items-center footer-producto gap-05">
-                  <div class="row carrito-count has-item-counter active w-100" title="Cantidad de este producto">
-                    <div class="col-xs-12 form-inline p-0">
-                      <div class="form-group">
-                        <div class="input-group carrito-selector">
-                            <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
-                                <span>&ndash;</span>
-                            </div>                                    
-                          <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="1">
-                          <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
-                           <span>+</span>
-                           </div>
-                        </div>
+              </div>
+              <p class="marginTop stock-block">
+                <span class="text-chatelet">Stock:</span>
+                <span id="stock_container">
+                  <span class="text-warning">(Elegí color y talle)</span>
+                </span>
+              </p>
+              <div>
+                <a class="table" data-toggle="modal" data-target="#myModal2">Ver tabla de talles</a>
+              </div>
+              <?php endif; ?>
+              <div class="d-flex flex-column justify-content-center align-items-center footer-producto gap-05">
+                <div class="row carrito-count has-item-counter active w-100" title="Cantidad de este producto">
+                  <div class="col-xs-12 form-inline p-0">
+                    <div class="form-group">
+                      <div class="input-group carrito-selector">
+                          <div class="input-group-addon input-lg is-clickable" onclick="removeCount()">
+                              <span>&ndash;</span>
+                          </div>                                    
+                        <input type="text" size="2" class="form-control product-count input-lg text-center" placeholder="Cantidad" value="1">
+                        <div class="input-group-addon input-lg is-clickable" onclick="addCount()">
+                         <span>+</span>
+                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-                    <a href="#" id="agregar-carro" class="btn btn-chatelet dark buy agregar-carro w-100">Comprar</a>
-                    <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro w-100">Agregar al carrito</a>
-                    <?php if(!empty($cart)):?>
-                    <a href="/carrito" class="btn btn-chatelet light w-100">Ir al carrito</a>
-                    <?php endif ?>
-                  </div>                        
                 </div>
+                <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
+                  <a href="#" id="agregar-carro" class="btn btn-chatelet dark buy agregar-carro w-100">Comprar</a>
+                  <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro w-100">Agregar al carrito</a>
+                  <?php if(!empty($cart)):?>
+                  <a href="/carrito" class="btn btn-chatelet light w-100">Ir al carrito</a>
+                  <?php endif ?>
+                </div>                        
               </div>
             </div>
           </div>
@@ -305,7 +301,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
   </div>
 </section>
 
-<section id="productOptions" class="animated fadeIn delay2">
+<section id="productOptions">
   <div class="wrapper">
     <div class="container">
       <div class="row">

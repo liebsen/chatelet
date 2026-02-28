@@ -262,7 +262,16 @@ label input[type=checkbox]:disabled + .label-text:before {
   }
 }
 
-.navbar-chatelet { 
+.navbar-nav, .navbar-collapse {
+  flex-grow: 1;
+}
+
+.navbar-right {
+  justify-content: end;
+}
+
+.navbar-chatelet {
+  min-height: 100px;
   background: #FFF; 
   border: 0; 
   border-radius: 0; 
@@ -275,29 +284,36 @@ label input[type=checkbox]:disabled + .label-text:before {
   transition: background 0.25s ease-in-out;
 }
 
+.navbar-collapse {
+  overflow: hidden;
+}
+
 .navbar-brand { 
+  position: relative;
+  top: 2px;
   background: url(../images/logo.png) no-repeat; 
   background-size: contain;
-  width: 118px;
-  height: auto;
-  margin-top: 10px; 
-  padding: 0; 
+  width: 120px;
+  height: 26px;
+  padding: 0;
+  margin-left: 0!important;
+  margin: auto;
   text-indent: -9999px; 
   min-height: 1rem;
 }
 
 .navbar-nav { 
-  margin-left: 2rem;
+  position: relative;
+  top: 1px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
 }
-
+  
 .navbar-nav > li > a {
   color: #404040;
   font-weight: 300;
   margin: 0;
-  padding: 0.75rem 0;
   text-transform: uppercase;
   transition: all .3s ease-in-out; 
   white-space: nowrap;
@@ -314,15 +330,14 @@ body.top-fixed .navbar-chatelet:not(.short) {
   left: 0;
   top: 0;
   right: 0;
-  padding: 0.5rem;
-  border-bottom: none!important;
+  padding: 0.33rem;
 }
 
 body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   width: 100px;
 }
 body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
-  top: -0.5rem;
+  top: -0.05rem;
 }
 
 .google-fonts {
@@ -341,21 +356,23 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
 }
 
 @media (min-width: 768px) {
+  .navbar-chatelet { 
+    min-height: 65px;
+  }
   .add-no-stock {
     min-height: 27rem!important;
   }
   .box-cont  {
     width: 90%;
   }
+  .box-cont .box {
+    min-height: 330px;
+  }
   .box.img-bg {
     min-height: 22rem;
   }
   .navbar-nav { 
     flex-direction: row;
-  }
-  .navbar-collapse.collapse {
-    position: relative;
-    top: 5px;
   }
   body.top-fixed .navbar-collapse.collapse {
     top: 3px;
@@ -366,24 +383,15 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
     background-position: center;
     background-repeat: no-repeat;  
     color: #404040;  
-    height: 50px;
     padding: 0;
     width: 50px;
     font-size: 0.75rem;
-    padding-top: 1.25rem;
     text-align: center;
     background-color: transparent;
   }
-
   .navbar-nav.navbar-right {
-    position: relative;
     white-space: nowrap;
-    top: -0.75rem;
   }
-}
-
-.navbar-nav:not(.navbar-right)>li>a {
-  margin: 0 0.5rem; 
 }
 
 .nav>li>a:focus, .nav>li>a:hover { border: none; background-color: transparent; }
@@ -785,6 +793,12 @@ footer ul li { margin-bottom: 5px;  }
 .is-flex-center {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.is-flex-between {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -1380,7 +1394,13 @@ ul#ul-moreviews li.dontResize img {
 }
 
 @media (max-width: 767px) {
-  .navbar-header { float: none; text-align: center; }
+  .navbar-header { 
+    float: none; 
+    text-align: center; 
+  }
+  .navbar-chatelet > .container-fluid {
+    flex-direction: column;
+  }  
   .navbar > .container-fluid .navbar-brand { 
     display: block; 
     float: none; 
@@ -1585,6 +1605,14 @@ span.out{
   min-height: 18.5rem;
   background-position: top center;
   filter: contrast(110%);
+}
+
+.img-resp.is-main > h1 {
+  position: absolute;
+  bottom: 1rem;
+  right: 2rem;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 #b5b5b5;
 }
 
 .is-background-cover {
@@ -2080,12 +2108,15 @@ select {
     border-color: transparent;
 }
 
+.count-cont {
+  position: relative;
+}
+
 span.count {
-  opacity: 0;
   position: absolute;
   z-index: 9;
-  top: 0.25rem;
-  right: 0;
+  top: -16px;
+  left: 12px;
   text-align: center;
   font-size: 0.75rem;
   color: white;
@@ -2143,10 +2174,6 @@ span.count.is-empty {
     }
     #productOptions nav li, #productOptions nav li a {
       text-align: center;
-    }
-
-    span.count {
-        display: none
     }
 
     #listShop a .hover{
@@ -2376,10 +2403,6 @@ span.count.is-empty {
   }
   .box.w-leaves {
     background-position: -90% 55%;
-  }
-  .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-    margin-top: 15px;
-    margin-left: 10px;
   }
   #opts .mod-item { min-height: 24rem;} 
   #opts a { max-height: 30rem; } 

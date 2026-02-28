@@ -1,5 +1,5 @@
     <div class="wrapper-fluid">
-      <div class="row m-0 animated fadeIn delay">
+      <div class="row m-0 animation-fadeIn delay">
         <div class="col-xs-12 draggable-table">
           <div class="row category-item-container">
           <?php foreach($categories as $category): ?>

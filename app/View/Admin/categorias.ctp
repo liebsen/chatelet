@@ -165,7 +165,7 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 </div>
 
 
-<div class="form-actions animated category-actions" data-url="/admin/batch_categorias/">
+<div class="form-actionscategory-actions" data-url="/admin/batch_categorias/">
     <span class="selection-count"></span>
     <button class="disableselection btn btn-warning btn-adjust" type="button"><i class="fa fa-eye-slash mr-1"></i>Desactivar</button>
     <button class="removeselection btn btn-danger btn-adjust" type="button"><i class="fa fa-close mr-1"></i>Eliminar</button>
