@@ -314,6 +314,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   color: #404040;
   font-weight: 300;
   margin: 0;
+  padding: 10px;
   text-transform: uppercase;
   transition: all .3s ease-in-out; 
   white-space: nowrap;
@@ -322,7 +323,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .navbar-chatelet .fa,
 .navbar-chatelet .gi {
-  font-size: 1.5rem;
+  font-size: 1.33rem;
 }
 
 body.top-fixed .navbar-chatelet:not(.short) {
@@ -1612,6 +1613,7 @@ span.out{
   position: absolute;
   bottom: 1rem;
   right: 2rem;
+  font-weight: 1000;
   text-transform: uppercase;
   letter-spacing: -0.03rem;
   text-shadow: 2px 2px 0 #888;

@@ -320,7 +320,7 @@ html, body {
 }
 
 .textbig {
-	font-size: 1.5rem!important;
+	font-size: 1.25rem!important;
 	font-weight: 1000;
 }
 
@@ -1696,7 +1696,7 @@ span.validation-password {
 }
 
 .navbar-container {
-	min-height: 84px;
+	min-height: 74px;
 }
 
 @media screen and (min-width: 992px) {	
