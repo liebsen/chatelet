@@ -480,7 +480,7 @@ class CarritoController extends AppController
 		echo '</pre>';
 	}
 
-	public function settings($row = null) {
+	public function show_settings($row = null) {
 		$this->autoRender = false;
 		echo '<pre>';
 		var_dump($this->settings);
@@ -496,6 +496,7 @@ class CarritoController extends AppController
 	public function add() {
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');
+
 		if ($this->request->is('post')) {
 			$data = $this->request->data;
 			if(
@@ -510,8 +511,7 @@ class CarritoController extends AppController
 			}
 
 			$product = $this->Product->findById($this->request->data['id']);
-			$urlCheck = $this->settings['site_url']."/shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
-
+			$urlCheck = \site_url()."/shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
 			if (empty($this->request->data['size']) && empty($this->request->data['color_code'])){
 				//$urlCheck=$settings['site-url']."/shop/stock/".$product['Product']['article'];
 				// CakeLog::write('debug', 'b(1)');
@@ -524,6 +524,7 @@ class CarritoController extends AppController
 				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
 		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+
 		    $stock = (string) curl_exec($ch);
 		    curl_close($ch);
 			}
@@ -552,21 +553,21 @@ class CarritoController extends AppController
 				for ($i=0; $i < $this->request->data['count']; $i++) {
 					$items[] = $product;
 				}
+
+				$cart_totals = $this->Session->read('cart_totals');
+				$cur = @$cart_totals['add_basket']?: 0;
+				$cur++;			
+				@$cart_totals['add_basket'] = $cur;
+				$cart = $this->Cart->add($items);
+					
+				if($this->settings['mailchimp_on'] == 'on' && $this->settings['mc_store_on'] == 'on') {
+					$this->Mailchimp->cart_update($this->settings['mc_store']);
+				}
+
+				return json_encode(array('success' => true));
 			} else {
 				return json_encode(array('success' => false));
 			}
-
-			$cart_totals = $this->Session->read('cart_totals');
-			$cur = @$cart_totals['add_basket']?: 0;
-			$cur++;			
-			@$cart_totals['add_basket'] = $cur;
-			$cart = $this->Cart->add($items);
-				
-				CakeLog::write('debug', 'mailchimp_on:'.$this->settings['mailchimp_on']);
-			if($this->settings['mailchimp_on'] == 'on') {
-				$this->Mailchimp->cart_update($this->settings['mc_store']);
-			}
-			return json_encode(array('success' => true));
 		}
 		//return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 		return json_encode(array('success' => false));

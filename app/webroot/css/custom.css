@@ -1285,7 +1285,7 @@ ul#ul-moreviews li.dontResize img {
 }
 
 @media (max-width: 1599px) {
-	.box { padding: 4rem;  border-radius: 0.5rem; max-width: 40rem;  }
+	.box { padding: 4rem;  border-radius: 1rem; max-width: 40rem;  }
 }
 
 @media (max-width: 1199px) {
