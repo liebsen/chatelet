@@ -561,7 +561,11 @@ class CarritoController extends AppController
 			$cur++;			
 			@$cart_totals['add_basket'] = $cur;
 			$cart = $this->Cart->add($items);
-			
+				
+				CakeLog::write('debug', 'mailchimp_on:'.$this->settings['mailchimp_on']);
+			if($this->settings['mailchimp_on'] == 'on') {
+				$this->Mailchimp->cart_update($this->settings['mc_store']);
+			}
 			return json_encode(array('success' => true));
 		}
 		//return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
@@ -596,10 +600,14 @@ class CarritoController extends AppController
 			// CakeLog::write('debug', 'updateCart(1)');
 			// CakeLog::write('debug', 'updateCart(2):'. json_encode($update));
 			$this->Cart->update($update);
-			$this->Mailchimp->cart_update("chatelet",$update);
+			if($this->settings['mailchimp_on'] == 'on' && $this->settings['mc_store_on'] == 'on') {
+				$this->Mailchimp->cart_update($this->settings['mc_store'],$update);
+			}
 		} else {
 			$this->Cart->destroy();
-			$this->Mailchimp->cart_destroy("chatelet");
+			if($this->settings['mailchimp_on'] == 'on' && $this->settings['mc_store_on'] == 'on') {
+				$this->Mailchimp->cart_destroy($this->settings['mc_store']);
+			}
 		}
 
 		return json_encode($removed);

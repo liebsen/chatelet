@@ -189,7 +189,10 @@ class UsersController extends AppController {
         );
 
         $saved = $this->Subscription->save($toSave);
-        $this->Mailchimp->subscribe($data['Subscription'], "d168ae47ee");
+
+        if($this->settings['mailchimp_on'] == 'on' && $this->settings['mc_subscription_on'] == 'on') {
+          $this->Mailchimp->subscribe($data['Subscription'], $this->settings['mc_subscription']);
+        }
 
         if(!empty($saved)){
           if(!empty($ajax)) {
@@ -305,7 +308,9 @@ class UsersController extends AppController {
         ));
       }
 
-      $this->Mailchimp->subscribe($data['User'], "d168ae47ee");
+      if($this->settings['mailchimp_on'] == 'on' && $this->settings['mc_subscription_on'] == 'on') {
+        $this->Mailchimp->subscribe($data['User'], $this->settings['mc_subscription']);
+      }
 
       return $this->redirect($this->referer());
     } else {

@@ -165,7 +165,9 @@ class CheckoutController extends AppController
 			// CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
 			
 			$this->Cart->update(null, $cart_totals);
-			$this->Mailchimp->cart_update("chatelet",null, $cart_totals);
+			if($this->settings['mailchimp_on'] == 'on' && $this->settings['mc_store_on'] == 'on') {
+				$this->Mailchimp->cart_update($this->settings['mc_store'],null, $cart_totals);
+			}
       return json_encode($response);
 		}
 
@@ -231,7 +233,6 @@ class CheckoutController extends AppController
 			CakeLog::write('debug', 'pago(data)'.json_encode($data));
 			CakeLog::write('debug', 'pago(cart_totals)'.json_encode($cart_totals));
 			$this->Cart->update(null, $cart_totals);
-			$this->Mailchimp->cart_update("chatelet",null, $cart_totals);
 
 			return json_encode($response);
 		}
@@ -1032,8 +1033,12 @@ el pago.</p>
 				);
 
 				$this->notify_user($notify_data, 'success');
-				$this->Mailchimp->delete_cart("chatelet", $cart_totals['cart_id']);
-				$this->Mailchimp->order("chatelet", $sale_id, $sale['value'], $sale_items);
+
+				if($this->settings['mailchimp_on'] == 'on' && $this->settings['mc_store_on'] == 'on') {
+					$this->Mailchimp->delete_cart($this->settings['mc_store'], $cart_totals['cart_id']);
+					$this->Mailchimp->order($this->settings['mc_store'], $sale_id, $sale['value'], $sale_items);
+				}
+				
 				$this->Session->delete('cart');
 				$this->Session->delete('cart_totals');
 

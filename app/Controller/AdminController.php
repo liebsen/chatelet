@@ -1826,6 +1826,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$this->autoRender = false;
 
 			$data = $this->request->data;
+			$switches = array('mailchimp','mc_contact','mc_store','mc_subscription');
+
+			foreach($switches as $switch) {
+				$this->Setting->save([
+					'id' => $switch.'_on', 
+					'value' => $data[$switch.'_on'] ?? ''
+				]);
+			}
 
       foreach($data as $id => $value) {
       	// CakeLog::write('debug', 'save:'. json_encode(['id' => $id, 'value' => $value]));
