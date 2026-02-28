@@ -19,7 +19,7 @@
 
 <?php else : ?>
 
-<div class="wizard-container d-flex flex-column justify-content-center align-items-center is-absolute top-0slideInDown delay2">
+<div class="wizard-container d-flex flex-column justify-content-center align-items-center is-absolute top-0 animation-pullDown delay2">
 	<span class="navbar-brand wizard-brand"></span>
 	<div class="wizard-progress is-flex-center justify-content-around w-100">
 	<?php foreach($checkout_steps as $i => $step) : ?>
