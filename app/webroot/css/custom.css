@@ -322,7 +322,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .navbar-chatelet .fa,
 .navbar-chatelet .gi {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 body.top-fixed .navbar-chatelet:not(.short) {
@@ -992,7 +992,7 @@ footer ul li { margin-bottom: 5px;  }
 #productOptions .product-list a:hover .hover { opacity: 1; }
 
 #detalle { 
-  background: url(../images/mapbg.png) no-repeat center center; 
+  /*background: url(../images/mapbg.png) no-repeat center center; */
   background-size: cover;
   padding-top: 50px;    
   padding-bottom: 50px; 
@@ -1250,7 +1250,7 @@ ul#ul-moreviews li.dontResize img {
 #desarrollo .boxes {  }
 #desarrollo .boxes .boxes-reframe {
   padding: 2rem 2.25rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   background-color: transparent;
   border: 1px solid #6663;
   background-color: rgba(255,255,255,0.5);
@@ -1285,7 +1285,7 @@ ul#ul-moreviews li.dontResize img {
 }
 
 @media (max-width: 1599px) {
-	.box { padding: 4rem;  border-radius: 1rem; max-width: 40rem;  }
+	.box { padding: 4rem;  border-radius: 0.5rem; max-width: 40rem;  }
 }
 
 @media (max-width: 1199px) {
@@ -1949,7 +1949,7 @@ select {
 
 .ribbon {
   position: absolute;
-  z-index: 10;
+  z-index: 9;
   right: 0.25rem; 
   top: 0.25rem;
   overflow: hidden;
