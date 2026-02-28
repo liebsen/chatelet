@@ -9,7 +9,6 @@
 					if(type == 'list') {
 						for(var i in res1.lists) {
 							const list = res1.lists[i]
-							console.log('list', list)
 							const sel = list.id == selected ? ' selected' : ''
 							str+= `<option value="${list.id}"${sel}>${list.name}</option>`	
 						}
@@ -26,7 +25,6 @@
 				})
 
 				setTimeout(function(){
-					console.log('ready')
 					$('button[type="submit"]').prop('disabled', false)
 				}, 1000)
 			})

@@ -1,5 +1,3 @@
-
-
 var lastscroll = 0
 //new WOW().init();
 let focusAnim = 'pulse'
@@ -83,6 +81,12 @@ $(function () {
   /*body.toggleClass('hide-side-content');*/
 
   var timeout = 0
+  $('.logout-btn').click(function(){ 
+    const prompt = confirm('¿Deseas abandonar la sesión?')
+    if(prompt) {
+      location.href = '/admin/logout'
+    }
+  })
   $('#filter-menu').keyup(function(){ 
     clearTimeout(timeout)
     const value = slugify($(this).val())

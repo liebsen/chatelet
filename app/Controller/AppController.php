@@ -21,10 +21,6 @@
 
 require_once __DIR__ . '/../functions.php';
 
-if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-    require_once __DIR__ . '/../../version.php';
-}
-
 App::uses('Controller', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 

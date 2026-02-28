@@ -19,15 +19,6 @@
     without scrolling enabled when you set the sidebar to be sticky
     -->
     <div class="side-scrollable">
-        <!-- Mini Profile -->
-        <div class="mini-profile">
-            <a href="/" target="_blank">
-                <?php echo $this->Html->image('logo.jpg', array('class' => 'img-responsive')); ?>
-                <small><?=@$version['count'] ?><br><?=@$version['date'] ?></small>
-            </a>
-        </div>
-        <!-- END Mini Profile -->
-
         <!-- Sidebar Tabs -->
         <div class="sidebar-tabs-con">
             <!--ul class="sidebar-tabs" data-toggle="tabs">
@@ -134,6 +125,12 @@
                                 <?php } ?>
                             </li>
                             <?php } ?>
+                            <li>
+                                <a href="#" class="logout-btn dropdown-toggle">
+                                    <i class="gi gi-exit"></i> 
+                                    Salir
+                                </a>
+                            </li>
                         </ul>
                         <?php } ?>
                     </nav>

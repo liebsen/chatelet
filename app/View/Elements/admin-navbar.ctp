@@ -82,21 +82,21 @@
                 <div class="row">
                     <!-- Sidebar Toggle Buttons (Desktop & Tablet) -->
                     <div class="col-sm-12">
-                        <ul class="navbar-nav-custom pull-left w-100">
+                        <ul class="navbar-nav-custom pull-left">
                             <!-- Desktop Button (Visible only on desktop resolutions) -->
-                            <li class="">
-                                <a href="javascript:void(0)" id="toggle-side-content" class="collapsed" data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar">
-                                    <i class="fa fa-bars"></i>
+                            <li class="mini-profile">
+                                <!-- Mini Profile -->
+                                <a href="/" target="_blank" title="<?=@$version['count'] ?><br><?=@$version['date'] ?>">
+                                    <?php echo $this->Html->image('chatelet_blanco.png', array('class' => 'img-responsive')); ?>
                                 </a>
+                                <!-- END Mini Profile -->                                
                             </li>
                             <!-- END Desktop Button -->
-
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right" style="margin-right: 5px!important;">
                             <!-- Divider -->
 
-
-
-
-                            <li class="dropdown dropdown-theme-options pull-right">
+                            <!--li class="dropdown dropdown-theme-options pull-right">
                                 <a href="<?=$this->Html->url(array('controller'=>'admin','action'=>'logout'))?>" class="dropdown-toggle">
                                     <i class="gi gi-exit"></i> 
                                     Salir
@@ -108,16 +108,20 @@
                                     <i class="gi gi-home"></i> 
                                     Tienda
                                 </a>
-                            </li>
+                            </li-->
                             <?php if (!empty($h1)): ?>
-                            <li class="divider-vertical"></li>                                
-                            <li class="dropdown dropdown-theme-options section-indicator">
-                                <a href="#">
+                            <li>
+                                <a href="#" class="text-white">
                                     <i class="<?php echo $h1['icon'] ?>"></i> <?php echo $h1['name']; ?>
                                 </a>
                             </li>
-                            <?php endif ?>
-
+                                <?php endif ?>
+                            <li class="divider-vertical"></li>                                
+                            <li>
+                                <a href="javascript:void(0)" id="toggle-side-content" class="collapsed text-white" data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar">
+                                    <i class="fa fa-bars"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <!-- END Sidebar Toggle Buttons -->

@@ -537,7 +537,6 @@ body {
 }
 
 #primary-nav li span {
-    font-size: 14px;
     line-height: 1;
     color: #888;
 }
@@ -562,6 +561,11 @@ body {
 #primary-nav li:not(.active) > a:hover {
     color: #fff;
     background: #999;
+}
+
+#primary-nav li:not(.active) > a.logout-btn:hover {
+    color: #fff;
+    background: red;
 }
 
 #primary-nav li > ul {
@@ -810,13 +814,6 @@ body {
 
 /* Mini Sidebar Profile */
 .mini-profile {
-    padding: 1.75rem 3rem;
-    padding-bottom: 0.75rem;
-    background: white;
-    text-align: center;
-    border-radius: 1rem;
-    margin: 1rem;
-    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -853,7 +850,7 @@ body {
 }
 
 .mini-profile > a > img {
-    max-height: 1.5rem;
+    width: 120px;
 }
 
 /* Sidebar Tabs */
@@ -2160,6 +2157,13 @@ a.text-success:focus {
     color: #01c801;
 }
 
+.text-white,
+a.text-white:hover,
+a.text-white:focus {
+    color: #fff!important;
+}
+
+
 .text-black,
 a.text-black:hover,
 a.text-black:focus {
@@ -2396,7 +2400,7 @@ a.text-black:focus {
 
 header.navbar {
     margin: 0;
-    min-height: 40px;
+    min-height: 50px;
     border-radius: 0;
 }
 
@@ -2440,6 +2444,16 @@ header.navbar.navbar-fixed-bottom .dropdown-menu {
     padding: 7px 10px 0;
 }
 
+.navbar-nav {
+    margin: 0;
+}
+.navbar .navbar-right {
+    float: right!important;
+}
+    .navbar-nav > li {
+        float: left;
+    }
+
 .navbar.navbar-inverse .navbar-brand {
     color: #fff;
 }
@@ -2466,6 +2480,8 @@ header.navbar .navbar-brand {
     list-style: none;
     padding: 0;
     margin: 0;
+    padding: 0.25rem;
+    padding-bottom: 0;
 }
 
 .navbar-nav-custom > li {
@@ -3463,9 +3479,6 @@ a.thumbnail-borderless,
 /* Mobile up to landscape tablet */
 @media (max-width: 991px) {
 
-    .mini-profile {
-        display: none;
-    }
     #login-container {
         padding: 205px 0 10px 0;
     }

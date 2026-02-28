@@ -71,7 +71,7 @@
   </head>
   <body class="noscroll p-0">
     <?php if($settings['env_staging']) : ?>
-      <div class="dev-note is-flex-center p-3 text-center bg-danger">
+      <div class="dev-note is-flex-center p-3 text-center bg-danger animation-pullUp animation-both delay10">
         <span class="corner-pin is-clickable" style="top: 0.5rem!important" onclick="$('.dev-note').remove()">
           <i class="ico-times"></i>
         </span>
