@@ -262,7 +262,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   }
 }
 
-.navbar-nav, .navbar-collapse {
+.navbar-nav, .navbar-collapse, .navbar-header {
   flex-grow: 1;
 }
 
@@ -320,7 +320,8 @@ label input[type=checkbox]:disabled + .label-text:before {
   transition: none!important;
 }
 
-.navbar-chatelet .fa {
+.navbar-chatelet .fa,
+.navbar-chatelet .gi {
   font-size: 1.25rem;
 }
 
@@ -2116,19 +2117,14 @@ select {
 span.count {
   position: absolute;
   z-index: 9;
-  top: -16px;
-  left: 12px;
+  top: -13px;
+  left: -3px;
   text-align: center;
+  min-width: 1.5rem;
   font-size: 0.75rem;
-  color: white;
-  background-color: lightgreen;
-  width: 1.5rem;
-  height: 1.5rem;
+  color: lightgreen;
   margin: 0 auto;
-  border-radius: 100%;
-  line-height: 1.65;
-  font-weight: 800;
-  border: 3px solid white;
+  font-weight: 1000;
 }
 
 span.count.is-empty {
@@ -2350,9 +2346,6 @@ span.count.is-empty {
 @media screen and (max-width:768px), print {
   body {
     background-color: white;
-  }
-  .navbar {
-    padding-bottom: 0.5rem;
   }
   .is-rounded {
     padding: 1rem;

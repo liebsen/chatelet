@@ -1,6 +1,6 @@
           <li>
             <a href="#" title="Buscar en la tienda">
-              <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="fa text-light fa-search is-unlifted"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="gi gi-search text-light is-unlifted"></i>
             </a>
           </li>
 

@@ -14,12 +14,9 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 ?>
 <section id="detalle" class="is-flex-center min-h-101">
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1">
-  	<div class="d-flex justify-content-center align-items-center gap-1">
-  		<i class="gi gi-lock"></i>
-			<h2 class="text-uppercase">
-				<?php echo 'Inicia sesión para continuar'; ?>
-			</h2>			
-		</div>
+		<h2 class="text-uppercase">
+			<?php echo 'Inicia sesión para continuar'; ?>
+		</h2>			
 		<p>
 			Inicia sesión en Châtelet con tus credenciales. Ingresá tu email y contraseña para continuar.<br> Si no tienes una cuenta presiona <b>Crear mi cuenta</b>.
 		</p>

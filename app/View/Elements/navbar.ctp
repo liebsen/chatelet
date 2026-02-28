@@ -56,7 +56,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="#" class="is-unlifted" title="Buscar en la tienda">
-              <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="fa fa-search text-lightgrey"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="gi gi-search text-lightgrey"></i>
             </a>
           </li>
 
@@ -67,7 +67,7 @@
               <!--span class="countscaleIn speed delay1">
                 <i class="fa fa-check text-white fa-xs"></i>
               </span-->
-              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-green fa-user-o"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-account" class="gi gi-user text-green"></i>
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -104,7 +104,7 @@
             </ul>
             <?php } else { ?>
             <a href="#" class="dropdown-toggle is-unlifted" title="Inicia sesión">
-              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-lightgrey fa-user-o"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-account" class="gi gi-woman text-lightgrey"></i>
             </a>
             <?php } ?>
           </li><!-- /.Login -->
@@ -112,9 +112,9 @@
             <a href="#" data-toggle="sidebar" data-target=".sidebar-cart" class="dropdown-toggle js-activated<?=count($cart) ? ' text-theme':'' ?>" data-toggle="dropdown" data-hover="dropdown">
               <span class="count-cont" data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito">
                 <?php if(count($cart)):?>
-                <span class="count animation-expandOpen delay1" data-toggle="sidebar" data-target=".sidebar-cart"><?=count($cart)?></span>
+                <span class="count animation-pulse delay1" data-toggle="sidebar" data-target=".sidebar-cart"><?=count($cart)?></span>
                 <?php endif ?>                
-                <i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= count($cart) ? 'text-green' : 'text-lightgrey' ?>"></i>
+                <i data-toggle="sidebar" data-target=".sidebar-cart" class="gi gi-shopping_cart <?= count($cart) ? 'text-green' : 'text-lightgrey' ?>"></i>
               </span>
             </a>
             <ul class="dropdown-menu">
@@ -145,7 +145,7 @@
                   </p>
                   <p class="bottom" title="Ir al carrito">
                     <?php
-                      echo $this->Html->link('<span class="fa fa-shopping-cart"></span>', array(
+                      echo $this->Html->link('<span class="gi gi-shopping_cart"></span>', array(
                         'controller' => 'carrito',
                         'action' => 'index'
                         ),

@@ -25,7 +25,7 @@
 			<div class="mobile">
 				<div class="d-flex flex-column justify-content-start align-center gap-05 w-100">
 				<?php foreach ($sorted as $product) : ?>
-					<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative' data-json='<?php echo json_encode($product) ?>' product_row>
+					<div class='d-flex justify-content-start align-center cart-row carrito-data position-relative' data-json='<?php echo json_encode($product) ?>' product_row>
 						<div class='cart-img'>
 						<?php if (!empty($product['number_ribbon'])) : ?>
 							<div class="ribbon small"><span><?php echo $product['number_ribbon'] ?>% OFF</span></div>

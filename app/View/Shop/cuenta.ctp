@@ -7,16 +7,13 @@ echo $this->Session->flash();
 ?>
 <section id="detalle" class="is-flex-center min-h-101">
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1">
-  	<div class="d-flex justify-content-center align-items-center gap-1">
-  		<img src="/images/isologo.png" width="30"/> 
-			<h2 class="text-uppercase">
-				<?php if ($loggedIn) : ?>
-					Hola, <?php echo $user['name']; ?>
-				<?php else : ?>
-					No estás conectada ahora
-				<?php endif ?>
-			</h2>
-		</div>
+		<h2 class="text-uppercase">
+			<?php if ($loggedIn) : ?>
+				Hola, <?php echo $user['name']; ?>
+			<?php else : ?>
+				No estás conectada ahora
+			<?php endif ?>
+		</h2>
 	<?php if ($loggedIn) : ?>
 		<p>Iniciaste sesión como <?php echo $user['email']; ?></p>		
 	<?php else : ?>	

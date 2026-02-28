@@ -6,13 +6,9 @@ echo $this->Session->flash();
 ?>
 <section id="detalle" class="is-flex-center min-h-101">
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1">
-  	<div class="d-flex justify-content-center align-items-center gap-1">
-  		<img src="/images/isologo.png" width="30"/> 
-
-			<h2 class="text-uppercase">
-				<?php echo 'Recuperar Contraseña'; ?>
-			</h2>
-		</div>
+		<h2 class="text-uppercase">
+			<?php echo 'Recuperar Contraseña'; ?>
+		</h2>
 		<p>
 			Recupera fácilmente el acceso a tu cuenta ingresando el correo con el que creaste tu cuenta en Châtelet.<br> Te enviaremos instrucciones a ese correo.
 		</p>

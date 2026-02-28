@@ -53,12 +53,9 @@ if (!$loggedIn) {
 				<input type="hidden" name="redirect" value="<?= $_GET['redirect'] ?? '' ?>" />
 				<input type="hidden" name="ajax" value="1" />
 				<div class="d-flex flex-column justify-content-start align-items-center gap-1 content">
-				  	<div class="d-flex justify-content-start align-items-center gap-1">
-				  		<img src="/images/isologo.png" width="30"/> 
-						<h5 class="text-uppercase">
-							<?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Crear mi cuenta' ?>
-						</h5>			
-					</div>
+					<h5 class="text-uppercase">
+						<?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Crear mi cuenta' ?>
+					</h5>			
 					<p>
 						Ingresa tus datos personales para crear una cuenta.
 					</p>
