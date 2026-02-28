@@ -332,7 +332,6 @@ body.top-fixed .navbar-chatelet:not(.short) {
   left: 0;
   top: 0;
   right: 0;
-  padding: 0.33rem;
 }
 
 body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
