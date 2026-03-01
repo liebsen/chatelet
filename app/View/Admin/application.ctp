@@ -29,7 +29,7 @@
           </a>
         </li>
       </ul>
-      <div class="tab-content p-7">
+      <div class="tab-content">
         <div class="tab-pane pane-social active">
         	<div class="row">
         		<div class="col-md-6">
@@ -43,9 +43,8 @@
 			          	<?php echo __(ucfirst($item)); ?>
 			          </label>
 			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control" value="<?php echo @$settings[$item.'_url'] ?>"/>
+			            <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control" value="<?php echo @$settings[$item.'_url'] ?>" placeholder="Ingresá la URL de tu perfil de <?php echo __($item); ?>"/>
 			          </div>
-			          <span class="text-muted">Ingresá la URL de tu perfil de <?php echo __($item); ?></span>
 			        </div>
 			      	<br>
 			      <?php endforeach ?>
@@ -69,20 +68,18 @@
 			            <label for="enabled_0">Artículo</label>
 			           </span>
 			          </div>
-			          <span class="text-muted">Indica si se debe trabajar con entorno real o de pruebas</span>
+			          <small class="text-muted">Indica si se debe trabajar con entorno real o de pruebas</small>
 			        </div>
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
 			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[opengraph_title]" class="form-control" value="<?php echo @$settings['opengraph_title'] ?>"/>
+			            <input type="text" maxlength="100" name="data[opengraph_title]" class="form-control" value="<?php echo @$settings['opengraph_title'] ?>" placeholder="Ingresá el título que desees para tu aplicación"/>
 			          </div>
-			          <span class="text-muted">Ingresá el título que desees para tu aplicación.</span>
 			        </div>
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Descripción'); ?></label>
 			          <div class="controls">
-			            <textarea name="data[opengraph_text]" class="form-control w-100"><?php echo @$settings['opengraph_text'] ?></textarea>
-			            <span class="text-muted">Ingresá el texto que desees para tu aplicación.</span>
+			            <textarea name="data[opengraph_text]" class="form-control w-100" placeholder="Ingresá el texto que desees para tu aplicación"><?php echo @$settings['opengraph_text'] ?></textarea>
 			          </div>
 			        </div>
 							<hr>	      			
@@ -92,23 +89,21 @@
 							<div class="control-group">
 								<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen'); ?></label>
 								<div class="controls">
-									<input type="file" name="data[opengraph][image]" value="" accept="image/*">
+									<input type="file" class="form-control" name="data[opengraph][image]" value="" accept="image/*">
 								</div>
 							</div>
 
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Width'); ?></label>
 			          <div class="controls">
-			            <input type="number" maxlength="100" name="data[opengraph_width]" class="form-control" value="<?php echo @$settings['opengraph_width'] ?>"/>
+			            <input type="number" maxlength="100" name="data[opengraph_width]" class="form-control" value="<?php echo @$settings['opengraph_width'] ?>" placeholder="Ancho de la imagen"/>
 			          </div>
-			          <span class="text-muted">Ancho de la imagen</span>
 			        </div>
 	        		<div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Height'); ?></label>
 			          <div class="controls">
-			            <input type="number" maxlength="100" name="data[opengraph_height]" class="form-control" value="<?php echo @$settings['opengraph_height'] ?>"/>
+			            <input type="number" maxlength="100" name="data[opengraph_height]" class="form-control" value="<?php echo @$settings['opengraph_height'] ?>" placeholder="Alto de la imagen"/>
 			          </div>
-			          <span class="text-muted">Alto de la imagen.</span>
 			        </div>
 							<br />
 							<!--div class="control-group">						
@@ -131,19 +126,16 @@
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Google Analytics code'); ?></label>
 	          <div class="controls">
-	            <input type="text" maxlength="100" name="data[google_analytics_code]" class="form-control" value="<?php echo @$settings['google_analytics_code'] ?>"/>
+	            <input type="text" maxlength="100" name="data[google_analytics_code]" class="form-control" value="<?php echo @$settings['google_analytics_code'] ?>" placeholder="Código de Google Analytics"/>
 	          </div>
-	          <span class="text-muted">Ingresa el código de Google Analytics</span>
 	        </div>
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Facebook Pixel ID'); ?></label>
 	          <div class="controls">
-	            <input type="text" maxlength="100" name="data[facebook_pixel_id]" class="form-control" value="<?php echo @$settings['facebook_pixel_id'] ?>"/>
+	            <input type="text" maxlength="100" name="data[facebook_pixel_id]" class="form-control" value="<?php echo @$settings['facebook_pixel_id'] ?>" placeholder="ID de FB pixel"/>
 	          </div>
-	          <span class="text-muted">Ingresa la identificación del pixel.</span>
 	        </div>	 
     		</div>
-
 
         <div class="tab-pane pane-google-fonts">
 	        <h4 class="sub-header">Fuente de la tienda</h4>
@@ -151,20 +143,14 @@
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Google Font name'); ?></label>
 	          <div class="controls">
-	            <input type="text" maxlength="100" name="data[google_font_name]" class="form-control" value="<?php echo @$settings['google_font_name'] ?>"/>
+	            <input type="text" maxlength="100" name="data[google_font_name]" class="form-control" value="<?php echo @$settings['google_font_name'] ?>" placeholder="nombre de la fuente, ej: DM Sans"/>
 	          </div>
-	          <span class="text-muted">Ingresa el nombre de la fuente, ej:
-	          	<span class="text-muted">DM Sans</span>
-	          </span>
 	        </div>
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Google Font size'); ?></label>
 	          <div class="controls">
-	            <input type="text" maxlength="100" name="data[google_font_size]" class="form-control" value="<?php echo @$settings['google_font_size'] ?>"/>
+	            <input type="text" maxlength="100" name="data[google_font_size]" class="form-control" value="<?php echo @$settings['google_font_size'] ?>" placeholder="Tamaño de la fuente ej:300,400,500,600,700,800"/>
 	          </div>
-	          <span class="text-muted">Ingresa el tamaño de la fuente, ej: 
-          		<span class="text-muted">300,400,500,600,700,800</span>
-	          </span>
 	        </div>
         </div>
 
@@ -176,16 +162,14 @@
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Client ID'); ?></label>
 			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[mercadopago_client_id]" class="form-control" value="<?php echo @$settings['mercadopago_client_id'] ?>"/>
+			            <input type="text" maxlength="100" name="data[mercadopago_client_id]" class="form-control" value="<?php echo @$settings['mercadopago_client_id'] ?>" placeholder="ID de Mercado pago"/>
 			          </div>
-			          <span class="text-muted">Ingresa el código de Google Analytics</span>
 			        </div>
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Client secret'); ?></label>
 			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[mercadopago_client_secret]" class="form-control" value="<?php echo @$settings['mercadopago_client_secret'] ?>"/>
+			            <input type="text" maxlength="100" name="data[mercadopago_client_secret]" class="form-control" value="<?php echo @$settings['mercadopago_client_secret'] ?>" placeholder="Codigo secret"/>
 			          </div>
-			          <span class="text-muted">Ingresa la identificación del pixel.</span>
 			        </div>
 			      </div>
 			      <div class="col-md-6">

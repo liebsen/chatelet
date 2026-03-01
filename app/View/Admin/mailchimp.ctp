@@ -20,7 +20,7 @@
           </a>
         </li>
       </ul>
-      <div class="tab-content p-7">
+      <div class="tab-content">
         <div class="tab-pane pane-keys active">
         	<div class="row">
         		<div class="col-md-6">
@@ -52,21 +52,26 @@
 				</div>
 
 				<div class="tab-pane pane-lists">
-	        <h4 class="sub-header">Manejo de listas</h4>
-	        <p>Proporciona el código público del sitio para todos los servicios. </p>
-		      <?php foreach($mc_lists as $item): ?>
-		        <div class="control-group">
-		          <label class="control-label d-flex justify-content-start align-items-center gap-05" for="<?php echo $item ?>_on">
-		          	<input type="checkbox" id="<?php echo $item ?>_on" name="data[mc_<?php echo $item ?>_on]" <?php echo $settings['mc_'.$item.'_on'] == 'on' ? ' checked' : '' ?>>
-		          	<?php echo __(ucfirst($item)); ?>
-		          </label>
-		          <div class="controls">
-		          	<select class="form-control mc-select" name="data[mc_<?php echo $item ?>]" data-selected="<?php echo @$settings['mc_'.$item] ?>" data-type="<?= $item == 'store' ? 'store' : 'list' ?>"><option>...</option></select>
-		          </div>
-		          <span class="text-muted">Ingresá el ID correspondiente para la acción <?php echo __($item); ?></span>
-		        </div>
-		      	<br>
-		      <?php endforeach ?>
+        	<div class="row">
+        		<div class="col-md-6">
+
+			        <h4 class="sub-header">Manejo de listas</h4>
+			        <p>Proporciona el código público del sitio para todos los servicios. </p>
+			      <?php foreach($mc_lists as $item): ?>
+			        <div class="control-group">
+			          <label class="control-label d-flex justify-content-start align-items-center gap-05" for="<?php echo $item ?>_on">
+			          	<input type="checkbox" id="<?php echo $item ?>_on" name="data[mc_<?php echo $item ?>_on]" <?php echo $settings['mc_'.$item.'_on'] == 'on' ? ' checked' : '' ?>>
+			          	<?php echo __(ucfirst($item)); ?>
+			          </label>
+			          <div class="controls">
+			          	<select class="form-control mc-select" name="data[mc_<?php echo $item ?>]" data-selected="<?php echo @$settings['mc_'.$item] ?>" data-type="<?= $item == 'store' ? 'store' : 'list' ?>"><option>...</option></select>
+			          </div>
+			          <span class="text-muted">Ingresá el ID correspondiente para la acción <?php echo __($item); ?></span>
+			        </div>
+			      	<br>
+			      <?php endforeach ?>
+				    </div>
+				  </div>
     		</div>
     	</div>
 	    <br />      

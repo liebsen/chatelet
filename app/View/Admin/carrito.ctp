@@ -33,7 +33,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Carrito envío gratis'); ?></label>
             <div class="controls">
-              <textarea name="text_shipping_min_price" class="form-control w-100"><?= @$settings['text_shipping_min_price'] ?></textarea>
+              <textarea name="text_shipping_min_price" class="form-control w-100" rows="5"><?= @$settings['text_shipping_min_price'] ?></textarea>
             </div>
             <span class="text-theme">texto que se muestra en el carrito cuando el usuario no alcanza el mínimo de compra para envío gratis. Podés usar variables como <br>
 <strong>{{precio_min_envio_gratis}}</strong> Monto de compra para envío gratis <br>
@@ -43,7 +43,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Carrito takeaway'); ?></label>
             <div class="controls">
-              <textarea name="carrito_takeaway_text" class="form-control w-100"><?= @$settings['carrito_takeaway_text'] ?></textarea>
+              <textarea name="carrito_takeaway_text" class="form-control w-100" rows="5"><?= @$settings['carrito_takeaway_text'] ?></textarea>
             </div>
             <span class="text-theme">texto que se muestra en el carrito cuando el usuario selecciona método de entrega takeaway.</span>
           </div>  

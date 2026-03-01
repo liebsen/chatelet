@@ -169,11 +169,6 @@ body.login .form-group {
 body {
     background: #f9f9f9; 
     /*background: url('../img/template/bg.png') top left repeat;*/
-    color: #333;
-    line-height: 1.6;
-    font-size: 14px;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
-
 }
 
 #page-container {
@@ -191,6 +186,7 @@ body {
     /* width: 201px; */
     display: block;
     position: absolute;
+    z-index: 10;
     left: 0;
     transition: all 0.25s ease-in;
     background-color: #f9f9f9;
@@ -220,7 +216,7 @@ body {
 
 #pre-page-content, #page-content, #page-content + footer {
     /* border-left: 1px solid #333;*/
-    margin: 0 0 0 200px;
+    margin: 0 0 0 220px;
 }
 
 .w-100 {
@@ -373,14 +369,6 @@ body {
     width: 172px;
 }
 
-.section-indicator {
-    background-color: white;
-}
-
-.section-indicator a {
-    color: #888!important;
-}
-
 .theme-colors {
     list-style: none;
     padding: 10px 0 0;
@@ -493,13 +481,14 @@ body {
 
 #primary-nav li a {
     display: flex;
+    justify-content: start;
     align-items: center;
     grid-gap: 0.5rem;
     min-height: 40px;
     text-transform: uppercase;
-    font-size: 1.5rem;
+    font-size: 14px;
     position: relative;
-    color: #888;
+    color: #999;
     padding: 1rem;
     text-decoration: none;
 }
@@ -518,7 +507,6 @@ body {
 
 #primary-nav li a.update:after {
     content:"";
-    font-size: 1rem;
     background-color: orange;
     width: 0.75rem;
     height: 0.75rem;
@@ -528,9 +516,11 @@ body {
     top: 1rem;
 }
 #primary-nav a > i {
-    width: 3rem;
-    color: #888;
+    position: relative;
+    top: -1px;
+    width: 2rem;
     /*font-size: 2rem;*/
+    font-size: 20px;
     text-align: center;
     /* display: inline-block;
     margin: -3px 10px 0 0;*/
@@ -538,7 +528,8 @@ body {
 
 #primary-nav li span {
     line-height: 1;
-    color: #888;
+    font-size: 13px;
+    font-weight: 1000;    
 }
 
 #primary-nav li a:hover i {
@@ -625,7 +616,11 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: self-start;
-    grid-gap: 1rem;
+    grid-gap: 0.5rem;
+}
+
+.control-group {
+    margin-bottom: 0.5rem;
 }
 
 .block .block {
@@ -682,7 +677,7 @@ body {
 
 .block-content {
     margin: 0;
-    padding: 2rem;
+    padding: 15px;
     border-top: none;
 }
 
@@ -747,6 +742,9 @@ body {
 .block-tabs > .nav-tabs {
     padding: 0.75rem;
     padding-bottom: 0;
+    background-color: #e7e7e7;
+    padding: 1.5rem 2rem;
+    padding-bottom: 0;
 }
 
 .block-tabs > .nav-tabs > li {
@@ -759,6 +757,10 @@ body {
     border: none;
     border-bottom-left-radius: 0!important;
     border-bottom-right-radius: 0!important;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 1000;
+    color: #888;
 }
 
 .block-tabs > .nav-tabs > li > a:hover,
@@ -895,7 +897,7 @@ body {
 .sidebar-tabs-con .tab-content {
     /*background-color: #595959;*/
     background-color: #f9f9f9;
-    padding: 8px 0 8px;
+    padding: 10px 10px 10px 0;
     margin: 0;
     border: none;
 }
@@ -2029,6 +2031,10 @@ pre, code {
     border-width: 1px;
     padding: 14px 0 12px;
     background-color: #fff;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 1000;
+    color: #a5a5a5;
 }
 
 .page-header .header-options {
@@ -2188,7 +2194,12 @@ a.text-black:focus {
     display: flex;
 }
 .text-muted {
-    color: #888!important;
+    color: #999!important;
+}
+
+small, .small {
+    font-size: 80%;
+    font-weight: 800;
 }
 
 /* Labels & Badges */
@@ -2412,6 +2423,9 @@ header.navbar .row {
 header.navbar .row > div {
     position: static;
     padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header.navbar .dropdown-menu {
@@ -2478,10 +2492,10 @@ header.navbar .navbar-brand {
 
 .navbar-nav-custom {
     list-style: none;
-    padding: 0;
     margin: 0;
-    padding: 0.25rem;
-    padding-bottom: 0;
+    min-height: 74px;
+    display: flex;
+    align-items: center;
 }
 
 .navbar-nav-custom > li {
@@ -2743,8 +2757,11 @@ header.navbar .navbar-brand {
 
 label,
 .control-label {
-    font-weight: normal;
     cursor: pointer;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 1000;
+    color: #c5c5c5;
 }
 
 .datepicker {
@@ -2770,7 +2787,7 @@ label,
 }*/
 
 .form-control:focus {
-    border-color: #555;
+    border-color: #7a9dff;
 }
 
 .input-group .form-control,
@@ -2884,7 +2901,9 @@ input[type="email"].form-control,
 textarea.form-control {
     appearance: none;
 }
-
+input[type="file"].form-control {
+  border: none;
+}
 input[type="radio"].form-control {
     position: relative;
     top: -0.25rem;
@@ -2900,10 +2919,24 @@ textarea.form-control {
     min-width: 100%;
 }
 
+input[type="file"].form-control::file-selector-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 6px 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+input[type="file"].form-control::file-selector-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
 
 /* Tables + DataTables */
 .table {
     margin-bottom: 20px;
+    border-collapse: separate;
+    border-bottom: none;
 }
 
 .table thead > tr > th,
@@ -2939,6 +2972,8 @@ textarea.form-control {
 .table tbody > tr > th,
 .table tbody > tr > td {
     padding: 12px 8px 8px;
+    border-right: none;
+    border-top: none;    
 }
 
 .table tr:first-child > td {
@@ -3310,7 +3345,8 @@ a:focus {
 .pagination > li:last-child > span,
 .popover-title,
 .panel {
-    border-radius: 3px;
+    border-radius: 10px;
+    text-transform: uppercase;
 }
 
 /* Remove Box Shadow */
@@ -3474,11 +3510,23 @@ a.thumbnail-borderless,
   opacity: 1;
 }
 
-
+.section-indicator > a {
+    display: flex!important;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 0.5rem;
+}
+.section-indicator > a > i {
+    top: -1px!important;
+    min-width: 1.5rem;
+}
 
 /* Mobile up to landscape tablet */
 @media (max-width: 991px) {
 
+    .section-indicator {
+        display: none!important;
+    }
     #login-container {
         padding: 205px 0 10px 0;
     }
@@ -4062,7 +4110,15 @@ div.cloudzoom-black:nth-child(3) {
     font-size: 1.5rem;
     background-color: #f8f8f8;
     border-radius: 1rem;
-    grid-gap: 1.5rem;
+    grid-gap: 1.75rem;
+}
+
+.switch-scale > span {
+    flex: 1;
+}
+.switch-scale > span > label {
+    font-size: 16px;
+    padding-left: 0.25rem;
 }
 
 .switch-scale > label {

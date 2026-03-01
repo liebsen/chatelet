@@ -176,7 +176,7 @@
   <div class="block-content">
     <p class="p">Usted puede editar las tarifas de esta logística de acuerdo a las zonas que están representadas por códigos postales. Los códigos postales en Argentina contienen cuatro números. Puede asignarlos de forma taxativa (ej: 1440, 1441) o agrupar con expresiones (ej: 92**, 930*). Mas información sobre <a href="https://códigos-postales.cybo.com/argentina/#mapwrap" target="_blank">códigos postales de argentina</a></p>
     <button class="btn btn-success" type="button" onclick="edit_logistic_price()">Agregar</button>
-    <table class="table table-striped" id="tarifas">
+    <table class="table table-bordered table-striped" id="tarifas">
       <thead>
         <tr>
           <th><?php echo __('Zona'); ?></th>

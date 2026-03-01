@@ -5,7 +5,7 @@
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 <div class="block-section">
-	<table id="menu-datatables" class="table table-bordered table-hover table-condensed draggable-table" data-url="/admin/ordernum/banner">
+	<table id="menu-datatables" class="table table-striped table-bordered table-hover print-friendly draggable-table" data-url="/admin/ordernum/banner">
 		<thead>
 			<tr>
 				<th class="hidden-phone hidden-tablet">&nbsp;</th>

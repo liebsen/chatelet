@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-xs-12">
 		<!-- Default Table -->
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th class="text-center">Cantidad Min.</th>

@@ -39,8 +39,8 @@
             echo $this->Html->css('plugins');
             echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION'));
             echo $this->Html->css('main.css?v=' . Configure::read('APP_VERSION'));
-            echo $this->Html->css('animate.css?v=' . Configure::read('APP_VERSION'));
-            //echo $this->Html->css('font-awesome.min');
+            // echo $this->Html->css('animate.css?v=' . Configure::read('APP_VERSION'));
+            // echo $this->Html->css('font-awesome.min');
 
             if ($template['theme']) {
                 echo $this->Html->css('themes/'.$template['theme']);
@@ -50,6 +50,20 @@
             echo $this->fetch('css');
             echo $this->Html->script('vendor/modernizr-2.7.1-respond-1.4.2.min.js');
         ?>
+        
+        <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$settings['google_font_name']) ?>:<?= @$settings['google_font_size'] ?>" rel="stylesheet">
+        <style type="text/css">
+            html, body { 
+                font-family: '<?=@$settings['google_font_name'] ?>', Verdana, Arial, Sans-Serif!important;
+                line-height: 1.5;
+                font-size: 14px; 
+                font-weight: 600;
+                text-transform: uppercase;
+                color: #a5a5a5;
+                font-weight: 300;                
+            }
+        </style>
+
         <script>
         window.baseUrl  = "<?=Router::url('/',true)?>";
         </script>
@@ -81,7 +95,7 @@
                 <!-- div#row -->
                 <div class="row">
                     <!-- Sidebar Toggle Buttons (Desktop & Tablet) -->
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 is-flex-center">
                         <ul class="navbar-nav-custom pull-left">
                             <!-- Desktop Button (Visible only on desktop resolutions) -->
                             <li class="mini-profile">
@@ -110,9 +124,9 @@
                                 </a>
                             </li-->
                             <?php if (!empty($h1)): ?>
-                            <li>
+                            <li class="section-indicator">
                                 <a href="#" class="text-white">
-                                    <i class="<?php echo $h1['icon'] ?>"></i> <?php echo $h1['name']; ?>
+                                    <i class="<?php echo $h1['icon'] ?>"></i> <span><?php echo $h1['name']; ?></span>
                                 </a>
                             </li>
                                 <?php endif ?>

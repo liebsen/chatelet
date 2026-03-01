@@ -337,9 +337,9 @@ body.top-fixed .navbar-chatelet:not(.short) {
 body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   width: 100px;
 }
-body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
+/*body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
   top: -0.05rem;
-}
+}*/
 
 .google-fonts {
   font-family: var(--google-fonts-name)!important;
@@ -358,7 +358,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-nav.navbar-right {
 
 @media (min-width: 768px) {
   .navbar-chatelet { 
-    min-height: 65px;
+    min-height: 74px;
   }
   .add-no-stock {
     min-height: 27rem!important;

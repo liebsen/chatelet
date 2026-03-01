@@ -40,7 +40,7 @@
             </a>
           </li>
         </ul>
-        <div class="tab-content p-7">
+        <div class="tab-content">
           <div class="tab-pane pane-main active">
             <div class="row">
               <div class="col-md-6">

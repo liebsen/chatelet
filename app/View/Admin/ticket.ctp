@@ -57,7 +57,7 @@
         <div class="row">
           <div class="col">
             <img class="shop-logo" height="40" src="/img/logo.jpg">
-            <table class="table table-striped">
+            <table class="table table-bordered table-striped">
               <tr>
                 <td width="150"><h6><?php echo __('Órden de retiro'); ?></h6></td>
                 <td><h6 class="text-orden-retiro"><?= strtoupper($ticket['def_orden_retiro']) ?></h6></td>
