@@ -126,7 +126,7 @@ function log2file($path, $data, $mode="a"){
   $fh = fopen($path, $mode) or die($path);
   fwrite($fh,$data . "\n");
   fclose($fh);
-  chmod($path, 0777);
+  // chmod($path, 0777);
 }
 
 function parse_coupon($coupon, $cart_totals) {

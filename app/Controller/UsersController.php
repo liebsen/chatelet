@@ -255,11 +255,12 @@ class UsersController extends AppController {
     
     if(!empty($invite) && empty($data['User']['password'])) {
       $random_password = $this->random_password();
-      CakeLog::write('debug', 'New password generated:'.$random_password);
+      
       $data['User']['password'] = $random_password;
       $this->request->data['User']['password'] = $random_password;
     }
 
+    // CakeLog::write('debug', 'User:'.json_encode($data['User']));
     CakeLog::write('debug', 'register:'.json_encode($data));
 
     // CakeLog::write('debug', 'validate:'.$validate);

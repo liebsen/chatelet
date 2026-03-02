@@ -8,7 +8,7 @@ echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 echo $this->Html->css('bootstrapValidator.min');
 echo $this->Html->css('bootstrap-datepicker');
 
-$this->set('short_header', $loggedIn ? 'Actualizar mi cuenta' : 'Crear mi cuenta');
+$this->set('short_header', $loggedIn ? 'Actualizar mi cuenta' : 'Registrarme');
 $this->set('short_header_text', '← Volver a mi cuenta');
 $this->set('short_header_link', '/shop/cuenta');
 
@@ -53,34 +53,34 @@ if (!$loggedIn) {
 				<input type="hidden" name="redirect" value="<?= $_GET['redirect'] ?? '' ?>" />
 				<input type="hidden" name="ajax" value="1" />
 				<div class="d-flex flex-column justify-content-start align-items-center gap-1 content">
-					<h5 class="text-uppercase">
-						<?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Crear mi cuenta' ?>
-					</h5>			
-					<p>
-						Ingresa tus datos personales para crear una cuenta.
-					</p>
-					<div class="row cols-fix w-100">
+					<div class="row w-100">
+						<div class="col-md-12">
+							<h3 class="text-uppercase mt-0">
+								<i class="gi gi-woman text-warning"></i> <?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Registrarme como clienta' ?>
+							</h3>
+							<p>
+							 Ingresa tus datos personales para crear una cuenta. Luego genera tu contraseña y te recomendamos que nunca la reveles a nadie.
+							</p>
+						</div>
+					</div>
+					<div class="row cols-fix w-100 animation-fadeIn">
 						<div class="col-md-6">
 							<label for="email">Email</label>
 							<div class="form-group">
 								<?php
-									echo '<input type="email" class="form-control" placeholder="patriciarodriguez@gmail.com" title="Email" name="data[User][email]" value="'. $userData['email'] .'" required />';
+									echo '<input type="email" id="email" class="form-control" placeholder="patriciarodriguez@gmail.com" title="Email" name="data[User][email]" value="'. $userData['email'] .'" required />';
 								?>
 							</div>
 							<span class="validation-email"></span>
 						</div>
 						<div class="col-md-6">
-							<label>Newsletter</label>
-							<div class="form-group d-flex justify-content-start align-items-center gap-05 p-3">
+							<label for="Telefono">Teléfono</label>			
+							<div class="form-group">
 								<?php
-									$subscribed = $unsubscribed = '';
-									if ($userData['newsletter'] == '1') $subscribed = 'checked';
-									else if ($userData['newsletter'] == '0') $unsubscribed = 'checked';
-									if($subscribed=='') $subscribed = 'checked';
- 									echo '<label for="si"><input type="radio" id="si" name="data[User][newsletter]" value="1" '.$subscribed.' />Sí</label> '; 
-									echo '<label for="no"><input type="radio" id="no" name="data[User][newsletter]" value="0" '.$unsubscribed.' />No</label>';
+									echo '<input type="tel" class="form-control" id="Telefono" title="Telefono" placeholder="011 4703 8888" name="data[User][telephone]" value="'. $userData['telephone'] .'" required />';
 								?>
 							</div>
+
 						</div>
 						<div class="col-md-6">
 							<label for="nombre">Nombre</label>
@@ -103,8 +103,8 @@ if (!$loggedIn) {
 							<label for="FechaNac">Tu fecha de nacimiento</label>
 							<div class="form-group">
 								<?php
-									echo '<input type="text" class="datepicker form-control" id="birthday" placeholder="10/10/1980" title="Fecha de Nacimiento" name="data[User][birthday]" value="'. 
-											$this->Time->format($userData['birthday'], '%d/%m/%Y')
+									echo '<input type="text" class="datepicker form-control" id="birthday" data-date-format="dd/mm/yyyy" placeholder="10/10/1980" title="Fecha de Nacimiento" name="data[User][birthday]" value="'. 
+											$this->Time->format($userData['birthday'] ?? '02-02-1990', '%d/%m/%Y')
 										.'" required />';
 								?>
 							</div>
@@ -232,12 +232,27 @@ if (!$loggedIn) {
 							</div>
 							<span class="validation-password"></span>
 						</div>
-				<?php endif ?>
 						<div class="col-md-6">
-							<label for="Telefono">Teléfono</label>			
+							<label for="password">Confirme Contraseña</label>
+							<div class="form-group position-relative">
+								<input type="password" placeholder="********" class="form-control" id="password2" name="data[User][password2]" autocomplete="current-password" />
+								<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#password2"></i>
+							</div>
+							<span class="validation-password"></span>
+						</div>
+				<?php endif ?>
+						<div class="col-md-12">
+							<label>Deseo suscribirme al Newsletter</label>
 							<div class="form-group">
+								<input type="checkbox" name="data[User][newsletter]" value="1" id="toggle" class="toggle-checkbox"<?= $userData['newsletter'] == '1' ? ' checked' : '' ?>>
+								<label for="toggle" class="toggle-label"></label>
 								<?php
-									echo '<input type="tel" class="form-control" id="Telefono" title="Telefono" placeholder="011 4703 8888" name="data[User][telephone]" value="'. $userData['telephone'] .'" required />';
+									/*$subscribed = $unsubscribed = '';
+									if ($userData['newsletter'] == '1') $subscribed = 'checked';
+									else if ($userData['newsletter'] == '0') $unsubscribed = 'checked';
+									if($subscribed=='') $subscribed = 'checked';
+ 									echo '<label for="si"><input type="radio" id="si" name="data[User][newsletter]" value="1" '.$subscribed.' /><span>Sí</span></label> '; 
+									echo '<label for="no"><input type="radio" id="no" name="data[User][newsletter]" value="0" '.$unsubscribed.' /><span>No</span></label>';*/
 								?>
 							</div>
 						</div>
@@ -250,7 +265,7 @@ if (!$loggedIn) {
 						</span>
 					</div>
 					<div class="col-md-6">
-			    	<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registroenviar-registro" value="<?= !$loggedIn ? 'Crear mi cuenta' : 'Actualizar' ?>" />
+			    	<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registroenviar-registro" value="<?= !$loggedIn ? 'Registrarme' : 'Actualizar' ?>" />
 					</div>
 				</div>
 				<?php echo $this->Form->end(); ?>
@@ -258,20 +273,20 @@ if (!$loggedIn) {
 			<div class="flex-col desktop">
 				<div class="card bg-transparent">
 					<div class="card-body">
-						<h3>
-							<?php if ($loggedIn) : ?>
-								Tus datos en Châtelet
-							<?php else :?>
-								Accede a más beneficios
-							<?php endif ?>
-						</h3>
-						<p>
+						<blockquote>
+							<h3 class="mt-0"><i class="gi gi-magic text-warning"></i>
+								<?php if ($loggedIn) : ?>
+									Tus datos en Châtelet
+								<?php else :?>
+									Accede a más beneficios
+								<?php endif ?>
+							</h3>
 							<?php if ($loggedIn) : ?>
 								Tu cuenta fue registrada <?php echo date('d M Y', strtotime($userData['created'])) ?>
 							<?php else :?>
 								Crea hoy tu cuenta en <i>Châtelet</i> y accede a mas beneficios.
 							<?php endif ?>
-						</p>
+						</blockquote>
 					</div>
 				</div>
 			</div>
@@ -286,9 +301,17 @@ if (!$loggedIn) {
 </style>
 <script type="text/javascript">
 	$(function(){
+		$('input[type="submit"]').prop('disabled', false)
 		var timeout = 0
 	    $('#registro_form').submit(function(e) {
 	    	e.preventDefault();
+	    	$('input[type="submit"]').prop('disabled', true)
+	    	const formData = new FormData(e.target);
+	    	if($('#password').length){
+		    	if($('#password').val().trim() != $('#password2').val().trim()) {
+		    		return onWarningAlert('Error de validación', 'Las contraseñas no coinciden. Asegúrate de que sean la misma en ambos campos')
+		    	}
+		    }
 	    	clearTimeout(timeout)
 	    	timeout = setTimeout(() => {
 	        var me = $(this),
@@ -330,13 +353,14 @@ if (!$loggedIn) {
 	                }
 	            })
 	            .fail(function() {
+	            		$('input[type="submit"]').prop('disabled', false)
 	                $.growl.error({
-	                    title: 'Error al registrar usuario(2)',
+	                    title: 'Error al registrar usuario',
 	                    message: 'Por favor verifica los datos introducidos e intenta de nuevo'
 	                });
 	            });
 
-	      }, 100)
+	      }, 500)
 	      return false;
 	    });
 	    // $("#registro_form").bootstrapValidator('validate');		

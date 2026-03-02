@@ -262,6 +262,10 @@ label input[type=checkbox]:disabled + .label-text:before {
   }
 }
 
+.navbar-right {
+  text-transform: uppercase;
+  font-weight: 300;
+}
 .navbar-nav, .navbar-collapse, .navbar-header {
   flex-grow: 1;
 }

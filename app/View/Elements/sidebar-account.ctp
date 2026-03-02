@@ -26,7 +26,7 @@
       <a href="/users/logout" class="btn btn-chatelet light btn-logout w-100">Cerrar sesión</a>
     <?php else : ?>
       <a href="/shop/login" class="btn btn-chatelet dark w-100">Iniciar sesión</a>
-      <a href="/shop/registro" class="btn btn-chatelet w-100">Crear cuenta</a>
+      <a href="/shop/registro" class="btn btn-chatelet w-100">Registrarme como clienta</a>
     <?php endif ?>
     </div>
   </div>

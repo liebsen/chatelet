@@ -80,6 +80,13 @@ $(function () {
   // Toggle Side content
   /*body.toggleClass('hide-side-content');*/
 
+  if (typeof $.fn.datepicker != 'undefined'){ 
+    $('.datepicker').datepicker({
+      format: $(this).data('format') || 'dd/mm/yyyy',
+      language: 'es'
+    });
+  }
+
   var timeout = 0
   $('.logout-btn').click(function(){ 
     const prompt = confirm('¿Deseas abandonar la sesión?')
