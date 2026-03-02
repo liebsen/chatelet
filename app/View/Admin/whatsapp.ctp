@@ -1,5 +1,6 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('admin-whatsapp.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
+<?php echo $this->Html->script('application-form.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
 
 <div class="block">
 	<div class="block-content">
@@ -8,24 +9,13 @@
 	      <div class="col-md-6">
 	        <h4 class="sub-header">Vía de contacto</h4>
 	        <div class="control-group">
-	          <label class="control-label" for="columns-text"><?php echo __('Habilitar Whatsapp como vía de contacto'); ?></label>
-	          <div class="controls text-center switch-scale">
-	            <?php
-	              $enabled = $data['whatsapp_enabled'] == 1 ? 'checked' : '';
-	              $disabled = $data['whatsapp_enabled'] == 0 ? 'checked' : '';
-	            ?>
-	            <span>
-	            	<input type="radio" class="form-control" id="enabled_1" name="data[whatsapp_enabled]" value="1" <?php echo $enabled; ?> /> 
-	            	<label for="enabled_1">Sí</label>
-	          	</span>
-	          	<span>
-	            	<input type="radio" class="form-control" id="enabled_0" name="data[whatsapp_enabled]" value="0" <?php echo $disabled; ?> />
-	            	<label for="enabled_0">No</label>
-	          	</span>
-	          </div>
+						<label class="control-label" for="columns-text"><?php echo __('Habilitar Whatsapp como vía de contacto'); ?></label>
+						<div class="form-group">
+							<input type="checkbox" name="data[whatsapp_enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$data['whatsapp_enabled'] == '1' ? ' checked' : '' ?>>
+							<label for="toggle" class="toggle-label"></label>
+						</div>
 	          <span class="text-muted">Indica si debe mostrarse un mensaje solicitar al cliente a contacto vía chat de WhatsApp.</span>
 	        </div>
-
 	      </div>
 	      <div class="col-md-6">
 	      	<div class="show-panel <?= !$data['whatsapp_enabled'] ? 'show-inactive' : '' ?>">

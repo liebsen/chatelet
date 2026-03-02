@@ -616,7 +616,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: self-start;
-    grid-gap: 0.5rem;
+    grid-gap: 0.25rem;
 }
 
 .control-group {
@@ -2095,23 +2095,6 @@ pre, code {
 =================================================================
 */
 
-/* Typography */
-h1, h2, h3, h4, h5, h6, h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
-    font-weight: 300;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
-}
-
-h1, h2, h3 {
-    line-height: 40px;
-}
-
-h4, h5, h6 {
-    line-height: 20px;
-}
-
-strong {
-    font-weight: 600;
-}
 
 .list-unstyled {
     padding-left: 20px;
@@ -2647,6 +2630,7 @@ header.navbar .navbar-brand {
 }
 
 /* Pagination */
+/*
 .pagination > li > a,
 .pagination > li > span,
 .pagination > li > a:hover,
@@ -2663,6 +2647,7 @@ header.navbar .navbar-brand {
     background-color: #2980b9;
     border: 1px solid #2980b9;
 }
+*/
 
 /* Media */
 .media {
@@ -2930,6 +2915,16 @@ input[type="file"].form-control::file-selector-button:hover {
 }
 
 /* Tables + DataTables */
+
+
+.dataTables_wrapper input,
+.dataTables_wrapper select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+}
+
+/*
 .table {
     margin-bottom: 20px;
     border-collapse: separate;
@@ -2988,7 +2983,6 @@ input[type="file"].form-control::file-selector-button:hover {
 
 .table.table-condensed tbody > tr > th,
 .table.table-condensed tbody > tr > td {
-    /*padding: 2px 5px 1px;*/
     padding: 0.75rem 1rem;
 }
 
@@ -3045,6 +3039,8 @@ input[type="file"].form-control::file-selector-button:hover {
     background-color: #b1dffc;
 }
 
+
+
 .dataTables_wrapper {
     display: flex;
     flex-direction: column;
@@ -3054,8 +3050,6 @@ input[type="file"].form-control::file-selector-button:hover {
 .dataTables_wrapper > div {
     background-color: #f9f9f9;
     width: 100%;
-    /* border: 1px solid #ddd;
-    padding: 1rem; */
     border-top-width: 0;
 }
 
@@ -3090,14 +3084,14 @@ input[type="file"].form-control::file-selector-button:hover {
     display: inline;
 }
 
-/* .dataTables_info {
+.dataTables_info {
     height: 29px;
     line-height: 29px;
 } 
 
 .dataTables_paginate.paging_bootstrap {
     height: 29px;
-}*/
+}
 
 .dataTables_paginate {
     float: right;
@@ -3175,7 +3169,7 @@ table.dataTable thead .sorting_desc:before {
 }
 table.dataTable thead .sorting:before {
     content: none !important;
-}
+}*/
 
 .toggle-checkbox {
     display: none; /* Hide the default checkbox */

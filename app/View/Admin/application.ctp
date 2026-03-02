@@ -38,13 +38,18 @@
 			      <?php foreach($socials as $item): ?>
 			        <div class="control-group">
 			          <label class="control-label d-flex justify-content-start align-items-center gap-05" for="<?php echo $item ?>_on">
-			          	<input type="checkbox" id="<?php echo $item ?>_on" name="data[<?php echo $item ?>_on]" <?php echo $settings[$item.'_on'] == 'on' ? ' checked' : '' ?>>
 			          	<i class="fa fa-lg fa-<?php echo $item ?>"></i>
 			          	<?php echo __(ucfirst($item)); ?>
 			          </label>
+			          <div class="d-flex flex-center gap-05">
 			          <div class="controls">
 			            <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control" value="<?php echo @$settings[$item.'_url'] ?>" placeholder="Ingresá la URL de tu perfil de <?php echo __($item); ?>"/>
 			          </div>
+								<div class="controls flex-1 mt-1">
+									<input type="checkbox" id="toggle_<?php echo $item ?>" name="data[<?php echo $item ?>_on]" value="1" id="toggle" class="toggle-checkbox"<?= $settings[$item.'_on'] == '1' ? ' checked' : '' ?>>
+									<label for="toggle_<?php echo $item ?>" class="toggle-label"></label>
+								</div>
+								</div>
 			        </div>
 			      	<br>
 			      <?php endforeach ?>
