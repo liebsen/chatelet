@@ -2924,6 +2924,23 @@ input[type="file"].form-control::file-selector-button:hover {
     border-radius: 5px;
 }
 
+.table {
+    border-collapse: separate !important;
+}
+
+.table tr {
+    border-bottom: none;
+}
+.table  th {
+    border-radius: 10px;
+    padding: 10px!important;
+    text-transform: uppercase;
+}
+.table td {
+    border-radius: 10px;
+    padding: 10px!important;
+    text-transform: uppercase;
+}
 /*
 .table {
     margin-bottom: 20px;

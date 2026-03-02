@@ -27,8 +27,10 @@
           </div>
 
           <div class="control-group">
-            <div class="d-flex justify-content-center align-items-center gap-1">
-              <input type="checkbox" id="alternatename" name="data[alternate_toggle]" value="1" <?php echo (isset($cat)) && $cat['Category']['alternate_toggle'] == 1 ? 'checked' : ''; ?>/>
+            <div class="d-flex justify-content-center align-items-center gap-1">          
+              <input type="checkbox" id="alternatename" name="data[alternate_toggle]" value="1" id="toggle" class="toggle-checkbox"<?= $cat['Category']['alternate_toggle'] == '1' ? ' checked' : '' ?>>
+              <label for="toggle_<?php echo $item ?>" class="toggle-label"></label>
+              <!--input type="checkbox" id="alternatename" name="data[alternate_toggle]" value="1" <?php echo (isset($cat)) && $cat['Category']['alternate_toggle'] == 1 ? 'checked' : ''; ?>/-->
               <label class="control-label" for="alternatename"><?php echo __('Nombre Alternativo'); ?></label>
             </div>
             <a class="d-none" id="alternatename_restore">Cancelar</a>
