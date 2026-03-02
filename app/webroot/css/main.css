@@ -489,7 +489,7 @@ body {
     font-size: 14px;
     position: relative;
     color: #999;
-    padding: 1rem;
+    padding: 0.5rem;
     text-decoration: none;
 }
 /*#primary-nav li a:hover {
@@ -2029,10 +2029,10 @@ pre, code {
 
 .sub-header {
     border-width: 1px;
-    padding: 14px 0 12px;
+    padding: 14px 0 10px;
     background-color: #fff;
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 1000;
     color: #a5a5a5;
 }
@@ -2483,7 +2483,7 @@ header.navbar .navbar-brand {
 
 .navbar.navbar-default .divider-vertical,
 .navbar.navbar-inverse .divider-vertical {
-    height: 40px;
+    height: 55px;
     border-left: 1px solid #fff;
     border-right: 1px solid #fff;
     opacity: 0.20;
@@ -2905,8 +2905,6 @@ input[type="file"].form-control {
   border: none;
 }
 input[type="radio"].form-control {
-    position: relative;
-    top: -0.25rem;
     transition: scale(1.5);
     cursor: pointer;
     width: auto;
@@ -4117,7 +4115,7 @@ div.cloudzoom-black:nth-child(3) {
     flex: 1;
 }
 .switch-scale > span > label {
-    font-size: 16px;
+    font-size: 14px;
     padding-left: 0.25rem;
 }
 
