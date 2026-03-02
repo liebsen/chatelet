@@ -316,7 +316,6 @@ html, body {
     transform: translateX(26px); /* Slide thumb to the right */
 }
 
-
 .disable-scroll {
   overflow: hidden;
 }

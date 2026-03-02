@@ -26,12 +26,11 @@
         		<div class="col-md-6">
 			        <h4 class="sub-header">Mailchimp APP Keys</h4>
 			        <p>Aquí podrás darle acceso a la tienda hacia Mailchimp. Estos datos se generan desde la plataforma de <a href="https://us12.admin.mailchimp.com/account/api/">Mailchimp</a>.</p>
-			        <div class="control-group">
-			          <label class="control-label d-flex justify-content-start align-items-center gap-05" for="mailchimp_on">
-			          	<input type="checkbox" id="mailchimp_on" name="data[mailchimp_on]" <?php echo $settings['mailchimp_on'] == 'on' ? ' checked' : '' ?>>
-			          	Activo
-			          </label>
-		          </div>
+							<div class="form-group">
+								<label class="control-label" for="columns-text"><?php echo __('Activo'); ?></label>
+								<input type="checkbox" name="data[mailchimp_on]" value="1" id="toggle" class="toggle-checkbox"<?= $settings['mailchimp_on'] == '1' ? ' checked' : '' ?>>
+								<label for="toggle" class="toggle-label"></label>
+							</div>		
 		          <hr>	        
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('APP Key'); ?></label>
@@ -58,15 +57,19 @@
 			        <h4 class="sub-header">Manejo de listas</h4>
 			        <p>Proporciona el código público del sitio para todos los servicios. </p>
 			      <?php foreach($mc_lists as $item): ?>
-			        <div class="control-group">
-			          <label class="control-label d-flex justify-content-start align-items-center gap-05" for="<?php echo $item ?>_on">
-			          	<input type="checkbox" id="<?php echo $item ?>_on" name="data[mc_<?php echo $item ?>_on]" <?php echo $settings['mc_'.$item.'_on'] == 'on' ? ' checked' : '' ?>>
-			          	<?php echo __(ucfirst($item)); ?>
-			          </label>
-			          <div class="controls">
-			          	<select class="form-control mc-select" name="data[mc_<?php echo $item ?>]" data-selected="<?php echo @$settings['mc_'.$item] ?>" data-type="<?= $item == 'store' ? 'store' : 'list' ?>"><option>...</option></select>
-			          </div>
-			          <span class="text-muted">Ingresá el ID correspondiente para la acción <?php echo __($item); ?></span>
+			        <div class="control-group d-flex flex-column">
+								<div class="form-group">
+									<label class="control-label" for="columns-text"><?php echo __(ucfirst($item)); ?></label>
+								</div>
+								<div class="d-flex flex-center gap-05">
+				          <div class="controls">
+				          	<select class="form-control mc-select" name="data[mc_<?php echo $item ?>]" data-selected="<?php echo @$settings['mc_'.$item] ?>" data-type="<?= $item == 'store' ? 'store' : 'list' ?>"><option>...</option></select>
+				          </div>
+									<div class="controls flex-1 mt-1">
+										<input type="checkbox" id="toggle_<?php echo $item ?>" name="data[mc_<?php echo $item ?>_on]" value="1" id="toggle" class="toggle-checkbox"<?= $settings['mc_'.$item.'_on'] == '1' ? ' checked' : '' ?>>
+										<label for="toggle_<?php echo $item ?>" class="toggle-label"></label>
+									</div>
+				        </div>
 			        </div>
 			      	<br>
 			      <?php endforeach ?>

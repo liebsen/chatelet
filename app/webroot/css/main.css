@@ -512,8 +512,8 @@ body {
     height: 0.75rem;
     border-radius: 100%;
     position: absolute;
-    left: 1rem;
-    top: 1rem;
+    left: 0.5rem;
+    top: 0.25rem;
 }
 #primary-nav a > i {
     position: relative;
@@ -751,9 +751,9 @@ body {
     margin-bottom: -2px;
 }
 
-.block-tabs > .nav-tabs > li > a,
-.block-tabs > .nav-tabs > li > a:hover,
-.block-tabs > .nav-tabs > li > a:focus {
+.block-tabs > .nav-tabs > li > a {
+    box-shadow: 5px 0 0 #c5c5c5;
+    margin: 0 0.5rem;    
     border: none;
     border-bottom-left-radius: 0!important;
     border-bottom-right-radius: 0!important;
@@ -762,12 +762,11 @@ body {
     font-weight: 1000;
     color: #888;
 }
-
 .block-tabs > .nav-tabs > li > a:hover,
 .block-tabs > .nav-tabs > li > a:focus {
     border: none;
-    color: #333;
-    background-color: #d4d4d4;
+    background-color: #f8f8f8;
+    color: #888;
 }
 
 .block-tabs > .nav-tabs > .active > a:hover,
@@ -2032,7 +2031,7 @@ pre, code {
     padding: 14px 0 10px;
     background-color: #fff;
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 1000;
     color: #a5a5a5;
 }
@@ -3178,6 +3177,44 @@ table.dataTable thead .sorting:before {
     content: none !important;
 }
 
+.toggle-checkbox {
+    display: none; /* Hide the default checkbox */
+}
+
+.toggle-label {
+    /* Style the track */
+    display: block;
+    width: 60px;
+    height: 34px;
+    background-color: #ccc;
+    border-radius: 34px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.4s; /* Smooth color transition */
+}
+
+.toggle-label:after {
+    /* Style the thumb (sliding circle) */
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #fff;
+    top: 4px;
+    left: 4px;
+    transition: transform 0.4s; /* Smooth sliding animation */
+}
+
+/* Change background color and slide the thumb when checked */
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #2196F3; /* Blue when "on" */
+}
+
+.toggle-checkbox:checked + .toggle-label:after {
+    transform: translateX(26px); /* Slide thumb to the right */
+}
+
 .btn-adjust {
     margin-top: -2px;
 }
@@ -4053,6 +4090,11 @@ div.cloudzoom-black:nth-child(3) {
     justify-content: start;
 }
 
+.flex-between {
+    align-items: center;
+    justify-content: space-between;
+}
+
 .flex-col-start {
     align-items: start;
     justify-content: center;
@@ -4066,6 +4108,9 @@ div.cloudzoom-black:nth-child(3) {
     flex-direction: row!important;
 }
 
+.flex-1 {
+    flex: 1;
+}
 .flex-column {
     flex-direction: column!important;
 }
