@@ -54,6 +54,7 @@ class AdminController extends AppController {
 		$data = [];
 		$coupon_enable = self::couponsAvailable();
 		$banners_enable = self::bannersAvailable();
+		$mailchimp_enable = self::mailchimpAvailable();
 
 		foreach($menu as $i => $v) {
 			if($v['url']==='/admin/whatsapp'){
@@ -67,6 +68,9 @@ class AdminController extends AppController {
 			}
 			if($v['url']==='/admin/banners'){
 				$menu[$i]['update'] = !empty($banners_enable);
+			}
+			if($v['url']==='/admin/mailchimp'){
+				$menu[$i]['update'] = !empty($mailchimp_enable);
 			}
 		}
 
@@ -160,6 +164,10 @@ class AdminController extends AppController {
 		return $available;
 	}
 
+	private function mailchimpAvailable(){
+		return !empty($this->settings['mailchimp_on']);
+	}
+	
 	private function bannersAvailable(){
 		$this->loadModel('Banner');
 		$available = false;
@@ -1886,7 +1894,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'name' => 'Mailchimp',
 			'icon' => 'fa fa-cog'
 			);
-
+			
+			$this->set('audiences', \get_mc_audiences());
 			$this->set('navs', $navs);		
 		  $this->loadModel('Setting');
 			$this->set('h1', $h1);

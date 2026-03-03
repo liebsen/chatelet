@@ -1,4 +1,3 @@
-<?php $mc_lists = \get_mc_lists() ?>
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
 <?php echo $this->Html->script('jquery.growl.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
@@ -57,22 +56,18 @@
 		        		<div class="col-md-12">
 					        <h4 class="sub-header">Manejo de listas</h4>
 					        <p>Establece las listas disponibles para cada acción. </p>
-					      <?php foreach($mc_lists as $item): ?>
-					        <div class="control-group d-flex flex-column">
-										<div class="form-group">
+					      <?php foreach($audiences as $id => $item): ?>
+									<div class="d-flex flex-start gap-05">
+										<div class="controls flex-1" style="min-width: 8rem;">
 											<label class="control-label" for="columns-text"><?php echo __(ucfirst($item)); ?></label>
+											<input type="checkbox" id="toggle_<?php echo $id ?>" name="data[mc_<?php echo $id ?>_on]" value="1" id="toggle" class="toggle-checkbox"<?= $settings['mc_'.$id.'_on'] == '1' ? ' checked' : '' ?>>
+											<label for="toggle_<?php echo $id ?>" class="toggle-label"></label>
 										</div>
-										<div class="d-flex flex-center gap-05">
-											<div class="controls flex-1 mt-1">
-												<input type="checkbox" id="toggle_<?php echo $item ?>" name="data[mc_<?php echo $item ?>_on]" value="1" id="toggle" class="toggle-checkbox"<?= $settings['mc_'.$item.'_on'] == '1' ? ' checked' : '' ?>>
-												<label for="toggle_<?php echo $item ?>" class="toggle-label"></label>
-											</div>
-						          <div class="controls">
-						          	<select class="form-control mc-select" name="data[mc_<?php echo $item ?>]" data-selected="<?php echo @$settings['mc_'.$item] ?>" data-type="<?= $item == 'store' ? 'store' : 'list' ?>"><option>...</option></select>
-						          </div>
-						        </div>
+					          <div class="controls">
+					          	<select class="form-control mc-select" name="data[mc_<?php echo $id ?>]" data-selected="<?php echo @$settings['mc_'.$id] ?>" data-type="<?= $id == 'store' ? 'store' : 'list' ?>"><option>...</option></select>
+					          </div>
 					        </div>
-					      	<br>
+					        <hr>
 					      <?php endforeach ?>
 						    </div>
 						  </div>

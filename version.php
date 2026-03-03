@@ -1,8 +1,8 @@
 <?php
 
 require_once __DIR__ . '/app/functions.php';
-$path = __DIR__ .'/app/app_version';
 
+$path = __DIR__ .'/app/app_version';
 $version = intval(file_get_contents($path));
 $version+= 1;
 

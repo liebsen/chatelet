@@ -65,12 +65,13 @@ function get_socials(){
   ];
 }
 
-function get_mc_lists(){
-  return [
-    'contact',
-    'subscription',
-    'store'
-  ];
+function get_mc_audiences(){
+  return array(
+    'account' => "Cuentas",
+    'contact' => "Contactos",
+    'subscription' => "Suscripciones",
+    'store' => "Store"
+  );
 }
 
 function parsed_socials($settings){
