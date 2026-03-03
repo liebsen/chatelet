@@ -22,7 +22,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$path = __DIR__ .'/../version';
+$path = __DIR__ .'/../app_version';
 $version_count = (float) file_get_contents($path);
 $version = (float) $version_count;
 
