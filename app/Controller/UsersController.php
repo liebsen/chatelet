@@ -190,7 +190,7 @@ class UsersController extends AppController {
 
         $saved = $this->Subscription->save($toSave);
 
-        if($this->settings['mailchimp_on'] == 'on' && $this->settings['mc_subscription_on'] == 'on') {
+        if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_subscription_on'] == '1') {
           $this->Mailchimp->subscribe($data['Subscription'], $this->settings['mc_subscription']);
         }
 
@@ -309,7 +309,7 @@ class UsersController extends AppController {
         ));
       }
 
-      if($this->settings['mailchimp_on'] == 'on' && $this->settings['mc_subscription_on'] == 'on') {
+      if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_subscription_on'] == '1') {
         $this->Mailchimp->subscribe($data['User'], $this->settings['mc_subscription']);
       }
 

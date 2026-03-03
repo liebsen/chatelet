@@ -165,7 +165,7 @@ class CheckoutController extends AppController
 			// CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
 			
 			$this->Cart->update(null, $cart_totals);
-			if($this->settings['mailchimp_on'] == 'on' && $this->settings['mc_store_on'] == 'on') {
+			if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_store_on'] == '1') {
 				$this->Mailchimp->cart_update($this->settings['mc_store'],null, $cart_totals);
 			}
       return json_encode($response);
@@ -1034,7 +1034,7 @@ el pago.</p>
 
 				$this->notify_user($notify_data, 'success');
 
-				if($this->settings['mailchimp_on'] == 'on' && $this->settings['mc_store_on'] == 'on') {
+				if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_store_on'] == '1') {
 					$this->Mailchimp->delete_cart($this->settings['mc_store'], $cart_totals['cart_id']);
 					$this->Mailchimp->order($this->settings['mc_store'], $sale_id, $sale['value'], $sale_items);
 				}

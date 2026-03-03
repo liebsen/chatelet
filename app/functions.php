@@ -77,7 +77,7 @@ function parsed_socials($settings){
   $socials = [];
   
   foreach(\get_socials() as $social) {
-    if($settings[$social.'_on'] == 'on') {
+    if($settings[$social.'_on'] == '1') {
       $socials[$social] = $settings[$social.'_url'];
     }
   }

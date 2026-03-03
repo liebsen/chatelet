@@ -1,4 +1,4 @@
-  <section class="animation-hatch animation-both delay3 subscribe-box d-none">
+  <section class="animation-pullUp animation-both delay3 subscribe-box d-none">
     <div class="w-100">
       <span class="corner-pin is-clickable">
         <i class="ico-times" role="img" aria-label="Cerrar"></i>
@@ -6,7 +6,7 @@
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
           <h4 class="text-uppercase">Estemos <strong>conectadas</strong></h4>
-          <p class="text-muted">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
+          <p class="text-dark text-uppercase">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
         </span>
         <span>
         <?php echo $this->Form->create('Subscribe', array(
