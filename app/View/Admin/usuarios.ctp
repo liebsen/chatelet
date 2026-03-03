@@ -7,14 +7,14 @@
 		<thead>
 			<tr>
 				<th class="text-center hidden-phone"><?php echo __('Email'); ?></th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Nombre y apellido'); ?></th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Fecha de nacimiento'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('FNAC'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Sexo'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('DNI'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Newsletter'); ?></th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Telefono'); ?></th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Direccion'); ?></th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Provincia'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Tel'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Dir'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Prov'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Ciudad'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
@@ -37,7 +37,7 @@
 					</td>
 					<td>          
 						<?=
-							($user['User']['gender'] == 'M') ? 'Masculino' : 'Femenino'
+							($user['User']['gender'] == 'M') ? '<i class="gi gi-user text-info"></i>' : '<i class="gi gi-woman text-warning"></i>'
 						?>
 					</td> 
 					<td>          

@@ -22,19 +22,9 @@
           <p>¿Deseas activar este menu?</p>
           <div class="control-group">
             <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
-            <div class="controls text-center switch-scale">
-              <?php
-                $enabled = (isset($item) && $item['Menu']['enabled']) || !isset($item) ? 'checked' : '';
-                $disabled = (isset($item) && !$item['Menu']['enabled']) ? 'checked' : '';
-              ?>
-              <span>
-                <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> 
-                <label for="enabled_1">Activo</label>
-              </span>
-              <span>
-                <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
-                <label for="enabled_0">Inactivo</label>
-              </span>
+            <div class="form-group">
+              <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= @$item['Menu']['enabled'] == '1' ? ' checked' : '' ?>>
+              <label for="toggle" class="toggle-label"></label>
             </div>
             <!--small class="text-muted">Estado principal de este Menu</small-->
           </div>            
@@ -84,9 +74,10 @@
           <h4 class="sub-header">Comportamiento</h4>
           <p>Indica como se debe comportar la interacción.</p>
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Click'); ?></label>
-            <div class="controls">
-              <input type="checkbox" name="data[target_blank]" id="target_blank" class="form-control"<?= isset($item) ? ($item['Menu']['target_blank'] === 'on' ? ' checked' : '') : '' ?>> <label for="target_blank"> Abrir enlace en otra pestaña</label>
+            <label class="control-label" for="columns-text"><?php echo __('Abrir enlace en otra pestaña'); ?></label>
+            <div class="form-group">
+              <input type="checkbox" name="data[target_blank]" value="1" id="toggle_target_blank" class="toggle-checkbox"<?= @$item['Menu']['target_blank'] == '1' ? ' checked' : '' ?>>
+              <label for="toggle_target_blank" class="toggle-label"></label>
             </div>
           </div>          
           <br />       

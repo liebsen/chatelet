@@ -1,6 +1,7 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('admin-whatsapp.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
 <?php echo $this->Html->script('application-form.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
+<?php echo $this->element('admin-menu'); ?>
 
 <div class="block">
 	<div class="block-content">
@@ -14,7 +15,7 @@
 							<input type="checkbox" name="data[whatsapp_enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$data['whatsapp_enabled'] == '1' ? ' checked' : '' ?>>
 							<label for="toggle" class="toggle-label"></label>
 						</div>
-	          <span class="text-muted">Indica si debe mostrarse un mensaje solicitar al cliente a contacto vía chat de WhatsApp.</span>
+	          <small class="text-muted">Indica si debe mostrarse un mensaje solicitar al cliente a contacto vía chat de WhatsApp.</small>
 	        </div>
 	      </div>
 	      <div class="col-md-6">

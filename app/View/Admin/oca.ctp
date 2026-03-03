@@ -1,4 +1,6 @@
 <?php echo $this->Html->css('oca',array( 'inline' => false )) ?>
+<?php echo $this->element('admin-menu'); ?>
+
 <div class="row">
 	<div class="col-xs-12">
 		<!-- Default Table -->

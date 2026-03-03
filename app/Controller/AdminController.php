@@ -443,6 +443,16 @@ class AdminController extends AppController {
 	}
 
 	public function oca(){
+		$navs = array(
+			'Paquetería' => array(
+				'icon' 		=> 'gi gi-package',
+				'url'		=> \site_url().'/admin/oca',
+				'active'	=> '/admin/oca'
+			)
+		);
+
+		$this->set('navs', $navs);	
+
 		if($this->request->is('post')){
 			$this->Package->save($this->request->data);
 		}
@@ -1590,7 +1600,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function categorias($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Shop' => array(
 				'icon' 		=> 'gi gi-picture',
 				'url'		=> \site_url().'/admin/categorias',
 				'active'	=> '/admin/categorias'
@@ -1601,7 +1611,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'active'	=> '/admin/categorias/add'
 			),
 			'Compositor' => array(
-				'icon' 		=> 'gi gi-circle_plus',
+				'icon' 		=> 'gi gi-edit',
 				'url'		=> \site_url().'/admin/categorias/compose',
 				'active'	=> '/admin/categorias/compose'
 			)
@@ -1740,6 +1750,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function whatsapp(){
+
 	  $this->loadModel('Setting');
 		if($this->request->is('post')){
 			$data = $this->request->data;
@@ -1758,14 +1769,24 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				));
 			}
 		}
+
+		$navs = array(
+			'WhatsApp' => array(
+				'icon' 		=> 'fa fa-whatsapp',
+				'url'		=> \site_url().'/admin/whatsapp',
+				'active'	=> '/admin/whatsapp'
+			)
+		);
+
+		$this->set('navs', $navs);		
 		$h1 = array(
 			'name' => 'WhatsApp',
 			'icon' => 'fa fa-whatsapp'
 			);
 		$this->set('h1', $h1);
 
-		$items = $this->Promo->find('all');
-		$this->set('items',$items);
+		//$items = $this->Promo->find('all');
+		//$this->set('items',$items);
 	}
 
 	public function application(){
@@ -2032,7 +2053,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
         //create table discount_lists (id int unsigned auto_increment primary key, item_index int unsigned, category_id int(10) unsigned not null, list_code varchar(30) not null,updated_at date);
     
 		$navs = array(
-			'Lista' => array(
+			'Productos' => array(
 				'icon' 		=> 'gi gi-shirt',
 				'url'		=> \site_url().'/admin/productos',
 				'active'	=> '/admin/productos'
@@ -2169,7 +2190,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function sucursales($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Sucursales' => array(
 				'icon' 		=> 'fa fa-map-marker',
 				'url'		=> \site_url().'/admin/sucursales',
 				'active'	=> '/admin/sucursales'
@@ -2279,7 +2300,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
 		$navs = array(
-			'Lista' => array(
+			'Cupones' => array(
 				'icon' 		=> 'gi gi-tags',
 				'url'		=> \site_url().'/admin/cupones',
 				'active'	=> '/admin/cupones'
@@ -2435,7 +2456,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function admin_menu($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Menues' => array(
 				'icon' 		=> 'gi gi-list',
 				'url'		=> \site_url().'/admin/admin_menu',
 				'active'	=> '/admin/admin_menu'
@@ -2500,7 +2521,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function banners($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Banners' => array(
 				'icon' 		=> 'fa fa-shirtsinbulk',
 				'url'		=> \site_url().'/admin/banners',
 				'active'	=> '/admin/banners'
@@ -2568,6 +2589,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$item = $this->Banner->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+    			$navs[$item['Banner']['text']] = array(
+						'icon' 		=> 'gi gi-edit',
+						'url'		=> \site_url().'/admin/banners/edit/'.$item['Banner']['id'],
+						'active'	=> '/admin/banners/edit/'.$item['Banner']['id']
+					);
+
+	    		$this->set('navs', $navs);
+
 	    		$this->set('item', $item);
 	    		return $this->render('banners-detail');
     		}
@@ -2580,7 +2609,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function legends($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Financiación' => array(
 				'icon' 		=> 'fa fa-credit-card',
 				'url'		=> \site_url().'/admin/legends',
 				'active'	=> '/admin/legends'
@@ -2625,6 +2654,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$item = $this->Legend->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+    			$navs[$item['Legend']['title']] = array(
+						'icon' 		=> 'gi gi-edit',
+						'url'		=> \site_url().'/admin/legends/edit/'.$item['Legend']['id'],
+						'active'	=> '/admin/legends/edit/'.$item['Legend']['id']
+					);
+
+	    		$this->set('navs', $navs);
+
 	    		$this->set('item', $item);
 	    		return $this->render('legends-detail');
     		}
@@ -2637,7 +2674,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function menu($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Menu' => array(
 				'icon' 		=> 'fa fa-ellipsis-v',
 				'url'		=> \site_url().'/admin/menu',
 				'active'	=> '/admin/menu'
@@ -2709,8 +2746,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$item = $this->Menu->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+    			$navs[$item['Menu']['title']] = array(
+						'icon' 		=> 'gi gi-edit',
+						'url'		=> \site_url().'/admin/menu/edit/'.$item['Menu']['id'],
+						'active'	=> '/admin/menu/edit/'.$item['Menu']['id']
+					);
 
-				  
+	    		$this->set('navs', $navs);
+
 	    		$this->set('item', $item);
 	    		return $this->render('menu-detail');
     		}
@@ -2916,7 +2959,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function logistica($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Logística' => array(
 				'icon' 		=> 'gi gi-cargo',
 				'url'		=> \site_url().'/admin/logistica',
 				'active'	=> '/admin/logistica'
@@ -3042,7 +3085,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function shipping($action = null) {
-		$navs = array();
+		$navs = array(
+			'Envíos' => array(
+				'icon' 		=> 'gi gi-car',
+				'url'		=> \site_url().'/admin/shipping',
+				'active'	=> '/admin/shipping'
+			)
+		);
+
 		$this->set('navs', $navs);
 
 		$h1 = array(
@@ -3070,7 +3120,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function contacto($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Contactos' => array(
 				'icon' 		=> 'gi gi-envelope',
 				'url'		=> \site_url().'/admin/contacto',
 				'active'	=> '/admin/contacto'
@@ -3097,7 +3147,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function usuarios($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Usuarios' => array(
 				'icon' 		=> 'gi gi-user',
 				'url'		=> \site_url().'/admin/usuarios',
 				'active'	=> '/admin/usuarios'
@@ -3232,7 +3282,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function lookbook($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Lookbook' => array(
 				'icon' 		=> 'gi gi-justify',
 				'url'		=> \site_url().'/admin/lookbook',
 				'active'	=> '/admin/lookbook'
@@ -3300,13 +3350,22 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function carrito() {
+		$navs = array(
+			'Carrito' => array(
+				'icon' 		=> 'gi gi-shopping_cart',
+				'url'		=> \site_url().'/admin/carrito',
+				'active'	=> '/admin/carrito'
+			)
+		);
+
+		$this->set('navs', $navs);	
+
 		$h1 = array(
 			'name' => 'Carrito',
 			'icon' => 'gi gi-shopping_cart'
 		);
 
 		$this->set('h1', $h1);
-		$this->set('navs', []);
 		$this->loadModel('Setting');
 
 		if ($this->request->is('post')) {
@@ -3325,8 +3384,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		);
 
 		$this->set('h1', $h1);
-		$this->set('navs', []);
-		$this->loadModel('Setting');
+		$navs = array(
+			'Banco' => array(
+				'icon' 		=> 'gi gi-bank',
+				'url'		=> \site_url().'/admin/bank',
+				'active'	=> '/admin/bank'
+			)
+		);
+
+		$this->set('navs', $navs);			$this->loadModel('Setting');
 
 		if ($this->request->is('post')) {
       foreach($this->request->data as $id => $value) {
@@ -3343,7 +3409,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
   public function subscriptions($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Suscrpciones' => array(
 				'icon' 		=> 'gi gi-envelope',
 				'url'		=> \site_url().'/admin/subscriptions',
 				'active'	=> '/admin/newsletter'
@@ -3379,7 +3445,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
   public function newsletters($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Newsletters' => array(
 				'icon' 		=> 'gi gi-wifi',
 				'url'		=> \site_url().'/admin/newsletters',
 				'active'	=> '/admin/newsletters'

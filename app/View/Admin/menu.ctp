@@ -4,7 +4,8 @@
 <?php echo $this->Html->script('draggable-table', array('inline' => false));?>
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
-<div class="block-section">
+<div class="block">
+	<div class="block-content">
 	<table id="menu-datatables" class="table table-striped table-bordered table-hover print-friendly draggable-table" data-url="/admin/ordernum/banner">
 		<thead>
 			<tr>
@@ -63,4 +64,5 @@
 		<?php endforeach ?>
 		</tbody>
 	</table>
+</div>
 </div>

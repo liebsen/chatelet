@@ -1,11 +1,5 @@
 <?php echo $this->element('admin-menu');?>
 <div class="block">
-  <div class="block-title">
-    <h4><?php 
-      echo (isset($item)) ? __('Editar Financiación') : __('Agregar Financiación');
-    ?></h4>
-  </div>
-
   <div class="block-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
       <?php
@@ -15,6 +9,12 @@
       ?>
       <div class="row">
         <div class="col-md-6">
+          <h4 class="sub-header">Estado</h4>
+          <div class="form-group">
+            <label class="control-label" for="columns-text"><?php echo __('Activo'); ?></label>
+            <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= @$item['Legend']['enabled'] == '1' ? ' checked' : '' ?>>
+            <label for="toggle" class="toggle-label"></label>
+          </div>          
           <h4 class="sub-header">Información Principal</h4>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
@@ -24,7 +24,9 @@
             </div>
             <small class="text-muted">Podés usar las variables: {cuotas}, {interes} y {monto}. Ej: {cuotas} cuotas de ${monto}</small>
           </div>
-
+        </div>
+        <div class="col-md-6">
+          <h4 class="sub-header">Detalles</h4>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Cuotas'); ?></label>
             <div class="controls">
@@ -45,29 +47,6 @@
             </div>
             <small class="text-muted">Monto mínimo de la compra expresado en valores nominales. Ej: 50.000ARS</small>
           </div>
-
-          <br />
-        </div>
-        <div class="col-md-6">
-          <h4 class="sub-header">Estado</h4>
-          <div class="control-group">
-            <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
-            <div class="controls text-center switch-scale">
-              <?php
-                $enabled = (isset($item) && $item['Legend']['enabled'] == 1) || !isset($item) ? 'checked' : '';
-                $disabled = (isset($item) && $item['Legend']['enabled'] == 0) ? 'checked' : '';
-              ?>
-              <span>
-                <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> 
-                <label for="enabled_1">Activo</label>
-              </span>
-              <span>
-                <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
-                <label for="enabled_0">Inactivo</label>
-              </span>
-            </div>
-            <!--small class="text-muted">Estado principal de este Legend</small-->
-          </div>             
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">

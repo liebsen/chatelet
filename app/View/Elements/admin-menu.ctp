@@ -1,13 +1,13 @@
-<div class="row-fluid">
-  <div class="block-tabs span12">
+<div class="block">
+  <div class="block-content">  
+    <div class="block-tabs">
       <ul class="nav nav-tabs">
         <?php foreach ($navs as $key => $nav): ?>        
             <li class="<?= $_SERVER['REQUEST_URI'] === $nav['active'] ? 'active' : '' ?>">
               <a href="<?php echo $nav['url']; ?>">
-                <span class="desktop"><?php echo $key ?></span>
+                <i class="<?=$nav['icon']?>"></i> <span class="desktop"><?php echo $key ?></span>
               </a>
             </li>
         <?php endforeach ?>
       </ul>
-  </div>
-</div>
+    </div>

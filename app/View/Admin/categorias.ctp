@@ -53,7 +53,6 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 <!-- end discount-layer -->
 <!-- start template -->
 
-<div class="block-section table-responsive">
 	<table id="categorias-datatables" class="table table-bordered table-hover draggable-table" data-url="/admin/ordernum/category">
 		<thead>
 			<tr>
@@ -162,7 +161,6 @@ echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'
 		<?php endforeach ?>
 		</tbody>
 	</table>
-</div>
 
 
 <div class="form-actionscategory-actions" data-url="/admin/batch_categorias/">
