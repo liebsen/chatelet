@@ -1,6 +1,1 @@
-
-<!-- Mailchimp -->
-
-<script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/5aff915ad82110bff43a47765/1dded834781e835fcf77d27af.js");</script>
-
-<!-- End Mailchimp -->
+<script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/5aff915ad82110bff43a47765/eb77f7eab4cdceaec04ac9c09.js");</script>
