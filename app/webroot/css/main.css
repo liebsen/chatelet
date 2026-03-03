@@ -3239,8 +3239,18 @@ a.thumbnail-borderless,
 .bg-selected {
     background-color: #fcf8e3!important;
 }
-.form-actions .btn{
-    font-size: 1.25rem;
+
+.form-actions {
+    animation-name: fadeIn;
+    animation-delay: 3s;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+}
+.form-actions .btn {
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 2;
+    min-height: 40px;
 }
 
 .controls {

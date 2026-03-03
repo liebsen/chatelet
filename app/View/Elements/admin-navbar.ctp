@@ -21,32 +21,23 @@
         <meta name="author" content="<?php echo $template['author'] ?>">
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
-        <!-- Icons -->
-        <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
         <link rel="shortcut icon" href="/img/favicon.ico">
-        <!--link rel="apple-touch-icon" href="/img/icon57.png" sizes="57x57">
-        <link rel="apple-touch-icon" href="/img/icon72.png" sizes="72x72">
-        <link rel="apple-touch-icon" href="/img/icon76.png" sizes="76x76">
-        <link rel="apple-touch-icon" href="/img/icon114.png" sizes="114x114">
-        <link rel="apple-touch-icon" href="/img/icon120.png" sizes="120x120">
-        <link rel="apple-touch-icon" href="/img/icon144.png" sizes="144x144">
-        <link rel="apple-touch-icon" href="/img/icon152.png" sizes="152x152"-->
-        <!-- END Icons -->
 
         <!-- Stylesheets -->
         <?php
             echo $this->Html->css('bootstrap');
-            echo $this->Html->css('plugins');
             echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION'));
             echo $this->Html->css('main.css?v=' . Configure::read('APP_VERSION'));
+            echo $this->Html->css('plugins');
+
             // echo $this->Html->css('animate.css?v=' . Configure::read('APP_VERSION'));
             // echo $this->Html->css('font-awesome.min');
 
             if ($template['theme']) {
-                echo $this->Html->css('themes/'.$template['theme']);
+                // echo $this->Html->css('themes/'.$template['theme']);
             }
             
-            echo $this->Html->css('themes');
+            //echo $this->Html->css('themes');
             echo $this->fetch('css');
             echo $this->Html->script('vendor/modernizr-2.7.1-respond-1.4.2.min.js');
         ?>
