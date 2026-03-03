@@ -46,7 +46,7 @@
         <style type="text/css">
             html, body { 
                 font-family: '<?=@$settings['google_font_name'] ?>', Verdana, Arial, Sans-Serif!important;
-                line-height: 1.5;
+                line-height: 1.25;
                 font-size: 14px; 
                 font-weight: 600;
                 text-transform: uppercase;

@@ -610,6 +610,7 @@ body {
 }
 .block-content .control-group {
     padding-bottom: 1.25rem;
+    border-radius: 0.75rem;
     overflow-x: auto;
     display: flex;
     flex-direction: column;
@@ -1672,11 +1673,9 @@ li.plan-featured h1 {
 }
 
 .image-item .fa-mobile {
-    font-size: 4rem!important;
     color: #01c801!important;
 }
 .image-item .fa-desktop {
-    font-size: 3rem;
     color: #4cb9fc;
 }
 
@@ -3229,7 +3228,7 @@ a.thumbnail-borderless,
 }
 
 .bg-dark {
-    background-color: #555;
+    background-color: #c5c5c5;
 }
 
 .bg-grey {
