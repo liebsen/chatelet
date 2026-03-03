@@ -189,9 +189,6 @@ class AppController extends Controller
       $version_count = (int) file_get_contents($version_file);
     }
 
-    //Configure::write('client_id', '6773841105361656');
-    //Configure::write('client_secret', 'hBHd6LiSEaTqgQXI2KSGO5C7uCBSINhW');
-
     $settings = $this->load_settings();
     $settings_update = false;
     $this->settings = $settings;

@@ -482,9 +482,7 @@ class CarritoController extends AppController
 
 	public function show_settings($row = null) {
 		$this->autoRender = false;
-		echo '<pre>';
 		var_dump($this->settings);
-		echo '</pre>';
 	}
 
 	public function sorted() {

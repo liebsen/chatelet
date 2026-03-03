@@ -31,13 +31,24 @@ class MailchimpComponent extends Component {
 
   public function initialize(Controller $controller) {
     $this->controller = $controller;
+
+    $mailchimp_appkey = $this->controller->Setting->find('first', array(
+      'conditions' => ['id' => 'mailchimp_appkey']
+    ));
+
+    $mailchimp_prefix = $this->controller->Setting->find('first', array(
+      'conditions' => ['id' => 'mailchimp_prefix']
+    ));
+
     $mailchimp = new \MailchimpMarketing\ApiClient();
     $mailchimp->setConfig([
-      'apiKey' => $this->controller->$settings['mailchimp_appkey'] ?? '',
-      'server' => $this->controller->$settings['mailchimp_prefix'] ?? ''
+      'apiKey' => $mailchimp_appkey['Setting']['value'] ?? '',
+      'server' => $mailchimp_prefix['Setting']['value'] ?? ''
     ]);
     $this->mailchimp = $mailchimp;
+
     parent::initialize($controller);
+
   }
 
   public function lists() {
