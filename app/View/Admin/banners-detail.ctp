@@ -47,7 +47,8 @@
           </div>          
         </div>
         <div class="col-md-6">
-       
+          <h4 class="sub-header"><?php echo __('Comportamiento') ?></h4>
+
           <div class="form-group">
             <label class="control-label" for="columns-text"><?php echo __('Abrir enlace en otra pestaña'); ?></label>
             <input type="checkbox" name="data[target_blank]" value="1" id="toggle_target_blank" class="toggle-checkbox"<?= @$item['Banner']['target_blank'] == '1' ? ' checked' : '' ?>>

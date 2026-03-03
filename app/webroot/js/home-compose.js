@@ -114,7 +114,7 @@ var drawImages = function(){
 	var base_url 	= $("#slider_template").data('url');
 	// console.log('drawImages(base_url)',base_url)
 	var ul 			= $('#slider_block');
-	ul.removeClass('fadeIn fadeOut').addClass('fadeOut')
+	ul.removeClass('fadeIn fadeOut').addClass('animation-fadeOut')
 	setTimeout(() => {
 		ul.empty();
 		$.each(slides, function(index,item){
@@ -136,7 +136,7 @@ var drawImages = function(){
 				}*/
 			}
 		});
-		ul.removeClass('fadeOut').addClass('fadeIn')
+		ul.removeClass('animation-fadeOut').addClass('animation-fadeIn')
 	}, 1000);
 }
 

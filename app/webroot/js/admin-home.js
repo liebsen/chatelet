@@ -38,7 +38,7 @@ $(function(){
 	var drawImages = function(){
 		var base_url 	= $("#image_thumb").data('url');
 		var ul 			= $('#images');
-		ul.removeClass('fadeIn fadeOut').addClass('fadeOut')
+		ul.removeClass('fadeIn fadeOut').addClass('animation-fadeOut')
 		setTimeout(() => {
 			ul.empty();
 			$.each(images,function(index,image){
@@ -57,7 +57,7 @@ $(function(){
 					ul.append(html);
 				}
 			});
-			ul.removeClass('fadeOut').addClass('fadeIn')
+			ul.removeClass('animation-fadeOut').addClass('animation-fadeIn')
 		}, 1000);
 	}
 
@@ -188,7 +188,7 @@ $(function(){
 	var drawImagesNewsletter = function(){
 		var base_url 	= $("#image_thumb_newsletter").data('url');
 		var ul 			= $('#images_newsletter');
-		ul.removeClass('fadeIn fadeOut').addClass('fadeOut')
+		ul.removeClass('fadeIn fadeOut').addClass('animation-fadeOut')
 		setTimeout(() => {
 			ul.empty();
 			$.each(images_newsletter,function(index,image_newsletter){
@@ -205,7 +205,7 @@ $(function(){
 					ul.append(html);
 				}
 			});
-			ul.removeClass('fadeOut').addClass('fadeIn')
+			ul.removeClass('animation-fadeOut').addClass('animation-fadeIn')
 		}, 1000)
 	}
 

@@ -91,7 +91,7 @@
                             <!-- Desktop Button (Visible only on desktop resolutions) -->
                             <li class="mini-profile">
                                 <!-- Mini Profile -->
-                                <a href="/" target="_blank" title="<?=@$version['count'] ?><br><?=@$version['date'] ?>">
+                                <a href="/" target="_blank" title="<?=@$version['count'] ?> - <?=@$version['date'] ?>">
                                     <?php echo $this->Html->image('chatelet_blanco.png', array('class' => 'img-responsive')); ?>
                                 </a>
                                 <!-- END Mini Profile -->                                

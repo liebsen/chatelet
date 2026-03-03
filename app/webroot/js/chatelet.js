@@ -553,7 +553,7 @@ $(document).ready(function() {
         }
         t.removeClass()
         t.addClass(t.data('started'))
-        t.addClass(animation ?? 'fadeIn')
+        t.addClass(animation ?? 'animation-fadeIn')
       }
     }, 200)
   })
@@ -569,7 +569,7 @@ $(document).ready(function() {
         }
         t.removeClass()
         t.addClass(t.data('started'))
-        t.addClass(animation ?? 'fadeOut')
+        t.addClass(animation ?? 'animation-fadeOut')
       }
     }, 200)
   })
@@ -629,7 +629,7 @@ $(document).ready(function() {
       const video = $("#carousel .item.active").find("video")
       const menu = $('.navbar-chatelet .navbar-collapse').hasClass('in')
 
-      $('.navbar-chatelet:not(.short)').removeClass('fadeIn')
+      $('.navbar-chatelet:not(.short)').removeClass('animation-fadeIn')
       $('.shop-options').removeClass('animation-pullDown')
 
       if(document.querySelector('.navbar-chatelet')) {
@@ -643,13 +643,13 @@ $(document).ready(function() {
       if (scrolltop > 100) {
         if (!fakeshown && lastscroll < scrolltop) {
           $('body').addClass('top-fixed')
-          $('.navbar-chatelet:not(.short)').addClass('fadeIn')
+          $('.navbar-chatelet:not(.short)').addClass('animation-fadeIn')
           fakeshown = 1
         }        
       } else {
         if (fakeshown && lastscroll > scrolltop) {
           $('body').removeClass('top-fixed')
-          $('.navbar-chatelet:not(.short)').addClass('fadeIn')
+          $('.navbar-chatelet:not(.short)').addClass('animation-fadeIn')
           fakeshown = false
         }
       }

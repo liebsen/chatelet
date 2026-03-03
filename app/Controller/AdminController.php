@@ -2999,6 +2999,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 						'name' => 'Nueva logística',
 						'icon' => 'gi gi-truck'
 					];
+
+
 					$this->set('h1', $h1);  					
     			return $this->render('logistica-detail');
     		}
@@ -3041,7 +3043,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 						'name' => $logistic['Logistic']['title'],
 						'icon' => 'gi gi-truck'
 					];
-					$this->set('h1', $h1);    			
+					$this->set('h1', $h1);  
+    			$navs[$logistic['Logistic']['title']] = array(
+						'icon' 		=> 'gi gi-edit',
+						'url'		=> \site_url().'/admin/logistica/edit/'.$logistic['Logistic']['id'],
+						'active'	=> '/admin/logistica/edit/'.$logistic['Logistic']['id']
+					);
+
+	    		$this->set('navs', $navs);
 	    		$this->set('logistic', $logistic);
 	    		$this->set('logistic_prices', $prices);
           $code = $logistic['Logistic']['code'];

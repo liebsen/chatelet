@@ -43,20 +43,10 @@
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Mostrar animación'); ?></label>
-		          <div class="controls text-center switch-scale">
-		            <?php
-		              $enabled = $data['whatsapp_animated'] == 1 ? 'checked' : '';
-		              $disabled = $data['whatsapp_animated'] == 0 ? 'checked' : '';
-		            ?>
-		            <span>
-			            <input type="radio" class="form-control" id="enabled_1" name="data[whatsapp_animated]" value="1" <?php echo $enabled; ?> />
-			            <label for="enabled_1">Sí</label>
-			          </span>
-			          <span>
-			            <input type="radio" class="form-control" id="enabled_0" name="data[whatsapp_animated]" value="0" <?php echo $disabled; ?> />
-			            <label for="enabled_0">No</label>
-			           </span>
-		          </div>
+							<div class="form-group">
+								<input type="checkbox" name="data[whatsapp_animated]" value="1" id="toggle2" class="toggle-checkbox"<?=@$data['whatsapp_animated'] == '1' ? ' checked' : '' ?>>
+								<label for="toggle2" class="toggle-label"></label>
+							</div>
 		        </div>
 
 		      	<!--div class="row">

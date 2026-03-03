@@ -1,7 +1,7 @@
 
 	$(document).ready(function() {
-		$('[name="data[whatsapp_enabled]"]').click(e => {
-			if(e.target.value == '1'){
+		$('#toggle').click(e => {
+			if($(e.target).is(':checked')){
 				$('.show-panel').removeClass('show-inactive')
 			} else {
 				$('.show-panel').addClass('show-inactive')

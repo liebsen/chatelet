@@ -18,7 +18,7 @@ selectShipping = function (e, shipping, cost) {
 		total += cost
 		$('#subtotal_envio').val(cost)
 		$('.delivery-cost').removeClass('hidden')
-		$('.delivery-cost').addClass('fadeIn')
+		$('.delivery-cost').addClass('animation-fadeIn')
 		if(cost) {
 			$('.cost_delivery').text( "$ " + formatNumber(cost))
 		} else {

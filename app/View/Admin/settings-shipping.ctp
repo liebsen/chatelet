@@ -6,7 +6,7 @@
   <div class="block-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <h4 class="sub-header">Configuración de Envíos</h4> 
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Tipo de envío'); ?></label>

@@ -4,14 +4,6 @@
 ?>
 <?php echo $this->element('admin-menu');?>
 <div class="block">
-  <div class="block-title">
-    <h4>
-    <?php
-      echo (isset($logistic)) ? __('Editar ' . $logistic['Logistic']['code']) : __('Agregar Logística');
-    ?>
-    </h4>
-  </div>
-
   <div class="block-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
       <?php
@@ -25,20 +17,10 @@
             <h4 class="sub-header">Información Principal</h4>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
-              <div class="controls text-center switch-scale switch-custom">
-                <?php
-                  $enabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 1 || !isset($logistic)) ? 'checked' : '';
-                  $disabled = (isset($logistic) && $logistic['Logistic']['enabled'] == 0) ? 'checked' : '';
-                ?>
-                <span>
-                  <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> /> 
-                  <label for="enabled_1">Activo</label>
-                </span>
-                <span>
-                  <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
-                  <label for="enabled_0">Inactivo</label>
-                </span>
-              </div>
+              <div class="form-group">
+                <input type="checkbox" name="data[enabled]" value="1" id="toggle2" class="toggle-checkbox"<?=@$logistic['Logistic']['enabled'] == '1' ? ' checked' : '' ?>>
+                <label for="toggle2" class="toggle-label"></label>
+              </div>   
               <small class="text-muted">Indica el estado de esta logística. En caso de inactivo el cliente no podrá utilizar esta opción.</small>
             </div>
             <br>
@@ -55,7 +37,7 @@
               <div class="controls">
                 <input type="text" class="form-control" id="title" name="data[title]" value="<?= (isset($logistic)) ? $logistic['Logistic']['title'] : '' ?>" required>
               </div>
-              <small class="text-muted">Indica el título de esta logística. Es probable que aparezca en algún correo que enviemos al cliente para informarle del código de seguimiento o eventualmente otro estado envío.</small>
+              <span class="text-muted">Indica el título de esta logística. Es probable que aparezca en algún correo que enviemos al cliente para informarle del código de seguimiento o eventualmente otro estado envío.</span>
             </div>
             <br /> 
           <?php if(isset($logistic) && !$logistic['Logistic']['local_prices']) :?>
@@ -86,25 +68,15 @@
             <div class="alert alert-primary">
               <div class="control-group">
                 <label class="control-label" for="columns-text"><?php echo __('Envío gratuito'); ?></label>
-                <div class="controls text-center switch-scale">
-                  <?php
-                    $enabled = (isset($logistic) && $logistic['Logistic']['free_shipping'] == 1 || !isset($logistic)) ? 'checked' : '';
-                    $disabled = (isset($logistic) && $logistic['Logistic']['free_shipping'] == 0) ? 'checked' : '';
-                  ?>
-                  <span>
-                  <input type="radio" class="form-control" id="free_shipping_1" name="data[free_shipping]" value="1" <?php echo $enabled; ?> /> 
-                  <label for="free_shipping_1">Activo</label>
-                </span>
-                <span>
-                  <input type="radio" class="form-control" id="free_shipping_0" name="data[free_shipping]" value="0" <?php echo $disabled; ?> />
-                  <label for="free_shipping_0">Inactivo</label>
-                </span>
-                </div>
-                <small class="text-muted">Indica si esta logística estará disponible para los envíos gratuitos. Si está activo significa que esta logística tendrá prioridad para los envíos gratuitos. <span class="alert-link">Establezca <i>Disponible</i> para que las clientas puedan seleccionar <i><?= @$logistic['Logistic']['title'] ?></i> para sus envíos gratuitos.</span></small>
+                <div class="form-group">
+                  <input type="checkbox" name="data[free_shipping]" value="1" id="toggle3" class="toggle-checkbox"<?=@$logistic['Logistic']['free_shipping'] == '1' ? ' checked' : '' ?>>
+                  <label for="toggle3" class="toggle-label"></label>
+                </div>        
+                <span class="text-muted">Indica si esta logística estará disponible para los envíos gratuitos. Si está activo significa que esta logística tendrá prioridad para los envíos gratuitos. <span class="alert-link">Establezca <i>Disponible</i> para que las clientas puedan seleccionar <i><?= @$logistic['Logistic']['title'] ?></i> para sus envíos gratuitos.</span></span>
                 <?php if($enabled && @$logistic['Logistic']['local_prices']): ?>
                   <br>
                   <br>
-                  <small class="text-danger alert-link"><b>Exclusividad no garantizada.</b> <i> <?= $logistic['Logistic']['title'] ?></i> tiene alcance local, esto significa que solo estará disponible para envíos gratuitos dentro de su área de cobertura, caso contrario se mostrarán otras opciones de envío que pueden no estar establecidas como disponibles para envío gratuito.</small>
+                  <span class="text-danger alert-link"><b>Exclusividad no garantizada.</b> <i> <?= $logistic['Logistic']['title'] ?></i> tiene alcance local, esto significa que solo estará disponible para envíos gratuitos dentro de su área de cobertura, caso contrario se mostrarán otras opciones de envío que pueden no estar establecidas como disponibles para envío gratuito.</span>
                 <?php endif ?>
               </div>
             </div>            

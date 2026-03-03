@@ -609,6 +609,7 @@ body {
     }    
 }
 .block-content .control-group {
+    padding: 0.5rem;
     padding-bottom: 1.25rem;
     border-radius: 0.75rem;
     overflow-x: auto;

@@ -1,10 +1,3 @@
-    <footer>
-        <div class="pull-left">
-            <a href="https://chatelet.com.ar" target="_blank">
-                <span id="year-copy"></span> &copy; <strong><?php echo $template['name'] . ' ' . $template['version']; ?></strong>
-            </a>
-        </div>
-    </footer>
 </div>
 
 <a href="#" id="to-top"><i class="fa fa-chevron-up"></i></a>
