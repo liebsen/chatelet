@@ -2454,6 +2454,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		return $this->render('cupones');
 	}
 
+	public function settings($action = null) {
+	  $menu = $this->Settings->find('all',['order' => ['Setting.id ASC']]);
+	  $this->render('settings');		
+	}
+
 	public function admin_menu($action = null) {
 		$navs = array(
 			'Menues' => array(

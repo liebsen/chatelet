@@ -21,7 +21,7 @@
           <h4 class="sub-header">Información Principal</h4>
           <p>¿Deseas activar este menu?</p>
           <div class="control-group">
-            <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
+            <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
             <div class="form-group">
               <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= @$item['Menu']['enabled'] == '1' ? ' checked' : '' ?>>
               <label for="toggle" class="toggle-label"></label>

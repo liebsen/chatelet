@@ -45,22 +45,22 @@
                 <tr class="package success">
                 	<form action="" method="POST">
 	                	<td class="text-center col-xs-1">
-	                		<input type="number" name="amount_min" required placeholder="Cantidad Minima" />
+	                		<input type="number" class="form-control" name="amount_min" required placeholder="Cantidad Minima" />
 	                	</td>
 	                	<td class="text-center col-xs-1">
-	                		<input type="number" name="amount_max" required placeholder="Cantidad Maxima" />
+	                		<input type="number" class="form-control" name="amount_max" required placeholder="Cantidad Maxima" />
 	                	</td>
 	                	<td class="text-center col-xs-1">
-	                		<input type="number" name="weight" required placeholder="Peso" />
+	                		<input type="number" class="form-control" name="weight" required placeholder="Peso" />
 	                	</td>
 	                	<td class="text-center col-xs-1">
-	                		<input type="number" name="height" required placeholder="Alto" />
+	                		<input type="number" class="form-control" name="height" required placeholder="Alto" />
 	                	</td>
 	                	<td class="text-center col-xs-1">
-	                		<input type="number" name="width" required placeholder="Ancho" />
+	                		<input type="number" class="form-control" name="width" required placeholder="Ancho" />
 	                	</td>
 	                	<td class="text-center col-xs-1">
-	                		<input type="number" name="depth" required placeholder="Largo" />
+	                		<input type="number" class="form-control" name="depth" required placeholder="Largo" />
 	                	</td>
 	                	<td class="text-center col-xs-1">
 	                		<input type="hidden" name="id" value="" required />
