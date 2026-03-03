@@ -309,8 +309,8 @@ class UsersController extends AppController {
         ));
       }
 
-      if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_subscription_on'] == '1') {
-        $this->Mailchimp->subscribe($data['User'], $this->settings['mc_subscription']);
+      if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_account_on'] == '1') {
+        $this->Mailchimp->subscribe($data['User'], $this->settings['mc_account']);
       }
 
       return $this->redirect($this->referer());

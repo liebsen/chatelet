@@ -167,7 +167,7 @@ class AdminController extends AppController {
 	private function mailchimpAvailable(){
 		return !empty($this->settings['mailchimp_on']);
 	}
-	
+
 	private function bannersAvailable(){
 		$this->loadModel('Banner');
 		$available = false;
@@ -2464,7 +2464,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function settings($action = null) {
-	  $menu = $this->Settings->find('all',['order' => ['Setting.id ASC']]);
+		$this->loadModel('Setting');
+	  $items = $this->Setting->find('all',['order' => ['Setting.id ASC']]);
+    function sorter($a,$b){
+    	if(substr($b['Setting']['id'],-3) == '_on') return 1;
+    	if(substr($b['Setting']['id'],-5) == '_text') return 0;
+    	return -1;
+    }
+    
+    uasort($items, 'sorter');
+
+	  $this->set('items', $items);
 	  $this->render('settings');		
 	}
 

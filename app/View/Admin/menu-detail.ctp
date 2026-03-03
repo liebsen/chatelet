@@ -10,7 +10,7 @@
   </div-->
 
   <div class="block-content">
-    <form action="" method="post" class="form-inline" enctype="multipart/form-data">
+    <form action="" method="post" class="form-inline">
       <?php
         if (isset($this->request->pass[1])) {
           echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
@@ -32,6 +32,14 @@
             <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
             <div class="controls">
               <input class="form-control w-100" type="text" id="" name="data[title]" value="<?php echo (isset($item)) ? $item['Menu']['title'] : ''; ?>" required>
+              <small class="text-muted">Nombre del menú</small>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
+            <div class="controls">
+              <textarea class="form-control" name="data[text]"><?php echo (isset($item)) ? $item['Menu']['text'] : ''; ?></textarea>
+              <small class="text-muted">Descripción del menú que se mostrara en dispositivos de escritorio cuando se pose el mouse encima.</small>
             </div>
           </div>
           <div class="control-group">
@@ -54,12 +62,6 @@
             <small class="text-muted">Seleccioná la categoría que seguirá este menú. (No aplica en caso de tener Enlace activo)</small>
           </div>
 
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
-            <div class="controls">
-              <textarea class="form-control" name="data[text]"><?php echo (isset($item)) ? $item['Menu']['text'] : ''; ?></textarea>
-            </div>
-          </div>          
 
           <br />
           <!--div class="control-group">

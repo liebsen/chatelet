@@ -33,8 +33,8 @@ class MailchimpComponent extends Component {
     $this->controller = $controller;
     $mailchimp = new \MailchimpMarketing\ApiClient();
     $mailchimp->setConfig([
-      'apiKey' => getenv('MAILCHIMP_API_KEY'),
-      'server' => getenv('MAILCHIMP_SERVER_PREFIX')
+      'apiKey' => $this->controller->$settings['mailchimp_appkey'] ?? '',
+      'server' => $this->controller->$settings['mailchimp_prefix'] ?? ''
     ]);
     $this->mailchimp = $mailchimp;
     parent::initialize($controller);

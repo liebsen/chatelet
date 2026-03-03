@@ -6,7 +6,6 @@
 	      url = me.attr('action');
 			$.post(url, data)
 				.success(function(res){
-
 					if(res.success) {
             $.growl.notice({
               title: 'OK',

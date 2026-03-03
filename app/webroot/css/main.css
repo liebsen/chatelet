@@ -2177,12 +2177,12 @@ a.text-black:focus {
     display: flex;
 }
 .text-muted {
-    color: #999!important;
+    color: #a2d59c!important;
 }
 
 small, .small {
     font-size: 80%;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 /* Labels & Badges */
