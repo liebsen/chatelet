@@ -473,7 +473,7 @@ body.top-fixed .shop-options {
 }
 
 .shop-options img { margin-right: 2rem; max-width: 3.5rem; }
-.shop-options h3 { color: #363633; font-weight: 1000; text-transform: uppercase; margin-bottom: 30px; }
+.shop-options h3 { color: #363633; font-weight: 300; text-transform: uppercase; margin-bottom: 30px; }
 .shop-options ul { column-count: 3; column-gap: 40px; }
 .shop-options ul li { margin-bottom: 0.75rem; line-height: 1.25 }
 .shop-options ul li a {
@@ -483,7 +483,7 @@ body.top-fixed .shop-options {
 }
 .shop-options ul li a.current {
   color: #333;
-  font-weight: 1000;
+  font-weight: 300;
 }
 .social-bottom {
   display: flex;
@@ -832,9 +832,9 @@ footer ul li { margin-bottom: 5px;  }
 }
 
 .text-catalog {
-  text-shadow: 2px 2px 0 #888;
+  text-shadow: 1px 1px 0 #c5c5c5;
   font-size: 1.75rem;
-  font-weight: 1000;
+  font-weight: 300;
   line-height: 1;
   letter-spacing: -0.03rem;
   color: white;
@@ -915,7 +915,7 @@ footer ul li { margin-bottom: 5px;  }
 }
 #productOptions nav li a.current{ 
   color: #333!important;
-  font-weight: 1000;
+  font-weight: 300;
 }
 #productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; }
 #productOptions a.btBig span { color: #363633; font-size: 27px; }
@@ -1155,7 +1155,7 @@ ul#ul-moreviews li.dontResize img {
 
 #myModal2 .content { background: url(../images/tablebg.png) no-repeat center center; background-size: cover; margin: 50px auto; overflow: hidden; padding: 50px; position: relative; width: 900px; }
 #myModal2 .content .table { background: #ece9ea; padding: 50px 20px; }
-#myModal2 .content .table h1 { font-size: 26px; font-weight: 1000; margin-bottom: 5px; }
+#myModal2 .content .table h1 { font-size: 26px; font-weight: 300; margin-bottom: 5px; }
 #myModal2 .content .table p { font-size: 16px; font-weight: 500; margin-bottom: 80px; }
 #myModal2 .content .table tr td { border-top-color: #aeaeae; border-top-width: 2px; font-size: 14px; font-weight: 500; padding-bottom: 18px; padding-top: 18px; text-align: center; }
 #myModal2 .content .table tr:first-child td { border-top: none; }
@@ -1167,7 +1167,7 @@ ul#ul-moreviews li.dontResize img {
   background-color: #e7e7e7;
 }
 .map .col-md-4 { background: url(../images/mapbg.png) no-repeat center center; background-size: cover; display: flex; justify-content: flex-start; align-items: center; padding-left: 5rem;}
-.map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 1000; letter-spacing:-0.1rem }
+.map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 300; letter-spacing:-0.1rem }
 .map .col-md-4 h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
 
 #headcontacto { 
@@ -1183,7 +1183,7 @@ ul#ul-moreviews li.dontResize img {
 #headcontacto h1 { 
   color: #363633; 
   font-size: 2.25rem; 
-  font-weight: 1000; 
+  font-weight: 300; 
   margin-top: 70px; 
   margin-left: 30px; 
   letter-spacing:-0.1rem
@@ -1200,7 +1200,7 @@ ul#ul-moreviews li.dontResize img {
   min-height: calc(100dvh - 265px);
   /*padding: 65px 0;*/ 
 }
-#headhelp h1 { /*color: #f50081; */ font-size: 2.25rem; margin: 0; font-weight: 1000; letter-spacing:-0.1rem }
+#headhelp h1 { /*color: #f50081; */ font-size: 2.25rem; margin: 0; font-weight: 300; letter-spacing:-0.1rem }
 #headhelp h1:after { 
   background: #363633; 
   content: ""; 
@@ -1616,10 +1616,11 @@ span.out{
   position: absolute;
   bottom: 1rem;
   right: 2rem;
-  font-weight: 1000;
+  font-size: 1.75rem;
+  font-weight: 300;
   text-transform: uppercase;
   letter-spacing: -0.03rem;
-  text-shadow: 2px 2px 0 #888;
+  text-shadow: 1px 1px 0 #c5c5c5;
 }
 
 .is-background-cover {
@@ -1863,7 +1864,7 @@ span.out{
 
 .price_strong {
   color: black;
-  font-weight: 1000;
+  font-weight: 300;
   font-size: 0.75rem;
   line-height: 1;
   white-space: nowrap;
@@ -2000,7 +2001,7 @@ select {
 
 .ribbon.small span {
   font-size: 0.75rem;
-  font-weight: 1000;
+  font-weight: 300;
 }
 
 .ribbon.left {
@@ -2129,7 +2130,7 @@ span.count {
   font-size: 0.75rem;
   color: lightgreen;
   margin: 0 auto;
-  font-weight: 1000;
+  font-weight: 300;
 }
 
 span.count.is-empty {
