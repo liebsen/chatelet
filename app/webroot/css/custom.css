@@ -459,7 +459,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   z-index: 10;
   left: 0;
   right: 0;
-  top: 8rem;
+  top: 120px;
   padding: 2rem;
   transform: translateY(-100rem);
 }
