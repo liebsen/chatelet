@@ -96,11 +96,12 @@
     border: 1px solid #ccc;
     background-color: #fff;
     color: #ccc;
+    font-size: 1rem;
     border-radius: 40px;
     height: 40px;
     width: 40px;
     position: absolute;
-    top: 22px;
+    top: 20px;
     left: 50%;
     padding-top: 13px;
     line-height: 1;
@@ -113,11 +114,6 @@
 	.wizard-progress .wizard-step.current {
 		color: #404040;
 		font-weight: bold;
-	}	
-
-	.wizard-progress .wizard-step.current .wizard-label {
-		top: -6px;
-		font-size: 1rem;
 	}
 	.wizard-progress .wizard-step.complete .wizard-label {
 		color: #ccc;
@@ -130,12 +126,6 @@
 	.wizard-progress .wizard-step.current .wizard-node {
 		border-color: #404040;
 		color: #404040;
-    font-size: 1.5rem;
-    padding-top: 12px;
-    width: 50px;
-    height: 50px;
-    top: 17px;
-    left: 48%;
 	}
 
 	/* manages loading states  */

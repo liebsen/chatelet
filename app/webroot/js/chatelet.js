@@ -60,10 +60,10 @@ function addToCart(data, redirect) {
           resolve()
         } else {
           reject()
-          $.growl.error({
+          /*$.growl.error({
             title: 'Ocurrió un error al agregar el producto al carrito',
             message: res.message || 'Por favor, intentá nuevamente en unos instantes'
-          });
+          });*/
         }
       })
       .fail(function(error) {

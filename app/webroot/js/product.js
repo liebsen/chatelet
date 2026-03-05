@@ -174,7 +174,15 @@ $(document).ready(function() {
         window.location.href = redirect
       }, 2000)
 		}).catch((e) => {
-			alert(e)
+			$('#comprar').text('Comprar')
+			$('#agregar-carro').text('Agregar al carrito')
+			$('#comprar').removeClass('adding')
+			$('#agregar-carro').removeClass('adding')
+
+			return $.growl.error({
+				title: 'Error',
+				message: 'Producto no disponible'
+			});
 		})
 
 		return false;

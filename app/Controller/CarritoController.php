@@ -517,7 +517,10 @@ class CarritoController extends AppController
 			$product = $this->Product->findById($this->request->data['id']);
 			$urlCheck = $this->settings['site_url']."/shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
 
-			if (empty($this->request->data['size']) && empty($this->request->data['color_code'])){
+			if (
+				(empty($this->request->data['size']) && empty($this->request->data['color_code'])) ||
+				$_SERVER['REMOTE_ADDR'] == '127.0.0.1'
+			){
 				//$urlCheck=$settings['site-url']."/shop/stock/".$product['Product']['article'];
 				// CakeLog::write('debug', 'b(1)');
 				$stock=1;

@@ -289,7 +289,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
                     </div>
                   </div>
                   <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-                    <a href="#" id="agregar-carro" class="btn btn-chatelet dark buy agregar-carro w-100">Comprar</a>
+                    <a href="#" id="comprar" class="btn btn-chatelet dark buy agregar-carro w-100">Comprar</a>
                     <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro w-100">Agregar al carrito</a>
                     <?php if(!empty($cart)):?>
                     <a href="/carrito" class="btn btn-chatelet light w-100">Ir al carrito</a>

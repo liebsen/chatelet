@@ -33,9 +33,6 @@ selectShipping = function (e, shipping, cost) {
 	total = formatNumber(total)
 	let info = $(e).data('info')
 
-	handleTotals(total)
-	handleSubtotal(total)
-	
 	var cp_input = $('.input-cp').val().trim()
 	var cp = parseInt(cp_input)
 
@@ -46,6 +43,11 @@ selectShipping = function (e, shipping, cost) {
 	$('input[name="postal_address"]').val(cp)
 	localStorage.setItem('cargo', 'delivery')
 	localStorage.setItem('delivery_select', shipping)
+
+
+	handleTotals(total)
+	handleSubtotal(total)
+	manageHiddenFields()	
 }
 
 selectStore = function(e) {
@@ -65,8 +67,7 @@ selectStore = function(e) {
   const coupon_benefits = cart_totals.coupon_benefits || 0 
   format_total = formatNumber(total_products - coupon_benefits)
   
-  handleTotals(format_total)
-  	
+
   const storeProps = [
   	'store', 
   	'store-address', 
@@ -84,9 +85,8 @@ selectStore = function(e) {
 
   var cart_takeaway_text = $('.cart_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
-  initMap(e)
 
-  handleSubtotal(format_total)
+
   $('.takeaway-indicate').text([store_address,store].join(', '))
   $('.checkout-continue').fadeIn()
 	$('input[name="shipping"]').val("")
@@ -94,6 +94,20 @@ selectStore = function(e) {
   $('input[name="store"]').val(store)
   $('input[name="store_address"]').val(store_address)
   $('input[name="postal_address"]').val("")
+
+  handleTotals(format_total)
+  handleSubtotal(format_total)
+  manageHiddenFields()
+  initMap(e)  
+}
+
+manageHiddenFields = function() {
+	setTimeout(function(){
+		$('#envio_form input, #envio_form select, #envio_form textarea').each((a,i) => {
+			console.log(i.name, $(i).is(':visible'))
+			$(i).prop('required', $(i).is(':visible'))
+		})
+	}, 500)
 }
 
 initMap = function(option) {
