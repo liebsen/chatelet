@@ -13,7 +13,7 @@ Array.prototype.remove = function() {
 $(function(){
 	$('#display_form').on('submit', function(e){
 		$.growl.notice({
-			title: 'OK',
+			title: 'Tarea exitosa',
 			message: 'Tu presentación se actualizó',
 		});	
 

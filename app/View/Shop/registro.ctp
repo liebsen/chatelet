@@ -342,7 +342,7 @@ if (!$loggedIn) {
 	                    return false;
 	                } else {
 	                    $.growl.notice({
-	                        title: 'OK',
+	                        title: 'Bienvenida',
 	                        message: 'Tu cuenta está lista'
 	                    });
 
