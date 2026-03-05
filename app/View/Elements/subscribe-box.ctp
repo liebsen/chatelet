@@ -61,6 +61,7 @@
     @media(min-width: 768px) {
       .subscribe-box { 
         min-width: 30rem;
+        box-shadow: 4px -4px 0 #c5c5c5;
         right: auto;
       }
     }

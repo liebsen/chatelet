@@ -44,7 +44,6 @@ selectShipping = function (e, shipping, cost) {
 	localStorage.setItem('cargo', 'delivery')
 	localStorage.setItem('delivery_select', shipping)
 
-
 	handleTotals(total)
 	handleSubtotal(total)
 	manageHiddenFields()	
@@ -66,7 +65,6 @@ selectStore = function(e) {
   const total_products = cart_totals.total_products 
   const coupon_benefits = cart_totals.coupon_benefits || 0 
   format_total = formatNumber(total_products - coupon_benefits)
-  
 
   const storeProps = [
   	'store', 
@@ -80,12 +78,11 @@ selectStore = function(e) {
   	storeJSON[i] = $(e).attr(i)
   })
 
-  localStorage.cargo = 'takeaway'
-  localStorage.takeaway_store = JSON.stringify(storeJSON)
-
   var cart_takeaway_text = $('.cart_takeaway_text').text()
   const suc = e.textContent.split(' ')[0]
 
+  localStorage.cargo = 'takeaway'
+  localStorage.takeaway_store = JSON.stringify(storeJSON)
 
   $('.takeaway-indicate').text([store_address,store].join(', '))
   $('.checkout-continue').fadeIn()
@@ -104,7 +101,6 @@ selectStore = function(e) {
 manageHiddenFields = function() {
 	setTimeout(function(){
 		$('#envio_form input, #envio_form select, #envio_form textarea').each((a,i) => {
-			console.log(i.name, $(i).is(':visible'))
 			$(i).prop('required', $(i).is(':visible'))
 		})
 	}, 500)
@@ -168,14 +164,11 @@ $(document).ready(function() {
       data: formData,
       success: function(res) {
       	if(res.success) {
-      		// onSuccessAlert('Success', res.message)
-          // $('#responseContainer').html(res.message);
           setTimeout(() => {
           	location.href = redirect || location.href
           }, 100)
       	} else {
       		onWarningAlert('Error al enviar datos', res.errors)
-      		// $('#responseContainer').html(res.errors);
       	}
       	btnSubmit.prop('disabled', false)
       },
@@ -215,7 +208,6 @@ $(document).ready(function() {
 		$('.btn-calculate-shipping').button('loading')
 
 		var url = $(this).data('url')
-		//var total_orig = $('#subtotal_compra').val()
 		var cp_input = $('.input-cp').val().trim()
 		var cp = parseInt(cp_input)
 		var cost = 0
@@ -224,12 +216,11 @@ $(document).ready(function() {
 			cart.coupon_bonus || 0
 		var subtotal = cart_totals.total_products || 0
 
-		//console.log(coupon, subtotal)
 		document.querySelector('.shipping-block').classList.add('hidden')
 
 		$('.input-cp').removeClass('ok');				
 		$('.delivery-cost').addClass('hidden')
-		// $('.takeaway-options li').removeClass('selected')
+
 		if(cp_input == '' || cp < 1000 || cp > 9999) {
 			onErrorAlert('Código postal inválido', `Por favor ingresá un código postal válido`);
 			return false
@@ -290,7 +281,6 @@ $(document).ready(function() {
 		if(!cp.val() || cp.val() == '') {
 			if(localStorage.lastcp) {
 				cp.val(localStorage.lastcp)	
-				// $('.btn-calculate-shipping').click()
 			}
 		}
 	})
@@ -303,7 +293,6 @@ $(document).ready(function() {
 		setTimeout(() => {
 			$('a[href="#retiro"]').click()
 			$('.has-checkout-steps').addClass('done')
-			// $('label[for="shipment"]').click()
 			$(`.takeaway-options li[store="${takeaway_store.store}"]`).click()
 		}, 100)
 	}
@@ -311,17 +300,9 @@ $(document).ready(function() {
 	if (localStorage.cargo === 'delivery' && localStorage.lastcp) {
 		setTimeout(() => {
 			$('a[href="#envio"]').click()
-			//$('.shipment-block').show()
 			$('.input-cp').val(localStorage.lastcp)
 			$('.btn-calculate-shipping').click()
 			$('.has-checkout-steps').addClass('done')
-			// const takeaway = $('.takeaway-options li.selected')
-			// if(cargo === 'shipment' && !takeaway.length || freeShipping) {
-				// $('#calulate_shipping').submit()	
-				// onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000, true)
-			// } else {
-				// onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000, true)
-			// }
 		}, 100)
 	} else {
 		$('.has-checkout-steps').addClass('done')

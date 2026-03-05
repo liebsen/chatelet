@@ -124,7 +124,7 @@
 				//echo '<div class="ch-row is-clickable" product_row>';
 				echo '<tr class="carrito-data" data-json=\''.json_encode($product).'\' product_row>';
 				echo '<td class="pl-0">';
-				echo "<div class='d-flex justify-content-start align-items-start gap-1'><div class='cart-img'>";
+				echo "<div class='d-flex justify-content-start align-items-start gap-05'><div class='cart-img'>";
 				if (!empty($product['number_ribbon'])) {
 					echo '<div class="ribbon small"><span>'.$product['number_ribbon'].'% OFF</span></div>';
 				}

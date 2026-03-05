@@ -1513,6 +1513,10 @@ select.form-control{
 	font-weight: 1000!important;
 }
 
+.h-filter {
+	letter-spacing: -0.1rem;
+}
+
 .registro-heading {
 	color: #e10c76;
 	font-style: italic;

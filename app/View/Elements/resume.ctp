@@ -4,14 +4,14 @@ $i = 0;
 $payment_method = $cart_totals['payment_method'] ?? 'bank';
 $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_method;
 ?>	
-<div class="d-flex flex-column justify-content-center align-items-start gap-05">
+<div class="d-flex flex-column justify-content-center align-items-start gap-05 animated fadeIn delay2">
 	<h5 class="text-uppercase">Resumen</h5>
 	<?php if(!empty($show_list)) :  ?>
 	<div class="cart-list d-flex flex-column justify-content-start align-center gap-1 w-100">
 		<?php foreach ($sorted as $product) {
 			$hidden = $i > $max_visible;
 			$cls = $hidden ? ' cart-hidden hidden' : '';
-			echo "<div class='d-flex justify-content-start align-center gap-1 carrito-data position-relative ".$cls."' data-json='".json_encode($product)."' product_row>";
+			echo "<div class='d-flex justify-content-start align-center gap-05 carrito-data position-relative ".$cls."' data-json='".json_encode($product)."' product_row>";
 			echo "<div class='cart-img'>";
 			if (!empty($product['number_ribbon'])) {
 				echo '<div class="ribbon small"><span>'.$product['number_ribbon'].'% OFF</span></div>';

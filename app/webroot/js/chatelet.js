@@ -514,10 +514,10 @@ $(document).ready(function() {
     const hide = $(e.target).data('hide')
     const remove = $(e.target).data('remove')
     if($(show).length) {
-      $(show).fadeIn()
+      $(show).fadeIn(0)
     }
     if($(hide).length) {
-      $(hide).fadeOut()
+      $(hide).fadeOut(0)
     }
     if($(remove).length) {
       $(remove).remove()
