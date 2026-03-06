@@ -154,6 +154,11 @@ $(document).ready(function() {
 			}
 		}
 
+		$.growl.notice({
+			title: 'Un segundo...',
+			message: 'Estamos agregando tu producto',
+		})
+
 	  target.addClass('adding')
 	  target.text(target.hasClass('buy') ? 
 	  	'Preparando tu compra... ' : 

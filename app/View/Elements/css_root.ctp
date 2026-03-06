@@ -58,7 +58,7 @@
         display: none;
       }
 
-      @media screen and (max-width:992px), print {
+      @media screen and (max-width:767px), print {
         .mobile {
           display: inline-block;
         }
@@ -67,7 +67,7 @@
         }
       }
 
-      @media screen and (min-width:993px), print {
+      @media screen and (min-width:768px), print {
         .mobile {
           display: none!important;
         }

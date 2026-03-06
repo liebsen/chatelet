@@ -16,72 +16,72 @@
 
   <style type="text/css">
 
-#optionsHelp {     
-  text-align: center; 
-  font-weight: 800;
-  overflow-x: auto;
-  width: 100%;
-}
+  #optionsHelp {     
+    text-align: center; 
+    font-weight: 800;
+    overflow-x: auto;
+    width: 100%;
+  }
 
-#optionsHelp.desktop {
-  white-space: nowrap;
-}
+  #optionsHelp.desktop {
+    white-space: nowrap;
+  }
 
-#optionsHelp.mobile {
-  background-color: #e7e7e7;
-  width: 100%;  
-}
+  #optionsHelp.mobile {
+    background-color: #e7e7e7;
+    width: 100%;  
+  }
 
-#optionsHelp.mobile a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-  border:none;
-  padding: 1rem;
-  margin: 0;
-}
-
-#optionsHelp.mobile a.active {
-  background-color: white;
-  /*border-color: #e7e7e7;*/
-  color: #333;
-  transition: background 1s ease-out;
-}
-
-#optionsHelp a { 
-  font-size: 0.9rem;
-  color: #404040;
-  display: inline-block; 
-  min-height: 1.5rem;
-  margin: 0 0.5rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  border-bottom: 1px solid #e7e7e7;
-  transition: all 100ms linear;
-}
-
-#optionsHelp.desktop a.active {
-  color: #404040;
-  border-color: #404040;
-}
-
-
-@media(min-width: 769px){
-  #optionsHelp {
-    position: absolute; 
-    left:0; 
-    right: 0; 
-    top: 0;
+  #optionsHelp.mobile a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    border:none;
     padding: 1rem;
+    margin: 0;
   }
-  #optionsHelp.top-fixed { 
-    top: 4rem; 
-    z-index: 100;
-    background: linear-gradient(hsla(0,0%,100%,0),hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0));
-  }
-}
 
+  #optionsHelp > a { 
+    font-size: 1rem;
+    color: #888;
+    border-bottom: 2px solid #c5c5c5;
+    display: inline-block; 
+    margin: 0 0.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    transition: all 1s ease-in-out;
+  }
+
+  #optionsHelp > a.active {
+    color: #404040;
+    border-color: #363636;
+  }
+  #optionsHelp.mobile > a.active {
+    background-color: white;
+    transition: background 1s ease-out;
+  }
+
+  @media(min-width: 769px){
+
+    #optionsHelp {
+      position: absolute; 
+      left:0; 
+      right: 0; 
+      top: 0;
+      padding: 1rem;
+    }
+    #optionsHelp.top-fixed { 
+      top: 4rem; 
+      z-index: 100;
+      background: linear-gradient(hsla(0,0%,100%,0),hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0));
+    }
+    #optionsHelp > a:hover { 
+      text-decoration: none;
+      color: #363636;
+      border-bottom: 2px solid #363636;
+    }
+  }
 
   </style>
 

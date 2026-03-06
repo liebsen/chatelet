@@ -229,7 +229,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .text-weight-bold {
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .text-theme {
@@ -824,7 +824,7 @@ footer ul li { margin-bottom: 5px;  }
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-weight: 800;  
+  font-weight: 600;  
   color: #333;
   font-size: 0.9rem;
   margin-bottom: 0.75rem;
@@ -1168,7 +1168,15 @@ ul#ul-moreviews li.dontResize img {
 }
 .map .col-md-4 { background: url(../images/mapbg.png) no-repeat center center; background-size: cover; display: flex; justify-content: flex-start; align-items: center; padding-left: 5rem;}
 .map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 300; letter-spacing:-0.1rem }
-.map .col-md-4 h1:after { background: #363633; content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
+.map .col-md-4 h1:after { 
+  background: #363636; 
+  content: ""; 
+  display: block; 
+  margin-top: 10px;
+  height: 5px;
+  border-radius: 5px;
+  width: 75px; 
+}
 
 #headcontacto { 
   background: url(../images/videobg.png) no-repeat center center; 
@@ -1200,27 +1208,32 @@ ul#ul-moreviews li.dontResize img {
   min-height: calc(100dvh - 265px);
   /*padding: 65px 0;*/ 
 }
-#headhelp h1 { /*color: #f50081; */ font-size: 2.25rem; margin: 0; font-weight: 300; letter-spacing:-0.1rem }
+
+#headhelp h1 { color: #363636; font-size: 40px; margin: 0; font-weight: 300; letter-spacing:-0.1rem }
 #headhelp h1:after { 
-  background: #363633; 
+  background: #363636; 
   content: ""; 
   display: block; 
-  margin-top: 20px; 
-  height: 6px; 
-  border-radius: 6px; 
-  width: 75px; 
+  margin-top: 10px;
+  height: 5px;
+  border-radius: 5px;
+  width: 75px;
 }
 #headhelp .box { 
   padding: 120px 100px 85px; 
 }
-#headhelp .box h3 { font-size: 28px; font-weight: 800; letter-spacing: -0.05rem; margin-bottom: 30px; }
-#headhelp .box p { font-size: 16px; line-height: 1.4; margin-bottom: 45px; }
+#headhelp .box h3 { font-size: 22px; text-transform:uppercase; font-weight: 600; letter-spacing: -0.05rem; margin-bottom: 30px; }
+#headhelp .box p { font-size: 18px; line-height: 1.5; margin-bottom: 10px; margin-right: auto; }
 #headhelp .box p a { color: #f50081; font-weight: 600; }
-
-.box { border: 5px solid #e7e7e7; padding: 4rem; }
+@media(min-width: 992px) {
+  #headhelp .col-md-4 {
+    padding-left: 5rem;
+  }
+}
+.box { animation: ; border: 5px solid #01c801; padding: 4rem; }
 .box h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; margin-top: 0;}
 .box p { font-size: 15px; line-height: 1.5; /*margin-bottom: 45px;*/ }
-.box p a { color: #363633; font-weight: 600; }
+.box p a { color: #01c801; font-weight: 600; }
 
 @media(min-width: 769px){
   #desarrollo { 
@@ -1230,7 +1243,6 @@ ul#ul-moreviews li.dontResize img {
     padding: 6rem 1rem 0.75rem 1rem;
   }
 }
-
 .bg-arrow {
   background: white url(../images/arrow-down.png) no-repeat center top; 
 }
@@ -1272,7 +1284,7 @@ ul#ul-moreviews li.dontResize img {
 }
 #desarrollo h3 { 
   font-size: 1.5rem; 
-  font-weight: 800; 
+  font-weight: 600; 
   margin-bottom: 15px; 
   letter-spacing: -0.05rem;
 }
@@ -1641,7 +1653,7 @@ span.out{
   font-weight: 900;
 }
 .search-results h3 {
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .search-results h1 {
@@ -1779,7 +1791,7 @@ span.out{
   padding: 0.75rem 1.5rem;
   border: 2px solid #e10c76;
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 600;
   width: 100%;
   background-color: #f6f6f5;
   min-height: 3.75rem;
@@ -1939,7 +1951,7 @@ select {
   font-size: 1rem;
   min-height: 3rem;  
   color: #e10d74;
-  font-weight: 800;
+  font-weight: 600;
   border: 1px solid #e10d74;
   border-radius: 5px;
   appearance: none;
@@ -2033,7 +2045,7 @@ select {
 
 .article-related-title {
   text-align:center;
-  font-weight: 800;
+  font-weight: 600;
   margin:10px auto 20px;
   color: #404040;
   max-width: 18rem;
@@ -2105,9 +2117,8 @@ select {
   animation: 2s linear spinning-circle infinite;
 }
 
-
 .p-0 {
-    padding: 0!important;
+  padding: 0!important;
 }
 
 /*Icon Shoop Nav Top*/

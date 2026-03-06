@@ -9,34 +9,34 @@
 #growls.default {
   background-color: transparent;
   bottom: 0.25rem;
-  left: 0.25rem;
+  left: 0.5rem;
   min-width: calc(100vw - 1.75rem); 
 }
 #growls.tl {
   top: 0.25rem;
-  left: 0.25rem; 
+  left: 0.5rem; 
 }
 #growls.tr {
   top: 0.25rem;
-  right: 0.25rem; 
+  right: 0.5rem; 
 }
 #growls.bl {
   bottom: 0.25rem;
-  left: 0.25rem; 
+  left: 0.5rem; 
 }
 #growls.br {
   bottom: 0.25rem;
-  right: 0.25rem; 
+  right: 0.5rem; 
 }
 #growls.tc {
   top: 0.25rem;
-  right: 0.25rem;
-  left: 0.25rem; 
+  right: 0.5rem;
+  left: 0.5rem; 
 }
 #growls.bc {
   bottom: 0.25rem;
-  right: 0.25rem;
-  left: 0.25rem; 
+  right: 0.5rem;
+  left: 0.5rem; 
 }
 #growls.tc .growl, #growls.bc .growl {
   margin-left: auto;
@@ -51,7 +51,7 @@
   margin-left: 0.5rem;
   bottom: 0;
   border-radius: 5px;
-  border: 2px solid #c5c5c5;
+  border: 1px solid #c5c5c5;
   /*box-shadow: 2px 2px 0 #6661;*/
   /*box-shadow: 1px 1px 5px 0 rgba(26, 26, 67, .05), 39px 62.5px 125px -25px rgba(50, 50, 93, .2), 23.4px 37.5px 75px -37.5px rgba(0, 0, 0, .4);*/
   transition: all 0.4s ease-in-out; 
@@ -90,12 +90,11 @@
   color: #a94442;
   background-color: white; 
 }
-
 .growl.growl-notice .growl-title{
-  border-color: #01c801;
+  border-color: #888;
 }
 .growl.growl-notice {
-  color: #01c801;
+  color: #888;
   background-color: white; 
 }
 .growl.growl-warning {
@@ -109,23 +108,21 @@
   top: 0;
   right: 0;
   bottom: 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1;
   font-weight: normal;
   opacity: 0;
 }
 .growl .growl-title {
-  font-size: 1.25rem;
-  font-weight: 1000;
+  font-size: 1.2rem;
   line-height: 1;
   text-transform: uppercase;
   font-weight: 800;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
-
 .growl .growl-message {
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 300;
   text-transform: uppercase;
   line-height: 1; 
 }
