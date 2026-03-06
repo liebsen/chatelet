@@ -112,7 +112,7 @@
             <a href="#" data-toggle="sidebar" data-target=".sidebar-cart" class="dropdown-toggle js-activated<?=is_array($cart) && count($cart) ? ' text-theme':'' ?>" data-toggle="dropdown" data-hover="dropdown">
               <span class="count-cont" data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito">
                 <?php if(is_array($cart) && count($cart)):?>
-                <span class="count animation-pulse delay1" data-toggle="sidebar" data-target=".sidebar-cart"><?=is_array($cart) && count($cart)?></span>
+                <span class="count animation-pulse delay1" data-toggle="sidebar" data-target=".sidebar-cart"><?=count($cart)?></span>
                 <?php endif ?>                
                 <i data-toggle="sidebar" data-target=".sidebar-cart" class="gi gi-shopping_cart <?= is_array($cart) && count($cart) ? 'text-green' : 'text-lightgrey' ?>"></i>
               </span>

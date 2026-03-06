@@ -63,7 +63,6 @@
   }
 
   @media(min-width: 769px){
-
     #optionsHelp {
       position: absolute; 
       left:0; 
