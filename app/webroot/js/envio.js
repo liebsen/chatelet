@@ -100,7 +100,7 @@ selectStore = function(e) {
 
 manageHiddenFields = function() {
 	setTimeout(function(){
-		$('#envio_form input, #envio_form select, #envio_form textarea').each((a,i) => {
+		$('#envio_form input[data-attr="required"], #envio_form select[data-attr="required"]').each((a,i) => {
 			$(i).prop('required', $(i).is(':visible'))
 		})
 	}, 500)

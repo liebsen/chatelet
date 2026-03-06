@@ -16,7 +16,7 @@
           <p class="pre-system font-pre border-light bg-info w-max-content p-4 mt-4"><?= $settings['bank_explain_text'] ?></p>
         </div>
       </div>
-      <div class="col-xs-12 col-md-8 enviar-comprobante">
+      <div class="col-xs-12 col-md-8 is-flex-end enviar-comprobante">
         <div class="animated fadeIn delay box-cont">
           <div class="box mt-8">  
             <h3 class="h3"><?= $settings['bank_instructions_title'] ?></h3>

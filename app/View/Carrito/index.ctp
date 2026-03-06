@@ -79,7 +79,7 @@
 										<input class="giftchecks gift-<?php echo $product['id'] ?>" type="checkbox" data-id="<?php echo $product['id'] ?>"><span class="label-text text-muted text-sm">Para regalo</span><br><br>
 										</label>
 									</div>
-									<button class="btn bg-transparent m-0 p-0" onclick="askremoveCart(this)">
+									<button class="btn btn-sm btn-border bg-transparent m-0 p-0" onclick="askremoveCart(this)">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</div>
@@ -191,7 +191,7 @@
 				$row += 1;
 
 				echo '<td>
-								<button class="btn bg-transparent" onclick="askremoveCart(this)">
+								<button class="btn btn-sm btn-border bg-transparent" onclick="askremoveCart(this)">
 									<i class="fa fa-trash-o"></i>
 								</button>
 							</td>';

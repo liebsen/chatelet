@@ -14,40 +14,40 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 		<div class="col-md-12">
 			<label for="email">Email</label>
 			<div class="form-group">
-				<input type="email" maxlength="50" class="form-control" placeholder="Email" title="Email" id="email" name="customer[email]" value="<?= (!empty($userData['User']['email']))?$userData['User']['email']:''; ?>" required>
+				<input type="email" maxlength="50" class="form-control" placeholder="Email" title="Email" id="email" name="customer[email]" value="<?= (!empty($userData['User']['email']))?$userData['User']['email']:''; ?>" data-attr="required" required>
 			</div>
 		</div>		
 		<div class="col-md-6 pr-0-d">
 			<label for="nombre">Nombre</label>
 			<div class="form-group">
-				<input type="text" maxlength="20" class="form-control" placeholder="Nombre" title="Nombre" id="nombre" name="customer[name]" value="<?= (!empty($userData['User']['name']))?$userData['User']['name']:''; ?>" required>
+				<input type="text" maxlength="20" class="form-control" placeholder="Nombre" title="Nombre" id="nombre" name="customer[name]" value="<?= (!empty($userData['User']['name']))?$userData['User']['name']:''; ?>" data-attr="required" required>
 				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<label for="apellido">Apellido</label>
 			<div class="form-group">
-				<input type="text" maxlength="20" class="form-control" placeholder="Apellidos" title="Apellidos" id="apellido" name="customer[surname]" value="<?= (!empty($userData['User']['surname']))?$userData['User']['surname']:''; ?>" required>
+				<input type="text" maxlength="20" class="form-control" placeholder="Apellidos" title="Apellidos" id="apellido" name="customer[surname]" value="<?= (!empty($userData['User']['surname']))?$userData['User']['surname']:''; ?>" data-attr="required" required>
 				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="col-md-6 pr-0-d">
 			<label for="dni">DNI</label>
 			<div class="form-group">
-				<input type="number" maxlength="12" class="form-control" placeholder="DNI" title="DNI" id="dni" name="customer[dni]" value="<?= (!empty($userData['User']['dni']))? str_replace('.', '', $userData['User']['dni']):''; ?>" required>
+				<input type="number" maxlength="12" class="form-control" placeholder="DNI" title="DNI" id="dni" name="customer[dni]" value="<?= (!empty($userData['User']['dni']))? str_replace('.', '', $userData['User']['dni']):''; ?>" data-attr="required" required>
 				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<label for="Telefono">Teléfono</label>
 			<div class="form-group">
-				<input type="tel" maxlength="20" class="form-control" id="Telefono" placeholder="Teléfono" title="Teléfono" id="telefono" name="customer[telephone]" value="<?= (!empty($userData['User']['telephone']))?$userData['User']['telephone']:''; ?>" required>
+				<input type="tel" maxlength="20" class="form-control" id="Telefono" placeholder="Teléfono" title="Teléfono" id="telefono" name="customer[telephone]" value="<?= (!empty($userData['User']['telephone']))?$userData['User']['telephone']:''; ?>" data-attr="required" required>
 			</div>
 		</div>
 		<div class="col-md-6 pr-0-d">
 			<label for="Provincia">Provincia</label>
 			<div class="form-group">
-				<select class="form-control" title="Provincia" id="Provincia" name="customer[provincia]" autocomplete="off" required>
+				<select class="form-control" title="Provincia" id="Provincia" name="customer[provincia]" autocomplete="off" data-attr="required" required>
 					<option value="">Seleccione una Provincia</option>
 					<?php foreach ($provincias as $key => $value): ?>
 						<option value="<?php echo $value['provincia']; ?>"<?= isset($userData['User']) && strtoupper($value['provincia']) == strtoupper($userData['User']['province']) ? '  selected' : ''?>><?php echo ucfirst($value['provincia']) ?></option>
@@ -58,19 +58,19 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 		<div class="col-md-6">
 			<label for="direccion">Localidad</label>
 			<div class="form-group">
-				<input type="text" maxlength="30" class="form-control" title="Localidad" id="Localidad" placeholder="Localidad" name="customer[localidad]" value="<?= isset($userData['User']) ? $userData['User']['city'] : '' ?>" required>
+				<input type="text" maxlength="30" class="form-control" title="Localidad" id="Localidad" placeholder="Localidad" name="customer[localidad]" value="<?= isset($userData['User']) ? $userData['User']['city'] : '' ?>" data-attr="required" required>
 			</div>
 		</div>
 		<div class="col-md-6 pr-0-d">
 			<label for="Calle">Calle</label>
 			<div class="form-group">
-				<input type="text" maxlength="30" class="form-control" placeholder="Calle" id="Calle" title="Calle" id="calle" name="customer[street]" value="<?= @$userData['User']['street'] ?>" required>
+				<input type="text" maxlength="30" class="form-control" placeholder="Calle" id="Calle" title="Calle" id="calle" name="customer[street]" value="<?= @$userData['User']['street'] ?>" data-attr="required" required>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<label for="Nro">Nro.</label>
 			<div class="form-group">
-				<input min="0" class="form-control" maxlength="8" placeholder="Nro." id="Nro" title="Nro." name="customer[street_n]" type="number" value="<?= @$userData['User']['street_n'] ?>" required />
+				<input min="0" class="form-control" maxlength="8" placeholder="Nro." id="Nro" title="Nro." name="customer[street_n]" type="number" value="<?= @$userData['User']['street_n'] ?>" data-attr="required" required />
 			</div>
 		</div>
 		<div class="col-md-6 pr-0-d">
@@ -88,7 +88,7 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 		<div class="col-md-6">
 			<label for="Depto">Código postal</label>
 			<div class="form-group">
-				<input title="Código postal" maxlength="10" class="form-control" id="postal_address" placeholder="1430" name="customer[postal_address]" type="text" value="<?= $userData['User']['postal_address'] ?? '' ?>" required/>
+				<input title="Código postal" maxlength="10" class="form-control" id="postal_address" placeholder="1430" name="customer[postal_address]" type="text" value="<?= $userData['User']['postal_address'] ?? '' ?>" readonly />
 			</div>
 		</div>
 		<div class="col-md-6">

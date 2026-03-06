@@ -101,10 +101,10 @@
     height: 40px;
     width: 40px;
     position: absolute;
-    top: 20px;
+    top: 22px;
     left: 50%;
     padding-top: 13px;
-    line-height: 1;
+    line-height: 0.8;
     margin-left: -21px;
     font-weight: 1000;
 	}

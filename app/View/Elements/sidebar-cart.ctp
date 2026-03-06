@@ -44,7 +44,7 @@
       <?php endif ?>
         <span class="text-nowrap mt-2"><?php echo \price_format($product['price']) ?></span>
       </div>
-      <button class="corner-pin bg-transparent" onclick="askremoveCart(this)">
+      <button class="corner-pin btn-border bg-transparent" onclick="askremoveCart(this)">
         <i class="fa fa-trash-o"></i>
       </button>
     </div>   

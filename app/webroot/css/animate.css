@@ -10,7 +10,7 @@
  */
 
 .animated {
-  animation-duration: 1.25s;
+  animation-duration: 1.5s;
   animation-fill-mode: both;
 }
 
@@ -146,7 +146,7 @@
   }
 
   50% {
-    transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(0.95, 0.95, 0.95);
   }
 
   to {
@@ -156,7 +156,7 @@
 
 .pulse {
   animation-name: pulse;
-  animation-iteration-count: 1;  
+  animation-iteration-count: 2;
 }
 
 @keyframes rubberBand {
