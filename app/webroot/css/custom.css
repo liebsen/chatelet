@@ -1876,8 +1876,8 @@ span.out{
 
 .price_strong {
   color: black;
-  font-weight: 300;
-  font-size: 0.75rem;
+  font-weight: 800;
+  font-size: 1rem;
   line-height: 1;
   white-space: nowrap;
 }

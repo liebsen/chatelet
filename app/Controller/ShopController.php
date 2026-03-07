@@ -464,7 +464,7 @@ class ShopController extends AppController {
     $this->set('sales', $sales);
   }
 
-  public function detalle($product_id, $category_id) {
+  public function detalle($product_id, $category_id = 0) {
 		$product = $this->Product->findById($product_id);
 		$this->loadModel('Legend');
 		if (!isset($product)) {
