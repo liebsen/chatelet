@@ -34,7 +34,7 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 // Your public VAPID key generated from your server
-const publicVapidKey = 'YOUR_PUBLIC_VAPID_KEY'; //
+const publicVapidKey = 'BEBiooz0kvrLqazPF8zdDj9SC_It9_KiZ-0iOp16Ks93U6S-G45i7woIqFUmtZZYgh_tWVXfr88etWr0jKtFcyY'; //
 const version = 1001;
 
 async function subscribeUser() {
