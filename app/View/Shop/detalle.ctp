@@ -154,7 +154,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
         ?>
           <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
           <h1><?php echo $product['name'];?></h1>
-          <p class="text-muted mb-4"><?php echo $name_categories; ?> Art. <span class="prod-article"><?php echo $product['article']; ?></span></p>
+          <p class="mb-4"><i class="gi gi-magic"></i> <?php echo $name_categories; ?> Art. <span class="prod-article"><?php echo $product['article']; ?></span></p>
           <div class="d-flex justify-content-start align-items-center gap-05">
           <?php  
           

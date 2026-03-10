@@ -73,6 +73,10 @@ class CheckoutController extends AppController
 
 	public function index() {}
 
+	public function subscribe() {
+	}
+
+	
 	public function envio() {
 		if(empty($this->Session->read('cart_totals'))) {
 			$this->redirect(array( 'controller' => 'carrito', 'action' => 'index' ));

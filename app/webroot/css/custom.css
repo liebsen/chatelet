@@ -860,9 +860,9 @@ footer ul li { margin-bottom: 5px;  }
   text-decoration: line-through;
   text-align: right;
   color: #888;
-  font-weight: 300;
+  font-weight: 500;
   white-space: nowrap; 
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 }
 
 #listShop a .hover {
