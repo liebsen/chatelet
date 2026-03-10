@@ -3,16 +3,17 @@ App::import('Controller', 'Facebook');
 App::uses('CakeText', 'Utility');
 App::uses('Security', 'Utility');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
+
 class ApiController extends AppController {
 	public $helpers = array('Text');
 	public $components = array("RequestHandler");
 
 	public function beforeFilter() {
-    	parent::beforeFilter();
-    	$this->autoRender = false;
+  	parent::beforeFilter();
+  	$this->autoRender = false;
 
-    	header("Content-Type: application/json");
-        $this->Auth->allow('subscriptions');
+  	header("Content-Type: application/json");
+    $this->Auth->allow('subscriptions');
 	}
 	
 	public function sucursales() {
@@ -23,8 +24,23 @@ class ApiController extends AppController {
 	}
 
 	//get , http://www.chatelet.com.ar/api/subscriptions
+  public function subscribe(){
+    $this->loadModel('Subscription'); 
+
+    if($this->request->is('post')){
+      $this->Subscription->save($this->request->data);
+    }
+
+    return json_encode(
+      array(
+        'success' => true, 
+        'message', 'El usuario ha sido suscripto al push notification'
+      )
+    );
+  }
+
   public function subscriptions(){
-    $this->loadModel('Subscriptions'); 
+    $this->loadModel('Subscription'); 
     $result = array();
     if (!empty($this->request->is('get'))) {
       $Subscriptions = $this->Subscriptions->find('all',array('order'=>array('Subscriptions.id DESC')));
@@ -46,4 +62,3 @@ class ApiController extends AppController {
     }
   }
 }
-?>

@@ -27,7 +27,7 @@
 		        </li>
 		        <li class="text-center">
 		          <a href="#google-fonts">
-		            Fuente
+		            Tipografía
 		          </a>
 		        </li>
 		      </ul>
