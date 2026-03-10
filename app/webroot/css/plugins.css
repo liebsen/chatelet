@@ -3965,9 +3965,11 @@ pullDown
 
 @keyframes pullDown {
     0% {
+    	opacity: 0;
         transform: scaleY(0.1);
     }
     40% {
+    	opacity: 1;
         transform: scaleY(1.02);
     }
     60% {

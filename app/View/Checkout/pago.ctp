@@ -23,7 +23,7 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 	<span class="text-sm">❤️ ¡Muchas gracias!</span>
 </div>
 
-<section id="main" class="has-checkout-steps container animation-fadeIn delay min-h-101">
+<section id="main" class="has-checkout-steps container animation-fadeIn animation-both delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 	<?php echo $this->element('title-faq', array('title' => "Información de pago")) ?>
 	<?php echo $this->Form->create('pago_form', array(

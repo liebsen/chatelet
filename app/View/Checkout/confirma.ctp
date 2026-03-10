@@ -6,7 +6,7 @@ $this->set('short_header_link', '/checkout/pago');
 
 echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 ?>
-<section id="main" class="has-checkout-steps container animation-fadeIn delay min-h-101">
+<section id="main" class="has-checkout-steps container animation-fadeIn animation-both delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 
   <div class="wrapper d-flex flex-column justify-content-center align-items-center gap-1">

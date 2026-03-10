@@ -10,7 +10,7 @@ echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('i
 // echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 ?>
 <!--section id="main" class="is-flex-center has-checkout-steps min-h-101"-->
-<section id="main" class="has-checkout-steps container animation-fadeIn delay min-h-101">
+<section id="main" class="has-checkout-steps container animation-fadeIn animation-both delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 	<?php if(!empty($cart)): ?>
   <div class="wrapper d-flex flex-column justify-content-center align-items-center gap-1">

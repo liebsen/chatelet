@@ -291,7 +291,7 @@ $(document).ready(function() {
 			$('.has-checkout-steps').addClass('done')
 			// $('label[for="shipment"]').click()
 			$(`.takeaway-options li[store="${takeaway_store.store}"]`).click()
-		}, 100)
+		}, 500)
 	}
 
 	if (localStorage.cargo === 'delivery' && localStorage.lastcp) {
@@ -308,7 +308,7 @@ $(document).ready(function() {
 			// } else {
 				// onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000, true)
 			// }
-		}, 100)
+		}, 500)
 	} else {
 		$('.has-checkout-steps').addClass('done')
 	}

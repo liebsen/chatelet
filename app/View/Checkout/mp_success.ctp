@@ -36,7 +36,7 @@
 	<div class="row">
 		<div class="col-xs-12 text-center"><br /><br /><br />
 			<h1 class="heading">Gracias por tu compra!</h1>
-			<p>Tu n&uacute;mero de pedido es: <span class="pink"><?php echo $sale['id'] ?></span></p>
+			<p>Tu n&uacute;mero de pedido es: <span class="pink bold">#<?php echo $sale['id'] ?></span></p>
 			<p>Se te ha enviado un email con este n&uacute;mero a <span class="pink"><?php echo $sale['email'] ?></span></p>
 			<br />
 			<a href="<?php echo $this->Html->url(array('controller'=>'shop','action'=>'index')) ?>" class="link">Continuar</a><br /><br /><br />

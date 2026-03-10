@@ -28,6 +28,7 @@ class ApiController extends AppController {
     $this->loadModel('Subscription'); 
 
     if($this->request->is('post')){
+      CakeLog::write('debug', 'webpush(data):'.json_encode($this->request->is('post')));
       $this->Subscription->save($this->request->data);
     }
 

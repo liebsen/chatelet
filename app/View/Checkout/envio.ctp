@@ -14,7 +14,7 @@ echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('
 echo $this->element('checkout-params');
 ?>
 
-<section id="main" class="has-checkout-steps container animation-fadeIn delay min-h-101">
+<section id="main" class="has-checkout-steps container animation-fadeIn animation-both delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 	<?php echo $this->element('title-faq', array('title' => "Método de entrega")) ?>
 	<div class="flex-row w-100">

@@ -997,7 +997,7 @@ el pago.</p>
 	          'conditions' => [ 'Sale.id = SaleProduct.sale_id' ]
 	        ]
 		    ],
-		  	'fields' => ['Sale.value, Sale.nombre, Sale.apellido, Sale.email, SaleProduct.*'],
+		  	'fields' => ['Sale.id, Sale.value, Sale.nombre, Sale.apellido, Sale.email, SaleProduct.*'],
 	      'conditions' => [
 	        'SaleProduct.sale_id' => $sale_id,
 	      ],     
