@@ -17,7 +17,7 @@ class ApiController extends AppController {
 	}
 	
 	public function sucursales() {
-    	$this->RequestHandler->respondAs('application/json');
+    $this->RequestHandler->respondAs('application/json');
 		$this->loadModel('Store');
 		$stores = $this->Store->find('all',array('order'=>array('Store.name ASC')));
 		return json_encode($stores);
@@ -25,17 +25,28 @@ class ApiController extends AppController {
 
 	//get , http://www.chatelet.com.ar/api/subscriptions
   public function subscribe(){
-    $this->loadModel('Subscription'); 
+    $this->loadModel('Webpush'); 
 
-    if($this->request->is('post')){
-      CakeLog::write('debug', 'webpush(data):'.json_encode($this->request->is('post')));
-      $this->Subscription->save($this->request->data);
+    if($this->Auth->user('id') && $this->request->is('post')){
+      CakeLog::write('debug', 'webpush(user_id):'.json_encode($this->Auth->user('id')));
+      CakeLog::write('debug', 'webpush(data):'.json_encode($this->request->data));
+      $this->Webpush->save(array(
+        'user_id' => $this->Auth->user('id'),
+        'payload' => $this->request->data,
+      );
+
+      return json_encode(
+        array(
+          'success' => true, 
+          'message', 'El usuario ha sido suscripto al push notification'
+        )
+      );
     }
 
     return json_encode(
       array(
-        'success' => true, 
-        'message', 'El usuario ha sido suscripto al push notification'
+        'success' => false, 
+        'message', 'Payload empty or user not authenticated'
       )
     );
   }

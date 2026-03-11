@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-chatelet short animated">
+  <nav class="navbar navbar-chatelet animation-both short">
     <div class="container-fluid container-fluid is-flex-between pt-1">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">

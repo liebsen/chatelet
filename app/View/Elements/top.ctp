@@ -57,7 +57,7 @@
       echo $this->Html->script('plugins');
       echo $this->Html->script('chatelet.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
 
-      if($this->Auth->user('id')) {
+      if(!empty($user['id'])) {
         echo $this->Html->script('webpush.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
       }
 
