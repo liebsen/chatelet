@@ -65,6 +65,22 @@ if (!$loggedIn) {
 					</div>
 					<div class="row cols-fix w-100 animation-fadeIn">
 						<div class="col-md-6">
+							<label for="nombre">Nombre</label>
+							<div class="form-group">
+								<?php
+									echo '<input type="text" class="form-control" placeholder="Patricia" title="Nombre" name="data[User][name]" value="'. $userData['name'] .'" required />';
+								?>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<label for="apellido">Apellido</label>
+							<div class="form-group">
+								<?php
+									echo '<input type="text" class="form-control" placeholder="Rodríguez" title="Apellidos" name="data[User][surname]" value="'. $userData['surname'] .'" required />';
+								?>
+							</div>
+						</div>
+						<div class="col-md-6">
 							<label for="email">Email</label>
 							<div class="form-group">
 								<?php
@@ -81,22 +97,6 @@ if (!$loggedIn) {
 								?>
 							</div>
 
-						</div>
-						<div class="col-md-6">
-							<label for="nombre">Nombre</label>
-							<div class="form-group">
-								<?php
-									echo '<input type="text" class="form-control" placeholder="Patricia" title="Nombre" name="data[User][name]" value="'. $userData['name'] .'" required />';
-								?>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<label for="apellido">Apellido</label>
-							<div class="form-group">
-								<?php
-									echo '<input type="text" class="form-control" placeholder="Rodríguez" title="Apellidos" name="data[User][surname]" value="'. $userData['surname'] .'" required />';
-								?>
-							</div>
 						</div>
 				<?php if($loggedIn):?>
 						<div class="col-md-6">
@@ -244,7 +244,7 @@ if (!$loggedIn) {
 						<div class="col-md-12">
 							<label>Deseo suscribirme al Newsletter</label>
 							<div class="form-group">
-								<input type="checkbox" name="data[User][newsletter]" value="1" id="toggle" class="toggle-checkbox"<?= $userData['newsletter'] == '1' ? ' checked' : '' ?>>
+								<input type="checkbox" name="data[User][newsletter]" value="1" id="toggle" class="toggle-checkbox"<?= $userData['newsletter'] || empty($userData['newsletter']) == '1' ? ' checked' : '' ?>>
 								<label for="toggle" class="toggle-label"></label>
 								<?php
 									/*$subscribed = $unsubscribed = '';
@@ -255,6 +255,7 @@ if (!$loggedIn) {
 									echo '<label for="no"><input type="radio" id="no" name="data[User][newsletter]" value="0" '.$unsubscribed.' /><span>No</span></label>';*/
 								?>
 							</div>
+							<small class="text-muted">Suscríbete hoy a nuestra plataforma y te seleccionaremos para ofertas especiales y eventos exclusivos, por email y a tu teléfono.</small>
 						</div>
 					</div>
 				</div>
@@ -301,17 +302,17 @@ if (!$loggedIn) {
 </style>
 <script type="text/javascript">
 	$(function(){
-		$('input[type="submit"]').prop('disabled', false)
 		var timeout = 0
+		$('input[type="submit"]').prop('disabled', false)
 	    $('#registro_form').submit(function(e) {
 	    	e.preventDefault();
-	    	$('input[type="submit"]').prop('disabled', true)
-	    	const formData = new FormData(e.target);
 	    	if($('#password').length){
 		    	if($('#password').val().trim() != $('#password2').val().trim()) {
 		    		return onWarningAlert('Error de validación', 'Las contraseñas no coinciden. Asegúrate de que sean la misma en ambos campos')
 		    	}
 		    }
+	    	$('input[type="submit"]').prop('disabled', true)
+	    	// const formData = new FormData(e.target);
 	    	clearTimeout(timeout)
 	    	timeout = setTimeout(() => {
 	        var me = $(this),

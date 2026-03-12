@@ -23,14 +23,17 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 		<div class="max-22 w-100">
 			<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
 				<!--img src="/images/v8WrVxzTlKt7ZEEgkSt2shf41.jpg" width="100" /-->
-			</div>					
-			<?php echo $this->Form->create(false, array(
-				'url' => array(
-					'controller' => 'users', 
-					'action' => 'login'
-				)
-			)); ?>
+			</div>
+			<?php 
+				echo $this->Form->create(null, array(
+						'url' => array('controller' => 'users', 'action' => 'login'),
+						'id' => 'login_form',
+						'class' => 'w-100'
+					)
+				);
+			?>
 			<input type="hidden" name="redirect" value="/shop"/>                
+			<input type="hidden" name="ajax" value="1"/>                
 			<div class="form-group">
       	<input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" required />
       </div>
@@ -53,3 +56,59 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 		</div>
 	</div>
 </section>
+
+
+<script type="text/javascript">
+	$(function(){
+		$('input[type="submit"]').prop('disabled', false)
+		var timeout = 0
+    $('#login_form').submit(function(e) {
+    	e.preventDefault();
+    	if($('#password').length){
+	    	if($('#password').val().trim() != $('#password2').val().trim()) {
+	    		return onWarningAlert('Error de validación', 'Las contraseñas no coinciden. Asegúrate de que sean la misma en ambos campos')
+	    	}
+	    }
+    	$('input[type="submit"]').prop('disabled', true)
+    	// const formData = new FormData(e.target);
+    	clearTimeout(timeout)
+    	timeout = setTimeout(() => {
+        var me = $(this),
+        data = me.serialize(),
+        url = me.attr('action');
+        $.post(url, data)
+          .success(function(res) {
+            if (!res.success) {
+              $.growl.error({
+                  title: 'Error al iniciar sesión',
+                  message: res.errors
+              });
+
+              $('input[type="submit"]').prop('disabled',false)
+              return false;
+            } else {
+              $.growl.notice({
+                  title: 'Inicio de sesión exitoso',
+                  message: 'Bienvenida de nuevo'
+              });
+
+              const redirect = $('input[name="redirect"]').val() || '/shop'
+            	setTimeout(() => {
+            		location.href = redirect
+            	}, 1000)
+            }
+          })
+          .fail(function() {
+          		$('input[type="submit"]').prop('disabled', false)
+              $.growl.error({
+                  title: 'Error al inciar sesión',
+                  message: 'Por favor verifica los datos introducidos e intenta de nuevo'
+              });
+          });
+
+      }, 500)
+      return false;
+    });
+    // $("#registro_form").bootstrapValidator('validate');		
+	})
+</script>

@@ -38,7 +38,7 @@ class ApiController extends AppController {
       return json_encode(
         array(
           'success' => true, 
-          'message', 'El usuario ha sido suscripto al push notification'
+          'message', 'Gracias por suscribirte'
         )
       );
     }
@@ -46,7 +46,7 @@ class ApiController extends AppController {
     return json_encode(
       array(
         'success' => false, 
-        'message', 'Payload empty or user not authenticated'
+        'message', 'No se pudo suscribir al usuario'
       )
     );
   }

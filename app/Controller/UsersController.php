@@ -2,7 +2,7 @@
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class UsersController extends AppController {
-  public $uses = array('User','Category','LookBook');
+  public $uses = array('User','Setting','Category','LookBook');
   public $components = array("Mailchimp", "RequestHandler");
   //public $components = array("RequestHandler");
 

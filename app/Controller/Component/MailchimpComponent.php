@@ -31,7 +31,7 @@ class MailchimpComponent extends Component {
 
   public function initialize(Controller $controller) {
     $this->controller = $controller;
-
+    $controller->loadModel('Setting');
     $mailchimp_appkey = $this->controller->Setting->find('first', array(
       'conditions' => ['id' => 'mailchimp_appkey']
     ));
