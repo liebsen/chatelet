@@ -11,7 +11,7 @@ use AlejoASotelo\Andreani;
 class AdminController extends AppController {
 	public $uses = array('AdminMenu','Promo','Package','SaleProduct','Sale','Setting');
 	//public $components = array('SQL', 'RequestHandler');
-	public $components = array('RequestHandler');
+	public $components = array('Newsletter', 'RequestHandler');
 
 	public function beforeFilter() {
     	parent::beforeFilter();
@@ -1608,8 +1608,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function categorias($action = null) {
 		$navs = array(
-			'Shop' => array(
-				'icon' 		=> 'gi gi-picture',
+			'Categorías' => array(
+				'icon' 		=> 'gi gi-tags',
 				'url'		=> \site_url().'/admin/categorias',
 				'active'	=> '/admin/categorias'
 			),
@@ -1619,7 +1619,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'active'	=> '/admin/categorias/add'
 			),
 			'Compositor' => array(
-				'icon' 		=> 'gi gi-edit',
+				'icon' 		=> 'gi gi-magic',
 				'url'		=> \site_url().'/admin/categorias/compose',
 				'active'	=> '/admin/categorias/compose'
 			)
@@ -1737,7 +1737,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		} else {
 	    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));	
     			$navs[$cat['Category']['name']] = array(
-						'icon' 		=> 'gi gi-circle_plus',
+						'icon' 		=> 'gi gi-edit',
 						'url'		=> \site_url().'/admin/categorias/edit/'.$cat['Category']['id'],
 						'active'	=> '/admin/categorias/edit/'.$cat['Category']['id']
 					);
@@ -1901,6 +1901,33 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$this->set('h1', $h1);
      	// $this->set('data', $this->load_settings());			
 		}
+	}
+
+	public function newsletters($component = 'products'){
+		$h1 = array(
+			'name' => 'Newsletters',
+			'icon' => 'fa fa-bullhorn'
+		);
+
+		$navs = array(
+			'Emails' => array(
+				'icon' 		=> 'gi gi-envelope',
+				'url'		=> \site_url().'/admin/newsletters/emails',
+				'active'	=> '/admin/newsletters/emails'
+			),
+			'Envío' => array(
+				'icon' 		=> 'gi gi-calendar',
+				'url'		=> \site_url().'/admin/newsletters/schedule',
+				'active'	=> '/admin/newsletters/schedule'
+			)
+		);
+
+		if(method_exists($this->Newsletter, $component)) {
+			$this->Newsletter->{$component}($this->request->data);
+		}
+
+		$this->set('navs', $navs);		
+		$this->set('h1', $h1);
 	}
 
 	public function promos(){
@@ -2805,10 +2832,20 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function analytics($action = null) {
 		$navs = array(
-			'Búsquedas' => array(
-				'icon' 		=> 'gi gi-charts',
+			'Compras' => array(
+				'icon' 		=> 'gi gi-shopping_cart',
 				'url'		=> \site_url().'/admin/analytics',
 				'active'	=> '/admin/analytics'
+			),
+			'Productos' => array(
+				'icon' 		=> 'gi gi-shirt',
+				'url'		=> \site_url().'/admin/analytics/productos',
+				'active'	=> '/admin/analytics/productos'
+			),
+			'Búsquedas' => array(
+				'icon' 		=> 'gi gi-search',
+				'url'		=> \site_url().'/admin/analytics/searches',
+				'active'	=> '/admin/analytics/searches'
 			),
 			'Carrito' => array(
 				'icon' 		=> 'gi gi-circle_plus',
@@ -3476,7 +3513,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		return $this->render('subscriptions');
 	}
 
-  public function newsletters($action = null) {
+  public function newsletters_old($action = null) {
 		$navs = array(
 			'Newsletters' => array(
 				'icon' 		=> 'gi gi-wifi',

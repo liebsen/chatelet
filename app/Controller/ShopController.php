@@ -866,23 +866,4 @@ class ShopController extends AppController {
 		$this->Search->save($search);
 		exit();		
 	}
-
-  public function analytics(){
-    $this->autoRender = false;
-    $this->loadModel('Analytic');
-    $data = $this->request->data;
-		// save search
-		$analytic = [];
-		$analytic['tag'] = "page_exit";
-		$analytic['user_id'] = $this->Auth->user('id') ?: 0;
-		$analytic['created'] = date('Y-m-d H:i:s');
-		$analytic['cart'] = json_encode($this->Session->read('cart'));
-		$analytic['cart_totals'] = json_encode($this->Session->read('cart_totals'));
-		$analytic['page'] = $data['page'] ?? '/';
-
-		// CakeLog::write('debug', "analytics:".json_encode($data));
-
-		$this->Analytic->save($analytic);		
-		exit();	
-  }	
 }

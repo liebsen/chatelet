@@ -43,7 +43,7 @@
   }
 
   #optionsHelp > a { 
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #888;
     border-bottom: 2px solid #c5c5c5;
     display: inline-block; 

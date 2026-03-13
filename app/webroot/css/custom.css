@@ -1162,12 +1162,14 @@ ul#ul-moreviews li.dontResize img {
 #myModal2 .content .table tr td:first-child { color: #363633; text-align: left; }
 
 .map { 
+  background: url(../images/mapbg.png) no-repeat center center; 
+  background-size: cover;   
   display: flex; 
   overflow: hidden; 
   background-color: #e7e7e7;
 }
-.map .col-md-4 { background: url(../images/mapbg.png) no-repeat center center; background-size: cover; display: flex; justify-content: flex-start; align-items: center; padding-left: 5rem;}
-.map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 300; letter-spacing:-0.1rem }
+.map .col-md-4 { display: flex; justify-content: center; align-items: center; padding-left: 5rem;}
+.map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 800; letter-spacing:-0.1rem }
 .map .col-md-4 h1:after { 
   background: #363636; 
   content: ""; 
@@ -1209,7 +1211,7 @@ ul#ul-moreviews li.dontResize img {
   /*padding: 65px 0;*/ 
 }
 
-#headhelp h1 { color: #363636; font-size: 40px; margin: 0; font-weight: 300; letter-spacing:-0.1rem }
+#headhelp h1 { color: #363636; font-size: 40px; margin: 0; font-weight: 800; letter-spacing:-0.1rem }
 #headhelp h1:after { 
   background: #363636; 
   content: ""; 
@@ -1222,7 +1224,7 @@ ul#ul-moreviews li.dontResize img {
 #headhelp .box { 
   padding: 120px 100px 85px; 
 }
-#headhelp .box h3 { font-size: 22px; text-transform:uppercase; font-weight: 600; letter-spacing: -0.05rem; margin-bottom: 30px; }
+#headhelp .box h3 { font-size: 22px; text-transform:uppercase; font-weight: 600; letter-spacing: -0.05rem; margin-bottom: 30px;margin-right: auto; }
 #headhelp .box p { font-size: 18px; line-height: 1.5; margin-bottom: 10px; margin-right: auto; }
 #headhelp .box p a { color: #f50081; font-weight: 600; }
 @media(min-width: 992px) {

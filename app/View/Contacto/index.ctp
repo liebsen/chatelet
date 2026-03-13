@@ -3,8 +3,8 @@
 ?>
   <section id="headhelp">
     <?php echo $this->element('navbar-ayuda'); ?>
-    <div class="wrapper container animation-fadeIn w-100">
-      <div class="row">
+    <div class="wrapper container animation-fadeIn animation-both w-100">
+      <div class="row is-flex-center">
         <div class="col-md-4">
           <h1>Contactate<br>con nosotros</h1>
         </div>

@@ -33,7 +33,7 @@ class ApiController extends AppController {
       $this->Webpush->save(array(
         'user_id' => $this->Auth->user('id'),
         'payload' => $this->request->data,
-      );
+      ));
 
       return json_encode(
         array(
@@ -50,6 +50,7 @@ class ApiController extends AppController {
       )
     );
   }
+
 
   public function subscriptions(){
     $this->loadModel('Subscription'); 
@@ -72,5 +73,70 @@ class ApiController extends AppController {
         )));  
       }
     }
+  }
+
+  public function emails(){
+    if(empty($this->Auth->user('id'))) {
+      return json_encode(
+        array(
+          'status' => "error", 
+          'errors' => "El usuario está sin autentificar"
+        )
+      );
+    }
+
+    if(empty($this->Auth->user->isAdmin())) {
+      return json_encode(
+        array(
+          'status' => "error", 
+          'errors' => "El usuario no es administrador"
+        )
+      );
+    }
+
+    $this->loadModel('Email'); 
+    $result = array();
+    // if (!empty($this->request->is('get'))) {
+    $Emails = $this->Email->find('all',array('order'=>array('Email.id DESC')));
+    if(!empty($Emails)){  
+      foreach($Emails as &$item){
+        $result[] = $item['Subscriptions'];
+      }
+    }
+    return(json_encode($result));
+  }
+
+  public function stats(){
+    $this->autoRender = false;
+    $this->loadModel('Analytic');
+    $data = $this->request->data;
+    $cart = $this->Session->read('cart') ?? 0;
+    $cart_totals = $this->Session->read('cart_totals') ?? 0;
+    $page = $data['page'] ?? '/';
+    $tag = $data['tag'] ?? 'page-exit';
+    $user_id = $this->Auth->user('id') ?? 0;
+    $product_id = $data['product_id'] ?? 0;
+
+    // save entry
+    $entry = array(
+      'tag' => $tag,
+      'user_id' => $user_id,
+      'product_id' => $product_id,
+      'page' => $page
+    );
+
+    // $analytic['created'] = date('Y-m-d H:i:s');
+    if(!empty($cart)){
+      $entry['cart'] = json_encode($cart);
+    }
+
+    if(!empty($cart_totals)){
+      $entry['cart_totals'] = json_encode($cart_totals);
+    }
+
+    CakeLog::write('debug', "analytics:".json_encode($data));
+
+    $this->Analytic->save($entry);   
+    exit(); 
   }
 }

@@ -1747,11 +1747,6 @@ span.validation-password {
   .flex-row {
     display: flex;
     flex-direction: row;
-  }  	
-  .box {
-  	padding: 4rem!important;
-    transform: scale(1) perspective(1024px) rotateY(-5deg) rotateX(2deg) rotate(2deg) translateY(0rem) translateX(-2rem);
-    box-shadow: 0 0 20px 0 rgba(26, 26, 67, .25);
   }
   .flex-col:first-child {
   	min-width: 65%;
@@ -1792,7 +1787,13 @@ span.validation-password {
 	.p-md-5 {
 		padding: 1.5rem!important;
 	}
-
+  .box {
+		animation: 0.5s rotate3D 1s ease-in-out;
+		animation-fill-mode: both;
+  	padding: 4rem!important;
+    /*transform: scale(1) perspective(1024px) rotateY(-5deg) rotateX(2deg) rotate(2deg) translateY(0rem) translateX(-2rem);*/
+    box-shadow: 0 0 20px 0 rgba(26, 26, 67, .25);
+  }
 	/*.navbar-chatelet.top-fixed {
 		background: linear-gradient(white,hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.7) 70%, hsla(0,0%,100%,0));
 		box-shadow: none;
@@ -1815,6 +1816,18 @@ span.validation-password {
 	  height: 40rem;
 	}
 }
+
+@keyframes rotate3D {
+    0% {
+    	transform: scale(0.1) perspective(1024px) rotateY(5deg) rotateX(2deg) rotate(2deg) translateY(0rem) translateX(-2rem);
+    	opacity: 0;
+    }
+    100% {
+    	transform: scale(1) perspective(1024px) rotateY(-5deg) rotateX(2deg) rotate(2deg) translateY(0rem) translateX(-2rem);
+    	opacity: 1;
+    }
+}
+
 
 @media screen and (min-width: 360px) {
 	#opts .mod-item { min-height: 220px;} 

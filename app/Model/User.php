@@ -43,6 +43,10 @@ class User extends AppModel {
     return true;
   }
 
+	public function isAdmin() {
+		return $this->data['role'] === 'admin';
+	}
+
 /*
     public $validate = array(
     	'email' => array(

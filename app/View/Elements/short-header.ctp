@@ -12,7 +12,7 @@
             <span class="text-sm"><?php echo $short_header_text ?? 'Seguir comprando' ?></span>
           </a>
         <?php endif ?>
-        <strong class="text-muted"><?= $short_header ?></strong>
+        <span class="text-muted"><?= $short_header ?></span>
       </div>
     </div>
   </nav>

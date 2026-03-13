@@ -24,7 +24,7 @@
 					</td>
 					<td> 
 					<?php if($item['Search']['user_id']): ?>
-						<?=$item['UserJoin']['name']?> <?=$item['UserJoin']['surname']?> (<?=date('Y')-date('Y',strtotime($item['UserJoin']['birthday']))?> años)
+						<?=$item['UserJoin']['name']?> <?=$item['UserJoin']['surname']?> (<?=date('Y', strtotime('last year'))-date('Y',strtotime($item['UserJoin']['birthday']))?> años)
 					<?php else: ?>
 						<span>Anónimo</span>
 					<?php endif ?>

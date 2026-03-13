@@ -1,5 +1,3 @@
-const log = false
-
 var lastcp = localStorage.getItem('lastcp') || 0
 var lastscroll = 0
 var alerts = {}
@@ -12,7 +10,7 @@ let focusAnim = 'animation-pulse'
 let clock = 0
 let fakeshown = 0 
 var toggleInterval = 0
-
+const log = false
 
 function getStorage(key, def) {
   if(localStorage[key] && localStorage[key] != 'undefined') {
@@ -78,7 +76,7 @@ function addToCart(data, redirect) {
   })
 }
 
-var askremoveCart = (e) => {
+function askremoveCart(e) {
   const item = $(e).parents('.carrito-data').data('json')
   let userInput = confirm(`¿Querés borrar el producto ${item.name} del carrito?`);
   if(userInput){
@@ -110,22 +108,20 @@ var askremoveCart = (e) => {
   }
 }
 
-let sendBeacon = (tag) => { 
+function sendBeacon(tag) { 
   const data = {
     tag,
-    event: 'page_exit',
     page: window.location.pathname,
-    timestamp: new Date().toISOString()
   };
 
   // Convert data to a Blob for sending
   const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
 
   // Send the beacon
-  navigator.sendBeacon('/shop/analytics', blob);
+  navigator.sendBeacon('/api/stats', blob);
 }
 
-let pageLoaded = () => {   
+function pageLoaded () {   
   $('body').removeClass('loading')
   $('#page-container').removeClass('loading')
   $('#page-loader').addClass('animation-fadeOut')
@@ -134,7 +130,7 @@ let pageLoaded = () => {
   },500)
 }
 
-let formatNumber = (float) => {
+function formatNumber (float) {
   if (typeof float === 'string') {
     return float
   }
@@ -142,7 +138,7 @@ let formatNumber = (float) => {
   return number_format(float, 2, ',', '.').replace(',00','')
 }
 
-formatNumber2 = function (num) {
+function formatNumber2 (num) {
   if (typeof num === 'string') {
     return num
   }
@@ -150,11 +146,11 @@ formatNumber2 = function (num) {
   //return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
 }
 
-isDateBeforeToday = function(date) {
+function isDateBeforeToday(date) {
   return new Date(date.toDateString()) < new Date(new Date().toDateString());
 }
 
-let number_format = (number, decimals, dec_point, thousands_point) => { 
+function number_format(number, decimals, dec_point, thousands_point) { 
   /*if (number == null || !isFinite(number)) {
     throw new TypeError("number is not valid: " + number);
   }*/
@@ -186,11 +182,11 @@ let number_format = (number, decimals, dec_point, thousands_point) => {
   }
 }
 
-let strtoFloat = (text) => { 
+function strtoFloat(text) { 
   return parseFloat(parseFloat(text.replace('.', '').replace('$', '')).toFixed(2))
 }
 
-let calcDues = (total) => {
+function calcDues (total) {
   $('.dues-select-option').each(function(e){
     const option = $(e).data('json')
     // console.log('dues-select-option:data', option)
@@ -201,14 +197,14 @@ let calcDues = (total) => {
   })
 }
 
-let handleTotals = (total) => {
+function handleTotals (total) {
   if($('.calc_total').text().replace("$ ", "") != total) {
     // console.log('handleTotals', total)
     $('.calc_total').text( '$ ' + formatNumber(total) )
   }
 }
 
-let focusEl = (text) => { 
+function focusEl(text) { 
   var e = $(text) 
   if (e && !e.hasClass('hide')) {
     e.get(0).scrollIntoView({ behavior: "smooth" });
@@ -220,7 +216,7 @@ let focusEl = (text) => {
   }
 }
 
-let findSize = (str) => {
+function findSize(str) {
   var size = '1.5rem'
   if (str.length >= 15) {
     size = '1.25rem'
@@ -237,7 +233,7 @@ let findSize = (str) => {
   return size
 }
 
-groupAlerts = function(title, text) {
+function groupAlerts(title, text) {
   if(!alerts[title]) {
     alerts[title] = []
   }
@@ -260,7 +256,7 @@ groupAlerts = function(title, text) {
   }, 5000)
 }
 
-onErrorAlert = function(title, text, duration, group){
+function onErrorAlert(title, text, duration, group){
   if(group) {
     return groupAlerts(title, text)
   }    
@@ -272,7 +268,7 @@ onErrorAlert = function(title, text, duration, group){
   });
 }
 
-onSuccessAlert = function(title, text, duration, group){
+function onSuccessAlert(title, text, duration, group){
   if(group) {
     return groupAlerts(title, text)
   }  
@@ -284,7 +280,7 @@ onSuccessAlert = function(title, text, duration, group){
   });
 }
 
-onWarningAlert = function(title, text, duration, group){
+function onWarningAlert(title, text, duration, group){
   if(group) {
     return groupAlerts(title, text)
   }
@@ -297,13 +293,13 @@ onWarningAlert = function(title, text, duration, group){
   })
 }
 
-let loadMoreSearch = (p) => {
+function loadMoreSearch(p) {
   searchPage = p
   $('.search-more a').text('Cargando...')
   apiSearch(localStorage.getItem('lastsearch'))
 }
 
-let apiSearch = (q) => {    
+function apiSearch(q) {    
   $.ajax({
     type: "POST",
     url: "/shop/api_search/",
@@ -393,7 +389,6 @@ function layerClose() {
   $('.layer').removeClass('active')
 }
 
-
 $(document).ready(function() {
   /* filter beforeunload events */
   var validNavigation = false;
@@ -419,9 +414,10 @@ $(document).ready(function() {
     validNavigation = true;
   });
 
-  window.onbeforeunload = function() {                
+  window.onbeforeunload = function() {
+    // console.log('validNavigation',validNavigation, location.pathname)
     if (!validNavigation && !location.pathname.includes('admin/')) {    
-      sendBeacon()
+      sendBeacon('page-exit')
     }
   } 
   
@@ -764,7 +760,10 @@ $(document).ready(function() {
     return true
   })
 
-  
+  setTimeout(() => {
+    sendBeacon('page-view')
+  },5000)
+
   /*$('#registro-modal a[data-toggle="modal"]').click(function() {
 		$(this).parents('#registro-modal').modal('hide');
 		return true;

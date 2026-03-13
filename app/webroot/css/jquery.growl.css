@@ -121,10 +121,10 @@
   margin-bottom: 0.75rem;
 }
 .growl .growl-message {
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 300;
   text-transform: uppercase;
-  line-height: 1; 
+  line-height: 1.25; 
 }
 @media screen and (min-width: 769px) {
   #growls.default {
