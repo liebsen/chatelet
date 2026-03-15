@@ -66,11 +66,11 @@
                 $femenino = (isset($usuario) && $usuario['User']['gender'] == 'F') ? 'checked' : '';
               ?>
               <span>
-                <input type="radio" name="data[gender]" id="gender_f" value="F" required <?php echo $femenino; ?> />
+                <input type="radio" class="form-control" name="data[gender]" id="gender_f" value="F" required <?php echo $femenino; ?> />
                 <label for="gender_f">Femenino</label>
               </span>
               <span>
-                <input type="radio" name="data[gender]" id="gender_m" value="M" required <?php echo $masculino; ?> />
+                <input type="radio" class="form-control" name="data[gender]" id="gender_m" value="M" required <?php echo $masculino; ?> />
                 <label for="gender_m">Masculino</label>
               </span>
             </div>
@@ -82,22 +82,10 @@
             </div>
           </div>
           <br />
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Newsletter'); ?></label>
-            <div class="controls text-center switch-scale">
-              <?php
-                $news = (isset($usuario) && $usuario['User']['newsletter'] == '1') ? 'checked' : '';
-                $no_news = (isset($usuario) && $usuario['User']['newsletter'] == '0') ? 'checked' : '';
-              ?>
-              <span>
-                <input type="radio" id="newsletter_1" name="data[newsletter]" value="1" <?php echo $news; ?> />  
-                <label for="newsletter_1">Sí</label>
-              </span>
-              <span>
-                <input type="radio" name="data[newsletter]" id="newsletter_0" value="0" <?php echo $no_news; ?> />
-                <label for="newsletter_0">No</label>
-              </span>
-            </div>
+          <div class="form-group">
+            <label class="control-label" for="columns-text"><?php echo __('Visible'); ?></label>
+            <input type="checkbox" name="data[newsletter]" value="1" id="toggle" class="toggle-checkbox"<?= $usuario['User']['newsletter'] == '1' ? ' checked' : '' ?>>
+            <label for="toggle" class="toggle-label"></label>
           </div>
           <br />
         </div>
@@ -183,23 +171,16 @@
             </div>
           </div>
           <br />
-          <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('¿Es administrador?'); ?></label>
-              <div class="controls text-center switch-scale">
-              <?php
-                $admin = (isset($usuario) && $usuario['User']['role'] == 'admin') ? 'checked' : '';
-                $regular = (isset($usuario) && $usuario['User']['role'] != 'admin') ? 'checked' : '';
-              ?>
-                <span>
-                  <input type="radio" name="data[role]" id="admin_1" value="admin" <?php echo $admin ?> /> 
-                  <label for="admin_1">Sí</label>
-                </span>
-                <span>
-                  <input type="radio" name="data[role]" id="admin_0" value="" <?php echo $regular ?> />
-                  <label for="admin_0">No</label>
-                </span>
-              </div>
-            </div>
+          <div class="form-group">
+            <label class="control-label" for="toggle-admin"><?php echo __('¿Es administrador?'); ?></label>
+            <input type="checkbox" name="data[role]" value="admin" id="toggle-admin" class="toggle-checkbox"<?= $usuario['User']['role'] == 'admin' ? ' checked' : '' ?>>
+            <label for="toggle-admin" class="toggle-label"></label>
+          </div>
+          <hr />
+          <div class="form-group">
+            <label class="control-label" for="toggle-admin"><?php echo __('¿Es miembro del club?'); ?></label>
+            <input type="checkbox" name="data[role]" value="club" id="toggle-club" class="toggle-checkbox"<?= $usuario['User']['role'] == 'club' ? ' checked' : '' ?>>
+            <label for="toggle-club" class="toggle-label"></label>
           </div>
         </div>              
       </div>      

@@ -6,12 +6,14 @@
 	<table id="usuarios-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>
+				<th class="text-center hidden-phone"><?php echo __('ID'); ?></th>
 				<th class="text-center hidden-phone"><?php echo __('Email'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('FNAC'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Sexo'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('DNI'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Newsletter'); ?></th>
+				<th class="hidden-phone hidden-tablet"><?php echo __('Rol'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Tel'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Dir'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Prov'); ?></th>
@@ -22,6 +24,9 @@
 		<tbody>
 			<?php foreach ($users as $key => $user): ?>        
 				<tr>
+					<td>          
+						<?=$user['User']['id']?>
+					</td>
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'usuarios','edit',$user['User']['id']))?>">
 							<?=$user['User']['email']?>
@@ -45,8 +50,11 @@
 					</td> 
 					<td>          
 						<?=
-							($user['User']['name']) ? 'Si' : 'No'
+							($user['User']['newsletter']) ? '<i class="fa fa-check text-success"></i>' : '<i class="fa fa-close text-danger"></i>'
 						?>
+					</td> 
+					<td>          
+						<span class="badge badge-lg badge-info"><?=$user['User']['role']?></span>
 					</td> 
 					<td>          
 						<?=$user['User']['telephone']?>

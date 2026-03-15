@@ -8,19 +8,19 @@
 				.success(function(res){
 					if(res.success) {
             $.growl.notice({
-              title: 'OK',
+              title: 'Tarea exitosa',
               message: res.message
             });
 					} else {
             $.growl.error({
-              title: 'OK',
+              title: 'Error al realizar tarea',
               message: res.errors
             });
 					}
 				})
 				.fail(function(){
           $.growl.error({
-            title: 'OK',
+            title: 'Error al realizar tarea',
             message: res.errors
           });
 				})

@@ -108,24 +108,12 @@
         </div>
         <div class="col-md-6"> 
           <h4 class="sub-header">Estado</h4>
-          <div class="control-group">
-            <!--label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label-->
-            <div class="controls text-center switch-scale">
-              <?php
-                $enabled = (isset($item) && $item['Category']['visible'] == 1) || !isset($item) ? 'checked' : '';
-                $disabled = (isset($item) && $item['Category']['visible'] == 0) ? 'checked' : '';
-              ?>
-              <span>
-                <input type="radio" class="form-control" id="enabled_1" name="data[visible]" value="1" <?php echo $enabled; ?> /> 
-                <label for="enabled_1">Activo</label>
-              </span>
-              <span>
-                <input type="radio" class="form-control" id="enabled_0" name="data[visible]" value="0" <?php echo $disabled; ?> />
-                <label for="enabled_0">Inactivo</label>
-              </span>
-            </div>
-            <!--small class="text-muted">Estado principal de este Legend</small-->
-          </div>
+          <div class="form-group">
+            <label class="control-label" for="columns-text"><?php echo __('Visible'); ?></label>
+            <input type="checkbox" name="data[visible]" value="1" id="toggle" class="toggle-checkbox"<?= $item['Category']['visible'] == '1' ? ' checked' : '' ?>>
+            <label for="toggle" class="toggle-label"></label>
+          </div>    
+          <hr>
           <h4 class="sub-header"><?=__('Imágenes')?></h4>
           <div class="control-group">
             <label class="control-label" for=""><?=__('Seleccione una imagen de banner para esta categoría')?></label>

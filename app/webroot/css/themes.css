@@ -8,22 +8,22 @@
 
 /*
 =================================================================
-#2980b9 - THEME DEFAULT
+#bc4bb6 - THEME DEFAULT
 =================================================================
 */
 
 .themed-color-default {
-    color: #2980b9 !important;
+    color: #bc4bb6 !important;
 }
 
 .block.block-themed.themed-default > .block-title,
 .themed-background-default {
-    background-color: #2980b9 !important;
+    background-color: #bc4bb6 !important;
 }
 
 .block.block-themed.themed-default > .block-content,
 .themed-border-default {
-    border-color: #2980b9 !important;
+    border-color: #bc4bb6 !important;
 }
 
 /*

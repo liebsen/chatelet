@@ -50,9 +50,16 @@ echo $this->Session->flash();
 
         <!-- Modernizr (browser feature detection library) & Respond.js (Enable responsive CSS code on browsers that don't support it, eg IE8) -->
         <script src="../js/vendor/modernizr-2.7.1-respond-1.4.2.min.js"></script>
-
+        <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$settings['google_font_name']) ?>:<?= @$settings['google_font_size'] ?>" rel="stylesheet">
         <style type="text/css">
-            body {
+            html, body { 
+                font-family: '<?=@$settings['google_font_name'] ?>', Verdana, Arial, Sans-Serif!important;
+                line-height: 1.25;
+                font-size: 14px; 
+                font-weight: 600;
+                text-transform: uppercase;
+                color: #a5a5a5;
+                font-weight: 300;
                 background-color: #494949!important;
             }
         </style>
@@ -67,53 +74,59 @@ echo $this->Session->flash();
     <body class="login">
 
         <!-- Login Intro -->
-        <a href="javascript:void(0)" class="login-btn themed-background-default">
+        <a href="javascript:void(0)" class="login-btn themed-background-default animation-fadeIn animation-both delay3">
             <span class="login-logo">
-                <span class="square1 themed-border-default"></span>
-                <span class="square2"></span>
-                <span class="name"><?php echo $template['name']; ?></span>
+                <span class="square"><i class="gi gi-lock fa-lg text-white"></i></span>
+                <div class="name">
+                    <img src="/img/chatelet_blanco.png" class="image-responsive" width="90%" title="<?php echo $template['name'] ?> <?php echo $version['text'] ?>"/>
+                </div>
             </span>
         </a>
-        <div class="left-door"></div>
-        <div class="right-door"></div>
+        <div class="left-door animation-fadeIn animation-both delay1"></div>
+        <div class="right-door animation-fadeIn animation-both delay2"></div>
         <!-- END Login Intro -->
 
         <!-- Login Container -->
         <div id="login-container" class="display-none">
             <!-- Login Block -->
             <div class="block-tabs">
-                <ul id="login-tabs" class="nav nav-tabs" data-toggle="tabs">
+                <!--ul id="login-tabs" class="nav nav-tabs" data-toggle="tabs">
                     <li class="active text-center">
                         <a href="#login-form-tab">
                             <i class="fa fa-user"></i> Login
                         </a>
                     </li>
-                </ul>
+                </ul-->
+                <h3 class="text-center mt-0">Panel de gestión</h3>
                 <div class="tab-content">
+                    <p>Ingresa tus credenciales para continuar</p>
                     <div class="tab-pane active" id="login-form-tab">
                         <!-- Login Form -->
-                        <?php echo $this->Form->create('User', array('class' => 'form-horizontal')); ?>
+                        <?php echo $this->Form->create('User', array(
+                            'class' => 'form-horizontal w-100',
+                            'id' => 'login_form',
+                        )); ?>
+                            <input type="hidden" name="ajax" value="1"/>
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <div class="input-group">
+                                    <div class="input-group p-0">
                                         <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-                                        <input type="email" id="login-email" name="data[User][email]" class="form-control" placeholder="Email..">
+                                        <input type="email" id="login-email" name="data[User][email]" class="form-control" placeholder="Tu Email" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <div class="input-group">
+                                    <div class="input-group p-0">
                                         <span class="input-group-addon"><i class="fa fa-asterisk fa-fw"></i></span>
-                                        <input type="password" id="login-password" name="data[User][password]" class="form-control" placeholder="Password..">
-
+                                        <input type="password" id="login-password" name="data[User][password]" class="form-control" placeholder="Tu contraseña" required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-8">
                                 <div class="col-xs-12 clearfix">
                                     <div class="pull-left">
-                                        <a href="/" class="btn btn-info remove-margin">Go to site</a>
+                                        <a href="/" class="btn btn-info remove-margin" target="_blank">Go to site</a>
                                     </div>
                                     <div class="pull-right">
                                         <button type="submit" class="btn btn-success remove-margin">Login</button>
@@ -163,8 +176,8 @@ echo $this->Session->flash();
 
                         setTimeout(function(){
                             $('#login-container').fadeIn(1500);
-                            $('.login-btn .name').fadeOut(250, function(){
-                                $('.login-btn .square1, .login-btn .square2').fadeIn(750);
+                            $('.login-btn .square').fadeOut(250, function(){
+                                $('.login-btn .name').fadeIn(750);
                                 $('#login-email').focus();
                             });
                         }, timeout);
@@ -172,5 +185,60 @@ echo $this->Session->flash();
                 }
             });
         </script>
+
+        <script type="text/javascript">
+            $(function(){
+                $('input[type="submit"]').prop('disabled', false)
+                var timeout = 0
+            $('#login_form').submit(function(e) {
+                e.preventDefault();
+                if($('#password').length){
+                    if($('#password').val().trim() != $('#password2').val().trim()) {
+                        return onWarningAlert('Error de validación', 'Las contraseñas no coinciden. Asegúrate de que sean la misma en ambos campos')
+                    }
+                }
+                $('input[type="submit"]').prop('disabled', true)
+                // const formData = new FormData(e.target);
+                clearTimeout(timeout)
+                timeout = setTimeout(() => {
+                var me = $(this),
+                data = me.serialize(),
+                url = me.attr('action');
+                $.post(url, data)
+                  .success(function(res) {
+                    if (!res.success) {
+                      $.growl.error({
+                          title: 'Error al iniciar sesión',
+                          message: res.errors
+                      });
+
+                      $('input[type="submit"]').prop('disabled',false)
+                      return false;
+                    } else {
+                      $.growl.notice({
+                          title: 'Inicio de sesión exitoso',
+                          message: 'Bienvenida de nuevo'
+                      });
+
+                      const redirect = $('input[name="redirect"]').val() || '/shop'
+                        setTimeout(() => {
+                            location.href = redirect
+                        }, 1000)
+                    }
+                  })
+                  .fail(function() {
+                        $('input[type="submit"]').prop('disabled', false)
+                      $.growl.error({
+                          title: 'Error al inciar sesión',
+                          message: 'Por favor verifica los datos introducidos e intenta de nuevo'
+                      });
+                  });
+
+              }, 500)
+              return false;
+            });
+            // $("#registro_form").bootstrapValidator('validate');      
+            })
+        </script>        
     </body>
 </html>

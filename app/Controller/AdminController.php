@@ -414,7 +414,7 @@ class AdminController extends AppController {
 				$this->{$name}->save([
 					'id' => $id,
 					'ordernum' => $ordernum + 1
-				]);			
+				]);		
 			}
 		}
 	}
@@ -463,6 +463,11 @@ class AdminController extends AppController {
 
 		if($this->request->is('post')){
 			$this->Package->save($this->request->data);
+      $this->Session->setFlash(
+        'Módulo OCA actualizado',
+        'default',
+        array('class' => 'hidden notice')
+      );
 		}
 
 		$h1 = array(
@@ -509,6 +514,12 @@ class AdminController extends AppController {
 		$sale['def_orden_tracking'] = @$oca_result['tracking'];
 		//CakeLog::write('debug', 'add_order_oca(sale)'.json_encode($sale));			
 		$t = @$this->Sale->save($sale);
+    $this->Session->setFlash(
+      'Se creó una orden (OCA)',
+      'default',
+      array('class' => 'hidden notice')
+    );
+
 		$sale['raw_xml'] = @$oca_result['rawXML'];
 		return $sale;		
 	}
@@ -617,6 +628,12 @@ class AdminController extends AppController {
 	    $sale['def_orden_tracking'] = $nroEnvio;
 	    CakeLog::write('debug', 'sale(6)'.json_encode($sale));			
 	    $t = @$this->Sale->save($sale);
+	    $this->Session->setFlash(
+	      'Se creó una orden (Andreani)',
+	      'default',
+	      array('class' => 'hidden notice')
+	    );
+
 		}
 
 	  $sale['raw_xml'] = @$response->detail ?: @$response->message;
@@ -650,6 +667,12 @@ class AdminController extends AppController {
 			$save['shipping'] = $logistic['Logistics']['code'];
 			CakeLog::write('debug', 'sale(7)'.json_encode($sale));			
 			$t = $this->Sale->save($save);
+	    $this->Session->setFlash(
+	      'Módulo Logística actualizado',
+	      'default',
+	      array('class' => 'hidden notice')
+	    );
+
 		}
 		die(json_encode($json));
 	}
@@ -723,6 +746,11 @@ class AdminController extends AppController {
 				'id' => $sale_id,
 				'completed' => 1
 			]);
+	    $this->Session->setFlash(
+	      'Se estableció venta como competada',
+	      'default',
+	      array('class' => 'hidden notice')
+	    );			
 		} else {
 			$data = [
 				'status' => 'danger',
@@ -831,6 +859,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					$data['message'] = 'Notificación enviada';
 					$this->sendEmailMessage($message,'🌸 Compra Realizada en Châtelet', $emailTo);
 					$this->Sale->save(['def_mail_sent' => 1]);
+			    $this->Session->setFlash(
+			      'Se envió email de notificación a la clienta',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );			
+
 				} else {
 					error_log('[email] ignored bc was sent before');
 					$data['status'] = 'success';
@@ -1302,6 +1336,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	}
     	
     	$this->Home->save($data);
+	    $this->Session->setFlash(
+	      'Módulo Presentación actualizado',
+	      'default',
+	      array('class' => 'hidden notice')
+	    );			
+
 		}
 
 		$p = $this->Home->find('first');
@@ -1537,6 +1577,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    unset($images[$key]);
 			    $catalog['images'] = implode(';', $images);
 			    $this->Catalog->save($catalog);
+			    $this->Session->setFlash(
+			      'Módulo Catálogo actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );			
+
 			}
 		} else if ($this->request->is('post')) {
 			$data = $this->request->data;
@@ -1585,6 +1631,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		$data['images'] = implode(';', $pictures);
     	}
 			$this->Catalog->save($data);
+	    $this->Session->setFlash(
+	      'Módulo Catálogo actualizado',
+	      'default',
+	      array('class' => 'hidden notice')
+	    );						
 		}
 
 		$page_video = (!empty($this->settings['page_video'])) ? $this->settings['page_video'] : '';
@@ -1670,6 +1721,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		        }
 
 		        $this->Category->save($data);
+				    $this->Session->setFlash(
+				      'Módulo Shop actualizado',
+				      'default',
+				      array('class' => 'hidden notice')
+				    );		        
 		        return $this->redirect(array('action'=>'categorias'));
   			} else {
     			return $this->render('categorias-detail');
@@ -1681,6 +1737,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$this->loadModel('Product');
 	    		$this->Product->deleteall(array('Product.category_id' => $this->request->data['id']));
 	    		$this->Category->delete($this->request->data['id']);
+			    $this->Session->setFlash(
+			      'Módulo Shop actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );		        
+
 	    	}
     		break;
     	case 'edit':
@@ -1734,6 +1796,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        }
 
 	        $this->Category->save($data);
+			    $this->Session->setFlash(
+			      'Módulo Shop actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );		        
+
     		} else {
 	    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));	
     			$navs[$cat['Category']['name']] = array(
@@ -1776,6 +1844,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					'image' => $file,
 				));
 			}
+
+	    $this->Session->setFlash(
+	      'Módulo WhatsApp actualizado',
+	      'default',
+	      array('class' => 'hidden notice')
+	    );		        
+
 		}
 
 		$navs = array(
@@ -1818,7 +1893,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 			$response = array(
 				'success' => true,
-				'message' => 'Se actualizó la Aplicación'
+				'message' => 'La nueva configuración se actualizó exitosamente'
 			);
 
 			return json_encode($response);
@@ -1871,7 +1946,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 			$response = array(
 				'success' => true,
-				'message' => 'Se actualizó la Aplicación'
+				'message' => 'La nueva configuración se actualizó exitosamente'
 			);
 
 			return json_encode($response);
@@ -2606,6 +2681,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		        }
 
 		        $this->Banner->save($data);
+				    $this->Session->setFlash(
+				      'Módulo Banners actualizado',
+				      'default',
+				      array('class' => 'hidden notice')
+				    );		        
 
 		        return $this->redirect(array('action'=>'banners'));
   			} else {
@@ -2616,6 +2696,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
 	    		$this->Banner->delete($this->request->data['id']);
+			    $this->Session->setFlash(
+			      'Módulo Banners actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );		        	    		
 	    	}
     		break;
     	case 'edit':
@@ -2636,6 +2721,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	        $data['target_blank'] = @$data['target_blank'] ?: '';
 	        $this->Banner->save($data);
+			    $this->Session->setFlash(
+			      'Módulo Banners actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );		        
+
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
@@ -2685,6 +2776,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		        $this->autoRender = false;
 		        $data = $this->request->data;
 		        $this->Legend->save($data);
+				    $this->Session->setFlash(
+				      'Módulo Financiación actualizado',
+				      'default',
+				      array('class' => 'hidden notice')
+				    );		        
+
 		        return $this->redirect(array('action'=>'legends'));
   			} else {
     			return $this->render('legends-detail');
@@ -2694,6 +2791,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
 	    		$this->Legend->delete($this->request->data['id']);
+				    $this->Session->setFlash(
+				      'Módulo Financiación actualizado',
+				      'default',
+				      array('class' => 'hidden notice')
+				    );		        
+
 	    	}
     		break;
     	case 'edit':
@@ -2701,6 +2804,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     			$this->autoRender = false;
     			$data = $this->request->data;
 	        $this->Legend->save($data);
+				    $this->Session->setFlash(
+				      'Módulo Financiación actualizado',
+				      'default',
+				      array('class' => 'hidden notice')
+				    );		        
+	        
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
@@ -2793,6 +2902,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	        $data['target_blank'] = @$data['target_blank'] ?: '';
 	        $this->Menu->save($data);
+		      $this->Session->setFlash(
+	          'Módulo Menú actualizado',
+	          'default',
+	          array('class' => 'hidden notice')
+		      );
+
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
@@ -3050,6 +3165,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				    $result['Logistic']['id'],
 				    '#' => 'tarifas'
 					);
+		      $this->Session->setFlash(
+	          'Módulo Logística actualizado',
+	          'default',
+	          array('class' => 'hidden notice')
+		      );					
 					return $this->redirect($url);
 	        // return $this->redirect(array('action'=>'logistica'));
   			} else {
@@ -3083,6 +3203,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     				$data['image'] = $this->saveFile('image');
     			}
 		      $this->Logistic->save($data);
+		      $this->Session->setFlash(
+						'Módulo Logística actualizado',	          
+	          'default',
+	          array('class' => 'hidden notice')
+		      );
+
           if(!empty($this->request->data['config'])) {
             foreach($this->request->data['config'] as $id => $value) {
               $this->Setting->save([
@@ -3180,6 +3306,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				$this->Setting->save(array('id' => $id, 'value' => $value));
 			}
 
+      $this->Session->setFlash(
+        'Módulo Envíos actualizado',
+        'default',
+        array('class' => 'hidden notice')
+      );
+
 			return $this->redirect(array('action'=>'shipping'));
 			// CakeLog::write('debug', 'data:'.json_encode($data));
 			//$this->Setting->save($data);
@@ -3218,7 +3350,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	public function usuarios($action = null) {
 		$navs = array(
 			'Usuarios' => array(
-				'icon' 		=> 'gi gi-user',
+				'icon' 		=> 'gi gi-group',
 				'url'		=> \site_url().'/admin/usuarios',
 				'active'	=> '/admin/usuarios'
 				),
@@ -3243,6 +3375,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	  if ($this->request->is('POST')){
 	        $this->autoRender = false;
 	        $this->User->save($this->request->data);
+		      $this->Session->setFlash(
+		        'Módulo Usuarios actualizado',
+		        'default',
+		        array('class' => 'hidden notice')
+		      );
 	        return $this->redirect(array('action'=>'usuarios'));
   			} else {
     			return $this->render('usuarios-detail');
@@ -3264,12 +3401,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     				}
     			}
 		      $this->User->save($data);
+		      $this->Session->setFlash(
+		        'Módulo Usuarios actualizado',
+		        'default',
+		        array('class' => 'hidden notice')
+		      );		      
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$usuario = $this->User->find('first', array('conditions' => array('id' => $this->request->pass[1])));
-    			$navs[$usuario['User']['name']] = array(
-						'icon' 		=> 'gi gi-circle_plus',
+    			$navs[$usuario['User']['name'].' '.$usuario['User']['surname']] = array(
+						'icon' 		=> 'gi gi-user',
 						'url'		=> \site_url().'/admin/usuarios/edit/'.$usuario['User']['id'],
 						'active'	=> '/admin/usuarios/edit/'.$usuario['User']['id']
 					);
@@ -3442,7 +3584,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       foreach($this->request->data as $id => $value) {
       	$this->Setting->save(['id' => $id, 'value' => $value]);
       }
-
+      $this->Session->setFlash(
+        'El carrito se actualizó',
+        'default',
+        array('class' => 'hidden notice')
+		  );
       return $this->redirect(array('action'=>'carrito'));
 		}
 	}
@@ -3469,6 +3615,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       	CakeLog::write('debug', 'data:'. json_encode(['id' => $id, 'value' => $value]));
       	$this->Setting->save(['id' => $id, 'value' => $value]);
       }
+      $this->Session->setFlash(
+        'Módulo Banco actualizado',
+        'default',
+        array('class' => 'hidden notice')
+      );      
       return $this->redirect(array('action'=>'bank'));
 
      	/* $data = parent::load_settings();
@@ -3547,6 +3698,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'add':
     		if ($this->request->is('POST')){
 	        $this->Newsletter->save($this->request->data);
+		      $this->Session->setFlash(
+		        'Módulo Newsletter actualizado',
+		        'default',
+		        array('class' => 'hidden notice')
+		      );
+
 	        return $this->redirect(array('action'=>'newsletters'));
   			} else {
 			    $cats = $this->Newsletter->find('all');
