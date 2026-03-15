@@ -567,9 +567,9 @@ body {
 
 /* Blocks */
 .block {
-    margin: 0 0 20px;
+    margin: 0 0 40px;
     padding: 0;
-    background-color: #fff;
+    background-color: #f9f9f9;
 }
 
 @media(min-width: 991px) {
@@ -724,17 +724,17 @@ body {
 }
 
 .block-tabs > .nav-tabs > li {
-    margin-bottom: -2px;
+    margin-bottom: -1px;
 }
 
 .block-tabs > .nav-tabs > li > a {
-    box-shadow: 5px 0 0 #c5c5c5;
+    box-shadow: 5px 2px 0 -2px #c5c5c5;
     margin: 0 0.5rem;    
     border: none;
     border-bottom-left-radius: 0!important;
     border-bottom-right-radius: 0!important;
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #888;
     background-color: #f1f1f1;
 }
@@ -757,7 +757,8 @@ body {
     border: 0;
     padding: 20px;
     margin: 0;
-    border-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 
 .block-tabs.block-themed > .nav-tabs {
@@ -2550,7 +2551,7 @@ header.navbar .navbar-brand {
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     background-color: #b4ffb4!important;
-    box-shadow: 5px 0 0 #63b363;
+    box-shadow: 5px 2px 0 -2px #63b363;
 }
 
 .nav-pills > li.active > a,
@@ -2563,7 +2564,7 @@ header.navbar .navbar-brand {
     border: 1px solid #ddd;
     border-top: none;
     padding: 12px;
-    background: #fff;
+    background-color: #fff;
 }
 
 .tab-content-default {
@@ -2750,6 +2751,7 @@ label,
 
 .form-control,
 .input-group {
+    background-color: white;
     margin-top: 1px;
     margin-bottom: 1px;
     padding: 0.75rem 1rem;
@@ -3204,6 +3206,11 @@ a.thumbnail-borderless,
     color: #f8f8f8;
 }
 
+.btn {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
 .form-actions {
     text-align: right;
     position: fixed;
@@ -3231,11 +3238,13 @@ a.thumbnail-borderless,
 }
 
 .form-actions {
-    animation-name: fadeIn;
-    animation-delay: 2s;
-    animation-duration: 3s;
+    animation-name: fadeInUp;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     animation-fill-mode: both;
 }
+
 .form-actions .btn {
     font-size: 0.9rem;
     text-transform: uppercase;

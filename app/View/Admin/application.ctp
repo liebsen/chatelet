@@ -12,22 +12,27 @@
 		      <ul class="nav nav-tabs" id="myTab" role="tablist">
 		        <li class="active text-center">
 		          <a href="#social">
-		            Redes sociales
+		            <i class="gi gi-share"></i> Redes sociales
 		          </a>
 		        </li>
 		        <li class="text-center">
 		          <a href="#payments">
-		            Mercado pago
+		            <i class="gi gi-wallet"></i> Mercado pago
 		          </a>
 		        </li>
 		        <li class="text-center">
 		          <a href="#analytics">
-		            Analíticas
+		            <i class="gi gi-tags"></i> Analíticas
 		          </a>
 		        </li>
 		        <li class="text-center">
 		          <a href="#google-fonts">
-		            Tipografía
+		            <i class="gi gi-text_underline"></i> Tipografía
+		          </a>
+		        </li>
+		        <li class="text-center">
+		          <a href="#notifications">
+		            <i class="gi gi-envelope"></i> Notificaciones
 		          </a>
 		        </li>
 		      </ul>
@@ -207,6 +212,23 @@
 						     </div>
 						  </div>
 		        </div>
+		        <div class="tab-pane pane-notifications">
+				      <div class="row">
+				        <div class="col-md-6">
+				        	<select class="form-control" name="notification_tag">
+				        		<option value="">Elige una notificación para continuar</option>
+				        		<?php foreach($notification_tags as $key => $tag): ?>
+				        			<option value="<?=$key?>"><?=$tag?></option>
+				        		<?php endforeach ?> 
+				        	</select>
+				        </div>
+				        <div class="col-md-6">
+				        	<div class="form-group">
+				        		<textarea class="form-control" id="notification" cols="8"></textarea>
+				        	</div>
+				        </div>
+				    	</div>
+				    </div>
 		     	</div>
 			    <br />      
 			    <div class="form-actions">

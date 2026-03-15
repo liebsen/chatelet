@@ -11,12 +11,12 @@
 	      <ul class="nav nav-tabs" id="myTab" role="tablist">
 	        <li class="active text-center">
 	          <a href="#splash">
-	            Primera pantalla
+	            <i class="gi gi-picture"></i> Primera pantalla
 	          </a>
 	        </li>
 	        <li class="text-center">
 	          <a href="#slider">
-	            Carrusel
+	            <i class="gi gi-sampler"></i> Carrusel
 	          </a>
 	        </li>
 	      </ul>

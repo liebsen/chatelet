@@ -27,7 +27,8 @@ function activateTab(e) {
 function activateTabContent(e) {	                 
 	// gets the element on which the event originally occurred
 	const anchorReference = e.target;
-	const activePaneID = anchorReference.getAttribute("href").replace('#','.').replace('.', '.pane-');
+  const href = anchorReference.getAttribute("href")
+	const activePaneID = href ? href.replace('#','.').replace('.', '.pane-') : '';
 	const activePane = document.querySelector(activePaneID);
 	activePane.classList.add("active");     
 }

@@ -106,6 +106,7 @@ echo $this->Session->flash();
                             'class' => 'form-horizontal w-100',
                             'id' => 'login_form',
                         )); ?>
+                            <input type="hidden" name="redirect" value="/admin"/>
                             <input type="hidden" name="ajax" value="1"/>
                             <div class="form-group">
                                 <div class="col-xs-12">
@@ -217,7 +218,7 @@ echo $this->Session->flash();
                     } else {
                       $.growl.notice({
                           title: 'Inicio de sesión exitoso',
-                          message: 'Bienvenida de nuevo'
+                          message: res.message
                       });
 
                       const redirect = $('input[name="redirect"]').val() || '/shop'

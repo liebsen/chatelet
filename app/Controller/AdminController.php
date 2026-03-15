@@ -1917,6 +1917,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'icon' => 'fa fa-cog'
 			);
 
+			$notification_tags = array(
+				'notification_sale_success' => "Compra exitosa",
+				'notification_sale_fail' => "Compra incompleta"
+			);
+
+			$this->set('notification_tags', $notification_tags);		
 			$this->set('navs', $navs);		
 		  $this->loadModel('Setting');
 			$this->set('h1', $h1);
@@ -3454,6 +3460,16 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			return $this->redirect(array('controller' => 'admin', 'action' => 'presentacion'));
 		}
 
+    $redirect = $this->request->data['redirect'];
+    $ajax = $this->request->data['ajax'];
+
+    if(!empty($ajax)) {
+      $this->RequestHandler->respondAs('application/json');
+      $this->autoRender = false;        
+    }
+
+
+
 		$this->loadModel('User');
 		if ($this->request->is('post')) {
 			// check if exists 
@@ -3462,27 +3478,49 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$user = $this->User->find('first', array('conditions' => array('email' => trim($email))));
 
 			if (empty($user)) {
+				if(!empty($ajax)) {
+		      return json_encode(array(
+		        'success' => false, 
+		        'errors' => 'Tu email no está registrado en nuestra tienda'
+		      ));				
+		    }
+
 	      $this->Session->setFlash(
-          'La cuenta no existe',
+          'Tu email no está registrado en nuestra tienda',
           'default',
-          array('class' => 'hidden error')
+          array('class' => 'hidden notice')
 	      );
+
 				return $this->redirect(array('controller' => 'admin', 'action' => 'login'));
 			}
 
 			if ($this->Auth->login()) {
 	      $this->Session->setFlash(
-          'Bienvenida ' . $user['User']['name'],
+          'Tu email no está registrado en nuestra tienda',
           'default',
           array('class' => 'hidden notice')
-	      );
+	      );				
+        if(!empty($ajax)) {
+          return json_encode(array(
+            'success' => true, 
+            'message' => "Bienvenida {$user['User']['name']} al panel de gestión de Châtelet"
+          ));
+        }
 				return $this->redirect(array('controller' => 'admin', 'action' => 'index'));
 			} else {
+				if(!empty($ajax)) {
+		      return json_encode(array(
+		        'success' => false, 
+		        'errors' => 'La contraseña es inválida'
+		      ));				
+		    }	      
+
 	      $this->Session->setFlash(
           'La contraseña es inválida',
           'default',
           array('class' => 'hidden error')
 	      );
+
 				return $this->redirect(array('controller' => 'admin', 'action' => 'login'));
 			}
 		}
