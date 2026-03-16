@@ -48,122 +48,126 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 </div>
 
 
-<p class="collapse alert alert-success result-message">...</p>
+<div class="block-tabs">
+	<div class="tab-content">
+		<p class="collapse alert alert-success result-message">...</p>
 
 <!-- end discount-layer -->
 <!-- start template -->
 
-	<table id="categorias-datatables" class="table table-bordered table-hover draggable-table" data-url="/admin/ordernum/category">
-		<thead>
-			<tr>
-				<th class="text-center hidden-phone"><input type="checkbox" name="checksAll" /></th>
-				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
-				<th class="hidden-phone hidden-tablet"><?php echo __('Ancho'); ?></th> 
-				<th class="hidden-phone hidden-tablet"><?php echo __('Posición'); ?></th> 
-				<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
-				<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th>    
-				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php foreach ($cats as $key => $category): ?>
-			<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>"  class="<?= $category['Category']['visible'] == '1' ? '' : 'bg-danger'?>">
-					<td align="center">
-						<input type="checkbox" name="checks" value="<?= $category['Category']['id']?>" />
-					</td>				
-				<td>
-					<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
-            <div class="d-flex justify-content-start align-items-center gap-1">
-              <img src="<?=$settings['upload_url']. $category['Category']['img_url']?>" height="100" />
-						  <span><?=$category['Category']['name']?></span>
-            </div>
-					</a>
-				</td>
-				<td>
-					<?php if(empty(@$category['Category']['colsize'])) echo '<span class="text-muted">Auto</span>' ?>
-					<?php if(@$category['Category']['colsize'] == '20') echo '20%' ?>
-					<?php if(@$category['Category']['colsize'] == '3') echo '25%' ?>
-					<?php if(@$category['Category']['colsize'] == '4') echo '33%' ?>
-					<?php if(@$category['Category']['colsize'] == '40') echo '40%' ?>
-					<?php if(@$category['Category']['colsize'] == '6') echo '50%' ?>
-					<?php if(@$category['Category']['colsize'] == '60') echo '60%' ?>
-					<?php if(@$category['Category']['colsize'] == '80') echo '80%' ?>
-					<?php if(@$category['Category']['colsize'] == '12') echo '100%' ?>
-				</td>
-				<td>
-					<?php if(empty(@$category['Category']['posnum'])) echo '<span class="text-muted">Auto</span>' ?>
-					<?php if(@$category['Category']['posnum'] == '1') echo '<span class="text-muted">Auto</span>' ?>
-					<?php if(@$category['Category']['posnum'] == '2') echo 'Arriba' ?>
-					<?php if(@$category['Category']['posnum'] == '3') echo 'Abajo' ?>
-				</td>
-				<td>          
-					<?php
-						if(!empty($category['Category']['img_url'])){
-							echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['img_url'] ."''>LINK</a>";
-						}
-					?>     
-				</td> 
-				<td>          
-					<?php
-						if(!empty($category['Category']['size'])){
-							echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['size'] ."''>LINK</a>";
-						}
-					?>     
-				</td>
-				<td>
-					<div class="btn-group d-flex flex-nowrap">
-						<!--a 
-							href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>"
-							data-toggle="tooltip" 
-							title="Ver en la tienda (Nuevo tab)" 
-							target="_blank"
-							class="btn btn-info" 
-							data-original-title="Editar">
-							<i class="fa fa-eye"></i>
-						</a--> 
-						<a 
-							href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>" 
-							data-toggle="tooltip" 
-							title="Editar" 
-							class="btn btn-success" 
-							data-original-title="Editar">
-							<i class="fa fa-edit"></i>
+		<table id="categorias-datatables" class="table table-bordered table-hover draggable-table" data-url="/admin/ordernum/category">
+			<thead>
+				<tr>
+					<th class="text-center hidden-phone"><input type="checkbox" name="checksAll" /></th>
+					<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
+					<th class="hidden-phone hidden-tablet"><?php echo __('Ancho'); ?></th> 
+					<th class="hidden-phone hidden-tablet"><?php echo __('Posición'); ?></th> 
+					<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
+					<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th>    
+					<th class="span1 text-center"><i class="gi gi-flash"></i></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($cats as $key => $category): ?>
+				<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>"  class="<?= $category['Category']['visible'] == '1' ? '' : 'bg-danger'?>">
+						<td align="center">
+							<input type="checkbox" name="checks" value="<?= $category['Category']['id']?>" />
+						</td>				
+					<td>
+						<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
+	            <div class="d-flex justify-content-start align-items-center gap-1">
+	              <img src="<?=$settings['upload_url']. $category['Category']['img_url']?>" height="100" />
+							  <span><?=$category['Category']['name']?></span>
+	            </div>
 						</a>
-						<a 
-							href="#"
-							title="Establecer descuento por transferencia"
-							class="btn btn-info" 
-							onclick="showLayer(event,'discount','bank',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
-							<i class="gi gi-bank"></i>
-						</a>
-						<a 
-							href="#"
-							class="btn btn-warning" 
-							title="Establecer descuento por mercadopago"
-							onclick="showLayer(event,'discount','mp',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
-							<i class="gi gi-credit_card"></i>
-						</a>
-						<a 
-							href="#" 
-							data-toggle="tooltip" 
-							title="" 
-							class="btn btn-danger deletebutton" 
-							data-original-title="Eliminar" 
-							data-id="<?=$category['Category']['id']?>" 
-							data-url-back="<?=$this->Html->url(array('action'=>'categorias'))?>" 
-							data-delurl="<?=$this->Html->url(array('action'=>'categorias', 'delete'))?>" 
-							data-msg="¿Eliminar categoria? Precación: Se borraran los productos que esten contenidos en esta categoria.">
-							<i class="fa fa-trash-o"></i>
-						</a>
-					</div> 
-				</td>
-			</tr>
-		<?php endforeach ?>
-		</tbody>
-	</table>
+					</td>
+					<td>
+						<?php if(empty(@$category['Category']['colsize'])) echo '<span class="text-muted">Auto</span>' ?>
+						<?php if(@$category['Category']['colsize'] == '20') echo '20%' ?>
+						<?php if(@$category['Category']['colsize'] == '3') echo '25%' ?>
+						<?php if(@$category['Category']['colsize'] == '4') echo '33%' ?>
+						<?php if(@$category['Category']['colsize'] == '40') echo '40%' ?>
+						<?php if(@$category['Category']['colsize'] == '6') echo '50%' ?>
+						<?php if(@$category['Category']['colsize'] == '60') echo '60%' ?>
+						<?php if(@$category['Category']['colsize'] == '80') echo '80%' ?>
+						<?php if(@$category['Category']['colsize'] == '12') echo '100%' ?>
+					</td>
+					<td>
+						<?php if(empty(@$category['Category']['posnum'])) echo '<span class="text-muted">Auto</span>' ?>
+						<?php if(@$category['Category']['posnum'] == '1') echo '<span class="text-muted">Auto</span>' ?>
+						<?php if(@$category['Category']['posnum'] == '2') echo 'Arriba' ?>
+						<?php if(@$category['Category']['posnum'] == '3') echo 'Abajo' ?>
+					</td>
+					<td>          
+						<?php
+							if(!empty($category['Category']['img_url'])){
+								echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['img_url'] ."''>LINK</a>";
+							}
+						?>     
+					</td> 
+					<td>          
+						<?php
+							if(!empty($category['Category']['size'])){
+								echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['size'] ."''>LINK</a>";
+							}
+						?>     
+					</td>
+					<td>
+						<div class="btn-group d-flex flex-nowrap">
+							<!--a 
+								href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>"
+								data-toggle="tooltip" 
+								title="Ver en la tienda (Nuevo tab)" 
+								target="_blank"
+								class="btn btn-info" 
+								data-original-title="Editar">
+								<i class="fa fa-eye"></i>
+							</a--> 
+							<a 
+								href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>" 
+								data-toggle="tooltip" 
+								title="Editar" 
+								class="btn btn-success" 
+								data-original-title="Editar">
+								<i class="fa fa-edit"></i>
+							</a>
+							<a 
+								href="#"
+								title="Establecer descuento por transferencia"
+								class="btn btn-info" 
+								onclick="showLayer(event,'discount','bank',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
+								<i class="gi gi-bank"></i>
+							</a>
+							<a 
+								href="#"
+								class="btn btn-warning" 
+								title="Establecer descuento por mercadopago"
+								onclick="showLayer(event,'discount','mp',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
+								<i class="gi gi-credit_card"></i>
+							</a>
+							<a 
+								href="#" 
+								data-toggle="tooltip" 
+								title="" 
+								class="btn btn-danger deletebutton" 
+								data-original-title="Eliminar" 
+								data-id="<?=$category['Category']['id']?>" 
+								data-url-back="<?=$this->Html->url(array('action'=>'categorias'))?>" 
+								data-delurl="<?=$this->Html->url(array('action'=>'categorias', 'delete'))?>" 
+								data-msg="¿Eliminar categoria? Precación: Se borraran los productos que esten contenidos en esta categoria.">
+								<i class="fa fa-trash-o"></i>
+							</a>
+						</div> 
+					</td>
+				</tr>
+			<?php endforeach ?>
+			</tbody>
+		</table>
+	</div>
+</div>
 
 
-<div class="form-actionscategory-actions" data-url="/admin/batch_categorias/">
+<div class="form-actions category-actions" data-url="/admin/batch_categorias/">
     <span class="selection-count"></span>
     <button class="disableselection btn btn-warning btn-adjust" type="button"><i class="fa fa-eye-slash mr-1"></i>Desactivar</button>
     <button class="removeselection btn btn-danger btn-adjust" type="button"><i class="fa fa-close mr-1"></i>Eliminar</button>

@@ -3,8 +3,8 @@
   echo $this->Html->css('logistica-detail', array('inline' => false));
 ?>
 <?php echo $this->element('admin-menu');?>
-<div class="block">
-  <div class="block-content">
+<div class="block-tabs">
+  <div class="tab-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
       <?php
         if (isset($this->request->pass[1])) {
@@ -136,8 +136,8 @@
 
 <?php if(isset($logistic_prices) && $logistic['Logistic']['local_prices']) :?>
 
-<div class="block">
-  <div class="block-content">
+<div class="block-tabs">
+  <div class="tab-content">
     <h4>
     <?php
       echo (isset($logistic)) ? __('Tarifas de ' . $logistic['Logistic']['title']) : __('Agregar Tarifas');

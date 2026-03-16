@@ -49,9 +49,11 @@
                 line-height: 1.25;
                 font-size: 14px; 
                 font-weight: 600;
-                text-transform: uppercase;
                 color: #a5a5a5;
                 font-weight: 300;                
+            }
+            p, span, small {
+                text-transform: uppercase;
             }
         </style>
 

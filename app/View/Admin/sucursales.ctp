@@ -3,7 +3,8 @@
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 
-<div class="block-section table-responsive">
+<div class="block-tabs">
+	<div class="tab-content">
 	<table id="sucursales-datatables" class="table table-bordered">
 		<thead>
 			<tr>
@@ -76,4 +77,5 @@
 		<?php endforeach ?>
 		</tbody>
 	</table>
+</div>
 </div>

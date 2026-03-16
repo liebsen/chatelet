@@ -1,5 +1,17 @@
 <?php
 
+function b($a, $b = null){
+  echo '<pre>';
+  var_dump($a);
+  echo '</pre>';
+  if($b) die();
+}
+
+function d($a,$b,$c=null){
+  $d = !empty($c) ? $b : json_encode($b);
+  CakeLog::write('debug',$a.':'.$d);
+}
+
 function nameparts($full_name){
   $parts = explode(' ', $full_name);
   $name = "";

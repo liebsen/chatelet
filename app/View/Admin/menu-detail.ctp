@@ -9,7 +9,7 @@
     ?></h4>
   </div-->
 
-  <div class="block-content">
+  <div class="tab-content">
     <form action="" method="post" class="form-inline">
       <?php
         if (isset($this->request->pass[1])) {

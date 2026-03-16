@@ -2,7 +2,7 @@
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
 ?>
 <?php echo $this->element('admin-menu');?>
-<div class="block">
+<div class="block-tabs">
   <!--div class="block-title">
     <h4>
     <?php 
@@ -11,7 +11,7 @@
     </h4>
   </div-->
 
-  <div class="block-content">
+  <div class="tab-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
       <?php
         if (isset($this->request->pass[1])) {

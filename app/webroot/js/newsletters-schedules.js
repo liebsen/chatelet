@@ -1,9 +1,18 @@
 $(document).ready(function() {
-  $('.btn-append-editor').click(function(){
-		CKEDITOR.instances.newsletter.insertText($(this).data('text'));
-  })
 
   let clock = 0
+
+  $('#minDate,#maxDate').on('changeDate', function(event) {
+    const selectedDate = $(event.target).val()
+    const selectedName = $(event.target).data('name');
+    $('.'+selectedName).text(selectedDate)
+  })
+
+  $('#minSale').change(function(e){
+    const value = $(this).val() || 0
+    $('.minsale-value').text('$'+ (value * 100))
+  })
+
   $('#products-filter').keyup(function(e){
     clearTimeout(clock)
     const value = $(e.target).val().toUpperCase()
@@ -20,9 +29,6 @@ $(document).ready(function() {
     }, 500)
   })
 })
-
-CKEDITOR.replace('newsletter');
-
 
 function toggleOption(e, type){
   let data = JSON.parse(e.getAttribute('data-json'))

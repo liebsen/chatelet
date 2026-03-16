@@ -8,15 +8,10 @@
 			<form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
 		    <div class="custom-tabs block-tabs">
 		      <div class="tab-content">
-						<div class="tab-pane pane-<?= $component ?> active">
-		<?php echo $this->element('newsletters-' . $component) ?>
+						<div class="tab-pane pane-<?= $pane ?> active">
+<?php echo $this->element('newsletters-' . $viewComponent) ?>
 						</div>
 		     	</div>
-			    <!--br />
-			    <div class="form-actions">
-			      <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
-			      <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
-			    </div-->
 			  </div>
 			</form>
 		</div>

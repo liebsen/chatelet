@@ -6,6 +6,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     display: inline;
 }
 
+.d-block {
+    display: block!important;
+}
+
 .show-inactive {
     pointer-events: none;
     opacity: 0.5;
@@ -753,7 +757,6 @@ body {
     font-size: 1.25rem;
 }
 .block-tabs > .tab-content {
-    border: 0;
     padding: 20px;
     margin: 0;
     border-bottom-left-radius: 1rem;
@@ -1995,7 +1998,7 @@ pre, code {
 }
 
 .page-header, .sub-header {
-    margin: 0 0 20px;
+    margin: 0 0 10px;
     padding: 14px 10px 12px;
     border-bottom: 1px solid #ddd;
     background-color: #eee;
@@ -2096,6 +2099,9 @@ a.muted:focus {
     color: #999;
 }
 
+.text-center {
+    text-align: center;
+}
 .text-warning,
 a.text-warning:hover,
 a.text-warning:focus {
@@ -2669,6 +2675,15 @@ header.navbar .navbar-brand {
     margin-top: 5px;
 }
 
+.card {
+    border-radius: 1rem;
+    background-color: lightyellow;
+    color: #888;
+}
+
+.card-body {
+    padding: 1rem;
+}
 /* Carousel */
 .carousel {
     border: 3px solid #bc4bb6;
@@ -2737,10 +2752,6 @@ label,
     font-size: 12px;
     font-weight: 1000;
     color: #c5c5c5;
-}
-
-.datepicker {
-    padding: 0.25rem 1.25rem;
 }
 
 .control-label {
@@ -2917,11 +2928,13 @@ input[type="file"].form-control::file-selector-button:hover {
 
 .table {
     border-collapse: separate !important;
+    font-size: 1rem;
 }
 
 .table tr {
     border-bottom: none;
 }
+
 .table th {
     border-radius: 10px;
     padding: 10px!important;

@@ -4,16 +4,9 @@
   echo $this->Html->css('sucursales-detail', array('inline' => false));
 ?>
 <?php echo $this->element('admin-menu');?>
-<div class="block">
-  <div class="block-title">
-    <h4>
-    <?php
-      echo (isset($store)) ? __('Editar Sucursal') : __('Agregar Sucursal');
-    ?>
-    </h4>
-  </div>
+<div class="block-tabs">
 
-  <div class="block-content">
+  <div class="tab-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
       <?php
         if (isset($this->request->pass[1])) {

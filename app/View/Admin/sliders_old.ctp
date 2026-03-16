@@ -9,8 +9,8 @@ echo $this->Html->script('admin-sliders.js?v=' . $version['ver'], array('inline'
 // $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));
 ?>
 
-<div class="block">
-	<div class="block-content">
+<div class="block-tabs">
+	<div class="tab-content">
 		<form action="" id="display_form" method="post" class="form-inline" enctype="multipart/form-data">
 			<input type="hidden" name="data[id]" value="1" />
 	    <div class="custom-tabs block-tabs">

@@ -2,8 +2,8 @@
 <?php echo $this->Html->script('admin-index',array('inline'=>false)) ?>
 <?php // $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));?>
 
-<div class="block">
-	<div class="block-content">
+<div class="block-tabs">
+	<div class="tab-content">
 		<form action="" method="post" class="form-inline" enctype="multipart/form-data">
 			<input type="hidden" name="data[id]" value="1" />
 			<div class="row">

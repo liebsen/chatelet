@@ -5,11 +5,11 @@
   echo $this->element('admin-menu'); 
 ?>
 
-<div class="block">
+<div class="block-tabs">
   <!--div class="block-title">
     <h4>CBU/Alias y Descuentos</h4>
   </div-->
-  <div class="block-content">
+  <div class="tab-content">
     <form action="" method="post" class="form-inline">
       <div class="row">
         <div class="col-md-6">

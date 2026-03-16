@@ -8,8 +8,8 @@ echo $this->Html->css('home-compose.css?v=' . $version['ver'], array('inline' =>
 echo $this->element('admin-menu');
 ?>
 
-<div class="block">
-	<div class="block-content">
+<div class="block-tabs">
+	<div class="tab-content">
 		<form action="" id="display_form" method="post" class="form-inline" enctype="multipart/form-data">
 			<input type="hidden" name="data[id]" value="1" />
 			<div id="slider_block" class="category-item-container slider-template draggable-table film-strip w-100"></div>

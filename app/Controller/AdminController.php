@@ -2024,10 +2024,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		}
 	}
 
-	public function newsletters(){
-		$component = $this->params['pass'][0] ?? 'emails';
+	public function newsletters($section = 'emails'){
+		$pane = $this->params['pass'][0] ?? $section;
 		$action = $this->params['pass'][1] ?? '';
-
+		$id = $this->params['pass'][2] ?? 0;
+		$viewComponent = implode('-', array_values(array_filter(array($pane,$action))));
+		$controlComponent = implode('_', array_values(array_filter(array($pane,$action))));
 		$templateVars = array(
 			'name' => "Nombre del usuario",
 			'surname' => "Apellido del usuario",
@@ -2048,15 +2050,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'active'	=> '/admin/newsletters'
 			),
 			'Envío' => array(
-				'id' => 'schedule',
+				'id' => 'schedules',
 				'icon' 		=> 'gi gi-send',
-				'url'		=> \site_url().'/admin/newsletters/schedule',
-				'active'	=> '/admin/newsletters/schedule'
+				'url'		=> \site_url().'/admin/newsletters/schedules',
+				'active'	=> '/admin/newsletters/schedules'
 			)
 		);
 
 		foreach($navs as $i => $nav) {
-			if($nav['id'] == $component) {
+			if($nav['id'] == $pane) {
 				$navs[$i]['enabled'] = true;
 			}
 		}
@@ -2065,12 +2067,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		//CakeLog::write('debug','component:'.json_encode($component));
 		//CakeLog::write('debug','params:'.json_encode($this->params['pass']));
 
-		if(method_exists($this->Newsletter, $component)) {
-			$this->Newsletter->{$component}($this->request->data);
+		if(method_exists($this->Newsletter, $controlComponent)) {
+			$this->Newsletter->{$controlComponent}($id);
 		}
-		$this->set('action', $action);		
-		$this->set('component', $component);
+
+		// $this->set('action', $action);		
+		$this->set('pane', $pane);
 		$this->set('h1', $h1);
+		$this->set('viewComponent', $viewComponent);
 		$this->set('navs', $navs);
 		$this->set('templateVars', $templateVars);		
 	}
@@ -3435,7 +3439,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 		$h1 = array(
 			'name' => 'Usuarios',
-			'icon' => 'gi gi-user'
+			'icon' => 'gi gi-group'
 			);
 		$this->set('h1', $h1);
     $this->loadModel('User');

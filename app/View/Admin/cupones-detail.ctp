@@ -7,14 +7,6 @@
 ?>
 <?php echo $this->element('admin-menu');?>
 <div class="block">
-  <div class="block-title">
-    <h4>
-    <?php
-      echo (isset($coupon)) ? __('Editar Cupón ' . $coupon['Coupon']['code']) : __('Agregar Cupón');
-    ?>
-    </h4>
-  </div>
-
   <div class="block-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
       <?php
