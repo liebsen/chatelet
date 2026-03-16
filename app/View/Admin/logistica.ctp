@@ -24,10 +24,10 @@
 						<?= isset($logistic['Logistic']['local_prices']) && $logistic['Logistic']['local_prices'] ? 'Local' : 'Nacional'?>
 					</td>
 					<td>
-						<?=$logistic['Logistic']['free_shipping'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
+						<?=$logistic['Logistic']['free_shipping'] ? '<i class="gi gi-circle_ok fa-lg text-success"></i>' : '<i class="gi gi-circle_remove fa-lg text-danger"></i>'?>
 					</td>
 					<td>
-						<?=$logistic['Logistic']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
+						<?=$logistic['Logistic']['enabled'] ? '<i class="gi gi-circle_ok fa-lg text-success"></i>' : '<i class="gi gi-circle_remove fa-lg text-danger"></i>'?>
 					</td>
 					<td>
 						<div class="btn-group">   

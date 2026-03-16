@@ -10,11 +10,11 @@
 				        </div>
 				        <div class="col-md-12 w-100">
 				        	<div class="notification-controls d-none w-100">
-					        	<div class="form-group  w-100">
+					        	<div class="form-group w-100">
 											<p class="text-theme">Notifica al cliente con el estado de su compra.</p>
 					        		<textarea class="form-control" id="notification_value" rows="8"></textarea>
-											<p class="text-theme">Tabla de variables disponibles</p>
-											<table class="table text-sm">
+											<h6 class="text-theme">Tabla de variables disponibles</h6>
+											<table class="table table-striped">
 <?php foreach($notification_templates as $id => $name): ?>
 										<tr class="is-clickable btn-append-editor" data-text="{{<?= $id ?>}}">
 											<th>

@@ -30,6 +30,7 @@
   Router::connect('/catalogo/:img_url', array('controller' => 'catalogo', 'action' => 'index'));
 	Router::connect('/tienda/productos/:category', array('controller' => 'shop', 'action' => 'product'));
 	Router::connect('/tienda/producto/*', array('controller' => 'shop', 'action' => 'detalle'));
+	Router::connect('/admin/newsletters/*', array('controller' => 'admin', 'action' => 'newsletters'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

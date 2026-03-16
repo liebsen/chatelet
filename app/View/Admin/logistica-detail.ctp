@@ -37,7 +37,7 @@
               <div class="controls">
                 <input type="text" class="form-control" id="title" name="data[title]" value="<?= (isset($logistic)) ? $logistic['Logistic']['title'] : '' ?>" required>
               </div>
-              <span class="text-muted">Indica el título de esta logística. Es probable que aparezca en algún correo que enviemos al cliente para informarle del código de seguimiento o eventualmente otro estado envío.</span>
+              <small class="text-muted">Indica el título de esta logística. Es probable que aparezca en algún correo que enviemos al cliente para informarle del código de seguimiento o eventualmente otro estado envío.</small>
             </div>
             <br /> 
           <?php if(isset($logistic) && !$logistic['Logistic']['local_prices']) :?>
@@ -72,11 +72,11 @@
                   <input type="checkbox" name="data[free_shipping]" value="1" id="toggle3" class="toggle-checkbox"<?=@$logistic['Logistic']['free_shipping'] == '1' ? ' checked' : '' ?>>
                   <label for="toggle3" class="toggle-label"></label>
                 </div>        
-                <span class="text-muted">Indica si esta logística estará disponible para los envíos gratuitos. Si está activo significa que esta logística tendrá prioridad para los envíos gratuitos. <span class="alert-link">Establezca <i>Disponible</i> para que las clientas puedan seleccionar <i><?= @$logistic['Logistic']['title'] ?></i> para sus envíos gratuitos.</span></span>
+                <small class="text-muted">Indica si esta logística estará disponible para los envíos gratuitos. Si está activo significa que esta logística tendrá prioridad para los envíos gratuitos. <span class="alert-link">Establezca <i>Disponible</i> para que las clientas puedan seleccionar <i><?= @$logistic['Logistic']['title'] ?></i> para sus envíos gratuitos.</span></small>
                 <?php if($enabled && @$logistic['Logistic']['local_prices']): ?>
                   <br>
                   <br>
-                  <span class="text-danger alert-link"><b>Exclusividad no garantizada.</b> <i> <?= $logistic['Logistic']['title'] ?></i> tiene alcance local, esto significa que solo estará disponible para envíos gratuitos dentro de su área de cobertura, caso contrario se mostrarán otras opciones de envío que pueden no estar establecidas como disponibles para envío gratuito.</span>
+                  <small class="text-danger alert-link"><b>Exclusividad no garantizada.</b> <i> <?= $logistic['Logistic']['title'] ?></i> tiene alcance local, esto significa que solo estará disponible para envíos gratuitos dentro de su área de cobertura, caso contrario se mostrarán otras opciones de envío que pueden no estar establecidas como disponibles para envío gratuito.</small>
                 <?php endif ?>
               </div>
             </div>            
@@ -137,15 +137,13 @@
 <?php if(isset($logistic_prices) && $logistic['Logistic']['local_prices']) :?>
 
 <div class="block">
-  <div class="block-title">
+  <div class="block-content">
     <h4>
     <?php
       echo (isset($logistic)) ? __('Tarifas de ' . $logistic['Logistic']['title']) : __('Agregar Tarifas');
     ?>
     </h4>
-  </div>
 
-  <div class="block-content">
     <p class="p">Usted puede editar las tarifas de esta logística de acuerdo a las zonas que están representadas por códigos postales. Los códigos postales en Argentina contienen cuatro números. Puede asignarlos de forma taxativa (ej: 1440, 1441) o agrupar con expresiones (ej: 92**, 930*). Mas información sobre <a href="https://códigos-postales.cybo.com/argentina/#mapwrap" target="_blank">códigos postales de argentina</a></p>
     <button class="btn btn-success" type="button" onclick="edit_logistic_price()">Agregar</button>
     <table class="table table-bordered table-striped" id="tarifas">
@@ -200,19 +198,11 @@
       <form id="add_logistic_price" onsubmit="return save_logistic_price()">
         <input type="hidden" name="id" id="id" value="">
         <input type="hidden" name="logistic_id" value="<?= $logistic['Logistic']['id'] ?>">
-        <div class="control-group">
-          <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
-          <div class="controls text-center switch-scale">
-            <span>
-              <input type="radio" id="enabled_1" name="enabled" value="1" /> 
-              <label for="enabled_1">Sí</label>
-            </span>
-            <span>
-              <input type="radio" id="enabled_0" name="enabled" value="0" />
-              <label for="enabled_0">No</label>
-            </span>
-          </div>
-        </div>
+        <div class="form-group">
+          <label class="control-label" for="enabled"><?php echo __('Activo'); ?></label>
+          <input type="checkbox" name="enabled" value="1" id="enabled" class="toggle-checkbox">
+          <label for="enabled" class="toggle-label"></label>
+        </div>   
         <div class="form-group">
           <label class="control-label" for="info"><?php echo __('Zona'); ?></label>
           <div class="controls">

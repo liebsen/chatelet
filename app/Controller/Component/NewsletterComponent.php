@@ -5,8 +5,8 @@ App::uses(
   'Component', 
   'Controller', 
   'Session', 
-  'Sale', 
-  'SaleProduct'
+  'Newsletter', 
+  'NewsletterUser',
 );
 
 class NewsletterComponent extends Component {
@@ -16,61 +16,98 @@ class NewsletterComponent extends Component {
     parent::initialize($controller);
   }
 
-  public function products() {
-    $Sale = ClassRegistry::init('Sale');
+  public function emails() {
+    $Newsletter = ClassRegistry::init('Newsletter');
     $response = array();
     try {
-      $sales = $Sale->find('all', array(
+      $newsletters = $Newsletter->find('all', array(
         'joins' => array(
           array(
-            'table' => 'sale_products',
-            'alias' => 'SaleProduct',
+            'table' => 'newsletter_users',
+            'alias' => 'NewsletterUser',
             'type' => 'LEFT',
-            'conditions' => array( 'Sale.id = SaleProduct.sale_id' )
-          )
+            'conditions' => array( 'Newsletter.id = NewsletterUser.newsletter_id' )
+          ),
+          array(
+            'table' => 'newsletter_products',
+            'alias' => 'NewsletterProduct',
+            'type' => 'LEFT',
+            'conditions' => array( 'Newsletter.id = NewsletterProduct.newsletter_id' )
+          ),
+          array(
+            'table' => 'newsletter_schedule',
+            'alias' => 'NewsletterSchedule',
+            'type' => 'LEFT',
+            'conditions' => array( 'Newsletter.id = NewsletterSchedule.newsletter_id' )
+          ),
         ),
-        'fields' => array('Sale.*, SaleProduct.size, SaleProduct.color, SaleProduct.precio_vendido'),
-        'conditions' => array( 'Sale.created > ' => date("Y-m-d H:i", strtotime("last day of previous month"))),
-        //'order' => array( 'Product.price ASC' )
+        'fields' => array('Newsletter.*, NewsletterProduct.*, NewsletterSchedule.*,NewsletterUser.*'),
+        'conditions' => array( 'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month"))),
+        'order' => array( 'Newsletter.id DESC' )
       ));
 
-      $sales_total = 0;
+      $user_total = 0;
       $prod_total = 0;
 
-      foreach($sales as $sale) {
-        $sales_total+= (float) $sale['Sale']['value'];
-        $prod_total+= (int) count($sale['SaleProduct']);
+      foreach($newsletters as $newsletter) {
+        $prod_total+= count($newsletter['NewsletterProduct']);
+        $user_total+= count($newsletter['NewsletterUser']);
       }
 
-      $response['sales_total'] = $sales_total;
       $response['prod_total'] = $prod_total;
-      $this->controller->set('sales_total', $sales_total);
+      $response['user_total'] = $user_total;
+      $this->controller->set('user_total', $user_total);
       $this->controller->set('prod_total', $prod_total);
+      $this->controller->set('newsletters', $newsletters);
     } catch (\Exception $e) {
       echo $e->getMessage();
     }
   }
 
-  public function sales() {
-    $Sale = ClassRegistry::init('Sale');
+  public function schedule() {
+
+    $Newsletter = ClassRegistry::init('Newsletter');
     $response = array();
     try {
-      $sales = $Sale->find('all', 
-        array(
-          'conditions' => array(
-            'created > ' => date("Y-m-d H:i", strtotime("last day of previous month"))
-          )
-        )
-      );
+      $newsletters = $Newsletter->find('all', array(
+        'joins' => array(
+          array(
+            'table' => 'newsletter_users',
+            'alias' => 'NewsletterUser',
+            'type' => 'LEFT',
+            'conditions' => array( 'Newsletter.id = NewsletterUser.newsletter_id' )
+          ),
+          array(
+            'table' => 'newsletter_products',
+            'alias' => 'NewsletterProduct',
+            'type' => 'LEFT',
+            'conditions' => array( 'Newsletter.id = NewsletterProduct.newsletter_id' )
+          ),
+          array(
+            'table' => 'newsletter_schedule',
+            'alias' => 'NewsletterSchedule',
+            'type' => 'LEFT',
+            'conditions' => array( 'Newsletter.id = NewsletterSchedule.newsletter_id' )
+          ),
+        ),
+        'fields' => array('Newsletter.*, NewsletterProduct.*, NewsletterSchedule.*,NewsletterUser.*'),
+        'conditions' => array( 'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month"))),
+        'order' => array( 'Newsletter.id DESC' )
+      ));
 
-      $sales_total = 0;
-      foreach($sales as $sale) {
-        $sales_total+= (float) $sale['Sale']['value'];
+      $user_total = 0;
+      $prod_total = 0;
+
+      foreach($newsletters as $newsletter) {
+        $prod_total+= count($newsletter['NewsletterProduct']);
+        $user_total+= count($newsletter['NewsletterUser']);
       }
 
-      $response['sales_total'] = $sales_total;
-
-      return json_encode($response);
+      $response['prod_total'] = $prod_total;
+      $response['user_total'] = $user_total;
+      $this->controller->set('user_total', $user_total);
+      $this->controller->set('prod_total', $prod_total);
+      $this->controller->set('newsletters', $newsletters);
     } catch (\Exception $e) {
       echo $e->getMessage();
     }

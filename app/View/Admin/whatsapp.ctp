@@ -8,7 +8,7 @@
 		<form action="" method="post" class="form-inline" enctype="multipart/form-data">
 			<div class="row">
 	      <div class="col-md-6">
-	        <h4 class="sub-header">Vía de contacto</h4>
+	        <h4 class="sub-header">Información principal</h4>
 	        <div class="control-group">
 						<label class="control-label" for="columns-text"><?php echo __('Habilitar Whatsapp como vía de contacto'); ?></label>
 						<div class="form-group">
@@ -32,14 +32,14 @@
 		          <div class="controls">
 		            <input type="number" max="100" min="0" size="4" name="data[whatsapp_autohide]" class="form-control" value="<?= @$data['whatsapp_autohide'] ?>"/>
 		          </div>
-		          <span class="text-muted">Esconder Whatsapp luego de x segundos. Ingresá 0 para mostrar siempre.</span>
+		          <small class="text-muted">Esconder Whatsapp luego de x segundos. Ingresá 0 para mostrar siempre.</small>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Nro. de teléfono Whatsapp'); ?></label>
 		          <div class="controls">
 		            <input type="number" min="0" size="16" name="data[whatsapp_phone]" class="form-control" value="<?= @$data['whatsapp_phone'] ?>"/>
 		          </div>
-		          <span class="text-muted">Ingresá el número de teléfono del whatsapp que recibirá los chats.</span>
+		          <small class="text-muted">Ingresá el número de teléfono del whatsapp que recibirá los chats.</small>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Mostrar animación'); ?></label>

@@ -1,4 +1,3 @@
-<?php $socials = \get_socials() ?>
 <?php echo $this->Html->script('ckeditor/ckeditor', array('inline' => false)) ?>
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false)); ?>

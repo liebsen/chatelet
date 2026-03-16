@@ -567,7 +567,7 @@ body {
 
 /* Blocks */
 .block {
-    margin: 0 0 40px;
+    margin: 0 0 70px;
     padding: 0;
     background-color: #f9f9f9;
 }
@@ -651,7 +651,6 @@ body {
 
 .block-content {
     margin: 0;
-    padding: 15px;
     border-top: none;
 }
 
@@ -2169,7 +2168,7 @@ small, .small {
     font-size: 12px;
     background-color: #999;
     text-shadow: none;
-    padding: 3px 4px;
+    padding: 4px 10px;
     border-radius: 3px;
     text-indent: 0;
     margin-top: 1px;
@@ -2579,10 +2578,9 @@ header.navbar .navbar-brand {
 
 .toolnav-right {
     position: absolute;
-    z-index: 9;
+    z-index: 3;
     top: 0.75rem;
-    right: 3.5rem;
-    bottom: 0;
+    right: 1.5rem;
 }
 
 /* Panel */
@@ -3931,7 +3929,7 @@ div.cloudzoom-black:nth-child(3) {
     align-items: center;
     padding: 1rem 2rem;
     font-size: 1.5rem;
-    background-color: #f8f8f8;
+    background-color: #e7e7e7;
     border-radius: 1rem;
     grid-gap: 1.75rem;
 }
@@ -3941,6 +3939,7 @@ div.cloudzoom-black:nth-child(3) {
 }
 .switch-scale > span > label {
     font-size: 14px;
+    color: #999;
     padding-left: 0.25rem;
 }
 

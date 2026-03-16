@@ -81,7 +81,6 @@
           <h4 class="sub-header">Duración (horas)</h4>
           <div class="control-group">
             <span class="text-theme">La tienda revisa cuando el carrito fue actualizado por última vez, así podemos evitar procesar información desactualizada. Establece las horas de vida que cada carrito tendrá.</span>
-
             <input type="text" name="carrito_life_hours" class="form-control w-100" value="<?= @$settings['carrito_life_hours'] ?>" />
           </div>
         </div>

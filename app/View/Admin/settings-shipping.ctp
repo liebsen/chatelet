@@ -30,7 +30,7 @@
             <br /> 
             <div class="show-panel<?php echo $settings['shipping_type'] != 'zip_code' ? ' show-inactive' : '' ?>">
               <small>Ingrese los codigos postales separados por coma (,) - [Actualmente <strong><?=$amount?></strong> códigos]</small><br />
-              <textarea class="form-control" rows="4" name="data[shipping_zips]"><?php echo $settings['shipping_zips']; ?></textarea>
+              <textarea class="form-control" name="data[shipping_zips]" rows="8"><?php echo $settings['shipping_zips']; ?></textarea>
             </div>
           </div>
           <br />

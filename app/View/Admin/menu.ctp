@@ -20,7 +20,7 @@
 			<?php foreach ($menu as $key => $menu): ?>
 				<tr data-id="<?= $menu['Menu']['id'] ?>" data-order="<?= $menu['Menu']['ordernum'] ?>">
 					<td>
-						<?=$menu['Menu']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
+						<?=$menu['Menu']['enabled'] ? '<i class="gi gi-circle_ok fa-lg text-success"></i>' : '<i class="gi gi-circle_remove fa-lg text-danger"></i>'?>
 					</td>
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'menu','edit',$menu['Menu']['id']))?>">

@@ -1918,8 +1918,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			);
 
 			$notification_tags = array(
-				'notification_sale_success' => "Compra exitosa",
-				'notification_sale_fail' => "Compra incompleta"
+				'notification_sale_success' => "Compra con pago exitoso",
+				'notification_sale_fail' => "Compra con pago pendiente"
 			);
 
 			$tabs = array(
@@ -1952,7 +1952,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'sale_id' => "ID del remito / venta",
 				'total' => "Monto total de la compra",
 			);
-			
+
 			$notification_settings = array();
 
 			foreach($notification_tags as $key => $tag) {
@@ -2012,8 +2012,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			);
 		  			
 			$h1 = array(
-			'name' => 'Mailchimp',
-			'icon' => 'fa fa-cog'
+				'name' => 'Mailchimp',
+				'icon' => 'fa fa-cog'
 			);
 			
 			$this->set('audiences', \get_mc_audiences());
@@ -2024,7 +2024,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		}
 	}
 
-	public function newsletters($component = 'products'){
+	public function newsletters(){
+		$component = $this->params['pass'][0] ?? 'emails';
+		$action = $this->params['pass'][1] ?? '';
+
+		$templateVars = array(
+			'name' => "Nombre del usuario",
+			'surname' => "Apellido del usuario",
+			'sale_id' => "ID del remito / venta",
+			'total' => "Monto total de la compra",
+		);
+
 		$h1 = array(
 			'name' => 'Newsletters',
 			'icon' => 'fa fa-bullhorn'
@@ -2032,23 +2042,37 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 		$navs = array(
 			'Emails' => array(
+				'id' => 'emails',
 				'icon' 		=> 'gi gi-envelope',
 				'url'		=> \site_url().'/admin/newsletters',
 				'active'	=> '/admin/newsletters'
 			),
 			'Envío' => array(
-				'icon' 		=> 'gi gi-calendar',
+				'id' => 'schedule',
+				'icon' 		=> 'gi gi-send',
 				'url'		=> \site_url().'/admin/newsletters/schedule',
 				'active'	=> '/admin/newsletters/schedule'
 			)
 		);
 
+		foreach($navs as $i => $nav) {
+			if($nav['id'] == $component) {
+				$navs[$i]['enabled'] = true;
+			}
+		}
+
+		//CakeLog::write('debug','emails_vars:'.json_encode($emails_vars));
+		//CakeLog::write('debug','component:'.json_encode($component));
+		//CakeLog::write('debug','params:'.json_encode($this->params['pass']));
+
 		if(method_exists($this->Newsletter, $component)) {
 			$this->Newsletter->{$component}($this->request->data);
 		}
-
-		$this->set('navs', $navs);		
+		$this->set('action', $action);		
+		$this->set('component', $component);
 		$this->set('h1', $h1);
+		$this->set('navs', $navs);
+		$this->set('templateVars', $templateVars);		
 	}
 
 	public function promos(){

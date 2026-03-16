@@ -19,7 +19,7 @@
 			<?php foreach ($banners as $key => $banner): ?>
 				<tr data-id="<?= $banner['Banner']['id'] ?>" data-order="<?= $banner['Banner']['ordernum'] ?>">
 					<td>
-						<?=$banner['Banner']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
+						<?=$banner['Banner']['enabled'] ? '<i class="gi gi-circle_ok fa-lg text-success"></i>' : '<i class="gi gi-circle_remove fa-lg text-danger"></i>'?>
 					</td>
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'banners','edit',$banner['Banner']['id']))?>">

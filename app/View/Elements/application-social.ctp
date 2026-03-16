@@ -2,7 +2,7 @@
 		        		<div class="col-md-6">
 					        <h4 class="sub-header">Presencia en redes sociales</h4>
 					        <p>Incluye la URL entera correspondiente a cada red social</p>
-					      <?php foreach($socials as $item): ?>
+					      <?php foreach(\get_socials() as $item): ?>
 					        <div class="control-group">
 					          <label class="control-label d-flex justify-content-start align-items-center gap-05" for="<?php echo $item ?>_on">
 					          	<i class="fa fa-lg fa-<?php echo $item ?>"></i>

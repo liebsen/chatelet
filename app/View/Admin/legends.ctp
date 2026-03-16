@@ -20,7 +20,7 @@
 			<?php foreach ($legends as $key => $legend): ?>
 				<tr data-id="<?= $legend['Legend']['id'] ?>" data-order="<?= $legend['Legend']['ordernum'] ?>">
 					<td>
-						<?=$legend['Legend']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
+						<?=$legend['Legend']['enabled'] ? '<i class="gi gi-circle_ok fa-lg text-success"></i>' : '<i class="gi gi-circle_remove fa-lg text-danger"></i>'?>
 					</td>
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'legends','edit',$legend['Legend']['id']))?>">
