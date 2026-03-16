@@ -4,8 +4,8 @@ echo $this->Html->css('draggable-table', array('inline' => false));
 echo $this->Html->script('draggable-table', array('inline' => false));
 echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));
 echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));
-echo $this->Html->script('admin-categories.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('admin-checklist.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); 
+echo $this->Html->script('admin-categories.js?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inline' => false)); 
 ?>
 
 <!-- discount-layer -->

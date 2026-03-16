@@ -1,11 +1,11 @@
 <?php 
 echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false));
-echo $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->css('draggable-sliders.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->css('shop-sliders.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('draggable-sliders.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('shop-sliders.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('admin-sliders.js?v=' . Configure::read('APP_VERSION'), array('inline'=>false));
+echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->css('draggable-sliders.css?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->css('shop-sliders.css?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->script('draggable-sliders.js?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->script('shop-sliders.js?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->script('admin-sliders.js?v=' . $version['ver'], array('inline'=>false));
 // $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));
 ?>
 

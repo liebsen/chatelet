@@ -1913,8 +1913,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			);
 		  			
 			$h1 = array(
-			'name' => 'Aplicación',
-			'icon' => 'fa fa-cog'
+				'name' => 'Aplicación',
+				'icon' => 'fa fa-cog'
 			);
 
 			$notification_tags = array(
@@ -1922,7 +1922,47 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'notification_sale_fail' => "Compra incompleta"
 			);
 
-			$this->set('notification_tags', $notification_tags);		
+			$tabs = array(
+				'social' => array(
+					'title' => "Redes sociales",
+					'icon' => "share",
+					'default' => true
+				),
+				'payments' => array(
+					'title' => "Pagos",
+					'icon' => "wallet"
+				),
+				'analytics' => array(
+					'title' => "Estadísticas",
+					'icon' => "tags"
+				),
+				'google-fonts' => array(
+					'title' => "Tipografía",
+					'icon' => "text_underline"
+				),
+				'notifications' => array(
+					'title' => "Notificaciones",
+					'icon' => "envelope"
+				),
+			);
+
+			$notification_templates = array(
+				'name' => "Nombre del usuario",
+				'surname' => "Apellido del usuario",
+				'sale_id' => "ID del remito / venta",
+				'total' => "Monto total de la compra",
+			);
+			
+			$notification_settings = array();
+
+			foreach($notification_tags as $key => $tag) {
+				$notification_settings[$key] = $this->settings[$key] ?? '';
+			}
+
+			$this->set('notification_settings', $notification_settings);
+			$this->set('notification_tags', $notification_tags);
+			$this->set('notification_templates', $notification_templates);
+			$this->set('tabs', $tabs);		
 			$this->set('navs', $navs);		
 		  $this->loadModel('Setting');
 			$this->set('h1', $h1);
@@ -1993,8 +2033,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Emails' => array(
 				'icon' 		=> 'gi gi-envelope',
-				'url'		=> \site_url().'/admin/newsletters/emails',
-				'active'	=> '/admin/newsletters/emails'
+				'url'		=> \site_url().'/admin/newsletters',
+				'active'	=> '/admin/newsletters'
 			),
 			'Envío' => array(
 				'icon' 		=> 'gi gi-calendar',

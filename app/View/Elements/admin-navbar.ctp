@@ -26,11 +26,11 @@
         <!-- Stylesheets -->
         <?php
             echo $this->Html->css('bootstrap');
-            echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION'));
-            echo $this->Html->css('main.css?v=' . Configure::read('APP_VERSION'));
+            echo $this->Html->css('jquery.growl.css?v=' . $version['ver']);
+            echo $this->Html->css('main.css?v=' . $version['ver']);
             echo $this->Html->css('plugins');
 
-            // echo $this->Html->css('animate.css?v=' . Configure::read('APP_VERSION'));
+            // echo $this->Html->css('animate.css?v=' . $version['ver']);
             // echo $this->Html->css('font-awesome.min');
 
             if ($template['theme']) {

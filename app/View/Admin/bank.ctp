@@ -1,7 +1,7 @@
 <?php
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
-  echo $this->Html->script('admin-bank.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+  echo $this->Html->script('admin-bank.js?v=' . $version['ver'], array('inline' => false));
   echo $this->element('admin-menu'); 
 ?>
 

@@ -5,9 +5,9 @@ $this->set('short_header', 'Checkout');
 $this->set('short_header_text', '← Volver al carrito'); 
 $this->set('short_header_link', '/carrito');
 
-echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
-echo $this->Html->script('pago.js?v=' . Configure::read('APP_VERSION'),array('inline' => false));
+echo $this->Html->css('checkout.css?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));	
+echo $this->Html->script('pago.js?v=' . $version['ver'],array('inline' => false));
 echo $this->element('checkout-params');
 
 $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total']);

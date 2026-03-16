@@ -3,10 +3,10 @@
 	echo $this->Session->flash();
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
-	echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-	echo $this->Html->script('shipping.js?v=' . Configure::read('APP_VERSION'),array( 'inline' => false ));
-	echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
-	echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
+	echo $this->Html->css('checkout.css?v=' . $version['ver'], array('inline' => false));
+	echo $this->Html->script('shipping.js?v=' . $version['ver'],array( 'inline' => false ));
+	echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));	
+	echo $this->Html->script('envio.js?v=' . $version['ver'], array('inline' => false));	
 	//echo $this->element('cart');
 ?>
 <script>

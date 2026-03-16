@@ -1,4 +1,4 @@
-<?php echo $this->Html->script('shipping.js?v=' . Configure::read('APP_VERSION'),array( 'inline' => false )) ?>
+<?php echo $this->Html->script('shipping.js?v=' . $version['ver'],array( 'inline' => false )) ?>
 <h5>Método de entrega</h5>
 <div class="block-tabs">
 	<ul class="nav nav-tabs nav-custom">

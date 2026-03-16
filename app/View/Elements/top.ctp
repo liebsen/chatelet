@@ -41,13 +41,13 @@
     <?php
       // echo $this->Html->css('font-awesome.min');
       echo $this->Html->css('bootstrap-select');
-      echo $this->Html->css('bootstrap.css?v=' . Configure::read('APP_VERSION'));
+      echo $this->Html->css('bootstrap.css?v=' . $version['ver']);
       // echo $this->Html->css('bootstrapValidator.min');
-      echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION'));
-      echo $this->Html->css('chatelet.css?v=' . Configure::read('APP_VERSION'));
-      echo $this->Html->css('custom.css?v=' . Configure::read('APP_VERSION'));
-      // echo $this->Html->css('animate.css?v=' . Configure::read('APP_VERSION'));
-      echo $this->Html->css('plugins.css?v=' . Configure::read('APP_VERSION'));
+      echo $this->Html->css('jquery.growl.css?v=' . $version['ver']);
+      echo $this->Html->css('chatelet.css?v=' . $version['ver']);
+      echo $this->Html->css('custom.css?v=' . $version['ver']);
+      // echo $this->Html->css('animate.css?v=' . $version['ver']);
+      echo $this->Html->css('plugins.css?v=' . $version['ver']);
       echo $this->Html->script('jquery-1.11.1.min');
       echo $this->Html->script('vendor/modernizr-2.8.3.min.js');
       echo $this->Html->script('bootstrap');
@@ -55,10 +55,10 @@
       echo $this->Html->script('bootstrap-select.min');
       echo $this->Html->script('bootstrapValidator.min');
       echo $this->Html->script('plugins');
-      echo $this->Html->script('chatelet.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+      echo $this->Html->script('chatelet.js?v=' . $version['ver'], array('inline' => false));
 
       if(!empty($user['id'])) {
-        echo $this->Html->script('webpush.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+        echo $this->Html->script('webpush.js?v=' . $version['ver'], array('inline' => false));
       }
 
       echo $this->fetch('meta');

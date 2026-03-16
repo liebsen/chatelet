@@ -1,6 +1,7 @@
 <?php
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
+  echo $this->Html->script('admin-carrito', array('inline' => false));
   echo $this->element('admin-menu'); 
 ?>
 
@@ -25,12 +26,48 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Carrito envío gratis'); ?></label>
             <div class="controls">
-              <textarea name="text_shipping_min_price" class="form-control w-100" rows="5"><?= @$settings['text_shipping_min_price'] ?></textarea>
+              <span class="text-theme">texto que se muestra en el carrito cuando el usuario no alcanza el mínimo de compra para envío gratis</span>
+              <textarea name="text_shipping_min_price" id="text_shipping_min_price" class="form-control w-100" rows="5"><?= @$settings['text_shipping_min_price'] ?></textarea>
             </div>
-            <span class="text-theme">texto que se muestra en el carrito cuando el usuario no alcanza el mínimo de compra para envío gratis. Podés usar variables como <br>
-<strong>{{precio_min_envio_gratis}}</strong> Monto de compra para envío gratis <br>
-<strong>{{resto_min_envio_gratis}}</strong> Monto que falta para alcanzar el mínimo de envío gratos <br>
-<strong>{{total}}</strong> Total del carrito. </span>
+            <h6 class="text-theme">Tabla de variables disponibles</h6>
+            <table class="table table-striped">
+              <tr class="is-clickable btn-append-editor" data-text="{{precio_min_envio_gratis}}">
+                <th>
+                  <small class="text-lowercase">
+                    <i class="fa fa-key text-warning"></i> precio_min_envio_gratis
+                  </small>
+                </th>
+                <td>
+                  <small>
+                    <i class="gi gi-chat text-muted"></i> Monto de compra para envío gratis
+                  </small>
+                </td>
+              </tr>
+              <tr class="is-clickable btn-append-editor" data-text="{{resto_min_envio_gratis}}">
+                <th>
+                  <small class="text-lowercase">
+                    <i class="fa fa-key text-warning"></i> resto_min_envio_gratis
+                  </small>
+                </th>
+                <td>
+                  <small>
+                    <i class="gi gi-chat text-muted"></i> Monto que falta para alcanzar el mínimo de envío gratos
+                  </small>
+                </td>
+              </tr>
+              <tr class="is-clickable btn-append-editor" data-text="{{total}}">
+                <th>
+                  <small class="text-lowercase">
+                    <i class="fa fa-key text-warning"></i> total
+                  </small>
+                </th>
+                <td>
+                  <small>
+                    <i class="gi gi-chat text-muted"></i> Total del carrito
+                  </small>
+                </td>
+              </tr>
+            </table>
           </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Carrito takeaway'); ?></label>
@@ -42,9 +79,11 @@
         </div> 
         <div class="col-md-6">
           <h4 class="sub-header">Duración (horas)</h4>
-          <span class="text-theme">La tienda revisa cuando el carrito fue actualizado por última vez, así podemos evitar procesar información desactualizada. Establece las horas de vida que cada carrito tendrá.</span>
+          <div class="control-group">
+            <span class="text-theme">La tienda revisa cuando el carrito fue actualizado por última vez, así podemos evitar procesar información desactualizada. Establece las horas de vida que cada carrito tendrá.</span>
 
-          <input type="text" name="carrito_life_hours" class="form-control w-100" value="<?= @$settings['carrito_life_hours'] ?>" />
+            <input type="text" name="carrito_life_hours" class="form-control w-100" value="<?= @$settings['carrito_life_hours'] ?>" />
+          </div>
         </div>
       </div>
       <br />               

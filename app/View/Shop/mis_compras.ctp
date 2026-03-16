@@ -1,6 +1,6 @@
 <?php
 	echo $this->Session->flash();
-  echo $this->Html->script('mis_compras.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+  echo $this->Html->script('mis_compras.js?v=' . $version['ver'], array('inline' => false));
 ?>
 
   <div id="headhelp">

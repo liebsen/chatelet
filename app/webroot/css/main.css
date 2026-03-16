@@ -734,7 +734,7 @@ body {
     border-bottom-left-radius: 0!important;
     border-bottom-right-radius: 0!important;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #888;
     background-color: #f1f1f1;
 }
@@ -2005,7 +2005,7 @@ pre, code {
 .sub-header {
     border-width: 1px;
     padding: 14px 0 10px;
-    background-color: #fff;
+    background-color: transparent;
     text-transform: uppercase;
     font-size: 15px;
     font-weight: 1000;
@@ -2751,7 +2751,6 @@ label,
 
 .form-control,
 .input-group {
-    background-color: white;
     margin-top: 1px;
     margin-bottom: 1px;
     padding: 0.75rem 1rem;
@@ -3144,6 +3143,7 @@ a:focus {
 .popover-title,
 .panel {
     border-radius: 10px;
+    font-weight: 300;
     /* text-transform: uppercase; */
 }
 
@@ -3208,7 +3208,6 @@ a.thumbnail-borderless,
 
 .btn {
     text-transform: uppercase;
-    font-size: 0.9rem;
 }
 
 .form-actions {
@@ -3246,7 +3245,6 @@ a.thumbnail-borderless,
 }
 
 .form-actions .btn {
-    font-size: 0.9rem;
     text-transform: uppercase;
     font-weight: 800;
     line-height: 2;
@@ -3790,12 +3788,13 @@ a.thumbnail-borderless,
 */
 
 /* Put your high resolution backgrounds here */
+/*
 @media only screen and (-Webkit-min-device-pixel-ratio: 1.5),
 only screen and (-moz-min-device-pixel-ratio: 1.5),
 only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min-device-pixel-ratio: 1.5) {
 
-    body { /* background-image: url('../img/template/bg@2x.png'); */ }
+    body {  background-image: url('../img/template/bg@2x.png'); }
 
     .table thead .sorting { background-image: url('../img/jquery.datatables/sort_both@2x.png'); }
     .table thead .sorting_asc { background-image: url('../img/jquery.datatables/sort_asc@2x.png'); }
@@ -3851,7 +3850,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 .treeview ul.level3 li div{
     background: #eeeeee;
-}
+}*/
 
 div.cloudzoom-black:nth-child(3) {
     display: none;

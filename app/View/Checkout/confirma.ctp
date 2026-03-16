@@ -4,7 +4,7 @@ $this->set('short_header', 'Checkout');
 $this->set('short_header_text', '← Volver a pago'); 
 $this->set('short_header_link', '/checkout/pago');	
 
-echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+echo $this->Html->css('checkout.css?v=' . $version['ver'], array('inline' => false));
 ?>
 <section id="main" class="has-checkout-steps container animation-fadeIn animation-both delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>

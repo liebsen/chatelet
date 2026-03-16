@@ -281,7 +281,8 @@ function shipping_text($settings, $cart_totals) {
       'total' => str_replace(',00','',number_format($cart_totals['grand_total'], 0, ',', '.'))
     ];
 
-    $text_shipping_min_price = ($settings['display_text_shipping_min_price'] && $settings['text_shipping_min_price']) ? 
+    $text_shipping_min_price = 
+      ($settings['display_text_shipping_min_price'] && $settings['text_shipping_min_price']) ? 
       \parse_template($settings['text_shipping_min_price'], $params) : 
       '';
   }

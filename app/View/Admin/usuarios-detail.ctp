@@ -42,14 +42,14 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
             <div class="controls">
-              <input type="text" class="form-control w-100" id="" name="data[name]" value="<?php echo (isset($usuario)) ? $usuario['User']['name'] : ''; ?>" required>
+              <input type="text" class="form-control w-100" id="" name="data[name]" value="<?php echo (isset($usuario)) ? $usuario['User']['name'] : ''; ?>">
             </div>
           </div>
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Apellido'); ?></label>
             <div class="controls">
-              <input type="text" class="form-control w-100" id="" name="data[surname]" value="<?php echo (isset($usuario)) ? $usuario['User']['surname'] : ''; ?>" required>
+              <input type="text" class="form-control w-100" id="" name="data[surname]" value="<?php echo (isset($usuario)) ? $usuario['User']['surname'] : ''; ?>">
             </div>
           </div>
           <div class="control-group">
@@ -66,11 +66,11 @@
                 $femenino = (isset($usuario) && $usuario['User']['gender'] == 'F') ? 'checked' : '';
               ?>
               <span>
-                <input type="radio" class="form-control" name="data[gender]" id="gender_f" value="F" required <?php echo $femenino; ?> />
+                <input type="radio" class="form-control" name="data[gender]" id="gender_f" value="F" <?php echo $femenino; ?> />
                 <label for="gender_f">Femenino</label>
               </span>
               <span>
-                <input type="radio" class="form-control" name="data[gender]" id="gender_m" value="M" required <?php echo $masculino; ?> />
+                <input type="radio" class="form-control" name="data[gender]" id="gender_m" value="M" <?php echo $masculino; ?> />
                 <label for="gender_m">Masculino</label>
               </span>
             </div>
@@ -78,7 +78,7 @@
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('DNI'); ?></label>
             <div class="controls">
-              <input type="text" class="form-control w-100" id="" name="data[dni]" value="<?php echo (isset($usuario)) ? $usuario['User']['dni'] : ''; ?>" required>
+              <input type="text" class="form-control w-100" id="" name="data[dni]" value="<?php echo (isset($usuario)) ? $usuario['User']['dni'] : ''; ?>">
             </div>
           </div>
           <br />

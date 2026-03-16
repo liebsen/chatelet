@@ -4,13 +4,13 @@ $cloudzoom = false;
 $cloudzoomdata = 'zoomSizeMode:"zoom", lensWidth: 100, lensHeight: 100, zoomWidth:300, zoomHeight: 300, autoInside: 600';
 $images  = array();
 $images_aux = explode(';', $product['gallery']);
-echo $this->Html->script('product.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('detalle.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+echo $this->Html->script('product.js?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->script('detalle.js?v=' . $version['ver'], array('inline' => false));
 
 if($cloudzoom) {
   echo $this->Html->script('wow.min');
-  echo $this->Html->script('cloudzoom.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-  echo $this->Html->css('cloudzoom.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+  echo $this->Html->script('cloudzoom.js?v=' . $version['ver'], array('inline' => false));
+  echo $this->Html->css('cloudzoom.css?v=' . $version['ver'], array('inline' => false));
 }
 
 /*

@@ -214,6 +214,7 @@ class AppController extends Controller
     $this->set(
       'version', 
       array( 
+        'ver' => $version_count,
         'count' => \version_readable($version_count),
         'date' => $version_date,
         'text' => \version_readable($version_count) . ' (' . $version_date . ')'

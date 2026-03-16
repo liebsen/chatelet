@@ -1,7 +1,7 @@
 <?php
 	echo $this->Session->flash();
-	echo $this->Html->css('carrito.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-	echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+	echo $this->Html->css('carrito.css?v=' . $version['ver'], array('inline' => false));
+	echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->element('checkout-params');
 	// echo $this->element('checkout-modal');
 	$payment_methods = [

@@ -7,7 +7,7 @@
     echo $this->Html->script('bootstrap.min');
     echo $this->Html->script('jquery.growl');
     echo $this->Html->script('plugins');
-    echo $this->Html->script('main.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+    echo $this->Html->script('main.js?v=' . $version['ver'], array('inline' => false));
     echo $this->fetch('script');
 ?>
 

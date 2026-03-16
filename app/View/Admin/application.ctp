@@ -1,234 +1,33 @@
 <?php $socials = \get_socials() ?>
+<?php echo $this->Html->script('ckeditor/ckeditor', array('inline' => false)) ?>
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
-<?php echo $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
-<?php echo $this->Html->script('jquery.growl.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
-<?php echo $this->Html->script('application-form.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
-<?php echo $this->Html->css('jquery.growl.css?v=' . Configure::read('APP_VERSION')) ?>
+<?php echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php echo $this->Html->script('jquery.growl.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php echo $this->Html->script('application-module.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php echo $this->Html->css('jquery.growl.css?v=' . $version['ver']) ?>
+
+	<script type="text/javascript">
+		var notification_settings = <?php echo json_encode($notification_settings) ?? '[]' ?>;
+	</script>
 
 	<div class="block">
 		<div class="block-content">
 			<form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
 		    <div class="custom-tabs block-tabs">
 		      <ul class="nav nav-tabs" id="myTab" role="tablist">
-		        <li class="active text-center">
-		          <a href="#social">
-		            <i class="gi gi-share"></i> Redes sociales
-		          </a>
-		        </li>
-		        <li class="text-center">
-		          <a href="#payments">
-		            <i class="gi gi-wallet"></i> Mercado pago
-		          </a>
-		        </li>
-		        <li class="text-center">
-		          <a href="#analytics">
-		            <i class="gi gi-tags"></i> Analíticas
-		          </a>
-		        </li>
-		        <li class="text-center">
-		          <a href="#google-fonts">
-		            <i class="gi gi-text_underline"></i> Tipografía
-		          </a>
-		        </li>
-		        <li class="text-center">
-		          <a href="#notifications">
-		            <i class="gi gi-envelope"></i> Notificaciones
-		          </a>
-		        </li>
+<?php foreach($tabs as $id => $tab): ?>
+				<li class="text-center<?= $tab['default'] ? ' active' : '' ?>">
+				  <a href="#<?= $id ?>"><i class="gi gi-<?= $tab['icon'] ?>"></i> <?= $tab['title'] ?></a>
+				</li>
+<?php endforeach ?>
 		      </ul>
 		      <div class="tab-content">
-		        <div class="tab-pane pane-social active">
-		        	<div class="row">
-		        		<div class="col-md-6">
-					        <h4 class="sub-header">Presencia en redes sociales</h4>
-					        <p>Incluye la URL entera correspondiente a cada red social</p>
-					      <?php foreach($socials as $item): ?>
-					        <div class="control-group">
-					          <label class="control-label d-flex justify-content-start align-items-center gap-05" for="<?php echo $item ?>_on">
-					          	<i class="fa fa-lg fa-<?php echo $item ?>"></i>
-					          	<?php echo __(ucfirst($item)); ?>
-					          </label>
-					          <div class="d-flex flex-center gap-05 w-100">
-											<div class="controls flex-1 mt-1">
-												<input type="checkbox" id="toggle_<?php echo $item ?>" name="data[<?php echo $item ?>_on]" value="1" id="toggle" class="toggle-checkbox"<?= $settings[$item.'_on'] == '1' ? ' checked' : '' ?>>
-												<label for="toggle_<?php echo $item ?>" class="toggle-label"></label>
-											</div>
-						          <div class="controls">
-						            <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control" value="<?php echo @$settings[$item.'_url'] ?>" placeholder="Ingresá la URL de tu perfil de <?php echo __($item); ?>"/>
-						          </div>
-										</div>
-					        </div>
-					      	<br>
-					      <?php endforeach ?>
-								</div>
-			      		<div class="col-md-6">
-					        <h4 class="sub-header">Compartir contenido</h4>
-					        <p>Estos datos se visualizarán al momento de compartir la aplicación con el estandar opengraph de huella de sitios web y aplicaciones. Este estandar es utilizado por la mayoría de los sistemas de mensajería instantánea.</p>
-					        <div class="control-group">
-					          <label class="control-label" for="columns-text"><?php echo __('Tipo'); ?></label>
-					          <div class="controls text-center switch-scale">
-					            <?php
-					              $enabled = @$settings['opengraph_type'] == 'website' ? 'checked' : '';
-					              $disabled = @$settings['opengraph_type'] == 'article' ? 'checked' : '';
-					            ?>
-					            <span>
-					            <input type="radio" class="form-control" id="enabled_1" name="data[opengraph_type]" value="website" <?php echo $enabled; ?> /> 
-					            <label for="enabled_1">Website</label>
-					          </span>
-					          <span>
-					            <input type="radio" class="form-control" id="enabled_0" name="data[opengraph_type]" value="article" <?php echo $disabled; ?> />
-					            <label for="enabled_0">Artículo</label>
-					           </span>
-					          </div>
-					          <small class="text-muted">Indica si se debe trabajar con entorno real o de pruebas</small>
-					        </div>
-					        <div class="control-group">
-					          <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
-					          <div class="controls">
-					            <input type="text" maxlength="100" name="data[opengraph_title]" class="form-control" value="<?php echo @$settings['opengraph_title'] ?>" placeholder="Ingresá el título que desees para tu aplicación"/>
-					          </div>
-					        </div>
-					        <div class="control-group">
-					          <label class="control-label" for="columns-text"><?php echo __('Descripción'); ?></label>
-					          <div class="controls">
-					            <textarea name="data[opengraph_text]" class="form-control w-100" placeholder="Ingresá el texto que desees para tu aplicación"><?php echo @$settings['opengraph_text'] ?></textarea>
-					          </div>
-					        </div>
-									<hr>	      			
-					        <h4 class="sub-header">Imagen principal</h4>
-					        <p>Resolución recomendada 500x500px</p>
-
-									<div class="control-group">
-										<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen'); ?></label>
-										<div class="controls">
-											<input type="file" class="form-control" name="data[opengraph][image]" value="" accept="image/*">
-										</div>
-									</div>
-
-					        <div class="control-group">
-					          <label class="control-label" for="columns-text"><?php echo __('Width'); ?></label>
-					          <div class="controls">
-					            <input type="number" maxlength="100" name="data[opengraph_width]" class="form-control" value="<?php echo @$settings['opengraph_width'] ?>" placeholder="Ancho de la imagen"/>
-					          </div>
-					        </div>
-			        		<div class="control-group">
-					          <label class="control-label" for="columns-text"><?php echo __('Height'); ?></label>
-					          <div class="controls">
-					            <input type="number" maxlength="100" name="data[opengraph_height]" class="form-control" value="<?php echo @$settings['opengraph_height'] ?>" placeholder="Alto de la imagen"/>
-					          </div>
-					        </div>
-									<br />
-									<!--div class="control-group">						
-										<div class="controls">
-											<button class="btn btn-primary" type="submit">Agregar Imagen</button>
-										</div>
-									</div-->
-								<?php if($settings['opengraph_image']): ?>
-									<img src="<?php echo $settings['opengraph_image'] ?>" width="200">
-									<button class="btn btn-danger" onclick="window.location.href='<?php echo $this->Html->url(array('action'=>'remove_opengraph_image')) ?>'">x</button>
-								<?php endif; ?> 			        
-					      </div>
-							</div>
-						</div>
-
-
-						<div class="tab-pane pane-analytics">
-			        <h4 class="sub-header">Reportes de la tienda</h4>
-			        <p>Proporciona el código público del sitio para todos los servicios.</p>
-			        <div class="control-group">
-			          <label class="control-label" for="columns-text"><?php echo __('Google Analytics code'); ?></label>
-			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[google_analytics_code]" class="form-control" value="<?php echo @$settings['google_analytics_code'] ?>" placeholder="Código de Google Analytics"/>
-			          </div>
-			        </div>
-			        <div class="control-group">
-			          <label class="control-label" for="columns-text"><?php echo __('Facebook Pixel ID'); ?></label>
-			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[facebook_pixel_id]" class="form-control" value="<?php echo @$settings['facebook_pixel_id'] ?>" placeholder="ID de FB pixel"/>
-			          </div>
-			        </div>	 
-		    		</div>
-
-		        <div class="tab-pane pane-google-fonts">
-			        <h4 class="sub-header">Fuente de la tienda</h4>
-			        <p>Asigna el nombre de la fuente que desees (los archivos correspondientes se solicitarán a Google Fonts)</p>
-			        <div class="control-group">
-			          <label class="control-label" for="columns-text"><?php echo __('Google Font name'); ?></label>
-			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[google_font_name]" class="form-control" value="<?php echo @$settings['google_font_name'] ?>" placeholder="nombre de la fuente, ej: DM Sans"/>
-			          </div>
-			        </div>
-			        <div class="control-group">
-			          <label class="control-label" for="columns-text"><?php echo __('Google Font size'); ?></label>
-			          <div class="controls">
-			            <input type="text" maxlength="100" name="data[google_font_size]" class="form-control" value="<?php echo @$settings['google_font_size'] ?>" placeholder="Tamaño de la fuente ej:300,400,500,600,700,800"/>
-			          </div>
-			        </div>
-		        </div>
-
-		        <div class="tab-pane pane-payments">
-				      <div class="row">
-				        <div class="col-md-6">
-				        	<h4 class="sub-header">Datos de acceso</h4>
-					        <p>Proporciona los siguientes datos provistos por Mercado Pago. Establece modo de operación.</p>
-					        <div class="control-group">
-					          <label class="control-label" for="columns-text"><?php echo __('Client ID'); ?></label>
-					          <div class="controls">
-					            <input type="text" maxlength="100" name="data[mercadopago_client_id]" class="form-control" value="<?php echo @$settings['mercadopago_client_id'] ?>" placeholder="ID de Mercado pago"/>
-					          </div>
-					        </div>
-					        <div class="control-group">
-					          <label class="control-label" for="columns-text"><?php echo __('Client secret'); ?></label>
-					          <div class="controls">
-					            <input type="text" maxlength="100" name="data[mercadopago_client_secret]" class="form-control" value="<?php echo @$settings['mercadopago_client_secret'] ?>" placeholder="Codigo secret"/>
-					          </div>
-					        </div>
-					      </div>
-					      <div class="col-md-6">
-				        	<h4 class="sub-header">Modo de operación</h4>
-					        <div class="control-group">
-					          <!--label class="control-label" for="columns-text"><?php echo __('Modo de operación'); ?></label-->
-					          <div class="controls text-center switch-scale">
-					            <?php
-					              $enabled = @$settings['mercadopago_sandbox_on'] == 'on' ? 'checked' : '';
-					              $disabled = @$settings['mercadopago_sandbox_on'] == 'off' ? 'checked' : '';
-					            ?>
-					            <span>
-					            <input type="radio" class="form-control" id="mercadopago_sandbox_on_0" name="data[mercadopago_sandbox_on]" value="off" <?php echo $disabled; ?> />
-					            <label for="mercadopago_sandbox_on_0">Entorno real (Producción)</label>
-					          </span>
-					          <span>
-					            <input type="radio" class="form-control" id="mercadopago_sandbox_on_1" name="data[mercadopago_sandbox_on]" value="on" <?php echo $enabled; ?> /> 
-					            <label for="mercadopago_sandbox_on_1">Entorno pruebas</label>
-					          </span>
-					          </div>
-					          <span class="text-muted">Indica si los pagos se solicitarán a modo de pruebas.</span>
-					        </div>
-
-					        <!--label for="mercadopago_sandbox_on" class="d-flex justify-content-start justify-content-center gap-05">
-						        <input type="checkbox" id="mercadopago_sandbox_on" name="data[mercadopago_sandbox_on]" <?php echo @!empty($settings['mercadopago_sandbox_on'] && $settings['mercadopago_sandbox_on'] == 'on') ? ' checked' : '' ?>>
-						        <span>Modo pruebas</span>
-						      </label-->
-						     </div>
-						  </div>
-		        </div>
-		        <div class="tab-pane pane-notifications">
-				      <div class="row">
-				        <div class="col-md-6">
-				        	<select class="form-control" name="notification_tag">
-				        		<option value="">Elige una notificación para continuar</option>
-				        		<?php foreach($notification_tags as $key => $tag): ?>
-				        			<option value="<?=$key?>"><?=$tag?></option>
-				        		<?php endforeach ?> 
-				        	</select>
-				        </div>
-				        <div class="col-md-6">
-				        	<div class="form-group">
-				        		<textarea class="form-control" id="notification" cols="8"></textarea>
-				        	</div>
-				        </div>
-				    	</div>
-				    </div>
+<?php foreach($tabs as $id => $tab): ?>
+				<div class="tab-pane pane-<?= $id ?><?= $tab['default'] ? ' active' : '' ?>">
+<?php echo $this->element('application-' . $id) ?>
+				</div>
+<?php endforeach ?>
 		     	</div>
 			    <br />      
 			    <div class="form-actions">

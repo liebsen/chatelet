@@ -1,9 +1,9 @@
 <?php 
 echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false));
-// echo $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('home-compose.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->css('home-compose.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-// echo $this->Html->script('admin-home.js?v=' . Configure::read('APP_VERSION'), array('inline'=>false));
+// echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->script('home-compose.js?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->css('home-compose.css?v=' . $version['ver'], array('inline' => false));
+// echo $this->Html->script('admin-home.js?v=' . $version['ver'], array('inline'=>false));
 // $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));
 echo $this->element('admin-menu');
 ?>
