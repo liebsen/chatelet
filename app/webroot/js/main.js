@@ -82,6 +82,7 @@ $(function () {
 
   if (typeof $.fn.datepicker != 'undefined'){ 
     $('.datepicker').each(function(i,e){
+      if($(e).is('input') == false) return
       $(e).datepicker({
         format: $(e).data('format') || 'dd/mm/yyyy',
         language: 'es'

@@ -103,7 +103,7 @@ if (!$loggedIn) {
 							<label for="FechaNac">Tu fecha de nacimiento</label>
 							<div class="form-group">
 								<?php
-									echo '<input type="text" class="datepicker form-control" id="birthday" data-date-format="dd/mm/yyyy" placeholder="10/10/1980" title="Fecha de Nacimiento" name="data[User][birthday]" value="'. 
+									echo '<input type="text" class="datepicker form-control" id="birthday" placeholder="10/10/1980" title="Fecha de Nacimiento" name="data[User][birthday]" value="'. 
 											$this->Time->format($userData['birthday'] ?? '02-02-1990', '%d/%m/%Y')
 										.'" required />';
 								?>

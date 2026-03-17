@@ -606,7 +606,7 @@ body {
 .block-content .control-group label,
 .block-content .control-group span,
 .block-content .control-group small {
-    padding: 0 0.5rem;
+    padding: 0 0.25rem;
 }
 
 .control-group {
@@ -2018,7 +2018,9 @@ pre, code {
 
 .sub-header {
     border-width: 1px;
+    width: 100%;
     padding: 14px 0 10px;
+    padding-top: 20px;
     background-color: transparent;
     text-transform: uppercase;
     font-size: 15px;
@@ -2169,9 +2171,12 @@ a.text-black:focus {
     border-color: #bc4bb6;
 }
 .btn-group {
-    flex-wrap: nowrap;
     display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
+
 .text-muted {
     color: #d68cd2!important;
 }
@@ -2186,7 +2191,7 @@ small, .small {
     font-size: 12px;
     background-color: #999;
     text-shadow: none;
-    padding: 4px 10px;
+    padding: 4px 10px!important;
     border-radius: 3px;
     text-indent: 0;
     margin-top: 1px;
@@ -2902,7 +2907,8 @@ textarea.form-control {
 input[type="file"].form-control {
   border: none;
 }
-input[type="radio"].form-control {
+input[type="radio"].form-control,
+input[type="checkbox"].form-control {
     transition: scale(1.5);
     cursor: pointer;
     width: auto;
@@ -3231,6 +3237,7 @@ a.thumbnail-borderless,
 
 .btn {
     text-transform: uppercase;
+    min-height: 32px;
 }
 
 .form-actions {
@@ -3952,7 +3959,7 @@ div.cloudzoom-black:nth-child(3) {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
     font-size: 1.5rem;
     background-color: #e7e7e7;
     border-radius: 1rem;

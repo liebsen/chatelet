@@ -146,7 +146,7 @@
                 <div class="control-group">
                   <label class="control-label" for="columns-text"><?php echo __('Fecha desde'); ?></label>
                   <div class="controls">
-                    <input type="text" class="datepicker form-control" data-date-format="dd/mm/yyyy" id="" name="data[date_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_from'] : ''; ?>">
+                    <input type="text" class="datepicker form-control" id="" name="data[date_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_from'] : ''; ?>">
                   </div>
                   <small class="text-muted">Seleccioná desde qué fecha el cupón debería estar disponible.</small>
                 </div>
@@ -155,7 +155,7 @@
                 <div class="control-group">
                   <label class="control-label" for="columns-text"><?php echo __('Fecha hasta'); ?></label>
                   <div class="controls">
-                    <input type="text" class="datepicker form-control" data-date-format="dd/mm/yyyy" id="" name="data[date_until]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_until'] : ''; ?>">
+                    <input type="text" class="datepicker form-control" id="" name="data[date_until]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_until'] : ''; ?>">
                   </div>
                   <small class="text-muted">Seleccioná hasta qué fecha el cupón debería estar disponible.</small>
                 </div>

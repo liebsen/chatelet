@@ -74,9 +74,7 @@
         <div class="controls">
           <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
         </div>
-
       </div>  
-
     </div>
     <div class="col-md-6">
     	<h4 class="sub-header">Configuración de envío</h4>
@@ -99,17 +97,28 @@
           <td><span class="minsale-value"><?= count($schedule_users)?></span></td>
         </tr>
       </table>
-
-        <div style="padding: 0.25rem;">
-<?php foreach($schedule_users as $user): ?>
-    <span 
-      class="label product-item is-clickable is-enabled" 
-      onclick="toggleOption(this, 'user')" 
-      data-coupon="<?php echo $coupon['Coupon']['id'] ?>" 
-      data-json='<?php echo json_encode($user['User']) ?>'><?php echo $user['User']['name']?>
-    </span>
+      <h4 class="sub-header">Catalogo seleccionado</h4>
+      <p>Selecciona los productos que deseas asociar con este envío.</p>
+      <div style="padding: 0.25rem;">
+<?php foreach($schedule_products as $product): ?>
+  <span 
+    class="label product-item is-clickable is-enabled" 
+    onclick="toggleOption(this, 'product')" 
+    data-coupon="<?php echo $coupon['Coupon']['id'] ?>" 
+    data-json='<?php echo json_encode($product['Product']) ?>'><?php echo $product['Product']['name']?>
+  </span>
 <?php endforeach ?>
-        </div>
+      </div>
+      <h4 class="sub-header">Clientas selecionadas</h4>
+      <p>Selecciona las clientas que deseas asignar a este envío</p>
+<?php foreach($schedule_users as $user): ?>
+  <span 
+    class="label product-item is-clickable is-enabled" 
+    onclick="toggleOption(this, 'user')" 
+    data-coupon="<?php echo $coupon['Coupon']['id'] ?>" 
+    data-json='<?php echo json_encode($user['User']) ?>'><?php echo $user['User']['name']?>
+  </span>
+<?php endforeach ?>
 
     </div>
   </div>

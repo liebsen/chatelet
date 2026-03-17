@@ -2,21 +2,26 @@
 	<table id="example-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Título'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($schedules as $key => $schedule): ?>        
-				<tr>
-					<td>
-						<?=$schedule['Newsletter']['title']?>
-					</td>
-					<td>
-						<?=$schedule['Newsletter']['status']??'waiting'?>
-					</td>
-					<td>            
+<?php foreach ($schedules as $key => $schedule): ?>        
+			<tr>
+				<td>
+					<?=$schedule['Newsletter']['name']?>
+				</td>
+				<td>
+					<?=$schedule['Newsletter']['title']?>
+				</td>
+				<td>
+					<?=$schedule['Newsletter']['status']??'waiting'?>
+				</td>
+				<td> 
+					<div class="btn-group">           
 						<a 
 							href="#" 
 							data-toggle="tooltip" 
@@ -46,9 +51,10 @@
 							>
 							<i class="gi gi-envelope"></i>
 						</a>
+					</div>
 				</td>
 			</tr>
-		<?php endforeach ?>
+<?php endforeach ?>
 		</tbody>
 	</table>
 

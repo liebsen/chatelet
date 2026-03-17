@@ -17,7 +17,13 @@
     <div class="col-md-12">
       <h4 class="sub-header"><?=$newsletter['Newsletter']['title'] ?? 'Crea un nueva plantilla'?></h4>
       <p><?=$newsletter['Newsletter']['title'] ? 'Modifica' : 'Crea'?> tu plantilla. Puedes asociarle productos si lo deseas.</p>
-
+      <div class="control-group">
+        <label class="control-label" for="title">Título</label>
+        <div class="controls">
+          <input type="text" id="title" name="data[title]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>" required />
+        </div>
+        <small class="text-muted">Es el título que verán las clientas en su dispositivo</small>
+      </div>
       <div class="control-group d-block">
         <textarea class="form-control w-100" name="body" id="newsletter" rows="8"><?=$newsletter['Newsletter']['body']?></textarea>
         <h6 class="text-theme">Tabla de variables disponibles</h6>
@@ -44,13 +50,7 @@
     <div class="col-md-6">
     	<h4 class="sub-header">Datos principales</h4>
     	<p>Datos con los que identificarás esta plantilla.</p>
-      <div class="control-group">
-        <label class="control-label" for="title">Título</label>
-        <div class="controls">
-          <input type="text" id="title" name="data[title]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>" required />
-        </div>
-        <small class="text-muted">Es el título que verán las clientas en su dispositivo</small>
-      </div>
+
 
       <div class="control-group">
         <label class="control-label" for="name">Código</label>
