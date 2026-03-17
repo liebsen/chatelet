@@ -1,3 +1,4 @@
+
 	<table id="example-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>
@@ -10,7 +11,7 @@
 		</thead>
 		<tbody>
 <?php foreach ($newsletters as $key => $newsletter): ?>        
-			<tr>
+			<tr class="<?=isset($newsletter['Newsletter']['recent'])?'bg-selected':''?>">
 				<td>
 					<?=$newsletter['Newsletter']['name']?>
 				</td>
@@ -62,7 +63,7 @@
 		<a href="/admin/newsletters?extended=1">
       <button class="btn" type="button">Ver todo</button>
     </a>
-	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit', 0))?>">
+	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit'))?>">
 	    <i class="gi gi-edit mr-1"></i> Componer
 	  </a>
   </div>

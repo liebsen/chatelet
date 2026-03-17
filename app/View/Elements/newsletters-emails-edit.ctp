@@ -1,6 +1,6 @@
 <?php
 	echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
-	echo $this->Html->script('newsletters-composer.js?v=' . $version['ver'], array('inline' => false));
+	echo $this->Html->script('newsletters-emails-edit.js?v=' . $version['ver'], array('inline' => false));
 ?>
 
 <?php echo $this->Form->create(null, array(
@@ -50,8 +50,6 @@
     <div class="col-md-6">
     	<h4 class="sub-header">Datos principales</h4>
     	<p>Datos con los que identificarás esta plantilla.</p>
-
-
       <div class="control-group">
         <label class="control-label" for="name">Código</label>
         <div class="controls">

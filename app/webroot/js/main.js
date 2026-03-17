@@ -84,7 +84,7 @@ $(function () {
     $('.datepicker').each(function(i,e){
       if($(e).is('input') == false) return
       $(e).datepicker({
-        format: $(e).data('format') || 'dd/mm/yyyy',
+        format: $(e).data('format') || 'yyyy/mm/dd',
         language: 'es'
       });
     })

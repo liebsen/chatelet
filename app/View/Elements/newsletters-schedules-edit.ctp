@@ -1,8 +1,8 @@
 <?php
 	// echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
-	echo $this->Html->script('newsletters-schedules.js?v=' . $version['ver'], array('inline' => false));
+	echo $this->Html->script('newsletters-schedules-edit.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
-	echo $this->Html->css('bootstrap-datepicker');
+	echo $this->Html->css('bootstrap-datepicker');  
 ?>
 
 <?php echo $this->Form->create(null, array(
@@ -11,20 +11,32 @@
       'action' => 'newsletters'
   ),
   'class' => 'w-100',
-  'id' => 'newsletter_schedule_edit',
+  'id' => 'newsletter_schedules_edit',
 )); ?>
   <input type="hidden" name="redirect" value="/admin/newsletters/schedules"/>
   <input type="hidden" name="id" value="<?= $schedule['Newsletter']['id'] ?? 0 ?>"/>
 	<div class="row">
     <div class="col-xs-12">
       <h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4>
-      <p>Este envío fue utilizado <span>3</span> veces</p>
+      <p>Esta plantilla tiene asociados <span><?= count($schedule_products)?></span> productos</p>
+
+<?php if(isset($schedule['Newsletter']['id'])): ?>
       <div class="card">
         <div class="card-body">
           <h5 class="control-label" for="title"><?=$schedule['Newsletter']['title']?></h5>
           <div class="controls"><?=$schedule['Newsletter']['body']?></div>
         </div>
       </div>
+<?php else: ?>
+      <div class="controls">
+        <label class="control-label" for="title">Selecciona una plantilla</label>
+        <select class="form-control" name="newsletter_id">
+<?php foreach($newsletters as $newsletter): ?>
+  <option value="<?= $newsletter['Newsletter']['id']?>"><?= $newsletter['Newsletter']['name']?> - <?= $newsletter['Newsletter']['title']?></option>
+<?php endforeach ?>
+        </select>
+      </div>
+<?php endif ?>
     </div>
   </div>
   <div class="row">
@@ -34,7 +46,7 @@
       <div class="control-group">
         <label class="control-label" for="title">Programar fecha/hora</label>
         <div class="controls d-flex flex-center gap-05">
-          <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
+          <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('Y/m/d'), '%Y/%m/%d')?>"/>
           <select class="form-control" name="data[schedule_hour]">
           <?php for($i=0; $i < 25; $i++): ?>
           	<option value="<?=$i?>"><?=$i?>hs</option>
@@ -45,7 +57,7 @@
       </div>
 
       <div class="control-group w-100">
-        <h4 class="sub-header">Filtros en historial de compras</h4>
+        <h4 class="sub-header">Historial de compras</h4>
         <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
         <div class="controls">
           <label class="control-label" for="minSale">Mínimo de compra</label>
@@ -61,7 +73,7 @@
         </div>
 
 
-        <h4 class="sub-header">Filtros de cuenta</h4>
+        <h4 class="sub-header">Cuenta</h4>
         <div class="controls">
           <label class="control-label" for="myRange2">Día de nacimiento (Desde / Hasta)</label>
           <div class="controls d-flex flex-center gap-05">
@@ -71,9 +83,6 @@
         </div>
 
 
-        <div class="controls">
-          <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
-        </div>
       </div>  
     </div>
     <div class="col-md-6">
@@ -99,7 +108,11 @@
       </table>
       <h4 class="sub-header">Catalogo seleccionado</h4>
       <p>Selecciona los productos que deseas asociar con este envío.</p>
-      <div style="padding: 0.25rem;">
+
+      <div class="controls">
+        <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
+      </div>      
+      <div class="controls">
 <?php foreach($schedule_products as $product): ?>
   <span 
     class="label product-item is-clickable is-enabled" 
@@ -111,15 +124,19 @@
       </div>
       <h4 class="sub-header">Clientas selecionadas</h4>
       <p>Selecciona las clientas que deseas asignar a este envío</p>
+      <div class="controls">
+        <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
+      </div>      
+      <div class="controls">
 <?php foreach($schedule_users as $user): ?>
   <span 
     class="label product-item is-clickable is-enabled" 
     onclick="toggleOption(this, 'user')" 
     data-coupon="<?php echo $coupon['Coupon']['id'] ?>" 
-    data-json='<?php echo json_encode($user['User']) ?>'><?php echo $user['User']['name']?>
+    data-json='<?php echo json_encode($user['User']) ?>'><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?>
   </span>
 <?php endforeach ?>
-
+      </div>
     </div>
   </div>
   <div class="form-actions">

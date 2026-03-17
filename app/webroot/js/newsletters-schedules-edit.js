@@ -34,8 +34,10 @@ function toggleOption(e, type){
   let data = JSON.parse(e.getAttribute('data-json'))
   let ep = $(e).hasClass('is-enabled') ? 'remove' : 'add'
   data.type = type
-  data.coupon = e.getAttribute('data-coupon')
-  $.post('/admin/coupon_' + ep, $.param(data))
+  data.source = 'newsletter'
+  data.model = 'NewsletterSchedule'
+  data.rel_id = e.getAttribute('data-newsletter')
+  $.post('/admin/relation_' + ep, $.param(data))
     .success(function(res) {
       let result = JSON.parse(res)
       if (result.success) {

@@ -361,7 +361,7 @@ class AdminController extends AppController {
 		if($this->request->is('post')){
 			$data = $this->request->data;
 			$payload = $data['payload'];
-			CakeLog::write('debug', 'shop_composer(payload):'.json_encode($payload, JSON_PRETTY_PRINT));
+			// CakeLog::write('debug', 'shop_composer(payload):'.json_encode($payload, JSON_PRETTY_PRINT));
 			if(!empty($payload)) {
 				$this->Category->saveMany($payload);
 			}
@@ -2064,7 +2064,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		}
 
 		//CakeLog::write('debug','emails_vars:'.json_encode($emails_vars));
-		//CakeLog::write('debug','component:'.json_encode($component));
+		CakeLog::write('debug','controlComponent:'.json_encode($controlComponent));
 		//CakeLog::write('debug','params:'.json_encode($this->params['pass']));
 
 		if(method_exists($this->Newsletter, $controlComponent)) {
@@ -2413,7 +2413,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'delete':
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
-
 	    		$this->Store->delete($this->request->data['id']);
 	    	}
     		break;
@@ -2436,50 +2435,54 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		return $this->render('sucursales');
 	}
 
-	public function coupon_add() {
+	public function relation_add() {
 		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
     if ($this->request->is('POST')) {
-    	$this->loadModel('CouponItem');
-    	$data = $this->request->data;
-    	$ids = $this->CouponItem->find('all', [
+    	$data = $this->request->data;    	
+    	$model = ClassRegistry::init($data['model']);
+    	$ids = $model->find('all', [
     		'conditions' => [
-    			'coupon_id' => $data['coupon'],
+    			'coupon_id' => $data['rel_id'],
     			$data['type'] . '_id' => $data['id'],
     		], 
     		'fields' => ['id']
     	]);
 			$ids = array_map(function($e) {
-				return $e['CouponItem']['id'];
+				return $e[$data['model']]['id'];
 			},$ids);    	
-    	$this->CouponItem->delete($ids);
-      $result = $this->CouponItem->save([
+    	$model->delete($ids);
+      $result = $model->save([
       	$data['type'] . '_id' => $data['id'],
-      	'coupon_id' => $data['coupon'],
+      	$data['source'] . '_id' => $data['rel_id'],
       ]);
-      return json_encode(['success' => true, 'data' => $result['CouponItem']]);
+      return json_encode(array(
+      	'success' => true, 
+      	'data' => $result[$data['model']]
+      ));
     }
 	}
 
-	public function coupon_remove() {
+	public function relation_remove() {
 		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
     if ($this->request->is('POST')) {
-    	$this->loadModel('CouponItem');
     	$data = $this->request->data;
-    	$ids = $this->CouponItem->find('all', [
+    	$model = ClassRegistry::init($data['model']);
+    	$ids = $model->find('all', [
     		'conditions' => [
-    			'coupon_id' => $data['coupon'],
+    			$data['source'] . '_id' => $data['rel_id'],
     			$data['type'] . '_id' => $data['id'],
     		], 
     		'fields' => ['id']
     	]);
 			$ids = array_map(function($e) {
-				return $e['CouponItem']['id'];
+				return $e[$data['model']]['id'];
 			},$ids);    	
-    	$this->CouponItem->delete($ids);
+    	$model->delete($ids);
       return json_encode(['success' => true]);
     }
 	}
-
 
 	public function cupones($action = null) {
 		$weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];

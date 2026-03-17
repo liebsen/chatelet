@@ -8,7 +8,7 @@ function b($a, $b = null){
 }
 
 function d($a,$b,$c=null){
-  $d = !empty($c) ? $b : json_encode($b);
+  $d = !empty($c) ? $b : json_encode($b, JSON_PRETTY_PRINT);
   CakeLog::write('debug',$a.':'.$d);
 }
 
