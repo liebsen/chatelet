@@ -53,12 +53,13 @@ class ApiController extends AppController {
 
   public function ckupload(){
     $func_number = $_GET['CKEditorFuncNum'] ;
+    $folder = 'newsletters';
     $url = '';
     $message = '';
     if (isset($_FILES['upload']) && $_FILES['upload']['size']) {
-      $url = $this->saveFile($_FILES['upload'], false, 0, 'newsletters');
+      $url = $this->saveFile($_FILES['upload'], false, 0, $folder);
     }
-    $full = $this->settings['site_url'] . $this->settings['upload_url'] . $url;
+    $full = $this->settings['site_url'] . $this->settings['upload_url'] . $folder . '/' . $url;
     echo "<script type='text/javascript'> window.parent.CKEDITOR.tools.callFunction($func_number, '$full', '$message')</script>";
   }
 

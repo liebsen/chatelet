@@ -179,6 +179,16 @@ class NewsletterComponent extends Component {
     $NewsletterUser = ClassRegistry::init('NewsletterUser');
     $response = array();
     try {
+
+      if($this->controller->request->is('post')){
+        $data = $this->controller->request->data;
+        \d('post data', $data);
+
+        $NewsletterSchedule->save($data);
+        return $this->controller->redirect(array( 'action' => 'newsletters' ));
+      }
+
+      
       $schedule = $NewsletterSchedule->find('first', array(
         'joins' => array(
           array(

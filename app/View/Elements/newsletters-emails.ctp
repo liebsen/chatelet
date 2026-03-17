@@ -58,7 +58,7 @@
 		<a href="/admin/newsletters?extended=1">
       <button class="btn" type="button">Ver todo</button>
     </a>
-	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit'))?>">
+	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit', 0))?>">
 	    <i class="gi gi-edit mr-1"></i> Componer
 	  </a>
   </div>

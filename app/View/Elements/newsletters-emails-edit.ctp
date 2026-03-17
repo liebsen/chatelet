@@ -47,17 +47,17 @@
       <div class="control-group">
         <label class="control-label" for="title">Título</label>
         <div class="controls">
-          <input type="text" id="title" name="data[title]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>"/>
+          <input type="text" id="title" name="data[title]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>" required />
         </div>
-        <small>Es el título que verán las clientas en su dispositivo</small>
+        <small class="text-muted">Es el título que verán las clientas en su dispositivo</small>
       </div>
 
       <div class="control-group">
         <label class="control-label" for="name">Código</label>
         <div class="controls">
-          <input type="text" id="name" name="data[name]" class="form-control" placeholder="Código de la plantilla" value="<?=$newsletter['Newsletter']['name']?>"/>
+          <input type="text" id="name" name="data[name]" class="form-control" placeholder="Código de la plantilla" value="<?=$newsletter['Newsletter']['name']?>" required />
         </div>
-        <small>Es el código que verán solo los gestores para gestionar el envío</small>
+        <small class="text-muted">Es el código que verán solo los gestores para gestionar el envío</small>
       </div>
     </div>
     <div class="col-md-6">

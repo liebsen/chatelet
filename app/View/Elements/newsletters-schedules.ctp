@@ -56,7 +56,7 @@
 		<a href="/admin/newsletters?extended=1">
 	    <button class="btn" type="button">Ver todo</button>
 	  </a>
-	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedule', 'create'))?>">
+	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedule', 'edit', 0))?>">
 	    <i class="gi gi-clock mr-1"></i> Programar envío
 	  </a>
 	</div>
