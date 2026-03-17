@@ -72,13 +72,15 @@
         <div class="controls">
           <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
         </div>
-        <div style="padding: 0.25rem;">
+        <div class="controls products-container">
 <?php foreach($newsletter_products as $product): ?>
     <span 
     	class="label product-item is-clickable is-enabled" 
-    	onclick="toggleOption(this, 'product')" 
-    	data-coupon="<?php echo $coupon['Coupon']['id'] ?>" 
-    	data-json='<?php echo json_encode($product['Product']) ?>'><?php echo $product['Product']['name']?>
+    	data-rel_id="<?php echo $newsletter['Newsletter']['id'] ?>" 
+      data-id="<?=$product['Product']['id']?>"
+      data-type="product"
+      data-source="newsletter"
+      data-model="NewsletterProduct"><?php echo $product['Product']['name']?>
     </span>
 <?php endforeach ?>
         </div>

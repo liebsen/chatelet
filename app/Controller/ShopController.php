@@ -720,6 +720,7 @@ class ShopController extends AppController {
 
 	public function api_search(){
 		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
 
 		$this->loadModel('Product');
 		$this->loadModel('Search');
@@ -849,7 +850,7 @@ class ShopController extends AppController {
 			$results[]= $result;
 		}
 
-		echo json_encode([
+		return json_encode([
 			'results' => $results,
 			//'query' => $query
 		]);

@@ -2443,19 +2443,19 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	$model = ClassRegistry::init($data['model']);
     	$ids = $model->find('all', [
     		'conditions' => [
-    			'coupon_id' => $data['rel_id'],
+    			$data['source'] . '_id' => $data['rel_id'],
     			$data['type'] . '_id' => $data['id'],
     		], 
     		'fields' => ['id']
     	]);
-			$ids = array_map(function($e) {
+			$ids = array_map(function($e) use ($data) {
 				return $e[$data['model']]['id'];
 			},$ids);    	
     	$model->delete($ids);
-      $result = $model->save([
+      $result = $model->save(array(
       	$data['type'] . '_id' => $data['id'],
       	$data['source'] . '_id' => $data['rel_id'],
-      ]);
+      ));
       return json_encode(array(
       	'success' => true, 
       	'data' => $result[$data['model']]
@@ -2469,14 +2469,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     if ($this->request->is('POST')) {
     	$data = $this->request->data;
     	$model = ClassRegistry::init($data['model']);
-    	$ids = $model->find('all', [
-    		'conditions' => [
-    			$data['source'] . '_id' => $data['rel_id'],
+    	$ids = $model->find('all',array(
+    		'conditions' => array(
     			$data['type'] . '_id' => $data['id'],
-    		], 
+    			$data['source'] . '_id' => $data['rel_id'],
+    		), 
     		'fields' => ['id']
-    	]);
-			$ids = array_map(function($e) {
+    	));
+			$ids = array_map(function($e) use ($data) {
 				return $e[$data['model']]['id'];
 			},$ids);    	
     	$model->delete($ids);
