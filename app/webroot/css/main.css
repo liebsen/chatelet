@@ -1,5 +1,12 @@
+::placeholder {
+    transition: opacity 0.5s ease-in-out;
+    transition-delay: 1s;
+    color: #f8f8f8;
+}
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 .d-inline {
@@ -586,10 +593,9 @@ body {
     }    
 }
 .block-content .control-group {
-    padding: 0.5rem;
     padding-bottom: 1.25rem;
-    border-radius: 0.75rem;
-    overflow-x: auto;
+    padding: 0 0.25rem;
+    overflow-x: auto;   
     display: flex;
     flex-direction: column;
     justify-content: center;
