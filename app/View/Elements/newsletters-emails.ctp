@@ -1,8 +1,9 @@
 	<table id="example-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Título'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Productos'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Envíos'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
 		</thead>
@@ -13,7 +14,10 @@
 					<?=$newsletter['Newsletter']['title']?>
 				</td>
 				<td>
-					<?=$newsletter['Newsletter']['status']??'waiting'?>
+					<?=count($newsletter['NewsletterProduct'])?>
+				</td>
+				<td>
+					<?=count($newsletter['NewsletterSchedule'])?>
 				</td>
 				<td>            
 					<a 

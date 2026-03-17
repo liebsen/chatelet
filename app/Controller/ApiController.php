@@ -51,6 +51,16 @@ class ApiController extends AppController {
     );
   }
 
+  public function ckupload(){
+    $func_number = $_GET['CKEditorFuncNum'] ;
+    $url = '';
+    $message = '';
+    if (isset($_FILES['upload']) && $_FILES['upload']['size']) {
+      $url = $this->saveFile($_FILES['upload'], false, 0, 'newsletters');
+    }
+    $full = $this->settings['site_url'] . $this->settings['upload_url'] . $url;
+    echo "<script type='text/javascript'> window.parent.CKEDITOR.tools.callFunction($func_number, '$full', '$message')</script>";
+  }
 
   public function subscriptions(){
     $this->loadModel('Subscription'); 

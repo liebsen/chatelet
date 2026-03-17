@@ -4,9 +4,9 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
+  // Define changes to default configuration here. For example:
+  // config.language = 'fr';
+  // config.uiColor = '#AADC6E';
   config.allowedContent = true;
   config.language = 'es'
   // config.extraPlugins = 'uploadimage'
@@ -19,5 +19,6 @@ CKEDITOR.editorConfig = function( config ) {
   ];
   // Remove unnecessary plugins
   config.removePlugins = 'about,a11yhelp,forms,div,flash,smiley,save,print';
-  config.filebrowserUploadUrl = '/api/upload';  
+  // config.filebrowserUploadMethod = 'form';
+  config.filebrowserUploadUrl = '/api/ckupload';  
 };

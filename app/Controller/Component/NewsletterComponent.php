@@ -19,6 +19,7 @@ class NewsletterComponent extends Component {
   public function emails() {
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
+    $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
     $response = array();
     try {
       $newsletters = $Newsletter->find('all', array(
@@ -41,7 +42,15 @@ class NewsletterComponent extends Component {
           'conditions' => array( 'NewsletterProduct.newsletter_id' => $newsletter['Newsletter']['id']),
           'order' => array( 'NewsletterProduct.id DESC' )
         ));
-        $newsletters[$i]['Products'] = $products;
+
+        $schedules = $NewsletterSchedule->find('all', array(
+          'fields' => array('NewsletterSchedule.*'),
+          'conditions' => array( 'NewsletterSchedule.newsletter_id' => $newsletter['Newsletter']['id']),
+          'order' => array( 'NewsletterSchedule.id DESC' )
+        ));
+
+        $newsletters[$i]['NewsletterProduct'] = $products;
+        $newsletters[$i]['NewsletterSchedule'] = $schedules;
       }
 
       $this->controller->set('newsletters', $newsletters);
@@ -55,6 +64,15 @@ class NewsletterComponent extends Component {
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
     $response = array();
     try {
+
+      if($this->controller->request->is('post')){
+        $data = $this->controller->request->data;
+        \d('post data', $data);
+
+        $Newsletter->save($data);
+        return $this->controller->redirect(array( 'action' => 'newsletters' ));
+      }
+
       $newsletter = $Newsletter->find('first', array(
         'conditions' => array( 'Newsletter.id' => $id),
         // 'order' => array( 'Newsletter.id DESC' )

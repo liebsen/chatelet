@@ -278,16 +278,23 @@ class AppController extends Controller
     return $email->send($message);
   }
 
-  private function saveFile($file, $thumb = false, $size = 300) {
+  public function saveFile($file, $thumb = false, $size = 300, $folder = null) {
+    
+    $folder = !empty($folder) ? $folder . '/' : '';
+
     /* save file if any */
     $filepath = '';
     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
     $key = uniqid() . '.' . $ext;
-    $dest = __DIR__ . '/../webroot' . $this->settings['upload_url'] . $key;
+    $dest = __DIR__ . '/../webroot' . $this->settings['upload_url'] . $folder . $key;
     $url = "";
+      \d('a(0)',$file);
+      \d('a(1)',$dest);
 
     if(copy($file['tmp_name'],$dest)){
-      $filepath = $this->settings['upload_url'] . $key;
+            \d('a(ok)',$dest);
+
+      $filepath = $this->settings['upload_url'] . $folder . $key;
       if(!empty($this->settings['upload_local'])){
         $filepath = $key;
       }
@@ -295,13 +302,15 @@ class AppController extends Controller
 
     if ($thumb) {
       $thumb_new_name = 'thumb_' . $key;
-      $dest = __DIR__ . '/../webroot/files/uploads/' . $thumb_new_name;
+      $dest =__DIR__ . '/../webroot' . $this->settings['upload_url'] . $folder . $thumb_new_name;
       //Creamos thumbnail
       $this->ResizeImage->thumbnail($file['tmp_name'], $thumb_new_name, $size);
       if(!copy($file['tmp_name'],$dest)){
         CakeLog::write('error','Error al generar thumbnail:'.$dest);
       }
     }
+
+    \d('a(2)',$filepath);
 
     return $filepath;
   }

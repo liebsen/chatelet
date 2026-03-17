@@ -2043,7 +2043,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		);
 
 		$navs = array(
-			'Emails' => array(
+			'Plantillas' => array(
 				'id' => 'emails',
 				'icon' 		=> 'gi gi-envelope',
 				'url'		=> \site_url().'/admin/newsletters',
