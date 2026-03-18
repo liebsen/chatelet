@@ -26,12 +26,21 @@
 
   <section id="formulario">
     <div class="wrapper">
+<?php if(empty($sales)): ?>
       <div class="d-flex justify-content-between align-items-center gap-1 w-100 p-4">
         <h3 class="card-title mb-0">
+          <i class="fa fa-shopping-bag mr-1"></i> No hay nada por aquí
+        </h3>
+      </div>
+      <div class="d-flex justify-content-start align-items-center gap-1 flex-start p-4 w-100">
+        <p>No registras compras hasta la fecha. <a href="/Shop"><i class="gi gi-shopping_bag"></i> Comprar ahora</a>
+      </div>
+<?php else: ?>
+      <div class="d-flex justify-content-between align-items-center gap-1 w-100 p-4">
+        <h3 class="card-title mb-0 w-100">
           <i class="fa fa-shopping-bag mr-1"></i> Mis compras
         </h3>
-      <?php if(empty($sales) == false) : ?>
-        <div class="form-group">
+        <div class="form-group" style="min-width: 10rem;">
           <select class="form-control btn-filter-calendar" name="filter[Type]">
             <option value="day" selected>Hoy</option>
             <option value="month">Último mes</option>
@@ -39,10 +48,11 @@
             <option value="start">Siempre</option>
           </select>
         </div>
-      <?php endif ?>
-        <!--span class="btn btn-chatelet dark btn-filter-calendar capitalize">
-          <i class="fa fa-calendar mr-1"></i> Último mes</span-->
       </div>
+      <div class="d-flex justify-content-start align-items-center gap-1 flex-start p-4 w-100">
+        <p class="compras-size-message"></p>
+      </div>
+
       <div class="row"> 
         <?php if(empty($sales)) : ?>
           <p class="is-flex-center p-5 text-muted min-h-12">No registras compras hasta ahora. &nbsp;<a href="/Shop" class="text-link">Hacer mi primera compra</a></p>
@@ -134,6 +144,7 @@
         </div>
         <?php endforeach ?>
       </div>
+<?php endif ?>
     </div>
   </section>
 

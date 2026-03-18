@@ -2,7 +2,8 @@ $(document).ready(function() {
 	var mis_compras = (period, assureContent) => {
 		let days = 1
 		let size = 0 
-
+		const label = $(`option[value="${period}"]`).text();
+		
 		if(period == 'month') {
 			days = 30
 		}
@@ -25,6 +26,15 @@ $(document).ready(function() {
 			}
 		})
 
+		setTimeout(() => {
+			if(!size) {
+				$('.compras-size-message').html(`No registras compras para el periodo ${label}. <a href="javascript:void(0)" class="compras-all">Ver el historial completo</a>`)
+			} else {
+				$('.compras-size-message').html(`Registras ${size} compra${size > 1 ? 's' : ''} en el periodo ${label}`)
+			}
+			$('.btn-filter-calendar').val(period)
+		}, 100)
+
 		if($('.history-items').length && assureContent && size == 0) {
 			return $('.btn-filter-calendar').click()
 		}
@@ -34,6 +44,11 @@ $(document).ready(function() {
 			$('.btn-filter-calendar span:first').append(` (${len})`)			
 		}, 100)
 	}
+
+	$(document).on('click', '.compras-all', function(e) {
+		mis_compras('start')
+	})
+
 
 	let clock = 0
 
