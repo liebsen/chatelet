@@ -74,7 +74,6 @@ class NewsletterComponent extends Component {
     $newsletter = array();
     $newsletter_products = array();
     try {
-
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
 
@@ -244,7 +243,7 @@ class NewsletterComponent extends Component {
               'conditions' => array( 'Product.id = NewsletterProduct.product_id' )
             ),
           ),
-          'fields' => array('NewsletterProduct.*, Product.*'),
+          'fields' => array('Product.*'),
           'conditions' => array( 'NewsletterProduct.newsletter_id' => $id),
           // 'order' => array( 'Newsletter.id DESC' )
         ));
@@ -258,7 +257,7 @@ class NewsletterComponent extends Component {
               'conditions' => array( 'User.id = NewsletterUser.user_id' )
             ),
           ),
-          'fields' => array('NewsletterUser.*, User.name, User.surname, User.city, User.province, User.birthday, User.created'),
+          'fields' => array('User.id, User.name, User.surname, User.city, User.province, User.birthday, User.created'),
           'conditions' => array( 'NewsletterUser.newsletter_id' => $id),
           // 'order' => array( 'Newsletter.id DESC' )
         ));

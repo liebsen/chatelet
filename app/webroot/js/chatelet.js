@@ -296,16 +296,14 @@ function onWarningAlert(title, text, duration, group){
 function loadMoreSearch(p) {
   searchPage = p
   $('.search-more a').text('Cargando...')
-  apiSearch(localStorage.getItem('lastsearch'))
+  searchProds(localStorage.getItem('lastsearch'))
 }
 
-function apiSearch(q) {    
+function searchProds(q) {    
   $.ajax({
     type: "POST",
-    url: "/shop/api_search/",
-    data: JSON.stringify({q: q, p: searchPage, s: searchPageSize}),
-    contentType: "application/json; charset=utf-8",
-    dataType: "json",
+    url: "/api/search_products",
+    data: {q: q, p: searchPage, s: searchPageSize},
     success: function (data) {
       let str = ''
 
@@ -595,7 +593,7 @@ $(document).ready(function() {
     document.querySelector('.input-search').classList.add('searching')
     searchInt = setTimeout(() => {
       localStorage.setItem('lastsearch', q)
-      apiSearch(q)
+      searchProds(q)
     }, 500)        
   })
 

@@ -13,49 +13,58 @@ $(document).ready(function() {
     $('.minsale-value').text('$'+ (value * 100))
   })
 
-  $('#products-filter').keyup(function(e){
-    clearTimeout(clock)
-    const value = $(e.target).val().toUpperCase()
-    clock = setTimeout(() => {
-      $('.product-item').each((j,i) => {
-        if(!$(i).hasClass('is-enabled')){
-          if($(i).text().toUpperCase().includes(value)) {
-            $(i).removeClass('hidden')
-          } else {
-            $(i).addClass('hidden')
-          }
-        }
-      })
-    }, 500)
+  let interval = 0
+  $('#products-filter').keyup(e => {
+    let q = $(e.target).val().trim()
+    if (q.length < 3) {
+      $('.search-results').empty()
+      return false
+    }
+    $(e.target).addClass('searching')
+    clearInterval(interval)
+    interval = setTimeout(() => {
+      searchProds(q)
+    }, 500)        
+  })
+
+  $('#users-filter').keyup(e => {
+    let q = $(e.target).val().trim()
+    if (q.length < 3) {
+      $('.search-results').empty()
+      return false
+    }
+    $(e.target).addClass('searching')
+    clearInterval(interval)
+    interval = setTimeout(() => {
+      searchUsers(q)
+    }, 500)        
   })
 })
 
-function toggleOption(e, type){
-  let data = JSON.parse(e.getAttribute('data-json'))
-  let ep = $(e).hasClass('is-enabled') ? 'remove' : 'add'
-  data.type = type
-  data.source = 'newsletter'
-  data.model = 'NewsletterSchedule'
-  data.rel_id = e.getAttribute('data-newsletter')
-  $.post('/admin/relation_' + ep, $.param(data))
+$(document).on('click', '.product-item, .user-item', function(e){
+
+  const target = $(e.target)
+  const data = target.data()
+  const action = target.hasClass('is-enabled') ? 'remove' : 'add'
+
+  $.post('/admin/relation_' + action, data)
     .success(function(res) {
-      let result = JSON.parse(res)
-      if (result.success) {
-        console.log('ok')
-        /*$.growl.notice({
-          title: 'Exito',
-          message: 'Se actualizó el cupón exitosamente'
-        });*/
-        $(e).removeClass('is-enabled')
-        if(ep == 'add'){
-          $(e).addClass('is-enabled')  
+      if (res.success) {
+        $.growl.notice({
+          title: action == 'add' ? 'Asociación exitosa' : 'Eliminación exitosa',
+          message: action == 'add' ? 'Se asoció el producto exitosamente' : 'Se eliminó el producto exitosamente',
+        });
+        target.removeClass('is-enabled')
+        if(action == 'add'){
+          target.addClass('is-enabled')  
         }
       }
     })
     .fail(function() {
       $.growl.error({
-        title: 'Ocurrio un error al agregar el producto al email',
+        title: 'Ocurrio un error al agregar el producto al Newsletter',
         message: 'Por favor, intente nuevamente'
       });
-    });           
-}
+    });
+})
+

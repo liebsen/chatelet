@@ -49,6 +49,84 @@ function layerClose() {
   $('.layer').removeClass('active')
 }
 
+function setRelation(method, data) { 
+  $.post('/admin/relation_' + method, data)
+  .success(function(res) {
+    if (res.success) {
+      $.growl.notice({
+        title: 'Exito',
+        message: 'Se estableció la relación exitosamente'
+      });
+      $(e).removeClass('is-enabled')
+      if(method == 'add'){
+        $(e).addClass('is-enabled')  
+      }
+    }
+  })
+  .fail(function() {
+    $.growl.error({
+      title: 'Error',
+      message: `Ocurrió un error al establecer la relación en ${data.model}. Por favor, intente nuevamente`
+    });
+  });    
+}
+function searchProds(q) { 
+  console.log('searchProds(q)', q)
+  $.ajax({
+    type: "POST",
+    url: "/api/search_products",
+    data: {
+      q: q, 
+      p: 0, 
+      s: 10
+    },
+    success: function (data) {
+      let str = ''
+      $('.search-more').html('')
+      $.each(data.results, function(key, item) {
+        $('.products-container').append('<span class="label product-item is-clickable" data-rel_id="'+item.rel_id+'" data-id="'+item.id+'" data-type="'+item.type+'" data-source="'+item.source+'" data-model="'+item.model+'">'+item.name+'</span>');
+      })
+    },
+    error: function (errormessage) {
+      console.log(errormessage)
+      //oPrnt.find("ul.result").html('<li><b>No Results</b></li>');
+    }
+  }).then(() => {
+    setTimeout(() => {
+      $('#products-filter').removeClass('searching')
+    }, 100)
+  })    
+}
+
+function searchUsers(q) { 
+  console.log('searchUsers(q)', q)
+  $.ajax({
+    type: "POST",
+    url: "/admin/search_users",
+    data: {
+      q: q, 
+      p: 0, 
+      s: 10
+    },
+    success: function (data) {
+      let str = ''
+      $('.search-more').html('')
+      $.each(data.results, function(key, item) {
+        $('.users-container').append('<span class="label user-item is-clickable" data-rel_id="'+item.rel_id+'" data-id="'+item.id+'" data-type="'+item.type+'" data-source="'+item.source+'" data-model="'+item.model+'">'+item.name+'</span>');
+      })
+    },
+    error: function (errormessage) {
+      console.log(errormessage)
+      //oPrnt.find("ul.result").html('<li><b>No Results</b></li>');
+    }
+  }).then(() => {
+    setTimeout(() => {
+      $('#products-filter').removeClass('searching')
+    }, 100)
+  })    
+}
+
+
 $(function () {
 
   $('#flashMessage').each(function(i, flash) {

@@ -72,7 +72,7 @@
         <div class="controls">
           <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
         </div>
-        <div class="controls products-container">
+        <div class="controls tags-container products-container">
 <?php foreach($newsletter_products as $product): ?>
     <span 
     	class="label product-item is-clickable is-enabled" 

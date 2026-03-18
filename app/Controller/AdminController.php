@@ -2463,6 +2463,45 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     }
 	}
 
+	public function search_users() {
+    $this->autoRender = false;
+    $this->RequestHandler->respondAs('application/json');
+
+    $this->loadModel('User');
+
+    $q = $this->request->data['q'];
+    $p = $this->request->data['p'] ? intval($this->request->data['p']) : 0;
+    $s = $this->request->data['s'] ? intval($this->request->data['s']) : 10;
+    //$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
+    $data = $this->User->find('all',[
+      'conditions' => [
+        'or' => [
+          'Product.name LIKE' => "%$q%",
+          'Product.surname LIKE' => "%$q%",
+          'Product.telephone' => "$q",
+          'Product.province' => "$q",
+          'Product.city' => "$q",
+        ],
+        'id > ' => 1
+      ],
+      'order' => ['User.modified DESC'],
+      'limit' => $s,
+      'offset' => $s * $p
+    ]);
+
+    $results = [];
+
+    foreach($data as $item) {
+      $row = $item['User'];
+      $results[]= $row;
+    }
+
+    return json_encode(array(
+      'results' => $results,
+      //'query' => $query
+    ));
+	}
+
 	public function relation_remove() {
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');

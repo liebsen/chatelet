@@ -118,10 +118,10 @@
   line-height: 1;
   text-transform: uppercase;
   font-weight: 800;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 .growl .growl-message {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 300;
   text-transform: uppercase;
   line-height: 1.25; 

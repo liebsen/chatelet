@@ -3285,6 +3285,19 @@ a.thumbnail-borderless,
     width: 100%;
 }
 
+.tags-container {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #e7e7e7;
+    background-color: lightgreen;
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    grid-gap: 0.5rem;
+}
+
 /* .controls {
     display: flex;
     justify-content: center;

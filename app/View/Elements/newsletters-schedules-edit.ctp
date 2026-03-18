@@ -3,6 +3,7 @@
 	echo $this->Html->script('newsletters-schedules-edit.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('bootstrap-datepicker');  
+
 ?>
 
 <?php echo $this->Form->create(null, array(
@@ -71,8 +72,6 @@
             <input type="text" id="maxDate" name="filter[date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_max ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
           </div>
         </div>
-
-
         <h4 class="sub-header">Cuenta</h4>
         <div class="controls">
           <label class="control-label" for="myRange2">Día de nacimiento (Desde / Hasta)</label>
@@ -81,8 +80,6 @@
             <input type="text" id="maxDob" name="filter[dob_max]" class="form-control datepicker" data-format="dd/mm" data-name="maxdob-value" placeholder="Día de nacimiento max" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->dob_max ?? date('d/m'), '%d/%m')?>"/>
           </div>
         </div>
-
-
       </div>  
     </div>
     <div class="col-md-6">
@@ -112,13 +109,15 @@
       <div class="controls">
         <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
       </div>      
-      <div class="controls">
+      <div class="controls tags-container products-container">
 <?php foreach($schedule_products as $product): ?>
   <span 
     class="label product-item is-clickable is-enabled" 
-    onclick="toggleOption(this, 'product')" 
-    data-coupon="<?php echo $coupon['Coupon']['id'] ?>" 
-    data-json='<?php echo json_encode($product['Product']) ?>'><?php echo $product['Product']['name']?>
+    data-rel_id="<?php echo $schedule['Newsletter']['id'] ?>" 
+    data-id="<?=$product['Product']['id']?>"
+    data-type="product"
+    data-source="newsletter"
+    data-model="NewsletterProduct"><?php echo $product['Product']['article']?> - <?php echo $product['Product']['name']?>
   </span>
 <?php endforeach ?>
       </div>
@@ -127,13 +126,15 @@
       <div class="controls">
         <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
       </div>      
-      <div class="controls">
+      <div class="controls tags-container users-container">
 <?php foreach($schedule_users as $user): ?>
   <span 
-    class="label product-item is-clickable is-enabled" 
-    onclick="toggleOption(this, 'user')" 
-    data-coupon="<?php echo $coupon['Coupon']['id'] ?>" 
-    data-json='<?php echo json_encode($user['User']) ?>'><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?>
+    class="label user-item is-clickable is-enabled" 
+    data-rel_id="<?php echo $schedule['Newsletter']['id'] ?>" 
+    data-id="<?=$user['User']['id']?>"
+    data-type="user"
+    data-source="newsletter"
+    data-model="NewsletterUser"><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?>
   </span>
 <?php endforeach ?>
       </div>
