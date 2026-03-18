@@ -4,7 +4,7 @@
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 
 <div class="block-section table-responsive">
-	<table id="logistica-datatables" class="table table-bordered table-hover">
+	<table id="example-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>

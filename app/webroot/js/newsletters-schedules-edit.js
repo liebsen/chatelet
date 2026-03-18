@@ -6,27 +6,17 @@ $(document).ready(function() {
     const selectedDate = $(event.target).val()
     const selectedName = $(event.target).data('name');
     $('.'+selectedName).text(selectedDate)
-    updateUsers({
-      rel_id: $('input[name="newsletter_id"]').val(),
-      type: 'user',
-      source: 'newsletter',
-      model: 'NewsletterUser'
-    })
+    updateUsers()
   })
 
   $('#minSale').change(function(e){
     const value = $(this).val() || 0
     $('.minsale-value').text('$'+ (value * 100))
-    updateUsers({
-      rel_id: $('input[name="newsletter_id"]').val(),
-      type: 'user',
-      source: 'newsletter',
-      model: 'NewsletterUser'
-    })
+    updateUsers()
   })
 
   let interval = 0
-  $('#product-filter').keyup(e => {
+  $('#products-filter').keyup(e => {
     let q = $(e.target).val().trim()
     if (q.length < 3) {
       $('.product-container .label:not(.is-enabled)').remove()
@@ -92,8 +82,18 @@ $(document).on('click', '.product-item, .user-item', function(e){
     });
 })
 
-function updateUsers(data){
-  console.log('updateUsers')
+function relateAll(){
+  $('.user-container > .label:not(.is-enabled)').trigger('click')
+  $('.userscount-message').hide()
+}
+
+function updateUsers(){
+  const data = {
+    rel_id: $('input[name="newsletter_id"]').val(),
+    type: 'user',
+    source: 'newsletter',
+    model: 'NewsletterUser'
+  }  
   $.ajax({
     type: "POST",
     url: "/admin/newsletters_users_reach",
@@ -104,11 +104,36 @@ function updateUsers(data){
     },
     success: function (res) {
       let str = ''
+      let ids = []
+      let filter = []
       //$('.search-more').html('')
-      $('.users-container label:not(.is-enabled)').remove()
-      $.each(res.results, function(key, item) {
-        $('.users-container').append('<span class="label user-item is-clickable" data-rel_id="'+data.rel_id+'" data-id="'+item.id+'" data-type="'+data.type+'" data-source="'+data.source+'" data-model="'+data.model+'">'+item.email+'</span>');
+      $('.user-container > .label:not(.is-enabled)').remove()
+      $('.user-container > .label').each(function(key, item) {
+        const id = $(item).data('id')
+        ids.push(id)
       })
+      if(res.results.length) {
+        $.each(res.results, function(key, item) {
+          const id = parseInt(item.id)
+          if ($.inArray(id, ids) === -1) {
+            filter.push(item)
+          }
+        })
+      }
+      if(filter.length){
+        $('.usercount-new').text(filter.length)
+        $('.userscount-message').show()
+        $.each(res.results, function(key, item) {
+          $('.user-container').append('<span class="label user-item text-lowercase is-clickable" data-rel_id="'+data.rel_id+'" data-id="'+item.id+'" data-type="'+data.type+'" data-source="'+data.source+'" data-model="'+data.model+'">'+item.email+'</span>');
+        })
+      } else {
+        $('.userscount-message').hide()
+        $.growl.notice({
+          title: 'Atención',
+          message: 'No se encontraron cuentas para este filtro',
+          queue: true,
+        });        
+      }
     },
     error: function (errormessage) {
       console.log(errormessage)

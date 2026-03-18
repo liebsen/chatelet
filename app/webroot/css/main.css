@@ -3287,7 +3287,7 @@ a.thumbnail-borderless,
     padding: 1rem;
     border: 1px solid #e7e7e7;
     background-color: lightgreen;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;

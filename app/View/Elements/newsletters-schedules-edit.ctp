@@ -48,7 +48,7 @@
       <div class="control-group">
         <label class="control-label" for="title">Programar fecha/hora</label>
         <div class="controls d-flex flex-center gap-05">
-          <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('Y/m/d'), '%Y/%m/%d')?>"/>
+          <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
           <select class="form-control" name="data[schedule_hour]">
           <?php for($i=0; $i < 24; $i++): ?>
           	<option value="<?=$i?>"><?=$i?>hs</option>
@@ -58,29 +58,44 @@
         <small>Es el título que verán las clientas en su dispositivo</small>
       </div>
 
-      <div class="control-group w-100">
-        <h4 class="sub-header">Historial de compras</h4>
-        <div class="controls">
-          <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
-          <div class="controls d-flex flex-center gap-05">
-            <input type="text" id="minDate" name="filter[date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_min ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
-            <input type="text" id="maxDate" name="filter[date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_max ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
-          </div>
+      <h4 class="sub-header">Historial de compras</h4>
+      <div class="control-group">
+        <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
+        <div class="controls d-flex flex-center gap-05">
+          <input type="text" id="minDate" name="filter[date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_min ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
+          <input type="text" id="maxDate" name="filter[date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_max ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
         </div>
-        <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
-        <div class="controls">
-          <label class="control-label" for="minSale">Mínimo de compra</label>
-          <input type="range" id="minSale" step="10" min="10" max="4000" value="10">
-        </div>
+      </div>
+      <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
+      <div class="controls-group">
+        <label class="control-label" for="minSale">Mínimo de compra</label>
+        <input type="range" id="minSale" step="10" min="10" max="4000" value="10">
+      </div>
 
-        <h4 class="sub-header">Cuenta</h4>
-        <div class="controls">
-          <label class="control-label" for="myRange2">Día de nacimiento (Desde / Hasta)</label>
-          <div class="controls d-flex flex-center gap-05">
-            <input type="text" id="minDob" name="filter[dob_min]" class="form-control datepicker" data-format="dd/mm" data-name="mindob-value" placeholder="Día de nacimiento mínimo" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->dob_min ?? date('d/m'), '%d/%m')?>"/>
-            <input type="text" id="maxDob" name="filter[dob_max]" class="form-control datepicker" data-format="dd/mm" data-name="maxdob-value" placeholder="Día de nacimiento max" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->dob_max ?? date('d/m'), '%d/%m')?>"/>
-          </div>
+      <h4 class="sub-header">Cuenta</h4>
+      <div class="control-group">
+        <label class="control-label" for="myRange2">Día de nacimiento (Desde / Hasta)</label>
+        <div class="controls d-flex flex-center gap-05">
+          <input type="text" id="minDob" name="filter[dob_min]" class="form-control datepicker" data-format="dd/mm" data-name="mindob-value" placeholder="Día de nacimiento mínimo" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->dob_min ?? date('d/m'), '%d/%m')?>"/>
+          <input type="text" id="maxDob" name="filter[dob_max]" class="form-control datepicker" data-format="dd/mm" data-name="maxdob-value" placeholder="Día de nacimiento max" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->dob_max ?? date('d/m'), '%d/%m')?>"/>
         </div>
+      </div>
+      <h4 class="sub-header">Cuentas selecionadas</h4>
+      <p>Selecciona las cuentas que deseas asignar a este envío</p>
+      <div class="controls">
+        <input type="text" id="user-filter" class="form-control" placeholder="Buscar clienta..."/>
+      </div>      
+      <div class="controls tags-container user-container">
+<?php foreach($schedule_users as $user): ?>
+  <span 
+    class="label user-item is-clickable text-lowercase is-enabled" 
+    data-rel_id="<?php echo $schedule['Newsletter']['id'] ?>" 
+    data-id="<?=$user['User']['id']?>"
+    data-type="user"
+    data-source="newsletter"
+    data-model="NewsletterUser"><?php echo $user['User']['email']?>
+  </span>
+<?php endforeach ?>
       </div>  
     </div>
     <div class="col-md-6">
@@ -100,47 +115,27 @@
           <td><span class="minsale-value"><?= $schedule['NewsletterSchedule']['filter']->sale_min?></span></td>
         </tr>
         <tr>
-          <th>Clientes seleccionados</th>
-          <td><span class="userscount-value"><?= count($schedule_users)?></span></td>
+          <th>Productos seleccionados</th>
+          <td>
+            <span class="userscount-value">
+              <?= count($schedule_products)?>
+            </span> 
+            <a href="javascript:void(0)" onclick="$('.prod-list').toggle()">Mostrar</a>
+            <ul class="prod-list d-none">
+<?php foreach($schedule_products as $product): ?>
+        <li><?php echo $product['Product']['name']?> (<?php echo $product['Product']['article']?>)</li>
+<?php endforeach ?>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>Cuentas seleccionados</th>
+          <td>
+            <span class="userscount-value"><?= count($schedule_users)?></span>
+            <a class="userscount-message d-none" href="javascript:void(0)" onclick="relateAll()">Agregar <span class="usercount-new">0</span></a>
+          </td>
         </tr>
       </table>
-      <h4 class="sub-header">Clientas selecionadas</h4>
-      <p>Selecciona las clientas que deseas asignar a este envío</p>
-      <div class="controls">
-        <input type="text" id="user-filter" class="form-control" placeholder="Buscar clienta..."/>
-      </div>      
-      <div class="controls tags-container user-container">
-<?php foreach($schedule_users as $user): ?>
-  <span 
-    class="label user-item is-clickable text-lowercase is-enabled" 
-    data-rel_id="<?php echo $schedule['Newsletter']['id'] ?>" 
-    data-id="<?=$user['User']['id']?>"
-    data-type="user"
-    data-source="newsletter"
-    data-model="NewsletterUser"><?php echo $user['User']['email']?>
-  </span>
-<?php endforeach ?>
-      </div>
-
-      <h4 class="sub-header">Catalogo seleccionado</h4>
-      <p>Selecciona los productos que deseas asociar con este envío.</p>
-
-      <div class="controls">
-        <input type="text" id="product-filter" class="form-control" placeholder="Buscar producto..."/>
-      </div>      
-      <div class="controls tags-container product-container">
-<?php foreach($schedule_products as $product): ?>
-  <span 
-    class="label product-item is-clickable is-enabled" 
-    data-rel_id="<?php echo $schedule['Newsletter']['id'] ?>" 
-    data-id="<?=$product['Product']['id']?>"
-    data-type="product"
-    data-source="newsletter"
-    data-model="NewsletterProduct"><?php echo $product['Product']['article']?> - <?php echo $product['Product']['name']?>
-  </span>
-<?php endforeach ?>
-      </div>
-
     </div>
   </div>
   <div class="form-actions">

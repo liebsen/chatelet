@@ -56,7 +56,8 @@ function setRelation(action, data, target) {
       if (res.success) {
         $.growl.notice({
           title: 'Exito',
-          message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`
+          message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`,
+          queue: false,
         });
         if(action=='add'){
           target.addClass('is-enabled')
@@ -68,7 +69,8 @@ function setRelation(action, data, target) {
     .fail(function() {
       $.growl.error({
         title: 'Error',
-        message: `Ocurrió un error al establecer la relación en ${data.model}. Por favor, intente nuevamente`
+        message: `Ocurrió un error al establecer la relación en ${data.model}. Por favor, intente nuevamente`,
+        queue: false,
       });
     });    
 }
@@ -146,8 +148,9 @@ $(function () {
   if (typeof $.fn.datepicker != 'undefined'){ 
     $('.datepicker').each(function(i,e){
       if($(e).is('input') == false) return
+      const format = $(e).data('format') || 'dd/mm/yyyy'
       $(e).datepicker({
-        format: $(e).data('format') || 'yyyy/mm/dd',
+        format: format,
         language: 'es'
       });
     })
