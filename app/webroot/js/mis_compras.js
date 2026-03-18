@@ -33,7 +33,8 @@ $(document).ready(function() {
 			} else {
 				$('.compras-size-message').html(`Registras ${size} compra${size > 1 ? 's' : ''} en el periodo ${label}`)
 			}
-		}, 500);
+			$('.btn-filter-calendar').val(period)
+		}, 100);
 
 		if($('.history-items').length && assureContent && size == 0) {
 			return $('.btn-filter-calendar').click()
