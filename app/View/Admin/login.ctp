@@ -13,7 +13,6 @@ echo $this->Session->flash();
         <meta name="description" content="<?php echo $template['description'] ?>">
         <meta name="author" content="<?php echo $template['author'] ?>">
         <meta name="robots" content="noindex, nofollow">
-
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
 
         <!-- Icons -->
@@ -120,6 +119,9 @@ echo $this->Session->flash();
                                     <div class="input-group p-0">
                                         <span class="input-group-addon"><i class="fa fa-asterisk fa-fw"></i></span>
                                         <input type="password" id="login-password" name="data[User][password]" class="form-control" placeholder="Tu contraseña" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <a href="/shop/recuperar_acceso">Olvidé mi contraseña</a>
                                     </div>
                                 </div>
                             </div>
