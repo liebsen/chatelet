@@ -1424,6 +1424,7 @@ select.form-control{
 
 .card-body {
   /*flex: 1 1 auto;*/
+  background-color: #f8f8f8;
   padding: 1rem;
 }
 

@@ -51,7 +51,7 @@
             <textarea name="data[Contact][message]" class="form-control" placeholder="Escribe tu consulta aquí.." rows="4" required></textarea>
           </div>
         </div>
-        <div class="flex-col desktop">
+        <div class="flex-col desktop animation-fadeIn animation-both delay3">
           <div class="card p-0">
             <div class="card-body is-bordered">
               <h3><i class="gi gi-headset mr-1"></i> Soporte Chatelet</h3>
