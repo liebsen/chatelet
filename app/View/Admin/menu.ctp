@@ -1,12 +1,12 @@
 <?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
-<?php echo $this->element('admin-menu'); ?>
 <?php echo $this->Html->css('draggable-table', array('inline' => false));?>
 <?php echo $this->Html->script('draggable-table', array('inline' => false));?>
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
+<?php echo $this->element('admin-menu'); ?>
 <div class="block">
 	<div class="tab-content">
-	<table id="menu-datatables" class="table table-striped table-bordered table-hover print-friendly draggable-table" data-url="/admin/ordernum/banner">
+	<table id="example-datatables" class="table table-striped table-bordered table-hover print-friendly draggable-table" data-url="/admin/ordernum/banner">
 		<thead>
 			<tr>
 				<th class="hidden-phone hidden-tablet">&nbsp;</th>

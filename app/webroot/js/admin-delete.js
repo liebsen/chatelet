@@ -24,13 +24,13 @@ $(document).ready(function() {
     }       
   });
   $('#example-datatables2').DataTable();
-  $('#usuarios-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 10 ] } ] , "language": {"url": "/json/datatables-locale-es.js"}});
-  $('#sucursales-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "/json/datatables-locale-es.js"}});
+  $('#usuarios-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 10 ] } ] , "language": {"url": "/json/datatables-locale-es.json"}});
+  $('#sucursales-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "/json/datatables-locale-es.json"}});
 
   $('#categorias-datatables').DataTable({
     "ordering": false,
     "language": {
-      "url": "/json/datatables-locale-es.js"
+      "url": "/json/datatables-locale-es.json"
     }
   });
 
@@ -38,28 +38,28 @@ $(document).ready(function() {
     "ordering": false,
     "stateSave": true,
     "language": {
-      "url": "/json/datatables-locale-es.js"
+      "url": "/json/datatables-locale-es.json"
     }
   });
 
   $('#banners-datatables').DataTable({
     "ordering": false,
     "language": {
-      "url": "/json/datatables-locale-es.js"
+      "url": "/json/datatables-locale-es.json"
     }
   });
 
   $('#searches-datatables').DataTable({
     "ordering": false,
     "language": {
-      "url": "/json/datatables-locale-es.js"
+      "url": "/json/datatables-locale-es.json"
     }
   });
 
   /* $('#example-datatables').dataTable({"aoColumnDefs": [ 
     { "bSortable": false, "aTargets": [ 7 ] } 
-  ] , "language": {"url": "/json/datatables-locale-es.js"}}); */
-  $('#contacto-datatables').dataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "/json/datatables-locale-es.js"}});
+  ] , "language": {"url": "/json/datatables-locale-es.json"}}); */
+  $('#contacto-datatables').dataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "/json/datatables-locale-es.json"}});
   
   /*new $.fn.dataTable.Responsive($('#example-datatables'), {
     responsive: true,
