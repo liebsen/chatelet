@@ -24,13 +24,13 @@ $(document).ready(function() {
     }       
   });
   $('#example-datatables2').DataTable();
-  $('#usuarios-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 10 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
-  $('#sucursales-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
+  $('#usuarios-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 10 ] } ] , "language": {"url": "/json/datatables-locale-es.js"}});
+  $('#sucursales-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "/json/datatables-locale-es.js"}});
 
   $('#categorias-datatables').DataTable({
     "ordering": false,
     "language": {
-      "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      "url": "/json/datatables-locale-es.js"
     }
   });
 
@@ -38,28 +38,28 @@ $(document).ready(function() {
     "ordering": false,
     "stateSave": true,
     "language": {
-      "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      "url": "/json/datatables-locale-es.js"
     }
   });
 
   $('#banners-datatables').DataTable({
     "ordering": false,
     "language": {
-      "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      "url": "/json/datatables-locale-es.js"
     }
   });
 
   $('#searches-datatables').DataTable({
     "ordering": false,
     "language": {
-      "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      "url": "/json/datatables-locale-es.js"
     }
   });
 
   /* $('#example-datatables').dataTable({"aoColumnDefs": [ 
     { "bSortable": false, "aTargets": [ 7 ] } 
-  ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}}); */
-  $('#contacto-datatables').dataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}});
+  ] , "language": {"url": "/json/datatables-locale-es.js"}}); */
+  $('#contacto-datatables').dataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "/json/datatables-locale-es.js"}});
   
   /*new $.fn.dataTable.Responsive($('#example-datatables'), {
     responsive: true,

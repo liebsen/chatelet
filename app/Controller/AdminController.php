@@ -2063,7 +2063,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			}
 		}*/
 		//CakeLog::write('debug','emails_vars:'.json_encode($emails_vars));
-		CakeLog::write('debug','controlComponent:'.json_encode($controlComponent));
+		//CakeLog::write('debug','controlComponent:'.json_encode($controlComponent));
 		//CakeLog::write('debug','params:'.json_encode($this->params['pass']));
 
 		if(method_exists($this->Newsletter, $controlComponent)) {
@@ -2072,7 +2072,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 		if($action == 'edit'){
       $navs[($pane == 'emails' ? (empty($id) ? 'Nueva' : 'Editar') . ' Plantilla ' : 'Programar envío ')] = array(
-        'icon'    => 'gi gi-edit',
+        'icon'    => 'gi gi-'.($pane == 'emails' ? 'envelope' : 'clock'),
         'url'   => \site_url().'/admin/newsletters/'.$pane.'/edit/'.$$id,
         'active'  => '/admin/newsletters/'.$pane.'/edit/',
         'enabled' => 1
