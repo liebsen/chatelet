@@ -57,29 +57,6 @@
         </div>
         <small>Es el título que verán las clientas en su dispositivo</small>
       </div>
-
-      <h4 class="sub-header">Historial de compras</h4>
-      <div class="control-group">
-        <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
-        <div class="controls d-flex flex-center gap-05">
-          <input type="text" id="minDate" name="filter[date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_min ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
-          <input type="text" id="maxDate" name="filter[date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_max ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
-        </div>
-      </div>
-      <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
-      <div class="controls-group">
-        <label class="control-label" for="minSale">Mínimo de compra</label>
-        <input type="range" id="minSale" step="10" min="10" max="4000" value="10">
-      </div>
-
-      <h4 class="sub-header">Cuenta</h4>
-      <div class="control-group">
-        <label class="control-label" for="myRange2">Día de nacimiento (Desde / Hasta)</label>
-        <div class="controls d-flex flex-center gap-05">
-          <input type="text" id="minDob" name="filter[dob_min]" class="form-control datepicker" data-format="dd/mm" data-name="mindob-value" placeholder="Día de nacimiento mínimo" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->dob_min ?? date('d/m'), '%d/%m')?>"/>
-          <input type="text" id="maxDob" name="filter[dob_max]" class="form-control datepicker" data-format="dd/mm" data-name="maxdob-value" placeholder="Día de nacimiento max" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->dob_max ?? date('d/m'), '%d/%m')?>"/>
-        </div>
-      </div>
       <h4 class="sub-header">Cuentas selecionadas</h4>
       <p>Selecciona las cuentas que deseas asignar a este envío</p>
       <div class="controls">
@@ -97,25 +74,27 @@
   </span>
 <?php endforeach ?>
       </div>  
+
+
     </div>
     <div class="col-md-6">
     	<h4 class="sub-header">Configuración de envío</h4>
     	<p>Configura el alcance para este Envío</p>
       <table class="table table-striped text-small">
         <tr>
-          <th>Fecha / hora de envío</th>
+          <th><small>Fecha / hora de envío</small></th>
           <td><span class="date-value"><?= $schedule['NewsletterSchedule']['schedule_date']?></span> - <span class="hour-value"><?= $schedule['NewsletterSchedule']['schedule_hour']?>hs</span></td>
         </tr>
         <tr>
-          <th>Periodo de evaluación</th>
+          <th><small>Periodo de evaluación</small></th>
           <td><span class="mindate-value"><?= $schedule['NewsletterSchedule']['filter']->date_min?></span> - <span class="maxdate-value"><?= $schedule['NewsletterSchedule']['filter']->date_max?></span></td>
         </tr>
         <tr>
-          <th>Mínimo de compra</th>
+          <th><small>Mínimo de compra</small></th>
           <td><span class="minsale-value"><?= $schedule['NewsletterSchedule']['filter']->sale_min?></span></td>
         </tr>
         <tr>
-          <th>Productos seleccionados</th>
+          <th><small>Productos seleccionados</small></th>
           <td>
             <span class="userscount-value">
               <?= count($schedule_products)?>
@@ -129,13 +108,37 @@
           </td>
         </tr>
         <tr>
-          <th>Cuentas seleccionados</th>
+          <th><small>Cuentas seleccionadas</small></th>
           <td>
             <span class="userscount-value"><?= count($schedule_users)?></span>
             <a class="userscount-message d-none" href="javascript:void(0)" onclick="relateAll()">Agregar <span class="usercount-new">0</span></a>
           </td>
         </tr>
       </table>
+      <h4 class="sub-header">Filtros por compra</h4>
+      <p>Establece fecha y monto para filtrar por cuenta de acuerdo al historial de compras</p>
+      <div class="control-group">
+        <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
+        <div class="controls d-flex flex-center gap-05">
+          <input type="text" id="minDate" name="filter[date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_min ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
+          <input type="text" id="maxDate" name="filter[date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_max ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
+        </div>
+      </div>
+      <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
+      <div class="controls-group">
+        <label class="control-label" for="minSale">Mínimo de compra</label>
+        <input type="range" id="minSale" step="10" min="10" max="4000" value="10">
+      </div>
+
+      <h4 class="sub-header">Filtro por fecha de nacimiento</h4>
+      <p>Establece fecha para filtrar por cuenta de acuerdo fecha de nacimiento</p>
+      <div class="control-group">
+        <label class="control-label" for="myRange2">Día de nacimiento (Desde / Hasta)</label>
+        <div class="controls d-flex flex-center gap-05">
+          <input type="text" id="minDob" name="filter[dob_min]" class="form-control datepicker" data-format="dd/mm" data-name="mindob-value" placeholder="Día de nacimiento mínimo" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->dob_min ?? date('d/m'), '%d/%m')?>"/>
+          <input type="text" id="maxDob" name="filter[dob_max]" class="form-control datepicker" data-format="dd/mm" data-name="maxdob-value" placeholder="Día de nacimiento max" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->dob_max ?? date('d/m'), '%d/%m')?>"/>
+        </div>
+      </div>
     </div>
   </div>
   <div class="form-actions">

@@ -38,9 +38,11 @@ $(document).ready(function() {
   $('#user-filter').keyup(e => {
     let q = $(e.target).val().trim()
     if (q.length < 3) {
-      $('.user-container .label:not(.is-enabled)').remove()
+      $('.user-container > .label:not(.is-enabled)').remove()
       return false
     }
+
+    const before = $('')
     $(e.target).addClass('searching')
     clearInterval(interval)
     interval = setTimeout(() => {
@@ -49,7 +51,8 @@ $(document).ready(function() {
         rel_id: $('input[name="newsletter_id"]').val(), 
         type: 'user',
         source: 'newsletter',
-        model: 'NewsletterUser'
+        model: 'NewsletterUser',
+        cb: checkUsers,
       })
     }, 500)        
   })
@@ -81,6 +84,12 @@ $(document).on('click', '.product-item, .user-item', function(e){
       });
     });
 })
+
+function checkUsers(count){
+  if(!count) return
+  $('.usercount-new').text(count)
+  $('.userscount-message').show()
+}
 
 function relateAll(){
   $('.user-container > .label:not(.is-enabled)').trigger('click')
@@ -123,7 +132,7 @@ function updateUsers(){
       if(filter.length){
         $('.usercount-new').text(filter.length)
         $('.userscount-message').show()
-        $.each(res.results, function(key, item) {
+        $.each(filter, function(key, item) {
           $('.user-container').append('<span class="label user-item text-lowercase is-clickable" data-rel_id="'+data.rel_id+'" data-id="'+item.id+'" data-type="'+data.type+'" data-source="'+data.source+'" data-model="'+data.model+'">'+item.email+'</span>');
         })
       } else {

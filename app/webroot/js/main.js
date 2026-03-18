@@ -50,14 +50,12 @@ function layerClose() {
 }
 
 function setRelation(action, data, target) { 
-  //console.log('setRelation', action, data, target)
   $.post('/admin/relation_' + action, data)
     .success(function(res) {
       if (res.success) {
         $.growl.notice({
           title: 'Exito',
           message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`,
-          queue: false,
         });
         if(action=='add'){
           target.addClass('is-enabled')
@@ -97,11 +95,30 @@ function searchRelations(data) {
     },
     success: function (res) {
       let str = ''
+      let ids = []
+      let filter = []      
       $(`#${data.type}-filter`).addClass('searching')
       $(`.${data.type}-container > .label:not(.is-enabled)`).remove()
-      $.each(res.results, function(key, item) {
-        $(`.${data.type}-container`).append(`<span class="label ${data.type}-item ${data.type == 'user' ? 'text-lowecase' : ''} is-clickable" data-rel_id="${data.rel_id}" data-id="${item.id}" data-type="${data.type}" data-source="${data.source}" data-model="${data.model}">${item[endpoints[data.type].selector]}</span>`);
+      $(`.${data.type}-container > .label`).each(function(key, item) {
+        const id = $(item).data('id')
+        ids.push(id)
       })
+      if(res.results.length) {
+        $.each(res.results, function(key, item) {
+          const id = parseInt(item.id)
+          if ($.inArray(id, ids) === -1) {
+            filter.push(item)
+          }
+        })
+      }
+      if(filter.length){
+        $.each(filter, function(key, item) {
+          $(`.${data.type}-container`).append(`<span class="label ${data.type}-item ${data.type == 'user' ? 'text-lowercase' : ''} is-clickable" data-rel_id="${data.rel_id}" data-id="${item.id}" data-type="${data.type}" data-source="${data.source}" data-model="${data.model}">${item[endpoints[data.type].selector]}</span>`);
+        })
+        if(typeof data.cb == 'function') {
+          data.cb(filter.length)
+        }
+      }
     },
     error: function (errormessage) {
       console.log(errormessage)
