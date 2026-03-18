@@ -34,7 +34,7 @@ $(document).ready(function() {
 				$('.compras-size-message').html(`Registras ${size} compra${size > 1 ? 's' : ''} en el periodo ${label}`)
 			}
 			$('.btn-filter-calendar').val(period)
-		}, 100);
+		}, 100)
 
 		if($('.history-items').length && assureContent && size == 0) {
 			return $('.btn-filter-calendar').click()
