@@ -99,12 +99,14 @@
             <span class="userscount-value">
               <?= count($schedule_products)?>
             </span> 
-            <a href="javascript:void(0)" onclick="$('.prod-list').toggle()">Mostrar</a>
-            <ul class="prod-list d-none">
-<?php foreach($schedule_products as $product): ?>
-        <li><?php echo $product['Product']['name']?> (<?php echo $product['Product']['article']?>)</li>
-<?php endforeach ?>
-            </ul>
+            <div class="prod-assist<?= count($schedule_products) ? '' : ' d-none'?>">
+              <a href="javascript:void(0)" onclick="$('.prod-list').toggle()">Mostrar</a>
+              <ul class="prod-list d-none">
+  <?php foreach($schedule_products as $product): ?>
+          <li><?php echo $product['Product']['name']?> (<?php echo $product['Product']['article']?>)</li>
+  <?php endforeach ?>
+              </ul>
+            </div>
           </td>
         </tr>
         <tr>

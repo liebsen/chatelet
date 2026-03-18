@@ -94,6 +94,11 @@ function checkUsers(count){
 function relateAll(){
   $('.user-container > .label:not(.is-enabled)').trigger('click')
   $('.userscount-message').hide()
+  setTimeout(function(){
+    const count = parseInt($('.userscount-value').text())
+    const old_count = parseInt($('.usercount-new').text())
+    $('.userscount-value').text(count + old_count)
+  }, 3000)
 }
 
 function updateUsers(){
