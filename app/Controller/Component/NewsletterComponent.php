@@ -69,6 +69,7 @@ class NewsletterComponent extends Component {
   }
 
   public function emails_edit($id) {
+    
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
     $newsletter = array();
@@ -109,6 +110,7 @@ class NewsletterComponent extends Component {
       }
       $this->controller->set('newsletter', $newsletter);
       $this->controller->set('newsletter_products', $newsletter_products);
+
     } catch (\Exception $e) {
       echo $e->getMessage();
     }

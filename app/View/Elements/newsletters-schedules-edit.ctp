@@ -100,9 +100,27 @@
         </tr>
         <tr>
           <th>Clientes seleccionados</th>
-          <td><span class="minsale-value"><?= count($schedule_users)?></span></td>
+          <td><span class="userscount-value"><?= count($schedule_users)?></span></td>
         </tr>
       </table>
+      <h4 class="sub-header">Clientas selecionadas</h4>
+      <p>Selecciona las clientas que deseas asignar a este envío</p>
+      <div class="controls">
+        <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
+      </div>      
+      <div class="controls tags-container users-container">
+<?php foreach($schedule_users as $user): ?>
+  <span 
+    class="label user-item is-clickable is-enabled" 
+    data-rel_id="<?php echo $schedule['Newsletter']['id'] ?>" 
+    data-id="<?=$user['User']['id']?>"
+    data-type="user"
+    data-source="newsletter"
+    data-model="NewsletterUser"><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?>
+  </span>
+<?php endforeach ?>
+      </div>
+
       <h4 class="sub-header">Catalogo seleccionado</h4>
       <p>Selecciona los productos que deseas asociar con este envío.</p>
 
@@ -121,23 +139,7 @@
   </span>
 <?php endforeach ?>
       </div>
-      <h4 class="sub-header">Clientas selecionadas</h4>
-      <p>Selecciona las clientas que deseas asignar a este envío</p>
-      <div class="controls">
-        <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
-      </div>      
-      <div class="controls tags-container users-container">
-<?php foreach($schedule_users as $user): ?>
-  <span 
-    class="label user-item is-clickable is-enabled" 
-    data-rel_id="<?php echo $schedule['Newsletter']['id'] ?>" 
-    data-id="<?=$user['User']['id']?>"
-    data-type="user"
-    data-source="newsletter"
-    data-model="NewsletterUser"><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?>
-  </span>
-<?php endforeach ?>
-      </div>
+
     </div>
   </div>
   <div class="form-actions">
