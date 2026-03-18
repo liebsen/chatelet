@@ -60,6 +60,9 @@
     </div>
     <div class="col-md-6">
     	<h4 class="sub-header">Agrega productos</h4>
+<?php if(empty($newsletter['Newsletter']['id'])): ?>
+      <p>Podrás agregar productos una vez que guardes la nueva plantilla.</p>
+<?php else: ?>
     	<p>Puedes aregar productos a la plantilla, se mostrarán en un catálogo de lista con sus respectivos enlaces y precios.</p>
 			<div class="control-group">
 				<label class="control-label" for="toggle"><?php echo __('Mostrar precio'); ?></label>
@@ -68,11 +71,11 @@
 	      <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
 			</div>
       <div class="control-group w-100">
-        <label class="control-label" for="products-filter">Productos</label>
+        <label class="control-label" for="product-filter">Productos</label>
         <div class="controls">
-          <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
+          <input type="text" id="product-filter" class="form-control" placeholder="Buscar"/>
         </div>
-        <div class="controls tags-container products-container">
+        <div class="controls tags-container product-container">
 <?php foreach($newsletter_products as $product): ?>
     <span 
     	class="label product-item is-clickable is-enabled" 
@@ -84,7 +87,8 @@
     </span>
 <?php endforeach ?>
         </div>
-      </div>		
+      </div>
+<?php endif ?>
     </div>
   </div>
   <div class="form-actions">

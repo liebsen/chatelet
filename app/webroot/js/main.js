@@ -49,42 +49,56 @@ function layerClose() {
   $('.layer').removeClass('active')
 }
 
-function setRelation(method, data) { 
-  $.post('/admin/relation_' + method, data)
-  .success(function(res) {
-    if (res.success) {
-      $.growl.notice({
-        title: 'Exito',
-        message: 'Se estableció la relación exitosamente'
-      });
-      $(e).removeClass('is-enabled')
-      if(method == 'add'){
-        $(e).addClass('is-enabled')  
+function setRelation(action, data, target) { 
+  //console.log('setRelation', action, data, target)
+  $.post('/admin/relation_' + action, data)
+    .success(function(res) {
+      if (res.success) {
+        $.growl.notice({
+          title: 'Exito',
+          message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`
+        });
+        if(action=='add'){
+          target.addClass('is-enabled')
+        } else {
+          target.removeClass('is-enabled')
+        }
       }
-    }
-  })
-  .fail(function() {
-    $.growl.error({
-      title: 'Error',
-      message: `Ocurrió un error al establecer la relación en ${data.model}. Por favor, intente nuevamente`
-    });
-  });    
+    })
+    .fail(function() {
+      $.growl.error({
+        title: 'Error',
+        message: `Ocurrió un error al establecer la relación en ${data.model}. Por favor, intente nuevamente`
+      });
+    });    
 }
-function searchProds(q) { 
-  console.log('searchProds(q)', q)
+
+function searchRelations(data) { 
+  //console.log('searchRelations', data)
+  const endpoints = { 
+    user: {
+      url: '/admin/search_users',
+      selector: 'email'
+    },
+    product: {
+      url: '/api/search_products',
+      selector: 'name'
+    } 
+  }
   $.ajax({
     type: "POST",
-    url: "/api/search_products",
+    url: endpoints[data.type].url,
     data: {
-      q: q, 
+      q: data.q, 
       p: 0, 
       s: 10
     },
-    success: function (data) {
+    success: function (res) {
       let str = ''
-      $('.search-more').html('')
-      $.each(data.results, function(key, item) {
-        $('.products-container').append('<span class="label product-item is-clickable" data-rel_id="'+item.rel_id+'" data-id="'+item.id+'" data-type="'+item.type+'" data-source="'+item.source+'" data-model="'+item.model+'">'+item.name+'</span>');
+      $(`#${data.type}-filter`).addClass('searching')
+      $(`.${data.type}-container > .label:not(.is-enabled)`).remove()
+      $.each(res.results, function(key, item) {
+        $(`.${data.type}-container`).append(`<span class="label ${data.type}-item ${data.type == 'user' ? 'text-lowecase' : ''} is-clickable" data-rel_id="${data.rel_id}" data-id="${item.id}" data-type="${data.type}" data-source="${data.source}" data-model="${data.model}">${item[endpoints[data.type].selector]}</span>`);
       })
     },
     error: function (errormessage) {
@@ -93,39 +107,10 @@ function searchProds(q) {
     }
   }).then(() => {
     setTimeout(() => {
-      $('#products-filter').removeClass('searching')
+      $(`#${data.type}-filter`).removeClass('searching')
     }, 100)
   })    
 }
-
-function searchUsers(q) { 
-  console.log('searchUsers(q)', q)
-  $.ajax({
-    type: "POST",
-    url: "/admin/search_users",
-    data: {
-      q: q, 
-      p: 0, 
-      s: 10
-    },
-    success: function (data) {
-      let str = ''
-      $('.search-more').html('')
-      $.each(data.results, function(key, item) {
-        $('.users-container').append('<span class="label user-item is-clickable" data-rel_id="'+item.rel_id+'" data-id="'+item.id+'" data-type="'+item.type+'" data-source="'+item.source+'" data-model="'+item.model+'">'+item.name+'</span>');
-      })
-    },
-    error: function (errormessage) {
-      console.log(errormessage)
-      //oPrnt.find("ul.result").html('<li><b>No Results</b></li>');
-    }
-  }).then(() => {
-    setTimeout(() => {
-      $('#products-filter').removeClass('searching')
-    }, 100)
-  })    
-}
-
 
 $(function () {
 

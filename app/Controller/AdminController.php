@@ -2486,11 +2486,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $data = $this->User->find('all',[
       'conditions' => [
         'or' => [
-          'Product.name LIKE' => "%$q%",
-          'Product.surname LIKE' => "%$q%",
-          'Product.telephone' => "$q",
-          'Product.province' => "$q",
-          'Product.city' => "$q",
+          'User.name LIKE' => "%$q%",
+          'User.surname LIKE' => "%$q%",
+          'User.email' => "$q",
+          'User.telephone' => "$q",
+          'User.province' => "$q",
+          'User.city' => "$q",
         ],
         'id > ' => 1
       ],
@@ -2499,17 +2500,56 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       'offset' => $s * $p
     ]);
 
-    $results = [];
+    return json_encode(
+    	array(
+      	'results' => array_column($data, 'User'),
+	    )
+    );
+	}
 
-    foreach($data as $item) {
-      $row = $item['User'];
-      $results[]= $row;
-    }
+	public function newsletters_users_reach(){
+    $this->autoRender = false;
+    $this->RequestHandler->respondAs('application/json');
+    $this->loadModel('Sale');
 
-    return json_encode(array(
-      'results' => $results,
-      //'query' => $query
+    $min_date = $this->request->data['min_date'] ?? date("Y-m-d H:i", strtotime("last day of previous month"));
+    $max_date = $this->request->data['max_date'] ?? date("Y-m-d H:i");
+    $min_sale = $this->request->data['min_sale'] ?? 1;
+
+    $data = $this->Sale->find('all',array(
+	    'joins' => array(
+        array(
+          'table' => 'users',
+          'alias' => 'User',
+          'type' => 'LEFT',
+          'conditions' => array(
+            'User.id = Sale.user_id',
+          )
+        )
+	    ),
+      'conditions' => array(
+        // 'SUM(Sale.value) > ' => $min_sale,
+        'Sale.completed' => 1,
+        'Sale.created > ' => $min_date,
+        'Sale.created < ' => $max_date,
+      ),
+	    'fields' => array(
+	    	'SUM(Sale.value) AS Total, User.id, User.email, User.name, User.surname, User.birthday'
+	    ),
+	  	'order' => array(
+	  		'Sale.id DESC'
+	  	),
+	  	'group' => array(
+	  		"Sale.user_id HAVING Total > {$min_sale}"
+	  	),
+	  	'limit' => 1000,
     ));
+
+    return json_encode(
+    	array(
+      	'results' => array_column($data, 'User'),
+    	)
+    );		
 	}
 
 	public function relation_remove() {

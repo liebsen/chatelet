@@ -54,5 +54,5 @@ function toggleOption(e, type){
 	data.source = 'coupon'
 	data.model = 'CouponItem'
 	data.rel_id = e.getAttribute('data-coupon')
-	setRelation(action, data)
+	setRelation(action, data, e)
 }

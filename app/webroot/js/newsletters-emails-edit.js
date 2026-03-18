@@ -4,16 +4,22 @@ $(document).ready(function() {
   })
 
   let interval = 0
-  $('#products-filter').keyup(e => {
+  $('#product-filter').keyup(e => {
     let q = $(e.target).val().trim()
     if (q.length < 3) {
-      $('.search-results').empty()
+      $('.product-container .label:not(.is-enabled)').remove()
       return false
     }
     $(e.target).addClass('searching')
     clearInterval(interval)
     interval = setTimeout(() => {
-      searchProds(q)
+      searchRelations({
+        q,
+        rel_id: $('input[name="id"]').val(),
+        type: 'product',
+        source: 'newsletter',
+        model: 'NewsletterProduct'
+      })
     }, 500)        
   })
 })
@@ -24,6 +30,6 @@ $(document).on('click', '.product-item', function(e){
   const target = $(e.target)
   const data = target.data()
   const action = target.hasClass('is-enabled') ? 'remove' : 'add'
-  setRelation(action, data)
+  setRelation(action, data, target)
 })
 

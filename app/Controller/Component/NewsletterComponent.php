@@ -82,8 +82,6 @@ class NewsletterComponent extends Component {
           $data['user_id'] = $this->controller->Auth->user('id');
         }
 
-        \d('emails_edit(data)', $data);
-
         $Newsletter->save($data);
         return $this->controller->redirect(array( 'action' => 'newsletters' ));
       }
@@ -259,7 +257,7 @@ class NewsletterComponent extends Component {
               'conditions' => array( 'User.id = NewsletterUser.user_id' )
             ),
           ),
-          'fields' => array('User.id, User.name, User.surname, User.city, User.province, User.birthday, User.created'),
+          'fields' => array('User.id, User.email, User.name, User.surname, User.city, User.province, User.birthday, User.created'),
           'conditions' => array( 'NewsletterUser.newsletter_id' => $id),
           // 'order' => array( 'Newsletter.id DESC' )
         ));

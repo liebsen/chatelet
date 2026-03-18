@@ -43,20 +43,20 @@
 							<i class="fa fa-trash-o"></i>
 						</a>
 						<a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
-							data-toggle="tooltip" 
-							title="Programar envío" 
-							class="btn btn-warning" 
-							>
-							<i class="gi gi-send"></i>
-						</a>
-						<a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit', $schedule['Newsletter']['id']))?>" 
 							data-toggle="tooltip" 
 							title="Editar email" 
 							class="btn btn-success" 
 							>
 							<i class="gi gi-edit"></i>
+						</a>
+						<a 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
+							data-toggle="tooltip" 
+							title="Programar envío" 
+							class="btn btn-warning" 
+							>
+							<i class="gi gi-send"></i>
 						</a>
 					</div>
 				</td>

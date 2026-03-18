@@ -6,37 +6,61 @@ $(document).ready(function() {
     const selectedDate = $(event.target).val()
     const selectedName = $(event.target).data('name');
     $('.'+selectedName).text(selectedDate)
+    updateUsers({
+      rel_id: $('input[name="newsletter_id"]').val(),
+      type: 'user',
+      source: 'newsletter',
+      model: 'NewsletterUser'
+    })
   })
 
   $('#minSale').change(function(e){
     const value = $(this).val() || 0
     $('.minsale-value').text('$'+ (value * 100))
+    updateUsers({
+      rel_id: $('input[name="newsletter_id"]').val(),
+      type: 'user',
+      source: 'newsletter',
+      model: 'NewsletterUser'
+    })
   })
 
   let interval = 0
-  $('#products-filter').keyup(e => {
+  $('#product-filter').keyup(e => {
     let q = $(e.target).val().trim()
     if (q.length < 3) {
-      $('.search-results').empty()
+      $('.product-container .label:not(.is-enabled)').remove()
       return false
     }
     $(e.target).addClass('searching')
     clearInterval(interval)
     interval = setTimeout(() => {
-      searchProds(q)
+      searchRelations({
+        q,
+        rel_id: $('input[name="newsletter_id"]').val(),
+        type: 'product',
+        source: 'newsletter',
+        model: 'NewsletterProduct'
+      })
     }, 500)        
   })
 
-  $('#users-filter').keyup(e => {
+  $('#user-filter').keyup(e => {
     let q = $(e.target).val().trim()
     if (q.length < 3) {
-      $('.search-results').empty()
+      $('.user-container .label:not(.is-enabled)').remove()
       return false
     }
     $(e.target).addClass('searching')
     clearInterval(interval)
     interval = setTimeout(() => {
-      searchUsers(q)
+      searchRelations({
+        q,
+        rel_id: $('input[name="newsletter_id"]').val(), 
+        type: 'user',
+        source: 'newsletter',
+        model: 'NewsletterUser'
+      })
     }, 500)        
   })
 })
@@ -67,4 +91,33 @@ $(document).on('click', '.product-item, .user-item', function(e){
       });
     });
 })
+
+function updateUsers(data){
+  console.log('updateUsers')
+  $.ajax({
+    type: "POST",
+    url: "/admin/newsletters_users_reach",
+    data: {
+      minDate: $('#minDate').val(), 
+      maxDate: $('#maxDate').val(), 
+      minSale: $('#minSale').val(),
+    },
+    success: function (res) {
+      let str = ''
+      //$('.search-more').html('')
+      $('.users-container label:not(.is-enabled)').remove()
+      $.each(res.results, function(key, item) {
+        $('.users-container').append('<span class="label user-item is-clickable" data-rel_id="'+data.rel_id+'" data-id="'+item.id+'" data-type="'+data.type+'" data-source="'+data.source+'" data-model="'+data.model+'">'+item.email+'</span>');
+      })
+    },
+    error: function (errormessage) {
+      console.log(errormessage)
+      //oPrnt.find("ul.result").html('<li><b>No Results</b></li>');
+    }
+  }).then(() => {
+    setTimeout(() => {
+      $('#products-filter').removeClass('searching')
+    }, 100)
+  })   
+}
 

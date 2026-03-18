@@ -463,6 +463,8 @@ class DboSource extends DataSource {
 		}
 
 		try {
+
+			\d("query",$sql);
 			$query = $this->_connection->prepare($sql, $prepareOptions);
 			$query->setFetchMode(PDO::FETCH_LAZY);
 			if (!$query->execute($params)) {

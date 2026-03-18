@@ -15,7 +15,8 @@
   'id' => 'newsletter_schedules_edit',
 )); ?>
   <input type="hidden" name="redirect" value="/admin/newsletters/schedules"/>
-  <input type="hidden" name="id" value="<?= $schedule['Newsletter']['id'] ?? 0 ?>"/>
+  <input type="hidden" name="id" value="<?= $schedule['NewsletterSchedule']['id'] ?? 0 ?>"/>
+  <input type="hidden" name="newsletter_id" value="<?= $schedule['Newsletter']['id'] ?? 0 ?>"/>
 	<div class="row">
     <div class="col-xs-12">
       <h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4>
@@ -49,7 +50,7 @@
         <div class="controls d-flex flex-center gap-05">
           <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('Y/m/d'), '%Y/%m/%d')?>"/>
           <select class="form-control" name="data[schedule_hour]">
-          <?php for($i=0; $i < 25; $i++): ?>
+          <?php for($i=0; $i < 24; $i++): ?>
           	<option value="<?=$i?>"><?=$i?>hs</option>
           <?php endfor ?>
         	</select>
@@ -59,12 +60,6 @@
 
       <div class="control-group w-100">
         <h4 class="sub-header">Historial de compras</h4>
-        <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
-        <div class="controls">
-          <label class="control-label" for="minSale">Mínimo de compra</label>
-          <input type="range" id="minSale" step="10" min="10" max="4000" value="10">
-        </div>
-
         <div class="controls">
           <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
           <div class="controls d-flex flex-center gap-05">
@@ -72,6 +67,12 @@
             <input type="text" id="maxDate" name="filter[date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_max ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
           </div>
         </div>
+        <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
+        <div class="controls">
+          <label class="control-label" for="minSale">Mínimo de compra</label>
+          <input type="range" id="minSale" step="10" min="10" max="4000" value="10">
+        </div>
+
         <h4 class="sub-header">Cuenta</h4>
         <div class="controls">
           <label class="control-label" for="myRange2">Día de nacimiento (Desde / Hasta)</label>
@@ -106,17 +107,17 @@
       <h4 class="sub-header">Clientas selecionadas</h4>
       <p>Selecciona las clientas que deseas asignar a este envío</p>
       <div class="controls">
-        <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
+        <input type="text" id="user-filter" class="form-control" placeholder="Buscar clienta..."/>
       </div>      
-      <div class="controls tags-container users-container">
+      <div class="controls tags-container user-container">
 <?php foreach($schedule_users as $user): ?>
   <span 
-    class="label user-item is-clickable is-enabled" 
+    class="label user-item is-clickable text-lowercase is-enabled" 
     data-rel_id="<?php echo $schedule['Newsletter']['id'] ?>" 
     data-id="<?=$user['User']['id']?>"
     data-type="user"
     data-source="newsletter"
-    data-model="NewsletterUser"><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?>
+    data-model="NewsletterUser"><?php echo $user['User']['email']?>
   </span>
 <?php endforeach ?>
       </div>
@@ -125,9 +126,9 @@
       <p>Selecciona los productos que deseas asociar con este envío.</p>
 
       <div class="controls">
-        <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
+        <input type="text" id="product-filter" class="form-control" placeholder="Buscar producto..."/>
       </div>      
-      <div class="controls tags-container products-container">
+      <div class="controls tags-container product-container">
 <?php foreach($schedule_products as $product): ?>
   <span 
     class="label product-item is-clickable is-enabled" 
