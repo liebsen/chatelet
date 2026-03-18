@@ -1,4 +1,4 @@
-<section id="main">
+<section id="main" class="blog-container animation-fadeIn animation-both delay">
 	<div class="wrapper container">
 		<h2>Política de privacidad</h2>
 

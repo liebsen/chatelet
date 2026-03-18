@@ -1,4 +1,4 @@
-<section id="main">
+<section id="main" class="blog-container animation-fadeIn animation-both delay">
 	<div class="wrapper container">
 		<h2>T&eacute;rminos &amp; condiciones</h2>
 		<h4>NOTIFICACI&Oacute;N EN POL&Iacute;TICA DE ENV&Iacute;OS</h4>

@@ -38,7 +38,7 @@
 						data-url-back="<?=$this->Html->url(array('action'=>'newsletters'))?>" 
 						data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'delete'))?>" 
 						data-msg="<?=__('¿Eliminar Newsletter?')?>"                   
-						>
+					>
 						<i class="fa fa-trash-o"></i>
 					</a>
 					<a 
@@ -46,7 +46,7 @@
 						data-toggle="tooltip" 
 						title="Programar envío" 
 						class="btn btn-success" 
-						>
+					>
 						<i class="gi gi-edit"></i>
 					</a>
 					<a 
@@ -54,7 +54,7 @@
 						data-toggle="tooltip" 
 						title="Programar envío" 
 						class="btn btn-warning" 
-						>
+					>
 						<i class="gi gi-send"></i>
 					</a>
 				</td>

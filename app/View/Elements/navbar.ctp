@@ -168,7 +168,7 @@
                     </span>
                   </p>
                 <?php else: ?>
-                  <h3 class="text-muted">Tu carrito está vacío.</h3>
+                  <h5 class="text-muted">Tu carrito está vacío.</h5>
                   <p class="notification text-muted">Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></p>
                 <?php endif ?>
                 </div>

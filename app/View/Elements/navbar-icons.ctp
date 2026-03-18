@@ -65,7 +65,7 @@
                 <?php if ($this->Session->check('cart')): ?>
                   <p class="title">Tu pedido</p>
                 <?php else: ?>
-                  <h3>Tu carrito está vacío.</h3>
+                  <h6>Tu carrito está vacío.</h6>
                   <p class="notification text-muted">Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></p>
                 <?php endif ?>
                   <ol id="items">

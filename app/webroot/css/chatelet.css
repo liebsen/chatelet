@@ -64,12 +64,16 @@ html, body {
 
 .is-bordered {
 	border: 2px solid #f2f2f2;
-	border-radius: 5px;
+	border-radius: 0.75rem;
 }
 
 .is-unlifted {
 	position: relative;
 	top: 2px;
+}
+
+.blog-container {
+	padding-top: 1.5rem;
 }
 
 .layer {

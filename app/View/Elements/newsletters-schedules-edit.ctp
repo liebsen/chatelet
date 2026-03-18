@@ -43,20 +43,25 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-    	<h4 class="sub-header">Programar fecha de envío</h4>
-    	<p>Establece la fecha y/o hora del envío para este Envío</p>
+
+
+      <h4 class="sub-header">Filtros por compra</h4>
+      <p>Establece fecha y monto para filtrar por cuenta de acuerdo al historial de compras</p>
       <div class="control-group">
-        <label class="control-label" for="title">Programar fecha/hora</label>
+        <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
         <div class="controls d-flex flex-center gap-05">
-          <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
-          <select class="form-control" name="data[schedule_hour]">
-          <?php for($i=0; $i < 24; $i++): ?>
-          	<option value="<?=$i?>"><?=$i?>hs</option>
-          <?php endfor ?>
-        	</select>
+          <input type="text" id="minDate" name="filter[date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_min ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
+          <input type="text" id="maxDate" name="filter[date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_max ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
         </div>
-        <small>Es el título que verán las clientas en su dispositivo</small>
       </div>
+      <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
+      <div class="controls-group">
+        <label class="control-label" for="minSale">Mínimo de compra</label>
+        <input type="range" id="minSale" step="10" min="10" max="4000" value="10">
+      </div>
+
+
+
       <h4 class="sub-header">Cuentas selecionadas</h4>
       <p>Selecciona las cuentas que deseas asignar a este envío</p>
       <div class="controls">
@@ -78,6 +83,35 @@
 
     </div>
     <div class="col-md-6">
+      <h4 class="sub-header">Programar fecha de envío</h4>
+      <p>Establece la fecha y/o hora del envío para este Envío</p>
+      <div class="control-group">
+        <label class="control-label" for="title">Programar fecha/hora</label>
+        <div class="controls d-flex flex-center gap-05">
+          <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
+          <select class="form-control" name="data[schedule_hour]">
+          <?php for($i=0; $i < 24; $i++): ?>
+            <option value="<?=$i?>"><?=$i?>hs</option>
+          <?php endfor ?>
+          </select>
+        </div>
+        <small>Es el título que verán las clientas en su dispositivo</small>
+      </div>
+      <h4 class="sub-header">Método de envío</h4>
+      <p>Selecciona el canal por donde notificar a las cuentas</p>
+      <div class="form-group flex-start">
+        <div class="controls">
+          <label class="control-label" for="toggle-email">Email</label>
+          <input type="checkbox" name="data[send_email]" value="1" id="toggle-email" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['send_email'] == '1' ? ' checked' : '' ?>>
+          <label for="toggle-email" class="toggle-label"></label>
+        </div>
+        <div class="controls">
+          <label class="control-label" for="toggle-push">Push</label>
+          <input type="checkbox" name="data[send_push]" value="1" id="toggle-push" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['send_push'] == '1' ? ' checked' : '' ?>>
+          <label for="toggle-push" class="toggle-label"></label>
+        </div>
+      </div>
+
     	<h4 class="sub-header">Configuración de envío</h4>
     	<p>Configura el alcance para este Envío</p>
       <table class="table table-striped text-small">
@@ -117,20 +151,6 @@
           </td>
         </tr>
       </table>
-      <h4 class="sub-header">Filtros por compra</h4>
-      <p>Establece fecha y monto para filtrar por cuenta de acuerdo al historial de compras</p>
-      <div class="control-group">
-        <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
-        <div class="controls d-flex flex-center gap-05">
-          <input type="text" id="minDate" name="filter[date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_min ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
-          <input type="text" id="maxDate" name="filter[date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->date_max ?? date('d/m/Y'), '%d/%m/%Y')?>"/>
-        </div>
-      </div>
-      <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
-      <div class="controls-group">
-        <label class="control-label" for="minSale">Mínimo de compra</label>
-        <input type="range" id="minSale" step="10" min="10" max="4000" value="10">
-      </div>
 
       <h4 class="sub-header">Filtro por fecha de nacimiento</h4>
       <p>Establece fecha para filtrar por cuenta de acuerdo fecha de nacimiento</p>

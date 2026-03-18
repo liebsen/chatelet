@@ -1,7 +1,10 @@
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   margin-bottom: 0.75rem;
+}
+h1,h2,h3 {
+  letter-spacing: -0.05rem;
 }
 span, i, small {
   line-height: 1;
