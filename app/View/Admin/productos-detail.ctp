@@ -11,8 +11,8 @@
   echo $this->Html->script('colorpicker', array('inline' => false));
 ?>
 <?php echo $this->element('admin-menu');?>
-<div class="block">
-  <div class="block-content">
+<div class="block-tabs">
+  <div class="tab-content">
 
     <h4 class="sub-header">
       <?php echo (isset($prod)) ? __('Editar Producto') : __('Agregar Producto'); ?>
