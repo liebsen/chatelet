@@ -2260,49 +2260,48 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				)
 
 			);
-		$this->set('navs', $navs);
 
 		$h1 = array(
 			'name' => 'Productos',
 			'icon' => 'gi gi-shirt'
 			);
-		$this->set('h1', $h1);
+
 
 		$colors = $this->SQL->new_colors();
-	    $this->set('colors',$colors);
+    $this->set('colors',$colors);
 
-	    $this->loadModel('Product');
-	    $this->loadModel('ProductProperty');
-    	switch ($action) {
-	    	case 'add':
-	    	    if ($this->request->is('POST')){
-			        $this->autoRender = false;
+    $this->loadModel('Product');
+    $this->loadModel('ProductProperty');
+  	switch ($action) {
+    	case 'add':
+  	    if ($this->request->is('POST')){
+	        $this->autoRender = false;
 
-			        $data = $this->request->data;
+	        $data = $this->request->data;
 
-			        $file_real_name = null;
-			        if(!empty($this->request->params['form']['image']['name'])){
-			            $file_real_name = $this->save_file($this->request->params['form']['image'], true, 2000);
-			        }
+	        $file_real_name = null;
+	        if(!empty($this->request->params['form']['image']['name'])){
+	            $file_real_name = $this->save_file($this->request->params['form']['image'], true, 2000);
+	        }
 
-			        if($file_real_name){
-			            $data['img_url'] = $file_real_name;
-			        }
-							$data['with_thumb']=1;
-			        $this->Product->save($data);
+	        if($file_real_name){
+	            $data['img_url'] = $file_real_name;
+	        }
+					$data['with_thumb']=1;
+	        $this->Product->save($data);
 
 
-			        if(!empty($data['props'])) {
-				        foreach ($data['props'] as &$prop) {
-				        	$prop['product_id'] = $this->Product->id;
-				        }
-			        	$this->ProductProperty->saveMany($data['props']);
-			        }
+	        if(!empty($data['props'])) {
+		        foreach ($data['props'] as &$prop) {
+		        	$prop['product_id'] = $this->Product->id;
+		        }
+	        	$this->ProductProperty->saveMany($data['props']);
+	        }
 
-			        return $this->redirect(array('action'=>'productos'));
-    			} else {
-    				$this->loadModel('Category');
-				    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+	        return $this->redirect(array('action'=>'productos'));
+  			} else {
+  				$this->loadModel('Category');
+			    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 					$this->set('cats', $cats);
 					$this->set('sel', true);
 
@@ -2311,45 +2310,53 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					$this->set('temps', $temps);
 	    			return $this->render('productos-detail');
 	    		}
-	    		break;
-	    	case 'delete':
-		    	if ($this->request->is('post')) {
-		    		$this->autoRender = false;
+    		break;
+    	case 'delete':
+	    	if ($this->request->is('post')) {
+	    		$this->autoRender = false;
 
-					$this->ProductProperty->deleteall(array('ProductProperty.product_id' => $this->request->data['id']));
-		    		$this->Product->delete($this->request->data['id']);
-		    	}
-	    		break;
-	    	case 'edit':
-	    		if ($this->request->is('post')) {
-	    			$this->autoRender = false;
+				$this->ProductProperty->deleteall(array('ProductProperty.product_id' => $this->request->data['id']));
+	    		$this->Product->delete($this->request->data['id']);
+	    	}
+    		break;
+    	case 'edit':
+    		if ($this->request->is('post')) {
+    			$this->autoRender = false;
 
-	    			$data = $this->request->data;
+    			$data = $this->request->data;
 
-			        $file_real_name = null;
-			        if(!empty($this->request->params['form']['image']['name'])){
-			            $file_real_name = $this->save_file($this->request->params['form']['image'], true, 2000);
-			        }
-							$data['with_thumb']=1;
-			        if($file_real_name){
-			            $data['img_url'] = $file_real_name;
-			        }
+	        $file_real_name = null;
+	        if(!empty($this->request->params['form']['image']['name'])){
+	            $file_real_name = $this->save_file($this->request->params['form']['image'], true, 2000);
+	        }
+					$data['with_thumb']=1;
+	        if($file_real_name){
+	            $data['img_url'] = $file_real_name;
+	        }
 
-			        $this->Product->save($data);
-			        /*if(!empty($this->request->data['id'])){
-			        	$this->ProductProperty->deleteAll(array( 'ProductProperty.product_id' => $this->request->data['id'] ));
-			        }*/
-			        if(!empty($data['props'])){
-			        	$this->ProductProperty->saveMany($data['props']);
-			        }
-	    		} else {
-		    		$hasId = array_key_exists(1, $this->request->pass);
-		    		if (!$hasId) break;
-		    		$prod = $this->Product->find('first', array('conditions' => array('id' => $this->request->pass[1])));
-		    		$this->set('prod', $prod);
+	        $this->Product->save($data);
+	        /*if(!empty($this->request->data['id'])){
+	        	$this->ProductProperty->deleteAll(array( 'ProductProperty.product_id' => $this->request->data['id'] ));
+	        }*/
+	        if(!empty($data['props'])){
+	        	$this->ProductProperty->saveMany($data['props']);
+	        }
+    		} else {
+	    		$hasId = array_key_exists(1, $this->request->pass);
+	    		if (!$hasId) break;
 
-    				$this->loadModel('Category');
-				    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+
+	    		$prod = $this->Product->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    		$this->set('prod', $prod);
+
+    			$navs[$prod['Product']['name']] = array(
+						'icon' 		=> 'gi gi-edit',
+						'url'		=> \site_url().'/admin/productos/edit/'.$cat['Product']['id'],
+						'active'	=> '/admin/productos/edit/'.$prod['Product']['id']
+					);
+
+  				$this->loadModel('Category');
+			    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 					$this->set('cats', $cats);
 					$this->set('sel', true);
 
@@ -2357,30 +2364,31 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 						'product_id' => $this->request->pass[1]
 					)));
 					$this->set('props', $props);
-
 					$this->loadModel('Season');
 					$temps = $this->Season->find('all');
 					$this->set('temps', $temps);
 		    		return $this->render('productos-detail');
 	    		}
-	    		break;
-	    }
+    		break;
+    }
 
-	    $prods = $this->Product->find('all',array('order'=>array( 'Product.category_id ASC','Product.ordernum ASC' )));
-	    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
-	    $more_list_code_desc=[0,0,0,0,0,0,0,0,0,0];
-	    $more_list_category=[0,0,0,0,0,0,0,0,0,0];
-	    $this->loadModel('DiscountList');
-	    $discount_lists = $this->DiscountList->find('all',array('order'=>array( 'DiscountList.item_index ASC' )));
-	    foreach ($discount_lists as $dl){
-	    	$more_list_category[(int)$dl['DiscountList']['item_index']] = $dl['DiscountList']['category_id'];
-	    	$more_list_code_desc[(int)$dl['DiscountList']['item_index']] = $dl['DiscountList']['list_code'];
-	    }
+    $prods = $this->Product->find('all',array('order'=>array( 'Product.category_id ASC','Product.ordernum ASC' )));
+    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+    $more_list_code_desc=[0,0,0,0,0,0,0,0,0,0];
+    $more_list_category=[0,0,0,0,0,0,0,0,0,0];
+    $this->loadModel('DiscountList');
+    $discount_lists = $this->DiscountList->find('all',array('order'=>array( 'DiscountList.item_index ASC' )));
+    foreach ($discount_lists as $dl){
+    	$more_list_category[(int)$dl['DiscountList']['item_index']] = $dl['DiscountList']['category_id'];
+    	$more_list_code_desc[(int)$dl['DiscountList']['item_index']] = $dl['DiscountList']['list_code'];
+    }
 		$this->set('more_list_code_desc', $more_list_code_desc);
 		$this->set('more_list_category', $more_list_category);
 		$this->set('cats', $cats);
 		$this->set('prods', $prods);
-	    $this->render('productos');
+		$this->set('h1', $h1);
+		$this->set('navs', $navs);		
+	  $this->render('productos');
 	}
 
 	public function sucursales($action = null) {

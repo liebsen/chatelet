@@ -13,11 +13,6 @@
 <?php echo $this->element('admin-menu');?>
 <div class="block-tabs">
   <div class="tab-content">
-
-    <h4 class="sub-header">
-      <?php echo (isset($prod)) ? __('Editar Producto') : __('Agregar Producto'); ?>
-    </h4>
-
     <div class="hide" id="colors_select_base">
       <select class="code_sel" name="">
         <?php foreach ($colors as $color): ?>
