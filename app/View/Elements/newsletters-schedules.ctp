@@ -6,7 +6,7 @@
 		<thead>
 			<tr>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Título'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Alcance'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Fecha/Hora'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -19,7 +19,7 @@
 					<?=$schedule['Newsletter']['name']?>
 				</td>
 				<td>
-					<?=$schedule['Newsletter']['title']?>
+					<?=count($schedule['Users'])?>
 				</td>
 				<td>
 					<?=$schedule['Newsletter']['status']??'waiting'?>

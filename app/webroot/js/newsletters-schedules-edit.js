@@ -48,9 +48,9 @@ $(document).ready(function() {
     interval = setTimeout(() => {
       searchRelations({
         q,
-        rel_id: $('input[name="newsletter_id"]').val(), 
+        rel_id: $('input[name="id"]').val(), 
         type: 'user',
-        source: 'newsletter',
+        source: 'schedule',
         model: 'NewsletterUser',
         cb: checkUsers,
       })
@@ -103,9 +103,9 @@ function relateAll(){
 
 function updateUsers(){
   const data = {
-    rel_id: $('input[name="newsletter_id"]').val(),
+    rel_id: $('input[name="id"]').val(),
     type: 'user',
-    source: 'newsletter',
+    source: 'schedule',
     model: 'NewsletterUser'
   }  
   $.ajax({

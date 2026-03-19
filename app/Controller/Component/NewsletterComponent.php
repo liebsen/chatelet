@@ -159,7 +159,7 @@ class NewsletterComponent extends Component {
             ),
           ),
           'fields' => array('NewsletterUser.*, User.*'),
-          'conditions' => array( 'NewsletterUser.newsletter_id' => $schedule['Newsletter']['id']),
+          'conditions' => array( 'NewsletterUser.schedule_id' => $schedule['NewsletterSchedule']['id']),
           'order' => array( 'NewsletterUser.created DESC' )
         ));
 
@@ -258,7 +258,7 @@ class NewsletterComponent extends Component {
             ),
           ),
           'fields' => array('User.id, User.email, User.name, User.surname, User.city, User.province, User.birthday, User.created'),
-          'conditions' => array( 'NewsletterUser.newsletter_id' => $id),
+          'conditions' => array( 'NewsletterUser.schedule_id' => $schedule['NewsletterSchedule']['id']),
           // 'order' => array( 'Newsletter.id DESC' )
         ));
 

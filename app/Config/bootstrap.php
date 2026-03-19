@@ -129,6 +129,6 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
-if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+if(@$_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
   include __DIR__ . '/../../version.php';
 }

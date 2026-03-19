@@ -98,7 +98,6 @@
         <input type="range" id="minSale" step="10" min="10" max="4000" value="10">
       </div>
 
-
       <h4 class="sub-header">Filtro por fecha de nacimiento</h4>
       <p>Establece fecha para filtrar por cuenta de acuerdo fecha de nacimiento</p>
       <div class="control-group">
@@ -153,10 +152,10 @@
 <?php foreach($schedule_users as $user): ?>
   <span 
     class="label user-item is-clickable text-lowercase is-enabled" 
-    data-rel_id="<?php echo $schedule['Newsletter']['id'] ?>" 
+    data-rel_id="<?php echo $schedule['NewsletterSchedule']['id'] ?>" 
     data-id="<?=$user['User']['id']?>"
     data-type="user"
-    data-source="newsletter"
+    data-source="schedule"
     data-model="NewsletterUser"><?php echo $user['User']['email']?>
   </span>
 <?php endforeach ?>

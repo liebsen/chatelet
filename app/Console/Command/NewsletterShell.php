@@ -1,8 +1,18 @@
 <?php
 
 class NewsletterShell extends AppShell {
-   public $uses = array('User', 'Newsletter','NewsletterUser', 'CakeEmail');
-   public function main() {
+   public $uses = array(
+    'User', 
+    'Newsletter',
+    'NewsletterUser',
+    'NewsletterSchedule', 
+    'NewsletterProduct',
+    'CakeEmail'
+  );
+  
+  public function main() {
+
+    $date = date('Y-m-d');
 
     $data = $this->Newsletter->find('all', array(
      'joins' => array(
@@ -46,7 +56,6 @@ class NewsletterShell extends AppShell {
   }
 
   public function sendEmail($data) {
-    
     CakeLog::write('debug', 'sendEmail:'.json_encode(array(
       'data' => $data,
       'subject' => $subject,
