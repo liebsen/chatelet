@@ -454,6 +454,10 @@ class DboSource extends DataSource {
  */
 	protected function _execute($sql, $params = array(), $prepareOptions = array()) {
 		$sql = trim($sql);
+			/* --replace-- */
+			//\d("query",$sql);
+
+
 		if (preg_match('/^(?:CREATE|ALTER|DROP)\s+(?:TABLE|INDEX)/i', $sql)) {
 			$statements = array_filter(explode(';', $sql));
 			if (count($statements) > 1) {
@@ -463,12 +467,6 @@ class DboSource extends DataSource {
 		}
 
 		try {
-			
-			/* --replace-- */
-			if(isset($_GET['query'])) {
-				\d("query",$sql);
-			}
-
 			$query = $this->_connection->prepare($sql, $prepareOptions);
 			$query->setFetchMode(PDO::FETCH_LAZY);
 			if (!$query->execute($params)) {

@@ -49,14 +49,14 @@ class NewsletterComponent extends Component {
           'order' => array( 'NewsletterSchedule.id DESC' )
         ));
 
-        $start = new \DateTime($newsletter['Newsletter']['modified']);
+        /*$start = new \DateTime($newsletter['Newsletter']['modified']);
         $end = new \DateTime("now");
         $interval = $end->diff($start);
         $days = $interval->d;
         \d("days", $days);
         if ($days < 1) {
           $newsletters[$i]['Newsletter']['recent'] = 1;
-        }
+        }*/
 
         $newsletters[$i]['NewsletterProduct'] = $products;
         $newsletters[$i]['NewsletterSchedule'] = $schedules;
@@ -135,6 +135,9 @@ class NewsletterComponent extends Component {
       ));
 
       foreach($schedules as $i => $schedule) {
+        $push_sent = 0;
+        $email_sent = 0;
+
         $products = $NewsletterProduct->find('all', array(
           'joins' => array(
             array(
@@ -163,29 +166,26 @@ class NewsletterComponent extends Component {
           'order' => array( 'NewsletterUser.created DESC' )
         ));
 
-        $start = new \DateTime($schedule['NewsletterSchedule']['modified']);
+        foreach($users as $user) {
+          $email_sent+= $user['NewsletterUser']['email_sent'];
+          $push_sent+= $user['NewsletterUser']['push_sent'];
+        }
+
+        /*$start = new \DateTime($schedule['NewsletterSchedule']['modified']);
         $end = new \DateTime("now");
         $interval = $end->diff($start);
         $days = $interval->d;
 
         if ($days < 1) {
           $schedules[$i]['NewsletterSchedule']['recent'] = 1;
-        }
+        }*/
 
+        $schedules[$i]['email_sent'] = $email_sent;
+        $schedules[$i]['push_sent'] = $push_sent;
         $schedules[$i]['Users'] = $users;
         $schedules[$i]['Products'] = $products;
       }
 
-      $user_total = 0;
-      $prod_total = 0;
-
-      foreach($schedules as $schedule) {
-        $prod_total+= count($schedule['NewsletterProduct']);
-        $user_total+= count($schedule['NewsletterUser']);
-      }
-
-      $response['prod_total'] = $prod_total;
-      $response['user_total'] = $user_total;
       $this->controller->set('user_total', $user_total);
       $this->controller->set('prod_total', $prod_total);
       $this->controller->set('schedules', $schedules);
@@ -212,6 +212,7 @@ class NewsletterComponent extends Component {
 
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
+        $data['filter'] = json_encode($data['filter']);
         \d('post data', $data);
 
         $NewsletterSchedule->save($data);

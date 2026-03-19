@@ -7,6 +7,8 @@
 			<tr>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Alcance'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Emails'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Push'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Fecha/Hora'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -22,10 +24,13 @@
 					<?=count($schedule['Users'])?>
 				</td>
 				<td>
-					<?=$schedule['Newsletter']['status']??'waiting'?>
+					<?=$schedule['email_sent']?>
 				</td>
 				<td>
-					<?=$schedule['NewsletterSchedule']['schedule_date']??''?> - <?=$schedule['NewsletterSchedule']['schedule_hour']??'0'?>hs
+					<?=$schedule['push_sent']?>
+				</td>
+				<td>
+					<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'], '%d/%m/%Y')?> - <?=$schedule['NewsletterSchedule']['schedule_hour']??'0'?>hs
 				</td>
 				<td> 
 					<div class="btn-group">           

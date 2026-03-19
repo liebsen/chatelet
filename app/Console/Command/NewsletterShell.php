@@ -12,31 +12,40 @@ class NewsletterShell extends AppShell {
   
   public function main() {
 
-    $date = date('Y-m-d');
+    $curr_date = date('Y-m-d');
+    $curr_hour = date('H'); 
 
-    $data = $this->Newsletter->find('all', array(
+    $data = $this->NewsletterUser->find('all', array(
      'joins' => array(
-      array(
-        'table' => 'newsletter_users',
-        'alias' => 'NewsletterUser',
-        'type' => 'LEFT',
-        'conditions' => array( 'NewsletterUser.newsletter_id = Newsletter.id' )
-      ),
-      array(
-        'table' => 'users',
-        'alias' => 'User',
-        'type' => 'LEFT',
-        'conditions' => array( 'NewsletterUser.user_id = User.id' )
-      )
-     ),
-    'fields' => array('Newsletter.*, User.name, User.surname, User.email'),
-       'conditions' => array( 
-          'Newsletter.status' => "waiting", 
-          'Newsletter.enabled' => 1
-          // 'Newsletter.exec_now' => 1 
+        array(
+          'table' => 'newsletter_schedules',
+          'alias' => 'NewsletterSchedule',
+          'type' => 'LEFT',
+          'conditions' => array( 
+            'NewsletterUser.schedule_id = NewsletterSchedule.id' ,
+            // 'NewsletterUser.status' => 'pending',
+          )
+        ),
+        array(
+          'table' => 'users',
+          'alias' => 'User',
+          'type' => 'LEFT',
+          'conditions' => array( 'NewsletterUser.user_id = User.id' )
+        )
        ),
-       //'order' => array( 'Product.price ASC' )
-    ));
+      'fields' => array(
+        'NewsletterUser.*, User.name, User.surname, User.email'
+      ),
+      'conditions' => array( 
+        'NewsletterUser.status' => "waiting", 
+        'NewsletterSchedule.enabled' => 1,
+        'NewsletterSchedule.schedule_date' => $curr_date,
+        'NewsletterSchedule.schedule_hour' => $curr_hour,
+        // 'Newsletter.exec_now' => 1 
+       ),
+       'order' => array( 'NewsletterUser.created ASC' )
+      )
+    );
 
     /* $email_data = array(
       'id_user' => 1,
@@ -44,14 +53,15 @@ class NewsletterShell extends AppShell {
       'name' =>  'Prueba',
     ); */
 
-    $reponse = array();
+    $response = array();
 
-    foreach($data as $i => $newsletter) {
+    /*foreach($data as $i => $newsletter) {
       $reponse[$i] = $this->sendEmail($newsletter);
-    }
+    }*/
 
-    return json_encode(array(
-      'reponse' => $response
+    print_r(array(
+      'reponse' => $response,
+      'count' => count($data)
     ));
   }
 
