@@ -25,7 +25,7 @@
         <small class="text-muted">Es el título que verán las clientas en su dispositivo</small>
       </div>
       <div class="control-group d-block">
-        <textarea class="form-control w-100" name="body" id="newsletter" rows="8"><?=$newsletter['Newsletter']['body']?></textarea>
+        <textarea class="form-control w-100" name="body" id="newsletter" rows="8"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
         <h6 class="text-theme">Tabla de variables disponibles</h6>
         <table class="table table-striped">
 <?php foreach($templateVars as $id => $name): ?>
@@ -66,7 +66,7 @@
     	<p>Puedes aregar productos a la plantilla, se mostrarán en un catálogo de lista con sus respectivos enlaces y precios.</p>
 			<div class="control-group">
 				<label class="control-label" for="toggle"><?php echo __('Mostrar precio'); ?></label>
-				<input type="checkbox" name="data[show_prices]" value="1" id="toggle" class="toggle-checkbox">
+				<input type="checkbox" name="data[show_prices]" value="1" id="toggle" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_prices'] == '1' ? ' checked' : '' ?>>
 				<label for="toggle" class="toggle-label"></label>
 	      <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
 			</div>
@@ -85,8 +85,16 @@
       data-source="newsletter"
       data-model="NewsletterProduct"><?php echo $product['Product']['name']?>
     </span>
-<?php endforeach ?>
+<?php endforeach ?>       
         </div>
+        <h4 class="sub-header">Configuración adicional</h4>
+        <p>Establece la configuración adicional de esta Plantilla</p>
+        <div class="control-group">
+          <label class="control-label" for="toggle-follow"><?php echo __('Mostrar redes'); ?></label>
+          <input type="checkbox" name="data[show_follow]" value="1" id="toggle-follow" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_follow'] == '1' ? ' checked' : '' ?>>
+          <label for="toggle-follow" class="toggle-label"></label>
+          <small class="text-muted">Indica si debe mostrarse, en caso que hubieran el enlace a las redes sociales al pie del email</small>
+        </div>   
       </div>
 <?php endif ?>
     </div>

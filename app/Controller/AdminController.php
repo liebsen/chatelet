@@ -2049,7 +2049,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'url'		=> \site_url().'/admin/newsletters',
 				'active'	=> '/admin/newsletters'
 			),
-			'Envío' => array(
+			'Campañas' => array(
 				'id' => 'schedules',
 				'icon' 		=> 'gi gi-send',
 				'url'		=> \site_url().'/admin/newsletters/schedules',

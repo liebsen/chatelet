@@ -9,7 +9,6 @@
      		<th class="hidden-phone hidden-tablet"><?php echo __('Alcance'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Emails'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Push'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Fecha/Hora'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
