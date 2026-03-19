@@ -8,7 +8,7 @@ echo $this->Session->flash();
   </div>
 
   <section id="listShop">
-    <?php echo $this->element('shop_list') ?>
+    <?php echo $this->element('shop/list') ?>
   </section>
 
   <?php echo $this->element('subscribe-box') ?>

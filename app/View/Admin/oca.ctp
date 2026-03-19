@@ -1,5 +1,5 @@
 <?php echo $this->Html->css('oca',array( 'inline' => false )) ?>
-<?php echo $this->element('admin-menu'); ?>
+<?php echo $this->element('admin/menu'); ?>
 
 <div class="block-tabs">
 	<div class="tab-content">

@@ -3,7 +3,7 @@
   echo $this->Html->script('sucursales-detail', array('inline' => false));
   echo $this->Html->css('sucursales-detail', array('inline' => false));
 ?>
-<?php echo $this->element('admin-menu');?>
+<?php echo $this->element('admin/menu');?>
 <div class="block-tabs">
 
   <div class="tab-content">

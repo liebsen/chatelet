@@ -263,7 +263,7 @@ class NewsletterComponent extends Component {
           // 'order' => array( 'Newsletter.id DESC' )
         ));
 
-        $schedule['NewsletterSchedule']['filter'] =  json_decode($schedule['NewsletterSchedule']['filter'])[0];
+        //$schedule['NewsletterSchedule']['filter'] =  json_decode($schedule['NewsletterSchedule']['filter'])[0];
         $schedule['NewsletterProduct'] =  array_column($schedule_products, 'NewsletterProduct');
         $schedule['NewsletterUser'] = array_column($schedule_users, 'NewsletterUser');
       }

@@ -1,6 +1,6 @@
 <div class="animation-fadeIn animation-both delay"><?php
-	echo $this->element('admin-navbar');
-	echo $this->element('admin-sidebar');
+	echo $this->element('admin/navbar');
+	echo $this->element('admin/sidebar');
 ?>
 	<!-- Pre Page Content -->
 	<!--div id="pre-page-content">
@@ -18,7 +18,7 @@
 	</div>
 	<!-- END Page Content -->
 <?php
-	echo $this->element('admin-footer');
-	echo $this->element('admin-bottom');
+	echo $this->element('admin/footer');
+	echo $this->element('admin/bottom');
 ?>
 </div>

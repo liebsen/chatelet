@@ -7,7 +7,7 @@ echo $this->Html->css('draggable-table', array('inline' => false));
 echo $this->Html->script('draggable-table', array('inline' => false));
 echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));
 echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));
-echo $this->element('admin-menu');
+echo $this->element('admin/menu');
 ?>
 
 <div class="form-actions" data-url="/admin/batch_productos/">

@@ -1,6 +1,6 @@
 <?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
 
-<?php echo $this->element('admin-menu'); ?>
+<?php echo $this->element('admin/menu'); ?>
 <div class="block-section">
 	<table id="example-datatables" class="table table-bordered table-hover">
 		<thead>

@@ -1,9 +1,9 @@
 <div class="sidebar-backdrop"></div>
 
-<?php echo $this->element('sidebar-search'); ?>
-<?php echo $this->element('sidebar-account'); ?>
-<?php echo $this->element('sidebar-cart'); ?>
-<?php echo $this->element('shop-options'); ?>
+<?php echo $this->element('sidebar/search'); ?>
+<?php echo $this->element('sidebar/account'); ?>
+<?php echo $this->element('sidebar/cart'); ?>
+<?php echo $this->element('shop/options'); ?>
 
 <script type="text/javascript">
 	

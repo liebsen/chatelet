@@ -1,5 +1,5 @@
 <?php
-echo $this->element('admin-menu');
+echo $this->element('admin/menu');
 echo $this->Html->css('draggable-compose.css?v=' . $version['ver'], array('inline' => false));
 echo $this->Html->script('draggable-compose.js?v=' . $version['ver'], array('inline' => false));
 echo $this->Html->script('shop-compose.js?v=' . $version['ver'], array('inline' => false));
@@ -7,7 +7,7 @@ echo $this->Html->script('shop-compose.js?v=' . $version['ver'], array('inline' 
 
 <div class="block-section">
 	<section id="listShop">
-    <?php echo $this->element('shop_list_compose') ?>
+    <?php echo $this->element('shop/composer') ?>
   </section>
 </div>
 

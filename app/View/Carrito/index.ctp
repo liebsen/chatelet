@@ -232,7 +232,7 @@
 					</div>
 				</div>
 				<hr>
-				<?php echo $this->element('shop-disclaimer') ?>
+				<?php echo $this->element('shop/disclaimer') ?>
       </div>
 			<div class="flex-col gap-1">
 				<!-- fill coupon -->

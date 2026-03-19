@@ -2,7 +2,7 @@
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('admin-carrito', array('inline' => false));
-  echo $this->element('admin-menu'); 
+  echo $this->element('admin/menu'); 
 ?>
 
 <div class="block-tabs">

@@ -10,7 +10,7 @@
   echo $this->Html->css('colorpicker', array('inline' => false));
   echo $this->Html->script('colorpicker', array('inline' => false));
 ?>
-<?php echo $this->element('admin-menu');?>
+<?php echo $this->element('admin/menu');?>
 <div class="block-tabs">
   <div class="tab-content">
     <div class="hide" id="colors_select_base">

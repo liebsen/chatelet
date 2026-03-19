@@ -1,4 +1,4 @@
-<?php echo $this->element('admin-menu');?>
+<?php echo $this->element('admin/menu');?>
 <div class="block-tabs">
   <div class="tab-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">

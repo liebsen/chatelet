@@ -1,7 +1,7 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('admin-whatsapp.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); ?>
-<?php echo $this->element('admin-menu'); ?>
+<?php echo $this->element('admin/menu'); ?>
 
 <div class="block-tabs">
 	<div class="tab-content">

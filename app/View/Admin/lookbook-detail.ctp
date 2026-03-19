@@ -3,7 +3,7 @@
   echo $this->Html->css('lookbook-detail', array('inline' => false));
   echo $this->Html->script('lookbook-detail', array('inline' => false));
 ?>
-<?php echo $this->element('admin-menu');?>
+<?php echo $this->element('admin/menu');?>
 <div class="block">
   <div class="block-title">
     <h4>

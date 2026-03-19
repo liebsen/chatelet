@@ -1,5 +1,5 @@
 <?php // echo $this->Html->script('admin-delete', array('inline' => false));
-echo $this->element('admin-menu');
+echo $this->element('admin/menu');
 echo $this->Html->css('draggable-table', array('inline' => false));
 echo $this->Html->script('draggable-table', array('inline' => false));
 echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));

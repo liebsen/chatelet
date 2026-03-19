@@ -1,7 +1,7 @@
 <?php
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
 ?>
-<?php echo $this->element('admin-menu');?>
+<?php echo $this->element('admin/menu');?>
 <div class="block-tabs">
   <!--div class="block-title">
     <h4>

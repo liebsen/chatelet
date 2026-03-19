@@ -5,7 +5,7 @@
   echo $this->Html->script('cupones-detail', array('inline' => false));
   $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
 ?>
-<?php echo $this->element('admin-menu');?>
+<?php echo $this->element('admin/menu');?>
 <div class="block">
   <div class="block-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">

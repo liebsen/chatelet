@@ -5,7 +5,7 @@ echo $this->Html->script('home-compose.js?v=' . $version['ver'], array('inline' 
 echo $this->Html->css('home-compose.css?v=' . $version['ver'], array('inline' => false));
 // echo $this->Html->script('admin-home.js?v=' . $version['ver'], array('inline'=>false));
 // $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));
-echo $this->element('admin-menu');
+echo $this->element('admin/menu');
 ?>
 
 <div class="block-tabs">

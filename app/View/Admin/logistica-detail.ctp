@@ -2,7 +2,7 @@
   echo $this->Html->script('logistica-detail', array('inline' => false));
   echo $this->Html->css('logistica-detail', array('inline' => false));
 ?>
-<?php echo $this->element('admin-menu');?>
+<?php echo $this->element('admin/menu');?>
 <div class="block-tabs">
   <div class="tab-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">

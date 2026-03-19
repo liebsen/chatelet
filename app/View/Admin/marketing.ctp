@@ -4,7 +4,7 @@
 <?php echo $this->Html->script('marketing.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->Html->css('jquery.growl.css?v=' . $version['ver']) ?>
-	<?php echo $this->element('admin-menu');?>
+	<?php echo $this->element('admin/menu');?>
 
 	<div class="block">
 		<div class="block-content">

@@ -24,7 +24,7 @@
 		      <div class="tab-content">
 <?php foreach($tabs as $id => $tab): ?>
 				<div class="tab-pane pane-<?= $id ?><?= $tab['default'] ? ' active' : '' ?>">
-<?php echo $this->element('application-' . $id) ?>
+<?php echo $this->element('application/' . $id) ?>
 				</div>
 <?php endforeach ?>
 		     	</div>
