@@ -3265,8 +3265,8 @@ a.thumbnail-borderless,
 
 .form-actions {
     animation-name: fadeInUp;
-    animation-delay: 2s;
-    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-duration: 1s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     animation-fill-mode: both;
 }

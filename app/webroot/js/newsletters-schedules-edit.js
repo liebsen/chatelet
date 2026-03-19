@@ -56,7 +56,9 @@ $(document).ready(function() {
       })
     }, 500)        
   })
+
 })
+
 
 $(document).on('click', '.product-item, .user-item', function(e){
 

@@ -22,6 +22,12 @@ $(document).ready(function() {
       })
     }, 500)        
   })
+
+  $('#newsletter_edit').submit(function(e){
+    console.log(e)
+
+    return false
+  })  
 })
 
 CKEDITOR.replace('newsletter');
