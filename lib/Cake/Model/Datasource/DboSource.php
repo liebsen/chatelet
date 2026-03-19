@@ -454,9 +454,11 @@ class DboSource extends DataSource {
  */
 	protected function _execute($sql, $params = array(), $prepareOptions = array()) {
 		$sql = trim($sql);
-			/* --replace-- */
-			//\d("query",$sql);
 
+		/* --replace-- */
+		if (preg_match('/^(?:UPDATE|INSERT)\s/i', $sql)) {
+			\d("query",$sql);
+		}
 
 		if (preg_match('/^(?:CREATE|ALTER|DROP)\s+(?:TABLE|INDEX)/i', $sql)) {
 			$statements = array_filter(explode(';', $sql));

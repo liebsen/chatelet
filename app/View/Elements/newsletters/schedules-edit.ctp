@@ -16,12 +16,11 @@
 )); ?>
   <input type="hidden" name="redirect" value="/admin/newsletters/schedules"/>
   <input type="hidden" name="id" value="<?= $schedule['NewsletterSchedule']['id'] ?? 0 ?>"/>
-  <input type="hidden" name="schedule_id" value="<?= $schedule['Newsletter']['id'] ?? 0 ?>"/>
+  <input type="hidden" name="newsletter_id" value="<?= $schedule['Newsletter']['id'] ?? 0 ?>"/>
 	<div class="row">
     <div class="col-xs-12">
       <h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4>
       <p>Esta plantilla tiene asociados <span><?= count($schedule_products)?></span> productos</p>
-
 <?php if(isset($schedule['Newsletter']['id'])): ?>
       <div class="card">
         <div class="card-body">
@@ -93,8 +92,8 @@
       <div class="control-group">
         <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
         <div class="controls d-flex flex-center gap-05">
-          <input type="text" id="minDate" name="filter[date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha del envío" value="<?=$schedule['NewsletterSchedule']['filter']->date_min ?? date('d/m/Y')?>"/>
-          <input type="text" id="maxDate" name="filter[date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$schedule['NewsletterSchedule']['filter']->date_max ?? date('d/m/Y')?>"/>
+          <input type="text" id="minDate" name="data[filter][date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha del envío" value="<?=$schedule['NewsletterSchedule']['filter']->date_min ?? date('d/m/Y')?>"/>
+          <input type="text" id="maxDate" name="data[filter][date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$schedule['NewsletterSchedule']['filter']->date_max ?? date('d/m/Y')?>"/>
         </div>
       </div>
       <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
@@ -108,8 +107,8 @@
       <div class="control-group">
         <label class="control-label" for="myRange2">Día de nacimiento (Desde / Hasta)</label>
         <div class="controls d-flex flex-center gap-05">
-          <input type="text" id="minDob" name="filter[dob_min]" class="form-control datepicker" data-format="dd/mm" data-name="mindob-value" placeholder="Día de nacimiento mínimo" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->dob_min ?? date('d/m'), '%d/%m')?>"/>
-          <input type="text" id="maxDob" name="filter[dob_max]" class="form-control datepicker" data-format="dd/mm" data-name="maxdob-value" placeholder="Día de nacimiento max" value="<?=$this->Time->format($schedule['NewsletterSchedule']['filter']->dob_max ?? date('d/m'), '%d/%m')?>"/>
+          <input type="text" id="minDob" name="data[filter][dob_min]" class="form-control datepicker" data-format="dd/mm" data-name="mindob-value" placeholder="Día de nacimiento mínimo" value="<?=$schedule['NewsletterSchedule']['filter']->dob_min ?? ''?>"/>
+          <input type="text" id="maxDob" name="data[filter][dob_max]" class="form-control datepicker" data-format="dd/mm" data-name="maxdob-value" placeholder="Día de nacimiento max" value="<?=$schedule['NewsletterSchedule']['filter']->dob_max ?? ''?>"/>
         </div>
       </div>
     </div>
