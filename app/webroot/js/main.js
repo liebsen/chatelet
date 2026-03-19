@@ -132,6 +132,17 @@ function searchRelations(data) {
 }
 
 $(function () {
+  $('.track-coords').click(function(e){
+    const width = $(this).width();
+    const height = $(this).height();
+    const offset = $(this).offset();
+    const relativeX = e.pageX - offset.left;
+    const relativeY = e.pageY - offset.top;
+    const absX = relativeX < width / 2 ? 1 : 0;
+    const absY = relativeY < height / 2 ? 1 : 0;
+    document.getElementById('x_coord').value = absX;
+    document.getElementById('y_coord').value = absY;
+  })
 
   $('#flashMessage').each(function(i, flash) {
     flash = $(flash);

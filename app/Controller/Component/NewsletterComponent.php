@@ -69,8 +69,6 @@ class NewsletterComponent extends Component {
   }
 
   public function emails_edit($id) {
-        \d('emails_edit(id)', $id);
-    
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
     $newsletter = array();
@@ -78,15 +76,21 @@ class NewsletterComponent extends Component {
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
-        \d('emails_edit(REQUEST)', $_REQUEST);
-        \d('emails_edit(POST)', $_POST);
+        $redirect = array( 'action' => 'newsletters', 'emails' );
+
+        if(isset($data['x_coord']) && $data['x_coord'] == '1') {
+          $redirect = array( 'action' => 'newsletters', 'emails', 'edit', $id);
+        }
 
         if(empty($data['id'])) {
           $data['user_id'] = $this->controller->Auth->user('id');
         }
 
+        //\d("data", $data);
+        //\d("redirect", $redirect);
+
         $Newsletter->save($data);
-        return $this->controller->redirect(array( 'action' => 'newsletters' ));
+        return $this->controller->redirect($redirect);
       }
 
       if(!empty($id)) {
@@ -198,8 +202,6 @@ class NewsletterComponent extends Component {
   }
 
   public function schedules_edit($id) {
-
-
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
@@ -218,8 +220,14 @@ class NewsletterComponent extends Component {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
         $data['filter'] = json_encode($data['filter']);
+        $redirect = array( 'action' => 'newsletters', 'schedules' );
+
+        if(isset($data['x_coord']) && $data['x_coord'] == '1') {
+          $redirect = array( 'action' => 'newsletters', 'emails', 'edit', $id);
+        }
+
         $NewsletterSchedule->save($data);
-        return $this->controller->redirect(array( 'action' => 'newsletters', 'schedules' ));
+        return $this->controller->redirect($redirect);
       }
 
 

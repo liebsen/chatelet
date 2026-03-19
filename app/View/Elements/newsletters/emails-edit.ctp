@@ -9,6 +9,8 @@
     'class' => 'w-100',
   )
 ); ?>
+  <input type="hidden" name="x_coord" id="x_coord">
+  <input type="hidden" name="y_coord" id="y_coord">
   <input type="hidden" name="redirect" value="/admin/newsletters"/>
   <input type="hidden" name="id" value="<?= $newsletter['Newsletter']['id'] ?? 0 ?>"/>
 	<div class="row">
@@ -99,7 +101,7 @@
   </div>
   <div class="form-actions">
     <a href="/admin/newsletters" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
-    <input type="image" class="btn btn-success" title="Pulsa aquí para actualizar este formulario" value="Guardar">
+    <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
   </div>
 
 <?php echo $this->Form->end(); ?>

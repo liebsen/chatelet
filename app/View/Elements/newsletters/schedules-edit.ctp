@@ -9,6 +9,8 @@
   'class' => 'w-100',
   'id' => 'schedule_edit',
 )); ?>
+  <input type="hidden" name="x_coord" id="x_coord">
+  <input type="hidden" name="y_coord" id="y_coord">
   <input type="hidden" name="redirect" value="/admin/newsletters/schedules"/>
   <input type="hidden" name="id" value="<?= $schedule['NewsletterSchedule']['id'] ?? 0 ?>"/>
   <input type="hidden" name="newsletter_id" value="<?= $schedule['Newsletter']['id'] ?? 0 ?>"/>
@@ -159,6 +161,6 @@
   </div>
   <div class="form-actions">
     <a href="/admin/newsletters/schedules" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
-    <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+    <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
   </div>
 <?php echo $this->Form->end(); ?>
