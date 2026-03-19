@@ -742,6 +742,7 @@ $(document).ready(function() {
 	if (typeof $.fn.datepicker != 'undefined'){ 
     $('.datepicker').datepicker({
 			format: 'dd/mm/yyyy',
+      autoclose: true,
 			language: 'es'
 		});
 	}

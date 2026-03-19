@@ -3,7 +3,6 @@
 	echo $this->Html->script('newsletters-schedules-edit.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('bootstrap-datepicker');  
-
 ?>
 
 <?php echo $this->Form->create(null, array(
@@ -92,8 +91,8 @@
       <div class="control-group">
         <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
         <div class="controls d-flex flex-center gap-05">
-          <input type="text" id="minDate" name="data[filter][date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha del envío" value="<?=$schedule['NewsletterSchedule']['filter']->date_min ?? date('d/m/Y')?>"/>
-          <input type="text" id="maxDate" name="data[filter][date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$schedule['NewsletterSchedule']['filter']->date_max ?? date('d/m/Y')?>"/>
+          <input type="text" id="minDate" name="data[filter][date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha del envío" value="<?=$schedule['NewsletterSchedule']['filter']->date_min ?? ''?>"/>
+          <input type="text" id="maxDate" name="data[filter][date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$schedule['NewsletterSchedule']['filter']->date_max ?? ''?>"/>
         </div>
       </div>
       <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
@@ -129,16 +128,15 @@
         </div>
       </div>
 
-
       <h4 class="sub-header">Programar fecha de envío</h4>
       <p>Establece la fecha y/o hora del envío para este Envío</p>
       <div class="control-group">
         <label class="control-label" for="title">Programar fecha/hora</label>
         <div class="controls d-flex flex-center gap-05">
-          <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$schedule['NewsletterSchedule']['schedule_date'] ?? date('d/m/Y')?>"/>
+          <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'], '%d/%m/%Y')?>"/>
           <select class="form-control" name="data[schedule_hour]">
           <?php for($i=0; $i < 24; $i++): ?>
-            <option value="<?=$i?>"><?=$i?>hs</option>
+            <option value="<?=$i?>"<?= $i == $schedule['NewsletterSchedule']['schedule_hour'] ? ' selected':''?>><?=$i?>hs</option>
           <?php endfor ?>
           </select>
         </div>

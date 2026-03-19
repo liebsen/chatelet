@@ -244,10 +244,12 @@ class UsersController extends AppController {
 
     if(empty($data['User']['email'])) {
       if(!empty($ajax)) {
-        return json_encode(array(
-          'success' => false,
-          'message' => 'No se recibió el email'
-        ));
+        return json_encode(
+          array(
+            'success' => false,
+            'message' => 'No se recibió el email'
+          )
+        );
       }
       
       return $this->redirect($this->referer());

@@ -168,7 +168,9 @@ $(function () {
       const format = $(e).data('format') || 'dd/mm/yyyy'
       $(e).datepicker({
         format: format,
-        language: 'es'
+        language: 'es',
+        autoclose: true,
+        todayHighlight: true,
       });
     })
   }
