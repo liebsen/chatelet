@@ -30,10 +30,12 @@ class ApiController extends AppController {
     if($this->Auth->user('id') && $this->request->is('post')){
       CakeLog::write('debug', 'webpush(user_id):'.json_encode($this->Auth->user('id')));
       CakeLog::write('debug', 'webpush(data):'.json_encode($this->request->data));
-      $this->Webpush->save(array(
-        'user_id' => $this->Auth->user('id'),
-        'payload' => $this->request->data,
-      ));
+      $this->Webpush->save(
+        array(
+          'user_id' => $this->Auth->user('id'),
+          'payload' => json_encode($this->request->data),
+        )
+      );
 
       return json_encode(
         array(
