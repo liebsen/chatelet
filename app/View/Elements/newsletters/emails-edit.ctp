@@ -3,14 +3,12 @@
 	echo $this->Html->script('newsletters-emails-edit.js?v=' . $version['ver'], array('inline' => false));
 ?>
 
-<?php echo $this->Form->create(null, array(
-  'url' => array(
-      'controller' => 'admin',
-      'action' => 'newsletters'
-  ),
-  'class' => 'w-100',
-  'id' => 'newsletter_edit',
-)); ?>
+<?php echo $this->Form->create(null,
+  array(
+    'id' => 'newsletter_edit',
+    'class' => 'w-100',
+  )
+); ?>
   <input type="hidden" name="redirect" value="/admin/newsletters"/>
   <input type="hidden" name="id" value="<?= $newsletter['Newsletter']['id'] ?? 0 ?>"/>
 	<div class="row">
@@ -101,7 +99,7 @@
   </div>
   <div class="form-actions">
     <a href="/admin/newsletters" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
-    <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+    <input type="image" class="btn btn-success" title="Pulsa aquí para actualizar este formulario" value="Guardar">
   </div>
 
 <?php echo $this->Form->end(); ?>

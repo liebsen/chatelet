@@ -69,6 +69,7 @@ class NewsletterComponent extends Component {
   }
 
   public function emails_edit($id) {
+        \d('emails_edit(id)', $id);
     
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
@@ -77,7 +78,8 @@ class NewsletterComponent extends Component {
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
-        //\d('emails_edit(data)', $data);
+        \d('emails_edit(REQUEST)', $_REQUEST);
+        \d('emails_edit(POST)', $_POST);
 
         if(empty($data['id'])) {
           $data['user_id'] = $this->controller->Auth->user('id');

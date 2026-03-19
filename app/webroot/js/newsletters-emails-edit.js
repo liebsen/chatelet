@@ -23,11 +23,46 @@ $(document).ready(function() {
     }, 500)        
   })
 
-  $('#newsletter_edit').submit(function(e){
-    console.log(e)
 
-    return false
-  })  
+  let checkRedirect = null
+
+  $('#newsletter_edit').submit(function(e){
+    return true
+    
+    console.log('newsletter_edit(submit)',e)
+    e.preventDefault()
+
+    $('input[type="submit"]').addClass('btn-loading')
+    console.log('checkRedirect(1)',checkRedirect)
+
+    return setTimeout(function(){
+      console.log('checkRedirect(2)',checkRedirect)
+      return false
+    }, 1000)
+  })
+
+  $('input[type="submit"]').click(function(event) {
+    console.log('submitButton(click)',event)
+      var pageX = event.pageX; // X coordinate relative to the document
+      var pageY = event.pageY; // Y coordinate relative to the document
+
+      console.log("Document X: " + pageX + ", Document Y: " + pageY);
+
+      // Optional: Get coordinates relative to the button itself
+      var offset = $(this).offset();
+      var relativeX = event.pageX - offset.left;
+      var relativeY = event.pageY - offset.top;
+      
+      console.log("Relative X: " + relativeX + ", Relative Y: " + relativeY);
+
+      // You can store these values or use them as needed
+      // For example, adding them to a hidden input field before the form submits
+      $('#mouseX').val(pageX);
+      $('#mouseY').val(pageY);
+      console.log('checkRedirect(=)')
+      checkRedirect = '/admin/newsletters/emails'
+      // If this is a submit button, the form will submit after this code runs
+  });  
 })
 
 CKEDITOR.replace('newsletter');

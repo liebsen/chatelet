@@ -6,10 +6,6 @@
 ?>
 
 <?php echo $this->Form->create(null, array(
-  'url' => array(
-      'controller' => 'admin',
-      'action' => 'newsletters'
-  ),
   'class' => 'w-100',
   'id' => 'schedule_edit',
 )); ?>
