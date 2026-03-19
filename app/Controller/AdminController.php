@@ -2265,11 +2265,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'name' => 'Productos',
 			'icon' => 'gi gi-shirt'
 			);
-
+		$this->set('h1', $h1);
+		$this->set('navs', $navs);		
 
 		$colors = $this->SQL->new_colors();
     $this->set('colors',$colors);
-
     $this->loadModel('Product');
     $this->loadModel('ProductProperty');
   	switch ($action) {
@@ -2354,7 +2354,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 						'url'		=> \site_url().'/admin/productos/edit/'.$cat['Product']['id'],
 						'active'	=> '/admin/productos/edit/'.$prod['Product']['id']
 					);
-
+					$this->set('navs', $navs);
   				$this->loadModel('Category');
 			    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 					$this->set('cats', $cats);
@@ -2386,8 +2386,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->set('more_list_category', $more_list_category);
 		$this->set('cats', $cats);
 		$this->set('prods', $prods);
-		$this->set('h1', $h1);
-		$this->set('navs', $navs);		
+
 	  $this->render('productos');
 	}
 
