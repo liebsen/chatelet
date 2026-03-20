@@ -25,7 +25,7 @@ class NewsletterComponent extends Component {
       'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month"))
     );
 
-    if(empty($this->controller->params['all'])) {
+    if(empty($_GET['extended'])) {
       $conditions['Newsletter.enabled'] = 1;
     }
 
@@ -136,6 +136,10 @@ class NewsletterComponent extends Component {
     $NewsletterUser = ClassRegistry::init('NewsletterUser');
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
     $response = array();
+    $conditions = array( 'Newsletter.id = NewsletterSchedule.newsletter_id' );
+    if(empty($_GET['extended'])) {
+      $conditions['NewsletterSchedule.enabled'] = 1;
+    }    
     try {
       $schedules = $NewsletterSchedule->find('all', array(
         'joins' => array(
@@ -143,7 +147,7 @@ class NewsletterComponent extends Component {
             'table' => 'newsletters',
             'alias' => 'Newsletter',
             'type' => 'LEFT',
-            'conditions' => array( 'Newsletter.id = NewsletterSchedule.newsletter_id' )
+            'conditions' => $conditions
           ),
         ),        
         'fields' => array('Newsletter.*, NewsletterSchedule.*'),

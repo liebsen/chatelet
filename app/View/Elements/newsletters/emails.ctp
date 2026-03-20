@@ -63,7 +63,7 @@
 		</tbody>
 	</table>
 	<div class="form-actions">
-		<a href="/admin/newsletters?extended=1">
+		<a href="/admin/newsletters/emails?extended=1">
       <button class="btn" type="button">Ver todo</button>
     </a>
 	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit'))?>">
