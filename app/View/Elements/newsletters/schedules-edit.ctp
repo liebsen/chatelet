@@ -50,25 +50,24 @@
           <label for="toggle" class="toggle-label"></label>
         </div>
 <?php if(!empty($schedule_products)): ?>
-        <a href="javascript:void(0)" onclick="$('.table-products').toggle()"><span class="badge badge-<?=  count($schedule_products) ? 'success' : 'light' ?> is-rounded is-large"><?php echo count($schedule_products) ?></span></a>
+        <a href="javascript:void(0)" onclick="$('.table-main:not(.table-products)').hide();$('.table-products').toggle()"><span class="badge badge-<?=  count($schedule_products) ? 'success' : 'light' ?> is-rounded is-large"><?php echo count($schedule_products) ?></span></a>
 <?php endif ?>
 <?php if(!empty($schedule_users)): ?>
-        <a href="javascript:void(0)" onclick="$('.table-users').toggle()">
+        <a href="javascript:void(0)" onclick="$('.table-main:not(.table-users)').hide();$('.table-users').toggle()">
           <span class="badge badge-<?=  count($schedule_products) ? 'info' : 'light' ?> is-rounded is-large"><?php echo count($schedule_users) ?></span></a>
         </a>
 <?php endif ?>      
       </div>
-      <div class="table-products bg-success d-none">
-        <h4 class="sub-header">Productos</h4>
+      <div class="table-main table-products bg-success d-none">
+        <h4 class="sub-header"><a class="text-muted" href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit', $schedule['Newsletter']['id']))?>"><i class="gi gi-cogwheel is-clickable"></i></a> Productos</h4>
         <table class="table table-forum">
   <?php foreach($schedule_products as $product): ?>
           <tr><td><?php echo $product['Product']['name']?> (<?php echo $product['Product']['article']?>)</td></tr>
   <?php endforeach ?>
         </table>
       </div>
-      <div class="table-users bg-info d-none">
-        <h6>Cuentas</h6>
-        <h4 class="sub-header">Cuentas</h4>
+      <div class="table-main table-users bg-info d-none">
+        <h4 class="sub-header"><i class="gi gi-cogwheel is-clickable" onclick="$('#user-filter').focus()"></i> Cuentas</h4>
         <table class="table table-forum">
     <?php foreach($schedule_users as $user): ?>
           <tr><td><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?> (<span class="text-lowercase"><?php echo $user['User']['email']?></span>)</td></tr>
@@ -178,7 +177,7 @@
     </div>
   </div>
   <div class="form-actions">
-    <a href="/admin/newsletters/schedules" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
+    <a href="javascript:history.go(-1)" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
     <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
   </div>
 <?php echo $this->Form->end(); ?>

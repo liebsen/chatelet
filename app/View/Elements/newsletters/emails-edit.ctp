@@ -28,7 +28,7 @@
 <?php endif ?>
       </div>
       <div class="table-products bg-success d-none">
-        <h4 class="sub-header">Productos</h4>
+        <h4 class="sub-header"><i class="gi gi-cogwheel is-clickable" onclick="$('#product-filter').focus()"></i> Productos</h4>
         <table class="table table-forum">
     <?php foreach($newsletter_products as $product): ?>
             <tr><td><?php echo $product['Product']['name']?> (<?php echo $product['Product']['article']?>)</td></tr>
@@ -125,7 +125,7 @@
     </div>
   </div>
   <div class="form-actions">
-    <a href="/admin/newsletters" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
+    <a href="javascript:history.go(-1)" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
     <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
   </div>
 
