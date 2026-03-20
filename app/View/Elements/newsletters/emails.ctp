@@ -49,14 +49,14 @@
 					>
 						<i class="gi gi-edit"></i>
 					</a>
-					<a 
-						href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', $newsletter['Newsletter']['id']))?>" 
+					<!--a 
+						 href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', $newsletter['Newsletter']['id']))?>" 
 						data-toggle="tooltip" 
 						title="Programar envío" 
 						class="btn btn-warning" 
 					>
 						<i class="gi gi-send"></i>
-					</a>
+					</a-->
 				</td>
 			</tr>
 <?php endforeach ?>

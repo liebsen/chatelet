@@ -13,7 +13,6 @@
   <input type="hidden" name="y_coord" id="y_coord">
   <input type="hidden" name="redirect" value="/admin/newsletters/schedules"/>
   <input type="hidden" name="data[id]" value="<?= $schedule['NewsletterSchedule']['id'] ?? 0 ?>"/>
-  <input type="hidden" name="data[newsletter_id]" value="<?= $schedule['Newsletter']['id'] ?? 0 ?>"/>
 	<div class="row">
     <div class="col-xs-12">
       <h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4>
@@ -28,14 +27,19 @@
       </div>
     </a>
 <?php else: ?>
+
+<?php if(empty($schedule['Newsletter']['id'])): ?>
       <div class="controls">
         <label class="control-label" for="title">Selecciona una plantilla</label>
-        <select class="form-control" name="schedule_id">
-<?php foreach($newsletters as $newsletter): ?>
+        <select class="form-control" name="data[newsletter_id]">
+  <?php foreach($newsletters as $newsletter): ?>
   <option value="<?= $newsletter['Newsletter']['id']?>"><?= $newsletter['Newsletter']['name']?> - <?= $newsletter['Newsletter']['title']?></option>
-<?php endforeach ?>
+  <?php endforeach ?>
         </select>
       </div>
+  <?php else: ?>
+    <input type="hidden" name="data[newsletter_id]" value="<?= $schedule['Newsletter']['id'] ?>"/>
+  <?php endif ?>
 <?php endif ?>
     </div>
   </div>
@@ -78,7 +82,7 @@
       <table class="table table-forum table-striped text-small">
         <tr>
           <td><small>Fecha / hora de envío</small></td>
-          <th><span class="date-value"><?= $schedule['NewsletterSchedule']['schedule_date']?></span> - <span class="hour-value"><?= $schedule['NewsletterSchedule']['schedule_hour']?>hs</span></th>
+          <th><span class="date-value"><?= $schedule['NewsletterSchedule']['schedule_date'] ?? date('d/m/Y')?></span> - <span class="hour-value"><?= $schedule['NewsletterSchedule']['schedule_hour'] ?? 0?>hs</span></th>
         </tr>
         <tr>
           <td><small>Periodo de evaluación</small></td>
@@ -104,13 +108,14 @@
           </th>
         </tr>
       </table>
+<?php if(!empty($schedule['NewsletterSchedule']['id'])):?>         
       <h4 class="sub-header">Filtros por compra</h4>
       <p>Establece fecha y monto para filtrar por cuenta de acuerdo al historial de compras</p>
       <div class="control-group">
         <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
         <div class="controls d-flex flex-center gap-05">
-          <input type="text" id="minDate" name="data[filter][date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha del envío" value="<?=$schedule['NewsletterSchedule']['filter']->date_min ?? ''?>"/>
-          <input type="text" id="maxDate" name="data[filter][date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha del envío" value="<?=$schedule['NewsletterSchedule']['filter']->date_max ?? ''?>"/>
+          <input type="text" id="minDate" name="data[filter][date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha mínima" value="<?=$schedule['NewsletterSchedule']['filter']->date_min ?? ''?>"/>
+          <input type="text" id="maxDate" name="data[filter][date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha máxima" value="<?=$schedule['NewsletterSchedule']['filter']->date_max ?? ''?>"/>
         </div>
       </div>
       <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
@@ -127,6 +132,7 @@
           <input type="text" id="maxDob" name="data[filter][dob_max]" class="form-control datepicker" data-format="dd/mm" data-name="maxdob-value" placeholder="Día de nacimiento max" value="<?=$schedule['NewsletterSchedule']['filter']->dob_max ?? ''?>"/>
         </div>
       </div>
+<?php endif ?>
     </div>
     <div class="col-md-6">
       <h4 class="sub-header">Método de envío</h4>
@@ -148,7 +154,7 @@
       <div class="control-group">
         <label class="control-label" for="title">Programar fecha/hora</label>
         <div class="controls d-flex flex-center gap-05">
-          <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'], '%d/%m/%Y')?>"/>
+          <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('d-m-Y'), '%d/%m/%Y')?>"/>
           <select class="form-control" name="data[schedule_hour]">
           <?php for($i=0; $i < 24; $i++): ?>
             <option value="<?=$i?>"<?= $i == $schedule['NewsletterSchedule']['schedule_hour'] ? ' selected':''?>><?=$i?>hs</option>
@@ -157,6 +163,7 @@
         </div>
         <small>Es el título que verán las clientas en su dispositivo</small>
       </div>
+<?php if(!empty($schedule['NewsletterSchedule']['id'])):?>      
       <h4 class="sub-header">Cuentas seleccionadas</h4>
       <p>Selecciona las cuentas que deseas asignar a este envío</p>
       <div class="controls">
@@ -174,6 +181,7 @@
   </span>
 <?php endforeach ?>
       </div>
+<?php endif ?>      
     </div>
   </div>
   <div class="form-actions">

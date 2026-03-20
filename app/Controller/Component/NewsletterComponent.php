@@ -85,12 +85,9 @@ class NewsletterComponent extends Component {
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
+        $data['id'] = $data['id'] ?? NULL;
         $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
         $redirect = array( 'action' => 'newsletters', 'emails' );
-
-        if(isset($data['x_coord']) && $data['x_coord'] == '1') {
-          $redirect = array( 'action' => 'newsletters', 'emails', 'edit', $id);
-        }
 
         if(empty($data['id'])) {
           $data['user_id'] = $this->controller->Auth->user('id');
@@ -100,6 +97,11 @@ class NewsletterComponent extends Component {
         //\d("redirect", $redirect);
 
         $Newsletter->save($data);
+
+        if(isset($data['x_coord']) && $data['x_coord'] == '1') {
+          $redirect = array( 'action' => 'newsletters', 'emails', 'edit', $Newsletter->id);
+        }
+
         // $this->response->statusCode(200);
         return $this->controller->redirect($redirect);
       }
@@ -235,17 +237,19 @@ class NewsletterComponent extends Component {
 
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
+        $data['id'] = $data['id'] ?? NULL;
         $data['filter'] = json_encode($data['filter']);
         $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
         $data['send_email'] = !empty($data['send_email']) ? 1 : 0;
         $data['send_push'] = !empty($data['send_push']) ? 1 : 0;
         $redirect = array( 'action' => 'newsletters', 'schedules' );
 
+        $NewsletterSchedule->save($data);
+
         if(isset($data['x_coord']) && $data['x_coord'] == '1') {
-          $redirect = array( 'action' => 'newsletters', 'schedules', 'edit', $id);
+          $redirect = array( 'action' => 'newsletters', 'schedules', 'edit', $NewsletterSchedule->id);
         }
 
-        $NewsletterSchedule->save($data);
         return $this->controller->redirect($redirect);
       }
 
