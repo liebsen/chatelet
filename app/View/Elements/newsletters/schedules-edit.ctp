@@ -19,12 +19,14 @@
       <h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4>
       <p>Esta plantilla tiene asociados <span><?= count($schedule_products)?></span> productos</p>
 <?php if(isset($schedule['Newsletter']['id'])): ?>
+    <a href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit', $schedule['Newsletter']['id']))?>">
       <div class="card">
         <div class="card-body">
           <h5 class="control-label" for="title"><?=$schedule['Newsletter']['title']?></h5>
           <div class="controls"><?=$schedule['Newsletter']['body']?></div>
         </div>
       </div>
+    </a>
 <?php else: ?>
       <div class="controls">
         <label class="control-label" for="title">Selecciona una plantilla</label>
@@ -41,33 +43,37 @@
     <div class="col-md-6">
       <h4 class="sub-header">Configuración de envío</h4>
       <p>Configura el alcance para este Envío</p>
-      <div class="controls flex-1">
-        <label class="control-label" for="toggle">Activo</label>
-        <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['enabled'] == '1' ? ' checked' : '' ?>>
-        <label for="toggle" class="toggle-label"></label>
-      </div>
+      <div class="form-group flex-between gap-05">
+        <div class="controls flex-1">
+          <label class="control-label" for="toggle">Activo</label>
+          <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['enabled'] == '1' ? ' checked' : '' ?>>
+          <label for="toggle" class="toggle-label"></label>
+        </div>
 <?php if(!empty($schedule_products)): ?>
-      <hr>
-      <p>
-        <a href="javascript:void(0)" onclick="$('.table-products').toggle()"><span class="badge badge-<?=  count($schedule_products) ? 'success' : 'danger' ?> is-rounded is-large"><?php echo count($schedule_products) ?></span> Productos</a>
-      </p>
-      <table class="table table-forum table-products d-none">
+        <a href="javascript:void(0)" onclick="$('.table-products').toggle()"><span class="badge badge-<?=  count($schedule_products) ? 'success' : 'light' ?> is-rounded is-large"><?php echo count($schedule_products) ?></span></a>
+<?php endif ?>
+<?php if(!empty($schedule_users)): ?>
+        <a href="javascript:void(0)" onclick="$('.table-users').toggle()">
+          <span class="badge badge-<?=  count($schedule_products) ? 'info' : 'light' ?> is-rounded is-large"><?php echo count($schedule_users) ?></span></a>
+        </a>
+<?php endif ?>      
+      </div>
+      <div class="table-products bg-success d-none">
+        <h6>Productos</h6>
+        <table class="table table-forum">
   <?php foreach($schedule_products as $product): ?>
           <tr><td><?php echo $product['Product']['name']?> (<?php echo $product['Product']['article']?>)</td></tr>
   <?php endforeach ?>
-      </table>
-<?php endif ?>
-<?php if(!empty($schedule_users)): ?>
-      <hr>
-      <p>
-        <span class="badge badge-<?=  count($schedule_products) ? 'success' : 'danger' ?> is-rounded is-large"><?php echo count($schedule_users) ?></span> <a href="javascript:void(0)" onclick="$('.table-users').toggle()">Cuentas </a>
-      </p>
-      <table class="table table-forum table-users d-none">
-  <?php foreach($schedule_users as $user): ?>
+        </table>
+      </div>
+      <div class="table-users bg-info d-none">
+        <h6>Cuentas</h6>
+        <table class="table table-forum">
+    <?php foreach($schedule_users as $user): ?>
           <tr><td><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?> (<span class="text-lowercase"><?php echo $user['User']['email']?></span>)</td></tr>
   <?php endforeach ?>
-      </table>
-<?php endif ?>      
+       </table>
+      </div>
       <hr>
       <p>Configuración</p>
       <table class="table table-forum table-striped text-small">
