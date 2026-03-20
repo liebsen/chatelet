@@ -149,9 +149,9 @@ class NewsletterShell extends AppShell {
   public function sendPush($data, $push) {
     var_dump("----sendPush");
     var_dump($push['Webpush']['payload']);
-    var_dump(json_encode($push['Webpush']['payload']));
+    var_dump(json_decode($push['Webpush']['payload']));
     $push = array(
-      'subscription' => Subscription::create( json_encode($push['Webpush']['payload']) ),
+      'subscription' => Subscription::create( json_decode($push['Webpush']['payload']) ),
         /*array(
           'endpoint' => 'https://fcm.googleapis.com/fcm/send/djRg_IDPtSs:APA91bFwYCC73F4X3cXELK...',
           'keys' => array(
