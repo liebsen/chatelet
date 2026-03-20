@@ -64,7 +64,7 @@
       </p>
       <table class="table table-forum table-users d-none">
   <?php foreach($schedule_users as $user): ?>
-          <tr><td><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?> (<?php echo $user['User']['email']?>)</td></tr>
+          <tr><td><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?> (<span class="text-lowercase"><?php echo $user['User']['email']?></span>)</td></tr>
   <?php endforeach ?>
       </table>
 <?php endif ?>      
@@ -112,7 +112,7 @@
       <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
       <div class="controls-group">
         <label class="control-label" for="minSale">Mínimo de compra</label>
-        <input type="range" id="minSale" step="10" min="10" max="4000" value="10">
+        <input type="range" id="minSale" name="data[filter][min_sale]" step="10" min="10" max="4000" value="<?=$schedule['NewsletterSchedule']['filter']->min_sale?>">
       </div>
       <hr>
       <h4 class="sub-header">Filtro por fecha de nacimiento</h4>

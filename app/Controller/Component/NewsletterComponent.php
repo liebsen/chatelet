@@ -236,6 +236,9 @@ class NewsletterComponent extends Component {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
         $data['filter'] = json_encode($data['filter']);
+        $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
+        $data['send_email'] = !empty($data['send_email']) ? 1 : 0;
+        $data['send_push'] = !empty($data['send_push']) ? 1 : 0;
         $redirect = array( 'action' => 'newsletters', 'schedules' );
 
         if(isset($data['x_coord']) && $data['x_coord'] == '1') {
