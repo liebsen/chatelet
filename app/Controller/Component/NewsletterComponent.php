@@ -47,7 +47,9 @@ class NewsletterComponent extends Component {
             ),
           ),
           'fields' => array('NewsletterProduct.*, Product.*'),
-          'conditions' => array( 'NewsletterProduct.newsletter_id' => $newsletter['Newsletter']['id']),
+          'conditions' => array( 
+            'NewsletterProduct.newsletter_id' => $newsletter['Newsletter']['id'],
+          ),
           'order' => array( 'NewsletterProduct.id DESC' )
         ));
 
@@ -56,7 +58,6 @@ class NewsletterComponent extends Component {
           'conditions' => array( 'NewsletterSchedule.newsletter_id' => $newsletter['Newsletter']['id']),
           'order' => array( 'NewsletterSchedule.id DESC' )
         ));
-
         /*$start = new \DateTime($newsletter['Newsletter']['modified']);
         $end = new \DateTime("now");
         $interval = $end->diff($start);
@@ -136,10 +137,11 @@ class NewsletterComponent extends Component {
     $NewsletterUser = ClassRegistry::init('NewsletterUser');
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
     $response = array();
-    $conditions = array( 'Newsletter.id = NewsletterSchedule.newsletter_id' );
+    $conditions = array('NewsletterSchedule.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")));
     if(empty($_GET['extended'])) {
       $conditions['NewsletterSchedule.enabled'] = 1;
-    }    
+    }
+
     try {
       $schedules = $NewsletterSchedule->find('all', array(
         'joins' => array(
@@ -147,11 +149,11 @@ class NewsletterComponent extends Component {
             'table' => 'newsletters',
             'alias' => 'Newsletter',
             'type' => 'LEFT',
-            'conditions' => $conditions
+            'conditions' => array('Newsletter.id = NewsletterSchedule.newsletter_id')
           ),
         ),        
         'fields' => array('Newsletter.*, NewsletterSchedule.*'),
-        'conditions' => array( 'NewsletterSchedule.created > ' => date("Y-m-d H:i", strtotime("last day of previous month"))),
+        'conditions' => $conditions,
         'order' => array( 'NewsletterSchedule.id DESC' )
       ));
 
