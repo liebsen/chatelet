@@ -59,7 +59,7 @@
 <?php endif ?>      
       </div>
       <div class="table-products bg-success d-none">
-        <h6>Productos</h6>
+        <h4 class="sub-header">Productos</h4>
         <table class="table table-forum">
   <?php foreach($schedule_products as $product): ?>
           <tr><td><?php echo $product['Product']['name']?> (<?php echo $product['Product']['article']?>)</td></tr>
@@ -68,14 +68,14 @@
       </div>
       <div class="table-users bg-info d-none">
         <h6>Cuentas</h6>
+        <h4 class="sub-header">Cuentas</h4>
         <table class="table table-forum">
     <?php foreach($schedule_users as $user): ?>
           <tr><td><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?> (<span class="text-lowercase"><?php echo $user['User']['email']?></span>)</td></tr>
   <?php endforeach ?>
        </table>
       </div>
-      <hr>
-      <p>Configuración</p>
+      <h4 class="sub-header">Configuración</h4>
       <table class="table table-forum table-striped text-small">
         <tr>
           <td><small>Fecha / hora de envío</small></td>
@@ -105,7 +105,6 @@
           </th>
         </tr>
       </table>
-      <hr>
       <h4 class="sub-header">Filtros por compra</h4>
       <p>Establece fecha y monto para filtrar por cuenta de acuerdo al historial de compras</p>
       <div class="control-group">
@@ -120,7 +119,6 @@
         <label class="control-label" for="minSale">Mínimo de compra</label>
         <input type="range" id="minSale" name="data[filter][min_sale]" step="10" min="10" max="4000" value="<?=$schedule['NewsletterSchedule']['filter']->min_sale?>">
       </div>
-      <hr>
       <h4 class="sub-header">Filtro por fecha de nacimiento</h4>
       <p>Establece fecha para filtrar por cuenta de acuerdo fecha de nacimiento</p>
       <div class="control-group">
@@ -146,7 +144,6 @@
           <label for="toggle-push" class="toggle-label"></label>
         </div>
       </div>
-      <hr>
       <h4 class="sub-header">Programar fecha de envío</h4>
       <p>Establece la fecha y/o hora del envío para este Envío</p>
       <div class="control-group">
@@ -161,7 +158,6 @@
         </div>
         <small>Es el título que verán las clientas en su dispositivo</small>
       </div>
-      <hr>
       <h4 class="sub-header">Cuentas seleccionadas</h4>
       <p>Selecciona las cuentas que deseas asignar a este envío</p>
       <div class="controls">

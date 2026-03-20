@@ -28,7 +28,7 @@
 <?php endif ?>
       </div>
       <div class="table-products bg-success d-none">
-        <h6>Productos</h6>
+        <h4 class="sub-header">Productos</h4>
         <table class="table table-forum">
     <?php foreach($newsletter_products as $product): ?>
             <tr><td><?php echo $product['Product']['name']?> (<?php echo $product['Product']['article']?>)</td></tr>
