@@ -1428,6 +1428,9 @@ select.form-control{
   padding: 1rem;
 }
 
+.card.is-rounded .card-body {
+  border-radius: 1rem;
+}
 .card-title {
 	display: flex;
 	align-items: center;	

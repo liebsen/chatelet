@@ -74,7 +74,7 @@ function setRelation(action, data, target) {
 }
 
 function searchRelations(data) { 
-  //console.log('searchRelations', data)
+  console.log('searchRelations', data)
   const endpoints = { 
     user: {
       url: '/admin/search_users',
@@ -113,7 +113,7 @@ function searchRelations(data) {
       }
       if(filter.length){
         $.each(filter, function(key, item) {
-          $(`.${data.type}-container`).append(`<span class="label ${data.type}-item ${data.type == 'user' ? 'text-lowercase' : ''} is-clickable" data-rel_id="${data.rel_id}" data-id="${item.id}" data-type="${data.type}" data-source="${data.source}" data-model="${data.model}">${item[endpoints[data.type].selector]}</span>`);
+          $(`.${data.type}-container`).append(`<span class="label ${data.type}-item ${data.type == 'user' ? 'text-lowercase' : ''} is-clickable" data-parent-id="${data.parentId}" data-id="${item.id}" data-type="${data.type}" data-source="${data.source}" data-model="${data.model}">${item[endpoints[data.type].selector]}</span>`);
         })
         if(typeof data.cb == 'function') {
           data.cb(filter.length)

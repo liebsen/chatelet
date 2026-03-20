@@ -53,6 +53,6 @@ function toggleOption(e, type){
 	data.type = type
 	data.source = 'coupon'
 	data.model = 'CouponItem'
-	data.rel_id = e.getAttribute('data-coupon')
+	data.parentId = e.getAttribute('data-coupon')
 	setRelation(action, data, e)
 }

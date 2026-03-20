@@ -111,7 +111,7 @@
 <?php foreach($newsletter_products as $product): ?>
     <span 
     	class="label product-item is-clickable is-enabled" 
-    	data-rel_id="<?php echo $newsletter['Newsletter']['id'] ?>" 
+    	data-parent-id="<?php echo $newsletter['Newsletter']['id'] ?>" 
       data-id="<?=$product['Product']['id']?>"
       data-type="product"
       data-source="newsletter"

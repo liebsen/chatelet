@@ -15,7 +15,7 @@ $(document).ready(function() {
     interval = setTimeout(() => {
       searchRelations({
         q,
-        rel_id: $('input[name="id"]').val(),
+        parentId: $('input[name="data[id]"]').val(),
         type: 'product',
         source: 'newsletter',
         model: 'NewsletterProduct'

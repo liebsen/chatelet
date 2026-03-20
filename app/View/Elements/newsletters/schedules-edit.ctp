@@ -166,7 +166,7 @@
 <?php foreach($schedule_users as $user): ?>
   <span 
     class="label user-item is-clickable text-lowercase is-enabled" 
-    data-rel_id="<?php echo $schedule['NewsletterSchedule']['id'] ?>" 
+    data-parent-id="<?php echo $schedule['NewsletterSchedule']['id'] ?>" 
     data-id="<?=$user['User']['id']?>"
     data-type="user"
     data-source="schedule"

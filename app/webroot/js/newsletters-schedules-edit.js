@@ -27,7 +27,7 @@ $(document).ready(function() {
     interval = setTimeout(() => {
       searchRelations({
         q,
-        rel_id: $('input[name="newsletter_id"]').val(),
+        parentId: $('input[name="data[newsletter_id]"]').val(),
         type: 'product',
         source: 'newsletter',
         model: 'NewsletterProduct'
@@ -48,7 +48,7 @@ $(document).ready(function() {
     interval = setTimeout(() => {
       searchRelations({
         q,
-        rel_id: $('input[name="id"]').val(), 
+        parentId: $('input[name="data[id]"]').val(), 
         type: 'user',
         source: 'schedule',
         model: 'NewsletterUser',
@@ -60,9 +60,9 @@ $(document).ready(function() {
 
 
 $(document).on('click', '.product-item, .user-item', function(e){
-
   const target = $(e.target)
   const data = target.data()
+  console.log('data',data)
   const action = target.hasClass('is-enabled') ? 'remove' : 'add'
 
   $.post('/admin/relation_' + action, data)
@@ -104,7 +104,7 @@ function relateAll(){
 
 function updateUsers(){
   const data = {
-    rel_id: $('input[name="id"]').val(),
+    parentId: $('input[name="data[id]"]').val(),
     type: 'user',
     source: 'schedule',
     model: 'NewsletterUser'
@@ -139,7 +139,7 @@ function updateUsers(){
         $('.usercount-new').text(filter.length)
         $('.userscount-message').show()
         $.each(filter, function(key, item) {
-          $('.user-container').append('<span class="label user-item text-lowercase is-clickable" data-rel_id="'+data.rel_id+'" data-id="'+item.id+'" data-type="'+data.type+'" data-source="'+data.source+'" data-model="'+data.model+'">'+item.email+'</span>');
+          $('.user-container').append('<span class="label user-item text-lowercase is-clickable" data-parent-id="'+data.parentId+'" data-id="'+item.id+'" data-type="'+data.type+'" data-source="'+data.source+'" data-model="'+data.model+'">'+item.email+'</span>');
         })
       } else {
         $('.userscount-message').hide()

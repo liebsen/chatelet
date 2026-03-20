@@ -2460,7 +2460,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	$model = ClassRegistry::init($data['model']);
     	$ids = $model->find('all', [
     		'conditions' => [
-    			$data['source'] . '_id' => $data['rel_id'],
+    			$data['source'] . '_id' => $data['parentId'],
     			$data['type'] . '_id' => $data['id'],
     		], 
     		'fields' => ['id']
@@ -2471,7 +2471,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	$model->delete($ids);
       $result = $model->save(array(
       	$data['type'] . '_id' => $data['id'],
-      	$data['source'] . '_id' => $data['rel_id'],
+      	$data['source'] . '_id' => $data['parentId'],
       ));
       return json_encode(array(
       	'success' => true, 
@@ -2568,7 +2568,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	$ids = $model->find('all',array(
     		'conditions' => array(
     			$data['type'] . '_id' => $data['id'],
-    			$data['source'] . '_id' => $data['rel_id'],
+    			$data['source'] . '_id' => $data['parentId'],
     		), 
     		'fields' => ['id']
     	));

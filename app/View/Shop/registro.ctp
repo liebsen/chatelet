@@ -272,7 +272,7 @@ if (!$loggedIn) {
 				<?php echo $this->Form->end(); ?>
 			</div>
 			<div class="flex-col desktop">
-				<div class="card bg-transparent">
+				<div class="card is-rounded bg-transparent">
 					<div class="card-body">
 						<blockquote>
 							<h3 class="mt-0"><i class="gi gi-magic text-warning"></i>
