@@ -215,11 +215,11 @@ body {
 }
 .category-item.is-enabled,
 .product-item.is-enabled {
-    background-color: green!important;
+    background-color: #01c801!important;
     color: white!important;
 }
 .user-item.is-enabled {
-    background-color: blue!important;
+    background-color: #4cb9fc!important;
     color: white!important;
 }
 
@@ -3319,11 +3319,11 @@ a.thumbnail-borderless,
 }
 
 .user-container {
-    background-color: lightblue;
+    background-color: #d0edff;
 }
 
 .product-container {
-    background-color: lightgreen;
+    background-color: #b4ffb4;
 }
 
 /* .controls {
