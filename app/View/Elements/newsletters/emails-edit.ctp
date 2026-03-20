@@ -12,11 +12,29 @@
   <input type="hidden" name="x_coord" id="x_coord">
   <input type="hidden" name="y_coord" id="y_coord">
   <input type="hidden" name="redirect" value="/admin/newsletters"/>
-  <input type="hidden" name="id" value="<?= $newsletter['Newsletter']['id'] ?? 0 ?>"/>
+  <input type="hidden" name="data[id]" value="<?= $newsletter['Newsletter']['id'] ?? 0 ?>"/>
 	<div class="row">
     <div class="col-md-12">
       <h4 class="sub-header"><?=$newsletter['Newsletter']['title'] ?? 'Crea un nueva plantilla'?></h4>
       <p><?=$newsletter['Newsletter']['title'] ? 'Modifica' : 'Crea'?> tu plantilla. Puedes asociarle productos si lo deseas.</p>
+      <div class="controls flex-1">
+        <label class="control-label" for="toggle">Activo</label>
+        <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$newsletter['Newsletter']['enabled'] == '1' ? ' checked' : '' ?>>
+        <label for="toggle" class="toggle-label"></label>
+      </div>      
+<?php if(!empty($newsletter_products)): ?>
+      <hr>
+      <p>
+        <a href="javascript:void(0)" onclick="$('.table-products').toggle()"><span class="badge badge-<?=  count($newsletter_products) ? 'success' : 'danger' ?> is-rounded is-large"><?php echo count($newsletter_products) ?></span> Productos</a>
+      </p>
+      <table class="table table-forum table-products d-none">
+  <?php foreach($newsletter_products as $product): ?>
+          <tr><td><?php echo $product['Product']['name']?> (<?php echo $product['Product']['article']?>)</td></tr>
+  <?php endforeach ?>
+      </table>
+<?php endif ?>
+      <hr>
+      <p>Compone tu platilla</p>
       <div class="control-group">
         <label class="control-label" for="title">Título</label>
         <div class="controls">
@@ -25,7 +43,7 @@
         <small class="text-muted">Es el título que verán las clientas en su dispositivo</small>
       </div>
       <div class="control-group d-block">
-        <textarea class="form-control w-100" name="body" id="newsletter" rows="8"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
+        <textarea class="form-control w-100" name="data[body]" id="newsletter" rows="8"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
         <h6 class="text-theme">Tabla de variables disponibles</h6>
         <table class="table table-striped">
 <?php foreach($templateVars as $id => $name): ?>
@@ -43,7 +61,8 @@
         </tr>
 <?php endforeach ?>
         </table>
-      </div>      
+      </div>
+
     </div>
   </div>
   <div class="row">
@@ -65,9 +84,9 @@
 <?php else: ?>
     	<p>Puedes aregar productos a la plantilla, se mostrarán en un catálogo de lista con sus respectivos enlaces y precios.</p>
 			<div class="control-group">
-				<label class="control-label" for="toggle"><?php echo __('Mostrar precio'); ?></label>
-				<input type="checkbox" name="data[show_prices]" value="1" id="toggle" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_prices'] == '1' ? ' checked' : '' ?>>
-				<label for="toggle" class="toggle-label"></label>
+				<label class="control-label" for="toggle-price"><?php echo __('Mostrar precio'); ?></label>
+				<input type="checkbox" name="data[show_prices]" value="1" id="toggle-price" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_prices'] == '1' ? ' checked' : '' ?>>
+				<label for="toggle-price" class="toggle-label"></label>
 	      <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
 			</div>
       <div class="control-group w-100">
@@ -87,6 +106,7 @@
     </span>
 <?php endforeach ?>       
         </div>
+        <hr>
         <h4 class="sub-header">Configuración adicional</h4>
         <p>Establece la configuración adicional de esta Plantilla</p>
         <div class="control-group">

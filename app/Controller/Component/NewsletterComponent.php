@@ -21,10 +21,18 @@ class NewsletterComponent extends Component {
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
     $response = array();
+    $conditions = array(
+      'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month"))
+    );
+
+    if(empty($this->controller->params['all'])) {
+      $conditions['Newsletter.enabled'] = 1;
+    }
+
     try {
       $newsletters = $Newsletter->find('all', array(
         'fields' => array('Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.created'),
-        'conditions' => array( 'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month"))),
+        'conditions' => $conditions,
         'order' => array( 'Newsletter.modified DESC' )
       ));
 
@@ -76,6 +84,7 @@ class NewsletterComponent extends Component {
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
+        $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
         $redirect = array( 'action' => 'newsletters', 'emails' );
 
         if(isset($data['x_coord']) && $data['x_coord'] == '1') {
@@ -90,6 +99,7 @@ class NewsletterComponent extends Component {
         //\d("redirect", $redirect);
 
         $Newsletter->save($data);
+        // $this->response->statusCode(200);
         return $this->controller->redirect($redirect);
       }
 
@@ -223,7 +233,7 @@ class NewsletterComponent extends Component {
         $redirect = array( 'action' => 'newsletters', 'schedules' );
 
         if(isset($data['x_coord']) && $data['x_coord'] == '1') {
-          $redirect = array( 'action' => 'newsletters', 'emails', 'edit', $id);
+          $redirect = array( 'action' => 'newsletters', 'schedules', 'edit', $id);
         }
 
         $NewsletterSchedule->save($data);

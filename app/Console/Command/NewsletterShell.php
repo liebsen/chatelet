@@ -78,9 +78,19 @@ class NewsletterShell extends AppShell {
       )
     );
 
-
     foreach($newsletters as $newsletter) {
+      // parse email
+      $parsed_body = !empty($newsletter['Newsletter']['body']) ? 
+        \parse_template($newsletter['Newsletter']['body'], array(
+          'name' => str_replace("\n",'',$newsletter['User']['name']),
+          'surname' => str_replace("\n",'',$newsletter['User']['surname']),
+          'birthday' => str_replace("\n",'',$newsletter['User']['birthday']),
+          //'total' => str_replace(',00','',number_format($cart_totals['grand_total'], 0, ',', '.'))
+        )
+      ) : 
+      '';
 
+      var_dump($parsed_body);
     }
     /* $email_data = array(
       'id_user' => 1,

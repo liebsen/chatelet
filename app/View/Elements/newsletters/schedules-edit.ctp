@@ -12,8 +12,8 @@
   <input type="hidden" name="x_coord" id="x_coord">
   <input type="hidden" name="y_coord" id="y_coord">
   <input type="hidden" name="redirect" value="/admin/newsletters/schedules"/>
-  <input type="hidden" name="id" value="<?= $schedule['NewsletterSchedule']['id'] ?? 0 ?>"/>
-  <input type="hidden" name="newsletter_id" value="<?= $schedule['Newsletter']['id'] ?? 0 ?>"/>
+  <input type="hidden" name="data[id]" value="<?= $schedule['NewsletterSchedule']['id'] ?? 0 ?>"/>
+  <input type="hidden" name="data[newsletter_id]" value="<?= $schedule['Newsletter']['id'] ?? 0 ?>"/>
 	<div class="row">
     <div class="col-xs-12">
       <h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4>
@@ -39,51 +39,67 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-
       <h4 class="sub-header">Configuración de envío</h4>
       <p>Configura el alcance para este Envío</p>
       <div class="controls flex-1">
         <label class="control-label" for="toggle">Activo</label>
         <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['enabled'] == '1' ? ' checked' : '' ?>>
         <label for="toggle" class="toggle-label"></label>
-      </div>      
-      <table class="table table-striped text-small">
+      </div>
+<?php if(!empty($schedule_products)): ?>
+      <hr>
+      <p>
+        <a href="javascript:void(0)" onclick="$('.table-products').toggle()"><span class="badge badge-<?=  count($schedule_products) ? 'success' : 'danger' ?> is-rounded is-large"><?php echo count($schedule_products) ?></span> Productos</a>
+      </p>
+      <table class="table table-forum table-products d-none">
+  <?php foreach($schedule_products as $product): ?>
+          <tr><td><?php echo $product['Product']['name']?> (<?php echo $product['Product']['article']?>)</td></tr>
+  <?php endforeach ?>
+      </table>
+<?php endif ?>
+<?php if(!empty($schedule_users)): ?>
+      <hr>
+      <p>
+        <span class="badge badge-<?=  count($schedule_products) ? 'success' : 'danger' ?> is-rounded is-large"><?php echo count($schedule_users) ?></span> <a href="javascript:void(0)" onclick="$('.table-users').toggle()">Cuentas </a>
+      </p>
+      <table class="table table-forum table-users d-none">
+  <?php foreach($schedule_users as $user): ?>
+          <tr><td><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?> (<?php echo $user['User']['email']?>)</td></tr>
+  <?php endforeach ?>
+      </table>
+<?php endif ?>      
+      <hr>
+      <p>Configuración</p>
+      <table class="table table-forum table-striped text-small">
         <tr>
-          <th><small>Fecha / hora de envío</small></th>
-          <td><span class="date-value"><?= $schedule['NewsletterSchedule']['schedule_date']?></span> - <span class="hour-value"><?= $schedule['NewsletterSchedule']['schedule_hour']?>hs</span></td>
+          <td><small>Fecha / hora de envío</small></td>
+          <th><span class="date-value"><?= $schedule['NewsletterSchedule']['schedule_date']?></span> - <span class="hour-value"><?= $schedule['NewsletterSchedule']['schedule_hour']?>hs</span></th>
         </tr>
         <tr>
-          <th><small>Periodo de evaluación</small></th>
-          <td><span class="mindate-value"><?= $schedule['NewsletterSchedule']['filter']->date_min?></span> - <span class="maxdate-value"><?= $schedule['NewsletterSchedule']['filter']->date_max?></span></td>
+          <td><small>Periodo de evaluación</small></td>
+          <th><span class="mindate-value"><?= $schedule['NewsletterSchedule']['filter']->date_min?></span> - <span class="maxdate-value"><?= $schedule['NewsletterSchedule']['filter']->date_max?></span></th>
         </tr>
         <tr>
-          <th><small>Mínimo de compra</small></th>
-          <td><span class="minsale-value"><?= $schedule['NewsletterSchedule']['filter']->sale_min?></span></td>
+          <td><small>Mínimo de compra</small></td>
+          <th><span class="minsale-value"><?= $schedule['NewsletterSchedule']['filter']->sale_min?></span></th>
         </tr>
         <tr>
-          <th><small>Productos seleccionados</small></th>
-          <td>
+          <td><small>Productos seleccionados</small></td>
+          <th>
             <span class="userscount-value">
               <?= count($schedule_products)?>
             </span> 
-            <div class="prod-assist<?= count($schedule_products) ? '' : ' d-none'?>">
-              <a href="javascript:void(0)" onclick="$('.prod-list').toggle()">Mostrar</a>
-              <ul class="prod-list d-none">
-  <?php foreach($schedule_products as $product): ?>
-          <li><?php echo $product['Product']['name']?> (<?php echo $product['Product']['article']?>)</li>
-  <?php endforeach ?>
-              </ul>
-            </div>
-          </td>
+          </th>
         </tr>
         <tr>
-          <th><small>Cuentas seleccionadas</small></th>
-          <td>
+          <td><small>Cuentas seleccionadas</small></td>
+          <th>
             <span class="userscount-value"><?= count($schedule_users)?></span>
             <a class="userscount-message d-none" href="javascript:void(0)" onclick="relateAll()">Agregar <span class="usercount-new">0</span></a>
-          </td>
+          </th>
         </tr>
       </table>
+      <hr>
       <h4 class="sub-header">Filtros por compra</h4>
       <p>Establece fecha y monto para filtrar por cuenta de acuerdo al historial de compras</p>
       <div class="control-group">
@@ -98,7 +114,7 @@
         <label class="control-label" for="minSale">Mínimo de compra</label>
         <input type="range" id="minSale" step="10" min="10" max="4000" value="10">
       </div>
-
+      <hr>
       <h4 class="sub-header">Filtro por fecha de nacimiento</h4>
       <p>Establece fecha para filtrar por cuenta de acuerdo fecha de nacimiento</p>
       <div class="control-group">
@@ -110,7 +126,6 @@
       </div>
     </div>
     <div class="col-md-6">
-
       <h4 class="sub-header">Método de envío</h4>
       <p>Selecciona el canal por donde notificar a las cuentas</p>
       <div class="form-group flex-start gap-05">
@@ -125,7 +140,7 @@
           <label for="toggle-push" class="toggle-label"></label>
         </div>
       </div>
-
+      <hr>
       <h4 class="sub-header">Programar fecha de envío</h4>
       <p>Establece la fecha y/o hora del envío para este Envío</p>
       <div class="control-group">
@@ -140,6 +155,7 @@
         </div>
         <small>Es el título que verán las clientas en su dispositivo</small>
       </div>
+      <hr>
       <h4 class="sub-header">Cuentas seleccionadas</h4>
       <p>Selecciona las cuentas que deseas asignar a este envío</p>
       <div class="controls">

@@ -1936,6 +1936,7 @@ li.plan-featured h1 {
 .table.table-forum th,
 .table.table-forum td {
     vertical-align: middle;
+    background-color: #fcf8e3;
 }
 
 .table.table-forum th {
@@ -3247,7 +3248,7 @@ a.thumbnail-borderless,
     bottom: 0;
     right: 0;
     padding: 1rem;
-    z-index: 99;
+    z-index: 1060;
     min-width: 100vw;
 }
 
