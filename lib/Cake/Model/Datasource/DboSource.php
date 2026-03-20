@@ -457,7 +457,7 @@ class DboSource extends DataSource {
 
 		/* --replace-- */
 		if (preg_match('/^(?:UPDATE|INSERT)\s/i', $sql)) {
-			//\d("query",$sql);
+			\d("query",$sql);
 		}
 
 		if (preg_match('/^(?:CREATE|ALTER|DROP)\s+(?:TABLE|INDEX)/i', $sql)) {

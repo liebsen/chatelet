@@ -2210,9 +2210,10 @@ small, .small {
 
 .badge.is-large {
     font-size: 24px;
-    line-height: 1.5;
+    line-height: 2;
     font-weight: 800;
-    min-width: 3.25rem;
+    min-width: 4rem;
+    min-height: 4rem;
 }
 
 .label-danger,

@@ -17,7 +17,6 @@ class NewsletterShell extends AppShell {
     'NewsletterUser',
     'NewsletterSchedule', 
     'NewsletterProduct',
-    'CakeEmail'
   );
 
   private $settings = [];
@@ -27,7 +26,8 @@ class NewsletterShell extends AppShell {
     $this->settings = $this->loadSettings();
     $curr_date = date('Y-m-d');
     $curr_hour = date('H'); 
-
+    $email_sent = 0;
+    $push_sent = 0;
     $newsletters = $this->NewsletterUser->find('all', array(
      'joins' => array(
         array(
@@ -65,7 +65,7 @@ class NewsletterShell extends AppShell {
         )
        ),
       'fields' => array(
-        'Newsletter.title, Newsletter.body, Newsletter.show_prices, Newsletter.show_follow, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email'
+        'NewsletterUser.id, NewsletterUser.user_id, Newsletter.title, Newsletter.body, Newsletter.show_prices, Newsletter.show_follow, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email'
       ),
       'conditions' => array( 
         //'NewsletterUser.status' => "waiting", 
@@ -80,17 +80,54 @@ class NewsletterShell extends AppShell {
 
     foreach($newsletters as $newsletter) {
       // parse email
-      $parsed_body = !empty($newsletter['Newsletter']['body']) ? 
+      $newsletter['Newsletter']['body'] = !empty($newsletter['Newsletter']['body']) ? 
         \parse_template($newsletter['Newsletter']['body'], array(
           'name' => str_replace("\n",'',$newsletter['User']['name']),
           'surname' => str_replace("\n",'',$newsletter['User']['surname']),
           'birthday' => str_replace("\n",'',$newsletter['User']['birthday']),
           //'total' => str_replace(',00','',number_format($cart_totals['grand_total'], 0, ',', '.'))
         )
-      ) : 
-      '';
+      ) : $newsletter['Newsletter']['body'];
 
-      var_dump($parsed_body);
+      if($newsletter['NewsletterSchedule']['send_email'] == '1') {
+        $email = $this->sendEmail($newsletter);
+
+        if($email['sent']) {
+
+          $this->NewsletterUser->save(
+            array(
+             'id' => $newsletter['NewsletterUser']['id'],
+             'status' => 'sent',
+             'email_sent' => $newsletter['NewsletterUser']['email_sent']+1,
+            )
+          );
+          $email_sent++;      
+        }
+      }
+
+      if($newsletter['NewsletterSchedule']['send_push'] == '1') {
+        $pushes = $this->Webpush->find('all', 
+          array(
+            'conditions' => array(
+              'user_id' => $newsletter['NewsletterUser']['user_id']
+            )
+          )
+        );
+
+        foreach($pushes as $push) {
+          $push = $this->sendPush($newsletter, $push);
+          if($push['sent']) {
+            $this->NewsletterUser->save(
+              array(
+               'id' => $newsletter['NewsletterUser']['id'],
+               'status' => 'sent',
+               'push_sent' => $newsletter['NewsletterUser']['push_sent']+1,
+              )
+            );
+            $push_sent++;
+          }
+        }
+      }
     }
     /* $email_data = array(
       'id_user' => 1,
@@ -103,31 +140,32 @@ class NewsletterShell extends AppShell {
     }*/
 
     print_r(array(
-      'newsletters' => $newsletters,
-      'count' => count($newsletters)
+      'email_sent' => $email_sent,
+      'push_sent' => $push_sent,
+      'users' => count($newsletters)
     ));
   }
 
-  public function sendPush($sale) {
+  public function sendPush($data, $push) {
     $push = array(
-      'subscription' => Subscription::create(
-        array(
+      'subscription' => Subscription::create( $push['Webpush']['payload'] ),
+        /*array(
           'endpoint' => 'https://fcm.googleapis.com/fcm/send/djRg_IDPtSs:APA91bFwYCC73F4X3cXELK...',
           'keys' => array(
             'auth' => 'SPB_NNfRw...',
             'p256dh' => 'BP-WMuJdP7buopSb_HrNX...'
           )
         )
-      ),
+      ),*/
       'payload' => json_encode(
         array(
-          'title' => "Hello",
-          'body' => "How are you?",
-          'icon' => "https://cdn-icons-png.flaticon.com/512/3884/3884851.png",
+          'title' => $newsletter['Newsletter']['title'] || 'Sin título',
+          'body' => $newsletter['Newsletter']['body'] || 'Sin mensaje',
+          'icon' => \site_url() . '/img/logo.png',
           'data' => array(
             'vibrate' => array(100, 200),
             'additionalData' => array(),
-            'url' => "https://google.com",
+            'url' => \site_url() . '/newsletters/' . $newsletter['NewsletterSchedule']['id'],
           ),
         )
       ),
@@ -135,9 +173,9 @@ class NewsletterShell extends AppShell {
 
     $auth = [
       'VAPID' => [
-        'subject' => 'support@chatelet.com.ar', // can be a mailto: or your website address
-        'publicKey' => 'BFrp-TvkuqCeNsytRt...', // (recommended) uncompressed public key P-256 encoded in Base64-URL
-        'privateKey' => '9BvI1aN1CR4w4iceMS...', // (recommended) in fact the secret multiplier of the private key encoded in Base64-URL
+        'subject' => $this->settings['vapid_subject'],
+        'publicKey' => $this->settings['vapid_publicKey'],
+        'privateKey' => $this->settings['vapid_privateKey']
       ],
     ];
 
@@ -156,11 +194,10 @@ class NewsletterShell extends AppShell {
       $response = $th->getMessage();
     }
 
-    if ($is_success) {
-      echo "Push was sent";
-    } else {
-      echo "Push was not sent. Error message: " . $response;
-    }    
+    return array(
+      'sent' => $is_success,
+      'response' => $response
+    );
   }
 
   public function sendEmail($data) {
@@ -179,7 +216,7 @@ class NewsletterShell extends AppShell {
     //pr($data);die;
     $email->to($data['User']['email']);
     $email->subject($data['Newsletter']['title']);
-    $email->template('test_email', 'default');
+    $email->template('newsletter', 'default');
     $email->emailFormat('html');
     $email->config('default');
     $email->viewVars(array(
@@ -187,30 +224,16 @@ class NewsletterShell extends AppShell {
     ));
 
     if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($data['receiver_email'])){
-      // CakeLog::write('debug', 'email:'. json_encode($email->message('html')));
-      $this->Newsletter->save(
-        array(
-         'id' => $data['Newsletter']['id'],
-         'status' => 'sent'
-        )
-      );      
-      return true;
+      CakeLog::write('debug', '[email title]:'. json_encode($email->message('subject')));   
+      CakeLog::write('debug', '[email body]:'. json_encode($email->message('html')));   
+      $sent = true;
+    } else {
+      $sent = $email->send();
     }
 
-    $sent = $email->send();
-
-    if($sent) {
-      $this->Newsletter->save(
-        array(
-         'id' => $data['Newsletter']['id'],
-         'status' => 'sent'
-        )
-      );
-    }
-
-    return 1;
-    
-    // return array('sent' => $sent);
+    return array(
+      'sent' => $sent
+    );
   }
 
   public function loadSettings(){
