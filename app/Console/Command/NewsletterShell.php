@@ -216,7 +216,7 @@ class NewsletterShell extends AppShell {
     $socials = null;
 
     if(!empty($data['NewsletterSchedule']['show_follow'])){
-      $socials = \parsed_socials($this->settings)
+      $socials = \parsed_socials($this->settings);
     }
 
     $email->to($data['User']['email']);
