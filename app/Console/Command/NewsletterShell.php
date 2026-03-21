@@ -93,7 +93,7 @@ class NewsletterShell extends AppShell {
       ) : $newsletter['Newsletter']['body'];
 
       if($newsletter['NewsletterSchedule']['send_email'] == '1') {
-        $email = $this->sendEmail($newsletter);
+        $email = $this->sendEmail($newsletter,'','newsletter');
 
         if($email['sent']) {
 
@@ -198,7 +198,7 @@ class NewsletterShell extends AppShell {
     );
   }
 
-  public function sendEmail($data) {
+  public function sendEmail($data,$template='newsletter') {
     CakeLog::write('debug', 'sendEmail:'.json_encode(array(
       'data' => $data,
       'subject' => $subject,
@@ -213,13 +213,20 @@ class NewsletterShell extends AppShell {
     ));
     //pr($data);die;
 
+    $socials = null;
+
+    if(!empty($data['NewsletterSchedule']['show_follow'])){
+      $socials = \parsed_socials($this->settings)
+    }
+
     $email->to($data['User']['email']);
     $email->subject($data['Newsletter']['title']);
-    $email->template('newsletter', 'default');
-    $email->emailFormat('html');
+    $email->template($template, 'default');
+    $email->emailFormat('html') ;
     $email->config('default');
     $email->viewVars(array(
-      'data' => $data
+      'data' => $data,
+      'socials' => $socials,
     ));
 
     if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1'){
