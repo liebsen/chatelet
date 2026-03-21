@@ -147,19 +147,10 @@ class NewsletterShell extends AppShell {
   }
 
   public function sendPush($data, $push) {
-    var_dump("----sendPush");
-    var_dump($push['Webpush']['payload']);
-    var_dump(json_decode($push['Webpush']['payload'], true));
     $push = array(
-      'subscription' => Subscription::create( json_decode($push['Webpush']['payload'], true) ),
-        /*array(
-          'endpoint' => 'https://fcm.googleapis.com/fcm/send/djRg_IDPtSs:APA91bFwYCC73F4X3cXELK...',
-          'keys' => array(
-            'auth' => 'SPB_NNfRw...',
-            'p256dh' => 'BP-WMuJdP7buopSb_HrNX...'
-          )
-        )
-      ),*/
+      'subscription' => Subscription::create( 
+        json_decode($push['Webpush']['payload'], true) 
+      ),
       'payload' => json_encode(
         array(
           'title' => $newsletter['Newsletter']['title'] || 'Sin título',
@@ -217,6 +208,9 @@ class NewsletterShell extends AppShell {
         'info@chatelet.com' => 'Châtelet'
     ));
     //pr($data);die;
+
+    var_dump("title", $data['Newsletter']['title']);
+    var_dump("body",$data['Newsletter']['body']);
     $email->to($data['User']['email']);
     $email->subject($data['Newsletter']['title']);
     $email->template('newsletter', 'default');
@@ -227,8 +221,8 @@ class NewsletterShell extends AppShell {
     ));
 
     if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($data['receiver_email'])){
-      CakeLog::write('debug', '[email title]:'. json_encode($email->message('subject')));   
-      CakeLog::write('debug', '[email body]:'. json_encode($email->message('html')));   
+      //CakeLog::write('debug', '[email title]:'. json_encode($data['Newsletter']['title']));   
+      //CakeLog::write('debug', '[email body]:'. json_encode($email->message('html')));   
       $sent = true;
     } else {
       $sent = $email->send();
