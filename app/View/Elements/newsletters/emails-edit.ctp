@@ -108,6 +108,9 @@
           <input type="text" id="product-filter" class="form-control" placeholder="Buscar"/>
         </div>
         <div class="controls tags-container product-container">
+<?php if(empty($newsletter_products)): ?>
+  <span>No hay productos asignados</span>
+<?php else: ?>
 <?php foreach($newsletter_products as $product): ?>
     <span 
     	class="label product-item is-clickable is-enabled" 
@@ -119,7 +122,7 @@
     </span>
 <?php endforeach ?>       
         </div>
- 
+<?php endif ?> 
       </div>
 <?php endif ?>
     </div>

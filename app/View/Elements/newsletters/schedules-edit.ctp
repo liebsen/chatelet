@@ -54,11 +54,11 @@
           <label for="toggle" class="toggle-label"></label>
         </div>
 <?php if(!empty($schedule_products)): ?>
-        <a href="javascript:void(0)" onclick="$('.table-main:not(.table-products)').hide();$('.table-products').toggle()"><span class="badge badge-<?=  count($schedule_products) ? 'success' : 'light' ?> is-rounded is-large"><?php echo count($schedule_products) ?></span></a>
+        <a href="javascript:void(0)" onclick="$('.table-main:not(.table-products)').hide();$('.table-products').toggle()"><span class="badge badge-<?=count($schedule_products) ? 'success' : 'light' ?> is-rounded is-large"><?php echo count($schedule_products) ?></span></a>
 <?php endif ?>
 <?php if(!empty($schedule_users)): ?>
         <a href="javascript:void(0)" onclick="$('.table-main:not(.table-users)').hide();$('.table-users').toggle()">
-          <span class="badge badge-<?=  count($schedule_products) ? 'info' : 'light' ?> is-rounded is-large"><?php echo count($schedule_users) ?></span></a>
+          <span class="badge badge-<?=count($schedule_users) ? 'info' : 'light' ?> is-rounded is-large"><?php echo count($schedule_users) ?></span></a>
         </a>
 <?php endif ?>      
       </div>
@@ -170,6 +170,9 @@
         <input type="text" id="user-filter" class="form-control" placeholder="Buscar clienta..."/>
       </div>      
       <div class="controls tags-container user-container">
+<?php if(empty($schedule_users)): ?>
+  <span>No hay cuentas asignadas</span>
+<?php else: ?>        
 <?php foreach($schedule_users as $user): ?>
   <span 
     class="label user-item is-clickable text-lowercase is-enabled" 
@@ -180,6 +183,7 @@
     data-model="NewsletterUser"><?php echo $user['User']['email']?>
   </span>
 <?php endforeach ?>
+<?php endif ?>
       </div>
 <?php endif ?>      
     </div>

@@ -87,7 +87,7 @@ class NewsletterComponent extends Component {
         $data = $this->controller->request->data;
         $data['id'] = $data['id'] ?? NULL;
         $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
-        $redirect = array( 'action' => 'newsletters', 'emails' );
+        $redirect = array( 'action' => 'newsletters');
 
         if(empty($data['id'])) {
           $data['user_id'] = $this->controller->Auth->user('id');
@@ -243,6 +243,16 @@ class NewsletterComponent extends Component {
         $data['send_email'] = !empty($data['send_email']) ? 1 : 0;
         $data['send_push'] = !empty($data['send_push']) ? 1 : 0;
         $redirect = array( 'action' => 'newsletters', 'schedules' );
+
+        // reset recipients
+        $NewsletterUser->updateAll(
+          array(
+            'NewsletterUser.status' => "'pending'"
+          ),
+          array(
+            'NewsletterUser.schedule_id' => $id,
+          )
+        );
 
         $NewsletterSchedule->save($data);
 
