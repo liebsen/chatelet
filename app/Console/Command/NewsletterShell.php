@@ -67,7 +67,7 @@ class NewsletterShell extends AppShell {
         )
        ),
       'fields' => array(
-        'NewsletterUser.id, NewsletterUser.user_id, Newsletter.title, Newsletter.body, Newsletter.show_prices, Newsletter.show_follow, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email'
+        'NewsletterUser.id, NewsletterUser.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_prices, Newsletter.show_follow, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email'
       ),
       'conditions' => array( 
         'NewsletterUser.status' => "pending", 
@@ -83,8 +83,30 @@ class NewsletterShell extends AppShell {
 
     foreach($newsletters as $newsletter) {
       // parse email
+      $products = $this->NewsletterProduct->find('all', array(
+        'joins' => array(
+          array(
+            'table' => 'products',
+            'alias' => 'Product',
+            'type' => 'LEFT',
+            'conditions' => array( 'NewsletterProduct.product_id = Product.id' )
+          ),
+          array(
+            'table' => 'categories',
+            'alias' => 'Category',
+            'type' => 'LEFT',
+            'conditions' => array( 'Product.category_id = Category.id' )
+          )
+        ),
+        'fields' => array(
+          'Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.name'
+        ),        
+        'conditions' => array(
+          'NewsletterProduct.newsletter_id' => $newsletter['Newsletter']['id']
+        )
+      ));
 
-      $newsletter['Newsletter']['body'] = !empty($newsletter['Newsletter']['body']) ? 
+      $body = !empty($newsletter['Newsletter']['body']) ? 
         \parse_template(
           strip_tags(html_entity_decode($newsletter['Newsletter']['body'])), array(
             'name' => str_replace("\n",'',$newsletter['User']['name']),
@@ -94,8 +116,10 @@ class NewsletterShell extends AppShell {
           )
         ) : $newsletter['Newsletter']['body'];
 
+      $newsletter['Newsletter']['body'] = $body;
+
       if($newsletter['NewsletterSchedule']['send_email'] == '1') {
-        $email = $this->sendEmail($newsletter);
+        $email = $this->sendEmail($newsletter, $products);
 
         if($email['sent']) {
 
@@ -134,15 +158,6 @@ class NewsletterShell extends AppShell {
         }
       }
     }
-    /* $email_data = array(
-      'id_user' => 1,
-      'receiver_email' => $email,
-      'name' =>  'Prueba',
-    ); */
-
-    /*foreach($data as $i => $newsletter) {
-      $reponse[$i] = $this->sendEmail($newsletter);
-    }*/
 
     print_r(array(
       'curr_date' => $curr_date,
@@ -202,7 +217,7 @@ class NewsletterShell extends AppShell {
     );
   }
 
-  public function sendEmail($data,$template='newsletter') {
+  public function sendEmail($data, $products = array()) {
     $email = new CakeEmail();
     // $email->transport('Debug');
     $email->from(array(
@@ -214,25 +229,19 @@ class NewsletterShell extends AppShell {
       'template' => $template
     ));
 
-    //pr($data);die;
-
-    $socials = array();
-
-    if(!empty($data['Newsletter']['show_follow'])){
-      $socials = \parsed_socials($this->settings);
-    }
 
     $email->to($data['User']['email']);
     $email->subject($data['Newsletter']['title']);
-    $email->template($template, 'default');
+    $email->template('newsletter', 'default');
     $email->emailFormat('html') ;
     $email->config('default');
     $email->viewVars(array(
       'data' => $data,
-      'socials' => $socials,
-    ));
-    print_r(array(
-      'socials' => $socials,
+      'products' => $products,
+      'socials' => $data['Newsletter']['show_follow'] ? 
+        \parsed_socials($this->settings) :
+        null,
+      'site_url' => $this->setting['site_url'],
     ));
 
     if ($_SERVER['REMOTE_ADDR'] === '127.0.0.11'){
@@ -241,9 +250,6 @@ class NewsletterShell extends AppShell {
       $sent = true;
     } else {
       $sent = $email->send();
-      print_r(array(
-        'sent' => $sent,
-      ));
     }
 
     return array(
