@@ -2,6 +2,8 @@
 
 App::uses('CakeEmail', 'Network/Email');
 
+header('Content-Type: text/html; charset=utf-8');
+
 require __DIR__ . '/../../functions.php';
 require __DIR__ . '/../../Vendor/web-push/vendor/autoload.php';
 
@@ -68,7 +70,7 @@ class NewsletterShell extends AppShell {
         'NewsletterUser.id, NewsletterUser.user_id, Newsletter.title, Newsletter.body, Newsletter.show_prices, Newsletter.show_follow, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email'
       ),
       'conditions' => array( 
-        //'NewsletterUser.status' => "waiting", 
+        'NewsletterUser.status' => "pending", 
         'NewsletterSchedule.enabled' => 1,
         'NewsletterSchedule.schedule_date' => $curr_date,
         'NewsletterSchedule.schedule_hour' => $curr_hour,
@@ -153,13 +155,13 @@ class NewsletterShell extends AppShell {
       ),
       'payload' => json_encode(
         array(
-          'title' => strip_tags($data['Newsletter']['title']),
-          'body' => strip_tags($data['Newsletter']['body']),
+          'title' => strip_tags(html_entity_decode($data['Newsletter']['title'])),
+          'body' => strip_tags(html_entity_decode($data['Newsletter']['body'])),
           'icon' => $this->settings['site_url'] . '/img/logo.png',
           'data' => array(
             'vibrate' => array(100, 200),
             'additionalData' => array(),
-            'url' => \site_url() . '/newsletters/' . $newsletter['NewsletterSchedule']['id'],
+            'url' => $this->settings['site_url'] . '/newsletters/' . $newsletter['NewsletterSchedule']['id'],
           ),
         )
       ),
@@ -209,8 +211,6 @@ class NewsletterShell extends AppShell {
     ));
     //pr($data);die;
 
-    var_dump("title", $data['Newsletter']['title']);
-    var_dump("body",$data['Newsletter']['body']);
     $email->to($data['User']['email']);
     $email->subject($data['Newsletter']['title']);
     $email->template('newsletter', 'default');
