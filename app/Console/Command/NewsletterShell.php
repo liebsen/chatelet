@@ -250,6 +250,9 @@ class NewsletterShell extends AppShell {
       $sent = true;
     } else {
       $sent = $email->send();
+      print_r(array(
+        'sent' => $sent,
+      ));
     }
 
     return array(
