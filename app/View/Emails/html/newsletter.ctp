@@ -2,7 +2,7 @@
 <?php if(!empty($products)): ?>
 <?php foreach($products as $product): ?>
 	<div style="display: flex; align-content: center; justify-content: flex-start; grid-gap: 10px; background-color: #e7e7e7; padding: 10px; color: #333; border-radius: 10px; margin-bottom: 5px">
-		<img src="<?=$site_url?>/files/upload/<?=$product['Product']['img_src']?>" width="80">
+		<img src="<?=$site_url?>/files/upload/<?=$product['Product']['img_url']?>" width="80">
 		<div style="display: flex; align-content: center; justify-content: flex-start; grid-gap: 5px; flex-direction: column;">
 			<span style="font-size: 14px; font-weight: 500; color: #c5c5c5"><?= $product['Category']['name'] ?></span>
 			<span style="font-size: 18px; font-weight: 800;"><?= $product['Product']['name'] ?></span>

@@ -241,7 +241,7 @@ class NewsletterShell extends AppShell {
       'socials' => $data['Newsletter']['show_follow'] ? 
         \parsed_socials($this->settings) :
         null,
-      'site_url' => $this->setting['site_url'],
+      'site_url' => $this->settings['site_url'],
     ));
 
     if ($_SERVER['REMOTE_ADDR'] === '127.0.0.11'){
