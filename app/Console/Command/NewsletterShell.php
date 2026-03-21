@@ -1,7 +1,5 @@
 <?php
 
-App::uses('CakeEmail', 'Network/Email');
-
 header('Content-Type: text/html; charset=utf-8');
 
 require __DIR__ . '/../../functions.php';
@@ -9,6 +7,8 @@ require __DIR__ . '/../../Vendor/web-push/vendor/autoload.php';
 
 use Minishlink\WebPush\WebPush;
 use Minishlink\WebPush\Subscription;
+
+App::uses('CakeEmail', 'Network/Email');
 
 class NewsletterShell extends AppShell {
    public $uses = array(
@@ -95,7 +95,7 @@ class NewsletterShell extends AppShell {
         ) : $newsletter['Newsletter']['body'];
 
       if($newsletter['NewsletterSchedule']['send_email'] == '1') {
-        $email = $this->sendEmail($newsletter,'','newsletter');
+        $email = $this->sendEmail($newsletter);
 
         if($email['sent']) {
 
@@ -209,13 +209,14 @@ class NewsletterShell extends AppShell {
 
     print_r(array(
       'mail_data' => $data,
+      'template' => $template
     ));
 
     //pr($data);die;
 
-    $socials = null;
+    $socials = array();
 
-    if(!empty($data['NewsletterSchedule']['show_follow'])){
+    if(!empty($data['Newsletter']['show_follow'])){
       $socials = \parsed_socials($this->settings);
     }
 
@@ -228,8 +229,11 @@ class NewsletterShell extends AppShell {
       'data' => $data,
       'socials' => $socials,
     ));
+    print_r(array(
+      'socials' => $socials,
+    ));
 
-    if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1'){
+    if ($_SERVER['REMOTE_ADDR'] === '127.0.0.11'){
       //CakeLog::write('debug', '[email title]:'. json_encode($data['Newsletter']['title']));   
       //CakeLog::write('debug', '[email body]:'. json_encode($email->message('html')));   
       $sent = true;

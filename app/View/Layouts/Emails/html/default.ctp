@@ -38,7 +38,7 @@
           </table>
         </td>
       </tr>
-      <?php if(count(@$socials)): ?>
+      <?php if(isset($socials) && count(@$socials)): ?>
       <tr>
         <td align="center" style="padding: 8px; color: #888888">
           <small>Seguinos en nuestras redes: 

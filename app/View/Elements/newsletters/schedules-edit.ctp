@@ -82,7 +82,7 @@
       <table class="table table-forum table-striped text-small">
         <tr>
           <td><small>Fecha / hora de envío</small></td>
-          <th><span class="date-value"><?= $schedule['NewsletterSchedule']['schedule_date'] ?? date('d/m/Y')?></span> - <span class="hour-value"><?= $schedule['NewsletterSchedule']['schedule_hour'] ?? 0?>hs</span></th>
+          <th><span class="date-value"><?= $schedule['NewsletterSchedule']['schedule_date'] ?? date('d/m/Y')?></span> - <span class="hour-value"><?= $schedule['NewsletterSchedule']['schedule_hour'] ?? date('H')?>hs</span></th>
         </tr>
         <tr>
           <td><small>Periodo de evaluación</small></td>
