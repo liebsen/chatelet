@@ -207,6 +207,10 @@ class NewsletterShell extends AppShell {
       'info@chatelet.com' => 'Châtelet'
     ));
 
+    print_r(array(
+      'mail_data' => $data,
+    ));
+
     //pr($data);die;
 
     $socials = null;
@@ -231,6 +235,9 @@ class NewsletterShell extends AppShell {
       $sent = true;
     } else {
       $sent = $email->send();
+      print_r(array(
+        'sent' => $sent,
+      ));
     }
 
     return array(
