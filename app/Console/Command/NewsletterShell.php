@@ -199,17 +199,10 @@ class NewsletterShell extends AppShell {
   }
 
   public function sendEmail($data,$template='newsletter') {
-    CakeLog::write('debug', 'sendEmail:'.json_encode(array(
-      'data' => $data,
-      'subject' => $subject,
-      'template' => $template,
-      'remote_addr' => $_SERVER['REMOTE_ADDR'],
-    )));
-
     $email = new CakeEmail();
     // $email->transport('Debug');
     $email->from(array(
-        'info@chatelet.com' => 'Châtelet'
+      'info@chatelet.com' => 'Châtelet'
     ));
     //pr($data);die;
 
@@ -235,6 +228,9 @@ class NewsletterShell extends AppShell {
       $sent = true;
     } else {
       $sent = $email->send();
+      print_r(array(
+        'sent' => $sent,
+      ));
     }
 
     return array(
