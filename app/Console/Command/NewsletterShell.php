@@ -153,9 +153,9 @@ class NewsletterShell extends AppShell {
       ),
       'payload' => json_encode(
         array(
-          'title' => $newsletter['Newsletter']['title'] || 'Sin título',
-          'body' => $newsletter['Newsletter']['body'] || 'Sin mensaje',
-          'icon' => \site_url() . '/img/logo.png',
+          'title' => strip_tags($data['Newsletter']['title']),
+          'body' => strip_tags($data['Newsletter']['body']),
+          'icon' => $this->settings['site_url'] . '/img/logo.png',
           'data' => array(
             'vibrate' => array(100, 200),
             'additionalData' => array(),
@@ -220,7 +220,7 @@ class NewsletterShell extends AppShell {
       'data' => $data
     ));
 
-    if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($data['receiver_email'])){
+    if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1'){
       //CakeLog::write('debug', '[email title]:'. json_encode($data['Newsletter']['title']));   
       //CakeLog::write('debug', '[email body]:'. json_encode($email->message('html')));   
       $sent = true;
