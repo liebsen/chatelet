@@ -158,7 +158,8 @@ class NewsletterShell extends AppShell {
         array(
           'title' => strip_tags(html_entity_decode($data['Newsletter']['title'])),
           'body' => strip_tags(html_entity_decode($data['Newsletter']['body'])),
-          'icon' => $this->settings['site_url'] . '/img/logo.png',
+          'icon' => $this->settings['site_url'] . '/img/push-logo.png',
+          'badge' => $this->settings['site_url'] . '/img/push-badge.png',
           'data' => array(
             'vibrate' => array(100, 200),
             'additionalData' => array(),
