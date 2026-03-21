@@ -77,6 +77,7 @@ class NewsletterShell extends AppShell {
        ),
        'order' => array( 'NewsletterUser.created ASC' ),
        'group' => array( 'NewsletterUser.id' ),
+       'limit' => 10,
       )
     );
 
