@@ -83,14 +83,16 @@ class NewsletterShell extends AppShell {
 
     foreach($newsletters as $newsletter) {
       // parse email
+
       $newsletter['Newsletter']['body'] = !empty($newsletter['Newsletter']['body']) ? 
-        \parse_template($newsletter['Newsletter']['body'], array(
-          'name' => str_replace("\n",'',$newsletter['User']['name']),
-          'surname' => str_replace("\n",'',$newsletter['User']['surname']),
-          'birthday' => str_replace("\n",'',$newsletter['User']['birthday']),
-          //'total' => str_replace(',00','',number_format($cart_totals['grand_total'], 0, ',', '.'))
-        )
-      ) : $newsletter['Newsletter']['body'];
+        \parse_template(
+          strip_tags(html_entity_decode($newsletter['Newsletter']['body'])), array(
+            'name' => str_replace("\n",'',$newsletter['User']['name']),
+            'surname' => str_replace("\n",'',$newsletter['User']['surname']),
+            'birthday' => str_replace("\n",'',$newsletter['User']['birthday']),
+            //'total' => str_replace(',00','',number_format($cart_totals['grand_total'], 0, ',', '.'))
+          )
+        ) : $newsletter['Newsletter']['body'];
 
       if($newsletter['NewsletterSchedule']['send_email'] == '1') {
         $email = $this->sendEmail($newsletter,'','newsletter');
@@ -156,8 +158,8 @@ class NewsletterShell extends AppShell {
       ),
       'payload' => json_encode(
         array(
-          'title' => strip_tags(html_entity_decode($data['Newsletter']['title'])),
-          'body' => strip_tags(html_entity_decode($data['Newsletter']['body'])),
+          'title' => $data['Newsletter']['title'],
+          'body' => $data['Newsletter']['body'],
           'icon' => $this->settings['site_url'] . '/img/push-logo.png',
           'badge' => $this->settings['site_url'] . '/img/push-badge.png',
           'data' => array(
@@ -204,6 +206,7 @@ class NewsletterShell extends AppShell {
     $email->from(array(
       'info@chatelet.com' => 'Châtelet'
     ));
+
     //pr($data);die;
 
     $socials = null;
@@ -228,9 +231,6 @@ class NewsletterShell extends AppShell {
       $sent = true;
     } else {
       $sent = $email->send();
-      print_r(array(
-        'sent' => $sent,
-      ));
     }
 
     return array(
