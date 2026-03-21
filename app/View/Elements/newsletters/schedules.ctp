@@ -5,7 +5,8 @@
 		<thead>
 			<tr>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Alcance'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Productos'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Cuentas'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Emails'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Push'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Fecha/Hora'); ?></th>
@@ -16,7 +17,10 @@
 <?php foreach ($schedules as $key => $schedule): ?>        
 			<tr class="<?=isset($schedule['NewsletterSchedule']['recent'])?'bg-selected':''?>">
 				<td>
-					<?=$schedule['Newsletter']['name']?> (#<?=$schedule['Newsletter']['id']?>-<?=$schedule['NewsletterSchedule']['id']?>)
+					<?=$schedule['Newsletter']['name']?> (<?=$schedule['Newsletter']['title']?>)
+				</td>
+				<td>
+					<?=count($schedule['Products'])?>
 				</td>
 				<td>
 					<?=count($schedule['Users'])?>

@@ -229,12 +229,6 @@ class NewsletterComponent extends Component {
     $schedule_products = array();
     
     try {
-      $newsletters = $Newsletter->find('all', array(
-        'fields' => array('Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.created'),
-        'conditions' => array( 'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous year"))),
-        'order' => array( 'Newsletter.modified DESC' )
-      ));
-
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
         $data['id'] = $data['id'] ?? NULL;
@@ -289,7 +283,7 @@ class NewsletterComponent extends Component {
             ),
           ),
           'fields' => array('Product.*'),
-          'conditions' => array( 'NewsletterProduct.newsletter_id' => $id),
+          'conditions' => array( 'NewsletterProduct.newsletter_id' => $schedule['Newsletter']['id']),
           // 'order' => array( 'Newsletter.id DESC' )
         ));
 
@@ -312,7 +306,6 @@ class NewsletterComponent extends Component {
         $schedule['NewsletterUser'] = array_column($schedule_users, 'NewsletterUser');
       }
       
-      $this->controller->set('newsletters', $newsletters);
       $this->controller->set('schedule', $schedule);
       $this->controller->set('schedule_products', $schedule_products);
       $this->controller->set('schedule_users', $schedule_users);
