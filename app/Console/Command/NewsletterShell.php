@@ -145,6 +145,8 @@ class NewsletterShell extends AppShell {
     }*/
 
     print_r(array(
+      'curr_date' => $curr_date,
+      'curr_hour' => $curr_hour,
       'email_sent' => $email_sent,
       'push_sent' => $push_sent,
       'users' => count($newsletters)
