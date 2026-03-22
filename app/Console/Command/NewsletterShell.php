@@ -99,7 +99,7 @@ class NewsletterShell extends AppShell {
           )
         ),
         'fields' => array(
-          'Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.name'
+          'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
         ),        
         'conditions' => array(
           'NewsletterProduct.newsletter_id' => $newsletter['Newsletter']['id']
@@ -199,7 +199,7 @@ class NewsletterShell extends AppShell {
           'data' => array(
             'vibrate' => array(100, 200),
             'additionalData' => array(),
-            'url' => $this->settings['site_url'] . '/newsletters/' . $newsletter['NewsletterSchedule']['id'],
+            'url' => $this->settings['site_url'] . '/newsletters/' . $data['NewsletterSchedule']['id'],
           ),
         )
       ),
