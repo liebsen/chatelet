@@ -259,7 +259,7 @@ class NewsletterShell extends AppShell {
         \parsed_socials($this->settings) :
         null,
       'site_url' => $this->settings['site_url'],
-      'cdn_url' => 'https://chatelet.com.ar'
+      'cdn_url' => 'https://chatelet.com.ar/files/uploads/'
     ));
 
     if ($_SERVER['REMOTE_ADDR'] === '127.0.0.11'){
