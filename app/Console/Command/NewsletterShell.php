@@ -123,7 +123,9 @@ class NewsletterShell extends AppShell {
         // generate links
         foreach($products as $i => $product) {
           $link = implode('/', array(
-            $this->settings['site_url'],
+            // fix this 
+            // $this->settings['site_url'], 
+            'https://chatelet.com'
             'shop',
             'detalle',
             $product['Product']['id'],
