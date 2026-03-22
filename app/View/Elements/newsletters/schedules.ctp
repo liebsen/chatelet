@@ -4,7 +4,7 @@
 	<table id="example-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Productos'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Cuentas'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Emails'); ?></th>
@@ -17,7 +17,12 @@
 <?php foreach ($schedules as $key => $schedule): ?>        
 			<tr class="<?=isset($schedule['NewsletterSchedule']['recent'])?'bg-selected':''?>">
 				<td>
-					<?=$schedule['Newsletter']['name']?> (<?=$schedule['Newsletter']['title']?>)
+					<a 
+						href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
+						data-toggle="tooltip" 
+						title="Editar plantilla">
+					<?=$schedule['Newsletter']['title']?> (<?=$schedule['Newsletter']['name']?>)
+					</a>
 				</td>
 				<td>
 					<?=count($schedule['Products'])?>
@@ -50,7 +55,7 @@
 							<i class="fa fa-trash-o"></i>
 						</a>
 						<!--a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit', $schedule['Newsletter']['id']))?>" 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
 							data-toggle="tooltip" 
 							title="Editar email" 
 							class="btn btn-success" 

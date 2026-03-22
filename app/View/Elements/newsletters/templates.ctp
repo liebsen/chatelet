@@ -5,8 +5,7 @@
 	<table id="example-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Código'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Titulo'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Productos'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Envíos'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -16,10 +15,12 @@
 <?php foreach ($newsletters as $key => $newsletter): ?>        
 			<tr class="<?=isset($newsletter['Newsletter']['recent'])?'bg-selected':''?>">
 				<td>
-					<?=$newsletter['Newsletter']['name']?>
-				</td>
-				<td>
-					<?=$newsletter['Newsletter']['title']?>
+					<a 
+						href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
+						data-toggle="tooltip" 
+						title="Editar plantilla">
+						<?=$newsletter['Newsletter']['title']?> (<?=$newsletter['Newsletter']['name']?>)
+					</a>
 				</td>
 				<td>
 					<?=count($newsletter['NewsletterProduct'])?>
@@ -41,14 +42,14 @@
 					>
 						<i class="fa fa-trash-o"></i>
 					</a>
-					<a 
-						href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit', $newsletter['Newsletter']['id']))?>" 
+					<!--a 
+						href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
 						data-toggle="tooltip" 
 						title="Editar plantilla" 
 						class="btn btn-success" 
 					>
 						<i class="gi gi-edit"></i>
-					</a>
+					</a-->
 					<a 
 						href="<?=$this->Html->url(array(
 							'action' => 'newsletters', 
@@ -82,7 +83,7 @@
 		<a href="/admin/newsletters/emails?extended=1">
       <button class="btn" type="button">Ver todo</button>
     </a>
-	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit'))?>">
+	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit'))?>">
 	    <i class="gi gi-edit mr-1"></i> Componer
 	  </a>
   </div>

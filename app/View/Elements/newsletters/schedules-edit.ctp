@@ -16,7 +16,7 @@
       <h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4>
       <p>Esta plantilla tiene asociados <span><?= count($schedule_products)?></span> productos</p>
 <?php if(isset($schedule['Newsletter']['id'])): ?>
-    <a href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit', $schedule['Newsletter']['id']))?>">
+    <a href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>">
       <div class="card">
         <div class="card-body">
           <h5 class="control-label" for="title"><?=$schedule['Newsletter']['title']?></h5>
@@ -60,7 +60,7 @@
 <?php endif ?>      
       </div>
       <div class="table-main table-products bg-success d-none">
-        <h4 class="sub-header"><a class="text-muted" href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit', $schedule['Newsletter']['id']))?>"><i class="gi gi-cogwheel is-clickable"></i></a> Productos</h4>
+        <h4 class="sub-header"><a class="text-muted" href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>"><i class="gi gi-cogwheel is-clickable"></i></a> Productos</h4>
         <table class="table table-forum">
   <?php foreach($schedule_products as $product): ?>
           <tr><td><?php echo $product['Product']['name']?> (<?php echo $product['Product']['article']?>)</td></tr>

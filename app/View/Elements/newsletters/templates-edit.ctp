@@ -1,6 +1,6 @@
 <?php
 	echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
-	echo $this->Html->script('newsletters-emails-edit.js?v=' . $version['ver'], array('inline' => false));
+	echo $this->Html->script('newsletters-templates-edit.js?v=' . $version['ver'], array('inline' => false));
 ?>
 
 <?php echo $this->Form->create(null,

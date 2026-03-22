@@ -2024,7 +2024,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		}
 	}
 
-	public function newsletters($section = 'emails'){
+	public function newsletters($section = 'templates'){
 		$pane = $this->params['pass'][0] ?? $section;
 		$action = $this->params['pass'][1] ?? '';
 		$id = $this->params['pass'][2] ?? 0;
@@ -2044,7 +2044,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 		$navs = array(
 			'Plantillas' => array(
-				'id' => 'emails',
+				'id' => 'templates',
 				'icon' 		=> 'gi gi-envelope',
 				'url'		=> \site_url().'/admin/newsletters',
 				'active'	=> '/admin/newsletters'
@@ -2071,8 +2071,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		}
 
 		if($action == 'edit'){
-      $navs[($pane == 'emails' ? (empty($id) ? 'Nueva' : 'Editar') . ' Plantilla ' : 'Programar envío ')] = array(
-        'icon'    => 'gi gi-'.($pane == 'emails' ? 'envelope' : 'clock'),
+      $navs[($pane == 'templates' ? (empty($id) ? 'Nueva' : 'Editar') . ' Plantilla ' : 'Programar envío ')] = array(
+        'icon'    => 'gi gi-'.($pane == 'templates' ? 'envelope' : 'clock'),
         'url'   => \site_url().'/admin/newsletters/'.$pane.'/edit/'.$$id,
         'active'  => '/admin/newsletters/'.$pane.'/edit/',
         'enabled' => 1

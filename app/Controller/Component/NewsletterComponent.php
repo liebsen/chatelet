@@ -16,7 +16,7 @@ class NewsletterComponent extends Component {
     parent::initialize($controller);
   }
 
-  public function emails() {
+  public function templates() {
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
@@ -77,7 +77,7 @@ class NewsletterComponent extends Component {
     }
   }
 
-  public function emails_edit($id) {
+  public function templates_edit($id) {
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
     $newsletter = array();
@@ -99,7 +99,7 @@ class NewsletterComponent extends Component {
         $Newsletter->save($data);
 
         if(isset($data['x_coord']) && $data['x_coord'] == '1') {
-          $redirect = array( 'action' => 'newsletters', 'emails', 'edit', $Newsletter->id);
+          $redirect = array( 'action' => 'newsletters', 'templates', 'edit', $Newsletter->id);
         }
 
         // $this->response->statusCode(200);
