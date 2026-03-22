@@ -125,7 +125,7 @@ class NewsletterShell extends AppShell {
           $link = implode('/', array(
             // fix this 
             // $this->settings['site_url'], 
-            'https://chatelet.com'
+            'https://chatelet.com',
             'shop',
             'detalle',
             $product['Product']['id'],
