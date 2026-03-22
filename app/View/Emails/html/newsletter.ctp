@@ -6,7 +6,7 @@
     
     <!-- Product Image Section -->
     <a href="<?=$site_url?>" style="text-decoration: none;">
-       <img src="<?=$site_url?>/files/upload/<?=$product['Product']['img_url']?>" alt="<?= $product['Product']['name'] ?>" style="width: 100%; height: auto; display: block;">
+       <img src="<?=$cdn_url?>/files/upload/<?=$product['Product']['img_url']?>" alt="<?= $product['Product']['name'] ?>" style="width: 100%; height: auto; display: block;">
     </a>
 
     <!-- Product Details Section -->

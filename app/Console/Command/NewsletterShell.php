@@ -124,8 +124,8 @@ class NewsletterShell extends AppShell {
         foreach($products as $i => $product) {
           $link = implode('/', array(
             // fix this 
-            // $this->settings['site_url'], 
-            'https://chatelet.com',
+            $this->settings['site_url'], 
+            //'https://chatelet.com',
             'shop',
             'detalle',
             $product['Product']['id'],
@@ -259,6 +259,7 @@ class NewsletterShell extends AppShell {
         \parsed_socials($this->settings) :
         null,
       'site_url' => $this->settings['site_url'],
+      'cdn_url' => 'https://chatelet.com.ar'
     ));
 
     if ($_SERVER['REMOTE_ADDR'] === '127.0.0.11'){
