@@ -33,7 +33,7 @@
         <label class="control-label" for="title">Selecciona una plantilla</label>
         <select class="form-control" name="data[newsletter_id]">
   <?php foreach($newsletters as $newsletter): ?>
-  <option value="<?= $newsletter['Newsletter']['id']?>"><?= $newsletter['Newsletter']['name']?> - <?= $newsletter['Newsletter']['title']?></option>
+  <option value="<?= $newsletter['Newsletter']['id']?>"><?= $newsletter['Newsletter']['name']?> - <?= $newsletter['Newsletter']['title']?> (<?=$newsletter['User']['name'] ?? 'Desconocido'?>)</option>
   <?php endforeach ?>
         </select>
       </div>

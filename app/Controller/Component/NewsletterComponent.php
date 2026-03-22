@@ -300,12 +300,27 @@ class NewsletterComponent extends Component {
           'conditions' => array( 'NewsletterUser.schedule_id' => $schedule['NewsletterSchedule']['id']),
           // 'order' => array( 'Newsletter.id DESC' )
         ));
-
         $schedule['NewsletterSchedule']['filter'] = json_decode($schedule['NewsletterSchedule']['filter']);
         $schedule['NewsletterProduct'] =  array_column($schedule_products, 'NewsletterProduct');
         $schedule['NewsletterUser'] = array_column($schedule_users, 'NewsletterUser');
+      } else {
+        $this->controller->set('newsletters', $Newsletter->find('all', array(
+          'joins' => array(
+            array(
+              'table' => 'users',
+              'alias' => 'User',
+              'type' => 'LEFT',
+              'conditions' => array( 'User.id = Newsletter.user_id' )
+            ),
+          ),
+          'fields' => array('Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.created, User.name, User.surname'),
+          'conditions' => array(
+            'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")),
+            'Newsletter.enabled' => '1'
+          ),
+          'order' => array( 'Newsletter.modified DESC' )
+        )));
       }
-      
       $this->controller->set('schedule', $schedule);
       $this->controller->set('schedule_products', $schedule_products);
       $this->controller->set('schedule_users', $schedule_users);

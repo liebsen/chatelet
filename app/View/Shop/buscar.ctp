@@ -41,23 +41,21 @@
         </div>
         <div class="col-md-9 product-list posnum-<?=@$category['Category']['posnum'] ?>">
             <div class="row">
-                <?php
+<?php
                 foreach($results as $product):
-                    $product = $product['Product'];
-                    $stock = (!empty($product['stock_total']))?(int)$product['stock_total']:0;
-                    $product_name =$product['name'];
+                  $product = $product['Product'];
+                  $stock = (!empty($product['stock_total']))?(int)$product['stock_total']:0;
+                  $product_name =$product['name'];
 
-                    $url = $this->Html->url(array(
-                            'controller' => 'shop',
-                            'action' => 'detalle',
-                            $product['id'],
-                            $product['category_id'],
-                            strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name']))),
+                  $url = $this->Html->url(array(
+                    'controller' => 'shop',
+                    'action' => 'detalle',
+                    $product['id'],
+                    $product['category_id'],
+                    strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name']))),
+                  ));
 
-                        )
-                    );
-
-            $number_ribbon = 0;
+    $number_ribbon = 0;
   	if (isset($product['discount_label_show'])){
   		$number_ribbon = (int)@$product['discount_label_show'];
   	}

@@ -119,6 +119,21 @@ class NewsletterShell extends AppShell {
       $newsletter['Newsletter']['body'] = $body;
 
       if($newsletter['NewsletterSchedule']['send_email'] == '1') {
+
+        // generate links
+        foreach($products as $i => $product) {
+          $link = implode('/', array(
+            $this->settings['site_url'],
+            'shop',
+            'detalle',
+            $product['Product']['id'],
+            $product['Category']['id'],
+            strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name'])))
+          );
+
+          $products[$i]['Product']['link'] = $link;
+        }
+        
         $email = $this->sendEmail($newsletter, $products);
 
         if($email['sent']) {

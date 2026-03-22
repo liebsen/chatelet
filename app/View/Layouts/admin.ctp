@@ -1,4 +1,4 @@
-<div class="animation-fadeIn animation-both delay"><?php
+<?php
 	echo $this->element('admin/navbar');
 	echo $this->element('admin/sidebar');
 ?>
@@ -21,4 +21,3 @@
 	echo $this->element('admin/footer');
 	echo $this->element('admin/bottom');
 ?>
-</div>

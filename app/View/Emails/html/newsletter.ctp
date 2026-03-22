@@ -1,6 +1,7 @@
 <?php echo $data['Newsletter']['body'] ?>
 <?php if(!empty($products)): ?>
 <?php foreach($products as $product): ?>
+<a href="<?=$product['Product']['link']?>">
 	<div style="display: flex; align-content: flex-start; justify-content: center; grid-gap: 10px; background-color: #e7e7e7; padding: 10px; color: #333; border-radius: 10px; margin-bottom: 5px">
 		<img src="<?=$site_url?>/files/upload/<?=$product['Product']['img_url']?>" width="80">
 		<div style="display: flex; align-content: center; justify-content: flex-start; grid-gap: 5px; flex-direction: column;">
@@ -18,5 +19,6 @@
 <?php endif ?>
 		</div>
 	</div>
+</a>
 <?php endforeach ?>
 <?php endif ?>
