@@ -2,10 +2,8 @@
 	// echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
 	echo $this->Html->script('newsletters-schedules-edit.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
-	echo $this->Html->css('bootstrap-datepicker');  
-?>
-
-<?php echo $this->Form->create(null, array(
+	echo $this->Html->css('bootstrap-datepicker');
+  echo $this->Form->create(null, array(
   'class' => 'w-100',
   'id' => 'schedule_edit',
 )); ?>
@@ -27,13 +25,12 @@
       </div>
     </a>
 <?php else: ?>
-
 <?php if(empty($schedule['Newsletter']['id'])): ?>
       <div class="controls">
         <label class="control-label" for="title">Selecciona una plantilla</label>
         <select class="form-control" name="data[newsletter_id]">
   <?php foreach($newsletters as $newsletter): ?>
-  <option value="<?= $newsletter['Newsletter']['id']?>"><?= $newsletter['Newsletter']['name']?> - <?= $newsletter['Newsletter']['title']?> (<?=$newsletter['User']['name'] ?? 'Desconocido'?>)</option>
+  <option value="<?= $newsletter['Newsletter']['id']?>"<?=@isset($this->params->query['newsletter_id']) && $newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] ? ' selected' : ''?>><?= $newsletter['Newsletter']['name']?> - <?= $newsletter['Newsletter']['title']?> (<?=$newsletter['User']['name'] ?? 'Desconocido'?>)</option>
   <?php endforeach ?>
         </select>
       </div>

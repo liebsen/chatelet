@@ -44,11 +44,27 @@
 					<a 
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'emails', 'edit', $newsletter['Newsletter']['id']))?>" 
 						data-toggle="tooltip" 
-						title="Programar envío" 
+						title="Editar plantilla" 
 						class="btn btn-success" 
 					>
 						<i class="gi gi-edit"></i>
 					</a>
+					<a 
+						href="<?=$this->Html->url(array(
+							'action' => 'newsletters', 
+							'schedules', 
+							'edit', 
+							'?' => array(
+								'newsletter_id' => $newsletter['Newsletter']['id']
+							)
+						))?>" 
+						data-toggle="tooltip" 
+						title="Programar envío" 
+						class="btn btn-warning" 
+					>
+						<i class="gi gi-send"></i>
+					</a>
+
 					<!--a 
 						 href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', $newsletter['Newsletter']['id']))?>" 
 						data-toggle="tooltip" 
