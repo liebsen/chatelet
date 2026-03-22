@@ -129,11 +129,11 @@ class NewsletterShell extends AppShell {
             $product['Product']['id'],
             $product['Category']['id'],
             strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name'])))
-          );
+          ));
 
           $products[$i]['Product']['link'] = $link;
         }
-        
+
         $email = $this->sendEmail($newsletter, $products);
 
         if($email['sent']) {
