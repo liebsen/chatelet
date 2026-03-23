@@ -196,17 +196,43 @@ class NewsletterComponent extends Component {
           $push_sent+= $user['NewsletterUser']['push_sent'];
         }
 
-        /*$start = new \DateTime($schedule['NewsletterSchedule']['modified']);
-        $end = new \DateTime("now");
-        $interval = $end->diff($start);
-        $days = $interval->d;
+        $rowclass = '';
+        $timestamp1 = strtotime($schedule['NewsletterSchedule']['schedule_date'].' '.$schedule['NewsletterSchedule']['schedule_hour'].':00');
+        $timestamp2 = strtotime("now");
+        $difference_seconds = $timestamp2 - $timestamp1; // Use abs() for absolute difference
+        $difference_hours = $difference_seconds / 3600;
+        $status = 'Inactivo';
 
-        if ($days < 1) {
-          $schedules[$i]['NewsletterSchedule']['recent'] = 1;
-        }*/
+        if ($difference_hours > 0) {
+          $rowclass = 'bg-light';
+          $status = 'Procesado';          
+        } else {
+          if($schedule['NewsletterSchedule']['enabled']) {
+            $rowclass = 'bg-success';
+            $status = 'Activo';
+          }
+        }
 
-        $schedules[$i]['email_sent'] = $email_sent;
-        $schedules[$i]['push_sent'] = $push_sent;
+        if(empty($schedule['NewsletterSchedule']['enabled'])) {
+          // $rowclass = 'bg-danger';
+        }
+        
+        if(
+          empty($schedule['NewsletterSchedule']['send_email']) && 
+          empty($schedule['NewsletterSchedule']['send_push'])
+        ) {
+          $rowclass = 'bg-danger';
+          $status = 'Sin método asignado';
+        }
+
+        $schedules[$i]['stats'] = array(
+          'email_sent' => $email_sent,
+          'push_sent' => $push_sent,
+          'total' => count($users),
+        );
+
+        $schedules[$i]['status'] = $status;
+        $schedules[$i]['rowclass'] = $rowclass;
         $schedules[$i]['Users'] = $users;
         $schedules[$i]['Products'] = $products;
       }

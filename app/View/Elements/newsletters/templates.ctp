@@ -13,7 +13,7 @@
 		</thead>
 		<tbody>
 <?php foreach ($newsletters as $key => $newsletter): ?>        
-			<tr class="<?=isset($newsletter['Newsletter']['recent'])?'bg-selected':''?>">
+			<tr class="<?=$schedule['rowclass'] ?? ''?>">
 				<td>
 					<a 
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
@@ -61,7 +61,7 @@
 						))?>" 
 						data-toggle="tooltip" 
 						title="Programar envío" 
-						class="btn btn-warning" 
+						class="btn btn-success" 
 					>
 						<i class="gi gi-send"></i>
 					</a>

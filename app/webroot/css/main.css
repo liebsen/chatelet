@@ -223,6 +223,14 @@ body {
     color: white!important;
 }
 
+.bg-light {
+  background-color: #f8f8f8;
+}
+
+.bg-grey {
+  background-color: #e7e7e7;
+}
+
 .bg-info-i {
   background-color: #d9edf7!important;
 }
@@ -2208,6 +2216,9 @@ small, .small {
     display: inline-block;
 }
 
+.badge {
+    border-radius: 0.5rem;
+}
 .badge.is-large {
     font-size: 24px;
     line-height: 2;
