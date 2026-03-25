@@ -2117,8 +2117,8 @@ pre, code {
 }
 .list-group-hero > a > li > .badge {
     position: absolute;
-    top: -1.5rem;
-    right: -1.5rem;
+    top: 0.75rem;
+    right: 0.75rem;
     border-radius: 100%;
 }
 .list-group-hero > a > li > h1 {
@@ -2859,6 +2859,7 @@ label,
     background-color: #f9f9f9;
 }
 
+
 .form-inline,
 .form-horizontal {
     margin: 0;
@@ -2994,7 +2995,9 @@ input[type="file"].form-control::file-selector-button:hover {
 
 /* Tables + DataTables */
 
-
+.dataTables_wrapper.form-inline {
+    margin: 10px;
+}
 .dataTables_wrapper input,
 .dataTables_wrapper select {
     padding: 0.5rem 1rem;
