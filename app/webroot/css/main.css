@@ -2651,10 +2651,12 @@ header.navbar .navbar-brand {
     border-top: none;
     padding: 15px;
     background-color: #fff;
+    min-height: calc(70vh);
 }
 
 .tab-content table,
 .tab-content form {
+    min-width: 100%;
     animation-delay: 1s;
     animation-duration: 1s;
     animation-fill-mode: both;
