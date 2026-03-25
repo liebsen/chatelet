@@ -1,11 +1,14 @@
 <?php 
 	echo $this->Html->script('admin-delete', array('inline' => false));
-	echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
-	echo $this->element('admin/menu');
+	echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));	
 ?>
 	<div class="block">
 		<div class="block-content">
 	    <div class="custom-tabs block-tabs">
+
+<?php if($viewComponent != 'index'):?>
+<?php echo $this->element('admin/menu'); ?>
+<?php endif ?>
 	      <div class="tab-content">
 					<div class="tab-pane pane-<?= $pane ?> active">
 <?php echo $this->element('newsletters/' . $viewComponent) ?>

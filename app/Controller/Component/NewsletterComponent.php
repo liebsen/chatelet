@@ -16,6 +16,29 @@ class NewsletterComponent extends Component {
     parent::initialize($controller);
   }
 
+  public function index($value=''){
+    $Newsletter = ClassRegistry::init('Newsletter');
+    $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
+    $templates_count = $Newsletter->find('count', array(
+      'conditions' => array(
+        'enabled' => 1
+      ),
+    ));
+
+    $schedules_count = $NewsletterSchedule->find('count', array(
+      'conditions' => array(
+        'enabled' => 1
+      ),
+    ));
+
+    $this->controller->set('counts', 
+      array(
+        'templates' => $templates_count,
+        'schedules' => $schedules_count
+      )
+    );
+  }
+
   public function templates() {
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');

@@ -599,7 +599,6 @@ body {
 .block {
     margin: 0 0 70px;
     padding: 0;
-    background-color: #f9f9f9;
 }
 
 @media(min-width: 991px) {
@@ -2101,6 +2100,35 @@ pre, code {
 */
 
 
+.list-group-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 2rem;
+    border: none;
+    min-height: calc(100dvh - 12rem);
+}
+
+.list-group-hero > a > li {
+    font-size: 5rem;
+    border-radius: 2rem!important;
+    padding: 2rem;
+    position: relative;
+}
+.list-group-hero > a > li > .badge {
+    position: absolute;
+    top: -1.5rem;
+    right: -1.5rem;
+    border-radius: 100%;
+}
+.list-group-hero > a > li > h1 {
+    font-size: 5rem;
+}
+
+.list-group-hero > a  > li > h5 {
+    font-size: 2rem;
+}
+
 .list-unstyled {
     padding-left: 20px;
 }
@@ -3175,7 +3203,7 @@ a:focus {
 
 /* Remove Radius */
 
-.list-group-item,
+/*.list-group-item,*/
 .pager li > a,
 .pager li > span,
 .nav-tabs > li > a,

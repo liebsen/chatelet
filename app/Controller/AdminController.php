@@ -2024,12 +2024,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		}
 	}
 
-	public function newsletters($section = 'templates'){
+	public function newsletters($section = 'index'){
 		$pane = $this->params['pass'][0] ?? $section;
 		$action = $this->params['pass'][1] ?? '';
 		$id = $this->params['pass'][2] ?? 0;
 		$viewComponent = implode('-', array_values(array_filter(array($pane,$action))));
 		$controlComponent = implode('_', array_values(array_filter(array($pane,$action))));
+
 		$templateVars = array(
 			'name' => "Nombre del usuario",
 			'surname' => "Apellido del usuario",
@@ -2046,8 +2047,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'Plantillas' => array(
 				'id' => 'templates',
 				'icon' 		=> 'gi gi-envelope',
-				'url'		=> \site_url().'/admin/newsletters',
-				'active'	=> '/admin/newsletters'
+				'url'		=> \site_url().'/admin/newsletters/templates',
+				'active'	=> '/admin/newsletters/templates'
 			),
 			'Campañas' => array(
 				'id' => 'schedules',
@@ -2078,8 +2079,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
         'enabled' => 1
       );
 		}
-
-
 
 		// $this->set('action', $action);		
 		$this->set('pane', $pane);
