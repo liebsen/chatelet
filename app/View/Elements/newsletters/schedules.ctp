@@ -97,7 +97,6 @@
 <?php endforeach ?>
 		</tbody>
 	</table>
-
 	<div class="form-actions">
 		<a href="/admin/newsletters/schedules?extended=1">
 	    <button class="btn" type="button">Ver todo</button>
