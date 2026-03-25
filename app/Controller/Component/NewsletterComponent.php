@@ -179,7 +179,7 @@ class NewsletterComponent extends Component {
         ),        
         'fields' => array('Newsletter.*, NewsletterSchedule.*'),
         'conditions' => $conditions,
-        'order' => array( 'NewsletterSchedule.id DESC' )
+        'order' => array( 'NewsletterSchedule.schedule_date DESC, NewsletterSchedule.schedule_hour DESC' )
       ));
 
       foreach($schedules as $i => $schedule) {

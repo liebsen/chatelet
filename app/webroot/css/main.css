@@ -224,11 +224,11 @@ body {
 }
 
 .bg-light {
-  background-color: #f8f8f8;
+  background-color: #f8f8f8!important;
 }
 
 .bg-grey {
-  background-color: #e7e7e7;
+  background-color: #e7e7e7!important;
 }
 
 .bg-info-i {
@@ -2114,11 +2114,19 @@ pre, code {
     border-radius: 2rem!important;
     padding: 2rem;
     position: relative;
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0 0 3px rgba(200,200,200,0.1);
+    min-width: 7rem;
 }
+
+.list-group-hero > a > li:hover {
+    box-shadow: 0 0 10px rgba(200,200,200,0.9);
+}
+
 .list-group-hero > a > li > .badge {
     position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
+    top: 2.75rem;
+    right: 2.75rem;
     border-radius: 100%;
 }
 .list-group-hero > a > li > h1 {
@@ -2641,8 +2649,16 @@ header.navbar .navbar-brand {
 .tab-content {
     border: 1px solid #ddd;
     border-top: none;
-    padding: 12px;
+    padding: 15px;
     background-color: #fff;
+}
+
+.tab-content table,
+.tab-content form {
+    animation-delay: 1s;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
 }
 
 .tab-content-default {
@@ -3320,10 +3336,6 @@ a.thumbnail-borderless,
 
 .bg-dark {
     background-color: #c5c5c5;
-}
-
-.bg-grey {
-    background-color: #888;
 }
 
 .bg-selected {
