@@ -80,10 +80,16 @@
 		</tbody>
 	</table>
 	<div class="form-actions">
-		<a href="/admin/newsletters/emails?extended=1">
-      <button class="btn" type="button">Ver todo</button>
-    </a>
+<?php if(empty($this->params->query['extended'])): ?>
+	<a href="/admin/newsletters/templates?extended=1">
+    <button class="btn" type="button">Ver todo</button>
+  </a>
+<?php else: ?>
+	<a href="/admin/newsletters/templates">
+    <button class="btn" type="button">Ver menos</button>
+  </a>
+<?php endif ?>
 	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit'))?>">
-	    <i class="gi gi-edit mr-1"></i> Componer
+	    <i class="gi gi-edit mr-1"></i> Crear Plantilla
 	  </a>
   </div>

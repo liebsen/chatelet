@@ -98,10 +98,16 @@
 		</tbody>
 	</table>
 	<div class="form-actions">
-		<a href="/admin/newsletters/schedules?extended=1">
-	    <button class="btn" type="button">Ver todo</button>
-	  </a>
-	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
-	    <i class="gi gi-send mr-1"></i> Crear nueva campaña
-	  </a>
+<?php if(empty($this->params->query['extended'])): ?>
+	<a href="/admin/newsletters/schedules?extended=1">
+    <button class="btn" type="button">Ver todo</button>
+  </a>
+<?php else: ?>
+	<a href="/admin/newsletters/schedules">
+    <button class="btn" type="button">Ver menos</button>
+  </a>
+<?php endif ?>
+  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
+    <i class="gi gi-send mr-1"></i> Crear nueva campaña
+  </a>
 	</div>
