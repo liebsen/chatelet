@@ -103,6 +103,6 @@
 	    <button class="btn" type="button">Ver todo</button>
 	  </a>
 	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
-	    <i class="gi gi-clock mr-1"></i> Programar envío
+	    <i class="gi gi-send mr-1"></i> Crear nueva campaña
 	  </a>
 	</div>
