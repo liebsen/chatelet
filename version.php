@@ -6,7 +6,7 @@ $filename = __DIR__ .'/app/app_version';
 $count = (float) file_get_contents($filename);
 $count+= 1;
 
-if(!empty($count)) {
+if(!empty($count) && $count > 100) {
 	// log2file($filename, $version, 'w');
 	$fp = fopen($filename, 'c+');
   ftruncate($fp,0);

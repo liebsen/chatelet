@@ -12,7 +12,7 @@
 <!-- Left Sidebar -->
 <!-- In the PHP version you can set the following options from the config file -->
 <!-- Add the class .sticky for a sticky sidebar -->
-<aside id="page-sidebar" class="collapse navbar-collapse hide-print navbar-main-collapse<?php if ($template['sidebar'] == 'sticky') { echo ' sticky'; } ?>">
+<aside id="page-sidebar" class="collapse navbar-collapse hide-print navbar-main-collapse in<?php if ($template['sidebar'] == 'sticky') { echo ' sticky'; } ?> animation-fadeIn animation-both delay">
     <!--
     Wrapper for scrolling functionality
     Used only if the .sticky class added above. You can remove it and you will have a sticky sidebar
@@ -26,7 +26,7 @@
                     <a href="#side-tab-menu"><i class="gi gi-list"></i></a>
                 </li>
             </ul-->
-            <div class="tab-content">
+            <div class="tab-content" style="max-width: 220px;">
                 <div class="tab-pane active" id="side-tab-menu">
                     <!-- Primary Navigation -->
                     <nav id="primary-nav">

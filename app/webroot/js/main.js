@@ -214,10 +214,16 @@ $(function () {
   $('#toggle-side-content').click(function(){ 
     if($('body').hasClass('hide-side-content')){
       $('#page-sidebar.collapse').collapse('hide');
+      localStorage.sidebar = 0
     } else {
       $('#page-sidebar.collapse').collapse('show');
+      localStorage.sidebar = 1
     }
     $('body').toggleClass('hide-side-content');
   });
+
+  if(localStorage.sidebar == 1) {
+    $('#toggle-side-content').trigger('click')
+  }
 })
 

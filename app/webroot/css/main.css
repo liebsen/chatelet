@@ -747,6 +747,11 @@ body {
     background-color: transparent;
     padding: 1.5rem 0.25rem;
     padding-bottom: 1px;
+    min-width: 100%;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
 }
 
 .block-tabs > .nav-tabs > li {
@@ -2654,8 +2659,7 @@ header.navbar .navbar-brand {
     min-height: calc(70vh);
 }
 
-.tab-content table,
-.tab-content form {
+.tab-pane:not(#side-tab-menu) {
     min-width: 100%;
     animation-delay: 1s;
     animation-duration: 1s;
