@@ -15,7 +15,7 @@
       mouseDrag = false;  
   
   function init() {
-    window.document.body.insertAdjacentHTML( 'afterbegin', '<div class="draggable-saved animated"><i class="fa fa-thumbs-o-up fa-lg"></i></div>' );
+    window.document.body.insertAdjacentHTML( 'afterbegin', '<div class="draggable-saved"><i class="fa fa-thumbs-o-up fa-lg"></i></div>' );
     bindMouse();
   }
   

@@ -370,6 +370,7 @@ class AdminController extends AppController {
 
 	public function ordernum($tag){
 		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
 		$data = $this->request->data;
 		$name = ucfirst($tag);
 		$this->loadModel($name);
@@ -416,7 +417,20 @@ class AdminController extends AppController {
 					'ordernum' => $ordernum + 1
 				]);		
 			}
+
+			return json_encode(
+				array(
+					'success' => true,
+					'message' => "Se actualizó el orden de los elementos"
+				)
+			);
 		}
+		return json_encode(
+			array(
+				'success' => false,
+				'message' => "Faltan datos para actualizar"
+			)
+		);
 	}
 
 	public function ordernum2($tag){

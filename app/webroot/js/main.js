@@ -7,11 +7,9 @@ let growlTimeout = 15000
 const log = false
 
 function show_done(){
-  document.querySelector('.draggable-saved').classList.remove('scaleOut')
-  document.querySelector('.draggable-saved').classList.add('scaleIn')
+  document.querySelector('.draggable-saved').classList.add('lever')
   setTimeout(() => {
-    document.querySelector('.draggable-saved').classList.remove('scaleIn')
-    document.querySelector('.draggable-saved').classList.add('scaleOut')
+    document.querySelector('.draggable-saved').classList.remove('lever')
   }, 5000)
 }
 

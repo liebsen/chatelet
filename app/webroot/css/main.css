@@ -4103,6 +4103,9 @@ div.cloudzoom-black:nth-child(3) {
     grid-gap: 1.75rem;
 }
 
+.switch-scale input {
+    margin: auto;
+}
 .switch-scale > span {
     flex: 1;
 }

@@ -57,7 +57,7 @@
 		      	<h4 class="sub-header">Configuración de Newsletter</h4>
 		      	<p>Configura qué datos se utilizarán para procesar los envíos</p>
 		        <div class="control-group">
-		          <label class="control-label" for="columns-text"><?php echo __('Mailbox'); ?></label>
+		          <label class="control-label" for="columns-text"><?php echo __('Nombre de usuario'); ?></label>
 		          <div class="controls">
 		            <input type="text" name="data[newsletters_username]" class="form-control" placeholder="news@domain.com" value="<?= @$settings['newsletters_username'] ?>"/>
 		          </div>
