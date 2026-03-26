@@ -43,6 +43,7 @@ class NewsletterComponent extends Component {
     if($this->controller->request->is('post')){
       $Setting = ClassRegistry::init('Setting');
       $data = $this->controller->request->data;
+      $redirect = array( 'action' => 'newsletters');
 
       foreach($data as $id => $value) {
         if(is_array($value) && ($id == 'newsletter_logo' || $id == 'newsletter_badge')) {
@@ -57,12 +58,12 @@ class NewsletterComponent extends Component {
           )
         );
       }
-      return $this->controller->redirect(
-        array(
-          'action' => 'newsletters', 
-          'config'
-        )
-      );
+
+      if(isset($data['x_coord']) && $data['x_coord'] == '1') {
+        $redirect = array('action' => 'newsletters', 'config');
+      }
+
+      return $this->controller->redirect($redirect);
     }
   }
 

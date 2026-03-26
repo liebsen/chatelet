@@ -244,8 +244,8 @@ class NewsletterShell extends AppShell {
         'host' => 'smtp.gmail.com',
         'port' => 587,
         'timeout' => 30,
-        'username' => 'newschatelet@gmail.com',
-        'password' => 'fasqlgdfzvspuynx',
+        'username' =>  $this->settings['newsletters_username'],
+        'password' => $this->settings['newsletters_password'],
         'charset' => 'utf-8',
         'tls' => true
       )

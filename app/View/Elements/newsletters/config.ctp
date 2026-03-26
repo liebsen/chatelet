@@ -2,6 +2,8 @@
 <?php echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->Html->script('newsletter-config.js?v=' . $version['ver'], array('inline' => false)); ?>
 		<form action="" method="post" class="form-inline" enctype="multipart/form-data">
+		  <input type="hidden" name="x_coord" id="x_coord">
+		  <input type="hidden" name="y_coord" id="y_coord">			
 			<div class="row">
 	      <div class="col-md-6">
 	        <h4 class="sub-header">Datos básicos</h4>
@@ -57,7 +59,7 @@
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Mailbox'); ?></label>
 		          <div class="controls">
-		            <input type="text" name="data[newsletters_mailbox]" class="form-control" placeholder="news@domain.com" value="<?= @$settings['newsletters_mailbox'] ?>"/>
+		            <input type="text" name="data[newsletters_username]" class="form-control" placeholder="news@domain.com" value="<?= @$settings['newsletters_username'] ?>"/>
 		          </div>
 		          <small class="text-muted">Ingresá el mailbox de la cuenta que enviará los emails.</small>
 		        </div>
@@ -103,6 +105,6 @@
 	    <br />               
 	    <div class="form-actions">
 	      <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
-	      <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+	      <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
 	    </div>
 	  </form>
