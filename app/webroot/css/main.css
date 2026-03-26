@@ -814,8 +814,7 @@ body {
 .block-tabs > .tab-content {
     padding: 20px;
     margin: 0;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+    border: none;
 }
 
 .block-tabs.block-themed > .nav-tabs {
@@ -2164,10 +2163,11 @@ pre, code {
 
 .list-group-hero > a > li > .badge {
     position: absolute;
-    top: 2.75rem;
-    right: 2.75rem;
+    top: 2.25rem;
+    right: 4.25rem;
     border-radius: 100%;
 }
+
 .list-group-hero > a > li > h1 {
     font-size: 5rem;
 }
