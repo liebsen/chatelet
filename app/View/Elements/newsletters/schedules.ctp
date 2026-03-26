@@ -16,7 +16,7 @@
 		</thead>
 		<tbody>
 <?php foreach ($schedules as $key => $schedule): ?>        
-			<tr class="bg-<?=$schedule['rowclass']?>">
+			<tr>
 				<td>
 					<a 
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
