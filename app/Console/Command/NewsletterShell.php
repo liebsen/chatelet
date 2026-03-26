@@ -73,8 +73,8 @@ class NewsletterShell extends AppShell {
       'conditions' => array( 
         'NewsletterUser.status' => "pending", 
         'NewsletterSchedule.enabled' => 1,
-        'NewsletterSchedule.schedule_date < ' => $curr_date,
-        'NewsletterSchedule.schedule_hour < ' => $curr_hour,
+        'NewsletterSchedule.schedule_date <= ' => $curr_date,
+        'NewsletterSchedule.schedule_hour <= ' => $curr_hour,
        ),
        'order' => array( 'NewsletterUser.created ASC' ),
        'group' => array( 'NewsletterUser.id' ),
@@ -237,7 +237,7 @@ class NewsletterShell extends AppShell {
 
   public function sendEmail($data, $products = array()) {
     $email = new CakeEmail();
-    $email->config(
+    /*$email->config(
       array(
         'transport' => 'Smtp',
         'from' => array('newsletters@chatelet.com.ar' => 'Châtelet'),
@@ -249,7 +249,7 @@ class NewsletterShell extends AppShell {
         'charset' => 'utf-8',
         'tls' => true
       )
-    );
+    );*/
 
     // $email->transport('Debug');
     $email->from(array(
