@@ -248,7 +248,7 @@ class AppController extends Controller
     ));
 
     if (
-      $_SERVER['REMOTE_ADDR'] == '127.0.0.1' ||
+      $_SERVER['REMOTE_ADDR'] == '127.0.0.11' ||
       empty($data['receiver_email']))
     {
       // CakeLog::write('debug', 'email:'. json_encode($email->message('html')));

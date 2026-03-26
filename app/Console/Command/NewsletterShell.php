@@ -265,7 +265,7 @@ class NewsletterShell extends AppShell {
     $email->subject($data['Newsletter']['title']);
     $email->template('newsletter', 'default');
     $email->emailFormat('html') ;
-    $email->config('newsletter');
+    $email->config('default');
     $email->viewVars(array(
       'data' => $data,
       'products' => $products,
