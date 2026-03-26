@@ -72,8 +72,8 @@ class NewsletterShell extends AppShell {
       'conditions' => array( 
         'NewsletterUser.status' => "pending", 
         'NewsletterSchedule.enabled' => 1,
-        'NewsletterSchedule.schedule_date' => $curr_date,
-        'NewsletterSchedule.schedule_hour' => $curr_hour,
+        'NewsletterSchedule.schedule_date < ' => $curr_date,
+        'NewsletterSchedule.schedule_hour < ' => $curr_hour,
        ),
        'order' => array( 'NewsletterUser.created ASC' ),
        'group' => array( 'NewsletterUser.id' ),
@@ -241,10 +241,10 @@ class NewsletterShell extends AppShell {
       'info@chatelet.com' => 'Châtelet'
     ));
 
-    print_r(array(
+    /*print_r(array(
       'mail_data' => $data,
       'template' => $template
-    ));
+    ));*/
 
 
     $email->to($data['User']['email']);
@@ -268,9 +268,9 @@ class NewsletterShell extends AppShell {
       $sent = true;
     } else {
       $sent = $email->send();
-      print_r(array(
+      /*print_r(array(
         'sent' => $sent,
-      ));
+      ));*/
     }
 
     return array(

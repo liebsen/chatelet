@@ -227,7 +227,7 @@ class NewsletterComponent extends Component {
         $status = 'Inactivo';
 
         if ($difference_hours > 0) {
-          $rowclass = 'light';
+          $rowclass = 'success';
           $status = 'Procesado';
         } else {
           if($schedule['NewsletterSchedule']['enabled']) {
