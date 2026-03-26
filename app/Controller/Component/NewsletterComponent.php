@@ -219,7 +219,7 @@ class NewsletterComponent extends Component {
           $push_sent+= $user['NewsletterUser']['push_sent'];
         }
 
-        $rowclass = '';
+        $rowclass = 'neutral';
         $timestamp1 = strtotime($schedule['NewsletterSchedule']['schedule_date'].' '.$schedule['NewsletterSchedule']['schedule_hour'].':00');
         $timestamp2 = strtotime("now");
         $difference_seconds = $timestamp2 - $timestamp1; // Use abs() for absolute difference
@@ -227,24 +227,24 @@ class NewsletterComponent extends Component {
         $status = 'Inactivo';
 
         if ($difference_hours > 0) {
-          $rowclass = 'bg-light';
-          $status = 'Procesado';          
+          $rowclass = 'light';
+          $status = 'Procesado';
         } else {
           if($schedule['NewsletterSchedule']['enabled']) {
-            $rowclass = 'bg-success';
+            $rowclass = 'success';
             $status = 'Activo';
           }
         }
 
         if(empty($schedule['NewsletterSchedule']['enabled'])) {
-          // $rowclass = 'bg-danger';
+          // $rowclass = 'danger';
         }
         
         if(
           empty($schedule['NewsletterSchedule']['send_email']) && 
           empty($schedule['NewsletterSchedule']['send_push'])
         ) {
-          $rowclass = 'bg-danger';
+          $rowclass = 'danger';
           $status = 'Sin método asignado';
         }
 

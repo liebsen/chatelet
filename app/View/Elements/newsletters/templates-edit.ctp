@@ -14,7 +14,7 @@
   <input type="hidden" name="redirect" value="/admin/newsletters"/>
   <input type="hidden" name="data[id]" value="<?= $newsletter['Newsletter']['id'] ?? 0 ?>"/>
 	<div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <h4 class="sub-header"><?=$newsletter['Newsletter']['title'] ?? 'Crea un nueva plantilla'?></h4>
       <p><?=$newsletter['Newsletter']['title'] ? 'Modifica' : 'Crea'?> tu plantilla. Puedes asociarle productos si lo deseas.</p>
       <div class="form-group flex-between gap-05">
@@ -22,7 +22,14 @@
           <label class="control-label" for="toggle">Activo</label>
           <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$newsletter['Newsletter']['enabled'] == '1' ? ' checked' : '' ?>>
           <label for="toggle" class="toggle-label"></label>
-        </div>      
+        </div>
+      <div class="control-group">
+        <label class="control-label" for="name">Código</label>
+        <div class="controls">
+          <input type="text" id="name" name="data[name]" class="form-control" placeholder="Código de la plantilla" value="<?=$newsletter['Newsletter']['name']?>" required />
+        </div>
+        <small class="text-muted">Es el código que verán solo los gestores</small>
+      </div>
 <?php if(!empty($newsletter_products)): ?>
         <a href="javascript:void(0)" onclick="$('.table-products').toggle()"><span class="badge badge-<?=  count($newsletter_products) ? 'success' : 'danger' ?> is-rounded is-large"><?php echo count($newsletter_products) ?></span></a>
 <?php endif ?>
@@ -35,17 +42,6 @@
     <?php endforeach ?>
         </table>
       </div>
-    </div>
-    <div class="col-md-6">
-      <h4 class="sub-header">Datos internos</h4>
-      <p>Datos con los que identificarás esta plantilla.</p>
-      <div class="control-group">
-        <label class="control-label" for="name">Código</label>
-        <div class="controls">
-          <input type="text" id="name" name="data[name]" class="form-control" placeholder="Código de la plantilla" value="<?=$newsletter['Newsletter']['name']?>" required />
-        </div>
-        <small class="text-muted">Es el código que verán solo los gestores para gestionar el envío</small>
-      </div>      
     </div>
   </div>
   <div class="row">

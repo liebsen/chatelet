@@ -23,10 +23,10 @@
 					</a>
 				</td>
 				<td>
-					<?=count($newsletter['NewsletterProduct'])?>
+					<span class="badge badge-success is-rounded"><?=count($newsletter['NewsletterProduct'])?></span>
 				</td>
 				<td>
-					<?=count($newsletter['NewsletterSchedule'])?>
+					<span class="badge is-rounded"><?=count($newsletter['NewsletterSchedule'])?></span>
 				</td>
 				<td>            
 					<a 

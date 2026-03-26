@@ -16,7 +16,7 @@
 		</thead>
 		<tbody>
 <?php foreach ($schedules as $key => $schedule): ?>        
-			<tr class="<?=$schedule['rowclass'] ?? ''?>">
+			<tr class="bg-<?=$schedule['rowclass']?>">
 				<td>
 					<a 
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
@@ -26,26 +26,26 @@
 					</a>
 				</td>
 				<td>
-					<?=$schedule['status']?>
+					<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?></span>
 				</td>
 				<td>
-					<span class="badge badge-<?=count($schedule['Products']) ? 'success' : 'light'?>">
+					<span class="badge badge-<?=count($schedule['Products']) ? 'success' : 'light'?> is-rounded">
 						<?=count($schedule['Products'])?>
 					</span>
 				</td>
 				<td>
-					<span class="badge badge-<?=count($schedule['Users']) ? 'info' : 'danger'?>">
+					<span class="badge badge-<?=count($schedule['Users']) ? 'info' : 'danger'?> is-rounded">
 						<?=count($schedule['Users'])?>
 						</span>
 				</td>
 				<td>
-					<span class="badge badge-success" title="Emails enviados">
+					<span class="badge badge-success is-rounded" title="Emails enviados">
 						<?=count($schedule['stats']['email_sent'])?>
 					</span> 
-					<span class="badge badge-warning" title="Notificación Push enviados">
+					<span class="badge badge-warning is-rounded" title="Notificación Push enviados">
 						<?=count($schedule['stats']['push_sent'])?>
 					</span> 
-					<span class="badge badge-info" title="Total a enviar">
+					<span class="badge badge-info is-rounded" title="Total a enviar">
 						<?=count($schedule['stats']['total'])?>
 					</span>
 				</td>
