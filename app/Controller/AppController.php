@@ -315,7 +315,7 @@ class AppController extends Controller
     return $filepath;
   }
 
-  protected function save_file($file, $withThumb = false, $size=300) {
+  public function save_file($file, $withThumb = false, $size=300) {
 
     if (empty($file['name'])) {
       return false;

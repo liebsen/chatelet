@@ -237,6 +237,20 @@ class NewsletterShell extends AppShell {
 
   public function sendEmail($data, $products = array()) {
     $email = new CakeEmail();
+    $email->config(
+      array(
+        'transport' => 'Smtp',
+        'from' => array('newsletters@chatelet.com.ar' => 'Châtelet'),
+        'host' => 'smtp.gmail.com',
+        'port' => 587,
+        'timeout' => 30,
+        'username' => 'newschatelet@gmail.com',
+        'password' => 'fasqlgdfzvspuynx',
+        'charset' => 'utf-8',
+        'tls' => true
+      )
+    );
+
     // $email->transport('Debug');
     $email->from(array(
       'info@chatelet.com' => 'Châtelet'
@@ -247,18 +261,15 @@ class NewsletterShell extends AppShell {
       'template' => $template
     ));*/
 
-
     $email->to($data['User']['email']);
     $email->subject($data['Newsletter']['title']);
     $email->template('newsletter', 'default');
     $email->emailFormat('html') ;
-    $email->config('default');
+    $email->config('newsletter');
     $email->viewVars(array(
       'data' => $data,
       'products' => $products,
-      'socials' => $data['Newsletter']['show_follow'] ? 
-        \parsed_socials($this->settings) :
-        null,
+      'socials' => $data['Newsletter']['show_follow'] ? \parsed_socials($this->settings) : null,
       'site_url' => $this->settings['site_url'],
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/'
     ));

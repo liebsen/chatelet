@@ -39,6 +39,33 @@ class NewsletterComponent extends Component {
     );
   }
 
+  public function config() {
+    if($this->controller->request->is('post')){
+      $Setting = ClassRegistry::init('Setting');
+      $data = $this->controller->request->data;
+
+      foreach($data as $id => $value) {
+        if(is_array($value) && ($id == 'newsletter_logo' || $id == 'newsletter_badge')) {
+          $value = $this->controller->save_file( $value );  
+          CakeLog::write('debug', 'file:'. json_encode(['id' => $id, 'value' => $value]));
+        }
+        CakeLog::write('debug', 'save:'. json_encode(['id' => $id, 'value' => $value]));
+        $Setting->save(
+          array(
+            'id' => $id, 
+            'value' => $value
+          )
+        );
+      }
+      return $this->controller->redirect(
+        array(
+          'action' => 'newsletters', 
+          'config'
+        )
+      );
+    }
+  }
+
   public function templates() {
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');

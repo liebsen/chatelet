@@ -169,7 +169,7 @@ body {
 }
 
 #page-sidebar {
-    /* width: 201px; */
+    width: 220px;
     display: block;
     position: absolute;
     z-index: 10;
@@ -476,14 +476,14 @@ body {
     border-top: none;
 }
 
-#primary-nav ul {
+#primary-nav > ul {
     list-style: none;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
 }
 
-#primary-nav li a {
+#primary-nav > ul > li > a {
     display: flex;
     justify-content: start;
     align-items: center;
@@ -496,6 +496,37 @@ body {
     padding: 0.5rem;
     text-decoration: none;
 }
+
+
+@media(max-width: 991px) {
+    #primary-nav > ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        grid-gap: 0.5rem;
+        padding: 1rem;
+    }
+    #primary-nav > ul > li {
+        display: flex;
+        flex: 1;
+        border: 1px solid #c5c5c5;
+        border-radius: 0.75rem;
+        min-width: 8rem;
+        min-height: 8rem;
+    }
+    #primary-nav > ul > li > a {
+        flex-direction: column;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        min-height: 8rem;
+        border-radius: 0.75rem;
+    }
+}
+
 /*#primary-nav li a:hover {
     text-decoration: none;
     background-color: #888;
@@ -602,7 +633,7 @@ body {
 }
 
 @media(min-width: 991px) {
-    .block {
+    .block .tab-content {
         border-bottom-left-radius: 1.5rem;
     }
     #primary-nav li a {
@@ -2105,9 +2136,16 @@ pre, code {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     grid-gap: 2rem;
     border: none;
     min-height: calc(100dvh - 12rem);
+}
+
+@media(min-width: 991px) {
+    .list-group-hero { 
+        flex-direction: row;
+    }
 }
 
 .list-group-hero > a > li {
@@ -2117,7 +2155,7 @@ pre, code {
     position: relative;
     transition: all 0.5s ease-in-out;
     box-shadow: 0 0 3px rgba(200,200,200,0.1);
-    min-width: 7rem;
+    min-width: 18rem;
 }
 
 .list-group-hero > a > li:hover {
@@ -2658,7 +2696,7 @@ header.navbar .navbar-brand {
 
 .tab-pane:not(#side-tab-menu) {
     min-width: 100%;
-    animation-delay: 1s;
+    animation-delay: 0.5s;
     animation-duration: 1s;
     animation-fill-mode: both;
     animation-name: fadeIn;
@@ -2990,7 +3028,6 @@ input[type="checkbox"].form-control {
     transition: scale(1.5);
     cursor: pointer;
     width: auto;
-    margin: auto;
     min-width: 2rem;
 }
 
@@ -3347,7 +3384,7 @@ a.thumbnail-borderless,
 
 .form-actions {
     animation-name: fadeInUp;
-    animation-delay: 1s;
+    animation-delay: 0.5s;
     animation-duration: 1s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     animation-fill-mode: both;

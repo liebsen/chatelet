@@ -454,8 +454,7 @@ class AdminController extends AppController {
 		$navs = array(
 			'Paquetería' => array(
 				'icon' 		=> 'gi gi-package',
-				'url'		=> \site_url().'/admin/oca',
-				'active'	=> '/admin/oca'
+				'url'		=> '/admin/oca',
 			)
 		);
 
@@ -1356,13 +1355,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Carrusel' => array(
 				'icon' 		=> 'gi gi-image',
-				'url'		=> \site_url().'/admin/home',
-				'active'	=> '/admin/home'
+				'url'		=> '/admin/home',
 			),
 			'Pantalla inicial' => array(
 				'icon' 		=> 'gi gi-video',
-				'url'		=> \site_url().'/admin/home/splash',
-				'active'	=> '/admin/home/splash'
+				'url'		=> '/admin/home/splash',
 				)
 			);
 		$this->set('navs', $navs);
@@ -1661,18 +1658,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Categorías' => array(
 				'icon' 		=> 'gi gi-tags',
-				'url'		=> \site_url().'/admin/categorias',
-				'active'	=> '/admin/categorias'
+				'url'		=> '/admin/categorias',
 			),
 			'Crear' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> \site_url().'/admin/categorias/add',
-				'active'	=> '/admin/categorias/add'
+				'url'		=> '/admin/categorias/add',
 			),
 			'Compositor' => array(
 				'icon' 		=> 'gi gi-magic',
-				'url'		=> \site_url().'/admin/categorias/compose',
-				'active'	=> '/admin/categorias/compose'
+				'url'		=> '/admin/categorias/compose',
 			)
 		);
 
@@ -1806,8 +1800,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));	
     			$navs[$cat['Category']['name']] = array(
 						'icon' 		=> 'gi gi-edit',
-						'url'		=> \site_url().'/admin/categorias/edit/'.$cat['Category']['id'],
-						'active'	=> '/admin/categorias/edit/'.$cat['Category']['id']
+						'url'		=> '/admin/categorias/edit/'.$cat['Category']['id'],
 					);
 
 					$this->set('navs', $navs);
@@ -1856,8 +1849,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'WhatsApp' => array(
 				'icon' 		=> 'fa fa-whatsapp',
-				'url'		=> \site_url().'/admin/whatsapp',
-				'active'	=> '/admin/whatsapp'
+				'url'		=> '/admin/whatsapp',
 			)
 		);
 
@@ -1902,13 +1894,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$navs = array(
 				'Textos' => array(
 					'icon' 		=> 'gi gi-text',
-					'url'		=> \site_url().'/admin/application/basic',
-					'active'	=> '/admin/application/basic'
+					'url'		=> '/admin/application/basic',
 				),
 				'Imagen' => array(
 					'icon' 		=> 'gi gi-image',
-					'url'		=> \site_url().'/admin/application/image',
-					'active'	=> '/admin/application/image'
+					'url'		=> '/admin/application/image',
 				)
 			);
 		  			
@@ -2001,13 +1991,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$navs = array(
 				'Textos' => array(
 					'icon' 		=> 'gi gi-text',
-					'url'		=> \site_url().'/admin/application/basic',
-					'active'	=> '/admin/application/basic'
+					'url'		=> '/admin/application/basic',
 				),
 				'Imagen' => array(
 					'icon' 		=> 'gi gi-image',
-					'url'		=> \site_url().'/admin/application/image',
-					'active'	=> '/admin/application/image'
+					'url'		=> '/admin/application/image',
 				)
 			);
 		  			
@@ -2047,14 +2035,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'Plantillas' => array(
 				'id' => 'templates',
 				'icon' 		=> 'gi gi-envelope',
-				'url'		=> \site_url().'/admin/newsletters/templates',
-				'active'	=> '/admin/newsletters/templates'
+				'url'		=> '/admin/newsletters/templates',
 			),
 			'Campañas' => array(
 				'id' => 'schedules',
 				'icon' 		=> 'gi gi-send',
-				'url'		=> \site_url().'/admin/newsletters/schedules',
-				'active'	=> '/admin/newsletters/schedules'
+				'url'		=> '/admin/newsletters/schedules',
+			),
+			'Ajustes' => array(
+				'id' => 'config',
+				'icon' 		=> 'gi gi-cogwheel',
+				'url'		=> '/admin/newsletters/config',
 			)
 		);
 
@@ -2074,8 +2065,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		if($action == 'edit'){
       $navs[($pane == 'templates' ? (empty($id) ? 'Nueva' : 'Editar') . ' Plantilla ' : 'Programar envío ')] = array(
         'icon'    => 'gi gi-'.($pane == 'templates' ? 'envelope' : 'clock'),
-        'url'   => \site_url().'/admin/newsletters/'.$pane.'/edit/'.$$id,
-        'active'  => '/admin/newsletters/'.$pane.'/edit/',
+        'url'   => '/admin/newsletters/'.$pane.'/edit/'.$id,
         'enabled' => 1
       );
 		}
@@ -2249,16 +2239,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Productos' => array(
 				'icon' 		=> 'gi gi-shirt',
-				'url'		=> \site_url().'/admin/productos',
-				'active'	=> '/admin/productos'
-				),
+				'url'		=> '/admin/productos',
+			),
 			'Nuevo Producto' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> \site_url().'/admin/productos/add',
-				'active'	=> '/admin/productos/add'
-				)
-
-			);
+				'url'		=> '/admin/productos/add',
+			)
+		);
 
 		$h1 = array(
 			'name' => 'Productos',
@@ -2350,8 +2337,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
     			$navs[$prod['Product']['name']] = array(
 						'icon' 		=> 'gi gi-edit',
-						'url'		=> \site_url().'/admin/productos/edit/'.$cat['Product']['id'],
-						'active'	=> '/admin/productos/edit/'.$prod['Product']['id']
+						'url'		=> '/admin/productos/edit/'.$cat['Product']['id'],
 					);
 					$this->set('navs', $navs);
   				$this->loadModel('Category');
@@ -2393,13 +2379,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Sucursales' => array(
 				'icon' 		=> 'fa fa-map-marker',
-				'url'		=> \site_url().'/admin/sucursales',
-				'active'	=> '/admin/sucursales'
+				'url'		=> '/admin/sucursales',
 				),
 			'Nueva Sucursal' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> \site_url().'/admin/sucursales/add',
-				'active'	=> '/admin/sucursales/add'
+				'url'		=> '/admin/sucursales/add',
 				)
 
 			);
@@ -2585,13 +2569,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Cupones' => array(
 				'icon' 		=> 'gi gi-tags',
-				'url'		=> \site_url().'/admin/cupones',
-				'active'	=> '/admin/cupones'
+				'url'		=> '/admin/cupones',
 				),
 			'Nuevo Cupón' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> \site_url().'/admin/cupones/add',
-				'active'	=> '/admin/cupones/add'
+				'url'		=> '/admin/cupones/add',
 				)
 
 			);
@@ -2756,13 +2738,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Menues' => array(
 				'icon' 		=> 'gi gi-list',
-				'url'		=> \site_url().'/admin/admin_menu',
-				'active'	=> '/admin/admin_menu'
+				'url'		=> '/admin/admin_menu',
 			),
 			'Nuevo Menú de Administrador' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> \site_url().'/admin/admin_menu/add',
-				'active'	=> '/admin/admin_menu/add'
+				'url'		=> '/admin/admin_menu/add',
 			)
 		);
 
@@ -2821,13 +2801,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Banners' => array(
 				'icon' 		=> 'fa fa-shirtsinbulk',
-				'url'		=> \site_url().'/admin/banners',
-				'active'	=> '/admin/banners'
+				'url'		=> '/admin/banners',
 			),
 			'Nuevo Banner' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> \site_url().'/admin/banners/add',
-				'active'	=> '/admin/banners/add'
+				'url'		=> '/admin/banners/add',
 			)
 		);
 
@@ -2905,8 +2883,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$item = $this->Banner->find('first', array('conditions' => array('id' => $this->request->pass[1])));
     			$navs[$item['Banner']['text']] = array(
 						'icon' 		=> 'gi gi-edit',
-						'url'		=> \site_url().'/admin/banners/edit/'.$item['Banner']['id'],
-						'active'	=> '/admin/banners/edit/'.$item['Banner']['id']
+						'url'		=> '/admin/banners/edit/'.$item['Banner']['id'],
 					);
 
 	    		$this->set('navs', $navs);
@@ -2925,13 +2902,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Financiación' => array(
 				'icon' 		=> 'fa fa-credit-card',
-				'url'		=> \site_url().'/admin/legends',
-				'active'	=> '/admin/legends'
+				'url'		=> '/admin/legends',
 			),
 			'Nueva Financiación' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> \site_url().'/admin/legends/add',
-				'active'	=> '/admin/legends/add'
+				'url'		=> '/admin/legends/add',
 			)
 		);
 
@@ -2988,8 +2963,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$item = $this->Legend->find('first', array('conditions' => array('id' => $this->request->pass[1])));
     			$navs[$item['Legend']['title']] = array(
 						'icon' 		=> 'gi gi-edit',
-						'url'		=> \site_url().'/admin/legends/edit/'.$item['Legend']['id'],
-						'active'	=> '/admin/legends/edit/'.$item['Legend']['id']
+						'url'		=> '/admin/legends/edit/'.$item['Legend']['id'],
 					);
 
 	    		$this->set('navs', $navs);
@@ -3008,13 +2982,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Menu' => array(
 				'icon' 		=> 'fa fa-ellipsis-v',
-				'url'		=> \site_url().'/admin/menu',
-				'active'	=> '/admin/menu'
+				'url'		=> '/admin/menu',
 			),
 			'Nuevo Menú' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> \site_url().'/admin/menu/add',
-				'active'	=> '/admin/menu/add'
+				'url'		=> '/admin/menu/add',
 			)
 		);
 
@@ -3086,8 +3058,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$item = $this->Menu->find('first', array('conditions' => array('id' => $this->request->pass[1])));
     			$navs[$item['Menu']['title']] = array(
 						'icon' 		=> 'gi gi-edit',
-						'url'		=> \site_url().'/admin/menu/edit/'.$item['Menu']['id'],
-						'active'	=> '/admin/menu/edit/'.$item['Menu']['id']
+						'url'		=> '/admin/menu/edit/'.$item['Menu']['id'],
 					);
 
 	    		$this->set('navs', $navs);
@@ -3121,23 +3092,19 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Compras' => array(
 				'icon' 		=> 'gi gi-shopping_cart',
-				'url'		=> \site_url().'/admin/analytics',
-				'active'	=> '/admin/analytics'
+				'url'		=> '/admin/analytics',
 			),
 			'Productos' => array(
 				'icon' 		=> 'gi gi-shirt',
-				'url'		=> \site_url().'/admin/analytics/productos',
-				'active'	=> '/admin/analytics/productos'
+				'url'		=> '/admin/analytics/productos',
 			),
 			'Búsquedas' => array(
 				'icon' 		=> 'gi gi-search',
-				'url'		=> \site_url().'/admin/analytics/searches',
-				'active'	=> '/admin/analytics/searches'
+				'url'		=> '/admin/analytics/searches',
 			),
 			'Carrito' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> \site_url().'/admin/analytics/cart',
-				'active'	=> '/admin/analytics/cart'
+				'url'		=> '/admin/analytics/cart',
 			)
 		);
 
@@ -3309,13 +3276,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Logística' => array(
 				'icon' 		=> 'gi gi-cargo',
-				'url'		=> \site_url().'/admin/logistica',
-				'active'	=> '/admin/logistica'
+				'url'		=> '/admin/logistica',
 				),
 			'Nueva Logística' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> \site_url().'/admin/logistica/add',
-				'active'	=> '/admin/logistica/add'
+				'url'		=> '/admin/logistica/add',
 				)
 			);
 		$this->set('navs', $navs);
@@ -3405,8 +3370,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					$this->set('h1', $h1);  
     			$navs[$logistic['Logistic']['title']] = array(
 						'icon' 		=> 'gi gi-edit',
-						'url'		=> \site_url().'/admin/logistica/edit/'.$logistic['Logistic']['id'],
-						'active'	=> '/admin/logistica/edit/'.$logistic['Logistic']['id']
+						'url'		=> '/admin/logistica/edit/'.$logistic['Logistic']['id'],
 					);
 
 	    		$this->set('navs', $navs);
@@ -3456,8 +3420,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Envíos' => array(
 				'icon' 		=> 'gi gi-car',
-				'url'		=> \site_url().'/admin/shipping',
-				'active'	=> '/admin/shipping'
+				'url'		=> '/admin/shipping',
 			)
 		);
 
@@ -3496,8 +3459,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Contactos' => array(
 				'icon' 		=> 'gi gi-envelope',
-				'url'		=> \site_url().'/admin/contacto',
-				'active'	=> '/admin/contacto'
+				'url'		=> '/admin/contacto',
 			)
 		);
 		$this->set('navs', $navs);
@@ -3523,13 +3485,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Usuarios' => array(
 				'icon' 		=> 'gi gi-group',
-				'url'		=> \site_url().'/admin/usuarios',
-				'active'	=> '/admin/usuarios'
+				'url'		=> '/admin/usuarios',
 				),
 			'Nuevo Usuario' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> \site_url().'/admin/usuarios/add',
-				'active'	=> '/admin/usuarios/add'
+				'url'		=> '/admin/usuarios/add',
 				)
 
 			);
@@ -3584,8 +3544,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$usuario = $this->User->find('first', array('conditions' => array('id' => $this->request->pass[1])));
     			$navs[$usuario['User']['name'].' '.$usuario['User']['surname']] = array(
 						'icon' 		=> 'gi gi-user',
-						'url'		=> \site_url().'/admin/usuarios/edit/'.$usuario['User']['id'],
-						'active'	=> '/admin/usuarios/edit/'.$usuario['User']['id']
+						'url'		=> '/admin/usuarios/edit/'.$usuario['User']['id'],
 					);
 
 	    		$this->set('navs', $navs);
@@ -3700,13 +3659,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Lookbook' => array(
 				'icon' 		=> 'gi gi-justify',
-				'url'		=> \site_url().'/admin/lookbook',
-				'active'	=> '/admin/lookbook'
+				'url'		=> '/admin/lookbook',
 			),
 			'Nuevo Look Book' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> \site_url().'/admin/lookbook/add',
-				'active'	=> '/admin/lookbook/add'
+				'url'		=> '/admin/lookbook/add',
 			)
 		);
 
@@ -3769,8 +3726,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Carrito' => array(
 				'icon' 		=> 'gi gi-shopping_cart',
-				'url'		=> \site_url().'/admin/carrito',
-				'active'	=> '/admin/carrito'
+				'url'		=> '/admin/carrito',
 			)
 		);
 
@@ -3807,8 +3763,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Banco' => array(
 				'icon' 		=> 'gi gi-bank',
-				'url'		=> \site_url().'/admin/bank',
-				'active'	=> '/admin/bank'
+				'url'		=> '/admin/bank',
 			)
 		);
 
@@ -3836,8 +3791,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Suscrpciones' => array(
 				'icon' 		=> 'gi gi-envelope',
-				'url'		=> \site_url().'/admin/subscriptions',
-				'active'	=> '/admin/newsletter'
+				'url'		=> '/admin/subscriptions',
 			)
 		);
 		$this->set('navs', $navs);
@@ -3872,13 +3826,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Newsletters' => array(
 				'icon' 		=> 'gi gi-wifi',
-				'url'		=> \site_url().'/admin/newsletters',
-				'active'	=> '/admin/newsletters'
+				'url'		=> '/admin/newsletters',
 			),
 			'Nuevo' => array(
 				'icon' 		=> 'gi gi-toolbox',
-				'url'		=> \site_url().'/admin/newsletters/add',
-				'active'	=> '/admin/newsletters/add'
+				'url'		=> '/admin/newsletters/add',
 			)			
 		);
 		

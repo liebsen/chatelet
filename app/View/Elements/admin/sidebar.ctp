@@ -26,7 +26,7 @@
                     <a href="#side-tab-menu"><i class="gi gi-list"></i></a>
                 </li>
             </ul-->
-            <div class="tab-content" style="max-width: 220px;">
+            <div class="tab-content">
                 <div class="tab-pane active" id="side-tab-menu">
                     <!-- Primary Navigation -->
                     <nav id="primary-nav">
