@@ -28,6 +28,7 @@ class NewsletterShell extends AppShell {
     $this->settings = $this->loadSettings();
     $curr_date = date('Y-m-d');
     $curr_hour = date('H'); 
+    $curr_min = date('i'); 
     $email_sent = 0;
     $push_sent = 0;
     $newsletters = $this->NewsletterUser->find('all', array(
@@ -178,7 +179,7 @@ class NewsletterShell extends AppShell {
 
     print_r(array(
       'curr_date' => $curr_date,
-      'curr_hour' => $curr_hour,
+      'curr_hour' => implode(':',array($curr_hour,$curr_min)),
       'email_sent' => $email_sent,
       'push_sent' => $push_sent,
       'users' => count($newsletters)
