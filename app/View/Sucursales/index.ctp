@@ -37,10 +37,11 @@
       } ?>
     </div>
   </section>
- 
+<?php if(!$loggedIn): ?>
   <section id="suscribe">
     <?php $this->element('subscribe-box') ?>
   </section>
+<?php endif ?>
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&language=es"></script>

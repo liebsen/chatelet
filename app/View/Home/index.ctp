@@ -1,8 +1,5 @@
-<?php 
-echo $this->Session->flash();
-?>
+<?php echo $this->Session->flash() ?>
 <div class="wrapper content">
-
   <div id="carousel" class="carousel slide animation-fadeIn delay" data-type="slider" data-interval="10000" data-ride="carousel">
     <?php echo $this->element('carousel') ?>
   </div>
@@ -10,8 +7,9 @@ echo $this->Session->flash();
   <section id="listShop">
     <?php echo $this->element('shop/list') ?>
   </section>
-
+<?php if(!$loggedIn): ?>
   <?php echo $this->element('subscribe-box') ?>
+<?php endif ?>
   <?php echo $this->element('img_popup_newsletter') ?>
   <?php echo $this->element('follow_us') ?>
 

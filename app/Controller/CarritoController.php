@@ -231,8 +231,6 @@ class CarritoController extends AppController
 		$this->set('userData',$user);
 	}
 
-
-
 	private function checkOcaCP($cp){
 		$oca = new Oca();
 		$centers = $oca->getCentrosImposicionPorCP( $cp );

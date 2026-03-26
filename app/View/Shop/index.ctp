@@ -41,4 +41,6 @@
   </div>
 </section>
 
+<?php if(!$loggedIn): ?>
 <?php echo $this->element('subscribe-box') ?>
+<?php endif ?>
