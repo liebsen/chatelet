@@ -42,8 +42,8 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <h4 class="sub-header">Configuración de envío</h4>
-      <p>Configura el alcance para este Envío</p>
+      <h4 class="sub-header">Configuración</h4>
+      <p>Configura el alcance para esta Campaña</p>
       <div class="form-group flex-between gap-05">
         <div class="controls flex-1">
           <label class="control-label" for="toggle">Activo</label>
@@ -83,11 +83,11 @@
         </tr>
         <tr>
           <td><small>Periodo de evaluación</small></td>
-          <th><span class="mindate-value"><?= $schedule['NewsletterSchedule']['filter']->date_min?></span> - <span class="maxdate-value"><?= $schedule['NewsletterSchedule']['filter']->date_max?></span></th>
+          <th><span class="min_date-value"><?= $schedule['NewsletterSchedule']['filter']->date_min?></span> - <span class="max_date-value"><?= $schedule['NewsletterSchedule']['filter']->date_max?></span></th>
         </tr>
         <tr>
           <td><small>Mínimo de compra</small></td>
-          <th><span class="minsale-value"><?= $schedule['NewsletterSchedule']['filter']->sale_min?></span></th>
+          <th><span class="min_sale-value"><?= $schedule['NewsletterSchedule']['filter']->sale_min?></span></th>
         </tr>
         <tr>
           <td><small>Productos seleccionados</small></td>
@@ -110,14 +110,14 @@
       <div class="control-group">
         <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
         <div class="controls d-flex flex-center gap-05">
-          <input type="text" id="minDate" name="data[filter][date_min]" class="form-control datepicker" data-name="mindate-value" placeholder="Fecha mínima" value="<?=$schedule['NewsletterSchedule']['filter']->date_min ?? ''?>"/>
-          <input type="text" id="maxDate" name="data[filter][date_max]" class="form-control datepicker" data-name="maxdate-value" placeholder="Fecha máxima" value="<?=$schedule['NewsletterSchedule']['filter']->date_max ?? ''?>"/>
+          <input type="text" name="data[filter][date_min]" class="form-control advanced-filter datepicker" data-name="min_date" placeholder="Fecha mínima" value="<?=$schedule['NewsletterSchedule']['filter']->date_min ?? ''?>"/>
+          <input type="text" name="data[filter][date_max]" class="form-control advanced-filter datepicker" data-name="max_date" placeholder="Fecha máxima" value="<?=$schedule['NewsletterSchedule']['filter']->date_max ?? ''?>"/>
         </div>
       </div>
       <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
       <div class="controls-group">
         <label class="control-label" for="minSale">Mínimo de compra</label>
-        <input type="range" id="minSale" name="data[filter][min_sale]" step="10" min="10" max="4000" value="<?=$schedule['NewsletterSchedule']['filter']->min_sale?>">
+        <input type="range" class="advanced-filter" data-name="min_sale" name="data[filter][min_sale]" step="10" min="10" max="10000" value="<?=$schedule['NewsletterSchedule']['filter']->min_sale?>">
       </div>
       <h4 class="sub-header">Filtro por fecha de nacimiento</h4>
       <p>Establece fecha para filtrar por cuenta de acuerdo fecha de nacimiento</p>

@@ -3056,7 +3056,6 @@ input[type="file"].form-control::file-selector-button:hover {
 }
 
 /* Tables + DataTables */
-
 .dataTables_wrapper.form-inline {
     margin: 10px;
 }

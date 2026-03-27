@@ -2,16 +2,16 @@ $(document).ready(function() {
 
   let clock = 0
 
-  $('#minDate,#maxDate').on('changeDate', function(event) {
+  $('select.advanced-filter').on('changeDate', function(event) {
     const selectedDate = $(event.target).val()
     const selectedName = $(event.target).data('name');
-    $('.'+selectedName).text(selectedDate)
+    $('.'+selectedName+'-value').text(selectedDate)
     updateUsers()
   })
 
-  $('#minSale').change(function(e){
+  $('input.advanced-filter').change(function(e){
     const value = $(this).val() || 0
-    $('.minsale-value').text('$'+ (value * 100))
+    $('.min_sale-value').text('$'+ (value * 100))
     updateUsers()
   })
 
@@ -121,20 +121,20 @@ function relateAll(){
 }
 
 function updateUsers(){
-  const data = {
+  const relation = {
     parentId: $('input[name="data[id]"]').val(),
     type: 'user',
     source: 'schedule',
     model: 'NewsletterUser'
   }  
+  var data = {}
+  $('.advanced-filter').each(function(i,e){
+    data[$(e).data('name')] = $(e).val()
+  })
   $.ajax({
     type: "POST",
     url: "/admin/newsletters_users_reach",
-    data: {
-      minDate: $('#minDate').val(), 
-      maxDate: $('#maxDate').val(), 
-      minSale: $('#minSale').val(),
-    },
+    data: data,
     success: function (res) {
       let str = ''
       let ids = []
@@ -157,7 +157,7 @@ function updateUsers(){
         $('.usercount-new').text(filter.length)
         $('.userscount-message').show()
         $.each(filter, function(key, item) {
-          $('.user-container').append('<span class="label user-item text-lowercase is-clickable" data-parent-id="'+data.parentId+'" data-id="'+item.id+'" data-type="'+data.type+'" data-source="'+data.source+'" data-model="'+data.model+'">'+item.email+'</span>');
+          $('.user-container').append('<span class="label user-item text-lowercase is-clickable" data-parent-id="'+relation.parentId+'" data-id="'+item.id+'" data-type="'+relation.type+'" data-source="'+relation.source+'" data-model="'+relation.model+'">'+item.email+'</span>');
         })
       } else {
         $('.userscount-message').hide()

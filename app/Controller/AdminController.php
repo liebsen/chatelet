@@ -2077,7 +2077,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		}
 
 		if($action == 'edit'){
-      $navs[($pane == 'templates' ? (empty($id) ? 'Nueva' : 'Editar') . ' Plantilla ' : 'Programar envío ')] = array(
+      $navs[($pane == 'templates' ? (empty($id) ? 'Nueva' : 'Editar') . ' Plantilla ' : 'Programar Campaña ')] = array(
         'icon'    => 'gi gi-'.($pane == 'templates' ? 'envelope' : 'clock'),
         'url'   => '/admin/newsletters/'.$pane.'/edit/'.$id,
         'enabled' => 1
@@ -2549,9 +2549,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $this->RequestHandler->respondAs('application/json');
     $this->loadModel('Sale');
 
-    $min_date = $this->request->data['minDate'] ?? "last day of previous month";
-    $max_date = $this->request->data['maxDate'] ?? "now";
-    $min_sale = $this->request->data['minSale'] ?? 1;
+    $min_date = $this->request->data['min_date'] ?? "last day of previous month";
+    $max_date = $this->request->data['max_date'] ?? "now";
+    $min_sale = $this->request->data['min_sale'] ?? 1;
+    $min_sale *= 100;
 
     $data = $this->Sale->find('all',array(
 	    'joins' => array(
@@ -2566,6 +2567,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    ),
       'conditions' => array(
         // 'SUM(Sale.value) > ' => $min_sale,
+        'User.id IS NOT ' => null,
         'Sale.completed' => 1,
         'Sale.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $min_date))),
         'Sale.created < ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $max_date))),
