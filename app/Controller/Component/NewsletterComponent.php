@@ -264,7 +264,7 @@ class NewsletterComponent extends Component {
         if ($difference_hours > 0) {
           $rowclass = 'warning';
           $status = 'Procesando';
-          if($push_sent + $email_sent >= $push_total + $email_total) {
+          if($push_sent >= $push_total || $email_sent >= $email_total) {
             $rowclass = 'success';
             $status = 'Procesado';
           } 
