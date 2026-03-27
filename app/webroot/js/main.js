@@ -52,7 +52,7 @@ function setRelation(action, data, target) {
     .success(function(res) {
       if (res.success) {
         $.growl.notice({
-          title: ${action=='add' ? 'Agregado' : 'Eliminado'},
+          title: action=='add' ? 'Agregado' : 'Eliminado',
           message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`,
         });
         if(action=='add'){

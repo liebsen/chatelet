@@ -101,10 +101,6 @@
           <td><small>Cuentas seleccionadas</small></td>
           <th>
             <span class="userscount-value"><?= count($schedule_users)?></span>
-            <a class="userscount-message d-none" href="javascript:void(0)" onclick="relateAll()">Agregar <span class="usercount-new">0</span></a>
-            <?php if(count($schedule_users)): ?>
-            <a class="userscount-message" href="javascript:void(0)" onclick="unrelateAll()">Eliminar todo</a>
-          <?php endif ?>
           </th>
         </tr>
       </table>
@@ -161,13 +157,19 @@
           <?php endfor ?>
           </select>
         </div>
-        <small>Es el título que verán las clientas en su dispositivo</small>
+        <small>Es el título que verán las cuentas en su dispositivo</small>
       </div>
 <?php if(!empty($schedule['NewsletterSchedule']['id'])):?>      
-      <h4 class="sub-header">Cuentas seleccionadas</h4>
+      <h4 class="sub-header">Cuentas seleccionadas
+
+            <a class="userscount-message d-none" href="javascript:void(0)" onclick="relateAll()">Agregar <span class="usercount-new">0</span></a>
+            <?php if(count($schedule_users)): ?>
+            <a class="userscount-message" href="javascript:void(0)" onclick="unrelateAll()">Eliminar todo</a>
+          <?php endif ?>
+      </h4>
       <p>Selecciona las cuentas que deseas asignar a este envío</p>
       <div class="controls">
-        <input type="text" id="user-filter" class="form-control" placeholder="Buscar clienta..."/>
+        <input type="text" id="user-filter" class="form-control" placeholder="Buscar cuenta..."/>
       </div>      
       <div class="controls tags-container user-container">
 <?php if(empty($schedule_users)): ?>
