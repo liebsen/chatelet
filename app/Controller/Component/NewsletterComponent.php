@@ -138,7 +138,7 @@ class NewsletterComponent extends Component {
         $data = $this->controller->request->data;
         $data['id'] = $data['id'] ?? NULL;
         $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
-        $redirect = array( 'action' => 'newsletters');
+        $redirect = array( 'action' => 'newsletters', 'templates');
 
         if(empty($data['id'])) {
           $data['user_id'] = $this->controller->Auth->user('id');
