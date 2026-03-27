@@ -211,6 +211,8 @@ class NewsletterComponent extends Component {
       ));
 
       foreach($schedules as $i => $schedule) {
+        $push_total = 0;
+        $email_total = 0;
         $push_sent = 0;
         $email_sent = 0;
 
@@ -243,20 +245,29 @@ class NewsletterComponent extends Component {
         ));
 
         foreach($users as $user) {
-          $email_sent+= $user['NewsletterUser']['email_sent'];
-          $push_sent+= $user['NewsletterUser']['push_sent'];
+          $email_total+= 1;
+          $push_total+= 1;
+          if($user['NewsletterUser']['status'] === 'sent') {
+            $email_sent+= $user['NewsletterUser']['email_sent'];
+            $push_sent+= $user['NewsletterUser']['push_sent'];
+          }
         }
 
-        $rowclass = 'neutral';
         $timestamp1 = strtotime($schedule['NewsletterSchedule']['schedule_date'].' '.$schedule['NewsletterSchedule']['schedule_hour'].':00');
         $timestamp2 = strtotime("now");
         $difference_seconds = $timestamp2 - $timestamp1; // Use abs() for absolute difference
         $difference_hours = $difference_seconds / 3600;
+        $rowclass = 'neutral';
         $status = 'Inactivo';
 
+        //\d("difference_hours",$difference_hours);
         if ($difference_hours > 0) {
-          $rowclass = 'success';
-          $status = 'Procesado';
+          $rowclass = 'warning';
+          $status = 'Procesando';
+          if($push_sent + $email_sent >= $push_total + $email_total) {
+            $rowclass = 'success';
+            $status = 'Procesado';
+          } 
         } else {
           if($schedule['NewsletterSchedule']['enabled']) {
             $rowclass = 'success';
@@ -279,7 +290,9 @@ class NewsletterComponent extends Component {
         $schedules[$i]['stats'] = array(
           'email_sent' => $email_sent,
           'push_sent' => $push_sent,
-          'total' => count($users),
+          'email_total' => $email_total,
+          'push_total' => $push_total,
+          // 'total' => count($users),
         );
 
         $schedules[$i]['status'] = $status;

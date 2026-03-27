@@ -40,13 +40,10 @@
 				</td>
 				<td>
 					<span class="badge badge-success is-rounded" title="Emails enviados">
-						<?=count($schedule['stats']['email_sent'])?>
+						<i class="gi gi-envelope"></i> <?=$schedule['stats']['email_sent']?> / <?=$schedule['stats']['email_total']?>
 					</span> 
 					<span class="badge badge-warning is-rounded" title="Notificación Push enviados">
-						<?=count($schedule['stats']['push_sent'])?>
-					</span> 
-					<span class="badge badge-info is-rounded" title="Total a enviar">
-						<?=count($schedule['stats']['total'])?>
+						<i class="gi gi-chat"></i><?=$schedule['stats']['push_sent']?> / <?=$schedule['stats']['push_total']?>
 					</span>
 				</td>
 				<td>

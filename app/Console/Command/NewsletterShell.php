@@ -24,7 +24,7 @@ class NewsletterShell extends AppShell {
   private $settings = [];
   
   public function main() {
-
+    \d("main");
     $this->settings = $this->loadSettings();
     $curr_date = date('Y-m-d');
     $curr_hour = date('H'); 

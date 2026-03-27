@@ -1,5 +1,11 @@
 <?php
 
+
+function array_count_values_of($value, $array) {
+    $counts = array_count_values($array);
+    return $counts[$value];
+}
+
 function b($a, $b = null){
   echo '<pre>';
   var_dump($a);
