@@ -47,18 +47,18 @@ function layerClose() {
   $('.layer').removeClass('active')
 }
 
-function setRelation(action, data, target) { 
-  $.post('/admin/relation_' + action, data)
+function setRelation(action, data, target) {
+  $.post('/admin/relation_' + action, { data: data })
     .success(function(res) {
       if (res.success) {
         $.growl.notice({
-          title: 'Exito',
+          title: ${action=='add' ? 'Agregado' : 'Eliminado'},
           message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`,
         });
         if(action=='add'){
-          target.addClass('is-enabled')
+          $(target).addClass('is-enabled')
         } else {
-          target.removeClass('is-enabled')
+          $(target).removeClass('is-enabled')
         }
       }
     })
@@ -72,7 +72,6 @@ function setRelation(action, data, target) {
 }
 
 function searchRelations(data) { 
-  console.log('searchRelations', data)
   const endpoints = { 
     user: {
       url: '/admin/search_users',

@@ -2454,26 +2454,59 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->RequestHandler->respondAs('application/json');
     if ($this->request->is('POST')) {
     	$data = $this->request->data;    	
-    	$model = ClassRegistry::init($data['model']);
-    	$ids = $model->find('all', [
-    		'conditions' => [
-    			$data['source'] . '_id' => $data['parentId'],
-    			$data['type'] . '_id' => $data['id'],
-    		], 
-    		'fields' => ['id']
-    	]);
-			$ids = array_map(function($e) use ($data) {
-				return $e[$data['model']]['id'];
-			},$ids);    	
-    	$model->delete($ids);
-      $result = $model->save(array(
-      	$data['type'] . '_id' => $data['id'],
-      	$data['source'] . '_id' => $data['parentId'],
-      ));
+    	foreach($data as $i => $item) {
+	    	$model = ClassRegistry::init($item['model']);
+	    	$ids = $model->find('all', array(
+	    		'conditions' => array(
+	    			$item['source'] . '_id' => $item['parentId'],
+	    			$item['type'] . '_id' => $item['id'],
+	    		), 
+	    		'fields' => ['id']
+	    	));
+				$ids = array_map(function($e) use ($item) {
+					return $e[$item['model']]['id'];
+				},$ids);    
+				if(count($ids)) {	
+		    	$model->delete($ids);
+		    }
+	      $model->save(
+	      	array(
+	      		'id' => null,
+	      		$item['type'] . '_id' => $item['id'],
+	      		$item['source'] . '_id' => $item['parentId'],
+	      	)
+	      );
+	    }
       return json_encode(array(
       	'success' => true, 
-      	'data' => $result[$data['model']]
+      	//'data' => $result
       ));
+    }
+	}
+
+	public function relation_remove() {
+		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
+
+    if ($this->request->is('POST')) {
+    	$data = $this->request->data;
+    	foreach($data as $i => $item) {
+	    	$model = ClassRegistry::init($item['model']);
+	    	$ids = $model->find('all',array(
+	    		'conditions' => array(
+	    			$item['type'] . '_id' => $item['id'],
+	    			$item['source'] . '_id' => $item['parentId'],
+	    		), 
+	    		'fields' => ['id']
+	    	));
+				$ids = array_map(function($e) use ($item) {
+					return $e[$item['model']]['id'];
+				},$ids);
+				if(count($ids)) {
+	    		$model->delete($ids);
+	    	}
+	    }
+      return json_encode(['success' => true]);
     }
 	}
 
@@ -2554,27 +2587,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       	'results' => array_column($data, 'User'),
     	)
     );		
-	}
-
-	public function relation_remove() {
-		$this->autoRender = false;
-		$this->RequestHandler->respondAs('application/json');
-    if ($this->request->is('POST')) {
-    	$data = $this->request->data;
-    	$model = ClassRegistry::init($data['model']);
-    	$ids = $model->find('all',array(
-    		'conditions' => array(
-    			$data['type'] . '_id' => $data['id'],
-    			$data['source'] . '_id' => $data['parentId'],
-    		), 
-    		'fields' => ['id']
-    	));
-			$ids = array_map(function($e) use ($data) {
-				return $e[$data['model']]['id'];
-			},$ids);    	
-    	$model->delete($ids);
-      return json_encode(['success' => true]);
-    }
 	}
 
 	public function cupones($action = null) {

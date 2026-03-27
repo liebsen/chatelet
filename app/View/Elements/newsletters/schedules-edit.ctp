@@ -102,6 +102,9 @@
           <th>
             <span class="userscount-value"><?= count($schedule_users)?></span>
             <a class="userscount-message d-none" href="javascript:void(0)" onclick="relateAll()">Agregar <span class="usercount-new">0</span></a>
+            <?php if(count($schedule_users)): ?>
+            <a class="userscount-message" href="javascript:void(0)" onclick="unrelateAll()">Eliminar todo</a>
+          <?php endif ?>
           </th>
         </tr>
       </table>

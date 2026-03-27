@@ -62,6 +62,11 @@ $(document).ready(function() {
 $(document).on('click', '.product-item, .user-item', function(e){
   const target = $(e.target)
   const data = target.data()
+  const action = target.hasClass('is-enabled') ? 'remove' : 'add'
+  setRelation(action, [data], e.target)
+
+  /*const target = $(e.target)
+  const data = target.data()
   console.log('data',data)
   const action = target.hasClass('is-enabled') ? 'remove' : 'add'
 
@@ -83,7 +88,7 @@ $(document).on('click', '.product-item, .user-item', function(e){
         title: 'Ocurrio un error al agregar el producto al Newsletter',
         message: 'Por favor, intente nuevamente'
       });
-    });
+    });*/
 })
 
 function checkUsers(count){
@@ -92,8 +97,21 @@ function checkUsers(count){
   $('.userscount-message').show()
 }
 
+function unrelateAll(){
+  var data = []
+  $('.user-container > .label.is-enabled').each(function(i,e){
+    data.push($(e).data())
+  })
+  setRelation('remove', data, '.user-container .label.is-selected')
+}
+
 function relateAll(){
-  $('.user-container > .label:not(.is-enabled)').trigger('click')
+  var data = []
+  $('.user-container > .label:not(.is-selected)').each(function(i,e){
+    data.push($(e).data())
+  })
+  setRelation('add', data, '.user-container .label:not(.is-selected)')
+  //$('.user-container > .label:not(.is-enabled)').trigger('click')
   $('.userscount-message').hide()
   setTimeout(function(){
     const count = parseInt($('.userscount-value').text())

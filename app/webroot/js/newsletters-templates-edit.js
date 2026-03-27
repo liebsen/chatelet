@@ -30,6 +30,6 @@ $(document).on('click', '.product-item', function(e){
   const target = $(e.target)
   const data = target.data()
   const action = target.hasClass('is-enabled') ? 'remove' : 'add'
-  setRelation(action, data, target)
+  setRelation(action, [data], e.target)
 })
 
