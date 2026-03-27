@@ -161,20 +161,16 @@
       </div>
 <?php if(!empty($schedule['NewsletterSchedule']['id'])):?>      
       <h4 class="sub-header">Cuentas seleccionadas
-
-            <a class="userscount-message d-none" href="javascript:void(0)" onclick="relateAll()">Agregar <span class="usercount-new">0</span></a>
-            <?php if(count($schedule_users)): ?>
-            <a class="userscount-message" href="javascript:void(0)" onclick="unrelateAll()">Eliminar todo</a>
-          <?php endif ?>
+        <a class="userscount-message d-none" href="javascript:void(0)" onclick="relateAll()">Agregar <span class="usercount-new">0</span></a>
+        <?php if(count($schedule_users)): ?>
+        <a class="userscount-message" href="javascript:void(0)" onclick="unrelateAll()">Eliminar todo</a>
+      <?php endif ?>
       </h4>
       <p>Selecciona las cuentas que deseas asignar a este envío</p>
       <div class="controls">
         <input type="text" id="user-filter" class="form-control" placeholder="Buscar cuenta..."/>
       </div>      
       <div class="controls tags-container user-container">
-<?php if(empty($schedule_users)): ?>
-  <span>No hay cuentas asignadas</span>
-<?php else: ?>        
 <?php foreach($schedule_users as $user): ?>
   <span 
     class="label user-item is-clickable text-lowercase is-enabled" 
@@ -185,7 +181,6 @@
     data-model="NewsletterUser"><?php echo $user['User']['email']?>
   </span>
 <?php endforeach ?>
-<?php endif ?>
       </div>
 <?php endif ?>      
     </div>

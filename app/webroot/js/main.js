@@ -47,7 +47,7 @@ function layerClose() {
   $('.layer').removeClass('active')
 }
 
-function setRelation(action, data, target) {
+function setRelation(action, data, target, container) {
   $.post('/admin/relation_' + action, { data: data })
     .success(function(res) {
       if (res.success) {
