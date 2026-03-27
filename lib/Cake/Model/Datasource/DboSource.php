@@ -460,6 +460,10 @@ class DboSource extends DataSource {
 			//\d("query",$sql);
 		}
 
+		if (preg_match('/^(?:SELECT)\s/i', $sql)) {
+			//\d("select:",$sql);
+		}
+
 		if (preg_match('/^(?:CREATE|ALTER|DROP)\s+(?:TABLE|INDEX)/i', $sql)) {
 			$statements = array_filter(explode(';', $sql));
 			if (count($statements) > 1) {

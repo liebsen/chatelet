@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-md-6">
           <h4 class="sub-header">Activar pagos CBU/Alias en la tienda</h4>
-          <div class="form-group">
+          <div class="controls">
             <label class="control-label">Activo</label>
             <input type="checkbox" name="data[bank_enable]" value="1" id="toggle" class="toggle-checkbox"<?=@$settings['bank_enable'] == '1' ? ' checked' : '' ?>>
             <label for="toggle" class="toggle-label"></label>
