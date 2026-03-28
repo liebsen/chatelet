@@ -15,7 +15,7 @@ $(document).ready(function() {
     updateUsers()
   })
 
-  let interval = 0
+  /*let interval = 0
   $('#products-filter').keyup(e => {
     let q = $(e.target).val().trim()
     if (q.length < 3) {
@@ -55,70 +55,8 @@ $(document).ready(function() {
         cb: checkUsers,
       })
     }, 500)        
-  })
+  })*/
 })
-
-
-$(document).on('click', '.product-item, .user-item', function(e){
-  const target = $(e.target)
-  const data = target.data()
-  const action = target.hasClass('is-enabled') ? 'remove' : 'add'
-  setRelation(action, [data], e.target)
-
-  /*const target = $(e.target)
-  const data = target.data()
-  console.log('data',data)
-  const action = target.hasClass('is-enabled') ? 'remove' : 'add'
-
-  $.post('/admin/relation_' + action, data)
-    .success(function(res) {
-      if (res.success) {
-        $.growl.notice({
-          title: action == 'add' ? 'Asociación exitosa' : 'Eliminación exitosa',
-          message: action == 'add' ? 'Se asoció el producto exitosamente' : 'Se eliminó el producto exitosamente',
-        });
-        target.removeClass('is-enabled')
-        if(action == 'add'){
-          target.addClass('is-enabled')  
-        }
-      }
-    })
-    .fail(function() {
-      $.growl.error({
-        title: 'Ocurrio un error al agregar el producto al Newsletter',
-        message: 'Por favor, intente nuevamente'
-      });
-    });*/
-})
-
-function checkUsers(count){
-  if(!count) return
-  $('.usercount-new').text(count)
-  $('.userscount-message').show()
-}
-
-function unrelateAll(){
-  var data = []
-  $('.user-container > .label.is-enabled').each(function(i,e){
-    data.push($(e).data())
-  })
-  setRelation('remove', data, '.user-container .label.is-selected')
-}
-
-function relateAll(){
-  var data = []
-  $('.user-container > .label:not(.is-selected)').each(function(i,e){
-    data.push($(e).data())
-  })
-  setRelation('add', data, '.user-container .label:not(.is-selected)')
-  //$('.user-container > .label:not(.is-enabled)').trigger('click')
-  $('.userscount-message').hide()
-  setTimeout(function(){
-    const count = parseInt($('.userscount-value').text())
-    const old_count = parseInt($('.usercount-new').text())
-    $('.userscount-value').text(count + old_count)
-  }, 3000)
-}
 
 function updateUsers(){
   const relation = {
@@ -154,13 +92,13 @@ function updateUsers(){
         })
       }
       if(filter.length){
-        $('.usercount-new').text(filter.length)
-        $('.userscount-message').show()
+        $('.relations-count').text(filter.length)
+        $('.advanced-action-add').show()
         $.each(filter, function(key, item) {
           $('.user-container').append('<span class="label user-item text-lowercase is-clickable" data-parent-id="'+relation.parentId+'" data-id="'+item.id+'" data-type="'+relation.type+'" data-source="'+relation.source+'" data-model="'+relation.model+'">'+item.email+'</span>');
         })
       } else {
-        $('.userscount-message').hide()
+        $('.advanced-action-add').hide()
         $.growl.notice({
           title: 'Atención',
           message: 'No se encontraron cuentas para este filtro',

@@ -1,6 +1,7 @@
 <?php
 	// echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
-	echo $this->Html->script('newsletters-schedules-edit.js?v=' . $version['ver'], array('inline' => false));
+  echo $this->Html->script('relations.js?v=' . $version['ver'], array('inline' => false));
+	echo $this->Html->script('schedules-edit.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('bootstrap-datepicker');
   echo $this->Form->create(null, array(
@@ -15,7 +16,8 @@
     <div class="col-xs-12">
       <h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4>
       <p>Esta plantilla tiene asociados <span><?= count($schedule_products)?></span> productos</p>
-<?php if(isset($schedule['Newsletter']['id'])): ?>
+<?php if(!empty($schedule['Newsletter']['id'])): ?>
+    <input type="hidden" name="data[newsletter_id]" value="<?= $schedule['Newsletter']['id'] ?>"/>  
     <a href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>">
       <div class="card">
         <div class="card-body">
@@ -25,7 +27,6 @@
       </div>
     </a>
 <?php else: ?>
-<?php if(empty($schedule['Newsletter']['id'])): ?>
       <div class="controls">
         <label class="control-label" for="title">Selecciona una plantilla</label>
         <select class="form-control" name="data[newsletter_id]">
@@ -34,9 +35,6 @@
   <?php endforeach ?>
         </select>
       </div>
-  <?php else: ?>
-    <input type="hidden" name="data[newsletter_id]" value="<?= $schedule['Newsletter']['id'] ?>"/>
-  <?php endif ?>
 <?php endif ?>
     </div>
   </div>
@@ -92,7 +90,7 @@
         <tr>
           <td><small>Productos seleccionados</small></td>
           <th>
-            <span class="userscount-value">
+            <span class="product-count">
               <?= count($schedule_products)?>
             </span> 
           </th>
@@ -100,7 +98,7 @@
         <tr>
           <td><small>Cuentas seleccionadas</small></td>
           <th>
-            <span class="userscount-value"><?= count($schedule_users)?></span>
+            <span class="user-count"><?= count($schedule_users)?></span>
           </th>
         </tr>
       </table>
@@ -160,20 +158,20 @@
         <small>Es el título que verán las cuentas en su dispositivo</small>
       </div>
 <?php if(!empty($schedule['NewsletterSchedule']['id'])):?>      
-      <h4 class="sub-header">Cuentas seleccionadas
-        <a class="userscount-message d-none" href="javascript:void(0)" onclick="relateAll()">Agregar <span class="usercount-new">0</span></a>
+      <h4 class="sub-header">Cuentas seleccionadas (<?=count($schedule_users)?>)
+        <a class="advanced-action-add text-success d-none" data-type="user" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($schedule_users)?></span></a>
         <?php if(count($schedule_users)): ?>
-        <a class="userscount-message" href="javascript:void(0)" onclick="unrelateAll()">Eliminar todo</a>
+        <a class="advanced-action-remove text-danger" data-type="user" href="javascript:void(0)">Eliminar todo</a>
       <?php endif ?>
       </h4>
       <p>Selecciona las cuentas que deseas asignar a este envío</p>
       <div class="controls">
-        <input type="text" id="user-filter" class="form-control" placeholder="Buscar cuenta..."/>
+        <input type="text" class="form-control relation-search" data-type="user" placeholder="Buscar cuenta..."/>
       </div>      
       <div class="controls tags-container user-container">
 <?php foreach($schedule_users as $user): ?>
   <span 
-    class="label user-item is-clickable text-lowercase is-enabled" 
+    class="label relation-item is-clickable text-lowercase is-enabled" 
     data-parent-id="<?php echo $schedule['NewsletterSchedule']['id'] ?>" 
     data-id="<?=$user['User']['id']?>"
     data-type="user"

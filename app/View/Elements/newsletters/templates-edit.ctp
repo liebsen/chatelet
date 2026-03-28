@@ -1,6 +1,7 @@
 <?php
 	echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
-	echo $this->Html->script('newsletters-templates-edit.js?v=' . $version['ver'], array('inline' => false));
+  echo $this->Html->script('relations.js?v=' . $version['ver'], array('inline' => false));
+	echo $this->Html->script('templates-edit.js?v=' . $version['ver'], array('inline' => false));
 ?>
 
 <?php echo $this->Form->create(null,
@@ -23,13 +24,6 @@
           <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$newsletter['Newsletter']['enabled'] == '1' ? ' checked' : '' ?>>
           <label for="toggle" class="toggle-label"></label>
         </div>
-      <div class="control-group">
-        <label class="control-label" for="name">Código</label>
-        <div class="controls">
-          <input type="text" id="name" name="data[name]" class="form-control" placeholder="Código de la plantilla" value="<?=$newsletter['Newsletter']['name']?>" required />
-        </div>
-        <small class="text-muted">Es el código que verán solo los gestores</small>
-      </div>
 <?php if(!empty($newsletter_products)): ?>
         <a href="javascript:void(0)" onclick="$('.table-products').toggle()"><span class="badge badge-<?=  count($newsletter_products) ? 'success' : 'danger' ?> is-rounded is-large"><?php echo count($newsletter_products) ?></span></a>
 <?php endif ?>
@@ -45,7 +39,16 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-md-6">
+      <div class="control-group">
+        <label class="control-label" for="name">Código</label>
+        <div class="controls">
+          <input type="text" id="name" name="data[name]" class="form-control" placeholder="Código de la plantilla" value="<?=$newsletter['Newsletter']['name']?>" required />
+        </div>
+        <small class="text-muted">Es el código que verán solo los gestores</small>
+      </div>
+    </div>
+    <div class="col-md-6">
       <div class="control-group">
         <label class="control-label" for="title">Título</label>
         <div class="controls">
@@ -53,6 +56,10 @@
         </div>
         <small class="text-muted">Es el título que verán las clientas en su dispositivo</small>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
       <div class="control-group d-block">
         <textarea class="form-control w-100" name="data[body]" id="newsletter" rows="8"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
         <h6 class="text-theme">Tabla de variables disponibles</h6>
@@ -99,14 +106,18 @@
 	      <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
 			</div>
       <div class="control-group w-100">
-        <label class="control-label" for="product-filter">Productos</label>
+        <label class="control-label" for="product-filter">Productos seleccionados (<?=count($newsletter_products)?>)
+        <a class="advanced-action-add text-success d-none" data-type="product" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($newsletter_products)?></span></a>
+        <?php if(count($newsletter_products)): ?>
+        <a class="advanced-action-remove text-danger" data-type="product" href="javascript:void(0)">Eliminar todo</a>
+      <?php endif ?></label>
         <div class="controls">
-          <input type="text" id="product-filter" class="form-control" placeholder="Buscar"/>
+          <input type="text" class="form-control relation-search" data-type="product" placeholder="Buscar"/>
         </div>
         <div class="controls tags-container product-container">
 <?php foreach($newsletter_products as $product): ?>
     <span 
-    	class="label product-item is-clickable is-enabled" 
+    	class="label relation-item is-clickable is-enabled" 
     	data-parent-id="<?php echo $newsletter['Newsletter']['id'] ?>" 
       data-id="<?=$product['Product']['id']?>"
       data-type="product"

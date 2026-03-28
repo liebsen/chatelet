@@ -47,86 +47,7 @@ function layerClose() {
   $('.layer').removeClass('active')
 }
 
-function setRelation(action, data, target, container) {
-  $.post('/admin/relation_' + action, { data: data })
-    .success(function(res) {
-      if (res.success) {
-        $.growl.notice({
-          title: action=='add' ? 'Agregado' : 'Eliminado',
-          message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`,
-        });
-        if(action=='add'){
-          $(target).addClass('is-enabled')
-        } else {
-          $(target).removeClass('is-enabled')
-        }
-      }
-    })
-    .fail(function() {
-      $.growl.error({
-        title: 'Error',
-        message: `Ocurrió un error al establecer la relación en ${data.model}. Por favor, intente nuevamente`,
-        queue: false,
-      });
-    });    
-}
 
-function searchRelations(data) { 
-  const endpoints = { 
-    user: {
-      url: '/admin/search_users',
-      selector: 'email'
-    },
-    product: {
-      url: '/api/search_products',
-      selector: 'name'
-    } 
-  }
-  $.ajax({
-    type: "POST",
-    url: endpoints[data.type].url,
-    data: {
-      q: data.q, 
-      p: 0, 
-      s: 10
-    },
-    success: function (res) {
-      let str = ''
-      let ids = []
-      let filter = []      
-      $(`#${data.type}-filter`).addClass('searching')
-      $(`.${data.type}-container > .label:not(.is-enabled)`).remove()
-      $(`.${data.type}-container > .label`).each(function(key, item) {
-        const id = $(item).data('id')
-        ids.push(id)
-      })
-      if(res.results.length) {
-        $.each(res.results, function(key, item) {
-          const id = parseInt(item.id)
-          if ($.inArray(id, ids) === -1) {
-            filter.push(item)
-          }
-        })
-      }
-      if(filter.length){
-        $.each(filter, function(key, item) {
-          $(`.${data.type}-container`).append(`<span class="label ${data.type}-item ${data.type == 'user' ? 'text-lowercase' : ''} is-clickable" data-parent-id="${data.parentId}" data-id="${item.id}" data-type="${data.type}" data-source="${data.source}" data-model="${data.model}">${item[endpoints[data.type].selector]}</span>`);
-        })
-        if(typeof data.cb == 'function') {
-          data.cb(filter.length)
-        }
-      }
-    },
-    error: function (errormessage) {
-      console.log(errormessage)
-      //oPrnt.find("ul.result").html('<li><b>No Results</b></li>');
-    }
-  }).then(() => {
-    setTimeout(() => {
-      $(`#${data.type}-filter`).removeClass('searching')
-    }, 100)
-  })    
-}
 
 $(function () {
   $('.track-coords').click(function(e){
@@ -222,5 +143,7 @@ $(function () {
   if(localStorage.sidebar == 1) {
     $('#toggle-side-content').trigger('click')
   }
+
+  Growl.settings.duration = 2000
 })
 

@@ -66,7 +66,7 @@
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Contraseña'); ?></label>
 		          <div class="controls">
-		            <input type="text" name="data[newsletters_password]" class="form-control" placeholder="**********" value="<?= @$settings['newsletters_password'] ?>"/>
+		            <input type="password" name="data[newsletters_password]" class="form-control" placeholder="**********" value="<?= @$settings['newsletters_password'] ?>"/>
 		          </div>
 		          <small class="text-muted">Ingresá la contraseña de aplicación (Google my account: app password).</small>
 		        </div>

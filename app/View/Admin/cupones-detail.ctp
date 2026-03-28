@@ -2,6 +2,7 @@
   // echo $this->Html->css('cupones-detail', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
+  echo $this->Html->script('relations.js?v=' . $version['ver'], array('inline' => false));
   echo $this->Html->script('cupones-detail', array('inline' => false));
   $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
 ?>
@@ -195,9 +196,9 @@
                     <div class="controls">
                       <input type="text" id="categories-filter" class="form-control" placeholder="Buscar"/>
                     </div>
-                    <div style="padding: 0.25rem;">
+                    <div class="category-container" style="padding: 0.25rem;">
                     <?php foreach($categories as $category):?>
-                    <span class="label category-item is-clickable <?php echo $category['Category']['enabled'] ? 'is-enabled': 'hidden' ?>" onclick="toggleOption(this, 'category')" data-coupon="<?php echo $coupon['Coupon']['id'] ?>" data-json='<?php echo json_encode($category['Category']) ?>'><?php echo $category['Category']['name']?></span>
+                    <span class="label category-item relation-item is-clickable <?php echo $category['Category']['enabled'] ? 'is-enabled': 'hidden' ?>" onclick="toggleOption(this, 'category')" data-coupon="<?php echo $coupon['Coupon']['id'] ?>" data-json='<?php echo json_encode($category['Category']) ?>'><?php echo $category['Category']['name']?></span>
                     <?php endforeach ?>
                     </div>
                   </div>
@@ -208,9 +209,9 @@
                     <div class="controls">
                       <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
                     </div>
-                    <div style="padding: 0.25rem;">
+                    <div class="product-container" style="padding: 0.25rem;">
                     <?php foreach($products as $product):?>
-                    <span class="label product-item is-clickable <?php echo $product['Product']['enabled'] ? 'is-enabled': 'hidden' ?>" onclick="toggleOption(this, 'product')" data-coupon="<?php echo $coupon['Coupon']['id'] ?>" data-json='<?php echo json_encode($product['Product']) ?>'><?php echo $product['Product']['name']?></span>
+                    <span class="label product-item relation-item is-clickable <?php echo $product['Product']['enabled'] ? 'is-enabled': 'hidden' ?>" onclick="toggleOption(this, 'product')" data-coupon="<?php echo $coupon['Coupon']['id'] ?>" data-json='<?php echo json_encode($product['Product']) ?>'><?php echo $product['Product']['name']?></span>
                     <?php endforeach ?>
                     </div>
                   </div>

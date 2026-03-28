@@ -58,7 +58,7 @@ class AdminController extends AppController {
 
 		foreach($menu as $i => $v) {
 			if($v['url']==='/admin/whatsapp'){
-				$menu[$i]['update'] = !empty($this->settings['$whatsapp_enabled']);
+				$menu[$i]['update'] = !empty($this->settings['whatsapp_enabled']);
 			}
 			if($v['url']==='/admin/cupones'){
 				$menu[$i]['update'] = !empty($this->settings['coupon_enable']);
@@ -71,6 +71,9 @@ class AdminController extends AppController {
 			}
 			if($v['url']==='/admin/mailchimp'){
 				$menu[$i]['update'] = !empty($mailchimp_enable);
+			}
+			if($v['url']==='/admin/newsletters'){
+				$menu[$i]['update'] = !empty($this->settings['newsletters_enabled']);
 			}
 		}
 
@@ -2518,7 +2521,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
     $q = $this->request->data['q'];
     $p = $this->request->data['p'] ? intval($this->request->data['p']) : 0;
-    $s = $this->request->data['s'] ? intval($this->request->data['s']) : 10;
+    $s = $this->request->data['s'] ? intval($this->request->data['s']) : 500;
     //$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
     $data = $this->User->find('all',[
       'conditions' => [

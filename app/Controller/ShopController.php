@@ -471,6 +471,17 @@ class ShopController extends AppController {
 			throw new NotFoundException();
 		}
 
+		if(!empty($this->request->query('uid'))) {
+			$this->loadModel('NewsletterUser');
+			$this->NewsletterUser->updateAll(
+				array(
+					'NewsletterUser.clicks' => 'NewsletterUser.clicks + 1'					
+				), array(
+					'id' => $this->request->query('uid'),
+				)
+			);
+		}
+
     $legends = $this->Legend->find('all', [
       'conditions' => ['enabled' => 1, 'title <>' => ''],
       'order' => ['Legend.dues ASC']
