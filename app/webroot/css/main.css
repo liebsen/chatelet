@@ -2065,6 +2065,23 @@ pre, code {
     background-color: #eee;
 }
 
+.form-box {
+    margin-bottom: 1rem;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding: 0 15px;
+}
+
+@media(min-width: 992px){
+    .form-box {
+        padding: 0 1rem;
+        margin: 0;
+        margin-bottom: 1rem;
+        border: 1px solid #e7e7e7;
+        border-radius: 0.75rem;
+    }
+}
+
 .sub-header {
     border-width: 1px;
     width: 100%;
@@ -3414,7 +3431,8 @@ a.thumbnail-borderless,
 }
 
 .tags-container {
-    margin-top: 0.5rem;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;

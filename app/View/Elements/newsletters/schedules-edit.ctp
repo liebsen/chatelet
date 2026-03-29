@@ -26,6 +26,7 @@
         </div>
       </div>
     </a>
+    <hr>
 <?php else: ?>
       <div class="controls">
         <label class="control-label" for="title">Selecciona una plantilla</label>
@@ -129,58 +130,64 @@
 <?php endif ?>
     </div>
     <div class="col-md-6">
-      <h4 class="sub-header">Método de envío</h4>
-      <p>Selecciona el canal por donde notificar a las cuentas</p>
-      <div class="form-group flex-start gap-05">
-        <div class="controls flex-1">
-          <label class="control-label" for="toggle-email">Email</label>
-          <input type="checkbox" name="data[send_email]" value="1" id="toggle-email" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['send_email'] == '1' ? ' checked' : '' ?>>
-          <label for="toggle-email" class="toggle-label"></label>
-        </div>
-        <div class="controls flex-1">
-          <label class="control-label" for="toggle-push">Push</label>
-          <input type="checkbox" name="data[send_push]" value="1" id="toggle-push" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['send_push'] == '1' ? ' checked' : '' ?>>
-          <label for="toggle-push" class="toggle-label"></label>
+      <div class="form-box bg-light">
+        <h4 class="sub-header">Método de envío</h4>
+        <p>Selecciona el canal por donde notificar a las cuentas</p>
+        <div class="form-group flex-start gap-05">
+          <div class="controls flex-1">
+            <label class="control-label" for="toggle-email">Email</label>
+            <input type="checkbox" name="data[send_email]" value="1" id="toggle-email" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['send_email'] == '1' ? ' checked' : '' ?>>
+            <label for="toggle-email" class="toggle-label"></label>
+          </div>
+          <div class="controls flex-1">
+            <label class="control-label" for="toggle-push">Push</label>
+            <input type="checkbox" name="data[send_push]" value="1" id="toggle-push" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['send_push'] == '1' ? ' checked' : '' ?>>
+            <label for="toggle-push" class="toggle-label"></label>
+          </div>
         </div>
       </div>
-      <h4 class="sub-header">Programar fecha de envío</h4>
-      <p>Establece la fecha y/o hora del envío para este Envío</p>
-      <div class="control-group">
-        <label class="control-label" for="title">Programar fecha/hora</label>
-        <div class="controls d-flex flex-center gap-05">
-          <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('d-m-Y'), '%d/%m/%Y')?>"/>
-          <select class="form-control" name="data[schedule_hour]">
-          <?php for($i=0; $i < 24; $i++): ?>
-            <option value="<?=$i?>"<?= $i == $schedule['NewsletterSchedule']['schedule_hour'] ? ' selected':''?>><?=$i?>hs</option>
-          <?php endfor ?>
-          </select>
+      <div class="form-box bg-light">
+        <h4 class="sub-header">Programar fecha de envío</h4>
+        <p>Establece la fecha y/o hora del envío para este Envío</p>
+        <div class="control-group">
+          <label class="control-label" for="title">Programar fecha/hora</label>
+          <div class="controls d-flex flex-center gap-05">
+            <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('d-m-Y'), '%d/%m/%Y')?>"/>
+            <select class="form-control" name="data[schedule_hour]">
+            <?php for($i=0; $i < 24; $i++): ?>
+              <option value="<?=$i?>"<?= $i == $schedule['NewsletterSchedule']['schedule_hour'] ? ' selected':''?>><?=$i?>hs</option>
+            <?php endfor ?>
+            </select>
+          </div>
+          <small>Cualquier fecha / hora asignada anterior a hoy será procesada si tiene envíos pendientes</small>
         </div>
-        <small>Es el título que verán las cuentas en su dispositivo</small>
       </div>
-<?php if(!empty($schedule['NewsletterSchedule']['id'])):?>      
-      <h4 class="sub-header">Cuentas seleccionadas (<?=count($schedule_users)?>)
-        <a class="advanced-action-add text-success d-none" data-type="user" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($schedule_users)?></span></a>
-        <?php if(count($schedule_users)): ?>
-        <a class="advanced-action-remove text-danger" data-type="user" href="javascript:void(0)">Eliminar todo</a>
-      <?php endif ?>
-      </h4>
-      <p>Selecciona las cuentas que deseas asignar a este envío</p>
-      <div class="controls">
-        <input type="text" class="form-control relation-search" data-type="user" placeholder="Buscar cuenta..."/>
-      </div>      
-      <div class="controls tags-container user-container">
-<?php foreach($schedule_users as $user): ?>
-  <span 
-    class="label relation-item is-clickable text-lowercase is-enabled" 
-    data-parent-id="<?php echo $schedule['NewsletterSchedule']['id'] ?>" 
-    data-id="<?=$user['User']['id']?>"
-    data-type="user"
-    data-source="schedule"
-    data-model="NewsletterUser"><?php echo $user['User']['email']?>
-  </span>
-<?php endforeach ?>
+<?php if(!empty($schedule['NewsletterSchedule']['id'])):?>
+      <div class="form-box bg-info">
+        <h4 class="sub-header">Cuentas seleccionadas (<?=count($schedule_users)?>)
+          <a class="advanced-action-add text-success d-none" data-type="user" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($schedule_users)?></span></a>
+          <?php if(count($schedule_users)): ?>
+          <a class="advanced-action-remove text-danger" data-type="user" href="javascript:void(0)">Eliminar todo</a>
+        <?php endif ?>
+        </h4>
+        <p>Selecciona las cuentas que deseas asignar a este envío</p>
+        <div class="controls">
+          <input type="text" class="form-control relation-search" data-type="user" placeholder="Buscar cuenta..."/>
+        </div>      
+        <div class="controls tags-container user-container">
+  <?php foreach($schedule_users as $user): ?>
+    <span 
+      class="label relation-item is-clickable text-lowercase is-enabled" 
+      data-parent-id="<?php echo $schedule['NewsletterSchedule']['id'] ?>" 
+      data-id="<?=$user['User']['id']?>"
+      data-type="user"
+      data-source="schedule"
+      data-model="NewsletterUser"><?php echo $user['User']['email']?>
+    </span>
+  <?php endforeach ?>
+        </div>
+  <?php endif ?>      
       </div>
-<?php endif ?>      
     </div>
   </div>
   <div class="form-actions">

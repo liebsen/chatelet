@@ -94,40 +94,42 @@
       </div>
     </div>
     <div class="col-md-6">
-    	<h4 class="sub-header">Agrega productos</h4>
-<?php if(empty($newsletter['Newsletter']['id'])): ?>
-      <p>Podrás agregar productos una vez que guardes la nueva plantilla.</p>
-<?php else: ?>
-    	<p>Puedes aregar productos a la plantilla, se mostrarán en un catálogo de lista con sus respectivos enlaces y precios.</p>
-			<div class="control-group">
-				<label class="control-label" for="toggle-price"><?php echo __('Mostrar precio'); ?></label>
-				<input type="checkbox" name="data[show_prices]" value="1" id="toggle-price" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_prices'] == '1' ? ' checked' : '' ?>>
-				<label for="toggle-price" class="toggle-label"></label>
-	      <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
-			</div>
-      <div class="control-group w-100">
-        <label class="control-label" for="product-filter">Productos seleccionados (<?=count($newsletter_products)?>)
-        <a class="advanced-action-add text-success d-none" data-type="product" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($newsletter_products)?></span></a>
-        <?php if(count($newsletter_products)): ?>
-        <a class="advanced-action-remove text-danger" data-type="product" href="javascript:void(0)">Eliminar todo</a>
-      <?php endif ?></label>
-        <div class="controls">
-          <input type="text" class="form-control relation-search" data-type="product" placeholder="Buscar"/>
+      <div class="form-box bg-success">
+      	<h4 class="sub-header">Agrega productos</h4>
+  <?php if(empty($newsletter['Newsletter']['id'])): ?>
+        <p>Podrás agregar productos una vez que guardes la nueva plantilla.</p>
+  <?php else: ?>
+      	<p>Puedes aregar productos a la plantilla, se mostrarán en un catálogo de lista con sus respectivos enlaces y precios.</p>
+  			<div class="control-group">
+  				<label class="control-label" for="toggle-price"><?php echo __('Mostrar precio'); ?></label>
+  				<input type="checkbox" name="data[show_prices]" value="1" id="toggle-price" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_prices'] == '1' ? ' checked' : '' ?>>
+  				<label for="toggle-price" class="toggle-label"></label>
+  	      <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
+  			</div>
+        <div class="control-group w-100">
+          <label class="control-label" for="product-filter">Productos seleccionados (<?=count($newsletter_products)?>)
+          <a class="advanced-action-add text-success d-none" data-type="product" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($newsletter_products)?></span></a>
+          <?php if(count($newsletter_products)): ?>
+          <a class="advanced-action-remove text-danger" data-type="product" href="javascript:void(0)">Eliminar todo</a>
+        <?php endif ?></label>
+          <div class="controls">
+            <input type="text" class="form-control relation-search" data-type="product" placeholder="Buscar"/>
+          </div>
+          <div class="controls tags-container product-container">
+  <?php foreach($newsletter_products as $product): ?>
+      <span 
+      	class="label relation-item is-clickable is-enabled" 
+      	data-parent-id="<?php echo $newsletter['Newsletter']['id'] ?>" 
+        data-id="<?=$product['Product']['id']?>"
+        data-type="product"
+        data-source="newsletter"
+        data-model="NewsletterProduct"><?php echo $product['Product']['name']?>
+      </span>
+  <?php endforeach ?>       
+          </div>
         </div>
-        <div class="controls tags-container product-container">
-<?php foreach($newsletter_products as $product): ?>
-    <span 
-    	class="label relation-item is-clickable is-enabled" 
-    	data-parent-id="<?php echo $newsletter['Newsletter']['id'] ?>" 
-      data-id="<?=$product['Product']['id']?>"
-      data-type="product"
-      data-source="newsletter"
-      data-model="NewsletterProduct"><?php echo $product['Product']['name']?>
-    </span>
-<?php endforeach ?>       
-        </div>
+  <?php endif ?>
       </div>
-<?php endif ?>
     </div>
   </div>
   <div class="form-actions">

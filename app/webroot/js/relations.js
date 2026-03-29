@@ -88,10 +88,7 @@ function relateAll(e){
 
 function updateRelationCount(type){
   const count = $(`.${type}-container .label.is-enabled`).length
-  console.log('updateRelationCount',count)
-  //const count2 = parseInt($(`.${type}-count`).text()||0)
   if(!count) return
-  console.log('updateRelationCount(2)',count)
   $(`.${type}-count`).text(count)
 }
 
