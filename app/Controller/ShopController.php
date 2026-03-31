@@ -306,6 +306,7 @@ class ShopController extends AppController {
 
 	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
 		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
 		if ($this->settings['env_staging']) {
 			return 1;
 		}
@@ -320,7 +321,7 @@ class ShopController extends AppController {
 			$stock = 1;
 		}
 		CakeLog::write('debug','stock: article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code . ':' . $stock);
-		return (string)$stock;
+		return (string) $stock;
 	}
 
 	public function check_stock($product_id){

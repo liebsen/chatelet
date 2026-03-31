@@ -1,6 +1,6 @@
 <?php
-
 $cloudzoom = false;
+$unique_size = "11";
 $cloudzoomdata = 'zoomSizeMode:"zoom", lensWidth: 100, lensHeight: 100, zoomWidth:300, zoomHeight: 300, autoInside: 600';
 $images  = array();
 $images_aux = explode(';', $product['gallery']);
@@ -36,6 +36,7 @@ $colorImages = array();
 $colors = array();
 $sizes = array();
 foreach ($properties as $property) {
+  $property['ProductProperty']['label'] = $property['ProductProperty']['variable'];
   switch ($property['ProductProperty']['type']) {
     case 'color':
       if (!empty($property['ProductProperty']['images'])) {
@@ -54,8 +55,8 @@ foreach ($properties as $property) {
   }
 }
 
-if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
-  $sizes[0]['variable'] = "Talle único";
+if(count($sizes) == 1 && $sizes[0]['variable'] == $unique_size) {
+  $sizes[0]['label'] = "Talle único";
 }
 ?>
 <script>
@@ -255,7 +256,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
                         foreach ($sizes as $i => $size) {
                           echo '<label class="btn">';
                           echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
-                          echo "<small class='size-option text-bolder'>".ucfirst($size['variable'])."</small>";
+                          echo "<small class='size-option text-bolder'>".ucfirst($size['label'])."</small>";
                           echo '</label>';
                             // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
                         }
