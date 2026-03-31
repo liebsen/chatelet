@@ -26,7 +26,6 @@
         </div>
       </div>
     </a>
-    <hr>
 <?php else: ?>
       <div class="controls">
         <label class="control-label" for="title">Selecciona una plantilla</label>
@@ -37,6 +36,7 @@
         </select>
       </div>
 <?php endif ?>
+      <hr>
     </div>
   </div>
   <div class="row">
@@ -74,7 +74,7 @@
   <?php endforeach ?>
        </table>
       </div>
-      <h4 class="sub-header">Configuración</h4>
+      <h4 class="sub-header">Resumen</h4>
       <table class="table table-forum table-striped text-small">
         <tr>
           <td><small>Fecha / hora de envío</small></td>
