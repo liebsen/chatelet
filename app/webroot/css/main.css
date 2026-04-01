@@ -2720,7 +2720,8 @@ header.navbar .navbar-brand {
     border-top: none;
     padding: 15px;
     background-color: #fff;
-    min-height: calc(70vh);
+    border-radius: 1rem;
+    /*min-height: calc(70vh);*/
 }
 
 .tab-pane:not(#side-tab-menu) {
@@ -3157,6 +3158,21 @@ input[type="file"].form-control::file-selector-button:hover {
 
 .btn-adjust {
     margin-top: -2px;
+}
+
+.form-pass-icon {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    color: #888;
+}
+
+.form-pass-icon.active {
+    color: #333!important;
+}
+
+.position-relative {
+    position: relative;
 }
 
 .position-absolute {

@@ -129,6 +129,20 @@ $(function () {
       })
     }, 100)
   })
+
+  $('.form-pass-icon').click(function(event) {
+    const target = $(this).data('target')
+    if($(target).prop('type') == 'password') {
+      $(this).removeClass('fa-eye-slash')
+      $(this).addClass('fa-eye active')
+      $(target).prop('type', 'text')
+    } else {
+      $(this).removeClass('fa-eye active')
+      $(this).addClass('fa-eye-slash')
+      $(target).prop('type', 'password')
+    }
+  })
+  
   $('#toggle-side-content').click(function(){ 
     if($('body').hasClass('hide-side-content')){
       $('#page-sidebar.collapse').collapse('hide');

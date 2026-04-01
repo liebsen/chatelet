@@ -5,13 +5,14 @@
 					        <div class="control-group">
 					          <label class="control-label" for="columns-text"><?php echo __('Usuario'); ?></label>
 					          <div class="controls">
-					            <input type="text" maxlength="100" name="data[email_user]" class="form-control" value="<?php echo @$settings['email_username'] ?>" placeholder="Ingresá el nombre de usuario de la aplicaición"/>
+					            <input type="text" maxlength="100" name="data[email_username]" class="form-control" value="<?php echo @$settings['email_username'] ?>" placeholder="Ingresá el nombre de usuario de la aplicaición"/>
 					          </div>
 					        </div>
 					        <div class="control-group">
 					          <label class="control-label" for="columns-text"><?php echo __('Contraseña'); ?></label>
-					          <div class="controls">
-					            <input type="pasword" maxlength="100" name="data[email_pass]" class="form-control" value="<?php echo @$settings['email_password'] ?>" placeholder="Ingresá la contraseña de la aplicación"/>
+					          <div class="controls position-relative">
+					            <input type="password" maxlength="100" id="email_password" name="data[email_password]" class="form-control" value="<?php echo @$settings['email_password'] ?>" placeholder="Ingresá la contraseña de la aplicación"/>
+					            <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#email_password"></i>
 					          </div>
 					        </div>
 								</div>
