@@ -232,6 +232,18 @@ class AppController extends Controller
     )));
 
     $email = new CakeEmail();
+    $email->config(array(
+      'transport' => 'Smtp',
+      'from' => array('no-responder@chatelet.com.ar' => 'Châtelet'),
+      'host' => 'smtp.gmail.com',
+      'port' => 587,
+      'timeout' => 30,
+      'username' => $this->settings['email_username'],
+      'password' => $this->settings['email_password'],
+      'charset' => 'utf-8',
+      'tls' => true
+    ));
+
     // $email->transport('Debug');
     $email->from(array(
         'info@chatelet.com' => 'Châtelet'
@@ -264,6 +276,17 @@ class AppController extends Controller
     }
 
     $email = new CakeEmail();
+    $email->config(array(
+      'transport' => 'Smtp',
+      'from' => array('no-responder@chatelet.com.ar' => 'Châtelet'),
+      'host' => 'smtp.gmail.com',
+      'port' => 587,
+      'timeout' => 30,
+      'username' => $this->settings['email_username'],
+      'password' => $this->settings['email_password'],
+      'charset' => 'utf-8',
+      'tls' => true
+    ));    
     $email->from(array(
         'info@chatelet.com' => 'Châtelet'
     )); 

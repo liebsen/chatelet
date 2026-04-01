@@ -59,14 +59,14 @@
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Nombre de usuario'); ?></label>
 		          <div class="controls">
-		            <input type="text" name="data[newsletters_username]" class="form-control" placeholder="news@domain.com" value="<?= @$settings['newsletters_username'] ?>"/>
+		            <input type="text" name="data[newsletter_username]" class="form-control" placeholder="storenews@gmail.com" value="<?= @$settings['newsletter_username'] ?>"/>
 		          </div>
 		          <small class="text-muted">Ingresá el mailbox de la cuenta que enviará los emails.</small>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Contraseña'); ?></label>
 		          <div class="controls">
-		            <input type="password" name="data[newsletters_password]" class="form-control" placeholder="**********" value="<?= @$settings['newsletters_password'] ?>"/>
+		            <input type="password" name="data[newsletter_password]" class="form-control" placeholder="**********" value="<?= @$settings['newsletter_password'] ?>"/>
 		          </div>
 		          <small class="text-muted">Ingresá la contraseña de aplicación (Google my account: app password).</small>
 		        </div>

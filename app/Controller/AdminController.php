@@ -1935,6 +1935,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					'icon' => "share",
 					'default' => true
 				),
+				'email' => array(
+					'title' => "Email",
+					'icon' => "envelope",
+				),
 				'payments' => array(
 					'title' => "Pagos",
 					'icon' => "wallet"
@@ -1949,7 +1953,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				),
 				'notifications' => array(
 					'title' => "Notificaciones",
-					'icon' => "envelope"
+					'icon' => "bell"
 				),
 			);
 
