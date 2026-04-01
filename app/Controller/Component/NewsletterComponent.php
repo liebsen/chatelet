@@ -73,7 +73,7 @@ class NewsletterComponent extends Component {
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
     $response = array();
     $conditions = array(
-      'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month"))
+      //'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month"))
     );
 
     if(empty($_GET['extended'])) {
@@ -190,7 +190,7 @@ class NewsletterComponent extends Component {
     $NewsletterUser = ClassRegistry::init('NewsletterUser');
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
     $response = array();
-    $conditions = array('NewsletterSchedule.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")));
+    $conditions = array(); // array('NewsletterSchedule.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")));
     if(empty($_GET['extended'])) {
       $conditions['NewsletterSchedule.enabled'] = 1;
     }
@@ -405,7 +405,7 @@ class NewsletterComponent extends Component {
           ),
           'fields' => array('Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.created, User.name, User.surname'),
           'conditions' => array(
-            'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")),
+            // 'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")),
             'Newsletter.enabled' => '1'
           ),
           'order' => array( 'Newsletter.modified DESC' )
