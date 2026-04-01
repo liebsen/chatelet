@@ -281,10 +281,10 @@ class AppHelper extends Helper {
     $str2 = '';
     $str2.='<div class="legends-container"><span class="legends w-100">';
     if($bank_price && $text != 'Transferencia' && abs($bank_price-$price > 1)) {
-      $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($bank_price)." </span><span class='text-theme text-bold product-badge'>-".@$discount."%</span> <span class='text-muted'>Transferencia</span> </div>";
+      $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($bank_price)." </span><span class='text-theme text-bold product-badge'>-".@$discount."%</span> <span class='text-sm text-uppercase'>Transferencia</span> </div>";
     }
     if($mp_price && $text != 'Mercado Pago' && abs($mp_price-$price > 1)){
-      $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($mp_price)." </span> <span class='text-theme text-bold product-badge'>-".@$discount."%</span> <span class='text-sm'>Mercado Pago</span> </div>";
+      $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($mp_price)." </span> <span class='text-theme text-bold product-badge'>-".@$discount."%</span> <span class='text-sm text-uppercase'>Mercado Pago</span> </div>";
     }
 
     $str2.= implode('', $dues_options);
