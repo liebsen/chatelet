@@ -17,15 +17,15 @@
       <h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4>
       <p>Esta plantilla tiene asociados <span><?= count($schedule_products)?></span> productos</p>
 <?php if(!empty($schedule['Newsletter']['id'])): ?>
-    <input type="hidden" name="data[newsletter_id]" value="<?= $schedule['Newsletter']['id'] ?>"/>  
-    <a href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="control-label" for="title"><?=$schedule['Newsletter']['title']?></h5>
-          <div class="controls"><?=$schedule['Newsletter']['body']?></div>
+      <input type="hidden" name="data[newsletter_id]" value="<?= $schedule['Newsletter']['id'] ?>"/>  
+      <a href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="control-label" for="title"><?=$schedule['Newsletter']['title']?></h5>
+            <div class="controls"><?=$schedule['Newsletter']['body']?></div>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
 <?php else: ?>
       <div class="controls">
         <label class="control-label" for="title">Selecciona una plantilla</label>

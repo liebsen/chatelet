@@ -2,7 +2,7 @@ let interval = 0
 const endpoints = { 
   user: {
     url: '/admin/search_users',
-    parent: 'input[name="data[newsletter_id]"]',
+    parent: 'input[name="data[id]"]',
     model: 'NewsletterUser',
     source: 'schedule',
     field: 'email'
