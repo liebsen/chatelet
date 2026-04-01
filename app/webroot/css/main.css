@@ -2296,6 +2296,10 @@ a.text-black:focus {
     border-radius: 3rem!important;
 }
 
+.is-rounded-md {
+    border-radius: 1rem!important;
+}
+
 small, .small {
     font-size: 80%;
     font-weight: 600;
@@ -2720,7 +2724,6 @@ header.navbar .navbar-brand {
     border-top: none;
     padding: 15px;
     background-color: #fff;
-    border-radius: 1rem;
     /*min-height: calc(70vh);*/
 }
 

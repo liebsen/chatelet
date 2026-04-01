@@ -96,7 +96,7 @@ echo $this->Session->flash();
                     </li>
                 </ul-->
                 <h3 class="text-center mt-0">Panel de gestión</h3>
-                <div class="tab-content">
+                <div class="tab-content is-rounded-md">
                     <p>Ingresa tus credenciales para continuar</p>
                     <div class="tab-pane active" id="login-form-tab">
                         <!-- Login Form -->
