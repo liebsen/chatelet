@@ -63,9 +63,9 @@
 		          </div>
 		          <small class="text-muted">Ingresá el mailbox de la cuenta que enviará los emails.</small>
 		        </div>
-		        <div class="control-group position-relative">
+		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Contraseña'); ?></label>
-		          <div class="controls">
+		          <div class="controls position-relative">
 		            <input type="password" name="data[newsletter_password]" id="newsletter_password" class="form-control" placeholder="**********" value="<?= @$settings['newsletter_password'] ?>"/>
 		            <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#newsletter_password"></i>
 		          </div>
