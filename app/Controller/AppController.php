@@ -256,15 +256,16 @@ class AppController extends Controller
     ));
 
     // $email->transport('Debug');
-    $email->from(array(
+    /*$email->from(array(
         'info@chatelet.com' => 'Châtelet'
-    ));
+    ));*/
+    
     //pr($data);die;
     $email->to($data['receiver_email']);
     $email->subject($subject);
     $email->template($template, 'default');
     $email->emailFormat('html');
-    $email->config('default');
+    // $email->config('default');
     $email->viewVars(array(
       'data' => $data,
       'socials' => \parsed_socials($this->settings)

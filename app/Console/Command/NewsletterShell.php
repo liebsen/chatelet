@@ -261,9 +261,9 @@ class NewsletterShell extends AppShell {
     );
 
     // $email->transport('Debug');
-    $email->from(array(
+    /*$email->from(array(
       'info@chatelet.com' => 'Châtelet'
-    ));
+    ));*/
 
     /*print_r(array(
       'mail_data' => $data,
@@ -274,7 +274,7 @@ class NewsletterShell extends AppShell {
     $email->subject($data['Newsletter']['title']);
     $email->template('newsletter', 'default');
     $email->emailFormat('html') ;
-    $email->config('default');
+    // $email->config('default');
     $email->viewVars(array(
       'data' => $data,
       'products' => $products,
