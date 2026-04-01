@@ -25,6 +25,12 @@ class NewsletterShell extends AppShell {
   
   public function main() {
     $this->settings = $this->loadSettings();
+    if(empty($this->settings['newsletter_enabled'])) {
+      print_r(array(
+        'error' => "Newsletter is disabled"
+      ));      
+      return false;
+    }
     $curr_date = date('Y-m-d');
     $curr_hour = date('H'); 
     $curr_min = date('i'); 
@@ -239,12 +245,16 @@ class NewsletterShell extends AppShell {
     $email->config(
       array(
         'transport' => 'Smtp',
-        'from' => array('newsletters@chatelet.com.ar' => 'Châtelet'),
+        'from' => array(
+          $this->settings['newsletter_username'] => $this->settings['newsletter_name']
+        ),
         'host' => 'smtp.gmail.com',
         'port' => 587,
         'timeout' => 30,
         'username' => $this->settings['newsletter_username'],
         'password' => $this->settings['newsletter_password'],
+        //'username' => $this->settings['email_username'],
+        //'password' => $this->settings['email_password'],
         'charset' => 'utf-8',
         'tls' => true
       )

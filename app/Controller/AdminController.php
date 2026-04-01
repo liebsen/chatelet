@@ -73,7 +73,7 @@ class AdminController extends AppController {
 				$menu[$i]['update'] = !empty($mailchimp_enable);
 			}
 			if($v['url']==='/admin/newsletters'){
-				$menu[$i]['update'] = !empty($this->settings['newsletters_enabled']);
+				$menu[$i]['update'] = !empty($this->settings['newsletter_enabled']);
 			}
 		}
 

@@ -11,16 +11,16 @@
 	        <div class="control-group">
 						<label class="control-label" for="columns-text"><?php echo __('Habilitar'); ?></label>
 						<div class="form-group">
-							<input type="checkbox" name="data[newsletters_enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$settings['newsletters_enabled'] == '1' ? ' checked' : '' ?>>
+							<input type="checkbox" name="data[newsletter_enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$settings['newsletter_enabled'] == '1' ? ' checked' : '' ?>>
 							<label for="toggle" class="toggle-label"></label>
 						</div>
 	          <small class="text-muted">Indica si se debe procesar los envíos.</small>
 	        </div>
-	        <div class="show-panel <?= !$settings['newsletters_enabled'] ? 'show-inactive' : '' ?>">
+	        <div class="show-panel <?= !$settings['newsletter_enabled'] ? 'show-inactive' : '' ?>">
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Nombre remitente'); ?></label>
 		          <div class="controls">
-		            <input type="text" name="data[newsletters_name]" class="form-control" placeholder="Chatelet" value="<?= @$settings['newsletters_name'] ?>"/>
+		            <input type="text" name="data[newsletter_name]" class="form-control" placeholder="Chatelet" value="<?= @$settings['newsletter_name'] ?>"/>
 		          </div>
 		          <small class="text-muted">Ingresá el mailbox del remitente.</small>
 		        </div>	        
@@ -53,7 +53,7 @@
 					</div>
 	      </div>
 	      <div class="col-md-6">
-	      	<div class="show-panel <?= !$settings['newsletters_enabled'] ? 'show-inactive' : '' ?>">
+	      	<div class="show-panel <?= !$settings['newsletter_enabled'] ? 'show-inactive' : '' ?>">
 		      	<h4 class="sub-header">Configuración de Newsletter</h4>
 		      	<p>Configura qué datos se utilizarán para procesar los envíos</p>
 		        <div class="control-group">
@@ -71,32 +71,32 @@
 		          </div>
 		          <small class="text-muted">Ingresá la contraseña de aplicación (Google my account: app password).</small>
 		        </div>
-		        <div class="control-group">
+		        <!--div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Email remitente'); ?></label>
 		          <div class="controls">
-		            <input type="text" name="data[newsletters_from]" class="form-control" placeholder="news@domain.com" value="<?= @$settings['newsletters_from'] ?>"/>
+		            <input type="text" name="data[newsletter_from]" class="form-control" placeholder="news@domain.com" value="<?= @$settings['newsletter_from'] ?>"/>
 		          </div>
 		          <small class="text-muted">Ingresá el mailbox del remitente.</small>
-		        </div>
+		        </div-->
 
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Agregar texto a todos los Newsletters'); ?></label>
 		          <div class="controls">
-		            <textarea name="data[newsletters_text]" class="form-control w-100" placeholder="En qué te puedo ayudar?"><?= @$settings['newsletters_text'] ?></textarea>
+		            <textarea name="data[newsletter_text]" class="form-control w-100" placeholder="En qué te puedo ayudar?"><?= @$settings['newsletter_text'] ?></textarea>
 		          </div>
 		          <small class="text-muted">Indica el texto que se enviará con cada Newsletter</small>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Máximo de envíos'); ?></label>
 		          <div class="controls">
-		            <input type="number" max="100" min="0" size="4" name="data[newsletters_perminute]" class="form-control" placeholder="3" value="<?= @$settings['newsletters_perminute'] ?? 20 ?>"/>
+		            <input type="number" max="100" min="0" size="4" name="data[newsletter_perminute]" class="form-control" placeholder="3" value="<?= @$settings['newsletter_perminute'] ?? 20 ?>"/>
 		          </div>
 		          <small class="text-muted">Cantidad de envíos por minuto.</small>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Mostrar redes sociales'); ?></label>
 							<div class="form-group">
-								<input type="checkbox" name="data[newsletters_show_social]" value="1" id="toggle2" class="toggle-checkbox"<?=@$settings['newsletters_show_social'] == '1' ? ' checked' : '' ?>>
+								<input type="checkbox" name="data[newsletter_show_social]" value="1" id="toggle2" class="toggle-checkbox"<?=@$settings['newsletter_show_social'] == '1' ? ' checked' : '' ?>>
 								<label for="toggle2" class="toggle-label"></label>
 							</div>
 		        </div>
