@@ -1084,7 +1084,8 @@ footer ul li { margin-bottom: 5px;  }
 }
 
 .size-options .btn.active:before {
-  right: -0.25rem!important;
+  top: -16px!important;
+  right: 2px!important;
 }
 
 #main .caract label > input {
@@ -1099,11 +1100,13 @@ footer ul li { margin-bottom: 5px;  }
 #main .caract label.active:before {
   content: "\f058";
   font-family: FontAwesome;
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #14c408;
   position: absolute;
-  top: 0;
-  right: 0.15rem;
+  top: 0px;
+  right: 5px;
+  width: 100%;
+  text-align: right;
 }
 
 #main .caract label.single:before {

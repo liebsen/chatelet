@@ -579,9 +579,12 @@ html, body {
 	display: flex;
 } 
 
-@media(max-width: 786px) {
+@media(max-width: 991px) {
 	.flex-md-column {
-		flex-direction: column;
+		flex-direction: column!important;	
+	}
+	.flex-md-center {
+		align-items: center!important;
 	}
 	.flex-md-column > .btn {
 		width: 100%;

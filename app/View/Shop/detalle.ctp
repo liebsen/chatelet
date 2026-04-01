@@ -36,6 +36,7 @@ $colorImages = array();
 $colors = array();
 $sizes = array();
 foreach ($properties as $property) {
+  $property['ProductProperty']['label'] = $property['ProductProperty']['variable'];
   switch ($property['ProductProperty']['type']) {
     case 'color':
       if (!empty($property['ProductProperty']['images'])) {
@@ -55,7 +56,7 @@ foreach ($properties as $property) {
 }
 
 if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
-  $sizes[0]['variable'] = "Talle único";
+  $sizes[0]['label'] = "Talle único";
 }
 ?>
 <script>
@@ -68,7 +69,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
     <div class="container">
       <div class="row">
       <?php if(!empty($colorImages)):?>
-        <div class="col-md-6 p-0 d-flex flex-md-column justify-content-end align-items-start bg-grey">
+        <div class="col-md-6 p-0 d-flex flex-md-column flex-md-center justify-content-end align-items-start bg-grey">
           <div class="p-0">
             <ul id="ul-moreviews" class="m-0">
             <?php if (!empty($colorImages[0]['images']) && count(array_filter($colorImages[0]['images'])) > 1): $ppp=0; ?>
@@ -154,7 +155,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
         ?>
           <span class="hidden" id="product_id"><?php echo $product['id']; ?></span>
           <h1><?php echo $product['name'];?></h1>
-          <p class="mb-4"><i class="gi gi-magic"></i> <?php echo $name_categories; ?> Art. <span class="prod-article"><?php echo $product['article']; ?></span></p>
+          <p class="mb-4"><i class="gi gi-file"></i> <?php echo $name_categories; ?> Art. <span class="prod-article"><?php echo $product['article']; ?></span></p>
           <div class="d-flex justify-content-start align-items-center gap-05">
           <?php  
           
@@ -254,7 +255,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
                           foreach ($sizes as $i => $size) {
                             echo '<label class="btn">';
                             echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
-                            echo "<small class='size-option text-bolder'>".ucfirst($size['variable'])."</small>";
+                            echo "<small class='size-option text-bolder'>".ucfirst($size['label'])."</small>";
                             echo '</label>';
                               // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
                           }
@@ -262,7 +263,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
                     </div>
                   </div>
                   <p class="marginTop stock-block">
-                    <span class="text-chatelet">Stock:</span>
+                    <span class="text-chatelet">Stock</span>
                     <span id="stock_container">
                       <span class="text-warning">(Elegí color y talle)</span>
                     </span>
