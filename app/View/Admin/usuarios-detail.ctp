@@ -34,8 +34,9 @@
           <br />
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Contraseña'); ?></label>
-            <div class="controls">
-              <input type="password" class="form-control w-100" id="" name="data[password]" <?php echo (!isset($usuario)) ? 'checked': '' ?>>
+            <div class="controls position-relative">
+              <input type="password" class="form-control w-100" id="user_password" name="data[password]" <?php echo (!isset($usuario)) ? 'checked': '' ?>>
+              <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#user_password"></i>
             </div>
           </div>
           <br />
