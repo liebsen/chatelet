@@ -229,12 +229,23 @@ class AppController extends Controller
       'subject' => $subject,
       'template' => $template,
       'remote_addr' => $_SERVER['REMOTE_ADDR'],
+      'smtp' => array(
+        'transport' => 'Smtp',
+        'from' => array($this->settings['email_username'] => 'Châtelet'),
+        'host' => 'smtp.gmail.com',
+        'port' => 587,
+        'timeout' => 30,
+        'username' => $this->settings['email_username'],
+        'password' => $this->settings['email_password'],
+        'charset' => 'utf-8',
+        'tls' => true
+      )
     )));
 
     $email = new CakeEmail();
     $email->config(array(
       'transport' => 'Smtp',
-      'from' => array('no-responder@chatelet.com.ar' => 'Châtelet'),
+      'from' => array($this->settings['email_username'] => 'Châtelet'),
       'host' => 'smtp.gmail.com',
       'port' => 587,
       'timeout' => 30,
