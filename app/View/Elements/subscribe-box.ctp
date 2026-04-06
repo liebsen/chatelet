@@ -1,3 +1,4 @@
+<?php if(!$loggedIn):?>  
   <section class="subscribe-box animated d-none">
     <div class="w-100">
       <span class="corner-pin is-clickable">
@@ -150,3 +151,4 @@
       });
     });
   </script>
+<?php endif ?>

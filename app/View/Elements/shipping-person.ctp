@@ -9,7 +9,7 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 		<i class="fa fa-user-o"></i>
 		Envío a domicilio
   </h5>
-  <span class="">Asegurate de verificar y actualizar tus datos correctos para que tu compra llegue a tu domicilio antes y mejor</span>
+  <span class="">Asegurate de actualizar y revisar tus datos para verificar que sean correctos, de esta manera tu compra lleguará a tu domicilio antes y mejor</span>
 	<div class="row">
 		<div class="col-md-12">
 			<label for="email">Email</label>

@@ -78,7 +78,7 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 			</div>
 			<div class="summary-item text-right takeaway-text<?php echo $cart_totals['cargo'] != 'takeaway' ? ' hidden' : '' ?>">
 				<span class="text-weight-thin text-success">Retira </span>
-				<span class="text-sm takeaway-indicate"><?php echo $cart_totals['store_address'] ?>, <?php echo $cart_totals['store'] ?></span>
+				<span class="text-weight-thin text-success"><?php echo $cart_totals['store_address'] ?>, <?php echo $cart_totals['store'] ?></span>
 			</div>
 			<div class="summary-item cost_total-container">
 				<span class="text-weight-bold">Total </span> 

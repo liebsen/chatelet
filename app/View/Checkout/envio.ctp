@@ -82,6 +82,8 @@ echo $this->element('checkout-params');
 								Seleccionaste retirar en <span class="store"></span> ubicado en <span class="store-address"></span>
 							</span>
 						</div>
+						<hr>
+						<?php echo $this->element('takeaway-person') ?>						
 					</div>
 				</div>
 				<hr>

@@ -222,7 +222,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == $unique_size) {
               <div class="animated fadeIn delay1">
                 <div class="article-tools pt-4">
                   <!--div class="color-options d-flex justify-content-start align-items-start gap-15" data-toggle="buttons"-->
-                  <div class="color-options d-flex justify-content-start align-items-center w-100" data-toggle="buttons">
+                  <div class="color-options d-flex justify-content-start align-items-center gap-1 w-100" data-toggle="buttons">
                     <?php
                         $show_names_only = count($colors) < 2;
                         foreach ($colors as $i => $color) {

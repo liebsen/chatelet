@@ -1045,10 +1045,13 @@ footer ul li { margin-bottom: 5px;  }
   color: #888;
 }
 
+.takeaway-indicate {
+  font-size: 1rem;
+}
+
 .color-options {
   overflow-x: auto;
 }
-
 
 .size-options {
   padding-top: 1rem;
@@ -1656,6 +1659,8 @@ span.out{
 
 .add-no-stock {
   position: relative;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .prod-tags {
