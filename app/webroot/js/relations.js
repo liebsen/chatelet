@@ -65,27 +65,6 @@ function setRelation(action, data, target, type, cb) {
   });    
 }
 
-function unrelateAll(e){
-  const type = $(e.target).data('type')
-  if(!type) return
-  var data = []
-  $(`.${type}-container > .label.is-enabled`).each(function(i,e){
-    data.push($(e).data())
-  })
-  setRelation('remove', data, null, type, updateRelationCount)
-}
-
-function relateAll(e){
-  const type = $(e.target).data('type')
-  if(!type) return
-  var data = []
-  $(`.${type}-container > .label:not(.is-enabled)`).each(function(i,e){
-    data.push($(e).data())
-  })
-  setRelation('add', data, null, type, updateRelationCount)
-  $(`.advanced-action-add`).addClass('d-none')
-}
-
 function updateRelationCount(type){
   const count = $(`.${type}-container .label.is-enabled`).length
   if(!count) return
@@ -95,8 +74,8 @@ function updateRelationCount(type){
 function searchRelations(data) { 
   const curr = endpoints[data.type] || {}
   if(!curr.model) return 
-  $('.advanced-action-add').addClass('d-none')
-  $('.advanced-action-remove').addClass('d-none')
+  $('.relations-action-add').addClass('d-none')
+  $('.relations-action-remove').addClass('d-none')
   $.ajax({
     type: "POST",
     url: curr.url,
@@ -136,8 +115,8 @@ function searchRelations(data) {
         if(typeof data.cb == 'function') {
           data.cb(filter.length)
         }
-        $('.advanced-action-add').removeClass('d-none')
-        $('.advanced-action-remove').addClass('d-none')
+        $('.relations-action-add').removeClass('d-none')
+        $('.relations-action-remove').addClass('d-none')
       } else {
         $(`.${data.type}-container`).append(`<span class="h6">No se hallaron resultados para <b>${data.q}</b></span>`)  
       }
@@ -157,14 +136,34 @@ function searchRelations(data) {
   })    
 }
 
-$(document).on('click', '.advanced-action-add', function(e){
-  relateAll(e)
+$(document).on('click', '.relations-action-add', function(e){
+  const type = $(e.target).data('type')
+  if(!type) return
+  var data = []
+  $(`.${type}-container > .label:not(.is-enabled)`).each(function(i,e){
+    data.push($(e).data())
+  })
+  setRelation('add', data, null, type, updateRelationCount)
+  $(this).addClass('d-none')
 })
 
-$(document).on('click', '.advanced-action-remove', function(e){
-  unrelateAll(e)
+$(document).on('click', '.relations-action-remove', function(e){
+  const type = $(e.target).data('type')
+  if(!type) return
+  var data = []
+  $(`.${type}-container > .label.is-enabled`).each(function(i,e){
+    data.push($(e).data())
+  })
+  setRelation('remove', data, null, type, updateRelationCount) 
 })
 
+$(document).on('click', '.relations-keyword-add', function(e){
+  setRelation('remove', $(this).data('keyword'), null, type, updateRelationCount) 
+})
+
+$(document).on('click', '.relations-keyword-remove', function(e){
+  setRelation('remove', $(this).data('keyword'), null, type, updateRelationCount) 
+})
 
 $(document).on('click', '.relation-item', function(e){
   const target = $(e.target)

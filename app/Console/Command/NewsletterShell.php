@@ -22,6 +22,8 @@ class NewsletterShell extends AppShell {
   );
 
   private $settings = [];
+  private $daily_limit = 500;
+  private $perminute = 20;
   
   public function main() {
     $this->settings = $this->loadSettings();
@@ -31,9 +33,9 @@ class NewsletterShell extends AppShell {
       ));      
       return false;
     }
-    $curr_date = date('Y-m-d');
-    $curr_hour = date('H'); 
-    $curr_min = date('i'); 
+    $date = date('Y-m-d');
+    $hour = date('H'); 
+    $min = date('i'); 
     $email_sent = 0;
     $push_sent = 0;
     $newsletters = $this->NewsletterUser->find('all', array(
@@ -78,12 +80,12 @@ class NewsletterShell extends AppShell {
       'conditions' => array( 
         'NewsletterUser.status' => "pending", 
         'NewsletterSchedule.enabled' => 1,
-        'NewsletterSchedule.schedule_date <= ' => $curr_date,
-        'NewsletterSchedule.schedule_hour <= ' => $curr_hour,
+        'NewsletterSchedule.schedule_date <= ' => $date,
+        'NewsletterSchedule.schedule_hour <= ' => $hour,
        ),
        'order' => array( 'NewsletterUser.created ASC' ),
        'group' => array( 'NewsletterUser.id' ),
-       'limit' => 10,
+       'limit' => $this->settings['newsletter_perminute'] ?? $perminute,
       )
     );
 
@@ -183,8 +185,8 @@ class NewsletterShell extends AppShell {
     }
 
     print_r(array(
-      'curr_date' => $curr_date,
-      'curr_hour' => implode(':',array($curr_hour,$curr_min)),
+      'date' => $date,
+      'hour' => implode(':',array($hour,$min)),
       'email_sent' => $email_sent,
       'push_sent' => $push_sent,
       'users' => count($newsletters)

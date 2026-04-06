@@ -108,9 +108,9 @@
   			</div>
         <div class="control-group w-100">
           <label class="control-label" for="product-filter">Productos seleccionados (<?=count($newsletter_products)?>)
-          <a class="advanced-action-add text-success d-none" data-type="product" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($newsletter_products)?></span></a>
+          <a class="relations-action-add text-success d-none" data-type="product" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($newsletter_products)?></span></a>
           <?php if(count($newsletter_products)): ?>
-          <a class="advanced-action-remove text-danger" data-type="product" href="javascript:void(0)">Eliminar todo</a>
+          <a class="relations-action-remove text-danger" data-type="product" href="javascript:void(0)">Eliminar todo</a>
         <?php endif ?></label>
           <div class="controls">
             <input type="text" class="form-control relation-search" data-type="product" placeholder="Buscar"/>

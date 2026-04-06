@@ -93,12 +93,12 @@ function updateUsers(){
       }
       if(filter.length){
         $('.relations-count').text(filter.length)
-        $('.advanced-action-add').show()
+        $('.relations-action-add').show()
         $.each(filter, function(key, item) {
           $('.user-container').append('<span class="label user-item text-lowercase is-clickable" data-parent-id="'+relation.parentId+'" data-id="'+item.id+'" data-type="'+relation.type+'" data-source="'+relation.source+'" data-model="'+relation.model+'">'+item.email+'</span>');
         })
       } else {
-        $('.advanced-action-add').hide()
+        $('.relations-action-add').hide()
         $.growl.notice({
           title: 'Atención',
           message: 'No se encontraron cuentas para este filtro',

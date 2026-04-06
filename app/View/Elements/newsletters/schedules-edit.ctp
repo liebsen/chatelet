@@ -165,13 +165,17 @@
 <?php if(!empty($schedule['NewsletterSchedule']['id'])):?>
       <div class="form-box bg-info">
         <h4 class="sub-header">Cuentas seleccionadas (<?=count($schedule_users)?>)
-          <a class="advanced-action-add text-success d-none" data-type="user" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($schedule_users)?></span></a>
+          <a class="relations-action-add text-success d-none" data-type="user" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($schedule_users)?></span></a>
           <?php if(count($schedule_users)): ?>
-          <a class="advanced-action-remove text-danger" data-type="user" href="javascript:void(0)">Eliminar todo</a>
+          <a class="relations-action-remove text-danger" data-type="user" href="javascript:void(0)">Eliminar todo</a>
         <?php endif ?>
         </h4>
         <p>Selecciona las cuentas que deseas asignar a este envío</p>
-        <div class="controls">
+        <div class="controls d-flex flex-column gap-05">
+          <div class="btn-group">
+            <button class="btn btn-warning relations-keyword-add" data-keyword="club" data-type="user">Seleccionar CLUB (<?=$club_total?>)</button>
+            <button class="btn btn-success relations-keyword-add" data-keyword="all"  data-type="user">Seleccionar todos (<?=$users_total?>)</button>
+          </div>
           <input type="text" class="form-control relation-search" data-type="user" placeholder="Buscar cuenta..."/>
         </div>      
         <div class="controls tags-container user-container">
@@ -186,12 +190,15 @@
     </span>
   <?php endforeach ?>
         </div>
-  <?php endif ?>      
+  <?php endif ?>
       </div>
     </div>
   </div>
   <div class="form-actions">
-    <a href="javascript:history.go(-1)" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
-    <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+    <a href="javascript:history.go(-1)" class="btn btn-info">
+      <i class="fa fa-chevron-left mr-1"></i> Atrás
+    </a>
+    <button type="submit" name="reset" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Reenviar</button>
+    <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
   </div>
 <?php echo $this->Form->end(); ?>

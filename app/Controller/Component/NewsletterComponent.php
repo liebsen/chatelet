@@ -13,6 +13,30 @@ class NewsletterComponent extends Component {
   public $controller; // To store a reference to the Controller
   public function initialize(Controller $controller) {
     $this->controller = $controller;
+    $User = ClassRegistry::init('User');
+
+    $club_total = $User->find('count', 
+      array(
+        'conditions' => array(
+          'User.role' => 'club',
+        )
+      )
+    );
+
+    $users_total = $User->find('count', 
+      array(
+        'conditions' => array(
+          'or' => array(
+            'User.role <>' => 'admin',
+            'User.role is null'
+          )
+        )
+      )
+    );
+    
+    $this->controller->set('club_total', $club_total);
+    $this->controller->set('users_total', $users_total);
+
     parent::initialize($controller);
   }
 
