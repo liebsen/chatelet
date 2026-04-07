@@ -819,6 +819,13 @@ body {
 
 .block-tabs > .nav-tabs > li > a > i {
     font-size: 1rem;
+    position: relative;
+    top: 1px;
+}
+
+.block-tabs > .nav-tabs > li > a > span {
+    position: relative;
+    top: 1px;
 }
 .block-tabs > .tab-content {
     padding: 20px;

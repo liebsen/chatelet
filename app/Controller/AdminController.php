@@ -2055,7 +2055,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Plantillas' => array(
 				'id' => 'templates',
-				'icon' 		=> 'gi gi-file',
+				'icon' 		=> 'gi gi-picture',
 				'url'		=> '/admin/newsletters/templates',
 			),
 			'Listas' => array(
