@@ -16,8 +16,9 @@ class NewsletterShell extends AppShell {
     'Setting', 
     'Webpush', 
     'Newsletter',
-    'NewsletterUser',
     'NewsletterSchedule', 
+    'NewsletterList', 
+    'NewsletterUser',
     'NewsletterProduct',
   );
 
@@ -38,15 +39,39 @@ class NewsletterShell extends AppShell {
     $min = date('i'); 
     $email_sent = 0;
     $push_sent = 0;
+    $limit = 0;
+    $perminute = $this->settings['newsletter_perminute'] ?? $this->perminute;
+    // FIND QUOTA
+    $quota = $this->NewsletterUser->find('count', array(
+      'conditions' => array(
+        'NewsletterUser.status' => "sent",
+        'NewsletterUser.modified > ' => date(strtotime("-24 hours")),
+      )
+    ));
+
+    if($quota >= $this->daily_limit) {
+      die("Daily limit reached. Aborting.");
+    }
+
+    //$daily_limit
     $newsletters = $this->NewsletterUser->find('all', array(
       'joins' => array(
+        array(
+          'table' => 'newsletter_lists',
+          'alias' => 'NewsletterList',
+          'type' => 'LEFT',
+          'conditions' => array( 
+            'NewsletterUser.list_id = NewsletterList.id',
+            'NewsletterList.id IS NOT NULL'
+          )
+        ),
         array(
           'table' => 'newsletter_schedules',
           'alias' => 'NewsletterSchedule',
           'type' => 'LEFT',
           'conditions' => array( 
-            'NewsletterUser.schedule_id = NewsletterSchedule.id' ,
-            // 'NewsletterUser.status' => 'pending',
+            'NewsletterList.schedule_id = NewsletterSchedule.id' ,
+            'NewsletterSchedule.id IS NOT NULL'
           )
         ),
         array(
@@ -54,8 +79,8 @@ class NewsletterShell extends AppShell {
           'alias' => 'Newsletter',
           'type' => 'LEFT',
           'conditions' => array( 
-            'NewsletterSchedule.newsletter_id = Newsletter.id' ,
-            // 'NewsletterUser.status' => 'pending',
+            'NewsletterSchedule.newsletter_id = Newsletter.id',
+            'Newsletter.id IS NOT NULL'
           )
         ),
         array(
@@ -63,15 +88,18 @@ class NewsletterShell extends AppShell {
           'alias' => 'NewsletterProduct',
           'type' => 'LEFT',
           'conditions' => array( 
-            'NewsletterProduct.newsletter_id = Newsletter.id' ,
-            // 'NewsletterUser.status' => 'pending',
+            'NewsletterProduct.newsletter_id = Newsletter.id',
+            'Newsletter.id IS NOT NULL'
           )
         ),
         array(
           'table' => 'users',
           'alias' => 'User',
           'type' => 'LEFT',
-          'conditions' => array( 'NewsletterUser.user_id = User.id' )
+          'conditions' => array( 
+            'NewsletterUser.user_id = User.id',
+            'User.id IS NOT NULL'
+          )
         )
        ),
       'fields' => array(
@@ -85,7 +113,7 @@ class NewsletterShell extends AppShell {
        ),
        'order' => array( 'NewsletterUser.created ASC' ),
        'group' => array( 'NewsletterUser.id' ),
-       'limit' => $this->settings['newsletter_perminute'] ?? $perminute,
+       'limit' => $perminute,
       )
     );
 
@@ -186,10 +214,12 @@ class NewsletterShell extends AppShell {
 
     print_r(array(
       'date' => $date,
+      'perminute' => $perminute,
+      'quota' => $quota,
       'hour' => implode(':',array($hour,$min)),
       'email_sent' => $email_sent,
       'push_sent' => $push_sent,
-      'users' => count($newsletters)
+      'count' => count($newsletters)
     ));
   }
 

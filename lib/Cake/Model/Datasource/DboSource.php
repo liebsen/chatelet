@@ -431,7 +431,7 @@ class DboSource extends DataSource {
 		$options += array('log' => $this->fullDebug);
 
 		if (preg_match('/^(?:DELETE|UPDATE)\s/i', $sql)) {
-			\d("sql", $sql);
+			#\d("sql", $sql);
 		}
 		$t = microtime(true);
 		$this->_result = $this->_execute($sql, $params);
