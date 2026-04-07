@@ -40,6 +40,12 @@ class NewsletterShell extends AppShell {
     $email_sent = 0;
     $push_sent = 0;
     $limit = 0;
+    $watchmode = $_SERVER['REMOTE_ADDR'] == '127.0.0.1';
+
+    var_dump($watchmode);
+    var_dump($_SERVER['REMOTE_ADDR']);
+    die();
+
     $perminute = $this->settings['newsletter_perminute'] ?? $this->perminute;
     // FIND QUOTA
     $quota = $this->NewsletterUser->find('count', array(
@@ -70,7 +76,7 @@ class NewsletterShell extends AppShell {
           'alias' => 'NewsletterSchedule',
           'type' => 'LEFT',
           'conditions' => array( 
-            'NewsletterList.schedule_id = NewsletterSchedule.id' ,
+            'NewsletterList.schedule_id = NewsletterSchedule.id',
             'NewsletterSchedule.id IS NOT NULL'
           )
         ),
@@ -108,6 +114,7 @@ class NewsletterShell extends AppShell {
       'conditions' => array( 
         'NewsletterUser.status' => "pending", 
         'NewsletterSchedule.enabled' => 1,
+        'NewsletterList.enabled' => 1,
         'NewsletterSchedule.schedule_date <= ' => $date,
         'NewsletterSchedule.schedule_hour <= ' => $hour,
        ),
@@ -154,7 +161,7 @@ class NewsletterShell extends AppShell {
 
       $newsletter['Newsletter']['body'] = $body;
 
-      if($newsletter['NewsletterSchedule']['send_email'] == '1') {
+      if($newsletter['NewsletterSchedule']['send_email'] == '1' && !$watchmode) {
 
         // generate links
         foreach($products as $i => $product) {
@@ -187,7 +194,7 @@ class NewsletterShell extends AppShell {
         }
       }
 
-      if($newsletter['NewsletterSchedule']['send_push'] == '1') {
+      if($newsletter['NewsletterSchedule']['send_push'] == '1' && !$watchmode) {
         $pushes = $this->Webpush->find('all', 
           array(
             'conditions' => array(

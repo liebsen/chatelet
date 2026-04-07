@@ -78,6 +78,7 @@
 <?php endif ?>      
     </div>
     <div class="col-md-6">
+  <?php if(!empty($list['NewsletterList']['id'])):?>
       <h4 class="sub-header">Resumen</h4>
       <table class="table table-forum table-striped text-small">
         <tr>
@@ -95,7 +96,6 @@
           </th>
         </tr>
       </table>      
-<?php if(!empty($list['NewsletterList']['id'])):?>
       <div class="form-box bg-info">
         <h4 class="sub-header">Cuentas seleccionadas (<?=count($list_users)?>)</h4>
         <div class="factsheet">

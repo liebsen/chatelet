@@ -53,9 +53,8 @@ function setRelation(action, data, target, type, cb) {
         $(target || '.' + type + '-container .label.is-enabled').removeClass('is-enabled')
       }
       if(typeof cb == 'function') {
-        cb(type)
+        cb(type, target)
       }
-      // $(`.count-${type}`)
     }
   }).fail(function() {
     $.growl.error({
@@ -64,6 +63,11 @@ function setRelation(action, data, target, type, cb) {
       queue: false,
     });
   });    
+}
+
+function updateAddAll(type, target){
+  updateRelationCount(type)
+  $(target).text("Se agregó todos")
 }
 
 function updateRelationCount(type){
@@ -111,7 +115,7 @@ function searchRelations(data) {
           $(`.${data.type}-container`).append(`<span class="label relation-item ${data.type == 'user' ? 'text-lowercase' : ''} is-clickable" data-parent-id="${parentId}" data-id="${item.id}" data-type="${data.type}" data-source="${curr.source}" data-model="${curr.model}">${item[curr.field]}</span>`);
         })
         if(typeof data.cb == 'function') {
-          data.cb(filter.length)
+          data.cb(data.type, filter.length)
         }
         $('.relations-action-add').removeClass('d-none')
         $('.relations-action-remove').addClass('d-none')
@@ -145,8 +149,8 @@ $(document).on('click', '.relations-action-add', function(e){
       data.push($(e).data())
     })
   }
-  setRelation('add', data, null, tData.type, updateRelationCount)
-  $(this).addClass('d-none')
+  setRelation('add', data, e.target, tData.type, updateAddAll)
+  $(this).text('Agregando todos ...')
 })
 
 $(document).on('click', '.relations-action-remove', function(e){

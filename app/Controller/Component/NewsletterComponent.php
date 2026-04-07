@@ -370,9 +370,16 @@ class NewsletterComponent extends Component {
 
   public function schedules_delete() {
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
+    //$NewsletterUser = ClassRegistry::init('NewsletterUser');
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
+        /*$schedule = $NewsletterSchedule->find('first', array(
+          'conditions' => array(
+            'NewsletterSchedule.id' => $data['id']
+          )
+        ));*/
+        //$NewsletterUser->deleteAll(array('User.list_id' => $schedule['NewsletterSchedule']['list_id']), false);
         $NewsletterSchedule->delete($data['id']);
       }
     } catch (\Exception $e) {
@@ -596,13 +603,16 @@ class NewsletterComponent extends Component {
         return $this->controller->redirect($redirect);
       }
 
-
       if(!empty($id)) {
-
         $this->controller->set('list', $NewsletterList->find('first', array(
           'conditions' => array( 'NewsletterList.id' => $id),
           'order' => array( 'NewsletterList.modified DESC' )
         )));
+
+        \d("where", array( 
+            'NewsletterUser.list_id' => $id,
+            'User.id IS NOT NULL',
+          ));
 
         $this->controller->set('list_users', $NewsletterUser->find('all', array(
           'joins' => array(
@@ -610,7 +620,9 @@ class NewsletterComponent extends Component {
               'table' => 'users',
               'alias' => 'User',
               'type' => 'LEFT',
-              'conditions' => array( 'User.id = NewsletterUser.user_id' )
+              'conditions' => array( 
+                'User.id = NewsletterUser.user_id' 
+              )
             ),
           ),
           'fields' => array('User.id, User.email, User.name, User.surname, User.city, User.province, User.birthday, User.created'),

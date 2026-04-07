@@ -2469,17 +2469,34 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	$data = $this->request->data;
     	if($data[0]['key'] == 'all') {
     		$model = ClassRegistry::init($data[0]['model']);
-    		$this->loadModel('User');
     		// assume user for now
+    		$this->loadModel('User');
+    		$saves = array();
+    		// its all so truncate first
+    		$model->deleteAll(
+    			array(
+	      		$data[0]['type'] . '_id' => $item['User']['id'],
+	      		$data[0]['source'] . '_id' => $data[0]['parentId'],
+    			),
+    			false,
+    			false
+    		);
     		foreach($this->User->find('all') as $item) {
-		      $model->save(
-		      	array(
+    			array_push($saves, 
+    				array(
 		      		'id' => null,
 		      		$data[0]['type'] . '_id' => $item['User']['id'],
 		      		$data[0]['source'] . '_id' => $data[0]['parentId'],
 		      	)
-		      );
+    			);
     		}
+    		$model->saveAll(
+    			$saves,
+    			array(
+	    			'validate' => false, 
+	    			'callbacks' => false
+	    		)
+    		);
     	} else {
 	    	foreach($data as $i => $item) {
 		    	$model = ClassRegistry::init($item['model']);
@@ -2550,19 +2567,30 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $q = $this->request->data['q'];
     $p = $this->request->data['p'] ? intval($this->request->data['p']) : 0;
     $s = $this->request->data['s'] ? intval($this->request->data['s']) : 500;
+
+    $roles = ['admin', 'club'];
+
+    if(in_array($q, $roles)) {
+    	$conditions = [
+    		'role' => $q
+    	];
+    } else {
+		  $conditions = [
+	      'or' => [
+	        'User.name LIKE' => "%$q%",
+	        'User.surname LIKE' => "%$q%",
+	        'User.email' => "$q",
+	        'User.telephone' => "$q",
+	        'User.province' => "$q",
+	        'User.city' => "$q",
+	      ],
+	      'id > ' => 1
+	    ];
+	  }
+
     //$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
     $data = $this->User->find('all',[
-      'conditions' => [
-        'or' => [
-          'User.name LIKE' => "%$q%",
-          'User.surname LIKE' => "%$q%",
-          'User.email' => "$q",
-          'User.telephone' => "$q",
-          'User.province' => "$q",
-          'User.city' => "$q",
-        ],
-        'id > ' => 1
-      ],
+      'conditions' => $conditions,
       'order' => ['User.modified DESC'],
       'limit' => $s,
       'offset' => $s * $p
