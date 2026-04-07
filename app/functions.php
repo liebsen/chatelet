@@ -107,7 +107,6 @@ function parsed_socials($settings){
 function readable_time_ago($timestamp) {
     $current_time = time();
     $diff = $current_time - $timestamp;
-
     if ($diff < 60) {
         return $diff == 1 ? "1 segundo" : $diff . " segundos";
     } elseif ($diff < 3600) {

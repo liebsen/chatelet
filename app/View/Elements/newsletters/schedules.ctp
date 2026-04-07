@@ -6,9 +6,10 @@
 		<thead>
 			<tr>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Lista'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Productos'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Cuentas'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Catálogo'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Audiencia'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Progreso'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Fecha/Hora'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -26,16 +27,19 @@
 					</a>
 				</td>
 				<td>
+					<span class="badge badge-success"><?=$schedule['NewsletterList']['name']?></span>
+				</td>
+				<td>
 					<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?></span>
 				</td>
 				<td>
 					<span class="badge badge-<?=count($schedule['Products']) ? 'success' : 'light'?> is-rounded">
-						<?=count($schedule['Products'])?>
+						<?=!empty($schedule['Products']) ? count($schedule['Products']) : 'Estático'?>
 					</span>
 				</td>
 				<td>
 					<span class="badge badge-<?=count($schedule['Users']) ? 'info' : 'danger'?> is-rounded">
-						<?=count($schedule['Users'])?>
+						<?=!empty($schedule['Users']) ? count($schedule['Users']) : '<i class="fa fa-warning"></i> Lista vacía'?>
 						</span>
 				</td>
 				<td>
@@ -47,7 +51,8 @@
 					</span>
 				</td>
 				<td>
-					<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'], '%d/%m/%Y')?> - <?=$schedule['NewsletterSchedule']['schedule_hour']??'0'?>hs
+					<span class="badge badge-danger is-rounded" title="Fecha / Hora de ejecución">
+					<?=\readable_time_ago(strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')) ?> </span>
 				</td>
 				<td> 
 					<div class="btn-group">           

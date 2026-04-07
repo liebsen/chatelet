@@ -240,8 +240,14 @@ class NewsletterComponent extends Component {
             'type' => 'LEFT',
             'conditions' => array('Newsletter.id = NewsletterSchedule.newsletter_id')
           ),
+          array(
+            'table' => 'newsletter_lists',
+            'alias' => 'NewsletterList',
+            'type' => 'LEFT',
+            'conditions' => array('NewsletterList.id = NewsletterSchedule.list_id')
+          ),
         ),        
-        'fields' => array('Newsletter.*, NewsletterSchedule.*'),
+        'fields' => array('Newsletter.*, NewsletterList.*, NewsletterSchedule.*'),
         'conditions' => $conditions,
         'order' => array( 'NewsletterSchedule.schedule_date DESC, NewsletterSchedule.schedule_hour DESC' )
       ));
@@ -251,7 +257,6 @@ class NewsletterComponent extends Component {
         $email_total = 0;
         $push_sent = 0;
         $email_sent = 0;
-
         $products = $NewsletterProduct->find('all', array(
           'joins' => array(
             array(
@@ -354,31 +359,33 @@ class NewsletterComponent extends Component {
   public function schedules_edit($id) {
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
-    $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
-    $NewsletterUser = ClassRegistry::init('NewsletterUser');
+    $NewsletterList = ClassRegistry::init('NewsletterList');
+    #$NewsletterProduct = ClassRegistry::init('NewsletterProduct');
+    #$NewsletterUser = ClassRegistry::init('NewsletterUser');
     $schedule = array();
-    $schedule_users = array();
-    $schedule_products = array();
     
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
         $data['id'] = $data['id'] ?? NULL;
-        $data['filter'] = json_encode($data['filter']);
         $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
         $data['send_email'] = !empty($data['send_email']) ? 1 : 0;
         $data['send_push'] = !empty($data['send_push']) ? 1 : 0;
         $redirect = array( 'action' => 'newsletters', 'schedules' );
 
         // reset recipients
-        $NewsletterUser->updateAll(
-          array(
-            'NewsletterUser.status' => "'pending'"
-          ),
-          array(
-            'NewsletterUser.schedule_id' => $id,
-          )
-        );
+        if(!empty($data['reset'])) {
+          $NewsletterUser->updateAll(
+            array(
+              'NewsletterUser.status' => "'pending'"
+            ),
+            array(
+              'NewsletterUser.schedule_id' => $id,
+            )
+          );
+        }
+
+        \d("data", $data);
 
         $NewsletterSchedule->save($data);
 
@@ -389,9 +396,8 @@ class NewsletterComponent extends Component {
         return $this->controller->redirect($redirect);
       }
 
-
       if(!empty($id)) {
-        $schedule = $NewsletterSchedule->find('first', array(
+        $this->controller->set('schedule', $NewsletterSchedule->find('first', array(
           'joins' => array(
             array(
               'table' => 'newsletters',
@@ -403,9 +409,9 @@ class NewsletterComponent extends Component {
           'fields' => array('NewsletterSchedule.*, Newsletter.*'),
           'conditions' => array( 'NewsletterSchedule.id' => $id),
           // 'order' => array( 'Newsletter.id DESC' )
-        ));
+        )));
 
-        $schedule_products = $NewsletterProduct->find('all', array(
+        /*$schedule_products = $NewsletterProduct->find('all', array(
           'joins' => array(
             array(
               'table' => 'products',
@@ -433,36 +439,57 @@ class NewsletterComponent extends Component {
           ),
           'fields' => array('User.id, User.email, User.name, User.surname, User.city, User.province, User.birthday, User.created'),
           'conditions' => array( 
-            'NewsletterUser.schedule_id' => $schedule['NewsletterSchedule']['id'],
+            'NewsletterUser.list_id' => $schedule['NewsletterSchedule']['list_id'],
             'User.id IS NOT NULL',
           ),
           // 'order' => array( 'Newsletter.id DESC' )
-        ));
-        $schedule['NewsletterSchedule']['filter'] = json_decode($schedule['NewsletterSchedule']['filter']);
-        $schedule['NewsletterProduct'] =  array_column($schedule_products, 'NewsletterProduct');
-        $schedule['NewsletterUser'] = array_column($schedule_users, 'NewsletterUser');
-      } else {
-        $this->controller->set('newsletters', $Newsletter->find('all', array(
-          'joins' => array(
-            array(
-              'table' => 'users',
-              'alias' => 'User',
-              'type' => 'LEFT',
-              'conditions' => array( 'User.id = Newsletter.user_id' )
-            ),
+        ));*/
+        #$schedule['NewsletterSchedule']['filter'] = json_decode($schedule['NewsletterSchedule']['filter']);
+        #$schedule['NewsletterProduct'] =  array_column($schedule_products, 'NewsletterProduct');
+        #$schedule['NewsletterUser'] = array_column($schedule_users, 'NewsletterUser');
+      } 
+
+      $this->controller->set('newsletters', $Newsletter->find('all', array(
+        'joins' => array(
+          array(
+            'table' => 'newsletter_products',
+            'alias' => 'NewsletterProduct',
+            'type' => 'LEFT',
+            'conditions' => array( 'Newsletter.id = NewsletterProduct.newsletter_id' )
           ),
-          'fields' => array('Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.created, User.name, User.surname'),
-          'conditions' => array(
-            // 'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")),
-            'Newsletter.enabled' => '1',
-            'User.id IS NOT NULL',
+        ),
+        'fields' => array('Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.created, COUNT(NewsletterProduct.id) AS total'),
+        'conditions' => array(
+          // 'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")),
+          'Newsletter.enabled' => '1',
+          'NewsletterProduct.id IS NOT NULL',
+        ),
+        'group' => array('Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.created'),
+        'order' => array( 'Newsletter.modified DESC' )
+      )));
+
+      $this->controller->set('lists', $NewsletterList->find('all', array(
+
+        'joins' => array(
+          array(
+            'table' => 'newsletter_users',
+            'alias' => 'NewsletterUser',
+            'type' => 'LEFT',
+            'conditions' => array( 'NewsletterList.id = NewsletterUser.list_id' )
           ),
-          'order' => array( 'Newsletter.modified DESC' )
-        )));
-      }
-      $this->controller->set('schedule', $schedule);
-      $this->controller->set('schedule_products', $schedule_products);
-      $this->controller->set('schedule_users', $schedule_users);
+        ),
+        'fields' => array('NewsletterList.id, NewsletterList.name, NewsletterList.created, COUNT(NewsletterUser.id) AS total'),
+        'conditions' => array( 
+          'NewsletterList.enabled' => 1,
+          'NewsletterUser.id IS NOT NULL',
+        ),
+        'group' => array('NewsletterList.id, NewsletterList.name, NewsletterList.created'),
+        'order' => array( 'NewsletterList.modified DESC' )
+      )));
+
+      #$this->controller->set('schedule', $schedule);
+      #$this->controller->set('schedule_products', $schedule_products);
+      #$this->controller->set('schedule_users', $schedule_users);
     } catch (\Exception $e) {
       echo $e->getMessage();
     }
