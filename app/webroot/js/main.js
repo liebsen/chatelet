@@ -154,7 +154,6 @@ $(function () {
   });
 
   if(localStorage.sidebar == 1) {
-    console.log('menu click')
     $('#toggle-side-content').trigger('click')
   }
 

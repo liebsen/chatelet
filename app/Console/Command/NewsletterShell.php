@@ -39,7 +39,7 @@ class NewsletterShell extends AppShell {
     $email_sent = 0;
     $push_sent = 0;
     $newsletters = $this->NewsletterUser->find('all', array(
-     'joins' => array(
+      'joins' => array(
         array(
           'table' => 'newsletter_schedules',
           'alias' => 'NewsletterSchedule',

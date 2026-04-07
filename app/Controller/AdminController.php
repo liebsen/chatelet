@@ -2083,6 +2083,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		//CakeLog::write('debug','emails_vars:'.json_encode($emails_vars));
 		//CakeLog::write('debug','controlComponent:'.json_encode($controlComponent));
 		//CakeLog::write('debug','params:'.json_encode($this->params['pass']));
+		//\d("controlComponent", $controlComponent);
 
 		if(method_exists($this->Newsletter, $controlComponent)) {
 			$this->Newsletter->{$controlComponent}($id);

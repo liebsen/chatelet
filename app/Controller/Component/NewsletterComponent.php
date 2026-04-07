@@ -161,6 +161,18 @@ class NewsletterComponent extends Component {
     }
   }
 
+  public function templates_delete() {
+    $Newsletter = ClassRegistry::init('Newsletter');
+    try {
+      if($this->controller->request->is('post')){
+        $data = $this->controller->request->data;
+        $Newsletter->delete($data['id']);
+      }
+    } catch (\Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
   public function templates_edit($id) {
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
@@ -356,6 +368,18 @@ class NewsletterComponent extends Component {
     }
   }
 
+  public function schedules_delete() {
+    $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
+    try {
+      if($this->controller->request->is('post')){
+        $data = $this->controller->request->data;
+        $NewsletterSchedule->delete($data['id']);
+      }
+    } catch (\Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
   public function schedules_edit($id) {
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
@@ -527,6 +551,26 @@ class NewsletterComponent extends Component {
     }
   }
 
+  public function lists_delete() {
+    $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
+    $NewsletterList = ClassRegistry::init('NewsletterList');
+    try {
+      if($this->controller->request->is('post')){
+        $data = $this->controller->request->data;
+
+        $NewsletterSchedule->updateAll(array(
+          'list_id' => null,
+        ), array(
+          'list_id' => $data['id']
+        ));
+
+        $NewsletterList->delete($data['id']);
+      }
+    } catch (\Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
   public function lists_edit($id) {
     $NewsletterList = ClassRegistry::init('NewsletterList');
     $NewsletterUser = ClassRegistry::init('NewsletterUser');
@@ -576,8 +620,7 @@ class NewsletterComponent extends Component {
           ),
           // 'order' => array( 'Newsletter.id DESC' )
         )));
-      } 
-      
+      }
     } catch (\Exception $e) {
       echo $e->getMessage();
     }

@@ -62,10 +62,10 @@
 							title="" 
 							class="btn btn-danger deletebutton" 
 							data-original-title="Eliminar" 
-							data-id="<?=$schedule['Newsletter']['id']?>" 
-							data-url-back="<?=$this->Html->url(array('action'=>'newsletters'))?>" 
-							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'delete'))?>" 
-							data-msg="<?=__('¿Eliminar Newsletter?')?>"                   
+							data-id="<?=$schedule['NewsletterSchedule']['id']?>" 
+							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'schedules'))?>" 
+							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'delete'))?>" 
+							data-msg="<?=__('¿Eliminar Campaña?')?>"                   
 							>
 							<i class="fa fa-trash-o"></i>
 						</a>
@@ -83,7 +83,7 @@
 							title="Programar envío" 
 							class="btn btn-success" 
 						>
-							<i class="gi gi-send"></i>
+							<i class="gi gi-edit"></i>
 						</a>
 						<!--a 
 							href="javascript:void(0)" 
