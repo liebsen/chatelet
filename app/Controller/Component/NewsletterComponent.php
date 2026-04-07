@@ -555,12 +555,12 @@ class NewsletterComponent extends Component {
 
       if(!empty($id)) {
 
-        $list = $NewsletterList->find('first', array(
-          'conditions' => array( 'id' => $id),
-          'order' => array( 'modified DESC' )
-        ));
+        $this->controller->set('list', $NewsletterList->find('first', array(
+          'conditions' => array( 'NewsletterList.id' => $id),
+          'order' => array( 'NewsletterList.modified DESC' )
+        )));
 
-        $list_users = $NewsletterUser->find('all', array(
+        $this->controller->set('list_users', $NewsletterUser->find('all', array(
           'joins' => array(
             array(
               'table' => 'users',
@@ -575,9 +575,7 @@ class NewsletterComponent extends Component {
             'User.id IS NOT NULL',
           ),
           // 'order' => array( 'Newsletter.id DESC' )
-        ));
-        $this->controller->set('list', $list);
-        $this->controller->set('list_users', $list_users);
+        )));
       } 
       
     } catch (\Exception $e) {

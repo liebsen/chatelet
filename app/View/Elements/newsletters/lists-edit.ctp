@@ -47,7 +47,7 @@
       </div>
       <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
       <div class="controls-group">
-        <textarea class="form-control w-100" name="data[text]" id="newsletter" rows="8"><?=htmlentities($newsletter['NewsletterList']['text'])?></textarea>
+        <textarea class="form-control w-100" name="data[text]" id="newsletter" rows="4"><?=$list['NewsletterList']['text']?></textarea>
       </div>
 
 
