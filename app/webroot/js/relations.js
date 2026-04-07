@@ -4,7 +4,7 @@ const endpoints = {
     url: '/admin/search_users',
     parent: 'input[name="data[id]"]',
     model: 'NewsletterUser',
-    source: 'schedule',
+    source: 'list',
     field: 'email'
   },
   product: {
@@ -54,7 +54,8 @@ function setRelation(action, data, target, type, cb) {
       }
       if(typeof cb == 'function') {
         cb(type)
-      }      
+      }
+      // $(`.count-${type}`)
     }
   }).fail(function() {
     $.growl.error({
@@ -82,7 +83,7 @@ function searchRelations(data) {
     data: {
       q: data.q, 
       p: 0, 
-      s: 10
+      s: 500
     },
     success: function (res) {
       let str = ''
@@ -106,9 +107,6 @@ function searchRelations(data) {
       if(filter.length){
         $('.relations-count').text(filter.length)
         const parentId = $(curr.parent).val() || 0
-        console.log('curr.parent',curr.parent)
-        console.log('parentId',parentId)
-
         $.each(filter, function(key, item) {
           $(`.${data.type}-container`).append(`<span class="label relation-item ${data.type == 'user' ? 'text-lowercase' : ''} is-clickable" data-parent-id="${parentId}" data-id="${item.id}" data-type="${data.type}" data-source="${curr.source}" data-model="${curr.model}">${item[curr.field]}</span>`);
         })
@@ -137,13 +135,17 @@ function searchRelations(data) {
 }
 
 $(document).on('click', '.relations-action-add', function(e){
-  const type = $(e.target).data('type')
-  if(!type) return
+  const tData = $(e.target).data() 
+  if(!tData.type) return
   var data = []
-  $(`.${type}-container > .label:not(.is-enabled)`).each(function(i,e){
-    data.push($(e).data())
-  })
-  setRelation('add', data, null, type, updateRelationCount)
+  if(tData.key=='all'){
+    data.push(tData)
+  } else {
+    $(`.${tData.type}-container > .label:not(.is-enabled)`).each(function(i,e){
+      data.push($(e).data())
+    })
+  }
+  setRelation('add', data, null, tData.type, updateRelationCount)
   $(this).addClass('d-none')
 })
 

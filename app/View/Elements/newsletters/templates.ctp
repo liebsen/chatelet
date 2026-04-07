@@ -6,7 +6,7 @@
 		<thead>
 			<tr>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Productos'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Catálogo'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Envíos'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>

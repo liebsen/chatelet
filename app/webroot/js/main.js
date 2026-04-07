@@ -47,8 +47,6 @@ function layerClose() {
   $('.layer').removeClass('active')
 }
 
-
-
 $(function () {
   $('.track-coords').click(function(e){
     const width = $(this).width();
@@ -111,6 +109,7 @@ $(function () {
       location.href = '/admin/logout'
     }
   })
+
   $('#filter-menu').keyup(function(){ 
     clearTimeout(timeout)
     const value = slugify($(this).val())
@@ -155,8 +154,17 @@ $(function () {
   });
 
   if(localStorage.sidebar == 1) {
+    console.log('menu click')
     $('#toggle-side-content').trigger('click')
   }
+
+  $('.form-box').each(function(i,e){
+    $(e).append(`<span class="form-box-handle"><i class="gi gi-star"></i></span>`)
+  })
+
+  $('.form-box > .form-box-handle').click(function(event){
+    $(this).parent().toggleClass('fs')
+  })
 
   Growl.settings.duration = 2000
 })

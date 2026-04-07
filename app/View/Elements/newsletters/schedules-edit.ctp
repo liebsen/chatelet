@@ -66,68 +66,6 @@
   <?php endforeach ?>
         </table>
       </div>
-      <div class="table-main table-users bg-info d-none">
-        <h4 class="sub-header"><i class="gi gi-cogwheel is-clickable" onclick="$('#user-filter').focus()"></i> Cuentas</h4>
-        <table class="table table-forum">
-    <?php foreach($schedule_users as $user): ?>
-          <tr><td><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?> (<span class="text-lowercase"><?php echo $user['User']['email']?></span>)</td></tr>
-  <?php endforeach ?>
-       </table>
-      </div>
-      <h4 class="sub-header">Resumen</h4>
-      <table class="table table-forum table-striped text-small">
-        <tr>
-          <td><small>Fecha / hora de envío</small></td>
-          <th><span class="date-value"><?= $schedule['NewsletterSchedule']['schedule_date'] ?? date('d/m/Y')?></span> - <span class="hour-value"><?= $schedule['NewsletterSchedule']['schedule_hour'] ?? date('H')?>hs</span></th>
-        </tr>
-        <tr>
-          <td><small>Periodo de evaluación</small></td>
-          <th><span class="min_date-value"><?= $schedule['NewsletterSchedule']['filter']->date_min?></span> - <span class="max_date-value"><?= $schedule['NewsletterSchedule']['filter']->date_max?></span></th>
-        </tr>
-        <tr>
-          <td><small>Mínimo de compra</small></td>
-          <th><span class="min_sale-value"><?= $schedule['NewsletterSchedule']['filter']->sale_min?></span></th>
-        </tr>
-        <tr>
-          <td><small>Productos seleccionados</small></td>
-          <th>
-            <span class="product-count">
-              <?= count($schedule_products)?>
-            </span> 
-          </th>
-        </tr>
-        <tr>
-          <td><small>Cuentas seleccionadas</small></td>
-          <th>
-            <span class="user-count"><?= count($schedule_users)?></span>
-          </th>
-        </tr>
-      </table>
-<?php if(!empty($schedule['NewsletterSchedule']['id'])):?>         
-      <h4 class="sub-header">Filtros por compra</h4>
-      <p>Establece fecha y monto para filtrar por cuenta de acuerdo al historial de compras</p>
-      <div class="control-group">
-        <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
-        <div class="controls d-flex flex-center gap-05">
-          <input type="text" name="data[filter][date_min]" class="form-control advanced-filter datepicker" data-name="min_date" placeholder="Fecha mínima" value="<?=$schedule['NewsletterSchedule']['filter']->date_min ?? ''?>"/>
-          <input type="text" name="data[filter][date_max]" class="form-control advanced-filter datepicker" data-name="max_date" placeholder="Fecha máxima" value="<?=$schedule['NewsletterSchedule']['filter']->date_max ?? ''?>"/>
-        </div>
-      </div>
-      <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
-      <div class="controls-group">
-        <label class="control-label" for="minSale">Mínimo de compra</label>
-        <input type="range" class="advanced-filter" data-name="min_sale" name="data[filter][min_sale]" step="10" min="10" max="10000" value="<?=$schedule['NewsletterSchedule']['filter']->min_sale?>">
-      </div>
-      <h4 class="sub-header">Filtro por fecha de nacimiento</h4>
-      <p>Establece fecha para filtrar por cuenta de acuerdo fecha de nacimiento</p>
-      <div class="control-group">
-        <label class="control-label" for="myRange2">Día de nacimiento (Desde / Hasta)</label>
-        <div class="controls d-flex flex-center gap-05">
-          <input type="text" id="minDob" name="data[filter][dob_min]" class="form-control datepicker" data-format="dd/mm" data-name="mindob-value" placeholder="Día de nacimiento mínimo" value="<?=$schedule['NewsletterSchedule']['filter']->dob_min ?? ''?>"/>
-          <input type="text" id="maxDob" name="data[filter][dob_max]" class="form-control datepicker" data-format="dd/mm" data-name="maxdob-value" placeholder="Día de nacimiento max" value="<?=$schedule['NewsletterSchedule']['filter']->dob_max ?? ''?>"/>
-        </div>
-      </div>
-<?php endif ?>
     </div>
     <div class="col-md-6">
       <div class="form-box bg-light">

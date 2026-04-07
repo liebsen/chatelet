@@ -95,7 +95,7 @@
     </div>
     <div class="col-md-6">
       <div class="form-box bg-success">
-      	<h4 class="sub-header">Agrega productos</h4>
+      	<h4 class="sub-header">Catálogo</h4>
   <?php if(empty($newsletter['Newsletter']['id'])): ?>
         <p>Podrás agregar productos una vez que guardes la nueva plantilla.</p>
   <?php else: ?>

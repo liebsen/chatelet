@@ -4,7 +4,7 @@
 ?>
 	<div class="block">
 		<div class="block-content">
-	    <div class="custom-tabs block-tabs">
+	    <div class="block-tabs">
 <?php if($viewComponent != 'index'):?>
 <?php echo $this->element('admin/menu'); ?>
 <?php endif ?>

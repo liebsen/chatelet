@@ -43,6 +43,7 @@ class NewsletterComponent extends Component {
   public function index($value=''){
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
+    $NewsletterList = ClassRegistry::init('NewsletterList');
     $templates_count = $Newsletter->find('count', array(
       'conditions' => array(
         'enabled' => 1
@@ -55,10 +56,17 @@ class NewsletterComponent extends Component {
       ),
     ));
 
+    $lists_count = $NewsletterList->find('count', array(
+      'conditions' => array(
+        'enabled' => 1
+      ),
+    ));
+
     $this->controller->set('counts', 
       array(
         'templates' => $templates_count,
-        'schedules' => $schedules_count
+        'schedules' => $schedules_count,
+        'lists' => $lists_count,
       )
     );
   }
@@ -124,6 +132,7 @@ class NewsletterComponent extends Component {
           'fields' => array('NewsletterProduct.*, Product.*'),
           'conditions' => array( 
             'NewsletterProduct.newsletter_id' => $newsletter['Newsletter']['id'],
+            'Product.id IS NOT NULL',
           ),
           'order' => array( 'NewsletterProduct.id DESC' )
         ));
@@ -197,7 +206,10 @@ class NewsletterComponent extends Component {
             ),
           ),
           'fields' => array('NewsletterProduct.*, Product.*'),
-          'conditions' => array( 'NewsletterProduct.newsletter_id' => $id),
+          'conditions' => array( 
+            'NewsletterProduct.newsletter_id' => $id,
+            'Product.id IS NOT NULL',
+          ),
           // 'order' => array( 'Newsletter.id DESC' )
         ));
       }
@@ -250,7 +262,10 @@ class NewsletterComponent extends Component {
             ),
           ),
           'fields' => array('NewsletterProduct.*, Product.*'),
-          'conditions' => array( 'NewsletterProduct.newsletter_id' => $schedule['Newsletter']['id']),
+          'conditions' => array( 
+            'NewsletterProduct.newsletter_id' => $schedule['Newsletter']['id'],
+            'Product.id IS NOT NULL',
+          ),
           'order' => array( 'NewsletterProduct.id DESC' )
         ));
 
@@ -264,7 +279,10 @@ class NewsletterComponent extends Component {
             ),
           ),
           'fields' => array('NewsletterUser.*, User.*'),
-          'conditions' => array( 'NewsletterUser.schedule_id' => $schedule['NewsletterSchedule']['id']),
+          'conditions' => array( 
+            'NewsletterUser.list_id' => $schedule['NewsletterSchedule']['list_id'],
+            'User.id IS NOT NULL',
+          ),
           'order' => array( 'NewsletterUser.created DESC' )
         ));
 
@@ -397,7 +415,10 @@ class NewsletterComponent extends Component {
             ),
           ),
           'fields' => array('Product.*'),
-          'conditions' => array( 'NewsletterProduct.newsletter_id' => $schedule['Newsletter']['id']),
+          'conditions' => array( 
+            'NewsletterProduct.newsletter_id' => $schedule['Newsletter']['id'],
+            'Product.id IS NOT NULL',
+          ),
           // 'order' => array( 'Newsletter.id DESC' )
         ));
 
@@ -411,7 +432,10 @@ class NewsletterComponent extends Component {
             ),
           ),
           'fields' => array('User.id, User.email, User.name, User.surname, User.city, User.province, User.birthday, User.created'),
-          'conditions' => array( 'NewsletterUser.schedule_id' => $schedule['NewsletterSchedule']['id']),
+          'conditions' => array( 
+            'NewsletterUser.schedule_id' => $schedule['NewsletterSchedule']['id'],
+            'User.id IS NOT NULL',
+          ),
           // 'order' => array( 'Newsletter.id DESC' )
         ));
         $schedule['NewsletterSchedule']['filter'] = json_decode($schedule['NewsletterSchedule']['filter']);
@@ -430,7 +454,8 @@ class NewsletterComponent extends Component {
           'fields' => array('Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.created, User.name, User.surname'),
           'conditions' => array(
             // 'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")),
-            'Newsletter.enabled' => '1'
+            'Newsletter.enabled' => '1',
+            'User.id IS NOT NULL',
           ),
           'order' => array( 'Newsletter.modified DESC' )
         )));
@@ -442,4 +467,94 @@ class NewsletterComponent extends Component {
       echo $e->getMessage();
     }
   }
+
+  public function lists() {
+    $NewsletterList = ClassRegistry::init('NewsletterList');
+    $NewsletterUser = ClassRegistry::init('NewsletterUser');
+    $response = array();
+    $conditions = array('NewsletterList.id IS NOT NULL',); // array('NewsletterSchedule.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")));
+    if(empty($_GET['extended'])) {
+      $conditions['NewsletterList.enabled'] = 1;
+    }
+
+    try {
+      $lists = $NewsletterList->find('all', array(
+        'joins' => array(
+          array(
+            'table' => 'newsletter_users',
+            'alias' => 'NewsletterUser',
+            'type' => 'LEFT',
+            'conditions' => array('NewsletterList.id = NewsletterUser.list_id'),
+            //'fields' => array('NewsletterUser.id'),
+          ),
+        ),        
+        'fields' => array('NewsletterList.id, NewsletterList.name, NewsletterList.modified, COUNT(NewsletterUser.id) as total'),
+        'conditions' => $conditions,
+        'group' => array('NewsletterList.id, NewsletterList.name, NewsletterList.modified'),
+        'order' => array( 'NewsletterList.modified DESC' )
+      ));
+
+      $this->controller->set('lists', $lists);
+    } catch (\Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function lists_edit($id) {
+    $NewsletterList = ClassRegistry::init('NewsletterList');
+    $NewsletterUser = ClassRegistry::init('NewsletterUser');
+    $schedule = array();
+    $schedule_users = array();
+    $schedule_products = array();
+    
+    try {
+      if($this->controller->request->is('post')){
+        $data = $this->controller->request->data;
+        $data['id'] = $data['id'] ?? NULL;
+        $data['filter'] = json_encode($data['filter']);
+        $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
+
+        $redirect = array( 'action' => 'newsletters', 'lists' );
+
+        $NewsletterList->save($data);
+
+        if(empty($data['id']) || isset($data['x_coord']) && $data['x_coord'] == '1') {
+          $redirect = array( 'action' => 'newsletters', 'lists', 'edit', $NewsletterList->id);
+        }
+
+        return $this->controller->redirect($redirect);
+      }
+
+
+      if(!empty($id)) {
+
+        $list = $NewsletterList->find('first', array(
+          'conditions' => array( 'id' => $id),
+          'order' => array( 'modified DESC' )
+        ));
+
+        $list_users = $NewsletterUser->find('all', array(
+          'joins' => array(
+            array(
+              'table' => 'users',
+              'alias' => 'User',
+              'type' => 'LEFT',
+              'conditions' => array( 'User.id = NewsletterUser.user_id' )
+            ),
+          ),
+          'fields' => array('User.id, User.email, User.name, User.surname, User.city, User.province, User.birthday, User.created'),
+          'conditions' => array( 
+            'NewsletterUser.list_id' => $id,
+            'User.id IS NOT NULL',
+          ),
+          // 'order' => array( 'Newsletter.id DESC' )
+        ));
+        $this->controller->set('list', $list);
+        $this->controller->set('list_users', $list_users);
+      } 
+      
+    } catch (\Exception $e) {
+      echo $e->getMessage();
+    }
+  }  
 }

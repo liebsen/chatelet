@@ -2055,8 +2055,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Plantillas' => array(
 				'id' => 'templates',
-				'icon' 		=> 'gi gi-envelope',
+				'icon' 		=> 'gi gi-file',
 				'url'		=> '/admin/newsletters/templates',
+			),
+			'Listas' => array(
+				'id' => 'lists',
+				'icon' 		=> 'gi gi-group',
+				'url'		=> '/admin/newsletters/lists',
 			),
 			'Campañas' => array(
 				'id' => 'schedules',
@@ -2083,13 +2088,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$this->Newsletter->{$controlComponent}($id);
 		}
 
-		if($action == 'edit'){
+		/*if($action == 'edit'){
       $navs[($pane == 'templates' ? (empty($id) ? 'Nueva' : 'Editar') . ' Plantilla ' : 'Programar Campaña ')] = array(
         'icon'    => 'gi gi-'.($pane == 'templates' ? 'envelope' : 'clock'),
         'url'   => '/admin/newsletters/'.$pane.'/edit/'.$id,
         'enabled' => 1
       );
-		}
+		}*/
 
 		// $this->set('action', $action);		
 		$this->set('pane', $pane);
@@ -2460,30 +2465,48 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');
     if ($this->request->is('POST')) {
-    	$data = $this->request->data;    	
-    	foreach($data as $i => $item) {
-	    	$model = ClassRegistry::init($item['model']);
-	    	$ids = $model->find('all', array(
-	    		'conditions' => array(
+    	$data = $this->request->data;
+    	if($data[0]['key'] == 'all') {
+    		$model = ClassRegistry::init($data[0]['model']);
+    		$this->loadModel('User');
+    		// assume user for now
+    		foreach($this->User->find('all') as $item) {
+		      $model->save(
+		      	array(
+		      		'id' => null,
+		      		$data[0]['type'] . '_id' => $item['User']['id'],
+		      		$data[0]['source'] . '_id' => $data[0]['parentId'],
+		      	)
+		      );
+    		}
+    	} else {
+	    	foreach($data as $i => $item) {
+		    	$model = ClassRegistry::init($item['model']);
+		    	$conditions = array(
 	    			$item['source'] . '_id' => $item['parentId'],
 	    			$item['type'] . '_id' => $item['id'],
-	    		), 
-	    		'fields' => ['id']
-	    	));
-				$ids = array_map(function($e) use ($item) {
-					return $e[$item['model']]['id'];
-				},$ids);    
-				if(count($ids)) {	
-		    	$model->delete($ids);
+	    		);	    		
+		    	$ids = $model->find('all', array(
+		    		'conditions' => $conditions, 
+		    		'fields' => ['id']
+		    	));
+					$ids = array_map(function($e) use ($item) {
+						return $e[$item['model']]['id'];
+					},$ids);    
+
+					if(count($ids)) {	
+			    	$model->delete($ids);
+			    }
+
+		      $model->save(
+		      	array(
+		      		'id' => null,
+		      		$item['type'] . '_id' => $item['id'],
+		      		$item['source'] . '_id' => $item['parentId'],
+		      	)
+		      );
 		    }
-	      $model->save(
-	      	array(
-	      		'id' => null,
-	      		$item['type'] . '_id' => $item['id'],
-	      		$item['source'] . '_id' => $item['parentId'],
-	      	)
-	      );
-	    }
+		  }
       return json_encode(array(
       	'success' => true, 
       	//'data' => $result
