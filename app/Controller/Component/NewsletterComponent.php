@@ -478,12 +478,12 @@ class NewsletterComponent extends Component {
             'conditions' => array( 'NewsletterList.id = NewsletterUser.list_id' )
           ),
         ),
-        'fields' => array('NewsletterList.id, NewsletterList.name, NewsletterList.created, COUNT(NewsletterUser.id) AS total'),
+        'fields' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text, NewsletterList.created, COUNT(NewsletterUser.id) AS total'),
         'conditions' => array( 
           'NewsletterList.enabled' => 1,
           'NewsletterUser.id IS NOT NULL',
         ),
-        'group' => array('NewsletterList.id, NewsletterList.name, NewsletterList.created'),
+        'group' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text, NewsletterList.created'),
         'order' => array( 'NewsletterList.modified DESC' )
       )));
 
@@ -515,9 +515,9 @@ class NewsletterComponent extends Component {
             //'fields' => array('NewsletterUser.id'),
           ),
         ),        
-        'fields' => array('NewsletterList.id, NewsletterList.name, NewsletterList.modified, COUNT(NewsletterUser.id) as total'),
+        'fields' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text, NewsletterList.modified, COUNT(NewsletterUser.id) as total'),
         'conditions' => $conditions,
-        'group' => array('NewsletterList.id, NewsletterList.name, NewsletterList.modified'),
+        'group' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text, NewsletterList.modified'),
         'order' => array( 'NewsletterList.modified DESC' )
       ));
 

@@ -644,6 +644,10 @@ body {
         border-top-right-radius: 3rem;
         border-bottom-right-radius: 3rem;
     }
+    .side-scrollable {
+        position: absolute;
+        top: 0;
+    }    
     #pre-page-content, #page-content, #page-content + footer {
         /* border-left: 1px solid #333;*/
         margin: 0 0 0 220px;
@@ -3638,12 +3642,12 @@ a.thumbnail-borderless,
     }
 
 
-    #page-sidebar.navbar-collapse.collapse {
+    /*#page-sidebar.navbar-collapse.collapse {
         display: none !important;
         height: 0 !important;
         overflow-y: hidden !important;
     }
-    /*#page-sidebar.navbar-collapse.collapse.in {
+    #page-sidebar.navbar-collapse.collapse.in {
         display: block !important;
         height: auto !important;
     }

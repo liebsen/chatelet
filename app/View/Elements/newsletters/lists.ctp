@@ -18,13 +18,13 @@
 					<a 
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $list['NewsletterList']['id']))?>" 
 						data-toggle="tooltip" 
-						title="Editar lista">
+						title="<?=$list['NewsletterList']['text']?>">
 					<?=$list['NewsletterList']['name']?>
 					</a>
 				</td>
 				<td>
-					<span class="badge badge-<?=$list[0]['total'] ? 'success' : 'light'?> is-rounded">
-						<?=$list[0]['total']?>
+					<span class="badge badge-<?=!empty($list[0]['total']) ? 'success' : 'danger'?> is-rounded">
+						<?=!empty($list[0]['total']) ? $list[0]['total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
 					</span>
 				</td>
 				<td>
