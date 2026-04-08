@@ -65,15 +65,13 @@ function setRelation(action, data, target, type, cb) {
   });    
 }
 
-function updateAddAll(type, target){
-  updateRelationCount(type)
-  $(target).text("Agregado")
-}
-
-function updateRelationCount(type){
-  const count = $(`.${type}-container .label.is-enabled`).length
-  if(!count) return
+function updateRelationCount(type, target, count){
+  const count2 = $(`.${type}-container .label.is-enabled`).length
+  if(!count&&!count2) return
   $(`.${type}-count`).text(count)
+  if(target) {
+    $(target).remove()
+  }
 }
 
 function searchRelations(data) { 
@@ -115,7 +113,7 @@ function searchRelations(data) {
           $(`.${data.type}-container`).append(`<span class="label relation-item ${data.type == 'user' ? 'text-lowercase' : ''} is-clickable" data-parent-id="${parentId}" data-id="${item.id}" data-type="${data.type}" data-source="${curr.source}" data-model="${curr.model}">${item[curr.field]}</span>`);
         })
         if(typeof data.cb == 'function') {
-          data.cb(data.type, filter.length)
+          data.cb(data.type, null, filter.length)
         }
         $('.relations-action-add').removeClass('d-none')
         $('.relations-action-remove').addClass('d-none')
@@ -152,7 +150,7 @@ $(document).on('click', '.relations-action-add', function(e){
     })
   }
   $(this).text('Agregando ...')
-  setRelation('add', data, target, tData.type, updateAddAll)
+  setRelation('add', data, target, tData.type, updateRelationCount)
 })
 
 $(document).on('click', '.relations-action-remove', function(e){

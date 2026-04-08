@@ -7,7 +7,8 @@
   echo $this->Form->create(null, array(
   'class' => 'w-100',
   'id' => 'list_edit',
-)); ?>
+)); 
+?>
   <input type="hidden" name="x_coord" id="x_coord">
   <input type="hidden" name="y_coord" id="y_coord">
   <input type="hidden" name="redirect" value="/admin/newsletters/lists"/>
@@ -63,7 +64,7 @@
       </div>
       <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
       <div class="controls-group">
-        <label class="control-label" for="minSale">Mínimo de compra</label>
+        <label class="control-label" for="minSale">Mínimo de compra </label>
         <input type="range" class="advanced-filter" data-name="min_sale" name="data[filter][min_sale]" step="10" min="10" max="10000" value="<?=$list['NewsletterList']['filter']->min_sale?>">
       </div>
       <h4 class="sub-header">Filtro por fecha de nacimiento</h4>
@@ -87,7 +88,7 @@
         </tr>
         <tr>
           <td><small>Mínimo de compra</small></td>
-          <th><span class="min_sale-value"><?= $list['NewsletterList']['filter']->sale_min?></span></th>
+          <th><span class="min_sale-value"><?=\price_format((int) $list['NewsletterList']['filter']->min_sale * 100)?></span></th>
         </tr>
         <tr>
           <td><small>Cuentas seleccionadas</small></td>
