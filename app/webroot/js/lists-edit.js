@@ -93,7 +93,7 @@ function updateUsers(){
       }
       if(filter.length){
         $('.relations-count').text(filter.length)
-        $('.relations-action-add').show()
+        $('.relations-action-add').removeClass('d-none')
         $.each(filter, function(key, item) {
           $('.user-container').append('<span class="label user-item text-lowercase is-clickable" data-parent-id="'+relation.parentId+'" data-id="'+item.id+'" data-type="'+relation.type+'" data-source="'+relation.source+'" data-model="'+relation.model+'">'+item.email+'</span>');
         })
@@ -106,8 +106,8 @@ function updateUsers(){
         });        
       }
     },
-    error: function (errormessage) {
-      console.log(errormessage)
+    error: function (xhr) {
+      console.log("Error:"+xhr.responseText)
       //oPrnt.find("ul.result").html('<li><b>No Results</b></li>');
     }
   }).then(() => {

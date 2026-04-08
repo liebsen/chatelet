@@ -629,16 +629,14 @@ class NewsletterComponent extends Component {
       }
 
       if(!empty($id)) {
-        $this->controller->set('list', $NewsletterList->find('first', array(
+        $list = $NewsletterList->find('first', array(
           'conditions' => array( 'NewsletterList.id' => $id),
           'order' => array( 'NewsletterList.modified DESC' )
-        )));
+        ));
 
-        \d("where", array( 
-            'NewsletterUser.list_id' => $id,
-            'User.id IS NOT NULL',
-          ));
+        $list['NewsletterList']['filter'] = json_decode($list['NewsletterList']['filter']);
 
+        $this->controller->set('list', $list);
         $this->controller->set('list_users', $NewsletterUser->find('all', array(
           'joins' => array(
             array(
