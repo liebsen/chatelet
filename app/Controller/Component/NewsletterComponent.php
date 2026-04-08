@@ -247,45 +247,48 @@ class NewsletterComponent extends Component {
       $schedules = $NewsletterSchedule->find('all', array(
         'joins' => array(
           array(
-            'table' => 'newsletters',
-            'alias' => 'Newsletter',
-            'type' => 'LEFT',
-            'conditions' => array('Newsletter.id = NewsletterSchedule.newsletter_id')
-          ),
-          array(
             'table' => 'newsletter_lists',
             'alias' => 'NewsletterList',
             'type' => 'LEFT',
             'conditions' => array('NewsletterList.id = NewsletterSchedule.list_id')
           ),
-          array(
+          /*array(
             'table' => 'newsletter_users',
             'alias' => 'NewsletterUser',
             'type' => 'LEFT',
             'conditions' => array(
               'NewsletterUser.list_id = NewsletterList.id',
-              'NewsletterUser.id IS NOT NULL'
             )
-          ),
+          ),*/
+          array(
+            'table' => 'newsletters',
+            'alias' => 'Newsletter',
+            'type' => 'LEFT',
+            'conditions' => array('Newsletter.id = NewsletterSchedule.newsletter_id')
+          ),          
           array(
             'table' => 'newsletter_products',
             'alias' => 'NewsletterProduct',
             'type' => 'LEFT',
             'conditions' => array(
               'NewsletterProduct.newsletter_id = Newsletter.id',
-              'NewsletterProduct.id IS NOT NULL'
             )
           ),
         ),        
-        'fields' => array('Newsletter.id, Newsletter.name, Newsletter.title, NewsletterList.id, NewsletterList.name, NewsletterSchedule.id, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, NewsletterSchedule.send_push, NewsletterSchedule.send_email, COUNT(NewsletterList.id) as list_total, COUNT(NewsletterProduct.id) as prod_total'),
+        'fields' => array(
+          'NewsletterSchedule.id, Newsletter.id, NewsletterList.id, Newsletter.name, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, NewsletterSchedule.send_push, NewsletterSchedule.send_email, COUNT(distinct NewsletterProduct.id) as prod_total'
+        ),
         'conditions' => $conditions,
-        'group' => array('Newsletter.id, Newsletter.name, Newsletter.title, NewsletterList.id, NewsletterList.name, NewsletterSchedule.id, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, NewsletterSchedule.send_push, NewsletterSchedule.send_email'),
-        'order' => array( 'NewsletterSchedule.schedule_date DESC, NewsletterSchedule.schedule_hour DESC' )
+        'group' => array(
+          'NewsletterSchedule.id, Newsletter.id, NewsletterList.id, Newsletter.name, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, NewsletterSchedule.send_push, NewsletterSchedule.send_email'
+        ),
+        'order' => array( 
+          'NewsletterSchedule.schedule_date DESC, NewsletterSchedule.schedule_hour DESC' 
+        )
       ));
 
+      // \d("schedules",$schedules);
       foreach($schedules as $i => $schedule) {
-
-        \d("schedule",$schedule);
         $push_total = 0;
         $email_total = 0;
         $push_sent = 0;
@@ -377,6 +380,7 @@ class NewsletterComponent extends Component {
 
         $schedules[$i]['status'] = $status;
         $schedules[$i]['rowclass'] = $rowclass;
+        $schedules[$i][0]['list_total'] = count($users);
         // $schedules[$i]['Users'] = $users;
         // $schedules[$i]['Products'] = $products;
       }

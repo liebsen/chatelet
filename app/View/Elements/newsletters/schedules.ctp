@@ -5,11 +5,12 @@
 	<table id="example-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Campaña'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Lista'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Catálogo'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Audiencia'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>     		
      		<th class="hidden-phone hidden-tablet"><?php echo __('Progreso'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Fecha/Hora'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -22,15 +23,15 @@
 					<a 
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
 						data-toggle="tooltip" 
-						title="Enviar campaña">
-					<?=$schedule['Newsletter']['title']?> (<?=$schedule['Newsletter']['name']?>)
+						title="Editar campaña">
+					<?=$schedule['Newsletter']['name']?>/<?=$schedule['NewsletterList']['name']?>
 					</a>
 				</td>
 				<td>
-					<span class="badge badge-success"><?=$schedule['NewsletterList']['name']?></span>
+					<span class="badge badge-success"><?=$schedule['Newsletter']['name']?></span>
 				</td>
 				<td>
-					<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?></span>
+					<span class="badge badge-success"><?=$schedule['NewsletterList']['name']?></span>
 				</td>
 				<td>
 					<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?> is-rounded">
@@ -43,6 +44,9 @@
 						</span>
 				</td>
 				<td>
+					<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?></span>
+				</td>
+				<td>
 					<span class="badge badge-success is-rounded" title="Emails enviados">
 						<i class="gi gi-envelope"></i> <?=$schedule['stats']['email_sent']?> / <?=$schedule['stats']['email_total']?>
 					</span> 
@@ -51,9 +55,9 @@
 					</span>
 				</td>
 				<td>
-					<span class="badge badge-danger is-rounded" title="Fecha / Hora de ejecución">
+					<span class="badge badge-<?=strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00') > time() ? 'warning' : 'success'?> is-rounded" title="Fecha / Hora de ejecución">
 					<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00', '%d/%m/%Y %H:00') ?> </span> 
-					<span class="badge badge-danger is-rounded" title="Fecha / Hora de ejecución">
+					<span class="badge is-rounded" title="Fecha / Hora de ejecución">
 					<?=\readable_time_ago(strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')) ?> </span>
 				</td>
 				<td> 
