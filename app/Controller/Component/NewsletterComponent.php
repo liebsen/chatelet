@@ -258,18 +258,39 @@ class NewsletterComponent extends Component {
             'type' => 'LEFT',
             'conditions' => array('NewsletterList.id = NewsletterSchedule.list_id')
           ),
+          array(
+            'table' => 'newsletter_users',
+            'alias' => 'NewsletterUser',
+            'type' => 'LEFT',
+            'conditions' => array(
+              'NewsletterUser.list_id = NewsletterList.id',
+              'NewsletterUser.id IS NOT NULL'
+            )
+          ),
+          array(
+            'table' => 'newsletter_products',
+            'alias' => 'NewsletterProduct',
+            'type' => 'LEFT',
+            'conditions' => array(
+              'NewsletterProduct.newsletter_id = Newsletter.id',
+              'NewsletterProduct.id IS NOT NULL'
+            )
+          ),
         ),        
-        'fields' => array('Newsletter.*, NewsletterList.*, NewsletterSchedule.*'),
+        'fields' => array('Newsletter.id, Newsletter.name, Newsletter.title, NewsletterList.id, NewsletterList.name, NewsletterSchedule.id, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, NewsletterSchedule.send_push, NewsletterSchedule.send_email, COUNT(NewsletterList.id) as list_total, COUNT(NewsletterProduct.id) as prod_total'),
         'conditions' => $conditions,
+        'group' => array('Newsletter.id, Newsletter.name, Newsletter.title, NewsletterList.id, NewsletterList.name, NewsletterSchedule.id, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, NewsletterSchedule.send_push, NewsletterSchedule.send_email'),
         'order' => array( 'NewsletterSchedule.schedule_date DESC, NewsletterSchedule.schedule_hour DESC' )
       ));
 
       foreach($schedules as $i => $schedule) {
+
+        \d("schedule",$schedule);
         $push_total = 0;
         $email_total = 0;
         $push_sent = 0;
         $email_sent = 0;
-        $products = $NewsletterProduct->find('all', array(
+        /*$products = $NewsletterProduct->find('all', array(
           'joins' => array(
             array(
               'table' => 'products',
@@ -284,7 +305,7 @@ class NewsletterComponent extends Component {
             'Product.id IS NOT NULL',
           ),
           'order' => array( 'NewsletterProduct.id DESC' )
-        ));
+        ));*/
 
         $users = $NewsletterUser->find('all', array(
           'joins' => array(
@@ -297,7 +318,7 @@ class NewsletterComponent extends Component {
           ),
           'fields' => array('NewsletterUser.*, User.*'),
           'conditions' => array( 
-            'NewsletterUser.list_id' => $schedule['NewsletterSchedule']['list_id'],
+            'NewsletterUser.list_id' => $schedule['NewsletterList']['id'],
             'User.id IS NOT NULL',
           ),
           'order' => array( 'NewsletterUser.created DESC' )
@@ -356,12 +377,12 @@ class NewsletterComponent extends Component {
 
         $schedules[$i]['status'] = $status;
         $schedules[$i]['rowclass'] = $rowclass;
-        $schedules[$i]['Users'] = $users;
-        $schedules[$i]['Products'] = $products;
+        // $schedules[$i]['Users'] = $users;
+        // $schedules[$i]['Products'] = $products;
       }
 
-      $this->controller->set('user_total', $user_total);
-      $this->controller->set('prod_total', $prod_total);
+      //$this->controller->set('user_total', $user_total);
+      //$this->controller->set('prod_total', $prod_total);
       $this->controller->set('schedules', $schedules);
     } catch (\Exception $e) {
       echo $e->getMessage();

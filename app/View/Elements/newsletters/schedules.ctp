@@ -20,9 +20,9 @@
 			<tr>
 				<td>
 					<a 
-						href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
+						href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
 						data-toggle="tooltip" 
-						title="Editar plantilla">
+						title="Enviar campaña">
 					<?=$schedule['Newsletter']['title']?> (<?=$schedule['Newsletter']['name']?>)
 					</a>
 				</td>
@@ -33,13 +33,13 @@
 					<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?></span>
 				</td>
 				<td>
-					<span class="badge badge-<?=count($schedule['Products']) ? 'success' : 'light'?> is-rounded">
-						<?=!empty($schedule['Products']) ? count($schedule['Products']) : 'Estático'?>
+					<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?> is-rounded">
+						<?=!empty($schedule[0]['prod_total']) ? $schedule[0]['prod_total'] : 'Estático'?>
 					</span>
 				</td>
 				<td>
-					<span class="badge badge-<?=count($schedule['Users']) ? 'info' : 'danger'?> is-rounded">
-						<?=!empty($schedule['Users']) ? count($schedule['Users']) : '<i class="fa fa-warning"></i> Lista vacía'?>
+					<span class="badge badge-<?=!empty($schedule[0]['list_total']) ? 'info' : 'danger'?> is-rounded">
+						<?=!empty($schedule[0]['list_total']) ? $schedule[0]['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
 						</span>
 				</td>
 				<td>
@@ -51,6 +51,8 @@
 					</span>
 				</td>
 				<td>
+					<span class="badge badge-danger is-rounded" title="Fecha / Hora de ejecución">
+					<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00', '%d/%m/%Y %H:00') ?> </span> 
 					<span class="badge badge-danger is-rounded" title="Fecha / Hora de ejecución">
 					<?=\readable_time_ago(strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')) ?> </span>
 				</td>
@@ -78,19 +80,27 @@
 							<i class="gi gi-edit"></i>
 						</a-->
 						<a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
 							data-toggle="tooltip" 
-							title="Programar envío" 
-							class="btn btn-success" 
+							title="Editar plantilla" 
+							class="btn btn-warning" 
 						>
-							<i class="gi gi-edit"></i>
+							<i class="gi gi-picture"></i>
 						</a>
+						<a 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
+							data-toggle="tooltip" 
+							title="Editar lista" 
+							class="btn btn-info" 
+						>
+							<i class="gi gi-group"></i>
+						</a>						
 						<!--a 
 							href="javascript:void(0)" 
 							title="Editar email" 
 							class="btn btn-warning btn-stats"
 							data-stats='<?=json_encode($schedule['stats'])?>'
-						>
+						>	
 							<i class="gi gi-charts"></i>
 						</a-->						
 					</div>
