@@ -63,7 +63,7 @@
 						title="Programar envío" 
 						class="btn btn-success" 
 					>
-						<i class="gi gi-edit"></i>
+						<i class="gi gi-send"></i>
 					</a>
 
 					<!--a 

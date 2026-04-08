@@ -53,15 +53,24 @@
 							>
 							<i class="gi gi-edit"></i>
 						</a-->
-						<!--a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $list['NewsletterSchedule']['id']))?>" 
+						<a 
+							href="<?=$this->Html->url(
+								array(
+									'action' => 'newsletters', 
+									'schedules', 
+									'edit', 
+									'?' => array(
+										'newsletter_id' => $list['Newsletter']['id']
+									)
+								)
+							)?>"
 							data-toggle="tooltip" 
 							title="Programar envío" 
 							class="btn btn-success" 
 						>
-							<i class="gi gi-edit"></i>
+							<i class="gi gi-send"></i>
 						</a>
-						<a 
+						<!--a 
 							href="javascript:void(0)" 
 							title="Editar email" 
 							class="btn btn-warning btn-stats"

@@ -67,7 +67,7 @@ function setRelation(action, data, target, type, cb) {
 
 function updateAddAll(type, target){
   updateRelationCount(type)
-  $(target).text("Se agregó todos")
+  $(target).text("Agregado")
 }
 
 function updateRelationCount(type){
@@ -142,15 +142,17 @@ $(document).on('click', '.relations-action-add', function(e){
   const tData = $(e.target).data() 
   if(!tData.type) return
   var data = []
+  var target = null
   if(tData.key=='all'){
+    target = e.target
     data.push(tData)
   } else {
     $(`.${tData.type}-container > .label:not(.is-enabled)`).each(function(i,e){
       data.push($(e).data())
     })
   }
-  setRelation('add', data, e.target, tData.type, updateAddAll)
-  $(this).text('Agregando todos ...')
+  $(this).text('Agregando ...')
+  setRelation('add', data, target, tData.type, updateAddAll)
 })
 
 $(document).on('click', '.relations-action-remove', function(e){
