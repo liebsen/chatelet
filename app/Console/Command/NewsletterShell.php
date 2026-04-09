@@ -150,24 +150,21 @@ class NewsletterShell extends AppShell {
       ));
 
       // parse body
-
-    var_dump(array(
-      'body(1)' => $newsletter['Newsletter']['body']
-    ));
     
       $newsletter['Newsletter']['body'] = !empty($newsletter['Newsletter']['body']) ? 
         \parse_template(
-          strip_tags(html_entity_decode($newsletter['Newsletter']['body'])), array(
+          $newsletter['Newsletter']['body'], array(
             'name' => str_replace("\n",'',$newsletter['User']['name']),
             'surname' => str_replace("\n",'',$newsletter['User']['surname']),
             'birthday' => str_replace("\n",'',$newsletter['User']['birthday']),
-            //'total' => str_replace(',00','',number_format($cart_totals['grand_total'], 0, ',', '.'))
           )
-        ) : $newsletter['Newsletter']['body'];
+        ) : 
+        $newsletter['Newsletter']['body'];
 
-    var_dump(array(
-      'body(2)' => $newsletter['Newsletter']['body']
-    ));
+      // strip_tags(html_entity_decode(
+      var_dump(array(
+        'body(2)' => $newsletter['Newsletter']['body']
+      ));
 
       if($newsletter['NewsletterSchedule']['send_email'] == '1') {
 
