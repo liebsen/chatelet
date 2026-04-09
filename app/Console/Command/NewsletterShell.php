@@ -319,6 +319,10 @@ class NewsletterShell extends AppShell {
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/'
     );
 
+    var_dump(array(
+      'viewVars' => $viewVars
+    ));
+    
     if($this->simulate) {
       $content = $email->template('newsletter', 'default')
           ->emailFormat('html')
