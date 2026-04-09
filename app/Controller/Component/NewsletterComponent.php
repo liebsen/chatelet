@@ -565,7 +565,7 @@ class NewsletterComponent extends Component {
         'conditions' => array(
           // 'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")),
           'Newsletter.enabled' => '1',
-          'NewsletterProduct.id IS NOT NULL',
+          //'NewsletterProduct.id IS NOT NULL',
         ),
         'group' => array('Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.created'),
         'order' => array( 'Newsletter.modified DESC' )
