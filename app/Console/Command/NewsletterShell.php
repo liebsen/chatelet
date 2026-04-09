@@ -150,6 +150,11 @@ class NewsletterShell extends AppShell {
       ));
 
       // parse body
+
+    var_dump(array(
+      'body(1)' => $newsletter['Newsletter']['body']
+    ));
+    
       $newsletter['Newsletter']['body'] = !empty($newsletter['Newsletter']['body']) ? 
         \parse_template(
           strip_tags(html_entity_decode($newsletter['Newsletter']['body'])), array(
@@ -159,6 +164,10 @@ class NewsletterShell extends AppShell {
             //'total' => str_replace(',00','',number_format($cart_totals['grand_total'], 0, ',', '.'))
           )
         ) : $newsletter['Newsletter']['body'];
+
+    var_dump(array(
+      'body(2)' => $newsletter['Newsletter']['body']
+    ));
 
       if($newsletter['NewsletterSchedule']['send_email'] == '1') {
 
@@ -319,10 +328,6 @@ class NewsletterShell extends AppShell {
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/'
     );
 
-    var_dump(array(
-      'viewVars' => $viewVars
-    ));
-    
     if($this->simulate) {
       $content = $email->template('newsletter', 'default')
           ->emailFormat('html')
