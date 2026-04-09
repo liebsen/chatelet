@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6">
+    <!--div class="col-md-6">
       <div class="control-group">
         <label class="control-label" for="name">Código</label>
         <div class="controls">
@@ -47,8 +47,8 @@
         </div>
         <small class="text-muted">Es el código que verán solo los gestores</small>
       </div>
-    </div>
-    <div class="col-md-6">
+    </div-->
+    <div class="col-md-12">
       <div class="control-group">
         <label class="control-label" for="title">Título</label>
         <div class="controls">

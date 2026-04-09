@@ -1960,8 +1960,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$notification_templates = array(
 				'name' => "Nombre del usuario",
 				'surname' => "Apellido del usuario",
-				'sale_id' => "ID del remito / venta",
-				'total' => "Monto total de la compra",
+				'birthday' => "Fecha de cumpleaños",
 			);
 
 			$notification_settings = array();
@@ -2043,8 +2042,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$templateVars = array(
 			'name' => "Nombre del usuario",
 			'surname' => "Apellido del usuario",
-			'sale_id' => "ID del remito / venta",
-			'total' => "Monto total de la compra",
+			'birthday' => "Fecha de cumpleaños",
 		);
 
 		$h1 = array(

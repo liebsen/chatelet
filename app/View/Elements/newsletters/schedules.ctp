@@ -6,8 +6,6 @@
 		<thead>
 			<tr>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Campaña'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Lista'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Catálogo'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Audiencia'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>     		
@@ -24,14 +22,8 @@
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
 						data-toggle="tooltip" 
 						title="Editar campaña">
-					<?=$schedule['Newsletter']['name']?>/<?=$schedule['NewsletterList']['name']?>
+					<?=$schedule['Newsletter']['title']?>/<?=$schedule['NewsletterList']['name']?>
 					</a>
-				</td>
-				<td>
-					<span class="badge badge-success"><?=$schedule['Newsletter']['name']?></span>
-				</td>
-				<td>
-					<span class="badge badge-success"><?=$schedule['NewsletterList']['name']?></span>
 				</td>
 				<td>
 					<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?> is-rounded">

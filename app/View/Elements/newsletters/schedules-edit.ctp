@@ -31,7 +31,7 @@
         <label class="control-label" for="title">Selecciona una plantilla</label>
         <select class="form-control" name="data[newsletter_id]">
   <?php foreach($newsletters as $newsletter): ?>
-  <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?>/<?= $newsletter['Newsletter']['name']?> (<?= $newsletter['0']['total']?>)</option>
+  <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?> (<?= $newsletter['0']['total']?>)</option>
   <?php endforeach ?>
         </select>
       </div>

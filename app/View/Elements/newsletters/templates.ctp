@@ -19,7 +19,7 @@
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
 						data-toggle="tooltip" 
 						title="Editar plantilla">
-						<?=$newsletter['Newsletter']['title']?> (<?=$newsletter['Newsletter']['name']?>)
+						<?=$newsletter['Newsletter']['title']?> (<?=$newsletter['Newsletter']['title']?>)
 					</a>
 				</td>
 				<td>

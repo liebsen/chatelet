@@ -107,9 +107,9 @@ class NewsletterShell extends AppShell {
             'User.id IS NOT NULL'
           )
         )
-       ),
+      ),
       'fields' => array(
-        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.body, Newsletter.show_prices, Newsletter.show_follow, NewsletterList.name, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_prices, Newsletter.show_follow, NewsletterList.name, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email, User.birthday'
       ),
       'conditions' => array( 
         'NewsletterScheduleItem.status' => "pending", 
@@ -149,7 +149,8 @@ class NewsletterShell extends AppShell {
         )
       ));
 
-      $body = !empty($newsletter['Newsletter']['body']) ? 
+      // parse body
+      $newsletter['Newsletter']['body'] = !empty($newsletter['Newsletter']['body']) ? 
         \parse_template(
           strip_tags(html_entity_decode($newsletter['Newsletter']['body'])), array(
             'name' => str_replace("\n",'',$newsletter['User']['name']),
@@ -159,7 +160,9 @@ class NewsletterShell extends AppShell {
           )
         ) : $newsletter['Newsletter']['body'];
 
-      $newsletter['Newsletter']['body'] = $body;
+      //var_dump(array('body' => $body));
+      //var_dump(array('user' => $newsletter['User']));
+      //var_dump(array('schedule_item' => $newsletter['NewsletterScheduleItem']));
 
       if($newsletter['NewsletterSchedule']['send_email'] == '1') {
 
@@ -292,12 +295,7 @@ class NewsletterShell extends AppShell {
   }
 
   public function sendEmail($data, $products = array()) {
-    if($this->simulate) {
-      echo "[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
-      return array(
-        'sent' => $this->update,
-      );
-    }
+
     $email = new CakeEmail();
     $email->config(
       array(
@@ -317,6 +315,33 @@ class NewsletterShell extends AppShell {
       )
     );
 
+    $viewVars = array(
+      'data' => $data,
+      'products' => $products,
+      'socials' => $data['Newsletter']['show_follow'] ? \parsed_socials($this->settings) : null,
+      'site_url' => $this->settings['site_url'],
+      'cdn_url' => 'https://chatelet.com.ar/files/uploads/'
+    );
+
+    if($this->simulate) {
+      $content = $email->template('newsletter', 'default')
+          ->emailFormat('html')
+          ->viewVars($viewVars);
+          //->message('html');
+          //->send();
+
+          //var_dump($content);
+          //var_dump($email->message('html'));
+      //$email_body = $content['message'];
+      echo "[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
+      //echo $email_body;
+
+      return array(
+        'sent' => $this->update,
+      );
+    }
+
+
     // $email->transport('Debug');
     /*$email->from(array(
       'info@chatelet.com' => 'Châtelet'
@@ -332,13 +357,7 @@ class NewsletterShell extends AppShell {
     $email->template('newsletter', 'default');
     $email->emailFormat('html') ;
     // $email->config('default');
-    $email->viewVars(array(
-      'data' => $data,
-      'products' => $products,
-      'socials' => $data['Newsletter']['show_follow'] ? \parsed_socials($this->settings) : null,
-      'site_url' => $this->settings['site_url'],
-      'cdn_url' => 'https://chatelet.com.ar/files/uploads/'
-    ));
+    $email->viewVars($viewVars);
 
     if ($_SERVER['REMOTE_ADDR'] === '127.0.0.11'){
       //CakeLog::write('debug', '[email title]:'. json_encode($data['Newsletter']['title']));   

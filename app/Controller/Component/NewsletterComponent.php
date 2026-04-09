@@ -114,7 +114,7 @@ class NewsletterComponent extends Component {
 
     try {
       $newsletters = $Newsletter->find('all', array(
-        'fields' => array('Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.created'),
+        'fields' => array('Newsletter.id, Newsletter.title, Newsletter.created'),
         'conditions' => $conditions,
         'order' => array( 'Newsletter.modified DESC' )
       ));
@@ -276,11 +276,11 @@ class NewsletterComponent extends Component {
           ),
         ),        
         'fields' => array(
-          'NewsletterSchedule.id, Newsletter.id, NewsletterList.id, Newsletter.name, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, NewsletterSchedule.send_push, NewsletterSchedule.send_email, COUNT(distinct NewsletterProduct.id) as prod_total'
+          'NewsletterSchedule.id, Newsletter.id, NewsletterList.id, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, NewsletterSchedule.send_push, NewsletterSchedule.send_email, COUNT(distinct NewsletterProduct.id) as prod_total'
         ),
         'conditions' => $conditions,
         'group' => array(
-          'NewsletterSchedule.id, Newsletter.id, NewsletterList.id, Newsletter.name, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, NewsletterSchedule.send_push, NewsletterSchedule.send_email'
+          'NewsletterSchedule.id, Newsletter.id, NewsletterList.id, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, NewsletterSchedule.send_push, NewsletterSchedule.send_email'
         ),
         'order' => array( 
           'NewsletterSchedule.schedule_date DESC, NewsletterSchedule.schedule_hour DESC' 
@@ -429,7 +429,7 @@ class NewsletterComponent extends Component {
         $data['send_email'] = !empty($data['send_email']) ? 1 : 0;
         $data['send_push'] = !empty($data['send_push']) ? 1 : 0;
         $redirect = array( 'action' => 'newsletters', 'schedules' );
-
+        $create = empty($id);
         $NewsletterSchedule->save($data);
 
         // reset recipients
@@ -452,7 +452,7 @@ class NewsletterComponent extends Component {
         // update schedule reference
         $users = array();
 
-        if(empty($id)) {
+        if($create) {
           $users = $NewsletterUser->find('all', array(
             'conditions' => array(
               'list_id' => $data['list_id']
@@ -469,19 +469,20 @@ class NewsletterComponent extends Component {
         $saves = array();
 
         foreach($users as $i => $user) {
-          $save = $user['NewsletterUser'];
-          $save['id'] = null;
+          $save = $create ? $user['NewsletterUser'] : $user['NewsletterScheduleItem'];
+          $save['id'] = $create ? null : $save['id'];
           $save['schedule_id'] = $NewsletterSchedule->id;
-          if(
-            !empty($id) &&
-            !empty($data['reset']) && 
-            empty($data['reset_all'])
-          ) {
-            $save['push_sent'] = 0;
-            $save['email_sent'] = 0;
-            $save['status'] = 'pending';
+          if(!$create){
+            if(
+              !empty($data['reset']) && 
+              empty($data['reset_all'])
+            ) {
+              $save['push_sent'] = 0;
+              $save['email_sent'] = 0;
+              $save['status'] = 'pending';
+            }
           }
-          \d("save",$save);
+          //\d("save",$save);
           array_push($saves, $save);
         }
 
@@ -499,7 +500,7 @@ class NewsletterComponent extends Component {
         return $this->controller->redirect($redirect);
       }
 
-      if(!empty($id)) {
+      if(!$create) {
         $this->controller->set('schedule', $NewsletterSchedule->find('first', array(
           'joins' => array(
             array(
@@ -561,13 +562,13 @@ class NewsletterComponent extends Component {
             'conditions' => array( 'Newsletter.id = NewsletterProduct.newsletter_id' )
           ),
         ),
-        'fields' => array('Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.created, COUNT(NewsletterProduct.id) AS total'),
+        'fields' => array('Newsletter.id, Newsletter.title, Newsletter.created, COUNT(NewsletterProduct.id) AS total'),
         'conditions' => array(
           // 'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")),
           'Newsletter.enabled' => '1',
           //'NewsletterProduct.id IS NOT NULL',
         ),
-        'group' => array('Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.created'),
+        'group' => array('Newsletter.id, Newsletter.title, Newsletter.created'),
         'order' => array( 'Newsletter.modified DESC' )
       )));
 
