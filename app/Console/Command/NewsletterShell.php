@@ -160,10 +160,6 @@ class NewsletterShell extends AppShell {
           )
         ) : $newsletter['Newsletter']['body'];
 
-      //var_dump(array('body' => $body));
-      //var_dump(array('user' => $newsletter['User']));
-      //var_dump(array('schedule_item' => $newsletter['NewsletterScheduleItem']));
-
       if($newsletter['NewsletterSchedule']['send_email'] == '1') {
 
         // generate links
@@ -326,12 +322,10 @@ class NewsletterShell extends AppShell {
     if($this->simulate) {
       $content = $email->template('newsletter', 'default')
           ->emailFormat('html')
-          ->viewVars($viewVars);
+          ->viewVars($viewVars)
           //->message('html');
-          //->send();
+          ->send(null, true);
 
-          //var_dump($content);
-          //var_dump($email->message('html'));
       //$email_body = $content['message'];
       echo "[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
       //echo $email_body;
@@ -341,37 +335,14 @@ class NewsletterShell extends AppShell {
       );
     }
 
-
-    // $email->transport('Debug');
-    /*$email->from(array(
-      'info@chatelet.com' => 'Châtelet'
-    ));*/
-
-    /*print_r(array(
-      'mail_data' => $data,
-      'template' => $template
-    ));*/
-
     $email->to($data['User']['email']);
     $email->subject($data['Newsletter']['title']);
     $email->template('newsletter', 'default');
     $email->emailFormat('html') ;
-    // $email->config('default');
     $email->viewVars($viewVars);
 
-    if ($_SERVER['REMOTE_ADDR'] === '127.0.0.11'){
-      //CakeLog::write('debug', '[email title]:'. json_encode($data['Newsletter']['title']));   
-      //CakeLog::write('debug', '[email body]:'. json_encode($email->message('html')));   
-      $sent = true;
-    } else {
-      $sent = $email->send();
-      /*print_r(array(
-        'sent' => $sent,
-      ));*/
-    }
-
     return array(
-      'sent' => $sent
+      'sent' => $email->send()
     );
   }
 

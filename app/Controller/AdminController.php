@@ -2611,6 +2611,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $min_sale = $this->request->data['min_sale'] ?? 1;
     $min_sale *= 100;
 
+    \d("min_sale_where", "Sale.user_id HAVING Total > {$min_sale}");
+    
     $data = $this->Sale->find('all',array(
 	    'joins' => array(
         array(

@@ -1156,12 +1156,12 @@ class CakeEmail {
  * @return array
  * @throws SocketException
  */
-	public function send($content = null) {
+	public function send($content = null, $debug = false) {
 		if (empty($this->_from)) {
-			throw new SocketException(__d('cake_dev', 'From is not specified.'));
+			#throw new SocketException(__d('cake_dev', 'From is not specified.'));
 		}
 		if (empty($this->_to) && empty($this->_cc) && empty($this->_bcc)) {
-			throw new SocketException(__d('cake_dev', 'You need to specify at least one destination for to, cc or bcc.'));
+			#throw new SocketException(__d('cake_dev', 'You need to specify at least one destination for to, cc or bcc.'));
 		}
 
 		if (is_array($content)) {
@@ -1170,7 +1170,13 @@ class CakeEmail {
 
 		$this->_message = $this->_render($this->_wrap($content));
 
+		if($debug) {
+			var_dump($this->_message);
+			return false;
+		}
+
 		$contents = $this->transportClass()->send($this);
+
 		if (!empty($this->_config['log'])) {
 			$config = array(
 				'level' => LOG_DEBUG,
