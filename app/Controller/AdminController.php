@@ -2604,44 +2604,70 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	public function newsletters_users_reach(){
     $this->autoRender = false;
     $this->RequestHandler->respondAs('application/json');
-    $this->loadModel('Sale');
 
-    $min_date = $this->request->data['min_date'] ?? "last day of previous month";
-    $max_date = $this->request->data['max_date'] ?? "now";
-    $min_sale = $this->request->data['min_sale'] ?? 1;
-    $min_sale *= 100;
-
-    \d("min_sale_where", "Sale.user_id HAVING Total > {$min_sale}");
+    $data = $this->request->data;
+    $date_min = $data['date_min'] ?? "last day of previous month";
+    $date_max = $data['date_max'] ?? "now";
+    $sale_min = $data['sale_min'] ?? 1;
+    $dob_min = $data['dob_min'] ?? 0;
+    $dob_max = $data['dob_max'] ?? 0;
+    $search_mode = $data['search_mode'] ?? 'sale';
+    $sale_min *= 100;
+			\d("newsletters_users_reach(search_mode)", $search_mode);
     
-    $data = $this->Sale->find('all',array(
-	    'joins' => array(
-        array(
-          'table' => 'users',
-          'alias' => 'User',
-          'type' => 'LEFT',
-          'conditions' => array(
-            'User.id = Sale.user_id',
-          )
-        )
-	    ),
-      'conditions' => array(
-        // 'SUM(Sale.value) > ' => $min_sale,
-        'User.id IS NOT ' => null,
-        'Sale.completed' => 1,
-        'Sale.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $min_date))),
-        'Sale.created < ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $max_date))),
-      ),
-	    'fields' => array(
-	    	'SUM(Sale.value) AS Total, User.id, User.email, User.name, User.surname, User.birthday'
-	    ),
-	  	'order' => array(
-	  		'Sale.id DESC'
-	  	),
-	  	'group' => array(
-	  		"Sale.user_id HAVING Total > {$min_sale}"
-	  	),
-	  	'limit' => 1000,
-    ));
+		if($search_mode == 'dob') {
+			$min_parts = explode('/', $dob_min);
+			$max_parts = explode('/', $dob_max);
+			$this->loadModel('User');
+	    $data = $this->User->find('all',array(
+	      'conditions' => array(
+	        'User.id IS NOT ' => null,
+	        'MONTH(User.birthday) >=' => $min_parts[1],
+	        'DAY(User.birthday) >=' => $min_parts[0],
+	        'MONTH(User.birthday) <=' => $max_parts[1],
+	        'DAY(User.birthday) <=' => $max_parts[0],
+	      ),
+		    'fields' => array(
+		    	'User.id, User.email, User.name, User.surname, User.birthday'
+		    ),
+		  	'order' => array(
+		  		'User.id DESC'
+		  	),
+		  	'limit' => 1000,
+	    ));
+		} else {
+			$this->loadModel('Sale');
+			\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
+	    $data = $this->Sale->find('all',array(
+		    'joins' => array(
+	        array(
+	          'table' => 'users',
+	          'alias' => 'User',
+	          'type' => 'LEFT',
+	          'conditions' => array(
+	            'User.id = Sale.user_id',
+	          )
+	        )
+		    ),
+	      'conditions' => array(
+	        // 'SUM(Sale.value) > ' => $sale_min,
+	        'User.id IS NOT ' => null,
+	        'Sale.completed' => 1,
+	        'Sale.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
+	        'Sale.created < ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_max))),
+	      ),
+		    'fields' => array(
+		    	'SUM(Sale.value) AS Total, User.id, User.email, User.name, User.surname, User.birthday'
+		    ),
+		  	'order' => array(
+		  		'Sale.id DESC'
+		  	),
+		  	'group' => array(
+		  		"Sale.user_id HAVING Total > {$sale_min}"
+		  	),
+		  	'limit' => 1000,
+	    ));
+	  }
 
     return json_encode(
     	array(

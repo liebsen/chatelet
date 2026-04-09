@@ -112,16 +112,17 @@
   				<label for="toggle-price" class="toggle-label"></label>
   	      <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
   			</div>
-        <div class="control-group w-100">
-          <label class="control-label" for="product-filter">Productos seleccionados (<?=count($newsletter_products)?>)
+        <div class="controls d-flex flex-column gap-05">
+          <input type="text" class="form-control relation-search" data-type="product" placeholder="Buscar"/>
+        </div>
+        <div class="secondary-box">
+          <!--label class="control-label" for="product-filter">Productos seleccionados (<?=count($newsletter_products)?>)-->
           <a class="relations-action-add text-success d-none" data-type="product" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($newsletter_products)?></span></a>
           <?php if(count($newsletter_products)): ?>
           <a class="relations-action-remove text-danger" data-type="product" href="javascript:void(0)">Eliminar todo</a>
-        <?php endif ?></label>
-          <div class="controls">
-            <input type="text" class="form-control relation-search" data-type="product" placeholder="Buscar"/>
-          </div>
-          <div class="controls tags-container product-container">
+        <?php endif ?><!--/label-->
+        </div>
+        <div class="controls tags-container product-container">
   <?php foreach($newsletter_products as $product): ?>
       <span 
       	class="label relation-item is-clickable is-enabled" 

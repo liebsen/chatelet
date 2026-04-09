@@ -12,6 +12,7 @@
   <input type="hidden" name="x_coord" id="x_coord">
   <input type="hidden" name="y_coord" id="y_coord">
   <input type="hidden" name="redirect" value="/admin/newsletters/lists"/>
+  <input type="hidden" name="search_mode" value=""/>
   <input type="hidden" name="data[id]" value="<?= $list['NewsletterList']['id'] ?? 0 ?>"/>
   <div class="row">
     <div class="col-md-6">
@@ -58,22 +59,22 @@
       <div class="control-group">
         <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
         <div class="controls d-flex flex-center gap-05">
-          <input type="text" name="data[filter][date_min]" class="form-control advanced-filter datepicker" data-name="min_date" placeholder="Fecha mínima" value="<?=$list['NewsletterList']['filter']->date_min ?? ''?>"/>
-          <input type="text" name="data[filter][date_max]" class="form-control advanced-filter datepicker" data-name="max_date" placeholder="Fecha máxima" value="<?=$list['NewsletterList']['filter']->date_max ?? ''?>"/>
+          <input type="text" name="data[filter][date_min]" class="form-control advanced-filter datepicker" data-mode="sale" data-name="date_min" placeholder="Fecha mínima" value="<?=$list['NewsletterList']['filter']->date_min ?? ''?>"/>
+          <input type="text" name="data[filter][date_max]" class="form-control advanced-filter datepicker" data-mode="sale" data-name="date_max" placeholder="Fecha máxima" value="<?=$list['NewsletterList']['filter']->date_max ?? ''?>"/>
         </div>
       </div>
       <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
       <div class="controls-group">
         <label class="control-label" for="minSale">Mínimo de compra </label>
-        <input type="range" class="advanced-filter" data-name="min_sale" name="data[filter][min_sale]" step="10" min="10" max="10000" value="<?=$list['NewsletterList']['filter']->min_sale?>">
+        <input type="range" class="advanced-filter" data-name="sale_min" name="data[filter][sale_min]" step="10" min="10" max="10000" value="<?=$list['NewsletterList']['filter']->sale_min?>">
       </div>
       <h4 class="sub-header">Filtro por fecha de nacimiento</h4>
       <p>Establece fecha para filtrar por cuenta de acuerdo fecha de nacimiento</p>
       <div class="control-group">
         <label class="control-label" for="myRange2">Día de nacimiento (Desde / Hasta)</label>
         <div class="controls d-flex flex-center gap-05">
-          <input type="text" id="minDob" name="data[filter][dob_min]" class="form-control datepicker" data-format="dd/mm" data-name="mindob-value" placeholder="Día de nacimiento mínimo" value="<?=$list['NewsletterList']['filter']->dob_min ?? ''?>"/>
-          <input type="text" id="maxDob" name="data[filter][dob_max]" class="form-control datepicker" data-format="dd/mm" data-name="maxdob-value" placeholder="Día de nacimiento max" value="<?=$list['NewsletterList']['filter']->dob_max ?? ''?>"/>
+          <input type="text" id="minDob" name="data[filter][dob_min]" class="form-control advanced-filter datepicker" data-mode="dob" data-format="dd/mm" data-name="dob_min" placeholder="Día de nacimiento mínimo" value="<?=$list['NewsletterList']['filter']->dob_min ?? ''?>"/>
+          <input type="text" id="maxDob" name="data[filter][dob_max]" class="form-control advanced-filter datepicker" data-mode="dob" data-format="dd/mm" data-name="dob_max" placeholder="Día de nacimiento max" value="<?=$list['NewsletterList']['filter']->dob_max ?? ''?>"/>
         </div>
       </div>
 <?php endif ?>      
@@ -84,11 +85,11 @@
       <table class="table table-forum table-striped text-small">
         <tr>
           <td><small>Periodo de evaluación</small></td>
-          <th><span class="min_date-value"><?= $list['NewsletterList']['filter']->date_min?></span> - <span class="max_date-value"><?= $list['NewsletterList']['filter']->date_max?></span></th>
+          <th><span class="date_min-value"><?= $list['NewsletterList']['filter']->date_min?></span> - <span class="date_max-value"><?= $list['NewsletterList']['filter']->date_max?></span></th>
         </tr>
         <tr>
           <td><small>Mínimo de compra</small></td>
-          <th><span class="min_sale-value"><?=\price_format((int) $list['NewsletterList']['filter']->min_sale * 100)?></span></th>
+          <th><span class="min_sale-value"><?=\price_format((int) $list['NewsletterList']['filter']->sale_min * 100)?></span></th>
         </tr>
         <tr>
           <td><small>Cuentas seleccionadas</small></td>
@@ -99,7 +100,6 @@
       </table>      
       <div class="form-box bg-info">
         <h4 class="sub-header">Cuentas seleccionadas (<?=count($list_users)?>)</h4>
-
         <p>Selecciona las cuentas que deseas para esta lista</p>
         <div class="controls d-flex flex-column gap-05">
           <input type="text" class="form-control relation-search" data-type="user" placeholder="Buscar cuenta..."/>

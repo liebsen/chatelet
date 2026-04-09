@@ -2,60 +2,21 @@ $(document).ready(function() {
 
   let clock = 0
 
-  $('select.advanced-filter').on('changeDate', function(event) {
-    const selectedDate = $(event.target).val()
-    const selectedName = $(event.target).data('name');
+  $('.datepicker').on('changeDate', function(e) {
+    const selectedDate = $(e.target).val()
+    const selectedName = $(e.target).data('name');
+    const selectedMode = $(e.target).data('mode');
+    $('input[name="search_mode"]').val(selectedMode)
     $('.'+selectedName+'-value').text(selectedDate)
     updateUsers()
   })
 
   $('input.advanced-filter').change(function(e){
     const value = $(this).val() || 0
+    $('input[name="search_mode"]').val('sale')
     $('.min_sale-value').text('$'+ (value * 100))
     updateUsers()
   })
-
-  /*let interval = 0
-  $('#products-filter').keyup(e => {
-    let q = $(e.target).val().trim()
-    if (q.length < 3) {
-      $('.product-container .label:not(.is-enabled)').remove()
-      return false
-    }
-    $(e.target).addClass('searching')
-    clearInterval(interval)
-    interval = setTimeout(() => {
-      searchRelations({
-        q,
-        parentId: $('input[name="data[newsletter_id]"]').val(),
-        type: 'product',
-        source: 'newsletter',
-        model: 'NewsletterProduct'
-      })
-    }, 500)        
-  })
-
-  $('#user-filter').keyup(e => {
-    let q = $(e.target).val().trim()
-    if (q.length < 3) {
-      $('.user-container > .label:not(.is-enabled)').remove()
-      return false
-    }
-
-    const before = $('')
-    $(e.target).addClass('searching')
-    clearInterval(interval)
-    interval = setTimeout(() => {
-      searchRelations({
-        q,
-        parentId: $('input[name="data[id]"]').val(), 
-        type: 'user',
-        source: 'schedule',
-        model: 'NewsletterUser',
-        cb: checkUsers,
-      })
-    }, 500)        
-  })*/
 })
 
 function updateUsers(){
@@ -69,6 +30,7 @@ function updateUsers(){
   $('.advanced-filter').each(function(i,e){
     data[$(e).data('name')] = $(e).val()
   })
+  data['search_mode'] = $('input[name="search_mode"]').val()
   $.ajax({
     type: "POST",
     url: "/admin/newsletters_users_reach",
@@ -98,7 +60,7 @@ function updateUsers(){
           $('.user-container').append('<span class="label user-item text-lowercase is-clickable" data-parent-id="'+relation.parentId+'" data-id="'+item.id+'" data-type="'+relation.type+'" data-source="'+relation.source+'" data-model="'+relation.model+'">'+item.email+'</span>');
         })
       } else {
-        $('.relations-action-add').hide()
+        //$('.relations-action-add').addClass('d-none')
         $.growl.notice({
           title: 'Atención',
           message: 'No se encontraron cuentas para este filtro',
@@ -106,8 +68,9 @@ function updateUsers(){
         });        
       }
     },
-    error: function (xhr) {
-      console.log("Error:"+xhr.responseText)
+    error: function (xhr, error) {
+      console.log("Error(xhr):"+xhr)
+      console.log("Error(error):"+error)
       //oPrnt.find("ul.result").html('<li><b>No Results</b></li>');
     }
   }).then(() => {

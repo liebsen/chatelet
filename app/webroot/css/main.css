@@ -2126,6 +2126,7 @@ pre, code {
     display: flex;
     justify-content: start;
     align-items: center;
+    grid-gap: 1rem;
     width: 100%;
 }
 

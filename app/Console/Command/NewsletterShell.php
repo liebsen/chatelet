@@ -220,15 +220,17 @@ class NewsletterShell extends AppShell {
       }
     }
 
-    print_r(array(
-      'date' => $date,
-      'perminute' => $perminute,
-      'quota' => $quota,
-      'hour' => implode(':',array($hour,$min)),
-      'email_sent' => $email_sent,
-      'push_sent' => $push_sent,
-      'count' => count($newsletters)
-    ));
+    print_r(
+      array(
+        'date' => $date,
+        'perminute' => $perminute,
+        'quota' => $quota,
+        'hour' => implode(':',array($hour,$min)),
+        'email_sent' => $email_sent,
+        'push_sent' => $push_sent,
+        'count' => count($newsletters)
+      )
+    );
   }
 
   public function sendPush($data, $push) {
@@ -259,13 +261,13 @@ class NewsletterShell extends AppShell {
       ),
     );
 
-    $auth = [
-      'VAPID' => [
+    $auth = array(
+      'VAPID' => array(
         'subject' => $this->settings['vapid_subject'],
         'publicKey' => $this->settings['vapid_publicKey'],
         'privateKey' => $this->settings['vapid_privateKey']
-      ],
-    ];
+      ),
+    );
 
     $webPush = new WebPush($auth);
 
@@ -289,7 +291,6 @@ class NewsletterShell extends AppShell {
   }
 
   public function sendEmail($data, $products = array()) {
-
     $email = new CakeEmail();
     $email->config(
       array(
@@ -319,10 +320,10 @@ class NewsletterShell extends AppShell {
 
     if($this->simulate) {
       $content = $email->template('newsletter', 'default')
-          ->emailFormat('html')
-          ->viewVars($viewVars)
-          //->message('html');
-          ->send(null, true);
+        ->emailFormat('html')
+        ->viewVars($viewVars)
+        //->message('html');
+        ->send(null, true);
 
       //$email_body = $content['message'];
       echo "[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
