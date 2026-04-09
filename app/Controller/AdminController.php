@@ -2060,7 +2060,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			),
 			'Listas' => array(
 				'id' => 'lists',
-				'icon' 		=> 'gi gi-group',
+				'icon' 		=> 'gi gi-list',
 				'url'		=> '/admin/newsletters/lists',
 			),
 			'Campañas' => array(
@@ -3570,16 +3570,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function usuarios($action = null) {
 		$navs = array(
-			'Usuarios' => array(
-				'icon' 		=> 'gi gi-group',
-				'url'		=> '/admin/usuarios',
-				),
-			'Nuevo Usuario' => array(
-				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> '/admin/usuarios/add',
-				)
-
-			);
+		'Usuarios' => array(
+			'icon' 		=> 'gi gi-group',
+			'url'		=> '/admin/usuarios',
+			),
+		'Nuevo Usuario' => array(
+			'icon' 		=> 'gi gi-circle_plus',
+			'url'		=> '/admin/usuarios/add',
+			)
+		);
 		$this->set('navs', $navs);
 
 		$h1 = array(
