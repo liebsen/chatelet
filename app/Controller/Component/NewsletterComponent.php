@@ -416,10 +416,10 @@ class NewsletterComponent extends Component {
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
     $NewsletterList = ClassRegistry::init('NewsletterList');
-    #$NewsletterProduct = ClassRegistry::init('NewsletterProduct');
     $NewsletterUser = ClassRegistry::init('NewsletterUser');
+    #$NewsletterProduct = ClassRegistry::init('NewsletterProduct');
+    $NewsletterScheduleItem = ClassRegistry::init('NewsletterScheduleItem');
     $schedule = array();
-    
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
@@ -429,31 +429,44 @@ class NewsletterComponent extends Component {
         $data['send_push'] = !empty($data['send_push']) ? 1 : 0;
         $redirect = array( 'action' => 'newsletters', 'schedules' );
 
+        $NewsletterSchedule->save($data);
+
         // reset recipients
         if(!empty($data['reset'])) {
-          $NewsletterUser->updateAll(
+          $NewsletterScheduleItem->updateAll(
             array(
-              'NewsletterUser.status' => "'pending'"
+              'NewsletterScheduleItem.status' => "'pending'"
             ),
             array(
-              'NewsletterUser.schedule_id' => $id,
+              'NewsletterScheduleItem.schedule_id' => $id,
             )
           );
         }
 
         // update schedule reference
-        $NewsletterUser->updateAll(
+        $users = array();
+        $users = $NewsletterUser->find('all', array(
+          'conditions' => array(
+            'list_id' => $data['list_id']
+          )
+        ));
+
+        $saves = array();
+
+        foreach($users as $i => $user) {
+          $save = $user['NewsletterUser'];
+          $save['schedule_id'] = $NewsletterSchedule->id;
+          array_push($saves, $save);
+        }
+
+        $NewsletterScheduleItem->saveAll($saves, 
           array(
-            'NewsletterUser.schedule_id' => $id,
-          ),
-          array(
-            'NewsletterUser.list_id' => $data['list_id'],            
+            'validate' => false, 
+            'callbacks' => false
           )
         );
 
-        //\d("data", $data);
 
-        $NewsletterSchedule->save($data);
 
         if(isset($data['x_coord']) && $data['x_coord'] == '1') {
           $redirect = array( 'action' => 'newsletters', 'schedules', 'edit', $NewsletterSchedule->id);

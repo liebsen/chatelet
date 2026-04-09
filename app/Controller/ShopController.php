@@ -472,10 +472,10 @@ class ShopController extends AppController {
 		}
 
 		if(!empty($this->request->query('uid'))) {
-			$this->loadModel('NewsletterUser');
-			$this->NewsletterUser->updateAll(
+			$this->loadModel('NewsletterScheduleItem');
+			$this->NewsletterScheduleItem->updateAll(
 				array(
-					'NewsletterUser.clicks' => 'NewsletterUser.clicks + 1'					
+					'NewsletterScheduleItem.clicks' => 'NewsletterScheduleItem.clicks + 1'					
 				), array(
 					'id' => $this->request->query('uid'),
 				)

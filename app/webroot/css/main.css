@@ -2121,6 +2121,14 @@ pre, code {
     }
 }
 
+.secondary-box {
+    padding: 1rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+}
+
 .sub-header {
     border-width: 1px;
     width: 100%;

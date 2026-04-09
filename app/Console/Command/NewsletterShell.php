@@ -18,7 +18,7 @@ class NewsletterShell extends AppShell {
     'Newsletter',
     'NewsletterSchedule', 
     'NewsletterList', 
-    'NewsletterUser',
+    'NewsletterScheduleItem',
     'NewsletterProduct',
   );
 
@@ -48,10 +48,10 @@ class NewsletterShell extends AppShell {
     $this->update = in_array("update=1", $this->args);
 
     // FIND QUOTA
-    $quota = $this->NewsletterUser->find('count', array(
+    $quota = $this->NewsletterScheduleItem->find('count', array(
       'conditions' => array(
-        'NewsletterUser.status' => "sent",
-        'NewsletterUser.modified > ' => date("Y/m/d H:00", strtotime("-24 hours")),
+        'NewsletterScheduleItem.status' => "sent",
+        'NewsletterScheduleItem.modified > ' => date("Y/m/d H:00", strtotime("-24 hours")),
       )
     ));
 
@@ -60,24 +60,24 @@ class NewsletterShell extends AppShell {
     }
 
     //$daily_limit
-    $newsletters = $this->NewsletterUser->find('all', array(
+    $newsletters = $this->NewsletterScheduleItem->find('all', array(
       'joins' => array(
-        array(
-          'table' => 'newsletter_lists',
-          'alias' => 'NewsletterList',
-          'type' => 'LEFT',
-          'conditions' => array( 
-            'NewsletterUser.list_id = NewsletterList.id',
-            'NewsletterList.id IS NOT NULL'
-          )
-        ),
         array(
           'table' => 'newsletter_schedules',
           'alias' => 'NewsletterSchedule',
           'type' => 'LEFT',
           'conditions' => array( 
-            'NewsletterUser.schedule_id = NewsletterSchedule.id',
+            'NewsletterScheduleItem.schedule_id = NewsletterSchedule.id',
             'NewsletterSchedule.id IS NOT NULL'
+          )
+        ),
+        array(
+          'table' => 'newsletter_lists',
+          'alias' => 'NewsletterList',
+          'type' => 'LEFT',
+          'conditions' => array( 
+            'NewsletterSchedule.list_id = NewsletterList.id',
+            'NewsletterList.id IS NOT NULL'
           )
         ),
         array(
@@ -103,23 +103,23 @@ class NewsletterShell extends AppShell {
           'alias' => 'User',
           'type' => 'LEFT',
           'conditions' => array( 
-            'NewsletterUser.user_id = User.id',
+            'NewsletterScheduleItem.user_id = User.id',
             'User.id IS NOT NULL'
           )
         )
        ),
       'fields' => array(
-        'NewsletterUser.id, NewsletterUser.user_id, Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.body, Newsletter.show_prices, Newsletter.show_follow, NewsletterList.name, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.body, Newsletter.show_prices, Newsletter.show_follow, NewsletterList.name, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email'
       ),
       'conditions' => array( 
-        'NewsletterUser.status' => "pending", 
+        'NewsletterScheduleItem.status' => "pending", 
         'NewsletterSchedule.enabled' => 1,
         'NewsletterList.enabled' => 1,
         'NewsletterSchedule.schedule_date <= ' => $date,
         'NewsletterSchedule.schedule_hour <= ' => $hour,
        ),
-       'order' => array( 'NewsletterUser.created ASC' ),
-       'group' => array( 'NewsletterUser.id' ),
+       'order' => array( 'NewsletterScheduleItem.created ASC' ),
+       'group' => array( 'NewsletterScheduleItem.id' ),
        'limit' => $perminute,
       )
     );
@@ -176,7 +176,7 @@ class NewsletterShell extends AppShell {
             strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name'])))
           ));
 
-          $products[$i]['Product']['link'] = $link .'?uid='.$newsletter['NewsletterUser']['id'];
+          $products[$i]['Product']['link'] = $link .'?uid='.$newsletter['NewsletterScheduleItem']['id'];
         }
 
 
@@ -184,11 +184,11 @@ class NewsletterShell extends AppShell {
 
         if($email['sent']) {
 
-          $this->NewsletterUser->save(
+          $this->NewsletterScheduleItem->save(
             array(
-             'id' => $newsletter['NewsletterUser']['id'],
+             'id' => $newsletter['NewsletterScheduleItem']['id'],
              'status' => 'sent',
-             'email_sent' => $newsletter['NewsletterUser']['email_sent']+1,
+             'email_sent' => $newsletter['NewsletterScheduleItem']['email_sent']+1,
             )
           );
           $email_sent++;      
@@ -198,7 +198,7 @@ class NewsletterShell extends AppShell {
         $pushes = $this->Webpush->find('all', 
           array(
             'conditions' => array(
-              'user_id' => $newsletter['NewsletterUser']['user_id']
+              'user_id' => $newsletter['NewsletterScheduleItem']['user_id']
             )
           )
         );
@@ -206,11 +206,11 @@ class NewsletterShell extends AppShell {
         foreach($pushes as $push) {
           $push = $this->sendPush($newsletter, $push);
           if($push['sent']) {
-            $this->NewsletterUser->save(
+            $this->NewsletterScheduleItem->save(
               array(
-               'id' => $newsletter['NewsletterUser']['id'],
+               'id' => $newsletter['NewsletterScheduleItem']['id'],
                'status' => 'sent',
-               'push_sent' => $newsletter['NewsletterUser']['push_sent']+1,
+               'push_sent' => $newsletter['NewsletterScheduleItem']['push_sent']+1,
               )
             );
             $push_sent++;
@@ -236,7 +236,7 @@ class NewsletterShell extends AppShell {
 
   public function sendPush($data, $push) {
     if($this->simulate) {
-      echo "[push] " . $data['NewsletterUser']['name'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
+      echo "[push] " . $data['NewsletterScheduleItem']['name'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
       return array(
         'sent' => $this->update,
         'response' => array()

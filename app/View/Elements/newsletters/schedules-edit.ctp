@@ -4,6 +4,8 @@
 	echo $this->Html->script('schedules-edit.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('bootstrap-datepicker');
+
+
   echo $this->Form->create(null, array(
   'class' => 'w-100',
   'id' => 'schedule_edit',
@@ -29,7 +31,7 @@
         <label class="control-label" for="title">Selecciona una plantilla</label>
         <select class="form-control" name="data[newsletter_id]">
   <?php foreach($newsletters as $newsletter): ?>
-  <option value="<?= $newsletter['Newsletter']['id']?>"<?=@isset($this->params->query['newsletter_id']) && $newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?>/<?= $newsletter['Newsletter']['name']?> (<?= $newsletter['0']['total']?>)</option>
+  <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?>/<?= $newsletter['Newsletter']['name']?> (<?= $newsletter['0']['total']?>)</option>
   <?php endforeach ?>
         </select>
       </div>
@@ -38,7 +40,7 @@
         <label class="control-label" for="title">Selecciona una lista</label>
         <select class="form-control" name="data[list_id]">
   <?php foreach($lists as $list): ?>
-  <option value="<?= $list['NewsletterList']['id']?>"<?=@isset($this->params->query['list_id']) && $list['NewsletterList']['id'] == $this->params->query['list_id'] ? ' selected' : ''?>><?= $list['NewsletterList']['name']?> (<?= $list['0']['total']?>)</option>
+  <option value="<?= $list['NewsletterList']['id']?>"<?=@($list['NewsletterList']['id'] == $this->params->query['list_id'] || $list['NewsletterList']['id'] == $schedule['NewsletterSchedule']['list_id']) ? ' selected' : ''?>><?= $list['NewsletterList']['name']?> (<?= $list['0']['total']?>)</option>
   <?php endforeach ?>
         </select>
       </div>

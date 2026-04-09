@@ -99,18 +99,18 @@
       </table>      
       <div class="form-box bg-info">
         <h4 class="sub-header">Cuentas seleccionadas (<?=count($list_users)?>)</h4>
-        <div class="factsheet">
+
+        <p>Selecciona las cuentas que deseas para esta lista</p>
+        <div class="controls d-flex flex-column gap-05">
+          <input type="text" class="form-control relation-search" data-type="user" placeholder="Buscar cuenta..."/>
+        </div>
+        <div class="secondary-box">
           <a class="relations-action-add text-success is-clickable d-none" data-type="user" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($list_users)?></span></a>
           <?php if(count($list_users)): ?>
           <a class="relations-action-remove text-danger is-clickable" data-type="user" href="javascript:void(0)">Eliminar todo</a>
           <?php endif ?>
-
           <a class="relations-action-add is-clickable" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?= $list['NewsletterList']['id'] ?>">Seleccionar todos (<?=$users_total?>)</a>          
-        </h4>
-        <p>Selecciona las cuentas que deseas para esta lista</p>
-        <div class="controls d-flex flex-column gap-05">
-          <input type="text" class="form-control relation-search" data-type="user" placeholder="Buscar cuenta..."/>
-        </div>          
+        </div>
         <div class="controls tags-container user-container">
   <?php foreach($list_users as $user): ?>
     <span 
