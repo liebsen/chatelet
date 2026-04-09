@@ -25,33 +25,32 @@ class NewsletterShell extends AppShell {
   private $settings = [];
   private $daily_limit = 500;
   private $perminute = 20;
+  private $simulate = 0;
   
   public function main() {
     $this->settings = $this->loadSettings();
+
     if(empty($this->settings['newsletter_enabled'])) {
       print_r(array(
         'error' => "Newsletter is disabled"
       ));      
       return false;
     }
+
     $date = date('Y-m-d');
     $hour = date('H'); 
     $min = date('i'); 
     $email_sent = 0;
     $push_sent = 0;
     $limit = 0;
-    $watchmode = $_SERVER['REMOTE_ADDR'] == '127.0.0.1';
-
-    var_dump($watchmode);
-    var_dump($_SERVER['REMOTE_ADDR']);
-    die();
-
     $perminute = $this->settings['newsletter_perminute'] ?? $this->perminute;
+    $this->simulate = in_array("simulate=1", $this->args);
+
     // FIND QUOTA
     $quota = $this->NewsletterUser->find('count', array(
       'conditions' => array(
         'NewsletterUser.status' => "sent",
-        'NewsletterUser.modified > ' => date(strtotime("-24 hours")),
+        'NewsletterUser.modified > ' => date("Y/m/d H:00", strtotime("-24 hours")),
       )
     ));
 
@@ -76,7 +75,7 @@ class NewsletterShell extends AppShell {
           'alias' => 'NewsletterSchedule',
           'type' => 'LEFT',
           'conditions' => array( 
-            'NewsletterList.schedule_id = NewsletterSchedule.id',
+            'NewsletterUser.schedule_id = NewsletterSchedule.id',
             'NewsletterSchedule.id IS NOT NULL'
           )
         ),
@@ -109,7 +108,7 @@ class NewsletterShell extends AppShell {
         )
        ),
       'fields' => array(
-        'NewsletterUser.id, NewsletterUser.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_prices, Newsletter.show_follow, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email'
+        'NewsletterUser.id, NewsletterUser.user_id, Newsletter.id, Newsletter.name, Newsletter.title, Newsletter.body, Newsletter.show_prices, Newsletter.show_follow, NewsletterList.name, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email'
       ),
       'conditions' => array( 
         'NewsletterUser.status' => "pending", 
@@ -161,7 +160,7 @@ class NewsletterShell extends AppShell {
 
       $newsletter['Newsletter']['body'] = $body;
 
-      if($newsletter['NewsletterSchedule']['send_email'] == '1' && !$watchmode) {
+      if($newsletter['NewsletterSchedule']['send_email'] == '1') {
 
         // generate links
         foreach($products as $i => $product) {
@@ -179,6 +178,7 @@ class NewsletterShell extends AppShell {
           $products[$i]['Product']['link'] = $link .'?uid='.$newsletter['NewsletterUser']['id'];
         }
 
+
         $email = $this->sendEmail($newsletter, $products);
 
         if($email['sent']) {
@@ -193,8 +193,7 @@ class NewsletterShell extends AppShell {
           $email_sent++;      
         }
       }
-
-      if($newsletter['NewsletterSchedule']['send_push'] == '1' && !$watchmode) {
+      if($newsletter['NewsletterSchedule']['send_push'] == '1') {
         $pushes = $this->Webpush->find('all', 
           array(
             'conditions' => array(
@@ -216,6 +215,10 @@ class NewsletterShell extends AppShell {
             $push_sent++;
           }
         }
+
+        if(empty($pushes)) {
+          echo "[push] unsubscribed" . "\n";
+        }
       }
     }
 
@@ -231,6 +234,11 @@ class NewsletterShell extends AppShell {
   }
 
   public function sendPush($data, $push) {
+    if($this->simulate) {
+      echo "[push] " . $data['NewsletterUser']['name'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
+      return false;
+    }
+
     $push = array(
       'subscription' => Subscription::create( 
         json_decode($push['Webpush']['payload'], true) 
@@ -280,6 +288,10 @@ class NewsletterShell extends AppShell {
   }
 
   public function sendEmail($data, $products = array()) {
+    if($this->simulate) {
+      echo "[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
+      return false;
+    }
     $email = new CakeEmail();
     $email->config(
       array(

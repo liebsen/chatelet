@@ -417,7 +417,7 @@ class NewsletterComponent extends Component {
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
     $NewsletterList = ClassRegistry::init('NewsletterList');
     #$NewsletterProduct = ClassRegistry::init('NewsletterProduct');
-    #$NewsletterUser = ClassRegistry::init('NewsletterUser');
+    $NewsletterUser = ClassRegistry::init('NewsletterUser');
     $schedule = array();
     
     try {
@@ -441,7 +441,17 @@ class NewsletterComponent extends Component {
           );
         }
 
-        \d("data", $data);
+        // update schedule reference
+        $NewsletterUser->updateAll(
+          array(
+            'NewsletterUser.schedule_id' => $id,
+          ),
+          array(
+            'NewsletterUser.list_id' => $data['list_id'],            
+          )
+        );
+
+        //\d("data", $data);
 
         $NewsletterSchedule->save($data);
 
