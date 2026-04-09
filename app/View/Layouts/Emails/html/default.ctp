@@ -24,7 +24,7 @@
         <td>
           <table cellpadding="0" cellspacing="0" style="width: 100%; padding: 16px;height: 120px;">
             <tr>
-              <td align="center"><?php echo $this->html->image(Router::url('/',true)."images/logo.png", ['width' => '200px']); ?></td>
+              <td align="center"><?php echo $this->html->image($site_url."/images/logo.png", ['width' => '200px']); ?></td>
             </tr>
           </table>
         </td>

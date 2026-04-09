@@ -268,6 +268,7 @@ class AppController extends Controller
     // $email->config('default');
     $email->viewVars(array(
       'data' => $data,
+      'site_url' => $this->settings['site_url'],
       'socials' => \parsed_socials($this->settings)
     ));
 
