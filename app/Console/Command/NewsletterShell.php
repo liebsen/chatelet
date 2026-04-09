@@ -150,7 +150,6 @@ class NewsletterShell extends AppShell {
       ));
 
       // parse body
-    
       $newsletter['Newsletter']['body'] = !empty($newsletter['Newsletter']['body']) ? 
         \parse_template(
           $newsletter['Newsletter']['body'], array(
@@ -161,13 +160,7 @@ class NewsletterShell extends AppShell {
         ) : 
         $newsletter['Newsletter']['body'];
 
-      // strip_tags(html_entity_decode(
-      var_dump(array(
-        'body(2)' => $newsletter['Newsletter']['body']
-      ));
-
       if($newsletter['NewsletterSchedule']['send_email'] == '1') {
-
         // generate links
         foreach($products as $i => $product) {
           $link = implode('/', array(
@@ -184,11 +177,9 @@ class NewsletterShell extends AppShell {
           $products[$i]['Product']['link'] = $link .'?uid='.$newsletter['NewsletterScheduleItem']['id'];
         }
 
-
         $email = $this->sendEmail($newsletter, $products);
 
         if($email['sent']) {
-
           $this->NewsletterScheduleItem->save(
             array(
              'id' => $newsletter['NewsletterScheduleItem']['id'],
@@ -199,6 +190,7 @@ class NewsletterShell extends AppShell {
           $email_sent++;      
         }
       }
+
       if($newsletter['NewsletterSchedule']['send_push'] == '1') {
         $pushes = $this->Webpush->find('all', 
           array(
@@ -255,7 +247,7 @@ class NewsletterShell extends AppShell {
       'payload' => json_encode(
         array(
           'title' => $data['Newsletter']['title'],
-          'body' => $data['Newsletter']['body'],
+          'body' => $data['Newsletter']['message'],
           'icon' => $this->settings['site_url'] . '/img/push-logo.png',
           'badge' => $this->settings['site_url'] . '/img/push-badge.png',
           'data' => array(

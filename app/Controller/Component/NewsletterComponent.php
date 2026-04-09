@@ -189,7 +189,7 @@ class NewsletterComponent extends Component {
           $data['user_id'] = $this->controller->Auth->user('id');
         }
 
-        //\d("data", $data);
+        //\d("Newsletter(data)", $data);
         //\d("redirect", $redirect);
 
         $Newsletter->save($data);

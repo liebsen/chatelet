@@ -57,10 +57,16 @@
         <small class="text-muted">Es el título que verán las clientas en su dispositivo</small>
       </div>
     </div>
-  </div>
-  <div class="row">
+    <div class="col-md-12">
+      <div class="control-group">
+        <label class="control-label" for="toggle-follow"><?php echo __('Mensaje PUSH'); ?></label>
+        <textarea class="form-control w-100" name="data[message]" rows="4"><?=$newsletter['Newsletter']['message']?></textarea>
+        <small class="text-muted">Es el texto que verán las clientas en su notificación push</small>
+      </div>
+    </div>
     <div class="col-md-12">
       <div class="control-group d-block">
+        <label class="control-label" for="toggle-follow"><?php echo __('Cuerpo del email'); ?></label>
         <textarea class="form-control w-100" name="data[body]" id="newsletter" rows="8"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
         <h6 class="text-theme">Tabla de variables disponibles</h6>
         <table class="table table-striped">
