@@ -45,6 +45,7 @@ class NewsletterShell extends AppShell {
     $limit = 0;
     $perminute = $this->settings['newsletter_perminute'] ?? $this->perminute;
     $this->simulate = in_array("simulate=1", $this->args);
+    $this->update = in_array("update=1", $this->args);
 
     // FIND QUOTA
     $quota = $this->NewsletterUser->find('count', array(
@@ -236,7 +237,10 @@ class NewsletterShell extends AppShell {
   public function sendPush($data, $push) {
     if($this->simulate) {
       echo "[push] " . $data['NewsletterUser']['name'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
-      return false;
+      return array(
+        'sent' => $this->update,
+        'response' => array()
+      );
     }
 
     $push = array(
@@ -290,7 +294,9 @@ class NewsletterShell extends AppShell {
   public function sendEmail($data, $products = array()) {
     if($this->simulate) {
       echo "[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
-      return false;
+      return array(
+        'sent' => $this->update,
+      );
     }
     $email = new CakeEmail();
     $email->config(
