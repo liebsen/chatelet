@@ -2584,10 +2584,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        'User.province' => "$q",
 	        'User.city' => "$q",
 	      ],
-	      'id > ' => 1
+	      // 'id > ' => 1
 	    ];
 	  }
-
+	  \d("conditions",$conditions);
     //$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
     $data = $this->User->find('all',[
       'conditions' => $conditions,

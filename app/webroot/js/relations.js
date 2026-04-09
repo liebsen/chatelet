@@ -68,7 +68,7 @@ function setRelation(action, data, target, type, cb) {
 function updateRelationCount(type, target, count){
   const count2 = $(`.${type}-container .label.is-enabled`).length
   if(!count&&!count2) return
-  $(`.${type}-count`).text(count)
+  $(`.${type}-count`).text(count||count2)
   /*if(target) {
     $(target).remove()
   }*/
