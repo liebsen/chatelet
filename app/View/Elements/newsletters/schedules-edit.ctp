@@ -4,14 +4,14 @@
 	echo $this->Html->script('schedules-edit.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('bootstrap-datepicker');
-
-
   echo $this->Form->create(null, array(
   'class' => 'w-100',
   'id' => 'schedule_edit',
 )); ?>
   <input type="hidden" name="x_coord" id="x_coord">
   <input type="hidden" name="y_coord" id="y_coord">
+  <input type="hidden" name="reset" id="reset">
+  <input type="hidden" name="reset_all" id="reset_all">
   <input type="hidden" name="redirect" value="/admin/newsletters/schedules"/>
   <input type="hidden" name="data[id]" value="<?= $schedule['NewsletterSchedule']['id'] ?? 0 ?>"/>
   <div class="row">
@@ -84,7 +84,19 @@
     <a href="javascript:history.go(-1)" class="btn btn-info">
       <i class="fa fa-chevron-left mr-1"></i> Atrás
     </a>
-    <button type="submit" name="reset" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Reenviar</button>
+    <button class="btn btn-reset-ask btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-repeat mr-1"></i> Reenviar</button>
     <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
   </div>
 <?php echo $this->Form->end(); ?>
+
+<div id="reset_content" class="d-none">
+  <div class="controls flex-1">
+    <label class="control-label" for="">Enviar a todos</label>
+    <input type="checkbox" name="toggle_reset" value="1" id="toggle_reset" class="toggle-checkbox">
+    <label for="toggle_reset" class="toggle-label toggle-force"></label>
+    <small class="text-muted">Si desactivas esta opción solo se reenviará a los que fallaron el anterior intento.</small>
+  </div>
+  <div class="controls">
+    <button class="btn btn-reset btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Reenviar</button>
+  </div>
+</div>

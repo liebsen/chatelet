@@ -9,6 +9,22 @@ $(document).ready(function() {
     updateUsers()
   })
 
+  $('.btn-reset-ask').click(function(e){
+    e.preventDefault()
+    $.growl.notice({
+      title: 'Reenviar campaña',
+      message: $('#reset_content').html(),
+      duration: 5000000
+    });
+  })
+
+  $(document).on('click', '.btn-reset', function(e){
+    $('#reset').val(1)
+    $('#reset_all').val($('input[name="toggle_reset"]').val())
+    $('button[type="submit"]').trigger('click')
+    // $('form[name="schedule_edit"]').trigger('submit')
+  })
+
   $('input.advanced-filter').change(function(e){
     const value = $(this).val() || 0
     $('.min_sale-value').text('$'+ (value * 100))

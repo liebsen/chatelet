@@ -69,9 +69,9 @@ function updateRelationCount(type, target, count){
   const count2 = $(`.${type}-container .label.is-enabled`).length
   if(!count&&!count2) return
   $(`.${type}-count`).text(count)
-  if(target) {
+  /*if(target) {
     $(target).remove()
-  }
+  }*/
 }
 
 function searchRelations(data) { 

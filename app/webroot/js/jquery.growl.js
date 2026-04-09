@@ -43,7 +43,8 @@ Copyright 2015 Kevin Sylvestre
     Growl.settings = {
       namespace: 'growl',
       duration: 5000,
-      close: "&#215;",
+      //close: "<i class='gi gi-remove'></i>",
+      close: "&times;",
       location: "default",
       style: "default",
       size: "medium",

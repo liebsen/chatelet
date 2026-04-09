@@ -235,8 +235,8 @@ class NewsletterComponent extends Component {
 
   public function schedules() {
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
-    $NewsletterUser = ClassRegistry::init('NewsletterUser');
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
+    $NewsletterScheduleItem = ClassRegistry::init('NewsletterScheduleItem');
     $response = array();
     $conditions = array(); // array('NewsletterSchedule.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")));
     if(empty($_GET['extended'])) {
@@ -310,29 +310,29 @@ class NewsletterComponent extends Component {
           'order' => array( 'NewsletterProduct.id DESC' )
         ));*/
 
-        $users = $NewsletterUser->find('all', array(
+        $users = $NewsletterScheduleItem->find('all', array(
           'joins' => array(
             array(
               'table' => 'users',
               'alias' => 'User',
               'type' => 'LEFT',
-              'conditions' => array( 'User.id = NewsletterUser.user_id' )
+              'conditions' => array( 'User.id = NewsletterScheduleItem.user_id' )
             ),
           ),
-          'fields' => array('NewsletterUser.*, User.*'),
+          'fields' => array('NewsletterScheduleItem.*, User.*'),
           'conditions' => array( 
-            'NewsletterUser.list_id' => $schedule['NewsletterList']['id'],
+            'NewsletterScheduleItem.schedule_id' => $schedule['NewsletterSchedule']['id'],
             'User.id IS NOT NULL',
           ),
-          'order' => array( 'NewsletterUser.created DESC' )
+          'order' => array( 'NewsletterScheduleItem.created DESC' )
         ));
 
         foreach($users as $user) {
           $email_total+= 1;
           $push_total+= 1;
-          if($user['NewsletterUser']['status'] === 'sent') {
-            $email_sent+= $user['NewsletterUser']['email_sent'];
-            $push_sent+= $user['NewsletterUser']['push_sent'];
+          if($user['NewsletterScheduleItem']['status'] === 'sent') {
+            $email_sent+= $user['NewsletterScheduleItem']['email_sent'];
+            $push_sent+= $user['NewsletterScheduleItem']['push_sent'];
           }
         }
 
@@ -423,6 +423,7 @@ class NewsletterComponent extends Component {
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
+        $resend_all = !empty($data['resend_all']) ? 1 : 0;
         $data['id'] = $data['id'] ?? NULL;
         $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
         $data['send_email'] = !empty($data['send_email']) ? 1 : 0;
@@ -432,10 +433,15 @@ class NewsletterComponent extends Component {
         $NewsletterSchedule->save($data);
 
         // reset recipients
-        if(!empty($data['reset'])) {
+        if(
+          !empty($data['reset']) && 
+          !empty($data['reset_all'])
+        ) {
           $NewsletterScheduleItem->updateAll(
             array(
-              'NewsletterScheduleItem.status' => "'pending'"
+              'NewsletterScheduleItem.status' => "'pending'",
+              'NewsletterScheduleItem.push_sent' => 0,
+              'NewsletterScheduleItem.email_sent' => 0,
             ),
             array(
               'NewsletterScheduleItem.schedule_id' => $id,
@@ -445,17 +451,37 @@ class NewsletterComponent extends Component {
 
         // update schedule reference
         $users = array();
-        $users = $NewsletterUser->find('all', array(
-          'conditions' => array(
-            'list_id' => $data['list_id']
-          )
-        ));
+
+        if(empty($id)) {
+          $users = $NewsletterUser->find('all', array(
+            'conditions' => array(
+              'list_id' => $data['list_id']
+            )
+          ));
+        } else {
+          $users = $NewsletterScheduleItem->find('all', array(
+            'conditions' => array(
+              'schedule_id' => $id
+            )
+          ));          
+        }
 
         $saves = array();
 
         foreach($users as $i => $user) {
           $save = $user['NewsletterUser'];
+          $save['id'] = null;
           $save['schedule_id'] = $NewsletterSchedule->id;
+          if(
+            !empty($id) &&
+            !empty($data['reset']) && 
+            empty($data['reset_all'])
+          ) {
+            $save['push_sent'] = 0;
+            $save['email_sent'] = 0;
+            $save['status'] = 'pending';
+          }
+          \d("save",$save);
           array_push($saves, $save);
         }
 
@@ -465,8 +491,6 @@ class NewsletterComponent extends Component {
             'callbacks' => false
           )
         );
-
-
 
         if(isset($data['x_coord']) && $data['x_coord'] == '1') {
           $redirect = array( 'action' => 'newsletters', 'schedules', 'edit', $NewsletterSchedule->id);
@@ -613,12 +637,15 @@ class NewsletterComponent extends Component {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
 
-        $NewsletterSchedule->updateAll(array(
+        /*$NewsletterSchedule->updateAll(array(
           'list_id' => null,
         ), array(
           'list_id' => $data['id']
-        ));
+        ));*/
 
+        $NewsletterUser->deleteAll(array(
+          'list_id' => $data['id']
+        ));
         $NewsletterList->delete($data['id']);
       }
     } catch (\Exception $e) {
