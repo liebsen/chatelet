@@ -1,5 +1,5 @@
 <?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
-<?php // echo $this->Html->script('newsletters-schedules', array('inline' => false)); ?>
+<?php echo $this->Html->script('schedules', array('inline' => false)); ?>
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 	<table id="example-datatables" class="table table-bordered table-hover">
@@ -118,4 +118,7 @@
   <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
     <i class="gi gi-send mr-1"></i> Crear nueva campaña
   </a>
-	</div>
+  <a class="btn btn-success btn-updates-chedules" href="#">
+    <i class="gi gi-repeat mr-1"></i> Actualizar
+  </a>
+</div>

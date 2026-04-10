@@ -69,11 +69,7 @@
           <label class="control-label" for="title">Programar fecha/hora</label>
           <div class="controls d-flex flex-center gap-05">
             <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('d-m-Y'), '%d/%m/%Y')?>"/>
-            <select class="form-control" name="data[schedule_hour]">
-            <?php for($i=0; $i < 24; $i++): ?>
-              <option value="<?=$i?>"<?= $i == $schedule['NewsletterSchedule']['schedule_hour'] ? ' selected':''?>><?=$i?>hs</option>
-            <?php endfor ?>
-            </select>
+            <select class="form-control schedule_hour" name="data[schedule_hour]" data-value="<?=$schedule['NewsletterSchedule']['schedule_hour']?>"></select>
           </div>
           <small>Cualquier fecha / hora asignada anterior a hoy será procesada si tiene envíos pendientes</small>
         </div>

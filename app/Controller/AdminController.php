@@ -2676,6 +2676,16 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     );		
 	}
 
+	public function schedules_update(){
+		$schedules = $this->Newsletter->schedules();
+		\d("schedules",$schedules);
+    return json_encode(
+    	array(
+      	'results' => $schedules,
+    	)
+    );		
+	}
+
 	public function cupones($action = null) {
 		$weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 

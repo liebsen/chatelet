@@ -1,6 +1,19 @@
 $(document).ready(function() {
-
   let clock = 0
+  const schedule_hour = $('.schedule_hour')
+  const now = new Date()
+  const schedule_hour_value =schedule_hour.data('value') || now.getHours()
+  var hour_options = ''
+
+  for(var i=0; i<24; i++){
+    var selected = ''
+    if(schedule_hour_value == i) {
+      selected = ' selected'
+    }
+    hour_options+= `<option value="${i}"${selected}>${i}:00hs</option>`
+  }
+
+  schedule_hour.append(hour_options)
 
   $('select.advanced-filter').on('changeDate', function(event) {
     const selectedDate = $(event.target).val()
