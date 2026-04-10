@@ -85,7 +85,11 @@
       <table class="table table-forum table-striped text-small">
         <tr>
           <td><small>Periodo de evaluación</small></td>
-          <th><span class="date_min-value"><?= $list['NewsletterList']['filter']->date_min?></span> - <span class="date_max-value"><?= $list['NewsletterList']['filter']->date_max?></span></th>
+          <th><span class="date_min-value"><?= !empty($list['NewsletterList']['filter']->date_min) ? $list['NewsletterList']['filter']->date_min : 'ND'?></span> - <span class="date_max-value"><?= !empty($list['NewsletterList']['filter']->date_max) ? $list['NewsletterList']['filter']->date_max : 'ND'?></span></th>
+        </tr>
+        <tr>
+          <td><small>Fecha de cumpleaños</small></td>
+          <th><span class="dob_min-value"><?= !empty($list['NewsletterList']['filter']->dob_min) ? $list['NewsletterList']['filter']->dob_min : 'ND'?></span> - <span class="dob_max-value"><?= !empty($list['NewsletterList']['filter']->dob_max) ? $list['NewsletterList']['filter']->dob_max : 'ND'?></span></th>
         </tr>
         <tr>
           <td><small>Mínimo de compra</small></td>
