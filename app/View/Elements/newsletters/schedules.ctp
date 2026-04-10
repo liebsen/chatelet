@@ -16,7 +16,7 @@
 		</thead>
 		<tbody>
 <?php foreach ($schedules as $key => $schedule): ?>        
-			<tr>
+			<tr class="bg-<?=$schedule['rowclass']?> schedules-<?=$schedule['NewsletterSchedule']['id']?>">
 				<td>
 					<a 
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
@@ -36,15 +36,20 @@
 						</span>
 				</td>
 				<td>
-					<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?></span>
+					<span class="badge badge-<?=$schedule['rowclass']?>"><span class="status"><?=$schedule['status']?></span>
 				</td>
 				<td>
+					<?php if(!empty($schedule['NewsletterSchedule']['send_email'])):?>
 					<span class="badge badge-success is-rounded" title="Emails enviados">
-						<i class="gi gi-envelope"></i> <?=$schedule['stats']['email_sent']?> / <?=$schedule['stats']['email_total']?>
+						<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
 					</span> 
+					<?php endif ?>
+					<?php if(!empty($schedule['NewsletterSchedule']['send_push'])):?>
 					<span class="badge badge-warning is-rounded" title="Notificación Push enviados">
-						<i class="gi gi-chat"></i><?=$schedule['stats']['push_sent']?> / <?=$schedule['stats']['push_total']?>
+						<i class="gi gi-chat"></i>
+						<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
 					</span>
+					<?php endif ?>
 				</td>
 				<td>
 					<span class="badge badge-<?=strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00') > time() ? 'warning' : 'success'?> is-rounded" title="Fecha / Hora de ejecución">
@@ -118,7 +123,7 @@
   <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
     <i class="gi gi-send mr-1"></i> Crear nueva campaña
   </a>
-  <a class="btn btn-success <?=$_SERVER['REMOTE_ADDR'] == '127.0.0.1' ? 'btn-updates-schedules' : 'btn-refresh'?>" href="#">
+  <a class="btn btn-success btn-update-schedules" href="#">
     <i class="gi gi-repeat mr-1"></i> Actualizar
   </a>
 </div>

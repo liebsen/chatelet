@@ -2677,8 +2677,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function schedules_update(){
+		$this->RequestHandler->respondAs('application/json');
+		$this->autoRender = false;
 		$schedules = $this->Newsletter->schedules();
-		\d("schedules",$schedules);
     return json_encode(
     	array(
       	'results' => $schedules,

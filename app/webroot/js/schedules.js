@@ -5,66 +5,36 @@ $(document).ready(function() {
   $('.btn-refresh').click(function(e){
     window.location.href = window.location.href
   })
-  
-  $('.btn-updates-chedules').click(function(e){
+
+  $('.btn-update-schedules').click(function(e){
     e.preventDefault()
     updateSchedules()
   })
 })
 
 function updateSchedules(){
-  const relation = {
-    parentId: $('input[name="data[id]"]').val(),
-    type: 'user',
-    source: 'list',
-    model: 'NewsletterUser'
-  }  
-  var data = {}
-  $('.advanced-filter').each(function(i,e){
-    data[$(e).data('name')] = $(e).val()
-  })
-  data['search_mode'] = $('input[name="search_mode"]').val()
   $.ajax({
     type: "POST",
     url: "/admin/schedules_update",
-    data: data,
     success: function (res) {
-      let str = ''
-      let ids = []
-      let filter = []
-      //$('.search-more').html('')
-      $('.user-container > .label:not(.is-enabled)').remove()
-      $('.user-container > .label').each(function(key, item) {
-        const id = $(item).data('id')
-        ids.push(id)
-      })
       if(res.results.length) {
         $.each(res.results, function(key, item) {
-          const id = parseInt(item.id)
-          if ($.inArray(id, ids) === -1) {
-            filter.push(item)
-          }
+          const target = $(`.schedules-${item.NewsletterSchedule.id}`)
+          target.removeClass('bg-warning bg-info bg-success bg-light')
+          target.addClass(`bg-${item.rowclass}`)
+          target.find('.status').text(item.status)
+          target.find('.push_sent').text(item.stats.push_sent)
+          target.find('.email_sent').text(item.stats.email_sent)
         })
-      }
-      if(filter.length){
-        $('.relations-count').text(filter.length)
-        $('.relations-action-add').removeClass('d-none')
-        $.each(filter, function(key, item) {
-          $('.user-container').append('<span class="label user-item text-lowercase is-clickable" data-parent-id="'+relation.parentId+'" data-id="'+item.id+'" data-type="'+relation.type+'" data-source="'+relation.source+'" data-model="'+relation.model+'">'+item.email+'</span>');
-        })
-        $.growl.notice({
-          title: 'Encontramos algo',
-          message: `Se encontraron ${filter.length} coincidencias`,
-          queue: true,
-        });        
-      } else {
-        //$('.relations-action-add').addClass('d-none')
-        $.growl.notice({
+        return $.growl.notice({
           title: 'Atención',
-          message: 'No se encontraron cuentas para este filtro',
-          queue: true,
-        });        
+          message: `Total de ${res.results.length} campañas actualizado`,
+        });
       }
+      $.growl.notice({
+        title: 'Atención',
+        message: `No se actualizaron campañas`,
+      });      
     },
     error: function (xhr, error) {
       console.log("Error(xhr):"+xhr)
