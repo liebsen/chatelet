@@ -58,7 +58,7 @@
         <select class="form-control filter-type advanced-filter" name="data[filter][type]" data-name="type">
           <option value="">Seleccione un filtro</option>
           <option value="sales" data-target="sales"<?=$list['NewsletterList']['filter']->type == 'sales' ? ' selected' : ''?>>Filtro por compras</option>
-          <option value="carts" data-target="sales"<?=$list['NewsletterList']['filter']->type == 'carts' ? ' selected' : ''?>>Filtro por carrito vacío</option>
+          <option value="carts" data-target="sales"<?=$list['NewsletterList']['filter']->type == 'carts' ? ' selected' : ''?>>Filtro por compra incompleta</option>
           <option value="dob" data-target="dob"<?=$list['NewsletterList']['filter']->type == 'dob' ? ' selected' : ''?>>Filtro por cumpleaños</option>
         </select>
       </div>
