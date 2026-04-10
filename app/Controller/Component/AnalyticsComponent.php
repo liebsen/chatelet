@@ -8,6 +8,7 @@ App::uses(
   'Analytics', 
   'Sale',
   'Product',
+  'Search',
 );
 
 class AnalyticsComponent extends Component {
@@ -21,7 +22,6 @@ class AnalyticsComponent extends Component {
   }
 
   public function search() {
-    $this->loadModel('Search');
     $Search = ClassRegistry::init('Search');
     $items = $Search->find('all',array(
       'joins' => array(
@@ -38,12 +38,12 @@ class AnalyticsComponent extends Component {
       'order' => array('Search.id DESC'),
       'limit' => 20,
     ));
-    $this->set('view', "searches");    
+    $this->controller->set('items', $items);    
   }
 
   public function cart() {
-    $this->loadModel('Analytic');
-    $items = $this->Analytic->find('all',array(
+    $Analytic = ClassRegistry::init('Analytic');
+    $items = $Analytic->find('all',array(
       'joins' => array(
         array(
           'table' => 'users',
@@ -55,17 +55,18 @@ class AnalyticsComponent extends Component {
         )
       ),
       'conditions' => array(
-        'Analytic.user_id > 0',
+        'Analytic.cart_totals IS NOT NULL',
       ),
       'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Analytic.*'),
       'order' => array('Analytic.id DESC'),
       'limit' => 500,
-    ));    
+    ));
+    $this->controller->set('items', $items);    
   }
 
   public function products() {
-    $this->loadModel('Analytic');
-    $items = $this->Analytic->find('all',array(
+    $Analytic = ClassRegistry::init('Analytic');
+    $items = $Analytic->find('all',array(
       'joins' => array(
         array(
           'table' => 'users',
@@ -82,12 +83,13 @@ class AnalyticsComponent extends Component {
       'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Analytic.*'),
       'order' => array('Analytic.id DESC'),
       'limit' => 500,
-    ));    
+    ));   
+    $this->controller->set('items', $items);     
   }
 
   public function sales() {
-    $this->loadModel('Analytic');
-    $items = $this->Analytic->find('all',array(
+    $Analytic = ClassRegistry::init('Analytic');
+    $items = $Analytic->find('all',array(
       'joins' => array(
         array(
           'table' => 'users',
@@ -104,6 +106,7 @@ class AnalyticsComponent extends Component {
       'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Analytic.*'),
       'order' => array('Analytic.id DESC'),
       'limit' => 500,
-    ));    
+    ));
+    $this->controller->set('items', $items);    
   }
 }

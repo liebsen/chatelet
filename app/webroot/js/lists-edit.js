@@ -1,7 +1,4 @@
 $(document).ready(function() {
-
-  let clock = 0
-
   $('.datepicker').on('changeDate', function(e) {
     const selectedDate = $(e.target).val()
     const selectedName = $(e.target).data('name');

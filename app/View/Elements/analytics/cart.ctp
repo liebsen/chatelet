@@ -1,3 +1,4 @@
+<?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 	<table id="example-datatables" class="table table-bordered table-hover">
@@ -10,14 +11,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($items as $key => $item) : $cart_totals = json_decode($item['Analytic']['cart_totals']); ?>
-				<tr data-id="<?= $item['Analytic']['id'] ?>" class="<?=$item['Analytic']['results']?'bg-success':'bg-danger'?>">
+			<?php foreach ($items as $key => $item) : $cart = json_decode($item['Analytic']['cart']); $cart_totals = json_decode($item['Analytic']['cart_totals']); ?>
+				<tr data-id="<?= $item['Analytic']['id'] ?>">
 					<td>
 						<span class="badge badge-lg badge-info"><?=$item['Analytic']['page']?></span>
 					</td>
 					<td>
 						<code class="d-flex flex-column">
-							<span>Items: <?=$cart_totals->cart_items?></span>
+							<span>Items: <?=count($cart)?></span>
 							<span>Monto: <?=price_format($cart_totals->grand_total)?></span>
 						</code>
 					</td>

@@ -3249,12 +3249,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			),
 			'Carrito' => array(
 				'id' => 'cart',
-				'icon' 		=> 'gi gi-circle_plus',
+				'icon' 		=> 'gi gi-shopping_cart',
 				'url'		=> '/admin/analytics/cart',
 			),
-			'Compras' => array(
+			'Ventas' => array(
 				'id' => 'sales',
-				'icon' 		=> 'gi gi-shopping_cart',
+				'icon' 		=> 'gi gi-money',
 				'url'		=> '/admin/analytics/sales',
 			),
 			'Productos' => array(
