@@ -12,14 +12,13 @@ $(document).ready(function() {
   })
 
   $('select.filter-type').change(function(e){
-    $('.filter-box').addClass('d-none')
+    $('.filter-item').addClass('d-none')
     const target = $(this).find(':selected').data('target')
     const text = $(this).find(':selected').text()
-    console.log('target',target)
-    console.log('text',text)
     setTimeout(function(){
+      console.log(target)
       $(`.filter-${target}`).removeClass('d-none')
-    },200)
+    },10)
   })
 
   $('input.advanced-filter').change(function(e){
@@ -28,6 +27,8 @@ $(document).ready(function() {
     $('.min_sale-value').text('$'+ (value * 100))
     updateUsers()
   })
+
+  $('select.filter-type').change()
 })
 
 function updateUsers(){
