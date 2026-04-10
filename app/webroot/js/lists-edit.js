@@ -11,6 +11,17 @@ $(document).ready(function() {
     updateUsers()
   })
 
+  $('select.filter-type').change(function(e){
+    $('.filter-box').addClass('d-none')
+    const target = $(this).find(':selected').data('target')
+    const text = $(this).find(':selected').text()
+    console.log('target',target)
+    console.log('text',text)
+    setTimeout(function(){
+      $(`.filter-${target}`).removeClass('d-none')
+    },200)
+  })
+
   $('input.advanced-filter').change(function(e){
     const value = $(this).val() || 0
     $('input[name="search_mode"]').val('sale')
@@ -30,7 +41,6 @@ function updateUsers(){
   $('.advanced-filter').each(function(i,e){
     data[$(e).data('name')] = $(e).val()
   })
-  data['search_mode'] = $('input[name="search_mode"]').val()
   $.ajax({
     type: "POST",
     url: "/admin/newsletters_users_reach",

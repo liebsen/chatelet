@@ -2592,11 +2592,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $sale_min = $data['sale_min'] ?? 1;
     $dob_min = $data['dob_min'] ?? 0;
     $dob_max = $data['dob_max'] ?? 0;
-    $search_mode = $data['search_mode'] ?? 'sale';
+    $filter_type = $data['type'] ?? 'sale';
     $sale_min *= 100;
-			\d("newsletters_users_reach(search_mode)", $search_mode);
+			\d("newsletters_users_reach(filter_type)", $filter_type);
     
-		if($search_mode == 'dob') {
+		if($filter_type == 'dob') {
 			$min_parts = explode('/', $dob_min);
 			$max_parts = explode('/', $dob_max);
 			$this->loadModel('User');
@@ -2616,7 +2616,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		  	),
 		  	'limit' => 1000,
 	    ));
-		} else {
+		} 
+
+		if($filter_type == 'sales') {
 			$this->loadModel('Sale');
 			\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
 	    $data = $this->Sale->find('all',array(
@@ -2645,6 +2647,40 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		  	),
 		  	'group' => array(
 		  		"Sale.user_id HAVING Total > {$sale_min}"
+		  	),
+		  	'limit' => 1000,
+	    ));
+	  }
+
+		if($filter_type == 'carts') {
+			$this->loadModel('Analytic');
+			\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
+	    $data = $this->Analytic->find('all',array(
+		    'joins' => array(
+	        array(
+	          'table' => 'users',
+	          'alias' => 'User',
+	          'type' => 'LEFT',
+	          'conditions' => array(
+	            'User.id = Analytic.user_id',
+	          )
+	        )
+		    ),
+	      'conditions' => array(
+	        // 'SUM(Sale.value) > ' => $sale_min,
+	        'User.id IS NOT ' => null,
+	        'JSON_EXTRACT(Analytic.cart_totals, \'$.total_products\') >' => $sale_min,
+	        'Analytic.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
+	        'Analytic.created < ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_max))),
+	      ),
+		    'fields' => array(
+		    	'User.id, User.email, User.name, User.surname, User.birthday'
+		    ),
+		  	'order' => array(
+		  		'Analytic.id DESC'
+		  	),
+		  	'group' => array(
+		  		'User.id'
 		  	),
 		  	'limit' => 1000,
 	    ));
