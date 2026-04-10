@@ -11,7 +11,7 @@ use AlejoASotelo\Andreani;
 class AdminController extends AppController {
 	public $uses = array('AdminMenu','Promo','Package','SaleProduct','Sale','Setting');
 	//public $components = array('SQL', 'RequestHandler');
-	public $components = array('Newsletter', 'RequestHandler');
+	public $components = array('Newsletter', 'Analytics', 'RequestHandler');
 
 	public function beforeFilter() {
     	parent::beforeFilter();
@@ -2073,29 +2073,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			)
 		);
 
-		/*foreach($navs as $i => $nav) {
-			if($nav['id'] == $pane) {
-				$navs[$i]['enabled'] = true;
-			}
-		}*/
-		//CakeLog::write('debug','emails_vars:'.json_encode($emails_vars));
-		//CakeLog::write('debug','controlComponent:'.json_encode($controlComponent));
-		//CakeLog::write('debug','params:'.json_encode($this->params['pass']));
-		//\d("controlComponent", $controlComponent);
-
 		if(method_exists($this->Newsletter, $controlComponent)) {
 			$this->Newsletter->{$controlComponent}($id);
 		}
 
-		/*if($action == 'edit'){
-      $navs[($pane == 'templates' ? (empty($id) ? 'Nueva' : 'Editar') . ' Plantilla ' : 'Programar Campaña ')] = array(
-        'icon'    => 'gi gi-'.($pane == 'templates' ? 'envelope' : 'clock'),
-        'url'   => '/admin/newsletters/'.$pane.'/edit/'.$id,
-        'enabled' => 1
-      );
-		}*/
-
-		// $this->set('action', $action);		
 		$this->set('pane', $pane);
 		$this->set('h1', $h1);
 		$this->set('viewComponent', $viewComponent);
@@ -3212,79 +3193,49 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	  $this->render('menu');
 	}	
 
-	public function analytics($action = null) {
-		$navs = array(
-			'Compras' => array(
-				'icon' 		=> 'gi gi-shopping_cart',
-				'url'		=> '/admin/analytics',
-			),
-			'Productos' => array(
-				'icon' 		=> 'gi gi-shirt',
-				'url'		=> '/admin/analytics/productos',
-			),
-			'Búsquedas' => array(
-				'icon' 		=> 'gi gi-search',
-				'url'		=> '/admin/analytics/searches',
-			),
-			'Carrito' => array(
-				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> '/admin/analytics/cart',
-			)
-		);
+	public function analytics($section = 'index') {
+		$pane = $this->params['pass'][0] ?? $section;
+		$action = $this->params['pass'][1] ?? '';
+		$id = $this->params['pass'][2] ?? 0;
+		$viewComponent = implode('-', array_values(array_filter(array($pane,$action))));
+		$controlComponent = implode('_', array_values(array_filter(array($pane,$action))));
 
-		$this->set('navs', $navs);
 		$h1 = array(
-			'name' => 'Analíticas',
+			'name' => 'Estadísticas',
 			'icon' => 'gi gi-stats'
 		);
-		$this->set('h1', $h1);
 
-		switch($action) {
-			case 'cart':
-		    $this->loadModel('Analytic');
-			  $items = $this->Analytic->find('all',array(
-			    'joins' => array(
-		        array(
-		          'table' => 'users',
-		          'alias' => 'UserJoin',
-		          'type' => 'LEFT',
-		          'conditions' => array(
-	              'UserJoin.id = Analytic.user_id',
-		          )
-		        )
-			    ),
-          'conditions' => array(
-            'Analytic.user_id > 0',
-          ),
-			    'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Analytic.*'),
-			  	'order' => array('Analytic.id DESC'),
-			  	'limit' => 500,
-		    ));
-				$this->set('view', "analytics");
-				break;
+		$navs = array(
+			'Búsquedas' => array(
+				'id' => 'search',
+				'icon' 		=> 'gi gi-search',
+				'url'		=> '/admin/analytics/search',
+			),
+			'Carrito' => array(
+				'id' => 'cart',
+				'icon' 		=> 'gi gi-circle_plus',
+				'url'		=> '/admin/analytics/cart',
+			),
+			'Compras' => array(
+				'id' => 'sales',
+				'icon' 		=> 'gi gi-shopping_cart',
+				'url'		=> '/admin/analytics/sales',
+			),
+			'Productos' => array(
+				'id' => 'products',
+				'icon' 		=> 'gi gi-shirt',
+				'url'		=> '/admin/analytics/products',
+			),
+		);
 
-			default: 
-		    $this->loadModel('Search');
-			  $items = $this->Search->find('all',array(
-			    'joins' => array(
-		        array(
-		          'table' => 'users',
-		          'alias' => 'UserJoin',
-		          'type' => 'LEFT',
-		          'conditions' => array(
-		              'UserJoin.id = Search.user_id'
-		          )
-		        )
-			    ),
-			    'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Search.*'),
-			  	'order' => array('Search.id DESC'),
-			  	'limit' => 20,
-		    ));
-		    $this->set('view', "searches");
-		    break;
+		if(method_exists($this->Analytics, $controlComponent)) {
+			$this->Analytics->{$controlComponent}($id);
 		}
-		$this->set('items', $items);
-	  $this->render('analytics');
+
+		$this->set('pane', $pane);
+		$this->set('h1', $h1);
+		$this->set('viewComponent', $viewComponent);
+		$this->set('navs', $navs);
 	}
 
 	public function batch_productos($action = null) {

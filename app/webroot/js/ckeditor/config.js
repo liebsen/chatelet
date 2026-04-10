@@ -10,6 +10,7 @@ CKEDITOR.editorConfig = function( config ) {
   config.allowedContent = true;
   config.language = 'es'
   // config.extraPlugins = 'uploadimage'
+  config.extraPlugins: 'table,tabletools,tableselection,tableresize'
   config.toolbar = [
       { name: 'styles', items : [ 'Format' ] },
       { name: 'basicstyles', items : [ 'Bold','Italic','Strike'] },
