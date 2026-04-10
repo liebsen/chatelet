@@ -58,7 +58,7 @@
       <table class="table table-forum table-striped text-small">
         <tr>
           <td><small>Filtro</small></td>
-          <th><span class="date_min-value"><?= !empty($list['NewsletterList']['filter']->type) ? $list['NewsletterList']['filter']->type : 'ND'?></span></th>
+          <th><span class="filter-type-value"><?= !empty($list['NewsletterList']['filter']->type) ? $list['NewsletterList']['filter']->type : 'ND'?></span></th>
         </tr>
         <tr class="filter-item filter-sales filter-carts">
           <td><small>Periodo de evaluación</small></td>
@@ -78,14 +78,15 @@
             <span class="user-count"><?= count($list_users)?></span>
           </th>
         </tr>
-      </table>        
+      </table>
+      <h4 class="sub-header">Filtros</h4>
       <div class="controls mb-4">
         <label class="control-label" for="title">Selecciona un filtro</label>
         <select class="form-control filter-type advanced-filter" name="data[filter][type]" data-name="type">
           <option value="">Seleccione un filtro</option>
-          <option value="sales" data-target="sales"<?=$list['NewsletterList']['filter']->type == 'sales' ? ' selected' : ''?>>Filtro por compras</option>
-          <option value="carts" data-target="sales"<?=$list['NewsletterList']['filter']->type == 'carts' ? ' selected' : ''?>>Filtro por compra incompleta</option>
-          <option value="dob" data-target="dob"<?=$list['NewsletterList']['filter']->type == 'dob' ? ' selected' : ''?>>Filtro por cumpleaños</option>
+          <option value="sales" data-target="sales"<?=$list['NewsletterList']['filter']->type == 'sales' ? ' selected' : ''?>>Compras</option>
+          <option value="carts" data-target="sales"<?=$list['NewsletterList']['filter']->type == 'carts' ? ' selected' : ''?>>Compra incompleta</option>
+          <option value="dob" data-target="dob"<?=$list['NewsletterList']['filter']->type == 'dob' ? ' selected' : ''?>>Cumpleaños</option>
         </select>
       </div>
       <div class="filter-box filter-item filter-sales<?=in_array($list['NewsletterList']['filter']->type, array('sales', 'carts')) ? ' ' : ' d-none '?>mb-4">

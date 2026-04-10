@@ -16,7 +16,7 @@ $(document).ready(function() {
     const target = $(this).find(':selected').data('target')
     const text = $(this).find(':selected').text()
     setTimeout(function(){
-      console.log(target)
+      $('.filter-type-value').text(text)
       $(`.filter-${target}`).removeClass('d-none')
     },10)
   })
