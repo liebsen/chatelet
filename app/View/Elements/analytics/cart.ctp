@@ -17,14 +17,14 @@
 						<span class="badge badge-lg badge-info"><?=$item['Analytic']['page']?></span>
 					</td>
 					<td>
-						<code class="d-flex flex-column">
+						<strong class="d-flex flex-column">
 							<span>Items: <?=count($cart)?></span>
 							<span>Monto: <?=price_format($cart_totals->grand_total)?></span>
-						</code>
+						</strong>
 					</td>
 					<td> 
 					<?php if($item['Analytic']['user_id']): ?>
-						<?=$item['UserJoin']['name']?> <?=$item['UserJoin']['surname']?> (<?=date('Y')-date('Y',strtotime($item['UserJoin']['birthday']))?> años)
+						<?=$item['User']['name']?> <?=$item['User']['surname']?> (<?=date('Y')-date('Y',strtotime($item['User']['birthday']))?> años)
 					<?php else: ?>
 						<span>Anónimo</span>
 					<?php endif ?>

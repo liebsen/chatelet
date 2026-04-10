@@ -27,14 +27,14 @@ class AnalyticsComponent extends Component {
       'joins' => array(
         array(
           'table' => 'users',
-          'alias' => 'UserJoin',
+          'alias' => 'User',
           'type' => 'LEFT',
           'conditions' => array(
-              'UserJoin.id = Search.user_id'
+              'User.id = Search.user_id'
           )
         )
       ),
-      'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Search.*'),
+      'fields' => array('User.name, User.surname, User.birthday', 'Search.*'),
       'order' => array('Search.id DESC'),
       'limit' => 20,
     ));
@@ -47,17 +47,17 @@ class AnalyticsComponent extends Component {
       'joins' => array(
         array(
           'table' => 'users',
-          'alias' => 'UserJoin',
+          'alias' => 'User',
           'type' => 'LEFT',
           'conditions' => array(
-            'UserJoin.id = Analytic.user_id',
+            'User.id = Analytic.user_id',
           )
         )
       ),
       'conditions' => array(
         'Analytic.cart_totals IS NOT NULL',
       ),
-      'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Analytic.*'),
+      'fields' => array('User.name, User.surname, User.birthday', 'Analytic.*'),
       'order' => array('Analytic.id DESC'),
       'limit' => 500,
     ));
@@ -70,17 +70,17 @@ class AnalyticsComponent extends Component {
       'joins' => array(
         array(
           'table' => 'users',
-          'alias' => 'UserJoin',
+          'alias' => 'User',
           'type' => 'LEFT',
           'conditions' => array(
-            'UserJoin.id = Analytic.user_id',
+            'User.id = Analytic.user_id',
           )
         )
       ),
       'conditions' => array(
         'Analytic.user_id > 0',
       ),
-      'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Analytic.*'),
+      'fields' => array('User.name, User.surname, User.birthday', 'Analytic.*'),
       'order' => array('Analytic.id DESC'),
       'limit' => 500,
     ));   
@@ -93,17 +93,17 @@ class AnalyticsComponent extends Component {
       'joins' => array(
         array(
           'table' => 'users',
-          'alias' => 'UserJoin',
+          'alias' => 'User',
           'type' => 'LEFT',
           'conditions' => array(
-            'UserJoin.id = Analytic.user_id',
+            'User.id = Analytic.user_id',
           )
         )
       ),
       'conditions' => array(
         'Analytic.user_id > 0',
       ),
-      'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Analytic.*'),
+      'fields' => array('User.name, User.surname, User.birthday', 'Analytic.*'),
       'order' => array('Analytic.id DESC'),
       'limit' => 500,
     ));
