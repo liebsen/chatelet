@@ -2,6 +2,10 @@ $(document).ready(function() {
 
   let clock = 0
 
+  $('.btn-refresh').click(function(e){
+    window.location.href = window.location.href
+  })
+  
   $('.btn-updates-chedules').click(function(e){
     e.preventDefault()
     updateSchedules()

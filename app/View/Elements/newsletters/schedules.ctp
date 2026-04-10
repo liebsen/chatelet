@@ -118,7 +118,7 @@
   <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
     <i class="gi gi-send mr-1"></i> Crear nueva campaña
   </a>
-  <a class="btn btn-success btn-updates-chedules" href="#">
+  <a class="btn btn-success <?=$_SERVER['REMOTE_ADDR'] == '127.0.0.1' ? 'btn-updates-schedules' : 'btn-refresh'?>" href="#">
     <i class="gi gi-repeat mr-1"></i> Actualizar
   </a>
 </div>
