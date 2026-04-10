@@ -50,9 +50,10 @@
       <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
       <div class="controls-group">
         <textarea class="form-control w-100" name="data[text]" id="newsletter" rows="4"><?=$list['NewsletterList']['text']?></textarea>
-      </div>
+      </div>  
+    </div>
+    <div class="col-md-6">
 <?php if(!empty($list['NewsletterList']['id'])):?>
-      <hr>
       <div class="controls">
         <label class="control-label" for="title">Selecciona un filtro</label>
         <select class="form-control filter-type advanced-filter" name="data[filter][type]" data-name="type">
@@ -87,10 +88,6 @@
           </div>
         </div>
       </div>
-<?php endif ?>      
-    </div>
-    <div class="col-md-6">
-  <?php if(!empty($list['NewsletterList']['id'])):?>
       <h4 class="sub-header">Resumen</h4>
       <table class="table table-forum table-striped text-small">
         <tr>
