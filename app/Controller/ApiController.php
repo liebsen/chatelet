@@ -271,7 +271,7 @@ class ApiController extends AppController {
 
   public function stats(){
     $this->autoRender = false;
-    $this->loadModel('Analytic');
+    $this->loadModel('Stat');
     $data = $this->request->data;
     $cart = $this->Session->read('cart') ?? 0;
     $cart_totals = $this->Session->read('cart_totals') ?? 0;
@@ -289,17 +289,20 @@ class ApiController extends AppController {
     );
 
     // $analytic['created'] = date('Y-m-d H:i:s');
+    $context = array();
     if(!empty($cart)){
-      $entry['cart'] = json_encode($cart);
+      $context['cart'] = $cart;
     }
 
     if(!empty($cart_totals)){
-      $entry['cart_totals'] = json_encode($cart_totals);
+      $context['cart_totals'] = $cart_totals;
     }
 
-    CakeLog::write('debug', "analytics:".json_encode($data));
+    $entry['context'] = json_encode($context);
 
-    $this->Analytic->save($entry);   
+    CakeLog::write('debug', "stats:".json_encode($data));
+
+    $this->Stat->save($entry);   
     exit(); 
   }
 }

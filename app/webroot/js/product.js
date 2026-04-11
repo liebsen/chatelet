@@ -28,6 +28,7 @@ function pideStock(obj){
 	clearTimeout(timeout)
 	timeout = setTimeout(() => {
 		var url 		= $(obj).closest("form").data('url');
+		var id 	= $('#product_id').text()
 		var article 	= $(obj).closest("form").data('article');
 		var color_code 	= $(obj).closest("form").find('input[name="color"]:checked').attr('code');
 		var color_alias 	= $(obj).closest("form").find('input[name="color"]:checked').attr('alias');
@@ -60,7 +61,7 @@ function pideStock(obj){
 			// onWarningAlert('Consultando stock','Un momento por favor...')
       stock_cont.html(stock_v);
 
-	  	$.get(url+'/'+article+'/'+size_number+'/'+color_code, function(data) {
+	  	$.get(url+'/'+id+'/'+article+'/'+size_number+'/'+color_code, function(data) {
 	  		setTimeout(() => {
 					if(data != 0){
 					  // stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );

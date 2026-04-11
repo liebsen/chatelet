@@ -49,10 +49,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($items as $key => $item) : $cart_totals = json_decode($item['Analytic']['cart_totals']); ?>
-				<tr data-id="<?= $item['Analytic']['id'] ?>" class="<?=$item['Analytic']['results']?'bg-success':'bg-danger'?>">
+			<?php foreach ($items as $key => $item) : $cart_totals = json_decode($item['Stat']['cart_totals']); ?>
+				<tr data-id="<?= $item['Stat']['id'] ?>" class="<?=$item['Stat']['results']?'bg-success':'bg-danger'?>">
 					<td>
-						<span class="badge badge-lg badge-info"><?=$item['Analytic']['page']?></span>
+						<span class="badge badge-lg badge-info"><?=$item['Stat']['page']?></span>
 					</td>
 					<td>
 						<code class="d-flex flex-column">
@@ -61,14 +61,14 @@
 						</code>
 					</td>
 					<td> 
-					<?php if($item['Analytic']['user_id']): ?>
+					<?php if($item['Stat']['user_id']): ?>
 						<?=$item['UserJoin']['name']?> <?=$item['UserJoin']['surname']?> (<?=date('Y')-date('Y',strtotime($item['UserJoin']['birthday']))?> años)
 					<?php else: ?>
 						<span>Anónimo</span>
 					<?php endif ?>
 					</td> 
 					<td> 
-						<?=$item['Analytic']['created']?>
+						<?=$item['Stat']['created']?>
 					</td> 
 				</tr>
 			<?php endforeach ?>

@@ -304,23 +304,50 @@ class ShopController extends AppController {
 		}
 	}
 
-	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
+	public function stock($product_id, $article = null,$size_number = null,$color_code = null,$list_code = null){
+		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
-		if ($this->settings['env_staging']) {
-			return 1;
-		}
-		$this->SQL = $this->Components->load('SQL');
+		$this->loadModel('Stat');
 		$stock = 0;
 		$list_code = $this->settings['list_code'];
 		$stock_min = $this->settings['stock_min'];
+
+		\d("save",array(
+			'id' => null,
+      'tag' => 'variant-select',
+      'user_id' => $this->Auth->user('id') ?? 0,
+      'product_id' => $product_id,
+      'context' => array(
+      	'size_number' => $size_number,
+      	'color_code' => $color_code,
+      )
+    ));
+		$this->Stat->save(array(
+			'id' => null,
+      'tag' => 'variant-select',
+      'user_id' => $this->Auth->user('id') ?? 0,
+      'product_id' => $product_id,
+      'context' => json_encode(array(
+      	'size_number' => $size_number,
+      	'color_code' => $color_code,
+      ))
+    ));
+
+		if ($this->settings['env_staging']) {
+			return 1;
+		}
+
+		$this->SQL = $this->Components->load('SQL');
+
 		if(!empty($article) && !empty($color_code) && !empty($size_number) ){
 			// CakeLog::write('debug','article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code);
 	    $stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code,$stock_min);
 		} elseif (!empty($article)) {
 			$stock = 1;
 		}
-		CakeLog::write('debug','stock: article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code . ':' . $stock);
-		return (string)$stock;
+
+		// CakeLog::write('debug','stock: article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code . ':' . $stock);
+		return json_encode((string) $stock);
 	}
 
 	public function check_stock($product_id){

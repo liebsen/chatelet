@@ -5,21 +5,20 @@ App::uses(
   'Component', 
   'Controller', 
   'Session', 
-  'Analytics', 
+  'Stat', 
   'Sale',
   'Product',
   'Search',
 );
 
-class AnalyticsComponent extends Component {
+class StatsComponent extends Component {
   public $controller; // To store a reference to the Controller
   public function initialize(Controller $controller) {
     $this->controller = $controller;
     parent::initialize($controller);
   }
 
-  public function index($value=''){
-  }
+  public function index(){}
 
   public function search() {
     $Search = ClassRegistry::init('Search');
@@ -42,69 +41,69 @@ class AnalyticsComponent extends Component {
   }
 
   public function cart() {
-    $Analytic = ClassRegistry::init('Analytic');
-    $items = $Analytic->find('all',array(
+    $Stat = ClassRegistry::init('Stat');
+    $items = $Stat->find('all',array(
       'joins' => array(
         array(
           'table' => 'users',
           'alias' => 'User',
           'type' => 'LEFT',
           'conditions' => array(
-            'User.id = Analytic.user_id',
+            'User.id = Stat.user_id',
           )
         )
       ),
       'conditions' => array(
-        'Analytic.cart_totals IS NOT NULL',
+        'Stat.cart_totals IS NOT NULL',
       ),
-      'fields' => array('User.name, User.surname, User.birthday', 'Analytic.*'),
-      'order' => array('Analytic.id DESC'),
+      'fields' => array('User.name, User.surname, User.birthday', 'Stat.*'),
+      'order' => array('Stat.id DESC'),
       'limit' => 500,
     ));
     $this->controller->set('items', $items);    
   }
 
   public function products() {
-    $Analytic = ClassRegistry::init('Analytic');
-    $items = $Analytic->find('all',array(
+    $Stat = ClassRegistry::init('Stat');
+    $items = $Stat->find('all',array(
       'joins' => array(
         array(
-          'table' => 'users',
-          'alias' => 'User',
+          'table' => 'products',
+          'alias' => 'Product',
           'type' => 'LEFT',
           'conditions' => array(
-            'User.id = Analytic.user_id',
+            'User.id = Stat.product_id',
           )
         )
       ),
       'conditions' => array(
-        'Analytic.user_id > 0',
+        'Stat.user_id > 0',
       ),
-      'fields' => array('User.name, User.surname, User.birthday', 'Analytic.*'),
-      'order' => array('Analytic.id DESC'),
+      'fields' => array('Product.name, Product.desc, Product.article', 'Stat.*'),
+      'order' => array('Stat.id DESC'),
       'limit' => 500,
     ));   
     $this->controller->set('items', $items);     
   }
 
   public function sales() {
-    $Analytic = ClassRegistry::init('Analytic');
-    $items = $Analytic->find('all',array(
+    $Stat = ClassRegistry::init('Stat');
+    $items = $Stat->find('all',array(
       'joins' => array(
         array(
           'table' => 'users',
           'alias' => 'User',
           'type' => 'LEFT',
           'conditions' => array(
-            'User.id = Analytic.user_id',
+            'User.id = Stat.user_id',
           )
         )
       ),
       'conditions' => array(
-        'Analytic.user_id > 0',
+        'Stat.user_id > 0',
       ),
-      'fields' => array('User.name, User.surname, User.birthday', 'Analytic.*'),
-      'order' => array('Analytic.id DESC'),
+      'fields' => array('User.name, User.surname, User.birthday', 'Stat.*'),
+      'order' => array('Stat.id DESC'),
       'limit' => 500,
     ));
     $this->controller->set('items', $items);    

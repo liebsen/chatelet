@@ -11,7 +11,7 @@ use AlejoASotelo\Andreani;
 class AdminController extends AppController {
 	public $uses = array('AdminMenu','Promo','Package','SaleProduct','Sale','Setting');
 	//public $components = array('SQL', 'RequestHandler');
-	public $components = array('Newsletter', 'Analytics', 'RequestHandler');
+	public $components = array('Newsletter', 'Stat', 'RequestHandler');
 
 	public function beforeFilter() {
     	parent::beforeFilter();
@@ -2653,31 +2653,31 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	  }
 
 		if($filter_type == 'carts') {
-			$this->loadModel('Analytic');
+			$this->loadModel('Stat');
 			\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
-	    $data = $this->Analytic->find('all',array(
+	    $data = $this->Stat->find('all',array(
 		    'joins' => array(
 	        array(
 	          'table' => 'users',
 	          'alias' => 'User',
 	          'type' => 'LEFT',
 	          'conditions' => array(
-	            'User.id = Analytic.user_id',
+	            'User.id = Stat.user_id',
 	          )
 	        )
 		    ),
 	      'conditions' => array(
 	        // 'SUM(Sale.value) > ' => $sale_min,
 	        'User.id IS NOT ' => null,
-	        'JSON_EXTRACT(Analytic.cart_totals, \'$.total_products\') >' => $sale_min,
-	        'Analytic.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
-	        'Analytic.created < ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_max))),
+	        'JSON_EXTRACT(Stat.cart_totals, \'$.total_products\') >' => $sale_min,
+	        'Stat.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
+	        'Stat.created < ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_max))),
 	      ),
 		    'fields' => array(
 		    	'User.id, User.email, User.name, User.surname, User.birthday'
 		    ),
 		  	'order' => array(
-		  		'Analytic.id DESC'
+		  		'Stat.id DESC'
 		  	),
 		  	'group' => array(
 		  		'User.id'
@@ -3229,7 +3229,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	  $this->render('menu');
 	}	
 
-	public function analytics($section = 'index') {
+	public function stats($section = 'index') {
 		$pane = $this->params['pass'][0] ?? $section;
 		$action = $this->params['pass'][1] ?? '';
 		$id = $this->params['pass'][2] ?? 0;
@@ -3245,27 +3245,27 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'Búsquedas' => array(
 				'id' => 'search',
 				'icon' 		=> 'gi gi-search',
-				'url'		=> '/admin/analytics/search',
+				'url'		=> '/admin/stats/search',
 			),
 			'Carrito' => array(
 				'id' => 'cart',
 				'icon' 		=> 'gi gi-shopping_cart',
-				'url'		=> '/admin/analytics/cart',
+				'url'		=> '/admin/stats/cart',
 			),
 			'Ventas' => array(
 				'id' => 'sales',
 				'icon' 		=> 'gi gi-money',
-				'url'		=> '/admin/analytics/sales',
+				'url'		=> '/admin/stats/sales',
 			),
 			'Productos' => array(
 				'id' => 'products',
 				'icon' 		=> 'gi gi-shirt',
-				'url'		=> '/admin/analytics/products',
+				'url'		=> '/admin/stats/products',
 			),
 		);
 
-		if(method_exists($this->Analytics, $controlComponent)) {
-			$this->Analytics->{$controlComponent}($id);
+		if(method_exists($this->Stat, $controlComponent)) {
+			$this->Stat->{$controlComponent}($id);
 		}
 
 		$this->set('pane', $pane);
