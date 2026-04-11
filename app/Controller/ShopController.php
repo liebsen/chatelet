@@ -322,7 +322,7 @@ class ShopController extends AppController {
       	'color_code' => $color_code,
       )
     ));
-		$this->Stat->save(array(
+		$this->Stats->save(array(
 			'id' => null,
       'tag' => 'variant-select',
       'user_id' => $this->Auth->user('id') ?? 0,
@@ -758,6 +758,6 @@ class ShopController extends AppController {
 			)
 		);
 
-		$this->Stat->save($save);
+		$this->Stats->save($save);
 	}
 }

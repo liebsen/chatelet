@@ -6,7 +6,7 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class ApiController extends AppController {
 	public $helpers = array('Text');
-	public $components = array("RequestHandler");
+	public $components = array("RequestHandler", "Stats");
 
 	public function beforeFilter() {
   	parent::beforeFilter();
@@ -277,17 +277,18 @@ class ApiController extends AppController {
     $cart_totals = $this->Session->read('cart_totals') ?? 0;
     $page = $data['page'] ?? '/';
     $tag = $data['tag'] ?? 'page-exit';
-    $user_id = $this->Auth->user('id') ?? 0;
-    $product_id = !empty($data['product_id']) ? intval($data['product_id']) :  0;
+    $user_id = $this->Auth->user('id') ?? 1;
+    $product_id = !empty($data['product_id']) ? intval($data['product_id']) :  1;
 
     // save entry
-    $entry = array(
+    $save = array(
       'tag' => $tag,
       'user_id' => $user_id,
       'product_id' => $product_id,
       'page' => $page
     );
 
+    // \d("save",$save);
     // $analytic['created'] = date('Y-m-d H:i:s');
     $context = array();
     if(!empty($cart)){
@@ -299,12 +300,12 @@ class ApiController extends AppController {
     }
 
     if(!empty($context)){
-      $entry['context'] = json_encode($context);
+      $save['context'] = json_encode($context);
     }
 
-    CakeLog::write('debug', "stats:".json_encode($data));
+    // CakeLog::write('debug', "stats:".json_encode($data));
 
-    $this->Stat->save($entry);   
+    $this->Stat->save($save);   
     exit(); 
   }
 }

@@ -11,7 +11,7 @@ use AlejoASotelo\Andreani;
 class AdminController extends AppController {
 	public $uses = array('AdminMenu','Promo','Package','SaleProduct','Sale','Setting');
 	//public $components = array('SQL', 'RequestHandler');
-	public $components = array('Newsletter', 'Stat', 'RequestHandler');
+	public $components = array('Newsletter', 'Stats', 'RequestHandler');
 
 	public function beforeFilter() {
     	parent::beforeFilter();
@@ -2655,7 +2655,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		if($filter_type == 'carts') {
 			$this->loadModel('Stat');
 			\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
-	    $data = $this->Stat->find('all',array(
+	    $data = $this->Stats->find('all',array(
 		    'joins' => array(
 	        array(
 	          'table' => 'users',
@@ -3265,7 +3265,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		);
 
 		if(method_exists($this->Stat, $controlComponent)) {
-			$this->Stat->{$controlComponent}($id);
+			$this->Stats->{$controlComponent}($id);
 		}
 
 		$this->set('pane', $pane);
