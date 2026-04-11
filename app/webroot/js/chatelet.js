@@ -768,7 +768,7 @@ $(document).ready(function() {
 
   setTimeout(() => {
     sendBeacon('page-view')
-  },5000)
+  },1000)
 
   /*$('#registro-modal a[data-toggle="modal"]').click(function() {
 		$(this).parents('#registro-modal').modal('hide');

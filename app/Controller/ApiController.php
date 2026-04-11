@@ -298,7 +298,9 @@ class ApiController extends AppController {
       $context['cart_totals'] = $cart_totals;
     }
 
-    $entry['context'] = json_encode($context);
+    if(!empty($context)){
+      $entry['context'] = json_encode($context);
+    }
 
     CakeLog::write('debug', "stats:".json_encode($data));
 

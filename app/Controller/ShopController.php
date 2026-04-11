@@ -681,7 +681,7 @@ class ShopController extends AppController {
 
 	public function buscar(){
 		$this->loadModel('Product');
-		$this->loadModel('Search');
+		$this->loadModel('Stat');
 		$this->loadModel('Legend');
 
 		// legends
@@ -745,14 +745,19 @@ class ShopController extends AppController {
 		$this->set('results', $results);
 
 		// save search
-		$search = [];
-		$search['name'] = $q;
-		$search['user_id'] = $this->Auth->user('id') ?: 0;
-		$search['created'] = date('Y-m-d H:i:s');
-		$search['referer'] = $_SERVER['HTTP_REFERER'];
-		$search['page'] = $p+1;
-		$search['results'] = count($results); 
+		$save = array();
+		$save['tag'] = 'page-search';
+		$save['page'] = '/shop/buscar';
+		$save['user_id'] = $this->Auth->user('id') ?: 0;
+		// $save['referer'] = $_SERVER['HTTP_REFERER'];
+		// $save['page'] = $p+1;
+		$save['context'] = json_encode(
+			array(
+				'result_count' => count($results),
+				'query' => $q
+			)
+		);
 
-		$this->Search->save($search);
+		$this->Stat->save($save);
 	}
 }
