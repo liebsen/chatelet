@@ -108,11 +108,18 @@ function askremoveCart(e) {
   }
 }
 
-function sendBeacon(tag) { 
-  const data = {
+function sendBeacon(tag) {
+  var data = {
     tag,
     page: window.location.pathname,
-  };
+  }
+
+  if(
+    location.pathname.startsWith('/tienda/producto/') || 
+    location.pathname.startsWith('/shop/detalle/')
+  ) {
+    data.product_id = location.href.split('/')[5]
+  }
 
   // Convert data to a Blob for sending
   const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
