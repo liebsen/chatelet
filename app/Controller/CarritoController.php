@@ -492,12 +492,11 @@ class CarritoController extends AppController
 	public function add() {
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');
-
 		if ($this->request->is('post')) {
 			$data = $this->request->data;
 			if(
-				!isset($this->request->data['id']) || 
-				!isset($this->request->data['count'])
+				!isset($data['id']) || 
+				!isset($data['count'])
 			) {
 				return json_encode(array(
 					'success' => false,
@@ -506,9 +505,9 @@ class CarritoController extends AppController
 				));
 			}
 
-			$product = $this->Product->findById($this->request->data['id']);
-			$urlCheck = \site_url()."/shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
-			if (empty($this->request->data['size']) && empty($this->request->data['color_code'])){
+			$product = $this->Product->findById($data['id']);
+			$urlCheck = \site_url()."/shop/stock/".$product['Product']['article']."/".$data['size']."/".$data['color_code'];
+			if (empty($data['size']) && empty($data['color_code'])){
 				//$urlCheck=$settings['site-url']."/shop/stock/".$product['Product']['article'];
 				// CakeLog::write('debug', 'b(1)');
 				$stock=1;
@@ -529,9 +528,22 @@ class CarritoController extends AppController
 			// error_log('stock:'.$stock);
 			if ($product && $stock) {
 				$product = $product['Product'];
+				$this->loadModel('Stat');
 
 				/* remove all of the kind */
-				$criteria = $this->request->data['id'].$this->request->data['size'].$this->request->data['color'].$this->request->data['alias'];
+				$criteria = $data['id'].$data['size'].$data['color'].$data['alias'];
+
+				$this->Stat->save(array(
+					'id' => null,
+		      'tag' => 'cart-add',
+		      'user_id' => $this->Auth->user('id') ?? 0,
+		      'product_id' => $data['id'],
+		      'context' => json_encode(array(
+		      	'size' => $data['size'],
+		      	'color' => $data['color'],
+		      	'alias' => $data['alias']
+		      ))
+		    ));
 
 				if (!empty($cart)) {
 					foreach($cart as $item) {
@@ -541,12 +553,12 @@ class CarritoController extends AppController
 					}
 				}
 
-				$product['color'] = @$this->request->data['color'];
-				$product['size'] = @$this->request->data['size'];
-				$product['alias'] = @$this->request->data['alias'];
-				$product['color_code'] = @$this->request->data['color_code'];
+				$product['color'] = @$data['color'];
+				$product['size'] = @$data['size'];
+				$product['alias'] = @$data['alias'];
+				$product['color_code'] = @$data['color_code'];
 
-				for ($i=0; $i < $this->request->data['count']; $i++) {
+				for ($i=0; $i < $data['count']; $i++) {
 					$items[] = $product;
 				}
 
@@ -569,7 +581,7 @@ class CarritoController extends AppController
 		return json_encode(array('success' => false));
 	}
 
-	public function remove($uid) {
+	public function remove($id) {
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');
 		$item = false;
@@ -584,14 +596,29 @@ class CarritoController extends AppController
 		$sorted = $this->Cart->sorted();
 		$j = 0;
 
+		$removed = array();
 		foreach ($sorted as $key => $item) {
-			if ($j != $uid) {
+			if ($j != $id) {
 				array_push($update, $item);
 			} else {
+				$removed = $item;
 				$removed++;
 			}
 			$j++;
 		}
+
+		$this->loadModel('Stat');
+		$this->Stat->save(array(
+			'id' => null,
+      'tag' => 'cart-remove',
+      'user_id' => $this->Auth->user('id') ?? 0,
+      'product_id' => $item['id'],
+      'context' => json_encode(array(
+      	'size' => $item['size'],
+      	'color' => $item['color'],
+      	'alias' => $item['alias']
+      ))
+    ));		
 
 		if (count($update)) {
 			// CakeLog::write('debug', 'updateCart(1)');

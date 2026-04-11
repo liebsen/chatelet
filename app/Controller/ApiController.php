@@ -285,12 +285,14 @@ class ApiController extends AppController {
       'tag' => $tag,
       'user_id' => $user_id,
       'product_id' => $product_id,
-      'page' => $page
     );
 
     // \d("save",$save);
     // $analytic['created'] = date('Y-m-d H:i:s');
-    $context = array();
+    $context = array(
+      'page' => $page 
+    );
+
     if(!empty($cart)){
       $context['cart'] = $cart;
     }
@@ -299,9 +301,7 @@ class ApiController extends AppController {
       $context['cart_totals'] = $cart_totals;
     }
 
-    if(!empty($context)){
-      $save['context'] = json_encode($context);
-    }
+    $save['context'] = json_encode($context);
 
     // CakeLog::write('debug', "stats:".json_encode($data));
 

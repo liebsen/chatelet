@@ -10,24 +10,25 @@
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
 		</thead>
+
 		<tbody>
 			<?php foreach ($items as $key => $item): ?>
-				<tr data-id="<?= $item['Search']['id'] ?>">
+				<tr data-id="<?= $item['Stat']['id'] ?>">
 					<td>
-						<span class="badge badge-lg badge-info"><?=$item['Search']['name']?></span>
+						<span class="badge badge-lg badge-info"><?=$item['Stat']['context']->query?></span>
 					</td>
 					<td>
-						<span><?=$item['Search']['results']?></span>
+						<span><?=$item['Stat']['context']->result_count?></span>
 					</td>
 					<td> 
-					<?php if($item['Search']['user_id']): ?>
+					<?php if($item['Stat']['user_id']): ?>
 						<?=$item['User']['name']?> <?=$item['User']['surname']?> (<?=date('Y', strtotime('last year'))-date('Y',strtotime($item['User']['birthday']))?> años)
 					<?php else: ?>
 						<span>Anónimo</span>
 					<?php endif ?>
 					</td> 
 					<td> 
-						<?=$item['Search']['created']?>
+						<?=$item['Stat']['created']?>
 					</td> 
 				</tr>
 			<?php endforeach ?>

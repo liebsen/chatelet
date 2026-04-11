@@ -3264,7 +3264,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			),
 		);
 
-		if(method_exists($this->Stat, $controlComponent)) {
+		if(method_exists($this->Stats, $controlComponent)) {
 			$this->Stats->{$controlComponent}($id);
 		}
 

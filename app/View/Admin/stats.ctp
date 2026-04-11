@@ -9,7 +9,7 @@
 <?php endif ?>
 	      <div class="tab-content<?=$viewComponent == 'index'?' bg-light':''?>">
 					<div class="tab-pane pane-<?= $pane ?> active">
-<?php echo $this->element('analytics/' . $viewComponent) ?>
+<?php echo $this->element('stats/' . $viewComponent) ?>
 					</div>
 	     	</div>
 		  </div>

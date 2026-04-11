@@ -312,17 +312,7 @@ class ShopController extends AppController {
 		$list_code = $this->settings['list_code'];
 		$stock_min = $this->settings['stock_min'];
 
-		\d("save",array(
-			'id' => null,
-      'tag' => 'variant-select',
-      'user_id' => $this->Auth->user('id') ?? 0,
-      'product_id' => $product_id,
-      'context' => array(
-      	'size_number' => $size_number,
-      	'color_code' => $color_code,
-      )
-    ));
-		$this->Stats->save(array(
+		$this->Stat->save(array(
 			'id' => null,
       'tag' => 'variant-select',
       'user_id' => $this->Auth->user('id') ?? 0,
@@ -758,6 +748,6 @@ class ShopController extends AppController {
 			)
 		);
 
-		$this->Stats->save($save);
+		$this->Stat->save($save);
 	}
 }

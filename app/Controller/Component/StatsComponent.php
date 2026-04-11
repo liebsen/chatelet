@@ -7,8 +7,8 @@ App::uses(
   'Session', 
   'Stat', 
   'Sale',
+  'User',
   'Product',
-  'Search',
 );
 
 class StatsComponent extends Component {
@@ -21,22 +21,31 @@ class StatsComponent extends Component {
   public function index(){}
 
   public function search() {
-    $Search = ClassRegistry::init('Search');
-    $items = $Search->find('all',array(
+    $Stat = ClassRegistry::init('Stat');
+    $items = $Stat->find('all',array(
       'joins' => array(
         array(
           'table' => 'users',
           'alias' => 'User',
           'type' => 'LEFT',
           'conditions' => array(
-              'User.id = Search.user_id'
+              'User.id = Stat.user_id'
           )
         )
       ),
-      'fields' => array('User.name, User.surname, User.birthday', 'Search.*'),
-      'order' => array('Search.id DESC'),
-      'limit' => 20,
+      'conditions' => array(
+        'tag' => 'page-search'
+      ),
+      'fields' => array('User.name, User.surname, User.birthday', 'Stat.*'),
+      'order' => array('Stat.id DESC'),
+      'limit' => 200,
     ));
+
+    foreach($items as $i => $item) {
+      $items[$i]['Stat']['context'] = json_decode($item['Stat']['context']);
+    }
+
+    //\d("items",$items);
     $this->controller->set('items', $items);    
   }
 
