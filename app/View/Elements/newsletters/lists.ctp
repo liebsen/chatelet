@@ -32,19 +32,6 @@
 				</td>
 				<td> 
 					<div class="btn-group">           
-						<a 
-							href="#" 
-							data-toggle="tooltip" 
-							title="" 
-							class="btn btn-danger deletebutton" 
-							data-original-title="Eliminar" 
-							data-id="<?=$list['NewsletterList']['id']?>" 
-							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'lists'))?>" 
-							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'delete'))?>" 
-							data-msg="<?=__('¿Eliminar Lista?')?>"                   
-							>
-							<i class="fa fa-trash-o"></i>
-						</a>
 						<!--a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $list['NewsletterList']['id']))?>" 
 							data-toggle="tooltip" 
@@ -77,7 +64,20 @@
 							data-stats='<?=json_encode($list['stats'])?>'
 						>
 							<i class="gi gi-charts"></i>
-						</a-->						
+						</a-->
+						<a 
+							href="#" 
+							data-toggle="tooltip" 
+							title="" 
+							class="btn btn-danger deletebutton" 
+							data-original-title="Eliminar" 
+							data-id="<?=$list['NewsletterList']['id']?>" 
+							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'lists'))?>" 
+							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'delete'))?>" 
+							data-msg="<?=__('¿Eliminar Lista?')?>"                   
+							>
+							<i class="fa fa-trash-o"></i>
+						</a>
 					</div>
 				</td>
 			</tr>

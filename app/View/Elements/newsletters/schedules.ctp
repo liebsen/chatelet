@@ -59,19 +59,6 @@
 				</td>
 				<td> 
 					<div class="btn-group">           
-						<a 
-							href="#" 
-							data-toggle="tooltip" 
-							title="" 
-							class="btn btn-danger deletebutton" 
-							data-original-title="Eliminar" 
-							data-id="<?=$schedule['NewsletterSchedule']['id']?>" 
-							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'schedules'))?>" 
-							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'delete'))?>" 
-							data-msg="<?=__('¿Eliminar Campaña?')?>"                   
-							>
-							<i class="fa fa-trash-o"></i>
-						</a>
 						<!--a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
 							data-toggle="tooltip" 
@@ -94,7 +81,7 @@
 							title="Editar lista" 
 							class="btn btn-info" 
 						>
-							<i class="gi gi-group"></i>
+							<i class="gi gi-list"></i>
 						</a>						
 						<!--a 
 							href="javascript:void(0)" 
@@ -103,7 +90,21 @@
 							data-stats='<?=json_encode($schedule['stats'])?>'
 						>	
 							<i class="gi gi-charts"></i>
-						</a-->						
+						</a-->
+						<a 
+							href="#" 
+							data-toggle="tooltip" 
+							title="" 
+							class="btn btn-danger deletebutton" 
+							data-original-title="Eliminar" 
+							data-id="<?=$schedule['NewsletterSchedule']['id']?>" 
+							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'schedules'))?>" 
+							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'delete'))?>" 
+							data-msg="<?=__('¿Eliminar Campaña?')?>"                   
+							>
+							<i class="fa fa-trash-o"></i>
+						</a>
+
 					</div>
 				</td>
 			</tr>

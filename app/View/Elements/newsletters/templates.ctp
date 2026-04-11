@@ -29,19 +29,6 @@
 					<span class="badge is-rounded"><?=count($newsletter['NewsletterSchedule'])?></span>
 				</td>
 				<td>            
-					<a 
-						href="#" 
-						data-toggle="tooltip" 
-						title="" 
-						class="btn btn-danger deletebutton" 
-						data-original-title="Eliminar" 
-						data-id="<?=$newsletter['Newsletter']['id']?>" 
-						data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'templates'))?>" 
-						data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'delete'))?>" 
-						data-msg="<?=__('¿Eliminar Plantilla?')?>"                   
-					>
-						<i class="fa fa-trash-o"></i>
-					</a>
 					<!--a 
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
 						data-toggle="tooltip" 
@@ -74,6 +61,19 @@
 					>
 						<i class="gi gi-send"></i>
 					</a-->
+					<a 
+						href="#" 
+						data-toggle="tooltip" 
+						title="" 
+						class="btn btn-danger deletebutton" 
+						data-original-title="Eliminar" 
+						data-id="<?=$newsletter['Newsletter']['id']?>" 
+						data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'templates'))?>" 
+						data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'delete'))?>" 
+						data-msg="<?=__('¿Eliminar Plantilla?')?>"                   
+					>
+						<i class="fa fa-trash-o"></i>
+					</a>
 				</td>
 			</tr>
 <?php endforeach ?>
