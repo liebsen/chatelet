@@ -94,7 +94,7 @@
     <button class="btn" type="button">Ver menos</button>
   </a>
 <?php endif ?>
-  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit'))?>">
-    <i class="gi gi-group mr-1"></i> Crear nueva lista
+  <a class="btn btn-info dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit'))?>">
+    <i class="gi gi-magic mr-1"></i> Crear lista
   </a>
 	</div>

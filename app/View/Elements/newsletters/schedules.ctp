@@ -121,10 +121,10 @@
     <button class="btn" type="button">Ver menos</button>
   </a>
 <?php endif ?>
-  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
-    <i class="gi gi-send mr-1"></i> Crear nueva campaña
-  </a>
-  <a class="btn btn-success btn-update-schedules" href="#">
+  <a class="btn btn-light btn-update-schedules" href="#">
     <i class="gi gi-repeat mr-1"></i> Actualizar
+  </a>
+  <a class="btn btn-info dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
+    <i class="gi gi-magic mr-1"></i> Crear campaña
   </a>
 </div>

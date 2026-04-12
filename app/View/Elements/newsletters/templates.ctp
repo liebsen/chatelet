@@ -97,7 +97,7 @@
     <button class="btn" type="button">Ver menos</button>
   </a>
 <?php endif ?>
-	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit'))?>">
-	    <i class="gi gi-edit mr-1"></i> Crear Plantilla
+	  <a class="btn btn-info dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit'))?>">
+	    <i class="gi gi-magic mr-1"></i> Crear Plantilla
 	  </a>
   </div>
