@@ -46,22 +46,6 @@
     </div>
     <div class="col-md-6">
       <div class="form-box bg-light">
-        <h4 class="sub-header">Método de envío</h4>
-        <p>Selecciona el canal por donde notificar a las cuentas</p>
-        <div class="form-group flex-start gap-05">
-          <div class="controls flex-1">
-            <label class="control-label" for="toggle-email">Email</label>
-            <input type="checkbox" name="data[send_email]" value="1" id="toggle-email" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['send_email'] == '1' ? ' checked' : '' ?>>
-            <label for="toggle-email" class="toggle-label"></label>
-          </div>
-          <div class="controls flex-1">
-            <label class="control-label" for="toggle-push">Push</label>
-            <input type="checkbox" name="data[send_push]" value="1" id="toggle-push" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['send_push'] == '1' ? ' checked' : '' ?>>
-            <label for="toggle-push" class="toggle-label"></label>
-          </div>
-        </div>
-      </div>
-      <div class="form-box bg-light">
         <h4 class="sub-header">Programar fecha de envío</h4>
         <p>Establece la fecha y/o hora del envío para este Envío</p>
         <div class="control-group">

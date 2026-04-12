@@ -15,7 +15,7 @@
   <input type="hidden" name="redirect" value="/admin/newsletters"/>
   <input type="hidden" name="data[id]" value="<?= $newsletter['Newsletter']['id'] ?? 0 ?>"/>
 	<div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <h4 class="sub-header"><?=$newsletter['Newsletter']['title'] ?? 'Crea un nueva plantilla'?></h4>
       <p><?=$newsletter['Newsletter']['title'] ? 'Modifica' : 'Crea'?> tu plantilla. Puedes asociarle productos si lo deseas.</p>
       <div class="form-group flex-between gap-05">
@@ -36,6 +36,24 @@
     <?php endforeach ?>
         </table>
       </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-box bg-light">
+        <h4 class="sub-header">Método de envío</h4>
+        <p>Selecciona el canal por donde notificar a las cuentas</p>
+        <div class="form-group flex-start gap-05">
+          <div class="controls flex-1">
+            <label class="control-label" for="toggle-email">Email</label>
+            <input type="checkbox" name="data[send_email]" value="1" id="toggle-email" class="toggle-checkbox"<?=@$newsletter['Newsletter']['send_email'] == '1' ? ' checked' : '' ?>>
+            <label for="toggle-email" class="toggle-label"></label>
+          </div>
+          <div class="controls flex-1">
+            <label class="control-label" for="toggle-push">Push</label>
+            <input type="checkbox" name="data[send_push]" value="1" id="toggle-push" class="toggle-checkbox"<?=@$newsletter['Newsletter']['send_push'] == '1' ? ' checked' : '' ?>>
+            <label for="toggle-push" class="toggle-label"></label>
+          </div>
+        </div>
+      </div>      
     </div>
   </div>
   <div class="row">

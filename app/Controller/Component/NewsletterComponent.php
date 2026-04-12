@@ -183,6 +183,9 @@ class NewsletterComponent extends Component {
         $data = $this->controller->request->data;
         $data['id'] = $data['id'] ?? NULL;
         $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
+        $data['send_email'] = !empty($data['send_email']) ? 1 : 0;
+        $data['send_push'] = !empty($data['send_push']) ? 1 : 0;
+        
         $redirect = array( 'action' => 'newsletters', 'templates');
 
         if(empty($data['id'])) {
@@ -277,11 +280,11 @@ class NewsletterComponent extends Component {
           ),
         ),        
         'fields' => array(
-          'NewsletterSchedule.id, Newsletter.id, NewsletterList.id, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, NewsletterSchedule.send_push, NewsletterSchedule.send_email, COUNT(distinct NewsletterProduct.id) as prod_total'
+          'NewsletterSchedule.id, Newsletter.id, NewsletterList.id, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email, COUNT(distinct NewsletterProduct.id) as prod_total'
         ),
         'conditions' => $conditions,
         'group' => array(
-          'NewsletterSchedule.id, Newsletter.id, NewsletterList.id, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, NewsletterSchedule.send_push, NewsletterSchedule.send_email'
+          'NewsletterSchedule.id, Newsletter.id, NewsletterList.id, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email'
         ),
         'order' => array( 
           'NewsletterSchedule.schedule_date DESC, NewsletterSchedule.schedule_hour DESC' 
@@ -364,8 +367,8 @@ class NewsletterComponent extends Component {
         }
         
         if(
-          empty($schedule['NewsletterSchedule']['send_email']) && 
-          empty($schedule['NewsletterSchedule']['send_push'])
+          empty($schedule['Newsletter']['send_email']) && 
+          empty($schedule['Newsletter']['send_push'])
         ) {
           $rowclass = 'danger';
           $status = 'Sin método asignado';
@@ -428,8 +431,6 @@ class NewsletterComponent extends Component {
         $data = $this->controller->request->data;
         $data['id'] = $data['id'] ?? NULL;
         $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
-        $data['send_email'] = !empty($data['send_email']) ? 1 : 0;
-        $data['send_push'] = !empty($data['send_push']) ? 1 : 0;
         $redirect = array( 'action' => 'newsletters', 'schedules' );
         $create = empty($id);
         $resend_all = !empty($data['resend_all']) ? 1 : 0;

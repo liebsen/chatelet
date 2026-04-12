@@ -109,7 +109,7 @@ class NewsletterShell extends AppShell {
         )
       ),
       'fields' => array(
-        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, NewsletterList.name, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email, User.birthday'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, NewsletterList.name, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday'
       ),
       'conditions' => array( 
         'NewsletterScheduleItem.status' => "pending", 
@@ -160,7 +160,7 @@ class NewsletterShell extends AppShell {
         ) : 
         $newsletter['Newsletter']['body'];
 
-      if($newsletter['NewsletterSchedule']['send_email'] == '1') {
+      if($newsletter['Newsletter']['send_email'] == '1') {
         // generate links
         foreach($products as $i => $product) {
           $link = implode('/', array(
@@ -191,7 +191,7 @@ class NewsletterShell extends AppShell {
         }
       }
 
-      if($newsletter['NewsletterSchedule']['send_push'] == '1') {
+      if($newsletter['Newsletter']['send_push'] == '1') {
         $pushes = $this->Webpush->find('all', 
           array(
             'conditions' => array(

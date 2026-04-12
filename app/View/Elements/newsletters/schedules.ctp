@@ -39,12 +39,12 @@
 					<span class="badge badge-<?=$schedule['rowclass']?>"><span class="status"><?=$schedule['status']?></span>
 				</td>
 				<td>
-					<?php if(!empty($schedule['NewsletterSchedule']['send_email'])):?>
+					<?php if(!empty($schedule['Newsletter']['send_email'])):?>
 					<span class="badge badge-success is-rounded" title="Emails enviados">
 						<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
 					</span> 
 					<?php endif ?>
-					<?php if(!empty($schedule['NewsletterSchedule']['send_push'])):?>
+					<?php if(!empty($schedule['Newsletter']['send_push'])):?>
 					<span class="badge badge-warning is-rounded" title="Notificación Push enviados">
 						<i class="gi gi-chat"></i>
 						<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
