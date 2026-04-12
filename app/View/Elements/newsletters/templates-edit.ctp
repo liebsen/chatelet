@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div class="form-box bg-light">
+      <div class="form-box bg-info-outline">
         <h4 class="sub-header">Método de envío</h4>
         <p>Selecciona el canal por donde notificar a las cuentas</p>
         <div class="form-group flex-start gap-05">
@@ -130,7 +130,7 @@
 <?php endif ?>
     </div>
     <div class="col-md-6">
-      <div class="form-box bg-success">
+      <div class="form-box bg-success-outline">
       	<h4 class="sub-header">Catálogo</h4>
   <?php if(empty($newsletter['Newsletter']['id'])): ?>
         <p>Podrás agregar productos una vez que guardes la nueva plantilla.</p>

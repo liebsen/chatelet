@@ -362,8 +362,9 @@ html, body {
 }
 
 .textbig {
-	font-size: 1.25rem!important;
+	font-size: 1rem!important;
 	font-weight: 1000;
+	min-width: 20rem;
 }
 
 .text-muted {

@@ -1350,7 +1350,7 @@ ul#ul-moreviews li.dontResize img {
 	#detalle .col-md-4 .caract .add { font-size: 21px; }
 
 	#productOptions a.btBig { font-size: 30px; padding: 15rem 0; margin-bottom: 2rem;}
-	#productOptions a.btBig span { font-size: 21px; }
+	#productOptions a.btBig span { font-size: 25px; font-weight:1000; }
 
 	.map .col-md-4 { padding: 150px 30px 150px; }
 	.map .col-md-4 h1 { font-size: 2.25rem; }
@@ -2142,18 +2142,19 @@ select {
 span.count {
   position: absolute;
   z-index: 9;
-  top: -24px;
-  left: -2px;
-  width: 25px;
-  height: 25px;
-  background-color: lightyellow;
-  border: 2px solid lightgoldenrodyellow;
+  top: -22px;
+  left: 0;
+  right: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: lightgreen;
+  border: 2px solid white;
   border-radius: 100%;
   line-height: 1.75;  
   text-align: center;
-  min-width: 1.5rem;
+  min-width: 1.25rem;
   font-size: 0.75rem;
-  color: #01c801;
+  color: #fff;
   margin: auto;
   font-weight: 800;
 }

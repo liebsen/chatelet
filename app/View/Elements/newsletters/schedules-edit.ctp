@@ -17,7 +17,7 @@
   <div class="row">
     <div class="col-md-6">
       <h4 class="sub-header">Configuración</h4>
-      <p>Configura el alcance para esta Campaña</p>
+      <p>Establece plantilla y lista para esta Campaña</p>
       <div class="form-group flex-between gap-05">
         <div class="controls flex-1">
           <label class="control-label" for="toggle">Activo</label>
@@ -26,7 +26,6 @@
         </div>
       </div>
       <!--h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4-->
-      <p>Establece plantilla y lista para esta Campaña</p>
       <div class="controls">
         <label class="control-label" for="title"><i class="gi gi-picture mr-1"></i> Plantilla</label>
         <select class="form-control" name="data[newsletter_id]">
@@ -45,7 +44,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div class="form-box bg-light">
+      <div class="form-box bg-success-outline">
         <h4 class="sub-header">Programar fecha de envío</h4>
         <p>Establece la fecha y/o hora del envío para este Envío</p>
         <div class="control-group">
