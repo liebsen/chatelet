@@ -131,8 +131,8 @@
 			        <div class="control-group">
 								<label class="control-label" for="columns-text"><?php echo __('Tls'); ?></label>
 								<div class="form-group">
-									<input type="checkbox" name="data[newsletter_tls]" value="1" id="toggle" class="toggle-checkbox"<?=@$settings['newsletter_tls'] == '1' ? ' checked' : '' ?>>
-									<label for="toggle" class="toggle-label"></label>
+									<input type="checkbox" name="data[newsletter_tls]" value="1" id="toggle-tls" class="toggle-checkbox"<?=@$settings['newsletter_tls'] == '1' ? ' checked' : '' ?>>
+									<label for="toggle-tls" class="toggle-label"></label>
 								</div>
 			        </div>
 			        <div class="control-group">
