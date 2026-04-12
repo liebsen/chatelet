@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  $('.btn-templates-preview').click(function(){
+    $('.templates-preview').toggleClass('d-none')
+  })
   $('.btn-append-editor').click(function(){
 		CKEDITOR.instances.newsletter.insertText($(this).data('text'));
   })

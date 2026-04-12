@@ -1,5 +1,5 @@
 <?php
-	echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
+	echo $this->Html->script('ckeditor/ckeditor.js?v=' . $version['ver'], array('inline' => false));
   echo $this->Html->script('relations.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('templates-edit.js?v=' . $version['ver'], array('inline' => false));
 ?>
@@ -141,7 +141,16 @@
   </div>
   <div class="form-actions">
     <a href="javascript:history.go(-1)" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
+    <a href="#" class="btn btn-warning btn-templates-preview"><i class="fa fa-eye mr-1"></i> Previsualizar</a>
     <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
   </div>
 
 <?php echo $this->Form->end(); ?>
+
+<div class="templates-preview animation-fadeIn animation-both w-100 d-none">
+  <div class="card">
+    <h1>Título:<?=htmlentities($newsletter['Newsletter']['body'])?></h1>
+    <h5><?=!empty($newsletter_products) ? 'Produtos: '.count($newsletter_products) : 'Estático'?></h5>
+    <p><?=htmlentities($newsletter['Newsletter']['body'])?></p>
+  </div>
+</div>
