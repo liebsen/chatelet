@@ -7,9 +7,9 @@
 			<div class="row">
 	      <div class="col-md-6">
 	        <h4 class="sub-header">Datos básicos</h4>
-					<p>Habilita el procesamiento de Newsletter.</p>
+					<p>Establece características generales de Newsletter.</p>
 	        <div class="control-group">
-						<label class="control-label" for="columns-text"><?php echo __('Habilitar'); ?></label>
+						<label class="control-label" for="columns-text"><?php echo __('Activar Proceso Newsletters'); ?></label>
 						<div class="form-group">
 							<input type="checkbox" name="data[newsletter_enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$settings['newsletter_enabled'] == '1' ? ' checked' : '' ?>>
 							<label for="toggle" class="toggle-label"></label>
