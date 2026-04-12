@@ -97,19 +97,7 @@
 	                </select>
 	              </div>
 	            </div>
-			        <div class="control-group">
-			          <label class="control-label" for="columns-text"><?php echo __('Username'); ?></label>
-			          <div class="controls">
-			            <input type="text" name="data[newsletter_username]" class="form-control" placeholder="storenews@gmail.com" value="<?= @$settings['newsletter_username'] ?>"/>
-			          </div>
-			        </div>
-			        <div class="control-group">
-			          <label class="control-label" for="columns-text"><?php echo __('Password'); ?></label>
-			          <div class="controls position-relative">
-			            <input type="password" name="data[newsletter_password]" id="newsletter_password" class="form-control" placeholder="**********" value="<?= @$settings['newsletter_password'] ?>"/>
-			            <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#newsletter_password"></i>
-			          </div>
-			        </div>
+
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Host'); ?></label>
 			          <div class="controls position-relative">
@@ -146,6 +134,19 @@
 									<input type="checkbox" name="data[newsletter_tls]" value="1" id="toggle" class="toggle-checkbox"<?=@$settings['newsletter_tls'] == '1' ? ' checked' : '' ?>>
 									<label for="toggle" class="toggle-label"></label>
 								</div>
+			        </div>
+			        <div class="control-group">
+			          <label class="control-label" for="columns-text"><?php echo __('Username'); ?></label>
+			          <div class="controls">
+			            <input type="text" name="data[newsletter_username]" class="form-control" placeholder="storenews@gmail.com" value="<?= @$settings['newsletter_username'] ?>"/>
+			          </div>
+			        </div>
+			        <div class="control-group">
+			          <label class="control-label" for="columns-text"><?php echo __('Password'); ?></label>
+			          <div class="controls position-relative">
+			            <input type="password" name="data[newsletter_password]" id="newsletter_password" class="form-control" placeholder="**********" value="<?= @$settings['newsletter_password'] ?>"/>
+			            <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#newsletter_password"></i>
+			          </div>
 			        </div>
 			      </div>
 					</div>
