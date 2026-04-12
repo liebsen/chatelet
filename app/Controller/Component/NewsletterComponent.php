@@ -185,6 +185,8 @@ class NewsletterComponent extends Component {
         $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
         $data['send_email'] = !empty($data['send_email']) ? 1 : 0;
         $data['send_push'] = !empty($data['send_push']) ? 1 : 0;
+        $data['show_header'] = !empty($data['show_header']) ? 1 : 0;
+        $data['show_social'] = !empty($data['show_social']) ? 1 : 0;
 
         $redirect = array( 'action' => 'newsletters', 'templates');
 
@@ -192,7 +194,7 @@ class NewsletterComponent extends Component {
           $data['user_id'] = $this->controller->Auth->user('id');
         }
 
-        //\d("Newsletter(data)", $data);
+        \d("Newsletter(data)", $data);
         //\d("redirect", $redirect);
 
         $Newsletter->save($data);

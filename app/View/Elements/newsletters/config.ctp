@@ -82,7 +82,7 @@
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Agregar texto a todos los Newsletters'); ?></label>
 		          <div class="controls">
-		            <textarea name="data[newsletter_text]" class="form-control w-100" placeholder="En qué te puedo ayudar?"><?= @$settings['newsletter_text'] ?></textarea>
+		            <textarea name="data[newsletter_text]" class="form-control w-100" rows="4" placeholder="En qué te puedo ayudar?"><?= @$settings['newsletter_text'] ?></textarea>
 		          </div>
 		          <small class="text-muted">Indica el texto que se enviará con cada Newsletter</small>
 		        </div>

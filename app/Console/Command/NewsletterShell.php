@@ -315,8 +315,9 @@ class NewsletterShell extends AppShell {
       'products' => $products,
       'socials' => $data['Newsletter']['show_social'] ? \parsed_socials($this->settings) : null,
       'site_url' => $this->settings['site_url'],
+      'newsletter_text' => $this->settings['newsletter_text'],
       'skip_header' => !$this->settings['newsletter_show_header'] ?? null,
-      'cdn_url' => 'https://chatelet.com.ar/files/uploads/'
+      'cdn_url' => 'https://chatelet.com.ar/files/uploads/',
     );
 
     if($this->simulate) {

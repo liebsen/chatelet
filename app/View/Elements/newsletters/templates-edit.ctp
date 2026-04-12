@@ -144,8 +144,8 @@
   			</div>
         <div class="control-group">
           <label class="control-label" for="toggle-price"><?php echo __('Mostrar descripción'); ?></label>
-          <input type="checkbox" name="data[show_price]" value="1" id="toggle-price" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_price'] == '1' ? ' checked' : '' ?>>
-          <label for="toggle-price" class="toggle-label"></label>
+          <input type="checkbox" name="data[show_text]" value="1" id="toggle-text" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_text'] == '1' ? ' checked' : '' ?>>
+          <label for="toggle-text" class="toggle-label"></label>
           <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
         </div>
         <div class="controls d-flex flex-column gap-05">
