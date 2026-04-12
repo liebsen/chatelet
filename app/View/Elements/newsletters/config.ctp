@@ -96,15 +96,15 @@
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Mostrar logo del encabezado'); ?></label>
 							<div class="form-group">
-								<input type="checkbox" name="data[newsletter_show_header]" value="1" id="toggle2" class="toggle-checkbox"<?=@$settings['newsletter_show_header'] == '1' ? ' checked' : '' ?>>
-								<label for="toggle2" class="toggle-label"></label>
+								<input type="checkbox" name="data[newsletter_show_header]" value="1" id="toggle_header" class="toggle-checkbox"<?=@$settings['newsletter_show_header'] == '1' ? ' checked' : '' ?>>
+								<label for="toggle_header" class="toggle-label"></label>
 							</div>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Mostrar redes sociales'); ?></label>
 							<div class="form-group">
-								<input type="checkbox" name="data[newsletter_show_social]" value="1" id="toggle2" class="toggle-checkbox"<?=@$settings['newsletter_show_social'] == '1' ? ' checked' : '' ?>>
-								<label for="toggle2" class="toggle-label"></label>
+								<input type="checkbox" name="data[newsletter_show_social]" value="1" id="toggle_social" class="toggle-checkbox"<?=@$settings['newsletter_show_social'] == '1' ? ' checked' : '' ?>>
+								<label for="toggle_social" class="toggle-label"></label>
 							</div>
 		        </div>
 					</div>

@@ -90,14 +90,26 @@
   </div>
   <div class="row">
     <div class="col-md-6">
+<?php if($settings['newsletter_show_header'] == '1' || $settings['newsletter_show_social'] == '1'):?>
       <h4 class="sub-header">Configuración adicional</h4>
       <p>Establece la configuración adicional de esta Plantilla</p>
+<?php if($settings['newsletter_show_header'] == '1'):?>
+      <div class="control-group">
+        <label class="control-label" for="toggle-follow"><?php echo __('Mostrar logo de encabezado'); ?></label>
+        <input type="checkbox" name="data[show_header]" value="1" id="toggle-header" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_header'] == '1' ? ' checked' : '' ?>>
+        <label for="toggle-header" class="toggle-label"></label>
+        <small class="text-muted">Indica si debe mostrarse el logo de encabezado en el email</small>
+      </div>
+<?php endif ?>
+<?php if($settings['newsletter_show_social'] == '1'):?>
       <div class="control-group">
         <label class="control-label" for="toggle-follow"><?php echo __('Mostrar redes'); ?></label>
-        <input type="checkbox" name="data[show_follow]" value="1" id="toggle-follow" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_follow'] == '1' ? ' checked' : '' ?>>
+        <input type="checkbox" name="data[show_social]" value="1" id="toggle-follow" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_social'] == '1' ? ' checked' : '' ?>>
         <label for="toggle-follow" class="toggle-label"></label>
         <small class="text-muted">Indica si debe mostrarse, en caso que hubieran el enlace a las redes sociales al pie del email</small>
       </div>
+<?php endif ?>
+<?php endif ?>
     </div>
     <div class="col-md-6">
       <div class="form-box bg-success">
