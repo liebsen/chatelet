@@ -22,7 +22,6 @@
 		          <div class="controls">
 		            <input type="text" name="data[newsletter_name]" class="form-control" placeholder="Chatelet" value="<?= @$settings['newsletter_name'] ?>"/>
 		          </div>
-		          <small class="text-muted">Ingresá el mailbox del remitente.</small>
 		        </div>	        
 						<div class="control-group">
 							<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen de logo (256x256)'); ?></label>
@@ -97,13 +96,11 @@
 	                </select>
 	              </div>
 	            </div>
-
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Host'); ?></label>
 			          <div class="controls position-relative">
 			            <input type="text" name="data[newsletter_host]" class="form-control" placeholder="smtp.google.com" value="<?= @$settings['newsletter_host'] ?>"/>
 			          </div>
-			          <small class="text-muted">Ingresá el host del mailserver.</small>
 			        </div>
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Port'); ?></label>

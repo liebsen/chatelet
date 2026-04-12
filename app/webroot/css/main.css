@@ -657,10 +657,6 @@ body {
     grid-gap: 0.25rem;
 }
 
-.control-group {
-    margin-bottom: 0.5rem;
-}
-
 .block .block {
     margin: 0 0 15px;
 }
@@ -2087,6 +2083,7 @@ pre, code {
 @media(min-width: 992px){
     .form-box {
         padding: 0 1rem;
+        padding-bottom: 0.5rem;
         margin: 0;
         margin-bottom: 1rem;
         border: 1px solid #e7e7e7;
@@ -3495,7 +3492,6 @@ a.thumbnail-borderless,
 
 .controls {
     width: 100%;
-    margin-bottom: 0.75rem;
 }
 
 .tags-container {
