@@ -2323,8 +2323,9 @@ a.text-black:focus {
 }
 
 small, .small {
-    font-size: 80%;
-    font-weight: 600;
+    font-size: 65%;
+    color: #2196f3;
+    font-weight: 800;
 }
 
 /* Labels & Badges */
@@ -2936,13 +2937,9 @@ label,
 .control-label {
     cursor: pointer;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 1000;
     color: #2196f3;
-}
-
-.control-label {
-    font-weight: 600;
 }
 
 .form-control,
@@ -3362,7 +3359,7 @@ a:focus {
 .pagination > li:last-child > span,
 .popover-title,
 .panel {
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     font-weight: 300;
     /* text-transform: uppercase; */
 }

@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div class="form-box bg-success-outline">
+      <div class="form-box bg-info-outline">
         <h4 class="sub-header">Programar fecha de envío</h4>
         <p>Establece la fecha y/o hora del envío para este Envío</p>
         <div class="control-group">
