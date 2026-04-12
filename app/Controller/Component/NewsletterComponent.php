@@ -114,7 +114,7 @@ class NewsletterComponent extends Component {
 
     try {
       $newsletters = $Newsletter->find('all', array(
-        'fields' => array('Newsletter.id, Newsletter.title, Newsletter.created'),
+        'fields' => array('Newsletter.id, Newsletter.title, Newsletter.send_email, Newsletter.send_push, Newsletter.created'),
         'conditions' => $conditions,
         'order' => array( 'Newsletter.modified DESC' )
       ));
@@ -185,7 +185,7 @@ class NewsletterComponent extends Component {
         $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
         $data['send_email'] = !empty($data['send_email']) ? 1 : 0;
         $data['send_push'] = !empty($data['send_push']) ? 1 : 0;
-        
+
         $redirect = array( 'action' => 'newsletters', 'templates');
 
         if(empty($data['id'])) {

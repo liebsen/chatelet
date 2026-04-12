@@ -6,6 +6,8 @@
 		<thead>
 			<tr>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Email'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Push'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Catálogo'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Envíos'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -21,6 +23,12 @@
 						title="Editar plantilla">
 						<?=$newsletter['Newsletter']['title']?> (<?=$newsletter['Newsletter']['title']?>)
 					</a>
+				</td>
+				<td>
+					<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_email'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>
+				</td>
+				<td>
+					<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_push'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>
 				</td>
 				<td>
 					<span class="badge badge-success is-rounded"><?=count($newsletter['NewsletterProduct'])?></span>
