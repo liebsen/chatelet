@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('.btn-templates-preview').click(function(){
+  $('.btn-templates-preview,.templates-preview').click(function(){
     $('.templates-preview').toggleClass('d-none')
   })
   $('.btn-append-editor').click(function(){

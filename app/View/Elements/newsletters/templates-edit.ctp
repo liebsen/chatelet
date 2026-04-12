@@ -165,10 +165,9 @@
 
 <?php echo $this->Form->end(); ?>
 
-<div class="templates-preview animation-fadeIn animation-both w-100 d-none">
-  <div class="card">
-    <h1>Título:<?=htmlentities($newsletter['Newsletter']['body'])?></h1>
-    <h5><?=!empty($newsletter_products) ? 'Produtos: '.count($newsletter_products) : 'Estático'?></h5>
-    <p><?=htmlentities($newsletter['Newsletter']['body'])?></p>
+  <div class="templates-preview d-none">
+    <div class="p-4 bg-white">
+      <h3><?=$newsletter['Newsletter']['title']?></h3>
+      <p><?=$newsletter['Newsletter']['body']?></p>
+    </div>
   </div>
-</div>

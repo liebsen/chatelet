@@ -15,6 +15,10 @@ $(document).ready(function() {
 
   schedule_hour.append(hour_options)
 
+  $('.btn-templates-preview,.templates-preview').click(function(){
+    $('.templates-preview').toggleClass('d-none')
+  })
+  
   $('select.advanced-filter').on('changeDate', function(event) {
     const selectedDate = $(event.target).val()
     const selectedName = $(event.target).data('name');

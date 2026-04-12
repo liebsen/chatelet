@@ -28,16 +28,15 @@
       <!--h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4-->
       <p>Establece plantilla y lista para esta Campaña</p>
       <div class="controls">
-        <label class="control-label" for="title">Selecciona una plantilla</label>
+        <label class="control-label" for="title"><i class="gi gi-picture mr-1"></i> Plantilla</label>
         <select class="form-control" name="data[newsletter_id]">
   <?php foreach($newsletters as $newsletter): ?>
   <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?> (<?= $newsletter['0']['total']?>)</option>
   <?php endforeach ?>
         </select>
       </div>
-      <hr>
       <div class="controls">
-        <label class="control-label" for="title">Selecciona una lista</label>
+        <label class="control-label" for="title"><i class="gi gi-list mr-1"></i> Lista</label>
         <select class="form-control" name="data[list_id]">
   <?php foreach($lists as $list): ?>
   <option value="<?= $list['NewsletterList']['id']?>"<?=@($list['NewsletterList']['id'] == $this->params->query['list_id'] || $list['NewsletterList']['id'] == $schedule['NewsletterSchedule']['list_id']) ? ' selected' : ''?>><?= $list['NewsletterList']['name']?> (<?= $list['0']['total']?>)</option>
@@ -80,6 +79,7 @@
     <a href="javascript:history.go(-1)" class="btn btn-info">
       <i class="fa fa-chevron-left mr-1"></i> Atrás
     </a>
+    <a href="#" class="btn btn-warning btn-templates-preview"><i class="fa fa-eye mr-1"></i> Previsualizar</a>    
     <button class="btn btn-reset-ask btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-repeat mr-1"></i> Reenviar</button>
     <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
   </div>
@@ -96,3 +96,10 @@
     <button class="btn btn-reset btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Reenviar</button>
   </div>
 </div>
+
+  <div class="templates-preview d-none">
+    <div class="p-4 bg-white">
+      <h3><?=$schedule['Newsletter']['title']?></h3>
+      <p><?=$schedule['Newsletter']['body']?></p>
+    </div>
+  </div>

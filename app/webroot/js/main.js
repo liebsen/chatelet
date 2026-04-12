@@ -157,7 +157,7 @@ $(function () {
     $('body').toggleClass('hide-side-content');
   });
 
-  if(localStorage.sidebar == 1) {
+  if(localStorage.sidebar == 1 && $(window).width() > 991) {
     $('#toggle-side-content').trigger('click')
   }
 

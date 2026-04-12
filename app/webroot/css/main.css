@@ -521,11 +521,6 @@ body {
     }
 }
 
-/*#primary-nav li a:hover {
-    text-decoration: none;
-    background-color: #888;
-}*/
-
 #primary-nav li a:focus {
     outline: none;
 }
@@ -644,7 +639,7 @@ body {
         position: absolute;
         z-index: 10;
         left: 0;
-        transition: all 0.25s ease-in;
+        transition: 0.25s all 0.25s ease-in;
         background-color: #f9f9f9;
     }
     #pre-page-content, #page-content, #page-content + footer {
@@ -957,27 +952,6 @@ body {
 .tab-pane-side {
     padding: 0 10px;
     color: #ccc;
-}
-
-#page-sidebar h1,
-#page-sidebar h2,
-#page-sidebar h3,
-#page-sidebar h4,
-#page-sidebar h5,
-#page-sidebar h6 {
-    margin: 5px -10px;
-    padding: 9px 10px 8px;
-    font-weight: normal;
-    background-color: #696969;
-}
-
-#page-sidebar h1 i.pull-right,
-#page-sidebar h2 i.pull-right,
-#page-sidebar h3 i.pull-right,
-#page-sidebar h4 i.pull-right,
-#page-sidebar h5 i.pull-right,
-#page-sidebar h6 i.pull-right {
-    margin: 2px 0 0;
 }
 
 .side-link,
@@ -2963,9 +2937,9 @@ label,
 .control-label {
     cursor: pointer;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 1000;
-    color: #c5c5c5;
+    color: #2196f3;
 }
 
 .control-label {
@@ -3497,6 +3471,7 @@ a.thumbnail-borderless,
 
 .controls {
     width: 100%;
+    margin-bottom: 0.75rem;
 }
 
 .tags-container {
@@ -3586,6 +3561,20 @@ a.thumbnail-borderless,
   opacity: 1;
 }
 
+.templates-preview {
+    background-color: white;
+    color: #333;
+    position: fixed;
+    z-index: 1070;
+    min-width: 100vwd;
+    min-height: 100vhd;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+}
+
 .section-indicator > a {
     display: flex!important;
     justify-content: center;
@@ -3634,142 +3623,6 @@ a.thumbnail-borderless,
     #top-search .form-control:focus {
         width: 230px;
     }
-
-    /*#mobile-nav {
-        position: absolute;
-        left: 0;
-    }
-
-    #page-sidebar {
-        width: 100%;
-        background: #ddd;
-        border: none;
-        z-index: 999;
-        position: relative !important;
-        top: auto !important;
-        bottom: auto !important;
-    }
-
-
-    #page-sidebar.navbar-collapse.collapse {
-        display: none !important;
-        height: 0 !important;
-        overflow-y: hidden !important;
-    }
-    #page-sidebar.navbar-collapse.collapse.in {
-        display: block !important;
-        height: auto !important;
-    }
-
-
-    body.header-fixed-top #page-sidebar.navbar-collapse,
-    body.header-fixed-bottom #page-sidebar.navbar-collapse {
-        position: fixed !important;
-        overflow-y: scroll !important;
-        max-height: 340px !important;
-    }
-
-    body.header-fixed-top #page-sidebar.navbar-collapse.collapse,
-    body.header-fixed-bottom #page-sidebar.navbar-collapse.collapse {
-        height: 340px !important;
-    }
-
-    body.header-fixed-top #page-sidebar.navbar-collapse.sticky,
-    body.header-fixed-bottom #page-sidebar.navbar-collapse.sticky {
-        overflow-y: hidden !important;
-    }
-
-    body.header-fixed-top #page-sidebar {
-        top: 42px !important;
-        bottom: auto !important;
-    }
-
-    body.header-fixed-bottom #page-sidebar {
-        top: auto !important;
-        bottom: 42px !important;
-    }
-
-    #pre-page-content, #page-content, #page-content + footer {
-        margin: 0;
-        border-left: none;
-    }
-
-    .nav-collapse .navbar-form, .nav-collapse .navbar-search {
-        border: none;
-    }
-
-    .nav-collapse .nav > li > a,
-    .nav-collapse .dropdown-menu a {
-        padding: 9px 15px;
-        font-weight: bold;
-        color: #777777;
-        -webkit-border-radius: 0;
-        -moz-border-radius: 0;
-        border-radius: 0;
-    }
-
-    .navbar-inverse .nav-collapse .nav-header,
-    .navbar-inverse .nav-collapse a {
-        color: #fff !important;
-    }
-
-    .navbar-inverse .nav-collapse .nav > li > a:hover,
-    .navbar-inverse .nav-collapse .nav > li > a:focus,
-    .navbar-inverse .nav-collapse .dropdown-menu a:hover,
-    .navbar-inverse .nav-collapse .dropdown-menu a:focus {
-        background-color: #4b4b4b;
-        color: #fff;
-    }
-
-    .form-horizontal.form-bordered .form-group > .control-label[class^="col-md"],
-    .form-horizontal.form-bordered .form-group > .control-label[class*=" col-md"] {
-        border-right: none;
-        margin-right: 0;
-    }
-
-    .form-horizontal.form-bordered .form-group > div[class^="col-md"],
-    .form-horizontal.form-bordered .form-group > div[class*=" col-md"] {
-        border-left: none;
-        padding-top: 0;
-        padding-bottom: 9px;
-    }
-
-    .form-horizontal.form-bordered .form-group.form-actions {
-        padding-bottom: 0;
-    }
-
-    .tile {
-        width: 140px !important;
-        height: 140px !important;
-    }
-
-    .tile > i {
-        width: 120px !important;
-        padding-top: 20px !important;
-    }
-
-    .tile-info {
-        width: 140px !important;
-    }
-
-    .tile > i.gi,
-    .tile > i.hi {
-        padding-top: 7px !important;
-    }
-
-    .tile > i.si,
-    .tile > i.fi {
-        padding-top: 16px !important;
-    }
-
-    .landing-header .promo-image {
-        padding-top: 50px;
-    }
-
-    .landing-header .promo-image img {
-        width: 300px;
-    }
-    */
 }
 
 /* Mobile up to portrait tablet */
@@ -3782,41 +3635,6 @@ a.thumbnail-borderless,
     body {
         padding: 0;
     }
-
-    /*header.navbar {
-        min-height: 81px;
-    }
-
-    header.navbar.navbar-fixed-top,
-    header.navbar.navbar-fixed-bottom {
-        min-height: 82px;
-    }
-
-    .header-fixed-top #page-container {
-        padding: 82px 0 0;
-    }
-
-    .header-fixed-bottom #page-container {
-        padding: 0 0 82px;
-    }
-
-    body.header-fixed-top #page-sidebar {
-        top: 82px !important;
-        bottom: auto !important;
-    }
-
-    body.header-fixed-bottom #page-sidebar {
-        top: auto !important;
-        bottom: 82px !important;
-    }
-
-    header.navbar.navbar-fixed-bottom .dropdown-menu {
-        margin-bottom: 0;
-    }
-
-    .landing-container header.navbar {
-        min-height: 42px;
-    }*/
 
     #top-search {
         left: 0;
