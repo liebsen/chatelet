@@ -109,7 +109,7 @@ class NewsletterShell extends AppShell {
         )
       ),
       'fields' => array(
-        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_prices, Newsletter.show_follow, NewsletterList.name, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email, User.birthday'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_follow, NewsletterList.name, NewsletterSchedule.send_email, NewsletterSchedule.send_push, User.name, User.surname, User.email, User.birthday'
       ),
       'conditions' => array( 
         'NewsletterScheduleItem.status' => "pending", 
@@ -315,6 +315,7 @@ class NewsletterShell extends AppShell {
       'products' => $products,
       'socials' => $data['Newsletter']['show_follow'] ? \parsed_socials($this->settings) : null,
       'site_url' => $this->settings['site_url'],
+      'skip_header' => !$this->settings['newsletter_show_header'] ?? null,
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/'
     );
 
@@ -325,9 +326,7 @@ class NewsletterShell extends AppShell {
         //->message('html');
         ->send(null, true);
 
-      //$email_body = $content['message'];
       echo "[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
-      //echo $email_body;
 
       return array(
         'sent' => $this->update,

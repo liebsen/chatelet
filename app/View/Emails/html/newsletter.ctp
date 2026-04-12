@@ -12,7 +12,7 @@
       <h3 style="margin: 0 0 10px 0; font-size: 20px; color: #333333;"><?= $product['Product']['name'] ?></h3>
       <p style="margin: 0 0 10px 0; font-size: 20px; color: #666666;"><?= $product['Category']['name'] ?></p>
       <p style="margin: 0 0 15px 0; font-size: 16px; color: #666666;"><?= $product['Product']['desc'] ?></p>
-<?php if($data['Newsletter']['show_prices'] == '1'): ?>
+<?php if($data['Newsletter']['show_price'] == '1'): ?>
 	<p style="font-size: 24px; font-weight: bold; color: #000000; margin: 0 0 15px 0;"><?= \price_format($product['Product']['price']) ?></p>
 <?php endif ?>
 <?php if(!empty($product['Product']['mp_discount'])): ?>

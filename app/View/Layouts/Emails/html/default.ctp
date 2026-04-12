@@ -20,6 +20,7 @@
   </head>
   <body style="font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;font-size: 16px;font-color: #333;background-color: #f8f8f8; width:100%;">
     <table cellpadding="0" cellspacing="0" width="600" align="center">
+<?php if(empty($skip_logo)):?>
       <tr>
         <td>
           <table cellpadding="0" cellspacing="0" style="width: 100%; padding: 16px;height: 120px;">
@@ -29,6 +30,7 @@
           </table>
         </td>
       </tr>
+<?php endif ?>
       <tr>
         <td align="center">
           <table cellpadding="0" cellspacing="0" align="center" style="background-color: #ffffff; border-radius: 16px;height: 120px;width:auto; padding: 24px 16px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">

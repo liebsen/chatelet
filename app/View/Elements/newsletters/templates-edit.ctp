@@ -108,10 +108,16 @@
       	<p>Puedes aregar productos a la plantilla, se mostrarán en un catálogo de lista con sus respectivos enlaces y precios.</p>
   			<div class="control-group">
   				<label class="control-label" for="toggle-price"><?php echo __('Mostrar precio'); ?></label>
-  				<input type="checkbox" name="data[show_prices]" value="1" id="toggle-price" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_prices'] == '1' ? ' checked' : '' ?>>
+  				<input type="checkbox" name="data[show_price]" value="1" id="toggle-price" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_price'] == '1' ? ' checked' : '' ?>>
   				<label for="toggle-price" class="toggle-label"></label>
   	      <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
   			</div>
+        <div class="control-group">
+          <label class="control-label" for="toggle-price"><?php echo __('Mostrar descripción'); ?></label>
+          <input type="checkbox" name="data[show_price]" value="1" id="toggle-price" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_price'] == '1' ? ' checked' : '' ?>>
+          <label for="toggle-price" class="toggle-label"></label>
+          <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
+        </div>
         <div class="controls d-flex flex-column gap-05">
           <input type="text" class="form-control relation-search" data-type="product" placeholder="Buscar"/>
         </div>
