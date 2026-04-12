@@ -294,19 +294,17 @@ class NewsletterShell extends AppShell {
     $email = new CakeEmail();
     $email->config(
       array(
-        'transport' => 'Smtp',
+        'transport' => $this->settings['newsletter_transport'] ?? 'Smtp',
         'from' => array(
           $this->settings['newsletter_username'] => $this->settings['newsletter_name']
         ),
-        'host' => 'smtp.gmail.com',
-        'port' => 587,
-        'timeout' => 30,
+        'host' => $this->settings['newsletter_host'] ?? 'smtp.gmail.com',
+        'port' => $this->settings['newsletter_port'] ?? 587,
+        'timeout' => $this->settings['newsletter_timeout'] ?? 30,
         'username' => $this->settings['newsletter_username'],
         'password' => $this->settings['newsletter_password'],
-        //'username' => $this->settings['email_username'],
-        //'password' => $this->settings['email_password'],
-        'charset' => 'utf-8',
-        'tls' => true
+        'charset' => $this->settings['newsletter_charset'] ?? 'utf-8',
+        'tls' => $this->settings['newsletter_charset'] == '1',
       )
     );
 

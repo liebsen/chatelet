@@ -50,34 +50,6 @@
 								<input type="file" class="form-control" name="data[newsletter_badge]" value="" accept="image/png">
 							</div>
 						</div>
-					</div>
-	      </div>
-	      <div class="col-md-6">
-	      	<div class="show-panel <?= !$settings['newsletter_enabled'] ? 'show-inactive' : '' ?>">
-		      	<h4 class="sub-header">Configuración de Newsletter</h4>
-		      	<p>Configura qué datos se utilizarán para procesar los envíos</p>
-		        <div class="control-group">
-		          <label class="control-label" for="columns-text"><?php echo __('Nombre de usuario'); ?></label>
-		          <div class="controls">
-		            <input type="text" name="data[newsletter_username]" class="form-control" placeholder="storenews@gmail.com" value="<?= @$settings['newsletter_username'] ?>"/>
-		          </div>
-		          <small class="text-muted">Ingresá el mailbox de la cuenta que enviará los emails.</small>
-		        </div>
-		        <div class="control-group">
-		          <label class="control-label" for="columns-text"><?php echo __('Contraseña'); ?></label>
-		          <div class="controls position-relative">
-		            <input type="password" name="data[newsletter_password]" id="newsletter_password" class="form-control" placeholder="**********" value="<?= @$settings['newsletter_password'] ?>"/>
-		            <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#newsletter_password"></i>
-		          </div>
-		          <small class="text-muted">Ingresá la contraseña de aplicación (Google my account: app password).</small>
-		        </div>
-		        <!--div class="control-group">
-		          <label class="control-label" for="columns-text"><?php echo __('Email remitente'); ?></label>
-		          <div class="controls">
-		            <input type="text" name="data[newsletter_from]" class="form-control" placeholder="news@domain.com" value="<?= @$settings['newsletter_from'] ?>"/>
-		          </div>
-		          <small class="text-muted">Ingresá el mailbox del remitente.</small>
-		        </div-->
 
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Agregar texto a todos los Newsletters'); ?></label>
@@ -107,6 +79,75 @@
 								<label for="toggle_social" class="toggle-label"></label>
 							</div>
 		        </div>
+					</div>
+	      </div>
+	      <div class="col-md-6">
+	      	<div class="show-panel <?= !$settings['newsletter_enabled'] ? 'show-inactive' : '' ?>">
+		      	<div class="form-box bg-info-outline">
+			      	<h4 class="sub-header">Datos del transport</h4>
+			      	<p>Configura como se enviarán los emails desde Newsletters.</p>
+			        <div class="control-group">
+			          <label class="control-label" for="columns-text"><?php echo __('Transport'); ?></label>
+		      	    <div class="controls">
+	                <select class="form-control" name="data[newsletter_transport]">
+	                	<option value="">Seleccione un transport</option>
+	                  <option value="Smtp"<?=$settings['newsletter_transport'] == 'Smtp' ? ' selected' : ''?>>SMTP</option>
+	                  <option value="Mail"<?=$settings['newsletter_transport'] == 'Mail' ? ' selected' : ''?>>Mail</option>
+	                  <option value="Debug"<?=$settings['newsletter_transport'] == 'Debug' ? ' selected' : ''?>>Debug</option>
+	                </select>
+	              </div>
+	            </div>
+			        <div class="control-group">
+			          <label class="control-label" for="columns-text"><?php echo __('Username'); ?></label>
+			          <div class="controls">
+			            <input type="text" name="data[newsletter_username]" class="form-control" placeholder="storenews@gmail.com" value="<?= @$settings['newsletter_username'] ?>"/>
+			          </div>
+			        </div>
+			        <div class="control-group">
+			          <label class="control-label" for="columns-text"><?php echo __('Password'); ?></label>
+			          <div class="controls position-relative">
+			            <input type="password" name="data[newsletter_password]" id="newsletter_password" class="form-control" placeholder="**********" value="<?= @$settings['newsletter_password'] ?>"/>
+			            <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#newsletter_password"></i>
+			          </div>
+			        </div>
+			        <div class="control-group">
+			          <label class="control-label" for="columns-text"><?php echo __('Host'); ?></label>
+			          <div class="controls position-relative">
+			            <input type="text" name="data[newsletter_host]" class="form-control" placeholder="smtp.google.com" value="<?= @$settings['newsletter_host'] ?>"/>
+			          </div>
+			          <small class="text-muted">Ingresá el host del mailserver.</small>
+			        </div>
+			        <div class="control-group">
+			          <label class="control-label" for="columns-text"><?php echo __('Port'); ?></label>
+			          <div class="controls position-relative">
+			            <input type="number" name="data[newsletter_port]" class="form-control" placeholder="587" value="<?= @$settings['newsletter_port'] ?>"/>
+			          </div>
+			        </div>
+			        <div class="control-group">
+			          <label class="control-label" for="columns-text"><?php echo __('Timeout'); ?></label>
+			          <div class="controls position-relative">
+			            <input type="number" name="data[newsletter_timeout]" class="form-control" placeholder="30" value="<?= @$settings['newsletter_timeout'] ?>"/>
+			          </div>
+			        </div>
+			        <div class="control-group">
+			          <label class="control-label" for="columns-text"><?php echo __('Charset'); ?></label>
+		      	    <div class="controls">
+	                <select class="form-control" name="data[newsletter_charset]">
+	                	<option value="">Seleccione un charset</option>
+	                  <option value="utf-8"<?=$settings['newsletter_charset'] == 'utf-8' ? ' selected' : ''?>>utf-8</option>
+	                  <option value="iso-8859-1"<?=$settings['newsletter_charset'] == 'iso-8859-1' ? ' selected' : ''?>>iso-8859-1</option>
+	                  <option value="us-ascii"<?=$settings['newsletter_charset'] == 'us-ascii' ? ' selected' : ''?>>us-ascii</option>
+	                </select>
+	              </div>
+	            </div>
+			        <div class="control-group">
+								<label class="control-label" for="columns-text"><?php echo __('Tls'); ?></label>
+								<div class="form-group">
+									<input type="checkbox" name="data[newsletter_tls]" value="1" id="toggle" class="toggle-checkbox"<?=@$settings['newsletter_tls'] == '1' ? ' checked' : '' ?>>
+									<label for="toggle" class="toggle-label"></label>
+								</div>
+			        </div>
+			      </div>
 					</div>
 				</div>
 			</div>
