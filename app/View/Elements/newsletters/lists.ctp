@@ -2,11 +2,9 @@
 <?php // echo $this->Html->script('newsletters-lists', array('inline' => false)); ?>
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
-<!--div class="row mobile"-->
-<div class="mobile">
-	<div class="d-flex justify-content-center align-items-left gap-1">
+	<div class="mobile">
+		<div class="d-flex justify-content-center align-items-left gap-1">
 <?php foreach ($lists as $key => $list): ?>
-		<!--div class="col-sm-6 col-md-4"-->
 			<div class="card">
 				<div class="card-body d-flex flex-wrap gap-1 w-auto">
 					<div class="card-img">
@@ -57,7 +55,6 @@
 					</div>
 				</div>
 			</div>
-		<!--/div-->
 <?php endforeach ?>	
 		</div>
 	</div>
