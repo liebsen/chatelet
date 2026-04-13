@@ -85,8 +85,10 @@
 						<a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
 							data-toggle="tooltip" 
+							class="card-img sm"
+							style="background-image: url('<?=\extract_jpeg_url($schedule['Newsletter']['body'])?>')"
 							title="Editar campaña">
-						<?=$schedule['Newsletter']['title']?>/<?=$schedule['NewsletterList']['name']?>
+							<span class="badge"><?=$schedule['Newsletter']['title']?>/<?=$schedule['NewsletterList']['name']?></span>
 						</a>
 					</td>
 					<td>

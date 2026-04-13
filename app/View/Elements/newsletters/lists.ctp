@@ -79,8 +79,9 @@
 						<a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $list['NewsletterList']['id']))?>" 
 							data-toggle="tooltip" 
+							class="card-img sm"
 							title="<?=$list['NewsletterList']['text']?>">
-						<?=$list['NewsletterList']['name']?>
+							<span class="badge"><?=$list['NewsletterList']['name']?></span>
 						</a>
 					</td>
 					<td>

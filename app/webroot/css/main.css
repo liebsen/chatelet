@@ -2841,14 +2841,21 @@ header.navbar .navbar-brand {
 }
 
 .card-img {
+    display: block;
     padding: 0.5rem;
     background-color: #e7e7e7;
     border-radius: 0.5rem;
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
+    background-size: contain;
     min-width: 10rem;
-    max-height: 10rem;
+    min-height: 10rem;
+}
+
+.card-img.sm {
+    padding: 0.25rem!important;
+    min-width: 5rem!important;
+    min-height: 5rem!important;
 }
 
 .card-text {

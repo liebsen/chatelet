@@ -88,8 +88,10 @@
 						<a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
 							data-toggle="tooltip" 
+							class="card-img sm"
+							style="background-image: url('<?=\extract_jpeg_url($newsletter['Newsletter']['body'])?>')"
 							title="Editar plantilla">
-							<?=$newsletter['Newsletter']['title']?>
+							<span class="badge"><?=$newsletter['Newsletter']['title']?></span>
 						</a>
 					</td>
 					<td>
