@@ -112,9 +112,16 @@
       <h4 class="sub-header">Configuración adicional</h4>
       <p>Establece la configuración adicional de esta Plantilla</p>
       <div class="control-group">
-        <label class="control-label" for="call_url">Llamada a la acción</label>
+        <label class="control-label" for="cta_text">Call to Action</label>
         <div class="controls">
-          <input type="text" id="call_url" name="data[call_url]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['call_url']?>" required />
+          <input type="text" id="cta_text" name="data[cta_text]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['cta_text']?>" />
+        </div>
+        <small class="text-muted">Dirección URL a la que se redirigirá cuando se llame a la acción</small>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="cta_url">URL de Call to Action</label>
+        <div class="controls">
+          <input type="text" id="cta_url" name="data[cta_url]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['cta_url']?>" />
         </div>
         <small class="text-muted">Dirección URL a la que se redirigirá cuando se llame a la acción</small>
       </div>
