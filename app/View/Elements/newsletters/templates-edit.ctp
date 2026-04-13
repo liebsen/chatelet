@@ -111,6 +111,14 @@
 <?php if($settings['newsletter_show_header'] == '1' || $settings['newsletter_show_social'] == '1'):?>
       <h4 class="sub-header">Configuración adicional</h4>
       <p>Establece la configuración adicional de esta Plantilla</p>
+      <div class="control-group">
+        <label class="control-label" for="call_url">Llamada a la acción</label>
+        <div class="controls">
+          <input type="text" id="call_url" name="data[call_url]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['call_url']?>" required />
+        </div>
+        <small class="text-muted">Dirección URL a la que se redirigirá cuando se llame a la acción</small>
+      </div>
+
 <?php if($settings['newsletter_show_header'] == '1'):?>
       <div class="control-group">
         <label class="control-label" for="toggle-follow"><?php echo __('Mostrar logo de encabezado'); ?></label>

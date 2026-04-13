@@ -25,15 +25,15 @@
 		        </div>	        
 						<div class="control-group">
 							<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen de logo (256x256)'); ?></label>
-							<?php if(!empty($settings['newsletter_logo'])): ?>
+							<?php if(!empty($settings['newsletter_icon'])): ?>
 								<div class="card">
 									<div class="card-body">
-										<img src="<?= $settings['upload_url']?>/<?= $settings['newsletter_logo']?>" width="256">
+										<img src="<?= $settings['upload_url']?>/<?= $settings['newsletter_icon']?>" width="256">
 									</div>
 								</div>
 							<?php endif ?>
 							<div class="controls">
-								<input type="file" class="form-control" name="data[newsletter_logo]" value="" accept="image/png">
+								<input type="file" class="form-control" name="data[newsletter_icon]" value="" accept="image/png">
 							</div>
 						</div>
 						<div class="control-group">
@@ -58,11 +58,18 @@
 		          <small class="text-muted">Indica el texto que se enviará con cada Newsletter</small>
 		        </div>
 		        <div class="control-group">
-		          <label class="control-label" for="columns-text"><?php echo __('Máximo de envíos'); ?></label>
+		          <label class="control-label" for="columns-text"><?php echo __('Envíos por hora'); ?></label>
 		          <div class="controls">
-		            <input type="number" max="100" min="0" size="4" name="data[newsletter_perminute]" class="form-control" placeholder="3" value="<?= @$settings['newsletter_perminute'] ?? 20 ?>"/>
+		            <input type="number" max="100" min="0" name="data[newsletter_perminute]" class="form-control" placeholder="20" value="<?= @$settings['newsletter_perminute'] ?? 20 ?>"/>
 		          </div>
-		          <small class="text-muted">Cantidad de envíos por minuto.</small>
+		          <small class="text-muted">Cantidad máxima de envíos por minuto.</small>
+		        </div>
+		        <div class="control-group">
+		          <label class="control-label" for="columns-text"><?php echo __('Envíos por día'); ?></label>
+		          <div class="controls">
+		            <input type="number" max="5000" min="0" name="data[newsletter_perday]" class="form-control" placeholder="500" value="<?= @$settings['newsletter_perday'] ?? 500 ?>"/>
+		          </div>
+		          <small class="text-muted">Cantidad máxima de envíos por día.</small>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Mostrar logo del encabezado'); ?></label>

@@ -1,4 +1,4 @@
-<?php echo $data['Newsletter']['body'] ?>
+<?php echo $data['Newsletter']['parsed_body']?>
 <?php if(!empty($products)): ?>
 <?php foreach($products as $product): ?>
   <!-- Main Card Container -->

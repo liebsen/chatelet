@@ -23,7 +23,7 @@ class NewsletterShell extends AppShell {
   );
 
   private $settings = [];
-  private $daily_limit = 500;
+  private $perday = 500;
   private $perminute = 20;
   private $simulate = 0;
   
@@ -44,6 +44,7 @@ class NewsletterShell extends AppShell {
     $push_sent = 0;
     $limit = 0;
     $perminute = $this->settings['newsletter_perminute'] ?? $this->perminute;
+    $perday = $this->settings['newsletter_perday'] ?? $this->perday;
     $this->simulate = in_array("simulate=1", $this->args);
     $this->update = in_array("update=1", $this->args);
 
@@ -55,11 +56,14 @@ class NewsletterShell extends AppShell {
       )
     ));
 
-    if($quota >= $this->daily_limit) {
+    if($quota >= $perday) {
       die("Daily limit reached. Aborting.");
     }
 
-    //$daily_limit
+    if($perday - $quota < $perminute) {
+      $perminute = $perday - $quota;
+    }
+
     $newsletters = $this->NewsletterScheduleItem->find('all', array(
       'joins' => array(
         array(
@@ -125,40 +129,76 @@ class NewsletterShell extends AppShell {
     );
 
     foreach($newsletters as $newsletter) {
-      // parse email
-      $products = $this->NewsletterProduct->find('all', array(
-        'joins' => array(
-          array(
-            'table' => 'products',
-            'alias' => 'Product',
-            'type' => 'LEFT',
-            'conditions' => array( 'NewsletterProduct.product_id = Product.id' )
+      // find related items
+      $filter = json_decode($newsletter['NewsletterList']['filter']);
+      if($filter->type == 'carts') {
+        $products = $this->Stats->find('all',array(
+          'joins' => array(
+            array(
+              'table' => 'users',
+              'alias' => 'User',
+              'type' => 'LEFT',
+              'conditions' => array(
+                'User.id = Stat.user_id',
+              )
+            )
           ),
-          array(
-            'table' => 'categories',
-            'alias' => 'Category',
-            'type' => 'LEFT',
-            'conditions' => array( 'Product.category_id = Category.id' )
+          'conditions' => array(
+            // 'SUM(Sale.value) > ' => $sale_min,
+            'User.id IS NOT ' => null,
+            'JSON_EXTRACT(Stat.cart_totals, \'$.total_products\') >' => $sale_min,
+            'Stat.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
+            'Stat.created < ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_max))),
+          ),
+          'fields' => array(
+            'User.id, User.email, User.name, User.surname, User.birthday'
+          ),
+          'order' => array(
+            'Stat.id DESC'
+          ),
+          'group' => array(
+            'User.id'
+          ),
+          'limit' => 1000,
+        ));
+      } else {
+        $products = $this->NewsletterProduct->find('all', array(
+          'joins' => array(
+            array(
+              'table' => 'products',
+              'alias' => 'Product',
+              'type' => 'LEFT',
+              'conditions' => array( 'NewsletterProduct.product_id = Product.id' )
+            ),
+            array(
+              'table' => 'categories',
+              'alias' => 'Category',
+              'type' => 'LEFT',
+              'conditions' => array( 'Product.category_id = Category.id' )
+            )
+          ),
+          'fields' => array(
+            'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
+          ),        
+          'conditions' => array(
+            'NewsletterProduct.newsletter_id' => $newsletter['Newsletter']['id']
           )
-        ),
-        'fields' => array(
-          'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
-        ),        
-        'conditions' => array(
-          'NewsletterProduct.newsletter_id' => $newsletter['Newsletter']['id']
-        )
-      ));
+        ));
+      }
 
       // parse body
-      $newsletter['Newsletter']['body'] = !empty($newsletter['Newsletter']['body']) ? 
-        \parse_template(
+      $parsed_body = '';
+      if(!empty($newsletter['Newsletter']['body'])) { 
+        $parsed_body = \parse_template(
           $newsletter['Newsletter']['body'], array(
             'name' => str_replace("\n",'',$newsletter['User']['name']),
             'surname' => str_replace("\n",'',$newsletter['User']['surname']),
             'birthday' => str_replace("\n",'',$newsletter['User']['birthday']),
           )
-        ) : 
-        $newsletter['Newsletter']['body'];
+        );
+      }
+
+      $newsletter['Newsletter']['parsed_body'] = $parsed_body;
 
       if($newsletter['Newsletter']['send_email'] == '1') {
         // generate links
@@ -242,23 +282,37 @@ class NewsletterShell extends AppShell {
       );
     }
 
+    $payload = array(
+      'title' => $data['Newsletter']['title'],
+      'body' => $data['Newsletter']['message'],
+      'icon' => $this->settings['newsletter_icon'] ?? 
+        $this->settings['site_url'] . '/img/push-logo.png',
+      'badge' => $this->settings['newsletter_badge'] ?? 
+        $this->settings['site_url'] . '/img/push-badge.png',
+      'data' => array(
+        'vibrate' => array(100, 200),
+        'additionalData' => array(),
+        'url' => implode('/', 
+          array(
+            $this->settings['site_url'],
+            'newsletter',
+            $data['NewsletterScheduleItem']['id']
+          )
+        )
+      ),
+    );
+
+    $image = \extract_jpeg_url($data['Newsletter']['body']);
+    
+    if(!empty($image)) {
+      $payload['image'] = $image;
+    }
+
     $push = array(
       'subscription' => Subscription::create( 
         json_decode($push['Webpush']['payload'], true) 
       ),
-      'payload' => json_encode(
-        array(
-          'title' => $data['Newsletter']['title'],
-          'body' => $data['Newsletter']['message'],
-          'icon' => $this->settings['site_url'] . '/img/push-logo.png',
-          'badge' => $this->settings['site_url'] . '/img/push-badge.png',
-          'data' => array(
-            'vibrate' => array(100, 200),
-            'additionalData' => array(),
-            'url' => $this->settings['site_url'] . '/newsletters/' . $data['NewsletterSchedule']['id'],
-          ),
-        )
-      ),
+      'payload' => json_encode($payload),
     );
 
     $auth = array(
@@ -301,8 +355,8 @@ class NewsletterShell extends AppShell {
         'host' => $this->settings['newsletter_host'] ?? 'smtp.gmail.com',
         'port' => $this->settings['newsletter_port'] ?? 587,
         'timeout' => $this->settings['newsletter_timeout'] ?? 30,
-        'username' => $this->settings['newsletter_username'],
-        'password' => $this->settings['newsletter_password'],
+        'username' => $this->settings['newsletter_username'] ?? '',
+        'password' => $this->settings['newsletter_password'] ?? '',
         'charset' => $this->settings['newsletter_charset'] ?? 'utf-8',
         'tls' => $this->settings['newsletter_charset'] == '1',
       )
@@ -316,13 +370,19 @@ class NewsletterShell extends AppShell {
       'newsletter_text' => $this->settings['newsletter_text'],
       'skip_header' => !$this->settings['newsletter_show_header'] ?? null,
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/',
+      'self_link' => implode('/', 
+        array(
+          $this->settings['site_url'],
+          'newsletter',
+          $data['NewsletterScheduleItem']['id']
+        )
+      )      
     );
 
     if($this->simulate) {
       $content = $email->template('newsletter', 'default')
         ->emailFormat('html')
         ->viewVars($viewVars)
-        //->message('html');
         ->send(null, true);
 
       echo "[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
