@@ -601,11 +601,11 @@ body {
     .desktop {
       display: inline-block;
     }
+    .form-box {
+        border-radius: 0.75rem;
+    }
     .list-group-hero { 
         flex-direction: row;
-    }
-    .form-box {
-        border-color: transparent!important;
     }
     .block .tab-content {
         border-bottom-left-radius: 1.5rem;
