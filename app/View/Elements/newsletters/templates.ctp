@@ -6,15 +6,20 @@
 <?php foreach ($newsletters as $key => $newsletter): ?>
 			<div class="card">
 				<div class="card-body d-flex flex-wrap gap-1 w-auto">
-					<div class="card-img">
-						<span class="badge"></span>
-					</div>
+					<a 
+						href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
+						data-toggle="tooltip" 
+						class="card-img"
+						style="background-image: url('<?=\extract_jpeg_url($newsletter['Newsletter']['body'])?>')"
+						title="Editar plantilla">
+							<span class="badge"><?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y')?></span>
+					</a>
 					<div class="card-text">
 						<a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
 							data-toggle="tooltip" 
 							title="Editar plantilla">
-							<?=$newsletter['Newsletter']['title']?> (<?=$newsletter['Newsletter']['title']?>)
+							<?=$newsletter['Newsletter']['title']?>
 						</a>
 						<span>
 							<i class="gi gi-envelope fa-lg"></i>
@@ -84,7 +89,7 @@
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
 							data-toggle="tooltip" 
 							title="Editar plantilla">
-							<?=$newsletter['Newsletter']['title']?> (<?=$newsletter['Newsletter']['title']?>)
+							<?=$newsletter['Newsletter']['title']?>
 						</a>
 					</td>
 					<td>

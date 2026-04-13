@@ -26,21 +26,23 @@
         </div>
       </div>
       <!--h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4-->
-      <div class="controls">
-        <label class="control-label" for="title"><i class="gi gi-picture mr-1"></i> Plantilla</label>
-        <select class="form-control" name="data[newsletter_id]">
-  <?php foreach($newsletters as $newsletter): ?>
-  <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?> (<?= $newsletter['0']['total']?>)</option>
-  <?php endforeach ?>
-        </select>
-      </div>
-      <div class="controls">
-        <label class="control-label" for="title"><i class="gi gi-list mr-1"></i> Lista</label>
-        <select class="form-control" name="data[list_id]">
-  <?php foreach($lists as $list): ?>
-  <option value="<?= $list['NewsletterList']['id']?>"<?=@($list['NewsletterList']['id'] == $this->params->query['list_id'] || $list['NewsletterList']['id'] == $schedule['NewsletterSchedule']['list_id']) ? ' selected' : ''?>><?= $list['NewsletterList']['name']?> (<?= $list['0']['total']?>)</option>
-  <?php endforeach ?>
-        </select>
+      <div class="d-flex flex-column justify-content-center align-items-center gap-1 mb-4">
+        <div class="controls">
+          <label class="control-label" for="title"><i class="gi gi-picture mr-1"></i> Plantilla</label>
+          <select class="form-control" name="data[newsletter_id]">
+    <?php foreach($newsletters as $newsletter): ?>
+    <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?> (<?= $newsletter['0']['total']?>)</option>
+    <?php endforeach ?>
+          </select>
+        </div>
+        <div class="controls">
+          <label class="control-label" for="title"><i class="gi gi-list mr-1"></i> Lista</label>
+          <select class="form-control" name="data[list_id]">
+    <?php foreach($lists as $list): ?>
+    <option value="<?= $list['NewsletterList']['id']?>"<?=@($list['NewsletterList']['id'] == $this->params->query['list_id'] || $list['NewsletterList']['id'] == $schedule['NewsletterSchedule']['list_id']) ? ' selected' : ''?>><?= $list['NewsletterList']['name']?> (<?= $list['0']['total']?>)</option>
+    <?php endforeach ?>
+          </select>
+        </div>
       </div>
     </div>
     <div class="col-md-6">

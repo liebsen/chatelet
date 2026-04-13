@@ -114,7 +114,7 @@ class NewsletterComponent extends Component {
 
     try {
       $newsletters = $Newsletter->find('all', array(
-        'fields' => array('Newsletter.id, Newsletter.title, Newsletter.send_email, Newsletter.send_push, Newsletter.created'),
+        'fields' => array('Newsletter.id, Newsletter.title,Newsletter.body,Newsletter.send_email, Newsletter.send_push, Newsletter.created'),
         'conditions' => $conditions,
         'order' => array( 'Newsletter.modified DESC' )
       ));
@@ -282,11 +282,11 @@ class NewsletterComponent extends Component {
           ),
         ),        
         'fields' => array(
-          'NewsletterSchedule.id, Newsletter.id, NewsletterList.id, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email, COUNT(distinct NewsletterProduct.id) as prod_total'
+          'NewsletterSchedule.id, Newsletter.id,Newsletter.title,Newsletter.body, NewsletterList.id, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email, COUNT(distinct NewsletterProduct.id) as prod_total'
         ),
         'conditions' => $conditions,
         'group' => array(
-          'NewsletterSchedule.id, Newsletter.id, NewsletterList.id, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email'
+          'NewsletterSchedule.id, Newsletter.id, Newsletter.title,Newsletter.body, NewsletterList.id, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email'
         ),
         'order' => array( 
           'NewsletterSchedule.schedule_date DESC, NewsletterSchedule.schedule_hour DESC' 

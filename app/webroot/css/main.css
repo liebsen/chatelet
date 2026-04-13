@@ -609,6 +609,7 @@ body {
     }
     .block .tab-content {
         border-bottom-left-radius: 1.5rem;
+        border: 1px solid #ddd;
     }
     #primary-nav li a {
         border-top-right-radius: 3rem;
@@ -2710,9 +2711,7 @@ header.navbar .navbar-brand {
 .nav-pills > li.active > a:focus {
     background-color: #2196f3;
 }
-
 .tab-content {
-    border: 1px solid #ddd;
     border-top: none;
     padding: 15px;
     background-color: #fff;
@@ -2845,6 +2844,11 @@ header.navbar .navbar-brand {
     padding: 0.5rem;
     background-color: #e7e7e7;
     border-radius: 0.5rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    min-width: 10rem;
+    max-height: 10rem;
 }
 
 .card-text {

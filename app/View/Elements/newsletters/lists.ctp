@@ -7,9 +7,13 @@
 <?php foreach ($lists as $key => $list): ?>
 			<div class="card">
 				<div class="card-body d-flex flex-wrap gap-1 w-auto">
-					<div class="card-img">
+					<a 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $list['NewsletterList']['id']))?>" 
+							data-toggle="tooltip" 
+							class="card-img"
+							title="<?=$list['NewsletterList']['text']?>">
 						<span class="badge"><?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y')?></span>
-					</div>
+					</a>
 					<div class="card-text">
 						<a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $list['NewsletterList']['id']))?>" 

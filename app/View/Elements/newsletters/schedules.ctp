@@ -7,9 +7,15 @@
 <?php foreach ($schedules as $key => $schedule): ?>
 			<div class="card">
 				<div class="card-body d-flex flex-wrap gap-1 w-auto">
-					<div class="card-img">
+					<a 
+						href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
+						data-toggle="tooltip" 
+						class="card-img"
+						style="background-image: url('<?=\extract_jpeg_url($schedule['Newsletter']['body'])?>')"
+						title="Editar campaña">
 						<span class="badge badge-<?=$schedule['rowclass']?>"><span class="status"><?=$schedule['status']?></span>
-					</div>
+						</span>
+					</a>
 					<div class="card-text">
 						<a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
@@ -162,7 +168,6 @@
 								>
 								<i class="fa fa-trash-o"></i>
 							</a>
-
 						</div>
 					</td>
 				</tr>

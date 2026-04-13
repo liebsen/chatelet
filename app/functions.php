@@ -1,5 +1,9 @@
 <?php
 
+function extract_jpeg_url($html) {
+  preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $html, $matches);
+  return $matches['src'];
+}
 
 function array_count_values_of($value, $array) {
     $counts = array_count_values($array);
