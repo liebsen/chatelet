@@ -6,7 +6,7 @@
   <?php foreach ($navs as $key => $nav): ?>        
         <li class="<?= strpos($this->request->here, $nav['url']) === 0 || !empty($nav['enabled']) ? 'active' : '' ?>">
           <a href="<?php echo $nav['url']; ?>">
-            <i class="<?=$nav['icon']?>"></i> <span class="desktop"><?php echo $key ?></span>
+            <i class="<?=$nav['icon']?>"></i> <span><?php echo $key ?></span>
           </a>
         </li>
   <?php endforeach ?>
