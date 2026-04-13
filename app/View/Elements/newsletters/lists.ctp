@@ -90,7 +90,9 @@
 						</span>
 					</td>
 					<td>
-						<?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y')?>
+						<span class="badge is-rounded"><?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y')?></span>
+						<span class="badge is-rounded">
+						<?=\readable_time_ago(strtotime($list['NewsletterList']['modified'])) ?> </span>
 					</td>
 					<td> 
 						<div class="d-flex flex-center flex-nowrap gap-05">          

@@ -108,31 +108,48 @@ function parsed_socials($settings){
   return $socials;
 }
 
-function readable_time_ago($timestamp) {
+function readable_time_ago($timestamp, $short = false) {
     $current_time = time();
     $prep = $current_time > $timestamp  ? 'hace' : 'en';
+    $skipprep = false;
     $diff = abs($current_time - $timestamp);
+    $weekdays = array(
+      'Domingo',
+      'Lunes',
+      'Martes',
+      'Miércoles',
+      'Jueves', 
+      'Viernes',
+      'Sábado'
+    );
     $span = "";
     if ($diff < 60) {
-        $span = $diff == 1 ? "1 segundo" : $diff . " segundos";
+      $span = $diff == 1 ? "1 segundo" : $diff . " segundos";
     } elseif ($diff < 3600) {
-        $minutes = round($diff / 60);
-        $span = $minutes == 1 ? "1 minuto" : $minutes . " minutos";
+      $minutes = round($diff / 60);
+      $span = $minutes == 1 ? "1 minuto" : $minutes . " minutos";
     } elseif ($diff < 86400) {
-        $hours = round($diff / 3600);
-        $span = $hours == 1 ? "1 hora" : $hours . " horas";
+      $hours = round($diff / 3600);
+      $span = $hours == 1 ? "1 hora" : $hours . " horas";
     } elseif ($diff < 2592000) { // 30 days
-        $days = round($diff / 86400);
-        $span = $days == 1 ? "1 día" : $days . " días";
+      $days = round($diff / 86400);
+      $span = $days == 1 ? "1 día" : $days . " días";
+      if($days < 6) {
+        $span = $weekdays[date('w', $timestamp)];
+        $skipprep = true;
+      }
     } elseif ($diff < 31536000) { // 365 days
-        $months = round($diff / 2592000);
-        $span = $months == 1 ? "1 mes" : $months . " meses";
+      $months = round($diff / 2592000);
+      $span = $months == 1 ? "1 mes" : $months . " meses";
     } else {
-        $years = round($diff / 31536000);
-        $span = $years == 1 ? "1 año" : $years . " años";
+      $years = round($diff / 31536000);
+      $span = $years == 1 ? "1 año" : $years . " años";
     }
 
-    return $prep . " " . $span;
+    if($short) {
+      return $span;
+    }
+    return (!$skipprep ? $prep : '') . ' ' . $span;
 }
 
 function starts_with($haystack, $needle) {
