@@ -48,7 +48,8 @@
         <small class="text-muted">Es el nombre con que identificas esta lista</small>
       </div>
       <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
-      <div class="controls-group">
+      <div class="controls-group mb-4">
+        <label class="control-label" for="title">Descripción</label>
         <textarea class="form-control w-100" name="data[text]" id="newsletter" rows="4"><?=$list['NewsletterList']['text']?></textarea>
       </div>  
     </div>

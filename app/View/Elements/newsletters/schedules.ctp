@@ -3,7 +3,7 @@
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 	<div class="mobile">
-		<div class="d-flex flex-wrap justify-content-center align-items-left">
+		<div class="d-flex flex-wrap justify-content-center align-items-left gap-05">
 <?php foreach ($schedules as $key => $schedule): ?>
 			<div class="card">
 				<div class="card-body d-flex flex-wrap gap-1 w-auto">
