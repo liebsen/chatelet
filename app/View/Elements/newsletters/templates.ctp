@@ -36,52 +36,54 @@
 				<td>
 					<span class="badge is-rounded"><?=count($newsletter['NewsletterSchedule'])?></span>
 				</td>
-				<td>            
-					<!--a 
-						href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
-						data-toggle="tooltip" 
-						title="Editar plantilla" 
-						class="btn btn-success" 
-					>
-						<i class="gi gi-edit"></i>
-					</a-->
-					<a 
-						href="<?=$this->Html->url(array(
-							'action' => 'newsletters', 
-							'schedules', 
-							'edit', 
-							'?' => array(
-								'newsletter_id' => $newsletter['Newsletter']['id']
-							)
-						))?>" 
-						data-toggle="tooltip" 
-						title="Programar envío" 
-						class="btn btn-success" 
-					>
-						<i class="gi gi-send"></i>
-					</a>
+				<td>
+					<div class="d-flex flex-center flex-nowrap gap-05">        
+						<!--a 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
+							data-toggle="tooltip" 
+							title="Editar plantilla" 
+							class="btn btn-success" 
+						>
+							<i class="gi gi-edit"></i>
+						</a-->
+						<a 
+							href="<?=$this->Html->url(array(
+								'action' => 'newsletters', 
+								'schedules', 
+								'edit', 
+								'?' => array(
+									'newsletter_id' => $newsletter['Newsletter']['id']
+								)
+							))?>" 
+							data-toggle="tooltip" 
+							title="Programar envío" 
+							class="btn btn-success" 
+						>
+							<i class="gi gi-send"></i>
+						</a>
 
-					<!--a 
-						 href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', $newsletter['Newsletter']['id']))?>" 
-						data-toggle="tooltip" 
-						title="Programar envío" 
-						class="btn btn-warning" 
-					>
-						<i class="gi gi-send"></i>
-					</a-->
-					<a 
-						href="#" 
-						data-toggle="tooltip" 
-						title="" 
-						class="btn btn-danger deletebutton" 
-						data-original-title="Eliminar" 
-						data-id="<?=$newsletter['Newsletter']['id']?>" 
-						data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'templates'))?>" 
-						data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'delete'))?>" 
-						data-msg="<?=__('¿Eliminar Plantilla?')?>"                   
-					>
-						<i class="fa fa-trash-o"></i>
-					</a>
+						<!--a 
+							 href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', $newsletter['Newsletter']['id']))?>" 
+							data-toggle="tooltip" 
+							title="Programar envío" 
+							class="btn btn-warning" 
+						>
+							<i class="gi gi-send"></i>
+						</a-->
+						<a 
+							href="#" 
+							data-toggle="tooltip" 
+							title="" 
+							class="btn btn-danger deletebutton" 
+							data-original-title="Eliminar" 
+							data-id="<?=$newsletter['Newsletter']['id']?>" 
+							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'templates'))?>" 
+							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'delete'))?>" 
+							data-msg="<?=__('¿Eliminar Plantilla?')?>"                   
+						>
+							<i class="fa fa-trash-o"></i>
+						</a>
+					</div>
 				</td>
 			</tr>
 <?php endforeach ?>

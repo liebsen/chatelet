@@ -58,7 +58,7 @@
 					<?=\readable_time_ago(strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')) ?> </span>
 				</td>
 				<td> 
-					<div class="btn-group">           
+					<div class="d-flex flex-center flex-nowrap gap-05">
 						<!--a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
 							data-toggle="tooltip" 
@@ -112,6 +112,9 @@
 		</tbody>
 	</table>
 	<div class="form-actions">
+  <a class="btn btn-light btn-update-schedules" href="#">
+    <i class="gi gi-repeat mr-1"></i> Actualizar
+  </a>
 <?php if(empty($this->params->query['extended'])): ?>
 	<a href="/admin/newsletters/schedules?extended=1">
     <button class="btn" type="button">Ver todo</button>
@@ -121,9 +124,6 @@
     <button class="btn" type="button">Ver menos</button>
   </a>
 <?php endif ?>
-  <a class="btn btn-light btn-update-schedules" href="#">
-    <i class="gi gi-repeat mr-1"></i> Actualizar
-  </a>
   <a class="btn btn-info dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
     <i class="gi gi-magic mr-1"></i> Crear campaña
   </a>

@@ -84,7 +84,20 @@
 	      	<div class="show-panel <?= !$settings['newsletter_enabled'] ? 'show-inactive' : '' ?>">
 		      	<div class="form-box bg-info-outline">
 			      	<h4 class="sub-header">Datos del transport</h4>
-			      	<p>Configura como se enviarán los emails desde Newsletters.</p>
+			      	<p>Configura como se enviarán los emails desde el proceso de Newsletters.</p>
+			        <div class="control-group">
+			          <label class="control-label" for="columns-text"><?php echo __('Username'); ?></label>
+			          <div class="controls">
+			            <input type="text" name="data[newsletter_username]" class="form-control" placeholder="storenews@gmail.com" value="<?= @$settings['newsletter_username'] ?>"/>
+			          </div>
+			        </div>
+			        <div class="control-group">
+			          <label class="control-label" for="columns-text"><?php echo __('Password'); ?></label>
+			          <div class="controls position-relative">
+			            <input type="password" name="data[newsletter_password]" id="newsletter_password" class="form-control" placeholder="**********" value="<?= @$settings['newsletter_password'] ?>"/>
+			            <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#newsletter_password"></i>
+			          </div>
+			        </div>			      	
 			        <div class="control-group">
 			          <label class="control-label" for="columns-text"><?php echo __('Transport'); ?></label>
 		      	    <div class="controls">
@@ -132,19 +145,7 @@
 									<label for="toggle-tls" class="toggle-label"></label>
 								</div>
 			        </div>
-			        <div class="control-group">
-			          <label class="control-label" for="columns-text"><?php echo __('Username'); ?></label>
-			          <div class="controls">
-			            <input type="text" name="data[newsletter_username]" class="form-control" placeholder="storenews@gmail.com" value="<?= @$settings['newsletter_username'] ?>"/>
-			          </div>
-			        </div>
-			        <div class="control-group">
-			          <label class="control-label" for="columns-text"><?php echo __('Password'); ?></label>
-			          <div class="controls position-relative">
-			            <input type="password" name="data[newsletter_password]" id="newsletter_password" class="form-control" placeholder="**********" value="<?= @$settings['newsletter_password'] ?>"/>
-			            <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#newsletter_password"></i>
-			          </div>
-			        </div>
+
 			      </div>
 					</div>
 				</div>

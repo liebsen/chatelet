@@ -31,7 +31,7 @@
 					<?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y')?>
 				</td>
 				<td> 
-					<div class="btn-group">           
+					<div class="d-flex flex-center flex-nowrap gap-05">          
 						<!--a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $list['NewsletterList']['id']))?>" 
 							data-toggle="tooltip" 

@@ -1,16 +1,21 @@
 $(document).ready(function() {
+  let clock = 0
   $('.btn-refresh').click(function(e){
     window.location.href = window.location.href
   })
 
   $('.btn-update-schedules').click(function(e){
     e.preventDefault()
+    clock = 0
     updateSchedules()
   })
 
   // Autorefresh every minute
   setInterval(function(){
-    updateSchedules()
+    if(clock){
+      updateSchedules()
+    }
+    clock++
   }, 60000)
 })
 
