@@ -78,7 +78,7 @@ class NewsletterComponent extends Component {
       $redirect = array( 'action' => 'newsletters');
 
       foreach($data as $id => $value) {
-        if(is_array($value) && ($id == 'newsletter_logo' || $id == 'newsletter_badge')) {
+        if(is_array($value) && ($id == 'newsletter_icon' || $id == 'newsletter_badge')) {
           $value = $this->controller->save_file( $value );  
           CakeLog::write('debug', 'file:'. json_encode(['id' => $id, 'value' => $value]));
         }
