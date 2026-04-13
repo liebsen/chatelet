@@ -114,7 +114,7 @@ class NewsletterComponent extends Component {
 
     try {
       $newsletters = $Newsletter->find('all', array(
-        'fields' => array('Newsletter.id, Newsletter.title,Newsletter.body,Newsletter.send_email, Newsletter.send_push, Newsletter.created'),
+        'fields' => array('Newsletter.id, Newsletter.title,Newsletter.body,Newsletter.send_email, Newsletter.send_push, Newsletter.created, Newsletter.modified'),
         'conditions' => $conditions,
         'order' => array( 'Newsletter.modified DESC' )
       ));
@@ -632,7 +632,7 @@ class NewsletterComponent extends Component {
         ),        
         'fields' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text, NewsletterList.modified, COUNT(NewsletterUser.id) as total'),
         'conditions' => $conditions,
-        'group' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text, NewsletterList.modified'),
+        'group' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text, NewsletterList.created, NewsletterList.modified'),
         'order' => array( 'NewsletterList.modified DESC' )
       ));
 

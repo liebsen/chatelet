@@ -1,7 +1,7 @@
-<?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
 <?php // echo $this->Html->script('newsletters-lists', array('inline' => false)); ?>
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
+<?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
 	<div class="mobile">
 		<div class="d-flex flex-wrap justify-content-center align-items-left gap-05">
 <?php foreach ($lists as $key => $list): ?>
@@ -12,7 +12,8 @@
 							data-toggle="tooltip" 
 							class="card-img"
 							title="<?=$list['NewsletterList']['text']?>">
-						<span class="badge"><?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y')?></span>
+						<span class="badge"><?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y %H:%M')?></span>
+						<span class="badge"><?=\readable_time_ago(strtotime($list['NewsletterList']['modified'])) ?></span>
 					</a>
 					<div class="card-text">
 						<a 
@@ -90,7 +91,7 @@
 						</span>
 					</td>
 					<td>
-						<span class="badge is-rounded"><?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y')?></span>
+						<span class="badge is-rounded"><?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y %H:%M')?></span>
 						<span class="badge is-rounded">
 						<?=\readable_time_ago(strtotime($list['NewsletterList']['modified'])) ?> </span>
 					</td>

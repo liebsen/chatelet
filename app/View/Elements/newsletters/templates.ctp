@@ -12,7 +12,7 @@
 						class="card-img"
 						style="background-image: url('<?=\extract_jpeg_url($newsletter['Newsletter']['body'])?>')"
 						title="Editar plantilla">
-							<span class="badge"><?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y')?></span>
+							<span class="badge"><?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?></span>
 					</a>
 					<div class="card-text">
 						<a 
@@ -33,6 +33,8 @@
 							<i class="gi gi-shirt fa-lg"></i>
 							<span class="badge badge-success is-rounded"><?=count($newsletter['NewsletterProduct'])?></span>
 						</span>
+						<span class="badge"><?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%i')?></span>
+						<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>						
 						<div class="d-flex flex-center flex-nowrap gap-05">        
 							<a 
 								href="<?=$this->Html->url(array(
@@ -77,7 +79,7 @@
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Email'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Push'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Catálogo'); ?></th>
-	     		<th class="hidden-phone hidden-tablet"><?php echo __('Envíos'); ?></th>
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('Modificado'); ?></th>
 					<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 				</tr>
 			</thead>
@@ -104,7 +106,8 @@
 						<span class="badge badge-success is-rounded"><?=count($newsletter['NewsletterProduct'])?></span>
 					</td>
 					<td>
-						<span class="badge is-rounded"><?=count($newsletter['NewsletterSchedule'])?></span>
+						<span class="badge"><?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?></span>
+						<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
 					</td>
 					<td>
 						<div class="d-flex flex-center flex-nowrap gap-05">        

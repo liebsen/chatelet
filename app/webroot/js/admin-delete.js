@@ -28,14 +28,14 @@ $(document).ready(function() {
   $('#sucursales-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "/json/datatables-locale-es.json"}});
 
   $('#categorias-datatables').DataTable({
-    "ordering": false,
+    "ordering": true,
     "language": {
       "url": "/json/datatables-locale-es.json"
     }
   });
 
   $('#example-datatables').DataTable({
-    "ordering": false,
+    "ordering": true,
     "stateSave": true,
     "language": {
       "url": "/json/datatables-locale-es.json"
@@ -43,14 +43,14 @@ $(document).ready(function() {
   });
 
   $('#banners-datatables').DataTable({
-    "ordering": false,
+    "ordering": true,
     "language": {
       "url": "/json/datatables-locale-es.json"
     }
   });
 
   $('#searches-datatables').DataTable({
-    "ordering": false,
+    "ordering": true,
     "language": {
       "url": "/json/datatables-locale-es.json"
     }
