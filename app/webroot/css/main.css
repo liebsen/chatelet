@@ -2848,14 +2848,14 @@ header.navbar .navbar-brand {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
-    min-width: 10rem;
-    min-height: 10rem;
+    width: 10rem;
+    height: 15rem;
 }
 
 .card-img.sm {
     padding: 0.25rem!important;
-    min-width: 5rem!important;
-    min-height: 5rem!important;
+    width: 5rem!important;
+    height: 10rem!important;
 }
 
 .card-text {
