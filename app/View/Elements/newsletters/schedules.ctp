@@ -20,12 +20,13 @@
 						<span class="badge badge-<?=$schedule['rowclass']?>">
 							<span class="status"><?=$schedule['status']?></span>
 						</span>
-						<span class="badge">
-							<i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?>
+						<span class="badge badge-success">
+							<i class="fa fa-image mr-1"></i> <?=$schedule['Newsletter']['title']?>
 						</span>
 						<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?> is-rounded">
 							<?=!empty($schedule[0]['prod_total']) ? $schedule[0]['prod_total'] : 'Estático'?>
 						</span>
+						<span class="badge badge-info"><i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?></span>
 						<span class="badge badge-<?=!empty($schedule[0]['list_total']) ? 'info' : 'danger'?> is-rounded">
 							<?=!empty($schedule[0]['list_total']) ? $schedule[0]['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?></span>
 						<div class="d-flex flex-center flex-nowrap gap-05">
@@ -70,9 +71,8 @@
 			<thead>
 				<tr>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Campaña'); ?></th>
-	     		<th class="hidden-phone hidden-tablet"><?php echo __('Catálogo'); ?></th>
-	     		<th class="hidden-phone hidden-tablet"><?php echo __('Audiencia'); ?></th>
-	     		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>     		
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('Lista'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Progreso'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Fecha/Hora'); ?></th>
 					<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -92,17 +92,16 @@
 						</a>
 					</td>
 					<td>
+						<span class="badge badge-success"><?=$schedule['Newsletter']['title']?></span>
 						<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?> is-rounded">
 							<?=!empty($schedule[0]['prod_total']) ? $schedule[0]['prod_total'] : 'Estático'?>
 						</span>
 					</td>
 					<td>
+						<span class="badge badge-info"><?=$schedule['NewsletterList']['name']?></span>
 						<span class="badge badge-<?=!empty($schedule[0]['list_total']) ? 'info' : 'danger'?> is-rounded">
 							<?=!empty($schedule[0]['list_total']) ? $schedule[0]['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
 							</span>
-					</td>
-					<td>
-						<span class="badge badge-<?=$schedule['rowclass']?>"><span class="status"><?=$schedule['status']?></span>
 					</td>
 					<td>
 						<?php if(!empty($schedule['Newsletter']['send_email'])):?>
