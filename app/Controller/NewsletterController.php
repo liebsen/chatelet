@@ -2,6 +2,9 @@
 
 class NewsletterController extends AppController {
 	public $uses = array(
+		'Analytic',
+		'Search',
+		'Stat',
 		'Product', 
 		'User',
 		'NewsletterScheduleItem',
@@ -20,8 +23,13 @@ class NewsletterController extends AppController {
   	parent::beforeFilter();
   	$this->layout = 'Emails/html/default';
 	}
+
 	public function index() {
 		$id = @$this->request->params['id']??0;
+		if(!is_numeric($id)) {
+			return $this->{$id}();
+		}
+
 		$products = array();
 		$parsed_body = '';
     $newsletter = $this->NewsletterScheduleItem->find('first', array(
@@ -131,4 +139,132 @@ class NewsletterController extends AppController {
 
 		$this->render('/Emails/html/newsletter');
 	}
+
+	public function fix_stats() {
+		echo '<pre>';
+		$options = array(
+			/*'conditions' => array(
+				'Analytic.cart IS NOT NULL',
+				'Analytic.user_id IS NOT NULL',
+			),*/
+			'limit' => $_GET['limit'] ?? 1,
+			'offset' => $_GET['offset'] ?? 0,
+			'order' => array(
+				'Analytic.id ASC'
+			)
+		);
+		$items = $this->Analytic->find('all', $options);
+				var_dump($options);
+
+		$saves = array();
+		$db = $this->Stat->getDataSource();
+		foreach($items as $item) {
+			$context = null;
+
+			if(!empty($item['Analytic']['cart'])) {
+				$context = array(
+					'page' => $item['Analytic']['page'],
+					'cart' => json_decode($item['Analytic']['cart']),
+					'cart_totals' => json_decode($item['Analytic']['cart_totals']),
+				);
+			}
+
+			$save = array(
+				'user_id' => !empty($item['Analytic']['user_id']) ? $item['Analytic']['user_id'] : 1,
+				'tag' => str_replace('_','-',$item['Analytic']['tag']),
+				'context' => json_encode($context),
+				'created' => $item['Analytic']['created'],
+			);
+
+			array_push($saves, $save);
+		}
+		var_dump(count($saves));
+		if(count($saves)) {
+			$db->rawQuery('SET FOREIGN_KEY_CHECKS = 0;');
+			$this->Stat->saveMany($saves);
+			$db->rawQuery('SET FOREIGN_KEY_CHECKS = 1;');
+		}
+	}	
+
+	public function fix_search() {
+		echo '<pre>';
+		$options = array(
+			/*'conditions' => array(
+				'Analytic.cart IS NOT NULL',
+				'Analytic.user_id IS NOT NULL',
+			),*/
+			'limit' => $_GET['limit'] ?? 1,
+			'offset' => $_GET['offset'] ?? 0,
+			'order' => array(
+				'Search.id ASC'
+			)
+		);
+		$items = $this->Search->find('all', $options);
+				var_dump($options);
+
+		$saves = array();
+		$db = $this->Stat->getDataSource();
+		foreach($items as $item) {
+			$context = null;
+
+			if(!empty($item['Search']['name'])) {
+				$context = array(
+					'page' => $item['Search']['referer'],
+					'result_count' => json_decode($item['Analytic']['cart']),
+					'query' => $item['Search']['name'],
+				);
+			}
+
+			$save = array(
+				'user_id' => !empty($item['Search']['user_id']) ? $item['Search']['user_id'] : 1,
+				'tag' => 'page-search',
+				'context' => json_encode($context),
+				'created' => $item['Search']['created'],
+			);
+
+			array_push($saves, $save);
+		}
+		var_dump(count($saves));
+		if(count($saves)) {
+			$db->rawQuery('SET FOREIGN_KEY_CHECKS = 0;');
+			$this->Stat->saveMany($saves);
+			$db->rawQuery('SET FOREIGN_KEY_CHECKS = 1;');
+		}
+	}		
+
+	public function fix_search_null() {
+		echo '<pre>';
+		$options = array(
+			'conditions' => array(
+				'Stat.tag' => 'page-search',
+				//'Stat.context IS NULL',
+				//'Stat.context' => 'NULL',
+				// 'Stat.id' => array('220168','220169'),
+			),
+			'limit' => $_GET['limit'] ?? 1,
+			'offset' => $_GET['offset'] ?? 0,
+			'order' => array(
+				'Stat.id ASC'
+			)
+		);
+
+		$items = $this->Stat->find('all', $options);
+				var_dump(count($items));
+				\d("count",count($items));
+
+		$saves = array();
+		$db = $this->Stat->getDataSource();
+		foreach($items as $item) {
+			if($item['Stat']['context'] == 'null') {
+				array_push($saves, $item);
+			}
+			
+		}
+		var_dump(count($saves));
+		if(count($saves)) {
+			$db->rawQuery('SET FOREIGN_KEY_CHECKS = 0;');
+			$this->Stat->deleteMany($saves);
+			$db->rawQuery('SET FOREIGN_KEY_CHECKS = 1;');
+		}
+	}		
 }

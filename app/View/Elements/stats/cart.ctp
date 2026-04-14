@@ -22,13 +22,14 @@
 					</td>
 					<td>
 						<strong class="d-flex flex-column">
-							<span>Items: <?=count($context->cart)?></span>
-							<span>Monto: <?=price_format($context->cart_totals->grand_total)?></span>
+							<span class="badge badge-info"><i class="gi gi-shopping_cart"></i> <?=count($context->cart)?></span>
+							<span class="badge badge-info"><i class="gi gi-money"></i> <?=price_format($context->cart_totals->grand_total)?></span>
 						</strong>
 					</td>
 					<td>
-					<?php if($item['Stat']['user_id']): ?>
-						<span class="badge badge-success"><?=$item['User']['name']?> <?=$item['User']['surname']?></span> <span class="badge"><?=date('Y')-date('Y',strtotime($item['User']['birthday']))?> años)</span>
+					<?php if(!empty($item['User']['id'])): ?>
+						<span class="badge" title="<?=$item['User']['name']?> <?=$item['User']['surname']?>">
+						<?=$item['User']['email']?></span><span class="badge"><?=date('Y', strtotime('last year'))-date('Y',strtotime($item['User']['birthday']))?> años</span>
 					<?php else: ?>
 						<span class="badge badge-danger">Anónimo</span>
 					<?php endif ?>

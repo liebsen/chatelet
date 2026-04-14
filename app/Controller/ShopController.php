@@ -454,7 +454,7 @@ class ShopController extends AppController {
         'user_id' => $user_id,
       ],     
       'order' => ['Sale.id DESC'],
-      'limit' => 10,
+      'limit' => 500,
     ]);
 
     foreach($sales as $i => $sale) {

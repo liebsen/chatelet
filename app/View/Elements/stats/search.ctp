@@ -22,7 +22,8 @@
 					</td>
 					<td> 
 					<?php if($item['Stat']['user_id']): ?>
-						<?=$item['User']['name']?> <?=$item['User']['surname']?> (<?=date('Y', strtotime('last year'))-date('Y',strtotime($item['User']['birthday']))?> años)
+						<span class="badge" title="<?=$item['User']['name']?> <?=$item['User']['surname']?>">
+						<?=$item['User']['email']?></span><span class="badge"><?=date('Y', strtotime('last year'))-date('Y',strtotime($item['User']['birthday']))?> años</span>
 					<?php else: ?>
 						<span>Anónimo</span>
 					<?php endif ?>

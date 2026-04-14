@@ -29,23 +29,27 @@ class StatsComponent extends Component {
           'alias' => 'User',
           'type' => 'LEFT',
           'conditions' => array(
-              'User.id = Stat.user_id'
+            'User.id = Stat.user_id'
           )
         )
       ),
       'conditions' => array(
-        'tag' => 'page-search'
+        'tag' => 'page-search',
+        'JSON_EXTRACT(Stat.context, "$.query") IS NOT NULL',
       ),
-      'fields' => array('User.name, User.surname, User.birthday', 'Stat.*'),
+      'fields' => array('Stat.id, Stat.tag, Stat.context, Stat.created, User.id, User.name, User.surname, User.email, User.birthday'),
+      'group' => array('Stat.tag, JSON_EXTRACT(Stat.context, "$.query")'),
       'order' => array('Stat.id DESC'),
       'limit' => 200,
     ));
 
     foreach($items as $i => $item) {
-      $items[$i]['Stat']['context'] = json_decode($item['Stat']['context']);
+      $context = json_decode($item['Stat']['context']);
+      if(!empty($context)) {
+        $items[$i]['Stat']['context'] = (object) $context;
+      }
     }
 
-    //\d("items",$items);
     $this->controller->set('items', $items);    
   }
 
@@ -65,10 +69,12 @@ class StatsComponent extends Component {
       'conditions' => array(
         'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
       ),
-      'fields' => array('User.name, User.surname, User.birthday', 'Stat.*'),
+      'fields' => array('Stat.id, Stat.tag, Stat.context, Stat.created, User.id, User.name, User.surname, User.email, User.birthday'),
+      'group' => array('Stat.tag, JSON_EXTRACT(Stat.context, "$.cart")'),
       'order' => array('Stat.id DESC'),
       'limit' => 500,
     ));
+
     $this->controller->set('items', $items);    
   }
 

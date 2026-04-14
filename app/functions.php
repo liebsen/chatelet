@@ -124,26 +124,26 @@ function readable_time_ago($timestamp, $short = false) {
     );
     $span = "";
     if ($diff < 60) {
-      $span = $diff == 1 ? "1 segundo" : $diff . " segundos";
+      $span = $diff == 1 ? "1s" : $diff . "s";
     } elseif ($diff < 3600) {
       $minutes = round($diff / 60);
-      $span = $minutes == 1 ? "1 m" : $minutes . " m";
+      $span = $minutes == 1 ? "1m" : $minutes . "m";
     } elseif ($diff < 86400) {
       $hours = round($diff / 3600);
-      $span = $hours == 1 ? "1 h" : $hours . " h";
+      $span = $hours == 1 ? "1h" : $hours . "h";
     } elseif ($diff < 2592000) { // 30 days
       $days = round($diff / 86400);
-      $span = $days == 1 ? "1 día" : $days . " d";
+      $span = $days == 1 ? "1d" : $days . "d";
       if($days < 6) {
         $span = $weekdays[date('w', $timestamp)];
         $skipprep = true;
       }
     } elseif ($diff < 31536000) { // 365 days
       $months = round($diff / 2592000);
-      $span = $months == 1 ? "1 M" : $months . " M";
+      $span = $months == 1 ? "1me" : $months . "me";
     } else {
       $years = round($diff / 31536000);
-      $span = $years == 1 ? "1 A" : $years . " A";
+      $span = $years == 1 ? "1a" : $years . "a";
     }
 
     if($short) {
