@@ -84,6 +84,14 @@ class NewsletterController extends AppController {
       )
     );
 
+    // check if needs redirect
+    if($newsletter['Newsletter']['cta_url']) {
+			$newsletter['Newsletter']['clicks'] = $newsletter['Newsletter']['clicks'] + 1;
+			$this->NewsletterScheduleItem->save($newsletter);
+    	header('Location: ' . $newsletter['Newsletter']['cta_url']);
+    	return false;
+    }
+
     if(!empty($newsletter['NewsletterProduct'])) {
       $products = array_column($newsletter, 'Product');
     }

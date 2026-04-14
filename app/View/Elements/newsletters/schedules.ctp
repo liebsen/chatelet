@@ -17,8 +17,12 @@
 						</span>
 					</a>
 					<div class="card-text">
-						<span class="badge badge-<?=$schedule['rowclass']?>"><span class="status"><?=$schedule['status']?></span></span>
-						<span class="badge"><i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?></span>
+						<span class="badge badge-<?=$schedule['rowclass']?>">
+							<span class="status"><?=$schedule['status']?></span>
+						</span>
+						<span class="badge">
+							<i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?>
+						</span>
 						<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?> is-rounded">
 							<?=!empty($schedule[0]['prod_total']) ? $schedule[0]['prod_total'] : 'Estático'?>
 						</span>
@@ -112,6 +116,11 @@
 							<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
 						</span>
 						<?php endif ?>
+						<span class="badge badge-info is-rounded" title="Notificación Push enviados">
+							<i class="gi gi-user"></i>
+							<span class="clicks"><?=$schedule['stats']['clicks']?></span>
+						</span>
+
 					</td>
 					<td>
 						<span class="badge badge-<?=strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00') > time() ? 'warning' : 'success'?> is-rounded" title="Fecha / Hora de ejecución">

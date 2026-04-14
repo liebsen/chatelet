@@ -258,14 +258,6 @@ class NewsletterComponent extends Component {
             'type' => 'LEFT',
             'conditions' => array('NewsletterList.id = NewsletterSchedule.list_id')
           ),
-          /*array(
-            'table' => 'newsletter_users',
-            'alias' => 'NewsletterUser',
-            'type' => 'LEFT',
-            'conditions' => array(
-              'NewsletterUser.list_id = NewsletterList.id',
-            )
-          ),*/
           array(
             'table' => 'newsletters',
             'alias' => 'Newsletter',
@@ -282,11 +274,11 @@ class NewsletterComponent extends Component {
           ),
         ),        
         'fields' => array(
-          'NewsletterSchedule.id, Newsletter.id,Newsletter.title,Newsletter.body, NewsletterList.id, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email, COUNT(distinct NewsletterProduct.id) as prod_total'
+          'NewsletterSchedule.id, Newsletter.id,Newsletter.title,Newsletter.body,NewsletterList.id,NewsletterList.name,NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email, COUNT(distinct NewsletterProduct.id) as prod_total'
         ),
         'conditions' => $conditions,
         'group' => array(
-          'NewsletterSchedule.id, Newsletter.id, Newsletter.title,Newsletter.body, NewsletterList.id, Newsletter.title, NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email'
+          'NewsletterSchedule.id, Newsletter.id,Newsletter.title,Newsletter.body,NewsletterList.id,NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email'
         ),
         'order' => array( 
           'NewsletterSchedule.schedule_date DESC, NewsletterSchedule.schedule_hour DESC' 
@@ -299,6 +291,7 @@ class NewsletterComponent extends Component {
         $email_total = 0;
         $push_sent = 0;
         $email_sent = 0;
+        $clicks = 0;
         /*$products = $NewsletterProduct->find('all', array(
           'joins' => array(
             array(
@@ -336,6 +329,7 @@ class NewsletterComponent extends Component {
         foreach($users as $user) {
           $email_total+= 1;
           $push_total+= 1;
+          $clicks+= $user['NewsletterScheduleItem']['clicks'];
           if($user['NewsletterScheduleItem']['status'] === 'sent') {
             $email_sent+= $user['NewsletterScheduleItem']['email_sent'];
             $push_sent+= $user['NewsletterScheduleItem']['push_sent'];
@@ -381,6 +375,7 @@ class NewsletterComponent extends Component {
           'push_sent' => $push_sent,
           'email_total' => $email_total,
           'push_total' => $push_total,
+          'clicks' => $clicks,
           // 'total' => count($users),
         );
 
