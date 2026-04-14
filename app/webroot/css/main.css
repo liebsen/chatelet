@@ -2154,7 +2154,7 @@ pre, code {
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
     grid-gap: 1rem;
     border: none;
     min-height: calc(100dvh - 12rem);
