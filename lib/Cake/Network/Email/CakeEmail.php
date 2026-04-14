@@ -1171,8 +1171,7 @@ class CakeEmail {
 		$this->_message = $this->_render($this->_wrap($content));
 
 		if($debug) {
-			var_dump($this->_message);
-			return false;
+			return $this->_message;
 		}
 
 		$contents = $this->transportClass()->send($this);

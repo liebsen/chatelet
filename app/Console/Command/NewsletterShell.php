@@ -13,6 +13,8 @@ App::uses('CakeEmail', 'Network/Email');
 class NewsletterShell extends AppShell {
    public $uses = array(
     'User', 
+    'Stat',
+    'Product', 
     'Setting', 
     'Webpush', 
     'Newsletter',
@@ -30,10 +32,8 @@ class NewsletterShell extends AppShell {
   public function main() {
     $this->settings = $this->loadSettings();
 
-    if(empty($this->settings['newsletter_enabled'])) {
-      print_r(array(
-        'error' => "Newsletter is disabled"
-      ));      
+    if($this->settings['newsletter_enabled'] != '1') {
+      echo "Newsletter is disabled";
       return false;
     }
 
@@ -46,8 +46,10 @@ class NewsletterShell extends AppShell {
     $perminute = $this->settings['newsletter_perminute'] ?? $this->perminute;
     $perday = $this->settings['newsletter_perday'] ?? $this->perday;
     $this->simulate = in_array("simulate=1", $this->args);
+    $this->showmail = in_array("showmail=1", $this->args);
     $this->update = in_array("update=1", $this->args);
 
+    echo "\nStarting process: " . implode(':',array($hour,$min)) . "\n";
     // FIND QUOTA
     $quota = $this->NewsletterScheduleItem->find('count', array(
       'conditions' => array(
@@ -113,7 +115,7 @@ class NewsletterShell extends AppShell {
         )
       ),
       'fields' => array(
-        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, NewsletterList.name, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body,Newsletter.show_price, Newsletter.show_social, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday'
       ),
       'conditions' => array( 
         'NewsletterScheduleItem.status' => "pending", 
@@ -129,10 +131,15 @@ class NewsletterShell extends AppShell {
     );
 
     foreach($newsletters as $newsletter) {
+      $products = array();
+      $products_ids = array();
       // find related items
       $filter = json_decode($newsletter['NewsletterList']['filter']);
+
+      echo "Schedule type: " . $filter->type . "\n";
+
       if($filter->type == 'carts') {
-        $products = $this->Stats->find('all',array(
+        $items = $this->Stat->find('all',array(
           'joins' => array(
             array(
               'table' => 'users',
@@ -144,24 +151,44 @@ class NewsletterShell extends AppShell {
             )
           ),
           'conditions' => array(
-            // 'SUM(Sale.value) > ' => $sale_min,
-            'User.id IS NOT ' => null,
-            'JSON_EXTRACT(Stat.cart_totals, \'$.total_products\') >' => $sale_min,
-            'Stat.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
-            'Stat.created < ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_max))),
+            'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
+            'Stat.user_id' => $newsletter['NewsletterScheduleItem']['user_id'],
           ),
-          'fields' => array(
-            'User.id, User.email, User.name, User.surname, User.birthday'
-          ),
-          'order' => array(
-            'Stat.id DESC'
-          ),
-          'group' => array(
-            'User.id'
-          ),
-          'limit' => 1000,
+          'fields' => array('Stat.context'),
+          'order' => array('Stat.id DESC'),
+          'limit' => 500,
         ));
-      } else {
+
+        if(!empty($items)) {
+          foreach($items as $item) {
+            $context = json_decode($item['Stat']['context']);
+            foreach($context->cart as $cart_item) {
+              if(!in_array($cart_item->id, $products_ids)) {
+                array_push($products_ids, $cart_item->id);
+              }
+            }
+          }
+
+          $products = $this->Product->find('all', array(
+            'joins' => array(
+              array(
+                'table' => 'categories',
+                'alias' => 'Category',
+                'type' => 'LEFT',
+                'conditions' => array( 'Product.category_id = Category.id' )
+              )
+            ),
+            'fields' => array(
+              'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
+            ),        
+            'conditions' => array(
+              'Product.id' => $products_ids
+            )
+          ));
+        }
+      } 
+
+      if(empty($products)) {
         $products = $this->NewsletterProduct->find('all', array(
           'joins' => array(
             array(
@@ -378,15 +405,19 @@ class NewsletterShell extends AppShell {
     );
 
     if($this->simulate) {
-      $content = $email->template('newsletter', 'default')
+      $message = $email->template('newsletter', 'default')
         ->emailFormat('html')
         ->viewVars($viewVars)
         ->send(null, true);
 
       echo "[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
 
+      if($this->showmail) {
+        var_dump($message);
+      }
+
       return array(
-        'sent' => $this->update,
+        'sent' => $this->update
       );
     }
 

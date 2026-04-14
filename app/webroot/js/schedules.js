@@ -30,17 +30,20 @@ function updateSchedules(){
           target.removeClass('bg-warning bg-info bg-success bg-light')
           target.addClass(`bg-${item.rowclass}`)
           target.find('.status').text(item.status)
+          target.find('.clicks').text(item.stats.clicks)
           target.find('.push_sent').text(item.stats.push_sent)
           target.find('.email_sent').text(item.stats.email_sent)
         })
         return $.growl.notice({
           title: 'Atención',
-          message: `Total de ${res.results.length} campañas actualizado`,
+          message: `Se han actualizado ${res.results.length} campañas`,
+          queue: false,
         });
       }
       $.growl.notice({
         title: 'Atención',
         message: `No se actualizaron campañas`,
+        queue: false,
       });      
     },
     error: function (xhr, error) {

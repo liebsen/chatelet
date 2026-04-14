@@ -2655,7 +2655,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		if($filter_type == 'carts') {
 			$this->loadModel('Stat');
 			//\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
-	    $data = $this->Stats->find('all',array(
+	    $data = $this->Stat->find('all',array(
 		    'joins' => array(
 	        array(
 	          'table' => 'users',
@@ -2670,7 +2670,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        // 'SUM(Sale.value) > ' => $sale_min,
 	        'Stat.tag' => 'page-exit',
 	        'User.id IS NOT ' => null,
-	        'JSON_EXTRACT(Stat.cart_totals, \'$.total_products\') >' => $sale_min,
+	        'JSON_EXTRACT(Stat.context, \'$.cart_totals.total_products\') >' => $sale_min,
 	        'Stat.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
 	        'Stat.created < ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_max))),
 	      ),
