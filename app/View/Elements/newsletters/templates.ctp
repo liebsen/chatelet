@@ -12,16 +12,9 @@
 						class="card-img"
 						style="background-image: url('<?=\extract_jpeg_url($newsletter['Newsletter']['body'])?>')"
 						title="Editar plantilla">
-							<span class="badge"><?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?></span>
+							<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'info'?>"><?=$newsletter['Newsletter']['title']?></span>
 					</a>
 					<div class="card-text">
-						<a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
-							data-toggle="tooltip" 
-							title="Editar plantilla">
-							<?=$newsletter['Newsletter']['title']?>
-						</a>
-						<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
 						<span>
 							<i class="gi gi-envelope fa-lg"></i>
 							<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_email'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>
@@ -34,7 +27,9 @@
 							<i class="gi gi-shirt fa-lg"></i>
 							<span class="badge badge-success is-rounded"><?=count($newsletter['NewsletterProduct'])?></span>
 						</span>
-						<span class="badge"><?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%i')?></span>
+						<span class="badge"> 
+							<?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?>
+						</span>
 						<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
 						<div class="d-flex flex-center flex-nowrap gap-05">        
 							<a 
@@ -94,7 +89,7 @@
 							class="card-img sm"
 							style="background-image: url('<?=\extract_jpeg_url($newsletter['Newsletter']['body'])?>')"
 							title="Editar plantilla">
-							<span class="badge"><?=$newsletter['Newsletter']['title']?></span>
+							<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'info'?>"><?=$newsletter['Newsletter']['title']?></span>
 						</a>
 					</td>
 					<td>

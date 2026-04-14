@@ -13,16 +13,12 @@
 						class="card-img"
 						style="background-image: url('<?=\extract_jpeg_url($schedule['Newsletter']['body'])?>')"
 						title="Editar campaña">
-						<span class="badge badge-<?=$schedule['rowclass']?>"><span class="status"><?=$schedule['status']?></span>
+						<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['Newsletter']['title']?>
 						</span>
 					</a>
 					<div class="card-text">
-						<a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
-							data-toggle="tooltip" 
-							title="Editar campaña">
-						<?=$schedule['Newsletter']['title']?>/<?=$schedule['NewsletterList']['name']?>
-						</a>
+						<span class="badge badge-<?=$schedule['rowclass']?>"><span class="status"><?=$schedule['status']?></span></span>
+						<span class="badge"><i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?></span>
 						<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?> is-rounded">
 							<?=!empty($schedule[0]['prod_total']) ? $schedule[0]['prod_total'] : 'Estático'?>
 						</span>
@@ -88,7 +84,7 @@
 							class="card-img sm"
 							style="background-image: url('<?=\extract_jpeg_url($schedule['Newsletter']['body'])?>')"
 							title="Editar campaña">
-							<span class="badge"><?=$schedule['Newsletter']['title']?>/<?=$schedule['NewsletterList']['name']?></span>
+							<span class="badge badge-<?=$schedule['rowclass']?>"><span class="status"><?=$schedule['status']?></span>
 						</a>
 					</td>
 					<td>

@@ -12,19 +12,14 @@
 							data-toggle="tooltip" 
 							class="card-img"
 							title="<?=$list['NewsletterList']['text']?>">
-						<span class="badge"><?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y %H:%M')?></span>
-						<span class="badge"><?=\readable_time_ago(strtotime($list['NewsletterList']['modified'])) ?></span>
+						<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'info'?>"><?=$list['NewsletterList']['name']?></span>
 					</a>
 					<div class="card-text">
-						<a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $list['NewsletterList']['id']))?>" 
-							data-toggle="tooltip" 
-							title="<?=$list['NewsletterList']['text']?>">
-						<?=$list['NewsletterList']['name']?>
-						</a>
 						<span class="badge badge-<?=!empty($list[0]['total']) ? 'success' : 'danger'?> is-rounded">
 								<?=!empty($list[0]['total']) ? $list[0]['total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
 						</span>
+						<span class="badge"><?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y %H:%M')?></span>
+						<span class="badge"><?=\readable_time_ago(strtotime($list['NewsletterList']['modified'])) ?></span>
 						<div class="d-flex flex-center flex-nowrap gap-05">          
 							<a 
 								href="<?=$this->Html->url(
@@ -82,7 +77,7 @@
 							data-toggle="tooltip" 
 							class="card-img sm"
 							title="<?=$list['NewsletterList']['text']?>">
-							<span class="badge"><?=$list['NewsletterList']['name']?></span>
+							<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'info'?>"><?=$list['NewsletterList']['name']?></span>
 						</a>
 					</td>
 					<td>
