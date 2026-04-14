@@ -203,7 +203,7 @@ class NewsletterShell extends AppShell {
       if($newsletter['Newsletter']['send_email'] == '1') {
         // generate links
         foreach($products as $i => $product) {
-          $link = implode('/', array(
+          $products[$i]['Product']['link'] = implode('/', array(
             // fix this 
             $this->settings['site_url'], 
             //'https://chatelet.com',
@@ -211,10 +211,8 @@ class NewsletterShell extends AppShell {
             'detalle',
             $product['Product']['id'],
             $product['Category']['id'],
-            strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name'])))
+            strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name']))) . '?uid='.$newsletter['NewsletterScheduleItem']['id']
           ));
-
-          $products[$i]['Product']['link'] = $link .'?uid='.$newsletter['NewsletterScheduleItem']['id'];
         }
 
         $email = $this->sendEmail($newsletter, $products);

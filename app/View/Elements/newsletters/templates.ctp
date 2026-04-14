@@ -21,6 +21,7 @@
 							title="Editar plantilla">
 							<?=$newsletter['Newsletter']['title']?>
 						</a>
+						<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
 						<span>
 							<i class="gi gi-envelope fa-lg"></i>
 							<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_email'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>
@@ -34,7 +35,7 @@
 							<span class="badge badge-success is-rounded"><?=count($newsletter['NewsletterProduct'])?></span>
 						</span>
 						<span class="badge"><?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%i')?></span>
-						<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>						
+						<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
 						<div class="d-flex flex-center flex-nowrap gap-05">        
 							<a 
 								href="<?=$this->Html->url(array(

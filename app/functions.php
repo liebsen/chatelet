@@ -127,23 +127,23 @@ function readable_time_ago($timestamp, $short = false) {
       $span = $diff == 1 ? "1 segundo" : $diff . " segundos";
     } elseif ($diff < 3600) {
       $minutes = round($diff / 60);
-      $span = $minutes == 1 ? "1 minuto" : $minutes . " minutos";
+      $span = $minutes == 1 ? "1 m" : $minutes . " m";
     } elseif ($diff < 86400) {
       $hours = round($diff / 3600);
-      $span = $hours == 1 ? "1 hora" : $hours . " horas";
+      $span = $hours == 1 ? "1 h" : $hours . " h";
     } elseif ($diff < 2592000) { // 30 days
       $days = round($diff / 86400);
-      $span = $days == 1 ? "1 día" : $days . " días";
+      $span = $days == 1 ? "1 día" : $days . " d";
       if($days < 6) {
         $span = $weekdays[date('w', $timestamp)];
         $skipprep = true;
       }
     } elseif ($diff < 31536000) { // 365 days
       $months = round($diff / 2592000);
-      $span = $months == 1 ? "1 mes" : $months . " meses";
+      $span = $months == 1 ? "1 M" : $months . " M";
     } else {
       $years = round($diff / 31536000);
-      $span = $years == 1 ? "1 año" : $years . " años";
+      $span = $years == 1 ? "1 A" : $years . " A";
     }
 
     if($short) {

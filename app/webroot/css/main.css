@@ -609,7 +609,6 @@ body {
     }
     .block .tab-content {
         border-bottom-left-radius: 1.5rem;
-        border: 1px solid #ddd;
     }
     #primary-nav li a {
         border-top-right-radius: 3rem;

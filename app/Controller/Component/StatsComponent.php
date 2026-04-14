@@ -63,7 +63,7 @@ class StatsComponent extends Component {
         )
       ),
       'conditions' => array(
-        'Stat.cart_totals IS NOT NULL',
+        'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
       ),
       'fields' => array('User.name, User.surname, User.birthday', 'Stat.*'),
       'order' => array('Stat.id DESC'),
