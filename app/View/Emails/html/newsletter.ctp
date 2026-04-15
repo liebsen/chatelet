@@ -6,36 +6,46 @@
   </a>	
 <?php endif ?>
 <?php if(!empty($products)): ?>
-<?php foreach($products as $product): ?>
-  <!-- Main Card Container -->
-  <div style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); overflow: hidden;">
-    <!-- Product Image Section -->
-    <a href="<?=$site_url?>" style="text-decoration: none;">
-       <img src="<?=$cdn_url?><?=$product['Product']['img_url']?>" alt="<?= $product['Product']['name'] ?>" style="width: 100%; height: auto; display: block;">
-    </a>
-    <!-- Product Details Section -->
-    <div style="padding: 16px; text-align: center;">
-      <h3 style="margin: 0 0 10px 0; font-size: 20px; color: #333333;"><?= $product['Product']['name'] ?></h3>
-      <p style="margin: 0 0 10px 0; font-size: 20px; color: #666666;"><?= $product['Category']['name'] ?></p>
-<?php if($data['Newsletter']['show_text'] == '1'): ?>
-      <p style="margin: 0 0 15px 0; font-size: 16px; color: #666666;"><?= $product['Product']['desc'] ?></p>
+  <table border="0" cellpadding="0" cellspacing="20">
+<?php foreach($products as $i => $product): ?>
+<?php if($i%2 == 0):?>
+  <tr>
 <?php endif ?>
-<?php if($data['Newsletter']['show_price'] == '1'): ?>
-	<p style="font-size: 24px; font-weight: bold; color: #000000; margin: 0 0 15px 0;"><?= \price_format($product['Product']['price']) ?></p>
-<?php if(!empty($product['Product']['mp_discount'])): ?>
-	<p style="margin: 0 0 15px 0; font-size: 14px; color: #666666;"><?=$product['Product']['mp_discount']?>%OFF Mercado pago</p>
+    <td valign="top" width="50%">
+      <!-- Main Card Container -->
+      <div style="width: 100%; height: 100%; background-color: #ffffff; overflow: hidden;">
+        <!-- Product Image Section -->
+        <a href="<?=$site_url?>" style="text-decoration: none;">
+           <div style="background-repeat: no-repeat;background-position: center center; background-size: cover; background-image: url('<?=$cdn_url?><?=$product['Product']['img_url']?>'); width: 100%; height: 350px; display: block;" alt="<?= $product['Product']['name'] ?>"></div>
+        </a>
+        <!-- Product Details Section -->
+        <div style="padding: 16px; text-align: center;">
+          <h3 style="margin: 0 0 10px 0; font-size: 18px; color: #333333;"><?= $product['Product']['name'] ?></h3>
+          <p style="margin: 0 0 10px 0; font-size: 15px; color: #666666;"><?= $product['Category']['name'] ?></p>
+    <?php if($data['Newsletter']['show_text'] == '1'): ?>
+          <p style="margin: 0 0 15px 0; font-size: 12px; color: #666666;"><?= $product['Product']['desc'] ?></p>
+    <?php endif ?>
+    <?php if($data['Newsletter']['show_price'] == '1'): ?>
+    	<p style="font-size: 24px; font-weight: bold; color: #000000; margin: 0 0 15px 0;"><?= \price_format($product['Product']['price']) ?></p>
+    <?php if(!empty($product['Product']['mp_discount'])): ?>
+    	<p style="margin: 0 0 5px 0; font-size: 12px; color: #666666;"><?=$product['Product']['mp_discount']?>% OFF Mercado pago</p>
+    <?php endif ?>
+    <?php if(!empty($product['Product']['bank_discount'])): ?>
+    	<p style="margin: 0 0 5px 0; font-size: 12px; color: #666666;"><?=$product['Product']['bank_discount']?>% OFF Transferencia</p>
+    <?php endif ?>
+    <?php endif ?>
+    	    <!-- Call to Action Button -->
+    	    <a href="<?=$product['Product']['link']?>" style="background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
+    	        Ver en la tienda
+    	    </a>
+    	  </div>
+    	</div>
+    </td>
+<?php if($i%3 == 0 && $i > 1):?>
+  </tr>
 <?php endif ?>
-<?php if(!empty($product['Product']['bank_discount'])): ?>
-	<p style="margin: 0 0 15px 0; font-size: 14px; color: #666666;"><?=$product['Product']['bank_discount']?>%OFF Transferencia</p>
-<?php endif ?>
-<?php endif ?>
-	    <!-- Call to Action Button -->
-	    <a href="<?=$product['Product']['link']?>" style="background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
-	        Ver en la tienda
-	    </a>
-	  </div>
-	</div>
 <?php endforeach ?>
+</table>
 <?php endif ?>
 
 <?php if(!empty($newsletter_text)):?>
