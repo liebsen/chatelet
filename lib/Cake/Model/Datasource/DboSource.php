@@ -463,7 +463,7 @@ class DboSource extends DataSource {
 		}
 
 		if (preg_match('/^(?:SELECT)\s/i', $sql)) {
-			#\d("select:",$sql);
+			\d("select:",$sql);
 		}
 
 		if (preg_match('/^(?:CREATE|ALTER|DROP)\s+(?:TABLE|INDEX)/i', $sql)) {

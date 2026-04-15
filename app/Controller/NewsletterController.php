@@ -85,7 +85,7 @@ class NewsletterController extends AppController {
         )
       ),
       'fields' => array(
-        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, NewsletterList.name, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday'
       ),
       'conditions' => array( 
         'NewsletterScheduleItem.id' => $id, 
@@ -103,9 +103,30 @@ class NewsletterController extends AppController {
     	return false;
     }
 
-    if(!empty($newsletter['NewsletterProduct'])) {
-      $products = array_column($newsletter, 'Product');
-    }
+    $products = $this->NewsletterProduct->find('all', array(
+      'joins' => array(
+        array(
+          'table' => 'products',
+          'alias' => 'Product',
+          'type' => 'LEFT',
+          'conditions' => array(
+            'NewsletterProduct.product_id = Product.id'
+          )
+        ),
+        array(
+          'table' => 'categories',
+          'alias' => 'Category',
+          'type' => 'LEFT',
+          'conditions' => array( 'Product.category_id = Category.id' )
+        )
+      ),
+      'fields' => array(
+        'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
+      ),        
+      'conditions' => array(
+        'NewsletterProduct.newsletter_id' => $newsletter['Newsletter']['id']
+      )
+    ));
 
     if(!empty($newsletter['Newsletter']['body'])) { 
       $parsed_body = \parse_template(
@@ -169,8 +190,7 @@ class NewsletterController extends AppController {
 	public function template($id) {
     $newsletter = $this->Newsletter->find('first', 
     	array(
-	    	'recursive' => -1,
-	      'joins' => array(
+	      'joins' => array(     	
 	        array(
 	          'table' => 'newsletter_products',
 	          'alias' => 'NewsletterProduct',
@@ -178,6 +198,15 @@ class NewsletterController extends AppController {
 	          'conditions' => array( 
 	            'NewsletterProduct.newsletter_id = Newsletter.id',
 	            'Newsletter.id IS NOT NULL'
+	          )
+	        ),
+	        array(
+	          'table' => 'products',
+	          'alias' => 'Product',
+	          'type' => 'LEFT',
+	          'conditions' => array( 
+	            'NewsletterProduct.product_id = Product.id',
+	            'Product.id IS NOT NULL'
 	          )
 	        ),
 	        array(
@@ -190,7 +219,7 @@ class NewsletterController extends AppController {
 	        )
 	      ),
 	      'fields' => array(
-	        'Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday, User.address, User.dni'
+	        'Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, Newsletter.send_email, Newsletter.send_push, NewsletterProduct.id,  Product.id, Product.name, Product.desc, User.id, User.name, User.surname, User.email, User.birthday, User.address, User.dni'
 	      ),
 	      'conditions' => array( 
 	        'Newsletter.id' => $id, 
@@ -198,9 +227,30 @@ class NewsletterController extends AppController {
 	    )
     );
 
-    if(!empty($newsletter['NewsletterProduct'])) {
-      $products = array_column($newsletter, 'Product');
-    }
+    $products = $this->NewsletterProduct->find('all', array(
+      'joins' => array(
+        array(
+          'table' => 'products',
+          'alias' => 'Product',
+          'type' => 'LEFT',
+          'conditions' => array(
+            'NewsletterProduct.product_id = Product.id'
+          )
+        ),
+        array(
+          'table' => 'categories',
+          'alias' => 'Category',
+          'type' => 'LEFT',
+          'conditions' => array( 'Product.category_id = Category.id' )
+        )
+      ),
+      'fields' => array(
+        'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
+      ),        
+      'conditions' => array(
+        'NewsletterProduct.newsletter_id' => $newsletter['Newsletter']['id']
+      )
+    ));
 
     if(!empty($newsletter['Newsletter']['body'])) { 
       $parsed_body = \parse_template(
