@@ -111,8 +111,8 @@
             <br />
             <h6>Gracias por su compra.</h6>            
             <div class="form-actions">
-              <button type="reset" class="btn btn-danger" onclick="window.close()"><i class="icon-close"></i> Cerrar</button>
-              <button type="submit" class="btn btn-success" onclick="window.print()"><i class="icon-print"></i> Imprimir</button>
+              <button type="reset" class="btn btn-danger" onclick="window.close()"><i class="icon-close"></i> <span>Cerrar</span></button>
+              <button type="submit" class="btn btn-success" onclick="window.print()"><i class="icon-print"></i> <span>Imprimir</span></button>
             </div>
           </div>
         </div>

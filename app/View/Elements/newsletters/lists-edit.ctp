@@ -18,7 +18,7 @@
     <div class="col-md-6">
       <h4 class="sub-header"><?=$list['NewsletterList']['name'] ?? 'Crea nueva Lista'?></h4>
       <p>Configura el alcance para esta Lista</p>
-      <div class="form-group flex-between gap-05">
+      <div class="form-group flex-end flex-between gap-05">
         <div class="controls flex-1">
           <label class="control-label" for="toggle">Activo</label>
           <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$list['NewsletterList']['enabled'] == '1' ? ' checked' : '' ?>>

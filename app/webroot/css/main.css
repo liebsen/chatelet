@@ -174,14 +174,11 @@ body {
 
 #pre-page-content {
   padding: 20px;
-  /* min-height: 140px; */
   background-color: #f9f9f9;
 }
 
 #page-content {
-  /*padding: 20px;*/
   padding-top: 1rem;
-  min-height: 1200px;
   background-color: #f9f9f9;
   position: relative;
   z-index: 10;
@@ -194,7 +191,6 @@ body {
   line-height: 40px;
   padding: 0 10px;
 }
-
 
 .w-100 {
   width: 100%!important;
@@ -3478,6 +3474,15 @@ a.thumbnail-borderless,
   min-height: 40px;
 }
 
+@media(max-width: 768px) {
+  .block-tabs > .nav-tabs > li > a > span {
+    display: none;
+  }
+  .form-actions span {
+    display: none;
+  }
+}
+
 .controls {
   width: 100%;
 }
@@ -4005,12 +4010,14 @@ div.cloudzoom-black:nth-child(3) {
 }
 
 .flex-start {
-  align-items: center;
   justify-content: start;
 }
 
+.flex-end {
+  align-items: flex-end;
+}
+
 .flex-between {
-  align-items: center;
   justify-content: space-between;
 }
 

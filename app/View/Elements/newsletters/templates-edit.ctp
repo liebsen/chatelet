@@ -18,7 +18,7 @@
     <div class="col-md-6">
       <h4 class="sub-header"><?=$newsletter['Newsletter']['title'] ?? 'Crea un nueva plantilla'?></h4>
       <p><?=$newsletter['Newsletter']['title'] ? 'Modifica' : 'Crea'?> tu plantilla. Puedes asociarle productos si lo deseas.</p>
-      <div class="form-group flex-between gap-05">
+      <div class="form-group flex-end flex-between gap-05">
         <div class="controls flex-1">
           <label class="control-label" for="toggle">Activo</label>
           <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$newsletter['Newsletter']['enabled'] == '1' ? ' checked' : '' ?>>
@@ -191,9 +191,9 @@
     </div>
   </div>
   <div class="form-actions">
-    <a href="javascript:history.go(-1)" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
-    <a href="#" class="btn btn-warning btn-templates-preview"><i class="fa fa-eye mr-1"></i> Previsualizar</a>
-    <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+    <a href="javascript:history.go(-1)" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> <span>Atrás</span></a>
+    <a href="#" class="btn btn-warning btn-templates-preview"><i class="fa fa-eye mr-1"></i> <span>Previsualizar</span></a>
+    <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> <span>Guardar</span></button>
   </div>
 
 <?php echo $this->Form->end(); ?>

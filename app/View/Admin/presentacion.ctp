@@ -81,8 +81,8 @@
 	    </div>
 			<div class="form-actions">
 				<input type="hidden" name="id" value="1">
-				<button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close mr-1"></i> Restaurar</button>
-				<button type="submit" class="btn btn-successfast" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+				<button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close mr-1"></i> <span>Restaurar</span></button>
+				<button type="submit" class="btn btn-successfast" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> <span>Guardar</span></button>
 			</div>
 		</form>
 	</div>

@@ -113,17 +113,17 @@
 	<div class="form-actions">
 <?php if(empty($this->params->query['extended'])): ?>
 	<a href="/admin/newsletters/schedules?extended=1">
-    <button class="btn" type="button">Ver todo</button>
+    <button class="btn" type="button"><i class="fa fa-eye"></i> <span>Ver todo</span></button>
   </a>
 <?php else: ?>
 	<a href="/admin/newsletters/schedules">
-    <button class="btn" type="button">Ver menos</button>
+    <button class="btn" type="button"><i class="fa fa-eye-slash"></i> <span>Ver menos</span></button>
   </a>
 <?php endif ?>
   <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
-    <i class="gi gi-send mr-1"></i> Crear nueva campaña
+    <i class="gi gi-send mr-1"></i> <span>Crear nueva campaña</span>
   </a>
   <a class="btn btn-success btn-update-schedules" href="#">
-    <i class="gi gi-repeat mr-1"></i> Actualizar
+    <i class="gi gi-repeat mr-1"></i> <span>Actualizar</span>
   </a>
 </div>

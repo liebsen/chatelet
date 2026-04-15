@@ -12,9 +12,18 @@ echo $this->element('admin/menu');
 
 <div class="form-actions" data-url="/admin/batch_productos/">
     <span class="selection-count"></span>	
-    <button class="enableselection btn btn-success btn-adjust" type="button">Activar</button>
-    <button class="disableselection btn btn-warning btn-adjust" type="button">Desactivar</button>
-    <button class="removeselection btn btn-danger btn-adjust" type="button">Eliminar</button>
+    <button class="enableselection btn btn-success btn-adjust" type="button">
+    	<i class="fa fa-eye"></i>
+    	<span>Activar</span>
+    </button>
+    <button class="disableselection btn btn-warning btn-adjust" type="button">
+    	<i class="fa fa-eye-slash"></i>
+    	<span>Desactivar</span>
+    </button>
+    <button class="removeselection btn btn-danger btn-adjust" type="button">
+    	<i class="fa fa-trash-o"></i>
+    	<span>Eliminar</span>
+    </button>
 </div>
 
 <p class="collapse alert alert-success result-message">...</p>
