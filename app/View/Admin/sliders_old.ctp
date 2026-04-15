@@ -122,7 +122,7 @@ echo $this->Html->script('admin-sliders.js?v=' . $version['ver'], array('inline'
 			<div class="form-actions">
 				<input type="hidden" name="id" value="1">
 				<button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
-				<button type="submit" class="btn btn-successfast" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
+				<button type="submit" class="btn btn-success fast" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
 			</div>
 		</form>
 	</div>

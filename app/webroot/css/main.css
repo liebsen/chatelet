@@ -2310,7 +2310,7 @@ small, .small {
   margin-top: 1px;
   margin-bottom: 1px;
   display: inline-block;
-  font-weight: 600!important;
+  font-weight: 1000!important;
 }
 
 .badge {

@@ -193,7 +193,7 @@
     <button class="btn" type="button"><i class="fa fa-eye-slash"></i> <span class="ml-1">Ver menos</span></button>
   </a>
 <?php endif ?>
-  <a class="btn btn-info dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
+  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
     <i class="gi gi-magic"></i> <span class="ml-1">Crear campaña</span>
   </a>
 </div>
