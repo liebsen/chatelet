@@ -12,19 +12,26 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($items as $key => $item) : $context = json_decode($item['Stat']['context']);?>
+			<?php foreach ($items as $key => $item) : $context = json_decode($item['Stat']['context'], true);?>
 				<tr data-id="<?= $item['Stat']['id'] ?>">
 					<td>
 						<span class="badge badge-lg badge-info"><?=$item['Stat']['id']?></span>
 					</td>
 					<td>
-						<span class="badge badge-lg badge-info"><?=$context->page?></span>
+						<span class="badge badge-lg badge-info"><?=$context['page']?></span>
 					</td>
 					<td>
-						<strong class="d-flex flex-column">
-							<span class="badge badge-info"><i class="gi gi-shopping_cart"></i> <?=count($context->cart)?></span>
-							<span class="badge badge-info"><i class="gi gi-money"></i> <?=price_format($context->cart_totals->grand_total)?></span>
+						<strong class="d-flex flex-column toggle-display is-clickable" data-target=".cart-details">
+							<span class="badge badge-info"><i class="gi gi-shopping_cart"></i> <?=count($context['cart'])?></span>
+							<span class="badge badge-info"><i class="gi gi-money"></i> <?=price_format($context['cart_totals']['grand_total'])?></span>
 						</strong>
+						<div class="cart-details d-none">
+							<ul class="list-group">
+							<?php foreach($context['cart'] as $item):?>
+								<li class="list-group-item"><?=$item['name']?></li>
+							<?php endforeach ?>
+							</ul>
+						</div>
 					</td>
 					<td>
 					<?php if(!empty($item['User']['id'])): ?>

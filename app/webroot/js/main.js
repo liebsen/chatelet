@@ -157,6 +157,10 @@ $(function () {
     }
   })
   
+  $('.toggle-display').click(function(){ 
+    $(this).parent().find($(this).data('target')).toggleClass('d-none')
+  })
+
   $('#toggle-side-content').click(function(){ 
     if($('body').hasClass('hide-side-content')){
       $('#page-sidebar.collapse').collapse('hide');
