@@ -133,7 +133,8 @@ $(function () {
     }, 100)
   })
 
-  $('.nav-tabs .fa-question-circle').click(function(e) {
+  //$(document).on('click', '.nav-tabs .fa-question-circle', function(e) {
+  $('.nav-tabs .fa-question-circle, .block-tabs .fa-question-circle').click(function(e) {
     e.preventDefault()
     const target = $(e.target)
     $.growl.notice({

@@ -37,13 +37,13 @@ function updateSchedules(){
         return $.growl.notice({
           title: 'Atención',
           message: `Se han actualizado ${res.results.length} campañas`,
-          queue: false,
+          queue: true,
         });
       }
       $.growl.notice({
         title: 'Atención',
         message: `No se actualizaron campañas`,
-        queue: false,
+        queue: true,
       });      
     },
     error: function (xhr, error) {

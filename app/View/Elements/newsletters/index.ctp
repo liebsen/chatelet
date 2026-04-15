@@ -8,7 +8,7 @@
 				</h1>
 				<h5><?= $name ?>
 <?php if(!empty($nav['text'])):?>
-<i class="fa fa-question-circle is-clickable" data-text="<?=$nav['text']?>"></i>
+<i class="fa fa-question-circle is-clickable ml-1" data-text="<?=$nav['text']?>"></i>
 <?php endif ?>					
 				</h5>
 			</li>
