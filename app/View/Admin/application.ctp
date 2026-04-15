@@ -6,10 +6,6 @@
 <?php echo $this->Html->script('application-module.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->Html->css('jquery.growl.css?v=' . $version['ver']) ?>
 
-	<script type="text/javascript">
-		var notification_settings = <?php echo json_encode($notification_settings) ?? '[]' ?>;
-	</script>
-
 	<div class="block">
 		<div class="block-content">
 			<form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
@@ -30,7 +26,7 @@
 		     	</div>
 			    <br />      
 			    <div class="form-actions">
-			      <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span></a>
+			      <a href="javascript:history.go(-1)" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span></a>
 			      <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
 			    </div>
 			  </div>

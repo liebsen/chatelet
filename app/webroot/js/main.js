@@ -6,6 +6,21 @@ let fakeshown = 0
 let growlTimeout = 15000
 const log = false
 
+function insertAtCursor(el, text) {
+    const start = el.selectionStart;
+    const end = el.selectionEnd;
+    const originalValue = el.value;
+
+    // Splice the string: [Text Before] + [New Text] + [Text After]
+    el.value = originalValue.substring(0, start) + text + originalValue.substring(end);
+
+    // Reposition cursor after the new text
+    el.selectionStart = el.selectionEnd = start + text.length;
+
+    // Restore focus
+    el.focus();
+}
+
 function show_done(){
   document.querySelector('.draggable-saved').classList.add('lever')
   setTimeout(() => {

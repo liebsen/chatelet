@@ -192,7 +192,9 @@
   </div>
   <div class="form-actions">
     <a href="javascript:history.go(-1)" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span></a>
-    <a href="#" class="btn btn-warning btn-templates-preview"><i class="fa fa-eye"></i> <span class="ml-1">Previsualizar</span></a>
+<?php if(!empty($newsletter['Newsletter']['id'])):?>
+    <a href="/newsletter/template/<?=$newsletter['Newsletter']['id']?>" class="btn btn-warning" target="_blank"><i class="fa fa-eye"></i> <span class="ml-1">Previsualizar</span></a>
+<?php endif ?>
     <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
   </div>
 

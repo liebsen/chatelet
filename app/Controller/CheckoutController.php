@@ -941,41 +941,24 @@ class CheckoutController extends AppController
 	}
 
 	private function notify_user($data, $status){
-		if ($status=='success'){
+		$message = \parse_template($this->settings["notification_sale_{$status}_text"], 
+			array(
+				'name' => $data['nombre'],
+				'surname' => $data['apellido'],
+				'email' => $data['email'],
+				'phone' => $data['telefono'],
+				'dni' => $data['dni'],
+				'sale_total' => \price_format($data['value']),
+			)
+		);
 
-$message = '<p>¡Hola <strong>'.ucfirst($data['user']['name']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHÂTELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
-
-<p>Te enviaremos el pedido cuando recibamos la confirmación de la
-venta por parte del medio de pago elegido.</p>
-
-<p>Tu compra será procesada dentro de las 72hs de haberse acreditado
-el pago.</p>
-
-<p>Ante cualquier consulta no dudes en contactarnos a través de VENTASONLINE@OUTLOOK.COM.AR, indicándonos número de pedido.</p>
-
-<p>¡Muchas gracias!</p>
-
-<br/><a href="https://www.chatelet.com.ar">CHÂTELET</a>';
-
-		}else{
-
-$message = '<p>¡Hola <strong>'.ucfirst($data['user']['name']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHÂTELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
-
-<p>Te enviaremos el pedido cuando recibamos la confirmación de la
-venta por parte del medio de pago elegido.</p>
-
-<p>Tu compra será procesada dentro de las 72hs de haberse acreditado
-el pago.</p>
-
-<p>Ante cualquier consulta no dudes en contactarnos a través de VENTASONLINE@OUTLOOK.COM.AR, indicándonos número de pedido.</p>
-
-<p>¡Muchas gracias!</p>
-
-<br/><a href="https://www.chatelet.com.ar">CHÂTELET</a>';
-
-		}
-		error_log('[email] notifying user '.$data['user']['email']);
-		$this->sendEmailMessage($message,'🌸 Gracias por comprar en CHÂTELET',$data['user']['email']);
+		error_log('[email] notifying user '.$data['email']);
+		
+		$this->sendEmailMessage(
+			$message,
+			$this->settings["notification_sale_{$status}_title"],
+			$data['email']
+		);
 	}
 
 	public function mp_success() { //success
@@ -1024,19 +1007,11 @@ el pago.</p>
 
 				// CakeLog::write('debug', 'sale(4)'.json_encode($sale_object));			
 				$this->Sale->save($sale_object);
-				$this->set('sale',$sale);
-				$this->set('sale_items',$sale_items);
+				
+				//$this->set('sale',$sale);
+				//$this->set('sale_items',$sale_items);
 
-				$notify_data = array(
-					'sale_id' => $sale_id,
-					'user' => array(
-						'email' => $sale['email'],
-						'name' => $sale['nombre'],
-						'surname' => $sale['apellido'],
-					)
-				);
-
-				$this->notify_user($notify_data, 'success');
+				$this->notify_user($sale, 'success');
 
 				if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_store_on'] == '1') {
 					$this->Mailchimp->delete_cart($this->settings['mc_store'], $cart_totals['cart_id']);
@@ -1062,32 +1037,23 @@ el pago.</p>
 
 		if($collection_status == 'pending') {
 
-	  	$data = $this->Sale->find('first',[
-	      'conditions' => [
-	        'Sale.id' => $sale_id,
-	      ],     
-	    ]);
-
+	  	$data = $this->Sale->find('first', 
+	  		array(
+		      'conditions' => array(
+		        'Sale.id' => $sale_id,
+		      ),
+		    )
+	  	);
 
 	    if(!empty($data)){
-	    	$sale = $data['Sale'];
-				$notify_data = array(
-					'sale_id' => $sale_id,
-					'user' => array(
-						'email' => $sale['email'],
-						'name' => $sale['nombre'],
-						'surname' => $sale['apellido'],
-					)
-				);
-
-				$this->notify_user($notify_data, 'pending');
+				$this->notify_user($data['Sale'], 'pending');
 			}
 		}
 		
 		return $this->render('mp_fail');
 	}
 
-	public function failed() {
+	/*public function failed() {
 			$data = $this->Session->read('sale_data');
 			// error_log('Failed payment: '.json_encode($data));
 			// CakeLog::write('debug', 'Failed payment');
@@ -1106,6 +1072,7 @@ el pago.</p>
 				return $this->render('clear_no');
 			}
 	}	
+
 	public function clear() { //success
 		// error_log('success payment: '.json_encode($this->Session->read('sale_data')));
 		// CakeLog::write('debug', 'Success payment:'.json_encode($this->Session->read('sale_data')));
@@ -1134,5 +1101,5 @@ el pago.</p>
 			return $this->render('clear_no');
 			//return $this->redirect(array('controller' => 'home', 'action' => 'index'));
 		}
-	}
+	}*/
 }

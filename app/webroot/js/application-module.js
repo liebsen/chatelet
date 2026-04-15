@@ -1,16 +1,29 @@
 
-CKEDITOR.replace('notification_value');
+//CKEDITOR.replace('notification_value');
 
 $(document).ready(function() {		
   $('#notification_tag').change(function(e) {
-  	if($(this).val()) {
-  		$('.notification-controls').fadeIn()
-  	} else {
-  		$('.notification-controls').fadeOut(0)
+    const selected = $(this).val()
+    const title = $(`input[name="data[${selected}_title]"]`).val()
+    const text = $(`input[name="data[${selected}_text]"]`).val()
+  	if(selected) {
+      $('#notification_title').val(title)
+      $('#notification_text').val(text)
+  		$('.notification-controls').removeClass('d-none')
   	}
   })
 
+  $('#notification_title').change(function(){
+    const selected = $('#notification_tag').val()
+    $(`input[name="data[${selected}_title]"]`).val($(this).val())
+  })
+
+  $('#notification_text').change(function(){
+    const selected = $('#notification_tag').val()
+    $(`input[name="data[${selected}_text]"]`).val($(this).val())
+  })
+
   $('.btn-append-editor').click(function(){
-		CKEDITOR.instances.notification_value.insertText($(this).data('text'));
+    insertAtCursor(document.getElementById('notification_text'), $(this).data('text'))
   })
 })

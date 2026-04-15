@@ -1884,30 +1884,51 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	public function application(){
 		if($this->request->is('post')){
 
-			$this->RequestHandler->respondAs('application/json');
-			$this->autoRender = false;
+			try {
+				$this->RequestHandler->respondAs('application/json');
+				$this->autoRender = false;
 
-			$data = $this->request->data;
-			$og = $data['opengraph'];
-			unset($data['opengraph']);
-      foreach($data as $id => $value) {
-      	// CakeLog::write('debug', 'save:'. json_encode(['id' => $id, 'value' => $value]));
-        $this->Setting->save(['id' => $id, 'value' => $value]);
-      }
+				$data = $this->request->data;
+				$saves = array();
+				$og = $data['opengraph'];
+				unset($data['opengraph']);
 
-			if(!empty($og['image']['name'])){
-				$file = $this->save_file( $og['image'] );
-				$this->Setting->save(['id' => 'opengraph_image', 'value' => $settings['upload_url'] . $file]);
-			}
+	      foreach($data as $id => $value) {
+	      	array_push($saves, 
+	      		array(
+        			'id' => $id, 
+        			'value' => $value
+        		)
+        	);
+	      }
 
-			$response = array(
-				'success' => true,
-				'message' => 'La nueva configuración se actualizó exitosamente'
-			);
+      	CakeLog::write('debug', 'save:'. json_encode($data));
 
-			return json_encode($response);
+        $this->Setting->saveAll($saves);
+
+				if(!empty($og['image']['name'])){
+					$file = $this->save_file( $og['image'] );
+					$this->Setting->save(
+						array(
+							'id' => 'opengraph_image', 
+							'value' => $settings['upload_url'] . $file
+						)
+					);
+				}
+
+				$response = array(
+					'success' => true,
+					'message' => 'La nueva configuración se actualizó exitosamente'
+				);
+
+				return json_encode($response);
+	    } catch (Exception $e) {
+	      return json_encode(array(
+	        'success' => false,
+	        'errors' => $e->getMessage()
+	      ));      
+	    }
 		} else {
-
 			$navs = array(
 				'Textos' => array(
 					'icon' 		=> 'gi gi-text',
@@ -1926,7 +1947,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 			$notification_tags = array(
 				'notification_sale_success' => "Compra con pago exitoso",
-				'notification_sale_fail' => "Compra con pago pendiente"
+				'notification_sale_pending' => "Compra con pago pendiente",
 			);
 
 			$tabs = array(
@@ -1944,29 +1965,33 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					'icon' => "wallet"
 				),
 				'analytics' => array(
-					'title' => "Estadísticas",
-					'icon' => "tags"
+					'title' => "Analytics",
+					'icon' => "tag"
 				),
 				'google-fonts' => array(
 					'title' => "Tipografía",
 					'icon' => "text_underline"
 				),
 				'notifications' => array(
-					'title' => "Notificaciones",
+					'title' => "Notificación de compra",
 					'icon' => "bell"
 				),
 			);
 
 			$notification_templates = array(
-				'name' => "Nombre del usuario",
-				'surname' => "Apellido del usuario",
-				'birthday' => "Fecha de cumpleaños",
+				'name' => "Nombre de la clienta",
+				'surname' => "Apellido de la clienta",
+				'email' => "Email de la clienta",
+				'phone' => "Teléfono de la clienta",
+				'dni' => "DNI de la clienta",
+				'sale_total' => "Total de compra",
 			);
 
 			$notification_settings = array();
 
-			foreach($notification_tags as $key => $tag) {
-				$notification_settings[$key] = $this->settings[$key] ?? '';
+			foreach($notification_tags as $id => $tag) {
+				$notification_settings["{$id}_title"] = $this->settings["{$id}_title"] ?? '';
+				$notification_settings["{$id}_text"] = $this->settings["{$id}_text"] ?? '';
 			}
 
 			$this->set('notification_settings', $notification_settings);
@@ -2043,6 +2068,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'name' => "Nombre del usuario",
 			'surname' => "Apellido del usuario",
 			'birthday' => "Fecha de cumpleaños",
+			'email' => "Email del usuario",
+			'phone' => "Teléfono del usuario",			
 		);
 
 		$h1 = array(
@@ -3243,7 +3270,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 		$h1 = array(
 			'name' => 'Estadísticas',
-			'icon' => 'gi gi-stats'
+			'icon' => 'gi gi-charts'
 		);
 
 		$navs = array(

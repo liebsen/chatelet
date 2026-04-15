@@ -17,8 +17,10 @@ function formWithChanges(form) {
 	var els = {}
   for (var i=0; i<form.length; i++) {
     var el = form[i];
-    if ('defaultValue' in el && el.defaultValue !== el.value) {
-      els[el.name] = el.value
+    if(el.name) {
+      if ('defaultValue' in el && (el.defaultValue !== el.value || el.type == 'hidden')) {
+        els[el.name] = el.value
+      }
     }
   }
   return els;
@@ -27,26 +29,30 @@ function formWithChanges(form) {
 $(document).ready(function() {		
 	$('#form_app').submit(function(e){
 		e.preventDefault()
-		$.post($(this).attr('action'), formWithChanges(this))
-			.success(function(res){
-				if(res.success) {
-          $.growl.notice({
-            title: 'Tarea exitosa',
-            message: res.message
-          });
-				} else {
-          $.growl.error({
-            title: 'Error al realizar tarea',
-            message: res.errors
-          });
-				}
-			})
-			.fail(function(){
+		$.ajax({
+      type: 'post',
+      url: $(this).attr('action'), 
+      data: formWithChanges(this),
+    }).success(function(res){
+			if(res.success) {
+        $.growl.notice({
+          title: 'OK',
+          message: res.message
+        });
+			} else {
         $.growl.error({
-          title: 'Error al realizar tarea',
+          title: 'Error',
           message: res.errors
         });
-			})
+			}
+		}).fail(function(xhr, error){
+      console.log('xhr',xhr)
+      console.log('error',error)
+      $.growl.error({
+        title: 'Error',
+        message: error
+      });
+		})
 		return false;
 	})
 })

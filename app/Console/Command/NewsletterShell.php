@@ -222,6 +222,29 @@ class NewsletterShell extends AppShell {
             'name' => $newsletter['User']['name'],
             'surname' => $newsletter['User']['surname'],
             'birthday' => $newsletter['User']['birthday'],
+            'email' => $newsletter['User']['email'],
+            'phone' => $newsletter['User']['telephone'],            
+            'address' => implode(' ', 
+              array_filter(
+                array_values(
+                  $newsletter['User']['street'],            
+                  $newsletter['User']['street_n'],            
+                  $newsletter['User']['floor'],            
+                  $newsletter['User']['depto'],
+                  '( ' . implode(' ', 
+                    array_filter(
+                      array_values(
+                        $newsletter['User']['postal_address'],
+                        $newsletter['User']['neighborhood'],
+                        $newsletter['User']['city'],
+                        $newsletter['User']['provice'],
+                        $newsletter['User']['country']
+                      )
+                    )
+                  )
+                )
+              )
+            )
           )
         );
       }
