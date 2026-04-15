@@ -72,6 +72,7 @@
 			<thead>
 				<tr>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Email'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Push'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Catálogo'); ?></th>
@@ -88,9 +89,11 @@
 							data-toggle="tooltip" 
 							class="card-img sm"
 							style="background-image: url('<?=\extract_jpeg_url($newsletter['Newsletter']['body'])?>')"
-							title="Editar plantilla">
-							<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'info'?>"><?=$newsletter['Newsletter']['title']?></span>
+							title="Editar plantilla"><span class="badge badge-info">#<?=$newsletter['Newsletter']['id']?></span>
 						</a>
+					</td>
+					<td>
+						<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'info'?>"><?=$newsletter['Newsletter']['title']?></span>
 					</td>
 					<td>
 						<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_email'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>
@@ -170,6 +173,6 @@
   </a>
 <?php endif ?>
 	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit'))?>">
-	    <i class="gi gi-magic mr-1"></i> <span class="ml-1">Crear Plantilla</span>
+	    <i class="gi gi-magic"></i> <span class="ml-1">Crear Plantilla</span>
 	  </a>
   </div>

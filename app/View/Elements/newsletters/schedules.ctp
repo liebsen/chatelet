@@ -71,6 +71,7 @@
 			<thead>
 				<tr>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Campaña'); ?></th>
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Lista'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Progreso'); ?></th>
@@ -87,9 +88,11 @@
 							data-toggle="tooltip" 
 							class="card-img sm"
 							style="background-image: url('<?=\extract_jpeg_url($schedule['Newsletter']['body'])?>')"
-							title="Editar campaña">
-							<span class="badge badge-<?=$schedule['rowclass']?>"><span class="status"><?=$schedule['status']?></span>
+							title="Editar campaña"><span class="badge badge-info">#<?=$schedule['NewsletterSchedule']['id']?></span>
 						</a>
+					</td>
+					<td>
+						<span class="badge badge-<?=$schedule['rowclass']?>"><span class="status"><?=$schedule['status']?></span>
 					</td>
 					<td>
 						<span class="badge badge-success"><?=$schedule['Newsletter']['title']?></span>

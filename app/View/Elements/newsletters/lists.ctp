@@ -63,6 +63,7 @@
 			<thead>
 				<tr>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Lista'); ?></th>
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Audiencia'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Modificado'); ?></th>
 					<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -77,8 +78,11 @@
 							data-toggle="tooltip" 
 							class="card-img sm"
 							title="<?=$list['NewsletterList']['text']?>">
-							<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'info'?>"><?=$list['NewsletterList']['name']?></span>
+							<span class="badge badge-info">#<?=$list['NewsletterList']['id']?></span>
 						</a>
+					</td>
+					<td>
+						<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'info'?>"><?=$list['NewsletterList']['name']?></span>						
 					</td>
 					<td>
 						<span class="badge badge-<?=!empty($list[0]['total']) ? 'success' : 'danger'?> is-rounded">
