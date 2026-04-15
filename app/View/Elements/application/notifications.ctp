@@ -18,13 +18,13 @@
 	  	<div class="notification-controls d-none w-100">
 				<p class="text-theme">Notifica al cliente con el estado de su compra.</p>
 	      <div class="control-group">
-	        <label class="control-label" for="title">Título</label>
+	        <label class="control-label" for="notification_title">Título</label>
 	        <div class="controls">
 	          <input type="text" id="notification_title" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>" required />
 	        </div>
-	        <small class="text-muted">Es el título que verán las clientas en su dispositivo</small>
 	      </div>				
-	    	<div class="form-group w-100">
+	    	<div class="control-group">
+	    		<label class="control-label" for="notification_text">Texto</label>
 	    		<textarea class="form-control" id="notification_text" rows="8"></textarea>
 	    	</div>
 	    	<div class="form-group w-100">
