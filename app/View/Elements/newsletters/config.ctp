@@ -9,12 +9,12 @@
 	        <h4 class="sub-header">Datos básicos</h4>
 					<p>Establece características generales de Newsletter.</p>
 	        <div class="control-group">
-						<label class="control-label" for="columns-text"><?php echo __('Activar Proceso Newsletters'); ?></label>
+						<label class="control-label" for="columns-text"><?php echo __('Activar tarea programada'); ?></label>
 						<div class="form-group">
 							<input type="checkbox" name="data[newsletter_enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$settings['newsletter_enabled'] == '1' ? ' checked' : '' ?>>
 							<label for="toggle" class="toggle-label"></label>
 						</div>
-	          <small class="text-muted">Indica si se debe procesar los envíos.</small>
+	          <small class="text-muted">Indica si se debe procesar las campañas. Cuando se activen se correrá la tarea una vez por minuto.</small>
 	        </div>
 	        <div class="show-panel <?= !$settings['newsletter_enabled'] ? 'show-inactive' : '' ?>">
 		        <div class="control-group">
@@ -58,18 +58,18 @@
 		          <small class="text-muted">Indica el texto que se enviará con cada Newsletter</small>
 		        </div>
 		        <div class="control-group">
-		          <label class="control-label" for="columns-text"><?php echo __('Envíos por hora'); ?></label>
+		          <label class="control-label" for="columns-text"><?php echo __('Campañas por hora'); ?></label>
 		          <div class="controls">
 		            <input type="number" max="100" min="0" name="data[newsletter_perminute]" class="form-control" placeholder="20" value="<?= @$settings['newsletter_perminute'] ?? 20 ?>"/>
 		          </div>
-		          <small class="text-muted">Cantidad máxima de envíos por minuto.</small>
+		          <small class="text-muted">Cantidad máxima de campañas por minuto.</small>
 		        </div>
 		        <div class="control-group">
-		          <label class="control-label" for="columns-text"><?php echo __('Envíos por día'); ?></label>
+		          <label class="control-label" for="columns-text"><?php echo __('Campañas por día'); ?></label>
 		          <div class="controls">
 		            <input type="number" max="5000" min="0" name="data[newsletter_perday]" class="form-control" placeholder="500" value="<?= @$settings['newsletter_perday'] ?? 500 ?>"/>
 		          </div>
-		          <small class="text-muted">Cantidad máxima de envíos por día.</small>
+		          <small class="text-muted">Cantidad máxima de campañas por día.</small>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Mostrar logo del encabezado'); ?></label>
