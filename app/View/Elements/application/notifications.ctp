@@ -4,6 +4,8 @@
 
 	<div class="row">
 	  <div class="col-md-12">
+	  	<h4 class="sub-header">Notificación de compra</h4>
+	  	<p class="text-theme">Selecciona un tipo de notificación para editar</p>
 	  	<div class="controls">
 		  	<select class="form-control" id="notification_tag">
 		  		<option value="">Elige una notificación para continuar</option>
@@ -12,11 +14,10 @@
 		  		<?php endforeach ?> 
 		  	</select>
 		  </div>
-	  	<hr>
 	  </div>
 	  <div class="col-md-12 w-100">
+	  	<hr>
 	  	<div class="notification-controls d-none w-100">
-				<p class="text-theme">Notifica al cliente con el estado de su compra.</p>
 	      <div class="control-group">
 	        <label class="control-label" for="notification_title">Título</label>
 	        <div class="controls">

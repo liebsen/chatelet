@@ -10,7 +10,9 @@ $(document).ready(function() {
       $('#notification_title').val(title)
       $('#notification_text').val(text)
   		$('.notification-controls').removeClass('d-none')
-  	}
+  	} else {
+      $('.notification-controls').addClass('d-none')
+    }
   })
 
   $('#notification_title').change(function(){
