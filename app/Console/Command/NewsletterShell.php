@@ -133,7 +133,7 @@ class NewsletterShell extends AppShell {
     foreach($newsletters as $newsletter) {
       $products = array();
       $products_ids = array();
-      // find related items
+      $parsed_body = '';
       $filter = json_decode($newsletter['NewsletterList']['filter']);
 
       echo "Schedule type: " . $filter->type . "\n";
@@ -151,6 +151,7 @@ class NewsletterShell extends AppShell {
             )
           ),
           'conditions' => array(
+            'User.email IS NOT ' => null,
             'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
             'Stat.user_id' => $newsletter['NewsletterScheduleItem']['user_id'],
           ),
@@ -195,7 +196,9 @@ class NewsletterShell extends AppShell {
               'table' => 'products',
               'alias' => 'Product',
               'type' => 'LEFT',
-              'conditions' => array( 'NewsletterProduct.product_id = Product.id' )
+              'conditions' => array(
+                'NewsletterProduct.product_id = Product.id'
+              )
             ),
             array(
               'table' => 'categories',
@@ -213,14 +216,12 @@ class NewsletterShell extends AppShell {
         ));
       }
 
-      // parse body
-      $parsed_body = '';
       if(!empty($newsletter['Newsletter']['body'])) { 
         $parsed_body = \parse_template(
           $newsletter['Newsletter']['body'], array(
-            'name' => str_replace("\n",'',$newsletter['User']['name']),
-            'surname' => str_replace("\n",'',$newsletter['User']['surname']),
-            'birthday' => str_replace("\n",'',$newsletter['User']['birthday']),
+            'name' => $newsletter['User']['name'],
+            'surname' => $newsletter['User']['surname'],
+            'birthday' => $newsletter['User']['birthday'],
           )
         );
       }

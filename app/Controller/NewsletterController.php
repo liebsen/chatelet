@@ -15,9 +15,16 @@ class NewsletterController extends AppController {
 		'NewsletterUser'
 	);
 
-	public $helpers = array('Number', 'App', 'Html');
+	public $helpers = array(
+		'Number', 
+		'App', 
+		'Html'
+	);
+	
 	// public $components = array('SQL', 'RequestHandler');
-	public $components = array('RequestHandler');
+	public $components = array(
+		'RequestHandler'
+	);
 
 	public function beforeFilter() {
   	parent::beforeFilter();
@@ -25,11 +32,7 @@ class NewsletterController extends AppController {
 	}
 
 	public function index() {
-		$id = @$this->request->params['id']??0;
-		if(!is_numeric($id)) {
-			return $this->{$id}();
-		}
-
+		$id = @$this->request->params['id'] ?? 0;
 		$products = array();
 		$parsed_body = '';
     $newsletter = $this->NewsletterScheduleItem->find('first', array(
@@ -107,9 +110,9 @@ class NewsletterController extends AppController {
     if(!empty($newsletter['Newsletter']['body'])) { 
       $parsed_body = \parse_template(
         $newsletter['Newsletter']['body'], array(
-          'name' => str_replace("\n",'',$newsletter['User']['name']),
-          'surname' => str_replace("\n",'',$newsletter['User']['surname']),
-          'birthday' => str_replace("\n",'',$newsletter['User']['birthday']),
+          'name' => $newsletter['User']['name'],
+          'surname' => $newsletter['User']['surname'],
+          'birthday' => $newsletter['User']['birthday'],
         )
       );
     }
