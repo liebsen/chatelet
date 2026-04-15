@@ -1985,6 +1985,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'phone' => "Teléfono de la clienta",
 				'dni' => "DNI de la clienta",
 				'sale_total' => "Total de compra",
+				'sale_id' => "Nro de remito",
 			);
 
 			$notification_settings = array();

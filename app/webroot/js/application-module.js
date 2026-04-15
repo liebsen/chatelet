@@ -25,5 +25,6 @@ $(document).ready(function() {
 
   $('.btn-append-editor').click(function(){
     insertAtCursor(document.getElementById('notification_text'), $(this).data('text'))
+    $('#notification_text').trigger('change')
   })
 })

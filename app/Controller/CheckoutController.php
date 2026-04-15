@@ -949,6 +949,7 @@ class CheckoutController extends AppController
 				'phone' => $data['telefono'],
 				'dni' => $data['dni'],
 				'sale_total' => \price_format($data['value']),
+				'sale_id' => \price_format($data['id']),
 			)
 		);
 
