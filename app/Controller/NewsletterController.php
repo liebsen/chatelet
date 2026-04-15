@@ -166,6 +166,102 @@ class NewsletterController extends AppController {
 		$this->render('/Emails/html/newsletter');
 	}
 
+	public function template($id) {
+    $newsletter = $this->Newsletter->find('first', 
+    	array(
+	    	'recursive' => -1,
+	      'joins' => array(
+	        array(
+	          'table' => 'newsletter_products',
+	          'alias' => 'NewsletterProduct',
+	          'type' => 'LEFT',
+	          'conditions' => array( 
+	            'NewsletterProduct.newsletter_id = Newsletter.id',
+	            'Newsletter.id IS NOT NULL'
+	          )
+	        ),
+	        array(
+	          'table' => 'users',
+	          'alias' => 'User',
+	          'type' => 'LEFT',
+	          'conditions' => array( 
+	            'User.id' => 1
+	          )
+	        )
+	      ),
+	      'fields' => array(
+	        'Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday, User.address, User.dni'
+	      ),
+	      'conditions' => array( 
+	        'Newsletter.id' => $id, 
+	      )
+	    )
+    );
+
+    if(!empty($newsletter['NewsletterProduct'])) {
+      $products = array_column($newsletter, 'Product');
+    }
+
+    if(!empty($newsletter['Newsletter']['body'])) { 
+      $parsed_body = \parse_template(
+        $newsletter['Newsletter']['body'], array(
+          'name' => $newsletter['User']['name'],
+          'surname' => $newsletter['User']['surname'],
+          'birthday' => $newsletter['User']['birthday'],
+          'email' => $newsletter['User']['email'],
+          'phone' => $newsletter['User']['telephone'],
+          'address' => implode(' ', 
+            array_filter(
+              array_values(
+                $newsletter['User']['street'],            
+                $newsletter['User']['street_n'],            
+                $newsletter['User']['floor'],            
+                $newsletter['User']['depto'],
+                '( ' . implode(' ', 
+                  array_filter(
+                    array_values(
+                      $newsletter['User']['postal_address'],
+                      $newsletter['User']['neighborhood'],
+                      $newsletter['User']['city'],
+                      $newsletter['User']['provice'],
+                      $newsletter['User']['country']
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+
+    $newsletter['Newsletter']['parsed_body'] = $parsed_body;
+
+    $viewVars = array(
+      'data' => $newsletter,
+      'products' => $products,
+      'socials' => $newsletter['Newsletter']['show_social'] ? \parsed_socials($this->settings) : null,
+      'site_url' => $this->settings['site_url'],
+      'newsletter_text' => $this->settings['newsletter_text'],
+      'skip_header' => !$this->settings['newsletter_show_header'] ?? null,
+      'cdn_url' => 'https://chatelet.com.ar/files/uploads/',
+      'self_link' => implode('/', 
+        array(
+          $this->settings['site_url'],
+          'newsletter',
+          $newsletter['Newsletter']['id']
+        )
+      )      
+    );
+
+
+    foreach($viewVars as $i => $var) {
+    	$this->set($i, $var);
+    }
+
+		$this->render('/Emails/html/newsletter');
+	}
+
 	public function fix_stats() {
 		echo '<pre>';
 		$options = array(

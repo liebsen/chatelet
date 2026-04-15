@@ -2071,6 +2071,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'birthday' => "Fecha de cumpleaños",
 			'email' => "Email del usuario",
 			'phone' => "Teléfono del usuario",			
+			'address' => "Dirección",
 		);
 
 		$h1 = array(
