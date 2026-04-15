@@ -2053,21 +2053,25 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Plantillas' => array(
 				'id' => 'templates',
+				'text' => 'Diseña tus plantillas, usa tu creatividad. Recuerda expresarte en el modo mas humano posible, para evitar ser identificado como spam por Google o Outlook. Palabras como dinero, compra, venta bajan la reputación de tu ṕlantilla. <a href=#avoid-spam-templates>Más información</a>',
 				'icon' 		=> 'gi gi-picture',
 				'url'		=> '/admin/newsletters/templates',
 			),
 			'Listas' => array(
 				'id' => 'lists',
+				'text' => 'Organiza tus audiencias en segmentos. Usa los filtros para activar módulos Estadísticas y Ventas.',
 				'icon' 		=> 'gi gi-list',
 				'url'		=> '/admin/newsletters/lists',
 			),
 			'Campañas' => array(
 				'id' => 'schedules',
+				'text' => 'Te permite crear, programar y monitorear tus campañas. Debes tener al menos una plantilla y una lista antes de comenzar.',
 				'icon' 		=> 'gi gi-send',
 				'url'		=> '/admin/newsletters/schedules',
 			),
 			'Ajustes' => array(
 				'id' => 'config',
+				'text' => 'Establece los parámetros básicos de funcionamiento de la tarea programada',
 				'icon' 		=> 'gi gi-cogwheel',
 				'url'		=> '/admin/newsletters/config',
 			)

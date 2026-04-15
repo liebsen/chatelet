@@ -182,7 +182,7 @@
 	</div>
 	<div class="form-actions">
   <a class="btn btn-light btn-update-schedules" href="#">
-    <i class="gi gi-repeat mr-1"></i> <span>Actualizar</span>
+    <i class="gi gi-repeat"></i> <span class="ml-1">Actualizar</span>
   </a>
 <?php if(empty($this->params->query['extended'])): ?>
 	<a href="/admin/newsletters/schedules?extended=1">
@@ -190,10 +190,10 @@
   </a>
 <?php else: ?>
 	<a href="/admin/newsletters/schedules">
-    <button class="btn" type="button"><i class="fa fa-eye-slash"></i> <span>Ver menos</span></button>
+    <button class="btn" type="button"><i class="fa fa-eye-slash"></i> <span class="ml-1">Ver menos</span></button>
   </a>
 <?php endif ?>
   <a class="btn btn-info dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
-    <i class="gi gi-magic mr-1"></i> <span>Crear campaña</span>
+    <i class="gi gi-magic"></i> <span class="ml-1">Crear campaña</span>
   </a>
 </div>

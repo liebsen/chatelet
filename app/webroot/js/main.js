@@ -133,6 +133,16 @@ $(function () {
     }, 100)
   })
 
+  $('.nav-tabs .fa-question-circle').click(function(e) {
+    e.preventDefault()
+    const target = $(e.target)
+    $.growl.notice({
+      title: target.parent().text(),
+      message: target.data('text'),
+      duration: 15000
+    });
+  })
+
   $('.form-pass-icon').click(function(event) {
     const target = $(this).data('target')
     if($(target).prop('type') == 'password') {

@@ -6,7 +6,11 @@
 				<h1>
 					<i class="<?= $nav['icon'] ?>"></i> 
 				</h1>
-				<h5><?= $name ?></h5>
+				<h5><?= $name ?>
+<?php if(!empty($nav['text'])):?>
+<i class="fa fa-question-circle is-clickable" data-text="<?=$nav['text']?>"></i>
+<?php endif ?>					
+				</h5>
 			</li>
 		</a>
 	<?php endforeach ?>

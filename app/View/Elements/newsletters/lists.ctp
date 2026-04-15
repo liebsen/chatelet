@@ -148,14 +148,14 @@
 	<div class="form-actions">
 <?php if(empty($this->params->query['extended'])): ?>
 	<a href="/admin/newsletters/lists?extended=1">
-    <button class="btn" type="button"><i class="fa fa-eye"></i> <span>Ver todo</span></button>
+    <button class="btn" type="button"><i class="fa fa-eye"></i> <span class="ml-1">Ver todo</span></button>
   </a>
 <?php else: ?>
 	<a href="/admin/newsletters/lists">
-    <button class="btn" type="button"><i class="fa fa-eye-slash"></i><span>Ver menos</span></button>
+    <button class="btn" type="button"><i class="fa fa-eye-slash mr-1"></i><span>Ver menos</span></button>
   </a>
 <?php endif ?>
   <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit'))?>">
-    <i class="gi gi-magic mr-1"></i> <span>Crear lista</span>
+    <i class="gi gi-magic"></i> <span class="ml-1">Crear lista</span>
   </a>
 	</div>

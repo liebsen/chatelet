@@ -62,11 +62,11 @@
   </div>
   <div class="form-actions">
     <a href="javascript:history.go(-1)" class="btn btn-info">
-      <i class="fa fa-chevron-left mr-1"></i> <span>Atrás</span>
+      <i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span>
     </a>
-    <a href="#" class="btn btn-warning btn-templates-preview"><i class="fa fa-eye mr-1"></i> <span>Previsualizar</span></a>    
-    <button class="btn btn-reset-ask btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-repeat mr-1"></i> <span>Reenviar</span></button>
-    <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> <span>Guardar</span></button>
+    <a href="#" class="btn btn-warning btn-templates-preview"><i class="fa fa-eye"></i> <span class="ml-1">Previsualizar</span></a>    
+    <button class="btn btn-reset-ask btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-repeat"></i> <span class="ml-1">Reenviar</span></button>
+    <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
   </div>
 <?php echo $this->Form->end(); ?>
 

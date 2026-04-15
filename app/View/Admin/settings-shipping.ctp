@@ -35,7 +35,7 @@
           </div>
           <br />
           <div class="form-actions">
-            <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> <span>Guardar</span></button>
+            <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
           </div>
         </div>          
       </div>      
