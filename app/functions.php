@@ -2,7 +2,7 @@
 
 function extract_jpeg_url($html) {
   preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $html, $matches);
-  return $matches['src'];
+  return $matches['src'] ?? 'images/isologo-w.png';
 }
 
 function array_count_values_of($value, $array) {

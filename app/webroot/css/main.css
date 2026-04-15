@@ -2852,6 +2852,7 @@ background-color: #fff!important;
   background-size: contain;
   width: 10rem;
   height: 15rem;
+  background-image: url(images/isologo-w.png);
 }
 
 .card-img.sm {
