@@ -43,7 +43,7 @@
 								)?>"
 								data-toggle="tooltip" 
 								title="Editar contenido" 
-								class="btn btn-success"><i class="gi gi-edit"></i>
+								class="btn btn-info"><i class="gi gi-font"></i>
 							</a>
 							<a 
 								href="<?=$this->Html->url(array(
@@ -150,7 +150,7 @@
 								)?>"
 								data-toggle="tooltip" 
 								title="Editar contenido" 
-								class="btn btn-success"><i class="gi gi-edit"></i>
+								class="btn btn-info"><i class="gi gi-font"></i>
 							</a>	
 							<a 
 								href="<?=$this->Html->url(array(

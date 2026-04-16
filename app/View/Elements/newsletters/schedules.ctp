@@ -31,6 +31,30 @@
 							<?=!empty($schedule[0]['list_total']) ? $schedule[0]['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?></span>
 						<div class="d-flex flex-center flex-nowrap gap-05">
 							<a 
+								href="<?=$this->Html->url(
+									array(
+										'action' => 'newsletters', 
+										'templates', 
+										'edit', 
+										$schedule['Newsletter']['id'],
+										'#' => 'editor',
+									)
+								)?>"
+								data-toggle="tooltip" 
+								title="Editar contenido" 
+								class="btn btn-info"><i class="gi gi-font"></i>
+							</a>
+					    <a href="<?=$this->Html->url(
+					        array(
+					          'controller' => 'newsletter', 
+					          'action' => 'template',
+					          $schedule['Newsletter']['id']
+					        )
+					      )?>"
+					      class="btn btn-primary" target="_blank">
+					      <i class="fa fa-eye"></i> 
+					    </a>							
+							<a 
 								href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
 								data-toggle="tooltip" 
 								title="Editar plantilla" 
@@ -131,14 +155,30 @@
 					</td>
 					<td> 
 						<div class="d-flex flex-center flex-nowrap gap-05">
-							<!--a 
-								href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
+							<a 
+								href="<?=$this->Html->url(
+									array(
+										'action' => 'newsletters', 
+										'templates', 
+										'edit', 
+										$schedule['Newsletter']['id'],
+										'#' => 'editor',
+									)
+								)?>"
 								data-toggle="tooltip" 
-								title="Editar email" 
-								class="btn btn-success" 
-								>
-								<i class="gi gi-edit"></i>
-							</a-->
+								title="Editar contenido" 
+								class="btn btn-info"><i class="gi gi-font"></i>
+							</a>
+					    <a href="<?=$this->Html->url(
+					        array(
+					          'controller' => 'newsletter', 
+					          'action' => 'template',
+					          $schedule['Newsletter']['id']
+					        )
+					      )?>"
+					      class="btn btn-primary" target="_blank">
+					      <i class="fa fa-eye"></i> 
+					    </a>
 							<a 
 								href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
 								data-toggle="tooltip" 
@@ -155,14 +195,6 @@
 							>
 								<i class="gi gi-list"></i>
 							</a>						
-							<!--a 
-								href="javascript:void(0)" 
-								title="Editar email" 
-								class="btn btn-warning btn-stats"
-								data-stats='<?=json_encode($schedule['stats'])?>'
-							>	
-								<i class="gi gi-charts"></i>
-							</a-->
 							<a 
 								href="#" 
 								data-toggle="tooltip" 

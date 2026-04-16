@@ -198,7 +198,7 @@
       <span class="ml-1">Atrás</span>
     </a>
     <span class="btn btn-info btn-templates-editor">
-      <i class="fa fa-edit"></i> 
+      <i class="gi gi-font"></i> 
       <span class="ml-1">Editor</span>
     </span>
 <?php if(!empty($newsletter['Newsletter']['id'])):?>
