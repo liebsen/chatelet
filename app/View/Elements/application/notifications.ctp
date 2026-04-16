@@ -7,7 +7,7 @@
 	  	<h4 class="sub-header">Notificación de compra</h4>
 	  	<p class="text-theme">Selecciona un tipo de notificación para editar</p>
 	  	<div class="controls">
-		  	<select class="form-control" id="notification_tag">
+		  	<select class="form-control" name="notification_tag" id="notification_tag" data-noproc="true">
 		  		<option value="">Elige una notificación para continuar</option>
 		  		<?php foreach($notification_tags as $key => $tag): ?>
 		  			<option value="<?=$key?>"><?=$tag?></option>
@@ -17,16 +17,16 @@
 	  </div>
 	  <div class="col-md-12 w-100">
 	  	<hr>
-	  	<div class="notification-controls d-none w-100">
+	  	<div class="notification-controls d-disable w-100">
 	      <div class="control-group">
 	        <label class="control-label" for="notification_title">Título</label>
 	        <div class="controls">
-	          <input type="text" id="notification_title" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>" required />
+	          <input type="text" name="notification_title" id="notification_title" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>" data-noproc="true" />
 	        </div>
 	      </div>				
 	    	<div class="control-group">
 	    		<label class="control-label" for="notification_text">Texto</label>
-	    		<textarea class="form-control" id="notification_text" rows="8"></textarea>
+	    		<textarea class="form-control" id="notification_text" rows="8" data-noproc="true"></textarea>
 	    	</div>
 	    	<div class="form-group flex-column w-100">
 					<h6 class="text-theme">Elementos de plantilla</h6>

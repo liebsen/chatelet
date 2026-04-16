@@ -1891,7 +1891,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function application(){
 		if($this->request->is('post')){
-
 			try {
 				$this->RequestHandler->respondAs('application/json');
 				$this->autoRender = false;
@@ -1910,7 +1909,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
         	);
 	      }
 
-      	CakeLog::write('debug', 'save:'. json_encode($data));
+      	CakeLog::write('debug', 'data:'. json_encode($data));
+      	CakeLog::write('debug', 'saves:'. json_encode($saves));
 
         $this->Setting->saveAll($saves);
 

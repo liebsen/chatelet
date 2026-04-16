@@ -3,12 +3,13 @@
 <?php echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->Html->script('jquery.growl.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); ?>
-<?php echo $this->Html->script('application-module.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php echo $this->Html->script('application-sale-notifications.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->Html->css('jquery.growl.css?v=' . $version['ver']) ?>
 
 	<div class="block">
 		<div class="block-content">
-			<form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
+			<!--form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data"-->
+			<form action="" id="form_app" method="post" class="form-inline">
 		    <div class="custom-tabs block-tabs">
 		      <ul class="nav nav-tabs" id="myTab" role="tablist">
 <?php foreach($tabs as $id => $tab): ?>

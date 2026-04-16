@@ -25,12 +25,13 @@ function activateTab(e) {
 }
 
 function activateTabContent(e) {	                 
-	// gets the element on which the event originally occurred
-	const anchorReference = e.target;
-  const href = anchorReference.getAttribute("href")
+  const href = $(e.target).attr("href")
 	const activePaneID = href ? href.replace('#','.').replace('.', '.pane-') : '';
-	const activePane = $(activePaneID);
-	activePane.addClass("active");     
+  setTimeout(function(){
+    console.log('activePaneID',activePaneID)
+  	const activePane = $(activePaneID);
+  	activePane.addClass("active");     
+  }, 100)
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {

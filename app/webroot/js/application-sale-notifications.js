@@ -9,20 +9,24 @@ $(document).ready(function() {
   	if(selected) {
       $('#notification_title').val(title)
       $('#notification_text').val(text)
-  		$('.notification-controls').removeClass('d-none')
+  		$('.notification-controls').removeClass('d-disable')
   	} else {
-      $('.notification-controls').addClass('d-none')
+      $('.notification-controls').addClass('d-disable')
     }
   })
 
   $('#notification_title').change(function(){
     const selected = $('#notification_tag').val()
-    $(`input[name="data[${selected}_title]"]`).val($(this).val())
+    const input = $(`input[name="data[${selected}_title]"]`)
+    input.data('change', true)
+    input.val($(this).val())
   })
 
   $('#notification_text').change(function(){
     const selected = $('#notification_tag').val()
-    $(`input[name="data[${selected}_text]"]`).val($(this).val())
+    const input = $(`input[name="data[${selected}_text]"]`)
+    input.data('change', true)
+    input.val($(this).val())
   })
 
   $('.btn-append-editor').click(function(){

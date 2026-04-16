@@ -48,11 +48,11 @@ function slugify(input) {
 }
 
 function layerShow (layer) {
-  const selectr = $(`.${layer}-layer`)
-  if (selectr.hasClass('active')) {
-    selectr.removeClass('active')
+  const block = $(`.${layer}-layer`)
+  if (block.hasClass('active')) {
+    block.removeClass('active')
   } else {
-    selectr.addClass('active')
+    block.addClass('active')
   }  
   return false
 }
