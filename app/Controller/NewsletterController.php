@@ -130,16 +130,8 @@ class NewsletterController extends AppController {
 
     if(!empty($newsletter['Newsletter']['body'])) { 
       $parsed_body = \parse_template(
-        $newsletter['Newsletter']['body'], array(
-          'name' => $newsletter['User']['name'],
-          'surname' => $newsletter['User']['surname'],
-          'birthday' => $newsletter['User']['birthday'],
-          'email' => $newsletter['User']['email'],
-          'phone' => $newsletter['User']['telephone'],
-          'dni' => $newsletter['User']['dni'],
-          'address' => $newsletter['User']['address'],
-          'postal_address' => $newsletter['User']['postal_address'],
-        )
+        $newsletter['Newsletter']['body'], 
+        $newsletter['User']
       );
     }
 
@@ -237,17 +229,8 @@ class NewsletterController extends AppController {
 
     if(!empty($newsletter['Newsletter']['body'])) { 
       $parsed_body = \parse_template(
-        $newsletter['Newsletter']['body'], array(
-          'name' => $newsletter['User']['name'],
-          'surname' => $newsletter['User']['surname'],
-          'birthday' => $newsletter['User']['birthday'],
-          'email' => $newsletter['User']['email'],
-          'dni' => $newsletter['User']['dni'],
-          'phone' => $newsletter['User']['telephone'],
-          'dni' => $newsletter['User']['dni'],
-          'address' => $newsletter['User']['address'],
-          'postal_address' => $newsletter['User']['postal_address'],
-        )
+        $newsletter['Newsletter']['body'], 
+        $newsletter['User']
       );
     }
 
