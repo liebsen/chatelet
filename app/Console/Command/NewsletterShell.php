@@ -115,7 +115,7 @@ class NewsletterShell extends AppShell {
         )
       ),
       'fields' => array(
-        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body,Newsletter.show_price, Newsletter.show_social, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body,Newsletter.show_price, Newsletter.show_social, Newsletter.show_header, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday'
       ),
       'conditions' => array( 
         'NewsletterScheduleItem.status' => "pending", 
@@ -395,7 +395,10 @@ class NewsletterShell extends AppShell {
       'newsletter_text' => $this->settings['newsletter_text_enable'] == '1' ? 
         $this->settings['newsletter_text'] : 
         null,
-      'skip_header' => !$this->settings['newsletter_show_header'] ?? null,
+      'skip_header' => (
+        $this->settings['newsletter_show_header'] != '1' || 
+        $newsletter['Newsletter']['show_header'] != '1'
+      ) ?? null,
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/',
       'self_link' => implode('/', 
         array(

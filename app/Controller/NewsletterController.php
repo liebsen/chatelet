@@ -85,7 +85,7 @@ class NewsletterController extends AppController {
         )
       ),
       'fields' => array(
-        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday, User.telephone, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social,Newsletter.show_header, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday, User.telephone, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country'
       ),
       'conditions' => array( 
         'NewsletterScheduleItem.id' => $id, 
@@ -145,7 +145,10 @@ class NewsletterController extends AppController {
       'newsletter_text' => $this->settings['newsletter_text_enable'] == '1' ? 
         $this->settings['newsletter_text'] : 
         null,
-      'skip_header' => !$this->settings['newsletter_show_header'] ?? null,
+      'skip_header' => (
+      	$this->settings['newsletter_show_header'] != '1' || 
+      	$newsletter['Newsletter']['show_header'] != '1'
+      ) ?? null,
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/',
       'self_link' => implode('/', 
         array(
@@ -195,7 +198,7 @@ class NewsletterController extends AppController {
 	        )
 	      ),
 	      'fields' => array(
-	        'Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, Newsletter.send_email, Newsletter.send_push, NewsletterProduct.id,  Product.id, Product.name, Product.desc, User.id, User.name, User.surname, User.email, User.telephone, User.birthday, User.address, User.dni, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country'
+	        'Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, Newsletter.show_header, Newsletter.send_email, Newsletter.send_push, NewsletterProduct.id,  Product.id, Product.name, Product.desc, User.id, User.name, User.surname, User.email, User.telephone, User.birthday, User.address, User.dni, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country'
 	      ),
 	      'conditions' => array( 
 	        'Newsletter.id' => $id, 
@@ -203,7 +206,6 @@ class NewsletterController extends AppController {
 	    )
     );
 
-    \d("newsletter",$newsletter);
     $products = $this->NewsletterProduct->find('all', array(
       'joins' => array(
         array(
@@ -241,6 +243,10 @@ class NewsletterController extends AppController {
     $viewVars = array(
       'data' => $newsletter,
       'products' => $products,
+      'skip_header' => (
+      	$this->settings['newsletter_show_header'] != '1' || 
+      	$newsletter['Newsletter']['show_header'] != '1'
+      ) ?? null,
       'socials' => (
       	$this->settings['newsletter_show_social'] == '1' && 
       	$newsletter['Newsletter']['show_social'] == '1'
@@ -251,10 +257,6 @@ class NewsletterController extends AppController {
       'newsletter_text' => $this->settings['newsletter_text_enable'] == '1' ? 
         $this->settings['newsletter_text'] : 
         null,
-      'skip_header' => (
-      	$this->settings['newsletter_show_header'] != '1' || 
-      	$newsletter['Newsletter']['show_header'] != '1'
-      ) ?? null,
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/',
       'self_link' => implode('/', 
         array(
