@@ -438,6 +438,8 @@ class CheckoutController extends AppController
 					'surname' => $customer['surname'],
 					'dni' => $customer['dni'],
 					'telephone' => $customer['telephone'],
+					'address' => $customer['address'],
+					'postal_address' => $customer['postal_address'],
 					'province' => $customer['province'],
 					'city' => $customer['city'],
 					'street' => $customer['street'],

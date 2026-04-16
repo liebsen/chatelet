@@ -18,9 +18,9 @@
 <html>
   <head>
   </head>
-  <body style="font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;font-size: 16px;font-color: #333;background-color: #f8f8f8; width:100%;">
+  <body style="font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;font-size: 16px;font-color: #333;background-color: #f8f8f8; width:100%; overflow-x: hidden;">
     <table cellpadding="0" cellspacing="0" width="600" align="center">
-<?php if(empty($skip_logo)):?>
+<?php if(empty($skip_header)):?>
       <tr>
         <td>
           <table cellpadding="0" cellspacing="0" style="width: 100%; padding: 16px;height: 120px;">

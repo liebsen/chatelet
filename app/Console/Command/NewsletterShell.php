@@ -217,33 +217,36 @@ class NewsletterShell extends AppShell {
       }
 
       if(!empty($newsletter['Newsletter']['body'])) { 
+
+        $address = implode(' ', 
+          array_filter(
+            array_values(
+              $newsletter['User']['street'],            
+              $newsletter['User']['street_n'],            
+              $newsletter['User']['floor'],            
+              $newsletter['User']['depto'],
+              !empty($newsletter['User']['postal_address']) ? 
+                '('.$newsletter['User']['postal_address'].')': 
+                null,
+              $newsletter['User']['neighborhood'],
+              $newsletter['User']['city'],
+              $newsletter['User']['provice'],
+              $newsletter['User']['country'],
+            )
+          )
+        );
+
+        \d('address',$address);
+
         $parsed_body = \parse_template(
           $newsletter['Newsletter']['body'], array(
             'name' => $newsletter['User']['name'],
             'surname' => $newsletter['User']['surname'],
             'birthday' => $newsletter['User']['birthday'],
             'email' => $newsletter['User']['email'],
+            'dni' => $newsletter['User']['dni'],
             'phone' => $newsletter['User']['telephone'],            
-            'address' => implode(' ', 
-              array_filter(
-                array_values(
-                  $newsletter['User']['street'],            
-                  $newsletter['User']['street_n'],            
-                  $newsletter['User']['floor'],            
-                  $newsletter['User']['depto'],
-                  '( ' . implode(' ', 
-                    array_filter(
-                      array_values(
-                        $newsletter['User']['postal_address'],
-                        $newsletter['User']['neighborhood'],
-                        $newsletter['User']['city'],
-                        $newsletter['User']['provice'],
-                        $newsletter['User']['country']
-                      )
-                    )
-                  )
-                )
-              )
+            'address' => $address
             )
           )
         );

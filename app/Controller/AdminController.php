@@ -2071,7 +2071,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'birthday' => "Fecha de cumpleaños",
 			'email' => "Email del usuario",
 			'phone' => "Teléfono del usuario",			
+			'dni' => "DNI",			
 			'address' => "Dirección",
+			'postal_address' => "Código postal",
 		);
 
 		$h1 = array(
@@ -2599,7 +2601,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	      // 'id > ' => 1
 	    ];
 	  }
-	  \d("conditions",$conditions);
+	  #\d("conditions",$conditions);
     //$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
     $data = $this->User->find('all',[
       'conditions' => $conditions,
@@ -2627,7 +2629,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $dob_max = $data['dob_max'] ?? 0;
     $filter_type = $data['type'] ?? 'sale';
     $sale_min *= 100;
-			\d("newsletters_users_reach(filter_type)", $filter_type);
+			#\d("newsletters_users_reach(filter_type)", $filter_type);
     
 		if($filter_type == 'dob') {
 			$min_parts = explode('/', $dob_min);
@@ -2653,7 +2655,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 		if($filter_type == 'sales') {
 			$this->loadModel('Sale');
-			\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
+			#\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
 	    $data = $this->Sale->find('all',array(
 		    'joins' => array(
 	        array(

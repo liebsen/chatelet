@@ -85,7 +85,7 @@ class NewsletterController extends AppController {
         )
       ),
       'fields' => array(
-        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday, User.telephone, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country'
       ),
       'conditions' => array( 
         'NewsletterScheduleItem.id' => $id, 
@@ -136,27 +136,9 @@ class NewsletterController extends AppController {
           'birthday' => $newsletter['User']['birthday'],
           'email' => $newsletter['User']['email'],
           'phone' => $newsletter['User']['telephone'],
-          'address' => implode(' ', 
-            array_filter(
-              array_values(
-                $newsletter['User']['street'],            
-                $newsletter['User']['street_n'],            
-                $newsletter['User']['floor'],            
-                $newsletter['User']['depto'],
-                '( ' . implode(' ', 
-                  array_filter(
-                    array_values(
-                      $newsletter['User']['postal_address'],
-                      $newsletter['User']['neighborhood'],
-                      $newsletter['User']['city'],
-                      $newsletter['User']['provice'],
-                      $newsletter['User']['country']
-                    )
-                  )
-                )
-              )
-            )
-          )
+          'dni' => $newsletter['User']['dni'],
+          'address' => $newsletter['User']['address'],
+          'postal_address' => $newsletter['User']['postal_address'],
         )
       );
     }
@@ -219,7 +201,7 @@ class NewsletterController extends AppController {
 	        )
 	      ),
 	      'fields' => array(
-	        'Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, Newsletter.send_email, Newsletter.send_push, NewsletterProduct.id,  Product.id, Product.name, Product.desc, User.id, User.name, User.surname, User.email, User.birthday, User.address, User.dni'
+	        'Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_social, Newsletter.send_email, Newsletter.send_push, NewsletterProduct.id,  Product.id, Product.name, Product.desc, User.id, User.name, User.surname, User.email, User.telephone, User.birthday, User.address, User.dni, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country'
 	      ),
 	      'conditions' => array( 
 	        'Newsletter.id' => $id, 
@@ -227,6 +209,7 @@ class NewsletterController extends AppController {
 	    )
     );
 
+    \d("newsletter",$newsletter);
     $products = $this->NewsletterProduct->find('all', array(
       'joins' => array(
         array(
@@ -259,28 +242,11 @@ class NewsletterController extends AppController {
           'surname' => $newsletter['User']['surname'],
           'birthday' => $newsletter['User']['birthday'],
           'email' => $newsletter['User']['email'],
+          'dni' => $newsletter['User']['dni'],
           'phone' => $newsletter['User']['telephone'],
-          'address' => implode(' ', 
-            array_filter(
-              array_values(
-                $newsletter['User']['street'],            
-                $newsletter['User']['street_n'],            
-                $newsletter['User']['floor'],            
-                $newsletter['User']['depto'],
-                '( ' . implode(' ', 
-                  array_filter(
-                    array_values(
-                      $newsletter['User']['postal_address'],
-                      $newsletter['User']['neighborhood'],
-                      $newsletter['User']['city'],
-                      $newsletter['User']['provice'],
-                      $newsletter['User']['country']
-                    )
-                  )
-                )
-              )
-            )
-          )
+          'dni' => $newsletter['User']['dni'],
+          'address' => $newsletter['User']['address'],
+          'postal_address' => $newsletter['User']['postal_address'],
         )
       );
     }
@@ -290,10 +256,18 @@ class NewsletterController extends AppController {
     $viewVars = array(
       'data' => $newsletter,
       'products' => $products,
-      'socials' => $newsletter['Newsletter']['show_social'] ? \parsed_socials($this->settings) : null,
+      'socials' => (
+      	$this->settings['newsletter_show_social'] == '1' || 
+      	$newsletter['Newsletter']['show_social'] == '1'
+      ) ? 
+      \parsed_socials($this->settings) : 
+      null,
       'site_url' => $this->settings['site_url'],
       'newsletter_text' => $this->settings['newsletter_text'],
-      'skip_header' => !$this->settings['newsletter_show_header'] ?? null,
+      'skip_header' => (
+      	$this->settings['newsletter_show_header'] != '1' || 
+      	$newsletter['Newsletter']['show_header'] != '1'
+      ) ?? null,
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/',
       'self_link' => implode('/', 
         array(
@@ -422,7 +396,7 @@ class NewsletterController extends AppController {
 
 		$items = $this->Stat->find('all', $options);
 				var_dump(count($items));
-				\d("count",count($items));
+				#\d("count",count($items));
 
 		$saves = array();
 		$db = $this->Stat->getDataSource();
