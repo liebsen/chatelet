@@ -66,22 +66,7 @@
         <small class="text-muted">Es el código que verán solo los gestores</small>
       </div>
     </div-->
-    <div class="col-md-12">
-      <div class="control-group">
-        <label class="control-label" for="title">Título</label>
-        <div class="controls">
-          <input type="text" id="title" name="data[title]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>" required />
-        </div>
-        <small class="text-muted">Es el título que verán las clientas en su dispositivo</small>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="control-group">
-        <label class="control-label" for="toggle-follow"><?php echo __('Texto Push'); ?></label>
-        <textarea class="form-control w-100" name="data[message]" rows="4"><?=$newsletter['Newsletter']['message']?></textarea>
-        <small class="text-muted">Es el texto que verán las clientas en su notificación push</small>
-      </div>
-    </div>
+
     <div class="col-md-12">
       <div class="control-group flex-column d-block">
         <label class="control-label" for="toggle-follow"><?php echo __('Cuerpo del email'); ?></label>
@@ -103,6 +88,22 @@
         </tr>
 <?php endforeach ?>
         </table>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="control-group">
+        <label class="control-label" for="title">Título</label>
+        <div class="controls">
+          <input type="text" id="title" name="data[title]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>" required />
+        </div>
+        <small class="text-muted">Es el título que verán las clientas en su dispositivo</small>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="control-group">
+        <label class="control-label" for="toggle-follow"><?php echo __('Texto Push'); ?></label>
+        <textarea class="form-control w-100" name="data[message]" rows="4"><?=$newsletter['Newsletter']['message']?></textarea>
+        <small class="text-muted">Es el texto que verán las clientas en su notificación push</small>
       </div>
     </div>
   </div>
