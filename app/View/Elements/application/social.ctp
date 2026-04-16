@@ -25,7 +25,7 @@
 					        <h4 class="sub-header">Compartir contenido</h4>
 					        <p>Estos datos se visualizarán al momento de compartir la aplicación con el estandar opengraph de huella de sitios web y aplicaciones. Este estandar es utilizado por la mayoría de los sistemas de mensajería instantánea.</p>
 					        <div class="control-group">
-					          <label class="control-label" for="columns-text"><?php echo __('Tipo'); ?></label>
+					          <label class="control-label" for="columns-text"><?php echo __('Presentación de card Opengraph'); ?></label>
 					          <div class="controls text-center switch-scale">
 					            <?php
 					              $enabled = @$settings['opengraph_type'] == 'website' ? 'checked' : '';
@@ -40,7 +40,7 @@
 					            <label for="enabled_0">Artículo</label>
 					           </span>
 					          </div>
-					          <small class="text-muted">Indica si se debe trabajar con entorno real o de pruebas</small>
+					          <small class="text-muted">Inidca como debería mostrarse la presentación del *card* cuando decides compartir un enlace del sitio.</small>
 					        </div>
 					        <div class="control-group">
 					          <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>
