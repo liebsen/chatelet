@@ -128,7 +128,7 @@
 
 <?php if($settings['newsletter_show_header'] == '1'):?>
       <div class="control-group">
-        <label class="control-label" for="toggle-follow"><?php echo __('Mostrar logo de encabezado'); ?></label>
+        <label class="control-label" for="toggle-follow"><?php echo __('Logo de encabezado'); ?></label>
         <input type="checkbox" name="data[show_header]" value="1" id="toggle-header" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_header'] == '1' ? ' checked' : '' ?>>
         <label for="toggle-header" class="toggle-label"></label>
         <small class="text-muted">Indica si debe mostrarse el logo de encabezado en el email</small>
@@ -136,7 +136,7 @@
 <?php endif ?>
 <?php if($settings['newsletter_show_social'] == '1'):?>
       <div class="control-group">
-        <label class="control-label" for="toggle-follow"><?php echo __('Mostrar redes'); ?></label>
+        <label class="control-label" for="toggle-follow"><?php echo __('Redes sociales'); ?></label>
         <input type="checkbox" name="data[show_social]" value="1" id="toggle-follow" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_social'] == '1' ? ' checked' : '' ?>>
         <label for="toggle-follow" class="toggle-label"></label>
         <small class="text-muted">Indica si debe mostrarse, en caso que hubieran el enlace a las redes sociales al pie del email</small>
@@ -152,13 +152,13 @@
   <?php else: ?>
       	<p>Puedes aregar productos a la plantilla, se mostrarán en un catálogo de lista con sus respectivos enlaces y precios.</p>
   			<div class="control-group">
-  				<label class="control-label" for="toggle-price"><?php echo __('Mostrar precio'); ?></label>
+  				<label class="control-label" for="toggle-price"><?php echo __('Precio'); ?></label>
   				<input type="checkbox" name="data[show_price]" value="1" id="toggle-price" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_price'] == '1' ? ' checked' : '' ?>>
   				<label for="toggle-price" class="toggle-label"></label>
   	      <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
   			</div>
         <div class="control-group">
-          <label class="control-label" for="toggle-price"><?php echo __('Mostrar descripción'); ?></label>
+          <label class="control-label" for="toggle-price"><?php echo __('Descripción'); ?></label>
           <input type="checkbox" name="data[show_text]" value="1" id="toggle-text" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_text'] == '1' ? ' checked' : '' ?>>
           <label for="toggle-text" class="toggle-label"></label>
           <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
