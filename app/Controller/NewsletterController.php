@@ -240,7 +240,7 @@ class NewsletterController extends AppController {
       'data' => $newsletter,
       'products' => $products,
       'socials' => (
-      	$this->settings['newsletter_show_social'] == '1' || 
+      	$this->settings['newsletter_show_social'] == '1' && 
       	$newsletter['Newsletter']['show_social'] == '1'
       ) ? 
       \parsed_socials($this->settings) : 
