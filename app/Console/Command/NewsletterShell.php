@@ -28,7 +28,11 @@ class NewsletterShell extends AppShell {
   private $perday = 500;
   private $perminute = 20;
   private $simulate = 0;
-  
+
+  protected function _welcome() {
+      // Leave empty to suppress the header
+  }  
+
   public function main() {
     $this->settings = $this->loadSettings();
 
@@ -49,7 +53,7 @@ class NewsletterShell extends AppShell {
     $this->showmail = in_array("showmail=1", $this->args);
     $this->update = in_array("update=1", $this->args);
 
-    echo "\nStarting process: " . implode(':',array($hour,$min)) . "\n";
+    #echo "\nStarting process: " . implode(':',array($hour,$min)) . "\n";
     // FIND QUOTA
     $quota = $this->NewsletterScheduleItem->find('count', array(
       'conditions' => array(
