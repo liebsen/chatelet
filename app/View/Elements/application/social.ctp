@@ -57,7 +57,7 @@
 			<div class="control-group">
 				<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen'); ?></label>
 				<div class="controls">
-					<input type="file" class="form-control" name="data[opengraph][image]" value="" accept="image/*">
+					<input type="file" class="form-control" name="data[opengraph_image]" value="" accept="image/*">
 				</div>
 			</div>
 

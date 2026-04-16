@@ -1897,10 +1897,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 				$data = $this->request->data;
 				$saves = array();
-				$og = $data['opengraph'];
-				unset($data['opengraph']);
 
 	      foreach($data as $id => $value) {
+
+	      	\d("id", $id);
+	        if(is_array($value) && ($id == 'opengraph_image')) {
+	          $value = $this->save_file( $value ); 
+	          $value = $this->settings['upload_url'] . $value; 
+	          #CakeLog::write('debug', 'file:'. json_encode(['id' => $id, 'value' => $value]));
+	        }
+
+	        #CakeLog::write('debug', 'save:'. json_encode(['id' => $id, 'value' => $value]));
 	      	array_push($saves, 
 	      		array(
         			'id' => $id, 
@@ -1913,16 +1920,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
       	CakeLog::write('debug', 'saves:'. json_encode($saves));
 
         $this->Setting->saveAll($saves);
-
-				if(!empty($og['image']['name'])){
-					$file = $this->save_file( $og['image'] );
-					$this->Setting->save(
-						array(
-							'id' => 'opengraph_image', 
-							'value' => $settings['upload_url'] . $file
-						)
-					);
-				}
 
 				$response = array(
 					'success' => true,

@@ -24,7 +24,7 @@
     <?php if($data['Newsletter']['show_price'] == '1'): ?>
       <p style="font-size: 18px; font-weight: bold; color: #000000; margin: 0 0 10px 0;"><?= \price_format($product['Product']['price']) ?></p>
     <?php endif ?>          
-          <p style="margin: 0 0 10px 0; font-size: 12px; color: #666666;"><?= $product['Category']['name'] ?></p>
+          <p style="margin: 0 0 10px 0; font-size: 12px; color: #666666;">🏷️ <?= $product['Category']['name'] ?></p>
     <?php if($data['Newsletter']['show_text'] == '1'): ?>
           <p style="margin: 0 0 15px 0; font-size: 12px; color: #666666;"><?= $product['Product']['desc'] ?></p>
     <?php endif ?>

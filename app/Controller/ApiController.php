@@ -278,17 +278,18 @@ class ApiController extends AppController {
     $page = $data['page'] ?? '/';
     $tag = $data['tag'] ?? 'page-exit';
     $user_id = $this->Auth->user('id') ?? 1;
-    $product_id = !empty($data['product_id']) ? intval($data['product_id']) :  1;
+    $product_id = !empty($data['product_id']) ? intval($data['product_id']) : 0;
 
     // save entry
     $save = array(
       'tag' => $tag,
       'user_id' => $user_id,
-      'product_id' => $product_id,
     );
 
-    // \d("save",$save);
-    // $analytic['created'] = date('Y-m-d H:i:s');
+    if(!empty($product_id)) {
+      $save['product_id'] = $product_id;
+    }
+
     $context = array(
       'page' => $page 
     );
@@ -303,7 +304,7 @@ class ApiController extends AppController {
 
     $save['context'] = json_encode($context);
 
-    // CakeLog::write('debug', "stats:".json_encode($data));
+    #CakeLog::write('debug', "stats:".json_encode($save));
 
     $this->Stat->save($save);   
     exit(); 

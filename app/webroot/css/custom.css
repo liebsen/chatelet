@@ -2142,7 +2142,7 @@ select {
 span.count {
   position: absolute;
   z-index: 9;
-  top: -22px;
+  top: -20px;
   left: 0;
   right: 0;
   width: 1.25rem;
@@ -2150,7 +2150,7 @@ span.count {
   background-color: lightgreen;
   border: 2px solid white;
   border-radius: 100%;
-  line-height: 1.75;  
+  line-height: 1.5;  
   text-align: center;
   min-width: 1.25rem;
   font-size: 0.75rem;
