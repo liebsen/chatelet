@@ -83,10 +83,10 @@
       </div>
     </div>
     <div class="col-md-12">
-      <div class="control-group d-block">
+      <div class="control-group flex-column d-block">
         <label class="control-label" for="toggle-follow"><?php echo __('Cuerpo del email'); ?></label>
         <textarea class="form-control w-100" name="data[body]" id="newsletter" rows="8"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
-        <h6 class="text-theme">Tabla de variables disponibles</h6>
+        <h6 class="text-theme">Elementos de plantilla</h6>
         <table class="table table-striped">
 <?php foreach($templateVars as $id => $name): ?>
         <tr class="is-clickable btn-append-editor" data-text="{{<?= $id ?>}}">

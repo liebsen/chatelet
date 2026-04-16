@@ -23,13 +23,13 @@
             </div>     
             <small class="text-theme">Indica si debe mostrarse un mensaje para alentar al cliente a obtener un envío gratis agregando más productos a su carrito.</small>
           </div>            
-          <div class="control-group">
+          <div class="control-group flex-column">
             <label class="control-label" for="columns-text"><?php echo __('Carrito envío gratis'); ?></label>
             <div class="controls">
               <span class="text-theme">texto que se muestra en el carrito cuando el usuario no alcanza el mínimo de compra para envío gratis</span>
               <textarea name="text_shipping_min_price" id="text_shipping_min_price" class="form-control w-100" rows="5"><?= @$settings['text_shipping_min_price'] ?></textarea>
             </div>
-            <h6 class="text-theme">Tabla de variables disponibles</h6>
+            <h6 class="text-theme">Elementos de plantilla</h6>
             <table class="table table-striped">
               <tr class="is-clickable btn-append-editor" data-text="{{precio_min_envio_gratis}}">
                 <th>

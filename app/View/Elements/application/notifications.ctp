@@ -28,8 +28,8 @@
 	    		<label class="control-label" for="notification_text">Texto</label>
 	    		<textarea class="form-control" id="notification_text" rows="8"></textarea>
 	    	</div>
-	    	<div class="form-group w-100">
-					<h6 class="text-theme">Tabla de variables disponibles</h6>
+	    	<div class="form-group flex-column w-100">
+					<h6 class="text-theme">Elementos de plantilla</h6>
 					<table class="table table-striped">
 	<?php foreach($notification_templates as $id => $name): ?>
 				<tr class="is-clickable btn-append-editor" data-text="{{<?= $id ?>}}">
