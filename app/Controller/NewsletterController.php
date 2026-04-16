@@ -137,6 +137,19 @@ class NewsletterController extends AppController {
 
     $newsletter['Newsletter']['parsed_body'] = $parsed_body;
 
+    foreach($products as $i => $product) {
+      $products[$i]['Product']['link'] = implode('/', array(
+        // fix this 
+        $this->settings['site_url'], 
+        //'https://chatelet.com',
+        'shop',
+        'detalle',
+        $product['Product']['id'],
+        $product['Category']['id'],
+        strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name'])))
+      ));
+    }
+
     $viewVars = array(
       'data' => $newsletter,
       'products' => $products,
@@ -239,6 +252,19 @@ class NewsletterController extends AppController {
     }
 
     $newsletter['Newsletter']['parsed_body'] = $parsed_body;
+
+    foreach($products as $i => $product) {
+      $products[$i]['Product']['link'] = implode('/', array(
+        // fix this 
+        $this->settings['site_url'], 
+        //'https://chatelet.com',
+        'shop',
+        'detalle',
+        $product['Product']['id'],
+        $product['Category']['id'],
+        strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name'])))
+      ));
+    }
 
     $viewVars = array(
       'data' => $newsletter,
