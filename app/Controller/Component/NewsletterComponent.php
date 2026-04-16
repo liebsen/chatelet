@@ -77,6 +77,12 @@ class NewsletterComponent extends Component {
       $data = $this->controller->request->data;
       $redirect = array( 'action' => 'newsletters');
 
+      $data['newsletter_enabled'] = $data['newsletter_enabled'] ?? 0;
+      $data['newsletter_tls'] = $data['newsletter_tls'] ?? 0;
+      $data['newsletter_text_enable'] = $data['newsletter_text_enable'] ?? 0;
+      $data['newsletter_show_header'] = $data['newsletter_show_header'] ?? 0;
+      $data['newsletter_show_social'] = $data['newsletter_show_social'] ?? 0;
+      
       foreach($data as $id => $value) {
         if(is_array($value) && ($id == 'newsletter_icon' || $id == 'newsletter_badge')) {
           $value = $this->controller->save_file( $value );  

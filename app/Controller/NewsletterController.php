@@ -142,7 +142,9 @@ class NewsletterController extends AppController {
       'products' => $products,
       'socials' => $newsletter['Newsletter']['show_social'] ? \parsed_socials($this->settings) : null,
       'site_url' => $this->settings['site_url'],
-      'newsletter_text' => $this->settings['newsletter_text'],
+      'newsletter_text' => $this->settings['newsletter_text_enable'] == '1' ? 
+        $this->settings['newsletter_text'] : 
+        null,
       'skip_header' => !$this->settings['newsletter_show_header'] ?? null,
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/',
       'self_link' => implode('/', 
@@ -246,7 +248,9 @@ class NewsletterController extends AppController {
       \parsed_socials($this->settings) : 
       null,
       'site_url' => $this->settings['site_url'],
-      'newsletter_text' => $this->settings['newsletter_text'],
+      'newsletter_text' => $this->settings['newsletter_text_enable'] == '1' ? 
+        $this->settings['newsletter_text'] : 
+        null,
       'skip_header' => (
       	$this->settings['newsletter_show_header'] != '1' || 
       	$newsletter['Newsletter']['show_header'] != '1'

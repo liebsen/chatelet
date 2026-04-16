@@ -51,11 +51,18 @@
 					</div>
 
 	        <div class="control-group">
-	          <label class="control-label" for="columns-text"><?php echo __('Agregar texto a todos los Newsletters'); ?></label>
+	          <label class="control-label" for="columns-text"><?php echo __('Agregar Aviso general'); ?></label>
 	          <div class="controls">
 	            <textarea name="data[newsletter_text]" class="form-control w-100" rows="4" placeholder="En qué te puedo ayudar?"><?= @$settings['newsletter_text'] ?></textarea>
 	          </div>
-	          <small class="text-muted">Indica el texto que se enviará con cada Newsletter</small>
+	        <div class="control-group">
+						<label class="control-label" for="toggle-text"><?php echo __('Activar aviso general'); ?></label>
+						<div class="form-group">
+							<input type="checkbox" name="data[newsletter_text_enable]" value="1" id="toggle-text" class="toggle-checkbox"<?=@$settings['newsletter_text_enable'] == '1' ? ' checked' : '' ?>>
+							<label for="toggle-text" class="toggle-label"></label>
+						</div>
+	        </div>	          
+	          <small class="text-muted">Indica el texto que se enviará al pie con cada Newsletter. Puede ser un aviso legal o cualquier cosa que se te ocurra. Asegurate de activarlo para que se envíe correctamente.</small>
 	        </div>
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Campañas por hora'); ?></label>
