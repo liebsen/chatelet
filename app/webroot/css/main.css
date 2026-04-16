@@ -2043,6 +2043,10 @@ pre, code {
 .form-box {
   position: relative;
   margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.form-box.inset {
   margin-left: -15px;
   margin-right: -15px;
   padding: 0 15px;
@@ -3441,7 +3445,7 @@ a.thumbnail-borderless,
   bottom: 0;
   right: 0;
   padding: 1rem;
-  z-index: 1060;
+  z-index: 9999;
   min-width: 100vw;
 }
 
@@ -3586,20 +3590,6 @@ color: red;
 .layer.active {
 pointer-events: inherit;
 opacity: 1;
-}
-
-.templates-preview {
-background-color: white;
-color: #333;
-position: fixed;
-z-index: 1070;
-min-width: 100vwd;
-min-height: 100vhd;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-cursor: pointer;
 }
 
 .section-indicator > a {

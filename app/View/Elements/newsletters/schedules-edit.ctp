@@ -81,10 +81,3 @@
     <button class="btn btn-reset btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Reenviar</button>
   </div>
 </div>
-
-  <div class="templates-preview d-none">
-    <div class="p-4 bg-white">
-      <h3><?=$schedule['Newsletter']['title']?></h3>
-      <p><?=$schedule['Newsletter']['body']?></p>
-    </div>
-  </div>

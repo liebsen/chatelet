@@ -15,7 +15,7 @@
   <input type="hidden" name="redirect" value="/admin/newsletters"/>
   <input type="hidden" name="data[id]" value="<?= $newsletter['Newsletter']['id'] ?? 0 ?>"/>
 	<div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <h4 class="sub-header"><?=$newsletter['Newsletter']['title'] ?? 'Crea un nueva plantilla'?></h4>
       <p><?=$newsletter['Newsletter']['title'] ? 'Modifica' : 'Crea'?> tu plantilla. Puedes asociarle productos si lo deseas.</p>
       <div class="form-group flex-end flex-between gap-05">
@@ -37,7 +37,20 @@
         </table>
       </div>
     </div>
-    <div class="col-md-6">
+  </div>
+  <div class="row">
+    <!--div class="col-md-6">
+      <div class="control-group">
+        <label class="control-label" for="name">Código</label>
+        <div class="controls">
+          <input type="text" id="name" name="data[name]" class="form-control" placeholder="Código de la plantilla" value="<?=$newsletter['Newsletter']['name']?>" required />
+        </div>
+        <small class="text-muted">Es el código que verán solo los gestores</small>
+      </div>
+    </div-->
+
+
+    <div class="col-md-12">
       <div class="form-box bg-info-outline">
         <h4 class="sub-header">Método de envío</h4>
         <p>Selecciona el canal por donde notificar a las cuentas</p>
@@ -54,23 +67,27 @@
           </div>
         </div>
       </div>      
-    </div>
-  </div>
-  <div class="row">
-    <!--div class="col-md-6">
+    </div>    
+    <div class="col-md-12">
       <div class="control-group">
-        <label class="control-label" for="name">Código</label>
+        <label class="control-label" for="title">Título</label>
         <div class="controls">
-          <input type="text" id="name" name="data[name]" class="form-control" placeholder="Código de la plantilla" value="<?=$newsletter['Newsletter']['name']?>" required />
+          <input type="text" id="title" name="data[title]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>" required />
         </div>
-        <small class="text-muted">Es el código que verán solo los gestores</small>
+        <small class="text-muted">Es el título que verán las clientas en su dispositivo</small>
       </div>
-    </div-->
-
+    </div>
+    <div class="col-md-12">
+      <div class="control-group">
+        <label class="control-label" for="toggle-follow"><?php echo __('Texto Push'); ?></label>
+        <textarea class="form-control w-100" name="data[message]" rows="4"><?=$newsletter['Newsletter']['message']?></textarea>
+        <small class="text-muted">Es el texto que verán las clientas en su notificación push</small>
+      </div>
+    </div>
     <div class="col-md-12">
       <div class="control-group flex-column d-block">
         <label class="control-label" for="toggle-follow"><?php echo __('Cuerpo del email'); ?></label>
-        <textarea class="form-control w-100" name="data[body]" id="newsletter" rows="8"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
+        <textarea class="form-control w-100" name="data[body]" id="newsletter"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
         <h6 class="text-theme">Elementos de plantilla</h6>
         <table class="table table-striped">
 <?php foreach($templateVars as $id => $name): ?>
@@ -88,22 +105,6 @@
         </tr>
 <?php endforeach ?>
         </table>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="control-group">
-        <label class="control-label" for="title">Título</label>
-        <div class="controls">
-          <input type="text" id="title" name="data[title]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>" required />
-        </div>
-        <small class="text-muted">Es el título que verán las clientas en su dispositivo</small>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="control-group">
-        <label class="control-label" for="toggle-follow"><?php echo __('Texto Push'); ?></label>
-        <textarea class="form-control w-100" name="data[message]" rows="4"><?=$newsletter['Newsletter']['message']?></textarea>
-        <small class="text-muted">Es el texto que verán las clientas en su notificación push</small>
       </div>
     </div>
   </div>
@@ -192,18 +193,31 @@
     </div>
   </div>
   <div class="form-actions">
-    <a href="javascript:history.go(-1)" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span></a>
+    <a href="javascript:history.go(-1)" class="btn btn-info">
+      <i class="fa fa-chevron-left"></i> 
+      <span class="ml-1">Atrás</span>
+    </a>
+    <span class="btn btn-info btn-templates-editor">
+      <i class="fa fa-edit"></i> 
+      <span class="ml-1">Editor</span>
+    </span>
 <?php if(!empty($newsletter['Newsletter']['id'])):?>
-    <a href="/newsletter/template/<?=$newsletter['Newsletter']['id']?>" class="btn btn-warning" target="_blank"><i class="fa fa-eye"></i> <span class="ml-1">Previsualizar</span></a>
+    <a href="<?=$this->Html->url(
+        array(
+          'controller' => 'newsletter', 
+          'action' => 'template',
+          $newsletter['Newsletter']['id']
+        )
+      )?>"
+      class="btn btn-warning" target="_blank">
+      <i class="fa fa-eye"></i> 
+      <span class="ml-1">Previsualizar</span>
+    </a>
 <?php endif ?>
-    <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
+    <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario">
+      <i class="fa fa-check"></i> 
+      <span class="ml-1">Guardar</span>
+    </button>
   </div>
 
 <?php echo $this->Form->end(); ?>
-
-  <div class="templates-preview d-none">
-    <div class="p-4 bg-white">
-      <h3><?=$newsletter['Newsletter']['title']?></h3>
-      <p><?=$newsletter['Newsletter']['body']?></p>
-    </div>
-  </div>

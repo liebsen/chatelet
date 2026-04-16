@@ -31,7 +31,20 @@
 							<?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?>
 						</span>
 						<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
-						<div class="d-flex flex-center flex-nowrap gap-05">        
+						<div class="d-flex flex-center flex-nowrap gap-05">     
+							<a 
+								href="<?=$this->Html->url(
+									array(
+										'action' => 'newsletters', 
+										'templates', 
+										'edit', 
+										$newsletter['Newsletter']['id'].'#editor'
+									)
+								)?>"
+								data-toggle="tooltip" 
+								title="Editar contenido" 
+								class="btn btn-success"><i class="gi gi-edit"></i>
+							</a>
 							<a 
 								href="<?=$this->Html->url(array(
 									'action' => 'newsletters', 
@@ -47,6 +60,21 @@
 							>
 								<i class="gi gi-send"></i>
 							</a>
+							<a 
+								href="<?=$this->Html->url(
+									array(
+										'controller' => 'newsletter', 
+										'action' => 'template',
+										$newsletter['Newsletter']['id']
+									)
+								)?>" 
+								data-toggle="tooltip" 
+								title="Previsualizar" 
+								class="btn btn-warning"
+								target="_blank" 
+							>
+								<i class="fa fa-eye"></i>
+							</a>							
 							<a 
 								href="#" 
 								data-toggle="tooltip" 
@@ -83,7 +111,7 @@
 			<tbody>
 	<?php foreach ($newsletters as $key => $newsletter): ?>        
 				<tr class="<?=$schedule['rowclass'] ?? ''?>">
-					<td>
+					<td>					
 						<a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
 							data-toggle="tooltip" 
@@ -109,15 +137,21 @@
 						<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
 					</td>
 					<td>
-						<div class="d-flex flex-center flex-nowrap gap-05">        
-							<!--a 
-								href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 
+						<div class="d-flex flex-center flex-nowrap gap-05">   
+							<a 
+								href="<?=$this->Html->url(
+									array(
+										'action' => 'newsletters', 
+										'templates', 
+										'edit', 
+										$newsletter['Newsletter']['id'],
+										'#' => 'editor'
+									)
+								)?>"
 								data-toggle="tooltip" 
-								title="Editar plantilla" 
-								class="btn btn-success" 
-							>
-								<i class="gi gi-edit"></i>
-							</a-->
+								title="Editar contenido" 
+								class="btn btn-success"><i class="gi gi-edit"></i>
+							</a>	
 							<a 
 								href="<?=$this->Html->url(array(
 									'action' => 'newsletters', 
@@ -133,15 +167,21 @@
 							>
 								<i class="gi gi-send"></i>
 							</a>
-
-							<!--a 
-								 href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', $newsletter['Newsletter']['id']))?>" 
+							<a 
+								href="<?=$this->Html->url(
+									array(
+										'controller' => 'newsletter', 
+										'action' => 'template',
+										$newsletter['Newsletter']['id']
+									)
+								)?>" 
 								data-toggle="tooltip" 
-								title="Programar envío" 
-								class="btn btn-warning" 
+								title="Previsualizar" 
+								class="btn btn-warning"
+								target="_blank" 
 							>
-								<i class="gi gi-send"></i>
-							</a-->
+								<i class="fa fa-eye"></i>
+							</a>
 							<a 
 								href="#" 
 								data-toggle="tooltip" 
