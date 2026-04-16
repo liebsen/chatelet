@@ -162,10 +162,12 @@ class NewsletterShell extends AppShell {
 
         if(!empty($items)) {
           foreach($items as $item) {
-            $context = json_decode($item['Stat']['context']);
-            foreach($context->cart as $cart_item) {
-              if(!in_array($cart_item->id, $products_ids)) {
-                array_push($products_ids, $cart_item->id);
+            $context = json_decode($item['Stat']['context'], true);
+            if(!empty($context['cart'])) {
+              foreach($context['cart'] as $cart_item) {
+                if(!in_array($cart_item['id'], $products_ids)) {
+                  array_push($products_ids, $cart_item['id']);
+                }
               }
             }
           }
@@ -283,17 +285,20 @@ class NewsletterShell extends AppShell {
       }
     }
 
-    print_r(
-      array(
-        'date' => $date,
-        'perminute' => $perminute,
-        'quota' => $quota,
-        'hour' => implode(':',array($hour,$min)),
-        'email_sent' => $email_sent,
-        'push_sent' => $push_sent,
-        'count' => count($newsletters)
-      )
-    );
+    if(count($newsletters)){
+      print_r(
+        array(
+          'date' => $date,
+          'perminute' => $perminute,
+          'perday' => $perday,
+          'quota' => $quota,
+          'hour' => implode(':',array($hour,$min)),
+          'email_sent' => $email_sent,
+          'push_sent' => $push_sent,
+          'count' => count($newsletters)
+        )
+      );
+    }
   }
 
   public function sendPush($data, $push) {
