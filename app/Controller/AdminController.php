@@ -58,13 +58,13 @@ class AdminController extends AppController {
 
 		foreach($menu as $i => $v) {
 			if($v['url']==='/admin/whatsapp'){
-				$menu[$i]['update'] = !empty($this->settings['whatsapp_enabled']);
+				$menu[$i]['update'] = $this->settings['whatsapp_enable'] == '1';
 			}
 			if($v['url']==='/admin/cupones'){
-				$menu[$i]['update'] = !empty($this->settings['coupon_enable']);
+				$menu[$i]['update'] = $this->settings['coupon_enable'] == '1';
 			}
 			if($v['url']==='/admin/bank'){
-				$menu[$i]['update'] = !empty($bank_enable);
+				$menu[$i]['update'] = $this->settings['bank_enable'] == '1';
 			}
 			if($v['url']==='/admin/banners'){
 				$menu[$i]['update'] = !empty($banners_enable);
@@ -73,7 +73,7 @@ class AdminController extends AppController {
 				$menu[$i]['update'] = !empty($mailchimp_enable);
 			}
 			if($v['url']==='/admin/newsletters'){
-				$menu[$i]['update'] = !empty($this->settings['newsletter_enabled']);
+				$menu[$i]['update'] = $this->settings['newsletter_enabled'] == '1';
 			}
 		}
 
@@ -1842,9 +1842,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$data = $this->request->data;
 			$promo = $data['Promo'];
 
+			$data['whatsapp_enable'] = $data['whatsapp_enable'] ?? 0;
+
 			unset($data['Promo']);
+
       foreach($data as $id => $value) {
-        $this->Setting->save(['id' => $id, 'value' => $value]);
+        $this->Setting->save(
+        	array(
+	        	'id' => $id, 
+	        	'value' => $value
+	        )
+	      );
       }
 
 			if(!empty($promo['image']['name'])){

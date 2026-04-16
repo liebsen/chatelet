@@ -13,41 +13,41 @@
 	        <div class="control-group">
 						<label class="control-label" for="columns-text"><?php echo __('Habilitar'); ?></label>
 						<div class="form-group">
-							<input type="checkbox" name="data[whatsapp_enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$data['whatsapp_enabled'] == '1' ? ' checked' : '' ?>>
+							<input type="checkbox" name="data[whatsapp_enable]" value="1" id="toggle" class="toggle-checkbox"<?=@$settings['whatsapp_enable'] == '1' ? ' checked' : '' ?>>
 							<label for="toggle" class="toggle-label"></label>
 						</div>
 	          <small class="text-muted">Indica si debe mostrarse un mensaje solicitar al cliente a contacto vía chat de WhatsApp.</small>
 	        </div>
 	      </div>
 	      <div class="col-md-6">
-	      	<div class="show-panel <?= !$data['whatsapp_enabled'] ? 'show-inactive' : '' ?>">
+	      	<div class="show-panel <?=@$settings['whatsapp_enable'] != '1' ? 'show-inactive' : '' ?>">
 		      	<h4 class="sub-header">Configuración de Whatsapp</h4>
 		      	<p>Configura el mensaje que se mostrará a la clienta</p>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
 		          <div class="controls">
-		            <textarea name="data[whatsapp_text]" class="form-control w-100" placeholder="En qué te puedo ayudar?"><?= @$data['whatsapp_text'] ?></textarea>
+		            <textarea name="data[whatsapp_text]" class="form-control w-100" placeholder="En qué te puedo ayudar?"><?= @$settings['whatsapp_text'] ?></textarea>
 		          </div>
 		          <small class="text-muted">Indica el texto que invitará a chatear a la clienta</small>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Autoesconder (segs)'); ?></label>
 		          <div class="controls">
-		            <input type="number" max="100" min="0" size="4" name="data[whatsapp_autohide]" class="form-control" placeholder="3" value="<?= @$data['whatsapp_autohide'] ?>"/>
+		            <input type="number" max="100" min="0" size="4" name="data[whatsapp_autohide]" class="form-control" placeholder="3" value="<?= @$settings['whatsapp_autohide'] ?>"/>
 		          </div>
 		          <small class="text-muted">Esconder Whatsapp luego de x segundos. Ingresá 0 para mostrar siempre.</small>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Nro. de teléfono'); ?></label>
 		          <div class="controls">
-		            <input type="number" min="0" size="16" name="data[whatsapp_phone]" class="form-control" placeholder="+54 1147012233" value="<?= @$data['whatsapp_phone'] ?>"/>
+		            <input type="number" min="0" size="16" name="data[whatsapp_phone]" class="form-control" placeholder="+54 1147012233" value="<?= @$settings['whatsapp_phone'] ?>"/>
 		          </div>
 		          <small class="text-muted">Ingresá el número de teléfono del whatsapp que recibirá los chats.</small>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Mostrar animación'); ?></label>
 							<div class="form-group">
-								<input type="checkbox" name="data[whatsapp_animated]" value="1" id="toggle2" class="toggle-checkbox"<?=@$data['whatsapp_animated'] == '1' ? ' checked' : '' ?>>
+								<input type="checkbox" name="data[whatsapp_animated]" value="1" id="toggle2" class="toggle-checkbox"<?=@$settings['whatsapp_animated'] == '1' ? ' checked' : '' ?>>
 								<label for="toggle2" class="toggle-label"></label>
 							</div>
 		        </div>

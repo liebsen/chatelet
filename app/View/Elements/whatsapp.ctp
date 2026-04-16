@@ -1,4 +1,4 @@
-  <?php if (@$data['whatsapp_enabled']): ?>
+  <?php if (@$data['whatsapp_enable'] == '1'): ?>
     <div class="whatsapp-blockchatIn delay2">
       <a href="javascript:$zopim.livechat.window.show()" class="chat" title="Contactanos por Chat">
         <i class="fa fa-messages"></i>

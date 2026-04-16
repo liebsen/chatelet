@@ -69,7 +69,7 @@ class AppController extends Controller
   private $setting_tags = [
     'stock_min',
     'list_code',
-    'whatsapp_enabled',
+    'whatsapp_enable',
     'whatsapp_text',
     'whatsapp_phone',
     'whatsapp_autohide',
@@ -108,7 +108,7 @@ class AppController extends Controller
         continue;
       }
 
-      if($setting  == 'whatsapp_enabled' &&(strstr($path, "carrito") || strstr($path, "envio") || strstr($path, "pago"))) {
+      if($setting  == 'whatsapp_enable' &&(strstr($path, "carrito") || strstr($path, "envio") || strstr($path, "pago"))) {
           continue;
       }
     }
