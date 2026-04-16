@@ -214,7 +214,7 @@ class NewsletterController extends AppController {
 	          'alias' => 'User',
 	          'type' => 'LEFT',
 	          'conditions' => array( 
-	            'User.id' => 1
+	            'User.id' => $this->Auth->user('id') ?? 1
 	          )
 	        )
 	      ),
