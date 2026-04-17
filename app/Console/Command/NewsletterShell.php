@@ -140,7 +140,7 @@ class NewsletterShell extends AppShell {
       $parsed_body = '';
       $filter = json_decode($newsletter['NewsletterList']['filter']);
 
-      echo "Schedule type: " . $filter->type . "\n";
+      #echo "Schedule type: " . $filter->type . "\n";
 
       if($filter->type == 'carts') {
         $items = $this->Stat->find('all',array(

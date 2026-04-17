@@ -2,7 +2,7 @@ function getFormData(form) {
   var data = new FormData();
   for (var i=0; i<form.length; i++) {
     var e = form[i];    
-    if(e.name && $(e).data('change') && !$(e).data('noproc')) {
+    if(($(e).data('change') || $(e).data('force')) && !$(e).data('noproc')) {
       var value = e.value
       if(e.type == 'file') {
         value = e.files[0]
@@ -18,6 +18,7 @@ function getFormData(form) {
 $(document).ready(function() {
   $('input, select, textarea').change(function(e) {
     const elem = e.target
+    console.log(elem.name, elem.value)
     $(elem).data('change', true)
     if($(elem).attr('type') == 'file') {
       const matches = $(elem).attr('name').match(/\[(.*?)\]/)

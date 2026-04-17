@@ -1,5 +1,5 @@
 <?php foreach($notification_settings as $id => $value):?>	
-	<input type="hidden" name="data[<?=$id?>]" value="<?=$value?>" data-force="1">
+	<input type="hidden" name="data[<?=$id?>]" value="<?=$value?>">
 <?php endforeach ?>
 
 	<div class="row">

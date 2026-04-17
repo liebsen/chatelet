@@ -30,7 +30,7 @@
       <div class="d-flex flex-column justify-content-center align-items-center gap-1 mb-4">
         <div class="controls">
           <label class="control-label" for="title"><i class="gi gi-picture mr-1"></i> Plantilla</label>
-          <select class="form-control" name="data[newsletter_id]">
+          <select class="form-control" name="data[newsletter_id]" required>
     <?php foreach($newsletters as $newsletter): ?>
     <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?> (<?= $newsletter['0']['total']?>)</option>
     <?php endforeach ?>
@@ -38,7 +38,7 @@
         </div>
         <div class="controls">
           <label class="control-label" for="title"><i class="gi gi-list mr-1"></i> Lista</label>
-          <select class="form-control" name="data[list_id]">
+          <select class="form-control" name="data[list_id]" required>
     <?php foreach($lists as $list): ?>
     <option value="<?= $list['NewsletterList']['id']?>"<?=@($list['NewsletterList']['id'] == $this->params->query['list_id'] || $list['NewsletterList']['id'] == $schedule['NewsletterSchedule']['list_id']) ? ' selected' : ''?>><?= $list['NewsletterList']['name']?> (<?= $list['0']['total']?>)</option>
     <?php endforeach ?>
@@ -53,8 +53,8 @@
         <div class="control-group">
           <label class="control-label" for="title">Programar fecha/hora</label>
           <div class="controls d-flex flex-center gap-05">
-            <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('d-m-Y'), '%d/%m/%Y')?>"/>
-            <select class="form-control schedule_hour" name="data[schedule_hour]" data-value="<?=$schedule['NewsletterSchedule']['schedule_hour']?>"></select>
+            <input type="text" name="data[schedule_date]" class="form-control datepicker" placeholder="Fecha del envío" value="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] ?? date('d-m-Y'), '%d/%m/%Y')?>" data-force="true" required />
+            <select class="form-control schedule_hour" name="data[schedule_hour]" data-value="<?=$schedule['NewsletterSchedule']['schedule_hour']?>" data-force="true"></select>
           </div>
           <small>Cualquier fecha / hora asignada anterior a hoy será procesada si tiene envíos pendientes</small>
         </div>
