@@ -381,9 +381,15 @@ class NewsletterComponent extends Component {
 
   public function schedules_delete() {
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
+    $NewsletterScheduleItem = ClassRegistry::init('NewsletterScheduleItem');
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
+        $NewsletterScheduleItem->deleteAll(
+          array( 
+            'NewsletterScheduleItem.schedule_id' => $data['id'] 
+          )
+        );
         $NewsletterSchedule->delete($data['id']);
       }
     } catch (\Exception $e) {
