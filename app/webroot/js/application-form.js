@@ -69,11 +69,11 @@ $(document).ready(function() {
           message: res.errors
         });
 			}
-      setTimeout(function(){
+      /*setTimeout(function(){
         if(res.redirect) {
           location.href = res.redirect
         }
-      }, 2000)
+      }, 2000)*/
 		}).fail(function(xhr, error){
       $.growl.error({
         title: 'Error',
