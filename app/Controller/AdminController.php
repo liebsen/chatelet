@@ -2519,14 +2519,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	} else {
 	    	foreach($data as $i => $item) {
 		    	$model = ClassRegistry::init($item['model']);
+
 		    	$conditions = array(
 	    			$item['source'] . '_id' => $item['parentId'],
 	    			$item['type'] . '_id' => $item['id'],
-	    		);	    		
+	    		);
+
 		    	$ids = $model->find('all', array(
 		    		'conditions' => $conditions, 
 		    		'fields' => ['id']
 		    	));
+
 					$ids = array_map(function($e) use ($item) {
 						return $e[$item['model']]['id'];
 					},$ids);    
@@ -2535,12 +2538,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    	$model->delete($ids);
 			    }
 
-		      $model->save(
-		      	array(
+			    $save = array(
 		      		'id' => null,
 		      		$item['type'] . '_id' => $item['id'],
 		      		$item['source'] . '_id' => $item['parentId'],
-		      	)
+		      	);
+
+		      $model->save(
+		      	$save
 		      );
 		    }
 		  }

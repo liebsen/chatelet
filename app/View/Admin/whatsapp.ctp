@@ -1,5 +1,5 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
-<?php echo $this->Html->script('admin-whatsapp.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php #echo $this->Html->script('admin-whatsapp.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->element('admin/menu'); ?>
 
@@ -13,14 +13,14 @@
 	        <div class="control-group">
 						<label class="control-label" for="columns-text"><?php echo __('Habilitar'); ?></label>
 						<div class="form-group">
-							<input type="checkbox" name="data[whatsapp_enable]" value="1" id="toggle" class="toggle-checkbox"<?=@$settings['whatsapp_enable'] == '1' ? ' checked' : '' ?>>
+							<input type="checkbox" name="data[whatsapp_enable]" value="1" id="toggle" class="toggle-checkbox toggle-block" data-block=".show-panel" <?=@$settings['whatsapp_enable'] == '1' ? ' checked' : '' ?>>
 							<label for="toggle" class="toggle-label"></label>
 						</div>
 	          <small class="text-muted">Indica si debe mostrarse un mensaje solicitar al cliente a contacto vía chat de WhatsApp.</small>
 	        </div>
 	      </div>
 	      <div class="col-md-6">
-	      	<div class="show-panel <?=@$settings['whatsapp_enable'] != '1' ? 'show-inactive' : '' ?>">
+	      	<div class="show-panel <?=@$settings['whatsapp_enable'] != '1' ? 'd-disable' : '' ?>">
 		      	<h4 class="sub-header">Configuración de Whatsapp</h4>
 		      	<p>Configura el mensaje que se mostrará a la clienta</p>
 		        <div class="control-group">

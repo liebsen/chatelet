@@ -23,12 +23,12 @@
             </div>
           </div>
           <br />     
-          <div class="show-panel<?php echo $settings['shipping_type'] == 'default' ? ' show-inactive' : '' ?>">
-            <small>Ingrese el monto mínimo. <span class="dummy-sub-block<?php echo $settings['shipping_type'] != 'zip_code' ? ' show-inactive' : '' ?>">Ingrese valor cero para deshabilitar monto mínimo. </span></small> 
+          <div class="show-panel<?php echo $settings['shipping_type'] == 'default' ? ' d-disable' : '' ?>">
+            <small>Ingrese el monto mínimo. <span class="dummy-sub-block<?php echo $settings['shipping_type'] != 'zip_code' ? ' d-disable' : '' ?>">Ingrese valor cero para deshabilitar monto mínimo. </span></small> 
             <br />
             <input class="form-control" type="number" name="data[shipping_price_min]" value="<?php echo $settings['shipping_price_min']; ?>"/>
             <br /> 
-            <div class="show-panel<?php echo $settings['shipping_type'] != 'zip_code' ? ' show-inactive' : '' ?>">
+            <div class="show-panel<?php echo $settings['shipping_type'] != 'zip_code' ? ' d-disable' : '' ?>">
               <small>Ingrese los codigos postales separados por coma (,) - [Actualmente <strong><?=$amount?></strong> códigos]</small><br />
               <textarea class="form-control" name="data[shipping_zips]" rows="8"><?php echo $settings['shipping_zips']; ?></textarea>
             </div>

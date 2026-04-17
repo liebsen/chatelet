@@ -47,7 +47,7 @@ $(document).ready(function() {
     }
   })
 
-	$('#form_app').submit(function(e){
+  $('#form_app').submit(function(e){
 		e.preventDefault()
     const url = $(this).attr('action')
     const data = getFormData(this)

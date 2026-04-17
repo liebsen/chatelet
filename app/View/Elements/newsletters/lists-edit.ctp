@@ -98,8 +98,8 @@
           <div class="control-group">
             <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
             <div class="controls d-flex flex-center gap-05">
-              <input type="text" name="data[filter][date_min]" class="form-control advanced-filter datepicker" data-name="date_min" placeholder="Fecha mínima" value="<?=$list['NewsletterList']['filter']->date_min ?? ''?>"/>
-              <input type="text" name="data[filter][date_max]" class="form-control advanced-filter datepicker" data-name="date_max" placeholder="Fecha máxima" value="<?=$list['NewsletterList']['filter']->date_max ?? ''?>"/>
+              <input type="text" name="data[filter][date_min]" class="form-control advanced-filter datepicker" data-name="date_min" placeholder="Fecha mínima" value="<?=$list['NewsletterList']['filter']->date_min ?? ''?>"  autocomplete="off" />
+              <input type="text" name="data[filter][date_max]" class="form-control advanced-filter datepicker" data-name="date_max" placeholder="Fecha máxima" value="<?=$list['NewsletterList']['filter']->date_max ?? ''?>"  autocomplete="off" />
             </div>
           </div>
           <div class="controls-group">
@@ -112,8 +112,8 @@
           <div class="control-group">
             <label class="control-label" for="myRange2">Día de nacimiento (Desde / Hasta)</label>
             <div class="controls d-flex flex-center gap-05">
-              <input type="text" id="minDob" name="data[filter][dob_min]" class="form-control advanced-filter datepicker" data-format="dd/mm" data-name="dob_min" placeholder="Día de nacimiento mínimo" value="<?=$list['NewsletterList']['filter']->dob_min ?? ''?>"/>
-              <input type="text" id="maxDob" name="data[filter][dob_max]" class="form-control advanced-filter datepicker" data-format="dd/mm" data-name="dob_max" placeholder="Día de nacimiento max" value="<?=$list['NewsletterList']['filter']->dob_max ?? ''?>"/>
+              <input type="text" id="minDob" name="data[filter][dob_min]" class="form-control advanced-filter datepicker" data-format="dd/mm" data-name="dob_min" placeholder="Día de nacimiento mínimo" value="<?=$list['NewsletterList']['filter']->dob_min ?? ''?>"  autocomplete="off" />
+              <input type="text" id="maxDob" name="data[filter][dob_max]" class="form-control advanced-filter datepicker" data-format="dd/mm" data-name="dob_max" placeholder="Día de nacimiento max" value="<?=$list['NewsletterList']['filter']->dob_max ?? ''?>"  autocomplete="off" />
             </div>
           </div>
         </div>

@@ -51,7 +51,9 @@
 					          $schedule['Newsletter']['id']
 					        )
 					      )?>"
-					      class="btn btn-primary" target="_blank">
+					      class="btn btn-warning" 
+					      title="Previsualizar plantilla"
+					      target="_blank">
 					      <i class="fa fa-eye"></i> 
 					    </a>							
 							<a 
@@ -176,7 +178,9 @@
 					          $schedule['Newsletter']['id']
 					        )
 					      )?>"
-					      class="btn btn-primary" target="_blank">
+					      class="btn btn-warning" 
+					      title="Previsualizar plantilla"
+					      target="_blank">
 					      <i class="fa fa-eye"></i> 
 					    </a>
 							<a 

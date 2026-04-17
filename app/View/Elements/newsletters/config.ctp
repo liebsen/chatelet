@@ -1,6 +1,6 @@
 <?php // echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); ?>
-<?php echo $this->Html->script('newsletter-config.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php #echo $this->Html->script('newsletter-config.js?v=' . $version['ver'], array('inline' => false)); ?>
 	<form action="" method="post" class="form-inline" enctype="multipart/form-data">
 	  <input type="hidden" name="x_coord" id="x_coord">
 	  <input type="hidden" name="y_coord" id="y_coord">			
@@ -11,12 +11,12 @@
         <div class="control-group">
 					<label class="control-label" for="columns-text"><?php echo __('Activar tarea programada'); ?></label>
 					<div class="form-group">
-						<input type="checkbox" name="data[newsletter_enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$settings['newsletter_enabled'] == '1' ? ' checked' : '' ?>>
+						<input type="checkbox" name="data[newsletter_enabled]" value="1" id="toggle" class="toggle-checkbox toggle-block" data-block=".show-panel"<?=@$settings['newsletter_enabled'] == '1' ? ' checked' : '' ?>>
 						<label for="toggle" class="toggle-label"></label>
 					</div>
           <small class="text-muted">Indica si se debe procesar las campañas. Cuando se activen se correrá la tarea una vez por minuto.</small>
         </div>
-        <div class="show-panel <?= !$settings['newsletter_enabled'] ? 'show-inactive' : '' ?>">
+        <div class="show-panel <?= !$settings['newsletter_enabled'] ? 'd-disable' : '' ?>">
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Nombre remitente'); ?></label>
 	          <div class="controls">
@@ -95,7 +95,7 @@
 				</div>
       </div>
       <div class="col-md-6">
-      	<div class="show-panel <?= !$settings['newsletter_enabled'] ? 'show-inactive' : '' ?>">
+      	<div class="show-panel <?= !$settings['newsletter_enabled'] ? 'd-disable' : '' ?>">
 	      	<div class="form-box bg-info-outline">
 		      	<h4 class="sub-header">Datos del transport</h4>
 		      	<p>Configura como se enviarán los emails desde Tarea programada Campañas.</p>

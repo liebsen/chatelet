@@ -40,7 +40,7 @@ class StatsComponent extends Component {
       'fields' => array('Stat.id, Stat.tag, Stat.context, Stat.created, User.id, User.name, User.surname, User.email, User.birthday'),
       'group' => array('Stat.tag, JSON_EXTRACT(Stat.context, "$.query")'),
       'order' => array('Stat.id DESC'),
-      'limit' => 200,
+      'limit' => 500,
     ));
 
     foreach($items as $i => $item) {

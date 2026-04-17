@@ -129,6 +129,11 @@ $(function () {
     }
   })
 
+  $('.toggle-block').change(function(e){
+    const block = $(this).data('block')
+    $(block).toggleClass('d-disable')
+  })
+
   $('#filter-menu').keyup(function(){ 
     clearTimeout(timeout)
     const value = slugify($(this).val())

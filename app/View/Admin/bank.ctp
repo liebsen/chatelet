@@ -20,7 +20,7 @@
             <label for="toggle" class="toggle-label"></label>
           </div>
           <hr>
-          <div class="show-panel <?= !$settings['bank_enable'] == 1 ? 'show-inactive' : '' ?>">
+          <div class="show-panel <?= !$settings['bank_enable'] == 1 ? 'd-disable' : '' ?>">
             <div class="controls">
               <label class="control-label">Descuento</label>
               <input type="checkbox" name="data[bank_discount_enable]" value="1" id="toggle2" class="toggle-checkbox"<?=@$settings['bank_discount_enable'] == '1' ? ' checked' : '' ?>>
@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="show-panel <?= !$settings['bank_enable'] == 1 ? 'show-inactive' : '' ?>">
+          <div class="show-panel <?= !$settings['bank_enable'] == 1 ? 'd-disable' : '' ?>">
             <h4 class="sub-header">Información bancaria</h4>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Datos bancarios'); ?></label>

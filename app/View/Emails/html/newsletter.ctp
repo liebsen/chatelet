@@ -1,8 +1,8 @@
 <?php echo $data['Newsletter']['parsed_body']?>
-<?php if(!empty($data['Newsletter']['cta_url'])):?>
+<?php if($data['Newsletter']['show_cta'] == '1'):?>
   <!-- Call to Action Button -->
   <a href="<?=$data['Newsletter']['cta_url']?>" style="background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
-      <?=$data['Newsletter']['cta_text'] ?? $data['Newsletter']['cta_url']?>
+      <?=$data['Newsletter']['cta_text']?>
   </a>	
 <?php endif ?>
 <?php if(!empty($products)): ?>
