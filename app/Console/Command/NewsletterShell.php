@@ -53,7 +53,7 @@ class NewsletterShell extends AppShell {
     $this->showmail = in_array("showmail=1", $this->args);
     $this->update = in_array("update=1", $this->args);
 
-    #echo "\nStarting process: " . implode(':',array($hour,$min)) . "\n";
+    echo "\nStarting process: " . implode(':',array($hour,$min)) . "\n";
     // FIND QUOTA
     $quota = $this->NewsletterScheduleItem->find('count', array(
       'conditions' => array(
