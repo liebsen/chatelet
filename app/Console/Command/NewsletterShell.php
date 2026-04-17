@@ -140,8 +140,6 @@ class NewsletterShell extends AppShell {
       $parsed_body = '';
       $filter = json_decode($newsletter['NewsletterList']['filter']);
 
-      #echo "Schedule type: " . $filter->type . "\n";
-
       if($filter->type == 'carts') {
         $items = $this->Stat->find('all',array(
           'joins' => array(
@@ -317,10 +315,14 @@ class NewsletterShell extends AppShell {
     $payload = array(
       'title' => $data['Newsletter']['title'],
       'body' => $data['Newsletter']['message'],
-      'icon' => $this->settings['newsletter_icon'] ?? 
-        $this->settings['site_url'] . '/img/push-logo.png',
-      'badge' => $this->settings['newsletter_badge'] ?? 
-        $this->settings['site_url'] . '/img/push-badge.png',
+      'icon' => $this->settings['site_url'] . ($this->settings['newsletter_icon'] ? 
+        $this->settings['upload_url'] . $this->settings['newsletter_icon'] : 
+        '/img/push-logo.png'
+      ),
+      'badge' => $this->settings['site_url'] . ($this->settings['newsletter_badge'] ? 
+        $this->settings['upload_url'] . $this->settings['newsletter_badge'] : 
+        '/img/push-badge.png'
+      ),
       'data' => array(
         'vibrate' => array(100, 200),
         'additionalData' => array(),
