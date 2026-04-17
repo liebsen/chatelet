@@ -2113,15 +2113,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			)
 		);
 
-		if(method_exists($this->Newsletter, $controlComponent)) {
-			$this->Newsletter->{$controlComponent}($id);
-		}
-
 		$this->set('pane', $pane);
 		$this->set('h1', $h1);
 		$this->set('viewComponent', $viewComponent);
 		$this->set('navs', $navs);
 		$this->set('templateVars', $templateVars);		
+
+		if(method_exists($this->Newsletter, $controlComponent)) {
+			return $this->Newsletter->{$controlComponent}($id);
+		}
 	}
 
 	public function promos(){

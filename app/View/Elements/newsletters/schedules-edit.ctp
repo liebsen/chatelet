@@ -2,11 +2,12 @@
 	// echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
   echo $this->Html->script('relations.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('schedules-edit.js?v=' . $version['ver'], array('inline' => false));
+  echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('bootstrap-datepicker');
   echo $this->Form->create(null, array(
   'class' => 'w-100',
-  'id' => 'schedule_edit',
+  'id' => 'form_app',
 )); ?>
   <input type="hidden" name="x_coord" id="x_coord">
   <input type="hidden" name="y_coord" id="y_coord">

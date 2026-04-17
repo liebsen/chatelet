@@ -16,4 +16,9 @@ $(document).ready(function() {
       CKEDITOR.instances.newsletter.execCommand('maximize');  
     }, 500)    
   }
+
+  CKEDITOR.instances.newsletter.on('change', function(e) {
+    $('#newsletter').val(CKEDITOR.instances.newsletter.getData())
+    $('#newsletter').data('change', true)
+  });  
 })

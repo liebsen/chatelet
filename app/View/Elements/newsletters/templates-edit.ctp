@@ -1,13 +1,13 @@
 <?php
 	echo $this->Html->script('ckeditor/ckeditor.js?v=' . $version['ver'], array('inline' => false));
-  #echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false));
+  echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false));
   echo $this->Html->script('relations.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('templates-edit.js?v=' . $version['ver'], array('inline' => false));
 ?>
 
 <?php echo $this->Form->create(null,
   array(
-    'id' => 'newsletter_edit',
+    'id' => 'form_app',
     'class' => 'w-100',
   )
 ); ?>

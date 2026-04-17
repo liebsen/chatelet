@@ -1,10 +1,15 @@
 function getFormData(form) {
   var data = new FormData();
   for (var i=0; i<form.length; i++) {
-    var el = form[i];    
-    if(el.name && $(el).data('change') && !$(el).data('noproc')) {
-      const value = el.type == 'file' ? el.files[0] : el.value
-      data.append(el.name, value)
+    var e = form[i];    
+    if(e.name && $(e).data('change') && !$(e).data('noproc')) {
+      var value = e.value
+      if(e.type == 'file') {
+        value = e.files[0]
+      } else if(e.type == 'checkbox') {
+        value = e.checked ? 1 : 0
+      }
+      data.append(e.name, value)
     }
   }
   return data
@@ -29,17 +34,12 @@ $(document).ready(function() {
                 title: 'OK',
                 message: res.message
               });              
-              console.log('Success:', res);
             },
             error: function(xhr, status, error) {
-              console.log(xhr)
-              console.log(status)
-              console.log(error)
               $.growl.error({
                 title: 'Error',
                 message: error
               });
-              console.error('Error:', error);
             }
           });
         }, 10)
@@ -69,9 +69,12 @@ $(document).ready(function() {
           message: res.errors
         });
 			}
+      setTimeout(function(){
+        if(res.redirect) {
+          location.href = res.redirect
+        }
+      }, 2000)
 		}).fail(function(xhr, error){
-      console.log('xhr',xhr)
-      console.log('error',error)
       $.growl.error({
         title: 'Error',
         message: error

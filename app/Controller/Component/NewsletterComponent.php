@@ -73,22 +73,18 @@ class NewsletterComponent extends Component {
 
   public function config() {
     if($this->controller->request->is('post')){
+      $this->controller->autoRender = false;
+      $this->controller->RequestHandler->respondAs('application/json');      
       $Setting = ClassRegistry::init('Setting');
       $data = $this->controller->request->data;
       $redirect = array( 'action' => 'newsletters');
-
-      $data['newsletter_enabled'] = $data['newsletter_enabled'] ?? 0;
-      $data['newsletter_tls'] = $data['newsletter_tls'] ?? 0;
-      $data['newsletter_text_enable'] = $data['newsletter_text_enable'] ?? 0;
-      $data['newsletter_show_header'] = $data['newsletter_show_header'] ?? 0;
-      $data['newsletter_show_social'] = $data['newsletter_show_social'] ?? 0;
       
       foreach($data as $id => $value) {
         if(is_array($value) && ($id == 'newsletter_icon' || $id == 'newsletter_badge')) {
           $value = $this->controller->save_file( $value );  
-          CakeLog::write('debug', 'file:'. json_encode(['id' => $id, 'value' => $value]));
+          #CakeLog::write('debug', 'file:'. json_encode(['id' => $id, 'value' => $value]));
         }
-        CakeLog::write('debug', 'save:'. json_encode(['id' => $id, 'value' => $value]));
+        #CakeLog::write('debug', 'save:'. json_encode(['id' => $id, 'value' => $value]));
         $Setting->save(
           array(
             'id' => $id, 
@@ -101,7 +97,13 @@ class NewsletterComponent extends Component {
         $redirect = array('action' => 'newsletters', 'config');
       }
 
-      return $this->controller->redirect($redirect);
+      $response = array(
+        'success' => true,
+        'message' => 'La nueva configuración se actualizó exitosamente',
+        'redirect' => Router::reverse($redirect)
+      );
+
+      return json_encode($response);
     }
   }
 
@@ -148,15 +150,6 @@ class NewsletterComponent extends Component {
           'conditions' => array( 'NewsletterSchedule.newsletter_id' => $newsletter['Newsletter']['id']),
           'order' => array( 'NewsletterSchedule.id DESC' )
         ));
-        /*$start = new \DateTime($newsletter['Newsletter']['modified']);
-        $end = new \DateTime("now");
-        $interval = $end->diff($start);
-        $days = $interval->d;
-        \d("days", $days);
-        if ($days < 1) {
-          $newsletters[$i]['Newsletter']['recent'] = 1;
-        }*/
-
         $newsletters[$i]['NewsletterProduct'] = $products;
         $newsletters[$i]['NewsletterSchedule'] = $schedules;
       }
@@ -186,25 +179,18 @@ class NewsletterComponent extends Component {
     $newsletter_products = array();
     try {
       if($this->controller->request->is('post')){
+        \d("ok",$id);
+        $this->controller->autoRender = false;
+        $this->controller->RequestHandler->respondAs('application/json');
         $data = $this->controller->request->data;
-        $data['id'] = $data['id'] ?? NULL;
-        $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
-        $data['send_email'] = !empty($data['send_email']) ? 1 : 0;
-        $data['send_push'] = !empty($data['send_push']) ? 1 : 0;
-        $data['show_header'] = !empty($data['show_header']) ? 1 : 0;
-        $data['show_social'] = !empty($data['show_social']) ? 1 : 0;
-        $data['show_price'] = !empty($data['show_price']) ? 1 : 0;
-        $data['show_text'] = !empty($data['show_text']) ? 1 : 0;
-        $data['show_cta'] = !empty($data['show_cta']) ? 1 : 0;
-
+        $data['id'] = $id ?? null;
         $redirect = array( 'action' => 'newsletters', 'templates');
 
         if(empty($data['id'])) {
           $data['user_id'] = $this->controller->Auth->user('id');
         }
 
-        #\d("Newsletter(data)", $data);
-        //\d("redirect", $redirect);
+        #\d("data", $data);
 
         $Newsletter->save($data);
 
@@ -212,8 +198,13 @@ class NewsletterComponent extends Component {
           $redirect = array( 'action' => 'newsletters', 'templates', 'edit', $Newsletter->id);
         }
 
-        // $this->response->statusCode(200);
-        return $this->controller->redirect($redirect);
+        $response = array(
+          'success' => true,
+          'message' => 'La nueva configuración se actualizó exitosamente',
+          'redirect' => Router::reverse($redirect)
+        );
+
+        return json_encode($response);
       }
 
       if(!empty($id)) {
@@ -243,6 +234,7 @@ class NewsletterComponent extends Component {
       $this->controller->set('newsletter_products', $newsletter_products);
 
     } catch (\Exception $e) {
+      \d("error",$e->getMessage());
       echo $e->getMessage();
     }
   }
@@ -294,29 +286,13 @@ class NewsletterComponent extends Component {
         )
       ));
 
-      // \d("schedules",$schedules);
+      #\d("schedules",$schedules);
       foreach($schedules as $i => $schedule) {
         $push_total = 0;
         $email_total = 0;
         $push_sent = 0;
         $email_sent = 0;
         $clicks = 0;
-        /*$products = $NewsletterProduct->find('all', array(
-          'joins' => array(
-            array(
-              'table' => 'products',
-              'alias' => 'Product',
-              'type' => 'LEFT',
-              'conditions' => array( 'Product.id = NewsletterProduct.product_id' )
-            ),
-          ),
-          'fields' => array('NewsletterProduct.*, Product.*'),
-          'conditions' => array( 
-            'NewsletterProduct.newsletter_id' => $schedule['Newsletter']['id'],
-            'Product.id IS NOT NULL',
-          ),
-          'order' => array( 'NewsletterProduct.id DESC' )
-        ));*/
 
         $users = $NewsletterScheduleItem->find('all', array(
           'joins' => array(
@@ -395,8 +371,6 @@ class NewsletterComponent extends Component {
         // $schedules[$i]['Products'] = $products;
       }
 
-      //$this->controller->set('user_total', $user_total);
-      //$this->controller->set('prod_total', $prod_total);
       $this->controller->set('schedules', $schedules);
 
     } catch (\Exception $e) {
@@ -407,16 +381,9 @@ class NewsletterComponent extends Component {
 
   public function schedules_delete() {
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
-    //$NewsletterUser = ClassRegistry::init('NewsletterUser');
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
-        /*$schedule = $NewsletterSchedule->find('first', array(
-          'conditions' => array(
-            'NewsletterSchedule.id' => $data['id']
-          )
-        ));*/
-        //$NewsletterUser->deleteAll(array('User.list_id' => $schedule['NewsletterSchedule']['list_id']), false);
         $NewsletterSchedule->delete($data['id']);
       }
     } catch (\Exception $e) {
@@ -429,17 +396,17 @@ class NewsletterComponent extends Component {
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
     $NewsletterList = ClassRegistry::init('NewsletterList');
     $NewsletterUser = ClassRegistry::init('NewsletterUser');
-    #$NewsletterProduct = ClassRegistry::init('NewsletterProduct');
     $NewsletterScheduleItem = ClassRegistry::init('NewsletterScheduleItem');
     $schedule = array();
     try {
       if($this->controller->request->is('post')){
+        $this->controller->autoRender = false;
+        $this->controller->RequestHandler->respondAs('application/json');      
+
         $data = $this->controller->request->data;
-        $data['id'] = $data['id'] ?? NULL;
-        $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
+        $data['id'] = $id ?? null;
         $redirect = array( 'action' => 'newsletters', 'schedules' );
         $create = empty($id);
-        $resend_all = !empty($data['resend_all']) ? 1 : 0;
         $NewsletterSchedule->save($data);
 
         // reset recipients
@@ -496,7 +463,6 @@ class NewsletterComponent extends Component {
               $save['status'] = 'pending';
             }
           }
-          //\d("save",$save);
           array_push($saves, $save);
         }
 
@@ -512,7 +478,13 @@ class NewsletterComponent extends Component {
           $redirect = array( 'action' => 'newsletters', 'schedules', 'edit', $NewsletterSchedule->id);
         }
 
-        return $this->controller->redirect($redirect);
+        $response = array(
+          'success' => true,
+          'message' => 'La nueva configuración se actualizó exitosamente',
+          'redirect' => Router::reverse($redirect)
+        );
+
+        return json_encode($response);
       }
 
       if(!$create) {
@@ -529,43 +501,6 @@ class NewsletterComponent extends Component {
           'conditions' => array( 'NewsletterSchedule.id' => $id),
           // 'order' => array( 'Newsletter.id DESC' )
         )));
-
-        /*$schedule_products = $NewsletterProduct->find('all', array(
-          'joins' => array(
-            array(
-              'table' => 'products',
-              'alias' => 'Product',
-              'type' => 'LEFT',
-              'conditions' => array( 'Product.id = NewsletterProduct.product_id' )
-            ),
-          ),
-          'fields' => array('Product.*'),
-          'conditions' => array( 
-            'NewsletterProduct.newsletter_id' => $schedule['Newsletter']['id'],
-            'Product.id IS NOT NULL',
-          ),
-          // 'order' => array( 'Newsletter.id DESC' )
-        ));
-
-        $schedule_users = $NewsletterUser->find('all', array(
-          'joins' => array(
-            array(
-              'table' => 'users',
-              'alias' => 'User',
-              'type' => 'LEFT',
-              'conditions' => array( 'User.id = NewsletterUser.user_id' )
-            ),
-          ),
-          'fields' => array('User.id, User.email, User.name, User.surname, User.city, User.province, User.birthday, User.created'),
-          'conditions' => array( 
-            'NewsletterUser.list_id' => $schedule['NewsletterSchedule']['list_id'],
-            'User.id IS NOT NULL',
-          ),
-          // 'order' => array( 'Newsletter.id DESC' )
-        ));*/
-        #$schedule['NewsletterSchedule']['filter'] = json_decode($schedule['NewsletterSchedule']['filter']);
-        #$schedule['NewsletterProduct'] =  array_column($schedule_products, 'NewsletterProduct');
-        #$schedule['NewsletterUser'] = array_column($schedule_users, 'NewsletterUser');
       } 
 
       $this->controller->set('newsletters', $Newsletter->find('all', array(
@@ -605,10 +540,6 @@ class NewsletterComponent extends Component {
         'group' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text, NewsletterList.created'),
         'order' => array( 'NewsletterList.modified DESC' )
       )));
-
-      #$this->controller->set('schedule', $schedule);
-      #$this->controller->set('schedule_products', $schedule_products);
-      #$this->controller->set('schedule_users', $schedule_users);
     } catch (\Exception $e) {
       echo $e->getMessage();
     }
@@ -631,7 +562,6 @@ class NewsletterComponent extends Component {
             'alias' => 'NewsletterUser',
             'type' => 'LEFT',
             'conditions' => array('NewsletterList.id = NewsletterUser.list_id'),
-            //'fields' => array('NewsletterUser.id'),
           ),
         ),        
         'fields' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text,NewsletterList.modified, NewsletterList.enabled, NewsletterList.modified, COUNT(NewsletterUser.id) as total'),
@@ -653,12 +583,6 @@ class NewsletterComponent extends Component {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
 
-        /*$NewsletterSchedule->updateAll(array(
-          'list_id' => null,
-        ), array(
-          'list_id' => $data['id']
-        ));*/
-
         $NewsletterUser->deleteAll(array(
           'list_id' => $data['id']
         ));
@@ -678,11 +602,10 @@ class NewsletterComponent extends Component {
     
     try {
       if($this->controller->request->is('post')){
+        $this->controller->autoRender = false;
+        $this->controller->RequestHandler->respondAs('application/json');            
         $data = $this->controller->request->data;
-        $data['id'] = $data['id'] ?? NULL;
-        $data['filter'] = json_encode($data['filter']);
-        $data['enabled'] = !empty($data['enabled']) ? 1 : 0;
-
+        $data['id'] = $id ?? null;
         $redirect = array( 'action' => 'newsletters', 'lists' );
 
         $NewsletterList->save($data);
@@ -691,7 +614,13 @@ class NewsletterComponent extends Component {
           $redirect = array( 'action' => 'newsletters', 'lists', 'edit', $NewsletterList->id);
         }
 
-        return $this->controller->redirect($redirect);
+        $response = array(
+          'success' => true,
+          'message' => 'La nueva configuración se actualizó exitosamente',
+          'redirect' => Router::reverse($redirect)
+        );
+
+        return json_encode($response);
       }
 
       if(!empty($id)) {
