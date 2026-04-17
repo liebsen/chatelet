@@ -162,9 +162,15 @@ class NewsletterComponent extends Component {
 
   public function templates_delete() {
     $Newsletter = ClassRegistry::init('Newsletter');
+    $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
+        $NewsletterProduct->deleteAll(
+          array( 
+            'NewsletterProduct.newsletter_id' => $data['id'] 
+          )
+        );        
         $Newsletter->delete($data['id']);
       }
     } catch (\Exception $e) {
