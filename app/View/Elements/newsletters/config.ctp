@@ -22,76 +22,83 @@
 	          <div class="controls">
 	            <input type="text" name="data[newsletter_name]" class="form-control" placeholder="Chatelet" value="<?= @$settings['newsletter_name'] ?>"/>
 	          </div>
-	        </div>	        
-					<div class="control-group">
-						<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen de logo (256x256)'); ?></label>
-						<?php if(!empty($settings['newsletter_icon'])): ?>
-							<div class="card">
-								<div class="card-body">
-									<img src="<?= $settings['upload_url']?>/<?= $settings['newsletter_icon']?>" width="256">
+	        </div>
+	        <div class="form-box bg-info-outline">
+		      	<h4 class="sub-header">Notificaciones push</h4>
+		      	<p>Establece ícono y badge para notificaciones push.</p>	        	
+						<div class="control-group">
+							<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen de logo (PNG, 256x256px recomendado)'); ?></label>
+							<?php if(!empty($settings['newsletter_icon'])): ?>
+								<div class="card">
+									<div class="card-body">
+										<img id="newsletter_icon" src="<?= $settings['upload_url']?>/<?= $settings['newsletter_icon']?>">
+									</div>
 								</div>
+							<?php endif ?>
+							<div class="controls">
+								<input type="file" class="form-control" name="data[newsletter_icon]" value="" accept="image/png">
 							</div>
-						<?php endif ?>
-						<div class="controls">
-							<input type="file" class="form-control" name="data[newsletter_icon]" value="" accept="image/png">
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen de badge (PNG transparente, 96x96px recomendado)'); ?></label>
+							<?php if(!empty($settings['newsletter_badge'])): ?>
+								<div class="card">
+									<div class="card-body">
+										<img id="newsletter_badge" src="<?= $settings['upload_url']?>/<?= $settings['newsletter_badge']?>">
+									</div>
+								</div>
+							<?php endif ?>
+							<div class="controls">
+								<input type="file" class="form-control" name="data[newsletter_badge]" value="" accept="image/png">
+							</div>
 						</div>
 					</div>
-					<div class="control-group">
-						<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen de badge (92x92)'); ?></label>
-						<?php if(!empty($settings['newsletter_badge'])): ?>
-							<div class="card">
-								<div class="card-body">
-									<img src="<?= $settings['upload_url']?>/<?= $settings['newsletter_badge']?>" width="92">
-								</div>
+					<div class="form-box bg-success-outline">
+		      	<h4 class="sub-header">Configuración extra</h4>
+		      	<p>Establece las características generales de todos las campañas.</p>
+		        <div class="control-group">
+		          <label class="control-label" for="columns-text"><?php echo __('Logo del encabezado'); ?></label>
+							<div class="form-group">
+								<input type="checkbox" name="data[newsletter_show_header]" value="1" id="toggle_header" class="toggle-checkbox"<?=@$settings['newsletter_show_header'] == '1' ? ' checked' : '' ?>>
+								<label for="toggle_header" class="toggle-label"></label>
 							</div>
-						<?php endif ?>
-						<div class="controls">
-							<input type="file" class="form-control" name="data[newsletter_badge]" value="" accept="image/png">
-						</div>
-					</div>
-
-	        <div class="control-group">
-	          <label class="control-label" for="columns-text"><?php echo __('Agregar Aviso general'); ?></label>
-	          <div class="controls">
-	            <textarea name="data[newsletter_text]" class="form-control w-100" rows="4" placeholder="En qué te puedo ayudar?"><?= @$settings['newsletter_text'] ?></textarea>
-	          </div>
-	        <div class="control-group">
-						<label class="control-label" for="toggle-text"><?php echo __('Activar aviso general'); ?></label>
-						<div class="form-group">
-							<input type="checkbox" name="data[newsletter_text_enable]" value="1" id="toggle-text" class="toggle-checkbox"<?=@$settings['newsletter_text_enable'] == '1' ? ' checked' : '' ?>>
-							<label for="toggle-text" class="toggle-label"></label>
-						</div>
-	        </div>	          
-	          <small class="text-muted">Indica el texto que se enviará al pie con cada Newsletter. Puede ser un aviso legal o cualquier cosa que se te ocurra. Asegurate de activarlo para que se envíe correctamente.</small>
-	        </div>
-	        <div class="control-group">
-	          <label class="control-label" for="columns-text"><?php echo __('Campañas por hora'); ?></label>
-	          <div class="controls">
-	            <input type="number" max="100" min="0" name="data[newsletter_perminute]" class="form-control" placeholder="20" value="<?= @$settings['newsletter_perminute'] ?? 20 ?>"/>
-	          </div>
-	          <small class="text-muted">Cantidad máxima de campañas por minuto.</small>
-	        </div>
-	        <div class="control-group">
-	          <label class="control-label" for="columns-text"><?php echo __('Campañas por día'); ?></label>
-	          <div class="controls">
-	            <input type="number" max="5000" min="0" name="data[newsletter_perday]" class="form-control" placeholder="500" value="<?= @$settings['newsletter_perday'] ?? 500 ?>"/>
-	          </div>
-	          <small class="text-muted">Cantidad máxima de campañas por día.</small>
-	        </div>
-	        <div class="control-group">
-	          <label class="control-label" for="columns-text"><?php echo __('Logo del encabezado'); ?></label>
-						<div class="form-group">
-							<input type="checkbox" name="data[newsletter_show_header]" value="1" id="toggle_header" class="toggle-checkbox"<?=@$settings['newsletter_show_header'] == '1' ? ' checked' : '' ?>>
-							<label for="toggle_header" class="toggle-label"></label>
-						</div>
-	        </div>
-	        <div class="control-group">
-	          <label class="control-label" for="columns-text"><?php echo __('Redes sociales'); ?></label>
-						<div class="form-group">
-							<input type="checkbox" name="data[newsletter_show_social]" value="1" id="toggle_social" class="toggle-checkbox"<?=@$settings['newsletter_show_social'] == '1' ? ' checked' : '' ?>>
-							<label for="toggle_social" class="toggle-label"></label>
-						</div>
-	        </div>
+		        </div>
+		        <div class="control-group">
+		          <label class="control-label" for="columns-text"><?php echo __('Redes sociales'); ?></label>
+							<div class="form-group">
+								<input type="checkbox" name="data[newsletter_show_social]" value="1" id="toggle_social" class="toggle-checkbox"<?=@$settings['newsletter_show_social'] == '1' ? ' checked' : '' ?>>
+								<label for="toggle_social" class="toggle-label"></label>
+							</div>
+		        </div>
+		        <div class="control-group">
+			        <div class="control-group">
+								<label class="control-label" for="toggle-text"><?php echo __('Activar aviso general'); ?></label>
+								<div class="form-group">
+									<input type="checkbox" name="data[newsletter_text_enable]" value="1" id="toggle-text" class="toggle-checkbox toggle-block" data-block=".newslettertext"<?=@$settings['newsletter_text_enable'] == '1' ? ' checked' : '' ?>>
+									<label for="toggle-text" class="toggle-label"></label>
+								</div>
+			        </div>
+		          <div class="controls newslettertext<?=@$settings['newsletter_text_enable'] == '1' ? '' : ' d-disable'?>">
+		          	<label class="control-label" for="toggle-text"><?php echo __('Aviso general'); ?></label>
+		            <textarea name="data[newsletter_text]" class="form-control w-100" rows="4" placeholder="En qué te puedo ayudar?"><?= @$settings['newsletter_text'] ?></textarea>
+		          </div>
+		          <small class="text-muted">Indica el texto que se enviará al pie con cada Newsletter. Puede ser un aviso legal o cualquier cosa que se te ocurra. Asegurate de activarlo para que se envíe correctamente.</small>
+		        </div>
+		        <div class="control-group">
+		          <label class="control-label" for="columns-text"><?php echo __('Campañas por hora'); ?></label>
+		          <div class="controls">
+		            <input type="number" max="100" min="0" name="data[newsletter_perminute]" class="form-control" placeholder="20" value="<?= @$settings['newsletter_perminute'] ?? 20 ?>"/>
+		          </div>
+		          <small class="text-muted">Cantidad máxima de campañas por minuto.</small>
+		        </div>
+		        <div class="control-group">
+		          <label class="control-label" for="columns-text"><?php echo __('Campañas por día'); ?></label>
+		          <div class="controls">
+		            <input type="number" max="5000" min="0" name="data[newsletter_perday]" class="form-control" placeholder="500" value="<?= @$settings['newsletter_perday'] ?? 500 ?>"/>
+		          </div>
+		          <small class="text-muted">Cantidad máxima de campañas por día.</small>
+		        </div>
+		      </div>
 				</div>
       </div>
       <div class="col-md-6">

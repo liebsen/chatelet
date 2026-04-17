@@ -340,6 +340,8 @@ class NewsletterShell extends AppShell {
       $payload['image'] = $image;
     }
 
+    var_dump(array('payload' => $payload));
+
     $push = array(
       'subscription' => Subscription::create( 
         json_decode($push['Webpush']['payload'], true) 

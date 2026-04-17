@@ -17,8 +17,14 @@ function getFormData(form) {
 
 $(document).ready(function() {
   $('input, select, textarea').change(function(e) {
-    $(this).data('change', true)
-    if($(this).attr('type') == 'file') {
+    const elem = e.target
+    $(elem).data('change', true)
+    if($(elem).attr('type') == 'file') {
+      const matches = $(elem).attr('name').match(/\[(.*?)\]/)
+      if(matches[1]) {
+        const tempUrl = URL.createObjectURL(elem.files[0])
+        $(`#${matches[1]}`).attr('src', tempUrl);
+      }
       if (confirm("¿Deseas cargar este archivo ahora?")) {
         setTimeout(function(){
           $(this).data('change', false)
@@ -33,7 +39,7 @@ $(document).ready(function() {
               $.growl.notice({
                 title: 'OK',
                 message: res.message
-              });              
+              });
             },
             error: function(xhr, status, error) {
               $.growl.error({
