@@ -1,5 +1,15 @@
 <?php
 
+function word_limit($str, $at=5) {
+  $parts = array_filter(array_values(explode(' ', $str)));
+  if(count($parts) <= $at) {
+    return implode(' ', $parts);
+  }
+  $keeps = array_slice($parts,0,$at);
+  array_push($keeps, '...');
+  return implode(' ', $keeps);
+}
+
 function extract_jpeg_url($html) {
   preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $html, $matches);
   return $matches['src'] ?? 'images/isologo-w.png';

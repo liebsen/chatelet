@@ -13,6 +13,24 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   display: none;
 }
 
+@media (min-width: 1366px) {
+  .mobile {
+    display: none!important;
+  }
+  .desktop {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 1366px) {
+  .mobile {
+    display: inline-block;
+  }
+  .desktop {
+    display: none!important;
+  }
+}
+
 .d-disable {
   opacity: 0.5;
   pointer-events: none;
@@ -598,12 +616,6 @@ background-color: #e8ffa8!important;
 }
 
 @media (min-width: 991px) {
-  .mobile {
-    display: none!important;
-  }
-  .desktop {
-    display: inline-block;
-  }
   .form-box {
       border-radius: 0.75rem;
   }
@@ -3601,12 +3613,6 @@ opacity: 1;
 
 /* Mobile up to landscape tablet */
 @media (max-width: 991px) {
-  .mobile {
-    display: inline-block;
-  }
-  .desktop {
-    display: none!important;
-  }
   #primary-nav > ul {
       display: flex;
       flex-wrap: wrap;
