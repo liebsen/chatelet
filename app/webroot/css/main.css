@@ -2062,6 +2062,7 @@ pre, code {
 
 .form-box.fs{
   position: fixed;
+  background-color: #f8f8f8;
   padding: 1rem;
   z-index: 1000;
   top: 0;
