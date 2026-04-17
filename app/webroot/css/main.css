@@ -2290,6 +2290,11 @@ a.text-black:focus {
   background-color: #2196f3;
   border-color: #2196f3;
 }
+
+.btn-sm {
+  line-height: 2;
+}
+
 .btn-group {
   display: flex;
   flex-wrap: nowrap;
@@ -2850,7 +2855,8 @@ background-color: #fff!important;
 
 .card {
   border-radius: 1rem;
-  border: 2px solid #e7e7e7;
+  background-color: #fbfbfb;
+  border: 1px solid #e7e7e7;
   color: #888;
 }
 
@@ -2859,7 +2865,10 @@ background-color: #fff!important;
 }
 
 .card-img {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   padding: 0.5rem;
   background-color: #e7e7e7;
   border-radius: 0.5rem;

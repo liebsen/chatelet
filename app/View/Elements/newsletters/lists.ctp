@@ -13,45 +13,48 @@
 							class="card-img"
 							title="<?=$list['NewsletterList']['text']?>">
 						<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'info'?>"><?=$list['NewsletterList']['name']?></span>
+						<span class="badge">#<?=$list['NewsletterList']['id']?></span>
+						<span class="badge"><?=\readable_time_ago(strtotime($list['NewsletterList']['modified'])) ?></span>
 					</a>
 					<div class="card-text">
-						<span class="badge badge-<?=!empty($list[0]['total']) ? 'success' : 'danger'?> is-rounded">
+						<span>
+							<i class="gi gi-woman fa-lg"></i> <span>Audiencia</span>
+							<span class="badge badge-<?=!empty($list[0]['total']) ? '-success' : '-danger'?>">
 								<?=!empty($list[0]['total']) ? $list[0]['total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
+							</span>
 						</span>
-						<span class="badge"><?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y %H:%M')?></span>
-						<span class="badge"><?=\readable_time_ago(strtotime($list['NewsletterList']['modified'])) ?></span>
-						<div class="d-flex flex-center flex-nowrap gap-05">          
-							<a 
-								href="<?=$this->Html->url(
-									array(
-										'action' => 'newsletters', 
-										'schedules', 
-										'edit', 
-										'?' => array(
-											'newsletter_id' => $list['Newsletter']['id']
-										)
+					</div>
+					<div class="d-flex flex-column flex-center flex-nowrap gap-05">          
+						<a 
+							href="<?=$this->Html->url(
+								array(
+									'action' => 'newsletters', 
+									'schedules', 
+									'edit', 
+									'?' => array(
+										'newsletter_id' => $list['Newsletter']['id']
 									)
-								)?>"
-								data-toggle="tooltip" 
-								title="Programar envío" 
-								class="btn btn-success" 
+								)
+							)?>"
+							data-toggle="tooltip" 
+							title="Programar envío" 
+							class="btn btn-sm btn-success" 
+						>
+							<i class="gi gi-send"></i>
+						</a>
+						<a 
+							href="#" 
+							data-toggle="tooltip" 
+							title="" 
+							class="btn btn-sm btn-danger deletebutton" 
+							data-original-title="Eliminar" 
+							data-id="<?=$list['NewsletterList']['id']?>" 
+							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'lists'))?>" 
+							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'delete'))?>" 
+							data-msg="<?=__('¿Eliminar Lista?')?>"                   
 							>
-								<i class="gi gi-send"></i>
-							</a>
-							<a 
-								href="#" 
-								data-toggle="tooltip" 
-								title="" 
-								class="btn btn-danger deletebutton" 
-								data-original-title="Eliminar" 
-								data-id="<?=$list['NewsletterList']['id']?>" 
-								data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'lists'))?>" 
-								data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'delete'))?>" 
-								data-msg="<?=__('¿Eliminar Lista?')?>"                   
-								>
-								<i class="fa fa-trash-o"></i>
-							</a>
-						</div>
+							<i class="fa fa-trash-o"></i>
+						</a>
 					</div>
 				</div>
 			</div>

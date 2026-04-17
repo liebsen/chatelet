@@ -13,25 +13,26 @@
 						style="background-image: url('<?=\extract_jpeg_url($newsletter['Newsletter']['body'])?>')"
 						title="Editar plantilla">
 							<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'info'?>"><?=\word_limit($newsletter['Newsletter']['title'])?></span>
+							<span class="badge"> 
+								#<?=$newsletter['Newsletter']['id']?>
+							</span>
+							<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
 					</a>
 					<div class="card-text">
 						<span>
-							<i class="gi gi-envelope fa-lg"></i>
+							<i class="gi gi-envelope fa-lg"></i> <span>Email</span>
 							<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_email'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>
 						</span>
 						<span>
-							<i class="gi gi-chat fa-lg"></i>
+							<i class="gi gi-chat fa-lg"></i> <span>Push</span>
 							<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_push'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>
 						</span>
 						<span>
 							<i class="gi gi-shirt fa-lg"></i>
 							<span class="badge badge-success is-rounded"><?=count($newsletter['NewsletterProduct'])?></span>
 						</span>
-						<span class="badge"> 
-							<?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?>
-						</span>
-						<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
-						<div class="d-flex flex-center flex-nowrap gap-05">     
+					</div>
+						<div class="d-flex flex-column flex-center flex-nowrap gap-05">     
 							<a 
 								href="<?=$this->Html->url(
 									array(
@@ -43,7 +44,7 @@
 								)?>"
 								data-toggle="tooltip" 
 								title="Editar contenido" 
-								class="btn btn-info"><i class="gi gi-font"></i>
+								class="btn btn-sm btn-info"><i class="gi gi-font"></i>
 							</a>
 							<a 
 								href="<?=$this->Html->url(array(
@@ -56,7 +57,7 @@
 								))?>" 
 								data-toggle="tooltip" 
 								title="Programar envío" 
-								class="btn btn-success" 
+								class="btn btn-sm btn-success" 
 							>
 								<i class="gi gi-send"></i>
 							</a>
@@ -70,7 +71,7 @@
 								)?>" 
 								data-toggle="tooltip" 
 								title="Previsualizar" 
-								class="btn btn-warning"
+								class="btn btn-sm btn-warning"
 								target="_blank" 
 							>
 								<i class="fa fa-eye"></i>
@@ -79,7 +80,7 @@
 								href="#" 
 								data-toggle="tooltip" 
 								title="" 
-								class="btn btn-danger deletebutton" 
+								class="btn btn-sm btn-danger deletebutton" 
 								data-original-title="Eliminar" 
 								data-id="<?=$newsletter['Newsletter']['id']?>" 
 								data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'templates'))?>" 
@@ -89,7 +90,6 @@
 								<i class="fa fa-trash-o"></i>
 							</a>
 						</div>
-					</div>
 				</div>
 			</div>
 <?php endforeach ?>

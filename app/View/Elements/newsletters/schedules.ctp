@@ -13,14 +13,13 @@
 						class="card-img"
 						style="background-image: url('<?=\extract_jpeg_url($schedule['Newsletter']['body'])?>')"
 						title="Editar campaña">
-						<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['Newsletter']['title']?>
+						<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?>
 						</span>
+						<span class="badge">#<?=$schedule['NewsletterSchedule']['id']?></span>
+						<span class="badge"><?=\readable_time_ago(strtotime($schedule['NewsletterSchedule']['modified'])) ?></span>
 					</a>
 					<div class="card-text">
-						<span class="badge badge-<?=$schedule['rowclass']?>">
-							<span class="status"><?=$schedule['status']?></span>
-						</span>
-						<span class="badge badge-success">
+						<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?>">
 							<i class="fa fa-image mr-1"></i> <?=$schedule['Newsletter']['title']?>
 						</span>
 						<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?> is-rounded">
@@ -28,64 +27,80 @@
 						</span>
 						<span class="badge badge-info"><i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?></span>
 						<span class="badge badge-<?=!empty($schedule[0]['list_total']) ? 'info' : 'danger'?> is-rounded">
-							<?=!empty($schedule[0]['list_total']) ? $schedule[0]['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?></span>
-						<div class="d-flex flex-center flex-nowrap gap-05">
-							<a 
-								href="<?=$this->Html->url(
-									array(
-										'action' => 'newsletters', 
-										'templates', 
-										'edit', 
-										$schedule['Newsletter']['id'],
-										'#' => 'editor',
-									)
-								)?>"
-								data-toggle="tooltip" 
-								title="Editar contenido" 
-								class="btn btn-info"><i class="gi gi-font"></i>
-							</a>
-					    <a href="<?=$this->Html->url(
-					        array(
-					          'controller' => 'newsletter', 
-					          'action' => 'template',
-					          $schedule['Newsletter']['id']
-					        )
-					      )?>"
-					      class="btn btn-warning" 
-					      title="Previsualizar plantilla"
-					      target="_blank">
-					      <i class="fa fa-eye"></i> 
-					    </a>							
-							<a 
-								href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
-								data-toggle="tooltip" 
-								title="Editar plantilla" 
-								class="btn btn-warning" 
+							<i class="gi gi-woman"></i> <?=!empty($schedule[0]['list_total']) ? $schedule[0]['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?></span>
+
+						<?php if(!empty($schedule['Newsletter']['send_email'])):?>
+						<span class="badge badge-success is-rounded" title="Emails enviados">
+							<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
+						</span> 
+						<?php endif ?>
+						<?php if(!empty($schedule['Newsletter']['send_push'])):?>
+						<span class="badge badge-warning is-rounded" title="Push enviados">
+							<i class="gi gi-chat"></i>
+							<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
+						</span>
+						<?php endif ?>
+						<span class="badge badge-info is-rounded" title="Interacciones">
+							<i class="gi gi-fire"></i>
+							<span class="clicks"><?=$schedule['stats']['clicks']?></span>
+						</span>
+					</div>
+					<div class="d-flex flex-column flex-center flex-nowrap gap-05">
+						<a 
+							href="<?=$this->Html->url(
+								array(
+									'action' => 'newsletters', 
+									'templates', 
+									'edit', 
+									$schedule['Newsletter']['id'],
+									'#' => 'editor',
+								)
+							)?>"
+							data-toggle="tooltip" 
+							title="Editar contenido" 
+							class="btn btn-sm btn-info"><i class="gi gi-font"></i>
+						</a>
+				    <a href="<?=$this->Html->url(
+				        array(
+				          'controller' => 'newsletter', 
+				          'action' => 'template',
+				          $schedule['Newsletter']['id']
+				        )
+				      )?>"
+				      class="btn btn-sm btn-warning" 
+				      title="Previsualizar plantilla"
+				      target="_blank">
+				      <i class="fa fa-eye"></i> 
+				    </a>							
+						<a 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
+							data-toggle="tooltip" 
+							title="Editar plantilla" 
+							class="btn btn-sm btn-warning" 
+						>
+							<i class="gi gi-picture"></i>
+						</a>
+						<a 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
+							data-toggle="tooltip" 
+							title="Editar lista" 
+							class="btn btn-sm btn-info" 
+						>
+							<i class="gi gi-list"></i>
+						</a>						
+						<a 
+							href="#" 
+							data-toggle="tooltip" 
+							title="" 
+							class="btn btn-sm btn-danger deletebutton" 
+							data-original-title="Eliminar" 
+							data-id="<?=$schedule['NewsletterSchedule']['id']?>" 
+							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'schedules'))?>" 
+							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'delete'))?>" 
+							data-msg="<?=__('¿Eliminar Campaña?')?>"                   
 							>
-								<i class="gi gi-picture"></i>
-							</a>
-							<a 
-								href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
-								data-toggle="tooltip" 
-								title="Editar lista" 
-								class="btn btn-info" 
-							>
-								<i class="gi gi-list"></i>
-							</a>						
-							<a 
-								href="#" 
-								data-toggle="tooltip" 
-								title="" 
-								class="btn btn-danger deletebutton" 
-								data-original-title="Eliminar" 
-								data-id="<?=$schedule['NewsletterSchedule']['id']?>" 
-								data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'schedules'))?>" 
-								data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'delete'))?>" 
-								data-msg="<?=__('¿Eliminar Campaña?')?>"                   
-								>
-								<i class="fa fa-trash-o"></i>
-							</a>
-						</div>
+							<i class="fa fa-trash-o"></i>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -129,7 +144,7 @@
 					<td>
 						<span class="badge badge-info"><?=$schedule['NewsletterList']['name']?></span>
 						<span class="badge badge-<?=!empty($schedule[0]['list_total']) ? 'info' : 'danger'?> is-rounded">
-							<?=!empty($schedule[0]['list_total']) ? $schedule[0]['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
+							<i class="gi gi-woman"></i> <?=!empty($schedule[0]['list_total']) ? $schedule[0]['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
 							</span>
 					</td>
 					<td>
@@ -145,7 +160,7 @@
 						</span>
 						<?php endif ?>
 						<span class="badge badge-info is-rounded" title="Interacciones">
-							<i class="gi gi-user"></i>
+							<i class="gi gi-fire"></i>
 							<span class="clicks"><?=$schedule['stats']['clicks']?></span>
 						</span>
 					</td>
