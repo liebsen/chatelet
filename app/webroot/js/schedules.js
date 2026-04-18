@@ -74,11 +74,11 @@ function updateSchedules(){
           queue: true,
         });
       }
-      $.growl.notice({
+      /*$.growl.notice({
         title: 'Sin novedades',
         message: `No se actualizaron campañas`,
         queue: true,
-      });      
+      });*/      
     },
     error: function (xhr, error) {
       console.log("Error(xhr):"+xhr)
