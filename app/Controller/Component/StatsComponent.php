@@ -50,7 +50,19 @@ class StatsComponent extends Component {
       }
     }
 
+    $words = $Stat->find('all',array(
+      'conditions' => array(
+        'tag' => 'page-search',
+        'JSON_EXTRACT(Stat.context, "$.query") IS NOT NULL',
+      ),
+      'fields' => array('COUNT(JSON_EXTRACT(LOWER(Stat.context), "$.query")) AS count, JSON_UNQUOTE(JSON_EXTRACT(LOWER(Stat.context), "$.query")) AS query'),
+      'group' => array('JSON_EXTRACT(LOWER(Stat.context), "$.query")'),
+      'order' => array('count DESC'),
+      'limit' => 500,
+    ));
+
     $this->controller->set('items', $items);    
+    $this->controller->set('words', $words);    
   }
 
   public function cart() {

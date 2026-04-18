@@ -2858,6 +2858,11 @@ background-color: #fff!important;
   color: #888;
 }
 
+.card-auto {
+  flex: 1;
+  flex-basis: fit-content;
+}
+
 .card-body {
   padding: 1rem;
 }
@@ -2873,8 +2878,8 @@ background-color: #fff!important;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  width: 10rem;
-  height: 15rem;
+  width: 8rem;
+  height: 12rem;
   background-image: url(images/isologo-w.png);
 }
 

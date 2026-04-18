@@ -150,9 +150,13 @@
     </div>
   </div>
   <div class="form-actions">
-    <a href="
-
-    " class="btn btn-info">
+    <a href="<?=$this->Html->url(
+      array(
+        'controller' => 'admin',
+        'action' => 'newsletters',
+        'lists'
+      )
+    )?>" class="btn btn-info">
       <i class="fa fa-chevron-left mr-1"></i> Atrás
     </a>
     <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>

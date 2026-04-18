@@ -1,4 +1,5 @@
 <?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
+<?php echo $this->Html->script('cloud-tags', array('inline' => false)); ?>
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 	<table id="example-datatables" class="table table-bordered table-hover">
@@ -35,3 +36,9 @@
 			<?php endforeach ?>
 		</tbody>
 	</table>
+
+	<div class="form-box bg-info-outline cloud-tag-group p-4 min-10">
+		<?php foreach($words as $word):?>
+			<span class="badge cloud-tag"><?=$word[0]['query']?>(<span><?=$word[0]['count']?></span>)</span>
+		<?php endforeach ?>
+	</div>

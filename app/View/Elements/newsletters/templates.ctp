@@ -4,7 +4,7 @@
 	<div class="mobile">
 		<div class="d-flex flex-wrap justify-content-center align-items-left gap-05">
 <?php foreach ($newsletters as $key => $newsletter): ?>
-			<div class="card">
+			<div class="card card-auto">
 				<div class="card-body d-flex flex-wrap gap-1 w-auto">
 					<a 
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>" 

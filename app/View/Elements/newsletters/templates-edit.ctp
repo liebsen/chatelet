@@ -202,7 +202,13 @@
     </div>
   </div>
   <div class="form-actions">
-    <a href="javascript:history.go(-1)" class="btn btn-info">
+    <a href="<?=$this->Html->url(
+      array(
+        'controller' => 'admin',
+        'action' => 'newsletters',
+        'templates'
+      )
+    )?>" class="btn btn-info">
       <i class="fa fa-chevron-left"></i> 
       <span class="ml-1">Atrás</span>
     </a>
