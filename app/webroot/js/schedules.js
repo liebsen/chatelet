@@ -20,9 +20,11 @@ $(document).ready(function() {
 })
 
 function updateSchedules(){
+  const data = 
   $.ajax({
     type: "POST",
     url: "/admin/schedules_update",
+    data: data,
     success: function (res) {
       if(res.results.length) {
         $.each(res.results, function(key, item) {
@@ -36,7 +38,7 @@ function updateSchedules(){
         })
         return $.growl.notice({
           title: 'Atención',
-          message: `Se ha${res.results.length > 1 ? 'n':''} actualizado ${res.results.length} campaña ${res.results.length > 1 ? 's':''}`,
+          message: `Se ha${res.results.length > 1 ? 'n':''} actualizado ${res.results.length} campaña${res.results.length > 1 ? 's':''}`,
           queue: true,
         });
       }
