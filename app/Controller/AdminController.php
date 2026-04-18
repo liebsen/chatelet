@@ -2746,14 +2746,20 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$data = $this->request->data;
 		$schedules = $this->Newsletter->schedules();
 		$partials = array(
+			'email_sent',
+			'push_sent',
 			'email_total',
 			'push_total',
 			'clicks'
 		);
 		$change = array();
+		\d("a(0)",$data);
+
 		foreach($schedules as $i => $schedule) {
 			$schedules[$i]['change'] = array();
 			foreach($partials as $partial) {
+				\d("a(1)",$data[$schedule['NewsletterSchedule']['id']][$partial]);
+				\d("a(2)",$schedule['stats'][$partial]);
 				if(
 					!empty($data[$schedule['NewsletterSchedule']['id']][$partial]) && 
 					(int) $schedule['stats'][$partial] != $data[$schedule['NewsletterSchedule']['id']][$partial]

@@ -2866,8 +2866,9 @@ header.navbar .navbar-brand {
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
 color: #888!important;
-border: none;
+border-color: #e7e7e7;
 margin: 0 0.5rem;
+border-radius: 0.75rem;
 background-color: #fff!important;
 }
 /*

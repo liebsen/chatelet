@@ -1,4 +1,10 @@
-const update_partials = ['email_total', 'push_total', 'clicks']
+const update_partials = [
+  'email_sent', 
+  'push_sent', 
+  'email_total', 
+  'push_total', 
+  'clicks'
+]
 
 $(document).ready(function() {
   let clock = 0
@@ -24,18 +30,23 @@ $(document).ready(function() {
 function updateSchedules(){
   var data = {}
   $('.schedule-rt').each(function(i,e){
-    data[$(e).data('id')] = {}
+    const id = $(e).data('id')
     for(var i in update_partials) {
       const j = update_partials[i]
-      data[$(e).data('id')][j] = $(e).find(`.${j}`).text()
+      const target = $(e).find(`.${j}`)
+      const value = parseInt(target.text()) || 0
+      if(!data[id]) {
+        data[id] = {}
+      }
+      data[id][j] = value
     }
   })
+
   $.ajax({
     type: "POST",
     url: "/admin/schedules_update",
     data: data,
     success: function (res) {
-      console.log('res.change',res.change)
       if(res.results.length && res.change > 0) {
         $.each(res.results, function(key, item) {
           const target = $(`.schedules-${item.NewsletterSchedule.id}`)

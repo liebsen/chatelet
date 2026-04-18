@@ -119,50 +119,49 @@ function parsed_socials($settings){
 }
 
 function readable_time_ago($timestamp, $short = false) {
-    $current_time = time();
-    $asc = $current_time > $timestamp;
-    $prep =  $asc ? 'hace' : 'en';
-    $skipprep = false;
-    $diff = abs($current_time - $timestamp);
-    $weekdays = array(
-      'Domingo',
-      'Lunes',
-      'Martes',
-      'Miércoles',
-      'Jueves', 
-      'Viernes',
-      'Sábado'
-    );
-    $span = "";
-    if ($diff < 60) {
-      $span = $diff == 1 ? "1s" : $diff . "s";
-    } elseif ($diff < (3600 - 60)) {
-      $minutes = round($diff / 60);
-      $span = $minutes == 1 ? "1m" : $minutes . "m";
-    } elseif ($diff < (86400 - 3600)) {
-      $hours = round($diff / 3600);
-      $span = $hours == 1 ? "1h" : $hours . "h";
-    } elseif ($diff < 2592000) { // 30 days
-      $days = round($diff / 86400);
-      $span = $days == 1 ? "1d" : $days . "d";
-      $skipprep = true;
-      if($days == 1) {
-        $span = $asc ? "ayer" : 'mañana';
-      } else if($days < 6) {
-        $span = $weekdays[date('w', $timestamp)];
-      }
-    } elseif ($diff < 31536000) { // 365 days
-      $months = round($diff / 2592000);
-      $span = $months == 1 ? "1me" : $months . "me";
-    } else {
-      $years = round($diff / 31536000);
-      $span = $years == 1 ? "1a" : $years . "a";
+  $current_time = time();
+  $asc = $current_time > $timestamp;
+  $prep =  $asc ? 'hace' : 'en';
+  $skipprep = false;
+  $diff = abs($current_time - $timestamp);
+  $weekdays = array(
+    'Domingo',
+    'Lunes',
+    'Martes',
+    'Miércoles',
+    'Jueves', 
+    'Viernes',
+    'Sábado'
+  );
+  $span = "";
+  if ($diff < 60) {
+    $span = $diff == 1 ? "1s" : $diff . "s";
+  } elseif ($diff < (3600 - 60)) {
+    $minutes = round($diff / 60);
+    $span = $minutes == 1 ? "1m" : $minutes . "m";
+  } elseif ($diff < (86400 - 3600)) {
+    $hours = round($diff / 3600);
+    $span = $hours == 1 ? "1h" : $hours . "h";
+  } elseif ($diff < 2592000) { // 30 days
+    $days = round($diff / 86400);
+    $span = $days == 1 ? "1d" : $days . "d";
+    $skipprep = true;
+    if($days == 1) {
+      $span = $asc ? "ayer" : 'mañana';
+    } else if($days < 6) {
+      $span = $weekdays[date('w', $timestamp)];
     }
-
-    if($short) {
-      return $span;
-    }
-    return (!$skipprep ? $prep : '') . ' ' . $span;
+  } elseif ($diff < 31536000) { // 365 days
+    $months = round($diff / 2592000);
+    $span = $months == 1 ? "1me" : $months . "me";
+  } else {
+    $years = round($diff / 31536000);
+    $span = $years == 1 ? "1a" : $years . "a";
+  }
+  if($short) {
+    return $span;
+  }
+  return (!$skipprep ? $prep : '') . ' ' . $span;
 }
 
 function starts_with($haystack, $needle) {
