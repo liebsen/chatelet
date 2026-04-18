@@ -3244,6 +3244,7 @@ background-color: #45a049; /* Darker green on hover */
   position: relative;
   cursor: pointer;
   transition: background-color 0.4s; /* Smooth color transition */
+  background-color: #e7e7e7;
 }
 
 .toggle-label:after {
