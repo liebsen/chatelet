@@ -8,7 +8,7 @@
 <?php if($viewComponent != 'index'):?>
 <?php echo $this->element('admin/menu'); ?>
 <?php endif ?>
-	      <div class="tab-content<?=$viewComponent == 'index'?' bg-light':''?>">
+	      <div class="tab-content">
 					<div class="tab-pane pane-<?= $pane ?> active">
 <?php echo $this->element('newsletters/' . $viewComponent) ?>
 					</div>

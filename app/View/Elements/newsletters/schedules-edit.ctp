@@ -26,6 +26,7 @@
           <label for="toggle" class="toggle-label"></label>
         </div>
       </div>
+      <small>La tarea programada de Newsletters se ejecuta una vez por minuto en el servidor</small>
       <!--h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4-->
       <h4 class="sub-header"><span class="pl-1">Implementar componentes</span></h4>
       <p>Elige al menos una plantilla y una lista para esta Campaña</p>
@@ -51,7 +52,7 @@
     <div class="col-md-6">
       <div class="form-box bg-success-outline">
         <h4 class="sub-header"><i class="gi gi-stopwatch"></i> <span class="ml-1">Programar fecha de envío</span></h4>
-        <p>Establece la fecha y/o hora del envío para este Envío</p>
+        <p>Establece la fecha y/o hora para la ejecución de esta camapaña</p>
         <div class="control-group">
           <label class="control-label" for="title">Programar fecha/hora</label>
           <div class="controls d-flex flex-center gap-05">

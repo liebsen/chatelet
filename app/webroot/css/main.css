@@ -9,6 +9,79 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   text-transform: uppercase;
 }
 
+@media (prefers-color-scheme: dark) {
+  ::placeholder {
+    color: #888!important;
+  }
+  html, body, .menu, .menu-items a, .menu-bg, .swal-modal, .swal-footer, .swal-title, .swal-text {
+    background-color: #333!important;
+    color: #f8f8f8!important;
+  }
+  h1, 
+  h2, 
+  h3, 
+  h4, 
+  h5, 
+  h6, 
+  p,
+  a,
+  li {
+    color: #888!important;
+    &:hover {
+      color: #666;
+    }
+  }
+  .label,
+  .tab-content {
+    &:not(.scheme-preserve) {
+      color: #f8f8f8;
+      &:hover {
+        color: #888;
+      }
+    }
+  }
+  blockquote,
+  .btn,
+  .select select, 
+  .toggle-label,
+  .block-tabs > .nav-tabs > li > a, 
+  .pagination > .disabled > a, 
+  .table-striped > tbody > tr:nth-of-type(odd),
+  .switch-scale, 
+  .list-group-item,
+  .form-control,
+  .card,
+  .box {
+    color: #f8f8f8;
+    &:not(.bg-transparent) {
+      background-color: #444;
+      border-color: #666;      
+    }
+    &:not(.is-danger) {
+      &:not(.is-warning) {
+        &:not(.is-success) {
+          &:not(.is-info) {
+            &:not(.is-text) {
+              &:not([class*="has-background-"]) {
+                background-color: #444;
+                border-color: #666;
+                &:hover {
+                  background-color: #444;
+                  color: #999!important;
+                }                  
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .btn.is-text:hover, .btn.is-text.is-hovered, .btn.is-text:focus, .btn.is-text.is-focused {
+    background-color: #444;
+    color: #999!important;    
+  }
+}
+
 .mobile, .desktop {
   display: none;
 }
@@ -192,12 +265,10 @@ body {
 
 #pre-page-content {
   padding: 20px;
-  background-color: #f9f9f9;
 }
 
 #page-content {
   padding-top: 1rem;
-  background-color: #f9f9f9;
   position: relative;
   z-index: 10;
 }
@@ -498,7 +569,6 @@ background-color: #e8ffa8!important;
   list-style: none;
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
 }
 
 #primary-nav > ul > li > a {
@@ -645,7 +715,6 @@ background-color: #e8ffa8!important;
       z-index: 10;
       left: 0;
       transition: 0.25s all 0.25s ease-in;
-      background-color: #f9f9f9;
   }
   #pre-page-content, #page-content, #page-content + footer {
       /* border-left: 1px solid #333;*/
@@ -943,7 +1012,6 @@ background-color: #e8ffa8!important;
 
 .sidebar-tabs-con .tab-content {
   /*background-color: #595959;*/
-  background-color: #f9f9f9;
   padding: 10px 10px 10px 0;
   margin: 0;
   border: none;
@@ -2073,6 +2141,7 @@ pre, code {
 .form-box.fs{
   position: fixed;
   background-color: #f8f8f8;
+  border: none!important;
   padding: 1rem;
   z-index: 1000;
   top: 0;
@@ -2735,8 +2804,6 @@ header.navbar .navbar-brand {
 .tab-content {
   border-top: none;
   padding: 15px;
-  background-color: #fff;
-  /*min-height: calc(70vh);*/
 }
 
 .tab-pane:not(#side-tab-menu) {
