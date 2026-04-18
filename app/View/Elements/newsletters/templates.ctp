@@ -12,13 +12,13 @@
 						class="card-img"
 						style="background-image: url('<?=\extract_jpeg_url($newsletter['Newsletter']['body'])?>')"
 						title="Editar plantilla">
-							<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'info'?>"><?=\word_limit($newsletter['Newsletter']['title'])?></span>
 							<span class="badge"> 
 								#<?=$newsletter['Newsletter']['id']?>
 							</span>
 							<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
 					</a>
 					<div class="card-text">
+						<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'info'?>"><?=\word_limit($newsletter['Newsletter']['title'])?></span>
 						<span>
 							<i class="gi gi-envelope fa-lg"></i> <span>Email</span>
 							<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_email'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>

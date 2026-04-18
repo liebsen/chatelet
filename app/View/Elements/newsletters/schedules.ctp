@@ -13,12 +13,12 @@
 						class="card-img"
 						style="background-image: url('<?=\extract_jpeg_url($schedule['Newsletter']['body'])?>')"
 						title="Editar campaña">
-						<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?>
-						</span>
 						<span class="badge">#<?=$schedule['NewsletterSchedule']['id']?></span>
 						<span class="badge"><?=\readable_time_ago(strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')) ?> </span></span>
 					</a>
 					<div class="card-text">
+						<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?>
+						</span>
 						<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?>">
 							<i class="fa fa-image mr-1"></i> <?=$schedule['Newsletter']['title']?>
 						</span>
