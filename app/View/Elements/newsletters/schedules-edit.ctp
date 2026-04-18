@@ -17,8 +17,8 @@
   <input type="hidden" name="data[id]" value="<?= $schedule['NewsletterSchedule']['id'] ?? 0 ?>"/>
   <div class="row">
     <div class="col-md-6">
-      <h4 class="sub-header">Configuración</h4>
-      <p>Establece plantilla y lista para esta Campaña</p>
+      <h4 class="sub-header"><span class="">Activar campaña</span></h4>
+      <p>Indica si se debe agregar a la tarea programada y ejecturase</p>
       <div class="form-group flex-end flex-between gap-05">
         <div class="controls flex-1">
           <label class="control-label" for="toggle">Activo</label>
@@ -27,6 +27,8 @@
         </div>
       </div>
       <!--h4 class="sub-header"><?=$schedule['Newsletter']['name'] ?? 'Crea un nuevo Schedule'?></h4-->
+      <h4 class="sub-header"><span class="pl-1">Implementar componentes</span></h4>
+      <p>Elige al menos una plantilla y una lista para esta Campaña</p>
       <div class="d-flex flex-column justify-content-center align-items-center gap-1 mb-4">
         <div class="controls">
           <label class="control-label" for="title"><i class="gi gi-picture mr-1"></i> Plantilla</label>
@@ -48,7 +50,7 @@
     </div>
     <div class="col-md-6">
       <div class="form-box bg-info-outline">
-        <h4 class="sub-header">Programar fecha de envío</h4>
+        <h4 class="sub-header"><i class="gi gi-stopwatch"></i> <span class="ml-1">Programar fecha de envío</span></h4>
         <p>Establece la fecha y/o hora del envío para este Envío</p>
         <div class="control-group">
           <label class="control-label" for="title">Programar fecha/hora</label>

@@ -46,7 +46,7 @@
         <div class="controls">
           <input type="text" id="title" name="data[name]" class="form-control" placeholder="Título de la lista" value="<?=$list['NewsletterList']['name']?>" required />
         </div>
-        <small class="text-muted">Es el nombre con que identificas esta lista. <i class="fa fa-question-circle">Ej: Cumpleaños Abril, Compras Mayo, etc...</i></small>
+        <small class="text-muted">Es el nombre con que identificas esta lista. <i class="gi gi-lightbulb"></i> <span class="text-theme text-italic pl-1">Cumpleaños Abril, Compras Mayo, etc...</span></small>
       </div>
       <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
       <div class="controls-group mb-4">
@@ -86,7 +86,7 @@
       <div class="form-box bg-success-outline">
         <h4 class="sub-header">Filtros</h4>
         <div class="controls mb-4">
-          <label class="control-label" for="title">Selecciona un filtro</label>
+          <label class="control-label" for="title">Implementa módulos Usuario, Ventas y Estadísticas</label>
           <select class="form-control filter-type advanced-filter" name="data[filter][type]" data-name="type">
             <option value="">Seleccione un filtro</option>
             <option value="sales" data-target="sales"<?=$list['NewsletterList']['filter']->type == 'sales' ? ' selected' : ''?>>Compras</option>
