@@ -136,7 +136,7 @@ function searchRelations(data) {
   })    
 }
 
-$(document).on('click', '.relations-action-add', function(e){
+$(document).on('click', '.relations-action-add,.relations-action-remove', function(e){
   const tData = $(e.target).data() 
   if(!tData.type) return
   var data = []
@@ -149,18 +149,26 @@ $(document).on('click', '.relations-action-add', function(e){
       data.push($(e).data())
     })
   }
-  $(this).text('Agregando ...')
+  $(`.${tData.type}-container > .label.is-enabled`).removeClass('is-enabled')
+  $(this).text('')
   setRelation('add', data, target, tData.type, updateRelationCount)
 })
 
 $(document).on('click', '.relations-action-remove', function(e){
-  const type = $(e.target).data('type')
-  if(!type) return
+  const tData = $(e.target).data() 
+  if(!tData.type) return
   var data = []
-  $(`.${type}-container > .label.is-enabled`).each(function(i,e){
-    data.push($(e).data())
-  })
-  setRelation('remove', data, null, type, updateRelationCount) 
+  var target = null
+  if(tData.key=='all'){
+    target = e.target
+    data.push(tData)
+  } else {
+    $(`.${tData.type}-container > .label:not(.is-enabled)`).each(function(i,e){
+      data.push($(e).data())
+    })
+  }
+  $(this).text('')
+  setRelation('remove', data, target, tData.type, updateRelationCount)
 })
 
 $(document).on('click', '.relations-keyword-add', function(e){

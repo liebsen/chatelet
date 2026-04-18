@@ -2494,7 +2494,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		// its all so truncate first
     		$model->deleteAll(
     			array(
-	      		$data[0]['type'] . '_id' => $item['User']['id'],
+	      		#$data[0]['type'] . '_id' => $item['User']['id'],
 	      		$data[0]['source'] . '_id' => $data[0]['parentId'],
     			),
     			false,
@@ -2562,22 +2562,38 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
     if ($this->request->is('POST')) {
     	$data = $this->request->data;
-    	foreach($data as $i => $item) {
-	    	$model = ClassRegistry::init($item['model']);
-	    	$ids = $model->find('all',array(
-	    		'conditions' => array(
-	    			$item['type'] . '_id' => $item['id'],
-	    			$item['source'] . '_id' => $item['parentId'],
-	    		), 
-	    		'fields' => ['id']
-	    	));
-				$ids = array_map(function($e) use ($item) {
-					return $e[$item['model']]['id'];
-				},$ids);
-				if(count($ids)) {
-	    		$model->delete($ids);
-	    	}
-	    }
+    	if($data[0]['key'] == 'all') {
+    		$model = ClassRegistry::init($data[0]['model']);
+    		// assume user for now
+    		$this->loadModel('User');
+    		$saves = array();
+    		// its all so truncate first
+    		$model->deleteAll(
+    			array(
+	      		#$data[0]['type'] . '_id' => $item['User']['id'],
+	      		$data[0]['source'] . '_id' => $data[0]['parentId'],
+    			),
+    			false,
+    			false
+    		);
+    	} else {
+	    	foreach($data as $i => $item) {
+		    	$model = ClassRegistry::init($item['model']);
+		    	$ids = $model->find('all',array(
+		    		'conditions' => array(
+		    			$item['type'] . '_id' => $item['id'],
+		    			$item['source'] . '_id' => $item['parentId'],
+		    		), 
+		    		'fields' => ['id']
+		    	));
+					$ids = array_map(function($e) use ($item) {
+						return $e[$item['model']]['id'];
+					},$ids);
+					if(count($ids)) {
+		    		$model->delete($ids);
+		    	}
+		    }
+		  }
       return json_encode(['success' => true]);
     }
 	}
