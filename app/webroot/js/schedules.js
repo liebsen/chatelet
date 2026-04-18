@@ -36,7 +36,7 @@ function updateSchedules(){
         })
         return $.growl.notice({
           title: 'Atención',
-          message: `Se han actualizado ${res.results.length} campañas`,
+          message: `Se ha${res.results.length > 1 ? 'n':''} actualizado ${res.results.length} campaña ${res.results.length > 1 ? 's':''}`,
           queue: true,
         });
       }

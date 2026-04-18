@@ -206,7 +206,7 @@ class NewsletterComponent extends Component {
 
         $response = array(
           'success' => true,
-          'message' => 'La nueva configuración se actualizó exitosamente',
+          'message' => 'Tu Plantilla se actualizó correctamente',
           'redirect' => Router::reverse($redirect)
         );
 
@@ -252,6 +252,7 @@ class NewsletterComponent extends Component {
     $response = array();
     $schedules = array();
     $conditions = array(); // array('NewsletterSchedule.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")));
+
     if(empty($_GET['extended'])) {
       $conditions['NewsletterSchedule.enabled'] = 1;
     }
@@ -372,7 +373,8 @@ class NewsletterComponent extends Component {
 
         $schedules[$i]['status'] = $status;
         $schedules[$i]['rowclass'] = $rowclass;
-        $schedules[$i][0]['list_total'] = count($users);
+        $schedules[$i]['list_total'] = count($users);
+        $schedules[$i]['prod_total'] = $schedule[0]['prod_total'];
         // $schedules[$i]['Users'] = $users;
         // $schedules[$i]['Products'] = $products;
       }
@@ -492,7 +494,7 @@ class NewsletterComponent extends Component {
 
         $response = array(
           'success' => true,
-          'message' => 'La nueva configuración se actualizó exitosamente',
+          'message' => 'Tu Campaña se actualizó correctamente',
           'redirect' => Router::reverse($redirect)
         );
 
@@ -628,7 +630,7 @@ class NewsletterComponent extends Component {
 
         $response = array(
           'success' => true,
-          'message' => 'La nueva configuración se actualizó exitosamente',
+          'message' => 'Tu Lista se actualizó correctamente',
           'redirect' => Router::reverse($redirect)
         );
 

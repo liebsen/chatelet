@@ -18,7 +18,6 @@ function getFormData(form) {
 $(document).ready(function() {
   $('input, select, textarea').change(function(e) {
     const elem = e.target
-    console.log(elem.name, elem.value)
     $(elem).data('change', true)
     if($(elem).attr('type') == 'file') {
       const matches = $(elem).attr('name').match(/\[(.*?)\]/)

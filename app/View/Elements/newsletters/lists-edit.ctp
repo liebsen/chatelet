@@ -46,7 +46,7 @@
         <div class="controls">
           <input type="text" id="title" name="data[name]" class="form-control" placeholder="Título de la lista" value="<?=$list['NewsletterList']['name']?>" required />
         </div>
-        <small class="text-muted">Es el nombre con que identificas esta lista</small>
+        <small class="text-muted">Es el nombre con que identificas esta lista. <i class="fa fa-question-circle">Ej: Cumpleaños Abril, Compras Mayo, etc...</i></small>
       </div>
       <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
       <div class="controls-group mb-4">
@@ -150,7 +150,9 @@
     </div>
   </div>
   <div class="form-actions">
-    <a href="javascript:history.go(-1)" class="btn btn-info">
+    <a href="
+
+    " class="btn btn-info">
       <i class="fa fa-chevron-left mr-1"></i> Atrás
     </a>
     <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>

@@ -16,18 +16,18 @@
 						<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?>
 						</span>
 						<span class="badge">#<?=$schedule['NewsletterSchedule']['id']?></span>
-						<span class="badge"><?=\readable_time_ago(strtotime($schedule['NewsletterSchedule']['modified'])) ?></span>
+						<span class="badge"><?=\readable_time_ago(strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')) ?> </span></span>
 					</a>
 					<div class="card-text">
-						<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?>">
+						<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?>">
 							<i class="fa fa-image mr-1"></i> <?=$schedule['Newsletter']['title']?>
 						</span>
-						<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?> is-rounded">
-							<?=!empty($schedule[0]['prod_total']) ? $schedule[0]['prod_total'] : 'Estático'?>
+						<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?> is-rounded">
+							<i class="gi gi-shirt"></i> <?=!empty($schedule['prod_total']) ? $schedule['prod_total'] : 'Estático'?>
 						</span>
 						<span class="badge badge-info"><i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?></span>
-						<span class="badge badge-<?=!empty($schedule[0]['list_total']) ? 'info' : 'danger'?> is-rounded">
-							<i class="gi gi-woman"></i> <?=!empty($schedule[0]['list_total']) ? $schedule[0]['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?></span>
+						<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?> is-rounded">
+							<i class="gi gi-woman"></i> <?=!empty($schedule['list_total']) ? $schedule['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?></span>
 
 						<?php if(!empty($schedule['Newsletter']['send_email'])):?>
 						<span class="badge badge-success is-rounded" title="Emails enviados">
@@ -40,7 +40,7 @@
 							<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
 						</span>
 						<?php endif ?>
-						<span class="badge badge-info is-rounded" title="Interacciones">
+						<span class="badge badge-danger is-rounded" title="Interacciones">
 							<i class="gi gi-fire"></i>
 							<span class="clicks"><?=$schedule['stats']['clicks']?></span>
 						</span>
@@ -125,7 +125,14 @@
 				<tr class="bg-<?=$schedule['rowclass']?> schedules-<?=$schedule['NewsletterSchedule']['id']?>">
 					<td>
 						<a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
+							href="<?=$this->Html->url(
+								array(
+									'action'=>'newsletters', 
+									'schedules', 
+									'edit', 
+									$schedule['NewsletterSchedule']['id']
+								)
+							)?>" 
 							data-toggle="tooltip" 
 							class="card-img sm"
 							style="background-image: url('<?=\extract_jpeg_url($schedule['Newsletter']['body'])?>')"
@@ -133,18 +140,20 @@
 						</a>
 					</td>
 					<td>
-						<span class="badge badge-<?=$schedule['rowclass']?>"><span class="status"><?=$schedule['status']?></span>
+						<span class="badge badge-<?=$schedule['rowclass']?>">
+							<span class="status"><?=$schedule['status']?></span>
+						</span>
 					</td>
 					<td>
 						<span class="badge badge-success"><?=$schedule['Newsletter']['title']?></span>
-						<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?> is-rounded">
-							<?=!empty($schedule[0]['prod_total']) ? $schedule[0]['prod_total'] : 'Estático'?>
+						<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?> is-rounded">
+							<i class="gi gi-shirt"></i> <?=!empty($schedule['prod_total']) ? $schedule['prod_total'] : 'Estático'?>
 						</span>
 					</td>
 					<td>
 						<span class="badge badge-info"><?=$schedule['NewsletterList']['name']?></span>
-						<span class="badge badge-<?=!empty($schedule[0]['list_total']) ? 'info' : 'danger'?> is-rounded">
-							<i class="gi gi-woman"></i> <?=!empty($schedule[0]['list_total']) ? $schedule[0]['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
+						<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?> is-rounded">
+							<i class="gi gi-woman"></i> <?=!empty($schedule['list_total']) ? $schedule['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
 							</span>
 					</td>
 					<td>
@@ -159,7 +168,7 @@
 							<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
 						</span>
 						<?php endif ?>
-						<span class="badge badge-info is-rounded" title="Interacciones">
+						<span class="badge badge-danger is-rounded" title="Interacciones">
 							<i class="gi gi-fire"></i>
 							<span class="clicks"><?=$schedule['stats']['clicks']?></span>
 						</span>
