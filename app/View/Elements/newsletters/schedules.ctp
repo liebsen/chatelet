@@ -6,7 +6,7 @@
 		<div class="d-flex flex-wrap justify-content-center align-items-left gap-05">
 <?php foreach ($schedules as $key => $schedule): ?>
 			<div class="card card-auto schedule-rt schedules-<?=$schedule['NewsletterSchedule']['id']?>" data-id="<?=$schedule['NewsletterSchedule']['id']?>">
-				<div class="card-body d-flex flex-wrap gap-1 w-auto">
+				<div class="card-body d-flex flex-between flex-wrap gap-1 w-auto">
 					<a 
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
 						data-toggle="tooltip" 
@@ -19,15 +19,23 @@
 					<div class="card-text">
 						<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?>
 						</span>
-						<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?>">
-							<i class="fa fa-image mr-1"></i> <?=$schedule['Newsletter']['title']?>
-						</span>
-						<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?> is-rounded">
-							<i class="gi gi-shirt"></i> <?=!empty($schedule['prod_total']) ? $schedule['prod_total'] : 'Estático'?>
-						</span>
-						<span class="badge badge-info"><i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?></span>
-						<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?> is-rounded">
-							<i class="gi gi-woman"></i> <?=!empty($schedule['list_total']) ? $schedule['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?></span>
+						<a 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
+							data-toggle="tooltip" 
+							title="Editar plantilla" 
+						>						
+							<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?>">
+							<i class="fa fa-image mr-1"></i> <?=\word_limit($schedule['Newsletter']['title'])?> <?=!empty($schedule['prod_total']) ? '('.$schedule['prod_total'].')' : ''?>
+							</span>
+						</a>
+
+						<a 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
+							data-toggle="tooltip" 
+							title="Editar lista" 
+						>						
+							<span class="badge badge-info"><i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?> <?=!empty($schedule['list_total']) ? '('.$schedule['list_total'].')' : ''?></span>
+						</a>
 
 						<?php if(!empty($schedule['Newsletter']['send_email'])):?>
 						<span class="badge badge-success is-rounded" title="Emails enviados">
@@ -71,23 +79,7 @@
 				      title="Previsualizar plantilla"
 				      target="_blank">
 				      <i class="fa fa-eye"></i> 
-				    </a>							
-						<a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
-							data-toggle="tooltip" 
-							title="Editar plantilla" 
-							class="btn btn-sm btn-warning" 
-						>
-							<i class="gi gi-picture"></i>
-						</a>
-						<a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
-							data-toggle="tooltip" 
-							title="Editar lista" 
-							class="btn btn-sm btn-info" 
-						>
-							<i class="gi gi-list"></i>
-						</a>						
+				    </a>
 						<a 
 							href="#" 
 							data-toggle="tooltip" 
@@ -145,7 +137,7 @@
 						</span>
 					</td>
 					<td>
-						<span class="badge badge-success"><?=$schedule['Newsletter']['title']?></span>
+						<span class="badge badge-success"><?=\word_limit($schedule['Newsletter']['title'])?></span>
 						<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?> is-rounded">
 							<i class="gi gi-shirt"></i> <?=!empty($schedule['prod_total']) ? $schedule['prod_total'] : 'Estático'?>
 						</span>

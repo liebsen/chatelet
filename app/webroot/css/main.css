@@ -2928,8 +2928,7 @@ background-color: #fff!important;
 }
 
 .card-auto {
-  flex: 1;
-  flex-basis: fit-content;
+  flex-grow: 1;
 }
 
 .card-body {
