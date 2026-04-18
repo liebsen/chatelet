@@ -244,12 +244,12 @@
 		</table>
 	</div>
 	<div class="form-actions">
-  <a class="btn btn-light btn-update-schedules" href="#">
-    <i class="gi gi-repeat"></i> <span class="ml-1">Actualizar</span>
+  <a class="btn btn-light btn-update-schedules text-success" href="#">
+    <i class="gi gi-repeat"></i> <span class="ml-1">Actualiza [<span class="update-clock">-</span>]</span>
   </a>
 <?php if(empty($this->params->query['extended'])): ?>
 	<a href="/admin/newsletters/schedules?extended=1">
-    <button class="btn" type="button"><i class="fa fa-eye"></i> <span>Ver todo</span></button>
+    <button class="btn" type="button"><i class="fa fa-eye"></i> <span class="ml-1">Ver todo</span></button>
   </a>
 <?php else: ?>
 	<a href="/admin/newsletters/schedules">
@@ -260,3 +260,10 @@
     <i class="gi gi-magic"></i> <span class="ml-1">Crear campaña</span>
   </a>
 </div>
+
+<style type="text/css">
+	.btn-update-schedules {
+		min-width: 20rem;
+		text-align: left;
+	}
+</style>

@@ -8,6 +8,7 @@ const update_partials = [
 
 $(document).ready(function() {
   let clock = 0
+  const interval = 60
   $('.btn-refresh').click(function(e){
     window.location.href = window.location.href
   })
@@ -20,11 +21,13 @@ $(document).ready(function() {
 
   // Autorefresh every minute
   setInterval(function(){
-    if(clock){
+    if(clock == interval + 1) {
+      clock = 0
       updateSchedules()
     }
+    $('.update-clock').text(clock > interval - 1 ? '-' : (interval-clock)+'seg')
     clock++
-  }, 60000)
+  }, 1000)
 })
 
 function updateSchedules(){
