@@ -65,7 +65,7 @@
 		<table id="example-datatables" class="table table-bordered table-hover">
 			<thead>
 				<tr>
-	     		<th class="hidden-phone hidden-tablet"><?php echo __('Lista'); ?></th>
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Audiencia'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Modificado'); ?></th>

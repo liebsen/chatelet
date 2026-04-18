@@ -100,7 +100,7 @@
 		<table id="example-datatables" class="table table-bordered table-hover">
 			<thead>
 				<tr>
-	     		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Email'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Push'); ?></th>
