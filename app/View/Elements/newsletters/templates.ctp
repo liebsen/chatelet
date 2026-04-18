@@ -138,7 +138,7 @@
 						<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
 					</td>
 					<td>
-						<div class="d-flex flex-center flex-nowrap gap-05">   
+						<div class="d-flex flex-center flex-nowrap gap-25">   
 							<a 
 								href="<?=$this->Html->url(
 									array(
@@ -151,7 +151,7 @@
 								)?>"
 								data-toggle="tooltip" 
 								title="Editar contenido" 
-								class="btn btn-info"><i class="gi gi-font"></i>
+								class="btn btn-sm btn-info"><i class="gi gi-font"></i>
 							</a>	
 							<a 
 								href="<?=$this->Html->url(array(
@@ -164,7 +164,7 @@
 								))?>" 
 								data-toggle="tooltip" 
 								title="Programar envío" 
-								class="btn btn-success" 
+								class="btn btn-sm btn-success" 
 							>
 								<i class="gi gi-send"></i>
 							</a>
@@ -178,7 +178,7 @@
 								)?>" 
 								data-toggle="tooltip" 
 								title="Previsualizar" 
-								class="btn btn-warning"
+								class="btn btn-sm btn-warning"
 								target="_blank" 
 							>
 								<i class="fa fa-eye"></i>
@@ -187,7 +187,7 @@
 								href="#" 
 								data-toggle="tooltip" 
 								title="" 
-								class="btn btn-danger deletebutton" 
+								class="btn btn-sm btn-danger deletebutton" 
 								data-original-title="Eliminar" 
 								data-id="<?=$newsletter['Newsletter']['id']?>" 
 								data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'templates'))?>" 

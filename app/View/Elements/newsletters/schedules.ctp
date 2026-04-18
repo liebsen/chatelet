@@ -180,7 +180,7 @@
 						<?=\readable_time_ago(strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')) ?> </span>
 					</td>
 					<td> 
-						<div class="d-flex flex-center flex-nowrap gap-05">
+						<div class="d-flex flex-center flex-nowrap gap-25">
 							<a 
 								href="<?=$this->Html->url(
 									array(
@@ -193,7 +193,7 @@
 								)?>"
 								data-toggle="tooltip" 
 								title="Editar contenido" 
-								class="btn btn-info"><i class="gi gi-font"></i>
+								class="btn btn-sm btn-info"><i class="gi gi-font"></i>
 							</a>
 					    <a href="<?=$this->Html->url(
 					        array(
@@ -202,7 +202,7 @@
 					          $schedule['Newsletter']['id']
 					        )
 					      )?>"
-					      class="btn btn-warning" 
+					      class="btn btn-sm btn-warning" 
 					      title="Previsualizar plantilla"
 					      target="_blank">
 					      <i class="fa fa-eye"></i> 
@@ -211,7 +211,7 @@
 								href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
 								data-toggle="tooltip" 
 								title="Editar plantilla" 
-								class="btn btn-warning" 
+								class="btn btn-sm btn-warning" 
 							>
 								<i class="gi gi-picture"></i>
 							</a>
@@ -219,7 +219,7 @@
 								href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
 								data-toggle="tooltip" 
 								title="Editar lista" 
-								class="btn btn-info" 
+								class="btn btn-sm btn-info" 
 							>
 								<i class="gi gi-list"></i>
 							</a>						
@@ -227,7 +227,7 @@
 								href="#" 
 								data-toggle="tooltip" 
 								title="" 
-								class="btn btn-danger deletebutton" 
+								class="btn btn-sm btn-danger deletebutton" 
 								data-original-title="Eliminar" 
 								data-id="<?=$schedule['NewsletterSchedule']['id']?>" 
 								data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'schedules'))?>" 

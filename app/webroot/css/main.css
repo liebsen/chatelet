@@ -2358,6 +2358,7 @@ a.text-black:focus {
 
 .btn-sm {
   line-height: 2;
+  min-width: 3rem;
 }
 
 .btn-group {
@@ -4141,7 +4142,9 @@ div.cloudzoom-black:nth-child(3) {
 .align-items-center {
   align-items: center;
 }
-
+.gap-25 {
+  grid-gap: 0.25rem;
+}
 .gap-05 {
   grid-gap: 0.5rem;
 }

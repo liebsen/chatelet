@@ -98,15 +98,7 @@
 						<?=\readable_time_ago(strtotime($list['NewsletterList']['modified'])) ?> </span>
 					</td>
 					<td> 
-						<div class="d-flex flex-center flex-nowrap gap-05">          
-							<!--a 
-								href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $list['NewsletterList']['id']))?>" 
-								data-toggle="tooltip" 
-								title="Editar email" 
-								class="btn btn-success" 
-								>
-								<i class="gi gi-edit"></i>
-							</a-->
+						<div class="d-flex flex-center flex-nowrap gap-25">          
 							<a 
 								href="<?=$this->Html->url(
 									array(
@@ -120,7 +112,7 @@
 								)?>"
 								data-toggle="tooltip" 
 								title="Programar envío" 
-								class="btn btn-success" 
+								class="btn btn-sm btn-success" 
 							>
 								<i class="gi gi-send"></i>
 							</a>
@@ -136,7 +128,7 @@
 								href="#" 
 								data-toggle="tooltip" 
 								title="" 
-								class="btn btn-danger deletebutton" 
+								class="btn btn-sm btn-danger deletebutton" 
 								data-original-title="Eliminar" 
 								data-id="<?=$list['NewsletterList']['id']?>" 
 								data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'lists'))?>" 
