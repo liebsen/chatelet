@@ -19,7 +19,7 @@
 						<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'info'?>"><?=$list['NewsletterList']['name']?></span>
 						<span>
 							<i class="gi gi-woman fa-lg"></i> <span>Audiencia</span>
-							<span class="badge badge-<?=!empty($list[0]['total']) ? '-success' : '-danger'?>">
+							<span class="badge badge-<?=!empty($list[0]['total']) ? '-success' : '-danger d-block'?>">
 								<?=!empty($list[0]['total']) ? $list[0]['total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
 							</span>
 						</span>

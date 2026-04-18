@@ -3,7 +3,7 @@
  * 1.3.2
  */
 #growls {
-  z-index: 1000;
+  z-index: 10000;
   position: fixed; 
 }
 #growls.default {

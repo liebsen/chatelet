@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div class="form-box bg-info-outline">
+      <div class="form-box bg-success-outline">
         <h4 class="sub-header"><i class="gi gi-stopwatch"></i> <span class="ml-1">Programar fecha de envío</span></h4>
         <p>Establece la fecha y/o hora del envío para este Envío</p>
         <div class="control-group">
