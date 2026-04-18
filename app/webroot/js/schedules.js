@@ -1,3 +1,5 @@
+const update_partials = ['email_total', 'push_total', 'clicks']
+
 $(document).ready(function() {
   let clock = 0
   $('.btn-refresh').click(function(e){
@@ -20,7 +22,13 @@ $(document).ready(function() {
 })
 
 function updateSchedules(){
-  const data = 
+  var data = {}
+  $('.schedule-rt').each(function(i,e){
+    data[$(e).data('id')] = {}
+    for(var i in update_partials) {
+      data[$(e).data('id')][i] = $(e).find(`.${i}`).text()
+    }
+  })
   $.ajax({
     type: "POST",
     url: "/admin/schedules_update",
@@ -32,9 +40,17 @@ function updateSchedules(){
           target.removeClass('bg-warning bg-info bg-success bg-light')
           target.addClass(`bg-${item.rowclass}`)
           target.find('.status').text(item.status)
-          target.find('.clicks').text(item.stats.clicks)
-          target.find('.push_sent').text(item.stats.push_sent)
-          target.find('.email_sent').text(item.stats.email_sent)
+          for(var i in update_partials) {
+            const j = update_partials[i]
+            target.find(`.${j}`).text(item.stats[j])
+            if(item.change[j]) {
+              const badge = target.find(`.${j}`).parents('.badge')
+              badge.removeClass('animation-expandOpen')
+              setTimeout(function(){
+                badge.addClass('animation-expandOpen')
+              }, 100)
+            }
+          }
         })
         return $.growl.notice({
           title: 'Atención',

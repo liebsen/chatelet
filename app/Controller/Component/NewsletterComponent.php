@@ -350,9 +350,9 @@ class NewsletterComponent extends Component {
           }
         }
 
-        if(empty($schedule['NewsletterSchedule']['enabled'])) {
-          // $rowclass = 'danger';
-        }
+        /*if(empty($schedule['NewsletterSchedule']['enabled'])) {
+          $rowclass = 'light';
+        }*/
         
         if(
           empty($schedule['Newsletter']['send_email']) && 
@@ -368,7 +368,6 @@ class NewsletterComponent extends Component {
           'email_total' => $email_total,
           'push_total' => $push_total,
           'clicks' => $clicks,
-          // 'total' => count($users),
         );
 
         $schedules[$i]['status'] = $status;

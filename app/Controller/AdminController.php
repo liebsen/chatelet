@@ -2742,7 +2742,24 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	public function schedules_update(){
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
+
+		$data = $this->request->data;
 		$schedules = $this->Newsletter->schedules();
+		$partials = array(
+			'email_total',
+			'push_total',
+			'clicks'
+		);
+
+		foreach($schedules as $i => $schedule) {
+			$schedules[$i]['change'] = array();
+			foreach($partials as $partial) {
+				if(@$schedule[$partial] != @$data[$schedule['NewsletterSchedule']['id']][$partial]) {
+					$schedules[$i]['change'][$partial] = 1;
+				}
+			}
+		}
+
     return json_encode(
     	array(
       	'results' => $schedules,
@@ -2757,13 +2774,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'Cupones' => array(
 				'icon' 		=> 'gi gi-tags',
 				'url'		=> '/admin/cupones',
-				),
+			),
 			'Nuevo Cupón' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> '/admin/cupones/add',
-				)
-
-			);
+			)
+		);
 
     $this->loadModel('Coupon');
     $this->loadModel('CouponItem');

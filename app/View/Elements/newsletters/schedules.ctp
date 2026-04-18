@@ -5,7 +5,7 @@
 	<div class="mobile">
 		<div class="d-flex flex-wrap justify-content-center align-items-left gap-05">
 <?php foreach ($schedules as $key => $schedule): ?>
-			<div class="card card-auto">
+			<div class="card card-auto schedule-rt schedules-<?=$schedule['NewsletterSchedule']['id']?>" data-id="<?=$schedule['NewsletterSchedule']['id']?>">
 				<div class="card-body d-flex flex-wrap gap-1 w-auto">
 					<a 
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
@@ -122,7 +122,7 @@
 			</thead>
 			<tbody>
 	<?php foreach ($schedules as $key => $schedule): ?>        
-				<tr class="bg-<?=$schedule['rowclass']?> schedules-<?=$schedule['NewsletterSchedule']['id']?>">
+				<tr class="schedule-rt schedules-<?=$schedule['NewsletterSchedule']['id']?>" data-id="<?=$schedule['NewsletterSchedule']['id']?>">
 					<td>
 						<a 
 							href="<?=$this->Html->url(
