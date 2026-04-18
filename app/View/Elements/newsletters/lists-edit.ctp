@@ -39,20 +39,22 @@
   <?php endforeach ?>
        </table>
       </div>
-      <h4 class="sub-header">Datos de la lista</h4>
-      <p>Datos básicos de la lista</p>
-      <div class="control-group">
-        <label class="control-label" for="title">Título</label>
-        <div class="controls">
-          <input type="text" id="title" name="data[name]" class="form-control" placeholder="Título de la lista" value="<?=$list['NewsletterList']['name']?>" required />
+      <div class="form-box bg-info-outline">
+        <h4 class="sub-header">Datos de la lista</h4>
+        <p>Datos básicos de la lista</p>
+        <div class="control-group">
+          <label class="control-label" for="title">Título</label>
+          <div class="controls">
+            <input type="text" id="title" name="data[name]" class="form-control" placeholder="Título de la lista" value="<?=$list['NewsletterList']['name']?>" required />
+          </div>
+          <small class="text-muted">Es el nombre con que identificas esta lista. <i class="gi gi-lightbulb"></i> <span class="text-theme text-italic pl-1">Cumpleaños Abril, Compras Mayo, etc...</span></small>
         </div>
-        <small class="text-muted">Es el nombre con que identificas esta lista. <i class="gi gi-lightbulb"></i> <span class="text-theme text-italic pl-1">Cumpleaños Abril, Compras Mayo, etc...</span></small>
+        <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
+        <div class="controls-group mb-4">
+          <label class="control-label" for="title">Descripción</label>
+          <textarea class="form-control w-100" name="data[text]" id="newsletter" rows="4"><?=$list['NewsletterList']['text']?></textarea>
+        </div>
       </div>
-      <!--label class="control-label" for="products-filter">Filtros en historial de compras</label-->
-      <div class="controls-group mb-4">
-        <label class="control-label" for="title">Descripción</label>
-        <textarea class="form-control w-100" name="data[text]" id="newsletter" rows="4"><?=$list['NewsletterList']['text']?></textarea>
-      </div>  
     </div>
     <div class="col-md-6">
 <?php if(!empty($list['NewsletterList']['id'])):?>
