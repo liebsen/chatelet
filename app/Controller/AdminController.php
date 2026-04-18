@@ -2754,7 +2754,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		foreach($schedules as $i => $schedule) {
 			$schedules[$i]['change'] = array();
 			foreach($partials as $partial) {
-				if(@$schedule[$partial] != @$data[$schedule['NewsletterSchedule']['id']][$partial]) {
+				if(@$schedule['stats'][$partial] != @$data[$schedule['NewsletterSchedule']['id']][$partial]) {
 					$schedules[$i]['change'][$partial] = 1;
 				}
 			}

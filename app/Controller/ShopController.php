@@ -489,14 +489,7 @@ class ShopController extends AppController {
 		}
 
 		if(!empty($this->request->query('uid'))) {
-			$this->loadModel('NewsletterScheduleItem');
-			$this->NewsletterScheduleItem->updateAll(
-				array(
-					'NewsletterScheduleItem.clicks' => 'NewsletterScheduleItem.clicks + 1'					
-				), array(
-					'id' => $this->request->query('uid'),
-				)
-			);
+			$this->addClick($this->request->query('uid'));
 		}
 
     $legends = $this->Legend->find('all', [

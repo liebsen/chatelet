@@ -222,8 +222,18 @@ class AppController extends Controller
     );
   }
 
-  public function sendEmail($data, $subject, $template) {
-    
+  public function addClick($id) {
+    $this->loadModel('NewsletterScheduleItem');
+    $this->NewsletterScheduleItem->updateAll(
+      array(
+        'NewsletterScheduleItem.clicks' => 'NewsletterScheduleItem.clicks + 1'          
+      ), array(
+        'id' => $id,
+      )
+    );    
+  }
+
+  public function sendEmail($data, $subject, $template) {    
     CakeLog::write('debug', 'sendEmail:'.json_encode(array(
       //'data' => $data,
       'subject' => $subject,

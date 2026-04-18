@@ -26,7 +26,8 @@ function updateSchedules(){
   $('.schedule-rt').each(function(i,e){
     data[$(e).data('id')] = {}
     for(var i in update_partials) {
-      data[$(e).data('id')][i] = $(e).find(`.${i}`).text()
+      const j = update_partials[i]
+      data[$(e).data('id')][j] = $(e).find(`.${j}`).text()
     }
   })
   $.ajax({
