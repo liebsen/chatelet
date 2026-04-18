@@ -244,8 +244,8 @@
 		</table>
 	</div>
 	<div class="form-actions">
-  <a class="btn btn-light btn-update-schedules text-success" href="#">
-    <i class="gi gi-repeat"></i> <span class="ml-1">Actualiza [<span class="update-clock">-</span>]</span>
+  <a class="btn btn-light btn-update-schedules text-success animation-fadeIn animation-both delay3" href="#">
+    <i class="gi gi-repeat"></i> <span class="ml-1">Actualiza [<span class="update-countdown">-</span>]</span>
   </a>
 <?php if(empty($this->params->query['extended'])): ?>
 	<a href="/admin/newsletters/schedules?extended=1">

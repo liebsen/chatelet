@@ -19,13 +19,13 @@ $(document).ready(function() {
     updateSchedules()
   })
 
-  // Autorefresh every minute
+  // Autorefresh every minute and update a countdown clock
   setInterval(function(){
     if(clock == interval + 1) {
       clock = 0
       updateSchedules()
     }
-    $('.update-clock').text(clock > interval - 1 ? '-' : (interval-clock)+'seg')
+    $('.update-countdown').text(clock > interval - 1 ? '-' : (interval-clock))
     clock++
   }, 1000)
 })
