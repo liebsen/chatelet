@@ -39,7 +39,8 @@
 										'action' => 'newsletters', 
 										'templates', 
 										'edit', 
-										$newsletter['Newsletter']['id'].'#editor'
+										$newsletter['Newsletter']['id'],
+										'#' => 'editor'
 									)
 								)?>"
 								data-toggle="tooltip" 

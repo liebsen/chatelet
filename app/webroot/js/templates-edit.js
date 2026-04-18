@@ -14,7 +14,7 @@ $(document).ready(function() {
   if(window.location.hash.includes('editor')){
     setTimeout(function(){
       CKEDITOR.instances.newsletter.execCommand('maximize');  
-    }, 500)    
+    }, 100)    
   }
 
   CKEDITOR.instances.newsletter.on('change', function(e) {
