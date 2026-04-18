@@ -1,6 +1,6 @@
 
 $(document).ready(function() {		
-	$('.btn-append-editor').click(function(){
+	$('.append-editor').click(function(){
 		const text = $(this).data('text') || ''
 		$('#text_shipping_min_price').insertAtCaret(text)
   })

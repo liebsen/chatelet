@@ -92,7 +92,7 @@
         <h6 class="text-theme">Elementos de plantilla</h6>
         <table class="table table-striped">
 <?php foreach($templateVars as $id => $name): ?>
-        <tr class="is-clickable btn-append-editor" data-text="{{<?= $id ?>}}">
+        <tr class="is-clickable append-editor" data-text="{{<?= $id ?>}}">
           <th>
             <small class="text-lowercase">
               <i class="fa fa-key text-warning"></i> <?= $id ?>

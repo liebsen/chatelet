@@ -7,7 +7,7 @@ $(document).ready(function() {
     CKEDITOR.instances.newsletter.execCommand('maximize');
   })
 
-  $('.btn-append-editor').click(function(){
+  $('.append-editor').click(function(){
 		CKEDITOR.instances.newsletter.insertText($(this).data('text'));
   })
 

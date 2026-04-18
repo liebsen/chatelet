@@ -31,7 +31,7 @@
             </div>
             <h6 class="text-theme">Elementos de plantilla</h6>
             <table class="table table-striped">
-              <tr class="is-clickable btn-append-editor" data-text="{{precio_min_envio_gratis}}">
+              <tr class="is-clickable append-editor" data-text="{{precio_min_envio_gratis}}">
                 <th>
                   <small class="text-lowercase">
                     <i class="fa fa-key text-warning"></i> precio_min_envio_gratis
@@ -43,7 +43,7 @@
                   </small>
                 </td>
               </tr>
-              <tr class="is-clickable btn-append-editor" data-text="{{resto_min_envio_gratis}}">
+              <tr class="is-clickable append-editor" data-text="{{resto_min_envio_gratis}}">
                 <th>
                   <small class="text-lowercase">
                     <i class="fa fa-key text-warning"></i> resto_min_envio_gratis
@@ -55,7 +55,7 @@
                   </small>
                 </td>
               </tr>
-              <tr class="is-clickable btn-append-editor" data-text="{{total}}">
+              <tr class="is-clickable append-editor" data-text="{{total}}">
                 <th>
                   <small class="text-lowercase">
                     <i class="fa fa-key text-warning"></i> total
