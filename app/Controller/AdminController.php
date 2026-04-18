@@ -2750,12 +2750,16 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'push_total',
 			'clicks'
 		);
-
+		$change = array();
 		foreach($schedules as $i => $schedule) {
 			$schedules[$i]['change'] = array();
 			foreach($partials as $partial) {
-				if(@$schedule['stats'][$partial] != @$data[$schedule['NewsletterSchedule']['id']][$partial]) {
+				if(
+					!empty($data[$schedule['NewsletterSchedule']['id']][$partial]) && 
+					(int) $schedule['stats'][$partial] != $data[$schedule['NewsletterSchedule']['id']][$partial]
+				) {
 					$schedules[$i]['change'][$partial] = 1;
+					array_push($change, $schedule['NewsletterSchedule']['id']);
 				}
 			}
 		}
@@ -2763,6 +2767,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     return json_encode(
     	array(
       	'results' => $schedules,
+      	'change' => count(
+      		array_filter(
+      			array_values(
+      				$change
+      			)
+      		)
+      	),
     	)
     );		
 	}

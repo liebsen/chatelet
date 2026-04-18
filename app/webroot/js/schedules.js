@@ -35,7 +35,8 @@ function updateSchedules(){
     url: "/admin/schedules_update",
     data: data,
     success: function (res) {
-      if(res.results.length) {
+      console.log('res.change',res.change)
+      if(res.results.length && res.change > 0) {
         $.each(res.results, function(key, item) {
           const target = $(`.schedules-${item.NewsletterSchedule.id}`)
           target.removeClass('bg-warning bg-info bg-success bg-light')
@@ -55,12 +56,12 @@ function updateSchedules(){
         })
         return $.growl.notice({
           title: 'Atención',
-          message: `Se ha${res.results.length > 1 ? 'n':''} actualizado ${res.results.length} campaña${res.results.length > 1 ? 's':''}`,
+          message: `Se ha${res.change > 1 ? 'n':''} actualizado ${res.change} campaña${res.change > 1 ? 's':''}`,
           queue: true,
         });
       }
       $.growl.notice({
-        title: 'Atención',
+        title: 'Sin novedades',
         message: `No se actualizaron campañas`,
         queue: true,
       });      
