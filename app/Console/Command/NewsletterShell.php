@@ -354,8 +354,8 @@ class NewsletterShell extends AppShell {
     $auth = array(
       'VAPID' => array(
         'subject' => $this->settings['vapid_subject'],
-        'publicKey' => $this->settings['vapid_publicKey'],
-        'privateKey' => $this->settings['vapid_privateKey']
+        'publicKey' => $this->settings['vapid_public_key'],
+        'privateKey' => $this->settings['vapid_private_key']
       ),
     );
 
@@ -396,7 +396,6 @@ class NewsletterShell extends AppShell {
       'tls' => $this->settings['newsletter_tls'] == '1',
     );
 
-    \d("email(config)",$config); 
     $email->config($config);
 
     $viewVars = array(

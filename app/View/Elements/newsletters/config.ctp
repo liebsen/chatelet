@@ -102,6 +102,7 @@
 				</div>
       </div>
       <div class="col-md-6">
+
       	<div class="show-panel <?= !$settings['newsletter_enabled'] ? 'd-disable' : '' ?>">
 	      	<div class="form-box bg-info-outline">
 		      	<h4 class="sub-header">Datos del transport</h4>
@@ -168,6 +169,28 @@
 		        </div>
 
 		      </div>
+	      	<div class="form-box bg-info-outline">
+		      	<h4 class="sub-header">Datos del VAPID</h4>
+		      	<p>Configura como se enviarán los push notification.</p>
+		        <div class="control-group">
+		          <label class="control-label" for="columns-text"><?php echo __('Subject'); ?></label>
+		          <div class="controls">
+		            <input type="text" name="data[vapid_subject]" class="form-control" placeholder="" value="<?= @$settings['vapid_subject'] ?>"/>
+		          </div>
+		        </div>
+		        <div class="control-group">
+		          <label class="control-label" for="columns-text"><?php echo __('Public key'); ?></label>
+		          <div class="controls">
+		            <input type="text" name="data[vapid_public_key]" class="form-control" placeholder="" value="<?= @$settings['vapid_public_key'] ?>"/>
+		          </div>
+		        </div>
+		        <div class="control-group">
+		          <label class="control-label" for="columns-text"><?php echo __('Private key'); ?></label>
+		          <div class="controls">
+		            <input type="text" name="data[vapid_private_key]" class="form-control" placeholder="" value="<?= @$settings['vapid_private_key'] ?>"/>
+		          </div>
+		        </div>
+					</div>		      
 				</div>
 			</div>
 		</div>
