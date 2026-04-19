@@ -2776,11 +2776,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			foreach($partials as $partial) {
 
 		\d("a(0)", (int) $data[$schedule['NewsletterSchedule']['id']][$partial] . ':'.(int) $schedule['stats'][$partial]);
-		\d("a(1)",!empty($data[$schedule['NewsletterSchedule']['id']][$partial]));
+		\d("a(1)",isset($data[$schedule['NewsletterSchedule']['id']][$partial]));
 		\d("a(2)",(int) $schedule['stats'][$partial] != (int) $data[$schedule['NewsletterSchedule']['id']][$partial]);
 
 				if(
-					!empty($data[$schedule['NewsletterSchedule']['id']][$partial]) && 
+					isset($data[$schedule['NewsletterSchedule']['id']][$partial]) && 
 					(int) $schedule['stats'][$partial] != (int) $data[$schedule['NewsletterSchedule']['id']][$partial]
 				) {
 					\d("a(3)", $i);
