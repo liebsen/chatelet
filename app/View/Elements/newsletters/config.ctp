@@ -167,7 +167,6 @@
 								<label for="toggle-tls" class="toggle-label"></label>
 							</div>
 		        </div>
-
 		      </div>
 	      	<div class="form-box bg-info-outline">
 		      	<h4 class="sub-header">Datos del VAPID</h4>
@@ -175,19 +174,19 @@
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Subject'); ?></label>
 		          <div class="controls">
-		            <input type="text" name="data[vapid_subject]" class="form-control" placeholder="" value="<?= @$settings['vapid_subject'] ?>"/>
+		            <input type="text" name="data[vapid_subject]" class="form-control" placeholder="mailto:info@chatelet.com.ar" value="<?= @$settings['vapid_subject'] ?>"/>
 		          </div>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Public key'); ?></label>
 		          <div class="controls">
-		            <input type="text" name="data[vapid_public_key]" class="form-control" placeholder="" value="<?= @$settings['vapid_public_key'] ?>"/>
+		            <input type="text" name="data[vapid_public_key]" class="form-control" placeholder="BEBiooz0kvrLqazPF8zdDj9SC_It9_KiZ-0iOp16Ks93U6S-G45i7woIqFUmtZZYgh_tWVXfr88etWr0jKt..." value="<?= @$settings['vapid_public_key'] ?>"/>
 		          </div>
 		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Private key'); ?></label>
 		          <div class="controls">
-		            <input type="text" name="data[vapid_private_key]" class="form-control" placeholder="" value="<?= @$settings['vapid_private_key'] ?>"/>
+		            <input type="text" name="data[vapid_private_key]" class="form-control" placeholder="FIwmuBviDGDw7e7T0J0P16RiNO__NErnu3F_rAOm..." value="<?= @$settings['vapid_private_key'] ?>"/>
 		          </div>
 		        </div>
 					</div>		      
