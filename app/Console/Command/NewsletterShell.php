@@ -320,11 +320,9 @@ class NewsletterShell extends AppShell {
       )
     );
 
-    \d("Newsletter", $data['Newsletter']);
-    
     $payload = array(
       'title' => $data['Newsletter']['title'],
-      'body' => $data['Newsletter']['message'] || '',
+      'body' => $data['Newsletter']['message'] ?? '',
       'icon' => $this->settings['site_url'] . ($this->settings['newsletter_icon'] ? 
         $this->settings['upload_url'] . $this->settings['newsletter_icon'] : 
         '/img/push-logo.png'
