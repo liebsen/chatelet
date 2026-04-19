@@ -2775,13 +2775,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$schedules[$i]['change'] = array();
 			foreach($partials as $partial) {
 
-		\d("a(0)",$data[$schedule['NewsletterSchedule']['id']][$partial]);
+		\d("a(0)", (int) $data[$schedule['NewsletterSchedule']['id']][$partial]);
 		\d("a(1)",(int) $schedule['stats'][$partial]);
 
 				if(
 					!empty($data[$schedule['NewsletterSchedule']['id']][$partial]) && 
-					(int) $schedule['stats'][$partial] != $data[$schedule['NewsletterSchedule']['id']][$partial]
+					(int) $schedule['stats'][$partial] != (int) $data[$schedule['NewsletterSchedule']['id']][$partial]
 				) {
+					\d("a(3)", $i);
 					$schedules[$i]['change'][$partial] = 1;
 					array_push($change, $schedule['NewsletterSchedule']['id']);
 				}
