@@ -37,6 +37,16 @@ $(document).ready(function() {
   $('#example-datatables').DataTable({
     "ordering": true,
     "stateSave": true,
+    "order": [[ 0, "desc" ]],
+    "language": {
+      "url": "/json/datatables-locale-es.json"
+    }
+  });
+
+  $('#schedules-datatables').DataTable({
+    "ordering": true,
+    "stateSave": true,
+    "order": [[ 5, "desc" ]],
     "language": {
       "url": "/json/datatables-locale-es.json"
     }

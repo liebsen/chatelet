@@ -100,7 +100,7 @@
 		</div>
 	</div>
 	<div class="desktop">
-		<table id="example-datatables" class="table table-bordered table-hover">
+		<table id="schedules-datatables" class="table table-bordered table-hover">
 			<thead>
 				<tr>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>
@@ -137,16 +137,10 @@
 						</span>
 					</td>
 					<td>
-						<span class="badge badge-success"><?=\word_limit($schedule['Newsletter']['title'])?></span>
-						<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?> is-rounded">
-							<i class="gi gi-shirt"></i> <?=!empty($schedule['prod_total']) ? $schedule['prod_total'] : 'Estático'?>
-						</span>
+						<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?>"><?=\word_limit($schedule['Newsletter']['title'])?> <?=!empty($schedule['prod_total']) ? '('.$schedule['prod_total'].')' : ''?></span>
 					</td>
 					<td>
-						<span class="badge badge-info"><?=$schedule['NewsletterList']['name']?></span>
-						<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?> is-rounded">
-							<i class="gi gi-woman"></i> <?=!empty($schedule['list_total']) ? $schedule['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
-							</span>
+						<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?>"><?=$schedule['NewsletterList']['name']?> <?=!empty($schedule['list_total']) ? '('.$schedule['list_total']. ')' : ''?></span>
 					</td>
 					<td>
 						<?php if(!empty($schedule['Newsletter']['send_email'])):?>
