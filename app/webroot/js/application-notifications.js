@@ -10,6 +10,13 @@ $(document).ready(function() {
       $('#notification_title').val(title)
       $('#notification_text').val(text)
   		$('.notification-controls').removeClass('d-disable')
+      $('.table tr').addClass('d-none')
+      setTimeout(function(){
+        const original = selected.split('_')
+        const firstTwo = original.slice(0, 2)
+        const type = firstTwo.join('_')
+        $(`tr[data-type="${type}"]`).removeClass('d-none')
+      }, 10)
   	} else {
       $('.notification-controls').addClass('d-disable')
     }

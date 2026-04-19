@@ -28,7 +28,6 @@ function activateTabContent(e) {
   const href = $(e.target).attr("href")
 	const activePaneID = href ? href.replace('#','.').replace('.', '.pane-') : '';
   setTimeout(function(){
-    console.log('activePaneID',activePaneID)
   	const activePane = $(activePaneID);
   	activePane.addClass("active");     
   }, 100)

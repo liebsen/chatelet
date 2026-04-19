@@ -199,17 +199,14 @@ class UsersController extends AppController {
       return $this->redirect($this->referer());
     }
     
-    #\d("register(invite)", $invite);
     if(!empty($invite) && empty($data['User']['password'])) {
       $random_password = $this->random_password();
-      #\d("register(random_password)", $random_password);
-      
       $data['User']['password'] = $random_password;
       $this->request->data['User']['password'] = $random_password;
     }
 
     // CakeLog::write('debug', 'User:'.json_encode($data['User']));
-    CakeLog::write('debug', 'register:'.json_encode($data));
+    #CakeLog::write('debug', 'register:'.json_encode($data));
 
     // CakeLog::write('debug', 'validate:'.$validate);
     // CakeLog::write('debug', 'new user data:'.json_encode($data));
@@ -226,7 +223,7 @@ class UsersController extends AppController {
     }
 
     if (!empty($saved)) {
-      CakeLog::write('debug', 'saved:'.json_encode($saved));
+      #CakeLog::write('debug', 'saved:'.json_encode($saved));
 
       $logged = $this->Auth->login();     
 
@@ -239,14 +236,23 @@ class UsersController extends AppController {
         }
       }
 
-      $email_data = array(
-        'id_user' => $data['User']['id'] ,
-        'receiver_email' => $data['User']['email'],
-        'name' =>  $data['User']['name'],
-        'password' => $data['User']['password']
+      $message = \parse_template($this->settings['notification_register_welcome_text'], 
+        array(
+          'id_user' => $data['User']['id'] ,
+          'email' => $data['User']['email'],
+          'name' =>  $data['User']['name'],
+          'surname' =>  $data['User']['surname'],
+          'password' => $data['User']['password']
+        )
       );
 
-      $sent = $this->sendEmail($email_data, 'Bienvenida a Châtelet', 'welcome_email');
+      \d("message", $message);
+
+      $sent = $this->sendEmailMessage(
+        $message,
+        $this->settings['notification_register_welcome_title'] ?? 'Bienvenida a Châtelet',
+        $data['User']['email']
+      );
 
       $this->Session->setFlash(
         'Bienvenida a Châtelet', 

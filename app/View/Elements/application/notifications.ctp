@@ -4,8 +4,8 @@
 
 	<div class="row">
 	  <div class="col-md-12">
-	  	<h4 class="sub-header">Notificación de compra</h4>
-	  	<p class="text-theme">Selecciona un tipo de notificación para editar</p>
+	  	<h4 class="sub-header">Notificaciones de la tienda</h4>
+	  	<p class="text-theme">Selecciona un tipo de notificación para editar. Todas las notificaciones se enviarán por correo electrónico.</p>
 	  	<div class="controls">
 		  	<select class="form-control" name="notification_tag" id="notification_tag" data-noproc="true">
 		  		<option value="">Elige una notificación para continuar</option>
@@ -31,8 +31,8 @@
 	    	<div class="form-group flex-column w-100">
 					<h6 class="text-theme">Elementos de plantilla</h6>
 					<table class="table table-striped">
-	<?php foreach($notification_templates as $id => $name): ?>
-				<tr class="is-clickable append-editor" data-text="{{<?= $id ?>}}">
+	<?php foreach($notification_sale_templates as $id => $name): ?>
+				<tr class="is-clickable append-editor" data-text="{{<?= $id ?>}}" data-type="notification_sale">
 					<th>
 						<small class="text-lowercase">
 							<i class="fa fa-key text-warning"></i> <?= $id ?>
@@ -45,6 +45,20 @@
 					</td>
 				</tr>
 	<?php endforeach ?>
+	<?php foreach($notification_register_templates as $id => $name): ?>
+				<tr class="is-clickable append-editor" data-text="{{<?= $id ?>}}" data-type="notification_register">
+					<th>
+						<small class="text-lowercase">
+							<i class="fa fa-key text-warning"></i> <?= $id ?>
+						</small>
+					</th>
+					<td>
+						<small>
+							<i class="gi gi-chat text-muted"></i> <?= $name ?>
+						</small>
+					</td>
+				</tr>
+	<?php endforeach ?>	
 					</table>
 	    	</div>
 	    </div>

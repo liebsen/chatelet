@@ -1934,6 +1934,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	      ));      
 	    }
 		} else {
+			$notification_settings = array();
 			$navs = array(
 				'Textos' => array(
 					'icon' 		=> 'gi gi-text',
@@ -1948,11 +1949,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$h1 = array(
 				'name' => 'Aplicación',
 				'icon' => 'fa fa-cog'
-			);
-
-			$notification_tags = array(
-				'notification_sale_success' => "Compra con pago exitoso",
-				'notification_sale_pending' => "Compra con pago pendiente",
 			);
 
 			$tabs = array(
@@ -1978,12 +1974,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					'icon' => "text_underline"
 				),
 				'notifications' => array(
-					'title' => "Notificación de compra",
+					'title' => "Notificación",
 					'icon' => "bell"
 				),
 			);
 
-			$notification_templates = array(
+			$notification_sale_templates = array(
 				'name' => "Nombre de la clienta",
 				'surname' => "Apellido de la clienta",
 				'email' => "Email de la clienta",
@@ -1993,7 +1989,19 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'sale_id' => "Nro de remito",
 			);
 
-			$notification_settings = array();
+			$notification_register_templates = array(
+        'id_user' => 'Nro. Clienta',
+        'receiver_email' => 'email',
+        'name' =>  'Nombre',
+        'surname' =>  'Apellido',
+        'password' => 'Contraseña'
+      );
+
+			$notification_tags = array(
+				'notification_sale_success' => "Compra con pago exitoso",
+				'notification_sale_pending' => "Compra con pago pendiente",
+				'notification_register_welcome' => "Registro en la tienda",
+			);
 
 			foreach($notification_tags as $id => $tag) {
 				$notification_settings["{$id}_title"] = $this->settings["{$id}_title"] ?? '';
@@ -2002,7 +2010,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 			$this->set('notification_settings', $notification_settings);
 			$this->set('notification_tags', $notification_tags);
-			$this->set('notification_templates', $notification_templates);
+			$this->set('notification_sale_templates', $notification_sale_templates);
+			$this->set('notification_register_templates', $notification_register_templates);
 			$this->set('tabs', $tabs);		
 			$this->set('navs', $navs);		
 		  $this->loadModel('Setting');

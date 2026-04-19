@@ -959,7 +959,7 @@ class CheckoutController extends AppController
 		
 		$this->sendEmailMessage(
 			$message,
-			$this->settings["notification_sale_{$status}_title"],
+			$this->settings["{$status}_title"],
 			$data['email']
 		);
 	}
@@ -1014,7 +1014,7 @@ class CheckoutController extends AppController
 				//$this->set('sale',$sale);
 				//$this->set('sale_items',$sale_items);
 
-				$this->notify_user($sale, 'success');
+				$this->notify_user($sale, 'notification_sale_success');
 
 				if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_store_on'] == '1') {
 					$this->Mailchimp->delete_cart($this->settings['mc_store'], $cart_totals['cart_id']);
@@ -1049,60 +1049,10 @@ class CheckoutController extends AppController
 	  	);
 
 	    if(!empty($data)){
-				$this->notify_user($data['Sale'], 'pending');
+				$this->notify_user($data['Sale'], 'notification_sale_pending');
 			}
 		}
 		
 		return $this->render('mp_fail');
 	}
-
-	/*public function failed() {
-			$data = $this->Session->read('sale_data');
-			// error_log('Failed payment: '.json_encode($data));
-			// CakeLog::write('debug', 'Failed payment');
-			$this->Session->delete('cart');
-			$this->Session->delete('sale_data');
-			$this->set('sale_data',$data);
-			$this->set('failed', true);
-			if (!empty($_GET['collection_status']) && $_GET['collection_status']=='pending'){
-				// error_log('pending');
-				// CakeLog::write('debug', 'Failed payment: pending');
-				$this->notify_user($data, 'pending');
-				return $this->render('clear');
-			}else{
-				// CakeLog::write('debug', 'Failed payment: failed');
-				// error_log('failed');
-				return $this->render('clear_no');
-			}
-	}	
-
-	public function clear() { //success
-		// error_log('success payment: '.json_encode($this->Session->read('sale_data')));
-		// CakeLog::write('debug', 'Success payment:'.json_encode($this->Session->read('sale_data')));
-
-		$this->Mailchimp->order("chatelet",$sale_id, $total, $items);
-		$this->Mailchimp->delete_cart("chatelet",$cart_totals['cart_id']);
-
-		if( $this->Session->check( 'sale_data' ) ){
-			$sale_data = $this->Session->read('sale_data');
-			$sale_object = array(
-				'id' 		=> $sale_data['sale_id'],
-				'completed' => 1
-			);
-			// CakeLog::write('debug', 'sale(4)'.json_encode($to_save));			
-			$this->Sale->save($sale_object);
-			$this->set('sale_data',$this->Session->read('sale_data'));
-			$this->notify_user($this->Session->read('sale_data'), 'success');
-			$this->Session->delete('cart');
-			$this->Session->delete('sale_data');
-			return $this->render('clear');
-			//error_log('success');
-		}else{
-			error_log('no sale data');
-			$this->Session->delete('cart');
-			$this->Session->delete('sale_data');
-			return $this->render('clear_no');
-			//return $this->redirect(array('controller' => 'home', 'action' => 'index'));
-		}
-	}*/
 }
