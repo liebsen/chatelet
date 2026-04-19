@@ -3592,6 +3592,15 @@ a.thumbnail-borderless,
   width: 100%;
 }
 
+.control-group > small,
+.controls > small {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  border-top: 1px solid #2196f3;
+  padding-top: 0.5rem;
+}
+
 .tags-container {
   margin: 1rem 0;
   padding-bottom: 1rem;

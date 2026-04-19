@@ -47,8 +47,8 @@
       <option value="<?= $list['NewsletterList']['id']?>"<?=@($list['NewsletterList']['id'] == $this->params->query['list_id'] || $list['NewsletterList']['id'] == $schedule['NewsletterSchedule']['list_id']) ? ' selected' : ''?>><?= $list['NewsletterList']['name']?> (<?= $list['0']['total']?>)</option>
       <?php endforeach ?>
             </select>
+            <small>La tarea programada de Newsletters se ejecuta una vez por minuto en el servidor</small>
           </div>
-          <small>La tarea programada de Newsletters se ejecuta una vez por minuto en el servidor</small>
         </div>
       </div>
     </div>

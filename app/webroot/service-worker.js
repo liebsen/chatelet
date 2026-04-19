@@ -14,7 +14,7 @@ self.addEventListener('push', function (event) {
         icon: pushMessageJSON.icon,
         badge: pushMessageJSON.badge,
         image: pushMessageJSON.image,
-        data: pushMessageJSON.data.data,
+        data: pushMessageJSON.data.data
     });
 
     console.info("**** Recv'd a push message::", event);
