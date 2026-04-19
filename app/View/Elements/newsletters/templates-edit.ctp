@@ -52,6 +52,27 @@
           <textarea class="form-control w-100" name="data[message]" rows="4"><?=$newsletter['Newsletter']['message']?></textarea>
           <small class="text-muted">Es el texto que verán las clientas en su notificación push</small>
         </div>
+      <div class="control-group flex-column d-block">
+        <label class="control-label" for="toggle-follow"><?php echo __('Cuerpo del email'); ?></label>
+        <textarea class="form-control w-100" name="data[body]" id="newsletter"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
+        <h6 class="text-theme">Elementos de plantilla</h6>
+        <table class="table table-striped">
+  <?php foreach($templateVars as $id => $name): ?>
+        <tr class="is-clickable append-editor" data-text="{{<?= $id ?>}}">
+          <th>
+            <small class="text-lowercase">
+              <i class="fa fa-key text-warning"></i> <?= $id ?>
+            </small>
+          </th>
+          <td>
+            <small>
+              <i class="gi gi-chat text-muted"></i> <?= $name ?>
+            </small>
+          </td>
+        </tr>
+  <?php endforeach ?>
+        </table>
+      </div>   
       </div>      
     </div>
     <div class="col-md-6">
@@ -159,31 +180,6 @@
   <?php endif ?>
   <?php endif ?>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="control-group flex-column d-block">
-        <label class="control-label" for="toggle-follow"><?php echo __('Cuerpo del email'); ?></label>
-        <textarea class="form-control w-100" name="data[body]" id="newsletter"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
-        <h6 class="text-theme">Elementos de plantilla</h6>
-        <table class="table table-striped">
-  <?php foreach($templateVars as $id => $name): ?>
-        <tr class="is-clickable append-editor" data-text="{{<?= $id ?>}}">
-          <th>
-            <small class="text-lowercase">
-              <i class="fa fa-key text-warning"></i> <?= $id ?>
-            </small>
-          </th>
-          <td>
-            <small>
-              <i class="gi gi-chat text-muted"></i> <?= $name ?>
-            </small>
-          </td>
-        </tr>
-  <?php endforeach ?>
-        </table>
-      </div>      
     </div>
   </div>
   <div class="form-actions">

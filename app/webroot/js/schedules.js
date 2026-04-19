@@ -53,8 +53,8 @@ function updateSchedules(){
       if(res.results.length && res.change > 0) {
         $.each(res.results, function(key, item) {
           const target = $(`.schedules-${item.NewsletterSchedule.id}`)
-          target.removeClass('bg-warning bg-info bg-success bg-light')
-          target.addClass(`bg-${item.rowclass}`)
+          target.find('.status').removeClass('bg-warning bg-info bg-success bg-light')
+          target.find('.status').addClass(`bg-${item.rowclass}`)
           target.find('.status').text(item.status)
           for(var i in update_partials) {
             const j = update_partials[i]
