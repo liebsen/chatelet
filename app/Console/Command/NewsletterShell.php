@@ -388,8 +388,8 @@ class NewsletterShell extends AppShell {
         $this->settings['newsletter_username'] => $this->settings['newsletter_name']
       ),
       'host' => $this->settings['newsletter_host'] ?? 'smtp.gmail.com',
-      'port' => $this->settings['newsletter_port'] ?? 587,
-      'timeout' => $this->settings['newsletter_timeout'] ?? 30,
+      'port' => (int) $this->settings['newsletter_port'] ?? 587,
+      'timeout' => (int) $this->settings['newsletter_timeout'] ?? 30,
       'username' => $this->settings['newsletter_username'] ?? '',
       'password' => $this->settings['newsletter_password'] ?? '',
       'charset' => $this->settings['newsletter_charset'] ?? 'utf-8',
