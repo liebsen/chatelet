@@ -1,3 +1,7 @@
+<?php 
+echo $this->Html->script('application-notifications.js?v=' . $version['ver'], array('inline' => false));
+?>
+
 <?php foreach($notification_settings as $id => $value):?>	
 	<input type="hidden" name="data[<?=$id?>]" value="<?=$value?>">
 <?php endforeach ?>

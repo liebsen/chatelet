@@ -9,14 +9,24 @@ $dotenv->load();
 use AlejoASotelo\Andreani;
 
 class AdminController extends AppController {
-	public $uses = array('AdminMenu','Promo','Package','SaleProduct','Sale','Setting');
-	//public $components = array('SQL', 'RequestHandler');
-	public $components = array('Newsletter', 'Stats', 'RequestHandler');
+	public $uses = array(
+		'AdminMenu',
+		'Promo',
+		'Package',
+		'SaleProduct',
+		'Sale',
+		'Setting'
+	);
+	
+	public $components = array(
+		'Newsletter', 
+		'Stats', 
+		'Application', 
+		'RequestHandler'
+	);
 
 	public function beforeFilter() {
     	parent::beforeFilter();
-    	// $settings = parent::load_settings();
-     	// $this->set('settings', $settings);
 
     	$this->Auth->deny();
     	$this->Auth->allow('login','test','update_products');
@@ -1889,7 +1899,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		//$this->set('items',$items);
 	}
 
-	public function application(){
+	public function application2(){
 		if($this->request->is('post')){
 			try {
 				$this->RequestHandler->respondAs('application/json');
@@ -1899,7 +1909,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				$saves = array();
 
 	      foreach($data as $id => $value) {
-
 	      	\d("id", $id);
 	        if(is_array($value) && ($id == 'opengraph_image')) {
 	          $value = $this->save_file( $value ); 
@@ -3331,6 +3340,62 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	  $this->render('menu');
 	}	
 
+	public function application($section = 'index') {
+		$pane = $this->params['pass'][0] ?? $section;
+		$action = $this->params['pass'][1] ?? '';
+		$id = $this->params['pass'][2] ?? 0;
+		$viewComponent = implode('-', array_values(array_filter(array($pane,$action))));
+		$controlComponent = implode('_', array_values(array_filter(array($pane,$action))));
+
+		$h1 = array(
+			'name' => 'Aplicación',
+			'icon' => 'gi gi-cogwheel'
+		);
+
+		$navs = array(
+			'Redes' => array(
+				'id' => 'search',
+				'icon' 		=> 'gi gi-share',
+				'url'		=> '/admin/application/share',
+			),
+			'Email' => array(
+				'id' => 'cart',
+				'icon' 		=> 'gi gi-envelope',
+				'url'		=> '/admin/application/email',
+			),
+			'Analytics' => array(
+				'id' => 'sales',
+				'icon' 		=> 'gi gi-tag',
+				'url'		=> '/admin/application/analytics',
+			),
+			'Tipografía' => array(
+				'id' => 'fonts',
+				'icon' 		=> 'gi gi-font',
+				'url'		=> '/admin/application/fonts',
+			),
+			'Pagos' => array(
+				'id' => 'payments',
+				'icon' 		=> 'gi gi-credit_card',
+				'url'		=> '/admin/application/payments',
+			),
+			'Notificación' => array(
+				'id' => 'fonts',
+				'icon' 		=> 'gi gi-bullhorn',
+				'url'		=> '/admin/application/notifications',
+			)
+		);
+
+		$this->set('pane', $pane);
+		$this->set('h1', $h1);
+		$this->set('viewComponent', $viewComponent);
+		$this->set('navs', $navs);
+
+		if(method_exists($this->Application, $controlComponent)) {
+			return $this->Application->{$controlComponent}();
+		}		
+	}
+
+
 	public function stats($section = 'index') {
 		$pane = $this->params['pass'][0] ?? $section;
 		$action = $this->params['pass'][1] ?? '';
@@ -3366,14 +3431,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			),
 		);
 
-		if(method_exists($this->Stats, $controlComponent)) {
-			$this->Stats->{$controlComponent}($id);
-		}
-
 		$this->set('pane', $pane);
 		$this->set('h1', $h1);
 		$this->set('viewComponent', $viewComponent);
 		$this->set('navs', $navs);
+
+		if(method_exists($this->Stats, $controlComponent)) {
+			return $this->Stats->{$controlComponent}($id);
+		}
 	}
 
 	public function batch_productos($action = null) {
