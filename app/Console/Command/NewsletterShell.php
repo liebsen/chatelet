@@ -305,7 +305,7 @@ class NewsletterShell extends AppShell {
 
   public function sendPush($data, $push) {
     if($this->simulate) {
-      echo "[push] " . $data['NewsletterScheduleItem']['name'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
+      echo "[push] " . $data['Newsletter']['title'] . '(' .$data['Newsletter']['message'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
       return array(
         'sent' => $this->update,
         'response' => array()
@@ -320,6 +320,8 @@ class NewsletterShell extends AppShell {
       )
     );
 
+    \d("Newsletter", $data['Newsletter']);
+    
     $payload = array(
       'title' => $data['Newsletter']['title'],
       'body' => $data['Newsletter']['message'] || '',

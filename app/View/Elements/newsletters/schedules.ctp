@@ -37,12 +37,12 @@
 							<span class="badge badge-info"><i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?> <?=!empty($schedule['list_total']) ? '('.$schedule['list_total'].')' : ''?></span>
 						</a>
 
-						<?php if(!empty($schedule['Newsletter']['send_email'])):?>
+						<?php if($schedule['Newsletter']['send_email'] == '1'):?>
 						<span class="badge badge-success is-rounded" title="Emails enviados">
 							<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
 						</span> 
 						<?php endif ?>
-						<?php if(!empty($schedule['Newsletter']['send_push'])):?>
+						<?php if($schedule['Newsletter']['send_push'] == '1'):?>
 						<span class="badge badge-warning is-rounded" title="Push enviados">
 							<i class="gi gi-chat"></i>
 							<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
@@ -143,12 +143,12 @@
 						<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?>"><?=$schedule['NewsletterList']['name']?> <?=!empty($schedule['list_total']) ? '('.$schedule['list_total']. ')' : ''?></span>
 					</td>
 					<td>
-						<?php if(!empty($schedule['Newsletter']['send_email'])):?>
+						<?php if($schedule['Newsletter']['send_email'] == '1'):?>
 						<span class="badge badge-success is-rounded" title="Emails enviados">
 							<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
 						</span> 
 						<?php endif ?>
-						<?php if(!empty($schedule['Newsletter']['send_push'])):?>
+						<?php if($schedule['Newsletter']['send_push'] == '1'):?>
 						<span class="badge badge-warning is-rounded" title="Push enviados">
 							<i class="gi gi-chat"></i>
 							<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
