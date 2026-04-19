@@ -89,84 +89,19 @@ class UsersController extends AppController {
     return $this->redirect($this->Auth->logout());
   }
 
-  public function fix_user_ids(){
-    $this->autoRender = false;
-    $this->loadModel('Sale');    
-    $this->loadModel('User');    
-
-    $sales = $this->Sale->find('all',[
-      'conditions' => [
-          'user_id' => null,
-      ],
-      'order' => ['Sale.id DESC'],
-      'limit' => 1000,
-    ]);
-
-    //$this->set('sales', $sales);
-
-    $result = [];
-    $ok = 0;
-    $fail = 0;
-    foreach($sales as $sale) {
-      //$query = "select id, name from users where surname = 'Ziehl' and name like '%Cristina%'"
-      $user = $this->User->find('first',[
-          'conditions' => [
-              'User.email' => $sale['Sale']['email'],
-          ]
-      ]);
-
-      /*if(!$user) {
-          $user = $this->User->find('first',[
-              'conditions' => [
-                  'User.name like' => '%'.$sale['Sale']['nombre'].'%',
-                  'User.surname like' => '%'.$sale['Sale']['apellido'].'%',
-              ]
-          ]);
-      }*/
-
-      CakeLog::write('debug','check: '.$sale['Sale']['nombre'].' '.$sale['Sale']['apellido']);
-
-      if($user) {
-        $ok++;
-        $sale['Sale']['user_id'] = $user['User']['id'];
-        $this->User->save($sale['Sale']);
-        //CakeLog::write('debug','user[OK]: '.$user['User']['id']);
-      } else {
-        $fail++;
-        //CakeLog::write('debug','user[FAIL]');
-      }
-    }
-
-    CakeLog::write('debug','ok: '.$ok);
-    CakeLog::write('debug','fail: '.$fail);
-  }
-
-  public function test_mc(){
-    $response = $this->Mailchimp->test();
-    print_r($response);
-    die();
-  }
-
-  public function lists_mc(){
-    $response = $this->Mailchimp->lists();
-    print_r($response);
-    die();
-  }
-
-  public function stores(){
-    $response = $this->Mailchimp->stores();
-    print_r($response);
-    die();
-  }
 
   public function subscribe(){
     $this->loadModel('Subscription');
+    $this->loadModel('User');
     if ($this->request->is('post')) {
+      $this->RequestHandler->respondAs('application/json');
+      $this->autoRender = false;
+
       $data = $this->request->data;
       $ajax = $data['ajax'] ?? 0;
       $subscriber_email = trim($data['Subscription']['email']) ?? 0;
       if (!empty($subscriber_email)) {
-        $exists = $this->Subscription->findByEmail($subscriber_email);
+        $exists = $this->User->findByEmail($subscriber_email);
         if ($exists) {
           if(!empty($ajax)) {
             die(json_encode(array(
@@ -184,60 +119,69 @@ class UsersController extends AppController {
         }
 
         $toSave = array(
-          'email' => $data['Subscription']['email'],
+          'email' => $subscriber_email,
           'full_name' => $data['Subscription']['full_name'],
         );
 
-        $saved = $this->Subscription->save($toSave);
+        $parts = explode(' ', trim($data['Subscription']['full_name']));
+        $first_name = $parts[0];
+        array_shift($parts);
+        $last_name = implode(' ', $parts);
 
-        if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_subscription_on'] == '1') {
-          $this->Mailchimp->subscribe($data['Subscription'], $this->settings['mc_subscription']);
-        }
-
-        if(!empty($saved)){
-          if(!empty($ajax)) {
-            die(json_encode(array(
-              'success' => true, 
-              'message' => 'Bienvenida a Châtelet'
-            )));
+        try {
+          $created_user = $this->register(
+            array(
+              'User' => array(
+                'email' => $subscriber_email,
+                'name' => $first_name,
+                'surname' => $last_name,
+                'newsletter' => '1',
+              )
+            )
+          );
+          if(!empty($created_user)){
+            return json_encode(
+              array(
+                'success' => true, 
+                'message' => 'Gracias por suscribirte a Châtelet'
+              )
+            );          
           }
-
-          $this->Session->setFlash(
-            'Bien!,email registrado', 
-            'default', 
-            array('class' => 'hidden notice')
-          );  
+        } catch (Exception $e) {
+          return json_encode(array(
+            'success' => false,
+            'message' => $e->getMessage()
+          ));      
         }
       } else {
-        $this->Session->setFlash(
-           'Por favor intente nuevamente',
-           'default',
-           array('class' => 'hidden error')
+        return json_encode(
+          array(
+            'success' => false, 
+            'message' => 'Por favor ingrese un email'
+          )
         );
       }
     }    
   }
 
-  public function register(){
-    $this->autoRender = false;
-
+  public function register($user_to_register = false){
     if ($logged || !$this->request->is('post')) {
       //return json_encode(array('success' => false));
       return $this->redirect(array('controller' => 'home', 'action' => 'index'));
     }
 
-    $data = $this->request->data;
+    $data = $user_to_register ?? $this->request->data;
 
     if($this->Auth->user('id')) {
       $data['User']['id'] = $this->Auth->user('id');
       $this->request->data['User']['id'] = $this->Auth->user('id');
     }
     
-    $invite = $data['invite'];
-    $ajax = $data['ajax'];
+    $invite = $this->request->data['invite'] ?? !empty($user_to_register);
+    $ajax = $this->request->data['ajax'];
     $validate = empty($invite);
 
-    if(!empty($ajax)) {
+    if(!empty($ajax) && empty($user_to_register)) {
       $this->RequestHandler->respondAs('application/json');
       $this->autoRender = false;
     }
@@ -255,8 +199,10 @@ class UsersController extends AppController {
       return $this->redirect($this->referer());
     }
     
+    #\d("register(invite)", $invite);
     if(!empty($invite) && empty($data['User']['password'])) {
       $random_password = $this->random_password();
+      #\d("register(random_password)", $random_password);
       
       $data['User']['password'] = $random_password;
       $this->request->data['User']['password'] = $random_password;
@@ -284,9 +230,13 @@ class UsersController extends AppController {
 
       $logged = $this->Auth->login();     
 
+      #\d("logged",$logged);
+      #\d("ajax",$ajax);
       if(!$logged) {
         CakeLog::write('debug', 'could not login :'.json_encode($logged));
-        return $this->redirect($this->referer());
+        if(empty($ajax)) {
+          return $this->redirect($this->referer());
+        }
       }
 
       $email_data = array(
@@ -414,5 +364,77 @@ class UsersController extends AppController {
         return $this->redirect(array('controller' => 'home', 'action' => 'index'));
       }
     }
+  }
+
+
+  /* additional tools -- remove when needed */
+  public function fix_user_ids(){
+    $this->autoRender = false;
+    $this->loadModel('Sale');    
+    $this->loadModel('User');    
+
+    $sales = $this->Sale->find('all',[
+      'conditions' => [
+          'user_id' => null,
+      ],
+      'order' => ['Sale.id DESC'],
+      'limit' => 1000,
+    ]);
+
+    //$this->set('sales', $sales);
+
+    $result = [];
+    $ok = 0;
+    $fail = 0;
+    foreach($sales as $sale) {
+      //$query = "select id, name from users where surname = 'Ziehl' and name like '%Cristina%'"
+      $user = $this->User->find('first',[
+          'conditions' => [
+              'User.email' => $sale['Sale']['email'],
+          ]
+      ]);
+
+      /*if(!$user) {
+          $user = $this->User->find('first',[
+              'conditions' => [
+                  'User.name like' => '%'.$sale['Sale']['nombre'].'%',
+                  'User.surname like' => '%'.$sale['Sale']['apellido'].'%',
+              ]
+          ]);
+      }*/
+
+      CakeLog::write('debug','check: '.$sale['Sale']['nombre'].' '.$sale['Sale']['apellido']);
+
+      if($user) {
+        $ok++;
+        $sale['Sale']['user_id'] = $user['User']['id'];
+        $this->User->save($sale['Sale']);
+        //CakeLog::write('debug','user[OK]: '.$user['User']['id']);
+      } else {
+        $fail++;
+        //CakeLog::write('debug','user[FAIL]');
+      }
+    }
+
+    CakeLog::write('debug','ok: '.$ok);
+    CakeLog::write('debug','fail: '.$fail);
+  }
+
+  public function test_mc(){
+    $response = $this->Mailchimp->test();
+    print_r($response);
+    die();
+  }
+
+  public function lists_mc(){
+    $response = $this->Mailchimp->lists();
+    print_r($response);
+    die();
+  }
+
+  public function stores(){
+    $response = $this->Mailchimp->stores();
+    print_r($response);
+    die();
   }
 }

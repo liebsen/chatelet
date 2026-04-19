@@ -10,7 +10,7 @@
         </span>
         <span>
         <?php echo $this->Form->create('Subscribe', array(
-          'class' => 'contacto', 
+          'class' => 'form-subscription', 
           'url' => array(
             'controller' => 'users', 
             'action' => 'subscribe'
@@ -34,11 +34,14 @@
       <div class="subscribe-success max-25 m-auto d-none">
         <span class="subscribe-text text-center">
           <h3 class="text-uppercase">¡Ya estamos <strong>conectadas</strong>!</h3>
-          <p class="text-muted">A partir de ahora ya formas parte de nuestra comunidad y te enviaremos información exclusiva de nuestras novedades, descuentos y beneficios exclusivos solo para clientas</p>
+          <h1><i class="gi gi-flash text-warning"></i></h1>
+          <div class="d-flex align-items-center mb-4">
+            <p class="text-theme">A partir de ahora ya formas parte de nuestra comunidad y te enviaremos información exclusiva de nuestras novedades, descuentos y beneficios exclusivos solo para clientas</p>
+          </div>
           <div class="is-flex-center gap-1">
             <a class="text-link" data-toggle="click" data-hide=".subscribe-box">Cerrar esta ventana</a>
-            <!--a href="/Shop" class="text-link btn-continue-shopping">Ir al Shop</a-->
             <a class="text-link" onclick="subscribe_retry()">Volver a subscribirme</a>
+            <a href="/Shop" class="text-link btn-continue-shopping">Ir al Shop</a>
           </div>
         </span>
       </div>
@@ -148,11 +151,14 @@
         e.preventDefault()
         subscribe_retry()        
       })
-      $('.contacto').on('submit', function(event) {
+
+      $('.form-subscription').on('submit', function(event) {
         event.preventDefault();
         const formData = $(this).serialize();
         const btnSubmit = $(this).find('[type="submit"]');
         const redirect = $(this).find('[name="redirect"]').val();
+        btnSubmit.data('name', btnSubmit.text())
+        btnSubmit.text('Espere...')
         btnSubmit.prop('disabled', true)
         $.ajax({
           url: $(this).attr('action'),
@@ -170,19 +176,17 @@
                 localStorage.subscription_release = 1
               }
             } else {
-              // onWarningAlert('Error al suscribir usuario', res.errors)
               $('.subscribe-form').hide()
               $('.subscribe-error').show('hidden')
-              // $('#responseContainer').html(res.errors);
             }
+            btnSubmit.text(btnSubmit.data('name'))
             btnSubmit.prop('disabled', false)
           },
           error: function(xhr, status, error) {
             $('.subscribe-form').hide('hidden')
             $('.subscribe-error').show('hidden')
-            console.error("AJAX Error: " + status + " - " + error);
+            //console.error("AJAX Error: " + status + " - " + error);
             btnSubmit.prop('disabled', false)
-            // Handle errors
           }
         });
       });
