@@ -12,11 +12,9 @@ self.addEventListener('push', function (event) {
     self.registration.showNotification(pushMessageJSON.title, {
         body: pushMessageJSON.body,
         icon: pushMessageJSON.icon,
-        vibrate: pushMessageJSON.data.vibrate,
-        data: {
-            additionalData: pushMessageJSON.data.additionalData,
-            url: pushMessageJSON.data.url,
-        },
+        badge: pushMessageJSON.badge,
+        image: pushMessageJSON.image,
+        data: pushMessageJSON.data.data,
     });
 
     console.info("**** Recv'd a push message::", event);
