@@ -25,6 +25,9 @@ class ApiController extends AppController {
 
 	//get , http://www.chatelet.com.ar/api/subscriptions
   public function subscribe(){
+    $this->autoRender = false;
+    $this->RequestHandler->respondAs('application/json');
+    
     $this->loadModel('Webpush'); 
 
     if($this->Auth->user('id') && $this->request->is('post')){

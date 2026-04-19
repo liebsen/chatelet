@@ -590,7 +590,7 @@ class NewsletterComponent extends Component {
   }
 
   public function lists_delete() {
-    $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
+    $NewsletterUser = ClassRegistry::init('NewsletterUser');
     $NewsletterList = ClassRegistry::init('NewsletterList');
     try {
       if($this->controller->request->is('post')){
@@ -630,7 +630,8 @@ class NewsletterComponent extends Component {
         $response = array(
           'success' => true,
           'message' => 'Tu Lista se actualizó correctamente',
-          'redirect' => Router::reverse($redirect)
+          'redirect' => Router::reverse($redirect),
+          'lastid' => $NewsletterList->id,
         );
 
         return json_encode($response);

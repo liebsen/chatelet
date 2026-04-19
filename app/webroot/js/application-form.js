@@ -69,6 +69,10 @@ $(document).ready(function() {
           title: 'OK',
           message: res.message
         });
+        if(res.lastid) {
+          $('input[name="data[id]"]').val(res.lastid)
+          $('.enable-on-save').removeClass('d-disable')
+        }
 			} else {
         $.growl.error({
           title: 'Error',

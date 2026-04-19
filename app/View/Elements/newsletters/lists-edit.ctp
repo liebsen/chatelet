@@ -56,8 +56,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-<?php if(!empty($list['NewsletterList']['id'])):?>
+    <div class="col-md-6 enable-on-save <?=!empty($list['NewsletterList']['id'])?'':' d-disable'?>">
       <div class="form-box bg-info-outline">
         <h4 class="sub-header">Resumen</h4>
         <table class="table table-forum table-striped text-small">
@@ -146,8 +145,6 @@
     </span>
   <?php endforeach ?>
         </div>
-  <?php endif ?>
-
       </div>
     </div>
   </div>

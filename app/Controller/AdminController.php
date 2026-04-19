@@ -2608,24 +2608,26 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $p = $this->request->data['p'] ? intval($this->request->data['p']) : 0;
     $s = $this->request->data['s'] ? intval($this->request->data['s']) : 500;
 
-    $roles = ['admin', 'club'];
+    $roles = array(
+    	'admin', 
+    	'club'
+    );
 
     if(in_array($q, $roles)) {
-    	$conditions = [
+    	$conditions = array(
     		'role' => $q
-    	];
+    	);
     } else {
-		  $conditions = [
-	      'or' => [
+		  $conditions = array(
+	      'or' => array(
 	        'User.name LIKE' => "%$q%",
 	        'User.surname LIKE' => "%$q%",
-	        'User.email' => "$q",
-	        'User.telephone' => "$q",
-	        'User.province' => "$q",
-	        'User.city' => "$q",
-	      ],
-	      // 'id > ' => 1
-	    ];
+	        'User.email LIKE' => "%$q%",
+	        'User.telephone LIKE' => "%$q%",
+	        'User.province LIKE' => "%$q%",
+	        'User.city LIKE' => "%$q%",
+	      )
+	    );
 	  }
 	  #\d("conditions",$conditions);
     //$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
@@ -2655,8 +2657,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $dob_max = $data['dob_max'] ?? 0;
     $filter_type = $data['type'] ?? 'sale';
     $sale_min *= 100;
-			#\d("newsletters_users_reach(filter_type)", $filter_type);
-    
+		#\d("newsletters_users_reach(filter_type)", $filter_type);
 		if($filter_type == 'dob') {
 			$min_parts = explode('/', $dob_min);
 			$max_parts = explode('/', $dob_max);
