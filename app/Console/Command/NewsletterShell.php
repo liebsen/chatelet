@@ -393,7 +393,7 @@ class NewsletterShell extends AppShell {
       'username' => $this->settings['newsletter_username'] ?? '',
       'password' => $this->settings['newsletter_password'] ?? '',
       'charset' => $this->settings['newsletter_charset'] ?? 'utf-8',
-      'tls' => $this->settings['newsletter_charset'] == '1',
+      'tls' => $this->settings['newsletter_tls'] == '1',
     );
 
     \d("email(config)",$config); 
