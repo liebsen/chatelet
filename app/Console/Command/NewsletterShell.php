@@ -312,9 +312,17 @@ class NewsletterShell extends AppShell {
       );
     }
 
+    $fallback_url = implode('/', 
+      array(
+        $this->settings['site_url'],
+        'newsletter',
+        $data['NewsletterScheduleItem']['id']
+      )
+    );
+
     $payload = array(
       'title' => $data['Newsletter']['title'],
-      'body' => $data['Newsletter']['message'] || "",
+      'body' => $data['Newsletter']['message'] || '',
       'icon' => $this->settings['site_url'] . ($this->settings['newsletter_icon'] ? 
         $this->settings['upload_url'] . $this->settings['newsletter_icon'] : 
         '/img/push-logo.png'
@@ -326,13 +334,9 @@ class NewsletterShell extends AppShell {
       'data' => array(
         'vibrate' => array(100, 200),
         'additionalData' => array(),
-        'url' => implode('/', 
-          array(
-            $this->settings['site_url'],
-            'newsletter',
-            $data['NewsletterScheduleItem']['id']
-          )
-        )
+        'url' => $data['Newsletter']['show_cta'] == '1' ? 
+          $data['Newsletter']['cta_url'] : 
+          $fallback_url
       ),
     );
 
