@@ -289,7 +289,7 @@ class NewsletterComponent extends Component {
           'NewsletterSchedule.id, Newsletter.id,Newsletter.title,Newsletter.body,NewsletterList.id,NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email'
         ),
         'order' => array( 
-          'NewsletterSchedule.schedule_date DESC, NewsletterSchedule.schedule_hour DESC' 
+          'NewsletterSchedule.modified DESC' 
         )
       ));
 

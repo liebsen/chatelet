@@ -334,12 +334,8 @@ class AppController extends Controller
     $key = uniqid() . '.' . $ext;
     $dest = __DIR__ . '/../webroot' . $this->settings['upload_url'] . $folder . $key;
     $url = "";
-      \d('a(0)',$file);
-      \d('a(1)',$dest);
 
     if(copy($file['tmp_name'],$dest)){
-            \d('a(ok)',$dest);
-
       $filepath = $this->settings['upload_url'] . $folder . $key;
       if(!empty($this->settings['upload_local'])){
         $filepath = $key;
