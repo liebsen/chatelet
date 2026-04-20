@@ -197,7 +197,7 @@ class NewsletterComponent extends Component {
     $newsletter_products = array();
     try {
       if($this->controller->request->is('post')){
-        \d("ok",$id);
+        #\d("ok",$id);
         $this->controller->autoRender = false;
         $this->controller->RequestHandler->respondAs('application/json');
         $data = $this->controller->request->data;
@@ -431,6 +431,10 @@ class NewsletterComponent extends Component {
 
         $data = $this->controller->request->data;
         $data['id'] = $id ?? null;
+        if(empty($data['id'])) {
+          $data['user_id'] = $this->controller->Auth->user('id');
+        }
+
         $redirect = array( 'action' => 'newsletters', 'schedules' );
         $create = empty($id);
         $NewsletterSchedule->save($data);
@@ -633,6 +637,10 @@ class NewsletterComponent extends Component {
         $this->controller->RequestHandler->respondAs('application/json');            
         $data = $this->controller->request->data;
         $data['id'] = $id ?? null;
+        if(empty($data['id'])) {
+          $data['user_id'] = $this->controller->Auth->user('id');
+        }
+        
         $redirect = array( 'action' => 'newsletters', 'lists' );
 
         $NewsletterList->save($data);
