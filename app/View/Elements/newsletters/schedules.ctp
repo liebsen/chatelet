@@ -147,7 +147,25 @@
 <?php endif ?>
 					</td>
 					<td>
-						<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?>"><?=\word_limit($schedule['Newsletter']['title'])?> <?=!empty($schedule['prod_total']) ? '('.$schedule['prod_total'].')' : ''?></span>
+						<a 
+							href="<?=$this->Html->url(
+								array(
+									'action' => 'newsletters', 
+									'templates', 
+									'edit', 
+									$schedule['Newsletter']['id'],
+								)
+							)?>"
+							data-toggle="tooltip" 
+							title="Editar contenido" 
+						>
+							<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?>"><?=\word_limit($schedule['Newsletter']['title'])?></span>
+						</a>
+<?php if(!empty(!empty($schedule['prod_total']))):?>
+						<span class="badge badge-success">
+						 <?=$schedule['prod_total']?>
+						</span>
+<?php endif ?>
 						<a 
 							href="<?=$this->Html->url(
 								array(
@@ -157,30 +175,27 @@
 									$schedule['Newsletter']['id'],
 									'#' => 'editor',
 								)
-							)?>"
-							data-toggle="tooltip" 
-							title="Editar contenido" 
-							class="badge badge-info"><i class="gi gi-font"></i>
-						</a>
-						<a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
+							)?>" 
 							data-toggle="tooltip" 
 							title="Editar plantilla" 
-							class="badge badge-warning" 
+							class="badge badge-info" 
 						>
-							<i class="gi gi-picture"></i>
+							<i class="gi gi-font"></i>
 						</a>
 					</td>
 					<td>
-						<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?>"><?=$schedule['NewsletterList']['name']?> <?=!empty($schedule['list_total']) ? '('.$schedule['list_total']. ')' : ''?></span>
 						<a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
 							data-toggle="tooltip" 
 							title="Editar lista" 
-							class="badge badge-info" 
 						>
-							<i class="gi gi-list"></i>
+							<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?>"><?=$schedule['NewsletterList']['name']?> </span>
 						</a>
+<?php if(!empty(!empty($schedule['list_total']))):?>
+						<span class="badge badge-info">
+						 <?=$schedule['list_total']?>
+						</span>
+<?php endif ?>
 					</td>
 					<td>
 						<?php if($schedule['Newsletter']['send_email'] == '1'):?>
