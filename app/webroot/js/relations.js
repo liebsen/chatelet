@@ -110,7 +110,7 @@ function searchRelations(data) {
         $('.relations-count').text(filter.length)
         const parentId = $(curr.parent).val() || 0
         $.each(filter, function(key, item) {
-          $(`.${data.type}-container`).append(`<span class="label relation-item ${data.type == 'user' ? 'text-lowercase' : ''} is-clickable" data-parent-id="${parentId}" data-id="${item.id}" data-type="${data.type}" data-source="${curr.source}" data-model="${curr.model}">${item[curr.field]}</span>`);
+          $(`.${data.type}-container`).append(`<span class="label relation-item ${data.type == 'user' ? 'text-lowercase' : ''} is-clickable" data-parent-id="${parentId}" data-id="${item.id}" data-type="${data.type}" data-source="${curr.source}" data-model="${curr.model}">${item[curr.field].slice(0, item[curr.field].indexOf('@')) }</span>`);
         })
         if(typeof data.cb == 'function') {
           data.cb(data.type, null, filter.length)
