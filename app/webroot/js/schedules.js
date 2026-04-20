@@ -37,6 +37,12 @@ function updateSound(){
 
 function updateSchedules(){
   var data = {}
+  var search = ""
+  if(window.location.search) {
+    search = window.location.search
+  }
+  console.log('search',search)
+
   $('.schedule-rt').each(function(i,e){
     const id = $(e).data('id')
     for(var i in update_partials) {
@@ -52,7 +58,7 @@ function updateSchedules(){
 
   $.ajax({
     type: "POST",
-    url: "/admin/schedules_update",
+    url: `/admin/schedules_update${search}`,
     data: data,
     success: function (res) {
       if(res.results.length && res.change > 0) {
