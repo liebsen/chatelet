@@ -19,14 +19,19 @@
 					</a>
 					<div class="card-text">
 						<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'info'?>"><?=\word_limit($newsletter['Newsletter']['title'])?></span>
-						<span>
-							<i class="gi gi-envelope fa-lg"></i> <span>Email</span>
-							<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_email'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>
+<?php if(strlen($newsletter['User']['name'])):?>
+	<span class="badge badge-info"><?=$newsletter['User']['name']?></span>
+<?php else: ?>
+	<span class="badge badge-info text-lowercase"><?=strstr($newsletter['User']['email'],'@',true)?></span>
+<?php endif ?>
+
+						<span class="badge badge-<?=$newsletter['Newsletter']['send_email'] == '1' ? 'success' : 'light'?>">
+							<i class="gi gi-envelope"></i>
 						</span>
-						<span>
-							<i class="gi gi-chat fa-lg"></i> <span>Push</span>
-							<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_push'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>
+						<span class="badge badge-<?=$newsletter['Newsletter']['send_push'] == '1' ? 'success' : 'light'?>">
+							<i class="gi gi-chat"></i>
 						</span>
+
 						<span>
 							<i class="gi gi-shirt fa-lg"></i>
 							<span class="badge badge-success is-rounded"><?=count($newsletter['NewsletterProduct'])?></span>
@@ -76,7 +81,8 @@
 								target="_blank" 
 							>
 								<i class="fa fa-eye"></i>
-							</a>							
+							</a>
+<?php if($newsletter['User']['id']==$this->Session->read('Auth.User.id')):?>
 							<a 
 								href="#" 
 								data-toggle="tooltip" 
@@ -90,6 +96,7 @@
 							>
 								<i class="fa fa-trash-o"></i>
 							</a>
+<?php endif ?>
 						</div>
 				</div>
 			</div>
@@ -192,6 +199,7 @@
 							>
 								<i class="fa fa-eye"></i>
 							</a>
+<?php if($newsletter['User']['id']==$this->Session->read('Auth.User.id')):?>
 							<a 
 								href="#" 
 								data-toggle="tooltip" 
@@ -205,6 +213,7 @@
 							>
 								<i class="fa fa-trash-o"></i>
 							</a>
+<?php endif ?>
 						</div>
 					</td>
 				</tr>

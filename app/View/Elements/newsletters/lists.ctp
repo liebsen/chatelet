@@ -42,6 +42,7 @@
 						>
 							<i class="gi gi-send"></i>
 						</a>
+<?php if($list['User']['id']==$this->Session->read('Auth.User.id')):?>
 						<a 
 							href="#" 
 							data-toggle="tooltip" 
@@ -55,6 +56,7 @@
 							>
 							<i class="fa fa-trash-o"></i>
 						</a>
+<?php endif ?>
 					</div>
 				</div>
 			</div>
@@ -132,6 +134,7 @@
 							>
 								<i class="gi gi-charts"></i>
 							</a-->
+<?php if($list['User']['id']==$this->Session->read('Auth.User.id')):?>
 							<a 
 								href="#" 
 								data-toggle="tooltip" 
@@ -145,6 +148,7 @@
 								>
 								<i class="fa fa-trash-o"></i>
 							</a>
+<?php endif ?>
 						</div>
 					</td>
 				</tr>

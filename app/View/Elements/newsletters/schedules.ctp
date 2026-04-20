@@ -80,6 +80,7 @@
 				      target="_blank">
 				      <i class="fa fa-eye"></i> 
 				    </a>
+<?php if($schedule['User']['id']==$this->Session->read('Auth.User.id')):?>
 						<a 
 							href="#" 
 							data-toggle="tooltip" 
@@ -93,6 +94,7 @@
 							>
 							<i class="fa fa-trash-o"></i>
 						</a>
+<?php endif ?>
 					</div>
 				</div>
 			</div>
@@ -218,6 +220,7 @@
 					      target="_blank">
 					      <i class="fa fa-eye"></i> 
 					    </a>
+<?php if($schedule['User']['id']==$this->Session->read('Auth.User.id')):?>
 							<a 
 								href="#" 
 								data-toggle="tooltip" 
@@ -231,6 +234,7 @@
 								>
 								<i class="fa fa-trash-o"></i>
 							</a>
+<?php endif ?>
 						</div>
 					</td>
 				</tr>

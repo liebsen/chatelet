@@ -10,6 +10,7 @@ App::uses(
   'NewsletterUser',
 );
 
+#App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 class NewsletterComponent extends Component {
   public $controller; // To store a reference to the Controller
   public function initialize(Controller $controller) {
