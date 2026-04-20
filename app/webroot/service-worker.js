@@ -8,16 +8,19 @@
  * Received push
  */
 self.addEventListener('push', function (event) {
-    let pushMessageJSON = event.data.json();
-    self.registration.showNotification(pushMessageJSON.title, {
+    let pushMessageObject = {
         body: pushMessageJSON.body,
         icon: pushMessageJSON.icon,
         badge: pushMessageJSON.badge,
-        image: pushMessageJSON.image,
         data: pushMessageJSON.data.data
-    });
+    }
+    if(pushMessageJSON.badge) {
+        pushMessageObject.image = pushMessageJSON.image
+    }
+    let pushMessageJSON = event.data.json();
+    self.registration.showNotification(pushMessageJSON.title, pushMessageObject);
 
-    console.info("**** Recv'd a push message::", event);
+    console.info("sw[push]:", event);
 });
 
 /**
@@ -47,13 +50,13 @@ self.addEventListener('notificationclick', function(event) {
 
 self.addEventListener('message', function (event) {
     // A message has been sent to this service worker.
-    console.log("sw Handling message event:", event);
+    console.log("sw[message]:", event);
 });
 
 self.addEventListener('pushsubscriptionchange', function (event) {
     // The Push subscription ID has changed. The App should send this
     // information back to the App Server.
-    console.log("sw Push Subscription Change", event);
+    console.log("sw[pushsubscriptionchange]:", event);
     event.waitUntil(
         self.clients.matchAll()
             .then(clientList => {
@@ -78,27 +81,27 @@ self.addEventListener('pushsubscriptionchange', function (event) {
 
 self.addEventListener('registration', function (event) {
     // The service worker has been registered.
-    console.log("sw Registration: ", event);
+    console.log("sw[registration]:", event);
 });
 
 
 self.addEventListener('install', function (event) {
     // The serivce worker has been loaded and installed.
     // The browser aggressively caches the service worker code.
-    console.log("sw Install: ", JSON.stringify(event));
+    console.log("sw[install]:", JSON.stringify(event));
     // This replaces currently active service workers with this one
     // making this service worker a singleton.
     event.waitUntil(self.skipWaiting());
-    console.log("sw Installed: ", JSON.stringify(event));
+    console.log("sw[installed]:", JSON.stringify(event));
 
 });
 
 self.addEventListener('activate', function (event) {
     // The service worker is now Active and functioning.
-    console.log("sw Activate : ", JSON.stringify(event));
+    console.log("sw[activate]: ", JSON.stringify(event));
     // Again, ensure that this is the only active service worker for this
     // page.
     event.waitUntil(self.clients.claim());
-    console.log("sw Activated: ", JSON.stringify(event));
+    console.log("sw[activated]:", JSON.stringify(event));
     navigator.serviceWorker
 });

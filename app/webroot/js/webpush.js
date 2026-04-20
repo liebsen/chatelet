@@ -1,5 +1,6 @@
-
 /* Push notification subscription*/
+const publicVapidKey = 'BEBiooz0kvrLqazPF8zdDj9SC_It9_KiZ-0iOp16Ks93U6S-G45i7woIqFUmtZZYgh_tWVXfr88etWr0jKtFcyY';
+const version = 1002;
 
 function urlBase64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -15,9 +16,6 @@ function urlBase64ToUint8Array(base64String) {
   }
   return outputArray;
 }
-
-const publicVapidKey = 'BEBiooz0kvrLqazPF8zdDj9SC_It9_KiZ-0iOp16Ks93U6S-G45i7woIqFUmtZZYgh_tWVXfr88etWr0jKtFcyY';
-const version = 1001;
 
 async function subscribeUser() {
   if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
@@ -37,7 +35,7 @@ async function subscribeUser() {
 
   const subscribeOptions = {
     userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array(publicVapidKey), //
+    applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
   };
 
   let subscription = await registration.pushManager.getSubscription();

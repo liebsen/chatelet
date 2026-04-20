@@ -41,8 +41,6 @@ function updateSchedules(){
   if(window.location.search) {
     search = window.location.search
   }
-  console.log('search',search)
-
   $('.schedule-rt').each(function(i,e){
     const id = $(e).data('id')
     for(var i in update_partials) {
