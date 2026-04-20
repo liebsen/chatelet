@@ -102,8 +102,8 @@
 				<tr>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>
-	     		<th class="hidden-phone hidden-tablet"><?php echo __('Email'); ?></th>
-	     		<th class="hidden-phone hidden-tablet"><?php echo __('Push'); ?></th>
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('Autor'); ?></th>
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('Método'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Catálogo'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Modificado'); ?></th>
 					<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -125,10 +125,19 @@
 						<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'info'?>"><?=\word_limit($newsletter['Newsletter']['title'])?></span>
 					</td>
 					<td>
-						<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_email'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>
+<?php if(strlen($newsletter['User']['name'])):?>
+	<span class="badge badge-info"><?=$newsletter['User']['name']?></span>
+<?php else: ?>
+	<span class="badge badge-info text-lowercase"><?=strstr($newsletter['User']['email'],'@',true)?></span>
+<?php endif ?>
 					</td>
 					<td>
-						<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_push'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>
+						<span class="badge badge-<?=$newsletter['Newsletter']['send_email'] == '1' ? 'success' : 'light'?>">
+							<i class="gi gi-envelope"></i>
+						</span>
+						<span class="badge badge-<?=$newsletter['Newsletter']['send_push'] == '1' ? 'success' : 'light'?>">
+							<i class="gi gi-chat"></i>
+						</span>
 					</td>
 					<td>
 						<span class="badge badge-<?=count($newsletter['NewsletterProduct']) ? 'success' : 'light'?> is-rounded"><?=count($newsletter['NewsletterProduct']) ? count($newsletter['NewsletterProduct']) : 'Estático'?></span>

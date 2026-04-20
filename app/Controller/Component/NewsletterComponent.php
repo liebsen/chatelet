@@ -5,6 +5,7 @@ App::uses(
   'Component', 
   'Controller', 
   'Session', 
+  'Stat', 
   'Newsletter', 
   'NewsletterUser',
 );
@@ -118,14 +119,25 @@ class NewsletterComponent extends Component {
 
     if(empty($_GET['extended'])) {
       $conditions['Newsletter.enabled'] = 1;
+      $conditions['Newsletter.user_id'] = $this->controller->Auth->user('id');
     }
 
     try {
-      $newsletters = $Newsletter->find('all', array(
-        'fields' => array('Newsletter.id, Newsletter.title,Newsletter.body,Newsletter.send_email, Newsletter.send_push, Newsletter.created, Newsletter.modified, Newsletter.enabled'),
-        'conditions' => $conditions,
-        'order' => array( 'Newsletter.modified DESC' )
-      ));
+      $newsletters = $Newsletter->find('all', 
+        array(
+          'joins' => array(
+            array(
+              'table' => 'users',
+              'alias' => 'User',
+              'type' => 'LEFT',
+              'conditions' => array( 'User.id = Newsletter.user_id' )
+            ),
+          ),          
+          'fields' => array('Newsletter.id, Newsletter.title,Newsletter.body,Newsletter.send_email, Newsletter.send_push, Newsletter.created, Newsletter.modified, Newsletter.enabled, User.id, User.email, User.name, User.surname'),
+          'conditions' => $conditions,
+          'order' => array( 'Newsletter.modified DESC' )
+        )
+      );
 
       foreach($newsletters as $i => $newsletter) {
         $products = $NewsletterProduct->find('all', array(

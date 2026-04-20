@@ -35,7 +35,7 @@
         <h4 class="sub-header"><i class="gi gi-cogwheel is-clickable" onclick="$('#user-filter').focus()"></i> Cuentas</h4>
         <table class="table table-forum">
     <?php foreach($list_users as $user): ?>
-          <tr><td><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?> (<span class="text-lowercase"><?php echo $user['User']['email']?></span>)</td></tr>
+          <tr><td><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?> (<span class="text-lowercase"><?php echo strstr($user['User']['email'],'@',true)?></span>)</td></tr>
   <?php endforeach ?>
        </table>
       </div>
@@ -141,7 +141,14 @@
       data-id="<?=$user['User']['id']?>"
       data-type="user"
       data-source="list"
-      data-model="NewsletterUser"><?php echo $user['User']['email']?>
+      title="<?=implode("\n", 
+        array(
+          $user['User']['name'].' '.$user['User']['surname'],
+          $user['User']['email']
+        )
+      )
+      ?>"
+      data-model="NewsletterUser"><?php echo strstr($user['User']['email'],'@',true)?>
     </span>
   <?php endforeach ?>
         </div>

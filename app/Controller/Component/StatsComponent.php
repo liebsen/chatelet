@@ -81,7 +81,7 @@ class StatsComponent extends Component {
       'conditions' => array(
         'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
       ),
-      'fields' => array('Stat.id, Stat.tag, Stat.context, Stat.created, User.id, User.name, User.surname, User.email, User.birthday'),
+      'fields' => array('Stat.id, Stat.tag, Stat.context, Stat.created, User.id, User.email, User.name, User.surname, User.email, User.birthday'),
       'group' => array('Stat.tag, JSON_EXTRACT(Stat.context, "$.cart")'),
       'order' => array('Stat.id DESC'),
       'limit' => 500,
