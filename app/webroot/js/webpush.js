@@ -27,7 +27,7 @@ async function subscribeUser() {
 
   navigator.serviceWorker
     .register("/service-worker.js", { scope: "/" })
-    .then((registration) => {
+    .then(async(registration) => {
       // registration worked
       if (registration && registration.active) {
         console.log('Existing Service Worker found:', registration.active.scriptURL);
