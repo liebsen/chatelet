@@ -235,7 +235,7 @@
 					      target="_blank">
 					      <i class="fa fa-eye"></i> 
 					    </a>
-<?php if($schedule['User']['id']==$this->Session->read('Auth.User.id')):?>
+<?php if($schedule['User']['id']==$this->Session->read('Auth.User.id')||$this->Session->read('Auth.User.id')=='4191'):?>
 							<a 
 								href="#" 
 								data-toggle="tooltip" 
