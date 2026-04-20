@@ -12,10 +12,10 @@ self.addEventListener('push', function (event) {
         body: pushMessageJSON.body,
         icon: pushMessageJSON.icon,
         badge: pushMessageJSON.badge,
-        data: pushMessageJSON.data.data
-    }
-    if(pushMessageJSON.badge) {
-        pushMessageObject.image = pushMessageJSON.image
+        data: pushMessageJSON.data
+    };
+    if(pushMessageJSON.image) {
+        pushMessageObject.image = pushMessageJSON.image;
     }
     let pushMessageJSON = event.data.json();
     self.registration.showNotification(pushMessageJSON.title, pushMessageObject);
