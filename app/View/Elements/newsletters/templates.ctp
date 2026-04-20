@@ -131,7 +131,7 @@
 						<i class="gi gi-circle_<?=$newsletter['Newsletter']['send_push'] == '1' ? 'ok text-success' : 'remove text-danger'?> fa-lg"></i>
 					</td>
 					<td>
-						<span class="badge badge-success is-rounded"><?=count($newsletter['NewsletterProduct'])?></span>
+						<span class="badge badge-<?=count($newsletter['NewsletterProduct']) ? 'success' : 'light'?> is-rounded"><?=count($newsletter['NewsletterProduct']) ? count($newsletter['NewsletterProduct']) : 'Estático'?></span>
 					</td>
 					<td>
 						<span class="badge"><?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?></span>
