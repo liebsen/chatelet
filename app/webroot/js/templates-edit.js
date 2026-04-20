@@ -2,14 +2,13 @@ CKEDITOR.replace('newsletter', {
   height: 500,
   on: {
     uiReady: function(e) {
-      console.log('e.editor.name',e.editor.name)
       var toolbar = document.getElementById('cke_1_toolbox');
       toolbar.style.display = 'none';
     },
     maximize: function(e) {
       var toolbar = document.getElementById('cke_1_toolbox');
       if (e.data === 1) { // 1 = Maximized
-          toolbar.style.display = 'block';
+        toolbar.style.display = 'block';
       } else { // 2 = Minimized (Normal)
         toolbar.style.display = 'none';
       }
