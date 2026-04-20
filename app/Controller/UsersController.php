@@ -2,9 +2,18 @@
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class UsersController extends AppController {
-  public $uses = array('User','Setting','Category','LookBook');
-  public $components = array("Mailchimp", "RequestHandler");
-  //public $components = array("RequestHandler");
+  public $uses = array(
+    'User',
+    'Setting',
+    'Stat',
+    'Category',
+    'LookBook'
+  );
+  
+  public $components = array(
+    // "Mailchimp", 
+    "RequestHandler"
+  );
 
 	public function beforeFilter() {
   	parent::beforeFilter();
@@ -14,7 +23,7 @@ class UsersController extends AppController {
     $lookbook = $this->LookBook->find('all');
     $this->set('lookBook', $lookbook); 
     
-    $setting            = $this->Setting->findById('catalog_first_line');
+    $setting = $this->Setting->findById('catalog_first_line');
     $catalog_first_line = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
     $this->set('catalog_first_line',$catalog_first_line);
     unset($setting);
@@ -51,6 +60,14 @@ class UsersController extends AppController {
           array( 'class' => 'hidden notice' )
         );
 
+        # save log (session-register)
+        $this->Stat->save(
+          array(
+            'tag' => 'session-start',
+            'user_id' => $this->Auth->user('id'),
+          )
+        );
+
         if(!empty($ajax)) {
           die(json_encode(array(
             'success' => true, 
@@ -80,12 +97,19 @@ class UsersController extends AppController {
   }
 
   public function logout() {
+    # save log (session-register)
+    $this->Stat->save(
+      array(
+        'tag' => 'session-end',
+        'user_id' => $this->Auth->user('id'),
+      )
+    );    
     $this->Session->destroy();
     $this->Session->setFlash(
       'Tu sesión ha terminado. Gracias por comprar con Châtelet', 
       'default', 
       array('class' => 'hidden notice')
-    );        
+    );
     return $this->redirect($this->Auth->logout());
   }
 
@@ -227,6 +251,14 @@ class UsersController extends AppController {
 
       $logged = $this->Auth->login();     
 
+      # save log (session-register)
+      $this->Stat->save(
+        array(
+          'tag' => 'session-register',
+          'user_id' => $this->Auth->user('id'),
+        )
+      );
+
       #\d("logged",$logged);
       #\d("ajax",$ajax);
       if(!$logged) {
@@ -246,16 +278,16 @@ class UsersController extends AppController {
         )
       );
 
-      \d("message", $message);
-
+      #\d("message", $message);
+      $title = $this->settings['notification_register_welcome_title'] ?? 'Bienvenida a Châtelet';
       $sent = $this->sendEmailMessage(
         $message,
-        $this->settings['notification_register_welcome_title'] ?? 'Bienvenida a Châtelet',
+        $title,
         $data['User']['email']
       );
 
       $this->Session->setFlash(
-        'Bienvenida a Châtelet', 
+        $title, 
         'default', 
         array('class' => 'hidden notice')
       );
@@ -267,9 +299,9 @@ class UsersController extends AppController {
         ));
       }
 
-      if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_account_on'] == '1') {
+      /*if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_account_on'] == '1') {
         $this->Mailchimp->subscribe($data['User'], $this->settings['mc_account']);
-      }
+      }*/
 
       return $this->redirect($this->referer());
     } else {
@@ -426,6 +458,7 @@ class UsersController extends AppController {
     CakeLog::write('debug','fail: '.$fail);
   }
 
+  /*
   public function test_mc(){
     $response = $this->Mailchimp->test();
     print_r($response);
@@ -442,5 +475,5 @@ class UsersController extends AppController {
     $response = $this->Mailchimp->stores();
     print_r($response);
     die();
-  }
+  }*/
 }

@@ -1,7 +1,18 @@
 <?php
 class ContactoController extends AppController {
-	public $uses = array('Contact','Setting','Catalogo','Category','Subscription','LookBook');
-	public $components = array("Mailchimp", "RequestHandler");
+	public $uses = array(
+		'Contact',
+		'Setting',
+		'Catalogo',
+		'Category',
+		'User',
+		'LookBook'
+	);
+	
+	public $components = array(
+		// "Mailchimp", 
+		"RequestHandler"
+	);
 
 	public function beforeFilter() {
 		parent::beforeFilter();

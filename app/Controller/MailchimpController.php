@@ -1,8 +1,17 @@
 <?php
 
 class MailchimpController extends AppController {
-  public $uses = array('User','Setting', 'Product');
-  public $components = array("Mailchimp", "RequestHandler");
+  public $uses = array(
+    'User',
+    'Setting', 
+    'Product'
+  );
+  
+  public $components = array(
+    // "Mailchimp", 
+    "RequestHandler"
+  );
+  
   public function beforeFilter() {
     parent::beforeFilter();
   }
