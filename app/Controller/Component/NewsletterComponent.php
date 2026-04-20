@@ -117,7 +117,7 @@ class NewsletterComponent extends Component {
       //'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month"))
     );
 
-    if(empty($_GET['extended'])) {
+    if(empty($this->controller->request->query['extended'])) {
       $conditions['Newsletter.enabled'] = 1;
       $conditions['Newsletter.user_id'] = $this->controller->Auth->user('id');
     }
@@ -265,8 +265,9 @@ class NewsletterComponent extends Component {
     $schedules = array();
     $conditions = array(); // array('NewsletterSchedule.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")));
 
-    if(empty($_GET['extended'])) {
+    if(empty($this->controller->request->query['extended'])) {
       $conditions['NewsletterSchedule.enabled'] = 1;
+      $conditions['NewsletterSchedule.user_id'] = $this->controller->Auth->user('id');
     }
 
     try {
@@ -575,8 +576,9 @@ class NewsletterComponent extends Component {
     $NewsletterUser = ClassRegistry::init('NewsletterUser');
     $response = array();
     $conditions = array('NewsletterList.id IS NOT NULL',); // array('NewsletterSchedule.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")));
-    if(empty($_GET['extended'])) {
+    if(empty($this->controller->request->query['extended'])) {
       $conditions['NewsletterList.enabled'] = 1;
+      $conditions['NewsletterList.user_id'] = $this->controller->Auth->user('id');
     }
 
     try {
