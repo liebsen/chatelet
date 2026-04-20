@@ -726,7 +726,6 @@ background-color: #e8ffa8!important;
   flex-direction: column;
   justify-content: center;
   align-items: self-start;
-  grid-gap: 0.25rem;
 }
 
 .block .block {

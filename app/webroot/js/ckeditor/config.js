@@ -8,6 +8,7 @@ CKEDITOR.editorConfig = function( config ) {
   // config.language = 'fr';
   config.uiColor = '#2196F3';
   config.allowedContent = true;
+  // config.toolbarCanCollapse = true;
   config.language = 'es'
   /*config.toolbar = [
       { name: 'styles', items : [ 'Format' ] },
@@ -23,5 +24,4 @@ CKEDITOR.editorConfig = function( config ) {
   config.removePlugins = 'about,flash,forms,div,smiley,save,elementspath';
   // config.filebrowserUploadMethod = 'form';
   config.filebrowserUploadUrl = '/api/ckupload';  
-
 };
