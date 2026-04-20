@@ -86,11 +86,11 @@ $(document).ready(function() {
           message: res.errors
         });
 			}
-      /*setTimeout(function(){
-        if(res.redirect) {
+      if(res.redirect) {
+        setTimeout(function(){
           location.href = res.redirect
-        }
-      }, 2000)*/
+        }, 2000)
+      }
 		}).fail(function(xhr, error){
       $.growl.error({
         title: 'Error',

@@ -445,20 +445,8 @@ class NewsletterComponent extends Component {
 
         $redirect = array( 'action' => 'newsletters', 'schedules' );
         $create = empty($id);
+        \d("save",$data);
         $NewsletterSchedule->save($data);
-
-        if(!empty($data['id'])) {
-          $NewsletterScheduleItem->updateAll(
-            array(
-              'NewsletterScheduleItem.status' => "'pending'",
-              'NewsletterScheduleItem.push_sent' => 0,
-              'NewsletterScheduleItem.email_sent' => 0,
-            ),
-            array(
-              'NewsletterScheduleItem.schedule_id' => $id,
-            )
-          );
-        }
 
         // update schedule reference
         $users = array();
@@ -488,14 +476,9 @@ class NewsletterComponent extends Component {
           $save['id'] = $create ? null : $save['id'];
           $save['schedule_id'] = $NewsletterSchedule->id;
           if(!$create){
-            if(
-              !empty($data['reset']) && 
-              empty($data['reset_all'])
-            ) {
-              $save['push_sent'] = 0;
-              $save['email_sent'] = 0;
-              $save['status'] = 'pending';
-            }
+            $save['push_sent'] = 0;
+            $save['email_sent'] = 0;
+            $save['status'] = 'pending';
           }
           array_push($saves, $save);
         }
