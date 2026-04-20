@@ -3429,6 +3429,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'icon' 		=> 'gi gi-shirt',
 				'url'		=> '/admin/stats/products',
 			),
+			'Sesión' => array(
+				'id' => 'session',
+				'icon' 		=> 'gi gi-lock',
+				'url'		=> '/admin/stats/session',
+			),
 		);
 
 		$this->set('pane', $pane);

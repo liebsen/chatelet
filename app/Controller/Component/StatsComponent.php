@@ -135,4 +135,29 @@ class StatsComponent extends Component {
     ));
     $this->controller->set('items', $items);    
   }
+
+  public function session() {
+    $Stat = ClassRegistry::init('Stat');
+    $items = $Stat->find('all',array(
+      'joins' => array(
+        array(
+          'table' => 'users',
+          'alias' => 'User',
+          'type' => 'LEFT',
+          'conditions' => array(
+            'User.id = Stat.user_id'
+          )
+        )
+      ),
+      'conditions' => array(
+        'tag LIKE ' => 'session-%'
+      ),
+      'fields' => array('Stat.id, Stat.tag, Stat.created, User.id, User.name, User.surname, User.email, User.birthday'),
+      'group' => array('Stat.id'),
+      'order' => array('Stat.id DESC'),
+      'limit' => 500,
+    ));
+
+    $this->controller->set('items', $items);
+  }
 }
