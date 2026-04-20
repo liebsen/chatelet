@@ -265,12 +265,7 @@ class NewsletterController extends AppController {
         strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name'])))
       ));
     }
-    \d("show_social(1)",$this->settings['newsletter_show_social']);
-    \d("show_social(2)",$newsletter['Newsletter']['show_social']);
-    \d("show_social(3)",(
-      	$this->settings['newsletter_show_social'] == '1' && 
-      	$newsletter['Newsletter']['show_social'] == '1'
-      ));
+
     $viewVars = array(
       'data' => $newsletter,
       'products' => $products,

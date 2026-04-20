@@ -1,7 +1,7 @@
 function getFormData(form) {
   var data = new FormData();
   for (var i=0; i<form.length; i++) {
-    var e = form[i];    
+    var e = form[i]
     if(($(e).data('change') || $(e).data('force')) && !$(e).data('noproc')) {
       var value = e.value
       if(e.type == 'file') {
@@ -27,12 +27,14 @@ $(document).ready(function() {
       }
       if (confirm("¿Deseas cargar este archivo ahora?")) {
         setTimeout(function(){
+          const data = getFormData(document.getElementById("form_app"))
+          if(!data) return false
           $(this).data('change', false)
           return $.ajax({
             url: $('#form_app').attr('action'),
             type: 'POST',
             cache: false,
-            data: getFormData(document.getElementById("form_app")),
+            data: data,
             processData: false,  // Mandatory: stop jQuery from converting data to a string
             contentType: false,  // Mandatory: let browser set the correct multipart/form-data boundary
             success: function(res) {

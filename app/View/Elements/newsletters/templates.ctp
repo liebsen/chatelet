@@ -224,14 +224,14 @@
 	<div class="form-actions">
 <?php if(empty($this->params->query['extended'])): ?>
 	<a href="/admin/newsletters/templates?extended=1">
-    <button class="btn" type="button"><i class="fa fa-eye"></i> <span class="ml-1">Ver todo</span></button>
+    <button class="btn" title="Ver todo"><i class="fa fa-eye"></i> <span class="ml-1">Ver todo</span></button>
   </a>
 <?php else: ?>
 	<a href="/admin/newsletters/templates">
-    <button class="btn" type="button"><i class="fa fa-eye-slash"></i> <span class="ml-1">Ver menos</span></button>
+    <button class="btn" title="Ver menos"><i class="fa fa-eye-slash"></i> <span class="ml-1">Ver menos</span></button>
   </a>
 <?php endif ?>
-	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit'))?>">
+	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit'))?>" title="Crear Plantilla">
 	    <i class="gi gi-magic"></i> <span class="ml-1">Crear Plantilla</span>
 	  </a>
   </div>

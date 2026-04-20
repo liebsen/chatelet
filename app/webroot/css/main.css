@@ -84,7 +84,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   display: none;
 }
 
-@media (min-width: 991px) {
+@media (min-width: 1024px) {
   .mobile {
     display: none!important;
   }
@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .mobile {
     display: inline-block;
   }
@@ -2380,9 +2380,8 @@ a.text-black:focus {
 }
 
 small, .small {
-  font-size: 65%;
   color: #2196f3;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 /* Labels & Badges */
@@ -2404,9 +2403,9 @@ small, .small {
 }
 
 .badge i {
-  margin-right: 0.5rem;
   min-width: 1rem;
   text-align: center;
+  margin: auto;
 }
 .badge.is-large {
   font-size: 18px;
