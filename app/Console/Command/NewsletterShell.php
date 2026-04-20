@@ -290,8 +290,12 @@ class NewsletterShell extends AppShell {
     if(count($schedules)){
       print_r(
         array(
-          'date' => $date,
-          'hour' => implode(':',array($hour,$min)),
+          'date' => implode(' ', 
+            array(
+              $date,
+              implode(':',array($hour,$min))
+            )
+          ),
           'quota' => $quota,
           'perminute' => $perminute,
           'perday' => $perday,
