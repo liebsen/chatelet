@@ -293,9 +293,15 @@ class NewsletterComponent extends Component {
               'NewsletterProduct.newsletter_id = Newsletter.id',
             )
           ),
+          array(
+            'table' => 'users',
+            'alias' => 'User',
+            'type' => 'LEFT',
+            'conditions' => array('NewsletterSchedule.user_id = User.id'),
+          ),
         ),        
         'fields' => array(
-          'NewsletterSchedule.id, Newsletter.id,Newsletter.title,Newsletter.body,NewsletterList.id,NewsletterList.name,NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email, COUNT(distinct NewsletterProduct.id) as prod_total'
+          'NewsletterSchedule.id, Newsletter.id,Newsletter.title,Newsletter.body,NewsletterList.id,NewsletterList.name,NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email, COUNT(distinct NewsletterProduct.id) as prod_total, User.id, User.email, User.name, User.surname'
         ),
         'conditions' => $conditions,
         'group' => array(
@@ -594,8 +600,14 @@ class NewsletterComponent extends Component {
             'type' => 'LEFT',
             'conditions' => array('NewsletterList.id = NewsletterUser.list_id'),
           ),
-        ),        
-        'fields' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text,NewsletterList.modified, NewsletterList.enabled, NewsletterList.modified, COUNT(NewsletterUser.id) as total'),
+          array(
+            'table' => 'users',
+            'alias' => 'User',
+            'type' => 'LEFT',
+            'conditions' => array('User.id = NewsletterList.user_id'),
+          ),
+        ),  
+        'fields' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text,NewsletterList.modified, NewsletterList.enabled, NewsletterList.modified, COUNT(NewsletterUser.id) as total, User.id, User.email, User.name, User.surname'),
         'conditions' => $conditions,
         'group' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text,NewsletterList.modified, NewsletterList.enabled, NewsletterList.created, NewsletterList.modified'),
         'order' => array( 'NewsletterList.modified DESC' )
@@ -640,7 +652,7 @@ class NewsletterComponent extends Component {
         if(empty($data['id'])) {
           $data['user_id'] = $this->controller->Auth->user('id');
         }
-        
+
         $redirect = array( 'action' => 'newsletters', 'lists' );
 
         $NewsletterList->save($data);

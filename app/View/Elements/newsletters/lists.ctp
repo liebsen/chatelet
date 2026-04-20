@@ -67,6 +67,7 @@
 				<tr>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('Autor'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Audiencia'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Modificado'); ?></th>
 					<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -86,6 +87,13 @@
 					</td>
 					<td>
 						<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'info'?>"><?=$list['NewsletterList']['name']?></span>						
+					</td>
+					<td>
+<?php if(strlen($list['User']['name'])):?>
+	<span class="badge badge-info"><?=$list['User']['name']?></span>
+<?php else: ?>
+	<span class="badge badge-info text-lowercase"><?=strstr($list['User']['email'],'@',true)?></span>
+<?php endif ?>
 					</td>
 					<td>
 						<span class="badge badge-<?=!empty($list[0]['total']) ? 'success' : 'danger'?> is-rounded">

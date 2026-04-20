@@ -27,6 +27,20 @@
 							<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?>">
 							<i class="fa fa-image mr-1"></i> <?=\word_limit($schedule['Newsletter']['title'])?> <?=!empty($schedule['prod_total']) ? '('.$schedule['prod_total'].')' : ''?>
 							</span>
+							<a 
+								href="<?=$this->Html->url(
+									array(
+										'action' => 'newsletters', 
+										'templates', 
+										'edit', 
+										$schedule['Newsletter']['id'],
+										'#' => 'editor',
+									)
+								)?>"
+								data-toggle="tooltip" 
+								title="Editar contenido" 
+								class="badge badge-info"><i class="gi gi-font"></i>
+							</a>							
 						</a>
 
 						<a 
@@ -54,20 +68,6 @@
 						</span>
 					</div>
 					<div class="d-flex flex-column flex-center flex-nowrap gap-05">
-						<a 
-							href="<?=$this->Html->url(
-								array(
-									'action' => 'newsletters', 
-									'templates', 
-									'edit', 
-									$schedule['Newsletter']['id'],
-									'#' => 'editor',
-								)
-							)?>"
-							data-toggle="tooltip" 
-							title="Editar contenido" 
-							class="btn btn-sm btn-info"><i class="gi gi-font"></i>
-						</a>
 				    <a href="<?=$this->Html->url(
 				        array(
 				          'controller' => 'newsletter', 
@@ -75,7 +75,7 @@
 				          $schedule['Newsletter']['id']
 				        )
 				      )?>"
-				      class="btn btn-sm btn-warning" 
+				      class="btn btn-sm btn-success" 
 				      title="Previsualizar plantilla"
 				      target="_blank">
 				      <i class="fa fa-eye"></i> 
@@ -105,6 +105,7 @@
 				<tr>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Estado'); ?></th>
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('Autor'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Plantilla'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Lista'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Progreso'); ?></th>
@@ -137,10 +138,47 @@
 						</span>
 					</td>
 					<td>
+<?php if(strlen($schedule['User']['name'])):?>
+	<span class="badge badge-info"><?=$schedule['User']['name']?></span>
+<?php else: ?>
+	<span class="badge badge-info text-lowercase"><?=strstr($schedule['User']['email'],'@',true)?></span>
+<?php endif ?>
+					</td>
+					<td>
 						<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?>"><?=\word_limit($schedule['Newsletter']['title'])?> <?=!empty($schedule['prod_total']) ? '('.$schedule['prod_total'].')' : ''?></span>
+						<a 
+							href="<?=$this->Html->url(
+								array(
+									'action' => 'newsletters', 
+									'templates', 
+									'edit', 
+									$schedule['Newsletter']['id'],
+									'#' => 'editor',
+								)
+							)?>"
+							data-toggle="tooltip" 
+							title="Editar contenido" 
+							class="badge badge-info"><i class="gi gi-font"></i>
+						</a>
+						<a 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
+							data-toggle="tooltip" 
+							title="Editar plantilla" 
+							class="badge badge-warning" 
+						>
+							<i class="gi gi-picture"></i>
+						</a>
 					</td>
 					<td>
 						<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?>"><?=$schedule['NewsletterList']['name']?> <?=!empty($schedule['list_total']) ? '('.$schedule['list_total']. ')' : ''?></span>
+						<a 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
+							data-toggle="tooltip" 
+							title="Editar lista" 
+							class="badge badge-info" 
+						>
+							<i class="gi gi-list"></i>
+						</a>
 					</td>
 					<td>
 						<?php if($schedule['Newsletter']['send_email'] == '1'):?>
@@ -167,20 +205,7 @@
 					</td>
 					<td> 
 						<div class="d-flex flex-center flex-nowrap gap-25">
-							<a 
-								href="<?=$this->Html->url(
-									array(
-										'action' => 'newsletters', 
-										'templates', 
-										'edit', 
-										$schedule['Newsletter']['id'],
-										'#' => 'editor',
-									)
-								)?>"
-								data-toggle="tooltip" 
-								title="Editar contenido" 
-								class="btn btn-sm btn-info"><i class="gi gi-font"></i>
-							</a>
+
 					    <a href="<?=$this->Html->url(
 					        array(
 					          'controller' => 'newsletter', 
@@ -188,27 +213,11 @@
 					          $schedule['Newsletter']['id']
 					        )
 					      )?>"
-					      class="btn btn-sm btn-warning" 
+					      class="btn btn-sm btn-success" 
 					      title="Previsualizar plantilla"
 					      target="_blank">
 					      <i class="fa fa-eye"></i> 
 					    </a>
-							<a 
-								href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
-								data-toggle="tooltip" 
-								title="Editar plantilla" 
-								class="btn btn-sm btn-warning" 
-							>
-								<i class="gi gi-picture"></i>
-							</a>
-							<a 
-								href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
-								data-toggle="tooltip" 
-								title="Editar lista" 
-								class="btn btn-sm btn-info" 
-							>
-								<i class="gi gi-list"></i>
-							</a>						
 							<a 
 								href="#" 
 								data-toggle="tooltip" 
