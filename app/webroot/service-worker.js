@@ -1,6 +1,3 @@
-// Source - https://stackoverflow.com/a/75676652
-// Posted by Ikenitenine, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-03-10, License - CC BY-SA 4.0
 
 'use strict';
 
