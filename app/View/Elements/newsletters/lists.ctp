@@ -163,7 +163,7 @@
   </a>
 <?php else: ?>
 	<a href="/admin/newsletters/lists">
-    <button class="btn" type="button"><i class="fa fa-eye-slash mr-1"></i><span>Ver menos</span></button>
+    <button class="btn" type="button"><i class="fa fa-eye-slash mr-1"></i><span class="ml-1">Ver menos</span></button>
   </a>
 <?php endif ?>
   <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit'))?>">

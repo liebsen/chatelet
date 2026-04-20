@@ -3431,7 +3431,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			),
 			'Sesión' => array(
 				'id' => 'session',
-				'icon' 		=> 'gi gi-lock',
+				'icon' 		=> 'gi gi-log_book',
 				'url'		=> '/admin/stats/session',
 			),
 		);

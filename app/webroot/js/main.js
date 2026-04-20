@@ -201,11 +201,20 @@ $(function () {
   }
 
   $('.form-box').each(function(i,e){
-    $(e).append(`<span class="form-box-handle"><i class="gi gi-star"></i></span>`)
+    $(e).append(`<span class="form-box-handle"><i class="gi gi-more_windows"></i></span>`)
   })
 
   $('.form-box > .form-box-handle').click(function(event){
-    $(this).parent().toggleClass('fs')
+    const target = $(this)
+    //target.find('.gi').removeClass('gi-remove gi-more_windows')
+    target.parent().toggleClass('fs')
+    /*setTimeout(function(){
+      target.find('.gi').addClass(
+        target.parent().hasClass('fs') ? 
+        'gi-remove' : 
+        'gi-more_windows'
+      )
+    }, 100)*/
   })
 
   Growl.settings.duration = 2000

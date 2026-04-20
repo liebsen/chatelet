@@ -32,7 +32,7 @@
 				</td>
 				<td>
 					<span class="badge badge-light" title="Fecha / Hora">
-					<?=$this->Time->format($item['Stat']['created'], '%d/%m/%Y') ?> </span> 
+					<?=$this->Time->format($item['Stat']['created'], '%d/%m/%Y %H:%M') ?> </span> 
 					<span class="badge is-rounded" title="Fecha / Hora de ejecución">
 					<?=\readable_time_ago(strtotime($item['Stat']['created'])) ?> </span>
 				</td>
