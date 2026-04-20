@@ -1,3 +1,8 @@
+function setFormData(key,value) {
+  $(key).val(value)
+  $(key).data('change',true)
+}
+
 function getFormData(form) {
   var data = new FormData();
   for (var i=0; i<form.length; i++) {

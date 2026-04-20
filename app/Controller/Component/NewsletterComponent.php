@@ -438,6 +438,7 @@ class NewsletterComponent extends Component {
 
         $data = $this->controller->request->data;
         $data['id'] = $id ?? null;
+
         if(empty($data['id'])) {
           $data['user_id'] = $this->controller->Auth->user('id');
         }
@@ -446,11 +447,7 @@ class NewsletterComponent extends Component {
         $create = empty($id);
         $NewsletterSchedule->save($data);
 
-        // reset recipients
-        if(
-          !empty($data['reset']) && 
-          !empty($data['reset_all'])
-        ) {
+        if(!empty($data['id'])) {
           $NewsletterScheduleItem->updateAll(
             array(
               'NewsletterScheduleItem.status' => "'pending'",

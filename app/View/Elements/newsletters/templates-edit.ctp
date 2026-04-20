@@ -22,7 +22,7 @@
       <div class="form-group flex-end flex-between gap-05">
         <div class="controls flex-1">
           <label class="control-label" for="toggle">Activo</label>
-          <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$newsletter['Newsletter']['enabled'] == '1' ? ' checked' : '' ?>>
+          <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$newsletter['Newsletter']['enabled'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
           <label for="toggle" class="toggle-label"></label>
         </div>
 <?php if(!empty($newsletter_products)): ?>

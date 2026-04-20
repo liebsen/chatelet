@@ -36,10 +36,9 @@ $(document).ready(function() {
   })
 
   $(document).on('click', '.btn-reset', function(e){
-    $('#reset').val(1)
-    $('#reset_all').val($('input[name="toggle_reset"]').val())
+    setFormData('#reset',1)
+    setFormData('#reset_all',$('input[name="toggle_reset"]').val())
     $('button[type="submit"]').trigger('click')
-    // $('form[name="schedule_edit"]').trigger('submit')
   })
 
   $('input.advanced-filter').change(function(e){
