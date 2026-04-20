@@ -3426,7 +3426,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			),
 			'Productos' => array(
 				'id' => 'products',
-				'icon' 		=> 'gi gi-shirt',
+				'icon' 		=> 'gi gi-dress',
 				'url'		=> '/admin/stats/products',
 			),
 			'Sesión' => array(

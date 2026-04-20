@@ -188,7 +188,7 @@ class UsersController extends AppController {
     }    
   }
 
-  public function register($user_to_register = false){
+  public function register($user_to_register = null){
     if ($logged || !$this->request->is('post')) {
       //return json_encode(array('success' => false));
       return $this->redirect(array('controller' => 'home', 'action' => 'index'));
