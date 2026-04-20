@@ -44,7 +44,7 @@
 						</a>
 <?php if($list['User']['id']==$this->Session->read('Auth.User.id')):?>
 						<a 
-							href="#" 
+							href="#"
 							data-toggle="tooltip" 
 							title="" 
 							class="btn btn-sm btn-danger deletebutton" 

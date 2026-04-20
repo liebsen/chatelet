@@ -134,51 +134,44 @@
         </div>
   <?php endif ?>
       </div>
-
-  <?php if($settings['newsletter_show_header'] == '1' || $settings['newsletter_show_social'] == '1'):?>
       <div class="form-box bg-info-outline">
         <h4 class="sub-header">Configuración extra</h4>
         <p>Establece la configuración adicional de esta Plantilla</p>
+        <div class="control-group<?=@$settings['newsletter_show_header'] == '1' ? '' : ' d-disable' ?>">
+          <label class="control-label" for="toggle-follow"><?php echo __('Logo de encabezado'); ?></label>
+          <input type="checkbox" name="data[show_header]" value="1" id="toggle-header" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_header'] == '1' ? ' checked' : '' ?>>
+          <label for="toggle-header" class="toggle-label"></label>
+          <small class="text-muted">Indica si debe mostrarse el logo de encabezado en el email</small>
+        </div>
+        <div class="control-group<?=@$settings['newsletter_show_social'] == '1' ? '' : ' d-disable' ?>">
+          <label class="control-label" for="toggle-follow"><?php echo __('Redes sociales'); ?></label>
+          <input type="checkbox" name="data[show_social]" value="1" id="toggle-follow" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_social'] == '1' ? ' checked' : '' ?>>
+          <label for="toggle-follow" class="toggle-label"></label>
+          <small class="text-muted">Indica si debe mostrarse, en caso que hubieran el enlace a las redes sociales al pie del email</small>
+        </div>
+      </div>
+      <div class="form-box bg-info-outline">
+        <h4 class="sub-header">Llamada a la Acción</h4>      
         <div class="control-group">
           <label class="control-label" for="toggle-cta"><?php echo __('Llamada a la Acción'); ?></label>
           <input type="checkbox" name="data[show_cta]" value="1" id="toggle-cta" class="toggle-checkbox toggle-block" data-block=".show-cta"<?=@$newsletter['Newsletter']['show_cta'] == '1' ? ' checked' : '' ?>>
           <label for="toggle-cta" class="toggle-label"></label>
           <small class="text-muted">Indica si debe mostrarse el logo de encabezado en el email</small>
         </div>
-
-        <div class="show-cta<?=@$newsletter['Newsletter']['show_cta'] == '1' ? ' ' : ' d-disable' ?>">
-          <div class="control-group">
-            <label class="control-label" for="cta_text">Texto del botón</label>
-            <div class="controls">
-              <input type="text" id="cta_text" name="data[cta_text]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['cta_text']?>" />
-            </div>
-            <small class="text-muted">Texto que será legible en el botón</small>
+        <div class="control-group show-cta">
+          <label class="control-label" for="cta_text">Texto del botón</label>
+          <div class="controls">
+            <input type="text" id="cta_text" name="data[cta_text]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['cta_text']?>" />
           </div>
-          <div class="control-group">
-            <label class="control-label" for="cta_url">URL de Call to Action</label>
-            <div class="controls">
-              <input type="text" id="cta_url" name="data[cta_url]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['cta_url']?>" />
-            </div>
-            <small class="text-muted">Dirección URL a la que se redirigirá cuando se llame a la acción</small>
+          <small class="text-muted">Texto que será legible en el botón</small>
+        </div>
+        <div class="control-group show-cta">
+          <label class="control-label" for="cta_url">URL de Call to Action</label>
+          <div class="controls">
+            <input type="text" id="cta_url" name="data[cta_url]" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['cta_url']?>" />
           </div>
+          <small class="text-muted">Dirección URL a la que se redirigirá cuando se llame a la acción</small>
         </div>
-  <?php if($settings['newsletter_show_header'] == '1'):?>
-        <div class="control-group">
-          <label class="control-label" for="toggle-follow"><?php echo __('Logo de encabezado'); ?></label>
-          <input type="checkbox" name="data[show_header]" value="1" id="toggle-header" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_header'] == '1' ? ' checked' : '' ?>>
-          <label for="toggle-header" class="toggle-label"></label>
-          <small class="text-muted">Indica si debe mostrarse el logo de encabezado en el email</small>
-        </div>
-  <?php endif ?>
-  <?php if($settings['newsletter_show_social'] == '1'):?>
-        <div class="control-group">
-          <label class="control-label" for="toggle-follow"><?php echo __('Redes sociales'); ?></label>
-          <input type="checkbox" name="data[show_social]" value="1" id="toggle-follow" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_social'] == '1' ? ' checked' : '' ?>>
-          <label for="toggle-follow" class="toggle-label"></label>
-          <small class="text-muted">Indica si debe mostrarse, en caso que hubieran el enlace a las redes sociales al pie del email</small>
-        </div>
-  <?php endif ?>
-  <?php endif ?>
       </div>
     </div>
   </div>

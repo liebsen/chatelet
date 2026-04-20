@@ -131,7 +131,11 @@ $(function () {
 
   $('.toggle-block').change(function(e){
     const block = $(this).data('block')
-    $(block).toggleClass('d-disable')
+    if($(e.target).is(':checked')) {
+      $(block).removeClass('d-disable')
+    } else {
+      $(block).addClass('d-disable')
+    }
   })
 
   $('#filter-menu').keyup(function(){ 
