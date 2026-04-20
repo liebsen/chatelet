@@ -1,6 +1,5 @@
 /* Push notification subscription*/
 const publicVapidKey = 'BEBiooz0kvrLqazPF8zdDj9SC_It9_KiZ-0iOp16Ks93U6S-G45i7woIqFUmtZZYgh_tWVXfr88etWr0jKtFcyY';
-const version = 1002;
 
 function urlBase64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -23,41 +22,56 @@ async function subscribeUser() {
     return;
   }
 
-  //const registration = await navigator.serviceWorker.register('/sw.js'); //
-  const registration = await navigator.serviceWorker.register(`/service-worker.js?v=${version}`); //
-  console.log('Service Worker registered');
+  // const registration = await navigator.serviceWorker.register('/sw.js'); //
+  // const registration = await navigator.serviceWorker.register(`/service-worker.js`); //
 
-  const permission = await Notification.requestPermission();
+  navigator.serviceWorker
+    .register("/service-worker.js", { scope: "/" })
+    .then((registration) => {
+      // registration worked
+      if (registration && registration.active) {
+        console.log('Existing Service Worker found:', registration.active.scriptURL);
+      }      
+      console.log('Service Worker registered');
 
-  if (permission !== 'granted') {
-    throw new Error('Notification permission not granted.');
-  }
+      const permission = await Notification.requestPermission();
 
-  const subscribeOptions = {
-    userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
-  };
+      if (permission !== 'granted') {
+        throw new Error('Notification permission not granted.');
+      }
 
-  let subscription = await registration.pushManager.getSubscription();
+      const subscribeOptions = {
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
+      };
 
-  if(subscription) {
-    // already subscribed on this device
-    console.log('User already subscribed');
-  } else {
-    subscription = await registration.pushManager.subscribe(subscribeOptions);
-    console.log('User sucessfully subscribed');
+      let subscription = await registration.pushManager.getSubscription();
 
-    // Send the subscription to your server
-    await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(subscription),
+      if(subscription) {
+        // already subscribed on this device
+        console.log('User already subscribed');
+        registration.update()
+        console.log('Registration updated');
+      } else {
+        subscription = await registration.pushManager.subscribe(subscribeOptions);
+        console.log('User sucessfully subscribed');
+
+        // Send the subscription to your server
+        await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(subscription),
+        });
+        console.log('Subscription sent to server');
+      }      
+    })
+    .catch((error) => {
+      // registration failed
+      console.error(`Registration failed with ${error}`);
     });
-    console.log('Subscription sent to server');
-  }
 }
 
 // Call this function when appropriate (e.g., a button click, after user consent)
-subscribeUser().catch(console.error);
+subscribeUser()
