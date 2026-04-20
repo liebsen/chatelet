@@ -70,7 +70,7 @@ class NewsletterShell extends AppShell {
       $perminute = $perday - $quota;
     }
 
-    $newsletters = $this->NewsletterScheduleItem->find('all', array(
+    $schedules = $this->NewsletterScheduleItem->find('all', array(
       'joins' => array(
         array(
           'table' => 'newsletter_schedules',
@@ -134,11 +134,11 @@ class NewsletterShell extends AppShell {
       )
     );
 
-    foreach($newsletters as $newsletter) {
+    foreach($schedules as $schedule) {
       $products = array();
       $products_ids = array();
       $parsed_body = '';
-      $filter = json_decode($newsletter['NewsletterList']['filter']);
+      $filter = json_decode($schedule['NewsletterList']['filter']);
 
       if($filter->type == 'carts') {
         $items = $this->Stat->find('all',array(
@@ -155,7 +155,7 @@ class NewsletterShell extends AppShell {
           'conditions' => array(
             'User.email IS NOT ' => null,
             'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
-            'Stat.user_id' => $newsletter['NewsletterScheduleItem']['user_id'],
+            'Stat.user_id' => $schedule['NewsletterScheduleItem']['user_id'],
           ),
           'fields' => array('Stat.context'),
           'order' => array('Stat.id DESC'),
@@ -215,21 +215,21 @@ class NewsletterShell extends AppShell {
             'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
           ),        
           'conditions' => array(
-            'NewsletterProduct.newsletter_id' => $newsletter['Newsletter']['id']
+            'NewsletterProduct.newsletter_id' => $schedule['Newsletter']['id']
           )
         ));
       }
 
-      if(!empty($newsletter['Newsletter']['body'])) { 
+      if(!empty($schedule['Newsletter']['body'])) { 
         $parsed_body = \parse_template(
-          $newsletter['Newsletter']['body'], 
-          $newsletter['User']
+          $schedule['Newsletter']['body'], 
+          $schedule['User']
         );
       }
 
-      $newsletter['Newsletter']['parsed_body'] = $parsed_body;
+      $schedule['Newsletter']['parsed_body'] = $parsed_body;
 
-      if($newsletter['Newsletter']['send_email'] == '1') {
+      if($schedule['Newsletter']['send_email'] == '1') {
         // generate links
         foreach($products as $i => $product) {
           $products[$i]['Product']['link'] = implode('/', array(
@@ -240,41 +240,41 @@ class NewsletterShell extends AppShell {
             'detalle',
             $product['Product']['id'],
             $product['Category']['id'],
-            strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name']))) . '?uid='.$newsletter['NewsletterScheduleItem']['id']
+            strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name']))) . '?uid='.$schedule['NewsletterScheduleItem']['id']
           ));
         }
 
-        $email = $this->sendEmail($newsletter, $products);
+        $email = $this->sendEmail($schedule, $products);
 
         if($email['sent']) {
           $this->NewsletterScheduleItem->save(
             array(
-             'id' => $newsletter['NewsletterScheduleItem']['id'],
+             'id' => $schedule['NewsletterScheduleItem']['id'],
              'status' => 'sent',
-             'email_sent' => $newsletter['NewsletterScheduleItem']['email_sent']+1,
+             'email_sent' => $schedule['NewsletterScheduleItem']['email_sent']+1,
             )
           );
           $email_sent++;      
         }
       }
 
-      if($newsletter['Newsletter']['send_push'] == '1') {
+      if($schedule['Newsletter']['send_push'] == '1') {
         $pushes = $this->Webpush->find('all', 
           array(
             'conditions' => array(
-              'user_id' => $newsletter['NewsletterScheduleItem']['user_id']
+              'user_id' => $schedule['NewsletterScheduleItem']['user_id']
             )
           )
         );
 
         foreach($pushes as $push) {
-          $push = $this->sendPush($newsletter, $push);
+          $push = $this->sendPush($schedule, $push);
           if($push['sent']) {
             $this->NewsletterScheduleItem->save(
               array(
-               'id' => $newsletter['NewsletterScheduleItem']['id'],
+               'id' => $schedule['NewsletterScheduleItem']['id'],
                'status' => 'sent',
-               'push_sent' => $newsletter['NewsletterScheduleItem']['push_sent']+1,
+               'push_sent' => $schedule['NewsletterScheduleItem']['push_sent']+1,
               )
             );
             $push_sent++;
@@ -287,17 +287,17 @@ class NewsletterShell extends AppShell {
       }
     }
 
-    if(count($newsletters)){
+    if(count($schedules)){
       print_r(
         array(
           'date' => $date,
+          'hour' => implode(':',array($hour,$min)),
+          'quota' => $quota,
           'perminute' => $perminute,
           'perday' => $perday,
-          'quota' => $quota,
-          'hour' => implode(':',array($hour,$min)),
           'email_sent' => $email_sent,
           'push_sent' => $push_sent,
-          'count' => count($newsletters)
+          'schedules' => count($schedules)
         )
       );
     }
@@ -414,7 +414,7 @@ class NewsletterShell extends AppShell {
         null,
       'skip_header' => (
         $this->settings['newsletter_show_header'] != '1' || 
-        $newsletter['Newsletter']['show_header'] != '1'
+        $schedule['Newsletter']['show_header'] != '1'
       ) ?? null,
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/',
       'self_link' => implode('/', 
