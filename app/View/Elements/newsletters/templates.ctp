@@ -15,7 +15,7 @@
 							<span class="badge"> 
 								#<?=$newsletter['Newsletter']['id']?>
 							</span>
-							<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
+							<span class="badge is-rounded"><?=\readable_time_ago($newsletter['Newsletter']['modified']) ?></span>
 					</a>
 					<div class="card-text">
 						<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'light'?>"><?=\word_limit($newsletter['Newsletter']['title'])?></span>
@@ -151,7 +151,7 @@
 					</td>
 					<td>
 						<span class="badge"><?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?></span>
-						<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
+						<span class="badge is-rounded"><?=\readable_time_ago($newsletter['Newsletter']['modified']) ?></span>
 					</td>
 					<td>
 						<div class="d-flex flex-center flex-nowrap gap-25">   
