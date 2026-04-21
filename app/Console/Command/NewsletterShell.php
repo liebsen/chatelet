@@ -46,6 +46,7 @@ class NewsletterShell extends AppShell {
     $min = date('i'); 
     $email_sent = 0;
     $push_sent = 0;
+    $items_sent = 0;
     $limit = 0;
     $perminute = $this->settings['newsletter_perminute'] ?? $this->perminute;
     $perday = $this->settings['newsletter_perday'] ?? $this->perday;
@@ -141,7 +142,6 @@ class NewsletterShell extends AppShell {
       $filter = json_decode($schedule['NewsletterList']['filter']);
 
       if($filter->filter->type == 'carts') {
-        \d('cart',$schedule['NewsletterScheduleItem']['user_id']);
         $items = $this->Stat->find('all',array(
           'joins' => array(
             array(
@@ -175,7 +175,6 @@ class NewsletterShell extends AppShell {
             }
           }
 
-          \d('products_ids',$products_ids);
           if(!empty($products_ids)) {
             $products = $this->Product->find('all', 
               array(
@@ -291,6 +290,8 @@ class NewsletterShell extends AppShell {
           echo "[push] unsubscribed" . "\n";
         }
       }
+
+      $items_sent+= count($products);
     }
 
     if(count($schedules)){
@@ -307,7 +308,7 @@ class NewsletterShell extends AppShell {
           'perday' => $perday,
           'email_sent' => $email_sent,
           'push_sent' => $push_sent,
-          'products' => count($products),
+          'items_sent' => $items_sent,
           'schedules' => count($schedules)
         )
       );
