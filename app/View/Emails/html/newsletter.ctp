@@ -1,7 +1,7 @@
 <?php echo $data['Newsletter']['parsed_body']?>
 <?php if($data['Newsletter']['show_cta'] == '1'):?>
   <!-- Call to Action Button -->
-  <a href="<?=$data['Newsletter']['cta_url']?>" style="background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
+  <a href="<?=$data['Newsletter']['cta_url']?>" style="background-color: #333333; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
       <?=$data['Newsletter']['cta_text']?>
   </a>	
 <?php endif ?>
