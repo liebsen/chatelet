@@ -21,13 +21,8 @@
 
 require_once __DIR__ . '/../functions.php';
 
-App::uses(
-  'Controller', 
-  'Setting',
-  'Stat',
-  'CakeEmail', 
-  'Network/Email'
-);
+App::uses('Controller', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 
 /**
  * Application Controller
