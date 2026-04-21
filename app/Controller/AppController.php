@@ -202,7 +202,7 @@ class AppController extends Controller
       #$resume_seconds = 3600 * $resume_hours;
       $resume_seconds = 10; // short for now
       $session_last = $this->Session->read('session_last') ?? null;
-
+      $path = Router::url(null, false);
       if(!empty($session_last)) {
         $diff_seconds = abs($now - $session_last);
         if($diff_seconds > $resume_seconds) {
@@ -213,6 +213,7 @@ class AppController extends Controller
               'user_id' => $this->Auth->user('id') ?? 0,
               'context' => json_encode(
                 array(
+                  'path' => $path,
                   'secs' => $diff_seconds
                 )
               )
