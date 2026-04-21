@@ -10,6 +10,11 @@ $(document).ready(function() {
 
   $('select.filter-type').change(function(e){
     $('.filter-item').addClass('d-none')
+    if($(this).val()) {
+      $('.relations-add-all').addClass('d-none')
+    } else {
+      $('.relations-add-all').removeClass('d-none')
+    }
     const target = $(this).find(':selected').data('target')
     const text = $(this).find(':selected').text()
     setTimeout(function(){

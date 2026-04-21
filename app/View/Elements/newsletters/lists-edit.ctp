@@ -131,7 +131,7 @@
           <?php if(count($list_users)): ?>
           <a class="relations-action-remove text-danger is-clickable" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?=$list['NewsletterList']['id']?>" href="javascript:void(0)">Eliminar todo</a>
           <?php endif ?>
-          <a class="relations-action-add is-clickable" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?= $list['NewsletterList']['id'] ?>">Seleccionar todos (<?=$users_total?>)</a>          
+          <a class="relations-action-add relations-add-all is-clickable" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?= $list['NewsletterList']['id'] ?>">Seleccionar todos (<?=$users_total?>)</a>          
         </div>
         <div class="controls tags-container user-container">
   <?php foreach($list_users as $user): ?>
