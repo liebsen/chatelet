@@ -141,6 +141,7 @@ class NewsletterShell extends AppShell {
       $filter = json_decode($schedule['NewsletterList']['filter']);
 
       if($filter->filter->type == 'carts') {
+        \d('cart',$schedule['NewsletterScheduleItem']['user_id']);
         $items = $this->Stat->find('all',array(
           'joins' => array(
             array(
@@ -174,22 +175,27 @@ class NewsletterShell extends AppShell {
             }
           }
 
-          $products = $this->Product->find('all', array(
-            'joins' => array(
+          \d('products_ids',$products_ids);
+          if(!empty($products_ids)) {
+            $products = $this->Product->find('all', 
               array(
-                'table' => 'categories',
-                'alias' => 'Category',
-                'type' => 'LEFT',
-                'conditions' => array( 'Product.category_id = Category.id' )
+                'joins' => array(
+                  array(
+                    'table' => 'categories',
+                    'alias' => 'Category',
+                    'type' => 'LEFT',
+                    'conditions' => array( 'Product.category_id = Category.id' )
+                  )
+                ),
+                'fields' => array(
+                  'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
+                ),        
+                'conditions' => array(
+                  'Product.id' => $products_ids
+                )
               )
-            ),
-            'fields' => array(
-              'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
-            ),        
-            'conditions' => array(
-              'Product.id' => $products_ids
-            )
-          ));
+            );
+          }
         }
       } 
 
