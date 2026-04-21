@@ -134,7 +134,10 @@ function readable_time_ago($timestamp, $short = false) {
     'Sábado'
   );
   $span = "";
-  if ($diff < 60) {
+  if ($diff < 15) {
+    $span = "justo ahora";
+    $skipprep = true;
+  } elseif ($diff < 60) {
     $span = $diff == 1 ? "1s" : $diff . "s";
   } elseif ($diff < (3600 - 60)) {
     $minutes = round($diff / 60);

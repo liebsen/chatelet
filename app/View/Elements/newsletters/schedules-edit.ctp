@@ -32,7 +32,7 @@
         <div class="d-flex flex-column justify-content-center align-items-center gap-1 mb-4">
           <div class="controls">
             <label class="control-label" for="title"><i class="gi gi-picture mr-1"></i> Plantilla</label>
-            <select class="form-control" name="data[newsletter_id]" required>
+            <select class="form-control" name="data[newsletter_id]" <?=empty($schedule['NewsletterSchedule']['id']) ? 'required' : 'disabled'?>>
               <option value="">Selecciona una plantilla</option>
       <?php foreach($newsletters as $newsletter): ?>
       <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?> (<?= $newsletter['0']['total']?>)</option>
@@ -41,8 +41,8 @@
           </div>
           <div class="controls">
             <label class="control-label" for="title"><i class="gi gi-list mr-1"></i> Lista</label>
-            <select class="form-control" name="data[list_id]" required>
-              <option value="">Selecciona una lista</option>
+            <select class="form-control" name="data[list_id]" <?=empty($schedule['NewsletterSchedule']['id']) ? 'required' : 'disabled'?>>
+              <option value="">Selecciona una lista </option>
       <?php foreach($lists as $list): ?>
       <option value="<?= $list['NewsletterList']['id']?>"<?=@($list['NewsletterList']['id'] == $this->params->query['list_id'] || $list['NewsletterList']['id'] == $schedule['NewsletterSchedule']['list_id']) ? ' selected' : ''?>><?= $list['NewsletterList']['name']?> (<?= $list['0']['total']?>)</option>
       <?php endforeach ?>
@@ -77,7 +77,15 @@
     )?>" class="btn btn-info">
       <i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span>
     </a>
-    <a href="/newsletter/template/<?=$schedule['Newsletter']['id']?>" class="btn btn-warning" target="_blank"><i class="fa fa-eye"></i> <span class="ml-1">Previsualizar</span></a>    
+<?php if(!empty($schedule['NewsletterSchedule']['id'])):?> 
+    <a href="/newsletter/template/<?=$schedule['Newsletter']['id']?>" class="btn btn-warning" target="_blank">
+      <i class="fa fa-eye"></i> 
+      <span class="ml-1">Previsualizar</span>
+    </a>
+    <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
+      <i class="gi gi-magic"></i> <span class="ml-1">Crear campaña</span>
+    </a>
+<?php endif ?>
     <!--button class="btn btn-reset-ask btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-repeat"></i> <span class="ml-1">Reenviar</span></button-->
     <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
   </div>
