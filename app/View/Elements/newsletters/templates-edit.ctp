@@ -22,7 +22,7 @@
       <div class="form-group flex-end flex-between gap-05">
         <div class="controls flex-1">
           <label class="control-label" for="toggle">Activo</label>
-          <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$newsletter['Newsletter']['enabled'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
+          <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$newsletter['Newsletter']['enabled'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' data-change="1" checked')?>>
           <label for="toggle" class="toggle-label"></label>
         </div>
 <?php if(!empty($newsletter_products)): ?>
@@ -82,12 +82,12 @@
         <div class="form-group flex-start gap-05">
           <div class="controls flex-1">
             <label class="control-label" for="toggle-email">Email</label>
-            <input type="checkbox" name="data[send_email]" value="1" id="toggle-email" class="toggle-checkbox"<?=@$newsletter['Newsletter']['send_email'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
+            <input type="checkbox" name="data[send_email]" value="1" id="toggle-email" class="toggle-checkbox"<?=@$newsletter['Newsletter']['send_email'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' data-change="1" checked')?>>
             <label for="toggle-email" class="toggle-label"></label>
           </div>
           <div class="controls flex-1">
             <label class="control-label" for="toggle-push">Push</label>
-            <input type="checkbox" name="data[send_push]" value="1" id="toggle-push" class="toggle-checkbox"<?=@$newsletter['Newsletter']['send_push'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
+            <input type="checkbox" name="data[send_push]" value="1" id="toggle-push" class="toggle-checkbox"<?=@$newsletter['Newsletter']['send_push'] == '1' ? ' data-change="1" checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
             <label for="toggle-push" class="toggle-label"></label>
           </div>
         </div>
@@ -100,13 +100,13 @@
         <p>Puedes aregar productos a la plantilla, se mostrarán en un catálogo de lista con sus respectivos enlaces y precios.</p>
         <div class="control-group">
           <label class="control-label" for="toggle-price"><?php echo __('Precio'); ?></label>
-          <input type="checkbox" name="data[show_price]" value="1" id="toggle-price" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_price'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
+          <input type="checkbox" name="data[show_price]" value="1" id="toggle-price" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_price'] == '1' ? ' data-change="1" checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
           <label for="toggle-price" class="toggle-label"></label>
           <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
         </div>
         <div class="control-group">
           <label class="control-label" for="toggle-price"><?php echo __('Descripción'); ?></label>
-          <input type="checkbox" name="data[show_text]" value="1" id="toggle-text" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_text'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
+          <input type="checkbox" name="data[show_text]" value="1" id="toggle-text" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_text'] == '1' ? ' data-change="1" checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
           <label for="toggle-text" class="toggle-label"></label>
           <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
         </div>
@@ -139,13 +139,13 @@
         <p>Establece la configuración adicional de esta Plantilla</p>
         <div class="control-group<?=@$settings['newsletter_show_header'] == '1' ? '' : ' d-disable' ?>">
           <label class="control-label" for="toggle-follow"><?php echo __('Logo de encabezado'); ?></label>
-          <input type="checkbox" name="data[show_header]" value="1" id="toggle-header" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_header'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
+          <input type="checkbox" name="data[show_header]" value="1" id="toggle-header" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_header'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' data-change="1" checked')?>>
           <label for="toggle-header" class="toggle-label"></label>
           <small class="text-muted">Indica si debe mostrarse el logo de encabezado en el email</small>
         </div>
         <div class="control-group<?=@$settings['newsletter_show_social'] == '1' ? '' : ' d-disable' ?>">
           <label class="control-label" for="toggle-follow"><?php echo __('Redes sociales'); ?></label>
-          <input type="checkbox" name="data[show_social]" value="1" id="toggle-follow" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_social'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
+          <input type="checkbox" name="data[show_social]" value="1" id="toggle-follow" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_social'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' data-change="1" checked')?>>
           <label for="toggle-follow" class="toggle-label"></label>
           <small class="text-muted">Indica si debe mostrarse, en caso que hubieran el enlace a las redes sociales al pie del email</small>
         </div>
