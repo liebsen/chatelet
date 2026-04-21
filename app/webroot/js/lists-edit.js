@@ -71,7 +71,7 @@ function updateUsers(){
         $('.relations-count').text(filter.length)
         $('.relations-action-add').removeClass('d-none')
         $.each(filter, function(key, item) {
-          $('.user-container').append('<span class="label user-item text-lowercase is-clickable" data-parent-id="'+relation.parentId+'" data-id="'+item.id+'" data-type="'+relation.type+'" data-source="'+relation.source+'" data-model="'+relation.model+'">'+item.email+'</span>');
+          $('.user-container').append('<span class="label relation-item text-lowercase is-clickable" data-parent-id="'+relation.parentId+'" data-id="'+item.id+'" data-type="'+relation.type+'" data-source="'+relation.source+'" data-model="'+relation.model+'">'+item.email+'</span>');
         })
         $.growl.notice({
           title: 'Encontramos algo',
