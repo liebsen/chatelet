@@ -302,11 +302,11 @@ class NewsletterComponent extends Component {
           ),
         ),        
         'fields' => array(
-          'NewsletterSchedule.id, Newsletter.id,Newsletter.title,Newsletter.body,NewsletterList.id,NewsletterList.name,NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email, COUNT(distinct NewsletterProduct.id) as prod_total, User.id, User.email, User.name, User.surname'
+          'NewsletterSchedule.id, Newsletter.id,Newsletter.title,Newsletter.body,NewsletterList.id,NewsletterList.name,NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.created,NewsletterSchedule.modified, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email, COUNT(distinct NewsletterProduct.id) as prod_total, User.id, User.email, User.name, User.surname'
         ),
         'conditions' => $conditions,
         'group' => array(
-          'NewsletterSchedule.id, Newsletter.id,Newsletter.title,Newsletter.body,NewsletterList.id,NewsletterList.name, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email'
+          'NewsletterSchedule.id, Newsletter.id,Newsletter.title,Newsletter.body,NewsletterList.id,NewsletterList.name, NewsletterSchedule.schedule_date,NewsletterSchedule.schedule_hour,NewsletterSchedule.created,NewsletterSchedule.modified, NewsletterSchedule.enabled, Newsletter.send_push, Newsletter.send_email'
         ),
         'order' => array( 
           'NewsletterSchedule.modified DESC' 
@@ -444,14 +444,10 @@ class NewsletterComponent extends Component {
         }
 
         $redirect = array( 'action' => 'newsletters', 'schedules' );
-        $create = empty($id);
-        \d("save",$data);
         $NewsletterSchedule->save($data);
-
-        // update schedule reference
         $users = array();
 
-        if($create) {
+        if(empty($id)) {
           $users = $NewsletterUser->find('all', 
             array(
               'conditions' => array(
@@ -459,37 +455,37 @@ class NewsletterComponent extends Component {
               )
             )
           );
-        } else {
-          $users = $NewsletterScheduleItem->find('all', 
+
+          $saves = array();
+
+          foreach($users as $i => $user) {
+            $save = $user['NewsletterUser'];
+            $save['id'] = null;
+            $save['schedule_id'] = $NewsletterSchedule->id;
+            array_push($saves, $save);
+          }
+
+          $NewsletterScheduleItem->saveAll(
+            $saves, 
             array(
-              'conditions' => array(
-                'schedule_id' => $id
-              )
+              'validate' => false, 
+              'callbacks' => false
             )
           );
         }
 
-        $saves = array();
-
-        foreach($users as $i => $user) {
-          $save = $create ? $user['NewsletterUser'] : $user['NewsletterScheduleItem'];
-          $save['id'] = $create ? null : $save['id'];
-          $save['schedule_id'] = $NewsletterSchedule->id;
-          if(!$create){
-            $save['push_sent'] = 0;
-            $save['email_sent'] = 0;
-            $save['status'] = 'pending';
-          }
-          array_push($saves, $save);
-        }
-
-        $NewsletterScheduleItem->saveAll(
-          $saves, 
+        /* // reset
+        $NewsletterScheduleItem->updateAll(
           array(
-            'validate' => false, 
-            'callbacks' => false
+            'NewsletterScheduleItem.status' => "'pending'",
+            'NewsletterScheduleItem.push_sent' => 0,
+            'NewsletterScheduleItem.email_sent' => 0,
+          ),
+          array(
+            'NewsletterScheduleItem.schedule_id' => $id,
           )
         );
+        */
 
         if(isset($data['x_coord']) && $data['x_coord'] == '1') {
           $redirect = array( 'action' => 'newsletters', 'schedules', 'edit', $NewsletterSchedule->id);
@@ -504,7 +500,7 @@ class NewsletterComponent extends Component {
         return json_encode($response);
       }
 
-      if(!$create) {
+      if(!empty($id)) {
         $this->controller->set('schedule', $NewsletterSchedule->find('first', array(
           'joins' => array(
             array(

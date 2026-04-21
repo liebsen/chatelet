@@ -37,67 +37,67 @@
 							<span class="badge badge-success is-rounded"><?=count($newsletter['NewsletterProduct'])?></span>
 						</span>
 					</div>
-						<div class="d-flex flex-column flex-center flex-nowrap gap-05">     
-							<a 
-								href="<?=$this->Html->url(
-									array(
-										'action' => 'newsletters', 
-										'templates', 
-										'edit', 
-										$newsletter['Newsletter']['id'],
-										'#' => 'editor'
-									)
-								)?>"
-								data-toggle="tooltip" 
-								title="Editar contenido" 
-								class="btn btn-sm btn-info"><i class="gi gi-font"></i>
-							</a>
-							<a 
-								href="<?=$this->Html->url(array(
+					<div class="d-flex flex-column flex-center flex-nowrap gap-05">     
+						<a 
+							href="<?=$this->Html->url(
+								array(
 									'action' => 'newsletters', 
-									'schedules', 
+									'templates', 
 									'edit', 
-									'?' => array(
-										'newsletter_id' => $newsletter['Newsletter']['id']
-									)
-								))?>" 
-								data-toggle="tooltip" 
-								title="Programar envío" 
-								class="btn btn-sm btn-success" 
-							>
-								<i class="gi gi-send"></i>
-							</a>
-							<a 
-								href="<?=$this->Html->url(
-									array(
-										'controller' => 'newsletter', 
-										'action' => 'template',
-										$newsletter['Newsletter']['id']
-									)
-								)?>" 
-								data-toggle="tooltip" 
-								title="Previsualizar" 
-								class="btn btn-sm btn-warning"
-								target="_blank" 
-							>
-								<i class="fa fa-eye"></i>
-							</a>
+									$newsletter['Newsletter']['id'],
+									'#' => 'editor'
+								)
+							)?>"
+							data-toggle="tooltip" 
+							title="Editar contenido" 
+							class="btn btn-sm btn-info"><i class="gi gi-font"></i>
+						</a>
+						<a 
+							href="<?=$this->Html->url(array(
+								'action' => 'newsletters', 
+								'schedules', 
+								'edit', 
+								'?' => array(
+									'newsletter_id' => $newsletter['Newsletter']['id']
+								)
+							))?>" 
+							data-toggle="tooltip" 
+							title="Programar envío" 
+							class="btn btn-sm btn-success" 
+						>
+							<i class="gi gi-send"></i>
+						</a>
+						<a 
+							href="<?=$this->Html->url(
+								array(
+									'controller' => 'newsletter', 
+									'action' => 'template',
+									$newsletter['Newsletter']['id']
+								)
+							)?>" 
+							data-toggle="tooltip" 
+							title="Previsualizar" 
+							class="btn btn-sm btn-warning"
+							target="_blank" 
+						>
+							<i class="fa fa-eye"></i>
+						</a>
 <?php if($newsletter['User']['id']==$this->Session->read('Auth.User.id')):?>
-							<a 
-								href="#" 
-								data-toggle="tooltip" 
-								title="" 
-								class="btn btn-sm btn-danger deletebutton" 
-								data-original-title="Eliminar" 
-								data-id="<?=$newsletter['Newsletter']['id']?>" 
-								data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'templates'))?>" 
-								data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'delete'))?>" 
-								data-msg="<?=__('¿Eliminar Plantilla?')?>"                   
-							>
-								<i class="fa fa-trash-o"></i>
-							</a>
+						<a 
+							href="#" 
+							data-toggle="tooltip" 
+							title="" 
+							class="btn btn-sm btn-danger deletebutton" 
+							data-original-title="Eliminar" 
+							data-id="<?=$newsletter['Newsletter']['id']?>" 
+							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'templates'))?>" 
+							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'delete'))?>" 
+							data-msg="<?=__('¿Eliminar Plantilla?')?>"                   
+						>
+							<i class="fa fa-trash-o"></i>
+						</a>
 <?php endif ?>
-						</div>
+					</div>
 				</div>
 			</div>
 <?php endforeach ?>
