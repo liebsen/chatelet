@@ -593,10 +593,6 @@ class NewsletterComponent extends Component {
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
-
-        $NewsletterUser->deleteAll(array(
-          'list_id' => $data['id']
-        ));
         $NewsletterList->delete($data['id']);
       }
     } catch (\Exception $e) {
