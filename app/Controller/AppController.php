@@ -195,7 +195,7 @@ class AppController extends Controller
       $now = time();
       #$resume_hours = 3;
       #$resume_seconds = 3600 * $resume_hours;
-      $resume_seconds = 10; // short for now
+      $resume_seconds = 900; // short for now
       $session_last = $this->Session->read('session_last') ?? null;
       $path = Router::url(null, false);
       if(!empty($session_last)) {

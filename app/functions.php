@@ -135,7 +135,7 @@ function readable_time_ago($timestamp, $short = false) {
   );
   $span = "";
   if ($diff < 15) {
-    $span = "justo ahora";
+    $span = "ahora";
     $skipprep = true;
   } elseif ($diff < 60) {
     $span = $diff == 1 ? "1s" : $diff . "s";
