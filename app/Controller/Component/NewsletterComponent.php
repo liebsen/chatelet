@@ -625,13 +625,18 @@ class NewsletterComponent extends Component {
         $this->controller->autoRender = false;
         $this->controller->RequestHandler->respondAs('application/json');            
         $data = $this->controller->request->data;
+        $data['filter'] = !empty($data['filter']) ? 
+          json_encode($data) : 
+          null;
         $data['id'] = $id ?? null;
+
         if(empty($data['id'])) {
           $data['user_id'] = $this->controller->Auth->user('id');
         }
 
         $redirect = array( 'action' => 'newsletters', 'lists' );
 
+        \d("data",$data);
         $NewsletterList->save($data);
 
         if(empty($data['id']) || isset($data['x_coord']) && $data['x_coord'] == '1') {

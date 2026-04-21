@@ -140,7 +140,7 @@ class NewsletterShell extends AppShell {
       $parsed_body = '';
       $filter = json_decode($schedule['NewsletterList']['filter']);
 
-      if($filter->type == 'carts') {
+      if($filter->filter->type == 'carts') {
         $items = $this->Stat->find('all',array(
           'joins' => array(
             array(
@@ -301,6 +301,7 @@ class NewsletterShell extends AppShell {
           'perday' => $perday,
           'email_sent' => $email_sent,
           'push_sent' => $push_sent,
+          'products' => count($products),
           'schedules' => count($schedules)
         )
       );
