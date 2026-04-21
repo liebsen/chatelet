@@ -21,8 +21,13 @@
 
 require_once __DIR__ . '/../functions.php';
 
-App::uses('Controller', 'Controller');
-App::uses('CakeEmail', 'Network/Email');
+App::uses(
+  'Controller', 
+  'Setting',
+  'Stat',
+  'CakeEmail', 
+  'Network/Email'
+);
 
 /**
  * Application Controller
@@ -89,7 +94,8 @@ class AppController extends Controller
   ];
 
   public function load_settings(){
-    $this->loadModel('Setting');
+    #$this->loadModel('Setting');
+
 
     $tags = [];        
     $settings = $this->Setting->find('all');
@@ -136,6 +142,7 @@ class AppController extends Controller
     $this->loadModel('Category');
     $this->loadModel('Product');
     $this->loadModel('Setting');
+    $this->loadModel('Stat');
 
     //CakeLog::write('debug', 'beforeFilter executed for ' . $this->name . 'Controller::' . $this->action);
     $this->Auth->allow();
@@ -183,10 +190,37 @@ class AppController extends Controller
     
     $this->set('categories', $categories);
 
-
     if(file_exists($version_file)) {
       $version_date = date("d/m/Y H:i", filemtime($version_file));
       $version_count = (int) file_get_contents($version_file);
+    }
+
+    # register session resume event for stats 
+    if(!empty($this->Auth->user('id'))) {
+      $now = time();
+      #$resume_hours = 3;
+      #$resume_seconds = 3600 * $resume_hours;
+      $resume_seconds = 10; // short for now
+      $session_last = $this->Session->read('session_last') ?? null;
+
+      if(!empty($session_last)) {
+        $diff_seconds = abs($now - $session_last);
+        if($diff_seconds > $resume_seconds) {
+          $this->Stat->save(
+            array(
+              'id' => null,
+              'tag' => 'session-resume',
+              'user_id' => $this->Auth->user('id') ?? 0,
+              'context' => json_encode(
+                array(
+                  'secs' => $diff_seconds
+                )
+              )
+            )
+          );
+        }
+      }
+      $this->Session->write('session_last', $now);
     }
 
     $settings = $this->load_settings();
