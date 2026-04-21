@@ -15,47 +15,47 @@
 			</tr>
 		</thead>
 		<tbody>
-<?php foreach ($schedules as $key => $schedule): ?>        
-			<tr class="bg-<?=$schedule['rowclass']?> schedules-<?=$schedule['NewsletterSchedule']['id']?>">
+<?php foreach ($items as $key => $item): ?>        
+			<tr class="bg-<?=$item['rowclass']?> schedules-<?=$item['NewsletterSchedule']['id']?>">
 				<td>
 					<a 
-						href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
+						href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $item['NewsletterSchedule']['id']))?>" 
 						data-toggle="tooltip" 
 						title="Editar campaña">
-					<?=$schedule['Newsletter']['title']?>/<?=$schedule['NewsletterList']['name']?>
+					<?=$item['Newsletter']['title']?>/<?=$item['NewsletterList']['name']?>
 					</a>
 				</td>
 				<td>
-					<span class="badge badge-<?=!empty($schedule[0]['prod_total']) ? 'success' : 'light'?> is-rounded">
-						<?=!empty($schedule[0]['prod_total']) ? $schedule[0]['prod_total'] : 'Estático'?>
+					<span class="badge badge-<?=!empty($item[0]['prod_total']) ? 'success' : 'light'?> is-rounded">
+						<?=!empty($item[0]['prod_total']) ? $item[0]['prod_total'] : 'Estático'?>
 					</span>
 				</td>
 				<td>
-					<span class="badge badge-<?=!empty($schedule[0]['list_total']) ? 'info' : 'danger'?> is-rounded">
-						<?=!empty($schedule[0]['list_total']) ? $schedule[0]['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
+					<span class="badge badge-<?=!empty($item[0]['list_total']) ? 'info' : 'danger'?> is-rounded">
+						<?=!empty($item[0]['list_total']) ? $item[0]['list_total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
 						</span>
 				</td>
 				<td>
-					<span class="badge badge-<?=$schedule['rowclass']?>"><span class="status"><?=$schedule['status']?></span>
+					<span class="badge badge-<?=$item['rowclass']?>"><span class="status"><?=$item['status']?></span>
 				</td>
 				<td>
-					<?php if(!empty($schedule['Newsletter']['send_email'])):?>
+					<?php if(!empty($item['Newsletter']['send_email'])):?>
 					<span class="badge badge-success is-rounded" title="Emails enviados">
-						<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
+						<i class="gi gi-envelope"></i> <span class="email_sent"><?=$item['stats']['email_sent']?></span> / <span class="email_total"><?=$item['stats']['email_total']?></span>
 					</span> 
 					<?php endif ?>
-					<?php if(!empty($schedule['Newsletter']['send_push'])):?>
+					<?php if(!empty($item['Newsletter']['send_push'])):?>
 					<span class="badge badge-warning is-rounded" title="Notificación Push enviados">
 						<i class="gi gi-chat"></i>
-						<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
+						<span class="push_sent"><?=$item['stats']['push_sent']?></span> / <span class="push_total"><?=$item['stats']['push_total']?></span>
 					</span>
 					<?php endif ?>
 				</td>
 				<td>
-					<span class="badge badge-<?=strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00') > time() ? 'warning' : 'success'?> is-rounded" title="Fecha / Hora de ejecución">
-					<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00', '%d/%m/%Y %H:00') ?> </span> 
+					<span class="badge badge-<?=strtotime($item['NewsletterSchedule']['schedule_date'] . ' ' . $item['NewsletterSchedule']['schedule_hour'] . ':00') > time() ? 'warning' : 'success'?> is-rounded" title="Fecha / Hora de ejecución">
+					<?=$this->Time->format($item['NewsletterSchedule']['schedule_date'] . ' ' . $item['NewsletterSchedule']['schedule_hour'] . ':00', '%d/%m/%Y %H:00') ?> </span> 
 					<span class="badge is-rounded" title="Fecha / Hora de ejecución">
-					<?=\readable_time_ago(strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')) ?> </span>
+					<?=\readable_time_ago(strtotime($item['NewsletterSchedule']['schedule_date'] . ' ' . $item['NewsletterSchedule']['schedule_hour'] . ':00')) ?> </span>
 				</td>
 				<td> 
 					<div class="btn-group">           
@@ -65,7 +65,7 @@
 							title="" 
 							class="btn btn-danger deletebutton" 
 							data-original-title="Eliminar" 
-							data-id="<?=$schedule['NewsletterSchedule']['id']?>" 
+							data-id="<?=$item['NewsletterSchedule']['id']?>" 
 							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'schedules'))?>" 
 							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'delete'))?>" 
 							data-msg="<?=__('¿Eliminar Campaña?')?>"                   
@@ -73,7 +73,7 @@
 							<i class="fa fa-trash-o"></i>
 						</a>
 						<!--a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $item['Newsletter']['id']))?>" 
 							data-toggle="tooltip" 
 							title="Editar email" 
 							class="btn btn-success" 
@@ -81,7 +81,7 @@
 							<i class="gi gi-edit"></i>
 						</a-->
 						<a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $schedule['Newsletter']['id']))?>" 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $item['Newsletter']['id']))?>" 
 							data-toggle="tooltip" 
 							title="Editar plantilla" 
 							class="btn btn-warning" 
@@ -89,7 +89,7 @@
 							<i class="gi gi-picture"></i>
 						</a>
 						<a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $item['NewsletterList']['id']))?>" 
 							data-toggle="tooltip" 
 							title="Editar lista" 
 							class="btn btn-info" 
@@ -100,7 +100,7 @@
 							href="javascript:void(0)" 
 							title="Editar email" 
 							class="btn btn-warning btn-stats"
-							data-stats='<?=json_encode($schedule['stats'])?>'
+							data-stats='<?=json_encode($item['stats'])?>'
 						>	
 							<i class="gi gi-charts"></i>
 						</a-->						

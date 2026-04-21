@@ -67,73 +67,76 @@ class StatsComponent extends Component {
 
   public function cart() {
     $Stat = ClassRegistry::init('Stat');
-    $items = $Stat->find('all',array(
-      'joins' => array(
-        array(
-          'table' => 'users',
-          'alias' => 'User',
-          'type' => 'LEFT',
-          'conditions' => array(
-            'User.id = Stat.user_id',
+    $this->controller->set('items', $Stat->find('all',
+      array(
+        'joins' => array(
+          array(
+            'table' => 'users',
+            'alias' => 'User',
+            'type' => 'LEFT',
+            'conditions' => array(
+              'User.id = Stat.user_id',
+            )
           )
-        )
-      ),
-      'conditions' => array(
-        'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
-      ),
-      'fields' => array('Stat.id, Stat.tag, Stat.context, Stat.created, User.id, User.email, User.name, User.surname, User.email, User.birthday'),
-      'group' => array('Stat.tag, JSON_EXTRACT(Stat.context, "$.cart")'),
-      'order' => array('Stat.id DESC'),
-      'limit' => 500,
+        ),
+        'conditions' => array(
+          'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
+        ),
+        'fields' => array('Stat.id, Stat.tag, Stat.context, Stat.created, User.id, User.email, User.name, User.surname, User.email, User.birthday'),
+        'group' => array('Stat.tag, JSON_EXTRACT(Stat.context, "$.cart")'),
+        'order' => array('Stat.id DESC'),
+        'limit' => 500,
+      )
     ));
-
-    $this->controller->set('items', $items);    
   }
 
-  public function products() {
+  public function items() {
     $Stat = ClassRegistry::init('Stat');
-    $items = $Stat->find('all',array(
-      'joins' => array(
-        array(
-          'table' => 'products',
-          'alias' => 'Product',
-          'type' => 'LEFT',
-          'conditions' => array(
-            'User.id = Stat.product_id',
+    $this->controller->set('items', $Stat->find('all',
+      array(
+        'joins' => array(
+          array(
+            'table' => 'products',
+            'alias' => 'Product',
+            'type' => 'LEFT',
+            'conditions' => array(
+              'Product.id IS NOT NULL'
+            )
           )
-        )
-      ),
-      'conditions' => array(
-        'Stat.user_id > 0',
-      ),
-      'fields' => array('Product.name, Product.desc, Product.article', 'Stat.*'),
-      'order' => array('Stat.id DESC'),
-      'limit' => 500,
-    ));   
-    $this->controller->set('items', $items);     
+        ),
+        'conditions' => array(
+          'Stat.user_id > 1',
+          'Stat.product_id > 1',
+        ),
+        'fields' => array('Product.name, Product.desc, Product.article', 'Stat.*'),
+        'order' => array('Stat.id DESC'),
+        'limit' => 500,
+      )
+    ));
   }
 
   public function sales() {
     $Stat = ClassRegistry::init('Stat');
-    $items = $Stat->find('all',array(
-      'joins' => array(
-        array(
-          'table' => 'users',
-          'alias' => 'User',
-          'type' => 'LEFT',
-          'conditions' => array(
-            'User.id = Stat.user_id',
+    $this->controller->set('items', $Stat->find('all',
+      array(
+        'joins' => array(
+          array(
+            'table' => 'users',
+            'alias' => 'User',
+            'type' => 'LEFT',
+            'conditions' => array(
+              'User.id = Stat.user_id',
+            )
           )
-        )
-      ),
-      'conditions' => array(
-        'Stat.user_id > 0',
-      ),
-      'fields' => array('User.name, User.surname, User.birthday', 'Stat.*'),
-      'order' => array('Stat.id DESC'),
-      'limit' => 500,
+        ),
+        'conditions' => array(
+          'Stat.user_id > 0',
+        ),
+        'fields' => array('User.name, User.surname, User.birthday', 'Stat.*'),
+        'order' => array('Stat.id DESC'),
+        'limit' => 500,
+      )
     ));
-    $this->controller->set('items', $items);    
   }
 
   public function session() {
