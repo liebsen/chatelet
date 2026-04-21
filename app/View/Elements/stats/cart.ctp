@@ -38,7 +38,7 @@
 						<span class="badge badge-success" title="<?=$item['User']['name']?> <?=$item['User']['surname']?>">
 							<?=$item['User']['email']?>
 						</span>
-						<span class="badge-success"><?=date('Y', strtotime('last year'))-date('Y',strtotime($item['User']['birthday']))?> años</span>
+						<span class="badge badge-success"><?=date('Y', strtotime('last year'))-date('Y',strtotime($item['User']['birthday']))?> años</span>
 					<?php else: ?>
 						<span class="badge badge-danger">Anónimo</span>
 					<?php endif ?>
