@@ -54,6 +54,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   .form-control,
   .form-box,
   .dropdown-menu,
+  .card-img,
   .table,
   .table tr,
   .table td,
@@ -3729,7 +3730,6 @@ opacity: 1;
   }
   #primary-nav > ul > li > a {
       flex-direction: column;
-      background-color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;

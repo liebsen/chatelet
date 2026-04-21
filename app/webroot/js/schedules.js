@@ -30,7 +30,7 @@ $(document).ready(function() {
   }, 1000)
 })
 
-function updateSound(){
+function playSound(){
   const sound = new Audio('/sound/schedules.mp3');
   sound.play()
 }
@@ -60,6 +60,7 @@ function updateSchedules(){
     data: data,
     success: function (res) {
       if(res.results.length && res.change > 0) {
+        playSound()
         $.each(res.results, function(key, item) {
           const target = $(`.schedules-${item.NewsletterSchedule.id}`)
           target.find('.status').parent().removeClass('bg-warning bg-info bg-success bg-light')
@@ -82,7 +83,6 @@ function updateSchedules(){
           message: `Se ha${res.change > 1 ? 'n':''} actualizado ${res.change} campaña${res.change > 1 ? 's':''}`,
           queue: true,
         });
-        updateSound()
       }
       /*$.growl.notice({
         title: 'Sin novedades',

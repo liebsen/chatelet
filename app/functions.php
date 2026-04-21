@@ -149,11 +149,12 @@ function readable_time_ago($timestamp, $short = false) {
   } elseif ($diff < 2592000) { // 30 days
     $days = round($diff / 86400);
     $span = $days == 1 ? "1 día" : $days . " días";
-    $skipprep = true;
     if($days == 1) {
       $span = $asc ? "ayer" : 'mañana';
+      $skipprep = true;
     } else if($days < 6) {
       $span = $weekdays[date('w', $date)];
+      $skipprep = true;
     } else {
       $weeks = round($diff / 604800);
       $span = $weeks == 1 ? "1 semana" : $weeks . " semanas";
