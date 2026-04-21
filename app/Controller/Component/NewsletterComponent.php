@@ -515,19 +515,24 @@ class NewsletterComponent extends Component {
             'type' => 'LEFT',
             'conditions' => array( 'Newsletter.id = NewsletterProduct.newsletter_id' )
           ),
+          array(
+            'table' => 'users',
+            'alias' => 'User',
+            'type' => 'LEFT',
+            'conditions' => array( 'User.id = Newsletter.user_id' )
+          ),
         ),
-        'fields' => array('Newsletter.id, Newsletter.title, Newsletter.created, COUNT(NewsletterProduct.id) AS total'),
+        'fields' => array('Newsletter.id, Newsletter.title, Newsletter.created, User.name, User.email, COUNT(NewsletterProduct.id) AS total'),
         'conditions' => array(
           // 'Newsletter.created > ' => date("Y-m-d H:i", strtotime("last day of previous month")),
           'Newsletter.enabled' => '1',
           //'NewsletterProduct.id IS NOT NULL',
         ),
-        'group' => array('Newsletter.id, Newsletter.title, Newsletter.created'),
+        'group' => array('Newsletter.id, Newsletter.title, Newsletter.created, User.name, User.email'),
         'order' => array( 'Newsletter.modified DESC' )
       )));
 
       $this->controller->set('lists', $NewsletterList->find('all', array(
-
         'joins' => array(
           array(
             'table' => 'newsletter_users',
@@ -535,13 +540,19 @@ class NewsletterComponent extends Component {
             'type' => 'LEFT',
             'conditions' => array( 'NewsletterList.id = NewsletterUser.list_id' )
           ),
+          array(
+            'table' => 'users',
+            'alias' => 'User',
+            'type' => 'LEFT',
+            'conditions' => array( 'User.id = NewsletterList.user_id' )
+          ),
         ),
-        'fields' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text, NewsletterList.created, COUNT(NewsletterUser.id) AS total'),
+        'fields' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text, NewsletterList.created, User.name, User.email,  COUNT(NewsletterUser.id) AS total'),
         'conditions' => array( 
           'NewsletterList.enabled' => 1,
           'NewsletterUser.id IS NOT NULL',
         ),
-        'group' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text, NewsletterList.created'),
+        'group' => array('NewsletterList.id, NewsletterList.name, NewsletterList.text, NewsletterList.created, User.name, User.email'),
         'order' => array( 'NewsletterList.modified DESC' )
       )));
     } catch (\Exception $e) {
@@ -623,7 +634,6 @@ class NewsletterComponent extends Component {
 
         $redirect = array( 'action' => 'newsletters', 'lists' );
 
-        \d("data",$data);
         $NewsletterList->save($data);
 
         if(empty($data['id']) || isset($data['x_coord']) && $data['x_coord'] == '1') {

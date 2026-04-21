@@ -32,7 +32,7 @@
 									'schedules', 
 									'edit', 
 									'?' => array(
-										'newsletter_id' => $list['Newsletter']['id']
+										'list_id' => $list['NewsletterList']['id']
 									)
 								)
 							)?>"
@@ -116,7 +116,7 @@
 										'schedules', 
 										'edit', 
 										'?' => array(
-											'newsletter_id' => $list['Newsletter']['id']
+											'list_id' => $list['NewsletterList']['id']
 										)
 									)
 								)?>"

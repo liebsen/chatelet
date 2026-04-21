@@ -35,7 +35,7 @@
             <select class="form-control" name="data[newsletter_id]" <?=empty($schedule['NewsletterSchedule']['id']) ? 'required' : 'disabled'?>>
               <option value="">Selecciona una plantilla</option>
       <?php foreach($newsletters as $newsletter): ?>
-      <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?> (<?= $newsletter['0']['total']?>)</option>
+      <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?> (<?= $newsletter['0']['total']?>) &mdash;<?=$newsletter['User']['name'] ?? strstr($newsletter['User']['email'], '@', true)?></option>
       <?php endforeach ?>
             </select>
           </div>
@@ -44,7 +44,7 @@
             <select class="form-control" name="data[list_id]" <?=empty($schedule['NewsletterSchedule']['id']) ? 'required' : 'disabled'?>>
               <option value="">Selecciona una lista </option>
       <?php foreach($lists as $list): ?>
-      <option value="<?= $list['NewsletterList']['id']?>"<?=@($list['NewsletterList']['id'] == $this->params->query['list_id'] || $list['NewsletterList']['id'] == $schedule['NewsletterSchedule']['list_id']) ? ' selected' : ''?>><?= $list['NewsletterList']['name']?> (<?= $list['0']['total']?>)</option>
+      <option value="<?= $list['NewsletterList']['id']?>"<?=@($list['NewsletterList']['id'] == $this->params->query['list_id'] || $list['NewsletterList']['id'] == $schedule['NewsletterSchedule']['list_id']) ? ' selected' : ''?>><?= $list['NewsletterList']['name']?> (<?= $list['0']['total']?>) &mdash; <?=$list['User']['name'] ?? strstr($list['User']['email'], '@', true)?></option>
       <?php endforeach ?>
             </select>
             <small>La tarea programada de Newsletters se ejecuta una vez por minuto en el servidor</small>
