@@ -176,6 +176,7 @@ class NewsletterComponent extends Component {
   public function templates_delete() {
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
+    $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
@@ -183,7 +184,12 @@ class NewsletterComponent extends Component {
           array( 
             'NewsletterProduct.newsletter_id' => $data['id'] 
           )
-        );        
+        );    
+        $NewsletterSchedule->deleteAll(
+          array( 
+            'NewsletterSchedule.newsletter_id' => $data['id'] 
+          )
+        );    
         $Newsletter->delete($data['id']);
       }
     } catch (\Exception $e) {
