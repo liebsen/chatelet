@@ -607,18 +607,24 @@ class CarritoController extends AppController
 			$j++;
 		}
 
-		$this->loadModel('Stat');
-		$this->Stat->save(array(
-			'id' => null,
-      'tag' => 'cart-remove',
-      'user_id' => $this->Auth->user('id') ?? 0,
-      'product_id' => $item['id'],
-      'context' => json_encode(array(
-      	'size' => $item['size'],
-      	'color' => $item['color'],
-      	'alias' => $item['alias']
-      ))
-    ));		
+		if($this->Product->findById($item['id'])) {
+			$this->loadModel('Stat');
+			$stat = array(
+				'id' => null,
+	      'tag' => 'cart-remove',
+	      'user_id' => $this->Auth->user('id') ?? 0,
+	      'product_id' => $item['id'],
+	      'context' => json_encode(
+	      	array(
+		      	'size' => $item['size'],
+		      	'color' => $item['color'],
+		      	'alias' => $item['alias']
+		      )
+		    )
+	    );
+	    \d("stat",$stat);
+			$this->Stat->save($stat);
+		}
 
 		if (count($update)) {
 			// CakeLog::write('debug', 'updateCart(1)');

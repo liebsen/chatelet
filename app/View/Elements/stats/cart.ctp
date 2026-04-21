@@ -27,16 +27,18 @@
 						</strong>
 						<div class="cart-details d-none">
 							<ul class="list-group">
-							<?php foreach($context['cart'] as $item):?>
-								<li class="list-group-item"><?=$item['name']?></li>
+							<?php foreach($context['cart'] as $item2):?>
+								<li class="list-group-item"><?=$item2['name']?></li>
 							<?php endforeach ?>
 							</ul>
 						</div>
 					</td>
 					<td>
 					<?php if(!empty($item['User']['id'])): ?>
-						<span class="badge" title="<?=$item['User']['name']?> <?=$item['User']['surname']?>">
-						<?=$item['User']['email']?></span><span class="badge"><?=date('Y', strtotime('last year'))-date('Y',strtotime($item['User']['birthday']))?> años</span>
+						<span class="badge badge-success" title="<?=$item['User']['name']?> <?=$item['User']['surname']?>">
+							<?=$item['User']['email']?>
+						</span>
+						<span class="badge-success"><?=date('Y', strtotime('last year'))-date('Y',strtotime($item['User']['birthday']))?> años</span>
 					<?php else: ?>
 						<span class="badge badge-danger">Anónimo</span>
 					<?php endif ?>

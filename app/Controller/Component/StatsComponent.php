@@ -80,12 +80,17 @@ class StatsComponent extends Component {
           )
         ),
         'conditions' => array(
-          'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
+          'tag' => array(
+            'page-exit', 
+            'card-add', 
+            'cart-remove'
+          ),
+          'JSON_EXTRACT(context, "$.cart") IS NOT NULL'
         ),
-        'fields' => array('Stat.id, Stat.tag, Stat.context, Stat.created, User.id, User.email, User.name, User.surname, User.email, User.birthday'),
-        'group' => array('Stat.tag, JSON_EXTRACT(Stat.context, "$.cart")'),
+        'fields' => array('Stat.id, Stat.tag, Stat.context, Stat.created, User.id, User.email, User.name, User.surname, User.birthday'),
+        'group' => array('Stat.id, Stat.tag, Stat.context, Stat.created, User.id, User.email, User.name, User.surname, User.birthday'),
         'order' => array('Stat.id DESC'),
-        'limit' => 500,
+        'limit' => 1000,
       )
     ));
   }
