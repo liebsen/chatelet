@@ -18,7 +18,7 @@
 							<span class="badge is-rounded"><?=\readable_time_ago(strtotime($newsletter['Newsletter']['modified'])) ?></span>
 					</a>
 					<div class="card-text">
-						<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'info'?>"><?=\word_limit($newsletter['Newsletter']['title'])?></span>
+						<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'light'?>"><?=\word_limit($newsletter['Newsletter']['title'])?></span>
 <?php if(strlen($newsletter['User']['name'])):?>
 	<span class="badge badge-info"><?=$newsletter['User']['name']?></span>
 <?php else: ?>
@@ -129,7 +129,7 @@
 						</a>
 					</td>
 					<td>
-						<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'info'?>"><?=\word_limit($newsletter['Newsletter']['title'])?></span>
+						<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'light'?>"><?=\word_limit($newsletter['Newsletter']['title'])?></span>
 					</td>
 					<td>
 <?php if(strlen($newsletter['User']['name'])):?>

@@ -16,7 +16,7 @@
 						<span class="badge"><?=\readable_time_ago(strtotime($list['NewsletterList']['modified'])) ?></span>
 					</a>
 					<div class="card-text">
-						<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'info'?>"><?=$list['NewsletterList']['name']?></span>
+						<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'light'?>"><?=$list['NewsletterList']['name']?></span>
 						<span>
 							<i class="gi gi-woman fa-lg"></i> <span>Audiencia</span>
 							<span class="badge badge-<?=!empty($list[0]['total']) ? '-success' : '-danger d-block'?>">
@@ -88,7 +88,7 @@
 						</a>
 					</td>
 					<td>
-						<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'info'?>"><?=$list['NewsletterList']['name']?></span>						
+						<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'light'?>"><?=$list['NewsletterList']['name']?></span>						
 					</td>
 					<td>
 <?php if(strlen($list['User']['name'])):?>
