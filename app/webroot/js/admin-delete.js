@@ -46,7 +46,7 @@ $(document).ready(function() {
   $('#schedules-datatables').DataTable({
     "ordering": true,
     "stateSave": true,
-    "order": [[ 5, "desc" ]],
+    "order": [[ 6, "desc" ]],
     "language": {
       "url": "/json/datatables-locale-es.json"
     }
