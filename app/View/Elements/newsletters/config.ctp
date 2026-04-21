@@ -25,7 +25,7 @@
 	        </div>
 	        <div class="form-box bg-info-outline">
 		      	<h4 class="sub-header">Notificaciones push</h4>
-		      	<p>Establece ícono y badge para notificaciones push.</p>	        	
+		      	<p>Establece ícono para notificaciones push.</p>	        	
 						<div class="control-group">
 							<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen de logo (PNG, 256x256px recomendado)'); ?></label>
 							<?php if(!empty($settings['newsletter_icon'])): ?>
@@ -39,7 +39,7 @@
 								<input type="file" class="form-control" name="data[newsletter_icon]" value="" accept="image/png">
 							</div>
 						</div>
-						<div class="control-group">
+						<!--div class="control-group">
 							<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen de badge (PNG transparente, 96x96px recomendado)'); ?></label>
 							<?php if(!empty($settings['newsletter_badge'])): ?>
 								<div class="card">
@@ -51,7 +51,7 @@
 							<div class="controls">
 								<input type="file" class="form-control" name="data[newsletter_badge]" value="" accept="image/png">
 							</div>
-						</div>
+						</div-->
 					</div>
 					<div class="form-box bg-success-outline">
 		      	<h4 class="sub-header">Configuración extra</h4>

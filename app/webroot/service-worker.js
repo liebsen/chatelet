@@ -5,17 +5,14 @@
  * Received push
  */
 self.addEventListener('push', function (event) {
-    let pushMessageJSON = event.data.json();    
-    let pushMessageObject = {
+    const pushMessageJSON = event.data.json();    
+    const pushOptions = {
         body: pushMessageJSON.body,
         icon: pushMessageJSON.icon,
-        badge: pushMessageJSON.badge,
+        image: pushMessageJSON.image,
         data: pushMessageJSON.data
     };
-    if(pushMessageJSON.image) {
-        pushMessageObject.image = pushMessageJSON.image;
-    }
-    self.registration.showNotification(pushMessageJSON.title, pushMessageObject);
+    self.registration.showNotification(pushMessageJSON.title, pushOptions);
     console.info("sw[push]:", event);
 });
 
