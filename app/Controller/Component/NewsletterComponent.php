@@ -179,17 +179,7 @@ class NewsletterComponent extends Component {
     $NewsletterSchedule = ClassRegistry::init('NewsletterSchedule');
     try {
       if($this->controller->request->is('post')){
-        $data = $this->controller->request->data;
-        $NewsletterProduct->deleteAll(
-          array( 
-            'NewsletterProduct.newsletter_id' => $data['id'] 
-          )
-        );    
-        $NewsletterSchedule->deleteAll(
-          array( 
-            'NewsletterSchedule.newsletter_id' => $data['id'] 
-          )
-        );    
+        $data = $this->controller->request->data; 
         $Newsletter->delete($data['id']);
       }
     } catch (\Exception $e) {
@@ -418,11 +408,6 @@ class NewsletterComponent extends Component {
     try {
       if($this->controller->request->is('post')){
         $data = $this->controller->request->data;
-        $NewsletterScheduleItem->deleteAll(
-          array( 
-            'NewsletterScheduleItem.schedule_id' => $data['id'] 
-          )
-        );
         $NewsletterSchedule->delete($data['id']);
       }
     } catch (\Exception $e) {
