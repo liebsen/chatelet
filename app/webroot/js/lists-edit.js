@@ -1,8 +1,9 @@
 $(document).ready(function() {
   $('.datepicker').on('changeDate', function(e) {
-    const selectedDate = $(e.target).val()
-    const selectedName = $(e.target).data('name');
-    const selectedMode = $(e.target).data('mode');
+    const selectedDate = $(this).val()
+    const selectedName = $(this).data('name');
+    const selectedMode = $(this).data('mode');
+    $(this).data('change', true)
     $('input[name="search_mode"]').val(selectedMode)
     $('.'+selectedName+'-value').text(selectedDate)
     updateUsers()
