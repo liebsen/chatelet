@@ -490,7 +490,7 @@ class ShopController extends AppController {
 
 		if(!empty($this->request->query('schedule_item') || !empty($this->request->query('uid')))) {
 			$uid = $this->request->query('schedule_item') ?? $this->request->query('uid');
-			$this->addClick($uid);
+			$this->addClick($uid, $this->request->query('click_origin'));
 		}
 
     $legends = $this->Legend->find('all', [

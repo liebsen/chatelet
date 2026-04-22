@@ -246,7 +246,7 @@ class NewsletterShell extends AppShell {
             'detalle',
             $product['Product']['id'],
             $product['Category']['id'],
-            strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name']))) . '?schedule_item='.$schedule['NewsletterScheduleItem']['id'].'&user_id='
+            strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name']))) . '?schedule_item='.$schedule['NewsletterScheduleItem']['id'].'&click_origin=email'
           ));
         }
 
@@ -330,7 +330,7 @@ class NewsletterShell extends AppShell {
         $this->settings['site_url'],
         'newsletter',
         'schedule',
-        $data['NewsletterScheduleItem']['id']
+        $data['NewsletterScheduleItem']['id'].'?click_origin=push'
       )
     );
 

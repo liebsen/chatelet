@@ -95,6 +95,8 @@ class NewsletterController extends AppController {
       )
     );
 
+		$this->addClick($id, $this->request->query['click_origin']);
+
     // check if needs redirect
     if($newsletter['Newsletter']['show_cta'] == '1' && strlen($newsletter['Newsletter']['cta_url'])) {
 			$newsletter['Newsletter']['clicks'] = $newsletter['Newsletter']['clicks'] + 1;

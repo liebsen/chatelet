@@ -252,7 +252,7 @@ class AppController extends Controller
     );
   }
 
-  public function addClick($schedule_item) {
+  public function addClick($schedule_item, $click_origin = null) {
     $this->loadModel('NewsletterScheduleItem');
     $item = $this->NewsletterScheduleItem->findById($schedule_item);
     if(!empty($item)) {
@@ -265,7 +265,8 @@ class AppController extends Controller
           'context' => json_encode(
             array(
               'schedule_item' => $schedule_item,
-              'schedule_id' => $item['NewsletterScheduleItem']['schedule_id']
+              'schedule_id' => $item['NewsletterScheduleItem']['schedule_id'],
+              'click_origin' => $click_origin
             )
           )
         )
