@@ -140,8 +140,9 @@ class NewsletterShell extends AppShell {
       $products_ids = array();
       $parsed_body = '';
       $filter = json_decode($schedule['NewsletterList']['filter']);
+      $filter_type = $filter->filter->type ?? null;
 
-      if($filter->filter->type == 'carts') {
+      if($filter_type == 'carts') {
         $items = $this->Stat->find('all',array(
           'joins' => array(
             array(
@@ -234,6 +235,7 @@ class NewsletterShell extends AppShell {
       }
 
       $schedule['Newsletter']['parsed_body'] = $parsed_body;
+      $schedule['NewsletterList']['filter_type'] = $filter_type;
 
       if($schedule['Newsletter']['send_email'] == '1') {
         // generate links
@@ -417,7 +419,7 @@ class NewsletterShell extends AppShell {
     $viewVars = array(
       'data' => $data,
       'products' => $products,
-      'socials' => $data['Newsletter']['show_social'] ? 
+      'socials' => $data['Newsletter']['show_social'] == '1' ? 
         \parsed_socials($this->settings) : 
         null,
       'site_url' => $this->settings['site_url'],

@@ -1,6 +1,9 @@
 <?php echo $data['Newsletter']['parsed_body']?>
-<?php if($data['Newsletter']['show_cta'] == '1'):?>
-  <!-- Call to Action Button -->
+<?php if($data['NewsletterList']['filter_type'] == 'carts'):?>
+  <a href="<?=$site_url?>/carrito" style="background-color: #333333; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
+      Ver carrito
+  </a>  
+<?php elseif($data['Newsletter']['show_cta'] == '1' && strlen($data['Newsletter']['cta_url'])):?>
   <a href="<?=$data['Newsletter']['cta_url']?>" style="background-color: #333333; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
       <?=$data['Newsletter']['cta_text']?>
   </a>	
@@ -12,13 +15,10 @@
   <tr>
 <?php endif ?>
     <td valign="top" width="50%">
-      <!-- Main Card Container -->
       <div style="width: 100%; height: 100%; background-color: #ffffff; overflow: hidden;">
-        <!-- Product Image Section -->
         <a href="<?=$product['Product']['link']?>" style="text-decoration: none;">
            <div style="background-repeat: no-repeat;background-position: center center; background-size: cover; background-image: url('<?=$cdn_url?><?=$product['Product']['img_url']?>'); width: 100%; height: 350px; display: block;" alt="<?= $product['Product']['name'] ?>"></div>
         </a>
-        <!-- Product Details Section -->
         <div style="padding: 16px; text-align: center;">
           <h3 style="margin: 0 0 10px 0; font-size: 15px; color: #333333;"><?= $product['Product']['name'] ?></h3>
     <?php if($data['Newsletter']['show_price'] == '1'): ?>
@@ -36,10 +36,6 @@
     	<p style="margin: 0 0 5px 0; font-size: 12px; color: #666666;"><?=$product['Product']['bank_discount']?>% OFF Transferencia</p>
     <?php endif ?>
     <?php endif ?>
-    	    <!-- Call to Action Button -->
-    	    <!--a href="<?=$product['Product']['link']?>" style="background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
-    	        Ver en la tienda
-    	    </a-->
     	  </div>
     	</div>
     </td>

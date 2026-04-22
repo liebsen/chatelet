@@ -32,9 +32,12 @@ class NewsletterController extends AppController {
 	}
 
 	public function schedule() {
+		$this->autoRender = false;
+
 		$id = @$this->request->params['id'] ?? 0;
 		$products = array();
 		$parsed_body = '';
+		$filter_type = '';
     $newsletter = $this->NewsletterScheduleItem->find('first', array(
     	'recursive' => -1,
       'joins' => array(
@@ -97,8 +100,31 @@ class NewsletterController extends AppController {
 
 		$this->addClick($id, $this->request->query['click_origin']);
 
-    // check if needs redirect
-    if($newsletter['Newsletter']['show_cta'] == '1' && strlen($newsletter['Newsletter']['cta_url'])) {
+  	$filter = json_decode($newsletter['NewsletterList']['filter']);
+  	$filter_type = $filter->filter->type ?? null;
+
+  	if ($filter_type == 'carts') {
+      $items = $this->Stat->find('all',array(
+        'conditions' => array(
+          'Stat.tag' => 'page-exit',
+          'Stat.user_id' => $newsletter['NewsletterScheduleItem']['user_id'],
+          'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
+        ),
+        'fields' => array('Stat.created, Stat.context'),
+        'order' => array('Stat.id DESC'),
+        'limit' => 1, // last cart only
+      ));
+
+      if(count($items)) {
+	      $context = json_decode($items[0]['Stat']['context'],true);
+	      #recreate cart from stats
+	      $this->Session->write('cart', $context['cart']);	
+	      $this->Session->write('cart_totals', $context['cart_totals']);	
+	    	header('Location: ' . '/carrito');
+	    	return false;
+	    }
+  	}
+    elseif($newsletter['Newsletter']['show_cta'] == '1' && strlen($newsletter['Newsletter']['cta_url'])) {
 			$newsletter['Newsletter']['clicks'] = $newsletter['Newsletter']['clicks'] + 1;
 			$this->NewsletterScheduleItem->save($newsletter);
     	header('Location: ' . $newsletter['Newsletter']['cta_url']);
@@ -138,6 +164,7 @@ class NewsletterController extends AppController {
     }
 
     $newsletter['Newsletter']['parsed_body'] = $parsed_body;
+    $newsletter['NewsletterList']['filter_type'] = $filter_type;
 
     foreach($products as $i => $product) {
       $products[$i]['Product']['link'] = implode('/', array(
@@ -155,7 +182,7 @@ class NewsletterController extends AppController {
     $viewVars = array(
       'data' => $newsletter,
       'products' => $products,
-      'socials' => $newsletter['Newsletter']['show_social'] ? \parsed_socials($this->settings) : null,
+      'socials' => $newsletter['Newsletter']['show_social'] == '1' ? \parsed_socials($this->settings) : null,
       'site_url' => $this->settings['site_url'],
       'newsletter_text' => $this->settings['newsletter_text_enable'] == '1' ? 
         $this->settings['newsletter_text'] : 

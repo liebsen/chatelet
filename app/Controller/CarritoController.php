@@ -465,6 +465,7 @@ class CarritoController extends AppController
 	public function empty($row = null) {
 		$this->autoRender = false;
 		$this->Session->delete('cart');
+		$this->Session->delete('cart_totals');
 	}
 
 	public function show($row = null) {
