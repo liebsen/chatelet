@@ -163,6 +163,8 @@ class NewsletterShell extends AppShell {
           'limit' => 500,
         ));
 
+        \d("cart items",$items);
+        
         if(!empty($items)) {
           foreach($items as $item) {
             $context = json_decode($item['Stat']['context'], true);

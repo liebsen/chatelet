@@ -14,7 +14,7 @@
 						<label for="toggle_<?php echo $item ?>" class="toggle-label"></label>
 					</div>
 	        <div class="controls">
-	          <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control" value="<?php echo @$settings[$item.'_url'] ?>" placeholder="Ingresa URL o número de <?php echo __($item); ?>"/>
+	          <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control" value="<?php echo @$settings[$item.'_url'] ?>" placeholder="Ingresa URL de <?php echo __($item); ?>"/>
 	        </div>
 				</div>
 	    </div>
