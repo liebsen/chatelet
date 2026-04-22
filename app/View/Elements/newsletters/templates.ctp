@@ -129,7 +129,10 @@
 						</a>
 					</td>
 					<td>
-						<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'light'?>"><?=\word_limit($newsletter['Newsletter']['title'])?></span>
+						<a 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit', $newsletter['Newsletter']['id']))?>">						
+							<span class="badge badge-<?=$newsletter['Newsletter']['enabled'] == '1' ? 'success' : 'light'?>" title="<?=$newsletter['Newsletter']['title']?>"><?=\word_limit($newsletter['Newsletter']['title'])?></span>
+						</a>
 					</td>
 					<td>
 <?php if(strlen($newsletter['User']['name'])):?>

@@ -88,7 +88,10 @@
 						</a>
 					</td>
 					<td>
-						<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'light'?>"><?=$list['NewsletterList']['name']?></span>						
+						<a 
+							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $list['NewsletterList']['id']))?>">
+							<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'light'?>" title="<?=$list['NewsletterList']['name']?>"><?=\word_limit($list['NewsletterList']['name'])?></span>
+						</a>
 					</td>
 					<td>
 <?php if(strlen($list['User']['name'])):?>
