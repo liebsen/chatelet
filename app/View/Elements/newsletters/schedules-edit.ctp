@@ -82,6 +82,20 @@
       <i class="fa fa-eye"></i> 
       <span class="ml-1">Previsualizar</span>
     </a>
+    <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(
+      array(
+        'action'=>'newsletters', 
+        'schedules', 
+        'edit',
+        '?' => array(
+          'newsletter_id' => $schedule['NewsletterSchedule']['newsletter_id'],
+          'list_id' => $schedule['NewsletterSchedule']['list_id'],
+        )
+      )
+    )?>">
+      <i class="gi gi-cloud_plus"></i> 
+      <span class="ml-1">Clonar</span>
+    </a>    
     <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
       <i class="gi gi-magic"></i> <span class="ml-1">Crear campaña</span>
     </a>

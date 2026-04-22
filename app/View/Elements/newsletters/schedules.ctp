@@ -80,6 +80,19 @@
 				      target="_blank">
 				      <i class="fa fa-eye"></i> 
 				    </a>
+				    <a class="btn btn-success dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
+				      array(
+				        'action'=>'newsletters', 
+				        'schedules', 
+				        'edit',
+				        '?' => array(
+				          'newsletter_id' => $schedule['Newsletter']['id'],
+				          'list_id' => $schedule['NewsletterList']['id'],
+				        )
+				      )
+				    )?>">
+				      <i class="gi gi-cloud_plus"></i> 
+				    </a>				    
 <?php if($schedule['User']['id']==$this->Session->read('Auth.User.id')):?>
 						<a 
 							href="#" 
@@ -231,6 +244,19 @@
 					      target="_blank">
 					      <i class="fa fa-eye"></i> 
 					    </a>
+					    <a class="btn btn-success dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
+					      array(
+					        'action'=>'newsletters', 
+					        'schedules', 
+					        'edit',
+					        '?' => array(
+					          'newsletter_id' => $schedule['Newsletter']['id'],
+					          'list_id' => $schedule['NewsletterList']['id'],
+					        )
+					      )
+					    )?>">
+					      <i class="gi gi-cloud_plus"></i> 
+					    </a> 					    
 <?php if($schedule['User']['id']==$this->Session->read('Auth.User.id')||$this->Session->read('Auth.User.id')==4191):?>
 							<a 
 								href="#" 
@@ -274,7 +300,12 @@
 	    </button>
 	  </a>
 	<?php endif ?>
-	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
+	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(
+	  	array(
+	  		'action'=>'newsletters', 
+	  		'schedules', 'edit'
+	  	)
+	  )?>">
 	    <i class="gi gi-magic"></i> 
 	    <span class="ml-1">Crear campaña</span>
 	  </a>
