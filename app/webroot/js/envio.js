@@ -152,7 +152,7 @@ $(document).ready(function() {
   		}
   	}
     	
-    const formData = $(this).serialize();
+    const formData = $('#envio_form :input:visible').serialize();
     // const formSerialized = $(this).serializeArray();
     const btnSubmit = $(this).find('[type="submit"]');
     const redirect = $(this).find('[name="redirect"]').val();

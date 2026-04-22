@@ -83,6 +83,8 @@ class CheckoutController extends AppController
 			$this->autoRender = false;
 
 			$data = $this->request->data;
+
+			#CakeLog::write('debug', $data.':'.json_encode($data));
 			$cart_totals = $this->Session->read('cart_totals');
 
 			if(empty($data)) {
@@ -91,8 +93,6 @@ class CheckoutController extends AppController
 	        'errors' => 'No se recibió datos de envío'
 	      ));
 			}
-
-			$customer = $data['customer'];
 
 			if($data['cargo'] == 'shipment') { 
 				if(empty($data['customer']))
@@ -127,7 +127,7 @@ class CheckoutController extends AppController
       );
 
 			$delivery_cost = 0;
-			CakeLog::write('debug', 'envio(data):'.json_encode($data, JSON_PRETTY_PRINT));	
+			#CakeLog::write('debug', 'envio(data):'.json_encode($data, JSON_PRETTY_PRINT));	
 			// CakeLog::write('debug', 'envio(cart_totals):'.json_encode($cart_totals, JSON_PRETTY_PRINT));	
 
 			if($data['cargo'] == 'shipment' && empty($cart_totals['free_shipping'])) {
@@ -158,6 +158,7 @@ class CheckoutController extends AppController
 			);
 
 			foreach($partials as $part) {
+				CakeLog::write('debug', $part.':'.json_encode($data[$part]));
 				$cart_totals[$part] = $data[$part];
 			}
 
@@ -415,7 +416,7 @@ class CheckoutController extends AppController
 			if(!empty($customer['email'])) {
 				$check_user = $this->User->find('first', [
 					'conditions' => [
-						'email' => $customer['email']
+						'email' => trim($customer['email'])
 					]
 				]);				
 			}
