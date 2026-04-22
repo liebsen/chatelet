@@ -2,28 +2,18 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
   <?php foreach ($banners as $key => $banner): ?>
-    <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>">
-      <a href="<?php echo router::url($banner['Banner']['href']) ?>"<?= $banner['Banner']['target_blank'] === 'on' ? ' target="blank"' : '' ?>>
-        <?php if($banner['Banner']['img_url']):?>
-          <div class="slider" style="background-image:url(<?php echo $banner['Banner']['img_url']; ?>)"></div>
-        <?php else: ?>
-        <div class="banner-caption">
-          <span><?php echo $banner['Banner']['text']; ?></span>
-        </div>
-        <?php endif ?>
-      </a>
-    </div>
+    <a href="<?php echo router::url($banner['Banner']['href']) ?>"<?= $banner['Banner']['target_blank'] === 'on' ? ' target="blank"' : '' ?> class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>">
+      <?php if($banner['Banner']['img_url']):?>
+        <div class="slider" style="background-image:url(<?php echo $banner['Banner']['img_url']; ?>)"></div>
+      <?php else: ?>
+      <div class="banner-caption">
+        <span><?php echo $banner['Banner']['text']; ?></span>
+      </div>
+      <?php endif ?>
+    </a>
   <?php endforeach ?>
   </div>
   <!-- Controls -->
-  <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
-    <span class="arrow arrow-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
-    <span class="arrow arrow-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>
 
 <style>
