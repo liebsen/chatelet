@@ -30,7 +30,8 @@
   Router::connect('/catalogo/:img_url', array('controller' => 'catalogo', 'action' => 'index'));
 	Router::connect('/tienda/productos/:category', array('controller' => 'shop', 'action' => 'product'));
 	Router::connect('/tienda/producto/*', array('controller' => 'shop', 'action' => 'detalle'));
-	Router::connect('/newsletter/:id', array('controller' => 'newsletter'));
+	Router::connect('/newsletter/schedule/:id', array('controller' => 'newsletter', 'action' => 'schedule'));
+	Router::connect('/newsletter/:id', array('controller' => 'newsletter', 'action' => 'schedule'));
 	Router::connect('/admin/newsletters/*', array('controller' => 'admin', 'action' => 'newsletters'));
 
 /**
