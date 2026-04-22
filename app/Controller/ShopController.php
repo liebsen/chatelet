@@ -315,7 +315,7 @@ class ShopController extends AppController {
 		$this->Stat->save(array(
 			'id' => null,
       'tag' => 'variant-select',
-      'user_id' => $this->Auth->user('id') ?? 0,
+      'user_id' => $this->Auth->user('id') ?? 1,
       'product_id' => $product_id,
       'context' => json_encode(array(
       	'size_number' => $size_number,
@@ -731,7 +731,7 @@ class ShopController extends AppController {
 		$save = array();
 		$save['tag'] = 'page-search';
 		$save['page'] = '/shop/buscar';
-		$save['user_id'] = $this->Auth->user('id') ?: 0;
+		$save['user_id'] = $this->Auth->user('id') ?? 1;
 		// $save['referer'] = $_SERVER['HTTP_REFERER'];
 		// $save['page'] = $p+1;
 		$save['context'] = json_encode(

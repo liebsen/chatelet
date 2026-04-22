@@ -205,7 +205,7 @@ class AppController extends Controller
             array(
               'id' => null,
               'tag' => 'session-resume',
-              'user_id' => $this->Auth->user('id') ?? 0,
+              'user_id' => $this->Auth->user('id') ?? 1,
               'context' => json_encode(
                 array(
                   'path' => $path,

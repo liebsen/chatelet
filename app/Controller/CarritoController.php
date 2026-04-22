@@ -536,7 +536,7 @@ class CarritoController extends AppController
 				$this->Stat->save(array(
 					'id' => null,
 		      'tag' => 'cart-add',
-		      'user_id' => $this->Auth->user('id') ?? 0,
+		      'user_id' => $this->Auth->user('id') ?? 1,
 		      'product_id' => $data['id'],
 		      'context' => json_encode(array(
 		      	'size' => $data['size'],
@@ -612,7 +612,7 @@ class CarritoController extends AppController
 			$stat = array(
 				'id' => null,
 	      'tag' => 'cart-remove',
-	      'user_id' => $this->Auth->user('id') ?? 0,
+	      'user_id' => $this->Auth->user('id') ?? 1,
 	      'product_id' => $item['id'],
 	      'context' => json_encode(
 	      	array(
