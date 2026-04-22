@@ -1856,7 +1856,7 @@ span.validation-password {
 
 @media screen and (max-width: 768px) {
 	.navbar-container {
-		min-height: 105px;
+		min-height: 110px;
 	}
 	.modal-dialog {
 		width: calc(100dvw - 14px);

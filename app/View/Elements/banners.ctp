@@ -26,25 +26,22 @@
 
   #carousel-banners .banner-caption {
     text-align: center;
-    color: white;
-    font-size: 0.9rem;
     position: inherit;
     display: flex;
-    line-height: 1.25;
     justify-content: center;
     align-items: center;
-    min-height: 50px;
+    min-height: 3.5rem;
     font-weight: 500;
+  }
+
+  #carousel-banners .banner-caption span {
+    color: white;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.25;
   }
 
   #carousel-banners .item.active {
     animation: fadeIn 500ms ease-in;
   }
-
-  @media screen and (max-width:500px){
-    #carousel-banners .banner-caption {
-      font-size: 0.9rem;
-    }
-  }
-
 </style>
