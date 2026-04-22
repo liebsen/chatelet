@@ -142,8 +142,7 @@ $(document).ready(function() {
   		}
   	}
 
-    const formData = $(this).serialize();
-    // const formSerialized = $(this).serializeArray();
+    const formData = $('#envio_form :input:visible').serialize();
     const btnSubmit = $(this).find('[type="submit"]');
     const redirect = $(this).find('[name="redirect"]').val();
 
@@ -154,21 +153,17 @@ $(document).ready(function() {
       data: formData,
       success: function(res) {
       	if(res.success) {
-      		// onSuccessAlert('Success', res.message)
-          // $('#responseContainer').html(res.message);
           setTimeout(() => {
           	location.href = redirect || location.href
           }, 100)
       	} else {
       		onWarningAlert('Error al enviar datos', res.errors)
-      		// $('#responseContainer').html(res.errors);
       	}
       	btnSubmit.prop('disabled', false)
       },
       error: function(xhr, status, error) {
         console.error("Error al enviar datos: " + status + " - " + error);
         btnSubmit.prop('disabled', false)
-        // Handle errors
       }
     });
   });
