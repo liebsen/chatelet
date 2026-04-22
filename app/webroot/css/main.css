@@ -52,6 +52,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   .toggle-label,
   .list-group-item,
   .form-control,
+  .tab-content,
   .form-box,
   .dropdown-menu,
   .card-img,
@@ -2389,7 +2390,7 @@ small, .small {
 }
 
 /* Labels & Badges */
-.label, .badge {
+.badge {
   font-size: 12px;
   background-color: #999;
   text-shadow: none;
@@ -2807,9 +2808,11 @@ header.navbar .navbar-brand {
 .nav-pills > li.active > a:focus {
   background-color: #2196f3;
 }
+
 .tab-content {
   border-top: none;
   padding: 15px;
+  background-color: #ffffff;
 }
 
 .tab-pane:not(#side-tab-menu) {
@@ -3042,8 +3045,8 @@ background-color: #fff!important;
   height: 40px;
 }
 
-label,
-.control-label {
+form label,
+form .control-label {
   cursor: pointer;
   text-transform: uppercase;
   font-size: 13px;
@@ -3056,7 +3059,6 @@ label,
   padding: 2px;
   color: #2196f3;
 }
-
 .form-control,
 .input-group {
   margin-top: 1px;
@@ -3556,6 +3558,10 @@ a.thumbnail-borderless,
   padding: 1rem;
   z-index: 9999;
   min-width: 100vw;
+}
+
+.bg-transparent {
+  background-color: transparent!important;
 }
 
 .bg-dark {
