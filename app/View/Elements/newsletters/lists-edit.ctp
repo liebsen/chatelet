@@ -56,7 +56,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 enable-on-save <?=!empty($list['NewsletterList']['id'])?'':' d-disable'?>">
+    <div class="col-md-6 <?=!empty($list['NewsletterList']['id'])?'':' d-disable'?>">
       <div class="form-box bg-info-outline">
         <h4 class="sub-header">Resumen</h4>
         <table class="table table-forum table-striped text-small">
@@ -91,7 +91,7 @@
           <select class="form-control filter-type advanced-filter" name="data[filter][type]" data-name="type">
             <option value="">Seleccione un filtro</option>
             <option value="sales" data-target="sales"<?=$list['NewsletterList']['filter']->filter->type == 'sales' ? ' selected' : ''?>>Compras</option>
-            <option value="carts" data-target="sales"<?=$list['NewsletterList']['filter']->filter->type == 'carts' ? ' selected' : ''?>>Compra incompleta</option>
+            <option value="carts" data-target="sales"<?=$list['NewsletterList']['filter']->filter->type == 'carts' ? ' selected' : ''?>>Carrito abandonado</option>
             <option value="dob" data-target="dob"<?=$list['NewsletterList']['filter']->filter->type == 'dob' ? ' selected' : ''?>>Cumpleaños</option>
           </select>
         </div>

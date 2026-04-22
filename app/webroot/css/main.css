@@ -959,6 +959,7 @@ background-color: #e8ffa8!important;
   display: block;
   opacity: 0.80;
   border-radius: 14px;
+  font-size: 100%!important;
   filter: alpha(opacity=80);
   transition: all 0.1s linear;
 }
@@ -2390,7 +2391,7 @@ small, .small {
 }
 
 /* Labels & Badges */
-.badge {
+.relation-item,.badge {
   font-size: 12px;
   background-color: #999;
   text-shadow: none;

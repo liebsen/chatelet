@@ -78,7 +78,6 @@ $(document).ready(function() {
         });
         if(res.lastid) {
           $('input[name="data[id]"]').val(res.lastid)
-          $('.enable-on-save').removeClass('d-disable')
         }
 			} else {
         $.growl.error({
