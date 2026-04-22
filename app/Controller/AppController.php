@@ -252,15 +252,33 @@ class AppController extends Controller
     );
   }
 
-  public function addClick($id) {
+  public function addClick($schedule_item) {
     $this->loadModel('NewsletterScheduleItem');
-    $this->NewsletterScheduleItem->updateAll(
-      array(
-        'NewsletterScheduleItem.clicks' => 'NewsletterScheduleItem.clicks + 1'          
-      ), array(
-        'id' => $id,
-      )
-    );    
+    $item = $this->NewsletterScheduleItem->findById($schedule_item);
+    if(!empty($item)) {
+      $this->loadModel('Stat');
+      $this->Stat->save(
+        array(
+          'id' => null,
+          'tag' => 'newsletter-click',
+          'user_id' => $item['NewsletterScheduleItem']['user_id'],
+          'context' => json_encode(
+            array(
+              'schedule_item' => $schedule_item,
+              'schedule_id' => $item['NewsletterScheduleItem']['schedule_id']
+            )
+          )
+        )
+      );
+
+      $this->NewsletterScheduleItem->updateAll(
+        array(
+          'NewsletterScheduleItem.clicks' => 'NewsletterScheduleItem.clicks + 1'          
+        ), array(
+          'id' => $schedule_item,
+        )
+      );
+    }
   }
 
   public function sendEmail($data, $subject, $template) {    

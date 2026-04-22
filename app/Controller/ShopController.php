@@ -488,8 +488,8 @@ class ShopController extends AppController {
 			throw new NotFoundException();
 		}
 
-		if(!empty($this->request->query('uid'))) {
-			$this->addClick($this->request->query('uid'));
+		if(!empty($this->request->query('schedule_item'))) {
+			$this->addClick($this->request->query('schedule_item'));
 		}
 
     $legends = $this->Legend->find('all', [

@@ -246,7 +246,7 @@ class NewsletterShell extends AppShell {
             'detalle',
             $product['Product']['id'],
             $product['Category']['id'],
-            strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name']))) . '?uid='.$schedule['NewsletterScheduleItem']['id']
+            strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name']))) . '?schedule_item='.$schedule['NewsletterScheduleItem']['id'].'&user_id='
           ));
         }
 
@@ -329,6 +329,7 @@ class NewsletterShell extends AppShell {
       array(
         $this->settings['site_url'],
         'newsletter',
+        'schedule',
         $data['NewsletterScheduleItem']['id']
       )
     );
@@ -347,9 +348,7 @@ class NewsletterShell extends AppShell {
       'data' => array(
         'vibrate' => array(100, 200),
         'additionalData' => array(),
-        'url' => $data['Newsletter']['show_cta'] == '1' ? 
-          $data['Newsletter']['cta_url'] : 
-          $fallback_url
+        'url' => $fallback_url
       ),
     );
 

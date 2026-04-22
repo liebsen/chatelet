@@ -31,7 +31,7 @@ class NewsletterController extends AppController {
   	$this->layout = 'Emails/html/default';
 	}
 
-	public function index() {
+	public function schedule() {
 		$id = @$this->request->params['id'] ?? 0;
 		$products = array();
 		$parsed_body = '';
@@ -96,7 +96,7 @@ class NewsletterController extends AppController {
     );
 
     // check if needs redirect
-    if($newsletter['Newsletter']['cta_url']) {
+    if($newsletter['Newsletter']['show_cta'] == '1' && strlen($newsletter['Newsletter']['cta_url'])) {
 			$newsletter['Newsletter']['clicks'] = $newsletter['Newsletter']['clicks'] + 1;
 			$this->NewsletterScheduleItem->save($newsletter);
     	header('Location: ' . $newsletter['Newsletter']['cta_url']);
