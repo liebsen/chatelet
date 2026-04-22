@@ -78,7 +78,7 @@
 				      target="_blank">
 				      <i class="fa fa-eye"></i> 
 				    </a>
-				    <a class="btn btn-success dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
+				    <a class="btn btn-warning dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
 				      array(
 				        'action'=>'newsletters', 
 				        'schedules', 

@@ -1,6 +1,6 @@
 <?php echo $data['Newsletter']['parsed_body']?>
 <?php if($data['NewsletterList']['filter_type'] == 'carts'):?>
-  <a href="<?=$site_url?>/carrito" style="background-color: #333333; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
+  <a href="<?=$self_link?>" style="background-color: #333333; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
       Ver carrito
   </a>  
 <?php elseif($data['Newsletter']['show_cta'] == '1' && strlen($data['Newsletter']['cta_url'])):?>

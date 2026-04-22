@@ -114,7 +114,6 @@ class NewsletterController extends AppController {
         'order' => array('Stat.id DESC'),
         'limit' => 1, // last cart only
       ));
-
       if(count($items)) {
 	      $context = json_decode($items[0]['Stat']['context'],true);
 	      #recreate cart from stats
