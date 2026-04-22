@@ -92,8 +92,10 @@ function get_socials(){
   return [
     'facebook',
     'instagram',
+    'tiktok',
+    'whatsapp',
     'x-twitter', 
-    'youtube'
+    'youtube',
   ];
 }
 

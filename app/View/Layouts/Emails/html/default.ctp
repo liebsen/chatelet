@@ -42,17 +42,22 @@
       </tr>
       <?php if(isset($socials) && count(@$socials)): ?>
       <tr>
-        <td align="center" style="padding: 8px; color: #888888">
-          <small>Seguinos en nuestras redes: 
+        <td align="center" style="padding: 20px; color: #888888">
+          <small>Seguinos en nuestras redes<small><br>
           <?php foreach($socials as $social => $url) : ?>
-            <a href="<?php echo $url ?>" target="_blank"><?php echo ucfirst($social) ?></a>
+            <a href="<?php echo $url ?>" style="margin-right: 10px;" target="_blank">
+              <img src="/img/share/<?php echo $social ?>.png" style="display: inline; margin-bottom: -10px" width="32" height="32">
+              <?php echo ucfirst($social) ?>
+            </a>
           <?php endforeach ?>
           </small>
         </td>
       </tr>
       <?php endif ?>
       <tr>
-        <td align="center" style="padding: 8px; color: #888888"><small>&copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados</small></td>
+        <td align="center" style="padding: 8px; color: #888888">
+          <small>&copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados</small>
+        </td>
       </tr>
     </table>
   </body>

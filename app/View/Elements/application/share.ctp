@@ -4,7 +4,7 @@
 	    <p>Incluye la URL entera correspondiente a cada red social</p>
 	  <?php foreach(\get_socials() as $item): ?>
 	    <div class="control-group">
-	      <label class="control-label d-flex justify-content-start align-items-center gap-05" for="<?php echo $item ?>_on">
+	      <label class="control-label gap-05" for="<?php echo $item ?>_on">
 	      	<i class="fa fa-lg fa-<?php echo $item ?>"></i>
 	      	<?php echo __(ucfirst($item)); ?>
 	      </label>
@@ -14,7 +14,7 @@
 						<label for="toggle_<?php echo $item ?>" class="toggle-label"></label>
 					</div>
 	        <div class="controls">
-	          <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control" value="<?php echo @$settings[$item.'_url'] ?>" placeholder="Ingresá la URL de tu perfil de <?php echo __($item); ?>"/>
+	          <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control" value="<?php echo @$settings[$item.'_url'] ?>" placeholder="Ingresa URL o número de <?php echo __($item); ?>"/>
 	        </div>
 				</div>
 	    </div>
