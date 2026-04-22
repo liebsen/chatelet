@@ -42,7 +42,6 @@
 								class="badge badge-info"><i class="gi gi-font"></i>
 							</a>							
 						</a>
-
 						<a 
 							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
 							data-toggle="tooltip" 
@@ -50,7 +49,6 @@
 						>						
 							<span class="badge badge-info"><i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?> <?=!empty($schedule['list_total']) ? '('.$schedule['list_total'].')' : ''?></span>
 						</a>
-
 						<?php if($schedule['Newsletter']['send_email'] == '1'):?>
 						<span class="badge badge-success is-rounded" title="Emails enviados">
 							<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
@@ -227,7 +225,7 @@
 							<span class="clicks"><?=$schedule['stats']['clicks']?></span>
 						</span>
 					</td>
-					<td>
+					<td data-order="<?=strtotime($schedule['NewsletterSchedule']['modified'])?>">
 						<span class="badge badge-<?=strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00') > time() ? 'warning' : 'success'?>" title="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00', '%d/%m/%Y %H:00')?>"><?=\readable_time_ago($schedule['NewsletterSchedule']['modified'])?> </span>
 					</td>
 					<td> 
