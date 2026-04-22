@@ -5,7 +5,7 @@ $str = '';
 
 foreach($socials as $icon) {
     if($settings[$icon.'_on'] == '1'){
-        $str.= '<a href="'.$settings[$icon.'_url'].'" target="_blank"><i class="fa fa-'.$icon.'"></i></a>';
+        $str.= '<a href="'.$settings[$icon.'_url'].'" class="pl-4" target="_blank"><img src="/img/share/'.$icon.'-brands-solid.png" width="40" height="40"></a>';
     }
 }
 
