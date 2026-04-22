@@ -2717,7 +2717,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        'User.id IS NOT ' => null,
 	        'Sale.completed' => 1,
 	        'Sale.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
-	        'Sale.created < ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_max))),
+	        'Sale.created <=' => date('Y-m-d 23:59', strtotime(str_replace('/','-', $date_max))),
 	      ),
 		    'fields' => array(
 		    	'SUM(Sale.value) AS Total, User.id, User.email, User.name, User.surname, User.birthday'
@@ -2731,8 +2731,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		  	'limit' => 1000,
 	    ));
 	  }
-
-		if($filter_type == 'carts') {
+		elseif($filter_type == 'carts') {
 			$this->loadModel('Stat');
 			//\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
 	    $data = $this->Stat->find('all',array(
@@ -2752,7 +2751,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        'User.email IS NOT ' => null,
 	        'JSON_EXTRACT(Stat.context, \'$.cart_totals.total_products\') >' => $sale_min,
 	        'Stat.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
-	        'Stat.created < ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_max))),
+	        'Stat.created <=' => date('Y-m-d 23:59', strtotime(str_replace('/','-', $date_max))),
 	      ),
 		    'fields' => array(
 		    	'User.id, User.email, User.name, User.surname, User.birthday'
