@@ -533,6 +533,9 @@ html, body {
 .max-20 {
 	max-width: 20rem;
 }
+.max-30 {
+	max-width: 30rem;
+}
 .mb-0 {
   margin-bottom: 0!important;
 }

@@ -6,7 +6,7 @@ $this->set('short_header_classname', 'btn_continue_shopping');
 echo $this->Session->flash();
 ?>
 <section id="detalle" class="is-flex-center min-h-101">
-  <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1">
+  <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 m-auto max-30">
 		<h2 class="text-uppercase">
 			<?php if ($loggedIn) : ?>
 				Hola, <?php echo $user['name']; ?>

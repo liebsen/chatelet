@@ -9,7 +9,9 @@ h1,h2,h3 {
 span, i, small {
   line-height: 1;
 }
-
+a:hover {
+  text-decoration: none;
+}
 .noscroll {
   overflow: hidden!important;
 }
