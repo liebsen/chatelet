@@ -154,16 +154,15 @@ class NewsletterShell extends AppShell {
             )
           ),
           'conditions' => array(
+            'Stat.tag' => 'page-exit',
             'User.email IS NOT ' => null,
             'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
             'Stat.user_id' => $schedule['NewsletterScheduleItem']['user_id'],
           ),
-          'fields' => array('Stat.context'),
+          'fields' => array('Stat.created, Stat.context'),
           'order' => array('Stat.id DESC'),
-          'limit' => 500,
+          'limit' => 1, // last cart only
         ));
-
-        \d("cart items",$items);
         
         if(!empty($items)) {
           foreach($items as $item) {

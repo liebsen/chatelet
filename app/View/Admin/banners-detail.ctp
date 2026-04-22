@@ -13,10 +13,12 @@
       <div class="row">
         <div class="col-md-6">
           <h4 class="sub-header"><?php echo __('Estado') ?></h4>
-          <div class="form-group">
-            <label class="control-label" for="columns-text"><?php echo __('Activo'); ?></label>
-            <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= @$item['Banner']['enabled'] == '1' ? ' checked' : '' ?>>
-            <label for="toggle" class="toggle-label"></label>
+          <div class="form-group flex-end flex-between gap-05">
+            <div class="controls flex-1">
+              <label class="control-label" for="columns-text"><?php echo __('Activo'); ?></label>
+              <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= @$item['Banner']['enabled'] == '1' ? ' checked' : '' ?>>
+              <label for="toggle" class="toggle-label"></label>
+            </div>
           </div>
           <h4 class="sub-header">Información Principal</h4>
           <!--div class="control-group">
@@ -48,13 +50,13 @@
         </div>
         <div class="col-md-6">
           <h4 class="sub-header"><?php echo __('Comportamiento') ?></h4>
-
           <div class="form-group">
-            <label class="control-label" for="columns-text"><?php echo __('Abrir enlace en otra pestaña'); ?></label>
-            <input type="checkbox" name="data[target_blank]" value="1" id="toggle_target_blank" class="toggle-checkbox"<?= @$item['Banner']['target_blank'] == '1' ? ' checked' : '' ?>>
-            <label for="toggle_target_blank" class="toggle-label"></label>
-          </div>        
-          <br />       
+            <div class="controls">
+              <label class="control-label text-left" for="columns-text"><?php echo __('Abrir enlace en otra pestaña'); ?></label>
+              <input type="checkbox" name="data[target_blank]" value="1" id="toggle_target_blank" class="toggle-checkbox"<?= @$item['Banner']['target_blank'] == '1' ? ' checked' : '' ?>>
+              <label for="toggle_target_blank" class="toggle-label"></label>
+            </div>        
+          </div>
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
             <div class="controls">
