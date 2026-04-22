@@ -492,23 +492,6 @@ $(document).ready(function() {
     //window.scrollTo(0,0)
   })
 
-  if(
-    window.location.hash.indexOf('listShop') === -1 && 
-    document.querySelector("#myModal")!=null && 
-    $('.js-show-modal') && 
-    $('.js-show-modal').length
-  ){
-    setTimeout(function () {
-      $('#myModal').modal({ show: true })
-    }, 10)
-  }
-
-  if (window.location.hash.indexOf('listShop') > -1) {
-    setTimeout(() => {
-      window.scrollBy(0, -93)
-    }, 5000)
-  }
-
   /* generic clic handlers */
 
   $('[data-toggle="click"]').click((e) => {
@@ -694,11 +677,6 @@ $(document).ready(function() {
     $.post('/shop/log_error', {message: msg + JSON.stringify(browser), url: url, line: lineNo})
   }*/
 
-  const sections = ['','/','/Home']
-
-  if(!sections.includes(location.pathname)){
-    $('body, html').removeClass('noscroll')
-  }
 
 	$('#flashMessage').each(function(i, flash) {
 		flash = $(flash);
@@ -765,6 +743,14 @@ $(document).ready(function() {
     } 
     return true
   })
+
+  const sections = ['','/','/Home']
+
+  if(!sections.includes(location.pathname)){
+    setTimeout(() => {
+      $('body, html').removeClass('noscroll')
+    },100)
+  }
 
   setTimeout(() => {
     sendBeacon('page-view')

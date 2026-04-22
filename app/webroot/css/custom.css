@@ -1391,7 +1391,7 @@ ul#ul-moreviews li.dontResize img {
 	.navbar-nav { margin: 0; text-align: center; }
 	.navbar-nav > li { float: none; display: inline-block; }
   .navbar-nav > li > a {  
-    font-size: 0.9rem;
+    font-size: 1.1rem;
   }
 	.navbar-nav>li>a .badge { left: 5px; position: absolute; top: 5px; }
 
@@ -1414,8 +1414,8 @@ ul#ul-moreviews li.dontResize img {
 	.map .col-md-4 { padding: 30px; }
 	.map .col-md-8 { padding: 0; }
     #map-canvas {margin: 10px 0 0 0;padding: 0;height: 400px;}
-	#headcontacto h1 { margin-bottom: 30px; }
-	#headhelp h1 { margin-bottom: 20px; }
+	#headcontacto h1 { padding: 2.5rem 0; }
+	#headhelp h1 { padding: 2.5rem 0; }
 	#desarrollo .boxes:first-child { margin-bottom: 30px; }
 	#desarrollo .boxes:last-child { background-size: 130px; }
 
