@@ -2816,7 +2816,7 @@ header.navbar .navbar-brand {
   background-color: #ffffff;
 }
 
-.tab-pane:not(#side-tab-menu) {
+.tab-pane:not(#side-tab-menu):not(#login-form-tab) {
   min-width: 100%;
   padding-bottom: 5rem;
   animation-delay: 0.5s;
