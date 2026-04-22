@@ -330,7 +330,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .navbar-chatelet .fa,
 .navbar-chatelet .gi {
-  font-size: 1.33rem;
+  font-size: 1.5rem;
 }
 
 body.top-fixed .navbar-chatelet:not(.short) {

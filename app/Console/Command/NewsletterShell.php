@@ -299,20 +299,24 @@ class NewsletterShell extends AppShell {
 
     if(count($schedules)){
       print_r(
-        array(
-          'date' => implode(' ', 
-            array(
-              $date,
-              implode(':',array($hour,$min))
+        json_encode(
+          array(
+            'newsletter_cron_updates' => array(
+              'date' => implode(' ', 
+                array(
+                  $date,
+                  implode(':',array($hour,$min))
+                )
+              ),
+              'quota' => $quota,
+              'perminute' => $perminute,
+              'perday' => $perday,
+              'email_sent' => $email_sent,
+              'push_sent' => $push_sent,
+              'items_sent' => $items_sent,
+              'schedules' => count($schedules)
             )
-          ),
-          'quota' => $quota,
-          'perminute' => $perminute,
-          'perday' => $perday,
-          'email_sent' => $email_sent,
-          'push_sent' => $push_sent,
-          'items_sent' => $items_sent,
-          'schedules' => count($schedules)
+          ), JSON_PRETTY_PRINT
         )
       );
     }

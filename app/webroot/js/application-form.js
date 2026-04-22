@@ -14,7 +14,7 @@ function getFormData(form) {
       } else if(e.type == 'checkbox') {
         value = e.checked ? 1 : 0
       }
-      data.append(e.name, value)
+      data.append(e.name, value.trim())
     }
   }
   return data
