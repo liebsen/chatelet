@@ -104,7 +104,7 @@
 		</div>
 	</div>
 	<div class="desktop">
-		<table id="example-datatables" class="table table-bordered table-hover">
+		<table id="templates-datatables" class="table table-bordered table-hover">
 			<thead>
 				<tr>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>
@@ -149,7 +149,7 @@
 					<td>
 						<span class="badge badge-<?=count($newsletter['NewsletterProduct']) ? 'success' : 'light'?> is-rounded"><?=count($newsletter['NewsletterProduct']) ? count($newsletter['NewsletterProduct']) : 'Estático'?></span>
 					</td>
-					<td>
+					<td data-order="<?=strtotime($newsletter['Newsletter']['modified'])?>">
 						<span class="badge" title="<?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?>"><?=\readable_time_ago($newsletter['Newsletter']['modified']) ?></span>
 					</td>
 					<td>

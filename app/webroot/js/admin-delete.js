@@ -23,7 +23,7 @@ $(document).ready(function() {
       });         
     }       
   });
-  $('#example-datatables2').DataTable();
+  //$('#example-datatables2').DataTable();
   $('#usuarios-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 10 ] } ] , "language": {"url": "/json/datatables-locale-es.json"}});
   $('#sucursales-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "/json/datatables-locale-es.json"}});
 
@@ -38,6 +38,24 @@ $(document).ready(function() {
     "ordering": true,
     "stateSave": true,
     "order": [[ 0, "desc" ]],
+    "language": {
+      "url": "/json/datatables-locale-es.json"
+    }
+  });
+
+  $('#templates-datatables').DataTable({
+    "ordering": true,
+    "stateSave": true,
+    "order": [[ 5, "desc" ]],
+    "language": {
+      "url": "/json/datatables-locale-es.json"
+    }
+  });
+
+  $('#lists-datatables').DataTable({
+    "ordering": true,
+    "stateSave": true,
+    "order": [[ 4, "desc" ]],
     "language": {
       "url": "/json/datatables-locale-es.json"
     }

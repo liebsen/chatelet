@@ -64,7 +64,7 @@
 		</div>
 	</div>
 	<div class="desktop">
-		<table id="example-datatables" class="table table-bordered table-hover">
+		<table id="lists-datatables" class="table table-bordered table-hover">
 			<thead>
 				<tr>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>
@@ -102,7 +102,7 @@
 							<?=!empty($list[0]['total']) ? $list[0]['total'] : '<i class="fa fa-warning"></i> Lista vacía'?>
 						</span>
 					</td>
-					<td>
+					<td data-order="<?=strtotime($list['NewsletterList']['modified'])?>">
 						<span class="badge is-rounded" title="<?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y %H:%M')?>">
 						<?=\readable_time_ago($list['NewsletterList']['modified'])?> </span>
 					</td>
