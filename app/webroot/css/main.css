@@ -2665,13 +2665,16 @@ header.navbar.navbar-fixed-bottom .dropdown-menu {
 
 .navbar-nav {
   margin: 0;
+  min-width: 5rem;
 }
+
 .navbar .navbar-right {
   float: right!important;
 }
-  .navbar-nav > li {
-      float: left;
-  }
+
+.navbar-nav > li {
+  float: left;
+}
 
 .navbar.navbar-inverse .navbar-brand {
   color: #fff;
@@ -2943,9 +2946,9 @@ background-color: #fff!important;
   flex-grow: 1;
 }
 
-.card-body {
+/*.card-body {
   padding: 1rem;
-}
+}*/
 
 .card-img {
   display: flex;
@@ -3211,9 +3214,10 @@ background-color: #45a049; /* Darker green on hover */
 }
 
 /* Tables + DataTables */
-.dataTables_wrapper.form-inline {
+/*.dataTables_wrapper.form-inline {
   margin: 10px;
-}
+}*/
+
 .dataTables_wrapper input,
 .dataTables_wrapper select {
   padding: 0.5rem 1rem;

@@ -100,7 +100,7 @@
                             </li>
                             <!-- END Desktop Button -->
                         </ul>
-                        <ul class="nav navbar-nav navbar-right" style="margin-right: 5px!important;">
+                        <ul class="nav navbar-nav navbar-right">
                             <!-- Divider -->
 
                             <!--li class="dropdown dropdown-theme-options pull-right">
