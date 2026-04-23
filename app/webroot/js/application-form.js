@@ -8,13 +8,13 @@ function getFormData(form) {
   for (var i=0; i<form.length; i++) {
     var e = form[i]
     if(($(e).data('change') || $(e).data('force')) && !$(e).data('noproc')) {
-      var value = e.value
+      var value = e.value.trim()
       if(e.type == 'file') {
         value = e.files[0]
       } else if(e.type == 'checkbox') {
         value = e.checked ? 1 : 0
       }
-      data.append(e.name, value.trim())
+      data.append(e.name, value)
     }
   }
   return data
