@@ -116,7 +116,7 @@ function searchRelations(data) {
           data.cb(data.type, null, filter.length)
         }
         $('.relations-action-add').removeClass('d-none')
-        $('.relations-action-remove').addClass('d-none')
+        // $('.relations-action-remove').addClass('d-none')
       } else {
         $(`.${data.type}-container`).append(`<span class="h6">No se hallaron resultados para <b>${data.q}</b></span>`)  
       }

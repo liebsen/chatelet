@@ -2168,15 +2168,33 @@ pre, code {
 }
 
 .secondary-box {
-  padding: 0.5rem 0;
+  padding: 0.25rem 0.25rem 2rem;
   display: flex;
   justify-content: start;
   align-items: center;
-  grid-gap: 1rem;
+  grid-gap: 0.5rem;
   width: 100%;
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+.secondary-box > a {
+  font-size: 0.8rem;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  line-height: 1;
+  border-bottom: 3px solid transparent;
+}
+
+.secondary-box > a.text-success {
+  border-color: rgb(1, 200, 1);
+  background-color: rgb(212 255 212);
+}
+
+.secondary-box > a.text-danger {
+  border-color: #fc4c4c;
+  background-color: #fff5f5;
 }
 
 .sub-header {
