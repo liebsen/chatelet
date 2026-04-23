@@ -2168,7 +2168,7 @@ pre, code {
 }
 
 .secondary-box {
-  padding: 0.25rem 0.25rem 2rem;
+  padding: 0.25rem 0.25rem 1rem;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -2181,7 +2181,7 @@ pre, code {
 
 .secondary-box > a {
   font-size: 0.8rem;
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   padding: 0.5rem 1rem;
   line-height: 1;
   border-bottom: 3px solid transparent;
@@ -2404,7 +2404,7 @@ a.text-black:focus {
 }
 
 .text-muted {
-  color: #d68cd2!important;
+  color: #b4b4b4!important;
 }
 
 .is-rounded {
