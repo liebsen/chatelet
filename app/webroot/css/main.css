@@ -16,6 +16,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   html, 
   body, 
   .menu, 
+  .tab-content, 
   .menu-items a, 
   .menu-bg {
     background-color: #333!important;
@@ -30,6 +31,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   p,
   li {
     color: #c5c5c5!important;
+    border-color: #666!important;
     &:hover {
       color: #666;
     }
@@ -51,7 +53,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   .toggle-label,
   .list-group-item,
   .form-control,
-  .tab-content,
   .form-box,
   .dropdown-menu,
   .nav-tabs,
@@ -274,7 +275,6 @@ body {
 }
 
 #page-content {
-  padding-top: 1rem;
   position: relative;
   z-index: 10;
 }
