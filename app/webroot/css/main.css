@@ -2794,7 +2794,6 @@ header.navbar .navbar-brand {
   font-size: 1.75rem;
   margin-top: 0;
   line-height: 1;
-  margin-left: 0.5rem;
   position: relative;
   top: 2px;
 }
@@ -2820,6 +2819,10 @@ header.navbar .navbar-brand {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   background-color: #2196f3;
+}
+
+#toggle-side-content > i {
+  margin: 0 0.75rem;
 }
 
 .tab-content {
