@@ -121,7 +121,7 @@
   </a>
 <?php endif ?>
   <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
-    <i class="gi gi-send"></i> <span class="ml-1">Crear nueva campaña</span>
+    <i class="gi gi-send"></i> <span class="ml-1">Nueva campaña</span>
   </a>
   <a class="btn btn-success btn-update-schedules" href="#">
     <i class="gi gi-repeat"></i> <span class="ml-1">Actualizar</span>

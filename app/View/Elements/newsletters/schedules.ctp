@@ -4,6 +4,13 @@
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 	<div class="mobile">
 		<div class="d-flex flex-wrap justify-content-center align-items-left gap-05">
+<?php if(empty($schedules)):?>
+	<div class="notification">
+		<h3>Nada de campañas por aquí</h3>
+		<p class="text-theme">No hay nada que mostrar por ahora aquí. <?=empty($this->request->query('extended')) ?'Intenta presionando en <i class="fa fa-eye mr-1"></i> Ver todo</span>' : ''?></p>
+	</div>
+<?php endif ?>
+
 <?php foreach ($schedules as $key => $schedule): ?>
 			<div class="card card-auto schedule-rt schedules-<?=$schedule['NewsletterSchedule']['id']?>" data-id="<?=$schedule['NewsletterSchedule']['id']?>">
 				<div class="card-body d-flex flex-between flex-nowrap gap-05 w-auto">
@@ -78,10 +85,10 @@
 				      target="_blank">
 				      <i class="fa fa-eye"></i> 
 				    </a>
-				    <a class="btn btn-warning dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
+				    <a class="btn btn-primary dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
 				      array(
 				        'action'=>'newsletters', 
-				        'schedules', 
+				        'schedules',
 				        'edit',
 				        '?' => array(
 				          'newsletter_id' => $schedule['Newsletter']['id'],
@@ -89,8 +96,8 @@
 				        )
 				      )
 				    )?>">
-				      <i class="gi gi-cloud_plus"></i> 
-				    </a>				    
+				      <i class="gi gi-magnet"></i> 
+				    </a>
 <?php if($schedule['User']['id']==$this->Session->read('Auth.User.id')):?>
 						<a 
 							href="#" 
@@ -242,7 +249,7 @@
 					      target="_blank">
 					      <i class="fa fa-eye"></i> 
 					    </a>
-					    <a class="btn btn-success dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
+					    <a class="btn btn-primary dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
 					      array(
 					        'action'=>'newsletters', 
 					        'schedules', 
@@ -253,7 +260,7 @@
 					        )
 					      )
 					    )?>">
-					      <i class="gi gi-cloud_plus"></i> 
+					      <i class="gi gi-magnet"></i> 
 					    </a> 					    
 <?php if($schedule['User']['id']==$this->Session->read('Auth.User.id')||$this->Session->read('Auth.User.id')==4191):?>
 							<a 
@@ -305,7 +312,7 @@
 	  	)
 	  )?>">
 	    <i class="gi gi-magic"></i> 
-	    <span class="ml-1">Crear campaña</span>
+	    <span class="ml-1">Nueva campaña</span>
 	  </a>
 	</div>
 

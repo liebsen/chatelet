@@ -77,12 +77,7 @@
     )?>" class="btn btn-info">
       <i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span>
     </a>
-<?php if(!empty($schedule['NewsletterSchedule']['id'])):?> 
-    <a href="/newsletter/template/<?=$schedule['Newsletter']['id']?>" class="btn btn-warning" target="_blank">
-      <i class="fa fa-eye"></i> 
-      <span class="ml-1">Previsualizar</span>
-    </a>
-    <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(
+    <a class="btn btn-primary dropdown-toggle" href="<?=$this->Html->url(
       array(
         'action'=>'newsletters', 
         'schedules', 
@@ -93,15 +88,20 @@
         )
       )
     )?>">
-      <i class="gi gi-cloud_plus"></i> 
+      <i class="gi gi-magnet"></i> 
       <span class="ml-1">Clonar</span>
     </a>    
+<?php if(!empty($schedule['NewsletterSchedule']['id'])):?> 
+    <a href="/newsletter/template/<?=$schedule['Newsletter']['id']?>" class="btn btn-warning" target="_blank">
+      <i class="fa fa-eye"></i> 
+      <span class="ml-1">Previsualizar</span>
+    </a>
     <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">
-      <i class="gi gi-magic"></i> <span class="ml-1">Crear campaña</span>
+      <i class="gi gi-magic"></i> <span class="ml-1">Nueva campaña</span>
     </a>
 <?php endif ?>
-    <!--button class="btn btn-reset-ask btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-repeat"></i> <span class="ml-1">Reenviar</span></button-->
-    <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
+    <!--button class="btn btn-reset-ask btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-repeat"></i> <span class="ml-1">Reenviar</span></button>
+    <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button-->
   </div>
 <?php echo $this->Form->end(); ?>
 

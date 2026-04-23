@@ -3,6 +3,12 @@
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 	<div class="mobile">
 		<div class="d-flex flex-wrap justify-content-center align-items-left gap-05">
+<?php if(empty($newsletters)):?>
+	<div class="notification">
+		<h3>Nada de plantillas por aquí</h3>
+		<p class="text-theme">No hay nada que mostrar por ahora aquí. <?=empty($this->request->query('extended')) ?'Intenta presionando en <i class="fa fa-eye mr-1"></i> Ver todo</span>' : ''?></p>
+	</div>
+<?php endif ?>
 <?php foreach ($newsletters as $key => $newsletter): ?>
 			<div class="card card-auto">
 				<div class="card-body d-flex flex-between flex-nowrap gap-05 w-auto">
@@ -233,7 +239,7 @@
     <button class="btn" title="Ver menos"><i class="fa fa-eye-slash"></i> <span class="ml-1">Ver menos</span></button>
   </a>
 <?php endif ?>
-	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit'))?>" title="Crear Plantilla">
-	    <i class="gi gi-magic"></i> <span class="ml-1">Crear Plantilla</span>
+	  <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'edit'))?>" title="Nueva Plantilla">
+	    <i class="gi gi-magic"></i> <span class="ml-1">Nueva Plantilla</span>
 	  </a>
   </div>

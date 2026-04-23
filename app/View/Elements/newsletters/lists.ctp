@@ -4,6 +4,12 @@
 <?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
 	<div class="mobile">
 		<div class="d-flex flex-wrap justify-content-center align-items-left gap-05">
+<?php if(empty($lists)):?>
+	<div class="notification">
+		<h3>Nada de listas por aquí</h3>
+		<p class="text-theme">No hay nada que mostrar por ahora aquí. <?=empty($this->request->query('extended')) ?'Intenta presionando en <i class="fa fa-eye mr-1"></i> Ver todo</span>' : ''?></p>
+	</div>
+<?php endif ?>
 <?php foreach ($lists as $key => $list): ?>
 			<div class="card card-auto">
 				<div class="card-body d-flex flex-between flex-nowrap gap-05 w-auto">
@@ -169,6 +175,6 @@
   </a>
 <?php endif ?>
   <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit'))?>">
-    <i class="gi gi-magic"></i> <span class="ml-1">Crear lista</span>
+    <i class="gi gi-magic"></i> <span class="ml-1">Nueva lista</span>
   </a>
 	</div>
