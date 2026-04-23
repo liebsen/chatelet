@@ -120,6 +120,41 @@ function parsed_socials($settings){
   return $socials;
 }
 
+function readable_tag_event($tag) {
+
+    $trans = array(
+      'page-view' => 'Vió una página',
+      'page-exit' => 'Cerró la página',
+      'newsletter-click' => 'Interactuó con un newsletter',
+      'session-resume' => 'Resumió sesión',
+      'session-start' => 'Inició sesión',
+      'session-end' => 'Terminó sesión',
+      'session-register' => 'Se registró',
+      'cart-add' => 'Agregó al carrito',
+      'cart-remove' => 'Quitó del carrito',
+    );
+
+  return $trans[$tag] ?? $tag;
+}
+
+function readable_tag_color($tag) {
+    
+    $trans = array(
+      'page-view' => 'info',
+      'page-exit' => 'info',
+      'newsletter-click' => 'danger',
+      'session-resume' => 'light',
+      'session-start' => 'light',
+      'session-end' => 'light',
+      'session-register' => 'light',
+      'cart-add' => 'success',
+      'cart-remove' => 'success',
+    );
+
+  return $trans[$tag] ?? $tag;
+}
+
+
 function readable_time_ago($timestamp, $short = false) {
   $current_date = time();
   $date = strtotime($timestamp);

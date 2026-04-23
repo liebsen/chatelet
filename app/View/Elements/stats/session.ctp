@@ -6,8 +6,8 @@
 		<thead>
 			<tr>
      		<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Evento'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Cuenta'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Evento'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Fecha/Hora'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
@@ -18,11 +18,6 @@
 				<td>
 					<span class="badge badge-light">
 						<?=$item['Stat']['id']?>
-					</span>
-				</td>
-				<td>
-					<span class="badge badge-light">
-						<?=$item['Stat']['tag']?>
 					</span>
 				</td>
 				<td>
@@ -45,6 +40,11 @@
 		</span>
 <?php endif ?>
 					</a>
+				</td>
+				<td>
+					<span class="badge badge-<?=\readable_tag_color($item['Stat']['tag'])?>">
+						<?=\readable_tag_event($item['Stat']['tag'])?>
+					</span>
 				</td>
 				<td>
 					<span class="badge badge-light" title="Fecha / Hora">
