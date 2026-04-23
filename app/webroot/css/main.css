@@ -3674,7 +3674,9 @@ a.thumbnail-borderless,
 
   .form-actions {
     left: 210px;
+    display: -webkit-box;
   }
+  
   /* Hide Side Content */
   .hide-side-content #page-sidebar {
       /*display: none !important;*/
