@@ -2168,7 +2168,7 @@ pre, code {
 }
 
 .secondary-box {
-  padding: 1rem;
+  padding: 0.5rem 0;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -2794,7 +2794,7 @@ header.navbar .navbar-brand {
   font-size: 1.75rem;
   margin-top: 0;
   line-height: 1;
-  margin-right: 0.25rem;
+  margin-left: 0.5rem;
   position: relative;
   top: 2px;
 }

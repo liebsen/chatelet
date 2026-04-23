@@ -115,9 +115,9 @@
         </div>
         <div class="secondary-box">
           <!--label class="control-label" for="product-filter">Productos seleccionados (<?=count($newsletter_products)?>)-->
-          <a class="relations-action-add text-success d-none" data-type="product" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($newsletter_products)?></span></a>
+          <a class="btn btn-sm btn-success relations-action-add d-none" data-type="product" href="javascript:void(0)">Agregar <span class="relations-count"><?=count($newsletter_products)?></span></a>
           <?php if(count($newsletter_products)): ?>
-          <a class="relations-action-remove text-danger" data-type="product" href="javascript:void(0)">Eliminar todo</a>
+          <a class="btn btn-sm btn-danger relations-action-remove" data-type="product" href="javascript:void(0)">Eliminar todo</a>
         <?php endif ?><!--/label-->
         </div>
         <div class="controls tags-container product-container">
