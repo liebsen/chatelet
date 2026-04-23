@@ -3807,11 +3807,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function usuarios($action = null) {
 		$navs = array(
-		'Usuarios' => array(
+		'Cuentas' => array(
 			'icon' 		=> 'gi gi-group',
 			'url'		=> '/admin/usuarios',
 			),
-		'Nuevo Usuario' => array(
+		'Nueva Cuenta' => array(
 			'icon' 		=> 'gi gi-circle_plus',
 			'url'		=> '/admin/usuarios/add',
 			)
@@ -3819,7 +3819,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->set('navs', $navs);
 
 		$h1 = array(
-			'name' => 'Usuarios',
+			'name' => 'Cuentas',
 			'icon' => 'gi gi-group'
 			);
 		$this->set('h1', $h1);
@@ -3831,7 +3831,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        $this->autoRender = false;
 	        $this->User->save($this->request->data);
 		      $this->Session->setFlash(
-		        'Módulo Usuarios actualizado',
+		        'Módulo Cuentas actualizado',
 		        'default',
 		        array('class' => 'hidden notice')
 		      );
@@ -3857,7 +3857,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     			}
 		      $this->User->save($data);
 		      $this->Session->setFlash(
-		        'Módulo Usuarios actualizado',
+		        'Módulo Cuentas actualizado',
 		        'default',
 		        array('class' => 'hidden notice')
 		      );		      

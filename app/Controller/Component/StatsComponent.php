@@ -160,7 +160,7 @@ class StatsComponent extends Component {
       'conditions' => array(
         'tag LIKE ' => 'session-%'
       ),
-      'fields' => array('Stat.id, Stat.tag, Stat.created, User.id, User.name, User.surname, User.email, User.birthday'),
+      'fields' => array('Stat.id, Stat.tag, Stat.created, User.id, User.name, User.surname, User.email, User.role, User.birthday'),
       'group' => array('Stat.id'),
       'order' => array('Stat.id DESC'),
       'limit' => 500,

@@ -7,7 +7,7 @@
 			<tr>
      		<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Evento'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Usuario'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Cuenta'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Fecha/Hora'); ?></th>
 				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 			</tr>
@@ -36,11 +36,11 @@
 					)?>">
 						
 <?php if(!empty($item['User']['name'])):?>
-		<span class="badge badge-success">
+		<span class="badge badge-<?=$item['User']['role'] == 'admin' ? 'success' : 'info'?>" title="<?=$item['User']['role']?>">
 			<?=$item['User']['name']?> <?=$item['User']['surname']?>
 		</span>
 <?php else:?>
-		<span class="badge badge-success text-lowercase">
+		<span class="badge badge-<?=$item['User']['role'] == 'admin' ? 'success' : 'info'?> text-lowercase" title="<?=$item['User']['role']?>">
 			<?=strstr($item['User']['email'],'@',true)?>
 		</span>
 <?php endif ?>
