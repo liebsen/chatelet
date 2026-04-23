@@ -56,8 +56,8 @@
       </tr>
       <?php endif ?>
       <tr>
-        <td align="center" style="padding: 8px; color: #888888">
-          <small>&copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados</small>
+        <td align="center" style="padding: 8px; color: #aaaaaa">
+          <small style="font-size: 12px">&copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados</small>
         </td>
       </tr>
     </table>
