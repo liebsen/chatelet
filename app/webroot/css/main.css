@@ -3677,8 +3677,8 @@ a.thumbnail-borderless,
 @media (min-width: 992px) {
 
   .form-actions {
-    left: 210px;
-    display: -webkit-box;
+    margin-left: -210px;
+    min-width: calc(100% - 210px);
   }
 
   /* Hide Side Content */
