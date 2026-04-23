@@ -84,7 +84,7 @@
           </div>
           <br />
           <div class="form-group">
-            <label class="control-label" for="columns-text"><?php echo __('Visible'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Newsletter'); ?></label>
             <input type="checkbox" name="data[newsletter]" value="1" id="toggle" class="toggle-checkbox"<?= $usuario['User']['newsletter'] == '1' ? ' checked' : '' ?>>
             <label for="toggle" class="toggle-label"></label>
           </div>
@@ -92,14 +92,14 @@
         </div>
         <div class="col-md-6">
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Telefono'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Teléfono'); ?></label>
             <div class="controls">
               <input type="text" class="form-control w-100" id="" name="data[telephone]" value="<?php echo (isset($usuario)) ? $usuario['User']['telephone'] : ''; ?>">
             </div>
           </div>
           <br />
           <div class="control-group">
-            <label class="control-label" for="columns-text"><?php echo __('Otro telefono'); ?></label>
+            <label class="control-label" for="columns-text"><?php echo __('Otro teléfono'); ?></label>
             <div class="controls">
               <input type="text" class="form-control w-100" id="" name="data[another_telephone]" value="<?php echo (isset($usuario)) ? $usuario['User']['another_telephone'] : ''; ?>">
             </div>

@@ -26,9 +26,25 @@
 					</span>
 				</td>
 				<td>
-					<span class="badge badge-success">
-						#<?=$item['User']['id']?> <?=$item['User']['name']?> <?=$item['User']['surname']?>
-					</span>
+					<a href="<?=$this->Html->url(
+						array(
+							'controller' => 'admin',
+							'action' => 'usuarios',
+							'edit',
+							$item['User']['id']
+						)
+					)?>">
+						
+<?php if(!empty($item['User']['name'])):?>
+		<span class="badge badge-success">
+			<?=$item['User']['name']?> <?=$item['User']['surname']?>
+		</span>
+<?php else:?>
+		<span class="badge badge-success text-lowercase">
+			<?=strstr($item['User']['email'],'@',true)?>
+		</span>
+<?php endif ?>
+					</a>
 				</td>
 				<td>
 					<span class="badge badge-light" title="Fecha / Hora">

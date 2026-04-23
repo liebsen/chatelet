@@ -34,7 +34,12 @@ echo $this->Session->flash();
 	    	</span>
 	    </div>
       <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4 w-100">
-        <a class="btn btn-chatelet light w-100" href="/shop/login">Iniciar sesión</a>
+        <a class="btn btn-chatelet light w-100" href="<?=$this->Html->url(
+						array(
+							'controller' => 'shop',
+							'action' => 'login'
+						)
+					)?>">Iniciar sesión</a>
       </div>
 	  	<?php echo $this->Form->end(); ?>       
 	  </div>
