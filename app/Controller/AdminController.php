@@ -1288,7 +1288,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			),
 			'Sesión' => array(
 				'icon' 		=> 'gi gi-log_book',
-				'url'		=> '/admin/stats/session',
+				'url'		=> '/admin/stats/session?search='.$this->Auth->user('name').' '.$this->Auth->user('surname'),
 				'text' => $text
 			)
 		);
