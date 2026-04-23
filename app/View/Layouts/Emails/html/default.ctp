@@ -43,14 +43,15 @@
       <?php if(isset($socials) && count(@$socials)): ?>
       <tr>
         <td align="center" style="padding: 20px; color: #888888">
-          <small>Seguinos en nuestras redes<small><br>
-          <?php foreach($socials as $social => $url) : ?>
-            <a href="<?php echo $url ?>" style="margin-right: 10px; text-decoration: none;" target="_blank">
-              <img src="<?=$site_url?>/img/share/<?php echo $social ?>-brands-solid.png" style="display: inline; margin-bottom: -10px" width="24" height="24">
-              <?php echo ucfirst($social) ?>
-            </a>
-          <?php endforeach ?>
-          </small>
+          <div style="margin-bottom: 20px;">
+            <small>Seguinos en nuestras redes<small>
+          </div>
+<?php foreach($socials as $social => $url) : ?>
+          <a href="<?php echo $url ?>" style="margin-right: 15px; text-decoration: none; color: #888888; font-weight: 500" target="_blank">
+            <img src="<?=$site_url?>/img/share/<?php echo $social ?>-brands-solid.png" style="display: inline; margin-bottom: -10px" width="24" height="24">
+            <?php echo ucfirst($social) ?>
+          </a>
+<?php endforeach ?>
         </td>
       </tr>
       <?php endif ?>
