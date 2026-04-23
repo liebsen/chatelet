@@ -84,6 +84,18 @@ $(document).ready(function() {
     }
   });
 
+
+
+  const table = $('.table').first()
+  if(table.data('search')) {
+    table.on('init.dt', function(e, settings) {      
+      setTimeout(function(){
+        $('.dataTables_filter').find('input[type="search"]').val(table.data('search'))
+        $('.dataTables_filter').find('input[type="search"]').trigger('keyup')
+      }, 500)
+    })
+  }
+
   /* $('#example-datatables').dataTable({"aoColumnDefs": [ 
     { "bSortable": false, "aTargets": [ 7 ] } 
   ] , "language": {"url": "/json/datatables-locale-es.json"}}); */

@@ -2,7 +2,7 @@
 <?php echo $this->Html->script('schedules', array('inline' => false)); ?>
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
-	<table id="example-datatables" class="table table-bordered table-hover">
+	<table id="example-datatables" class="table table-bordered table-hover" data-search="<?=$this->request->query('search') ?? ''?>">
 		<thead>
 			<tr>
      		<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>
