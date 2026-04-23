@@ -27,7 +27,7 @@
 				</td>
 				<td>
 					<span class="badge badge-success">
-						<?=$item['User']['name']?> <?=$item['User']['surname']?>
+						#<?=$item['User']['id']?> <?=$item['User']['name']?> <?=$item['User']['surname']?>
 					</span>
 				</td>
 				<td>

@@ -33,10 +33,9 @@ echo $this->Session->flash();
 	  		  <i class="fa fa-info-circle mr-1"></i> Recibirás un correo electrónico con tu nueva contraseña
 	    	</span>
 	    </div>
-	    <!--div class="modal-buttons">                
-				<a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Crear mi cuenta</a>
-	      <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Iniciar sesión</a>
-	    </div-->
+      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4 w-100">
+        <a class="btn btn-chatelet light w-100" href="/shop/login">Iniciar sesión</a>
+      </div>
 	  	<?php echo $this->Form->end(); ?>       
 	  </div>
 	</div>

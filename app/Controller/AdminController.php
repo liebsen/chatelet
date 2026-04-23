@@ -3889,11 +3889,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		      ));				
 		    }
 
-	      $this->Session->setFlash(
+	      /*$this->Session->setFlash(
           'Tu email no está registrado en nuestra tienda',
           'default',
           array('class' => 'hidden notice')
-	      );
+	      );*/
 
 				return $this->redirect(array('controller' => 'admin', 'action' => 'login'));
 			}
