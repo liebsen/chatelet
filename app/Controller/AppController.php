@@ -142,6 +142,7 @@ class AppController extends Controller
     //CakeLog::write('debug', 'beforeFilter executed for ' . $this->name . 'Controller::' . $this->action);
     $this->Auth->allow();
     $this->set('loggedIn', $this->Auth->loggedIn());
+    $this->set('isAdmin', $this->Auth->user('role') === 'admin');
     $this->set('user', $this->Auth->user());
     
     $cart_totals = $this->Session->read('cart_totals');

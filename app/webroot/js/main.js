@@ -122,11 +122,14 @@ $(function () {
   }
 
   var timeout = 0
-  $('.logout-btn').click(function(){ 
+  $('.logout-btn').click(function(e){ 
+    e.preventDefault()
+    e.stopPropagation()
     const prompt = confirm('¿Deseas abandonar la sesión?')
     if(prompt) {
       location.href = '/admin/logout'
     }
+    return false
   })
 
   $('.toggle-block').change(function(e){
@@ -158,14 +161,19 @@ $(function () {
   })
 
   //$(document).on('click', '.nav-tabs .fa-question-circle', function(e) {
-  $('.nav-tabs .fa-question-circle, .block-tabs .fa-question-circle').click(function(e) {
+  $('.fa-question-circle').click(function(e) {
     e.preventDefault()
+    e.stopPropagation()
+    console.log('click(1)')
+    if(!$(this).data('text')) return false;
+    console.log('click(2)')
     const target = $(e.target)
     $.growl.notice({
       title: target.parent().text(),
       message: target.data('text'),
       duration: 15000
     });
+    return false
   })
 
   $('.form-pass-icon').click(function(event) {

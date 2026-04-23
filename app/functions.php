@@ -174,6 +174,35 @@ function readable_time_ago($timestamp, $short = false) {
   return (!$skipprep ? $prep : '') . ' ' . $span;
 }
 
+function readable_time_duration($when, $then) {
+  $current_date = strtotime($when);
+  $date = strtotime($then);
+  $asc = $current_date > $date;
+  $prep =  $asc ? 'hace' : 'en';
+  $skipprep = false;
+  $diff = abs($current_date - $date);
+  $span = "";
+  if ($diff < 60) {
+    $span = $diff == 1 ? "1 seg" : $diff . " segs";
+  } elseif ($diff < (3600 - 60)) {
+    $minutes = round($diff / 60);
+    $span = $minutes == 1 ? "1 min" : $minutes . " mins";
+  } elseif ($diff < (86400 - 3600)) {
+    $hours = round($diff / 3600);
+    $span = $hours == 1 ? "1 h" : $hours . " hs";
+  } elseif ($diff < 2592000) { // 30 days
+    $days = round($diff / 86400);
+    $span = $days == 1 ? "1 día" : $days . " días";
+  } elseif ($diff < 31536000) { // 365 days
+    $months = round($diff / 2592000);
+    $span = $months == 1 ? "1 mes" : $months . " meses";
+  } else {
+    $years = round($diff / 31536000);
+    $span = $years == 1 ? "1 año" : $years . " años";
+  }
+  return $span;
+}
+
 function starts_with($haystack, $needle) {
   $length = strlen($needle);
   return substr($haystack, 0, $length) === $needle;

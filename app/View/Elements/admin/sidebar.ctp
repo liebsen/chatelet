@@ -126,6 +126,12 @@
                             </li>
                             <?php } ?>
                             <li>
+                                <a href="/" target="_blank">
+                                    <i class="gi gi-shop"></i> 
+                                    Tienda
+                                </a>
+                            </li>
+                            <li>
                                 <a href="#" class="logout-btn dropdown-toggle">
                                     <i class="gi gi-exit"></i> 
                                     Salir

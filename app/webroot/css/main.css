@@ -3672,6 +3672,9 @@ a.thumbnail-borderless,
 /* Landscape tablet and up */
 @media (min-width: 992px) {
 
+  .form-actions {
+    left: 210px;
+  }
   /* Hide Side Content */
   .hide-side-content #page-sidebar {
       /*display: none !important;*/

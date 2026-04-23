@@ -1251,7 +1251,49 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 	
 	public function index() {
-		$this->redirect('presentacion');
+		$session = $this->Stat->find('all', 
+			array(
+				'conditions' => array(
+					'or' => array(
+						'tag' => 'session-start', 
+						'tag' => 'session-end'
+					),
+					'and' => array(
+						'user_id' => $this->Auth->user('id')
+					)
+				),
+				'fields' => 'Stat.created',
+				'order' => array(
+					'Stat.created DESC',
+					'Stat.tag DESC',
+				),
+				'limit' => 3,
+			)
+		);
+
+		$started = $session[0]['Stat']['created'] ?? null;
+		$ended = $session[1]['Stat']['created'] ?? null;
+		$duration = \readable_time_duration($started, $ended);
+		$text = "No hay suficientes datos aún para calcular esto";
+
+		if(count($session) === 3 && $duration != '0seg') {
+			$text = "Tu última sesión duró {$duration}.";
+		}
+
+		$navs = array(
+			'Cuenta' => array(
+				'icon' 		=> 'gi gi-woman',
+				'url'		=> '/shop/cuenta',
+				'text' => 'Accede a tu cuenta y mantenla actualizada con tus datos de contacto y dirección.'
+			),
+			'Sesión' => array(
+				'icon' 		=> 'gi gi-log_book',
+				'url'		=> '/admin/stats/session',
+				'text' => $text
+			)
+		);
+		$this->set('navs', $navs);
+		$this->set('session', $session);
 	}
 
 	public function presentacion() {
@@ -3863,7 +3905,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function login() {
 		if($this->isAuthorized()) {
-			return $this->redirect(array('controller' => 'admin', 'action' => 'presentacion'));
+			return $this->redirect(array('controller' => 'admin', 'action' => 'index'));
 		}
 
     $redirect = $this->request->data['redirect'];
@@ -3889,6 +3931,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		      ));				
 		    }
 
+
 	      /*$this->Session->setFlash(
           'Tu email no está registrado en nuestra tienda',
           'default',
@@ -3900,10 +3943,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 			if ($this->Auth->login()) {
 	      $this->Session->setFlash(
-          'Tu email no está registrado en nuestra tienda',
+          "Bienvenida {$user['User']['name']} al panel de gestión de Châtelet",
           'default',
           array('class' => 'hidden notice')
-	      );				
+	      );
+        # save log (session-register)
+        $this->Stat->save(
+          array(
+            'tag' => 'session-start',
+            'user_id' => $this->Auth->user('id'),
+          )
+        );
         if(!empty($ajax)) {
           return json_encode(array(
             'success' => true, 
@@ -3931,6 +3981,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function logout() {
+    # save log (session-register)
+    $this->Stat->save(
+      array(
+        'tag' => 'session-end',
+        'user_id' => $this->Auth->user('id'),
+      )
+    );    		
 		$this->redirect($this->Auth->logout());
 	}
 
