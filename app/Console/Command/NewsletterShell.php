@@ -419,6 +419,10 @@ class NewsletterShell extends AppShell {
     );
 
     $email->config($config);
+    $skip_header  = (
+        $this->settings['newsletter_show_header'] != '1' || 
+        $data['Newsletter']['show_header'] != '1'
+      ) ?? null;
 
     $viewVars = array(
       'data' => $data,
@@ -430,10 +434,7 @@ class NewsletterShell extends AppShell {
       'newsletter_text' => $this->settings['newsletter_text_enable'] == '1' ? 
         $this->settings['newsletter_text'] : 
         null,
-      'skip_header' => (
-        $this->settings['newsletter_show_header'] != '1' || 
-        $schedule['Newsletter']['show_header'] != '1'
-      ) ?? null,
+      'skip_header' => $skip_header,
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/',
       'self_link' => implode('/', 
         array(

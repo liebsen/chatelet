@@ -294,13 +294,15 @@ class NewsletterController extends AppController {
       ));
     }
 
+    $skip_header = (
+      	$this->settings['newsletter_show_header'] != '1' || 
+      	$newsletter['Newsletter']['show_header'] != '1'
+      ) ?? null;
+
     $viewVars = array(
       'data' => $newsletter,
       'products' => $products,
-      'skip_header' => (
-      	$this->settings['newsletter_show_header'] != '1' || 
-      	$newsletter['Newsletter']['show_header'] != '1'
-      ) ?? null,
+      'skip_header' => $skip_header,
       'socials' => (
       	$this->settings['newsletter_show_social'] == '1' && 
       	$newsletter['Newsletter']['show_social'] == '1'
