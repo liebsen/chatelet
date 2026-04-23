@@ -46,7 +46,7 @@
           <small>Seguinos en nuestras redes<small><br>
           <?php foreach($socials as $social => $url) : ?>
             <a href="<?php echo $url ?>" style="margin-right: 10px;" target="_blank">
-              <img src="/img/share/<?php echo $social ?>-brands-solid.png" style="display: inline; margin-bottom: -10px" width="24" height="24">
+              <img src="<?=$site_url?>/img/share/<?php echo $social ?>-brands-solid.png" style="display: inline; margin-bottom: -10px" width="24" height="24">
               <?php echo ucfirst($social) ?>
             </a>
           <?php endforeach ?>
