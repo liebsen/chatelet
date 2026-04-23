@@ -85,7 +85,7 @@
 				      target="_blank">
 				      <i class="fa fa-eye"></i> 
 				    </a>
-				    <a class="btn btn-primary dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
+				    <a class="btn btn-sm btn-primary dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
 				      array(
 				        'action'=>'newsletters', 
 				        'schedules',
@@ -249,7 +249,7 @@
 					      target="_blank">
 					      <i class="fa fa-eye"></i> 
 					    </a>
-					    <a class="btn btn-primary dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
+					    <a class="btn btn-sm btn-primary dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
 					      array(
 					        'action'=>'newsletters', 
 					        'schedules', 

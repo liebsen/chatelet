@@ -3559,6 +3559,10 @@ a.thumbnail-borderless,
   min-height: 32px;
 }
 
+.btn > i {
+  font-size: 12px;
+}
+
 .form-actions {
   text-align: right;
   position: fixed;
