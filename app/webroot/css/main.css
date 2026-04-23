@@ -3570,6 +3570,10 @@ a.thumbnail-borderless,
   min-width: 100vw;
 }
 
+.form-actions > .btn {
+  margin: 0 0.25rem;
+}
+
 .bg-transparent {
   background-color: transparent!important;
 }
@@ -3676,7 +3680,7 @@ a.thumbnail-borderless,
     left: 210px;
     display: -webkit-box;
   }
-  
+
   /* Hide Side Content */
   .hide-side-content #page-sidebar {
       /*display: none !important;*/
