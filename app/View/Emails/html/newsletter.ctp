@@ -9,9 +9,9 @@
   </a>	
 <?php endif ?>
 <?php if(!empty($products)): ?>
-  <table border="0" cellpadding="0" cellspacing="20">
+  <table border="0" cellpadding="0" cellspacing="10">
 <?php foreach($products as $i => $product): ?>
-<?php if($i%2 == 0):?>
+<?php if($i%2 == 0||$i==0):?>
   <tr>
 <?php endif ?>
     <td valign="top" width="50%">
@@ -39,7 +39,7 @@
     	  </div>
     	</div>
     </td>
-<?php if($i%3 == 0 && $i > 1):?>
+<?php if(($i%3 == 0 && $i > 1) || ($i == count($products))):?>
   </tr>
 <?php endif ?>
 <?php endforeach ?>
