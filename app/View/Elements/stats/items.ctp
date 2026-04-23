@@ -54,7 +54,7 @@
 				<td>
 					<span class="badge badge-<?=strtotime($item['NewsletterSchedule']['schedule_date'] . ' ' . $item['NewsletterSchedule']['schedule_hour'] . ':00') > time() ? 'warning' : 'success'?> is-rounded" title="Fecha / Hora de ejecución">
 					<?=$this->Time->format($item['NewsletterSchedule']['schedule_date'] . ' ' . $item['NewsletterSchedule']['schedule_hour'] . ':00', '%d/%m/%Y %H:00') ?> </span> 
-					<span class="badge is-rounded" title="Fecha / Hora de ejecución">
+					<span class="badge text-capitalize" title="Fecha / Hora de ejecución">
 					<?=\readable_time_ago($item['NewsletterSchedule']['schedule_date'] . ' ' . $item['NewsletterSchedule']['schedule_hour'] . ':00') ?> </span>
 				</td>
 				<td> 

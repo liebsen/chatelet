@@ -60,8 +60,8 @@
             <div class="card-body card-area is-bordered">
               <!--span class="name">REMERA CONICA BELEN</span-->
               <p>Fecha: 
+                <span class="text-muted text-lowercase">(hace <?= \readable_time_ago($sale['Sale']['created']) ?>)</span>
                 <span class="text-muted timestamp"><?= $sale['Sale']['created'] ?></span><br>
-                <span class="text-muted">(hace <?= \readable_time_ago($sale['Sale']['created']) ?>)</span>
               </p>
               <p>Productos: <?= count($sale['Products']) ?></p>
               <p>Estado: 

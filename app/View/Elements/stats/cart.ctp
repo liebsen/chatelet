@@ -44,7 +44,7 @@
 					<?php endif ?>
 					</td> 
 					<td> 
-						<span class="badge"><?=$this->Time->format($item['Stat']['created'], '%d/%m/%Y %H:%M')?></span><span class="badge is-rounded"><?=\readable_time_ago($item['Stat']['created']) ?></span>
+						<span class="badge text-capitalize"><?=$this->Time->format($item['Stat']['created'], '%d/%m/%Y %H:%M')?></span><span class="badge text-lowercase"><?=\readable_time_ago($item['Stat']['created']) ?></span>
 					</td> 
 				</tr>
 			<?php endforeach ?>

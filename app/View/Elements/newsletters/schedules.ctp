@@ -21,7 +21,7 @@
 						style="background-image: url('<?=\extract_jpeg_url($schedule['Newsletter']['body'])?>')"
 						title="Editar campaña">
 						<span class="badge">#<?=$schedule['NewsletterSchedule']['id']?></span>
-						<span class="badge"><?=\readable_time_ago($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')?> </span></span>
+						<span class="badge text-capitalize"><?=\readable_time_ago($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')?> </span></span>
 					</a>
 					<div class="card-text">
 						<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?>
@@ -233,7 +233,7 @@
 						</span>
 					</td>
 					<td data-order="<?=strtotime($schedule['NewsletterSchedule']['modified'])?>">
-						<span class="badge badge-<?=strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00') > time() ? 'warning' : 'success'?>" title="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00', '%d/%m/%Y %H:00')?>"><?=\readable_time_ago($schedule['NewsletterSchedule']['modified'])?> </span>
+						<span class="badge badge-<?=strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00') > time() ? 'warning' : 'success'?> text-capitalize" title="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00', '%d/%m/%Y %H:00')?>"><?=\readable_time_ago($schedule['NewsletterSchedule']['modified'])?> </span>
 					</td>
 					<td> 
 						<div class="d-flex flex-center flex-nowrap gap-25">

@@ -19,7 +19,7 @@
 							class="card-img"
 							title="<?=$list['NewsletterList']['text']?>">
 						<span class="badge">#<?=$list['NewsletterList']['id']?></span>
-						<span class="badge"><?=\readable_time_ago($list['NewsletterList']['modified']) ?></span>
+						<span class="badge text-capitalize"><?=\readable_time_ago($list['NewsletterList']['modified']) ?></span>
 					</a>
 					<div class="card-text">
 						<span class="badge badge-<?=$list['NewsletterList']['enabled'] == '1' ? 'success' : 'light'?>"><?=$list['NewsletterList']['name']?></span>
@@ -112,7 +112,7 @@
 						</span>
 					</td>
 					<td data-order="<?=strtotime($list['NewsletterList']['modified'])?>">
-						<span class="badge is-rounded" title="<?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y %H:%M')?>">
+						<span class="badge text-capitalize" title="<?=$this->Time->format($list['NewsletterList']['modified'], '%d/%m/%Y %H:%M')?>">
 						<?=\readable_time_ago($list['NewsletterList']['modified'])?> </span>
 					</td>
 					<td> 

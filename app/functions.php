@@ -182,7 +182,7 @@ function readable_time_ago($timestamp, $short = false) {
     $span = $minutes == 1 ? "1 min" : $minutes . " mins";
   } elseif ($diff < (86400 - 3600)) {
     $hours = round($diff / 3600);
-    $span = $hours == 1 ? "1 h" : $hours . " hs";
+    $span = $hours == 1 ? "1 hora" : $hours . " hs";
   } elseif ($diff < 2592000) { // 30 days
     $days = round($diff / 86400);
     $span = $days == 1 ? "1 día" : $days . " días";
