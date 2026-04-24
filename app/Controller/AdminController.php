@@ -1273,17 +1273,16 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			)
 		);
 
-		\d("session",$session);
+		#\d("session",$session);
 		# session stats
 		$text = "No hay suficientes datos aún para calcular esto";
 
 		if(count($session) == 3) {
-			
 			$search = implode(' ', 
 				array(
 					$this->Auth->user('name'),
 					$this->Auth->user('surname'),
-					'session-'
+					'session'
 				)
 			);
 			
@@ -3957,7 +3956,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 			if ($this->Auth->login()) {
 	      $this->Session->setFlash(
-          "Bienvenida {$user['User']['name']} al panel de gestión de Châtelet",
+          "Bienvenida {$user['User']['name']} al Administrador de Châtelet",
           'default',
           array('class' => 'hidden notice')
 	      );
@@ -3971,7 +3970,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
         if(!empty($ajax)) {
           return json_encode(array(
             'success' => true, 
-            'message' => "Bienvenida {$user['User']['name']} al panel de gestión de Châtelet"
+            'message' => "Bienvenida {$user['User']['name']} al Administrador de Châtelet"
           ));
         }
 				return $this->redirect(array('controller' => 'admin', 'action' => 'index'));

@@ -53,12 +53,12 @@ echo $this->Session->flash();
         <style type="text/css">
             html, body { 
                 font-family: '<?=@$settings['google_font_name'] ?>', Verdana, Arial, Sans-Serif!important;
-                line-height: 1.25;
-                font-size: 14px; 
-                font-weight: 600;
+                line-height: 1;
+                font-size: 15px; 
                 color: #a5a5a5;
                 font-weight: 300;
-                background-color: #494949!important;
+                min-height: 100dvh;
+                background-color: #333;
             }
         </style>
     </head>
@@ -83,7 +83,7 @@ echo $this->Session->flash();
         <div class="left-door animation-fadeIn animation-both delay1"></div>
         <div class="right-door animation-fadeIn animation-both delay2"></div>
         <!-- END Login Intro -->
-
+        <div class="printable-version animation-fadeIn animation-both delay3">v<?=$version['count']?></div>
         <!-- Login Container -->
         <div id="login-container" class="display-none">
             <!-- Login Block -->
@@ -96,7 +96,7 @@ echo $this->Session->flash();
                     </li>
                 </ul-->
                 <h3 class="text-center mt-0">
-                    <span class="text-uppercase">Administrador Châtelet v<?=$version['count']?></span>
+                    <span class="text-uppercase">Administrador</span>
                 </h3>
                 <div class="tab-content is-rounded-md">
                     <p class="text-theme">Ingresa tus credenciales para continuar</p>
@@ -124,14 +124,14 @@ echo $this->Session->flash();
                                         <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#login-password"></i>
                                     </div>
                                     <div class="input-group">
-                                        <a href="/shop/recuperar_acceso">Olvidé mi contraseña</a>
+                                        <a href="/shop/recuperar_acceso"><i class="fa fa-hand-stop-o mr-1"></i> Olvidé mi contraseña</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group mt-8">
                                 <div class="col-xs-12 clearfix">
                                     <div class="pull-left">
-                                        <a href="/" class="btn btn-info remove-margin" target="_blank"><i class="gi gi-shop"></i></a>
+                                        <a href="/" class="btn btn-info remove-margin" target="_blank" title="Volver a la tienda"><i class="gi gi-shop"></i></a>
                                     </div>
                                     <div class="pull-right">
                                         <button type="submit" class="btn btn-success remove-margin">Iniciar sesión</button>
@@ -164,7 +164,144 @@ echo $this->Session->flash();
         <script src="../js/plugins.js"></script>
         <script src="../js/jquery.growl.js"></script>
         <script src="../js/chatelet.js"></script>
+        <style type="text/css">
 
+.left-door, .right-door {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: #151515;
+  transition: all 1s ease-in-out;
+}
+
+.left-door {
+  left: 0;
+  border-right: 3px solid #222;
+}
+
+.right-door {
+  right: 0;
+  border-left: 3px solid #222;
+}
+
+.left-door.login-animate,
+.right-door.login-animate {
+  width: 0;
+  border-width: 0;
+}
+
+.login-btn {
+  z-index: 1000;
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 160px;
+  line-height: 150px;
+  font-size: 26px;
+  text-align: center;
+  color: #fff;
+  border: 5px solid #fff;
+  margin-left: -80px;
+  border-radius: 80px;
+  transition: all 1.25s ease-in-out;
+}
+
+.login-logo .name {
+  display: none;
+}
+
+.login-btn:hover,
+.login-btn:focus {
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 0 0 200px 0 #c5c5c5;
+}
+
+.login-btn:focus {
+  outline:none;
+}
+
+.login-btn::-moz-focus-inner {
+  border:0;
+}
+
+.login-btn.login-animate {
+  top: 75px;
+  box-shadow: none;
+  transform: rotateY(360deg);
+}
+
+#login-container {
+  width: 300px;
+  margin: 0 auto 0;
+  padding: 275px 0 0;
+}
+
+/*.login .block-tabs {
+  box-shadow: 0 0 100px 0 #000;
+}*/
+
+.login .tab-content {
+  padding-bottom: 10px !important;
+}
+
+#login-tabs li {
+  width: 50%;
+}
+
+#login-buttons button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+#login-buttons i {
+  float: right;
+}
+
+.printable-version {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    color: #666;
+}
+
+body.login {
+    background: linear-gradient(45deg, purple, orange);
+    min-height: 100dvh;
+}
+body.login .form-group {
+  margin-bottom: 10px;
+}
+
+.login-extra-check {
+  margin: 5px 0 0;
+}
+
+/* No animation on login page */
+.no-animation #login-container,
+.no-animation .login-logo .square1,
+.no-animation .login-logo .square2 {
+  display: block !important;
+}
+
+.no-animation .left-door,
+.no-animation .right-door,
+.no-animation .login-logo .name {
+  display: none !important;
+}
+
+.no-animation .login-btn {
+  top: 75px !important;
+  box-shadow: none !important;
+}            
+        </style>
         <!-- Javascript code only for this page -->
         <script>
             $(function(){
