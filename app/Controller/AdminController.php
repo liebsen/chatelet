@@ -4001,7 +4001,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
         'tag' => 'session-end',
         'user_id' => $this->Auth->user('id'),
       )
-    );    		
+    );
+    $this->Session->destroy();    		
+    $this->Session->setFlash(
+      'Tu sesión se cerró exitosamente. Gracias por hacer Châtelet todos los días', 
+      'default', 
+      array('class' => 'hidden notice')
+    );
 		$this->redirect($this->Auth->logout());
 	}
 

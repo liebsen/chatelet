@@ -128,7 +128,7 @@
                             <li>
                                 <a href="/" target="_blank">
                                     <i class="gi gi-shop"></i> 
-                                    Tienda
+                                    Tienda Châtelet
                                 </a>
                             </li>
                             <li>
