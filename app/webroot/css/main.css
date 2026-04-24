@@ -2758,7 +2758,7 @@ header.navbar .navbar-brand {
   position: absolute;
   z-index: 3;
   top: 0.75rem;
-  right: 1.5rem;
+  bottom: 0.75rem;
 }
 
 /* Panel */

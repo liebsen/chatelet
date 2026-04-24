@@ -75,7 +75,7 @@
     </div>
 </div>
 
-<div class="row hide-print">
+<div class="row hide-print toolnav-right">
     <div class="col-xs-12">
         <a href="/admin/sales_export_mails" target="_blank">
             <button class="btn btn-success btn-adjust" type="button">Exportar Emails</button>
@@ -95,7 +95,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12 table-responsive">
-        <table id="example-datatables2" class="table table-striped table-bordered table-hover print-friendly">
+        <table id="example-datatables" class="table table-striped table-bordered table-hover print-friendly">
             <thead>
                 <tr>
                     <th class="text-center">ID</th>
