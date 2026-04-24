@@ -285,12 +285,15 @@
 <?php endif;?>
 <script>
 	$(function(){
-		const restore_origin = window.location.query['restore_origin'] || null
-		const restore_date = window.location.query['restore_date'] || null
-		if() {
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const restore_origin =  || null
+		const restore_date = urlParams.get('restore_date') || null
+		if(restore_origin) {
 			$.growl.notice({
-				title: '¡Hemos recreado tu carrito!',
-				message: 'Ya tienes disponibles tus productos del carrito registrado en ' + restore_date + '. Revisa todos los talles y colores disponibles antes de comprar.',
+				title: `¡Hemos recreado tu carrito desde un ${restore_origin}!`,
+				message: 'Ya tienes disponibles los productos de tu carrito registrado en ' + restore_date + '. Recuerda revisar la vigencia de todos los talles y colores disponibles antes de comprar.',
+				duration: 60000,
 			});			
 		}
 	<?php if(!empty($cart) && !empty($text_shipping_min_price) && !$freeShipping): ?>
