@@ -19,7 +19,7 @@
 						data-toggle="tooltip" 
 						class="card-img"
 						style="background-image: url('<?=\extract_jpeg_url($schedule['Newsletter']['body'])?>')"
-						title="Editar campaña">
+						title="Ver detalles de campaña">
 						<span class="badge">#<?=$schedule['NewsletterSchedule']['id']?></span>
 						<span class="badge text-capitalize"><?=\readable_time_ago($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')?> </span></span>
 					</a>
@@ -151,7 +151,7 @@
 							data-toggle="tooltip" 
 							class="card-img sm"
 							style="background-image: url('<?=\extract_jpeg_url($schedule['Newsletter']['body'])?>')"
-							title="Editar campaña"><span class="badge badge-info">#<?=$schedule['NewsletterSchedule']['id']?></span>
+							title="Ver detalles de campaña"><span class="badge badge-info">#<?=$schedule['NewsletterSchedule']['id']?></span>
 						</a>
 					</td>
 					<td>

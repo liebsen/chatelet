@@ -21,7 +21,7 @@
 					<a 
 						href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $schedule['NewsletterSchedule']['id']))?>" 
 						data-toggle="tooltip" 
-						title="Editar campaña">
+						title="Ver detalles de campaña">
 					<?=$schedule['Newsletter']['title']?>/<?=$schedule['NewsletterList']['name']?>
 					</a>
 				</td>
