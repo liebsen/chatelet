@@ -98,8 +98,8 @@ echo $this->Html->script('particular-validation', array('inline' => false));
               return false;
             } else {
               $.growl.notice({
-                  title: 'Inicio de sesión exitoso',
-                  message: 'Bienvenida de nuevo'
+                  title: 'Se inició sesión con éxito',
+                  message: 'Bienvenida de nuevo en Châtelet'
               });
 
               const redirect = $('input[name="redirect"]').val() || '/shop'

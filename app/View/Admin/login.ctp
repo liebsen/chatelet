@@ -219,7 +219,7 @@ echo $this->Session->flash();
                       return false;
                     } else {
                       $.growl.notice({
-                          title: 'Inicio de sesión exitoso',
+                          title: 'Se inició sesión con éxito',
                           message: res.message
                       });
 

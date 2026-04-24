@@ -12,7 +12,7 @@
   <g:image_link><?= Configure::read('siteUrl').$settings['upload_url'].$product['Product']['img_url'] ?></g:image_link>
   <g:price><?= $product['Product']['price'] ?> ARS</g:price>
   <g:availability><?= $product['Product']['stock_total'] ? 'in' : 'out of' ?> stock</g:availability>
-  <g:google_product_category>Tienda Châtelet / <?= $product['Category']['category'] ?></g:google_product_category>
+  <g:google_product_category>Tienda / <?= $product['Category']['category'] ?></g:google_product_category>
   <g:condition>new</g:condition>
   <g:brand>Châtelet</g:brand>
 </item>
