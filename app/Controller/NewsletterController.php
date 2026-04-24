@@ -116,14 +116,14 @@ class NewsletterController extends AppController {
       ));
       if(count($items)) {
 	      $context = json_decode($items[0]['Stat']['context'],true);
-	      $updated = $context['cart_totals']['updated'] ?? time();
+	      $restore_date = date('Y-m-d H:i', strtotime($items[0]['Stat']['created']));
 
 	      #recreate cart from stats
 
 	      $this->Session->write('cart', $context['cart']);	
 	      $this->Session->write('cart_totals', $context['cart_totals']);	
 
-	      $location = '/carrito?restore_origin=newsletter&restore_date=' . date('d-m-Y H:i', $updated);
+	      $location = '/carrito?restore_origin=newsletter&restore_date=' . $restore_date;
 
 	      \d("newsletter(location)", $location);
 

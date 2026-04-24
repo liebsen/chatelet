@@ -221,7 +221,7 @@ class CartComponent extends Component {
 
     $cart_totals['grand_total'] = $grand_total;
     $cart_totals['payment_method'] = $payment_method;
-    $cart_totals['updated'] = date('Y-m-d H:i');
+    $cart_totals['updated'] = time();
     // CakeLog::write('debug', 'update(cart_totals):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
     // CakeLog::write('debug', 'update(cart):'. json_encode($cart,JSON_PRETTY_PRINT));
     $this->controller->Session->write('cart_totals', $cart_totals);
