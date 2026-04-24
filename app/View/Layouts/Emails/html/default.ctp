@@ -17,6 +17,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
   <head>
+    <title>Newsletter Chatelet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body style="font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;font-size: 16px;font-color: #333;background-color: #ffffff; width:100%; overflow-x: hidden;">
     <table cellpadding="0" cellspacing="0" width="600" align="center">
