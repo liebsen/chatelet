@@ -84,8 +84,6 @@ $(document).ready(function() {
     }
   });
 
-
-
   const table = $('.table').first()
   if(table.data('search')) {
     table.on('init.dt', function(e, settings) {      
