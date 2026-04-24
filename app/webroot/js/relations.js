@@ -23,7 +23,6 @@ $(document).ready(function() {
     const data = endpoints[type] || {}
     if(!data.model) return 
     if (q.length < 3) {
-      console.log('remove after search not(.is-enabled)')
       $(`.${type}-container .label:not(.is-enabled)`).remove()
       return false
     }
@@ -49,11 +48,19 @@ function setRelation(action, data, target, type, cb) {
         message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`,
       });
       if(action=='add'){
-        console.log('enable all')
-        $(target || '.' + type + '-container .label:not(.is-enabled)').addClass('is-enabled')
+        $(target && $(target).hasClass('relation-item') ? 
+          target : 
+          '.' + type + '-container .label:not(.is-enabled)'
+        ).addClass('is-enabled')
+        $('.relations-add').addClass('d-none')
+        $('.relations-remove').removeClass('d-none')
       } else {
-        console.log('disable all')
-        $(target || '.' + type + '-container .label.is-enabled').removeClass('is-enabled')
+        $(target && $(target).hasClass('relation-item') ? 
+          target : 
+          '.' + type + '-container .label'
+        ).removeClass('is-enabled')
+        $('.relations-remove').addClass('d-none')
+        $('.relations-add').removeClass('d-none')
       }
       if(typeof cb == 'function') {
         cb(type, target)
@@ -80,8 +87,8 @@ function updateRelationCount(type, target, count){
 function searchRelations(data) { 
   const curr = endpoints[data.type] || {}
   if(!curr.model) return 
-  $('.relations-action-add').addClass('d-none')
-  $('.relations-action-remove').addClass('d-none')
+  $('.relations-add').addClass('d-none')
+  $('.relations-remove').addClass('d-none')
   $.ajax({
     type: "POST",
     url: curr.url,
@@ -96,7 +103,7 @@ function searchRelations(data) {
       let filter = []      
       $(`#${data.type}-filter`).addClass('searching')
       $(`.${data.type}-container > .label:not(.is-enabled)`).remove()
-      $(`.${data.type}-container > .h6`).remove()
+      $(`.${data.type}-container`).parent().find(`.secondary-box .results-message`).remove()
       $(`.${data.type}-container > .label`).each(function(key, item) {
         const id = $(item).data('id')
         ids.push(id)
@@ -118,10 +125,10 @@ function searchRelations(data) {
         if(typeof data.cb == 'function') {
           data.cb(data.type, null, filter.length)
         }
-        $('.relations-action-add').removeClass('d-none')
-        // $('.relations-action-remove').addClass('d-none')
+        $('.relations-add').removeClass('d-none')
+        // $('.relations-remove').addClass('d-none')
       } else {
-        $(`.${data.type}-container`).parent().find('.secondary-box').append(`<span class="h6">No se hallaron resultados para <b>${data.q}</b></span>`)  
+        $(`.${data.type}-container`).parent().find('.secondary-box').append(`<span class="h6 results-message">No se hallaron resultados para <b>${data.q}</b></span>`)  
       }
       $(`.${data.type}-container`).removeClass('d-none')
     },
@@ -139,7 +146,7 @@ function searchRelations(data) {
   })    
 }
 
-$(document).on('click', '.relations-action-add', function(e){
+$(document).on('click', '.relations-add', function(e){
   const tData = $(e.target).data() 
   if(!tData.type) return
   var data = []
@@ -152,14 +159,12 @@ $(document).on('click', '.relations-action-add', function(e){
       data.push($(e).data())
     })
   }
-  console.log(`disable`, tData.type)
-  $(`.${tData.type}-container > .label.is-enabled`).removeClass('is-enabled')
-  //$(this).text('')
+  $(`.${tData.type}-container > .label`).removeClass('is-enabled')
   //console.log('setRelation(3)')
   setRelation('add', data, target, tData.type, updateRelationCount)
 })
 
-$(document).on('click', '.relations-action-remove', function(e){
+$(document).on('click', '.relations-remove', function(e){
   const tData = $(e.target).data() 
   if(!tData.type) return
   var data = []
@@ -172,7 +177,6 @@ $(document).on('click', '.relations-action-remove', function(e){
       data.push($(e).data())
     })
   }
-  $(this).text('')
   //console.log('setRelation(1)')
   setRelation('remove', data, target, tData.type, updateRelationCount)
 })
@@ -189,8 +193,7 @@ $(document).on('click', '.relation-item', function(e){
   const target = $(e.target)
   const data = target.data()
   const action = target.hasClass('is-enabled') ? 'remove' : 'add'
-  const pressed = $('.relations-action-add-single')
-  console.log('pressed',pressed)
+  const pressed = $('.relations-add-single')
   pressed.addClass('d-none')
   //console.log('setRelation(2)')
   setRelation(action, [data], e.target, data.type, updateRelationCount)

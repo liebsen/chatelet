@@ -69,7 +69,7 @@ function updateUsers(){
       }
       if(filter.length){
         $('.relations-count').text(filter.length)
-        $('.relations-action-add').removeClass('d-none')
+        $('.relations-add').removeClass('d-none')
         $.each(filter, function(key, item) {
           $('.user-container').append('<span class="label relation-item text-lowercase is-clickable" data-parent-id="'+relation.parentId+'" data-id="'+item.id+'" data-type="'+relation.type+'" data-source="'+relation.source+'" data-model="'+relation.model+'">'+item.email+'</span>');
         })
@@ -79,7 +79,7 @@ function updateUsers(){
           queue: true,
         });        
       } else {
-        //$('.relations-action-add').addClass('d-none')
+        //$('.relations-add').addClass('d-none')
         $.growl.notice({
           title: 'Atención',
           message: 'No se encontraron cuentas para este filtro',

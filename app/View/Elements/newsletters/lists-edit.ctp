@@ -127,17 +127,15 @@
           <input type="text" class="form-control relation-search" data-type="user" placeholder="Buscar cuenta..."/>
         </div>
         <div class="secondary-box">
-          <a class="text-success relations-action-add relations-action-add-single is-clickable d-none" data-type="user" data-parent-id="<?=$list['NewsletterList']['id']?>" href="javascript:void(0)">
+          <a class="text-success relations-add relations-add-single is-clickable d-none" data-type="user" data-parent-id="<?=$list['NewsletterList']['id']?>" href="javascript:void(0)">
             <i class="gi gi-plus mr-2"></i>
             Agregar <span class="relations-count"><?=count($list_users)?></span>
           </a>
-          <?php if(count($list_users)): ?>
-          <a class="text-danger relations-action-remove is-clickable" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?=$list['NewsletterList']['id']?>" href="javascript:void(0)">
+          <a class="text-danger relations-remove is-clickable<?=count($list_users)?'':' d-none'?>" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?=$list['NewsletterList']['id']?>" href="javascript:void(0)">
             <i class="fa fa-trash mr-2"></i>
             Eliminar todo
           </a>
-          <?php endif ?>
-          <a class="text-success relations-action-add relations-add-all is-clickable" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?= $list['NewsletterList']['id'] ?>">
+          <a class="text-success relations-add relations-add-all is-clickable" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?= $list['NewsletterList']['id'] ?>">
             <i class="gi gi-plus mr-2"></i> Seleccionar todos (<?=$users_total?>)
           </a>          
         </div>
