@@ -115,7 +115,7 @@
         </div>
         <div class="secondary-box">
           <!--label class="control-label" for="product-filter">Productos seleccionados (<?=count($newsletter_products)?>)-->
-          <a class="text-success relations-action-add d-none" data-type="product" href="javascript:void(0)">
+          <a class="text-success relations-action-add relations-action-add-single d-none" data-type="product" href="javascript:void(0)">
             <i class="gi gi-plus mr-2"></i> Agregar <span class="relations-count"><?=count($newsletter_products)?></span>
           </a>
           <?php if(count($newsletter_products)): ?>

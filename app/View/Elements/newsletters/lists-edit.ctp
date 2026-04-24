@@ -127,7 +127,7 @@
           <input type="text" class="form-control relation-search" data-type="user" placeholder="Buscar cuenta..."/>
         </div>
         <div class="secondary-box">
-          <a class="text-success relations-action-add is-clickable d-none" data-type="user" data-parent-id="<?=$list['NewsletterList']['id']?>" href="javascript:void(0)">
+          <a class="text-success relations-action-add relations-action-add-single is-clickable d-none" data-type="user" data-parent-id="<?=$list['NewsletterList']['id']?>" href="javascript:void(0)">
             <i class="gi gi-plus mr-2"></i>
             Agregar <span class="relations-count"><?=count($list_users)?></span>
           </a>

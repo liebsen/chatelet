@@ -23,6 +23,7 @@ $(document).ready(function() {
     const data = endpoints[type] || {}
     if(!data.model) return 
     if (q.length < 3) {
+      console.log('remove after search not(.is-enabled)')
       $(`.${type}-container .label:not(.is-enabled)`).remove()
       return false
     }
@@ -48,8 +49,10 @@ function setRelation(action, data, target, type, cb) {
         message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`,
       });
       if(action=='add'){
+        console.log('enable all')
         $(target || '.' + type + '-container .label:not(.is-enabled)').addClass('is-enabled')
       } else {
+        console.log('disable all')
         $(target || '.' + type + '-container .label.is-enabled').removeClass('is-enabled')
       }
       if(typeof cb == 'function') {
@@ -118,7 +121,7 @@ function searchRelations(data) {
         $('.relations-action-add').removeClass('d-none')
         // $('.relations-action-remove').addClass('d-none')
       } else {
-        $(`.${data.type}-container`).append(`<span class="h6">No se hallaron resultados para <b>${data.q}</b></span>`)  
+        $(`.${data.type}-container`).parent().find('.secondary-box').append(`<span class="h6">No se hallaron resultados para <b>${data.q}</b></span>`)  
       }
       $(`.${data.type}-container`).removeClass('d-none')
     },
@@ -136,7 +139,7 @@ function searchRelations(data) {
   })    
 }
 
-$(document).on('click', '.relations-action-add,.relations-action-remove', function(e){
+$(document).on('click', '.relations-action-add', function(e){
   const tData = $(e.target).data() 
   if(!tData.type) return
   var data = []
@@ -149,8 +152,10 @@ $(document).on('click', '.relations-action-add,.relations-action-remove', functi
       data.push($(e).data())
     })
   }
+  console.log(`disable`, tData.type)
   $(`.${tData.type}-container > .label.is-enabled`).removeClass('is-enabled')
-  $(this).text('')
+  //$(this).text('')
+  //console.log('setRelation(3)')
   setRelation('add', data, target, tData.type, updateRelationCount)
 })
 
@@ -168,21 +173,26 @@ $(document).on('click', '.relations-action-remove', function(e){
     })
   }
   $(this).text('')
+  //console.log('setRelation(1)')
   setRelation('remove', data, target, tData.type, updateRelationCount)
 })
 
-$(document).on('click', '.relations-keyword-add', function(e){
+/*$(document).on('click', '.relations-keyword-add', function(e){
   setRelation('remove', $(this).data('keyword'), null, type, updateRelationCount) 
 })
 
 $(document).on('click', '.relations-keyword-remove', function(e){
   setRelation('remove', $(this).data('keyword'), null, type, updateRelationCount) 
-})
+})*/
 
 $(document).on('click', '.relation-item', function(e){
   const target = $(e.target)
   const data = target.data()
   const action = target.hasClass('is-enabled') ? 'remove' : 'add'
+  const pressed = $('.relations-action-add-single')
+  console.log('pressed',pressed)
+  pressed.addClass('d-none')
+  //console.log('setRelation(2)')
   setRelation(action, [data], e.target, data.type, updateRelationCount)
 })
 

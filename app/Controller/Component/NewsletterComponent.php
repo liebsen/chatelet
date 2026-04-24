@@ -675,7 +675,8 @@ class NewsletterComponent extends Component {
             'NewsletterUser.list_id' => $id,
             'User.id IS NOT NULL',
           ),
-          // 'order' => array( 'Newsletter.id DESC' )
+          'order' => array( 'NewsletterUser.user_id DESC' ),
+          'limit' => 100 
         )));
       }
     } catch (\Exception $e) {
