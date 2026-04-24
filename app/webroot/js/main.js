@@ -164,9 +164,7 @@ $(function () {
   $('.fa-question-circle').click(function(e) {
     e.preventDefault()
     e.stopPropagation()
-    console.log('click(1)')
     if(!$(this).data('text')) return false;
-    console.log('click(2)')
     const target = $(e.target)
     $.growl.notice({
       title: target.parent().text(),

@@ -29,7 +29,6 @@
 							$item['User']['id']
 						)
 					)?>">
-						
 <?php if(!empty($item['User']['name'])):?>
 		<span class="badge badge-<?=$item['User']['role'] == 'admin' ? 'success' : 'info'?>" title="<?=$item['User']['role']?>">
 			<?=$item['User']['name']?> <?=$item['User']['surname']?>
@@ -42,8 +41,8 @@
 					</a>
 				</td>
 				<td>
-					<span class="badge badge-<?=\readable_tag_color($item['Stat']['tag'])?>">
-						<?=\readable_tag_event($item['Stat']['tag'])?>
+					<span class="badge text-lowercase is-clickable badge-<?=\readable_tag_color($item['Stat']['tag'])?>" title="<?=\readable_tag_event($item['Stat']['tag'])?>">
+						<?=$item['Stat']['tag']?>
 					</span>
 				</td>
 				<td>

@@ -1255,14 +1255,16 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			array(
 				'conditions' => array(
 					'or' => array(
-						'tag' => 'session-start', 
-						'tag' => 'session-end'
+						'tag' => array(
+							'session-start', 
+							'session-end'
+						)
 					),
 					'and' => array(
 						'user_id' => $this->Auth->user('id')
 					)
 				),
-				'fields' => 'Stat.created',
+				'fields' => 'Stat.tag, Stat.created',
 				'order' => array(
 					'Stat.created DESC',
 					'Stat.tag DESC',
@@ -1271,13 +1273,25 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			)
 		);
 
-		$started = $session[0]['Stat']['created'] ?? null;
-		$ended = $session[1]['Stat']['created'] ?? null;
-		$duration = \readable_time_duration($started, $ended);
+		\d("session",$session);
+		# session stats
 		$text = "No hay suficientes datos aún para calcular esto";
 
-		if(count($session) === 3 && $duration != '0seg') {
-			$text = "Tu última sesión duró {$duration}.";
+		if(count($session) == 3) {
+			
+			$search = implode(' ', 
+				array(
+					$this->Auth->user('name'),
+					$this->Auth->user('surname'),
+					'session-'
+				)
+			);
+			
+			$ended = $session[1]['Stat']['created'] ?? null;
+			$started = $session[2]['Stat']['created'] ?? null;
+			$since = \readable_time_ago($ended);
+			$duration = \readable_time_duration($started, $ended);
+			$text = "Tu última sesión se terminó {$since} y duró {$duration}.<br><a href='/admin/stats/session?search={$search}'><hr><i class='gi gi-lightbulb mr-1'></i> Ver mis sesiones</a>";
 		}
 
 		$navs = array(
