@@ -23,7 +23,7 @@ $(document).ready(function() {
     })
   })
 
-  $('#example-datatables2 tr:not(first)').click(e => {
+  $('#example-datatables tr:not(first)').click(e => {
     if($('.toggle-active').length) {
       $('.toggle-active').removeClass('toggle-active')
       $('.toggle-active').find('.toggle-table').each((i,e) => {
@@ -41,7 +41,7 @@ $(document).ready(function() {
     }
   })
 
-  $('#example-datatables2').DataTable({
+  $('#example-datatables').DataTable({
     "ordering": false,
     "language": {
       "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
