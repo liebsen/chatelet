@@ -1,7 +1,7 @@
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->css('/css/admin-sales.css?v=' . $version['ver'], array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
-<?php echo $this->Html->script('admin-delete.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php //echo $this->Html->script('admin-delete.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->Html->script('admin-sales.js?v=' . $version['ver'], array('inline' => false)); ?>
 
 <!-- bank layer -->
