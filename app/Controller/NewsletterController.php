@@ -119,7 +119,11 @@ class NewsletterController extends AppController {
 	      #recreate cart from stats
 	      $this->Session->write('cart', $context['cart']);	
 	      $this->Session->write('cart_totals', $context['cart_totals']);	
-	    	header('Location: ' . '/carrito');
+	      $location = '/carrito?restore_origin=newsletter&restored_date=' . date('d-m-Y H:i', $context['cart_totals']['updated']);
+
+	      \d("location", $location);
+	      
+	    	header('Location: ' . $location);
 	    	return false;
 	    }
   	}

@@ -285,6 +285,14 @@
 <?php endif;?>
 <script>
 	$(function(){
+		const restore_origin = window.location.query['restore_origin'] || null
+		const restore_date = window.location.query['restore_date'] || null
+		if() {
+			$.growl.notice({
+				title: '¡Hemos recreado tu carrito!',
+				message: 'Ya tienes disponibles tus productos del carrito registrado en ' + restore_date + '. Revisa todos los talles y colores disponibles antes de comprar.',
+			});			
+		}
 	<?php if(!empty($cart) && !empty($text_shipping_min_price) && !$freeShipping): ?>
 		setTimeout(() => {
 			onWarningAlert('Más beneficios','<?= $text_shipping_min_price ?>', 15000)

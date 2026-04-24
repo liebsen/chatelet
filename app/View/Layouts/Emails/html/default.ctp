@@ -32,13 +32,7 @@
       </tr>
 <?php endif ?>
       <tr>
-        <td align="center">
-          <table cellpadding="0" cellspacing="0" align="center" style="background-color: #ffffff; border-radius: 16px;height: 120px;width:auto; padding: 32px 24px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
-            <tr>
-              <td align="center"><?php echo $this->fetch('content'); ?></td>
-            </tr>
-          </table>
-        </td>
+        <td align="center"><?php echo $this->fetch('content'); ?></td>
       </tr>
       <?php if(isset($socials) && count(@$socials)): ?>
       <tr>

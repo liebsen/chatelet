@@ -125,13 +125,14 @@ function readable_tag_event($tag) {
     $trans = array(
       'page-view' => 'Vió una página',
       'page-exit' => 'Cerró la página',
-      'newsletter-click' => 'Interactuó con un newsletter',
-      'session-resume' => 'Resumió sesión',
+      'newsletter-click' => 'Interactuó con newsletter',
+      'session-resume' => 'Reanudó sesión',
       'session-start' => 'Inició sesión',
       'session-end' => 'Terminó sesión',
       'session-register' => 'Se registró',
       'cart-add' => 'Agregó al carrito',
       'cart-remove' => 'Quitó del carrito',
+      'variant-select' => 'Seleccionó una variante',
     );
 
   return $trans[$tag] ?? $tag;
@@ -149,6 +150,7 @@ function readable_tag_color($tag) {
       'session-register' => 'light',
       'cart-add' => 'success',
       'cart-remove' => 'success',
+      'variant-select' => 'success',
     );
 
   return $trans[$tag] ?? $tag;
