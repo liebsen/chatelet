@@ -274,6 +274,7 @@ class ApiController extends AppController {
 
   public function stats(){
     $this->autoRender = false;
+    $this->RequestHandler->respondAs('application/json');
     $this->loadModel('Stat');
     $data = $this->request->data;
     $cart = $this->Session->read('cart') ?? 0;
@@ -309,7 +310,11 @@ class ApiController extends AppController {
 
     #CakeLog::write('debug', "stats:".json_encode($save));
 
-    $this->Stat->save($save);   
-    exit(); 
+    $saved = $this->Stat->save($save);
+    return json_encode(
+      array(
+        'result' => $saved
+      )
+    );
   }
 }

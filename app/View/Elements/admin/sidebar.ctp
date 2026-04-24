@@ -128,13 +128,13 @@
                             <li>
                                 <a href="/" target="_blank">
                                     <i class="gi gi-shop"></i> 
-                                    Tienda Châtelet
+                                    <span>Tienda Châtelet</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="logout-btn dropdown-toggle">
                                     <i class="gi gi-exit"></i> 
-                                    Salir
+                                    <span>Salir</span>
                                 </a>
                             </li>
                         </ul>
