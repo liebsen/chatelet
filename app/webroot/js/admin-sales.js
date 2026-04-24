@@ -40,13 +40,6 @@ $(document).ready(function() {
       $(e.target).parents('tr').addClass('toggle-active')
     }
   })
-
-  $('#example-datatables').DataTable({
-    "ordering": false,
-    "language": {
-      "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-    }
-  })
 })
 
 var sale_id = 0
