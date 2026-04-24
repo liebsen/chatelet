@@ -95,9 +95,11 @@ echo $this->Session->flash();
                         </a>
                     </li>
                 </ul-->
-                <h3 class="text-center mt-0">Panel de gestión</h3>
+                <h3 class="text-center mt-0">
+                    <span class="text-uppercase">Administrador Châtelet v<?=$version['count']?></span>
+                </h3>
                 <div class="tab-content is-rounded-md">
-                    <p>Ingresa tus credenciales para continuar</p>
+                    <p class="text-theme">Ingresa tus credenciales para continuar</p>
                     <div class="tab-pane active" id="login-form-tab">
                         <!-- Login Form -->
                         <?php echo $this->Form->create('User', array(
@@ -129,10 +131,10 @@ echo $this->Session->flash();
                             <div class="form-group mt-8">
                                 <div class="col-xs-12 clearfix">
                                     <div class="pull-left">
-                                        <a href="/" class="btn btn-info remove-margin" target="_blank">Go to site</a>
+                                        <a href="/" class="btn btn-info remove-margin" target="_blank"><i class="gi gi-shop"></i></a>
                                     </div>
                                     <div class="pull-right">
-                                        <button type="submit" class="btn btn-success remove-margin">Login</button>
+                                        <button type="submit" class="btn btn-success remove-margin">Iniciar sesión</button>
                                     </div>
                                     <!--<div class="pull-left login-extra-check">
                                         <label for="login-remember-me">
