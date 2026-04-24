@@ -56,21 +56,23 @@
 						>						
 							<span class="badge badge-info"><i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?> <?=!empty($schedule['list_total']) ? '('.$schedule['list_total'].')' : ''?></span>
 						</a>
-						<?php if($schedule['Newsletter']['send_email'] == '1'):?>
-						<span class="badge badge-success is-rounded" title="Emails enviados">
-							<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
-						</span> 
-						<?php endif ?>
-						<?php if($schedule['Newsletter']['send_push'] == '1'):?>
-						<span class="badge badge-warning is-rounded" title="Push enviados">
-							<i class="gi gi-chat"></i>
-							<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
-						</span>
-						<?php endif ?>
-						<span class="badge badge-danger is-rounded" title="Interacciones">
-							<i class="gi gi-fire"></i>
-							<span class="clicks"><?=$schedule['stats']['clicks']?></span>
-						</span>
+						<div class="is-flex flex-start gap-05">
+							<?php if($schedule['Newsletter']['send_email'] == '1'):?>
+							<span class="badge badge-success is-rounded" title="Emails enviados">
+								<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
+							</span> 
+							<?php endif ?>
+							<?php if($schedule['Newsletter']['send_push'] == '1'):?>
+							<span class="badge badge-warning is-rounded" title="Push enviados">
+								<i class="gi gi-chat"></i>
+								<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
+							</span>
+							<?php endif ?>
+							<span class="badge badge-danger is-rounded" title="Interacciones">
+								<i class="gi gi-fire"></i>
+								<span class="clicks"><?=$schedule['stats']['clicks']?></span>
+							</span>
+						</div>
 					</div>
 					<div class="d-flex flex-column flex-center flex-nowrap gap-05">
 				    <a href="<?=$this->Html->url(
@@ -216,21 +218,23 @@
 <?php endif ?>
 					</td>
 					<td>
-						<?php if($schedule['Newsletter']['send_email'] == '1'):?>
-						<span class="badge badge-success is-rounded" title="Emails enviados">
-							<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
-						</span> 
-						<?php endif ?>
-						<?php if($schedule['Newsletter']['send_push'] == '1'):?>
-						<span class="badge badge-warning is-rounded" title="Push enviados">
-							<i class="gi gi-chat"></i>
-							<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
-						</span>
-						<?php endif ?>
-						<span class="badge badge-danger is-rounded" title="Interacciones">
-							<i class="gi gi-fire"></i>
-							<span class="clicks"><?=$schedule['stats']['clicks']?></span>
-						</span>
+						<div class="is-flex flex-start gap-05">
+							<?php if($schedule['Newsletter']['send_email'] == '1'):?>
+							<span class="badge badge-success is-rounded" title="Emails enviados">
+								<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
+							</span> 
+							<?php endif ?>
+							<?php if($schedule['Newsletter']['send_push'] == '1'):?>
+							<span class="badge badge-warning is-rounded" title="Push enviados">
+								<i class="gi gi-chat"></i>
+								<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
+							</span>
+							<?php endif ?>
+							<span class="badge badge-danger is-rounded" title="Interacciones">
+								<i class="gi gi-fire"></i>
+								<span class="clicks"><?=$schedule['stats']['clicks']?></span>
+							</span>
+						</div>
 					</td>
 					<td data-order="<?=strtotime($schedule['NewsletterSchedule']['modified'])?>">
 						<span class="badge badge-<?=strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00') > time() ? 'warning' : 'success'?> text-capitalize" title="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00', '%d/%m/%Y %H:00')?>"><?=\readable_time_ago($schedule['NewsletterSchedule']['modified'])?> </span>

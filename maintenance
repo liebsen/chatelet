@@ -20,11 +20,11 @@ case $service_id in
      4)
           echo -e "Que email quiere probar (Stage)?"
           read email
-          wget https://test.chatelet.com.ar/shop/test_email/$email
+          wget https://test.chatelet.com.ar/shop/test_email/$email &> /dev/null
           ;;
      5)
           echo -e "Que limpiar cache (Stage)?"
-          wget https://test.chatelet.com.ar/shop/clear_cache
+          wget https://test.chatelet.com.ar/shop/clear_cache &> /dev/null
           ;;
      6)
           echo -e "¿Cuántas líneas?"
@@ -42,11 +42,11 @@ case $service_id in
      9)
           echo -e "Que email quiere probar(Prod)?"
           read email
-          wget https://chatelet.com.ar/shop/test_email/$email
+          wget https://chatelet.com.ar/shop/test_email/$email &> /dev/null
           ;;
      5)
           echo -e "Que limpiar cache (Prod)?"
-          wget https://chatelet.com.ar/shop/clear_cache
+          wget https://chatelet.com.ar/shop/clear_cache &> /dev/null
           ;;
 esac
 
