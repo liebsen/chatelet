@@ -38,10 +38,10 @@
       <tr>
         <td align="center" style="padding: 20px; color: #888888">
           <div style="margin-bottom: 20px;">
-            <small>Seguinos en nuestras redes<small>
+            <h6>Seguinos en nuestras redes<h6>
           </div>
 <?php foreach($socials as $social => $url) : ?>
-          <a href="<?php echo $url ?>" style="margin-right: 15px; text-decoration: none; color: #888888; font-weight: 500" target="_blank">
+          <a href="<?php echo $url ?>" style="margin-right: 15px; text-decoration: none; color: #888888; font-weight: 300; font-size: 14px" target="_blank">
             <img src="<?=$site_url?>/img/share/<?php echo $social ?>-brands-solid.png" style="display: inline; margin-bottom: -8px" width="24" height="24">
             <?php echo ucfirst($social) ?>
           </a>
