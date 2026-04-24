@@ -7,7 +7,7 @@ function getFormData(form) {
   var data = new FormData();
   for (var i=0; i<form.length; i++) {
     var e = form[i]
-    if(($(e).data('change') || $(e).data('force')) && !$(e).data('noproc')) {
+    if(($(e).data('change') || $(e).data('force')) && !$(e).data('exclude')) {
       var value = e.value.trim()
       if(e.type == 'file') {
         value = e.files[0]

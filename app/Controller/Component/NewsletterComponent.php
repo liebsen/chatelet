@@ -358,7 +358,7 @@ class NewsletterComponent extends Component {
           if($push_sent >= $push_total || $email_sent >= $email_total) {
             $rowclass = 'success';
             $status = 'Procesado';
-          } 
+          }
         } else {
           if($schedule['NewsletterSchedule']['enabled']) {
             $rowclass = 'success';

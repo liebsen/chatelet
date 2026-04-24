@@ -11,7 +11,7 @@ echo $this->Html->script('application-notifications.js?v=' . $version['ver'], ar
 	  	<h4 class="sub-header">Notificaciones de la tienda</h4>
 	  	<p class="text-theme">Selecciona un tipo de notificación para editar. Todas las notificaciones se enviarán por correo electrónico.</p>
 	  	<div class="controls">
-		  	<select class="form-control" name="notification_tag" id="notification_tag" data-noproc="true">
+		  	<select class="form-control" name="notification_tag" id="notification_tag" data-exclude="1">
 		  		<option value="">Elige una notificación para continuar</option>
 		  		<?php foreach($notification_tags as $key => $tag): ?>
 		  			<option value="<?=$key?>"><?=$tag?></option>
@@ -25,12 +25,12 @@ echo $this->Html->script('application-notifications.js?v=' . $version['ver'], ar
 	      <div class="control-group">
 	        <label class="control-label" for="notification_title">Título</label>
 	        <div class="controls">
-	          <input type="text" name="notification_title" id="notification_title" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>" data-noproc="true" />
+	          <input type="text" name="notification_title" id="notification_title" class="form-control" placeholder="Título de la plantilla" value="<?=$newsletter['Newsletter']['title']?>" data-exclude="1" />
 	        </div>
 	      </div>				
 	    	<div class="control-group">
 	    		<label class="control-label" for="notification_text">Texto</label>
-	    		<textarea class="form-control" id="notification_text" rows="8" data-noproc="true"></textarea>
+	    		<textarea class="form-control" id="notification_text" rows="8" data-exclude="1"></textarea>
 	    	</div>
 	    	<div class="form-group flex-column w-100">
 					<h6 class="text-theme">Elementos de plantilla</h6>

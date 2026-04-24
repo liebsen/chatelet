@@ -2044,7 +2044,7 @@ pre, code {
 }
 
 .secondary-box {
-  padding: 0.25rem 0.25rem 1rem;
+  padding-bottom: 0.5rem;
   display: flex;
   justify-content: start;
   align-items: center;

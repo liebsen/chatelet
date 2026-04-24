@@ -32,7 +32,7 @@
         <div class="d-flex flex-column justify-content-center align-items-center gap-1 mb-4">
           <div class="controls">
             <label class="control-label" for="title"><i class="gi gi-picture mr-1"></i> Plantilla</label>
-            <select class="form-control" name="data[newsletter_id]" <?=empty($schedule['NewsletterSchedule']['id']) ? 'required' : 'disabled'?>>
+            <select class="form-control" name="data[newsletter_id]" <?=empty($schedule['NewsletterSchedule']['id']) ? 'required' : 'disabled'?><?=empty($this->request->query('newsletter_id')) ? '' : ' data-change="1"'?>>
               <option value="">Selecciona una plantilla</option>
       <?php foreach($newsletters as $newsletter): ?>
       <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?> (<?= $newsletter['0']['total']?>) &mdash; Por <?=$newsletter['User']['name'] ?? strstr($newsletter['User']['email'], '@', true)?> <?=\readable_time_ago($newsletter['Newsletter']['created'])?></option>
@@ -41,10 +41,10 @@
           </div>
           <div class="controls">
             <label class="control-label" for="title"><i class="gi gi-list mr-1"></i> Lista</label>
-            <select class="form-control" name="data[list_id]" <?=empty($schedule['NewsletterSchedule']['id']) ? 'required' : 'disabled'?>>
+            <select class="form-control" name="data[list_id]" <?=empty($schedule['NewsletterSchedule']['id']) ? 'required' : 'disabled'?><?=empty($this->request->query('list_id')) ? '' : ' data-change="1"'?>>
               <option value="">Selecciona una lista </option>
       <?php foreach($lists as $list): ?>
-      <option value="<?= $list['NewsletterList']['id']?>"<?=@($list['NewsletterList']['id'] == $this->params->query['list_id'] || $list['NewsletterList']['id'] == $schedule['NewsletterSchedule']['list_id']) ? ' selected' : ''?>><?= $list['NewsletterList']['name']?> (<?= $list['0']['total']?>) &mdash; Por <?=$list['User']['name'] ?? strstr($list['User']['email'], '@', true)?> <?=\readable_time_ago($list['NewsletterList']['created'])?></option>
+      <option value="<?= $list['NewsletterList']['id']?>"<?=@($list['NewsletterList']['id'] == $this->params->query['list_id'] || $list['NewsletterList']['id'] == $schedule['NewsletterSchedule']['list_id']) ? ' data-change="1" selected' : ''?>><?= $list['NewsletterList']['name']?> (<?= $list['0']['total']?>) &mdash; Por <?=$list['User']['name'] ?? strstr($list['User']['email'], '@', true)?> <?=\readable_time_ago($list['NewsletterList']['created'])?></option>
       <?php endforeach ?>
             </select>
             <small>La tarea programada de Newsletters se ejecuta una vez por minuto en el servidor</small>
