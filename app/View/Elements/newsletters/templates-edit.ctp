@@ -118,12 +118,10 @@
           <a class="text-success relations-add relations-add-single d-none" data-type="product" href="javascript:void(0)">
             <i class="gi gi-plus mr-2"></i> Agregar <span class="relations-count"><?=count($newsletter_products)?></span>
           </a>
-          <?php if(count($newsletter_products)): ?>
-          <a class="text-danger relations-remove" data-type="product" href="javascript:void(0)">
+          <a class="text-danger relations-remove<?=count($newsletter_products)?'':' d-none'?>" data-type="product" href="javascript:void(0)">
             <i class="fa fa-trash mr-2"></i>
             Eliminar todo
           </a>
-        <?php endif ?><!--/label-->
         </div>
         <div class="controls tags-container product-container">
   <?php foreach($newsletter_products as $product): ?>
