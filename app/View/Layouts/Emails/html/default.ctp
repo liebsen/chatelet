@@ -42,12 +42,17 @@
           <div style="margin-bottom: 20px;">
             <h6>Seguinos en nuestras redes<h6>
           </div>
+          <table border="0">
+            <tr>
 <?php foreach($socials as $social => $url) : ?>
-          <a href="<?php echo $url ?>" style="margin-right: 15px; text-decoration: none; color: #888888; font-weight: 300; font-size: 14px" target="_blank">
-            <img src="<?=$site_url?>/img/share/<?php echo $social ?>-brands-solid.png" style="display: inline; margin-bottom: -8px" width="24" height="24">
-            <?php echo ucfirst($social) ?>
-          </a>
+              <td align="center" valign="center">
+                <a href="<?php echo $url ?>" style="margin-right: 15px; text-decoration: none; color: #888888; font-weight: 300; font-size: 14px" target="_blank">
+                  <img src="<?=$site_url?>/img/share/<?php echo $social ?>-brands-solid.png" style="transform: translateY(7px);" width="24" height="24">
+                  <span><?php echo ucfirst($social) ?></span></a>
+              </td>
 <?php endforeach ?>
+            </tr>
+          </table>
         </td>
       </tr>
       <?php endif ?>
