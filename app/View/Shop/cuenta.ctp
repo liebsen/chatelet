@@ -9,7 +9,7 @@ echo $this->Session->flash();
   <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 m-auto max-30">
 		<h2 class="text-uppercase">
 			<?php if ($loggedIn) : ?>
-				Hola, <?php echo $user['name']; ?>
+				Hola, <?php echo $user['name'] ?? 'invitada'; ?>
 			<?php else : ?>
 				No estás conectada ahora
 			<?php endif ?>

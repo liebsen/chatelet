@@ -287,12 +287,12 @@
 	$(function(){
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
-		const restore_origin =  || null
+		const restore_origin = urlParams.get('restore_origin') || null
 		const restore_date = urlParams.get('restore_date') || null
 		if(restore_origin) {
 			$.growl.notice({
 				title: `¡Hemos recreado tu carrito desde un ${restore_origin}!`,
-				message: 'Ya tienes disponibles los productos de tu carrito registrado en ' + restore_date + '. Recuerda revisar la vigencia de todos los talles y colores disponibles antes de comprar.',
+				message: 'Ya tienes disponibles los productos de tu carrito abandonado en ' + restore_date + '. Recuerda revisar la vigencia de todos los talles y colores disponibles antes de comprar.',
 				duration: 60000,
 			});			
 		}

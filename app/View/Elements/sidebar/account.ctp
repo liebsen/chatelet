@@ -24,6 +24,8 @@
       <?php endif ?>
       <?php if(empty($user['name']) == false) : ?>
       <a href="/shop/cuenta" class="btn btn-chatelet dark w-100">Mi cuenta</a>
+      <?php else: ?>
+      <a href="/shop/cuenta" class="btn btn-chatelet dark w-100">Conecta con Chatelet</a>
       <?php endif ?>
       <a href="/shop/mis_compras" class="btn btn-chatelet w-100">Mis compras</a>
       <a href="/users/logout" class="btn btn-chatelet light btn-logout w-100">Cerrar sesión</a>
