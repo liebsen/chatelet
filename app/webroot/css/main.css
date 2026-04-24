@@ -16,7 +16,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   html, 
   body, 
   .menu, 
-  .tab-content, 
   .menu-items a, 
   .menu-bg {
     background-color: #333!important;
@@ -83,6 +82,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     background-color: #222!important;
   }
+  .tab-content,
+  .nav-tabs,
   .toggle-label,
   .switch-scale {
     background-color: #333!important;
@@ -2878,18 +2879,18 @@ background-color: #fff!important;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
-  max-width: 4rem;
+  max-width: 5rem;
   background-color: #e7e7e7;
   border-radius: 0.75rem;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 100%;
+  background-size: cover;
   background-image: url(images/isologo-w.png);
 }
 
 .card-img.sm {
   padding: 0.25rem!important;
-  min-height: 5rem;
+  min-height: 6rem;
   margin: auto;
 }
 
