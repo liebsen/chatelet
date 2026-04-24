@@ -388,7 +388,7 @@ background-color: #e8ffa8!important;
 /* Notifications */
 
 .notification {
-  padding: 3rem;
+  padding: 0.5rem 2rem;
   border-radius: 1rem;
   border: 1px solid #c5c5c5;
 }
