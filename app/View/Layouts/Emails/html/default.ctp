@@ -18,7 +18,7 @@
 <html>
   <head>
   </head>
-  <body style="font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;font-size: 16px;font-color: #333;background-color: #f8f8f8; width:100%; overflow-x: hidden;">
+  <body style="font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;font-size: 16px;font-color: #333;background-color: #ffffff; width:100%; overflow-x: hidden;">
     <table cellpadding="0" cellspacing="0" width="600" align="center">
 <?php if(empty($skip_header)):?>
       <tr>
