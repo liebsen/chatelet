@@ -1,12 +1,20 @@
 <?php echo $data['Newsletter']['parsed_body']?>
 <?php if($data['NewsletterList']['filter_type'] == 'carts'):?>
-  <a href="<?=$self_link?>" style="background-color: #333333; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
-      Ver carrito
-  </a>  
+  <table border="0">
+    <tr>
+      <td align="center" valign="center" style="text-align: center;">
+        <a href="<?=$self_link?>" style="background-color: #333333; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">Ver carrito</a>  
+      </td>
+    </tr>
+  </table>
 <?php elseif($data['Newsletter']['show_cta'] == '1' && strlen($data['Newsletter']['cta_url'])):?>
-  <a href="<?=$data['Newsletter']['cta_url']?>" style="background-color: #333333; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
-      <?=$data['Newsletter']['cta_text']?>
-  </a>	
+  <table border="0">
+    <tr>
+      <td align="center" valign="center" style="text-align: center;">
+        <a href="<?=$data['Newsletter']['cta_url']?>" style="background-color: #333333; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;"><?=$data['Newsletter']['cta_text']?></a>	
+      </td>
+    </tr>
+  </table>
 <?php endif ?>
 <?php if(!empty($products)): ?>
   <table border="0" cellpadding="0" cellspacing="10">

@@ -3473,7 +3473,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'icon' 		=> 'gi gi-shopping_cart',
 				'url'		=> '/admin/stats/cart',
 			),
-			'Ventas' => array(
+			/*'Ventas' => array(
 				'id' => 'sales',
 				'icon' 		=> 'gi gi-money',
 				'url'		=> '/admin/stats/sales',
@@ -3482,7 +3482,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'id' => 'products',
 				'icon' 		=> 'gi gi-dress',
 				'url'		=> '/admin/stats/items',
-			),
+			),*/
 			'Sesión' => array(
 				'id' => 'session',
 				'icon' 		=> 'gi gi-log_book',

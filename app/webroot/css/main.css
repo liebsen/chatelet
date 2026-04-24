@@ -388,7 +388,7 @@ background-color: #e8ffa8!important;
 /* Notifications */
 
 .notification {
-  padding: 0.5rem 2rem;
+  padding: 1rem 1.75rem;
   border-radius: 1rem;
   border: 1px solid #c5c5c5;
 }
@@ -3379,10 +3379,6 @@ a:focus {
 .tooltip-inner,
 .navbar,
 .form-control,
-.pagination > li:first-child > a,
-.pagination > li:first-child > span,
-.pagination > li:last-child > a,
-.pagination > li:last-child > span,
 .popover-title,
 .panel {
   border-radius: 0.75rem;
@@ -3474,6 +3470,10 @@ a.thumbnail-borderless,
 
 .form-actions > .btn {
   margin: 0 0.1rem;
+}
+
+.bg-sunset {
+  background: linear-gradient(45deg, purple, orange)!important;
 }
 
 .bg-transparent {

@@ -6,8 +6,8 @@
 		<div class="d-flex flex-wrap justify-content-center align-items-left gap-05">
 <?php if(empty($lists)):?>
 	<div class="notification">
-		<h3>Nada de listas por aquí</h3>
-		<p class="text-theme">No hay nada que mostrar por ahora aquí. <?=empty($this->request->query('extended')) ?'Intenta presionando en <i class="fa fa-eye mr-1"></i> Ver todo</span>' : ''?></p>
+		<h4>Nada de listas por aquí</h4>
+		<p class="text-theme">No hay nada que mostrar por ahora aquí. <?=empty($this->request->query('extended')) ?'<hr><a href="#"><i class="gi gi-lightbulb mr-1"></i> Intenta presionando en Ver todo</a>' : ''?></p>
 	</div>
 <?php endif ?>
 <?php foreach ($lists as $key => $list): ?>
