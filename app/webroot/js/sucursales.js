@@ -7,7 +7,8 @@ $(document).ready(function() {
 		if (!google) return
 		var mapOptions = {
 			zoom: 11,
-			center: new google.maps.LatLng(-34.6121795, -58.5297722)
+			center: new google.maps.LatLng(-34.6121795, -58.5297722),
+			mapTypeId: 'roadmap'
 		},
 		hostname = window.location.protocol + '//' + window.location.hostname;
 		hostname += '/' + window.location.pathname.split('/')[1];

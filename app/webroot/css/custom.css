@@ -1175,13 +1175,18 @@ ul#ul-moreviews li.dontResize img {
 #myModal2 .content .table tr td:first-child { color: #363633; text-align: left; }
 
 .map { 
-  background: url(../images/mapbg.png) no-repeat center center; 
-  background-size: cover;   
   display: flex; 
   overflow: hidden; 
   background-color: #e7e7e7;
 }
-.map .col-md-4 { display: flex; justify-content: center; align-items: center; padding-left: 5rem;}
+.map .col-md-4 { 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  padding-left: 5rem;
+  background: url(../images/mapbg.png) no-repeat center center; 
+  background-size: cover;   
+}
 .map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 800; letter-spacing:-0.1rem }
 .map .col-md-4 h1:after { 
   background: #363636; 
@@ -2427,7 +2432,7 @@ span.count.is-empty {
 
 @media screen and (min-width:769px), print {
   .slider-full {
-    min-height: calc(100vh - 135px);
+    min-height: calc(100vh - 131px);
   }
   .w-mobile {
     max-width: 25rem;
