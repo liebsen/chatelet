@@ -2476,7 +2476,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		break;
     }
 
-    $prods = $this->Product->find('all',array('order'=>array( 'Product.category_id ASC','Product.ordernum ASC' )));
+    $prods = $this->Product->find('all',array(
+    	'conditions' => array( 'id >' => 1),
+    	'order' => array( 'Product.category_id ASC','Product.ordernum ASC' )
+    ));
     $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
     $more_list_code_desc=[0,0,0,0,0,0,0,0,0,0];
     $more_list_category=[0,0,0,0,0,0,0,0,0,0];
@@ -3889,7 +3892,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		}
     		break;
     }
-    $users = $this->User->find('all');
+    $users = $this->User->find('all', array('conditions' => array( 'id > ' => 1 )));
     $this->set('users', $users);
 		return $this->render('usuarios');
 	}
