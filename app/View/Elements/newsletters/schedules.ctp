@@ -209,7 +209,7 @@
 							data-toggle="tooltip" 
 							title="Editar lista" 
 						>
-							<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?>"><?=$schedule['NewsletterList']['name'] ?? 'Sin nombre'?> </span>
+							<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?>"><?=\word_limit($schedule['NewsletterList']['name'])?> </span>
 						</a>
 <?php if(!empty(!empty($schedule['list_total']))):?>
 						<span class="badge badge-info">

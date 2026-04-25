@@ -17,6 +17,13 @@ $(document).ready(function() {
     e.preventDefault()
     clock = 0
     updateSchedules()
+    $.growl.success({
+      title: 'Actualizando',
+      message: 'Buscando actualizaciones de campañas...',
+      duration: 1000
+    });
+
+    return false
   })
 
   // Autorefresh every minute and update a countdown clock

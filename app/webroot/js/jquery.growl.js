@@ -270,4 +270,16 @@ Copyright 2015 Kevin Sylvestre
     return $.growl($.extend(settings, options));
   };
 
+  $.growl.success = function(options) {
+    var settings;
+    if (options == null) {
+      options = {};
+    }
+    settings = {
+      title: "Success!",
+      style: "success"
+    };
+    return $.growl($.extend(settings, options));
+  };
+
 }).call(this);

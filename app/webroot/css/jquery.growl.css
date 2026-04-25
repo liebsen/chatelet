@@ -8,16 +8,16 @@
 }
 #growls.default {
   background-color: transparent;
-  top: 0.25rem;
+  top: 0.5rem;
   right: 0.5rem;
-  min-width: calc(100vw - 1.75rem); 
+  min-width: calc(100vw - 2rem); 
 }
 #growls.tl {
-  top: 0.25rem;
+  top: 0.5rem;
   left: 0.5rem; 
 }
 #growls.tr {
-  top: 0.25rem;
+  top: 0.5rem;
   right: 0.5rem; 
 }
 #growls.bl {
@@ -25,16 +25,16 @@
   left: 0.5rem; 
 }
 #growls.br {
-  bottom: 0.25rem;
+  bottom: 0.5rem;
   right: 0.5rem; 
 }
 #growls.tc {
-  top: 0.25rem;
+  top: 0.5rem;
   right: 0.5rem;
   left: 0.5rem; 
 }
 #growls.bc {
-  bottom: 0.25rem;
+  bottom: 0.5rem;
   right: 0.5rem;
   left: 0.5rem; 
 }
@@ -100,6 +100,10 @@
 .growl.growl-warning {
   color: #fcbc4c;
   background-color: white; 
+}
+.growl.growl-success {
+  color: green;
+  background-color: lightgreen; 
 }
 .growl .growl-close {
   cursor: pointer;

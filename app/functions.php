@@ -1,7 +1,10 @@
 <?php
 
-function word_limit($str, $at=5) {
-  $parts = array_filter(array_values(explode(' ', $str)));
+function word_limit($str, $at=4) {
+  if(!strlen(trim($str))) {
+    return 'Sin nombre';
+  }
+  $parts = array_filter(array_values(explode(' ', trim($str))));
   if(count($parts) <= $at) {
     return implode(' ', $parts);
   }
@@ -16,8 +19,8 @@ function extract_jpeg_url($html) {
 }
 
 function array_count_values_of($value, $array) {
-    $counts = array_count_values($array);
-    return $counts[$value];
+  $counts = array_count_values($array);
+  return $counts[$value];
 }
 
 function b($a, $b = null){

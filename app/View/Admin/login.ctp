@@ -98,9 +98,9 @@ echo $this->Session->flash();
                 <h3 class="text-center mt-0">
                     <span class="text-uppercase">Administrador</span>
                 </h3>
-                <div class="tab-content">
+                <div class="tab-content is-rounded bg-translucid">
                     <p class="text-theme">Ingresa tus credenciales para continuar</p>
-                    <div class="tab-pane active" id="login-form-tab">
+                    <div class="tab-pane pane-index active" id="login-form-tab">
                         <!-- Login Form -->
                         <?php echo $this->Form->create('User', array(
                             'class' => 'form-horizontal w-100',
