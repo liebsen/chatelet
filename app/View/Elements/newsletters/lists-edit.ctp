@@ -32,7 +32,7 @@
 <?php endif ?>      
       </div>
       <div class="table-main table-users bg-info d-none">
-        <h4 class="sub-header"><i class="gi gi-cogwheel is-clickable" onclick="$('#user-filter').focus()"></i> Cuentas</h4>
+        <h4 class="sub-header"><i class="gi gi-cogwheel is-clickable" onclick="$('#user-filter').focus()"></i> Clientas</h4>
         <table class="table table-forum">
     <?php foreach($list_users as $user): ?>
           <tr><td><?php echo $user['User']['name']?> <?php echo $user['User']['surname']?> (<span class="text-lowercase"><?php echo strstr($user['User']['email'],'@',true)?></span>)</td></tr>
@@ -77,7 +77,7 @@
             <th><span class="min_sale-value"><?=\price_format((int) $list['NewsletterList']['filter']->filter->sale_min * 100)?></span></th>
           </tr>
           <tr>
-            <td><small>Cuentas seleccionadas</small></td>
+            <td><small>Clientas seleccionadas</small></td>
             <th>
               <span class="user-count"><?= count($list_users)?></span>
             </th>
@@ -121,8 +121,8 @@
         </div>
       </div>
       <div class="form-box bg-info-outline">
-        <h4 class="sub-header">Cuentas seleccionadas (<?=count($list_users)?>)</h4>
-        <p>Selecciona las cuentas que deseas para esta lista</p>
+        <h4 class="sub-header">Clientas seleccionadas (<?=count($list_users)?>)</h4>
+        <p>Selecciona las clientas que deseas para esta lista</p>
         <div class="controls d-flex flex-column gap-05">
           <input type="text" class="form-control relation-search" data-type="user" placeholder="Buscar cuenta..."/>
         </div>

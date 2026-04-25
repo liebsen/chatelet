@@ -101,7 +101,7 @@ function get_socials(){
 
 function get_mc_audiences(){
   return array(
-    'account' => "Cuentas",
+    'account' => "Clientas",
     'contact' => "Contactos",
     'subscription' => "Suscripciones",
     'store' => "Store"

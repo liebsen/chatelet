@@ -133,7 +133,7 @@ function updateUsers(){
         $('.relations-add').hide()
         $.growl.notice({
           title: 'Atención',
-          message: 'No se encontraron cuentas para este filtro',
+          message: 'No se encontraron clientas para este filtro',
           queue: true,
         });        
       }

@@ -78,7 +78,7 @@
     <div class="col-md-6">
       <div class="form-box bg-info-outline">
         <h4 class="sub-header">Método de envío</h4>
-        <p>Selecciona el canal por donde notificar a las cuentas</p>
+        <p>Selecciona el canal por donde notificar a las clientas</p>
         <div class="form-group flex-start gap-05">
           <div class="controls flex-1">
             <label class="control-label" for="toggle-email">Email</label>
