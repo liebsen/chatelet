@@ -53,6 +53,11 @@
                 font-weight: 300;
                 height: 100%;             
             }
+            @media(min-width: 992px) {
+                html, body {
+                    overflow: hidden;
+                }
+            }
             p, span, small {
                 text-transform: uppercase;
             }
