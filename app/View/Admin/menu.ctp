@@ -4,65 +4,67 @@
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 <?php echo $this->element('admin/menu'); ?>
-<div class="block">
-	<div class="tab-content">
-	<table id="example-datatables" class="table table-striped table-bordered table-hover print-friendly draggable-table" data-url="/admin/ordernum/banner">
-		<thead>
-			<tr>
-				<th class="hidden-phone hidden-tablet">&nbsp;</th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Menu'); ?></th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Enlace'); ?></th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Categoría'); ?></th>
-				<th class="span1 text-center"><i class="gi gi-flash"></i></th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php foreach ($menu as $key => $menu): ?>
-				<tr data-id="<?= $menu['Menu']['id'] ?>" data-order="<?= $menu['Menu']['ordernum'] ?>">
-					<td>
-						<?=$menu['Menu']['enabled'] ? '<i class="gi gi-circle_ok fa-lg text-success"></i>' : '<i class="gi gi-circle_remove fa-lg text-danger"></i>'?>
-					</td>
-					<td>
-						<a href="<?=$this->Html->url(array('action'=>'menu','edit',$menu['Menu']['id']))?>">
-							<?=$menu['Menu']['title']?>
-						</a>
-					</td>
-					<td>
-						<?=strlen($menu['Menu']['href']) ? $menu['Menu']['href'] : '-' ?>
-					</td>
-					<td>
-						<a href="<?=$this->Html->url(array('action'=>'menu','edit',$menu['Menu']['id']))?>">
-							<?= isset($menu['Menu']['category_name']) ? $menu['Menu']['category_name'] : '-' ?>
-						</a>
-					</td>
-					<td>
-						<div class="btn-group">   
+<div class="block-section">
+	<div class="block">
+		<div class="tab-content">
+		<table id="example-datatables" class="table table-striped table-bordered table-hover print-friendly draggable-table" data-url="/admin/ordernum/banner">
+			<thead>
+				<tr>
+					<th class="hidden-phone hidden-tablet">&nbsp;</th>
+					<th class="hidden-phone hidden-tablet"><?php echo __('Menu'); ?></th>
+					<th class="hidden-phone hidden-tablet"><?php echo __('Enlace'); ?></th>
+					<th class="hidden-phone hidden-tablet"><?php echo __('Categoría'); ?></th>
+					<th class="span1 text-center"><i class="gi gi-flash"></i></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($menu as $key => $menu): ?>
+					<tr data-id="<?= $menu['Menu']['id'] ?>" data-order="<?= $menu['Menu']['ordernum'] ?>">
+						<td>
+							<?=$menu['Menu']['enabled'] ? '<i class="gi gi-circle_ok fa-lg text-success"></i>' : '<i class="gi gi-circle_remove fa-lg text-danger"></i>'?>
+						</td>
+						<td>
+							<a href="<?=$this->Html->url(array('action'=>'menu','edit',$menu['Menu']['id']))?>">
+								<?=$menu['Menu']['title']?>
+							</a>
+						</td>
+						<td>
+							<?=strlen($menu['Menu']['href']) ? $menu['Menu']['href'] : '-' ?>
+						</td>
+						<td>
+							<a href="<?=$this->Html->url(array('action'=>'menu','edit',$menu['Menu']['id']))?>">
+								<?= isset($menu['Menu']['category_name']) ? $menu['Menu']['category_name'] : '-' ?>
+							</a>
+						</td>
+						<td>
+							<div class="btn-group">   
+								<a 
+								href="<?=$this->Html->url(array('action'=>'menu','edit',$menu['Menu']['id']))?>" 
+								data-toggle="tooltip" 
+								title="" 
+								class="btn btn-success" 
+								data-original-title="Editar">
+								<i class="fa fa-edit"></i>
+							</a>             
 							<a 
-							href="<?=$this->Html->url(array('action'=>'menu','edit',$menu['Menu']['id']))?>" 
+							href="#" 
 							data-toggle="tooltip" 
 							title="" 
-							class="btn btn-success" 
-							data-original-title="Editar">
-							<i class="fa fa-edit"></i>
-						</a>             
-						<a 
-						href="#" 
-						data-toggle="tooltip" 
-						title="" 
-						class="btn btn-danger deletebutton" 
-						data-original-title="Eliminar" 
-						data-id="<?=$menu['Menu']['id']?>" 
-						data-url-back="<?=$this->Html->url(array('action'=>'menu'))?>" 
-						data-delurl="<?=$this->Html->url(array('action'=>'menu', 'delete'))?>" 
-						data-msg="¿Eliminar categoria? Precación: Se borraran los productos que esten contenidos en esta categoria."                   
-						>
-						<i class="fa fa-trash-o"></i>
-					</a>
-				</div> 
-			</td>
-		</tr>
-		<?php endforeach ?>
-		</tbody>
-	</table>
-</div>
+							class="btn btn-danger deletebutton" 
+							data-original-title="Eliminar" 
+							data-id="<?=$menu['Menu']['id']?>" 
+							data-url-back="<?=$this->Html->url(array('action'=>'menu'))?>" 
+							data-delurl="<?=$this->Html->url(array('action'=>'menu', 'delete'))?>" 
+							data-msg="¿Eliminar categoria? Precación: Se borraran los productos que esten contenidos en esta categoria."                   
+							>
+							<i class="fa fa-trash-o"></i>
+						</a>
+					</div> 
+				</td>
+			</tr>
+			<?php endforeach ?>
+			</tbody>
+		</table>
+	</div>
+	</div>
 </div>

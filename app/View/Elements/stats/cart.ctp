@@ -18,7 +18,7 @@
 						<span class="badge badge-lg badge-info"><?=$item['Stat']['id']?></span>
 					</td>
 					<td>
-						<span class="badge badge-lg badge-info"><?=$context['page']?></span>
+						<span class="badge badge-lg badge-info text-lowercase"><?=$context['page']?></span>
 					</td>
 					<td>
 						<strong class="d-flex flex-column toggle-display is-clickable" data-target=".cart-details">
@@ -35,7 +35,7 @@
 					</td>
 					<td>
 					<?php if(!empty($item['User']['id'])): ?>
-						<span class="badge badge-success" title="<?=$item['User']['name']?> <?=$item['User']['surname']?>">
+						<span class="badge badge-success text-lowercase" title="<?=$item['User']['name']?> <?=$item['User']['surname']?>">
 							<?=$item['User']['email']?>
 						</span>
 						<span class="badge badge-success"><?=date('Y', strtotime('last year'))-date('Y',strtotime($item['User']['birthday']))?> años</span>

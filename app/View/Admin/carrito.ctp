@@ -51,7 +51,7 @@
                   </th>
                   <td>
                     <small>
-                      <i class="gi gi-chat text-muted"></i> Monto que falta para alcanzar el mínimo de envío gratos
+                      <i class="gi gi-chat text-muted"></i> Monto que falta para alcanzar el mínimo de envío gratis
                     </small>
                   </td>
                 </tr>

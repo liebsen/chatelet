@@ -2092,7 +2092,7 @@ pre, code {
 }
 
 .sub-header {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #e7e7e7;
   background-color: #eee;  
   width: 100%;
   padding: 15px 0 10px;
@@ -2171,7 +2171,7 @@ pre, code {
   grid-gap: 1rem;
   border: none;
   margin: 0;
-  min-height: calc(100dvh - 75px);
+  min-height: calc(100dvh - 102px);
 }
 
 .list-group-hero > a > li {
@@ -3565,7 +3565,7 @@ a.thumbnail-borderless,
   display: block;
   width: 100%;
   margin-top: 0.5rem;
-  border-top: 1px solid #2196f3;
+  border-top: 1px solid #e7e7e7;
   padding-top: 0.5rem;
 }
 
