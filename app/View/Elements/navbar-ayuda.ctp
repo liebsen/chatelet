@@ -46,6 +46,7 @@
     font-size: 0.9rem;
     color: #888;
     border-bottom: 2px solid #c5c5c5;
+    background-color: #ffffff;
     display: inline-block; 
     margin: 0 0.5rem;
     font-weight: 300;
@@ -58,11 +59,21 @@
     border-color: #363636;
   }
   #optionsHelp.mobile > a.active {
+    position: relative;
     background-color: white;
     transition: background 1s ease-out;
   }
 
-  @media(min-width: 769px){
+  #optionsHelp.mobile > a.active:before {
+    content: "\f0a4";
+    position: absolute;
+    font-family: 'FontAwesome';
+    top: 0.5rem;
+    left: 1rem;
+    font-size: 1.5rem;
+  }
+
+  @media(min-width: 992px){
     #optionsHelp {
       position: absolute; 
       left:0; 
