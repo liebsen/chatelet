@@ -50,7 +50,8 @@
                 font-size: 14px; 
                 font-weight: 600;
                 color: #a5a5a5;
-                font-weight: 300;                
+                font-weight: 300;
+                height: 100%;             
             }
             p, span, small {
                 text-transform: uppercase;
@@ -83,7 +84,7 @@
         <?php echo $this->Session->flash() ?>
 
         <div id="page-loader"></div>
-        <div id="page-container"<?php if ($template['page'] == 'full-width') { echo ' class="full-width"'; } ?>>
+        <div id="page-container">
             <header class="navbar navbar-inverse<?php if ($template['header'] == 'fixed-top') { echo ' navbar-fixed-top'; } else if ($template['header'] == 'fixed-bottom') { echo ' navbar-fixed-bottom'; } ?>">
                 <!-- div#row -->
                 <div class="row">

@@ -3,7 +3,7 @@ echo $this->Session->flash();
 echo $this->Html->css('clear',array('inline' => false));
 
 $this->set('short_header', 'Checkout');
-$this->set('short_header_text', '← Volver al carrito'); 
+$this->set('short_header_text', '<i class="gi gi-shopping_cart mr-1"></i> Volver al carrito'); 
 $this->set('short_header_link', '/carrito');
 ?>
 

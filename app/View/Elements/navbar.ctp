@@ -67,21 +67,23 @@
               <!--span class="countscaleIn speed delay1">
                 <i class="fa fa-check text-white fa-xs"></i>
               </span-->
-              <i data-toggle="sidebar" data-target=".sidebar-account" class="gi gi-user text-green"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-account" class="gi gi-woman text-green"></i>
             </a>
             <ul class="dropdown-menu">
               <li>
                <div id="login-panel">
                   <div class="control-panel">
-                    <p class="title">Panel de Usuario</p>
+                    <p class="title">Panel de Clienta</p>
                     <div id="user-data">
                       <div id="user-name">
-                        <?php echo $user['name'] . " " . $user['surname']; ?>
-                        <a href="#" class="pencil">
-                          <span data-toggle="sidebar" data-target=".sidebar-account" class="fa fa-pencil"></span>
+                        <span data-toggle="sidebar" data-target=".sidebar-account"><?php echo $user['name'] . " " . $user['surname']; ?></span>
+                        <a href="/shop/cuenta" class="pencil">
+                          <span class="fa fa-pencil"></span>
                         </a>
                       </div>
-                      <div id="user-email"><?php echo $user['email']; ?></div>
+                      <div id="user-email">
+                        <span class="text-lowercase"><?php echo $user['email']; ?></span>
+                      </div>
                     </div>
                     <!--ul id="control-sections" class="list-unstyled">
                       <li class="">

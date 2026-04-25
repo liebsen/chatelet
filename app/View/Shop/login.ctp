@@ -1,7 +1,7 @@
 <?php
 echo $this->Session->flash();
 $this->set('short_header', 'Iniciar sesión');
-$this->set('short_header_text', '← Volver a la tienda');
+$this->set('short_header_text', '<i class="gi gi-shop mr-1"></i> Volver a la tienda');
 $this->set('short_header_link', '/shop');
 $this->set('short_header_classname', 'btn_continue_shopping');
 

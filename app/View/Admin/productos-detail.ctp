@@ -11,6 +11,7 @@
   echo $this->Html->script('colorpicker', array('inline' => false));
 ?>
 <?php echo $this->element('admin/menu');?>
+<div class="block-section">
 <div class="block-tabs">
   <div class="tab-content">
     <div class="hide" id="colors_select_base">
@@ -272,4 +273,5 @@
       </form>
     </div>
   </div>
+</div>
 </div>

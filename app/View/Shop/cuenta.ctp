@@ -1,6 +1,6 @@
 <?php 
 $this->set('short_header', 'Cuenta');
-$this->set('short_header_text', '← Volver a la tienda');
+$this->set('short_header_text', '<i class="gi gi-shop mr-1"></i> Volver a la tienda');
 $this->set('short_header_link', '/shop');
 $this->set('short_header_classname', 'btn_continue_shopping');
 echo $this->Session->flash();
@@ -21,11 +21,14 @@ echo $this->Session->flash();
 	<?php endif ?>
 		<div class="max-22 w-100">
 			<div class="is-flex-center flex-column gap-05 mb-4 w-100">
-			<?php if ($loggedIn) : ?>
+			<?php if ($isAdmin):?>
+				<a href="/admin" class="btn btn-info dark w-100"><span>Administrador</span></a>
+			<?php endif ?>
+			<?php if ($loggedIn): ?>
 				<a href="/shop/mis_compras" class="btn btn-chatelet dark w-100">Mis compras</a>
 				<a href="/shop/registro" class="btn btn-chatelet w-100">Actualizar mi cuenta</a>
 				<a href="/users/logout" class="btn btn-chatelet btn-logout light w-100">Cerrar sesión</a>
-			<?php else : ?>
+			<?php else:?>
 				<a href="/shop/login" class="btn btn-chatelet dark w-100">Iniciar sesión</a>
 				<a href="/shop/registro" class="btn btn-chatelet w-100">Crear mi cuenta</a>
 			<?php endif ?>

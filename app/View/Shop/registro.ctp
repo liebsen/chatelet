@@ -9,7 +9,7 @@ echo $this->Html->css('bootstrapValidator.min');
 echo $this->Html->css('bootstrap-datepicker');
 
 $this->set('short_header', $loggedIn ? 'Actualizar mi cuenta' : 'Registrarme');
-$this->set('short_header_text', '← Volver a mi cuenta');
+$this->set('short_header_text', '<i class="gi gi-woman mr-1"></i> Volver a mi cuenta');
 $this->set('short_header_link', '/shop/cuenta');
 
 if (!$loggedIn) {

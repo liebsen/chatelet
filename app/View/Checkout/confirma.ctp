@@ -1,7 +1,7 @@
 <?php 
 echo $this->Session->flash(); 
 $this->set('short_header', 'Checkout');
-$this->set('short_header_text', '← Volver a pago'); 
+$this->set('short_header_text', '<i class="gi gi-credit_card mr-1"></i> Volver a pago'); 
 $this->set('short_header_link', '/checkout/pago');	
 
 echo $this->Html->css('checkout.css?v=' . $version['ver'], array('inline' => false));

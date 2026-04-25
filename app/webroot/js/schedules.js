@@ -13,7 +13,7 @@ $(document).ready(function() {
     window.location.href = window.location.href
   })
 
-  $('.btn-update-schedules').click(function(e){
+  $('.button-update-schedules').click(function(e){
     e.preventDefault()
     clock = 0
     updateSchedules()

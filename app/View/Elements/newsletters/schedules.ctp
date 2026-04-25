@@ -289,11 +289,11 @@
 		</table>
 	</div>
 	<div class="form-actions">
-	  <a class="btn btn-light btn-update-schedules text-info animation-fadeIn animation-both delay3" href="#">
+	  <button class="btn button-update-schedules animation-fadeIn animation-both delay3">
 	    <i class="gi gi-repeat"></i> 
 	    <span class="ml-1">Actualiza </span> 
 	    <small>(</small><small class="update-countdown">-</small><small>s)</small>
-	  </a>
+	  </button>
 	<?php if(empty($this->params->query['extended'])): ?>
 		<a href="/admin/newsletters/schedules?extended=1">
 	    <button class="btn" type="button">
@@ -321,8 +321,7 @@
 	</div>
 
 <style type="text/css">
-	.btn-update-schedules {
-		min-width: 15rem;
-		text-align: left;
+	.button-update-schedules {
+		min-width: 13rem;
 	}
 </style>

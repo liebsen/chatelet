@@ -3,15 +3,15 @@
   echo $this->Html->css('logistica-detail', array('inline' => false));
 ?>
 <?php echo $this->element('admin/menu');?>
-<div class="block-tabs">
-  <div class="tab-content">
-    <form action="" method="post" class="form-inline" enctype="multipart/form-data">
-      <?php
-        if (isset($this->request->pass[1])) {
-          echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
-        }
-      ?>
-      <div class="container-fluid">
+<div class="block-section">
+  <div class="block-tabs">
+    <div class="tab-content">
+      <form action="" method="post" class="form-inline" enctype="multipart/form-data">
+        <?php
+          if (isset($this->request->pass[1])) {
+            echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
+          }
+        ?>
         <div class="row">
           <div class="col-md-6">
             <h4 class="sub-header">Información Principal</h4>
@@ -124,118 +124,119 @@
             <br>
           </div>
         </div>
-      </div>
-      <br />
-      <div class="form-actions">
-        <a href="/admin/logistica" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span></a>
-        <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
-      </div>
-    </form>
+        <br />
+        <div class="form-actions">
+          <a href="/admin/logistica" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span></a>
+          <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
 <?php if(isset($logistic_prices) && $logistic['Logistic']['local_prices']) :?>
+<div class="block-section">
+  <div class="block-tabs">
+    <div class="tab-content">
+      <h4>
+      <?php
+        echo (isset($logistic)) ? __('Tarifas de ' . $logistic['Logistic']['title']) : __('Agregar Tarifas');
+      ?>
+      </h4>
 
-<div class="block-tabs">
-  <div class="tab-content">
-    <h4>
-    <?php
-      echo (isset($logistic)) ? __('Tarifas de ' . $logistic['Logistic']['title']) : __('Agregar Tarifas');
-    ?>
-    </h4>
-
-    <p class="p">Usted puede editar las tarifas de esta logística de acuerdo a las zonas que están representadas por códigos postales. Los códigos postales en Argentina contienen cuatro números. Puede asignarlos de forma taxativa (ej: 1440, 1441) o agrupar con expresiones (ej: 92**, 930*). Mas información sobre <a href="https://códigos-postales.cybo.com/argentina/#mapwrap" target="_blank">códigos postales de argentina</a></p>
-    <button class="btn btn-success" type="button" onclick="edit_logistic_price()">Agregar</button>
-    <table class="table table-bordered table-striped" id="tarifas">
-      <thead>
-        <tr>
-          <th><?php echo __('Zona'); ?></th>
-          <th><?php echo __('Códigos postales'); ?></th>
-          <th><?php echo __('Tarifa'); ?></th>
-          <th><?php echo __('Observaciones'); ?></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="table_prices">
-      <?php foreach($logistic_prices as $price) :?>
-        <tr id="prices_<?= $price['LogisticsPrices']['id'] ?>" class="<?= !$price['LogisticsPrices']['enabled'] ? 'bg-light' : '' ?>">
-          <td>
-            <p class="title">
-              <?php echo $price['LogisticsPrices']['title'] ?>
-            </p>
-          </td>
-          <td>
-            <p class="zips">
-              <?php echo $price['LogisticsPrices']['zips'] ?>
-            </p>
-          </td>
-          <td>
-            <p class="price">
-              <?php echo $price['LogisticsPrices']['price'] ?>
-            </p>
-          </td>
-          <td>
-            <p class="info">
-              <?php echo $price['LogisticsPrices']['info'] ?>
-            </p>
-          </td>
-          <td>
+      <p class="p">Usted puede editar las tarifas de esta logística de acuerdo a las zonas que están representadas por códigos postales. Los códigos postales en Argentina contienen cuatro números. Puede asignarlos de forma taxativa (ej: 1440, 1441) o agrupar con expresiones (ej: 92**, 930*). Mas información sobre <a href="https://códigos-postales.cybo.com/argentina/#mapwrap" target="_blank">códigos postales de argentina</a></p>
+      <button class="btn btn-success" type="button" onclick="edit_logistic_price()">Agregar</button>
+      <table class="table table-bordered table-striped" id="tarifas">
+        <thead>
+          <tr>
+            <th><?php echo __('Zona'); ?></th>
+            <th><?php echo __('Códigos postales'); ?></th>
+            <th><?php echo __('Tarifa'); ?></th>
+            <th><?php echo __('Observaciones'); ?></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="table_prices">
+        <?php foreach($logistic_prices as $price) :?>
+          <tr id="prices_<?= $price['LogisticsPrices']['id'] ?>" class="<?= !$price['LogisticsPrices']['enabled'] ? 'bg-light' : '' ?>">
+            <td>
+              <p class="title">
+                <?php echo $price['LogisticsPrices']['title'] ?>
+              </p>
+            </td>
+            <td>
+              <p class="zips">
+                <?php echo $price['LogisticsPrices']['zips'] ?>
+              </p>
+            </td>
+            <td>
+              <p class="price">
+                <?php echo $price['LogisticsPrices']['price'] ?>
+              </p>
+            </td>
+            <td>
+              <p class="info">
+                <?php echo $price['LogisticsPrices']['info'] ?>
+              </p>
+            </td>
+            <td>
+              <div class="controls">
+                <button class="btn btn-success" type="button" onclick="edit_logistic_price(<?php echo $price['LogisticsPrices']['id'] ?>)">
+                  <i class="fa fa-edit"></i>
+                </button>
+                <button class="btn btn-danger" type="button" data-loading-text="<i class='gi gi-clock'></i>" onclick="remove_logistic_price(<?php echo $price['LogisticsPrices']['id'] ?>, this)">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+      <div class="logistic-price-form hide">
+        <h4 class="sub-header">Editar tarifa de logística</h4>
+        <form id="add_logistic_price" onsubmit="return save_logistic_price()">
+          <input type="hidden" name="id" id="id" value="">
+          <input type="hidden" name="logistic_id" value="<?= $logistic['Logistic']['id'] ?>">
+          <div class="form-group">
+            <label class="control-label" for="enabled"><?php echo __('Activo'); ?></label>
+            <input type="checkbox" name="enabled" value="1" id="enabled" class="toggle-checkbox">
+            <label for="enabled" class="toggle-label"></label>
+          </div>   
+          <div class="form-group">
+            <label class="control-label" for="info"><?php echo __('Zona'); ?></label>
             <div class="controls">
-              <button class="btn btn-success" type="button" onclick="edit_logistic_price(<?php echo $price['LogisticsPrices']['id'] ?>)">
-                <i class="fa fa-edit"></i>
-              </button>
-              <button class="btn btn-danger" type="button" data-loading-text="<i class='gi gi-clock'></i>" onclick="remove_logistic_price(<?php echo $price['LogisticsPrices']['id'] ?>, this)">
-                <i class="fa fa-trash-o"></i>
-              </button>
+              <input type="text" class="form-control" id="title" max-length="100" name="title" value="" placeholder="Zona Norte GBA" required>
             </div>
-          </td>
-        </tr>
-        <?php endforeach ?>
-      </tbody>
-    </table>
-    <div class="logistic-price-form hide">
-      <h4 class="sub-header">Editar tarifa de logística</h4>
-      <form id="add_logistic_price" onsubmit="return save_logistic_price()">
-        <input type="hidden" name="id" id="id" value="">
-        <input type="hidden" name="logistic_id" value="<?= $logistic['Logistic']['id'] ?>">
-        <div class="form-group">
-          <label class="control-label" for="enabled"><?php echo __('Activo'); ?></label>
-          <input type="checkbox" name="enabled" value="1" id="enabled" class="toggle-checkbox">
-          <label for="enabled" class="toggle-label"></label>
-        </div>   
-        <div class="form-group">
-          <label class="control-label" for="info"><?php echo __('Zona'); ?></label>
-          <div class="controls">
-            <input type="text" class="form-control" id="title" max-length="100" name="title" value="" placeholder="Zona Norte GBA" required>
+            <small class="text-muted">Nombre para denominar esta zona de logística.</small>
+          </div>        
+          <div class="form-group">
+            <label class="control-label" for="info"><?php echo __('Códigos postales'); ?></label>
+            <div class="controls">
+              <textarea id="zips" class="form-control" name="zips" rows="5" placeholder="Indique códigos postales válidos" required></textarea>
+            </div>
+            <small class="text-muted">Indica los códigos postales <strong>separados por coma o espacio</strong> que abarca la zona de cobertura de esta logística.</small>
           </div>
-          <small class="text-muted">Nombre para denominar esta zona de logística.</small>
-        </div>        
-        <div class="form-group">
-          <label class="control-label" for="info"><?php echo __('Códigos postales'); ?></label>
-          <div class="controls">
-            <textarea id="zips" class="form-control" name="zips" rows="5" placeholder="Indique códigos postales válidos" required></textarea>
+          <div class="form-group">
+            <label class="control-label" for="info"><?php echo __('Tarifa'); ?></label>
+            <div class="controls">
+              <input type="number" class="form-control" id="price" step="1" name="price" value="" placeholder="500" required>
+            </div>
+            <small class="text-muted">En caso de logística de alcance local indica la tarifa por envío expresada en peso argentino ARS.</small>
           </div>
-          <small class="text-muted">Indica los códigos postales <strong>separados por coma o espacio</strong> que abarca la zona de cobertura de esta logística.</small>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="info"><?php echo __('Tarifa'); ?></label>
-          <div class="controls">
-            <input type="number" class="form-control" id="price" step="1" name="price" value="" placeholder="500" required>
+          <div class="form-group">
+            <label class="control-label" for="info"><?php echo __('Información adicional'); ?></label>
+            <div class="controls">
+              <textarea id="info" class="form-control" name="info" rows="5" placeholder="Indique información adicional"></textarea>
+            </div>
+            <small class="text-muted">Indique información adicional, tiempos de entrega, condiciones especiales, etc.</small>            
           </div>
-          <small class="text-muted">En caso de logística de alcance local indica la tarifa por envío expresada en peso argentino ARS.</small>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="info"><?php echo __('Información adicional'); ?></label>
-          <div class="controls">
-            <textarea id="info" class="form-control" name="info" rows="5" placeholder="Indique información adicional"></textarea>
+          <div class="form-group">
+            <button class="btn btn-info" type="button" onclick="$('.logistic-price-form').addClass('hide')">Cancelar</button>
+            <button class="btn btn-success btn-save-logistic-prices" data-loading-text="<i class='gi gi-clock'></i>" type="submit">Guardar</button>
           </div>
-          <small class="text-muted">Indique información adicional, tiempos de entrega, condiciones especiales, etc.</small>            
-        </div>
-        <div class="form-group">
-          <button class="btn btn-info" type="button" onclick="$('.logistic-price-form').addClass('hide')">Cancelar</button>
-          <button class="btn btn-success btn-save-logistic-prices" data-loading-text="<i class='gi gi-clock'></i>" type="submit">Guardar</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </div>

@@ -4,7 +4,7 @@
   echo $this->Html->script('admin-bank.js?v=' . $version['ver'], array('inline' => false));
   echo $this->element('admin/menu'); 
 ?>
-
+<div class="block-section">
 <div class="block-tabs">
   <!--div class="block-title">
     <h4>CBU/Alias y Descuentos</h4>
@@ -95,4 +95,5 @@
       </div>
     </form>
   </div>
+</div>
 </div>

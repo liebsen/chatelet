@@ -2,6 +2,7 @@
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
 ?>
 <?php echo $this->element('admin/menu');?>
+<div class="block-section">
 <div class="block-tabs">
   <div class="tab-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
@@ -76,4 +77,5 @@
       </div>
     </form>
   </div>
+</div>
 </div>

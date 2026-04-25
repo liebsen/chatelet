@@ -1536,7 +1536,7 @@ select.form-control{
 .btn-chatelet.light {
 	color: #888;
   background-color: transparent;
-  border-color: transparent;
+  border-color: #e7e7e7;
 }
 
 .btn-chatelet.dark:hover {

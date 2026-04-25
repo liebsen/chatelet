@@ -47,7 +47,7 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
   </div>
 </div>
 
-
+<div class="block-section">
 <div class="block-tabs">
 	<div class="tab-content">
 		<p class="collapse alert alert-success result-message">...</p>
@@ -164,6 +164,7 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 			</tbody>
 		</table>
 	</div>
+</div>
 </div>
 
 

@@ -2,7 +2,7 @@
 <?php #echo $this->Html->script('admin-whatsapp.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->element('admin/menu'); ?>
-
+<div class="block-section">
 <div class="block-tabs">
 	<div class="tab-content">
 		<form action="" method="post" class="form-inline" enctype="multipart/form-data">
@@ -90,4 +90,5 @@
 	    </div>
 	  </form>
 	</div>
+</div>
 </div>

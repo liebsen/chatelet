@@ -277,6 +277,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .navbar-right {
   justify-content: end;
+  top: -1px !important;
 }
 
 .navbar-chatelet {
@@ -2153,9 +2154,9 @@ span.count {
   width: 1.25rem;
   height: 1.25rem;
   background-color: lightgreen;
-  border: 2px solid white;
+  outline: 4px solid lightgoldenrodyellow;
   border-radius: 100%;
-  line-height: 1.75;  
+  line-height: 1.6;  
   text-align: center;
   min-width: 1.25rem;
   font-size: 0.75rem;

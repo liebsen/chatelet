@@ -94,6 +94,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   display: none;
 }
 
+.min-height {
+  min-height: calc(100dvh - 74px);
+}
+
 @media (min-width: 1024px) {
   .mobile {
     display: none!important;
@@ -132,12 +136,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 */
 
 body {
-  background: #f9f9f9; 
+  background: #fff; 
   /*background: url('../img/template/bg.png') top left repeat;*/
 }
 
+.primary-search {
+  padding: 0.5rem 1rem;
+}
+
 #page-container {
-  width: 95%;
+  width: 100%;
+  overflow: hidden;
   min-width: 320px;
   /*max-width: 1920px;*/
   margin: 0 auto;
@@ -572,7 +581,6 @@ background-color: #e8ffa8!important;
 /* Blocks */
 
 .block {
-  margin: 0 0 70px;
   padding: 0;
 }
 
@@ -583,16 +591,18 @@ background-color: #e8ffa8!important;
   .list-group-hero { 
       flex-direction: row;
   }
-  .block .tab-content {
+  /*.block .tab-content {
       border-bottom-left-radius: 1.5rem;
-  }
+  }*/
   #primary-nav li a {
-      border-top-right-radius: 3rem;
-      border-bottom-right-radius: 3rem;
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 3rem;
   }
   .side-scrollable {
-      position: absolute;
-      top: 0;
+    position: absolute;
+    top: 0;
+    max-height: calc(100dvh - 74px);
+    overflow-y: auto;
   }
   .sub-header {
     margin: 0;
@@ -792,7 +802,7 @@ background-color: #e8ffa8!important;
   top: 1px;
 }
 .block-tabs > .tab-content {
-  padding: 20px;
+  /*padding: 20px;*/
   margin: 0;
   border: none;
 }
@@ -2160,7 +2170,8 @@ pre, code {
   flex-direction: row;
   grid-gap: 1rem;
   border: none;
-  min-height: calc(100dvh - 12rem);
+  margin: 0;
+  min-height: calc(100dvh - 75px);
 }
 
 .list-group-hero > a > li {
@@ -2731,13 +2742,13 @@ header.navbar .navbar-brand {
 
 .tab-content {
   border-top: none;
-  padding: 15px;
-  background-color: #ffffff;
+  /*padding: 15px;*/
+  background-color: #fff;
 }
 
 .tab-pane:not(#side-tab-menu):not(#login-form-tab) {
   min-width: 100%;
-  padding-bottom: 5rem;
+  padding: 1rem;
   animation-delay: 0.5s;
   animation-duration: 1s;
   animation-fill-mode: both;
@@ -2879,11 +2890,11 @@ background-color: #fff!important;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
+  border-radius: 0.5rem;
   min-width: 6rem;
   aspect-ratio: 2/3;
   background-color: #e7e7e7;
   filter: contrast(110%) brightness(110%);
-  border-radius: 0.75rem;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
