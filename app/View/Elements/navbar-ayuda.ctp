@@ -86,6 +86,10 @@
       z-index: 100;
       background: linear-gradient(hsla(0,0%,100%,0),hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0));
     }
+    #optionsHelp > a { 
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+    }
     #optionsHelp > a:hover { 
       text-decoration: none;
       color: #363636;
