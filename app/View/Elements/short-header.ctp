@@ -9,7 +9,7 @@
       <div class="is-flex-center gap-1 navbar-right text-center p-4">
         <?php if ($short_header_link) :?>
           <a href="<?php echo $short_header_link ?>" class="<?php echo $short_header_classname ?? '' ?>" style="position: relative; top: -1px">
-            <span class="text-md"><?php echo $short_header_text ?? 'Seguir comprando' ?></span>
+            <span class="text-sm"><?php echo $short_header_text ?? 'Seguir comprando' ?></span>
           </a>
         <?php endif ?>
         <!--span class="text-muted"><?= $short_header ?></span-->
