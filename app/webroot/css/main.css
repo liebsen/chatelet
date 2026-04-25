@@ -610,16 +610,22 @@ background-color: #e8ffa8!important;
     padding: 5px 0 5px!important;
   }
   #page-sidebar {
-      width: 220px;
-      display: block;
-      position: absolute;
-      z-index: 10;
-      left: 0;
-      transition: 0.25s all 0.25s ease-in;
+    width: 220px;
+    display: block;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    transition: 0.25s all 0.25s ease-in;
   }
-  #pre-page-content, #page-content, #page-content + footer {
-      /* border-left: 1px solid #333;*/
-      margin: 0 0 0 220px;
+  #page-content {
+    /* border-left: 1px solid #333;*/
+    margin: 0 0 0 220px;
+  }
+  #page-content > div {
+    height: calc(100dvh - 77px);
+    overflow: auto;
+  }
+  #page-content + footer {
   }
 }
 .block-content .control-group {
@@ -3601,6 +3607,7 @@ a.thumbnail-borderless,
 @media (min-width: 992px) {
 
   .form-actions {
+    margin: 1rem;
     margin-left: -210px;
     min-width: calc(100% - 210px);
   }
