@@ -89,6 +89,8 @@
     #optionsHelp > a { 
       padding: 0.5rem 0.75rem;
       border-radius: 0.5rem;
+      background-color: rgba(255,255,255,0.5);
+      box-shadow: inset 0 8px 8px #ffffff;
     }
     #optionsHelp > a:hover { 
       text-decoration: none;
