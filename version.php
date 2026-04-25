@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/app/functions.php';
 
-$filename = __DIR__ .'/app/app_version';
+$filename = __DIR__ .'/app/version';
 $count = (float) file_get_contents($filename);
 $count+= 1;
 

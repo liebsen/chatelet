@@ -129,7 +129,7 @@ class AppController extends Controller
 
   public function beforeFilter() {
 
-    $version_file = __DIR__ . '/../app_version';
+    $version_file = __DIR__ . '/../version';
     $version_count = 1111;
 
     $this->loadModel('Menu');
