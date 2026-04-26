@@ -338,8 +338,6 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 body.top-fixed .navbar-chatelet:not(.short) {
   position: fixed!important;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(2px);
   width: 100%;
   left: 0;
   top: 0;

@@ -2,7 +2,7 @@
   "short_name": "Châtelet",
   "name": "Nueva colección, nuevos comienzos",
   "display": "standalone",
-  "theme_color": "#e10d74",
+  "theme_color": "#000000",
   "background_color": "#ffffff",
   "start_url": "/?launcher=true",
   "icons": [
