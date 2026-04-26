@@ -33,7 +33,7 @@ nav.sidebar-expanded {
   a,
   .category-content,
   li {
-  	&:not(.box *) {
+  	&:not(.box *):not([class*="text-"]) {
 	    color: #f8f8f8!important;
 	    border-color: #666!important;
 	    &:hover {

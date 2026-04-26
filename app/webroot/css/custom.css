@@ -290,7 +290,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   position: relative; 
   transition: none!important;
   z-index: 10;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid #e7e7e7;
   transition: background 0.25s ease-in-out;
 }
 
@@ -929,7 +929,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   font-weight: 1000;
 }
 #productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; }
-#productOptions a.btBig span { color: #363633; font-size: 27px; }
+#productOptions a.btBig span { font-size: 27px; }
 #productOptions .product-list a {  /*background: #efefef;*/ 
   width: 100%; 
   background-color: transparent; overflow: hidden; position: relative;height: auto; }
