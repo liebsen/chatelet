@@ -56,6 +56,7 @@
                   ));
 
     $number_ribbon = 0;
+    $ribbon_style = '';
   	if (isset($product['discount_label_show'])){
   		$number_ribbon = (int)@$product['discount_label_show'];
   	}
@@ -64,7 +65,7 @@
             }
 
             if(!empty($product['ribbon_color'])) {
-              $ribbon_style = ' style="background-color:'.$product[ribbon_color].'"';
+              $ribbon_style = ' style="background-color:'.$product['ribbon_color'].'"';
             }
 
             if (isset($product['bank_discount']) && $product['bank_discount'] > $number_ribbon){
@@ -105,7 +106,7 @@
   $number_ribbon = (int) @$product['discount_label_show'];
   }
   if(!empty($product['ribbon_color'])) {
-  $ribbon_style = ' style="background-color:'.$product[ribbon_color].'"';
+  $ribbon_style = ' style="background-color:'.$product['ribbon_color'].'"';
   }    
   if (isset($product['mp_discount']) && $product['mp_discount'] > $number_ribbon){
   $number_ribbon = (int) @$product['mp_discount'];
