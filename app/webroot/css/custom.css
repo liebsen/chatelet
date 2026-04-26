@@ -558,7 +558,6 @@ footer h3 {
 footer h5:after { background: #e7e7e7; content: ""; display: block; height: 3px;border-radius: 0; margin-top: 13px; width: 50px; border-radius: 5px }
 footer .options a, footer .options span { 
   font-weight: 300; 
-  font-size: 0.9rem;
   text-transform: uppercase;  
 }
 footer a:hover { color: #363633; }
@@ -683,6 +682,10 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   display: flex;
   height:24rem;
   transition: all .3s ease-in-out;
+}
+.product-list {
+  padding-left: 18px;
+  padding-right: 18px;
 }
 .posnum-0 {
   background-position: center center;
@@ -896,7 +899,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   padding-right: 20px;
   padding-top: 200px;
 }
-#infoShop { background: #f6f6f5; padding: 25px 0; }
+#infoShop { padding: 25px 0; }
 #infoShop .col-md-4 { 
   background-size: 6rem; 
   background-repeat: no-repeat;
@@ -1739,6 +1742,7 @@ span.out{
 
 .add-no-stock {
   position: relative;
+  padding: 0.25rem;
 }
 
 .prod-tags {

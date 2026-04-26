@@ -43,7 +43,6 @@
 
   #optionsHelp > a { 
     display: inline-block; 
-    color: whitesmoke;
     margin: 0 0.5rem;
     font-weight: 300;
     text-transform: uppercase;
@@ -52,7 +51,6 @@
 
   #optionsHelp > a.active {
     font-weight: 1000;
-    color: white;
   }
   #optionsHelp.mobile > a.active {
     position: relative;

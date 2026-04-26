@@ -596,13 +596,13 @@ $(document).ready(function() {
   }
 
   $(window).scroll(function(e) {
-    const progress = $('body.top-fixed .navbar-chatelet.with-progress')
+    /*const progress = $('body.top-fixed .navbar-chatelet.with-progress')
     if(progress.length) {
       var perc = parseInt($(window).scrollTop() / ($(document).height() - $('footer').height() - $('.navbar-chatelet').height()) * 100) // remove footer aproxmately
       perc = perc < 100 ? perc : 100
       progress.css('background', '#f8f8f8')
       progress.css('background', 'linear-gradient(90deg,rgba(248, 248, 248, 1) '+perc+'%, rgba(255, 255, 255, 1) 0%)')
-    }
+    }*/
 
     if(clock) {
       clearInterval(clock)
