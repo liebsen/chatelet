@@ -67,7 +67,6 @@ nav.sidebar-expanded {
   .dropdown-menu,
   .nav-tabs,
   .card,  
-  .card-variant,  
   .shop-options,  
   .table,
   .table tr,
@@ -1875,16 +1874,9 @@ span.validation-password {
 	}
 }
 @media screen and (min-width: 769px) {
-  .flex-col .card {
-    padding: 1rem;
-    border-radius: 0.5rem;
-  }  
   .pr-2-d {
     padding: 1rem;
   }	
-	.card-variant {
-	  background-color: #f8f8f8;
-	}
   .bg-light-desktop {
     background-color: whitesmoke;
   }

@@ -564,7 +564,7 @@ footer .options a, footer .options span {
   text-transform: uppercase;  
 }
 footer a:hover { color: #363633; }
-footer ul li { margin-bottom: 5px;  }
+footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 .modal a.close { display: block; height: 35px; opacity: 1; position: absolute; right: 20px; top: 10px; width: 35px; z-index: 1;}
 .modal a.close span { background: #363633; display: block; height: 4px; margin-top: 25px; width: 100%; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); }
