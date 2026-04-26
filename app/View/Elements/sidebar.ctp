@@ -76,7 +76,6 @@ nav.sidebar {
 	justify-content: center;
 	align-items: space-around;
 	gap: 0.5rem;
-  background-color: #fff;
   width: 100%;
 }
 	

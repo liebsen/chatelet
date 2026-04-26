@@ -1,8 +1,9 @@
 <?php
 	echo $this->Session->flash();
 ?>
-  <section id="headhelp">
     <?php echo $this->element('navbar-ayuda'); ?>
+
+  <section id="headhelp">
     <div class="wrapper container animation-fadeIn animation-both w-100">
       <div class="row is-flex-center">
         <div class="col-md-4">

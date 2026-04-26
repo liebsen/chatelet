@@ -25,7 +25,7 @@
 			<div class="mobile">
 				<div class="d-flex flex-column justify-content-start align-center gap-05 w-100">
 				<?php foreach ($sorted as $product) : ?>
-					<div class='d-flex justify-content-start align-center cart-row carrito-data position-relative' data-json='<?php echo json_encode($product) ?>' product_row>
+					<div class='d-flex justify-content-start align-center cart-row gap-05  carrito-data position-relative' data-json='<?php echo json_encode($product) ?>' product_row>
 						<div class='cart-img'>
 						<?php if (!empty($product['number_ribbon'])) : ?>
 							<div class="ribbon small"><span><?php echo $product['number_ribbon'] ?>% OFF</span></div>
@@ -48,7 +48,7 @@
 							</a>
 						</div>
 						<div class="d-flex justify-content-start align-items-center flex-column w-100">
-							<div class="d-flex justify-content-around align-items-center w-100">
+							<div class="d-flex justify-content-around align-items-center gap-05  w-100">
 								<div class="d-flex justify-content-center align-center flex-column max-20 min-w-5 flex-1">
 									<h6 class="mt-0 mb-2 text-weight-thin lh-1"><?php echo $product['name'] ?></h6>
 									<?php if (!empty($product['color_code']) && $product['color_code'] != 'undefined') : ?>
@@ -79,7 +79,7 @@
 										<input class="giftchecks gift-<?php echo $product['id'] ?>" type="checkbox" data-id="<?php echo $product['id'] ?>"><span class="label-text text-muted text-sm">Para regalo</span><br><br>
 										</label>
 									</div>
-									<button class="btn bg-transparent m-0 p-0" onclick="askremoveCart(this)">
+									<button class="btn bg-transparent borderless m-0 p-0" onclick="askremoveCart(this)">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</div>

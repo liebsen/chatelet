@@ -1,6 +1,6 @@
+            <?php echo $this->element('navbar-ayuda'); ?>
 
         <div id="headhelp">
-            <?php echo $this->element('navbar-ayuda'); ?>
             <div class="wrapper container animation-fadeIn w-100">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">

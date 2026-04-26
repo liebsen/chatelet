@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center align-items-center  footer-signature text-center gap-05 w-100 bg-white">
+<div class="d-flex justify-content-center align-items-center  footer-signature text-center gap-05 w-100">
   <!--div class="text-center"> 
     <img class="max-25" src="<?php echo Router::url('/',true).'images/tjtas.png'; ?>">
   </div-->

@@ -301,7 +301,8 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-brand { 
   position: relative;
   top: 2px;
-  background: url(../images/logo.png) no-repeat; 
+  background-image: url(../images/logo.png); 
+  background-repeat: no-repeat;
   background-size: contain;
   width: 120px;
   height: 26px;
@@ -321,7 +322,6 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
   
 .navbar-nav > li > a {
-  color: #404040;
   font-weight: 300;
   margin: 0;
   padding: 10px;
@@ -470,6 +470,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   top: 120px;
   padding: 2rem;
   transform: translateY(-100rem);
+  background-color: white;
 }
 
 body.top-fixed .shop-options {
@@ -530,7 +531,7 @@ body.top-fixed .shop-options {
   background-image: url(../images/chat-icon.svg);
 }
 
-footer { background: white; overflow: hidden; padding: 5rem 0 0; }
+footer { background: whitemoke; overflow: hidden; padding: 5rem 0 0; }
 footer > .wrapper { 
   padding: 0.75rem; 
 }
@@ -924,8 +925,7 @@ footer ul li { margin-bottom: 5px;  }
   transition: all .3s ease-in-out; 
 }
 #productOptions nav li a.current{ 
-  color: #333!important;
-  font-weight: 300;
+  font-weight: 1000;
 }
 #productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; }
 #productOptions a.btBig span { color: #363633; font-size: 27px; }
@@ -1006,8 +1006,10 @@ footer ul li { margin-bottom: 5px;  }
 #productOptions .product-list a:hover .hover { opacity: 1; }
 
 #detalle { 
-  /*background: url(../images/mapbg.png) no-repeat center center; */
-  background-size: cover;
+  /*background: url(../images/mapbg.png) no-repeat center center; 
+    background-size: cover;
+*/
+  background: linear-gradient(45deg, purple, orange);
   padding-top: 50px;    
   padding-bottom: 50px; 
   position: relative;
@@ -1070,6 +1072,7 @@ footer ul li { margin-bottom: 5px;  }
 
 #main .caract h2 {margin-bottom: 10px}
 #main .caract label.btn {
+  border: none;
   box-shadow: none;
   margin: 0;
   border-radius: 0!important;
@@ -1184,8 +1187,7 @@ ul#ul-moreviews li.dontResize img {
   justify-content: center; 
   align-items: center; 
   padding-left: 5rem;
-  background: url(../images/mapbg.png) no-repeat center center; 
-  background-size: cover;   
+  background: linear-gradient(45deg, purple, orange);
 }
 .map .col-md-4 h1 { color: #363633; font-size: 40px; font-weight: 800; letter-spacing:-0.1rem }
 .map .col-md-4 h1:after { 
@@ -1223,15 +1225,14 @@ ul#ul-moreviews li.dontResize img {
   align-items: center;
   flex-direction: column;
   position: relative; 
-  background: url(../images/ayudabg.jpg) no-repeat center center; 
-  background-size: cover; 
   min-height: calc(100dvh - 265px);
+  background: linear-gradient(45deg, purple, orange);
   /*padding: 65px 0;*/ 
 }
 
-#headhelp h1 { color: #363636; font-size: 40px; margin: 0; font-weight: 800; letter-spacing:-0.1rem }
+#headhelp h1 { color: whitesmoke; font-size: 40px; margin: 0; font-weight: 800; letter-spacing:-0.1rem }
 #headhelp h1:after { 
-  background: #363636; 
+  background: whitesmoke; 
   content: ""; 
   display: block; 
   margin-top: 10px;
@@ -1242,8 +1243,8 @@ ul#ul-moreviews li.dontResize img {
 #headhelp .box { 
   padding: 120px 100px 85px; 
 }
-#headhelp .box h3 { font-size: 22px; text-transform:uppercase; font-weight: 600; letter-spacing: -0.05rem; margin-bottom: 30px;margin-right: auto; }
-#headhelp .box p { font-size: 18px; line-height: 1.5; margin-bottom: 10px; margin-right: auto; }
+#headhelp .box h3 { font-size: 22px; color: #333; text-transform:uppercase; font-weight: 600; letter-spacing: -0.05rem; margin-bottom: 30px;margin-right: auto; }
+#headhelp .box p { font-size: 18px; color: #333; line-height: 1.5; margin-bottom: 10px; margin-right: auto; }
 #headhelp .box p a { color: #f50081; font-weight: 600; }
 @media(min-width: 992px) {
   #headhelp .col-md-4 {
@@ -1256,7 +1257,7 @@ ul#ul-moreviews li.dontResize img {
 }
 
 .box:after { 
-  content:"\E195"; 
+  content:"\f06a"; 
   background-color: lightgreen;
   border-radius: 100%;
   width: 4rem;
@@ -1265,10 +1266,10 @@ ul#ul-moreviews li.dontResize img {
   font-size: 2.5rem;
   color: #ffffff;
   line-height: 1.6;
-  font-family: 'Glyphicons Regular';
+  font-family: 'FontAwesome';
   position: absolute;
   top: -2rem;
-  right: -2rem;  
+  right: -2rem; 
 }
 
 .box h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; margin-top: 0;}
@@ -1282,9 +1283,6 @@ ul#ul-moreviews li.dontResize img {
   #headhelp {
     padding: 6rem 1rem 0.75rem 1rem;
   }
-}
-.bg-arrow {
-  background: white url(../images/arrow-down.png) no-repeat center top; 
 }
 #desarrollo { 
   padding: 1rem; 
@@ -1418,9 +1416,6 @@ ul#ul-moreviews li.dontResize img {
 
 	.navbar-nav { margin: 0; text-align: center; }
 	.navbar-nav > li { float: none; display: inline-block; }
-  .navbar-nav > li > a {  
-    font-size: 1.1rem;
-  }
 	.navbar-nav>li>a .badge { left: 5px; position: absolute; top: 5px; }
 
 	#carousel .carousel-caption { left: 15%; width: 70%; }
@@ -1655,7 +1650,6 @@ span.out{
   min-height: 25vh;
   background-position: center center;
   background-size: cover;  
-  background-color: #eaeaea;
 }
 
 .img-resp.is-main {
@@ -2175,9 +2169,8 @@ select {
 span.count {
   position: absolute;
   z-index: 9;
-  top: -20px;
-  left: 0;
-  right: 0;
+  top: -13px;
+  left: -10px;
   width: 1.25rem;
   height: 1.25rem;
   background-color: lightgreen;

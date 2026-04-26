@@ -28,7 +28,6 @@
   }
 
   #optionsHelp.mobile {
-    background-color: #e7e7e7;
     width: 100%;  
   }
 
@@ -43,11 +42,8 @@
   }
 
   #optionsHelp > a { 
-    font-size: 0.9rem;
-    color: #888;
-    border-bottom: 2px solid #c5c5c5;
-    background-color: #ffffff;
     display: inline-block; 
+    color: whitesmoke;
     margin: 0 0.5rem;
     font-weight: 300;
     text-transform: uppercase;
@@ -55,12 +51,11 @@
   }
 
   #optionsHelp > a.active {
-    color: #404040;
-    border-color: #363636;
+    font-weight: 1000;
+    color: white;
   }
   #optionsHelp.mobile > a.active {
     position: relative;
-    background-color: white;
     transition: background 1s ease-out;
   }
 
@@ -78,24 +73,18 @@
       position: absolute; 
       left:0; 
       right: 0; 
-      top: 0;
+      top: 8rem;
       padding: 1rem;
+      z-index: 9;
     }
     #optionsHelp.top-fixed { 
       top: 4rem; 
       z-index: 100;
       background: linear-gradient(hsla(0,0%,100%,0),hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0));
     }
-    #optionsHelp > a { 
-      padding: 0.5rem 0.75rem;
-      border-radius: 0.5rem;
-      background-color: rgba(255,255,255,0.5);
-      box-shadow: inset 0 8px 8px #ffffff;
-    }
     #optionsHelp > a:hover { 
       text-decoration: none;
       color: #363636;
-      border-bottom: 2px solid #363636;
     }
   }
 

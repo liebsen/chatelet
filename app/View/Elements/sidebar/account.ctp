@@ -20,7 +20,7 @@
     <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
     <?php if ($loggedIn) : ?>
       <?php if ($isAdmin) : ?>
-      <a href="/admin" class="btn btn-info dark w-100">Administrador</a>  
+      <a href="/admin" class="btn btn-info w-100">Administrador</a>  
       <?php endif ?>
       <?php if(empty($user['name']) == false) : ?>
       <a href="/shop/cuenta" class="btn btn-chatelet dark w-100">Mi cuenta</a>

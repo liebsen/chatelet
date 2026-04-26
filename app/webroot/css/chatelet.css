@@ -4,11 +4,6 @@ body.loading {
   overflow: hidden;
 }
 
-body > section,
-body > div:not([class*="modal"]):not(.whatsapp-block):not(.social-bottom):not(.whatsapp-text):not(.dev-note) {
-	background-color: #fff;
-}
-
 ::placeholder {
 	transition: opacity 0.5s ease-in-out;
 	transition-delay: 1s;
@@ -21,6 +16,102 @@ input:focus::placeholder {
 nav.sidebar-expanded {
   right: 0!important;
 }
+
+@media (prefers-color-scheme: dark) {
+  ::placeholder {
+    color: #888!important;
+  }
+  html, 
+  body, 
+  h1, 
+  h2, 
+  h3, 
+  h4, 
+  h5, 
+  h6, 
+  p,
+  a,
+  .category-content,
+  li {
+  	&:not(.box *) {
+	    color: #f8f8f8!important;
+	    border-color: #666!important;
+	    &:hover {
+	      color: #666;
+	    }
+	  }
+  }
+  .label,
+  .tab-content {
+    &:not(.scheme-preserve) {
+      color: #f8f8f8;
+      &:hover {
+        color: #888;
+      }
+    }
+  }
+
+  html,
+  body,
+  #main,
+  blockquote,
+  footer,
+  .select select, 
+  .block-tabs > .nav-tabs > li > a, 
+  .pagination > .disabled > a, 
+  .toggle-label,
+  .carrito-selector,
+  .list-group-item,
+  .form-control,
+  .navbar-chatelet,
+  .dropdown-menu,
+  .nav-tabs,
+  .card,  
+  .card-variant,  
+  .shop-options,  
+  .table,
+  .table tr,
+  .table td,
+  .table th {
+    color: #f8f8f8;
+    background-color: #333!important;
+    border-color: #666!important;
+  }
+  .btn {
+  	&:not([class*="btn-"]):not(.borderless) {
+	    background-color: #333;
+	    border-color: #666;
+	    &:hover {
+	      background-color: #444;
+	      color: #999!important;
+	    }
+	  }
+  }
+
+  .btn.is-text:hover, .btn.is-text.is-hovered, .btn.is-text:focus, .btn.is-text.is-focused {
+    background-color: #444;
+    color: #999!important;    
+  }
+
+  .form-control:focus,
+  .btn-chatelet,
+  nav.sidebar,
+  .bg-light,
+  .tab-content,
+  .nav-tabs,
+  .toggle-label,
+  .switch-scale {
+    background-color: #444!important;
+  }
+  .price_strong,
+  .name {
+  	color: whitesmoke!important;
+  }
+  .navbar-brand {
+  	background-image: url(../images/logo-w.png)!important; 
+  }
+}
+
 
 .section {
 	padding: 1rem 0;
@@ -38,7 +129,7 @@ nav.sidebar-expanded {
 }
 
 a {
-	color: #888;
+	color: #444;
 	font-weight: 300;
 }
 
@@ -813,8 +904,7 @@ html, body {
 	text-transform: uppercase;
 	height: 50px;
 	line-height: 2.5;
-	font-size: 0.9rem;
-	font-weight: 400;
+	font-weight: 300;
 	border-radius: 5px;
 	transition: all 200ms ease-in-out;
 }
@@ -982,7 +1072,6 @@ select.form-control{
   padding: 0.5rem 0;
   max-width: 10.25rem;
   border: 1px solid #dbdbdb;  
-  background-color: white;
 	border-radius: 5px;
 }
 
@@ -1530,7 +1619,7 @@ select.form-control{
 .btn-chatelet.dark {
 	color: white;
   background-color: black;
-  border-color: black;
+  border-color: #e7e7e7;
 }
 
 .btn-chatelet.light {
@@ -1794,7 +1883,7 @@ span.validation-password {
     padding: 1rem;
   }	
 	.card-variant {
-	  background-color: #f8f8f8!important;
+	  background-color: #f8f8f8;
 	}
   .bg-light-desktop {
     background-color: whitesmoke;
@@ -1807,8 +1896,13 @@ span.validation-password {
 		animation-fill-mode: both;
   	padding: 4rem!important;
     /*transform: scale(1) perspective(1024px) rotateY(-5deg) rotateX(2deg) rotate(2deg) translateY(0rem) translateX(-2rem);*/
-    box-shadow: 0 0 20px 0 rgba(26, 26, 67, .25);
+    box-shadow: 0 0 40px 0 rgba(255, 255, 255, .2);
   }
+  .box:after {
+    box-shadow: 0 0 15px #ffffff;
+    text-shadow: 2px 2px 0 green; 
+  }
+
 	/*.navbar-chatelet.top-fixed {
 		background: linear-gradient(white,hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.7) 70%, hsla(0,0%,100%,0));
 		box-shadow: none;
