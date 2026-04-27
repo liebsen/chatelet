@@ -171,10 +171,10 @@ class CartComponent extends Component {
       }
     }
 
-    CakeLog::write('debug', 'update(cart_totals)(before):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
+    #CakeLog::write('debug', 'update(cart_totals)(before):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
     $delivery_cost = $cart_totals['delivery_cost'] ?? 0;
-    CakeLog::write('debug','cart(total):'.json_encode(array($total)));
-    CakeLog::write('debug','cart(payment_method):'.json_encode(array($payment_method)));
+    #CakeLog::write('debug','cart(total):'.json_encode(array($total)));
+    #CakeLog::write('debug','cart(payment_method):'.json_encode(array($payment_method)));
 
     $free_shipping = $this->isFreeShipping(
       $total, 
@@ -213,7 +213,7 @@ class CartComponent extends Component {
     $cart_totals['grand_total'] = $grand_total;
     $cart_totals['payment_method'] = $payment_method;
     $cart_totals['updated'] = date('Y-m-d H:i');
-    CakeLog::write('debug', 'update(cart_totals)(after):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
+    #CakeLog::write('debug', 'update(cart_totals)(after):'. json_encode($cart_totals,JSON_PRETTY_PRINT));
     // CakeLog::write('debug', 'update(cart):'. json_encode($cart,JSON_PRETTY_PRINT));
     $this->controller->Session->write('cart_totals', $cart_totals);
     $this->controller->Session->write('cart', $cart);
@@ -294,12 +294,12 @@ class CartComponent extends Component {
     // CakeLog::write('debug', 'shipping_price_min:'.json_encode($shipping_price_min));
     // CakeLog::write('debug', 'bank_free_shipping:'.json_encode($bank_free_shipping));
     
-    CakeLog::write('debug', 'cart(price):'.json_encode($price));
-    CakeLog::write('debug', 'cart(payment_method):'.json_encode($payment_method));
-    CakeLog::write('debug', 'cart(zip_code):'.json_encode($zip_code));
+    #CakeLog::write('debug', 'cart(price):'.json_encode($price));
+    #CakeLog::write('debug', 'cart(payment_method):'.json_encode($payment_method));
+    #CakeLog::write('debug', 'cart(zip_code):'.json_encode($zip_code));
 
     if(!empty($bank_free_shipping) && $payment_method == 'bank') {
-      CakeLog::write('debug', 'cart(bank_free_shipping)');
+      #CakeLog::write('debug', 'cart(bank_free_shipping)');
       return true;
     }
 
@@ -348,8 +348,8 @@ class CartComponent extends Component {
   }
 
   public function deliveryCost($cp, $code = null, $total = 0, $payment_method = 'bank'){
-    CakeLog::write('debug','deliveryCost(cp):'.$cp);
-    CakeLog::write('debug','deliveryCost(code):'.$code);
+    #CakeLog::write('debug','deliveryCost(cp):'.$cp);
+    #CakeLog::write('debug','deliveryCost(code):'.$code);
     // $this->loadModel('LogisticsPrices');
     //Codigo Postal
     $this->controller->Session->write('cp', $cp);
@@ -368,7 +368,7 @@ class CartComponent extends Component {
       $unit_price = @$data['discount'];
     }
 
-    CakeLog::write('debug','deliveryCosy(isFreeShipping):'.json_encode(array($cart_totals['total_products'], $payment_method, $cp)));
+    #CakeLog::write('debug','deliveryCosy(isFreeShipping):'.json_encode(array($cart_totals['total_products'], $payment_method, $cp)));
 
     $free_shipping = $this->isFreeShipping($cart_totals['total_products'], $payment_method, $cp);
 
@@ -420,7 +420,7 @@ class CartComponent extends Component {
           ];
           $json['rates'][] = $row;
         } else {
-          CakeLog::write('debug', 'deliveryCost(a)');
+          #CakeLog::write('debug', 'deliveryCost(a)');
           if (method_exists($this, "calculate_shipping_{$code}")) {
             $calc_price = $this->{"calculate_shipping_{$code}"}($data, $cp, $unit_price);
             $row = [
@@ -620,7 +620,7 @@ class CartComponent extends Component {
     // $centros = $this->checkOcaCP($cp);
     //Price
     $price = !empty($response[0]['Precio']) ? (int) $response[0]['Precio'] : 0;
-    CakeLog::write('debug', 'oca(price)'.$price.':'.gettype($price));
+    #CakeLog::write('debug', 'oca(price)'.$price.':'.gettype($price));
     return $price;
   }
   private function checkOcaCP($cp){
