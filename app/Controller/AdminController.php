@@ -1741,30 +1741,20 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function whatsapp(){
 	  $this->loadModel('Setting');
+
 		if($this->request->is('post')){
 			$data = $this->request->data;
-			$promo = $data['Promo'];
-
-			unset($data['Promo']);
       foreach($data as $id => $value) {
+      	CakeLog::w//rite('debug', json_encode(array($id => $value)));
         $this->Setting->save(['id' => $id, 'value' => $value]);
       }
-
-			if(!empty($promo['image']['name'])){
-				$file = $this->save_file( $promo['image'] );
-				$this->Promo->save(array(
-					'id' => null,
-					'image' => $file,
-				));
-			}
+      return $this->redirect(array( 'action' => 'whatsapp' ));
 		}
 		$h1 = array(
 			'name' => 'WhatsApp',
 			'icon' => 'fa fa-whatsapp'
 			);
 		$this->set('h1', $h1);
-
-		$items = $this->Promo->find('all');
 		$this->set('items',$items);
 	}
 
@@ -3152,6 +3142,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	      );
 				return $this->redirect(array('controller' => 'admin', 'action' => 'login'));
 			}
+
+			//CakeLog::write('debug', json_encode($user));
 
 			if ($this->Auth->login()) {
 	      $this->Session->setFlash(
