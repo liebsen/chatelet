@@ -696,10 +696,17 @@ class ShopController extends AppController {
 				// 'limit' => $s,
 				// 'offset' => $s * $p
 			]);
-			$results2 = $this->Product->find('all',[
-				'conditions' => [
-					'or' => $ors,
-					'visible' => 1,
+      $pids = array();
+      foreach($results1 as $item) {
+        array_push($pids, $item['Product']['id']);
+      }
+      $results2 = $this->Product->find('all',[
+        'conditions' => [
+          'or' => $ors,
+          'and' => array(
+            'Product.id NOT IN' => $pids,
+          ),
+          'visible' => 1,
 					'stock_total > ' => 0
 				],
 				// 'order' => ['Product.promo DESC'],
