@@ -314,11 +314,11 @@ class CarritoController extends AppController
 			$partial_bonus = $discount;
 			foreach($cart as $item) {
 				$price = (float) $item["old_price"];
-				CakeLog::write('debug', 'price(1):'.$price);
+				CakeLog::write('debug', 'carrito(price):'.$price);
 
 				if($payment_method === 'mercadopago' && !empty($item['mp_discount']) && !empty((float)(@$item['mp_discount']))) {
 	        $price = @ceil(round($price * (1 - (float) $item['mp_discount'] / 100)));
-	        CakeLog::write('debug', 'price(2):'.$price);
+	        CakeLog::write('debug', 'carrito(price):'.$price);
 	      }
 
 				if($payment_method === 'bank' && !empty($item['bank_discount']) && !empty((float)(@$item['bank_discount']))) {
