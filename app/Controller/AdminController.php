@@ -1745,7 +1745,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		if($this->request->is('post')){
 			$data = $this->request->data;
       foreach($data as $id => $value) {
-      	CakeLog::w//rite('debug', json_encode(array($id => $value)));
+      	//CakeLog::write('debug', json_encode(array($id => $value)));
         $this->Setting->save(['id' => $id, 'value' => $value]);
       }
       return $this->redirect(array( 'action' => 'whatsapp' ));
