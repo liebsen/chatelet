@@ -681,16 +681,34 @@ class ShopController extends AppController {
 
 		// CakeLog::write('debug', 'ors: "'.json_encode($ors, JSON_PRETTY_PRINT));
 		if(!empty($q) && strlen($q) > 2) {
-			$results = $this->Product->find('all',[
+			$results1 = $this->Product->find('all',[
+				'conditions' => [
+					'or' => [
+						'Product.name LIKE' => "%$q%",
+						'Product.desc LIKE' => "%$q%",
+						'Product.promo LIKE' => "%$q%"
+					],
+					'visible' => 1,
+					'stock_total > ' => 0
+				],
+				// 'order' => ['Product.promo DESC'],
+				'order' => ["LOCATE('".$q."', Product.name)"],
+				// 'limit' => $s,
+				// 'offset' => $s * $p
+			]);
+			$results2 = $this->Product->find('all',[
 				'conditions' => [
 					'or' => $ors,
 					'visible' => 1,
 					'stock_total > ' => 0
 				],
-				'order' => ['Product.promo DESC'],
+				// 'order' => ['Product.promo DESC'],
+				'order' => ["LOCATE('".$q."', Product.name)"],
 				// 'limit' => $s,
 				// 'offset' => $s * $p
 			]);
+
+			$results = array_merge($results1, $results2);
 
 			foreach ($results as &$item) {
 				if (isset($item['Product']['discount']) && $item['Product']['discount']) {
