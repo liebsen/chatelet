@@ -98,8 +98,8 @@ echo $this->Session->flash();
                 <h3 class="text-center mt-0">
                     <span class="text-uppercase">Administrador</span>
                 </h3>
+                <p class="notification text-theme">Ingresa tus credenciales para continuar</p>
                 <div class="tab-content is-rounded bg-translucid">
-                    <p class="text-theme">Ingresa tus credenciales para continuar</p>
                     <div class="tab-pane pane-index active" id="login-form-tab">
                         <!-- Login Form -->
                         <?php echo $this->Form->create('User', array(
@@ -118,9 +118,11 @@ echo $this->Session->flash();
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <div class="input-group p-0 position-relative">
-                                        <span class="input-group-addon"><i class="fa fa-asterisk fa-fw"></i></span>
-                                        <input type="password" id="login-password" name="data[User][password]" class="form-control" placeholder="Tu contraseña" required>
+                                    <div class="position-relative">
+                                        <div class="input-group p-0">
+                                            <span class="input-group-addon"><i class="fa fa-asterisk fa-fw"></i></span>
+                                            <input type="password" id="login-password" name="data[User][password]" class="form-control" placeholder="Tu contraseña" required>
+                                        </div>
                                         <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#login-password"></i>
                                     </div>
                                     <div class="input-group">
@@ -348,6 +350,7 @@ body.login .form-group {
                 url = me.attr('action');
                 $.post(url, data)
                   .success(function(res) {
+                    console.log('res',res)
                     if (!res.success) {
                       $.growl.error({
                           title: 'Error al iniciar sesión',

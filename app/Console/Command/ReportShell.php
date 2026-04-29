@@ -74,7 +74,7 @@ class ReportShell extends AppShell {
     }
 
     $admins = $this->User->find('all', array('conditions' => array(
-      'role' => 'admin'
+      'role in' => array('admin', 'sadmin')
     )));
 
     foreach($admins as $admin) {

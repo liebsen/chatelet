@@ -679,7 +679,7 @@ class ShopController extends AppController {
 		$q = $this->request->query['q'];
 		$p = $this->request->query['p'] ? intval($this->request->data['p']) : 0;
 		$s = $this->request->query['s'] ? intval($this->request->data['s']) : 10;
-		CakeLog::write('debug', 'search: "'.$q.'"');
+		\d("search", $q);
 		//$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
 		$ors = array();
 		$q = trim($q);
@@ -711,8 +711,8 @@ class ShopController extends AppController {
 						'Product.desc LIKE' => "%$q%",
 						'Product.promo LIKE' => "%$q%"
 					],
-					'visible' => 1,
-					'stock_total > ' => 0
+					'Product.visible' => 1,
+					'Product.stock_total > ' => 0
 				],
 				// 'order' => ['Product.promo DESC'],
 				'order' => ["LOCATE('".$q."', Product.name)"],
@@ -744,15 +744,18 @@ class ShopController extends AppController {
 			foreach($results1 as $item) {
 				array_push($pids, $item['Product']['id']);
 			}
+			$conditions = [
+				'or' => $ors,
+				'Product.visible' => 1,
+				'Product.stock_total > ' => 0
+			];
+			if(count($pids)){
+				$conditions['and'] = array(
+					'Product.id NOT IN' => $pids,
+				);
+			}
 			$results2 = $this->Product->find('all',[
-				'conditions' => [
-					'or' => $ors,
-					'and' => array(
-						'Product.id NOT IN' => $pids,
-					),
-					'visible' => 1,
-					'stock_total > ' => 0
-				],
+				'conditions' => $conditions,
 				// 'order' => ['Product.promo DESC'],
 				'order' => ["LOCATE('".$q."', Product.name)"],
 				// 'limit' => $s,

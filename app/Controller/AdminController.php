@@ -26,34 +26,34 @@ class AdminController extends AppController {
 	);
 
 	public function beforeFilter() {
-    	parent::beforeFilter();
+  	parent::beforeFilter();
 
-    	$this->Auth->deny();
-    	$this->Auth->allow('login','test','update_products');
-    	// Template variables
+  	$this->Auth->deny();
+  	$this->Auth->allow('login','test','update_products');
+  	// Template variables
 		$template = array(
-		    'name'          => 'Châtelet',
-		    'version'       => \version_readable(Configure::read('APP_VERSION')),
-		    'author'        => 'Infinixsoft <desarrollo@infinixsoft.com>',
-		    'title'         => 'Admin panel - Châtelet',
-		    'description'   => '',
-		    // 'fixed-top'         for a top fixed header
-		    // 'fixed-bottom'      for a bottom fixed header
-		    // ''                  empty for a static header
-		    'header'        => '',
-		    // 'sticky'            for a sticky sidebar
-		    'sidebar'       => '',
-		    // 'hide-side-content' for hiding sidebar by default
-		    'side_content'  => '',
-		    // 'full-width'        for full width page
-		    // ''                  empty to remove full width from the page in large resolutions
-		    'page'          => 'full-width',
-		    // Available themes: 'fire', 'wood', 'ocean', 'leaf', 'tulip', 'amethyst',
-		    //                   'dawn', 'city', 'oil', 'deepsea', 'stone', 'grass',
-		    //                   'army', 'autumn', 'night', 'diamond', 'cherry', 'sun'
-		    //                   'asphalt'
-		    'theme'         => '',
-        'active_page'   => $this->request->params['action']
+	    'name'          => 'Châtelet',
+	    'version'       => \version_readable(Configure::read('APP_VERSION')),
+	    'author'        => 'Infinixsoft <desarrollo@infinixsoft.com>',
+	    'title'         => 'Admin panel - Châtelet',
+	    'description'   => '',
+	    // 'fixed-top'         for a top fixed header
+	    // 'fixed-bottom'      for a bottom fixed header
+	    // ''                  empty for a static header
+	    'header'        => '',
+	    // 'sticky'            for a sticky sidebar
+	    'sidebar'       => '',
+	    // 'hide-side-content' for hiding sidebar by default
+	    'side_content'  => '',
+	    // 'full-width'        for full width page
+	    // ''                  empty to remove full width from the page in large resolutions
+	    'page'          => 'full-width',
+	    // Available themes: 'fire', 'wood', 'ocean', 'leaf', 'tulip', 'amethyst',
+	    //                   'dawn', 'city', 'oil', 'deepsea', 'stone', 'grass',
+	    //                   'army', 'autumn', 'night', 'diamond', 'cherry', 'sun'
+	    //                   'asphalt'
+	    'theme'         => '',
+      'active_page'   => $this->request->params['action']
 		);
 
 		$this->set('template', $template);
@@ -1246,7 +1246,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function isAuthorized() {
     // If we're trying to access the admin view, verify permission:
-    if ('admin' === $this->Auth->user('role')) return true;  // User is admin, allow
+    if (in_array($this->Auth->user('role'), array('admin', 'sadmin'))) return true;  // User is admin, allow
     return false;                                // User isn't admin, deny
 	}
 	
@@ -2683,6 +2683,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $s = $this->request->data['s'] ? intval($this->request->data['s']) : 500;
 
     $roles = array(
+    	'sadmin',
     	'admin', 
     	'club'
     );
@@ -3935,16 +3936,24 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			// check if exists 
 			$data = $this->request->data;
 			$email = $data['User']['email'];
-			$user = $this->User->find('first', array('conditions' => array('email' => trim($email))));
+			$user = $this->User->find('first', 
+				array(
+					'conditions' => array(
+						'email' => trim($email),
+						'role like' => "%admin"
+					)
+				)
+			);
 
-			if (empty($user)) {
+			if(empty($user)) {
 				if(!empty($ajax)) {
-		      return json_encode(array(
-		        'success' => false, 
-		        'errors' => 'Tu email no está registrado en nuestra tienda'
-		      ));				
+		      return json_encode(
+		      	array(
+			        'success' => false, 
+			        'errors' => 'Tu email no está registrado en nuestra tienda'
+			      )
+		      );
 		    }
-
 
 	      /*$this->Session->setFlash(
           'Tu email no está registrado en nuestra tienda',
@@ -3970,28 +3979,44 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
             'user_id' => $this->Auth->user('id'),
           )
         );
+
         if(!empty($ajax)) {
           return json_encode(array(
             'success' => true, 
             'message' => "Bienvenida {$user['User']['name']} al Administrador de Châtelet"
           ));
         }
-				return $this->redirect(array('controller' => 'admin', 'action' => 'index'));
+
+				return $this->redirect(
+					array(
+						'controller' => 'admin', 
+						'action' => 'index'
+					)
+				);
 			} else {
 				if(!empty($ajax)) {
-		      return json_encode(array(
-		        'success' => false, 
-		        'errors' => 'La contraseña es inválida'
-		      ));				
+		      return json_encode(
+		      	array(
+			        'success' => false, 
+			        'errors' => 'La contraseña es inválida'
+			      )
+		      );
 		    }	      
 
 	      $this->Session->setFlash(
           'La contraseña es inválida',
           'default',
-          array('class' => 'hidden error')
+          array(
+          	'class' => 'hidden error'
+          )
 	      );
 
-				return $this->redirect(array('controller' => 'admin', 'action' => 'login'));
+				return $this->redirect(
+					array(
+						'controller' => 'admin', 
+						'action' => 'login'
+					)
+				);
 			}
 		}
 	}

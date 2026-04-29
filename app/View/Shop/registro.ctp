@@ -36,7 +36,7 @@ if (!$loggedIn) {
 }
 ?>
 <section id="detalle" class="is-flex-center flex-column min-h-101">
-  	<div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 m-auto max-30">
+  	<div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 m-auto">
 		<div class="flex-row animation-fadeIn">
 			<div class="flex-col">
 				<?php 
@@ -52,7 +52,7 @@ if (!$loggedIn) {
 				?>
 				<input type="hidden" name="redirect" value="<?= $_GET['redirect'] ?? '' ?>" />
 				<input type="hidden" name="ajax" value="1" />
-				<div class="d-flex flex-column justify-content-start align-items-center gap-1 content">
+				<div class="d-flex flex-column justify-content-start align-items-center gap-1 content text-white">
 					<div class="row w-100">
 						<div class="col-md-12">
 							<h3 class="text-uppercase mt-0">
@@ -65,7 +65,7 @@ if (!$loggedIn) {
 					</div>
 					<div class="row cols-fix w-100 animation-fadeIn">
 						<div class="col-md-6">
-							<label for="nombre">Nombre</label>
+							<label class="text-white" for="nombre">Nombre</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" class="form-control" placeholder="Patricia" title="Nombre" name="data[User][name]" value="'. $userData['name'] .'" required />';
@@ -73,7 +73,7 @@ if (!$loggedIn) {
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="apellido">Apellido</label>
+							<label class="text-white" for="apellido">Apellido</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" class="form-control" placeholder="Rodríguez" title="Apellidos" name="data[User][surname]" value="'. $userData['surname'] .'" required />';
@@ -81,7 +81,7 @@ if (!$loggedIn) {
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="email">Email</label>
+							<label class="text-white" for="email">Email</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="email" id="email" class="form-control" placeholder="patriciarodriguez@gmail.com" title="Email" name="data[User][email]" value="'. $userData['email'] .'" required />';
@@ -90,7 +90,7 @@ if (!$loggedIn) {
 							<span class="validation-email"></span>
 						</div>
 						<div class="col-md-6">
-							<label for="Telefono">Teléfono</label>			
+							<label class="text-white" for="Telefono">Teléfono</label>			
 							<div class="form-group">
 								<?php
 									echo '<input type="tel" class="form-control" id="Telefono" title="Telefono" placeholder="011 4703 8888" name="data[User][telephone]" value="'. $userData['telephone'] .'" required />';
@@ -100,7 +100,7 @@ if (!$loggedIn) {
 						</div>
 				<?php if($loggedIn):?>
 						<div class="col-md-6">
-							<label for="FechaNac">Tu fecha de nacimiento</label>
+							<label class="text-white" for="FechaNac">Tu fecha de nacimiento</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" class="datepicker form-control" id="birthday" placeholder="10/10/1980" title="Fecha de Nacimiento" name="data[User][birthday]" value="'. 
@@ -110,7 +110,7 @@ if (!$loggedIn) {
 							</div>
 						</div>
 						<div class="col-md-6">								
-							<label for="Sexo">Tu género</label>
+							<label class="text-white" for="Sexo">Tu género</label>
 							<div class="form-group">
 								<select class="selectpicker form-control" id="Sexo" title="Sexo" name="data[User][gender]" required>
 									<option value="">Selecione sexo</option>
@@ -120,7 +120,7 @@ if (!$loggedIn) {
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="DNI">DNI</label>
+							<label class="text-white" for="DNI">DNI</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" class="form-control" id="DNI" title="DNI" placeholder="25222555" name="data[User][dni]" value="'. $userData['dni'] .'" required />';
@@ -128,7 +128,7 @@ if (!$loggedIn) {
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="codigo-postal">Código Postal</label>
+							<label class="text-white" for="codigo-postal">Código Postal</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" id="codigo-postal" placeholder="1430" class="form-control" name="data[User][postal_address]" value="'. $userData['postal_address'] .'" />';
@@ -137,7 +137,7 @@ if (!$loggedIn) {
 
 						</div>
 						<div class="col-md-6">
-							<label for="TelefonoAlt">Teléfono Alt.</label>
+							<label class="text-white" for="TelefonoAlt">Teléfono Alt.</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="tel" class="form-control" id="TelefonoAlt" placeholder="011 4703 8888" title="Teléfono Alt." name="data[User][another_telephone]" value="'. $userData['another_telephone'] .'" />';
@@ -145,32 +145,32 @@ if (!$loggedIn) {
 							</div>
 						</div>				
 						<div class="col-md-6">
-							<label for="Calle">Calle</label>
+							<label class="text-white" for="Calle">Calle</label>
 							<div class="form-group">
 								<input style="" type="text" class="form-control" id="Calle" title="Calle" name="data[User][street]" value="<?= $userData['street'] ?>" placeholder="San Martín" />
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="Nro">Nro.</label>
+							<label class="text-white" for="Nro">Nro.</label>
 							<div class="form-group">
 								<input min="0" class="form-control" placeholder="Nro." id="Nro" title="5500" name="data[User][street_n]" type="number" value="<?= $userData['street_n'] ?>"/>
 							</div>
 						</div>	
 						<div class="col-md-6">
-							<label for="Piso">Piso</label>
+							<label class="text-white" for="Piso">Piso</label>
 							<div class="form-group">
 								<input style="" min="0" id="floor" class="form-control" id="Piso" title="1" placeholder="Piso" name="data[User][floor]" type="number" value="<?= $userData['floor'] ?>"/>
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="Depto">Depto.</label>
+							<label class="text-white" for="Depto">Depto.</label>
 							<div class="form-group">
 								<input class="form-control" placeholder="Departamento" id="Depto" title="B" name="data[User][depto]" type="text" value="<?= $userData['depto'] ?>"/>
 							</div>
 						</div>
 
 						<div class="col-md-6">
-							<label for="province">Provincia</label>
+							<label class="text-white" for="province">Provincia</label>
 							<div class="form-group">
 								<select class="selectpicker form-control" id="province" title="province" name="data[User][province]">
 									<?php
@@ -208,7 +208,7 @@ if (!$loggedIn) {
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="ciudad">Ciudad</label>
+							<label class="text-white" for="ciudad">Ciudad</label>
 							<div class="form-group">
 								<?php
 									echo '<input type="text" id="ciudad" class="form-control" placeholder="Morón" name="data[User][city]" value="'. $userData['city'] .'" />';
@@ -216,7 +216,7 @@ if (!$loggedIn) {
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="barrio">Barrio</label>
+							<label class="text-white" for="barrio">Barrio</label>
 							<div class="form-group">
 								<?php
 									 echo '<input type="text" id="barrio" class="form-control" placeholder="Barrio" name="data[User][neighborhood]" value="'. $userData['neighborhood'] .'" />';
@@ -225,7 +225,7 @@ if (!$loggedIn) {
 						</div>
 					<?php else : ?>
 						<div class="col-md-6">
-							<label for="password">Contraseña</label>
+							<label class="text-white" for="password">Contraseña</label>
 							<div class="form-group position-relative">
 								<input type="password" placeholder="********" class="form-control" id="password" name="data[User][password]" autocomplete="current-password" />
 								<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#password"></i>
@@ -233,7 +233,7 @@ if (!$loggedIn) {
 							<span class="validation-password"></span>
 						</div>
 						<div class="col-md-6">
-							<label for="password">Confirme Contraseña</label>
+							<label class="text-white" for="password">Confirme Contraseña</label>
 							<div class="form-group position-relative">
 								<input type="password" placeholder="********" class="form-control" id="password2" name="data[User][password2]" autocomplete="current-password" />
 								<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#password2"></i>
@@ -242,17 +242,17 @@ if (!$loggedIn) {
 						</div>
 				<?php endif ?>
 						<div class="col-md-12">
-							<label>Deseo suscribirme al Newsletter</label>
+							<label class="text-white">Deseo suscribirme al Newsletter</label>
 							<div class="form-group">
 								<input type="checkbox" name="data[User][newsletter]" value="1" id="toggle" class="toggle-checkbox"<?= $userData['newsletter'] || empty($userData['newsletter']) == '1' ? ' checked' : '' ?>>
-								<label for="toggle" class="toggle-label"></label>
+								<label class="text-white" for="toggle" class="toggle-label"></label>
 								<?php
 									/*$subscribed = $unsubscribed = '';
 									if ($userData['newsletter'] == '1') $subscribed = 'checked';
 									else if ($userData['newsletter'] == '0') $unsubscribed = 'checked';
 									if($subscribed=='') $subscribed = 'checked';
- 									echo '<label for="si"><input type="radio" id="si" name="data[User][newsletter]" value="1" '.$subscribed.' /><span>Sí</span></label> '; 
-									echo '<label for="no"><input type="radio" id="no" name="data[User][newsletter]" value="0" '.$unsubscribed.' /><span>No</span></label>';*/
+ 									echo '<label class="text-white" for="si"><input type="radio" id="si" name="data[User][newsletter]" value="1" '.$subscribed.' /><span>Sí</span></label> '; 
+									echo '<label class="text-white" for="no"><input type="radio" id="no" name="data[User][newsletter]" value="0" '.$unsubscribed.' /><span>No</span></label>';*/
 								?>
 							</div>
 							<small class="text-muted">Suscríbete hoy a nuestra plataforma y te seleccionaremos para ofertas especiales y eventos exclusivos, por email y a tu teléfono.</small>

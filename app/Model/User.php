@@ -44,7 +44,7 @@ class User extends AppModel {
   }
 
 	public function isAdmin() {
-		return $this->data['role'] === 'admin';
+		return in_array($this->data['role'], array('admin', 'sadmin'));
 	}
 
 /*
