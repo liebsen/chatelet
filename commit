@@ -1,4 +1,5 @@
 cd /var/www/chatelet
+php version.php
 git add .
 git commit -m "autocommit"
 git push

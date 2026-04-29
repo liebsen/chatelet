@@ -2,19 +2,12 @@
   // echo $this->Html->css('cupones-detail', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
+  echo $this->Html->script('relations.js?v=' . $version['ver'], array('inline' => false));
   echo $this->Html->script('cupones-detail', array('inline' => false));
-  $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+  $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
 ?>
-<?php echo $this->element('admin-menu');?>
+<?php echo $this->element('admin/menu');?>
 <div class="block">
-  <div class="block-title">
-    <h4>
-    <?php
-      echo (isset($coupon)) ? __('Editar Cupón ' . $coupon['Coupon']['code']) : __('Agregar Cupón');
-    ?>
-    </h4>
-  </div>
-
   <div class="block-content">
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
       <?php
@@ -22,7 +15,7 @@
           echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
         }
       ?>
-      <div class="custom-tabs block-themed">
+      <div class="custom-tabs block-tabs">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="active text-center">
             <a href="#main">
@@ -40,29 +33,17 @@
             </a>
           </li>
         </ul>
-        <div class="tab-content p-7">
+        <div class="tab-content">
           <div class="tab-pane pane-main active">
             <div class="row">
               <div class="col-md-6">
                 <h4 class="sub-header">Información Principal</h4>
-                <div class="control-group">
+                <div class="form-group">
                   <label class="control-label" for="columns-text"><?php echo __('Visible'); ?></label>
-                  <div class="controls text-center switch-scale">
-                    <?php
-                      $enabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '1') || !isset($coupon) ? 'checked' : '';
-                      $disabled = (isset($coupon) && $coupon['Coupon']['enabled'] === '0') ? 'checked' : '';
-                    ?>
-                    <span>
-                    <input type="radio" class="form-control" id="enabled_1" name="data[enabled]" value="1" <?php echo $enabled; ?> />
-                    <label for="enabled_1">Sí</label>
-                  </span>
-                  <span>
-                    <input type="radio" class="form-control" id="enabled_0" name="data[enabled]" value="0" <?php echo $disabled; ?> />
-                    <label for="enabled_0">No</label>
-                  </span>
-                  </div>
-                  <small class="text-muted">Estado principal de este Cupón</small>
-                </div>        
+                  <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= $coupon['Coupon']['enabled'] == '1' ? ' checked' : '' ?>>
+                  <label for="toggle" class="toggle-label"></label>
+                </div>
+                <hr>
                 <div class="control-group">
                   <label class="control-label" for="columns-text"><?php echo __('Código'); ?></label>
                   <div class="controls">
@@ -126,10 +107,10 @@
                   <div class="controls text-center switch-scale">
                     <?php $selected = isset($coupon) && $coupon['Coupon']['coupon_payment'] ? $coupon['Coupon']['coupon_payment'] : '';?>
                     <span>
-                      <input type="checkbox" class="coupon_payment" name="coupon_payment[]" value="bank" id="coupon_payment_bank" <?= strpos($selected, 'bank') !== false ? ' checked' : '' ?>/> <label for="coupon_payment_bank"> &nbsp;Transferencia</label>
+                      <input type="checkbox" class="form-control coupon_payment" name="coupon_payment[]" value="bank" id="coupon_payment_bank" <?= strpos($selected, 'bank') !== false ? ' checked' : '' ?>/> <label for="coupon_payment_bank"> &nbsp;Transferencia</label>
                     </span>
                     <span>
-                      <input type="checkbox" class="coupon_payment" name="coupon_payment[]" value="mercadopago" id="coupon_payment_mp" <?= strpos($selected, 'mercadopago') !== false ? ' checked' : '' ?>/> <label for="coupon_payment_mp"> &nbsp;Mercadopago</label>
+                      <input type="checkbox" class="form-control coupon_payment" name="coupon_payment[]" value="mercadopago" id="coupon_payment_mp" <?= strpos($selected, 'mercadopago') !== false ? ' checked' : '' ?>/> <label for="coupon_payment_mp"> &nbsp;Mercadopago</label>
                     </span>
                   </div>
                   <small class="text-muted">Seleccioná el método de pago válido para este cupón</small>
@@ -146,7 +127,7 @@
                 <div class="control-group">
                   <label class="control-label" for="columns-text"><?php echo __('Fecha desde'); ?></label>
                   <div class="controls">
-                    <input type="text" class="datepicker form-control" data-date-format="dd/mm/yyyy" id="" name="data[date_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_from'] : ''; ?>">
+                    <input type="text" class="datepicker form-control" id="" name="data[date_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_from'] : ''; ?>">
                   </div>
                   <small class="text-muted">Seleccioná desde qué fecha el cupón debería estar disponible.</small>
                 </div>
@@ -155,7 +136,7 @@
                 <div class="control-group">
                   <label class="control-label" for="columns-text"><?php echo __('Fecha hasta'); ?></label>
                   <div class="controls">
-                    <input type="text" class="datepicker form-control" data-date-format="dd/mm/yyyy" id="" name="data[date_until]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_until'] : ''; ?>">
+                    <input type="text" class="datepicker form-control" id="" name="data[date_until]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_until'] : ''; ?>">
                   </div>
                   <small class="text-muted">Seleccioná hasta qué fecha el cupón debería estar disponible.</small>
                 </div>
@@ -215,9 +196,9 @@
                     <div class="controls">
                       <input type="text" id="categories-filter" class="form-control" placeholder="Buscar"/>
                     </div>
-                    <div style="padding: 0.25rem;">
+                    <div class="category-container" style="padding: 0.25rem;">
                     <?php foreach($categories as $category):?>
-                    <span class="label category-item is-clickable <?php echo $category['Category']['enabled'] ? 'is-enabled': 'hidden' ?>" onclick="toggleOption(this, 'category')" data-coupon="<?php echo $coupon['Coupon']['id'] ?>" data-json='<?php echo json_encode($category['Category']) ?>'><?php echo $category['Category']['name']?></span>
+                    <span class="label category-item relation-item is-clickable <?php echo $category['Category']['enabled'] ? 'is-enabled': 'hidden' ?>" onclick="toggleOption(this, 'category')" data-coupon="<?php echo $coupon['Coupon']['id'] ?>" data-json='<?php echo json_encode($category['Category']) ?>'><?php echo $category['Category']['name']?></span>
                     <?php endforeach ?>
                     </div>
                   </div>
@@ -228,9 +209,9 @@
                     <div class="controls">
                       <input type="text" id="products-filter" class="form-control" placeholder="Buscar"/>
                     </div>
-                    <div style="padding: 0.25rem;">
+                    <div class="product-container" style="padding: 0.25rem;">
                     <?php foreach($products as $product):?>
-                    <span class="label product-item is-clickable <?php echo $product['Product']['enabled'] ? 'is-enabled': 'hidden' ?>" onclick="toggleOption(this, 'product')" data-coupon="<?php echo $coupon['Coupon']['id'] ?>" data-json='<?php echo json_encode($product['Product']) ?>'><?php echo $product['Product']['name']?></span>
+                    <span class="label product-item relation-item is-clickable <?php echo $product['Product']['enabled'] ? 'is-enabled': 'hidden' ?>" onclick="toggleOption(this, 'product')" data-coupon="<?php echo $coupon['Coupon']['id'] ?>" data-json='<?php echo json_encode($product['Product']) ?>'><?php echo $product['Product']['name']?></span>
                     <?php endforeach ?>
                     </div>
                   </div>
@@ -241,8 +222,8 @@
         </div>
       </div>
       <div class="form-actions">
-        <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-close mr-1"></i> Atrás</a>
-        <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+        <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span></a>
+        <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
       </div>
     </form>
   </div>

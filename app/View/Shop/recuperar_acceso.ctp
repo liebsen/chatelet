@@ -1,18 +1,14 @@
 <?php 
 $this->set('short_header', 'Cuenta');
-$this->set('short_header_text', '← Volver a mi cuenta');
+$this->set('short_header_text', '<i class="gi gi-chevron-left mr-1"></i> Volver a mi cuenta');
 $this->set('short_header_link', '/shop/cuenta');
 echo $this->Session->flash();
 ?>
 <section id="detalle" class="is-flex-center min-h-101">
-  <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 animated fadeIn delay">
-  	<div class="d-flex justify-content-center align-items-center gap-1">
-  		<img src="/images/isologo.png" width="30"/> 
-
-			<h2 class="text-uppercase">
-				<?php echo 'Recuperar Contraseña'; ?>
-			</h2>
-		</div>
+  <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 m-auto max-30">
+		<h2 class="text-uppercase">
+			<?php echo 'Recuperar Contraseña'; ?>
+		</h2>
 		<p>
 			Recupera fácilmente el acceso a tu cuenta ingresando el correo con el que creaste tu cuenta en Châtelet.<br> Te enviaremos instrucciones a ese correo.
 		</p>
@@ -37,10 +33,14 @@ echo $this->Session->flash();
 	  		  <i class="fa fa-info-circle mr-1"></i> Recibirás un correo electrónico con tu nueva contraseña
 	    	</span>
 	    </div>
-	    <!--div class="modal-buttons">                
-				<a href="#" id="register" data-toggle="modal" data-dismiss="modal" data-target="#particular-modal">Crear mi cuenta</a>
-	      <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#particular-login">Iniciar sesión</a>
-	    </div-->
+      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4 w-100">
+        <a class="btn btn-chatelet light w-100" href="<?=$this->Html->url(
+						array(
+							'controller' => 'shop',
+							'action' => 'login'
+						)
+					)?>">Iniciar sesión</a>
+      </div>
 	  	<?php echo $this->Form->end(); ?>       
 	  </div>
 	</div>

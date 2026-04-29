@@ -10,7 +10,7 @@
  */
 
 .animated {
-  animation-duration: 1.5s;
+  animation-duration: 0.5s;
   animation-fill-mode: both;
 }
 
@@ -28,6 +28,10 @@
 
 .delay {
   animation-delay: 0.5s;
+}
+
+.delay0 {
+  animation-delay: 0s!important;
 }
 
 .delay1 {
@@ -781,6 +785,7 @@
 
 .fadeOutDown {
   animation-name: fadeOutDown;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes fadeOutDownBig {

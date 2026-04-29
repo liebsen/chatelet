@@ -57,7 +57,7 @@
         <div class="row">
           <div class="col">
             <img class="shop-logo" height="40" src="/img/logo.jpg">
-            <table class="table table-striped">
+            <table class="table table-bordered table-striped">
               <tr>
                 <td width="150"><h6><?php echo __('Órden de retiro'); ?></h6></td>
                 <td><h6 class="text-orden-retiro"><?= strtoupper($ticket['def_orden_retiro']) ?></h6></td>
@@ -111,8 +111,8 @@
             <br />
             <h6>Gracias por su compra.</h6>            
             <div class="form-actions">
-              <button type="reset" class="btn btn-danger" onclick="window.close()"><i class="icon-close"></i> Cerrar</button>
-              <button type="submit" class="btn btn-success" onclick="window.print()"><i class="icon-print"></i> Imprimir</button>
+              <button type="reset" class="btn btn-danger" onclick="window.close()"><i class="icon-close"></i> <span>Cerrar</span></button>
+              <button type="submit" class="btn btn-success" onclick="window.print()"><i class="icon-print"></i> <span>Imprimir</span></button>
             </div>
           </div>
         </div>

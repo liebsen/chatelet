@@ -16,7 +16,7 @@
 <?php endif ?>
 
 <section id="listShop">
-  <?php echo $this->element('shop_list') ?>
+  <?php echo $this->element('shop/list') ?>
 </section>
 
 <section id="infoShop">
@@ -41,4 +41,6 @@
   </div>
 </section>
 
+<?php if(!$loggedIn): ?>
 <?php echo $this->element('subscribe-box') ?>
+<?php endif ?>

@@ -137,7 +137,7 @@ $(function(){
 					bank_bonus = total * (parseFloat(settings.bank_discount) / 100)
 					$('.bank_bonus').text(formatNumber(bank_bonus))
 					$('.bank-block').removeClass('hide')
-					$('.bank-block').addClass('animated fadeIn')
+					$('.bank-block').addClass('animation-fadeIn')
 					select_radio('payment_dues', 1)
 					$('.payment_dues label').not(':first-child').addClass('hide')
 				} else {

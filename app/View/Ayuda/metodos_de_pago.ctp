@@ -1,16 +1,14 @@
 <?php $this->Html->script('ayuda', array('inline' => false)); ?>
+            <?php echo $this->element('navbar-ayuda'); ?>
 
           <div id="headhelp">
-            <?php echo $this->element('navbar-ayuda'); ?>
-            <div class="wrapper container animated fadeIn w-100">
+            <div class="wrapper container animation-fadeIn w-100">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-md-4">
-                        <div class="animated fadeIn delay">
-                            <h1>Formas<br>de pago</h1>
-                        </div>
+                        <h1>Formas<br>de pago</h1>
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <div class="animated fadeIn delay box-cont">
+                        <div class="box-cont">
                             <div class="box img-bg" style="background-image: url('/img/pago.jpg')">
                             </div>
                         </div>
@@ -20,7 +18,7 @@
         </div>
 
         <section id="desarrollo" class="bg-arrow">
-            <div class="wrapper animated fadeIn delay text-center max-25"> 
+            <div class="wrapper text-center max-25"> 
                 <img src="<?php echo Router::url('/',true).'images/tjtas.png'; ?>"><br>
                 <small>Si tu pago es por medio de una transferencia bancaria, mercado pago te facilitará los datos necesarios.</small>
             </div>

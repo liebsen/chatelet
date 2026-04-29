@@ -19,7 +19,7 @@
 
 <?php else : ?>
 
-<div class="wizard-container d-flex flex-column justify-content-center align-items-center is-absolute top-0 animated slideInDown delay2">
+<div class="wizard-container d-flex flex-column justify-content-center align-items-center is-absolute top-0 animation-pullDown animation-both delay2">
 	<span class="navbar-brand wizard-brand"></span>
 	<div class="wizard-progress is-flex-center justify-content-around w-100">
 	<?php foreach($checkout_steps as $i => $step) : ?>
@@ -114,6 +114,10 @@
 	.wizard-progress .wizard-step.current {
 		color: #404040;
 		font-weight: bold;
+	}	
+
+	.wizard-progress .wizard-step.current .wizard-label {
+		font-weight: 800;
 	}
 	.wizard-progress .wizard-step.complete .wizard-label {
 		color: #ccc;
@@ -122,10 +126,6 @@
 		border-color: #ccc;
 		color: white;
 		background-color: #ccc;
-	}
-	.wizard-progress .wizard-step.current .wizard-node {
-		border-color: #404040;
-		color: #404040;
 	}
 
 	/* manages loading states  */

@@ -8,8 +8,8 @@ class EmailConfig {
     // 'port' => 465,
     'port' => 587,
     'timeout' => 30,
-    'username' => 'chateletfacebook@gmail.com',
-    'password' => 'rkvskpfrnixfadyh',
+    'username' => '',
+    'password' => '',
     'charset' => 'utf-8',
     'tls' => true
     // 'log' => true

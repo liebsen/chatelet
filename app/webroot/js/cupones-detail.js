@@ -49,28 +49,10 @@ $(document).ready(function() {
 
 function toggleOption(e, type){
 	let data = JSON.parse(e.getAttribute('data-json'))
-	let ep = $(e).hasClass('is-enabled') ? 'remove' : 'add'
+	let action = $(e).hasClass('is-enabled') ? 'remove' : 'add'
 	data.type = type
-	data.coupon = e.getAttribute('data-coupon')
-	$.post('/admin/coupon_' + ep, $.param(data))
-	  .success(function(res) {
-	  	let result = JSON.parse(res)
-	    if (result.success) {
-	    	console.log('ok')
-	      /*$.growl.notice({
-	        title: 'Exito',
-	        message: 'Se actualizó el cupón exitosamente'
-	      });*/
-	      $(e).removeClass('is-enabled')
-	      if(ep == 'add'){
-	        $(e).addClass('is-enabled')  
-	      }
-	    }
-	  })
-	  .fail(function() {
-	    $.growl.error({
-	      title: 'Ocurrio un error al agregar el producto al carrito',
-	      message: 'Por favor, intente nuevamente'
-	    });
-	  });           
+	data.source = 'coupon'
+	data.model = 'CouponItem'
+	data.parentId = e.getAttribute('data-coupon')
+	setRelation(action, data, e)
 }

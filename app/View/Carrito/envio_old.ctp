@@ -3,10 +3,10 @@
 	echo $this->Session->flash();
 	echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
 	echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
-	echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-	echo $this->Html->script('shipping.js?v=' . Configure::read('APP_VERSION'),array( 'inline' => false ));
-	echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
-	echo $this->Html->script('envio.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
+	echo $this->Html->css('checkout.css?v=' . $version['ver'], array('inline' => false));
+	echo $this->Html->script('shipping.js?v=' . $version['ver'],array( 'inline' => false ));
+	echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));	
+	echo $this->Html->script('envio.js?v=' . $version['ver'], array('inline' => false));	
 	//echo $this->element('cart');
 ?>
 <script>
@@ -31,7 +31,7 @@
 	<hr>
 	<span class="text-sm">❤️ ¡Muchas gracias!</span>
 </div>
-<div id="main" class="container animated fadeIn1">
+<div id="main" class="container animation-fadeIn1">
 	<form role="form" method="post" id="envio_form" autocomplete="off" onkeydown="return event.key != 'Enter';" action="<?php echo $this->Html->url(array(
 				'controller' => 'carrito',
 				'action' => 'sale'
@@ -122,14 +122,14 @@
 						          	</p>
 						          </span>
 						        </div>
-										<div class="col-xs-12 option-regular coupon-discount hidden animated speed">
+										<div class="col-xs-12 option-regular coupon-discount hiddenspeed">
 						          <label class="d-inline text-theme">
 						          	<span class="h4">Descuento Cupón</span><br>
 						          	<p class="mt-2 text-bold text-left h2 mb-0">
 						          		<span class="coupon_bonus"></span>
 						          	</p>
 						          </label>
-											<div class="coupon-info alert mt-4 mb-0 alert-success animated hidden">
+											<div class="coupon-info alert mt-4 mb-0 alert-successhidden">
 												<p>
 													<i class="fa fa-tags"></i>
 													<span class="coupon-info-info"></span>
@@ -281,7 +281,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="button-group-fixed-bottom animated slideInUp delay2">
+		<div class="button-group-fixed-bottom animation-pullUp animation-both delay2">
 			<div class="d-flex justify-content-center align-items-center gap-1 text-center option-regular pb-0">
 				<span class="text-theme h4 m-0">Total a pagar <span class="calc_total"></span></span>
 			</div>

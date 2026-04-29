@@ -52,7 +52,7 @@ class CheckoutController extends AppController
 		),
 	);
 
-	public $components = array('Cart', 'RequestHandler');
+	public $components = array('Cart', 'Mailchimp', 'RequestHandler');
 
 	public function beforeFilter()
 	{
@@ -73,6 +73,10 @@ class CheckoutController extends AppController
 
 	public function index() {}
 
+	public function subscribe() {
+	}
+
+	
 	public function envio() {
 		if(empty($this->Session->read('cart_totals'))) {
 			$this->redirect(array( 'controller' => 'carrito', 'action' => 'index' ));
@@ -166,7 +170,9 @@ class CheckoutController extends AppController
 			// CakeLog::write('debug', 'envio(cart_totals)'.json_encode($cart_totals));
 			
 			$this->Cart->update(null, $cart_totals);
-
+			if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_store_on'] == '1') {
+				$this->Mailchimp->cart_update($this->settings['mc_store'],null, $cart_totals);
+			}
       return json_encode($response);
 		}
 
@@ -259,6 +265,7 @@ class CheckoutController extends AppController
 
 		$cart_totals['payment_method'] = $payment_method;		
 		$cart = $this->Cart->update(null, $cart_totals);
+		// $this->Mailchimp->cart_update("chatelet",null, $cart_totals);
 		// CakeLog::write('debug','cart(3):'.json_encode($cart), JSON_PRETTY_PRINT);
 		$cart['status'] = 'success';
 
@@ -432,6 +439,8 @@ class CheckoutController extends AppController
 					'surname' => $customer['surname'],
 					'dni' => $customer['dni'],
 					'telephone' => $customer['telephone'],
+					'address' => $customer['address'],
+					'postal_address' => $customer['postal_address'],
 					'province' => $customer['province'],
 					'city' => $customer['city'],
 					'street' => $customer['street'],
@@ -662,6 +671,7 @@ class CheckoutController extends AppController
 			}
 
 			$items[] = array(
+				'id' => $producto['id'],
 				'title' => $producto['name'],
 				'description' => $producto['desc'],
 				'quantity' => 1,
@@ -855,10 +865,25 @@ class CheckoutController extends AppController
 
 		//MP
 		// $mp = new MP(Configure::read('mercadopago_client_id'), Configure::read('mercadopago_client_secret'));
-		
+		// check simulation
+
+		if(!empty($this->request->data['simulate'])) {
+			$redirect = '/checkout/mp_fail?status=pending&collection_status=pending&preference_id=161684025-45653d36-57d8-4f70-b166-896d2d8886b5&site_id=MLA&external_reference='.$sale_id.'&collection_id=142159856356&payment_id=142159856356&payment_type=credit_card&processing_mode=aggregator&merchant_order_id=37304657565';
+
+			if(!empty($this->request->data['simulate_success'])) {
+				$redirect = '/checkout/mp_success?status=approved&collection_status=approved&preference_id=161684025-45653d36-57d8-4f70-b166-896d2d8886b5&site_id=MLA&external_reference='.$sale_id.'&collection_id=142159856356&payment_id=142159856356&payment_type=credit_card&processing_mode=aggregator&merchant_order_id=37304657565';
+			}
+
+			return array(
+				'success' => true,
+				'message' => 'Espera mientras te redirigimos...',
+				'redirect' => $redirect
+			);
+		}
+
 		$mp = new MP($settings['mercadopago_client_id'], $settings['mercadopago_client_secret']);
-		$success_url = Router::url(array('controller' => 'checkout', 'action' => 'clear'), true);
-		$failure_url = Router::url(array('controller' => 'checkout', 'action' => 'failed'), true);
+		$success_url = Router::url(array('controller' => 'checkout', 'action' => 'mp_success'), true);
+		$failure_url = Router::url(array('controller' => 'checkout', 'action' => 'mp_fail'), true);
 
 		$preference_data = array(
 			'external_reference' => $sale_id,
@@ -880,7 +905,7 @@ class CheckoutController extends AppController
 		CakeLog::write('debug', 'sale(preference):'.json_encode($preference_data));
 		$preference = $mp->create_preference($preference_data);
 		//Save Data
-		$sale_data = array(
+		/*$sale_data = array(
 			'user' => array(
 				'name' => $customer['name'],
 				'email' => $customer['email']
@@ -893,7 +918,8 @@ class CheckoutController extends AppController
 			'total' => $total
 		);
 
-		$this->Session->write('sale_data',$sale_data);
+		$this->Session->write('sale_data',$sale_data);*/
+
 		$redirect = "";
 
 		// $redirect = "/shop/mis_compras/{$sale_id}";
@@ -918,86 +944,116 @@ class CheckoutController extends AppController
 	}
 
 	private function notify_user($data, $status){
-		if ($status=='success'){
+		$message = \parse_template($this->settings["notification_sale_{$status}_text"], 
+			array(
+				'name' => $data['nombre'],
+				'surname' => $data['apellido'],
+				'email' => $data['email'],
+				'telephone' => $data['telefono'],
+				'dni' => $data['dni'],
+				'sale_total' => \price_format($data['value']),
+				'sale_id' => \price_format($data['id']),
+			)
+		);
 
-$message = '<p>¡Hola <strong>'.ucfirst($data['user']['name']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHÂTELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
-
-<p>Te enviaremos el pedido cuando recibamos la confirmación de la
-venta por parte del medio de pago elegido.</p>
-
-<p>Tu compra será procesada dentro de las 72hs de haberse acreditado
-el pago.</p>
-
-<p>Ante cualquier consulta no dudes en contactarnos a través de VENTASONLINE@OUTLOOK.COM.AR, indicándonos número de pedido.</p>
-
-<p>¡Muchas gracias!</p>
-
-<br/><a href="https://www.chatelet.com.ar">CHÂTELET</a>';
-
-		}else{
-
-$message = '<p>¡Hola <strong>'.ucfirst($data['user']['name']).'</strong>!<br> Estás recibiendo este e-mail porque realizaste una compra en CHÂTELET.<br/><br/>Tu n&uacute;mero de Pedido es: <strong>'.$data['sale_id'].'</strong>.</p>
-
-<p>Te enviaremos el pedido cuando recibamos la confirmación de la
-venta por parte del medio de pago elegido.</p>
-
-<p>Tu compra será procesada dentro de las 72hs de haberse acreditado
-el pago.</p>
-
-<p>Ante cualquier consulta no dudes en contactarnos a través de VENTASONLINE@OUTLOOK.COM.AR, indicándonos número de pedido.</p>
-
-<p>¡Muchas gracias!</p>
-
-<br/><a href="https://www.chatelet.com.ar">CHÂTELET</a>';
-
-		}
-		error_log('[email] notifying user '.$data['user']['email']);
-		$this->sendEmailMessage($message,'🌸 Gracias por comprar en CHÂTELET',$data['user']['email']);
+		error_log('[email] notifying user '.$data['email']);
+		
+		$this->sendEmailMessage(
+			$message,
+			$this->settings["{$status}_title"],
+			$data['email']
+		);
 	}
 
-	public function failed() {
-			$data = $this->Session->read('sale_data');
-			// error_log('Failed payment: '.json_encode($data));
-			// CakeLog::write('debug', 'Failed payment');
-			$this->Session->delete('cart');
-			$this->Session->delete('sale_data');
-			$this->set('sale_data',$data);
-			$this->set('failed', true);
-			if (!empty($_GET['collection_status']) && $_GET['collection_status']=='pending'){
-				// error_log('pending');
-				// CakeLog::write('debug', 'Failed payment: pending');
-				$this->notify_user($data, 'pending');
-				return $this->render('clear');
-			}else{
-				// CakeLog::write('debug', 'Failed payment: failed');
-				// error_log('failed');
-				return $this->render('clear_no');
+	public function mp_success() { //success
+		// /checkout/mp_success?status=approved&collection_status=approved&preference_id=161684025-45653d36-57d8-4f70-b166-896d2d8886b5&site_id=MLA&external_reference=16757&collection_id=142159856356&payment_id=142159856356&payment_type=credit_card&processing_mode=aggregator&merchant_order_id=37304657565
+
+		$status = $this->request->query('status') ?? '';
+		$sale_id = $this->request->query('external_reference') ?? 0;
+
+		$this->loadModel('Sale');
+		$this->loadModel('SaleProduct');
+
+		if($status == 'approved') {
+	  	$data = $this->SaleProduct->find('all',[
+		    'joins' => [
+	        [
+	          'table' => 'sales',
+	          'alias' => 'Sale',
+	          'type' => 'LEFT',
+	          'conditions' => [ 'Sale.id = SaleProduct.sale_id' ]
+	        ]
+		    ],
+		  	'fields' => ['Sale.id, Sale.value, Sale.nombre, Sale.apellido, Sale.email, SaleProduct.*'],
+	      'conditions' => [
+	        'SaleProduct.sale_id' => $sale_id,
+	      ],     
+	      'order' => ['SaleProduct.id DESC'],
+	      'limit' => 1000,
+	    ]);
+
+	    if(!empty($data[0])){
+				$sale = $data[0]['Sale'];
+				$sale_items = [];
+				$cart_totals = $this->Session->read('cart_totals');
+
+				foreach($data as $item) {
+					$sale_items[] = array(
+						'id' => $item['SaleProduct']['product_id'],
+						'name' => $item['SaleProduct']['name']
+					);
+				}
+
+				$sale_object = array(
+					'id' 		=> $sale_id,
+					'completed' => 1
+				);
+
+				// CakeLog::write('debug', 'sale(4)'.json_encode($sale_object));			
+				$this->Sale->save($sale_object);
+				
+				//$this->set('sale',$sale);
+				//$this->set('sale_items',$sale_items);
+
+				$this->notify_user($sale, 'notification_sale_success');
+
+				if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_store_on'] == '1') {
+					$this->Mailchimp->delete_cart($this->settings['mc_store'], $cart_totals['cart_id']);
+					$this->Mailchimp->order($this->settings['mc_store'], $sale_id, $sale['value'], $sale_items);
+				}
+				
+				$this->Session->delete('cart');
+				$this->Session->delete('cart_totals');
+
+				return $this->render('mp_success');
+	    }
+		}
+
+		return $this->mp_fail();
+	}
+
+	public function mp_fail() {
+
+		$collection_status  =$this->request->query('collection_status') ?? '';
+		$sale_id  =$this->request->query('external_reference') ?? 0;
+
+		$this->loadModel('Sale');
+
+		if($collection_status == 'pending') {
+
+	  	$data = $this->Sale->find('first', 
+	  		array(
+		      'conditions' => array(
+		        'Sale.id' => $sale_id,
+		      ),
+		    )
+	  	);
+
+	    if(!empty($data)){
+				$this->notify_user($data['Sale'], 'notification_sale_pending');
 			}
-	}
-
-	public function clear() { //success
-		// error_log('success payment: '.json_encode($this->Session->read('sale_data')));
-		// CakeLog::write('debug', 'Success payment:'.json_encode($this->Session->read('sale_data')));
-		if( $this->Session->check( 'sale_data' ) ){
-			$sale_data = $this->Session->read('sale_data');
-			$sale_object = array(
-				'id' 		=> $sale_data['sale_id'],
-				'completed' => 1
-			);
-			// CakeLog::write('debug', 'sale(4)'.json_encode($to_save));			
-			$this->Sale->save($sale_object);
-			$this->set('sale_data',$this->Session->read('sale_data'));
-			$this->notify_user($this->Session->read('sale_data'), 'success');
-			$this->Session->delete('cart');
-			$this->Session->delete('sale_data');
-			return $this->render('clear');
-			//error_log('success');
-		}else{
-			error_log('no sale data');
-			$this->Session->delete('cart');
-			$this->Session->delete('sale_data');
-			return $this->render('clear_no');
-			//return $this->redirect(array('controller' => 'home', 'action' => 'index'));
 		}
+		
+		return $this->render('mp_fail');
 	}
 }

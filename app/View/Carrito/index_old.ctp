@@ -1,8 +1,8 @@
 <?php
 	echo $this->Session->flash();
-	echo $this->Html->css('carrito.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-	echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-	echo $this->Html->script('carrito.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+	echo $this->Html->css('carrito.css?v=' . $version['ver'], array('inline' => false));
+	echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));
+	echo $this->Html->script('carrito.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->element('checkout-modal');
 	$payment_methods = [
 		'bank' => 'transferencia',
@@ -38,10 +38,10 @@
   </div>
 </div>
 
-<div id="main" class="container animated fadeIn1">
+<div id="main" class="container animation-fadeIn1">
 	<div class="row">
 		<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
-		<!--div class="col-md-12 shipping-price-min-alert animated fadeIn">
+		<!--div class="col-md-12 shipping-price-min-alert animation-fadeIn">
 			<div class="shipping-price-min-text">
 				<span><?= $text_shipping_min_price ?></span>
 			</div>		
@@ -96,7 +96,7 @@
 						echo '</td>';
 
 
-							//echo '<div onclick="askremoveCart(this, \''.$product['name'].'\')" class="carrito-remove animated fadeIn delay" title="Eliminar del carrito">';
+							//echo '<div onclick="askremoveCart(this, \''.$product['name'].'\')" class="carrito-remove animation-fadeIn delay" title="Eliminar del carrito">';
 								//echo '<span class="glyphicon glyphicon-remove"></span>';
 
 						/*echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
@@ -179,9 +179,9 @@
 						//echo '<div class="text-right d-flex justify-content-end align-items-center gap-1">';
 						echo '<td>';	
 						if (!empty($product['old_price'] && abs($product['old_price']-$product['price']) > 1)){
-							echo '<span class="old_price text-grey animated fadeIn delay">$ '. \price_format($product['old_price']) .'</span>';
+							echo '<span class="old_price text-grey animation-fadeIn delay">$ '. \price_format($product['old_price']) .'</span>';
 						}					
-						echo '<span class="price animated fadeIn delay">'. \price_format($product['price']) .'</span>';
+						echo '<span class="price animation-fadeIn delay">'. \price_format($product['price']) .'</span>';
 						echo strlen(@$product['payment_text']) ? 'con ' . @$product['payment_text'] : '';
 						echo '</td>';
 						
@@ -217,7 +217,7 @@
 
 					} ?>
 				</table>
-						<div class="resume-totals p-4 animated fadeIn delay">
+						<div class="resume-totals p-4 animation-fadeIn delay">
 							<input type="hidden" id="subtotal_compra" value="<?=floatval($total)?>" />
 							<input type="hidden" id="subtotal_envio" value="" />
 							<!--div class="summary-item text-right">
@@ -230,33 +230,33 @@
 							</div>
 						<?php endif ?>
 							<?php if($freeShipping):?>
-							<div class="summary-item text-right free-shipping animated speed">
+							<div class="summary-item text-right free-shippingspeed">
 								<div class="price text-success">
 									<span class="text-weight-thin">Envío </span>
 									<span id="delivery_cp"></span> <span>gratuito</span></div>
 							</div>
 							<?php else: ?>
-							<div class="summary-item text-right delivery-cost hidden animated speed">
+							<div class="summary-item text-right delivery-cost hiddenspeed">
 								<div class="price text-dark">
 									<span class="text-weight-thin">Envía </span>
 									<span id="delivery_cp"></span> $ <span class="cost_delivery">0</span></div>
 							</div>
 							<?php endif ?>
-							<div class="summary-item text-right <?= $promosaved ? '' : 'hidden' ?> animated speed">
+							<div class="summary-item text-right <?= $promosaved ? '' : 'hidden' ?>speed">
 								<div class="price text-success"><span class="text-weight-thin">Descuento </span><span class="">PROMO</span> <span>$ <?= \price_format($promosaved) ?></span><!--span>.00</span--></div>
 							</div>
 							<hr>
-							<div class="summary-item text-right animated speed">
+							<div class="summary-item text-rightspeed">
 								<div class="price text-dark">
 									<span class="text-weight-thin">Subtotal </span>
 									<span class="cost_total">$ <?= \price_format($total + $promosaved) ?></span></div>
 							</div>							
-							<div class="summary-item text-right coupon-discount hidden animated speed">
+							<div class="summary-item text-right coupon-discount hiddenspeed">
 								<div class="price text-success"><span class="text-weight-thin">Cupón </span><span class="promo-code"></span> $ <span class="coupon_bonus">0</span><!--span>.00</span--></div>
 							</div>							
 							<hr>
 							<div class="summary-item text-right">
-								<div class="cost_total-container animated speed fadeIn delay2">
+								<div class="cost_total-containerspeed fadeIn delay2">
 									<!--hr-->
 									<div class="price is-large">
 										<span class="text-weight-thin">Total </span> 
@@ -301,7 +301,7 @@
 				?>
 				</div>
 			</div>
-			<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-05 animated slideInUp delay2">
+			<div class="button-group-fixed-bottom d-flex justify-content-center align-items-center gap-05 animation-pullUp animation-both delay2">
 				<?php if (!isset($carro)): ?>
 					<a href="#" class="btn action-search btn-chatelet">Buscar</a>
 				<?php endif ?>

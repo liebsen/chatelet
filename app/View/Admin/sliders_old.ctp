@@ -1,19 +1,19 @@
 <?php 
 echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false));
-echo $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->css('draggable-sliders.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->css('shop-sliders.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('draggable-sliders.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('shop-sliders.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('admin-sliders.js?v=' . Configure::read('APP_VERSION'), array('inline'=>false));
+echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->css('draggable-sliders.css?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->css('shop-sliders.css?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->script('draggable-sliders.js?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->script('shop-sliders.js?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->script('admin-sliders.js?v=' . $version['ver'], array('inline'=>false));
 // $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));
 ?>
 
-<div class="block">
-	<div class="block-content">
+<div class="block-tabs">
+	<div class="tab-content">
 		<form action="" id="display_form" method="post" class="form-inline" enctype="multipart/form-data">
 			<input type="hidden" name="data[id]" value="1" />
-	    <div class="custom-tabs block-themed">
+	    <div class="custom-tabs block-tabs">
 	      <ul class="nav nav-tabs" id="myTab" role="tablist">
 	      <?php foreach($tags as $key => $tag): ?>
 	        <li class="<?php echo $key == 0 ? 'active ' : '' ?>text-center">
@@ -121,8 +121,8 @@ echo $this->Html->script('admin-sliders.js?v=' . Configure::read('APP_VERSION'),
 	    </div>
 			<div class="form-actions">
 				<input type="hidden" name="id" value="1">
-				<button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close mr-1"></i> Restaurar</button>
-				<button type="submit" class="btn btn-success animated fast" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+				<button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
+				<button type="submit" class="btn btn-success fast" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
 			</div>
 		</form>
 	</div>

@@ -3,8 +3,12 @@
 $socials = \get_socials();
 $str = '';
 
-foreach($socials as $icon) if(!empty($settings[$icon.'_on']))
-    $socials_str.= '<a href="'.$settings[$icon.'_url'].'" target="_blank"><i class="fa fa-'.$icon.'"></i></a>';
+foreach($socials as $icon) {
+    if($settings[$icon.'_on'] == '1'){
+        $str.= '<a href="'.$settings[$icon.'_url'].'" class="pl-4" target="_blank"><img src="/img/share/'.$icon.'-brands-solid.png" width="40" height="40"></a>';
+    }
+}
+
 ?>
 
 <?php if(strlen($str)): ?>

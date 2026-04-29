@@ -17,40 +17,49 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
   <head>
+    <title>Newsletter Chatelet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body style="font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;font-size: 16px;font-color: #333;background-color: #f8f8f8; width:100%;">
-    <table cellpadding="0" cellspacing="0" width="600" align="center">
+  <body style="font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;font-size: 16px;font-color: #333;background-color: #ffffff; width:100%; overflow-x: hidden;">
+    <table cellpadding="0" cellspacing="0" width="100%" align="center">
+<?php if(empty($skip_header)):?>
       <tr>
         <td>
           <table cellpadding="0" cellspacing="0" style="width: 100%; padding: 16px;height: 120px;">
             <tr>
-              <td align="center"><?php echo $this->html->image(Router::url('/',true)."images/logo.png", ['width' => '200px']); ?></td>
+              <td align="center"><a href="<?=$site_url?>" target="_blank"><?php echo $this->html->image($site_url."/images/logo.png", ['width' => '200px']); ?></a></td>
             </tr>
           </table>
         </td>
       </tr>
+<?php endif ?>
       <tr>
-        <td align="center">
-          <table cellpadding="0" cellspacing="0" align="center" style="background-color: #ffffff; border-radius: 16px;height: 120px;width:auto; padding: 24px 16px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
+        <td align="center"><?php echo $this->fetch('content'); ?></td>
+      </tr>
+      <?php if(isset($socials) && count(@$socials)): ?>
+      <tr>
+        <td align="center" style="padding: 20px; color: #888888">
+          <div style="margin-bottom: 20px;">
+            <h6>Seguinos en nuestras redes<h6>
+          </div>
+          <table border="0">
             <tr>
-              <td align="center"><?php echo $this->fetch('content'); ?></td>
+<?php foreach($socials as $social => $url) : ?>
+              <td align="center" valign="center">
+                <a href="<?php echo $url ?>" style="margin-right: 15px; text-decoration: none; color: #888888; font-weight: 300; font-size: 14px" target="_blank">
+                  <img src="<?=$site_url?>/img/share/<?php echo $social ?>-brands-solid.png" style="transform: translateY(7px);" width="24" height="24">
+                  <span><?php echo ucfirst($social) ?></span></a>
+              </td>
+<?php endforeach ?>
             </tr>
           </table>
-        </td>
-      </tr>
-      <?php if(count(@$socials)): ?>
-      <tr>
-        <td align="center" style="padding: 8px; color: #888888">
-          <small>Seguinos en nuestras redes: 
-          <?php foreach($socials as $social => $url) : ?>
-            <a href="<?php echo $url ?>" target="_blank"><?php echo ucfirst($social) ?></a>
-          <?php endforeach ?>
-          </small>
         </td>
       </tr>
       <?php endif ?>
       <tr>
-        <td align="center" style="padding: 8px; color: #888888"><small>&copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados</small></td>
+        <td align="center" style="padding: 8px; color: #aaaaaa">
+          <small style="font-size: 12px">&copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados</small>
+        </td>
       </tr>
     </table>
   </body>

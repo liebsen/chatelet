@@ -3,7 +3,7 @@
         --box-shadow: rgba(0, 0, 0, 0.2) 0 0 6px;
         --box-dropshadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
         --box-shadow-inset: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-        --box-shadow-downwards: rgba(0, 0, 0, 0.025) 0px 4px 8px -1px, rgba(0, 0, 0, 0.025) 0px 2px 3px -1px;
+        --box-shadow-downwards: rgba(0, 0, 0, 0.05) 0px 4px 8px -1px, rgba(0, 0, 0, 0.05) 0px 2px 3px -1px;
         --google-fonts-name: <?=@$settings['google_font_name'] ?>;
       }
 
@@ -50,7 +50,7 @@
 
       * { outline: none; }
 
-      a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none!important; }
+      a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: none }
 
       /* responsiveness */
 
@@ -58,7 +58,7 @@
         display: none;
       }
 
-      @media screen and (max-width:768px), print {
+      @media screen and (max-width:991px), print {
         .mobile {
           display: inline-block;
         }
@@ -67,7 +67,7 @@
         }
       }
 
-      @media screen and (min-width:769px), print {
+      @media screen and (min-width:992px), print {
         .mobile {
           display: none!important;
         }

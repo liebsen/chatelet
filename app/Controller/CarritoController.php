@@ -2,10 +2,7 @@
 
 require_once(APP . 'Vendor' . DS . 'oca.php');
 require_once(APP . 'Vendor' . DS . 'curl.php');
-require __DIR__ . '/../Vendor/andreani/vendor/autoload.php';
-
-$dotenv = new Dotenv\Dotenv(__DIR__ . '/../Vendor/andreani/');
-$dotenv->load();
+require_once(APP . 'Vendor' . DS . 'andreani' . DS . 'andreani.php');
 
 use AlejoASotelo\Andreani;
 
@@ -30,7 +27,7 @@ class CarritoController extends AppController
 		'Router'
 	);
 	
-	public $components = array('Cart', 'RequestHandler');
+	public $components = array('Cart', 'Mailchimp', 'RequestHandler');
 
 	public function test() {
 		echo "<pre>";
@@ -233,8 +230,6 @@ class CarritoController extends AppController
 		// $this->set('freeShipping', $freeShipping);
 		$this->set('userData',$user);
 	}
-
-
 
 	private function checkOcaCP($cp){
 		$oca = new Oca();
@@ -470,6 +465,7 @@ class CarritoController extends AppController
 	public function empty($row = null) {
 		$this->autoRender = false;
 		$this->Session->delete('cart');
+		$this->Session->delete('cart_totals');
 	}
 
 	public function show($row = null) {
@@ -483,11 +479,9 @@ class CarritoController extends AppController
 		echo '</pre>';
 	}
 
-	public function settings($row = null) {
+	public function show_settings($row = null) {
 		$this->autoRender = false;
-		echo '<pre>';
 		var_dump($this->settings);
-		echo '</pre>';
 	}
 
 	public function sorted() {
@@ -501,11 +495,9 @@ class CarritoController extends AppController
 		$this->RequestHandler->respondAs('application/json');
 		if ($this->request->is('post')) {
 			$data = $this->request->data;
-			//$this->RequestHandler->respondAs('application/json');
-
 			if(
-				!isset($this->request->data['id']) || 
-				!isset($this->request->data['count'])
+				!isset($data['id']) || 
+				!isset($data['count'])
 			) {
 				return json_encode(array(
 					'success' => false,
@@ -514,13 +506,9 @@ class CarritoController extends AppController
 				));
 			}
 
-			$product = $this->Product->findById($this->request->data['id']);
-			$urlCheck = $this->settings['site_url']."/shop/stock/".$product['Product']['article']."/".$this->request->data['size']."/".$this->request->data['color_code'];
-
-			if (
-				(empty($this->request->data['size']) && empty($this->request->data['color_code'])) ||
-				$_SERVER['REMOTE_ADDR'] == '127.0.0.1'
-			){
+			$product = $this->Product->findById($data['id']);
+			$urlCheck = \site_url()."/shop/stock/".$product['Product']['article']."/".$data['size']."/".$data['color_code'];
+			if (empty($data['size']) && empty($data['color_code'])){
 				//$urlCheck=$settings['site-url']."/shop/stock/".$product['Product']['article'];
 				// CakeLog::write('debug', 'b(1)');
 				$stock=1;
@@ -532,68 +520,69 @@ class CarritoController extends AppController
 				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
 		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+
 		    $stock = (string) curl_exec($ch);
 		    curl_close($ch);
 			}
 
-			$filter = [];
+			$items = [];
 			// error_log('stock:'.$stock);
-			// error_log('curl:'.$stock);
-			// CakeLog::write('debug', 'stock:'.$stock);
-			// CakeLog::write('debug', 'product:'.json_encode($product));
-			// $stock=1;
 			if ($product && $stock) {
 				$product = $product['Product'];
+				$this->loadModel('Stat');
 
 				/* remove all of the kind */
-				$criteria = $this->request->data['id'].$this->request->data['size'].$this->request->data['color'].$this->request->data['alias'];
+				$criteria = $data['id'].$data['size'].$data['color'].$data['alias'];
+
+				$this->Stat->save(array(
+					'id' => null,
+		      'tag' => 'cart-add',
+		      'user_id' => $this->Auth->user('id') ?? 1,
+		      'product_id' => $data['id'],
+		      'context' => json_encode(array(
+		      	'size' => $data['size'],
+		      	'color' => $data['color'],
+		      	'alias' => $data['alias']
+		      ))
+		    ));
 
 				if (!empty($cart)) {
 					foreach($cart as $item) {
 						if($criteria != $item['id'].$item['size'].$item['color'].$item['alias']) {
-							$filter[]= $item;
+							$items[]= $item;
 						}
 					}
 				}
 
-				$product['color'] = @$this->request->data['color'];
-				$product['size'] = @$this->request->data['size'];
-				$product['alias'] = @$this->request->data['alias'];
-				$product['color_code'] = @$this->request->data['color_code'];
+				$product['color'] = @$data['color'];
+				$product['size'] = @$data['size'];
+				$product['alias'] = @$data['alias'];
+				$product['color_code'] = @$data['color_code'];
 
-				for ($i=0; $i < $this->request->data['count']; $i++) {
-					$filter[] = $product;
+				for ($i=0; $i < $data['count']; $i++) {
+					$items[] = $product;
 				}
 
-				// $cart = array_fill(count($cart), $this->request->data['count'], $product);
-				// error_log('[carrito] '.json_encode($filter));
-				// error_log('[carrito] '.json_encode($this->filter($filter)));
-				// filter(1)
+				$cart_totals = $this->Session->read('cart_totals');
+				$cur = @$cart_totals['add_basket']?: 0;
+				$cur++;			
+				@$cart_totals['add_basket'] = $cur;
+				$cart = $this->Cart->add($items);
+					
+				if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_store_on'] == '1') {
+					$this->Mailchimp->cart_update($this->settings['mc_store']);
+				}
+
+				return json_encode(array('success' => true));
 			} else {
 				return json_encode(array('success' => false));
 			}
-
-			$cart_totals = $this->Session->read('cart_totals');
-			$cur = @$cart_totals['add_basket']?: 0;
-			$cur++;			
-			@$cart_totals['add_basket'] = $cur;
-			
-			// CakeLog::write('debug', 'cart_totals(4):'. json_encode($cart_totals));
-			// $this->Session->write('cart_totals', $cart_totals);
-			// CakeLog::write('debug', 'add(filter):'. json_encode($filter));
-			
-			$cart = $this->Cart->add($filter);
-			
-			// CakeLog::write('debug', 'updateCart(4)');
-			// $this->Session->write('cart', $cart);
-
-			return json_encode(array('success' => true));
 		}
 		//return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 		return json_encode(array('success' => false));
 	}
 
-	public function remove($uid) {
+	public function remove($id) {
 		$this->autoRender = false;
 		$this->RequestHandler->respondAs('application/json');
 		$item = false;
@@ -608,21 +597,48 @@ class CarritoController extends AppController
 		$sorted = $this->Cart->sorted();
 		$j = 0;
 
+		$removed = array();
 		foreach ($sorted as $key => $item) {
-			if ($j != $uid) {
+			if ($j != $id) {
 				array_push($update, $item);
 			} else {
+				$removed = $item;
 				$removed++;
 			}
 			$j++;
+		}
+
+		if($this->Product->findById($item['id'])) {
+			$this->loadModel('Stat');
+			$stat = array(
+				'id' => null,
+	      'tag' => 'cart-remove',
+	      'user_id' => $this->Auth->user('id') ?? 1,
+	      'product_id' => $item['id'],
+	      'context' => json_encode(
+	      	array(
+		      	'size' => $item['size'],
+		      	'color' => $item['color'],
+		      	'alias' => $item['alias']
+		      )
+		    )
+	    );
+	    \d("stat",$stat);
+			$this->Stat->save($stat);
 		}
 
 		if (count($update)) {
 			// CakeLog::write('debug', 'updateCart(1)');
 			// CakeLog::write('debug', 'updateCart(2):'. json_encode($update));
 			$this->Cart->update($update);
+			if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_store_on'] == '1') {
+				$this->Mailchimp->cart_update($this->settings['mc_store'],$update);
+			}
 		} else {
 			$this->Cart->destroy();
+			if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_store_on'] == '1') {
+				$this->Mailchimp->cart_destroy($this->settings['mc_store']);
+			}
 		}
 
 		return json_encode($removed);

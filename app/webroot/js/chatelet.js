@@ -1,5 +1,3 @@
-const log = false
-
 var lastcp = localStorage.getItem('lastcp') || 0
 var lastscroll = 0
 var alerts = {}
@@ -8,10 +6,11 @@ var interval2 = 0
 let searchInt = 0
 let searchPageSize = 12
 let searchPage = 0
-let focusAnim = 'pulse'
+let focusAnim = 'animation-pulse'
 let clock = 0
 let fakeshown = 0 
 var toggleInterval = 0
+const log = false
 
 function getStorage(key, def) {
   if(localStorage[key] && localStorage[key] != 'undefined') {
@@ -77,7 +76,7 @@ function addToCart(data, redirect) {
   })
 }
 
-var askremoveCart = (e) => {
+function askremoveCart(e) {
   const item = $(e).parents('.carrito-data').data('json')
   let userInput = confirm(`¿Querés borrar el producto ${item.name} del carrito?`);
   if(userInput){
@@ -109,31 +108,36 @@ var askremoveCart = (e) => {
   }
 }
 
-let sendBeacon = (tag) => { 
-  const data = {
+function sendBeacon(tag) {
+  var data = {
     tag,
-    event: 'page_exit',
     page: window.location.pathname,
-    timestamp: new Date().toISOString()
-  };
+  }
+
+  if(
+    location.pathname.startsWith('/tienda/producto/') || 
+    location.pathname.startsWith('/shop/detalle/')
+  ) {
+    data.product_id = location.href.split('/')[5]
+  }
 
   // Convert data to a Blob for sending
   const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
 
   // Send the beacon
-  navigator.sendBeacon('/shop/analytics', blob);
+  navigator.sendBeacon('/api/stats', blob);
 }
 
-let pageLoaded = () => {   
+function pageLoaded () {   
   $('body').removeClass('loading')
   $('#page-container').removeClass('loading')
-  $('#page-loader').addClass('animated fadeOut')
+  $('#page-loader').addClass('animation-fadeOut')
   setTimeout(() => {
     $('#page-loader').remove()  
   },500)
 }
 
-let formatNumber = (float) => {
+function formatNumber (float) {
   if (typeof float === 'string') {
     return float
   }
@@ -141,7 +145,7 @@ let formatNumber = (float) => {
   return number_format(float, 2, ',', '.').replace(',00','')
 }
 
-formatNumber2 = function (num) {
+function formatNumber2 (num) {
   if (typeof num === 'string') {
     return num
   }
@@ -149,11 +153,11 @@ formatNumber2 = function (num) {
   //return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
 }
 
-isDateBeforeToday = function(date) {
+function isDateBeforeToday(date) {
   return new Date(date.toDateString()) < new Date(new Date().toDateString());
 }
 
-let number_format = (number, decimals, dec_point, thousands_point) => { 
+function number_format(number, decimals, dec_point, thousands_point) { 
   /*if (number == null || !isFinite(number)) {
     throw new TypeError("number is not valid: " + number);
   }*/
@@ -185,11 +189,11 @@ let number_format = (number, decimals, dec_point, thousands_point) => {
   }
 }
 
-let strtoFloat = (text) => { 
+function strtoFloat(text) { 
   return parseFloat(parseFloat(text.replace('.', '').replace('$', '')).toFixed(2))
 }
 
-let calcDues = (total) => {
+function calcDues (total) {
   $('.dues-select-option').each(function(e){
     const option = $(e).data('json')
     // console.log('dues-select-option:data', option)
@@ -200,26 +204,26 @@ let calcDues = (total) => {
   })
 }
 
-let handleTotals = (total) => {
+function handleTotals (total) {
   if($('.calc_total').text().replace("$ ", "") != total) {
     // console.log('handleTotals', total)
     $('.calc_total').text( '$ ' + formatNumber(total) )
   }
 }
 
-let focusEl = (text) => { 
+function focusEl(text) { 
   var e = $(text) 
   if (e && !e.hasClass('hide')) {
     e.get(0).scrollIntoView({ behavior: "smooth" });
     setTimeout(() => {
-      $(text).removeClass(`animated ${focusAnim}`)
-      $(text).addClass(`animated ${focusAnim}`)
+      $(text).removeClass(`${focusAnim}`)
+      $(text).addClass(`${focusAnim}`)
       $(text).find('input').first().focus()
     }, 500)
   }
 }
 
-let findSize = (str) => {
+function findSize(str) {
   var size = '1.5rem'
   if (str.length >= 15) {
     size = '1.25rem'
@@ -236,7 +240,7 @@ let findSize = (str) => {
   return size
 }
 
-groupAlerts = function(title, text) {
+function groupAlerts(title, text) {
   if(!alerts[title]) {
     alerts[title] = []
   }
@@ -259,7 +263,7 @@ groupAlerts = function(title, text) {
   }, 5000)
 }
 
-onErrorAlert = function(title, text, duration, group){
+function onErrorAlert(title, text, duration, group){
   if(group) {
     return groupAlerts(title, text)
   }    
@@ -271,7 +275,7 @@ onErrorAlert = function(title, text, duration, group){
   });
 }
 
-onSuccessAlert = function(title, text, duration, group){
+function onSuccessAlert(title, text, duration, group){
   if(group) {
     return groupAlerts(title, text)
   }  
@@ -283,7 +287,7 @@ onSuccessAlert = function(title, text, duration, group){
   });
 }
 
-onWarningAlert = function(title, text, duration, group){
+function onWarningAlert(title, text, duration, group){
   if(group) {
     return groupAlerts(title, text)
   }
@@ -296,19 +300,17 @@ onWarningAlert = function(title, text, duration, group){
   })
 }
 
-let loadMoreSearch = (p) => {
+function loadMoreSearch(p) {
   searchPage = p
   $('.search-more a').text('Cargando...')
-  apiSearch(localStorage.getItem('lastsearch'))
+  searchProds(localStorage.getItem('lastsearch'))
 }
 
-let apiSearch = (q) => {    
+function searchProds(q) {    
   $.ajax({
     type: "POST",
-    url: "/shop/api_search/",
-    data: JSON.stringify({q: q, p: searchPage, s: searchPageSize}),
-    contentType: "application/json; charset=utf-8",
-    dataType: "json",
+    url: "/api/search_products",
+    data: {q: q, p: searchPage, s: searchPageSize},
     success: function (data) {
       let str = ''
 
@@ -392,7 +394,6 @@ function layerClose() {
   $('.layer').removeClass('active')
 }
 
-
 $(document).ready(function() {
   /* filter beforeunload events */
   var validNavigation = false;
@@ -418,9 +419,10 @@ $(document).ready(function() {
     validNavigation = true;
   });
 
-  window.onbeforeunload = function() {                
+  window.onbeforeunload = function() {
+    // console.log('validNavigation',validNavigation, location.pathname)
     if (!validNavigation && !location.pathname.includes('admin/')) {    
-      sendBeacon()
+      sendBeacon('page-exit')
     }
   } 
   
@@ -490,26 +492,10 @@ $(document).ready(function() {
     //window.scrollTo(0,0)
   })
 
-  if(
-    window.location.hash.indexOf('listShop') === -1 && 
-    document.querySelector("#myModal")!=null && 
-    $('.js-show-modal') && 
-    $('.js-show-modal').length
-  ){
-    setTimeout(function () {
-      $('#myModal').modal({ show: true })
-    }, 10)
-  }
-
-  if (window.location.hash.indexOf('listShop') > -1) {
-    setTimeout(() => {
-      window.scrollBy(0, -93)
-    }, 5000)
-  }
-
   /* generic clic handlers */
 
   $('[data-toggle="click"]').click((e) => {
+<<<<<<< HEAD
     const show = $(e.target).data('show')
     const hide = $(e.target).data('hide')
     const remove = $(e.target).data('remove')
@@ -522,6 +508,38 @@ $(document).ready(function() {
     if($(remove).length) {
       $(remove).remove()
     }
+=======
+    ['show', 'hide', 'remove', 'slide-down'].forEach((tag) => {
+      const target = $(e.target).data(tag)
+      if(target) {
+        switch (tag) {
+          case 'show':
+            $(target).fadeIn(10)
+            break
+          case 'hide':
+            $(target).fadeOut(10)
+            break
+          case 'fade-in':
+            $(target).fadeIn(250)
+            break
+          case 'fade-out':
+            $(target).fadeOut(250)
+            break
+          case 'slide-up':
+            $(target).removeClass('animation-pullDown')
+            $(target).addClass('delay0 animation-pullUp animation-both')
+            break
+          case 'slide-down':
+            $(target).removeClass('animation-pullUp')
+            $(target).addClass('delay0 animation-pullDown animation-both')
+            break
+          case 'remove':
+            $(target).remove()
+            break
+        }
+      }
+    })
+>>>>>>> origin/stage
   })
 
   $('[data-toggle="mouseenter"]').mouseenter((e) => {
@@ -535,7 +553,7 @@ $(document).ready(function() {
         }
         t.removeClass()
         t.addClass(t.data('started'))
-        t.addClass(animation ?? 'fadeIn')
+        t.addClass(animation ?? 'animation-fadeIn')
       }
     }, 200)
   })
@@ -551,7 +569,7 @@ $(document).ready(function() {
         }
         t.removeClass()
         t.addClass(t.data('started'))
-        t.addClass(animation ?? 'fadeOut')
+        t.addClass(animation ?? 'animation-fadeOut')
       }
     }, 200)
   })
@@ -580,7 +598,7 @@ $(document).ready(function() {
     document.querySelector('.input-search').classList.add('searching')
     searchInt = setTimeout(() => {
       localStorage.setItem('lastsearch', q)
-      apiSearch(q)
+      searchProds(q)
     }, 500)        
   })
 
@@ -593,13 +611,13 @@ $(document).ready(function() {
   }
 
   $(window).scroll(function(e) {
-    const progress = $('body.top-fixed .navbar-chatelet.with-progress')
+    /*const progress = $('body.top-fixed .navbar-chatelet.with-progress')
     if(progress.length) {
       var perc = parseInt($(window).scrollTop() / ($(document).height() - $('footer').height() - $('.navbar-chatelet').height()) * 100) // remove footer aproxmately
       perc = perc < 100 ? perc : 100
       progress.css('background', '#f8f8f8')
       progress.css('background', 'linear-gradient(90deg,rgba(248, 248, 248, 1) '+perc+'%, rgba(255, 255, 255, 1) 0%)')
-    }
+    }*/
 
     if(clock) {
       clearInterval(clock)
@@ -611,8 +629,8 @@ $(document).ready(function() {
       const video = $("#carousel .item.active").find("video")
       const menu = $('.navbar-chatelet .navbar-collapse').hasClass('in')
 
-      $('.navbar-chatelet:not(.short)').removeClass('fadeIn')
-      $('.shop-options').removeClass('slideInDown')
+      $('.navbar-chatelet:not(.short)').removeClass('animation-fadeIn')
+      $('.shop-options').removeClass('animation-pullDown')
 
       if(document.querySelector('.navbar-chatelet')) {
         void document.querySelector('.navbar-chatelet').offsetWidth;
@@ -625,13 +643,13 @@ $(document).ready(function() {
       if (scrolltop > 100) {
         if (!fakeshown && lastscroll < scrolltop) {
           $('body').addClass('top-fixed')
-          $('.navbar-chatelet:not(.short)').addClass('fadeIn')
+          $('.navbar-chatelet:not(.short)').addClass('animation-fadeIn')
           fakeshown = 1
         }        
       } else {
         if (fakeshown && lastscroll > scrolltop) {
           $('body').removeClass('top-fixed')
-          $('.navbar-chatelet:not(.short)').addClass('fadeIn')
+          $('.navbar-chatelet:not(.short)').addClass('animation-fadeIn')
           fakeshown = false
         }
       }
@@ -674,11 +692,6 @@ $(document).ready(function() {
     $.post('/shop/log_error', {message: msg + JSON.stringify(browser), url: url, line: lineNo})
   }*/
 
-  const sections = ['','/','/Home']
-
-  if(!sections.includes(location.pathname)){
-    $('body, html').removeClass('noscroll')
-  }
 
 	$('#flashMessage').each(function(i, flash) {
 		flash = $(flash);
@@ -727,8 +740,9 @@ $(document).ready(function() {
 	});
 
 	if (typeof $.fn.datepicker != 'undefined'){ 
-		$('.datepicker').datepicker({
-			format: $(this).data('format') || 'dd/mm/yyyy',
+    $('.datepicker').datepicker({
+			format: 'dd/mm/yyyy',
+      autoclose: true,
 			language: 'es'
 		});
 	}
@@ -745,7 +759,18 @@ $(document).ready(function() {
     return true
   })
 
-  
+  const sections = ['','/','/Home']
+
+  if(!sections.includes(location.pathname)){
+    setTimeout(() => {
+      $('body, html').removeClass('noscroll')
+    },100)
+  }
+
+  setTimeout(() => {
+    sendBeacon('page-view')
+  },1000)
+
   /*$('#registro-modal a[data-toggle="modal"]').click(function() {
 		$(this).parents('#registro-modal').modal('hide');
 		return true;

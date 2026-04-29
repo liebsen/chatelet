@@ -21,10 +21,6 @@
 
 require_once __DIR__ . '/../functions.php';
 
-if($_GET['mode'] == 'dev') {
-    require_once __DIR__ . '/../../version.php';
-}
-
 App::uses('Controller', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 
@@ -73,7 +69,7 @@ class AppController extends Controller
   private $setting_tags = [
     'stock_min',
     'list_code',
-    'whatsapp_enabled',
+    'whatsapp_enable',
     'whatsapp_text',
     'whatsapp_phone',
     'whatsapp_autohide',
@@ -93,7 +89,8 @@ class AppController extends Controller
   ];
 
   public function load_settings(){
-    $this->loadModel('Setting');
+    #$this->loadModel('Setting');
+
 
     $tags = [];        
     $settings = $this->Setting->find('all');
@@ -112,7 +109,7 @@ class AppController extends Controller
         continue;
       }
 
-      if($setting  == 'whatsapp_enabled' &&(strstr($path, "carrito") || strstr($path, "envio") || strstr($path, "pago"))) {
+      if($setting  == 'whatsapp_enable' &&(strstr($path, "carrito") || strstr($path, "envio") || strstr($path, "pago"))) {
           continue;
       }
     }
@@ -140,10 +137,12 @@ class AppController extends Controller
     $this->loadModel('Category');
     $this->loadModel('Product');
     $this->loadModel('Setting');
+    $this->loadModel('Stat');
 
     //CakeLog::write('debug', 'beforeFilter executed for ' . $this->name . 'Controller::' . $this->action);
     $this->Auth->allow();
     $this->set('loggedIn', $this->Auth->loggedIn());
+    $this->set('isAdmin', $this->Auth->user('role') === 'admin');
     $this->set('user', $this->Auth->user());
     
     $cart_totals = $this->Session->read('cart_totals');
@@ -187,14 +186,39 @@ class AppController extends Controller
     
     $this->set('categories', $categories);
 
-
     if(file_exists($version_file)) {
       $version_date = date("d/m/Y H:i", filemtime($version_file));
       $version_count = (int) file_get_contents($version_file);
     }
 
-    //Configure::write('client_id', '6773841105361656');
-    //Configure::write('client_secret', 'hBHd6LiSEaTqgQXI2KSGO5C7uCBSINhW');
+    # register session resume event for stats 
+    if(!empty($this->Auth->user('id'))) {
+      $now = time();
+      #$resume_hours = 3;
+      #$resume_seconds = 3600 * $resume_hours;
+      $resume_seconds = 900; // short for now
+      $session_last = $this->Session->read('session_last') ?? null;
+      $path = Router::url(null, false);
+      if(!empty($session_last)) {
+        $diff_seconds = abs($now - $session_last);
+        if($diff_seconds > $resume_seconds) {
+          $this->Stat->save(
+            array(
+              'id' => null,
+              'tag' => 'session-resume',
+              'user_id' => $this->Auth->user('id') ?? 1,
+              'context' => json_encode(
+                array(
+                  'path' => $path,
+                  'secs' => $diff_seconds
+                )
+              )
+            )
+          );
+        }
+      }
+      $this->Session->write('session_last', $now);
+    }
 
     $settings = $this->load_settings();
     $settings_update = false;
@@ -219,38 +243,97 @@ class AppController extends Controller
     }*/
 
     $this->set(
-      'version_text', 
-      \version_readable($version_count) . ' (' . $version_date . ')'
+      'version', 
+      array( 
+        'ver' => $version_count,
+        'count' => \version_readable($version_count),
+        'date' => $version_date,
+        'text' => \version_readable($version_count) . ' (' . $version_date . ')'
+      )
     );
   }
 
-  public function sendEmail($data, $subject, $template) {
-    
+  public function addClick($schedule_item, $click_origin = null) {
+    $this->loadModel('NewsletterScheduleItem');
+    $item = $this->NewsletterScheduleItem->findById($schedule_item);
+    if(!empty($item)) {
+      $this->loadModel('Stat');
+      $this->Stat->save(
+        array(
+          'id' => null,
+          'tag' => 'newsletter-click',
+          'user_id' => $item['NewsletterScheduleItem']['user_id'],
+          'context' => json_encode(
+            array(
+              'schedule_item' => $schedule_item,
+              'schedule_id' => $item['NewsletterScheduleItem']['schedule_id'],
+              'click_origin' => $click_origin
+            )
+          )
+        )
+      );
+
+      $this->NewsletterScheduleItem->updateAll(
+        array(
+          'NewsletterScheduleItem.clicks' => 'NewsletterScheduleItem.clicks + 1'          
+        ), array(
+          'id' => $schedule_item,
+        )
+      );
+    }
+  }
+
+  public function sendEmail($data, $subject, $template) {    
     CakeLog::write('debug', 'sendEmail:'.json_encode(array(
       //'data' => $data,
       'subject' => $subject,
       'template' => $template,
       'remote_addr' => $_SERVER['REMOTE_ADDR'],
+      'smtp' => array(
+        'transport' => 'Smtp',
+        'from' => array($this->settings['email_username'] => 'Châtelet'),
+        'host' => 'smtp.gmail.com',
+        'port' => 587,
+        'timeout' => 30,
+        'username' => $this->settings['email_username'],
+        'password' => $this->settings['email_password'],
+        'charset' => 'utf-8',
+        'tls' => true
+      )
     )));
 
     $email = new CakeEmail();
-    // $email->transport('Debug');
-    $email->from(array(
-        'info@chatelet.com' => 'Châtelet'
+    $email->config(array(
+      'transport' => 'Smtp',
+      'from' => array($this->settings['email_username'] => 'Châtelet'),
+      'host' => 'smtp.gmail.com',
+      'port' => 587,
+      'timeout' => 30,
+      'username' => $this->settings['email_username'],
+      'password' => $this->settings['email_password'],
+      'charset' => 'utf-8',
+      'tls' => true
     ));
+
+    // $email->transport('Debug');
+    /*$email->from(array(
+        'info@chatelet.com' => 'Châtelet'
+    ));*/
+    
     //pr($data);die;
     $email->to($data['receiver_email']);
     $email->subject($subject);
     $email->template($template, 'default');
     $email->emailFormat('html');
-    $email->config('default');
+    // $email->config('default');
     $email->viewVars(array(
       'data' => $data,
+      'site_url' => $this->settings['site_url'],
       'socials' => \parsed_socials($this->settings)
     ));
 
     if (
-      $this->settings['env_staging'] ||
+      $_SERVER['REMOTE_ADDR'] == '127.0.0.11' ||
       empty($data['receiver_email']))
     {
       // CakeLog::write('debug', 'email:'. json_encode($email->message('html')));
@@ -266,6 +349,17 @@ class AppController extends Controller
     }
 
     $email = new CakeEmail();
+    $email->config(array(
+      'transport' => 'Smtp',
+      'from' => array('no-responder@chatelet.com.ar' => 'Châtelet'),
+      'host' => 'smtp.gmail.com',
+      'port' => 587,
+      'timeout' => 30,
+      'username' => $this->settings['email_username'],
+      'password' => $this->settings['email_password'],
+      'charset' => 'utf-8',
+      'tls' => true
+    ));    
     $email->from(array(
         'info@chatelet.com' => 'Châtelet'
     )); 
@@ -280,16 +374,19 @@ class AppController extends Controller
     return $email->send($message);
   }
 
-  private function saveFile($file, $thumb = false, $size = 300) {
+  public function saveFile($file, $thumb = false, $size = 300, $folder = null) {
+    
+    $folder = !empty($folder) ? $folder . '/' : '';
+
     /* save file if any */
     $filepath = '';
     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
     $key = uniqid() . '.' . $ext;
-    $dest = __DIR__ . '/../webroot' . $this->settings['upload_url'] . $key;
+    $dest = __DIR__ . '/../webroot' . $this->settings['upload_url'] . $folder . $key;
     $url = "";
 
     if(copy($file['tmp_name'],$dest)){
-      $filepath = $this->settings['upload_url'] . $key;
+      $filepath = $this->settings['upload_url'] . $folder . $key;
       if(!empty($this->settings['upload_local'])){
         $filepath = $key;
       }
@@ -297,7 +394,7 @@ class AppController extends Controller
 
     if ($thumb) {
       $thumb_new_name = 'thumb_' . $key;
-      $dest = __DIR__ . '/../webroot/files/uploads/' . $thumb_new_name;
+      $dest =__DIR__ . '/../webroot' . $this->settings['upload_url'] . $folder . $thumb_new_name;
       //Creamos thumbnail
       $this->ResizeImage->thumbnail($file['tmp_name'], $thumb_new_name, $size);
       if(!copy($file['tmp_name'],$dest)){
@@ -305,10 +402,12 @@ class AppController extends Controller
       }
     }
 
+    \d('a(2)',$filepath);
+
     return $filepath;
   }
 
-  protected function save_file($file, $withThumb = false, $size=300) {
+  public function save_file($file, $withThumb = false, $size=300) {
 
     if (empty($file['name'])) {
       return false;

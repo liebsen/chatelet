@@ -1,5 +1,5 @@
-  <nav class="navbar navbar-chatelet short animated">
-    <div class="container-fluid pt-1">
+  <nav class="navbar navbar-chatelet animation-both short">
+    <div class="d-flex is-flex-between pt-1" style="min-height: 50px;">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <a class="navbar-brand"
@@ -12,7 +12,7 @@
             <span class="text-sm"><?php echo $short_header_text ?? 'Seguir comprando' ?></span>
           </a>
         <?php endif ?>
-        <i class="text-muted"><?= $short_header ?></i>
+        <!--span class="text-muted"><?= $short_header ?></span-->
       </div>
     </div>
   </nav>

@@ -1,4 +1,4 @@
-  <div class="container-fluid<?php echo in_array(Router::url(), array('/', '/home')) ? ' animated fadeIn delay' : '' ?>">
+  <div class="container-fluid is-flex-between">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <a class="navbar-brand"
@@ -28,7 +28,7 @@
           <?php endif ?>
           <?php if( !empty($settings['show_shop']) ): ?>
             <li>
-              <a href="/Shop" data-toggle="mouseenter" data-target=".shop-options" data-animation="slideInDown">Shop</a>
+              <a href="/Shop" data-toggle="mouseenter" data-target=".shop-options" data-animation="animation-pullDown animation-both">Shop</a>
             </li>
           <?php endif ?>
           <!--li>
@@ -56,7 +56,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="#" class="is-unlifted" title="Buscar en la tienda">
-              <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="fa fa-search text-grey"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="gi gi-search text-lightgrey"></i>
             </a>
           </li>
 
@@ -64,24 +64,26 @@
           <li class="dropdown">
             <?php if ($loggedIn) { ?>
             <a href="#" class="dropdown-toggle js-activated is-unlifted" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
-              <!--span class="count animated scaleIn speed delay1">
+              <!--span class="countscaleIn speed delay1">
                 <i class="fa fa-check text-white fa-xs"></i>
               </span-->
-              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-green fa-user-o"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-account" class="gi gi-woman text-green"></i>
             </a>
             <ul class="dropdown-menu">
               <li>
                <div id="login-panel">
                   <div class="control-panel">
-                    <p class="title">Panel de Usuario</p>
+                    <p class="title">Panel de Clienta</p>
                     <div id="user-data">
                       <div id="user-name">
-                        <?php echo $user['name'] . " " . $user['surname']; ?>
-                        <a href="#" class="pencil">
-                          <span data-toggle="sidebar" data-target=".sidebar-account" class="fa fa-pencil"></span>
+                        <span data-toggle="sidebar" data-target=".sidebar-account"><?php echo $user['name'] . " " . $user['surname']; ?></span>
+                        <a href="/shop/cuenta" class="pencil">
+                          <span class="fa fa-pencil"></span>
                         </a>
                       </div>
-                      <div id="user-email"><?php echo $user['email']; ?></div>
+                      <div id="user-email">
+                        <span class="text-lowercase"><?php echo $user['email']; ?></span>
+                      </div>
                     </div>
                     <!--ul id="control-sections" class="list-unstyled">
                       <li class="">
@@ -104,16 +106,18 @@
             </ul>
             <?php } else { ?>
             <a href="#" class="dropdown-toggle is-unlifted" title="Inicia sesión">
-              <i data-toggle="sidebar" data-target=".sidebar-account" class="fa text-grey fa-user-o"></i>
+              <i data-toggle="sidebar" data-target=".sidebar-account" class="gi gi-woman text-lightgrey"></i>
             </a>
             <?php } ?>
           </li><!-- /.Login -->
           <li class="dropdown is-clickable">
             <a href="#" data-toggle="sidebar" data-target=".sidebar-cart" class="dropdown-toggle js-activated<?=is_array($cart) && count($cart) ? ' text-theme':'' ?>" data-toggle="dropdown" data-hover="dropdown">
-              <?php if(is_array($cart) && count($cart)):?>
-              <span data-toggle="sidebar" data-target=".sidebar-cart" class="count animated scaleIn speed delay1"><?=count($cart)?></span>
-              <?php endif ?>
-              <span data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito"><i data-toggle="sidebar" data-target=".sidebar-cart" class="fa fa-shopping-bag <?= is_array($cart) && count($cart) ? 'text-green' : 'text-grey' ?>"></i></span>
+              <span class="count-cont" data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito">
+                <?php if(is_array($cart) && count($cart)):?>
+                <span class="count animation-pulse delay1" data-toggle="sidebar" data-target=".sidebar-cart"><?=count($cart)?></span>
+                <?php endif ?>                
+                <i data-toggle="sidebar" data-target=".sidebar-cart" class="gi gi-shopping_cart <?= is_array($cart) && count($cart) ? 'text-green' : 'text-lightgrey' ?>"></i>
+              </span>
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -143,7 +147,7 @@
                   </p>
                   <p class="bottom" title="Ir al carrito">
                     <?php
-                      echo $this->Html->link('<span class="fa fa-shopping-cart"></span>', array(
+                      echo $this->Html->link('<span class="gi gi-shopping_cart"></span>', array(
                         'controller' => 'carrito',
                         'action' => 'index'
                         ),
@@ -166,7 +170,7 @@
                     </span>
                   </p>
                 <?php else: ?>
-                  <h3 class="text-muted">Tu carrito está vacío.</h3>
+                  <h5 class="text-muted">Tu carrito está vacío.</h5>
                   <p class="notification text-muted">Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></p>
                 <?php endif ?>
                 </div>

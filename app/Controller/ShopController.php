@@ -304,24 +304,42 @@ class ShopController extends AppController {
 		}
 	}
 
-	public function stock($article = null,$size_number = null,$color_code = null,$list_code = null){
-		$this->autoRender = false;
+	public function stock($product_id, $article = null,$size_number = null,$color_code = null,$list_code = null){
 		$this->RequestHandler->respondAs('application/json');
-		if ($this->settings['env_staging']) {
-			return 1;
-		}
-		$this->SQL = $this->Components->load('SQL');
+		$this->autoRender = false;
+		$this->loadModel('Stat');
+
 		$stock = 0;
 		$list_code = $this->settings['list_code'];
 		$stock_min = $this->settings['stock_min'];
+
+		$this->Stat->save(array(
+			'id' => null,
+      'tag' => 'variant-select',
+      'user_id' => $this->Auth->user('id') ?? 1,
+      'product_id' => $product_id,
+      'context' => json_encode(array(
+      	'size_number' => $size_number,
+      	'color_code' => $color_code,
+      ))
+    ));
+
+		if ($this->settings['env_staging']) {
+			return 1;
+		}
+
+		$this->SQL = $this->Components->load('SQL');
+
 		if(!empty($article) && !empty($color_code) && !empty($size_number) ){
 			// CakeLog::write('debug','article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code);
 	    $stock = $this->SQL->product_stock($article,$size_number,$color_code,$list_code,$stock_min);
 		} elseif (!empty($article)) {
 			$stock = 1;
 		}
-		CakeLog::write('debug','stock: article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code . ':' . $stock);
-		return (string) $stock;
+
+
+		// CakeLog::write('debug','stock: article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code . ':' . $stock);
+		return json_encode((string) $stock);
 	}
 
 	public function check_stock($product_id){
@@ -438,7 +456,7 @@ class ShopController extends AppController {
         'user_id' => $user_id,
       ],     
       'order' => ['Sale.id DESC'],
-      'limit' => 10,
+      'limit' => 500,
     ]);
 
     foreach($sales as $i => $sale) {
@@ -465,11 +483,16 @@ class ShopController extends AppController {
     $this->set('sales', $sales);
   }
 
-  public function detalle($product_id, $category_id) {
+  public function detalle($product_id, $category_id = 0) {
 		$product = $this->Product->findById($product_id);
 		$this->loadModel('Legend');
 		if (!isset($product)) {
 			throw new NotFoundException();
+		}
+
+		if(!empty($this->request->query('schedule_item') || !empty($this->request->query('uid')))) {
+			$uid = $this->request->query('schedule_item') ?? $this->request->query('uid');
+			$this->addClick($uid, $this->request->query('click_origin'));
 		}
 
     $legends = $this->Legend->find('all', [
@@ -644,7 +667,7 @@ class ShopController extends AppController {
 
 	public function buscar(){
 		$this->loadModel('Product');
-		$this->loadModel('Search');
+		$this->loadModel('Stat');
 		$this->loadModel('Legend');
 
 		// legends
@@ -717,6 +740,27 @@ class ShopController extends AppController {
 
 			$results = array_merge($results1, $results2);
 
+			$pids = array();
+			foreach($results1 as $item) {
+				array_push($pids, $item['Product']['id']);
+			}
+			$results2 = $this->Product->find('all',[
+				'conditions' => [
+					'or' => $ors,
+					'and' => array(
+						'Product.id NOT IN' => $pids,
+					),
+					'visible' => 1,
+					'stock_total > ' => 0
+				],
+				// 'order' => ['Product.promo DESC'],
+				'order' => ["LOCATE('".$q."', Product.name)"],
+				// 'limit' => $s,
+				// 'offset' => $s * $p
+			]);
+
+			$results = array_merge($results1, $results2);
+
 			foreach ($results as &$item) {
 				if (isset($item['Product']['discount']) && $item['Product']['discount']) {
 					$item['Product']['old_price'] = $item['Product']['price'];
@@ -733,182 +777,19 @@ class ShopController extends AppController {
 		$this->set('results', $results);
 
 		// save search
-		$search = [];
-		$search['name'] = $q;
-		$search['user_id'] = $this->Auth->user('id') ?: 0;
-		$search['created'] = date('Y-m-d H:i:s');
-		$search['referer'] = $_SERVER['HTTP_REFERER'];
-		$search['page'] = $p+1;
-		$search['results'] = count($results); 
+		$save = array();
+		$save['tag'] = 'page-search';
+		$save['page'] = '/shop/buscar';
+		$save['user_id'] = $this->Auth->user('id') ?? 1;
+		// $save['referer'] = $_SERVER['HTTP_REFERER'];
+		// $save['page'] = $p+1;
+		$save['context'] = json_encode(
+			array(
+				'result_count' => count($results),
+				'query' => $q
+			)
+		);
 
-		$this->Search->save($search);
+		$this->Stat->save($save);
 	}
-
-	public function api_search(){
-		$this->autoRender = false;
-
-		$this->loadModel('Product');
-		$this->loadModel('Search');
-		$this->loadModel('Legend');
-
-		// legends
-		$legends_map = $this->Legend->find('all', [
-			'conditions' => ['enabled' => 1],
-			'order' => ['Legend.dues ASC']
-		]);
-
-		$q = $this->request->data['q'];
-		$p = $this->request->data['p'] ? intval($this->request->data['p']) : 0;
-		$s = $this->request->data['s'] ? intval($this->request->data['s']) : 10;
-		//$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
-		$data = $this->Product->find('all',[
-			'conditions' => [
-				'or' => [
-					'Product.name LIKE' => "%$q%",
-					'Product.desc LIKE' => "%$q%",
-					'Product.promo' => "$q",
-				],
-				'visible' => 1,
-				'stock_total > ' => 0
-			],
-			'order' => ['Product.promo DESC'],
-			'limit' => $s,
-			'offset' => $s * $p
-		]);
-
-		$results = [];
-
-		foreach($data as $item) {
-			$row = $item['Product'];
-			$price = ceil($row['price']);
-			$discount = ceil($row['discount']);
-			$old_price = null;
-			$number_ribbon = 0;
-			$mp_price = 0;
-			$bank_price = 0;
-			$discounts = [];
-	    $legends = [];
-
-	    // dues
-	    for ($i=0; $i<count($legends_map); $i++) {
-	      $legend = $legends_map[$i];
-	      $interest = (float) $legend['Legend']['interest'];
-	      $min_sale = (float) $legend['Legend']['min_sale'];
-	      //$formatted_price = str_replace(',00','',$this->Number->currency(ceil($price/$legend['Legend']['dues']), 'ARS', array('places' => 2)));
-
-	      $monto = $price;
-
-	      if(!empty($interest)){
-	        $monto = round($price * (1 + $interest / 100));
-	      }
-	      
-	      if($price >= $min_sale) {
-	        //$status = intval($legend['Legend']['interest']) ? 'warning' : 'info';
-	        //$str.= "<span class='badge badge-{$status}'>". $legend['Legend']['dues'] ." cuotas</span>";
-	        $legends[]= (object) [
-	        	'price' => ceil($monto / $legend['Legend']['dues']),
-	        	'text' => @str_replace(['{cuotas}','{interes}', '{monto}'], [$legend['Legend']['dues'], $legend['Legend']['interest'],''],$legend['Legend']['title'])
-	        ];
-	      }
-	    }
-
-	    if(!empty($row['bank_discount'])){
-	      $legends[]= (object) [
-	      	'price' => ceil(round($price * (1 - (float) $row['bank_discount'] / 100))),
-	      	'text' => 'transferencia',
-	      	'discount' => @$row['bank_discount']
-	      ];
-	    }
-
-	    if(!empty($row['mp_discount'])){
-	      $legends[]= (object) [
-	      	'price' => ceil(round($price * (1 - (float) $row['mp_discount'] / 100))),
-	      	'text' => 'mercadopago',
-	      	'discount' => @$row['mp_discount']
-	      ];
-	    }
-
-			if (isset($discount) && abs($discount-$price) > 1) {
-				$old_price = $price;
-				$price = $discount;
-			}
-
-      if(!empty(@$row['discount_label_show'])) {
-        $number_ribbon = $row['discount_label_show'];
-      }
-
-      if(!empty(@$row['mp_discount'])) {
-        $number_ribbon = $row['mp_discount'];
-        $mp_price = \price_format(ceil(round($price * (1 - (float) $row['mp_discount'] / 100))), true);
-      }
-
-      if(!empty(@$row['bank_discount'])) {
-        $number_ribbon = $row['bank_discount'];
-        $bank_price = \price_format(ceil(round($price * (1 - (float) $row['bank_discount'] / 100))), true);
-      }
-
-			$result = [
-				'id' => $row['id'],
-				'price' => \price_format($price, true),
-				'category_id' => $row['category_id'],
-				'name' => $row['name'],
-				'desc' => $row['desc'],
-				'promo' => $row['promo'],
-				'legends' => $legends,
-				'mp_discount' => $row['mp_discount'],
-				'bank_discount' => $row['bank_discount'],
-				'number_ribbon' => intval($number_ribbon),
-				'slug' => str_replace(' ','-',strtolower($row['desc'])),
-				'img_url' => $settings['upload_url'] . $row['img_url']
-			];
-
-			if(!empty($mp_price)){
-				$result['mp_price'] = \price_format($mp_price, true);
-			}
-			if(!empty($bank_price)){
-				$result['bank_price'] = \price_format($bank_price, true);
-			}
-			if(!empty($old_price)){
-				$result['old_price'] = \price_format($old_price, true);
-			}
-
-			$results[]= $result;
-		}
-
-		echo json_encode([
-			'results' => $results,
-			//'query' => $query
-		]);
-
-		// save search
-		$search = [];
-		$search['name'] = $q;
-		$search['user_id'] = $this->Auth->user('id') ?: 0;
-		$search['created'] = date('Y-m-d H:i:s');
-		$search['referer'] = $_SERVER['HTTP_REFERER'];
-		$search['page'] = $p+1;
-		$search['results'] = count($results);
-
-		$this->Search->save($search);
-		exit();		
-	}
-
-  public function analytics(){
-    $this->autoRender = false;
-    $this->loadModel('Analytic');
-    $data = $this->request->data;
-		// save search
-		$analytic = [];
-		$analytic['tag'] = "page_exit";
-		$analytic['user_id'] = $this->Auth->user('id') ?: 0;
-		$analytic['created'] = date('Y-m-d H:i:s');
-		$analytic['cart'] = json_encode($this->Session->read('cart'));
-		$analytic['cart_totals'] = json_encode($this->Session->read('cart_totals'));
-		$analytic['page'] = $data['page'] ?? '/';
-
-		CakeLog::write('debug', "analytics:".json_encode($data));
-
-		$this->Analytic->save($analytic);		
-		exit();	
-  }	
 }

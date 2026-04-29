@@ -9,14 +9,24 @@ $dotenv->load();
 use AlejoASotelo\Andreani;
 
 class AdminController extends AppController {
-	public $uses = array('AdminMenu','Promo','Package','SaleProduct','Sale','Setting');
-	//public $components = array('SQL', 'RequestHandler');
-	public $components = array('RequestHandler');
+	public $uses = array(
+		'AdminMenu',
+		'Promo',
+		'Package',
+		'SaleProduct',
+		'Sale',
+		'Setting'
+	);
+	
+	public $components = array(
+		'Newsletter', 
+		'Stats', 
+		'Application', 
+		'RequestHandler'
+	);
 
 	public function beforeFilter() {
     	parent::beforeFilter();
-    	// $settings = parent::load_settings();
-     	// $this->set('settings', $settings);
 
     	$this->Auth->deny();
     	$this->Auth->allow('login','test','update_products');
@@ -54,19 +64,26 @@ class AdminController extends AppController {
 		$data = [];
 		$coupon_enable = self::couponsAvailable();
 		$banners_enable = self::bannersAvailable();
+		$mailchimp_enable = self::mailchimpAvailable();
 
 		foreach($menu as $i => $v) {
 			if($v['url']==='/admin/whatsapp'){
-				$menu[$i]['update'] = !empty($this->settings['$whatsapp_enabled']);
+				$menu[$i]['update'] = $this->settings['whatsapp_enable'] == '1';
 			}
 			if($v['url']==='/admin/cupones'){
-				$menu[$i]['update'] = !empty($this->settings['coupon_enable']);
+				$menu[$i]['update'] = $this->settings['coupon_enable'] == '1';
 			}
 			if($v['url']==='/admin/bank'){
-				$menu[$i]['update'] = !empty($bank_enable);
+				$menu[$i]['update'] = $this->settings['bank_enable'] == '1';
 			}
 			if($v['url']==='/admin/banners'){
 				$menu[$i]['update'] = !empty($banners_enable);
+			}
+			if($v['url']==='/admin/mailchimp'){
+				$menu[$i]['update'] = !empty($mailchimp_enable);
+			}
+			if($v['url']==='/admin/newsletters'){
+				$menu[$i]['update'] = $this->settings['newsletter_enabled'] == '1';
 			}
 		}
 
@@ -158,6 +175,10 @@ class AdminController extends AppController {
 			}
 		}
 		return $available;
+	}
+
+	private function mailchimpAvailable(){
+		return !empty($this->settings['mailchimp_on']);
 	}
 
 	private function bannersAvailable(){
@@ -353,7 +374,7 @@ class AdminController extends AppController {
 		if($this->request->is('post')){
 			$data = $this->request->data;
 			$payload = $data['payload'];
-			CakeLog::write('debug', 'shop_composer(payload):'.json_encode($payload, JSON_PRETTY_PRINT));
+			// CakeLog::write('debug', 'shop_composer(payload):'.json_encode($payload, JSON_PRETTY_PRINT));
 			if(!empty($payload)) {
 				$this->Category->saveMany($payload);
 			}
@@ -362,6 +383,7 @@ class AdminController extends AppController {
 
 	public function ordernum($tag){
 		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
 		$data = $this->request->data;
 		$name = ucfirst($tag);
 		$this->loadModel($name);
@@ -406,9 +428,22 @@ class AdminController extends AppController {
 				$this->{$name}->save([
 					'id' => $id,
 					'ordernum' => $ordernum + 1
-				]);			
+				]);		
 			}
+
+			return json_encode(
+				array(
+					'success' => true,
+					'message' => "Se actualizó el orden de los elementos"
+				)
+			);
 		}
+		return json_encode(
+			array(
+				'success' => false,
+				'message' => "Faltan datos para actualizar"
+			)
+		);
 	}
 
 	public function ordernum2($tag){
@@ -443,8 +478,22 @@ class AdminController extends AppController {
 	}
 
 	public function oca(){
+		$navs = array(
+			'Paquetería' => array(
+				'icon' 		=> 'gi gi-package',
+				'url'		=> '/admin/oca',
+			)
+		);
+
+		$this->set('navs', $navs);	
+
 		if($this->request->is('post')){
 			$this->Package->save($this->request->data);
+      $this->Session->setFlash(
+        'Módulo OCA actualizado',
+        'default',
+        array('class' => 'hidden notice')
+      );
 		}
 
 		$h1 = array(
@@ -491,6 +540,12 @@ class AdminController extends AppController {
 		$sale['def_orden_tracking'] = @$oca_result['tracking'];
 		//CakeLog::write('debug', 'add_order_oca(sale)'.json_encode($sale));			
 		$t = @$this->Sale->save($sale);
+    $this->Session->setFlash(
+      'Se creó una orden (OCA)',
+      'default',
+      array('class' => 'hidden notice')
+    );
+
 		$sale['raw_xml'] = @$oca_result['rawXML'];
 		return $sale;		
 	}
@@ -599,6 +654,12 @@ class AdminController extends AppController {
 	    $sale['def_orden_tracking'] = $nroEnvio;
 	    CakeLog::write('debug', 'sale(6)'.json_encode($sale));			
 	    $t = @$this->Sale->save($sale);
+	    $this->Session->setFlash(
+	      'Se creó una orden (Andreani)',
+	      'default',
+	      array('class' => 'hidden notice')
+	    );
+
 		}
 
 	  $sale['raw_xml'] = @$response->detail ?: @$response->message;
@@ -632,6 +693,12 @@ class AdminController extends AppController {
 			$save['shipping'] = $logistic['Logistics']['code'];
 			CakeLog::write('debug', 'sale(7)'.json_encode($sale));			
 			$t = $this->Sale->save($save);
+	    $this->Session->setFlash(
+	      'Módulo Logística actualizado',
+	      'default',
+	      array('class' => 'hidden notice')
+	    );
+
 		}
 		die(json_encode($json));
 	}
@@ -705,6 +772,11 @@ class AdminController extends AppController {
 				'id' => $sale_id,
 				'completed' => 1
 			]);
+	    $this->Session->setFlash(
+	      'Se estableció venta como competada',
+	      'default',
+	      array('class' => 'hidden notice')
+	    );			
 		} else {
 			$data = [
 				'status' => 'danger',
@@ -813,6 +885,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					$data['message'] = 'Notificación enviada';
 					$this->sendEmailMessage($message,'🌸 Compra Realizada en Châtelet', $emailTo);
 					$this->Sale->save(['def_mail_sent' => 1]);
+			    $this->Session->setFlash(
+			      'Se envió email de notificación a la clienta',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );			
+
 				} else {
 					error_log('[email] ignored bc was sent before');
 					$data['status'] = 'success';
@@ -1173,7 +1251,62 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 	
 	public function index() {
-		$this->redirect('presentacion');
+		$session = $this->Stat->find('all', 
+			array(
+				'conditions' => array(
+					'or' => array(
+						'tag' => array(
+							'session-start', 
+							'session-end'
+						)
+					),
+					'and' => array(
+						'user_id' => $this->Auth->user('id')
+					)
+				),
+				'fields' => 'Stat.tag, Stat.created',
+				'order' => array(
+					'Stat.created DESC',
+					'Stat.tag DESC',
+				),
+				'limit' => 3,
+			)
+		);
+
+		#\d("session",$session);
+		# session stats
+		$text = "No hay suficientes datos aún para calcular esto";
+
+		if(count($session) == 3) {
+			$search = implode(' ', 
+				array(
+					$this->Auth->user('name'),
+					$this->Auth->user('surname'),
+					'session'
+				)
+			);
+			
+			$ended = $session[1]['Stat']['created'] ?? null;
+			$started = $session[2]['Stat']['created'] ?? null;
+			$since = \readable_time_ago($ended);
+			$duration = \readable_time_duration($started, $ended);
+			$text = "Tu última sesión se terminó {$since} y duró {$duration}.<br><a href='/admin/stats/session?search={$search}'><hr><i class='gi gi-lightbulb mr-1'></i> Ver mis sesiones</a>";
+		}
+
+		$navs = array(
+			'Cuenta' => array(
+				'icon' 		=> 'gi gi-woman',
+				'url'		=> '/shop/cuenta',
+				'text' => 'Accede a tu cuenta y mantenla actualizada con tus datos de contacto y dirección.'
+			),
+			'Sesión' => array(
+				'icon' 		=> 'gi gi-log_book',
+				'url'		=> '/admin/stats/session?search='.$this->Auth->user('name').' '.$this->Auth->user('surname'),
+				'text' => $text
+			)
+		);
+		$this->set('navs', $navs);
+		$this->set('session', $session);
 	}
 
 	public function presentacion() {
@@ -1284,6 +1417,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	}
     	
     	$this->Home->save($data);
+	    $this->Session->setFlash(
+	      'Módulo Presentación actualizado',
+	      'default',
+	      array('class' => 'hidden notice')
+	    );			
+
 		}
 
 		$p = $this->Home->find('first');
@@ -1298,13 +1437,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$navs = array(
 			'Carrusel' => array(
 				'icon' 		=> 'gi gi-image',
-				'url'		=> $this->settings['site_url'].'/admin/home',
-				'active'	=> '/admin/home'
+				'url'		=> '/admin/home',
 			),
 			'Pantalla inicial' => array(
 				'icon' 		=> 'gi gi-video',
-				'url'		=> $this->settings['site_url'].'/admin/home/splash',
-				'active'	=> '/admin/home/splash'
+				'url'		=> '/admin/home/splash',
 				)
 			);
 		$this->set('navs', $navs);
@@ -1519,6 +1656,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    unset($images[$key]);
 			    $catalog['images'] = implode(';', $images);
 			    $this->Catalog->save($catalog);
+			    $this->Session->setFlash(
+			      'Módulo Catálogo actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );			
+
 			}
 		} else if ($this->request->is('post')) {
 			$data = $this->request->data;
@@ -1567,6 +1710,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		$data['images'] = implode(';', $pictures);
     	}
 			$this->Catalog->save($data);
+	    $this->Session->setFlash(
+	      'Módulo Catálogo actualizado',
+	      'default',
+	      array('class' => 'hidden notice')
+	    );						
 		}
 
 		$page_video = (!empty($this->settings['page_video'])) ? $this->settings['page_video'] : '';
@@ -1590,20 +1738,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function categorias($action = null) {
 		$navs = array(
-			'Lista' => array(
-				'icon' 		=> 'gi gi-picture',
-				'url'		=> $this->settings['site_url'].'/admin/categorias',
-				'active'	=> '/admin/categorias'
+			'Categorías' => array(
+				'icon' 		=> 'gi gi-tags',
+				'url'		=> '/admin/categorias',
 			),
 			'Crear' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/categorias/add',
-				'active'	=> '/admin/categorias/add'
+				'url'		=> '/admin/categorias/add',
 			),
 			'Compositor' => array(
-				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/categorias/compose',
-				'active'	=> '/admin/categorias/compose'
+				'icon' 		=> 'gi gi-magic',
+				'url'		=> '/admin/categorias/compose',
 			)
 		);
 
@@ -1652,6 +1797,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		        }
 
 		        $this->Category->save($data);
+				    $this->Session->setFlash(
+				      'Módulo Shop actualizado',
+				      'default',
+				      array('class' => 'hidden notice')
+				    );		        
 		        return $this->redirect(array('action'=>'categorias'));
   			} else {
     			return $this->render('categorias-detail');
@@ -1663,6 +1813,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$this->loadModel('Product');
 	    		$this->Product->deleteall(array('Product.category_id' => $this->request->data['id']));
 	    		$this->Category->delete($this->request->data['id']);
+			    $this->Session->setFlash(
+			      'Módulo Shop actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );		        
+
 	    	}
     		break;
     	case 'edit':
@@ -1716,12 +1872,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        }
 
 	        $this->Category->save($data);
+			    $this->Session->setFlash(
+			      'Módulo Shop actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );		        
+
     		} else {
 	    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));	
     			$navs[$cat['Category']['name']] = array(
-						'icon' 		=> 'gi gi-circle_plus',
-						'url'		=> $this->settings['site_url'].'/admin/categorias/edit/'.$cat['Category']['id'],
-						'active'	=> '/admin/categorias/edit/'.$cat['Category']['id']
+						'icon' 		=> 'gi gi-edit',
+						'url'		=> '/admin/categorias/edit/'.$cat['Category']['id'],
 					);
 
 					$this->set('navs', $navs);
@@ -1740,46 +1901,210 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function whatsapp(){
+
 	  $this->loadModel('Setting');
 
 		if($this->request->is('post')){
 			$data = $this->request->data;
+			$data['whatsapp_enable'] = $data['whatsapp_enable'] ?? 0;
+
       foreach($data as $id => $value) {
-      	//CakeLog::write('debug', json_encode(array($id => $value)));
-        $this->Setting->save(['id' => $id, 'value' => $value]);
+      	if(!in_array($id, array('x_coord', 'y_coord')) {
+	        $this->Setting->save(
+	        	array(
+		        	'id' => $id, 
+		        	'value' => $value
+		        )
+		      );
+	      }
       }
-      return $this->redirect(array( 'action' => 'whatsapp' ));
+
+			if(!empty($promo['image']['name'])){
+				$file = $this->save_file( $promo['image'] );
+				$this->Promo->save(array(
+					'id' => null,
+					'image' => $file,
+				));
+			}
+
+	    $this->Session->setFlash(
+	      'Módulo WhatsApp actualizado',
+	      'default',
+	      array('class' => 'hidden notice')
+	    );		        
 		}
+
+		$navs = array(
+			'WhatsApp' => array(
+				'icon' 		=> 'fa fa-whatsapp',
+				'url'		=> '/admin/whatsapp',
+			)
+		);
+
+		$this->set('navs', $navs);		
 		$h1 = array(
 			'name' => 'WhatsApp',
 			'icon' => 'fa fa-whatsapp'
 			);
 		$this->set('h1', $h1);
-		$this->set('items',$items);
+
+		//$items = $this->Promo->find('all');
+		//$this->set('items',$items);
 	}
 
-	public function application(){
+	public function application2(){
 		if($this->request->is('post')){
+			try {
+				$this->RequestHandler->respondAs('application/json');
+				$this->autoRender = false;
 
+				$data = $this->request->data;
+				$saves = array();
+
+	      foreach($data as $id => $value) {
+	      	\d("id", $id);
+	        if(is_array($value) && ($id == 'opengraph_image')) {
+	          $value = $this->save_file( $value ); 
+	          $value = $this->settings['upload_url'] . $value; 
+	          #CakeLog::write('debug', 'file:'. json_encode(['id' => $id, 'value' => $value]));
+	        }
+
+	        #CakeLog::write('debug', 'save:'. json_encode(['id' => $id, 'value' => $value]));
+	      	array_push($saves, 
+	      		array(
+        			'id' => $id, 
+        			'value' => $value
+        		)
+        	);
+	      }
+
+      	CakeLog::write('debug', 'data:'. json_encode($data));
+      	CakeLog::write('debug', 'saves:'. json_encode($saves));
+
+        $this->Setting->saveAll($saves);
+
+				$response = array(
+					'success' => true,
+					'message' => 'La nueva configuración se actualizó exitosamente'
+				);
+
+				return json_encode($response);
+	    } catch (Exception $e) {
+	      return json_encode(array(
+	        'success' => false,
+	        'errors' => $e->getMessage()
+	      ));      
+	    }
+		} else {
+			$notification_settings = array();
+			$navs = array(
+				'Textos' => array(
+					'icon' 		=> 'gi gi-text',
+					'url'		=> '/admin/application/basic',
+				),
+				'Imagen' => array(
+					'icon' 		=> 'gi gi-image',
+					'url'		=> '/admin/application/image',
+				)
+			);
+		  			
+			$h1 = array(
+				'name' => 'Aplicación',
+				'icon' => 'fa fa-cog'
+			);
+
+			$tabs = array(
+				'social' => array(
+					'title' => "Redes sociales",
+					'icon' => "share",
+					'default' => true
+				),
+				'email' => array(
+					'title' => "Email",
+					'icon' => "envelope",
+				),
+				'payments' => array(
+					'title' => "Pagos",
+					'icon' => "wallet"
+				),
+				'analytics' => array(
+					'title' => "Analytics",
+					'icon' => "tag"
+				),
+				'google-fonts' => array(
+					'title' => "Tipografía",
+					'icon' => "text_underline"
+				),
+				'notifications' => array(
+					'title' => "Notificación",
+					'icon' => "bell"
+				),
+			);
+
+			$notification_sale_templates = array(
+				'name' => "Nombre de la clienta",
+				'surname' => "Apellido de la clienta",
+				'email' => "Email de la clienta",
+				'telephone' => "Teléfono de la clienta",
+				'dni' => "DNI de la clienta",
+				'sale_total' => "Total de compra",
+				'sale_id' => "Nro de remito",
+			);
+
+			$notification_register_templates = array(
+        'id_user' => 'Nro. Clienta',
+        'receiver_email' => 'email',
+        'name' =>  'Nombre',
+        'surname' =>  'Apellido',
+        'password' => 'Contraseña'
+      );
+
+			$notification_tags = array(
+				'notification_sale_success' => "Compra con pago exitoso",
+				'notification_sale_pending' => "Compra con pago pendiente",
+				'notification_register_welcome' => "Registro en la tienda",
+			);
+
+			foreach($notification_tags as $id => $tag) {
+				$notification_settings["{$id}_title"] = $this->settings["{$id}_title"] ?? '';
+				$notification_settings["{$id}_text"] = $this->settings["{$id}_text"] ?? '';
+			}
+
+			$this->set('notification_settings', $notification_settings);
+			$this->set('notification_tags', $notification_tags);
+			$this->set('notification_sale_templates', $notification_sale_templates);
+			$this->set('notification_register_templates', $notification_register_templates);
+			$this->set('tabs', $tabs);		
+			$this->set('navs', $navs);		
+		  $this->loadModel('Setting');
+			$this->set('h1', $h1);
+     	// $this->set('data', $this->load_settings());			
+		}
+	}
+
+	public function mailchimp(){
+		if($this->request->is('post')){
 			$this->RequestHandler->respondAs('application/json');
 			$this->autoRender = false;
 
 			$data = $this->request->data;
-			$og = $data['opengraph'];
-			unset($data['opengraph']);
+			$switches = array('mailchimp','mc_contact','mc_store','mc_subscription');
+
+			foreach($switches as $switch) {
+				$this->Setting->save([
+					'id' => $switch.'_on', 
+					'value' => $data[$switch.'_on'] ?? ''
+				]);
+			}
+
       foreach($data as $id => $value) {
-      	CakeLog::write('debug', 'save:'. json_encode(['id' => $id, 'value' => $value]));
+      	// CakeLog::write('debug', 'save:'. json_encode(['id' => $id, 'value' => $value]));
         $this->Setting->save(['id' => $id, 'value' => $value]);
       }
 
-			if(!empty($og['image']['name'])){
-				$file = $this->save_file( $og['image'] );
-				$this->Setting->save(['id' => 'opengraph_image', 'value' => $settings['upload_url'] . $file]);
-			}
-
 			$response = array(
 				'success' => true,
-				'message' => 'Se actualizó la Aplicación'
+				'message' => 'La nueva configuración se actualizó exitosamente'
 			);
 
 			return json_encode($response);
@@ -1788,25 +2113,85 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$navs = array(
 				'Textos' => array(
 					'icon' 		=> 'gi gi-text',
-					'url'		=> $this->settings['site_url'].'/admin/application/basic',
-					'active'	=> '/admin/application/basic'
+					'url'		=> '/admin/application/basic',
 				),
 				'Imagen' => array(
 					'icon' 		=> 'gi gi-image',
-					'url'		=> $this->settings['site_url'].'/admin/application/image',
-					'active'	=> '/admin/application/image'
+					'url'		=> '/admin/application/image',
 				)
 			);
 		  			
 			$h1 = array(
-			'name' => 'Aplicación',
-			'icon' => 'fa fa-cog'
+				'name' => 'Mailchimp',
+				'icon' => 'fa fa-cog'
 			);
-
+			
+			$this->set('audiences', \get_mc_audiences());
 			$this->set('navs', $navs);		
 		  $this->loadModel('Setting');
 			$this->set('h1', $h1);
      	// $this->set('data', $this->load_settings());			
+		}
+	}
+
+	public function newsletters($section = 'index'){
+		$pane = $this->params['pass'][0] ?? $section;
+		$action = $this->params['pass'][1] ?? '';
+		$id = $this->params['pass'][2] ?? 0;
+		$viewComponent = implode('-', array_values(array_filter(array($pane,$action))));
+		$controlComponent = implode('_', array_values(array_filter(array($pane,$action))));
+
+		$templateVars = array(
+			'name' => "Nombre del usuario",
+			'surname' => "Apellido del usuario",
+			'birthday' => "Fecha de cumpleaños",
+			'email' => "Email del usuario",
+			'telephone' => "Teléfono del usuario",			
+			'dni' => "DNI",			
+			'address' => "Dirección",
+			'postal_address' => "Código postal",
+		);
+
+		$h1 = array(
+			'name' => 'Newsletters',
+			'icon' => 'fa fa-bullhorn'
+		);
+
+		$navs = array(
+			'Plantillas' => array(
+				'id' => 'templates',
+				'text' => 'Diseña tus plantillas, usa tu creatividad. Recuerda expresarte en el modo mas humano posible, para evitar ser identificado como spam por Google o Outlook. Palabras como dinero, compra, venta bajan la reputación de tu ṕlantilla. <a href=#avoid-spam-templates>Más información</a>',
+				'icon' 		=> 'gi gi-picture',
+				'url'		=> '/admin/newsletters/templates',
+			),
+			'Listas' => array(
+				'id' => 'lists',
+				'text' => 'Organiza tus audiencias en segmentos. Usa los filtros para activar módulos Estadísticas y Ventas.',
+				'icon' 		=> 'gi gi-list',
+				'url'		=> '/admin/newsletters/lists',
+			),
+			'Campañas' => array(
+				'id' => 'schedules',
+				'text' => 'Te permite crear, programar y monitorear tus campañas. Debes tener al menos una plantilla y una lista antes de comenzar.',
+				'icon' 		=> 'gi gi-send',
+				'url'		=> '/admin/newsletters/schedules',
+			),
+			'Ajustes' => array(
+				'id' => 'config',
+				'text' => 'Establece los parámetros básicos de funcionamiento de la tarea programada',
+				'icon' 		=> 'gi gi-cogwheel',
+				'url'		=> '/admin/newsletters/config',
+			)
+		);
+
+		$this->set('pane', $pane);
+		$this->set('h1', $h1);
+		$this->set('viewComponent', $viewComponent);
+		$this->set('navs', $navs);
+		$this->set('templateVars', $templateVars);		
+
+		if(method_exists($this->Newsletter, $controlComponent)) {
+			return $this->Newsletter->{$controlComponent}($id);
 		}
 	}
 
@@ -1969,61 +2354,57 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
         //create table discount_lists (id int unsigned auto_increment primary key, item_index int unsigned, category_id int(10) unsigned not null, list_code varchar(30) not null,updated_at date);
     
 		$navs = array(
-			'Lista' => array(
+			'Productos' => array(
 				'icon' 		=> 'gi gi-shirt',
-				'url'		=> $this->settings['site_url'].'/admin/productos',
-				'active'	=> '/admin/productos'
-				),
+				'url'		=> '/admin/productos',
+			),
 			'Nuevo Producto' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/productos/add',
-				'active'	=> '/admin/productos/add'
-				)
-
-			);
-		$this->set('navs', $navs);
+				'url'		=> '/admin/productos/add',
+			)
+		);
 
 		$h1 = array(
 			'name' => 'Productos',
 			'icon' => 'gi gi-shirt'
 			);
 		$this->set('h1', $h1);
+		$this->set('navs', $navs);		
 
 		$colors = $this->SQL->new_colors();
-	    $this->set('colors',$colors);
+    $this->set('colors',$colors);
+    $this->loadModel('Product');
+    $this->loadModel('ProductProperty');
+  	switch ($action) {
+    	case 'add':
+  	    if ($this->request->is('POST')){
+	        $this->autoRender = false;
 
-	    $this->loadModel('Product');
-	    $this->loadModel('ProductProperty');
-    	switch ($action) {
-	    	case 'add':
-	    	    if ($this->request->is('POST')){
-			        $this->autoRender = false;
+	        $data = $this->request->data;
 
-			        $data = $this->request->data;
+	        $file_real_name = null;
+	        if(!empty($this->request->params['form']['image']['name'])){
+	            $file_real_name = $this->save_file($this->request->params['form']['image'], true, 2000);
+	        }
 
-			        $file_real_name = null;
-			        if(!empty($this->request->params['form']['image']['name'])){
-			            $file_real_name = $this->save_file($this->request->params['form']['image'], true, 2000);
-			        }
-
-			        if($file_real_name){
-			            $data['img_url'] = $file_real_name;
-			        }
-							$data['with_thumb']=1;
-			        $this->Product->save($data);
+	        if($file_real_name){
+	            $data['img_url'] = $file_real_name;
+	        }
+					$data['with_thumb']=1;
+	        $this->Product->save($data);
 
 
-			        if(!empty($data['props'])) {
-				        foreach ($data['props'] as &$prop) {
-				        	$prop['product_id'] = $this->Product->id;
-				        }
-			        	$this->ProductProperty->saveMany($data['props']);
-			        }
+	        if(!empty($data['props'])) {
+		        foreach ($data['props'] as &$prop) {
+		        	$prop['product_id'] = $this->Product->id;
+		        }
+	        	$this->ProductProperty->saveMany($data['props']);
+	        }
 
-			        return $this->redirect(array('action'=>'productos'));
-    			} else {
-    				$this->loadModel('Category');
-				    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+	        return $this->redirect(array('action'=>'productos'));
+  			} else {
+  				$this->loadModel('Category');
+			    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 					$this->set('cats', $cats);
 					$this->set('sel', true);
 
@@ -2032,45 +2413,52 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					$this->set('temps', $temps);
 	    			return $this->render('productos-detail');
 	    		}
-	    		break;
-	    	case 'delete':
-		    	if ($this->request->is('post')) {
-		    		$this->autoRender = false;
+    		break;
+    	case 'delete':
+	    	if ($this->request->is('post')) {
+	    		$this->autoRender = false;
 
-					$this->ProductProperty->deleteall(array('ProductProperty.product_id' => $this->request->data['id']));
-		    		$this->Product->delete($this->request->data['id']);
-		    	}
-	    		break;
-	    	case 'edit':
-	    		if ($this->request->is('post')) {
-	    			$this->autoRender = false;
+				$this->ProductProperty->deleteall(array('ProductProperty.product_id' => $this->request->data['id']));
+	    		$this->Product->delete($this->request->data['id']);
+	    	}
+    		break;
+    	case 'edit':
+    		if ($this->request->is('post')) {
+    			$this->autoRender = false;
 
-	    			$data = $this->request->data;
+    			$data = $this->request->data;
 
-			        $file_real_name = null;
-			        if(!empty($this->request->params['form']['image']['name'])){
-			            $file_real_name = $this->save_file($this->request->params['form']['image'], true, 2000);
-			        }
-							$data['with_thumb']=1;
-			        if($file_real_name){
-			            $data['img_url'] = $file_real_name;
-			        }
+	        $file_real_name = null;
+	        if(!empty($this->request->params['form']['image']['name'])){
+	            $file_real_name = $this->save_file($this->request->params['form']['image'], true, 2000);
+	        }
+					$data['with_thumb']=1;
+	        if($file_real_name){
+	            $data['img_url'] = $file_real_name;
+	        }
 
-			        $this->Product->save($data);
-			        /*if(!empty($this->request->data['id'])){
-			        	$this->ProductProperty->deleteAll(array( 'ProductProperty.product_id' => $this->request->data['id'] ));
-			        }*/
-			        if(!empty($data['props'])){
-			        	$this->ProductProperty->saveMany($data['props']);
-			        }
-	    		} else {
-		    		$hasId = array_key_exists(1, $this->request->pass);
-		    		if (!$hasId) break;
-		    		$prod = $this->Product->find('first', array('conditions' => array('id' => $this->request->pass[1])));
-		    		$this->set('prod', $prod);
+	        $this->Product->save($data);
+	        /*if(!empty($this->request->data['id'])){
+	        	$this->ProductProperty->deleteAll(array( 'ProductProperty.product_id' => $this->request->data['id'] ));
+	        }*/
+	        if(!empty($data['props'])){
+	        	$this->ProductProperty->saveMany($data['props']);
+	        }
+    		} else {
+	    		$hasId = array_key_exists(1, $this->request->pass);
+	    		if (!$hasId) break;
 
-    				$this->loadModel('Category');
-				    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+
+	    		$prod = $this->Product->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    		$this->set('prod', $prod);
+
+    			$navs[$prod['Product']['name']] = array(
+						'icon' 		=> 'gi gi-edit',
+						'url'		=> '/admin/productos/edit/'.$cat['Product']['id'],
+					);
+					$this->set('navs', $navs);
+  				$this->loadModel('Category');
+			    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
 					$this->set('cats', $cats);
 					$this->set('sel', true);
 
@@ -2078,43 +2466,44 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 						'product_id' => $this->request->pass[1]
 					)));
 					$this->set('props', $props);
-
 					$this->loadModel('Season');
 					$temps = $this->Season->find('all');
 					$this->set('temps', $temps);
 		    		return $this->render('productos-detail');
 	    		}
-	    		break;
-	    }
+    		break;
+    }
 
-	    $prods = $this->Product->find('all',array('order'=>array( 'Product.category_id ASC','Product.ordernum ASC' )));
-	    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
-	    $more_list_code_desc=[0,0,0,0,0,0,0,0,0,0];
-	    $more_list_category=[0,0,0,0,0,0,0,0,0,0];
-	    $this->loadModel('DiscountList');
-	    $discount_lists = $this->DiscountList->find('all',array('order'=>array( 'DiscountList.item_index ASC' )));
-	    foreach ($discount_lists as $dl){
-	    	$more_list_category[(int)$dl['DiscountList']['item_index']] = $dl['DiscountList']['category_id'];
-	    	$more_list_code_desc[(int)$dl['DiscountList']['item_index']] = $dl['DiscountList']['list_code'];
-	    }
+    $prods = $this->Product->find('all',array(
+    	'conditions' => array( 'id >' => 1),
+    	'order' => array( 'Product.category_id ASC','Product.ordernum ASC' )
+    ));
+    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+    $more_list_code_desc=[0,0,0,0,0,0,0,0,0,0];
+    $more_list_category=[0,0,0,0,0,0,0,0,0,0];
+    $this->loadModel('DiscountList');
+    $discount_lists = $this->DiscountList->find('all',array('order'=>array( 'DiscountList.item_index ASC' )));
+    foreach ($discount_lists as $dl){
+    	$more_list_category[(int)$dl['DiscountList']['item_index']] = $dl['DiscountList']['category_id'];
+    	$more_list_code_desc[(int)$dl['DiscountList']['item_index']] = $dl['DiscountList']['list_code'];
+    }
 		$this->set('more_list_code_desc', $more_list_code_desc);
 		$this->set('more_list_category', $more_list_category);
 		$this->set('cats', $cats);
 		$this->set('prods', $prods);
-	    $this->render('productos');
+
+	  $this->render('productos');
 	}
 
 	public function sucursales($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Sucursales' => array(
 				'icon' 		=> 'fa fa-map-marker',
-				'url'		=> $this->settings['site_url'].'/admin/sucursales',
-				'active'	=> '/admin/sucursales'
+				'url'		=> '/admin/sucursales',
 				),
 			'Nueva Sucursal' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/sucursales/add',
-				'active'	=> '/admin/sucursales/add'
+				'url'		=> '/admin/sucursales/add',
 				)
 
 			);
@@ -2144,7 +2533,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'delete':
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
-
 	    		$this->Store->delete($this->request->data['id']);
 	    	}
     		break;
@@ -2167,67 +2555,335 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		return $this->render('sucursales');
 	}
 
-	public function coupon_add() {
+	public function relation_add() {
 		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
     if ($this->request->is('POST')) {
-    	$this->loadModel('CouponItem');
     	$data = $this->request->data;
-    	$ids = $this->CouponItem->find('all', [
-    		'conditions' => [
-    			'coupon_id' => $data['coupon'],
-    			$data['type'] . '_id' => $data['id'],
-    		], 
-    		'fields' => ['id']
-    	]);
-			$ids = array_map(function($e) {
-				return $e['CouponItem']['id'];
-			},$ids);    	
-    	$this->CouponItem->delete($ids);
-      $result = $this->CouponItem->save([
-      	$data['type'] . '_id' => $data['id'],
-      	'coupon_id' => $data['coupon'],
-      ]);
-      return json_encode(['success' => true, 'data' => $result['CouponItem']]);
+    	if($data[0]['key'] == 'all') {
+    		$model = ClassRegistry::init($data[0]['model']);
+    		// assume user for now
+    		$this->loadModel('User');
+    		$saves = array();
+    		// its all so truncate first
+    		$model->deleteAll(
+    			array(
+	      		#$data[0]['type'] . '_id' => $item['User']['id'],
+	      		$data[0]['source'] . '_id' => $data[0]['parentId'],
+    			),
+    			false,
+    			false
+    		);
+    		foreach($this->User->find('all') as $item) {
+    			array_push($saves, 
+    				array(
+		      		'id' => null,
+		      		$data[0]['type'] . '_id' => $item['User']['id'],
+		      		$data[0]['source'] . '_id' => $data[0]['parentId'],
+		      	)
+    			);
+    		}
+    		$model->saveAll(
+    			$saves,
+    			array(
+	    			'validate' => false, 
+	    			'callbacks' => false
+	    		)
+    		);
+    	} else {
+	    	foreach($data as $i => $item) {
+		    	$model = ClassRegistry::init($item['model']);
+
+		    	$conditions = array(
+	    			$item['source'] . '_id' => $item['parentId'],
+	    			$item['type'] . '_id' => $item['id'],
+	    		);
+
+		    	$ids = $model->find('all', array(
+		    		'conditions' => $conditions, 
+		    		'fields' => ['id']
+		    	));
+
+					$ids = array_map(function($e) use ($item) {
+						return $e[$item['model']]['id'];
+					},$ids);    
+
+					if(count($ids)) {	
+			    	$model->delete($ids);
+			    }
+
+			    $save = array(
+		      		'id' => null,
+		      		$item['type'] . '_id' => $item['id'],
+		      		$item['source'] . '_id' => $item['parentId'],
+		      	);
+
+		      $model->save(
+		      	$save
+		      );
+		    }
+		  }
+      return json_encode(array(
+      	'success' => true, 
+      	//'data' => $result
+      ));
     }
 	}
 
-	public function coupon_remove() {
+	public function relation_remove() {
 		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
+
     if ($this->request->is('POST')) {
-    	$this->loadModel('CouponItem');
     	$data = $this->request->data;
-    	$ids = $this->CouponItem->find('all', [
-    		'conditions' => [
-    			'coupon_id' => $data['coupon'],
-    			$data['type'] . '_id' => $data['id'],
-    		], 
-    		'fields' => ['id']
-    	]);
-			$ids = array_map(function($e) {
-				return $e['CouponItem']['id'];
-			},$ids);    	
-    	$this->CouponItem->delete($ids);
+    	if($data[0]['key'] == 'all') {
+    		$model = ClassRegistry::init($data[0]['model']);
+    		// assume user for now
+    		$this->loadModel('User');
+    		$saves = array();
+    		// its all so truncate first
+    		$model->deleteAll(
+    			array(
+	      		#$data[0]['type'] . '_id' => $item['User']['id'],
+	      		$data[0]['source'] . '_id' => $data[0]['parentId'],
+    			),
+    			false,
+    			false
+    		);
+    	} else {
+	    	foreach($data as $i => $item) {
+		    	$model = ClassRegistry::init($item['model']);
+		    	$ids = $model->find('all',array(
+		    		'conditions' => array(
+		    			$item['type'] . '_id' => $item['id'],
+		    			$item['source'] . '_id' => $item['parentId'],
+		    		), 
+		    		'fields' => ['id']
+		    	));
+					$ids = array_map(function($e) use ($item) {
+						return $e[$item['model']]['id'];
+					},$ids);
+					if(count($ids)) {
+		    		$model->delete($ids);
+		    	}
+		    }
+		  }
       return json_encode(['success' => true]);
     }
 	}
 
+	public function search_users() {
+    $this->autoRender = false;
+    $this->RequestHandler->respondAs('application/json');
+
+    $this->loadModel('User');
+
+    $q = $this->request->data['q'];
+    $p = $this->request->data['p'] ? intval($this->request->data['p']) : 0;
+    $s = $this->request->data['s'] ? intval($this->request->data['s']) : 500;
+
+    $roles = array(
+    	'admin', 
+    	'club'
+    );
+
+    if(in_array($q, $roles)) {
+    	$conditions = array(
+    		'role' => $q
+    	);
+    } else {
+		  $conditions = array(
+	      'or' => array(
+	        'User.name LIKE' => "%$q%",
+	        'User.surname LIKE' => "%$q%",
+	        'User.email LIKE' => "%$q%",
+	        'User.telephone LIKE' => "%$q%",
+	        'User.province LIKE' => "%$q%",
+	        'User.city LIKE' => "%$q%",
+	      )
+	    );
+	  }
+	  #\d("conditions",$conditions);
+    //$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
+    $data = $this->User->find('all',[
+      'conditions' => $conditions,
+      'order' => ['User.modified DESC'],
+      'limit' => $s,
+      'offset' => $s * $p
+    ]);
+
+    return json_encode(
+    	array(
+      	'results' => array_column($data, 'User'),
+	    )
+    );
+	}
+
+	public function newsletters_users_reach(){
+    $this->autoRender = false;
+    $this->RequestHandler->respondAs('application/json');
+
+    $data = $this->request->data;
+    $date_min = $data['date_min'] ?? "last day of previous month";
+    $date_max = $data['date_max'] ?? "now";
+    $sale_min = $data['sale_min'] ?? 1;
+    $dob_min = $data['dob_min'] ?? 0;
+    $dob_max = $data['dob_max'] ?? 0;
+    $filter_type = $data['type'] ?? 'sale';
+    $sale_min *= 100;
+		#\d("newsletters_users_reach(filter_type)", $filter_type);
+		if($filter_type == 'dob') {
+			$min_parts = explode('/', $dob_min);
+			$max_parts = explode('/', $dob_max);
+			$this->loadModel('User');
+	    $data = $this->User->find('all',array(
+	      'conditions' => array(
+	        'User.id IS NOT ' => null,
+	        'MONTH(User.birthday) >=' => $min_parts[1],
+	        'DAY(User.birthday) >=' => $min_parts[0],
+	        'MONTH(User.birthday) <=' => $max_parts[1],
+	        'DAY(User.birthday) <=' => $max_parts[0],
+	      ),
+		    'fields' => array(
+		    	'User.id, User.email, User.name, User.surname, User.birthday'
+		    ),
+		  	'order' => array(
+		  		'User.id DESC'
+		  	),
+		  	'limit' => 1000,
+	    ));
+		} 
+
+		if($filter_type == 'sales') {
+			$this->loadModel('Sale');
+			#\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
+	    $data = $this->Sale->find('all',array(
+		    'joins' => array(
+	        array(
+	          'table' => 'users',
+	          'alias' => 'User',
+	          'type' => 'LEFT',
+	          'conditions' => array(
+	            'User.id = Sale.user_id',
+	          )
+	        )
+		    ),
+	      'conditions' => array(
+	        // 'SUM(Sale.value) > ' => $sale_min,
+	        'User.id IS NOT ' => null,
+	        'Sale.completed' => 1,
+	        'Sale.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
+	        'Sale.created <=' => date('Y-m-d 23:59', strtotime(str_replace('/','-', $date_max))),
+	      ),
+		    'fields' => array(
+		    	'SUM(Sale.value) AS Total, User.id, User.email, User.name, User.surname, User.birthday'
+		    ),
+		  	'order' => array(
+		  		'Sale.id DESC'
+		  	),
+		  	'group' => array(
+		  		"Sale.user_id HAVING Total > {$sale_min}"
+		  	),
+		  	'limit' => 1000,
+	    ));
+	  }
+		elseif($filter_type == 'carts') {
+			$this->loadModel('Stat');
+			//\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
+	    $data = $this->Stat->find('all',array(
+		    'joins' => array(
+	        array(
+	          'table' => 'users',
+	          'alias' => 'User',
+	          'type' => 'LEFT',
+	          'conditions' => array(
+	            'User.id = Stat.user_id',
+	          )
+	        )
+		    ),
+	      'conditions' => array(
+	        // 'SUM(Sale.value) > ' => $sale_min,
+	        'Stat.tag' => 'page-exit',
+	        'User.email IS NOT ' => null,
+	        'JSON_EXTRACT(Stat.context, \'$.cart_totals.total_products\') >' => $sale_min,
+	        'Stat.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
+	        'Stat.created <=' => date('Y-m-d 23:59', strtotime(str_replace('/','-', $date_max))),
+	      ),
+		    'fields' => array(
+		    	'User.id, User.email, User.name, User.surname, User.birthday'
+		    ),
+		  	'order' => array(
+		  		'Stat.id DESC'
+		  	),
+		  	'group' => array(
+		  		'User.id'
+		  	),
+		  	'limit' => 1000,
+	    ));
+	  }
+
+    return json_encode(
+    	array(
+      	'results' => array_column($data, 'User'),
+    	)
+    );		
+	}
+
+	public function schedules_update(){
+		$this->RequestHandler->respondAs('application/json');
+		$this->autoRender = false;
+
+		$data = $this->request->data;
+		$schedules = $this->Newsletter->schedules();
+		$partials = array(
+			'email_sent',
+			'push_sent',
+			'email_total',
+			'push_total',
+			'clicks'
+		);
+		$change = array();
+
+		foreach($schedules as $i => $schedule) {
+			$schedules[$i]['change'] = array();
+			foreach($partials as $partial) {
+				if(
+					isset($data[$schedule['NewsletterSchedule']['id']][$partial]) && 
+					(int) $schedule['stats'][$partial] != (int) $data[$schedule['NewsletterSchedule']['id']][$partial]
+				) {
+					$schedules[$i]['change'][$partial] = 1;
+					array_push($change, $schedule['NewsletterSchedule']['id']);
+				}
+			}
+		}
+
+    return json_encode(
+    	array(
+      	'results' => $schedules,
+      	'change' => count(
+      		array_filter(
+      			array_values(
+      				$change
+      			)
+      		)
+      	),
+    	)
+    );		
+	}
 
 	public function cupones($action = null) {
 		$weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
 		$navs = array(
-			'Lista' => array(
+			'Cupones' => array(
 				'icon' 		=> 'gi gi-tags',
-				'url'		=> $this->settings['site_url'].'/admin/cupones',
-				'active'	=> '/admin/cupones'
-				),
+				'url'		=> '/admin/cupones',
+			),
 			'Nuevo Cupón' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/cupones/add',
-				'active'	=> '/admin/cupones/add'
-				)
-
-			);
+				'url'		=> '/admin/cupones/add',
+			)
+		);
 
     $this->loadModel('Coupon');
     $this->loadModel('CouponItem');
@@ -2273,6 +2929,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     			}
 
 		      $this->Coupon->save($data);
+
+		      return $this->redirect(array('action' => 'cupones'));
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
@@ -2368,17 +3026,30 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		return $this->render('cupones');
 	}
 
+	public function settings($action = null) {
+		$this->loadModel('Setting');
+	  $items = $this->Setting->find('all',['order' => ['Setting.id ASC']]);
+    function sorter($a,$b){
+    	if(substr($b['Setting']['id'],-3) == '_on') return 1;
+    	if(substr($b['Setting']['id'],-5) == '_text') return 0;
+    	return -1;
+    }
+    
+    uasort($items, 'sorter');
+
+	  $this->set('items', $items);
+	  $this->render('settings');		
+	}
+
 	public function admin_menu($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Menues' => array(
 				'icon' 		=> 'gi gi-list',
-				'url'		=> $this->settings['site_url'].'/admin/admin_menu',
-				'active'	=> '/admin/admin_menu'
+				'url'		=> '/admin/admin_menu',
 			),
 			'Nuevo Menú de Administrador' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/admin_menu/add',
-				'active'	=> '/admin/admin_menu/add'
+				'url'		=> '/admin/admin_menu/add',
 			)
 		);
 
@@ -2435,15 +3106,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function banners($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Banners' => array(
 				'icon' 		=> 'fa fa-shirtsinbulk',
-				'url'		=> $this->settings['site_url'].'/admin/banners',
-				'active'	=> '/admin/banners'
+				'url'		=> '/admin/banners',
 			),
 			'Nuevo Banner' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/banners/add',
-				'active'	=> '/admin/banners/add'
+				'url'		=> '/admin/banners/add',
 			)
 		);
 
@@ -2469,6 +3138,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		        }
 
 		        $this->Banner->save($data);
+				    $this->Session->setFlash(
+				      'Módulo Banners actualizado',
+				      'default',
+				      array('class' => 'hidden notice')
+				    );		        
 
 		        return $this->redirect(array('action'=>'banners'));
   			} else {
@@ -2479,6 +3153,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
 	    		$this->Banner->delete($this->request->data['id']);
+			    $this->Session->setFlash(
+			      'Módulo Banners actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );		        	    		
 	    	}
     		break;
     	case 'edit':
@@ -2499,10 +3178,23 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	        $data['target_blank'] = @$data['target_blank'] ?: '';
 	        $this->Banner->save($data);
+			    $this->Session->setFlash(
+			      'Módulo Banners actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );		        
+
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$item = $this->Banner->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+    			$navs[$item['Banner']['text']] = array(
+						'icon' 		=> 'gi gi-edit',
+						'url'		=> '/admin/banners/edit/'.$item['Banner']['id'],
+					);
+
+	    		$this->set('navs', $navs);
+
 	    		$this->set('item', $item);
 	    		return $this->render('banners-detail');
     		}
@@ -2515,15 +3207,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function legends($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Financiación' => array(
 				'icon' 		=> 'fa fa-credit-card',
-				'url'		=> $this->settings['site_url'].'/admin/legends',
-				'active'	=> '/admin/legends'
+				'url'		=> '/admin/legends',
 			),
 			'Nueva Financiación' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/legends/add',
-				'active'	=> '/admin/legends/add'
+				'url'		=> '/admin/legends/add',
 			)
 		);
 
@@ -2540,6 +3230,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		        $this->autoRender = false;
 		        $data = $this->request->data;
 		        $this->Legend->save($data);
+				    $this->Session->setFlash(
+				      'Módulo Financiación actualizado',
+				      'default',
+				      array('class' => 'hidden notice')
+				    );		        
+
 		        return $this->redirect(array('action'=>'legends'));
   			} else {
     			return $this->render('legends-detail');
@@ -2549,6 +3245,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
 	    		$this->Legend->delete($this->request->data['id']);
+				    $this->Session->setFlash(
+				      'Módulo Financiación actualizado',
+				      'default',
+				      array('class' => 'hidden notice')
+				    );		        
+
 	    	}
     		break;
     	case 'edit':
@@ -2556,10 +3258,23 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     			$this->autoRender = false;
     			$data = $this->request->data;
 	        $this->Legend->save($data);
+				    $this->Session->setFlash(
+				      'Módulo Financiación actualizado',
+				      'default',
+				      array('class' => 'hidden notice')
+				    );		        
+	        
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$item = $this->Legend->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+    			$navs[$item['Legend']['title']] = array(
+						'icon' 		=> 'gi gi-edit',
+						'url'		=> '/admin/legends/edit/'.$item['Legend']['id'],
+					);
+
+	    		$this->set('navs', $navs);
+
 	    		$this->set('item', $item);
 	    		return $this->render('legends-detail');
     		}
@@ -2572,15 +3287,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function menu($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Menu' => array(
 				'icon' 		=> 'fa fa-ellipsis-v',
-				'url'		=> $this->settings['site_url'].'/admin/menu',
-				'active'	=> '/admin/menu'
+				'url'		=> '/admin/menu',
 			),
 			'Nuevo Menú' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/menu/add',
-				'active'	=> '/admin/menu/add'
+				'url'		=> '/admin/menu/add',
 			)
 		);
 
@@ -2640,12 +3353,23 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	        $data['target_blank'] = @$data['target_blank'] ?: '';
 	        $this->Menu->save($data);
+		      $this->Session->setFlash(
+	          'Módulo Menú actualizado',
+	          'default',
+	          array('class' => 'hidden notice')
+		      );
+
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$item = $this->Menu->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+    			$navs[$item['Menu']['title']] = array(
+						'icon' 		=> 'gi gi-edit',
+						'url'		=> '/admin/menu/edit/'.$item['Menu']['id'],
+					);
 
-				  
+	    		$this->set('navs', $navs);
+
 	    		$this->set('item', $item);
 	    		return $this->render('menu-detail');
     		}
@@ -2671,73 +3395,110 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	  $this->render('menu');
 	}	
 
-	public function analytics($action = null) {
+	public function application($section = 'index') {
+		$pane = $this->params['pass'][0] ?? $section;
+		$action = $this->params['pass'][1] ?? '';
+		$id = $this->params['pass'][2] ?? 0;
+		$viewComponent = implode('-', array_values(array_filter(array($pane,$action))));
+		$controlComponent = implode('_', array_values(array_filter(array($pane,$action))));
+
+		$h1 = array(
+			'name' => 'Aplicación',
+			'icon' => 'gi gi-cogwheel'
+		);
+
 		$navs = array(
-			'Búsquedas' => array(
-				'icon' 		=> 'gi gi-charts',
-				'url'		=> $this->settings['site_url'].'/admin/analytics',
-				'active'	=> '/admin/analytics'
+			'Redes' => array(
+				'id' => 'search',
+				'icon' 		=> 'gi gi-share',
+				'url'		=> '/admin/application/share',
 			),
-			'Carrito' => array(
-				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/analytics/cart',
-				'active'	=> '/admin/analytics/cart'
+			'Email' => array(
+				'id' => 'cart',
+				'icon' 		=> 'gi gi-envelope',
+				'url'		=> '/admin/application/email',
+			),
+			'Analytics' => array(
+				'id' => 'sales',
+				'icon' 		=> 'gi gi-tag',
+				'url'		=> '/admin/application/analytics',
+			),
+			'Tipografía' => array(
+				'id' => 'fonts',
+				'icon' 		=> 'gi gi-font',
+				'url'		=> '/admin/application/fonts',
+			),
+			'Pagos' => array(
+				'id' => 'payments',
+				'icon' 		=> 'gi gi-credit_card',
+				'url'		=> '/admin/application/payments',
+			),
+			'Notificación' => array(
+				'id' => 'fonts',
+				'icon' 		=> 'gi gi-bullhorn',
+				'url'		=> '/admin/application/notifications',
 			)
 		);
 
-		$this->set('navs', $navs);
-		$h1 = array(
-			'name' => 'Analíticas',
-			'icon' => 'gi gi-stats'
-		);
+		$this->set('pane', $pane);
 		$this->set('h1', $h1);
+		$this->set('viewComponent', $viewComponent);
+		$this->set('navs', $navs);
 
-		switch($action) {
-			case 'cart':
-		    $this->loadModel('Analytic');
-			  $items = $this->Analytic->find('all',array(
-			    'joins' => array(
-		        array(
-		          'table' => 'users',
-		          'alias' => 'UserJoin',
-		          'type' => 'LEFT',
-		          'conditions' => array(
-	              'UserJoin.id = Analytic.user_id',
-		          )
-		        )
-			    ),
-          'conditions' => array(
-            'Analytic.user_id > 0',
-          ),
-			    'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Analytic.*'),
-			  	'order' => array('Analytic.id DESC'),
-			  	'limit' => 500,
-		    ));
-				$this->set('view', "analytics");
-				break;
+		if(method_exists($this->Application, $controlComponent)) {
+			return $this->Application->{$controlComponent}();
+		}		
+	}
 
-			default: 
-		    $this->loadModel('Search');
-			  $items = $this->Search->find('all',array(
-			    'joins' => array(
-		        array(
-		          'table' => 'users',
-		          'alias' => 'UserJoin',
-		          'type' => 'LEFT',
-		          'conditions' => array(
-		              'UserJoin.id = Search.user_id'
-		          )
-		        )
-			    ),
-			    'fields' => array('UserJoin.name, UserJoin.surname, UserJoin.birthday', 'Search.*'),
-			  	'order' => array('Search.id DESC'),
-			  	'limit' => 20,
-		    ));
-		    $this->set('view', "searches");
-		    break;
+
+	public function stats($section = 'index') {
+		$pane = $this->params['pass'][0] ?? $section;
+		$action = $this->params['pass'][1] ?? '';
+		$id = $this->params['pass'][2] ?? 0;
+		$viewComponent = implode('-', array_values(array_filter(array($pane,$action))));
+		$controlComponent = implode('_', array_values(array_filter(array($pane,$action))));
+
+		$h1 = array(
+			'name' => 'Estadísticas',
+			'icon' => 'gi gi-charts'
+		);
+
+		$navs = array(
+			'Búsquedas' => array(
+				'id' => 'search',
+				'icon' 		=> 'gi gi-search',
+				'url'		=> '/admin/stats/search',
+			),
+			'Carrito' => array(
+				'id' => 'cart',
+				'icon' 		=> 'gi gi-shopping_cart',
+				'url'		=> '/admin/stats/cart',
+			),
+			/*'Ventas' => array(
+				'id' => 'sales',
+				'icon' 		=> 'gi gi-money',
+				'url'		=> '/admin/stats/sales',
+			),
+			'Productos' => array(
+				'id' => 'products',
+				'icon' 		=> 'gi gi-dress',
+				'url'		=> '/admin/stats/items',
+			),*/
+			'Sesión' => array(
+				'id' => 'session',
+				'icon' 		=> 'gi gi-log_book',
+				'url'		=> '/admin/stats/session',
+			),
+		);
+
+		$this->set('pane', $pane);
+		$this->set('h1', $h1);
+		$this->set('viewComponent', $viewComponent);
+		$this->set('navs', $navs);
+
+		if(method_exists($this->Stats, $controlComponent)) {
+			return $this->Stats->{$controlComponent}($id);
 		}
-		$this->set('items', $items);
-	  $this->render('analytics');
 	}
 
 	public function batch_productos($action = null) {
@@ -2851,15 +3612,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function logistica($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Logística' => array(
 				'icon' 		=> 'gi gi-cargo',
-				'url'		=> $this->settings['site_url'].'/admin/logistica',
-				'active'	=> '/admin/logistica'
+				'url'		=> '/admin/logistica',
 				),
 			'Nueva Logística' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/logistica/add',
-				'active'	=> '/admin/logistica/add'
+				'url'		=> '/admin/logistica/add',
 				)
 			);
 		$this->set('navs', $navs);
@@ -2881,6 +3640,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				    $result['Logistic']['id'],
 				    '#' => 'tarifas'
 					);
+		      $this->Session->setFlash(
+	          'Módulo Logística actualizado',
+	          'default',
+	          array('class' => 'hidden notice')
+		      );					
 					return $this->redirect($url);
 	        // return $this->redirect(array('action'=>'logistica'));
   			} else {
@@ -2891,6 +3655,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 						'name' => 'Nueva logística',
 						'icon' => 'gi gi-truck'
 					];
+
+
 					$this->set('h1', $h1);  					
     			return $this->render('logistica-detail');
     		}
@@ -2912,6 +3678,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     				$data['image'] = $this->saveFile('image');
     			}
 		      $this->Logistic->save($data);
+		      $this->Session->setFlash(
+						'Módulo Logística actualizado',	          
+	          'default',
+	          array('class' => 'hidden notice')
+		      );
+
           if(!empty($this->request->data['config'])) {
             foreach($this->request->data['config'] as $id => $value) {
               $this->Setting->save([
@@ -2933,7 +3705,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 						'name' => $logistic['Logistic']['title'],
 						'icon' => 'gi gi-truck'
 					];
-					$this->set('h1', $h1);    			
+					$this->set('h1', $h1);  
+    			$navs[$logistic['Logistic']['title']] = array(
+						'icon' 		=> 'gi gi-edit',
+						'url'		=> '/admin/logistica/edit/'.$logistic['Logistic']['id'],
+					);
+
+	    		$this->set('navs', $navs);
 	    		$this->set('logistic', $logistic);
 	    		$this->set('logistic_prices', $prices);
           $code = $logistic['Logistic']['code'];
@@ -2977,7 +3755,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function shipping($action = null) {
-		$navs = array();
+		$navs = array(
+			'Envíos' => array(
+				'icon' 		=> 'gi gi-car',
+				'url'		=> '/admin/shipping',
+			)
+		);
+
 		$this->set('navs', $navs);
 
 		$h1 = array(
@@ -2995,6 +3779,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				$this->Setting->save(array('id' => $id, 'value' => $value));
 			}
 
+      $this->Session->setFlash(
+        'Módulo Envíos actualizado',
+        'default',
+        array('class' => 'hidden notice')
+      );
+
 			return $this->redirect(array('action'=>'shipping'));
 			// CakeLog::write('debug', 'data:'.json_encode($data));
 			//$this->Setting->save($data);
@@ -3005,10 +3795,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function contacto($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Contactos' => array(
 				'icon' 		=> 'gi gi-envelope',
-				'url'		=> $this->settings['site_url'].'/admin/contacto',
-				'active'	=> '/admin/contacto'
+				'url'		=> '/admin/contacto',
 			)
 		);
 		$this->set('navs', $navs);
@@ -3032,23 +3821,20 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function usuarios($action = null) {
 		$navs = array(
-			'Lista' => array(
-				'icon' 		=> 'gi gi-user',
-				'url'		=> $this->settings['site_url'].'/admin/usuarios',
-				'active'	=> '/admin/usuarios'
-				),
-			'Nuevo Usuario' => array(
-				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/usuarios/add',
-				'active'	=> '/admin/usuarios/add'
-				)
-
-			);
+		'Clientas' => array(
+			'icon' 		=> 'gi gi-woman',
+			'url'		=> '/admin/usuarios',
+			),
+		'Nueva Cuenta' => array(
+			'icon' 		=> 'gi gi-circle_plus',
+			'url'		=> '/admin/usuarios/add',
+			)
+		);
 		$this->set('navs', $navs);
 
 		$h1 = array(
-			'name' => 'Usuarios',
-			'icon' => 'gi gi-user'
+			'name' => 'Clientas',
+			'icon' => 'gi gi-woman'
 			);
 		$this->set('h1', $h1);
     $this->loadModel('User');
@@ -3058,6 +3844,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	  if ($this->request->is('POST')){
 	        $this->autoRender = false;
 	        $this->User->save($this->request->data);
+		      $this->Session->setFlash(
+		        'Módulo Clientas actualizado',
+		        'default',
+		        array('class' => 'hidden notice')
+		      );
 	        return $this->redirect(array('action'=>'usuarios'));
   			} else {
     			return $this->render('usuarios-detail');
@@ -3079,14 +3870,18 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     				}
     			}
 		      $this->User->save($data);
+		      $this->Session->setFlash(
+		        'Módulo Clientas actualizado',
+		        'default',
+		        array('class' => 'hidden notice')
+		      );		      
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$usuario = $this->User->find('first', array('conditions' => array('id' => $this->request->pass[1])));
-    			$navs[$usuario['User']['name']] = array(
-						'icon' 		=> 'gi gi-circle_plus',
-						'url'		=> $this->settings['site_url'].'/admin/usuarios/edit/'.$usuario['User']['id'],
-						'active'	=> '/admin/usuarios/edit/'.$usuario['User']['id']
+    			$navs[$usuario['User']['name'].' '.$usuario['User']['surname']] = array(
+						'icon' 		=> 'gi gi-user',
+						'url'		=> '/admin/usuarios/edit/'.$usuario['User']['id'],
 					);
 
 	    		$this->set('navs', $navs);
@@ -3095,7 +3890,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		}
     		break;
     }
-    $users = $this->User->find('all');
+    $users = $this->User->find('all', array('conditions' => array( 'id > ' => 1 )));
     $this->set('users', $users);
 		return $this->render('usuarios');
 	}
@@ -3124,8 +3919,16 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	public function login() {
 		if($this->isAuthorized()) {
-			return $this->redirect(array('controller' => 'admin', 'action' => 'presentacion'));
+			return $this->redirect(array('controller' => 'admin', 'action' => 'index'));
 		}
+
+    $redirect = $this->request->data['redirect'];
+    $ajax = $this->request->data['ajax'];
+
+    if(!empty($ajax)) {
+      $this->RequestHandler->respondAs('application/json');
+      $this->autoRender = false;        
+    }
 
 		$this->loadModel('User');
 		if ($this->request->is('post')) {
@@ -3135,11 +3938,20 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$user = $this->User->find('first', array('conditions' => array('email' => trim($email))));
 
 			if (empty($user)) {
-	      $this->Session->setFlash(
-          'La cuenta no existe',
+				if(!empty($ajax)) {
+		      return json_encode(array(
+		        'success' => false, 
+		        'errors' => 'Tu email no está registrado en nuestra tienda'
+		      ));				
+		    }
+
+
+	      /*$this->Session->setFlash(
+          'Tu email no está registrado en nuestra tienda',
           'default',
-          array('class' => 'hidden error')
-	      );
+          array('class' => 'hidden notice')
+	      );*/
+
 				return $this->redirect(array('controller' => 'admin', 'action' => 'login'));
 			}
 
@@ -3147,37 +3959,69 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 			if ($this->Auth->login()) {
 	      $this->Session->setFlash(
-          'Bienvenida ' . $user['User']['name'],
+          "Bienvenida {$user['User']['name']} al Administrador de Châtelet",
           'default',
           array('class' => 'hidden notice')
 	      );
+        # save log (session-register)
+        $this->Stat->save(
+          array(
+            'tag' => 'session-start',
+            'user_id' => $this->Auth->user('id'),
+          )
+        );
+        if(!empty($ajax)) {
+          return json_encode(array(
+            'success' => true, 
+            'message' => "Bienvenida {$user['User']['name']} al Administrador de Châtelet"
+          ));
+        }
 				return $this->redirect(array('controller' => 'admin', 'action' => 'index'));
 			} else {
+				if(!empty($ajax)) {
+		      return json_encode(array(
+		        'success' => false, 
+		        'errors' => 'La contraseña es inválida'
+		      ));				
+		    }	      
+
 	      $this->Session->setFlash(
           'La contraseña es inválida',
           'default',
           array('class' => 'hidden error')
 	      );
+
 				return $this->redirect(array('controller' => 'admin', 'action' => 'login'));
 			}
 		}
 	}
 
 	public function logout() {
+    # save log (session-register)
+    $this->Stat->save(
+      array(
+        'tag' => 'session-end',
+        'user_id' => $this->Auth->user('id'),
+      )
+    );
+    $this->Session->destroy();    		
+    $this->Session->setFlash(
+      'Tu sesión se cerró exitosamente. Gracias por hacer Châtelet todos los días', 
+      'default', 
+      array('class' => 'hidden notice')
+    );
 		$this->redirect($this->Auth->logout());
 	}
 
 	public function lookbook($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Lookbook' => array(
 				'icon' 		=> 'gi gi-justify',
-				'url'		=> $this->settings['site_url'].'/admin/lookbook',
-				'active'	=> '/admin/lookbook'
+				'url'		=> '/admin/lookbook',
 			),
 			'Nuevo Look Book' => array(
 				'icon' 		=> 'gi gi-circle_plus',
-				'url'		=> $this->settings['site_url'].'/admin/lookbook/add',
-				'active'	=> '/admin/lookbook/add'
+				'url'		=> '/admin/lookbook/add',
 			)
 		);
 
@@ -3237,20 +4081,32 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function carrito() {
+		$navs = array(
+			'Carrito' => array(
+				'icon' 		=> 'gi gi-shopping_cart',
+				'url'		=> '/admin/carrito',
+			)
+		);
+
+		$this->set('navs', $navs);	
+
 		$h1 = array(
 			'name' => 'Carrito',
 			'icon' => 'gi gi-shopping_cart'
 		);
 
 		$this->set('h1', $h1);
-		$this->set('navs', []);
 		$this->loadModel('Setting');
 
 		if ($this->request->is('post')) {
       foreach($this->request->data as $id => $value) {
       	$this->Setting->save(['id' => $id, 'value' => $value]);
       }
-
+      $this->Session->setFlash(
+        'El carrito se actualizó',
+        'default',
+        array('class' => 'hidden notice')
+		  );
       return $this->redirect(array('action'=>'carrito'));
 		}
 	}
@@ -3262,14 +4118,25 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		);
 
 		$this->set('h1', $h1);
-		$this->set('navs', []);
-		$this->loadModel('Setting');
+		$navs = array(
+			'Banco' => array(
+				'icon' 		=> 'gi gi-bank',
+				'url'		=> '/admin/bank',
+			)
+		);
+
+		$this->set('navs', $navs);			$this->loadModel('Setting');
 
 		if ($this->request->is('post')) {
       foreach($this->request->data as $id => $value) {
       	CakeLog::write('debug', 'data:'. json_encode(['id' => $id, 'value' => $value]));
       	$this->Setting->save(['id' => $id, 'value' => $value]);
       }
+      $this->Session->setFlash(
+        'Módulo Banco actualizado',
+        'default',
+        array('class' => 'hidden notice')
+      );      
       return $this->redirect(array('action'=>'bank'));
 
      	/* $data = parent::load_settings();
@@ -3280,10 +4147,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
   public function subscriptions($action = null) {
 		$navs = array(
-			'Lista' => array(
+			'Suscrpciones' => array(
 				'icon' 		=> 'gi gi-envelope',
-				'url'		=> $this->settings['site_url'].'/admin/subscriptions',
-				'active'	=> '/admin/newsletter'
+				'url'		=> '/admin/subscriptions',
 			)
 		);
 		$this->set('navs', $navs);
@@ -3313,98 +4179,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $this->set('subscriptions', $subscriptions);
 		return $this->render('subscriptions');
 	}
-
-  public function newsletters($action = null) {
-		$navs = array(
-			'Lista' => array(
-				'icon' 		=> 'gi gi-wifi',
-				'url'		=> $this->settings['site_url'].'/admin/newsletters',
-				'active'	=> '/admin/newsletters'
-			),
-			'Nuevo' => array(
-				'icon' 		=> 'gi gi-toolbox',
-				'url'		=> $this->settings['site_url'].'/admin/newsletters/add',
-				'active'	=> '/admin/newsletters/add'
-			)			
-		);
-		
-		$this->set('navs', $navs);
-
-		$h1 = array(
-			'name' => 'Newsletters',
-			'icon' => 'gi gi-wifi'
-			);
-		$this->set('h1', $h1);
-
-		$this->loadModel('Newsletter');
-		// $this->loadModel('NewsletterUser');
-
-  	if ($action == 'delete' && $this->request->is('post')) {
-  		$this->autoRender = false;
-  		$this->Newsletter->delete($this->request->data['id']);
-  	}
-
-  	switch ($action) {
-    	case 'add':
-    		if ($this->request->is('POST')){
-	        $this->Newsletter->save($this->request->data);
-	        return $this->redirect(array('action'=>'newsletters'));
-  			} else {
-			    $cats = $this->Newsletter->find('all');
-					$h1 = array(
-						'name' => 'Nuevo Newsletter',
-						'icon' => 'gi gi-wifi'
-						);
-					$this->set('h1', $h1);	
-					$this->set('weekdays', $weekdays);
-    			return $this->render('newsletter-detail');
-    		}  				
-    		break;
-    	case 'delete':
-	    	if ($this->request->is('post')) {
-	    		$this->autoRender = false;
-	    		$this->Newsletter->delete($this->request->data['id']);
-	    	}    	
-    		break;
-    	case 'edit':
-				$h1 = array(
-					'name' => $coupon['Coupon']['code'],
-					'icon' => 'gi gi-wifi'
-				);
-				$this->set('h1', $h1);	    		
-    		return $this->render('newsletter-detail');
-
-    		break;
-    }
-
-    $newsletters = $this->Newsletter->find('all', array(
-     'joins' => array(
-      array(
-        'table' => 'newsletter_users',
-        'alias' => 'NewsletterUser',
-        'type' => 'LEFT',
-        'conditions' => array( 'NewsletterUser.newsletter_id = Newsletter.id' )
-      ),
-      array(
-        'table' => 'users',
-        'alias' => 'User',
-        'type' => 'LEFT',
-        'conditions' => array( 'NewsletterUser.user_id = User.id' )
-      )
-     ),
-    'fields' => array('Newsletter.*, User.name, User.surname, User.email'),
-       'conditions' => array( 
-          // 'Newsletter.status' => "waiting", 
-          'Newsletter.enabled' => 1
-          // 'Newsletter.exec_now' => 1 
-       ),
-       'order' => array( 'Newsletter.id DESC' )
-    ));
-
-    $this->set('newsletters', $newsletters);
-		return $this->render('newsletters');
-	}
-
 
 	public function onlyUploadImageColor()
 	{

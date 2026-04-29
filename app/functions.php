@@ -1,5 +1,54 @@
 <?php
 
+function word_limit($str, $at=4) {
+  if(!strlen(trim($str))) {
+    return 'Sin nombre';
+  }
+  $parts = array_filter(array_values(explode(' ', trim($str))));
+  if(count($parts) <= $at) {
+    return implode(' ', $parts);
+  }
+  $keeps = array_slice($parts,0,$at);
+  array_push($keeps, '...');
+  return implode(' ', $keeps);
+}
+
+function extract_jpeg_url($html) {
+  preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $html, $matches);
+  return $matches['src'] ?? 'images/isologo-w.png';
+}
+
+function array_count_values_of($value, $array) {
+  $counts = array_count_values($array);
+  return $counts[$value];
+}
+
+function b($a, $b = null){
+  echo '<pre>';
+  var_dump($a);
+  echo '</pre>';
+  if($b) die();
+}
+
+function d($a,$b,$c=null){
+  $d = !empty($c) ? $b : json_encode($b, JSON_PRETTY_PRINT);
+  CakeLog::write('debug',$a.':'.$d);
+}
+
+function nameparts($full_name){
+  $parts = explode(' ', $full_name);
+  $name = "";
+  $surname = "";
+  if(count($parts) > 1) {
+    $surname = array_pop($parts);
+    $name = implode(' ', $parts);
+  }
+  return [
+    "name" => $name,
+    "surname" => $surname,
+  ];
+}
+
 function filter_orientation($list, $upload_url=""){
   $images = array_filter(explode(';',$list));
   $filtered = [];
@@ -46,16 +95,27 @@ function get_socials(){
   return [
     'facebook',
     'instagram',
+    'tiktok',
+    'whatsapp',
     'x-twitter', 
-    'youtube'
+    'youtube',
   ];
+}
+
+function get_mc_audiences(){
+  return array(
+    'account' => "Clientas",
+    'contact' => "Contactos",
+    'subscription' => "Suscripciones",
+    'store' => "Store"
+  );
 }
 
 function parsed_socials($settings){
   $socials = [];
   
   foreach(\get_socials() as $social) {
-    if($settings[$social.'_on'] == 'on') {
+    if($settings[$social.'_on'] == '1') {
       $socials[$social] = $settings[$social.'_url'];
     }
   }
@@ -63,28 +123,124 @@ function parsed_socials($settings){
   return $socials;
 }
 
-function readable_time_ago($timestamp) {
-    $current_time = time();
-    $diff = $current_time - $timestamp;
+function readable_tag_event($tag) {
 
-    if ($diff < 60) {
-        return $diff == 1 ? "1 segundo" : $diff . " segundos";
-    } elseif ($diff < 3600) {
-        $minutes = round($diff / 60);
-        return $minutes == 1 ? "1 minuto" : $minutes . " minutos";
-    } elseif ($diff < 86400) {
-        $hours = round($diff / 3600);
-        return $hours == 1 ? "1 hora" : $hours . " horas";
-    } elseif ($diff < 2592000) { // 30 days
-        $days = round($diff / 86400);
-        return $days == 1 ? "1 día" : $days . " días";
-    } elseif ($diff < 31536000) { // 365 days
-        $months = round($diff / 2592000);
-        return $months == 1 ? "1 mes" : $months . " meses";
+    $trans = array(
+      'page-view' => 'Vió una página',
+      'page-exit' => 'Cerró la página',
+      'newsletter-click' => 'Interactuó con newsletter',
+      'session-resume' => 'Reanudó sesión',
+      'session-start' => 'Inició sesión',
+      'session-end' => 'Terminó sesión',
+      'session-register' => 'Se registró',
+      'cart-add' => 'Agregó al carrito',
+      'cart-remove' => 'Quitó del carrito',
+      'variant-select' => 'Seleccionó una variante',
+    );
+
+  return $trans[$tag] ?? $tag;
+}
+
+function readable_tag_color($tag) {
+    
+    $trans = array(
+      'page-view' => 'info',
+      'page-exit' => 'info',
+      'newsletter-click' => 'danger',
+      'session-resume' => 'light',
+      'session-start' => 'light',
+      'session-end' => 'light',
+      'session-register' => 'light',
+      'cart-add' => 'success',
+      'cart-remove' => 'success',
+      'variant-select' => 'success',
+    );
+
+  return $trans[$tag] ?? $tag;
+}
+
+
+function readable_time_ago($timestamp, $short = false) {
+  $current_date = time();
+  $date = strtotime($timestamp);
+  $asc = $current_date > $date;
+  $prep =  $asc ? 'hace' : 'en';
+  $skipprep = false;
+  $diff = abs($current_date - $date);
+  $weekdays = array(
+    'Domingo',
+    'Lunes',
+    'Martes',
+    'Miércoles',
+    'Jueves', 
+    'Viernes',
+    'Sábado'
+  );
+  $span = "";
+  if ($diff < 15) {
+    $span = "ahora";
+    $skipprep = true;
+  } elseif ($diff < 60) {
+    $span = $diff == 1 ? "1 seg" : $diff . " segs";
+  } elseif ($diff < (3600 - 60)) {
+    $minutes = round($diff / 60);
+    $span = $minutes == 1 ? "1 min" : $minutes . " mins";
+  } elseif ($diff < (86400 - 3600)) {
+    $hours = round($diff / 3600);
+    $span = $hours == 1 ? "1 hora" : $hours . " hs";
+  } elseif ($diff < 2592000) { // 30 days
+    $days = round($diff / 86400);
+    $span = $days == 1 ? "1 día" : $days . " días";
+    if($days == 1) {
+      $span = $asc ? "ayer" : 'mañana';
+      $skipprep = true;
+    } else if($days < 6) {
+      $span = $weekdays[date('w', $date)];
+      $skipprep = true;
     } else {
-        $years = round($diff / 31536000);
-        return $years == 1 ? "1 año" : $years . " años";
+      $weeks = round($diff / 604800);
+      $span = $weeks == 1 ? "1 semana" : $weeks . " semanas";
     }
+  } elseif ($diff < 31536000) { // 365 days
+    $months = round($diff / 2592000);
+    $span = $months == 1 ? "1 mes" : $months . " meses";
+  } else {
+    $years = round($diff / 31536000);
+    $span = $years == 1 ? "1 año" : $years . " años";
+  }
+  if($short) {
+    return $span;
+  }
+  return (!$skipprep ? $prep : '') . ' ' . $span;
+}
+
+function readable_time_duration($when, $then) {
+  $current_date = strtotime($when);
+  $date = strtotime($then);
+  $asc = $current_date > $date;
+  $prep =  $asc ? 'hace' : 'en';
+  $skipprep = false;
+  $diff = abs($current_date - $date);
+  $span = "";
+  if ($diff < 60) {
+    $span = $diff == 1 ? "1 seg" : $diff . " segs";
+  } elseif ($diff < (3600 - 60)) {
+    $minutes = round($diff / 60);
+    $span = $minutes == 1 ? "1 min" : $minutes . " mins";
+  } elseif ($diff < (86400 - 3600)) {
+    $hours = round($diff / 3600);
+    $span = $hours == 1 ? "1 h" : $hours . " hs";
+  } elseif ($diff < 2592000) { // 30 days
+    $days = round($diff / 86400);
+    $span = $days == 1 ? "1 día" : $days . " días";
+  } elseif ($diff < 31536000) { // 365 days
+    $months = round($diff / 2592000);
+    $span = $months == 1 ? "1 mes" : $months . " meses";
+  } else {
+    $years = round($diff / 31536000);
+    $span = $years == 1 ? "1 año" : $years . " años";
+  }
+  return $span;
 }
 
 function starts_with($haystack, $needle) {
@@ -104,7 +260,7 @@ function log2file($path, $data, $mode="a"){
   $fh = fopen($path, $mode) or die($path);
   fwrite($fh,$data . "\n");
   fclose($fh);
-  chmod($path, 0777);
+  // chmod($path, 0777);
 }
 
 function parse_coupon($coupon, $cart_totals) {
@@ -252,15 +408,14 @@ function shipping_text($settings, $cart_totals) {
   $text_shipping_min_price = '';
 
   if ($settings['shipping_type'] == 'min_price') {
-    $params = [
+    $text_shipping_min_price = 
+      ($settings['display_text_shipping_min_price'] && $settings['text_shipping_min_price']) ? 
+      \parse_template($settings['text_shipping_min_price'], array(
       'precio_min_envio_gratis' => str_replace(',00','',number_format($settings['shipping_price_min'], 0, ',', '.')),
       'resto_min_envio_gratis' => str_replace(',00','',number_format($settings['shipping_price_min'] - (integer) $cart_totals['grand_total'], 0, ',', '.')),
       'total' => str_replace(',00','',number_format($cart_totals['grand_total'], 0, ',', '.'))
-    ];
-
-    $text_shipping_min_price = ($settings['display_text_shipping_min_price'] && $settings['text_shipping_min_price']) ? 
-      \parse_template($settings['text_shipping_min_price'], $params) : 
-      '';
+    )) : 
+    '';
   }
 
   return $text_shipping_min_price;

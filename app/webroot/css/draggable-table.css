@@ -10,16 +10,13 @@
   opacity: 0.5;
   outline: 1px solid #888;
 }
+
 .draggable-table .draggable-table__drag td {
   background-color: lightgreen;
   border: 1px solid #888;
 }
 
 .draggable-table thead th {
-  height: 25px;
-  font-weight: bold;
-  text-transform: capitalize;
-  padding: 10px;
   user-select: none;
 }
 .draggable-table tbody tr {
@@ -51,4 +48,9 @@
   left: 1rem;
   bottom: 1rem;
   box-shadow: 0 0 6px white;
+  transition: opacity 1s ease-in;
+}
+
+.draggable-saved.lever {
+  opacity: 1;
 }

@@ -1,5 +1,5 @@
 <?php 
-	echo $this->element('admin-menu');
+	echo $this->element('admin/menu');
 	echo $this->Html->script('admin-delete', array('inline' => false));
 ?>
 <div class="row hide-print toolnav-right">

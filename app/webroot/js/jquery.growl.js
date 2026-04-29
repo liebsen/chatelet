@@ -43,7 +43,8 @@ Copyright 2015 Kevin Sylvestre
     Growl.settings = {
       namespace: 'growl',
       duration: 5000,
-      close: "&#215;",
+      //close: "<i class='gi gi-remove'></i>",
+      close: "&times;",
       location: "default",
       style: "default",
       size: "medium",
@@ -265,6 +266,18 @@ Copyright 2015 Kevin Sylvestre
     settings = {
       title: "Warning!",
       style: "warning"
+    };
+    return $.growl($.extend(settings, options));
+  };
+
+  $.growl.success = function(options) {
+    var settings;
+    if (options == null) {
+      options = {};
+    }
+    settings = {
+      title: "Success!",
+      style: "success"
     };
     return $.growl($.extend(settings, options));
   };

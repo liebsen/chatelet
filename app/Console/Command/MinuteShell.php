@@ -2,7 +2,15 @@
 
 App::uses('CakeEmail', 'Network/Email');
 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+header('Content-Type: text/html; charset=utf-8');
+
 require __DIR__ . '/../../functions.php';
+require __DIR__ . '/../../Vendor/web-push/vendor/autoload.php';
+
+use Minishlink\WebPush\WebPush;
+use Minishlink\WebPush\Subscription;
 
 class MinuteShell extends AppShell {
   public $uses = array(
@@ -49,6 +57,58 @@ class MinuteShell extends AppShell {
       'reponse' => $response,
       'count' => count($sales)
     ));
+  }
+
+  public function sendPush($sale) {
+
+    $push = [
+        'subscription' => Subscription::create([
+            'endpoint' => 'https://fcm.googleapis.com/fcm/send/djRg_IDPtSs:APA91bFwYCC73F4X3cXELK...',
+            'keys' => [
+                'auth' => 'SPB_NNfRw...',
+                'p256dh' => 'BP-WMuJdP7buopSb_HrNX...'
+            ]
+        ]),
+        'payload' => json_encode([
+            'title' => "Hello",
+            'body' => "How are you?",
+            'icon' => "https://cdn-icons-png.flaticon.com/512/3884/3884851.png",
+            'data' => [
+                'vibrate' => [100, 200],
+                'additionalData' => [],
+                'url' => "https://google.com",
+            ],
+        ]),
+    ];
+
+    $auth = [
+        'VAPID' => [
+            'subject' => 'support@gmail.com', // can be a mailto: or your website address
+            'publicKey' => 'BFrp-TvkuqCeNsytRt...', // (recommended) uncompressed public key P-256 encoded in Base64-URL
+            'privateKey' => '9BvI1aN1CR4w4iceMS...', // (recommended) in fact the secret multiplier of the private key encoded in Base64-URL
+        ],
+    ];
+
+    $webPush = new WebPush($auth);
+
+    try {
+      $webPush->queueNotification(
+        $push['subscription'],
+        $push['payload']
+      );
+      $report = $webPush->flush()->current();
+      $is_success = $report->isSuccess();
+      $response = $report->getResponseContent();
+    } catch (\Throwable $th) {
+      $is_success = false;
+      $response = $th->getMessage();
+    }
+
+    if ($is_success) {
+      echo "Push was sent";
+    } else {
+      echo "Push was not sent. Error message: " . $response;
+    }    
   }
 
   public function sendEmail($sale) {

@@ -3,7 +3,7 @@
   echo $this->Html->css('lookbook-detail', array('inline' => false));
   echo $this->Html->script('lookbook-detail', array('inline' => false));
 ?>
-<?php echo $this->element('admin-menu');?>
+<?php echo $this->element('admin/menu');?>
 <div class="block">
   <div class="block-title">
     <h4>
@@ -65,8 +65,8 @@
       </div>      
       <br />               
       <div class="form-actions">
-        <button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close mr-1"></i> Restaurar</button>
-        <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+        <button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
+        <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
       </div>
     </form>
   </div>

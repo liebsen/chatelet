@@ -1,10 +1,10 @@
 <?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
-<?php echo $this->element('admin-menu'); ?>
+<?php echo $this->element('admin/menu'); ?>
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 
 <div class="block-section table-responsive">
-	<table id="logistica-datatables" class="table table-bordered table-hover">
+	<table id="example-datatables" class="table table-bordered table-hover">
 		<thead>
 			<tr>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>
@@ -24,10 +24,10 @@
 						<?= isset($logistic['Logistic']['local_prices']) && $logistic['Logistic']['local_prices'] ? 'Local' : 'Nacional'?>
 					</td>
 					<td>
-						<?=$logistic['Logistic']['free_shipping'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
+						<?=$logistic['Logistic']['free_shipping'] ? '<i class="gi gi-circle_ok fa-lg text-success"></i>' : '<i class="gi gi-circle_remove fa-lg text-danger"></i>'?>
 					</td>
 					<td>
-						<?=$logistic['Logistic']['enabled'] ? '<i class="gi gi-check fa-lg text-success"></i>' : '<i class="gi gi-unchecked fa-lg text-danger"></i>'?>
+						<?=$logistic['Logistic']['enabled'] ? '<i class="gi gi-circle_ok fa-lg text-success"></i>' : '<i class="gi gi-circle_remove fa-lg text-danger"></i>'?>
 					</td>
 					<td>
 						<div class="btn-group">   

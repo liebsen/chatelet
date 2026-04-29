@@ -2,12 +2,12 @@
 echo $this->Session->flash();
 
 $this->set('short_header', 'Checkout');
-$this->set('short_header_text', '← Volver al carrito'); 
+$this->set('short_header_text', '<i class="gi gi-shopping_cart mr-1"></i> Volver al carrito'); 
 $this->set('short_header_link', '/carrito');
 
-echo $this->Html->css('checkout.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));	
-echo $this->Html->script('pago.js?v=' . Configure::read('APP_VERSION'),array('inline' => false));
+echo $this->Html->css('checkout.css?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));	
+echo $this->Html->script('pago.js?v=' . $version['ver'],array('inline' => false));
 echo $this->element('checkout-params');
 
 $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total']);
@@ -23,7 +23,7 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 	<span class="text-sm">❤️ ¡Muchas gracias!</span>
 </div>
 
-<section id="main" class="has-checkout-steps container animated fadeIn delay min-h-101">
+<section id="main" class="has-checkout-steps container animation-fadeIn animation-both delay min-h-101">
 	<?php echo $this->element('checkout-steps') ?>
 	<?php echo $this->element('title-faq', array('title' => "Información de pago")) ?>
 	<?php echo $this->Form->create('pago_form', array(

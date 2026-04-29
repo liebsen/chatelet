@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	var mis_compras = (period, assureContent) => {
+		console.log('mis_compras',period, assureContent)
 		let days = 1
 		let size = 0 
 		const label = $(`option[value="${period}"]`).text();
@@ -12,6 +13,7 @@ $(document).ready(function() {
 			days = 365
 		}
 
+		const label = $(`option[value="${period}"]`).text();
 		$('.history-items').each((i,row) => {
 			const ts = $(row).find('.timestamp').text()
 			const date = new Date(ts)
@@ -51,6 +53,10 @@ $(document).ready(function() {
 
 
 	let clock = 0
+
+	$(document).on('click', '.compras-all', function(e) {
+		mis_compras('start')
+	})
 
 	$('.btn-filter-calendar').on('change', function(e) {
 		clearTimeout(clock)

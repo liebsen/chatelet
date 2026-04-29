@@ -32,6 +32,7 @@ function integrity_check(){
 
 		items[top].push({element, index, colsize})
 	})
+
 	for(var i in items) {
 		var sum = 0
 		for(var j in items[i]){
@@ -39,7 +40,7 @@ function integrity_check(){
 		}
 		for(var j in items[i]){
 			const item = $($('.category-item').get(items[i][j].index)).find('.category-content')
-			if(sum != 100) {
+			if(sum != 99 && sum != 100) {
 				fit = 0
 				item.removeClass('border-success')
 				item.addClass('border-danger')

@@ -3,9 +3,9 @@
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('cupones-detail', array('inline' => false));
-  $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+  $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
 ?>
-<?php echo $this->element('admin-menu');?>
+<?php echo $this->element('admin/menu');?>
 <div class="block">
   <div class="block-title">
     <h4>
@@ -22,7 +22,7 @@
           echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
         }
       ?>
-      <div class="custom-tabs block-themed">
+      <div class="custom-tabs block-tabs">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="active text-center">
             <a href="#main">
@@ -40,7 +40,7 @@
             </a>
           </li>
         </ul>
-        <div class="tab-content p-7">
+        <div class="tab-content">
           <div class="tab-pane pane-main active">
             <div class="row">
               <div class="col-md-6">
@@ -146,7 +146,7 @@
                 <div class="control-group">
                   <label class="control-label" for="columns-text"><?php echo __('Fecha desde'); ?></label>
                   <div class="controls">
-                    <input type="text" class="datepicker form-control" data-date-format="dd/mm/yyyy" id="" name="data[date_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_from'] : ''; ?>">
+                    <input type="text" class="datepicker form-control" id="" name="data[date_from]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_from'] : ''; ?>">
                   </div>
                   <small class="text-muted">Seleccioná desde qué fecha el cupón debería estar disponible.</small>
                 </div>
@@ -155,7 +155,7 @@
                 <div class="control-group">
                   <label class="control-label" for="columns-text"><?php echo __('Fecha hasta'); ?></label>
                   <div class="controls">
-                    <input type="text" class="datepicker form-control" data-date-format="dd/mm/yyyy" id="" name="data[date_until]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_until'] : ''; ?>">
+                    <input type="text" class="datepicker form-control" id="" name="data[date_until]" value="<?php echo (isset($coupon)) ? $coupon['Coupon']['date_until'] : ''; ?>">
                   </div>
                   <small class="text-muted">Seleccioná hasta qué fecha el cupón debería estar disponible.</small>
                 </div>
@@ -241,8 +241,8 @@
         </div>
       </div>
       <div class="form-actions">
-        <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-close mr-1"></i> Atrás</a>
-        <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+        <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span></a>
+        <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
       </div>
     </form>
   </div>

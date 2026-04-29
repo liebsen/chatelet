@@ -5,7 +5,7 @@
 	<div class="shipment-options shipping">
 		<h4 id="heading" class="cargo-title">Cupón promocional<span></span></h4>
 		<p class="field">
-			<i class="coupon-text animated speed">
+			<i class="coupon-textspeed">
 				<small>Ingresá tu cupón de descuento. Beneficio exclusivo para clientas registradas.</small>
 			</i>
 		</p>
@@ -19,7 +19,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="coupon-info alert mt-4 alert-success animated hidden">
+		<div class="coupon-info alert mt-4 alert-successhidden">
 			<h3>
 				<i class="fa fa-tags"></i> 
 				<span class="coupon-info-title"></span>

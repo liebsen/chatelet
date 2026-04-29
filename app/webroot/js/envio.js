@@ -18,7 +18,7 @@ selectShipping = function (e, shipping, cost) {
 		total += cost
 		$('#subtotal_envio').val(cost)
 		$('.delivery-cost').removeClass('hidden')
-		$('.delivery-cost').addClass('fadeIn')
+		$('.delivery-cost').addClass('animation-fadeIn')
 		if(cost) {
 			$('.cost_delivery').text( "$ " + formatNumber(cost))
 		} else {
@@ -151,9 +151,14 @@ $(document).ready(function() {
   			return onWarningAlert('Importante', 'Por favor selecione un local para retirar el producto')
   		}
   	}
+<<<<<<< HEAD
     	
     const formData = $('#envio_form :input:visible, #envio_form input[type="hidden"]').serialize();
     // const formSerialized = $(this).serializeArray();
+=======
+
+    const formData = $('#envio_form :input:visible').serialize();
+>>>>>>> origin/stage
     const btnSubmit = $(this).find('[type="submit"]');
     const redirect = $(this).find('[name="redirect"]').val();
 
@@ -175,7 +180,6 @@ $(document).ready(function() {
       error: function(xhr, status, error) {
         console.error("Error al enviar datos: " + status + " - " + error);
         btnSubmit.prop('disabled', false)
-        // Handle errors
       }
     });
   });
@@ -294,7 +298,7 @@ $(document).ready(function() {
 			$('a[href="#retiro"]').click()
 			$('.has-checkout-steps').addClass('done')
 			$(`.takeaway-options li[store="${takeaway_store.store}"]`).click()
-		}, 100)
+		}, 500)
 	}
 
 	if (localStorage.cargo === 'delivery' && localStorage.lastcp) {
@@ -303,7 +307,18 @@ $(document).ready(function() {
 			$('.input-cp').val(localStorage.lastcp)
 			$('.btn-calculate-shipping').click()
 			$('.has-checkout-steps').addClass('done')
+<<<<<<< HEAD
 		}, 100)
+=======
+			// const takeaway = $('.takeaway-options li.selected')
+			// if(cargo === 'shipment' && !takeaway.length || freeShipping) {
+				// $('#calulate_shipping').submit()	
+				// onWarningAlert('Calculando envío', `Un segundo por favor, estamos calculando el costo de envío para el código postal ${lastcp}`, 5000, true)
+			// } else {
+				// onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000, true)
+			// }
+		}, 500)
+>>>>>>> origin/stage
 	} else {
 		$('.has-checkout-steps').addClass('done')
 	}

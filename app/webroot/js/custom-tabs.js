@@ -25,11 +25,12 @@ function activateTab(e) {
 }
 
 function activateTabContent(e) {	                 
-	// gets the element on which the event originally occurred
-	const anchorReference = e.target;
-	const activePaneID = anchorReference.getAttribute("href").replace('#','.').replace('.', '.pane-');
-	const activePane = document.querySelector(activePaneID);
-	activePane.classList.add("active");     
+  const href = $(e.target).attr("href")
+	const activePaneID = href ? href.replace('#','.').replace('.', '.pane-') : '';
+  setTimeout(function(){
+  	const activePane = $(activePaneID);
+  	activePane.addClass("active");     
+  }, 100)
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {

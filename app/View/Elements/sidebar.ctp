@@ -1,9 +1,9 @@
 <div class="sidebar-backdrop"></div>
 
-<?php echo $this->element('sidebar-search'); ?>
-<?php echo $this->element('sidebar-account'); ?>
-<?php echo $this->element('sidebar-cart'); ?>
-<?php echo $this->element('shop-options'); ?>
+<?php echo $this->element('sidebar/search'); ?>
+<?php echo $this->element('sidebar/account'); ?>
+<?php echo $this->element('sidebar/cart'); ?>
+<?php echo $this->element('shop/options'); ?>
 
 <script type="text/javascript">
 	
@@ -76,7 +76,6 @@ nav.sidebar {
 	justify-content: center;
 	align-items: space-around;
 	gap: 0.5rem;
-  background-color: #fff;
   width: 100%;
 }
 	

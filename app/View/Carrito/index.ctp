@@ -1,7 +1,7 @@
 <?php
 	echo $this->Session->flash();
-	echo $this->Html->css('carrito.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-	echo $this->Html->script('cart.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+	echo $this->Html->css('carrito.css?v=' . $version['ver'], array('inline' => false));
+	echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->element('checkout-params');
 	// echo $this->element('checkout-modal');
 	$payment_methods = [
@@ -10,7 +10,7 @@
 	];
 ?>
 
-<section id="main" class=" animated fadeIn delay min-h-101<?php echo empty($cart) ? ' bg-light' : ' container' ?>">
+<section id="main" class="min-h-101<?php echo empty($cart) ? ' bg-light' : ' container' ?>">
 <?php if (!empty($cart)) : ?>
 	<?php echo $this->element('title-faq', array('title' => "Carrito")) ?>
 <?php endif ?>
@@ -25,7 +25,7 @@
 			<div class="mobile">
 				<div class="d-flex flex-column justify-content-start align-center gap-05 w-100">
 				<?php foreach ($sorted as $product) : ?>
-					<div class='d-flex justify-content-start align-center gap-1 cart-row carrito-data position-relative' data-json='<?php echo json_encode($product) ?>' product_row>
+					<div class='d-flex justify-content-start align-center cart-row gap-05  carrito-data position-relative' data-json='<?php echo json_encode($product) ?>' product_row>
 						<div class='cart-img'>
 						<?php if (!empty($product['number_ribbon'])) : ?>
 							<div class="ribbon small"><span><?php echo $product['number_ribbon'] ?>% OFF</span></div>
@@ -48,7 +48,7 @@
 							</a>
 						</div>
 						<div class="d-flex justify-content-start align-items-center flex-column w-100">
-							<div class="d-flex justify-content-around align-items-center w-100">
+							<div class="d-flex justify-content-around align-items-center gap-05  w-100">
 								<div class="d-flex justify-content-center align-center flex-column max-20 min-w-5 flex-1">
 									<h6 class="mt-0 mb-2 text-weight-thin lh-1"><?php echo $product['name'] ?></h6>
 									<?php if (!empty($product['color_code']) && $product['color_code'] != 'undefined') : ?>
@@ -79,7 +79,7 @@
 										<input class="giftchecks gift-<?php echo $product['id'] ?>" type="checkbox" data-id="<?php echo $product['id'] ?>"><span class="label-text text-muted text-sm">Para regalo</span><br><br>
 										</label>
 									</div>
-									<button class="btn btn-sm btn-border bg-transparent m-0 p-0" onclick="askremoveCart(this)">
+									<button class="btn bg-transparent borderless m-0 p-0" onclick="askremoveCart(this)">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</div>
@@ -232,7 +232,7 @@
 					</div>
 				</div>
 				<hr>
-				<?php echo $this->element('shop-disclaimer') ?>
+				<?php echo $this->element('shop/disclaimer') ?>
       </div>
 			<div class="flex-col gap-1">
 				<!-- fill coupon -->
@@ -256,7 +256,7 @@
 	</div>
 </section>
 
-<?php echo $this->element('subscribe-box') ?>
+<?php // echo $this->element('subscribe-box') ?>
 
 <?php if (isset($cart) && !empty($cart)) :?>
 <!--div id="carritoItem" class="burst is-fullheight has-item-counter animated">
@@ -285,6 +285,17 @@
 <?php endif;?>
 <script>
 	$(function(){
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const restore_origin = urlParams.get('restore_origin') || null
+		const restore_date = urlParams.get('restore_date') || null
+		if(restore_origin) {
+			$.growl.notice({
+				title: `¡Hemos recreado tu carrito desde un ${restore_origin}!`,
+				message: 'Ya tienes disponibles los productos de tu carrito abandonado en ' + restore_date + '. Recuerda revisar la vigencia de todos los talles y colores disponibles antes de comprar.',
+				duration: 60000,
+			});			
+		}
 	<?php if(!empty($cart) && !empty($text_shipping_min_price) && !$freeShipping): ?>
 		setTimeout(() => {
 			onWarningAlert('Más beneficios','<?= $text_shipping_min_price ?>', 15000)

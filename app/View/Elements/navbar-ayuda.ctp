@@ -1,5 +1,5 @@
 
-  <section id="optionsHelp" class="desktop animated fadeIn delay">
+  <section id="optionsHelp" class="desktop animation-fadeIn animation-both delay">
       <a href="/ayuda/como_comprar">¿Cómo comprar?</a>
       <a href="/ayuda/envios">Envíos</a>
       <a href="/ayuda/metodos_de_pago">Formas de pago</a>
@@ -16,71 +16,75 @@
 
   <style type="text/css">
 
-#optionsHelp {     
-  text-align: center; 
-  font-weight: 800;
-  overflow-x: auto;
-  width: 100%;
-}
+  #optionsHelp {     
+    text-align: center; 
+    font-weight: 800;
+    overflow-x: auto;
+    width: 100%;
+  }
 
-#optionsHelp.desktop {
-  white-space: nowrap;
-}
+  #optionsHelp.desktop {
+    white-space: nowrap;
+  }
 
-#optionsHelp.mobile {
-  background-color: #e7e7e7;
-  width: 100%;  
-}
+  #optionsHelp.mobile {
+    width: 100%;  
+  }
 
-#optionsHelp.mobile a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-  border:none;
-  padding: 1rem;
-}
-
-#optionsHelp.mobile a.active {
-  background-color: white;
-  /*border-color: #e7e7e7;*/
-  color: #333;
-  transition: background 1s ease-out;
-}
-
-#optionsHelp a { 
-  font-size: 0.9rem;
-  color: #808080;
-  display: inline-block; 
-  min-height: 2.25rem;
-  padding: 0 1.5rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  border-bottom: 1px solid #e7e7e7;
-  transition: all 100ms linear;
-}
-
-#optionsHelp.desktop a.active {
-  color: #404040;
-  border-color: #404040;
-}
-
-
-@media(min-width: 769px){
-  #optionsHelp {
-    position: absolute; 
-    left:0; 
-    right: 0; 
-    top: 0;
+  #optionsHelp.mobile a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    border:none;
     padding: 1rem;
+    margin: 0;
   }
-  #optionsHelp.top-fixed { 
-    top: 4rem; 
-    z-index: 100;
-    background: linear-gradient(hsla(0,0%,100%,0),hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0));
-  }
-}
 
+  #optionsHelp > a { 
+    display: inline-block; 
+    margin: 0 0.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    transition: all 1s ease-in-out;
+  }
+
+  #optionsHelp > a.active {
+    font-weight: 1000;
+  }
+  #optionsHelp.mobile > a.active {
+    position: relative;
+    transition: background 1s ease-out;
+  }
+
+  #optionsHelp.mobile > a.active:before {
+    content: "\f0a4";
+    position: absolute;
+    font-family: 'FontAwesome';
+    top: 0.5rem;
+    left: 1rem;
+    font-size: 1.5rem;
+  }
+
+  @media(min-width: 992px){
+    #optionsHelp {
+      position: absolute; 
+      left:0; 
+      right: 0; 
+      top: 8rem;
+      padding: 1rem;
+      z-index: 9;
+    }
+    #optionsHelp.top-fixed { 
+      top: 4rem; 
+      z-index: 100;
+      background: linear-gradient(hsla(0,0%,100%,0),hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0));
+    }
+    #optionsHelp > a:hover { 
+      text-decoration: none;
+      color: #363636;
+    }
+  }
 
   </style>
 

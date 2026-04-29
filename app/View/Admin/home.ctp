@@ -1,15 +1,15 @@
 <?php 
 echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false));
-// echo $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->script('home-compose.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-echo $this->Html->css('home-compose.css?v=' . Configure::read('APP_VERSION'), array('inline' => false));
-// echo $this->Html->script('admin-home.js?v=' . Configure::read('APP_VERSION'), array('inline'=>false));
+// echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->script('home-compose.js?v=' . $version['ver'], array('inline' => false));
+echo $this->Html->css('home-compose.css?v=' . $version['ver'], array('inline' => false));
+// echo $this->Html->script('admin-home.js?v=' . $version['ver'], array('inline'=>false));
 // $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));
-echo $this->element('admin-menu');
+echo $this->element('admin/menu');
 ?>
 
-<div class="block">
-	<div class="block-content">
+<div class="block-tabs">
+	<div class="tab-content">
 		<form action="" id="display_form" method="post" class="form-inline" enctype="multipart/form-data">
 			<input type="hidden" name="data[id]" value="1" />
 			<div id="slider_block" class="category-item-container slider-template draggable-table film-strip w-100"></div>
@@ -23,8 +23,8 @@ echo $this->element('admin-menu');
 			</div>
 			<div class="form-actions">
 				<input type="hidden" name="id" value="1">
-				<button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close mr-1"></i> Restaurar</button>
-				<button type="submit" class="btn btn-success animated fast" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+				<button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
+				<button type="submit" class="btn btn-success fast" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
 			</div>
 		</form>
 	</div>
@@ -39,8 +39,8 @@ echo $this->element('admin-menu');
 	<span class="category-item device-{{device}}">	
 		<div class="category-content video-container">
 			<div class="d-flex flex-column flex-center text-content position-absolute p-2 w-100">
-				<h3 class="text-center animated {{title_animation}}">{{title}}</h3>
-				<p class="text-center animated {{text_animation}}">{{text}}</p>
+				<h3 class="text-center{{title_animation}}">{{title}}</h3>
+				<p class="text-center{{text_animation}}">{{text}}</p>
 			</div>
 		{{#if video}}
 			<video src="{{img_url}}" controls="true"></video>

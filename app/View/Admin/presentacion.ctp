@@ -1,22 +1,22 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
-<?php echo $this->Html->script('custom-tabs.js?v=' . Configure::read('APP_VERSION'), array('inline' => false)); ?>
-<?php echo $this->Html->script('admin-index.js?v=' . Configure::read('APP_VERSION'), array('inline'=>false)) ?>
+<?php echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php echo $this->Html->script('admin-index.js?v=' . $version['ver'], array('inline'=>false)) ?>
 <?php // $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));?>
 
 <div class="block">
 	<div class="block-content">
 		<form action="" id="display_form" method="post" class="form-inline" enctype="multipart/form-data">
 			<input type="hidden" name="data[id]" value="1" />
-	    <div class="custom-tabs block-themed">
+	    <div class="custom-tabs block-tabs">
 	      <ul class="nav nav-tabs" id="myTab" role="tablist">
 	        <li class="active text-center">
 	          <a href="#splash">
-	            Primera pantalla
+	            <i class="gi gi-picture"></i> Primera pantalla
 	          </a>
 	        </li>
 	        <li class="text-center">
 	          <a href="#slider">
-	            Carrusel
+	            <i class="gi gi-sampler"></i> Carrusel
 	          </a>
 	        </li>
 	      </ul>
@@ -24,7 +24,7 @@
 	        <div class="tab-pane pane-splash active">
 		        <!--h4 class="sub-header">Pantalla inicial <span class="counter_newsletter hide"></span></h4-->
 		        <p>Una pantalla forzada al inicio. Splash es la primera imagen que se verá en la pantalla mientras esté cargando la home.</p>
-						<div class="control-group w-100 bg-dark" style="min-height: 233px;">
+						<div class="control-group w-100 bg-dark" style="min-height: 260px;">
 							<div class="controls w-100">
 								<script id="image_thumb_newsletter" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
 									<span class="image-item">	
@@ -35,7 +35,7 @@
 										<i class="fa fa-2x fa-{{orientation}} min-w-4 is-clickable edit-orientation" data-file="{{file_newsletter}}" data-origin="img_popup_newsletter" data-orientation="{{orientation}}"></i>
 									</span>
 								</script>
-								<span id="images_newsletter" class="animated fadeIn w-100"></span>
+								<span id="images_newsletter" class="animation-fadeIn animation-both w-100"></span>
 							</div>
 					  </div>
 					  <progress class="progress_newsletter hide w-100" value="50" max="100">0%</progress>
@@ -50,7 +50,7 @@
 	        <div class="tab-pane pane-slider">
 		        <!--h4 class="sub-header">Slider </h4-->
 		        <p>Es el carrusel principal de la home que se ve al cerrar el splash. </p>
-						<div class="control-group w-100 bg-dark" style="min-height: 233px;">
+						<div class="control-group w-100 bg-dark" style="min-height: 260px;">
 							<div class="controls w-100">
 								<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
 									<li class="image-item">
@@ -65,7 +65,7 @@
 										<i class="fa fa-2x fa-{{orientation}} min-w-4 is-clickable edit-orientation" data-file="{{file}}" data-origin="img_url" data-orientation="{{orientation}}"></i>
 									</li>
 								</script>
-								<ul id="images" class="animated fadeIn w-100"></ul>
+								<ul id="images" class="animation-fadeIn w-100"></ul>
 							</div>
 						</div>
 					  <span class="counter hide"></span>
@@ -81,8 +81,8 @@
 	    </div>
 			<div class="form-actions">
 				<input type="hidden" name="id" value="1">
-				<button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close mr-1"></i> Restaurar</button>
-				<button type="submit" class="btn btn-success animated fast" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
+				<button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
+				<button type="submit" class="btn btn-success fast" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
 			</div>
 		</form>
 	</div>

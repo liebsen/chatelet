@@ -1,5 +1,5 @@
 <?php 
-	echo $this->Html->script('coupon.js?v=' . Configure::read('APP_VERSION'), array('inline' => false));
+	echo $this->Html->script('coupon.js?v=' . $version['ver'], array('inline' => false));
 ?>
  	<div class="calc-coupon' d-flex flex-column justify-content-center align-items-start">
  			<h5>¿Tenés un cupón de descuento?</h5>

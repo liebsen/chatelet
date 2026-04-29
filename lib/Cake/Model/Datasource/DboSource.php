@@ -1,4 +1,4 @@
-<?php
+	<?php
 /**
  * Dbo Source
  *
@@ -430,6 +430,9 @@ class DboSource extends DataSource {
 	public function execute($sql, $options = array(), $params = array()) {
 		$options += array('log' => $this->fullDebug);
 
+		if (preg_match('/^(?:DELETE|UPDATE)\s/i', $sql)) {
+			#\d("sql", $sql);
+		}
 		$t = microtime(true);
 		$this->_result = $this->_execute($sql, $params);
 
@@ -454,6 +457,15 @@ class DboSource extends DataSource {
  */
 	protected function _execute($sql, $params = array(), $prepareOptions = array()) {
 		$sql = trim($sql);
+
+		if (preg_match('/^(?:UPDATE|INSERT)\s/i', $sql)) {
+			#\d("query(UPDATE)",$sql);
+		}
+
+		if (preg_match('/^(?:SELECT)\s/i', $sql)) {
+			#\d("select:",$sql);
+		}
+
 		if (preg_match('/^(?:CREATE|ALTER|DROP)\s+(?:TABLE|INDEX)/i', $sql)) {
 			$statements = array_filter(explode(';', $sql));
 			if (count($statements) > 1) {
