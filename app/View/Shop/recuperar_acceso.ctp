@@ -1,6 +1,6 @@
 <?php 
 $this->set('short_header', 'Cuenta');
-$this->set('short_header_text', '<i class="gi gi-chevron-left mr-1"></i> Volver a mi cuenta');
+$this->set('short_header_text', '<i class="gi gi-woman mr-1"></i> Volver a mi cuenta');
 $this->set('short_header_link', '/shop/cuenta');
 echo $this->Session->flash();
 ?>

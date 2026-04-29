@@ -67,8 +67,7 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 	</div>
 </section>
 <footer>
-	    <?php echo $this->element('signature') ?>
-
+	<?php echo $this->element('signature') ?>
 </footer>
 
 <script type="text/javascript">

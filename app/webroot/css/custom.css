@@ -1011,6 +1011,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
     background-size: cover;
 */
   background: linear-gradient(45deg, purple, orange);
+  color: white;
   padding-top: 50px;    
   padding-bottom: 50px; 
   position: relative;
@@ -1192,6 +1193,7 @@ ul#ul-moreviews li.dontResize img {
   align-items: center; 
   padding-left: 5rem;
   background: linear-gradient(45deg, purple, orange);
+  color: white;
 }
 .map .col-md-4 h1 { color: #f8f8f8; font-size: 40px; font-weight: 800; letter-spacing:-0.1rem }
 .map .col-md-4 h1:after { 
@@ -1231,6 +1233,7 @@ ul#ul-moreviews li.dontResize img {
   position: relative; 
   min-height: calc(100dvh - 265px);
   background: linear-gradient(45deg, purple, orange);
+  color: white;
   /*padding: 65px 0;*/ 
 }
 
