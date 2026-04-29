@@ -618,7 +618,7 @@ html, body {
   min-height: calc(100dvh - 150px);
 }
 .min-h-101 {
-  min-height: calc(100dvh - 90px);
+  min-height: calc(100dvh - 96px);
 }
 .max-20 {
 	max-width: 20rem;
@@ -902,9 +902,10 @@ html, body {
 .btn {
 	text-transform: uppercase;
 	height: 50px;
-	line-height: 2.5;
+	line-height: 2.7;
 	font-weight: 300;
 	border-radius: 5px;
+	font-size: 0.85rem;
 	transition: all 200ms ease-in-out;
 }
 
@@ -1622,7 +1623,7 @@ select.form-control{
 }
 
 .btn-chatelet.light {
-	color: #888;
+	color: #e7e7e7;
   background-color: transparent;
   border-color: #e7e7e7;
 }

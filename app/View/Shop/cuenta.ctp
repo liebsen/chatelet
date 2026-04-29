@@ -15,7 +15,7 @@ echo $this->Session->flash();
 			<?php endif ?>
 		</h2>
 	<?php if ($loggedIn) : ?>
-		<p>Iniciaste sesión como <?php echo $user['email']; ?></p>		
+		<p class="text-center">Iniciaste sesión como <?php echo $user['email']; ?>. La última modificación en tu cuenta fue realizada <?=\readable_time_ago($user['modified'])?></p>		
 	<?php else : ?>	
 		<p>No has iniciado una sesión. ¿Qué deseas hacer?</p>	
 	<?php endif ?>
@@ -37,3 +37,7 @@ echo $this->Session->flash();
 		</div>
 	</div>
 </section>
+<footer>
+	<?php echo $this->element('signature') ?>
+</footer>
+
