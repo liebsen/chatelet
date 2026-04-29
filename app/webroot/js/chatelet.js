@@ -495,20 +495,6 @@ $(document).ready(function() {
   /* generic clic handlers */
 
   $('[data-toggle="click"]').click((e) => {
-<<<<<<< HEAD
-    const show = $(e.target).data('show')
-    const hide = $(e.target).data('hide')
-    const remove = $(e.target).data('remove')
-    if($(show).length) {
-      $(show).fadeIn(0)
-    }
-    if($(hide).length) {
-      $(hide).fadeOut(0)
-    }
-    if($(remove).length) {
-      $(remove).remove()
-    }
-=======
     ['show', 'hide', 'remove', 'slide-down'].forEach((tag) => {
       const target = $(e.target).data(tag)
       if(target) {
@@ -539,7 +525,6 @@ $(document).ready(function() {
         }
       }
     })
->>>>>>> origin/stage
   })
 
   $('[data-toggle="mouseenter"]').mouseenter((e) => {

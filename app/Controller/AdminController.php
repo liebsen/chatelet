@@ -1908,15 +1908,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$data = $this->request->data;
 			$data['whatsapp_enable'] = $data['whatsapp_enable'] ?? 0;
 
+			unset($data['x_coord']);
+			unset($data['y_coord']);
       foreach($data as $id => $value) {
-      	if(!in_array($id, array('x_coord', 'y_coord')) {
-	        $this->Setting->save(
-	        	array(
-		        	'id' => $id, 
-		        	'value' => $value
-		        )
-		      );
-	      }
+        $this->Setting->save(
+        	array(
+	        	'id' => $id, 
+	        	'value' => $value
+	        )
+	      );
       }
 
 			if(!empty($promo['image']['name'])){

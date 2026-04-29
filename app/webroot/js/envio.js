@@ -151,14 +151,8 @@ $(document).ready(function() {
   			return onWarningAlert('Importante', 'Por favor selecione un local para retirar el producto')
   		}
   	}
-<<<<<<< HEAD
-    	
-    const formData = $('#envio_form :input:visible, #envio_form input[type="hidden"]').serialize();
-    // const formSerialized = $(this).serializeArray();
-=======
 
     const formData = $('#envio_form :input:visible').serialize();
->>>>>>> origin/stage
     const btnSubmit = $(this).find('[type="submit"]');
     const redirect = $(this).find('[name="redirect"]').val();
 
@@ -307,9 +301,6 @@ $(document).ready(function() {
 			$('.input-cp').val(localStorage.lastcp)
 			$('.btn-calculate-shipping').click()
 			$('.has-checkout-steps').addClass('done')
-<<<<<<< HEAD
-		}, 100)
-=======
 			// const takeaway = $('.takeaway-options li.selected')
 			// if(cargo === 'shipment' && !takeaway.length || freeShipping) {
 				// $('#calulate_shipping').submit()	
@@ -318,7 +309,6 @@ $(document).ready(function() {
 				// onWarningAlert('Envío a domicilio disponible', `Puede solicitar envío a domicilio. Solo debe calcular los costos para el cód. postal ${lastcp} y seleccionar su opción.`, 5000, true)
 			// }
 		}, 500)
->>>>>>> origin/stage
 	} else {
 		$('.has-checkout-steps').addClass('done')
 	}
