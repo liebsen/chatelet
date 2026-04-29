@@ -1,10 +1,10 @@
 
   <section id="optionsHelp" class="desktop animation-fadeIn animation-both delay">
-      <a href="/ayuda/como_comprar">¿Cómo comprar?</a>
-      <a href="/ayuda/envios">Envíos</a>
-      <a href="/ayuda/metodos_de_pago">Formas de pago</a>
-      <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
-      <a href="/ayuda/faq">Preguntas frecuentes</a>
+      <a class="text-white" href="/ayuda/como_comprar">¿Cómo comprar?</a>
+      <a class="text-white" href="/ayuda/envios">Envíos</a>
+      <a class="text-white" href="/ayuda/metodos_de_pago">Formas de pago</a>
+      <a class="text-white" href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
+      <a class="text-white" href="/ayuda/faq">Preguntas frecuentes</a>
   </section>            
   <section id="optionsHelp" class="mobile">
       <a href="/ayuda/como_comprar" class="active">¿Cómo comprar?</a>
@@ -72,7 +72,7 @@
       left:0; 
       right: 0; 
       top: 8rem;
-      padding: 1rem;
+      padding: 1.5rem;
       z-index: 9;
     }
     #optionsHelp.top-fixed { 
