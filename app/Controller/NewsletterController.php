@@ -353,7 +353,7 @@ class NewsletterController extends AppController {
 			)
 		);
 		$items = $this->Analytic->find('all', $options);
-				var_dump($options);
+				#var_dump($options);
 
 		$saves = array();
 		$db = $this->Stat->getDataSource();
@@ -399,8 +399,6 @@ class NewsletterController extends AppController {
 			)
 		);
 		$items = $this->Search->find('all', $options);
-				var_dump($options);
-
 		$saves = array();
 		$db = $this->Stat->getDataSource();
 		foreach($items as $item) {
