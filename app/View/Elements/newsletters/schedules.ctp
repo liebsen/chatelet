@@ -100,7 +100,10 @@
 				    )?>">
 				      <i class="gi gi-magnet"></i> 
 				    </a>
-<?php if($schedule['User']['id']==$this->Session->read('Auth.User.id')):?>
+<?php if(
+	$schedule['User']['id']==$this->Session->read('Auth.User.id') || 
+	$this->Session->read('Auth.User.role') == 'sadmin'
+):?>
 						<a 
 							href="#" 
 							data-toggle="tooltip" 
@@ -266,7 +269,10 @@
 					    )?>">
 					      <i class="gi gi-magnet"></i> 
 					    </a> 					    
-<?php if($schedule['User']['id']==$this->Session->read('Auth.User.id')||$this->Session->read('Auth.User.id')==4191):?>
+<?php if(
+	$schedule['User']['id']==$this->Session->read('Auth.User.id')||
+	$this->Session->read('Auth.User.role')=='sadmin'
+):?>
 							<a 
 								href="#" 
 								data-toggle="tooltip" 

@@ -88,7 +88,10 @@
 						>
 							<i class="fa fa-eye"></i>
 						</a>
-<?php if($newsletter['User']['id']==$this->Session->read('Auth.User.id')):?>
+<?php if(
+	$newsletter['User']['id']==$this->Session->read('Auth.User.id') || 
+	$this->Session->read('Auth.User.role') == 'sadmin'
+):?>
 						<a 
 							href="#" 
 							data-toggle="tooltip" 
@@ -207,7 +210,10 @@
 							>
 								<i class="fa fa-eye"></i>
 							</a>
-<?php if($newsletter['User']['id']==$this->Session->read('Auth.User.id')):?>
+<?php if(
+	$newsletter['User']['id']==$this->Session->read('Auth.User.id') || 
+	$this->Session->read('Auth.User.role') == 'sadmin'
+):?>
 							<a 
 								href="#" 
 								data-toggle="tooltip" 

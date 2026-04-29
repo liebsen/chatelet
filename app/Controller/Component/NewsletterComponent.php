@@ -29,7 +29,7 @@ class NewsletterComponent extends Component {
       array(
         'conditions' => array(
           'or' => array(
-            'User.role <>' => 'admin',
+            'User.role NOT IN' => array('admin', 'sadmin'),
             'User.role is null'
           )
         )

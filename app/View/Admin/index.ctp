@@ -15,5 +15,21 @@
 			</li>
 		</a>
 	<?php endforeach ?>
+		<a href="/" target="_blank">
+	    <li class="list-group-item text-center">
+	    	<h1>
+        	<i class="gi gi-shop"></i> 
+        </h1>
+        <h5>Tienda Châtelet</h5>
+		  </li>
+	  </a>
+		<a href="#" class="logout-btn dropdown-toggle">
+		  <li class="list-group-item text-center">
+	    	<h1>
+	        <i class="gi gi-exit"></i> 
+        </h1>
+        <h5>Salir</h5>
+		  </li>
+    </a>
 		</ul>
 	</div>

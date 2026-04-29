@@ -48,7 +48,11 @@
 						>
 							<i class="gi gi-send"></i>
 						</a>
-<?php if($list['User']['id']==$this->Session->read('Auth.User.id')):?>
+<?php if(
+	$list['User']['id']==$this->Session->read('Auth.User.id')||
+	$this->Session->read('Auth.User.role')=='sadmin'
+):?>
+
 						<a 
 							href="#"
 							data-toggle="tooltip" 
@@ -142,7 +146,7 @@
 							>
 								<i class="gi gi-charts"></i>
 							</a-->
-<?php if($list['User']['id']==$this->Session->read('Auth.User.id')):?>
+<?php if($list['User']['id']==$this->Session->read('Auth.User.id') || $this->Session->read('Auth.User.role') == 'sadmin'):?>
 							<a 
 								href="#" 
 								data-toggle="tooltip" 

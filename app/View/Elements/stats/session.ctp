@@ -30,11 +30,11 @@
 						)
 					)?>">
 <?php if(!empty($item['User']['name'])):?>
-		<span class="badge badge-<?=$item['User']['role'] == 'admin' ? 'success' : 'info'?>" title="<?=$item['User']['role']?>">
+		<span class="badge badge-info" title="<?=$item['User']['role']?>">
 			<?=$item['User']['name']?> <?=$item['User']['surname']?>
 		</span>
 <?php else:?>
-		<span class="badge badge-<?=$item['User']['role'] == 'admin' ? 'success' : 'info'?> text-lowercase" title="<?=$item['User']['role']?>">
+		<span class="badge badge-<?=in_array($item['User']['role'], array('admin','sadmin')) ? 'success' : 'info'?> text-lowercase" title="<?=$item['User']['role']?>">
 			<?=strstr($item['User']['email'],'@',true)?>
 		</span>
 <?php endif ?>
