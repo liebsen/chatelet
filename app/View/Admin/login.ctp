@@ -350,7 +350,6 @@ body.login .form-group {
                 url = me.attr('action');
                 $.post(url, data)
                   .success(function(res) {
-                    console.log('res',res)
                     if (!res.success) {
                       $.growl.error({
                           title: 'Error al iniciar sesión',

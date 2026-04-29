@@ -2574,7 +2574,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     			false,
     			false
     		);
-    		foreach($this->User->find('all') as $item) {
+    		foreach($this->User->find('all', array('conditions' => array('User.id >' => 1))) as $item) {
     			array_push($saves, 
     				array(
 		      		'id' => null,
