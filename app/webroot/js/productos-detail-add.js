@@ -119,16 +119,10 @@ $(document).ready(function() {
 			async: false,
 		})
 		.done(function(data) {
-			if( data == 'ok' ){
+			if( data.trim() == 'ok' ){
 				valid = true;
 			}
 		})
-		.fail(function() {
-
-		})
-		.always(function() {
-
-		});
 
 		if(valid){
 			var fd = new FormData();

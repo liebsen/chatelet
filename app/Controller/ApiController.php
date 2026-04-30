@@ -308,7 +308,7 @@ class ApiController extends AppController {
 
     $save['context'] = json_encode($context);
 
-    #CakeLog::write('debug', "stats:".json_encode($save));
+    #CakeLog::write('error', "stat:".json_encode($save));
 
     $saved = $this->Stat->save($save);
     return json_encode(

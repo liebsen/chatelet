@@ -347,15 +347,13 @@ class AdminController extends AppController {
 
 	public function check_article($article = null){
 		$this->autoRender = false;
+		$this->RequestHandler->respondAs('application/json');
 		$this->SQL = $this->Components->load('SQL');
 		$list_code = $this->settings['list_code'];
 		$stock_min = $this->settings['stock_min'];
 		$exists = $this->SQL->product_exists($article,$list_code,$stock_min);
-		if($exists){
-			return 'ok';
-		}else{
-			return 'fail';
-		}
+
+		return $exists ? 'ok' : 'fail';
 	}
 
 
