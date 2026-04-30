@@ -122,7 +122,7 @@
                 <label for="toggle" class="toggle-label"></label>
               </div>
             </div>
-            <div class="form-box bg-info-outline">
+            <div class="form-box bg-info-outline<?=empty($cat['Category']['id']) ? ' d-disable' : ''?>">
               <h4 class="sub-header"><?=__('Imágenes')?></h4>
               <p><?=__('Carga tus imágenes para esta categoría')?></p>
               <div class="control-group">
