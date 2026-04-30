@@ -1,7 +1,8 @@
 <?php
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
+  echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false));
+  echo $this->element('admin/menu');
 ?>
-<?php echo $this->element('admin/menu');?>
 <div class="block-section">
   <div class="block">
     <!--div class="block-title">
@@ -11,7 +12,7 @@
     </div-->
 
     <div class="tab-content">
-      <form action="" method="post" class="form-inline">
+      <form action="" id="form_app" method="post" class="form-inline">
         <?php
           if (isset($this->request->pass[1])) {
             echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
@@ -106,7 +107,7 @@
         <div class="form-actions">
           <a href="/admin/menu" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span></a>
           <button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
-          <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
+          <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario" disabled><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
         </div>
       </form>
     </div>

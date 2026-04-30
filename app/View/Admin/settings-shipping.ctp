@@ -5,7 +5,7 @@
 <div class="block-section">
   <div class="block-tabs">
     <div class="tab-content">
-      <form action="" method="post" class="form-inline" enctype="multipart/form-data">
+      <form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
         <div class="row">
           <div class="col-md-12">
             <h4 class="sub-header">Configuración de Envíos</h4> 

@@ -1,8 +1,11 @@
-<?php echo $this->element('admin/menu');?>
+<?php 
+echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); 
+echo $this->element('admin/menu');
+?>
 <div class="block-section">
   <div class="block-tabs">
     <div class="tab-content">
-      <form action="" method="post" class="form-inline" enctype="multipart/form-data">
+      <form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
         <?php
           if (isset($this->request->pass[1])) {
             echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';

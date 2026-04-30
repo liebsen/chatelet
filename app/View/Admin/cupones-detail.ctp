@@ -4,12 +4,13 @@
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('relations.js?v=' . $version['ver'], array('inline' => false));
   echo $this->Html->script('cupones-detail', array('inline' => false));
+  echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); 
   $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
 ?>
 <?php echo $this->element('admin/menu');?>
 <div class="block">
   <div class="block-content">
-    <form action="" method="post" class="form-inline" enctype="multipart/form-data">
+    <form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
       <?php
         if (isset($this->request->pass[1])) {
           echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
@@ -172,7 +173,7 @@
                   <label class="control-label" for="columns-text"><?php echo __('Días de semana'); ?></label>
                   <div class="controls">
                     <?php $selected = isset($coupon) && $coupon['Coupon']['weekdays']? $coupon['Coupon']['weekdays'] : '12345'; for($i=0; $i < count($weekdays); $i++):?>
-                      <input type="checkbox" class="weekdays" name="weekdays" value="<?= $i ?>" id="w<?= $i ?>" <?= strpos($selected, (string) $i) !== false ? ' checked' : '' ?>/> <label for="w<?= $i ?>"> &nbsp;<?= $weekdays[$i] ?></label><br>
+                       <label for="w<?= $i ?>"> <input type="checkbox" class="weekdays" name="weekdays" value="<?= $i ?>" id="w<?= $i ?>" <?= strpos($selected, (string) $i) !== false ? ' checked' : '' ?>/> <span class="ml-1"><?= $weekdays[$i] ?></span></label><br>
                     <?php endfor ?>
                   </div>
                   <small class="text-muted">Seleccioná los días de la semana en que el cupón debería estar disponible.</small>

@@ -16,7 +16,7 @@
   </div>
 
   <div class="block-content">
-    <form action="" method="post" class="form-inline" enctype="multipart/form-data">
+    <form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
       <?php
         if (isset($this->request->pass[1])) {
           echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
