@@ -118,11 +118,14 @@ $(document).ready(function() {
 			type: 'GET',
 			async: false,
 		})
-		.done(function(data) {
-			if( data.trim() == 'ok' ){
+		.done(function(res) {
+			console.log('res', res)
+			if( res.success){
 				valid = true;
 			}
 		})
+
+		console.log('valid', valid)
 
 		if(valid){
 			var fd = new FormData();

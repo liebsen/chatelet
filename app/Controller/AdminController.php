@@ -353,9 +353,12 @@ class AdminController extends AppController {
 		$stock_min = $this->settings['stock_min'];
 		$exists = $this->SQL->product_exists($article,$list_code,$stock_min);
 
-		return $exists ? 'ok' : 'fail';
+		return  json_encode(
+			array(
+				'success' => !empty($exists)
+			)
+		);
 	}
-
 
 	 /*
 		* ordernum
