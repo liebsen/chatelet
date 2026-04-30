@@ -507,7 +507,7 @@ class CarritoController extends AppController
 			}
 
 			$product = $this->Product->findById($data['id']);
-			$urlCheck = \site_url()."/shop/stock/".$product['Product']['article']."/".$data['size']."/".$data['color_code'];
+			$urlCheck = \site_url()."/shop/stock/".$product['Product']['id']."/".$product['Product']['article']."/".$data['size']."/".$data['color_code'];
 			if (empty($data['size']) && empty($data['color_code'])){
 				//$urlCheck=$settings['site-url']."/shop/stock/".$product['Product']['article'];
 				// CakeLog::write('debug', 'b(1)');

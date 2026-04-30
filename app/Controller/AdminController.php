@@ -2406,7 +2406,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'add':
   	    if ($this->request->is('POST')){
 	        $this->autoRender = false;
-	        $this->RequestHandler->respondAs('application/json');
+	        #$this->RequestHandler->respondAs('application/json');
 	        $data = $this->request->data;
 
 	        $file_real_name = null;
@@ -2524,8 +2524,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function sucursales($action = null) {
-
-
     if(
     	$this->request->is('post') && 
     	$this->Auth->user('role') != 'sadmin'
