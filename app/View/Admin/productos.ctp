@@ -77,7 +77,7 @@ echo $this->element('admin/menu');
 						<?=$product['Product']['article']?>
 					</td>
 					<td>
-						<?=$product['Product']['category_id']?>
+						<?=$product['Category']['name']?>
 					</td>
 					<td>
 						<div class="btn-group d-flex flex-nowrap">
