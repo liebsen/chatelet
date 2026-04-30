@@ -1901,15 +1901,23 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function whatsapp(){
-
 	  $this->loadModel('Setting');
 
 		if($this->request->is('post')){
-			$data = $this->request->data;
-			$data['whatsapp_enable'] = $data['whatsapp_enable'] ?? 0;
+			$this->RequestHandler->respondAs('application/json');
+			$this->autoRender = false;
 
-			unset($data['x_coord']);
-			unset($data['y_coord']);
+	    if($this->Auth->user('role') != 'sadmin') {
+	      $response = array(
+	        'success' => false,
+	        'errors' => 'Solo los administradores generales puede realizar esta acción'
+	      );
+
+	      return json_encode($response);    
+	    }
+
+
+			$data = $this->request->data;
       foreach($data as $id => $value) {
         $this->Setting->save(
         	array(
@@ -1919,19 +1927,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	      );
       }
 
-			if(!empty($promo['image']['name'])){
-				$file = $this->save_file( $promo['image'] );
-				$this->Promo->save(array(
-					'id' => null,
-					'image' => $file,
-				));
-			}
+      $response = array(
+        'success' => true,
+        'message' => 'Módulo WhatsApp actualizado'
+      );
 
-	    $this->Session->setFlash(
-	      'Módulo WhatsApp actualizado',
-	      'default',
-	      array('class' => 'hidden notice')
-	    );		        
+      return json_encode($response);
 		}
 
 		$navs = array(
@@ -1978,8 +1979,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
         	);
 	      }
 
-      	CakeLog::write('debug', 'data:'. json_encode($data));
-      	CakeLog::write('debug', 'saves:'. json_encode($saves));
+      	#CakeLog::write('debug', 'data:'. json_encode($data));
+      	#CakeLog::write('debug', 'saves:'. json_encode($saves));
 
         $this->Setting->saveAll($saves);
 
@@ -2496,6 +2497,20 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function sucursales($action = null) {
+
+
+    if(
+    	$this->request->is('post') && 
+    	$this->Auth->user('role') != 'sadmin'
+    ) {
+      $response = array(
+        'success' => false,
+        'errors' => 'Solo los administradores generales puede realizar esta acción'
+      );
+
+      return json_encode($response);    
+    }
+
 		$navs = array(
 			'Sucursales' => array(
 				'icon' 		=> 'fa fa-map-marker',
@@ -2895,10 +2910,19 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'add':
   	    if ($this->request->is('POST')){
 	        $this->autoRender = false;
+	        $this->RequestHandler->respondAs('application/json');
 	        $this->request->data['coupon_payment'] = implode(",",$this->request->data['coupon_payment']);
 	        $this->request->data['min_amount'] = $this->request->data['min_amount']?: 0;
 	        $this->Coupon->save($this->request->data);
-	        return $this->redirect(array('action'=>'cupones'));
+			    return json_encode(
+			    	array(
+			    		'success' => true,
+			    		'message' => "OK",
+			    		'redirect' => '/admin/cupones'
+			    	)
+			    );
+
+	        //return $this->redirect(array('action'=>'cupones'));
   			} else {
   				$this->loadModel('Coupon');
 			    $cats = $this->Coupon->find('all');
@@ -2916,13 +2940,23 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'delete':
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
+	    		$this->RequestHandler->respondAs('application/json');
 
 	    		$this->Coupon->delete($this->request->data['id']);
+			    return json_encode(
+			    	array(
+			    		'success' => true,
+			    		'message' => "OK",
+			    		'redirect' => '/admin/cupones'
+			    	)
+			    );	    		
 	    	}
     		break;
     	case 'edit':
     		if ($this->request->is('post')) {
     			$this->autoRender = false;
+    			$this->RequestHandler->respondAs('application/json');
+
     			$data = $this->request->data;
 
     			if(isset($data['coupon_payment'])){
@@ -2931,7 +2965,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 		      $this->Coupon->save($data);
 
-		      return $this->redirect(array('action' => 'cupones'));
+			    return json_encode(
+			    	array(
+			    		'success' => true,
+			    		'message' => "OK",
+			    		'redirect' => '/admin/cupones'
+			    	)
+			    );
+
+		      //return $this->redirect(array('action' => 'cupones'));
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
@@ -3043,6 +3085,18 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function admin_menu($action = null) {
+    if(
+    	$this->request->is('post') && 
+    	$this->Auth->user('role') != 'sadmin'
+    ) {
+      $response = array(
+        'success' => false,
+        'errors' => 'Solo los administradores generales puede realizar esta acción'
+      );
+
+      return json_encode($response);    
+    }
+
 		$navs = array(
 			'Menues' => array(
 				'icon' 		=> 'gi gi-list',
@@ -3063,13 +3117,20 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $this->loadModel('AdminMenu');
     switch ($action) {
     	case 'add':
-    	    if ($this->request->is('POST')){
-		        $this->autoRender = false;
+  	    if ($this->request->is('POST')){
+	        $this->autoRender = false;
 
-		        $data = $this->request->data;
-		        $this->AdminMenu->save($data);
+	        $data = $this->request->data;
+	        $this->AdminMenu->save($data);
 
-		        return $this->redirect(array('action'=>'admin_menu'));
+	        //return $this->redirect(array('action'=>'admin_menu'));
+		      $response = array(
+		        'success' => true,
+		        'message' => 'Se actualizó módulo Menú'
+		      );
+
+		      return json_encode($response);    
+
   			} else {
     			return $this->render('admin-menu-detail');
     		}
@@ -3106,6 +3167,19 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function banners($action = null) {
+
+    if(
+    	$this->request->is('post') && 
+    	$this->Auth->user('role') != 'sadmin'
+    ) {
+      $response = array(
+        'success' => false,
+        'errors' => 'Solo los administradores generales puede realizar esta acción'
+      );
+
+      return json_encode($response);    
+    }
+
 		$navs = array(
 			'Banners' => array(
 				'icon' 		=> 'fa fa-shirtsinbulk',
@@ -3128,6 +3202,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'add':
     	    if ($this->request->is('POST')){
 		        $this->autoRender = false;
+						$this->RequestHandler->respondAs('application/json');
+
 		        $data = $this->request->data;
 		        $file_real_name = null;
 		        if(!empty($this->request->params['form']['image']['name'])){
@@ -3145,7 +3221,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				      array('class' => 'hidden notice')
 				    );		        
 
-		        return $this->redirect(array('action'=>'banners'));
+				    return json_encode(
+				    	array(
+				    		'success' => true,
+				    		'message' => "OK",
+				    		'redirect' => '/admin/banners'
+				    	)
+				    );
+
+		        // return $this->redirect(array('action'=>'banners'));
   			} else {
     			return $this->render('banners-detail');
     		}
@@ -3153,17 +3237,29 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'delete':
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
+					$this->RequestHandler->respondAs('application/json');
+
 	    		$this->Banner->delete($this->request->data['id']);
 			    $this->Session->setFlash(
 			      'Módulo Banners actualizado',
 			      'default',
 			      array('class' => 'hidden notice')
-			    );		        	    		
+			    );
+			    return json_encode(
+			    	array(
+			    		'success' => true,
+			    		'message' => "OK",
+			    		'redirect' => '/admin/banners'
+			    	)
+			    );
+
+			    //return $this->redirect(array('action'=>'banners'));	
 	    	}
     		break;
     	case 'edit':
     		if ($this->request->is('post')) {
     			$this->autoRender = false;
+					$this->RequestHandler->respondAs('application/json');
 
     			$data = $this->request->data;
 
@@ -3183,7 +3279,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			      'Módulo Banners actualizado',
 			      'default',
 			      array('class' => 'hidden notice')
-			    );		        
+			    );
+
+		      return json_encode(
+		      	array(
+		        	'success' => true,
+		        	'message' => 'Se actualizó módulo Banners',
+		        	'redirect' => '/admin/banners'
+		      	)
+		      );    
+
+			    // return $this->redirect(array('action'=>'banners'));
 
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
@@ -3207,6 +3313,18 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function legends($action = null) {
+    if(
+    	$this->request->is('post') && 
+    	$this->Auth->user('role') != 'sadmin'
+    ) {
+      $response = array(
+        'success' => false,
+        'errors' => 'Solo los administradores generales puede realizar esta acción'
+      );
+
+      return json_encode($response);    
+    }
+
 		$navs = array(
 			'Financiación' => array(
 				'icon' 		=> 'fa fa-credit-card',
@@ -3229,6 +3347,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'add':
     	    if ($this->request->is('POST')){
 		        $this->autoRender = false;
+		        $this->RequestHandler->respondAs('application/json');
 		        $data = $this->request->data;
 		        $this->Legend->save($data);
 				    $this->Session->setFlash(
@@ -3236,8 +3355,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				      'default',
 				      array('class' => 'hidden notice')
 				    );		        
-
-		        return $this->redirect(array('action'=>'legends'));
+			      return json_encode(
+			      	array(
+			        	'success' => true,
+			        	'message' => 'OK',
+			        	'redirect' => '/admin/legends'
+			      	)
+			      ); 
+		        //return $this->redirect(array('action'=>'legends'));
   			} else {
     			return $this->render('legends-detail');
     		}
@@ -3245,26 +3370,44 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'delete':
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
+	    		$this->RequestHandler->respondAs('application/json');
 	    		$this->Legend->delete($this->request->data['id']);
 				    $this->Session->setFlash(
 				      'Módulo Financiación actualizado',
 				      'default',
 				      array('class' => 'hidden notice')
-				    );		        
+				    );
+			      return json_encode(
+			      	array(
+			        	'success' => true,
+			        	'message' => 'OK',
+			        	'redirect' => '/admin/legends'
+			      	)
+			      ); 
 
+				    //return $this->redirect(array('action'=>'legends'));
 	    	}
     		break;
     	case 'edit':
     		if ($this->request->is('post')) {
     			$this->autoRender = false;
+    			$this->RequestHandler->respondAs('application/json');
     			$data = $this->request->data;
 	        $this->Legend->save($data);
-				    $this->Session->setFlash(
-				      'Módulo Financiación actualizado',
-				      'default',
-				      array('class' => 'hidden notice')
-				    );		        
-	        
+			    $this->Session->setFlash(
+			      'Módulo Financiación actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );
+		      return json_encode(
+		      	array(
+		        	'success' => true,
+		        	'message' => 'OK',
+		        	'redirect' => '/admin/legends'
+		      	)
+		      ); 
+
+	        //return $this->redirect(array('action'=>'legends'));
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
@@ -3287,6 +3430,18 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}	
 
 	public function menu($action = null) {
+    if(
+    	$this->request->is('post') && 
+    	$this->Auth->user('role') != 'sadmin'
+    ) {
+      $response = array(
+        'success' => false,
+        'errors' => 'Solo los administradores generales puede realizar esta acción'
+      );
+
+      return json_encode($response);    
+    }
+
 		$navs = array(
 			'Menu' => array(
 				'icon' 		=> 'fa fa-ellipsis-v',
@@ -3334,6 +3489,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
 	    		$this->Menu->delete($this->request->data['id']);
+	    		return $this->redirect(array('action'=>'menu'));
 	    	}
     		break;
     	case 'edit':
@@ -3359,6 +3515,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	          'default',
 	          array('class' => 'hidden notice')
 		      );
+		      return $this->redirect(array('action'=>'menu'));
 
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
@@ -3859,10 +4016,21 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
 	    		$this->User->delete($this->request->data['id']);
+
+			    return $this->redirect(array('controller' => 'admin', 'action' => 'usuarios'));
 	    	}
     		break;
     	case 'edit':
     		if ($this->request->is('post')) {
+			    if($this->Auth->user('role') != 'sadmin') {
+			      $response = array(
+			        'success' => false,
+			        'errors' => 'Solo los administradores generales puede realizar esta acción'
+			      );
+
+			      return json_encode($response);    
+			    }
+
     			$this->autoRender = false;
     			$data = [];
     			foreach($this->request->data as $key => $value) {
@@ -3875,7 +4043,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		        'Módulo Clientas actualizado',
 		        'default',
 		        array('class' => 'hidden notice')
-		      );		      
+		      );
+		      return $this->redirect(array('controller' => 'admin', 'action' => 'usuarios'));
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
@@ -3894,6 +4063,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $users = $this->User->find('all', array('conditions' => array( 'id > ' => 1 )));
     $this->set('users', $users);
 		return $this->render('usuarios');
+    /**/
 	}
 
 	public function refresh_colors() {

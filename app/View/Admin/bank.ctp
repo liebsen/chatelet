@@ -10,7 +10,7 @@
     <h4>CBU/Alias y Descuentos</h4>
   </div-->
   <div class="tab-content">
-    <form action="" method="post" class="form-inline">
+    <form action="" id="form_app" method="post" class="form-inline">
       <div class="row">
         <div class="col-md-6">
           <h4 class="sub-header">Activar pagos CBU/Alias en la tienda</h4>

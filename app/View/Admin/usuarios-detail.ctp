@@ -1,5 +1,6 @@
 <?php
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
+  echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); 
 ?>
 <?php echo $this->element('admin/menu');?>
 <div class="block-section">
@@ -13,7 +14,7 @@
     </div-->
 
     <div class="tab-content">
-      <form action="" method="post" class="form-inline" enctype="multipart/form-data">
+      <form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
         <?php
           if (isset($this->request->pass[1])) {
             echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
@@ -189,7 +190,7 @@
         <br />               
         <div class="form-actions">
           <button type="reset" class="btn btn-danger"><i class="fa fa-close"></i> <span class="ml-1">Reset</span></button>
-          <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> <span class="ml-1">Submit</span></button>
+          <button type="submit" class="btn btn-success" disabled><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
         </div>
       </form>
     </div>

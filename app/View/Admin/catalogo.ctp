@@ -5,7 +5,7 @@
     <h4><?php echo __('Catálogo') ?></h4>
   </div>
   <div class="block-content">
-    <form action="" method="post" class="form-inline" enctype="multipart/form-data">
+    <form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-4">
           <div class="control-group">

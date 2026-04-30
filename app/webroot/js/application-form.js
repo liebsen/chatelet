@@ -7,7 +7,11 @@ function getFormData(form) {
   var data = new FormData();
   for (var i=0; i<form.length; i++) {
     var e = form[i]
-    if(($(e).data('change') || $(e).data('force')) && !$(e).data('exclude')) {
+    if(
+      e.type == 'hidden' || 
+      ($(e).data('change') || $(e).data('force')) && 
+      !$(e).data('exclude')
+    ) {
       var value = e.value.trim()
       if(e.type == 'file') {
         value = e.files[0]
@@ -24,6 +28,7 @@ $(document).ready(function() {
   $('input, select, textarea').change(function(e) {
     const elem = e.target
     $(elem).data('change', true)
+    $('[type="submit"]').prop('disabled', false)
     if($(elem).attr('type') == 'file') {
       const matches = $(elem).attr('name').match(/\[(.*?)\]/)
       if(matches[1]) {
@@ -63,21 +68,33 @@ $(document).ready(function() {
   $('#form_app').submit(function(e){
 		e.preventDefault()
     const url = $(this).attr('action')
-    const data = getFormData(this)
+    const formData = getFormData(this)
+    if(!Array.from(formData.entries()).length) {
+      return $.growl.notice({
+        title: 'Error',
+        message: 'No hay datos que enviar'
+      });
+    }
 		$.ajax({
       type: 'post',
       url: url, 
-      data: data,
+      data: formData,
       processData: false, // Prevent jQuery from converting data to a string
       contentType: false, // Prevent jQuery from setting a default content-type header
     }).success(function(res){
 			if(res.success) {
-        $.growl.notice({
-          title: 'OK',
-          message: res.message
-        });
-        if(res.lastid) {
-          $('input[name="data[id]"]').val(res.lastid)
+        if(res.redirect) {
+          setTimeout(function(){
+            location.href = res.redirect
+          }, 100)
+        } else {
+          $.growl.notice({
+            title: 'OK',
+            message: res.message
+          });
+          if(res.lastid) {
+            $('input[name="data[id]"]').val(res.lastid)
+          }
         }
 			} else {
         $.growl.error({
@@ -85,11 +102,6 @@ $(document).ready(function() {
           message: res.errors
         });
 			}
-      if(res.redirect) {
-        setTimeout(function(){
-          location.href = res.redirect
-        }, 2000)
-      }
 		}).fail(function(xhr, error){
       $.growl.error({
         title: 'Error',

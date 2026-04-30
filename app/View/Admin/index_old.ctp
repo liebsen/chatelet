@@ -8,7 +8,7 @@
 	</div>
 
 	<div class="block-content">
-		<form action="" method="post" class="form-inline" enctype="multipart/form-data">
+		<form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
 			<input type="hidden" name="data[id]" value="1" />
 			<div class="row">
 				<div class="col-md-9">

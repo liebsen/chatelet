@@ -5,7 +5,7 @@
 <div class="block-section">
 <div class="block-tabs">
 	<div class="tab-content">
-		<form action="" method="post" class="form-inline" enctype="multipart/form-data">
+		<form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
 			<div class="row">
 	      <div class="col-md-6">
 	        <h4 class="sub-header">Contacto WhatsApp</h4>
@@ -57,7 +57,7 @@
 	    <br />               
 	    <div class="form-actions">
 	      <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span></a>
-	      <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
+	      <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario" disabled><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
 	    </div>
 	  </form>
 	</div>

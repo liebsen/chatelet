@@ -54,6 +54,16 @@ class ApplicationComponent extends Component {
       'password' => 'Contraseña'
     );
 
+    $notification_sale_templates = array(
+      'name' => "Nombre de la clienta",
+      'surname' => "Apellido de la clienta",
+      'email' => "Email de la clienta",
+      'telephone' => "Teléfono de la clienta",
+      'dni' => "DNI de la clienta",
+      'sale_total' => "Total de compra",
+      'sale_id' => "Nro de remito",
+    );
+
     $notification_tags = array(
       'notification_sale_success' => "Compra con pago exitoso",
       'notification_sale_pending' => "Compra con pago pendiente",
@@ -74,8 +84,19 @@ class ApplicationComponent extends Component {
   public function update_settings(){
     $this->controller->RequestHandler->respondAs('application/json');
     $this->controller->autoRender = false;
+
+    if($this->controller->Auth->user('role') != 'sadmin') {
+      $response = array(
+        'success' => false,
+        'errors' => 'Solo los administradores generales puede realizar esta acción'
+      );
+
+      return json_encode($response);    
+    }
+
     $Setting = ClassRegistry::init('Setting');
     $data = $this->controller->request->data;
+    \d("data",$data);
     $saves = array();
 
     foreach($data as $id => $value) {
@@ -92,7 +113,7 @@ class ApplicationComponent extends Component {
       );
     }
 
-    CakeLog::write('debug', 'data:'. json_encode($data));
+    #CakeLog::write('debug', 'data:'. json_encode($data));
     CakeLog::write('debug', 'saves:'. json_encode($saves));
 
     $Setting->saveAll($saves);
