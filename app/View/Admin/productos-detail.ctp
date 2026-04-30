@@ -107,21 +107,21 @@
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Porcentaje descuento con mercadopago'); ?></label>
               <div class="controls">
-                <input class="form-control" type="number" id="" name="mp_discount" value="<?php echo (isset($prod)) ? $prod['Product']['mp_discount'] : ''; ?>" required>
+                <input class="form-control" type="number" id="" name="mp_discount" value="<?php echo (isset($prod)) ? $prod['Product']['mp_discount'] : ''; ?>">
               </div>
             </div>
             <br/>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Porcentaje descuento con transferencia'); ?></label>
               <div class="controls">
-                <input class="form-control" type="number" id="" name="bank_discount" value="<?php echo (isset($prod)) ? $prod['Product']['bank_discount'] : ''; ?>" required>
+                <input class="form-control" type="number" id="" name="bank_discount" value="<?php echo (isset($prod)) ? $prod['Product']['bank_discount'] : ''; ?>">
               </div>
             </div>
             <br/>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Color de burbuja de descuento'); ?></label>
               <div class="controls">
-                <input type="color" id="" name="ribbon_color" value="<?php echo (isset($prod)) ? $prod['Product']['ribbon_color'] : ''; ?>" required>
+                <input type="color" id="" name="ribbon_color" value="<?php echo (isset($prod)) ? $prod['Product']['ribbon_color'] : ''; ?>">
               </div>
             </div>
             <br />

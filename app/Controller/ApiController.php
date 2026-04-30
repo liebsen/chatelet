@@ -282,7 +282,7 @@ class ApiController extends AppController {
     $page = $data['page'] ?? '/';
     $tag = $data['tag'] ?? 'page-exit';
     $user_id = $this->Auth->user('id') ?? 1;
-    $product_id = !empty($data['product_id']) ? intval($data['product_id']) : 0;
+    $product_id = !empty($data['product_id']) ? intval($data['product_id']) : 1;
 
     // save entry
     $save = array(
