@@ -2785,6 +2785,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    $data = $this->User->find('all',array(
 	      'conditions' => array(
 	        'User.id IS NOT ' => null,
+	        'User.id > ' => 1,
 	        'MONTH(User.birthday) >=' => $min_parts[1],
 	        'DAY(User.birthday) >=' => $min_parts[0],
 	        'MONTH(User.birthday) <=' => $max_parts[1],
@@ -2817,6 +2818,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	      'conditions' => array(
 	        // 'SUM(Sale.value) > ' => $sale_min,
 	        'User.id IS NOT ' => null,
+	        'User.id > ' => 1,
 	        'Sale.completed' => 1,
 	        'Sale.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
 	        'Sale.created <=' => date('Y-m-d 23:59', strtotime(str_replace('/','-', $date_max))),
@@ -2851,6 +2853,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        // 'SUM(Sale.value) > ' => $sale_min,
 	        'Stat.tag' => 'page-exit',
 	        'User.email IS NOT ' => null,
+	        'User.id > ' => 1,
 	        'JSON_EXTRACT(Stat.context, \'$.cart_totals.total_products\') >' => $sale_min,
 	        'Stat.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
 	        'Stat.created <=' => date('Y-m-d 23:59', strtotime(str_replace('/','-', $date_max))),
