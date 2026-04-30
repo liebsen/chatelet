@@ -1779,7 +1779,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		        $this->RequestHandler->respondAs('application/json');
 
 		        $data = $this->request->data;
-
+		        $data['alternate_name'] = $data['alternate_name'] ?? '';
+		        
 		        $file_real_name = null;
 		        if(!empty($this->request->params['form']['image']['name'])){
 		          $file_real_name = $this->save_file($this->request->params['form']['image']);
