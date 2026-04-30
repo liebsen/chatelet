@@ -2101,11 +2101,12 @@ pre, code {
 }
 
 .secondary-box {
-  padding-bottom: 0.5rem;
+  padding: 0.75rem 0;
   display: flex;
   justify-content: start;
   align-items: center;
   grid-gap: 0.5rem;
+  flex-wrap: wrap;
   width: 100%;
   font-size: 12px;
   font-weight: 800;
@@ -2117,6 +2118,7 @@ pre, code {
   border-radius: 0.75rem;
   padding: 0.5rem 1rem;
   line-height: 1;
+  white-space: nowrap;
   border-bottom: 3px solid transparent;
 }
 
