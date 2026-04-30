@@ -74,7 +74,7 @@ echo $this->element('admin/menu');
 						</span>
 					</td>
 					<td>
-						<?=$product['Product']['article']?>
+						<span class="badge badge-success"><?=$product['Product']['article']?></span>
 					</td>
 					<td>
 						<?=$product['Category']['name']?>
