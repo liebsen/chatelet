@@ -2389,7 +2389,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$h1 = array(
 			'name' => 'Productos',
 			'icon' => 'gi gi-shirt'
-			);
+		);
 		$this->set('h1', $h1);
 		$this->set('navs', $navs);		
 
@@ -2401,7 +2401,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'add':
   	    if ($this->request->is('POST')){
 	        $this->autoRender = false;
-	        #$this->RequestHandler->respondAs('application/json');
 	        $data = $this->request->data;
 
 	        $file_real_name = null;
@@ -2439,7 +2438,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'delete':
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
-	    		$this->RequestHandler->respondAs('application/json');
 
 					$this->ProductProperty->deleteall(array('ProductProperty.product_id' => $this->request->data['id']));
 	    		$this->Product->delete($this->request->data['id']);
@@ -2448,7 +2446,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	case 'edit':
     		if ($this->request->is('post')) {
     			$this->autoRender = false;
-					$this->RequestHandler->respondAs('application/json');
     			$data = $this->request->data;
 
 	        $file_real_name = null;
