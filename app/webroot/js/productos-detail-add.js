@@ -119,13 +119,10 @@ $(document).ready(function() {
 			async: false,
 		})
 		.done(function(res) {
-			console.log('res', res)
-			if( res.success){
+			if(res.success){
 				valid = true;
 			}
 		})
-
-		console.log('valid', valid)
 
 		if(valid){
 			var fd = new FormData();

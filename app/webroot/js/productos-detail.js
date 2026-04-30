@@ -117,8 +117,8 @@ $(document).ready(function() {
 			type: 'GET',
 			async: false,
 		})
-		.done(function(data) {
-			if( data.trim() == 'ok' ){
+		.done(function(res) {
+			if(res.success){
 				valid = true;
 			}
 		})
