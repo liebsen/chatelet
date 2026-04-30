@@ -2517,6 +2517,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
   		'conditions' => array( 
   			'Product.id >' => 1
   		),
+  		'fields' => array(
+  			'Product.*, Category.name'
+  		),
   		'order' => array( 
   			'Product.category_id ASC',
   			'Product.ordernum ASC' 
@@ -2557,12 +2560,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
   		'conditions' => array( 
   			'Product.id >' => 1
   		),
+  		'fields' => array(
+  			'Product.*, Category.name'
+  		),  		
   		'order' => array( 
   			'Product.category_id ASC',
   			'Product.ordernum ASC' 
   		)
   	));
-
+    echo '<pre>';
   	var_dump($prods);
   	die();		
 	}
