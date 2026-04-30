@@ -1,7 +1,7 @@
 <?php
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
   echo $this->Html->css('productos-detail', array('inline' => false));
-  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); 
+  //echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); 
   if($this->request->params['pass'][0]=="add"){
     echo $this->Html->script('productos-detail-add', array('inline' => false));
   } else {

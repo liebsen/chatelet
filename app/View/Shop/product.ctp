@@ -53,7 +53,7 @@ function updateSrcTo(obj){
 <?php if(!empty($category['banner_url'])): ?>
 <div id="headabrigos">
   <div class="img-resp is-main" style="background-image:url(<?php echo $settings['upload_url'].$category['banner_url'] ?>)">
-    <h1 class="name_shop delay2 animation-pullUp animation-both"><?php echo $category['name']; ?></h1>
+    <!--h1 class="name_shop delay2 animation-pullUp animation-both"><?php echo $category['name']; ?></h1-->
   </div>  
 </div>
 <?php endif ?>
