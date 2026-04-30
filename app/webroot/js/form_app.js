@@ -7,6 +7,7 @@ function getFormData(form) {
   var data = new FormData();
   for (var i=0; i<form.length; i++) {
     var e = form[i]
+    //console.log(e.name)
     if(
       e.type == 'hidden' || 
       ($(e).data('change') || $(e).data('force')) && 
@@ -18,6 +19,8 @@ function getFormData(form) {
       } else if(e.type == 'checkbox') {
         value = e.checked ? 1 : 0
       }
+      console.log(e.name, value)
+
       data.append(e.name, value)
     }
   }
@@ -26,8 +29,10 @@ function getFormData(form) {
 
 $(document).ready(function() {
   $('input, select, textarea').change(function(e) {
+
     const elem = e.target
     $(elem).data('change', true)
+    console.log(elem.name)
     $('[type="submit"]').prop('disabled', false)
     if($(elem).attr('type') == 'file') {
       const matches = $(elem).attr('name').match(/\[(.*?)\]/)

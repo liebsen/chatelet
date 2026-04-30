@@ -1802,8 +1802,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				      'Módulo Shop actualizado',
 				      'default',
 				      array('class' => 'hidden notice')
-				    );		        
-		        return $this->redirect(array('action'=>'categorias'));
+				    );
+				    return json_encode(
+				    	array(
+				    		'success' => true,
+				    		'redirect' => '/admin/categorias'
+				    	)
+				    );
   			} else {
     			return $this->render('categorias-detail');
     		}
@@ -1815,12 +1820,18 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$this->loadModel('Product');
 	    		$this->Product->deleteall(array('Product.category_id' => $this->request->data['id']));
 	    		$this->Category->delete($this->request->data['id']);
+       
 			    $this->Session->setFlash(
 			      'Módulo Shop actualizado',
 			      'default',
 			      array('class' => 'hidden notice')
-			    );		        
-
+			    );
+			    return json_encode(
+			    	array(
+			    		'success' => true,
+			    		'redirect' => '/admin/categorias'
+			    	)
+			    );
 	    	}
     		break;
     	case 'edit':
@@ -1879,8 +1890,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			      'Módulo Shop actualizado',
 			      'default',
 			      array('class' => 'hidden notice')
-			    );		        
-
+			    );
+			    return json_encode(
+			    	array(
+			    		'success' => true,
+			    		'redirect' => '/admin/categorias'
+			    	)
+			    );
     		} else {
 	    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));	
     			$navs[$cat['Category']['name']] = array(
