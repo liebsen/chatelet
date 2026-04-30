@@ -1,6 +1,6 @@
 <?php
 	echo $this->Html->script('ckeditor/ckeditor.js?v=' . $version['ver'], array('inline' => false));
-  echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false));
+  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
   echo $this->Html->script('relations.js?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('templates-edit.js?v=' . $version['ver'], array('inline' => false));
 ?>

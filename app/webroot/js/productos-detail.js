@@ -98,7 +98,7 @@ $(document).ready(function() {
 		
 	});
 
-	$('#productos-detail').submit(function() {
+	$('#form_app').submit(function() {
 		var checked = $('.category_radio:checked').length;
 
 		if (checked === 0) {
@@ -107,7 +107,7 @@ $(document).ready(function() {
 		}
 
 		var valid 	= false;
-		var url 	= $('#productos-detail').data('article-url');
+		var url 	= $('#form_app').data('article-url');
 		var article = $('[name="article"]').val();
 		
 		url = url+'/'+article;

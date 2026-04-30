@@ -1,6 +1,6 @@
 <?php 
 	echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));	
-	echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false));	
+	echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));	
 	echo $this->Form->create(null, array(
   'class' => 'w-100',
   'id' => 'form_app',

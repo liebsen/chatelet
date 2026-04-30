@@ -3,6 +3,7 @@
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('cupones-detail', array('inline' => false));
+  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
   $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
 ?>
 <?php echo $this->element('admin/menu');?>

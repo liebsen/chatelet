@@ -1,5 +1,6 @@
 <?php
   echo $this->Html->css('sucursales-detail', array('inline' => false));
+  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
 ?>
 <?php echo $this->element('admin/menu');?>
 <div class="block-section">

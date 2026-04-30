@@ -2,7 +2,7 @@
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('admin-carrito', array('inline' => false));
-  echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false));
+  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
   echo $this->element('admin/menu'); 
 ?>
 <div class="block-section">
@@ -12,7 +12,7 @@
     </div-->
 
     <div class="tab-content">
-      <form action="" method="post" class="form-inline">
+      <form action="" id="form_app" method="post" class="form-inline">
         <div class="row">
           <div class="col-md-6">
             <h4 class="sub-header">Información Principal</h4>
