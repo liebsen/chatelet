@@ -1,5 +1,5 @@
 <?php #echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
-<?php echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php #echo $this->Html->script('newsletter-config.js?v=' . $version['ver'], array('inline' => false)); ?>
 	<form action="" method="post" id="form_app" class="form-inline">
 	  <input type="hidden" name="x_coord" id="x_coord">

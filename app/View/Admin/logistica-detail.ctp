@@ -1,7 +1,7 @@
 <?php
   echo $this->Html->script('logistica-detail', array('inline' => false));
   echo $this->Html->css('logistica-detail', array('inline' => false));
-  echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); 
+  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); 
 ?>
 <?php echo $this->element('admin/menu');?>
 <div class="block-section">

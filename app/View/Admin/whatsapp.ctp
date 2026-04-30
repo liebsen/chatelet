@@ -1,6 +1,6 @@
 <?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
 <?php #echo $this->Html->script('admin-whatsapp.js?v=' . $version['ver'], array('inline' => false)); ?>
-<?php echo $this->Html->script('application-form.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); ?>
 <?php echo $this->element('admin/menu'); ?>
 <div class="block-section">
 <div class="block-tabs">
@@ -86,7 +86,7 @@
 	    <br />               
 	    <div class="form-actions">
 	      <a href="/admin/cupones" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span></a>
-	      <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
+	      <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario" disabled><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
 	    </div>
 	  </form>
 	</div>

@@ -1,6 +1,7 @@
 <?php
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
   echo $this->Html->css('productos-detail', array('inline' => false));
+  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); 
   if($this->request->params['pass'][0]=="add"){
     echo $this->Html->script('productos-detail-add', array('inline' => false));
   } else {
@@ -25,7 +26,7 @@
     </div>
 
     <div class="block-content">
-      <form action="" id="productos-detail" method="post" class="form-inline" enctype="multipart/form-data" data-article-url="<?php echo Router::url(array( 'action' => 'check_article' )) ?>">
+      <form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data" data-article-url="<?php echo Router::url(array( 'action' => 'check_article' )) ?>">
         <?php
           if (isset($this->request->pass[1])) {
             echo '<input type="hidden" id="product_id" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';

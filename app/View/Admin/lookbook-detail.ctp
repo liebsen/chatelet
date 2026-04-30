@@ -2,6 +2,7 @@
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
   echo $this->Html->css('lookbook-detail', array('inline' => false));
   echo $this->Html->script('lookbook-detail', array('inline' => false));
+  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
 ?>
 <?php echo $this->element('admin/menu');?>
 <div class="block">

@@ -1,7 +1,8 @@
 <?php
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
+  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
+  echo $this->element('admin/menu');
 ?>
-<?php echo $this->element('admin/menu');?>
 <div class="block-section">
   <div class="block-tabs">
     <div class="tab-content">
