@@ -1,5 +1,5 @@
   <nav class="navbar navbar-chatelet animation-both short">
-    <div class="d-flex is-flex-between pt-1" style="min-height: 50px;">
+    <div class="d-flex is-flex-between pt-1" style="min-height: 50px; padding-left: 1rem; padding-right: 1rem;">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <a class="navbar-brand"

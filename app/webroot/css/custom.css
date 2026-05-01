@@ -137,17 +137,6 @@ label input[type=checkbox]:disabled + .label-text:before {
   align-items: center;
 }
 
-.bg-light {
-  background-color: #f8f8f8;
-}
-
-.bg-grey {
-  background-color: #e7e7e7;
-}
-
-.bg-transparent {
-  background-color: transparent!important;
-}
 
 .box-cont {
   display: flex;
@@ -2451,7 +2440,7 @@ span.count.is-empty {
   .is-rounded {
     margin: 1rem 0;
     margin-top: 0;
-    padding: 1.5rem;
+    padding: 0.5rem;
     border-radius: 1.5rem;
   }
   #productOptions .product-list .row {

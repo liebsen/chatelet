@@ -9,7 +9,7 @@ echo $this->Session->flash();
 		<h2 class="text-uppercase">
 			<?php echo 'Recuperar Contraseña'; ?>
 		</h2>
-		<p>
+		<p class="text-center">
 			Recupera fácilmente el acceso a tu cuenta ingresando el correo con el que creaste tu cuenta en Châtelet.<br> Te enviaremos instrucciones a ese correo.
 		</p>
 		<div class="max-22 w-100">		

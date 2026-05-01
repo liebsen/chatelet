@@ -56,7 +56,7 @@ if (!$loggedIn) {
 					<div class="row w-100">
 						<div class="col-md-12">
 							<h3 class="text-uppercase mt-0">
-								<i class="gi gi-woman text-warning"></i> <?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Registrarme como clienta' ?>
+								<i class="gi gi-woman"></i> <?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Registrarme como clienta' ?>
 							</h3>
 							<p>
 							 Ingresa tus datos personales para crear una cuenta. Luego genera tu contraseña y te recomendamos que nunca la reveles a nadie.
@@ -255,14 +255,14 @@ if (!$loggedIn) {
 									echo '<label class="text-white" for="no"><input type="radio" id="no" name="data[User][newsletter]" value="0" '.$unsubscribed.' /><span>No</span></label>';*/
 								?>
 							</div>
-							<small class="text-muted">Suscríbete hoy a nuestra plataforma y te seleccionaremos para ofertas especiales y eventos exclusivos, por email y a tu teléfono.</small>
+							<small class="">Suscríbete hoy a nuestra plataforma y te seleccionaremos para ofertas especiales y eventos exclusivos, por email y a tu teléfono.</small>
 						</div>
 					</div>
 				</div>
 				<hr>
 				<div class="row is-flex-center">
 					<div class="col-md-6">
-						<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos"> Términos y Condiciones</a>
+						<span class="text-sm">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos" class="text-muted"> Términos y Condiciones</a>
 						</span>
 					</div>
 					<div class="col-md-6">
@@ -272,10 +272,10 @@ if (!$loggedIn) {
 				<?php echo $this->Form->end(); ?>
 			</div>
 			<div class="flex-col desktop">
-				<div class="card is-rounded bg-transparent">
-					<div class="card-body">
+				<div class="card is-rounded bg-salmon">
+					<div class="card-body bg-transparent">
 						<blockquote>
-							<h3 class="mt-0"><i class="gi gi-magic text-warning"></i>
+							<h3 class="mt-0"><i class="gi gi-magic"></i>
 								<?php if ($loggedIn) : ?>
 									Tus datos en Châtelet
 								<?php else :?>
