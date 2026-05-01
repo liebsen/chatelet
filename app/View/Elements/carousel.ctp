@@ -86,7 +86,7 @@ foreach ($images_aux as $key => $value) {
     }    
   }
 
-  var focused = false
+  var focused = true
   window.onfocus = () => {
     focused = true;
     var video = $("#carousel .item.active").find("video")
@@ -99,7 +99,6 @@ foreach ($images_aux as $key => $value) {
   };
 
   window.onblur = () => {
-    if(window.lastscroll > 300) return false
     focused = false;
     $("video").each((i,video) => {
       video.pause()
@@ -107,17 +106,16 @@ foreach ($images_aux as $key => $value) {
   };
 
   $(function () {
-    $('#carousel').on('slide.bs.carousel', (a) => {
+    $('#carousel').on('slide.bs.carousel', (e) => {
       $("video").each((i,video) => {
         video.pause()
       });
-      if(window.lastscroll > 300) return false
-      if(focused) {
-        var video = $(a.relatedTarget).find("video")
-        if(video.length) {
+      const video = $(e.relatedTarget).find("video")
+      if(video.length) {
+        if(focused && window.lastscroll < 300) {
           setTimeout(() => {
             $(video).get(0).play()
-          }, 300)
+          }, 500)
         }
       }
     });
