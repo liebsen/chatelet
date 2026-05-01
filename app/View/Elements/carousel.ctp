@@ -90,6 +90,7 @@ foreach ($images_aux as $key => $value) {
   window.onfocus = () => {
     focused = true;
     var video = $("#carousel .item.active").find("video")
+    if(window.lastscroll > 300) return false
     if(video.length){
       setTimeout(() => {
         $(video).get(0).play()
@@ -98,6 +99,7 @@ foreach ($images_aux as $key => $value) {
   };
 
   window.onblur = () => {
+    if(window.lastscroll > 300) return false
     focused = false;
     $("video").each((i,video) => {
       video.pause()
@@ -109,6 +111,7 @@ foreach ($images_aux as $key => $value) {
       $("video").each((i,video) => {
         video.pause()
       });
+      if(window.lastscroll > 300) return false
       if(focused) {
         var video = $(a.relatedTarget).find("video")
         if(video.length) {

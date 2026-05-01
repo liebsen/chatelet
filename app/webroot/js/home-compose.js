@@ -37,9 +37,6 @@ function video_toggle_play(container) {
 	//$(e.target).parents('.category-content').find('video')
 	const video = container.find('video')
 	const play_btn = container.find('.play-button')
-			console.log('container',container)
-			console.log('video',video)
-
   if (video.paused || video.ended) {
     //video[0].play();
     $(video).trigger('play');
