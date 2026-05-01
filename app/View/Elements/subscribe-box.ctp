@@ -1,4 +1,4 @@
-  <section class="animation-pullUp animation-both delay3 subscribe-box d-none">
+  <section class="subscribe-box bg-salmon animation-pullUp animation-both delay3 d-none">
     <div class="w-100">
       <span class="corner-pin is-clickable">
         <i class="ico-times" role="img" aria-label="Cerrar"></i>
