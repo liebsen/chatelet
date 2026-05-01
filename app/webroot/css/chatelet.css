@@ -943,6 +943,24 @@ a.btn {
 	white-space: break-spaces;
 	line-height: 1.25;
 }
+
+.bg-light {
+  background-color: #f8f8f8;
+}
+
+.bg-grey {
+  background-color: #e7e7e7;
+}
+
+.bg-transparent {
+  background-color: transparent!important;
+}
+
+.bg-salmon {
+  background: linear-gradient(45deg, salmon, pink);
+  color: darkred;
+}
+
 .bg-info-i {
   background-color: #d9edf7!important;
 }

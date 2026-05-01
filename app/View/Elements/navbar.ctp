@@ -53,7 +53,7 @@
           </li>
         </ul>
 
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right animation-pullDown animation-both delay2">
           <li>
             <a href="#" class="is-unlifted" title="Buscar en la tienda">
               <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="gi gi-search text-lightgrey"></i>

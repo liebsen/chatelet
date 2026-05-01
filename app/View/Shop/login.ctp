@@ -17,7 +17,7 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 		<h2 class="text-uppercase">
 			<?php echo 'Inicia sesión para continuar'; ?>
 		</h2>			
-		<p>
+		<p class="text-center">
 			Inicia sesión en Châtelet con tus credenciales. Ingresá tu email y contraseña para continuar.<br> Si no tienes una cuenta presiona <b>Crear mi cuenta</b>.
 		</p>
 		<div class="max-22 w-100">

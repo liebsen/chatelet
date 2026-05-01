@@ -6,7 +6,7 @@
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
           <h4 class="text-uppercase">Estemos <strong>conectadas</strong></h4>
-          <p class="text-dark text-uppercase">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
+          <p class="text-uppercase">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
         </span>
         <span>
         <?php echo $this->Form->create('Subscribe', array(
@@ -29,7 +29,7 @@
         <?php echo $this->Form->end(); ?>
         </span>
         <span class="subscribe-message text-danger"></span>      
-        <span class="subscribe-dismiss is-clickable text-muted text-link" data-toggle="click" data-hide=".subscribe-box">No, gracias</span>
+        <span class="subscribe-dismiss is-clickable" data-toggle="click" data-hide=".subscribe-box">No, gracias</span>
       </div>    
       <div class="subscribe-success max-25 m-auto d-none">
         <span class="subscribe-text text-center">
@@ -62,27 +62,30 @@
     .subscribe-box { 
       position: fixed;
       z-index: 20;
-      left: 0;
-      right: 0;
+      left: 0.05rem;
+      right: 0.05rem;
       bottom: 0;
-      background: #e6e6e6; 
-      color: #333;
-      font-weight: 300;
+      font-weight: 500;
       overflow: hidden;
       padding: 1.5rem 1rem;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
-      outline: 2px solid #c5c5c5;
       animation-fill-mode: both;
     }
 
+    .subscribe-box .ico-times::before {
+      color: darkred;
+    } 
+
     @media(min-width: 768px) {
       .subscribe-box { 
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
+        position: absolute;
+        border-radius: 0.5rem;
+        bottom: 0.5rem;
+        right: 0.5rem;
+        bottom: 0.25rem;
         min-width: 30rem;
-        box-shadow: 4px -4px 0 #c5c5c5;
-        right: auto;
+        left: auto;
       }
     }
 
@@ -96,7 +99,7 @@
         height: 4px;
         width: 5rem;
         margin: auto;
-        background-color: #c5c5c5;
+        background-color: lightcoral;
         border-radius: 4px;
       }
     }
@@ -108,7 +111,7 @@
       left: 0;
       bottom: 0;
       padding: 0.5rem 1rem;
-      color: #888;
+      color: lightcoral;
     }
 
   </style>
