@@ -28,7 +28,17 @@
           <?php endif ?>
           <?php if( !empty($settings['show_shop']) ): ?>
             <li>
-              <a href="/Shop" data-toggle="mouseenter" data-target=".shop-options" data-animation="animation-pullDown animation-both">Shop</a>
+<?php echo $this->Html->link('Shop', array(
+                  'controller' => 'shop', 
+                  //'action' => 'index',
+                  ),
+                  array(
+                    'class' => in_array($this->request->params['controller'], array('shop', 'tienda')) ? 'active' : '',
+                    'data-toggle' => 'mouseenter',
+                    'data-target' => '.shop-options',
+                    'data-animation' => 'animation-pullDown animation-both'
+                  )
+                );?>
             </li>
           <?php endif ?>
           <!--li>
@@ -38,18 +48,36 @@
           </li-->
           <li>
               <?php
-                echo $this->Html->link('Sucursales', array('controller' => 'sucursales', 'action' => 'index'));
-              ?>
+                echo $this->Html->link('Sucursales', array(
+                  'controller' => 'sucursales', 
+                  'action' => 'index'
+                ),
+                array(
+                  'class' => $this->request->params['controller'] == 'sucursales' ? 'active' : ''
+                )
+              );?>
           </li>
           <li>
               <?php
-                echo $this->Html->link('Ayuda', array('controller' => 'ayuda', 'action' => 'como_comprar'));
-              ?>
+                echo $this->Html->link('Ayuda', array(
+                  'controller' => 'ayuda', 
+                  'action' => 'como_comprar'
+                ),
+                array(
+                  'class' => $this->request->params['controller'] == 'ayuda' ? 'active' : ''
+                )
+              );?>
           </li>
           <li>
             <?php
-              echo $this->Html->link('Contacto', array('controller' => 'contacto', 'action' => 'index'));
-            ?>
+              echo $this->Html->link('Contacto', array(
+                'controller' => 'contacto', 
+                'action' => 'index'
+              ),
+              array(
+                'class' => $this->request->params['controller'] == 'contacto' ? 'active' : ''
+              )
+            );?>
           </li>
         </ul>
 

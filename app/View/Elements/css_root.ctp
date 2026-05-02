@@ -168,6 +168,9 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .navbar-brand {
     background-image: url(/images/logo-w.png)!important; 
   }
+  #carousel-banners {
+    background: linear-gradient(45deg, purple, orange)!important;
+  }
 }
 
 </style>
