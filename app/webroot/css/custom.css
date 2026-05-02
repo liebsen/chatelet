@@ -169,14 +169,14 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .slider-full {
   flex: 1;
-  min-height: calc(100dvh - 155px);
+  height: calc(100dvh - 155px);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
 }
 
 .carousel-video {
-  min-height: calc(100dvh - 155px);
+  height: calc(100dvh - 155px);
 }
 
 .is-bottom {
@@ -2427,7 +2427,7 @@ span.count.is-empty {
 
 @media screen and (min-width:769px), print {
   .slider-full, .carousel-video {
-    min-height: calc(100vh - 131px);
+    height: calc(100vh - 131px);
   }
   .w-mobile {
     max-width: 25rem;
