@@ -366,6 +366,14 @@ class UsersController extends AppController {
 
           $sent = $this->sendEmail($email_data,'Recuperar contraseña Châtelet', 'confirm_email');
 
+          if(!$sent) {
+            return json_encode(array(
+              'success' => false, 
+              'message' => "Hubo un error al intentar recuperar tu cuenta",
+              'errors' => "Hubo un error al intentar recuperar tu cuenta"
+            ));
+          }
+
           if(!empty($ajax)) {            
             return json_encode(array(
               'success' => true, 
