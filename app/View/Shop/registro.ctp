@@ -235,8 +235,8 @@ if (!$loggedIn) {
 						<div class="col-md-6">
 							<label class="text-white" for="password">Confirme Contraseña</label>
 							<div class="form-group position-relative">
-								<input type="password" placeholder="********" class="form-control" id="password2" name="data[User][password2]" autocomplete="current-password" />
-								<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#password2"></i>
+								<input type="password" placeholder="********" class="form-control" id="password2" name="data[User][password2]" autocomplete="new-password" />
+								<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#password2"  ></i>
 							</div>
 							<span class="validation-password"></span>
 						</div>

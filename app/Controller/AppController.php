@@ -283,7 +283,7 @@ class AppController extends Controller
   }
 
   public function sendEmail($data, $subject, $template) {    
-    CakeLog::write('debug', 'sendEmail:'.json_encode(array(
+    /*CakeLog::write('debug', 'sendEmail:'.json_encode(array(
       //'data' => $data,
       'subject' => $subject,
       'template' => $template,
@@ -299,7 +299,7 @@ class AppController extends Controller
         'charset' => 'utf-8',
         'tls' => true
       )
-    )));
+    )));*/
 
     $email = new CakeEmail();
     $email->config(array(
@@ -344,13 +344,13 @@ class AppController extends Controller
 
   public function sendEmailMessage($message, $subject, $to){
     if ($this->settings['env_staging'] || empty($to)){
-      return true;
+      //return true;
     }
 
     $email = new CakeEmail();
     $email->config(array(
       'transport' => 'Smtp',
-      'from' => array('no-responder@chatelet.com.ar' => 'Châtelet'),
+      'from' => array($this->settings['email_username'] => 'Châtelet'),
       'host' => 'smtp.gmail.com',
       'port' => 587,
       'timeout' => 30,
@@ -358,15 +358,12 @@ class AppController extends Controller
       'password' => $this->settings['email_password'],
       'charset' => 'utf-8',
       'tls' => true
-    ));    
-    $email->from(array(
-        'info@chatelet.com' => 'Châtelet'
-    )); 
+    ));  
     $email->to($to);
     $email->subject($subject);
     //$email->template($template, 'default');
     $email->emailFormat('html');
-    $email->config('default');
+    //$email->config('default');
     //$email->viewVars(array(
     //    'data' => $data
     //));
