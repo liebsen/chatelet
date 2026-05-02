@@ -82,10 +82,10 @@ label input[type=checkbox]:disabled + .label-text:before {
 #carousel .carousel-inner .item { background-position: center top; background-size: cover; }
 #carousel .carousel-control { 
   color: #e44522; 
-  bottom: 33px; 
   opacity: 1; 
   top: inherit; 
   z-index: 1; 
+  max-width: 100px; 
   max-height: 200px;
   margin: auto;
 }
