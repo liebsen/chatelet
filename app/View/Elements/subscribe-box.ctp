@@ -1,4 +1,4 @@
-  <section class="subscribe-box bg-salmon animation-pullUp animation-both delay3 d-none">
+  <section class="subscribe-box bg-salmon animation-pullUp animation-both d-none">
     <div class="w-100">
       <span class="corner-pin is-clickable">
         <i class="ico-times" role="img" aria-label="Cerrar"></i>
@@ -57,7 +57,7 @@
     </div>
   </section>
   
-  <div class="subscribe-btn is-clickable d-none" title="Estemos conectadas"><i class="fa fa-envelope-o text-muted"></i></div>
+  <div class="subscribe-btn is-clickable d-none" title="Estemos conectadas"><i class="fa fa-envelope-o fa-lg m-auto"></i></div>
   <style>
     .subscribe-box { 
       position: fixed;
@@ -70,7 +70,6 @@
       padding: 1.5rem 1rem;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
-      animation-fill-mode: both;
     }
 
     .subscribe-box .ico-times::before {
@@ -79,13 +78,11 @@
 
     @media(min-width: 768px) {
       .subscribe-box { 
-        position: absolute;
         border-radius: 0.5rem;
         bottom: 0.5rem;
-        right: 0.5rem;
-        bottom: 0.25rem;
+        left: 0.5rem;
+        right: auto;
         min-width: 30rem;
-        left: auto;
       }
     }
 
@@ -106,12 +103,22 @@
 
     .subscribe-btn {
       position: fixed;
-      background-color: transparent!important;
-      z-index: 99;
-      left: 0;
-      bottom: 0;
-      padding: 0.5rem 1rem;
       color: lightcoral;
+      width: 48px;
+      height: 48px;
+      border-radius: 100%;
+      background-color: coral;
+      color: lightgoldenrodyellow;
+      z-index: 99;
+      left: -0.5rem;
+      bottom: -0.5rem;
+    }
+
+    .subscribe-btn > i {
+      position: absolute;
+      transform: rotate(10deg);
+      top: 10px;
+      right: 10px
     }
 
   </style>
@@ -119,12 +126,12 @@
   <script type="text/javascript">
 
     function subscribe_retry(){
-      $('.subscribe-success,.subscribe-error,.subscribe-btn').hide()
+      $('.subscribe-success,.subscribe-error,.subscribe-btn').addClass('d-none')
       $('.subscribe-box form .form-control').val('')
       setTimeout(function(){
-        $('.subscribe-box').removeClass('delay3')
-        $('.subscribe-box').fadeIn(1000)
-        $('.subscribe-form').show()
+        $('.subscribe-box').removeClass('d-none')
+        $('.subscribe-box').show()
+        $('.subscribe-form').removeClass('d-none')
       }, 500)
     }
 
@@ -133,22 +140,21 @@
       
       if(!subscription_release || subscription_release == 'undefined') {
         $('.subscribe-box').removeClass('d-none')
-        $('.subscribe-box').addClass('animation-fadeIn')
       } else {
-        $('.subscribe-btn').delay(3000).fadeIn('slow')
+        $('.subscribe-btn').removeClass('d-none')
       }
 
       $('.subscribe-dismiss').on('click', function(e) {
         e.preventDefault()
         localStorage.subscription_release = 1
-        $('.subscribe-btn').show()
+        $('.subscribe-btn').removeClass('d-none')
       })
 
       $('.corner-pin').on('click', function(e) {
         e.preventDefault()
         $('.subscribe-box').removeClass('delay3')
         $('.subscribe-box').fadeOut(1000)
-        $('.subscribe-btn').delay(3000).fadeIn(1000)
+        $('.subscribe-btn').removeClass('d-none')
       })
 
       $('.subscribe-btn').on('click', function(e) {
@@ -175,20 +181,20 @@
               if(res.is_already_subscribed) {
                 $('.subscribe-message').text(res.message)
               } else {
-                $('.subscribe-form,.subscribe-error').hide()
-                $('.subscribe-success').show()
+                $('.subscribe-form,.subscribe-error').addClass('d-none')
+                $('.subscribe-success').removeClass('d-none')
                 localStorage.subscription_release = 1
               }
             } else {
-              $('.subscribe-form').hide()
-              $('.subscribe-error').show('hidden')
+              $('.subscribe-form').addClass('d-none')
+              $('.subscribe-error').removeClass('d-none')
             }
             btnSubmit.text(btnSubmit.data('name'))
             btnSubmit.prop('disabled', false)
           },
           error: function(xhr, status, error) {
-            $('.subscribe-form').hide('hidden')
-            $('.subscribe-error').show('hidden')
+            $('.subscribe-form').removeClass('d-none')
+            $('.subscribe-error').removeClass('d-none')
             //console.error("AJAX Error: " + status + " - " + error);
             btnSubmit.prop('disabled', false)
           }
