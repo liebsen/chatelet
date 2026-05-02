@@ -1008,7 +1008,7 @@ select.form-control{
 	border-color: transparent;
 	background-color: transparent;
 	color: #e10d74;*/
-	background-color: transparent;
+	background-color: transparent!important;
 	border: none;
 	height: 36px;
 	border-left: 1px solid #888;
@@ -1882,7 +1882,7 @@ span.validation-password {
 
 @media screen and (max-width: 768px) {
 	.navbar-container {
-		min-height: 110px;
+		min-height: 112px;
 	}
 	.modal-dialog {
 		width: calc(100dvw - 14px);

@@ -309,12 +309,15 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .navbar-chatelet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
   min-height: 110px;
   background-color: #ffffff;
   border: 0; 
   border-radius: 0; 
   margin: 0; 
-  padding: 1rem;
+  padding: 1rem 2rem;
   position: relative; 
   transition: none!important;
   z-index: 10;
@@ -335,8 +338,6 @@ label input[type=checkbox]:disabled + .label-text:before {
   width: 120px;
   height: 26px;
   padding: 0;
-  margin-left: 0!important;
-  margin: auto;
   text-indent: -9999px; 
   min-height: 1rem;
 }
@@ -350,12 +351,18 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
   
 .navbar-nav > li > a {
+  border-bottom: 2px solid transparent;
   font-weight: 300;
-  margin: 0;
+  padding: 5px 3px;
+  margin: 0 0.5rem;
   text-transform: uppercase;
   transition: all .3s ease-in-out; 
   white-space: nowrap;
   transition: none!important;
+}
+
+.navbar-nav > li > a:hover {
+  background-color: transparent;
 }
 
 .navbar-nav > li > a.active {
@@ -426,7 +433,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
     background-repeat: no-repeat;  
     color: #404040;  
     padding: 0;
-    width: 50px;
+    width: 32px;
     font-size: 0.75rem;
     text-align: center;
     background-color: transparent;
@@ -435,8 +442,6 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
     white-space: nowrap;
   }
 }
-
-.nav>li>a:focus, .nav>li>a:hover { border: none; background-color: transparent; }
 
 .burst {
   position: absolute;
@@ -1488,17 +1493,26 @@ ul#ul-moreviews li.dontResize img {
 }
 
 @media (max-width: 767px) {
+  .map {
+    flex-direction: column;
+  }
   .navbar-header { 
-    float: none; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     text-align: center; 
   }
-  .navbar-chatelet > .container-fluid {
+  .navbar-chatelet {
     flex-direction: column;
-  }  
-  .navbar > .container-fluid .navbar-brand { 
+  }
+  .navbar-nav > li > a {
+    padding: 15px;
+  }
+  .navbar .navbar-brand { 
     display: block; 
     float: none; 
-    min-height: 30px;
+    min-height: 34px;
     margin-left: auto !important; 
     margin-right: auto !important; 
   }
@@ -2444,6 +2458,10 @@ span.count.is-empty {
 
 .mr-1 {
   margin-right: 0.25rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
 }
 
 .is-clickable {

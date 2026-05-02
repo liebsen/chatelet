@@ -28,10 +28,10 @@
           echo '<h4>'. $store['name'] .'</h4>';
           echo '<h3></h3>';  
           echo '<ul>';      
-          echo '<li> '. $store['address'] .'</li>';
-          echo '<li>'.$phone_str.'</li>';
+          echo '<li><i class="fa fa-lg text-success fa-map-marker mr-2"></i>'. $store['address'] .'</li>';
+          echo '<li><i class="fa fa-lg text-success fa-phone mr-2"></i>'.$phone_str.'</li>';
           if($store['whatsapp']){
-            echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" target="_blank">'. $store['whatsapp'].'</a></li>';
+            echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" target="_blank"><i class="fa fa-lg text-success fa-whatsapp mr-2"></i>'. $store['whatsapp'].'</a></li>';
           }
           echo '</ul>';
       } ?>
@@ -85,12 +85,12 @@ function initialize(address) {
   }
   #location .col-md-4 { background: url(../images/ico3.png) no-repeat center center #efb0d2; min-height: 260px; }
   #location .col-md-12 { padding-left: 150px; padding-right: 150px; padding-top: 60px; padding-bottom: 60px; }
-  #location .col-md-12 h3 { border-bottom: 2px solid #efb0d2; font-size: 18px; font-weight: 300; margin-bottom: 20px; padding-bottom: 20px;display: block;width: 100%;}
+  #location .col-md-12 h3 { border-bottom: 2px solid #efb0d2; font-size: 18px; font-weight: 300; display: block;width: 100%;}
   #location .col-md-12 h4 { font-size: 18px; font-weight: 300;display: block;width: 100%; /*margin-bottom: 30px; */}
   #location .col-md-12 ul {display: block;margin: 10px 0;float: left;width: 100%; height: 100%}
   #location .col-md-12 ul li { float: left; min-height: 63px; /*font-size: 18px;*/ font-weight: 300; width: 33%;    padding-bottom: 45px; }
   #location .col-md-12 ul li a {}
-  #location .col-md-12 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; transform: scale(0.9);}
+  /*#location .col-md-12 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; transform: scale(0.9);}
   #location .col-md-12 ul li:nth-child(2):before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -12px; width: 35px; transform: scale(0.75);}
   #location .col-md-12 ul li:nth-child(3):before { 
     content: "\f232"; 
@@ -104,7 +104,7 @@ function initialize(address) {
     float: left; 
     height: 45px; 
     width: 49px;
-  }
+  }*/
   #location .col-md-4.search { background: #FFF; padding-top: 75px; }
   #location .col-md-4.search input { background: url(../images/lupa.png) 35px center no-repeat transparent; border: 2px solid #363633; font-size: 16px; font-weight: 500; margin-bottom: 30px; padding: 10px 20px 10px 70px; width: 100%; }
   #location .col-md-4.search p { font-size: 16px; font-weight: 500; line-height: 1.4; }
@@ -112,8 +112,8 @@ function initialize(address) {
   #location .col-md-8 h3 { border-bottom: 2px solid #efb0d2; font-size: 18px; font-weight: 500; margin-bottom: 20px; padding-bottom: 20px; }
   #location .col-md-8 h4 { font-size: 20px; font-weight: 600; margin-bottom: 30px; }
   #location .col-md-8 ul li { float: left; font-size: 18px; font-weight: 500; width: 50%; }
-  #location .col-md-8 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
-  #location .col-md-8 ul li:last-child:before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
+  /*#location .col-md-8 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }
+  #location .col-md-8 ul li:last-child:before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; }*/
     #location .col-md-8 { padding-left: 75px; padding-right: 75px; }
     #location .col-md-4.search p { font-size: 1rem; }
   @media (max-width: 767px) {
