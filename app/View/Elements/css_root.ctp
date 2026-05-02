@@ -119,7 +119,6 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .block-tabs > .nav-tabs > li > a, 
   .pagination > .disabled > a, 
   .toggle-label,
-  .carrito-selector,
   .list-group-item,
   .form-control,
   .navbar-chatelet,
@@ -155,12 +154,15 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .btn-chatelet,
   nav.sidebar,
   .bg-light,
+  .carrito-selector,  
   .tab-content,
   .nav-tabs,
   .toggle-label,
   .switch-scale {
     background-color: #444!important;
   }
+  .carrito-selector input,
+  .input-group-addon,
   .price_strong,
   .name {
     color: whitesmoke!important;

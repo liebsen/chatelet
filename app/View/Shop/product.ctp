@@ -120,7 +120,7 @@ function updateSrcTo(obj){
                               'action' => 'productos',
                               $slug
                           ), array(
-                            'class' => ($category_id === $category['id'] ? 'text-theme' : '')
+                            'class' => ($category_id === $category['id'] ? 'active' : '')
                           )
                         );
                         echo '</li>';
