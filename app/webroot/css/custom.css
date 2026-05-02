@@ -85,8 +85,8 @@ label input[type=checkbox]:disabled + .label-text:before {
   opacity: 1; 
   top: inherit; 
   z-index: 1; 
-  max-width: 100px; 
-  max-height: 200px;
+  max-width: 80px; 
+  max-height: 100px;
   margin: auto;
 }
 #carousel .carousel-control.left, #carousel .carousel-control.right { background: none; height: 100%; top: 0; }
@@ -101,6 +101,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   margin-top: -37px; 
   position: absolute; 
   top: calc(50% - 1px);  
+  transform: scale(0.33);
 }
 #carousel .carousel-control .arrow.arrow-left { background-position: -3px -89px; }
 #carousel .carousel-control .arrow.arrow-right { background-position: -53px -89px; }
