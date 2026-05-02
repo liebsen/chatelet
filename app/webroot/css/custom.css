@@ -175,6 +175,10 @@ label input[type=checkbox]:disabled + .label-text:before {
   background-position: center top;
 }
 
+.group-video {
+  min-height: calc(100dvh - 155px);
+}
+
 .is-bottom {
   display: inline-flex;
   align-items: center;
@@ -2422,7 +2426,7 @@ span.count.is-empty {
 }
 
 @media screen and (min-width:769px), print {
-  .slider-full {
+  .slider-full, .group-video {
     min-height: calc(100vh - 131px);
   }
   .w-mobile {
