@@ -50,20 +50,16 @@
   }
 
   #optionsHelp > a.active {
-    font-weight: 1000;
+    border-bottom: 2px solid white;
   }
   #optionsHelp.mobile > a.active {
     position: relative;
     transition: background 1s ease-out;
   }
 
-  #optionsHelp.mobile > a.active:before {
-    content: "\f0a4";
-    position: absolute;
-    font-family: 'FontAwesome';
-    top: 0.5rem;
-    left: 1rem;
-    font-size: 1.5rem;
+  #optionsHelp.mobile > a.active {
+    border-bottom: 2px solid #c5c5c5;
+    background-color: #f8f8f8;
   }
 
   @media(min-width: 992px){

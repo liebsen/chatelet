@@ -352,11 +352,14 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav > li > a {
   font-weight: 300;
   margin: 0;
-  padding: 10px;
   text-transform: uppercase;
   transition: all .3s ease-in-out; 
   white-space: nowrap;
   transition: none!important;
+}
+
+.navbar-nav > li > a.active {
+  border-bottom: 2px solid #333;
 }
 
 .navbar-chatelet .fa,
@@ -956,9 +959,10 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   transition: all .3s ease-in-out; 
 }
 #productOptions nav li a.current{ 
-  font-weight: 1000;
+  border-bottom: 2px solid #e10d74;
 }
 #productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; }
+#productOptions a.btBig span { font-size: 27px; }
 #productOptions a.btBig span { font-size: 27px; }
 #productOptions .product-list a {  /*background: #efefef;*/ 
   width: 100%; 
