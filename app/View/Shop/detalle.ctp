@@ -228,7 +228,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
                               $loadColorImages = (!empty($color['images']))?'loadColorImages':'';
                               $single = $show_names_only?'single':'';
                               $style = (empty($color['images']))?'oldSelectColor':'';
-                              echo '<label class="btn '.$loadColorImages.' '.$single. ' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
+                              echo '<label class="btn btn-option '.$loadColorImages.' '.$single. ' '.($i == 0 ? 'active' : '').'" data-images="'.@$color['images'].'">';
                               echo '<input type="radio" name="color" code="'.$color['code'].'" alias="'.$color['alias'].'" value="'. $color['variable'] . '"' . ($i == 0 ? ' checked' : '') . '>';
                               //if (!empty($color['images']) && !$show_names_only) {
                               if (!$show_names_only) {
@@ -253,7 +253,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
                       <!--option value="">Talle</option-->
                       <?php
                           foreach ($sizes as $i => $size) {
-                            echo '<label class="btn">';
+                            echo '<label class="btn btn-option">';
                             echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
                             echo "<small class='size-option text-bolder'>".ucfirst($size['label'])."</small>";
                             echo '</label>';

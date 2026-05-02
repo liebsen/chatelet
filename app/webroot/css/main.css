@@ -48,7 +48,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   .menu, 
   .menu-items a, 
   .menu-bg {
-    background-color: #333!important;
+    background-color: #000!important;
     color: #f8f8f8!important;
   }
   h1, 
@@ -98,17 +98,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   .box {
     color: #f8f8f8;
     &:not([class*="btn-"]) {
-      background-color: #444;
-      border-color: #666;
+      background-color: #111;
+      border-color: #555;
       &:hover {
-        background-color: #444;
-        color: #999!important;
+        background-color: #222;
+        color: #888!important;
       }                  
     }
   }
   .btn.is-text:hover, .btn.is-text.is-hovered, .btn.is-text:focus, .btn.is-text.is-focused {
-    background-color: #444;
-    color: #999!important;    
+    background-color: #333;
+    color: #888!important;    
   }
   .navbar.navbar-inverse,
   .toggle-checkbox:checked + .toggle-label,
@@ -2943,7 +2943,7 @@ background-color: #fff;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  background-image: url(images/isologo-w.png);
+  background-image: url(/images/isologo-w.png);
 }
 
 .card-img.sm {

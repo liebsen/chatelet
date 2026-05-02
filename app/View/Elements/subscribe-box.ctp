@@ -57,7 +57,7 @@
     </div>
   </section>
   
-  <div class="subscribe-btn is-clickable d-none" title="Estemos conectadas"><i class="fa fa-envelope-o fa-lg m-auto"></i></div>
+  <div class="subscribe-btn is-clickable d-none" title="Estemos conectadas"><i class="fa fa-envelope-o fa-lg animation-floating animation-both m-auto"></i></div>
   <style>
     .subscribe-box { 
       position: fixed;
@@ -117,8 +117,8 @@
     .subscribe-btn > i {
       position: absolute;
       transform: rotate(10deg);
-      top: 10px;
-      right: 10px
+      top: 12px;
+      right: 12px
     }
 
   </style>

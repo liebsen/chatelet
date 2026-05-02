@@ -588,6 +588,7 @@ footer h5:after { background: #e7e7e7; content: ""; display: block; height: 3px;
 footer .options a, footer .options span { 
   font-weight: 300; 
   text-transform: uppercase;  
+  color: #888;
 }
 footer a:hover { color: #363633; }
 footer ul li { margin-bottom: 5px;  max-width: 15rem; }
@@ -1108,7 +1109,6 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   box-shadow: none;
   margin: 0;
   border-radius: 0!important;
-  line-height: 1.5;
   color: #888;
 }
 
@@ -1123,12 +1123,13 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 .size-options .btn {
   padding: 0.15rem 1rem;
+  font-size: 1.5rem;
 }
 
-.size-options .btn.active:before {
+/*.size-options .btn.active:before {
   top: -16px!important;
   right: 2px!important;
-}
+}*/
 
 #main .caract label > input {
   display: none;
@@ -1136,10 +1137,9 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 #main .caract label.active {
   z-index: 99;
-  filter: brightness(1.15);
 }
 
-#main .caract label.active:before {
+/*#main .caract label.active:before {
   content: "\f058";
   font-family: FontAwesome;
   font-size: 1.25rem;
@@ -1155,10 +1155,11 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   top: -0.35rem;
   right: -1.2rem;
 }
+*/
 
 #main .caract label.btn .color-option,
 #main .caract label.btn .size-option {
-  border-bottom: 2px solid;
+  border-bottom: 3px solid;
   font-size: 100%!important;
 }
 
@@ -1176,7 +1177,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 .color-options .btn:not(.single) {
   flex: 1;
-  min-height: 17rem;
+  min-height: 18rem;
   max-width: 10rem;
 }
 
@@ -1187,7 +1188,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 #main .caract label.btn.active {
-  color: #333;
+  color: #17e109;
 }
 
 #main .caract .color-block { display: none }
@@ -2460,7 +2461,7 @@ span.count.is-empty {
 
 @media screen and (min-width:769px), print {
   .slider-full, .carousel-video {
-    height: calc(100vh - 131px);
+    height: calc(100vh - 130px);
   }
   .w-mobile {
     max-width: 25rem;

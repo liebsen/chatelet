@@ -17,99 +17,6 @@ nav.sidebar-expanded {
   right: 0!important;
 }
 
-@media (prefers-color-scheme: dark) {
-  ::placeholder {
-    color: #888!important;
-  }
-  html, 
-  body, 
-  h1, 
-  h2, 
-  h3, 
-  h4, 
-  h5, 
-  h6, 
-  p,
-  a,
-  .category-content,
-  li {
-  	&:not(.box *):not([class*="text-"]) {
-	    color: #f8f8f8!important;
-	    border-color: #666!important;
-	    &:hover {
-	      color: #666;
-	    }
-	  }
-  }
-  .label,
-  .tab-content {
-    &:not(.scheme-preserve) {
-      color: #f8f8f8;
-      &:hover {
-        color: #888;
-      }
-    }
-  }
-
-  html,
-  body,
-  #main,
-  blockquote,
-  footer,
-  .select select, 
-  .block-tabs > .nav-tabs > li > a, 
-  .pagination > .disabled > a, 
-  .toggle-label,
-  .carrito-selector,
-  .list-group-item,
-  .form-control,
-  .navbar-chatelet,
-  .dropdown-menu,
-  .nav-tabs,
-  .card,  
-  .shop-options,  
-  .table,
-  .table tr,
-  .table td,
-  .table th {
-    color: #f8f8f8;
-    background-color: #333!important;
-    border-color: #666!important;
-  }
-  .btn {
-  	&:not([class*="btn-"]):not(.borderless) {
-	    background-color: #333;
-	    border-color: #666;
-	    &:hover {
-	      background-color: #444;
-	      color: #999!important;
-	    }
-	  }
-  }
-
-  .btn.is-text:hover, .btn.is-text.is-hovered, .btn.is-text:focus, .btn.is-text.is-focused {
-    background-color: #444;
-    color: #999!important;    
-  }
-
-  .form-control:focus,
-  .btn-chatelet,
-  nav.sidebar,
-  .bg-light,
-  .tab-content,
-  .nav-tabs,
-  .toggle-label,
-  .switch-scale {
-    background-color: #444!important;
-  }
-  .price_strong,
-  .name {
-  	color: whitesmoke!important;
-  }
-  .navbar-brand {
-  	background-image: url(../images/logo-w.png)!important; 
-  }
-}
 
 
 .section {
@@ -455,6 +362,10 @@ html, body {
 	font-size: 1rem!important;
 	font-weight: 1000;
 	min-width: 15rem;
+}
+
+.text-success {
+	color: #17e109;
 }
 
 .text-muted {
@@ -1085,11 +996,10 @@ select.form-control{
 }
 
 .carrito-selector {
-	display: flex;
   margin: auto;
   padding: 0.5rem 0;
   max-width: 10.25rem;
-  border: 1px solid #dbdbdb;  
+  border: 1px solid #888;  
 	border-radius: 5px;
 }
 
@@ -1105,11 +1015,11 @@ select.form-control{
 	background-color: transparent;
 	border: none;
 	height: 36px;
-	border-left: 1px solid #dbdbdb;
-	border-right: 1px solid #dbdbdb;
-	font-size: 0.75rem;
+	border-left: 1px solid #888;
+	border-right: 1px solid #888;
+	font-size: 1rem;
 	max-width: 3rem;
-	font-weight: 600;
+	font-weight: 800;
 }
 
 .product-count:focus {
