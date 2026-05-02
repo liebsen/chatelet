@@ -345,7 +345,7 @@ class AppController extends Controller
 
   public function sendEmailMessage($message, $subject, $to){
     if ($this->settings['env_staging'] || empty($to)){
-      //return true;
+      return true;
     }
 
     $email = new CakeEmail();

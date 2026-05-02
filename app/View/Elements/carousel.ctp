@@ -23,7 +23,7 @@ foreach ($images_aux as $key => $value) {
 </div>
 <ol class="carousel-indicators bottom-0">
   <?php foreach ($images as $key => $value): ?>
-    <li data-target="#myCarousel" data-slide-to="<?= $key ?>" class="<?= $key == 0 ? 'active' : '' ?>"></li>
+    <li data-target="#carousel" data-slide-to="<?= $key ?>" class="<?= $key == 0 ? 'active' : '' ?>"></li>
   <?php endforeach ?>
 </ol>
 <!-- Controls -->
