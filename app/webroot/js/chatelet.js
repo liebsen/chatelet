@@ -12,6 +12,24 @@ let fakeshown = 0
 var toggleInterval = 0
 const log = false
 
+
+function stopAllVideo(){
+  $("video").each((i,video) => {
+    video.pause()
+  });    
+}
+
+function restartCarouselVideo(){
+  const video = $('#carousel .item.active').find("video")
+  if(video.length) {
+    if(focused && window.lastscroll < 300) {
+      setTimeout(() => {
+        $(video).get(0).play()
+      }, 500)
+    }
+  }  
+}
+
 function getStorage(key, def) {
   if(localStorage[key] && localStorage[key] != 'undefined') {
     let res = localStorage[key]
@@ -617,18 +635,20 @@ $(document).ready(function() {
       if(menu) {
         return false 
       }
-      
-      if (scrolltop > 100) {
+
+      if (scrolltop > 300) {
         if (!fakeshown && lastscroll < scrolltop) {
           $('body').addClass('top-fixed')
           $('.navbar-chatelet:not(.short)').addClass('animation-fadeIn')
           fakeshown = 1
+          stopAllVideo()
         }        
       } else {
         if (fakeshown && lastscroll > scrolltop) {
           $('body').removeClass('top-fixed')
           $('.navbar-chatelet:not(.short)').addClass('animation-fadeIn')
           fakeshown = false
+          restartCarouselVideo()
         }
       }
       lastscroll = scrolltop

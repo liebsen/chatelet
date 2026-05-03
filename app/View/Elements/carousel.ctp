@@ -21,7 +21,7 @@ foreach ($images_aux as $key => $value) {
   </div>
 <?php endforeach ?>
 </div>
-<ol class="carousel-indicators bottom-0">
+<ol class="carousel-indicators">
   <?php foreach ($images as $key => $value): ?>
     <li data-target="#carousel" data-slide-to="<?= $key ?>" class="<?= $key == 0 ? 'active' : '' ?>"></li>
   <?php endforeach ?>
@@ -100,24 +100,13 @@ foreach ($images_aux as $key => $value) {
 
   window.onblur = () => {
     focused = false;
-    $("video").each((i,video) => {
-      video.pause()
-    });  
+    stopAllVideo()
   };
 
   $(function () {
     $('#carousel').on('slide.bs.carousel', (e) => {
-      $("video").each((i,video) => {
-        video.pause()
-      });
-      const video = $(e.relatedTarget).find("video")
-      if(video.length) {
-        if(focused && window.lastscroll < 300) {
-          setTimeout(() => {
-            $(video).get(0).play()
-          }, 500)
-        }
-      }
+      stopAllVideo()
+      restartCarouselVideo()
     });
   })
 
