@@ -5,8 +5,8 @@
       </span>
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
-          <h4 class="text-uppercase">Estemos <strong>conectadas</strong></h4>
-          <p class="text-uppercase">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
+          <h4 class="text-uppercase"><i class="gi gi-bell mr-1"></i> Estemos <strong>conectadas</strong></h4>
+          <p class="text-uppercase text-sm">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
         </span>
         <span>
         <?php echo $this->Form->create('Subscribe', array(
@@ -19,11 +19,11 @@
           <input type="hidden" name="ajax" value="1" />
           <div class="is-flex-center flex-column gap-05 w-100">
             <div class="is-flex-center gap-05 w-100">
-              <input class="form-control m-0" type="text" name="data[Subscription][full_name]" placeholder="Ingresá tu nombre" required>
+              <input class="form-control m-0" type="text" name="data[Subscription][full_name]" placeholder="Tu nombre completo" required>
             </div>
             <div class="is-flex-center gap-05">
-              <input class="form-control m-0" type="email" name="data[Subscription][email]" placeholder="Ingresá tu email" required>
-              <input type="submit" class="btn btn-chatelet dark" id="enviar" value="Confirmar">
+              <input class="form-control m-0" type="email" name="data[Subscription][email]" placeholder="Tu email" required>
+              <input type="submit" class="btn btn-chatelet dark" id="enviar" value="Suscribirme">
             </div>
           </div>
         <?php echo $this->Form->end(); ?>
