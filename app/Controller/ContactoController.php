@@ -41,12 +41,12 @@ class ContactoController extends AppController {
 				
 				$this->sendEmailMessage($message, $subject, $to);
 
-	      $this->Mailchimp->subscribe($data['Contact'], "d168ae47ee");
+	      #$this->Mailchimp->subscribe($data['Contact'], "d168ae47ee");
 
 				if(!empty($ajax)) {
 					die(json_encode(array(
 						'success' => true, 
-						'message' => 'Gracias por contactarnos'
+						'message' => 'Gracias por contactarnos.'
 					)));
 				}
 
