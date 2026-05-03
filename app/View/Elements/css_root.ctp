@@ -115,6 +115,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   #main,
   blockquote,
   footer,
+  #listShop,  
   .select select, 
   .block-tabs > .nav-tabs > li > a, 
   .pagination > .disabled > a, 
