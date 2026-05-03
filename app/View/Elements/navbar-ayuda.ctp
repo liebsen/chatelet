@@ -1,10 +1,10 @@
 
   <section id="optionsHelp" class="desktop animation-fadeIn animation-both delay">
-      <a class="text-white" href="/ayuda/como_comprar">¿Cómo comprar?</a>
-      <a class="text-white" href="/ayuda/envios">Envíos</a>
-      <a class="text-white" href="/ayuda/metodos_de_pago">Formas de pago</a>
-      <a class="text-white" href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
-      <a class="text-white" href="/ayuda/faq">Preguntas frecuentes</a>
+      <a href="/ayuda/como_comprar">¿Cómo comprar?</a>
+      <a href="/ayuda/envios">Envíos</a>
+      <a href="/ayuda/metodos_de_pago">Formas de pago</a>
+      <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
+      <a href="/ayuda/faq">Preguntas frecuentes</a>
   </section>            
   <section id="optionsHelp" class="mobile">
       <a href="/ayuda/como_comprar" class="active">¿Cómo comprar?</a>
@@ -44,6 +44,7 @@
   #optionsHelp > a { 
     display: inline-block; 
     margin: 0 0.5rem;
+    padding: 0.25rem;
     font-weight: 300;
     text-transform: uppercase;
     transition: all 1s ease-in-out;
@@ -59,7 +60,6 @@
 
   #optionsHelp.mobile > a.active {
     border-bottom: 2px solid #c5c5c5;
-    background-color: #f8f8f8;
   }
 
   @media(min-width: 992px){
@@ -76,9 +76,12 @@
       z-index: 100;
       background: linear-gradient(hsla(0,0%,100%,0),hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0));
     }
+    #optionsHelp > a {
+      color: white;
+    }
     #optionsHelp > a:hover { 
       text-decoration: none;
-      color: #363636;
+      color: whitesmoke;
     }
   }
 

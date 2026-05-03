@@ -21,7 +21,7 @@
 
 <section id="infoShop">
   <div class="wrapper">
-    <div class="row">
+    <div class="row bxc">
       <div class="col-md-4 bx1">
         <p>
           Los envíos por compra online tienen una demora de 7 a 10 días hábiles.

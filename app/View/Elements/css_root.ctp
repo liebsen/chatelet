@@ -1,4 +1,4 @@
-<style>
+<style type="text/css">
 :root {
   --box-shadow: rgba(0, 0, 0, 0.2) 0 0 6px;
   --box-dropshadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
@@ -20,6 +20,7 @@ html, body {
   font-family: '<?=@$settings['google_font_name'] ?>', Verdana, Arial, Sans-Serif!important;
   line-height: 1;
   font-size: 100%!important; 
+  color: #333;
 }
 
 ol, ul { list-style: none; }
@@ -80,8 +81,6 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   ::placeholder {
     color: #888!important;
   }
-  html, 
-  body, 
   h1, 
   h2, 
   h3, 
@@ -93,7 +92,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .category-content,
   li {
     &:not(.box *):not([class*="text-"]) {
-      color: #f8f8f8!important;
+      color: #c5c5c5;
       border-color: #666!important;
       &:hover {
         color: #666;
@@ -101,9 +100,10 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
     }
   }
   .label,
+  .text-scheme,
   .tab-content {
     &:not(.scheme-preserve) {
-      color: #f8f8f8;
+      color: #c5c5c5;
       &:hover {
         color: #888;
       }
@@ -130,18 +130,16 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .table tr,
   .table td,
   .table th {
-    color: #f8f8f8;
+    color: #c5c5c5;
     background-color: #000!important;
     border-color: #888!important;
   }
   .btn {
-    &:not([class*="btn-"]):not(.borderless) {
-      background-color: #222;
-      border-color: #666;
-      &:hover {
-        background-color: #333;
-        color: #888!important;
-      }
+    background-color: #222;
+    border-color: #666;
+    &:hover {
+      background-color: #333;
+      color: #888!important;
     }
   }
 

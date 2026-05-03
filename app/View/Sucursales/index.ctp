@@ -11,12 +11,12 @@
       </div>
     </div>
 
-    <div class="col-md-8 p-0">
+    <div class="col-md-8 w-100">
       <div id="map-canvas" class="sucursales sucursal"  data-url="<?php echo $this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>"></div>
     </div>
   </section>
 
-  <section id="location">
+  <section id="location" class="animation-fadeIn animation-both delay">
     <div class="col-md-12">
       <?php foreach($stores as $store) {
           $store = $store['Store'];
