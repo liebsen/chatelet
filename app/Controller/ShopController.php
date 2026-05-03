@@ -308,7 +308,6 @@ class ShopController extends AppController {
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 		$this->loadModel('Stat');
-
 		$stock = 0;
 		$list_code = $this->settings['list_code'];
 		$stock_min = $this->settings['stock_min'];
@@ -336,7 +335,6 @@ class ShopController extends AppController {
 		} elseif (!empty($article)) {
 			$stock = 1;
 		}
-
 
 		// CakeLog::write('debug','stock: article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code . ':' . $stock);
 		return json_encode((string) $stock);
@@ -719,26 +717,6 @@ class ShopController extends AppController {
 				// 'limit' => $s,
 				// 'offset' => $s * $p
 			]);
-      $pids = array();
-      foreach($results1 as $item) {
-        array_push($pids, $item['Product']['id']);
-      }
-      $results2 = $this->Product->find('all',[
-        'conditions' => [
-          'or' => $ors,
-          'and' => array(
-            'Product.id NOT IN' => $pids,
-          ),
-          'visible' => 1,
-					'stock_total > ' => 0
-				],
-				// 'order' => ['Product.promo DESC'],
-				'order' => ["LOCATE('".$q."', Product.name)"],
-				// 'limit' => $s,
-				// 'offset' => $s * $p
-			]);
-
-			$results = array_merge($results1, $results2);
 
 			$pids = array();
 			foreach($results1 as $item) {
