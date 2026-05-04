@@ -1012,7 +1012,7 @@ class CheckoutController extends AppController
 				// CakeLog::write('debug', 'sale(4)'.json_encode($sale_object));			
 				$this->Sale->save($sale_object);
 				
-				//$this->set('sale',$sale);
+				$this->set('sale',$sale);
 				//$this->set('sale_items',$sale_items);
 
 				$this->notify_user($sale, 'notification_sale_success');

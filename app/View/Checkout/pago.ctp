@@ -53,7 +53,7 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 	          </div>
 	      	</label>
         	<div class="dues-block d-none">
-					<?php if(count($filter_legends)) : ?>
+					<?php if(count($filter_legends)):?>
 						<div class="payment-dues">
 					    <span class="text-sm">¿Querés financiar tu compra? Seleccioná la cantidad de cuotas en que te gustaría realizar esta compra</span>
 					    <ul class="generic-select">
