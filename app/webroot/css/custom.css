@@ -454,13 +454,19 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
     white-space: nowrap;
   }
   .map .col-md-8 { 
-    padding: 1.5rem 1rem 3rem 2rem!important;  
+    padding: 1.5rem 1.5rem 4rem 2rem!important;  
   }
   #map-canvas { 
     border-radius: 1.5rem;
     min-height: calc(100dvh - 335px)!important;
     transform: scale(1) perspective(1024px) rotateY(-5deg) rotateX(2deg) rotate(2deg) translateY(0rem) translateX(-2rem);
     box-shadow: 0 0 20px rgba(255,255,255,0.5);
+  }
+}
+
+@media(max-height: 431px) {
+  #map-canvas { 
+    min-height: calc(100dvh - 200px)!important;
   }
 }
 
@@ -1267,7 +1273,7 @@ ul#ul-moreviews li.dontResize img {
   justify-content: flex-start; 
   align-items: center; 
   padding-left: 5rem;
-  min-height: 265px;
+  padding-bottom: 1rem;
 }
 .map .col-md-8 { 
   padding: 0;
