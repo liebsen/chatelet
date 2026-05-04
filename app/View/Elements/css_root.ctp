@@ -91,7 +91,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   a,
   .category-content,
   li {
-    &:not(.box *):not(.map *):not(.text-preserve):not(.text-info):not(.text-success):not(.text-warning):not(.text-danger) {
+    &:not(.box *):not(.map *):not(.text-preserve):not(.text-chatelet):not(.text-info):not(.text-success):not(.text-warning):not(.text-danger) {
       color: #e7e7e7;
       border-color: #666;
     }
@@ -141,7 +141,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
     background-color: #000!important;
     border-color: #888!important;
   }
-  .btn {
+  .btn:not(.btn-scheme) {
     background-color: #222;
     border-color: #666;
     &:hover {
@@ -159,7 +159,6 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .btn-chatelet,
   nav.sidebar,
   .bg-light,
-  .carrito-selector,  
   .tab-content,
   .nav-tabs,
   .toggle-label,

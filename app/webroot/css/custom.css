@@ -1149,6 +1149,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   margin: 0;
   border-radius: 0!important;
   color: #888;
+  background-color: inherit!important;
 }
 
 .takeaway-indicate {
@@ -1233,7 +1234,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 #main .caract label.btn.active {
-  color: #17e109;
+  color: #e10d74;
 }
 
 #main .caract .color-block { display: none }
