@@ -23,7 +23,7 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 				<div class="card p-4 p-md-5 max-25">
 					<div class="card-body">
 						<div class="d-flex flex-column justify-content-start align-items-center gap-05">
-							<h2 class="text-bolder h-filter">Estás conectada como <?php echo $user['name'] ?? 'Invitada'; ?></h2>
+							<h4 class="text-uppercase">Estás conectada como <?php echo $user['name'] ?? 'Invitada'; ?></h4>
 							<p>Confirma tu identidad para continuar con tu compra de <?php echo \price_format($cart_totals['grand_total']) ?>.</p>
 							<a href="/checkout/envio" class="btn btn-chatelet dark w-100">Continuar como <?php echo $user['name'] ?? 'Invitada'; ?> <?php echo $user['surname']; ?> </a>
 							<span class="text-sm text-muted"><b>Al finalizar el proceso</b> revisa tu cuenta en <b><?php echo $user['email']; ?></b></span>

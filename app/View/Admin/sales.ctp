@@ -123,7 +123,7 @@
             </td>
             <td class="col-xs-1" data-sort="<?php echo date('Y-m-d',strtotime($sale['local_sale']['created'])) ?>">
                 <strong><?php echo date('d/m/Y',strtotime($sale['local_sale']['created'])) ?></strong><br />
-                <small><?php echo date('H:i:s',strtotime($sale['local_sale']['created'])) ?></small><br />
+                <small><?php echo date('H:i',strtotime($sale['local_sale']['created'])) ?></small><br />
             </td>
             <td class="col-xs-3">
               <strong><?php echo @$sale['collection']['cardholder']['name'] ?: @$sale['local_sale']['nombre'] . ' ' . @$sale['local_sale']['apellido'] ?></strong><br>

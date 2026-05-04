@@ -100,8 +100,12 @@ selectStore = function(e) {
 
 manageHiddenFields = function() {
 	setTimeout(function(){
-		$('#envio_form input[data-attr="required"], #envio_form select[data-attr="required"]').each((a,i) => {
-			$(i).prop('required', $(i).is(':visible'))
+		$('#envio_form :input').each((a,i) => {
+			const required = $(i).is(':required')
+			const visible = $(i).is(':visible')
+			if(required) {
+				$(i).prop('required', visible)
+			}
 		})
 	}, 500)
 }

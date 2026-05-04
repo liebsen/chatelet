@@ -1586,12 +1586,10 @@ select.form-control{
 
 .text-bold {
 	font-weight: 800!important;
-	letter-spacing: -0.05rem;
 }
 
 .text-bolder {
 	font-weight: 1000!important;
-	letter-spacing: -0.05rem;
 }
 
 .h-filter {
