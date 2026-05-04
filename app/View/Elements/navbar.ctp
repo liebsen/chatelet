@@ -108,7 +108,7 @@
           <!--span class="countscaleIn speed delay1">
             <i class="fa fa-check text-white fa-xs"></i>
           </span-->
-          <i data-toggle="sidebar" data-target=".sidebar-account" class="gi gi-woman text-green"></i>
+          <i data-toggle="sidebar" data-target=".sidebar-account" class="gi gi-woman text-chatelet"></i>
         </a>
         <ul class="dropdown-menu">
           <li>
@@ -157,7 +157,7 @@
             <?php if(is_array($cart) && count($cart)):?>
             <span class="count animation-pulse delay1" data-toggle="sidebar" data-target=".sidebar-cart"><?=count($cart)?></span>
             <?php endif ?>                
-            <i data-toggle="sidebar" data-target=".sidebar-cart" class="gi gi-shopping_cart <?= is_array($cart) && count($cart) ? 'text-green' : 'text-lightgrey' ?>"></i>
+            <i data-toggle="sidebar" data-target=".sidebar-cart" class="gi gi-shopping_cart <?= is_array($cart) && count($cart) ? 'text-chatelet' : 'text-lightgrey' ?>"></i>
           </span>
         </a>
         <ul class="dropdown-menu">

@@ -154,7 +154,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
     background-color: #333;
     color: #888!important;    
   }
-
+  .bxc > div,
   .form-control:focus,
   .btn-chatelet,
   nav.sidebar,

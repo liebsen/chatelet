@@ -965,25 +965,24 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   display: flex;
   justify-content: center;
   align-items: center;}
-#infoShop .col-md-4 p { padding: 1.5rem; margin-top: 8rem; font-weight:1000; }
+#infoShop .col-md-4 p { padding: 1.5rem; margin-top: 8rem; font-weight:300; }
 #infoShop .bx1 { 
   background-image: url(../images/box1.png); 
-  background-color: steelblue; 
-  color: white; 
 }
 #infoShop .bx2 { 
   background-image: url(../images/box2.png); 
   background-size: 8rem!important;  
-  background-color: coral;
-  color: #fff; 
 }
 #infoShop .bx3 { 
   background-image: url(../images/box3.png); 
-  background-color: purple; 
-  color: #fff; 
 }
 .bxc {
   display: flex;
+  grid-gap: 0.5rem;
+}
+.bxc > div {
+  background-color: whitesmoke; 
+  color: #555; 
 }
 #productOptions { padding: 1.75rem 0; }
 #productOptions nav li { border-bottom: 1px solid rgba(194, 194, 194, 0.27); padding: 1rem; }
@@ -1200,10 +1199,13 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 */
 
-#main .caract label.btn .color-option,
-#main .caract label.btn .size-option {
+#main .caract label.btn .color-option {
   border-bottom: 3px solid;
   font-size: 100%!important;
+}
+#main .caract label.btn .size-option {
+  border-bottom: 3px solid;
+  font-size: 1.25rem!important;
 }
 
 #main .caract label.btn .color-option.color-img {

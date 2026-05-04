@@ -653,11 +653,9 @@ background-color: #e8ffa8!important;
     /* border-left: 1px solid #333;*/
     margin: 0 0 0 220px;
   }
-  #page-content > div {
+  #page-content > div:not(.toolnav-right) {
     height: calc(100dvh - 75px);
     overflow: auto;
-  }
-  #page-content + footer {
   }
 }
 .block-content .control-group {

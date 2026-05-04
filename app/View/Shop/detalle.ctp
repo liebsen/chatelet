@@ -263,7 +263,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
                     </div>
                   </div>
                   <p class="marginTop stock-block">
-                    <span class="text-chatelet">Stock</span>
+                    <span class="text-muted">Stock</span>
                     <span id="stock_container">
                       <span class="text-warning">(Elegí color y talle)</span>
                     </span>
