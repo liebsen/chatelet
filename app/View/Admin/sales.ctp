@@ -14,7 +14,7 @@
     <div class="col-xs-12">
       <form id="update_logistic">
         <h3>Marcar como completada venta <span class="sale_id"></span></h3>
-        <div class="form-group">
+        <div class="form-group flex-column">
           <input class="form-control" type="checkbox" id="generate_ticket_from_bank" value="1" checked/>
           <label for="generate_ticket_from_bank">
             Generar ticket
@@ -40,7 +40,7 @@
     <div class="col-xs-12">
       <form id="update_logistic">
         <h3>Generar etiqueta para venta <span class="sale_id"></span></h3>
-        <div class="form-group">
+        <div class="form-group flex-column">
           <button type="button" id="ticket_gen_btn" class="btn btn-primary" onclick="getTicket()">Generar</button>
         </div>
       </form>
@@ -58,9 +58,9 @@
     <div class="col-xs-12">
       <form id="update_logistic">
         <h3>Cambiar logística de venta <span class="sale_id"></span></h3>
-        <div class="form-group">
+        <div class="form-group flex-column">
         <?php foreach($logistics as $logistic): ?>
-          <div class="form-check">
+          <div class="d-flex">
             <input class="form-check-input" type="radio" name="logistic_option" id="logistic_option_<?= $logistic['Logistics']['id'] ?>" value="<?= $logistic['Logistics']['id'] ?>" data-name="<?= $logistic['Logistics']['code'] ?>" data-image="<?= $logistic['Logistics']['image'] ?>">
             <label class="form-check-label" for="logistic_option_<?= $logistic['Logistics']['id'] ?>">
               <?= $logistic['Logistics']['title'] ?>
@@ -94,6 +94,7 @@
     </button>
   </div>
 </div>
+
 <div class="block-section">
   <div class="row">
     <div class="col-xs-12 table-responsive">

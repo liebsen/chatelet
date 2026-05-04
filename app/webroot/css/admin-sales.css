@@ -24,7 +24,8 @@
 
 #update_logistic label, 
 #update_logistic button {
-  font-size: 1.5rem;
+  font-size: 1rem;
+  font-weight: 1000;
 }
 #example-datatables2 td {
   vertical-align: top;
