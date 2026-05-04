@@ -4,7 +4,7 @@
     echo $this->Html->script('sucursales', array('inline' => false));
 ?>
 
-  <section class="map">
+  <section class="map animation-fadeIn animation-both delay">
     <div class="col-md-4">
       <div class="animation-fadeIn slow">
         <h1>Nuestras<br>sucursales</h1>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="col-md-8 w-100">
-      <div id="map-canvas" class="sucursales sucursal"  data-url="<?php echo $this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>"></div>
+      <div id="map-canvas" class="sucursales"  data-url="<?php echo $this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>"></div>
     </div>
   </section>
 
@@ -21,17 +21,22 @@
       <?php foreach($stores as $store) {
           $store = $store['Store'];
           $phones = explode('/', $store['phone']);
-          $phone_str = '';
+          $phone_arr = [];
           foreach($phones as $phone) {
-            $phone_str.= '<a href="tel:'.$phone.'">'. $phone.'</a><br>'; 
+            $phone_arr[]= $phone; 
           }
-          echo '<h4>'. $store['name'] .'</h4>';
+          echo '<h4 class="sucursal text-chatelet is-clickable" data-sucursal="'. $store['id'] .'" data-lat="'.$store['id'].'" data-lng="'.$store['lng'].'"><i class="gi gi-shop fa-lg mr-2"></i>'. $store['name'] .'</h4>';
           echo '<h3></h3>';  
           echo '<ul>';      
-          echo '<li><i class="fa fa-lg text-success fa-map-marker mr-2"></i>'. $store['address'] .'</li>';
-          echo '<li><i class="fa fa-lg text-success fa-phone mr-2"></i>'.$phone_str.'</li>';
+          echo '<li><a class="sucursal is-clickable text-nowrap" data-sucursal="'. $store['id'] .'" data-lat="'.$store['id'].'" data-lng="'.$store['lng'].'"><i class="fa fa-map-pin mr-2"></i>'. $store['address'] .'</a></li>';
+          foreach($phone_arr as $phone_str){
+            echo '<li><a href="tel:'.$phone_str.'"><i class="fa fa-lg fa-phone mr-2"></i>'.$phone_str.'</a></li>';
+          }
           if($store['whatsapp']){
-            echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" target="_blank"><i class="fa fa-lg text-success fa-whatsapp mr-2"></i>'. $store['whatsapp'].'</a></li>';
+            echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" target="_blank"><i class="fa fa-lg fa-whatsapp mr-2"></i>'. $store['whatsapp'].'</a></li>';
+          }
+          if($store['takeaway'] == '1'){
+            echo '<li><span><i class="gi gi-shopping_bag mr-2"></i> Takeaway</span></li>';
           }
           echo '</ul>';
       } ?>
@@ -87,8 +92,8 @@ function initialize(address) {
   #location .col-md-12 { padding-left: 150px; padding-right: 150px; padding-top: 60px; padding-bottom: 60px; }
   #location .col-md-12 h3 { border-bottom: 2px solid #d7d7d7; font-size: 18px; font-weight: 300; display: block;width: 100%;}
   #location .col-md-12 ul {display: block;margin: 10px 0;float: left;width: 100%; height: 100%; padding-bottom: 45px;}
-  #location .col-md-12 ul li { float: left; min-height: 63px; /*font-size: 18px;*/ font-weight: 300; width: 33%;  }
-  #location .col-md-12 ul li a {}
+  #location .col-md-12 ul li { float: left; min-height: 63px; /*font-size: 18px;*/ font-weight: 300; min-width: 25%; }
+  #location .col-md-12 ul li a { padding-right:1rem }
   /*#location .col-md-12 ul li:first-child:before { background: url(../images/sprite.png) no-repeat 3px -170px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -8px; width: 35px; transform: scale(0.9);}
   #location .col-md-12 ul li:nth-child(2):before { background: url(../images/sprite.png) no-repeat -31px -172px; content: ""; display: block; float: left; height: 45px; margin-right: 15px; margin-top: -12px; width: 35px; transform: scale(0.75);}
   #location .col-md-12 ul li:nth-child(3):before { 

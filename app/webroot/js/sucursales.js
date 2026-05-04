@@ -22,34 +22,38 @@ $(document).ready(function() {
 			},		
 			success: function(response){
 				if ($.isArray(response)) {
-					$.each(response, function(i, sucursal){
-						var sucursal = sucursal.Store,
-						marker = new google.maps.Marker({
+					$.each(response, function(i, data){
+						const sucursal = data.Store
+						const marker = new google.maps.Marker({
 			        map: map,
 			        // icon: '/img/marker3.png',
 			        draggable: true,
               animation: google.maps.Animation.DROP,
 			        position: new google.maps.LatLng(sucursal.lat, sucursal.lng),
-				    }),
-						infowindow = new google.maps.InfoWindow({
-							content: '<div><h4>'+ sucursal.name +'</h4>'+'<p>' + sucursal.address + '<br />Tel. ' + sucursal.phone + '</p></div>'
-						}),
-						open = false,
-						toggle = function() {
-							if (open) {
-								infowindow.close();
-								open = true;
-							} else {
-								infowindow.open(map, marker);
-								open = true;
+				    })
+						const infowindow = new google.maps.InfoWindow({
+							content: '<div style="overflow: hidden"><h4 style="margin:0">'+ sucursal.name +'</h4><br>Dir. '+'<p>' + sucursal.address + '<br />WA. ' + sucursal.whatsapp + '<br />Tel. ' + sucursal.phone + '<br />'+ (sucursal.takeaway == '1' ? '<span style="color: green">Takeaway</span>' : '') + '</p></div>'
+						})
+						var open = false
+						var close = function(){
+							infowindow.close();
+						}
+						var toggle = function() {
+							for(var i in markers) {
+								markers[i].close()
 							}
+							if (!open) {
+								infowindow.open(map, marker);
+							  const newCoords = new google.maps.LatLng(sucursal.lat, sucursal.lng);
+							  map.panTo(newCoords); 
+							  map.setZoom(16);
+							}
+							open = !open;
 						};
 						google.maps.event.addListener(marker, 'click', function() {
 							toggle();
 						});
-						markers[sucursal.id] = { 
-							toggle: toggle
-						};
+						markers[sucursal.id] = { toggle, close, sucursal };
 					});
 				}else{ 
 					console.error('no array');
@@ -71,6 +75,7 @@ $(document).ready(function() {
 
 		markers[id].toggle();
 
+		window.scrollTo(0,0)
 		return false;
 	});
     

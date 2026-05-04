@@ -454,11 +454,11 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
     white-space: nowrap;
   }
   .map .col-md-8 { 
-    padding: 1.5rem!important;  
+    padding: 1.5rem 1rem 3rem 2rem!important;  
   }
   #map-canvas { 
     border-radius: 1.5rem;
-    min-height: calc(100dvh - 315px)!important;
+    min-height: calc(100dvh - 335px)!important;
     transform: scale(1) perspective(1024px) rotateY(-5deg) rotateX(2deg) rotate(2deg) translateY(0rem) translateX(-2rem);
     box-shadow: 0 0 20px rgba(255,255,255,0.5);
   }

@@ -45,16 +45,6 @@
 	background-color: #ea197f;
 }
 
-.sucursal {
-	color: #9b9b9b;
-	padding: 2px 10px;
-}
-
-.sucursal:hover {
-	cursor: pointer;
-	background-color: rgba(84, 84, 84, 0.1);
-}
-
 .ciudad {
 	text-transform: uppercase;
 	font-weight: bold;
