@@ -1,10 +1,13 @@
 cd /var/www/chatelet
 php version.php
+git checkout staging
+git add .
+git commit -m "autocommit"
+git push
+git checkout production
+git merge origin/staging
 git add .
 git commit -m "automerge"
 git push
-git checkout production
-git merge origin/stage
-git push
-git checkout stage
+git checkout staging
 
