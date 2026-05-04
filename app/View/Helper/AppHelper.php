@@ -253,7 +253,7 @@ class AppHelper extends Helper {
     
     $dues_options = [];
       // dues
-    for ($i=0; $i<count($legends); $i++) {
+    for ($i=0; $i<count($legends ?? []); $i++) {
       $legend = $legends[$i];
       if($legend['Legend']['dues'] > 1) {
         $interest = (float) $legend['Legend']['interest'];
