@@ -364,7 +364,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav > li > a {
   border-bottom: 2px solid transparent;
   font-weight: 300;
-  padding: 5px 3px;
+  padding: 0.05rem;
   margin: 0 0.5rem;
   text-transform: uppercase;
   transition: all .3s ease-in-out; 
@@ -377,7 +377,8 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .navbar-nav > li > a.active {
-  border-bottom: 2px solid #d7d7d7;
+  border-bottom: 2px solid #e10d74;
+  color: #e10d74;
 }
 
 .navbar-chatelet .fa,
@@ -988,7 +989,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 #productOptions nav li { border-bottom: 1px solid rgba(194, 194, 194, 0.27); padding: 1rem; }
 #productOptions nav li a { 
   font-weight: 300;
-  padding: 0.25rem;
+  padding: 0;
   line-height: 1.1; 
   text-transform: uppercase; 
   transition: all .3s ease-in-out; 
