@@ -1009,11 +1009,9 @@ class CheckoutController extends AppController
 					'completed' => 1
 				);
 
+
 				// CakeLog::write('debug', 'sale(4)'.json_encode($sale_object));			
 				$this->Sale->save($sale_object);
-				
-				$this->set('sale',$sale);
-				//$this->set('sale_items',$sale_items);
 
 				$this->notify_user($sale, 'notification_sale_success');
 
@@ -1021,6 +1019,8 @@ class CheckoutController extends AppController
 					#$this->Mailchimp->delete_cart($this->settings['mc_store'], $cart_totals['cart_id']);
 					#$this->Mailchimp->order($this->settings['mc_store'], $sale_id, $sale['value'], $sale_items);
 				#}
+				$this->set('sale',$sale);
+				$this->set('sale_items',$sale_items);
 				
 				$this->Session->delete('cart');
 				$this->Session->delete('cart_totals');
