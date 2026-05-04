@@ -37,9 +37,9 @@ class CartComponent extends Component {
     }
 
     if(!isset($cart_totals['cart_id'])) {
-      CakeLog::write('debug', 'cart(1)');
-      $cart_totals['cart_id'] = $this->controller->Auth->user('id') + '-' + date('ymd-Hi');
-      CakeLog::write('debug', 'cart(2)');
+      #CakeLog::write('debug', 'cart(1)');
+      $cart_totals['cart_id'] = $this->controller->Auth->user('id') . '-' . date('ymd-Hi');
+      #CakeLog::write('debug', 'cart(2)');
       // $cart['create'] = true;
     }
 
