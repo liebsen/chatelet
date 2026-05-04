@@ -50,7 +50,7 @@
     </div>   
   <?php endforeach ?>
   <?php else : ?>
-    <h5 class="text-bolder text-uppercase text-muted">Tu carrito está vacío</h5>
+    <h5 class="text-bolder">TU CARRITO ESTÁ VACÍO</h5>
   <?php endif ?>
   </div>
   <div class="sidebar-bottom">

@@ -2,7 +2,7 @@
   <div class="content notfound">
     <div class="container">
 			<h1>Tu carrito de compras expiró</h1>
-			<h4 class="text-uppercase">Tu carrito está vacío</h4>
+			<h4>TU CARRITO ESTÁ VACÍO</h4>
 			<p>Ha pasado mucho tiempo desde que iniciaste tu compra. Por favor vuelve a llenar tu carrito.</p>
     </div>
     <hr>

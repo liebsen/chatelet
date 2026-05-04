@@ -29,7 +29,7 @@
           $custom_selected = ($link == Router::url(null, false)); 
         ?>
         <li>
-          <a href="<?=$link?>" class="<?=$custom_selected ? 'active' : 'text-scheme'?>" title="<?= $menu['menus']['text'] ?>"<?= $menu['menus']['target_blank'] === '1' ? ' target="blank"' : '' ?>><?= $menu['menus']['title'] ?></a>
+          <a href="<?=$link?>" class="<?=$custom_selected ? 'active' : ''?> text-preserve" title="<?= $menu['menus']['text'] ?>"<?= $menu['menus']['target_blank'] === '1' ? ' target="blank"' : '' ?>><?= $menu['menus']['title'] ?></a>
         </li>
       <?php endforeach ?>
       <?php if( !empty($lookBook) ): ?>
@@ -46,7 +46,7 @@
               'action' => 'index',
               ),
               array(
-                'class' => !$custom_selected && in_array($this->request->params['controller'], array('shop', 'tienda')) ? 'active' : 'text-scheme',
+                'class' => (!$custom_selected && in_array($this->request->params['controller'], array('shop', 'tienda')) ? 'active' : '') . ' text-preserve',
                 'data-toggle' => 'mouseenter',
                 'data-target' => '.shop-options',
                 'data-animation' => 'animation-pullDown animation-both'
@@ -66,7 +66,7 @@
               'action' => 'index'
             ),
             array(
-              'class' => $this->request->params['controller'] == 'sucursales' ? 'active' : 'text-scheme'
+              'class' => ($this->request->params['controller'] == 'sucursales' ? 'active' : '' ) . ' text-preserve',
             )
           );?>
       </li>
@@ -77,7 +77,7 @@
               'action' => 'como_comprar'
             ),
             array(
-              'class' => $this->request->params['controller'] == 'ayuda' ? 'active' : 'text-scheme'
+              'class' => ($this->request->params['controller'] == 'ayuda' ? 'active' : '' )  . ' text-preserve',
             )
           );?>
       </li>
@@ -88,7 +88,7 @@
             'action' => 'index'
           ),
           array(
-            'class' => $this->request->params['controller'] == 'contacto' ? 'active' : 'text-scheme'
+            'class' => ($this->request->params['controller'] == 'contacto' ? 'active' : '' ) . ' text-preserve',
           )
         );?>
       </li>
@@ -96,7 +96,7 @@
 
     <ul class="nav navbar-nav navbar-right animation-pullDown animation-both delay2">
       <li>
-        <a href="#" class="is-unlifted text-scheme" title="Buscar en la tienda">
+        <a href="#" class="is-unlifted text-preserve" title="Buscar en la tienda">
           <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="gi gi-search text-lightgrey"></i>
         </a>
       </li>
@@ -104,7 +104,7 @@
      <!-- .Login -->
       <li class="dropdown">
         <?php if ($loggedIn) { ?>
-        <a href="#" class="dropdown-toggle text-scheme js-activated is-unlifted" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
+        <a href="#" class="dropdown-toggle text-preserve js-activated is-unlifted" data-toggle="dropdown" data-hover="dropdown" id="iniciar-sesion">
           <!--span class="countscaleIn speed delay1">
             <i class="fa fa-check text-white fa-xs"></i>
           </span-->
@@ -146,13 +146,13 @@
           </li>
         </ul>
         <?php } else { ?>
-        <a href="#" class="dropdown-toggle text-scheme is-unlifted" title="Inicia sesión">
+        <a href="#" class="dropdown-toggle text-preserve is-unlifted" title="Inicia sesión">
           <i data-toggle="sidebar" data-target=".sidebar-account" class="gi gi-woman text-lightgrey"></i>
         </a>
         <?php } ?>
       </li><!-- /.Login -->
       <li class="dropdown is-clickable">
-        <a href="#" data-toggle="sidebar" data-target=".sidebar-cart" class="dropdown-toggle text-scheme  js-activated<?=is_array($cart) && count($cart) ? ' text-theme':'' ?>" data-toggle="dropdown" data-hover="dropdown">
+        <a href="#" data-toggle="sidebar" data-target=".sidebar-cart" class="dropdown-toggle text-preserve  js-activated<?=is_array($cart) && count($cart) ? ' text-theme':'' ?>" data-toggle="dropdown" data-hover="dropdown">
           <span class="count-cont" data-toggle="sidebar" data-target=".sidebar-cart" title="Mi carrito">
             <?php if(is_array($cart) && count($cart)):?>
             <span class="count animation-pulse delay1" data-toggle="sidebar" data-target=".sidebar-cart"><?=count($cart)?></span>
@@ -211,7 +211,7 @@
                 </span>
               </p>
             <?php else: ?>
-              <h5 class="text-muted">Tu carrito está vacío.</h5>
+              <h5 class="text-muted">TU CARRITO ESTÁ VACÍO</h5>
               <p class="notification text-muted">Obtén más información <a href="/ayuda/como_comprar" class="text-primary">acerca de como comprar</a></p>
             <?php endif ?>
             </div>

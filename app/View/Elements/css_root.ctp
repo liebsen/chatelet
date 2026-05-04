@@ -91,9 +91,15 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   a,
   .category-content,
   li {
-    &:not(.box *):not(.map *):not([class*="text-"]) {
-      color: #c5c5c5;
-      border-color: #666!important;
+    &:not(.box *):not(.map *):not(.text-preserve):not(.text-info):not(.text-success):not(.text-warning):not(.text-danger) {
+      color: #e7e7e7;
+      border-color: #666;
+    }
+  }
+
+  a,
+  .btn {
+    &:not(.box *):not(.map *):not(.text-preserve):not(.text-info):not(.text-success):not(.text-warning):not(.text-danger) {
       &:hover {
         color: #666;
       }
@@ -101,12 +107,12 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   }
   .label,
   .text-scheme,
+  .navbar-nav > li > a,
   .tab-content {
-    &:not(.scheme-preserve) {
-      color: #c5c5c5;
-      &:hover {
-        color: #888;
-      }
+    color: #c5c5c5;
+    border-color: #333;
+    &:hover {
+      color: #888;
     }
   }
 

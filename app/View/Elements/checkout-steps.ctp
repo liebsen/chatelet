@@ -2,7 +2,7 @@
 <?php if(empty($cart)) :?>
 
 <div class="container">
-	<span>Tu carrito está vacío. <a class="cart-empty-redirect" href="/shop">Te redireccionaremos automáticamente a la tienda</a> en <span class="segs"><?php echo $segs ?></span></span>
+	<span>TU CARRITO ESTÁ VACÍO. <a class="cart-empty-redirect" href="/shop">Te redireccionaremos automáticamente a la tienda</a> en <span class="segs"><?php echo $segs ?></span></span>
 	<script type="text/javascript">
 		let segs = <?php echo $segs ?>;
 		let interval = 0;

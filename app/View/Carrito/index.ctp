@@ -247,7 +247,7 @@
 				<!--div class="icon-huge mt-4">
 					<i class="fa fa-shopping-bag fa-x2 text-muted"></i>
 				</div-->
-				<h3 class="h3 text-center">Tu carrito está vacío</h3>
+				<h3 class="h3 text-center">TU CARRITO ESTÁ VACÍO</h3>
 				<div>Para comprar agrega un producto.<br> Obtén más información <a href="/ayuda/como_comprar" class="text-link">acerca de como comprar</a></div>
 			</div>
 			<br><br>

@@ -4,7 +4,7 @@
       <i class="ico-times" role="img" aria-label="Cerrar"></i>
     </button>
     <div class="sidebar-top">
-      <h5 class="text-uppercase">Buscar</h5>
+      <h5>BUSCAR</h5>
       <div class="content pt-4">
         <div class="form-group">
           <input class="form-control textbig search-input" name="q" placeholder="Buscar..." required>
