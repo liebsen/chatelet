@@ -25,7 +25,7 @@
           foreach($phones as $phone) {
             $phone_arr[]= $phone; 
           }
-          echo '<h4 class="sucursal text-chatelet is-clickable" data-sucursal="'. $store['id'] .'" data-lat="'.$store['id'].'" data-lng="'.$store['lng'].'"><i class="gi gi-shop fa-lg mr-2"></i>'. $store['name'] .'</h4>';
+          echo '<h4 class="sucursal text-chatelet is-clickable" data-sucursal="'. $store['id'] .'" data-lat="'.$store['id'].'" data-lng="'.$store['lng'].'">'. $store['name'] .'</h4>';
           echo '<h3></h3>';  
           echo '<ul>';      
           echo '<li><a class="sucursal is-clickable text-nowrap" data-sucursal="'. $store['id'] .'" data-lat="'.$store['id'].'" data-lng="'.$store['lng'].'"><i class="fa fa-map-pin mr-2"></i>'. $store['address'] .'</a></li>';
@@ -36,7 +36,7 @@
             echo '<li><a href="https://wa.me/'.$store['whatsapp'].'?text=Hola, tengo una consulta" target="_blank"><i class="fa fa-lg fa-whatsapp mr-2"></i>'. $store['whatsapp'].'</a></li>';
           }
           if($store['takeaway'] == '1'){
-            echo '<li><span><i class="gi gi-shopping_bag mr-2"></i> Takeaway</span></li>';
+            echo '<li><span class="text-chatelet"><i class="fa fa-shopping-bag mr-2"></i> Takeaway</span></li>';
           }
           echo '</ul>';
       } ?>

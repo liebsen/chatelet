@@ -481,9 +481,14 @@ class ShopController extends AppController {
     $this->set('sales', $sales);
   }
 
-  public function detalle($product_id, $category_id = 0) {
+  public function detalle($product_id = 0, $category_id = 0) {
+
+  	if(empty($product_id)) {
+  		throw new NotFoundException();
+  	}
+
 		$product = $this->Product->findById($product_id);
-		$this->loadModel('Legend');
+
 		if (!isset($product)) {
 			throw new NotFoundException();
 		}
@@ -493,6 +498,7 @@ class ShopController extends AppController {
 			$this->addClick($uid, $this->request->query('click_origin'));
 		}
 
+		$this->loadModel('Legend');
     $legends = $this->Legend->find('all', [
       'conditions' => ['enabled' => 1, 'title <>' => ''],
       'order' => ['Legend.dues ASC']

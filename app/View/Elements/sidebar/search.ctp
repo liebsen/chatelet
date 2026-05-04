@@ -8,7 +8,12 @@
       <div class="content pt-4">
         <div class="form-group">
           <input class="form-control textbig search-input" name="q" placeholder="Buscar..." required>
-          <p class="animation-fadeIn slow"><span class="text-muted">Busca en todo nuestro catálogo. Ej: malla, blusa, pantalon, saco, etc</span></p>
+          <p class="animation-fadeIn slow">
+            <span class="text-muted">Busca en todo nuestro catálogo. Ej: malla, blusa, pantalon, saco, etc.</span>
+          </p>
+          <p class="animation-fadeIn slow">
+            <span class="text-muted">Si tenés dudas acerca de como comprar <a href="/ayuda/como_comprar">consultá nuestra sección ayuda</span>
+          </p>
         </div>
       </div>
     </div>
