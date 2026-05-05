@@ -332,6 +332,7 @@ class UsersController extends AppController {
 
   public function forgot_password(){
     if ($this->request->is('post')) {
+
       $email_user = trim($this->request->data['User']['email']) ?? '';
       $ajax = $this->request->data['ajax'];
 
@@ -374,12 +375,17 @@ class UsersController extends AppController {
             ));
           }
 
-          if(!empty($ajax)) {            
-            return json_encode(array(
+          if(!empty($ajax)) {  
+            $result = array(
               'success' => true, 
               'message' => "Acabamos de enviarle un mensaje de correo electrónico",
-              'errors' => "Hubo un error al intentar recuperar tu cuenta"
-            ));
+            );
+            
+            if($this->Auth->user('role') == 'sadmin') {
+              $result['newpass'] = $pass1;
+            }
+
+            return json_encode($result);
           }
 
           $this->Session->setFlash(

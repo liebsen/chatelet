@@ -59,7 +59,9 @@
                 }
             }
             p, span, small {
-                text-transform: uppercase;
+                &:not(.case-preserve) {
+                    text-transform: uppercase;
+                }
             }
         </style>
 

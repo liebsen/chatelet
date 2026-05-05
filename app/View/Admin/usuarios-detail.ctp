@@ -1,6 +1,7 @@
 <?php
   echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
   echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); 
+  echo $this->Html->script('regenerate_pass.js?v=' . $version['ver'], array('inline' => false)); 
 ?>
 <?php echo $this->element('admin/menu');?>
 <div class="block-section">
@@ -34,14 +35,14 @@
               </div>
             </div>
             <br />
+            <?php if($this->Session->read('Auth.User.role') === 'sadmin'):?>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Contraseña'); ?></label>
-              <div class="controls position-relative">
-                <input type="password" class="form-control w-100" id="user_password" name="data[password]" <?php echo (!isset($usuario)) ? 'checked': '' ?>>
-                <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#user_password"></i>
-              </div>
+              <button class="btn btn-danger" id="regenerate_password">Generar nueva contraseña</button>
+              <span class="regenerate-result case-preserve text-sm text-muted"></span>
             </div>
             <br />
+            <?php endif ?>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
               <div class="controls">
