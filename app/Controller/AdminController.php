@@ -4170,10 +4170,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
    	switch ($action) {
     	case 'add':
-    	  if ($this->request->is('POST')){
+    	  if ($this->request->is('post')){
 	        $this->autoRender = false;
 	        $this->RequestHandler->respondAs('application/json');
-	        $this->User->save($this->request->data);
+
+	        $data = $this->request->data;
+
+	        $this->User->save($data);
 		      $this->Session->setFlash(
 		        'Módulo Clientas actualizado',
 		        'default',
@@ -4187,7 +4190,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    return json_encode(
 			    	array(
 			    		'success' => true,
-			    		'redirect' => '/admin/usarios'
+			    		'redirect' => '/admin/usuarios'
 			    	)
 			    );	
 
@@ -4209,7 +4212,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    return json_encode(
 			    	array(
 			    		'success' => true,
-			    		'redirect' => '/admin/usarios'
+			    		'redirect' => '/admin/usuarios'
 			    	)
 			    );	
 	    	}
@@ -4219,13 +4222,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     			$this->autoRender = false;
     			$this->RequestHandler->respondAs('application/json');
 
-    			$data = [];
-    			foreach($this->request->data as $key => $value) {
-    				if(strlen($value) || $value === 0) {
-    					$data[$key] = $value;
-    				}
-    			}
-		      $this->User->save($data);
+    			$data = $this->request->data;
+		      $saved = $this->User->saveAll(
+		      	[$data],
+	    			array(
+		    			'validate' => false, 
+		    			'callbacks' => false
+		    		)
+	    		);
+
 			    $this->Session->setFlash(
 			      'Módulo Clientas actualizado',
 			      'default',
@@ -4234,7 +4239,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    return json_encode(
 			    	array(
 			    		'success' => true,
-			    		'redirect' => '/admin/usarios'
+			    		'redirect' => '/admin/usuarios'
 			    	)
 			    );	
     		} else {
@@ -4252,6 +4257,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		}
     		break;
     }
+    \d('a',0);
     $users = $this->User->find('all', array('conditions' => array( 'id > ' => 1 )));
     $this->set('users', $users);
 		return $this->render('usuarios');

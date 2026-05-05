@@ -17,7 +17,7 @@ function getFormData(form) {
       if(e.type == 'file') {
         value = e.files[0]
       } else if(e.type == 'checkbox') {
-        value = e.checked ? 1 : 0
+        value = e.checked ? (e.value || 1) : 0
       }
       data.append(e.name, value)
     }

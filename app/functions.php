@@ -30,7 +30,8 @@ function b($a, $b = null){
   if($b) die();
 }
 
-function d($a,$b,$c=null){
+function d($a=null,$b=null,$c=null){
+  if(empty($a)) return false;
   $d = !empty($c) ? $b : json_encode($b, JSON_PRETTY_PRINT);
   CakeLog::write('debug',$a.':'.$d);
 }
