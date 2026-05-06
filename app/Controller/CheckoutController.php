@@ -52,7 +52,7 @@ class CheckoutController extends AppController
 		),
 	);
 
-	public $components = array('Cart', 'Mailchimp', 'RequestHandler');
+	public $components = array('Cart', 'RequestHandler');
 
 	public function beforeFilter()
 	{
