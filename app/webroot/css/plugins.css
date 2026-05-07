@@ -4096,6 +4096,32 @@ stretchRight
     }
 }
 
+@keyframes chatIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 15rem, 0);
+    visibility: visible;
+  }
+  10% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  90% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 15rem, 0);
+    visibility: visible;
+  }
+}
+
+.chatIn {
+  animation-name: chatIn;
+}
+
+
 .animation-both {
 	animation-fill-mode: both;
 }

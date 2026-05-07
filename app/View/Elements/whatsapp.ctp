@@ -1,5 +1,5 @@
-  <?php if (@$data['whatsapp_enable'] == '1'): ?>
-    <div class="whatsapp-blockchatIn delay2">
+  <?php if (@$settings['whatsapp_enable'] == '1'): ?>
+    <div class="whatsapp-block">
       <a href="javascript:$zopim.livechat.window.show()" class="chat" title="Contactanos por Chat">
         <i class="fa fa-messages"></i>
       </a>
@@ -15,10 +15,10 @@
       strstr($_SERVER['REQUEST_URI'], "/ayuda") != false
     )
   ): ?>
-    <a href="https://wa.me/<?= $data['whatsapp_phone'] ?>?text=Hola, tengo una consulta" class="d-block" target="_blank" title="Contactanos por WhatsApp">
-      <div class="whatsapp-textchatIn delay2 <?= !empty($data['whatsapp_autohide']) ? " autohide segs-{$data['whatsapp_autohide']}" : '' ?>">
-        <span class="animation-fadeIn delay pr-3">
-          <?= $data['whatsapp_text'] ?>
+    <a href="https://wa.me/<?= $settings['whatsapp_phone'] ?>?text=Hola, tengo una consulta" class="d-block" target="_blank" title="Contactanos por WhatsApp">
+      <div class="whatsapp-text <?=$settings['whatsapp_autohide'] == '1' ? " autohide segs-{$settings['whatsapp_autohide']}" : '' ?>">
+        <span class="pr-3">
+          <?= $settings['whatsapp_text'] ?>
         </span>
       </div>
     </a>
@@ -26,6 +26,5 @@
     .whatsapp-block > a.whatsapp > .fa {
       animation-delay: <?= $settings['whatsapp_autohide'] + 5 ?>s;
     }
- 
     </style>
   <?php endif ?>

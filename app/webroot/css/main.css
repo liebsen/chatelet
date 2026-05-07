@@ -2820,9 +2820,9 @@ header.navbar .navbar-brand {
 
 .toolnav-right {
   position: fixed;
-  z-index: 3;
-  right: 0.75rem;
-  bottom: 0.75rem;
+  z-index: 10;
+  right: 1.75rem;
+  bottom: 1rem;
 }
 
 /* Panel */

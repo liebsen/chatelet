@@ -1716,7 +1716,6 @@ span.validation-password {
 
 .whatsapp-block {
 	position: fixed;
-	opacity: 0;
 	z-index: 1060;
 	bottom: 1rem;
 	right: 0.85rem;
@@ -1725,6 +1724,13 @@ span.validation-password {
 	justify-content: center;
 	align-items: center;
 	grid-gap: 0.5rem;	
+}
+
+.whatsapp-block > a {
+	animation-name: fadeIn;
+	animation-fill-mode: both;		
+	animation-duration: 5s;
+	animation-delay: 3s;
 }
 
 .whatsapp-block > a > .fa {
@@ -1736,7 +1742,6 @@ span.validation-password {
 	height: 3rem;
 	border-radius: 3rem;
 	background-color: #5cb85c;
-	/*box-shadow: rgba(0, 0, 0, 0.16) 3px 3px 3px;*/
 	color: white;
 }
 
@@ -1761,6 +1766,10 @@ span.validation-password {
 }
 
 .whatsapp-text {
+	animation-name: chatIn;
+	animation-fill-mode: both;		
+	animation-duration: 8s;
+	animation-delay: 3s;
 	position: fixed;
 	left: 0;
   right: 0;

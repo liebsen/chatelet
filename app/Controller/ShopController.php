@@ -772,7 +772,7 @@ class ShopController extends AppController {
 		// $save['page'] = $p+1;
 		$save['context'] = json_encode(
 			array(
-				'result_count' => count($results),
+				'result_count' => count($results ?? []),
 				'query' => $q
 			)
 		);
