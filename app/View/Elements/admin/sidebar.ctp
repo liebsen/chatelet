@@ -42,7 +42,7 @@
                                 $url = (isset($link['url']) && $link['url']) ? Router::url($link['url']) : '#';
                                 $active = (isset($link['url']) && ($template['active_page'] == $link['url'])) ? ' active' : '';
                                 $update = !empty($link['update']) ? ' update' : '';
-                                $icon = (isset($link['icon']) && $link['icon']) ? '<i class="' . $link['icon'] . '"></i>' : '';
+                                $icon = (isset($link['icon']) && $link['icon']) ? '<i class="rounded-icon ' . $link['icon'] . '"></i>' : '';
 
                                 // Check if we need add the class active to the li element (only if a sublink is active)
                                 $li_active = '';
