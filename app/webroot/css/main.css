@@ -110,7 +110,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     background-color: #333;
     color: #888!important;    
   }
-  .navbar.navbar-inverse,
   .toggle-checkbox:checked + .toggle-label,
   #primary-nav li a.open, #primary-nav li.active > a,
   .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
@@ -119,6 +118,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   .tab-content,
   .nav-tabs {
     background-color: #111!important;
+  }
+  .navbar.navbar-inverse {
+    background: linear-gradient(45deg, purple, orange)!important;
   }
 }
 
@@ -2748,12 +2750,12 @@ header.navbar .navbar-brand {
   padding: 12px 14px;
 }
 
-
 .block-tabs > .nav-tabs > li.active > a, 
 .nav-tabs > li.active > a:hover, 
 .nav-tabs > li.active > a:focus {
   background-color: #2196f3;
   color: white;
+  border-bottom: none;
 }
 
 .nav-pills > li.active > a,
@@ -3539,8 +3541,8 @@ a.thumbnail-borderless,
 }
 
 .bg-ocean {
-  background: linear-gradient(to bottom, orange, purple);
-  /*background: linear-gradient(45deg, royalblue, lightblue, skyblue)!important;*/
+  /*background: linear-gradient(to bottom, orange, purple);
+  background: linear-gradient(45deg, royalblue, lightblue, skyblue)!important;*/
 }
 
 .bg-transparent {
