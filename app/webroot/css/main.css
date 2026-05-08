@@ -81,14 +81,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   .pagination > li > a, .pagination > li > span,
   .block-tabs > .nav-tabs > li > a, 
   .pagination > .disabled > a, 
-  .toggle-label,
   .list-group-item,
   .form-control,
   .form-box,
   .switch-scale,  
   .dropdown-menu,
   .nav-tabs,
-  .toggle-label,
   .card-img,
   .table,
   .table tr,
@@ -110,7 +108,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     background-color: #333;
     color: #888!important;    
   }
-  .toggle-checkbox:checked + .toggle-label,
+  .cke_source,
   #primary-nav li a.open, #primary-nav li.active > a,
   .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     background-color: #222!important;
@@ -3243,7 +3241,7 @@ background-color: #45a049; /* Darker green on hover */
   position: relative;
   cursor: pointer;
   transition: background-color 0.4s; /* Smooth color transition */
-  background-color: #e7e7e7;
+  background-color: #999;
 }
 
 .toggle-label:after {

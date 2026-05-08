@@ -56,7 +56,7 @@
         <label class="control-label" for="toggle-follow"><?php echo __('Cuerpo del email'); ?></label>
         <textarea class="form-control w-100" name="data[body]" id="newsletter"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
         <h6 class="text-theme">Elementos de plantilla</h6>
-        <table class="table table-striped">
+        <table class="table table-striped w-100">
   <?php foreach($templateVars as $id => $name): ?>
         <tr class="is-clickable append-editor" data-text="{{<?= $id ?>}}">
           <th>

@@ -34,7 +34,7 @@ echo $this->Html->script('application-notifications.js?v=' . $version['ver'], ar
 	    	</div>
 	    	<div class="form-group flex-column w-100">
 					<h6 class="text-theme">Elementos de plantilla</h6>
-					<table class="table table-striped">
+					<table class="table table-striped w-100">
 	<?php foreach($notification_sale_templates as $id => $name): ?>
 				<tr class="is-clickable append-editor" data-text="{{<?= $id ?>}}" data-type="notification_sale">
 					<th>

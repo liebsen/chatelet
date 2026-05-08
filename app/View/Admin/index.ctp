@@ -1,4 +1,4 @@
-<div class="min-height">
+<div class="bg-ocean min-height">
 		<ul class="list-group list-group-hero animation-fadeIn animation-both delay">
 	<?php foreach($navs as $name => $nav): ?>
 		<a href="<?=$nav['url']?>">

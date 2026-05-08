@@ -10,8 +10,7 @@ $(document).ready(function() {
       $('input[name="data[name]"]').val(),
       $('input[name="data[surname]"]').val(),
       'con email:',
-      $('input[name="data[email]"]').val(),
-      '?'
+      $('input[name="data[email]"]').val()
     ];
     const question = names.join(' ')
     if(confirm(`¿${question}?`)) {
