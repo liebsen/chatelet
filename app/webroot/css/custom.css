@@ -906,7 +906,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 .text-catalog {
-  text-shadow: 1px 1px 0 #888;
+  text-shadow: 1px 1px 0 #555;
   font-size: 1.75rem;
   font-weight: 300;
   line-height: 1;
@@ -1510,7 +1510,7 @@ ul#ul-moreviews li.dontResize img {
 	#lookbook li.lc { margin-bottom: 30px; }
 
 	#filters .col-md-4 { margin-bottom: 15px; }
-	#infoShop .col-md-4.blr { border-left: none; border-top: 5px solid #FFF; border-right: none; border-bottom: 5px solid #FFF; }
+	/*#infoShop .col-md-4.blr { border-left: none; border-top: 5px solid #FFF; border-right: none; border-bottom: 5px solid #FFF; }*/
 	#productOptions nav li a { font-size: 16px; }
   #productOptions nav li a.active { color: #e10d74; border-bottom: 2px solid #e10d74; }
 	#filters { margin-bottom: 50px; }
