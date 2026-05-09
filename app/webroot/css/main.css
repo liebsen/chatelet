@@ -58,6 +58,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   h5, 
   h6, 
   p,
+  .control-group > small, .controls > small,   
   li {
     color: #c5c5c5!important;
     border-color: #666!important;
@@ -654,7 +655,8 @@ background-color: #e8ffa8!important;
     /* border-left: 1px solid #333;*/
     margin: 0 0 0 220px;
   }
-  #page-content > div:not(.toolnav-right) {
+  #page-content > div:not(.toolnav-right),
+  #page-content > form {
     height: calc(100dvh - 75px);
     overflow: auto;
   }
@@ -3161,7 +3163,9 @@ textarea.form-control {
   appearance: none;
 }
 input[type="file"].form-control {
-border: none;
+  border: none;
+  padding: 0.5rem;
+  margin: 1rem 0;
 }
 input[type="radio"].form-control,
 input[type="checkbox"].form-control {
@@ -3274,7 +3278,7 @@ background-color: #45a049; /* Darker green on hover */
   position: absolute;
   z-index: 9;
   right: 1rem;
-  top: 1rem;
+  top: 0.75rem;
   color: #888;
 }
 

@@ -27,7 +27,7 @@
 		      	<h4 class="sub-header">Notificaciones push</h4>
 		      	<p>Establece ícono para notificaciones push.</p>	        	
 						<div class="control-group">
-							<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen de logo (PNG, 256x256px recomendado)'); ?></label>
+							<label class="control-label" for="columns-text"><?php echo __('Avatar push'); ?></label>
 							<?php if(!empty($settings['newsletter_icon'])): ?>
 								<div class="card">
 									<div class="card-body">
@@ -38,6 +38,7 @@
 							<div class="controls">
 								<input type="file" class="form-control" name="data[newsletter_icon]" value="" accept="image/png">
 							</div>
+							<small>Seleccione una imagen de logo (PNG, 256x256px recomendado)</small>
 						</div>
 						<!--div class="control-group">
 							<label class="control-label" for="columns-text"><?php echo __('Seleccione una imagen de badge (PNG transparente, 96x96px recomendado)'); ?></label>
