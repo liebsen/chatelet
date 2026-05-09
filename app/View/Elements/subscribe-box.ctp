@@ -5,8 +5,8 @@
       </span>
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
-          <h4 class="text-uppercase"><i class="gi gi-bell mr-1"></i> Estemos <strong>conectadas</strong></h4>
-          <p class="text-uppercase text-sm">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
+          <h4 class="text-uppercase text-preserve"><i class="gi gi-bell mr-1"></i> Estemos <strong>conectadas</strong></h4>
+          <p class="text-uppercase text-preserve text-sm">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
         </span>
         <span>
         <?php echo $this->Form->create('Subscribe', array(
@@ -28,15 +28,15 @@
           </div>
         <?php echo $this->Form->end(); ?>
         </span>
-        <span class="subscribe-message text-danger"></span>      
-        <span class="subscribe-dismiss is-clickable" data-toggle="click" data-hide=".subscribe-box">No, gracias</span>
+        <span class="subscribe-message text-preserve text-danger"></span>      
+        <span class="subscribe-dismiss text-preserve is-clickable" data-toggle="click" data-hide=".subscribe-box">No, gracias</span>
       </div>    
       <div class="subscribe-success max-25 m-auto d-none">
         <span class="subscribe-text text-center">
-          <h3 class="text-uppercase">¡Ya estamos <strong>conectadas</strong>!</h3>
+          <h3 class="text-uppercase text-preserve">¡Ya estamos <strong>conectadas</strong>!</h3>
           <h1><i class="gi gi-flash text-warning"></i></h1>
           <div class="d-flex align-items-center mb-4">
-            <p class="text-theme">A partir de ahora ya formas parte de nuestra comunidad y te enviaremos información exclusiva de nuestras novedades, descuentos y beneficios exclusivos solo para clientas</p>
+            <p class="text-theme text-preserve">A partir de ahora ya formas parte de nuestra comunidad y te enviaremos información exclusiva de nuestras novedades, descuentos y beneficios exclusivos solo para clientas</p>
           </div>
           <div class="is-flex-center gap-1">
             <a class="text-link" data-toggle="click" data-hide=".subscribe-box">Cerrar esta ventana</a>
@@ -47,7 +47,7 @@
       </div>
       <div class="subscribe-error max-25 m-auto d-none">
         <span class="subscribe-text text-center">
-          <h4 class="text-uppercase">Error al suscribir</h4>
+          <h4 class="text-uppercase text-preserve">Error al suscribir</h4>
           <p>Hubo un error al procesar esta página y no pudimos suscribirte, intenta nuevamente en unos instantes o <a href="/contacto">contactanos</a></p>
           <p class="text-center">
             <a class="text-link" onclick="subscribe_retry()">Subscribirme con otra cuenta</a>
@@ -61,7 +61,7 @@
   <style>
     .subscribe-box { 
       position: fixed;
-      z-index: 20;
+      z-index: 10000;
       left: 0.05rem;
       right: 0.05rem;
       bottom: 0;
@@ -102,23 +102,23 @@
     }
 
     .subscribe-btn {
+      animation-name: fadeIn;
+      animation-fill-mode: both;
+      animation-delay: 5s;      
+      animation-duration: 5s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: fixed;
       color: lightcoral;
-      width: 48px;
-      height: 48px;
-      border-radius: 100%;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 3rem;
       background-color: coral;
       color: lightgoldenrodyellow;
       z-index: 99;
-      left: -0.5rem;
-      bottom: -0.5rem;
-    }
-
-    .subscribe-btn > i {
-      position: absolute;
-      transform: rotate(10deg);
-      top: 12px;
-      right: 12px
+      right: 1rem;
+      bottom: 8rem;
     }
 
   </style>
@@ -153,7 +153,7 @@
       $('.corner-pin').on('click', function(e) {
         e.preventDefault()
         $('.subscribe-box').removeClass('delay3')
-        $('.subscribe-box').fadeOut(1000)
+        $('.subscribe-box').fadeOut(500)
         $('.subscribe-btn').removeClass('d-none')
       })
 

@@ -76,7 +76,7 @@
 								<input type="hidden" name="data[img_url]" value="<?php echo $p['Home']['img_url'] ?>" />
 							</div>
 						</div>		        
-		       </div>
+		      </div>
 	      </div>
 	    </div>
 			<div class="form-actions">

@@ -1,8 +1,5 @@
 <?php 
 echo $this->Session->flash();
-if(!$loggedIn) {
-  echo $this->element('subscribe-box');
-}
 ?>
 <script>
 function updateSrcTo(obj){

@@ -1,3 +1,7 @@
+<?php if(!$loggedIn): ?>
+  <?php echo $this->element('subscribe-box') ?>
+<?php endif ?>
+
   <?php if (@$settings['whatsapp_enable'] == '1'): ?>
     <div class="whatsapp-block">
       <a href="javascript:$zopim.livechat.window.show()" class="chat" title="Contactanos por Chat">

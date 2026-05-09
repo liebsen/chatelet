@@ -6,9 +6,6 @@
   <section id="listShop">
     <?php echo $this->element('shop/list') ?>
   </section>
-<?php if(!$loggedIn): ?>
-  <?php echo $this->element('subscribe-box') ?>
-<?php endif ?>
   <?php echo $this->element('follow_us') ?>
 </div>
 <?php echo $this->element('img_popup_newsletter') ?>

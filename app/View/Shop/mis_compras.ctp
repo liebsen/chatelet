@@ -144,11 +144,6 @@
 <?php endif ?>
     </div>
   </section>
-<?php if(!$loggedIn): ?>
-  <section id="suscribe">
-    <?php $this->element('subscribe-box') ?>
-  </section>
-<?php endif ?>
 
   <style type="text/css">
     .card-area p {

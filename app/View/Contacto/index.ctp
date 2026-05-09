@@ -74,10 +74,6 @@
       <?php echo $this->Form->end(); ?>
     </div>
   </section>
-
-  <section id="suscribe">
-    <?php $this->element('subscribe-box') ?>
-  </section>
       
 <!--
 <div id="main" class="container content">
