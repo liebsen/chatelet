@@ -94,7 +94,7 @@
       </li>
     </ul>
 
-    <ul class="nav navbar-nav navbar-right animation-pullDown animation-both delay2">
+    <ul class="nav navbar-nav navbar-right animation-pullDown animation-both delay1">
       <li>
         <a href="#" class="is-unlifted text-preserve" title="Buscar en la tienda">
           <i data-toggle="sidebar" data-target=".sidebar-search" data-focus=".search-input" class="gi gi-search text-lightgrey"></i>

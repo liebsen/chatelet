@@ -1,4 +1,4 @@
-<nav class="sidebar sidebar-account d-flex flex-column justify-content-center align-items-start gap-05">
+<nav class="sidebar sidebar-account d-flex flex-column justify-content-between align-items-start gap-05">
   <button type="button" class="corner-pin btn-close-sidebar">
     <i class="ico-times" role="img" aria-label="Cerrar"></i>
   </button>
