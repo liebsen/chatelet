@@ -27,7 +27,7 @@
 						<div class="control-group w-100 bg-dark" style="min-height: 260px;">
 							<div class="controls w-100">
 								<script id="image_thumb_newsletter" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
-									<span class="image-item">	
+									<span class="image-item image-{{orientation}}">	
 										<div class="media-container">
 											<img src="{{image_newsletter}}"/> 
 										</div>
@@ -53,7 +53,7 @@
 						<div class="control-group w-100 bg-dark" style="min-height: 260px;">
 							<div class="controls w-100">
 								<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
-									<li class="image-item">
+									<li class="image-item image-{{orientation}}">
 										<div class="media-container">
 											{{#if video}}
 											<video src="{{image}}"/> 

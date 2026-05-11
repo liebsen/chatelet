@@ -71,6 +71,7 @@ $(function(){
 			'desktop' : 
 			'mobile'
 		let parts = $(`input[name="data[${origin}]"]`).val()
+
 		let parts1 = parts.split(";")
 		let parts2 = parts1.filter((e) => e).map((e) => {
 			if(e.includes(file)) {
@@ -85,8 +86,10 @@ $(function(){
 		$(`input[name="data[${origin}]"]`).val(parts2.join(";"))
 
 		me.data('orientation', state)
-		me.removeClass('fa-mobile', 'fa-desktop')
+		me.removeClass('fa-mobile fa-desktop')
 		me.addClass('fa-'+state)
+		me.parent().removeClass('image-mobile image-desktop')
+		me.parent().addClass('image-'+state)
 		/*$.ajax({
 			url: '/admin/save_file_orientation',
 			data: {
@@ -253,7 +256,7 @@ $(function(){
 					return false;
 				}
                 
-                var images_one 	= input.val();
+        var images_one 	= input.val();
 				images_one 		= images_one.split(';');
 				if(images_one.length > 8){
 					alert('Solo se permiten 8 imágenes por modulo');

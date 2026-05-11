@@ -1324,8 +1324,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 		if ($this->request->is('post')) {
       $data = $this->request->data;
-
-      // img_url: define image orientation
       $imgs = array_filter(explode(";",$data['img_url']));
       $media = [];
       foreach($imgs as $img) {
@@ -1335,10 +1333,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	      	if(file_exists($fname)) {
 						$img_data = getimagesize($fname);
 						$orientation = $img_data[0] > $img_data[1] ? 'desktop' : 'mobile';
-						error_log(json_encode($img_data));
-						error_log('fname: '. $fname);
-						error_log('orientation: '. $orientation);
-			    	$media[] = implode('-', [$orientation, $img]);
+			    	$media[] = implode('-', [$orientation,$img]);
 			    } 
 			  } else {
 			    $media[] = $img;
@@ -1346,14 +1341,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    }
 
 	    if(count($media)) {
-	    	//$media = array_filter($media);
 	    	$data['img_url'] = ';' . implode(";", $media);
-	    	error_log(json_encode($media));
 	    }
 
-	    // img_popup_newsletter: define image orientation
       $imgs = array_filter(explode(";",$data['img_popup_newsletter']));
       $media = [];
+
       foreach($imgs as $img) {
       	$parts = explode('-', $img);
       	if(count($parts) < 2) {
@@ -1363,20 +1356,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    	$media[] = implode('-', [($img_data[0] > $img_data[1] ? 'desktop' : 'mobile'), $img]);
 			    } 
 			  } else {
-			    $media[] = $img;
+			    $media[] = trim($img);
 			  }
 	    }
 
 	    if(count($media)) {
-	    	//$media = array_filter($media);
-	    	$data['img_popup_newsletter'] = ';' . implode(";", $media);
-	    	//error_log(json_encode($media));
+	    	$data['img_popup_newsletter'] = ';' . str_replace(" ", "", implode(";", $media));
 	    }
-
-	    
-	    //$img_url_media = implode(";",$media);
-      //error_log(json_encode($media));
-
     	if(empty($data['url_mod_one'])) {
     		$data['url_mod_one']=null;
     	}    	

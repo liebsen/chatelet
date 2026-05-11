@@ -15,7 +15,7 @@ foreach ($images_aux as $key => $value) {
       <video id="video<?=$key?>" class="carousel-video slider-full" <?= (strpos( $_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) ? ' controls="true" ' : '' ?> playsinline loop>
       </video>
       <?php else: ?>
-      <div class="slider-full" style="background-image:url(<?=$value ?>)"></div>
+      <div class="slider-full" style="background-image:url(<?=$value?>)"></div>
       <?php endif; ?>
     </a>
   </div>

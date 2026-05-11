@@ -110,6 +110,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #888!important;    
   }
   .cke_source,
+  .bg-dark,
   #primary-nav li a.open, #primary-nav li.active > a,
   .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     background-color: #222!important;
@@ -1683,6 +1684,7 @@ li.plan-featured h1 {
   justify-content: center;
   align-items: center;
   min-height: 150px;
+  min-width: 100px;
   background-color: #888;
   border-radius: 0.5rem;
 }
@@ -1690,6 +1692,16 @@ li.plan-featured h1 {
 .image-item img, .image-item video {
   border-radius: 0.5rem;
   height: 150px;
+  width: 100px;
+}
+
+.image-desktop {
+  min-width: 280px;
+}
+
+.image-desktop img {
+  object-fit: cover;
+  width: 100%;
 }
 
 .image-item .fa-mobile {

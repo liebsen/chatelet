@@ -12,7 +12,7 @@
             </div>
           </div>
           <span class="text-sm">
-          <?php if (count($results)) : ?>
+          <?php if (count($results ?? [])) : ?>
             Se <?=count($results) > 1 ? 'hallaron' : 'halló'?> <?php echo count($results) ?> producto<?=count($results) > 1 ? 's' : ''?> para <b><?php echo $q ?>.
           <?php else : ?>
             <?php if ( !empty($q) ) : ?>

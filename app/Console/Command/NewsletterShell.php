@@ -37,7 +37,7 @@ class NewsletterShell extends AppShell {
     $this->settings = $this->loadSettings();
 
     if($this->settings['newsletter_enabled'] != '1') {
-      echo "Newsletter is disabled";
+      echo "[warn] Newsletter is disabled";
       return false;
     }
 
@@ -64,7 +64,9 @@ class NewsletterShell extends AppShell {
     ));
 
     if($quota >= $perday) {
-      die("Daily limit reached. Aborting.");
+      #throw new Exception("Daily limit reached", 1);
+      echo "[warn] Daily limit reached";
+      return false;      
     }
 
     if($perday - $quota < $perminute) {

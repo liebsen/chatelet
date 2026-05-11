@@ -80,7 +80,7 @@
         <span class="corner-pin is-clickable" style="top: 0.5rem!important" onclick="$('.dev-note').remove()">
           <i class="ico-times"></i>
         </span>
-        <span class="text-sm text-dark"><b><i class="gi gi-warning_sign text-danger mr-1"></i> Esta no es tienda Châtelet</b> &nbsp;<a class="text-info text-bold" href="https://chatelet.com.ar">Ir a tienda</a></span>
+        <span class="text-sm text-dark"><b><i class="gi gi-warning_sign text-danger mr-1"></i> Versión de prueba <?=$version['count']?></b> &nbsp;<a class="text-info text-bold" href="https://chatelet.com.ar">Ir a tienda oficial Châtelet</a></span>
       </div>
       <style>
         .dev-note {

@@ -117,7 +117,7 @@
       background-color: coral;
       color: lightgoldenrodyellow;
       z-index: 99;
-      right: 0.9rem;
+      right: 0.8rem;
       bottom: 8rem;
     }
 
