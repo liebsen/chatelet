@@ -502,7 +502,7 @@ class CarritoController extends AppController
 				return json_encode(array(
 					'success' => false,
 					'message' => "No se recibieron datos",
-					'redirect' => Route::url('/home')
+					'redirect' => Router::url('/home')
 				));
 			}
 
