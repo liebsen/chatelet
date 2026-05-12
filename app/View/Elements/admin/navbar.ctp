@@ -132,7 +132,7 @@
                             </li>
                                 <?php endif ?>
                             <li class="divider-vertical"></li>                                
-                            <li>
+                            <li class="section-toggle">
                                 <a href="javascript:void(0)" id="toggle-side-content" class="collapsed text-white" data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar">
                                     <i class="fa fa-bars"></i>
                                 </a>

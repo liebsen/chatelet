@@ -59,7 +59,7 @@
     <div class="col-md-6 <?=!empty($list['NewsletterList']['id'])?'':' d-disable'?>">
       <div class="form-box bg-info-outline">
         <h4 class="sub-header">Resumen</h4>
-        <table class="table table-forum table-striped text-small">
+        <table class="table table-forum table-striped text-small w-100">
           <tr>
             <td><small>Filtro</small></td>
             <th><span class="filter-type-value"><?= !empty($list['NewsletterList']['filter']->filter->type) ? $list['NewsletterList']['filter']->filter->type : 'ND'?></span></th>
@@ -127,16 +127,16 @@
           <input type="text" class="form-control relation-search" data-type="user" placeholder="Buscar cuenta..."/>
         </div>
         <div class="secondary-box">
-          <a class="text-success relations-add relations-add-single is-clickable d-none" data-type="user" data-parent-id="<?=$list['NewsletterList']['id']?>" href="javascript:void(0)">
+          <a class="secondary-success relations-add relations-add-single is-clickable d-none" data-type="user" data-parent-id="<?=$list['NewsletterList']['id']?>" href="javascript:void(0)">
             <i class="gi gi-plus mr-2"></i>
-            Agregar <span class="relations-count"><?=count($list_users)?></span>
+            <span>Agregar <span class="relations-count"><?=count($list_users)?></span></span>
           </a>
-          <a class="text-danger relations-remove is-clickable<?=count($list_users)?'':' d-none'?>" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?=$list['NewsletterList']['id']?>" href="javascript:void(0)">
+          <a class="secondary-danger relations-remove is-clickable<?=count($list_users)?'':' d-none'?>" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?=$list['NewsletterList']['id']?>" href="javascript:void(0)">
             <i class="fa fa-trash mr-2"></i>
-            Eliminar todo
+            <span>Eliminar todo</span>
           </a>
-          <a class="text-success relations-add relations-add-all is-clickable" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?= $list['NewsletterList']['id'] ?>">
-            <i class="gi gi-plus mr-2"></i> Seleccionar todos (<?=$users_total?>)
+          <a class="secondary-success relations-add relations-add-all is-clickable" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?= $list['NewsletterList']['id'] ?>">
+            <i class="gi gi-plus mr-2"></i> <span>Seleccionar todos (<?=$users_total?>)</span>
           </a>          
         </div>
         <div class="controls tags-container user-container">
@@ -149,11 +149,15 @@
       data-source="list"
       title="<?=implode("\n", 
         array(
-          $user['User']['name'].' '.$user['User']['surname'],
-          $user['User']['email']
+          implode(" ", 
+            array(
+              $user['User']['name'],
+              $user['User']['surname']
+            )
+          ),
+          strtolower($user['User']['email'])
         )
-      )
-      ?>"
+      )?>"
       data-model="NewsletterUser"><?php echo strstr($user['User']['email'],'@',true)?>
     </span>
   <?php endforeach ?>

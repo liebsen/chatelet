@@ -2110,22 +2110,31 @@ pre, code {
 }
 
 .secondary-box > a {
-  font-size: 0.8rem;
   border-radius: 0.75rem;
   padding: 0.5rem 1rem;
-  line-height: 1;
+  padding-bottom: 0.3rem;
   white-space: nowrap;
+  color: #ffffff;
   border-bottom: 3px solid transparent;
+  &:hover {
+    color: white;
+  }
 }
 
-.secondary-box > a.text-success {
-  border-color: rgb(1, 200, 1);
-  background-color: rgb(212 255 212);
+.secondary-box > a.secondary-success {
+  background-image: linear-gradient(to bottom, #5cb85c 0%, #419641 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff419641', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  background-repeat: repeat-x;
+  border-color: #3e8f3e;
 }
 
-.secondary-box > a.text-danger {
-  border-color: #fc4c4c;
-  background-color: #fff5f5;
+.secondary-box > a.secondary-danger {
+  background-image: linear-gradient(to bottom, #d9534f 0%, #c12e2a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9534f', endColorstr='#ffc12e2a', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  background-repeat: repeat-x;
+  border-color: #b92c28;
 }
 
 .sub-header {
@@ -2359,13 +2368,12 @@ small, .small {
   font-size: 12px;
   background-color: #999;
   text-shadow: none;
-  padding: 4px 10px!important;
+  padding: 5px 10px!important;
   border-radius: 3px;
   text-indent: 0;
   margin-top: 1px;
   margin-bottom: 1px;
   display: inline-block;
-  font-weight: 1000!important;
 }
 
 .badge {
@@ -2666,6 +2674,7 @@ header.navbar .navbar-brand {
 
 .navbar-nav-custom {
   list-style: none;
+  padding: 1rem;
   margin: 0;
   min-height: 74px;
   display: flex;
@@ -3703,19 +3712,26 @@ transition: all 0.25s ease;
 }
 
 .layer .close {
-position: absolute;
-z-index: 10;
-width: 4rem;
-height: 4rem;
-top: 2rem;
-right: 1rem;
-font-size: 2rem;
-color: red;
+  position: absolute;
+  z-index: 10;
+  width: 4rem;
+  height: 4rem;
+  top: 2rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: red;
 }
 
 .layer.active {
-pointer-events: inherit;
-opacity: 1;
+  pointer-events: inherit;
+  opacity: 1;
+}
+
+.section-toggle {
+  min-height: 3.5rem;
+  display: flex!important;
+  justify-content: center;
+  align-items: center;  
 }
 
 .section-indicator > a {
@@ -3724,6 +3740,7 @@ opacity: 1;
   align-items: center;
   grid-gap: 0.5rem;
 }
+
 .section-indicator > a > i {
   top: -1px!important;
   min-width: 1.5rem;

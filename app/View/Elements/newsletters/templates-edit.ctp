@@ -115,12 +115,12 @@
         </div>
         <div class="secondary-box">
           <!--label class="control-label" for="product-filter">Productos seleccionados (<?=count($newsletter_products)?>)-->
-          <a class="text-success relations-add relations-add-single d-none" data-type="product" href="javascript:void(0)">
-            <i class="gi gi-plus mr-2"></i> Agregar <span class="relations-count"><?=count($newsletter_products)?></span>
+          <a class="secondary-success relations-add relations-add-single d-none" data-type="product" href="javascript:void(0)">
+            <i class="gi gi-plus mr-2"></i> <span>Agregar <span class="relations-count"><?=count($newsletter_products)?></span></span>
           </a>
-          <a class="text-danger relations-remove<?=count($newsletter_products)?'':' d-none'?>" data-type="product" href="javascript:void(0)">
+          <a class="secondary-danger relations-remove<?=count($newsletter_products)?'':' d-none'?>" data-type="product" href="javascript:void(0)">
             <i class="fa fa-trash mr-2"></i>
-            Eliminar todo
+            <span>Eliminar todo</span>
           </a>
         </div>
         <div class="controls tags-container product-container">

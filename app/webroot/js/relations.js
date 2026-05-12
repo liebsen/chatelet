@@ -39,40 +39,42 @@ $(document).ready(function() {
 })
 
 function setRelation(action, data, target, type, cb) {
-  $.post('/admin/relation_' + action, {
-    data: data
-  }).success(function(res) {
-    if (res.success) {
-      $.growl.notice({
-        title: action=='add' ? 'Agregado' : 'Eliminado',
-        message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`,
+  if(confirm('Realmente deseas hacer esto?')) {
+    $.post('/admin/relation_' + action, {
+      data: data
+    }).success(function(res) {
+      if (res.success) {
+        $.growl.notice({
+          title: action=='add' ? 'Agregado' : 'Eliminado',
+          message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`,
+        });
+        if(action=='add'){
+          $(target && $(target).hasClass('relation-item') ? 
+            target : 
+            '.' + type + '-container .label:not(.is-enabled)'
+          ).addClass('is-enabled')
+          $('.relations-add').addClass('d-none')
+          $('.relations-remove').removeClass('d-none')
+        } else {
+          $(target && $(target).hasClass('relation-item') ? 
+            target : 
+            '.' + type + '-container .label'
+          ).removeClass('is-enabled')
+          $('.relations-remove').addClass('d-none')
+          $('.relations-add').removeClass('d-none')
+        }
+        if(typeof cb == 'function') {
+          cb(type, target)
+        }
+      }
+    }).fail(function() {
+      $.growl.error({
+        title: 'Error',
+        message: `Ocurrió un error al establecer la relación en ${type}. Por favor, intente nuevamente`,
+        queue: false,
       });
-      if(action=='add'){
-        $(target && $(target).hasClass('relation-item') ? 
-          target : 
-          '.' + type + '-container .label:not(.is-enabled)'
-        ).addClass('is-enabled')
-        $('.relations-add').addClass('d-none')
-        $('.relations-remove').removeClass('d-none')
-      } else {
-        $(target && $(target).hasClass('relation-item') ? 
-          target : 
-          '.' + type + '-container .label'
-        ).removeClass('is-enabled')
-        $('.relations-remove').addClass('d-none')
-        $('.relations-add').removeClass('d-none')
-      }
-      if(typeof cb == 'function') {
-        cb(type, target)
-      }
-    }
-  }).fail(function() {
-    $.growl.error({
-      title: 'Error',
-      message: `Ocurrió un error al establecer la relación en ${type}. Por favor, intente nuevamente`,
-      queue: false,
     });
-  });    
+  }  
 }
 
 function updateRelationCount(type, target, count){
@@ -147,7 +149,7 @@ function searchRelations(data) {
 }
 
 $(document).on('click', '.relations-add', function(e){
-  const tData = $(e.target).data() 
+  const tData = $(e.target).is('a') ? $(e.target).data() : $(e.target).parents('a').data()  
   if(!tData.type) return
   var data = []
   var target = null
@@ -165,7 +167,7 @@ $(document).on('click', '.relations-add', function(e){
 })
 
 $(document).on('click', '.relations-remove', function(e){
-  const tData = $(e.target).data() 
+  const tData = $(e.target).is('a') ? $(e.target).data() : $(e.target).parents('a').data()
   if(!tData.type) return
   var data = []
   var target = null
