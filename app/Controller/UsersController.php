@@ -210,12 +210,12 @@ class UsersController extends AppController {
       $this->autoRender = false;
     }
 
-    if(empty($data['User']['email'])) {
+    if(empty($data['User']['email']) || !filter_var($data['User']['email'], FILTER_VALIDATE_EMAIL)) {
       if(!empty($ajax)) {
         return json_encode(
           array(
             'success' => false,
-            'message' => 'No se recibió el email'
+            'message' => 'No se recibió el email o es inválido'
           )
         );
       }
