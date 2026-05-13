@@ -571,15 +571,20 @@ class CarritoController extends AppController
 				$cur = @$cart_totals['add_basket']?: 0;
 				$cur++;			
 				@$cart_totals['add_basket'] = $cur;
-				$cart = $this->Cart->add($items);
-					
-				#if($this->settings['mailchimp_on'] == '1' && $this->settings['mc_store_on'] == '1') {
-					#$this->Mailchimp->cart_update($this->settings['mc_store']);
-				#}
 
-				return json_encode(array('success' => true));
+				$cart = $this->Cart->add($items, $data);
+
+				return json_encode(
+					array(
+						'success' => true
+					)
+				);
 			} else {
-				return json_encode(array('success' => false));
+				return json_encode(
+					array(
+						'success' => false
+					)
+				);
 			}
 		}
 		//return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));

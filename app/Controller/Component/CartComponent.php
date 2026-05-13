@@ -9,14 +9,15 @@ class CartComponent extends Component {
     parent::initialize($controller);
   }
 
-  public function add($items) {
+  public function add($items, $config = null) {
     $cart = $this->controller->Session->read('cart') ?? [];
     $cart['create'] = false;
 
-    /*$ids = array_column($items, 'id');
-    $cart = array_filter($cart, function($e) use ($ids) {
-      return !in_array($e['id'], $ids);
-    });*/
+    if(!empty($config)) {
+      $cart = array_filter($cart, function($e) use ($config) {
+        return $e['color'].$e['size'].$e['alias'] != $config['color'].$config['size'].$config['alias'];
+      });
+    }
 
     $this->update(array_merge($cart,$items));
   }
@@ -261,7 +262,7 @@ class CartComponent extends Component {
 			foreach($cart as $key => $item) {
 				$criteria = $item['id'].$item['size'].$item['color'].$item['alias'];
         $price = $item['price'];
-        \d("sorted(criteria)",$criteria);
+        #\d("sorted(criteria)",$criteria);
 				//CakeLog::write('debug', 'citeria:'. $criteria);
 				if (!isset($groups[$criteria])) {
 					$groups[$criteria] = 0;
