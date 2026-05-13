@@ -14,8 +14,11 @@ class CartComponent extends Component {
     $cart['create'] = false;
 
     if(!empty($config)) {
-      $cart = array_filter($cart, function($e) use ($config) {
-        return $e['color'].$e['size'].$e['alias'] != $config['color'].$config['size'].$config['alias'];
+      $cart = array_filter($cart, function($item) use ($config) {
+        return (
+          $item['id'].$item['color'].$item['size'].$item['alias'] != 
+          $config['id'].$config['color'].$config['size'].$config['alias']
+        );
       });
     }
 
