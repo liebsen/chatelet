@@ -1013,9 +1013,9 @@ select.form-control{
 	height: 36px;
 	border-left: 1px solid #888;
 	border-right: 1px solid #888;
-	font-size: 1rem;
+	font-size: 0.75rem;
 	max-width: 3rem;
-	font-weight: 800;
+	font-weight: 600;
 }
 
 .product-count:focus {

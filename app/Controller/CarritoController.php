@@ -534,17 +534,21 @@ class CarritoController extends AppController
 				/* remove all of the kind */
 				$criteria = $data['id'].$data['size'].$data['color'].$data['alias'];
 
-				$this->Stat->save(array(
-					'id' => null,
-		      'tag' => 'cart-add',
-		      'user_id' => $this->Auth->user('id') ?? 1,
-		      'product_id' => $data['id'],
-		      'context' => json_encode(array(
-		      	'size' => $data['size'],
-		      	'color' => $data['color'],
-		      	'alias' => $data['alias']
-		      ))
-		    ));
+				$this->Stat->save(
+					array(
+						'id' => null,
+			      'tag' => 'cart-add',
+			      'user_id' => $this->Auth->user('id') ?? 1,
+			      'product_id' => $data['id'],
+			      'context' => json_encode(
+			      	array(
+				      	'size' => $data['size'],
+				      	'color' => $data['color'],
+				      	'alias' => $data['alias']
+				      )
+			      )
+			    )
+				);
 
 				if (!empty($cart)) {
 					foreach($cart as $item) {

@@ -12,7 +12,7 @@
             <span class="text-muted">Busca en todo nuestro catálogo. Ej: malla, blusa, pantalon, saco, etc.</span>
           </p>
           <p class="animation-fadeIn slow">
-            <span class="text-muted">Si tenés dudas acerca de como comprar <a href="/ayuda/como_comprar">consultá nuestra sección ayuda</span>
+            <span class="text-muted">Si tenés dudas acerca de como comprar <a href="/ayuda/como_comprar">consultá nuestra sección ayuda</a></span>
           </p>
         </div>
       </div>
