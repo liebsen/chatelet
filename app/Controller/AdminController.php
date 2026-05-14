@@ -1341,7 +1341,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    }
 
 	    if(count($media)) {
-	    	$data['img_url'] = ';' . implode(";", $media);
+	    	$data['img_url'] = ';' . str_replace(' ', '',implode(";", $media));
 	    }
 
       $imgs = array_filter(explode(";",$data['img_popup_newsletter']));
@@ -1361,7 +1361,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    }
 
 	    if(count($media)) {
-	    	$data['img_popup_newsletter'] = ';' . str_replace(" ", "", implode(";", $media));
+	    	$data['img_popup_newsletter'] = ';' . str_replace(' ', '', implode(";", $media));
 	    }
     	if(empty($data['url_mod_one'])) {
     		$data['url_mod_one']=null;
@@ -1402,14 +1402,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	if(!isset($data['display_popup_form_in_last'])){
     		$data['display_popup_form_in_last'] = 0;
     	}
-    	
+
     	$this->Home->save($data);
 	    $this->Session->setFlash(
 	      'Módulo Presentación actualizado',
 	      'default',
 	      array('class' => 'hidden notice')
-	    );			
-
+	    );
 		}
 
 		$p = $this->Home->find('first');

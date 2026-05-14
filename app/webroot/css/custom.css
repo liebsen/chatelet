@@ -79,7 +79,11 @@ label input[type=checkbox]:disabled + .label-text:before {
 #carousel .carousel-caption p { color: #464444; font-size: 20px; line-height: 1.6; margin-bottom: 70px; }
 #carousel .carousel-caption a {border: 2px solid #f7f7f7;color: #f7f7f7; display: inline-block; font-size: 20px; padding: 15px 70px; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #carousel .carousel-caption a:hover { background: #363633; border-color: #363633; color: #FFF; }
-#carousel .carousel-inner .item { background-position: center top; background-size: cover; }
+#carousel .carousel-inner .item { 
+  background-position: center top; 
+  background-size: cover; 
+  height: calc(100dvh - 155px);
+}
 #carousel .carousel-control { 
   color: #e44522; 
   opacity: 1; 
@@ -2525,7 +2529,7 @@ span.count.is-empty {
 }
 
 @media screen and (min-width:769px), print {
-  .slider-full, .carousel-video {
+  #carousel .carousel-inner .item, .slider-full, .carousel-video {
     height: calc(100vh - 130px);
   }
   .w-mobile {
