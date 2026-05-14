@@ -398,8 +398,6 @@ class AppController extends Controller
       }
     }
 
-    \d('a(2)',$filepath);
-
     return $filepath;
   }
 
