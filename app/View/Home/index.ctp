@@ -1,8 +1,19 @@
 <?php echo $this->Session->flash() ?>
+<?php 
+
+$images   = array();
+$images_aux = explode(';', @$home['img_url']);
+foreach ($images_aux as $key => $value) {
+  if(!empty($value))
+    $images[] = $value;
+}
+?>
 <div class="wrapper content animation-fadeIn animation-both delay1">
+<?php if(!empty($images)):?>
   <div id="carousel" class="carousel slide animation-fadeIn delay" data-type="slider" data-interval="10000" data-ride="carousel">
     <?php echo $this->element('carousel') ?>
   </div>
+<?php endif ?>
   <section id="listShop">
     <?php echo $this->element('shop/list') ?>
   </section>
@@ -66,6 +77,8 @@ if(!empty($home['display_popup_form_in_last'])):?>
   $(document).ready(function() {
     if(document.querySelector("#myModal")) {
       checkModal()  
+    } else {
+      $('body, html').removeClass('noscroll')
     }
   })
 

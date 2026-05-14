@@ -1,12 +1,4 @@
-<?php 
 
-$images   = array();
-$images_aux = explode(';', @$home['img_url']);
-foreach ($images_aux as $key => $value) {
-  if(!empty($value))
-    $images[] = $value;
-}
-?>
 <div class="carousel-inner group-video" role="listbox">
 <?php foreach ($images as $key => $value): ?>
   <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>">
