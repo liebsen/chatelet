@@ -11,7 +11,9 @@ foreach ($images_aux as $key => $value) {
 <div class="wrapper content animation-fadeIn animation-both delay1">
 <?php if(!empty($images)):?>
   <div id="carousel" class="carousel slide animation-fadeIn delay" data-type="slider" data-interval="10000" data-ride="carousel">
-    <?php echo $this->element('carousel') ?>
+    <?php echo $this->element('carousel', array(
+      'images' => $images
+    ))?>
   </div>
 <?php endif ?>
   <section id="listShop">
