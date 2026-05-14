@@ -13,6 +13,7 @@
   </div>
 <?php endforeach ?>
 </div>
+<?php if(count($images) > 1):?>
 <ol class="carousel-indicators">
   <?php foreach ($images as $key => $value): ?>
     <li data-target="#carousel" data-slide-to="<?= $key ?>" class="<?= $key == 0 ? 'active' : '' ?>"></li>
@@ -27,7 +28,7 @@
   <span class="arrow arrow-right" aria-hidden="true"><i class="hi hi-chevron-right"></i></span>
   <span class="sr-only">Next</span>
 </a>
-
+<?php endif ?>
 <script>
 
   var images = ["<?=@implode('","',$images)?>"]
