@@ -42,12 +42,15 @@ if(!empty($home['display_popup_form_in_last'])):?>
     const today = new Date()
     var modalDate = today
     const dateStr = localStorage.getItem('modalDate')
+
     if (dateStr) {
       modalDate = new Date(dateStr)
     }
+
     const diffInMs = Math.abs(today - modalDate);
     const diffInMins = diffInMs / (1000 * 60);
     const diffInHours = diffInMs / (1000 * 60 * 60);
+
     setTimeout(function () {
       if(
         (diffInMins > 15 || !dateStr) && 
@@ -61,7 +64,9 @@ if(!empty($home['display_popup_form_in_last'])):?>
     }, 10)
   }
   $(document).ready(function() {
-    checkModal()  
+    if(document.querySelector("#myModal")) {
+      checkModal()  
+    }
   })
 
 </script>
