@@ -9,34 +9,34 @@
 #growls.default {
   background-color: transparent;
   top: 0.5rem;
-  right: 0.5rem;
+  right: 0.75rem;
   min-width: calc(100vw - 2rem); 
 }
 #growls.tl {
-  top: 0.5rem;
-  left: 0.5rem; 
+  top: 0.75rem;
+  left: 0.75rem; 
 }
 #growls.tr {
-  top: 0.5rem;
-  right: 0.5rem; 
+  top: 0.75rem;
+  right: 0.75rem; 
 }
 #growls.bl {
   bottom: 0.25rem;
-  left: 0.5rem; 
+  left: 0.75rem; 
 }
 #growls.br {
   bottom: 0.5rem;
-  right: 0.5rem; 
+  right: 0.75rem; 
 }
 #growls.tc {
   top: 0.5rem;
-  right: 0.5rem;
-  left: 0.5rem; 
+  right: 0.75rem;
+  left: 0.75rem; 
 }
 #growls.bc {
   bottom: 0.5rem;
-  right: 0.5rem;
-  left: 0.5rem; 
+  right: 0.75rem;
+  left: 0.75rem; 
 }
 #growls.tc .growl, #growls.bc .growl {
   margin-left: auto;
@@ -52,8 +52,6 @@
   top: 0;
   border-radius: 5px;
   border: 1px solid #c5c5c5;
-  /*box-shadow: 2px 2px 0 #6661;*/
-  /*box-shadow: 1px 1px 5px 0 rgba(26, 26, 67, .05), 39px 62.5px 125px -25px rgba(50, 50, 93, .2), 23.4px 37.5px 75px -37.5px rgba(0, 0, 0, .4);*/
   transition: all 1s ease-in-out; 
 }
 .growl.growl-incoming {

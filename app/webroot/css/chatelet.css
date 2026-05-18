@@ -1547,12 +1547,13 @@ select.form-control{
   border-radius: 5px;
 	min-height: 1.5rem;	
 }
+
 .btn-chatelet {
 	color: black;
-	font-weight: 500;
+	font-weight: 1000;
 	border-color: #999;
 	background-color: white;
-	box-shadow: 0 0 5px #333;
+	box-shadow: 0 0 5px rgba(50,50,50,0.2);
 }
 
 .btn-chatelet.dark {
