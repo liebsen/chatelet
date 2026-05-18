@@ -242,10 +242,10 @@ if (!$loggedIn) {
 						</div>
 				<?php endif ?>
 						<div class="col-md-12">
-							<label class="text-white">Deseo suscribirme al Newsletter</label>
-							<div class="form-group">
+							<div class="controls flex-1">
+								<label class="control-label text-white" for="toggle">Deseo suscribirme al Newsletter</label>
 								<input type="checkbox" name="data[User][newsletter]" value="1" id="toggle" class="toggle-checkbox"<?= $userData['newsletter'] || empty($userData['newsletter']) == '1' ? ' checked' : '' ?>>
-								<label class="text-white" for="toggle" class="toggle-label"></label>
+								<label for="toggle" class="toggle-label"></label>
 								<?php
 									/*$subscribed = $unsubscribed = '';
 									if ($userData['newsletter'] == '1') $subscribed = 'checked';
