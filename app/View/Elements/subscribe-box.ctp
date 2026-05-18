@@ -57,7 +57,7 @@
     </div>
   </section>
   
-  <div class="subscribe-btn is-clickable d-none" title="Estemos conectadas"><i class="fa fa-envelope-o fa-lg animation-floating animation-both m-auto"></i></div>
+  <div class="btn-subscribe is-clickable d-none" title="Estemos conectadas"><i class="fa fa-envelope-o fa-lg animation-floating animation-both m-auto"></i></div>
   <style>
     .subscribe-box { 
       position: fixed;
@@ -101,7 +101,7 @@
       }
     }
 
-    .subscribe-btn {
+    .btn-subscribe {
       animation-name: fadeIn;
       animation-fill-mode: both;
       animation-delay: 5s;      
@@ -126,7 +126,7 @@
   <script type="text/javascript">
 
     function subscribe_retry(){
-      $('.subscribe-success,.subscribe-error,.subscribe-btn').addClass('d-none')
+      $('.subscribe-success,.subscribe-error,.btn-subscribe').addClass('d-none')
       $('.subscribe-box form .form-control').val('')
       setTimeout(function(){
         $('.subscribe-box').removeClass('d-none')
@@ -141,25 +141,28 @@
       if(!subscription_release || subscription_release == 'undefined') {
         $('.subscribe-box').removeClass('d-none')
       } else {
-        $('.subscribe-btn').removeClass('d-none')
+        $('.btn-subscribe').removeClass('d-none')
       }
 
       $('.subscribe-dismiss').on('click', function(e) {
         e.preventDefault()
         localStorage.subscription_release = 1
-        $('.subscribe-btn').removeClass('d-none')
+        $('.btn-subscribe').removeClass('d-none')
       })
 
       $('.corner-pin').on('click', function(e) {
         e.preventDefault()
         $('.subscribe-box').removeClass('delay3')
         $('.subscribe-box').fadeOut(500)
-        $('.subscribe-btn').removeClass('d-none')
+        $('.btn-subscribe').removeClass('d-none')
       })
 
-      $('.subscribe-btn').on('click', function(e) {
+      $('.btn-subscribe').on('click', function(e) {
         e.preventDefault()
-        subscribe_retry()        
+        subscribe_retry()
+        setTimeout(() => {
+          $('input[name="data[Subscription][full_name]"]').focus()
+        }, 500)
       })
 
       $('.form-subscription').on('submit', function(event) {
