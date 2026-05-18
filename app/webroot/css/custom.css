@@ -446,6 +446,10 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
     top: 3px;
   }
 
+  #carousel {
+    height: calc(100dvh - 130px);
+  }
+
   .navbar-nav.navbar-right > li > a {
     background-size: 50px;
     background-position: center;
