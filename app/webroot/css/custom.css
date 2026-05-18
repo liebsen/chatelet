@@ -326,6 +326,8 @@ label input[type=checkbox]:disabled + .label-text:before {
   top: -1px !important;
 }
 
+
+
 .navbar-chatelet {
   display: flex;
   justify-content: space-between;
@@ -339,7 +341,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   position: relative; 
   transition: none!important;
   z-index: 10;
-  border-bottom: 2px solid #e7e7e7;
+  box-shadow: var(--box-shadow);
   transition: background 0.25s ease-in-out;
 }
 
@@ -349,7 +351,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .navbar-brand { 
   position: relative;
-  top: 2px;
+  top: 1px;
   background-image: url(../images/logo.png); 
   background-repeat: no-repeat;
   background-size: contain;
@@ -1106,15 +1108,6 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 #detalle li { overflow: hidden; text-align: right; margin-bottom: 1.5rem;}
 #detalle li a { display: inline-block; overflow: hidden; }
 #detalle li a img { float: left; max-height: 10rem; /*border-radius: 0.5rem;*/}
-#detalle h1 { 
-  font-size: 1.5rem; 
-}
-#detalle h2 { 
-  font-size: 1.25rem; 
-}
-#detalle h3 {    
-}
-
 #detalle > p {  font-weight: 600; margin-bottom: 20px; }
 #detalle .price {
   color: #363633;
@@ -2026,7 +2019,7 @@ span.out{
 
 .text-sm {
   font-size: 0.75rem!important;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.25;
   display: inline-block;
 }

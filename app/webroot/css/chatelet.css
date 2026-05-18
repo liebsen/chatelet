@@ -1,3 +1,7 @@
+:root {
+  --box-shadow: rgba(40, 40, 40, 0.15) 0 0 8px;
+}
+
 /* Base color: #e10c76 */
 
 body.loading {
@@ -61,7 +65,6 @@ html, body {
 
 .is-bordered {
 	border: 2px solid #f2f2f2;
-	border-radius: 0.75rem;
 }
 
 .is-unlifted {
@@ -809,10 +812,10 @@ html, body {
 .btn {
 	text-transform: uppercase;
 	height: 50px;
-	line-height: 2.7;
-	font-weight: 300;
+	line-height: 3;
 	border-radius: 5px;
-	font-size: 0.85rem;
+	font-size: 0.75rem;
+	font-weight: 1000;
 	transition: all 200ms ease-in-out;
 }
 
@@ -1440,12 +1443,14 @@ select.form-control{
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
+  border-radius: 0.75rem;
 }
 
 .card-body {
   /*flex: 1 1 auto;*/
   background-color: #f8f8f8;
   padding: 1rem;
+  border-radius: 0.75rem;
 }
 
 .card.is-rounded .card-body {
@@ -1547,6 +1552,7 @@ select.form-control{
 	font-weight: 500;
 	border-color: #999;
 	background-color: white;
+	box-shadow: 0 0 5px #333;
 }
 
 .btn-chatelet.dark {
@@ -1829,6 +1835,10 @@ span.validation-password {
   }
 	.p-md-5 {
 		padding: 1.5rem!important;
+	}
+
+	.container-flex {
+		padding: 1rem;
 	}
   .box {
 		animation: 0.5s rotate3D 1s ease-in-out;

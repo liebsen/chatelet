@@ -53,6 +53,7 @@ echo $this->Html->css('checkout.css?v=' . $version['ver'], array('inline' => fal
 			</div>
 		</div>
 	</div>
+<?php echo $this->element('checkout-footer') ?>	
 </section>
 
 <script type="text/javascript">

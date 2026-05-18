@@ -13,7 +13,7 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 echo $this->Html->script('particular-validation', array('inline' => false));
 ?>
 <section id="detalle" class="is-flex-center min-h-101">
-  <div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 m-auto max-30">
+  <div class="wrapper container-flex d-flex flex-column justify-content-center align-items-center m-auto max-30">
 		<h2>
 			<?php echo 'Inicia sesión para continuar'; ?>
 		</h2>			

@@ -36,7 +36,7 @@ if (!$loggedIn) {
 }
 ?>
 <section id="detalle" class="is-flex-center flex-column min-h-101">
-  	<div class="wrapper container d-flex flex-column justify-content-center align-items-center gap-1 m-auto">
+  	<div class="wrapper container-flex d-flex flex-column justify-content-center align-items-center m-auto">
 		<div class="flex-row animation-fadeIn">
 			<div class="flex-col">
 				<?php 
@@ -260,7 +260,7 @@ if (!$loggedIn) {
 					</div>
 				</div>
 				<hr>
-				<div class="row is-flex-center">
+				<div class="row is-flex-center pl-4 pr-4">
 					<div class="col-md-6">
 						<span class="text-sm">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos" class="text-muted"> Términos y Condiciones</a>
 						</span>
@@ -274,7 +274,7 @@ if (!$loggedIn) {
 			<div class="flex-col desktop">
 				<div class="card is-rounded bg-salmon">
 					<div class="card-body bg-transparent">
-						<blockquote>
+						<blockquote class="m-0">
 							<h3 class="mt-0"><i class="gi gi-magic"></i>
 								<?php if ($loggedIn) : ?>
 									Tus datos en Châtelet

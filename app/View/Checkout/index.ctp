@@ -93,6 +93,7 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 		</div>
 	</div>
 	<?php endif ?>
+	<?php echo $this->element('checkout-footer') ?>
 </section>
 
 <script type="text/javascript">
