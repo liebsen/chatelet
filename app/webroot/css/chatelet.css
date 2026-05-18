@@ -532,7 +532,7 @@ html, body {
   min-height: calc(100dvh - 150px);
 }
 .min-h-101 {
-  min-height: calc(100dvh - 96px);
+  min-height: calc(100dvh - 95px);
 }
 .max-20 {
 	max-width: 20rem;
@@ -1551,8 +1551,8 @@ select.form-control{
 .btn-chatelet {
 	color: black;
 	font-weight: 1000;
-	border-color: #999;
-	background-color: white;
+	border-color: #c5c5c5;
+	background-color: #c5c5c5;
 	box-shadow: 0 0 5px rgba(50,50,50,0.2);
 }
 
