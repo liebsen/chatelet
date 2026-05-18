@@ -919,9 +919,9 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 .text-catalog {
-  text-shadow: 1px 1px 0 #555;
-  font-size: 1.75rem;
-  font-weight: 300;
+  text-shadow: 1px 1px 1px #333,-1px -1px 1px #333;
+  font-size: 1.8rem;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: -0.03rem;
   color: white;
