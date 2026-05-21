@@ -68,12 +68,12 @@
 								<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
 							</span>
 							<?php endif ?>
-							<span class="badge badge-danger is-rounded" title="Lecturas">
+							<span class="badge badge-info is-rounded" title="Lecturas">
 								<i class="gi gi-eye_open"></i>
 								<span class="reads"><?=$schedule['stats']['reads']?></span>
 							</span>
 							<span class="badge badge-danger is-rounded" title="Interacciones">
-								<i class="gi gi-fire"></i>
+								<i class="fa fa-mouse-pointer"></i>
 								<span class="clicks"><?=$schedule['stats']['clicks']?></span>
 							</span>
 						</div>
@@ -237,12 +237,12 @@
 								<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
 							</span>
 							<?php endif ?>
-							<span class="badge badge-danger is-rounded" title="Leído">
+							<span class="badge badge-info is-rounded" title="Leído">
 								<i class="gi gi-eye_open"></i>
 								<span class="reads"><?=$schedule['stats']['reads']?></span>
 							</span>
 							<span class="badge badge-danger is-rounded" title="Interacciones">
-								<i class="gi gi-fire"></i>
+								<i class="fa fa-mouse-pointer"></i>
 								<span class="clicks"><?=$schedule['stats']['clicks']?></span>
 							</span>
 						</div>
