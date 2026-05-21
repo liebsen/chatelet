@@ -2384,7 +2384,9 @@ small, .small {
   min-width: 1rem;
   text-align: center;
   margin: auto;
+  line-height: 0;
 }
+
 .badge.is-large {
   font-size: 18px;
   line-height: 1.85;
