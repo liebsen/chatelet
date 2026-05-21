@@ -58,5 +58,5 @@
 	<small><?=$newsletter_text?></small>
 <?php endif?>
 <?php if(!empty($data['NewsletterScheduleItem']['id'])):?>
-<?php echo $this->html->image("{$site_url}/newsletter/markread/{$data['NewsletterScheduleItem']['id']}", ['width' => '1px']);?>
+<?php echo $this->html->image("{$site_url}/newsletter/markread/{$data['NewsletterScheduleItem']['id']}?t=".time(), ['width' => '1px']);?>
 <?php endif ?>
