@@ -367,7 +367,7 @@ class NewsletterShell extends AppShell {
       $payload['image'] = $image;
     }
 
-    \d("payload",$payload);
+    #\d("payload",$payload);
 
     $push = array(
       'subscription' => Subscription::create( 
