@@ -323,7 +323,7 @@ class ShopController extends AppController {
       ))
     ));
 
-		if ($this->settings['env_staging']) {
+		if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 			return 1;
 		}
 

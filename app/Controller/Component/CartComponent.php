@@ -369,7 +369,7 @@ class CartComponent extends Component {
     $this->controller->Session->write('cp', $cp);
     $cart_totals = $this->controller->Session->read('cart_totals') ?? [];
     $fake_enabled = false;
-    if ($fake_enabled && $this->controller->settings['env_staging']) {
+    if ($fake_enabled && $_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
       return json_encode(json_decode('{"freeShipping":false,"rates":[{"title":"Oca","code":"oca","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/628eb1ba29efd.svg","info":"Env\u00edos a todo el pa\u00eds","price":987,"centros":[],"valid":true},{"title":"Speed Moto","image":"https:\/\/test.chatelet.com.ar\/files\/uploads\/6292a6f2d79b7.jpg","code":"speedmoto","info":"10 a\u00f1os brindando confianza a nuestros clientes","price":"700.00","centros":[],"valid":true}],"itemsData":{"count":1,"price":1994.99,"package":{"id":"2","amount_min":"1","amount_max":"5","weight":"1000","height":"9","width":"24","depth":"20","created":"2014-11-20 10:25:48","modified":"2014-11-20 10:25:48"},"weight":1,"volume":0.00432}}'));
     }
 
