@@ -33,7 +33,6 @@
 	Router::connect('/newsletter/schedule/:id', array('controller' => 'newsletter', 'action' => 'schedule'));
 	Router::connect('/newsletter/:id', array('controller' => 'newsletter', 'action' => 'schedule'));
 	Router::connect('/admin/newsletters/*', array('controller' => 'admin', 'action' => 'newsletters'));
-
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

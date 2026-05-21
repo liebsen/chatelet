@@ -7,18 +7,18 @@ let growlTimeout = 15000
 const log = false
 
 function insertAtCursor(el, text) {
-    const start = el.selectionStart;
-    const end = el.selectionEnd;
-    const originalValue = el.value;
+  const start = el.selectionStart;
+  const end = el.selectionEnd;
+  const originalValue = el.value;
 
-    // Splice the string: [Text Before] + [New Text] + [Text After]
-    el.value = originalValue.substring(0, start) + text + originalValue.substring(end);
+  // Splice the string: [Text Before] + [New Text] + [Text After]
+  el.value = originalValue.substring(0, start) + text + originalValue.substring(end);
 
-    // Reposition cursor after the new text
-    el.selectionStart = el.selectionEnd = start + text.length;
+  // Reposition cursor after the new text
+  el.selectionStart = el.selectionEnd = start + text.length;
 
-    // Restore focus
-    el.focus();
+  // Restore focus
+  el.focus();
 }
 
 function show_done(){
@@ -29,22 +29,22 @@ function show_done(){
 }
 
 function slugify(input) {
-    if (!input)
-        return '';
+  if (!input)
+      return '';
 
-    // make lower case and trim
-    var slug = input.toLowerCase().trim();
+  // make lower case and trim
+  var slug = input.toLowerCase().trim();
 
-    // remove accents from charaters
-    slug = slug.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  // remove accents from charaters
+  slug = slug.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 
-    // replace invalid chars with spaces
-    slug = slug.replace(/[^a-z0-9\s-]/g, ' ').trim();
+  // replace invalid chars with spaces
+  slug = slug.replace(/[^a-z0-9\s-]/g, ' ').trim();
 
-    // replace multiple spaces or hyphens with a single hyphen
-    slug = slug.replace(/[\s-]+/g, '-');
+  // replace multiple spaces or hyphens with a single hyphen
+  slug = slug.replace(/[\s-]+/g, '-');
 
-    return slug;
+  return slug;
 }
 
 function layerShow (layer) {

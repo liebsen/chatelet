@@ -31,6 +31,21 @@ class NewsletterController extends AppController {
   	$this->layout = 'Emails/html/default';
 	}
 
+	public function markread($id) {
+		$this->NewsletterScheduleItem->updateAll(
+			array(
+				'NewsletterScheduleItem.reads' => 'NewsletterScheduleItem.reads + 1'
+			),
+			array(
+				'NewsletterScheduleItem.id' => $id
+			)
+		);
+
+		$this->autoRender = false;
+    //$this->RequestHandler->respondAs('image/png');
+    //readfile(__DIR__ .'/images/logo-email.png');
+	}
+
 	public function schedule() {
 		$this->autoRender = false;
 
@@ -125,7 +140,7 @@ class NewsletterController extends AppController {
 
 	      $location = '/carrito?restore_origin=newsletter&restore_date=' . $restore_date;
 
-	      \d("newsletter(location)", $location);
+	      #\d("newsletter(location)", $location);
 
 	    	header('Location: ' . $location);
 	    	return false;

@@ -34,6 +34,8 @@ class NewsletterShell extends AppShell {
   }  
 
   public function main() {
+    echo "\nStarting process: " . implode(':',array($hour,$min)) . "\n";
+
     $this->settings = $this->loadSettings();
 
     if($this->settings['newsletter_enabled'] != '1') {
@@ -54,7 +56,6 @@ class NewsletterShell extends AppShell {
     $this->showmail = in_array("showmail=1", $this->args);
     $this->update = in_array("update=1", $this->args);
 
-    #echo "\nStarting process: " . implode(':',array($hour,$min)) . "\n";
     // FIND QUOTA
     $quota = $this->NewsletterScheduleItem->find('count', array(
       'conditions' => array(

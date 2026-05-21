@@ -316,6 +316,7 @@ class NewsletterComponent extends Component {
         $push_sent = 0;
         $email_sent = 0;
         $clicks = 0;
+        $reads = 0;
 
         $users = $NewsletterScheduleItem->find('all', array(
           'joins' => array(
@@ -338,6 +339,7 @@ class NewsletterComponent extends Component {
           $email_total+= 1;
           $push_total+= 1;
           $clicks+= $user['NewsletterScheduleItem']['clicks'];
+          $reads+= $user['NewsletterScheduleItem']['reads'];
           if($user['NewsletterScheduleItem']['status'] === 'sent') {
             $email_sent+= $user['NewsletterScheduleItem']['email_sent'];
             $push_sent+= $user['NewsletterScheduleItem']['push_sent'];
@@ -384,6 +386,7 @@ class NewsletterComponent extends Component {
           'email_total' => $email_total,
           'push_total' => $push_total,
           'clicks' => $clicks,
+          'reads' => $reads,
         );
 
         $schedules[$i]['status'] = $status;

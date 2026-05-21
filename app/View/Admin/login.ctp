@@ -95,8 +95,8 @@ echo $this->Session->flash();
                         </a>
                     </li>
                 </ul-->
-                <h3 class="text-center mt-0">ADMINISTRADOR</h3>
-                <p class="notification text-theme">Ingresa tus credenciales para continuar</p>
+                <h3 class="text-center text-white mt-0">ADMINISTRADOR</h3>
+                <p class="notification text-white">Ingresa tus credenciales para continuar</p>
                 <div class="tab-content is-rounded bg-translucid">
                     <div class="tab-pane pane-index active" id="login-form-tab">
                         <!-- Login Form -->

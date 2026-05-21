@@ -36,7 +36,7 @@
       <tr>
         <td align="center"><?php echo $this->fetch('content'); ?></td>
       </tr>
-      <?php if(isset($socials) && count(@$socials)): ?>
+      <?php if(!empty($socials) && count(@$socials)): ?>
       <tr>
         <td align="center" style="padding: 20px; color: #888888">
           <div style="margin-bottom: 20px;">

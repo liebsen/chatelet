@@ -23,7 +23,6 @@ class ApiController extends AppController {
 		return json_encode($stores);
 	}
 
-	//get , http://www.chatelet.com.ar/api/subscriptions
   public function subscribe(){
     $this->autoRender = false;
     $this->RequestHandler->respondAs('application/json');
