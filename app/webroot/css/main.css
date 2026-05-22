@@ -538,11 +538,11 @@ background-color: #e8ffa8!important;
   top: 0.25rem;
 }
 #primary-nav a > i {
-  width: 2rem;
+  width: 20px;
   /*font-size: 2rem;*/
-  font-size: 20px;
+  font-size: 14px;
   text-align: center;
-  line-height: 1.85;
+  line-height: 1.5;
   /* display: inline-block;
   margin: -3px 10px 0 0;*/
 }
@@ -808,7 +808,7 @@ background-color: #e8ffa8!important;
 .block-tabs > .nav-tabs > li > a {
   display: flex;
   justify-content: center;
-  align-items: flex-end;  
+  align-items: center;  
   padding: 0.5rem 0.75rem;
   margin: 0 0.25rem;    
   border-bottom-left-radius: 0!important;
@@ -816,7 +816,6 @@ background-color: #e8ffa8!important;
   border-color: #e1e1e1;
   text-transform: uppercase;
   font-size: 1rem;
-  line-height: 1;
   color: #888;
   border-bottom: none;
 }
@@ -2244,11 +2243,11 @@ pre, code {
 }
 
 .list-group-hero > a > li > h1 {
-  font-size: 3rem;
+  font-size: 20px;
 }
 
 .list-group-hero > a  > li > h5 {
-  font-size: 1rem;
+  font-size: 13px;
 }
 
 .list-unstyled {
@@ -2754,14 +2753,12 @@ header.navbar .navbar-brand {
 /* Nav Pills and Tabs */
 .navbar-nav-custom > li > a > i,
 .nav > li > a > i {
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   opacity: 0.75;
   margin-top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  top: 2px;
 }
 
 .nav-pills > li > a,
@@ -2840,8 +2837,8 @@ header.navbar .navbar-brand {
 .rounded-icon {
   background-color: rgba(60,60,60,0.1);
   border: 1px solid rgba(200,200,200,0.25);
-  width: 36px!important;
-  height: 36px!important;
+  width: 20px!important;
+  height: 20px!important;
   border-radius: 100%;
 }
 /* Panel */
@@ -3301,7 +3298,7 @@ background-color: #45a049; /* Darker green on hover */
   position: absolute;
   z-index: 9;
   right: 1rem;
-  top: 0.75rem;
+  top: 1rem;
   color: #888;
 }
 

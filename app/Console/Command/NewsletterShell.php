@@ -34,15 +34,19 @@ class NewsletterShell extends AppShell {
   }  
 
   public function main() {
-    echo "\nStarting process: " . implode(':',array($hour,$min)) . "\n";
 
     $this->settings = $this->loadSettings();
 
     if($this->settings['newsletter_enabled'] != '1') {
-      echo "[warn] Newsletter is disabled";
       return false;
     }
 
+    $this->simulate = in_array("simulate=1", $this->args);
+    $this->showmail = in_array("showmail=1", $this->args);
+    $this->update = in_array("update=1", $this->args);
+
+    $perminute = !empty($this->settings['newsletter_perminute']) ? (int) $this->settings['newsletter_perminute'] : $this->perminute;
+    $perday = !empty($this->settings['newsletter_perday']) ? (int) $this->settings['newsletter_perday'] : $this->perday;
     $date = date('Y-m-d');
     $hour = date('H'); 
     $min = date('i'); 
@@ -50,11 +54,8 @@ class NewsletterShell extends AppShell {
     $push_sent = 0;
     $items_sent = 0;
     $limit = 0;
-    $perminute = $this->settings['newsletter_perminute'] ?? $this->perminute;
-    $perday = $this->settings['newsletter_perday'] ?? $this->perday;
-    $this->simulate = in_array("simulate=1", $this->args);
-    $this->showmail = in_array("showmail=1", $this->args);
-    $this->update = in_array("update=1", $this->args);
+
+    echo "\nStarting: " . $date . " " . implode(':',array($hour,$min)) . "\n";
 
     // FIND QUOTA
     $quota = $this->NewsletterScheduleItem->find('count', array(
@@ -64,9 +65,21 @@ class NewsletterShell extends AppShell {
       )
     ));
 
+    print_r(
+      json_encode(
+        array(
+          'newsletter_cron_check' => array(
+            'quota' => $quota,
+            'perday' => $perday,
+            'perminute' => $perminute,
+          )
+        )
+      )
+    );
+
     if($quota >= $perday) {
       #throw new Exception("Daily limit reached", 1);
-      echo "[warn] Daily limit reached";
+      echo "\n[fail] Daily limit reached";
       return false;      
     }
 
@@ -293,7 +306,7 @@ class NewsletterShell extends AppShell {
         }
 
         if(empty($pushes)) {
-          echo "[push] unsubscribed" . "\n";
+          echo "\n[push] unsubscribed";
         }
       }
 
@@ -311,9 +324,6 @@ class NewsletterShell extends AppShell {
                   implode(':',array($hour,$min))
                 )
               ),
-              'quota' => $quota,
-              'perminute' => $perminute,
-              'perday' => $perday,
               'email_sent' => $email_sent,
               'push_sent' => $push_sent,
               'items_sent' => $items_sent,
@@ -327,7 +337,7 @@ class NewsletterShell extends AppShell {
 
   public function sendPush($data, $push) {
     if($this->simulate) {
-      echo "[push] " . $data['Newsletter']['title'] . '(' .$data['Newsletter']['message'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
+      echo "\n[push] " . $data['Newsletter']['title'] . '(' .$data['Newsletter']['message'] .'-'.$data['NewsletterList']['name'] .')';
       return array(
         'sent' => $this->update,
         'response' => array()
@@ -454,7 +464,7 @@ class NewsletterShell extends AppShell {
         ->viewVars($viewVars)
         ->send(null, true);
 
-      echo "[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')'. "\n";
+      echo "\n[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')';
 
       if($this->showmail) {
         var_dump($message);

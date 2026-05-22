@@ -103,6 +103,8 @@
     <!--button class="btn btn-reset-ask btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-repeat"></i> <span class="ml-1">Reenviar</span></button-->
 <?php if(empty($schedule['NewsletterSchedule']['id'])):?>
     <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
+<?php else: ?>
+  <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Actualizar</span></button>
 <?php endif ?>
   </div>
 <?php echo $this->Form->end(); ?>
