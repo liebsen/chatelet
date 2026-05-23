@@ -3745,8 +3745,9 @@ transition: all 0.25s ease;
 }
 
 .section-indicator > a > i {
-  top: -1px!important;
   min-width: 1.5rem;
+  font-size: 1.5rem!important;
+  padding-right: 0.5rem;
 }
 
 /* Mobile up to landscape tablet */
