@@ -86,18 +86,18 @@
 		          <small class="text-muted">Indica el texto que se enviará al pie con cada Newsletter. Puede ser un aviso legal o cualquier cosa que se te ocurra. Asegurate de activarlo para que se envíe correctamente.</small>
 		        </div>
 		        <div class="control-group">
-		          <label class="control-label" for="columns-text"><?php echo __('Campañas por hora'); ?></label>
+		          <label class="control-label" for="columns-text"><?php echo __('Límite horario'); ?></label>
 		          <div class="controls">
 		            <input type="number" max="100" min="0" name="data[newsletter_perminute]" class="form-control" placeholder="20" value="<?= @$settings['newsletter_perminute'] ?? 20 ?>"/>
 		          </div>
-		          <small class="text-muted">Cantidad máxima de campañas por minuto.</small>
+		          <small class="text-muted">Máximo de envíos por minuto.</small>
 		        </div>
 		        <div class="control-group">
-		          <label class="control-label" for="columns-text"><?php echo __('Campañas por día'); ?></label>
+		          <label class="control-label" for="columns-text"><?php echo __('Límite diario'); ?></label>
 		          <div class="controls">
-		            <input type="number" max="5000" min="0" name="data[newsletter_perday]" class="form-control" placeholder="500" value="<?= @$settings['newsletter_perday'] ?? 500 ?>"/>
+		            <input type="number" max="5000" min="0" name="data[newsletter_perday]" class="form-control" placeholder="499" value="<?= @$settings['newsletter_perday'] ?? 499 ?>"/>
 		          </div>
-		          <small class="text-muted">Cantidad máxima de campañas por día.</small>
+		          <small class="text-muted">Máximo de envíos por día. Si el límite diario de tu proveedor es de 500 entonces ingresa 499</small>
 		        </div>
 		      </div>
 				</div>

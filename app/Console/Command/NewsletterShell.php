@@ -25,7 +25,7 @@ class NewsletterShell extends AppShell {
   );
 
   private $settings = [];
-  private $perday = 500;
+  private $perday = 499; // free accounts usually have 500 daily limit
   private $perminute = 20;
   private $simulate = 0;
 

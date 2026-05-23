@@ -113,11 +113,11 @@
 	<div class="form-actions">
 <?php if(empty($this->params->query['extended'])): ?>
 	<a href="/admin/newsletters/schedules?extended=1">
-    <button class="btn" type="button"><i class="fa fa-eye"></i> <span>Ver todo</span></button>
+    <button class="btn" type="button"><i class="gi gi-inbox_plus"></i> <span>Ver todo</span></button>
   </a>
 <?php else: ?>
 	<a href="/admin/newsletters/schedules">
-    <button class="btn" type="button"><i class="fa fa-eye-slash"></i> <span>Ver menos</span></button>
+    <button class="btn" type="button"><i class="gi gi-inbox_minus"></i> <span>Ver menos</span></button>
   </a>
 <?php endif ?>
   <a class="btn btn-success dropdown-toggle" href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit'))?>">

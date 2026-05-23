@@ -64,16 +64,16 @@
 							<?php endif ?>
 							<?php if($schedule['Newsletter']['send_push'] == '1'):?>
 							<span class="badge badge-warning is-rounded" title="Push enviados">
-								<i class="gi gi-chat"></i>
+								<i class="gi gi-iphone_shake"></i>
 								<span class="push_sent"><?=$schedule['stats']['push_sent']?></span> / <span class="push_total"><?=$schedule['stats']['push_total']?></span>
 							</span>
 							<?php endif ?>
 							<span class="badge badge-info is-rounded" title="Lecturas">
-								<i class="gi gi-eye_open"></i>
+								<i class="fa fa-eye"></i>
 								<span class="reads"><?=$schedule['stats']['reads']?></span>
 							</span>
 							<span class="badge badge-danger is-rounded" title="Interacciones">
-								<i class="fa fa-mouse-pointer"></i>
+								<i class="fa fa-hand-o-up"></i>
 								<span class="clicks"><?=$schedule['stats']['clicks']?></span>
 							</span>
 						</div>
@@ -238,11 +238,11 @@
 							</span>
 							<?php endif ?>
 							<span class="badge badge-info is-rounded" title="Leído">
-								<i class="gi gi-eye_open"></i>
+								<i class="fa fa-eye"></i>
 								<span class="reads"><?=$schedule['stats']['reads']?></span>
 							</span>
 							<span class="badge badge-danger is-rounded" title="Interacciones">
-								<i class="fa fa-mouse-pointer"></i>
+								<i class="fa fa-hand-o-up"></i>
 								<span class="clicks"><?=$schedule['stats']['clicks']?></span>
 							</span>
 						</div>
@@ -311,14 +311,14 @@
 	<?php if(empty($this->params->query['extended'])): ?>
 		<a href="/admin/newsletters/schedules?extended=1">
 	    <button class="btn" type="button">
-	    	<i class="fa fa-eye"></i> 
+	    	<i class="gi gi-inbox_plus"></i> 
 	    	<span class="ml-1">Ver todo</span>
 	    </button>
 	  </a>
 	<?php else: ?>
 		<a href="/admin/newsletters/schedules">
 	    <button class="btn" type="button">
-	    	<i class="fa fa-eye-slash"></i> 
+	    	<i class="gi gi-inbox_minus"></i> 
 	    	<span class="ml-1">Ver menos</span>
 	    </button>
 	  </a>

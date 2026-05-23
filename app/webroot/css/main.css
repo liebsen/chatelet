@@ -2774,6 +2774,7 @@ header.navbar .navbar-brand {
 .nav-tabs > li.active > a:hover, 
 .nav-tabs > li.active > a:focus {
   background-color: #2196f3;
+  border-color: #2196f3;
   color: white;
   border-bottom: none;
 }
