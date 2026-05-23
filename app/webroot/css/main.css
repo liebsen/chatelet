@@ -2645,6 +2645,8 @@ header.navbar.navbar-fixed-bottom .dropdown-menu {
 
 .navbar .navbar-right {
   float: right!important;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-nav > li {
@@ -2787,6 +2789,7 @@ header.navbar .navbar-brand {
 
 #toggle-side-content > i {
   margin: 0 0.75rem;
+  font-size: 1.5rem;
 }
 
 .tab-content {
@@ -2953,7 +2956,7 @@ background-color: #fff;
   border-radius: 0.5rem;
   min-width: 6rem;
   aspect-ratio: 2/3;
-  background-color: #e7e7e7;
+  background-color: #c5c5c5;
   filter: contrast(110%) brightness(110%);
   background-repeat: no-repeat;
   background-position: center center;
@@ -3790,9 +3793,6 @@ transition: all 0.25s ease;
       display: block !important;
       height: auto !important;
   }    
-  .section-indicator {
-      display: none!important;
-  }
   #login-container {
       padding: 205px 0 10px 0;
   }
