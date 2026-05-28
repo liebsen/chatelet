@@ -77,6 +77,9 @@ class NewsletterShell extends AppShell {
       )
     );
 
+    // ensure daily limits to avoid penalizations
+    $perday--; 
+
     if($quota >= $perday) {
       #throw new Exception("Daily limit reached", 1);
       echo "\n[fail] Daily limit reached";

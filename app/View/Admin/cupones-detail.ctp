@@ -4,7 +4,7 @@
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('relations.js?v=' . $version['ver'], array('inline' => false));
   echo $this->Html->script('cupones-detail', array('inline' => false));
-  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); 
+  #echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); 
   $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
 ?>
 <?php echo $this->element('admin/menu');?>
@@ -103,7 +103,6 @@
                 <h4 class="sub-header">Condiciones</h4>
                 <br />
                 <div class="control-group">
-                  <!--input type="hidden" id="coupon_payment" name="data[coupon_payment][]" value="<?= isset($coupon) ? $coupon['Coupon']['coupon_payment'] : '' ?>" /-->
                   <label class="control-label" for="columns-text"><?php echo __('Pagando con'); ?></label>
                   <div class="controls text-center switch-scale">
                     <?php $selected = isset($coupon) && $coupon['Coupon']['coupon_payment'] ? $coupon['Coupon']['coupon_payment'] : '';?>

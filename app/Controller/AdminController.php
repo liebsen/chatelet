@@ -2965,20 +2965,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
   	switch ($action) {
     	case 'add':
   	    if ($this->request->is('POST')){
-	        $this->autoRender = false;
-	        $this->RequestHandler->respondAs('application/json');
 	        $this->request->data['coupon_payment'] = implode(",",$this->request->data['coupon_payment']);
 	        $this->request->data['min_amount'] = $this->request->data['min_amount']?: 0;
 	        $this->Coupon->save($this->request->data);
-			    return json_encode(
-			    	array(
-			    		'success' => true,
-			    		'message' => "OK",
-			    		'redirect' => '/admin/cupones'
-			    	)
-			    );
 
-	        //return $this->redirect(array('action'=>'cupones'));
+	        return $this->redirect(array('action'=>'cupones'));
   			} else {
   				$this->loadModel('Coupon');
 			    $cats = $this->Coupon->find('all');
@@ -2987,17 +2978,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					$h1 = array(
 						'name' => 'Nuevo Cupón',
 						'icon' => 'gi gi-tags'
-						);
+					);
 					$this->set('h1', $h1);	
 					$this->set('weekdays', $weekdays);
+
     			return $this->render('cupones-detail');
     		}
     		break;
     	case 'delete':
 	    	if ($this->request->is('post')) {
-	    		$this->autoRender = false;
-	    		$this->RequestHandler->respondAs('application/json');
-
 	    		$this->Coupon->delete($this->request->data['id']);
 			    return json_encode(
 			    	array(
@@ -3010,8 +2999,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		break;
     	case 'edit':
     		if ($this->request->is('post')) {
-    			$this->autoRender = false;
-    			$this->RequestHandler->respondAs('application/json');
 
     			$data = $this->request->data;
 
@@ -3021,15 +3008,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 		      $this->Coupon->save($data);
 
-			    return json_encode(
-			    	array(
-			    		'success' => true,
-			    		'message' => "OK",
-			    		'redirect' => '/admin/cupones'
-			    	)
-			    );
-
-		      //return $this->redirect(array('action' => 'cupones'));
+		      return $this->redirect(array('action' => 'cupones'));
     		} else {
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;

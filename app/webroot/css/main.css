@@ -510,9 +510,8 @@ background-color: #e8ffa8!important;
   justify-content: start;
   align-items: center;
   grid-gap: 0.5rem;
-  min-height: 40px;
+  min-height: 2.5rem;
   text-transform: uppercase;
-  font-size: 14px;
   position: relative;
   color: #999;
   padding: 0.5rem;
@@ -538,18 +537,18 @@ background-color: #e8ffa8!important;
   top: 0.25rem;
 }
 #primary-nav a > i {
-  width: 20px;
-  /*font-size: 2rem;*/
-  font-size: 14px;
+  position: relative;
+  top: -2px;
+  min-width: 26px;
+  font-size: 20px;
   text-align: center;
-  line-height: 1.5;
-  /* display: inline-block;
-  margin: -3px 10px 0 0;*/
+  background-color: transparent;
+  border: none;
 }
 
 #primary-nav li span {
-  line-height: 1.5;
-  font-size: 12px;
+  line-height: 1;
+  font-size: 13px;
 }
 
 #primary-nav li a:hover i {
