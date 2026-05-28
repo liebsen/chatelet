@@ -3074,6 +3074,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		}
     		break;
     }
+
     $coupons = $this->Coupon->find('all');
     $this->loadModel('CouponItem');
   	$coupon_items = $this->CouponItem->query('SELECT ci.coupon_id,ci.category_id,ci.product_id,p.name product,c.name category 
@@ -3123,6 +3124,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function settings($action = null) {
+
 		$this->loadModel('Setting');
 	  $items = $this->Setting->find('all',['order' => ['Setting.id ASC']]);
     function sorter($a,$b){
