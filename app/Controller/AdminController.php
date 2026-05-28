@@ -2969,6 +2969,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        $this->request->data['min_amount'] = $this->request->data['min_amount']?: 0;
 	        $this->Coupon->save($this->request->data);
 
+			    $this->Session->setFlash(
+			      'Módulo Cupones actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );	    		
+
 	        return $this->redirect(array('action'=>'cupones'));
   			} else {
   				$this->loadModel('Coupon');
@@ -2982,20 +2988,27 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					$this->set('h1', $h1);	
 					$this->set('weekdays', $weekdays);
 
+			    $this->Session->setFlash(
+			      'Módulo Cupones actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );	    		
+
     			return $this->render('cupones-detail');
     		}
     		break;
     	case 'delete':
 	    	if ($this->request->is('post')) {
 	    		$this->Coupon->delete($this->request->data['id']);
-			    return json_encode(
-			    	array(
-			    		'success' => true,
-			    		'message' => "OK",
-			    		'redirect' => '/admin/cupones'
-			    	)
+			    $this->Session->setFlash(
+			      'Módulo Cupones actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
 			    );	    		
+
+	        return $this->redirect(array('action'=>'cupones'));
 	    	}
+	    	
     		break;
     	case 'edit':
     		if ($this->request->is('post')) {
@@ -3007,6 +3020,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     			}
 
 		      $this->Coupon->save($data);
+			    $this->Session->setFlash(
+			      'Módulo Cupones actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );	    		
 
 		      return $this->redirect(array('action' => 'cupones'));
     		} else {
