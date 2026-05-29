@@ -126,7 +126,7 @@
                 <br>
                 <div class="d-flex justify-content-start align-items-center gap-1">
                   <span class="text-link"><i class="fa fa-edit mr-1"></i> Detalles</span>
-                  <?php if($sale['Sale']['payment_method'] == 'bank'): ?><a class="text-link" href="/ayuda/onlinebanking/<?php echo $sale['Sale']['id'] ?>#f:.datos-bancarios"><i class="fa fa-support mr-1"></i> Instrucciones</a><?php endif ?>
+                  <?php if($sale['Sale']['payment_method'] == 'bank'): ?><a class="text-link" href="/ayuda/onlinebanking/<?php echo $sale['Sale']['id'] ?>"><i class="fa fa-support mr-1"></i> Instrucciones</a><?php endif ?>
                 </div>
               </p>
               <div class="text-right d-flex justify-content-end align-items-center gap-1">

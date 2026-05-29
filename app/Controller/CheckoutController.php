@@ -859,7 +859,7 @@ class CheckoutController extends AppController
 			return array(
 				'success' => true,
 				'message' => "Espera mientras te redirigimos...",
-				'redirect' => Router::url(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id, '#' =>  'f:.datos-bancarios' )),
+				'redirect' => Router::url(array( 'controller' => 'ayuda', 'action' => 'onlinebanking', $sale_id )),
 			);
 		}
 
