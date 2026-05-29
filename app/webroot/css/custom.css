@@ -421,7 +421,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
 
 @media (min-width: 992px) {
   .product-info-container {padding: 0 1rem;}
-  #desarrollo { padding: 4rem 1rem; }  
+  #desarrollo { padding: 3rem 1rem; }  
   .box-cont  {
     width: 90%;
   }
@@ -617,6 +617,9 @@ footer .options {
 
 footer .options h5 {
   font-size: 1rem;
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 footer .options > div {
@@ -629,7 +632,17 @@ footer h3 {
   margin-bottom: 1.25rem; 
   margin-top: 2rem; 
 }
-footer h5:after { background: #e7e7e7; content: ""; display: block; height: 3px;border-radius: 0; margin-top: 13px; width: 50px; border-radius: 5px }
+footer h5:after { 
+	background: #e7e7e7; 
+	content: ""; 
+	display: block; 
+	height: 3px;
+	border-radius: 0; 
+	margin-top: 10px; 
+	margin-right: auto;
+	margin-left: auto;
+	border-radius: 5px 
+}
 footer .options a, footer .options span { 
   font-weight: 300; 
   text-transform: uppercase;  
@@ -1277,13 +1290,15 @@ ul#ul-moreviews li.dontResize img {
 .map .col-md-8 { 
   padding: 0;
 }
-.map .col-md-4 h1 { font-size: 40px; font-weight: 800; letter-spacing:-0.1rem }
+.map .col-md-4 h1 { text-align: center;font-size: 40px; font-weight: 800; letter-spacing:-0.1rem }
 .map .col-md-4 h1:after { 
   background: #333; 
   content: ""; 
   display: block; 
   margin-top: 10px;
-  height: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  height: 6px;
   border-radius: 5px;
   width: 75px; 
 }
@@ -1299,13 +1314,23 @@ ul#ul-moreviews li.dontResize img {
 }
 #headcontacto .wrapper { /*background: url(../images/contactohead.png) no-repeat center center;*/ background-size: contain; }
 #headcontacto h1 { 
+	text-align: center;f
   font-size: 2.25rem; 
   font-weight: 300; 
   margin-top: 70px; 
   margin-left: 30px; 
   letter-spacing:-0.1rem
 }
-#headcontacto h1:after { content: ""; display: block; margin-top: 20px; height: 6px;border-radius: 6px; width: 75px; }
+#headcontacto h1:after { 
+	content: ""; 
+	display: block; 
+	margin-top: 20px; 
+	margin-right: auto;
+	margin-left: auto;
+	height: 6px;
+	border-radius: 6px; 
+	width: 75px; 
+}
 #headhelp {
   display: flex;
   justify-content: center;
@@ -1313,24 +1338,27 @@ ul#ul-moreviews li.dontResize img {
   flex-direction: column;
   position: relative; 
   min-height: calc(100dvh - 265px);
+  text-align: center;
   /*padding: 65px 0;*/ 
 }
 
-#headhelp h1 { font-size: 40px; margin: 0; font-weight: 800; letter-spacing:-0.1rem; padding: 2rem; }
+#headhelp h1 { text-align: center;font-size: 40px; margin: 0; font-weight: 800; letter-spacing:-0.1rem; padding: 2rem; }
 #headhelp h1:after { 
   background: #333; 
   content: ""; 
   display: block; 
   margin-top: 10px;
-  height: 5px;
-  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 6px;
+  border-radius: 6px;
   width: 75px;
 }
 #headhelp .box { 
   padding: 120px 100px 85px; 
 }
-#headhelp .box h3 { font-size: 20px; text-transform:uppercase; font-weight: 600; letter-spacing: -0.05rem; margin-bottom: 30px;margin-right: auto; }
-#headhelp .box p { font-size: 18px; line-height: 1.5; margin-bottom: 10px; margin-right: auto; }
+#headhelp .box h3 { text-align: center;font-size: 20px; text-transform:uppercase; font-weight: 600; letter-spacing: -0.05rem; margin-bottom: 30px; margin-top: 20px; text-align:center; }
+#headhelp .box p { font-size: 18px; line-height: 1.5; margin-bottom: 10px; text-align:center; }
 #headhelp .box p a { color: #f50081; font-weight: 600; }
 
 .datos-bancarios {
@@ -1371,23 +1399,23 @@ ul#ul-moreviews li.dontResize img {
 
 .box { 
   border: 5px solid lightgreen; 
-  padding: 4rem; 
+  padding: 3rem; 
 }
 
 .box:after { 
-  content:"\f06a"; 
+  content: "\f06a";
   background-color: lightgreen;
   border-radius: 100%;
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #ffffff;
-  line-height: 1.6;
+  line-height: 1.5;
   font-family: 'FontAwesome';
   position: absolute;
-  top: -2rem;
-  right: -2rem; 
+  top: -1.5rem;
+  right: -1.5rem;
 }
 
 .box h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; margin-top: 0;}
@@ -1458,7 +1486,7 @@ ul#ul-moreviews li.dontResize img {
 }
 
 @media (max-width: 1599px) {
-	.box { padding: 4rem;  border-radius: 1rem; max-width: 40rem;  }
+	.box { padding: 3rem;  border-radius: 1rem; max-width: 40rem;  }
 }
 
 @media (max-width: 1199px) {
