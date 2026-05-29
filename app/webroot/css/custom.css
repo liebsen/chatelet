@@ -1320,6 +1320,7 @@ ul#ul-moreviews li.dontResize img {
   position: relative; 
   min-height: calc(100dvh - 265px);
   background: linear-gradient(45deg, purple, orange);
+  color: white;
   /*padding: 65px 0;*/ 
 }
 
@@ -1339,6 +1340,44 @@ ul#ul-moreviews li.dontResize img {
 #headhelp .box h3 { font-size: 20px; color: #333; text-transform:uppercase; font-weight: 600; letter-spacing: -0.05rem; margin-bottom: 30px;margin-right: auto; }
 #headhelp .box p { font-size: 18px; color: #333; line-height: 1.5; margin-bottom: 10px; margin-right: auto; }
 #headhelp .box p a { color: #f50081; font-weight: 600; }
+
+.datos-bancarios {
+	display: flex;
+	flex-direction: column;
+	grid-gap: 0.5rem;
+	@media(min-width: 768px) {
+		padding-right: 3rem;
+	}
+}
+.bank-pill {
+	text-align: center;
+	border: 3px dashed lightcoral;
+	padding: 1rem;
+	color: white;
+	border-radius: 0.75rem;
+	background-color: rgba(0,0,0,0.1);
+	> span {
+		font-weight: 1000;
+		font-size: 20px;
+	}
+}
+
+.bank-amount {
+	color: white;
+}
+
+.bank-invoice {
+	/*btn btn-chatelet border-success bg-white d-block max-25 mt-4*/
+}
+
+.bank-text {
+	text-align: center;
+	color: white;
+	padding: 1.5rem;
+	white-space: pre-wrap;
+}
+
+
 .box { 
   border: 5px solid lightgreen; 
   padding: 4rem; 
@@ -1366,10 +1405,10 @@ ul#ul-moreviews li.dontResize img {
 
 @media(min-width: 769px){
   #desarrollo { 
-    padding: 5rem 2rem; 
+    padding-top: 6rem; 
   }
   #headhelp {
-    padding: 6rem 1rem 0.75rem 1rem;
+    padding-top: 0; 
   }
 }
 #desarrollo { 
@@ -1627,7 +1666,7 @@ ul#ul-moreviews li.dontResize img {
 
 	#headcontacto { padding: 1rem; }
   #headhelp .box {
-    padding: 2rem;
+    padding: 1.5rem;
   }
   /* #optionsHelp a:nth-child(even) { background-color: #f6f6f5; } */
 	#referncia ul { column-count: 1; }

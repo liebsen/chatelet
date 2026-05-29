@@ -295,11 +295,6 @@ if (!$loggedIn) {
 	</div>
 </section>
 
-<style type="text/css">
-	.cols-fix .col-md-6 {
-		min-height: 6rem;
-	}
-</style>
 <script type="text/javascript">
 	$(function(){
 		var timeout = 0

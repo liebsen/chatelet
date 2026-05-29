@@ -2,18 +2,20 @@
   <div class="wrapper container animation-fadeIn w-100">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xs-12 col-md-4">
-        <div class="datos-bancarios pr-4">
+        <div class="datos-bancarios">
           <h1 class="m-0">CBU/Alias</h1>
           <h3 class="h3 mt-4 mw-26"><?= $settings['bank_explain_title'] ?></h3>
           <?php if(isset($price)): ?>
-          <h3 class="d-block border-dark text-center mt-1 ps-4 max-25">
-            <span class="text-dark h3">A transferir $ <?= number_format($price, 2, ',', '.') ?></span>
-          </h3>
-          <a class="btn btn-chatelet border-success bg-white d-block max-25 mt-4" href="https://wa.me/<?= $settings['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
-            <span class="">👉 Referencia #<?= $invoice_id ?></span>
+          <div class="bank-pill bank-amount">
+            <span>A transferir $ <?= number_format($price, 2, ',', '.') ?></span>
+          </div>
+          <a href="https://wa.me/<?= $settings['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
+          	<div class="bank-pill bank-ref">
+            	<span class="">👉 Referencia #<?= $invoice_id ?></span>
+            </div>
           </a>
           <?php endif ?>
-          <p class="pre-system font-pre border-light bg-info w-max-content p-4 mt-4"><?= $settings['bank_explain_text'] ?></p>
+          <p class="bank-pill bank-text"><?= $settings['bank_explain_text'] ?></p>
         </div>
       </div>
       <div class="col-xs-12 col-md-8 enviar-comprobante">
