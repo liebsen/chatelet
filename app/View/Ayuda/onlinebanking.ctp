@@ -3,7 +3,7 @@
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-xs-12 col-md-4">
         <div class="datos-bancarios">
-          <h1 class="m-0">CBU/Alias</h1>
+          <h1 class="m-0">CBU / Alias</h1>
           <h3 class="h3 mt-4 mw-26"><?= $settings['bank_explain_title'] ?></h3>
           <?php if(isset($price)): ?>
           <div class="bank-pill bank-amount">
@@ -31,8 +31,8 @@
               </div-->
               <?php if(isset($settings['bank_whatsapp'])): ?>
               <div class="col-xs-12 mt-4 text-center">
-                <a class="btn btn-chatelet bg-success-i" href="https://wa.me/<?= $settings['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
-                  Enviar por WhatsApp
+                <a class="btn btn-success text-white" href="https://wa.me/<?= $settings['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
+                  <i class="fa fa-lg fa-whatsapp"></i> Enviar por WhatsApp
                 </a>
                 <a class="btn btn-chatelet" href="/shop/mis_compras">
                   Ir a mis compras
