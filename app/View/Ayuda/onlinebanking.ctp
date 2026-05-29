@@ -23,21 +23,19 @@
           <div class="box mt-8">  
             <h3 class="h3"><?= $settings['bank_instructions_title'] ?></h3>
             <p class="pre-system font-system"><?= $settings['bank_instructions_text'] ?></p>
-            <div class="row mb-5">
+            <div class="row is-flex-center gap-05 mb-2 pt-4 w-100">
               <!--div class="col-md-6 mt-3 text-center">
                 <a class="btn btn-chatelet shrink" href="https://wa.me/?text=<?= urlencode($settings['bank_explain_title']) ?><?= urlencode($settings['bank_explain_text']) ?><?= urlencode($settings['bank_instructions_title']) ?><?= urlencode($settings['bank_instructions_text']) ?><?= urlencode($settings['bank_instructions_text']) ?><?= urlencode($settings['bank_total_text']) ?>" title="Enviar por WhatsApp" target="_blank">
                   Compartir este texto
                 </a>
               </div-->
               <?php if(isset($settings['bank_whatsapp'])): ?>
-              <div class="col-xs-12 mt-4 text-center">
-                <a class="btn btn-success text-white" href="https://wa.me/<?= $settings['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
-                  <i class="fa fa-lg fa-whatsapp"></i> Enviar por WhatsApp
-                </a>
-                <a class="btn btn-chatelet" href="/shop/mis_compras">
-                  Ir a mis compras
-                </a>
-              </div>
+              <a class="btn btn-success w-100 text-white" href="https://wa.me/<?= $settings['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
+                <i class="fa fa-lg fa-whatsapp"></i> Enviar por WhatsApp
+              </a>
+              <a class="btn btn-chatelet w-100" href="/shop/mis_compras">
+                Ir a mis compras
+              </a>
               <?php endif ?>
             </div>
           </div>
