@@ -574,10 +574,8 @@ body.top-fixed .shop-options {
   justify-content: center;
   align-items: center;
   grid-gap: 0.5rem;
-  background-color: black;
-  background: linear-gradient(45deg, purple, orange, lightgoldenrodyellow);
   min-height: 15rem;
-  color: white;
+  color: #333;
   padding: 3rem;
   text-align: center;
 }
