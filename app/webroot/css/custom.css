@@ -1343,11 +1343,10 @@ ul#ul-moreviews li.dontResize img {
 }
 .bank-pill {
 	text-align: center;
-	border: 3px dashed lightcoral;
 	padding: 1rem;
 	color: white;
 	border-radius: 0.75rem;
-	background-color: rgba(0,0,0,0.1);
+	background-color: #e10d74;
 	> span {
 		font-weight: 1000;
 		font-size: 20px;
