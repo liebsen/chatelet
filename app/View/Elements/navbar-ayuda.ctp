@@ -44,14 +44,15 @@
   #optionsHelp > a { 
     display: inline-block; 
     margin: 0 0.5rem;
-    padding: 0.25rem;
+    padding: 0.05rem 0.25rem;
     font-weight: 300;
     text-transform: uppercase;
     transition: all 1s ease-in-out;
   }
 
   #optionsHelp > a.active {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid #e10d74;
+    color: #e10d74;
   }
   #optionsHelp.mobile > a.active {
     position: relative;
@@ -75,13 +76,6 @@
       top: 4rem; 
       z-index: 100;
       background: linear-gradient(hsla(0,0%,100%,0),hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0));
-    }
-    #optionsHelp > a {
-      color: white;
-    }
-    #optionsHelp > a:hover { 
-      text-decoration: none;
-      color: whitesmoke;
     }
   }
 

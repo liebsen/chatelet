@@ -91,7 +91,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   a,
   .category-content,
   li {
-    &:not(.box *):not(.map *):not(.text-preserve):not(.text-chatelet):not(.text-info):not(.text-success):not(.text-warning):not(.text-danger) {
+    &:not(.text-preserve):not(.text-chatelet):not(.text-info):not(.text-success):not(.text-warning):not(.text-danger) {
       color: #e7e7e7;
       border-color: #666;
     }

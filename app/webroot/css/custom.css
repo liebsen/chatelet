@@ -207,7 +207,6 @@ label input[type=checkbox]:disabled + .label-text:before {
   flex-direction: column;
   align-items: center;  
   width: 100%;
-  background-color: #f8f8f8;
   min-height: 16rem;
   margin: auto;
   margin-bottom: 2rem;
@@ -474,7 +473,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
     border-radius: 1.5rem;
     min-height: calc(100dvh - 335px)!important;
     transform: scale(1) perspective(1024px) rotateY(-5deg) rotateX(2deg) rotate(2deg) translateY(0rem) translateX(-2rem);
-    box-shadow: 0 0 30px rgba(40,40,40,0.25);
+    border: 5px solid lightgreen;
   }
 }
 
@@ -1098,8 +1097,6 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   /*background: url(../images/mapbg.png) no-repeat center center; 
     background-size: cover;
 */
-  background: linear-gradient(45deg, purple, orange);
-  color: white;
   padding-top: 50px;    
   padding-bottom: 50px; 
   position: relative;
@@ -1269,7 +1266,6 @@ ul#ul-moreviews li.dontResize img {
   display: flex; 
   overflow: hidden; 
   min-height: calc(100dvh - 265px);
-  background: linear-gradient(45deg, purple, orange);
 }
 .map .col-md-4 { 
   display: flex; 
@@ -1281,9 +1277,9 @@ ul#ul-moreviews li.dontResize img {
 .map .col-md-8 { 
   padding: 0;
 }
-.map .col-md-4 h1 { color: #f8f8f8; font-size: 40px; font-weight: 800; letter-spacing:-0.1rem }
+.map .col-md-4 h1 { font-size: 40px; font-weight: 800; letter-spacing:-0.1rem }
 .map .col-md-4 h1:after { 
-  background: #f8f8f8; 
+  background: #333; 
   content: ""; 
   display: block; 
   margin-top: 10px;
@@ -1317,14 +1313,12 @@ ul#ul-moreviews li.dontResize img {
   flex-direction: column;
   position: relative; 
   min-height: calc(100dvh - 265px);
-  background: linear-gradient(45deg, purple, orange);
-  color: white;
   /*padding: 65px 0;*/ 
 }
 
-#headhelp h1 { color: white;font-size: 40px; margin: 0; font-weight: 800; letter-spacing:-0.1rem; padding: 2rem; }
+#headhelp h1 { font-size: 40px; margin: 0; font-weight: 800; letter-spacing:-0.1rem; padding: 2rem; }
 #headhelp h1:after { 
-  background: white; 
+  background: #333; 
   content: ""; 
   display: block; 
   margin-top: 10px;
@@ -1335,8 +1329,8 @@ ul#ul-moreviews li.dontResize img {
 #headhelp .box { 
   padding: 120px 100px 85px; 
 }
-#headhelp .box h3 { font-size: 20px; color: #333; text-transform:uppercase; font-weight: 600; letter-spacing: -0.05rem; margin-bottom: 30px;margin-right: auto; }
-#headhelp .box p { font-size: 18px; color: #333; line-height: 1.5; margin-bottom: 10px; margin-right: auto; }
+#headhelp .box h3 { font-size: 20px; text-transform:uppercase; font-weight: 600; letter-spacing: -0.05rem; margin-bottom: 30px;margin-right: auto; }
+#headhelp .box p { font-size: 18px; line-height: 1.5; margin-bottom: 10px; margin-right: auto; }
 #headhelp .box p a { color: #f50081; font-weight: 600; }
 
 .datos-bancarios {
@@ -1406,6 +1400,7 @@ ul#ul-moreviews li.dontResize img {
     padding-top: 6rem; 
   }
   #headhelp {
+  	padding-top: 4rem; 
     padding-bottom: 0.5rem; 
   }
 }
@@ -1569,9 +1564,6 @@ ul#ul-moreviews li.dontResize img {
 @media (max-width: 767px) {
   .map {
     flex-direction: column;
-  }
-  .map .col-md-4 {
-    background: linear-gradient(45deg, purple, orange);
   }
   .bxc {
     flex-direction: column;
