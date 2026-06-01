@@ -121,7 +121,7 @@ class NewsletterController extends AppController {
   	if ($filter_type == 'carts') {
       $items = $this->Stat->find('all',array(
         'conditions' => array(
-          'Stat.tag IN' => array('page-exit', 'page-view'),
+          'Stat.tag' => 'page-exit',
           'Stat.user_id' => $newsletter['NewsletterScheduleItem']['user_id'],
           'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
         ),

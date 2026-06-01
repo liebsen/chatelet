@@ -2874,7 +2874,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		    ),
 	      'conditions' => array(
 	        // 'SUM(Sale.value) > ' => $sale_min,
-	        'Stat.tag IN' => array('page-exit', 'page-view'),
+	        'Stat.tag' => 'page-exit',
 	        'User.email IS NOT ' => null,
 	        'User.id > ' => 1,
 	        'JSON_EXTRACT(Stat.context, \'$.cart_totals.total_products\') >' => $sale_min,

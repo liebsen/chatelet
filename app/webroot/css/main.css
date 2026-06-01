@@ -99,10 +99,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     &:not([class*="btn-"]) {
       background-color: #111;
       border-color: #555;
-      &:hover {
-        background-color: #222;
-        color: #888!important;
-      }                  
     }
   }
   .btn.is-text:hover, .btn.is-text.is-hovered, .btn.is-text:focus, .btn.is-text.is-focused {
@@ -2775,7 +2771,6 @@ header.navbar .navbar-brand {
 .nav-tabs > li.active > a:hover, 
 .nav-tabs > li.active > a:focus {
   background-color: #2196f3;
-  border-color: #2196f3;
   color: white;
   border-bottom: none;
 }

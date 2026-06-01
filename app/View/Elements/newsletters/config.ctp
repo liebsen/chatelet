@@ -31,7 +31,7 @@
 							<?php if(!empty($settings['newsletter_icon'])): ?>
 								<div class="card">
 									<div class="card-body">
-										<img id="newsletter_icon" src="<?= $settings['upload_url']?>/<?= $settings['newsletter_icon']?>">
+										<img id="newsletter_icon" src="<?= $settings['upload_url']?>/<?= $settings['newsletter_icon']?>" height="200">
 									</div>
 								</div>
 							<?php endif ?>
