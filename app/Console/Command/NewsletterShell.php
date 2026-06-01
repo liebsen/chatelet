@@ -181,7 +181,7 @@ class NewsletterShell extends AppShell {
             )
           ),
           'conditions' => array(
-            'Stat.tag' => 'page-exit',
+            'Stat.tag IN' => array('page-exit', 'page-view'),
             'User.email IS NOT ' => null,
             'JSON_EXTRACT(context, "$.cart") IS NOT NULL',
             'Stat.user_id' => $schedule['NewsletterScheduleItem']['user_id'],
