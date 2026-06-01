@@ -132,7 +132,11 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .dropdown-menu,
   .nav-tabs,
   .card,  
-  .shop-options,  
+  .shop-options, 
+  .tab-content,  
+  .nav-tabs,  
+  .wizard-container, 
+  .bronco-select,
   .table,
   .table tr,
   .table td,
@@ -155,12 +159,13 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
     color: #888!important;    
   }
   .bxc > div,
+  .card-body,
+  .wizard-node,
   .form-control:focus,
   .btn-chatelet,
   nav.sidebar,
   .bg-light,
-  .tab-content,
-  .nav-tabs,
+  .generic-select li,
   .toggle-label,
   .switch-scale {
     background-color: #444!important;
