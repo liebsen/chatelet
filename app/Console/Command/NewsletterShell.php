@@ -25,7 +25,7 @@ class NewsletterShell extends AppShell {
   );
 
   private $settings = [];
-  private $perday = 499; // free accounts usually have 500 daily limit
+  private $perday = 500; // free accounts usually have 500 daily limit
   private $perminute = 20;
   private $simulate = 0;
 
@@ -139,14 +139,14 @@ class NewsletterShell extends AppShell {
         )
       ),
       'fields' => array(
-        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.message, Newsletter.show_price, Newsletter.show_text, Newsletter.show_social, Newsletter.show_header,Newsletter.show_cta, Newsletter.cta_text, Newsletter.cta_url, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.message, Newsletter.show_price, Newsletter.show_text, Newsletter.show_social, Newsletter.show_header,Newsletter.show_cta, Newsletter.cta_text, Newsletter.cta_url, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour'
       ),
       'conditions' => array( 
         'NewsletterScheduleItem.status' => "pending", 
         'NewsletterSchedule.enabled' => 1,
         'NewsletterList.enabled' => 1,
         'NewsletterSchedule.schedule_date <= ' => $date,
-        'NewsletterSchedule.schedule_hour <= ' => $hour,
+        #'NewsletterSchedule.schedule_hour <= ' => $hour,
        ),
        'order' => array( 'NewsletterScheduleItem.created ASC' ),
        'group' => array( 'NewsletterScheduleItem.id' ),
@@ -155,6 +155,13 @@ class NewsletterShell extends AppShell {
     );
 
     foreach($schedules as $schedule) {
+    	if(
+    		$schedule['NewsletterSchedule']['schedule_date'] == $date && 
+    		$schedule['NewsletterSchedule']['schedule_hour'] > $hour 
+    	) {
+    		continue;
+    	}
+
       $products = array();
       $products_ids = array();
       $parsed_body = '';
