@@ -1,5 +1,5 @@
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: 700;
+  font-weight: 1000;
   line-height: 1;
   margin-bottom: 0.75rem;
 }
@@ -324,8 +324,6 @@ label input[type=checkbox]:disabled + .label-text:before {
   justify-content: end;
   top: -1px !important;
 }
-
-
 
 .navbar-chatelet {
   display: flex;
@@ -922,9 +920,9 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-weight: 600;  
+  font-weight: 900;  
   color: #333;
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-bottom: 0.75rem;
   line-height: 1;
 }
@@ -940,7 +938,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 .price {
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 1000;
   white-space: nowrap;
 }
 
@@ -1046,7 +1044,11 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 .product-info .name {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
   padding-top: 0.5rem;
+  min-height: 40px;
 }
 
 .product-badge {
@@ -1221,7 +1223,13 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 #main .caract label.btn .color-option {
   border-bottom: 3px solid;
-  font-size: 100%!important;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  line-height: 1.25;
+  padding-top: 10px;  
 }
 #main .caract label.btn .size-option {
   border-bottom: 3px solid;
@@ -1595,6 +1603,10 @@ ul#ul-moreviews li.dontResize img {
   .bxc {
     flex-direction: column;
   }
+  .accept-terms {
+		flex-direction: column;
+	}
+
   .navbar-header { 
     display: flex;
     justify-content: center;
@@ -2067,17 +2079,18 @@ span.out{
 }
 
 .price_strong {
-  color: black;
-  font-weight: 800;
+  color: #333;
+  font-weight: 1000;
   font-size: 1rem;
   line-height: 1;
   white-space: nowrap;
 }
 
 .text-sm {
-  font-size: 0.75rem!important;
+  font-size: 0.85rem!important;
   font-weight: 500;
   line-height: 1.25;
+  color: #888;
   display: inline-block;
 }
 

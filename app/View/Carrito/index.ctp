@@ -48,9 +48,9 @@
 							</a>
 						</div>
 						<div class="d-flex justify-content-start align-items-center flex-column w-100">
-							<div class="d-flex justify-content-around align-items-center gap-05  w-100">
+							<div class="d-flex justify-content-between align-items-center gap-05  w-100">
 								<div class="d-flex justify-content-center align-center flex-column max-20 min-w-5 flex-1">
-									<h6 class="mt-0 mb-2 text-weight-thin lh-1"><?php echo $product['name'] ?></h6>
+									<h6 class="mt-0 mb-2 lh-1 price_strong"><?php echo $product['name'] ?></h6>
 									<?php if (!empty($product['color_code']) && $product['color_code'] != 'undefined') : ?>
 										<span class="text-sm">Color: 
 											<span color-code="<?php echo $product['color_code'] ?>"><?php echo $product['alias'] ?></span>
@@ -61,7 +61,7 @@
 											<span><?php echo $product['size'] ?></span>
 										</span>
 									<?php endif ?>
-									<span class="text-nowrap mt-2"><?php echo \price_format($product['item_price']) ?></span>
+									<span class="text-nowrap mt-2 price"><?php echo \price_format($product['item_price']) ?></span>
 								</div>
 								<div class="form-inline">
 								  <div class="form-group">
@@ -75,7 +75,7 @@
 								      </div>
 								    </div>
 								  </div>
-									<label class="form-group mt-1 pl-0">
+									<label class="form-group is-flex-center mt-1 pl-0">
 										<input class="giftchecks gift-<?php echo $product['id'] ?>" type="checkbox" data-id="<?php echo $product['id'] ?>"><span class="label-text text-muted text-sm">Para regalo</span><br><br>
 										</label>
 									</div>
@@ -142,7 +142,7 @@
 			echo '</div>';
 			echo '<div class="d-flex justify-space-between align-items-start flex-column min-w-7">';
 			echo '<div class="d-flex justify-content-start align-center flex-column">';
-			echo '<span class="mt-0 mb-2 lh-1">'. $product['name'] . '</span>';
+			echo '<span class="mt-0 mb-2 lh-1 price_strong">'. $product['name'] . '</span>';
 
 			if (!empty($product['color_code']) && $product['color_code'] != 'undefined'){
 				echo '<span class="text-sm">Color: <span color-code="'.$product['color_code'].'">'. $product['alias'] .'</span></span>';
@@ -180,7 +180,7 @@
 				echo '</td>';			
 				echo '<td>';	
 
-				echo '<span class="text-nowrap">'. \price_format($product['item_price']) .'</span>';
+				echo '<span class="text-nowrap price">'. \price_format($product['item_price']) .'</span>';
 				if (!empty($product['item_old_price'] && $product['item_old_price'] != $product['item_price'])) {
 					echo '<br><span class="old_price text-grey text-sm">'.\price_format($product['item_old_price']) .'</span>';
 				}					
@@ -191,7 +191,7 @@
 				$row += 1;
 
 				echo '<td>
-								<button class="btn btn-sm btn-border bg-transparent" onclick="askremoveCart(this)">
+								<button class="btn btn-sm btn-danger btn-border" onclick="askremoveCart(this)">
 									<i class="fa fa-trash-o"></i>
 								</button>
 							</td>';
@@ -219,7 +219,7 @@
 				</div>
 
 				<hr>
-				<div class="checkout-continue row is-flex-center">
+				<div class="checkout-continue accept-terms row is-flex-center">
 					<div class="col-md-6">
 						<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos"> Términos y Condiciones</a>
 						</span>

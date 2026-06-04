@@ -2,7 +2,6 @@
   echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
   echo $this->Html->script('admin-carrito', array('inline' => false));
-  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
   echo $this->element('admin/menu'); 
 ?>
 <div class="block-section">

@@ -1856,20 +1856,21 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        }
 
         	$data['ribbon_color'] = $data['ribbon_color'] == '#000000' ? 
-        		NULL : 
+        		false : 
         		$data['ribbon_color'];
 
 
 	        // update products
 	        if(!empty($data['ribbon_color'])) {
-	        	$products = $this->Product->find('all', array('conditions' => array('category_id' => $data['id'])));
-	        	CakeLog::write('debug', 'color:'.$ribbon_color);
-	        	foreach($products as $product) {
-	        		$this->Product->save(array(
-	        			'id' => $product['Product']['id'],
+	        	$saved = $this->Product->saveAll(
+	        		array(
 	        			'ribbon_color' => $data['ribbon_color']
-	        		));
-	        	}
+	        		), 
+	        		array(
+	        			$this->Product->save
+	        		)
+	        	);
+	        	#CakeLog::write('debug', 'color:'.$ribbon_color.' '.json_encode($data));
 	        }
 
 	        $this->Category->save($data);
@@ -4512,13 +4513,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	      'Módulo Carrito actualizado',
 	      'default',
 	      array('class' => 'hidden notice')
-	    );	    		
-	    return json_encode(
-	    	array(
-	    		'success' => true,
-	    		'redirect' => '/admin/carrito'
-	    	)
-	    );	
+	    );	   		
+
+	    return $this->redirect(array('action'=>'carrito'));
 		}
 	}
 
@@ -4539,9 +4536,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->set('navs', $navs);			$this->loadModel('Setting');
 
 		if ($this->request->is('post')) {
-	    $this->autoRender = false;
-	    $this->RequestHandler->respondAs('application/json');
-
       foreach($this->request->data as $id => $value) {
       	CakeLog::write('debug', 'data:'. json_encode(['id' => $id, 'value' => $value]));
       	$this->Setting->save(['id' => $id, 'value' => $value]);
@@ -4551,15 +4545,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	      'Módulo Banco actualizado',
 	      'default',
 	      array('class' => 'hidden notice')
-	    );	    		
-	    return json_encode(
-	    	array(
-	    		'success' => true,
-	    		'redirect' => '/admin/bank'
-	    	)
-	    );	
+	    );
+	    return $this->redirect(array('action' => 'bank'));
 		}
-
 		return $this->render('bank');
 	}	
 

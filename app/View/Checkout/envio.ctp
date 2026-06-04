@@ -88,7 +88,7 @@ echo $this->element('checkout-params');
 						</div>
 					</div>
 					<hr>
-					<div class="checkout-continue row is-flex-center d-none">
+					<div class="checkout-continue accept-terms row is-flex-center d-none">
 						<div class="col-md-6">
 							<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos"> Términos y Condiciones</a>
 							</span>

@@ -83,7 +83,7 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 	       <?php endif ?>
 	      </div>
 				<hr>
-				<div class="row is-flex-center">
+				<div class="row accept-terms is-flex-center">
 					<div class="col-md-6">
 						<span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos"> Términos y Condiciones</a>
 						</span>

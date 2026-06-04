@@ -62,7 +62,7 @@
         </div>  
       </div>
       <hr>
-      <div class="row is-flex-center d-none">
+      <div class="row is-flex-center d-none accept-terms">
         <div class="col-md-6">
           <span class="text-sm text-muted">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos"> Términos y Condiciones</a>
           </span>

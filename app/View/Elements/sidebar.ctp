@@ -54,7 +54,7 @@ nav.sidebar {
   position: fixed;
   z-index: 90;
   top: 0px;
-  right: -320px;
+  left: -320px;
   bottom: 0;
   width: 320px;
   height: 100%;
