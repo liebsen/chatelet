@@ -1862,12 +1862,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	        // update products
 	        if(!empty($data['ribbon_color'])) {
-	        	$saved = $this->Product->saveAll(
+	        	$saved = $this->Product->updateAll(
 	        		array(
-	        			'ribbon_color' => $data['ribbon_color']
+	        			'Product.ribbon_color' => "'".$data['ribbon_color']."'"
 	        		), 
 	        		array(
-	        			$this->Product->save
+	        			'Product.category_id' => $data['id']
 	        		)
 	        	);
 	        	#CakeLog::write('debug', 'color:'.$ribbon_color.' '.json_encode($data));
