@@ -1596,6 +1596,10 @@ ul#ul-moreviews li.dontResize img {
 	#myModal2 .content .table { overflow: hidden; overflow-x: scroll; }
 }
 
+.accept-terms > div {
+	width: 100%;
+}
+
 @media (max-width: 767px) {
   .map {
     flex-direction: column;

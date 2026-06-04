@@ -56,7 +56,7 @@ if (!$loggedIn) {
 					<div class="row w-100">
 						<div class="col-md-12">
 							<h3 class="text-uppercase mt-0">
-								<i class="gi gi-woman"></i> <?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Registrarme como clienta' ?>
+								<i class="gi gi-woman"></i> <?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Registrarme' ?>
 							</h3>
 							<p>
 							 Ingresa tus datos personales para crear una cuenta. Luego genera tu contraseña y te recomendamos que nunca la reveles a nadie.

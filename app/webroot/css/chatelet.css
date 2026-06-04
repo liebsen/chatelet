@@ -1549,9 +1549,9 @@ select.form-control{
 .btn-chatelet {
 	color: white;
 	font-weight: 1000;
-	border-color: #e60088;
+	border-color: black;
 	line-height: 2.85;
-	background-color: #e60088;
+	background-color: black;
 	/*box-shadow: 0 0 5px rgba(50,50,50,0.2);*/
 }
 
@@ -1585,9 +1585,8 @@ select.form-control{
 }
 
 .btn-chatelet:hover {
-	background-color: white;
-	border-color: white;
-	color: #888;
+  background-color: #333;
+  color: white;
 }
 
 .center-text {
