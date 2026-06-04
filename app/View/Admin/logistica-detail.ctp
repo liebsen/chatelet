@@ -243,7 +243,7 @@
 </div>
 <?php else: ?>
 <?php if (isset($logistic) && $logistic['Logistic']): ?>
-<div class="content">
+<div class="block-section">
   <div class="has-card-background card-alcance-nacional">
     <h3>Alcance Nacional</h3><p><strong><?= $logistic['Logistic']['title'] ?></strong> tiene alcance nacional y no puede aceptar tarifas ya que está integrada a la tienda mediante api.</p>
   </div>

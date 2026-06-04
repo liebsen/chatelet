@@ -506,11 +506,11 @@ background-color: #e8ffa8!important;
   justify-content: start;
   align-items: center;
   grid-gap: 0.5rem;
-  min-height: 2.5rem;
+  min-height: 2.25rem;
+  padding-left: 0.5rem;
   text-transform: uppercase;
   position: relative;
   color: #999;
-  padding: 0.5rem;
   text-decoration: none;
 }
 
@@ -533,10 +533,8 @@ background-color: #e8ffa8!important;
   top: 0.25rem;
 }
 #primary-nav a > i {
-  position: relative;
-  top: -2px;
   min-width: 26px;
-  font-size: 20px;
+  font-size: 16px;
   text-align: center;
   background-color: transparent;
   border: none;
@@ -544,7 +542,7 @@ background-color: #e8ffa8!important;
 
 #primary-nav li span {
   line-height: 1;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 #primary-nav li a:hover i {
@@ -2232,17 +2230,9 @@ pre, code {
 
 .list-group-hero > a > li > .badge {
   position: absolute;
-  top: 2.25rem;
-  right: 4.25rem;
+  top: 1rem;
+  right: 1rem;
   border-radius: 100%;
-}
-
-.list-group-hero > a > li > h1 {
-  font-size: 20px;
-}
-
-.list-group-hero > a  > li > h5 {
-  font-size: 13px;
 }
 
 .list-unstyled {

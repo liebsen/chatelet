@@ -2,7 +2,7 @@
 	<?php foreach($navs as $name => $nav): ?>
 		<a href="<?=$nav['url']?>">
 			<li class="list-group-item text-center">
-				<span class="badge is-large badge-success indicator"><?= $counts[$nav['id']]?></span>
+				<span class="badge is-large badge-info indicator"><?= $counts[$nav['id']]?></span>
 				<h1>
 					<i class="<?= $nav['icon'] ?>"></i> 
 				</h1>
