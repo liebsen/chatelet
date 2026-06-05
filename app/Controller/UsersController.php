@@ -233,7 +233,6 @@ class UsersController extends AppController {
     #CakeLog::write('debug', 'register:'.json_encode($data));
 
     // CakeLog::write('debug', 'validate:'.$validate);
-    // CakeLog::write('debug', 'new user data:'.json_encode($data));
     try {
       $saved = $this->User->save(
         $data, 
@@ -247,7 +246,7 @@ class UsersController extends AppController {
     }
 
     if (!empty($saved)) {
-      #CakeLog::write('debug', 'saved:'.json_encode($saved));
+      //CakeLog::write('debug', 'saved:'.json_encode($saved));
 
       $logged = $this->Auth->login();     
 
@@ -255,7 +254,7 @@ class UsersController extends AppController {
       $this->Stat->save(
         array(
           'tag' => 'session-register',
-          'user_id' => $this->Auth->user('id'),
+          'user_id' => $saved['User']['id']
         )
       );
 

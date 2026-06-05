@@ -348,7 +348,7 @@ html, body {
 }
 
 .d-none {
-	display: none;
+	display: none!important;
 }
 
 .w-100 {
