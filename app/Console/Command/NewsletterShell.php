@@ -65,18 +65,6 @@ class NewsletterShell extends AppShell {
       )
     ));
 
-    print_r(
-      json_encode(
-        array(
-          'newsletter_cron_check' => array(
-            'quota' => $quota,
-            'perday' => $perday,
-            'perminute' => $perminute,
-          )
-        )
-      )
-    );
-
     // ensure daily limits to avoid penalizations
     $perday--; 
 
@@ -338,7 +326,10 @@ class NewsletterShell extends AppShell {
               'email_sent' => $email_sent,
               'push_sent' => $push_sent,
               'items_sent' => $items_sent,
-              'schedules' => count($schedules)
+              'schedules' => count($schedules),
+	            'quota' => $quota,
+	            'perday' => $perday,
+	            'perminute' => $perminute,
             )
           ), JSON_PRETTY_PRINT
         )
