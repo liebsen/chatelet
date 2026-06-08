@@ -486,6 +486,9 @@ class NewsletterShell extends AppShell {
       );
     }
 
+    $message = "";
+	  $sent = false;
+
     try {
 	    $email->to($data['User']['email']);
 	    $email->subject($data['Newsletter']['title']);
@@ -495,11 +498,12 @@ class NewsletterShell extends AppShell {
 
 	    $sent = $email->send();
 	  } catch (\Throwable $th) {
-	  	$sent = $th->getMessage();
+	  	$message = $th->getMessage();
 	  }
 
     return array(
-      'sent' => $sent
+      'sent' => $sent,
+      'message' => $message,
     );
   }
 
