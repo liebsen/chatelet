@@ -124,7 +124,7 @@ html, body {
   top: 0.8rem;
   right: 1rem;
   font-family: 'FontAwesome';
-  z-index: 10;
+  z-index: 8;
 }
 
 .input-status.wrong:before {
@@ -348,7 +348,7 @@ html, body {
 }
 
 .d-none {
-	display: none!important;
+	display: none;
 }
 
 .w-100 {
