@@ -35,7 +35,7 @@
             <select class="form-control" name="data[newsletter_id]" <?=empty($schedule['NewsletterSchedule']['id']) ? 'required' : 'disabled'?><?=empty($this->request->query('newsletter_id')) ? '' : ' data-change="1"'?>>
               <option value="">Selecciona una plantilla</option>
       <?php foreach($newsletters as $newsletter): ?>
-      <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?> (<?= $newsletter['0']['total']?>) &mdash; Por <?=$newsletter['User']['name'] ?? strstr($newsletter['User']['email'], '@', true)?> <?=\readable_time_ago($newsletter['Newsletter']['created'])?></option>
+      <option value="<?= $newsletter['Newsletter']['id']?>"<?=@($newsletter['Newsletter']['id'] == $this->params->query['newsletter_id'] || $newsletter['Newsletter']['id'] == $schedule['NewsletterSchedule']['newsletter_id']) ? ' selected' : ''?>><?= $newsletter['Newsletter']['title']?> (<?= $newsletter['0']['total']?>) &mdash; Por <?=$newsletter['User']['name'] ?? strstr($newsletter['User']['email'], '@', true)?> &mdash; <?=\readable_time_ago($newsletter['Newsletter']['created'])?></option>
       <?php endforeach ?>
             </select>
           </div>

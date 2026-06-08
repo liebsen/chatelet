@@ -279,7 +279,7 @@ class NewsletterShell extends AppShell {
         }
 
         $email = $this->sendEmail($schedule, $products);
-
+        var_dump(array('email' => $email));
         if($email['sent']) {
           $this->NewsletterScheduleItem->save(
             array(
@@ -303,6 +303,7 @@ class NewsletterShell extends AppShell {
 
         foreach($pushes as $push) {
           $push = $this->sendPush($schedule, $push);
+          var_dump(array('push' => $push));
           if($push['sent']) {
             $this->NewsletterScheduleItem->save(
               array(
@@ -485,14 +486,20 @@ class NewsletterShell extends AppShell {
       );
     }
 
-    $email->to($data['User']['email']);
-    $email->subject($data['Newsletter']['title']);
-    $email->template('newsletter', 'default');
-    $email->emailFormat('html') ;
-    $email->viewVars($viewVars);
+    try {
+	    $email->to($data['User']['email']);
+	    $email->subject($data['Newsletter']['title']);
+	    $email->template('newsletter', 'default');
+	    $email->emailFormat('html') ;
+	    $email->viewVars($viewVars);
+
+	    $sent = $email->send();
+	  } catch (\Throwable $th) {
+	  	$sent = $th->getMessage();
+	  }
 
     return array(
-      'sent' => $email->send()
+      'sent' => $sent
     );
   }
 
