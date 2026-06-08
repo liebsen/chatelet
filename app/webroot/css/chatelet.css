@@ -51,6 +51,13 @@ html, body {
 	overflow-x: hidden;
 }
 
+body > section {
+	animation-name: fadeIn;
+	animation-duration: 1.5s;
+	animation-fill-mode: both;
+	animation-delay: 0.5s;
+}
+
 .carousel-video {
   object-fit: cover;
   object-position: center top;
@@ -349,6 +356,10 @@ html, body {
 
 .d-none {
 	display: none;
+}
+
+.d-none-i {
+	display: none!important;
 }
 
 .w-100 {

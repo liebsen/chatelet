@@ -1,12 +1,12 @@
-  <section class="subscribe-box bg-salmon animation-pullUp animation-both d-none">
+  <section class="subscribe-box bg-salmon animation-pullUp animation-both d-none-i">
     <div class="w-100">
       <span class="corner-pin is-clickable">
         <i class="ico-times" role="img" aria-label="Cerrar"></i>
       </span>
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
-          <h4 class="text-uppercase text-preserve"><i class="gi gi-bell mr-1"></i> Estemos <strong>conectadas</strong></h4>
-          <p class="text-uppercase text-preserve text-sm">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
+          <h3 class="text-uppercase"><i class="gi gi-bell mr-1"></i> Estemos <strong>conectadas</strong></h3>
+          <p class="text-uppercase text-sm">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
         </span>
         <span>
         <?php echo $this->Form->create('Subscribe', array(
@@ -28,15 +28,15 @@
           </div>
         <?php echo $this->Form->end(); ?>
         </span>
-        <span class="subscribe-message text-preserve text-danger"></span>      
-        <span class="subscribe-dismiss text-preserve is-clickable" data-toggle="click" data-hide=".subscribe-box">No, gracias</span>
+        <span class="subscribe-message text-danger"></span>      
+        <span class="subscribe-dismiss is-clickable" data-toggle="click" data-hide=".subscribe-box">No, gracias</span>
       </div>    
-      <div class="subscribe-success max-25 m-auto d-none">
+      <div class="subscribe-success max-25 m-auto d-none-i">
         <span class="subscribe-text text-center">
-          <h3 class="text-uppercase text-preserve">¡Ya estamos <strong>conectadas</strong>!</h3>
+          <h3 class="text-uppercase">¡Ya estamos <strong>conectadas</strong>!</h3>
           <h1><i class="gi gi-flash text-warning"></i></h1>
           <div class="d-flex align-items-center mb-4">
-            <p class="text-theme text-preserve">A partir de ahora ya formas parte de nuestra comunidad y te enviaremos información exclusiva de nuestras novedades, descuentos y beneficios exclusivos solo para clientas</p>
+            <p class="text-theme">A partir de ahora ya formas parte de nuestra comunidad y te enviaremos información exclusiva de nuestras novedades, descuentos y beneficios exclusivos solo para clientas</p>
           </div>
           <div class="is-flex-center gap-1">
             <a class="text-link" data-toggle="click" data-hide=".subscribe-box">Cerrar esta ventana</a>
@@ -45,9 +45,9 @@
           </div>
         </span>
       </div>
-      <div class="subscribe-error max-25 m-auto d-none">
+      <div class="subscribe-error max-25 m-auto d-none-i">
         <span class="subscribe-text text-center">
-          <h4 class="text-uppercase text-preserve">Error al suscribir</h4>
+          <h4 class="text-uppercase">Error al suscribir</h4>
           <p>Hubo un error al procesar esta página y no pudimos suscribirte, intenta nuevamente en unos instantes o <a href="/contacto">contactanos</a></p>
           <p class="text-center">
             <a class="text-link" onclick="subscribe_retry()">Subscribirme con otra cuenta</a>
@@ -57,7 +57,7 @@
     </div>
   </section>
   
-  <div class="btn-subscribe is-clickable d-none" title="Estemos conectadas"><i class="fa fa-envelope-o fa-lg animation-floating animation-both m-auto"></i></div>
+  <div class="btn-subscribe is-clickable d-none-i" title="Estemos conectadas"><i class="fa fa-envelope-o fa-lg animation-floating animation-both m-auto"></i></div>
   <style>
     .subscribe-box { 
       position: fixed;
@@ -70,6 +70,15 @@
       padding: 1.5rem 1rem;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
+      color: white;
+    }
+
+    .subscribe-box p {
+    	color: white!important;
+    }
+
+    .subscribe-box i {
+    	color: yellow!important;
     }
 
     .subscribe-box .ico-times::before {
@@ -126,12 +135,12 @@
   <script type="text/javascript">
 
     function subscribe_retry(){
-      $('.subscribe-success,.subscribe-error,.btn-subscribe').addClass('d-none')
+      $('.subscribe-success,.subscribe-error,.btn-subscribe').addClass('d-none-i')
       $('.subscribe-box form .form-control').val('')
       setTimeout(function(){
-        $('.subscribe-box').removeClass('d-none')
+        $('.subscribe-box').removeClass('d-none-i')
         $('.subscribe-box').show()
-        $('.subscribe-form').removeClass('d-none')
+        $('.subscribe-form').removeClass('d-none-i')
       }, 500)
     }
 
@@ -139,22 +148,22 @@
       const subscription_release = localStorage.subscription_release || 'undefined'
       
       if(!subscription_release || subscription_release == 'undefined') {
-        $('.subscribe-box').removeClass('d-none')
+        $('.subscribe-box').removeClass('d-none-i')
       } else {
-        $('.btn-subscribe').removeClass('d-none')
+        $('.btn-subscribe').removeClass('d-none-i')
       }
 
       $('.subscribe-dismiss').on('click', function(e) {
         e.preventDefault()
         localStorage.subscription_release = 1
-        $('.btn-subscribe').removeClass('d-none')
+        $('.btn-subscribe').removeClass('d-none-i')
       })
 
       $('.corner-pin').on('click', function(e) {
         e.preventDefault()
         $('.subscribe-box').removeClass('delay3')
         $('.subscribe-box').fadeOut(500)
-        $('.btn-subscribe').removeClass('d-none')
+        $('.btn-subscribe').removeClass('d-none-i')
       })
 
       $('.btn-subscribe').on('click', function(e) {
@@ -184,20 +193,20 @@
               if(res.is_already_subscribed) {
                 $('.subscribe-message').text(res.message)
               } else {
-                $('.subscribe-form,.subscribe-error').addClass('d-none')
-                $('.subscribe-success').removeClass('d-none')
+                $('.subscribe-form,.subscribe-error').addClass('d-none-i')
+                $('.subscribe-success').removeClass('d-none-i')
                 localStorage.subscription_release = 1
               }
             } else {
-              $('.subscribe-form').addClass('d-none')
-              $('.subscribe-error').removeClass('d-none')
+              $('.subscribe-form').addClass('d-none-i')
+              $('.subscribe-error').removeClass('d-none-i')
             }
             btnSubmit.text(btnSubmit.data('name'))
             btnSubmit.prop('disabled', false)
           },
           error: function(xhr, status, error) {
-            $('.subscribe-form').removeClass('d-none')
-            $('.subscribe-error').removeClass('d-none')
+            $('.subscribe-form').removeClass('d-none-i')
+            $('.subscribe-error').removeClass('d-none-i')
             //console.error("AJAX Error: " + status + " - " + error);
             btnSubmit.prop('disabled', false)
           }
