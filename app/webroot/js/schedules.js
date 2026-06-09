@@ -26,8 +26,8 @@ $(document).ready(function() {
 	      type: 'post',
 	      url: '/admin/newsletters/schedules/edit/'+id, 
 	      data: formData,
-	      processData: false, // Prevent jQuery from converting data to a string
-	      contentType: false, // Prevent jQuery from setting a default content-type header
+	      processData: false,
+	      contentType: false,
 	    }).success(function(res){
 				if(res.success) {
 					target.removeClass('btn-success btn-danger')
@@ -38,7 +38,7 @@ $(document).ready(function() {
 			      title: 'Camapaña actualizada',
 			      message: 'La camapaña ha sido actualizada',
 			      duration: 1000
-			    });
+			    })
 				}
 			})
   	}, 100) 
