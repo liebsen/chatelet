@@ -16359,7 +16359,6 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
                             d = a[c];
                             for (var e in f)
                                 if (f[e].checkElementMatch(d, !0)) {
-                                	console.log('a(1)')
                                     e != b && this.setValue(e);
                                     return
                                 }

@@ -506,7 +506,7 @@ background-color: #e8ffa8!important;
   justify-content: start;
   align-items: center;
   grid-gap: 0.5rem;
-  min-height: 2.25rem;
+  min-height: 2.5rem;
   padding-left: 0.5rem;
   text-transform: uppercase;
   position: relative;
@@ -623,8 +623,8 @@ background-color: #e8ffa8!important;
       border-bottom-left-radius: 1.5rem;
   }*/
   #primary-nav li a {
-    border-top-right-radius: 3rem;
-    border-bottom-right-radius: 3rem;
+    border-top-right-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
   }
   .side-scrollable {
     position: absolute;
@@ -2762,7 +2762,8 @@ header.navbar .navbar-brand {
 .nav-tabs > li.active > a:focus {
   background-color: #2196f3;
   color: white;
-  border-bottom: none;
+  border: none;
+  border-bottom: 1px solid #2196f3;
 }
 
 .nav-pills > li.active > a,

@@ -16,6 +16,31 @@ CKEDITOR.on('dialogDefinition', function(ev) {
   }
 })
 
+/*CKEDITOR.on('dialogDefinition', function(ev) {
+    var dialogName = ev.data.name;
+    var dialogDefinition = ev.data.definition;
+
+    if (dialogName == 'image') {
+        var onOk = dialogDefinition.onOk;
+        console.log('a(1)')
+        dialogDefinition.onOk = function(e) {
+            var dialog = this;
+            console.log('a(2)')
+            // Set default width (e.g., 600px)
+            var widthField = dialog.getContentElement('info', 'txtWidth');
+            console.log('a(3)',widthField)
+            if (widthField) widthField.setValue('600');
+            
+            // Set default height (e.g., auto/null)
+            var heightField = dialog.getContentElement('info', 'txtHeight');
+            if (heightField) heightField.setValue(''); // Empty allows auto/proportional
+
+            // Call the original onOk function
+            if (onOk) onOk.apply(this, e);
+        };
+    }
+});*/
+
 CKEDITOR.replace('newsletter', {
   height: 500,
   on: {

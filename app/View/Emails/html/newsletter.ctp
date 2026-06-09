@@ -1,3 +1,12 @@
+<style type="text/css">
+	html, body {
+		padding: 0;
+		margin: 0;
+	}
+	img {
+		max-width: 100%;
+	}
+</style>
 <?php echo $data['Newsletter']['parsed_body']?>
 <?php if($data['NewsletterList']['filter_type'] == 'carts'):?>
   <table border="0">
