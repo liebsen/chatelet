@@ -10,6 +10,7 @@ CKEDITOR.editorConfig = function( config ) {
   config.allowedContent = true;
   // config.toolbarCanCollapse = true;
   config.language = 'es'
+  config.image_prefillDimensions = false
   /*config.toolbar = [
       { name: 'styles', items : [ 'Format' ] },
       { name: 'basicstyles', items : [ 'Bold','Italic','Strike'] },

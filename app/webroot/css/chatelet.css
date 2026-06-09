@@ -1091,7 +1091,7 @@ select.form-control{
 	padding: 1rem;
 }
 
-.dropdown-menu a {
+.dropdown-menu a:not(.btn-chatelet) {
 	color: black;
 }
 

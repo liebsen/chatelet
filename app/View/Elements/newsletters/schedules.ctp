@@ -252,6 +252,9 @@
 					</td>
 					<td> 
 						<div class="d-flex flex-center flex-nowrap gap-25">
+					    <a class="btn btn-sm btn-<?=$schedule['NewsletterSchedule']['enabled'] == '1' ? 'danger' : 'success'?> btn-play-pause" data-id="<?=$schedule['NewsletterSchedule']['id']?>" title="Pausar/reaundar" href="javascript:void(0)">
+					      <i class="fa fa-<?=$schedule['NewsletterSchedule']['enabled'] == '1' ? 'pause' : 'play'?>"></i> 
+					    </a>							
 					    <a href="<?=$this->Html->url(
 					        array(
 					          'controller' => 'newsletter', 

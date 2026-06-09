@@ -1,3 +1,21 @@
+CKEDITOR.on('dialogDefinition', function(ev) {
+  var dialogName = ev.data.name;
+  var dialogDefinition = ev.data.definition;
+
+  // Check if the dialog is the "image" dialog
+  if (dialogName == 'image') {
+    // Get the "info" tab
+    var infoTab = dialogDefinition.getContents('info');
+    
+    // Remove width and height fields
+    infoTab.remove('txtWidth');
+    infoTab.remove('txtHeight');
+    
+    // Optional: Remove the "Lock proportions" icon
+    infoTab.remove('ratioLock');
+  }
+})
+
 CKEDITOR.replace('newsletter', {
   height: 500,
   on: {

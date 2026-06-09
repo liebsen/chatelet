@@ -13,6 +13,36 @@ $(document).ready(function() {
     window.location.href = window.location.href
   })
 
+  $('.btn-play-pause').click(function(e){
+  	clearInterval(clock)
+  	const target = $(e.target).hasClass('btn') ? $(e.target) : $(e.target).parent()
+  	const id = target.data('id') || 0
+  	if(!id) return
+  	clock = setTimeout(function(){
+  		var enabled = target.hasClass('btn-danger') ? 0:1
+  		var formData = new FormData();
+  		formData.append('enabled', enabled)
+			$.ajax({
+	      type: 'post',
+	      url: '/admin/newsletters/schedules/edit/'+id, 
+	      data: formData,
+	      processData: false, // Prevent jQuery from converting data to a string
+	      contentType: false, // Prevent jQuery from setting a default content-type header
+	    }).success(function(res){
+				if(res.success) {
+					target.removeClass('btn-success btn-danger')
+					target.addClass(enabled ? 'btn-danger' : 'btn-success')
+					target.find('i').removeClass('fa-play fa-pause')
+					target.find('i').addClass(enabled ? 'fa-pause' : 'fa-play')
+			    $.growl.success({
+			      title: 'Camapaña actualizada',
+			      message: 'La camapaña ha sido actualizada',
+			      duration: 1000
+			    });
+				}
+			})
+  	}, 100) 
+  })
   $('.button-update-schedules').click(function(e){
     e.preventDefault()
     clock = 0
