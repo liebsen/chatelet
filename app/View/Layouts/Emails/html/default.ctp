@@ -27,7 +27,7 @@
         <td>
           <table cellpadding="0" cellspacing="0" style="width: 100%; padding: 16px;min-height: 120px;">
             <tr>
-              <td align="center"><a href="<?=$site_url?>" target="_blank"><?php echo $this->html->image($site_url."/images/logo.png", ['width' => '200px']); ?></a></td>
+              <td align="center"><a href="<?=$site_url?>" target="_blank"><?php echo $this->html->image($site_url."/images/logo.png", ['width' => '140px']); ?></a></td>
             </tr>
           </table>
         </td>
