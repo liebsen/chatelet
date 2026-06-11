@@ -514,6 +514,11 @@ background-color: #e8ffa8!important;
   text-decoration: none;
 }
 
+#primary-nav > ul > li > a .fa {
+	position: relative;
+	font-size: 1.4rem;
+}
+
 #primary-nav li a:focus {
   outline: none;
 }

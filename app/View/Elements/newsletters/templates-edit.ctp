@@ -40,6 +40,27 @@
       <div class="form-box bg-info-outline">
         <h4 class="sub-header">Datos del mensaje</h4>
         <p>Compone un mensaje para los mensajes push</p>
+	      <div class="control-group flex-column d-block">
+	        <label class="control-label" for="toggle-follow"><?php echo __('Cuerpo del email'); ?></label>
+	        <textarea class="form-control w-100" name="data[body]" id="newsletter"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
+	        <h6 class="text-theme">Elementos de plantilla</h6>
+	        <table class="table table-striped w-100">
+	  <?php foreach($templateVars as $id => $name): ?>
+	        <tr class="is-clickable append-editor" data-text="{{<?= $id ?>}}">
+	          <th>
+	            <small class="text-lowercase">
+	              <i class="fa fa-key text-warning"></i> <?= $id ?>
+	            </small>
+	          </th>
+	          <td>
+	            <small>
+	              <i class="gi gi-chat text-muted"></i> <?= $name ?>
+	            </small>
+	          </td>
+	        </tr>
+	  <?php endforeach ?>
+	        </table>
+	      </div>   
         <div class="control-group">
           <label class="control-label" for="title">Título</label>
           <div class="controls">
@@ -52,27 +73,6 @@
           <textarea class="form-control w-100" name="data[message]" rows="4"><?=$newsletter['Newsletter']['message']?></textarea>
           <small class="text-muted">Es el texto que verán las clientas en su notificación push</small>
         </div>
-      <div class="control-group flex-column d-block">
-        <label class="control-label" for="toggle-follow"><?php echo __('Cuerpo del email'); ?></label>
-        <textarea class="form-control w-100" name="data[body]" id="newsletter"><?=htmlentities($newsletter['Newsletter']['body'])?></textarea>
-        <h6 class="text-theme">Elementos de plantilla</h6>
-        <table class="table table-striped w-100">
-  <?php foreach($templateVars as $id => $name): ?>
-        <tr class="is-clickable append-editor" data-text="{{<?= $id ?>}}">
-          <th>
-            <small class="text-lowercase">
-              <i class="fa fa-key text-warning"></i> <?= $id ?>
-            </small>
-          </th>
-          <td>
-            <small>
-              <i class="gi gi-chat text-muted"></i> <?= $name ?>
-            </small>
-          </td>
-        </tr>
-  <?php endforeach ?>
-        </table>
-      </div>   
       </div>      
     </div>
     <div class="col-md-6">
@@ -205,7 +205,7 @@
       <span class="ml-1">Previsualizar</span>
     </a>
 <?php endif ?>
-    <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario">
+    <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario" before="update_editor">
       <i class="fa fa-check"></i> 
       <span class="ml-1">Guardar</span>
     </button>
