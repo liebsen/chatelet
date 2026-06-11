@@ -19,22 +19,13 @@
   <head>
     <title>Châtelet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-		<style type="text/css">
-			html, body {
-				padding: 0;
-				margin: 0;
-			}
-			img {
-				max-width: 100%;
-			}
-		</style>    
   </head>
   <body style="font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;font-size: 16px;font-color: #333;background-color: #ffffff; width:100%; overflow-x: hidden;">
     <table cellpadding="0" cellspacing="0" width="100%" align="center">
 <?php if(empty($skip_header)):?>
       <tr>
         <td>
-          <table cellpadding="0" cellspacing="0" style="width: 100%; padding: 16px;height: 120px;">
+          <table cellpadding="0" cellspacing="0" style="width: 100%; padding: 16px;min-height: 120px;">
             <tr>
               <td align="center"><a href="<?=$site_url?>" target="_blank"><?php echo $this->html->image($site_url."/images/logo.png", ['width' => '200px']); ?></a></td>
             </tr>
@@ -43,7 +34,7 @@
       </tr>
 <?php endif ?>
       <tr>
-        <td align="center"><?php echo $this->fetch('content'); ?></td>
+        <td align="center" class="content"><?php echo $this->fetch('content'); ?></td>
       </tr>
       <?php if(!empty($socials) && count(@$socials)): ?>
       <tr>

@@ -1691,7 +1691,7 @@ li.plan-featured h1 {
   min-width: 280px;
 }
 
-.image-desktop img {
+.image-desktop img,.image-desktop video {
   object-fit: cover;
   width: 100%;
 }
