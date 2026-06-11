@@ -205,7 +205,7 @@
       <span class="ml-1">Previsualizar</span>
     </a>
 <?php endif ?>
-    <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario" before="update_editor">
+    <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario">
       <i class="fa fa-check"></i> 
       <span class="ml-1">Guardar</span>
     </button>
