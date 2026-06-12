@@ -1137,7 +1137,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 #detalle .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
 #main .caract { color: #404040; /* margin-top: 25px; */ }
 #main .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
-#main .caract p { /*border-bottom: 2px solid #c2c2c2;*/ line-height: 1.25; text-transform: uppercase; }
+#main .caract p { line-height: 1.25; }
 #main .caract .size { margin-bottom: 25px; }
 #main .caract .size a { color: #404040; display: inline-block; font-size: 16px; margin-right: 20px; }
 #main .caract .size a.active { color: #363633; }
