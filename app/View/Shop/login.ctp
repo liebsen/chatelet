@@ -21,7 +21,7 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 			<?php echo 'Inicia sesión para continuar'; ?>
 		</h3>
 		<p class="text-center">
-			Inicia sesión en Châtelet con tus credenciales. Ingresá tu email y contraseña para continuar.<br> Si no tienes una cuenta presiona <b>Crear mi cuenta</b>.
+			Inicia sesión en Châtelet con tus credenciales. Ingresá tu email y contraseña para continuar.
 		</p>
 		<div class="max-22 w-100">
 			<div class="is-flex justify-content-center align-items-center gap-1 mb-4">
