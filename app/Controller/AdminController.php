@@ -2665,15 +2665,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     				$i>0
     			) { // wee need a new list
     				$template['NewsletterList']['name'] = $name . ' ('.$lists_count.')';
-    				#\d('template', $template);
-
-						//$this->NewsletterList->primaryKey = null;
-						$this->NewsletterList->create();
+						$this->NewsletterList->create(); // we need to force insert here
     				$result = $this->NewsletterList->save($template);
-    				#\d('result', $result);
-
     				$parent_id = $result['NewsletterList']['id'];
-    				#\d('parent_id', $parent_id);
     				$lists_count++;
     			}
     			array_push($saves, 

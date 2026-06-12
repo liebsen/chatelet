@@ -2942,9 +2942,8 @@ background-color: #fff;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
   border-radius: 0.5rem;
-  min-width: 6rem;
+  max-width: 6rem;
   aspect-ratio: 2/3;
   background-color: #c5c5c5;
   filter: contrast(110%) brightness(110%);
@@ -2955,8 +2954,7 @@ background-color: #fff;
 }
 
 .card-img.sm {
-  padding: 0.25rem!important;
-  min-width: 4rem;
+  max-width: 3rem;
   margin: auto;
 }
 

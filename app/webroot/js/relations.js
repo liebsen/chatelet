@@ -176,7 +176,6 @@ $(document).on('click', '.relations-add', function(e){
   var target = null
   if(tData.key=='all'){
   	tData.audienceMax = audienceMax
-  	const tar1 = $('input[name="data[filter][audienceMax]"]')
     target = e.target
     data.push(tData)
   } else {
@@ -184,6 +183,8 @@ $(document).on('click', '.relations-add', function(e){
       data.push($(e).data())
     })
   }
+  $('.growl-close').click()
+  
   $(`.${tData.type}-container > .label`).removeClass('is-enabled')
   setRelation('add', data, target, tData.type, updateRelationCount)
 })
