@@ -13,10 +13,13 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 echo $this->Html->script('particular-validation', array('inline' => false));
 ?>
 <section id="detalle" class="is-flex-center min-h-101">
-  <div class="wrapper container-flex d-flex flex-column justify-content-center align-items-center m-auto max-30">
-		<h2>
+  <div class="wrapper container-flex d-flex flex-column justify-content-center align-items-center max-30">
+		<h1>
+			<i class="gi gi-woman"></i>
+		</h1>
+		<h3>
 			<?php echo 'Inicia sesión para continuar'; ?>
-		</h2>			
+		</h3>
 		<p class="text-center">
 			Inicia sesión en Châtelet con tus credenciales. Ingresá tu email y contraseña para continuar.<br> Si no tienes una cuenta presiona <b>Crear mi cuenta</b>.
 		</p>
@@ -33,12 +36,14 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 				);
 			?>
 			<input type="hidden" name="redirect" value="/shop"/>                
-			<input type="hidden" name="ajax" value="1"/>                
+			<input type="hidden" name="ajax" value="1"/>   
+			<label class="text-muted" for="login-email">Email</label>             
 			<div class="form-group">
-      	<input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="Email" required />
+      	<input type="email" id="login-email" class="form-control" name="data[User][email]" placeholder="micuenta@chatelet.com.ar" required />
       </div>
+      <label class="text-muted" for="login-password">Contraseña</label>
       <div class="form-group position-relative">
-      	<input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="Contraseña" required />
+      	<input type="password" class="form-control" id="login-password" name="data[User][password]" placeholder="********" required />
 				<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#login-password"></i>
 			</div>
       <!--label class="form-group p-1">
@@ -49,18 +54,20 @@ echo $this->Html->script('particular-validation', array('inline' => false));
       <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4 w-100">
       	<input type="submit" class="btn btn-chatelet dark w-100" value="Iniciar sesión" />
       	<hr> 
-        <a class="btn btn-chatelet w-100" href="<?=$this->Html->url(
+      </div>
+      <div class="d-flex justify-content-center align-items-center gap-1">
+        <a class="btn btn-text" href="<?=$this->Html->url(
 						array(
 							'controller' => 'shop',
 							'action' => 'registro'
 						)
-					)?>">Crear mi cuenta</a>
-        <a class="btn btn-chatelet w-100" href="<?=$this->Html->url(
+					)?>"><i class="gi gi-woman"></i> Crear mi cuenta</a>
+        <a class="btn btn-text" href="<?=$this->Html->url(
 						array(
 							'controller' => 'shop',
 							'action' => 'recuperar_acceso'
 						)
-					)?>">Olvidé la contraseña</a>
+					)?>"><i class="fa fa-warning"></i> Olvidé la contraseña</a>
       </div>
       <?php echo $this->Form->end(); ?>
 		</div>

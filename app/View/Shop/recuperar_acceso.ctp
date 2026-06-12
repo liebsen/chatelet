@@ -5,13 +5,16 @@ $this->set('short_header_link', '/shop/cuenta');
 echo $this->Session->flash();
 ?>
 <section id="detalle" class="is-flex-center min-h-101">
-  <div class="wrapper container-flex d-flex flex-column justify-content-center align-items-center m-auto max-30">
-		<h2 class="text-uppercase">
+  <div class="wrapper container-flex d-flex flex-column justify-content-center align-items-center max-30">
+		<h1>
+			<i class="fa fa-warning"></i>
+		</h1>  	
+		<h3>
 			<?php echo 'Recuperar Contraseña'; ?>
-		</h2>
+		</h3>
 		<p class="text-center">
 			Recupera fácilmente el acceso a tu cuenta ingresando el correo con el que creaste tu cuenta en Châtelet.<br> Te enviaremos instrucciones a ese correo.
-		</p>
+		</p><hr>
 		<div class="max-22 w-100">		
 			<?php echo $this->Form->create('ForgotPass', array(
 				'id' => 'password_form',

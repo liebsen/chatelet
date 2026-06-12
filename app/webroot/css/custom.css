@@ -4,7 +4,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.75rem;
 }
 h1,h2,h3 {
-  letter-spacing: -0.05rem;
+	&:not(.text-uppercase) {
+  	letter-spacing: -0.05rem;
+  }
 }
 span, i, small {
   line-height: 1;
@@ -288,7 +290,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   text-align: center;
 }
 
-.wrapper { margin: 0 auto; /* max-width: 1440px; */}
+.wrapper { margin: 0!important; padding: 0 1.5rem; width: 100%; /* max-width: 1440px; */}
 .link { color: #363633; font-weight: 300; }
 .link:hover { color: #363633; font-weight: 300; text-decoration: underline; }
 .discount-flag {
@@ -1687,9 +1689,6 @@ ul#ul-moreviews li.dontResize img {
 	#lookbook .social a { margin: 0 20px; }
 	#video p { font-size: 20px; }
 	#productOptions nav { margin-bottom: 20px; }
-
-	#detalle { padding-top: 2rem;
-    margin-top: -1rem; }
 	#detalle .col-md-3 li { display: inline-block; }
 	#detalle .col-md-3 li a img { width: 90px; }
 	#detalle .col-sm-7 img { width: 100%!important; }

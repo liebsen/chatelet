@@ -6,14 +6,17 @@ $this->set('short_header_classname', 'btn_continue_shopping');
 echo $this->Session->flash();
 ?>
 <section id="detalle" class="is-flex-center min-h-101">
-  <div class="wrapper container-flex d-flex flex-column justify-content-center align-items-center m-auto max-30">
-		<h2>
+  <div class="wrapper container-flex d-flex flex-column justify-content-center align-items-center max-30">
+		<h3>
 			<?php if ($loggedIn) : ?>
 				Hola, <?php echo $user['name'] ?? 'invitada'; ?>
 			<?php else : ?>
 				No estás conectada ahora
 			<?php endif ?>
-		</h2>
+		</h3>
+		<h1>
+			<i class="fa fa-flash text-<?=$loggedIn ? 'light' : 'warning'?>"></i>
+		</h1>
 	<?php if ($loggedIn) : ?>
 		<p class="text-center">Iniciaste sesión como <?php echo $user['email']; ?>. La última modificación en tu cuenta fue realizada <?=\readable_time_ago($user['modified'])?></p>		
 	<?php else : ?>	

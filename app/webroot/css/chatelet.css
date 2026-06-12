@@ -14,7 +14,7 @@ body.loading {
 }
 
 input:focus::placeholder {
-  opacity: 0;
+  opacity: 0.2;
 }
 
 nav.sidebar-expanded {
@@ -974,7 +974,8 @@ select.form-control{
 }
 
 .form-control:focus {
-	border-color: #0e98ff!important;
+	border-color: #e10c76!important;
+	background-color: lightyellow;
 }
 
 .d-inline {
@@ -1569,13 +1570,13 @@ select.form-control{
 .btn-chatelet.dark {
 	color: white;
   background-color: black;
-  border-color: #e7e7e7;
+  border-color: #c5c5c5;
 }
 
 .btn-chatelet.light {
-	color: #e7e7e7;
+	color: #c5c5c5;
   background-color: transparent;
-  border-color: #e7e7e7;
+  border-color: #c5c5c5;
 }
 
 .btn-chatelet.dark:hover {
