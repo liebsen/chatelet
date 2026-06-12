@@ -1,4 +1,5 @@
 let interval = 0
+let audienceMax = 0
 const endpoints = { 
   user: {
     url: '/admin/search_users',
@@ -53,15 +54,15 @@ function setRelation(action, data, target, type, cb) {
             target : 
             '.' + type + '-container .label:not(.is-enabled)'
           ).addClass('is-enabled')
-          $('.relations-add').addClass('d-none')
-          $('.relations-remove').removeClass('d-none')
+          $('.relations-add:not(.btn-persist)').addClass('d-none')
+          $('.relations-remove:not(.btn-persist)').removeClass('d-none')
         } else {
           $(target && $(target).hasClass('relation-item') ? 
             target : 
             '.' + type + '-container .label'
           ).removeClass('is-enabled')
-          $('.relations-remove').addClass('d-none')
-          $('.relations-add').removeClass('d-none')
+          $('.relations-remove:not(.btn-persist)').addClass('d-none')
+          $('.relations-add:not(.btn-persist)').removeClass('d-none')
         }
         if(typeof cb == 'function') {
           cb(type, target)
@@ -89,8 +90,8 @@ function updateRelationCount(type, target, count){
 function searchRelations(data) { 
   const curr = endpoints[data.type] || {}
   if(!curr.model) return 
-  $('.relations-add').addClass('d-none')
-  $('.relations-remove').addClass('d-none')
+  $('.relations-add:not(.btn-persist)').addClass('d-none')
+  $('.relations-remove:not(.btn-persist)').addClass('d-none')
   $.ajax({
     type: "POST",
     url: curr.url,
@@ -127,7 +128,7 @@ function searchRelations(data) {
         if(typeof data.cb == 'function') {
           data.cb(data.type, null, filter.length)
         }
-        $('.relations-add').removeClass('d-none')
+        $('.relations-add:not(.btn-persist)').removeClass('d-none')
         // $('.relations-remove').addClass('d-none')
       } else {
         $(`.${data.type}-container`).parent().find('.secondary-box').append(`<span class="h6 results-message">No se hallaron resultados para <b>${data.q}</b></span>`)  
@@ -148,12 +149,34 @@ function searchRelations(data) {
   })    
 }
 
+$(document).on('click', '.relations-add-dialog', function(e){
+  e.preventDefault()
+  if(!$('#growls > div').length) {
+	  $.growl.notice({
+	    title: 'Agregar a todos. ¿Deseas segmentar en muestras?',
+	    message: $('#relations-add-dialog').html(),
+	    duration: 5000000
+	  });
+	}
+})
+
+$(document).on('click', '.toggle-split', function(){
+  $(this).parent().find('input').trigger('click')
+  $('.toggle-split-area, .toggle-split-desc').toggleClass('d-none')
+})
+
+$(document).on('keyup', '.relation-audience-max', function(e){
+	audienceMax = parseInt($(e.target).val())
+})
+
 $(document).on('click', '.relations-add', function(e){
-  const tData = $(e.target).is('a') ? $(e.target).data() : $(e.target).parents('a').data()  
-  if(!tData.type) return
+  const tData = $(e.target).is('a') || $(e.target).is('button') ? $(e.target).data() : $(e.target).parents('a').data()  
+  if(!tData?.type) return
   var data = []
   var target = null
   if(tData.key=='all'){
+  	tData.audienceMax = audienceMax
+  	const tar1 = $('input[name="data[filter][audienceMax]"]')
     target = e.target
     data.push(tData)
   } else {
@@ -162,7 +185,6 @@ $(document).on('click', '.relations-add', function(e){
     })
   }
   $(`.${tData.type}-container > .label`).removeClass('is-enabled')
-  //console.log('setRelation(3)')
   setRelation('add', data, target, tData.type, updateRelationCount)
 })
 
@@ -179,17 +201,8 @@ $(document).on('click', '.relations-remove', function(e){
       data.push($(e).data())
     })
   }
-  //console.log('setRelation(1)')
   setRelation('remove', data, target, tData.type, updateRelationCount)
 })
-
-/*$(document).on('click', '.relations-keyword-add', function(e){
-  setRelation('remove', $(this).data('keyword'), null, type, updateRelationCount) 
-})
-
-$(document).on('click', '.relations-keyword-remove', function(e){
-  setRelation('remove', $(this).data('keyword'), null, type, updateRelationCount) 
-})*/
 
 $(document).on('click', '.relation-item', function(e){
   const target = $(e.target)
@@ -197,7 +210,6 @@ $(document).on('click', '.relation-item', function(e){
   const action = target.hasClass('is-enabled') ? 'remove' : 'add'
   const pressed = $('.relations-add-single')
   pressed.addClass('d-none')
-  //console.log('setRelation(2)')
   setRelation(action, [data], e.target, data.type, updateRelationCount)
 })
 

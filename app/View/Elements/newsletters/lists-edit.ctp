@@ -135,9 +135,9 @@
             <i class="fa fa-trash mr-2"></i>
             <span>Eliminar todo</span>
           </a>
-          <a class="secondary-success relations-add relations-add-all is-clickable" data-type="user" data-model="NewsletterUser" data-source="list" data-key="all" data-parent-id="<?= $list['NewsletterList']['id'] ?>">
+          <a class="secondary-success relations-add-dialog relations-add-all is-clickable">
             <i class="gi gi-plus mr-2"></i> <span>Seleccionar todos (<?=$users_total?>)</span>
-          </a>          
+          </a>
         </div>
         <div class="controls tags-container user-container">
   <?php foreach($list_users as $user): ?>
@@ -178,3 +178,21 @@
     <button type="submit" name="save" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check mr-1"></i> Guardar</button>
   </div>
 <?php echo $this->Form->end(); ?>
+<div id="relations-add-dialog" class="d-none">
+  <div class="controls flex-1">
+    <!--label class="control-label" for="">Deseas agrupar la audiencia</label-->
+    <input type="checkbox" name="toggle_split" value="0" id="toggle_reset" class="toggle-checkbox">
+    <label for="toggle_split" class="toggle-label toggle-split"></label>
+    <small class="text-muted toggle-split-desc">Si activas esta opción se crearán varios grupos de acuerdo a la cantidad que desees.</small>
+    <div class="toggle-split-area d-none">
+      <label class="control-label" for="title">Tamaño de las muestras</label>
+      <div class="controls">
+        <input type="number" name="data[filter][audienceMax]" class="form-control relation-audience-max" placeholder="Tamaño de las audiencias" value="<?=$list['NewsletterList']['filter']->filter->audienceMax ?? ''?>" required />
+      </div>
+      <small class="text-muted">Es el tamaño máximo de cuentas que contendrá cada lista nueva.</small>
+    </div>
+  </div>
+  <div class="control-group d-flex justify-content-end">
+    <button class="btn btn-success relations-add btn-persist" data-key="all" data-type="user" data-model="NewsletterUser" data-source="list" data-parent-id="<?= $list['NewsletterList']['id'] ?>" title="Pulsa aquí para agregar todos a la lista"><i class="fa fa-check mr-1"></i> Agregar todos</button>
+  </div>
+</div>

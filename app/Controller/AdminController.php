@@ -2629,10 +2629,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->RequestHandler->respondAs('application/json');
     if ($this->request->is('POST')) {
     	$data = $this->request->data;
-    	if($data[0]['key'] == 'all') {
+    	if($data[0]['key'] == 'all') { // if list partition is on, then parentId will be especially treated 
     		$model = ClassRegistry::init($data[0]['model']);
+
     		// assume user for now
     		$this->loadModel('User');
+    		$this->loadModel('NewsletterList');
     		$saves = array();
     		// its all so truncate first
     		$model->deleteAll(
@@ -2643,15 +2645,42 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     			false,
     			false
     		);
-    		foreach($this->User->find('all', array('conditions' => array('User.id >' => 1))) as $item) {
+
+    		# check if will be partition
+    		$parent_id = $data[0]['parentId'];
+    		$lists_count = 2;
+    		$audience_max = $data[0]['audienceMax'];
+    		$template = $this->NewsletterList->find('first', array('conditions' => array('id' => $data[0]['parentId'])));
+
+    		$name = $template['NewsletterList']['name'];
+				unset($template['NewsletterList']['id']);
+				unset($template['NewsletterList']['filter']);
+				unset($template['NewsletterList']['created']);
+				unset($template['NewsletterList']['modified']);
+
+    		foreach($this->User->find('all', array('conditions' => array('User.id >' => 1), 'limit' => 10)) as $i => $item) {
+    			if($i%$audience_max==0&&$i>0) { // wee need a new list
+    				$template['NewsletterList']['name'] = $name . ' ('.$lists_count.')';
+    				#\d('template', $template);
+
+						//$this->NewsletterList->primaryKey = null;
+						$this->NewsletterList->create();
+    				$result = $this->NewsletterList->save($template);
+    				#\d('result', $result);
+
+    				$parent_id = $result['NewsletterList']['id'];
+    				#\d('parent_id', $parent_id);
+    				$lists_count++;
+    			}
     			array_push($saves, 
     				array(
 		      		'id' => null,
 		      		$data[0]['type'] . '_id' => $item['User']['id'],
-		      		$data[0]['source'] . '_id' => $data[0]['parentId'],
+		      		$data[0]['source'] . '_id' => $parent_id,
 		      	)
     			);
     		}
+
     		$model->saveAll(
     			$saves,
     			array(

@@ -63,10 +63,6 @@ function layerClose() {
 }
 
 $(function () {
-  $(document).on('click', '.toggle-force', function(){
-    $(this).parent().find('input').trigger('click')
-  })
-
   $('.track-coords').click(function(e){
     const width = $(this).width();
     const height = $(this).height();
