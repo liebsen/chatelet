@@ -54,20 +54,18 @@ echo $this->Html->script('particular-validation', array('inline' => false));
       <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4 w-100">
       	<input type="submit" class="btn btn-chatelet dark w-100" value="Iniciar sesión" />
       	<hr> 
-      </div>
-      <div class="d-flex justify-content-center align-items-center gap-1">
-        <a class="btn btn-text" href="<?=$this->Html->url(
+        <a class="btn btn-light w-100" href="<?=$this->Html->url(
 						array(
 							'controller' => 'shop',
 							'action' => 'registro'
 						)
-					)?>"><i class="gi gi-woman"></i> Crear mi cuenta</a>
-        <a class="btn btn-text" href="<?=$this->Html->url(
+					)?>">Crear mi cuenta</a>
+        <a class="btn btn-light w-100" href="<?=$this->Html->url(
 						array(
 							'controller' => 'shop',
 							'action' => 'recuperar_acceso'
 						)
-					)?>"><i class="fa fa-warning"></i> Olvidé la contraseña</a>
+					)?>">Olvidé la contraseña</a>
       </div>
       <?php echo $this->Form->end(); ?>
 		</div>

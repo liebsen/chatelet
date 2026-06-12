@@ -1558,6 +1558,9 @@ select.form-control{
 	padding: 0.5rem;
 }
 
+.btn-light {
+	border-color: #c5c5c5;
+}
 .btn-chatelet {
 	color: white;
 	font-weight: 1000;

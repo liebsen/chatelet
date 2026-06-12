@@ -37,7 +37,7 @@ echo $this->Session->flash();
 	    	</span>
 	    </div>
       <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4 w-100">
-        <a class="btn btn-chatelet w-100" href="<?=$this->Html->url(
+        <a class="btn btn-light w-100" href="<?=$this->Html->url(
 						array(
 							'controller' => 'shop',
 							'action' => 'login'

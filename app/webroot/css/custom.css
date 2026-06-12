@@ -290,7 +290,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   text-align: center;
 }
 
-.wrapper { margin: 0!important; padding: 0 1.5rem; width: 100%; /* max-width: 1440px; */}
+.wrapper { margin: 0 auto; width: 100%; /* max-width: 1440px; */}
 .link { color: #363633; font-weight: 300; }
 .link:hover { color: #363633; font-weight: 300; text-decoration: underline; }
 .discount-flag {
@@ -1117,6 +1117,9 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   padding-top: 50px;    
   padding-bottom: 50px; 
   position: relative;
+}
+#detalle .wrapper {
+	padding: 0 1.5rem;
 }
 #detalle li { overflow: hidden; text-align: right; margin-bottom: 1.5rem;}
 #detalle li a { display: inline-block; overflow: hidden; }
