@@ -2658,8 +2658,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				unset($template['NewsletterList']['created']);
 				unset($template['NewsletterList']['modified']);
 
-    		foreach($this->User->find('all', array('conditions' => array('User.id >' => 1), 'limit' => 10)) as $i => $item) {
-    			if($i%$audience_max==0&&$i>0) { // wee need a new list
+    		foreach($this->User->find('all', array('conditions' => array('User.id >' => 1), 'limit' => 100000)) as $i => $item) {
+    			if(
+    				!empty($audience_max)&&
+    				$i%$audience_max==0&&
+    				$i>0
+    			) { // wee need a new list
     				$template['NewsletterList']['name'] = $name . ' ('.$lists_count.')';
     				#\d('template', $template);
 
