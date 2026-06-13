@@ -507,7 +507,6 @@ background-color: #e8ffa8!important;
   align-items: center;
   grid-gap: 0.5rem;
   min-height: 2.5rem;
-  padding-left: 0.5rem;
   text-transform: uppercase;
   position: relative;
   color: #999;
@@ -2790,7 +2789,7 @@ header.navbar .navbar-brand {
 
 .tab-pane:not(#side-tab-menu) {
   min-width: 100%;
-  padding: 1.5rem;
+  padding: 1rem;
   animation-delay: 0.5s;
   animation-duration: 1s;
   animation-fill-mode: both;

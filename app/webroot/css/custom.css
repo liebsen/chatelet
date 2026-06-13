@@ -1120,7 +1120,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   position: relative;
 }
 #detalle .wrapper {
-	padding: 0 1.5rem;
+	padding: 0 1rem;
 }
 #detalle li { overflow: hidden; text-align: right; margin-bottom: 1.5rem;}
 #detalle li a { display: inline-block; overflow: hidden; }
