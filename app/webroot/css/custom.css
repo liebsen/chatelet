@@ -467,7 +467,8 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
     white-space: nowrap;
   }
   .map .col-md-8 { 
-    padding: 1.5rem 1.5rem 4rem 2rem!important;  
+        padding: 4rem !important;
+    padding-top: 2rem !important;
   }
   #map-canvas { 
     border-radius: 1.5rem;
@@ -1472,12 +1473,10 @@ ul#ul-moreviews li.dontResize img {
 #desarrollo .boxes:first-child { 
   background: url(../images/box4.png) no-repeat 2rem center; 
   background-size: 180px; 
-  padding-left: 15rem; 
 }
 #desarrollo .boxes:last-child { 
   background: url(../images/box5.png) no-repeat 2rem center; 
   background-size: 180px; 
-  padding-left: 15rem; 
   text-align: left; 
 }
 #desarrollo h3 { 
@@ -1502,7 +1501,7 @@ ul#ul-moreviews li.dontResize img {
 	.box { padding: 3rem;  border-radius: 1rem; max-width: 40rem;  }
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 992px) {
   #today .rectangle {
     height:400px;
     background-position: top center;

@@ -29,6 +29,7 @@
 
   #optionsHelp.mobile {
     width: 100%;  
+    background-color: lightpink;
   }
 
   #optionsHelp.mobile a {
@@ -57,10 +58,9 @@
   #optionsHelp.mobile > a.active {
     position: relative;
     transition: background 1s ease-out;
-  }
-
-  #optionsHelp.mobile > a.active {
-    border-bottom: 2px solid #c5c5c5;
+    border-bottom: 2px solid coral;
+    background-color: lightcoral;
+    color: white;    
   }
 
   @media(min-width: 992px){

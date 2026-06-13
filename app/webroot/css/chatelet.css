@@ -354,6 +354,29 @@ body > section {
 	font-weight: 500;
 }
 
+
+.mobile, .desktop {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .mobile {
+    display: none!important;
+  }
+  .desktop {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 992px) {
+  .mobile {
+    display: inline-block;
+  }
+  .desktop {
+    display: none!important;
+  }
+}
+
 .d-none {
 	display: none;
 }
