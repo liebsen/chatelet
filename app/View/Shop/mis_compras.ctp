@@ -33,11 +33,11 @@
         <p>No registras compras hasta la fecha. <a href="/Shop"><i class="gi gi-shopping_bag"></i> Comprar ahora</a>
       </div>
 <?php else: ?>
-      <div class="d-flex justify-content-between align-items-center gap-1 w-100 p-4">
+      <div class="d-flex justify-content-between align-items-center flex-column-sm gap-1 w-100 p-4">
         <h3 class="card-title mb-0 w-100">
           <i class="fa fa-shopping-bag mr-1"></i> Mis compras
         </h3>
-        <div class="form-group" style="min-width: 10rem;">
+        <div class="form-group w-100" style="min-width: 10rem;">
           <select class="form-control btn-filter-calendar" name="filter[Type]">
             <option value="day" selected>Hoy</option>
             <option value="month">Último mes</option>

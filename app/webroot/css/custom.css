@@ -931,11 +931,11 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 .text-catalog {
-  text-shadow: 0 0 6px #444;
+  text-shadow: 0 0 3px #333;
   font-size: 1.25rem;
   font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.03rem;
+  letter-spacing: -0.025rem;
   color: white;
 }
 

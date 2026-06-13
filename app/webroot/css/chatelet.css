@@ -973,8 +973,7 @@ body > section {
 	height: 50px;
 	line-height: 2.5;
 	font-size: 1rem;
-	box-shadow: 0 0 30px rgba(40, 40, 40, 0.05);
-	background-color: #f8f8f8;
+	background-color: white;
 }
 
 .form-pass-icon {

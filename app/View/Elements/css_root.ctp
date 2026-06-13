@@ -1,6 +1,6 @@
 <style type="text/css">
 :root {
-  --box-shadow: rgba(0, 0, 0, 0.2) 0 0 6px;
+  --box-shadow: rgba(0, 0, 0, 0.05) 0 0 20px;
   --box-dropshadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
   --box-shadow-inset: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   --box-shadow-downwards: rgba(0, 0, 0, 0.05) 0px 4px 8px -1px, rgba(0, 0, 0, 0.05) 0px 2px 3px -1px;
@@ -119,7 +119,6 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   html,
   body,
   #main,
-  blockquote,
   footer,
   #listShop,  
   .select select, 
@@ -141,7 +140,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .table tr,
   .table td,
   .table th {
-    color: #c5c5c5;
+    color: #c5c5c5!important;
     background-color: #000!important;
     border-color: #888!important;
   }
@@ -163,11 +162,15 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .wizard-node,
   .form-control:focus,
   .btn-chatelet,
+  #optionsHelp.mobile,
   nav.sidebar,
+  blockquote,
   .bg-light,
+	.bg-salmon,
   .generic-select li,
   .toggle-label,
   .switch-scale {
+    background: #444!important;
     background-color: #444!important;
   }
   .carrito-selector input,

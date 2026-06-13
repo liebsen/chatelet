@@ -13,30 +13,38 @@ $this->set('short_header_text', '<i class="gi gi-woman mr-1"></i> Volver a mi cu
 $this->set('short_header_link', '/shop/cuenta');
 
 if (!$loggedIn) {
-	$userData = array(
-		'email' => '',
-		'name' => '',
-		'surname' => '',
-		'birthday' => '',
-		'gender' => '',
-		'dni' => '',
-		'newsletter' => '',
-		'telephone' => '',
-		'another_telephone' => '',
-		'address' => '',
-		'street' => '',
-		'street_n' => '',
-		'floor' => '',
-		'depto' => '',
-		'province' => '',
-		'city' => '',
-		'neighborhood' => '',
-		'postal_address' => ''
-	);
+$userData = array(
+	'email' => '',
+	'name' => '',
+	'surname' => '',
+	'birthday' => '',
+	'gender' => '',
+	'dni' => '',
+	'newsletter' => '',
+	'telephone' => '',
+	'another_telephone' => '',
+	'address' => '',
+	'street' => '',
+	'street_n' => '',
+	'floor' => '',
+	'depto' => '',
+	'province' => '',
+	'city' => '',
+	'neighborhood' => '',
+	'postal_address' => ''
+);
 }
 ?>
+
+<style type="text/css">
+	@media(max-width: 992px){
+		.flex-col .col-md-6 {
+			padding: 0!important;
+		}
+	}
+</style>
 <section id="detalle" class="is-flex-center flex-column min-h-101">
-  	<div class="wrapper container-flex d-flex flex-column justify-content-center align-items-center m-auto">
+	<div class="wrapper container-flex d-flex flex-column justify-content-center align-items-center m-auto">
 		<div class="flex-row animation-fadeIn">
 			<div class="flex-col">
 				<?php 
@@ -251,7 +259,7 @@ if (!$loggedIn) {
 									if ($userData['newsletter'] == '1') $subscribed = 'checked';
 									else if ($userData['newsletter'] == '0') $unsubscribed = 'checked';
 									if($subscribed=='') $subscribed = 'checked';
- 									echo '<label class="text-muted" for="si"><input type="radio" id="si" name="data[User][newsletter]" value="1" '.$subscribed.' /><span>Sí</span></label> '; 
+										echo '<label class="text-muted" for="si"><input type="radio" id="si" name="data[User][newsletter]" value="1" '.$subscribed.' /><span>Sí</span></label> '; 
 									echo '<label class="text-muted" for="no"><input type="radio" id="no" name="data[User][newsletter]" value="0" '.$unsubscribed.' /><span>No</span></label>';*/
 								?>
 							</div>
@@ -296,69 +304,69 @@ if (!$loggedIn) {
 </section>
 
 <script type="text/javascript">
-	$(function(){
-		var timeout = 0
-		$('input[type="submit"]').prop('disabled', false)
-	    $('#registro_form').submit(function(e) {
-	    	e.preventDefault();
-	    	if($('#password').length){
-		    	if($('#password').val().trim() != $('#password2').val().trim()) {
-		    		return onWarningAlert('Error de validación', 'Las contraseñas no coinciden. Asegúrate de que sean la misma en ambos campos')
-		    	}
-		    }
-	    	$('input[type="submit"]').prop('disabled', true)
-	    	// const formData = new FormData(e.target);
-	    	clearTimeout(timeout)
-	    	timeout = setTimeout(() => {
-	        var me = $(this),
-	        data = me.serialize(),
-	        url = me.attr('action');
-	        $.post(url, data)
-	            .success(function(response) {
-	                if (!response.success) {
-	                    if(response.errors!=undefined){
-	                        if(response.errors.email!=undefined){
-	                            $(".validation-email").html(response.errors.email[0]);
-	                            $("#email").parent().removeClass('has-success');
-	                            $("#email").parent().addClass('has-error');
-	                        }
-	                        if(response.errors.password!=undefined){
-	                            $(".validation-password").html(response.errors.password[0]);
-	                            $("#password").parent().removeClass('has-success');
-	                            $("#password").parent().addClass('has-error');
-	                        }
-	                    }
+$(function(){
+	var timeout = 0
+	$('input[type="submit"]').prop('disabled', false)
+    $('#registro_form').submit(function(e) {
+    	e.preventDefault();
+    	if($('#password').length){
+	    	if($('#password').val().trim() != $('#password2').val().trim()) {
+	    		return onWarningAlert('Error de validación', 'Las contraseñas no coinciden. Asegúrate de que sean la misma en ambos campos')
+	    	}
+	    }
+    	$('input[type="submit"]').prop('disabled', true)
+    	// const formData = new FormData(e.target);
+    	clearTimeout(timeout)
+    	timeout = setTimeout(() => {
+        var me = $(this),
+        data = me.serialize(),
+        url = me.attr('action');
+        $.post(url, data)
+            .success(function(response) {
+                if (!response.success) {
+                    if(response.errors!=undefined){
+                        if(response.errors.email!=undefined){
+                            $(".validation-email").html(response.errors.email[0]);
+                            $("#email").parent().removeClass('has-success');
+                            $("#email").parent().addClass('has-error');
+                        }
+                        if(response.errors.password!=undefined){
+                            $(".validation-password").html(response.errors.password[0]);
+                            $("#password").parent().removeClass('has-success');
+                            $("#password").parent().addClass('has-error');
+                        }
+                    }
 
-	                    $.growl.error({
-	                        title: 'Error al registrar usuario',
-	                        message: response.message
-	                    });
+                    $.growl.error({
+                        title: 'Error al registrar usuario',
+                        message: response.message
+                    });
 
-	                    $('input[type="submit"]').prop('disabled',false)
-	                    return false;
-	                } else {
-	                    $.growl.notice({
-	                        title: 'Bienvenida',
-	                        message: 'Tu cuenta está lista'
-	                    });
+                    $('input[type="submit"]').prop('disabled',false)
+                    return false;
+                } else {
+                    $.growl.notice({
+                        title: 'Bienvenida',
+                        message: 'Tu cuenta está lista'
+                    });
 
-	                    const redirect = $('input[name="redirect"]').val() || '/shop'
-	                	setTimeout(() => {
-	                		location.href = redirect
-	                	}, 1000)
-	                }
-	            })
-	            .fail(function() {
-	            		$('input[type="submit"]').prop('disabled', false)
-	                $.growl.error({
-	                    title: 'Error al registrar usuario',
-	                    message: 'Por favor verifica los datos introducidos e intenta de nuevo'
-	                });
-	            });
+                    const redirect = $('input[name="redirect"]').val() || '/shop'
+                	setTimeout(() => {
+                		location.href = redirect
+                	}, 1000)
+                }
+            })
+            .fail(function() {
+            		$('input[type="submit"]').prop('disabled', false)
+                $.growl.error({
+                    title: 'Error al registrar usuario',
+                    message: 'Por favor verifica los datos introducidos e intenta de nuevo'
+                });
+            });
 
-	      }, 500)
-	      return false;
-	    });
-	    // $("#registro_form").bootstrapValidator('validate');		
-	})
+      }, 500)
+      return false;
+    });
+    // $("#registro_form").bootstrapValidator('validate');		
+})
 </script>
