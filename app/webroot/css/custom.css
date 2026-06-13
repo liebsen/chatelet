@@ -1614,13 +1614,13 @@ ul#ul-moreviews li.dontResize img {
   .accept-terms {
 		flex-direction: column;
 	}
-
   .navbar-header { 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center; 
+    min-height: 80px;
   }
   .navbar-chatelet {
     flex-direction: column;

@@ -166,11 +166,9 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   nav.sidebar,
   blockquote,
   .bg-light,
-	.bg-salmon,
   .generic-select li,
   .toggle-label,
   .switch-scale {
-    background: #444!important;
     background-color: #444!important;
   }
   .carrito-selector input,
@@ -179,6 +177,9 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .name {
     color: whitesmoke!important;
   }
+	.bg-salmon {
+    background: #444!important;
+	}
   .navbar-brand {
     background-image: url(/images/logo-w.png)!important; 
   }
