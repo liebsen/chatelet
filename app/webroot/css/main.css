@@ -503,6 +503,7 @@ background-color: #e8ffa8!important;
 
 #primary-nav > ul > li > a {
   display: flex;
+	padding-left: 1rem;
   justify-content: start;
   align-items: center;
   grid-gap: 0.5rem;
@@ -511,6 +512,7 @@ background-color: #e8ffa8!important;
   position: relative;
   color: #999;
   text-decoration: none;
+  transition: background 0.25s ease-in;
 }
 
 #primary-nav > ul > li > a .fa {
@@ -785,11 +787,15 @@ background-color: #e8ffa8!important;
 }
 
 .block-tabs > .nav-tabs {
+
   animation-name: fadeIn;
   animation-fill-mode: both;
   animation-duration: 1s;
   animation-delay: 0.5s;
   animation-timing-function: ease;
+
+	display: flex;
+  overflow: auto;
   padding: 0.75rem;
   padding-bottom: 0;
   background-color: transparent;
@@ -2213,6 +2219,7 @@ pre, code {
   grid-gap: 1rem;
   border: none;
   margin: 0;
+  padding: 1rem;
   min-height: calc(100dvh - 117px);
 }
 
@@ -2942,8 +2949,9 @@ background-color: #fff;
   justify-content: space-between;
   align-items: center;
   border-radius: 0.5rem;
-  max-width: 6rem;
+  width: 6rem;
   aspect-ratio: 2/3;
+  padding: 0.25rem;
   background-color: #c5c5c5;
   filter: contrast(110%) brightness(110%);
   background-repeat: no-repeat;
@@ -2952,8 +2960,13 @@ background-color: #fff;
   background-image: url(/images/isologo-w.png);
 }
 
+.card-img .badge {
+	font-size: 10px;
+	line-height: 1.2;
+}
+
 .card-img.sm {
-  max-width: 3rem;
+  width: 2.5rem;
   margin: auto;
 }
 
@@ -3563,7 +3576,7 @@ a.thumbnail-borderless,
 }
 
 .bg-dark {
-  background-color: #c5c5c5;
+  background-color: #333;
 }
 
 .bg-selected {

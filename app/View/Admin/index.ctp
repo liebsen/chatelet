@@ -20,7 +20,7 @@
 	    	<h1>
         	<i class="gi gi-shop"></i> 
         </h1>
-        <h5>Tienda Châtelet</h5>
+        <h5>Tienda</h5>
 		  </li>
 	  </a>
 		<a href="#" class="logout-btn dropdown-toggle">
