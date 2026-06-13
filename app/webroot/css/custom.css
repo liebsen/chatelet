@@ -1470,7 +1470,7 @@ ul#ul-moreviews li.dontResize img {
   border: 1px solid #6663;
   background-color: rgba(255,255,255,0.5);
 }
-#desarrollo .boxes:first-child { 
+/*#desarrollo .boxes:first-child { 
   background: url(../images/box4.png) no-repeat 2rem center; 
   background-size: 180px; 
 }
@@ -1478,7 +1478,7 @@ ul#ul-moreviews li.dontResize img {
   background: url(../images/box5.png) no-repeat 2rem center; 
   background-size: 180px; 
   text-align: left; 
-}
+}*/
 #desarrollo h3 { 
   font-size: 1.5rem; 
   font-weight: 600; 
@@ -1489,7 +1489,7 @@ ul#ul-moreviews li.dontResize img {
 #referncia { padding: 1.5rem; overflow: hidden; }
 #referncia h2 { font-size: 1.5rem!important; font-weight: bolder; margin-bottom: 2rem!important; text-align: center; }
 #referncia .bx { border-right: 1px solid #f6f6f5; float: left; font-size: 17px; padding: 0 45px; width: 20%; }
-#referncia .bx h3 { color: #51177d; font-size: 100%; font-weight: 500; margin-bottom: 5px; }
+#referncia .bx h3 { color: #51177d; font-size: 1rem; font-weight: 1000; margin-bottom: 5px; }
 #referncia .bx p { font-size: 14px; line-height: 1.4; }
 #referncia ul { column-count: 2; column-gap: 20px; }
 #referncia ul li { border-bottom: 2px solid #f6f6f5; font-size: 14px; line-height: 1.5; padding: 30px 0; }
