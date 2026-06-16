@@ -1295,6 +1295,21 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		}
 
 		$navs = array(
+			'Aplicación' => array(
+				'icon' 		=> 'fa fa-cog',
+				'url'		=> '/admin/application',
+				'text' => 'Configura tu tienda, establece los códigos de seguimiento, redes sociales y más.'
+			),
+			'Presentación' => array(
+				'icon' 		=> 'fa fa-eye',
+				'url'		=> '/admin/presentacion',
+				'text' => 'Trabaja en el inicio de la experiencia en la tienda'
+			),
+			'Menú' => array(
+				'icon' 		=> 'fa fa-ellipsis-v',
+				'url'		=> '/admin/menu',
+				'text' => 'Establece menú principal de la tienda'
+			),
 			'Cuenta' => array(
 				'icon' 		=> 'gi gi-woman',
 				'url'		=> '/shop/cuenta',
@@ -3709,6 +3724,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'id' => 'sales',
 				'icon' 		=> 'gi gi-tag',
 				'url'		=> '/admin/application/analytics',
+			),
+			'Tema' => array(
+				'id' => 'theme',
+				'icon' 		=> 'gi gi-brush',
+				'url'		=> '/admin/application/theme',
 			),
 			'Tipografía' => array(
 				'id' => 'fonts',

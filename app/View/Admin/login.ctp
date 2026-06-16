@@ -51,8 +51,28 @@ echo $this->Session->flash();
         <script src="../js/vendor/modernizr-2.7.1-respond-1.4.2.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$settings['google_font_name']) ?>:<?= @$settings['google_font_size'] ?>" rel="stylesheet">
         <style type="text/css">
+						:root {
+							--theme-color: <?=@$settings['site_theme_color'] ?>;
+							--theme-text: <?=@$settings['site_theme_text'] ?>;
+							--theme-variant: <?=@$settings['site_theme_variant'] ?>;
+							--toggle-off-color: #e7e7e7;
+							--toggle-color: springgreen;
+							--font-family: '<?=@$settings['google_font_name'] ?>';
+						}
+
+						::placeholder {
+						  transition: opacity 0.5s ease-in-out;
+						  transition-delay: 1s;
+						  color: #f8f8f8;
+						}
+
+						/* 1. Standards-based styling (Firefox and future browsers) */
+						* {
+						  scrollbar-width: thin; /* Options: auto, thin, none */
+						  scrollbar-color: #888 #f1f1f1; /* thumb-color track-color */
+						}        	
             html, body { 
-                font-family: '<?=@$settings['google_font_name'] ?>', Verdana, Arial, Sans-Serif!important;
+                font-family: var(--font-family), Verdana, Arial, Sans-Serif!important;
                 line-height: 1;
                 font-size: 15px; 
                 color: #a5a5a5;
@@ -72,7 +92,7 @@ echo $this->Session->flash();
     <body class="login">
 
         <!-- Login Intro -->
-        <a href="javascript:void(0)" class="login-btn themed-background-default animation-fadeIn animation-both delay3">
+        <a href="javascript:void(0)" class="login-btn bg-variant animation-fadeIn animation-both delay3">
             <span class="login-logo">
                 <span class="square"><i class="gi gi-lock fa-lg text-white"></i></span>
                 <div class="name">
@@ -273,7 +293,7 @@ echo $this->Session->flash();
 }
 
 body.login {
-    background: linear-gradient(45deg, purple, orange);
+    background: linear-gradient(45deg, <?=$settings['site_theme_color']?>, <?=$settings['site_theme_variant']?>);
     min-height: 100dvh;
 }
 body.login .form-group {

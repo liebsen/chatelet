@@ -35,6 +35,12 @@ class ApplicationComponent extends Component {
     }        
   }
 
+  public function theme() {
+    if($this->controller->request->is('post')){
+      return $this->update_settings();
+    }        
+  }
+
   public function payments() {
     if($this->controller->request->is('post')){
       return $this->update_settings();

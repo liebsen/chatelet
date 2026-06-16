@@ -354,8 +354,8 @@ label input[type=checkbox]:disabled + .label-text:before {
   background-image: url(../images/logo.png); 
   background-repeat: no-repeat;
   background-size: contain;
-  width: 120px;
-  height: 26px;
+  width: 140px;
+  height: 32px;
   padding: 0;
   text-indent: -9999px; 
   min-height: 1rem;
@@ -409,8 +409,8 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   top: -0.05rem;
 }*/
 
-.google-fonts {
-  font-family: var(--google-fonts-name)!important;
+.text-theme {
+  font-family: var(--font-family)!important;
 }
 
 @media (max-width: 440px) {
@@ -1631,7 +1631,7 @@ ul#ul-moreviews li.dontResize img {
   .navbar .navbar-brand { 
     display: block; 
     float: none; 
-    min-height: 34px;
+    min-height: 36px;
     margin-left: auto !important; 
     margin-right: auto !important; 
   }

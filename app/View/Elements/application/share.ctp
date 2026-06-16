@@ -10,11 +10,11 @@
 	      </label>
 	      <div class="d-flex flex-center gap-05 w-100">
 					<div class="controls flex-1 mt-1">
-						<input type="checkbox" id="toggle_<?php echo $item ?>" name="data[<?php echo $item ?>_on]" value="1" id="toggle" class="toggle-checkbox"<?= $settings[$item.'_on'] == '1' ? ' checked' : '' ?>>
+						<input type="checkbox" id="toggle_<?php echo $item ?>" name="data[<?php echo $item ?>_on]" value="1" id="toggle" class="toggle-checkbox toggle-block" data-block=".input-<?php echo $item ?>" <?=$settings[$item.'_on'] == '1' ? ' checked' : '' ?>>
 						<label for="toggle_<?php echo $item ?>" class="toggle-label"></label>
 					</div>
 	        <div class="controls">
-	          <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control" value="<?php echo @$settings[$item.'_url'] ?>" placeholder="Ingresa URL de <?php echo __($item); ?>"/>
+	          <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control input-<?php echo $item ?>" value="<?php echo @$settings[$item.'_url'] ?>" placeholder="Ingresa URL de <?php echo __($item); ?>"/>
 	        </div>
 				</div>
 	    </div>

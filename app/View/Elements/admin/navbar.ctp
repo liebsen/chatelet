@@ -44,6 +44,27 @@
         
         <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$settings['google_font_name']) ?>:<?= @$settings['google_font_size'] ?>" rel="stylesheet">
         <style type="text/css">
+
+						:root {
+							--theme-color: <?=@$settings['site_theme_color'] ?>;
+							--theme-text: <?=@$settings['site_theme_text'] ?>;
+							--theme-variant: <?=@$settings['site_theme_variant'] ?>;
+							--toggle-off-color: #e7e7e7;
+							--toggle-color: springgreen;
+						}
+
+						::placeholder {
+						  transition: opacity 0.5s ease-in-out;
+						  transition-delay: 1s;
+						  color: #f8f8f8;
+						}
+
+						/* 1. Standards-based styling (Firefox and future browsers) */
+						* {
+						  scrollbar-width: thin; /* Options: auto, thin, none */
+						  scrollbar-color: #888 #f1f1f1; /* thumb-color track-color */
+						}
+
             html, body { 
                 font-family: '<?=@$settings['google_font_name'] ?>', Verdana, Arial, Sans-Serif!important;
                 line-height: 1.25;
@@ -56,11 +77,6 @@
             @media(min-width: 992px) {
                 html, body {
                     overflow: hidden;
-                }
-            }
-            p, span, small {
-                &:not(.case-preserve) {
-                    text-transform: uppercase;
                 }
             }
         </style>
