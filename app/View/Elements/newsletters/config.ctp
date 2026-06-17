@@ -28,6 +28,7 @@
 	          <div class="controls">
 	            <input type="text" name="data[newsletter_from]" class="form-control" placeholder="newsletter@chatelet.com.ar" value="<?= @$settings['newsletter_from'] ?>"/>
 	          </div>
+	          <small class="text-muted">Aseguráte que el campo email from se corresponda con el dominio con el que deseas enviar los Newsletters.</small>
 	        </div>
 	        <div class="form-box bg-info-outline">
 		      	<h4 class="sub-header">Notificaciones push</h4>
@@ -113,7 +114,7 @@
       	<div class="show-panel <?= !$settings['newsletter_enabled'] ? 'd-disable' : '' ?>">
 	      	<div class="form-box bg-info-outline">
 		      	<h4 class="sub-header">Datos del transport</h4>
-		      	<p>Configura como se enviarán los emails desde Tarea programada Campañas.</p>
+		      	<p>Datos de acceso al mail server. El campo email no necesariamente debe ser el del mismo dominio desde donde envías, puede ser una cuenta con dominio de la plataforma. </p>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Username'); ?></label>
 		          <div class="controls">
