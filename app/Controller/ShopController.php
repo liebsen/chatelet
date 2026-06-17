@@ -49,6 +49,48 @@ class ShopController extends AppController {
 		die();
 	}
 
+	public function smtp_465($id) {
+		$this->autoRender = false;
+
+		$host = 'smtp-relay.brevo.com';
+		$port = 465;
+		$timeout = 10;
+
+		// 1. Test TCP Connection
+		$fp = @fsockopen($host, $port, $errno, $errstr, $timeout);
+		if (!$fp) {
+		    die("Connection failed: $errstr ($errno)");
+		}
+
+		echo "TCP Connection successful.\n";
+
+		// 2. Test TLS Handshake
+		$ssl = stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_TLS_CLIENT);
+		if (!$ssl) {
+		    die("TLS Handshake failed on port 465. Ensure the server supports implicit TLS (SMTPS).");
+		}
+
+		echo "TLS Handshake successful. Port 465 is reachable and configured correctly.\n";
+		fclose($fp);
+	}
+
+	public function smtp_587($id) {
+		$this->autoRender = false;
+		$host = 'smtp-relay.brevo.com'; // Replace with your SMTP host
+		$port = 587;
+		$timeout = 5; // Timeout in seconds
+
+		// Attempt connection
+		$connection = @fsockopen($host, $port, $errno, $errstr, $timeout);
+
+		if ($connection) {
+		    echo "Connection to $host:$port successful.";
+		    fclose($connection);
+		} else {
+		    echo "Connection failed: Error $errno - $errstr";
+		}
+	}
+
 	public function test_email_text($id) {
 		$this->autoRender = false;
 		if (!empty($id)) {
