@@ -1310,6 +1310,16 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'url'		=> '/admin/menu',
 				'text' => 'Establece menú principal de la tienda'
 			),
+			'Banners' => array(
+				'icon' 		=> 'fa fa-shirtsinbulk',
+				'url'		=> '/admin/menu',
+				'text' => 'Establece menú principal de la tienda'
+			),
+			'Newsletters' => array(
+				'icon' 		=> 'fa fa-ellipsis-v',
+				'url'		=> '/admin/menu',
+				'text' => 'Establece menú principal de la tienda'
+			),
 			'Cuenta' => array(
 				'icon' 		=> 'gi gi-woman',
 				'url'		=> '/shop/cuenta',
@@ -2198,6 +2208,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'text' => 'Te permite crear, programar y monitorear tus campañas. Debes tener al menos una plantilla y una lista antes de comenzar.',
 				'icon' 		=> 'gi gi-send',
 				'url'		=> '/admin/newsletters/schedules',
+			),
+			'Historial' => array(
+				'id' => 'logs',
+				'text' => 'Te permite visualizar en tiempo real los resultados de la tarea automática correspondiente a Newsletters',
+				'icon' 		=> 'gi gi-history',
+				'url'		=> '/admin/newsletters/logs',
 			),
 			'Ajustes' => array(
 				'id' => 'config',

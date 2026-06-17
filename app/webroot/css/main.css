@@ -554,7 +554,7 @@ background-color: #e8ffa8!important;
 #primary-nav li a.open,
 #primary-nav li.active > a {
   color: #fff;
-  background: var(--theme-color);    
+  background: var(--theme-variant);    
 }
 #primary-nav li.active > a > i,
 #primary-nav li.active > a > span {
