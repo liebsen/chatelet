@@ -49,7 +49,7 @@ class ShopController extends AppController {
 		die();
 	}
 
-	public function smtp_465($id) {
+	public function smtp_465() {
 		$this->autoRender = false;
 
 		$host = 'smtp-relay.brevo.com';
@@ -74,7 +74,7 @@ class ShopController extends AppController {
 		fclose($fp);
 	}
 
-	public function smtp_587($id) {
+	public function smtp_587() {
 		$this->autoRender = false;
 		$host = 'smtp-relay.brevo.com'; // Replace with your SMTP host
 		$port = 587;
