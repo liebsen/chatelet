@@ -23,6 +23,12 @@
 	            <input type="text" name="data[newsletter_name]" class="form-control" placeholder="Chatelet" value="<?= @$settings['newsletter_name'] ?>"/>
 	          </div>
 	        </div>
+	        <div class="control-group">
+	          <label class="control-label" for="columns-text"><?php echo __('Email remitente'); ?></label>
+	          <div class="controls">
+	            <input type="text" name="data[newsletter_from]" class="form-control" placeholder="newsletter@chatelet.com.ar" value="<?= @$settings['newsletter_from'] ?>"/>
+	          </div>
+	        </div>
 	        <div class="form-box bg-info-outline">
 		      	<h4 class="sub-header">Notificaciones push</h4>
 		      	<p>Establece ícono para notificaciones push.</p>	        	
@@ -120,7 +126,7 @@
 		            <input type="password" name="data[newsletter_password]" id="newsletter_password" class="form-control" placeholder="**********" value="<?= @$settings['newsletter_password'] ?>"/>
 		            <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#newsletter_password"></i>
 		          </div>
-		        </div>			      	
+		        </div>
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Transport'); ?></label>
 	      	    <div class="controls">

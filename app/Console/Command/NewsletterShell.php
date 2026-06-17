@@ -422,7 +422,7 @@ class NewsletterShell extends AppShell {
     $config = array(
       'transport' => $this->settings['newsletter_transport'] ?? 'Smtp',
       'from' => array(
-        $this->settings['newsletter_username'] => $this->settings['newsletter_name']
+        $this->settings['newsletter_from'] => $this->settings['newsletter_name']
       ),
       'host' => $this->settings['newsletter_host'] ?? 'smtp.gmail.com',
       'port' => (int) $this->settings['newsletter_port'] ?? 587,
@@ -432,7 +432,7 @@ class NewsletterShell extends AppShell {
       'charset' => $this->settings['newsletter_charset'] ?? 'utf-8',
       'tls' => $this->settings['newsletter_tls'] == '1',
     );
-
+    var_dump(array('config'=>$config));
     $email->config($config);
     $skip_header  = (
       $this->settings['newsletter_show_header'] != '1' || 
@@ -473,7 +473,8 @@ class NewsletterShell extends AppShell {
       }
 
       return array(
-        'sent' => $this->update
+        'sent' => $this->update,
+        'message' => $message,
       );
     }
 
@@ -486,6 +487,9 @@ class NewsletterShell extends AppShell {
 	    $email->template('newsletter', 'default');
 	    $email->emailFormat('html') ;
 	    $email->viewVars($viewVars);
+
+	    var_dump(array('email(1)'=>$email));
+
 
 	    $sent = $email->send();
 	  } catch (\Throwable $th) {
