@@ -182,6 +182,13 @@
 								<label for="toggle-ssl" class="toggle-label"></label>
 							</div>
 		        </div>
+		        <div class="control-group">
+							<label class="control-label" for="columns-text"><?php echo __('Log'); ?></label>
+							<div class="form-group">
+								<input type="checkbox" name="data[newsletter_log]" value="1" id="toggle-log" class="toggle-checkbox"<?=@$settings['newsletter_log'] == '1' ? ' checked' : '' ?>>
+								<label for="toggle-log" class="toggle-label"></label>
+							</div>
+		        </div>
 		      </div>
 	      	<div class="form-box bg-info-outline">
 		      	<h4 class="sub-header">Datos del VAPID</h4>

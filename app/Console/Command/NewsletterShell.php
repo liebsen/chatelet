@@ -432,6 +432,7 @@ class NewsletterShell extends AppShell {
       'charset' => $this->settings['newsletter_charset'] ?? 'utf-8',
       'tls' => $this->settings['newsletter_tls'] == '1',
       'ssl' => $this->settings['newsletter_ssl'] == '1',
+      'log' => $this->settings['newsletter_log'] == '1',
     );
     var_dump(array('config(1)'=>$config));
     $email->config($config);
@@ -489,8 +490,7 @@ class NewsletterShell extends AppShell {
 	    $email->emailFormat('html') ;
 	    $email->viewVars($viewVars);
 
-	    var_dump(array('email(1)'=>$email));
-
+	    #var_dump(array('email(1)'=>$email));
 
 	    $sent = $email->send();
 	  } catch (\Throwable $th) {
