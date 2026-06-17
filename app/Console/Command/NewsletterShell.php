@@ -291,7 +291,7 @@ class NewsletterShell extends AppShell {
 
         foreach($pushes as $push) {
           $push = $this->sendPush($schedule, $push);
-          var_dump(array('push' => $push));
+          #var_dump(array('push' => $push));
           if($push['sent']) {
             $this->NewsletterScheduleItem->save(
               array(
@@ -435,9 +435,9 @@ class NewsletterShell extends AppShell {
 
     $email->config($config);
     $skip_header  = (
-        $this->settings['newsletter_show_header'] != '1' || 
-        $data['Newsletter']['show_header'] != '1'
-      ) ?? null;
+      $this->settings['newsletter_show_header'] != '1' || 
+      $data['Newsletter']['show_header'] != '1'
+    ) ?? null;
 
     $viewVars = array(
       'data' => $data,
@@ -477,7 +477,7 @@ class NewsletterShell extends AppShell {
       );
     }
 
-    $message = "";
+    $message = "Email sent";
 	  $sent = false;
 
     try {
