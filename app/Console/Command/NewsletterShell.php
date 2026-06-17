@@ -432,8 +432,7 @@ class NewsletterShell extends AppShell {
       'charset' => $this->settings['newsletter_charset'] ?? 'utf-8',
       'tls' => $this->settings['newsletter_tls'] == '1',
     );
-    var_dump(array('settings'=>$this->settings));
-    var_dump(array('config'=>$config));
+    var_dump(array('config(1)'=>$config));
     $email->config($config);
     $skip_header  = (
       $this->settings['newsletter_show_header'] != '1' || 
