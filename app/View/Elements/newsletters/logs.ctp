@@ -10,14 +10,14 @@
 			<p class="text-theme">No hay nada que mostrar por ahora aquí. <?=empty($this->request->query('extended')) ?'<hr><a href="#"><i class="gi gi-lightbulb mr-1"></i> Intenta presionando en Ver todo</a>' : ''?></p>
 		</div>
 	<?php else: ?>
-		<form name="form-logs" method="get">
+		<form name="form-logs" class="d-flex flex-column" method="get">
 			<label>fsize: <?=$fsize?>Mb - lines: <?=$lines_count?></label>
 			<div class="d-flex flex-center gap-05">
 				<input type="number" class="form-control" name="lines" placeholder="lines" value="<?=$lines_count?>">
 				<input type="submit" class="btn" value="Actualizar logs">
 			</div>
 		</form>
-		<pre>
+		<pre class="terminal">
 			<?php echo implode("\n", $lines) ?>
 		</pre>
 <?php endif ?>

@@ -2048,6 +2048,14 @@ pre, code {
   text-indent: 0;
 }
 
+.terminal {
+	padding: 1rem;
+	color: greenyellow;
+	border: none;
+	border-radius: 5px;
+	background-color: #222;
+}
+
 .form-box {
   position: relative;
   margin-bottom: 1rem;
