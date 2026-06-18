@@ -484,15 +484,7 @@ class NewsletterShell extends AppShell {
 	  $sent = false;
 
     try {
-	  	$to = html_entity_decode($data['User']['email'], ENT_QUOTES, "UTF-8")
-
-	    var_dump(array(
-	    	'to'=>$to,
-	    	'subject'=>$data['Newsletter']['title'],
-	  	));
-
-
-	    $email->to($to);
+	    $email->to(\sanitize_email($data['User']['email']));
 	    $email->subject($data['Newsletter']['title']);
 	    $email->template('newsletter', 'default');
 	    $email->emailFormat('html') ;
