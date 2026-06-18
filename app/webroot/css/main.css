@@ -2048,7 +2048,7 @@ pre, code {
   text-indent: 0;
 }
 
-.terminal {
+.log {
 	padding: 1rem;
 	color: greenyellow;
 	border: none;

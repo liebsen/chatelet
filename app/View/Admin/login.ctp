@@ -121,7 +121,7 @@ echo $this->Session->flash();
                     <div class="tab-pane pane-index active" id="login-form-tab">
                         <!-- Login Form -->
                         <?php echo $this->Form->create('User', array(
-                            'class' => 'form-horizontal w-100',
+                            'class' => 'form-horizontal',
                             'id' => 'login_form',
                         )); ?>
                             <input type="hidden" name="redirect" value="/admin"/>

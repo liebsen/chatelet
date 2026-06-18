@@ -2,6 +2,8 @@
 <?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
 <?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
 <?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
+<?php echo $this->Html->script('logs', array('inline' => false)); ?>
+
 
 <div class="d-flex flex-column gap-05">
 <?php if(empty($lines)):?>
@@ -17,12 +19,17 @@
 				<input type="submit" class="btn btn-light" value="Actualizar">
 			</div>
 		</form>
-		<pre class="terminal">
-			<?php echo implode("\n", $lines) ?>
+		<pre class="log">
+<?php echo implode("", $lines) ?>
 		</pre>
 <?php endif ?>
 </div>
 <div class="form-actions">
+  <button class="btn button-update-schedules animation-fadeIn animation-both delay3">
+    <i class="gi gi-repeat"></i> 
+    <span class="ml-1">Actualiza </span> 
+    <small>(</small><small class="update-countdown">-</small><small>s)</small>
+  </button>	
 <?php if(empty($this->params->query['extended'])): ?>
 	<a href="?lines=0">
     <button class="btn" type="button"><i class="gi gi-inbox_plus"></i> <span class="ml-1">Ver todo</span></button>

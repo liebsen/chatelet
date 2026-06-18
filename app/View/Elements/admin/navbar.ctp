@@ -143,7 +143,8 @@
                             <?php if (!empty($h1)): ?>
                             <li class="section-indicator">
                                 <a href="#" class="text-white">
-                                    <i class="<?php echo $h1['icon'] ?>"></i> <span><?php echo $h1['name']; ?></span>
+                                    <i class="<?php echo $h1['icon'] ?>"></i> 
+                                    <span class="text-uppercase"><?php echo $h1['name']; ?></span>
                                 </a>
                             </li>
                                 <?php endif ?>

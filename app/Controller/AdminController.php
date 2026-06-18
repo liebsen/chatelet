@@ -1316,8 +1316,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'text' => 'Establece menú principal de la tienda'
 			),
 			'Newsletters' => array(
-				'icon' 		=> 'fa fa-ellipsis-v',
-				'url'		=> '/admin/menu',
+				'icon' 		=> 'fa fa-bullhorn',
+				'url'		=> '/admin/newsletters',
 				'text' => 'Establece menú principal de la tienda'
 			),
 			'Cuenta' => array(
@@ -3001,6 +3001,21 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	)
     );		
 	}
+
+	public function logs_update(){
+		$this->RequestHandler->respondAs('application/json');
+		$this->autoRender = false;
+
+		$lines_count = $this->request->query['test'] ?? NEWSLETTER_LINES_COUNT;		 
+		$lines = read_file(NEWSLETTER_LOG_PATH, $lines_count);
+
+    return json_encode(
+    	array(
+      	'lines' => $lines,
+    	)
+    );		
+	}
+
 
 	public function cupones($action = null) {
 		$weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];

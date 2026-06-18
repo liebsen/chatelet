@@ -1,10 +1,5 @@
 <?php
 
-// full path to text file
-define("TEXT_FILE", "/var/www/chatelet/newsletter.log");
-// number of lines to read from the end of file
-define("LINES_COUNT", 10);
-
 App::uses(
   'Model', 
   'Component', 
@@ -694,19 +689,14 @@ class NewsletterComponent extends Component {
   }
 
   public function logs() {  
- 
-		$fsize = round(filesize(TEXT_FILE)/1024/1024,2);
+		$fsize = round(filesize(NEWSLETTER_LOG_PATH)/1024/1024,2);
 		 
-		#echo "<strong>".TEXT_FILE."</strong>\n\n";
+		#echo "<strong>".NEWSLETTER_LOG_PATH."</strong>\n\n";
 		#echo "File size is {$fsize} megabytes\n\n";
-		#echo "Last ".LINES_COUNT." lines of the file:\n\n";
+		#echo "Last ".NEWSLETTER_LINES_COUNT." lines of the file:\n\n";
 
-		$lines_count = $this->controller->request->query['lines'] ?? LINES_COUNT;
-		 
-		$lines = read_file(TEXT_FILE, $lines_count);
-		#foreach ($lines as $line) {
-		#    echo $line;
-		#}
+		$lines_count = $this->controller->request->query['lines'] ?? NEWSLETTER_LINES_COUNT;		 
+		$lines = read_file(NEWSLETTER_LOG_PATH, $lines_count);
 
 
   	$this->controller->set('fsize',$fsize);

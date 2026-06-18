@@ -22,6 +22,11 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+// full path to text file
+define("NEWSLETTER_LOG_PATH", "/var/www/chatelet/newsletter.log");
+// number of lines to read from the end of file
+define("NEWSLETTER_LINES_COUNT", 10);
+
 $path = __DIR__ .'/../version';
 $version_count = (float) file_get_contents($path);
 $version = (float) $version_count;
@@ -29,6 +34,7 @@ $version = (float) $version_count;
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 Configure::write('mUrl','');
+
 //Configure::write('font', 'DM Sans');
 //Configure::write('fontweight', '300,400,500,600,700,800');
 Configure::write('DIST_VERSION', $version);
