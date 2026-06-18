@@ -484,6 +484,7 @@ class NewsletterShell extends AppShell {
 	  $sent = false;
 
     try {
+
 	    $email->to($data['User']['email']);
 	    $email->subject($data['Newsletter']['title']);
 	    $email->template('newsletter', 'default');
