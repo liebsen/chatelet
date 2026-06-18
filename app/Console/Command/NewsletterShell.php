@@ -28,6 +28,7 @@ class NewsletterShell extends AppShell {
   private $perday = 500; // free accounts usually have 500 daily limit
   private $perminute = 20;
   private $simulate = 0;
+  private $log = 0;
 
   protected function _welcome() {
       // Leave empty to suppress the header
@@ -42,6 +43,7 @@ class NewsletterShell extends AppShell {
     }
 
     $this->simulate = in_array("simulate=1", $this->args);
+    $this->log = in_array("log=1", $this->args);
     $this->showmail = in_array("showmail=1", $this->args);
     $this->update = in_array("update=1", $this->args);
 
@@ -55,7 +57,8 @@ class NewsletterShell extends AppShell {
     $items_sent = 0;
     $limit = 0;
 
-    echo "\nStarting: " . $date . " " . implode(':',array($hour,$min)) . "\n";
+    #echo "\nStarting: " . $date . " " . implode(':',array($hour,$min)) . "\n";
+    echo implode(':',array($hour,$min)) . " ";
 
     // FIND QUOTA
     $quota = $this->NewsletterScheduleItem->find('count', array(
@@ -267,7 +270,11 @@ class NewsletterShell extends AppShell {
         }
 
         $email = $this->sendEmail($schedule, $products);
-        var_dump(array('email' => $email));
+
+        if(!empty($showmail)){
+        	var_dump(array('email(1)' => $email));
+        }
+
         if($email['sent']) {
           $this->NewsletterScheduleItem->save(
             array(
@@ -404,15 +411,15 @@ class NewsletterShell extends AppShell {
         $push['payload']
       );
       $report = $webPush->flush()->current();
-      $is_success = $report->isSuccess();
+      $sent = $report->isSuccess();
       $response = $report->getResponseContent();
     } catch (\Throwable $th) {
-      $is_success = false;
+      $sent = false;
       $response = $th->getMessage();
     }
 
     return array(
-      'sent' => $is_success,
+      'sent' => $sent,
       'response' => $response
     );
   }
@@ -445,7 +452,10 @@ class NewsletterShell extends AppShell {
 	    );
     }
 
-    var_dump(array('config(1)'=>$config));
+    if($log) {
+    	var_dump(array('config(1)'=>$config));
+    }
+
     $email->config($config);
     $skip_header  = (
       $this->settings['newsletter_show_header'] != '1' || 
@@ -482,7 +492,7 @@ class NewsletterShell extends AppShell {
       echo "\n[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')';
 
       if($this->showmail) {
-        var_dump($message);
+        var_dump(array('message(1)'=>$message));
       }
 
       return array(
