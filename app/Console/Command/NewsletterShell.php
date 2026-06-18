@@ -484,6 +484,10 @@ class NewsletterShell extends AppShell {
 	  $sent = false;
 
     try {
+	    var_dump(array(
+	    	'to'=>$data['User']['email'],
+	    	'subject'=>$data['Newsletter']['title'],
+	  	));
 
 	    $email->to($data['User']['email']);
 	    $email->subject($data['Newsletter']['title']);
