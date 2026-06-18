@@ -434,6 +434,17 @@ class NewsletterShell extends AppShell {
       'ssl' => $this->settings['newsletter_ssl'] == '1',
       'log' => $this->settings['newsletter_log'] == '1',
     );
+
+    if($this->settings['newsletter_host'] == 'smtp-relay.brevo.com'){ 
+    	$config['context'] = array(
+        'ssl' => array(
+          'verify_peer' => false,
+          'verify_peer_name' => false,
+          'allow_self_signed' => true
+        )
+	    );
+    }
+
     var_dump(array('config(1)'=>$config));
     $email->config($config);
     $skip_header  = (
