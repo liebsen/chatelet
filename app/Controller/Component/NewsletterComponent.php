@@ -695,9 +695,17 @@ class NewsletterComponent extends Component {
 		#echo "File size is {$fsize} megabytes\n\n";
 		#echo "Last ".NEWSLETTER_LINES_COUNT." lines of the file:\n\n";
 
+
+  	#echo '<pre>';
+  	#var_dump(array(
+  	#	'path'=>NEWSLETTER_LOG_PATH,
+  	#	'exists'=>file_exists(NEWSLETTER_LOG_PATH),
+  	#	'fsize'=>$fsize,
+  	#));
+  	
+
 		$lines_count = $this->controller->request->query['lines'] ?? NEWSLETTER_LINES_COUNT;		 
 		$lines = read_file(NEWSLETTER_LOG_PATH, $lines_count);
-
 
   	$this->controller->set('fsize',$fsize);
   	$this->controller->set('lines_count',$lines_count);

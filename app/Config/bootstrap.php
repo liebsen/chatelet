@@ -23,7 +23,7 @@
  */
 
 // full path to text file
-define("NEWSLETTER_LOG_PATH", "/var/www/chatelet/newsletter.log");
+define("NEWSLETTER_LOG_PATH", __DIR__ . "/../tmp/logs/newsletter.log");
 // number of lines to read from the end of file
 define("NEWSLETTER_LINES_COUNT", 10);
 

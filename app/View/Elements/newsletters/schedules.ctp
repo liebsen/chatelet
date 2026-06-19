@@ -309,7 +309,7 @@
 	  <button class="btn button-update-schedules animation-fadeIn animation-both delay3">
 	    <i class="gi gi-repeat"></i> 
 	    <span class="ml-1">Actualiza </span> 
-	    <small>(</small><small class="update-countdown">-</small><small>s)</small>
+	    <small> </small><small class="update-countdown">-</small><small class="text-lowercase">s</small>
 	  </button>
 	<?php if(empty($this->params->query['extended'])): ?>
 		<a href="/admin/newsletters/schedules?extended=1">

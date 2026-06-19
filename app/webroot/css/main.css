@@ -2051,7 +2051,7 @@ pre, code {
 	padding: 1rem;
 	color: greenyellow;
 	border: none;
-	border-radius: 5px;
+	border-radius: 0.75rem;
 	background-color: #222;
 }
 
@@ -4155,6 +4155,11 @@ only screen and (min-device-pixel-ratio: 1.5) {
 .treeview ul.level3 li div{
   background: #eeeeee;
 }*/
+
+.update-countdown {
+	font-family: monospace;
+	font-weight: 1000;
+}
 
 div.cloudzoom-black:nth-child(3) {
   display: none;
