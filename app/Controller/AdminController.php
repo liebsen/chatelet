@@ -2209,12 +2209,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'icon' 		=> 'gi gi-send',
 				'url'		=> '/admin/newsletters/schedules',
 			),
-			'Historial' => array(
+			/*'Historial' => array(
 				'id' => 'logs',
 				'text' => 'Te permite visualizar en tiempo real los resultados de la tarea automática correspondiente a Newsletters',
 				'icon' 		=> 'gi gi-history',
 				'url'		=> '/admin/newsletters/logs',
-			),
+			),*/
 			'Ajustes' => array(
 				'id' => 'config',
 				'text' => 'Establece los parámetros básicos de funcionamiento de la tarea programada',
@@ -2821,6 +2821,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	);
     } else {
 		  $conditions = array(
+		  	'and' => array(
+		  		'User.newsletter' => 1,
+		  	),
 	      'or' => array(
 	        'User.name LIKE' => "%$q%",
 	        'User.surname LIKE' => "%$q%",
@@ -2866,8 +2869,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			$this->loadModel('User');
 	    $data = $this->User->find('all',array(
 	      'conditions' => array(
-	        'User.id IS NOT ' => null,
+	        'User.id IS NOT NULL',	      	
 	        'User.id > ' => 1,
+	        'User.newsletter' => 1,
 	        'MONTH(User.birthday) >=' => $min_parts[1],
 	        'DAY(User.birthday) >=' => $min_parts[0],
 	        'MONTH(User.birthday) <=' => $max_parts[1],
@@ -2899,8 +2903,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		    ),
 	      'conditions' => array(
 	        // 'SUM(Sale.value) > ' => $sale_min,
-	        'User.id IS NOT ' => null,
+	        'User.id IS NOT NULL',
 	        'User.id > ' => 1,
+	        'User.newsletter' => 1,
 	        'Sale.completed' => 1,
 	        'Sale.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
 	        'Sale.created <=' => date('Y-m-d 23:59', strtotime(str_replace('/','-', $date_max))),
@@ -2934,8 +2939,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	      'conditions' => array(
 	        // 'SUM(Sale.value) > ' => $sale_min,
 	        'Stat.tag' => 'page-exit',
-	        'User.email IS NOT ' => null,
+	        'User.email IS NOT NULL',
 	        'User.id > ' => 1,
+	        'User.newsletter' => 1,
 	        'JSON_EXTRACT(Stat.context, \'$.cart_totals.total_products\') >' => $sale_min,
 	        'Stat.created > ' => date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))),
 	        'Stat.created <=' => date('Y-m-d 23:59', strtotime(str_replace('/','-', $date_max))),

@@ -24,7 +24,8 @@ $(document).ready(function() {
     const data = endpoints[type] || {}
     if(!data.model) return 
     if (q.length < 3) {
-      $(`.${type}-container .label:not(.is-enabled)`).remove()
+      $('.'+type+'-container .label:not(.is-enabled)').remove()
+      $('.relations-add-single').addClass('d-none')
       return false
     }
     $(e.target).addClass('searching')
@@ -87,7 +88,7 @@ function updateRelationCount(type, target, count){
   }*/
 }
 
-function searchRelations(data) { 
+function searchRelations(data) {
   const curr = endpoints[data.type] || {}
   if(!curr.model) return 
   $('.relations-add:not(.btn-persist)').addClass('d-none')

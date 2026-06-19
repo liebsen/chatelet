@@ -46,6 +46,25 @@ class NewsletterController extends AppController {
     //readfile(__DIR__ .'/images/logo-email.png');
 	}
 
+	public function unsubscribe($id) {
+		$this->autoRender = false;
+		$item = $this->NewsletterScheduleItem->findById($id);
+		if(!empty($item)) {
+			$this->User->updateAll(
+				array(
+					'User.newsletter' => 0
+				),
+				array(
+					'User.id' => $item['NewsletterScheduleItem']['user_id']
+				)
+			);
+		}
+
+    //$this->RequestHandler->respondAs('image/png');
+    //readfile(__DIR__ .'/images/logo-email.png');
+	}
+
+
 	public function schedule() {
 		$this->autoRender = false;
 

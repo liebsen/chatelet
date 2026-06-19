@@ -49,8 +49,8 @@
 							--theme-color: <?=@$settings['site_theme_color'] ?>;
 							--theme-text: <?=@$settings['site_theme_text'] ?>;
 							--theme-variant: <?=@$settings['site_theme_variant'] ?>;
-							--toggle-off-color: #e7e7e7;
-							--toggle-color: springgreen;
+							--toggle-off-color: lightgrey;
+							--toggle-color: mediumspringgreen;
 						}
 
 						::placeholder {

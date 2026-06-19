@@ -14,7 +14,7 @@
 /composer.lock
 /Plugin
 /ssl
-/newsletter.log
+newsletter.log
 
 # OS generated files #
 ######################

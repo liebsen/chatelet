@@ -1,5 +1,4 @@
 
-
 /* 2. WebKit-based styling (Chrome, Safari, Edge, Opera) */
 /* The entire scrollbar */
 ::-webkit-scrollbar {
@@ -1980,7 +1979,7 @@ li.plan-featured h1 {
 .table.table-forum th,
 .table.table-forum td {
   vertical-align: middle;
-  background-color: #fcf8e3;
+  background-color: lightyellow;
 }
 
 .table.table-forum th {
@@ -2114,6 +2113,10 @@ pre, code {
   padding: 0.5rem 1rem;
   padding-bottom: 0.3rem;
   white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 36px;
   color: #ffffff;
   border-bottom: 3px solid transparent;
   &:hover {
@@ -2122,19 +2125,16 @@ pre, code {
 }
 
 .secondary-box > a.secondary-success {
-  background-image: linear-gradient(to bottom, #5cb85c 0%, #419641 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff419641', GradientType=0);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  background-repeat: repeat-x;
-  border-color: #3e8f3e;
+	background-color: mediumspringgreen;
+  border-color: green;
+  color: green;
+  text-shadow: 0 0 3px #fff;
 }
 
 .secondary-box > a.secondary-danger {
-  background-image: linear-gradient(to bottom, #d9534f 0%, #c12e2a 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9534f', endColorstr='#ffc12e2a', GradientType=0);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	background-color: darkred;
   background-repeat: repeat-x;
-  border-color: #b92c28;
+  border-color: red;
 }
 
 .sub-header {
@@ -2326,6 +2326,11 @@ a.text-black:focus {
 .btn-sm {
   line-height: 2;
   min-width: 3rem;
+}
+
+.btn-success {
+	background-color: mediumspringgreen;
+	color: green;
 }
 
 .btn-group {
@@ -3056,6 +3061,7 @@ form .control-label:not(.switch-scale > span > label) {
   border-radius: 0.5rem;
   transition: none;
   text-shadow: none;
+	box-shadow: 0 2px 2px #00000008;
 }
 
 /*.form-control:not([type="radio"]):not([type="checkbox"]) {
@@ -3191,6 +3197,10 @@ input[type="checkbox"].form-control {
   cursor: pointer;
   width: auto;
   min-width: 2rem;
+}
+
+select.form-control {
+	background-color: lightyellow;
 }
 
 textarea.form-control {
@@ -3532,6 +3542,7 @@ a.thumbnail-borderless,
 .btn {
   text-transform: uppercase;
   min-height: 32px;
+  font-weight: 600;
 }
 
 .btn > i {
@@ -3582,7 +3593,7 @@ a.thumbnail-borderless,
 }
 
 .bg-selected {
-  background-color: #fcf8e3!important;
+  background-color: lightyellow!important;
 }
 
 .bg-info-outline {
@@ -3590,7 +3601,7 @@ a.thumbnail-borderless,
 }
 
 .bg-success-outline {
-  border: 2px solid #01c801;   
+  border: 2px solid green;   
 }
 
 .bg-light-outline {

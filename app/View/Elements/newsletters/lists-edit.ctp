@@ -182,17 +182,23 @@
   <div class="controls flex-1">
     <!--label class="control-label" for="">Deseas agrupar la audiencia</label-->
     <input type="checkbox" name="toggle_split" value="0" id="toggle_reset" class="toggle-checkbox">
-    <label for="toggle_split" class="toggle-label toggle-split"></label>
+    <label for="toggle_split" class="toggle-label toggle-split toggle-click" data-func="toggle_click_focus"></label>
     <small class="text-muted toggle-split-desc">Si activas esta opción se crearán varios grupos de acuerdo a la cantidad que desees.</small>
     <div class="toggle-split-area d-none">
-      <label class="control-label" for="title">Tamaño de las muestras</label>
+      <label class="control-label" for="title">Tamaño de los segmentos</label>
       <div class="controls">
-        <input type="number" name="data[filter][audienceMax]" class="form-control relation-audience-max" placeholder="Tamaño de las audiencias" value="<?=$list['NewsletterList']['filter']->filter->audienceMax ?? ''?>" required />
+        <input type="number" name="data[filter][audienceMax]" class="form-control relation-audience-max" placeholder="1000" value="<?=$list['NewsletterList']['filter']->filter->audienceMax ?? ''?>" required />
       </div>
       <small class="text-muted">Es el tamaño máximo de cuentas que contendrá cada lista nueva.</small>
-    </div>
+    </div><hr>
   </div>
   <div class="control-group d-flex justify-content-end">
     <button class="btn btn-success relations-add btn-persist" data-key="all" data-type="user" data-model="NewsletterUser" data-source="list" data-parent-id="<?= $list['NewsletterList']['id'] ?>" title="Pulsa aquí para agregar todos a la lista"><i class="fa fa-check mr-1"></i> Agregar todos</button>
   </div>
 </div>
+
+<script type="text/javascript">
+	function toggle_click_focus(){
+		$('.relation-audience-max').focus()		
+	}
+</script>

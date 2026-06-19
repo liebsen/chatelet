@@ -137,6 +137,17 @@ $(function () {
     }
   })
 
+  $(document).on('click','.toggle-click', function(e){
+  //$('.toggle-click').click(function(e){
+    const func = $(this).data('func')
+    if(window[func]) {
+    	console.log('func',func)
+      window[func]()
+    } else {
+      console.log('Error: Could not find any function: ' + func)
+    }
+  })
+
   $('#filter-menu').keyup(function(){ 
     clearTimeout(timeout)
     const value = slugify($(this).val())
