@@ -2670,7 +2670,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		// its all so truncate first
     		$model->deleteAll(
     			array(
-	      		#$data[0]['type'] . '_id' => $item['User']['id'],
 	      		$data[0]['source'] . '_id' => $data[0]['parentId'],
     			),
     			false,
@@ -2689,10 +2688,16 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				unset($template['NewsletterList']['created']);
 				unset($template['NewsletterList']['modified']);
 
-    		foreach($this->User->find('all', array('conditions' => array('User.id >' => 1), 'limit' => 100000)) as $i => $item) {
+    		foreach($this->User->find('all', array(
+    			'conditions' => array(
+    				'User.id >' => 1,
+    				'User.newsletter >' => 1,
+    			), 
+    			'limit' => 20000
+    		)) as $i => $item) {
     			if(
-    				!empty($audience_max)&&
-    				$i%$audience_max==0&&
+    				!empty($audience_max) &&
+    				$i%$audience_max==0 &&
     				$i>0
     			) { // wee need a new list
     				$template['NewsletterList']['name'] = $name . ' ('.$lists_count.')';

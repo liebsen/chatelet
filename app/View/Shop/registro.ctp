@@ -98,6 +98,14 @@ $userData = array(
 							<span class="validation-email"></span>
 						</div>
 						<div class="col-md-6">
+							<label class="text-muted" for="password">Confirme Email</label>
+							<div class="form-group position-relative">
+								<input type="email" placeholder="patriciarodriguez@gmail.com" class="form-control" id="email2" name="data[User][email2]" autocomplete="off" />
+								<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#email2"  ></i>
+							</div>
+							<span class="validation-password"></span>
+						</div>						
+						<div class="col-md-6">
 							<label class="text-muted" for="Telefono">Teléfono</label>			
 							<div class="form-group">
 								<?php
@@ -235,7 +243,7 @@ $userData = array(
 						<div class="col-md-6">
 							<label class="text-muted" for="password">Contraseña</label>
 							<div class="form-group position-relative">
-								<input type="password" placeholder="********" class="form-control" id="password" name="data[User][password]" autocomplete="current-password" />
+								<input type="password" placeholder="********" class="form-control" id="password" name="data[User][password]" autocomplete="off" />
 								<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#password"></i>
 							</div>
 							<span class="validation-password"></span>
@@ -243,7 +251,7 @@ $userData = array(
 						<div class="col-md-6">
 							<label class="text-muted" for="password">Confirme Contraseña</label>
 							<div class="form-group position-relative">
-								<input type="password" placeholder="********" class="form-control" id="password2" name="data[User][password2]" autocomplete="new-password" />
+								<input type="password" placeholder="********" class="form-control" id="password2" name="data[User][password2]" autocomplete="off" />
 								<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#password2"  ></i>
 							</div>
 							<span class="validation-password"></span>
@@ -309,6 +317,11 @@ $(function(){
 	$('input[type="submit"]').prop('disabled', false)
     $('#registro_form').submit(function(e) {
     	e.preventDefault();
+    	if($('#email').length){
+	    	if($('#email').val().trim() != $('#email2').val().trim()) {
+	    		return onWarningAlert('Error de validación', 'Los emails no coinciden. Asegúrate de que sean el mismo en ambos campos')
+	    	}
+	    }
     	if($('#password').length){
 	    	if($('#password').val().trim() != $('#password2').val().trim()) {
 	    		return onWarningAlert('Error de validación', 'Las contraseñas no coinciden. Asegúrate de que sean la misma en ambos campos')
@@ -321,49 +334,47 @@ $(function(){
         var me = $(this),
         data = me.serialize(),
         url = me.attr('action');
-        $.post(url, data)
-            .success(function(response) {
-                if (!response.success) {
-                    if(response.errors!=undefined){
-                        if(response.errors.email!=undefined){
-                            $(".validation-email").html(response.errors.email[0]);
-                            $("#email").parent().removeClass('has-success');
-                            $("#email").parent().addClass('has-error');
-                        }
-                        if(response.errors.password!=undefined){
-                            $(".validation-password").html(response.errors.password[0]);
-                            $("#password").parent().removeClass('has-success');
-                            $("#password").parent().addClass('has-error');
-                        }
-                    }
-
-                    $.growl.error({
-                        title: 'Error al registrar usuario',
-                        message: response.message
-                    });
-
-                    $('input[type="submit"]').prop('disabled',false)
-                    return false;
-                } else {
-                    $.growl.notice({
-                        title: 'Bienvenida',
-                        message: 'Tu cuenta está lista'
-                    });
-
-                    const redirect = $('input[name="redirect"]').val() || '/shop'
-                	setTimeout(() => {
-                		location.href = redirect
-                	}, 1000)
+        $.post(url, data).success(function(response) {
+          if (!response.success) {
+            if(response.errors!=undefined){
+                if(response.errors.email!=undefined){
+                    $(".validation-email").html(response.errors.email[0]);
+                    $("#email").parent().removeClass('has-success');
+                    $("#email").parent().addClass('has-error');
                 }
-            })
-            .fail(function() {
-            		$('input[type="submit"]').prop('disabled', false)
-                $.growl.error({
-                    title: 'Error al registrar usuario',
-                    message: 'Por favor verifica los datos introducidos e intenta de nuevo'
-                });
+                if(response.errors.password!=undefined){
+                    $(".validation-password").html(response.errors.password[0]);
+                    $("#password").parent().removeClass('has-success');
+                    $("#password").parent().addClass('has-error');
+                }
+            }
+
+            $.growl.error({
+                title: 'Error al registrar usuario',
+                message: response.message
             });
 
+            $('input[type="submit"]').prop('disabled',false)
+            return false;
+          } else {
+            $.growl.notice({
+                title: 'Bienvenida',
+                message: 'Tu cuenta está lista'
+            });
+
+            const redirect = $('input[name="redirect"]').val() || '/shop'
+        	setTimeout(() => {
+        		location.href = redirect
+        	}, 1000)
+          }
+        })
+        .fail(function() {
+      		$('input[type="submit"]').prop('disabled', false)
+          $.growl.error({
+              title: 'Error al registrar usuario',
+              message: 'Por favor verifica los datos introducidos e intenta de nuevo'
+          });
+        });
       }, 500)
       return false;
     });
