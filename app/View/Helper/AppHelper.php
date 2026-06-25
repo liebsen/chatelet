@@ -95,8 +95,9 @@ class AppHelper extends Helper {
   /**
   * @param string $query, This is the search query you will pass from the view
   */
-  function tile($item, $settings, $isProduct = false, $legends, $numpos = 3) {
+  function tile($item, $settings, $isProduct = false, $legends, $category = null) {
     $str = '';
+    //['posnum']
     $stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
     $number_ribbon = 0;
     $ribbon_style = '';
@@ -106,14 +107,28 @@ class AppHelper extends Helper {
     if (isset($item['discount_label_show'])){
       $number_ribbon = (int) @$item['discount_label_show'];
     }
-    if (isset($item['mp_discount']) && $item['mp_discount'] > $number_ribbon){
+    if (
+    	isset($item['mp_discount']) && 
+    	!empty($category['mp_discount']) && 
+    	$item['mp_discount'] > $number_ribbon 
+    ){
       $number_ribbon = (int) @$item['mp_discount'];
     }
-    if (isset($item['bank_discount']) && $item['bank_discount'] > $number_ribbon){
+    if (
+    	isset($item['bank_discount']) && 
+    	!empty($category['bank_discount']) && 
+    	$item['bank_discount'] > $number_ribbon
+    ){
       $number_ribbon = (int) @$item['bank_discount'];
     }
 
-    if(!$number_ribbon && !empty($settings['bank_enable']) && !empty($settings['bank_discount_enable']) && !empty($settings['bank_discount']))  {
+    if(
+    	!$number_ribbon && 
+    	!empty($settings['bank_enable']) && 
+    	!empty($category['bank_discount']) && 
+    	!empty($settings['bank_discount_enable']) && 
+    	!empty($settings['bank_discount'])
+    )  {
       $number_ribbon = $settings['bank_discount'];
     }
 
@@ -128,7 +143,7 @@ class AppHelper extends Helper {
       $content.= '<img class="img-responsive contain-xs"  src="'. $settings['upload_url'] . 'thumb_'.$item['img_url'] .'" url-copy="'.$settings['upload_url'] . $item['img_url'].'" onError=updateSrcTo(this) />';
     }*/
 
-    $content.= '<div class="product-image numpos-'.$numpos.'" style="background-image: url(\''. $settings['upload_url'] . $item['img_url'] .'\')"></div>';
+    $content.= '<div class="product-image numpos-'.@$category['posnum'].'" style="background-image: url(\''. $settings['upload_url'] . $item['img_url'] .'\')"></div>';
     $content.= '</div>';
 
     if ($isProduct){
@@ -153,7 +168,7 @@ class AppHelper extends Helper {
 
     $item_name = $item['name'];
     $priceStr = '';
-    $priceStr.= self::show_prices_dues($legends, $settings, $item);
+    $priceStr.= self::show_prices_dues($legends, $settings, $item, $category);
 
     if(!$stock && $isProduct){
       $content.= '<div class="desc-cont">'.
@@ -199,7 +214,7 @@ class AppHelper extends Helper {
     return $str;
   }
 
-  function show_prices_dues($legends, $settings, $item, $noprice = false){
+  function show_prices_dues($legends, $settings, $item, $category = null, $noprice = false){
     $orig_price = (float) @$item['price'];
     $price = (float) @$item['price'];
     $old_price = (float) @$item['old_price'];
@@ -208,7 +223,11 @@ class AppHelper extends Helper {
     $mp_price = 0;
     $text = '';
 
-    if(!empty(@$item['bank_discount']) && $item['bank_discount']) {
+    if(
+    	!empty(@$item['bank_discount']) && 
+    	!empty(@$category['bank_discount']) && 
+    	$item['bank_discount']
+    ) {
       $bank_price = round($orig_price * (1 - (float) @$item['bank_discount'] / 100));
       if($bank_price < $price) {
         $discount = $item['bank_discount'];
@@ -217,7 +236,13 @@ class AppHelper extends Helper {
         $text = 'Transferencia';
       }
     } else {
-      if(!empty($settings['bank_enable']) && !empty($settings['bank_discount_enable']) && !empty($settings['bank_discount'])) {
+    	 \d("category_bank_discount",$category);
+      if(
+      	!empty($settings['bank_enable']) && 
+      	!empty($category['bank_discount']) && 
+      	!empty($settings['bank_discount_enable']) && 
+      	!empty($settings['bank_discount'])
+      ) {
         $bank_price2 = round($orig_price * (1 - (float) @$settings['bank_discount'] / 100));
         if($bank_price2 < $price) {
           $discount = $settings['bank_discount'];
@@ -228,7 +253,11 @@ class AppHelper extends Helper {
       }      
     }
 
-    if(!empty(@$item['mp_discount']) && $item['mp_discount']){
+    if(
+    	!empty(@$item['mp_discount']) && 
+    	!empty(@$category['mp_discount']) && 
+    	$item['mp_discount']
+    ){
       $mp_price = round($orig_price * (1 - (float) @$item['mp_discount'] / 100));
       if($mp_price < $price) {
         $discount = $item['mp_discount'];

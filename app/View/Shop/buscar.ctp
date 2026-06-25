@@ -126,7 +126,7 @@
                       <div class="product-info">
                           <!--h3 class="article-related-title"><?php echo $product['name'] ?></h3-->
                           <div class="name" origin="4"><?= $product_name ?></div>
-                          <?= $this->App->show_prices_dues($legends, $settings, $product) ?>
+                          <?= $this->App->show_prices_dues($legends, $settings, $product, $category) ?>
                       </div>
                   </a>
               </div>

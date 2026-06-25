@@ -209,7 +209,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
           ?>
           </div>
           <div class="d-contents tags-start mt-1 mb-4">
-            <?= $this->App->show_prices_dues($legends, $settings, $product, true) ?>
+            <?= $this->App->show_prices_dues($legends, $settings, $product, $category, true) ?>
           </div>
           <div class="caract">
           <?php if(!empty($product['desc'])):?>
@@ -334,7 +334,6 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
                   $alt_product = $alt_product['Product'];
                   $stock = (!empty($alt_product['stock_total']))?(int)$alt_product['stock_total']:0;
                   $alt_product_name =$alt_product['name'];
-
                   $url = $this->Html->url(array(
                           'controller' => 'shop',
                           'action' => 'detalle',
@@ -408,7 +407,7 @@ $number_ribbon = (int) @$alt_product['bank_discount'];
                       <div class="product-info">
                           <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                           <div class="name" origin="4"><?= $alt_product_name ?></div>
-                          <?= $this->App->show_prices_dues($legends, $settings, $alt_product) ?>
+                          <?= $this->App->show_prices_dues($legends, $settings, $alt_product, $category) ?>
                       </div>
                   </a>
               </div>

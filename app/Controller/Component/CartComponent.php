@@ -64,6 +64,7 @@ class CartComponent extends Component {
       /* apply basic prices and fill promos data */
       foreach($cart as $key => $item) {
         $prod = $this->controller->Product->findById($item['id']);
+				$cat = $this->controller->Category->findById($item['category_id']);
 
         if(empty($prod)) {
           unset($cart[$key]);
@@ -71,6 +72,7 @@ class CartComponent extends Component {
         }
 
         $prod = $prod['Product'];
+        $cat = $cat['Category'];
         $price = $prod['price'];
         $prod['old_price'] = $price;
 
@@ -93,6 +95,7 @@ class CartComponent extends Component {
         if (
           $payment_method === 'mercadopago' && 
           !empty($prod['mp_discount']) && 
+          !empty($cat['mp_discount']) &&
           (float) @$prod['mp_discount'] > 0
         ) {
           $cart[$key]['old_price'] = $price;
@@ -102,8 +105,9 @@ class CartComponent extends Component {
 
         if (
           !empty($prod['bank_discount']) && 
+          !empty($cat['bank_discount']) &&
           (float) @$prod['bank_discount'] > 0 && 
-          $payment_method === 'bank'          
+          $payment_method === 'bank'
         ) {
           $cart[$key]['old_price'] = $price;
           $price = ceil(round($price * (1 - (float) $prod['bank_discount'] / 100)));
@@ -116,6 +120,7 @@ class CartComponent extends Component {
             !empty($settings['bank_enable']) && 
             !empty($settings['bank_discount_enable']) && 
             !empty($settings['bank_discount'])
+            !empty($cat['bank_discount'])
           ) {
             $cart[$key]['old_price'] = $price;
             $price = ceil(round($price * (1 - (float) $settings['bank_discount'] / 100)));

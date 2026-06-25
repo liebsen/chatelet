@@ -681,8 +681,8 @@ class CheckoutController extends AppController
 
 			$total+= ceil($unit_price);
 
-			CakeLog::write('debug', 'sale(unit_price):'.$unit_price);
-			CakeLog::write('debug', 'sale(total):'.$total);
+			//CakeLog::write('debug', 'sale(unit_price):'.$unit_price);
+			//CakeLog::write('debug', 'sale(total):'.$total);
 
 			$product_ids[] = array(
 				'product_id' => $producto['id'],
@@ -698,9 +698,8 @@ class CheckoutController extends AppController
 
 		$total_wo_discount = (int) $total;
 		// error_log('suming total (wo_discount): '.$total);
-		CakeLog::write('debug', 'sale(items):'.json_encode($items, JSON_PRETTY_PRINT
-		));
-		CakeLog::write('debug', 'sale(wo_discount):'.$total);
+		//CakeLog::write('debug', 'sale(items):'.json_encode($items, JSON_PRETTY_PRINT));
+		//CakeLog::write('debug', 'sale(wo_discount):'.$total);
 
 	  // Check bank paying method
 	  if ($cart_totals['payment_method'] === 'bank') {

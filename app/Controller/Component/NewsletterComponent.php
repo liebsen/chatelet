@@ -29,9 +29,13 @@ class NewsletterComponent extends Component {
     $users_total = $User->find('count', 
       array(
         'conditions' => array(
+        	'and' => array(
+        		'User.id >' => 1,
+        		'User.newsletter' => 1,
+        	),
           'or' => array(
             'User.role NOT IN' => array('admin', 'sadmin'),
-            'User.role is null'
+            'User.role IS NULL',
           )
         )
       )

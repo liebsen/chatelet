@@ -118,8 +118,22 @@
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Visible'); ?></label>
               <div class="form-group">
-                <input type="checkbox" name="data[visible]" value="1" id="toggle" class="toggle-checkbox"<?= $item['Category']['visible'] == '1' ? ' checked' : '' ?>>
+                <input type="checkbox" name="data[visible]" value="1" id="toggle" class="toggle-checkbox"<?= $cat['Category']['visible'] == '1' ? ' checked' : '' ?>>
                 <label for="toggle" class="toggle-label"></label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="columns-text"><?php echo __('Aplica descuentos por Banco'); ?></label>
+              <div class="form-group">
+                <input type="checkbox" name="data[bank_discount]" value="1" id="toggle-bank_discount" class="toggle-checkbox"<?= $cat['Category']['bank_discount'] == '1' ? ' checked' : '' ?>>
+                <label for="toggle-bank_discount" class="toggle-label"></label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="columns-text"><?php echo __('Aplica descuentos por Tarjeta'); ?></label>
+              <div class="form-group">
+                <input type="checkbox" name="data[mp_discount]" value="1" id="toggle-mp_discount" class="toggle-checkbox"<?= $cat['Category']['mp_discount'] == '1' ? ' checked' : '' ?>>
+                <label for="toggle-mp_discount" class="toggle-label"></label>
               </div>
             </div>
             <div class="form-box bg-info-outline<?=empty($cat['Category']['id']) ? ' d-disable' : ''?>">

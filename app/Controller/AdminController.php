@@ -742,10 +742,14 @@ class AdminController extends AppController {
 			$conds['Product.'.$mode.'_discount > '] = 0;
 		}
 
-		$this->Product->updateAll(
-			[
+		$save = [
 				'Product.'.$mode.'_discount' => (float) $this->request->data['discount']
-			],
+			];
+
+			\d("save", $save);
+			
+		$this->Product->updateAll(
+			$save,
 			$conds			
 		);
 
@@ -2679,7 +2683,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		# check if will be partition
     		$parent_id = $data[0]['parentId'];
     		$lists_count = 2;
-    		$audience_max = $data[0]['audienceMax'];
+    		$audience_max = $data[0]['audienceMax'] ?? 0;
     		$template = $this->NewsletterList->find('first', array('conditions' => array('id' => $data[0]['parentId'])));
 
     		$name = $template['NewsletterList']['name'];
@@ -2688,13 +2692,15 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				unset($template['NewsletterList']['created']);
 				unset($template['NewsletterList']['modified']);
 
-    		foreach($this->User->find('all', array(
+				$audience = $this->User->find('all', array(
     			'conditions' => array(
     				'User.id >' => 1,
-    				'User.newsletter >' => 1,
+    				'User.newsletter' => 1,
     			), 
     			'limit' => 20000
-    		)) as $i => $item) {
+    		));
+
+    		foreach($audience as $i => $item) {
     			if(
     				!empty($audience_max) &&
     				$i%$audience_max==0 &&

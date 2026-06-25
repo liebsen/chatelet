@@ -89,7 +89,7 @@ function updateSrcTo(obj){
   <?php
     if (isset($products)) {
       foreach ($products as $product) {
-        echo $this->App->tile($product['Product'], $settings, 1, $legends, $category['posnum']);
+        echo $this->App->tile($product['Product'], $settings, 1, $legends, $category);
       } 
     } else {
       foreach ($categories as $category) {
