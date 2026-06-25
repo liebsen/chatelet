@@ -64,6 +64,8 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 					<th class="hidden-phone hidden-tablet"><?php echo __('Posición'); ?></th> 
 					<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
 					<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th>    
+					<th class="text-center hidden-phone"><?php echo __('Descuento Tarjeta'); ?></th>        
+					<th class="text-center hidden-phone"><?php echo __('Descuento Banco'); ?></th>
 					<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 				</tr>
 			</thead>
@@ -112,6 +114,20 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 							}
 						?>     
 					</td>
+					<td>
+						<?php
+							if(!empty($category['Category']['mp_discount'])){
+								echo '<i class="fa fa-check text-success"></i>';
+							}
+						?>     
+					</td> 
+					<td>
+						<?php
+							if(!empty($category['Category']['bank_discount'])){
+								echo '<i class="fa fa-check text-success"></i>';
+							}
+						?>     
+					</td> 
 					<td>
 						<div class="btn-group d-flex flex-nowrap">
 							<!--a 
