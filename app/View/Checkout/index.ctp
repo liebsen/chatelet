@@ -20,7 +20,7 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 		<div class="animation-fadeIn delay">
 			<div class="is-flex flex-column-sm justify-content-center align-items-start gap-1">
 			<?php if ($loggedIn): ?>
-				<div class="card p-4 p-md-5 max-25">
+				<div class="card is-rounded p-4 p-md-5 max-25">
 					<div class="card-body">
 						<div class="d-flex flex-column justify-content-start align-items-center gap-05">
 							<h4 class="text-uppercase">Estás conectada como <?php echo $user['name'] ?? 'Invitada'; ?></h4>
@@ -93,8 +93,9 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 		</div>
 	</div>
 	<?php endif ?>
-	<?php echo $this->element('checkout-footer') ?>
 </section>
+
+	<?php echo $this->element('checkout-footer') ?>
 
 <script type="text/javascript">
 	$(document).ready(function() {

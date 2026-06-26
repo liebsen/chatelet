@@ -1486,12 +1486,13 @@ select.form-control{
 .card-body {
   /*flex: 1 1 auto;*/
   background-color: #f8f8f8;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 0.75rem;
 }
 
 .card.is-rounded .card-body {
-  border-radius: 1rem;
+  border-radius: 1.5rem;
+  padding: 1.5rem 2rem;
 }
 .card-title {
 	display: flex;

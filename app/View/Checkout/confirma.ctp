@@ -15,7 +15,7 @@ echo $this->Html->css('checkout.css?v=' . $version['ver'], array('inline' => fal
 		</div-->
 		<div class="animation-fadeIn delay">
 			<div class="is-flex flex-column-sm justify-content-center align-items-start gap-1">
-			<div class="card p-4 p-md-5 max-25">
+			<div class="card is-rounded p-4 p-md-5 max-25">
 				<div class="card-body">
 					<div class="d-flex flex-column justify-content-center align-items-center text-center gap-05">
 						<h2 class="text-bolder">Confirma tu compra</h2>
