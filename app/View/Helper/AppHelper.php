@@ -214,7 +214,7 @@ class AppHelper extends Helper {
     return $str;
   }
 
-  function show_prices_dues($legends, $settings, $item, $category = null, $noprice = false){
+  function show_prices_dues($legends, $settings, $item, $category, $noprice = false){
     $orig_price = (float) @$item['price'];
     $price = (float) @$item['price'];
     $old_price = (float) @$item['old_price'];
@@ -236,7 +236,7 @@ class AppHelper extends Helper {
         $text = 'Transferencia';
       }
     } else {
-    	 \d("category_bank_discount",$category);
+    	//\d("category_bank_discount",$category);
       if(
       	!empty($settings['bank_enable']) && 
       	!empty($category['bank_discount']) && 

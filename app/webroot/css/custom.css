@@ -2,11 +2,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 1000;
   line-height: 1;
   margin-bottom: 0.75rem;
-}
-h1,h2,h3 {
-	&:not(.text-uppercase) {
-  	letter-spacing: -0.05rem;
-  }
+  margin-top: 1rem;
 }
 span, i, small {
   line-height: 1;
@@ -605,7 +601,7 @@ body.top-fixed .shop-options {
   background-image: url(../images/chat-icon.svg);
 }
 
-footer { background: whitemoke; overflow: hidden; padding: 5rem 0 0; }
+footer { background: whitesmoke; overflow: hidden; padding: 5rem 0 0; }
 footer > .wrapper { 
   padding: 0.75rem; 
 }
@@ -621,6 +617,7 @@ footer .options h5 {
   display: inline-block;
   text-align: center;
   margin-bottom: 1.5rem;
+  color: #888;
 }
 
 footer .options > div {
@@ -628,13 +625,13 @@ footer .options > div {
 }
 
 footer h3 { 
-  color: #333; 
+  color: #888; 
   text-transform: uppercase; 
   margin-bottom: 1.25rem; 
   margin-top: 2rem; 
 }
 footer h5:after { 
-	background: #e7e7e7; 
+	background: #888; 
 	content: ""; 
 	display: block; 
 	height: 3px;
@@ -647,8 +644,9 @@ footer h5:after {
 footer .options a, footer .options span { 
   font-weight: 300; 
   text-transform: uppercase;  
+  color: #888;
 }
-footer a:hover { color: #363633; }
+footer a:hover { color: magenta; }
 footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 .modal a.close { display: block; height: 35px; opacity: 1; position: absolute; right: 20px; top: 10px; width: 35px; z-index: 1;}
@@ -1483,7 +1481,7 @@ ul#ul-moreviews li.dontResize img {
   font-size: 1.5rem; 
   font-weight: 600; 
   margin-bottom: 15px; 
-  letter-spacing: -0.05rem;
+  letter-spacing: -0.025rem;
 }
 #desarrollo p { font-size: 15px; margin-bottom: 55px; }
 #referncia { padding: 1.5rem; overflow: hidden; }

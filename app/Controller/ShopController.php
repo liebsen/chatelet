@@ -562,17 +562,25 @@ class ShopController extends AppController {
 	        }
         } */
 
-		$all_but_me = $this->Product->find('all', array(
-				'recursive' => -1,
-				'conditions' => array(
-					'category_id' => $category_id,
-					'visible' => 1,
-					'id <>' => $product_id,
-					'stock_total > ' => 0
-				),
-				'order' => ['Product.ordernum ASC']
-			)
-		);
+		$all_but_me = $this->Product->find('all', [
+	    'joins' => [
+        [
+          'table' => 'categories',
+          'alias' => 'Category',
+          'type' => 'LEFT',
+          'conditions' => [ 'Category.id = Product.category_id' ]
+        ]
+	    ],
+	  	'fields' => ['Product.*, Category.name, Category.mp_discount, Category.bank_discount'],
+      'conditions' => [
+				'Product.category_id' => $category_id,
+				'Product.visible' => 1,
+				'Product.id <>' => $product_id,
+				'Product.stock_total > ' => 0
+      ],     
+			'order' => ['Product.ordernum ASC'],
+      'limit' => 1000
+    ]);
 
 		foreach ($all_but_me as &$item) {
 			if (isset($item['Product']['discount']) && $item['Product']['discount']) {

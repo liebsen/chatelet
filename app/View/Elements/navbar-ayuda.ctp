@@ -29,7 +29,7 @@
 
   #optionsHelp.mobile {
     width: 100%;  
-    background-color: lightpink;
+    background-color: papayawhip;
   }
 
   #optionsHelp.mobile a {
@@ -40,6 +40,7 @@
     border:none;
     padding: 1rem;
     margin: 0;
+    color: peru;
   }
 
   #optionsHelp > a { 
@@ -59,8 +60,8 @@
     position: relative;
     transition: background 1s ease-out;
     border-bottom: 2px solid coral;
-    background-color: lightcoral;
-    color: white;    
+    background-color: peachpuff;
+    color: peru;    
   }
 
   @media(min-width: 992px){

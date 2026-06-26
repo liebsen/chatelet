@@ -172,7 +172,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
           $mp_price = 0;
           $text = '';
 
-          if(@$product['bank_discount']){
+          if(@$product['bank_discount'] && !empty($category['bank_discount'])){
             $bank_price = ceil(round($orig_price * (1 - (float) @$product['bank_discount'] / 100)));
             if($bank_price < $price) {
               $old_price = $orig_price;
@@ -180,7 +180,12 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
               $text = 'transferencia';
             }
           } else {
-            if(!empty($settings['bank_enable']) && !empty($settings['bank_discount_enable']) && !empty($settings['bank_discount'])) {
+            if(
+            	!empty($settings['bank_enable']) && 
+            	!empty($category['bank_discount']) && 
+            	!empty($settings['bank_discount_enable']) && 
+            	!empty($settings['bank_discount'])
+            ) {
               $bank_price2 = round($orig_price * (1 - (float) @$settings['bank_discount'] / 100));
               if($bank_price2 < $price) {
                 $old_price = $orig_price;
@@ -407,7 +412,7 @@ $number_ribbon = (int) @$alt_product['bank_discount'];
                       <div class="product-info">
                           <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
                           <div class="name" origin="4"><?= $alt_product_name ?></div>
-                          <?= $this->App->show_prices_dues($legends, $settings, $alt_product, $category) ?>
+                          <?= $this->App->show_prices_dues($legends, $settings, $alt_product, $alt_product) ?>
                       </div>
                   </a>
               </div>
