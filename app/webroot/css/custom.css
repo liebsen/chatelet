@@ -930,9 +930,8 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 .text-catalog {
-  text-shadow: 0 0 3px #333;
-  font-size: 1.25rem;
-  font-weight: 800;
+  text-shadow: 0 0 3px #555;
+  font-size: 2rem;
   line-height: 1;
   letter-spacing: -0.025rem;
   color: white;
@@ -953,6 +952,10 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   min-height: 1.25rem;
   align-items: center;  
   flex-direction: row;
+}
+
+.price-list span {
+	line-height: 1.5;
 }
 
 .old_price {
