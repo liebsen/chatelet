@@ -26,24 +26,17 @@
       </form>
       <div class="row">
         <div class="col-md-3 desktop">
-        <?php
-            $slug =  str_replace(' ','-',strtolower($category['Category']['name']));
-              if (strpos($slug, 'trajes')!==false){
-                $slug = 'trajes-de-bano';
-              }
-
-        ?>
-            <a href="<?php echo router::url(array('controller' => 'tienda', 'action' => 'productos',
-                             $slug)) ?>" class="btBig">
+            <a href="<?php echo router::url(array('controller' => 'tienda', 'action' => 'index')) ?>" class="btBig">
               volver <br>
                al  <span>SHOP</span>
             </a>
         </div>
-        <div class="col-md-9 product-list posnum-<?=@$category['Category']['posnum'] ?>">
+        <div class="col-md-9 product-list">
             <div class="row">
 <?php
-                foreach($results as $product):
-                  $product = $product['Product'];
+                foreach($results as $row):
+                	$category = $row['Category'];
+                  $product = $row['Product'];
                   $stock = (!empty($product['stock_total']))?(int)$product['stock_total']:0;
                   $product_name =$product['name'];
 
@@ -114,14 +107,14 @@
   if (isset($product['bank_discount']) && $product['bank_discount'] > $number_ribbon){
   $number_ribbon = (int) @$product['bank_discount'];
   }
-  ?><?php 
+?><?php 
                       if (!empty($number_ribbon)) :?>
                           <div class="ribbon top-left small sp1"><span<?php echo $ribbon_style ?>><?= $number_ribbon ?>% OFF</span></div>
                       <?php endif ?>
-                      <?php if ($product['promo'] !== '') :?>
+                      <?php if (!empty($product['promo'])) :?>
                           <div class="ribbon"><span><?= $product['promo'] ?></span></div>
                       <?php endif ?>
-                      <div class="product-image posnum-<?= $category['Category']['posnum'] ?>" style="background-image: url('<?php echo $settings['upload_url'] . $product['img_url'] ?>')" alt=""></div>
+                      <div class="product-image posnum-<?= $category['posnum'] ?>" style="background-image: url('<?php echo $settings['upload_url'] . $product['img_url'] ?>')" alt=""></div>
                       </div>
                       <div class="product-info">
                           <!--h3 class="article-related-title"><?php echo $product['name'] ?></h3-->

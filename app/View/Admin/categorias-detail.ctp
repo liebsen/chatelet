@@ -136,10 +136,10 @@
               <div class="controls">
                 <input  class="form-control w-100" type="number" name="data[mp_discount]" value="<?= !empty($cat) ? $cat['Category']['mp_discount'] : '0' ?>">
               </div>
-              <small class="text-muted">Seleccioná el porcentaje de descuento</small>
+              <small class="text-muted">Seleccioná el porcentaje de descuento. Si lo dejas en blanco se aplicará el descuento general de Tarjeta si hubiera.</small>
             </div>
 
-                        
+
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Activar descuentos por Banco'); ?></label>
               <div class="form-group">
@@ -152,7 +152,7 @@
               <div class="controls">
                 <input  class="form-control w-100" type="number" name="data[bank_discount]" value="<?= !empty($cat) ? $cat['Category']['bank_discount'] : '0' ?>">
               </div>
-              <small class="text-muted">Seleccioná el porcentaje de descuento</small>
+              <small class="text-muted">Seleccioná el porcentaje de descuento. Si lo dejas en blanco se aplicará el descuento general de Transferencia si hubiera.</small>
             </div>
 
 

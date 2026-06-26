@@ -139,7 +139,6 @@ class CartComponent extends Component {
         		!empty($settings['bank_discount_enable']) && 
         		!empty($settings['bank_discount'])
         	) {
-        		\d("bank(1)", $settings['bank_discount']);
         		$bank_discount = $settings['bank_discount'];
         	}
 
@@ -147,12 +146,10 @@ class CartComponent extends Component {
         		!empty($cat['bank_discount_enable']) && 
         		!empty($cat['bank_discount'])
         	) {
-        		\d("bank(2)", $cat['bank_discount']);
         		$bank_discount = $cat['bank_discount'];
         	}
 
         	if(!empty($prod['bank_discount'])) {
-        		\d("bank(3)", $prod['bank_discount']);
         		$bank_discount = $prod['bank_discount'];
         	}
         }

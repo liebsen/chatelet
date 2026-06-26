@@ -563,15 +563,6 @@ class ShopController extends AppController {
         } */
 
 		$all_but_me = $this->Product->find('all', [
-	    'joins' => [
-        [
-          'table' => 'categories',
-          'alias' => 'Category',
-          'type' => 'LEFT',
-          'conditions' => [ 'Category.id' => 'Product.category_id' ]
-        ]
-	    ],
-	  	'fields' => ['Product.*, Category.name, Category.mp_discount, Category.bank_discount'],
       'conditions' => [
 				'Product.category_id' => $category_id,
 				'Product.visible' => 1,
@@ -724,11 +715,17 @@ class ShopController extends AppController {
 		$this->loadModel('Stat');
 		$this->loadModel('Legend');
 
+    $legends = $this->Legend->find('all', [
+      'conditions' => ['enabled' => 1],
+      'order' => ['Legend.ordernum ASC']
+    ]);
+
+    $this->set('legends', $legends);
 		// legends
-		$legends_map = $this->Legend->find('all', [
+		/*$legends_map = $this->Legend->find('all', [
 			'conditions' => ['enabled' => 1],
 			'order' => ['Legend.dues ASC']
-		]);
+		]);*/
 
 		$q = $this->request->query['q'];
 		$p = $this->request->query['p'] ? intval($this->request->data['p']) : 0;
@@ -759,6 +756,15 @@ class ShopController extends AppController {
 		// CakeLog::write('debug', 'ors: "'.json_encode($ors, JSON_PRETTY_PRINT));
 		if(!empty($q) && strlen($q) > 2) {
 			$results1 = $this->Product->find('all',[
+		    'joins' => array(
+	        array(
+	          'table' => 'categories',
+	          'alias' => 'Category',
+	          'type' => 'LEFT',
+	          'conditions' => array( 'Category.id = Product.category_id' )
+	        )
+		    ),
+		  	'fields' => array('Product.id, Product.category_id, Product.article, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.mp_discount, Product.bank_discount, Product.stock_total, Category.name, Category.mp_discount_enable, Category.bank_discount_enable, Category.mp_discount, Category.bank_discount'),
 				'conditions' => [
 					'or' => [
 						'Product.name LIKE' => "%$q%",
@@ -789,6 +795,15 @@ class ShopController extends AppController {
 				);
 			}
 			$results2 = $this->Product->find('all',[
+		    'joins' => array(
+	        array(
+	          'table' => 'categories',
+	          'alias' => 'Category',
+	          'type' => 'LEFT',
+	          'conditions' => array( 'Category.id = Product.category_id' )
+	        )
+		    ),
+		  	'fields' => array('Product.id, Product.category_id, Product.article, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.mp_discount, Product.bank_discount, Product.stock_total, Category.name, Category.mp_discount_enable, Category.bank_discount_enable, Category.mp_discount, Category.bank_discount'),				
 				'conditions' => $conditions,
 				// 'order' => ['Product.promo DESC'],
 				'order' => ["LOCATE('".$q."', Product.name)"],
@@ -797,6 +812,7 @@ class ShopController extends AppController {
 			]);
 
 			$results = array_merge($results1, $results2);
+			//\d("results",$results);
 
 			foreach ($results as &$item) {
 				if (isset($item['Product']['discount']) && $item['Product']['discount']) {

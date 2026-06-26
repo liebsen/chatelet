@@ -950,6 +950,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   flex-wrap: nowrap;
   grid-gap: 0.5rem;
   font-size: 0.75rem;
+  min-height: 1.25rem;
   align-items: center;  
   flex-direction: row;
 }
@@ -1350,7 +1351,6 @@ ul#ul-moreviews li.dontResize img {
   align-items: center;
   flex-direction: column;
   position: relative; 
-  min-height: calc(100dvh - 265px);
   text-align: center;
   /*padding: 65px 0;*/ 
 }
@@ -1442,6 +1442,7 @@ ul#ul-moreviews li.dontResize img {
   #headhelp {
   	padding-top: 4rem; 
     padding-bottom: 0.5rem; 
+	  min-height: calc(100dvh - 265px);
   }
 }
 #desarrollo { 
