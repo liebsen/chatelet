@@ -568,7 +568,7 @@ class ShopController extends AppController {
           'table' => 'categories',
           'alias' => 'Category',
           'type' => 'LEFT',
-          'conditions' => [ 'Category.id = Product.category_id' ]
+          'conditions' => [ 'Category.id' => 'Product.category_id' ]
         ]
 	    ],
 	  	'fields' => ['Product.*, Category.name, Category.mp_discount, Category.bank_discount'],

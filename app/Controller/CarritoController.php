@@ -27,7 +27,7 @@ class CarritoController extends AppController
 		'Router'
 	);
 	
-	public $components = array('Cart', 'Mailchimp', 'RequestHandler');
+	public $components = array('Cart', 'RequestHandler');
 
 	public function test() {
 		echo "<pre>";
@@ -311,7 +311,11 @@ class CarritoController extends AppController
 				$price = (float) $item["old_price"];
 				CakeLog::write('debug', 'carrito(price):'.$price);
 
-				if($payment_method === 'mercadopago' && !empty($item['mp_discount']) && !empty((float)(@$item['mp_discount']))) {
+				if(
+					$payment_method === 'mercadopago' && 
+					!empty($item['mp_discount']) && 
+					!empty((float)(@$item['mp_discount']))
+				) {
 	        $price = @ceil(round($price * (1 - (float) $item['mp_discount'] / 100)));
 	        CakeLog::write('debug', 'carrito(price):'.$price);
 	      }
@@ -531,7 +535,6 @@ class CarritoController extends AppController
 				$product = $product['Product'];
 				$this->loadModel('Stat');
 
-				/* remove all of the kind */
 				$criteria = $data['id'].$data['size'].$data['color'].$data['alias'];
 
 				$this->Stat->save(
@@ -587,6 +590,7 @@ class CarritoController extends AppController
 				);
 			}
 		}
+
 		//return $this->redirect(array('controller' => 'carrito', 'action' => 'index'));
 		return json_encode(array('success' => false));
 	}

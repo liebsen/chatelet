@@ -601,7 +601,7 @@ body.top-fixed .shop-options {
   background-image: url(../images/chat-icon.svg);
 }
 
-footer { background: whitesmoke; overflow: hidden; padding: 5rem 0 0; }
+footer { background: lightpink; overflow: hidden; padding: 5rem 0 0; }
 footer > .wrapper { 
   padding: 0.75rem; 
 }
@@ -617,7 +617,7 @@ footer .options h5 {
   display: inline-block;
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #888;
+  color: darkred;
 }
 
 footer .options > div {
@@ -625,13 +625,13 @@ footer .options > div {
 }
 
 footer h3 { 
-  color: #888; 
+  color: darkred; 
   text-transform: uppercase; 
   margin-bottom: 1.25rem; 
   margin-top: 2rem; 
 }
 footer h5:after { 
-	background: #888; 
+	background: darkred; 
 	content: ""; 
 	display: block; 
 	height: 3px;
@@ -644,7 +644,7 @@ footer h5:after {
 footer .options a, footer .options span { 
   font-weight: 300; 
   text-transform: uppercase;  
-  color: #888;
+  color: darkred;
 }
 footer a:hover { color: magenta; }
 footer ul li { margin-bottom: 5px;  max-width: 15rem; }

@@ -63,8 +63,18 @@ class CartComponent extends Component {
     if (!empty($cart)) {
       /* apply basic prices and fill promos data */
       foreach($cart as $key => $item) {
-        $prod = $this->controller->Product->findById($item['id']);
-				$cat = $this->controller->Category->findById($item['category_id']);
+				$prod = $this->controller->Product->find('first', array(
+			    'joins' => array(
+		        array(
+		          'table' => 'categories',
+		          'alias' => 'Category',
+		          'type' => 'LEFT',
+		          'conditions' => array( 'Category.id = Product.category_id' )
+		        )
+			    ),
+			  	'fields' => array('Product.id, Product.category_id, Product.article, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.mp_discount, Product.bank_discount, Product.stock_total, Category.name, Category.mp_discount, Category.bank_discount'),
+					'conditions' => array( 'Product.id' => $item['id'] ),
+				));
 
         if(empty($prod)) {
           unset($cart[$key]);
@@ -72,7 +82,7 @@ class CartComponent extends Component {
         }
 
         $prod = $prod['Product'];
-        $cat = $cat['Category'];
+        $cat = $prod['Category'];
         $price = $prod['price'];
         $prod['old_price'] = $price;
 
@@ -119,7 +129,7 @@ class CartComponent extends Component {
             $payment_method === 'bank' && 
             !empty($settings['bank_enable']) && 
             !empty($settings['bank_discount_enable']) && 
-            !empty($settings['bank_discount'])
+            !empty($settings['bank_discount']) &&
             !empty($cat['bank_discount'])
           ) {
             $cart[$key]['old_price'] = $price;

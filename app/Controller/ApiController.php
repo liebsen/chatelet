@@ -91,6 +91,15 @@ class ApiController extends AppController {
     if(!empty($q)){
 
       $data = $this->Product->find('all',[
+		    'joins' => [
+	        [
+	          'table' => 'categories',
+	          'alias' => 'Category',
+	          'type' => 'LEFT',
+	          'conditions' => [ 'Category.id = Product.category_id' ]
+	        ]
+		    ],
+		  	'fields' => ['Product.*, Category.name, Category.mp_discount, Category.bank_discount'],
         'conditions' => [
           'or' => [
             'LOWER(Product.name) LIKE' => "%$q%",
@@ -107,6 +116,7 @@ class ApiController extends AppController {
 
       foreach($data as $item) {
         $row = $item['Product'];
+        $cat = $item['Category'];
         $price = ceil($row['price']);
         $discount = ceil($row['discount']);
         $old_price = null;
@@ -139,7 +149,10 @@ class ApiController extends AppController {
           }
         }
 
-        if(!empty($row['bank_discount'])){
+        if(
+        	!empty($row['bank_discount']) &&
+        	!empty($cat['bank_discount'])
+        ){
           $legends[]= (object) [
             'price' => ceil(round($price * (1 - (float) $row['bank_discount'] / 100))),
             'text' => 'transferencia',
@@ -147,7 +160,10 @@ class ApiController extends AppController {
           ];
         }
 
-        if(!empty($row['mp_discount'])){
+        if(
+        	!empty($row['mp_discount']) &&
+        	!empty($cat['mp_discount'])
+        ){
           $legends[]= (object) [
             'price' => ceil(round($price * (1 - (float) $row['mp_discount'] / 100))),
             'text' => 'mercadopago',
