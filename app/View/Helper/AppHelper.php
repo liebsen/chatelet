@@ -100,6 +100,8 @@ class AppHelper extends Helper {
     //['posnum']
     $stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
     $number_ribbon = 0;
+    $mp_discount = 0;
+    $bank_discount = 0;
     $ribbon_style = '';
     if(!empty($item['ribbon_color'])) {
       $ribbon_style = ' style="background-color:'.$item['ribbon_color'].'"';
@@ -107,29 +109,51 @@ class AppHelper extends Helper {
     if (isset($item['discount_label_show'])){
       $number_ribbon = (int) @$item['discount_label_show'];
     }
+
+    if(!empty($category['bank_discount_enable'])) {
+	  	if(
+	  		!empty($settings['mp_discount_enable']) && 
+	  		!empty($settings['mp_discount'])
+	  	) {
+	  		$mp_discount = $settings['mp_discount'];
+	  	}
+
+	  	if(!empty($category['mp_discount'])) {
+	  		$mp_discount = $category['mp_discount'];
+	  	}
+
+	  	if(!empty($item['mp_discount'])) {
+	  		$mp_discount = $item['mp_discount'];
+	  	}
+	  }
+
+	  if(!empty($category['bank_discount_enable'])) {
+			if(
+				!empty($settings['bank_discount_enable']) && 
+				!empty($settings['bank_discount'])
+			) {
+				$bank_discount = $settings['bank_discount'];
+			}
+
+			if(!empty($category['bank_discount'])) {
+				$bank_discount = $cat['bank_discount'];
+			}
+
+			if(!empty($item['bank_discount'])) {
+				$bank_discount = $item['bank_discount'];
+			}
+		} 
+
     if (
-    	isset($item['mp_discount']) && 
-    	!empty($category['mp_discount']) && 
-    	$item['mp_discount'] > $number_ribbon 
+    	$mp_discount > $number_ribbon 
     ){
-      $number_ribbon = (int) @$item['mp_discount'];
-    }
-    if (
-    	isset($item['bank_discount']) && 
-    	!empty($category['bank_discount']) && 
-    	$item['bank_discount'] > $number_ribbon
-    ){
-      $number_ribbon = (int) @$item['bank_discount'];
+      $number_ribbon = (int) $mp_discount;
     }
 
-    if(
-    	!$number_ribbon && 
-    	!empty($settings['bank_enable']) && 
-    	!empty($category['bank_discount']) && 
-    	!empty($settings['bank_discount_enable']) && 
-    	!empty($settings['bank_discount'])
-    )  {
-      $number_ribbon = $settings['bank_discount'];
+    if (
+    	$bank_discount > $number_ribbon
+    ){
+      $number_ribbon = (int) @$bank_discount;
     }
 
     $discount_flag = (@$item['category_id']!='134' && !empty($number_ribbon))?'<div class="ribbon top-left small"><span'.$ribbon_style.'>'.$number_ribbon.'% OFF</span></div>':'';
@@ -221,49 +245,59 @@ class AppHelper extends Helper {
     $str = "";
     $bank_price = 0;
     $mp_price = 0;
+    $mp_discount = 0;
+    $bank_discount = 0;    
     $text = '';
 
-    if(
-    	!empty(@$item['bank_discount']) && 
-    	!empty(@$category['bank_discount']) && 
-    	$item['bank_discount']
-    ) {
-      $bank_price = round($orig_price * (1 - (float) @$item['bank_discount'] / 100));
+    if(!empty($category['bank_discount_enable'])) {
+	  	if(
+	  		!empty($settings['mp_discount_enable']) && 
+	  		!empty($settings['mp_discount'])
+	  	) {
+	  		$mp_discount = $settings['mp_discount'];
+	  	}
+
+	  	if(!empty($category['mp_discount'])) {
+	  		$mp_discount = $category['mp_discount'];
+	  	}
+
+	  	if(!empty($item['mp_discount'])) {
+	  		$mp_discount = $item['mp_discount'];
+	  	}
+	  }
+
+    if(!empty($mp_discount)) {
+      $bank_price = round($orig_price * (1 - (float) @$mp_discount / 100));
       if($bank_price < $price) {
-        $discount = $item['bank_discount'];
         $old_price = $orig_price;
         $price = $bank_price;
-        $text = 'Transferencia';
+        $text = 'Mercado Pago';
       }
-    } else {
-    	//\d("category_bank_discount",$category);
-      if(
-      	!empty($settings['bank_enable']) && 
-      	!empty($category['bank_discount']) && 
-      	!empty($settings['bank_discount_enable']) && 
-      	!empty($settings['bank_discount'])
-      ) {
-        $bank_price2 = round($orig_price * (1 - (float) @$settings['bank_discount'] / 100));
-        if($bank_price2 < $price) {
-          $discount = $settings['bank_discount'];
-          $old_price = $orig_price;
-          $price = $bank_price2;
-          $text = 'Transferencia';
-        }
-      }      
-    }
+    } 
 
-    if(
-    	!empty(@$item['mp_discount']) && 
-    	!empty(@$category['mp_discount']) && 
-    	$item['mp_discount']
-    ){
-      $mp_price = round($orig_price * (1 - (float) @$item['mp_discount'] / 100));
+	  if(!empty($category['bank_discount_enable'])) {
+			if(
+				!empty($settings['bank_discount_enable']) && 
+				!empty($settings['bank_discount'])
+			) {
+				$bank_discount = $settings['bank_discount'];
+			}
+
+			if(!empty($category['bank_discount'])) {
+				$bank_discount = $cat['bank_discount'];
+			}
+
+			if(!empty($item['bank_discount'])) {
+				$bank_discount = $item['bank_discount'];
+			}
+		} 
+
+    if(!empty($bank_discount)){
+      $mp_price = round($orig_price * (1 - (float) @$bank_discount / 100));
       if($mp_price < $price) {
-        $discount = $item['mp_discount'];
         $old_price = $orig_price;
         $price = $mp_price;
-        $text = 'Mercado Pago';
+        $text = 'Transferencia';
       }
     }
 
@@ -274,7 +308,8 @@ class AppHelper extends Helper {
       if(!empty($old_price) && abs($old_price-$price > 1)) {
         $str.= '<span class="old_price text-muted">'.\price_format($old_price) . '</span>';
       }
-      if(abs($mp_price-$price > 1) || abs($bank_price-$price > 1)) {
+
+      if(strlen($text)) {
         $str.= '<span class="text-muted">' . (strlen($text) ? "{$text}" : "") . '</span>';
       }
       $str.= '</div>';
@@ -308,10 +343,10 @@ class AppHelper extends Helper {
     $str2 = '';
     $str2.='<div class="legends-container"><span class="legends w-100">';
     if($bank_price && $text != 'Transferencia' && abs($bank_price-$price > 1)) {
-      $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($bank_price)." </span><span class='text-theme text-bold product-badge'>-".@$discount."%</span> <span class='text-sm text-uppercase'>Transferencia</span> </div>";
+      $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($bank_price)." </span><span class='text-theme text-bold product-badge'>-".@$bank_discount."%</span> <span class='text-sm text-uppercase'>Transferencia</span> </div>";
     }
     if($mp_price && $text != 'Mercado Pago' && abs($mp_price-$price > 1)){
-      $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($mp_price)." </span> <span class='text-theme text-bold product-badge'>-".@$discount."%</span> <span class='text-sm text-uppercase'>Mercado Pago</span> </div>";
+      $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($mp_price)." </span> <span class='text-theme text-bold product-badge'>-".@$mp_discount."%</span> <span class='text-sm text-uppercase'>Mercado Pago</span> </div>";
     }
 
     $str2.= implode('', $dues_options);

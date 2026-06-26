@@ -84,6 +84,8 @@ class CartComponent extends Component {
         $prod = $prod['Product'];
         $cat = $prod['Category'];
         $price = $prod['price'];
+        $mp_discount = 0;
+        $bank_discount = 0;
         $prod['old_price'] = $price;
 
         $prop = $this->controller->ProductProperty->find('all', array('conditions' => array(
@@ -102,40 +104,56 @@ class CartComponent extends Component {
           $cart[$key]['price'] = $price;
         }
 
-        if (
-          $payment_method === 'mercadopago' && 
-          !empty($prod['mp_discount']) && 
-          !empty($cat['mp_discount']) &&
-          (float) @$prod['mp_discount'] > 0
-        ) {
+        if(
+        	$payment_method === 'mercadopago' &&
+      		!empty($cat['bank_discount_enable'])
+      	) {
+			  	if(
+			  		!empty($settings['mp_discount_enable']) && 
+			  		!empty($settings['mp_discount'])
+			  	) {
+			  		$mp_discount = $settings['mp_discount'];
+			  	}
+
+			  	if(!empty($cat['mp_discount'])) {
+			  		$mp_discount = $cat['mp_discount'];
+			  	}
+
+			  	if(!empty($prod['mp_discount'])) {
+			  		$mp_discount = $prod['mp_discount'];
+			  	}
+			  }
+
+        if ($mp_discount) {
           $cart[$key]['old_price'] = $price;
-          $price = ceil(round($price * (1 - (float) $prod['mp_discount'] / 100)));
+          $price = ceil(round($price * (1 - (float) $mp_discount / 100)));
           $cart[$key]['price'] = $price;
         }
 
-        if (
-          !empty($prod['bank_discount']) && 
-          !empty($cat['bank_discount']) &&
-          (float) @$prod['bank_discount'] > 0 && 
-          $payment_method === 'bank'
-        ) {
+        if($payment_method === 'bank') {
+        	if(
+        		!empty($settings['bank_discount_enable']) && 
+        		!empty($settings['bank_discount'])
+        	) {
+        		$bank_discount = $settings['bank_discount'];
+        	}
+
+        	if(
+        		!empty($cat['bank_discount_enable']) && 
+        		!empty($cat['bank_discount'])
+        	) {
+        		$bank_discount = $cat['bank_discount'];
+        	}
+
+        	if(!empty($prod['bank_discount'])) {
+        		$bank_discount = $prod['bank_discount'];
+        	}
+        }
+
+        if ($bank_discount) {
           $cart[$key]['old_price'] = $price;
-          $price = ceil(round($price * (1 - (float) $prod['bank_discount'] / 100)));
+          $price = ceil(round($price * (1 - (float) $bank_discount / 100)));
           $cart[$key]['price'] = $price;
-        } else {
-          // CakeLog::write('debug', 'payment_method:'.$payment_method);
-          // CakeLog::write('debug', 'bank_enable:'.$settings['bank_enable']);
-          if (
-            $payment_method === 'bank' && 
-            !empty($settings['bank_enable']) && 
-            !empty($settings['bank_discount_enable']) && 
-            !empty($settings['bank_discount']) &&
-            !empty($cat['bank_discount'])
-          ) {
-            $cart[$key]['old_price'] = $price;
-            $price = ceil(round($price * (1 - (float) $settings['bank_discount'] / 100)));
-            $cart[$key]['price'] = $price;
-          }
         }
 
         $number_ribbon = 0;

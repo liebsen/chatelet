@@ -31,15 +31,15 @@
               <h4 class="sub-header"><?=__('Propiedades')?></h4>
               <p><?=__('Selecciona como deseas ver tu categoría')?></p>            
               <div class="control-group">
-                <label class="control-label" for="alternatename"><?php echo __('Nombre Alternativo'); ?></label>
+                <label class="control-label" for="alternatename"><?php echo __('Activar Nombre Alternativo'); ?></label>
                 <div class="form-group">
-                  <input type="checkbox" id="alternatename" name="data[alternate_toggle]" value="1" id="toggle" class="toggle-checkbox toggle-block" data-block=".show-alternate" <?= $cat['Category']['alternate_toggle'] == '1' ? ' checked' : '' ?>>
+                  <input type="checkbox" id="alternatename" name="data[alternate_toggle]" value="1" id="toggle" class="toggle-checkbox toggle-block" data-block=".show-alternate" data-class="d-none" <?= $cat['Category']['alternate_toggle'] == '1' ? ' checked' : '' ?>>
                   <label for="alternatename" class="toggle-label"></label>
                   <!--input type="checkbox" id="alternatename" name="data[alternate_toggle]" value="1" <?php echo (isset($cat)) && $cat['Category']['alternate_toggle'] == 1 ? 'checked' : ''; ?>/-->
                 </div>
-                <div class="form-group show-alternate<?= $cat['Category']['alternate_toggle'] == '1' ? '' : ' d-disable' ?>">
-                  <a class="d-none" id="alternatename_restore">Cancelar</a>
-                  <div class="controls alternate_name_block<?php echo (isset($cat)) && !$cat['Category']['alternate_toggle'] ? ' d-none' : ''; ?>">
+                <div class="control-group show-alternate<?= $cat['Category']['alternate_toggle'] == '1' ? '' : ' d-none' ?>">
+	                <label class="control-label" for="alternatename"><?php echo __('Nombre Alternativo'); ?></label>
+                  <div class="controls alternate_name_block">
                     <input class="form-control w-100" type="text" id="alternate_name_target" name="data[alternate_name]" value="<?php echo (isset($cat)) ? $cat['Category']['alternate_name'] : ''; ?>">
                   </div>
                 </div>
@@ -122,20 +122,41 @@
                 <label for="toggle" class="toggle-label"></label>
               </div>
             </div>
-            <div class="control-group">
-              <label class="control-label" for="columns-text"><?php echo __('Aplica descuentos por Banco'); ?></label>
-              <div class="form-group">
-                <input type="checkbox" name="data[bank_discount]" value="1" id="toggle-bank_discount" class="toggle-checkbox"<?= $cat['Category']['bank_discount'] == '1' ? ' checked' : '' ?>>
-                <label for="toggle-bank_discount" class="toggle-label"></label>
-              </div>
-            </div>
+
+
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Aplica descuentos por Tarjeta'); ?></label>
               <div class="form-group">
-                <input type="checkbox" name="data[mp_discount]" value="1" id="toggle-mp_discount" class="toggle-checkbox"<?= $cat['Category']['mp_discount'] == '1' ? ' checked' : '' ?>>
+                <input type="checkbox" name="data[mp_discount_enable]" value="1" id="toggle-mp_discount" class="toggle-checkbox toggle-block" data-block=".mp-discount" data-class="d-none" <?= $cat['Category']['mp_discount_enable'] == '1' ? ' checked' : '' ?>>
                 <label for="toggle-mp_discount" class="toggle-label"></label>
               </div>
             </div>
+            <div class="control-group mp-discount <?= empty($cat['Category']['mp_discount_enable']) ? 'd-none' : '' ?>">
+              <label class="control-label" for="columns-text"><?php echo __('Descuento por Tarjeta'); ?></label>
+              <div class="controls">
+                <input  class="form-control w-100" type="number" name="data[mp_discount]" value="<?= !empty($cat) ? $cat['Category']['mp_discount'] : '0' ?>">
+              </div>
+              <small class="text-muted">Seleccioná el porcentaje de descuento</small>
+            </div>
+
+                        
+            <div class="control-group">
+              <label class="control-label" for="columns-text"><?php echo __('Activar descuentos por Banco'); ?></label>
+              <div class="form-group">
+                <input type="checkbox" name="data[bank_discount_enable]" value="1" id="toggle-bank_discount" class="toggle-checkbox toggle-block" data-block=".bank-discount" data-class="d-none" <?= $cat['Category']['bank_discount_enable'] == '1' ? ' checked' : '' ?>>
+                <label for="toggle-bank_discount" class="toggle-label"></label>
+              </div>
+            </div>
+            <div class="control-group bank-discount <?= empty($cat['Category']['bank_discount_enable']) ? 'd-none' : '' ?>">
+              <label class="control-label" for="columns-text"><?php echo __('Descuento por Banco'); ?></label>
+              <div class="controls">
+                <input  class="form-control w-100" type="number" name="data[bank_discount]" value="<?= !empty($cat) ? $cat['Category']['bank_discount'] : '0' ?>">
+              </div>
+              <small class="text-muted">Seleccioná el porcentaje de descuento</small>
+            </div>
+
+
+
             <div class="form-box bg-info-outline<?=empty($cat['Category']['id']) ? ' d-disable' : ''?>">
               <h4 class="sub-header"><?=__('Imágenes')?></h4>
               <p><?=__('Carga tus imágenes para esta categoría')?></p>

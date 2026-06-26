@@ -170,39 +170,65 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
 
           $bank_price = 0;
           $mp_price = 0;
+			    $mp_discount = 0;
+			    $bank_discount = 0;              
           $text = '';
 
-          if(@$product['bank_discount'] && !empty($category['bank_discount'])){
-            $bank_price = ceil(round($orig_price * (1 - (float) @$product['bank_discount'] / 100)));
-            if($bank_price < $price) {
-              $old_price = $orig_price;
-              $price = $bank_price;
-              $text = 'transferencia';
-            }
-          } else {
-            if(
-            	!empty($settings['bank_enable']) && 
-            	!empty($category['bank_discount']) && 
-            	!empty($settings['bank_discount_enable']) && 
-            	!empty($settings['bank_discount'])
-            ) {
-              $bank_price2 = round($orig_price * (1 - (float) @$settings['bank_discount'] / 100));
-              if($bank_price2 < $price) {
-                $old_price = $orig_price;
-                $price = $bank_price2;
-                $text = 'transferencia';
-              }
-            }            
-          }
 
-          if(@$product['mp_discount']){
-            $mp_price = ceil(round($orig_price * (1 - (float) @$product['mp_discount'] / 100)));
-            if($mp_price < $price) {
-              $old_price = $orig_price;
-              $price = $mp_price;
-              $text = 'mercadopago';
-            }
-          }
+			  	if(
+			  		!empty($settings['mp_discount_enable']) && 
+			  		!empty($settings['mp_discount'])
+			  	) {
+			  		$mp_discount = $settings['mp_discount'];
+			  	}
+
+			  	if(
+			  		!empty($category['mp_discount_enable']) && 
+			  		!empty($category['mp_discount']) 
+			  	) {
+			  		$mp_discount = $category['mp_discount'];
+			  	}
+
+			  	if(!empty($product['mp_discount'])) {
+			  		$mp_discount = $product['mp_discount'];
+			  	}
+
+			    if($mp_discount) {
+			      $bank_price = round($orig_price * (1 - (float) @$mp_discount / 100));
+			      if($bank_price < $price) {
+			        $old_price = $orig_price;
+			        $price = $bank_price;
+			        $text = 'Transferencia';
+			      }
+			    } 
+
+
+			  	if(
+			  		!empty($settings['bank_discount_enable']) && 
+			  		!empty($settings['bank_discount'])
+			  	) {
+			  		$bank_discount = $settings['bank_discount'];
+			  	}
+
+			  	if(
+			  		!empty($category['bank_discount_enable']) && 
+			  		!empty($category['bank_discount']) 
+			  	) {
+			  		$bank_discount = $category['bank_discount'];
+			  	}
+
+			  	if(!empty($product['bank_discount'])) {
+			  		$bank_discount = $product['bank_discount'];
+			  	}
+
+			    if($bank_discount){
+			      $mp_price = round($orig_price * (1 - (float) @$bank_discount / 100));
+			      if($mp_price < $price) {
+			        $old_price = $orig_price;
+			        $price = $mp_price;
+			        $text = 'Mercado Pago';
+			      }
+			    }
 
           echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>".\price_format(ceil($price)) . '</span>';
                   if(!empty($old_price) && abs($price-$old_price) > 1) {

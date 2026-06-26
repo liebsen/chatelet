@@ -130,10 +130,11 @@ $(function () {
 
   $('.toggle-block').change(function(e){
     const block = $(this).data('block')
+    const className = $(this).data('class') || 'd-disable'
     if($(e.target).is(':checked')) {
-      $(block).removeClass('d-disable')
+      $(block).removeClass(className)
     } else {
-      $(block).addClass('d-disable')
+      $(block).addClass(className)
     }
   })
 

@@ -116,15 +116,23 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 					</td>
 					<td>
 						<?php
-							if(!empty($category['Category']['mp_discount'])){
-								echo '<i class="fa fa-check text-success"></i>';
+							if(
+								!empty($category['Category']['mp_discount_enable'])
+							){
+								echo '<i class="fa fa-check text-success"></i> ' . ($category['Category']['mp_discount'] ?? '');
+							} else {
+								echo '<i class="fa fa-ban text-danger"></i>';
 							}
 						?>     
 					</td> 
 					<td>
 						<?php
-							if(!empty($category['Category']['bank_discount'])){
-								echo '<i class="fa fa-check text-success"></i>';
+							if(
+								!empty($category['Category']['bank_discount_enable'])
+							){
+								echo '<i class="fa fa-check text-success"></i> ' . ($category['Category']['bank_discount'] ?? '');
+							} else {
+								echo '<i class="fa fa-ban text-danger"></i>';
 							}
 						?>     
 					</td> 
