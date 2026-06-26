@@ -31,7 +31,7 @@ label {
 }
 
 label input[type=checkbox] + .label-text:hover:before {
-  color: #e10d74;
+  color: hotpink;
 }
 
 label input[type=checkbox] {
@@ -50,7 +50,7 @@ label input[type=checkbox] + .label-text:before {
 
 label input[type=checkbox]:checked + .label-text:before {
   content: "";
-  color: #e10d74;
+  color: hotpink;
   animation: tick 150ms ease-in;
 }
 
@@ -282,7 +282,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 
 .text-theme {
   font-weight: 300;
-  color: #e10d74!important;
+  color: hotpink!important;
   text-align: center;
 }
 
@@ -381,8 +381,8 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .navbar-nav > li > a.active {
-  border-bottom: 2px solid #e10d74;
-  color: #e10d74;
+  border-bottom: 2px solid hotpink;
+  color: hotpink;
 }
 
 .navbar-chatelet .fa,
@@ -947,7 +947,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   color: black;
   display: flex;
   flex-wrap: nowrap;
-  grid-gap: 0.5rem;
+  grid-gap: 0.25rem;
   font-size: 0.75rem;
   min-height: 1.25rem;
   align-items: center;  
@@ -1028,7 +1028,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   transition: all .3s ease-in-out; 
 }
 #productOptions nav li a.current{ 
-  border-bottom: 2px solid #e10d74;
+  border-bottom: 2px solid hotpink;
 }
 #productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; }
 #productOptions a.btBig span { font-size: 27px; }
@@ -1270,7 +1270,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 #main .caract label.btn.active {
-  color: #e10d74;
+  color: hotpink;
 }
 
 #main .caract .color-block { display: none }
@@ -1390,7 +1390,7 @@ ul#ul-moreviews li.dontResize img {
 	padding: 1rem;
 	color: white;
 	border-radius: 0.75rem;
-	background-color: #e10d74;
+	background-color: hotpink;
 	> span {
 		font-weight: 1000;
 		font-size: 20px;
@@ -1591,7 +1591,7 @@ ul#ul-moreviews li.dontResize img {
 	#filters .col-md-4 { margin-bottom: 15px; }
 	/*#infoShop .col-md-4.blr { border-left: none; border-top: 5px solid #FFF; border-right: none; border-bottom: 5px solid #FFF; }*/
 	#productOptions nav li a { font-size: 16px; }
-  #productOptions nav li a.active { color: #e10d74; border-bottom: 2px solid #e10d74; }
+  #productOptions nav li a.active { color: hotpink; border-bottom: 2px solid hotpink; }
 	#filters { margin-bottom: 50px; }
 
 
@@ -2081,7 +2081,7 @@ span.out{
 
 .price-list .badge {
   color: white;
-  background-color: #e10d74;
+  background-color: hotpink;
   font-weight: 800;
   letter-spacing: -1px;
 }
@@ -2139,7 +2139,7 @@ span.out{
 }
 
 .cost_total-container .price {
-  color: #e10d74;
+  color: hotpink;
 }
 .cost_total {
 }
@@ -2164,9 +2164,9 @@ select {
   padding-right: 2rem;
   font-size: 1rem;
   min-height: 3rem;  
-  color: #e10d74;
+  color: hotpink;
   font-weight: 600;
-  border: 1px solid #e10d74;
+  border: 1px solid hotpink;
   border-radius: 5px;
   appearance: none;
 }
@@ -2241,7 +2241,7 @@ select {
 
 .ribbon.bottom-left span,
 .ribbon.top-left span {
-  background: #e10d74;
+  background: hotpink;
 }
 
 .ribbon.bottom-left.small {
@@ -2352,7 +2352,7 @@ span.count {
   left: -10px;
   width: 1.25rem;
   height: 1.25rem;
-  background-color: #e10d74;
+  background-color: hotpink;
   outline: 3px solid white;
   border-radius: 100%;
   line-height: 1.75;  

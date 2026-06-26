@@ -421,8 +421,8 @@ body > section {
 
 .badge-outline-danger {
 	background-color: white;
-	outline: 2px solid #e10d74;
-	color: #e10d74;
+	outline: 2px solid hotpink;
+	color: hotpink;
 }
 
 /* say hello to my little dwarfs - Hello */
@@ -842,12 +842,10 @@ body > section {
 	height: 50px;
 	font-size: 0.8rem;
 	line-height: 2.75;
-	border-radius: 5px;
+	border-radius: 3rem;
 	font-weight: 800;
 	transition: all 200ms ease-in-out;
 }
-
-
 
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
 	opacity: 0.25;
@@ -879,7 +877,7 @@ body > section {
 }
 
 .text-chatelet {
-	color: #e10d74;
+	color: hotpink;
 }
 
 .pre-system {
@@ -904,7 +902,7 @@ body > section {
 }
 
 .bg-salmon {
-  background: linear-gradient(45deg, salmon, pink);
+  background: linear-gradient(45deg, lightpink, pink);
   color: darkred;
 }
 
@@ -923,7 +921,6 @@ body > section {
 .bg-theme {
   background-color: #FF71CD!important;
 }
-
 .border-theme {
 	border: 2px solid #FF71CD;
 	color: #FF71CD;
@@ -997,8 +994,8 @@ select.form-control{
 }
 
 .form-control:focus {
-	border-color: #e10c76!important;
-	background-color: lightyellow;
+  border-color: peachpuff;
+  background-color: papayawhip;
 }
 
 .d-inline {
@@ -1059,13 +1056,13 @@ select.form-control{
 
 .input-group-addon.input-lg {
 	/*background-color: white;
-	border: 2px solid #e10d74;
+	border: 2px solid hotpink;
   border-radius: 0.5rem;*/
   height: 50px;
   line-height: 1.5;
   border: none;
   background: transparent;
-  /*color: #e10d74!important;*/
+  /*color: hotpink!important;*/
 }
 
 .input-group-append {
@@ -1527,7 +1524,7 @@ select.form-control{
 .card-link {
 	display: inline-block;
 	text-decoration: underline;
-	color: #e10d74;
+	color: hotpink;
 	font-weight: 500;
 	padding: 0.75rem 1rem;
 	border: none;
@@ -1544,7 +1541,7 @@ select.form-control{
 	transition: all 0.25s ease;
 }
 .card-link:hover {
-	background-color: #e10d74;
+	background-color: hotpink;
 	color: white;
 }
 @media(max-width: 550px) {
@@ -1590,17 +1587,22 @@ select.form-control{
 }
 
 .btn-chatelet {
-	color: white;
+	color: darkred;
 	font-weight: 1000;
-	border-color: black;
+	border-color: pink;
 	line-height: 2.85;
-	background-color: black;
-	/*box-shadow: 0 0 5px rgba(50,50,50,0.2);*/
+	background-color: lightpink;
+	box-shadow: 0 2px 2px #00000008;
+}
+
+.btn-chatelet:hover {
+	color: deeppink!important;
+	background-color: pink!important;
 }
 
 .btn-chatelet.dark {
-	color: white;
-  background-color: black;
+	color: darkred;
+  background-color: lightpink;
   border-color: #c5c5c5;
 }
 
