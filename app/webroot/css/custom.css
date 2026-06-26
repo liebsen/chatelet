@@ -601,7 +601,7 @@ body.top-fixed .shop-options {
   background-image: url(../images/chat-icon.svg);
 }
 
-footer { background: lightpink; overflow: hidden; padding: 5rem 0 0; }
+footer { background: #f7d4da; overflow: hidden; padding: 5rem 0 0; }
 footer > .wrapper { 
   padding: 0.75rem; 
 }
@@ -1049,7 +1049,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 	justify-content: flex-start;
 	align-items: flex-start;
   padding-top: 0.5rem;
-  min-height: 40px;
+  min-height: 20px;
 }
 
 .product-badge {

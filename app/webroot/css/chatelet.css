@@ -891,6 +891,10 @@ body > section {
 	line-height: 1.25;
 }
 
+.bg-pink {
+	background-color: #f7d4da;
+}
+
 .bg-light {
   background-color: #f8f8f8;
 }
