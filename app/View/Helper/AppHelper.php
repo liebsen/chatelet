@@ -110,7 +110,7 @@ class AppHelper extends Helper {
       $number_ribbon = (int) @$item['discount_label_show'];
     }
 
-    if(!empty($category['bank_discount_enable'])) {
+    if(!empty($category['mp_discount_enable'])) {
 	  	if(
 	  		!empty($settings['mp_discount_enable']) && 
 	  		!empty($settings['mp_discount'])
@@ -136,7 +136,7 @@ class AppHelper extends Helper {
 			}
 
 			if(!empty($category['bank_discount'])) {
-				$bank_discount = $cat['bank_discount'];
+				$bank_discount = $category['bank_discount'];
 			}
 
 			if(!empty($item['bank_discount'])) {
@@ -249,7 +249,7 @@ class AppHelper extends Helper {
     $bank_discount = 0;    
     $text = '';
 
-    if(!empty($category['bank_discount_enable'])) {
+    if(!empty($category['mp_discount_enable'])) {
 	  	if(
 	  		!empty($settings['mp_discount_enable']) && 
 	  		!empty($settings['mp_discount'])
@@ -266,14 +266,18 @@ class AppHelper extends Helper {
 	  	}
 	  }
 
+    // price
     if(!empty($mp_discount)) {
-      $bank_price = round($orig_price * (1 - (float) @$mp_discount / 100));
-      if($bank_price < $price) {
-        $old_price = $orig_price;
-        $price = $bank_price;
-        $text = 'Mercado Pago';
-      }
-    } 
+      $old_price = $orig_price;
+    	$price = round($orig_price * (1 - (float) @$mp_discount / 100));
+
+      $str.= '<div class="price-list justify-content-start">';
+      $str.= '<span class="price_strong">'.\price_format($price).'</span>';
+			$str.= '<span class="old_price text-muted">'.\price_format($old_price) . '</span>';
+			$str.= '<span class="text-muted">MERCADO PAGO</span>';
+      $str.= '</div>';
+    }
+
 
 	  if(!empty($category['bank_discount_enable'])) {
 			if(
@@ -284,7 +288,7 @@ class AppHelper extends Helper {
 			}
 
 			if(!empty($category['bank_discount'])) {
-				$bank_discount = $cat['bank_discount'];
+				$bank_discount = $category['bank_discount'];
 			}
 
 			if(!empty($item['bank_discount'])) {
@@ -292,29 +296,28 @@ class AppHelper extends Helper {
 			}
 		} 
 
-    if(!empty($bank_discount)){
-      $mp_price = round($orig_price * (1 - (float) @$bank_discount / 100));
-      if($mp_price < $price) {
-        $old_price = $orig_price;
-        $price = $mp_price;
-        $text = 'Transferencia';
-      }
-    }
 
     // price
-    if(!$noprice) {
-      $str = '<div class="price-list justify-content-start">';
-      $str.= '<span class="price_strong">'.\price_format($price).'</span>';
-      if(!empty($old_price) && abs($old_price-$price > 1)) {
-        $str.= '<span class="old_price text-muted">'.\price_format($old_price) . '</span>';
-      }
+    if(!empty($bank_discount)) {
+       $old_price = $orig_price;
+    	$price = round($orig_price * (1 - (float) @$bank_discount / 100));
 
-      if(strlen($text)) {
-        $str.= '<span class="text-muted">' . (strlen($text) ? "{$text}" : "") . '</span>';
-      }
-      $str.= '</div>';
+			$str.= '<div class="price-list justify-content-start">';
+			$str.= '<span class="price_strong">'.\price_format($price).'</span>';
+			$str.= '<span class="old_price text-muted">'.\price_format($old_price) . '</span>';
+			$str.= '<span class="text-muted">TRANSFERENCIA</span>';
+			$str.= '</div>';
     }
-    
+
+    if(
+    	empty($mp_discount) && 
+    	empty($bank_discount)
+  	) {
+
+			$str.= '<div class="price-list justify-content-start">';
+			$str.= '<span class="price_strong">'.\price_format($price).'</span>';
+			$str.= '</div>';
+    }
     $dues_options = [];
       // dues
     for ($i=0; $i<count($legends ?? []); $i++) {
@@ -342,12 +345,12 @@ class AppHelper extends Helper {
 
     $str2 = '';
     $str2.='<div class="legends-container"><span class="legends w-100">';
-    if($bank_price && $text != 'Transferencia' && abs($bank_price-$price > 1)) {
+    /*if($bank_discount && $text != 'Transferencia') {
       $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($bank_price)." </span><span class='text-theme text-bold product-badge'>-".@$bank_discount."%</span> <span class='text-sm text-uppercase'>Transferencia</span> </div>";
     }
-    if($mp_price && $text != 'Mercado Pago' && abs($mp_price-$price > 1)){
+    if($mp_discount && $text != 'Mercado Pago'){
       $str2.= "<div class='price-list justify-content-start'><span class='price_strong'>" .\price_format($mp_price)." </span> <span class='text-theme text-bold product-badge'>-".@$mp_discount."%</span> <span class='text-sm text-uppercase'>Mercado Pago</span> </div>";
-    }
+    }*/
 
     $str2.= implode('', $dues_options);
     $str2.= '</span></div>';

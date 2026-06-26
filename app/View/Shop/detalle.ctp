@@ -164,83 +164,13 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
           $old_price = @$product['old_price'];
 
           if(!empty(@$product['discount']) && abs(@$product['discount']-@$product['price']) > 0) {
-              $old_price = @$price;
-              $price = @$product['discount'];
+            $old_price = @$price;
+            $price = @$product['discount'];
           }
-
-          $bank_price = 0;
-          $mp_price = 0;
-			    $mp_discount = 0;
-			    $bank_discount = 0;              
-          $text = '';
-
-
-			  	if(
-			  		!empty($settings['mp_discount_enable']) && 
-			  		!empty($settings['mp_discount'])
-			  	) {
-			  		$mp_discount = $settings['mp_discount'];
-			  	}
-
-			  	if(
-			  		!empty($category['mp_discount_enable']) && 
-			  		!empty($category['mp_discount']) 
-			  	) {
-			  		$mp_discount = $category['mp_discount'];
-			  	}
-
-			  	if(!empty($product['mp_discount'])) {
-			  		$mp_discount = $product['mp_discount'];
-			  	}
-
-			    if($mp_discount) {
-			      $bank_price = round($orig_price * (1 - (float) @$mp_discount / 100));
-			      if($bank_price < $price) {
-			        $old_price = $orig_price;
-			        $price = $bank_price;
-			        $text = 'Transferencia';
-			      }
-			    } 
-
-
-			  	if(
-			  		!empty($settings['bank_discount_enable']) && 
-			  		!empty($settings['bank_discount'])
-			  	) {
-			  		$bank_discount = $settings['bank_discount'];
-			  	}
-
-			  	if(
-			  		!empty($category['bank_discount_enable']) && 
-			  		!empty($category['bank_discount']) 
-			  	) {
-			  		$bank_discount = $category['bank_discount'];
-			  	}
-
-			  	if(!empty($product['bank_discount'])) {
-			  		$bank_discount = $product['bank_discount'];
-			  	}
-
-			    if($bank_discount){
-			      $mp_price = round($orig_price * (1 - (float) @$bank_discount / 100));
-			      if($mp_price < $price) {
-			        $old_price = $orig_price;
-			        $price = $mp_price;
-			        $text = 'Mercado Pago';
-			      }
-			    }
-
-          echo "<span id='price' class='price' data-price='".'$ '. ceil($price) ."'>".\price_format(ceil($price)) . '</span>';
-                  if(!empty($old_price) && abs($price-$old_price) > 1) {
-              echo "<span class='old_price' id='price' data-price='". ceil($old_price) ."'>".\price_format(ceil($old_price)). "</span>";
-          }
-
-          echo ' <span class="text-sm">' . strtoupper($text) . '</span>';
-
           ?>
           </div>
           <div class="d-contents tags-start mt-1 mb-4">
-            <?= $this->App->show_prices_dues($legends, $settings, $product, $category, true) ?>
+            <?= $this->App->show_prices_dues($legends, $settings, $product, $category['Category'], true) ?>
           </div>
           <div class="caract">
           <?php if(!empty($product['desc'])):?>

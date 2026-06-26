@@ -548,7 +548,7 @@ class CheckoutController extends AppController
 
 		if (!empty($cart_totals['coupon'])) {
 			// error_log('checking coupon: '.$cart_totals['coupon']);
-			CakeLog::write('debug', 'sale(coupon):'.$cart_totals['coupon']);
+			//CakeLog::write('debug', 'sale(coupon):'.$cart_totals['coupon']);
 	    $coupon = $this->Coupon->find('first', [
 	      'conditions' => [
 	        'code' => $cart_totals['coupon'],

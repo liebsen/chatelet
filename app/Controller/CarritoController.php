@@ -636,7 +636,7 @@ class CarritoController extends AppController
 		      )
 		    )
 	    );
-	    \d("stat",$stat);
+	    //\d("stat",$stat);
 			$this->Stat->save($stat);
 		}
 

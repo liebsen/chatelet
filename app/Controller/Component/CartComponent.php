@@ -72,7 +72,7 @@ class CartComponent extends Component {
 		          'conditions' => array( 'Category.id = Product.category_id' )
 		        )
 			    ),
-			  	'fields' => array('Product.id, Product.category_id, Product.article, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.mp_discount, Product.bank_discount, Product.stock_total, Category.name, Category.mp_discount, Category.bank_discount'),
+			  	'fields' => array('Product.id, Product.category_id, Product.article, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.mp_discount, Product.bank_discount, Product.stock_total, Category.name, Category.mp_discount_enable, Category.bank_discount_enable, Category.mp_discount, Category.bank_discount'),
 					'conditions' => array( 'Product.id' => $item['id'] ),
 				));
 
@@ -81,8 +81,9 @@ class CartComponent extends Component {
           continue;
         }
 
-        $prod = $prod['Product'];
+
         $cat = $prod['Category'];
+        $prod = $prod['Product'];
         $price = $prod['price'];
         $mp_discount = 0;
         $bank_discount = 0;
@@ -106,7 +107,7 @@ class CartComponent extends Component {
 
         if(
         	$payment_method === 'mercadopago' &&
-      		!empty($cat['bank_discount_enable'])
+      		!empty($cat['mp_discount_enable'])
       	) {
 			  	if(
 			  		!empty($settings['mp_discount_enable']) && 
@@ -130,11 +131,15 @@ class CartComponent extends Component {
           $cart[$key]['price'] = $price;
         }
 
-        if($payment_method === 'bank') {
+        if(
+        	$payment_method === 'bank' && 
+        	!empty($cat['bank_discount_enable'])
+        ) {
         	if(
         		!empty($settings['bank_discount_enable']) && 
         		!empty($settings['bank_discount'])
         	) {
+        		\d("bank(1)", $settings['bank_discount']);
         		$bank_discount = $settings['bank_discount'];
         	}
 
@@ -142,10 +147,12 @@ class CartComponent extends Component {
         		!empty($cat['bank_discount_enable']) && 
         		!empty($cat['bank_discount'])
         	) {
+        		\d("bank(2)", $cat['bank_discount']);
         		$bank_discount = $cat['bank_discount'];
         	}
 
         	if(!empty($prod['bank_discount'])) {
+        		\d("bank(3)", $prod['bank_discount']);
         		$bank_discount = $prod['bank_discount'];
         	}
         }

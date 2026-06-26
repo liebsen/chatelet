@@ -4,4 +4,3 @@
   </nav>
 </div>
 
-<?php echo $this->element('sidebar') ?>

@@ -60,7 +60,11 @@ nav.sidebar {
   height: 100%;
   background: white;
   padding: 1rem;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+nav.sidebar-expanded {
+  left: 0!important;
 }
 
 .sidebar-top {

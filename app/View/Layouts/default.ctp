@@ -27,3 +27,4 @@
 	}
 
 	echo $this->element('bottom');
+	echo $this->element('sidebar');

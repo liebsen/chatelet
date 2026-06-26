@@ -179,9 +179,8 @@
 						</div>';
 				echo '</td>';			
 				echo '<td>';	
-
 				echo '<span class="text-nowrap price">'. \price_format($product['item_price']) .'</span>';
-				if (!empty($product['item_old_price'] && $product['item_old_price'] != $product['item_price'])) {
+				if (!empty($product['item_old_price'] && round($product['item_old_price']) != round($product['item_price']))) {
 					echo '<br><span class="old_price text-grey text-sm">'.\price_format($product['item_old_price']) .'</span>';
 				}					
 
@@ -243,12 +242,12 @@
 				<?php echo $this->element('resume'); ?>
 			</div>
 			<?php else: ?>
-			<div class="container cart-empty text-center text-muted">
+			<div class="container cart-empty text-center">
 				<!--div class="icon-huge mt-4">
 					<i class="fa fa-shopping-bag fa-x2 text-muted"></i>
 				</div-->
-				<h3 class="h3 text-center">TU CARRITO ESTÁ VACÍO</h3>
-				<div>Para comprar agrega un producto.<br> Obtén más información <a href="/ayuda/como_comprar" class="text-link">acerca de como comprar</a></div>
+				<h2 class="h3 text-center">TU CARRITO ESTÁ VACÍO</h2>
+				<p>Para comprar agrega un producto.<br> Obtén más información <a href="/ayuda/como_comprar" class="text-link">acerca de como comprar</a></p>
 			</div>
 			<br><br>
 			<?php endif;?>

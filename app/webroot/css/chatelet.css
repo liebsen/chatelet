@@ -17,10 +17,6 @@ input:focus::placeholder {
   opacity: 0.2;
 }
 
-nav.sidebar-expanded {
-  left: 0!important;
-}
-
 .section {
 	padding: 1rem 0;
 }
