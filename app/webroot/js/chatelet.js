@@ -748,13 +748,13 @@ $(document).ready(function() {
 	//$('.selectpicker').selectpicker();
 
 	$('.btn-logout').click(function(e) {
+		e.preventDefault()
     if(localStorage.getItem('cart') && localStorage.getItem('cart') != 'undefined') {}
     const agree = confirm('Tenes un carrito activo con productos. ¿Estas segura de cerrar la sesión? ')
     if (agree) {
-      e.preventDefault()
       return location.href = '/users/logout'
     } 
-    return true
+    return false
   })
 
   const sections = ['','/','/Home']

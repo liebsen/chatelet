@@ -1005,6 +1005,8 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   padding-right: 20px;
   padding-top: 200px;
 }
+#infoShop { padding-bottom:0.5rem }
+
 #infoShop .col-md-4 { 
   background-size: 6rem; 
   background-repeat: no-repeat;
@@ -1031,7 +1033,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   grid-gap: 0.5rem;
 }
 .bxc > div {
-  background-color: whitesmoke; 
+  background-color: #ffd3db; 
   color: #555; 
 }
 #productOptions { padding: 1.75rem 0; }
@@ -1549,7 +1551,6 @@ ul#ul-moreviews li.dontResize img {
 	#filters .size a, #filters .prices label { font-size: 16px; }
 
 	/*#infoShop .col-md-4 { background-size: 20%; font-size: 16px; padding: 20px; }*/
-
 	#detalle .col-md-4 h1 { font-size: 30px; display:inline-block;margin: 20px 0;}
 	#detalle .col-md-4 > p, #detalle .col-md-4 .plus { font-size: 21px; }
 	#detalle .col-md-4 .price { font-size: 21px; padding: 10px 20px; }
