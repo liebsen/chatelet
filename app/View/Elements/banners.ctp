@@ -31,13 +31,12 @@
     justify-content: center;
     align-items: center;
     min-height: 3.5rem;
-    font-weight: 500;
   }
 
   #carousel-banners .banner-caption span {
     color: white;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: 500;
     line-height: 1.25;
   }
 

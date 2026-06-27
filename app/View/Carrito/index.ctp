@@ -190,7 +190,7 @@
 				$row += 1;
 
 				echo '<td>
-								<button class="btn btn-sm btn-danger btn-border" onclick="askremoveCart(this)">
+								<button class="btn btn-sm bg-transparent btn-border" onclick="askremoveCart(this)">
 									<i class="fa fa-trash-o"></i>
 								</button>
 							</td>';

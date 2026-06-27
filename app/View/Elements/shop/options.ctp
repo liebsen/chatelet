@@ -15,7 +15,7 @@
               $current = '';
 
               if (@$category['id'] == $item['id']){
-                $current = 'current';
+                $current = 'active';
               }
 
               if (strpos($slug, 'trajes')!==false){

@@ -886,7 +886,7 @@ body > section {
 }
 
 .bg-pink {
-	background-color: #f7d4da;
+	background-color: #ffd3db;
 }
 
 .bg-light {
@@ -1030,7 +1030,7 @@ select.form-control{
   margin: auto;
   display: flex!important;
   max-width: 10.25rem;
-  height: 50px;
+  height: 40px;
   border: 1px solid #888;  
 	border-radius: 5px;
 }
@@ -1058,7 +1058,7 @@ select.form-control{
 	/*background-color: white;
 	border: 2px solid hotpink;
   border-radius: 0.5rem;*/
-  height: 50px;
+  height: 40px;
   line-height: 1.5;
   border: none;
   background: transparent;
@@ -1478,7 +1478,7 @@ select.form-control{
 
 .card-body {
   /*flex: 1 1 auto;*/
-  background-color: #f7d4da;
+  background-color: #ffd3db;
   padding: 1.5rem;
   border-radius: 0.75rem;
 }

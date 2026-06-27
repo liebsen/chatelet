@@ -1,12 +1,12 @@
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 1000;
-  line-height: 1;
+  /*line-height: 1;*/
   margin-bottom: 0.75rem;
   margin-top: 1rem;
 }
-span, i, small {
+/*span, i, small {
   line-height: 1;
-}
+}*/
 a:hover {
   text-decoration: none;
 }
@@ -383,6 +383,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav > li > a.active {
   border-bottom: 2px solid hotpink;
   color: hotpink;
+  font-weight: 700;
 }
 
 .navbar-chatelet .fa,
@@ -555,15 +556,17 @@ body.top-fixed .shop-options {
 .shop-options img { margin-right: 2rem; max-width: 3.5rem; }
 .shop-options h3 { color: #363633; font-weight: 300; text-transform: uppercase; margin-bottom: 30px; }
 .shop-options ul { column-count: 3; column-gap: 40px; }
-.shop-options ul li { margin-bottom: 0.75rem; line-height: 1.25 }
+.shop-options ul li { margin-bottom: 0.25rem; }
 .shop-options ul li a {
   color: #363633;
   text-transform: uppercase;
   font-weight: 300;
+  line-height: 1.5;
 }
-.shop-options ul li a.current {
-  color: #333;
-  font-weight: 300;
+.shop-options ul li a.active {
+  border-bottom: 2px solid hotpink;
+  color: hotpink;
+  font-weight: 700;
 }
 .social-bottom {
   display: flex;
@@ -601,7 +604,7 @@ body.top-fixed .shop-options {
   background-image: url(../images/chat-icon.svg);
 }
 
-footer { background: #f7d4da; overflow: hidden; padding: 5rem 0 0; }
+footer { background: #ffd3db; overflow: hidden; padding: 5rem 0 0; }
 footer > .wrapper { 
   padding: 0.75rem; 
 }
@@ -1042,6 +1045,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 #productOptions nav li a.current{ 
   border-bottom: 2px solid hotpink;
+  font-weight: 700;
 }
 #productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; }
 #productOptions a.btBig span { font-size: 27px; }
@@ -1604,7 +1608,7 @@ ul#ul-moreviews li.dontResize img {
 	#filters .col-md-4 { margin-bottom: 15px; }
 	/*#infoShop .col-md-4.blr { border-left: none; border-top: 5px solid #FFF; border-right: none; border-bottom: 5px solid #FFF; }*/
 	#productOptions nav li a { font-size: 16px; }
-  #productOptions nav li a.active { color: hotpink; border-bottom: 2px solid hotpink; }
+  #productOptions nav li a.active { color: hotpink; border-bottom: 2px solid hotpink; font-weight: 700; }
 	#filters { margin-bottom: 50px; }
 
 
@@ -2095,7 +2099,7 @@ span.out{
 .price-list .badge {
   color: white;
   background-color: hotpink;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -1px;
 }
 
