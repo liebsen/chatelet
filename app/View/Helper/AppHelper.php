@@ -274,10 +274,9 @@ class AppHelper extends Helper {
       $str.= '<div class="price-list justify-content-start">';
       $str.= '<span class="price_strong">'.\price_format($price).'</span>';
 			$str.= '<span class="old_price text-muted">'.\price_format($old_price) . '</span>';
-			$str.= '<span class="text-muted">MERCADO PAGO</span>';
+			$str.= '<span class="pay_method mp">MERCADO PAGO</span>';
       $str.= '</div>';
     }
-
 
 	  if(!empty($category['bank_discount_enable'])) {
 			if(
@@ -305,7 +304,7 @@ class AppHelper extends Helper {
 			$str.= '<div class="price-list justify-content-start">';
 			$str.= '<span class="price_strong">'.\price_format($price).'</span>';
 			$str.= '<span class="old_price text-muted">'.\price_format($old_price) . '</span>';
-			$str.= '<span class="text-muted">TRANSFERENCIA</span>';
+			$str.= '<span class="pay_method">TRANSFERENCIA</span>';
 			$str.= '</div>';
     }
 

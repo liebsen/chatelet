@@ -958,6 +958,19 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 	line-height: 1.5;
 }
 
+.pay_method {
+	font-size: 11px;
+	font-weight: 800;
+	background-color: purple;
+	color: white;
+	padding: 2px 8px;
+	border-radius: 2px;
+}
+
+.pay_method.mp {
+	background-color: coral;
+}
+
 .old_price {
   text-decoration: line-through;
   text-align: right;
@@ -1023,7 +1036,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 #productOptions nav li a { 
   font-weight: 300;
   padding: 0;
-  line-height: 1.1; 
+  line-height: 1.5; 
   text-transform: uppercase; 
   transition: all .3s ease-in-out; 
 }
