@@ -33,9 +33,9 @@
             // echo $this->Html->css('animate.css?v=' . $version['ver']);
             // echo $this->Html->css('font-awesome.min');
 
-            if ($template['theme']) {
+            //if ($template['theme']) {
                 // echo $this->Html->css('themes/'.$template['theme']);
-            }
+            //}
             
             //echo $this->Html->css('themes');
             echo $this->fetch('css');
@@ -71,7 +71,7 @@
                 font-size: 14px; 
                 font-weight: 600;
                 color: #a5a5a5;
-                font-weight: 300;
+                font-weight: 500;
                 height: 100%;             
             }
             @media(min-width: 992px) {
