@@ -970,7 +970,7 @@ body > section {
 	height: 50px;
 	line-height: 2.5;
 	font-size: 1rem;
-	background-color: white;
+	background-color: ghostwhite;
 	box-shadow: 0 2px 2px #00000008;
 }
 
@@ -995,7 +995,7 @@ select.form-control{
 
 .form-control:focus {
   border-color: peachpuff;
-  background-color: papayawhip;
+  background-color: #fcf8e3;
 }
 
 .d-inline {
@@ -1563,8 +1563,8 @@ select.form-control{
 	background-color: transparent;
 	position: absolute;
 	color: #aaa;
-	right: 1.25rem;
-  top: 1.25rem;
+	right: 1rem;
+  top: 1rem;
 }
 
 .corner-pin > i {

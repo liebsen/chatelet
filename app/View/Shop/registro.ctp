@@ -278,7 +278,7 @@ $userData = array(
 				<hr>
 				<div class="row is-flex-center accept-terms pl-4 pr-4">
 					<div class="col-md-6">
-						<span class="text-sm">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos" class="text-muted"> Términos y Condiciones</a>
+						<span class="text-sm">* Al hacer click en Continuar estas aceptando nuestros <a href="/shop/terminos"> Términos y Condiciones</a>
 						</span>
 					</div>
 					<div class="col-md-6">

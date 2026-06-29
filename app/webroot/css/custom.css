@@ -949,7 +949,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 .price-list {
   color: black;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   grid-gap: 0.25rem;
   font-size: 0.75rem;
   min-height: 1.25rem;

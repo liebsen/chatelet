@@ -74,6 +74,11 @@ nav.sidebar-expanded {
   flex: 1;
 }
 
+.sidebar-top h5 {
+	margin-top: 6px;
+	color: #c5c5c5;
+}
+
 .sidebar-bottom {
 	display: flex;
 	flex-direction: column;

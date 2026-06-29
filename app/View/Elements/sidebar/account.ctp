@@ -4,9 +4,9 @@
   </button>
   <div class="sidebar-top d-flex flex-column justify-content-center align-items-center gap-05 content">
   <?php if ($loggedIn) : ?>
-    <h5 class="text-uppercase text-bolder text-muted">Hola, <?php echo $user['name'] ?? 'Invitada' ?></h5>
+    <h5 class="text-uppercase">Hola, <?php echo $user['name'] ?? 'Invitada' ?></h5>
   <?php else : ?>
-    <h5 class="text-uppercase text-bolder text-muted">Sin sesión activa</h5>
+    <h5 class="text-uppercase">Sin sesión activa</h5>
   <?php endif ?>
     <!--div class="content pt-4">    
     <?php if ($loggedIn) : ?>    
