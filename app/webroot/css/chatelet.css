@@ -1058,8 +1058,6 @@ select.form-control{
 	/*background-color: white;
 	border: 2px solid hotpink;
   border-radius: 0.5rem;*/
-  height: 40px;
-  line-height: 1.5;
   border: none;
   background: transparent;
   /*color: hotpink!important;*/
@@ -1883,7 +1881,6 @@ span.validation-password {
 	.p-md-5 {
 		padding: 1.5rem!important;
 	}
-
 	.container-flex {
 		padding: 1rem;
 	}
@@ -1891,6 +1888,7 @@ span.validation-password {
 		animation: 0.5s rotate3D 1s ease-in-out;
 		animation-fill-mode: both;
   	padding: 3rem!important;
+  	border-radius: 1.5rem;
     /*transform: scale(1) perspective(1024px) rotateY(-5deg) rotateX(2deg) rotate(2deg) translateY(0rem) translateX(-2rem);*/
     box-shadow: 0 0 40px 0 rgba(255, 255, 255, .2);
   }

@@ -286,7 +286,11 @@ label input[type=checkbox]:disabled + .label-text:before {
   text-align: center;
 }
 
-.wrapper { margin: 0 auto; width: 100%; /* max-width: 1440px; */}
+.wrapper { margin: 0 auto; width: 100%; max-width: 1445px;}
+.wrapper-fluid {
+	max-width: 1445px;
+  margin: auto;
+}
 .link { color: #363633; font-weight: 300; }
 .link:hover { color: #363633; font-weight: 300; text-decoration: underline; }
 .discount-flag {
@@ -426,9 +430,8 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
     min-height: 330px;
   }
   .box.img-bg {
-    min-height: 22rem;
+    min-height: 23rem;
   }
-
 }
 
 @media (min-width: 768px) {
@@ -772,6 +775,10 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   height:24rem;
   transition: all .3s ease-in-out;
 }
+.container-list {
+	padding: 0 2rem;
+}
+
 .product-list {
   padding-left: 18px;
   padding-right: 18px;
@@ -962,8 +969,8 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 .pay_method {
-	font-size: 10px;
-	font-weight: 800;
+	font-size: 12px;
+	font-weight: 1000;
 	background-color: lightgray;
 	color: #888;
 	padding: 2px 6px;
@@ -978,9 +985,9 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   text-decoration: line-through;
   text-align: right;
   color: #888;
-  font-weight: 500;
+  font-weight: 1000;
   white-space: nowrap; 
-  font-size: 0.8rem;
+  font-size: 14px;
 }
 
 #listShop a .hover {
@@ -1063,7 +1070,6 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 .product-info {
   /* background-color: #f8f8f8; */
-  padding: 0 0.25rem;
   padding-bottom: 0.25rem;
   min-height: 7rem;
 }
@@ -1937,6 +1943,7 @@ span.out{
 .add-no-stock {
   position: relative;
   padding: 0.25rem;
+  padding-top: 0;
 }
 
 .prod-tags {

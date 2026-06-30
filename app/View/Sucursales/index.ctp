@@ -4,7 +4,7 @@
     echo $this->Html->script('sucursales', array('inline' => false));
 ?>
 
-  <section class="map animation-fadeIn animation-both delay">
+  <section class="wrapper-fluid map animation-fadeIn animation-both delay">
     <div class="col-md-4">
       <div class="animation-fadeIn slow">
         <h1>Nuestras<br>sucursales</h1>
