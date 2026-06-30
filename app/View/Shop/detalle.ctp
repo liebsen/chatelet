@@ -69,7 +69,7 @@ if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
     <div class="container">
       <div class="row">
       <?php if(!empty($colorImages)):?>
-        <div class="col-md-6 p-0 d-flex flex-md-column flex-md-center justify-content-end align-items-start bg-pink">
+        <div class="col-md-6 p-0 d-flex flex-md-column flex-md-center justify-content-end align-items-start bg-light">
           <div class="p-0">
             <ul id="ul-moreviews" class="m-0">
             <?php if (!empty($colorImages[0]['images']) && count(array_filter($colorImages[0]['images'])) > 1): $ppp=0; ?>
