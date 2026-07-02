@@ -815,7 +815,7 @@ class ShopController extends AppController {
 			//\d("results",$results);
 
 			foreach ($results as &$item) {
-				if (isset($item['Product']['discount']) && $item['Product']['discount']) {
+				if (!empty($item['Product']['discount'])) {
 					$item['Product']['old_price'] = $item['Product']['price'];
 					$item['Product']['price'] = $item['Product']['discount'];
 				}

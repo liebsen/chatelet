@@ -2308,40 +2308,36 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			if (!empty($data['execute_discounts']) && $data['execute_discounts']=='yes') {
 				CakeLog::write('debug', 'Apply discount labels');
 				$this->loadModel('Product');
-				$this->Product->updateAll(
-					array('Product.discount_label_show' => 'Product.discount_label'));
+				$this->Product->updateAll(array('Product.discount_label_show' => 'Product.discount_label'));
 				$this->redirect(array( 'action' => 'productos' ));
-
 			}else{
-
-			if (empty($data['only_categories']) || $data['only_categories'] != 'yes'){
-				CakeLog::write('debug', 'Apply discount to all');
-				$this->update_products( $data['list_code'] , $data['list_code_desc']);
+				if (empty($data['only_categories']) || $data['only_categories'] != 'yes'){
+					CakeLog::write('debug', 'Apply discount to all');
+					$this->update_products( $data['list_code'] , $data['list_code_desc']);
+				}
+				CakeLog::write('debug', 'More discounts?');
+				if (!empty($data['more_list_code_desc'])){
+					CakeLog::write('debug', 'More discounts? yes');
+	          $this->loadModel('DiscountList');
+	   				$this->DiscountList->query('DELETE FROM discount_lists;');
+	          for($i=0;$i<10;$i++){
+	          	if (!empty($data['more_list_code_desc'][$i]) && !empty($data['rubro'][$i])){
+							CakeLog::write('debug', 'Rubro: '.$data['rubro'][$i].' / list: '.$data['more_list_code_desc'][$i]);
+	     				$this->DiscountList->create();
+	     				$dl = array(
+		     				'category_id' => $data['rubro'][$i],
+		     				'list_code' => $data['more_list_code_desc'][$i],
+		     				'item_index'=>$i,
+		     				'updated_at'=>date('Y-m-d H:i:s',time())
+	     				);
+	     				$this->DiscountList->save($dl);
+	     				$condition = array('Product.category_id'=>$data['rubro'][$i]);
+							$this->update_products( $data['list_code'] , $data['more_list_code_desc'][$i], $condition);
+	     			}
+	     		}
+	     	}
 			}
-			CakeLog::write('debug', 'More discounts?');
-			if (!empty($data['more_list_code_desc'])){
-				CakeLog::write('debug', 'More discounts? yes');
-           		$this->loadModel('DiscountList');
-   				$this->DiscountList->query('DELETE FROM discount_lists;');
-           		for($i=0;$i<10;$i++){
-           			if (!empty($data['more_list_code_desc'][$i]) && !empty($data['rubro'][$i])){
-						CakeLog::write('debug', 'Rubro: '.$data['rubro'][$i].' / list: '.$data['more_list_code_desc'][$i]);
-           				$this->DiscountList->create();
-           				$dl = array(
-           				'category_id' => $data['rubro'][$i],
-           				'list_code' => $data['more_list_code_desc'][$i],
-           				'item_index'=>$i,
-           				'updated_at'=>date('Y-m-d H:i:s',time())
-           				);
-           				$this->DiscountList->save($dl);
-           				$condition = array('Product.category_id'=>$data['rubro'][$i]);
-						$this->update_products( $data['list_code'] , $data['more_list_code_desc'][$i], $condition);
-           			}
-           		}
-           	}
-		}
-		return $this->redirect(array( 'action' => 'productos' ));
-
+			return $this->redirect(array( 'action' => 'productos' ));
 		}
 	}
 
@@ -4628,12 +4624,19 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			)
 		);
 
-		$this->set('navs', $navs);			$this->loadModel('Setting');
+		$this->set('navs', $navs);			
+		$this->loadModel('Setting');
 
 		if ($this->request->is('post')) {
-      foreach($this->request->data as $id => $value) {
+			$data = $this->request->data;
+			$data['bank_discount_enable'] = $data['bank_discount_enable'] ?? 0;
+      foreach($data as $id => $value) {
       	CakeLog::write('debug', 'data:'. json_encode(['id' => $id, 'value' => $value]));
       	$this->Setting->save(['id' => $id, 'value' => $value]);
+      }
+
+      if($data['bank_discount_enable'] == 0) {
+      	$this->Setting->save(['id' => 'bank_discount', 'value' => 0]);
       }
 
 	    $this->Session->setFlash(

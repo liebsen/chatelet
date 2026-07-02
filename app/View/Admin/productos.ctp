@@ -118,24 +118,24 @@ echo $this->element('admin/menu');
 	<div class="block-content">
 		<form action="<?php echo Router::url(array('action'=>'products_settings')) ?>" method="POST" style="width:100%;">
 			<div style="display:inline;">
-				<label class="" for="columns-text">Stock Mínimo:</label>
-				<input type="number" class="form-control" name="stock_min" value="<?php echo @$stock_min ?>" required style="width:80px;text-align:center"/>
+				<label class="" for="stock_min">Stock Mínimo:</label>
+				<input type="number" class="form-control" id="stock_min" name="stock_min" value="<?php echo @$stock_min ?>" required style="width:80px;text-align:center"/>
 			</div>
 			&nbsp;
 			&nbsp;
 			&nbsp;
 		
 			<div style="display:inline;">
-				<label class="" for="columns-text">Código de Lista:</label>
-				<input type="number" class="form-control" name="list_code" value="<?php echo @$list_code ?>" required style="width:80px;text-align:center"/>
+				<label class="" for="list_code">Código de Lista:</label>
+				<input type="number" class="form-control" id="list_code" name="list_code" value="<?php echo @$list_code ?>" required style="width:80px;text-align:center"/>
 			</div>
 			&nbsp;
 			&nbsp;
 			&nbsp;
 
 			<div style="display:inline;">
-				<label class="" for="columns-text">Código de Lista Descuento:</label>
-				<input type="number" class="form-control" name="list_code_desc" value="<?php echo @$list_code_desc ?>" style="width:80px;text-align:center"/>
+				<label class="" for="list_code_desc">Código de Lista Descuento:</label>
+				<input type="number" class="form-control" id="list_code_desc" name="list_code_desc" value="<?php echo @$list_code_desc ?>" style="width:80px;text-align:center"/>
 			</div>
 			&nbsp;
 			&nbsp;
@@ -143,8 +143,8 @@ echo $this->element('admin/menu');
 
 			
 			<div style="display:inline;">
-				<label class="" for="columns-text">Mostrar Shop </label>
-				<input type="checkbox" class="input-themed" name="show_shop" value="<?php echo @$show_shop ?>" <?php echo (!empty($show_shop))?'checked':''; ?>/>
+				<label class="" for="show_shop">Mostrar Shop </label>
+				<input type="checkbox" class="input-themed" id="show_shop" name="show_shop" value="<?php echo @$show_shop ?>" <?php echo (!empty($show_shop))?'checked':''; ?>/>
 			</div>
 			
 			&nbsp;
@@ -154,9 +154,9 @@ echo $this->element('admin/menu');
 			<div class="col-xs-12">
 				<?php for($i=0;$i<10;$i++): ?>
 				<div class="row">
-					<label class="" for="columns-text">Código de Lista Descuento:</label>
+					<label class="" for="more_list_code_desc">Código de Lista Descuento:</label>
 					<div class="d-flex flex-center gap-05">
-						<input type="number" class="form-control" name="more_list_code_desc[]" value="<?php echo @$more_list_code_desc[$i] ?>" style="width:80px;text-align:center"/>
+						<input type="number" class="form-control" id="more_list_code_desc" name="more_list_code_desc[]" value="<?php echo @$more_list_code_desc[$i] ?>" style="width:80px;text-align:center"/>
 						<select class="form-control" name="rubro[]" id="rubro_<?=$i?>">
 						<option value="0">Select Category</option>
 							<?php foreach ($cats as $cat): ?>
@@ -171,12 +171,12 @@ echo $this->element('admin/menu');
 				<?php endfor; ?>
 			</div>
 			<div style="display:inline;">
-				<label class="" for="columns-text">Imagen general del shop 
+				<label class="" >Imagen general del shop </label>
 
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="control-group"> 
-							<label class="control-label" for="columns-text"><span class="counter"></span></label>
+							<label class="control-label" for="upload"><span class="counter"></span></label>
 							<div class="controls">                          
 								<input type="file" class="form-control" id="upload" data-input="[name='image_bannershop']" data-count=".counter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 						    <input type="hidden" name="image_bannershop" value="<?php echo (!empty( @$image_bannershop )) ? @$image_bannershop : null ; ?>" /> <?php echo (!empty( @$image_bannershop )) ? "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'].@$image_bannershop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
@@ -184,7 +184,7 @@ echo $this->element('admin/menu');
 						</div>
 						<br />
 						<div class="control-group">
-							<label class="control-label" for="columns-text"></label>
+							<label class="control-label"></label>
 							<div class="controls">
 								<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
 									<span style="margin-top:10px;margin-bottom:10px;">	
@@ -204,11 +204,11 @@ echo $this->element('admin/menu');
 			&nbsp;
 			
             <div style="display:inline;">
-				<label class="" for="columns-text">Imagen del menu shop
+				<label class="">Imagen del menu shop
 				<div class="row">
 				<div class="col-xs-12">                                       
 					<div class="control-group"> 
-						<label class="control-label" for="columns-text"><span class="counter_two"></span></label>
+						<label class="control-label"><span class="counter_two"></span></label>
 						<div class="controls">
 							<input type="file" class="form-control" id="uploadkari" data-input="[name='image_menushop']" data-count=".counter_two" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 					    <input type="hidden" name="image_menushop" value="<?php echo (!empty( @$image_menushop )) ? @$image_menushop : null ; ?>" /> <?php echo (!empty( @$image_menushop )) ? "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'].@$image_menushop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
@@ -216,7 +216,7 @@ echo $this->element('admin/menu');
 					</div>
 					<br />
 					<div class="control-group">
-						<label class="control-label" for="columns-text"></label>
+						<label class="control-label"></label>
 						<div class="controls">
 							<script id="image_thumb_two" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
 								<span style="margin-top:10px;margin-bottom:10px;">	
@@ -236,11 +236,11 @@ echo $this->element('admin/menu');
 			&nbsp;
 	
             <div style="display:inline;">
-				<label class="" for="columns-text">Imagen general en categor&iacute;a
+				<label class="">Imagen general en categor&iacute;a</label>
 					<div class="row">
 				<div class="col-xs-12">
 					<div class="control-group"> 
-						<label class="control-label" for="columns-text"><span class="counter_one"></span></label>
+						<label class="control-label" for="upload_one"><span class="counter_one"></span></label>
 						<div class="controls">
 							<input type="file" class="form-control" id="upload_one" data-input="[name='image_prodshop']" data-count=".counter_one" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 					    <input type="hidden" name="image_prodshop" value="<?php echo (!empty( @$image_prodshop )) ? @$image_prodshop : null ; ?>" /> <?php echo (!empty( @$image_prodshop )) ? "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'].@$image_prodshop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
@@ -248,7 +248,7 @@ echo $this->element('admin/menu');
 					</div>
 					<br />
 					<div class="control-group">
-						<label class="control-label" for="columns-text"></label>
+						<label class="control-label" for="image_thumb_one"></label>
 						<div class="controls">
 							<script id="image_thumb_one" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
 								<span style="margin-top:10px;margin-bottom:10px;">	

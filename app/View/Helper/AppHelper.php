@@ -315,6 +315,9 @@ class AppHelper extends Helper {
 
 			$str.= '<div class="price-list justify-content-start">';
 			$str.= '<span class="price_strong">'.\price_format($price).'</span>';
+			if(!empty($old_price) && round($old_price) != round($price)) {
+				$str.= '<span class="old_price text-muted">'.\price_format($old_price) . '</span>';			
+			}
 			$str.= '</div>';
     }
     $dues_options = [];
