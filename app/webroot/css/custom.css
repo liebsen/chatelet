@@ -286,9 +286,8 @@ label input[type=checkbox]:disabled + .label-text:before {
   text-align: center;
 }
 
-.wrapper { margin: 0 auto; width: 100%; max-width: 1445px;}
+.wrapper { margin: 0 auto; width: 100%; }
 .wrapper-fluid {
-	max-width: 1445px;
   margin: auto;
 }
 .link { color: #363633; font-weight: 300; }
