@@ -110,7 +110,7 @@ echo $this->element('admin/menu');
 	</table>
 </div>
 
-<div class="block">
+<div class="block-section">
 	<div class="block-title">
 		<h4>Shop - Opciones</h4>
 	</div>
@@ -119,7 +119,7 @@ echo $this->element('admin/menu');
 		<form action="<?php echo Router::url(array('action'=>'products_settings')) ?>" method="POST" style="width:100%;">
 			<div style="display:inline;">
 				<label class="" for="columns-text">Stock Mínimo:</label>
-				<input type="number" class="form-control" name="stock_min" value="<?php echo @$stock_min ?>" required style="width:60px;text-align:center"/>
+				<input type="number" class="form-control" name="stock_min" value="<?php echo @$stock_min ?>" required style="width:80px;text-align:center"/>
 			</div>
 			&nbsp;
 			&nbsp;
@@ -127,7 +127,7 @@ echo $this->element('admin/menu');
 		
 			<div style="display:inline;">
 				<label class="" for="columns-text">Código de Lista:</label>
-				<input type="number" class="form-control" name="list_code" value="<?php echo @$list_code ?>" required style="width:60px;text-align:center"/>
+				<input type="number" class="form-control" name="list_code" value="<?php echo @$list_code ?>" required style="width:80px;text-align:center"/>
 			</div>
 			&nbsp;
 			&nbsp;
@@ -135,7 +135,7 @@ echo $this->element('admin/menu');
 
 			<div style="display:inline;">
 				<label class="" for="columns-text">Código de Lista Descuento:</label>
-				<input type="number" class="form-control" name="list_code_desc" value="<?php echo @$list_code_desc ?>" style="width:60px;text-align:center"/>
+				<input type="number" class="form-control" name="list_code_desc" value="<?php echo @$list_code_desc ?>" style="width:80px;text-align:center"/>
 			</div>
 			&nbsp;
 			&nbsp;
@@ -156,7 +156,7 @@ echo $this->element('admin/menu');
 
 				<div class="row">
 					<label class="" for="columns-text">Código de Lista Descuento:</label>
-					<input type="number" class="form-control" name="more_list_code_desc[]" value="<?php echo @$more_list_code_desc[$i] ?>" style="width:60px;text-align:center"/>
+					<input type="number" class="form-control" name="more_list_code_desc[]" value="<?php echo @$more_list_code_desc[$i] ?>" style="width:80px;text-align:center"/>
 					<select class="form-control" name="rubro[]" id="rubro_<?=$i?>">
 					<option value="0">Select Category</option>
 						<?php foreach ($cats as $cat): ?>
