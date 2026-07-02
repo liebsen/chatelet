@@ -16,7 +16,7 @@
 <div class="block-tabs">
   <div class="tab-content">
     <div class="hide" id="colors_select_base">
-      <select class="code_sel" name="">
+      <select class="form-control code_sel" name="">
         <?php foreach ($colors as $color): ?>
           <?php  
             echo "<option value='{$color['code']}'>{$color['code']} / {$color['desc']}</option>";
@@ -121,7 +121,7 @@
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Color de burbuja de descuento'); ?></label>
               <div class="controls">
-                <input type="color" id="" name="ribbon_color" value="<?php echo (isset($prod)) ? $prod['Product']['ribbon_color'] : ''; ?>">
+                <input class="form-control" type="color" id="" name="ribbon_color" value="<?php echo (isset($prod)) ? $prod['Product']['ribbon_color'] : ''; ?>">
               </div>
             </div>
             <br />
@@ -198,12 +198,12 @@
                                '<input type="hidden" name="props['. $index .'][id]" value="'. $id .'" />'.
                                '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'"/>'.
                                '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
-                               '<select class="code_sel" name="props['. $index .'][code]">'.$options.'</select>'.
-                               '<span class="alias_cont"><input type="text" name="props['. $index .'][alias]" value="'.$prop['ProductProperty']['alias'].'" class="form-control changed variable" required placeholder="AA, 02, etc..."/></span>'.
+                               '<select class="form-control code_sel" name="props['. $index .'][code]">'.$options.'</select>'.
+                               '<span class="alias_cont"><input class="form-control" type="text" name="props['. $index .'][alias]" value="'.$prop['ProductProperty']['alias'].'" class="form-control changed variable" required placeholder="AA, 02, etc..."/></span>'.
                                 '<div class="right">'.
                                   '<a class="btn btn-danger remove-item" data-count="'.$index.'">Borrar</a>'.
                                 '</div>'.
-                                '<input type="file" class="upload_color_image" id="ColorImage'.$alias.'" name="color_image" data-alias="'.$alias.'" data-url="'.Router::url('/admin/uploadImageColor').'" data-count="'.$index.'">'.
+                                '<input type="file" class="form-control upload_color_image" id="ColorImage'.$alias.'" name="color_image" data-alias="'.$alias.'" data-url="'.Router::url('/admin/uploadImageColor').'" data-count="'.$index.'">'.
                                 '<progress id="progress'.$alias.'" hidden></progress>'.
                                 '<ul id="ListUploaded" class="list-inline">'.$images.'</ul>'.
                               '</li>';
@@ -259,7 +259,7 @@
             <div class="control-group">
               <label class="control-label" for=""></label>
               <div class="controls">
-                <input type="file" class="attached" name="image">
+                <input type="file" class="form-control attached" name="image">
               </div>
             </div>
             <br />

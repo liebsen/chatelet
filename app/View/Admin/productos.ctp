@@ -153,21 +153,21 @@ echo $this->element('admin/menu');
 	
 			<div class="col-xs-12">
 				<?php for($i=0;$i<10;$i++): ?>
-
 				<div class="row">
 					<label class="" for="columns-text">Código de Lista Descuento:</label>
-					<input type="number" class="form-control" name="more_list_code_desc[]" value="<?php echo @$more_list_code_desc[$i] ?>" style="width:80px;text-align:center"/>
-					<select class="form-control" name="rubro[]" id="rubro_<?=$i?>">
-					<option value="0">Select Category</option>
-						<?php foreach ($cats as $cat): ?>
-							<option
-							<?php if ($cat['Category']['id'] == (int)$more_list_category[$i]) { echo ' selected="selected" '; } ?>
+					<div class="d-flex flex-center gap-05">
+						<input type="number" class="form-control" name="more_list_code_desc[]" value="<?php echo @$more_list_code_desc[$i] ?>" style="width:80px;text-align:center"/>
+						<select class="form-control" name="rubro[]" id="rubro_<?=$i?>">
+						<option value="0">Select Category</option>
+							<?php foreach ($cats as $cat): ?>
+								<option
+								<?php if ($cat['Category']['id'] == (int)$more_list_category[$i]) { echo ' selected="selected" '; } ?>
 
-							 value="<?=$cat['Category']['id']?>"><?=$cat['Category']['name']?></option>
-						<?php endforeach; ?>
-					</select>
+								 value="<?=$cat['Category']['id']?>"><?=$cat['Category']['name']?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
 				</div>
-
 				<?php endfor; ?>
 			</div>
 			<div style="display:inline;">
