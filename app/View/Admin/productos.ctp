@@ -176,7 +176,7 @@ echo $this->element('admin/menu');
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="control-group"> 
-							<label class="control-label" for="columns-text">Imagen: <span class="counter">0</span>%</label>
+							<label class="control-label" for="columns-text"><span class="counter"></span></label>
 							<div class="controls">                          
 								<input type="file" class="form-control" id="upload" data-input="[name='image_bannershop']" data-count=".counter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 						    <input type="hidden" name="image_bannershop" value="<?php echo (!empty( @$image_bannershop )) ? @$image_bannershop : null ; ?>" /> <?php echo (!empty( @$image_bannershop )) ? "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'].@$image_bannershop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
@@ -208,7 +208,7 @@ echo $this->element('admin/menu');
 				<div class="row">
 				<div class="col-xs-12">                                       
 					<div class="control-group"> 
-						<label class="control-label" for="columns-text">Imagen: <span class="counter_two">0</span>%</label>
+						<label class="control-label" for="columns-text"><span class="counter_two"></span></label>
 						<div class="controls">
 							<input type="file" class="form-control" id="uploadkari" data-input="[name='image_menushop']" data-count=".counter_two" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 					    <input type="hidden" name="image_menushop" value="<?php echo (!empty( @$image_menushop )) ? @$image_menushop : null ; ?>" /> <?php echo (!empty( @$image_menushop )) ? "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'].@$image_menushop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
@@ -240,7 +240,7 @@ echo $this->element('admin/menu');
 					<div class="row">
 				<div class="col-xs-12">
 					<div class="control-group"> 
-						<label class="control-label" for="columns-text">Imagen: <span class="counter_one">0</span>%</label>
+						<label class="control-label" for="columns-text"><span class="counter_one"></span></label>
 						<div class="controls">
 							<input type="file" class="form-control" id="upload_one" data-input="[name='image_prodshop']" data-count=".counter_one" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 					    <input type="hidden" name="image_prodshop" value="<?php echo (!empty( @$image_prodshop )) ? @$image_prodshop : null ; ?>" /> <?php echo (!empty( @$image_prodshop )) ? "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'].@$image_prodshop."''>VER IMAGEN ACTUAL</a>" : null; ?> 

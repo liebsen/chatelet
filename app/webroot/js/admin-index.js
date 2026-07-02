@@ -244,7 +244,7 @@ $(function(){
 				    //Upload progress
 				    xhr.upload.addEventListener("progress", function(evt){
 				    	if (evt.lengthComputable) {
-				    		counter_one.html( parseInt(evt.loaded / evt.total * 100) );
+				    		counter_one.html( parseInt(evt.loaded / evt.total * 100) + ' %' );
 					    }
 					}, false);
 				    return xhr;
@@ -335,7 +335,7 @@ $(function(){
 				    //Upload progress
 				    xhr.upload.addEventListener("progress", function(evt){
 				    	if (evt.lengthComputable) {
-				    		counter_two.html( parseInt(evt.loaded / evt.total * 100) );
+				    		counter_two.html( parseInt(evt.loaded / evt.total * 100) + ' %' );
 					    }
 					}, false);
 				    return xhr;
@@ -426,7 +426,7 @@ $(function(){
 				    //Upload progress
 				    xhr.upload.addEventListener("progress", function(evt){
 				    	if (evt.lengthComputable) {
-				    		counter_three.html( parseInt(evt.loaded / evt.total * 100) );
+				    		counter_three.html( parseInt(evt.loaded / evt.total * 100) + ' %' );
 					    }
 					}, false);
 				    return xhr;
@@ -557,7 +557,7 @@ $(function(){
 				    //Upload progress
 				    xhr.upload.addEventListener("progress", function(evt){
 				    	if (evt.lengthComputable) {
-				    		counter_four.html( parseInt(evt.loaded / evt.total * 100) );
+				    		counter_four.html( parseInt(evt.loaded / evt.total * 100) + ' %' );
 					    }
 					}, false);
 				    return xhr;
