@@ -1,4 +1,4 @@
-  <section class="subscribe-box bg-salmon animation-pullUp animation-both d-none-i">
+  <section class="subscribe-box bg-salmon animation-pullUp animation-both delay10 d-none-i">
     <div class="w-100">
       <span class="corner-pin is-clickable">
         <i class="ico-times" role="img" aria-label="Cerrar"></i>
@@ -61,7 +61,7 @@
   <style>
     .subscribe-box { 
       position: fixed;
-      z-index: 10000;
+      z-index: 1000;
       left: 0.05rem;
       right: 0.05rem;
       bottom: 0;

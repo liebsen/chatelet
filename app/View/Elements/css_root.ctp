@@ -133,7 +133,7 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .card,  
   .shop-options, 
   .tab-content,  
-  .nav-tabs,  
+  .nav-tabs,
   .wizard-container, 
   .bronco-select,
   .table,
@@ -152,7 +152,6 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
       color: #888!important;
     }
   }
-
   .btn.is-text:hover, .btn.is-text.is-hovered, .btn.is-text:focus, .btn.is-text.is-focused {
     background-color: #333;
     color: #888!important;    
@@ -160,7 +159,6 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .bxc > div,
   .card-body,
   .wizard-node,
-  .form-control:focus,
   .btn-chatelet,
   #optionsHelp.mobile,
   nav.sidebar,
@@ -173,9 +171,14 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   }
   .carrito-selector input,
   .input-group-addon,
+  .btn-chatelet.dark,  
+  .subscribe-box .ico-times::before,  
   .price_strong,
   .name {
     color: whitesmoke!important;
+  }
+  .form-control:focus {
+  	background: #333!important;	
   }
 	.bg-salmon {
     background: #444!important;
