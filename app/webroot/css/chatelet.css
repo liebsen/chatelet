@@ -547,6 +547,10 @@ body > section {
 .min-w-7 {
 	min-width: 7rem;
 }
+.min-w-20 {
+	min-width: 20rem;
+}
+
 .min-h-5 {
 	min-height: 5rem;
 }

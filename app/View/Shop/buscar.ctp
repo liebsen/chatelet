@@ -35,60 +35,60 @@
 	        <div class="col-md-9 product-list posnum-3">
 	            <div class="row">
 	<?php
-	                foreach($results as $row):
-	                	$category = $row['Category'];
-	                  $product = $row['Product'];
-	                  $stock = (!empty($product['stock_total']))?(int)$product['stock_total']:0;
-	                  $product_name =$product['name'];
+foreach($results as $row):
+	$category = $row['Category'];
+  $product = $row['Product'];
+  $stock = (!empty($product['stock_total']))?(int)$product['stock_total']:0;
+  $product_name =$product['name'];
 
-	                  $url = $this->Html->url(array(
-	                    'controller' => 'shop',
-	                    'action' => 'detalle',
-	                    $product['id'],
-	                    $product['category_id'],
-	                    strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name']))),
-	                  ));
+  $url = $this->Html->url(array(
+    'controller' => 'shop',
+    'action' => 'detalle',
+    $product['id'],
+    $product['category_id'],
+    strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name']))),
+  ));
 
-	    $number_ribbon = 0;
-	    $ribbon_style = '';
-	  	if (isset($product['discount_label_show'])){
-	  		$number_ribbon = (int)@$product['discount_label_show'];
-	  	}
-	            if (isset($product['mp_discount']) && $product['mp_discount'] > $number_ribbon){
-	              $number_ribbon = (int) @$product['mp_discount'];
-	            }
+  $number_ribbon = 0;
+  $ribbon_style = '';
+  if (!empty($product['old_price']) && round($product['old_price']) != round($product['price'])){
+    $number_ribbon = round((1 - $product['price'] / $product['old_price']) * 100);
+  }
+	if (!empty($product['discount_label_show'])){
+		$number_ribbon = (int)@$product['discount_label_show'];
+	}
+  if (!empty($product['mp_discount']) && $product['mp_discount'] > $number_ribbon){
+    $number_ribbon = (int) @$product['mp_discount'];
+  }
+  if(!empty($product['ribbon_color'])) {
+    $ribbon_style = ' style="background-color:'.$product['ribbon_color'].'"';
+  }
+  if (!empty($product['bank_discount']) && $product['bank_discount'] > $number_ribbon){
+    $number_ribbon = (int) @$product['bank_discount'];
+  }
 
-	            if(!empty($product['ribbon_color'])) {
-	              $ribbon_style = ' style="background-color:'.$product['ribbon_color'].'"';
-	            }
+	$discount_flag = (@$product['category_id']!='134' && !empty($number_ribbon))?'<div class="discount-flag"'.$ribbon_style.'>'.$number_ribbon.'% OFF</div>':'';
+	$promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
 
-	            if (isset($product['bank_discount']) && $product['bank_discount'] > $number_ribbon){
-	              $number_ribbon = (int) @$product['bank_discount'];
-	            }
-
-	  	$discount_flag = (@$product['category_id']!='134' && !empty($number_ribbon))?'<div class="discount-flag"'.$ribbon_style.'>'.$number_ribbon.'% OFF</div>':'';
-	            $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
-
-
-	                if(!$stock){ ?>
-	                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">
-	                    <a href="<?php echo $url ?>" >
-	                        <?php if (!empty(intval($product['discount_label_show']))) :?>
-	                            <div class="ribbon small"><span><?= $product['discount_label_show'] ?>% OFF</span></div>
-	                        <?php endif ?>
-	                        <?php if ($product['promo'] !== '') :?>
-	                            <div class="ribbon"><span><?= $product['promo'] ?></span></div>
-	                        <?php endif ?>
-	                        <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
-	                        <div class="product-image" style="background-image: url('<?php echo $settings['upload_url'] . $product['img_url'] ?>')" alt=""></div>
-	                        <div class="product-info">
-	                            <!--h3 class="article-related-title"><?php echo $product['name'] ?></h3-->
-	                            <div class="name" origin="3"><?= $product_name ?></div>
-	                            <div class="price-list"><?= \price_format(ceil($product['price'])) ?></div>
-	                        </div>
-	                    </a>
-	                </div>
-	                <?php }else{ ?>
+	  if(!$stock){ ?>
+	   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">
+	      <a href="<?php echo $url ?>" >
+	          <?php if (!empty(intval($product['discount_label_show']))) :?>
+	              <div class="ribbon small"><span><?= $product['discount_label_show'] ?>% OFF</span></div>
+	          <?php endif ?>
+	          <?php if ($product['promo'] !== '') :?>
+	              <div class="ribbon"><span><?= $product['promo'] ?></span></div>
+	          <?php endif ?>
+	          <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
+	          <div class="product-image" style="background-image: url('<?php echo $settings['upload_url'] . $product['img_url'] ?>')" alt=""></div>
+	          <div class="product-info">
+	              <!--h3 class="article-related-title"><?php echo $product['name'] ?></h3-->
+	              <div class="name" origin="3"><?= $product_name ?></div>
+	              <div class="price-list"><?= \price_format(ceil($product['price'])) ?></div>
+	          </div>
+	      </a>
+	  </div>
+	  <?php }else{ ?>
 
 	                <div data-id="<?=$product['id']?>" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">
 	                  <a href="<?php echo $url ?>">
@@ -96,17 +96,21 @@
 	  <?php 
 	  $number_ribbon = 0;
 	  $ribbon_style = '';
-	  if (isset($product['discount_label_show'])){
-	  $number_ribbon = (int) @$product['discount_label_show'];
+
+	  if (!empty($product['old_price']) && round($product['old_price']) != round($product['price'])){
+	    $number_ribbon = round((1 - $product['price'] / $product['old_price']) * 100);
+	  }	  
+	  if (!empty($product['discount_label_show'])){
+	  	$number_ribbon = (int) @$product['discount_label_show'];
 	  }
 	  if(!empty($product['ribbon_color'])) {
-	  $ribbon_style = ' style="background-color:'.$product['ribbon_color'].'"';
+	  	$ribbon_style = ' style="background-color:'.$product['ribbon_color'].'"';
 	  }    
-	  if (isset($product['mp_discount']) && $product['mp_discount'] > $number_ribbon){
-	  $number_ribbon = (int) @$product['mp_discount'];
+	  if (!empty($product['mp_discount']) && $product['mp_discount'] > $number_ribbon){
+	  	$number_ribbon = (int) @$product['mp_discount'];
 	  }
-	  if (isset($product['bank_discount']) && $product['bank_discount'] > $number_ribbon){
-	  $number_ribbon = (int) @$product['bank_discount'];
+	  if (!empty($product['bank_discount']) && $product['bank_discount'] > $number_ribbon){
+	  	$number_ribbon = (int) @$product['bank_discount'];
 	  }
 	?><?php 
 	                      if (!empty($number_ribbon)) :?>

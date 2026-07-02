@@ -1261,8 +1261,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   justify-content: center;
   align-items: center;
   padding: 8px;
-  line-height: 1.25;
-  padding-top: 10px;  
+  line-height: 1;
 }
 #main .caract label.btn .size-option {
   border-bottom: 3px solid;
@@ -2671,7 +2670,6 @@ span.count.is-empty {
   }
   #opts .mod-item { min-height: 24rem;} 
   #opts a { max-height: 30rem; } 
-  #main .caract .add {min-width: 10rem; }
   footer > .wrapper {
     padding: 0 2rem;
   }

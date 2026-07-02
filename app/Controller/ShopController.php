@@ -764,7 +764,7 @@ class ShopController extends AppController {
 	          'conditions' => array( 'Category.id = Product.category_id' )
 	        )
 		    ),
-		  	'fields' => array('Product.id, Product.category_id, Product.article, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.mp_discount, Product.bank_discount, Product.stock_total, Category.name, Category.mp_discount_enable, Category.bank_discount_enable, Category.mp_discount, Category.bank_discount'),
+		  	'fields' => array('Product.id, Product.category_id, Product.article, Product.name, Product.desc, Product.img_url, Product.price, Product.article, Product.discount, Product.mp_discount, Product.bank_discount, Product.ribbon_color, Product.stock_total, Category.name, Category.mp_discount_enable, Category.bank_discount_enable, Category.mp_discount, Category.bank_discount'),
 				'conditions' => [
 					'or' => [
 						'Product.name LIKE' => "%$q%",

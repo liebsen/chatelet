@@ -106,7 +106,10 @@ class AppHelper extends Helper {
     if(!empty($item['ribbon_color'])) {
       $ribbon_style = ' style="background-color:'.$item['ribbon_color'].'"';
     }
-    if (isset($item['discount_label_show'])){
+	  if (!empty($item['old_price']) && round($item['old_price']) != round($item['price'])){
+	    $number_ribbon = round((1 - $item['price'] / $item['old_price']) * 100);
+	  }	    
+    if (!empty($item['discount_label_show'])){
       $number_ribbon = (int) @$item['discount_label_show'];
     }
 
@@ -294,7 +297,6 @@ class AppHelper extends Helper {
 				$bank_discount = $item['bank_discount'];
 			}
 		} 
-
 
     // price
     if(!empty($bank_discount)) {
