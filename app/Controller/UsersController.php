@@ -231,7 +231,6 @@ class UsersController extends AppController {
 
     // CakeLog::write('debug', 'User:'.json_encode($data['User']));
     #CakeLog::write('debug', 'register:'.json_encode($data));
-
     // CakeLog::write('debug', 'validate:'.$validate);
     try {
       $saved = $this->User->save(
@@ -250,14 +249,6 @@ class UsersController extends AppController {
 
       $logged = $this->Auth->login();     
 
-      # save log (session-register)
-      $this->Stat->save(
-        array(
-          'tag' => 'session-register',
-          'user_id' => $saved['User']['id']
-        )
-      );
-
       #\d("logged",$logged);
       #\d("ajax",$ajax);
       if(!$logged) {
@@ -266,6 +257,14 @@ class UsersController extends AppController {
           return $this->redirect($this->referer());
         }
       }
+
+      # save log (session-register)
+      $this->Stat->save(
+        array(
+          'tag' => 'session-register',
+          'user_id' => $saved['User']['id']
+        )
+      );      
 
       $message = \parse_template($this->settings['notification_register_welcome_text'], 
         array(

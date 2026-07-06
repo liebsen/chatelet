@@ -83,6 +83,7 @@ class SQLComponent extends Component {
 
 	//EXAMPLE: I5005/03/02/173
 	public function product_stock($article,$size_number,$color_code,$list_code,$stock_min){
+		CakeLog::write('debug', 'product_stock(exec):'.json_encode("EXEC pa_datos_articulo @cod_articulo='$article', @cod_lista='$list_code', @minimo='$stock_min';"));
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo @cod_articulo='$article', @cod_lista='$list_code', @minimo='$stock_min';");
 		$stmt->execute();
 
