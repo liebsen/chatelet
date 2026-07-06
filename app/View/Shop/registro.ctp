@@ -323,7 +323,16 @@ $(function(){
 	    	}
 	    }
     	if($('#password').length){
-	    	if($('#password').val().trim() != $('#password2').val().trim()) {
+    		const password = $('#password').val().trim()
+    		const password2 = $('#password2').val().trim()
+
+    		if(password.length < 4) {
+    			$('#password').focus()
+    			return onWarningAlert('Error de validación', 'Ingresa una contraseña de al menos cuatro letras, simbolos y/o números')
+    		}
+
+	    	if(password != password2) {
+	    		$('#password2').focus()
 	    		return onWarningAlert('Error de validación', 'Las contraseñas no coinciden. Asegúrate de que sean la misma en ambos campos')
 	    	}
 	    }
