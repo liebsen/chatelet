@@ -837,7 +837,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			}
 
 			$sale = $this->setOrdenRetiro($sale);
-			CakeLog::write('debug', 'getTicket(sale):'.json_encode($sale));
+			//CakeLog::write('debug', 'getTicket(sale):'.json_encode($sale));
 			$data['shipping'] = @strtolower($sale['shipping']);
 			if (!empty($sale['def_orden_retiro'])) {
 				if (!empty($sale['def_orden_tracking']) && $send_email) {
@@ -937,12 +937,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			die(json_encode(['status' => "error", 'message' => "Unauthorized"]));
 		}
 
-
 		$sale = $this->Sale->find('first', [
 			'conditions' => [
 				'def_orden_retiro' => $order_retiro
 			]
 		]);
+
 		$package = $this->Package->findById($sale['Sale']['package_id']);
 		$this->set('ticket', $sale['Sale']);
 		$this->set('package', $package['Package']);

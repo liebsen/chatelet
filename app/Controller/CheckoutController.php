@@ -742,7 +742,7 @@ class CheckoutController extends AppController
 
 		// Add Delivery
 		$delivery_cost = 0;
-		CakeLog::write('debug','isFreeShipping(3)');
+		//CakeLog::write('debug','isFreeShipping(3)');
 		$freeShipping = $this->Cart->isFreeShipping(
 			$total, 
 			$cart_totals['payment_method'],
@@ -757,7 +757,7 @@ class CheckoutController extends AppController
 		));
 
 		$delivery_cost = (float) $delivery_data->rates[0]->old_price;
-		CakeLog::write('debug', 'sale(deliverycost): '.$delivery_cost);
+		//CakeLog::write('debug', 'sale(deliverycost): '.$delivery_cost);
 
 
 		if ($freeShipping) { 
