@@ -906,7 +906,7 @@ body > section {
 }
 
 .bg-salmon {
-  background: linear-gradient(45deg, lightpink, pink);
+  background: linear-gradient(45deg, lightpink, salmon);
   color: darkred;
 }
 

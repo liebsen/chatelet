@@ -18,14 +18,23 @@
         )); ?>
           <input type="hidden" name="ajax" value="1" />
           <div class="is-flex-center flex-column gap-05 w-100">
-            <div class="is-flex-center gap-05 w-100">
-              <input class="form-control m-0" type="text" name="data[Subscription][full_name]" placeholder="Tu nombre completo" required>
-            </div>
-            <div class="is-flex-center gap-05">
-              <input class="form-control m-0" type="email" name="data[Subscription][email]" placeholder="Tu email" required>
-              <input type="submit" class="btn btn-chatelet dark" id="enviar" value="Suscribirme">
-            </div>
-          </div>
+	          <div class="is-flex-center gap-05 w-100">
+	          	<div class="controls">
+	            	<input class="form-control m-0" type="text" name="data[Subscription][full_name]" placeholder="Tu nombre completo" required>
+	            </div>
+	            <div class="controls">
+	            	<input class="form-control m-0" type="email" name="data[Subscription][email]" placeholder="Tu email" required>
+	            </div>
+	          </div>
+	          <div class="is-flex-center gap-05 w-100">
+	            <div class="controls">
+	            	<input class="form-control m-0" type="email" name="email2" placeholder="Confirma tu email" required>
+	            </div>
+	            <div class="controls">
+	              <input type="submit" class="btn btn-chatelet dark" id="enviar" value="Suscribirme">
+	            </div>
+	          </div>
+	        </div>
         <?php echo $this->Form->end(); ?>
         </span>
         <span class="subscribe-message text-danger"></span>      
@@ -70,11 +79,11 @@
       padding: 1.5rem 1rem;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
-      color: white;
+      color: #be5252;
     }
 
     .subscribe-box p {
-    	color: white!important;
+    	color: #be5252;
     }
 
     .subscribe-box i {
@@ -175,10 +184,17 @@
       })
 
       $('.form-subscription').on('submit', function(event) {
+
         event.preventDefault();
+
+      	if($('input[name="email2"]').val().trim() != $('input[name="data[Subscription][email]"]').val().trim()) {
+      		return onWarningAlert('Error de validación', 'Los emails no coinciden. Asegúrate de que sean el mismo en ambos campos')
+      	}
+
         const formData = $(this).serialize();
         const btnSubmit = $(this).find('[type="submit"]');
         const redirect = $(this).find('[name="redirect"]').val();
+
         btnSubmit.data('name', btnSubmit.text())
         btnSubmit.text('Espere...')
         btnSubmit.prop('disabled', true)

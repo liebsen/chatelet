@@ -323,12 +323,13 @@ $(function(){
 	    	}
 	    }
     	if($('#password').length){
+    		const pw_length = 6
     		const password = $('#password').val().trim()
     		const password2 = $('#password2').val().trim()
 
-    		if(password.length < 4) {
+    		if(password.length < pw_length) {
     			$('#password').focus()
-    			return onWarningAlert('Error de validación', 'Ingresa una contraseña de al menos cuatro letras, simbolos y/o números')
+    			return onWarningAlert('Error de validación', 'Ingresa una contraseña de al menos 6 letras, simbolos y/o números')
     		}
 
 	    	if(password != password2) {

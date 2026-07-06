@@ -261,7 +261,7 @@ class UsersController extends AppController {
       #\d("logged",$logged);
       #\d("ajax",$ajax);
       if(!$logged) {
-        CakeLog::write('debug', 'could not login :'.json_encode($logged));
+        CakeLog::write('debug', 'could not login :'.json_encode($data));
         if(empty($ajax)) {
           return $this->redirect($this->referer());
         }
