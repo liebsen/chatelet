@@ -746,7 +746,7 @@ class AdminController extends AppController {
 				'Product.'.$mode.'_discount' => (float) $this->request->data['discount']
 			];
 
-			\d("save", $save);
+			#\d("save", $save);
 			
 		$this->Product->updateAll(
 			$save,
@@ -1431,7 +1431,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	if(!isset($data['display_popup_form_in_last'])){
     		$data['display_popup_form_in_last'] = 0;
     	}
-    	\d("data",$data);
+    	#\d("data",$data);
     	$this->Home->save($data);
 	    $this->Session->setFlash(
 	      'Módulo Presentación actualizado',
@@ -1999,7 +1999,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				$saves = array();
 
 	      foreach($data as $id => $value) {
-	      	\d("id", $id);
+	      	#\d("id", $id);
 	        if(is_array($value) && ($id == 'opengraph_image')) {
 	          $value = $this->save_file( $value ); 
 	          $value = $this->settings['upload_url'] . $value; 
@@ -4333,7 +4333,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		}
     		break;
     }
-    \d('a',0);
+    #\d('a',0);
     $users = $this->User->find('all', array('conditions' => array( 'id > ' => 1 )));
     $this->set('users', $users);
 		return $this->render('usuarios');

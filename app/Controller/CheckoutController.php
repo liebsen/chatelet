@@ -375,7 +375,6 @@ class CheckoutController extends AppController
 	
 	private function sale($data) {
 		require_once(APP . 'Vendor' . DS . 'mercadopago.php');
-		// $settings = $this->load_settings();
 		$this->autoRender = false;
 		$settings = $this->settings;
 		$total=0;
@@ -401,17 +400,6 @@ class CheckoutController extends AppController
 			);
 			// $this->redirect(array( 'action' => 'clear' ));
 		}
-
-		// $data = $this->request->data;
-
-		/*$sale['id'] = $this->Auth->user('id');
-		$sale['telephone'] = @preg_replace("/[^0-9]/","",$customer['telephone']);
-		$sale['email'] = (!empty($customer['email']))?trim($customer['email']):'';
-		$sale['floor'] = (!empty($customer['floor']))?trim($customer['floor']):'';
-		$sale['depto'] = (!empty($customer['depto']))?trim($customer['depto']):'';
-		$sale['coupon'] = (!empty($sale['coupon']))?strtoupper(trim($sale['coupon'])):'';
-		//$sale['regalo'] = (isset($sale['regalo']) && $sale['regalo']?1:0);
-		$sale['dues'] = (isset($sale['payment_dues']) && $sale['payment_dues']?intval($sale['payment_dues']):1);*/
 
 		CakeLog::write('debug', 'sale(data):'. json_encode($data, JSON_PRETTY_PRINT));
 		// CakeLog::write('debug', 'sale(cart_totals):'. json_encode($cart_totals, JSON_PRETTY_PRINT));
