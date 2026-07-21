@@ -1,52 +1,40 @@
 #!/usr/bin/env bash
 #cd "$(dirname "$0")"
 
-echo -e Choose option "\\n1. debug (Stage)\\n2. errors (Stage)\\n3. git pull (Stage)\\n4. email test (Stage)\\n5. clean cache (Stage)\\n6. debug (Prod)\\n7. errors (Prod)\\n8. git pull (Prod)\\n9. email test (Prod)\\n10. clean cache (Prod)"
+echo -e Choose option "\\n1. debug\\n2. errors\\n3. git pull\\n4. email test\\n5. email test(Stage)\\n6. clean cache\\n7. newsletter"
 read service_id
 case $service_id in
      1)
           echo -e "¿Cuántas líneas?"
           read lines
-          tail -f -n $lines /var/www/chatelet-test/app/tmp/logs/debug.log
+          tail -f -n $lines ./app/tmp/logs/debug.log
           ;;
      2)
           echo -e "¿Cuántas líneas?"
           read lines
-          tail -f -n $lines /var/www/chatelet-test/app/tmp/logs/error.log
+          tail -f -n $lines ./app/tmp/logs/error.log
           ;;
      3)
-          cd /var/www/chatelet-test; git pull
+          git pull
           ;;
      4)
-          echo -e "Que email quiere probar (Stage)?"
-          read email
-          wget https://test.chatelet.com.ar/shop/test_email/$email &> /dev/null
-          ;;
-     5)
-          echo -e "Que limpiar cache (Stage)?"
-          wget https://test.chatelet.com.ar/shop/clear_cache &> /dev/null
-          ;;
-     6)
-          echo -e "¿Cuántas líneas?"
-          read lines
-          tail -f -n $lines /var/www/chatelet/app/tmp/logs/debug.log
-          ;;
-     7)
-          echo -e "¿Cuántas líneas?"
-          read lines
-          tail -f -n $lines /var/www/chatelet/app/tmp/logs/error.log
-          ;;
-     8)
-          cd /var/www/chatelet; git pull
-          ;;
-     9)
-          echo -e "Que email quiere probar(Prod)?"
+          echo -e "Que email quiere probar?"
           read email
           wget https://chatelet.com.ar/shop/test_email/$email &> /dev/null
           ;;
      5)
-          echo -e "Que limpiar cache (Prod)?"
-          wget https://chatelet.com.ar/shop/clear_cache &> /dev/null
+          echo -e "Que email quiere probar (Stage)?"
+          read email
+          wget https://test.chatelet.com.ar/shop/test_email/$email &> /dev/null
+          ;;
+     6)
+          echo -e "Que limpiar cache?"
+          sudo rm -rf ./app/tmp/cache/persistent/myapp* && sudo rm -rf ./app/tmp/cache/models/myapp*
+          ;;
+     7)
+          echo -e "¿Cuántas líneas?"
+          read lines
+          tail -f -n $lines /var/www/chatelet/app/tmp/logs/newsletter.log
           ;;
 esac
 

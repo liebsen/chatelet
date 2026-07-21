@@ -1392,15 +1392,19 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    if(count($media)) {
 	    	$data['img_popup_newsletter'] = ';' . str_replace(array(' ', "\t"), '', implode(";", $media));
 	    }
+
     	if(empty($data['url_mod_one'])) {
     		$data['url_mod_one']=null;
     	}    	
+
     	if(empty($data['url_mod_two'])) {
     		$data['url_mod_two']=null;
     	}
+
     	if(empty($data['url_mod_three'])) {
     		$data['url_mod_three']=null;
     	}
+
     	if(empty($data['url_mod_four'])) {
     		$data['url_mod_four']=null;
 			}
@@ -1410,27 +1414,43 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	} else {
     		$data['url_mod_one'] = null;
     	}
+
     	if ($data['category_mod_two'] == 'url') {
     		$data['category_mod_two'] = null;
     	} else {
     		$data['url_mod_two'] = null;
     	}
+
     	if ($data['category_mod_three'] == 'url') {
     		$data['category_mod_three'] = null;
     	} else {
     		$data['url_mod_three'] = null;
     	}
+
     	if ($data['category_mod_four'] == 'url') {
     		$data['category_mod_four'] = null;
     	} else {
     		$data['url_mod_four'] = null;
     	}
+
     	if(!isset($data['display_popup_form'])){
     		$data['display_popup_form'] = 0;
     	}
+
     	if(!isset($data['display_popup_form_in_last'])){
     		$data['display_popup_form_in_last'] = 0;
     	}
+
+    	if(!empty($data['slideshow_timeout'])){
+    		$this->Setting->save(
+    			array(
+    				'id' => 'slideshow_timeout' , 
+    				'value' => $data['slideshow_timeout'] 
+    			)
+    		);		    
+		    $this->set('settings', $this->load_settings());    		
+	 		}
+
     	#\d("data",$data);
     	$this->Home->save($data);
 	    $this->Session->setFlash(
@@ -1457,8 +1477,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'Pantalla inicial' => array(
 				'icon' 		=> 'gi gi-video',
 				'url'		=> '/admin/home/splash',
-				)
-			);
+			),
+			'Configuración' => array(
+				'icon' 		=> 'gi gi-cogwheel',
+				'url'		=> '/admin/home/config',
+			)
+		);
 		$this->set('navs', $navs);
 
 		$h1 = array(

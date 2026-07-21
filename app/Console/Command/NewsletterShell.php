@@ -11,7 +11,7 @@ use Minishlink\WebPush\Subscription;
 App::uses('CakeEmail', 'Network/Email');
 
 class NewsletterShell extends AppShell {
-   public $uses = array(
+  public $uses = array(
     'User', 
     'Stat',
     'Product', 
@@ -31,7 +31,7 @@ class NewsletterShell extends AppShell {
   private $log = 0;
 
   protected function _welcome() {
-      // Leave empty to suppress the header
+    // Leave empty to suppress the header
   }  
 
   public function main() {
@@ -68,7 +68,7 @@ class NewsletterShell extends AppShell {
       )
     ));
 
-    // ensure daily limits to avoid penalizations
+    // ensure daily limits to avoid SMTP providers penalizations
     $perday--; 
 
     if($quota >= $perday) {
@@ -319,7 +319,7 @@ class NewsletterShell extends AppShell {
       $items_sent+= count($products);
     }
 
-    if(count($schedules)){
+    if($email_sent || $push_sent){
       print_r(
         json_encode(
           array(

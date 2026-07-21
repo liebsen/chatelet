@@ -102,9 +102,9 @@
 		        <div class="control-group">
 		          <label class="control-label" for="columns-text"><?php echo __('Límite diario'); ?></label>
 		          <div class="controls">
-		            <input type="number" max="5000" min="0" name="data[newsletter_perday]" class="form-control" placeholder="499" value="<?= @$settings['newsletter_perday'] ?? 499 ?>"/>
+		            <input type="number" max="5000" min="0" name="data[newsletter_perday]" class="form-control" placeholder="500" value="<?= @$settings['newsletter_perday'] ?? 500 ?>"/>
 		          </div>
-		          <small class="text-muted">Máximo de envíos por día. Si el límite diario de tu proveedor es de 500 entonces ingresa 499</small>
+		          <small class="text-muted">Máximo de envíos por día. Si no conoces el límite diario de tu proveedor ingresa 500</small>
 		        </div>
 		      </div>
 				</div>

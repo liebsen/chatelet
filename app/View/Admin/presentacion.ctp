@@ -19,6 +19,11 @@
 	            <i class="gi gi-sampler"></i> <span class="ml-2">Carrusel</span>
 	          </a>
 	        </li>
+	        <li class="text-center">
+	          <a href="#config">
+	            <i class="gi gi-cogwheel"></i> <span class="ml-2">Configuración</span>
+	          </a>
+	        </li>
 	      </ul>
 	      <div class="tab-content">
 	        <div class="tab-pane pane-splash active">
@@ -76,6 +81,18 @@
 								<input type="hidden" name="data[img_url]" value="<?php echo $p['Home']['img_url'] ?>" />
 							</div>
 						</div>		        
+		      </div>
+
+	        <div class="tab-pane pane-config">
+		        <!--h4 class="sub-header">Configuración adicional de Carrousel Principal</h4-->
+		        <p>Configuración adicional de Carrousel Principal</p>
+		        <div class="control-group">
+		          <label class="control-label" for="columns-text"><?php echo __('Duración'); ?></label>
+		          <div class="controls">
+		            <input type="number" max="100" min="0" name="data[slideshow_timeout]" class="form-control" placeholder="20" value="<?= @$settings['slideshow_timeout'] ?? 20 ?>"/>
+		          </div>
+		          <small class="text-muted">Es el tiempo de duración en segundos de cada fotograma</small>
+		        </div>
 		      </div>
 	      </div>
 	    </div>
