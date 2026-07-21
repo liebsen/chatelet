@@ -12,7 +12,6 @@ let fakeshown = 0
 var toggleInterval = 0
 const log = false
 
-
 function stopAllVideo(){
   $("video").each((i,video) => {
     video.pause()
@@ -648,7 +647,7 @@ $(document).ready(function() {
           $('body').removeClass('top-fixed')
           $('.navbar-chatelet:not(.short)').addClass('animation-fadeIn')
           fakeshown = false
-          restartCarouselVideo()
+          //restartCarouselVideo()
         }
       }
       lastscroll = scrolltop

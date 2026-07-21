@@ -96,10 +96,19 @@
     stopAllVideo()
   };
 
+  function manageCarouselVideo(event){
+    if($(event.relatedTarget).find('video').length) {
+    	restartCarouselVideo()
+    }  	
+  }
+
   $(function () {
     $('#carousel').on('slide.bs.carousel', (e) => {
-      stopAllVideo()
-      restartCarouselVideo()
+    	stopAllVideo()
+    	manageCarouselVideo(e)
+    });
+    $('#carousel').on('slid.bs.carousel', (e) => {
+    	manageCarouselVideo(e)
     });
   })
 
