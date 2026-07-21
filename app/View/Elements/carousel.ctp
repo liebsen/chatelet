@@ -2,14 +2,14 @@
 <div class="carousel-inner group-video" role="listbox">
 <?php foreach ($images as $key => $value): ?>
   <div class="item <?php echo (!$key) ? 'active' : is_null('') ; ?>">
-    <a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>" class="d-flex">
-      <?php if (strpos($value, '.mp4') !== false):?>
+  	<?php if (strpos($value, '.mp4') !== false):?>
       <video id="video<?=$key?>" class="carousel-video slider-full" <?= (strpos( $_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) ? ' controls="true" ' : '' ?> playsinline loop>
       </video>
-      <?php else: ?>
-      <div class="slider-full" style="background-image:url(<?=$value?>)"></div>
-      <?php endif; ?>
-    </a>
+    <?php else: ?>
+    	<a href="<?php echo router::url(array('controller' => 'Shop', 'action' => 'index')) ?>" class="d-flex">
+    		<div class="slider-full" style="background-image:url(<?=$value?>)"></div>
+    	</a>
+    <?php endif; ?>
   </div>
 <?php endforeach ?>
 </div>
