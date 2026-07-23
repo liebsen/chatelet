@@ -206,7 +206,7 @@ class NewsletterShell extends AppShell {
                   )
                 ),
                 'fields' => array(
-                  'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
+                  'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.discount, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
                 ),        
                 'conditions' => array(
                   'Product.id' => $products_ids
@@ -236,7 +236,7 @@ class NewsletterShell extends AppShell {
             )
           ),
           'fields' => array(
-            'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
+            'Product.id, Product.name, Product.desc, Product.img_url, Product.price, Product.discount,  Product.ribbon_color, Product.article, Product.mp_discount, Product.bank_discount, Product.discount, Category.id, Category.name'
           ),        
           'conditions' => array(
             'NewsletterProduct.newsletter_id' => $schedule['Newsletter']['id']
