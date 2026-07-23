@@ -436,10 +436,18 @@ $(document).ready(function() {
     validNavigation = true;
   });
 
-	window.addEventListener('pagehide', (event) => {
+	/*window.addEventListener('pagehide', (event) => {
     if (!validNavigation && !location.pathname.includes('admin/')) {    
       sendBeacon('page-exit')
     }
+	});*/
+
+	document.addEventListener("visibilitychange", () => {
+	  if (document.visibilityState === "visible") {
+	  	sendBeacon('page-restore')
+	  } else {
+	  	sendBeacon('page-exit')
+	  }
 	});
 
   /*window.onbeforeunload = function() {
