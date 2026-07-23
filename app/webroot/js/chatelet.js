@@ -443,19 +443,17 @@ $(document).ready(function() {
 	});*/
 
 	document.addEventListener("visibilitychange", () => {
-	  if (document.visibilityState === "visible") {
-	  	sendBeacon('page-restore')
-	  } else {
+	  if (document.visibilityState != "visible") {
 	  	sendBeacon('page-exit')
 	  }
 	});
 
-  /*window.onbeforeunload = function() {
+  window.onbeforeunload = function() {
     // console.log('validNavigation',validNavigation, location.pathname)
     if (!validNavigation && !location.pathname.includes('admin/')) {    
       sendBeacon('page-exit')
     }
-  }*/
+  }
   
   /*$('body').click((e) => {
     if(!$(e.target).hasClass('action-search') && !$(e.target).parents('.burst').length) {
