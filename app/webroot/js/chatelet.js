@@ -436,18 +436,24 @@ $(document).ready(function() {
     validNavigation = true;
   });
 
-  window.onbeforeunload = function() {
+	window.addEventListener('pagehide', (event) => {
+    if (!validNavigation && !location.pathname.includes('admin/')) {    
+      sendBeacon('page-exit')
+    }
+	});
+
+  /*window.onbeforeunload = function() {
     // console.log('validNavigation',validNavigation, location.pathname)
     if (!validNavigation && !location.pathname.includes('admin/')) {    
       sendBeacon('page-exit')
     }
-  } 
+  }*/
   
-  $('body').click((e) => {
-    /*if(!$(e.target).hasClass('action-search') && !$(e.target).parents('.burst').length) {
+  /*$('body').click((e) => {
+    if(!$(e.target).hasClass('action-search') && !$(e.target).parents('.burst').length) {
       $('.burst').hide()
-    }*/
-  })  
+    }
+  })*/ 
 
   /* scroll progress */
   const progressPages = [
