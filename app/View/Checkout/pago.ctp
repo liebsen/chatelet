@@ -100,8 +100,9 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 			</div>
 		</div>
 	</form>
-	<?php echo $this->element('checkout-footer') ?>
 </section>
+
+<?php echo $this->element('checkout-footer') ?>
 
 <script type="text/javascript">
 

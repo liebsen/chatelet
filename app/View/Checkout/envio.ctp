@@ -105,7 +105,10 @@ echo $this->element('checkout-params');
 			<?php echo $this->element('resume', array('show_list' => true)) ?>
 		</div>
 	</div>
-	<?php echo $this->element('checkout-footer') ?>
 </section>
+
+
+<?php echo $this->element('checkout-footer') ?>
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&language=es"></script>

@@ -97,6 +97,7 @@ $userData = array(
 							</div>
 							<span class="validation-email"></span>
 						</div>
+					<?php if(!$loggedIn):?>						
 						<div class="col-md-6">
 							<label class="text-muted" for="password">Confirme Email</label>
 							<div class="form-group position-relative">
@@ -104,7 +105,8 @@ $userData = array(
 								<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#email2"  ></i>
 							</div>
 							<span class="validation-password"></span>
-						</div>						
+						</div>
+					<?php endif ?>					
 						<div class="col-md-6">
 							<label class="text-muted" for="Telefono">Teléfono</label>			
 							<div class="form-group">
@@ -112,7 +114,6 @@ $userData = array(
 									echo '<input type="tel" class="form-control" id="Telefono" title="Telefono" placeholder="011 4703 8888" name="data[User][telephone]" value="'. $userData['telephone'] .'" required />';
 								?>
 							</div>
-
 						</div>
 				<?php if($loggedIn):?>
 						<div class="col-md-6">
@@ -317,7 +318,7 @@ $(function(){
 	$('input[type="submit"]').prop('disabled', false)
     $('#registro_form').submit(function(e) {
     	e.preventDefault();
-    	if($('#email').length){
+    	if($('#email2').length){
 	    	if($('#email').val().trim() != $('#email2').val().trim()) {
 	    		return onWarningAlert('Error de validación', 'Los emails no coinciden. Asegúrate de que sean el mismo en ambos campos')
 	    	}
