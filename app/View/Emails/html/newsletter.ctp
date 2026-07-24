@@ -40,7 +40,7 @@
         <div style="padding: 16px; text-align: center;">
           <h3 style="margin: 0 0 10px 0; font-size: 15px; color: #333333;"><?= $product['Product']['name'] ?></h3>
     <?php if($data['Newsletter']['show_price'] == '1'): ?>
-      <p style="font-size: 18px; font-weight: bold; color: #000000; margin: 0 0 10px 0;"><?= \price_format($product['Product']['discount']||$product['Product']['price']) ?></p>
+      <p style="font-size: 18px; font-weight: bold; color: #000000; margin: 0 0 10px 0;"><?= \price_format($product['Product']['discount']??$product['Product']['price']) ?></p>
     <?php endif ?>          
           <p style="margin: 0 0 10px 0; font-size: 12px; color: #666666;">🏷️ <?= $product['Category']['name'] ?></p>
     <?php if($data['Newsletter']['show_text'] == '1'): ?>
