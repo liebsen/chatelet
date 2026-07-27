@@ -1776,6 +1776,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function categorias($action = null) {
+		$h1 = array(
+			'name' => 'Categorías',
+			'icon' => 'gi gi-picture'
+		);
 		$navs = array(
 			'Categorías' => array(
 				'icon' 		=> 'gi gi-tags',
@@ -1792,12 +1796,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		);
 
 		$this->set('navs', $navs);
-		$h1 = array(
-			'name' => 'Categorías',
-			'icon' => 'gi gi-picture'
-		);
 		$this->set('h1', $h1);
     $this->loadModel('Category');
+    $this->loadModel('CategorySize');
+
     switch ($action) {
     	case 'compose': 
 
@@ -1911,7 +1913,32 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
         	$data['ribbon_color'] = $data['ribbon_color'] == '#000000' ? 
         		false : 
         		$data['ribbon_color'];
+        	
+        	$rm_sizes = array_filter(array_values($data['sizes']['rm']));
+        	if(!empty($rm_sizes)) {
+        		foreach($rm_sizes as $i => $id) {
+        			$size = $this->CategorySize->delete(
+        				array(
+        					'id' => $id
+        				)
+        			);
+        		}
+        	}
 
+        	$sizes = array_filter(array_values($data['sizes']['code']));
+        	$j=0;
+
+        	if(!empty($sizes)) {
+        		foreach($sizes as $i => $code) {
+        			$size = $this->CategorySize->save(
+        				array(
+        					'category_id' => $data['id'],
+        					'code' => $code,
+        					'name' => $data['sizes']['name'][$j],
+        				)
+        			); $j++;
+        		}
+        	}
 
 	        // update products
 	        if(!empty($data['ribbon_color'])) {
@@ -1935,11 +1962,16 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    return json_encode(
 			    	array(
 			    		'success' => true,
-			    		'redirect' => '/admin/categorias'
+			    		'message' => 'Módulo Shop actualizado',
+			    		//'redirect' => '/admin/categorias'
 			    	)
 			    );
     		} else {
 	    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));	
+	    		$sizes = $this->CategorySize->find('all', array(
+	    			'conditions' => array('category_id' => $this->request->pass[1]),
+	    			'order' => ['CategorySize.code ASC']
+	    		));	
     			$navs[$cat['Category']['name']] = array(
 						'icon' 		=> 'gi gi-edit',
 						'url'		=> '/admin/categorias/edit/'.$cat['Category']['id'],
@@ -1949,6 +1981,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$this->set('cat', $cat);
+	    		$this->set('sizes', $sizes);
 	    		return $this->render('categorias-detail');
     		}
     		break;

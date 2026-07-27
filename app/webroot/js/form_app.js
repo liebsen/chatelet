@@ -51,7 +51,7 @@ $(document).ready(function() {
             success: function(res) {
               $.growl.notice({
                 title: 'OK',
-                message: res.message
+                message: res.message || 'La tarea fue ejecutada exitosamente'
               });
             },
             error: function(xhr, status, error) {
