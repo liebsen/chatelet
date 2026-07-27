@@ -1,9 +1,5 @@
 <?php
-$cloudzoom = false;
-$unique_size = "11";
-$cloudzoomdata = 'zoomSizeMode:"zoom", lensWidth: 100, lensHeight: 100, zoomWidth:300, zoomHeight: 300, autoInside: 600';
-$images  = array();
-$images_aux = explode(';', $product['gallery']);
+
 echo $this->Html->script('product.js?v=' . $version['ver'], array('inline' => false));
 echo $this->Html->script('detalle.js?v=' . $version['ver'], array('inline' => false));
 
@@ -27,37 +23,7 @@ disableOnScreenWidth:0,
 touchStartDelay:0,
 */
 
-foreach ($images_aux as $key => $value) {
-  if(!empty($value))
-    $images[] = $settings['upload_url'].$value;
-}
 echo $this->Session->flash();
-$colorImages = array();
-$colors = array();
-$sizes = array();
-foreach ($properties as $property) {
-  $property['ProductProperty']['label'] = $property['ProductProperty']['variable'];
-  switch ($property['ProductProperty']['type']) {
-    case 'color':
-      if (!empty($property['ProductProperty']['images'])) {
-          $arrImages = explode(';', $property['ProductProperty']['images']);
-          $colorImages[] = array(
-            'alias' => $property['ProductProperty']['alias'], 
-            'images' => $arrImages
-          );
-      }
-
-      array_push($colors, $property['ProductProperty']);
-      break;
-    case 'size':
-      array_push($sizes, $property['ProductProperty']);
-      break;
-  }
-}
-
-if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
-  $sizes[0]['label'] = "Talle único";
-}
 ?>
 <script>
   var itemData = <?=json_encode($product, JSON_PRETTY_PRINT)?>;

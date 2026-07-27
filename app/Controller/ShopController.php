@@ -8,7 +8,7 @@ $dotenv->load();
 use AlejoASotelo\Andreani;
 
 class ShopController extends AppController {
-	public $uses = array('Product', 'ProductProperty','Promo','Catalogo','Category','LookBook');
+	public $uses = array('Product', 'ProductProperty','Promo','Catalogo','Category','CategorySize','LookBook');
 	public $helpers = array('Number', 'App');
 	// public $components = array('SQL', 'RequestHandler');
 	public $components = array('RequestHandler');
@@ -530,6 +530,7 @@ class ShopController extends AppController {
   	}
 
 		$product = $this->Product->findById($product_id);
+		$category_sizes = $this->CategorySize->findAllByCategoryId($product['Product']['category_id']);
 
 		if (!isset($product)) {
 			throw new NotFoundException();
@@ -553,6 +554,58 @@ class ShopController extends AppController {
         	$isGiftCard=true;
         }
 		$properties = $this->ProductProperty->findAllByProductId($product_id);
+		$sizes = array();
+		$colors = array();
+		foreach ($properties as $property) {
+			$property['ProductProperty']['label'] = $property['ProductProperty']['variable'];
+		  switch ($property['ProductProperty']['type']) {
+		    case 'color':
+		      if (!empty($property['ProductProperty']['images'])) {
+		          $arrImages = explode(';', $property['ProductProperty']['images']);
+		          $colorImages[] = array(
+		            'alias' => $property['ProductProperty']['alias'], 
+		            'images' => $arrImages
+		          );
+		      }
+
+		      array_push($colors, $property['ProductProperty']);
+		      break;
+		    case 'size':
+		    	//echo '<pre>';
+		    	foreach($category_sizes as $cat_size) {
+		    		//var_dump($cat_size);
+			    	if((int) $property['ProductProperty']['label'] == (int) $cat_size['CategorySize']['code']) {
+			    		$property['ProductProperty']['label'] = $cat_size['CategorySize']['name'];
+			    	} 
+			    }
+		      array_push($sizes, $property['ProductProperty']);
+		      break;
+		  }
+		}
+
+		if(count($sizes) == 1 && $sizes[0]['variable'] == "11") {
+		  $sizes[0]['label'] = "Talle único";
+		}
+
+
+
+		$cloudzoom = false;
+		$unique_size = "11";
+		$cloudzoomdata = 'zoomSizeMode:"zoom", lensWidth: 100, lensHeight: 100, zoomWidth:300, zoomHeight: 300, autoInside: 600';
+		$images  = array();
+		$images_aux = explode(';', $product['gallery']);
+
+		foreach ($images_aux as $key => $value) {
+		  if(!empty($value))
+		    $images[] = $settings['upload_url'].$value;
+		}
+
+		$this->set('colorImages',$colorImages);
+		$this->set('colors',$colors);
+		$this->set('sizes',$sizes);
+		$this->set('cloudzoom',$cloudzoom);
+		$this->set('cloudzoomdata',$cloudzoomdata);
+		$this->set('images',$images);
 
 		/*
 		$details = $this->SQL->product_name_by_article($product['Product']['article']);
@@ -594,6 +647,7 @@ class ShopController extends AppController {
     $this->set('name_categories',$name_categories);
 		$this->set('category', $category);
 		$this->set('product', @$product['Product']);
+		//$this->set('category_sizes', @$sizes);
 		$this->set('properties', $properties);
 		$this->set('isGiftCard', $isGiftCard);
 		if ($isGiftCard && !empty($product['Product']['img_url'])) {
