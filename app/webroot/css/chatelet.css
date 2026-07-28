@@ -715,32 +715,22 @@ body > section {
 
 .tap-to-continue {
 	position: absolute;
-  top: calc(100dvh - 4.5rem);
+  top: calc(100dvh - 4.75rem);
 	left: 1rem;
 	text-align: center;
 	white-space: nowrap;
-	padding: 1rem 1.25rem;
 	text-shadow: 0 0 2px #0009;
-	font-weight: 500;
   /*background-color: #363733;
   background-color: white;*/
   text-transform: uppercase;
-  border-radius: 5px;
 	color: white;
+	font-weight: 1000;
+  /*border-radius: 5px;
 	border: 1px solid white;
+	background-color: #fff3;*/
 	transition: all 0.1s ease-in;
-	background-color: #fff3;
-  /*
-  
-  box-shadow: rgb(0 0 0 / 16%) 3px 3px 4px;
+  /*box-shadow: rgb(0 0 0 / 16%) 3px 3px 4px;
   box-shadow: 0 0 0.5rem #fff3;*/
-}
-
-.tap-to-continue:hover {
-	/*transform: scale(1.1);*/
-  background-color: #f70095;
-  border-color: #f7009533;
-  color: whitesmoke;
 }
 
 .tap-to-continue > .fa:before {

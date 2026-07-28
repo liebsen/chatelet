@@ -30,7 +30,8 @@
 </a>
 <?php endif ?>
 <script>
-
+  var focused = true
+  var carousel_timeout = 0
   var images = ["<?=@implode('","',$images)?>"]
   var assets = []
 
@@ -79,7 +80,6 @@
     }    
   }
 
-  var focused = true
   window.onfocus = () => {
     focused = true;
     var video = $("#carousel .item.active").find("video")
@@ -96,6 +96,23 @@
     stopAllVideo()
   };
 
+	function stopAllVideo(){
+	  $("#carousel").find("video").each((i,video) => {
+	    video.pause()
+	  });    
+	}
+
+	function restartCarouselVideo(){
+	  const video = $('#carousel .item.active').find("video")
+	  if(video.length) {
+	    if(focused && window.lastscroll < 300) {
+	      setTimeout(() => {
+	        $(video).get(0).play()
+	      }, 500)
+	    }
+	  }  
+	}
+
   function manageCarouselVideo(event){
     if($(event.relatedTarget).find('video').length) {
     	restartCarouselVideo()
@@ -110,6 +127,22 @@
     $('#carousel').on('slid.bs.carousel', (e) => {
     	manageCarouselVideo(e)
     });
+  })
+
+  $(window).scroll(function(e) {
+
+    if(carousel_timeout) {
+      clearInterval(carousel_timeout)
+    }
+
+    carousel_timeout = setTimeout(() => {
+      const scrolltop = $(window).scrollTop()
+      if (scrolltop > $('#carousel').height()) {
+        stopAllVideo()
+      } else {
+        restartCarouselVideo()
+      }
+    }, 1000)
   })
 
   preloadImages(images)

@@ -3061,7 +3061,7 @@ form .control-label:not(.switch-scale > span > label) {
 .input-group {
   margin-top: 1px;
   margin-bottom: 1px;
-  padding: 0.75rem 1rem;
+  padding: 10px 12px;
   border-radius: 0.5rem;
   transition: none;
   text-shadow: none;
@@ -3605,7 +3605,7 @@ a.thumbnail-borderless,
 }
 
 .bg-success-outline {
-  border: 2px solid green;   
+  border: 2px solid var(--theme-variant);   
 }
 
 .bg-light-outline {

@@ -2927,7 +2927,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $filter_type = $data['type'] ?? 'sale';
     $sale_min *= 100;
 		#\d("newsletters_users_reach(filter_type)", $filter_type);
-		if($filter_type == 'dob') {
+		if($filter_type == 'accounts_dob') {
 			$min_parts = explode('/', $dob_min);
 			$max_parts = explode('/', $dob_max);
 			$this->loadModel('User');
@@ -2949,9 +2949,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		  	),
 		  	'limit' => 1000,
 	    ));
+	    $results = array_column($data, 'User');
 		} 
-
-		if($filter_type == 'sales') {
+		elseif($filter_type == 'sales') {
 			$this->loadModel('Sale');
 			#\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
 	    $data = $this->Sale->find('all',array(
@@ -2985,8 +2985,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		  	),
 		  	'limit' => 1000,
 	    ));
-	  }
-		elseif($filter_type == 'carts') {
+	    $results = array_column($data, 'User');
+	  } 
+	  elseif($filter_type == 'sales_abandoned_carts') {
 			$this->loadModel('Stat');
 			//\d("sale_min_where", "Sale.user_id HAVING Total > {$sale_min}");
 	    $data = $this->Stat->find('all',array(
@@ -3021,11 +3022,33 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		  	),
 		  	'limit' => 1000,
 	    ));
+
+	    $results = array_column($data, 'User');
+	  } elseif($filter_type == 'accounts_registered_only') {
+			$this->loadModel('User');
+
+			/****************************************/
+			$query = 'SELECT u.id, u.name, u.surname, u.email
+FROM users u
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM sales s
+  WHERE u.id = s.user_id
+) 
+AND u.created > \''.date('Y-m-d H:i', strtotime(str_replace('/','-', $date_min))).'\'
+AND u.created <= \''.date('Y-m-d 23:59', strtotime(str_replace('/','-', $date_max))).'\'
+ORDER BY u.id DESC;';
+			/****************************************/
+
+			$resource = $this->User->query($query);
+			$results = array_filter(array_map(function($e) {
+ 				return $e['u'];
+ 			},$resource));
 	  }
 
     return json_encode(
     	array(
-      	'results' => array_column($data, 'User'),
+      	'results' => $results,
     	)
     );		
 	}

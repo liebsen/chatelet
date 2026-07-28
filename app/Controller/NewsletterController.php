@@ -137,7 +137,7 @@ class NewsletterController extends AppController {
   	$filter = json_decode($newsletter['NewsletterList']['filter']);
   	$filter_type = $filter->filter->type ?? null;
 
-  	if ($filter_type == 'carts') {
+  	if ($filter_type == 'sales_abandoned_carts') {
       $items = $this->Stat->find('all',array(
         'conditions' => array(
           'Stat.tag' => 'page-exit',

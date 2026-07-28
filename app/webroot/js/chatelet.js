@@ -7,27 +7,10 @@ let searchInt = 0
 let searchPageSize = 12
 let searchPage = 0
 let focusAnim = 'animation-pulse'
-let clock = 0
+let timeout = 0
 let fakeshown = 0 
 var toggleInterval = 0
 const log = false
-
-function stopAllVideo(){
-  $("video").each((i,video) => {
-    video.pause()
-  });    
-}
-
-function restartCarouselVideo(){
-  const video = $('#carousel .item.active').find("video")
-  if(video.length) {
-    if(focused && window.lastscroll < 300) {
-      setTimeout(() => {
-        $(video).get(0).play()
-      }, 500)
-    }
-  }  
-}
 
 function getStorage(key, def) {
   if(localStorage[key] && localStorage[key] != 'undefined') {
@@ -626,11 +609,11 @@ $(document).ready(function() {
 
   $(window).scroll(function(e) {
 
-    if(clock) {
-      clearInterval(clock)
+    if(timeout) {
+      clearInterval(timeout)
     }
 
-    clock = setTimeout(() => {
+    timeout = setTimeout(() => {
       const scrolltop = $(window).scrollTop()
       const scrollBottom = $(document).height()
       const video = $("#carousel .item.active").find("video")
@@ -652,20 +635,17 @@ $(document).ready(function() {
           $('body').addClass('top-fixed')
           $('.navbar-chatelet:not(.short)').addClass('animation-fadeIn')
           fakeshown = 1
-          stopAllVideo()
         }        
       } else {
         if (fakeshown && lastscroll > scrolltop) {
           $('body').removeClass('top-fixed')
           $('.navbar-chatelet:not(.short)').addClass('animation-fadeIn')
           fakeshown = false
-          //restartCarouselVideo()
         }
       }
       lastscroll = scrolltop
-    }, 250)
+    }, 500)
   })
-
 
   /* trigger search from url */
 

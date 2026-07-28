@@ -159,7 +159,7 @@ class NewsletterShell extends AppShell {
       $filter = json_decode($schedule['NewsletterList']['filter']);
       $filter_type = $filter->filter->type ?? null;
 
-      if($filter_type == 'carts') {
+      if($filter_type == 'sales_abandoned_carts') {
         $items = $this->Stat->find('all',array(
           'joins' => array(
             array(
@@ -215,6 +215,8 @@ class NewsletterShell extends AppShell {
             );
           }
         }
+      } elseif($filter_type == 'accounts_registered_only') {
+
       } 
 
       if(empty($products)) {

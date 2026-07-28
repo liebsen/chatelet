@@ -87,15 +87,16 @@
       <div class="form-box bg-success-outline">
         <h4 class="sub-header">Filtros</h4>
         <div class="controls mb-4">
-          <label class="control-label" for="title">Implementa módulos Usuario, Ventas y Estadísticas</label>
+          <label class="control-label" for="title">Implementa módulos de Ventas, Clientas y Sesión</label>
           <select class="form-control filter-type advanced-filter" name="data[filter][type]" data-name="type">
             <option value="">Seleccione un filtro</option>
             <option value="sales" data-target="sales"<?=$list['NewsletterList']['filter']->filter->type == 'sales' ? ' selected' : ''?>>Compras</option>
-            <option value="carts" data-target="sales"<?=$list['NewsletterList']['filter']->filter->type == 'carts' ? ' selected' : ''?>>Carrito abandonado</option>
-            <option value="dob" data-target="dob"<?=$list['NewsletterList']['filter']->filter->type == 'dob' ? ' selected' : ''?>>Cumpleaños</option>
+            <option value="sales_abandoned_carts" data-target="sales"<?=$list['NewsletterList']['filter']->filter->type == 'carts' ? ' selected' : ''?>>Carrito abandonado</option>
+            <option value="accounts_dob" data-target="dob"<?=$list['NewsletterList']['filter']->filter->type == 'dob' ? ' selected' : ''?>>Cumpleaños</option>
+            <option value="accounts_registered_only" data-target="registered_only"<?=$list['NewsletterList']['filter']->filter->type == 'accounts_registered_only' ? ' selected' : ''?>>Clientas que nunca compraron</option>
           </select>
         </div>
-        <div class="filter-box filter-item filter-sales<?=in_array($list['NewsletterList']['filter']->filter->type, array('sales', 'carts')) ? ' ' : ' d-none '?>mb-4">
+        <div class="filter-box filter-item filter-sales<?=in_array($list['NewsletterList']['filter']->filter->type, array('sales', 'sales_abandoned_carts')) ? ' ' : ' d-none '?>mb-4">
           <p>Establece fecha y monto para filtrar por cuenta de acuerdo al historial de compras</p>
           <div class="control-group">
             <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
@@ -109,13 +110,23 @@
             <input type="range" class="advanced-filter" data-name="sale_min" name="data[filter][sale_min]" step="10" min="10" max="10000" value="<?=$list['NewsletterList']['filter']->filter->sale_min?>">
           </div>
         </div>
-        <div class="filter-box filter-item filter-dob<?=$list['NewsletterList']['filter']->filter->type == 'dob' ? ' ' : ' d-none '?>mb-4">
+        <div class="filter-box filter-item filter-dob<?=$list['NewsletterList']['filter']->filter->type == 'accounts_dob' ? ' ' : ' d-none '?>mb-4">
           <p>Establece fecha para filtrar por cuenta de acuerdo fecha de nacimiento</p>
           <div class="control-group">
             <label class="control-label" for="myRange2">Día de nacimiento (Desde / Hasta)</label>
             <div class="controls d-flex flex-center gap-05">
               <input type="text" id="minDob" name="data[filter][dob_min]" class="form-control advanced-filter datepicker" data-format="dd/mm" data-name="dob_min" placeholder="Día de nacimiento mínimo" value="<?=$list['NewsletterList']['filter']->filter->dob_min ?? ''?>"  autocomplete="off" />
               <input type="text" id="maxDob" name="data[filter][dob_max]" class="form-control advanced-filter datepicker" data-format="dd/mm" data-name="dob_max" placeholder="Día de nacimiento max" value="<?=$list['NewsletterList']['filter']->filter->dob_max ?? ''?>"  autocomplete="off" />
+            </div>
+          </div>
+        </div>
+        <div class="filter-box filter-item filter-registered_only<?=$list['NewsletterList']['filter']->filter->type == 'accounts_registered_only' ? ' ' : ' d-none '?>mb-4">
+          <p>Establece fecha para filtrar por cuenta de acuerdo fecha de registro</p>
+          <div class="control-group">
+            <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
+            <div class="controls d-flex flex-center gap-05">
+              <input type="text" name="data[filter][date_min]" class="form-control advanced-filter datepicker" data-name="date_min" placeholder="Fecha mínima" value="<?=$list['NewsletterList']['filter']->filter->date_min ?? ''?>"  autocomplete="off" />
+              <input type="text" name="data[filter][date_max]" class="form-control advanced-filter datepicker" data-name="date_max" placeholder="Fecha máxima" value="<?=$list['NewsletterList']['filter']->filter->date_max ?? ''?>"  autocomplete="off" />
             </div>
           </div>
         </div>

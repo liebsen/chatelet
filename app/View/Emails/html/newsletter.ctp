@@ -3,13 +3,14 @@
 		padding: 0;
 		margin: 0;
 	}
-	.content img {
-		max-width: 100%;
+	.content img, 
+	.content table {
+		max-width: 100%!important;
 	}
 </style>    
 
 <?php echo $data['Newsletter']['parsed_body']?>
-<?php if($data['NewsletterList']['filter_type'] == 'carts'):?>
+<?php if($data['NewsletterList']['filter_type'] == 'sales_abandoned_carts'):?>
   <table border="0">
     <tr>
       <td align="center" valign="center" style="text-align: center;">

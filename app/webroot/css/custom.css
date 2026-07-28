@@ -1168,7 +1168,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 #detalle .plus { color: #404040; float: right; font-size: 18px; font-weight: 500; margin-top: 10px; }
-#main .caract { color: #404040; /* margin-top: 25px; */ }
+#main .caract { color: #888; /* margin-top: 25px; */ }
 #main .caract h3 { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
 #main .caract p { line-height: 1.25; }
 #main .caract .size { margin-bottom: 25px; }
