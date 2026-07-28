@@ -3027,6 +3027,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	  } elseif($filter_type == 'accounts_registered_only') {
 			$this->loadModel('User');
 
+
 			/****************************************/
 			$query = 'SELECT u.id, u.name, u.surname, u.email
 FROM users u
