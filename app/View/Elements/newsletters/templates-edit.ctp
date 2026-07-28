@@ -39,7 +39,7 @@
       </div>
       <div class="form-box bg-info-outline">
         <h4 class="sub-header">Textos del mensaje</h4>
-        <p><i class="fa fa-question-circle"></i> Compone un mensaje para los mensajes push</p>
+        <p>Compone un mensaje para los mensajes push</p>
         <div class="control-group">
           <label class="control-label" for="title">Título</label>
           <div class="controls">
@@ -62,7 +62,7 @@
 
       <div class="form-box bg-info-outline template-elements-table">
         <h4 class="sub-header">Elementos de plantilla</h4>
-        <p><i class="fa fa-question-circle"></i> Selecciona un elemento para agregarlo al texto</p>
+        <p>Selecciona un elemento para agregarlo al texto</p>
         <table class="table table-striped w-100">
   <?php foreach($templateVars as $id => $name): ?>
         <tr class="is-clickable append-editor" data-text="{{<?= $id ?>}}">
@@ -84,7 +84,7 @@
     <div class="col-md-6">
       <div class="form-box bg-info-outline">
         <h4 class="sub-header">Método de envío</h4>
-        <p><i class="fa fa-question-circle"></i> Selecciona el canal por donde notificar a las clientas</p>
+        <p>Selecciona el canal por donde notificar a las clientas</p>
         <div class="form-group flex-start gap-05">
           <div class="controls flex-1">
             <label class="control-label" for="toggle-email">Email</label>
@@ -101,12 +101,12 @@
       <div class="form-box bg-success-outline">
         <h4 class="sub-header">Cupón</h4>
   <?php if(empty($newsletter['Newsletter']['id'])): ?>
-        <p><i class="fa fa-question-circle"></i> Podrás agregar un cupón una vez que guardes la nueva plantilla.</p>
+        <p>Podrás agregar un cupón una vez que guardes la nueva plantilla.</p>
   <?php else: ?>
   			<?php if(empty($coupons)): ?>
-  				<p><i class="fa fa-question-circle"></i> No hay cupones activos para agregar</p>
+  				<p>No hay cupones activos para agregar</p>
 				<?php else: ?>  				
-        <p>Puedes aregar un cupón a la plantilla, se mostrará en el mensaje con sus respectivos elementos de plantilla (ver Cupón) .</p>
+        <p>Puedes agregar un cupón a la plantilla, se mostrará en el mensaje con sus respectivos elementos de plantilla (ver Cupón) .</p>
         <div class="control-group">
 					<label class="control-label" for="toggle-follow"><?php echo __('Selecciona un cupón'); ?></label>        	
 		      <select class="form-control code_sel" name="data[coupon_id]">
@@ -118,7 +118,7 @@
 		          ?>
 		        <?php endforeach ?>
 		      </select>
-          <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
+          <small class="text-muted">Selecciona un cupón para enviar a la audiencia.</small>
         </div>
       	<?php endif ?>
   <?php endif ?>        
@@ -126,23 +126,24 @@
       <div class="form-box bg-success-outline">
         <h4 class="sub-header">Catálogo</h4>
   <?php if(empty($newsletter['Newsletter']['id'])): ?>
-        <p><i class="fa fa-question-circle"></i> Podrás agregar productos una vez que guardes la nueva plantilla.</p>
+        <p>Podrás agregar productos una vez que guardes la nueva plantilla.</p>
   <?php else: ?>
-        <p>Puedes aregar productos a la plantilla, se mostrarán en un catálogo de lista con sus respectivos enlaces y precios.</p>
+        <p>Puedes agregar productos a la plantilla, se mostrarán en un catálogo de lista con sus respectivos enlaces y precios.</p>
         <div class="control-group">
           <label class="control-label" for="toggle-price"><?php echo __('Precio'); ?></label>
           <input type="checkbox" name="data[show_price]" value="1" id="toggle-price" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_price'] == '1' ? ' data-change="1" checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
           <label for="toggle-price" class="toggle-label"></label>
-          <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
+          <small class="text-muted">Indica si debe mostrarse el precio del producto en el catálogo.</small>
         </div>
         <div class="control-group">
           <label class="control-label" for="toggle-price"><?php echo __('Descripción'); ?></label>
           <input type="checkbox" name="data[show_text]" value="1" id="toggle-text" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_text'] == '1' ? ' data-change="1" checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
           <label for="toggle-text" class="toggle-label"></label>
-          <small class="text-muted">Indica si debe mostrarse el precio en el catálogo.</small>
+          <small class="text-muted">Indica si debe mostrarse la descripción del producto en el catálogo.</small>
         </div>
         <div class="controls d-flex flex-column gap-05">
           <input type="text" class="form-control relation-search" data-type="product" placeholder="Buscar"/>
+          <small class="text-muted">Busca productos para agregar a la plantilla.</small>
         </div>
         <div class="secondary-box">
           <!--label class="control-label" for="product-filter">Productos seleccionados (<?=count($newsletter_products)?>)-->
@@ -170,7 +171,7 @@
       </div>
       <div class="form-box bg-info-outline">
         <h4 class="sub-header">Configuración extra</h4>
-        <p><i class="fa fa-question-circle"></i> Establece la configuración adicional de esta Plantilla</p>
+        <p>Establece la configuración adicional de esta Plantilla</p>
         <div class="control-group<?=@$settings['newsletter_show_header'] == '1' ? '' : ' d-disable' ?>">
           <label class="control-label" for="toggle-follow"><?php echo __('Logo de encabezado'); ?></label>
           <input type="checkbox" name="data[show_header]" value="1" id="toggle-header" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_header'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' data-change="1" checked')?>>
@@ -186,6 +187,7 @@
       </div>
       <div class="form-box bg-info-outline">
         <h4 class="sub-header">Llamada a la Acción</h4>      
+        <p>Puedes agregar un botón a la plantilla y esrablecer su comportamiento</p>
         <div class="control-group">
           <label class="control-label" for="toggle-cta"><?php echo __('Llamada a la Acción'); ?></label>
           <input type="checkbox" name="data[show_cta]" value="1" id="toggle-cta" class="toggle-checkbox toggle-block" data-block=".show-cta"<?=@$newsletter['Newsletter']['show_cta'] == '1' ? ' checked' : '' ?>>
