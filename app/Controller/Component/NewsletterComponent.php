@@ -108,7 +108,7 @@ class NewsletterComponent extends Component {
       $response = array(
         'success' => true,
         'message' => 'La nueva configuración se actualizó exitosamente',
-        'redirect' => Router::reverse($redirect)
+        //'redirect' => Router::reverse($redirect)
       );
 
       return json_encode($response);
@@ -212,7 +212,7 @@ class NewsletterComponent extends Component {
           $data['user_id'] = $this->controller->Auth->user('id');
         }
 
-        #\d("data", $data);
+        \d("data", $data);
 
         $Newsletter->save($data);
 
@@ -223,7 +223,7 @@ class NewsletterComponent extends Component {
         $response = array(
           'success' => true,
           'message' => 'Tu Plantilla se actualizó correctamente',
-          'redirect' => Router::reverse($redirect)
+          //'redirect' => Router::reverse($redirect)
         );
 
         return json_encode($response);
@@ -501,7 +501,7 @@ class NewsletterComponent extends Component {
         $response = array(
           'success' => true,
           'message' => 'Tu Campaña se actualizó correctamente',
-          'redirect' => Router::reverse($redirect)
+          //'redirect' => Router::reverse($redirect)
         );
 
         return json_encode($response);
@@ -659,7 +659,7 @@ class NewsletterComponent extends Component {
         $response = array(
           'success' => true,
           'message' => 'Tu Lista se actualizó correctamente',
-          'redirect' => Router::reverse($redirect),
+          //'redirect' => Router::reverse($redirect),
           'lastid' => $NewsletterList->id,
         );
 

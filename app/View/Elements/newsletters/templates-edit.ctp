@@ -106,13 +106,15 @@
   			<?php if(empty($coupons)): ?>
   				<p><i class="fa fa-question-circle"></i> No hay cupones activos para agregar</p>
 				<?php else: ?>  				
-        <p>Puedes aregar un cupón a la plantilla, se mostrará en el mensaje con sus respectivos elementos de plantilla (ver coupon) .</p>
+        <p>Puedes aregar un cupón a la plantilla, se mostrará en el mensaje con sus respectivos elementos de plantilla (ver Cupón) .</p>
         <div class="control-group">
 					<label class="control-label" for="toggle-follow"><?php echo __('Selecciona un cupón'); ?></label>        	
 		      <select class="form-control code_sel" name="data[coupon_id]">
+		      	<option value="">Seleccione un cupón</option>
 		        <?php foreach ($coupons as $coupon): ?>
 		          <?php  
-		            echo "<option value='{$coupon['Coupon']['id']}'>{$coupon['Coupon']['code']} - {$coupon['Coupon']['info']}</option>";
+		          	$selected = $coupon['Coupon']['id'] == $newsletter['Newsletter']['coupon_id'] ? ' selected' : '';
+		            echo "<option value='{$coupon['Coupon']['id']}'{$selected}>{$coupon['Coupon']['code']} - {$coupon['Coupon']['info']}</option>";
 		          ?>
 		        <?php endforeach ?>
 		      </select>
