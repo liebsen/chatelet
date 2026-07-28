@@ -39,14 +39,40 @@ function update_editor() {
 	$('#newsletter').data('change', true)   
 }
 
+function insertarEnCursor(textarea, texto) {
+    // 1. Obtener posición del cursor
+    const inicio = textarea.selectionStart;
+    const fin = textarea.selectionEnd;
+    
+    // 2. Insertar el texto
+    textarea.value = textarea.value.substring(0, inicio) + texto + textarea.value.substring(fin);
+    
+    // 3. Mover el cursor al final del texto insertado
+    const nuevaPos = inicio + texto.length;
+    textarea.selectionStart = textarea.selectionEnd = nuevaPos;
+    
+    // 4. Mantener el foco
+    textarea.focus();
+}
+
 $(document).ready(function() {
+  $('.btn-templates-elements').click(function(){
+  	$('.template-elements-table').toggleClass('fs')
+  })
+
   $('.btn-templates-editor').click(function(){
     CKEDITOR.instances.newsletter.execCommand('maximize');
   })
 
   $('.append-editor').click(function(){
-		CKEDITOR.instances.newsletter.insertText($(this).data('text'));
-		update_editor()
+  	if($('.email-block').is(':visible') || $('#cke_1_toolbox').is(':visible')) {
+			CKEDITOR.instances.newsletter.insertText($(this).data('text'));
+			update_editor()
+		}
+		if($('.push-block').is(':visible')) {
+			insertarEnCursor($('textarea[name="data[message]"]')[0],$(this).data('text'))
+		}
+		$('.template-elements-table').removeClass('fs')
   })
 
   if(window.location.hash.includes('editor')){

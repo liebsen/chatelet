@@ -2244,6 +2244,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'dni' => "DNI",			
 			'address' => "Dirección",
 			'postal_address' => "Código postal",
+			'coupon_code' => "Código cupón",
+			'coupon_info' => "Cupón descripción",
+			'coupon_from' => "Cupón válido desde",
+			'coupon_until' => "Cupón válido hasta",
 		);
 
 		$h1 = array(

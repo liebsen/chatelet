@@ -6,6 +6,7 @@ App::uses(
   'Controller', 
   'Session', 
   'Stat', 
+  'Coupon',
   'Newsletter', 
   'NewsletterUser',
 );
@@ -195,6 +196,7 @@ class NewsletterComponent extends Component {
   public function templates_edit($id) {
     $Newsletter = ClassRegistry::init('Newsletter');
     $NewsletterProduct = ClassRegistry::init('NewsletterProduct');
+    $Coupon = ClassRegistry::init('Coupon');
     $newsletter = array();
     $newsletter_products = array();
     try {
@@ -250,6 +252,12 @@ class NewsletterComponent extends Component {
           // 'order' => array( 'Newsletter.id DESC' )
         ));
       }
+
+      $coupons = $Coupon->find('all', array('conditions' => array(
+      	'date_until >' => date('Y-m-d H:i')
+      )));
+
+      $this->controller->set('coupons', $coupons);
       $this->controller->set('newsletter', $newsletter);
       $this->controller->set('newsletter_products', $newsletter_products);
 

@@ -239,7 +239,7 @@ echo $this->Session->flash();
 .login-btn:focus {
   text-decoration: none;
   color: #fff;
-  box-shadow: 0 0 200px 0 #c5c5c5;
+  box-shadow: 0 0 20px 0 #fff;
 }
 
 .login-btn:focus {

@@ -2089,7 +2089,7 @@ pre, code {
   background-color: #f8f8f8;
   border: none!important;
   padding: 1rem;
-  z-index: 1000;
+  z-index: 9999;
   top: 0;
   left: 0;
   right: 0;
@@ -3544,9 +3544,7 @@ a.thumbnail-borderless,
 }
 
 .btn {
-  text-transform: uppercase;
-  min-height: 32px;
-  font-weight: 600;
+	min-width: 8rem;
 }
 
 .btn > i {
@@ -3631,7 +3629,7 @@ a.thumbnail-borderless,
 .form-actions .btn {
   text-transform: uppercase;
   font-weight: 800;
-  line-height: 2;
+  line-height: 1.8;
   min-height: 40px;
 }
 
@@ -3649,7 +3647,7 @@ a.thumbnail-borderless,
 .controls small {
   display: block;
   width: 100%;
-  padding-top: 1rem;
+  padding-top: 0.25rem;
 }
 
 .tags-container {

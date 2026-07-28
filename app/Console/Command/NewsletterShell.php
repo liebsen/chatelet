@@ -215,9 +215,7 @@ class NewsletterShell extends AppShell {
             );
           }
         }
-      } elseif($filter_type == 'accounts_registered_only') {
-
-      } 
+      }
 
       if(empty($products)) {
         $products = $this->NewsletterProduct->find('all', array(
