@@ -100,7 +100,16 @@ class NewsletterController extends AppController {
           'conditions' => array( 
             'NewsletterSchedule.newsletter_id = Newsletter.id',
             'Newsletter.id IS NOT NULL'
-          )
+          ),
+		      'joins' => array(
+	          'table' => 'coupons',
+	          'alias' => 'Coupon',
+	          'type' => 'LEFT',
+	          'conditions' => array( 
+	            'Newsletter.coupon_id IS NOT NULL',
+	            'Newsletter.coupon_id = Coupon.id',
+	          )
+	        )
         ),
         array(
           'table' => 'newsletter_products',
@@ -122,7 +131,7 @@ class NewsletterController extends AppController {
         )
       ),
       'fields' => array(
-        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_text, Newsletter.show_social,Newsletter.show_header,Newsletter.show_cta, Newsletter.cta_text, Newsletter.cta_url, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday, User.telephone, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_text, Newsletter.show_social,Newsletter.show_header,Newsletter.show_cta, Newsletter.cta_text, Newsletter.cta_url, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday, User.telephone, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country,  Coupon.code AS coupon_code, Coupon.info AS coupon_info, Coupon.date_from AS coupon_date_from, Coupon.date_until AS coupon_date_until'
       ),
       'conditions' => array( 
         'NewsletterScheduleItem.id' => $id, 
@@ -136,6 +145,8 @@ class NewsletterController extends AppController {
 
   	$filter = json_decode($newsletter['NewsletterList']['filter']);
   	$filter_type = $filter->filter->type ?? null;
+
+  	/************************** custom filters **************************/
 
   	if ($filter_type == 'sales_abandoned_carts') {
       $items = $this->Stat->find('all',array(
@@ -200,7 +211,7 @@ class NewsletterController extends AppController {
     if(!empty($newsletter['Newsletter']['body'])) { 
       $parsed_body = \parse_template(
         $newsletter['Newsletter']['body'], 
-        $newsletter['User']
+        (object) array_merge((array) $newsletter['User'], (array) $newsletter['Coupon'])
       );
     }
 
@@ -252,7 +263,7 @@ class NewsletterController extends AppController {
 	public function template($id) {
     $newsletter = $this->Newsletter->find('first', 
     	array(
-	      'joins' => array(     	
+	      'joins' => array(  	
 	        array(
 	          'table' => 'newsletter_products',
 	          'alias' => 'NewsletterProduct',
@@ -278,16 +289,26 @@ class NewsletterController extends AppController {
 	          'conditions' => array( 
 	            'User.id' => $this->Auth->user('id') ?? 1
 	          )
-	        )
+	        ),
+					array(
+	          'table' => 'coupons',
+	          'alias' => 'Coupon',
+	          'type' => 'LEFT',
+	          'conditions' => array( 
+	            'Newsletter.coupon_id IS NOT NULL',
+	            'Newsletter.coupon_id = Coupon.id',
+	          )
+	        )	        
 	      ),
 	      'fields' => array(
-	        'Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_text, Newsletter.show_social, Newsletter.show_header,Newsletter.show_cta, Newsletter.cta_text, Newsletter.cta_url, Newsletter.send_email, Newsletter.send_push, NewsletterProduct.id, Product.id, Product.name, Product.desc, User.id, User.name, User.surname, User.email, User.telephone, User.birthday, User.address, User.dni, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country'
+	        'Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_text, Newsletter.show_social, Newsletter.show_header,Newsletter.show_cta, Newsletter.cta_text, Newsletter.cta_url, Newsletter.send_email, Newsletter.send_push, NewsletterProduct.id, Product.id, Product.name, Product.desc, User.id, User.name, User.surname, User.email, User.telephone, User.birthday, User.address, User.dni, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country, Coupon.code AS coupon_code, Coupon.info AS coupon_info, Coupon.date_from AS coupon_date_from, Coupon.date_until AS coupon_date_until'
 	      ),
 	      'conditions' => array( 
 	        'Newsletter.id' => $id, 
 	      )
 	    )
     );
+
 
     $products = $this->NewsletterProduct->find('all', array(
       'joins' => array(
@@ -317,7 +338,7 @@ class NewsletterController extends AppController {
     if(!empty($newsletter['Newsletter']['body'])) { 
       $parsed_body = \parse_template(
         $newsletter['Newsletter']['body'], 
-        $newsletter['User']
+        (object) array_merge((array) $newsletter['User'], (array) $newsletter['Coupon']),
       );
     }
 

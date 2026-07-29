@@ -17,6 +17,7 @@ class NewsletterShell extends AppShell {
     'Product', 
     'Setting', 
     'Webpush', 
+    'Coupon', 
     'Newsletter',
     'NewsletterSchedule', 
     'NewsletterList', 
@@ -127,10 +128,19 @@ class NewsletterShell extends AppShell {
             'NewsletterScheduleItem.user_id = User.id',
             'User.id IS NOT NULL'
           )
+        ),
+				array(
+          'table' => 'coupons',
+          'alias' => 'Coupon',
+          'type' => 'LEFT',
+          'conditions' => array( 
+            'Newsletter.coupon_id IS NOT NULL',
+            'Newsletter.coupon_id = Coupon.id',
+          )
         )
       ),
       'fields' => array(
-        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.message, Newsletter.show_price, Newsletter.show_text, Newsletter.show_social, Newsletter.show_header,Newsletter.show_cta, Newsletter.cta_text, Newsletter.cta_url, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.message, Newsletter.show_price, Newsletter.show_text, Newsletter.show_social, Newsletter.show_header,Newsletter.show_cta, Newsletter.cta_text, Newsletter.cta_url, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday, NewsletterSchedule.schedule_date, NewsletterSchedule.schedule_hour, Coupon.code AS coupon_code, Coupon.info AS coupon_info, Coupon.date_from AS coupon_date_from, Coupon.date_until AS coupon_date_until'
       ),
       'conditions' => array( 
         'NewsletterScheduleItem.status' => "pending", 
@@ -158,6 +168,8 @@ class NewsletterShell extends AppShell {
       $parsed_body = '';
       $filter = json_decode($schedule['NewsletterList']['filter']);
       $filter_type = $filter->filter->type ?? null;
+
+      /******************************* custom filters ********************************/
 
       if($filter_type == 'sales_abandoned_carts') {
         $items = $this->Stat->find('all',array(
@@ -247,7 +259,7 @@ class NewsletterShell extends AppShell {
       if(!empty($schedule['Newsletter']['body'])) { 
         $parsed_body = \parse_template(
           $schedule['Newsletter']['body'], 
-          $schedule['User']
+          (object) array_merge((array) $schedule['User'], (array) $schedule['Coupon'])
         );
       }
 

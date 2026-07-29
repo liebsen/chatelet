@@ -780,7 +780,7 @@ background-color: #e8ffa8!important;
 /* Block Tabs */
 .block.block-tabs {
   padding: 0;
-  border: 2px solid #ddd;
+  border: 1px solid #ddd;
 }
 
 .block-tabs > .nav-tabs {
@@ -1727,7 +1727,7 @@ li.plan-featured h1 {
 .inbox-list .inbox-search {
   display: block;
   margin: 0 0 10px;
-  border: 2px solid #fff;
+  border: 1px solid #fff;
 }
 
 .inbox-list .nav {
@@ -2142,7 +2142,7 @@ pre, code {
 .secondary-box > a.secondary-danger {
 	background-color: darkred;
   background-repeat: repeat-x;
-  border-color: red;
+  border-color: darkred;
 }
 
 .sub-header {
@@ -2540,7 +2540,7 @@ small, .small {
   padding: 0;
   min-width: 104px;
   font-size: 13px;
-  border: 2px solid var(--theme-color);
+  border: 1px solid var(--theme-color);
 }*/
 
 .dropdown-menu .divider {
@@ -2617,13 +2617,13 @@ header.navbar .dropdown-menu {
 
 header.navbar.navbar-fixed-top {
   border: none;
-  border-bottom: 2px solid #333;
+  border-bottom: 1px solid #333;
   min-height: 42px;
 }
 
 header.navbar.navbar-fixed-bottom {
   border: none;
-  border-top: 2px solid #333;
+  border-top: 1px solid #333;
   min-height: 42px;
 }
 
@@ -3338,7 +3338,7 @@ bottom: 0;
 /* Popover */
 .popover {
   padding: 0;
-  border: 2px solid var(--theme-color);
+  border: 1px solid var(--theme-color);
 }
 
 .popover-title {
@@ -3604,23 +3604,23 @@ a.thumbnail-borderless,
 }
 
 .bg-info-outline {
-  border: 2px solid var(--theme-color);   
+  border: 1px solid var(--theme-color);   
 }
 
 .bg-success-outline {
-  border: 2px solid var(--theme-variant);   
+  border: 1px solid var(--theme-variant);   
 }
 
 .bg-light-outline {
-  border: 2px solid #888;   
+  border: 1px solid #888;   
 }
 
 .bg-info-warning {
-  border: 2px solid #8a6d3b;   
+  border: 1px solid #8a6d3b;   
 }
 
 .bg-info-danger {
-  border: 2px solid #a94442;   
+  border: 1px solid #a94442;   
 }
 
 .form-actions {
@@ -3990,12 +3990,12 @@ transition: all 0.25s ease;
   }
 
   .inbox-menu {
-      border-bottom: 2px solid #999;
+      border-bottom: 1px solid #999;
   }
 
   .inbox-list {
       padding: 0;
-      border-bottom: 2px solid #999;
+      border-bottom: 1px solid #999;
   }
 
   .inbox-list .inbox-search {
@@ -4003,7 +4003,7 @@ transition: all 0.25s ease;
   }
 
   .inbox-list ul {
-      border-top: 2px solid #999;
+      border-top: 1px solid #999;
   }
 
   .chat-people {
@@ -4073,7 +4073,7 @@ transition: all 0.25s ease;
   }
 
   .chat-people {
-      border-bottom: 2px solid #999;
+      border-bottom: 1px solid #999;
   }
 
   .chat-people {
