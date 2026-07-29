@@ -200,6 +200,11 @@ body {
   width: 100%!important;
 }
 
+.w-auto {
+	width: auto!important;
+	min-width: auto!important;
+}
+
 .table-products, .table-users {
   padding: 1rem;
   border-radius: 0.75rem;
@@ -3543,7 +3548,7 @@ a.thumbnail-borderless,
   color: #f8f8f8;
 }
 
-.btn {
+.form-actions .btn {
 	min-width: 8rem;
 }
 

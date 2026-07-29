@@ -40,27 +40,24 @@ function update_editor() {
 }
 
 function insertarEnCursor(textarea, texto) {
-    // 1. Obtener posición del cursor
-    const inicio = textarea.selectionStart;
-    const fin = textarea.selectionEnd;
-    
-    // 2. Insertar el texto
-    textarea.value = textarea.value.substring(0, inicio) + texto + textarea.value.substring(fin);
-    
-    // 3. Mover el cursor al final del texto insertado
-    const nuevaPos = inicio + texto.length;
-    textarea.selectionStart = textarea.selectionEnd = nuevaPos;
-    
-    // 4. Mantener el foco
-    textarea.focus();
+  const inicio = textarea.selectionStart;
+  const fin = textarea.selectionEnd;
+  textarea.value = textarea.value.substring(0, inicio) + texto + textarea.value.substring(fin);
+  const nuevaPos = inicio + texto.length;
+  textarea.selectionStart = textarea.selectionEnd = nuevaPos;
+  textarea.focus();
 }
 
 $(document).ready(function() {
   $('.btn-templates-elements').click(function(){
-  	$('.template-elements-table').toggleClass('fs')
+  	$('.btn-templates-elements').toggleClass('btn-warning')
+  	$('.btn-templates-elements').toggleClass('btn-light')
+  	$('.template-elements-table').toggleClass('fs').show()
   })
 
   $('.btn-templates-editor').click(function(){
+  	$('.btn-templates-editor').toggleClass('btn-info')
+  	$('.btn-templates-editor').toggleClass('btn-light')
     CKEDITOR.instances.newsletter.execCommand('maximize');
   })
 

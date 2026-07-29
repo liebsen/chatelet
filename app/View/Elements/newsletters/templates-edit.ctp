@@ -60,7 +60,7 @@
 	      </div> 
       </div>     
 
-      <div class="form-box bg-info-outline template-elements-table">
+      <div class="form-box bg-info-outline template-elements-table" style="display: none;">
         <h4 class="sub-header">Elementos de plantilla</h4>
         <p>Selecciona un elemento para agregarlo al texto</p>
         <table class="table table-striped w-100">
@@ -225,9 +225,9 @@
       <i class="gi gi-font"></i> 
       <span class="ml-1">Editor</span>
     </span>
-    <span class="btn btn-info btn-templates-elements">
-      <i class="gi gi-list"></i> 
-      <span class="ml-1">Elementos</span>
+    <span class="btn btn-warning btn-templates-elements w-auto">
+      <i class="fa fa-key"></i> 
+      <!--span class="ml-1"></span-->
     </span>
 <?php if(!empty($newsletter['Newsletter']['id'])):?>
     <a href="<?=$this->Html->url(
