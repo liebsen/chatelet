@@ -96,6 +96,11 @@ $(document).ready(function() {
           if(res.lastid) {
             $('input[name="data[id]"]').val(res.lastid)
           }
+          const cb = $('input[name="cb"]').val()
+          console.log('cb',cb)
+          if(cb && window[cb]) {
+          	window[cb](res)
+          }
         }
 			} else {
         $.growl.error({

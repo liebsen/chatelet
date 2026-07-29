@@ -2132,6 +2132,9 @@ pre, code {
   }
 }
 
+.btn-delete-size {
+	color: purple!important;
+}
 .secondary-box > a.secondary-success {
 	background-color: mediumspringgreen;
   border-color: green;

@@ -14,6 +14,7 @@
     </div-->
     <div class="tab-content">
       <form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
+      	<input type="hidden" name="cb" value="category_sizes_update" data-exclude="1">
         <?php
           if (isset($this->request->pass[1])) {
             echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
@@ -138,7 +139,7 @@
               <div class="control-group">
                 <label class="control-label" for="columns-text"><?php echo __('Color Burbuja'); ?></label>
                 <div class="controls">
-                  <input type="color" id="ribbon_color" name="data[ribbon_color]" value="<?= !empty($cat) ? $cat['Category']['ribbon_color'] : '' ?>">
+                  <input type="color" id="ribbon_color" name="data[ribbon_color]" value="<?=@$cat['Category']['ribbon_color']??'#333' ?>">
                 </div>
                 <small class="text-muted">Seleccioná color de burbuja para esta categoría. <span class="text-info is-clickable" onclick="$('#ribbon_color').val('')">Resetear</span></small>
               </div>
@@ -195,7 +196,6 @@
                 </div>
               </div>
 
-                     
               <div class="control-group">
                 <label class="control-label" for=""><?=__('Seleccione una imagen de listado para esta categoría')?></label>
                 <?php if(!empty($cat['Category']['img_url'])):?>

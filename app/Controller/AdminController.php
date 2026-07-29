@@ -1925,18 +1925,24 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
         		}
         	}
 
+        	$size_updates = array();
         	$sizes = array_filter(array_values($data['sizes']['code']));
         	$j=0;
 
         	if(!empty($sizes)) {
         		foreach($sizes as $i => $code) {
-        			$size = $this->CategorySize->save(
+        			$saved = $this->CategorySize->save(
         				array(
         					'category_id' => $data['id'],
         					'code' => $code,
         					'name' => $data['sizes']['name'][$j],
         				)
         			); $j++;
+
+        			array_push($size_updates, array(
+        				'code' => $code,
+        				'id' => $saved['CategorySize']['id']
+        			));
         		}
         	}
 
@@ -1963,6 +1969,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    	array(
 			    		'success' => true,
 			    		'message' => 'Módulo Shop actualizado',
+			    		'size_updates' => $size_updates,
 			    		//'redirect' => '/admin/categorias'
 			    	)
 			    );
