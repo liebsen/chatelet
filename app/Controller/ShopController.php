@@ -775,16 +775,17 @@ class ShopController extends AppController {
     ]);
 
     $this->set('legends', $legends);
-		// legends
-		/*$legends_map = $this->Legend->find('all', [
-			'conditions' => ['enabled' => 1],
-			'order' => ['Legend.dues ASC']
-		]);*/
+		$q = (string) $this->request->query['q'];
 
-		$q = $this->request->query['q'];
+		if(strlen($q) > 30) { // query string too large, desist
+			$this->set('q', "");
+			$this->set('results', array());
+			return $this->render('buscar');
+		}
+
 		$p = $this->request->query['p'] ? intval($this->request->data['p']) : 0;
 		$s = $this->request->query['s'] ? intval($this->request->data['s']) : 10;
-		\d("search", $q);
+		//\d("search", $q);
 		//$query = $this->Product->query("SELECT count(*)  as count FROM products WHERE products.name LIKE '%$q%' OR products.desc LIKE '%$q%'")[0];
 		$ors = array();
 		$q = trim($q);
@@ -865,8 +866,10 @@ class ShopController extends AppController {
 				// 'offset' => $s * $p
 			]);
 
-			$results = array_merge($results1, $results2);
-			//\d("results",$results);
+			//\d("results1",array_reverse($results1));
+			//\d("results2",$results2);
+
+			$results = array_merge(array_reverse($results1), $results2);
 
 			foreach ($results as &$item) {
 				if (!empty($item['Product']['discount'])) {

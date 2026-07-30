@@ -22,7 +22,7 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
         </h1>
         <h3>Establecer productos de <span class="category_name"></span> con descuento por pago por transferencia </h3>
         <div class="form-group">
-          <input class="form-control" type="number" id="discount" value=""/>
+          <input class="form-control" type="number" id="discount" value="" style="max-width: 8rem;" />
           <label for="mark_all">
             Descuento (%)
           </label>

@@ -3046,6 +3046,7 @@ background-color: #fff;
 /* Forms */
 
 .form-control {
+	flex: 1;
   font-size: 14px;
   height: 40px;
 }
