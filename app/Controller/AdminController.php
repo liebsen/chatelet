@@ -1931,13 +1931,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
         	if(!empty($sizes)) {
         		foreach($sizes as $i => $code) {
-        			$saved = $this->CategorySize->save(
+
+        			$size_option = 
         				array(
+        					'id' => null,
         					'category_id' => $data['id'],
         					'code' => $code,
         					'name' => $data['sizes']['name'][$j],
-        				)
-        			); $j++;
+        				);
+
+        				#\d("size_option",$size_option);
+        			$saved = $this->CategorySize->save($size_option); $j++;
 
         			array_push($size_updates, array(
         				'code' => $code,
