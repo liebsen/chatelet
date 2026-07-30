@@ -20,17 +20,17 @@
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="active text-center">
             <a href="#main">
-              Datos básicos
+              <i class="fa fa-edit rounded-icon"></i> <span class="ml-2">Datos básicos</span>
             </a>
           </li>
           <li class="text-center">
             <a href="#condiciones">
-              Condiciones
+              <i class="fa fa-question-circle rounded-icon"></i> <span class="ml-2">Condiciones</span>
             </a>
           </li>
           <li class="text-center">
             <a href="#avanzado">
-              Avanzado
+              <i class="fa fa-cog rounded-icon"></i> <span class="ml-2">Configuración</span>
             </a>
           </li>
         </ul>

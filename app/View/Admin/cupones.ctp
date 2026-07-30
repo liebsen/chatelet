@@ -22,7 +22,7 @@
 			<?php foreach ($coupons as $key => $coupon): ?> 
 				<tr>
 					<td>
-						<?=$coupon['Coupon']['code']?>
+						<span class="badge badge-coupon"><i class="fa fa-ticket"></i> <?=$coupon['Coupon']['code']?></span>
 					</td>
 					<td>
 						<?=$coupon['Coupon']['discount']?><?=$coupon['Coupon']['coupon_type'] === 'percentage' ? '%': 'ARS'?>

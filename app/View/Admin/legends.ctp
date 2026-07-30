@@ -9,7 +9,6 @@
 		<thead>
 			<tr>
 				<th class="hidden-phone hidden-tablet">&nbsp;</th>
-				<th class="hidden-phone hidden-tablet"><?php echo __('Leyenda'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Cuotas'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Interés'); ?></th>
 				<th class="hidden-phone hidden-tablet"><?php echo __('Monto min'); ?></th>
@@ -23,19 +22,10 @@
 						<?=$legend['Legend']['enabled'] ? '<i class="gi gi-circle_ok fa-lg text-success"></i>' : '<i class="gi gi-circle_remove fa-lg text-danger"></i>'?>
 					</td>
 					<td>
-						<a href="<?=$this->Html->url(array('action'=>'legends','edit',$legend['Legend']['id']))?>">
-							<?=$legend['Legend']['title']?>
-						</a>
-					</td>
-					<td>
-						<a href="<?=$this->Html->url(array('action'=>'legends','edit',$legend['Legend']['id']))?>">
 							<?=$legend['Legend']['dues']?>
-						</a>
 					</td>
 					<td>
-						<a href="<?=$this->Html->url(array('action'=>'legends','edit',$legend['Legend']['id']))?>">
 							<?=$legend['Legend']['interest']?>%
-						</a>
 					</td>
 					<td>
 						<a href="<?=$this->Html->url(array('action'=>'legends','edit',$legend['Legend']['id']))?>">

@@ -1931,7 +1931,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
         	if(!empty($sizes)) {
         		foreach($sizes as $i => $code) {
-
         			$size_option = 
         				array(
         					'id' => null,
@@ -1983,6 +1982,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    			'conditions' => array('category_id' => $this->request->pass[1]),
 	    			'order' => ['CategorySize.code ASC']
 	    		));	
+
+	    		$navs = array();
     			$navs[$cat['Category']['name']] = array(
 						'icon' 		=> 'gi gi-edit',
 						'url'		=> '/admin/categorias/edit/'.$cat['Category']['id'],
@@ -2564,6 +2565,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$prod = $this->Product->find('first', array('conditions' => array('id' => $this->request->pass[1])));
 	    		$this->set('prod', $prod);
 
+	    		$navs = array();
     			$navs[$prod['Product']['name']] = array(
 						'icon' 		=> 'gi gi-edit',
 						'url'		=> '/admin/productos/edit/'.$cat['Product']['id'],
@@ -3557,6 +3559,7 @@ ORDER BY u.id DESC;';
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$item = $this->Banner->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    		$navs = array();
     			$navs[$item['Banner']['text']] = array(
 						'icon' 		=> 'gi gi-edit',
 						'url'		=> '/admin/banners/edit/'.$item['Banner']['id'],
@@ -3670,6 +3673,7 @@ ORDER BY u.id DESC;';
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$item = $this->Legend->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    		$navs = array();
     			$navs[$item['Legend']['title']] = array(
 						'icon' 		=> 'gi gi-edit',
 						'url'		=> '/admin/legends/edit/'.$item['Legend']['id'],
@@ -3682,7 +3686,7 @@ ORDER BY u.id DESC;';
     		}
     		break;
     }
-	  $legends = $this->Legend->find('all',['order' => ['Legend.ordernum ASC']]);
+	  $legends = $this->Legend->find('all',['order' => ['Legend.dues ASC']]);
 		$this->set('legends', $legends);
 	  $this->render('legends');
 	}	
@@ -3808,6 +3812,7 @@ ORDER BY u.id DESC;';
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$item = $this->Menu->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    		$navs = array();
     			$navs[$item['Menu']['title']] = array(
 						'icon' 		=> 'gi gi-edit',
 						'url'		=> '/admin/menu/edit/'.$item['Menu']['id'],
@@ -4186,6 +4191,7 @@ ORDER BY u.id DESC;';
 						'icon' => 'gi gi-truck'
 					];
 					$this->set('h1', $h1);  
+					$navs = array();
     			$navs[$logistic['Logistic']['title']] = array(
 						'icon' 		=> 'gi gi-edit',
 						'url'		=> '/admin/logistica/edit/'.$logistic['Logistic']['id'],
@@ -4421,6 +4427,7 @@ ORDER BY u.id DESC;';
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$usuario = $this->User->find('first', array('conditions' => array('id' => $this->request->pass[1])));
+	    		$navs = array();
     			$navs[$usuario['User']['name'].' '.$usuario['User']['surname']] = array(
 						'icon' 		=> 'gi gi-user',
 						'url'		=> '/admin/usuarios/edit/'.$usuario['User']['id'],
