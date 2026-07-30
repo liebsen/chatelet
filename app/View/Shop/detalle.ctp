@@ -175,7 +175,7 @@ echo $this->Session->flash();
                               } else {
                                 // echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
                               }
-                              echo "<small class='color-option text-bolder'>".$color['alias']."</small>";
+                              echo "<small class='color-option color-text text-bolder'>".$color['alias']."</small>";
                               echo '</label>';
                           }
                       ?>
@@ -187,14 +187,14 @@ echo $this->Session->flash();
                           foreach ($sizes as $i => $size) {
                             echo '<label class="btn btn-option">';
                             echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
-                            echo "<small class='size-option text-bolder'>".ucfirst($size['label'])."</small>";
+                            echo "<small class='color-text text-bolder'>".ucfirst($size['label'])."</small>";
                             echo '</label>';
                               // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
                           }
                       ?>                    
                     </div>
                   </div>
-                  <p class="marginTop stock-block">
+                  <p class="pt-3 stock-block">
                     <span class="text-muted">Stock</span>
                     <span id="stock_container">
                       <span class="text-warning">(Elegí color y talle)</span>

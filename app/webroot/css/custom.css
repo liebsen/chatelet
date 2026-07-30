@@ -1211,15 +1211,16 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 .color-options {
+	grid-gap: 0.25rem;
   overflow-x: auto;
 }
 
 .size-options {
-  padding-top: 1rem;
+  padding-left: 0.8rem;
 }
 
 .size-options .btn {
-  padding: 0.15rem 1rem;
+  padding: 0.15rem;
   font-size: 1.5rem;
 }
 
@@ -1254,15 +1255,16 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 */
 
-#main .caract label.btn .color-option {
-  border-bottom: 3px solid;
-  font-size: 0.8rem;
+#main .caract label.btn .color-text {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 3px solid;
+  font-size: 1rem;
   padding: 8px;
   line-height: 1;
 }
+
 #main .caract label.btn .size-option {
   border-bottom: 3px solid;
   font-size: 1.25rem!important;
