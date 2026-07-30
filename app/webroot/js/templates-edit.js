@@ -74,8 +74,9 @@ $(document).ready(function() {
 
   if(window.location.hash.includes('editor')){
     setTimeout(function(){
-      CKEDITOR.instances.newsletter.execCommand('maximize');  
-    }, 100)    
+      //CKEDITOR.instances.newsletter.execCommand('maximize');  
+      $('.btn-templates-editor').click()
+    }, 500)
   }
 
 	CKEDITOR.instances.newsletter.on('mode', function() {

@@ -1983,7 +1983,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 						'icon' 		=> 'gi gi-edit',
 						'url'		=> '/admin/categorias/edit/'.$cat['Category']['id'],
 					);
-
+    			\d("navs",$navs);
 					$this->set('navs', $navs);
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
@@ -1995,7 +1995,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     }
 
     // default view
-	  $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
+	  $cats = $this->Category->find('all',[
+	  	'order' => ['Category.ordernum ASC']
+	  ]);
+
 		$this->set('cats', $cats);
 	  $this->render('categorias');
 	}

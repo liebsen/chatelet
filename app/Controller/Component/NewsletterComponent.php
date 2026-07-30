@@ -139,8 +139,17 @@ class NewsletterComponent extends Component {
               'type' => 'LEFT',
               'conditions' => array( 'User.id = Newsletter.user_id' )
             ),
+				  	array(
+			        'table' => 'coupons',
+			        'alias' => 'Coupon',
+			        'type' => 'LEFT',
+			        'conditions' => [
+			          'Newsletter.coupon_id IS NOT NULL',
+			          'Newsletter.coupon_id = Coupon.id',
+			        ]
+				  	)
           ),          
-          'fields' => array('Newsletter.id, Newsletter.title,Newsletter.body,Newsletter.send_email, Newsletter.send_push, Newsletter.created, Newsletter.modified, Newsletter.enabled, User.id, User.email, User.name, User.surname'),
+          'fields' => array('Newsletter.id, Newsletter.title,Newsletter.body,Newsletter.send_email, Newsletter.send_push, Newsletter.created, Newsletter.modified, Newsletter.enabled, User.id, User.email, User.name, User.surname, Coupon.id, Coupon.code, Coupon.info, Coupon.date_from, Coupon.date_until'),
           'conditions' => $conditions,
           'order' => array( 'Newsletter.modified DESC' )
         )

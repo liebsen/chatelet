@@ -2132,9 +2132,6 @@ pre, code {
   }
 }
 
-.btn-delete-size {
-	color: purple!important;
-}
 .secondary-box > a.secondary-success {
 	background-color: mediumspringgreen;
   border-color: green;
@@ -2398,6 +2395,10 @@ small, .small {
   font-weight: 800;
   min-width: 3rem;
   height: 3rem;
+}
+
+.badge-coupon {
+	border-radius: 3rem;
 }
 
 .label-danger,
@@ -2846,9 +2847,8 @@ header.navbar .navbar-brand {
 
 .rounded-icon {
   background-color: rgba(60,60,60,0.1);
-  border: 1px solid rgba(200,200,200,0.25);
-  width: 20px!important;
-  height: 20px!important;
+  width: 24px!important;
+  height: 24px!important;
   border-radius: 100%;
 }
 /* Panel */
@@ -3636,7 +3636,6 @@ a.thumbnail-borderless,
 
 .form-actions .btn {
   text-transform: uppercase;
-  font-weight: 800;
   line-height: 1.8;
   min-height: 40px;
 }
@@ -3813,7 +3812,7 @@ transition: all 0.25s ease;
 	}
   .form-box {
       padding: 0 1rem;
-      padding-bottom: 0.5rem;
+      padding-bottom: 1rem;
       margin: 0;
       margin-bottom: 1rem;
       border: 1px solid #e7e7e7;

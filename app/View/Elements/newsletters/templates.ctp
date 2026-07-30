@@ -30,18 +30,25 @@
 <?php else: ?>
 	<span class="badge badge-info text-lowercase"><?=strstr($newsletter['User']['email'],'@',true)?></span>
 <?php endif ?>
-
+					<div class="d-flex gap-05">
 						<span class="badge badge-<?=$newsletter['Newsletter']['send_email'] == '1' ? 'success' : 'light'?>">
 							<i class="gi gi-envelope"></i>
 						</span>
 						<span class="badge badge-<?=$newsletter['Newsletter']['send_push'] == '1' ? 'success' : 'light'?>">
 							<i class="gi gi-chat"></i>
 						</span>
-
+					</div>
+					<div class="d-flex gap-05">
 						<span>
-							<i class="gi gi-shirt fa-lg"></i>
-							<span class="badge badge-success is-rounded"><?=count($newsletter['NewsletterProduct'])?></span>
+							<span class="badge badge-success is-rounded"><i class="gi gi-shirt"></i> <?=count($newsletter['NewsletterProduct'])?></span>
 						</span>
+<?php if(!empty($newsletter['Coupon']['code'])):?>
+							<a 
+							href="<?=$this->Html->url(array('action'=>'cupones', 'edit', $newsletter['Coupon']['id']))?>" title="<?= $newsletter['Coupon']['info']?>. Válido desde <?= $newsletter['Coupon']['date_from']?> hasta <?= $newsletter['Coupon']['date_until']?>">
+								<span class="badge badge-warning badge-coupon"><i class="fa fa-ticket"></i> <?= $newsletter['Coupon']['code']?></span>
+							</a>
+<?php endif ?>
+						</div>
 					</div>
 					<div class="d-flex flex-column flex-center flex-nowrap gap-05">     
 						<a 
@@ -120,7 +127,7 @@
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Nombre'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Autor'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Método'); ?></th>
-	     		<th class="hidden-phone hidden-tablet"><?php echo __('Catálogo'); ?></th>
+	     		<th class="hidden-phone hidden-tablet"><?php echo __('Datos'); ?></th>
 	     		<th class="hidden-phone hidden-tablet"><?php echo __('Modificado'); ?></th>
 					<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 				</tr>
@@ -159,7 +166,13 @@
 						</span>
 					</td>
 					<td>
-						<span class="badge badge-<?=count($newsletter['NewsletterProduct']) ? 'success' : 'light'?> is-rounded"><?=count($newsletter['NewsletterProduct']) ? count($newsletter['NewsletterProduct']) : 'Estático'?></span>
+						<span class="badge badge-<?=count($newsletter['NewsletterProduct']) ? 'success' : 'light'?> is-rounded"><i class="gi gi-shirt"></i> <?=count($newsletter['NewsletterProduct']) ? count($newsletter['NewsletterProduct']) : 'Estático'?></span>
+						<?php if(!empty($newsletter['Coupon']['code'])):?>
+							<a 
+							href="<?=$this->Html->url(array('action'=>'cupones', 'edit', $newsletter['Coupon']['id']))?>" title="<?= $newsletter['Coupon']['info']?>. Válido desde <?= $newsletter['Coupon']['date_from']?> hasta <?= $newsletter['Coupon']['date_until']?>">
+								<span class="badge badge-warning badge-coupon"><i class="fa fa-ticket"></i> <?= $newsletter['Coupon']['code']?></span>
+							</a>
+						<?php endif ?>						
 					</td>
 					<td data-order="<?=strtotime($newsletter['Newsletter']['modified'])?>">
 						<span class="badge text-capitalize" title="<?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?>"><?=\readable_time_ago($newsletter['Newsletter']['modified']) ?></span>
