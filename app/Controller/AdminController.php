@@ -1983,7 +1983,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 						'icon' 		=> 'gi gi-edit',
 						'url'		=> '/admin/categorias/edit/'.$cat['Category']['id'],
 					);
-    			\d("navs",$navs);
+    			#\d("navs",$navs);
 					$this->set('navs', $navs);
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
