@@ -7,7 +7,7 @@ let searchInt = 0
 let searchPageSize = 12
 let searchPage = 0
 let focusAnim = 'animation-pulse'
-let timeout = 0
+let scroll_timeout = 0
 let fakeshown = 0 
 var toggleInterval = 0
 const log = false
@@ -609,11 +609,11 @@ $(document).ready(function() {
 
   $(window).scroll(function(e) {
 
-    if(timeout) {
-      clearInterval(timeout)
+    if(scroll_timeout) {
+      clearInterval(scroll_timeout)
     }
 
-    timeout = setTimeout(() => {
+    scroll_timeout = setTimeout(() => {
       const scrolltop = $(window).scrollTop()
       const scrollBottom = $(document).height()
       const video = $("#carousel .item.active").find("video")
