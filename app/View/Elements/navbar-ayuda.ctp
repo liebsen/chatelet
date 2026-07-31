@@ -45,17 +45,17 @@
 
   #optionsHelp > a { 
     display: inline-block; 
-    padding: 0.25rem 0.5rem;
+    padding: 0.35rem 0.75rem;
     font-weight: 300;
     text-transform: uppercase;
     transition: all 1s ease-in-out;
   }
 
   #optionsHelp > a.active {
-  border-bottom: 5px solid hotpink;
-  border-radius: 10px;
-  font-weight: 700;
-  color: hotpink;    
+	  border-bottom: 5px solid hotpink;
+	  border-radius: 10px;
+	  font-weight: 700;
+	  color: hotpink;    
   }
   #optionsHelp.mobile > a.active {
     position: relative;
