@@ -7,20 +7,15 @@
 			<tr>
      		<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>
      		<th class="hidden-phone hidden-tablet"><?php echo __('Producto'); ?></th>
-     		<th class="hidden-phone hidden-tablet"><?php echo __('Audiencia'); ?></th>
+     		<th class="hidden-phone hidden-tablet"><?php echo __('Ventas'); ?></th>
 			</tr>
 		</thead>
 		<tbody>
 <?php $j=0; foreach ($items as $key => $item): $j++; ?>
-			<tr class="bg-<?=$item['rowclass']?> schedules-<?=$item['Product']['id']?>">
+			<tr>
 				<td><?=$j?></td>
 				<td>
-					<a 
-						href="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'edit', $item['Product']['id']))?>" 
-						data-toggle="tooltip" 
-						title="Ver detalles de campaña">
-							<?=$item['Product']['name']?>
-					</a>
+					<?=$item['Product']['name'];?> (<?=$item['Product']['id']?>)
 				</td>
 				<td>
 					<span class="badge badge-success is-rounded">

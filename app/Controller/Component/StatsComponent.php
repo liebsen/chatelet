@@ -111,12 +111,13 @@ class StatsComponent extends Component {
           )
         ),
         'conditions' => array(
-        	'Stat.user_id IS NOT NULL',
-          'Stat.user_id > 1',
-          'Stat.product_id IS NOT NULL',
-          'Stat.product_id > 1',
+        	"Stat.tag" => "page-view",
+        	"Stat.created > '2026-05-01'",
+        	"Stat.created <= '2026-06-01'",
+          'Product.id IS NOT NULL',
+          'Product.id > 1',
         ),
-        'fields' => array('Product.name, Product.desc, Product.article,Stat.user_id,COUNT(*) AS ProdCount'),
+        'fields' => array('Product.id,Product.name, Product.desc, Product.article,Stat.user_id,COUNT(*) AS ProdCount'),
         'order' => array('ProdCount DESC'),
         'group' => array('Stat.product_id'),
         'limit' => 50,
@@ -130,19 +131,31 @@ class StatsComponent extends Component {
       array(
         'joins' => array(
           array(
+            'table' => 'sales',
+            'alias' => 'Sale',
+            'type' => 'LEFT',
+            'conditions' => array(
+              'SaleProduct.sale_id = Sale.id'
+            )
+          ),
+          array(
             'table' => 'products',
             'alias' => 'Product',
             'type' => 'LEFT',
             'conditions' => array(
-              'Product.id = SaleProduct.product_id'
+              'SaleProduct.product_id = Product.id'
             )
           )
         ),
         'conditions' => array(
-          'SaleProduct.product_id IS NOT NULL',
-          'SaleProduct.product_id > 1',
+        	"Sale.created > '2026-05-01'",
+        	"Sale.created <= '2026-06-01'",
+          'Product.id IS NOT NULL',
+          'Product.id > 1',
+          #'SaleProduct.product_id IS NOT NULL',
+          #'SaleProduct.product_id > 1',
         ),
-        'fields' => array('Product.name, Product.desc, Product.article, COUNT(*) AS ProdCount'),
+        'fields' => array('Product.id, Product.name, SaleProduct.product_id, SaleProduct.description, COUNT(*) AS ProdCount'),
         'order' => array('ProdCount DESC'),
         'group' => array('SaleProduct.product_id'),
         'limit' => 50,
