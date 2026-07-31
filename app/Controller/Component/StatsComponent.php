@@ -7,6 +7,7 @@ App::uses(
   'Session', 
   'Stat', 
   'Sale',
+  'SaleProduct',
   'User',
   'Product',
 );
@@ -105,41 +106,46 @@ class StatsComponent extends Component {
             'alias' => 'Product',
             'type' => 'LEFT',
             'conditions' => array(
-              'Product.id IS NOT NULL'
+              'Product.id = Stat.product_id'
             )
           )
         ),
         'conditions' => array(
+        	'Stat.user_id IS NOT NULL',
           'Stat.user_id > 1',
+          'Stat.product_id IS NOT NULL',
           'Stat.product_id > 1',
         ),
-        'fields' => array('Product.name, Product.desc, Product.article', 'Stat.*'),
-        'order' => array('Stat.id DESC'),
-        'limit' => 500,
+        'fields' => array('Product.name, Product.desc, Product.article,Stat.user_id,COUNT(*) AS ProdCount'),
+        'order' => array('ProdCount DESC'),
+        'group' => array('Stat.product_id'),
+        'limit' => 50,
       )
     ));
   }
 
   public function sales() {
-    $Stat = ClassRegistry::init('Stat');
-    $this->controller->set('items', $Stat->find('all',
+    $SaleProduct = ClassRegistry::init('SaleProduct');
+    $this->controller->set('items', $SaleProduct->find('all',
       array(
         'joins' => array(
           array(
-            'table' => 'users',
-            'alias' => 'User',
+            'table' => 'products',
+            'alias' => 'Product',
             'type' => 'LEFT',
             'conditions' => array(
-              'User.id = Stat.user_id',
+              'Product.id = SaleProduct.product_id'
             )
           )
         ),
         'conditions' => array(
-          'Stat.user_id > 0',
+          'SaleProduct.product_id IS NOT NULL',
+          'SaleProduct.product_id > 1',
         ),
-        'fields' => array('User.name, User.surname, User.birthday', 'Stat.*'),
-        'order' => array('Stat.id DESC'),
-        'limit' => 500,
+        'fields' => array('Product.name, Product.desc, Product.article, COUNT(*) AS ProdCount'),
+        'order' => array('ProdCount DESC'),
+        'group' => array('SaleProduct.product_id'),
+        'limit' => 50,
       )
     ));
   }

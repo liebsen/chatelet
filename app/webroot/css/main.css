@@ -517,7 +517,8 @@ background-color: #e8ffa8!important;
 
 #primary-nav > ul > li > a .fa {
 	position: relative;
-	font-size: 1.4rem;
+	top: 3px;
+	font-size: 1.5rem;
 }
 
 #primary-nav li a:focus {

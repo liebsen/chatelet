@@ -34,6 +34,15 @@ $(document).ready(function() {
     }
   });
 
+  $('#prods-datatables').DataTable({
+    "ordering": true,
+    "stateSave": true,
+    "order": [[ 2, "desc" ]],
+    "language": {
+      "url": "/json/datatables-locale-es.json"
+    }
+  });
+
   $('#example-datatables').DataTable({
     "ordering": true,
     "stateSave": true,
