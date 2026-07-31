@@ -382,15 +382,18 @@ if (!empty($alt_product['bank_discount']) && $alt_product['bank_discount'] > $nu
     </div>
 </div><!-- /.modal -->
 <style>
-.verifying-stock {
-    position: absolute;
-    text-align:center;
-    width: 100%;
-    z-index:1000;
-    font-size: 13px;padding:8px;
-    background: rgba(255,255,255,0.5);
-    color: #999;
-}
+	#main .price_strong {
+		font-size: 1.5rem;
+	}
+	.verifying-stock {
+	  position: absolute;
+	  text-align:center;
+	  width: 100%;
+	  z-index:1000;
+	  font-size: 13px;padding:8px;
+	  background: rgba(255,255,255,0.5);
+	  color: #999;
+	}
 </style>
 <style>
 div.cloudzoom-black {

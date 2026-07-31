@@ -458,7 +458,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
     color: #404040;  
     padding: 0;
     width: 32px;
-		min-width: 2.5rem;    
+		min-width: 2.8rem;    
     font-size: 0.9rem;
     text-align: center;
     background-color: transparent;
@@ -562,10 +562,9 @@ body.top-fixed .shop-options {
 .shop-options ul li { margin-bottom: 0.25rem; }
 .shop-options ul li a {
   color: #363633;
-	padding: 0.35rem 0.75rem;
   text-transform: uppercase;
   font-weight: 300;
-  line-height: 1.75;
+  line-height: 1.5;
   display: contents;
 }
 .shop-options ul li a.active {
@@ -1061,7 +1060,6 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 #productOptions { padding: 1.75rem 0; }
 #productOptions nav li { border-bottom: 1px solid rgba(194, 194, 194, 0.27); padding: 1rem; }
 #productOptions nav li a { 
-  padding: 0.5rem 0.75rem;
   line-height: 1.75; 
   text-transform: uppercase; 
   transition: all .3s ease-in-out; 
@@ -1096,7 +1094,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 	justify-content: flex-start;
 	align-items: flex-start;
   padding-top: 0.5rem;
-  min-height: 20px;
+  min-height: 30px;
 }
 
 .product-badge {
