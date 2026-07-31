@@ -52,14 +52,10 @@
   }
 
   #optionsHelp > a.active {
- 	border-bottom: 5px solid transparent;
+  border-bottom: 5px solid hotpink;
   border-radius: 10px;
-  background: 
-    linear-gradient(white, white) padding-box,
-    linear-gradient(to right, hotpink, transparent) border-box;
-    color: #e10d74;
-    font-weight: 800;
-    color: hotpink;    
+  font-weight: 700;
+  color: hotpink;    
   }
   #optionsHelp.mobile > a.active {
     position: relative;
