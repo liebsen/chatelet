@@ -371,8 +371,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav > li > a {
   border-bottom: 2px solid transparent;
   font-weight: 300;
-  padding: 0.05rem;
-  margin: 0 0.5rem;
+  padding: 0.25rem 0.5rem;
   text-transform: uppercase;
   transition: all .3s ease-in-out; 
   white-space: nowrap;
@@ -384,7 +383,11 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .navbar-nav > li > a.active {
-  border-bottom: 2px solid hotpink;
+ 	border-bottom: 5px solid transparent;
+  border-radius: 10px;
+  background: 
+    linear-gradient(white, white) padding-box,
+    linear-gradient(to right, hotpink, transparent) border-box;
   color: hotpink;
   font-weight: 700;
 }
@@ -458,7 +461,8 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
     color: #404040;  
     padding: 0;
     width: 32px;
-    font-size: 0.75rem;
+		min-width: 2.5rem;    
+    font-size: 0.9rem;
     text-align: center;
     background-color: transparent;
   }
@@ -606,7 +610,11 @@ body.top-fixed .shop-options {
   background-image: url(../images/chat-icon.svg);
 }
 
-footer { background: #ffd3db; overflow: hidden; padding: 5rem 0 0; }
+footer { 
+	background: #ffd3db; 
+	overflow: hidden; 
+	padding: 5rem 0 0; 
+}
 footer > .wrapper { 
   padding: 0.75rem; 
 }
@@ -636,15 +644,15 @@ footer h3 {
   margin-top: 2rem; 
 }
 footer h5:after { 
-	background: #ff8399; 
+	background: linear-gradient(45deg, #ff8399, transparent);	
 	content: ""; 
 	display: block; 
-	height: 3px;
+	height: 4px;
 	border-radius: 0; 
 	margin-top: 10px; 
 	margin-right: auto;
 	margin-left: auto;
-	border-radius: 5px 
+	border-radius: 5px;
 }
 footer .options a, footer .options span { 
   font-weight: 300; 

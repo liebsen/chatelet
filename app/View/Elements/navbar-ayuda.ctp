@@ -45,16 +45,21 @@
 
   #optionsHelp > a { 
     display: inline-block; 
-    margin: 0 0.5rem;
-    padding: 0.05rem 0.25rem;
+    padding: 0.25rem 0.5rem;
     font-weight: 300;
     text-transform: uppercase;
     transition: all 1s ease-in-out;
   }
 
   #optionsHelp > a.active {
-    border-bottom: 2px solid #e10d74;
+ 	border-bottom: 5px solid transparent;
+  border-radius: 10px;
+  background: 
+    linear-gradient(white, white) padding-box,
+    linear-gradient(to right, hotpink, transparent) border-box;
     color: #e10d74;
+    font-weight: 800;
+    color: hotpink;    
   }
   #optionsHelp.mobile > a.active {
     position: relative;

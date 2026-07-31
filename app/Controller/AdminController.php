@@ -3929,16 +3929,16 @@ ORDER BY u.id DESC;';
 				'icon' 		=> 'gi gi-shopping_cart',
 				'url'		=> '/admin/stats/cart',
 			),
-			/*'Ventas' => array(
+			'Ventas' => array(
 				'id' => 'sales',
 				'icon' 		=> 'gi gi-money',
 				'url'		=> '/admin/stats/sales',
 			),
 			'Productos' => array(
 				'id' => 'products',
-				'icon' 		=> 'gi gi-dress',
+				'icon' 		=> 'gi gi-shirt',
 				'url'		=> '/admin/stats/items',
-			),*/
+			),
 			'Sesión' => array(
 				'id' => 'session',
 				'icon' 		=> 'gi gi-log_book',
