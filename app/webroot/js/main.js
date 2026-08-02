@@ -21,6 +21,51 @@ function insertAtCursor(el, text) {
   el.focus();
 }
 
+function formatNumber (float) {
+  if (typeof float === 'string') {
+    return float
+  }
+
+  return number_format(float, 2, ',', '.').replace(',00','')
+}
+
+
+function number_format(number, decimals, dec_point, thousands_point) { 
+  /*if (number == null || !isFinite(number)) {
+    throw new TypeError("number is not valid: " + number);
+  }*/
+
+
+  try {
+    if (!decimals) {
+      var len = number.toString().split('.').length;
+      decimals = len > 1 ? len : 0;
+    }
+
+    if (!dec_point) {
+      dec_point = '.';
+    }
+
+    if (!thousands_point) {
+      thousands_point = ',';
+    }
+
+    number = parseFloat(number).toFixed(decimals);
+    number = number.replace(".", dec_point);
+    var splitNum = number.split(dec_point);
+    splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
+    number = splitNum.join(dec_point);
+
+    return number;
+  } catch(e) {
+    console.log('Error:' . e);
+  }
+}
+
+function strtoFloat(text) { 
+  return parseFloat(parseFloat(text.replace('.', '').replace('$', '')).toFixed(2))
+}
+
 function show_done(){
   document.querySelector('.draggable-saved').classList.add('lever')
   setTimeout(() => {

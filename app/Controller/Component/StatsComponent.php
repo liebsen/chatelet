@@ -96,7 +96,10 @@ class StatsComponent extends Component {
     ));
   }
 
-  public function items() {
+  public function items($query) {
+  	$date_min = $query['date_min'] ?? date("Y-m-d H:i", strtotime("last day of previous month"));
+  	$date_max = $query['date_max'] ?? date("Y-m-d H:i", strtotime("today"));
+
     $Stat = ClassRegistry::init('Stat');
     $this->controller->set('items', $Stat->find('all',
       array(
@@ -112,8 +115,8 @@ class StatsComponent extends Component {
         ),
         'conditions' => array(
         	"Stat.tag" => "page-view",
-        	"Stat.created > '2026-05-01'",
-        	"Stat.created <= '2026-06-01'",
+        	"Stat.created > '{$date_min}'",
+        	"Stat.created <= '{$date_max}'",
           'Product.id IS NOT NULL',
           'Product.id > 1',
         ),
@@ -125,8 +128,13 @@ class StatsComponent extends Component {
     ));
   }
 
-  public function sales() {
+  public function sales($query) {
+  	$date_min = $query['date_min'] ?? date("Y-m-d H:i", strtotime("last day of previous month"));
+  	$date_max = $query['date_max'] ?? date("Y-m-d H:i", strtotime("today"));
     $SaleProduct = ClassRegistry::init('SaleProduct');
+    $this->controller->set('date_min', $date_min);
+    $this->controller->set('date_max', $date_max);
+    $this->controller->set('query', $query);
     $this->controller->set('items', $SaleProduct->find('all',
       array(
         'joins' => array(
@@ -148,8 +156,8 @@ class StatsComponent extends Component {
           )
         ),
         'conditions' => array(
-        	"Sale.created > '2026-05-01'",
-        	"Sale.created <= '2026-06-01'",
+        	"Sale.created > '{$date_min}'",
+        	"Sale.created <= '{$date_max}'",
           'Product.id IS NOT NULL',
           'Product.id > 1',
           #'SaleProduct.product_id IS NOT NULL',

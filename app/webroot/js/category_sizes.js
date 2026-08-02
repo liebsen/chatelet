@@ -12,7 +12,6 @@ function category_sizes_update(data) {
 
 $(document).on('click', '.btn-remove-size', function(e) {
 	e.preventDefault()
-	console.log('btn-remove-size')
 	const target = $(e.target).hasClass('btn-remove-size') ? $(e.target) : $(e.target).parent()
 	$(target).parent().remove()
 })

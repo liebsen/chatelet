@@ -3905,7 +3905,6 @@ ORDER BY u.id DESC;';
 		}		
 	}
 
-
 	public function stats($section = 'index') {
 		$pane = $this->params['pass'][0] ?? $section;
 		$action = $this->params['pass'][1] ?? '';
@@ -3952,7 +3951,7 @@ ORDER BY u.id DESC;';
 		$this->set('navs', $navs);
 
 		if(method_exists($this->Stats, $controlComponent)) {
-			return $this->Stats->{$controlComponent}($id);
+			return $this->Stats->{$controlComponent}($this->request->query);
 		}
 	}
 
