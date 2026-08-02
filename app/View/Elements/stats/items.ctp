@@ -30,8 +30,8 @@
 		</tbody>
 	</table>
 	<div class="form-actions">
-	  <a class="btn btn-success dropdown-toggle" href="#" onclick="$('.filter-sales').submit()">
-	    <i class="gi gi-filter"></i> <span class="ml-1">Aplilcar filtro</span>
+	  <a class="btn btn-success filters-apply" href="#">
+	    <i class="gi gi-filter"></i> <span class="ml-1">Aplicar filtro</span>
 	  </a>
 	</div>
 	

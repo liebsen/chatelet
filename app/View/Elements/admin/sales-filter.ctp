@@ -15,11 +15,11 @@
         <input type="text" name="date_max" data-format="yyyy-mm-dd" class="form-control datepicker" placeholder="Fecha máxima" value="<?=$query['date_max']??$date_max?>"  autocomplete="off" />
       </div>
     </div>
-    <!--div class="controls-group">
-      <label class="control-label" for="minSale">Mínimo de compra</label>
-      <span class="text-success">$ 
+    <div class="controls-group">
+      <label class="control-label min-date-text" for="minSale">...</label>
+      <!--span class="text-success">$ 
       	<span class="sale_min-value"><?=$query['sale_min']??'50000'?></span>
       </span>
-      <input type="range" class="advanced-filter" name="sale_min" step="10000" min="10000" max="1000000" value="<?=$query['sale_min']??'50000'?>">
-    </div-->
+      <input type="range" class="advanced-filter" name="sale_min" step="10000" min="10000" max="1000000" value="<?=$query['sale_min']??'50000'?>"-->
+    </div>
   </form>

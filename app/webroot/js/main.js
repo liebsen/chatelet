@@ -92,6 +92,31 @@ function slugify(input) {
   return slug;
 }
 
+function getDateDifference(start, end) {
+  if (start > end) [start, end] = [end, start];
+
+  let years = end.getFullYear() - start.getFullYear();
+  let months = end.getMonth() - start.getMonth();
+  let days = end.getDate() - start.getDate();
+
+  // Adjust for negative days by borrowing from months
+  if (days < 0) {
+    months--;
+    // Get days in the previous month of the end date
+    const prevMonth = new Date(end.getFullYear(), end.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+
+  // Adjust for negative months by borrowing from years
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  return { years, months, days };
+}
+
+
 function layerShow (layer) {
   const block = $(`.${layer}-layer`)
   if (block.hasClass('active')) {
