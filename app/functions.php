@@ -432,11 +432,11 @@ function parse_coupon($coupon, $cart_totals) {
 }
 
 function parse_medal($i) {
-	$medal = '<i class="fa fa-star text-warning"></i> ('.$i.')';
+	$medal = '<i class="fa fa-star text-warning"></i>';
 	if($i==1) $medal = '<i class="fa fa-trophy text-warning"></i>';
 	elseif($i==2) $medal = '<i class="fa fa-trophy text-warning"></i>';
 	elseif($i==3) $medal = '<i class="fa fa-trophy text-warning"></i>';
-	return (string) $medal;
+	return (string) $medal. ' ('.$i.')';
 }
 
 function parse_template($str, $data) {

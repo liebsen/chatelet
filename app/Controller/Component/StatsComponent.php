@@ -97,9 +97,10 @@ class StatsComponent extends Component {
   }
 
   public function items($query) {
-  	$date_min = $query['date_min'] ?? date("Y-m-d H:i", strtotime("last day of previous month"));
-  	$date_max = $query['date_max'] ?? date("Y-m-d H:i", strtotime("today"));
-
+  	$date_min = $query['date_min'] ?? date("Y-m-d", strtotime("last day of previous month"));
+  	$date_max = $query['date_max'] ?? date("Y-m-d", strtotime("today"));
+    $this->controller->set('date_min', $date_min);
+    $this->controller->set('date_max', $date_max);
     $Stat = ClassRegistry::init('Stat');
     $this->controller->set('items', $Stat->find('all',
       array(
@@ -129,8 +130,8 @@ class StatsComponent extends Component {
   }
 
   public function sales($query) {
-  	$date_min = $query['date_min'] ?? date("Y-m-d H:i", strtotime("last day of previous month"));
-  	$date_max = $query['date_max'] ?? date("Y-m-d H:i", strtotime("today"));
+  	$date_min = $query['date_min'] ?? date("Y-m-d", strtotime("last day of previous month"));
+  	$date_max = $query['date_max'] ?? date("Y-m-d", strtotime("today"));
     $SaleProduct = ClassRegistry::init('SaleProduct');
     $this->controller->set('date_min', $date_min);
     $this->controller->set('date_max', $date_max);
