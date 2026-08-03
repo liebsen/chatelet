@@ -9,7 +9,7 @@ function calcDateDifference (start, end) {
 		parts.push(diff.months + ' mes'+ (diff.months > 1 ? 'es' : '' ))
 	if(diff.days > 0)
 		parts.push(diff.days + ' día'+ (diff.days > 1 ? 's' : '' ))
-	$('.min-date-text').text(parts.join(','))
+	$('.min-date-text').text(parts.join(', '))
 }
 function showDateDifference (start, end) {
 	calcDateDifference(

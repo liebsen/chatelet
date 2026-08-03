@@ -131,7 +131,7 @@ class NewsletterController extends AppController {
         )
       ),
       'fields' => array(
-        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_text, Newsletter.show_social,Newsletter.show_header,Newsletter.show_cta, Newsletter.cta_text, Newsletter.cta_url, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday, User.telephone, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country, Coupon.code AS coupon_code, Coupon.info AS coupon_info, Coupon.date_from AS coupon_date_from, Coupon.date_until AS coupon_date_until'
+        'NewsletterScheduleItem.id, NewsletterScheduleItem.user_id, Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_text, Newsletter.show_social,Newsletter.show_header,Newsletter.show_cta, Newsletter.cta_text, Newsletter.cta_url, NewsletterList.name, NewsletterList.filter, Newsletter.send_email, Newsletter.send_push, User.name, User.surname, User.email, User.birthday, User.telephone, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country, Coupon.code AS coupon_code, Coupon.info AS coupon_info, Coupon.date_from AS coupon_from, Coupon.date_until AS coupon_until'
       ),
       'conditions' => array( 
         'NewsletterScheduleItem.id' => $id, 
@@ -301,7 +301,7 @@ class NewsletterController extends AppController {
 	        )	        
 	      ),
 	      'fields' => array(
-	        'Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_text, Newsletter.show_social, Newsletter.show_header,Newsletter.show_cta, Newsletter.cta_text, Newsletter.cta_url, Newsletter.send_email, Newsletter.send_push, NewsletterProduct.id, Product.id, Product.name, Product.desc, User.id, User.name, User.surname, User.email, User.telephone, User.birthday, User.address, User.dni, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country, Coupon.code AS coupon_code, Coupon.info AS coupon_info, Coupon.date_from AS coupon_date_from, Coupon.date_until AS coupon_date_until'
+	        'Newsletter.id, Newsletter.title, Newsletter.body, Newsletter.show_price, Newsletter.show_text, Newsletter.show_social, Newsletter.show_header,Newsletter.show_cta, Newsletter.cta_text, Newsletter.cta_url, Newsletter.send_email, Newsletter.send_push, NewsletterProduct.id, Product.id, Product.name, Product.desc, User.id, User.name, User.surname, User.email, User.telephone, User.birthday, User.address, User.dni, User.address, User.postal_address, User.neighborhood, User.city, User.province, User.country, Coupon.code AS coupon_code, Coupon.info AS coupon_info, Coupon.date_from AS coupon_from, Coupon.date_until AS coupon_until'
 	      ),
 	      'conditions' => array( 
 	        'Newsletter.id' => $id, 
