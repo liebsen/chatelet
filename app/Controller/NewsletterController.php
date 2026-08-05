@@ -101,15 +101,6 @@ class NewsletterController extends AppController {
             'NewsletterSchedule.newsletter_id = Newsletter.id',
             'Newsletter.id IS NOT NULL'
           ),
-		      'joins' => array(
-	          'table' => 'coupons',
-	          'alias' => 'Coupon',
-	          'type' => 'LEFT',
-	          'conditions' => array( 
-	            'Newsletter.coupon_id IS NOT NULL',
-	            'Newsletter.coupon_id = Coupon.id',
-	          )
-	        )
         ),
         array(
           'table' => 'newsletter_products',
@@ -127,6 +118,15 @@ class NewsletterController extends AppController {
           'conditions' => array( 
             'NewsletterScheduleItem.user_id = User.id',
             'User.id IS NOT NULL'
+          )
+        ),
+	      array(
+          'table' => 'coupons',
+          'alias' => 'Coupon',
+          'type' => 'LEFT',
+          'conditions' => array( 
+            'Newsletter.coupon_id IS NOT NULL',
+            'Newsletter.coupon_id = Coupon.id',
           )
         )
       ),
