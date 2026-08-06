@@ -41,9 +41,25 @@ $(document).ready(function() {
 })
 
 function setRelation(action, data, target, type, cb) {
-  if(confirm('Realmente deseas hacer esto?')) {
+  if(confirm('Por favor confirma para continuar')) {
+  	var formData = {}
+  	data.forEach(function(item,i) {
+  		console.log('a(4)', i, item)
+  		if(!formData.length) {
+  			for(var a in item) {
+  				if(a != 'id') {
+  					formData[a] = item[a]	
+  				}
+  			}
+  		}
+  		if(!formData.userIds) {
+  			formData.userIds = []
+  		}
+  		formData.userIds.push(item.id)
+  	})
+  	console.log("data(2)",formData)
     $.post('/admin/relation_' + action, {
-      data: data
+      data: formData
     }).success(function(res) {
       if (res.success) {
         $.growl.notice({
@@ -180,13 +196,18 @@ $(document).on('click', '.relations-add', function(e){
     target = e.target
     data.push(tData)
   } else {
+  	console.log('a(1)',$(`.${tData.type}-container > .label:not(.is-enabled)`).length)
     $(`.${tData.type}-container > .label:not(.is-enabled)`).each(function(i,e){
       data.push($(e).data())
     })
+
   }
   $('.growl-close').click()
   
   $(`.${tData.type}-container > .label`).removeClass('is-enabled')
+
+  console.log('a(2)',data.length)
+
   setRelation('add', data, target, tData.type, updateRelationCount)
 })
 
@@ -203,6 +224,7 @@ $(document).on('click', '.relations-remove', function(e){
       data.push($(e).data())
     })
   }
+  console.log("data(1)",data)
   setRelation('remove', data, target, tData.type, updateRelationCount)
 })
 

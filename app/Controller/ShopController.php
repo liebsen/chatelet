@@ -222,6 +222,7 @@ class ShopController extends AppController {
 		$this->loadModel('StockCount');
 		$this->loadModel('Product');
 		$all_stock = $this->SQL->general_stock();
+		$prod_saved = 0;
 		if (!empty($all_stock)){
 			foreach ($all_stock as $row){
 				$record = [];
@@ -263,9 +264,9 @@ class ShopController extends AppController {
 							);
 						}
 						echo "article_id updated: ".$article_id;
-						CakeLog::write('debug',"Detail(updated): ".json_encode($article_id));
+						$prod_saved++;
+						//CakeLog::write('debug',"Detail(updated): ".json_encode($article_id));
 					}
-					//
 					$exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
 					if (!empty($exists)){
 						$record['id'] = $exists['StockCount']['id'];
@@ -276,7 +277,7 @@ class ShopController extends AppController {
 					$record['cod_articulo'] = $row['cod_articulo'];
 					$record['stock'] = (int)$row['cantidad'];
 					//$record['desc'] = (string)$row['Descripcion'];
-					CakeLog::write('debug',"Saving: ".json_encode($record));
+					//CakeLog::write('debug',"Saving: ".json_encode($record));
 					$success = $this->StockCount->save($record);
 					if (!$success){
 						echo "\r\nFailed to save";
@@ -285,6 +286,7 @@ class ShopController extends AppController {
 				//	echo "\r\nArticle {$article_id} not needed";
 				}
 			}
+			CakeLog::write('debug',"die_general_stock(prod_saved): ".json_encode($prod_saved));
 		}else{
 			echo "\r\nGeneral stock response is empty.";
 		}

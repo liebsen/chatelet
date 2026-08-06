@@ -3072,7 +3072,7 @@ form .control-label:not(.switch-scale > span > label) {
 .input-group {
   margin-top: 1px;
   margin-bottom: 1px;
-  padding: 10px 12px;
+  min-height: 40px;
   border-radius: 0.5rem;
   transition: none;
   text-shadow: none;

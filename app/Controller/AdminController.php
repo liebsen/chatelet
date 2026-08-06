@@ -2737,6 +2737,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->RequestHandler->respondAs('application/json');
     if ($this->request->is('POST')) {
     	$data = $this->request->data;
+
+    	\d("data(count)",count($data));
     	if($data[0]['key'] == 'all') { // if list partition is on, then parentId will be especially treated 
     		$model = ClassRegistry::init($data[0]['model']);
 
@@ -2802,37 +2804,30 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		)
     		);
     	} else {
-	    	foreach($data as $i => $item) {
-		    	$model = ClassRegistry::init($item['model']);
 
-		    	$conditions = array(
-	    			$item['source'] . '_id' => $item['parentId'],
-	    			$item['type'] . '_id' => $item['id'],
-	    		);
 
-		    	$ids = $model->find('all', array(
-		    		'conditions' => $conditions, 
-		    		'fields' => ['id']
-		    	));
+  			//\d("data",$data['userIds']);
+  			$saves = array();
+	    	$model = ClassRegistry::init($data['model']);
 
-					$ids = array_map(function($e) use ($item) {
-						return $e[$item['model']]['id'];
-					},$ids);    
-
-					if(count($ids)) {	
-			    	$model->delete($ids);
-			    }
-
-			    $save = array(
-		      		'id' => null,
-		      		$item['type'] . '_id' => $item['id'],
-		      		$item['source'] . '_id' => $item['parentId'],
-		      	);
-
-		      $model->save(
-		      	$save
-		      );
+				if(count($data['userIds'])) {	
+		    	$model->delete($data['userIds']);
 		    }
+
+	    	foreach($data['userIds'] as $i => $userId) {
+	    		if(empty($userId)) {
+	    			continue;
+	    		}
+			    array_push($saves, 
+			    	array(
+		      		'id' => null,
+		      		$data['type'] . '_id' => $userId,
+		      		$data['source'] . '_id' => $data['parentId'],
+		      	)
+			    );
+		    }
+
+	      $model->saveAll($saves);
 		  }
       return json_encode(array(
       	'success' => true, 
@@ -2847,37 +2842,24 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
     if ($this->request->is('POST')) {
     	$data = $this->request->data;
-    	if($data[0]['key'] == 'all') {
-    		$model = ClassRegistry::init($data[0]['model']);
-    		// assume user for now
-    		$this->loadModel('User');
-    		$saves = array();
-    		// its all so truncate first
+		  $model = ClassRegistry::init($data['model']);
+    	//$this->loadModel('User');
+
+    	if($data['key'] == 'all') {
+    		\d("a(1)",array(
+	      		$data['source'] . '_id' => $data['parentId'],
+    			));
     		$model->deleteAll(
     			array(
-	      		#$data[0]['type'] . '_id' => $item['User']['id'],
-	      		$data[0]['source'] . '_id' => $data[0]['parentId'],
+	      		$data['source'] . '_id' => $data['parentId'],
     			),
     			false,
     			false
     		);
     	} else {
-	    	foreach($data as $i => $item) {
-		    	$model = ClassRegistry::init($item['model']);
-		    	$ids = $model->find('all',array(
-		    		'conditions' => array(
-		    			$item['type'] . '_id' => $item['id'],
-		    			$item['source'] . '_id' => $item['parentId'],
-		    		), 
-		    		'fields' => ['id']
-		    	));
-					$ids = array_map(function($e) use ($item) {
-						return $e[$item['model']]['id'];
-					},$ids);
-					if(count($ids)) {
-		    		$model->delete($ids);
-		    	}
-		    }
+				if(count($data['userIds'])) {
+	    		$model->delete($data['userIds']);
+	    	}
 		  }
       return json_encode(['success' => true]);
     }
