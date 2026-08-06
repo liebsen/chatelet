@@ -2804,9 +2804,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		)
     		);
     	} else {
-
-
-  			//\d("data",$data['userIds']);
   			$saves = array();
 	    	$model = ClassRegistry::init($data['model']);
 
@@ -2846,9 +2843,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     	//$this->loadModel('User');
 
     	if($data['key'] == 'all') {
-    		\d("a(1)",array(
-	      		$data['source'] . '_id' => $data['parentId'],
-    			));
     		$model->deleteAll(
     			array(
 	      		$data['source'] . '_id' => $data['parentId'],
@@ -2868,7 +2862,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	public function search_users() {
     $this->autoRender = false;
     $this->RequestHandler->respondAs('application/json');
-
     $this->loadModel('User');
 
     $q = $this->request->data['q'];

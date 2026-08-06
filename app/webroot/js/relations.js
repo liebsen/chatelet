@@ -41,23 +41,22 @@ $(document).ready(function() {
 })
 
 function setRelation(action, data, target, type, cb) {
-  if(confirm('Por favor confirma para continuar')) {
-  	var formData = {}
-  	data.forEach(function(item,i) {
-  		console.log('a(4)', i, item)
-  		if(!formData.length) {
-  			for(var a in item) {
-  				if(a != 'id') {
-  					formData[a] = item[a]	
-  				}
-  			}
-  		}
-  		if(!formData.userIds) {
-  			formData.userIds = []
-  		}
-  		formData.userIds.push(item.id)
-  	})
-  	console.log("data(2)",formData)
+	var formData = {}
+	data.forEach(function(item,i) {
+		if(!formData.length) {
+			for(var a in item) {
+				if(a != 'id') {
+					formData[a] = item[a]	
+				}
+			}
+		}
+		if(!formData.userIds) {
+			formData.userIds = []
+		}
+		formData.userIds.push(item.id)
+	})
+
+  if(confirm(`Por favor confirma para ${action == 'add' ? 'agregar' : 'eliminar'} ${formData.key == 'all' ? 'todos los registros' : formData.userIds.length + ' registro' + (formData.userIds.length > 1 ? 's' : '')}`)) {
     $.post('/admin/relation_' + action, {
       data: formData
     }).success(function(res) {

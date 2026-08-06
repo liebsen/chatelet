@@ -701,7 +701,7 @@ class NewsletterComponent extends Component {
             'User.id IS NOT NULL',
           ),
           'order' => array( 'NewsletterUser.user_id DESC' ),
-          'limit' => 500 
+          'limit' => 2000 
         )));
       }
     } catch (\Exception $e) {
