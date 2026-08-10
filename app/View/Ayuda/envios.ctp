@@ -4,10 +4,10 @@
         <div id="headhelp">
             <div class="wrapper container animation-fadeIn w-100">
                 <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-xs-12 col-md-4">
+                    <!--div class="col-xs-12 col-md-4">
                         <h1>Envíos y<br>seguimiento</h1>
-                    </div>
-                    <div class="col-xs-12 col-md-8">
+                    </div-->
+                    <div class="col-xs-12">
                         <div class="box-cont">
                             <div class="box img-bg" style="background-image: url('/img/envio.jpg')"></div>
                         </div>                        
@@ -37,16 +37,13 @@ abonar nuevamente el envío.</p>
                             <p>Los pedidos tardan en llegar a la sucursal elegida entre 7 y 10 días hábiles. Una vez que llegue al local, nos comunicaremos con vos por mail para avisarte que ya podés ir a retirar tu compra. Recordá que deberás acercarte al local con tu DNI y el número de pedido y contas con 15 días para ir a retirarlo.</p>                        
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-6">
-                        <div class="p-2 text-left">
-                            <h3>Periodos especiales</h3>
-                            <p>Durante acciones especiales como Hot Sale, Cybermonday, Black Friday y promociones en el sitio web los tiempos de procesamiento, envío y entrega pueden verse afectados.</p>
-                        </div>
-                        <div class="p-2 text-left">
-                            <h3>Algunos problemas frecuentes</h3>
-                            <p>La respuesta 'Número Inexistente' puede darse si la estampilla no está cargada en el sistema de OCA pero el paquete está enviado. Si el estado del envio es 'En sucursal de destino', podés llamar e ir a buscar el paquete vos mismo. De todas maneras, podés esperar a recibirlo en la dirección de entrega.</p>
-                        </div>
-
+                    <div class="col-xs-12 col-md-6 boxes">
+                    	<div class="boxes-reframe">
+                          <h3>Periodos especiales</h3>
+                          <p>Durante acciones especiales como Hot Sale, Cybermonday, Black Friday y promociones en el sitio web los tiempos de procesamiento, envío y entrega pueden verse afectados.</p>
+                          <h3>Algunos problemas frecuentes</h3>
+                          <p>La respuesta 'Número Inexistente' puede darse si la estampilla no está cargada en el sistema de OCA pero el paquete está enviado. Si el estado del envio es 'En sucursal de destino', podés llamar e ir a buscar el paquete vos mismo. De todas maneras, podés esperar a recibirlo en la dirección de entrega.</p>
+                      </div>
                     </div>
                 </div>
             </div>

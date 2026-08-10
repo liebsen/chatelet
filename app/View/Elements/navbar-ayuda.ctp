@@ -52,7 +52,7 @@
   }
 
   #optionsHelp > a.active {
-	  border-bottom: 5px solid hotpink;
+	  border-bottom: 4px solid hotpink;
 	  border-radius: 10px;
 	  font-weight: 700;
 	  color: hotpink;    

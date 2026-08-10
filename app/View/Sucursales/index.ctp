@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="col-md-8 w-100">
+    <div class="col-md-8">
       <div id="map-canvas" class="sucursales"  data-url="<?php echo $this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>"></div>
     </div>
   </section>

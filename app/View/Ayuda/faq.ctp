@@ -4,14 +4,14 @@
        <div id="headhelp">
             <div class="wrapper container animation-fadeIn w-100">
                 <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-xs-12 col-md-4">
+                    <!--div class="col-xs-12 col-md-4">
                         <h1>Preguntas<br>frecuentes</h1>
-                    </div>
-                    <div class="col-xs-12 col-md-8">
+                    </div-->
+                    <div class="col-xs-12">
                         <div class="box-cont">
                             <div class="box">
                                 <h3>Lo que tenés que saber antes de comprar</h3>
-                                <p>Si tenes alguna consulta no dudes en contactarte con nosotros o recurrir a las preguntas frecuentes que se encuentran a continuación:</p>
+                                <p>Si tenés alguna consulta no dudes en contactarte con nosotros o recurrir a las preguntas frecuentes que se encuentran a continuación</p>
                             </div>
                         </div>
                     </div>
