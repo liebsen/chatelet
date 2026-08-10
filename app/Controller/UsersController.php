@@ -266,7 +266,7 @@ class UsersController extends AppController {
         )
       );      
 
-      $message = \parse_template($this->settings['notification_register_welcome_text'], 
+      $message = \parse_email($this->settings['notification_register_welcome_text'], 
         array(
           'id_user' => $data['User']['id'] ,
           'email' => $data['User']['email'],

@@ -209,7 +209,7 @@ class NewsletterController extends AppController {
     ));
 
     if(!empty($newsletter['Newsletter']['body'])) { 
-      $parsed_body = \parse_template(
+      $parsed_body = \parse_email(
         $newsletter['Newsletter']['body'], 
         (object) array_merge((array) $newsletter['User'], (array) $newsletter['Coupon'])
       );
@@ -336,7 +336,7 @@ class NewsletterController extends AppController {
     ));
 
     if(!empty($newsletter['Newsletter']['body'])) { 
-      $parsed_body = \parse_template(
+      $parsed_body = \parse_email(
         $newsletter['Newsletter']['body'], 
         (object) array_merge((array) $newsletter['User'], (array) $newsletter['Coupon']),
       );

@@ -257,9 +257,12 @@ class NewsletterShell extends AppShell {
       }
 
       if(!empty($schedule['Newsletter']['body'])) { 
-        $parsed_body = \parse_template(
+        $parsed_body = \parse_email(
           $schedule['Newsletter']['body'], 
-          (object) array_merge((array) $schedule['User'], (array) $schedule['Coupon'])
+          (object) array_merge(
+          	(array) $schedule['User'], 
+          	(array) $schedule['Coupon']
+          )
         );
       }
 
@@ -509,7 +512,7 @@ class NewsletterShell extends AppShell {
 
       return array(
         'sent' => $this->update,
-        'message' => $message,
+        'message' => \email_fix_images($message),
       );
     }
 

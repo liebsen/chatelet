@@ -439,6 +439,49 @@ function parse_medal($i) {
 	return (string) $medal. ' ('.$i.')';
 }
 
+function email_fix_images($html){
+	// 1. Create a DOM Document and load the HTML
+	$dom = new DOMDocument();
+	// Use LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD to prevent adding html/body wrappers
+	@$dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+	// 2. Find all <img> tags
+	$images = $dom->getElementsByTagName('img');
+
+	// 3. Loop through each image and update the style attribute
+	foreach ($images as $img) {
+	    // Get existing styles if they exist
+	    $existingStyle = $img->getAttribute('style');
+	    
+	    // Define the new style you want to add
+	    //$newStyle = 'width: 100%; max-width: 100%; height: auto;';
+	    $newStyle = 'max-width: 100%; height: auto;';
+	    
+	    // Combine existing and new styles cleanly
+	    if (!empty($existingStyle)) {
+	        // Ensure the existing style ends with a semicolon
+	        $combinedStyle = rtrim($existingStyle, '; ') . '; ' . $newStyle;
+	    } else {
+	        $combinedStyle = $newStyle;
+	    }
+	    
+	    // Apply the updated style back to the element
+	    $img->setAttribute('style', $combinedStyle);
+	}
+
+	// 4. Output the updated HTML
+	$updatedHtml = $dom->saveHTML();
+	return $updatedHtml;
+}
+
+function parse_email($html, $data) {
+	$str = \parse_template(
+		\email_fix_images($html), 
+		$data
+	);
+	return $str;
+}
+
 function parse_template($str, $data) {
   $html = $str;
   foreach ($data as $key => $value) {
@@ -456,7 +499,6 @@ function version_readable($version) {
 
 function shipping_text($settings, $cart_totals) {  
   $text_shipping_min_price = '';
-
   if ($settings['shipping_type'] == 'min_price') {
     $text_shipping_min_price = 
       ($settings['display_text_shipping_min_price'] && $settings['text_shipping_min_price']) ? 
