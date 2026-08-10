@@ -18,7 +18,7 @@
 
   <section id="desarrollo" class="bg-arrow">
       <div class="wrapper">
-          <h3 class="p-3 mb-4">Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h3>
+          <h3>Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h3>
           <div class="col-xs-12 col-md-6">
               <ol class="ordered-list p-0">
                   <li>Elegí tu prenda

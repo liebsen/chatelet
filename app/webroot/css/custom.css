@@ -1479,12 +1479,9 @@ ul#ul-moreviews li.dontResize img {
 
 @media(min-width: 769px){
   #desarrollo { 
-    padding-top: 6rem 2rem!important; 
+  	padding: 2rem!important;
+    padding-top: 6rem!important;
   }
-	#desarrollo .boxes {  
-		width: calc(50% - 1rem);
-	  margin-right: 1rem;
-	}  
   #headhelp {
   	padding-top: 5.5rem; 
     padding-bottom: 0.5rem; 
@@ -1508,6 +1505,7 @@ ul#ul-moreviews li.dontResize img {
 #headhelp .box2 input[type="submit"] { background: #51177d; border: none; color: #FFF; float: right; font-size: 16px; height: 60px; width: 48%; }
 #desarrollo { overflow: hidden;  }
 #desarrollo .boxes .boxes-reframe {
+	margin-bottom: 1rem;
   padding: 2rem 2.75rem;
   border-radius: 1rem;
   background-color: transparent;
@@ -1527,7 +1525,8 @@ ul#ul-moreviews li.dontResize img {
 	position: relative;
   font-size: 1.25rem; 
   font-weight: 1000; 
-  margin-bottom: 15px; 
+  margin-bottom: 15px;
+  padding-left: 2rem; 
   letter-spacing: -0.025rem;
 }
 
@@ -1541,12 +1540,13 @@ ul#ul-moreviews li.dontResize img {
   line-height: 1.8;
   font-family: 'FontAwesome';
   position: absolute;
-  top: -0.5rem;
-  left: -2.75rem;
+  top: -0.65rem;
+  left: -1rem;
 }
 
 
 #desarrollo p { font-size: 15px; margin-bottom: 55px; }
+#referncia {display: flex}
 #referncia h2 { font-size: 1.5rem!important; font-weight: bolder; margin-bottom: 2rem!important; text-align: center; }
 #referncia .bx { border-right: 1px solid #f6f6f5; float: left; font-size: 17px; padding: 0 45px; width: 20%;     background-color: navajowhite; min-height: 88px; }
 #referncia .bx h3 { color: #51177d; font-size: 1rem; font-weight: 1000; margin-bottom: 5px; }
