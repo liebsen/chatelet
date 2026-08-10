@@ -25,7 +25,7 @@
           </li>
           <li class="text-center">
             <a href="#condiciones">
-              <i class="fa fa-question-circle rounded-icon"></i> <span class="ml-2">Condiciones</span>
+              <i class="fa fa-calendar-o rounded-icon"></i> <span class="ml-2">Condiciones</span>
             </a>
           </li>
           <li class="text-center">
@@ -123,7 +123,8 @@
                   </div>
                   <small class="text-muted">El valor mínimo de la compra para que sea efectivo el cupón</small>
                 </div>
-                <br />          
+              </div>
+              <div class="col-md-6">
                 <div class="control-group">
                   <label class="control-label" for="columns-text"><?php echo __('Fecha desde'); ?></label>
                   <div class="controls">
@@ -131,8 +132,6 @@
                   </div>
                   <small class="text-muted">Seleccioná desde qué fecha el cupón debería estar disponible.</small>
                 </div>
-              </div>
-              <div class="col-md-6">
                 <div class="control-group">
                   <label class="control-label" for="columns-text"><?php echo __('Fecha hasta'); ?></label>
                   <div class="controls">
@@ -169,10 +168,12 @@
                 <br />
                 <div class="control-group">
                   <input type="hidden" id="weekdays" name="data[weekdays]" value="<?= isset($coupon) ? $coupon['Coupon']['weekdays'] : '' ?>" />
-                  <label class="control-label" for="columns-text"><?php echo __('Días de semana'); ?></label>
+                  <label class="control-label" for="columns-text"><?php echo __('Días de la semana'); ?></label>
                   <div class="controls">
                     <?php $selected = isset($coupon) && $coupon['Coupon']['weekdays']? $coupon['Coupon']['weekdays'] : '12345'; for($i=0; $i < count($weekdays); $i++):?>
-                       <label for="w<?= $i ?>"> <input type="checkbox" class="weekdays" name="weekdays" value="<?= $i ?>" id="w<?= $i ?>" <?= strpos($selected, (string) $i) !== false ? ' checked' : '' ?>/> <span class="ml-1"><?= $weekdays[$i] ?></span></label><br>
+                       	<label for="w<?= $i ?>" class="flex-row"> <input type="checkbox" class="weekdays" name="weekdays" value="<?= $i ?>" id="w<?= $i ?>" <?= strpos($selected, (string) $i) !== false ? ' checked' : '' ?>/>
+                      		<span class="ml-1 p-1"><?= $weekdays[$i] ?></span>
+                      	</label>
                     <?php endfor ?>
                   </div>
                   <small class="text-muted">Seleccioná los días de la semana en que el cupón debería estar disponible.</small>

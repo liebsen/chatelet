@@ -72,4 +72,4 @@
 <?php echo $this->html->image("{$site_url}/newsletter/markread/{$data['NewsletterScheduleItem']['id']}?t=".time(), ['width' => '1px']);?>
 <?php endif ?>
 
-<a href="<?="{$site_url}/newsletter/unsubscribe/{$data['NewsletterScheduleItem']['id']}"?>">Deseo desuscribirme de este Newsletter</a>
+<a href="<?="{$site_url}/newsletter/unsubscribe/{$data['NewsletterScheduleItem']['id']}"?>" style="font-size: 12px; padding-top: 10px">Deseo desuscribirme de este Newsletter</a>

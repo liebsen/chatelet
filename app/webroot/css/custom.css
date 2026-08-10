@@ -371,7 +371,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav > li > a {
   border-bottom: 2px solid transparent;
   font-weight: 300;
-  padding: 0.35rem 0.75rem;
+  padding: 0.25rem 0.75rem;
   text-transform: uppercase;
   transition: all .3s ease-in-out; 
   white-space: nowrap;
@@ -383,7 +383,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 }
 
 .navbar-nav > li > a.active {
-  border-bottom: 5px solid hotpink;
+  border-bottom: 4px solid hotpink;
   border-radius: 10px;
   color: hotpink;
   font-weight: 700;
@@ -474,7 +474,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
     border-radius: 1.5rem;
     min-height: calc(100dvh - 335px)!important;
     transform: scale(1) perspective(1024px) rotateY(-5deg) rotateX(2deg) rotate(2deg) translateY(0rem) translateX(-2rem);
-    border: 5px solid hotpink;
+    border: 4px solid hotpink;
   }
 }
 
@@ -568,7 +568,7 @@ body.top-fixed .shop-options {
   display: contents;
 }
 .shop-options ul li a.active {
-  border-bottom: 5px solid hotpink;
+  border-bottom: 4px solid hotpink;
   border-radius: 10px;
   color: hotpink;
   font-weight: 700;
@@ -1066,7 +1066,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 #productOptions nav li a.current{ 
   display: contents;
-  border-bottom: 5px solid hotpink;
+  border-bottom: 4px solid hotpink;
   border-radius: 10px;
   color: hotpink;
   font-weight: 700;
@@ -1455,7 +1455,7 @@ ul#ul-moreviews li.dontResize img {
 
 
 .box { 
-  border: 5px solid hotpink; 
+  border: 4px solid hotpink; 
   padding: 3rem; 
 }
 
