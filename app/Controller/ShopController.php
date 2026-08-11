@@ -403,7 +403,7 @@ class ShopController extends AppController {
 		die("$stock");
 	}
 
-	public function product($category_id = null) {
+	public function product($category_id = null) {		
 		if (!empty($this->request->params['category'])) {
 			$tag = str_replace("-"," ",urldecode($this->request->params['category']));
 			$tag = str_replace('otoño invierno', 'otoño-invierno', $tag);
@@ -472,6 +472,51 @@ class ShopController extends AppController {
 			//rsort($products);
       $this->set('category',$category);
 			$this->set('products', $products);
+		} else {
+
+			/******** JSONSD ********/
+			// 1. Define your category metadata dynamically
+			$categoryName = $this->settings['site_title'];
+			$categoryUrl = $this->settings['site_url'];
+			$categoryDescription = $this->settings['site_description'];
+
+			foreach($categories as $p => $cat) {
+				$name = $cat['Category']['name'];
+				$slug =  str_replace(' ','-',strtolower($name));
+
+				$categoryItems[] = [
+	        "position" => $p,
+	        "name" => $name,
+	        "url" => [$this->settings['site_url'],'tienda', 'productos', $slug]
+				];
+			}
+
+			// 3. Build the Structured Data Array
+			$itemListElements = [];
+			foreach ($categoryItems as $item) {
+		    $itemListElements[] = [
+	        "@type" => "ListItem",
+	        "position" => $item['position'],
+	        "url" => $item['url'],
+	        "name" => $item['name']
+		    ];
+			}
+
+			$schema = [
+		    "@context" => "https://schema.org",
+		    "@type" => "CollectionPage",
+		    "@id" => $categoryUrl . "#collection",
+		    "url" => $categoryUrl,
+		    "name" => $categoryName,
+		    "description" => $categoryDescription,
+		    "mainEntity" => [
+	        "@type" => "ItemList",
+	        "numberOfItems" => count($categoryItems),
+	        "itemListElement" => $itemListElements
+		    ]
+			];
+
+			$this->set('schema', $schema);
 		}
 
 		if(empty($category)) {
@@ -485,7 +530,6 @@ class ShopController extends AppController {
 
     $this->render('product');
 	}
-
 
   public function mis_compras()
   {
@@ -655,6 +699,51 @@ class ShopController extends AppController {
 		if ($isGiftCard && !empty($product['Product']['img_url'])) {
 			$this->set('img_url', $product['Product']['img_url']);
 		}
+
+		/***** json sd ******/
+
+		// 3. Construct the Structured Data Array
+		$schema = [
+	    '@context' => 'https://schema.org',
+	    '@type' => 'Product',
+	    '@id' => $mainProduct['url'] . '#product',
+	    'name' => $mainProduct['name'],
+	    'image' => $mainProduct['image'],
+	    'description' => $mainProduct['description'],
+	    'sku' => $mainProduct['sku'],
+	    'mpn' => $mainProduct['id'],
+	    'brand' => [
+        '@type' => 'Brand',
+        'name' => $mainProduct['brand']
+	    ],
+	    'offers' => [
+        '@type' => 'Offer',
+        'url' => $mainProduct['url'],
+        'priceCurrency' => $mainProduct['currency'],
+        'price' => $mainProduct['price'],
+        'availability' => $mainProduct['availability'],
+        'priceValidUntil' => date('Y-12-31', strtotime('+1 year')) // Keeps expiration valid
+	    ],
+	    'isRelatedTo' => [] // Initialize array for related products
+		];
+
+		// 4. Map related products using schema loops
+		foreach ($all_but_me as $related) {
+	    $schema['isRelatedTo'][] = [
+        '@type' => 'Product',
+        '@id' => $related['url'] . '#product',
+        'name' => $related['name'],
+        'image' => $related['image'],
+        'url' => $related['url'],
+        'offers' => [
+          '@type' => 'Offer',
+          'price' => $related['price'],
+          'priceCurrency' => $related['currency']
+        ]
+	    ];
+		}
+
+		$this->set('schema', $schema);
 		$this->set('legends', $legends);
 		$this->set('all_but_me', $all_but_me);
 	}

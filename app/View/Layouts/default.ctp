@@ -6,10 +6,8 @@
   echo $this->element('fbp');
   echo $this->element('mailchimp');
   echo $this->element('ga');
-	echo $this->element($short ? 
-		'short-header' : 
-		'header'
-	);
+  echo $this->element('json-sd');
+	echo $this->element(($short ? 'short-' : '') . 'header' );
 
 	/* Page Content */
 	echo $this->fetch('content');

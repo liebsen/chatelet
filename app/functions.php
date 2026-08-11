@@ -1,5 +1,31 @@
 <?php
 
+function render_google_article_schema($headline, $author_name, $date_published, $image_url) {
+  $schema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'Article',
+    'headline' => $headline,
+    'author' => [
+      '@type' => 'Person',
+      'name' => $author_name
+    ],
+    'datePublished' => $date_published,
+    'image' => $image_url
+  ];
+
+  // JSON_UNESCAPED_SLASHES and JSON_UNESCAPED_UNICODE keep the output clean
+  $json = json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+  
+  echo '<script type="application/ld+json">' . "\n" . $json . "\n" . '</script>';
+}
+/*
+render_google_article_schema(
+    'Understanding PHP Structured Data',
+    'Jane Doe',
+    '2026-08-11T08:00:00+00:00',
+    'https://example.com'
+);
+*/
 function sanitize_email($Str) {  
   $StrArr = str_split($Str); $NewStr = '';
   foreach ($StrArr as $Char) {    
