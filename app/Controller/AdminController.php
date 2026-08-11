@@ -2124,8 +2124,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 			$tabs = array(
 				'shop' => array(
-					'title' => "Tienda",
-					'icon' => "shop",
+					'title' => "SEO",
+					'icon' => "search",
 					'default' => true
 				),
 				'social' => array(
@@ -3837,10 +3837,10 @@ ORDER BY u.id DESC;';
 		);
 
 		$navs = array(
-			'Tienda' => array(
-				'id' => "shop",
-				'icon' => "gi gi-shop",
-				'url'		=> '/admin/application/shop',
+			'SEO' => array(
+				'id' => "seo",
+				'icon' => "gi gi-search",
+				'url'		=> '/admin/application/seo',
 			),			
 			'Redes' => array(
 				'id' => 'search',
