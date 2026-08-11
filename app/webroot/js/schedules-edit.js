@@ -109,6 +109,7 @@ function updateUsers(){
       let str = ''
       let ids = []
       let filter = []
+	    let refs = []
       //$('.search-more').html('')
       $('.user-container > .label:not(.is-enabled)').remove()
       $('.user-container > .label').each(function(key, item) {
@@ -120,6 +121,8 @@ function updateUsers(){
           const id = parseInt(item.id)
           if ($.inArray(id, ids) === -1) {
             filter.push(item)
+          } else {
+          	refs.push(item)
           }
         })
       }
@@ -131,11 +134,16 @@ function updateUsers(){
         })
       } else {
         $('.relations-add').hide()
+      	var message = 'No se encontraron clientas para este filtro'
+      	if(refs.length){
+      		message = 'Se encontraron ' + refs.length + ' clientas que ya se encuentran en el listado actual'
+      	}
+        //$('.relations-add').addClass('d-none')
         $.growl.notice({
           title: 'Atención',
-          message: 'No se encontraron clientas para este filtro',
+          message: message,
           queue: true,
-        });        
+        });       
       }
     },
     error: function (errormessage) {

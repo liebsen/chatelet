@@ -21,6 +21,18 @@ function insertAtCursor(el, text) {
   el.focus();
 }
 
+function sanitizeDate (str) {
+	if(str.length==10) {
+		var parts = str.split('/')
+		if(parts[2].length==4) {
+			parts = parts.reverse()
+		}
+		return parts.join('-')
+	}
+	return str
+}
+
+
 function formatNumber (float) {
   if (typeof float === 'string') {
     return float
