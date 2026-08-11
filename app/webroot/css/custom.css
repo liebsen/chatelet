@@ -1274,7 +1274,10 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 3px solid;
+  border-bottom: 4px solid ghostwhite;
+  border-radius: 10px;
+  color: #c5c5c5;
+  font-weight: 700;
   font-size: 1rem;
   padding: 8px;
   line-height: 1;
@@ -1311,6 +1314,11 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 #main .caract label.btn.active {
   color: hotpink;
+}
+
+#main .caract label.btn.active .color-text {
+	border-bottom-color: hotpink;	
+	color: hotpink;
 }
 
 #main .caract .color-block { display: none }
