@@ -36,6 +36,14 @@ class ShopController extends AppController {
 		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
+		/******** JSONSD ********/
+
+		$categories = $this->Category->find('all',array(
+			'conditions'=>array('visible' => 1),
+			'order'=>array( 'Category.ordernum ASC' )
+		));
+
+		$this->set('schema', $this->categorySchema($categories));
    	$this->render('index');
 	}
 
@@ -473,50 +481,8 @@ class ShopController extends AppController {
       $this->set('category',$category);
 			$this->set('products', $products);
 		} else {
-
 			/******** JSONSD ********/
-			// 1. Define your category metadata dynamically
-			$categoryName = $this->settings['site_title'];
-			$categoryUrl = $this->settings['site_url'];
-			$categoryDescription = $this->settings['site_description'];
-
-			foreach($categories as $p => $cat) {
-				$name = $cat['Category']['name'];
-				$slug =  str_replace(' ','-',strtolower($name));
-
-				$categoryItems[] = [
-	        "position" => $p,
-	        "name" => $name,
-	        "url" => [$this->settings['site_url'],'tienda', 'productos', $slug]
-				];
-			}
-
-			// 3. Build the Structured Data Array
-			$itemListElements = [];
-			foreach ($categoryItems as $item) {
-		    $itemListElements[] = [
-	        "@type" => "ListItem",
-	        "position" => $item['position'],
-	        "url" => $item['url'],
-	        "name" => $item['name']
-		    ];
-			}
-
-			$schema = [
-		    "@context" => "https://schema.org",
-		    "@type" => "CollectionPage",
-		    "@id" => $categoryUrl . "#collection",
-		    "url" => $categoryUrl,
-		    "name" => $categoryName,
-		    "description" => $categoryDescription,
-		    "mainEntity" => [
-	        "@type" => "ItemList",
-	        "numberOfItems" => count($categoryItems),
-	        "itemListElement" => $itemListElements
-		    ]
-			];
-
-			$this->set('schema', $schema);
+			$this->set('schema', $this->categorySchema($categories));
 		}
 
 		if(empty($category)) {
@@ -529,6 +495,51 @@ class ShopController extends AppController {
 		unset($setting);
 
     $this->render('product');
+	}
+
+	private function categorySchema($categories){
+		// 1. Define your category metadata dynamically
+		$categoryName = $this->settings['site_title'];
+		$categoryUrl = $this->settings['site_url'];
+		$categoryDescription = $this->settings['site_description'];
+
+		foreach($categories as $p => $cat) {
+			$name = $cat['Category']['name'];
+			$slug =  str_replace(' ','-',strtolower($name));
+
+			$categoryItems[] = [
+        "position" => $p+1,
+        "name" => $name,
+        "url" => implode('/',[$this->settings['site_url'],'tienda', 'productos', $slug])
+			];
+		}
+
+		// 3. Build the Structured Data Array
+		$itemListElements = [];
+		foreach ($categoryItems as $item) {
+	    $itemListElements[] = [
+        "@type" => "ListItem",
+        "position" => $item['position'],
+        "url" => $item['url'],
+        "name" => $item['name']
+	    ];
+		}
+
+		$schema = [
+	    "@context" => "https://schema.org",
+	    "@type" => "CollectionPage",
+	    "@id" => $categoryUrl . "#collection",
+	    "url" => $categoryUrl,
+	    "name" => $categoryName,
+	    "description" => $categoryDescription,
+	    "mainEntity" => [
+        "@type" => "ItemList",
+        "numberOfItems" => count($categoryItems),
+        "itemListElement" => $itemListElements
+	    ]
+		];
+
+		return $schema;
 	}
 
   public function mis_compras()
