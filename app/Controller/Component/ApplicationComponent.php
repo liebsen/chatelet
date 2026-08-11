@@ -17,6 +17,12 @@ class ApplicationComponent extends Component {
 
   public function index(){}  
 
+  public function shop() {
+    if($this->controller->request->is('post')){
+      return $this->update_settings();
+    }    
+  }
+
   public function share() {
     if($this->controller->request->is('post')){
       return $this->update_settings();

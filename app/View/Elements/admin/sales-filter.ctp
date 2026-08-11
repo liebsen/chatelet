@@ -11,8 +11,8 @@
     <div class="control-group">
       <label class="control-label" for="myRange2">Periodo de evaluación (Desde / Hasta)</label>
       <div class="controls d-flex flex-center gap-05">
-        <input type="text" name="date_min" data-format="yyyy-mm-dd" class="form-control datepicker" placeholder="Fecha mínima" value="<?=$query['date_min']??$date_min?>"  autocomplete="off" />
-        <input type="text" name="date_max" data-format="yyyy-mm-dd" class="form-control datepicker" placeholder="Fecha máxima" value="<?=$query['date_max']??$date_max?>"  autocomplete="off" />
+        <input type="text" name="date_min" data-format="yyyy-mm-dd" class="form-control advanced-filter datepicker" placeholder="Fecha mínima" value="<?=$query['date_min']??$date_min?>"  autocomplete="off" />
+        <input type="text" name="date_max" data-format="yyyy-mm-dd" class="form-control advanced-filter datepicker" placeholder="Fecha máxima" value="<?=$query['date_max']??$date_max?>"  autocomplete="off" />
       </div>
     </div>
     <div class="controls-group">

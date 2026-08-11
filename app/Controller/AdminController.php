@@ -2123,10 +2123,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			);
 
 			$tabs = array(
+				'shop' => array(
+					'title' => "Tienda",
+					'icon' => "shop",
+					'default' => true
+				),
 				'social' => array(
 					'title' => "Redes sociales",
-					'icon' => "share",
-					'default' => true
+					'icon' => "share"
 				),
 				'email' => array(
 					'title' => "Email",
@@ -3833,6 +3837,11 @@ ORDER BY u.id DESC;';
 		);
 
 		$navs = array(
+			'Tienda' => array(
+				'id' => "shop",
+				'icon' => "gi gi-shop",
+				'url'		=> '/admin/application/shop',
+			),			
 			'Redes' => array(
 				'id' => 'search',
 				'icon' 		=> 'gi gi-share',
