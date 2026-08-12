@@ -5,7 +5,7 @@
                 <div class="row d-flex justify-content-center align-items-center">
 						        <div class="col-md-4">
 						        	<div class="animation-expandOpen">
-                        <h1>Cambios y<br>devoluciones</h1>
+                        <h1>Devolución<br>de compra</h1>
                       </div>
                     </div>
                     <div class="col-xs-12">
