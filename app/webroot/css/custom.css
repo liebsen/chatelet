@@ -1476,6 +1476,10 @@ ul#ul-moreviews li.dontResize img {
   position: absolute;
   top: -1.5rem;
   right: -1.5rem;
+  animation-name: pulse;
+  animation-duration: 3.5s;
+  animation-delay: 5s;
+  animation-iteration-count: infinite;  
 }
 
 .box h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; margin-top: 0;}
