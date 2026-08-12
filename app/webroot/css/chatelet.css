@@ -964,7 +964,6 @@ body > section {
 	height: 50px;
 	line-height: 2.5;
 	font-size: 1rem;
-	background-color: ghostwhite;
 	box-shadow: 0 2px 2px #00000008;
 }
 
@@ -1031,6 +1030,7 @@ select.form-control{
 
 .carrito-selector .input-group-addon {
 	flex: 1;
+	min-width: 45px;
 }
 
 .carrito-selector input {
