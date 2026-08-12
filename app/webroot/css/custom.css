@@ -1534,7 +1534,7 @@ ul#ul-moreviews li.dontResize img {
 	position: relative;
   font-size: 1.25rem; 
   font-weight: 1000; 
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   padding-left: 2rem; 
   letter-spacing: -0.025rem;
 }
@@ -1555,7 +1555,7 @@ ul#ul-moreviews li.dontResize img {
 }
 
 
-#desarrollo p { font-size: 15px; margin-bottom: 20px; }
+#desarrollo p { font-size: 15px; margin-bottom: 30px; }
 #referncia {display: flex}
 #referncia h2 { font-size: 1.5rem!important; font-weight: bolder; margin-bottom: 2rem!important; text-align: center; }
 #referncia .bx { border-right: 1px solid #f6f6f5; float: left; font-size: 17px; padding: 0 45px; width: 20%;     background-color: navajowhite; min-height: 88px; }
