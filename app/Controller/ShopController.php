@@ -26,24 +26,23 @@ class ShopController extends AppController {
 	}
 
 	public function index() {
-	  $this->loadModel('Setting');
-		$setting 	= $this->Setting->findById('page_video');
-		$page_video = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+		$page_video = !empty($this->settings['page_video']) ? 
+			$this->settings['page_video'] : 
+			'';
+
 		$this->set('page_video',$page_video);
 
 		//var_dump($categories);die;
-		$setting 			 = $this->Setting->findById('catalog_flap');
-		$catalog_flap = (!empty($setting['Setting']['value'])) ? $setting['Setting']['value'] : '';
+
+		$catalog_flap = !empty($this->settings['catalog_flap']) ? 
+			$this->settings['catalog_flap'] : 
+			'';
+
 		$this->set('catalog_flap',$catalog_flap);
 		unset($setting);
+
 		/******** JSONSD ********/
-
-		$categories = $this->Category->find('all',array(
-			'conditions'=>array('visible' => 1),
-			'order'=>array( 'Category.ordernum ASC' )
-		));
-
-		$this->set('schema', $this->categorySchema($categories));
+		$this->set('schema', $this->categorySchema($this->viewVars['categories']));
    	$this->render('index');
 	}
 
