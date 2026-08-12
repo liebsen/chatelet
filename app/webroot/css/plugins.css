@@ -3679,6 +3679,9 @@ fadeIn
 
 .fadeInDown {
   animation-name: fadeInDown;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+
 }
 
 @keyframes fadeInUp {
@@ -3694,6 +3697,8 @@ fadeIn
 
 .fadeInUp {
   animation-name: fadeInUp;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;  
 }
 
 /*

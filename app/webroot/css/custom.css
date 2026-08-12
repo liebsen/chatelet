@@ -468,18 +468,6 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   .map .col-md-8 { 
     padding-top: 2rem !important;
   }
-  #map-canvas { 
-    border-radius: 1rem;
-    min-height: calc(100dvh - 335px)!important;
-    transform: scale(1) perspective(1024px) rotateY(-5deg) rotateX(2deg) rotate(2deg) translateY(0rem) translateX(-2rem);
-    border: 4px solid hotpink;
-  }
-}
-
-@media(max-height: 431px) {
-  #map-canvas { 
-    min-height: calc(100dvh - 200px)!important;
-  }
 }
 
 .burst {
@@ -556,20 +544,22 @@ body.top-fixed .shop-options {
 
 .shop-options img { margin-right: 2rem; max-width: 3.5rem; }
 .shop-options h3 { color: #363633; font-weight: 300; text-transform: uppercase; margin-bottom: 30px; }
-.shop-options ul { column-count: 3; column-gap: 40px; }
-.shop-options ul li { margin-bottom: 0.25rem; }
+.shop-options ul { column-count: 3; column-gap: 40px; margin: 0; }
+.shop-options ul li { margin-bottom: 0.5rem; }
 .shop-options ul li a {
   color: #363633;
   text-transform: uppercase;
   font-weight: 300;
   line-height: 1.5;
-  display: contents;
 }
 .shop-options ul li a.active {
   border-bottom: 4px solid hotpink;
   border-radius: 10px;
   color: hotpink;
   font-weight: 700;
+  padding: 4px 10px;
+  position: relative;
+  left: -10px;  
 }
 .social-bottom {
   display: flex;
@@ -1063,12 +1053,14 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   transition: all .3s ease-in-out; 
 }
 #productOptions nav li a.current{ 
-  padding: 0.25rem 0.75rem;  
+  padding: 4px 10px;  
   line-height: 2;
   border-bottom: 4px solid hotpink;
   border-radius: 10px;
   color: hotpink;
   font-weight: 700;
+  position: relative;
+  left: -10px;  
 }
 #productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; }
 #productOptions a.btBig span { font-size: 27px; }
@@ -1345,17 +1337,21 @@ ul#ul-moreviews li.dontResize img {
   overflow: hidden; 
   min-height: calc(100dvh - 265px);
 }
+
 .map .col-md-4 { 
-  display: flex; 
-  justify-content: flex-start; 
-  align-items: center; 
-  padding-left: 5rem;
-  padding-bottom: 1rem;
+	min-height: 8rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-.map .col-md-8 { 
-  padding: 0;
+
+.map .col-md-4 h1 { 
+	text-align: center;
+	font-size: 32px; 
+	font-weight: 800; 
+	letter-spacing:-0.1rem 
 }
-.map .col-md-4 h1 { text-align: center;font-size: 32px; font-weight: 800; letter-spacing:-0.1rem }
+
 .map .col-md-4 h1:after { 
   background: #333; 
   content: ""; 
@@ -1489,7 +1485,7 @@ ul#ul-moreviews li.dontResize img {
 @media(min-width: 769px){
   #desarrollo { 
   	padding: 2rem!important;
-    padding-top: 6rem!important;
+    /*padding-top: 6rem!important;*/
   }
   #headhelp {
   	padding-top: 5.5rem; 
@@ -1545,7 +1541,7 @@ ul#ul-moreviews li.dontResize img {
   height: 3rem;
   text-align: center;
   font-size: 1.5rem;
-  color: wheat;
+  color: yellowgreen;
   line-height: 1.8;
   font-family: 'FontAwesome';
   position: absolute;

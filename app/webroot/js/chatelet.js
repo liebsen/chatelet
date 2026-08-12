@@ -635,12 +635,18 @@ $(document).ready(function() {
           $('body').addClass('top-fixed')
           $('.navbar-chatelet:not(.short)').addClass('animation-fadeIn')
           fakeshown = 1
-        }        
+        }
+        if(!$('.whatsapp-block').is(':visible')) {
+        	$('.whatsapp-block').fadeIn()
+        }
       } else {
         if (fakeshown && lastscroll > scrolltop) {
           $('body').removeClass('top-fixed')
           $('.navbar-chatelet:not(.short)').addClass('animation-fadeIn')
           fakeshown = false
+        }
+        if($('.whatsapp-block').is(':visible')) {
+        	$('.whatsapp-block').fadeOut()
         }
       }
       lastscroll = scrolltop

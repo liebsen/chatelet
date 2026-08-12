@@ -4,10 +4,12 @@
   <div id="headhelp">
     <div class="wrapper container animation-fadeIn w-100">
       <div class="row d-flex justify-content-center align-items-center">
-        <!--div class="col-xs-12 col-md-4">
-          <h1>¿Cómo<br>comprar?</h1>
-        </div-->
-        <div class="col-xs-12">
+        <div class="col-md-4">
+        	<div class="animation-expandOpen">
+          	<h1>¿Cómo<br>comprar?</h1>
+        	</div>
+        </div>
+        <div class="col-md-8">
           <div class="box-cont">
             <div class="box img-bg" style="background-image: url('/img/como-comprar.jpeg')"></div>
           </div>

@@ -3,9 +3,11 @@
         <div id="headhelp">
             <div class="wrapper container animation-fadeIn w-100">
                 <div class="row d-flex justify-content-center align-items-center">
-                    <!--div class="col-xs-12 col-md-4">
+						        <div class="col-md-4">
+						        	<div class="animation-expandOpen">
                         <h1>Cambios y<br>devoluciones</h1>
-                    </div-->
+                      </div>
+                    </div>
                     <div class="col-xs-12">
                         <div class="box-cont">
                             <div class="box">
