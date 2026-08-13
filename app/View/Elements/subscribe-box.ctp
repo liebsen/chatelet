@@ -1,12 +1,12 @@
-  <section class="subscribe-box bg-salmon animation-pullUp animation-both delay10 d-none-i">
+  <section class="subscribe-box animation-pullUp animation-both delay10 d-none-i">
     <div class="w-100">
       <span class="corner-pin is-clickable">
         <i class="ico-times" role="img" aria-label="Cerrar"></i>
       </span>
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
-          <h3 class="text-uppercase"><i class="gi gi-bell mr-1"></i> Estemos <strong>conectadas</strong></h3>
-          <p class="text-uppercase text-sm">Enterate de nuestras novedades, descuentos<br>y beneficios exclusivos solo para clientas</p>
+          <h5 class="text-uppercase"><i class="gi gi-bell mr-1"></i> Estemos <strong>conectadas</strong></h5>
+          <p class="text-uppercase text-sm">Enterate de nuestras novedades, descuentos y beneficios exclusivos solo para clientas</p>
         </span>
         <span>
         <?php echo $this->Form->create('Subscribe', array(
@@ -18,11 +18,11 @@
         )); ?>
           <input type="hidden" name="ajax" value="1" />
           <div class="is-flex-center flex-column gap-05 w-100">
-	          <div class="is-flex-center gap-05 w-100">
-	          	<div class="controls">
+	          <div class="is-flex-start flex-column gap-05 w-100">
+	          	<div class="controls w-100">
 	            	<input class="form-control m-0" type="text" name="data[Subscription][full_name]" placeholder="Tu nombre completo" required>
 	            </div>
-	            <div class="controls">
+	            <div class="controls w-100">
 	            	<input class="form-control m-0" type="email" name="data[Subscription][email]" placeholder="Tu email" required>
 	            </div>
 	          </div>
@@ -69,6 +69,7 @@
   <div class="btn-subscribe is-clickable d-none-i" title="Estemos conectadas"><i class="fa fa-envelope-o fa-lg animation-floating animation-both m-auto"></i></div>
   <style>
     .subscribe-box { 
+    	background-color: hotpink;
       position: fixed;
       z-index: 1000;
       left: 0.05rem;
@@ -79,15 +80,15 @@
       padding: 1.5rem 1rem;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
-      color: #be5252;
+      color: white;
     }
 
     .subscribe-box p {
-    	color: #be5252;
+    	color: white;
     }
 
     .subscribe-box i {
-    	color: yellow!important;
+    	color: white!important;
     }
 
     .subscribe-box .ico-times::before {

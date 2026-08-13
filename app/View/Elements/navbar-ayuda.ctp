@@ -29,7 +29,6 @@
 
   #optionsHelp.mobile {
     width: 100%;  
-    background-color: papayawhip;
   }
 
   #optionsHelp.mobile a {
@@ -40,7 +39,7 @@
     border:none;
     padding: 1rem;
     margin: 0;
-    color: peru;
+    color: #0A0A0A;
   }
 
   #optionsHelp > a { 
@@ -57,12 +56,12 @@
 	  font-weight: 700;
 	  color: hotpink;    
   }
+
   #optionsHelp.mobile > a.active {
     position: relative;
     transition: background 1s ease-out;
-    border-bottom: 2px solid coral;
-    background-color: peachpuff;
-    color: peru;    
+    border-bottom: 4px solid hotpink;
+    color: hotpink;
   }
 
   @media(min-width: 992px){

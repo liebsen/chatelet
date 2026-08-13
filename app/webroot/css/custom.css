@@ -898,6 +898,12 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   display: flex;
 }
 
+.is-flex-start {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .is-flex-end {
   display: flex;
   align-items: center;
