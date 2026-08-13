@@ -8,6 +8,7 @@
 	<table id="contacto-datatables" class="table table-bordered table-hover"  width="100%">
 		<thead>
 			<tr>
+				<th class="text-center hidden-phone"><?php echo __('#'); ?></th>  
 				<th class="text-center hidden-phone"><?php echo __('Fecha'); ?></th>  
 				<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>  
 				<th class="hidden-phone hidden-tablet"><?php echo __('Email'); ?></th>
@@ -21,7 +22,10 @@
 			<?php foreach ($contacts as $key => $contact): ?>        
 				<tr>
 					<td>
-						<?php echo date('d/m/Y',strtotime($contact['Contact']['created'])) ?>
+						<?=$contact['Contact']['id']?>
+					</td>	
+					<td data-sort="<?=$contact['Contact']['created']?>">
+						<span style="white-space: nowrap;"><?php echo date('d/m/Y H:i',strtotime($contact['Contact']['created'])) ?></span>
 					</td>
 					<td>
 						<?=$contact['Contact']['name']?>

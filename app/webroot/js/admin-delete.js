@@ -79,6 +79,16 @@ $(document).ready(function() {
     }
   });
 
+  $('#contacto-datatables').DataTable({
+    "ordering": true,
+    "stateSave": true,
+    "order": [[ 1, "desc" ]],
+    "language": {
+      "url": "/json/datatables-locale-es.json"
+    }
+  });
+
+
   $('#banners-datatables').DataTable({
     "ordering": true,
     "language": {
@@ -105,8 +115,12 @@ $(document).ready(function() {
 
   /* $('#example-datatables').dataTable({"aoColumnDefs": [ 
     { "bSortable": false, "aTargets": [ 7 ] } 
-  ] , "language": {"url": "/json/datatables-locale-es.json"}}); */
-  $('#contacto-datatables').dataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "/json/datatables-locale-es.json"}});
+  ] , "language": {"url": "/json/datatables-locale-es.json"}}); 
+  $('#contacto-datatables').dataTable({"aoColumnDefs": [ { 
+  	"bSortable": true, 
+  	"order": [[ 1, "desc" ]],
+  	"aTargets": [ 6 ] 
+  } ] , "language": {"url": "/json/datatables-locale-es.json"}});*/
   
   /*new $.fn.dataTable.Responsive($('#example-datatables'), {
     responsive: true,

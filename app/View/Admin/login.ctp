@@ -143,7 +143,7 @@ echo $this->Session->flash();
                                         </div>
                                         <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#login-password"></i>
                                     </div>
-                                    <div class="input-group">
+                                    <div class="input-group p-0">
                                         <a href="/shop/recuperar_acceso"><i class="fa fa-hand-stop-o mr-1"></i> Olvidé mi contraseña</a>
                                     </div>
                                 </div>
