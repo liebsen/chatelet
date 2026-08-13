@@ -9,7 +9,7 @@
 				</h3>
 			</div>
 			<div class="modal-body">
-				<span style="ali">Envianos tu CV a <b>sueldos@chatelet.com.ar</b></span>
+				<span style="ali">Envianos tu CV a <a href="mailto:rrhh_chatelet@hotmail.com">rrhh_chatelet@hotmail.com</a></span>
 			</div>
 		</div>
 	</div>
