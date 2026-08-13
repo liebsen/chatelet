@@ -1936,9 +1936,6 @@ span.validation-password {
 	.navbar-container {
 		min-height: 112px;
 	}
-	.modal-dialog {
-		width: calc(100dvw - 14px);
-	}
 	.modal-buttons {
 		flex-direction: column;
 		gap: 1rem;
