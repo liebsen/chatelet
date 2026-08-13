@@ -1,7 +1,7 @@
 
  <section id="detalle"> 
             <div class="wrapper">
-                 <div class="col-md-4">
+                 <div class="col-xs-12 col-md-4">
                              
                             <div class="caract">
                             

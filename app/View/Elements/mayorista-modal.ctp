@@ -12,7 +12,7 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-2"></div>
-					<div class="col-md-8">
+					<div class="col-xs-12 col-md-8">
 						<?php 
 							echo $this->Form->create(null, array(
 									'url' => array('controller' => 'users', 'action' => 'register'),

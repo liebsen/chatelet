@@ -6,7 +6,7 @@
   <section id="headhelp">
     <div class="wrapper container animation-fadeIn animation-both w-100">
       <div class="row is-flex-center">
-        <div class="col-md-4">
+        <div class="col-xs-12 col-md-4">
           <h1>Contactate<br>con nosotros</h1>
         </div>
         <div class="col-md-8 p-0">
@@ -78,7 +78,7 @@
 <!--
 <div id="main" class="container content">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-xs-12 col-md-4">
 			<h1 class="heading">Contacto</h1>
 			<h3 class="subheading">¿Tenés alguna consulta o sugerencia?</h3>
 			<p class="info">
@@ -100,7 +100,7 @@
 				<input type="submit" id="contactar" class="big-pink-btn" value="Enviar Consulta" />
 			<?php echo $this->Form->end(); ?>
 		</div>
-		<div class="col-md-4">
+		<div class="col-xs-12 col-md-4">
 		</div>
 	</div>
 </div>-->

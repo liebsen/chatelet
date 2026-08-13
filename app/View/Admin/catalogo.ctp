@@ -7,7 +7,7 @@
   <div class="block-content">
     <form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-xs-12 col-md-4">
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Url del video'); ?></label>
             <div class="controls">
@@ -16,7 +16,7 @@
           </div>
           <br />
         </div>                
-        <div class="col-md-4">
+        <div class="col-xs-12 col-md-4">
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Primer Linea'); ?></label>
             <div class="controls">
@@ -30,7 +30,7 @@
             </div>
           </div>
         </div>
-         <div class="col-md-4">
+         <div class="col-xs-12 col-md-4">
           <div class="control-group">
             <label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
             <div class="controls">

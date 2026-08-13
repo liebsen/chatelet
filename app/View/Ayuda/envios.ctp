@@ -4,12 +4,12 @@
 <div id="headhelp">
 	<div class="wrapper container animation-fadeIn w-100">
 		<div class="row d-flex justify-content-center align-items-center">
-      <div class="col-md-4">
+      <div class="col-xs-12 col-md-4">
       	<div class="animation-expandOpen">
           <h1>Envíos a<br>todo el país</h1>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-xs-12 col-md-8">
       	<div class="box-cont">
       		<div class="box img-bg" style="background-image: url('/img/envio.jpg')"></div>
       	</div>                        

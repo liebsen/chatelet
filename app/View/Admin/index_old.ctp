@@ -12,7 +12,7 @@
 			<input type="hidden" name="data[id]" value="1" />
 			<div class="row">
 				<div class="col-md-9">
-			    <div class="col-md-4">
+			    <div class="col-xs-12 col-md-4">
 						<div class="control-group">
 							<label class="control-label" for="columns-text"><?php echo __('Primer linea'); ?></label>
 							<div class="controls">
@@ -20,7 +20,7 @@
 							</div>
 						</div>
           </div>
-			    <div class="col-md-4">
+			    <div class="col-xs-12 col-md-4">
 						<div class="control-group">
 							<label class="control-label" for="columns-text"><?php echo __('Segunda linea'); ?></label>
 							<div class="controls">
@@ -28,7 +28,7 @@
 							</div>
 						</div>
          	</div>
-					<div class="col-md-4">
+					<div class="col-xs-12 col-md-4">
 						<div class="control-group">
 							<label class="control-label" for="columns-text"><?php echo __('Tercer linea'); ?></label>
 							<div class="controls">
@@ -39,7 +39,7 @@
 	        </br>  
 			    <div class="row">
 						<div class="col-md-12"></br> </br>  </br> </br> 
-						  <div class="col-md-4">
+						  <div class="col-xs-12 col-md-4">
 						    <label class="control-label" for="columns-text"><?php echo __('Modulo I'); ?></label>
 								<div class="control-group">
 									<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
@@ -48,7 +48,7 @@
 									</div>
 								</div>
 							</div>
-              <div class="col-md-4">
+              <div class="col-xs-12 col-md-4">
               	<br />
 								<div class="control-group">
 									<label class="control-label" for="columns-text">Subir Archivo: <span class="counter_one">0</span>%</label>
@@ -70,7 +70,7 @@
 									</div>
 							  </div>
 		         	</div>
-							<div class="col-md-4">
+							<div class="col-xs-12 col-md-4">
                 </br>
                 <label class="control-label" for="columns-text"><?php echo __('Categoria'); ?></label>
                	<div class="control-group">
@@ -97,7 +97,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							</br>
-						  <div class="col-md-4">
+						  <div class="col-xs-12 col-md-4">
 						  	<label class="control-label" for="columns-text"><?php echo __('Modulo II'); ?></label>
 								<div class="control-group">
 									<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
@@ -106,7 +106,7 @@
 									</div>
 								</div>
 		          </div>
-						  <div class="col-md-4">
+						  <div class="col-xs-12 col-md-4">
 			        	<br />
 								<div class="control-group">
 									<label class="control-label" for="columns-text">Subir Archivo: <span class="counter_two">0</span>%</label>
@@ -129,7 +129,7 @@
 									</div>
 							  </div>
 		         	</div>
-							<div class="col-md-4">
+							<div class="col-xs-12 col-md-4">
 						    </br>
 								<label class="control-label" for="columns-text"><?php echo __('Categoria'); ?></label>    
 								<div class="control-group">
@@ -156,7 +156,7 @@
 					</br>  
 					<div class="row">
 						<div class="col-md-12"></br> 
-						  <div class="col-md-4">
+						  <div class="col-xs-12 col-md-4">
 						  	<label class="control-label" for="columns-text"><?php echo __('Modulo III'); ?></label>
 								<div class="control-group">
 									<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
@@ -165,7 +165,7 @@
 									</div>
 								</div>
 							</div>
-	            <div class="col-md-4">
+	            <div class="col-xs-12 col-md-4">
 	             	<br />
 								<div class="control-group">
 									<label class="control-label" for="columns-text">Subir Archivo: <span class="counter_three">0</span>%</label>
@@ -187,7 +187,7 @@
 									</div>
 							  </div>
 		         	</div>
-							<div class="col-md-4">
+							<div class="col-xs-12 col-md-4">
 						    </br>
 						    <label class="control-label" for="columns-text"><?php echo __('Categoria'); ?></label>
 								<div class="control-group">
@@ -217,7 +217,7 @@
 							</br>  
 							</br> 
 							</br> 
-					    <div class="col-md-4">
+					    <div class="col-xs-12 col-md-4">
 				        <label class="control-label" for="columns-text"><?php echo __('Modulo IV'); ?></label>
 								<div class="control-group">
 									<label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
@@ -226,7 +226,7 @@
 									</div>
 								</div>
 							</div>
-              <div class="col-md-4">
+              <div class="col-xs-12 col-md-4">
               	<br />
 								<div class="control-group">
 									<label class="control-label" for="columns-text">Subir Archivo: <span class="counter_four">0</span>%</label>
@@ -247,7 +247,7 @@
 									</div>
 							  </div>
 		         	</div>
-							<div class="col-md-4">
+							<div class="col-xs-12 col-md-4">
                 </br>
                 <label class="control-label" for="columns-text"><?php echo __('Categoria');?></label>
                	<div class="control-group">
