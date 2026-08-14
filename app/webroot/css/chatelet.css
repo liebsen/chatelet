@@ -1463,14 +1463,15 @@ select.form-control{
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: deeppink;
+  color: white;
   background-clip: border-box;
   border-radius: 0.75rem;
 }
 
 .card-body {
-  /*flex: 1 1 auto;*/
-  background-color: #ffd3db;
+  /*flex: 1 1 auto;
+  background-color: #ffd3db;*/
   padding: 1.5rem;
   border-radius: 0.75rem;
 }

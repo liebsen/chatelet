@@ -621,9 +621,9 @@ footer .options h5 {
   text-align: center;
   margin-bottom: 2.25rem;
   /*color: #ff8399;*/
-  border-bottom: 4px solid lightpink;
+  border-bottom: 4px solid deeppink;
   border-radius: 10px;
-  color: #ff8399;
+  color: deeppink;
   font-weight: 700;
 
 }
@@ -1570,6 +1570,9 @@ ul#ul-moreviews li.dontResize img {
   left: -1rem;
 }
 
+#desarrollo .card h3:before {
+	color: white;
+}
 
 #desarrollo p { font-size: 15px; margin-bottom: 30px; }
 #referncia {display: flex}
