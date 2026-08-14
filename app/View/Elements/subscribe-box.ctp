@@ -69,7 +69,7 @@
   <div class="btn-subscribe is-clickable d-none-i" title="Estemos conectadas"><i class="fa fa-envelope-o fa-lg animation-floating animation-both m-auto"></i></div>
   <style>
     .subscribe-box { 
-    	background-color: deeppink;
+    	background-color: hotpink;
       position: fixed;
       z-index: 1000;
       left: 0.05rem;

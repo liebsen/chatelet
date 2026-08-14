@@ -609,12 +609,12 @@ body.top-fixed .shop-options {
 }
 
 footer { 
-	background: #ffd3db; 
+	background: #f4f4f6; 
 	overflow: hidden; 
 	padding: 4rem 1rem; 
 }
 footer a {
-	color: deeppink;
+	color: #888;
 } 
 
 footer > .wrapper { 
@@ -633,9 +633,9 @@ footer .options h5 {
   text-align: center;
   margin-bottom: 2.25rem;
   /*color: #ff8399;*/
-  border-bottom: 4px solid deeppink;
+  border-bottom: 4px solid #888;
   border-radius: 10px;
-  color: deeppink;
+  color: #888;
   font-weight: 700;
 
 }
@@ -667,7 +667,6 @@ footer h3 {
 footer .options a, footer .options span { 
   font-weight: 300; 
   text-transform: uppercase;  
-  color: deeppink;
 }
 footer a:hover { color: deeppink; }
 footer ul li { margin-bottom: 5px;  max-width: 15rem; }
@@ -1529,7 +1528,7 @@ ul#ul-moreviews li.dontResize img {
     /*padding-top: 6rem!important;*/
   }
   #headhelp {
-  	padding-top: 3rem; 
+  	padding-top: 4rem; 
     padding-bottom: 0.5rem; 
 	  min-height: calc(100dvh - 265px);
   }
