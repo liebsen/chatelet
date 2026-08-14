@@ -30,6 +30,26 @@ class ContactoController extends AppController {
 		if ($this->request->is('post')) {
 			$data = $this->request->data;
 			$ajax = $data['ajax'] ?? 0;
+
+			if (!empty($data['website'])) {
+		    // A bot filled the hidden field
+		    die("Spam detected.");
+		    if(!empty($ajax)) {
+					die(json_encode(
+						array(
+							'success' => false, 
+							'message' => 'Spam detected'
+						)
+					));
+				}
+
+        $this->Session->setFlash(
+					'Por favor intente nuevamente',
+					'default',
+					array('class' => 'hidden error')
+        );
+			}
+
 			if ($this->Contact->save($data)) {
 				$message = $data['Contact']['message'];
 				$message.= '<br /><br />Telefono: '.$data['Contact']['telephone'];
