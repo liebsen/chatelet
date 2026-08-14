@@ -52,7 +52,7 @@ echo $this->element('checkout-params');
 						    	<button class="btn btn-chatelet btn-input-lg btn-calculate-shipping" data-loading-text="Espere..." title="Cotizá el envío a domicilio de tu compra">Aplicar</button>
 								</div>
 								<div class="form-group shipping-block mt-2 w-100 hidden">
-									<span class="d-block text-muted">Elegí la empresa de tu confianza para realizar este envío</span>
+									<span class="d-block">Elegí la empresa de tu confianza para realizar este envío</span>
 									<div class="slot">
 									</div>
 									<hr>
@@ -65,7 +65,7 @@ echo $this->element('checkout-params');
 					  		<span>Elegí esta opción para evitar cargos de envío</span>
 					  	</p>
 						  <div class="cargo-blocks takeaway-block">
-								<span class="d-block text-muted">Elegí la sucursal para pasar a retirar tu compra</span>	
+								<span class="d-block">Elegí la sucursal para pasar a retirar tu compra</span>	
 								<ul class="generic-select takeaway-options">
 									<?php foreach ($stores as $store):?>
 										<li store="<?php echo $store['Store']['name'];?>"

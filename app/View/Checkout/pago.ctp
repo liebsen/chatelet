@@ -38,7 +38,7 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 		<input type="hidden" name="payment_dues" value="1" />	
 		<div class="flex-row pt-4">
 			<div class="flex-col gap-05">
-				<span class="text-muted">¿Cómo querés pagar tu compra? Seleccioná un método de pago para realizar esta compra</span>
+				<p>¿Cómo querés pagar tu compra? Seleccioná un método de pago para realizar esta compra</p>
 				<!--div>
 		    	<span class="text-sm">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</span>
 		    </div-->

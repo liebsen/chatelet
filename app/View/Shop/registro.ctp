@@ -289,7 +289,7 @@ $userData = array(
 				<?php echo $this->Form->end(); ?>
 			</div>
 			<div class="flex-col desktop">
-				<div class="card is-rounded bg-salmon">
+				<div class="card-is-rounded bg-salmon">
 					<div class="card-body bg-transparent">
 						<blockquote class="m-0">
 							<h3 class="mt-0"><i class="gi gi-magic"></i>

@@ -112,12 +112,17 @@
 		color: #ccc;
 	}
 	.wizard-progress .wizard-step.current {
-		color: #404040;
+		color: deeppink;
 		font-weight: bold;
 	}	
 
 	.wizard-progress .wizard-step.current .wizard-label {
 		font-weight: 800;
+	}
+	.wizard-progress .wizard-step.current .wizard-node {
+		background-color: deeppink;
+		color: white;
+		font-weight: 1000;
 	}
 	.wizard-progress .wizard-step.complete .wizard-label {
 		color: #ccc;
