@@ -16,7 +16,8 @@ function render_google_article_schema($headline, $author_name, $date_published, 
   // JSON_UNESCAPED_SLASHES and JSON_UNESCAPED_UNICODE keep the output clean
   $json = json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
   
-  echo '<script type="application/ld+json">' . "\n" . $json . "\n" . '</script>';
+  echo '<script type="
+  ">' . "\n" . $json . "\n" . '</script>';
 }
 /*
 render_google_article_schema(

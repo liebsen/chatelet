@@ -33,7 +33,7 @@ input:focus::placeholder {
 }
 
 a {
-	color: #444;
+	color: #0A0A0A;
 	font-weight: 300;
 }
 
@@ -421,8 +421,8 @@ body > section {
 
 .badge-outline-danger {
 	background-color: white;
-	outline: 2px solid hotpink;
-	color: hotpink;
+	outline: 2px solid deeppink;
+	color: deeppink;
 }
 
 /* say hello to my little dwarfs - Hello */
@@ -871,7 +871,7 @@ body > section {
 }
 
 .text-chatelet {
-	color: hotpink;
+	color: deeppink;
 }
 
 .pre-system {
@@ -1050,11 +1050,11 @@ select.form-control{
 
 .input-group-addon.input-lg {
 	/*background-color: white;
-	border: 2px solid hotpink;
+	border: 2px solid deeppink;
   border-radius: 0.5rem;*/
   border: none;
   background: transparent;
-  /*color: hotpink!important;*/
+  /*color: deeppink!important;*/
 }
 
 .input-group-append {
@@ -1516,7 +1516,7 @@ select.form-control{
 .card-link {
 	display: inline-block;
 	text-decoration: underline;
-	color: hotpink;
+	color: deeppink;
 	font-weight: 500;
 	padding: 0.75rem 1rem;
 	border: none;
@@ -1533,7 +1533,7 @@ select.form-control{
 	transition: all 0.25s ease;
 }
 .card-link:hover {
-	background-color: hotpink;
+	background-color: deeppink;
 	color: white;
 }
 @media(max-width: 550px) {

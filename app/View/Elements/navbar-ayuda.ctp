@@ -51,17 +51,17 @@
   }
 
   #optionsHelp > a.active {
-	  border-bottom: 4px solid hotpink;
+	  border-bottom: 4px solid deeppink;
 	  border-radius: 10px;
 	  font-weight: 700;
-	  color: hotpink;    
+	  color: deeppink;    
   }
 
   #optionsHelp.mobile > a.active {
     position: relative;
     transition: background 1s ease-out;
-    border-bottom: 4px solid hotpink;
-    color: hotpink;
+    border-bottom: 4px solid deeppink;
+    color: deeppink;
   }
 
   @media(min-width: 992px){
