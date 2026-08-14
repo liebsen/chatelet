@@ -36,10 +36,6 @@
 		correspondiente y hacé click en “Aplicar”. Verifica que el pedido sea
 		correcto y hace click en “finalizar compra”</li>
 		              </ol>
-		          </div>        
-          </div>
-          <div class="col-xs-12 col-md-6 boxes">
-          	<div class="boxes-reframe">
               <ol start="5" class="ordered-list p-0">
 <li>Para continuar ingresa con tu cuenta Châtelet (si ya sos clienta y estas
 registrada) o podes ingresar como nueva clienta ingresando tu email y
