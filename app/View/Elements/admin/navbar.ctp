@@ -70,7 +70,7 @@
                 line-height: 1.25;
                 font-size: 14px; 
                 font-weight: 600;
-                color: #a5a5a5;
+                color: #2C2C2C;
                 font-weight: 500;
                 height: 100%;             
             }

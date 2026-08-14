@@ -172,7 +172,6 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .carrito-selector input,
   .input-group-addon,
   .btn-chatelet.dark,  
-  .subscribe-box .ico-times::before,  
   .price_strong,
   .name {
     color: whitesmoke!important;

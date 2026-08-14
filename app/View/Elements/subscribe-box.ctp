@@ -91,10 +91,6 @@
     	color: white!important;
     }
 
-    .subscribe-box .ico-times::before {
-      color: darkred;
-    } 
-
     @media(min-width: 768px) {
       .subscribe-box { 
         border-radius: 0.5rem;

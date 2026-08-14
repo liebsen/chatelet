@@ -71,7 +71,7 @@
                 font-family: var(--font-family), Verdana, Arial, Sans-Serif!important;
                 line-height: 1;
                 font-size: 15px; 
-                color: #a5a5a5;
+                color: #2C2C2C;
                 font-weight: 300;
                 min-height: 100dvh;
                 background-color: #333;
