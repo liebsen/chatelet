@@ -428,9 +428,6 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   .box-cont .box {
     min-height: 330px;
   }
-  .box.img-bg {
-    min-height: 26rem;
-  }
 }
 
 
