@@ -4456,6 +4456,8 @@ ORDER BY u.id DESC;';
 			return $this->redirect(array('controller' => 'admin', 'action' => 'index'));
 		}
 
+		$this->layout = '';
+
     $redirect = $this->request->data['redirect'];
     $ajax = $this->request->data['ajax'];
 

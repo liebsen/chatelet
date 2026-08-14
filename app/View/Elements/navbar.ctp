@@ -3,7 +3,7 @@
     <a class="navbar-brand"
      href="<?php echo router::url(array('controller' => 'Home', 'action' => 'index')) ?>" >
         Châtelet</a>
-    <i class="fa fa-bars navbar-toggle float-none m-0 collapsed text-grey" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"></i>
+    <i class="fa fa-bars navbar-toggle float-none m-0 collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"></i>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->

@@ -24,26 +24,30 @@
 
         <section id="desarrollo" class="bg-arrow">
             <div class="wrapper">
-                <div class="col-md-6">
-                    <h3>¿Cuál es el costo de envío y tiempo de entrega de mi pedido?</h3>
-                    <p>El costo de envío y tiempo de entrega dependerá de la ubicación de cada usuario y
-del peso del pedido. Si queres saberlo con antelación escribinos a nuestro whatsapp
-11-5504-2428 indicándonos tu código postal así podemos calculártelo.</p>
+                <div class="col-md-6 boxes">
+                		<div class="boxes-reframe">
+		                    <h3>¿Cuál es el costo de envío y tiempo de entrega de mi pedido?</h3>
+		                    <p>El costo de envío y tiempo de entrega dependerá de la ubicación de cada usuario y
+		del peso del pedido. Si queres saberlo con antelación escribinos a nuestro whatsapp
+		11-5504-2428 indicándonos tu código postal así podemos calculártelo.</p>
 
-                    <h3>¿Dónde puedo realizar el seguimiento de mi pedido?</h3>
-                    <p>Si tu pedido fue por OCA podes seguir el estado del mismo ingresando en la <a class="link" href="https://www.oca.com.ar/Busquedas/Envios" target="_blank">página de búsqueda de envíos de OCA</a> con el número de seguimiento que te llego al mail.<p>
-<p>Si tu pedido fue por motomensajería SpeedMoto, escribinos a nuestro whatsapp 11-
-5504-2428 para que podamos informarte el estado del paquete. </p>
-<p>Si elegiste retiro por sucursal, te vamos a avisar por mail cuando el pedido este listo
-para retirar.</p>
+		                    <h3>¿Dónde puedo realizar el seguimiento de mi pedido?</h3>
+		                    <p>Si tu pedido fue por OCA podes seguir el estado del mismo ingresando en la <a class="link" href="https://www.oca.com.ar/Busquedas/Envios" target="_blank">página de búsqueda de envíos de OCA</a> con el número de seguimiento que te llego al mail.</p>
+		<p>Si tu pedido fue por motomensajería SpeedMoto, escribinos a nuestro whatsapp 11-
+		5504-2428 para que podamos informarte el estado del paquete. </p>
+		<p>Si elegiste retiro por sucursal, te vamos a avisar por mail cuando el pedido este listo
+		para retirar.</p>
+									</div>
                 </div>
 
-                <div class="col-md-6">
-                    <h3>¿Cómo recupero mi contraseña?</h3>
-                    <p>Si olvidaste tu contraseña, seleccioná “olvide la contraseña” debajo del cuadro de inicio de
-sesión. Recibirás un correo automático con un código temporal para acceder a tu cuenta.</p>
-										<h3>¿Entregan factura “A”?</h3>
-										<p>Si necesitas este tipo de factura, una vez que realices el pago de tu pedido, comunícate con nosotros por WhatsApp al 11 5504-2428 para poder emitirte dicho comprobante.</p>
+                <div class="col-md-6 boxes">
+                		<div class="boxes-reframe">
+		                    <h3>¿Cómo recupero mi contraseña?</h3>
+		                    <p>Si olvidaste tu contraseña, seleccioná “olvide la contraseña” debajo del cuadro de inicio de
+		sesión. Recibirás un correo automático con un código temporal para acceder a tu cuenta.</p>
+												<h3>¿Entregan factura “A”?</h3>
+												<p>Si necesitas este tipo de factura, una vez que realices el pago de tu pedido, comunícate con nosotros por WhatsApp al 11 5504-2428 para poder emitirte dicho comprobante.</p>
+										</div>
                 </div>
             </div>
         </section>

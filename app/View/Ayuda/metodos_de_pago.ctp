@@ -28,7 +28,8 @@
 
         <section id="desarrollo">
             <div class="wrapper">
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 col-md-6 boxes">
+                	<div class="boxes-reframe">
                     <div class="d-flex flex-column justify-content-center align-items-start gap-1 ">
                         <h3>Comprá en Châtelet con tu método preferido</h3>
                         <ul>
@@ -40,6 +41,7 @@
                             <li>*** Los envíos por compra online tienen una demora de 7 a 10 días hábiles.</li-->
                         </ul>
                     </div>
+                  </div>
                 </div>
                 <div class="col-xs-12 col-md-6"></div>
             </div>

@@ -1,7 +1,3 @@
-<?php 
-$this->layout = ''; 
-echo $this->Session->flash();
-?>
 <!DOCTYPE html>
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
@@ -90,7 +86,7 @@ echo $this->Session->flash();
         with the value 'error' to the url for no animation (page_login.php?mode=error)
     -->
     <body class="login">
-
+    		<?=$this->Session->flash();?>
         <!-- Login Intro -->
         <a href="javascript:void(0)" class="login-btn bg-variant animation-fadeIn animation-both delay3">
             <span class="login-logo">
@@ -143,9 +139,13 @@ echo $this->Session->flash();
                                         </div>
                                         <i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#login-password"></i>
                                     </div>
-                                    <div class="input-group p-0">
-                                        <a href="/shop/recuperar_acceso"><i class="fa fa-hand-stop-o mr-1"></i> Olvidé mi contraseña</a>
-                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-4">
+                                <div class="col-xs-12">
+                                    <span class="text-link">
+                                			<a href="/shop/recuperar_acceso"><i class="fa fa-hand-stop-o mr-1"></i> Olvidé mi contraseña</a>
+                                		</span>
                                 </div>
                             </div>
                             <div class="form-group mt-8">
@@ -187,8 +187,8 @@ echo $this->Session->flash();
         <style type="text/css">
 
 .left-door, .right-door {
-  width: 50%;
-  height: 100%;
+  width: 100%;
+  height: 50%;
   position: absolute;
   bottom: 0;
   background-color: #151515;
@@ -196,19 +196,44 @@ echo $this->Session->flash();
 }
 
 .left-door {
-  left: 0;
-  border-right: 3px solid #222;
+  top: 0;
+  border-bottom: 3px solid #222;
 }
 
 .right-door {
-  right: 0;
-  border-left: 3px solid #222;
+  bottom: 0;
+  border-top: 3px solid #222;
 }
 
 .left-door.login-animate,
 .right-door.login-animate {
-  width: 0;
-  border-width: 0;
+  height: 0;
+  border-height: 0;
+}
+
+@media(min-width: 767px) {
+	.left-door, .right-door {
+	  width: 50%;
+	  height: 100%;
+	}
+	.left-door {
+	  left: 0;
+	  bottom: auto;
+	  border: none;
+	  border-right: 3px solid #222;
+	}
+	.right-door {
+	  right: 0;
+	  top: auto;
+	  border: none;
+	  border-left: 3px solid #222;
+	}	
+	.left-door.login-animate,
+	.right-door.login-animate {
+	  width: 0;
+	  height: 100%;
+	  border-width: 0;
+	}
 }
 
 .login-btn {
@@ -350,16 +375,18 @@ body.login .form-group {
 
         <script type="text/javascript">
             $(function(){
-                $('input[type="submit"]').prop('disabled', false)
+                $('button[type="submit"]').prop('disabled', false)
                 var timeout = 0
             $('#login_form').submit(function(e) {
+            	 	$('button[type="submit"]').text('Espere...')
+                $('button[type="submit"]').prop('disabled', true)
+
                 e.preventDefault();
                 if($('#password').length){
                     if($('#password').val().trim() != $('#password2').val().trim()) {
                         return onWarningAlert('Error de validación', 'Las contraseñas no coinciden. Asegúrate de que sean la misma en ambos campos')
                     }
                 }
-                $('input[type="submit"]').prop('disabled', true)
                 // const formData = new FormData(e.target);
                 clearTimeout(timeout)
                 timeout = setTimeout(() => {
@@ -374,7 +401,7 @@ body.login .form-group {
                           message: res.errors
                       });
 
-                      $('input[type="submit"]').prop('disabled',false)
+                      $('button[type="submit"]').prop('disabled',false)
                       return false;
                     } else {
                       $.growl.notice({
@@ -389,7 +416,8 @@ body.login .form-group {
                     }
                   })
                   .fail(function() {
-                        $('input[type="submit"]').prop('disabled', false)
+                        $('button[type="submit"]').prop('disabled', false)
+                        $('button[type="submit"]').text('Iniciar sesión')
                       $.growl.error({
                           title: 'Error al inciar sesión',
                           message: 'Por favor verifica los datos introducidos e intenta de nuevo'

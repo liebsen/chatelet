@@ -20,23 +20,26 @@
 
   <section id="desarrollo" class="bg-arrow">
       <div class="wrapper">
-          <h3>Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h3>
-          <div class="col-xs-12 col-md-6">
-              <ol class="ordered-list p-0">
-                  <li>Elegí tu prenda
-Podés encontrarla navegando por las categorías de nuestro shop o utilizando el buscador.
-Una vez que hayas encontrado el producto que deseas, cliqueá para ingresar y conocer todos sus detalles.</li>
-<li>Si querés comprarlo, elegí color y talle, y hacé clic en “Agregar al carrito”. Por más que la opción de color sea una sola, igual tenes que seleccionarla, de otro modo no podrás agregarlo. Aguardá unos segundos y el sistema te dirá si efectivamente hay stock de dicho artículo.</li>
-<li>Tu producto fue agregado. Si querés agregar más productos, podés seguir
-navegando y repetir el proceso. Cuando termines, accedé a tu carrito
-haciendo click en el menú del margen superior del sitio “Tu carrito”</li>
-<li>Allí podrás ver el resumen de tu compra (producto, talle, color, etc). En caso
-de tener un cupón de descuento (no es obligatorio), cargalo en el recuadro
-correspondiente y hacé click en “Aplicar”. Verifica que el pedido sea
-correcto y hace click en “finalizar compra”</li>
-              </ol>                   
+          <div class="col-xs-12 col-md-6 boxes">
+          		<div class="boxes-reframe">
+				          <h3>Comprar en nuestra tienda online es muy fácil y seguro. Seguí estos pasos</h3>
+		              <ol class="ordered-list p-0">
+		                  <li>Elegí tu prenda
+		Podés encontrarla navegando por las categorías de nuestro shop o utilizando el buscador.
+		Una vez que hayas encontrado el producto que deseas, cliqueá para ingresar y conocer todos sus detalles.</li>
+		<li>Si querés comprarlo, elegí color y talle, y hacé clic en “Agregar al carrito”. Por más que la opción de color sea una sola, igual tenes que seleccionarla, de otro modo no podrás agregarlo. Aguardá unos segundos y el sistema te dirá si efectivamente hay stock de dicho artículo.</li>
+		<li>Tu producto fue agregado. Si querés agregar más productos, podés seguir
+		navegando y repetir el proceso. Cuando termines, accedé a tu carrito
+		haciendo click en el menú del margen superior del sitio “Tu carrito”</li>
+		<li>Allí podrás ver el resumen de tu compra (producto, talle, color, etc). En caso
+		de tener un cupón de descuento (no es obligatorio), cargalo en el recuadro
+		correspondiente y hacé click en “Aplicar”. Verifica que el pedido sea
+		correcto y hace click en “finalizar compra”</li>
+		              </ol>
+		          </div>        
           </div>
-          <div class="col-xs-12 col-md-6">
+          <div class="col-xs-12 col-md-6 boxes">
+          	<div class="boxes-reframe">
               <ol start="5" class="ordered-list p-0">
 <li>Para continuar ingresa con tu cuenta Châtelet (si ya sos clienta y estas
 registrada) o podes ingresar como nueva clienta ingresando tu email y
@@ -53,6 +56,7 @@ bancaria, te aparecerán los datos bancarios en pantalla, ¡y listo! Te
 mantendremos informado del estado de tu pedido por mail o WhatsApp.</li>
 </ol><br><br>                         
               </ol>
+             </div>
           </div>
       </div>
   </section>
