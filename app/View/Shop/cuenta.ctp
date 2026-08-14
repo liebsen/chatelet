@@ -28,11 +28,11 @@ echo $this->Session->flash();
 				<a href="/admin" class="btn btn-info dark w-100"><span>Administrador</span></a>
 			<?php endif ?>
 			<?php if ($loggedIn): ?>
-				<a href="/shop/mis_compras" class="btn btn-chatelet dark w-100">Mis compras</a>
+				<a href="/shop/mis_compras" class="btn btn-chatelet w-100">Mis compras</a>
 				<a href="/shop/registro" class="btn btn-chatelet w-100">Actualizar mi cuenta</a>
 				<a href="/users/logout" class="btn btn-chatelet btn-logout light w-100">Cerrar sesión</a>
 			<?php else:?>
-				<a href="/shop/login" class="btn btn-chatelet dark w-100">Iniciar sesión</a>
+				<a href="/shop/login" class="btn btn-chatelet w-100">Iniciar sesión</a>
 				<a href="/shop/registro" class="btn btn-chatelet w-100">Crear mi cuenta</a>
 			<?php endif ?>
 				<a href="/shop" class="btn btn-chatelet light btn-continue-shopping w-100">Seguir comprando</a>

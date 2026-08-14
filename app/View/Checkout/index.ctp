@@ -25,7 +25,7 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 						<div class="d-flex flex-column justify-content-start align-items-center gap-05">
 							<h4 class="text-uppercase">Estás conectada como <?php echo $user['name'] ?? 'Invitada'; ?></h4>
 							<p>Confirma tu identidad para continuar con tu compra de <?php echo \price_format($cart_totals['grand_total']) ?>.</p>
-							<a href="/checkout/envio" class="btn btn-chatelet dark w-100">Continuar como <?php echo $user['name'] ?? 'Invitada'; ?> <?php echo $user['surname']; ?> </a>
+							<a href="/checkout/envio" class="btn btn-chatelet w-100">Continuar como <?php echo $user['name'] ?? 'Invitada'; ?> <?php echo $user['surname']; ?> </a>
 							<span class="text-sm text-muted"><b>Al finalizar el proceso</b> revisa tu cuenta en <b><?php echo $user['email']; ?></b></span>
 						</div>
 						<!--script>
@@ -58,7 +58,7 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 				     </div>
 			      <hr>
 						<div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">			      
-			      	<input type="submit" class="btn btn-chatelet dark w-100" value="Iniciar sesión" />
+			      	<input type="submit" class="btn btn-chatelet w-100" value="Iniciar sesión" />
 			        <a class="btn btn-chatelet w-100" href="/shop/recuperar_acceso?redirect=/checkout">Olvidé la contraseña</a>
 			      </div>
 			      <?php echo $this->Form->end(); ?>
@@ -83,7 +83,7 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 			      </div>
 			      <hr>
 			      <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">
-			      	<input type="submit" class="btn btn-chatelet dark w-100" value="Continuar como invitada" />
+			      	<input type="submit" class="btn btn-chatelet w-100" value="Continuar como invitada" />
 			      	<input type="button" class="btn btn-chatelet btn-register w-100" value="Registrar mi cuenta" />
 			      <?php echo $this->Form->end(); ?>
 					</div>

@@ -283,7 +283,7 @@ $userData = array(
 						</span>
 					</div>
 					<div class="col-md-6">
-			    	<input type="submit" class="btn btn-chatelet dark w-100" id="enviar-registroenviar-registro" value="<?= !$loggedIn ? 'Registrarme' : 'Actualizar' ?>" />
+			    	<input type="submit" class="btn btn-chatelet w-100" id="enviar-registroenviar-registro" value="<?= !$loggedIn ? 'Registrarme' : 'Actualizar' ?>" />
 					</div>
 				</div>
 				<?php echo $this->Form->end(); ?>

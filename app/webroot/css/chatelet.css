@@ -1579,29 +1579,31 @@ select.form-control{
 }
 
 .btn-chatelet {
-	color: darkred;
+	color: white;
 	font-weight: 1000;
-	border-color: pink;
+	border-color: deeppink;
 	line-height: 2.85;
-	background-color: lightpink;
+	background-color: deeppink;
 	box-shadow: 0 2px 2px #00000008;
 }
 
 .btn-chatelet:hover {
-	color: deeppink!important;
-	background-color: pink!important;
+	background-color: hotpink!important;
+	border-color: hotpink;
 }
 
 .btn-chatelet.dark {
-	color: darkred;
-  background-color: lightpink;
-  border-color: #c5c5c5;
+	color: #F4F4F4;
+	background-color: #0A0A0A;
+	border-color: #0A0A0A;
 }
-
+.btn-chatelet.dark:hover {
+	background-color: black!important;
+	border-color: black;
+}
 .btn-chatelet.light {
-	color: #c5c5c5;
-  background-color: transparent;
-  border-color: #c5c5c5;
+  background-color: lightpink;
+  border-color: lightpink;
 }
 
 .btn-chatelet.dark:hover {

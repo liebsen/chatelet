@@ -32,7 +32,7 @@
       <h1 class="h1">¿Seguro deseas eliminar<br><span class="prod_name text-theme"></span><br> del carrito?</h1>
       <div class="form-group">
       	<button type="button" class="btn btn-light" onclick="layerClose('remove-item')">Cancelar</button>
-        <button type="button" id="carrito-remove-btn" class="btn btn-chatelet dark" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
+        <button type="button" id="carrito-remove-btn" class="btn btn-chatelet" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
       </div>
     </div>
   </div>

@@ -89,7 +89,7 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 						</span>
 					</div>
 					<div class="col-md-6">
-			    	<button type="button" id="submitcheckoutbutton" class="btn btn-chatelet dark btn-continue w-100">Continuar</button>
+			    	<button type="button" id="submitcheckoutbutton" class="btn btn-chatelet btn-continue w-100">Continuar</button>
 				  	<input type="submit" id="submitform" class="hidden-force" />
 					</div>
 				</div>

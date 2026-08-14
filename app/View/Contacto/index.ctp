@@ -69,7 +69,7 @@
           </span>
         </div>
         <div class="col-md-6">
-          <input type="submit" id="contactar" class="btn btn-chatelet dark" value="Enviar Consulta" />
+          <input type="submit" id="contactar" class="btn btn-chatelet" value="Enviar Consulta" />
         </div>
       </div>
       <?php echo $this->Form->end(); ?>

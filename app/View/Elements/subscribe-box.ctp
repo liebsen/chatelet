@@ -31,7 +31,7 @@
 	            	<input class="form-control m-0" type="email" name="email2" placeholder="Confirma tu email" required>
 	            </div>
 	            <div class="controls">
-	              <input type="submit" class="btn btn-chatelet dark" id="enviar" value="Suscribirme">
+	              <input type="submit" class="btn btn-chatelet" id="enviar" value="Suscribirme">
 	            </div>
 	          </div>
 	        </div>

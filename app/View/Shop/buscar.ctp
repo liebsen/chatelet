@@ -8,7 +8,7 @@
               <input class="form-control textbig m-0" type="text" name="q" placeholder="Buscar en Châtelet..." value="<?= $q ?>" autofocus required>
             </div>
             <div class="form-group">
-              <input type="submit" class="btn btn-chatelet dark" id="enviar" value="Buscar">
+              <input type="submit" class="btn btn-chatelet" id="enviar" value="Buscar">
             </div>
           </div>
           <span class="text-sm">
