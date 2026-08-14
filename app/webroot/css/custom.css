@@ -1277,6 +1277,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   font-weight: 700;
   font-size: 1rem;
   padding: 8px;
+  min-width: 3rem;
   line-height: 1;
 }
 
