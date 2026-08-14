@@ -230,7 +230,6 @@ class ShopController extends AppController {
     // Build dynamic data array
     $data = array(
         'sitemapindex' => array(
-            'xmlns' => 'http://sitemaps.org',
             'sitemap' => array(
                 'loc' => $this->settings['site_url']
             )
@@ -239,6 +238,8 @@ class ShopController extends AppController {
     
     // Convert array to XML using Cake's Xml utility
     $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
+    $xmlObject->addAttribute('xmlns', 'http://sitemaps.org');
+
     $xmlString = $xmlObject->asXML();
     
     // Set content type header to application/xml
@@ -267,7 +268,6 @@ class ShopController extends AppController {
     // Build dynamic data array
     $data = array(
       'urlset' => array(
-        'xmlns' => 'http://sitemaps.org',
         'url' => array()
       )
     );
@@ -282,6 +282,7 @@ class ShopController extends AppController {
 
     // Convert array to XML using Cake's Xml utility
     $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
+    $xmlObject->addAttribute('xmlns', 'http://sitemaps.org');
     $xmlString = $xmlObject->asXML();
     
     // Set content type header to application/xml
@@ -311,8 +312,6 @@ class ShopController extends AppController {
     // Build dynamic data array
     $data = array(
       'urlset' => array(
-        'xmlns' => 'http://sitemaps.org',
-        'xmlns:image' => 'http://google.com',
         'url' => array()
       )
     );
@@ -325,7 +324,7 @@ class ShopController extends AppController {
 		]);
 
 		foreach($products as $product) {
-			$slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name'])));
+			$slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', trim($product['Product']['name']))));
 			$data['urlset']['url'][] = array(
 				'loc' => $this->settings['site_url'] .'/tienda/producto/'. $product['Product']['id'] . '/' . $product['Product']['category_id'] . '/'. $slug,
 				'lastmod' => date('Y-m-d'),
@@ -338,13 +337,15 @@ class ShopController extends AppController {
 
     // Convert array to XML using Cake's Xml utility
     $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
+    $xmlObject->addAttribute('xmlns', 'http://sitemaps.org');
+    $xmlObject->addAttribute('xmlns-image', 'http://google.com');
     $xmlString = $xmlObject->asXML();
     
     // Set content type header to application/xml
     $this->response->type('xml');
     
     // Return the final XML string as the response body
-    $this->response->body($xmlString);
+    $this->response->body(str_replace('xmlns-image', 'xmlns:image',$xmlString));
     return $this->response;
 	}
 
