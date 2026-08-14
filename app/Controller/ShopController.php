@@ -223,6 +223,132 @@ class ShopController extends AppController {
 		exit();
 	}	
 
+
+	public function sitemap_index() {
+    $this->autoRender = false;
+    
+    // Build dynamic data array
+    $data = array(
+        'sitemapindex' => array(
+            'xmlns' => 'http://sitemaps.org',
+            'sitemap' => array(
+                'loc' => $this->settings['site_url']
+            )
+        )
+    );
+    
+    // Convert array to XML using Cake's Xml utility
+    $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
+    $xmlString = $xmlObject->asXML();
+    
+    // Set content type header to application/xml
+    $this->response->type('xml');
+    
+    // Return the final XML string as the response body
+    $this->response->body($xmlString);
+    return $this->response;
+	}
+
+	public function sitemap_categories() {
+    $this->autoRender = false;
+    /*
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://sitemaps.org">
+   <url>
+      <loc>https://tutienda.com</loc>
+      <lastmod>2026-08-12</lastmod>
+   </url>
+   <url>
+      <loc>https://tutienda.comtenis-running/</loc>
+      <lastmod>2026-08-14</lastmod>
+   </url>
+</urlset>
+    */
+    // Build dynamic data array
+    $data = array(
+      'urlset' => array(
+        'xmlns' => 'http://sitemaps.org',
+        'url' => array()
+      )
+    );
+	
+		foreach($this->viewVars['categories'] as $category) {
+			$slug =  str_replace(' ','-',strtolower($category['Category']['name']));
+			$data['urlset']['url'][] = array(
+				'loc' => $this->settings['site_url'] .'/tienda/productos/'. $slug,
+				'lastmod' => date('Y-m-d')
+			);
+		}
+
+    // Convert array to XML using Cake's Xml utility
+    $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
+    $xmlString = $xmlObject->asXML();
+    
+    // Set content type header to application/xml
+    $this->response->type('xml');
+    
+    // Return the final XML string as the response body
+    $this->response->body($xmlString);
+    return $this->response;
+	}
+
+	public function sitemap_products() {
+    $this->autoRender = false;
+    /*
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://sitemaps.org"
+        xmlns:image="http://google.com">
+   <url>
+      <loc>https://tutienda.com</loc>
+      <lastmod>2026-08-14</lastmod>
+      <image:image>
+         <image:loc>https://tutienda.com</image:loc>
+         <image:title>Tenis Running Pro V2 Color Rojo</image:title>
+      </image:image>
+   </url>
+</urlset>
+    */
+    // Build dynamic data array
+    $data = array(
+      'urlset' => array(
+        'xmlns' => 'http://sitemaps.org',
+        'xmlns:image' => 'http://google.com',
+        'url' => array()
+      )
+    );
+
+		$products = $this->Product->find('all',[
+			'conditions' => [
+				'visible' => 1,
+			],
+			'order' => ['Product.name ASC']
+		]);
+
+		foreach($products as $product) {
+			$slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name'])));
+			$data['urlset']['url'][] = array(
+				'loc' => $this->settings['site_url'] .'/tienda/producto/'. $product['Product']['id'] . '/' . $product['Product']['category_id'] . '/'. $slug,
+				'lastmod' => date('Y-m-d'),
+				'image:image' => array(
+					'image:loc' => $this->settings['site_url'] .''. $this->settings['upload_url'] . ''. $product['Product']['img_url'],
+					'image:title' => trim($product['Product']['name']),
+				)
+			);
+		}
+
+    // Convert array to XML using Cake's Xml utility
+    $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
+    $xmlString = $xmlObject->asXML();
+    
+    // Set content type header to application/xml
+    $this->response->type('xml');
+    
+    // Return the final XML string as the response body
+    $this->response->body($xmlString);
+    return $this->response;
+	}
+
+
 	public function die_general_stock(){
 		$this->autoRender = false;
 		$this->SQL = $this->Components->load('SQL');
@@ -479,9 +605,11 @@ class ShopController extends AppController {
 			//rsort($products);
       $this->set('category',$category);
 			$this->set('products', $products);
+			// $this->set('schema', $this->categorySchema($category,$products));
+
 		} else {
 			/******** JSONSD ********/
-			$this->set('schema', $this->categorySchema($categories));
+			//$this->set('schema', $this->categorySchema($categories));
 		}
 
 		if(empty($category)) {
@@ -753,7 +881,7 @@ class ShopController extends AppController {
 	    ];
 		}
 
-		$this->set('schema', $schema);
+		//$this->set('schema', $schema);
 		$this->set('legends', $legends);
 		$this->set('all_but_me', $all_but_me);
 	}

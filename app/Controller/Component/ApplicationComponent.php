@@ -17,7 +17,7 @@ class ApplicationComponent extends Component {
 
   public function index(){}  
 
-  public function shop() {
+  public function seo() {
     if($this->controller->request->is('post')){
       return $this->update_settings();
     }    
