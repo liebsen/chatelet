@@ -5,13 +5,13 @@
 ?>
 
   <section class="wrapper-fluid map animation-fadeIn animation-both delay">
-    <div class="col-xs-12 col-md-4">
+    <div class="col-xs-12 col-md-3">
       <div class="animation-fadeIn slow">
         <h1>Nuestras<br>sucursales</h1>
       </div>
     </div>
 
-    <div class="col-xs-12 col-md-8">
+    <div class="col-xs-12 col-md-9">
       <div id="map-canvas" class="sucursales"  data-url="<?php echo $this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>"></div>
     </div>
   </section>

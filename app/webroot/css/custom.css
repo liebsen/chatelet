@@ -340,8 +340,14 @@ label input[type=checkbox]:disabled + .label-text:before {
   position: relative; 
   transition: none!important;
   z-index: 10;
-  box-shadow: var(--box-shadow);
+  /*box-shadow: var(--box-shadow);*/
+  border-bottom: 1px solid pink;
   transition: background 0.25s ease-in-out;
+}
+
+.navbar-chatelet .navbar-toggle { 
+	color: deeppink;
+	cursor: pointer;
 }
 
 .navbar-collapse {
@@ -372,6 +378,7 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav > li > a {
   border-bottom: 2px solid transparent;
   font-weight: 300;
+  line-height: 25px;
   padding: 0.25rem 0.75rem;
   text-transform: uppercase;
   transition: all .3s ease-in-out; 
@@ -435,7 +442,10 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   .navbar-chatelet { 
     min-height: 74px;
   }
-  .add-no-stock {
+	.navbar-nav > li > a {
+		display: inline;
+	}
+	.add-no-stock {
     min-height: 30rem!important;
   }
   .navbar-nav { 
@@ -450,6 +460,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   }
 
   .navbar-nav.navbar-right > li > a {
+  	display: inline-block;
     background-size: 50px;
     background-position: center;
     background-repeat: no-repeat;  
@@ -464,8 +475,9 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   .navbar-nav.navbar-right {
     white-space: nowrap;
   }
-  .map .col-md-8 { 
+  .map .col-md-9 { 
     padding-top: 2rem !important;
+    padding-right: 2rem !important;
   }
 }
 
@@ -599,7 +611,7 @@ body.top-fixed .shop-options {
 footer { 
 	background: #ffd3db; 
 	overflow: hidden; 
-	padding: 5rem 0 0; 
+	padding: 4rem 1rem; 
 }
 footer a {
 	color: deeppink;
@@ -1351,23 +1363,24 @@ ul#ul-moreviews li.dontResize img {
   display: flex; 
   overflow: hidden; 
   min-height: calc(100dvh - 265px);
+  background-color: #f4f4f6;
 }
 
-.map .col-md-4 { 
+.map .col-md-3 { 
 	min-height: 8rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.map .col-md-4 h1 { 
+.map .col-md-3 h1 { 
 	text-align: center;
 	font-size: 32px; 
 	font-weight: 800; 
 	letter-spacing:-0.1rem 
 }
 
-.map .col-md-4 h1:after { 
+.map .col-md-3 h1:after { 
   background: #333; 
   content: ""; 
   display: block; 
@@ -1415,6 +1428,14 @@ ul#ul-moreviews li.dontResize img {
   position: relative; 
   text-align: center;
   /*padding: 65px 0;*/ 
+}
+
+#headhelp .wrapper {
+	background-color: #f4f4f6;
+}
+
+#headhelp .row > div {
+	padding: 0;
 }
 
 #headhelp h1 { text-align: center;font-size: 32px; margin: 0; font-weight: 800; letter-spacing:-0.1rem; padding: 2rem; }
@@ -1508,7 +1529,7 @@ ul#ul-moreviews li.dontResize img {
     /*padding-top: 6rem!important;*/
   }
   #headhelp {
-  	padding-top: 5.5rem; 
+  	padding-top: 3rem; 
     padding-bottom: 0.5rem; 
 	  min-height: calc(100dvh - 265px);
   }
@@ -1529,12 +1550,13 @@ ul#ul-moreviews li.dontResize img {
 #headhelp .box2 input[type="text"] { background: transparent; border: 2px solid #51177d; font-size: 16px; padding: 15px 11px; text-align: center; width: 48%; min-height: 55px;}
 #headhelp .box2 input[type="submit"] { background: #51177d; border: none; color: #FFF; float: right; font-size: 16px; height: 60px; width: 48%; }
 #desarrollo { overflow: hidden;  }
+
 #desarrollo .boxes .boxes-reframe {
 	margin-bottom: 1rem;
   padding: 1rem 2rem;
   border-radius: 1rem;
   background-color: transparent;
-  border: 1px solid #6663;
+  border: 4px dashed #6663;
   background-color: rgba(255,255,255,0.5);
 }
 /*#desarrollo .boxes:first-child { 
@@ -1561,8 +1583,7 @@ ul#ul-moreviews li.dontResize img {
   height: 3rem;
   text-align: center;
   font-size: 1.5rem;
-  color: #fecb2e;
-  text-shadow: 0 0 4px #e7e7e7;
+  color: deeppink;
   line-height: 1.8;
   font-family: 'FontAwesome';
   position: absolute;
@@ -1574,7 +1595,7 @@ ul#ul-moreviews li.dontResize img {
 	color: white;
 }
 
-#desarrollo p { font-size: 15px; margin-bottom: 30px; }
+#desarrollo p { font-size: 15px; margin-bottom: 30px; color: #2C2C2C; }
 #referncia {display: flex}
 #referncia h2 { font-size: 1.5rem!important; font-weight: bolder; margin-bottom: 2rem!important; text-align: center; }
 #referncia .bx { border-right: 1px solid #f6f6f5; float: left; font-size: 17px; padding: 0 45px; width: 20%;     background-color: navajowhite; min-height: 88px; }
@@ -1596,6 +1617,11 @@ ul#ul-moreviews li.dontResize img {
     background-position: top center;
     background-size: cover;
   }
+
+
+	#desarrollo .boxes {
+		padding: 0;
+	}
 
 	#carousel .carousel-caption { padding-bottom: 100px; padding-top: 100px; }
 	#carousel .carousel-caption h1 { font-size: 32px; }

@@ -149,7 +149,7 @@ echo $this->Session->flash();
           <?php endif;?>
           <?php if (!$isGiftCard): ?>
               <!--h2>Color</h2-->
-              <div class="card card-border">
+              <div class="card-border">
                 <div class="animation-fadeIn animation-both w-100">
                   <div class="article-tools pt-4">
                     <!--div class="color-options d-flex justify-content-start align-items-start gap-15" data-toggle="buttons"-->

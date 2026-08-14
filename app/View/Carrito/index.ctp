@@ -235,7 +235,7 @@
       </div>
 			<div class="flex-col gap-1">
 				<!-- fill coupon -->
-				<div class="card card-variant">
+				<div class="card-variant">
 					<?php echo $this->element('coupon'); ?>
 				</div>								  
 				<!-- end fill coupon -->
