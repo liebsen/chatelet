@@ -33,7 +33,7 @@
               <a class="btn btn-success w-100 text-white" href="https://wa.me/<?= $settings['bank_whatsapp'] ?>?text=Hola te escribo de la web de Châtelet para enviarte el comprobante de transferencia <?= urlencode('(ref. #'.$invoice_id.')') ?> ..." target="_blank">
                 <i class="fa fa-lg fa-whatsapp"></i> Enviar por WhatsApp
               </a>
-              <a class="btn btn-chatelet w-100" href="/shop/mis_compras">
+              <a class="btn btn-chatelet dark w-100" href="/shop/mis_compras">
                 Ir a mis compras
               </a>
               <?php endif ?>

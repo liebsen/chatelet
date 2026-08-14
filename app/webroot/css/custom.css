@@ -2455,18 +2455,18 @@ span.count {
   z-index: 9;
   top: -13px;
   left: -10px;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1rem;
+  height: 1rem;
   background-color: deeppink;
-  outline: 3px solid white;
+  outline: 4px solid white;
   border-radius: 100%;
-  line-height: 1.75;  
+  line-height: 1.666;  
   text-align: center;
-  min-width: 1.25rem;
-  font-size: 0.75rem;
+  min-width: 1rem;
+  font-size: 0.7rem;
   color: #fff;
   margin: auto;
-  font-weight: 800;
+  font-weight: 1000;
 }
 
 span.count.is-empty {

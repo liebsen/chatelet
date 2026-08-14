@@ -690,7 +690,7 @@ body > section {
 
 .bronco-select input[type=radio]{
 	transform: scale(2);
-	accent-color: #333;
+	accent-color: deeppink;
 	margin-right: 0.5rem;
 }
 
@@ -1580,11 +1580,11 @@ select.form-control{
 }
 
 .btn-chatelet {
-	color: white;
 	font-weight: 1000;
-	border-color: deeppink;
+  background-color: white;
+  border-color: deeppink;
+  color: deeppink;
 	line-height: 2.85;
-	background-color: deeppink;
 	box-shadow: 0 2px 2px #00000008;
 }
 
@@ -1594,14 +1594,16 @@ select.form-control{
 }
 
 .btn-chatelet.dark {
-	color: #F4F4F4;
-	background-color: #0A0A0A;
-	border-color: #0A0A0A;
+	color: white;
+	border-color: deeppink;
+	background-color: deeppink;
 }
+
 .btn-chatelet.dark:hover {
-	background-color: black!important;
-	border-color: black;
+	background-color: hotpink;!important;
+	border-color: hotpink;
 }
+
 .btn-chatelet.light {
   background-color: lightpink;
   border-color: lightpink;

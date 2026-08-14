@@ -52,7 +52,7 @@ echo $this->Html->script('particular-validation', array('inline' => false));
       	<span class="label-text text-muted"><span class="text-sm text-link">Recordarme en este dispositivo</span></span>
       </label-->
       <div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4 w-100">
-      	<input type="submit" class="btn btn-chatelet w-100" value="Iniciar sesión" />
+      	<input type="submit" class="btn btn-chatelet dark w-100" value="Iniciar sesión" />
       	<hr> 
         <a class="btn btn-light w-100" href="<?=$this->Html->url(
 						array(

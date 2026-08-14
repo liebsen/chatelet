@@ -49,7 +49,7 @@ echo $this->element('checkout-params');
 							  	<div class="position-relative input-status flex-1">
 							  		<input type="text" name="" placeholder="Tu código postal" class="form-control input-cp both" title="Ingresá tu código postal" data-valid="0" />
 							  	</div>
-						    	<button class="btn btn-chatelet btn-input-lg btn-calculate-shipping" data-loading-text="Espere..." title="Cotizá el envío a domicilio de tu compra">Aplicar</button>
+						    	<button class="btn btn-chatelet dark btn-input-lg btn-calculate-shipping" data-loading-text="Espere..." title="Cotizá el envío a domicilio de tu compra">Aplicar</button>
 								</div>
 								<div class="form-group shipping-block mt-2 w-100 hidden">
 									<span class="d-block">Elegí la empresa de tu confianza para realizar este envío</span>
@@ -94,7 +94,7 @@ echo $this->element('checkout-params');
 							</span>
 						</div>
 						<div class="col-md-6">
-				    	<input type="submit" class="btn btn-chatelet w-100" value="Continuar" />
+				    	<input type="submit" class="btn btn-chatelet dark w-100" value="Continuar" />
 							<!--a class="btn btn-continue-shopping btn-chatelet w-100" href="/tienda">Seguir comprando</a-->
 						</div>
 					</div>

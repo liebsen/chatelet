@@ -60,9 +60,9 @@
       <span class="calc_total price_strong"><?= \price_format($cart_totals['total_products'] - $cart_totals['coupon_benefits'] + $cart_totals['delivery_cost']) ?></span><!--span>.00</span-->
     </div>    
     <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-      <a href="/checkout" class="btn btn-chatelet w-100">Finalizar compra</a>
+      <a href="/checkout" class="btn btn-chatelet dark w-100">Finalizar compra</a>
     <?php if (!in_array(Router::url(), array('/carrito'))) : ?>
-      <a href="/carrito" class="btn btn-chatelet w-100">Ir al carrito</a>
+      <a href="/carrito" class="btn btn-chatelet dark w-100">Ir al carrito</a>
     <?php endif ?>
       <a href="/tienda" class="btn btn-chatelet btn-continue-shopping w-100">Seguir comprando</a>
     </div>  

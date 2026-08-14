@@ -227,7 +227,7 @@ echo $this->Session->flash();
                     <a href="#" id="comprar" class="btn btn-chatelet buy agregar-carro min-w-20">Comprar</a>
                     <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro min-w-20">Agregar al carrito</a>
                     <?php if(!empty($cart)):?>
-                    <a href="/carrito" class="btn btn-chatelet w-100">Ir al carrito</a>
+                    <a href="/carrito" class="btn btn-chatelet dark w-100">Ir al carrito</a>
                     <?php endif ?>
                   </div>                        
                 </div>

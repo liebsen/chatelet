@@ -20,7 +20,7 @@
     </div>
     <div class="sidebar-bottom">
       <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-        <button class="btn btn-chatelet w-100" type="submit">Buscar</button>
+        <button class="btn btn-chatelet dark w-100" type="submit">Buscar</button>
       </div>
     </div>
   </nav>
