@@ -1307,7 +1307,7 @@ select.form-control{
   background-color: deeppink;
   color: white;
   background-clip: border-box;
-  border-radius: 0.75rem;
+  border-radius: 1rem;
 }
 
 .card p {
@@ -1326,7 +1326,7 @@ select.form-control{
 
 .card-body {
   padding: 1.5rem;
-  border-radius: 0.75rem;
+  border-radius: 1rem;
 }
 
 .card.is-rounded .card-body {
@@ -1426,7 +1426,7 @@ select.form-control{
 }
 
 .btn-chatelet {
-	font-weight: 1000;
+	font-weight: 500;
   background-color: white;
   border-color: deeppink;
   color: deeppink;
