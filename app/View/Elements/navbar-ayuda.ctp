@@ -53,7 +53,7 @@
   #optionsHelp > a.active {
 	  border-bottom: 4px solid deeppink;
 	  border-radius: 10px;
-	  font-weight: 700;
+	  font-weight: 500;
 	  color: deeppink;    
   }
 

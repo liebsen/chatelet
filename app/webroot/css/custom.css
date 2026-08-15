@@ -374,7 +374,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   border-bottom: 4px solid deeppink;
   border-radius: 10px;
   color: deeppink;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .navbar-chatelet .fa,
@@ -544,7 +544,7 @@ body.top-fixed .shop-options {
   border-bottom: 4px solid deeppink;
   border-radius: 10px;
   color: deeppink;
-  font-weight: 700;
+  font-weight: 500;
   padding: 4px 10px;
   position: relative;
   left: -10px;  
@@ -1045,7 +1045,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   border-bottom: 4px solid deeppink;
   border-radius: 10px;
   color: deeppink;
-  font-weight: 700;
+  font-weight: 500;
   position: relative;
   left: -10px;  
 }
@@ -1619,7 +1619,7 @@ ul#ul-moreviews li.dontResize img {
 	#filters .col-md-4 { margin-bottom: 15px; }
 	
 	#productOptions nav li a { font-size: 16px; }
-  #productOptions nav li a.active { color: deeppink; border-bottom: 2px solid deeppink; font-weight: 700; }
+  #productOptions nav li a.active { color: deeppink; border-bottom: 2px solid deeppink; font-weight: 500; }
 	#filters { margin-bottom: 50px; }
 
 
