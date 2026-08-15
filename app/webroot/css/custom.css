@@ -1515,7 +1515,7 @@ ul#ul-moreviews li.dontResize img {
 	color: white;
 }
 
-#desarrollo p { font-size: 15px; margin-bottom: 30px; color: #2C2C2C; }
+#desarrollo p { font-size: 15px; margin-bottom: 30px; }
 #referncia {display: flex}
 #referncia h2 { font-size: 1.5rem!important; font-weight: bolder; margin-bottom: 2rem!important; text-align: center; }
 #referncia .bx { border-right: 1px solid #f6f6f5; float: left; font-size: 17px; padding: 0 45px; width: 20%;     background-color: navajowhite; min-height: 88px; }

@@ -29,6 +29,17 @@
         <div class="flex-col">
           <h1>Contacta con Châtelet</h1>
           <p>Elige que tipo de consulta deseas realizar, rellena tus datos y escribe tu consulta, te responderemos en cuanto nos sea posible.</p>
+          <div class="p-5">
+            <h4>Tipo de consulta</h4>
+            <div class="form-group d-flex justify-content-start align-items-center">
+              <input type="radio" name="data[Contact][client_type]" id="particular" value="particular" checked="checked" />
+              <label for="particular">Particular</label>
+            </div>
+            <div class="form-group d-flex justify-content-start align-items-center">
+              <input type="radio" name="data[Contact][client_type]" id="comerciante" value="comerciante" />
+              <label for="comerciante">Comerciante</label>
+            </div>
+          </div>                    
           <div class="form-group">
             <input type="text" name="data[Contact][name]" class="form-control" placeholder="Nombre y Apellido" required />
           </div>
@@ -38,17 +49,6 @@
           <div class="form-group">
             <input type="text" name="data[Contact][telephone]" class="form-control" placeholder="Telefono" required />
           </div>
-          <div class="p-5">
-            <h6>Tipo de consulta</h6>
-            <div class="form-group d-flex justify-content-start align-items-center">
-              <input type="radio" name="data[Contact][client_type]" id="particular" value="particular" checked="checked" />
-              <label for="particular">Particular</label>
-            </div>
-            <div class="form-group d-flex justify-content-start align-items-center">
-              <input type="radio" name="data[Contact][client_type]" id="comerciante" value="comerciante" />
-              <label for="comerciante">Comerciante</label>
-            </div>
-          </div>          
           <div class="form-group">
             <textarea name="data[Contact][message]" class="form-control" placeholder="Escribe tu consulta aquí.." rows="4" required></textarea>
           </div>
